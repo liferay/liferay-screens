@@ -1,5 +1,9 @@
 # Liferay iOS Mobile Widget Library
 
+## Important note
+__This product is under heavy development and most of the features aren't ready to be used in production.
+It's public just in order to allow developers to preview the technology.__
+
 ## Introduction
 
 This is the library which contains all available widgets for iOS. It also includes the infrastructure classes to develop and contribute new widgets.
@@ -40,7 +44,7 @@ Widgets for iOS follow the architecture shown in the following diagram:
 From top to down in the view hierarchy, we have:
 
   - _`BarViewController`_: this is your regular view controller, based on Storyboards or xib, where you insert your widgets into. It belongs to your iOS project.
-  - _`FooWidget`_: this is the view that you insert into previous view controller, using Interface Builder or programatically. Since it's based on `BaseWidget` (and this is a direct descendant of `UIView`), it inherits all the business logic code that handles the remote services requets and responses. 
+  - _`FooWidget`_: this is the view that you insert into previous view controller, using Interface Builder or programatically. Since it's based on `BaseWidget` (and this is a direct descendant of `UIControl`), it inherits all the business logic code that handles the remote services requets and responses. 
   - _`FooView`_: the framework will insert this view into `FooWidget` automatically. Its UI is defined in `FooView.xib` and can be overwritten in `FooView-ext.xib`. It defines IBOutlets and IBActions to connect UI components to code.
 
 
