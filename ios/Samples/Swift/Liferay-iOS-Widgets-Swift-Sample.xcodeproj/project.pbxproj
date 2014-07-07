@@ -1,0 +1,419 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		171724ED3A0843AB9AC1B25E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D782ECE4B14578B67EA5D0 /* libPods.a */; };
+		8835607C196AED36002AB222 /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8835607B196AED36002AB222 /* liferay-context-sample.plist */; };
+		8868AFCC19656B0500FD5214 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868AFCB19656B0500FD5214 /* AppDelegate.swift */; };
+		8868AFCE19656B0500FD5214 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868AFCD19656B0500FD5214 /* ViewController.swift */; };
+		8868AFD119656B0500FD5214 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8868AFCF19656B0500FD5214 /* Main.storyboard */; };
+		8868AFD319656B0500FD5214 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8868AFD219656B0500FD5214 /* Images.xcassets */; };
+		88832F9819656B3F00E3DF9F /* BaseWidget+progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F8919656B3F00E3DF9F /* BaseWidget+progress.swift */; };
+		88832F9919656B3F00E3DF9F /* BaseWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F8A19656B3F00E3DF9F /* BaseWidget.swift */; };
+		88832F9A19656B3F00E3DF9F /* BaseWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F8B19656B3F00E3DF9F /* BaseWidgetView.swift */; };
+		88832F9B19656B3F00E3DF9F /* LiferayContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F8C19656B3F00E3DF9F /* LiferayContext.swift */; };
+		88832F9E19656B3F00E3DF9F /* liferay-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88832F9019656B3F00E3DF9F /* liferay-context.plist */; };
+		88832F9F19656B3F00E3DF9F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F9319656B3F00E3DF9F /* LoginView.swift */; };
+		88832FA019656B3F00E3DF9F /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88832F9419656B3F00E3DF9F /* LoginView.xib */; };
+		88832FA119656B3F00E3DF9F /* LoginWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F9519656B3F00E3DF9F /* LoginWidget.swift */; };
+		88832FA219656B3F00E3DF9F /* nameOfClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F9719656B3F00E3DF9F /* nameOfClass.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		01D782ECE4B14578B67EA5D0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CDED001B92C49429A1F0D49 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		8835607B196AED36002AB222 /* liferay-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-context-sample.plist"; sourceTree = "<group>"; };
+		8868AFC619656B0500FD5214 /* Liferay-iOS-Widgets-Swift-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liferay-iOS-Widgets-Swift-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8868AFCA19656B0500FD5214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8868AFCB19656B0500FD5214 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8868AFCD19656B0500FD5214 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8868AFD019656B0500FD5214 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8868AFD219656B0500FD5214 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		88832F8919656B3F00E3DF9F /* BaseWidget+progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseWidget+progress.swift"; sourceTree = "<group>"; };
+		88832F8A19656B3F00E3DF9F /* BaseWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidget.swift; sourceTree = "<group>"; };
+		88832F8B19656B3F00E3DF9F /* BaseWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidgetView.swift; sourceTree = "<group>"; };
+		88832F8C19656B3F00E3DF9F /* LiferayContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayContext.swift; sourceTree = "<group>"; };
+		88832F9019656B3F00E3DF9F /* liferay-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-context.plist"; sourceTree = "<group>"; };
+		88832F9119656B3F00E3DF9F /* liferay-ios-widgets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "liferay-ios-widgets.h"; sourceTree = "<group>"; };
+		88832F9319656B3F00E3DF9F /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		88832F9419656B3F00E3DF9F /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
+		88832F9519656B3F00E3DF9F /* LoginWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWidget.swift; sourceTree = "<group>"; };
+		88832F9719656B3F00E3DF9F /* nameOfClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameOfClass.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8868AFC319656B0500FD5214 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				171724ED3A0843AB9AC1B25E /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8835607A196AED0E002AB222 /* Liferay-Widget-Library */ = {
+			isa = PBXGroup;
+			children = (
+				88832F8719656B3F00E3DF9F /* Source */,
+			);
+			name = "Liferay-Widget-Library";
+			sourceTree = "<group>";
+		};
+		8868AFBD19656B0500FD5214 = {
+			isa = PBXGroup;
+			children = (
+				8835607A196AED0E002AB222 /* Liferay-Widget-Library */,
+				8868AFC819656B0500FD5214 /* Liferay-iOS-Widgets-Swift-Sample */,
+				8868AFC719656B0500FD5214 /* Products */,
+				6CDED001B92C49429A1F0D49 /* Pods.xcconfig */,
+				F05CF7C2287C4AE6A3C1F243 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8868AFC719656B0500FD5214 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8868AFC619656B0500FD5214 /* Liferay-iOS-Widgets-Swift-Sample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8868AFC819656B0500FD5214 /* Liferay-iOS-Widgets-Swift-Sample */ = {
+			isa = PBXGroup;
+			children = (
+				88832F9019656B3F00E3DF9F /* liferay-context.plist */,
+				8868AFCB19656B0500FD5214 /* AppDelegate.swift */,
+				8868AFCD19656B0500FD5214 /* ViewController.swift */,
+				8868AFCF19656B0500FD5214 /* Main.storyboard */,
+				8868AFD219656B0500FD5214 /* Images.xcassets */,
+				8868AFC919656B0500FD5214 /* Supporting Files */,
+			);
+			path = "Liferay-iOS-Widgets-Swift-Sample";
+			sourceTree = "<group>";
+		};
+		8868AFC919656B0500FD5214 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8868AFCA19656B0500FD5214 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88832F8719656B3F00E3DF9F /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				88832F8819656B3F00E3DF9F /* Base */,
+				8835607B196AED36002AB222 /* liferay-context-sample.plist */,
+				88832F9119656B3F00E3DF9F /* liferay-ios-widgets.h */,
+				88832F9219656B3F00E3DF9F /* Login */,
+				88832F9619656B3F00E3DF9F /* Util */,
+			);
+			name = Source;
+			path = ../../Library/Source;
+			sourceTree = "<group>";
+		};
+		88832F8819656B3F00E3DF9F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				88832F8B19656B3F00E3DF9F /* BaseWidgetView.swift */,
+				88832F8919656B3F00E3DF9F /* BaseWidget+progress.swift */,
+				88832F8A19656B3F00E3DF9F /* BaseWidget.swift */,
+				88832F8C19656B3F00E3DF9F /* LiferayContext.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		88832F9219656B3F00E3DF9F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				88832F9319656B3F00E3DF9F /* LoginView.swift */,
+				88832F9419656B3F00E3DF9F /* LoginView.xib */,
+				88832F9519656B3F00E3DF9F /* LoginWidget.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		88832F9619656B3F00E3DF9F /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				88832F9719656B3F00E3DF9F /* nameOfClass.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		F05CF7C2287C4AE6A3C1F243 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				01D782ECE4B14578B67EA5D0 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8868AFC519656B0500FD5214 /* Liferay-iOS-Widgets-Swift-Sample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8868AFE219656B0500FD5214 /* Build configuration list for PBXNativeTarget "Liferay-iOS-Widgets-Swift-Sample" */;
+			buildPhases = (
+				5EAE9C34BCC14E398ABB3492 /* Check Pods Manifest.lock */,
+				8868AFC219656B0500FD5214 /* Sources */,
+				8868AFC319656B0500FD5214 /* Frameworks */,
+				8868AFC419656B0500FD5214 /* Resources */,
+				DBB31E684A444F2E870E3717 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Liferay-iOS-Widgets-Swift-Sample";
+			productName = "Liferay-iOS-Widgets-Swift-Sample";
+			productReference = 8868AFC619656B0500FD5214 /* Liferay-iOS-Widgets-Swift-Sample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8868AFBE19656B0500FD5214 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = Liferay;
+				TargetAttributes = {
+					8868AFC519656B0500FD5214 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
+			};
+			buildConfigurationList = 8868AFC119656B0500FD5214 /* Build configuration list for PBXProject "Liferay-iOS-Widgets-Swift-Sample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8868AFBD19656B0500FD5214;
+			productRefGroup = 8868AFC719656B0500FD5214 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8868AFC519656B0500FD5214 /* Liferay-iOS-Widgets-Swift-Sample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8868AFC419656B0500FD5214 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8868AFD119656B0500FD5214 /* Main.storyboard in Resources */,
+				88832F9E19656B3F00E3DF9F /* liferay-context.plist in Resources */,
+				8835607C196AED36002AB222 /* liferay-context-sample.plist in Resources */,
+				88832FA019656B3F00E3DF9F /* LoginView.xib in Resources */,
+				8868AFD319656B0500FD5214 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5EAE9C34BCC14E398ABB3492 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DBB31E684A444F2E870E3717 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8868AFC219656B0500FD5214 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88832FA119656B3F00E3DF9F /* LoginWidget.swift in Sources */,
+				8868AFCE19656B0500FD5214 /* ViewController.swift in Sources */,
+				8868AFCC19656B0500FD5214 /* AppDelegate.swift in Sources */,
+				88832F9B19656B3F00E3DF9F /* LiferayContext.swift in Sources */,
+				88832FA219656B3F00E3DF9F /* nameOfClass.swift in Sources */,
+				88832F9919656B3F00E3DF9F /* BaseWidget.swift in Sources */,
+				88832F9819656B3F00E3DF9F /* BaseWidget+progress.swift in Sources */,
+				88832F9F19656B3F00E3DF9F /* LoginView.swift in Sources */,
+				88832F9A19656B3F00E3DF9F /* BaseWidgetView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8868AFCF19656B0500FD5214 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8868AFD019656B0500FD5214 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8868AFE019656B0500FD5214 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8868AFE119656B0500FD5214 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8868AFE319656B0500FD5214 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CDED001B92C49429A1F0D49 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = "Liferay-iOS-Widgets-Swift-Sample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/../../Library/Source/liferay-ios-widgets.h";
+			};
+			name = Debug;
+		};
+		8868AFE419656B0500FD5214 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CDED001B92C49429A1F0D49 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = "Liferay-iOS-Widgets-Swift-Sample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/../../Library/Source/liferay-ios-widgets.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8868AFC119656B0500FD5214 /* Build configuration list for PBXProject "Liferay-iOS-Widgets-Swift-Sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8868AFE019656B0500FD5214 /* Debug */,
+				8868AFE119656B0500FD5214 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8868AFE219656B0500FD5214 /* Build configuration list for PBXNativeTarget "Liferay-iOS-Widgets-Swift-Sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8868AFE319656B0500FD5214 /* Debug */,
+				8868AFE419656B0500FD5214 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8868AFBE19656B0500FD5214 /* Project object */;
+}
