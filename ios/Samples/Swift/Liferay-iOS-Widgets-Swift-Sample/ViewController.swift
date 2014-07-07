@@ -43,8 +43,8 @@ class ViewController: UIViewController, LoginWidgetDelegate {
 
 	}
 
-	func onLoginResponse(attributes: Dictionary<String, String>)  {
-		println("Login -> " + attributes.description)
+	func onLoginResponse(attributes: Dictionary<String, Any!>)  {
+		NSLog("Login %@", attributes)
 	}
 
 

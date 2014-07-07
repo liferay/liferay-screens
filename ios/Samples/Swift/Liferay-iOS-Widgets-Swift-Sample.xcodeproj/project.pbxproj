@@ -110,10 +110,10 @@
 			isa = PBXGroup;
 			children = (
 				88832F8819656B3F00E3DF9F /* Base */,
-				8835607B196AED36002AB222 /* liferay-context-sample.plist */,
-				88832F9119656B3F00E3DF9F /* liferay-ios-widgets.h */,
 				88832F9219656B3F00E3DF9F /* Login */,
 				88832F9619656B3F00E3DF9F /* Util */,
+				8835607B196AED36002AB222 /* liferay-context-sample.plist */,
+				88832F9119656B3F00E3DF9F /* liferay-ios-widgets.h */,
 			);
 			name = Source;
 			path = ../../Library/Source;

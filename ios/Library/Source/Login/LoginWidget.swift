@@ -18,7 +18,7 @@ import UIKit
 
 @objc protocol LoginWidgetDelegate {
 
-	func onLoginResponse(attributes: Dictionary<String, String>)
+	func onLoginResponse(attributes: Dictionary<String, Any!>)
 	func onLoginError(error: NSError)
 
 	// TODO
@@ -99,7 +99,10 @@ import UIKit
 	}
 
 	override func onServerResult(result: AnyObject!) {
-		delegate?.onLoginResponse(result as Dictionary)
+
+		if let dict = result as? Dictionary<String, Any!> {
+			delegate?.onLoginResponse(dict)
+		}
 		self.hideHUDWithMessage("Sign in completed", details: nil)
 	}
 
