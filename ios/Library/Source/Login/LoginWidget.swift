@@ -60,21 +60,27 @@ import UIKit
         loginView().usernameField.text = "test@liferay.com"
 	}
 
-	override func onCustomAction(actionName: String, sender: UIControl) {
+	override func onCustomAction(actionName: String?, sender: UIControl) {
 		if actionName == "login-action" {
 			sendLoginWithUsername(loginView().usernameField.text, password:loginView().passwordField.text)
 		}
 	}
 
     override func onServerError(error: NSError) {
-        delegate?.onLoginError(error)
+		delegate?.onLoginError?(error)
         LiferayContext.instance.clearSession()
         hideHUDWithMessage("Error signing in!", details: nil)
     }
     
     override func onServerResult(result: AnyObject!) {
         if let dict = result as? Dictionary<String, Any!> {
-            delegate?.onLoginResponse(dict)
+			delegate?.onLoginResponse?(dict)
+
+			if LoginView().shouldRememberCredentials {
+				if LiferayContext.instance.currentSession!.store() {
+					delegate?.onCredentialsSaved?(LiferayContext.instance.currentSession!)
+				}
+			}
         }
         
         hideHUDWithMessage("Sign in completed", details: nil)
@@ -98,7 +104,6 @@ import UIKit
 			self.onFailure(error)
 		}
 	}
-
 
 }
 

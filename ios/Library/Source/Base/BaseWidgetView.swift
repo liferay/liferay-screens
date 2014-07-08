@@ -18,7 +18,7 @@ import UIKit
  */
 class BaseWidgetView: UIView {
 
-	typealias CustomActionType = (String, UIControl) -> (Void)
+	typealias CustomActionType = (String?, UIControl) -> (Void)
 
 	var customAction: CustomActionType?
 
@@ -51,12 +51,11 @@ class BaseWidgetView: UIView {
         return super.becomeFirstResponder()
     }
     
-    func customActionHandler(sender:UIControl!) {
+    func customActionHandler(sender: UIControl!) {
 		self.endEditing(true)
 
 		// WORKAROUND
-		// In theory, an implicit optional (with `type!`) behaves the same as 
-		// ObjC pointer.
+		// In theory, an implicit optional (with `type!`) behaves the same as ObjC pointer.
 		// But it's not true. If you access optional's value when it's empty, it crashes
 		customAction?(sender.restorationIdentifier, sender)
 	}

@@ -81,7 +81,7 @@ class BaseWidget: UIView, LRCallback {
     /*
      * onCustomAction is invoked when a TouchUpInside even is fired from the UI.
      */
-    func onCustomAction(actionName:String, sender:UIControl) {
+    func onCustomAction(actionName:String?, sender:UIControl) {
     }
 
     
