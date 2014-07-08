@@ -13,34 +13,42 @@
 */
 import UIKit
 
-
 enum AuthType: String {
 	case Email = "email"
 	case Screenname = "screenname"
 }
 
-
 class LoginView: BaseWidgetView, UITextFieldDelegate {
 
 	@IBOutlet var usernameLabel: UILabel
-
 	@IBOutlet var usernameField: UITextField
 	@IBOutlet var passwordField: UITextField
 	@IBOutlet var loginButton: UIButton
 
-	func setAuthType(authType: String) {
-		switch authType {
-		case AuthType.Email.toRaw():
-			usernameLabel.text = "Email"
-			usernameField.keyboardType = UIKeyboardType.EmailAddress
-		case AuthType.Screenname.toRaw():
-			usernameLabel.text = "Screen name"
-			usernameField.keyboardType = UIKeyboardType.ASCIICapable
-		default:
-			usernameLabel.text = "Unknown"
-		}
-	}
-
+    func setAuthType(authType: String) {
+        switch authType {
+        case AuthType.Email.toRaw():
+            usernameLabel.text = "Email"
+            usernameField.keyboardType = UIKeyboardType.EmailAddress
+        case AuthType.Screenname.toRaw():
+            usernameLabel.text = "Screen name"
+            usernameField.keyboardType = UIKeyboardType.ASCIICapable
+        default:
+            usernameLabel.text = "Unknown"
+        }
+    }
+    
+    // BaseWidgetView METHODS
+    
+    
+    override func becomeFirstResponder() -> Bool {
+        return usernameField.becomeFirstResponder()
+    }
+    
+    
+    // UITextFieldDelegate METHODS
+    
+    
 	func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		if textField == usernameField {
 			textField.resignFirstResponder()
@@ -51,14 +59,8 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 			loginButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
 			
 		}
-		return true
+
+        return true
 	}
-
-	override func becomeFirstResponder() -> Bool {
-		return usernameField.becomeFirstResponder()
-	}
-	
-
-
 
 }

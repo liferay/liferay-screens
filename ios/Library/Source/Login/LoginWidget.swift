@@ -13,32 +13,27 @@
 */
 import UIKit
 
-
-
-
 @objc protocol LoginWidgetDelegate {
 
-	func onLoginResponse(attributes: Dictionary<String, Any!>)
+    func onLoginResponse(attributes: Dictionary<String, Any!>)
 	func onLoginError(error: NSError)
 
-	// TODO
-	// func onAutologed(session:LRSession)
-	// func onCredentialsSaved(session:LRSession)
 }
 
-
-//@objc(LoginWidget)
 @IBDesignable class LoginWidget: BaseWidget {
 
-	typealias AuthCall = (String, String, LRUserService_v62, (NSError)->()) -> ()
+    @IBOutlet var delegate: LoginWidgetDelegate?
+    
+	typealias AuthCall = (String, String, LRUserService_v62, (NSError)->()) -> (Void)
 
-	func myfunc() {
-
-	}
-
-
+    let authMethods: Dictionary<String, AuthCall> = [
+        AuthType.Email.toRaw(): authCallWithEmail,
+        AuthType.Screenname.toRaw(): authCallWithScreenname]
+    
+    var authMethod: AuthCall?
+    
 	/*
-	WTF!
+	WORKAROUND!
 	XCode crashes with "swift_unknownWeakLoadStrong" error
 	Storing the enum as a String seems to workaround the problem
 	This code is the optimal solution to be used when XCode is fixed
@@ -49,25 +44,20 @@ import UIKit
 		}
 	}
 	*/
-	var authType: String = AuthType.Email.toRaw()
+    func setAuthType(authType:AuthType) {
+        loginView().setAuthType(authType.toRaw())
+        
+        authMethod = authMethods[authType.toRaw()]
+    }
 
-	func setAuthType(atype:AuthType) {
-		authType = atype.toRaw()
-		let loginView = self.widgetView as LoginView
-		let atype = AuthType.Screenname
-		loginView.setAuthType(authType)
-	}
-
-
-	let authMethods: Dictionary<String, AuthCall> = [
-		AuthType.Email.toRaw(): authCallWithEmail,
-		AuthType.Screenname.toRaw(): authCallWithScreenname]
-
-	@IBOutlet var delegate: LoginWidgetDelegate?
-
-
+    
+    // BaseWidget METHODS
+    
+    
 	override func onCreate() {
-		loginView().usernameField.text = "test@liferay.com"
+        setAuthType(AuthType.Email)
+
+        loginView().usernameField.text = "test@liferay.com"
 	}
 
 	override func onCustomAction(actionName: String, sender: UIControl) {
@@ -76,8 +66,26 @@ import UIKit
 		}
 	}
 
+    override func onServerError(error: NSError) {
+        delegate?.onLoginError(error)
+        LiferayContext.instance.clearSession()
+        hideHUDWithMessage("Error signing in!", details: nil)
+    }
+    
+    override func onServerResult(result: AnyObject!) {
+        if let dict = result as? Dictionary<String, Any!> {
+            delegate?.onLoginResponse(dict)
+        }
+        
+        hideHUDWithMessage("Sign in completed", details: nil)
+    }
+    
+
+    // PRIVATE METHDOS
+    
+    
 	func loginView() -> LoginView {
-		return self.widgetView as LoginView
+		return widgetView as LoginView
 	}
 
 	func sendLoginWithUsername(username:String, password:String) {
@@ -86,30 +94,13 @@ import UIKit
 		let session = LiferayContext.instance.createSession(username, password: password)
 		session.callback = self
 
-		authMethods[authType]!(username, password, LRUserService_v62(session: session)) {error in
+		authMethod!(username, password, LRUserService_v62(session: session)) {error in
 			self.onFailure(error)
 		}
 	}
 
 
-	override func onServerError(error: NSError) {
-		delegate?.onLoginError(error)
-		LiferayContext.instance.clearSession()
-		self.hideHUDWithMessage("Error signing in!", details: nil)
-	}
-
-	override func onServerResult(result: AnyObject!) {
-
-		if let dict = result as? Dictionary<String, Any!> {
-			delegate?.onLoginResponse(dict)
-		}
-		self.hideHUDWithMessage("Sign in completed", details: nil)
-	}
-
 }
-
-
-
 
 func authCallWithEmail(email:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
 	let companyId: CLongLong = (LiferayContext.instance.companyId as NSNumber).longLongValue
@@ -122,7 +113,6 @@ func authCallWithEmail(email:String, password:String, service:LRUserService_v62,
 		onError(error)
 	}
 }
-
 
 func authCallWithScreenname(name:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
 	let companyId: CLongLong = (LiferayContext.instance.companyId as NSNumber).longLongValue
