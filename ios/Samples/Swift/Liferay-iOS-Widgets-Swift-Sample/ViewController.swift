@@ -16,28 +16,32 @@ import UIKit
 class ViewController: UIViewController, LoginWidgetDelegate {
 
 	@IBOutlet var widget: BaseWidget!
-                            
+    
+    
+    // UIViewController METHODS
+    
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
 
-		// WTF!
+		// WORKAROUND!
 		// Outlet assignment in IB doesn't work!!
 		let loginWidget = widget as LoginWidget
 
 		loginWidget.delegate = self
-
-		// loginWidget.authType = AuthType.Screenname
-		loginWidget.setAuthType(AuthType.Screenname)
+        loginWidget.setAuthType(AuthType.Email)
 
 		loginWidget.becomeFirstResponder()
 	}
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
 
+    
+    // LoginWidgetDelegate METHODS
+    
+    
 	func onLoginError(error: NSError)  {
 		println("Error -> " + error.description)
 
@@ -46,7 +50,6 @@ class ViewController: UIViewController, LoginWidgetDelegate {
 	func onLoginResponse(attributes: Dictionary<String, Any!>)  {
 		NSLog("Login %@", attributes)
 	}
-
 
 }
 

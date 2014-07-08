@@ -14,10 +14,11 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+
 @property (weak, nonatomic) IBOutlet LoginWidget *widget;
-            
 
 @end
+
 
 @implementation ViewController
             
@@ -28,12 +29,10 @@
 
 	// this opens the keyboard
 	[self.widget becomeFirstResponder];
-
 }
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
 }
 
 - (void)onLoginResponse:(NSDictionary *)attributes {
