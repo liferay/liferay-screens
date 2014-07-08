@@ -19,19 +19,24 @@ class ViewController: UIViewController, LoginWidgetDelegate {
     
     
     // UIViewController METHODS
-    
-    
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		// WORKAROUND!
-		// Outlet assignment in IB doesn't work!!
 		let loginWidget = widget as LoginWidget
 
+		// WORKAROUND!
+		// Outlet assignment in IB doesn't work!!
 		loginWidget.delegate = self
-        loginWidget.setAuthType(AuthType.Email)
 
-		loginWidget.becomeFirstResponder()
+		loginWidget.setAuthType(AuthType.Screenname)
+
+
+		if LoginWidget.storedCredencials() {
+			loginWidget.hidden = true
+		}
+		else {
+			loginWidget.becomeFirstResponder()
+		}
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -50,6 +55,16 @@ class ViewController: UIViewController, LoginWidgetDelegate {
 	func onLoginResponse(attributes: Dictionary<String, Any!>)  {
 		NSLog("Login %@", attributes)
 	}
+
+	func onCredentialsSaved(session:LRSession) {
+		print("Saved credentials for server " + session.server)
+	}
+
+	func onCredentialsLoaded(session:LRSession) {
+		print("Saved loaded for server " + session.server)
+	}
+
+
 
 }
 

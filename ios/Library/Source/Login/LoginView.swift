@@ -23,7 +23,12 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 	@IBOutlet var usernameLabel: UILabel
 	@IBOutlet var usernameField: UITextField
 	@IBOutlet var passwordField: UITextField
+	@IBOutlet var rememberSwitch: UISwitch
 	@IBOutlet var loginButton: UIButton
+
+	var shouldRememberCredentials: Bool {
+		return rememberSwitch.on
+	}
 
     func setAuthType(authType: String) {
         switch authType {

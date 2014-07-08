@@ -15,8 +15,11 @@ import UIKit
 
 @objc protocol LoginWidgetDelegate {
 
-    func onLoginResponse(attributes: Dictionary<String, Any!>)
-	func onLoginError(error: NSError)
+	@optional func onLoginResponse(attributes: Dictionary<String, Any!>)
+	@optional func onLoginError(error: NSError)
+
+	@optional func onCredentialsSaved(session:LRSession)
+	@optional func onCredentialsLoaded(session:LRSession)
 
 }
 
@@ -31,6 +34,10 @@ import UIKit
         AuthType.Screenname.toRaw(): authCallWithScreenname]
     
     var authMethod: AuthCall?
+
+	class func storedCredencials() -> LRSession? {
+		return LRSession.storedSession()
+	}
     
 	/*
 	WORKAROUND!
@@ -58,6 +65,17 @@ import UIKit
         setAuthType(AuthType.Email)
 
         loginView().usernameField.text = "test@liferay.com"
+
+		if let storedSession = LRSession.storedSession() {
+			LiferayContext.instance.currentSession = storedSession
+			if delegate {
+				println("hay delegate")
+			}
+			else {
+				println("no hay delegate")
+			}
+			delegate?.onCredentialsLoaded?(storedSession)
+		}
 	}
 
 	override func onCustomAction(actionName: String?, sender: UIControl) {
@@ -68,7 +86,10 @@ import UIKit
 
     override func onServerError(error: NSError) {
 		delegate?.onLoginError?(error)
-        LiferayContext.instance.clearSession()
+
+		LiferayContext.instance.clearSession()
+		LRSession.emptyStore()
+
         hideHUDWithMessage("Error signing in!", details: nil)
     }
     
@@ -76,7 +97,7 @@ import UIKit
         if let dict = result as? Dictionary<String, Any!> {
 			delegate?.onLoginResponse?(dict)
 
-			if LoginView().shouldRememberCredentials {
+			if loginView().shouldRememberCredentials {
 				if LiferayContext.instance.currentSession!.store() {
 					delegate?.onCredentialsSaved?(LiferayContext.instance.currentSession!)
 				}
