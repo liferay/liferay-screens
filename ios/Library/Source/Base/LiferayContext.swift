@@ -25,24 +25,28 @@ struct LiferayContext {
 
 	init() {
 		let propertiesPath = NSBundle.mainBundle().pathForResource("liferay-context", ofType:"plist")
-		if propertiesPath {
+
+        if propertiesPath {
 			loadContextFile(propertiesPath)
 		}
 		else {
-			println("WARNING: liferay-context.plist file is not found. Falling back to template liferay-context-sample.list")
+			println("WARNING: liferay-context.plist file is not found. Falling back to template " +
+                "liferay-context-sample.list")
 
 			if let templatePath = NSBundle.mainBundle().pathForResource("liferay-context-sample", ofType:"plist") {
 				loadContextFile(propertiesPath)
 			}
 			else {
-				println("ERROR: liferay-context-sample.plist file is not found")
+				println("WARNING: liferay-context-sample.plist file is not found. Using default values which will " +
+                    "work in a default Liferay bundle installed in localhost")
 			}
 		}
 	}
 
 	mutating func loadContextFile(propertiesPath:String) {
 		let properties = NSDictionary(contentsOfFile: propertiesPath)
-		server = properties["server"] as String;
+
+        server = properties["server"] as String;
 		companyId = properties["companyId"] as Int
 		groupId = properties["groupId"] as Int
 	}

@@ -13,78 +13,120 @@
 */
 import UIKit
 
-//@objc(BaseWidget)
+/*!
+ * BaseWidget is the base class from which all Widget classes must inherit. 
+ * A widget is the container for a widget view.
+ */
 class BaseWidget: UIView, LRCallback {
 
 	let widgetView: BaseWidgetView?
 
 	init(frame: CGRect) {
 		super.init(frame: frame)
-		widgetView = loadWidgetView();
+
+        widgetView = loadWidgetView();
 	}
 
 	init(coder aDecoder: NSCoder!) {
 		super.init(coder: aDecoder)
-		widgetView = loadWidgetView();
+
+        widgetView = loadWidgetView();
 	}
 
-	override func awakeFromNib() {
-		self.clipsToBounds = true;
-		onCreate()
-	}
+    
+    // DISPLAY TEMPLATE METHODS
 
-	override func didMoveToWindow() {
-		if (self.window) {
-			self.onShow();
-		}
-		else {
-			self.onHide();
-		}
-	}
-
-	override func becomeFirstResponder() -> Bool {
-		return widgetView!.becomeFirstResponder()
-	}
-
+    
+    /*
+     * onCreate is invoked after the widget is created. Override this method to set custom values for the widget
+     * properties.
+     */
 	func onCreate() {
-		
 	}
 
+    /*
+     * onHide is invoked when the widget is hidden from the app window.
+     */
+    func onHide() {
+    }
+    
+    /*
+     * onShow is invoked when the widget is displayed on the app window. Override this method for example to reset
+     * values when the widget is shown.
+     */
 	func onShow() {
+    }
 
-	}
-
-	func onHide() {
-
-	}
-
+    
+    // SERVER RESPONSE TEMPLATE METHODS
+    
+    
+    /*
+     * onServerError is invoked when there is an error communicating with the Liferay server.
+     */
 	func onServerError(error: NSError) {
-
 	}
 
+    /*
+     * onServerResult is invoked when there is an result from a communication with the Liferay server. The type of the
+     * result will depend on the invocation done from specific subclasses.
+     */
 	func onServerResult(result: AnyObject!) {
 	}
 
-	func onFailure(error: NSError!) {
-		onServerError(error ? error : NSError(domain: "LiferayWidget", code: 0, userInfo: nil))
-	}
+    
+    // USER ACTIONS TEMPLATE METHOD
+    
 
+    /*
+     * onCustomAction is invoked when a TouchUpInside even is fired from the UI.
+     */
+    func onCustomAction(actionName:String, sender:UIControl) {
+    }
+
+    
+    // UIView METHODS
+    
+    
+    override func awakeFromNib() {
+        self.clipsToBounds = true;
+        
+        onCreate()
+    }
+    
+    override func becomeFirstResponder() -> Bool {
+        return widgetView!.becomeFirstResponder()
+    }
+    
+    override func didMoveToWindow() {
+        if (self.window) {
+            self.onShow();
+        }
+        else {
+            self.onHide();
+        }
+    }
+    
+    // LRCallback PRIVATE METHODS
+
+    
+    func onFailure(error: NSError!) {
+        onServerError(error ? error : NSError(domain: "LiferayWidget", code: 0, userInfo: nil))
+    }
+    
 	func onSuccess(result: AnyObject!) {
 		onServerResult(result)
 	}
 
-	func onCustomAction(actionName:String, sender:UIControl) {
-
-	}
-	
+    // PRIVATE METHODS
 
 	func loadWidgetView() -> BaseWidgetView {
 		let view = self.createWidgetViewFromNib();
 
 		view.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
 		view.customAction = self.onCustomAction;
-		self.addSubview(view)
 
+        self.addSubview(view)
 
 		return view;
 	}
@@ -100,11 +142,14 @@ class BaseWidget: UIView, LRCallback {
 		let viewName = widgetName + "View"
 
 		var nibName: String? = NSBundle.mainBundle().pathForResource(viewName + "-ext", ofType:"xib");
-		if !nibName {
+
+        if !nibName {
 			nibName = viewName
 
 			// TODO this is not working!
-			// assert(NSBundle.mainBundle().pathForResource(nibName, ofType:"xib"), "Fatal error: can't find view xib file for widget. Make sure all your widget have a xib file")
+			//assert(
+            //    NSBundle.mainBundle().pathForResource(nibName, ofType:"xib"),
+            //    "Fatal error: can't find view xib file for widget. Make sure all your widget have a xib file")
 		}
 
 		let views = NSBundle.mainBundle().loadNibNamed(nibName!, owner:self, options:nil)
