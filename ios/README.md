@@ -15,15 +15,15 @@ For more details of the inner implementation and architecture, check the [librar
 
 
 ## How to use a widget in your project
-If you want to use an existing widget, follow next steps:
+If you want to use an existing widget, follow these steps:
 
 ### Initial setup
-We are assuming that you have an XCode project already configured and have basic knowledge of iOS development.
+We are assuming that you have an XCode projects already configured and have basic knowledge of iOS development.
 
 1. Download [Liferay Widget's source code](https://github.com/liferay/liferay-mobile-widgets/archive/master.zip) and include it in your project:
-	1. Create a folder  at the root of the project called `Liferay-Widget-Library`
-	1. Copy inside it the folder `Library/Source` from the downloaded source code
-	1. Drag `Liferay-Widget-Library` and drop into your XCode project
+	1. Create a folder at the root of the project called `Liferay-Widget-Library`.
+	1. Copy the folder `Library/Source` from the downloaded source code inside this new folder.
+	1. Drag `Liferay-Widget-Library` from finder and drop into your XCode project.
 1. If you don't have it yet, set up [CocoaPods](http://cocoapods.org) for your project
 1. Add the following dependencies to your `Podfile` and execute `pod install`
 	- pod 'MBProgressHUD'
