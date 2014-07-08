@@ -11,6 +11,8 @@
 		888FAFA8196AE8C200057B26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888FAFA6196AE8C200057B26 /* AppDelegate.swift */; };
 		888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 888FAFA7196AE8C200057B26 /* AppInfo.plist */; };
 		888FAFAB196AE8EF00057B26 /* TestsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 888FAFAA196AE8EF00057B26 /* TestsInfo.plist */; };
+		8895737B196C3CDA00258033 /* LRSession+storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8895737A196C3CDA00258033 /* LRSession+storage.swift */; };
+		8895737C196C3CDA00258033 /* LRSession+storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8895737A196C3CDA00258033 /* LRSession+storage.swift */; };
 		889CA4C719655F4B00664504 /* BaseWidget+progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BC19655F4B00664504 /* BaseWidget+progress.swift */; };
 		889CA4C819655F4B00664504 /* BaseWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BD19655F4B00664504 /* BaseWidget.swift */; };
 		889CA4C919655F4B00664504 /* BaseWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BE19655F4B00664504 /* BaseWidgetView.swift */; };
@@ -20,7 +22,7 @@
 		889CA4CD19655F4B00664504 /* LoginWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4C419655F4B00664504 /* LoginWidget.swift */; };
 		889CA4CE19655F4B00664504 /* nameOfClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4C619655F4B00664504 /* nameOfClass.swift */; };
 		88AEA25D19657C3100CD130B /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88AEA25C19657C3100CD130B /* liferay-context-sample.plist */; };
-		88EA610419656751005F722C /* Liferay_iOS_Widgets_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EA610319656751005F722C /* Liferay_iOS_Widgets_Tests.swift */; };
+		88D99C32196C42B30090F236 /* LRSession_storage_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,7 @@
 		888FAFA7196AE8C200057B26 /* AppInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppInfo.plist; path = Tests/AppInfo.plist; sourceTree = SOURCE_ROOT; };
 		888FAFAA196AE8EF00057B26 /* TestsInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TestsInfo.plist; path = ../Tests/TestsInfo.plist; sourceTree = "<group>"; };
 		88911B0A196AE41100E2E2A3 /* Pods.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		8895737A196C3CDA00258033 /* LRSession+storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+storage.swift"; sourceTree = "<group>"; };
 		889CA4BC19655F4B00664504 /* BaseWidget+progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseWidget+progress.swift"; sourceTree = "<group>"; };
 		889CA4BD19655F4B00664504 /* BaseWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidget.swift; sourceTree = "<group>"; };
 		889CA4BE19655F4B00664504 /* BaseWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidgetView.swift; sourceTree = "<group>"; };
@@ -90,8 +93,8 @@
 		889CA4C619655F4B00664504 /* nameOfClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameOfClass.swift; sourceTree = "<group>"; };
 		889CA4CF19655F7A00664504 /* liferay-ios-widgets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "liferay-ios-widgets.h"; sourceTree = "<group>"; };
 		88AEA25C19657C3100CD130B /* liferay-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-context-sample.plist"; sourceTree = "<group>"; };
+		88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LRSession_storage_Tests.swift; sourceTree = "<group>"; };
 		88EA60FF19656751005F722C /* Liferay-iOS-Widgets-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Liferay-iOS-Widgets-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		88EA610319656751005F722C /* Liferay_iOS_Widgets_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liferay_iOS_Widgets_Tests.swift; sourceTree = "<group>"; };
 		88FE74D419655E1B003A7CE5 /* Liferay-iOS-Widgets-Dummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liferay-iOS-Widgets-Dummy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA555EA8DC0458CA74C4ACE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -140,6 +143,7 @@
 				889CA4C219655F4B00664504 /* LoginView.swift */,
 				889CA4C319655F4B00664504 /* LoginView.xib */,
 				889CA4C419655F4B00664504 /* LoginWidget.swift */,
+				8895737A196C3CDA00258033 /* LRSession+storage.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -155,7 +159,7 @@
 		88EA610019656751005F722C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				88EA610319656751005F722C /* Liferay_iOS_Widgets_Tests.swift */,
+				88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -345,7 +349,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88EA610419656751005F722C /* Liferay_iOS_Widgets_Tests.swift in Sources */,
+				8895737C196C3CDA00258033 /* LRSession+storage.swift in Sources */,
+				88D99C32196C42B30090F236 /* LRSession_storage_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +365,7 @@
 				889CA4C819655F4B00664504 /* BaseWidget.swift in Sources */,
 				889CA4C919655F4B00664504 /* BaseWidgetView.swift in Sources */,
 				889CA4CA19655F4B00664504 /* LiferayContext.swift in Sources */,
+				8895737B196C3CDA00258033 /* LRSession+storage.swift in Sources */,
 				889CA4C719655F4B00664504 /* BaseWidget+progress.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

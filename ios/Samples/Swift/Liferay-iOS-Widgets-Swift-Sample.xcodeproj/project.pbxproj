@@ -13,6 +13,7 @@
 		8868AFCE19656B0500FD5214 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868AFCD19656B0500FD5214 /* ViewController.swift */; };
 		8868AFD119656B0500FD5214 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8868AFCF19656B0500FD5214 /* Main.storyboard */; };
 		8868AFD319656B0500FD5214 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8868AFD219656B0500FD5214 /* Images.xcassets */; };
+		887A7AF3196BF05B00FC7519 /* LRSession+storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887A7AF2196BF05B00FC7519 /* LRSession+storage.swift */; };
 		88832F9819656B3F00E3DF9F /* BaseWidget+progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F8919656B3F00E3DF9F /* BaseWidget+progress.swift */; };
 		88832F9919656B3F00E3DF9F /* BaseWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F8A19656B3F00E3DF9F /* BaseWidget.swift */; };
 		88832F9A19656B3F00E3DF9F /* BaseWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F8B19656B3F00E3DF9F /* BaseWidgetView.swift */; };
@@ -34,6 +35,7 @@
 		8868AFCD19656B0500FD5214 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8868AFD019656B0500FD5214 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8868AFD219656B0500FD5214 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		887A7AF2196BF05B00FC7519 /* LRSession+storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+storage.swift"; sourceTree = "<group>"; };
 		88832F8919656B3F00E3DF9F /* BaseWidget+progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseWidget+progress.swift"; sourceTree = "<group>"; };
 		88832F8A19656B3F00E3DF9F /* BaseWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidget.swift; sourceTree = "<group>"; };
 		88832F8B19656B3F00E3DF9F /* BaseWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidgetView.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				88832F9319656B3F00E3DF9F /* LoginView.swift */,
 				88832F9419656B3F00E3DF9F /* LoginView.xib */,
 				88832F9519656B3F00E3DF9F /* LoginWidget.swift */,
+				887A7AF2196BF05B00FC7519 /* LRSession+storage.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				887A7AF3196BF05B00FC7519 /* LRSession+storage.swift in Sources */,
 				88832FA119656B3F00E3DF9F /* LoginWidget.swift in Sources */,
 				8868AFCE19656B0500FD5214 /* ViewController.swift in Sources */,
 				8868AFCC19656B0500FD5214 /* AppDelegate.swift in Sources */,
