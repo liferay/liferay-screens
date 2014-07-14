@@ -14,8 +14,8 @@
 import UIKit
 
 enum AuthType: String {
-	case Email = "email"
-	case ScreenName = "screenname"
+	case Email = "Email"
+	case ScreenName = "Screen name"
 	case UserId = "userid"
 }
 
@@ -31,14 +31,14 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 		return rememberSwitch.on
 	}
 
-    func setAuthType(authType: String) {
-        switch authType {
-        case AuthType.Email.toRaw():
-            usernameLabel.text = "Email"
-            usernameField.keyboardType = UIKeyboardType.EmailAddress
-        case AuthType.ScreenName.toRaw():
-            usernameLabel.text = "Screen name"
-            usernameField.keyboardType = UIKeyboardType.ASCIICapable
+	func setAuthType(authType: String) {
+		usernameLabel.text = authType
+
+		switch authType {
+		case AuthType.Email.toRaw():
+			usernameField.keyboardType = UIKeyboardType.EmailAddress
+		case AuthType.ScreenName.toRaw():
+			usernameField.keyboardType = UIKeyboardType.ASCIICapable
 
 			let username = usernameField.text as NSString
 			if username.containsString("@") {
@@ -47,22 +47,22 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 		case AuthType.UserId.toRaw():
 			usernameLabel.text = "User ID"
 			usernameField.keyboardType = UIKeyboardType.NumberPad				
-        default:
-            usernameLabel.text = "Unknown"
-        }
-    }
+		default:
+			break
+		}
+	}
     
-    // BaseWidgetView METHODS
-    
-    
-    override func becomeFirstResponder() -> Bool {
-        return usernameField.becomeFirstResponder()
-    }
-    
-    
-    // UITextFieldDelegate METHODS
-    
-    
+	// BaseWidgetView METHODS
+
+
+	override func becomeFirstResponder() -> Bool {
+		return usernameField.becomeFirstResponder()
+	}
+
+
+	// UITextFieldDelegate METHODS
+
+
 	func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		if textField == usernameField {
 			textField.resignFirstResponder()
@@ -71,10 +71,10 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 		else if textField == passwordField {
 			textField.resignFirstResponder()
 			loginButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
-			
+
 		}
 
-        return true
+		return true
 	}
 
 }
