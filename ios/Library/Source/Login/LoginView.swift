@@ -15,7 +15,7 @@ import UIKit
 
 enum AuthType: String {
 	case Email = "email"
-	case Screenname = "screenname"
+	case ScreenName = "screenname"
 	case UserId = "userid"
 }
 
@@ -36,7 +36,7 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
         case AuthType.Email.toRaw():
             usernameLabel.text = "Email"
             usernameField.keyboardType = UIKeyboardType.EmailAddress
-        case AuthType.Screenname.toRaw():
+        case AuthType.ScreenName.toRaw():
             usernameLabel.text = "Screen name"
             usernameField.keyboardType = UIKeyboardType.ASCIICapable
 
