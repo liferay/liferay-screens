@@ -27,14 +27,14 @@ class LoginWidget: BaseWidget {
 
     @IBOutlet var delegate: LoginWidgetDelegate?
     
-	typealias AuthCall = (String, String, LRUserService_v62, (NSError)->()) -> (Void)
+	typealias AuthClosureType = (String, String, LRUserService_v62, (NSError)->()) -> (Void)
 
-    let authMethods: Dictionary<String, AuthCall> = [
-        AuthType.Email.toRaw(): authCallWithEmail,
-		AuthType.Screenname.toRaw(): authCallWithScreenname,
-		AuthType.UserId.toRaw(): authCallWithUserId]
+    let authClosures = [
+        AuthType.Email.toRaw(): authWithEmail,
+		AuthType.ScreenName.toRaw(): authWithScreenName,
+		AuthType.UserId.toRaw(): authWithUserId]
 
-    var authMethod: AuthCall?
+    var authClosure: AuthClosureType?
 
 	class func storedSession() -> LRSession? {
 		return LRSession.sessionFromStoredCredential()
@@ -55,7 +55,7 @@ class LoginWidget: BaseWidget {
     func setAuthType(authType:AuthType) {
         loginView().setAuthType(authType.toRaw())
         
-        authMethod = authMethods[authType.toRaw()]
+        authClosure = authClosures[authType.toRaw()]
     }
 
     
@@ -75,9 +75,7 @@ class LoginWidget: BaseWidget {
 	}
 
 	override func onCustomAction(actionName: String?, sender: UIControl) {
-		if actionName == "login-action" {
-			sendLoginWithUsername(loginView().usernameField.text, password:loginView().passwordField.text)
-		}
+		sendLoginWithUsername(loginView().usernameField.text, password:loginView().passwordField.text)
 	}
 
     override func onServerError(error: NSError) {
@@ -86,9 +84,9 @@ class LoginWidget: BaseWidget {
 		LiferayContext.instance.clearSession()
 		LRSession.removeStoredCredential()
 
-        hideHUDWithMessage("Error signing in!", details: nil)
+		hideHUDWithMessage("Error signing in!", details: nil)
     }
-    
+
 	override func onServerResult(result: [String:AnyObject!]) {
 		delegate?.onLoginResponse?(result)
 
@@ -96,15 +94,14 @@ class LoginWidget: BaseWidget {
 			if LiferayContext.instance.currentSession!.storeCredential() {
 				delegate?.onCredentialsSaved?(LiferayContext.instance.currentSession!)
 			}
-        }
-        
-        hideHUDWithMessage("Sign in completed", details: nil)
+		}
+
+		hideHUDWithMessage("Sign in completed", details: nil)
     }
     
 
-    // PRIVATE METHDOS
-    
-    
+    // PRIVATE METHODS
+
 	func loginView() -> LoginView {
 		return widgetView as LoginView
 	}
@@ -115,15 +112,14 @@ class LoginWidget: BaseWidget {
 		let session = LiferayContext.instance.createSession(username, password: password)
 		session.callback = self
 
-		authMethod!(username, password, LRUserService_v62(session: session)) {error in
+		authClosure!(username, password, LRUserService_v62(session: session)) {error in
 			self.onFailure(error)
 		}
 	}
-
 }
 
-func authCallWithEmail(email:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
-	let companyId: CLongLong = (LiferayContext.instance.companyId as NSNumber).longLongValue
+func authWithEmail(email:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
+	let companyId = (LiferayContext.instance.companyId as NSNumber).longLongValue
 
 	var outError: NSError?
 
@@ -134,8 +130,8 @@ func authCallWithEmail(email:String, password:String, service:LRUserService_v62,
 	}
 }
 
-func authCallWithScreenname(name:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
-	let companyId: CLongLong = (LiferayContext.instance.companyId as NSNumber).longLongValue
+func authWithScreenName(name:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
+	let companyId = (LiferayContext.instance.companyId as NSNumber).longLongValue
 
 	var outError: NSError?
 
@@ -146,7 +142,7 @@ func authCallWithScreenname(name:String, password:String, service:LRUserService_
 	}
 }
 
-func authCallWithUserId(userId:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
+func authWithUserId(userId:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
 	let uid: CLongLong = (userId.toInt()! as NSNumber).longLongValue
 
 	var outError: NSError?
@@ -157,3 +153,4 @@ func authCallWithUserId(userId:String, password:String, service:LRUserService_v6
 		onError(error)
 	}
 }
+
