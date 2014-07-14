@@ -25,6 +25,7 @@ FOUNDATION_EXPORT const unsigned char liferay_mobile_widgetsVersionString[];
 
 // Liferay services
 #import "LRUserService_v62.h"
+#import "LRMobilewidgetsService_v6201.h"
 
 #import "LRCallback.h"
 #import "LRSession.h"

@@ -17,6 +17,7 @@
 		88693C67196AEA660054DEB3 /* nameOfClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88693C5E196AEA660054DEB3 /* nameOfClass.swift */; };
 		88693C69196AEA790054DEB3 /* liferay-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88693C68196AEA790054DEB3 /* liferay-context.plist */; };
 		88693C6B196AEA840054DEB3 /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88693C6A196AEA840054DEB3 /* liferay-context-sample.plist */; };
+		8873460D1973CDCB00CA439B /* LRMobilewidgetsService_v6201.m in Sources */ = {isa = PBXBuildFile; fileRef = 8873460C1973CDCB00CA439B /* LRMobilewidgetsService_v6201.m */; };
 		88848B3519656DC800EE9602 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88848B3419656DC800EE9602 /* main.m */; };
 		88848B3819656DC800EE9602 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88848B3719656DC800EE9602 /* AppDelegate.m */; };
 		88848B3B19656DC900EE9602 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88848B3A19656DC900EE9602 /* ViewController.m */; };
@@ -38,6 +39,8 @@
 		88693C5E196AEA660054DEB3 /* nameOfClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameOfClass.swift; sourceTree = "<group>"; };
 		88693C68196AEA790054DEB3 /* liferay-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-context.plist"; sourceTree = "<group>"; };
 		88693C6A196AEA840054DEB3 /* liferay-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-context-sample.plist"; sourceTree = "<group>"; };
+		8873460B1973CDCB00CA439B /* LRMobilewidgetsService_v6201.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsService_v6201.h; sourceTree = "<group>"; };
+		8873460C1973CDCB00CA439B /* LRMobilewidgetsService_v6201.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsService_v6201.m; sourceTree = "<group>"; };
 		88848B2F19656DC800EE9602 /* Liferay-iOS-Widgets-ObjC-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liferay-iOS-Widgets-ObjC-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88848B3319656DC800EE9602 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88848B3419656DC800EE9602 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -74,6 +77,7 @@
 		88693C51196AEA660054DEB3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				8873460A1973CDCB00CA439B /* Services */,
 				88693C52196AEA660054DEB3 /* Base */,
 				88693C6A196AEA840054DEB3 /* liferay-context-sample.plist */,
 				88693C58196AEA660054DEB3 /* liferay-ios-widgets.h */,
@@ -111,6 +115,15 @@
 				88693C5E196AEA660054DEB3 /* nameOfClass.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		8873460A1973CDCB00CA439B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8873460B1973CDCB00CA439B /* LRMobilewidgetsService_v6201.h */,
+				8873460C1973CDCB00CA439B /* LRMobilewidgetsService_v6201.m */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		88848B2619656DC800EE9602 = {
@@ -274,6 +287,7 @@
 			files = (
 				88693C66196AEA660054DEB3 /* LoginWidget.swift in Sources */,
 				88848B3B19656DC900EE9602 /* ViewController.m in Sources */,
+				8873460D1973CDCB00CA439B /* LRMobilewidgetsService_v6201.m in Sources */,
 				88848B3819656DC800EE9602 /* AppDelegate.m in Sources */,
 				88693C60196AEA660054DEB3 /* BaseWidget.swift in Sources */,
 				88693C67196AEA660054DEB3 /* nameOfClass.swift in Sources */,
