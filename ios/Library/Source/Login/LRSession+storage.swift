@@ -15,30 +15,42 @@ import Foundation
 
 extension LRSession {
 
+    
+    // CLASS METHODS
+    
+	
 	class func emptyStore() {
-		if let server = NSUserDefaults.standardUserDefaults().stringForKey("server") {
-			NSUserDefaults.standardUserDefaults().removeObjectForKey("server")
-			NSUserDefaults.standardUserDefaults().synchronize()
+        let credentialsTuple = credentialsForServer(LiferayContext.instance.server)
 
-			let credentialInfo = credentialsForServer(server)
-			if let credential = credentialInfo.0 {
-				NSURLCredentialStorage.sharedCredentialStorage().removeCredential(
-					credential, forProtectionSpace:credentialInfo.1)
-			}
+		if let credential = credentialsTuple.0 {
+			NSURLCredentialStorage.sharedCredentialStorage().removeCredential(
+				credential, forProtectionSpace:credentialsTuple.1)
 		}
 	}
 
-	func store() -> Bool {
-		var result = false
+    class func storedSession() -> LRSession? {
+		let credentialsTuple = credentialsForServer(LiferayContext.instance.server)
+        
+		if let credential = credentialsTuple.0 {
+			return LRSession(LiferayContext.instance.server, username:credential.user, password:credential.password)
+		}
+        
+		return nil
+    }
+    
+
+    // INSTANCE METHODS
+
+    
+    func store() -> Bool {
+		var success = false
+
 		// WORKAROUND!
 		// Compiler crash with compound if statement: if self.server && self.username && self.password {
 		// "While emitting IR SIL function @_TFCSo9LRSession5storefS_FT_T_ for 'store' at LRSession+storage.swift:36:2"
 		if self.server {
 			if self.username {
 				if self.password {
-					NSUserDefaults.standardUserDefaults().setObject(self.server, forKey:"server")
-					NSUserDefaults.standardUserDefaults().synchronize()
-
 					let protectionSpace = LRSession.protectionSpaceForServer(self.server!)
 
 					let credential = NSURLCredential(user:self.username!, password:self.password!,
@@ -47,26 +59,15 @@ extension LRSession {
 					NSURLCredentialStorage.sharedCredentialStorage().setCredential(
 						credential, forProtectionSpace:protectionSpace)
 
-					result = true
+					success = true
 				}
 			}
 		}
 
-		return result
+		return success
 	}
 
-	class func storedSession() -> LRSession? {
-		if let server = NSUserDefaults.standardUserDefaults().stringForKey("server") {
-			let credentialInfo = credentialsForServer(server)
-			if let credential = credentialInfo.0 {
-				return LRSession(server, username:credential.user, password:credential.password)
-			}
-		}
-
-		return nil
-	}
-
-
+	
 	// PRIVATE METHODS
 
 
@@ -74,9 +75,9 @@ extension LRSession {
 		let protectionSpace = protectionSpaceForServer(server)
 
 		let credentialDict =
-		NSURLCredentialStorage.sharedCredentialStorage().credentialsForProtectionSpace(protectionSpace)
+			NSURLCredentialStorage.sharedCredentialStorage().credentialsForProtectionSpace(protectionSpace)
 
-		let username = credentialDict.keyEnumerator().nextObject() as NSString
+		let username = (credentialDict as NSDictionary).keyEnumerator().nextObject() as NSString
 
 		return (credentialDict[username] as? NSURLCredential, protectionSpace)
 	}
