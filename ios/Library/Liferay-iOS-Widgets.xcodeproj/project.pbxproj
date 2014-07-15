@@ -23,6 +23,7 @@
 		889CA4CE19655F4B00664504 /* nameOfClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4C619655F4B00664504 /* nameOfClass.swift */; };
 		88AEA25D19657C3100CD130B /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88AEA25C19657C3100CD130B /* liferay-context-sample.plist */; };
 		88D99C32196C42B30090F236 /* LRSession_storage_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */; };
+		999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BF19655F4B00664504 /* LiferayContext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -351,6 +352,7 @@
 			files = (
 				8895737C196C3CDA00258033 /* LRSession+storage.swift in Sources */,
 				88D99C32196C42B30090F236 /* LRSession_storage_Tests.swift in Sources */,
+				999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
