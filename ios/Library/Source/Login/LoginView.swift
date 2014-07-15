@@ -38,6 +38,11 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
         case AuthType.Screenname.toRaw():
             usernameLabel.text = "Screen name"
             usernameField.keyboardType = UIKeyboardType.ASCIICapable
+
+			let username = usernameField.text as NSString
+			if username.containsString("@") {
+				usernameField.text = username.componentsSeparatedByString("@")[0] as String
+			}
         default:
             usernameLabel.text = "Unknown"
         }
