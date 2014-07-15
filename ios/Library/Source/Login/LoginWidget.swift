@@ -35,7 +35,7 @@ import UIKit
     
     var authMethod: AuthCall?
 
-	class func storedCredencials() -> LRSession? {
+	class func storedSession() -> LRSession? {
 		return LRSession.storedSession()
 	}
     

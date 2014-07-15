@@ -31,7 +31,7 @@ class ViewController: UIViewController, LoginWidgetDelegate {
 		loginWidget.setAuthType(AuthType.Screenname)
 
 
-		if LoginWidget.storedCredencials() {
+		if LoginWidget.storedSession() {
 			loginWidget.hidden = true
 		}
 		else {
