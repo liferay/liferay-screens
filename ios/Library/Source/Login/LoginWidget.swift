@@ -68,12 +68,7 @@ import UIKit
 
 		if let storedSession = LRSession.storedSession() {
 			LiferayContext.instance.currentSession = storedSession
-			if delegate {
-				println("hay delegate")
-			}
-			else {
-				println("no hay delegate")
-			}
+
 			delegate?.onCredentialsLoaded?(storedSession)
 		}
 	}
