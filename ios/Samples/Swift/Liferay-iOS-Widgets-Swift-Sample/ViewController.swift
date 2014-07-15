@@ -49,10 +49,9 @@ class ViewController: UIViewController, LoginWidgetDelegate {
     
 	func onLoginError(error: NSError)  {
 		println("Error -> " + error.description)
-
 	}
 
-	func onLoginResponse(attributes: Dictionary<String, Any!>)  {
+	func onLoginResponse(attributes: [String:AnyObject!])  {
 		NSLog("Login %@", attributes)
 	}
 

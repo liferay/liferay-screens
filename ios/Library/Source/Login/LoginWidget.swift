@@ -15,7 +15,7 @@ import UIKit
 
 @objc protocol LoginWidgetDelegate {
 
-	@optional func onLoginResponse(attributes: Dictionary<String, Any!>)
+	@optional func onLoginResponse(attributes: [String:AnyObject!])
 	@optional func onLoginError(error: NSError)
 
 	@optional func onCredentialsSaved(session:LRSession)
@@ -88,14 +88,12 @@ import UIKit
         hideHUDWithMessage("Error signing in!", details: nil)
     }
     
-    override func onServerResult(result: AnyObject!) {
-        if let dict = result as? Dictionary<String, Any!> {
-			delegate?.onLoginResponse?(dict)
+	override func onServerResult(result: [String:AnyObject!]) {
+		delegate?.onLoginResponse?(result)
 
-			if loginView().shouldRememberCredentials {
-				if LiferayContext.instance.currentSession!.store() {
-					delegate?.onCredentialsSaved?(LiferayContext.instance.currentSession!)
-				}
+		if loginView().shouldRememberCredentials {
+			if LiferayContext.instance.currentSession!.store() {
+				delegate?.onCredentialsSaved?(LiferayContext.instance.currentSession!)
 			}
         }
         
