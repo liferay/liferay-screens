@@ -24,101 +24,104 @@ class BaseWidget: UIView, LRCallback {
 	init(frame: CGRect) {
 		super.init(frame: frame)
 
-        widgetView = loadWidgetView();
+		widgetView = loadWidgetView();
 	}
 
 	init(coder aDecoder: NSCoder!) {
 		super.init(coder: aDecoder)
 
-        widgetView = loadWidgetView();
+		widgetView = loadWidgetView();
 	}
 
     
-    // DISPLAY TEMPLATE METHODS
+	// DISPLAY TEMPLATE METHODS
 
-    
-    /*
-     * onCreate is invoked after the widget is created. Override this method to set custom values for the widget
-     * properties.
-     */
+
+	/*
+	 * onCreate is invoked after the widget is created. Override this method to set custom values for the widget
+	 * properties.
+	 */
 	func onCreate() {
 	}
 
-    /*
-     * onHide is invoked when the widget is hidden from the app window.
-     */
-    func onHide() {
-    }
+	/*
+	 * onHide is invoked when the widget is hidden from the app window.
+	 */
+	func onHide() {
+	}
     
-    /*
-     * onShow is invoked when the widget is displayed on the app window. Override this method for example to reset
-     * values when the widget is shown.
-     */
+	/*
+	 * onShow is invoked when the widget is displayed on the app window. Override this method for example to reset
+	 * values when the widget is shown.
+	 */
 	func onShow() {
-    }
+	}
 
-    
-    // SERVER RESPONSE TEMPLATE METHODS
-    
-    
-    /*
-     * onServerError is invoked when there is an error communicating with the Liferay server.
-     */
+
+	// SERVER RESPONSE TEMPLATE METHODS
+
+
+	/*
+	 * onServerError is invoked when there is an error communicating with the Liferay server.
+	 */
 	func onServerError(error: NSError) {
 	}
 
-    /*
-     * onServerResult is invoked when there is an result from a communication with the Liferay server. The type of the
-     * result will depend on the invocation done from specific subclasses.
-     */
 	func onServerResult(result: AnyObject!) {
+	/*
+	 * onServerResult is invoked when there is an result from a communication with the Liferay server. The type of the
+	 * result will depend on the invocation done from specific subclasses.
+	 */
 	}
 
     
-    // USER ACTIONS TEMPLATE METHOD
-    
+	// USER ACTIONS TEMPLATE METHOD
 
-    /*
-     * onCustomAction is invoked when a TouchUpInside even is fired from the UI.
-     */
-    func onCustomAction(actionName:String?, sender:UIControl) {
-    }
 
-    
-    // UIView METHODS
-    
-    
-    override func awakeFromNib() {
-        self.clipsToBounds = true;
-        
-        onCreate()
-    }
-    
-    override func becomeFirstResponder() -> Bool {
-        return widgetView!.becomeFirstResponder()
-    }
-    
-    override func didMoveToWindow() {
-        if (self.window) {
-            self.onShow();
-        }
-        else {
-            self.onHide();
-        }
-    }
-    
-    // LRCallback PRIVATE METHODS
+	/*
+	 * onCustomAction is invoked when a TouchUpInside even is fired from the UI.
+	 */
+	func onCustomAction(actionName:String?, sender:UIControl) {
+	}
 
+
+	// UIView METHODS
+
+
+	override func awakeFromNib() {
+		self.clipsToBounds = true;
+
+		onCreate()
+	}
     
-    func onFailure(error: NSError!) {
-        onServerError(error ? error : NSError(domain: "LiferayWidget", code: 0, userInfo: nil))
-    }
+	override func becomeFirstResponder() -> Bool {
+		return widgetView!.becomeFirstResponder()
+	}
     
+	override func didMoveToWindow() {
+		if (self.window) {
+			self.onShow();
+		}
+		else {
+			self.onHide();
+		}
+	}
+
+
+	// LRCallback PRIVATE METHODS
+
+
+	func onFailure(error: NSError!) {
+		onServerError(error ? error : NSError(domain: "LiferayWidget", code: 0, userInfo: nil))
+	}
+
 	func onSuccess(result: AnyObject!) {
 		onServerResult(result)
 	}
 
-    // PRIVATE METHODS
+
+	// PRIVATE METHODS
+
 
 	func loadWidgetView() -> BaseWidgetView {
 		let view = self.createWidgetViewFromNib();
@@ -126,7 +129,7 @@ class BaseWidget: UIView, LRCallback {
 		view.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
 		view.customAction = self.onCustomAction;
 
-        self.addSubview(view)
+		self.addSubview(view)
 
 		return view;
 	}
@@ -141,15 +144,15 @@ class BaseWidget: UIView, LRCallback {
 		let widgetName = className.componentsSeparatedByString("Widget")[0]
 		let viewName = widgetName + "View"
 
-		var nibName: String? = NSBundle.mainBundle().pathForResource(viewName + "-ext", ofType:"xib");
+		var nibName = NSBundle.mainBundle().pathForResource(viewName + "-ext", ofType:"xib");
 
-        if !nibName {
+		if !nibName {
 			nibName = viewName
 
 			// TODO this is not working!
 			//assert(
-            //    NSBundle.mainBundle().pathForResource(nibName, ofType:"xib"),
-            //    "Fatal error: can't find view xib file for widget. Make sure all your widget have a xib file")
+			//    NSBundle.mainBundle().pathForResource(nibName, ofType:"xib"),
+			//    "Fatal error: can't find view xib file for widget. Make sure all your widget have a xib file")
 		}
 
 		let views = NSBundle.mainBundle().loadNibNamed(nibName!, owner:self, options:nil)
