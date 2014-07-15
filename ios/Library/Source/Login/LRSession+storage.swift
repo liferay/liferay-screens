@@ -76,10 +76,15 @@ extension LRSession {
 
 		let credentialDict =
 			NSURLCredentialStorage.sharedCredentialStorage().credentialsForProtectionSpace(protectionSpace)
-
-		let username = (credentialDict as NSDictionary).keyEnumerator().nextObject() as NSString
-
-		return (credentialDict[username] as? NSURLCredential, protectionSpace)
+		
+		if let credentialDictValue = credentialDict {
+			let username = (credentialDict as NSDictionary).keyEnumerator().nextObject() as NSString
+			
+			return (credentialDict[username] as? NSURLCredential, protectionSpace)
+		}
+		else {
+			return (nil, protectionSpace)
+		}
 	}
 
 	class func protectionSpaceForServer(server:String) -> NSURLProtectionSpace {
