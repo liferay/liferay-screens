@@ -1,3 +1,6 @@
+
+
+
 /**
 * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
 *
@@ -32,43 +35,41 @@ class LRSession_Storage_Tests: XCTestCase {
 	}
 
 	func testStoredSessionShouldReturnSessionWhenValidSessionWasStored() {
-		let session = LRSession("http://localhost:8888", username:"user", password:"pass")
+		let session = LRSession(LiferayContext.instance.server, username:"user", password:"pass")
 
 		XCTAssertTrue(session.store(), "'LRSession.store' result should be 'true' when store was ok")
 
-		let storedSession = LRSession.storedSession()
-
-		XCTAssertNotNil(storedSession, "'LRSession.storedSession' result should not be nil when loaded from valid store")
-		XCTAssertEqual(session.server!, storedSession!.server!)
-		XCTAssertEqual(session.username!, storedSession!.username!)
-		XCTAssertEqual(session.password!, storedSession!.password!)
-	}
-
-	func testStoreShouldReturnFalseWhenServerIsMissing() {
-		let session = LRSession(nil, username:"user", password:"pass")
-
-		XCTAssertFalse(session.store(), "'LRSession.store' result should be 'false' when 'server' is missing")
+		if let storedSession = LRSession.storedSession() {
+			XCTAssertEqual(session.server!, storedSession.server!)
+			XCTAssertEqual(session.username!, storedSession.username!)
+			XCTAssertEqual(session.password!, storedSession.password!)
+		}
+		else {
+			XCTFail("'LRSession.storedSession' result should not be nil when loaded from valid store")
+		}
 	}
 
 	func testStoreShouldReturnFalseWhenUsernameIsMissing() {
-		let session = LRSession("http://localhost:8888", username:nil, password:"pass")
+		let session = LRSession(LiferayContext.instance.server, username:nil, password:"pass")
 
 		XCTAssertFalse(session.store(), "'LRSession.store' result should be 'false' when 'username' is missing")
 	}
 
 	func testStoreShouldReturnFalseWhenPasswordIsMissing() {
-		let session = LRSession("http://localhost:8888", username:"user", password:nil)
+		let session = LRSession(LiferayContext.instance.server, username:"user", password:nil)
 
 		XCTAssertFalse(session.store(), "'LRSession.store' result should be 'false' when 'password' is missing")
 	}
 
 	func testEmptyStoreShouldRemoveAllStoredCredentials() {
-		let session = LRSession("http://localhost:8888", username:"user", password:"pass")
+		let session = LRSession(LiferayContext.instance.server, username:"user", password:"pass")
 		session.store()
 
 		LRSession.emptyStore()
 
-		XCTAssertNil(LRSession.storedSession(), "'LRSession.storedSession' result should be nil when store is just emptied")
+		if let storedSession = LRSession.storedSession() {
+			XCTFail("'LRSession.storedSession' result should be nil when store is just emptied")
+		}
 	}
-
+	
 }

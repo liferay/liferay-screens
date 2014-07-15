@@ -48,19 +48,17 @@ extension LRSession {
 		// WORKAROUND!
 		// Compiler crash with compound if statement: if self.server && self.username && self.password {
 		// "While emitting IR SIL function @_TFCSo9LRSession5storefS_FT_T_ for 'store' at LRSession+storage.swift:36:2"
-		if self.server {
-			if self.username {
-				if self.password {
-					let protectionSpace = LRSession.protectionSpaceForServer(self.server!)
+		if self.username {
+			if self.password {
+				let protectionSpace = LRSession.protectionSpaceForServer(LiferayContext.instance.server)
 
-					let credential = NSURLCredential(user:self.username!, password:self.password!,
-						persistence: NSURLCredentialPersistence.Permanent)
+				let credential = NSURLCredential(user:self.username!, password:self.password!,
+					persistence: NSURLCredentialPersistence.Permanent)
 
-					NSURLCredentialStorage.sharedCredentialStorage().setCredential(
-						credential, forProtectionSpace:protectionSpace)
+				NSURLCredentialStorage.sharedCredentialStorage().setCredential(
+					credential, forProtectionSpace:protectionSpace)
 
-					success = true
-				}
+				success = true
 			}
 		}
 
@@ -75,12 +73,12 @@ extension LRSession {
 		let protectionSpace = protectionSpaceForServer(server)
 
 		let credentialDict =
-			NSURLCredentialStorage.sharedCredentialStorage().credentialsForProtectionSpace(protectionSpace)
+			NSURLCredentialStorage.sharedCredentialStorage().credentialsForProtectionSpace(protectionSpace) as NSDictionary?
 		
 		if let credentialDictValue = credentialDict {
-			let username = (credentialDict as NSDictionary).keyEnumerator().nextObject() as NSString
+			let username = credentialDictValue.keyEnumerator().nextObject() as NSString
 			
-			return (credentialDict[username] as? NSURLCredential, protectionSpace)
+			return (credentialDictValue.objectForKey(username) as? NSURLCredential, protectionSpace)
 		}
 		else {
 			return (nil, protectionSpace)
