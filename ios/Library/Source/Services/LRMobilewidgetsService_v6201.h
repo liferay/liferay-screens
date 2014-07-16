@@ -11,7 +11,6 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
 #import <Foundation/Foundation.h>
 #import "LRBaseService.h"
 
@@ -20,8 +19,8 @@
  */
 @interface LRMobilewidgetsService_v6201 : LRBaseService
 
-- (BOOL)resetPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress error:(NSError **)error;
-- (BOOL)resetPasswordByScreenNameWithCompanyId:(long long)companyId screenName:(NSString *)screenName error:(NSError **)error;
-- (BOOL)resetPasswordByUserIdWithUserId:(long long)userId error:(NSError **)error;
+- (NSDictionary *)resetPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress error:(NSError **)error;
+- (NSDictionary *)resetPasswordByScreenNameWithCompanyId:(long long)companyId screenName:(NSString *)screenName error:(NSError **)error;
+- (NSDictionary *)resetPasswordByUserIdWithUserId:(long long)userId error:(NSError **)error;
 
 @end

@@ -19,7 +19,7 @@
  */
 @implementation LRMobilewidgetsService_v6201
 
-- (BOOL)resetPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress error:(NSError **)error {
+- (NSDictionary *)resetPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"companyId": @(companyId),
 		@"emailAddress": emailAddress
@@ -27,10 +27,10 @@
 
 	NSDictionary *_command = @{@"/mobile-widgets-compat-portlet/mobilewidgets/reset-password-by-email-address": _params};
 
-	return [self boolValue:(NSNumber *)[self.session invoke:_command error:error]];
+	return (NSDictionary *)[self.session invoke:_command error:error];
 }
 
-- (BOOL)resetPasswordByScreenNameWithCompanyId:(long long)companyId screenName:(NSString *)screenName error:(NSError **)error {
+- (NSDictionary *)resetPasswordByScreenNameWithCompanyId:(long long)companyId screenName:(NSString *)screenName error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"companyId": @(companyId),
 		@"screenName": screenName
@@ -38,17 +38,17 @@
 
 	NSDictionary *_command = @{@"/mobile-widgets-compat-portlet/mobilewidgets/reset-password-by-screen-name": _params};
 
-	return [self boolValue:(NSNumber *)[self.session invoke:_command error:error]];
+	return (NSDictionary *)[self.session invoke:_command error:error];
 }
 
-- (BOOL)resetPasswordByUserIdWithUserId:(long long)userId error:(NSError **)error {
+- (NSDictionary *)resetPasswordByUserIdWithUserId:(long long)userId error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"userId": @(userId)
 	}];
 
 	NSDictionary *_command = @{@"/mobile-widgets-compat-portlet/mobilewidgets/reset-password-by-user-id": _params};
 
-	return [self boolValue:(NSNumber *)[self.session invoke:_command error:error]];
+	return (NSDictionary *)[self.session invoke:_command error:error];
 }
 
 @end
