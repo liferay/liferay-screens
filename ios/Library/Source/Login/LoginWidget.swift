@@ -23,7 +23,7 @@ import UIKit
 
 }
 
-@IBDesignable class LoginWidget: BaseWidget {
+class LoginWidget: BaseWidget {
 
     @IBOutlet var delegate: LoginWidgetDelegate?
     

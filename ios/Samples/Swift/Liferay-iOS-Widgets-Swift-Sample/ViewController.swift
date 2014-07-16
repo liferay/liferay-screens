@@ -15,21 +15,19 @@ import UIKit
 
 class ViewController: UIViewController, LoginWidgetDelegate {
 
-	@IBOutlet var widget: BaseWidget!
-    
+	@IBOutlet var loginWidget: LoginWidget!
+
     
     // UIViewController METHODS
+    
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let loginWidget = widget as LoginWidget
-
 		// WORKAROUND!
-		// Outlet assignment in IB doesn't work!!
+		// Delegate assignment in IB doesn't work!!
 		loginWidget.delegate = self
-
-		loginWidget.setAuthType(AuthType.Screenname)
-
+        loginWidget.setAuthType(AuthType.Email)
 
 		if LoginWidget.storedSession() {
 			loginWidget.hidden = true
@@ -45,25 +43,23 @@ class ViewController: UIViewController, LoginWidgetDelegate {
 
     
     // LoginWidgetDelegate METHODS
+
     
-    
-	func onLoginError(error: NSError)  {
-		println("Error -> " + error.description)
+	func onCredentialsLoaded(session:LRSession) {
+		print("Saved loaded for server " + session.server)
+ 	}
+
+	func onCredentialsSaved(session:LRSession) {
+		print("Saved credentials for server " + session.server)
+ 	}
+ 
+ 	func onLoginError(error: NSError)  {
+ 		println("Error -> " + error.description)
 	}
 
 	func onLoginResponse(attributes: [String:AnyObject!])  {
 		NSLog("Login %@", attributes)
 	}
-
-	func onCredentialsSaved(session:LRSession) {
-		print("Saved credentials for server " + session.server)
-	}
-
-	func onCredentialsLoaded(session:LRSession) {
-		print("Saved loaded for server " + session.server)
-	}
-
-
 
 }
 
