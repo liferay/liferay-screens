@@ -29,7 +29,12 @@ class ViewController: UIViewController, LoginWidgetDelegate {
 		loginWidget.delegate = self
         loginWidget.setAuthType(AuthType.Email)
 
-		loginWidget.becomeFirstResponder()
+		if LoginWidget.storedSession() {
+			loginWidget.hidden = true
+		}
+		else {
+			loginWidget.becomeFirstResponder()
+		}
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -38,14 +43,21 @@ class ViewController: UIViewController, LoginWidgetDelegate {
 
     
     // LoginWidgetDelegate METHODS
-    
-    
-	func onLoginError(error: NSError)  {
-		println("Error -> " + error.description)
 
+    
+	func onCredentialsLoaded(session:LRSession) {
+		print("Saved loaded for server " + session.server)
+ 	}
+
+	func onCredentialsSaved(session:LRSession) {
+		print("Saved credentials for server " + session.server)
+ 	}
+ 
+ 	func onLoginError(error: NSError)  {
+ 		println("Error -> " + error.description)
 	}
 
-	func onLoginResponse(attributes: Dictionary<String, Any!>)  {
+	func onLoginResponse(attributes: [String:AnyObject!])  {
 		NSLog("Login %@", attributes)
 	}
 
