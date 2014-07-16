@@ -16,6 +16,7 @@ import UIKit
 enum AuthType: String {
 	case Email = "email"
 	case Screenname = "screenname"
+	case UserId = "userid"
 }
 
 class LoginView: BaseWidgetView, UITextFieldDelegate {
@@ -43,6 +44,9 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 			if username.containsString("@") {
 				usernameField.text = username.componentsSeparatedByString("@")[0] as String
 			}
+		case AuthType.UserId.toRaw():
+			usernameLabel.text = "User ID"
+			usernameField.keyboardType = UIKeyboardType.NumberPad				
         default:
             usernameLabel.text = "Unknown"
         }
