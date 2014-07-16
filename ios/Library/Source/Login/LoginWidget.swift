@@ -36,7 +36,7 @@ import UIKit
     var authMethod: AuthCall?
 
 	class func storedSession() -> LRSession? {
-		return LRSession.storedSession()
+		return LRSession.sessionFromStoredCredential()
 	}
     
 	/*
@@ -66,10 +66,10 @@ import UIKit
 
         loginView().usernameField.text = "test@liferay.com"
 
-		if let storedSession = LRSession.storedSession() {
-			LiferayContext.instance.currentSession = storedSession
+		if let session = LRSession.sessionFromStoredCredential() {
+			LiferayContext.instance.currentSession = session
 
-			delegate?.onCredentialsLoaded?(storedSession)
+			delegate?.onCredentialsLoaded?(session)
 		}
 	}
 
@@ -83,7 +83,7 @@ import UIKit
 		delegate?.onLoginError?(error)
 
 		LiferayContext.instance.clearSession()
-		LRSession.emptyStore()
+		LRSession.removeStoredCredential()
 
         hideHUDWithMessage("Error signing in!", details: nil)
     }
@@ -92,7 +92,7 @@ import UIKit
 		delegate?.onLoginResponse?(result)
 
 		if loginView().shouldRememberCredentials {
-			if LiferayContext.instance.currentSession!.store() {
+			if LiferayContext.instance.currentSession!.storeCredential() {
 				delegate?.onCredentialsSaved?(LiferayContext.instance.currentSession!)
 			}
         }

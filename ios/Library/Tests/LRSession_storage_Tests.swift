@@ -23,52 +23,54 @@ class LRSession_Storage_Tests: XCTestCase {
 	}
 
 	override func tearDown() {
-		LRSession.emptyStore()
+		LRSession.removeStoredCredential()
 
 		super.tearDown()
 	}
 
-	func testStoredSessionShouldReturnNilWhenEmptyStore() {
-		let storedSession = LRSession.storedSession()
+	func test_SessionFromStoredCredential_ShouldReturnNil_WhenNoCredentialIsStored() {
+		let session = LRSession.sessionFromStoredCredential()
 
-		XCTAssertNil(storedSession, "'LRSession.storedSession' result should be nil when loaded from empty store")
+		XCTAssertNil(session)
 	}
 
-	func testStoredSessionShouldReturnSessionWhenValidSessionWasStored() {
+	// Fails due to bug reported to Apple by @jmnavarro
+	func test_SessionFromStoredCredential_ShouldHaveValidCredential_WhenCredentialWasStored() {
 		let session = LRSession(LiferayContext.instance.server, username:"user", password:"pass")
 
-		XCTAssertTrue(session.store(), "'LRSession.store' result should be 'true' when store was ok")
+		XCTAssertTrue(session.storeCredential(), "storeCredential() is not saving the credentials!")
 
-		if let storedSession = LRSession.storedSession() {
-			XCTAssertEqual(session.server!, storedSession.server!)
-			XCTAssertEqual(session.username!, storedSession.username!)
-			XCTAssertEqual(session.password!, storedSession.password!)
+		if let session = LRSession.sessionFromStoredCredential() {
+			XCTAssertEqual(LiferayContext.instance.server, session.server!)
+			XCTAssertEqual(session.username!, session.username!)
+			XCTAssertEqual(session.password!, session.password!)
 		}
 		else {
-			XCTFail("'LRSession.storedSession' result should not be nil when loaded from valid store")
+			XCTFail("sessionFromStoredCredential() should not return nil after storing the credentials")
 		}
 	}
 
-	func testStoreShouldReturnFalseWhenUsernameIsMissing() {
+	func test_StoreCredential_ShouldReturnFalse_WhenUsernameIsNil() {
 		let session = LRSession(LiferayContext.instance.server, username:nil, password:"pass")
 
-		XCTAssertFalse(session.store(), "'LRSession.store' result should be 'false' when 'username' is missing")
+		XCTAssertFalse(session.storeCredential())
 	}
 
-	func testStoreShouldReturnFalseWhenPasswordIsMissing() {
+	func test_StoreCredential_ShouldReturnFalse_WhenPasswordIsNil() {
 		let session = LRSession(LiferayContext.instance.server, username:"user", password:nil)
-
-		XCTAssertFalse(session.store(), "'LRSession.store' result should be 'false' when 'password' is missing")
+		
+		XCTAssertFalse(session.storeCredential())
 	}
 
-	func testEmptyStoreShouldRemoveAllStoredCredentials() {
+	func test_RemoveStoredCredential_ShouldRemoveExistingCredential() {
 		let session = LRSession(LiferayContext.instance.server, username:"user", password:"pass")
-		session.store()
 
-		LRSession.emptyStore()
+		session.storeCredential()
 
-		if let storedSession = LRSession.storedSession() {
-			XCTFail("'LRSession.storedSession' result should be nil when store is just emptied")
+		LRSession.removeStoredCredential()
+
+		if let session = LRSession.sessionFromStoredCredential() {
+			XCTFail("sessionFromStoredCredential() should return nil after removing the credential")
 		}
 	}
 	

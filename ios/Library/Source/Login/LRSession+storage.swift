@@ -19,19 +19,19 @@ extension LRSession {
     // CLASS METHODS
     
 	
-	class func emptyStore() {
-        let credentialsTuple = credentialsForServer(LiferayContext.instance.server)
+	class func removeStoredCredential() {
+        let credentialTuple = credentialForServer(LiferayContext.instance.server)
 
-		if let credential = credentialsTuple.0 {
+		if let credential = credentialTuple.0 {
 			NSURLCredentialStorage.sharedCredentialStorage().removeCredential(
-				credential, forProtectionSpace:credentialsTuple.1)
+				credential, forProtectionSpace:credentialTuple.1)
 		}
 	}
 
-    class func storedSession() -> LRSession? {
-		let credentialsTuple = credentialsForServer(LiferayContext.instance.server)
+    class func sessionFromStoredCredential() -> LRSession? {
+		let credentialTuple = credentialForServer(LiferayContext.instance.server)
         
-		if let credential = credentialsTuple.0 {
+		if let credential = credentialTuple.0 {
 			return LRSession(LiferayContext.instance.server, username:credential.user, password:credential.password)
 		}
         
@@ -42,7 +42,7 @@ extension LRSession {
     // INSTANCE METHODS
 
     
-    func store() -> Bool {
+    func storeCredential() -> Bool {
 		var success = false
 
 		// WORKAROUND!
@@ -69,11 +69,12 @@ extension LRSession {
 	// PRIVATE METHODS
 
 
-	class func credentialsForServer(server:String) -> (NSURLCredential?, NSURLProtectionSpace) {
+	class func credentialForServer(server:String) -> (NSURLCredential?, NSURLProtectionSpace) {
 		let protectionSpace = protectionSpaceForServer(server)
 
 		let credentialDict =
-			NSURLCredentialStorage.sharedCredentialStorage().credentialsForProtectionSpace(protectionSpace) as NSDictionary?
+			NSURLCredentialStorage.sharedCredentialStorage().credentialsForProtectionSpace(protectionSpace)
+				as NSDictionary?
 		
 		if let credentialDictValue = credentialDict {
 			let username = credentialDictValue.keyEnumerator().nextObject() as NSString

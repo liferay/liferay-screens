@@ -124,7 +124,6 @@ class BaseWidget: UIView, LRCallback {
 		else {
 			onServerResult(["result": result])
 		}
-
 	}
 
 
