@@ -17,8 +17,12 @@ class ForgotPasswordView: BaseWidgetView, UITextFieldDelegate {
 
 	@IBOutlet var usernameLabel: UILabel
 	@IBOutlet var usernameField: UITextField
-	@IBOutlet var requestButton: UIButton
+	@IBOutlet var requestPasswordButton: UIButton
 
+	
+	// PUBLIC METHODS
+	
+	
 	func setAuthType(authType: String) {
 		usernameLabel.text = authType
 
@@ -47,7 +51,7 @@ class ForgotPasswordView: BaseWidgetView, UITextFieldDelegate {
 	func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		textField.resignFirstResponder()
 
-		requestButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+		requestPasswordButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
 
 		return true
 	}

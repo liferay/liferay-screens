@@ -32,6 +32,10 @@ class ForgotPasswordWidget: BaseWidget {
 
 	var resetClosure: ResetClosureType?
 
+	
+	// PUBLIC METHODS
+	
+	
 	func setAuthType(authType:AuthType) {
 		forgotPasswordView().setAuthType(authType.toRaw())
 
@@ -56,20 +60,23 @@ class ForgotPasswordWidget: BaseWidget {
 		//TODO get server error message
 		delegate?.onForgotPasswordError?(error)
 
-		hideHUDWithMessage("Error reseting password!", details: nil)
+		hideHUDWithMessage("Error requesting password!", details: nil)
 	}
 
 	override func onServerResult(result: [String:AnyObject!]) {
 		let success = result["result"]
+
 		if let successValue = success as? Bool {
 			if successValue {
 				delegate?.onForgotPasswordResponse?()
 			}
 			else {
 				onServerError(NSError(domain: "LiferayWidgets", code: -1, userInfo: nil))
+
 				return
 			}
 		}
+
 		hideHUDWithMessage("New password request sent!", details: nil)
     }
 
