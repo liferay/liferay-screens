@@ -6,8 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LoginView" customModule="Liferay_iOS_Widgets_Dummy" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="343" height="194"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LoginView" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="343" height="233"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Screen name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="baP-Va-JT8">
@@ -27,7 +27,7 @@
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="XBk-dU-LXI">
-                    <rect key="frame" x="104" y="74" width="239" height="30"/>
+                    <rect key="frame" x="104" y="73" width="239" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                     <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -36,14 +36,25 @@
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kq3-Yb-Mpp">
-                    <rect key="frame" x="129" y="164" width="84" height="30"/>
+                    <rect key="frame" x="129" y="174" width="84" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Sign In">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="xyz" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="GPR-Lq-4eS">
+                    <rect key="frame" x="104" y="121" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </switch>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l2O-AT-211">
-                    <rect key="frame" x="0.0" y="79" width="95" height="19"/>
+                    <rect key="frame" x="0.0" y="78" width="95" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jyf-QC-qg2">
+                    <rect key="frame" x="0.0" y="127" width="95" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -56,10 +67,11 @@
             <connections>
                 <outlet property="loginButton" destination="kq3-Yb-Mpp" id="Oo7-eW-2xM"/>
                 <outlet property="passwordField" destination="XBk-dU-LXI" id="Quv-iB-Spk"/>
+                <outlet property="rememberSwitch" destination="GPR-Lq-4eS" id="Ho5-CW-3Lq"/>
                 <outlet property="usernameField" destination="lQM-e9-Lbg" id="Ok6-SD-ehW"/>
                 <outlet property="usernameLabel" destination="baP-Va-JT8" id="TkA-BV-0k7"/>
             </connections>
-            <point key="canvasLocation" x="369.5" y="164"/>
+            <point key="canvasLocation" x="369.5" y="183.5"/>
         </view>
     </objects>
 </document>

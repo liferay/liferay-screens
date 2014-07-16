@@ -22,6 +22,7 @@
 		88832FA019656B3F00E3DF9F /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88832F9419656B3F00E3DF9F /* LoginView.xib */; };
 		88832FA119656B3F00E3DF9F /* LoginWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F9519656B3F00E3DF9F /* LoginWidget.swift */; };
 		88832FA219656B3F00E3DF9F /* nameOfClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F9719656B3F00E3DF9F /* nameOfClass.swift */; };
+		999BC69A197682E000A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC699197682E000A9B0D8 /* LRSession+CredentialStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		88832F9419656B3F00E3DF9F /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		88832F9519656B3F00E3DF9F /* LoginWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWidget.swift; sourceTree = "<group>"; };
 		88832F9719656B3F00E3DF9F /* nameOfClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameOfClass.swift; sourceTree = "<group>"; };
+		999BC699197682E000A9B0D8 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		88832F9219656B3F00E3DF9F /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				999BC699197682E000A9B0D8 /* LRSession+CredentialStore.swift */,
 				88832F9319656B3F00E3DF9F /* LoginView.swift */,
 				88832F9419656B3F00E3DF9F /* LoginView.xib */,
 				88832F9519656B3F00E3DF9F /* LoginWidget.swift */,
@@ -268,6 +271,7 @@
 				8868AFCC19656B0500FD5214 /* AppDelegate.swift in Sources */,
 				88832F9B19656B3F00E3DF9F /* LiferayContext.swift in Sources */,
 				88832FA219656B3F00E3DF9F /* nameOfClass.swift in Sources */,
+				999BC69A197682E000A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 				88832F9919656B3F00E3DF9F /* BaseWidget.swift in Sources */,
 				88832F9819656B3F00E3DF9F /* BaseWidget+progress.swift in Sources */,
 				88832F9F19656B3F00E3DF9F /* LoginView.swift in Sources */,

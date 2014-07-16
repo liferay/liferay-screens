@@ -24,9 +24,7 @@ struct LiferayContext {
 	static var instance = LiferayContext()
 
 	init() {
-		let propertiesPath = NSBundle.mainBundle().pathForResource("liferay-context", ofType:"plist")
-
-        if propertiesPath {
+        if let propertiesPath = NSBundle.mainBundle().pathForResource("liferay-context", ofType:"plist") {
 			loadContextFile(propertiesPath)
 		}
 		else {
@@ -34,7 +32,7 @@ struct LiferayContext {
                 "liferay-context-sample.list")
 
 			if let templatePath = NSBundle.mainBundle().pathForResource("liferay-context-sample", ofType:"plist") {
-				loadContextFile(propertiesPath)
+				loadContextFile(templatePath)
 			}
 			else {
 				println("WARNING: liferay-context-sample.plist file is not found. Using default values which will " +

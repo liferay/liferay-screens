@@ -15,8 +15,11 @@ import UIKit
 
 @objc protocol LoginWidgetDelegate {
 
-    func onLoginResponse(attributes: Dictionary<String, Any!>)
-	func onLoginError(error: NSError)
+	@optional func onLoginResponse(attributes: [String:AnyObject!])
+	@optional func onLoginError(error: NSError)
+
+	@optional func onCredentialsSaved(session:LRSession)
+	@optional func onCredentialsLoaded(session:LRSession)
 
 }
 
@@ -31,6 +34,10 @@ import UIKit
         AuthType.Screenname.toRaw(): authCallWithScreenname]
     
     var authMethod: AuthCall?
+
+	class func storedSession() -> LRSession? {
+		return LRSession.sessionFromStoredCredential()
+	}
     
 	/*
 	WORKAROUND!
@@ -58,23 +65,36 @@ import UIKit
         setAuthType(AuthType.Email)
 
         loginView().usernameField.text = "test@liferay.com"
+
+		if let session = LRSession.sessionFromStoredCredential() {
+			LiferayContext.instance.currentSession = session
+
+			delegate?.onCredentialsLoaded?(session)
+		}
 	}
 
-	override func onCustomAction(actionName: String, sender: UIControl) {
+	override func onCustomAction(actionName: String?, sender: UIControl) {
 		if actionName == "login-action" {
 			sendLoginWithUsername(loginView().usernameField.text, password:loginView().passwordField.text)
 		}
 	}
 
     override func onServerError(error: NSError) {
-        delegate?.onLoginError(error)
-        LiferayContext.instance.clearSession()
+		delegate?.onLoginError?(error)
+
+		LiferayContext.instance.clearSession()
+		LRSession.removeStoredCredential()
+
         hideHUDWithMessage("Error signing in!", details: nil)
     }
     
-    override func onServerResult(result: AnyObject!) {
-        if let dict = result as? Dictionary<String, Any!> {
-            delegate?.onLoginResponse(dict)
+	override func onServerResult(result: [String:AnyObject!]) {
+		delegate?.onLoginResponse?(result)
+
+		if loginView().shouldRememberCredentials {
+			if LiferayContext.instance.currentSession!.storeCredential() {
+				delegate?.onCredentialsSaved?(LiferayContext.instance.currentSession!)
+			}
         }
         
         hideHUDWithMessage("Sign in completed", details: nil)
@@ -98,7 +118,6 @@ import UIKit
 			self.onFailure(error)
 		}
 	}
-
 
 }
 
