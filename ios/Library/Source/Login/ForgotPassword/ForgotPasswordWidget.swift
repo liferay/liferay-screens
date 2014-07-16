@@ -48,7 +48,7 @@ class ForgotPasswordWidget: BaseWidget {
 		forgotPasswordView().usernameField.text = LiferayContext.instance.currentSession?.username
 	}
 
-	override func onCustomAction(actionName: String, sender: UIControl) {
+	override func onCustomAction(actionName: String?, sender: UIControl) {
 		sendForgotPasswordRequest(forgotPasswordView().usernameField.text)
 	}
 
@@ -59,9 +59,10 @@ class ForgotPasswordWidget: BaseWidget {
 		hideHUDWithMessage("Error reseting password!", details: nil)
 	}
 
-	override func onServerResult(result: AnyObject!) {
-		if let correct = result as? Bool {
-			if correct {
+	override func onServerResult(result: [String:AnyObject!]) {
+		let success = result["result"]
+		if let successValue = success as? Bool {
+			if successValue {
 				delegate?.onForgotPasswordResponse?()
 			}
 			else {

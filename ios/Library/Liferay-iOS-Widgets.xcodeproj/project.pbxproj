@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		2C2DF42D7FA747E4B953573C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA555EA8DC0458CA74C4ACE /* libPods.a */; };
+		8827E30719759F28004977A0 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E30419759F28004977A0 /* ForgotPasswordView.swift */; };
+		8827E30819759F28004977A0 /* ForgotPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8827E30519759F28004977A0 /* ForgotPasswordView.xib */; };
+		8827E30919759F28004977A0 /* ForgotPasswordWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E30619759F28004977A0 /* ForgotPasswordWidget.swift */; };
+		8827E30D19759F3C004977A0 /* LRMobilewidgetsService_v6201.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827E30C19759F3C004977A0 /* LRMobilewidgetsService_v6201.m */; };
+		8827E30E19759F3C004977A0 /* LRMobilewidgetsService_v6201.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827E30C19759F3C004977A0 /* LRMobilewidgetsService_v6201.m */; };
 		888FAFA8196AE8C200057B26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888FAFA6196AE8C200057B26 /* AppDelegate.swift */; };
 		888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 888FAFA7196AE8C200057B26 /* AppInfo.plist */; };
 		888FAFAB196AE8EF00057B26 /* TestsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 888FAFAA196AE8EF00057B26 /* TestsInfo.plist */; };
-		8895737B196C3CDA00258033 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8895737A196C3CDA00258033 /* LRSession+CredentialStore.swift */; };
-		8895737C196C3CDA00258033 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8895737A196C3CDA00258033 /* LRSession+CredentialStore.swift */; };
 		889CA4C719655F4B00664504 /* BaseWidget+progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BC19655F4B00664504 /* BaseWidget+progress.swift */; };
 		889CA4C819655F4B00664504 /* BaseWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BD19655F4B00664504 /* BaseWidget.swift */; };
 		889CA4C919655F4B00664504 /* BaseWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BE19655F4B00664504 /* BaseWidgetView.swift */; };
@@ -24,6 +27,8 @@
 		88AEA25D19657C3100CD130B /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88AEA25C19657C3100CD130B /* liferay-context-sample.plist */; };
 		88D99C32196C42B30090F236 /* LRSession_storage_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */; };
 		999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BF19655F4B00664504 /* LiferayContext.swift */; };
+		999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
+		999BC69F19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,11 +84,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8827E30419759F28004977A0 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		8827E30519759F28004977A0 /* ForgotPasswordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordView.xib; sourceTree = "<group>"; };
+		8827E30619759F28004977A0 /* ForgotPasswordWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordWidget.swift; sourceTree = "<group>"; };
+		8827E30B19759F3C004977A0 /* LRMobilewidgetsService_v6201.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsService_v6201.h; sourceTree = "<group>"; };
+		8827E30C19759F3C004977A0 /* LRMobilewidgetsService_v6201.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsService_v6201.m; sourceTree = "<group>"; };
 		888FAFA6196AE8C200057B26 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Tests/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		888FAFA7196AE8C200057B26 /* AppInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppInfo.plist; path = Tests/AppInfo.plist; sourceTree = SOURCE_ROOT; };
 		888FAFAA196AE8EF00057B26 /* TestsInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TestsInfo.plist; path = ../Tests/TestsInfo.plist; sourceTree = "<group>"; };
 		88911B0A196AE41100E2E2A3 /* Pods.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		8895737A196C3CDA00258033 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
 		889CA4BC19655F4B00664504 /* BaseWidget+progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseWidget+progress.swift"; sourceTree = "<group>"; };
 		889CA4BD19655F4B00664504 /* BaseWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidget.swift; sourceTree = "<group>"; };
 		889CA4BE19655F4B00664504 /* BaseWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidgetView.swift; sourceTree = "<group>"; };
@@ -97,6 +106,7 @@
 		88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LRSession_storage_Tests.swift; sourceTree = "<group>"; };
 		88EA60FF19656751005F722C /* Liferay-iOS-Widgets-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Liferay-iOS-Widgets-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88FE74D419655E1B003A7CE5 /* Liferay-iOS-Widgets-Dummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liferay-iOS-Widgets-Dummy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
 		FEA555EA8DC0458CA74C4ACE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -127,6 +137,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8827E30319759F28004977A0 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				8827E30419759F28004977A0 /* ForgotPasswordView.swift */,
+				8827E30519759F28004977A0 /* ForgotPasswordView.xib */,
+				8827E30619759F28004977A0 /* ForgotPasswordWidget.swift */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		8827E30A19759F3C004977A0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8827E30B19759F3C004977A0 /* LRMobilewidgetsService_v6201.h */,
+				8827E30C19759F3C004977A0 /* LRMobilewidgetsService_v6201.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		889CA4BB19655F4B00664504 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,10 +170,11 @@
 		889CA4C119655F4B00664504 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				8827E30319759F28004977A0 /* ForgotPassword */,
 				889CA4C219655F4B00664504 /* LoginView.swift */,
 				889CA4C319655F4B00664504 /* LoginView.xib */,
 				889CA4C419655F4B00664504 /* LoginWidget.swift */,
-				8895737A196C3CDA00258033 /* LRSession+CredentialStore.swift */,
+				999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -189,6 +219,7 @@
 		88FE74D619655E1B003A7CE5 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				8827E30A19759F3C004977A0 /* Services */,
 				889CA4BB19655F4B00664504 /* Base */,
 				889CA4C119655F4B00664504 /* Login */,
 				889CA4C519655F4B00664504 /* Util */,
@@ -306,6 +337,7 @@
 			files = (
 				888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */,
 				889CA4CC19655F4B00664504 /* LoginView.xib in Resources */,
+				8827E30819759F28004977A0 /* ForgotPasswordView.xib in Resources */,
 				88AEA25D19657C3100CD130B /* liferay-context-sample.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,9 +382,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8895737C196C3CDA00258033 /* LRSession+CredentialStore.swift in Sources */,
+				8827E30E19759F3C004977A0 /* LRMobilewidgetsService_v6201.m in Sources */,
 				88D99C32196C42B30090F236 /* LRSession_storage_Tests.swift in Sources */,
 				999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */,
+				999BC69F19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,13 +395,16 @@
 			files = (
 				889CA4CE19655F4B00664504 /* nameOfClass.swift in Sources */,
 				889CA4CD19655F4B00664504 /* LoginWidget.swift in Sources */,
+				8827E30919759F28004977A0 /* ForgotPasswordWidget.swift in Sources */,
 				888FAFA8196AE8C200057B26 /* AppDelegate.swift in Sources */,
 				889CA4CB19655F4B00664504 /* LoginView.swift in Sources */,
+				8827E30D19759F3C004977A0 /* LRMobilewidgetsService_v6201.m in Sources */,
 				889CA4C819655F4B00664504 /* BaseWidget.swift in Sources */,
 				889CA4C919655F4B00664504 /* BaseWidgetView.swift in Sources */,
 				889CA4CA19655F4B00664504 /* LiferayContext.swift in Sources */,
-				8895737B196C3CDA00258033 /* LRSession+CredentialStore.swift in Sources */,
+				8827E30719759F28004977A0 /* ForgotPasswordView.swift in Sources */,
 				889CA4C719655F4B00664504 /* BaseWidget+progress.swift in Sources */,
+				999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
