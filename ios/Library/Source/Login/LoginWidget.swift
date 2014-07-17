@@ -15,7 +15,7 @@ import UIKit
 
 @objc protocol LoginWidgetDelegate {
 
-	@optional func onLoginResponse(attributes: [String:AnyObject!])
+	@optional func onLoginResponse(attributes: [String:AnyObject])
 	@optional func onLoginError(error: NSError)
 
 	@optional func onCredentialsSaved(session:LRSession)
@@ -87,7 +87,7 @@ class LoginWidget: BaseWidget {
 		hideHUDWithMessage("Error signing in!", details: nil)
     }
 
-	override func onServerResult(result: [String:AnyObject!]) {
+	override func onServerResult(result: [String:AnyObject]) {
 		delegate?.onLoginResponse?(result)
 
 		if loginView().shouldRememberCredentials {

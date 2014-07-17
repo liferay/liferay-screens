@@ -61,7 +61,7 @@ class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidge
  		println("Error -> " + error.description)
 	}
 
-	func onLoginResponse(attributes: [String:AnyObject!])  {
+	func onLoginResponse(attributes: [String:AnyObject])  {
 		NSLog("Login %@", attributes)
 	}
 

@@ -27,7 +27,7 @@
                     </view>
                     <connections>
                         <outlet property="forgotWidget" destination="vqN-kF-xhh" id="ed6-Gu-qDS"/>
-                        <outlet property="widget" destination="XU3-jd-mfY" id="L6n-Fb-amR"/>
+                        <outlet property="loginWidget" destination="XU3-jd-mfY" id="7Mx-LZ-qjO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

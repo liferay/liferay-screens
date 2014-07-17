@@ -63,21 +63,18 @@ class ForgotPasswordWidget: BaseWidget {
 		hideHUDWithMessage("Error requesting password!", details: nil)
 	}
 
-	override func onServerResult(result: [String:AnyObject!]) {
-		let success = result["result"]
-
-		if let successValue = success as? Bool {
-			if successValue {
-				delegate?.onForgotPasswordResponse?()
-			}
-			else {
-				onServerError(NSError(domain: "LiferayWidgets", code: -1, userInfo: nil))
-
-				return
-			}
+	override func onServerResult(result: [String:AnyObject]) {
+		if result["success"] {
+			delegate?.onForgotPasswordResponse?()
+			hideHUDWithMessage("New password request sent!", details: nil)
 		}
-
-		hideHUDWithMessage("New password request sent!", details: nil)
+		else {
+			var errorMsg:String? = result["error"]?.description
+			if !errorMsg {
+				errorMsg = result["exception.localizedMessage"]?.description
+			}
+			hideHUDWithMessage("An error happened", details: errorMsg)
+		}
     }
 
 
