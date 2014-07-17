@@ -57,16 +57,32 @@ class ForgotPasswordWidget: BaseWidget {
 	}
 
 	override func onServerError(error: NSError) {
-		//TODO get server error message
 		delegate?.onForgotPasswordError?(error)
 
-		hideHUDWithMessage("Error requesting password!", details: nil)
+		hideHUDWithMessage("Error requesting password!", details: error.localizedDescription)
 	}
 
 	override func onServerResult(result: [String:AnyObject]) {
-		if result["success"] {
+		if let messageType = result["success"]?.description {
 			delegate?.onForgotPasswordResponse?()
-			hideHUDWithMessage("New password request sent!", details: nil)
+
+			var userMessage: String
+
+			switch messageType as String {
+			case "sent_password":
+				userMessage = "New password generated"
+			case "sent_reset_link":
+				userMessage = "New password reset link sent"
+			default:
+				userMessage = "Password instructions sent"
+			}
+
+			var details: String? = nil
+			if let emailAddress:AnyObject = result["email"]? {
+				details = "Check your inbox at " + emailAddress.description
+			}
+
+			hideHUDWithMessage(userMessage, details: details)
 		}
 		else {
 			var errorMsg:String? = result["error"]?.description
@@ -88,6 +104,7 @@ class ForgotPasswordWidget: BaseWidget {
 	func sendForgotPasswordRequest(username:String) {
 		showHUDWithMessage("Sending password request...", details:"Wait few seconds...")
 
+		// TODO use anonymous session when SDK supports it
 		let session = LiferayContext.instance.createSession("test", password: "test")
 		session.callback = self
 
