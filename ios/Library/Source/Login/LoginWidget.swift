@@ -15,11 +15,11 @@ import UIKit
 
 @objc protocol LoginWidgetDelegate {
 
-	@optional func onLoginResponse(attributes: [String:AnyObject!])
-	@optional func onLoginError(error: NSError)
+	optional func onLoginResponse(attributes: [String:AnyObject!])
+	optional func onLoginError(error: NSError)
 
-	@optional func onCredentialsSaved(session:LRSession)
-	@optional func onCredentialsLoaded(session:LRSession)
+	optional func onCredentialsSaved(session:LRSession)
+	optional func onCredentialsLoaded(session:LRSession)
 
 }
 
@@ -65,7 +65,7 @@ class LoginWidget: BaseWidget {
 	override func onCreate() {
         setAuthType(AuthType.Email)
 
-        loginView().usernameField.text = "test@liferay.com"
+        loginView().usernameField!.text = "test@liferay.com"
 
 		if let session = LRSession.sessionFromStoredCredential() {
 			LiferayContext.instance.currentSession = session
@@ -76,7 +76,7 @@ class LoginWidget: BaseWidget {
 
 	override func onCustomAction(actionName: String?, sender: UIControl) {
 		if actionName == "login-action" {
-			sendLoginWithUsername(loginView().usernameField.text, password:loginView().passwordField.text)
+			sendLoginWithUsername(loginView().usernameField!.text, password:loginView().passwordField!.text)
 		}
 	}
 
