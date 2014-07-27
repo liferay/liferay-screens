@@ -52,10 +52,11 @@ class LoginWidget: BaseWidget {
 	override public func onCreate() {
         setAuthType(AuthType.Email.toRaw())
 
-        loginView().setUserName("test@liferay.com")
-
 		if let session = LRSession.sessionFromStoredCredential() {
 			LiferayContext.instance.currentSession = session
+
+			loginView().setUserName(session.username)
+			loginView().setPassword(session.password)
 
 			delegate?.onCredentialsLoaded?(session)
 		}

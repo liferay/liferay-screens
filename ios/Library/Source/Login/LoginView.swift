@@ -14,25 +14,30 @@
 import UIKit
 
 public enum AuthType: String {
-	case Email = "Email"
+	case Email = "Email Address"
 	case ScreenName = "Screen Name"
 	case UserId = "User ID"
 }
 
 class LoginView: BaseWidgetView, UITextFieldDelegate {
 
-	@IBOutlet var userNameLabel: UILabel?
 	@IBOutlet var userNameField: UITextField?
 	@IBOutlet var passwordField: UITextField?
 	@IBOutlet var rememberSwitch: UISwitch?
 	@IBOutlet var loginButton: UIButton?
+	@IBOutlet var userNameBackground: UIImageView?
+	@IBOutlet var passwordBackground: UIImageView?
 
 	public var shouldRememberCredentials: Bool {
-		return rememberSwitch!.on
+		if let rememberSwitchValue = rememberSwitch {
+			return rememberSwitchValue.on;
+		}
+
+		return true
 	}
 
 	public func setAuthType(authType: String) {
-		userNameLabel!.text = authType
+		userNameField!.placeholder = authType
 
 		switch authType {
 		case AuthType.Email.toRaw():
@@ -54,7 +59,11 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 	public func setUserName(userName: String) {
 		userNameField!.text = userName
 	}
-    
+
+	public func setPassword(password: String) {
+		passwordField!.text = password
+	}
+
 	// BaseWidgetView METHODS
 
 
@@ -65,6 +74,12 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 
 	// UITextFieldDelegate METHODS
 
+	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
+		userNameBackground!.highlighted = (textField == userNameField);
+		passwordBackground!.highlighted = (textField == passwordField);
+
+		return true
+	}
 
 	func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		if textField == userNameField {
