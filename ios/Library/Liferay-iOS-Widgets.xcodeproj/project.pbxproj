@@ -8,6 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		2C2DF42D7FA747E4B953573C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA555EA8DC0458CA74C4ACE /* libPods.a */; };
+		88731A7E1985743C00F37705 /* field-focused.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A721985743C00F37705 /* field-focused.png */; };
+		88731A7F1985743C00F37705 /* field-focused.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A721985743C00F37705 /* field-focused.png */; };
+		88731A801985743C00F37705 /* field-focused@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A731985743C00F37705 /* field-focused@2x.png */; };
+		88731A811985743C00F37705 /* field-focused@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A731985743C00F37705 /* field-focused@2x.png */; };
+		88731A821985743C00F37705 /* field.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A741985743C00F37705 /* field.png */; };
+		88731A831985743C00F37705 /* field.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A741985743C00F37705 /* field.png */; };
+		88731A841985743C00F37705 /* field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A751985743C00F37705 /* field@2x.png */; };
+		88731A851985743C00F37705 /* field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A751985743C00F37705 /* field@2x.png */; };
+		88731A861985743C00F37705 /* large-button-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A761985743C00F37705 /* large-button-selected.png */; };
+		88731A871985743C00F37705 /* large-button-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A761985743C00F37705 /* large-button-selected.png */; };
+		88731A881985743C00F37705 /* large-button-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A771985743C00F37705 /* large-button-selected@2x.png */; };
+		88731A891985743C00F37705 /* large-button-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A771985743C00F37705 /* large-button-selected@2x.png */; };
+		88731A8A1985743C00F37705 /* large-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A781985743C00F37705 /* large-button.png */; };
+		88731A8B1985743C00F37705 /* large-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A781985743C00F37705 /* large-button.png */; };
+		88731A8C1985743C00F37705 /* large-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A791985743C00F37705 /* large-button@2x.png */; };
+		88731A8D1985743C00F37705 /* large-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A791985743C00F37705 /* large-button@2x.png */; };
+		88731A8E1985743C00F37705 /* mail-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A7A1985743C00F37705 /* mail-icon.png */; };
+		88731A8F1985743C00F37705 /* mail-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A7A1985743C00F37705 /* mail-icon.png */; };
+		88731A901985743C00F37705 /* mail-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A7B1985743C00F37705 /* mail-icon@2x.png */; };
+		88731A911985743C00F37705 /* mail-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A7B1985743C00F37705 /* mail-icon@2x.png */; };
+		88731A921985743C00F37705 /* password-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A7C1985743C00F37705 /* password-icon.png */; };
+		88731A931985743C00F37705 /* password-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A7C1985743C00F37705 /* password-icon.png */; };
+		88731A941985743C00F37705 /* password-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A7D1985743C00F37705 /* password-icon@2x.png */; };
+		88731A951985743C00F37705 /* password-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88731A7D1985743C00F37705 /* password-icon@2x.png */; };
 		888FAFA8196AE8C200057B26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888FAFA6196AE8C200057B26 /* AppDelegate.swift */; };
 		888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 888FAFA7196AE8C200057B26 /* AppInfo.plist */; };
 		888FAFAB196AE8EF00057B26 /* TestsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 888FAFAA196AE8EF00057B26 /* TestsInfo.plist */; };
@@ -79,6 +103,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		88731A721985743C00F37705 /* field-focused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "field-focused.png"; sourceTree = "<group>"; };
+		88731A731985743C00F37705 /* field-focused@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "field-focused@2x.png"; sourceTree = "<group>"; };
+		88731A741985743C00F37705 /* field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = field.png; sourceTree = "<group>"; };
+		88731A751985743C00F37705 /* field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "field@2x.png"; sourceTree = "<group>"; };
+		88731A761985743C00F37705 /* large-button-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "large-button-selected.png"; sourceTree = "<group>"; };
+		88731A771985743C00F37705 /* large-button-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "large-button-selected@2x.png"; sourceTree = "<group>"; };
+		88731A781985743C00F37705 /* large-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "large-button.png"; sourceTree = "<group>"; };
+		88731A791985743C00F37705 /* large-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "large-button@2x.png"; sourceTree = "<group>"; };
+		88731A7A1985743C00F37705 /* mail-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail-icon.png"; sourceTree = "<group>"; };
+		88731A7B1985743C00F37705 /* mail-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail-icon@2x.png"; sourceTree = "<group>"; };
+		88731A7C1985743C00F37705 /* password-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password-icon.png"; sourceTree = "<group>"; };
+		88731A7D1985743C00F37705 /* password-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password-icon@2x.png"; sourceTree = "<group>"; };
 		888FAFA6196AE8C200057B26 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Tests/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		888FAFA7196AE8C200057B26 /* AppInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppInfo.plist; path = Tests/AppInfo.plist; sourceTree = SOURCE_ROOT; };
 		888FAFAA196AE8EF00057B26 /* TestsInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TestsInfo.plist; path = ../Tests/TestsInfo.plist; sourceTree = "<group>"; };
@@ -127,6 +163,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		88731A701985743C00F37705 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88731A711985743C00F37705 /* Login */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		88731A711985743C00F37705 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				88731A721985743C00F37705 /* field-focused.png */,
+				88731A731985743C00F37705 /* field-focused@2x.png */,
+				88731A741985743C00F37705 /* field.png */,
+				88731A751985743C00F37705 /* field@2x.png */,
+				88731A761985743C00F37705 /* large-button-selected.png */,
+				88731A771985743C00F37705 /* large-button-selected@2x.png */,
+				88731A781985743C00F37705 /* large-button.png */,
+				88731A791985743C00F37705 /* large-button@2x.png */,
+				88731A7A1985743C00F37705 /* mail-icon.png */,
+				88731A7B1985743C00F37705 /* mail-icon@2x.png */,
+				88731A7C1985743C00F37705 /* password-icon.png */,
+				88731A7D1985743C00F37705 /* password-icon@2x.png */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		889CA4BB19655F4B00664504 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				88FE74D619655E1B003A7CE5 /* Source */,
+				88731A701985743C00F37705 /* Resources */,
 				88EA610019656751005F722C /* Tests */,
 				88FE74D719655E1B003A7CE5 /* Supporting Files */,
 				88FE74D519655E1B003A7CE5 /* Products */,
@@ -296,7 +360,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88731A871985743C00F37705 /* large-button-selected.png in Resources */,
+				88731A851985743C00F37705 /* field@2x.png in Resources */,
+				88731A831985743C00F37705 /* field.png in Resources */,
+				88731A8D1985743C00F37705 /* large-button@2x.png in Resources */,
+				88731A811985743C00F37705 /* field-focused@2x.png in Resources */,
+				88731A891985743C00F37705 /* large-button-selected@2x.png in Resources */,
+				88731A7F1985743C00F37705 /* field-focused.png in Resources */,
 				888FAFAB196AE8EF00057B26 /* TestsInfo.plist in Resources */,
+				88731A911985743C00F37705 /* mail-icon@2x.png in Resources */,
+				88731A931985743C00F37705 /* password-icon.png in Resources */,
+				88731A8B1985743C00F37705 /* large-button.png in Resources */,
+				88731A8F1985743C00F37705 /* mail-icon.png in Resources */,
+				88731A951985743C00F37705 /* password-icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,9 +380,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88731A821985743C00F37705 /* field.png in Resources */,
+				88731A921985743C00F37705 /* password-icon.png in Resources */,
 				888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */,
 				889CA4CC19655F4B00664504 /* LoginView.xib in Resources */,
+				88731A8A1985743C00F37705 /* large-button.png in Resources */,
+				88731A941985743C00F37705 /* password-icon@2x.png in Resources */,
+				88731A7E1985743C00F37705 /* field-focused.png in Resources */,
+				88731A8E1985743C00F37705 /* mail-icon.png in Resources */,
+				88731A841985743C00F37705 /* field@2x.png in Resources */,
+				88731A8C1985743C00F37705 /* large-button@2x.png in Resources */,
 				88AEA25D19657C3100CD130B /* liferay-context-sample.plist in Resources */,
+				88731A901985743C00F37705 /* mail-icon@2x.png in Resources */,
+				88731A881985743C00F37705 /* large-button-selected@2x.png in Resources */,
+				88731A861985743C00F37705 /* large-button-selected.png in Resources */,
+				88731A801985743C00F37705 /* field-focused@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
