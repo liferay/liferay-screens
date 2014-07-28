@@ -22,12 +22,33 @@ class BaseWidgetView: UIView {
 
 	var customAction: CustomActionType?
 
+	/*
+	* onCreate is fired after the initialization of the widget view. Override this method to perform actions such as
+	* setting colors, sizes, positioning, etc to the component's subviews.
+	*/
+	public func onCreate() {
+	}
+
 	override func awakeFromNib() {
 		addCustomActionsForViews(self)
 		onCreate();
 	}
 
-    func addCustomActionForControl(control: UIControl) {
+	/*
+	* becomeFirstResponder is invoked to make the widget view the first responder. Override this method to set one
+	* child component as first responder.
+	*/
+	override func becomeFirstResponder() -> Bool {
+		return super.becomeFirstResponder()
+	}
+
+	func customActionHandler(sender: UIControl!) {
+		self.endEditing(true)
+
+		customAction?(sender.restorationIdentifier, sender)
+	}
+
+    private func addCustomActionForControl(control: UIControl) {
         let currentActions = control.actionsForTarget(self, forControlEvent: UIControlEvents.TouchUpInside)
         
         if !currentActions || currentActions?.count == 0 {
@@ -35,36 +56,12 @@ class BaseWidgetView: UIView {
         }
     }
     
-	func addCustomActionsForViews(parentView: UIView!) {
+	private func addCustomActionsForViews(parentView: UIView!) {
 		for subview:AnyObject in parentView.subviews {
 			if subview is UIControl {
 				addCustomActionForControl(subview as UIControl)
 			}
 		}
-	}
-
-    /*
-     * becomeFirstResponder is invoked to make the widget view the first responder. Override this method to set one 
-     * child component as first responder.
-     */
-    override func becomeFirstResponder() -> Bool {
-        return super.becomeFirstResponder()
-    }
-    
-    func customActionHandler(sender: UIControl!) {
-		self.endEditing(true)
-
-		// WORKAROUND
-		// In theory, an implicit optional (with `type!`) behaves the same as ObjC pointer.
-		// But it's not true. If you access optional's value when it's empty, it crashes
-		customAction?(sender.restorationIdentifier, sender)
-	}
-
-    /*
-     * onCreate is fired after the initialization of the widget view. Override this method to perform actions such as
-     * setting colors, sizes, positioning, etc to the component's subviews.
-     */
-	func onCreate() {
 	}
 
 }
