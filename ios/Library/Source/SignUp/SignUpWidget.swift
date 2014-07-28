@@ -20,7 +20,10 @@ import UIKit
 
 }
 
-class SignUpWidget: BaseWidget {
+@IBDesignable class SignUpWidget: BaseWidget {
+
+	@IBInspectable var creatorUsername: String?
+	@IBInspectable var creatorPassword: String?
 
     @IBOutlet var delegate: SignUpWidgetDelegate?
     
@@ -53,10 +56,15 @@ class SignUpWidget: BaseWidget {
 	}
 
 	private func sendSignUpWithEmailAddress(emailAddress:String, password:String, firstName:String, lastName:String) {
+
+		if !creatorUsername || !creatorPassword {
+			println("ERROR: Creator username and password must be set for SignUpWidget in Interface Builder")
+			return
+		}
+
 		showHUDWithMessage("Sending sign up...", details:"Wait few seconds...")
 
-		// TODO remove this when MobileSDK supports unauthenticated call
-		let session = LiferayContext.instance.createSession("test", password: "test")
+		let session = LiferayContext.instance.createSession(creatorUsername!, password: creatorPassword!)
 		session.callback = self
 
 		// TODO service call
