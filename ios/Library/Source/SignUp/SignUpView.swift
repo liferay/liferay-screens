@@ -25,6 +25,10 @@ class SignUpView: BaseWidgetView, UITextFieldDelegate {
 	@IBOutlet var firstNameBackground: UIImageView?
 	@IBOutlet var lastNameBackground: UIImageView?
 
+	@IBOutlet var screenNameField: UITextField?
+	@IBOutlet var middleNameField: UITextField?
+	@IBOutlet var jobTitleField: UITextField?
+
 
     // BaseWidgetView METHODS
     
