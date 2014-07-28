@@ -20,30 +20,40 @@ class SignUpView: BaseWidgetView, UITextFieldDelegate {
 	@IBOutlet var firstNameField: UITextField?
 	@IBOutlet var lastNameField: UITextField?
 	@IBOutlet var signUpButton: UIButton?
+	@IBOutlet var emailAddressBackground: UIImageView?
+	@IBOutlet var passwordBackground: UIImageView?
+	@IBOutlet var firstNameBackground: UIImageView?
+	@IBOutlet var lastNameBackground: UIImageView?
 
 
     // BaseWidgetView METHODS
     
     
     override func becomeFirstResponder() -> Bool {
-        return emailAddressField!.becomeFirstResponder()
+        return firstNameField!.becomeFirstResponder()
     }
     
     
     // UITextFieldDelegate METHODS
-    
+
+	func textFieldDidBeginEditing(textField: UITextField!) {
+		emailAddressBackground!.highlighted = (textField == emailAddressField)
+		passwordBackground!.highlighted = (textField == passwordField)
+		firstNameBackground!.highlighted = (textField == firstNameField)
+		lastNameBackground!.highlighted = (textField == lastNameField)
+	}
     
 	func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		textField.resignFirstResponder()
 
 		switch textField {
-		case emailAddressField!:
-			passwordField!.becomeFirstResponder()
-		case passwordField!:
-			firstNameField!.becomeFirstResponder()
 		case firstNameField!:
 			lastNameField!.becomeFirstResponder()
 		case lastNameField!:
+			emailAddressField!.becomeFirstResponder()
+		case emailAddressField!:
+			passwordField!.becomeFirstResponder()
+		case passwordField!:
 			signUpButton!.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
 		default:
 			return false
