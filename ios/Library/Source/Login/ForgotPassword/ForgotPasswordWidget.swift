@@ -15,7 +15,7 @@ import UIKit
 
 @objc protocol ForgotPasswordWidgetDelegate {
 
-	optional func onForgotPasswordResponse()
+	optional func onForgotPasswordResponse(newPasswordSent:Bool)
 	optional func onForgotPasswordError(error: NSError)
 
 }
@@ -62,26 +62,13 @@ class ForgotPasswordWidget: BaseWidget {
 	}
 
 	override func onServerResult(result: [String:AnyObject]) {
-		if let messageType = result["success"]?.description {
-			delegate?.onForgotPasswordResponse?()
+		if let resultValue:AnyObject = result["result"] {
+			let newPasswordSent = resultValue as Bool
+			delegate?.onForgotPasswordResponse?(newPasswordSent)
 
-			var userMessage: String
+			let userMessage = newPasswordSent ? "New password generated" : "New password reset link sent"
 
-			switch messageType as String {
-			case "sent_password":
-				userMessage = "New password generated"
-			case "sent_reset_link":
-				userMessage = "New password reset link sent"
-			default:
-				userMessage = "Password instructions sent"
-			}
-
-			var details: String? = nil
-			if let emailAddress:AnyObject = result["email"]? {
-				details = "Check your inbox at " + emailAddress.description
-			}
-
-			hideHUDWithMessage(userMessage, details: details)
+			hideHUDWithMessage(userMessage, details: "Check your email inbox")
 		}
 		else {
 			var errorMsg:String? = result["error"]?.description

@@ -70,8 +70,10 @@ class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidge
 
 	}
 
-	func onForgotPasswordResponse(attributes: Dictionary<String, Any!>)  {
-		NSLog("Forgot %@", attributes)
+	func onForgotPasswordResponse(newPasswordSent:Bool)  {
+		let emailContent = newPasswordSent ? "new password" : "reset password link"
+
+		println("Email with \(emailContent) was sent")
 	}
 
 }
