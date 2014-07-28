@@ -26,29 +26,29 @@ import UIKit
 	@IBInspectable var creatorPassword: String?
 	@IBInspectable var autologin: Bool = true
 
-    @IBOutlet var delegate: SignUpWidgetDelegate?
-    
+	@IBOutlet var delegate: SignUpWidgetDelegate?
+
 	private var creatingUsername: String?
 	private var creatingPassword: String?
 
 	public var authType: AuthType = AuthType.Email
 
 
-    // BaseWidget METHODS
-    
-    
+	// BaseWidget METHODS
+
+
 	override func onCustomAction(actionName: String?, sender: UIControl) {
 		sendSignUpWithEmailAddress(signUpView().emailAddressField!.text, password:signUpView().passwordField!.text, firstName:signUpView().firstNameField!.text, lastName:signUpView().lastNameField!.text)
 	}
 
-    override func onServerError(error: NSError) {
+	override func onServerError(error: NSError) {
 		delegate?.onSignUpError?(error)
 
-        hideHUDWithMessage("Error signing up!", details: nil)
+		hideHUDWithMessage("Error signing up!", details: nil)
 
 		signUpView().signUpButton!.enabled = true
-    }
-    
+	}
+
 	override func onServerResult(result: [String:AnyObject]) {
 		delegate?.onSignUpResponse?(result)
 
@@ -62,8 +62,8 @@ import UIKit
 		hideHUDWithMessage("Sign up completed", details: nil)
 
 		signUpView().signUpButton!.enabled = true
-    }
-    
+	}
+
 
 	private func signUpView() -> SignUpView {
 		return widgetView as SignUpView
@@ -113,7 +113,6 @@ import UIKit
 		let lastName = _optionalFieldValue(signUpView().lastNameField);
 
 		let emptyDict = []
-
 
 		service.addUserWithCompanyId(companyId,
 			autoPassword: autoPassword, password1: password, password2: password,

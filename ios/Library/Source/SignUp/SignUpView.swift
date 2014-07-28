@@ -30,15 +30,13 @@ class SignUpView: BaseWidgetView, UITextFieldDelegate {
 	@IBOutlet var jobTitleField: UITextField?
 
 
-    // BaseWidgetView METHODS
-    
-    
-    override func becomeFirstResponder() -> Bool {
-        return firstNameField!.becomeFirstResponder()
-    }
-    
-    
-    // UITextFieldDelegate METHODS
+	// BaseWidgetView METHODS
+
+	override func becomeFirstResponder() -> Bool {
+		return firstNameField!.becomeFirstResponder()
+	}
+
+	// UITextFieldDelegate METHODS
 
 	func textFieldDidBeginEditing(textField: UITextField!) {
 		emailAddressBackground!.highlighted = (textField == emailAddressField)
@@ -46,7 +44,7 @@ class SignUpView: BaseWidgetView, UITextFieldDelegate {
 		firstNameBackground!.highlighted = (textField == firstNameField)
 		lastNameBackground!.highlighted = (textField == lastNameField)
 	}
-    
+
 	func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		textField.resignFirstResponder()
 
@@ -63,7 +61,7 @@ class SignUpView: BaseWidgetView, UITextFieldDelegate {
 			return false
 		}
 
-        return true
+		return true
 	}
 
 }
