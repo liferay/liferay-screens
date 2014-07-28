@@ -26,6 +26,14 @@
 		88A632B419863D2F00684926 /* SignUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A632B119863D2F00684926 /* SignUpView.xib */; };
 		88A632B519863D2F00684926 /* SignUpWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A632B219863D2F00684926 /* SignUpWidget.swift */; };
 		88A632F119864EBD00684926 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A632F019864EBD00684926 /* SignUpViewController.swift */; };
+		88A632E81986469700684926 /* signup-field-focused.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632E01986469700684926 /* signup-field-focused.png */; };
+		88A632E91986469700684926 /* signup-field-focused@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632E11986469700684926 /* signup-field-focused@2x.png */; };
+		88A632EA1986469700684926 /* signup-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632E21986469700684926 /* signup-field.png */; };
+		88A632EB1986469700684926 /* signup-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632E31986469700684926 /* signup-field@2x.png */; };
+		88A632EC1986469700684926 /* signup-large-button-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632E41986469700684926 /* signup-large-button-selected.png */; };
+		88A632ED1986469700684926 /* signup-large-button-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632E51986469700684926 /* signup-large-button-selected@2x.png */; };
+		88A632EE1986469700684926 /* signup-large-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632E61986469700684926 /* signup-large-button.png */; };
+		88A632EF1986469700684926 /* signup-large-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632E71986469700684926 /* signup-large-button@2x.png */; };
 		999BC69A197682E000A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC699197682E000A9B0D8 /* LRSession+CredentialStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +61,14 @@
 		88A632B119863D2F00684926 /* SignUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView.xib; sourceTree = "<group>"; };
 		88A632B219863D2F00684926 /* SignUpWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpWidget.swift; sourceTree = "<group>"; };
 		88A632F019864EBD00684926 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		88A632E01986469700684926 /* signup-field-focused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-field-focused.png"; sourceTree = "<group>"; };
+		88A632E11986469700684926 /* signup-field-focused@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-field-focused@2x.png"; sourceTree = "<group>"; };
+		88A632E21986469700684926 /* signup-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-field.png"; sourceTree = "<group>"; };
+		88A632E31986469700684926 /* signup-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-field@2x.png"; sourceTree = "<group>"; };
+		88A632E41986469700684926 /* signup-large-button-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-large-button-selected.png"; sourceTree = "<group>"; };
+		88A632E51986469700684926 /* signup-large-button-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-large-button-selected@2x.png"; sourceTree = "<group>"; };
+		88A632E61986469700684926 /* signup-large-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-large-button.png"; sourceTree = "<group>"; };
+		88A632E71986469700684926 /* signup-large-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-large-button@2x.png"; sourceTree = "<group>"; };
 		999BC699197682E000A9B0D8 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				88832F8719656B3F00E3DF9F /* Source */,
+				88A632DE1986469700684926 /* Resources */,
 			);
 			name = "Liferay-Widget-Library";
 			sourceTree = "<group>";
@@ -171,6 +188,30 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		88A632DE1986469700684926 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88A632DF1986469700684926 /* SignUp */,
+			);
+			name = Resources;
+			path = ../../Library/Resources;
+			sourceTree = "<group>";
+		};
+		88A632DF1986469700684926 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				88A632E01986469700684926 /* signup-field-focused.png */,
+				88A632E11986469700684926 /* signup-field-focused@2x.png */,
+				88A632E21986469700684926 /* signup-field.png */,
+				88A632E31986469700684926 /* signup-field@2x.png */,
+				88A632E41986469700684926 /* signup-large-button-selected.png */,
+				88A632E51986469700684926 /* signup-large-button-selected@2x.png */,
+				88A632E61986469700684926 /* signup-large-button.png */,
+				88A632E71986469700684926 /* signup-large-button@2x.png */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		F05CF7C2287C4AE6A3C1F243 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,12 +279,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88A632EC1986469700684926 /* signup-large-button-selected.png in Resources */,
+				88A632ED1986469700684926 /* signup-large-button-selected@2x.png in Resources */,
 				88A632B419863D2F00684926 /* SignUpView.xib in Resources */,
 				8868AFD119656B0500FD5214 /* Main.storyboard in Resources */,
 				88832F9E19656B3F00E3DF9F /* liferay-context.plist in Resources */,
 				8835607C196AED36002AB222 /* liferay-context-sample.plist in Resources */,
 				88832FA019656B3F00E3DF9F /* LoginView.xib in Resources */,
+				88A632EB1986469700684926 /* signup-field@2x.png in Resources */,
+				88A632E91986469700684926 /* signup-field-focused@2x.png in Resources */,
+				88A632EA1986469700684926 /* signup-field.png in Resources */,
+				88A632EF1986469700684926 /* signup-large-button@2x.png in Resources */,
+				88A632E81986469700684926 /* signup-field-focused.png in Resources */,
 				8868AFD319656B0500FD5214 /* Images.xcassets in Resources */,
+				88A632EE1986469700684926 /* signup-large-button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
