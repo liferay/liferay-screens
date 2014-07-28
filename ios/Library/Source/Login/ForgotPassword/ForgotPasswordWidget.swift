@@ -15,29 +15,27 @@ import UIKit
 
 @objc protocol ForgotPasswordWidgetDelegate {
 
-	@optional func onForgotPasswordResponse()
-	@optional func onForgotPasswordError(error: NSError)
+	optional func onForgotPasswordResponse()
+	optional func onForgotPasswordError(error: NSError)
 
 }
 
 class ForgotPasswordWidget: BaseWidget {
 
 	@IBOutlet var delegate: ForgotPasswordWidgetDelegate?
-    
-	typealias ResetClosureType = (String, LRMwuserService_v6201, (NSError)->()) -> (Void)
 
-	let resetClosures = [
+
+	private typealias ResetClosureType = (String, LRMwuserService_v6201, (NSError)->()) -> (Void)
+
+	private let resetClosures = [
 		AuthType.Email.toRaw(): resetPasswordWithEmail,
 		AuthType.ScreenName.toRaw(): resetPasswordWithScreenName]
 	//TODO support resetClosure by userId
 
-	var resetClosure: ResetClosureType?
+	private var resetClosure: ResetClosureType?
 
 	
-	// PUBLIC METHODS
-	
-	
-	func setAuthType(authType:AuthType) {
+	public func setAuthType(authType:AuthType) {
 		forgotPasswordView().setAuthType(authType.toRaw())
 
 		resetClosure = resetClosures[authType.toRaw()]
@@ -50,11 +48,11 @@ class ForgotPasswordWidget: BaseWidget {
 	override func onCreate() {
 		setAuthType(AuthType.Email)
 
-		forgotPasswordView().usernameField.text = LiferayContext.instance.currentSession?.username
+		forgotPasswordView().usernameField!.text = LiferayContext.instance.currentSession?.username
 	}
 
 	override func onCustomAction(actionName: String?, sender: UIControl) {
-		sendForgotPasswordRequest(forgotPasswordView().usernameField.text)
+		sendForgotPasswordRequest(forgotPasswordView().usernameField!.text)
 	}
 
 	override func onServerError(error: NSError) {
@@ -95,14 +93,11 @@ class ForgotPasswordWidget: BaseWidget {
     }
 
 
-	// PRIVATE METHODS
-
-
-	func forgotPasswordView() -> ForgotPasswordView {
+	private func forgotPasswordView() -> ForgotPasswordView {
 		return widgetView as ForgotPasswordView
 	}
 
-	func sendForgotPasswordRequest(username:String) {
+	private func sendForgotPasswordRequest(username:String) {
 		showHUDWithMessage("Sending password request...", details:"Wait few seconds...")
 
 		// TODO use anonymous session when SDK supports it

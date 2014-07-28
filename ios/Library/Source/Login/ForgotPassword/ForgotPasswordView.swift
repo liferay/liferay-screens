@@ -15,22 +15,19 @@ import UIKit
 
 class ForgotPasswordView: BaseWidgetView, UITextFieldDelegate {
 
-	@IBOutlet var usernameLabel: UILabel
-	@IBOutlet var usernameField: UITextField
-	@IBOutlet var requestPasswordButton: UIButton
+	@IBOutlet var usernameLabel: UILabel?
+	@IBOutlet var usernameField: UITextField?
+	@IBOutlet var requestPasswordButton: UIButton?
 
 	
-	// PUBLIC METHODS
-	
-	
-	func setAuthType(authType: String) {
-		usernameLabel.text = authType
+	public func setAuthType(authType: String) {
+		usernameLabel!.text = authType
 
         switch authType {
 		case AuthType.Email.toRaw():
-			usernameField.keyboardType = UIKeyboardType.EmailAddress
+			usernameField!.keyboardType = UIKeyboardType.EmailAddress
 		case AuthType.ScreenName.toRaw():
-			usernameField.keyboardType = UIKeyboardType.ASCIICapable
+			usernameField!.keyboardType = UIKeyboardType.ASCIICapable
 		default:
 			break
 		}
@@ -41,7 +38,7 @@ class ForgotPasswordView: BaseWidgetView, UITextFieldDelegate {
 
 
 	override func becomeFirstResponder() -> Bool {
-		return usernameField.becomeFirstResponder()
+		return usernameField!.becomeFirstResponder()
 	}
 
 
@@ -51,7 +48,7 @@ class ForgotPasswordView: BaseWidgetView, UITextFieldDelegate {
 	func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		textField.resignFirstResponder()
 
-		requestPasswordButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+		requestPasswordButton!.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
 
 		return true
 	}
