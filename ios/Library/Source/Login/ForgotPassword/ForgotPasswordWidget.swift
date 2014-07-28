@@ -20,7 +20,10 @@ import UIKit
 
 }
 
-class ForgotPasswordWidget: BaseWidget {
+@IBDesignable class ForgotPasswordWidget: BaseWidget {
+
+	@IBInspectable var creatorUsername: String?
+	@IBInspectable var creatorPassword: String?
 
 	@IBOutlet var delegate: ForgotPasswordWidgetDelegate?
 
@@ -85,10 +88,15 @@ class ForgotPasswordWidget: BaseWidget {
 	}
 
 	private func sendForgotPasswordRequest(username:String) {
+		if !creatorUsername || !creatorPassword {
+			println("ERROR: Creator username and password must be set for ForGorPasswordWidget in Interface Builder")
+			return
+		}
+
 		showHUDWithMessage("Sending password request...", details:"Wait few seconds...")
 
 		// TODO use anonymous session when SDK supports it
-		let session = LiferayContext.instance.createSession("test", password: "test")
+		let session = LiferayContext.instance.createSession(creatorUsername!, password: creatorPassword!)
 		session.callback = self
 
 		let companyId: CLongLong = (LiferayContext.instance.companyId as NSNumber).longLongValue
