@@ -17,10 +17,10 @@
 /**
  * @author Bruno Farache
  */
-@interface LRMobilewidgetsService_v6201 : LRBaseService
+@interface LRMwuserService_v6201 : LRBaseService
 
-- (NSDictionary *)resetPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress error:(NSError **)error;
-- (NSDictionary *)resetPasswordByScreenNameWithCompanyId:(long long)companyId screenName:(NSString *)screenName error:(NSError **)error;
-- (NSDictionary *)resetPasswordByUserIdWithUserId:(long long)userId error:(NSError **)error;
+- (BOOL)sendPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress serviceContext:(LRJSONObjectWrapper *)serviceContext error:(NSError **)error;
+- (BOOL)sendPasswordByScreenNameWithCompanyId:(long long)companyId screenName:(NSString *)screenName serviceContext:(LRJSONObjectWrapper *)serviceContext error:(NSError **)error;
+- (BOOL)sendPasswordByUserIdWithCompanyId:(long long)companyId userId:(long long)userId serviceContext:(LRJSONObjectWrapper *)serviceContext error:(NSError **)error;
 
 @end
