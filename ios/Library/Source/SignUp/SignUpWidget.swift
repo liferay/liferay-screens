@@ -24,11 +24,15 @@ import UIKit
 
 	@IBInspectable var creatorUsername: String?
 	@IBInspectable var creatorPassword: String?
+	@IBInspectable var autologin: Bool = true
 
     @IBOutlet var delegate: SignUpWidgetDelegate?
     
 	private var creatingUsername: String?
 	private var creatingPassword: String?
+
+	public var authType: AuthType = AuthType.Email
+
 
     // BaseWidget METHODS
     
@@ -48,10 +52,15 @@ import UIKit
 	override func onServerResult(result: [String:AnyObject]) {
 		delegate?.onSignUpResponse?(result)
 
-		LiferayContext.instance.clearSession()
-		LRSession.removeStoredCredential()
+		if autologin {
+			LiferayContext.instance.clearSession()
+			LRSession.removeStoredCredential()
+
+			LiferayContext.instance.createSession(creatingUsername!, password: creatingPassword!)
+		}
 
 		hideHUDWithMessage("Sign up completed", details: nil)
+
 		signUpView().signUpButton!.enabled = true
     }
     
