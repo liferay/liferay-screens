@@ -126,7 +126,10 @@ class BaseWidget: UIView, LRCallback {
 		}
 	}
 
-
+	
+	// OTHER PRIVATE METHODS
+	
+	
 	//FIXME
 	// On Beta3 I get a crash in swift_bridgeNonVerbatimFromObjectiveCConditional
 	// when I try to cast from NSDictionary to Dictionay<> using as? operator

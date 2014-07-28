@@ -65,6 +65,10 @@ extension LRSession {
 		return success
 	}
 
+
+	// PRIVATE METHODS
+
+
 	private class func credentialForServer(server:String) -> (NSURLCredential?, NSURLProtectionSpace) {
 		let protectionSpace = protectionSpaceForServer(server)
 
