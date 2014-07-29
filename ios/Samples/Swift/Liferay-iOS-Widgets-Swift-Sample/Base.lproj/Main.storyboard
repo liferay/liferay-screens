@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="XU3-jd-mfY" customClass="LoginWidget" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target">
-                                <rect key="frame" x="51" y="76" width="218" height="235"/>
+                                <rect key="frame" x="46" y="76" width="228" height="235"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>

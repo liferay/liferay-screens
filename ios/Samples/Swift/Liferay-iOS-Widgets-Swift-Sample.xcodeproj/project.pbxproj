@@ -18,8 +18,10 @@
 		882C92E1198787FF005D5400 /* login-large-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92D5198787FF005D5400 /* login-large-button@2x.png */; };
 		882C92E2198787FF005D5400 /* login-mail-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92D6198787FF005D5400 /* login-mail-icon.png */; };
 		882C92E3198787FF005D5400 /* login-mail-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92D7198787FF005D5400 /* login-mail-icon@2x.png */; };
-		882C92E4198787FF005D5400 /* login-password-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92D8198787FF005D5400 /* login-password-icon.png */; };
-		882C92E5198787FF005D5400 /* login-password-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92D9198787FF005D5400 /* login-password-icon@2x.png */; };
+		882C92F61987898D005D5400 /* login-lock-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92F21987898D005D5400 /* login-lock-icon.png */; };
+		882C92F71987898D005D5400 /* login-lock-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92F31987898D005D5400 /* login-lock-icon@2x.png */; };
+		882C92F81987898D005D5400 /* login-user-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92F41987898D005D5400 /* login-user-icon.png */; };
+		882C92F91987898D005D5400 /* login-user-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92F51987898D005D5400 /* login-user-icon@2x.png */; };
 		8835607C196AED36002AB222 /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8835607B196AED36002AB222 /* liferay-context-sample.plist */; };
 		8868AFCC19656B0500FD5214 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868AFCB19656B0500FD5214 /* AppDelegate.swift */; };
 		8868AFCE19656B0500FD5214 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868AFCD19656B0500FD5214 /* ViewController.swift */; };
@@ -50,8 +52,10 @@
 		882C92D5198787FF005D5400 /* login-large-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-large-button@2x.png"; sourceTree = "<group>"; };
 		882C92D6198787FF005D5400 /* login-mail-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-mail-icon.png"; sourceTree = "<group>"; };
 		882C92D7198787FF005D5400 /* login-mail-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-mail-icon@2x.png"; sourceTree = "<group>"; };
-		882C92D8198787FF005D5400 /* login-password-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-password-icon.png"; sourceTree = "<group>"; };
-		882C92D9198787FF005D5400 /* login-password-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-password-icon@2x.png"; sourceTree = "<group>"; };
+		882C92F21987898D005D5400 /* login-lock-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-lock-icon.png"; sourceTree = "<group>"; };
+		882C92F31987898D005D5400 /* login-lock-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-lock-icon@2x.png"; sourceTree = "<group>"; };
+		882C92F41987898D005D5400 /* login-user-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user-icon.png"; sourceTree = "<group>"; };
+		882C92F51987898D005D5400 /* login-user-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user-icon@2x.png"; sourceTree = "<group>"; };
 		8835607B196AED36002AB222 /* liferay-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-context-sample.plist"; sourceTree = "<group>"; };
 		8868AFC619656B0500FD5214 /* Liferay-iOS-Widgets-Swift-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liferay-iOS-Widgets-Swift-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8868AFCA19656B0500FD5214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -196,10 +200,12 @@
 				882C92D3198787FF005D5400 /* login-large-button-selected@2x.png */,
 				882C92D4198787FF005D5400 /* login-large-button.png */,
 				882C92D5198787FF005D5400 /* login-large-button@2x.png */,
+				882C92F21987898D005D5400 /* login-lock-icon.png */,
+				882C92F31987898D005D5400 /* login-lock-icon@2x.png */,
 				882C92D6198787FF005D5400 /* login-mail-icon.png */,
 				882C92D7198787FF005D5400 /* login-mail-icon@2x.png */,
-				882C92D8198787FF005D5400 /* login-password-icon.png */,
-				882C92D9198787FF005D5400 /* login-password-icon@2x.png */,
+				882C92F41987898D005D5400 /* login-user-icon.png */,
+				882C92F51987898D005D5400 /* login-user-icon@2x.png */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -277,16 +283,18 @@
 				882C92DD198787FF005D5400 /* login-field@2x.png in Resources */,
 				88832F9E19656B3F00E3DF9F /* liferay-context.plist in Resources */,
 				8835607C196AED36002AB222 /* liferay-context-sample.plist in Resources */,
+				882C92F71987898D005D5400 /* login-lock-icon@2x.png in Resources */,
 				882C92DC198787FF005D5400 /* login-field.png in Resources */,
 				882C92DE198787FF005D5400 /* login-large-button-selected.png in Resources */,
 				882C92E2198787FF005D5400 /* login-mail-icon.png in Resources */,
-				882C92E4198787FF005D5400 /* login-password-icon.png in Resources */,
-				882C92E5198787FF005D5400 /* login-password-icon@2x.png in Resources */,
 				882C92E1198787FF005D5400 /* login-large-button@2x.png in Resources */,
 				882C92E0198787FF005D5400 /* login-large-button.png in Resources */,
+				882C92F61987898D005D5400 /* login-lock-icon.png in Resources */,
 				88832FA019656B3F00E3DF9F /* LoginView.xib in Resources */,
 				882C92DF198787FF005D5400 /* login-large-button-selected@2x.png in Resources */,
+				882C92F81987898D005D5400 /* login-user-icon.png in Resources */,
 				882C92DA198787FF005D5400 /* login-field-focused.png in Resources */,
+				882C92F91987898D005D5400 /* login-user-icon@2x.png in Resources */,
 				8868AFD319656B0500FD5214 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
