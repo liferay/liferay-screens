@@ -7,15 +7,15 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SignUpView" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="218" height="303"/>
+            <rect key="frame" x="0.0" y="0.0" width="228" height="303"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="signup-field.png" highlightedImage="signup-field-focused.png" id="AZG-yd-ODA">
-                    <rect key="frame" x="0.0" y="0.0" width="218" height="44"/>
+                    <rect key="frame" x="0.0" y="0.0" width="228" height="44"/>
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" minimumFontSize="17" id="Lf5-KV-kwV">
-                    <rect key="frame" x="13" y="7" width="196" height="30"/>
+                    <rect key="frame" x="13" y="7" width="206" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
@@ -24,11 +24,11 @@
                     </connections>
                 </textField>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="signup-field.png" highlightedImage="signup-field-focused.png" id="616-88-q3Y">
-                    <rect key="frame" x="0.0" y="55" width="218" height="44"/>
+                    <rect key="frame" x="0.0" y="55" width="228" height="44"/>
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" minimumFontSize="17" id="fgP-Xs-MLB">
-                    <rect key="frame" x="13" y="62" width="196" height="30"/>
+                    <rect key="frame" x="13" y="62" width="206" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
@@ -37,11 +37,11 @@
                     </connections>
                 </textField>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="signup-field.png" highlightedImage="signup-field-focused.png" id="bWA-We-JiQ">
-                    <rect key="frame" x="0.0" y="110" width="218" height="44"/>
+                    <rect key="frame" x="0.0" y="110" width="228" height="44"/>
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" id="lQM-e9-Lbg">
-                    <rect key="frame" x="13" y="117" width="196" height="30"/>
+                    <rect key="frame" x="13" y="117" width="206" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
@@ -50,11 +50,11 @@
                     </connections>
                 </textField>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="signup-field.png" highlightedImage="signup-field-focused.png" id="VIG-Xm-CeJ">
-                    <rect key="frame" x="0.0" y="165" width="218" height="44"/>
+                    <rect key="frame" x="0.0" y="165" width="228" height="44"/>
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="XBk-dU-LXI">
-                    <rect key="frame" x="13" y="172" width="196" height="30"/>
+                    <rect key="frame" x="13" y="172" width="206" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -63,7 +63,7 @@
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="signup-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="kq3-Yb-Mpp">
-                    <rect key="frame" x="0.0" y="259" width="218" height="44"/>
+                    <rect key="frame" x="0.0" y="259" width="238.5" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" backgroundImage="signup-large-button.png">
                         <attributedString key="attributedTitle">
@@ -97,9 +97,9 @@
         </view>
     </objects>
     <resources>
-        <image name="signup-field-focused.png" width="218" height="44"/>
-        <image name="signup-field.png" width="218" height="44"/>
-        <image name="signup-large-button.png" width="218" height="44"/>
+        <image name="signup-field-focused.png" width="228" height="44"/>
+        <image name="signup-field.png" width="228" height="44"/>
+        <image name="signup-large-button.png" width="228" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
