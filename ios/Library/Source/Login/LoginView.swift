@@ -21,34 +21,39 @@ public enum AuthType: String {
 
 class LoginView: BaseWidgetView, UITextFieldDelegate {
 
-	@IBOutlet var usernameLabel: UILabel?
 	@IBOutlet var usernameField: UITextField?
 	@IBOutlet var passwordField: UITextField?
 	@IBOutlet var rememberSwitch: UISwitch?
 	@IBOutlet var loginButton: UIButton?
+	@IBOutlet var usernameBackground: UIImageView?
+	@IBOutlet var passwordBackground: UIImageView?
 
 	public var shouldRememberCredentials: Bool {
-		return rememberSwitch!.on
+		if let rememberSwitchValue = rememberSwitch {
+			return rememberSwitchValue.on;
+		}
+
+		return true
 	}
 
 	public func setAuthType(authType: String) {
 		switch authType {
 		case AuthType.Email.toRaw():
-			usernameLabel!.text = "Email"
-			usernameField!.keyboardType = UIKeyboardType.EmailAddress
+            usernameField!.placeholder = "Email"
+            usernameField!.keyboardType = UIKeyboardType.EmailAddress
 		case AuthType.Screenname.toRaw():
-			usernameLabel!.text = "Screen name"
-			usernameField!.keyboardType = UIKeyboardType.ASCIICapable
+			usernameField!.placeholder = "Screen name"
+            usernameField!.keyboardType = UIKeyboardType.ASCIICapable
 
 			let username = usernameField!.text as NSString
 			if username.containsString("@") {
 				usernameField!.text = username.componentsSeparatedByString("@")[0] as String
 			}
 		case AuthType.UserId.toRaw():
-			usernameLabel!.text = "User ID"
+			usernameField!.placeholder = "User ID"
 			usernameField!.keyboardType = UIKeyboardType.NumberPad
 		default:
-			usernameLabel!.text = "Unknown"
+            usernameField!.placeholder = "Unknown"
 		}
 	}
 
@@ -59,6 +64,13 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
     }
 
     // UITextFieldDelegate METHODS
+
+	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
+		usernameBackground!.highlighted = (textField == usernameField);
+		passwordBackground!.highlighted = (textField == passwordField);
+
+		return true
+	}
 
 	func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		if textField == usernameField {

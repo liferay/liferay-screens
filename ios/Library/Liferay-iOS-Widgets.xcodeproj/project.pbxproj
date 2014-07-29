@@ -8,6 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		2C2DF42D7FA747E4B953573C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA555EA8DC0458CA74C4ACE /* libPods.a */; };
+		882C92B6198787B5005D5400 /* login-field-focused.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92AA198787B4005D5400 /* login-field-focused.png */; };
+		882C92B7198787B5005D5400 /* login-field-focused.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92AA198787B4005D5400 /* login-field-focused.png */; };
+		882C92B8198787B5005D5400 /* login-field-focused@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92AB198787B4005D5400 /* login-field-focused@2x.png */; };
+		882C92B9198787B5005D5400 /* login-field-focused@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92AB198787B4005D5400 /* login-field-focused@2x.png */; };
+		882C92BA198787B5005D5400 /* login-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92AC198787B4005D5400 /* login-field.png */; };
+		882C92BB198787B5005D5400 /* login-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92AC198787B4005D5400 /* login-field.png */; };
+		882C92BC198787B5005D5400 /* login-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92AD198787B4005D5400 /* login-field@2x.png */; };
+		882C92BD198787B5005D5400 /* login-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92AD198787B4005D5400 /* login-field@2x.png */; };
+		882C92BE198787B5005D5400 /* login-large-button-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92AE198787B4005D5400 /* login-large-button-selected.png */; };
+		882C92BF198787B5005D5400 /* login-large-button-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92AE198787B4005D5400 /* login-large-button-selected.png */; };
+		882C92C0198787B5005D5400 /* login-large-button-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92AF198787B4005D5400 /* login-large-button-selected@2x.png */; };
+		882C92C1198787B5005D5400 /* login-large-button-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92AF198787B4005D5400 /* login-large-button-selected@2x.png */; };
+		882C92C2198787B5005D5400 /* login-large-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92B0198787B4005D5400 /* login-large-button.png */; };
+		882C92C3198787B5005D5400 /* login-large-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92B0198787B4005D5400 /* login-large-button.png */; };
+		882C92C4198787B5005D5400 /* login-large-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92B1198787B4005D5400 /* login-large-button@2x.png */; };
+		882C92C5198787B5005D5400 /* login-large-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92B1198787B4005D5400 /* login-large-button@2x.png */; };
+		882C92C6198787B5005D5400 /* login-mail-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92B2198787B4005D5400 /* login-mail-icon.png */; };
+		882C92C7198787B5005D5400 /* login-mail-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92B2198787B4005D5400 /* login-mail-icon.png */; };
+		882C92C8198787B5005D5400 /* login-mail-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92B3198787B4005D5400 /* login-mail-icon@2x.png */; };
+		882C92C9198787B5005D5400 /* login-mail-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92B3198787B4005D5400 /* login-mail-icon@2x.png */; };
+		882C92EA19878947005D5400 /* login-lock-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92E619878947005D5400 /* login-lock-icon.png */; };
+		882C92EB19878947005D5400 /* login-lock-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92E619878947005D5400 /* login-lock-icon.png */; };
+		882C92EC19878947005D5400 /* login-lock-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92E719878947005D5400 /* login-lock-icon@2x.png */; };
+		882C92ED19878947005D5400 /* login-lock-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92E719878947005D5400 /* login-lock-icon@2x.png */; };
+		882C92EE19878947005D5400 /* login-user-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92E819878947005D5400 /* login-user-icon.png */; };
+		882C92EF19878947005D5400 /* login-user-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92E819878947005D5400 /* login-user-icon.png */; };
+		882C92F019878947005D5400 /* login-user-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92E919878947005D5400 /* login-user-icon@2x.png */; };
+		882C92F119878947005D5400 /* login-user-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 882C92E919878947005D5400 /* login-user-icon@2x.png */; };
 		888FAFA8196AE8C200057B26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888FAFA6196AE8C200057B26 /* AppDelegate.swift */; };
 		888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 888FAFA7196AE8C200057B26 /* AppInfo.plist */; };
 		888FAFAB196AE8EF00057B26 /* TestsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 888FAFAA196AE8EF00057B26 /* TestsInfo.plist */; };
@@ -79,6 +107,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		882C92AA198787B4005D5400 /* login-field-focused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-field-focused.png"; sourceTree = "<group>"; };
+		882C92AB198787B4005D5400 /* login-field-focused@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-field-focused@2x.png"; sourceTree = "<group>"; };
+		882C92AC198787B4005D5400 /* login-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-field.png"; sourceTree = "<group>"; };
+		882C92AD198787B4005D5400 /* login-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-field@2x.png"; sourceTree = "<group>"; };
+		882C92AE198787B4005D5400 /* login-large-button-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-large-button-selected.png"; sourceTree = "<group>"; };
+		882C92AF198787B4005D5400 /* login-large-button-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-large-button-selected@2x.png"; sourceTree = "<group>"; };
+		882C92B0198787B4005D5400 /* login-large-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-large-button.png"; sourceTree = "<group>"; };
+		882C92B1198787B4005D5400 /* login-large-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-large-button@2x.png"; sourceTree = "<group>"; };
+		882C92B2198787B4005D5400 /* login-mail-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-mail-icon.png"; sourceTree = "<group>"; };
+		882C92B3198787B4005D5400 /* login-mail-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-mail-icon@2x.png"; sourceTree = "<group>"; };
+		882C92E619878947005D5400 /* login-lock-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-lock-icon.png"; sourceTree = "<group>"; };
+		882C92E719878947005D5400 /* login-lock-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-lock-icon@2x.png"; sourceTree = "<group>"; };
+		882C92E819878947005D5400 /* login-user-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user-icon.png"; sourceTree = "<group>"; };
+		882C92E919878947005D5400 /* login-user-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user-icon@2x.png"; sourceTree = "<group>"; };
 		888FAFA6196AE8C200057B26 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Tests/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		888FAFA7196AE8C200057B26 /* AppInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppInfo.plist; path = Tests/AppInfo.plist; sourceTree = SOURCE_ROOT; };
 		888FAFAA196AE8EF00057B26 /* TestsInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TestsInfo.plist; path = ../Tests/TestsInfo.plist; sourceTree = "<group>"; };
@@ -127,6 +169,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		88731A701985743C00F37705 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88731A711985743C00F37705 /* Login */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		88731A711985743C00F37705 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				882C92AA198787B4005D5400 /* login-field-focused.png */,
+				882C92AB198787B4005D5400 /* login-field-focused@2x.png */,
+				882C92AC198787B4005D5400 /* login-field.png */,
+				882C92AD198787B4005D5400 /* login-field@2x.png */,
+				882C92AE198787B4005D5400 /* login-large-button-selected.png */,
+				882C92AF198787B4005D5400 /* login-large-button-selected@2x.png */,
+				882C92B0198787B4005D5400 /* login-large-button.png */,
+				882C92B1198787B4005D5400 /* login-large-button@2x.png */,
+				882C92E619878947005D5400 /* login-lock-icon.png */,
+				882C92E719878947005D5400 /* login-lock-icon@2x.png */,
+				882C92B2198787B4005D5400 /* login-mail-icon.png */,
+				882C92B3198787B4005D5400 /* login-mail-icon@2x.png */,
+				882C92E819878947005D5400 /* login-user-icon.png */,
+				882C92E919878947005D5400 /* login-user-icon@2x.png */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		889CA4BB19655F4B00664504 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				88FE74D619655E1B003A7CE5 /* Source */,
+				88731A701985743C00F37705 /* Resources */,
 				88EA610019656751005F722C /* Tests */,
 				88FE74D719655E1B003A7CE5 /* Supporting Files */,
 				88FE74D519655E1B003A7CE5 /* Products */,
@@ -296,6 +368,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				882C92BF198787B5005D5400 /* login-large-button-selected.png in Resources */,
+				882C92EF19878947005D5400 /* login-user-icon.png in Resources */,
+				882C92C7198787B5005D5400 /* login-mail-icon.png in Resources */,
+				882C92BB198787B5005D5400 /* login-field.png in Resources */,
+				882C92EB19878947005D5400 /* login-lock-icon.png in Resources */,
+				882C92C5198787B5005D5400 /* login-large-button@2x.png in Resources */,
+				882C92F119878947005D5400 /* login-user-icon@2x.png in Resources */,
+				882C92BD198787B5005D5400 /* login-field@2x.png in Resources */,
+				882C92C3198787B5005D5400 /* login-large-button.png in Resources */,
+				882C92C1198787B5005D5400 /* login-large-button-selected@2x.png in Resources */,
+				882C92B9198787B5005D5400 /* login-field-focused@2x.png in Resources */,
+				882C92ED19878947005D5400 /* login-lock-icon@2x.png in Resources */,
+				882C92C9198787B5005D5400 /* login-mail-icon@2x.png in Resources */,
+				882C92B7198787B5005D5400 /* login-field-focused.png in Resources */,
 				888FAFAB196AE8EF00057B26 /* TestsInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,9 +390,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				882C92B8198787B5005D5400 /* login-field-focused@2x.png in Resources */,
+				882C92C2198787B5005D5400 /* login-large-button.png in Resources */,
 				888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */,
+				882C92C4198787B5005D5400 /* login-large-button@2x.png in Resources */,
+				882C92C0198787B5005D5400 /* login-large-button-selected@2x.png in Resources */,
+				882C92C6198787B5005D5400 /* login-mail-icon.png in Resources */,
+				882C92EC19878947005D5400 /* login-lock-icon@2x.png in Resources */,
+				882C92BE198787B5005D5400 /* login-large-button-selected.png in Resources */,
+				882C92BA198787B5005D5400 /* login-field.png in Resources */,
+				882C92C8198787B5005D5400 /* login-mail-icon@2x.png in Resources */,
 				889CA4CC19655F4B00664504 /* LoginView.xib in Resources */,
+				882C92B6198787B5005D5400 /* login-field-focused.png in Resources */,
+				882C92EA19878947005D5400 /* login-lock-icon.png in Resources */,
 				88AEA25D19657C3100CD130B /* liferay-context-sample.plist in Resources */,
+				882C92BC198787B5005D5400 /* login-field@2x.png in Resources */,
+				882C92EE19878947005D5400 /* login-user-icon.png in Resources */,
+				882C92F019878947005D5400 /* login-user-icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
