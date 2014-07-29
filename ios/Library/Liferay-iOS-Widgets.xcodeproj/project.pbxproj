@@ -21,6 +21,28 @@
 		889CA4CC19655F4B00664504 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889CA4C319655F4B00664504 /* LoginView.xib */; };
 		889CA4CD19655F4B00664504 /* LoginWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4C419655F4B00664504 /* LoginWidget.swift */; };
 		889CA4CE19655F4B00664504 /* nameOfClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4C619655F4B00664504 /* nameOfClass.swift */; };
+		88A632BA19863D8A00684926 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A632B719863D8A00684926 /* SignUp.swift */; };
+		88A632BB19863D8A00684926 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A632B719863D8A00684926 /* SignUp.swift */; };
+		88A632BC19863D8A00684926 /* SignUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A632B819863D8A00684926 /* SignUpView.xib */; };
+		88A632BD19863D8A00684926 /* SignUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A632B819863D8A00684926 /* SignUpView.xib */; };
+		88A632BE19863D8A00684926 /* SignUpWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A632B919863D8A00684926 /* SignUpWidget.swift */; };
+		88A632BF19863D8A00684926 /* SignUpWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A632B919863D8A00684926 /* SignUpWidget.swift */; };
+		88A632CE198644AD00684926 /* signup-field-focused.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632C6198644AD00684926 /* signup-field-focused.png */; };
+		88A632CF198644AD00684926 /* signup-field-focused.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632C6198644AD00684926 /* signup-field-focused.png */; };
+		88A632D0198644AD00684926 /* signup-field-focused@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632C7198644AD00684926 /* signup-field-focused@2x.png */; };
+		88A632D1198644AD00684926 /* signup-field-focused@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632C7198644AD00684926 /* signup-field-focused@2x.png */; };
+		88A632D2198644AD00684926 /* signup-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632C8198644AD00684926 /* signup-field.png */; };
+		88A632D3198644AD00684926 /* signup-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632C8198644AD00684926 /* signup-field.png */; };
+		88A632D4198644AD00684926 /* signup-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632C9198644AD00684926 /* signup-field@2x.png */; };
+		88A632D5198644AD00684926 /* signup-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632C9198644AD00684926 /* signup-field@2x.png */; };
+		88A632D6198644AD00684926 /* signup-large-button-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632CA198644AD00684926 /* signup-large-button-selected.png */; };
+		88A632D7198644AD00684926 /* signup-large-button-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632CA198644AD00684926 /* signup-large-button-selected.png */; };
+		88A632D8198644AD00684926 /* signup-large-button-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632CB198644AD00684926 /* signup-large-button-selected@2x.png */; };
+		88A632D9198644AD00684926 /* signup-large-button-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632CB198644AD00684926 /* signup-large-button-selected@2x.png */; };
+		88A632DA198644AD00684926 /* signup-large-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632CC198644AD00684926 /* signup-large-button.png */; };
+		88A632DB198644AD00684926 /* signup-large-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632CC198644AD00684926 /* signup-large-button.png */; };
+		88A632DC198644AD00684926 /* signup-large-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632CD198644AD00684926 /* signup-large-button@2x.png */; };
+		88A632DD198644AD00684926 /* signup-large-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A632CD198644AD00684926 /* signup-large-button@2x.png */; };
 		88AEA25D19657C3100CD130B /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88AEA25C19657C3100CD130B /* liferay-context-sample.plist */; };
 		88D99C32196C42B30090F236 /* LRSession_storage_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */; };
 		999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BF19655F4B00664504 /* LiferayContext.swift */; };
@@ -93,6 +115,17 @@
 		889CA4C419655F4B00664504 /* LoginWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWidget.swift; sourceTree = "<group>"; };
 		889CA4C619655F4B00664504 /* nameOfClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameOfClass.swift; sourceTree = "<group>"; };
 		889CA4CF19655F7A00664504 /* liferay-ios-widgets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "liferay-ios-widgets.h"; sourceTree = "<group>"; };
+		88A632B719863D8A00684926 /* SignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		88A632B819863D8A00684926 /* SignUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView.xib; sourceTree = "<group>"; };
+		88A632B919863D8A00684926 /* SignUpWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpWidget.swift; sourceTree = "<group>"; };
+		88A632C6198644AD00684926 /* signup-field-focused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-field-focused.png"; sourceTree = "<group>"; };
+		88A632C7198644AD00684926 /* signup-field-focused@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-field-focused@2x.png"; sourceTree = "<group>"; };
+		88A632C8198644AD00684926 /* signup-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-field.png"; sourceTree = "<group>"; };
+		88A632C9198644AD00684926 /* signup-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-field@2x.png"; sourceTree = "<group>"; };
+		88A632CA198644AD00684926 /* signup-large-button-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-large-button-selected.png"; sourceTree = "<group>"; };
+		88A632CB198644AD00684926 /* signup-large-button-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-large-button-selected@2x.png"; sourceTree = "<group>"; };
+		88A632CC198644AD00684926 /* signup-large-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-large-button.png"; sourceTree = "<group>"; };
+		88A632CD198644AD00684926 /* signup-large-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-large-button@2x.png"; sourceTree = "<group>"; };
 		88AEA25C19657C3100CD130B /* liferay-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-context-sample.plist"; sourceTree = "<group>"; };
 		88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LRSession_storage_Tests.swift; sourceTree = "<group>"; };
 		88EA60FF19656751005F722C /* Liferay-iOS-Widgets-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Liferay-iOS-Widgets-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +190,39 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		88A632B619863D8A00684926 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				88A632B719863D8A00684926 /* SignUp.swift */,
+				88A632B819863D8A00684926 /* SignUpView.xib */,
+				88A632B919863D8A00684926 /* SignUpWidget.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		88A632C4198644AD00684926 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88A632C5198644AD00684926 /* SignUp */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		88A632C5198644AD00684926 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				88A632C6198644AD00684926 /* signup-field-focused.png */,
+				88A632C7198644AD00684926 /* signup-field-focused@2x.png */,
+				88A632C8198644AD00684926 /* signup-field.png */,
+				88A632C9198644AD00684926 /* signup-field@2x.png */,
+				88A632CA198644AD00684926 /* signup-large-button-selected.png */,
+				88A632CB198644AD00684926 /* signup-large-button-selected@2x.png */,
+				88A632CC198644AD00684926 /* signup-large-button.png */,
+				88A632CD198644AD00684926 /* signup-large-button@2x.png */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		88EA610019656751005F722C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				88FE74D619655E1B003A7CE5 /* Source */,
+				88A632C4198644AD00684926 /* Resources */,
 				88EA610019656751005F722C /* Tests */,
 				88FE74D719655E1B003A7CE5 /* Supporting Files */,
 				88FE74D519655E1B003A7CE5 /* Products */,
@@ -191,6 +258,7 @@
 			children = (
 				889CA4BB19655F4B00664504 /* Base */,
 				889CA4C119655F4B00664504 /* Login */,
+				88A632B619863D8A00684926 /* SignUp */,
 				889CA4C519655F4B00664504 /* Util */,
 				88AEA25C19657C3100CD130B /* liferay-context-sample.plist */,
 				889CA4CF19655F7A00664504 /* liferay-ios-widgets.h */,
@@ -296,7 +364,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88A632BD19863D8A00684926 /* SignUpView.xib in Resources */,
+				88A632D1198644AD00684926 /* signup-field-focused@2x.png in Resources */,
+				88A632D7198644AD00684926 /* signup-large-button-selected.png in Resources */,
+				88A632D3198644AD00684926 /* signup-field.png in Resources */,
+				88A632D5198644AD00684926 /* signup-field@2x.png in Resources */,
+				88A632D9198644AD00684926 /* signup-large-button-selected@2x.png in Resources */,
+				88A632DD198644AD00684926 /* signup-large-button@2x.png in Resources */,
+				88A632CF198644AD00684926 /* signup-field-focused.png in Resources */,
 				888FAFAB196AE8EF00057B26 /* TestsInfo.plist in Resources */,
+				88A632DB198644AD00684926 /* signup-large-button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,9 +381,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88A632D2198644AD00684926 /* signup-field.png in Resources */,
+				88A632BC19863D8A00684926 /* SignUpView.xib in Resources */,
 				888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */,
+				88A632DA198644AD00684926 /* signup-large-button.png in Resources */,
+				88A632CE198644AD00684926 /* signup-field-focused.png in Resources */,
+				88A632D6198644AD00684926 /* signup-large-button-selected.png in Resources */,
+				88A632DC198644AD00684926 /* signup-large-button@2x.png in Resources */,
 				889CA4CC19655F4B00664504 /* LoginView.xib in Resources */,
 				88AEA25D19657C3100CD130B /* liferay-context-sample.plist in Resources */,
+				88A632D0198644AD00684926 /* signup-field-focused@2x.png in Resources */,
+				88A632D4198644AD00684926 /* signup-field@2x.png in Resources */,
+				88A632D8198644AD00684926 /* signup-large-button-selected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +437,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8895737C196C3CDA00258033 /* LRSession+CredentialStore.swift in Sources */,
+				88A632BF19863D8A00684926 /* SignUpWidget.swift in Sources */,
+				88A632BB19863D8A00684926 /* SignUp.swift in Sources */,
 				88D99C32196C42B30090F236 /* LRSession_storage_Tests.swift in Sources */,
 				999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */,
 			);
@@ -365,10 +453,12 @@
 				888FAFA8196AE8C200057B26 /* AppDelegate.swift in Sources */,
 				889CA4CB19655F4B00664504 /* LoginView.swift in Sources */,
 				889CA4C819655F4B00664504 /* BaseWidget.swift in Sources */,
+				88A632BE19863D8A00684926 /* SignUpWidget.swift in Sources */,
 				889CA4C919655F4B00664504 /* BaseWidgetView.swift in Sources */,
 				889CA4CA19655F4B00664504 /* LiferayContext.swift in Sources */,
 				8895737B196C3CDA00258033 /* LRSession+CredentialStore.swift in Sources */,
 				889CA4C719655F4B00664504 /* BaseWidget+progress.swift in Sources */,
+				88A632BA19863D8A00684926 /* SignUp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
