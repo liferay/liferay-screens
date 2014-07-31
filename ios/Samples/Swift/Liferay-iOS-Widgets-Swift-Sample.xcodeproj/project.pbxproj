@@ -40,6 +40,7 @@
 		88AD278F198A44E400155299 /* ForgotPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88AD278C198A44E400155299 /* ForgotPasswordView.xib */; };
 		88AD2790198A44E400155299 /* ForgotPasswordWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD278D198A44E400155299 /* ForgotPasswordWidget.swift */; };
 		88AD2794198A47CF00155299 /* LRMwuserService_v6201.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AD2793198A47CF00155299 /* LRMwuserService_v6201.m */; };
+		88AD2799198A49A900155299 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD2798198A49A900155299 /* UIView+Animations.swift */; };
 		999BC69A197682E000A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC699197682E000A9B0D8 /* LRSession+CredentialStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		88AD278D198A44E400155299 /* ForgotPasswordWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordWidget.swift; sourceTree = "<group>"; };
 		88AD2792198A47CF00155299 /* LRMwuserService_v6201.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMwuserService_v6201.h; sourceTree = "<group>"; };
 		88AD2793198A47CF00155299 /* LRMwuserService_v6201.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMwuserService_v6201.m; sourceTree = "<group>"; };
+		88AD2798198A49A900155299 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		999BC699197682E000A9B0D8 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +156,7 @@
 				88AD278A198A44E400155299 /* ForgotPassword */,
 				88832F9219656B3F00E3DF9F /* Login */,
 				88AD2791198A47CF00155299 /* Services */,
+				88AD2797198A49A900155299 /* Extensions */,
 				88832F9619656B3F00E3DF9F /* Util */,
 				8835607B196AED36002AB222 /* liferay-context-sample.plist */,
 				88832F9119656B3F00E3DF9F /* liferay-ios-widgets.h */,
@@ -239,6 +242,14 @@
 				88AD2793198A47CF00155299 /* LRMwuserService_v6201.m */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		88AD2797198A49A900155299 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				88AD2798198A49A900155299 /* UIView+Animations.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		F05CF7C2287C4AE6A3C1F243 /* Frameworks */ = {
@@ -378,6 +389,7 @@
 				8868AFCC19656B0500FD5214 /* AppDelegate.swift in Sources */,
 				88832F9B19656B3F00E3DF9F /* LiferayContext.swift in Sources */,
 				88AD2794198A47CF00155299 /* LRMwuserService_v6201.m in Sources */,
+				88AD2799198A49A900155299 /* UIView+Animations.swift in Sources */,
 				88832FA219656B3F00E3DF9F /* nameOfClass.swift in Sources */,
 				999BC69A197682E000A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 				88832F9919656B3F00E3DF9F /* BaseWidget.swift in Sources */,
