@@ -19,19 +19,7 @@ import UIKit
  */
 class BaseWidget: UIView, LRCallback {
 
-	let widgetView: BaseWidgetView?
-
-	init(frame: CGRect) {
-		super.init(frame: frame)
-
-		widgetView = loadWidgetView();
-	}
-
-	init(coder aDecoder: NSCoder!) {
-		super.init(coder: aDecoder)
-
-		widgetView = loadWidgetView();
-	}
+	internal var widgetView: BaseWidgetView?
 
     
 	// DISPLAY TEMPLATE METHODS
@@ -90,6 +78,8 @@ class BaseWidget: UIView, LRCallback {
 
 	override func awakeFromNib() {
 		self.clipsToBounds = true;
+
+		widgetView = loadWidgetView();
 
 		onCreate()
 	}
