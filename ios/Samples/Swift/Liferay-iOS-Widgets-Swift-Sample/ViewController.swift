@@ -13,9 +13,10 @@
 */
 import UIKit
 
-class ViewController: UIViewController, LoginWidgetDelegate {
+class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidgetDelegate {
 
 	@IBOutlet var loginWidget: LoginWidget!
+	@IBOutlet var forgotWidget: ForgotPasswordWidget!
 
     
     // UIViewController METHODS
@@ -27,7 +28,7 @@ class ViewController: UIViewController, LoginWidgetDelegate {
 		// WORKAROUND!
 		// Delegate assignment in IB doesn't work!!
 		loginWidget.delegate = self
-        loginWidget.setAuthType(AuthType.Email)
+		loginWidget.setAuthType(AuthType.ScreenName)
 
 		if LoginWidget.storedSession() {
 			loginWidget.hidden = true
@@ -35,6 +36,9 @@ class ViewController: UIViewController, LoginWidgetDelegate {
 		else {
 			loginWidget.becomeFirstResponder()
 		}
+		
+		forgotWidget.delegate = self;
+		forgotWidget.setAuthType(AuthType.ScreenName)
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -57,8 +61,19 @@ class ViewController: UIViewController, LoginWidgetDelegate {
  		println("Error -> " + error.description)
 	}
 
-	func onLoginResponse(attributes: [String:AnyObject!])  {
+	func onLoginResponse(attributes: [String:AnyObject])  {
 		NSLog("Login %@", attributes)
+	}
+
+	func onForgotPasswordError(error: NSError)  {
+		println("Error -> " + error.description)
+
+	}
+
+	func onForgotPasswordResponse(newPasswordSent:Bool)  {
+		let emailContent = newPasswordSent ? "new password" : "reset password link"
+
+		println("Email with \(emailContent) was sent")
 	}
 
 }

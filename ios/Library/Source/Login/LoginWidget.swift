@@ -15,7 +15,7 @@ import UIKit
 
 @objc protocol LoginWidgetDelegate {
 
-	optional func onLoginResponse(attributes: [String:AnyObject!])
+	optional func onLoginResponse(attributes: [String:AnyObject])
 	optional func onLoginError(error: NSError)
 
 	optional func onCredentialsSaved(session:LRSession)
@@ -44,7 +44,7 @@ class LoginWidget: BaseWidget {
     public func setAuthType(authType:AuthType) {
         loginView().setAuthType(authType.toRaw())
         
-        authMethod = authMethods[authType.toRaw()]
+        authClosure = authClosures[authType.toRaw()]
     }
 
     // BaseWidget METHODS
@@ -52,7 +52,7 @@ class LoginWidget: BaseWidget {
 	override public func onCreate() {
         setAuthType(AuthType.Email)
 
-        loginView().usernameField!.text = "test@liferay.com"
+        loginView().userNameField!.text = "test@liferay.com"
 
 		if let session = LRSession.sessionFromStoredCredential() {
 			LiferayContext.instance.currentSession = session
@@ -63,7 +63,7 @@ class LoginWidget: BaseWidget {
 
 	override public func onCustomAction(actionName: String?, sender: UIControl) {
 		if actionName == "login-action" {
-			sendLoginWithUsername(loginView().usernameField!.text, password:loginView().passwordField!.text)
+			sendLoginWithUserName(loginView().userNameField!.text, password:loginView().passwordField!.text)
 		}
 	}
 
@@ -73,19 +73,19 @@ class LoginWidget: BaseWidget {
 		LiferayContext.instance.clearSession()
 		LRSession.removeStoredCredential()
 
-        hideHUDWithMessage("Error signing in!", details: nil)
+		hideHUDWithMessage("Error signing in!", details: nil)
     }
-    
-	override public func onServerResult(result: [String:AnyObject!]) {
+
+	override public func onServerResult(result: [String:AnyObject]) {
 		delegate?.onLoginResponse?(result)
 
 		if loginView().shouldRememberCredentials {
 			if LiferayContext.instance.currentSession!.storeCredential() {
 				delegate?.onCredentialsSaved?(LiferayContext.instance.currentSession!)
 			}
-        }
-        
-        hideHUDWithMessage("Sign in completed", details: nil)
+		}
+
+		hideHUDWithMessage("Sign in completed", details: nil)
     }
 
     // PRIVATE METHDOS
@@ -94,31 +94,30 @@ class LoginWidget: BaseWidget {
 		return widgetView as LoginView
 	}
 
-	private func sendLoginWithUsername(username:String, password:String) {
+	private func sendLoginWithUserName(userName:String, password:String) {
 		showHUDWithMessage("Sending sign in...", details:"Wait few seconds...")
 
-		let session = LiferayContext.instance.createSession(username, password: password)
+		let session = LiferayContext.instance.createSession(userName, password: password)
 		session.callback = self
 
-		authMethod!(username, password, LRUserService_v62(session: session)) {error in
+		authClosure!(userName, password, LRUserService_v62(session: session)) {error in
 			self.onFailure(error)
 		}
 	}
 
+	private typealias AuthClosureType = (String, String, LRUserService_v62, (NSError)->()) -> (Void)
 
-	private typealias AuthCall = (String, String, LRUserService_v62, (NSError)->()) -> (Void)
+	private let authClosures: Dictionary<String, AuthClosureType> = [
+		AuthType.Email.toRaw(): authWithEmail,
+		AuthType.ScreenName.toRaw(): authWithScreenName,
+		AuthType.UserId.toRaw(): authWithUserId]
 
-	private let authMethods: Dictionary<String, AuthCall> = [
-		AuthType.Email.toRaw(): authCallWithEmail,
-		AuthType.Screenname.toRaw(): authCallWithScreenname,
-		AuthType.UserId.toRaw(): authCallWithUserId]
-
-	private var authMethod: AuthCall?
+	private var authClosure: AuthClosureType?
 
 }
 
-func authCallWithEmail(email:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
-	let companyId: CLongLong = (LiferayContext.instance.companyId as NSNumber).longLongValue
+func authWithEmail(email:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
+	let companyId = (LiferayContext.instance.companyId as NSNumber).longLongValue
 
 	var outError: NSError?
 
@@ -129,8 +128,8 @@ func authCallWithEmail(email:String, password:String, service:LRUserService_v62,
 	}
 }
 
-func authCallWithScreenname(name:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
-	let companyId: CLongLong = (LiferayContext.instance.companyId as NSNumber).longLongValue
+func authWithScreenName(name:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
+	let companyId = (LiferayContext.instance.companyId as NSNumber).longLongValue
 
 	var outError: NSError?
 
@@ -141,7 +140,7 @@ func authCallWithScreenname(name:String, password:String, service:LRUserService_
 	}
 }
 
-func authCallWithUserId(userId:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
+func authWithUserId(userId:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
 	let uid: CLongLong = (userId.toInt()! as NSNumber).longLongValue
 
 	var outError: NSError?
@@ -152,3 +151,4 @@ func authCallWithUserId(userId:String, password:String, service:LRUserService_v6
 		onError(error)
 	}
 }
+
