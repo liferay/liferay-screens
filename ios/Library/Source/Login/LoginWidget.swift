@@ -15,11 +15,11 @@ import UIKit
 
 @objc protocol LoginWidgetDelegate {
 
-	@optional func onLoginResponse(attributes: [String:AnyObject])
-	@optional func onLoginError(error: NSError)
+	optional func onLoginResponse(attributes: [String:AnyObject])
+	optional func onLoginError(error: NSError)
 
-	@optional func onCredentialsSaved(session:LRSession)
-	@optional func onCredentialsLoaded(session:LRSession)
+	optional func onCredentialsSaved(session:LRSession)
+	optional func onCredentialsLoaded(session:LRSession)
 
 }
 
@@ -27,45 +27,32 @@ class LoginWidget: BaseWidget {
 
     @IBOutlet var delegate: LoginWidgetDelegate?
     
-	typealias AuthClosureType = (String, String, LRUserService_v62, (NSError)->()) -> (Void)
-
-    let authClosures = [
-        AuthType.Email.toRaw(): authWithEmail,
-		AuthType.ScreenName.toRaw(): authWithScreenName,
-		AuthType.UserId.toRaw(): authWithUserId]
-
-    var authClosure: AuthClosureType?
-
-	class func storedSession() -> LRSession? {
+	public class func storedSession() -> LRSession? {
 		return LRSession.sessionFromStoredCredential()
 	}
     
-	/*
-	WORKAROUND!
-	XCode crashes with "swift_unknownWeakLoadStrong" error
-	Storing the enum as a String seems to workaround the problem
-	This code is the optimal solution to be used when XCode is fixed
-
-	var authType: AuthType = AuthType.Email {
-		didSet {
-			loginView().setAuthType(authType)
-		}
-	}
-	*/
-    func setAuthType(authType:AuthType) {
+	//FIXME
+	// XCode crashes with "swift_unknownWeakLoadStrong" error
+	// Storing the enum as a String seems to workaround the problem
+	// This code is the optimal solution to be used when XCode is fixed
+	//
+	// var authType: AuthType = AuthType.Email {
+	// 	didSet {
+	//		loginView().setAuthType(authType)
+	//	}
+	// }
+    public func setAuthType(authType:AuthType) {
         loginView().setAuthType(authType.toRaw())
         
         authClosure = authClosures[authType.toRaw()]
     }
 
-    
     // BaseWidget METHODS
-    
-    
-	override func onCreate() {
+
+	override public func onCreate() {
         setAuthType(AuthType.Email)
 
-        loginView().usernameField.text = "test@liferay.com"
+        loginView().userNameField!.text = "test@liferay.com"
 
 		if let session = LRSession.sessionFromStoredCredential() {
 			LiferayContext.instance.currentSession = session
@@ -74,11 +61,13 @@ class LoginWidget: BaseWidget {
 		}
 	}
 
-	override func onCustomAction(actionName: String?, sender: UIControl) {
-		sendLoginWithUsername(loginView().usernameField.text, password:loginView().passwordField.text)
+	override public func onCustomAction(actionName: String?, sender: UIControl) {
+		if actionName == "login-action" {
+			sendLoginWithUserName(loginView().userNameField!.text, password:loginView().passwordField!.text)
+		}
 	}
 
-    override func onServerError(error: NSError) {
+    override public func onServerError(error: NSError) {
 		delegate?.onLoginError?(error)
 
 		LiferayContext.instance.clearSession()
@@ -87,7 +76,7 @@ class LoginWidget: BaseWidget {
 		hideHUDWithMessage("Error signing in!", details: nil)
     }
 
-	override func onServerResult(result: [String:AnyObject]) {
+	override public func onServerResult(result: [String:AnyObject]) {
 		delegate?.onLoginResponse?(result)
 
 		if loginView().shouldRememberCredentials {
@@ -98,24 +87,33 @@ class LoginWidget: BaseWidget {
 
 		hideHUDWithMessage("Sign in completed", details: nil)
     }
-    
 
-    // PRIVATE METHODS
+    // PRIVATE METHDOS
 
-	func loginView() -> LoginView {
+	private func loginView() -> LoginView {
 		return widgetView as LoginView
 	}
 
-	func sendLoginWithUsername(username:String, password:String) {
+	private func sendLoginWithUserName(userName:String, password:String) {
 		showHUDWithMessage("Sending sign in...", details:"Wait few seconds...")
 
-		let session = LiferayContext.instance.createSession(username, password: password)
+		let session = LiferayContext.instance.createSession(userName, password: password)
 		session.callback = self
 
-		authClosure!(username, password, LRUserService_v62(session: session)) {error in
+		authClosure!(userName, password, LRUserService_v62(session: session)) {error in
 			self.onFailure(error)
 		}
 	}
+
+	private typealias AuthClosureType = (String, String, LRUserService_v62, (NSError)->()) -> (Void)
+
+	private let authClosures: Dictionary<String, AuthClosureType> = [
+		AuthType.Email.toRaw(): authWithEmail,
+		AuthType.ScreenName.toRaw(): authWithScreenName,
+		AuthType.UserId.toRaw(): authWithUserId]
+
+	private var authClosure: AuthClosureType?
+
 }
 
 func authWithEmail(email:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {

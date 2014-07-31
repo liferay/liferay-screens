@@ -23,6 +23,7 @@
 		88848B3B19656DC900EE9602 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88848B3A19656DC900EE9602 /* ViewController.m */; };
 		88848B3E19656DC900EE9602 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88848B3C19656DC900EE9602 /* Main.storyboard */; };
 		88848B4019656DC900EE9602 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88848B3F19656DC900EE9602 /* Images.xcassets */; };
+		8887889419851538008862B7 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887889319851538008862B7 /* LRSession+CredentialStore.swift */; };
 		FEE74E6637BB47BB8761A893 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8C3FA45F374187B07EA31F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		88848B3A19656DC900EE9602 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		88848B3D19656DC900EE9602 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88848B3F19656DC900EE9602 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8887889319851538008862B7 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
 		88BE8EAE196570DB003630C3 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		AA8C3FA45F374187B07EA31F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -105,6 +107,7 @@
 				88693C5A196AEA660054DEB3 /* LoginView.swift */,
 				88693C5B196AEA660054DEB3 /* LoginView.xib */,
 				88693C5C196AEA660054DEB3 /* LoginWidget.swift */,
+				8887889319851538008862B7 /* LRSession+CredentialStore.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				88693C60196AEA660054DEB3 /* BaseWidget.swift in Sources */,
 				88693C67196AEA660054DEB3 /* nameOfClass.swift in Sources */,
 				88848B3519656DC800EE9602 /* main.m in Sources */,
+				8887889419851538008862B7 /* LRSession+CredentialStore.swift in Sources */,
 				88693C5F196AEA660054DEB3 /* BaseWidget+progress.swift in Sources */,
 				88693C62196AEA660054DEB3 /* LiferayContext.swift in Sources */,
 				88693C64196AEA660054DEB3 /* LoginView.swift in Sources */,

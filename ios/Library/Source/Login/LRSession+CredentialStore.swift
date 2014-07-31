@@ -19,8 +19,8 @@ extension LRSession {
     // CLASS METHODS
     
 	
-	class func removeStoredCredential() {
-        let credentialTuple = credentialForServer(LiferayContext.instance.server)
+	public class func removeStoredCredential() {
+		let credentialTuple = credentialForServer(LiferayContext.instance.server)
 
 		if let credential = credentialTuple.0 {
 			NSURLCredentialStorage.sharedCredentialStorage().removeCredential(
@@ -28,7 +28,7 @@ extension LRSession {
 		}
 	}
 
-    class func sessionFromStoredCredential() -> LRSession? {
+	public class func sessionFromStoredCredential() -> LRSession? {
 		let credentialTuple = credentialForServer(LiferayContext.instance.server)
         
 		if let credential = credentialTuple.0 {
@@ -42,10 +42,10 @@ extension LRSession {
     // INSTANCE METHODS
 
     
-    func storeCredential() -> Bool {
+	public func storeCredential() -> Bool {
 		var success = false
 
-		// WORKAROUND!
+		//FIXME
 		// Compiler crash with compound if statement: if self.server && self.username && self.password {
 		// "While emitting IR SIL function @_TFCSo9LRSession5storefS_FT_T_ for 'store' at LRSession+storage.swift:36:2"
 		if self.username {
@@ -65,11 +65,11 @@ extension LRSession {
 		return success
 	}
 
-	
+
 	// PRIVATE METHODS
 
 
-	class func credentialForServer(server:String) -> (NSURLCredential?, NSURLProtectionSpace) {
+	private class func credentialForServer(server:String) -> (NSURLCredential?, NSURLProtectionSpace) {
 		let protectionSpace = protectionSpaceForServer(server)
 
 		let credentialDict =
@@ -86,7 +86,7 @@ extension LRSession {
 		}
 	}
 
-	class func protectionSpaceForServer(server:String) -> NSURLProtectionSpace {
+	private class func protectionSpaceForServer(server:String) -> NSURLProtectionSpace {
 		let url = NSURL(string: server)
 
 		return NSURLProtectionSpace(host:url.host, port:url.port.integerValue, `protocol`:url.scheme, realm:nil,

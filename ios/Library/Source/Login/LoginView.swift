@@ -13,40 +13,39 @@
 */
 import UIKit
 
-enum AuthType: String {
+public enum AuthType: String {
 	case Email = "Email"
 	case ScreenName = "Screen Name"
-	case UserId = "userid"
+	case UserId = "User ID"
 }
 
 class LoginView: BaseWidgetView, UITextFieldDelegate {
 
-	@IBOutlet var usernameLabel: UILabel
-	@IBOutlet var usernameField: UITextField
-	@IBOutlet var passwordField: UITextField
-	@IBOutlet var rememberSwitch: UISwitch
-	@IBOutlet var loginButton: UIButton
+	@IBOutlet var userNameLabel: UILabel?
+	@IBOutlet var userNameField: UITextField?
+	@IBOutlet var passwordField: UITextField?
+	@IBOutlet var rememberSwitch: UISwitch?
+	@IBOutlet var loginButton: UIButton?
 
-	var shouldRememberCredentials: Bool {
-		return rememberSwitch.on
+	public var shouldRememberCredentials: Bool {
+		return rememberSwitch!.on
 	}
 
-	func setAuthType(authType: String) {
-		usernameLabel.text = authType
+	public func setAuthType(authType: String) {
+		userNameLabel!.text = authType
 
 		switch authType {
 		case AuthType.Email.toRaw():
-			usernameField.keyboardType = UIKeyboardType.EmailAddress
+			userNameField!.keyboardType = UIKeyboardType.EmailAddress
 		case AuthType.ScreenName.toRaw():
-			usernameField.keyboardType = UIKeyboardType.ASCIICapable
+			userNameField!.keyboardType = UIKeyboardType.ASCIICapable
 
-			let username = usernameField.text as NSString
-			if username.containsString("@") {
-				usernameField.text = username.componentsSeparatedByString("@")[0] as String
+			let userName = userNameField!.text as NSString
+			if userName.containsString("@") {
+				userNameField!.text = userName.componentsSeparatedByString("@")[0] as String
 			}
 		case AuthType.UserId.toRaw():
-			usernameLabel.text = "User ID"
-			usernameField.keyboardType = UIKeyboardType.NumberPad				
+			userNameField!.keyboardType = UIKeyboardType.NumberPad
 		default:
 			break
 		}
@@ -56,7 +55,7 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 
 
 	override func becomeFirstResponder() -> Bool {
-		return usernameField.becomeFirstResponder()
+		return userNameField!.becomeFirstResponder()
 	}
 
 
@@ -64,14 +63,14 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 
 
 	func textFieldShouldReturn(textField: UITextField!) -> Bool {
-		if textField == usernameField {
+		if textField == userNameField {
 			textField.resignFirstResponder()
-			passwordField.becomeFirstResponder()
+			passwordField!.becomeFirstResponder()
 		}
 		else if textField == passwordField {
 			textField.resignFirstResponder()
-			loginButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
 
+			loginButton!.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
 		}
 
 		return true
