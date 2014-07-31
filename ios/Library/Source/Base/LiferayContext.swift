@@ -50,7 +50,7 @@ struct LiferayContext {
 	}
 
 	mutating func createSession(username:String, password:String) -> LRSession {
-		self.currentSession = LRSession(server, username:username, password:password)
+		self.currentSession = LRSession(server:server, username:username, password:password)
 		return self.currentSession!
 	}
 
