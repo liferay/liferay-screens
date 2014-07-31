@@ -170,7 +170,6 @@
 		889CA4C119655F4B00664504 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				8827E30319759F28004977A0 /* ForgotPassword */,
 				889CA4C219655F4B00664504 /* LoginView.swift */,
 				889CA4C319655F4B00664504 /* LoginView.xib */,
 				889CA4C419655F4B00664504 /* LoginWidget.swift */,
@@ -219,6 +218,7 @@
 		88FE74D619655E1B003A7CE5 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				8827E30319759F28004977A0 /* ForgotPassword */,
 				8827E30A19759F3C004977A0 /* Services */,
 				889CA4BB19655F4B00664504 /* Base */,
 				889CA4C119655F4B00664504 /* Login */,
