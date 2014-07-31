@@ -38,7 +38,7 @@
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="kq3-Yb-Mpp">
                     <rect key="frame" x="0.0" y="183" width="228" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" backgroundImage="login-large-button.png">
                         <attributedString key="attributedTitle">
                             <fragment content="SIGN IN">
@@ -67,8 +67,8 @@
                 <outlet property="loginButton" destination="kq3-Yb-Mpp" id="xn9-Vf-qDi"/>
                 <outlet property="passwordBackground" destination="c9N-IO-KZH" id="dVs-bd-SAm"/>
                 <outlet property="passwordField" destination="XBk-dU-LXI" id="HcR-3W-tcM"/>
-                <outlet property="usernameBackground" destination="89h-kX-BJz" id="JsS-eZ-4k2"/>
-                <outlet property="usernameField" destination="lQM-e9-Lbg" id="RA0-bJ-7Zp"/>
+                <outlet property="userNameBackground" destination="89h-kX-BJz" id="dBO-jV-81c"/>
+                <outlet property="userNameField" destination="lQM-e9-Lbg" id="xz5-Bo-A1p"/>
             </connections>
             <point key="canvasLocation" x="139" y="154.5"/>
         </view>

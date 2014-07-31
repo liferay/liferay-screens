@@ -42,6 +42,8 @@ extension BaseWidget {
 			}
 
 			MBProgressHUDInstance.instance!.detailsLabelText = details?
+
+			MBProgressHUDInstance.instance!.show(true)
 		}
 	}
 

@@ -71,7 +71,7 @@ class BaseWidget: UIView, LRCallback {
 	 * onServerResult is invoked when there is an result from a communication with the Liferay server. The type of the
 	 * result will depend on the invocation done from specific subclasses.
 	 */
-	public func onServerResult(dict:[String:AnyObject!]) {
+	public func onServerResult(dict:[String:AnyObject]) {
 	}
 
     
@@ -117,36 +117,17 @@ class BaseWidget: UIView, LRCallback {
 
 	func onSuccess(result: AnyObject!) {
 		if let objcDict = result as? NSDictionary {
-			let dict = convertNSDictionaryToDictionary(objcDict)
-
-			onServerResult(dict)
+			onServerResult(result as [String:AnyObject])
 		}
 		else {
 			onServerResult(["result": result])
 		}
 	}
 
-	
-	// OTHER PRIVATE METHODS
-	
-	
-	//FIXME
-	// On Beta3 I get a crash in swift_bridgeNonVerbatimFromObjectiveCConditional
-	// when I try to cast from NSDictionary to Dictionay<> using as? operator
-	// if let dict = objcDict as? [String: AnyObject!] {
-	//		...
-	private func convertNSDictionaryToDictionary(objcDict:NSDictionary) -> [String:AnyObject] {
-		var dict: [String:AnyObject] = [:]
 
-		for entry in objcDict {
-			dict[entry.key.description] = entry.value
-		}
+	// PRIVATE METHODS
 
-		return dict
-	}
-
-
-	private func loadWidgetView() -> BaseWidgetView {
+	func loadWidgetView() -> BaseWidgetView {
 		let view = self.createWidgetViewFromNib();
 
 		view.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)

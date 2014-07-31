@@ -13,7 +13,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="XU3-jd-mfY" customClass="LoginWidget" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target">
-                                <rect key="frame" x="46" y="76" width="228" height="235"/>
+                                <rect key="frame" x="20" y="20" width="280" height="235"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="PqM-sc-XE6" customClass="ForgotPasswordWidget" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target">
+                                <rect key="frame" x="20" y="305" width="280" height="235"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -21,6 +26,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="forgotWidget" destination="PqM-sc-XE6" id="sGc-PP-FY6"/>
                         <outlet property="loginWidget" destination="XU3-jd-mfY" id="yXr-4A-pPO"/>
                     </connections>
                 </viewController>
