@@ -30,10 +30,10 @@ import UIKit
 
 	private typealias ResetClosureType = (String, LRMwuserService_v6201, (NSError)->()) -> (Void)
 
+	//TODO support resetClosure by userId
 	private let resetClosures = [
 		AuthType.Email.toRaw(): resetPasswordWithEmail,
 		AuthType.ScreenName.toRaw(): resetPasswordWithScreenName]
-	//TODO support resetClosure by userId
 
 	private var resetClosure: ResetClosureType?
 
@@ -67,6 +67,7 @@ import UIKit
 	override func onServerResult(result: [String:AnyObject]) {
 		if let resultValue:AnyObject = result["result"] {
 			let newPasswordSent = resultValue as Bool
+
 			delegate?.onForgotPasswordResponse?(newPasswordSent)
 
 			let userMessage = newPasswordSent ? "New password generated" : "New password reset link sent"
@@ -75,9 +76,11 @@ import UIKit
 		}
 		else {
 			var errorMsg:String? = result["error"]?.description
+
 			if !errorMsg {
 				errorMsg = result["exception.localizedMessage"]?.description
 			}
+
 			hideHUDWithMessage("An error happened", details: errorMsg)
 		}
     }
@@ -90,6 +93,7 @@ import UIKit
 	private func sendForgotPasswordRequest(username:String) {
 		if !creatorUsername || !creatorPassword {
 			println("ERROR: Creator username and password must be set for ForGorPasswordWidget in Interface Builder")
+
 			return
 		}
 
@@ -97,6 +101,7 @@ import UIKit
 
 		// TODO use anonymous session when SDK supports it
 		let session = LiferayContext.instance.createSession(creatorUsername!, password: creatorPassword!)
+
 		session.callback = self
 
 		let companyId: CLongLong = (LiferayContext.instance.companyId as NSNumber).longLongValue
