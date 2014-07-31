@@ -55,8 +55,8 @@ class LoginWidget: BaseWidget {
 		if let session = LRSession.sessionFromStoredCredential() {
 			LiferayContext.instance.currentSession = session
 
-			loginView().userNameField!.text = session.username
-			loginView().passwordField!.text = session.password
+			loginView().userName = session.username
+			loginView().password = session.password
 
 			delegate?.onCredentialsLoaded?(session)
 		}

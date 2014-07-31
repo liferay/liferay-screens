@@ -32,6 +32,32 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 	@IBOutlet var rememberSwitch: UISwitch?
 	@IBOutlet var loginButton: UIButton?
 
+	public var userName:String {
+		get {
+			return userNameField!.text
+		}
+		set {
+			userNameField!.text = newValue
+
+			if let placeholderValue = userNamePlaceholder {
+				placeholderValue.hideWithDelay(0.0, hide: newValue != "")
+			}
+		}
+	}
+
+	public var password:String {
+		get {
+			return passwordField!.text
+		}
+		set {
+			passwordField!.text = newValue
+
+			if let placeholderValue = passwordPlaceholder {
+				placeholderValue.hideWithDelay(0.0, hide: newValue != "")
+			}
+		}
+	}
+
 	public var shouldRememberCredentials: Bool {
 		if let rememberSwitchValue = rememberSwitch {
 			return rememberSwitchValue.on;
@@ -61,16 +87,14 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 			break
 		}
 	}
-    
-	// BaseWidgetView METHODS
 
+	//MARK: BaseWidgetView METHODS
 
 	override func becomeFirstResponder() -> Bool {
 		return userNameField!.becomeFirstResponder()
 	}
 
-
-	// UITextFieldDelegate METHODS
+	//MARK: UITextFieldDelegate METHODS
 
 	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
 		userNameBackground!.highlighted = (textField == userNameField);
