@@ -32,7 +32,7 @@ extension LRSession {
 		let credentialTuple = credentialForServer(LiferayContext.instance.server)
         
 		if let credential = credentialTuple.0 {
-			return LRSession(LiferayContext.instance.server, username:credential.user, password:credential.password)
+			return LRSession(server:LiferayContext.instance.server, username:credential.user, password:credential.password)
 		}
         
 		return nil
