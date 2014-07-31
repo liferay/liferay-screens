@@ -22,20 +22,16 @@ import UIKit
 
 @IBDesignable class SignUpWidget: BaseWidget {
 
-	@IBInspectable var creatorUsername: String?
-	@IBInspectable var creatorPassword: String?
+	@IBInspectable var anonymousApiUserName: String?
+	@IBInspectable var anonymousApiPassword: String?
+
 	@IBInspectable var autologin: Bool = true
 
 	@IBOutlet var delegate: SignUpWidgetDelegate?
 
-	private var creatingUsername: String?
-	private var creatingPassword: String?
-
 	public var authType: AuthType = AuthType.Email
 
-
-	// BaseWidget METHODS
-
+	//MARK: BaseWidget METHODS
 
 	override func onCustomAction(actionName: String?, sender: UIControl) {
 		sendSignUpWithEmailAddress(signUpView().emailAddressField!.text, password:signUpView().passwordField!.text, firstName:signUpView().firstNameField!.text, lastName:signUpView().lastNameField!.text)
@@ -71,14 +67,17 @@ import UIKit
 
 	private func sendSignUpWithEmailAddress(emailAddress:String, password:String, firstName:String, lastName:String) {
 
-		if !creatorUsername || !creatorPassword {
-			println("ERROR: Creator username and password must be set for SignUpWidget in Interface Builder")
+		if !anonymousApiUserName || !anonymousApiPassword {
+			println(
+				"ERROR: The credentials to use for anonymous API calls must be set in order to use " +
+				"SignUpWidget")
+
 			return
 		}
 
 		showHUDWithMessage("Sending sign up...", details:"Wait few seconds...")
 
-		let session = LiferayContext.instance.createSession(creatorUsername!, password: creatorPassword!)
+		let session = LiferayContext.instance.createSession(anonymousApiUserName!, password: anonymousApiPassword!)
 		session.callback = self
 
 		let service = LRUserService_v62(session: session)
@@ -91,7 +90,7 @@ import UIKit
 		switch authType {
 		case AuthType.Email:
 			creatingUsername = signUpView().emailAddressField!.text
-		case AuthType.Screenname:
+		case AuthType.ScreenName:
 			creatingUsername = signUpView().screenNameField!.text
 		case AuthType.UserId:
 			println("ERROR: sign Up with User id is not supported")
@@ -147,5 +146,8 @@ import UIKit
 
 		return ""
 	}
+
+	private var creatingUsername: String?
+	private var creatingPassword: String?
 
 }
