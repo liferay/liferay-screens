@@ -48,14 +48,14 @@ class BaseWidgetView: UIView {
 		customAction?(sender.restorationIdentifier, sender)
 	}
 
-    private func addCustomActionForControl(control: UIControl) {
-        let currentActions = control.actionsForTarget(self, forControlEvent: UIControlEvents.TouchUpInside)
-        
-        if !currentActions || currentActions?.count == 0 {
-            control.addTarget(self, action: "customActionHandler:", forControlEvents: UIControlEvents.TouchUpInside)
-        }
-    }
-    
+	private func addCustomActionForControl(control: UIControl) {
+		let currentActions = control.actionsForTarget(self, forControlEvent: UIControlEvents.TouchUpInside)
+
+		if !currentActions || currentActions?.count == 0 {
+			control.addTarget(self, action: "customActionHandler:", forControlEvents: UIControlEvents.TouchUpInside)
+		}
+	}
+
 	private func addCustomActionsForViews(parentView: UIView!) {
 		for subview:AnyObject in parentView.subviews {
 			if subview is UIControl {

@@ -25,12 +25,12 @@ import UIKit
 
 class LoginWidget: BaseWidget {
 
-    @IBOutlet var delegate: LoginWidgetDelegate?
-    
+	@IBOutlet var delegate: LoginWidgetDelegate?
+
 	public class func storedSession() -> LRSession? {
 		return LRSession.sessionFromStoredCredential()
 	}
-    
+
 	//FIXME
 	// XCode crashes with "swift_unknownWeakLoadStrong" error
 	// Storing the enum as a String seems to workaround the problem
@@ -41,16 +41,16 @@ class LoginWidget: BaseWidget {
 	//		loginView().setAuthType(authType)
 	//	}
 	// }
-    public func setAuthType(authType:AuthType) {
-        loginView().setAuthType(authType.toRaw())
-        
-        authClosure = authClosures[authType.toRaw()]
-    }
+	public func setAuthType(authType:AuthType) {
+		loginView().setAuthType(authType.toRaw())
 
-    // BaseWidget METHODS
+		authClosure = authClosures[authType.toRaw()]
+	}
+
+	//MARK: BaseWidget METHODS
 
 	override public func onCreate() {
-        setAuthType(AuthType.Email)
+		setAuthType(AuthType.Email)
 
 		if let session = LRSession.sessionFromStoredCredential() {
 			LiferayContext.instance.currentSession = session
@@ -68,14 +68,14 @@ class LoginWidget: BaseWidget {
 		}
 	}
 
-    override public func onServerError(error: NSError) {
+	override public func onServerError(error: NSError) {
 		delegate?.onLoginError?(error)
 
 		LiferayContext.instance.clearSession()
 		LRSession.removeStoredCredential()
 
 		hideHUDWithMessage("Error signing in!", details: nil)
-    }
+	}
 
 	override public func onServerResult(result: [String:AnyObject]) {
 		delegate?.onLoginResponse?(result)
@@ -87,9 +87,9 @@ class LoginWidget: BaseWidget {
 		}
 
 		hideHUDWithMessage("Sign in completed", details: nil)
-    }
+	}
 
-    // PRIVATE METHDOS
+	//MARK: PRIVATE METHDOS
 
 	private func loginView() -> LoginView {
 		return widgetView as LoginView

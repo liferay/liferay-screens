@@ -23,7 +23,7 @@ class ForgotPasswordView: BaseWidgetView, UITextFieldDelegate {
 	public func setAuthType(authType: String) {
 		userNameLabel!.text = authType
 
-        switch authType {
+		switch authType {
 		case AuthType.Email.toRaw():
 			userNameField!.keyboardType = UIKeyboardType.EmailAddress
 		case AuthType.ScreenName.toRaw():
@@ -33,17 +33,13 @@ class ForgotPasswordView: BaseWidgetView, UITextFieldDelegate {
 		}
 	}
 
-
-	// BaseWidgetView METHODS
-
+	//MARK: BaseWidgetView METHODS
 
 	override func becomeFirstResponder() -> Bool {
 		return userNameField!.becomeFirstResponder()
 	}
 
-
-	// UITextFieldDelegate METHODS
-
+	//MARK: UITextFieldDelegate METHODS
 
 	func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		textField.resignFirstResponder()

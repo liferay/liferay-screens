@@ -30,7 +30,7 @@ import UIKit
 
 	private typealias ResetClosureType = (String, LRMwuserService_v6201, (NSError)->()) -> (Void)
 
-	//TODO support resetClosure by userId
+	//TODO: support resetClosure by userId
 	private let resetClosures = [
 		AuthType.Email.toRaw(): resetPasswordWithEmail,
 		AuthType.ScreenName.toRaw(): resetPasswordWithScreenName]
@@ -44,9 +44,7 @@ import UIKit
 		resetClosure = resetClosures[authType.toRaw()]
 	}
 
-
-    // BaseWidget METHODS
-
+	//MARK: BaseWidget METHODS
 
 	override func onCreate() {
 		setAuthType(AuthType.Email)
@@ -83,7 +81,7 @@ import UIKit
 
 			hideHUDWithMessage("An error happened", details: errorMsg)
 		}
-    }
+	}
 
 
 	private func forgotPasswordView() -> ForgotPasswordView {

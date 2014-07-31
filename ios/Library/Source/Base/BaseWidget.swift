@@ -33,9 +33,7 @@ class BaseWidget: UIView, LRCallback {
 		widgetView = loadWidgetView();
 	}
 
-    
-	// DISPLAY TEMPLATE METHODS
-
+	//MARK: DISPLAY TEMPLATE METHODS
 
 	/*
 	 * onCreate is invoked after the widget is created. Override this method to set custom values for the widget
@@ -49,7 +47,7 @@ class BaseWidget: UIView, LRCallback {
 	 */
 	public func onHide() {
 	}
-    
+
 	/*
 	 * onShow is invoked when the widget is displayed on the app window. Override this method for example to reset
 	 * values when the widget is shown.
@@ -57,9 +55,7 @@ class BaseWidget: UIView, LRCallback {
 	public func onShow() {
 	}
 
-
-	// SERVER RESPONSE TEMPLATE METHODS
-
+	//MARK: SERVER RESPONSE TEMPLATE METHODS
 
 	/*
 	 * onServerError is invoked when there is an error communicating with the Liferay server.
@@ -74,9 +70,7 @@ class BaseWidget: UIView, LRCallback {
 	public func onServerResult(dict:[String:AnyObject]) {
 	}
 
-    
-	// USER ACTIONS TEMPLATE METHOD
-
+	//MARK: USER ACTIONS TEMPLATE METHOD
 
 	/*
 	 * onCustomAction is invoked when a TouchUpInside even is fired from the UI.
@@ -84,20 +78,18 @@ class BaseWidget: UIView, LRCallback {
 	public func onCustomAction(actionName:String?, sender:UIControl) {
 	}
 
-
-	// UIView METHODS
-
+	//MARK: UIView METHODS
 
 	override func awakeFromNib() {
 		self.clipsToBounds = true;
 
 		onCreate()
 	}
-    
+
 	override func becomeFirstResponder() -> Bool {
 		return widgetView!.becomeFirstResponder()
 	}
-    
+
 	override func didMoveToWindow() {
 		if (self.window) {
 			self.onShow();
@@ -107,9 +99,7 @@ class BaseWidget: UIView, LRCallback {
 		}
 	}
 
-
-	// LRCallback PRIVATE METHODS
-
+	//MARK: LRCallback PRIVATE METHODS
 
 	func onFailure(error: NSError!) {
 		onServerError(error ? error : NSError(domain: "LiferayWidget", code: 0, userInfo: nil))
@@ -124,8 +114,7 @@ class BaseWidget: UIView, LRCallback {
 		}
 	}
 
-
-	// PRIVATE METHODS
+	//MARK: PRIVATE METHODS
 
 	func loadWidgetView() -> BaseWidgetView {
 		let view = self.createWidgetViewFromNib();
