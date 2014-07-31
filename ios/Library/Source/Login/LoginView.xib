@@ -18,19 +18,19 @@
                     <rect key="frame" x="0.0" y="56" width="228" height="44"/>
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" id="lQM-e9-Lbg">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="lQM-e9-Lbg" userLabel="Username">
                     <rect key="frame" x="42" y="1" width="186" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                     <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                     <connections>
                         <outlet property="delegate" destination="iN0-l3-epB" id="Ljx-cw-S27"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="XBk-dU-LXI">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="XBk-dU-LXI" userLabel="Password">
                     <rect key="frame" x="42" y="57" width="186" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                     <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                     <connections>
                         <outlet property="delegate" destination="iN0-l3-epB" id="YVX-sf-eSF"/>
@@ -49,7 +49,7 @@
                             </fragment>
                         </attributedString>
                     </state>
-                    <state key="selected" backgroundImage="large-button-selected.png"/>
+                    <state key="selected" backgroundImage="login-large-button-selected.png"/>
                 </button>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-lock-icon.png" id="hYc-ZQ-knx">
                     <rect key="frame" x="16" y="70" width="12" height="16"/>
@@ -59,6 +59,20 @@
                     <rect key="frame" x="16" y="16" width="15" height="12"/>
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4pW-Pl-RBv">
+                    <rect key="frame" x="42" y="12" width="166" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GD9-00-IIc">
+                    <rect key="frame" x="42" y="68" width="166" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
@@ -67,16 +81,18 @@
                 <outlet property="loginButton" destination="kq3-Yb-Mpp" id="xn9-Vf-qDi"/>
                 <outlet property="passwordBackground" destination="c9N-IO-KZH" id="dVs-bd-SAm"/>
                 <outlet property="passwordField" destination="XBk-dU-LXI" id="HcR-3W-tcM"/>
+                <outlet property="passwordPlaceholder" destination="GD9-00-IIc" id="OhD-Di-UWa"/>
                 <outlet property="userNameBackground" destination="89h-kX-BJz" id="dBO-jV-81c"/>
                 <outlet property="userNameField" destination="lQM-e9-Lbg" id="xz5-Bo-A1p"/>
+                <outlet property="userNamePlaceholder" destination="4pW-Pl-RBv" id="mlI-mn-sxn"/>
             </connections>
             <point key="canvasLocation" x="139" y="154.5"/>
         </view>
     </objects>
     <resources>
-        <image name="large-button-selected.png" width="212" height="43"/>
         <image name="login-field-focused.png" width="228" height="44"/>
         <image name="login-field.png" width="228" height="44"/>
+        <image name="login-large-button-selected.png" width="217" height="42"/>
         <image name="login-large-button.png" width="228" height="44"/>
         <image name="login-lock-icon.png" width="12" height="16"/>
         <image name="login-mail-icon.png" width="15" height="12"/>

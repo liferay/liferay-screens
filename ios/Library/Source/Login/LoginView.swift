@@ -22,11 +22,15 @@ public enum AuthType: String {
 class LoginView: BaseWidgetView, UITextFieldDelegate {
 
 	@IBOutlet var userNameField: UITextField?
+	@IBOutlet var userNamePlaceholder: UILabel?
+	@IBOutlet var userNameBackground: UIImageView?
+
 	@IBOutlet var passwordField: UITextField?
+	@IBOutlet var passwordPlaceholder: UILabel?
+	@IBOutlet var passwordBackground: UIImageView?
+
 	@IBOutlet var rememberSwitch: UISwitch?
 	@IBOutlet var loginButton: UIButton?
-	@IBOutlet var userNameBackground: UIImageView?
-	@IBOutlet var passwordBackground: UIImageView?
 
 	public var shouldRememberCredentials: Bool {
 		if let rememberSwitchValue = rememberSwitch {
@@ -37,7 +41,9 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 	}
 
 	public func setAuthType(authType: String) {
-		userNameField!.placeholder = authType
+		if let placeholderValue = userNamePlaceholder {
+			placeholderValue.text = authType
+		}
 
 		switch authType {
 		case AuthType.Email.toRaw():
@@ -73,6 +79,18 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 		return true
 	}
 
+	func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+
+		let targetPlaceholder = (textField == userNameField) ? userNamePlaceholder : passwordPlaceholder
+
+		if let targetPlaceholderValue = targetPlaceholder {
+			let newText = textField.text.bridgeToObjectiveC().stringByReplacingCharactersInRange(range, withString:string)
+
+			targetPlaceholderValue.delayedHide(newText != "")
+		}
+
+		return true
+	}
 
 	func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		if textField == userNameField {
