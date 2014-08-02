@@ -154,4 +154,28 @@ class BaseWidget: UIView, LRCallback {
 		return className.componentsSeparatedByString("Widget")[0]
 	}
 
+	private func mockupImageForTheme(themeName:String) -> UIImage {
+		return loadImageFromIB(mockupImageNameForTheme(themeName))
+	}
+
+	private func mockupImageNameForTheme(themeName:String) -> String {
+		return "\(themeName)-mockup-\(widgetName().lowercaseString)"
+	}
+
+	private func signatureImageForTheme(themeName:String) -> UIImage {
+		return loadImageFromIB(signatureImageNameForTheme(themeName))
+	}
+
+	private func signatureImageNameForTheme(themeName:String) -> String {
+		return "theme-\(themeName)"
+	}
+
+	internal func loadImageFromIB(imageName:String) -> UIImage {
+		let bundle = NSBundle(forClass:self.dynamicType)
+
+		let fileName = bundle.pathForResource(imageName, ofType: "png")
+
+		return UIImage(contentsOfFile: fileName)
+	}
+
 }
