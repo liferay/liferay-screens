@@ -22,8 +22,11 @@ import QuartzCore
 
 	@IBInspectable var Theme:UIImage? {
 		didSet {
-			updateCurrentMockupImage()
-			setNeedsLayout()
+			if _runningOnInterfaceBuilder {
+				ThemeManager.instance().loadThemes()
+				updateCurrentMockupImage()
+				setNeedsLayout()
+			}
 		}
 	}
 
@@ -101,8 +104,7 @@ import QuartzCore
 	//MARK: Interface Builder management methods
 
 	override func prepareForInterfaceBuilder() {
-		_defaultMockupImage = mockupImageForTheme("default")
-		_currentMockupImage = _defaultMockupImage
+		_currentMockupImage = mockupImageForTheme("default")
 	}
 
 	override func layoutSubviews() {
@@ -156,12 +158,7 @@ import QuartzCore
 	private func createWidgetViewFromNib() -> BaseWidgetView! {
 		let viewName = widgetName() + "View"
 
-		let currentTheme = currentThemeName()
-		if !currentTheme {
-			return nil
-		}
-
-		var nibName = viewName + "-" + currentTheme!
+		var nibName = viewName + "-" + currentThemeName()
 		var nibPath = NSBundle.mainBundle().pathForResource(nibName, ofType:"nib")
 
 		if !nibPath {
@@ -184,15 +181,11 @@ import QuartzCore
 		return foundView
 	}
 
-	private func currentThemeName() -> String? {
-		var result: String? = nil
+	func currentThemeName() -> String {
+		var result = "default"
 
 		if (Theme) {
 			let selectedSignatureData = UIImagePNGRepresentation(Theme!)!
-
-			if (_runningOnInterfaceBuilder) {
-				ThemeManager.instance().loadThemes()
-			}
 
 			for themeName in ThemeManager.instance().installedThemes() {
 				let installedSignatureImage = signatureImageForTheme(themeName)
@@ -211,7 +204,7 @@ import QuartzCore
 	private func updateCurrentMockupImage() {
 		let themeName = currentThemeName()
 
-		_currentMockupImage = (themeName) ? mockupImageForTheme(themeName!) : _defaultMockupImage
+		_currentMockupImage = mockupImageForTheme(themeName)
 	}
 
 	private func widgetName() -> String {
@@ -258,6 +251,5 @@ import QuartzCore
 	}()
 
 	private var _currentMockupImage:UIImage?
-	private var _defaultMockupImage:UIImage?
 
 }
