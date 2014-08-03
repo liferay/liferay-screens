@@ -127,7 +127,7 @@ import QuartzCore
 		}
 	}
 
-	//MARK: LRCallback PRIVATE METHODS
+	//MARK: LRCallback
 
 	func onFailure(error: NSError!) {
 		onServerError(error ? error : NSError(domain: "LiferayWidget", code: 0, userInfo: nil))
@@ -142,9 +142,9 @@ import QuartzCore
 		}
 	}
 
-	//MARK: PRIVATE METHODS
+	//MARK: Internal
 
-	func loadWidgetView() -> BaseWidgetView? {
+	internal func loadWidgetView() -> BaseWidgetView? {
 		let view = self.createWidgetViewFromNib();
 
 		if let viewValue = view {
@@ -159,35 +159,7 @@ import QuartzCore
 		return nil;
 	}
 
-	private func createWidgetViewFromNib() -> BaseWidgetView? {
-		let viewName = widgetName() + "View"
-
-		let bundle = NSBundle(forClass:self.dynamicType)
-
-		var nibName = viewName + "-" + currentThemeName()
-		var nibPath = bundle.pathForResource(nibName, ofType:"nib")
-
-		if !nibPath {
-			nibName = viewName
-			nibPath = bundle.pathForResource(nibName, ofType:"nib")
-
-			if !nibPath {
-				println("ERROR: Xib file \(nibName) was not found")
-				return nil
-			}
-		}
-
-		let views = bundle.loadNibNamed(nibName, owner:self, options:nil)
-		assert(views.count > 0, "Xib seems to be malformed. There're no views inside it");
-
-		let foundView = (views[0] as BaseWidgetView)
-
-		//??		foundView.backgroundColor = UIColor.clearColor()
-
-		return foundView
-	}
-
-	func currentThemeName() -> String {
+	internal func currentThemeName() -> String {
 		var result = "default"
 
 		if (Theme) {
@@ -205,12 +177,6 @@ import QuartzCore
 		}
 
 		return result
-	}
-
-	private func updateCurrentPreviewImage() {
-		let themeName = currentThemeName()
-
-		_currentPreviewImage = previewImageForTheme(themeName)
 	}
 
 	internal func widgetName() -> String {
@@ -244,6 +210,40 @@ import QuartzCore
 		let fileName = bundle.pathForResource(imageName, ofType: "png")
 
 		return UIImage(contentsOfFile: fileName)
+	}
+
+	private func createWidgetViewFromNib() -> BaseWidgetView? {
+		let viewName = widgetName() + "View"
+
+		let bundle = NSBundle(forClass:self.dynamicType)
+
+		var nibName = viewName + "-" + currentThemeName()
+		var nibPath = bundle.pathForResource(nibName, ofType:"nib")
+
+		if !nibPath {
+			nibName = viewName
+			nibPath = bundle.pathForResource(nibName, ofType:"nib")
+
+			if !nibPath {
+				println("ERROR: Xib file \(nibName) was not found")
+				return nil
+			}
+		}
+
+		let views = bundle.loadNibNamed(nibName, owner:self, options:nil)
+		assert(views.count > 0, "Xib seems to be malformed. There're no views inside it");
+
+		let foundView = (views[0] as BaseWidgetView)
+
+		//??		foundView.backgroundColor = UIColor.clearColor()
+
+		return foundView
+	}
+
+	private func updateCurrentPreviewImage() {
+		let themeName = currentThemeName()
+
+		_currentPreviewImage = previewImageForTheme(themeName)
 	}
 
 	private var _runningOnInterfaceBuilder:Bool {

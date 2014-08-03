@@ -27,18 +27,6 @@ class BaseWidget_theme_Tests: XCTestCase {
 		super.tearDown()
 	}
 
-	func test_PreviewImageNameForTheme_ShouldReturnThewImageName() {
-		XCTAssertEqual("xyz-preview-login", loginWidget!.previewImageNameForTheme("xyz"))
-	}
-
-	func test_SignatureImageNameForTheme_ShouldReturnTheImageName() {
-		XCTAssertEqual("theme-xyz", loginWidget!.signatureImageNameForTheme("xyz"))
-	}
-
-	func test_WidgetName_ShouldReturnTheWidgetName() {
-		XCTAssertEqual("Login", loginWidget!.widgetName())
-	}
-
 	func test_CurrentThemeName_ShouldReturnDefault_WhenNoThemeIsSelected() {
 		XCTAssertEqual("default", loginWidget!.currentThemeName())
 	}
@@ -67,6 +55,16 @@ class BaseWidget_theme_Tests: XCTestCase {
 		XCTAssertEqual(view!, loginWidget!.subviews[0] as BaseWidgetView)
 	}
 
+	func test_PreviewImageNameForTheme_ShouldReturnThewImageName() {
+		XCTAssertEqual("xyz-preview-login", loginWidget!.previewImageNameForTheme("xyz"))
+	}
 
+	func test_SignatureImageNameForTheme_ShouldReturnTheImageName() {
+		XCTAssertEqual("theme-xyz", loginWidget!.signatureImageNameForTheme("xyz"))
+	}
+
+	func test_WidgetName_ShouldReturnTheWidgetName() {
+		XCTAssertEqual("Login", loginWidget!.widgetName())
+	}
 
 }
