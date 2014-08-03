@@ -144,26 +144,32 @@ import QuartzCore
 
 	//MARK: PRIVATE METHODS
 
-	func loadWidgetView() -> BaseWidgetView {
+	func loadWidgetView() -> BaseWidgetView? {
 		let view = self.createWidgetViewFromNib();
 
-		view.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-		view.customAction = self.onCustomAction;
+		if let viewValue = view {
+			viewValue.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+			viewValue.customAction = self.onCustomAction;
 
-		self.addSubview(view)
+			self.addSubview(viewValue)
 
-		return view;
+			return viewValue
+		}
+
+		return nil;
 	}
 
-	private func createWidgetViewFromNib() -> BaseWidgetView! {
+	private func createWidgetViewFromNib() -> BaseWidgetView? {
 		let viewName = widgetName() + "View"
 
+		let bundle = NSBundle(forClass:self.dynamicType)
+
 		var nibName = viewName + "-" + currentThemeName()
-		var nibPath = NSBundle.mainBundle().pathForResource(nibName, ofType:"nib")
+		var nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
 		if !nibPath {
 			nibName = viewName
-			nibPath = NSBundle.mainBundle().pathForResource(nibName, ofType:"nib")
+			nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
 			if !nibPath {
 				println("ERROR: Xib file \(nibName) was not found")
@@ -171,7 +177,7 @@ import QuartzCore
 			}
 		}
 
-		let views = NSBundle.mainBundle().loadNibNamed(nibName, owner:self, options:nil)
+		let views = bundle.loadNibNamed(nibName, owner:self, options:nil)
 		assert(views.count > 0, "Xib seems to be malformed. There're no views inside it");
 
 		let foundView = (views[0] as BaseWidgetView)
