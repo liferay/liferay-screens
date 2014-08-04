@@ -30,10 +30,10 @@ import UIKit
 
 	private typealias ResetClosureType = (String, LRMwuserService_v6201, (NSError)->()) -> (Void)
 
-	//TODO support resetClosure by userId
 	private let resetClosures = [
 		AuthType.Email.toRaw(): resetPasswordWithEmail,
-		AuthType.ScreenName.toRaw(): resetPasswordWithScreenName]
+		AuthType.ScreenName.toRaw(): resetPasswordWithScreenName,
+		AuthType.UserId.toRaw(): resetPasswordWithUserId]
 
 	private var resetClosure: ResetClosureType?
 
@@ -131,6 +131,19 @@ func resetPasswordWithScreenName(screenName:String, service:LRMwuserService_v620
 	var outError: NSError?
 
 	service.sendPasswordByScreenNameWithCompanyId(companyId, screenName: screenName, serviceContext:nil, error: &outError)
+
+	if let error = outError {
+		onError(error)
+	}
+}
+
+func resetPasswordWithUserId(userId:String, service:LRMwuserService_v6201, onError:(NSError)->()) {
+	let companyId = (LiferayContext.instance.companyId as NSNumber).longLongValue
+	let userIdValue = (userId.toInt()! as NSNumber).longLongValue
+
+	var outError: NSError?
+
+	service.sendPasswordByUserIdWithCompanyId(companyId, userId: userIdValue, serviceContext: nil, error: &outError)
 
 	if let error = outError {
 		onError(error)

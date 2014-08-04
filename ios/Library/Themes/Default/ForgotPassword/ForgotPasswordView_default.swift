@@ -37,6 +37,8 @@ class ForgotPasswordView_default: ForgotPasswordView, UITextFieldDelegate {
 			userNameField!.keyboardType = UIKeyboardType.EmailAddress
 		case AuthType.ScreenName.toRaw():
 			userNameField!.keyboardType = UIKeyboardType.ASCIICapable
+		case AuthType.UserId.toRaw():
+			userNameField!.keyboardType = UIKeyboardType.NumberPad
 		default:
 			break
 		}
