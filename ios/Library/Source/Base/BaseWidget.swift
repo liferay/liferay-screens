@@ -114,9 +114,7 @@ import QuartzCore
 			if let currentPreviewImageValue = _currentPreviewImage {
 				let imageRect = CGRectMake(0, 0, currentPreviewImageValue.size.width, currentPreviewImageValue.size.height)
 
-				_previewLayer.bounds = imageRect
-				_previewLayer.position = CGPointMake(bounds.size.width/2.0, bounds.size.height/2.0)
-
+				_previewLayer.frame = imageRect
 				_previewLayer.contents = currentPreviewImageValue.CGImage
 
 				if _previewLayer.superlayer != layer {
