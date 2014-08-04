@@ -94,8 +94,7 @@ Donec auctor neque sed pretium luctus.</string>
                 <outlet property="subtitleLabel" destination="aN6-ti-9Kq" id="Bey-ZJ-7Ot"/>
                 <outlet property="titleLabel" destination="f7D-kx-dsJ" id="mTR-Rx-5w7"/>
                 <outlet property="userNameField" destination="lQM-e9-Lbg" id="m0y-XP-cHd"/>
-                <outlet property="userNameLabel" destination="xol-61-Xcz" id="QG7-pA-NQW"/>
-                <outlet property="usernamePlaceholder" destination="xol-61-Xcz" id="03q-VA-hPq"/>
+                <outlet property="userNamePlaceholder" destination="xol-61-Xcz" id="imZ-LO-gf5"/>
             </connections>
             <point key="canvasLocation" x="198" y="198.5"/>
         </view>

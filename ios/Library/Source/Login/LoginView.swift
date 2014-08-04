@@ -19,80 +19,27 @@ public enum AuthType: String {
 	case UserId = "User ID"
 }
 
-class LoginView: BaseWidgetView, UITextFieldDelegate {
-
-	@IBOutlet var userNameField: UITextField?
-	@IBOutlet var passwordField: UITextField?
-	@IBOutlet var rememberSwitch: UISwitch?
-	@IBOutlet var loginButton: UIButton?
-	@IBOutlet var userNameBackground: UIImageView?
-	@IBOutlet var passwordBackground: UIImageView?
+class LoginView: BaseWidgetView {
 
 	public var shouldRememberCredentials: Bool {
-		if let rememberSwitchValue = rememberSwitch {
-			return rememberSwitchValue.on;
-		}
-
 		return true
 	}
 
 	public func setAuthType(authType: String) {
-		userNameField!.placeholder = authType
+	}
 
-		switch authType {
-		case AuthType.Email.toRaw():
-			userNameField!.keyboardType = UIKeyboardType.EmailAddress
-		case AuthType.ScreenName.toRaw():
-			userNameField!.keyboardType = UIKeyboardType.ASCIICapable
+	public func getUserName() -> String {
+		return ""
+	}
 
-			let userName = userNameField!.text as NSString
-			if userName.containsString("@") {
-				userNameField!.text = userName.componentsSeparatedByString("@")[0] as String
-			}
-		case AuthType.UserId.toRaw():
-			userNameField!.keyboardType = UIKeyboardType.NumberPad
-		default:
-			break
-		}
+	public func getPassword() -> String {
+		return ""
 	}
 
 	public func setUserName(userName: String) {
-		userNameField!.text = userName
 	}
 
 	public func setPassword(password: String) {
-		passwordField!.text = password
-	}
-
-	// BaseWidgetView METHODS
-
-
-	override func becomeFirstResponder() -> Bool {
-		return userNameField!.becomeFirstResponder()
-	}
-
-
-	// UITextFieldDelegate METHODS
-
-	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
-		userNameBackground!.highlighted = (textField == userNameField);
-		passwordBackground!.highlighted = (textField == passwordField);
-
-		return true
-	}
-
-	func textFieldShouldReturn(textField: UITextField!) -> Bool {
-		if textField == userNameField {
-			textField.resignFirstResponder()
-			passwordField!.becomeFirstResponder()
-		}
-		else if textField == passwordField {
-			textField.resignFirstResponder()
-
-			loginButton!.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
-		}
-
-		return true
 	}
 
 }

@@ -64,7 +64,7 @@ class LoginWidget: BaseWidget {
 
 	override public func onCustomAction(actionName: String?, sender: UIControl) {
 		if actionName == "login-action" {
-			sendLoginWithUserName(loginView().userNameField!.text, password:loginView().passwordField!.text)
+			sendLoginWithUserName(loginView().getUserName(), password:loginView().getPassword())
 		}
 	}
 
