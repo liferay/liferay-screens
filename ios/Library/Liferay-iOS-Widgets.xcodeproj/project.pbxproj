@@ -218,10 +218,10 @@
 		88FE74D619655E1B003A7CE5 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				8827E30319759F28004977A0 /* ForgotPassword */,
 				8827E30A19759F3C004977A0 /* Services */,
 				889CA4BB19655F4B00664504 /* Base */,
 				889CA4C119655F4B00664504 /* Login */,
+				8827E30319759F28004977A0 /* ForgotPassword */,
 				889CA4C519655F4B00664504 /* Util */,
 				88AEA25C19657C3100CD130B /* liferay-context-sample.plist */,
 				889CA4CF19655F7A00664504 /* liferay-ios-widgets.h */,
