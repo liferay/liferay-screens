@@ -77,6 +77,17 @@ import QuartzCore
 	public func onCustomAction(actionName:String?, sender:UIControl) {
 	}
 
+	//MARK: Operations template methods
+
+	public func onStartOperation() {
+
+	}
+
+	public func onFinishOperation() {
+
+	}
+
+
 	//MARK: UIView METHODS
 
 	override func awakeFromNib() {
@@ -215,6 +226,18 @@ import QuartzCore
 		let fileName = bundle.pathForResource(imageName, ofType: "png")
 
 		return UIImage(contentsOfFile: fileName)
+	}
+
+	internal func startOperationWithMessage(message:String, details:String? = nil) {
+		showHUDWithMessage(message, details: details)
+		onStartOperation()
+		widgetView?.onStartOperation()
+	}
+
+	internal func finishOperationWithMessage(message:String, details:String? = nil) {
+		hideHUDWithMessage(message, details: details)
+		onFinishOperation()
+		widgetView?.onFinishOperation()
 	}
 
 	private func createWidgetViewFromNib() -> BaseWidgetView? {
