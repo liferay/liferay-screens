@@ -160,16 +160,16 @@ import QuartzCore
 	internal func currentThemeName() -> String {
 		var result = "default"
 
-		if (Theme) {
-			let selectedSignatureData = UIImagePNGRepresentation(Theme!)!
-
+		if Theme {
+			let selectedSignatureImage = Theme!
 			for themeName in ThemeManager.instance().installedThemes() {
-				let installedSignatureImage = signatureImageForTheme(themeName)
-				let installedSignatureData = UIImagePNGRepresentation(installedSignatureImage)!
+				if themeName != "default" {
+					let installedSignatureImage = signatureImageForTheme(themeName)
 
-				if installedSignatureData.isEqualToData(selectedSignatureData) {
-					result = themeName
-					break;
+					if installedSignatureImage.isBinaryEquals(selectedSignatureImage) {
+						result = themeName
+						break;
+					}
 				}
 			}
 		}
