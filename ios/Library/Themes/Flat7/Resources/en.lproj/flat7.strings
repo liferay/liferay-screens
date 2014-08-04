@@ -4,4 +4,10 @@
 "theme-flat7-login-password"="Password";
 "theme-flat7-login-login"="Login";
 
-
+"flat7-signup-title"="Welcome";
+"flat7-signup-subtitle"="Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nDonec auctor neque sed pretium luctus.";
+"flat7-signup-first-name"="First Name";
+"flat7-signup-last-name"="Last Name";
+"flat7-signup-email"="Email Address";
+"flat7-signup-password"="Password";
+"flat7-signup-button"="Login";
