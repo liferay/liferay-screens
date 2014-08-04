@@ -123,6 +123,7 @@
 				88E4604E19759FEB002C26C6 /* Services */,
 				88832F8819656B3F00E3DF9F /* Base */,
 				88832F9219656B3F00E3DF9F /* Login */,
+				88E4604719759FE4002C26C6 /* ForgotPassword */,
 				88832F9619656B3F00E3DF9F /* Util */,
 				8835607B196AED36002AB222 /* liferay-context-sample.plist */,
 				88832F9119656B3F00E3DF9F /* liferay-ios-widgets.h */,
@@ -145,7 +146,6 @@
 		88832F9219656B3F00E3DF9F /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				88E4604719759FE4002C26C6 /* ForgotPassword */,
 				88832F9319656B3F00E3DF9F /* LoginView.swift */,
 				88832F9419656B3F00E3DF9F /* LoginView.xib */,
 				88832F9519656B3F00E3DF9F /* LoginWidget.swift */,
