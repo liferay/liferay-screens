@@ -17,10 +17,22 @@ class SignUpView_flat7: SignUpView {
 
 	@IBOutlet var titleLabel: UILabel?
 	@IBOutlet var subtitleLabel: UILabel?
+
 	@IBOutlet var firstNamePlaceholder: UILabel?
 	@IBOutlet var lastNamePlaceholder: UILabel?
 	@IBOutlet var emailAddressPlaceholder: UILabel?
 	@IBOutlet var passwordPlaceholder: UILabel?
+
+	@IBOutlet var emailAddressField: UITextField?
+	@IBOutlet var passwordField: UITextField?
+	@IBOutlet var firstNameField: UITextField?
+	@IBOutlet var lastNameField: UITextField?
+	@IBOutlet var signUpButton: UIButton?
+
+	@IBOutlet var emailAddressBackground: UIImageView?
+	@IBOutlet var passwordBackground: UIImageView?
+	@IBOutlet var firstNameBackground: UIImageView?
+	@IBOutlet var lastNameBackground: UIImageView?
 
 	override public func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
