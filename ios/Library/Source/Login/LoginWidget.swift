@@ -41,16 +41,16 @@ class LoginWidget: BaseWidget {
 	//		loginView().setAuthType(authType)
 	//	}
 	// }
-    public func setAuthType(authType:AuthType) {
-        loginView().setAuthType(authType.toRaw())
+	public func setAuthType(authType:String) {
+        loginView().setAuthType(authType)
         
-        authClosure = authClosures[authType.toRaw()]
+        authClosure = authClosures[authType]
     }
 
     // BaseWidget METHODS
 
 	override public func onCreate() {
-        setAuthType(AuthType.Email)
+        setAuthType(AuthType.Email.toRaw())
 
         loginView().setUserName("test@liferay.com")
 
