@@ -10,11 +10,11 @@ import Foundation
 
 class SignUpViewController: UIViewController, SignUpWidgetDelegate {
 
-	@IBOutlet var widget: SignUpWidget!
+	@IBOutlet var widget: SignUpWidget?
 
 	override func viewDidLoad() {
-		widget.delegate = self
-		widget.becomeFirstResponder()
+		widget!.delegate = self
+		widget!.becomeFirstResponder()
 	}
 
 	func onSignUpError(error: NSError)  {
