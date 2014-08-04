@@ -50,6 +50,10 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 			break
 		}
 	}
+
+	public func setUserName(userName: String) {
+		userNameField!.text = userName
+	}
     
 	// BaseWidgetView METHODS
 
