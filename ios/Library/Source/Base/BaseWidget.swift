@@ -24,7 +24,7 @@ import QuartzCore
 		didSet {
 			if _runningOnInterfaceBuilder {
 				ThemeManager.instance().loadThemes()
-				updateCurrentMockupImage()
+				updateCurrentPreviewImage()
 				setNeedsLayout()
 			}
 		}
@@ -104,24 +104,24 @@ import QuartzCore
 	//MARK: Interface Builder management methods
 
 	override func prepareForInterfaceBuilder() {
-		_currentMockupImage = mockupImageForTheme("default")
+		_currentPreviewImage = previewImageForTheme("default")
 	}
 
 	override func layoutSubviews() {
 		super.layoutSubviews()
 
 		if _runningOnInterfaceBuilder {
-			if let currentMockupImageValue = _currentMockupImage {
-				let imageRect = CGRectMake(0, 0, currentMockupImageValue.size.width, currentMockupImageValue.size.height)
+			if let currentPreviewImageValue = _currentPreviewImage {
+				let imageRect = CGRectMake(0, 0, currentPreviewImageValue.size.width, currentPreviewImageValue.size.height)
 
-				_mockupLayer.bounds = imageRect
-				_mockupLayer.position = CGPointMake(bounds.size.width/2.0, bounds.size.height/2.0)
+				_previewLayer.bounds = imageRect
+				_previewLayer.position = CGPointMake(bounds.size.width/2.0, bounds.size.height/2.0)
 
-				_mockupLayer.contents = currentMockupImageValue.CGImage
+				_previewLayer.contents = currentPreviewImageValue.CGImage
 
-				if _mockupLayer.superlayer != layer {
+				if _previewLayer.superlayer != layer {
 					// add to the hierarchy the first time
-					layer.addSublayer(_mockupLayer)
+					layer.addSublayer(_previewLayer)
 				}
 			}
 		}
@@ -207,10 +207,10 @@ import QuartzCore
 		return result
 	}
 
-	private func updateCurrentMockupImage() {
+	private func updateCurrentPreviewImage() {
 		let themeName = currentThemeName()
 
-		_currentMockupImage = mockupImageForTheme(themeName)
+		_currentPreviewImage = previewImageForTheme(themeName)
 	}
 
 	internal func widgetName() -> String {
@@ -222,12 +222,12 @@ import QuartzCore
 		return className.componentsSeparatedByString("Widget")[0]
 	}
 
-	internal func mockupImageForTheme(themeName:String) -> UIImage {
-		return loadImageFromIB(mockupImageNameForTheme(themeName))
+	internal func previewImageForTheme(themeName:String) -> UIImage {
+		return loadImageFromIB(previewImageNameForTheme(themeName))
 	}
 
-	internal func mockupImageNameForTheme(themeName:String) -> String {
-		return "\(themeName)-mockup-\(widgetName().lowercaseString)"
+	internal func previewImageNameForTheme(themeName:String) -> String {
+		return "\(themeName)-preview-\(widgetName().lowercaseString)"
 	}
 
 	internal func signatureImageForTheme(themeName:String) -> UIImage {
@@ -252,10 +252,10 @@ import QuartzCore
 		}
 	}
 
-	private lazy var _mockupLayer: CALayer = {
+	private lazy var _previewLayer: CALayer = {
 		return CALayer()
 	}()
 
-	private var _currentMockupImage:UIImage?
+	private var _currentPreviewImage:UIImage?
 
 }
