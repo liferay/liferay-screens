@@ -23,7 +23,6 @@ import QuartzCore
 	@IBInspectable var Theme:UIImage? {
 		didSet {
 			if _runningOnInterfaceBuilder {
-				ThemeManager.instance().loadThemes()
 				updateCurrentPreviewImage()
 				setNeedsLayout()
 			}
@@ -104,7 +103,15 @@ import QuartzCore
 	//MARK: Interface Builder management methods
 
 	override func prepareForInterfaceBuilder() {
-		_currentPreviewImage = previewImageForTheme("default")
+		_runningOnInterfaceBuilder = true
+
+		if Theme {
+			updateCurrentPreviewImage()
+		}
+
+		if !_currentPreviewImage {
+			_currentPreviewImage = previewImageForTheme("default")
+		}
 	}
 
 	override func layoutSubviews() {
@@ -239,16 +246,14 @@ import QuartzCore
 	}
 
 	private func updateCurrentPreviewImage() {
+		ThemeManager.instance().loadThemes()
+
 		let themeName = currentThemeName()
 
 		_currentPreviewImage = previewImageForTheme(themeName)
 	}
 
-	private var _runningOnInterfaceBuilder:Bool {
-		get {
-			return widgetView == nil
-		}
-	}
+	private var _runningOnInterfaceBuilder:Bool = false
 
 	private lazy var _previewLayer: CALayer = {
 		return CALayer()
