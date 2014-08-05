@@ -15,11 +15,11 @@ import Foundation
 
 extension NSBundle {
 
-	public func pathsForResourcesWithPrefix(prefix:String, suffix:String) -> Array<String> {
+	public func pathsForResourcesWithPrefix(prefix:String, suffix:String) -> [String] {
 
 		// Inspired by http://stackoverflow.com/a/5860015
 
-		var filePaths:Array<String> = []
+		var filePaths:[String] = []
 
 		let enumerator = NSFileManager.defaultManager().enumeratorAtPath(self.bundlePath)
 
