@@ -88,8 +88,13 @@ class LoginView_default: LoginView {
 	// MARK: UITextFieldDelegate
 
 	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
-		userNameBackground!.highlighted = (textField == userNameField);
-		passwordBackground!.highlighted = (textField == passwordField);
+		if userNameBackground {
+			userNameBackground!.highlighted = (textField == userNameField);
+		}
+
+		if passwordBackground {
+			passwordBackground!.highlighted = (textField == passwordField);
+		}
 
 		return true
 	}

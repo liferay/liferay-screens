@@ -46,6 +46,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="passwordField" destination="lQM-e9-Lbg" id="u8n-4m-Pvo"/>
+                <outlet property="userNameField" destination="XBk-dU-LXI" id="Md6-hV-wN6"/>
+            </connections>
             <point key="canvasLocation" x="317" y="183.5"/>
         </view>
     </objects>
