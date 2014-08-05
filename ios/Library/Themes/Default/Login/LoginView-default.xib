@@ -23,18 +23,12 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                     <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
-                    <connections>
-                        <outlet property="delegate" destination="iN0-l3-epB" id="Ljx-cw-S27"/>
-                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="XBk-dU-LXI">
                     <rect key="frame" x="42" y="57" width="186" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                     <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
-                    <connections>
-                        <outlet property="delegate" destination="iN0-l3-epB" id="YVX-sf-eSF"/>
-                    </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="kq3-Yb-Mpp">
                     <rect key="frame" x="0.0" y="183" width="228" height="44"/>
