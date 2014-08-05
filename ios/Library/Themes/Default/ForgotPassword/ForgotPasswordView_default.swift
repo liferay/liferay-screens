@@ -50,7 +50,7 @@ class ForgotPasswordView_default: ForgotPasswordView {
 		return userNameField!.becomeFirstResponder()
 	}
 
-	override internal func nextResponderForResponder(responder:UIResponder) -> UIResponder {
+	override internal func nextResponderForView(view:UIView) -> UIResponder {
 		return requestPasswordButton!
 	}
 

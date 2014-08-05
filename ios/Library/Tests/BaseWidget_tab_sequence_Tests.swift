@@ -31,7 +31,7 @@ class BaseWidget_tab_sequence_Tests: XCTestCase {
 	}
 
 /* Doesn't work because isFirstResponder always return false
-	func test_TabSequence_ShouldBeConfigured_WhenNextResponderForResponderIsOverriden() {
+	func test_TabSequence_ShouldBeConfigured_WhenNextResponderForViewIsOverriden() {
 		view!.textFieldShouldReturn(view!.firstNameField)
 		XCTAssertFalse(view!.firstNameField!.isFirstResponder())
 		XCTAssertTrue(view!.lastNameField!.editing)

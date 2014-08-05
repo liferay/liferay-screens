@@ -62,7 +62,7 @@ class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	func textFieldShouldReturn(textField: UITextField!) -> Bool {
 
-		let nextResponder = nextResponderForResponder(textField)
+		let nextResponder = nextResponderForView(textField)
 
 		if nextResponder != textField {
 			if textField.canResignFirstResponder() {
@@ -80,8 +80,8 @@ class BaseWidgetView: UIView, UITextFieldDelegate {
 		return true
 	}
 
-	internal func nextResponderForResponder(responder:UIResponder) -> UIResponder {
-		return responder
+	internal func nextResponderForView(view:UIView) -> UIResponder {
+		return view
 	}
 
 	func customActionHandler(sender: UIControl!) {
