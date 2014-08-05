@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class SignUpView_default: SignUpView, UITextFieldDelegate {
+class SignUpView_default: SignUpView {
 
 	@IBOutlet var emailAddressField: UITextField?
 	@IBOutlet var passwordField: UITextField?
@@ -59,6 +59,23 @@ class SignUpView_default: SignUpView, UITextFieldDelegate {
 		return firstNameField!.becomeFirstResponder()
 	}
 
+	override internal func nextResponderForResponder(responder:UIResponder) -> UIResponder {
+		switch responder {
+		case firstNameField!:
+			return lastNameField!
+		case lastNameField!:
+			return emailAddressField!
+		case emailAddressField!:
+			return passwordField!
+		case passwordField!:
+			return signUpButton!
+		default:
+			break
+		}
+
+		return super.nextResponderForResponder(responder)
+	}
+
 	// MARK: UITextFieldDelegate
 
 	func textFieldDidBeginEditing(textField: UITextField!) {
@@ -66,25 +83,6 @@ class SignUpView_default: SignUpView, UITextFieldDelegate {
 		passwordBackground!.highlighted = (textField == passwordField)
 		firstNameBackground!.highlighted = (textField == firstNameField)
 		lastNameBackground!.highlighted = (textField == lastNameField)
-	}
-
-	func textFieldShouldReturn(textField: UITextField!) -> Bool {
-		textField.resignFirstResponder()
-
-		switch textField {
-		case firstNameField!:
-			lastNameField!.becomeFirstResponder()
-		case lastNameField!:
-			emailAddressField!.becomeFirstResponder()
-		case emailAddressField!:
-			passwordField!.becomeFirstResponder()
-		case passwordField!:
-			signUpButton!.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
-		default:
-			return false
-		}
-
-		return true
 	}
 
 }

@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class LoginView_default: LoginView, UITextFieldDelegate {
+class LoginView_default: LoginView {
 
 	@IBOutlet var userNameField: UITextField?
 	@IBOutlet var passwordField: UITextField?
@@ -72,24 +72,24 @@ class LoginView_default: LoginView, UITextFieldDelegate {
 		return userNameField!.becomeFirstResponder()
 	}
 
+	override internal func nextResponderForResponder(responder:UIResponder) -> UIResponder {
+		switch responder {
+		case userNameField!:
+			return passwordField!
+		case passwordField!:
+			return loginButton!
+		default:
+			break
+		}
+
+		return super.nextResponderForResponder(responder)
+	}
+
 	// MARK: UITextFieldDelegate
 
 	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
 		userNameBackground!.highlighted = (textField == userNameField);
 		passwordBackground!.highlighted = (textField == passwordField);
-
-		return true
-	}
-
-	func textFieldShouldReturn(textField: UITextField!) -> Bool {
-		if textField == userNameField {
-			textField.resignFirstResponder()
-			passwordField!.becomeFirstResponder()
-		}
-		else if textField == passwordField {
-			textField.resignFirstResponder()
-			loginButton!.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
-		}
 
 		return true
 	}
