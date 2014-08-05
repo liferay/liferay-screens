@@ -39,7 +39,7 @@ class BaseWidgetView: UIView {
 	}
 
 	override func awakeFromNib() {
-		addCustomActionsForViews(self)
+		setUpViewHierarchy(self)
 		onSetTranslations()
 		onCreate();
 	}
@@ -65,12 +65,18 @@ class BaseWidgetView: UIView {
             control.addTarget(self, action: "customActionHandler:", forControlEvents: UIControlEvents.TouchUpInside)
         }
     }
-    
-	private func addCustomActionsForViews(parentView: UIView!) {
-		for subview:AnyObject in parentView.subviews {
-			if subview is UIControl {
-				addCustomActionForControl(subview as UIControl)
-			}
+
+	private func setUpViewHierarchy(parentView: UIView) {
+		setUpView(parentView)
+
+		for subview:UIView in parentView.subviews as [UIView] {
+			setUpViewHierarchy(subview)
+		}
+	}
+
+	private func setUpView(view: UIView) {
+		if let control = view as? UIControl {
+			addCustomActionForControl(control)
 		}
 	}
 
