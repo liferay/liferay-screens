@@ -60,8 +60,32 @@ class BaseWidgetView: UIView, UITextFieldDelegate {
 		return super.becomeFirstResponder()
 	}
 
+	func textFieldShouldReturn(textField: UITextField!) -> Bool {
+
+		let nextResponder = nextResponderForResponder(textField)
+
+		if nextResponder != textField {
+			if textField.canResignFirstResponder() {
+				textField.resignFirstResponder()
+
+				if let button = nextResponder as? UIButton {
+					button.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+				}
+				else if nextResponder.canBecomeFirstResponder() {
+					nextResponder.becomeFirstResponder()
+				}
+			}
+		}
+
+		return true
+	}
+
+	internal func nextResponderForResponder(responder:UIResponder) -> UIResponder {
+		return responder
+	}
+
 	func customActionHandler(sender: UIControl!) {
-		self.endEditing(true)
+		endEditing(true)
 
 		customAction?(sender.restorationIdentifier, sender)
 	}
