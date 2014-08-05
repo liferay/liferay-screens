@@ -16,7 +16,7 @@ import UIKit
 /*!
  * BaseWidgetView is the base class from which all Widget's View classes must inherit.
  */
-class BaseWidgetView: UIView {
+class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	typealias CustomActionType = (String?, UIControl) -> (Void)
 
@@ -36,6 +36,10 @@ class BaseWidgetView: UIView {
 	}
 
 	public func onFinishOperation() {
+	}
+
+	public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
+		return true
 	}
 
 	public func onSetCustomActionForControl(control: UIControl) -> Bool {
@@ -79,6 +83,15 @@ class BaseWidgetView: UIView {
 	private func setUpView(view: UIView) {
 		if let control = view as? UIControl {
 			addCustomActionForControl(control)
+		}
+		addDefaultDelegatesForView(view)
+	}
+
+	private func addDefaultDelegatesForView(view:UIView) {
+		if let textField = view as? UITextField {
+			if onSetDefaultDelegate(self, view:textField) {
+				textField.delegate = self
+			}
 		}
 	}
 
