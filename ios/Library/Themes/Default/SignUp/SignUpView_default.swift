@@ -59,23 +59,6 @@ class SignUpView_default: SignUpView {
 		return firstNameField!.becomeFirstResponder()
 	}
 
-	override internal func nextResponderForResponder(responder:UIResponder) -> UIResponder {
-		switch responder {
-		case firstNameField!:
-			return lastNameField!
-		case lastNameField!:
-			return emailAddressField!
-		case emailAddressField!:
-			return passwordField!
-		case passwordField!:
-			return signUpButton!
-		default:
-			break
-		}
-
-		return super.nextResponderForResponder(responder)
-	}
-
 	// MARK: UITextFieldDelegate
 
 	func textFieldDidBeginEditing(textField: UITextField!) {

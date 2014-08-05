@@ -72,19 +72,6 @@ class LoginView_default: LoginView {
 		return userNameField!.becomeFirstResponder()
 	}
 
-	override internal func nextResponderForResponder(responder:UIResponder) -> UIResponder {
-		switch responder {
-		case userNameField!:
-			return passwordField!
-		case passwordField!:
-			return loginButton!
-		default:
-			break
-		}
-
-		return super.nextResponderForResponder(responder)
-	}
-
 	// MARK: UITextFieldDelegate
 
 	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
