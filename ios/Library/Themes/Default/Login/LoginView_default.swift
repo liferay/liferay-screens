@@ -66,12 +66,6 @@ public class LoginView_default: LoginView {
 		passwordField!.text = password
 	}
 
-	// MARK: BaseWidgetView
-
-	override public func becomeFirstResponder() -> Bool {
-		return userNameField!.becomeFirstResponder()
-	}
-
 	// MARK: UITextFieldDelegate
 
 	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {

@@ -44,14 +44,7 @@ public class ForgotPasswordView_default: ForgotPasswordView {
 		}
 	}
 
-	// MARK: BaseWidgetView
 
-	override public func becomeFirstResponder() -> Bool {
-		return userNameField!.becomeFirstResponder()
-	}
-
-	override internal func nextResponderForView(view:UIView) -> UIResponder {
-		return requestPasswordButton!
 	}
 
 }
