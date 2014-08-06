@@ -13,6 +13,26 @@
 		8875B023198FB173006955BA /* UIImage+Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8875B022198FB173006955BA /* UIImage+Themes.m */; };
 		8875B024198FB173006955BA /* UIImage+Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8875B022198FB173006955BA /* UIImage+Themes.m */; };
 		888CE10B19923142001DCA6A /* BaseWidget_basic_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE10A19923142001DCA6A /* BaseWidget_basic_Tests.swift */; };
+		888CE11D19924D4A001DCA6A /* flat7-preview-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11919924D4A001DCA6A /* flat7-preview-signup@2x.png */; };
+		888CE11E19924D4A001DCA6A /* flat7-preview-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11A19924D4A001DCA6A /* flat7-preview-signup.png */; };
+		888CE11F19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11B19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png */; };
+		888CE12019924D4A001DCA6A /* flat7-preview-forgotpassword.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11C19924D4A001DCA6A /* flat7-preview-forgotpassword.png */; };
+		888CE12119924D51001DCA6A /* flat7-preview-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11919924D4A001DCA6A /* flat7-preview-signup@2x.png */; };
+		888CE12219924D51001DCA6A /* flat7-preview-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11A19924D4A001DCA6A /* flat7-preview-signup.png */; };
+		888CE12319924D51001DCA6A /* flat7-preview-forgotpassword@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11B19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png */; };
+		888CE12419924D51001DCA6A /* flat7-preview-forgotpassword.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11C19924D4A001DCA6A /* flat7-preview-forgotpassword.png */; };
+		888CE12B19924D74001DCA6A /* ForgotPasswordView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888CE12619924D74001DCA6A /* ForgotPasswordView-flat7.xib */; };
+		888CE12C19924D74001DCA6A /* ForgotPasswordView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888CE12619924D74001DCA6A /* ForgotPasswordView-flat7.xib */; };
+		888CE12D19924D74001DCA6A /* ForgotPasswordView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE12719924D74001DCA6A /* ForgotPasswordView_flat7.swift */; };
+		888CE12E19924D74001DCA6A /* ForgotPasswordView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE12719924D74001DCA6A /* ForgotPasswordView_flat7.swift */; };
+		888CE12F19924D74001DCA6A /* SignUpView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888CE12919924D74001DCA6A /* SignUpView-flat7.xib */; };
+		888CE13019924D74001DCA6A /* SignUpView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888CE12919924D74001DCA6A /* SignUpView-flat7.xib */; };
+		888CE13119924D74001DCA6A /* SignUpView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE12A19924D74001DCA6A /* SignUpView_flat7.swift */; };
+		888CE13219924D74001DCA6A /* SignUpView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE12A19924D74001DCA6A /* SignUpView_flat7.swift */; };
+		888CE13519924D93001DCA6A /* default-preview-forgotpassword@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE13319924D93001DCA6A /* default-preview-forgotpassword@2x.png */; };
+		888CE13619924D93001DCA6A /* default-preview-forgotpassword@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE13319924D93001DCA6A /* default-preview-forgotpassword@2x.png */; };
+		888CE13719924D93001DCA6A /* default-preview-forgotpassword.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE13419924D93001DCA6A /* default-preview-forgotpassword.png */; };
+		888CE13819924D93001DCA6A /* default-preview-forgotpassword.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE13419924D93001DCA6A /* default-preview-forgotpassword.png */; };
 		888D7704198FDAD30052C39C /* LoginView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888D76F7198FDAD30052C39C /* LoginView-flat7.xib */; };
 		888D7705198FDAD30052C39C /* LoginView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888D76F7198FDAD30052C39C /* LoginView-flat7.xib */; };
 		888D7706198FDAD30052C39C /* LoginView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D76F8198FDAD30052C39C /* LoginView_flat7.swift */; };
@@ -184,6 +204,16 @@
 		8875B021198FB173006955BA /* UIImage+Themes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Themes.h"; sourceTree = "<group>"; };
 		8875B022198FB173006955BA /* UIImage+Themes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Themes.m"; sourceTree = "<group>"; };
 		888CE10A19923142001DCA6A /* BaseWidget_basic_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidget_basic_Tests.swift; sourceTree = "<group>"; };
+		888CE11919924D4A001DCA6A /* flat7-preview-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-signup@2x.png"; sourceTree = "<group>"; };
+		888CE11A19924D4A001DCA6A /* flat7-preview-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-signup.png"; sourceTree = "<group>"; };
+		888CE11B19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-forgotpassword@2x.png"; sourceTree = "<group>"; };
+		888CE11C19924D4A001DCA6A /* flat7-preview-forgotpassword.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-forgotpassword.png"; sourceTree = "<group>"; };
+		888CE12619924D74001DCA6A /* ForgotPasswordView-flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ForgotPasswordView-flat7.xib"; sourceTree = "<group>"; };
+		888CE12719924D74001DCA6A /* ForgotPasswordView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView_flat7.swift; sourceTree = "<group>"; };
+		888CE12919924D74001DCA6A /* SignUpView-flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SignUpView-flat7.xib"; sourceTree = "<group>"; };
+		888CE12A19924D74001DCA6A /* SignUpView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_flat7.swift; sourceTree = "<group>"; };
+		888CE13319924D93001DCA6A /* default-preview-forgotpassword@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-forgotpassword@2x.png"; sourceTree = "<group>"; };
+		888CE13419924D93001DCA6A /* default-preview-forgotpassword.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-forgotpassword.png"; sourceTree = "<group>"; };
 		888D76F7198FDAD30052C39C /* LoginView-flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginView-flat7.xib"; sourceTree = "<group>"; };
 		888D76F8198FDAD30052C39C /* LoginView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_flat7.swift; sourceTree = "<group>"; };
 		888D76FB198FDAD30052C39C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/flat7.strings; sourceTree = "<group>"; };
@@ -298,11 +328,31 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		888CE12519924D74001DCA6A /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				888CE12619924D74001DCA6A /* ForgotPasswordView-flat7.xib */,
+				888CE12719924D74001DCA6A /* ForgotPasswordView_flat7.swift */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		888CE12819924D74001DCA6A /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				888CE12919924D74001DCA6A /* SignUpView-flat7.xib */,
+				888CE12A19924D74001DCA6A /* SignUpView_flat7.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		888D76F5198FDAD30052C39C /* Flat7 */ = {
 			isa = PBXGroup;
 			children = (
+				888CE12519924D74001DCA6A /* ForgotPassword */,
 				888D76F6198FDAD30052C39C /* Login */,
 				888D76F9198FDAD30052C39C /* Resources */,
+				888CE12819924D74001DCA6A /* SignUp */,
 			);
 			path = Flat7;
 			sourceTree = "<group>";
@@ -319,13 +369,17 @@
 		888D76F9198FDAD30052C39C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				888D76FA198FDAD30052C39C /* flat7.strings */,
 				888D76FD198FDAD30052C39C /* flat7-button.png */,
 				888D76FE198FDAD30052C39C /* flat7-button@2x.png */,
 				888D76FF198FDAD30052C39C /* flat7-field.png */,
 				888D7700198FDAD30052C39C /* flat7-field@2x.png */,
+				888CE11C19924D4A001DCA6A /* flat7-preview-forgotpassword.png */,
+				888CE11B19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png */,
 				888D7701198FDAD30052C39C /* flat7-preview-login.png */,
 				888D7702198FDAD30052C39C /* flat7-preview-login@2x.png */,
+				888CE11A19924D4A001DCA6A /* flat7-preview-signup.png */,
+				888CE11919924D4A001DCA6A /* flat7-preview-signup@2x.png */,
+				888D76FA198FDAD30052C39C /* flat7.strings */,
 				888D7703198FDAD30052C39C /* theme-flat7.png */,
 			);
 			path = Resources;
@@ -393,6 +447,8 @@
 				888D777F198FEFFE0052C39C /* default-lock-icon@2x.png */,
 				888D7780198FEFFE0052C39C /* default-mail-icon.png */,
 				888D7781198FEFFE0052C39C /* default-mail-icon@2x.png */,
+				888CE13419924D93001DCA6A /* default-preview-forgotpassword.png */,
+				888CE13319924D93001DCA6A /* default-preview-forgotpassword@2x.png */,
 				888D7782198FEFFE0052C39C /* default-preview-login.png */,
 				888D7783198FEFFE0052C39C /* default-preview-login@2x.png */,
 				888D7784198FEFFE0052C39C /* default-preview-signup.png */,
@@ -629,29 +685,37 @@
 				888D770F198FDAD30052C39C /* flat7-field.png in Resources */,
 				888D77D119903F060052C39C /* ForgotPasswordView-default.xib in Resources */,
 				888D7715198FDAD30052C39C /* flat7-preview-login@2x.png in Resources */,
+				888CE13619924D93001DCA6A /* default-preview-forgotpassword@2x.png in Resources */,
 				888D778C198FEFFE0052C39C /* default-field-focused@2x.png in Resources */,
 				88999AC7198EE5CB00E746A6 /* xyz-preview-login@2x.png in Resources */,
 				888D7717198FDAD30052C39C /* theme-flat7.png in Resources */,
 				888D7792198FEFFE0052C39C /* default-large-button-selected.png in Resources */,
+				888CE12C19924D74001DCA6A /* ForgotPasswordView-flat7.xib in Resources */,
 				888D7790198FEFFE0052C39C /* default-field@2x.png in Resources */,
 				888D77AA198FEFFE0052C39C /* default-user-icon.png in Resources */,
 				888D7709198FDAD30052C39C /* flat7.strings in Resources */,
+				888CE12319924D51001DCA6A /* flat7-preview-forgotpassword@2x.png in Resources */,
 				888FAFAB196AE8EF00057B26 /* TestsInfo.plist in Resources */,
 				888D779C198FEFFE0052C39C /* default-lock-icon@2x.png in Resources */,
+				888CE13019924D74001DCA6A /* SignUpView-flat7.xib in Resources */,
 				888D7798198FEFFE0052C39C /* default-large-button@2x.png in Resources */,
 				888D7794198FEFFE0052C39C /* default-large-button-selected@2x.png in Resources */,
 				888D7713198FDAD30052C39C /* flat7-preview-login.png in Resources */,
 				888D77A4198FEFFE0052C39C /* default-preview-login@2x.png in Resources */,
 				888D779E198FEFFE0052C39C /* default-mail-icon.png in Resources */,
+				888CE13819924D93001DCA6A /* default-preview-forgotpassword.png in Resources */,
 				88999AC6198EE5CB00E746A6 /* xyz-preview-login.png in Resources */,
+				888CE12419924D51001DCA6A /* flat7-preview-forgotpassword.png in Resources */,
 				888D77D519903F060052C39C /* SignUpView-default.xib in Resources */,
 				888D770D198FDAD30052C39C /* flat7-button@2x.png in Resources */,
 				888D77AC198FEFFE0052C39C /* default-user-icon@2x.png in Resources */,
+				888CE12219924D51001DCA6A /* flat7-preview-signup.png in Resources */,
 				888D77AE198FEFFE0052C39C /* theme-default.png in Resources */,
 				88999AC5198EE5CB00E746A6 /* theme-xyz.png in Resources */,
 				88999AC3198EE5CB00E746A6 /* LoginView-xyz.xib in Resources */,
 				888D7711198FDAD30052C39C /* flat7-field@2x.png in Resources */,
 				88E4F2741990FCA700E69261 /* LoginView-default.xib in Resources */,
+				888CE12119924D51001DCA6A /* flat7-preview-signup@2x.png in Resources */,
 				888D770B198FDAD30052C39C /* flat7-button.png in Resources */,
 				88F648B7198D304B003A8FD9 /* liferay-context-sample.plist in Resources */,
 				888D779A198FEFFE0052C39C /* default-lock-icon.png in Resources */,
@@ -668,8 +732,10 @@
 			files = (
 				888D7716198FDAD30052C39C /* theme-flat7.png in Resources */,
 				888D7799198FEFFE0052C39C /* default-lock-icon.png in Resources */,
+				888CE13719924D93001DCA6A /* default-preview-forgotpassword.png in Resources */,
 				888D770E198FDAD30052C39C /* flat7-field.png in Resources */,
 				888D770C198FDAD30052C39C /* flat7-button@2x.png in Resources */,
+				888CE12F19924D74001DCA6A /* SignUpView-flat7.xib in Resources */,
 				888D77D019903F060052C39C /* ForgotPasswordView-default.xib in Resources */,
 				888D7793198FEFFE0052C39C /* default-large-button-selected@2x.png in Resources */,
 				888D77A7198FEFFE0052C39C /* default-preview-signup@2x.png in Resources */,
@@ -680,10 +746,15 @@
 				88E4F2731990FCA700E69261 /* LoginView-default.xib in Resources */,
 				888D7797198FEFFE0052C39C /* default-large-button@2x.png in Resources */,
 				888D779F198FEFFE0052C39C /* default-mail-icon@2x.png in Resources */,
+				888CE11F19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png in Resources */,
+				888CE12B19924D74001DCA6A /* ForgotPasswordView-flat7.xib in Resources */,
+				888CE11E19924D4A001DCA6A /* flat7-preview-signup.png in Resources */,
 				888D779B198FEFFE0052C39C /* default-lock-icon@2x.png in Resources */,
+				888CE12019924D4A001DCA6A /* flat7-preview-forgotpassword.png in Resources */,
 				888D77AB198FEFFE0052C39C /* default-user-icon@2x.png in Resources */,
 				888D77A9198FEFFE0052C39C /* default-user-icon.png in Resources */,
 				888D77A3198FEFFE0052C39C /* default-preview-login@2x.png in Resources */,
+				888CE11D19924D4A001DCA6A /* flat7-preview-signup@2x.png in Resources */,
 				888D7791198FEFFE0052C39C /* default-large-button-selected.png in Resources */,
 				888D778B198FEFFE0052C39C /* default-field-focused@2x.png in Resources */,
 				888D7789198FEFFE0052C39C /* default-field-focused.png in Resources */,
@@ -699,6 +770,7 @@
 				888D7795198FEFFE0052C39C /* default-large-button.png in Resources */,
 				888D770A198FDAD30052C39C /* flat7-button.png in Resources */,
 				888D7704198FDAD30052C39C /* LoginView-flat7.xib in Resources */,
+				888CE13519924D93001DCA6A /* default-preview-forgotpassword@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,6 +821,7 @@
 				88F648B1198D300A003A8FD9 /* LoginView.swift in Sources */,
 				888D7707198FDAD30052C39C /* LoginView_flat7.swift in Sources */,
 				88F648B4198D301E003A8FD9 /* BaseWidget+progress.swift in Sources */,
+				888CE12E19924D74001DCA6A /* ForgotPasswordView_flat7.swift in Sources */,
 				888CE10B19923142001DCA6A /* BaseWidget_basic_Tests.swift in Sources */,
 				88A632C319863FB300684926 /* LRMwuserService_v6201.m in Sources */,
 				888D77D319903F060052C39C /* ForgotPasswordView_default.swift in Sources */,
@@ -758,6 +831,7 @@
 				88E4F27619910E4000E69261 /* ForgotPasswordWidget.swift in Sources */,
 				88F648A1198D2DE8003A8FD9 /* BaseWidget_theme_Tests.swift in Sources */,
 				88F648A8198D2E1B003A8FD9 /* NSBundle+Paths.swift in Sources */,
+				888CE13219924D74001DCA6A /* SignUpView_flat7.swift in Sources */,
 				888F61F8198FD3240082786B /* SignUpWidget.swift in Sources */,
 				88E4F27719912B5900E69261 /* LoginView_default.swift in Sources */,
 				999BC69F19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
@@ -793,6 +867,8 @@
 				888F61FA198FD3740082786B /* NSLocale+CurrentLocale.swift in Sources */,
 				888D77D619903F060052C39C /* SignUpView_default.swift in Sources */,
 				88F648A7198D2E1B003A8FD9 /* NSBundle+Paths.swift in Sources */,
+				888CE13119924D74001DCA6A /* SignUpView_flat7.swift in Sources */,
+				888CE12D19924D74001DCA6A /* ForgotPasswordView_flat7.swift in Sources */,
 				889CA4C719655F4B00664504 /* BaseWidget+progress.swift in Sources */,
 				999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 			);
