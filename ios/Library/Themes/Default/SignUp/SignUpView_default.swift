@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class SignUpView_default: SignUpView {
+public class SignUpView_default: SignUpView {
 
 	@IBOutlet var emailAddressField: UITextField?
 	@IBOutlet var passwordField: UITextField?

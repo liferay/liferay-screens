@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class ForgotPasswordView_default: ForgotPasswordView {
+public class ForgotPasswordView_default: ForgotPasswordView {
 
 	@IBOutlet var userNameLabel: UILabel?
 	@IBOutlet var userNameField: UITextField?

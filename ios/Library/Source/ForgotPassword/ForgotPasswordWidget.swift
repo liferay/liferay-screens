@@ -20,7 +20,7 @@ import UIKit
 
 }
 
-@IBDesignable class ForgotPasswordWidget: BaseWidget {
+@IBDesignable public class ForgotPasswordWidget: BaseWidget {
 
 	@IBInspectable var anonymousApiUserName: String?
 	@IBInspectable var anonymousApiPassword: String?

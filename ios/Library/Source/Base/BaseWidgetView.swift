@@ -16,7 +16,7 @@ import UIKit
 /*!
  * BaseWidgetView is the base class from which all Widget's View classes must inherit.
  */
-class BaseWidgetView: UIView, UITextFieldDelegate {
+public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	typealias CustomActionType = (String?, UIControl) -> (Void)
 

@@ -19,7 +19,7 @@ public enum AuthType: String {
 	case UserId = "User ID"
 }
 
-class LoginView: BaseWidgetView {
+public class LoginView: BaseWidgetView {
 
 	public var shouldRememberCredentials: Bool {
 		return true

@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class LoginView_default: LoginView {
+public class LoginView_default: LoginView {
 
 	@IBOutlet var userNameField: UITextField?
 	@IBOutlet var passwordField: UITextField?

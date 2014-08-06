@@ -20,7 +20,7 @@ import UIKit
 
 }
 
-@IBDesignable class SignUpWidget: BaseWidget {
+@IBDesignable public class SignUpWidget: BaseWidget {
 
 	@IBInspectable var anonymousApiUserName: String?
 	@IBInspectable var anonymousApiPassword: String?

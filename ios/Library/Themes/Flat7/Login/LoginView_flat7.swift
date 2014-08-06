@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class LoginView_flat7: LoginView_default {
+public class LoginView_flat7: LoginView_default {
 
 	@IBOutlet var titleLabel: UILabel?
 	@IBOutlet var subtitleLabel: UILabel?
