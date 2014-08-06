@@ -15,7 +15,7 @@ import UIKit
 
 public class ForgotPasswordView_default: ForgotPasswordView {
 
-	@IBOutlet var userNameLabel: UILabel?
+	@IBOutlet var userNameIcon: UIImageView?
 	@IBOutlet var userNameField: UITextField?
 	@IBOutlet var requestPasswordButton: UIButton?
 
@@ -29,22 +29,14 @@ public class ForgotPasswordView_default: ForgotPasswordView {
 		userNameField!.text = userName
 	}
 
-	override public func setAuthType(authType: String) {
-		userNameLabel!.text = authType
-
-        switch authType {
-		case AuthType.Email.toRaw():
-			userNameField!.keyboardType = UIKeyboardType.EmailAddress
-		case AuthType.ScreenName.toRaw():
-			userNameField!.keyboardType = UIKeyboardType.ASCIICapable
-		case AuthType.UserId.toRaw():
-			userNameField!.keyboardType = UIKeyboardType.NumberPad
-		default:
-			break
-		}
+	override public func setAuthType(authTypeDescription: String) {
+		LoginView_default.setStylesForAuthType(authTypeDescription, userNameField: userNameField, userNameIcon: userNameIcon)
 	}
 
+	// MARK: UITextFieldDelegate
 
+	func textFieldDidBeginEditing(textField: UITextField!) {
+		userNameField!.highlighted = (textField == userNameField)
 	}
 
 }
