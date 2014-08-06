@@ -17,6 +17,11 @@ public enum AuthType: String {
 	case Email = "Email Address"
 	case ScreenName = "Screen Name"
 	case UserId = "User ID"
+
+	public static let KeyboardTypes = [
+		AuthType.Email: UIKeyboardType.EmailAddress,
+		AuthType.ScreenName: UIKeyboardType.ASCIICapable,
+		AuthType.UserId: UIKeyboardType.NumberPad]
 }
 
 public class LoginView: BaseWidgetView {
@@ -25,7 +30,7 @@ public class LoginView: BaseWidgetView {
 		return true
 	}
 
-	public func setAuthType(authType: String) {
+	public func setAuthType(authTypeDescription: String) {
 	}
 
 	public func getUserName() -> String {

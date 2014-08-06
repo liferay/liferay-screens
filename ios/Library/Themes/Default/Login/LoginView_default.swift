@@ -15,12 +15,28 @@ import UIKit
 
 public class LoginView_default: LoginView {
 
+	@IBOutlet var userNameIcon: UIImageView?
 	@IBOutlet var userNameField: UITextField?
 	@IBOutlet var passwordField: UITextField?
 	@IBOutlet var rememberSwitch: UISwitch?
 	@IBOutlet var loginButton: UIButton?
 	@IBOutlet var userNameBackground: UIImageView?
 	@IBOutlet var passwordBackground: UIImageView?
+
+	// MARK: Static methods
+
+	public class func setStylesForAuthType(authTypeDescription:String, userNameField:UITextField!, userNameIcon:UIImageView!) {
+
+		userNameField!.placeholder = authTypeDescription
+
+		if let authType = AuthType.fromRaw(authTypeDescription) {
+			userNameField!.keyboardType = AuthType.KeyboardTypes[authType]!
+			userNameIcon?.image = UIImage(named:"default-\(AuthIconTypes[authType]!)-icon")
+		}
+		else {
+			println("ERROR: Wrong auth type description \(authTypeDescription)")
+		}
+	}
 
 	override public var shouldRememberCredentials: Bool {
 		if let rememberSwitchValue = rememberSwitch {
@@ -30,24 +46,8 @@ public class LoginView_default: LoginView {
 		return super.shouldRememberCredentials
 	}
 
-	override public func setAuthType(authType: String) {
-		userNameField!.placeholder = authType
-
-		switch authType {
-		case AuthType.Email.toRaw():
-			userNameField!.keyboardType = UIKeyboardType.EmailAddress
-		case AuthType.ScreenName.toRaw():
-			userNameField!.keyboardType = UIKeyboardType.ASCIICapable
-
-			let userName = userNameField!.text as NSString
-			if userName.containsString("@") {
-				userNameField!.text = userName.componentsSeparatedByString("@")[0] as String
-			}
-		case AuthType.UserId.toRaw():
-			userNameField!.keyboardType = UIKeyboardType.NumberPad
-		default:
-			break
-		}
+	override public func setAuthType(authTypeDescription: String) {
+		LoginView_default.setStylesForAuthType(authTypeDescription, userNameField: userNameField, userNameIcon: userNameIcon)
 	}
 
 	override public func getUserName() -> String {
@@ -81,3 +81,9 @@ public class LoginView_default: LoginView {
 	}
 
 }
+
+//FIXME Should be static class constant, not supported yet
+private let AuthIconTypes = [
+	AuthType.Email: "mail",
+	AuthType.ScreenName: "user",
+	AuthType.UserId: "user"]
