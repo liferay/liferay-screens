@@ -38,7 +38,7 @@ class LoginView_flat7: LoginView_default {
 		passwordField!.placeholder = "";
 	}
 
-	override func setUserName(userName: String) {
+	override public func setUserName(userName: String) {
 		super.setUserName(userName)
 		showPlaceholder(userNamePlaceholder!, show:userName == "")
 	}

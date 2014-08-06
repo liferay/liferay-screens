@@ -90,7 +90,8 @@ import QuartzCore
 
 	//MARK: UIView METHODS
 
-	override func awakeFromNib() {
+	override public func awakeFromNib() {
+		super.awakeFromNib()
 		self.clipsToBounds = true;
 
 		widgetView = loadWidgetView();
@@ -98,11 +99,11 @@ import QuartzCore
 		onCreate()
 	}
 
-	override func becomeFirstResponder() -> Bool {
+	override public func becomeFirstResponder() -> Bool {
 		return widgetView!.becomeFirstResponder()
 	}
 
-	override func didMoveToWindow() {
+	override public func didMoveToWindow() {
 		if (self.window != nil) {
 			self.onShow();
 		}
@@ -113,7 +114,7 @@ import QuartzCore
 
 	//MARK: Interface Builder management methods
 
-	override func prepareForInterfaceBuilder() {
+	override public func prepareForInterfaceBuilder() {
 		_runningOnInterfaceBuilder = true
 
 		if Theme != nil {
@@ -125,7 +126,7 @@ import QuartzCore
 		}
 	}
 
-	override func layoutSubviews() {
+	override public func layoutSubviews() {
 		super.layoutSubviews()
 
 		if _runningOnInterfaceBuilder {
@@ -145,11 +146,11 @@ import QuartzCore
 
 	//MARK: LRCallback
 
-	func onFailure(error: NSError!) {
+	public func onFailure(error: NSError!) {
 		onServerError(error ? error : NSError(domain: "LiferayWidget", code: 0, userInfo: nil))
 	}
 
-	func onSuccess(result: AnyObject!) {
+	public func onSuccess(result: AnyObject!) {
 		if let objcDict = result as? NSDictionary {
 			onServerResult(result as [String:AnyObject])
 		}

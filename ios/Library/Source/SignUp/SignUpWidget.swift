@@ -33,17 +33,17 @@ import UIKit
 
 	//MARK: BaseWidget METHODS
 
-	override func onCustomAction(actionName: String?, sender: UIControl) {
+	override public func onCustomAction(actionName: String?, sender: UIControl) {
 		sendSignUpWithEmailAddress(signUpView().getEmailAddress(), password:signUpView().getPassword(), firstName:signUpView().getFirstName(), lastName:signUpView().getLastName())
 	}
 
-	override func onServerError(error: NSError) {
+	override public func onServerError(error: NSError) {
 		delegate?.onSignUpError?(error)
 
 		finishOperationWithMessage("Error signing up!", details: nil)
 	}
 
-	override func onServerResult(result: [String:AnyObject]) {
+	override public func onServerResult(result: [String:AnyObject]) {
 		delegate?.onSignUpResponse?(result)
 
 		if autologin {

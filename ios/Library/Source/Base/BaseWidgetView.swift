@@ -46,7 +46,7 @@ class BaseWidgetView: UIView, UITextFieldDelegate {
 		return true
 	}
 
-	override func awakeFromNib() {
+	override public func awakeFromNib() {
 		setUpViewHierarchy(self)
 		onSetTranslations()
 		onCreate();
@@ -56,14 +56,14 @@ class BaseWidgetView: UIView, UITextFieldDelegate {
 	* becomeFirstResponder is invoked to make the widget view the first responder. Override this method to set one
 	* child component as first responder.
 	*/
-	override func becomeFirstResponder() -> Bool {
+	override public func becomeFirstResponder() -> Bool {
 		if let firstView = viewWithTag(1) {
 			return firstView.becomeFirstResponder()
 		}
 		return super.becomeFirstResponder()
 	}
 
-	func textFieldShouldReturn(textField: UITextField!) -> Bool {
+	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
 
 		let nextResponder = nextResponderForView(textField)
 

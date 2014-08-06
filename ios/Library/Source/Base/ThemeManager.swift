@@ -30,7 +30,7 @@ class ThemeManager: NSObject {
 		return Static.instance!
 	}
 
-	required init() {
+	required override public init() {
 		super.init()
 		loadThemes()
 	}

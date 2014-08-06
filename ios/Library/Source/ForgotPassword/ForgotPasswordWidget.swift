@@ -46,7 +46,7 @@ import UIKit
 
     // MARK: BaseWidget METHODS
 
-	override func onCreate() {
+	override public func onCreate() {
 		setAuthType(AuthType.Email.toRaw())
 
 		if let userName = LiferayContext.instance.currentSession?.username {
@@ -54,17 +54,17 @@ import UIKit
 		}
 	}
 
-	override func onCustomAction(actionName: String?, sender: UIControl) {
+	override public func onCustomAction(actionName: String?, sender: UIControl) {
 		sendForgotPasswordRequest(forgotPasswordView().getUserName())
 	}
 
-	override func onServerError(error: NSError) {
+	override public func onServerError(error: NSError) {
 		delegate?.onForgotPasswordError?(error)
 
 		finishOperationWithMessage("Error requesting password!", details: error.localizedDescription)
 	}
 
-	override func onServerResult(result: [String:AnyObject]) {
+	override public func onServerResult(result: [String:AnyObject]) {
 		if let resultValue:AnyObject = result["result"] {
 			let newPasswordSent = resultValue as Bool
 

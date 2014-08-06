@@ -55,7 +55,7 @@ class SignUpView_default: SignUpView {
 
 	// MARK: BaseWidgetView
 
-	override func becomeFirstResponder() -> Bool {
+	override public func becomeFirstResponder() -> Bool {
 		return firstNameField!.becomeFirstResponder()
 	}
 
