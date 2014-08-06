@@ -38,7 +38,7 @@
                             <fragment content="SIGN IN">
                                 <attributes>
                                     <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                    <font key="NSFont" size="16" name="HelveticaNeue"/>
                                 </attributes>
                             </fragment>
                         </attributedString>
