@@ -56,7 +56,7 @@ extension BaseWidget {
 			if let instance = MBProgressHUDInstance.instance {
 				instance.mode = MBProgressHUDModeText
 				instance.labelText = message
-				instance.detailsLabelText = details ? details : ""
+				instance.detailsLabelText = details ?? ""
 
 				let len: Int =
                     countElements(instance.labelText as String) + countElements(instance.detailsLabelText as String)
