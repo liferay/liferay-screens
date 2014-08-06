@@ -49,7 +49,7 @@ public class ThemeManager: NSObject {
 		let widgetNames = pngFileNames.map {(var fileName) -> String in
 			let prefixRange = NSMakeRange(0, 6)
 
-			var name = fileName.bridgeToObjectiveC().stringByReplacingCharactersInRange(prefixRange, withString:"").stringByDeletingPathExtension
+			var name = (fileName as NSString).stringByReplacingCharactersInRange(prefixRange, withString:"").stringByDeletingPathExtension
 
 			return name.lowercaseString
 		}

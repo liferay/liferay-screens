@@ -45,7 +45,7 @@ public class LoginView_flat7: LoginView_default {
 
 	func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
 
-		let newText = textField.text.bridgeToObjectiveC().stringByReplacingCharactersInRange(range, withString:string)
+		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
 
 		let placeHolder = textField == userNameField ? userNamePlaceholder : passwordPlaceholder
 

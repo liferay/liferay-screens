@@ -47,7 +47,7 @@ public class SignUpView_flat7: SignUpView_default {
 
 	func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
 
-		let newText = textField.text.bridgeToObjectiveC().stringByReplacingCharactersInRange(range, withString:string)
+		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
 
 		var placeholder:UILabel = firstNamePlaceholder!
 
