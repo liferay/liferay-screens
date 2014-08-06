@@ -103,7 +103,7 @@ import QuartzCore
 	}
 
 	override func didMoveToWindow() {
-		if (self.window) {
+		if (self.window != nil) {
 			self.onShow();
 		}
 		else {
@@ -116,11 +116,11 @@ import QuartzCore
 	override func prepareForInterfaceBuilder() {
 		_runningOnInterfaceBuilder = true
 
-		if Theme {
+		if Theme != nil {
 			updateCurrentPreviewImage()
 		}
 
-		if !_currentPreviewImage {
+		if _currentPreviewImage == nil {
 			_currentPreviewImage = previewImageForTheme("default")
 		}
 	}
@@ -163,7 +163,7 @@ import QuartzCore
 	internal func loadWidgetView() -> BaseWidgetView? {
 		let view = self.createWidgetViewFromNib();
 
-		if let viewValue = view as? BaseWidgetView {
+		if let viewValue = view {
 			viewValue.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
 			viewValue.customAction = self.onCustomAction;
 
@@ -178,7 +178,7 @@ import QuartzCore
 	internal func currentThemeName() -> String {
 		var result = "default"
 
-		if Theme {
+		if (Theme != nil) {
 			let selectedSignatureImage = Theme!
 			for themeName in ThemeManager.instance().installedThemes() {
 				if themeName != "default" {

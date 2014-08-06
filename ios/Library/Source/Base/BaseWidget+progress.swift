@@ -33,11 +33,11 @@ extension BaseWidget {
      */
 	public func showHUDWithMessage(message:String?, details:String?) {
 		synchronized(Lock.token) {
-			if !MBProgressHUDInstance.instance {
+			if MBProgressHUDInstance.instance == nil {
 				MBProgressHUDInstance.instance = MBProgressHUD.showHUDAddedTo(self.rootView(self), animated:true)
 			}
 
-			if message {
+			if message != nil {
 				MBProgressHUDInstance.instance!.labelText = message
 			}
 
@@ -70,7 +70,7 @@ extension BaseWidget {
     // PRIVATE METHODS
 
     private func rootView(currentView:UIView) -> UIView {
-        if !currentView.superview {
+        if currentView.superview == nil {
             return currentView;
         }
         

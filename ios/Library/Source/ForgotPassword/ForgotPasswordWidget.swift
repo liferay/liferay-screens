@@ -77,7 +77,7 @@ import UIKit
 		else {
 			var errorMsg:String? = result["error"]?.description
 
-			if !errorMsg {
+			if errorMsg == nil {
 				errorMsg = result["exception.localizedMessage"]?.description
 			}
 
@@ -91,7 +91,7 @@ import UIKit
 	}
 
 	private func sendForgotPasswordRequest(username:String) {
-		if !anonymousApiUserName || !anonymousApiPassword {
+		if anonymousApiUserName == nil || anonymousApiPassword == nil {
 			println(
 				"ERROR: The credentials to use for anonymous API calls must be set in order to use " +
 					"ForgotPasswordWidget")

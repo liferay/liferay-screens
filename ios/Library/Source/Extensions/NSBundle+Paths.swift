@@ -26,14 +26,14 @@ extension NSBundle {
 		var filePath: String? = enumerator.nextObject() as? String
 
 		do {
-			if filePath {
-				if filePath!.hasPrefix(prefix) && filePath!.hasSuffix(suffix) {
-					filePaths += filePath!
+			if let filePathValue = filePath {
+				if filePathValue.hasPrefix(prefix) && filePathValue.hasSuffix(suffix) {
+					filePaths.append(filePathValue)
 				}
 			}
 
 			filePath = enumerator.nextObject() as? String
-		} while filePath
+		} while filePath != nil
 
 		return filePaths
 	}

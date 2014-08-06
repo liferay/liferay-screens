@@ -63,7 +63,7 @@ import UIKit
 
 	private func sendSignUpWithEmailAddress(emailAddress:String, password:String, firstName:String, lastName:String) {
 
-		if !anonymousApiUserName || !anonymousApiPassword {
+		if anonymousApiUserName == nil || anonymousApiPassword == nil {
 			println(
 				"ERROR: The credentials to use for anonymous API calls must be set in order to use " +
 				"SignUpWidget")
