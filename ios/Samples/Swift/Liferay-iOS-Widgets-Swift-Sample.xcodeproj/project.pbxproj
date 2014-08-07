@@ -75,6 +75,10 @@
 		88999AE6198EE83A00E746A6 /* flat7-preview-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AE4198EE83A00E746A6 /* flat7-preview-login@2x.png */; };
 		88999AF4198EF1A700E746A6 /* UIImage+Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 88999AF3198EF1A700E746A6 /* UIImage+Themes.m */; };
 		88A8837B198657F10053C2C2 /* LRMwuserService_v6201.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A8837A198657F10053C2C2 /* LRMwuserService_v6201.m */; };
+		88EAEE381993D8BF002D7C26 /* DDLBooleanElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE351993D8BF002D7C26 /* DDLBooleanElement.swift */; };
+		88EAEE391993D8BF002D7C26 /* DDLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE361993D8BF002D7C26 /* DDLElement.swift */; };
+		88EAEE3A1993D8BF002D7C26 /* DDLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE371993D8BF002D7C26 /* DDLParser.swift */; };
+		88EAEE3C1993D923002D7C26 /* Bool+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */; };
 		999BC69C19768EA400A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69B19768EA400A9B0D8 /* LRSession+CredentialStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -154,6 +158,10 @@
 		88A8837A198657F10053C2C2 /* LRMwuserService_v6201.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMwuserService_v6201.m; sourceTree = "<group>"; };
 		88E4604819759FE4002C26C6 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		88E4604A19759FE4002C26C6 /* ForgotPasswordWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordWidget.swift; sourceTree = "<group>"; };
+		88EAEE351993D8BF002D7C26 /* DDLBooleanElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLBooleanElement.swift; sourceTree = "<group>"; };
+		88EAEE361993D8BF002D7C26 /* DDLElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElement.swift; sourceTree = "<group>"; };
+		88EAEE371993D8BF002D7C26 /* DDLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser.swift; sourceTree = "<group>"; };
+		88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Conversion.swift"; sourceTree = "<group>"; };
 		999BC69B19768EA400A9B0D8 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -226,6 +234,7 @@
 				88832F8819656B3F00E3DF9F /* Base */,
 				8835607B196AED36002AB222 /* liferay-context-sample.plist */,
 				88832F9119656B3F00E3DF9F /* liferay-ios-widgets.h */,
+				88EAEE341993D8BF002D7C26 /* DDLForm */,
 				88832F9219656B3F00E3DF9F /* Login */,
 				88E4604719759FE4002C26C6 /* ForgotPassword */,
 				888F61FE198FD3DC0082786B /* SignUp */,
@@ -315,6 +324,7 @@
 		8897D9CF198A957300D3DF51 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */,
 				8897D9D0198A958000D3DF51 /* NSBundle+Paths.swift */,
 				888F61FC198FD3B10082786B /* NSLocale+CurrentLocale.swift */,
 				88999AF2198EF1A700E746A6 /* UIImage+Themes.h */,
@@ -406,6 +416,16 @@
 				88A8837A198657F10053C2C2 /* LRMwuserService_v6201.m */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		88EAEE341993D8BF002D7C26 /* DDLForm */ = {
+			isa = PBXGroup;
+			children = (
+				88EAEE351993D8BF002D7C26 /* DDLBooleanElement.swift */,
+				88EAEE361993D8BF002D7C26 /* DDLElement.swift */,
+				88EAEE371993D8BF002D7C26 /* DDLParser.swift */,
+			);
+			path = DDLForm;
 			sourceTree = "<group>";
 		};
 		88F64890198D2B70003A8FD9 /* Themes */ = {
@@ -585,6 +605,7 @@
 			files = (
 				88832FA119656B3F00E3DF9F /* LoginWidget.swift in Sources */,
 				8868AFCE19656B0500FD5214 /* ViewController.swift in Sources */,
+				88EAEE381993D8BF002D7C26 /* DDLBooleanElement.swift in Sources */,
 				8868AFCC19656B0500FD5214 /* AppDelegate.swift in Sources */,
 				888D77BF198FF5030052C39C /* LoginView_default.swift in Sources */,
 				88832F9B19656B3F00E3DF9F /* LiferayContext.swift in Sources */,
@@ -597,11 +618,14 @@
 				8897D9D1198A958000D3DF51 /* NSBundle+Paths.swift in Sources */,
 				888CE11419924821001DCA6A /* ForgotPasswordView_flat7.swift in Sources */,
 				8897D9C4198A812D00D3DF51 /* ForgotPasswordWidget.swift in Sources */,
+				88EAEE3C1993D923002D7C26 /* Bool+Conversion.swift in Sources */,
 				88A8837B198657F10053C2C2 /* LRMwuserService_v6201.m in Sources */,
 				888F6204198FD3DC0082786B /* SignUpWidget.swift in Sources */,
 				88832F9919656B3F00E3DF9F /* BaseWidget.swift in Sources */,
 				88832F9819656B3F00E3DF9F /* BaseWidget+progress.swift in Sources */,
+				88EAEE3A1993D8BF002D7C26 /* DDLParser.swift in Sources */,
 				88832F9F19656B3F00E3DF9F /* LoginView.swift in Sources */,
+				88EAEE391993D8BF002D7C26 /* DDLElement.swift in Sources */,
 				888F6206198FD3F20082786B /* SignUpViewController.swift in Sources */,
 				999BC69C19768EA400A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 				888F61FD198FD3B10082786B /* NSLocale+CurrentLocale.swift in Sources */,
