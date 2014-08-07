@@ -21,6 +21,15 @@ public enum DDLElementDataType: String {
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementDataType {
 		return fromRaw(xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 	}
+
+	public func createElement(#attributes:[String:String], localized:[String:String]) -> DDLElement? {
+		switch self {
+		case .Boolean:
+			return DDLBooleanElement(attributes:attributes, localized:localized)
+		default:
+			return nil
+		}
+	}
 }
 
 
