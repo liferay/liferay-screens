@@ -19,9 +19,8 @@ FOUNDATION_EXPORT double liferay_mobile_widgetsVersionNumber;
 //! Project version string for liferay-mobile-widgets.
 FOUNDATION_EXPORT const unsigned char liferay_mobile_widgetsVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <liferay_mobile_widgets/PublicHeader.h>
-
 #import "MBProgressHUD.h"
+#import "SMXMLDocument.h"
 
 #import "UIImage+Themes.h"
 
