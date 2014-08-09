@@ -83,6 +83,14 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		return true
 	}
 
+	internal func themeName() -> String? {
+		var className = NSStringFromClass(self.dynamicType)
+
+		let components = className.componentsSeparatedByString("_")
+
+		return (components.count > 1) ? components.last : nil
+	}
+
 	internal func nextResponderForView(view:UIView) -> UIResponder {
 		if view.tag > 0 {
 			if let nextView = viewWithTag(view.tag + 1) {
