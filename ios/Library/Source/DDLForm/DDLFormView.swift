@@ -15,4 +15,13 @@ import UIKit
 
 public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 
+	public var rows: [DDLElement] = [] {
+		didSet {
+			onChangedRows()
+		}
+	}
+
+	internal func onChangedRows() {
+	}
+
 }
