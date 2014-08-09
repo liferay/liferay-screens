@@ -13,9 +13,19 @@
 */
 import UIKit
 
+@objc protocol DDLFormWidgetDelegate {
+
+	optional func onFormLoaded(elements: [DDLElement])
+	optional func onFormLoadError(error: NSError)
+
+}
+
 @IBDesignable public class DDLFormWidget: BaseWidget {
 
 	@IBInspectable var structureId: Int?
+
+	@IBOutlet var delegate: DDLFormWidgetDelegate?
+
 
     // MARK: BaseWidget METHODS
 
@@ -26,10 +36,36 @@ import UIKit
 	}
 
 	override public func onServerError(error: NSError) {
+		delegate?.onFormLoadError?(error)
+		finishOperationWithMessage("An error happened loading form", details: nil)
 	}
 
 	override public func onServerResult(result: [String:AnyObject]) {
+		if let xml = result["xsd"]! as? String {
+			let parser = DDLParser(locale:NSLocale.currentLocale())
+
+			parser.xml = xml
+
+			if let elements = parser.parse() {
+				formView().rows = elements
+
+				delegate?.onFormLoaded?(elements)
+
+				finishOperationWithMessage("Form loaded", details: nil)
+			}
+			else {
+				//TODO error
+			}
+		}
+		else {
+			//TODO error
+		}
     }
+
+	public func loadForm() {
+		startOperationWithMessage("Loading form...", details: "Wait a second...")
+
+	}
 
 
 	private func formView() -> DDLFormView {
