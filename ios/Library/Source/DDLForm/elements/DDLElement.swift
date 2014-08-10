@@ -66,7 +66,9 @@ public class DDLElement {
 
 	private(set) var label:String
 	private(set) var tip:String
+
 	private(set) var predefinedValue:AnyObject?
+	public var currentValue:AnyObject?
 
 	private(set) var readOnly:Bool
 	private(set) var repeatable:Bool
