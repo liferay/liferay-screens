@@ -13,13 +13,15 @@ public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 	@IBOutlet var switchView: UISwitch?
 	@IBOutlet var label: UILabel?
 
+	@IBAction func switchValueChanged(sender: AnyObject) {
+		element?.currentValue = (switchView?.on == true) ? "true" : "false"
+	}
+
 	override func onChangedElement() {
 		if let boolElement = element as? DDLBooleanElement {
 			switchView?.on = boolElement.predefinedValue as Bool
 			label?.text = boolElement.label
 		}
 	}
-
-
 
 }
