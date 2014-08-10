@@ -194,6 +194,14 @@ import QuartzCore
 	}
 
 	internal func previewImageForTheme(themeName:String) -> UIImage {
+        let widgetView = createWidgetViewFromNib()
+        
+        if let widgetViewValue = widgetView {
+            widgetViewValue.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+
+            return previewImageFromView(widgetViewValue)
+        }
+        
 		return loadImageFromIB(previewImageNameForTheme(themeName))
 	}
 
@@ -216,6 +224,17 @@ import QuartzCore
 
 		return UIImage(contentsOfFile: fileName)
 	}
+
+    internal func previewImageFromView(view:UIView) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
+
+        view.layer.renderInContext(UIGraphicsGetCurrentContext())
+        let previewImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return previewImage
+    }
 
 	private func createWidgetViewFromNib() -> BaseWidgetView? {
 		let viewName = widgetName() + "View"
