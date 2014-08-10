@@ -22,7 +22,7 @@ import UIKit
 
 @IBDesignable public class DDLFormWidget: BaseWidget {
 
-	@IBInspectable var structureId: Int?
+	@IBInspectable var structureId: Int = 0
 
 	@IBOutlet var delegate: DDLFormWidgetDelegate?
 
@@ -62,11 +62,33 @@ import UIKit
 		}
     }
 
-	public func loadForm() {
+	public func loadForm() -> Bool {
+		if LiferayContext.instance.currentSession == nil {
+			return false
+		}
+
+		if structureId == 0 {
+			return false
+		}
+
 		startOperationWithMessage("Loading form...", details: "Wait a second...")
 
-	}
+		let session = LRSession(session: LiferayContext.instance.currentSession)
+		session.callback = self
 
+		let service = LRDDMStructureService_v62(session: session)
+
+		var outError: NSError?
+
+		service.getStructureWithStructureId((structureId as NSNumber).longLongValue, error: &outError)
+
+		if let error = outError {
+			onFailure(error)
+			return false
+		}
+
+		return true
+	}
 
 	private func formView() -> DDLFormView {
 		return widgetView as DDLFormView
