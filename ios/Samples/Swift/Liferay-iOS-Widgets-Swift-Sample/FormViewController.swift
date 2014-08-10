@@ -28,4 +28,7 @@ class FormViewController: UIViewController, DDLFormWidgetDelegate {
 		widget!.loadForm()
 	}
 
+	@IBAction func button2Click(sender: AnyObject) {
+		widget!.submitForm()
+	}
 }
