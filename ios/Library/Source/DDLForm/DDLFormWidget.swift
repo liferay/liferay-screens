@@ -28,10 +28,12 @@ import UIKit
 	@IBInspectable var structureId: Int = 0
 	@IBInspectable var groupId: Int = 0
 	@IBInspectable var recordSetId: Int = 0
+	@IBInspectable var recordId:Int = 0
 
 	@IBOutlet var delegate: DDLFormWidgetDelegate?
 
 	private var userId:Int = 0
+
 	private var submitting = false
 
 
@@ -57,6 +59,11 @@ import UIKit
 	override public func onServerResult(result: [String:AnyObject]) {
 		if submitting {
 			submitting = false
+
+			if let recordIdValue = result["recordId"]! as? Int {
+				recordId = recordIdValue
+			}
+
 			finishOperationWithMessage("Form submitted")
 		}
 		else {
@@ -152,7 +159,24 @@ import UIKit
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
 
-		service.addRecordWithGroupId((groupId as NSNumber).longLongValue, recordSetId: (recordSetId as NSNumber).longLongValue, displayIndex: 0, fieldsMap: formView().values, serviceContext: serviceContextWrapper, error: &outError)
+		if recordId == 0 {
+			service.addRecordWithGroupId(
+				(groupId as NSNumber).longLongValue,
+				recordSetId: (recordSetId as NSNumber).longLongValue,
+				displayIndex: 0,
+				fieldsMap: formView().values,
+				serviceContext: serviceContextWrapper,
+				error: &outError)
+		}
+		else {
+			service.updateRecordWithRecordId(
+				(recordId as NSNumber).longLongValue,
+				displayIndex: 0,
+				fieldsMap: formView().values,
+				mergeFields: true,
+				serviceContext: serviceContextWrapper,
+				error: &outError)
+		}
 
 		if let error = outError {
 			onFailure(error)
