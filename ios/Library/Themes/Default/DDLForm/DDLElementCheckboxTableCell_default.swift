@@ -14,7 +14,7 @@ public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 	@IBOutlet var label: UILabel?
 
 	@IBAction func switchValueChanged(sender: AnyObject) {
-		element?.currentValue = (switchView?.on == true) ? "true" : "false"
+		element?.currentValue = switchView?.on
 	}
 
 	override func onChangedElement() {

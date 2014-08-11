@@ -135,6 +135,8 @@ import UIKit
 
 		submitting = true
 
+		startOperationWithMessage("Submitting form...", details: "Wait a second...")
+
 		let session = LRSession(session: LiferayContext.instance.currentSession)
 		session.callback = self
 

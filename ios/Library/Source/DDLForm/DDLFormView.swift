@@ -25,8 +25,8 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 		get {
 			var result:[String:AnyObject] = [:]
 
-			for (index, element) in enumerate(rows) {
-				if let value:AnyObject = element.currentValue {
+			for element in rows {
+				if let value = element.currentStringValue {
 					result[element.name] = value
 				}
 			}
