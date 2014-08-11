@@ -131,7 +131,10 @@ import UIKit
 			return false
 		}
 
-		// TODO validate form
+		if !formView().validateForm() {
+			showHUDWithMessage("Some values are not valid", details: "Please, review your form", secondsToShow: 1.5)
+			return false
+		}
 
 		submitting = true
 

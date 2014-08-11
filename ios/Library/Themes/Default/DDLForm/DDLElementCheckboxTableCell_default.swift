@@ -29,4 +29,8 @@ public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 		}
 	}
 
+	override func onValidated(valid: Bool) {
+		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()
+	}
+
 }

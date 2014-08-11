@@ -67,6 +67,8 @@ public class DDLElement {
 		}
 	}
 
+	public var validatedClosure: ((Bool) -> ())?
+
 
 	private(set) var dataType:DDLElementDataType
 	private(set) var type:DDLElementType
@@ -101,6 +103,22 @@ public class DDLElement {
 		tip = localized["tip"] ?? ""
 		predefinedValue = convert(fromString:localized["predefinedValue"])
 		currentValue = predefinedValue
+	}
+
+	public func validate() -> Bool {
+		var valid = !(currentValue == nil && required)
+
+		if valid {
+			valid = doValidate()
+		}
+
+		validatedClosure?(valid)
+
+		return valid
+	}
+
+	internal func doValidate() -> Bool {
+		return true
 	}
 
 	internal func convert(fromString value:String?) -> AnyObject? {

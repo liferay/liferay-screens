@@ -35,6 +35,18 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 		}
 	}
 
+	public func validateForm() -> Bool {
+		var result = true
+
+		for element in rows {
+			if !element.validate() {
+				result = false
+			}
+		}
+
+		return result
+	}
+
 	internal func onChangedRows() {
 	}
 

@@ -17,11 +17,15 @@ public class DDLElementTableCell: UITableViewCell {
 
 	public var element:DDLElement? {
 		didSet {
+			element?.validatedClosure = onValidated
 			onChangedElement()
 		}
 	}
 
 	internal func onChangedElement() {
+	}
+
+	internal func onValidated(valid:Bool) {
 	}
 
 }
