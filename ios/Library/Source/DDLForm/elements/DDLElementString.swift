@@ -19,4 +19,16 @@ public class DDLElementString : DDLElement {
 		return value?.description
 	}
 
+	override func doValidate() -> Bool {
+		var result = super.doValidate()
+
+		if result && currentStringValue != nil && required {
+			let trimmedString = currentStringValue?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+
+			result = (trimmedString != "")
+		}
+
+		return result
+	}
+
 }
