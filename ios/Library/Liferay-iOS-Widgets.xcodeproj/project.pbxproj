@@ -134,14 +134,20 @@
 		88A91FC2199298CE009B5227 /* Bool+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A91FC0199298CE009B5227 /* Bool+Conversion.swift */; };
 		88AEA25D19657C3100CD130B /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88AEA25C19657C3100CD130B /* liferay-context-sample.plist */; };
 		88D5376619990F0700615515 /* DDLElement_validation_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5376519990F0700615515 /* DDLElement_validation_Tests.swift */; };
+		88D537681999125400615515 /* DDLElementString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537671999125400615515 /* DDLElementString.swift */; };
+		88D537691999125400615515 /* DDLElementString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537671999125400615515 /* DDLElementString.swift */; };
+		88D537711999194A00615515 /* DDLElementTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5376F1999194A00615515 /* DDLElementTableCell.swift */; };
+		88D537721999194A00615515 /* DDLElementTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5376F1999194A00615515 /* DDLElementTableCell.swift */; };
+		88D537731999194A00615515 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537701999194A00615515 /* DDLFormTableView.swift */; };
+		88D537741999194A00615515 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537701999194A00615515 /* DDLFormTableView.swift */; };
+		88D537771999198C00615515 /* DDLElementTextTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537751999198C00615515 /* DDLElementTextTableCell_default.swift */; };
+		88D537781999198C00615515 /* DDLElementTextTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537751999198C00615515 /* DDLElementTextTableCell_default.swift */; };
+		88D537791999198C00615515 /* DDLElementTextTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D537761999198C00615515 /* DDLElementTextTableCell-default.xib */; };
+		88D5377A1999198C00615515 /* DDLElementTextTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D537761999198C00615515 /* DDLElementTextTableCell-default.xib */; };
 		88D789751998ACA500171FB7 /* DDLElementBoolean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789731998ACA500171FB7 /* DDLElementBoolean.swift */; };
 		88D789761998ACA500171FB7 /* DDLElementBoolean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789731998ACA500171FB7 /* DDLElementBoolean.swift */; };
 		88D789771998ACA500171FB7 /* DDLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789741998ACA500171FB7 /* DDLElement.swift */; };
 		88D789781998ACA500171FB7 /* DDLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789741998ACA500171FB7 /* DDLElement.swift */; };
-		88D7897B1998ACB700171FB7 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789791998ACB700171FB7 /* DDLFormTableView.swift */; };
-		88D7897C1998ACB700171FB7 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789791998ACB700171FB7 /* DDLFormTableView.swift */; };
-		88D7897D1998ACB700171FB7 /* DDLElementTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D7897A1998ACB700171FB7 /* DDLElementTableCell.swift */; };
-		88D7897E1998ACB700171FB7 /* DDLElementTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D7897A1998ACB700171FB7 /* DDLElementTableCell.swift */; };
 		88D789811998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D7897F1998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib */; };
 		88D789821998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D7897F1998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib */; };
 		88D789831998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789801998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift */; };
@@ -305,10 +311,13 @@
 		88A91FC0199298CE009B5227 /* Bool+Conversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Conversion.swift"; sourceTree = "<group>"; };
 		88AEA25C19657C3100CD130B /* liferay-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-context-sample.plist"; sourceTree = "<group>"; };
 		88D5376519990F0700615515 /* DDLElement_validation_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElement_validation_Tests.swift; sourceTree = "<group>"; };
+		88D537671999125400615515 /* DDLElementString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementString.swift; sourceTree = "<group>"; };
+		88D5376F1999194A00615515 /* DDLElementTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementTableCell.swift; sourceTree = "<group>"; };
+		88D537701999194A00615515 /* DDLFormTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormTableView.swift; sourceTree = "<group>"; };
+		88D537751999198C00615515 /* DDLElementTextTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementTextTableCell_default.swift; sourceTree = "<group>"; };
+		88D537761999198C00615515 /* DDLElementTextTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementTextTableCell-default.xib"; sourceTree = "<group>"; };
 		88D789731998ACA500171FB7 /* DDLElementBoolean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementBoolean.swift; sourceTree = "<group>"; };
 		88D789741998ACA500171FB7 /* DDLElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElement.swift; sourceTree = "<group>"; };
-		88D789791998ACB700171FB7 /* DDLFormTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormTableView.swift; sourceTree = "<group>"; };
-		88D7897A1998ACB700171FB7 /* DDLElementTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementTableCell.swift; sourceTree = "<group>"; };
 		88D7897F1998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementCheckboxTableCell-default.xib"; sourceTree = "<group>"; };
 		88D789801998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementCheckboxTableCell_default.swift; sourceTree = "<group>"; };
 		88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LRSession_storage_Tests.swift; sourceTree = "<group>"; };
@@ -377,6 +386,8 @@
 			children = (
 				88D789801998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift */,
 				88D7897F1998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib */,
+				88D537751999198C00615515 /* DDLElementTextTableCell_default.swift */,
+				88D537761999198C00615515 /* DDLElementTextTableCell-default.xib */,
 				884CE50E1994EDB100ADF047 /* DDLFormView_default.swift */,
 				884CE50D1994EDB100ADF047 /* DDLFormView-default.xib */,
 			);
@@ -566,11 +577,21 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		88D5376E1999194A00615515 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				88D5376F1999194A00615515 /* DDLElementTableCell.swift */,
+				88D537701999194A00615515 /* DDLFormTableView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		88D789721998ACA500171FB7 /* elements */ = {
 			isa = PBXGroup;
 			children = (
 				88D789741998ACA500171FB7 /* DDLElement.swift */,
 				88D789731998ACA500171FB7 /* DDLElementBoolean.swift */,
+				88D537671999125400615515 /* DDLElementString.swift */,
 			);
 			path = elements;
 			sourceTree = "<group>";
@@ -578,12 +599,11 @@
 		88E33048199286F8002AD507 /* DDLForm */ = {
 			isa = PBXGroup;
 			children = (
-				88D7897A1998ACB700171FB7 /* DDLElementTableCell.swift */,
-				88D789791998ACB700171FB7 /* DDLFormTableView.swift */,
 				884CE5061994ECF000ADF047 /* DDLFormView.swift */,
 				884CE5071994ECF000ADF047 /* DDLFormWidget.swift */,
 				88E3304B19928BF0002AD507 /* DDLParser.swift */,
 				88D789721998ACA500171FB7 /* elements */,
+				88D5376E1999194A00615515 /* TableView */,
 			);
 			path = DDLForm;
 			sourceTree = "<group>";
@@ -803,6 +823,7 @@
 				88E4F2741990FCA700E69261 /* LoginView-default.xib in Resources */,
 				888CE12119924D51001DCA6A /* flat7-preview-signup@2x.png in Resources */,
 				888D770B198FDAD30052C39C /* flat7-button.png in Resources */,
+				88D5377A1999198C00615515 /* DDLElementTextTableCell-default.xib in Resources */,
 				88F648B7198D304B003A8FD9 /* liferay-context-sample.plist in Resources */,
 				888D779A198FEFFE0052C39C /* default-lock-icon.png in Resources */,
 				888D77A6198FEFFE0052C39C /* default-preview-signup.png in Resources */,
@@ -845,6 +866,7 @@
 				888D778B198FEFFE0052C39C /* default-field-focused@2x.png in Resources */,
 				888D7789198FEFFE0052C39C /* default-field-focused.png in Resources */,
 				888D7714198FDAD30052C39C /* flat7-preview-login@2x.png in Resources */,
+				88D537791999198C00615515 /* DDLElementTextTableCell-default.xib in Resources */,
 				888D7710198FDAD30052C39C /* flat7-field@2x.png in Resources */,
 				888D77AD198FEFFE0052C39C /* theme-default.png in Resources */,
 				888D779D198FEFFE0052C39C /* default-mail-icon.png in Resources */,
@@ -909,7 +931,6 @@
 				88F648B1198D300A003A8FD9 /* LoginView.swift in Sources */,
 				88D789841998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift in Sources */,
 				888D7707198FDAD30052C39C /* LoginView_flat7.swift in Sources */,
-				88D7897E1998ACB700171FB7 /* DDLElementTableCell.swift in Sources */,
 				88F648B4198D301E003A8FD9 /* BaseWidget+progress.swift in Sources */,
 				888CE12E19924D74001DCA6A /* ForgotPasswordView_flat7.swift in Sources */,
 				888CE10B19923142001DCA6A /* BaseWidget_basic_Tests.swift in Sources */,
@@ -918,11 +939,11 @@
 				88EAEE331993D2AF002D7C26 /* DDLParser_elements_Tests.swift in Sources */,
 				884CE50B1994ECF000ADF047 /* DDLFormWidget.swift in Sources */,
 				88E4F27519910E3B00E69261 /* ForgotPasswordView.swift in Sources */,
-				88D7897C1998ACB700171FB7 /* DDLFormTableView.swift in Sources */,
 				8875B024198FB173006955BA /* UIImage+Themes.m in Sources */,
 				88A91FC2199298CE009B5227 /* Bool+Conversion.swift in Sources */,
 				88D5376619990F0700615515 /* DDLElement_validation_Tests.swift in Sources */,
 				88F648B5198D3021003A8FD9 /* BaseWidget.swift in Sources */,
+				88D537721999194A00615515 /* DDLElementTableCell.swift in Sources */,
 				88E4F27619910E4000E69261 /* ForgotPasswordWidget.swift in Sources */,
 				88D789781998ACA500171FB7 /* DDLElement.swift in Sources */,
 				88F648A1198D2DE8003A8FD9 /* BaseWidget_theme_Tests.swift in Sources */,
@@ -932,12 +953,15 @@
 				88E3304A19928726002AD507 /* DDLParser_basic_Tests.swift in Sources */,
 				888F61F8198FD3240082786B /* SignUpWidget.swift in Sources */,
 				884CE5121994EDB100ADF047 /* DDLFormView_default.swift in Sources */,
+				88D537781999198C00615515 /* DDLElementTextTableCell_default.swift in Sources */,
 				88E4F27719912B5900E69261 /* LoginView_default.swift in Sources */,
 				999BC69F19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 				888F61F4198FD3240082786B /* SignUpView.swift in Sources */,
 				888F61FB198FD3740082786B /* NSLocale+CurrentLocale.swift in Sources */,
 				888D77D719903F060052C39C /* SignUpView_default.swift in Sources */,
+				88D537741999194A00615515 /* DDLFormTableView.swift in Sources */,
 				88F648A4198D2E11003A8FD9 /* ThemeManager.swift in Sources */,
+				88D537691999125400615515 /* DDLElementString.swift in Sources */,
 				88E3304D19928BF0002AD507 /* DDLParser.swift in Sources */,
 				88D789761998ACA500171FB7 /* DDLElementBoolean.swift in Sources */,
 				88F648B3198D301B003A8FD9 /* BaseWidgetView.swift in Sources */,
@@ -958,10 +982,11 @@
 				88A632C219863FB300684926 /* LRMwuserService_v6201.m in Sources */,
 				88F648A3198D2E11003A8FD9 /* ThemeManager.swift in Sources */,
 				888D77D219903F060052C39C /* ForgotPasswordView_default.swift in Sources */,
+				88D537681999125400615515 /* DDLElementString.swift in Sources */,
 				88D789771998ACA500171FB7 /* DDLElement.swift in Sources */,
 				8875B023198FB173006955BA /* UIImage+Themes.m in Sources */,
-				88D7897B1998ACB700171FB7 /* DDLFormTableView.swift in Sources */,
 				889CA4C819655F4B00664504 /* BaseWidget.swift in Sources */,
+				88D537711999194A00615515 /* DDLElementTableCell.swift in Sources */,
 				889CA4C919655F4B00664504 /* BaseWidgetView.swift in Sources */,
 				884CE50A1994ECF000ADF047 /* DDLFormWidget.swift in Sources */,
 				884CE5111994EDB100ADF047 /* DDLFormView_default.swift in Sources */,
@@ -971,13 +996,14 @@
 				888F61F3198FD3240082786B /* SignUpView.swift in Sources */,
 				88E4F2711990FCA700E69261 /* LoginView_default.swift in Sources */,
 				888F61FA198FD3740082786B /* NSLocale+CurrentLocale.swift in Sources */,
+				88D537731999194A00615515 /* DDLFormTableView.swift in Sources */,
 				884CE5081994ECF000ADF047 /* DDLFormView.swift in Sources */,
 				888D77D619903F060052C39C /* SignUpView_default.swift in Sources */,
 				88F648A7198D2E1B003A8FD9 /* NSBundle+Paths.swift in Sources */,
 				88D789831998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift in Sources */,
 				88E3304C19928BF0002AD507 /* DDLParser.swift in Sources */,
+				88D537771999198C00615515 /* DDLElementTextTableCell_default.swift in Sources */,
 				88D789751998ACA500171FB7 /* DDLElementBoolean.swift in Sources */,
-				88D7897D1998ACB700171FB7 /* DDLElementTableCell.swift in Sources */,
 				888CE13119924D74001DCA6A /* SignUpView_flat7.swift in Sources */,
 				88A91FC1199298CE009B5227 /* Bool+Conversion.swift in Sources */,
 				888CE12D19924D74001DCA6A /* ForgotPasswordView_flat7.swift in Sources */,
