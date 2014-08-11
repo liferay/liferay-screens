@@ -46,18 +46,18 @@ import UIKit
 	override public func onServerError(error: NSError) {
 		if submitting {
 			delegate?.onFormSubmitError?(error)
-			finishOperationWithMessage("An error happened submitting form", details: nil)
+			finishOperationWithMessage("An error happened submitting form")
 		}
 		else {
 			delegate?.onFormLoadError?(error)
-			finishOperationWithMessage("An error happened loading form", details: nil)
+			finishOperationWithMessage("An error happened loading form")
 		}
 	}
 
 	override public func onServerResult(result: [String:AnyObject]) {
 		if submitting {
 			submitting = false
-			finishOperationWithMessage("Form submitted", details: nil)
+			finishOperationWithMessage("Form submitted")
 		}
 		else {
 			onFormLoadResult(result)
@@ -79,7 +79,7 @@ import UIKit
 
 				delegate?.onFormLoaded?(elements)
 
-				finishOperationWithMessage("Form loaded", details: nil)
+				finishOperationWithMessage("Form loaded")
 			}
 			else {
 				//TODO error
