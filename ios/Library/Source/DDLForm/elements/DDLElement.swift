@@ -15,7 +15,7 @@ import Foundation
 
 public enum DDLElementDataType: String {
 
-	case Boolean = "boolean"
+	case DDLBoolean = "boolean"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementDataType {
@@ -24,7 +24,7 @@ public enum DDLElementDataType: String {
 
 	public func createElement(#attributes:[String:String], localized:[String:String]) -> DDLElement? {
 		switch self {
-		case .Boolean:
+		case .DDLBoolean:
 			return DDLBooleanElement(attributes:attributes, localized:localized)
 		default:
 			return nil

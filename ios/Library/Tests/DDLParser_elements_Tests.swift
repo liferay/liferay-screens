@@ -58,7 +58,7 @@ class DDLParser_elements_Tests: XCTestCase {
 
 		let booleanElement = elements![0] as DDLBooleanElement
 
-		XCTAssertEqual(DDLElementDataType.Boolean, booleanElement.dataType)
+		XCTAssertEqual(DDLElementDataType.DDLBoolean, booleanElement.dataType)
 		XCTAssertEqual(DDLElementType.Checkbox, booleanElement.type)
 		XCTAssertEqual("A_Boolean", booleanElement.name)
 		XCTAssertEqual("A Boolean", booleanElement.label)
