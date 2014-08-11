@@ -13,7 +13,7 @@
 */
 import Foundation
 
-public class DDLBooleanElement : DDLElement {
+public class DDLElementBoolean : DDLElement {
 
 	override public init(attributes:[String:String], localized:[String:String]) {
 		super.init(attributes: attributes, localized:localized)

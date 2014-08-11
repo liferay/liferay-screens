@@ -30,7 +30,7 @@ class DDLElement_validation_Tests: XCTestCase {
 
 		let elements = parser.parse()
 
-		let booleanElement = elements![0] as DDLBooleanElement
+		let booleanElement = elements![0] as DDLElementBoolean
 
 		XCTAssertFalse(booleanElement.validate())
 
@@ -49,7 +49,7 @@ class DDLElement_validation_Tests: XCTestCase {
 
 		let elements = parser.parse()
 
-		let booleanElement = elements![0] as DDLBooleanElement
+		let booleanElement = elements![0] as DDLElementBoolean
 
 		booleanElement.currentValue = true
 
@@ -70,7 +70,7 @@ class DDLElement_validation_Tests: XCTestCase {
 
 		let elements = parser.parse()
 
-		let booleanElement = elements![0] as DDLBooleanElement
+		let booleanElement = elements![0] as DDLElementBoolean
 
 		XCTAssertTrue(booleanElement.currentValue == nil)
 

@@ -25,7 +25,7 @@ public enum DDLElementDataType: String {
 	public func createElement(#attributes:[String:String], localized:[String:String]) -> DDLElement? {
 		switch self {
 		case .DDLBoolean:
-			return DDLBooleanElement(attributes:attributes, localized:localized)
+			return DDLElementBoolean(attributes:attributes, localized:localized)
 		default:
 			return nil
 		}

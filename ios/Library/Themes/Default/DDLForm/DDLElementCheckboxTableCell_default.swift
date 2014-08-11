@@ -23,7 +23,7 @@ public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 	}
 
 	override func onChangedElement() {
-		if let boolElement = element as? DDLBooleanElement {
+		if let boolElement = element as? DDLElementBoolean {
 			switchView?.on = boolElement.predefinedValue as Bool
 			label?.text = boolElement.label
 		}
