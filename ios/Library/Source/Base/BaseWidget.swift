@@ -74,7 +74,7 @@ import QuartzCore
 	/*
 	 * onCustomAction is invoked when a TouchUpInside even is fired from the UI.
 	 */
-	public func onCustomAction(actionName:String?, sender:UIControl) {
+	public func onCustomAction(actionName:String?, sender:UIControl?) {
 	}
 
 	//MARK: Operations template methods

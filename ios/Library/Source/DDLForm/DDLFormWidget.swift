@@ -46,7 +46,7 @@ import UIKit
 	override public func onCreate() {
 	}
 
-	override public func onCustomAction(actionName: String?, sender: UIControl) {
+	override public func onCustomAction(actionName: String?, sender: UIControl?) {
 		if actionName == "submit" {
 			submitForm()
 		}

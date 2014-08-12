@@ -54,7 +54,7 @@ import UIKit
 		}
 	}
 
-	override public func onCustomAction(actionName: String?, sender: UIControl) {
+	override public func onCustomAction(actionName: String?, sender: UIControl?) {
 		sendForgotPasswordRequest(forgotPasswordView().getUserName())
 	}
 
