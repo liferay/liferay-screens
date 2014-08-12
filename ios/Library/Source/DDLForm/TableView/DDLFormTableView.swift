@@ -17,7 +17,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	@IBOutlet var tableView: UITableView?
 
-	internal var elementCellHeights: [DDLElementType:CGFloat] = [:]
+	internal var elementTypeHeight: [DDLElementType:CGFloat] = [:]
+	internal var elementHeight:[CGFloat] = []
 
 	override public func onCreate() {
 		super.onCreate()
@@ -27,6 +28,12 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	override func onChangedRows() {
 		super.onChangedRows()
+
+		elementHeight = Array(count:rows.count, repeatedValue:0)
+
+		for  (i, element) in enumerate(rows) {
+			elementHeight[i] = elementTypeHeight[element.type]!
+		}
 		
 		tableView!.reloadData()
 	}
@@ -61,15 +68,15 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 				tableView?.registerNib(cellNib, forCellReuseIdentifier: elementType.toRaw())
 
-				registerElementCellHeight(type:elementType, nib:cellNib)
+				registerElementTypeHeight(type:elementType, nib:cellNib)
 			}
 		}
 	}
 
-	internal func registerElementCellHeight(#type:DDLElementType, nib:UINib) {
+	internal func registerElementTypeHeight(#type:DDLElementType, nib:UINib) {
 		if let views = nib.instantiateWithOwner(nil, options: nil) {
 			if let cellRootView = views.first as? UITableViewCell {
-				elementCellHeights[type] = cellRootView.bounds.size.height
+				elementTypeHeight[type] = cellRootView.bounds.size.height
 			}
 			else {
 				println("ERROR: Root view in cell \(type.toRaw()) didn't found")
@@ -77,7 +84,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		}
 		else {
 			println("ERROR: Can't instantiate nib for cell \(type.toRaw())")
-			elementCellHeights[type] = 0
+			elementTypeHeight[type] = 0
 		}
 	}
 
@@ -104,23 +111,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	public func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
 
-		let element = rows[indexPath.row]
-
-		var height = elementCellHeights[element.type] ?? 0
-
-		height *= indexPath.row == selectedNumber ? 2 : 1
-
-		return height
+		return elementHeight[indexPath.row] ?? 0
 	}
-
-	public func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-
-		selectedNumber = indexPath.row
-
-		tableView.beginUpdates()
-		tableView.endUpdates()
-	}
-
-	var selectedNumber = -1
 
 }
