@@ -54,6 +54,7 @@ public class DDLElementTextTableCell_default: DDLElementTableCell, UITextFieldDe
 	//MARK: UITextFieldDelegate
 
 	public func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
+		tableView?.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
 		textFieldBackground?.highlighted = true
 
 		return true
