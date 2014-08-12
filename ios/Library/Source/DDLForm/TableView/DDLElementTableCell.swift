@@ -46,6 +46,15 @@ public class DDLElementTableCell: UITableViewCell {
 	internal func onValidated(valid:Bool) {
 	}
 
+	internal func changeCellHeight(height:CGFloat) {
+		element?.currentHeight = height
+		
+		// FIXME
+		// Hack to fire the repaint of the cells
+		tableView!.beginUpdates()
+		tableView!.endUpdates()
+	}
+
 	internal func nextCell(indexPath:NSIndexPath) -> UITableViewCell? {
 		var result:UITableViewCell?
 

@@ -39,6 +39,14 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		return textView!.becomeFirstResponder()
 	}
 
+	public func textViewDidBeginEditing(textView: UITextView!) {
+		changeCellHeight(100)
+	}
+
+	public func textViewDidEndEditing(textView: UITextView!) {
+		changeCellHeight(element!.type.registeredHeight)
+	}
+
 	public func textView(textView: UITextView!, shouldChangeTextInRange range: NSRange, replacementText text: String!) -> Bool {
 
 		var result = false
