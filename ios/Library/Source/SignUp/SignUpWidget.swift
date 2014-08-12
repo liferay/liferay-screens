@@ -90,8 +90,7 @@ import UIKit
 			creatingUsername = signUpView().getScreenName()
 		case AuthType.UserId:
 			println("ERROR: sign Up with User id is not supported")
-		default:
-			break;
+		default: ()
 		}
 
 		// password

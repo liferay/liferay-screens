@@ -60,8 +60,7 @@ public class SignUpView_flat7: SignUpView_default {
 			placeholder = emailAddressPlaceholder!
 		case passwordField!:
 			placeholder = passwordPlaceholder!
-		default:
-			break
+		default: ()
 		}
 
 		showPlaceholder(placeholder, show:newText == "")
