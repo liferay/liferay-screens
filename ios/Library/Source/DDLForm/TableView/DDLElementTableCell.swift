@@ -26,6 +26,20 @@ public class DDLElementTableCell: UITableViewCell {
 		}
 	}
 
+	public var isLastCell:Bool {
+		get {
+			var result = false
+
+			if let indexPathValue = indexPath {
+				if let rowCount = tableView?.numberOfRowsInSection(indexPathValue.section) {
+					result = (indexPathValue.row == rowCount - 1)
+				}
+			}
+
+			return result
+		}
+	}
+
 	internal func onChangedElement() {
 	}
 
