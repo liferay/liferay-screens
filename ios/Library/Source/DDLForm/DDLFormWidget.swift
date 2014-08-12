@@ -43,6 +43,9 @@ import UIKit
 	}
 
 	override public func onCustomAction(actionName: String?, sender: UIControl) {
+		if actionName == "submit" {
+			submitForm()
+		}
 	}
 
 	override public func onServerError(error: NSError) {
