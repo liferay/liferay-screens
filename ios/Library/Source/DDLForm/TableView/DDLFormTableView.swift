@@ -17,9 +17,6 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	@IBOutlet var tableView: UITableView?
 
-	internal var elementTypeHeight: [DDLElementType:CGFloat] = [:]
-	internal var elementHeight:[CGFloat] = []
-
 	override public func onCreate() {
 		super.onCreate()
 
@@ -29,10 +26,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	override func onChangedRows() {
 		super.onChangedRows()
 
-		elementHeight = Array(count:rows.count, repeatedValue:0)
-
-		for  (i, element) in enumerate(rows) {
-			elementHeight[i] = elementTypeHeight[element.type]!
+		for element in rows {
+			element.resetCurrentHeight()
 		}
 		
 		tableView!.reloadData()
@@ -76,7 +71,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	internal func registerElementTypeHeight(#type:DDLElementType, nib:UINib) {
 		if let views = nib.instantiateWithOwner(nil, options: nil) {
 			if let cellRootView = views.first as? UITableViewCell {
-				elementTypeHeight[type] = cellRootView.bounds.size.height
+				type.registerHeight(cellRootView.bounds.size.height)
 			}
 			else {
 				println("ERROR: Root view in cell \(type.toRaw()) didn't found")
@@ -84,7 +79,6 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		}
 		else {
 			println("ERROR: Can't instantiate nib for cell \(type.toRaw())")
-			elementTypeHeight[type] = 0
 		}
 	}
 
@@ -111,7 +105,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	public func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
 
-		return elementHeight[indexPath.row] ?? 0
+		return rows[indexPath.row].currentHeight
 	}
 
 }

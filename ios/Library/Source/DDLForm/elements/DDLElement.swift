@@ -59,12 +59,26 @@ public enum DDLElementType: String {
 		return elementName.substringToIndex(secondCharIndex).uppercaseString + elementName.substringFromIndex(secondCharIndex)
 	}
 
+	public func registerHeight(height:CGFloat) {
+		DDLElementType.elementTypeHeight[self] = height
+	}
+
+	public var registeredHeight: CGFloat {
+		get {
+			return DDLElementType.elementTypeHeight[self] ?? 0
+		}
+	}
+
+	private static var elementTypeHeight: [DDLElementType:CGFloat] = [:]
+
+
 }
 
 
 public class DDLElement {
 
 	public var currentValue:AnyObject?
+	public var currentHeight:CGFloat = 0
 
 	public var currentStringValue:String? {
 		get {
@@ -93,7 +107,6 @@ public class DDLElement {
 	private(set) var width:Int? 		// Makes sense in mobile??
 
 
-
 	public init(attributes:[String:String], localized:[String:String]) {
 		dataType = DDLElementDataType.fromRaw(attributes["dataType"] ?? "") ?? .Unsupported
 		type = DDLElementType.fromRaw(attributes["type"] ?? "") ?? .Unsupported
@@ -120,6 +133,10 @@ public class DDLElement {
 		validatedClosure?(valid)
 
 		return valid
+	}
+
+	public func resetCurrentHeight() {
+		currentHeight = type.registeredHeight
 	}
 
 	internal func doValidate() -> Bool {
