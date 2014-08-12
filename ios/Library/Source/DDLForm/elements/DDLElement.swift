@@ -40,6 +40,7 @@ public enum DDLElementType: String {
 
 	case Checkbox = "checkbox"
 	case Text = "text"
+	case Textarea = "textarea"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementType {
@@ -47,7 +48,7 @@ public enum DDLElementType: String {
 	}
 
 	public static func all() -> [DDLElementType] {
-		return [Checkbox, Text]
+		return [Checkbox, Text, Textarea]
 	}
 
 	public func toName() -> String {
