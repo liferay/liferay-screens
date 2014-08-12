@@ -20,10 +20,6 @@ public class DDLElementTextTableCell_default: DDLElementTableCell, UITextFieldDe
 
 	private var failedValidation = false
 
-	@IBAction func textFieldValueChanged(sender: AnyObject) {
-		element?.currentValue = textField?.text
-	}
-
 	override func onChangedElement() {
 		if let stringElement = element as? DDLElementString {
 			textField?.placeholder = stringElement.label
