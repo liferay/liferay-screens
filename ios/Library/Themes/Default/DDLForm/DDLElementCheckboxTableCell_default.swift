@@ -33,4 +33,8 @@ public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()
 	}
 
+	override public func canBecomeFirstResponder() -> Bool {
+		return false
+	}
+
 }

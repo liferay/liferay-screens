@@ -28,20 +28,30 @@ public class DDLElementTextTableCell_default: DDLElementTableCell, UITextFieldDe
 		if let stringElement = element as? DDLElementString {
 			textField?.placeholder = stringElement.label
 			textField?.text = stringElement.predefinedValue?.description
+
+			textField?.returnKeyType = isLastCell ? .Send : .Next
 		}
 	}
 
 	override func onValidated(valid: Bool) {
 		let imgName = valid ? "default-field" : "default-field-failed"
-
 		let imgNameHighlighted = valid ? "default-field-focused" : "default-field-failed"
 
 		textFieldBackground?.image = UIImage(named: imgNameHighlighted)
-
 		textFieldBackground?.highlightedImage = UIImage(named: imgNameHighlighted)
 
 		failedValidation = !valid
 	}
+
+	override public func canBecomeFirstResponder() -> Bool {
+		return textField!.canBecomeFirstResponder()
+	}
+
+	override public func becomeFirstResponder() -> Bool {
+		return textField!.becomeFirstResponder()
+	}
+
+	//MARK: UITextFieldDelegate
 
 	public func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
 		textFieldBackground?.highlighted = true
@@ -79,9 +89,7 @@ public class DDLElementTextTableCell_default: DDLElementTableCell, UITextFieldDe
 	}
 
 	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
-		textField.resignFirstResponder()
-
-		return true
+		return nextCellResponder(textField)
 	}
 
 }

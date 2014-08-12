@@ -39,6 +39,10 @@ import UIKit
 
 	// MARK: BaseWidget METHODS
 
+	override public func becomeFirstResponder() -> Bool {
+		return formView().becomeFirstResponder()
+	}
+
 	override public func onCreate() {
 	}
 
