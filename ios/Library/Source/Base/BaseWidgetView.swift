@@ -57,10 +57,16 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	* child component as first responder.
 	*/
 	override public func becomeFirstResponder() -> Bool {
+		var result:Bool
+
 		if let firstView = viewWithTag(1) {
-			return firstView.becomeFirstResponder()
+			result = firstView.becomeFirstResponder()
 		}
-		return super.becomeFirstResponder()
+		else {
+			result = super.becomeFirstResponder()
+		}
+
+		return result
 	}
 
 	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
@@ -99,7 +105,7 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	internal func nextResponderForView(view:UIView) -> UIResponder {
 		if view.tag > 0 {
-			if let nextView = viewWithTag(view.tag + 1) {
+			if let nextView = viewWithTag(view.tag.successor()) {
 				return nextView
 			}
 		}
