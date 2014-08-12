@@ -78,6 +78,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		let cell = tableView.dequeueReusableCellWithIdentifier(element.type.toRaw()) as? DDLElementTableCell
 
 		if let cellValue = cell {
+			cellValue.tableView = tableView
+			cellValue.indexPath = indexPath
 			cellValue.element = element
 		}
 

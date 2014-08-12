@@ -15,6 +15,10 @@ import UIKit
 
 public class DDLElementTableCell: UITableViewCell {
 
+	public var tableView:UITableView?
+	public var indexPath:NSIndexPath?
+	public var formView:DDLFormView?
+
 	public var element:DDLElement? {
 		didSet {
 			element?.validatedClosure = onValidated
