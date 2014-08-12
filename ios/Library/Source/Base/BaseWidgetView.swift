@@ -68,15 +68,21 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		let nextResponder = nextResponderForView(textField)
 
 		if nextResponder != textField {
-			if textField.canResignFirstResponder() {
-				textField.resignFirstResponder()
 
-				if let button = nextResponder as? UIButton {
-					button.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
-				}
-				else if nextResponder.canBecomeFirstResponder() {
-					nextResponder.becomeFirstResponder()
-				}
+			switch textField.returnKeyType {
+				case .Next where nextResponder is UITextInputTraits:
+					if textField.canResignFirstResponder() {
+						textField.resignFirstResponder()
+
+						if nextResponder.canBecomeFirstResponder() {
+							nextResponder.becomeFirstResponder()
+						}
+					}
+
+				case _ where nextResponder is UIControl:
+					(nextResponder as UIControl).sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+
+				default: ()
 			}
 		}
 
