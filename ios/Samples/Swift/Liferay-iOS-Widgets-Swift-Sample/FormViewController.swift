@@ -17,7 +17,7 @@ class FormViewController: UIViewController, DDLFormWidgetDelegate {
 	}
 
 	func onFormLoaded(elements: [DDLElement]) {
-
+		widget!.becomeFirstResponder()
 	}
 
 	func onFormLoadError(error: NSError) {
@@ -25,6 +25,7 @@ class FormViewController: UIViewController, DDLFormWidgetDelegate {
 	}
 
 	@IBAction func buttonClick(sender: AnyObject) {
+		LiferayContext.instance.createSession("jose.navarro@liferay.com", password: "jm")
 		widget!.loadForm()
 	}
 
