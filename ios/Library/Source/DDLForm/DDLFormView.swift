@@ -47,6 +47,9 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 		return result
 	}
 
+	internal func showElement(element:DDLElement) {
+	}
+
 	internal func onChangedRows() {
 	}
 

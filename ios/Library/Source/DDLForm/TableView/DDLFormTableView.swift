@@ -49,6 +49,14 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		return result
 	}
 
+	override func showElement(element: DDLElement) {
+		if let index = find(rows, element) {
+			tableView!.scrollToRowAtIndexPath(
+				NSIndexPath(forRow: index, inSection: 0),
+				atScrollPosition: .Top, animated: true)
+		}
+	}
+
 	internal func registerElementCells() {
 		let currentBundle = NSBundle(forClass: self.dynamicType)
 
