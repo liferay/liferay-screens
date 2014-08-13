@@ -35,13 +35,21 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 		}
 	}
 
-	public func validateForm() -> Bool {
+	public func validateForm(#autoscroll:Bool) -> Bool {
 		var result = true
+		var firstFailedElement:DDLElement?
 
 		for element in rows {
 			if !element.validate() {
+				if firstFailedElement == nil {
+					firstFailedElement = element
+				}
 				result = false
 			}
+		}
+
+		if autoscroll && firstFailedElement != nil {
+			showElement(firstFailedElement!)
 		}
 
 		return result

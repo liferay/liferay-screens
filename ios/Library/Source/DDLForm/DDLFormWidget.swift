@@ -29,6 +29,7 @@ import UIKit
 	@IBInspectable var groupId: Int = 0
 	@IBInspectable var recordSetId: Int = 0
 	@IBInspectable var recordId:Int = 0
+	@IBInspectable var autoscrollOnValidation:Bool = true
 
 	@IBOutlet var delegate: DDLFormWidgetDelegate?
 
@@ -145,7 +146,7 @@ import UIKit
 			return false
 		}
 
-		if !formView().validateForm() {
+		if !formView().validateForm(autoscroll:autoscrollOnValidation) {
 			showHUDWithMessage("Some values are not valid", details: "Please, review your form", secondsToShow: 1.5)
 			return false
 		}
