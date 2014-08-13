@@ -54,19 +54,13 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		return false
 	}
 
-/*
 	override func onValidated(valid: Bool) {
 		let imgName = valid ? "default-field" : "default-field-failed"
 
-		let imgNameHighlighted = valid ? "default-field-focused" : "default-field-failed"
-
-		textFieldBackground?.image = UIImage(named: imgNameHighlighted)
-
-		textFieldBackground?.highlightedImage = UIImage(named: imgNameHighlighted)
+		textViewBackground?.image = UIImage(named: imgName)
 
 		failedValidation = !valid
 	}
-*/
 
 	public func textViewDidBeginEditing(textView: UITextView!) {
 		changeCellHeight(expandedCellHeight)
@@ -107,22 +101,11 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 
 			element?.currentValue = newText
 
-			/*
 			if failedValidation {
-			failedValidation = false
+				failedValidation = false
 
-			textFieldBackground?.image = UIImage(named: "default-field")
-
-			textFieldBackground?.highlightedImage = UIImage(named: "default-field-focused")
-
-			//FIXME!
-			// This hack is the only way I found to repaint the text field while it's in edition mode.
-			// It doesn't produce flickering nor nasty effects.
-
-			textFieldBackground?.highlighted = false
-			textFieldBackground?.highlighted = true
+				textViewBackground?.image = UIImage(named: "default-field")
 			}
-			*/
 		}
 
 		return result
