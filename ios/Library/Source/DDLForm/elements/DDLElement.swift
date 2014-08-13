@@ -75,7 +75,7 @@ public enum DDLElementType: String {
 }
 
 
-public class DDLElement {
+public class DDLElement: Equatable {
 
 	public var currentValue:AnyObject?
 	public var currentHeight:CGFloat = 0
@@ -151,4 +151,11 @@ public class DDLElement {
 		return value?.description
 	}
 
+}
+
+
+// MARK Equatable
+
+public func ==(left: DDLElement, right: DDLElement) -> Bool {
+	return left.name == right.name
 }
