@@ -88,8 +88,7 @@ public class DDLElementTableCell: UITableViewCell {
 							currentView.resignFirstResponder()
 
 							if nextCell.canBecomeFirstResponder() {
-								nextCell.becomeFirstResponder()
-								result = true
+								result = nextCell.becomeFirstResponder()
 							}
 
 						}

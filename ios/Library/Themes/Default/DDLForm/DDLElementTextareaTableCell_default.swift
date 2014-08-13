@@ -17,17 +17,31 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 
 	@IBOutlet var textView: UITextView?
 	@IBOutlet var placeholder: UILabel?
-	@IBOutlet var singleLineBackground: UIImageView?
-	@IBOutlet var multipleLineBackground: UIImageView?
+	@IBOutlet var textViewBackground: UIImageView?
 
 	private var failedValidation = false
+	private var originalTextViewRect:CGRect = CGRectZero
+	private var originalBackgroundRect:CGRect = CGRectZero
+
+	private let expandedCellHeight:CGFloat = 104
+	private let expandedTextViewHeight:CGFloat = 84
+	private let expandedBackgroundHeight:CGFloat = 91
 
 	override func onChangedElement() {
 		if let stringElement = element as? DDLElementString {
 			placeholder?.text = stringElement.label
-			textView?.text = stringElement.predefinedValue?.description
+
+			if stringElement.currentValue != nil {
+				textView?.text = stringElement.currentStringValue
+			}
+			else {
+				textView?.text = stringElement.predefinedValue?.description
+			}
 
 			textView?.returnKeyType = isLastCell ? .Send : .Next
+
+			originalTextViewRect = textView!.frame
+			originalBackgroundRect = textViewBackground!.frame
 		}
 	}
 
@@ -36,15 +50,44 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	}
 
 	override public func becomeFirstResponder() -> Bool {
-		return textView!.becomeFirstResponder()
+		textView!.becomeFirstResponder()
+		return false
 	}
 
+/*
+	override func onValidated(valid: Bool) {
+		let imgName = valid ? "default-field" : "default-field-failed"
+
+		let imgNameHighlighted = valid ? "default-field-focused" : "default-field-failed"
+
+		textFieldBackground?.image = UIImage(named: imgNameHighlighted)
+
+		textFieldBackground?.highlightedImage = UIImage(named: imgNameHighlighted)
+
+		failedValidation = !valid
+	}
+*/
+
 	public func textViewDidBeginEditing(textView: UITextView!) {
-		changeCellHeight(100)
+		changeCellHeight(expandedCellHeight)
+
+		textView.frame = CGRectMake(
+			self.originalTextViewRect.origin.x,
+			self.originalTextViewRect.origin.y,
+			self.originalTextViewRect.size.width,
+			expandedTextViewHeight)
+		self.textViewBackground!.frame.size.height = expandedBackgroundHeight
+
+		textViewBackground?.highlighted = true
 	}
 
 	public func textViewDidEndEditing(textView: UITextView!) {
+		textView.frame = originalTextViewRect
+		textViewBackground!.frame = originalBackgroundRect
+
 		changeCellHeight(element!.type.registeredHeight)
+
+		textViewBackground?.highlighted = false
 	}
 
 	public func textView(textView: UITextView!, shouldChangeTextInRange range: NSRange, replacementText text: String!) -> Bool {
@@ -52,7 +95,9 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		var result = false
 
 		if text == "\n" {
-			return nextCellResponder(textView)
+			textViewDidEndEditing(textView)
+			nextCellResponder(textView)
+			result = false
 		} else {
 			result = true
 
@@ -84,7 +129,7 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	}
 
 	private func showPlaceholder(placeholder:UILabel, show:Bool) {
-		UIView.animateWithDuration(0.4, animations: {
+		UIView.animateWithDuration(0.2, animations: {
 			placeholder.alpha = show ? 1.0 : 0.0
 		})
 	}
