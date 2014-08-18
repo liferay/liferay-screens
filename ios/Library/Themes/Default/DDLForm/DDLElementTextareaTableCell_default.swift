@@ -30,7 +30,6 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 
 	override func onChangedElement() {
 		if let stringElement = element as? DDLElementString {
-			placeholder?.text = stringElement.label
 
 			if stringElement.currentValue != nil {
 				textView?.text = stringElement.currentStringValue
@@ -38,6 +37,9 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 			else {
 				textView?.text = stringElement.predefinedValue?.description
 			}
+
+			placeholder?.text = stringElement.label
+			placeholder?.alpha = (textView?.text == "") ? 1.0 : 0.0
 
 			textView?.returnKeyType = isLastCell ? .Send : .Next
 
