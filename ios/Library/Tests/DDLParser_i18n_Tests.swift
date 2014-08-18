@@ -119,7 +119,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 
 	private let booleanElementWithTranslations =
-		"<root available-locales=\"es_ES\" default-locale=\"es_ES\"> " +
+		"<root available-locales=\"es_ES, es_AR, es, en_US, en_AU\" default-locale=\"es_ES\"> " +
 			"<dynamic-element dataType=\"boolean\" " +
 					"name=\"Un_booleano\" " +
 					"readOnly=\"false\" " +
