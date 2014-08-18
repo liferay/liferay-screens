@@ -121,6 +121,10 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	// MARK: UITableViewDataSource
 
 	public func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+		if rows.count == 0 {
+			return 0
+		}
+
 		return rows.count + (showSubmitButton ? 1 : 0)
 	}
 
