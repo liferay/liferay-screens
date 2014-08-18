@@ -13,7 +13,40 @@
 */
 import Foundation
 
+public struct DDLStringOption {
+
+	public var name:String
+	public var value:String
+	public var label:String
+
+}
+
 public class DDLElementString : DDLElement {
+
+	private(set) var multiple:Bool
+	private(set) var options:[DDLStringOption]
+
+	override init(attributes: [String:String], localized: [String:AnyObject]) {
+		multiple = Bool.from(string: attributes["multiple"] ?? "false")
+
+		if let optionsArray = (localized["options"] as AnyObject?) as? [[String:AnyObject]] {
+
+			options = []
+
+			for optionDict in optionsArray {
+				let name = (optionDict["name"] ?? "") as String
+				let value = (optionDict["value"] ?? "") as String
+				let label = (optionDict["label"] ?? "") as String
+
+				options.append(DDLStringOption(name: name, value: value, label: label))
+			}
+		}
+		else {
+			options = []
+		}
+
+		super.init(attributes: attributes, localized: localized)
+	}
 
 	override func convert(fromCurrentValue value: AnyObject?) -> String? {
 		return value?.description

@@ -68,24 +68,49 @@ public class DDLParser {
 
 		let dataType = DDLElementDataType.from(xmlElement:element)
 
-		let localized = processLocalizedMetadata(element)
+		var localizedMetadata = processLocalizedMetadata(element)
 
-		return dataType.createElement(attributes:element.attributes as [String:String], localized:localized)
+		return dataType.createElement(attributes:element.attributes as [String:String], localized:localizedMetadata)
 	}
 
 	private func processLocalizedMetadata(dynamicElement:SMXMLElement) -> [String:AnyObject] {
 		var result:[String:AnyObject] = [:]
 
-		func addElement(elementName:String, #metadata:SMXMLElement) {
+		func addElement(elementName:String, #metadata:SMXMLElement, inout toDict resultDict:[String:AnyObject]) {
 			if let element = metadata.childWithAttribute("name", value: elementName) {
-				result[elementName] = element.value
+				resultDict[elementName] = element.value
 			}
 		}
 
+		func findOptions() -> [[String:AnyObject]]? {
+			var options:[[String:AnyObject]] = []
+
+			let optionElements = childrenWithAttribute("type", value: "option", parent: dynamicElement)
+			
+			for optionElement in optionElements {
+				var option:[String:AnyObject] = [:]
+
+				option["name"] = optionElement.attributeNamed("name")
+				option["value"] = optionElement.attributeNamed("value")
+
+				if let localizedMetadata = findLocalizedMetadata(optionElement) {
+					addElement("label", metadata: localizedMetadata, toDict:&option)
+				}
+
+				options.append(option)
+			}
+
+			return options.count == 0 ? nil : options
+		}
+
 		if let localizedMetadata = findLocalizedMetadata(dynamicElement) {
-			addElement("label", metadata:localizedMetadata)
-			addElement("predefinedValue", metadata:localizedMetadata)
-			addElement("tip", metadata:localizedMetadata)
+			addElement("label", metadata:localizedMetadata, toDict:&result)
+			addElement("predefinedValue", metadata:localizedMetadata, toDict:&result)
+			addElement("tip", metadata:localizedMetadata, toDict:&result)
+		}
+
+		if let options = findOptions() {
+			result["options"] = options
 		}
 
 		return result
@@ -159,10 +184,25 @@ public class DDLParser {
 		return foundMetadata
 	}
 
+	private func childrenWithAttribute(attribute:String, value:String, parent:SMXMLElement) -> [SMXMLElement] {
+		var result:[SMXMLElement] = []
+
+		for element in parent.children {
+			let child = element as SMXMLElement
+			let attrValue = child.attributeNamed(attribute)
+			if attrValue != nil && attrValue == value {
+				result.append(child)
+			}
+		}
+
+		return result
+	}
+
 	private func findElementWithAttribute(attribute:String, value:String, elements:[SMXMLElement]) -> SMXMLElement? {
 
 		for element in elements {
-			if element.attributeNamed(attribute) == value {
+			let attrValue = element.attributeNamed(attribute)
+			if attrValue != nil && attrValue == value {
 				return element
 			}
 		}
