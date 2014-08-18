@@ -41,7 +41,11 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 		while !result && indexPath.row < rowCount {
 			if let cell = tableView!.cellForRowAtIndexPath(indexPath) {
-				result = cell.becomeFirstResponder()
+				if cell.canBecomeFirstResponder() {
+					result = true
+					cell.becomeFirstResponder()
+				}
+
 			}
 			indexPath = NSIndexPath(forRow: indexPath.row.successor(), inSection: indexPath.section)
 		}
