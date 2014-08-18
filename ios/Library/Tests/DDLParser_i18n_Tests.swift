@@ -27,7 +27,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 	//MARK: Checking header fields
 
-	func test_Parse_ShouldReadAvailableLocales() {
+	func test_ParseHeader_ShouldReadAvailableLocales() {
 		parser.xml = "<root available-locales=\"en_US, es_ES\" default-locale=\"es_ES\"> </root>"
 
 		parser.parse()
@@ -38,7 +38,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 		XCTAssertEqual("es_ES", parser.availableLocales![1].localeIdentifier!)
 	}
 
-	func test_Parse_ShouldReadDefaultLocale() {
+	func test_ParseHeader_ShouldReadDefaultLocale() {
 		parser.xml = "<root available-locales=\"en_US, es_ES\" default-locale=\"es_ES\"> </root>"
 
 		parser.parse()
@@ -47,7 +47,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 		XCTAssertEqual("es_ES", parser.defaultLocale!.localeIdentifier!)
 	}
 
-	func test_Parse_ShouldFindFullMatch_WhenExistingCompleteLocaleIsProvided() {
+	func test_ParseElement_ShouldFindFullMatch_WhenExistingCompleteLocaleIsProvided() {
 		parser.currentLocale = NSLocale(localeIdentifier: "es_ES")
 		parser.xml = booleanElementWithTranslations
 
@@ -56,9 +56,20 @@ class DDLParser_i18n_Tests: XCTestCase {
 		XCTAssertEqual("Un Booleano para 'es_ES'", elements![0].label)
 	}
 
+	func test_ParseOption_ShouldFindFullMatch_WhenExistingCompleteLocaleIsProvided() {
+		parser.currentLocale = NSLocale(localeIdentifier: "es_ES")
+		parser.xml = selectWithTranslatedOptions
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		XCTAssertEqual("Primera etiqueta en 'es_ES'", stringElement.options[0].label)
+	}
+
 	//MARK: Checking locale match providing language and country locales
 
-	func test_Parse_ShouldFindNeutralLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
+	func test_ParseElement_ShouldFindNeutralLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
 		parser.currentLocale = NSLocale(localeIdentifier: "es_MX")
 		parser.xml = booleanElementWithTranslations
 
@@ -67,16 +78,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 		XCTAssertEqual("Un Booleano neutro para 'es'", elements![0].label)
 	}
 
-	func test_Parse_ShouldFindAnyLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
-		parser.currentLocale = NSLocale(localeIdentifier: "en_GB")
-		parser.xml = booleanElementWithTranslations
-
-		let elements = parser.parse()
-
-		XCTAssertEqual("A Boolean for 'en_US'", elements![0].label)
-	}
-
-	func test_Parse_ShouldFindDefault_WhenNoExistingCompleteLocaleIsProvided() {
+	func test_ParseElement_ShouldFindDefault_WhenNoExistingCompleteLocaleIsProvided() {
 		parser.currentLocale = NSLocale(localeIdentifier: "fr_FR")
 		parser.xml = booleanElementWithTranslations
 
@@ -87,7 +89,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 	//MARK: Checking locale match providing neutral language locale
 
-	func test_Parse_ShouldFindNeutralLanguageMatch_WhenExistingNeutralLanguageIsProvided() {
+	func test_ParseElement_ShouldFindNeutralLanguageMatch_WhenExistingNeutralLanguageIsProvided() {
 		parser.currentLocale = NSLocale(localeIdentifier: "es")
 		parser.xml = booleanElementWithTranslations
 
@@ -96,7 +98,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 		XCTAssertEqual("Un Booleano neutro para 'es'", elements![0].label)
 	}
 
-	func test_Parse_ShouldFindDefault_WhenNoExistingNeutralLanguageIsProvided() {
+	func test_ParseElement_ShouldFindDefault_WhenNoExistingNeutralLanguageIsProvided() {
 		parser.currentLocale = NSLocale(localeIdentifier: "fr")
 		parser.xml = booleanElementWithTranslations
 
@@ -106,7 +108,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 	}
 
 
-	func test_Parse_ShouldFindAnyLanguageMatch_WhenNoExistingNeutralLanguageIsProvided() {
+	func test_ParseElement_ShouldFindAnyLanguageMatch_WhenNoExistingNeutralLanguageIsProvided() {
 		parser.currentLocale = NSLocale(localeIdentifier: "en")
 		parser.xml = booleanElementWithTranslations
 
