@@ -114,10 +114,12 @@ import UIKit
 
 	public func loadForm() -> Bool {
 		if LiferayContext.instance.currentSession == nil {
+			println("ERROR: No session initialized. Can't load form without session")
 			return false
 		}
 
 		if structureId == 0 {
+			println("ERROR: StructureId is empty. Can't load form without it.")
 			return false
 		}
 
@@ -142,14 +144,17 @@ import UIKit
 
 	public func submitForm() -> Bool {
 		if LiferayContext.instance.currentSession == nil {
+			println("ERROR: No session initialized. Can't submit form without session")
 			return false
 		}
 
 		if groupId == 0 || recordSetId == 0 {
+			println("ERROR: RecordSetId is empty. Can't submit form without it.")
 			return false
 		}
 
 		if userId == 0 {
+			println("ERROR: UserId is empty. Can't submit form without loading the form before")
 			return false
 		}
 
