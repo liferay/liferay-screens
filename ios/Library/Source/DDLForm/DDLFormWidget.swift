@@ -148,7 +148,7 @@ import UIKit
 			return false
 		}
 
-		if groupId == 0 || recordSetId == 0 {
+		if recordSetId == 0 {
 			println("ERROR: RecordSetId is empty. Can't submit form without it.")
 			return false
 		}
@@ -174,8 +174,9 @@ import UIKit
 
 		var outError: NSError?
 
-		let serviceContextAttributes = ["userId":userId, "scopeGroupId":groupId]
-		//uuid??
+		let serviceContextAttributes = [
+				"userId":userId,
+				"scopeGroupId":groupId != 0 ? groupId : LiferayContext.instance.groupId]
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
 
