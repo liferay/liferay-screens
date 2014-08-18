@@ -23,7 +23,7 @@ public enum DDLElementDataType: String {
 		return fromRaw(xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 	}
 
-	public func createElement(#attributes:[String:String], localized:[String:String]) -> DDLElement? {
+	public func createElement(#attributes:[String:String], localized:[String:AnyObject]) -> DDLElement? {
 		switch self {
 		case .DDLBoolean:
 			return DDLElementBoolean(attributes:attributes, localized:localized)
@@ -107,7 +107,7 @@ public class DDLElement: Equatable {
 	private(set) var width:Int? 		// Makes sense in mobile??
 
 
-	public init(attributes:[String:String], localized:[String:String]) {
+	public init(attributes:[String:String], localized:[String:AnyObject]) {
 		dataType = DDLElementDataType.fromRaw(attributes["dataType"] ?? "") ?? .Unsupported
 		type = DDLElementType.fromRaw(attributes["type"] ?? "") ?? .Unsupported
 		name = attributes["name"] ?? ""
@@ -117,9 +117,9 @@ public class DDLElement: Equatable {
 		required = Bool.from(string: attributes["required"] ?? "true")
 		showLabel = Bool.from(string: attributes["showLabel"] ?? "true")
 
-		label = localized["label"] ?? ""
-		tip = localized["tip"] ?? ""
-		predefinedValue = convert(fromString:localized["predefinedValue"])
+		label = (localized["label"] ?? "") as String
+		tip = (localized["tip"] ?? "") as String
+		predefinedValue = convert(fromString:(localized["predefinedValue"] ?? nil) as? String)
 		currentValue = predefinedValue
 	}
 

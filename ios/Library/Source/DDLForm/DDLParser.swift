@@ -73,8 +73,8 @@ public class DDLParser {
 		return dataType.createElement(attributes:element.attributes as [String:String], localized:localized)
 	}
 
-	private func processLocalizedMetadata(dynamicElement:SMXMLElement) -> [String:String] {
-		var result:[String:String] = [:]
+	private func processLocalizedMetadata(dynamicElement:SMXMLElement) -> [String:AnyObject] {
+		var result:[String:AnyObject] = [:]
 
 		func addElement(elementName:String, #metadata:SMXMLElement) {
 			if let element = metadata.childWithAttribute("name", value: elementName) {
