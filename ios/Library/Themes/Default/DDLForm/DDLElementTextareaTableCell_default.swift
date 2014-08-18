@@ -18,6 +18,7 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	@IBOutlet var textView: UITextView?
 	@IBOutlet var placeholder: UILabel?
 	@IBOutlet var textViewBackground: UIImageView?
+	@IBOutlet var separator: UIView?
 
 	private var failedValidation = false
 	private var originalTextViewRect:CGRect = CGRectZero
@@ -65,6 +66,8 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	public func textViewDidBeginEditing(textView: UITextView!) {
 		changeCellHeight(expandedCellHeight)
 
+		separator!.frame.origin.y += expandedBackgroundHeight - originalBackgroundRect.size.height
+
 		textView.frame = CGRectMake(
 			self.originalTextViewRect.origin.x,
 			self.originalTextViewRect.origin.y,
@@ -76,6 +79,7 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	}
 
 	public func textViewDidEndEditing(textView: UITextView!) {
+		separator!.frame.origin.y -= expandedBackgroundHeight - originalBackgroundRect.size.height
 		textView.frame = originalTextViewRect
 		textViewBackground!.frame = originalBackgroundRect
 

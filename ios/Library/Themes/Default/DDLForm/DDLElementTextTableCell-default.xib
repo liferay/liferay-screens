@@ -25,6 +25,11 @@
                             <outlet property="delegate" destination="WWD-jz-pJ6" id="9KI-XB-QdE"/>
                         </connections>
                     </textField>
+                    <view contentMode="TopLeft" id="0Cg-Uy-Tyo" userLabel="Separator">
+                        <rect key="frame" x="10" y="54" width="300" height="1"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    </view>
                 </subviews>
             </tableViewCellContentView>
             <connections>

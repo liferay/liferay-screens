@@ -32,10 +32,16 @@
                         <color key="textColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="TopLeft" id="RHs-B4-qns" userLabel="Separator">
+                        <rect key="frame" x="10" y="54" width="300" height="1"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    </view>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="placeholder" destination="yHX-vG-lR1" id="D2l-tS-cKd"/>
+                <outlet property="separator" destination="RHs-B4-qns" id="iI6-F2-bRQ"/>
                 <outlet property="textView" destination="mUU-9d-xI8" id="GKQ-Z3-hen"/>
                 <outlet property="textViewBackground" destination="vQK-Cx-dik" id="hTD-Vy-1k1"/>
             </connections>
