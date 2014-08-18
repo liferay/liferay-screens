@@ -17,6 +17,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	@IBOutlet var tableView: UITableView?
 
+	internal var submitButtonHeight:CGFloat = 0.0
+
 	override public func onCreate() {
 		super.onCreate()
 
@@ -78,6 +80,28 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 				registerElementTypeHeight(type:elementType, nib:cellNib)
 			}
 		}
+
+		if showSubmitButton {
+			var nibName = "DDLSubmitButtonTableCell"
+			if let themeName = themeName() {
+				nibName += "-" + themeName
+			}
+
+			if currentBundle.pathForResource(nibName, ofType: "nib") {
+				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
+
+				tableView?.registerNib(cellNib, forCellReuseIdentifier: "SubmitButton")
+
+				if let views = cellNib.instantiateWithOwner(nil, options: nil) {
+					if let cellRootView = views.first as? UITableViewCell {
+						submitButtonHeight = cellRootView.bounds.size.height
+					}
+				}
+			}
+			else {
+				println("ERROR: Can't register cell for submit button: \(nibName)")
+			}
+		}
 	}
 
 	internal func registerElementTypeHeight(#type:DDLElementType, nib:UINib) {
@@ -97,19 +121,27 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	// MARK: UITableViewDataSource
 
 	public func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-		return rows.count
+		return rows.count + (showSubmitButton ? 1 : 0)
 	}
 
 	public func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
 
-		let element = rows[indexPath.row]
+		var cell:DDLElementTableCell?
+		let row = indexPath.row
 
-		let cell = tableView.dequeueReusableCellWithIdentifier(element.type.toRaw()) as? DDLElementTableCell
+		if row == rows.count {
+			cell = tableView.dequeueReusableCellWithIdentifier("SubmitButton") as? DDLElementTableCell
+		}
+		else {
+			let element = rows[row]
+			cell = tableView.dequeueReusableCellWithIdentifier(element.type.toRaw()) as? DDLElementTableCell
+			cell!.element = element
+		}
 
 		if let cellValue = cell {
+			cellValue.formView = self
 			cellValue.tableView = tableView
 			cellValue.indexPath = indexPath
-			cellValue.element = element
 		}
 
 		return cell
@@ -117,7 +149,9 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	public func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
 
-		return rows[indexPath.row].currentHeight
+		let row = indexPath.row
+
+		return (row == rows.count) ? submitButtonHeight : rows[row].currentHeight
 	}
 
 }

@@ -31,6 +31,7 @@ import UIKit
 	@IBInspectable var recordId:Int = 0
 	@IBInspectable var autoLoad:Bool = true
 	@IBInspectable var autoscrollOnValidation:Bool = true
+	@IBInspectable var showSubmitButton:Bool = true
 
 	@IBOutlet var delegate: DDLFormWidgetDelegate?
 
@@ -46,6 +47,7 @@ import UIKit
 	}
 
 	override public func onCreate() {
+		formView().showSubmitButton = showSubmitButton
 	}
 
 	override public func onShow() {

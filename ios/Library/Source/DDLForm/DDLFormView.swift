@@ -35,6 +35,9 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 		}
 	}
 
+	public var showSubmitButton: Bool = true
+
+
 	public func validateForm(#autoscroll:Bool) -> Bool {
 		var result = true
 		var firstFailedElement:DDLElement?
