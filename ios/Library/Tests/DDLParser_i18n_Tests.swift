@@ -78,6 +78,17 @@ class DDLParser_i18n_Tests: XCTestCase {
 		XCTAssertEqual("Un Booleano neutro para 'es'", elements![0].label)
 	}
 
+	func test_ParseOption_ShouldFindNeutralLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
+		parser.currentLocale = NSLocale(localeIdentifier: "es_MX")
+		parser.xml = selectWithTranslatedOptions
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		XCTAssertEqual("Primera etiqueta en 'es'", stringElement.options[0].label)
+	}
+
 	func test_ParseElement_ShouldFindDefault_WhenNoExistingCompleteLocaleIsProvided() {
 		parser.currentLocale = NSLocale(localeIdentifier: "fr_FR")
 		parser.xml = booleanElementWithTranslations
@@ -86,6 +97,18 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 		XCTAssertEqual("Un Booleano para 'es_ES'", elements![0].label)
 	}
+
+	func test_ParseOption_ShouldFindDefault_WhenNoExistingCompleteLocaleIsProvided() {
+		parser.currentLocale = NSLocale(localeIdentifier: "fr_FR")
+		parser.xml = selectWithTranslatedOptions
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		XCTAssertEqual("Primera etiqueta en 'es_ES'", stringElement.options[0].label)
+	}
+
 
 	//MARK: Checking locale match providing neutral language locale
 
@@ -98,6 +121,17 @@ class DDLParser_i18n_Tests: XCTestCase {
 		XCTAssertEqual("Un Booleano neutro para 'es'", elements![0].label)
 	}
 
+	func test_ParseOption_ShouldFindNeutralLanguageMatch_WhenExistingNeutralLanguageIsProvided() {
+		parser.currentLocale = NSLocale(localeIdentifier: "es")
+		parser.xml = selectWithTranslatedOptions
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		XCTAssertEqual("Primera etiqueta en 'es'", stringElement.options[0].label)
+	}
+
 	func test_ParseElement_ShouldFindDefault_WhenNoExistingNeutralLanguageIsProvided() {
 		parser.currentLocale = NSLocale(localeIdentifier: "fr")
 		parser.xml = booleanElementWithTranslations
@@ -107,6 +141,16 @@ class DDLParser_i18n_Tests: XCTestCase {
 		XCTAssertEqual("Un Booleano para 'es_ES'", elements![0].label)
 	}
 
+	func test_ParseOption_ShouldFindDefault_WhenNoExistingNeutralLanguageIsProvided() {
+		parser.currentLocale = NSLocale(localeIdentifier: "fr")
+		parser.xml = selectWithTranslatedOptions
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		XCTAssertEqual("Primera etiqueta en 'es_ES'", stringElement.options[0].label)
+	}
 
 	func test_ParseElement_ShouldFindAnyLanguageMatch_WhenNoExistingNeutralLanguageIsProvided() {
 		parser.currentLocale = NSLocale(localeIdentifier: "en")
@@ -116,6 +160,18 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 		XCTAssertEqual("A Boolean for 'en_US'", elements![0].label)
 	}
+
+	func test_ParseOption_ShouldFindAnyLanguageMatch_WhenNoExistingNeutralLanguageIsProvided() {
+		parser.currentLocale = NSLocale(localeIdentifier: "en")
+		parser.xml = selectWithTranslatedOptions
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		XCTAssertEqual("First label in 'en_US'", stringElement.options[0].label)
+	}
+
 
 
 	private let booleanElementWithTranslations =
@@ -153,5 +209,47 @@ class DDLParser_i18n_Tests: XCTestCase {
 					"</entry> " +
 				"</meta-data> " +
 		"</dynamic-element></root>"
+
+	private let selectWithTranslatedOptions =
+		"<root available-locales=\"en_US, es_ES, es_AR\" default-locale=\"es_ES\"> " +
+			"<dynamic-element dataType=\"string\" " +
+					"indexType=\"keyword\" " +
+					"multiple=\"true\" " +
+					"name=\"A_Select\" " +
+					"type=\"text\" " +
+					"width=\"small\"> " +
+				"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\">" +
+						"<![CDATA[A Select]]>" +
+					"</entry> " +
+				"</meta-data> " +
+				"<dynamic-element name=\"option_1\" type=\"option\" value=\"value 1\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[First label in 'en_US']]>" +
+						"</entry> " +
+					"</meta-data> " +
+					"<meta-data locale=\"en_AU\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[First label in 'en_AU']]>" +
+						"</entry> " +
+					"</meta-data> " +
+					"<meta-data locale=\"es_ES\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[Primera etiqueta en 'es_ES']]>" +
+						"</entry> " +
+					"</meta-data> " +
+					"<meta-data locale=\"es_AR\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[Primera etiqueta en 'es_AR']]>" +
+						"</entry> " +
+					"</meta-data> " +
+					"<meta-data locale=\"es\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[Primera etiqueta en 'es']]>" +
+						"</entry> " +
+					"</meta-data> " +
+				"</dynamic-element> " +
+			"</dynamic-element> </root>"
 
 }
