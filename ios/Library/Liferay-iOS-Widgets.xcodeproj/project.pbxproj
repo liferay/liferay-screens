@@ -156,6 +156,10 @@
 		88D789821998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D7897F1998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib */; };
 		88D789831998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789801998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift */; };
 		88D789841998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789801998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift */; };
+		88D90A5D19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D90A5B19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift */; };
+		88D90A5E19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D90A5B19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift */; };
+		88D90A5F19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D90A5C19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib */; };
+		88D90A6019A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D90A5C19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib */; };
 		88D99C32196C42B30090F236 /* LRSession_storage_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */; };
 		88E3304A19928726002AD507 /* DDLParser_basic_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E3304919928726002AD507 /* DDLParser_basic_Tests.swift */; };
 		88E3304C19928BF0002AD507 /* DDLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E3304B19928BF0002AD507 /* DDLParser.swift */; };
@@ -326,6 +330,8 @@
 		88D789741998ACA500171FB7 /* DDLElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElement.swift; sourceTree = "<group>"; };
 		88D7897F1998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementCheckboxTableCell-default.xib"; sourceTree = "<group>"; };
 		88D789801998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementCheckboxTableCell_default.swift; sourceTree = "<group>"; };
+		88D90A5B19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLSubmitButtonTableCell_default.swift; sourceTree = "<group>"; };
+		88D90A5C19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLSubmitButtonTableCell-default.xib"; sourceTree = "<group>"; };
 		88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LRSession_storage_Tests.swift; sourceTree = "<group>"; };
 		88E3304919928726002AD507 /* DDLParser_basic_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser_basic_Tests.swift; sourceTree = "<group>"; };
 		88E3304B19928BF0002AD507 /* DDLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser.swift; sourceTree = "<group>"; };
@@ -398,6 +404,8 @@
 				88D537761999198C00615515 /* DDLElementTextTableCell-default.xib */,
 				884CE50E1994EDB100ADF047 /* DDLFormView_default.swift */,
 				884CE50D1994EDB100ADF047 /* DDLFormView-default.xib */,
+				88D90A5B19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift */,
+				88D90A5C19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib */,
 			);
 			path = DDLForm;
 			sourceTree = "<group>";
@@ -805,6 +813,7 @@
 				888D7792198FEFFE0052C39C /* default-large-button-selected.png in Resources */,
 				888CE12C19924D74001DCA6A /* ForgotPasswordView-flat7.xib in Resources */,
 				88D789821998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib in Resources */,
+				88D90A6019A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib in Resources */,
 				888D7790198FEFFE0052C39C /* default-field@2x.png in Resources */,
 				888D77AA198FEFFE0052C39C /* default-user-icon.png in Resources */,
 				888D7709198FDAD30052C39C /* flat7.strings in Resources */,
@@ -879,6 +888,7 @@
 				88D537791999198C00615515 /* DDLElementTextTableCell-default.xib in Resources */,
 				888D7710198FDAD30052C39C /* flat7-field@2x.png in Resources */,
 				888D77AD198FEFFE0052C39C /* theme-default.png in Resources */,
+				88D90A5F19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib in Resources */,
 				888D779D198FEFFE0052C39C /* default-mail-icon.png in Resources */,
 				88D789811998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib in Resources */,
 				888D7712198FDAD30052C39C /* flat7-preview-login.png in Resources */,
@@ -942,6 +952,7 @@
 				88D789841998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift in Sources */,
 				883CF3CE199B782D008F0EBC /* LRMobilewidgetsuserService_v62.m in Sources */,
 				888D7707198FDAD30052C39C /* LoginView_flat7.swift in Sources */,
+				88D90A5E19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */,
 				88F648B4198D301E003A8FD9 /* BaseWidget+progress.swift in Sources */,
 				888CE12E19924D74001DCA6A /* ForgotPasswordView_flat7.swift in Sources */,
 				888CE10B19923142001DCA6A /* BaseWidget_basic_Tests.swift in Sources */,
@@ -987,6 +998,7 @@
 			files = (
 				889CA4CD19655F4B00664504 /* LoginWidget.swift in Sources */,
 				8827E30919759F28004977A0 /* ForgotPasswordWidget.swift in Sources */,
+				88D90A5D19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */,
 				888FAFA8196AE8C200057B26 /* AppDelegate.swift in Sources */,
 				889CA4CB19655F4B00664504 /* LoginView.swift in Sources */,
 				888D7706198FDAD30052C39C /* LoginView_flat7.swift in Sources */,
