@@ -29,6 +29,7 @@ import UIKit
 	@IBInspectable var groupId: Int = 0
 	@IBInspectable var recordSetId: Int = 0
 	@IBInspectable var recordId:Int = 0
+	@IBInspectable var autoLoad:Bool = true
 	@IBInspectable var autoscrollOnValidation:Bool = true
 
 	@IBOutlet var delegate: DDLFormWidgetDelegate?
@@ -45,6 +46,12 @@ import UIKit
 	}
 
 	override public func onCreate() {
+	}
+
+	override public func onShow() {
+		if autoLoad && structureId != 0 {
+			loadForm()
+		}
 	}
 
 	override public func onCustomAction(actionName: String?, sender: UIControl?) {
