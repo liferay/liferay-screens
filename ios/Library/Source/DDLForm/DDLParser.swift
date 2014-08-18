@@ -119,14 +119,14 @@ public class DDLParser {
 
 		var foundMetadata:SMXMLElement? = nil
 
-		if let metadata = dynamicElement.childWithAttribute("locale", value: currentLocale.localeIdentifier) {
+		if let metadata = findChildWithAttribute("locale", value:currentLocale.localeIdentifier, elements:metadatas!) {
 			// cases 'a1' and 'b1'
 
 			foundMetadata = metadata
 		}
 		else {
 			if currentCountryCode != nil {
-				if let metadata = dynamicElement.childWithAttribute("locale", value: currentLanguageCode) {
+				if let metadata = findChildWithAttribute("locale", value:currentLanguageCode, elements:metadatas!) {
 					// case 'a2'
 
 					foundMetadata = metadata
@@ -147,16 +147,27 @@ public class DDLParser {
 				})
 
 			foundMetadata = found.first
-
 		}
 
 		if foundMetadata == nil {
 			// Final fallback (a4, b3): find default metadata
 
-			foundMetadata = dynamicElement.childWithAttribute("locale", value: defaultLocale!.localeIdentifier)
+			foundMetadata = findChildWithAttribute("locale",
+				value:defaultLocale!.localeIdentifier, elements:metadatas!)
 		}
 
 		return foundMetadata
+	}
+
+	private func findChildWithAttribute(attribute:String, value:String, elements:[SMXMLElement]) -> SMXMLElement? {
+
+		for element in elements {
+			if element.attributeNamed(attribute) == value {
+				return element
+			}
+		}
+
+		return nil
 	}
 
 	private func processAvailableLocales(document:SMXMLDocument) -> [NSLocale] {
