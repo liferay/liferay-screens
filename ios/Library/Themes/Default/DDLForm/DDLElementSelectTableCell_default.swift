@@ -25,14 +25,16 @@ public class DDLElementSelectTableCell_default: DDLElementTableCell {
 		}
 	}
 
-	private var failedValidation = false
-
 	override func onChangedElement() {
 		if let stringElement = element as? DDLElementStringWithOptions {
 			textField?.placeholder = stringElement.label
 			textField?.text = stringElement.currentOptionLabel
 
 			setFieldPresenter(stringElement)
+
+			if stringElement.lastValidationResult != nil {
+				self.onValidated(stringElement.lastValidationResult!)
+			}
 		}
 	}
 
@@ -40,8 +42,6 @@ public class DDLElementSelectTableCell_default: DDLElementTableCell {
 		let imgName = valid ? "default-field" : "default-field-failed"
 
 		textFieldBackground?.image = UIImage(named: imgName)
-
-		failedValidation = !valid
 	}
 
 	override public func canBecomeFirstResponder() -> Bool {
@@ -83,6 +83,12 @@ public class DDLElementSelectTableCell_default: DDLElementTableCell {
 
 			self.textField?.text = selectedComponents.first?.description
 			element.currentValue = selectedComponents.first?.description
+
+			if element.lastValidationResult != nil && !element.lastValidationResult! {
+				element.lastValidationResult = true
+
+				self.textFieldBackground?.image = UIImage(named: "default-field")
+			}
 		}
 
 		let optionsPresenter = DTPickerViewPresenter(

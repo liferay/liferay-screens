@@ -98,6 +98,7 @@ public class DDLElement: Equatable {
 
 	public var validatedClosure: ((Bool) -> ())?
 
+	public var lastValidationResult:Bool?
 
 	internal(set) var dataType:DDLElementDataType
 	internal(set) var type:DDLElementType
@@ -141,6 +142,8 @@ public class DDLElement: Equatable {
 		}
 
 		validatedClosure?(valid)
+
+		lastValidationResult = valid
 
 		return valid
 	}

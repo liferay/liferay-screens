@@ -26,6 +26,10 @@ public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 		if let boolElement = element as? DDLElementBoolean {
 			switchView?.on = boolElement.predefinedValue as Bool
 			label?.text = boolElement.label
+
+			if boolElement.lastValidationResult != nil {
+				self.onValidated(boolElement.lastValidationResult!)
+			}
 		}
 	}
 

@@ -20,7 +20,6 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	@IBOutlet var textViewBackground: UIImageView?
 	@IBOutlet var separator: UIView?
 
-	private var failedValidation = false
 	private var originalTextViewRect:CGRect = CGRectZero
 	private var originalBackgroundRect:CGRect = CGRectZero
 
@@ -45,6 +44,10 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 
 			originalTextViewRect = textView!.frame
 			originalBackgroundRect = textViewBackground!.frame
+
+			if stringElement.lastValidationResult != nil {
+				self.onValidated(stringElement.lastValidationResult!)
+			}
 		}
 	}
 
@@ -61,8 +64,6 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		let imgName = valid ? "default-field" : "default-field-failed"
 
 		textViewBackground?.image = UIImage(named: imgName)
-
-		failedValidation = !valid
 	}
 
 	public func textViewDidBeginEditing(textView: UITextView!) {
@@ -107,8 +108,8 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 
 			element?.currentValue = newText
 
-			if failedValidation {
-				failedValidation = false
+			if element!.lastValidationResult != nil && !element!.lastValidationResult! {
+				element!.lastValidationResult = true
 
 				textViewBackground?.image = UIImage(named: "default-field")
 			}

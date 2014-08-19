@@ -18,8 +18,6 @@ public class DDLElementTextTableCell_default: DDLElementTableCell, UITextFieldDe
 	@IBOutlet var textField: UITextField?
 	@IBOutlet var textFieldBackground: UIImageView?
 
-	private var failedValidation = false
-
 	override func onChangedElement() {
 		if let stringElement = element as? DDLElementString {
 			textField?.placeholder = stringElement.label
@@ -32,6 +30,10 @@ public class DDLElementTextTableCell_default: DDLElementTableCell, UITextFieldDe
 			}
 
 			textField?.returnKeyType = isLastCell ? .Send : .Next
+
+			if stringElement.lastValidationResult != nil {
+				self.onValidated(stringElement.lastValidationResult!)
+			}
 		}
 	}
 
@@ -41,8 +43,6 @@ public class DDLElementTextTableCell_default: DDLElementTableCell, UITextFieldDe
 
 		textFieldBackground?.image = UIImage(named: imgName)
 		textFieldBackground?.highlightedImage = UIImage(named: imgNameHighlighted)
-
-		failedValidation = !valid
 	}
 
 	override public func canBecomeFirstResponder() -> Bool {
@@ -70,13 +70,12 @@ public class DDLElementTextTableCell_default: DDLElementTableCell, UITextFieldDe
 
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
 
-		element?.currentValue = newText
+		element!.currentValue = newText
 
-		if failedValidation {
-			failedValidation = false
-
+		if element!.lastValidationResult != nil && !element!.lastValidationResult! {
+			element!.lastValidationResult = true
+			
 			textFieldBackground?.image = UIImage(named: "default-field")
-
 			textFieldBackground?.highlightedImage = UIImage(named: "default-field-focused")
 
 			//FIXME!
