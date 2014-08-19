@@ -62,7 +62,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 		let elements = parser.parse()
 
-		let stringElement = elements![0] as DDLElementString
+		let stringElement = elements![0] as DDLElementStringWithOptions
 
 		XCTAssertEqual("Primera etiqueta en 'es_ES'", stringElement.options[0].label)
 	}
@@ -84,7 +84,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 		let elements = parser.parse()
 
-		let stringElement = elements![0] as DDLElementString
+		let stringElement = elements![0] as DDLElementStringWithOptions
 
 		XCTAssertEqual("Primera etiqueta en 'es'", stringElement.options[0].label)
 	}
@@ -104,7 +104,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 		let elements = parser.parse()
 
-		let stringElement = elements![0] as DDLElementString
+		let stringElement = elements![0] as DDLElementStringWithOptions
 
 		XCTAssertEqual("Primera etiqueta en 'es_ES'", stringElement.options[0].label)
 	}
@@ -127,7 +127,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 		let elements = parser.parse()
 
-		let stringElement = elements![0] as DDLElementString
+		let stringElement = elements![0] as DDLElementStringWithOptions
 
 		XCTAssertEqual("Primera etiqueta en 'es'", stringElement.options[0].label)
 	}
@@ -147,7 +147,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 		let elements = parser.parse()
 
-		let stringElement = elements![0] as DDLElementString
+		let stringElement = elements![0] as DDLElementStringWithOptions
 
 		XCTAssertEqual("Primera etiqueta en 'es_ES'", stringElement.options[0].label)
 	}
@@ -167,7 +167,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 		let elements = parser.parse()
 
-		let stringElement = elements![0] as DDLElementString
+		let stringElement = elements![0] as DDLElementStringWithOptions
 
 		XCTAssertEqual("First label in 'en_US'", stringElement.options[0].label)
 	}
