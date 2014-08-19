@@ -43,7 +43,7 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 		XCTAssertTrue(stringElement.multiple)
 		XCTAssertFalse(stringElement.readOnly)
 		XCTAssertTrue(stringElement.repeatable)
-		XCTAssertFalse(stringElement.required)
+		XCTAssertTrue(stringElement.required)
 		XCTAssertTrue(stringElement.showLabel)
 	}
 
@@ -180,6 +180,30 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 		XCTAssertEqual("[\"\"]", stringElement.currentStringValue!)
 	}
 
+	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyString() {
+		parser.xml = selectWithPredefinedValues
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementStringWithOptions
+
+		stringElement.currentValue = nil
+
+		XCTAssertFalse(stringElement.validate())
+	}
+
+	func test_Validate_ShouldPass_WhenRequiredValueIsNotEmptyString() {
+		parser.xml = selectWithPredefinedValues
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementStringWithOptions
+
+		stringElement.currentValue = "Option 3"
+
+		XCTAssertTrue(stringElement.validate())
+	}
+
 
 	private let selectWithPredefinedValues =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
@@ -188,7 +212,7 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 					"multiple=\"true\" " +
 					"name=\"A_Select\" " +
 					"repeatable=\"true\" " +
-					"required=\"false\" " +
+					"required=\"true\" " +
 					"type=\"text\" " +
 					"width=\"small\"> " +
 				"<meta-data locale=\"en_US\"> " +

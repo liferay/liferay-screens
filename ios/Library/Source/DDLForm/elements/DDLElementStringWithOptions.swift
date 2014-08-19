@@ -81,15 +81,9 @@ public class DDLElementStringWithOptions : DDLElement {
 	}
 
 	override func doValidate() -> Bool {
-		var result = super.doValidate()
+		let current = (currentValue as [DDLStringOption]?) ?? []
 
-		if result && currentStringValue != nil && required {
-			let trimmedString = currentStringValue?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-
-			result = (trimmedString != "")
-		}
-
-		return result
+		return !(required && current.count == 0)
 	}
 
 	override internal func onChangedCurrentValue() {
