@@ -112,10 +112,16 @@ public class DDLElementString : DDLElement {
 	}
 
 	private func removeFirstAndLastChars(value:String) -> String {
-		let range = Range<String.Index>(
-						start: value.startIndex.successor(),
-						end: value.endIndex.predecessor())
-		return value.substringWithRange(range)
+		var result: String = value
+
+		if countElements(value) >= 2 {
+			let range = Range<String.Index>(
+							start: value.startIndex.successor(),
+							end: value.endIndex.predecessor())
+			result = value.substringWithRange(range)
+		}
+
+		return result
 	}
 
 	private func findOption(byValue value:String) -> DDLStringOption? {
