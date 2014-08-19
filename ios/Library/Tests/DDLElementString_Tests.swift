@@ -13,7 +13,7 @@
  */
 import XCTest
 
-class DDLParser_ElementString_Tests: XCTestCase {
+class DDLElementString_Tests: XCTestCase {
 
 	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
 
@@ -201,7 +201,7 @@ class DDLParser_ElementString_Tests: XCTestCase {
 		XCTAssertEqual("Option 2", predefinedOption.label)
 	}
 
-	func test_Parse_ShouldSetCurrenValue_WhenParsingSelectStringFieldsWithPredefinedValue() {
+	func test_CurrentValue_ShouldBeTheSameAsPredefinedValue_AfterParsingSelectString() {
 		parser.xml = selectWithPredefinedValues
 
 		let elements = parser.parse()
@@ -225,7 +225,7 @@ class DDLParser_ElementString_Tests: XCTestCase {
 		}
 	}
 
-	func test_Parse_ShouldSetCurrenStringValue_WhenParsingSelectStringFieldsWithPredefinedValue() {
+	func test_CurrenStringValue_ShouldContainAllSelectedOptionsSeparatedByComma() {
 		parser.xml = selectWithPredefinedValues
 
 		let elements = parser.parse()

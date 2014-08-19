@@ -13,7 +13,7 @@
  */
 import XCTest
 
-class DDLParser_ElementBoolean_Tests: XCTestCase {
+class DDLElementBoolean_Tests: XCTestCase {
 
 	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
 
