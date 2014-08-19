@@ -176,4 +176,97 @@ class DDLParser_ElementString_Tests: XCTestCase {
 		XCTAssertEqual("Option 2", option.label)
 	}
 
+	func test_Parse_ShouldExtractPredefinedOptions_WhenParsingSelectStringFieldsWithPredefinedValue() {
+		parser.xml = selectWithPredefinedValues
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		XCTAssertTrue(stringElement.predefinedValue is [DDLStringOption])
+		let predefinedOptions = stringElement.predefinedValue as [DDLStringOption]
+
+		XCTAssertEqual(2, predefinedOptions.count)
+
+		var predefinedOption = predefinedOptions[0]
+
+		XCTAssertEqual("option_1", predefinedOption.name)
+		XCTAssertEqual("value 1", predefinedOption.value)
+		XCTAssertEqual("Option 1", predefinedOption.label)
+
+		predefinedOption = predefinedOptions[1]
+
+		XCTAssertEqual("option_2", predefinedOption.name)
+		XCTAssertEqual("value 2", predefinedOption.value)
+		XCTAssertEqual("Option 2", predefinedOption.label)
+	}
+
+	func test_Parse_ShouldSetCurrenValue_WhenParsingSelectStringFieldsWithPredefinedValue() {
+		parser.xml = selectWithPredefinedValues
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		XCTAssertTrue(stringElement.predefinedValue is [DDLStringOption])
+		let predefinedOptions = stringElement.predefinedValue as [DDLStringOption]
+
+		XCTAssertTrue(stringElement.currentValue is [DDLStringOption])
+		let currentOptions = stringElement.currentValue as [DDLStringOption]
+
+		XCTAssertEqual(currentOptions.count, predefinedOptions.count)
+
+		for (index,option) in enumerate(currentOptions) {
+			let predefinedOption = predefinedOptions[index]
+
+			XCTAssertEqual(option.label, predefinedOption.label)
+			XCTAssertEqual(option.name, predefinedOption.name)
+			XCTAssertEqual(option.value, predefinedOption.value)
+		}
+	}
+
+	func test_Parse_ShouldSetCurrenStringValue_WhenParsingSelectStringFieldsWithPredefinedValue() {
+		parser.xml = selectWithPredefinedValues
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		XCTAssertTrue(stringElement.predefinedValue is [DDLStringOption])
+		let predefinedOptions = stringElement.predefinedValue as [DDLStringOption]
+
+		XCTAssertTrue(stringElement.currentStringValue != nil)
+
+		stringElement.currentStringValue!.hasPrefix(predefinedOptions[0].label + ", ")
+		stringElement.currentStringValue!.hasSuffix(", " + predefinedOptions[0].label)
+	}
+
+
+	private let selectWithPredefinedValues =
+		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+			"<dynamic-element dataType=\"string\" " +
+					"indexType=\"keyword\" " +
+					"multiple=\"true\" " +
+					"name=\"A_Select\" " +
+					"type=\"text\" " +
+					"width=\"small\"> " +
+				"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\"><![CDATA[A Select]]></entry> " +
+					"<entry name=\"predefinedValue\">" +
+						"<![CDATA[[\"value 1\",\"value 2\"]]]>" +
+					"</entry>" +
+				"</meta-data> " +
+				"<dynamic-element name=\"option_1\" type=\"option\" value=\"value 1\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\"><![CDATA[Option 1]]></entry> " +
+					"</meta-data> " +
+				"</dynamic-element> " +
+				"<dynamic-element name=\"option_2\" type=\"option\" value=\"value 2\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\"><![CDATA[Option 2]]></entry> " +
+					"</meta-data>" +
+				"</dynamic-element> " +
+			"</dynamic-element> </root>"
+
+
 }
