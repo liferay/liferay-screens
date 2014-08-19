@@ -168,6 +168,18 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 		XCTAssertEqual("[\"value 3\"]", stringElement.currentStringValue!)
 	}
 
+	func test_CurrenStringValue_ShouldContainEmptyArray_WhenCurrentValueWasSetToEmptyString() {
+		parser.xml = selectWithPredefinedValues
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementStringWithOptions
+
+		stringElement.currentValue = nil
+
+		XCTAssertEqual("[\"\"]", stringElement.currentStringValue!)
+	}
+
 
 	private let selectWithPredefinedValues =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
