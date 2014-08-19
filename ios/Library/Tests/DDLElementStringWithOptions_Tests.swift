@@ -180,6 +180,31 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 		XCTAssertEqual("[\"\"]", stringElement.currentStringValue!)
 	}
 
+	func test_CurrenOptionLabel_ShouldContainTheLabelOfSelectedOption() {
+		parser.xml = selectWithPredefinedValues
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementStringWithOptions
+
+		stringElement.currentValue = "Option 3"
+
+		XCTAssertEqual("Option 3", stringElement.currentOptionLabel)
+	}
+
+	func test_CurrenOptionLabel_ShouldContainEmptyString_WhenNoOptionSelected() {
+		parser.xml = selectWithPredefinedValues
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementStringWithOptions
+
+		stringElement.currentValue = nil
+
+		XCTAssertEqual("", stringElement.currentOptionLabel)
+	}
+
+
 	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyString() {
 		parser.xml = selectWithPredefinedValues
 

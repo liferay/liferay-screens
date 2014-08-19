@@ -29,6 +29,20 @@ public class DDLStringOption {
 
 public class DDLElementStringWithOptions : DDLElement {
 
+	public var currentOptionLabel:String {
+		get {
+			var result = ""
+
+			if let currentOptions = currentValue as? [DDLStringOption] {
+				if let firstOption = currentOptions.first {
+					result = firstOption.label
+				}
+			}
+
+			return result
+		}
+	}
+
 	// FIXME Multiple selection not supported yet
 	private(set) var multiple:Bool
 

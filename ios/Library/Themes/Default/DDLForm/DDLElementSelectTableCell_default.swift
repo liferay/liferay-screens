@@ -30,10 +30,7 @@ public class DDLElementSelectTableCell_default: DDLElementTableCell {
 	override func onChangedElement() {
 		if let stringElement = element as? DDLElementStringWithOptions {
 			textField?.placeholder = stringElement.label
-
-			if stringElement.currentValue != nil {
-				textField?.text = stringElement.currentStringValue
-			}
+			textField?.text = stringElement.currentOptionLabel
 
 			setFieldPresenter(stringElement)
 		}
@@ -73,7 +70,7 @@ public class DDLElementSelectTableCell_default: DDLElementTableCell {
 
 		func currentValueIndex() -> Int? {
 			for (index,option) in enumerate(element.options) {
-				if option.label == element.currentStringValue! {
+				if option.label == element.currentOptionLabel {
 					return index
 				}
 			}
