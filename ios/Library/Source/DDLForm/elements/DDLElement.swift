@@ -89,22 +89,22 @@ public class DDLElement: Equatable {
 	public var validatedClosure: ((Bool) -> ())?
 
 
-	private(set) var dataType:DDLElementDataType
-	private(set) var type:DDLElementType
+	internal(set) var dataType:DDLElementDataType
+	internal(set) var type:DDLElementType
 
-	private(set) var name:String
+	internal(set) var name:String
 
-	private(set) var label:String
-	private(set) var tip:String
+	internal(set) var label:String
+	internal(set) var tip:String
 
-	private(set) var predefinedValue:AnyObject?
+	internal(set) var predefinedValue:AnyObject?
 
-	private(set) var readOnly:Bool
-	private(set) var repeatable:Bool
-	private(set) var required:Bool
+	internal(set) var readOnly:Bool
+	internal(set) var repeatable:Bool
+	internal(set) var required:Bool
 
-	private(set) var showLabel:Bool 	// Makes sense in mobile??
-	private(set) var width:Int? 		// Makes sense in mobile??
+	internal(set) var showLabel:Bool 	// Makes sense in mobile??
+	internal(set) var width:Int? 		// Makes sense in mobile??
 
 
 	public init(attributes:[String:String], localized:[String:AnyObject]) {
