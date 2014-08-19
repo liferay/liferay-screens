@@ -27,7 +27,7 @@ public class DDLStringOption {
 
 }
 
-public class DDLElementString : DDLElement {
+public class DDLElementStringWithOptions : DDLElement {
 
 	// FIXME Multiple selection not supported yet
 	private(set) var multiple:Bool

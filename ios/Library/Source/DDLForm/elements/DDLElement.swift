@@ -28,7 +28,12 @@ public enum DDLElementDataType: String {
 		case .DDLBoolean:
 			return DDLElementBoolean(attributes:attributes, localized:localized)
 		case .DDLString:
-			return DDLElementString(attributes:attributes, localized:localized)
+			if attributes["multiple"] == nil {
+				return DDLElementString(attributes:attributes, localized:localized)
+			}
+			else {
+				return DDLElementStringWithOptions(attributes:attributes, localized:localized)
+			}
 		default:
 			return nil
 		}

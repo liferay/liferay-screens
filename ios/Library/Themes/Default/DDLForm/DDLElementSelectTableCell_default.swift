@@ -28,7 +28,7 @@ public class DDLElementSelectTableCell_default: DDLElementTableCell {
 	private var failedValidation = false
 
 	override func onChangedElement() {
-		if let stringElement = element as? DDLElementString {
+		if let stringElement = element as? DDLElementStringWithOptions {
 			textField?.placeholder = stringElement.label
 
 			if stringElement.currentValue != nil {
@@ -59,7 +59,7 @@ public class DDLElementSelectTableCell_default: DDLElementTableCell {
 		textField!.becomeFirstResponder()
 	}
 
-	private func setFieldPresenter(element:DDLElementString) {
+	private func setFieldPresenter(element:DDLElementStringWithOptions) {
 
 		func dataSource() -> DTPickerDataSource {
 			var rows:[String] = [""]
