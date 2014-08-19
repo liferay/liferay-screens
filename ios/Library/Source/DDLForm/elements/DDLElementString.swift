@@ -13,43 +13,70 @@
 */
 import Foundation
 
-public struct DDLStringOption {
+public class DDLStringOption {
 
+	public var label:String
 	public var name:String
 	public var value:String
-	public var label:String
+
+	public init(label:String, name:String, value:String) {
+		self.label = label
+		self.name = name
+		self.value = value
+	}
 
 }
 
 public class DDLElementString : DDLElement {
 
 	private(set) var multiple:Bool
+
 	private(set) var options:[DDLStringOption]
 
 	override init(attributes: [String:String], localized: [String:AnyObject]) {
 		multiple = Bool.from(string: attributes["multiple"] ?? "false")
 
+		options = []
+
 		if let optionsArray = (localized["options"] as AnyObject?) as? [[String:AnyObject]] {
 
-			options = []
-
 			for optionDict in optionsArray {
+				let label = (optionDict["label"] ?? "") as String
 				let name = (optionDict["name"] ?? "") as String
 				let value = (optionDict["value"] ?? "") as String
-				let label = (optionDict["label"] ?? "") as String
 
-				options.append(DDLStringOption(name: name, value: value, label: label))
+				let option = DDLStringOption(label:label, name:name, value:value)
+
+				options.append(option)
 			}
-		}
-		else {
-			options = []
 		}
 
 		super.init(attributes: attributes, localized: localized)
+
+		if options.count > 0 {
+			predefinedValue = processPredefinedOptions()
+			currentValue = predefinedValue
+		}
 	}
 
 	override func convert(fromCurrentValue value: AnyObject?) -> String? {
-		return value?.description
+		var result:String = ""
+
+		if let currentOptions = value as? [DDLStringOption] {
+			var first = true
+			for option in currentOptions {
+				if first {
+					first = false
+				}
+				else {
+					result += ", "
+				}
+
+				result += option.label
+			}
+		}
+
+		return result
 	}
 
 	override func doValidate() -> Bool {
@@ -63,5 +90,43 @@ public class DDLElementString : DDLElement {
 
 		return result
 	}
+
+	private func processPredefinedOptions() -> [DDLStringOption] {
+		var result:[DDLStringOption] = []
+
+		if let predefinedStringValue = predefinedValue as? String {
+			if predefinedStringValue != "" {
+				let predefinedContent = removeFirstAndLastChars(predefinedStringValue)
+
+				for predefinedOption in predefinedContent.componentsSeparatedByString(",") {
+					let predefinedOptionValue = removeFirstAndLastChars(predefinedOption)
+
+					if let foundOption = findOption(byValue:predefinedOptionValue) {
+						result.append(foundOption)
+					}
+				}
+			}
+		}
+
+		return result
+	}
+
+	private func removeFirstAndLastChars(value:String) -> String {
+		let range = Range<String.Index>(
+						start: value.startIndex.successor(),
+						end: value.endIndex.predecessor())
+		return value.substringWithRange(range)
+	}
+
+	private func findOption(byValue value:String) -> DDLStringOption? {
+		for option in options {
+			if option.value == value {
+				return option
+			}
+		}
+
+		return nil
+	}
+
 
 }
