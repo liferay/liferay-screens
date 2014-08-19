@@ -92,6 +92,18 @@ public class DDLElementString : DDLElement {
 		return result
 	}
 
+	override internal func onChangedCurrentValue() {
+		if !(currentValue is [DDLStringOption]) && currentValue is String {
+			if let foundOption = findOption(byLabel: currentValue as String) {
+				currentValue = [foundOption]
+			}
+			else {
+				currentValue = nil
+			}
+		}
+	}
+
+
 	private func processPredefinedOptions() -> [DDLStringOption] {
 		var result:[DDLStringOption] = []
 
@@ -128,6 +140,16 @@ public class DDLElementString : DDLElement {
 	private func findOption(byValue value:String) -> DDLStringOption? {
 		for option in options {
 			if option.value == value {
+				return option
+			}
+		}
+
+		return nil
+	}
+
+	private func findOption(byLabel label:String) -> DDLStringOption? {
+		for option in options {
+			if option.label == label {
 				return option
 			}
 		}

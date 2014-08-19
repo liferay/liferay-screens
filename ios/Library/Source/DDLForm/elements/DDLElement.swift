@@ -78,7 +78,11 @@ public enum DDLElementType: String {
 
 public class DDLElement: Equatable {
 
-	public var currentValue:AnyObject?
+	public var currentValue:AnyObject? {
+		didSet {
+			onChangedCurrentValue()
+		}
+	}
 	public var currentHeight:CGFloat = 0
 
 	public var currentStringValue:String? {
@@ -150,6 +154,9 @@ public class DDLElement: Equatable {
 
 	internal func convert(fromCurrentValue value:AnyObject?) -> String? {
 		return value?.description
+	}
+
+	internal func onChangedCurrentValue() {
 	}
 
 }
