@@ -48,18 +48,18 @@ extension LRSession {
 		//FIXME
 		// Compiler crash with compound if statement: if self.server && self.username && self.password {
 		// "While emitting IR SIL function @_TFCSo9LRSession5storefS_FT_T_ for 'store' at LRSession+storage.swift:36:2"
-		if self.username {
-			if self.password {
-				let protectionSpace = LRSession.protectionSpaceForServer(LiferayContext.instance.server)
+		if self.username != nil && self.password != nil {
+			let protectionSpace = LRSession.protectionSpaceForServer(LiferayContext.instance.server)
 
-				let credential = NSURLCredential(user:self.username!, password:self.password!,
-					persistence: NSURLCredentialPersistence.Permanent)
+			let credential = NSURLCredential(
+								user:self.username!,
+								password:self.password!,
+								persistence: NSURLCredentialPersistence.Permanent)
 
-				NSURLCredentialStorage.sharedCredentialStorage().setCredential(
-					credential, forProtectionSpace:protectionSpace)
+			NSURLCredentialStorage.sharedCredentialStorage().setCredential(credential,
+								forProtectionSpace:protectionSpace)
 
-				success = true
-			}
+			success = true
 		}
 
 		return success
@@ -89,7 +89,7 @@ extension LRSession {
 	private class func protectionSpaceForServer(server:String) -> NSURLProtectionSpace {
 		let url = NSURL(string: server)
 
-		return NSURLProtectionSpace(host:url.host, port:url.port.integerValue, `protocol`:url.scheme, realm:nil,
+		return NSURLProtectionSpace(host:url.host, port:url.port!.integerValue, `protocol`:url.scheme, realm:nil,
 			authenticationMethod:NSURLAuthenticationMethodHTTPDigest)
 	}
 

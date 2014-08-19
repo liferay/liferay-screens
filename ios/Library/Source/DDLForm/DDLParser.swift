@@ -46,7 +46,7 @@ public class DDLParser {
 
 	private func processDocument(document:SMXMLDocument) -> [DDLElement]? {
 		availableLocales = processAvailableLocales(document)
-		defaultLocale = NSLocale(localeIdentifier:document.root?.attributeNamed("default-locale")?)
+		defaultLocale = NSLocale(localeIdentifier:document.root?.attributeNamed("default-locale") ?? "en_US")
 
 		var result:[DDLElement]?
 
@@ -76,9 +76,9 @@ public class DDLParser {
 	private func processLocalizedMetadata(dynamicElement:SMXMLElement) -> [String:AnyObject] {
 		var result:[String:AnyObject] = [:]
 
-		func addElement(elementName:String, #metadata:SMXMLElement, inout toDict resultDict:[String:AnyObject]) {
+		func addElement(elementName:String, #metadata:SMXMLElement) {
 			if let element = metadata.childWithAttribute("name", value: elementName) {
-				resultDict[elementName] = element.value
+				result[elementName] = element.value
 			}
 		}
 
@@ -94,7 +94,9 @@ public class DDLParser {
 				option["value"] = optionElement.attributeNamed("value")
 
 				if let localizedMetadata = findLocalizedMetadata(optionElement) {
-					addElement("label", metadata: localizedMetadata, toDict:&option)
+					if let element = localizedMetadata.childWithAttribute("name", value: "label") {
+						option["label"] = element.value
+					}
 				}
 
 				options.append(option)
@@ -104,9 +106,9 @@ public class DDLParser {
 		}
 
 		if let localizedMetadata = findLocalizedMetadata(dynamicElement) {
-			addElement("label", metadata:localizedMetadata, toDict:&result)
-			addElement("predefinedValue", metadata:localizedMetadata, toDict:&result)
-			addElement("tip", metadata:localizedMetadata, toDict:&result)
+			addElement("label", metadata:localizedMetadata)
+			addElement("predefinedValue", metadata:localizedMetadata)
+			addElement("tip", metadata:localizedMetadata)
 		}
 
 		if let options = findOptions() {

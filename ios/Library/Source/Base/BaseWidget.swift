@@ -147,7 +147,7 @@ import QuartzCore
 	//MARK: LRCallback
 
 	public func onFailure(error: NSError!) {
-		onServerError(error ? error : NSError(domain: "LiferayWidget", code: 0, userInfo: nil))
+		onServerError(error ?? NSError(domain: "LiferayWidget", code: 0, userInfo: nil))
 	}
 
 	public func onSuccess(result: AnyObject!) {
@@ -252,11 +252,11 @@ import QuartzCore
 		var nibName = viewName + "-" + currentThemeName()
 		var nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
-		if !nibPath {
+		if nibPath == nil {
 			nibName = viewName
 			nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
-			if !nibPath {
+			if nibPath == nil {
 				println("ERROR: Xib file \(nibName) was not found")
 				return nil
 			}

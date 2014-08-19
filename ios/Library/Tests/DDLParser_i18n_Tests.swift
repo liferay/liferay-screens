@@ -34,8 +34,8 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 		XCTAssertNotNil(parser.availableLocales)
 		XCTAssertEqual(2, parser.availableLocales!.count)
-		XCTAssertEqual("en_US", parser.availableLocales![0].localeIdentifier!)
-		XCTAssertEqual("es_ES", parser.availableLocales![1].localeIdentifier!)
+		XCTAssertEqual("en_US", parser.availableLocales![0].localeIdentifier)
+		XCTAssertEqual("es_ES", parser.availableLocales![1].localeIdentifier)
 	}
 
 	func test_ParseHeader_ShouldReadDefaultLocale() {
@@ -44,7 +44,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 		parser.parse()
 
 		XCTAssertNotNil(parser.defaultLocale)
-		XCTAssertEqual("es_ES", parser.defaultLocale!.localeIdentifier!)
+		XCTAssertEqual("es_ES", parser.defaultLocale!.localeIdentifier)
 	}
 
 	func test_ParseElement_ShouldFindFullMatch_WhenExistingCompleteLocaleIsProvided() {

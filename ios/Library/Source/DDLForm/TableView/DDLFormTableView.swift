@@ -72,7 +72,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 				nibName += "-" + themeName
 			}
 
-			if currentBundle.pathForResource(nibName, ofType: "nib") {
+			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
 				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
 
 				tableView?.registerNib(cellNib, forCellReuseIdentifier: elementType.toRaw())
@@ -87,7 +87,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 				nibName += "-" + themeName
 			}
 
-			if currentBundle.pathForResource(nibName, ofType: "nib") {
+			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
 				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
 
 				tableView?.registerNib(cellNib, forCellReuseIdentifier: "SubmitButton")
