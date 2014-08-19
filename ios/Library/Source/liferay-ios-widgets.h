@@ -24,6 +24,9 @@ FOUNDATION_EXPORT const unsigned char liferay_mobile_widgetsVersionString[];
 
 #import "UIImage+Themes.h"
 
+// Default theme dependencies
+#import "DTPickerPresenter.h"
+
 // Liferay services
 #import "LRUserService_v62.h"
 #import "LRMobilewidgetsuserService_v62.h"

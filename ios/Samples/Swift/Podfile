@@ -1,3 +1,4 @@
 pod 'MBProgressHUD'
 pod 'SMXMLDocument'
+pod 'DTPickerPresenter'
 pod 'Liferay-iOS-SDK', :git => 'https://github.com/liferay/liferay-mobile-sdk.git'
