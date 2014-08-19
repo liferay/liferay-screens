@@ -225,6 +225,37 @@ class DDLElementString_Tests: XCTestCase {
 		}
 	}
 
+	func test_CurrentValue_ShouldBeChanged_AfterChangedToExistingOptionLabel() {
+		parser.xml = selectWithPredefinedValues
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		stringElement.currentValue = "Option 3"
+
+		XCTAssertTrue(stringElement.currentValue is [DDLStringOption])
+		let currentOptions = stringElement.currentValue as [DDLStringOption]
+
+		XCTAssertEqual(1, currentOptions.count)
+
+		XCTAssertEqual("Option 3", currentOptions.first!.label)
+		XCTAssertEqual("option_3", currentOptions.first!.name)
+		XCTAssertEqual("value 3", currentOptions.first!.value)
+	}
+
+	func test_CurrentValue_ShouldBeNil_AfterChangedToNonExistingOptionLabel() {
+		parser.xml = selectWithPredefinedValues
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		stringElement.currentValue = "this is not a valid option label"
+
+		XCTAssertTrue(stringElement.currentValue == nil)
+	}
+
 	func test_CurrenStringValue_ShouldContainAllSelectedOptionsSeparatedByComma() {
 		parser.xml = selectWithPredefinedValues
 
@@ -264,6 +295,11 @@ class DDLElementString_Tests: XCTestCase {
 				"<dynamic-element name=\"option_2\" type=\"option\" value=\"value 2\"> " +
 					"<meta-data locale=\"en_US\"> " +
 						"<entry name=\"label\"><![CDATA[Option 2]]></entry> " +
+					"</meta-data>" +
+				"</dynamic-element> " +
+				"<dynamic-element name=\"option_3\" type=\"option\" value=\"value 3\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\"><![CDATA[Option 3]]></entry> " +
 					"</meta-data>" +
 				"</dynamic-element> " +
 			"</dynamic-element> </root>"
