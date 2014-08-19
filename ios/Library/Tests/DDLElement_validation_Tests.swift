@@ -65,42 +65,6 @@ class DDLElement_validation_Tests: XCTestCase {
 		XCTAssertFalse(closureCalled)
 	}
 
-	func test_ValidateOnBooleanElement_ShouldFail_WhenRequiredValueIsNil() {
-		parser.xml = requiredBoolean
-
-		let elements = parser.parse()
-
-		let booleanElement = elements![0] as DDLElementBoolean
-
-		XCTAssertTrue(booleanElement.currentValue == nil)
-
-		XCTAssertFalse(booleanElement.validate())
-	}
-
-	func test_ValidateOnStringElement_ShouldFail_WhenRequiredValueIsEmptyString() {
-		parser.xml = requiredText
-
-		let elements = parser.parse()
-
-		let stringElement = elements![0] as DDLElementString
-
-		stringElement.currentValue = ""
-
-		XCTAssertFalse(stringElement.validate())
-	}
-
-	func test_ValidateOnStringElement_ShouldFail_WhenRequiredValueIsEmptyStringWithSpaces() {
-		parser.xml = requiredText
-
-		let elements = parser.parse()
-
-		let stringElement = elements![0] as DDLElementString
-
-		stringElement.currentValue = "  "
-
-		XCTAssertFalse(stringElement.validate())
-	}
-
 
 	private let requiredBoolean =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
@@ -117,22 +81,5 @@ class DDLElement_validation_Tests: XCTestCase {
 					"</entry> " +
 				"</meta-data> " +
 			"</dynamic-element> </root>"
-
-	private let requiredText =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-				"<dynamic-element dataType=\"string\" " +
-						"name=\"A_Text\" " +
-						"readOnly=\"false\" " +
-						"repeatable=\"true\" " +
-						"required=\"true\" " +
-						"showLabel=\"true\" " +
-						"type=\"checkbox\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Text]]>" +
-						"</entry> " +
-					"</meta-data> " +
-				"</dynamic-element> </root>"
-
 
 }

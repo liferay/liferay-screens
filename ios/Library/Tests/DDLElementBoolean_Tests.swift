@@ -71,4 +71,29 @@ class DDLElementBoolean_Tests: XCTestCase {
 		XCTAssertTrue(booleanElement.showLabel)
 	}
 
+	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
+		parser.xml =
+			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+				"<dynamic-element dataType=\"boolean\" " +
+						"name=\"A_Boolean\" " +
+						"readOnly=\"false\" " +
+						"repeatable=\"true\" " +
+						"required=\"true\" " +
+						"showLabel=\"true\" " +
+						"type=\"checkbox\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\"><![CDATA[A Boolean]]></entry> " +
+					"</meta-data> " +
+				"</dynamic-element> </root>"
+
+		let elements = parser.parse()
+
+		let booleanElement = elements![0] as DDLElementBoolean
+
+		XCTAssertTrue(booleanElement.currentValue == nil)
+
+		XCTAssertFalse(booleanElement.validate())
+	}
+
+
 }

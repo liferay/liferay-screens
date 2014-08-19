@@ -71,4 +71,44 @@ class DDLElementString_Tests: XCTestCase {
 		XCTAssertTrue(stringElement.showLabel)
 	}
 
+	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyString() {
+		parser.xml = requiredText
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		stringElement.currentValue = ""
+
+		XCTAssertFalse(stringElement.validate())
+	}
+
+	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyStringWithSpaces() {
+		parser.xml = requiredText
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		stringElement.currentValue = "  "
+
+		XCTAssertFalse(stringElement.validate())
+	}
+
+	private let requiredText =
+			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+				"<dynamic-element dataType=\"string\" " +
+						"name=\"A_Text\" " +
+						"readOnly=\"false\" " +
+						"repeatable=\"true\" " +
+						"required=\"true\" " +
+						"showLabel=\"true\" " +
+						"type=\"checkbox\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[A Text]]>" +
+						"</entry> " +
+					"</meta-data> " +
+				"</dynamic-element> </root>"
+
 }
