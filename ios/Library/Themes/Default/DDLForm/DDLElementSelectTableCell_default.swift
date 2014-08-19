@@ -13,85 +13,55 @@
 */
 import UIKit
 
-public class DDLElementTextTableCell_default: DDLElementTableCell, UITextFieldDelegate {
+public class DDLElementSelectTableCell_default: DDLElementTableCell {
 
-	@IBOutlet var textField: UITextField?
+	@IBOutlet var currentTextLabel: UILabel?
+	@IBOutlet var textPlaceholder: UILabel?
 	@IBOutlet var textFieldBackground: UIImageView?
+	@IBOutlet var chooseButton: UIButton? {
+		didSet {
+			chooseButton?.layer.masksToBounds = true
+	        chooseButton?.layer.cornerRadius = 4.0
+		}
+	}
 
 	private var failedValidation = false
 
 	override func onChangedElement() {
 		if let stringElement = element as? DDLElementString {
-			textField?.placeholder = stringElement.label
+			textPlaceholder?.text = stringElement.label
 
 			if stringElement.currentValue != nil {
-				textField?.text = stringElement.currentStringValue
-			}
-			else {
-				textField?.text = stringElement.predefinedValue?.description
+				currentTextLabel?.text = stringElement.currentStringValue
 			}
 
-			textField?.returnKeyType = isLastCell ? .Send : .Next
+			checkPlaceholderVisibility()
 		}
 	}
 
 	override func onValidated(valid: Bool) {
 		let imgName = valid ? "default-field" : "default-field-failed"
-		let imgNameHighlighted = valid ? "default-field-focused" : "default-field-failed"
 
 		textFieldBackground?.image = UIImage(named: imgName)
-		textFieldBackground?.highlightedImage = UIImage(named: imgNameHighlighted)
 
 		failedValidation = !valid
 	}
 
 	override public func canBecomeFirstResponder() -> Bool {
-		return textField!.canBecomeFirstResponder()
+		return true
 	}
 
 	override public func becomeFirstResponder() -> Bool {
-		return textField!.becomeFirstResponder()
-	}
-
-	//MARK: UITextFieldDelegate
-
-	public func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
-		tableView?.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
-		textFieldBackground?.highlighted = true
-
+		chooseButtonAction(self)
 		return true
 	}
 
-	public func textFieldDidEndEditing(textField: UITextField!) {
-		textFieldBackground?.highlighted = false
+	@IBAction func chooseButtonAction(sender: AnyObject) {
 	}
 
-	public func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
 
-		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
-
-		element?.currentValue = newText
-
-		if failedValidation {
-			failedValidation = false
-
-			textFieldBackground?.image = UIImage(named: "default-field")
-
-			textFieldBackground?.highlightedImage = UIImage(named: "default-field-focused")
-
-			//FIXME!
-			// This hack is the only way I found to repaint the text field while it's in edition mode.
-			// It doesn't produce flickering nor nasty effects.
-
-			textFieldBackground?.highlighted = false
-			textFieldBackground?.highlighted = true
-		}
-
-		return true
-	}
-
-	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
-		return nextCellResponder(textField)
+	private func checkPlaceholderVisibility() {
+		textPlaceholder?.hidden = (currentTextLabel?.text != "")
 	}
 
 }
