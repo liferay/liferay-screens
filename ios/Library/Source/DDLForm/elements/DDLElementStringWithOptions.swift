@@ -61,7 +61,7 @@ public class DDLElementStringWithOptions : DDLElement {
 	}
 
 	override func convert(fromCurrentValue value: AnyObject?) -> String? {
-		var result:String = ""
+		var result:String = "[\""
 
 		if let currentOptions = value as? [DDLStringOption] {
 			var first = true
@@ -70,14 +70,14 @@ public class DDLElementStringWithOptions : DDLElement {
 					first = false
 				}
 				else {
-					result += ", "
+					result += "\", \""
 				}
 
-				result += option.label
+				result += option.value
 			}
 		}
 
-		return result
+		return result + "\"]"
 	}
 
 	override func doValidate() -> Bool {
