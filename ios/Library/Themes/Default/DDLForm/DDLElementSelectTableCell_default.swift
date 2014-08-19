@@ -15,7 +15,7 @@ import UIKit
 
 public class DDLElementSelectTableCell_default: DDLElementTableCell {
 
-	@IBOutlet var currentTextLabel: UILabel?
+	@IBOutlet var textField: UITextField?
 	@IBOutlet var textPlaceholder: UILabel?
 	@IBOutlet var textFieldBackground: UIImageView?
 	@IBOutlet var chooseButton: UIButton? {
@@ -29,13 +29,13 @@ public class DDLElementSelectTableCell_default: DDLElementTableCell {
 
 	override func onChangedElement() {
 		if let stringElement = element as? DDLElementString {
-			textPlaceholder?.text = stringElement.label
+			textField?.placeholder = stringElement.label
 
 			if stringElement.currentValue != nil {
-				currentTextLabel?.text = stringElement.currentStringValue
+				textField?.text = stringElement.currentStringValue
 			}
 
-			checkPlaceholderVisibility()
+			setFieldPresenter(stringElement)
 		}
 	}
 
@@ -48,20 +48,59 @@ public class DDLElementSelectTableCell_default: DDLElementTableCell {
 	}
 
 	override public func canBecomeFirstResponder() -> Bool {
-		return true
+		return textField!.canBecomeFirstResponder()
 	}
 
 	override public func becomeFirstResponder() -> Bool {
-		chooseButtonAction(self)
-		return true
+		return textField!.becomeFirstResponder()
 	}
 
 	@IBAction func chooseButtonAction(sender: AnyObject) {
+		textField!.becomeFirstResponder()
 	}
 
+	private func setFieldPresenter(element:DDLElementString) {
 
-	private func checkPlaceholderVisibility() {
-		textPlaceholder?.hidden = (currentTextLabel?.text != "")
+		func dataSource() -> DTPickerDataSource {
+			var rows:[String] = [""]
+
+			for option in element.options {
+				rows.append(option.label)
+			}
+
+			return DTPickerDataSource.datasourceWithItems([rows])
+		}
+
+		func currentValueIndex() -> Int? {
+			for (index,option) in enumerate(element.options) {
+				if option.label == element.currentStringValue! {
+					return index
+				}
+			}
+
+			return nil
+		}
+
+		let onChangeClosure = {
+			(selectedComponents:[AnyObject]!, selectedIndexPath:NSIndexPath!) -> () in
+
+			self.textField?.text = selectedComponents.first?.description
+			element.currentValue = selectedComponents.first?.description
+		}
+
+		let optionsPresenter = DTPickerViewPresenter(
+				datasource: dataSource(),
+				changeBlock:onChangeClosure)
+
+		optionsPresenter.pickerView.backgroundColor = UIColor.whiteColor()
+		optionsPresenter.pickerView.layer.borderColor = UIColor.lightGrayColor().CGColor
+		optionsPresenter.pickerView.layer.borderWidth = 1.5
+
+		if let currentIndex = currentValueIndex() {
+			optionsPresenter.pickerView.selectRow(currentIndex + 1, inComponent: 0, animated: false)
+		}
+
+		textField?.dt_setPresenter(optionsPresenter)
 	}
 
 }
