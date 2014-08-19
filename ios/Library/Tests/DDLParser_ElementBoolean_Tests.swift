@@ -211,15 +211,15 @@ class DDLParser_elements_Tests: XCTestCase {
 
 		var option = stringElement.options[0]
 
-		XCTAssertEqual("option_1", option.name)
-		XCTAssertEqual("value 1", option.value)
-		XCTAssertEqual("Option 1", option.label)
+		XCTAssertEqual("option_1", option.name!)
+		XCTAssertEqual("value 1", option.value!)
+		XCTAssertEqual("Option 1", option.label!)
 
 		option = stringElement.options[1]
 
-		XCTAssertEqual("option_2", option.name)
-		XCTAssertEqual("value 2", option.value)
-		XCTAssertEqual("Option 2", option.label)
+		XCTAssertEqual("option_2", option.name!)
+		XCTAssertEqual("value 2", option.value!)
+		XCTAssertEqual("Option 2", option.label!)
 	}
 
 }
