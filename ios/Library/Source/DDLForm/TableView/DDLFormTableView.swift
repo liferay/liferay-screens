@@ -135,17 +135,17 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 		if row == rows.count {
 			cell = tableView.dequeueReusableCellWithIdentifier("SubmitButton") as? DDLElementTableCell
+
+			cell!.formView = self
 		}
 		else {
 			let element = rows[row]
 			cell = tableView.dequeueReusableCellWithIdentifier(element.type.toRaw()) as? DDLElementTableCell
-			cell!.element = element
-		}
 
-		if let cellValue = cell {
-			cellValue.formView = self
-			cellValue.tableView = tableView
-			cellValue.indexPath = indexPath
+			cell!.formView = self
+			cell!.tableView = tableView
+			cell!.indexPath = indexPath
+			cell!.element = element
 		}
 
 		return cell
