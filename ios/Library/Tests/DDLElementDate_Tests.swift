@@ -64,7 +64,7 @@ class DDLElementDate_Tests: XCTestCase {
 		XCTAssertTrue(dateElement.showLabel)
 
 		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateFormat = "d/LL/yyyy"
+		dateFormatter.dateFormat = "dd/MM/yyyy"
 
 		XCTAssertTrue(dateElement.predefinedValue != nil)
 		XCTAssertTrue(dateElement.predefinedValue is NSDate)
