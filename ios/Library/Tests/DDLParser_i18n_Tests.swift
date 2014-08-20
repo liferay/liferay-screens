@@ -216,7 +216,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 					"indexType=\"keyword\" " +
 					"multiple=\"true\" " +
 					"name=\"A_Select\" " +
-					"type=\"text\" " +
+					"type=\"select\" " +
 					"width=\"small\"> " +
 				"<meta-data locale=\"en_US\"> " +
 					"<entry name=\"label\">" +
