@@ -16,7 +16,6 @@ import UIKit
 public class DDLElementSelectTableCell_default: DDLElementTableCell, UITextFieldDelegate {
 
 	@IBOutlet var textField: UITextField?
-	@IBOutlet var textPlaceholder: UILabel?
 	@IBOutlet var textFieldBackground: UIImageView?
 	@IBOutlet var chooseButton: UIButton? {
 		didSet {
