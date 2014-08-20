@@ -20,6 +20,11 @@ public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 
 	@IBAction func switchValueChanged(sender: AnyObject) {
 		element?.currentValue = switchView?.on
+
+		if element!.lastValidationResult != nil && !element!.lastValidationResult! {
+			element!.lastValidationResult = true
+			onValidated(true)
+		}
 	}
 
 	override func onChangedElement() {
@@ -28,7 +33,7 @@ public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 			label?.text = boolElement.label
 
 			if boolElement.lastValidationResult != nil {
-				self.onValidated(boolElement.lastValidationResult!)
+				onValidated(boolElement.lastValidationResult!)
 			}
 		}
 	}
