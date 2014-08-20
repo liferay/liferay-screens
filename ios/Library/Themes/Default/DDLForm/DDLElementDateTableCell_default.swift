@@ -13,10 +13,8 @@
 */
 import UIKit
 
-public class DDLElementDateTableCell_default: DDLElementTableCell, UITextFieldDelegate {
+public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_default {
 
-	@IBOutlet var textField: UITextField?
-	@IBOutlet var textFieldBackground: UIImageView?
 	@IBOutlet var chooseButton: UIButton? {
 		didSet {
 			chooseButton?.layer.masksToBounds = true
@@ -25,49 +23,15 @@ public class DDLElementDateTableCell_default: DDLElementTableCell, UITextFieldDe
 	}
 
 	override func onChangedElement() {
+		super.onChangedElement()
+
 		if let dateElement = element as? DDLElementDate {
-			textField?.placeholder = dateElement.label
-			textField?.text = dateElement.currentStringValue
-
 			setFieldPresenter(dateElement)
-
-			if dateElement.lastValidationResult != nil {
-				self.onValidated(dateElement.lastValidationResult!)
-			}
 		}
-	}
-
-	override func onValidated(valid: Bool) {
-		let imgName = valid ? "default-field" : "default-field-failed"
-		let imgNameHighlighted = valid ? "default-field-focused" : "default-field-failed"
-
-		textFieldBackground?.image = UIImage(named: imgName)
-		textFieldBackground?.highlightedImage = UIImage(named: imgNameHighlighted)
-	}
-
-	override public func canBecomeFirstResponder() -> Bool {
-		return textField!.canBecomeFirstResponder()
-	}
-
-	override public func becomeFirstResponder() -> Bool {
-		return textField!.becomeFirstResponder()
 	}
 
 	@IBAction func chooseButtonAction(sender: AnyObject) {
 		textField!.becomeFirstResponder()
-	}
-
-	//MARK: UITextFieldDelegate
-
-	public func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
-		tableView?.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
-		textFieldBackground?.highlighted = true
-
-		return true
-	}
-
-	public func textFieldDidEndEditing(textField: UITextField!) {
-		textFieldBackground?.highlighted = false
 	}
 
 	private func setFieldPresenter(element:DDLElementDate) {
@@ -76,17 +40,11 @@ public class DDLElementDateTableCell_default: DDLElementTableCell, UITextFieldDe
 			element.currentValue = selectedDate
 			self.textField?.text = element.currentStringValue
 
-			if element.lastValidationResult != nil && !element.lastValidationResult! {
-				element.lastValidationResult = true
+			let fullRange = NSMakeRange(0, countElements(self.textField!.text!))
 
-				self.onValidated(true)
-
-				//FIXME!
-				// This hack is the only way I found to repaint the text field while it's in edition mode.
-				// It doesn't produce flickering nor nasty effects.
-				self.textFieldBackground?.highlighted = false
-				self.textFieldBackground?.highlighted = true
-			}
+			self.textField(self.textField,
+				shouldChangeCharactersInRange: fullRange,
+				replacementString: self.textField!.text!)
 		}
 
 		let presenter = DTDatePickerPresenter(changeBlock:onChange)
