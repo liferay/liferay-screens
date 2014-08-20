@@ -109,6 +109,7 @@
 		88DBC11D19A4EF9D0075E644 /* default-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC11B19A4EF9D0075E644 /* default-calendar.png */; };
 		88DBC11E19A4EF9D0075E644 /* default-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC11C19A4EF9D0075E644 /* default-calendar@2x.png */; };
 		88DBC12019A4F31A0075E644 /* DDLElementDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC11F19A4F31A0075E644 /* DDLElementDate.swift */; };
+		88DBC14019A4F85F0075E644 /* DDLBaseElementTextFieldTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC13F19A4F85F0075E644 /* DDLBaseElementTextFieldTableCell_default.swift */; };
 		88EAEE3A1993D8BF002D7C26 /* DDLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE371993D8BF002D7C26 /* DDLParser.swift */; };
 		88EAEE3C1993D923002D7C26 /* Bool+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */; };
 		999BC69C19768EA400A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69B19768EA400A9B0D8 /* LRSession+CredentialStore.swift */; };
@@ -222,6 +223,7 @@
 		88DBC11B19A4EF9D0075E644 /* default-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-calendar.png"; sourceTree = "<group>"; };
 		88DBC11C19A4EF9D0075E644 /* default-calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-calendar@2x.png"; sourceTree = "<group>"; };
 		88DBC11F19A4F31A0075E644 /* DDLElementDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementDate.swift; sourceTree = "<group>"; };
+		88DBC13F19A4F85F0075E644 /* DDLBaseElementTextFieldTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLBaseElementTextFieldTableCell_default.swift; sourceTree = "<group>"; };
 		88E4604819759FE4002C26C6 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		88E4604A19759FE4002C26C6 /* ForgotPasswordWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordWidget.swift; sourceTree = "<group>"; };
 		88EAEE371993D8BF002D7C26 /* DDLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		884CE5171994F37100ADF047 /* DDLForm */ = {
 			isa = PBXGroup;
 			children = (
+				88DBC13F19A4F85F0075E644 /* DDLBaseElementTextFieldTableCell_default.swift */,
 				884CE5241994FAF500ADF047 /* DDLElementCheckboxTableCell_default.swift */,
 				884CE5201994F4ED00ADF047 /* DDLElementCheckboxTableCell-default.xib */,
 				88DBC11719A4EC400075E644 /* DDLElementDateTableCell_default.swift */,
@@ -784,6 +787,7 @@
 				8897D9C3198A810F00D3DF51 /* ForgotPasswordView.swift in Sources */,
 				88832F9A19656B3F00E3DF9F /* BaseWidgetView.swift in Sources */,
 				8897D9C6198A883F00D3DF51 /* ThemeManager.swift in Sources */,
+				88DBC14019A4F85F0075E644 /* DDLBaseElementTextFieldTableCell_default.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
