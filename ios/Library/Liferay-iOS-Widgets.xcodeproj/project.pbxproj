@@ -170,6 +170,10 @@
 		88D90A5F19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D90A5C19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib */; };
 		88D90A6019A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D90A5C19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib */; };
 		88D99C32196C42B30090F236 /* LRSession_storage_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */; };
+		88DBC10E19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC10C19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift */; };
+		88DBC10F19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC10C19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift */; };
+		88DBC11019A4D83D0075E644 /* DDLElementRadioTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC10D19A4D83D0075E644 /* DDLElementRadioTableCell-default.xib */; };
+		88DBC11119A4D83D0075E644 /* DDLElementRadioTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC10D19A4D83D0075E644 /* DDLElementRadioTableCell-default.xib */; };
 		88E3304A19928726002AD507 /* DDLParser_basic_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E3304919928726002AD507 /* DDLParser_basic_Tests.swift */; };
 		88E3304C19928BF0002AD507 /* DDLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E3304B19928BF0002AD507 /* DDLParser.swift */; };
 		88E3304D19928BF0002AD507 /* DDLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E3304B19928BF0002AD507 /* DDLParser.swift */; };
@@ -347,6 +351,8 @@
 		88D90A5B19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLSubmitButtonTableCell_default.swift; sourceTree = "<group>"; };
 		88D90A5C19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLSubmitButtonTableCell-default.xib"; sourceTree = "<group>"; };
 		88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LRSession_storage_Tests.swift; sourceTree = "<group>"; };
+		88DBC10C19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementRadioTableCell_default.swift; sourceTree = "<group>"; };
+		88DBC10D19A4D83D0075E644 /* DDLElementRadioTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementRadioTableCell-default.xib"; sourceTree = "<group>"; };
 		88E3304919928726002AD507 /* DDLParser_basic_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser_basic_Tests.swift; sourceTree = "<group>"; };
 		88E3304B19928BF0002AD507 /* DDLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser.swift; sourceTree = "<group>"; };
 		88E4F26D1990C2EF00E69261 /* BaseWidget_tab_sequence_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidget_tab_sequence_Tests.swift; sourceTree = "<group>"; };
@@ -411,6 +417,8 @@
 			children = (
 				88D789801998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift */,
 				88D7897F1998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib */,
+				88DBC10C19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift */,
+				88DBC10D19A4D83D0075E644 /* DDLElementRadioTableCell-default.xib */,
 				886C74A719A368C000B689BA /* DDLElementSelectTableCell_default.swift */,
 				886C74A819A368C000B689BA /* DDLElementSelectTableCell-default.xib */,
 				883CF3C2199B7474008F0EBC /* DDLElementTextareaTableCell_default.swift */,
@@ -824,6 +832,7 @@
 				888D77D119903F060052C39C /* ForgotPasswordView-default.xib in Resources */,
 				888D7715198FDAD30052C39C /* flat7-preview-login@2x.png in Resources */,
 				884CE5101994EDB100ADF047 /* DDLFormView-default.xib in Resources */,
+				88DBC11119A4D83D0075E644 /* DDLElementRadioTableCell-default.xib in Resources */,
 				888CE13619924D93001DCA6A /* default-preview-forgotpassword@2x.png in Resources */,
 				888D778C198FEFFE0052C39C /* default-field-focused@2x.png in Resources */,
 				88999AC7198EE5CB00E746A6 /* xyz-preview-login@2x.png in Resources */,
@@ -886,6 +895,7 @@
 				888D77A7198FEFFE0052C39C /* default-preview-signup@2x.png in Resources */,
 				888D77A5198FEFFE0052C39C /* default-preview-signup.png in Resources */,
 				888D7708198FDAD30052C39C /* flat7.strings in Resources */,
+				88DBC11019A4D83D0075E644 /* DDLElementRadioTableCell-default.xib in Resources */,
 				888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */,
 				888D77D419903F060052C39C /* SignUpView-default.xib in Resources */,
 				88E4F2731990FCA700E69261 /* LoginView-default.xib in Resources */,
@@ -1012,6 +1022,7 @@
 				886C74AA19A368C000B689BA /* DDLElementSelectTableCell_default.swift in Sources */,
 				88F648B3198D301B003A8FD9 /* BaseWidgetView.swift in Sources */,
 				884CE5091994ECF000ADF047 /* DDLFormView.swift in Sources */,
+				88DBC10F19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift in Sources */,
 				88E4F26E1990C2EF00E69261 /* BaseWidget_tab_sequence_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1038,6 +1049,7 @@
 				889CA4C919655F4B00664504 /* BaseWidgetView.swift in Sources */,
 				884CE50A1994ECF000ADF047 /* DDLFormWidget.swift in Sources */,
 				884CE5111994EDB100ADF047 /* DDLFormView_default.swift in Sources */,
+				88DBC10E19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift in Sources */,
 				889CA4CA19655F4B00664504 /* LiferayContext.swift in Sources */,
 				888F61F7198FD3240082786B /* SignUpWidget.swift in Sources */,
 				8827E30719759F28004977A0 /* ForgotPasswordView.swift in Sources */,
