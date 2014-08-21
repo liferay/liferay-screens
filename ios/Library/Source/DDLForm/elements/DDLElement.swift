@@ -135,6 +135,9 @@ public class DDLElement: Equatable {
 		get {
 			return convert(fromCurrentValue: currentValue)
 		}
+		set {
+			currentValue = convert(fromString: newValue)
+		}
 	}
 
 	public var validatedClosure: ((Bool) -> ())?

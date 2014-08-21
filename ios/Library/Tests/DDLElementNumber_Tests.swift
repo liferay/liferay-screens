@@ -234,6 +234,94 @@ class DDLElementNumber_Tests: XCTestCase {
 		XCTAssertEqual("16.00", numberElement.currentStringValue!)
 	}
 
+	func test_CurrentStringValue_ShouldBeChanged_WhenNumberIsInteger() {
+		parser.xml =
+			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+			"<dynamic-element dataType=\"integer\" " +
+				"indexType=\"keyword\" " +
+				"name=\"A_Number\" " +
+				"readOnly=\"false\" " +
+				"repeatable=\"true\" " +
+				"required=\"false\" " +
+				"showLabel=\"true\" " +
+				"type=\"ddm-integer\" " +
+				"width=\"small\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[A Number]]>" +
+						"</entry> " +
+					"</meta-data> " +
+			"</dynamic-element> </root>"
+
+		let elements = parser.parse()
+		let numberElement = elements![0] as DDLElementNumber
+
+		numberElement.currentStringValue = "99"
+
+		XCTAssertEqual("99", numberElement.currentStringValue!)
+		XCTAssertTrue(numberElement.currentValue is NSInteger)
+		XCTAssertEqual(NSInteger(99), numberElement.currentValue as NSInteger)
+	}
+
+	func test_CurrentStringValue_ShouldBeChanged_WhenNumberIsIntegerAndValueIsDecimal() {
+		parser.xml =
+			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+			"<dynamic-element dataType=\"integer\" " +
+				"indexType=\"keyword\" " +
+				"name=\"A_Number\" " +
+				"readOnly=\"false\" " +
+				"repeatable=\"true\" " +
+				"required=\"false\" " +
+				"showLabel=\"true\" " +
+				"type=\"ddm-integer\" " +
+				"width=\"small\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[A Number]]>" +
+						"</entry> " +
+					"</meta-data> " +
+			"</dynamic-element> </root>"
+
+		let elements = parser.parse()
+		let numberElement = elements![0] as DDLElementNumber
+
+		numberElement.currentStringValue = "99.88"
+
+		XCTAssertEqual("100", numberElement.currentStringValue!)
+		XCTAssertTrue(numberElement.currentValue is NSInteger)
+		XCTAssertEqual(NSInteger(100), numberElement.currentValue as NSInteger)
+	}
+
+	func test_CurrentStringValue_ShouldBeChanged_WhenNumberIsDecimal() {
+		parser.xml =
+			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+			"<dynamic-element dataType=\"double\" " +
+				"indexType=\"keyword\" " +
+				"name=\"A_Number\" " +
+				"readOnly=\"false\" " +
+				"repeatable=\"true\" " +
+				"required=\"false\" " +
+				"showLabel=\"true\" " +
+				"type=\"ddm-decimal\" " +
+				"width=\"small\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[A Number]]>" +
+						"</entry> " +
+					"</meta-data> " +
+			"</dynamic-element> </root>"
+
+		let elements = parser.parse()
+		let numberElement = elements![0] as DDLElementNumber
+
+		numberElement.currentStringValue = "99.98"
+
+		XCTAssertEqual("99.98", numberElement.currentStringValue!)
+		XCTAssertTrue(numberElement.currentValue is NSDecimalNumber)
+		XCTAssertEqualWithAccuracy(99.98,
+			(numberElement.currentValue as NSDecimalNumber).floatValue, 0.001)
+	}
+
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
 		parser.xml =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
