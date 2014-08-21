@@ -18,6 +18,9 @@ public enum DDLElementDataType: String {
 	case DDLBoolean = "boolean"
 	case DDLString = "string"
 	case DDLDate = "date"
+	case DDLInteger = "integer"
+	case DDLNumber = "number"
+	case DDLDouble = "double"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementDataType {
@@ -39,6 +42,8 @@ public enum DDLElementDataType: String {
 			}
 		case .DDLDate:
 			return DDLElementDate(attributes:attributes, localized:localized)
+		case .DDLInteger, .DDLNumber, .DDLDouble:
+			return DDLElementNumber(attributes:attributes, localized:localized)
 		default:
 			return nil
 		}
@@ -54,6 +59,9 @@ public enum DDLElementType: String {
 	case Select = "select"
 	case Radio = "radio"
 	case Date = "ddm-date"
+	case Integer = "ddm-integer"
+	case Number = "ddm-number"
+	case Double = "ddm-decimal"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementType {
