@@ -86,7 +86,7 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		textView.frame = originalTextViewRect
 		textViewBackground!.frame = originalBackgroundRect
 
-		changeCellHeight(element!.type.registeredHeight)
+		changeCellHeight(element!.editorType.registeredHeight)
 
 		textViewBackground?.highlighted = false
 	}

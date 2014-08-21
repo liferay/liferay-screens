@@ -32,7 +32,7 @@ public enum DDLElementDataType: String {
 		case .DDLBoolean:
 			return DDLElementBoolean(attributes:attributes, localized:localized)
 		case .DDLString:
-			let type = DDLElementType.from(attributes: attributes)
+			let type = DDLElementEditor.from(attributes: attributes)
 
 			if type == .Select || type == .Radio {
 				return DDLElementStringWithOptions(attributes:attributes, localized:localized)
@@ -51,7 +51,7 @@ public enum DDLElementDataType: String {
 }
 
 
-public enum DDLElementType: String {
+public enum DDLElementEditor: String {
 
 	case Checkbox = "checkbox"
 	case Text = "text"
@@ -64,15 +64,15 @@ public enum DDLElementType: String {
 	case Double = "ddm-decimal"
 	case Unsupported = ""
 
-	public static func from(#xmlElement:SMXMLElement) -> DDLElementType {
+	public static func from(#xmlElement:SMXMLElement) -> DDLElementEditor {
 		return fromRaw(xmlElement.attributeNamed("type") ?? "") ?? .Unsupported
 	}
 
-	public static func from(#attributes:[String:String]) -> DDLElementType {
+	public static func from(#attributes:[String:String]) -> DDLElementEditor {
 		return fromRaw(attributes["type"] ?? "") ?? .Unsupported
 	}
 
-	public static func all() -> [DDLElementType] {
+	public static func all() -> [DDLElementEditor] {
 		return [Checkbox, Text, Textarea, Select, Radio, Date, Number]
 	}
 
@@ -101,16 +101,16 @@ public enum DDLElementType: String {
 	}
 
 	public func registerHeight(height:CGFloat) {
-		DDLElementType.elementTypeHeight[self] = height
+		DDLElementEditor.elementEditorHeight[self] = height
 	}
 
 	public var registeredHeight: CGFloat {
 		get {
-			return DDLElementType.elementTypeHeight[self] ?? 0
+			return DDLElementEditor.elementEditorHeight[self] ?? 0
 		}
 	}
 
-	private static var elementTypeHeight: [DDLElementType:CGFloat] = [:]
+	private static var elementEditorHeight: [DDLElementEditor:CGFloat] = [:]
 
 }
 
@@ -135,7 +135,7 @@ public class DDLElement: Equatable {
 	public var lastValidationResult:Bool?
 
 	internal(set) var dataType:DDLElementDataType
-	internal(set) var type:DDLElementType
+	internal(set) var editorType:DDLElementEditor
 
 	internal(set) var name:String
 
@@ -154,7 +154,7 @@ public class DDLElement: Equatable {
 
 	public init(attributes:[String:String], localized:[String:AnyObject]) {
 		dataType = DDLElementDataType.fromRaw(attributes["dataType"] ?? "") ?? .Unsupported
-		type = DDLElementType.fromRaw(attributes["type"] ?? "") ?? .Unsupported
+		editorType = DDLElementEditor.fromRaw(attributes["type"] ?? "") ?? .Unsupported
 		name = attributes["name"] ?? ""
 
 		readOnly = Bool.from(string: attributes["readOnly"] ?? "false")
@@ -183,7 +183,7 @@ public class DDLElement: Equatable {
 	}
 
 	public func resetCurrentHeight() {
-		currentHeight = type.registeredHeight
+		currentHeight = editorType.registeredHeight
 	}
 
 	internal func doValidate() -> Bool {

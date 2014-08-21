@@ -66,8 +66,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	internal func registerElementCells() {
 		let currentBundle = NSBundle(forClass: self.dynamicType)
 
-		for elementType in DDLElementType.all() {
-			var nibName = "DDLElement\(elementType.toName())TableCell"
+		for elementEditor in DDLElementEditor.all() {
+			var nibName = "DDLElement\(elementEditor.toName())TableCell"
 			if let themeName = themeName() {
 				nibName += "-" + themeName
 			}
@@ -75,9 +75,9 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
 				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
 
-				tableView?.registerNib(cellNib, forCellReuseIdentifier: elementType.toRaw())
+				tableView?.registerNib(cellNib, forCellReuseIdentifier: elementEditor.toName())
 
-				registerElementTypeHeight(type:elementType, nib:cellNib)
+				registerElementEditorHeight(editor:elementEditor, nib:cellNib)
 			}
 		}
 
@@ -104,17 +104,17 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		}
 	}
 
-	internal func registerElementTypeHeight(#type:DDLElementType, nib:UINib) {
+	internal func registerElementEditorHeight(#editor:DDLElementEditor, nib:UINib) {
 		if let views = nib.instantiateWithOwner(nil, options: nil) {
 			if let cellRootView = views.first as? UITableViewCell {
-				type.registerHeight(cellRootView.bounds.size.height)
+				editor.registerHeight(cellRootView.bounds.size.height)
 			}
 			else {
-				println("ERROR: Root view in cell \(type.toRaw()) didn't found")
+				println("ERROR: Root view in cell \(editor.toRaw()) didn't found")
 			}
 		}
 		else {
-			println("ERROR: Can't instantiate nib for cell \(type.toRaw())")
+			println("ERROR: Can't instantiate nib for cell \(editor.toRaw())")
 		}
 	}
 
@@ -140,7 +140,12 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		}
 		else {
 			let element = rows[row]
-			cell = tableView.dequeueReusableCellWithIdentifier(element.type.toRaw()) as? DDLElementTableCell
+			
+			cell = tableView.dequeueReusableCellWithIdentifier(element.editorType.toName()) as? DDLElementTableCell
+
+			if cell == nil {
+				println("ERROR: Cell XIB is not registerd for type \(element.editorType.toName())")
+			}
 
 			cell!.formView = self
 			cell!.tableView = tableView
