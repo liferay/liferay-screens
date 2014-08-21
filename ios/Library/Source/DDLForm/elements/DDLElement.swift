@@ -73,7 +73,7 @@ public enum DDLElementType: String {
 	}
 
 	public static func all() -> [DDLElementType] {
-		return [Checkbox, Text, Textarea, Select, Radio, Date]
+		return [Checkbox, Text, Textarea, Select, Radio, Date, Number]
 	}
 
 	public func toName() -> String {
@@ -87,6 +87,13 @@ public enum DDLElementType: String {
 
 			typeName = typeName.stringByReplacingOccurrencesOfString("ddm-", withString: "", options: .CaseInsensitiveSearch, range: wholeRange)
 		}
+
+		// hack for different number types
+		if typeName == "integer" || typeName == "decimal" {
+			typeName = "number"
+		}
+
+		// Capitalize first char
 
 		let secondCharIndex = typeName.startIndex.successor()
 
