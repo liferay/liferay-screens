@@ -77,20 +77,20 @@ public enum DDLElementType: String {
 	}
 
 	public func toName() -> String {
-		var elementName = toRaw()
+		var typeName = toRaw()
 
 		// hack for names prefixed with ddm
-		if elementName.hasPrefix("ddm-") {
+		if typeName.hasPrefix("ddm-") {
 			let wholeRange = Range<String.Index>(
-					start: elementName.startIndex,
-					end: elementName.endIndex)
+					start: typeName.startIndex,
+					end: typeName.endIndex)
 
-			elementName = elementName.stringByReplacingOccurrencesOfString("ddm-", withString: "", options: .CaseInsensitiveSearch, range: wholeRange)
+			typeName = typeName.stringByReplacingOccurrencesOfString("ddm-", withString: "", options: .CaseInsensitiveSearch, range: wholeRange)
 		}
 
-		let secondCharIndex = elementName.startIndex.successor()
+		let secondCharIndex = typeName.startIndex.successor()
 
-		return elementName.substringToIndex(secondCharIndex).uppercaseString + elementName.substringFromIndex(secondCharIndex)
+		return typeName.substringToIndex(secondCharIndex).uppercaseString + typeName.substringFromIndex(secondCharIndex)
 	}
 
 	public func registerHeight(height:CGFloat) {
