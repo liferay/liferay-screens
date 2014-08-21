@@ -59,17 +59,29 @@ public enum DDLElementEditor: String {
 	case Select = "select"
 	case Radio = "radio"
 	case Date = "ddm-date"
-	case Integer = "ddm-integer"
-	case Number = "ddm-number"
-	case Double = "ddm-decimal"
+	case Number = "number"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementEditor {
-		return fromRaw(xmlElement.attributeNamed("type") ?? "") ?? .Unsupported
+		return from(attributeValue:(xmlElement.attributeNamed("type") ?? ""))
 	}
 
 	public static func from(#attributes:[String:String]) -> DDLElementEditor {
-		return fromRaw(attributes["type"] ?? "") ?? .Unsupported
+		return from(attributeValue:(attributes["type"] ?? ""))
+	}
+
+	public static func from(#attributeValue:String) -> DDLElementEditor {
+		var result:DDLElementEditor = .Unsupported
+
+		// hack to convert ddm-integer, ddm-number and ddm-decimal to just number
+		switch attributeValue {
+			case "ddm-integer", "ddm-number", "ddm-decimal":
+				result = .Number
+			default:
+				result = fromRaw(attributeValue) ?? .Unsupported
+		}
+
+		return result
 	}
 
 	public static func all() -> [DDLElementEditor] {
@@ -86,11 +98,6 @@ public enum DDLElementEditor: String {
 					end: typeName.endIndex)
 
 			typeName = typeName.stringByReplacingOccurrencesOfString("ddm-", withString: "", options: .CaseInsensitiveSearch, range: wholeRange)
-		}
-
-		// hack for different number types
-		if typeName == "integer" || typeName == "decimal" {
-			typeName = "number"
 		}
 
 		// Capitalize first char
@@ -154,7 +161,7 @@ public class DDLElement: Equatable {
 
 	public init(attributes:[String:String], localized:[String:AnyObject]) {
 		dataType = DDLElementDataType.fromRaw(attributes["dataType"] ?? "") ?? .Unsupported
-		editorType = DDLElementEditor.fromRaw(attributes["type"] ?? "") ?? .Unsupported
+		editorType = DDLElementEditor.from(attributes: attributes)
 		name = attributes["name"] ?? ""
 
 		readOnly = Bool.from(string: attributes["readOnly"] ?? "false")
