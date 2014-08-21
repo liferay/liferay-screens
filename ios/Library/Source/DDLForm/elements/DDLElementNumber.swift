@@ -18,6 +18,11 @@ public class DDLElementNumber : DDLElement {
 	public var maximumDecimalDigits = 2
 	public var minimumDecimalDigits = 2
 
+	public var isDecimal:Bool {
+		get {
+			return dataType != DDLElementDataType.DDLInteger
+		}
+	}
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		var result = NSNumberFormatter().numberFromString(value)
@@ -43,7 +48,7 @@ public class DDLElementNumber : DDLElement {
 
 			formatter.locale = NSLocale.currentLocale()
 
-			if dataType != DDLElementDataType.DDLInteger {
+			if isDecimal {
 				formatter.numberStyle = .DecimalStyle
 				formatter.roundingMode = .RoundHalfUp
 				formatter.maximumFractionDigits = maximumDecimalDigits
@@ -57,7 +62,7 @@ public class DDLElementNumber : DDLElement {
 	}
 
 	override func onChangedCurrentValue() {
-		if dataType == DDLElementDataType.DDLInteger && currentValue is NSDecimalNumber {
+		if !isDecimal && currentValue is NSDecimalNumber {
 			currentValue = (currentValue as NSDecimalNumber).integerValue
 		}
 
