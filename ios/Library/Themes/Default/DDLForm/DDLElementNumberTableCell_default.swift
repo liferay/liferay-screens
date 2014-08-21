@@ -13,37 +13,48 @@
 */
 import UIKit
 
-public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
+public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell_default {
 
-	@IBOutlet var switchView: UISwitch?
-	@IBOutlet var label: UILabel?
+	@IBOutlet var stepper:UIStepper?
 
-	@IBAction func switchValueChanged(sender: AnyObject) {
-		element?.currentValue = switchView?.on
+	@IBAction func stepperChanged(sender: AnyObject) {
+		element!.currentValue = NSDecimalNumber(double: stepper!.value)
+		textField?.text = element!.currentStringValue
+	}
 
-		if element!.lastValidationResult != nil && !element!.lastValidationResult! {
-			element!.lastValidationResult = true
-			onValidated(true)
-		}
+	override public func awakeFromNib() {
+		stepper?.maximumValue = Double(UInt16.max)
 	}
 
 	override func onChangedElement() {
-		if let boolElement = element as? DDLElementBoolean {
-			switchView?.on = boolElement.predefinedValue as Bool
-			label?.text = boolElement.label
+		super.onChangedElement()
 
-			if boolElement.lastValidationResult != nil {
-				onValidated(boolElement.lastValidationResult!)
-			}
+		if let numberElement = element as? DDLElementNumber {
+			stepper?.value = Double(numberElement.currentValue as NSNumber)
+			textField!.keyboardType =
+				(numberElement.dataType == DDLElementDataType.DDLInteger) ?
+					.NumberPad : .DecimalPad
 		}
 	}
 
-	override func onValidated(valid: Bool) {
-		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()
+	override public func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+
+		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
+
+		if newText != "" {
+			element!.currentStringValue = newText
+		}
+		else {
+			element!.currentValue = NSDecimalNumber(double: 0)
+		}
+
+		stepper?.value = Double(element!.currentValue as NSNumber)
+
+		return super.textField(textField, shouldChangeCharactersInRange: range, replacementString: string)
 	}
 
-	override public func canBecomeFirstResponder() -> Bool {
-		return false
+	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
+		return nextCellResponder(textField)
 	}
 
 }
