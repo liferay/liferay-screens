@@ -65,7 +65,6 @@ public class DDLElementNumber : DDLElement {
 		if !isDecimal && currentValue is NSDecimalNumber {
 			currentValue = (currentValue as NSDecimalNumber).integerValue
 		}
-
 	}
 
 }
