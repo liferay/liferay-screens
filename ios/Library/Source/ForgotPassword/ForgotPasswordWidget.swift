@@ -38,10 +38,10 @@ import UIKit
 	private var resetClosure: ResetClosureType?
 
 	
-	public func setAuthType(authType:AuthType) {
-		forgotPasswordView().setAuthType(authType.toRaw())
+	public func setAuthType(authType:String) {
+		forgotPasswordView().setAuthType(authType)
 
-		resetClosure = resetClosures[authType.toRaw()]
+		resetClosure = resetClosures[authType]
 	}
 
 
@@ -49,7 +49,7 @@ import UIKit
 
 
 	override func onCreate() {
-		setAuthType(AuthType.Email)
+		setAuthType(AuthType.Email.toRaw())
 
 		forgotPasswordView().usernameField!.text = LiferayContext.instance.currentSession?.username
 	}

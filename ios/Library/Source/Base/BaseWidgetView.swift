@@ -29,8 +29,12 @@ class BaseWidgetView: UIView {
 	public func onCreate() {
 	}
 
+	public func onSetTranslations() {
+	}
+
 	override func awakeFromNib() {
 		addCustomActionsForViews(self)
+		onSetTranslations()
 		onCreate();
 	}
 

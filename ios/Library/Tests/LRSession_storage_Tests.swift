@@ -1,6 +1,3 @@
-
-
-
 /**
 * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
 *
@@ -36,7 +33,7 @@ class LRSession_Storage_Tests: XCTestCase {
 
 	// Fails due to bug reported to Apple by @jmnavarro
 	func test_SessionFromStoredCredential_ShouldHaveValidCredential_WhenCredentialWasStored() {
-		let session = LRSession(LiferayContext.instance.server, username:"user", password:"pass")
+		let session = LRSession(server:LiferayContext.instance.server, username:"user", password:"pass")
 
 		XCTAssertTrue(session.storeCredential(), "storeCredential() is not saving the credentials!")
 
@@ -51,19 +48,19 @@ class LRSession_Storage_Tests: XCTestCase {
 	}
 
 	func test_StoreCredential_ShouldReturnFalse_WhenUsernameIsNil() {
-		let session = LRSession(LiferayContext.instance.server, username:nil, password:"pass")
+		let session = LRSession(server:LiferayContext.instance.server, username:nil, password:"pass")
 
 		XCTAssertFalse(session.storeCredential())
 	}
 
 	func test_StoreCredential_ShouldReturnFalse_WhenPasswordIsNil() {
-		let session = LRSession(LiferayContext.instance.server, username:"user", password:nil)
+		let session = LRSession(server:LiferayContext.instance.server, username:"user", password:nil)
 		
 		XCTAssertFalse(session.storeCredential())
 	}
 
 	func test_RemoveStoredCredential_ShouldRemoveExistingCredential() {
-		let session = LRSession(LiferayContext.instance.server, username:"user", password:"pass")
+		let session = LRSession(server:LiferayContext.instance.server, username:"user", password:"pass")
 
 		session.storeCredential()
 
