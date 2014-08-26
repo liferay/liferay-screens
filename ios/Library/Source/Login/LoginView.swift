@@ -88,12 +88,18 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 		}
 	}
 
+	public func setUserName(userName: String) {
+		userNameField!.text = userName
+	}
+    
+
 	//MARK: BaseWidgetView METHODS
 
 	override func becomeFirstResponder() -> Bool {
 		return userNameField!.becomeFirstResponder()
 	}
 
+	
 	//MARK: UITextFieldDelegate METHODS
 
 	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {

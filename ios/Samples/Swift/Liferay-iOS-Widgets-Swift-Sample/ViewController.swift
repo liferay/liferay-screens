@@ -15,8 +15,8 @@ import UIKit
 
 class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidgetDelegate {
 
-	@IBOutlet var loginWidget: LoginWidget!
-	@IBOutlet var forgotWidget: ForgotPasswordWidget!
+	@IBOutlet var loginWidget: LoginWidget?
+	@IBOutlet var forgotWidget: ForgotPasswordWidget?
 
     
     // UIViewController METHODS
@@ -27,13 +27,11 @@ class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidge
 
 		// WORKAROUND!
 		// Delegate assignment in IB doesn't work!!
-		loginWidget.delegate = self
-		loginWidget.setAuthType(AuthType.ScreenName)
+		loginWidget!.delegate = self
+		loginWidget!.setAuthType(AuthType.ScreenName.toRaw())
 
-		loginWidget.becomeFirstResponder()
-		
-		forgotWidget.delegate = self;
-		forgotWidget.setAuthType(AuthType.ScreenName)
+		forgotWidget!.delegate = self;
+		forgotWidget!.setAuthType(AuthType.ScreenName.toRaw())
 	}
 
 	override func didReceiveMemoryWarning() {
