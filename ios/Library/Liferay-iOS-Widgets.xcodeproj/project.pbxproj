@@ -51,7 +51,6 @@
 		888D7748198FDB310052C39C /* default-large-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7735198FDB310052C39C /* default-large-button@2x.png */; };
 		888D7749198FDB310052C39C /* default-preview-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7736198FDB310052C39C /* default-preview-login.png */; };
 		888D774A198FDB310052C39C /* default-preview-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7736198FDB310052C39C /* default-preview-login.png */; };
-		888D774B198FDB310052C39C /* default-preview-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7737198FDB310052C39C /* default-preview-login@2x.png */; };
 		888D774C198FDB310052C39C /* default-preview-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7737198FDB310052C39C /* default-preview-login@2x.png */; };
 		888D774D198FDB310052C39C /* theme-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7738198FDB310052C39C /* theme-default.png */; };
 		888D774E198FDB310052C39C /* theme-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7738198FDB310052C39C /* theme-default.png */; };
@@ -66,10 +65,6 @@
 		888FAFA8196AE8C200057B26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888FAFA6196AE8C200057B26 /* AppDelegate.swift */; };
 		888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 888FAFA7196AE8C200057B26 /* AppInfo.plist */; };
 		888FAFAB196AE8EF00057B26 /* TestsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 888FAFAA196AE8EF00057B26 /* TestsInfo.plist */; };
-		88999AB5198EE59E00E746A6 /* default-preview-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AB2198EE59E00E746A6 /* default-preview-login.png */; };
-		88999AB6198EE59E00E746A6 /* default-preview-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AB2198EE59E00E746A6 /* default-preview-login.png */; };
-		88999AB7198EE59E00E746A6 /* default-preview-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AB3198EE59E00E746A6 /* default-preview-login@2x.png */; };
-		88999AB8198EE59E00E746A6 /* default-preview-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AB3198EE59E00E746A6 /* default-preview-login@2x.png */; };
 		88999AB9198EE59E00E746A6 /* theme-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AB4198EE59E00E746A6 /* theme-default.png */; };
 		88999ABA198EE59E00E746A6 /* theme-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AB4198EE59E00E746A6 /* theme-default.png */; };
 		88999AC3198EE5CB00E746A6 /* LoginView-xyz.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88999ABD198EE5CB00E746A6 /* LoginView-xyz.xib */; };
@@ -105,6 +100,12 @@
 		999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BF19655F4B00664504 /* LiferayContext.swift */; };
 		999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
 		999BC69F19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
+		99F116FE19AC7E5D008D66C4 /* default-preview-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F116FB19AC7E5D008D66C4 /* default-preview-login@2x.png */; };
+		99F116FF19AC7E5D008D66C4 /* default-preview-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F116FB19AC7E5D008D66C4 /* default-preview-login@2x.png */; };
+		99F1170019AC7E5D008D66C4 /* default-preview-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F116FC19AC7E5D008D66C4 /* default-preview-signup.png */; };
+		99F1170119AC7E5D008D66C4 /* default-preview-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F116FC19AC7E5D008D66C4 /* default-preview-signup.png */; };
+		99F1170219AC7E5D008D66C4 /* default-preview-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F116FD19AC7E5D008D66C4 /* default-preview-signup@2x.png */; };
+		99F1170319AC7E5D008D66C4 /* default-preview-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F116FD19AC7E5D008D66C4 /* default-preview-signup@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,8 +196,6 @@
 		888FAFA7196AE8C200057B26 /* AppInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppInfo.plist; path = Tests/AppInfo.plist; sourceTree = SOURCE_ROOT; };
 		888FAFAA196AE8EF00057B26 /* TestsInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TestsInfo.plist; path = ../Tests/TestsInfo.plist; sourceTree = "<group>"; };
 		88911B0A196AE41100E2E2A3 /* Pods.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		88999AB2198EE59E00E746A6 /* default-preview-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-login.png"; sourceTree = "<group>"; };
-		88999AB3198EE59E00E746A6 /* default-preview-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-login@2x.png"; sourceTree = "<group>"; };
 		88999AB4198EE59E00E746A6 /* theme-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "theme-default.png"; sourceTree = "<group>"; };
 		88999ABD198EE5CB00E746A6 /* LoginView-xyz.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginView-xyz.xib"; sourceTree = "<group>"; };
 		88999ABE198EE5CB00E746A6 /* LoginView_xyz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_xyz.swift; sourceTree = "<group>"; };
@@ -222,6 +221,9 @@
 		88F648A6198D2E1B003A8FD9 /* NSBundle+Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Paths.swift"; sourceTree = "<group>"; };
 		88FE74D419655E1B003A7CE5 /* Liferay-iOS-Widgets-Dummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liferay-iOS-Widgets-Dummy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
+		99F116FB19AC7E5D008D66C4 /* default-preview-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-login@2x.png"; sourceTree = "<group>"; };
+		99F116FC19AC7E5D008D66C4 /* default-preview-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-signup.png"; sourceTree = "<group>"; };
+		99F116FD19AC7E5D008D66C4 /* default-preview-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-signup@2x.png"; sourceTree = "<group>"; };
 		FEA555EA8DC0458CA74C4ACE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -342,10 +344,10 @@
 				888D7734198FDB310052C39C /* default-large-button.png */,
 				888D7735198FDB310052C39C /* default-large-button@2x.png */,
 				888D7736198FDB310052C39C /* default-preview-login.png */,
-				88999AB3198EE59E00E746A6 /* default-preview-login@2x.png */,
+				99F116FB19AC7E5D008D66C4 /* default-preview-login@2x.png */,
+				99F116FC19AC7E5D008D66C4 /* default-preview-signup.png */,
+				99F116FD19AC7E5D008D66C4 /* default-preview-signup@2x.png */,
 				888D7738198FDB310052C39C /* theme-default.png */,
-				88999AB2198EE59E00E746A6 /* default-preview-login.png */,
-				88999AB3198EE59E00E746A6 /* default-preview-login@2x.png */,
 				88999AB4198EE59E00E746A6 /* theme-default.png */,
 			);
 			path = Resources;
@@ -578,6 +580,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				888D773A198FDB310052C39C /* default-field-focused.png in Resources */,
+				99F116FF19AC7E5D008D66C4 /* default-preview-login@2x.png in Resources */,
 				888D774C198FDB310052C39C /* default-preview-login@2x.png in Resources */,
 				88F648B2198D3011003A8FD9 /* LoginView.xib in Resources */,
 				888D770F198FDAD30052C39C /* flat7-field.png in Resources */,
@@ -593,15 +596,15 @@
 				888D774A198FDB310052C39C /* default-preview-login.png in Resources */,
 				888D773E198FDB310052C39C /* default-field.png in Resources */,
 				888D774E198FDB310052C39C /* theme-default.png in Resources */,
-				88999AB8198EE59E00E746A6 /* default-preview-login@2x.png in Resources */,
+				99F1170319AC7E5D008D66C4 /* default-preview-signup@2x.png in Resources */,
 				888D770D198FDAD30052C39C /* flat7-button@2x.png in Resources */,
 				888F61F6198FD3240082786B /* SignUpView.xib in Resources */,
 				88999AC5198EE5CB00E746A6 /* theme-xyz.png in Resources */,
+				99F1170119AC7E5D008D66C4 /* default-preview-signup.png in Resources */,
 				88999AC3198EE5CB00E746A6 /* LoginView-xyz.xib in Resources */,
 				88999ABA198EE59E00E746A6 /* theme-default.png in Resources */,
 				888D7711198FDAD30052C39C /* flat7-field@2x.png in Resources */,
 				888D770B198FDAD30052C39C /* flat7-button.png in Resources */,
-				88999AB6198EE59E00E746A6 /* default-preview-login.png in Resources */,
 				888D7744198FDB310052C39C /* default-large-button-selected@2x.png in Resources */,
 				888D773C198FDB310052C39C /* default-field-focused@2x.png in Resources */,
 				88F648B7198D304B003A8FD9 /* liferay-context-sample.plist in Resources */,
@@ -616,18 +619,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				888D7716198FDAD30052C39C /* theme-flat7.png in Resources */,
+				99F116FE19AC7E5D008D66C4 /* default-preview-login@2x.png in Resources */,
 				888D770E198FDAD30052C39C /* flat7-field.png in Resources */,
 				888F61F5198FD3240082786B /* SignUpView.xib in Resources */,
-				88999AB5198EE59E00E746A6 /* default-preview-login.png in Resources */,
 				888D7749198FDB310052C39C /* default-preview-login.png in Resources */,
-				88999AB7198EE59E00E746A6 /* default-preview-login@2x.png in Resources */,
 				888D770C198FDAD30052C39C /* flat7-button@2x.png in Resources */,
+				99F1170019AC7E5D008D66C4 /* default-preview-signup.png in Resources */,
 				888D7708198FDAD30052C39C /* flat7.strings in Resources */,
 				888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */,
 				888D7747198FDB310052C39C /* default-large-button@2x.png in Resources */,
 				888D7743198FDB310052C39C /* default-large-button-selected@2x.png in Resources */,
 				888D7745198FDB310052C39C /* default-large-button.png in Resources */,
 				888D7741198FDB310052C39C /* default-large-button-selected.png in Resources */,
+				99F1170219AC7E5D008D66C4 /* default-preview-signup@2x.png in Resources */,
 				889CA4CC19655F4B00664504 /* LoginView.xib in Resources */,
 				88999AB9198EE59E00E746A6 /* theme-default.png in Resources */,
 				888D773D198FDB310052C39C /* default-field.png in Resources */,
@@ -637,7 +641,6 @@
 				888D7739198FDB310052C39C /* default-field-focused.png in Resources */,
 				888D7710198FDAD30052C39C /* flat7-field@2x.png in Resources */,
 				888D7712198FDAD30052C39C /* flat7-preview-login.png in Resources */,
-				888D774B198FDB310052C39C /* default-preview-login@2x.png in Resources */,
 				88AEA25D19657C3100CD130B /* liferay-context-sample.plist in Resources */,
 				888D770A198FDAD30052C39C /* flat7-button.png in Resources */,
 				888D774D198FDB310052C39C /* theme-default.png in Resources */,
