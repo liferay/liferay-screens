@@ -30,7 +30,7 @@ import UIKit
 
 	private typealias ResetClosureType = (String, LRMwuserService_v6201, (NSError)->()) -> (Void)
 
-	//TODO support resetClosure by userId
+	//TODO: support resetClosure by userId
 	private let resetClosures = [
 		AuthType.Email.toRaw(): resetPasswordWithEmail,
 		AuthType.ScreenName.toRaw(): resetPasswordWithScreenName]
@@ -44,18 +44,16 @@ import UIKit
 		resetClosure = resetClosures[authType]
 	}
 
-
-    // BaseWidget METHODS
-
+	//MARK: BaseWidget METHODS
 
 	override func onCreate() {
 		setAuthType(AuthType.Email.toRaw())
 
-		forgotPasswordView().usernameField!.text = LiferayContext.instance.currentSession?.username
+		forgotPasswordView().userNameField!.text = LiferayContext.instance.currentSession?.username
 	}
 
 	override func onCustomAction(actionName: String?, sender: UIControl) {
-		sendForgotPasswordRequest(forgotPasswordView().usernameField!.text)
+		sendForgotPasswordRequest(forgotPasswordView().userNameField!.text)
 	}
 
 	override func onServerError(error: NSError) {
@@ -83,7 +81,7 @@ import UIKit
 
 			hideHUDWithMessage("An error happened", details: errorMsg)
 		}
-    }
+	}
 
 
 	private func forgotPasswordView() -> ForgotPasswordView {

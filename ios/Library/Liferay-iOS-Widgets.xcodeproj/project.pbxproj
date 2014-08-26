@@ -106,6 +106,8 @@
 		99F1170119AC7E5D008D66C4 /* default-preview-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F116FC19AC7E5D008D66C4 /* default-preview-signup.png */; };
 		99F1170219AC7E5D008D66C4 /* default-preview-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F116FD19AC7E5D008D66C4 /* default-preview-signup@2x.png */; };
 		99F1170319AC7E5D008D66C4 /* default-preview-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F116FD19AC7E5D008D66C4 /* default-preview-signup@2x.png */; };
+		99F1170519AC8807008D66C4 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1170419AC8807008D66C4 /* UIView+Animations.swift */; };
+		99F1170619AC8807008D66C4 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1170419AC8807008D66C4 /* UIView+Animations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +226,7 @@
 		99F116FB19AC7E5D008D66C4 /* default-preview-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-login@2x.png"; sourceTree = "<group>"; };
 		99F116FC19AC7E5D008D66C4 /* default-preview-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-signup.png"; sourceTree = "<group>"; };
 		99F116FD19AC7E5D008D66C4 /* default-preview-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-signup@2x.png"; sourceTree = "<group>"; };
+		99F1170419AC8807008D66C4 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		FEA555EA8DC0458CA74C4ACE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -434,6 +437,7 @@
 		88F648A5198D2E1B003A8FD9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				99F1170419AC8807008D66C4 /* UIView+Animations.swift */,
 				88F648A6198D2E1B003A8FD9 /* NSBundle+Paths.swift */,
 				888F61F9198FD3740082786B /* NSLocale+CurrentLocale.swift */,
 				8875B021198FB173006955BA /* UIImage+Themes.h */,
@@ -706,6 +710,7 @@
 				888F61F4198FD3240082786B /* SignUpView.swift in Sources */,
 				888F61FB198FD3740082786B /* NSLocale+CurrentLocale.swift in Sources */,
 				88F648B6198D303B003A8FD9 /* nameOfClass.swift in Sources */,
+				99F1170619AC8807008D66C4 /* UIView+Animations.swift in Sources */,
 				88F648A4198D2E11003A8FD9 /* ThemeManager.swift in Sources */,
 				88F648B3198D301B003A8FD9 /* BaseWidgetView.swift in Sources */,
 			);
@@ -732,6 +737,7 @@
 				888F61F3198FD3240082786B /* SignUpView.swift in Sources */,
 				888F61FA198FD3740082786B /* NSLocale+CurrentLocale.swift in Sources */,
 				88F648A7198D2E1B003A8FD9 /* NSBundle+Paths.swift in Sources */,
+				99F1170519AC8807008D66C4 /* UIView+Animations.swift in Sources */,
 				889CA4C719655F4B00664504 /* BaseWidget+progress.swift in Sources */,
 				999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 			);

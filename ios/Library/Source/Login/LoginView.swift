@@ -14,25 +14,62 @@
 import UIKit
 
 public enum AuthType: String {
-	case Email = "Email"
+	case Email = "Email Address"
 	case ScreenName = "Screen Name"
 	case UserId = "User ID"
 }
 
 class LoginView: BaseWidgetView, UITextFieldDelegate {
 
-	@IBOutlet var userNameLabel: UILabel?
 	@IBOutlet var userNameField: UITextField?
+	@IBOutlet var userNamePlaceholder: UILabel?
+	@IBOutlet var userNameBackground: UIImageView?
+
 	@IBOutlet var passwordField: UITextField?
+	@IBOutlet var passwordPlaceholder: UILabel?
+	@IBOutlet var passwordBackground: UIImageView?
+
 	@IBOutlet var rememberSwitch: UISwitch?
 	@IBOutlet var loginButton: UIButton?
 
+	public var userName:String {
+		get {
+			return userNameField!.text
+		}
+		set {
+			userNameField!.text = newValue
+
+			if let placeholderValue = userNamePlaceholder {
+				placeholderValue.changeVisibility(visible: newValue == "", delay: 0.0)
+			}
+		}
+	}
+
+	public var password:String {
+		get {
+			return passwordField!.text
+		}
+		set {
+			passwordField!.text = newValue
+
+			if let placeholderValue = passwordPlaceholder {
+				placeholderValue.changeVisibility(visible: newValue == "", delay: 0.0)
+			}
+		}
+	}
+
 	public var shouldRememberCredentials: Bool {
-		return rememberSwitch!.on
+		if let rememberSwitchValue = rememberSwitch {
+			return rememberSwitchValue.on;
+		}
+
+		return true
 	}
 
 	public func setAuthType(authType: String) {
-		userNameLabel!.text = authType
+		if let placeholderValue = userNamePlaceholder {
+			placeholderValue.text = authType
+		}
 
 		switch authType {
 		case AuthType.Email.toRaw():
@@ -55,16 +92,35 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 		userNameField!.text = userName
 	}
     
-	// BaseWidgetView METHODS
 
+	//MARK: BaseWidgetView METHODS
 
 	override func becomeFirstResponder() -> Bool {
 		return userNameField!.becomeFirstResponder()
 	}
 
+	
+	//MARK: UITextFieldDelegate METHODS
 
-	// UITextFieldDelegate METHODS
+	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
+		userNameBackground!.highlighted = (textField == userNameField);
+		passwordBackground!.highlighted = (textField == passwordField);
 
+		return true
+	}
+
+	func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+
+		let targetPlaceholder = (textField == userNameField) ? userNamePlaceholder : passwordPlaceholder
+
+		if let targetPlaceholderValue = targetPlaceholder {
+			let newText = textField.text.bridgeToObjectiveC().stringByReplacingCharactersInRange(range, withString:string)
+
+			targetPlaceholderValue.changeVisibility(visible: newText == "")
+		}
+
+		return true
+	}
 
 	func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		if textField == userNameField {

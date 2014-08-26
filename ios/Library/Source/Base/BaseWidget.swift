@@ -54,6 +54,7 @@ import QuartzCore
 	public func onShow() {
 	}
 
+
 	//MARK: SERVER RESPONSE TEMPLATE METHODS
 
 	/*
@@ -69,6 +70,7 @@ import QuartzCore
 	public func onServerResult(dict:[String:AnyObject]) {
 	}
 
+
 	//MARK: USER ACTIONS TEMPLATE METHOD
 
 	/*
@@ -76,6 +78,7 @@ import QuartzCore
 	 */
 	public func onCustomAction(actionName:String?, sender:UIControl) {
 	}
+
 
 	//MARK: UIView METHODS
 
@@ -99,6 +102,7 @@ import QuartzCore
 			self.onHide();
 		}
 	}
+
 
 	//MARK: Interface Builder management methods
 
@@ -131,6 +135,7 @@ import QuartzCore
 			}
 		}
 	}
+
 
 	//MARK: LRCallback
 
