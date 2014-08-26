@@ -40,7 +40,7 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 			userNameField!.text = newValue
 
 			if let placeholderValue = userNamePlaceholder {
-				placeholderValue.hideWithDelay(0.0, hide: newValue != "")
+				placeholderValue.changeVisibility(visible: newValue == "", delay: 0.0)
 			}
 		}
 	}
@@ -53,7 +53,7 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 			passwordField!.text = newValue
 
 			if let placeholderValue = passwordPlaceholder {
-				placeholderValue.hideWithDelay(0.0, hide: newValue != "")
+				placeholderValue.changeVisibility(visible: newValue == "", delay: 0.0)
 			}
 		}
 	}
@@ -116,7 +116,7 @@ class LoginView: BaseWidgetView, UITextFieldDelegate {
 		if let targetPlaceholderValue = targetPlaceholder {
 			let newText = textField.text.bridgeToObjectiveC().stringByReplacingCharactersInRange(range, withString:string)
 
-			targetPlaceholderValue.delayedHide(newText != "")
+			targetPlaceholderValue.changeVisibility(visible: newText == "")
 		}
 
 		return true

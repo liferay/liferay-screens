@@ -13,16 +13,17 @@
 */
 import Foundation
 
+/*
+ * Delayed show and hide
+ */
 extension UIView {
 
-	// MARK: Delayed show and hide
-
-	public func delayedHide(hide:Bool) {
-		self.hideWithDelay(defaultHideDelay, hide: hide)
+	public func changeVisibility(#visible:Bool) {
+		self.changeVisibility(visible: visible, delay: defaultHideDelay)
 	}
 
-	public func hideWithDelay(delay: Double, hide:Bool) {
-		let targetAlpha: CGFloat = hide ? 0.0 : 1.0
+	public func changeVisibility(#visible:Bool, delay: Double) {
+		let targetAlpha: CGFloat = visible ? 0.0 : 1.0
 
 		if self.alpha != targetAlpha {
 			if delay == 0.0 {

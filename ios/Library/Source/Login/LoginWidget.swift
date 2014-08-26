@@ -45,9 +45,6 @@ class LoginWidget: BaseWidget {
         loginView().setAuthType(authType)
         
         authClosure = authClosures[authType]
-    }
-
-		authClosure = authClosures[authType.toRaw()]
 	}
 
 
