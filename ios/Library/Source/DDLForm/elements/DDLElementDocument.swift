@@ -25,4 +25,17 @@ public class DDLElementDocument : DDLElement {
 		return result
 	}
 
+	override func convert(fromCurrentValue value: AnyObject?) -> String? {
+		var result: String?
+
+		if value is UIImage {
+			result = "Image"
+		}
+		else if value is NSURL {
+			result = "Video"
+		}
+
+		return result
+	}
+
 }
