@@ -63,7 +63,8 @@ public class DDLElementNumber : DDLElement {
 
 	override func onChangedCurrentValue() {
 		if !isDecimal && currentValue is NSDecimalNumber {
-			currentValue = (currentValue as NSDecimalNumber).integerValue
+			let decimal = (currentValue as NSDecimalNumber).doubleValue
+			currentValue = NSNumber(double: decimal + 0.5).integerValue
 		}
 	}
 
