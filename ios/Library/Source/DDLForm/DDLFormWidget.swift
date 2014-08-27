@@ -37,7 +37,7 @@ import UIKit
 
 	private var userId:Int = 0
 
-	private var submitting = false
+	private var currentOperation:FormOperation = .Idle
 
 
 	// MARK: BaseWidget METHODS
@@ -63,29 +63,33 @@ import UIKit
 	}
 
 	override public func onServerError(error: NSError) {
-		if submitting {
-			delegate?.onFormSubmitError?(error)
-			finishOperationWithMessage("An error happened submitting form")
+		switch currentOperation {
+			case .Submitting:
+				delegate?.onFormSubmitError?(error)
+				finishOperationWithMessage("An error happened submitting form")
+			case .Loading:
+				delegate?.onFormLoadError?(error)
+				finishOperationWithMessage("An error happened loading form")
+			default: ()
 		}
-		else {
-			delegate?.onFormLoadError?(error)
-			finishOperationWithMessage("An error happened loading form")
-		}
+
+		currentOperation = .Idle
 	}
 
 	override public func onServerResult(result: [String:AnyObject]) {
-		if submitting {
-			submitting = false
+		switch currentOperation {
+			case .Submitting:
+				if let recordIdValue = result["recordId"]! as? Int {
+					recordId = recordIdValue
+				}
 
-			if let recordIdValue = result["recordId"]! as? Int {
-				recordId = recordIdValue
-			}
+				finishOperationWithMessage("Form submitted")
+			case .Loading:
+				onFormLoadResult(result)
+			default: ()
+		}
 
-			finishOperationWithMessage("Form submitted")
-		}
-		else {
-			onFormLoadResult(result)
-		}
+		currentOperation = .Idle
 	}
 
 	private func onFormLoadResult(result: [String:AnyObject]) {
@@ -132,6 +136,8 @@ import UIKit
 
 		let service = LRDDMStructureService_v62(session: session)
 
+		currentOperation = .Loading
+
 		var outError: NSError?
 
 		service.getStructureWithStructureId((structureId as NSNumber).longLongValue, error: &outError)
@@ -165,7 +171,7 @@ import UIKit
 			return false
 		}
 
-		submitting = true
+		currentOperation = .Submitting
 
 		startOperationWithMessage("Submitting form...", details: "Wait a second...")
 
@@ -213,4 +219,10 @@ import UIKit
 		return widgetView as DDLFormView
 	}
 
+}
+
+private enum FormOperation {
+	case Idle
+	case Loading
+	case Submitting
 }
