@@ -1,5 +1,5 @@
 pod 'MBProgressHUD'
 pod 'SMXMLDocument'
-pod 'DTPickerPresenter'
+pod 'DTPickerPresenter', :git => 'https://github.com/jmnavarro/DTPickerPresenter.git', :branch => 'custom-presenter'
 pod 'TNRadioButtonGroup'
 pod 'Liferay-iOS-SDK', :git => 'https://github.com/liferay/liferay-mobile-sdk.git'
