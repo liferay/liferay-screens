@@ -21,6 +21,7 @@ public enum DDLElementDataType: String {
 	case DDLInteger = "integer"
 	case DDLNumber = "number"
 	case DDLDouble = "double"
+	case DDLDocument = "document-library"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementDataType {
@@ -44,6 +45,8 @@ public enum DDLElementDataType: String {
 			return DDLElementDate(attributes:attributes, localized:localized)
 		case .DDLInteger, .DDLNumber, .DDLDouble:
 			return DDLElementNumber(attributes:attributes, localized:localized)
+		case .DDLDocument:
+			return DDLElementDocument(attributes:attributes, localized:localized)
 		default:
 			return nil
 		}
@@ -60,6 +63,7 @@ public enum DDLElementEditor: String {
 	case Radio = "radio"
 	case Date = "ddm-date"
 	case Number = "number"
+	case Document = "ddm-documentlibrary"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementEditor {
@@ -85,7 +89,7 @@ public enum DDLElementEditor: String {
 	}
 
 	public static func all() -> [DDLElementEditor] {
-		return [Checkbox, Text, Textarea, Select, Radio, Date, Number]
+		return [Checkbox, Text, Textarea, Select, Radio, Date, Number, Document]
 	}
 
 	public func toName() -> String {
