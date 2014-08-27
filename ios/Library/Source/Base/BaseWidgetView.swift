@@ -18,7 +18,7 @@ import UIKit
  */
 public class BaseWidgetView: UIView, UITextFieldDelegate {
 
-	typealias CustomActionType = (String?, UIControl?) -> (Void)
+	typealias CustomActionType = (String?, AnyObject?) -> ()
 
 	var customAction: CustomActionType?
 

@@ -62,7 +62,7 @@ public class LoginWidget: BaseWidget {
 		}
 	}
 
-	override public func onCustomAction(actionName: String?, sender: UIControl?) {
+	override public func onCustomAction(actionName: String?, sender: AnyObject?) {
 		if actionName == "login-action" {
 			sendLoginWithUserName(loginView().getUserName(), password:loginView().getPassword())
 		}
