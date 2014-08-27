@@ -113,7 +113,9 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	}
 
 	func customActionHandler(sender: UIControl!) {
-		customActionHandler(sender.restorationIdentifier)
+		endEditing(true)
+
+		customAction?(sender.restorationIdentifier, sender)
 	}
 
 	func customActionHandler(actionName: String?) {
