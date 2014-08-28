@@ -21,6 +21,11 @@ import UIKit
 	optional func onFormSubmitted(elements: [DDLElement])
 	optional func onFormSubmitError(error: NSError)
 
+	optional func onDocumentUploadStarted(element:DDLElementDocument)
+	optional func onDocumentUploadedBytes(element:DDLElementDocument, bytes: UInt, sent: Int64, total: Int64);
+	optional func onDocumentUploadCompleted(element:DDLElementDocument, result:[String:AnyObject]);
+	optional func onDocumentUploadError(element:DDLElementDocument, error: NSError);
+
 }
 
 @IBDesignable public class DDLFormWidget: BaseWidget, LRProgressDelegate {
@@ -88,6 +93,7 @@ import UIKit
 				if !document.validate() {
 					formView().showElement(document)
 				}
+				delegate?.onDocumentUploadError?(document, error: error)
 				finishOperationWithMessage("An error happened uploading form")
 
 			default: ()
@@ -109,6 +115,7 @@ import UIKit
 
 			case .Uploading(let document):
 				document.uploadStatus = .Uploaded(result)
+				delegate?.onDocumentUploadCompleted?(document, result: result)
 				finishOperationWithMessage("Upload completed")
 
 			default: ()
@@ -281,6 +288,8 @@ import UIKit
 			return false
 		}
 
+		delegate?.onDocumentUploadStarted?(document)
+
 		return true
 	}
 
@@ -288,7 +297,12 @@ import UIKit
 	//MARK LRProgressDelegate
 
 	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
-		println("log bytes=\(bytes) send=\(sent) total=\(total)")
+		switch currentOperation {
+			case .Uploading(let document):
+				delegate?.onDocumentUploadedBytes?(document, bytes: bytes, sent: sent, total: total)
+
+			default: ()
+		}
 	}
 
 	private func formView() -> DDLFormView {

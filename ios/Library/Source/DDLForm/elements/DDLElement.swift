@@ -126,7 +126,7 @@ public enum DDLElementEditor: String {
 }
 
 
-public class DDLElement: Equatable {
+@objc public class DDLElement: Equatable {
 
 	public var currentValue:AnyObject? {
 		didSet {

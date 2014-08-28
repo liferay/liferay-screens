@@ -13,7 +13,7 @@
 */
 import Foundation
 
-public class DDLElementDocument : DDLElement {
+@objc public class DDLElementDocument : DDLElement {
 
 	public enum UploadStatus {
 		case Uploaded([String:AnyObject])
