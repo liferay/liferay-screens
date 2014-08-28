@@ -57,13 +57,21 @@ class DDLElementDocument_Tests: XCTestCase {
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
 		parser.xml = requiredDocumentElement
-
 		let elements = parser.parse()
-
-		XCTAssertTrue(elements![0] is DDLElementDocument)
 		let docElement = elements![0] as DDLElementDocument
 
 		XCTAssertTrue(docElement.currentValue == nil)
+		XCTAssertFalse(docElement.validate())
+	}
+
+	func test_Validate_ShouldFail_WhenUploadFailed() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		docElement.currentValue = UIImage(named:"default-field")
+		docElement.uploadStatus = .Failed(NSError.errorWithDomain("", code: 0, userInfo:nil))
+
 		XCTAssertFalse(docElement.validate())
 	}
 

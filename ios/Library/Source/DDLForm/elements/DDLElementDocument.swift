@@ -15,6 +15,14 @@ import Foundation
 
 public class DDLElementDocument : DDLElement {
 
+	public enum UploadStatus {
+		case Uploaded([String:AnyObject])
+		case Failed(NSError)
+		case Pending
+	}
+
+	public var uploadStatus:UploadStatus = .Pending
+
 	public var mimeType: String? {
 		var result:String?
 
@@ -76,5 +84,21 @@ public class DDLElementDocument : DDLElement {
 
 		return result
 	}
+
+	override internal func doValidate() -> Bool {
+		var result = super.doValidate()
+
+		if result {
+			switch (uploadStatus) {
+				case .Failed(_): ()
+					result = false
+				default: ()
+					result = true
+			}
+		}
+
+		return result
+	}
+
 
 }
