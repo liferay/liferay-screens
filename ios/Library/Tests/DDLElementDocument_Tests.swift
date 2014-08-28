@@ -95,6 +95,50 @@ class DDLElementDocument_Tests: XCTestCase {
 		XCTAssertEqual("video/mpeg", docElement.mimeType ?? "nil mimeType")
 	}
 
+	func test_Stream_ShouldReturnNil_WhenCurrentValueIsEmpty() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		var size:Int64 = 0
+		XCTAssertNil(docElement.getStream(&size))
+		XCTAssertEqual(0, size)
+	}
+
+	func test_Stream_ShouldReturnStream_WhenCurrentValueIsImage() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		let image = UIImage(named:"default-field")
+		let imageBytes = UIImagePNGRepresentation(image)
+		let imageLength = Int64(imageBytes.length)
+
+		docElement.currentValue = image
+
+		var size:Int64 = 0
+		let stream = docElement.getStream(&size)
+		XCTAssertNotNil(stream)
+		XCTAssertEqual(imageLength, size)
+	}
+
+	func test_Stream_ShouldReturnStream_WhenCurrentValueIsURL() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		let url = NSBundle(forClass: self.dynamicType).URLForResource("default-field", withExtension: "png")
+		let attributes = NSFileManager.defaultManager().attributesOfItemAtPath(url?.path, error: nil)
+		let imageLength = attributes![NSFileSize] as NSNumber
+
+		docElement.currentValue = url
+
+		var size:Int64 = 0
+		let stream = docElement.getStream(&size)
+		XCTAssertNotNil(stream)
+		XCTAssertEqual(imageLength.longLongValue, size)
+	}
+
 	private let requiredDocumentElement =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"document-library\" " +
