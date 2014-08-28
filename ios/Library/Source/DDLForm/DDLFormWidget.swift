@@ -29,6 +29,11 @@ import UIKit
 	@IBInspectable var groupId: Int = 0
 	@IBInspectable var recordSetId: Int = 0
 	@IBInspectable var recordId:Int = 0
+
+	@IBInspectable var repositoryId:Int = 0
+	@IBInspectable var folderId:Int = 0
+	@IBInspectable var filePrefix = "form-file-"
+
 	@IBInspectable var autoLoad:Bool = true
 	@IBInspectable var autoscrollOnValidation:Bool = true
 	@IBInspectable var showSubmitButton:Bool = true
