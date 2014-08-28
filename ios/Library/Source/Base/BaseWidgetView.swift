@@ -112,16 +112,25 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		return view
 	}
 
-	func customActionHandler(sender: UIControl!) {
+	func customActionHandler(#actionName: String?, sender: AnyObject?) {
+		customAction?(actionName, sender)
+	}
+
+	func customActionHandler(sender: AnyObject?) {
 		endEditing(true)
 
-		customAction?(sender.restorationIdentifier, sender)
+		if let controlSender = sender as? UIControl {
+			customActionHandler(actionName:controlSender.restorationIdentifier, sender:sender)
+		}
+		else {
+			customActionHandler(actionName:nil, sender:sender)
+		}
 	}
 
 	func customActionHandler(actionName: String?) {
 		endEditing(true)
 
-		customAction?(actionName, nil)
+		customActionHandler(actionName:actionName, sender:nil)
 	}
 
 	private func addCustomActionForControl(control: UIControl) {
