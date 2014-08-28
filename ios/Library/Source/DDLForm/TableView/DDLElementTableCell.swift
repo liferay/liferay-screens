@@ -100,7 +100,7 @@ public class DDLElementTableCell: UITableViewCell {
 					}
 
 				case .Send:
-					formView?.customActionHandler("submit")
+					formView?.customActionHandler("submit-form")
 					result = true
 
 				default: ()

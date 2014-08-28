@@ -56,6 +56,8 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 	private func selectedDocumentClosure(image:UIImage?, url:NSURL?) {
 		element!.currentValue = image ?? url
 		textField?.text = element!.currentStringValue
+
+		formView?.customActionHandler(actionName: "upload-document", sender: element! as DDLElementDocument)
 	}
 
 }

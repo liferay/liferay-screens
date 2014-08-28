@@ -23,7 +23,7 @@ import UIKit
 
 }
 
-@IBDesignable public class DDLFormWidget: BaseWidget {
+@IBDesignable public class DDLFormWidget: BaseWidget, LRProgressDelegate {
 
 	@IBInspectable var structureId: Int = 0
 	@IBInspectable var groupId: Int = 0
@@ -62,8 +62,14 @@ import UIKit
 	}
 
 	override public func onCustomAction(actionName: String?, sender: AnyObject?) {
-		if actionName == "submit" {
-			submitForm()
+		switch actionName! {
+			case "submit-form":
+				submitForm()
+			case "upload-document":
+				if let document = sender as? DDLElementDocument {
+					uploadDocument(document)
+				}
+			default: ()
 		}
 	}
 
@@ -72,9 +78,18 @@ import UIKit
 			case .Submitting:
 				delegate?.onFormSubmitError?(error)
 				finishOperationWithMessage("An error happened submitting form")
+
 			case .Loading:
 				delegate?.onFormLoadError?(error)
 				finishOperationWithMessage("An error happened loading form")
+
+			case .Uploading(let document):
+				document.uploadStatus = .Failed(error)
+				if !document.validate() {
+					formView().showElement(document)
+				}
+				finishOperationWithMessage("An error happened uploading form")
+
 			default: ()
 		}
 
@@ -87,10 +102,15 @@ import UIKit
 				if let recordIdValue = result["recordId"]! as? Int {
 					recordId = recordIdValue
 				}
-
 				finishOperationWithMessage("Form submitted")
+
 			case .Loading:
 				onFormLoadResult(result)
+
+			case .Uploading(let document):
+				document.uploadStatus = .Uploaded(result)
+				finishOperationWithMessage("Upload completed")
+
 			default: ()
 		}
 
@@ -220,6 +240,57 @@ import UIKit
 		return true
 	}
 
+	private func uploadDocument(document:DDLElementDocument) -> Bool {
+		if LiferayContext.instance.currentSession == nil {
+			println("ERROR: No session initialized. Can't upload a document without session")
+			return false
+		}
+
+		if document.currentValue == nil {
+			println("ERROR: No current value in the document. Can't upload a document without a value")
+			return false
+		}
+
+		startOperationWithMessage("Uploading file...", details: "Wait a second...")
+
+		let repoId = (repositoryId != 0) ? repositoryId : groupId
+		let fileName = "\(filePrefix)-\(NSUUID.UUID().UUIDString)"
+		var size:Int64 = 0
+		let stream = document.getStream(&size)
+		let uploadData = LRUploadData(inputStream: stream, length:size, fileName: fileName, mimeType: document.mimeType)
+		uploadData.progressDelegate = self
+
+		let session = LRSession(session: LiferayContext.instance.currentSession)
+		session.callback = self
+
+		let service = LRDLAppService_v62(session: session)
+
+		currentOperation = .Uploading(document)
+
+		var outError: NSError?
+
+		service.addFileEntryWithRepositoryId(
+			(repoId as NSNumber).longLongValue,
+			folderId: (folderId as NSNumber).longLongValue,
+			sourceFileName: fileName, mimeType: document.mimeType,
+			title: fileName, description: "", changeLog: "Uploaded from Liferay Screens app",
+			file: uploadData, serviceContext: nil, error: &outError)
+
+		if let error = outError {
+			onFailure(error)
+			return false
+		}
+
+		return true
+	}
+
+
+	//MARK LRProgressDelegate
+
+	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
+		println("log bytes=\(bytes) send=\(sent) total=\(total)")
+	}
+
 	private func formView() -> DDLFormView {
 		return widgetView as DDLFormView
 	}
@@ -230,4 +301,5 @@ private enum FormOperation {
 	case Idle
 	case Loading
 	case Submitting
+	case Uploading(DDLElementDocument)
 }
