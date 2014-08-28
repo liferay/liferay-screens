@@ -15,6 +15,20 @@ import Foundation
 
 public class DDLElementDocument : DDLElement {
 
+	public var mimeType: String? {
+		var result:String?
+
+		switch currentValue {
+			case is UIImage:
+				result = "image/png"
+			case is NSURL:
+				result = "video/mpeg"
+			default: ()
+		}
+
+		return result
+	}
+
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		var result:String? = nil
 

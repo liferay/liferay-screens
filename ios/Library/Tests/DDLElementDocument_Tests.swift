@@ -56,8 +56,47 @@ class DDLElementDocument_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
-		parser.xml =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+		parser.xml = requiredDocumentElement
+
+		let elements = parser.parse()
+
+		XCTAssertTrue(elements![0] is DDLElementDocument)
+		let docElement = elements![0] as DDLElementDocument
+
+		XCTAssertTrue(docElement.currentValue == nil)
+		XCTAssertFalse(docElement.validate())
+	}
+
+	func test_MimeType_ShouldReturnNil_WhenCurrentValueIsEmpty() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		XCTAssertNil(docElement.mimeType)
+	}
+
+	func test_MimeType_ShouldReturnPNGImageType_WhenCurrentValueIsImage() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		docElement.currentValue = UIImage(named:"default-field")
+
+		XCTAssertEqual("image/png", docElement.mimeType ?? "nil mimeType")
+	}
+
+	func test_MimeType_ShouldReturnMPEGVideoType_WhenCurrentValueIsURL() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		docElement.currentValue = NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
+
+		XCTAssertEqual("video/mpeg", docElement.mimeType ?? "nil mimeType")
+	}
+
+	private let requiredDocumentElement =
+		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"document-library\" " +
 				"indexType=\"keyword\" " +
 				"name=\"A_Document\" " +
@@ -72,14 +111,5 @@ class DDLElementDocument_Tests: XCTestCase {
 						"<entry name=\"predefinedValue\"><![CDATA[]]></entry> " +
 					"</meta-data> " +
 			"</dynamic-element> </root>"
-
-		let elements = parser.parse()
-
-		XCTAssertTrue(elements![0] is DDLElementDocument)
-		let docElement = elements![0] as DDLElementDocument
-
-		XCTAssertTrue(docElement.currentValue == nil)
-		XCTAssertFalse(docElement.validate())
-	}
 
 }
