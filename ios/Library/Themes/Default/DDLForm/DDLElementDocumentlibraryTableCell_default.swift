@@ -42,7 +42,7 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 	}
 
 	private func setFieldPresenter(element:DDLElementDocument) {
-		let presenter = DTBasicPickerPresenter(view: presenterViewController.view)
+		let presenter = DTViewPresenter(view:presenterViewController.view)
 
 		presenter.presenterView.backgroundColor = UIColor.whiteColor()
 		presenter.presenterView.layer.borderColor = UIColor.lightGrayColor().CGColor
