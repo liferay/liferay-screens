@@ -116,9 +116,6 @@ class BaseWidgetView: UIView, UITextFieldDelegate {
 		}
 	}
 
-	private func setUpView(view: UIView) {
-	}
-
 	private func addDefaultDelegatesForView(view:UIView) {
 		if let textField = view as? UITextField {
 			if onSetDefaultDelegate(self, view:textField) {
