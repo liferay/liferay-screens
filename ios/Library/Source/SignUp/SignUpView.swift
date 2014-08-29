@@ -13,55 +13,34 @@
 */
 import UIKit
 
-class SignUpView: BaseWidgetView, UITextFieldDelegate {
+class SignUpView: BaseWidgetView {
 
-	@IBOutlet var emailAddressField: UITextField?
-	@IBOutlet var passwordField: UITextField?
-	@IBOutlet var firstNameField: UITextField?
-	@IBOutlet var lastNameField: UITextField?
-	@IBOutlet var signUpButton: UIButton?
-	@IBOutlet var emailAddressBackground: UIImageView?
-	@IBOutlet var passwordBackground: UIImageView?
-	@IBOutlet var firstNameBackground: UIImageView?
-	@IBOutlet var lastNameBackground: UIImageView?
-
-	@IBOutlet var screenNameField: UITextField?
-	@IBOutlet var middleNameField: UITextField?
-	@IBOutlet var jobTitleField: UITextField?
-
-
-	// BaseWidgetView METHODS
-
-	override func becomeFirstResponder() -> Bool {
-		return firstNameField!.becomeFirstResponder()
+	public func getEmailAddress() -> String {
+		return ""
 	}
 
-	// UITextFieldDelegate METHODS
-
-	func textFieldDidBeginEditing(textField: UITextField!) {
-		emailAddressBackground!.highlighted = (textField == emailAddressField)
-		passwordBackground!.highlighted = (textField == passwordField)
-		firstNameBackground!.highlighted = (textField == firstNameField)
-		lastNameBackground!.highlighted = (textField == lastNameField)
+	public func getScreenName() -> String {
+		return ""
 	}
 
-	func textFieldShouldReturn(textField: UITextField!) -> Bool {
-		textField.resignFirstResponder()
+	public func getPassword() -> String {
+		return ""
+	}
 
-		switch textField {
-		case firstNameField!:
-			lastNameField!.becomeFirstResponder()
-		case lastNameField!:
-			emailAddressField!.becomeFirstResponder()
-		case emailAddressField!:
-			passwordField!.becomeFirstResponder()
-		case passwordField!:
-			signUpButton!.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
-		default:
-			return false
-		}
+	public func getFirstName() -> String {
+		return ""
+	}
 
-		return true
+	public func getMiddleName() -> String {
+		return ""
+	}
+
+	public func getLastName() -> String {
+		return ""
+	}
+
+	public func getJobTitle() -> String {
+		return ""
 	}
 
 }

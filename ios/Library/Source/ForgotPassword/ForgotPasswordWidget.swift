@@ -30,10 +30,10 @@ import UIKit
 
 	private typealias ResetClosureType = (String, LRMwuserService_v6201, (NSError)->()) -> (Void)
 
-	//TODO: support resetClosure by userId
 	private let resetClosures = [
 		AuthType.Email.toRaw(): resetPasswordWithEmail,
-		AuthType.ScreenName.toRaw(): resetPasswordWithScreenName]
+		AuthType.ScreenName.toRaw(): resetPasswordWithScreenName,
+		AuthType.UserId.toRaw(): resetPasswordWithUserId]
 
 	private var resetClosure: ResetClosureType?
 
@@ -44,22 +44,24 @@ import UIKit
 		resetClosure = resetClosures[authType]
 	}
 
-	//MARK: BaseWidget METHODS
+	// MARK: BaseWidget METHODS
 
 	override func onCreate() {
 		setAuthType(AuthType.Email.toRaw())
 
-		forgotPasswordView().userNameField!.text = LiferayContext.instance.currentSession?.username
+		if let userName = LiferayContext.instance.currentSession?.username {
+			forgotPasswordView().setUserName(userName)
+		}
 	}
 
 	override func onCustomAction(actionName: String?, sender: UIControl) {
-		sendForgotPasswordRequest(forgotPasswordView().userNameField!.text)
+		sendForgotPasswordRequest(forgotPasswordView().getUserName())
 	}
 
 	override func onServerError(error: NSError) {
 		delegate?.onForgotPasswordError?(error)
 
-		hideHUDWithMessage("Error requesting password!", details: error.localizedDescription)
+		finishOperationWithMessage("Error requesting password!", details: error.localizedDescription)
 	}
 
 	override func onServerResult(result: [String:AnyObject]) {
@@ -70,7 +72,7 @@ import UIKit
 
 			let userMessage = newPasswordSent ? "New password generated" : "New password reset link sent"
 
-			hideHUDWithMessage(userMessage, details: "Check your email inbox")
+			finishOperationWithMessage(userMessage, details: "Check your email inbox")
 		}
 		else {
 			var errorMsg:String? = result["error"]?.description
@@ -79,7 +81,7 @@ import UIKit
 				errorMsg = result["exception.localizedMessage"]?.description
 			}
 
-			hideHUDWithMessage("An error happened", details: errorMsg)
+			finishOperationWithMessage("An error happened", details: errorMsg)
 		}
 	}
 
@@ -97,7 +99,7 @@ import UIKit
 			return
 		}
 
-		showHUDWithMessage("Sending password request...", details:"Wait few seconds...")
+		startOperationWithMessage("Sending password request...", details:"Wait few seconds...")
 
 		let session = LiferayContext.instance.createSession(anonymousApiUserName!, password: anonymousApiPassword!)
 
@@ -129,6 +131,19 @@ func resetPasswordWithScreenName(screenName:String, service:LRMwuserService_v620
 	var outError: NSError?
 
 	service.sendPasswordByScreenNameWithCompanyId(companyId, screenName: screenName, serviceContext:nil, error: &outError)
+
+	if let error = outError {
+		onError(error)
+	}
+}
+
+func resetPasswordWithUserId(userId:String, service:LRMwuserService_v6201, onError:(NSError)->()) {
+	let companyId = (LiferayContext.instance.companyId as NSNumber).longLongValue
+	let userIdValue = (userId.toInt()! as NSNumber).longLongValue
+
+	var outError: NSError?
+
+	service.sendPasswordByUserIdWithCompanyId(companyId, userId: userIdValue, serviceContext: nil, error: &outError)
 
 	if let error = outError {
 		onError(error)

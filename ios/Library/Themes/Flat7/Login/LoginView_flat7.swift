@@ -17,22 +17,25 @@ class LoginView_flat7: LoginView {
 
 	@IBOutlet var titleLabel: UILabel?
 	@IBOutlet var subtitleLabel: UILabel?
-	@IBOutlet var usernamePlaceholder: UILabel?
+	@IBOutlet var userNameField: UITextField?
+	@IBOutlet var userNamePlaceholder: UILabel?
+	@IBOutlet var passwordField: UITextField?
+	@IBOutlet var passwordPlaceholder: UILabel?
+	@IBOutlet var loginButton: UIButton?
+
 
 	override public func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
 		titleLabel!.text = NSLocalizedString("theme-flat7-login-title", tableName: "flat7", bundle: bundle, value: "", comment: "")
 		subtitleLabel!.text = NSLocalizedString("theme-flat7-login-subtitle", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		usernamePlaceholder!.text = NSLocalizedString("theme-flat7-login-email", tableName: "flat7", bundle: bundle, value: "", comment: "")
+		userNamePlaceholder!.text = NSLocalizedString("theme-flat7-login-email", tableName: "flat7", bundle: bundle, value: "", comment: "")
 		passwordPlaceholder!.text = NSLocalizedString("theme-flat7-login-password", tableName: "flat7", bundle: bundle, value: "", comment: "")
 
 		let str = loginButton!.attributedTitleForState(UIControlState.Normal)
 		let translated = NSLocalizedString("theme-flat7-login-login", tableName: "flat7", bundle: bundle, value: "", comment: "")
 		let newStr = NSMutableAttributedString(attributedString: str)
-
 		newStr.replaceCharactersInRange(NSMakeRange(0, str.length), withString:translated)
-
 		loginButton!.setAttributedTitle(newStr, forState: UIControlState.Normal)
 
 		userNameField!.placeholder = "";
@@ -41,8 +44,18 @@ class LoginView_flat7: LoginView {
 
 	override func setUserName(userName: String) {
 		super.setUserName(userName)
+		userNamePlaceholder!.changeVisibility(visible: userName == "")
+	}
 
-		usernamePlaceholder!.changeVisibility(visible: userName == "")
+	func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+
+		let newText = textField.text.bridgeToObjectiveC().stringByReplacingCharactersInRange(range, withString:string)
+
+		let placeHolder = textField == userNameField ? userNamePlaceholder : passwordPlaceholder
+
+		placeHolder!.changeVisibility(visible: newText == "")
+
+		return true
 	}
 
 }

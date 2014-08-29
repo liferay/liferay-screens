@@ -34,15 +34,13 @@ import UIKit
 	//MARK: BaseWidget METHODS
 
 	override func onCustomAction(actionName: String?, sender: UIControl) {
-		sendSignUpWithEmailAddress(signUpView().emailAddressField!.text, password:signUpView().passwordField!.text, firstName:signUpView().firstNameField!.text, lastName:signUpView().lastNameField!.text)
+		sendSignUpWithEmailAddress(signUpView().getEmailAddress(), password:signUpView().getPassword(), firstName:signUpView().getFirstName(), lastName:signUpView().getLastName())
 	}
 
 	override func onServerError(error: NSError) {
 		delegate?.onSignUpError?(error)
 
-		hideHUDWithMessage("Error signing up!", details: nil)
-
-		signUpView().signUpButton!.enabled = true
+		finishOperationWithMessage("Error signing up!", details: nil)
 	}
 
 	override func onServerResult(result: [String:AnyObject]) {
@@ -55,9 +53,7 @@ import UIKit
 			LiferayContext.instance.createSession(creatingUsername!, password: creatingPassword!)
 		}
 
-		hideHUDWithMessage("Sign up completed", details: nil)
-
-		signUpView().signUpButton!.enabled = true
+		finishOperationWithMessage("Sign up completed", details: nil)
 	}
 
 
@@ -75,7 +71,7 @@ import UIKit
 			return
 		}
 
-		showHUDWithMessage("Sending sign up...", details:"Wait few seconds...")
+		startOperationWithMessage("Sending sign up...", details:"Wait few seconds...")
 
 		let session = LiferayContext.instance.createSession(anonymousApiUserName!, password: anonymousApiPassword!)
 		session.callback = self
@@ -89,9 +85,9 @@ import UIKit
 		// user name
 		switch authType {
 		case AuthType.Email:
-			creatingUsername = signUpView().emailAddressField!.text
+			creatingUsername = signUpView().getEmailAddress()
 		case AuthType.ScreenName:
-			creatingUsername = signUpView().screenNameField!.text
+			creatingUsername = signUpView().getScreenName()
 		case AuthType.UserId:
 			println("ERROR: sign Up with User id is not supported")
 		default:
@@ -99,31 +95,31 @@ import UIKit
 		}
 
 		// password
-		creatingPassword = _optionalFieldValue(signUpView().passwordField);
+		creatingPassword = signUpView().getPassword();
 		let autoPassword = (creatingPassword == "")
 
 		// screen name
-		let screenName = _optionalFieldValue(signUpView().screenNameField);
+		let screenName = signUpView().getScreenName();
 		let autoScreenName = (screenName == "")
 
 		// names
-		let firstName = _optionalFieldValue(signUpView().firstNameField);
-		let middleName = _optionalFieldValue(signUpView().middleNameField);
-		let lastName = _optionalFieldValue(signUpView().lastNameField);
+		let firstName = signUpView().getFirstName();
+		let middleName = signUpView().getMiddleName();
+		let lastName = signUpView().getLastName();
 
 		let emptyDict = []
 
 		service.addUserWithCompanyId(companyId,
 			autoPassword: autoPassword, password1: password, password2: password,
 			autoScreenName: autoScreenName, screenName: screenName,
-			emailAddress: signUpView().emailAddressField!.text,
+			emailAddress: signUpView().getEmailAddress(),
 			facebookId: 0, openId: "",
 			locale: NSLocale.currentLocaleString(),
 			firstName: firstName, middleName: middleName, lastName: lastName,
 			prefixId: 0, suffixId: 0,
 			male: true,
 			birthdayMonth: 1, birthdayDay: 1, birthdayYear: 1970,
-			jobTitle: _optionalFieldValue(signUpView().jobTitleField),
+			jobTitle: signUpView().getJobTitle(),
 			groupIds: [LiferayContext.instance.groupId],
 			organizationIds: emptyDict,
 			roleIds: emptyDict,
@@ -134,17 +130,6 @@ import UIKit
 		if let error = outError {
 			onFailure(error)
 		}
-		else {
-			signUpView().signUpButton!.enabled = false
-		}
-	}
-
-	private func _optionalFieldValue(textField: UITextField?) -> String {
-		if textField && textField!.text != "" {
-			return textField!.text
-		}
-
-		return ""
 	}
 
 	private var creatingUsername: String?

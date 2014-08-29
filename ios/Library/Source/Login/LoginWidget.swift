@@ -53,13 +53,11 @@ class LoginWidget: BaseWidget {
 	override public func onCreate() {
         setAuthType(AuthType.Email.toRaw())
 
-        loginView().setUserName("test@liferay.com")
-
 		if let session = LRSession.sessionFromStoredCredential() {
 			LiferayContext.instance.currentSession = session
 
-			loginView().userName = session.username
-			loginView().password = session.password
+			loginView().setUserName(session.username)
+			loginView().setPassword(session.password)
 
 			delegate?.onCredentialsLoaded?(session)
 		}
@@ -67,7 +65,7 @@ class LoginWidget: BaseWidget {
 
 	override public func onCustomAction(actionName: String?, sender: UIControl) {
 		if actionName == "login-action" {
-			sendLoginWithUserName(loginView().userNameField!.text, password:loginView().passwordField!.text)
+			sendLoginWithUserName(loginView().getUserName(), password:loginView().getPassword())
 		}
 	}
 
