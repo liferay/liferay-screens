@@ -90,9 +90,13 @@ import UIKit
 
 			case .Uploading(let document):
 				document.uploadStatus = .Failed(error)
+
+				formView().changeDocumentUploadStatus(document)
+
 				if !document.validate() {
 					formView().showElement(document)
 				}
+
 				delegate?.onDocumentUploadError?(document, error: error)
 
 				showHUDWithMessage("An error happened uploading file", details: nil, secondsToShow: 3.0)
@@ -116,6 +120,9 @@ import UIKit
 
 			case .Uploading(let document):
 				document.uploadStatus = .Uploaded(result)
+
+				formView().changeDocumentUploadStatus(document)
+
 				delegate?.onDocumentUploadCompleted?(document, result: result)
 
 			default: ()
@@ -297,6 +304,9 @@ import UIKit
 	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
 		switch currentOperation {
 			case .Uploading(let document):
+				document.uploadStatus = .Uploading(UInt(sent), UInt(total))
+				formView().changeDocumentUploadStatus(document)
+
 				delegate?.onDocumentUploadedBytes?(document, bytes: bytes, sent: sent, total: total)
 
 			default: ()

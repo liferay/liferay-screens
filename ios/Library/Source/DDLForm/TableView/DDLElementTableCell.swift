@@ -110,4 +110,7 @@ public class DDLElementTableCell: UITableViewCell {
 		return result
 	}
 
+	internal func changeDocumentUploadStatus(element: DDLElementDocument) {
+	}
+
 }

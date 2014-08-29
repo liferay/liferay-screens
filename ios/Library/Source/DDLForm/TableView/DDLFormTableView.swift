@@ -63,6 +63,14 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		}
 	}
 
+	override func changeDocumentUploadStatus(element: DDLElementDocument) {
+		if let row = find(rows, element) {
+			if let cell = tableView!.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0)) as? DDLElementTableCell {
+				cell.changeDocumentUploadStatus(element)
+			}
+		}
+	}
+
 	internal func registerElementCells() {
 		let currentBundle = NSBundle(forClass: self.dynamicType)
 
