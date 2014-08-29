@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class LoginView_default: LoginView, UITextFieldDelegate {
+class LoginView_default: LoginView {
 
 	@IBOutlet var userNameField: UITextField?
 	@IBOutlet var passwordField: UITextField?
@@ -75,20 +75,12 @@ class LoginView_default: LoginView, UITextFieldDelegate {
 	// MARK: UITextFieldDelegate
 
 	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
-		userNameBackground!.highlighted = (textField == userNameField);
-		passwordBackground!.highlighted = (textField == passwordField);
-
-		return true
-	}
-
-	func textFieldShouldReturn(textField: UITextField!) -> Bool {
-		if textField == userNameField {
-			textField.resignFirstResponder()
-			passwordField!.becomeFirstResponder()
+		if userNameBackground {
+			userNameBackground!.highlighted = (textField == userNameField);
 		}
-		else if textField == passwordField {
-			textField.resignFirstResponder()
-			loginButton!.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+
+		if passwordBackground {
+			passwordBackground!.highlighted = (textField == passwordField);
 		}
 
 		return true

@@ -35,7 +35,7 @@ class ThemeManager: NSObject {
 		loadThemes()
 	}
 
-	public func installedThemes() -> Array<String> {
+	public func installedThemes() -> [String] {
 		return _installedThemes
 	}
 
@@ -57,6 +57,6 @@ class ThemeManager: NSObject {
 		_installedThemes += widgetNames
 	}
 
-	private var _installedThemes:Array<String> = []
+	private var _installedThemes:[String] = []
 
 }

@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class ForgotPasswordView_default: ForgotPasswordView, UITextFieldDelegate {
+class ForgotPasswordView_default: ForgotPasswordView {
 
 	@IBOutlet var userNameLabel: UILabel?
 	@IBOutlet var userNameField: UITextField?
@@ -50,14 +50,8 @@ class ForgotPasswordView_default: ForgotPasswordView, UITextFieldDelegate {
 		return userNameField!.becomeFirstResponder()
 	}
 
-	// MARK: UITextFieldDelegate
-
-	func textFieldShouldReturn(textField: UITextField!) -> Bool {
-		textField.resignFirstResponder()
-
-		requestPasswordButton!.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
-
-		return true
+	override internal func nextResponderForView(view:UIView) -> UIResponder {
+		return requestPasswordButton!
 	}
 
 }

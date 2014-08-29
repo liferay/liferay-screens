@@ -41,4 +41,5 @@ class LoginView: BaseWidgetView {
 
 	public func setPassword(password: String) {
 	}
+
 }

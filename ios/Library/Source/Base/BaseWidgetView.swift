@@ -16,30 +16,17 @@ import UIKit
 /*!
  * BaseWidgetView is the base class from which all Widget's View classes must inherit.
  */
-class BaseWidgetView: UIView {
+class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	typealias CustomActionType = (String?, UIControl) -> (Void)
 
 	var customAction: CustomActionType?
 
-	/*
-	* onCreate is fired after the initialization of the widget view. Override this method to perform actions such as
-	* setting colors, sizes, positioning, etc to the component's subviews.
-	*/
-	public func onCreate() {
-	}
 
-	public func onSetTranslations() {
-	}
-
-	public func onStartOperation() {
-	}
-
-	public func onFinishOperation() {
-	}
+	//MARK: UIView
 
 	override func awakeFromNib() {
-		addCustomActionsForViews(self)
+		setUpView(self)
 		onSetTranslations()
 		onCreate();
 	}
@@ -49,28 +36,100 @@ class BaseWidgetView: UIView {
 	* child component as first responder.
 	*/
 	override func becomeFirstResponder() -> Bool {
+		if let firstView = viewWithTag(1) {
+			return firstView.becomeFirstResponder()
+		}
 		return super.becomeFirstResponder()
 	}
 
-	func customActionHandler(sender: UIControl!) {
-		self.endEditing(true)
+
+	//MARK: UITextFieldDelegate
+
+	func textFieldShouldReturn(textField: UITextField!) -> Bool {
+
+		let nextResponder = nextResponderForView(textField)
+
+		if nextResponder != textField {
+			if textField.canResignFirstResponder() {
+				textField.resignFirstResponder()
+
+				if let button = nextResponder as? UIButton {
+					button.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+				}
+				else if nextResponder.canBecomeFirstResponder() {
+					nextResponder.becomeFirstResponder()
+				}
+			}
+		}
+
+		return true
+	}
+	
+
+	//MARK: BaseWidgetView Methods
+
+	/*
+	* onCreate is fired after the initialization of the widget view. Override this method to perform actions such as
+	* setting colors, sizes, positioning, etc to the component's subviews.
+	*/
+	public func onCreate() {
+	}
+
+	public func onFinishOperation() {
+	}
+
+	public func onSetCustomActionForControl(control: UIControl) -> Bool {
+		return true
+	}
+
+	public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
+		return true
+	}
+
+	public func onSetTranslations() {
+	}
+
+	public func onStartOperation() {
+	}
+	
+	internal func customActionHandler(sender: UIControl!) {
+		endEditing(true)
 
 		customAction?(sender.restorationIdentifier, sender)
 	}
+	
+	internal func nextResponderForView(view:UIView) -> UIResponder {
+		if view.tag > 0 {
+			if let nextView = viewWithTag(view.tag + 1) {
+				return nextView
+			}
+		}
+		return view
+	}
 
 	private func addCustomActionForControl(control: UIControl) {
-		let currentActions = control.actionsForTarget(self, forControlEvent: UIControlEvents.TouchUpInside)
-
-		if !currentActions || currentActions?.count == 0 {
+		if onSetCustomActionForControl(control) {
 			control.addTarget(self, action: "customActionHandler:", forControlEvents: UIControlEvents.TouchUpInside)
 		}
 	}
 
-	private func addCustomActionsForViews(parentView: UIView!) {
-		for subview:AnyObject in parentView.subviews {
-			if subview is UIControl {
-				addCustomActionForControl(subview as UIControl)
+	private func addDefaultDelegatesForView(view:UIView) {
+		if let textField = view as? UITextField {
+			if onSetDefaultDelegate(self, view:textField) {
+				textField.delegate = self
 			}
+		}
+	}
+
+	private func setUpView(view: UIView) {
+		if let control = view as? UIControl {
+			addCustomActionForControl(control)
+		}
+
+		addDefaultDelegatesForView(view)
+
+		for subview:UIView in view.subviews as [UIView] {
+			setUpView(subview)
 		}
 	}
 

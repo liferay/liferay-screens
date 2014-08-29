@@ -13,6 +13,6 @@
 */
 import UIKit
 
-class LoginView_xyz: LoginView {
+class LoginView_xyz: LoginView_default {
 
 }

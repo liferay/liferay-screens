@@ -167,7 +167,7 @@ import QuartzCore
 	internal func loadWidgetView() -> BaseWidgetView? {
 		let view = self.createWidgetViewFromNib();
 
-		if let viewValue = view {
+		if let viewValue = view as? BaseWidgetView {
 			viewValue.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
 			viewValue.customAction = self.onCustomAction;
 
