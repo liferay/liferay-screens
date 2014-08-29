@@ -20,7 +20,7 @@ import UIKit
 
 }
 
-@IBDesignable class ForgotPasswordWidget: BaseWidget {
+@IBDesignable public class ForgotPasswordWidget: BaseWidget {
 
 	@IBInspectable var anonymousApiUserName: String?
 	@IBInspectable var anonymousApiPassword: String?
@@ -46,7 +46,7 @@ import UIKit
 
 	// MARK: BaseWidget METHODS
 
-	override func onCreate() {
+	override public func onCreate() {
 		setAuthType(AuthType.Email.toRaw())
 
 		if let userName = LiferayContext.instance.currentSession?.username {
@@ -54,17 +54,17 @@ import UIKit
 		}
 	}
 
-	override func onCustomAction(actionName: String?, sender: UIControl) {
+	override public func onCustomAction(actionName: String?, sender: UIControl) {
 		sendForgotPasswordRequest(forgotPasswordView().getUserName())
 	}
 
-	override func onServerError(error: NSError) {
+	override public func onServerError(error: NSError) {
 		delegate?.onForgotPasswordError?(error)
 
 		finishOperationWithMessage("Error requesting password!", details: error.localizedDescription)
 	}
 
-	override func onServerResult(result: [String:AnyObject]) {
+	override public func onServerResult(result: [String:AnyObject]) {
 		if let resultValue:AnyObject = result["result"] {
 			let newPasswordSent = resultValue as Bool
 
@@ -77,7 +77,7 @@ import UIKit
 		else {
 			var errorMsg:String? = result["error"]?.description
 
-			if !errorMsg {
+			if errorMsg == nil {
 				errorMsg = result["exception.localizedMessage"]?.description
 			}
 
@@ -91,7 +91,7 @@ import UIKit
 	}
 
 	private func sendForgotPasswordRequest(username:String) {
-		if !anonymousApiUserName || !anonymousApiPassword {
+		if anonymousApiUserName == nil || anonymousApiPassword == nil {
 			println(
 				"ERROR: The credentials to use for anonymous API calls must be set in order to use " +
 					"ForgotPasswordWidget")

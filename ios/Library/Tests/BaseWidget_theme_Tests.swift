@@ -63,8 +63,4 @@ class BaseWidget_theme_Tests: XCTestCase {
 		XCTAssertEqual("theme-xyz", loginWidget!.signatureImageNameForTheme("xyz"))
 	}
 
-	func test_WidgetName_ShouldReturnTheWidgetName() {
-		XCTAssertEqual("Login", loginWidget!.widgetName())
-	}
-
 }

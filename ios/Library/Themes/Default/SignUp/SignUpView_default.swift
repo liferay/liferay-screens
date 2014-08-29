@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class SignUpView_default: SignUpView {
+public class SignUpView_default: SignUpView {
 
 	@IBOutlet var emailAddressField: UITextField?
 	@IBOutlet var passwordField: UITextField?
@@ -55,7 +55,7 @@ class SignUpView_default: SignUpView {
 
 	// MARK: BaseWidgetView
 
-	override func becomeFirstResponder() -> Bool {
+	override public func becomeFirstResponder() -> Bool {
 		return firstNameField!.becomeFirstResponder()
 	}
 

@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class ForgotPasswordView_default: ForgotPasswordView {
+public class ForgotPasswordView_default: ForgotPasswordView {
 
 	@IBOutlet var userNameLabel: UILabel?
 	@IBOutlet var userNameField: UITextField?
@@ -46,7 +46,7 @@ class ForgotPasswordView_default: ForgotPasswordView {
 
 	// MARK: BaseWidgetView
 
-	override func becomeFirstResponder() -> Bool {
+	override public func becomeFirstResponder() -> Bool {
 		return userNameField!.becomeFirstResponder()
 	}
 

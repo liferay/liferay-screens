@@ -31,7 +31,6 @@ class LRSession_Storage_Tests: XCTestCase {
 		XCTAssertNil(session)
 	}
 
-	// Fails due to bug reported to Apple by @jmnavarro
 	func test_SessionFromStoredCredential_ShouldHaveValidCredential_WhenCredentialWasStored() {
 		let session = LRSession(server:LiferayContext.instance.server, username:"user", password:"pass")
 

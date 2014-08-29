@@ -20,7 +20,6 @@
 		88832F9E19656B3F00E3DF9F /* liferay-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88832F9019656B3F00E3DF9F /* liferay-context.plist */; };
 		88832F9F19656B3F00E3DF9F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F9319656B3F00E3DF9F /* LoginView.swift */; };
 		88832FA119656B3F00E3DF9F /* LoginWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F9519656B3F00E3DF9F /* LoginWidget.swift */; };
-		88832FA219656B3F00E3DF9F /* nameOfClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F9719656B3F00E3DF9F /* nameOfClass.swift */; };
 		888D775A198FDB710052C39C /* default-field-focused.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D774F198FDB710052C39C /* default-field-focused.png */; };
 		888D775B198FDB710052C39C /* default-field-focused@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7750198FDB710052C39C /* default-field-focused@2x.png */; };
 		888D775C198FDB710052C39C /* default-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7751198FDB710052C39C /* default-field.png */; };
@@ -91,7 +90,6 @@
 		88832F9119656B3F00E3DF9F /* liferay-ios-widgets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "liferay-ios-widgets.h"; sourceTree = "<group>"; };
 		88832F9319656B3F00E3DF9F /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		88832F9519656B3F00E3DF9F /* LoginWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWidget.swift; sourceTree = "<group>"; };
-		88832F9719656B3F00E3DF9F /* nameOfClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameOfClass.swift; sourceTree = "<group>"; };
 		888D774F198FDB710052C39C /* default-field-focused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field-focused.png"; sourceTree = "<group>"; };
 		888D7750198FDB710052C39C /* default-field-focused@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field-focused@2x.png"; sourceTree = "<group>"; };
 		888D7751198FDB710052C39C /* default-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field.png"; sourceTree = "<group>"; };
@@ -221,7 +219,6 @@
 				888F61FE198FD3DC0082786B /* SignUp */,
 				88E4604E19759FEB002C26C6 /* Services */,
 				8897D9CF198A957300D3DF51 /* Extensions */,
-				88832F9619656B3F00E3DF9F /* Util */,
 			);
 			name = Source;
 			path = ../../Library/Source;
@@ -247,14 +244,6 @@
 				999BC69B19768EA400A9B0D8 /* LRSession+CredentialStore.swift */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		88832F9619656B3F00E3DF9F /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				88832F9719656B3F00E3DF9F /* nameOfClass.swift */,
-			);
-			path = Util;
 			sourceTree = "<group>";
 		};
 		888D776D198FE3D40052C39C /* SignUp */ = {
@@ -577,7 +566,6 @@
 				8897D9D1198A958000D3DF51 /* NSBundle+Paths.swift in Sources */,
 				8897D9C4198A812D00D3DF51 /* ForgotPasswordWidget.swift in Sources */,
 				88A8837B198657F10053C2C2 /* LRMwuserService_v6201.m in Sources */,
-				88832FA219656B3F00E3DF9F /* nameOfClass.swift in Sources */,
 				888F6204198FD3DC0082786B /* SignUpWidget.swift in Sources */,
 				88832F9919656B3F00E3DF9F /* BaseWidget.swift in Sources */,
 				88832F9819656B3F00E3DF9F /* BaseWidget+progress.swift in Sources */,

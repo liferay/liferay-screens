@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class LoginView_default: LoginView {
+public class LoginView_default: LoginView {
 
 	@IBOutlet var userNameField: UITextField?
 	@IBOutlet var passwordField: UITextField?
@@ -68,18 +68,18 @@ class LoginView_default: LoginView {
 
 	// MARK: BaseWidgetView
 
-	override func becomeFirstResponder() -> Bool {
+	override public func becomeFirstResponder() -> Bool {
 		return userNameField!.becomeFirstResponder()
 	}
 
 	// MARK: UITextFieldDelegate
 
 	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
-		if userNameBackground {
+		if userNameBackground != nil {
 			userNameBackground!.highlighted = (textField == userNameField);
 		}
 
-		if passwordBackground {
+		if passwordBackground != nil {
 			passwordBackground!.highlighted = (textField == passwordField);
 		}
 

@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class LoginView_flat7: LoginView_default {
+public class LoginView_flat7: LoginView_default {
 
 	@IBOutlet var titleLabel: UILabel?
 	@IBOutlet var subtitleLabel: UILabel?
@@ -38,14 +38,14 @@ class LoginView_flat7: LoginView_default {
 		passwordField!.placeholder = "";
 	}
 
-	override func setUserName(userName: String) {
+	override public func setUserName(userName: String) {
 		super.setUserName(userName)
 		userNamePlaceholder!.changeVisibility(visible: userName == "")
 	}
 
 	func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
 
-		let newText = textField.text.bridgeToObjectiveC().stringByReplacingCharactersInRange(range, withString:string)
+		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
 
 		let placeHolder = textField == userNameField ? userNamePlaceholder : passwordPlaceholder
 

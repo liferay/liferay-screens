@@ -16,7 +16,7 @@ import UIKit
 /*!
  * BaseWidgetView is the base class from which all Widget's View classes must inherit.
  */
-class BaseWidgetView: UIView, UITextFieldDelegate {
+public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	typealias CustomActionType = (String?, UIControl) -> (Void)
 
@@ -25,7 +25,7 @@ class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	//MARK: UIView
 
-	override func awakeFromNib() {
+	override public func awakeFromNib() {
 		setUpView(self)
 		onSetTranslations()
 		onCreate();
@@ -35,18 +35,18 @@ class BaseWidgetView: UIView, UITextFieldDelegate {
 	* becomeFirstResponder is invoked to make the widget view the first responder. Override this method to set one
 	* child component as first responder.
 	*/
-	override func becomeFirstResponder() -> Bool {
+	override public func becomeFirstResponder() -> Bool {
 		if let firstView = viewWithTag(1) {
 			return firstView.becomeFirstResponder()
 		}
+
 		return super.becomeFirstResponder()
 	}
 
 
 	//MARK: UITextFieldDelegate
 
-	func textFieldShouldReturn(textField: UITextField!) -> Bool {
-
+	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		let nextResponder = nextResponderForView(textField)
 
 		if nextResponder != textField {
