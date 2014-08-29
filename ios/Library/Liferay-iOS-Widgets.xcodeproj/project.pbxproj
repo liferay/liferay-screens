@@ -141,6 +141,8 @@
 		88F648B4198D301E003A8FD9 /* BaseWidget+progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BC19655F4B00664504 /* BaseWidget+progress.swift */; };
 		88F648B5198D3021003A8FD9 /* BaseWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BD19655F4B00664504 /* BaseWidget.swift */; };
 		88F648B7198D304B003A8FD9 /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88AEA25C19657C3100CD130B /* liferay-context-sample.plist */; };
+		990C6E5C19B0B56500464E80 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990C6E5B19B0B56500464E80 /* UIView+Animations.swift */; };
+		990C6E5D19B0B56500464E80 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990C6E5B19B0B56500464E80 /* UIView+Animations.swift */; };
 		999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BF19655F4B00664504 /* LiferayContext.swift */; };
 		999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
 		999BC69F19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
@@ -279,6 +281,7 @@
 		88F648A2198D2E11003A8FD9 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		88F648A6198D2E1B003A8FD9 /* NSBundle+Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Paths.swift"; sourceTree = "<group>"; };
 		88FE74D419655E1B003A7CE5 /* Liferay-iOS-Widgets-Dummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liferay-iOS-Widgets-Dummy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		990C6E5B19B0B56500464E80 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
 		FEA555EA8DC0458CA74C4ACE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -534,6 +537,7 @@
 		88F648A5198D2E1B003A8FD9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				990C6E5B19B0B56500464E80 /* UIView+Animations.swift */,
 				88F648A6198D2E1B003A8FD9 /* NSBundle+Paths.swift */,
 				888F61F9198FD3740082786B /* NSLocale+CurrentLocale.swift */,
 				8875B021198FB173006955BA /* UIImage+Themes.h */,
@@ -815,6 +819,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88999AC4198EE5CB00E746A6 /* LoginView_xyz.swift in Sources */,
+				990C6E5D19B0B56500464E80 /* UIView+Animations.swift in Sources */,
 				88D99C32196C42B30090F236 /* LRSession_storage_Tests.swift in Sources */,
 				88F648B0198D3006003A8FD9 /* LoginWidget.swift in Sources */,
 				999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */,
@@ -865,6 +870,7 @@
 				888F61F3198FD3240082786B /* SignUpView.swift in Sources */,
 				88E4F2711990FCA700E69261 /* LoginView_default.swift in Sources */,
 				888F61FA198FD3740082786B /* NSLocale+CurrentLocale.swift in Sources */,
+				990C6E5C19B0B56500464E80 /* UIView+Animations.swift in Sources */,
 				888D77D619903F060052C39C /* SignUpView_default.swift in Sources */,
 				88F648A7198D2E1B003A8FD9 /* NSBundle+Paths.swift in Sources */,
 				888CE13119924D74001DCA6A /* SignUpView_flat7.swift in Sources */,
