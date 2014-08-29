@@ -118,6 +118,21 @@
 		999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BF19655F4B00664504 /* LiferayContext.swift */; };
 		999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
 		999BC69F19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
+		99F1170919B07A93008D66C4 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1170719B07A93008D66C4 /* LoginView_default.swift */; };
+		99F1170A19B07A93008D66C4 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1170719B07A93008D66C4 /* LoginView_default.swift */; };
+		99F1170B19B07A93008D66C4 /* LoginView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F1170819B07A93008D66C4 /* LoginView-default.xib */; };
+		99F1170C19B07A93008D66C4 /* LoginView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F1170819B07A93008D66C4 /* LoginView-default.xib */; };
+		99F1170E19B07BD9008D66C4 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1170D19B07BD9008D66C4 /* UIView+Animations.swift */; };
+		99F1170F19B07BD9008D66C4 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1170D19B07BD9008D66C4 /* UIView+Animations.swift */; };
+		99F1171219B07CB3008D66C4 /* flat7-preview-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1171019B07CB3008D66C4 /* flat7-preview-signup.png */; };
+		99F1171319B07CB3008D66C4 /* flat7-preview-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1171019B07CB3008D66C4 /* flat7-preview-signup.png */; };
+		99F1171419B07CB3008D66C4 /* flat7-preview-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1171119B07CB3008D66C4 /* flat7-preview-signup@2x.png */; };
+		99F1171519B07CB3008D66C4 /* flat7-preview-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1171119B07CB3008D66C4 /* flat7-preview-signup@2x.png */; };
+		99F1171919B07CC5008D66C4 /* SignUpView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F1171719B07CC5008D66C4 /* SignUpView-flat7.xib */; };
+		99F1171A19B07CC5008D66C4 /* SignUpView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F1171719B07CC5008D66C4 /* SignUpView-flat7.xib */; };
+		99F1171B19B07CC5008D66C4 /* SignUpView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1171819B07CC5008D66C4 /* SignUpView_flat7.swift */; };
+		99F1171C19B07CC5008D66C4 /* SignUpView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1171819B07CC5008D66C4 /* SignUpView_flat7.swift */; };
+		99F1171D19B07CF0008D66C4 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E30419759F28004977A0 /* ForgotPasswordView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,6 +256,13 @@
 		88F648A6198D2E1B003A8FD9 /* NSBundle+Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Paths.swift"; sourceTree = "<group>"; };
 		88FE74D419655E1B003A7CE5 /* Liferay-iOS-Widgets-Dummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liferay-iOS-Widgets-Dummy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
+		99F1170719B07A93008D66C4 /* LoginView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_default.swift; sourceTree = "<group>"; };
+		99F1170819B07A93008D66C4 /* LoginView-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginView-default.xib"; sourceTree = "<group>"; };
+		99F1170D19B07BD9008D66C4 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
+		99F1171019B07CB3008D66C4 /* flat7-preview-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-signup.png"; sourceTree = "<group>"; };
+		99F1171119B07CB3008D66C4 /* flat7-preview-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-signup@2x.png"; sourceTree = "<group>"; };
+		99F1171719B07CC5008D66C4 /* SignUpView-flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SignUpView-flat7.xib"; sourceTree = "<group>"; };
+		99F1171819B07CC5008D66C4 /* SignUpView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_flat7.swift; sourceTree = "<group>"; };
 		FEA555EA8DC0458CA74C4ACE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -294,6 +316,7 @@
 			children = (
 				888D76F6198FDAD30052C39C /* Login */,
 				888D76F9198FDAD30052C39C /* Resources */,
+				99F1171619B07CC5008D66C4 /* SignUp */,
 			);
 			path = Flat7;
 			sourceTree = "<group>";
@@ -310,13 +333,15 @@
 		888D76F9198FDAD30052C39C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				888D76FA198FDAD30052C39C /* flat7.strings */,
 				888D76FD198FDAD30052C39C /* flat7-button.png */,
 				888D76FE198FDAD30052C39C /* flat7-button@2x.png */,
 				888D76FF198FDAD30052C39C /* flat7-field.png */,
 				888D7700198FDAD30052C39C /* flat7-field@2x.png */,
 				888D7701198FDAD30052C39C /* flat7-preview-login.png */,
 				888D7702198FDAD30052C39C /* flat7-preview-login@2x.png */,
+				99F1171019B07CB3008D66C4 /* flat7-preview-signup.png */,
+				99F1171119B07CB3008D66C4 /* flat7-preview-signup@2x.png */,
+				888D76FA198FDAD30052C39C /* flat7.strings */,
 				888D7703198FDAD30052C39C /* theme-flat7.png */,
 			);
 			path = Resources;
@@ -363,6 +388,8 @@
 		88999AB0198EE59E00E746A6 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				99F1170719B07A93008D66C4 /* LoginView_default.swift */,
+				99F1170819B07A93008D66C4 /* LoginView-default.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -424,9 +451,9 @@
 		889CA4BB19655F4B00664504 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				889CA4BE19655F4B00664504 /* BaseWidgetView.swift */,
-				889CA4BC19655F4B00664504 /* BaseWidget+progress.swift */,
 				889CA4BD19655F4B00664504 /* BaseWidget.swift */,
+				889CA4BC19655F4B00664504 /* BaseWidget+progress.swift */,
+				889CA4BE19655F4B00664504 /* BaseWidgetView.swift */,
 				889CA4BF19655F4B00664504 /* LiferayContext.swift */,
 				88F648A2198D2E11003A8FD9 /* ThemeManager.swift */,
 			);
@@ -477,6 +504,7 @@
 				888F61F9198FD3740082786B /* NSLocale+CurrentLocale.swift */,
 				8875B021198FB173006955BA /* UIImage+Themes.h */,
 				8875B022198FB173006955BA /* UIImage+Themes.m */,
+				99F1170D19B07BD9008D66C4 /* UIView+Animations.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -528,6 +556,15 @@
 			);
 			name = "Supporting Files";
 			path = Source;
+			sourceTree = "<group>";
+		};
+		99F1171619B07CC5008D66C4 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				99F1171719B07CC5008D66C4 /* SignUpView-flat7.xib */,
+				99F1171819B07CC5008D66C4 /* SignUpView_flat7.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -619,12 +656,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				888D778A198FEFFE0052C39C /* default-field-focused.png in Resources */,
+				99F1171A19B07CC5008D66C4 /* SignUpView-flat7.xib in Resources */,
 				888D778E198FEFFE0052C39C /* default-field.png in Resources */,
 				888D7796198FEFFE0052C39C /* default-large-button.png in Resources */,
 				888D77A0198FEFFE0052C39C /* default-mail-icon@2x.png in Resources */,
 				888D770F198FDAD30052C39C /* flat7-field.png in Resources */,
 				888D77D119903F060052C39C /* ForgotPasswordView-default.xib in Resources */,
 				888D7715198FDAD30052C39C /* flat7-preview-login@2x.png in Resources */,
+				99F1171319B07CB3008D66C4 /* flat7-preview-signup.png in Resources */,
 				888D778C198FEFFE0052C39C /* default-field-focused@2x.png in Resources */,
 				88999AC7198EE5CB00E746A6 /* xyz-preview-login@2x.png in Resources */,
 				888D7717198FDAD30052C39C /* theme-flat7.png in Resources */,
@@ -647,6 +686,7 @@
 				88999AC5198EE5CB00E746A6 /* theme-xyz.png in Resources */,
 				88999AC3198EE5CB00E746A6 /* LoginView-xyz.xib in Resources */,
 				888D7711198FDAD30052C39C /* flat7-field@2x.png in Resources */,
+				99F1170C19B07A93008D66C4 /* LoginView-default.xib in Resources */,
 				888D770B198FDAD30052C39C /* flat7-button.png in Resources */,
 				88F648B7198D304B003A8FD9 /* liferay-context-sample.plist in Resources */,
 				888D779A198FEFFE0052C39C /* default-lock-icon.png in Resources */,
@@ -654,6 +694,7 @@
 				888D77A2198FEFFE0052C39C /* default-preview-login.png in Resources */,
 				888D7705198FDAD30052C39C /* LoginView-flat7.xib in Resources */,
 				888D77A8198FEFFE0052C39C /* default-preview-signup@2x.png in Resources */,
+				99F1171519B07CB3008D66C4 /* flat7-preview-signup@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,11 +713,14 @@
 				888D7708198FDAD30052C39C /* flat7.strings in Resources */,
 				888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */,
 				888D77D419903F060052C39C /* SignUpView-default.xib in Resources */,
+				99F1170B19B07A93008D66C4 /* LoginView-default.xib in Resources */,
 				888D7797198FEFFE0052C39C /* default-large-button@2x.png in Resources */,
+				99F1171919B07CC5008D66C4 /* SignUpView-flat7.xib in Resources */,
 				888D779F198FEFFE0052C39C /* default-mail-icon@2x.png in Resources */,
 				888D779B198FEFFE0052C39C /* default-lock-icon@2x.png in Resources */,
 				888D77AB198FEFFE0052C39C /* default-user-icon@2x.png in Resources */,
 				888D77A9198FEFFE0052C39C /* default-user-icon.png in Resources */,
+				99F1171219B07CB3008D66C4 /* flat7-preview-signup.png in Resources */,
 				888D77A3198FEFFE0052C39C /* default-preview-login@2x.png in Resources */,
 				888D7791198FEFFE0052C39C /* default-large-button-selected.png in Resources */,
 				888D778B198FEFFE0052C39C /* default-field-focused@2x.png in Resources */,
@@ -687,6 +731,7 @@
 				888D779D198FEFFE0052C39C /* default-mail-icon.png in Resources */,
 				888D7712198FDAD30052C39C /* flat7-preview-login.png in Resources */,
 				888D778D198FEFFE0052C39C /* default-field.png in Resources */,
+				99F1171419B07CB3008D66C4 /* flat7-preview-signup@2x.png in Resources */,
 				888D77A1198FEFFE0052C39C /* default-preview-login.png in Resources */,
 				888D778F198FEFFE0052C39C /* default-field@2x.png in Resources */,
 				88AEA25D19657C3100CD130B /* liferay-context-sample.plist in Resources */,
@@ -752,11 +797,15 @@
 				888F61F8198FD3240082786B /* SignUpWidget.swift in Sources */,
 				999BC69F19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 				888F61F4198FD3240082786B /* SignUpView.swift in Sources */,
+				99F1170A19B07A93008D66C4 /* LoginView_default.swift in Sources */,
 				888F61FB198FD3740082786B /* NSLocale+CurrentLocale.swift in Sources */,
+				99F1171D19B07CF0008D66C4 /* ForgotPasswordView.swift in Sources */,
 				888D77D719903F060052C39C /* SignUpView_default.swift in Sources */,
 				88F648B6198D303B003A8FD9 /* nameOfClass.swift in Sources */,
 				88F648A4198D2E11003A8FD9 /* ThemeManager.swift in Sources */,
 				88F648B3198D301B003A8FD9 /* BaseWidgetView.swift in Sources */,
+				99F1170F19B07BD9008D66C4 /* UIView+Animations.swift in Sources */,
+				99F1171C19B07CC5008D66C4 /* SignUpView_flat7.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,11 +829,14 @@
 				888F61F7198FD3240082786B /* SignUpWidget.swift in Sources */,
 				8827E30719759F28004977A0 /* ForgotPasswordView.swift in Sources */,
 				888F61F3198FD3240082786B /* SignUpView.swift in Sources */,
+				99F1170919B07A93008D66C4 /* LoginView_default.swift in Sources */,
 				888F61FA198FD3740082786B /* NSLocale+CurrentLocale.swift in Sources */,
 				888D77D619903F060052C39C /* SignUpView_default.swift in Sources */,
 				88F648A7198D2E1B003A8FD9 /* NSBundle+Paths.swift in Sources */,
 				889CA4C719655F4B00664504 /* BaseWidget+progress.swift in Sources */,
 				999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
+				99F1170E19B07BD9008D66C4 /* UIView+Animations.swift in Sources */,
+				99F1171B19B07CC5008D66C4 /* SignUpView_flat7.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

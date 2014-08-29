@@ -44,7 +44,7 @@ class LoginView_flat7: LoginView {
 
 	override func setUserName(userName: String) {
 		super.setUserName(userName)
-		showPlaceholder(userNamePlaceholder!, show:userName == "")
+		userNamePlaceholder!.changeVisibility(visible: userName == "")
 	}
 
 	func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
@@ -53,15 +53,9 @@ class LoginView_flat7: LoginView {
 
 		let placeHolder = textField == userNameField ? userNamePlaceholder : passwordPlaceholder
 
-		showPlaceholder(placeHolder!, show:newText == "")
+		placeHolder!.changeVisibility(visible: newText == "")
 
 		return true
-	}
-
-	private func showPlaceholder(placeholder:UILabel, show:Bool) {
-		UIView.animateWithDuration(0.4, animations: {
-			placeholder.alpha = show ? 1.0 : 0.0
-		})
 	}
 
 }

@@ -64,11 +64,11 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="loginButton" destination="kq3-Yb-Mpp" id="xn9-Vf-qDi"/>
-                <outlet property="passwordBackground" destination="c9N-IO-KZH" id="dVs-bd-SAm"/>
-                <outlet property="passwordField" destination="XBk-dU-LXI" id="HcR-3W-tcM"/>
-                <outlet property="userNameBackground" destination="89h-kX-BJz" id="jHJ-Gn-9TI"/>
-                <outlet property="userNameField" destination="lQM-e9-Lbg" id="whF-WD-LB4"/>
+                <outlet property="loginButton" destination="kq3-Yb-Mpp" id="XwX-Qs-mrT"/>
+                <outlet property="passwordBackground" destination="c9N-IO-KZH" id="agA-os-ykP"/>
+                <outlet property="passwordField" destination="XBk-dU-LXI" id="oRJ-4O-E9H"/>
+                <outlet property="userNameBackground" destination="89h-kX-BJz" id="QTR-3a-gEp"/>
+                <outlet property="userNameField" destination="lQM-e9-Lbg" id="HV9-wo-yIO"/>
             </connections>
             <point key="canvasLocation" x="144" y="154.5"/>
         </view>

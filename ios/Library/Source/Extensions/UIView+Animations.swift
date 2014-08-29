@@ -11,34 +11,34 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
+import Foundation
 
-public enum AuthType: String {
-	case Email = "Email Address"
-	case ScreenName = "Screen Name"
-	case UserId = "User ID"
-}
+/*
+ * Delayed show and hide
+ */
+extension UIView {
 
-class LoginView: BaseWidgetView {
-
-	public var shouldRememberCredentials: Bool {
-		return true
+	public func changeVisibility(#visible:Bool) {
+		self.changeVisibility(visible: visible, delay: defaultHideDelay)
 	}
 
-	public func setAuthType(authType: String) {
+	public func changeVisibility(#visible:Bool, delay: Double) {
+		let targetAlpha: CGFloat = visible ? 0.0 : 1.0
+
+		if self.alpha != targetAlpha {
+			if delay == 0.0 {
+				self.alpha = targetAlpha
+			}
+			else {
+				UIView.animateWithDuration(delay, animations: {
+					self.alpha = targetAlpha
+				})
+			}
+		}
 	}
 
-	public func getUserName() -> String {
-		return ""
+	private var defaultHideDelay:Double {
+		return 0.3
 	}
 
-	public func getPassword() -> String {
-		return ""
-	}
-
-	public func setUserName(userName: String) {
-	}
-
-	public func setPassword(password: String) {
-	}
 }

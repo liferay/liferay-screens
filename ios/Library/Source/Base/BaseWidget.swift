@@ -54,6 +54,7 @@ import QuartzCore
 	public func onShow() {
 	}
 
+
 	//MARK: SERVER RESPONSE TEMPLATE METHODS
 
 	/*
@@ -68,6 +69,7 @@ import QuartzCore
 	 */
 	public func onServerResult(dict:[String:AnyObject]) {
 	}
+
 
 	//MARK: USER ACTIONS TEMPLATE METHOD
 
@@ -111,6 +113,7 @@ import QuartzCore
 		}
 	}
 
+
 	//MARK: Interface Builder management methods
 
 	override func prepareForInterfaceBuilder() {
@@ -142,6 +145,7 @@ import QuartzCore
 			}
 		}
 	}
+
 
 	//MARK: LRCallback
 
