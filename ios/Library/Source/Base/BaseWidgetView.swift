@@ -47,7 +47,7 @@ class BaseWidgetView: UIView, UITextFieldDelegate {
 	}
 
 	override func awakeFromNib() {
-		setUpViewHierarchy(self)
+		setUpView(self)
 		onSetTranslations()
 		onCreate();
 	}
@@ -104,19 +104,19 @@ class BaseWidgetView: UIView, UITextFieldDelegate {
 		}
 	}
 
-	private func setUpViewHierarchy(parentView: UIView) {
-		setUpView(parentView)
-
-		for subview:UIView in parentView.subviews as [UIView] {
-			setUpViewHierarchy(subview)
-		}
-	}
-
 	private func setUpView(view: UIView) {
 		if let control = view as? UIControl {
 			addCustomActionForControl(control)
 		}
+
 		addDefaultDelegatesForView(view)
+
+		for subview:UIView in view.subviews as [UIView] {
+			setUpView(subview)
+		}
+	}
+
+	private func setUpView(view: UIView) {
 	}
 
 	private func addDefaultDelegatesForView(view:UIView) {
