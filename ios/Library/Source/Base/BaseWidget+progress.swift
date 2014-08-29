@@ -13,7 +13,7 @@
 */
 import Foundation
 
-// WORKAROUND!
+//FIME
 // This hack is because compiler error "Class variables not yet supported"
 struct Lock {
 	static var token = "token"
@@ -28,9 +28,9 @@ struct MBProgressHUDInstance {
  */
 extension BaseWidget {
 
-    /*
-     * showHUDWithMessage shows an animated Progress HUD with the message and details provided.
-     */
+	/*
+	 * showHUDWithMessage shows an animated Progress HUD with the message and details provided.
+	*/
 	public func showHUDWithMessage(message:String?, details:String?) {
 		synchronized(Lock.token) {
 			if MBProgressHUDInstance.instance == nil {
@@ -47,10 +47,10 @@ extension BaseWidget {
 		}
 	}
 
-    /*
-     * hideHUDWithMessage hides an existing animated Progress HUD displaying the message and details provided first for
-     * a few seconds, calculated based on the length of the message.
-     */
+	/*
+	 * hideHUDWithMessage hides an existing animated Progress HUD displaying the message and details provided first for
+	 * a few seconds, calculated based on the length of the message.
+	*/
 	public func hideHUDWithMessage(message:String, details:String?) {
 		synchronized(Lock.token) {
 			if let instance = MBProgressHUDInstance.instance {
@@ -59,7 +59,7 @@ extension BaseWidget {
 				instance.detailsLabelText = details ?? ""
 
 				let len: Int =
-                    countElements(instance.labelText as String) + countElements(instance.detailsLabelText as String)
+					countElements(instance.labelText as String) + countElements(instance.detailsLabelText as String)
 				let delay = 1.5 + (Double(len) * 0.01)
 
 				instance.hide(true, afterDelay: delay)
@@ -67,20 +67,20 @@ extension BaseWidget {
 		}
 	}
 
-    // PRIVATE METHODS
+	//MARK: PRIVATE METHODS
 
-    private func rootView(currentView:UIView) -> UIView {
-        if currentView.superview == nil {
-            return currentView;
-        }
-        
-        return rootView(currentView.superview!)
-    }
-    
-    private func synchronized(lock:AnyObject, closure: () -> ()) {
-        objc_sync_enter(lock)
-        closure()
-        objc_sync_exit(lock)
-    }
-    
+	private func rootView(currentView:UIView) -> UIView {
+		if currentView.superview == nil {
+			return currentView;
+		}
+
+		return rootView(currentView.superview!)
+	}
+
+	private func synchronized(lock:AnyObject, closure: () -> ()) {
+		objc_sync_enter(lock)
+		closure()
+		objc_sync_exit(lock)
+	}
+
 }
