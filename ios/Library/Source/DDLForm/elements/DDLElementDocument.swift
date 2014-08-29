@@ -15,10 +15,31 @@ import Foundation
 
 @objc public class DDLElementDocument : DDLElement {
 
-	public enum UploadStatus {
+	public enum UploadStatus: Hashable, Equatable {
 		case Uploaded([String:AnyObject])
-		case Failed(NSError)
+		case Failed(NSError?)
+		case Uploading(UInt,UInt)
 		case Pending
+
+		public var hashValue: Int {
+			get {
+			    return toInt()
+			}
+		}
+
+		func toInt() -> Int {
+			switch self {
+				case .Uploaded(_):
+    		        return Int.max
+        		case .Failed(_):
+					return Int.min
+				case .Uploading(_,_):
+					return 1
+				default:
+					return 0
+			}
+		}
+
 	}
 
 	public var uploadStatus:UploadStatus = .Pending
@@ -101,4 +122,10 @@ import Foundation
 	}
 
 
+}
+
+// MARK Equatable
+
+public func ==(left: DDLElementDocument.UploadStatus, right: DDLElementDocument.UploadStatus) -> Bool {
+	return left.hashValue == right.hashValue
 }
