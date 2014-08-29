@@ -102,7 +102,7 @@ class BaseWidgetView: UIView, UITextFieldDelegate {
 		if onSetCustomActionForControl(control) {
 			control.addTarget(self, action: "customActionHandler:", forControlEvents: UIControlEvents.TouchUpInside)
 		}
-    }
+	}
 
 	private func setUpViewHierarchy(parentView: UIView) {
 		setUpView(parentView)

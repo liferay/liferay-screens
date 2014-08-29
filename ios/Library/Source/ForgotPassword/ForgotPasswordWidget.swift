@@ -83,7 +83,7 @@ import UIKit
 
 			finishOperationWithMessage("An error happened", details: errorMsg)
 		}
-    }
+	}
 
 
 	private func forgotPasswordView() -> ForgotPasswordView {

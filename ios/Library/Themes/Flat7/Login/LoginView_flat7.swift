@@ -18,7 +18,6 @@ class LoginView_flat7: LoginView_default {
 	@IBOutlet var titleLabel: UILabel?
 	@IBOutlet var subtitleLabel: UILabel?
 	@IBOutlet var userNamePlaceholder: UILabel?
-	@IBOutlet var passwordPlaceholder: UILabel?
 
 	override public func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
@@ -31,7 +30,9 @@ class LoginView_flat7: LoginView_default {
 		let str = loginButton!.attributedTitleForState(UIControlState.Normal)
 		let translated = NSLocalizedString("theme-flat7-login-login", tableName: "flat7", bundle: bundle, value: "", comment: "")
 		let newStr = NSMutableAttributedString(attributedString: str)
+
 		newStr.replaceCharactersInRange(NSMakeRange(0, str.length), withString:translated)
+
 		loginButton!.setAttributedTitle(newStr, forState: UIControlState.Normal)
 
 		userNameField!.placeholder = "";
@@ -40,24 +41,8 @@ class LoginView_flat7: LoginView_default {
 
 	override func setUserName(userName: String) {
 		super.setUserName(userName)
-		showPlaceholder(userNamePlaceholder!, show:userName == "")
-	}
 
-	func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
-
-		let newText = textField.text.bridgeToObjectiveC().stringByReplacingCharactersInRange(range, withString:string)
-
-		let placeHolder = textField == userNameField ? userNamePlaceholder : passwordPlaceholder
-
-		showPlaceholder(placeHolder!, show:newText == "")
-
-		return true
-	}
-
-	private func showPlaceholder(placeholder:UILabel, show:Bool) {
-		UIView.animateWithDuration(0.4, animations: {
-			placeholder.alpha = show ? 1.0 : 0.0
-		})
+		usernamePlaceholder!.changeVisibility(visible: userName == "")
 	}
 
 }
