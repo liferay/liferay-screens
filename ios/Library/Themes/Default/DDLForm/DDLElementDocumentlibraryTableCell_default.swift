@@ -50,16 +50,20 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 		presenter.presenterView.layer.borderColor = UIColor.lightGrayColor().CGColor
 		presenter.presenterView.layer.borderWidth = 1.5
 
-		presenterViewController.textField = textField
-
 		textField?.dt_setPresenter(presenter)
 	}
 
 	private func selectedDocumentClosure(image:UIImage?, url:NSURL?) {
-		element!.currentValue = image ?? url
-		textField?.text = element!.currentStringValue
+		textField!.resignFirstResponder()
 
-		formView?.customActionHandler(actionName: "upload-document", sender: element! as DDLElementDocument)
+		if image != nil || url != nil {
+			element!.currentValue = image ?? url
+			textField?.text = element!.currentStringValue
+
+			formView?.customActionHandler(
+				actionName: "upload-document",
+				sender: element! as DDLElementDocument)
+		}
 	}
 
 }

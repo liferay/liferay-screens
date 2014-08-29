@@ -18,8 +18,6 @@ public class DDLElementDocumentlibraryPresenterViewController_default: UIViewCon
 
 	public var selectedDocumentClosure: ((UIImage?, NSURL?) -> ())?
 
-	public var textField:UITextField?
-
 	private let imagePicker = UIImagePickerController()
 
 	override public init() {
@@ -40,9 +38,7 @@ public class DDLElementDocumentlibraryPresenterViewController_default: UIViewCon
 	// MARK: Actions
 
 	@IBAction func cancelButtonAction(sender: AnyObject) {
-		if let textFieldValue = textField {
-			textFieldValue.resignFirstResponder()
-		}
+		selectedDocumentClosure?(nil, nil)
 	}
 
 	@IBAction func takePhotoAction(sender: AnyObject) {
