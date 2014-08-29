@@ -94,7 +94,8 @@ import UIKit
 					formView().showElement(document)
 				}
 				delegate?.onDocumentUploadError?(document, error: error)
-				finishOperationWithMessage("An error happened uploading form")
+
+				showHUDWithMessage("An error happened uploading file", details: nil, secondsToShow: 3.0)
 
 			default: ()
 		}
@@ -116,7 +117,6 @@ import UIKit
 			case .Uploading(let document):
 				document.uploadStatus = .Uploaded(result)
 				delegate?.onDocumentUploadCompleted?(document, result: result)
-				finishOperationWithMessage("Upload completed")
 
 			default: ()
 		}
@@ -257,8 +257,6 @@ import UIKit
 			println("ERROR: No current value in the document. Can't upload a document without a value")
 			return false
 		}
-
-		startOperationWithMessage("Uploading file...", details: "Wait a second...")
 
 		let repoId = (repositoryId != 0) ? repositoryId : groupId
 		let fileName = "\(filePrefix)-\(NSUUID.UUID().UUIDString)"
