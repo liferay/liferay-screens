@@ -53,12 +53,6 @@ public class SignUpView_default: SignUpView {
 		signUpButton!.enabled = true
 	}
 
-	// MARK: BaseWidgetView
-
-	override public func becomeFirstResponder() -> Bool {
-		return firstNameField!.becomeFirstResponder()
-	}
-
 	// MARK: UITextFieldDelegate
 
 	func textFieldDidBeginEditing(textField: UITextField!) {

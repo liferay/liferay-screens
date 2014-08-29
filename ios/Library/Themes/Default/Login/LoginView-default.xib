@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -19,18 +19,18 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" id="lQM-e9-Lbg">
-                    <rect key="frame" x="42" y="1" width="186" height="44"/>
+                    <rect key="frame" x="42" y="0.0" width="186" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                     <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                     <connections>
                         <outlet property="delegate" destination="iN0-l3-epB" id="Ljx-cw-S27"/>
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="XBk-dU-LXI">
-                    <rect key="frame" x="42" y="57" width="186" height="44"/>
+                    <rect key="frame" x="42" y="56" width="186" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                     <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                     <connections>
                         <outlet property="delegate" destination="iN0-l3-epB" id="YVX-sf-eSF"/>
@@ -44,7 +44,7 @@
                             <fragment content="SIGN IN">
                                 <attributes>
                                     <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                    <font key="NSFont" size="16" name="HelveticaNeue"/>
                                 </attributes>
                             </fragment>
                         </attributedString>
@@ -52,11 +52,11 @@
                     <state key="selected" backgroundImage="default-large-button-selected.png"/>
                 </button>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="default-lock-icon.png" id="hYc-ZQ-knx">
-                    <rect key="frame" x="16" y="70" width="12" height="16"/>
+                    <rect key="frame" x="16" y="70" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="default-mail-icon.png" id="cQm-Dk-rcd">
-                    <rect key="frame" x="16" y="16" width="15" height="12"/>
+                    <rect key="frame" x="16" y="14" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </subviews>
@@ -69,6 +69,7 @@
                 <outlet property="passwordField" destination="XBk-dU-LXI" id="oRJ-4O-E9H"/>
                 <outlet property="userNameBackground" destination="89h-kX-BJz" id="QTR-3a-gEp"/>
                 <outlet property="userNameField" destination="lQM-e9-Lbg" id="HV9-wo-yIO"/>
+                <outlet property="userNameIcon" destination="cQm-Dk-rcd" id="U51-Ib-PmT"/>
             </connections>
             <point key="canvasLocation" x="144" y="154.5"/>
         </view>
@@ -79,7 +80,7 @@
         <image name="default-large-button-selected.png" width="217" height="42"/>
         <image name="default-large-button.png" width="228" height="44"/>
         <image name="default-lock-icon.png" width="12" height="16"/>
-        <image name="default-mail-icon.png" width="15" height="12"/>
+        <image name="default-mail-icon.png" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
