@@ -15,15 +15,19 @@ import UIKit
 
 public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextFieldTableCell_default {
 
-	private let presenterViewController =
-		DDLElementDocumentlibraryPresenterViewController_default()
-
 	@IBOutlet var chooseButton: UIButton? {
 		didSet {
 			chooseButton!.layer.masksToBounds = true
 	        chooseButton!.layer.cornerRadius = 4.0
 		}
 	}
+
+	@IBAction func chooseButtonAction(sender: AnyObject) {
+		textField!.becomeFirstResponder()
+	}
+
+	private let presenterViewController =
+		DDLElementDocumentlibraryPresenterViewController_default()
 
 	override func onChangedElement() {
 		super.onChangedElement()
@@ -37,8 +41,6 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 		}
 	}
 
-	@IBAction func chooseButtonAction(sender: AnyObject) {
-		textField!.becomeFirstResponder()
 	}
 
 	private func setFieldPresenter(element:DDLElementDocument) {
