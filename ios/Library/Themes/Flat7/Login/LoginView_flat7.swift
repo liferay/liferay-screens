@@ -18,6 +18,7 @@ class LoginView_flat7: LoginView_default {
 	@IBOutlet var titleLabel: UILabel?
 	@IBOutlet var subtitleLabel: UILabel?
 	@IBOutlet var userNamePlaceholder: UILabel?
+	@IBOutlet var passwordPlaceholder: UILabel?
 
 	override public func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
@@ -42,7 +43,7 @@ class LoginView_flat7: LoginView_default {
 	override func setUserName(userName: String) {
 		super.setUserName(userName)
 
-		usernamePlaceholder!.changeVisibility(visible: userName == "")
+		userNamePlaceholder!.changeVisibility(visible: userName == "")
 	}
 
 }

@@ -125,6 +125,12 @@
 		999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BF19655F4B00664504 /* LiferayContext.swift */; };
 		999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
 		999BC69F19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
+		99F1171F19B09FB8008D66C4 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1171E19B09FB8008D66C4 /* UIView+Animations.swift */; };
+		99F1172019B09FB8008D66C4 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1171E19B09FB8008D66C4 /* UIView+Animations.swift */; };
+		99F1172419B09FD0008D66C4 /* SignUpView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F1172219B09FD0008D66C4 /* SignUpView-flat7.xib */; };
+		99F1172519B09FD0008D66C4 /* SignUpView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F1172219B09FD0008D66C4 /* SignUpView-flat7.xib */; };
+		99F1172619B09FD0008D66C4 /* SignUpView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1172319B09FD0008D66C4 /* SignUpView_flat7.swift */; };
+		99F1172719B09FD0008D66C4 /* SignUpView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1172319B09FD0008D66C4 /* SignUpView_flat7.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,6 +257,9 @@
 		88F648A6198D2E1B003A8FD9 /* NSBundle+Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Paths.swift"; sourceTree = "<group>"; };
 		88FE74D419655E1B003A7CE5 /* Liferay-iOS-Widgets-Dummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liferay-iOS-Widgets-Dummy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
+		99F1171E19B09FB8008D66C4 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
+		99F1172219B09FD0008D66C4 /* SignUpView-flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SignUpView-flat7.xib"; sourceTree = "<group>"; };
+		99F1172319B09FD0008D66C4 /* SignUpView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_flat7.swift; sourceTree = "<group>"; };
 		FEA555EA8DC0458CA74C4ACE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -304,6 +313,7 @@
 			children = (
 				888D76F6198FDAD30052C39C /* Login */,
 				888D76F9198FDAD30052C39C /* Resources */,
+				99F1172119B09FD0008D66C4 /* SignUp */,
 			);
 			path = Flat7;
 			sourceTree = "<group>";
@@ -486,6 +496,7 @@
 		88F648A5198D2E1B003A8FD9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				99F1171E19B09FB8008D66C4 /* UIView+Animations.swift */,
 				88F648A6198D2E1B003A8FD9 /* NSBundle+Paths.swift */,
 				888F61F9198FD3740082786B /* NSLocale+CurrentLocale.swift */,
 				8875B021198FB173006955BA /* UIImage+Themes.h */,
@@ -541,6 +552,15 @@
 			);
 			name = "Supporting Files";
 			path = Source;
+			sourceTree = "<group>";
+		};
+		99F1172119B09FD0008D66C4 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				99F1172219B09FD0008D66C4 /* SignUpView-flat7.xib */,
+				99F1172319B09FD0008D66C4 /* SignUpView_flat7.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -638,6 +658,7 @@
 				888D770F198FDAD30052C39C /* flat7-field.png in Resources */,
 				888D77D119903F060052C39C /* ForgotPasswordView-default.xib in Resources */,
 				888D7715198FDAD30052C39C /* flat7-preview-login@2x.png in Resources */,
+				99F1172519B09FD0008D66C4 /* SignUpView-flat7.xib in Resources */,
 				888D778C198FEFFE0052C39C /* default-field-focused@2x.png in Resources */,
 				88999AC7198EE5CB00E746A6 /* xyz-preview-login@2x.png in Resources */,
 				888D7717198FDAD30052C39C /* theme-flat7.png in Resources */,
@@ -708,6 +729,7 @@
 				888D7795198FEFFE0052C39C /* default-large-button.png in Resources */,
 				888D770A198FDAD30052C39C /* flat7-button.png in Resources */,
 				888D7704198FDAD30052C39C /* LoginView-flat7.xib in Resources */,
+				99F1172419B09FD0008D66C4 /* SignUpView-flat7.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,6 +778,7 @@
 				88F648B0198D3006003A8FD9 /* LoginWidget.swift in Sources */,
 				999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */,
 				88F648B1198D300A003A8FD9 /* LoginView.swift in Sources */,
+				99F1172019B09FB8008D66C4 /* UIView+Animations.swift in Sources */,
 				888D7707198FDAD30052C39C /* LoginView_flat7.swift in Sources */,
 				88F648B4198D301E003A8FD9 /* BaseWidget+progress.swift in Sources */,
 				88A632C319863FB300684926 /* LRMwuserService_v6201.m in Sources */,
@@ -767,6 +790,7 @@
 				88F648A1198D2DE8003A8FD9 /* BaseWidget_theme_Tests.swift in Sources */,
 				88F648A8198D2E1B003A8FD9 /* NSBundle+Paths.swift in Sources */,
 				888F61F8198FD3240082786B /* SignUpWidget.swift in Sources */,
+				99F1172719B09FD0008D66C4 /* SignUpView_flat7.swift in Sources */,
 				88E4F27719912B5900E69261 /* LoginView_default.swift in Sources */,
 				999BC69F19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 				888F61F4198FD3240082786B /* SignUpView.swift in Sources */,
@@ -805,6 +829,8 @@
 				88F648A7198D2E1B003A8FD9 /* NSBundle+Paths.swift in Sources */,
 				889CA4C719655F4B00664504 /* BaseWidget+progress.swift in Sources */,
 				999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
+				99F1171F19B09FB8008D66C4 /* UIView+Animations.swift in Sources */,
+				99F1172619B09FD0008D66C4 /* SignUpView_flat7.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
