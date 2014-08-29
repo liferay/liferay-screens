@@ -21,10 +21,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
-                    <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="submit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="sFo-9S-vne">
+                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="submit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="sFo-9S-vne">
                         <rect key="frame" x="271" y="10" width="36" height="36"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.72156862745098038" blue="0.8784313725490196" alpha="0.87" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.72156862745098038" blue="0.8784313725490196" alpha="0.87" colorSpace="calibratedRGB"/>
                         <state key="normal">
                             <attributedString key="attributedTitle">
                                 <fragment content="...">
@@ -41,10 +41,15 @@
                             <action selector="chooseButtonAction:" destination="WWD-jz-pJ6" eventType="touchUpInside" id="yq6-JD-H6P"/>
                         </connections>
                     </button>
+                    <view alpha="0.0" contentMode="scaleToFill" id="J5E-9Y-8f7" userLabel="progress" customClass="MDRadialProgressView">
+                        <rect key="frame" x="271" y="10" width="36" height="36"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="VAu-ld-FYJ">
                         <rect key="frame" x="15" y="13" width="247" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                         <connections>
                             <outlet property="delegate" destination="WWD-jz-pJ6" id="QP8-JL-LUQ"/>
@@ -54,6 +59,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="chooseButton" destination="sFo-9S-vne" id="yvp-RX-zb5"/>
+                <outlet property="progress" destination="J5E-9Y-8f7" id="vA3-iB-0CU"/>
                 <outlet property="textField" destination="VAu-ld-FYJ" id="n3x-pa-fiI"/>
                 <outlet property="textFieldBackground" destination="ohg-xl-HdE" id="bhZ-pI-I05"/>
             </connections>

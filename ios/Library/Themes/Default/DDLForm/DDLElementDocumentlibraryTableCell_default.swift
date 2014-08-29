@@ -22,12 +22,36 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 		}
 	}
 
+	@IBOutlet var progress:MDRadialProgressView?
+
 	@IBAction func chooseButtonAction(sender: AnyObject) {
 		textField!.becomeFirstResponder()
 	}
 
 	private let presenterViewController =
 		DDLElementDocumentlibraryPresenterViewController_default()
+
+	private let completedColor = [
+			DDLElementDocument.UploadStatus.Uploading(0,0) : UIColor(red:0, green:184/255.0, blue:224/255.0, alpha:1),
+			DDLElementDocument.UploadStatus.Uploaded([:]) : UIColor(red:90/255.0, green:212/255.0, blue:39/255.0, alpha:1),
+			DDLElementDocument.UploadStatus.Failed(nil) : UIColor(red:1, green:0, blue:0, alpha:1)
+		]
+
+	private let incompletedColor = [
+			DDLElementDocument.UploadStatus.Uploading(0,0) : UIColor(red:176/255.0, green:238/255.0, blue:1.0, alpha:0.87)
+		]
+
+	private let centerColor = [
+			DDLElementDocument.UploadStatus.Uploading(0,0) : UIColor(red:240/255.0, green:1, blue:1.0, alpha:0.87),
+			DDLElementDocument.UploadStatus.Uploaded([:]) : UIColor(red:240/255.0, green:1, blue:1, alpha:1),
+			DDLElementDocument.UploadStatus.Failed(nil) : UIColor(red:1, green:220/255.0, blue:200/255.0, alpha:1)
+		]
+
+	private let labelColor = [
+			DDLElementDocument.UploadStatus.Uploading(0,0) : UIColor.whiteColor(),
+			DDLElementDocument.UploadStatus.Uploaded([:]) : UIColor(red:240/255.0, green:1, blue:1, alpha:1),
+			DDLElementDocument.UploadStatus.Failed(nil) : UIColor(red:1, green:220/255.0, blue:200/255.0, alpha:1)
+		]
 
 	override func onChangedElement() {
 		super.onChangedElement()
@@ -38,9 +62,61 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 			presenterViewController.selectedDocumentClosure = selectedDocumentClosure
 
 			setFieldPresenter(docElement)
+
+			setProgress(docElement)
 		}
 	}
 
+	private func setProgress(element:DDLElementDocument) {
+		let theme = progress!.theme
+
+		// FIXME Label's font is not updated. Change when PR is accepted
+		// https://github.com/mdinacci/MDRadialProgress/pull/24
+		//
+		//theme.font = UIFont(descriptor: textField!.font.fontDescriptor(), size: 2.0)
+
+		theme.sliceDividerHidden = true
+		theme.thickness = 10.0
+
+		progress!.theme = theme
+
+		changeDocumentUploadStatus(element)
+	}
+
+	override func changeDocumentUploadStatus(element: DDLElementDocument) {
+		let theme = progress!.theme
+
+		theme.completedColor = completedColor[element.uploadStatus]
+		theme.incompletedColor = incompletedColor[element.uploadStatus]
+		theme.centerColor = centerColor[element.uploadStatus]
+		theme.labelColor = labelColor[element.uploadStatus]
+
+		switch element.uploadStatus {
+			case .Uploading(let current, let max):
+				progress!.progressTotal = max
+				progress!.progressCounter = current
+
+				if progress!.alpha == 0 {
+					changeProgressVisilibity(show:true)
+				}
+			case .Failed(_): ()
+				changeProgressVisilibity(show:false, delay:2.0)
+
+			default: ()
+		}
+
+		dispatch_async(dispatch_get_main_queue()) {
+			self.progress!.setNeedsDisplay()
+	    }
+	}
+
+	private func changeProgressVisilibity(#show:Bool, delay:Double = 0.0) {
+		//FIXME Change to category
+
+		UIView.animateWithDuration(0.3, delay: delay, options: nil, animations: {
+			self.progress!.alpha = show ? 1.0 : 0.0
+			self.chooseButton!.alpha = show ? 0.0 : 1.0
+		}, completion: nil)
 	}
 
 	private func setFieldPresenter(element:DDLElementDocument) {
