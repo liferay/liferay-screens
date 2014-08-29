@@ -28,6 +28,8 @@ FOUNDATION_EXPORT const unsigned char liferay_mobile_widgetsVersionString[];
 #import "DTPickerPresenter.h"
 #import "DTDatePickerPresenter.h"
 #import "TNRadioButtonGroup.h"
+#import "MDRadialProgressView.h"
+#import "MDRadialProgressTheme.h"
 
 // Liferay services
 #import "LRUserService_v62.h"
