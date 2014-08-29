@@ -44,7 +44,7 @@ import UIKit
 		resetClosure = resetClosures[authType]
 	}
 
-    // MARK: BaseWidget METHODS
+	// MARK: BaseWidget METHODS
 
 	override func onCreate() {
 		setAuthType(AuthType.Email.toRaw())

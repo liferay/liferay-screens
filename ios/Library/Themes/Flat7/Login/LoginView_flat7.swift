@@ -31,9 +31,7 @@ class LoginView_flat7: LoginView_default {
 		let str = loginButton!.attributedTitleForState(UIControlState.Normal)
 		let translated = NSLocalizedString("theme-flat7-login-login", tableName: "flat7", bundle: bundle, value: "", comment: "")
 		let newStr = NSMutableAttributedString(attributedString: str)
-
 		newStr.replaceCharactersInRange(NSMakeRange(0, str.length), withString:translated)
-
 		loginButton!.setAttributedTitle(newStr, forState: UIControlState.Normal)
 
 		userNameField!.placeholder = "";
@@ -42,8 +40,18 @@ class LoginView_flat7: LoginView_default {
 
 	override func setUserName(userName: String) {
 		super.setUserName(userName)
-
 		userNamePlaceholder!.changeVisibility(visible: userName == "")
+	}
+
+	func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+
+		let newText = textField.text.bridgeToObjectiveC().stringByReplacingCharactersInRange(range, withString:string)
+
+		let placeHolder = textField == userNameField ? userNamePlaceholder : passwordPlaceholder
+
+		placeHolder!.changeVisibility(visible: newText == "")
+
+		return true
 	}
 
 }
