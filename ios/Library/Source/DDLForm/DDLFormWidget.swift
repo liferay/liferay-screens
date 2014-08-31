@@ -88,7 +88,7 @@ import UIKit
 				delegate?.onFormLoadError?(error)
 				finishOperationWithMessage("An error happened loading form")
 
-			case .Uploading(let document):
+			case .Uploading(let document, _):
 				document.uploadStatus = .Failed(error)
 
 				formView().changeDocumentUploadStatus(document)
@@ -114,21 +114,27 @@ import UIKit
 					recordId = recordIdValue
 				}
 				finishOperationWithMessage("Form submitted")
+				currentOperation = .Idle
 
 			case .Loading:
 				onFormLoadResult(result)
+				currentOperation = .Idle
 
-			case .Uploading(let document):
+			case .Uploading(let document, let submitAfter):
 				document.uploadStatus = .Uploaded(result)
 
 				formView().changeDocumentUploadStatus(document)
-
 				delegate?.onDocumentUploadCompleted?(document, result: result)
+
+				currentOperation = .Idle
+
+				if submitAfter {
+					submitForm()
+				}
 
 			default: ()
 		}
 
-		currentOperation = .Idle
 	}
 
 	private func onFormLoadResult(result: [String:AnyObject]) {
@@ -205,6 +211,19 @@ import UIKit
 			return false
 		}
 
+		switch currentOperation {
+			case .Uploading(let doc, _):
+				currentOperation = .Uploading(doc, true)
+				showHUDWithMessage("Uploading file...", details: "Wait a second...")
+				return true
+
+			case .Loading, .Submitting:
+				println("ERROR: Cannot submit a form while it's being loading or submitting")
+				return false
+
+			default: ()
+		}
+
 		if !formView().validateForm(autoscroll:autoscrollOnValidation) {
 			showHUDWithMessage("Some values are not valid", details: "Please, review your form", secondsToShow: 1.5)
 			return false
@@ -277,7 +296,7 @@ import UIKit
 
 		let service = LRDLAppService_v62(session: session)
 
-		currentOperation = .Uploading(document)
+		currentOperation = .Uploading(document, false)
 
 		var outError: NSError?
 
@@ -303,7 +322,7 @@ import UIKit
 
 	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
 		switch currentOperation {
-			case .Uploading(let document):
+			case .Uploading(let document, _):
 				document.uploadStatus = .Uploading(UInt(sent), UInt(total))
 				formView().changeDocumentUploadStatus(document)
 
@@ -323,5 +342,5 @@ private enum FormOperation {
 	case Idle
 	case Loading
 	case Submitting
-	case Uploading(DDLElementDocument)
+	case Uploading(DDLElementDocument, Bool)
 }
