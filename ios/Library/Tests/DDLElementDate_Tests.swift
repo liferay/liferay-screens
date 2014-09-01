@@ -82,7 +82,7 @@ class DDLElementDate_Tests: XCTestCase {
 		XCTAssertFalse(dateElement.validate())
 	}
 
-	func test_CurrentStringValue_ShouldReturnServerSideFormat() {
+	func test_CurrentStringValue_ShouldReturnEpochTimeInMilliseconds() {
 		parser.xml = requiredDateElement
 		let elements = parser.parse()
 		let dateElement = elements![0] as DDLElementDate
@@ -92,7 +92,8 @@ class DDLElementDate_Tests: XCTestCase {
 
 		dateElement.currentValue = dateFormatter.dateFromString("19/06/2004")
 
-		XCTAssertEqual("06/19/2004", dateElement.currentStringValue!)
+		// converted with http://www.epochconverter.com/
+		XCTAssertEqual("1087596000000", dateElement.currentStringValue!)
 	}
 
 	func test_CurrentDateLabel_ShouldReturnClientSideFormat() {

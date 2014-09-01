@@ -48,7 +48,10 @@ public class DDLElementDate : DDLElement {
 		var result: String?
 
 		if let date = value as? NSDate {
-			result = serverDateFormatter.stringFromDate(date)
+			// Java uses milliseconds instead of seconds
+			let epoch = UInt64(date.timeIntervalSince1970 * 1000)
+
+			result = "\(epoch)"
 		}
 
 		return result
