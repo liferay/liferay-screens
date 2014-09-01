@@ -109,12 +109,20 @@ import Foundation
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		var result: String?
 
-		switch currentValue {
-			case is UIImage:
-				result = "Image"
-			case is NSURL:
-				result = "Video"
-			default: ()
+		switch uploadStatus {
+			case .Uploaded(let json):
+				let groupId = (json["groupId"] ?? nil) as? String
+				let uuid = (json["uuid"] ?? nil) as? String
+				let version = (json["version"] ?? nil) as? String
+
+				if groupId != nil && uuid != nil && version != nil {
+					result = "{\"groupId\":\"\(groupId!)\"," +
+								"\"uuid\":\"\(uuid!)\"," +
+								"\"version\":\"\(version!)\"}"
+				}
+
+			default:
+				result = nil
 		}
 
 		return result

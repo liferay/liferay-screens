@@ -175,6 +175,54 @@ class DDLElementDocument_Tests: XCTestCase {
 		XCTAssertEqual("Video", docElement.currentDocumentLabel!)
 	}
 
+	func test_CurrentStringValue_ShouldReturnNil_WhenUploadStatusIsPending() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		docElement.uploadStatus = .Pending
+
+		XCTAssertNil(docElement.currentStringValue?)
+	}
+
+	func test_CurrentStringValue_ShouldReturnNil_WhenUploadStatusIsUploading() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		docElement.uploadStatus = .Uploading(1,10)
+
+		XCTAssertNil(docElement.currentStringValue?)
+	}
+
+	func test_CurrentStringValue_ShouldReturnNil_WhenUploadStatusIsFailed() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		docElement.uploadStatus = .Failed(nil)
+
+		XCTAssertNil(docElement.currentStringValue?)
+	}
+
+	func test_CurrentStringValue_ShouldReturnDDLJSON_WhenUploadStatusIsUploaded() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		let json = [
+			"groupId": "1234",
+			"uuid": "abcd",
+			"version": "1.0",
+			"blablabla": "blebleble"]
+
+		docElement.uploadStatus = .Uploaded(json)
+
+		let expectedResult = "{\"groupId\":\"1234\",\"uuid\":\"abcd\",\"version\":\"1.0\"}"
+		XCTAssertEqual(expectedResult, docElement.currentStringValue!)
+	}
+
+
 	private let requiredDocumentElement =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"document-library\" " +
