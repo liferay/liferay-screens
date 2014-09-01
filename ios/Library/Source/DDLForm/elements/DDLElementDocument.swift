@@ -42,6 +42,20 @@ import Foundation
 
 	}
 
+	public var currentDocumentLabel:String? {
+		var result: String?
+
+		switch currentValue {
+			case is UIImage:
+				result = "Image"
+			case is NSURL:
+				result = "Video"
+			default: ()
+		}
+
+		return result
+	}
+
 	public var uploadStatus:UploadStatus = .Pending
 
 	public var mimeType: String? {

@@ -57,7 +57,7 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 		super.onChangedElement()
 
 		if let docElement = element as? DDLElementDocument {
-			textField?.text = docElement.currentStringValue
+			textField?.text = docElement.currentDocumentLabel
 
 			presenterViewController.selectedDocumentClosure = selectedDocumentClosure
 
@@ -134,7 +134,8 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 
 		if image != nil || url != nil {
 			element!.currentValue = image ?? url
-			textField?.text = element!.currentStringValue
+			
+			textField?.text = (element as DDLElementDocument).currentDocumentLabel
 
 			formView?.customActionHandler(
 				actionName: "upload-document",

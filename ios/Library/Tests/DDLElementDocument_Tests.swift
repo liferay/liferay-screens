@@ -147,6 +147,34 @@ class DDLElementDocument_Tests: XCTestCase {
 		XCTAssertEqual(imageLength.longLongValue, size)
 	}
 
+	func test_CurrentDocumentLabel_ShouldReturnNil_WhenCurrentValueIsNil() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		XCTAssertNil(docElement.currentDocumentLabel?)
+	}
+
+	func test_CurrentDocumentLabel_ShouldReturnImage_WhenCurrentValueIsImage() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		docElement.currentValue = UIImage(named:"default-field")
+
+		XCTAssertEqual("Image", docElement.currentDocumentLabel!)
+	}
+
+	func test_CurrentDocumentLabel_ShouldReturnVideo_WhenCurrentValueIsURL() {
+		parser.xml = requiredDocumentElement
+		let elements = parser.parse()
+		let docElement = elements![0] as DDLElementDocument
+
+		docElement.currentValue = NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
+
+		XCTAssertEqual("Video", docElement.currentDocumentLabel!)
+	}
+
 	private let requiredDocumentElement =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"document-library\" " +
