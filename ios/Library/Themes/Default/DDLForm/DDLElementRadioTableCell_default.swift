@@ -53,17 +53,12 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()
 		let radioColor = valid ? radioButtonColor : UIColor.redColor()
 
-		// FIXME
-		// Change to this code when the following PR is merged
-		// https://github.com/frederik-jacques/TNRadioButtonGroup/pull/4
-
 		for radioButton in radioGroup!.radioButtons as [TNRectangularRadioButton] {
 			radioButton.data.labelColor = label?.textColor
 			radioButton.data.borderColor = radioColor
 			radioButton.data.rectangleColor = radioColor
 
-			// radioButton.update() uncomment this line and remove the next one
-			radioButton.lblLabel.textColor = label?.textColor
+			radioButton.update()
 		}
 	}
 
