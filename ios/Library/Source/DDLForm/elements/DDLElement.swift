@@ -42,6 +42,18 @@ public enum DDLElementType: String {
 		return fromRaw(xmlElement.attributeNamed("type") ?? "") ?? .Unsupported
 	}
 
+	public static func all() -> [DDLElementType] {
+		return [Checkbox]
+	}
+
+	public func toCapitalizedName() -> String {
+		let typeName = toRaw()
+
+		let secondCharIndex = typeName.startIndex.successor()
+
+		return typeName.substringToIndex(secondCharIndex).uppercaseString + typeName.substringFromIndex(secondCharIndex)
+	}
+
 }
 
 

@@ -107,6 +107,14 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		return view
 	}
 
+	internal func themeName() -> String? {
+		var className = NSStringFromClass(self.dynamicType)
+
+		let components = className.componentsSeparatedByString("_")
+
+		return (components.count > 1) ? components.last : nil
+	}
+
 	private func addCustomActionForControl(control: UIControl) {
 		if onSetCustomActionForControl(control) {
 			control.addTarget(self, action: "customActionHandler:", forControlEvents: UIControlEvents.TouchUpInside)
