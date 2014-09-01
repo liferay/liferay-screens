@@ -38,7 +38,7 @@ public class DDLElementDate : DDLElement {
 		var result: String?
 
 		if let date = value as? NSDate {
-			result = clientDateFormatter.stringFromDate(date)
+			result = serverDateFormatter.stringFromDate(date)
 		}
 
 		return result
