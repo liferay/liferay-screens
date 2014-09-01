@@ -48,7 +48,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldFindFullMatch_WhenExistingCompleteLocaleIsProvided() {
-		parser.currentLocale = NSLocale(localeIdentifier: "es_ES")
+		parser.locale = NSLocale(localeIdentifier: "es_ES")
 		parser.xml = booleanElementWithTranslations
 
 		let elements = parser.parse()
@@ -59,7 +59,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 	//MARK: Checking locale match providing language and country locales
 
 	func test_Parse_ShouldFindNeutralLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
-		parser.currentLocale = NSLocale(localeIdentifier: "es_MX")
+		parser.locale = NSLocale(localeIdentifier: "es_MX")
 		parser.xml = booleanElementWithTranslations
 
 		let elements = parser.parse()
@@ -68,7 +68,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldFindAnyLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
-		parser.currentLocale = NSLocale(localeIdentifier: "en_GB")
+		parser.locale = NSLocale(localeIdentifier: "en_GB")
 		parser.xml = booleanElementWithTranslations
 
 		let elements = parser.parse()
@@ -77,7 +77,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldFindDefault_WhenNoExistingCompleteLocaleIsProvided() {
-		parser.currentLocale = NSLocale(localeIdentifier: "fr_FR")
+		parser.locale = NSLocale(localeIdentifier: "fr_FR")
 		parser.xml = booleanElementWithTranslations
 
 		let elements = parser.parse()
@@ -88,7 +88,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 	//MARK: Checking locale match providing neutral language locale
 
 	func test_Parse_ShouldFindNeutralLanguageMatch_WhenExistingNeutralLanguageIsProvided() {
-		parser.currentLocale = NSLocale(localeIdentifier: "es")
+		parser.locale = NSLocale(localeIdentifier: "es")
 		parser.xml = booleanElementWithTranslations
 
 		let elements = parser.parse()
@@ -97,7 +97,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldFindDefault_WhenNoExistingNeutralLanguageIsProvided() {
-		parser.currentLocale = NSLocale(localeIdentifier: "fr")
+		parser.locale = NSLocale(localeIdentifier: "fr")
 		parser.xml = booleanElementWithTranslations
 
 		let elements = parser.parse()
@@ -107,7 +107,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 
 	func test_Parse_ShouldFindAnyLanguageMatch_WhenNoExistingNeutralLanguageIsProvided() {
-		parser.currentLocale = NSLocale(localeIdentifier: "en")
+		parser.locale = NSLocale(localeIdentifier: "en")
 		parser.xml = booleanElementWithTranslations
 
 		let elements = parser.parse()
