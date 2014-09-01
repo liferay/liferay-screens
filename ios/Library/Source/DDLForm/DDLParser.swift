@@ -15,21 +15,20 @@ import Foundation
 
 public class DDLParser {
 
-	var xml:String?
-
-	public var currentLocale:NSLocale
+	public var xml:String?
+	public var locale:NSLocale
 
 	private(set) var defaultLocale:NSLocale?
 	private(set) var availableLocales:[NSLocale]?
 
 	public init(locale:NSLocale) {
-		currentLocale = locale
+		self.locale = locale
 	}
 
 	public func parse() -> [DDLElement]? {
 		var result:[DDLElement]? = nil
 
-		let xmlString = xml as NSString?
+		let xmlString = self.xml as NSString?
 
 		if let xmlValue = xmlString {
 			let data = xmlValue.dataUsingEncoding(NSUTF8StringEncoding)
@@ -98,13 +97,13 @@ public class DDLParser {
 		// locale fallback. It supports input both with one component (language) and
 		// two components (language and country).
 		//
-		// Examples for currentLocale = "es_ES"
+		// Examples for locale = "es_ES"
 		// 	a1. Matches elements with "es_ES" (full match)
 		//  a2. Matches elements with "es"
 		//  a3. Matches elements for any country: "es_ES", "es_AR"...
 		//  a4. Matches elements for default locale
 
-		// Examples for currentLocale = "es"
+		// Examples for locale = "es"
 		// 	b1. Matches elements with "es" (full match)
 		//  b2. Matches elements for any country: "es_ES", "es_AR"...
 		//  b3. Matches elements for default locale
@@ -114,12 +113,12 @@ public class DDLParser {
 			return nil
 		}
 
-		let currentLanguageCode = currentLocale.objectForKey(NSLocaleLanguageCode) as String
-		let currentCountryCode = currentLocale.objectForKey(NSLocaleCountryCode) as? String
+		let currentLanguageCode = locale.objectForKey(NSLocaleLanguageCode) as String
+		let currentCountryCode = locale.objectForKey(NSLocaleCountryCode) as? String
 
 		var foundMetadata:SMXMLElement? = nil
 
-		if let metadata = dynamicElement.childWithAttribute("locale", value: currentLocale.localeIdentifier) {
+		if let metadata = dynamicElement.childWithAttribute("locale", value: locale.localeIdentifier) {
 			// cases 'a1' and 'b1'
 
 			foundMetadata = metadata
