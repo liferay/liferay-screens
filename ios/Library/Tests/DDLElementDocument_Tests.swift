@@ -210,15 +210,15 @@ class DDLElementDocument_Tests: XCTestCase {
 		let elements = parser.parse()
 		let docElement = elements![0] as DDLElementDocument
 
-		let json = [
-			"groupId": "1234",
+		let json:[String:AnyObject] = [
+			"groupId": 1234,
 			"uuid": "abcd",
 			"version": "1.0",
 			"blablabla": "blebleble"]
 
 		docElement.uploadStatus = .Uploaded(json)
 
-		let expectedResult = "{\"groupId\":\"1234\",\"uuid\":\"abcd\",\"version\":\"1.0\"}"
+		let expectedResult = "{\"groupId\":1234,\"uuid\":\"abcd\",\"version\":\"1.0\"}"
 		XCTAssertEqual(expectedResult, docElement.currentStringValue!)
 	}
 

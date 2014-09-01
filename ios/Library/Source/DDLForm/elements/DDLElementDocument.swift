@@ -111,12 +111,12 @@ import Foundation
 
 		switch uploadStatus {
 			case .Uploaded(let json):
-				let groupId = (json["groupId"] ?? nil) as? String
+				let groupId = (json["groupId"] ?? nil) as? Int
 				let uuid = (json["uuid"] ?? nil) as? String
 				let version = (json["version"] ?? nil) as? String
 
 				if groupId != nil && uuid != nil && version != nil {
-					result = "{\"groupId\":\"\(groupId!)\"," +
+					result = "{\"groupId\":\(groupId!)," +
 								"\"uuid\":\"\(uuid!)\"," +
 								"\"version\":\"\(version!)\"}"
 				}
