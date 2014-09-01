@@ -38,7 +38,7 @@ public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_d
 
 		func onChange(selectedDate:NSDate!) {
 			element.currentValue = selectedDate
-			self.textField?.text = element.currentStringValue
+			self.textField?.text = element.currentDateLabel
 
 			let fullRange = NSMakeRange(0, countElements(self.textField!.text!))
 

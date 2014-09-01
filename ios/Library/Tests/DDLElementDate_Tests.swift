@@ -95,6 +95,19 @@ class DDLElementDate_Tests: XCTestCase {
 		XCTAssertEqual("06/19/2004", dateElement.currentStringValue!)
 	}
 
+	func test_CurrentDateLabel_ShouldReturnClientSideFormat() {
+		parser.xml = requiredDateElement
+		let elements = parser.parse()
+		let dateElement = elements![0] as DDLElementDate
+
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "dd/MM/yyyy"
+
+		dateElement.currentValue = dateFormatter.dateFromString("19/06/2004")
+
+		XCTAssertEqual("Jun 19, 2004", dateElement.currentDateLabel!)
+	}
+
 
 
 	private let requiredDateElement =

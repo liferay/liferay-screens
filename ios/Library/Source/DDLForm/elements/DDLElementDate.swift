@@ -15,6 +15,16 @@ import Foundation
 
 public class DDLElementDate : DDLElement {
 
+	public var currentDateLabel: String? {
+		var result: String?
+
+		if let date = currentValue as? NSDate {
+			result = clientDateFormatter.stringFromDate(date)
+		}
+
+		return result
+	}
+
 	private let serverDateFormat = "MM/dd/yyyy"
 
 	private let serverDateFormatter = NSDateFormatter()
