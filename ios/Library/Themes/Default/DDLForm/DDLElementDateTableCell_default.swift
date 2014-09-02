@@ -27,6 +27,10 @@ public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_d
 
 		if let dateElement = element as? DDLElementDate {
 			setFieldPresenter(dateElement)
+
+			if dateElement.currentValue != nil {
+				textField?.text = dateElement.currentDateLabel
+			}
 		}
 	}
 
