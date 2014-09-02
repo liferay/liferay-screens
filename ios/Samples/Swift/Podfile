@@ -1,4 +1,4 @@
-pod 'MBProgressHUD'
+pod 'MBProgressHUD', :git => 'https://github.com/jmnavarro/MBProgressHUD', :branch => 'cancel-delayed-hide'
 pod 'SMXMLDocument'
 pod 'DTPickerPresenter'
 pod 'TNRadioButtonGroup'
