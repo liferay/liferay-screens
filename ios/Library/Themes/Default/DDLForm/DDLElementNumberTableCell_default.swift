@@ -30,7 +30,9 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 		super.onChangedElement()
 
 		if let numberElement = element as? DDLElementNumber {
-			stepper?.value = Double(numberElement.currentValue as NSNumber)
+			if let currentValue = numberElement.currentValue as? NSNumber {
+				stepper?.value = currentValue
+			}
 			textField!.keyboardType =
 				(numberElement.dataType == DDLElementDataType.DDLInteger) ?
 					.NumberPad : .DecimalPad
