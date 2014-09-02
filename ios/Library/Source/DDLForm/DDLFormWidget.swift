@@ -240,15 +240,17 @@ import UIKit
 
 		var outError: NSError?
 
+		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber
+
 		let serviceContextAttributes = [
 				"userId":userId,
-				"scopeGroupId":groupId != 0 ? groupId : LiferayContext.instance.groupId]
+				"scopeGroupId":groupIdToUse]
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
 
 		if recordId == 0 {
 			service.addRecordWithGroupId(
-				(groupId as NSNumber).longLongValue,
+				groupIdToUse.longLongValue,
 				recordSetId: (recordSetId as NSNumber).longLongValue,
 				displayIndex: 0,
 				fieldsMap: formView().values,
