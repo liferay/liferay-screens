@@ -35,6 +35,18 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		tableView!.reloadData()
 	}
 
+	override public func resignFirstResponder() -> Bool {
+		var result:Bool = false
+
+		if let visibleCells = tableView!.visibleCells() as? [DDLElementTableCell] {
+			for cell in visibleCells {
+				cell.resignFirstResponder()
+			}
+		}
+
+		return result
+	}
+
 	override public func becomeFirstResponder() -> Bool {
 		var result = false
 
