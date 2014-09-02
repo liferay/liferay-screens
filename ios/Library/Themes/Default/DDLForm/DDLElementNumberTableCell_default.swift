@@ -23,6 +23,8 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 	}
 
 	override public func awakeFromNib() {
+		super.awakeFromNib()
+
 		stepper?.maximumValue = Double(UInt16.max)
 	}
 

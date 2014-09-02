@@ -17,13 +17,18 @@ public class DDLElementTableCell: UITableViewCell {
 
 	public var tableView:UITableView?
 	public var indexPath:NSIndexPath?
-	public var formView:DDLFormView?
+	public var formView:DDLFormTableView?
 
 	public var element:DDLElement? {
 		didSet {
 			element?.validatedClosure = onValidated
 			onChangedElement()
 		}
+	}
+
+	override public func awakeFromNib() {
+		let simpleTapRecognizer = UITapGestureRecognizer(target: self, action: "simpleTapDetected")
+		addGestureRecognizer(simpleTapRecognizer)
 	}
 
 	override public func resignFirstResponder() -> Bool {
@@ -126,6 +131,10 @@ public class DDLElementTableCell: UITableViewCell {
 	}
 
 	internal func changeDocumentUploadStatus(element: DDLElementDocument) {
+	}
+
+	internal func simpleTapDetected() {
+		formView!.resignFirstResponder()
 	}
 
 }
