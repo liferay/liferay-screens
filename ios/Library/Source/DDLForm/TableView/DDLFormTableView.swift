@@ -17,6 +17,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	@IBOutlet var tableView: UITableView?
 
+	internal var firstCellResponder:UIResponder?
+
 	internal var submitButtonHeight:CGFloat = 0.0
 
 	override public func onCreate() {
@@ -38,9 +40,10 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	override public func resignFirstResponder() -> Bool {
 		var result:Bool = false
 
-		if let visibleCells = tableView!.visibleCells() as? [DDLElementTableCell] {
-			for cell in visibleCells {
-				cell.resignFirstResponder()
+		if let cellValue = firstCellResponder {
+			result = cellValue.resignFirstResponder()
+			if result {
+				firstCellResponder = nil
 			}
 		}
 

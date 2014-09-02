@@ -31,21 +31,6 @@ public class DDLElementTableCell: UITableViewCell {
 		addGestureRecognizer(simpleTapRecognizer)
 	}
 
-	override public func resignFirstResponder() -> Bool {
-		var result:Bool = false
-
-		if let firstView = viewWithTag(1) {
-			if firstView.isFirstResponder() {
-				result = firstView.resignFirstResponder()
-			}
-		}
-		else {
-			result = super.resignFirstResponder()
-		}
-
-		return result
-	}
-
 	public var isLastCell:Bool {
 		get {
 			var result = false

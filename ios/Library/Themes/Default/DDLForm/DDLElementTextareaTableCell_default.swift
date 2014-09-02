@@ -79,6 +79,8 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		self.textViewBackground!.frame.size.height = expandedBackgroundHeight
 
 		textViewBackground?.highlighted = true
+
+		formView!.firstCellResponder = textView
 	}
 
 	public func textViewDidEndEditing(textView: UITextView!) {
