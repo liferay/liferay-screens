@@ -61,7 +61,7 @@ import UIKit
 	override public func onServerError(error: NSError) {
 		delegate?.onForgotPasswordError?(error)
 
-		finishOperationWithMessage("Error requesting password!", details: error.localizedDescription)
+		finishOperationWithError(error, message:"Error requesting password!")
 	}
 
 	override public func onServerResult(result: [String:AnyObject]) {

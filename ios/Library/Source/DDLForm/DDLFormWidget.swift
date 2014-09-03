@@ -82,11 +82,11 @@ import UIKit
 		switch currentOperation {
 			case .Submitting:
 				delegate?.onFormSubmitError?(error)
-				finishOperationWithMessage("An error happened submitting form")
+				finishOperationWithError(error, message:"An error happened submitting form")
 
 			case .Loading:
 				delegate?.onFormLoadError?(error)
-				finishOperationWithMessage("An error happened loading form")
+				finishOperationWithError(error, message:"An error happened loading form")
 
 			case .Uploading(let document, _):
 				document.uploadStatus = .Failed(error)
@@ -99,7 +99,7 @@ import UIKit
 
 				delegate?.onDocumentUploadError?(document, error: error)
 
-				showHUDWithMessage("An error happened uploading file", details: nil, closeMode:.NoAutoclose(true))
+				finishOperationWithError(error, message:"An error happened uploading file")
 
 			default: ()
 		}
