@@ -15,11 +15,12 @@ import Foundation
 
 // WORKAROUND!
 // This hack is because compiler error "Class variables not yet supported"
-struct Lock {
+internal struct Lock {
 	static var token = "token"
 }
 
-struct MBProgressHUDInstance {
+
+internal struct MBProgressHUDInstance {
 	static var instance:MBProgressHUD? = nil
 }
 
