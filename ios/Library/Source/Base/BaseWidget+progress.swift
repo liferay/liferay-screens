@@ -32,6 +32,21 @@ extension BaseWidget {
 		case NoAutoclose(Bool)
 		case AutocloseDelayed(Double, Bool)
 		case AutocloseComputedDelay(Bool)
+
+		internal func allowCloseOnTouch() -> Bool {
+			var result = false
+
+			switch self {
+				case .AutocloseComputedDelay(let touchClose):
+					result = touchClose
+				case .AutocloseDelayed(let delay, let touchClose):
+					result = touchClose
+				case .NoAutoclose(let touchClose):
+					result = touchClose
+			}
+
+			return result
+		}
 	}
 
     /*
@@ -56,20 +71,18 @@ extension BaseWidget {
 				MBProgressHUDInstance.instance!.detailsLabelText = ""
 			}
 
+			MBProgressHUDInstance.instance!.tag = closeMode.allowCloseOnTouch() ? 1 : 0
+
 			var closeDelay: Double?
-			var closesOnTouch: Bool = false
 
 			switch closeMode {
-				case .AutocloseComputedDelay(let touchClose):
+				case .AutocloseComputedDelay(_):
 					closeDelay = Double.infinity
-					closesOnTouch = touchClose
 					MBProgressHUDInstance.instance!.mode = MBProgressHUDModeText
-				case .AutocloseDelayed(let delay, let touchClose):
+				case .AutocloseDelayed(let delay, _):
 					closeDelay = delay
-					closesOnTouch = touchClose
 					MBProgressHUDInstance.instance!.mode = MBProgressHUDModeText
-				case .NoAutoclose(let touchClose):
-					closesOnTouch = touchClose
+				default: ()
 			}
 
 			MBProgressHUDInstance.instance!.show(true)
