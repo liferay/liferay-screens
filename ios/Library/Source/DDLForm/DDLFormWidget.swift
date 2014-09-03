@@ -99,7 +99,7 @@ import UIKit
 
 				delegate?.onDocumentUploadError?(document, error: error)
 
-				showHUDWithMessage("An error happened uploading file", details: nil, closeMode:.AutocloseDelayed(3.0))
+				showHUDWithMessage("An error happened uploading file", details: nil, closeMode:.NoAutoclose(true))
 
 			default: ()
 		}
@@ -225,7 +225,7 @@ import UIKit
 		}
 
 		if !formView().validateForm(autoscroll:autoscrollOnValidation) {
-			showHUDWithMessage("Some values are not valid", details: "Please, review your form", closeMode:.AutocloseDelayed(1.5))
+			showHUDWithMessage("Some values are not valid", details: "Please, review your form", closeMode:.AutocloseDelayed(3.0, true))
 			return false
 		}
 

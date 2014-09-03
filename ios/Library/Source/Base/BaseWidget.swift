@@ -239,7 +239,7 @@ import QuartzCore
 	}
 
 	internal func finishOperationWithError(error:NSError, message:String, details:String? = nil) {
-		showHUDWithMessage(message, details: details, closeMode:.AutocloseComputedDelay)
+		showHUDWithMessage(message, details: details, closeMode:.NoAutoclose(false))
 		onFinishOperation()
 		widgetView?.onFinishOperation()
 	}

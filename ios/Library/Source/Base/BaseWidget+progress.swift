@@ -29,18 +29,20 @@ struct MBProgressHUDInstance {
 extension BaseWidget {
 
 	public enum CloseMode {
-		case AutocloseDelayed(Double)
-		case AutocloseComputedDelay
-		case NoAutoclose
+		case NoAutoclose(Bool)
+		case AutocloseDelayed(Double, Bool)
+		case AutocloseComputedDelay(Bool)
 	}
 
     /*
      * showHUDWithMessage shows an animated Progress HUD with the message and details provided.
      */
-	public func showHUDWithMessage(message:String?, details:String? = nil, closeMode:CloseMode = .NoAutoclose) {
+	public func showHUDWithMessage(message:String?, details:String? = nil, closeMode:CloseMode = .NoAutoclose(false)) {
 		synchronized(Lock.token) {
 			if MBProgressHUDInstance.instance == nil {
 				MBProgressHUDInstance.instance = MBProgressHUD.showHUDAddedTo(self.rootView(self), animated:true)
+				MBProgressHUDInstance.instance!.addGestureRecognizer(
+						UITapGestureRecognizer(target: self, action: "simpleTapDetected"))
 			}
 
 			if message != nil {
@@ -55,15 +57,19 @@ extension BaseWidget {
 			}
 
 			var closeDelay: Double?
+			var closesOnTouch: Bool = false
 
 			switch closeMode {
-				case .AutocloseComputedDelay:
+				case .AutocloseComputedDelay(let touchClose):
 					closeDelay = Double.infinity
+					closesOnTouch = touchClose
 					MBProgressHUDInstance.instance!.mode = MBProgressHUDModeText
-				case .AutocloseDelayed(let delay):
+				case .AutocloseDelayed(let delay, let touchClose):
 					closeDelay = delay
+					closesOnTouch = touchClose
 					MBProgressHUDInstance.instance!.mode = MBProgressHUDModeText
-				default: ()
+				case .NoAutoclose(let touchClose):
+					closesOnTouch = touchClose
 			}
 
 			MBProgressHUDInstance.instance!.show(true)
@@ -88,7 +94,7 @@ extension BaseWidget {
      * a few seconds, calculated based on the length of the message.
      */
 	public func hideHUDWithMessage(message:String, details:String? = nil) {
-		self.showHUDWithMessage(message, details: details, closeMode: .AutocloseComputedDelay)
+		self.showHUDWithMessage(message, details: details, closeMode: .AutocloseComputedDelay(true))
 	}
 
 	public func hideHUD() {
