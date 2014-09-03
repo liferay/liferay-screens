@@ -28,10 +28,16 @@ struct MBProgressHUDInstance {
  */
 extension BaseWidget {
 
+	public enum CloseMode {
+		case NoClose
+		case Delayed(Double)
+		case AutoDelayed
+	}
+
     /*
      * showHUDWithMessage shows an animated Progress HUD with the message and details provided.
      */
-	public func showHUDWithMessage(message:String?, details:String? = nil, secondsToShow:Double? = nil) {
+	public func showHUDWithMessage(message:String?, details:String? = nil, closeMode:CloseMode = .NoClose) {
 		synchronized(Lock.token) {
 			if MBProgressHUDInstance.instance == nil {
 				MBProgressHUDInstance.instance = MBProgressHUD.showHUDAddedTo(self.rootView(self), animated:true)
@@ -41,16 +47,38 @@ extension BaseWidget {
 				MBProgressHUDInstance.instance!.labelText = message
 			}
 
-			MBProgressHUDInstance.instance!.detailsLabelText = details?
+			if let detailsValue = details {
+				MBProgressHUDInstance.instance!.detailsLabelText = detailsValue
+			}
+			else {
+				MBProgressHUDInstance.instance!.detailsLabelText = ""
+			}
 
-			if secondsToShow != nil {
-				MBProgressHUDInstance.instance!.mode = MBProgressHUDModeText
+			var closeDelay: Double?
+
+			switch closeMode {
+				case .AutoDelayed:
+					closeDelay = Double.infinity
+					MBProgressHUDInstance.instance!.mode = MBProgressHUDModeText
+				case .Delayed(let delay):
+					closeDelay = delay
+					MBProgressHUDInstance.instance!.mode = MBProgressHUDModeText
+				default: ()
 			}
 
 			MBProgressHUDInstance.instance!.show(true)
 
-			if let delay = secondsToShow {
+			if var delay = closeDelay {
+				if delay == Double.infinity {
+					// compute autodelay based on text's length
+					let len: Int =
+    	                countElements(MBProgressHUDInstance.instance!.labelText) +
+						countElements(MBProgressHUDInstance.instance!.detailsLabelText)
+					delay = 1.5 + (Double(len) * 0.01)
+				}
+
 				MBProgressHUDInstance.instance!.hide(true, afterDelay: delay)
+				MBProgressHUDInstance.instance = nil
 			}
 		}
 	}
@@ -60,26 +88,17 @@ extension BaseWidget {
      * a few seconds, calculated based on the length of the message.
      */
 	public func hideHUDWithMessage(message:String, details:String? = nil) {
+		self.showHUDWithMessage(message, details: details, closeMode: .AutoDelayed)
+	}
+
+	public func hideHUD() {
 		synchronized(Lock.token) {
 			if let instance = MBProgressHUDInstance.instance {
-				instance.mode = MBProgressHUDModeText
-				instance.labelText = message
-				
-				if let detailsValue = details {
-					instance.detailsLabelText = detailsValue
-				}
-				else {
-					instance.detailsLabelText = ""
-				}
-
-				let len: Int =
-                    countElements(instance.labelText as String) + countElements(instance.detailsLabelText as String)
-				let delay = 1.5 + (Double(len) * 0.01)
-
-				instance.hide(true, afterDelay: delay)
+				instance.hide(true)
 			}
 		}
 	}
+
 
     // PRIVATE METHODS
 
@@ -90,7 +109,7 @@ extension BaseWidget {
         
         return rootView(currentView.superview!)
     }
-    
+
     private func synchronized(lock:AnyObject, closure: () -> ()) {
         objc_sync_enter(lock)
         closure()
