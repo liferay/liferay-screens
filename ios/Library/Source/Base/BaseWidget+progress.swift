@@ -22,7 +22,19 @@ internal struct Lock {
 
 internal struct MBProgressHUDInstance {
 	static var instance:MBProgressHUD? = nil
+	static var touchHandler:HUDTouchHandler?
 }
+
+
+internal class HUDTouchHandler {
+	internal dynamic func simpleTapDetected(recognizer:UIGestureRecognizer!) {
+		if let hud = recognizer.view as? MBProgressHUD {
+			hud.hide(true)
+			MBProgressHUDInstance.instance = nil
+		}
+	}
+}
+
 
 /*!
  * This extension to BaseWidget adds methods to display an "In Progress" HUD.
@@ -50,15 +62,39 @@ extension BaseWidget {
 		}
 	}
 
+	public enum SpinnerMode {
+		case IndeterminateSpinner
+		case DeterminateSpinner
+		case NoSpinner
+
+		internal func toProgressModeHUD() -> MBProgressHUDMode {
+			switch self {
+				case IndeterminateSpinner:
+					return MBProgressHUDModeIndeterminate
+				case DeterminateSpinner:
+					return MBProgressHUDModeDeterminate
+				case NoSpinner:
+					return MBProgressHUDModeText
+			}
+		}
+	}
+
     /*
      * showHUDWithMessage shows an animated Progress HUD with the message and details provided.
      */
-	public func showHUDWithMessage(message:String?, details:String? = nil, closeMode:CloseMode = .NoAutoclose(false)) {
+	public func showHUDWithMessage(message:String?, details:String? = nil,
+			closeMode:CloseMode = .NoAutoclose(false), spinnerMode:SpinnerMode = .IndeterminateSpinner) {
 		synchronized(Lock.token) {
 			if MBProgressHUDInstance.instance == nil {
 				MBProgressHUDInstance.instance = MBProgressHUD.showHUDAddedTo(self.rootView(self), animated:true)
+			}
+
+			if closeMode.allowCloseOnTouch() {
+				MBProgressHUDInstance.touchHandler = HUDTouchHandler()
 				MBProgressHUDInstance.instance!.addGestureRecognizer(
-						UITapGestureRecognizer(target: self, action: "simpleTapDetected"))
+						UITapGestureRecognizer(
+							target: MBProgressHUDInstance.touchHandler,
+							action: "simpleTapDetected:"))
 			}
 
 			if message != nil {
@@ -72,17 +108,15 @@ extension BaseWidget {
 				MBProgressHUDInstance.instance!.detailsLabelText = ""
 			}
 
-			MBProgressHUDInstance.instance!.tag = closeMode.allowCloseOnTouch() ? 1 : 0
+			MBProgressHUDInstance.instance!.mode = spinnerMode.toProgressModeHUD()
 
 			var closeDelay: Double?
 
 			switch closeMode {
 				case .AutocloseComputedDelay(_):
 					closeDelay = Double.infinity
-					MBProgressHUDInstance.instance!.mode = MBProgressHUDModeText
 				case .AutocloseDelayed(let delay, _):
 					closeDelay = delay
-					MBProgressHUDInstance.instance!.mode = MBProgressHUDModeText
 				default: ()
 			}
 
@@ -108,7 +142,7 @@ extension BaseWidget {
      * a few seconds, calculated based on the length of the message.
      */
 	public func hideHUDWithMessage(message:String, details:String? = nil) {
-		self.showHUDWithMessage(message, details: details, closeMode: .AutocloseComputedDelay(true))
+		self.showHUDWithMessage(message, details: details, closeMode: .AutocloseComputedDelay(true), spinnerMode:.NoSpinner)
 	}
 
 	public func hideHUD() {
@@ -135,5 +169,5 @@ extension BaseWidget {
         closure()
         objc_sync_exit(lock)
     }
-    
+
 }

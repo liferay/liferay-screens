@@ -225,7 +225,7 @@ import UIKit
 		}
 
 		if !formView().validateForm(autoscroll:autoscrollOnValidation) {
-			showHUDWithMessage("Some values are not valid", details: "Please, review your form", closeMode:.AutocloseDelayed(3.0, true))
+			showHUDWithMessage("Some values are not valid", details: "Please, review your form", closeMode:.AutocloseDelayed(3.0, true), spinnerMode:.NoSpinner)
 			return false
 		}
 
