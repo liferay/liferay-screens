@@ -74,7 +74,7 @@ public class LoginWidget: BaseWidget {
 		LiferayContext.instance.clearSession()
 		LRSession.removeStoredCredential()
 
-		hideHUDWithMessage("Error signing in!")
+		finishOperationWithError(error, message:"Error signing in!")
     }
 
 	override public func onServerResult(result: [String:AnyObject]) {
@@ -86,7 +86,7 @@ public class LoginWidget: BaseWidget {
 			}
 		}
 
-		hideHUDWithMessage("Sign in completed")
+		finishOperationWithMessage("Sign in completed")
     }
 
     // PRIVATE METHDOS
@@ -96,7 +96,7 @@ public class LoginWidget: BaseWidget {
 	}
 
 	private func sendLoginWithUserName(userName:String, password:String) {
-		showHUDWithMessage("Sending sign in...", details:"Wait few seconds...")
+		startOperationWithMessage("Sending sign in...", details:"Wait few seconds...")
 
 		let session = LiferayContext.instance.createSession(userName, password: password)
 		session.callback = self

@@ -238,6 +238,12 @@ import QuartzCore
 		widgetView?.onStartOperation()
 	}
 
+	internal func finishOperationWithError(error:NSError, message:String, details:String? = nil) {
+		showHUDWithMessage(message, details: details, closeMode:.Touch)
+		onFinishOperation()
+		widgetView?.onFinishOperation()
+	}
+
 	internal func finishOperationWithMessage(message:String, details:String? = nil) {
 		hideHUDWithMessage(message, details: details)
 		onFinishOperation()
