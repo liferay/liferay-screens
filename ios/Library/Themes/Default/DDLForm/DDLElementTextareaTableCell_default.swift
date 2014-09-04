@@ -24,7 +24,7 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	private var originalTextViewRect:CGRect = CGRectZero
 	private var originalBackgroundRect:CGRect = CGRectZero
 
-	private let expandedCellHeight:CGFloat = 104 + 25
+	private let expandedCellHeight:CGFloat = 104
 	private let expandedTextViewHeight:CGFloat = 84
 	private let expandedBackgroundHeight:CGFloat = 91
 
@@ -35,9 +35,24 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 				textView?.text = stringElement.currentStringValue
 			}
 
-			placeholder?.text = stringElement.label
-			placeholder?.alpha = (textView?.text == "") ? 1.0 : 0.0
-			label?.text = stringElement.label
+			if stringElement.showLabel {
+				placeholder?.text = ""
+				label?.text = stringElement.label
+				label?.hidden = false
+
+				moveSubviewsVertically(0.0)
+			}
+			else {
+				placeholder?.text = stringElement.label
+				placeholder?.alpha = (textView?.text == "") ? 1.0 : 0.0
+				label?.hidden = true
+
+				moveSubviewsVertically(-(
+					DDLBaseElementTextFieldTableCell_default.heightWithLabel -
+					DDLBaseElementTextFieldTableCell_default.heightWithoutLabel))
+				element?.currentHeight =
+					DDLBaseElementTextFieldTableCell_default.heightWithoutLabel
+			}
 
 			textView?.returnKeyType = isLastCell ? .Send : .Next
 
@@ -66,7 +81,11 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	}
 
 	public func textViewDidBeginEditing(textView: UITextView!) {
-		changeCellHeight(expandedCellHeight)
+		var heightLabelOffset:CGFloat =
+				DDLBaseElementTextFieldTableCell_default.heightWithLabel -
+				DDLBaseElementTextFieldTableCell_default.heightWithoutLabel
+
+		changeCellHeight(expandedCellHeight + (element!.showLabel ? heightLabelOffset : 0.0))
 
 		separator!.frame.origin.y += expandedBackgroundHeight - originalBackgroundRect.size.height
 
@@ -87,7 +106,11 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		textView.frame = originalTextViewRect
 		textViewBackground!.frame = originalBackgroundRect
 
-		changeCellHeight(element!.editorType.registeredHeight)
+		var heightLabelOffset:CGFloat =
+				DDLBaseElementTextFieldTableCell_default.heightWithLabel -
+				DDLBaseElementTextFieldTableCell_default.heightWithoutLabel
+
+		changeCellHeight(element!.editorType.registeredHeight - (element!.showLabel ? 0.0 : heightLabelOffset))
 
 		textViewBackground?.highlighted = false
 	}
