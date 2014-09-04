@@ -22,32 +22,11 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	var customAction: CustomActionType?
 
-	/*
-	* onCreate is fired after the initialization of the widget view. Override this method to perform actions such as
-	* setting colors, sizes, positioning, etc to the component's subviews.
-	*/
-	public func onCreate() {
-	}
 
-	public func onSetTranslations() {
-	}
-
-	public func onStartOperation() {
-	}
-
-	public func onFinishOperation() {
-	}
-
-	public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
-		return true
-	}
-
-	public func onSetCustomActionForControl(control: UIControl) -> Bool {
-		return true
-	}
+	//MARK: UIView
 
 	override public func awakeFromNib() {
-		setUpViewHierarchy(self)
+		setUpView(self)
 		onSetTranslations()
 		onCreate();
 	}
@@ -69,8 +48,10 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		return result
 	}
 
-	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
 
+	//MARK: UITextFieldDelegate
+
+	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		let nextResponder = nextResponderForView(textField)
 
 		if nextResponder != textField {
@@ -94,6 +75,39 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 		return true
 	}
+	
+
+	//MARK: BaseWidgetView Methods
+
+	/*
+	* onCreate is fired after the initialization of the widget view. Override this method to perform actions such as
+	* setting colors, sizes, positioning, etc to the component's subviews.
+	*/
+	public func onCreate() {
+	}
+
+	public func onFinishOperation() {
+	}
+
+	public func onSetCustomActionForControl(control: UIControl) -> Bool {
+		return true
+	}
+
+	public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
+		return true
+	}
+
+	public func onSetTranslations() {
+	}
+
+	public func onStartOperation() {
+	}
+	
+	internal func customActionHandler(sender: UIControl!) {
+		endEditing(true)
+
+		customAction?(sender.restorationIdentifier, sender)
+	}
 
 	internal func themeName() -> String? {
 		var className = NSStringFromClass(self.dynamicType)
@@ -102,41 +116,20 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 		return (components.count > 1) ? components.last : nil
 	}
-
+	
 	internal func nextResponderForView(view:UIView) -> UIResponder {
 		if view.tag > 0 {
-			if let nextView = viewWithTag(view.tag.successor()) {
+			if let nextView = viewWithTag(view.tag + 1) {
 				return nextView
 			}
 		}
 		return view
 	}
 
-	func customActionHandler(sender: UIControl!) {
-		endEditing(true)
-
-		customAction?(sender.restorationIdentifier, sender)
-	}
-
 	private func addCustomActionForControl(control: UIControl) {
 		if onSetCustomActionForControl(control) {
 			control.addTarget(self, action: "customActionHandler:", forControlEvents: UIControlEvents.TouchUpInside)
 		}
-    }
-
-	private func setUpViewHierarchy(parentView: UIView) {
-		setUpView(parentView)
-
-		for subview:UIView in parentView.subviews as [UIView] {
-			setUpViewHierarchy(subview)
-		}
-	}
-
-	private func setUpView(view: UIView) {
-		if let control = view as? UIControl {
-			addCustomActionForControl(control)
-		}
-		addDefaultDelegatesForView(view)
 	}
 
 	private func addDefaultDelegatesForView(view:UIView) {
@@ -144,6 +137,18 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 			if onSetDefaultDelegate(self, view:textField) {
 				textField.delegate = self
 			}
+		}
+	}
+
+	private func setUpView(view: UIView) {
+		if let control = view as? UIControl {
+			addCustomActionForControl(control)
+		}
+
+		addDefaultDelegatesForView(view)
+
+		for subview:UIView in view.subviews as [UIView] {
+			setUpView(subview)
 		}
 	}
 
