@@ -38,6 +38,12 @@ public class LoginView_default: LoginView {
 		}
 	}
 
+	//MARK: LoginView
+
+	override public func onCreate() {
+		BaseWidget.setHUDCustomColor(UIColor(red: 0, green: 184/255.0, blue: 224/255.0, alpha: 0.87))
+	}
+
 	override public var shouldRememberCredentials: Bool {
 		if let rememberSwitchValue = rememberSwitch {
 			return rememberSwitchValue.on;

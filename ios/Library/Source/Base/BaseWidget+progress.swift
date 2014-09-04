@@ -23,6 +23,27 @@ internal struct Lock {
 internal struct MBProgressHUDInstance {
 	static var instance:MBProgressHUD?
 	static var touchHandler:HUDTouchHandler?
+	static var customView:UIView? {
+		didSet {
+			if instance != nil {
+				instance!.customView = customView
+			}
+		}
+	}
+	static var customColor:UIColor? {
+		didSet {
+			if instance != nil {
+				instance!.color = customColor
+			}
+		}
+	}
+	static var customOpacity:Float = 0.8 {
+		didSet {
+			if instance != nil {
+				instance!.opacity = customOpacity
+			}
+		}
+	}
 }
 
 
@@ -79,6 +100,14 @@ extension BaseWidget {
 		}
 	}
 
+	public class func setHUDCustomView(newValue:UIView?) {
+		MBProgressHUDInstance.customView = newValue
+	}
+
+	public class func setHUDCustomColor(newValue:UIColor?) {
+		MBProgressHUDInstance.customColor = newValue
+	}
+
     /*
      * showHUDWithMessage shows an animated Progress HUD with the message and details provided.
      */
@@ -91,6 +120,9 @@ extension BaseWidget {
 				MBProgressHUDInstance.instance =
 					MBProgressHUD.showHUDAddedTo(self.rootView(self), animated:true)
 			}
+
+			MBProgressHUDInstance.instance?.customView = MBProgressHUDInstance.customView
+			MBProgressHUDInstance.instance?.color = MBProgressHUDInstance.customColor
 
 			if closeMode.allowCloseOnTouch() {
 				MBProgressHUDInstance.touchHandler = HUDTouchHandler()
