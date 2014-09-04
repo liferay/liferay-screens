@@ -13,7 +13,7 @@
 */
 import Foundation
 
-// WORKAROUND!
+//FIME
 // This hack is because compiler error "Class variables not yet supported"
 internal struct Lock {
 	static var token = "token"
@@ -108,9 +108,9 @@ extension BaseWidget {
 		MBProgressHUDInstance.customColor = newValue
 	}
 
-    /*
-     * showHUDWithMessage shows an animated Progress HUD with the message and details provided.
-     */
+	/*
+	 * showHUDWithMessage shows an animated Progress HUD with the message and details provided.
+	*/
 	public func showHUDWithMessage(message:String?, details:String? = nil,
 			closeMode:CloseMode = .NoAutoclose(false),
 			spinnerMode:SpinnerMode = .IndeterminateSpinner) {
@@ -172,10 +172,10 @@ extension BaseWidget {
 		}
 	}
 
-    /*
-     * hideHUDWithMessage hides an existing animated Progress HUD displaying the message and details provided first for
-     * a few seconds, calculated based on the length of the message.
-     */
+	/*
+	 * hideHUDWithMessage hides an existing animated Progress HUD displaying the message and details provided first for
+	 * a few seconds, calculated based on the length of the message.
+	*/
 	public func hideHUDWithMessage(message:String, details:String? = nil) {
 		self.showHUDWithMessage(message,
 			details: details,
@@ -191,21 +191,20 @@ extension BaseWidget {
 		}
 	}
 
+	//MARK: PRIVATE METHODS
 
-    // PRIVATE METHODS
+	private func rootView(currentView:UIView) -> UIView {
+		if currentView.superview == nil {
+			return currentView;
+		}
 
-    private func rootView(currentView:UIView) -> UIView {
-        if currentView.superview == nil {
-            return currentView;
-        }
-        
-        return rootView(currentView.superview!)
-    }
+		return rootView(currentView.superview!)
+	}
 
-    private func synchronized(lock:AnyObject, closure: () -> ()) {
-        objc_sync_enter(lock)
-        closure()
-        objc_sync_exit(lock)
-    }
+	private func synchronized(lock:AnyObject, closure: () -> ()) {
+		objc_sync_enter(lock)
+		closure()
+		objc_sync_exit(lock)
+	}
 
 }

@@ -44,7 +44,7 @@ import UIKit
 		resetClosure = resetClosures[authType]
 	}
 
-    // MARK: BaseWidget METHODS
+	// MARK: BaseWidget METHODS
 
 	override public func onCreate() {
 		setAuthType(AuthType.Email.toRaw())
@@ -83,7 +83,7 @@ import UIKit
 
 			finishOperationWithMessage("An error happened", details: errorMsg)
 		}
-    }
+	}
 
 
 	private func forgotPasswordView() -> ForgotPasswordView {
