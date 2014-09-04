@@ -162,8 +162,7 @@ public enum DDLElementEditor: String {
 	internal(set) var repeatable:Bool
 	internal(set) var required:Bool
 
-	internal(set) var showLabel:Bool 	// Makes sense in mobile??
-	internal(set) var width:Int? 		// Makes sense in mobile??
+	internal(set) var showLabel:Bool
 
 
 	public init(attributes:[String:String], localized:[String:AnyObject]) {
@@ -174,7 +173,7 @@ public enum DDLElementEditor: String {
 		readOnly = Bool.from(string: attributes["readOnly"] ?? "false")
 		repeatable = Bool.from(string: attributes["repeatable"] ?? "false")
 		required = Bool.from(string: attributes["required"] ?? "true")
-		showLabel = Bool.from(string: attributes["showLabel"] ?? "true")
+		showLabel = Bool.from(string: attributes["showLabel"] ?? "false")
 
 		label = (localized["label"] ?? "") as String
 		tip = (localized["tip"] ?? "") as String

@@ -17,9 +17,11 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 
 	@IBOutlet var textField: UITextField?
 	@IBOutlet var textFieldBackground: UIImageView?
+	@IBOutlet var label: UILabel?
 
 	override func onChangedElement() {
 		textField?.placeholder = element!.label
+		label?.text = element!.label
 
 		textField?.returnKeyType = isLastCell ? .Send : .Next
 
