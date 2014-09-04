@@ -22,6 +22,7 @@
 		884CE5251994FAF500ADF047 /* DDLElementCheckboxTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE5241994FAF500ADF047 /* DDLElementCheckboxTableCell_default.swift */; };
 		885FD67F19968E1900F23BA1 /* DDLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FD67D19968E1900F23BA1 /* DDLElement.swift */; };
 		885FD6831996E1DF00F23BA1 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FD6821996E1DF00F23BA1 /* FormViewController.swift */; };
+		8860FF7419B862B5000F3FC4 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8860FF7319B862B5000F3FC4 /* UIView+Animations.swift */; };
 		8868AFCC19656B0500FD5214 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868AFCB19656B0500FD5214 /* AppDelegate.swift */; };
 		8868AFCE19656B0500FD5214 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868AFCD19656B0500FD5214 /* ViewController.swift */; };
 		8868AFD119656B0500FD5214 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8868AFCF19656B0500FD5214 /* Main.storyboard */; };
@@ -125,6 +126,7 @@
 		884CE5241994FAF500ADF047 /* DDLElementCheckboxTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementCheckboxTableCell_default.swift; sourceTree = "<group>"; };
 		885FD67D19968E1900F23BA1 /* DDLElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElement.swift; sourceTree = "<group>"; };
 		885FD6821996E1DF00F23BA1 /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		8860FF7319B862B5000F3FC4 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		8868AFC619656B0500FD5214 /* Liferay-iOS-Widgets-Swift-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liferay-iOS-Widgets-Swift-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8868AFCA19656B0500FD5214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8868AFCB19656B0500FD5214 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				888F61FC198FD3B10082786B /* NSLocale+CurrentLocale.swift */,
 				88999AF2198EF1A700E746A6 /* UIImage+Themes.h */,
 				88999AF3198EF1A700E746A6 /* UIImage+Themes.m */,
+				8860FF7319B862B5000F3FC4 /* UIView+Animations.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -752,6 +755,7 @@
 				88D90A6319A215A8003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */,
 				884CE51B1994F37100ADF047 /* DDLFormView_default.swift in Sources */,
 				888F61FD198FD3B10082786B /* NSLocale+CurrentLocale.swift in Sources */,
+				8860FF7419B862B5000F3FC4 /* UIView+Animations.swift in Sources */,
 				88D5377E19991C0400615515 /* DDLElementTableCell.swift in Sources */,
 				8897D9C3198A810F00D3DF51 /* ForgotPasswordView.swift in Sources */,
 				88832F9A19656B3F00E3DF9F /* BaseWidgetView.swift in Sources */,

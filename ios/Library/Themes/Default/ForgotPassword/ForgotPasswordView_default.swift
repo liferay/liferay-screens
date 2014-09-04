@@ -29,8 +29,8 @@ public class ForgotPasswordView_default: ForgotPasswordView {
 		userNameField!.text = userName
 	}
 
-	override public func setAuthType(authTypeDescription: String) {
-		LoginView_default.setStylesForAuthType(authTypeDescription, userNameField: userNameField, userNameIcon: userNameIcon)
+	override public func setAuthType(authTypeLabel: String) {
+		LoginView_default.setStylesForAuthType(authTypeLabel, userNameField: userNameField, userNameIcon: userNameIcon)
 	}
 
 	// MARK: UITextFieldDelegate

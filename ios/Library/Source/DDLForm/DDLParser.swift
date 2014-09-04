@@ -15,21 +15,20 @@ import Foundation
 
 public class DDLParser {
 
-	var xml:String?
-
-	public var currentLocale:NSLocale
+	public var xml:String?
+	public var locale:NSLocale
 
 	private(set) var defaultLocale:NSLocale?
 	private(set) var availableLocales:[NSLocale]?
 
 	public init(locale:NSLocale) {
-		currentLocale = locale
+		self.locale = locale
 	}
 
 	public func parse() -> [DDLElement]? {
 		var result:[DDLElement]? = nil
 
-		let xmlString = xml as NSString?
+		let xmlString = self.xml as NSString?
 
 		if let xmlValue = xmlString {
 			let data = xmlValue.dataUsingEncoding(NSUTF8StringEncoding)
@@ -63,14 +62,14 @@ public class DDLParser {
 		return result
 	}
 
-	private func createFormElement(element:SMXMLElement) -> DDLElement? {
+	private func createFormElement(xmlElement:SMXMLElement) -> DDLElement? {
 		var result:DDLElement?
 
-		let dataType = DDLElementDataType.from(xmlElement:element)
+		let dataType = DDLElementDataType.from(xmlElement:xmlElement)
 
-		var localizedMetadata = processLocalizedMetadata(element)
+		let localized = processLocalizedMetadata(xmlElement)
 
-		return dataType.createElement(attributes:element.attributes as [String:String], localized:localizedMetadata)
+		return dataType.createElement(attributes:xmlElement.attributes as [String:String], localized:localized)
 	}
 
 	private func processLocalizedMetadata(dynamicElement:SMXMLElement) -> [String:AnyObject] {
@@ -93,7 +92,7 @@ public class DDLParser {
 				option["name"] = optionElement.attributeNamed("name")
 				option["value"] = optionElement.attributeNamed("value")
 
-				if let localizedMetadata = findLocalizedMetadata(optionElement) {
+				if let localizedMetadata = findMetadataElementForLocale(optionElement) {
 					if let element = localizedMetadata.childWithAttribute("name", value: "label") {
 						option["label"] = element.value
 					}
@@ -105,7 +104,7 @@ public class DDLParser {
 			return options.count == 0 ? nil : options
 		}
 
-		if let localizedMetadata = findLocalizedMetadata(dynamicElement) {
+		if let localizedMetadata = findMetadataElementForLocale(dynamicElement) {
 			addElement("label", metadata:localizedMetadata)
 			addElement("predefinedValue", metadata:localizedMetadata)
 			addElement("tip", metadata:localizedMetadata)
@@ -118,53 +117,58 @@ public class DDLParser {
 		return result
 	}
 
-	private func findLocalizedMetadata(dynamicElement:SMXMLElement) -> SMXMLElement? {
+	private func findMetadataElementForLocale(dynamicElement:SMXMLElement) -> SMXMLElement? {
 
 		// Locale matching fallback mechanism: it's designed in such a way to return
 		// the most suitable locale among the available ones. It minimizes the default 
 		// locale fallback. It supports input both with one component (language) and
 		// two components (language and country).
 		//
-		// Examples for currentLocale = "es_ES"
+		// Examples for locale = "es_ES"
 		// 	a1. Matches elements with "es_ES" (full match)
 		//  a2. Matches elements with "es"
 		//  a3. Matches elements for any country: "es_ES", "es_AR"...
 		//  a4. Matches elements for default locale
 
-		// Examples for currentLocale = "es"
+		// Examples for locale = "es"
 		// 	b1. Matches elements with "es" (full match)
 		//  b2. Matches elements for any country: "es_ES", "es_AR"...
 		//  b3. Matches elements for default locale
 
-		let metadatas = dynamicElement.childrenNamed("meta-data") as? [SMXMLElement]
-		if metadatas == nil {
+		let metadataElements = dynamicElement.childrenNamed("meta-data") as? [SMXMLElement]
+
+		if metadataElements == nil {
 			return nil
 		}
 
-		let currentLanguageCode = currentLocale.objectForKey(NSLocaleLanguageCode) as String
-		let currentCountryCode = currentLocale.objectForKey(NSLocaleCountryCode) as? String
+		let currentLanguageCode = self.locale.objectForKey(NSLocaleLanguageCode) as String
+		let currentCountryCode = self.locale.objectForKey(NSLocaleCountryCode) as? String
 
-		var foundMetadata:SMXMLElement? = nil
+		var resultElement:SMXMLElement?
 
-		if let metadata = findElementWithAttribute("locale", value:currentLocale.localeIdentifier, elements:metadatas!) {
+		let metadataElement = findElementWithAttribute("locale",
+				value:locale.localeIdentifier, elements:metadataElements!)
+		if metadataElement != nil {
 			// cases 'a1' and 'b1'
 
-			foundMetadata = metadata
+			resultElement = metadataElement!
 		}
 		else {
 			if currentCountryCode != nil {
-				if let metadata = findElementWithAttribute("locale", value:currentLanguageCode, elements:metadatas!) {
+				let metadataElement = findElementWithAttribute("locale",
+						value:currentLanguageCode, elements:metadataElements!)
+				if metadataElement != nil {
 					// case 'a2'
 
-					foundMetadata = metadata
+					resultElement = metadataElement!
 				}
 			}
 		}
 
-		if foundMetadata == nil {
+		if resultElement == nil {
 			// Pre-final fallback (a3, b2): find any metadata starting with language
 
-			let found = metadatas!.filter(
+			let foundMetadataElements = metadataElements!.filter(
 				{ (metadataElement:SMXMLElement) -> Bool in
 					if let metadataLocale = metadataElement.attributes["locale"]?.description {
 						return metadataLocale.hasPrefix(currentLanguageCode + "_")
@@ -173,17 +177,17 @@ public class DDLParser {
 					return false
 				})
 
-			foundMetadata = found.first
+			resultElement = foundMetadataElements.first
 		}
 
-		if foundMetadata == nil {
+		if resultElement == nil {
 			// Final fallback (a4, b3): find default metadata
 
-			foundMetadata = findElementWithAttribute("locale",
-				value:defaultLocale!.localeIdentifier, elements:metadatas!)
+			resultElement = findElementWithAttribute("locale",
+				value:defaultLocale!.localeIdentifier, elements:metadataElements!)
 		}
 
-		return foundMetadata
+		return resultElement
 	}
 
 	private func childrenWithAttribute(attribute:String, value:String, parent:SMXMLElement) -> [SMXMLElement] {
