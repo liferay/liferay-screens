@@ -21,7 +21,7 @@ internal struct Lock {
 
 
 internal struct MBProgressHUDInstance {
-	static var instance:MBProgressHUD? = nil
+	static var instance:MBProgressHUD?
 	static var touchHandler:HUDTouchHandler?
 }
 
@@ -83,10 +83,13 @@ extension BaseWidget {
      * showHUDWithMessage shows an animated Progress HUD with the message and details provided.
      */
 	public func showHUDWithMessage(message:String?, details:String? = nil,
-			closeMode:CloseMode = .NoAutoclose(false), spinnerMode:SpinnerMode = .IndeterminateSpinner) {
+			closeMode:CloseMode = .NoAutoclose(false),
+			spinnerMode:SpinnerMode = .IndeterminateSpinner) {
+
 		synchronized(Lock.token) {
 			if MBProgressHUDInstance.instance == nil {
-				MBProgressHUDInstance.instance = MBProgressHUD.showHUDAddedTo(self.rootView(self), animated:true)
+				MBProgressHUDInstance.instance =
+					MBProgressHUD.showHUDAddedTo(self.rootView(self), animated:true)
 			}
 
 			if closeMode.allowCloseOnTouch() {
@@ -142,7 +145,10 @@ extension BaseWidget {
      * a few seconds, calculated based on the length of the message.
      */
 	public func hideHUDWithMessage(message:String, details:String? = nil) {
-		self.showHUDWithMessage(message, details: details, closeMode: .AutocloseComputedDelay(true), spinnerMode:.NoSpinner)
+		self.showHUDWithMessage(message,
+			details: details,
+			closeMode: .AutocloseComputedDelay(true),
+			spinnerMode:.NoSpinner)
 	}
 
 	public func hideHUD() {

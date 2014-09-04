@@ -23,7 +23,7 @@ public class LoginView_default: LoginView {
 	@IBOutlet var userNameBackground: UIImageView?
 	@IBOutlet var passwordBackground: UIImageView?
 
-	// MARK: Static methods
+	//MARK: Static methods
 
 	public class func setStylesForAuthType(authTypeDescription:String, userNameField:UITextField!, userNameIcon:UIImageView!) {
 
