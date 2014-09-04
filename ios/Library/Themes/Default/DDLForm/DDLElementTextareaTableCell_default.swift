@@ -18,12 +18,13 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	@IBOutlet var textView: UITextView?
 	@IBOutlet var placeholder: UILabel?
 	@IBOutlet var textViewBackground: UIImageView?
+	@IBOutlet var label: UILabel?
 	@IBOutlet var separator: UIView?
 
 	private var originalTextViewRect:CGRect = CGRectZero
 	private var originalBackgroundRect:CGRect = CGRectZero
 
-	private let expandedCellHeight:CGFloat = 104
+	private let expandedCellHeight:CGFloat = 104 + 25
 	private let expandedTextViewHeight:CGFloat = 84
 	private let expandedBackgroundHeight:CGFloat = 91
 
@@ -33,12 +34,10 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 			if stringElement.currentValue != nil {
 				textView?.text = stringElement.currentStringValue
 			}
-			else {
-				textView?.text = stringElement.predefinedValue?.description
-			}
 
 			placeholder?.text = stringElement.label
 			placeholder?.alpha = (textView?.text == "") ? 1.0 : 0.0
+			label?.text = stringElement.label
 
 			textView?.returnKeyType = isLastCell ? .Send : .Next
 
