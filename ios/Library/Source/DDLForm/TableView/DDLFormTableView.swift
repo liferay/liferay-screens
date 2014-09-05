@@ -67,7 +67,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		let currentBundle = NSBundle(forClass: self.dynamicType)
 
 		for elementType in DDLElementType.all() {
-			var nibName = "DDLElement\(elementType.toName())TableCell"
+			var nibName = "DDLElement\(elementType.toCapitalizedName())TableCell"
 			if let themeName = themeName() {
 				nibName += "-" + themeName
 			}
