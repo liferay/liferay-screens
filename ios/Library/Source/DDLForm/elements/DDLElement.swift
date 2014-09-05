@@ -46,12 +46,12 @@ public enum DDLElementType: String {
 		return [Checkbox]
 	}
 
-	public func toName() -> String {
-		let elementName = toRaw()
+	public func toCapitalizedName() -> String {
+		let typeName = toRaw()
 
-		let secondCharIndex = elementName.startIndex.successor()
+		let secondCharIndex = typeName.startIndex.successor()
 
-		return elementName.substringToIndex(secondCharIndex).uppercaseString + elementName.substringFromIndex(secondCharIndex)
+		return typeName.substringToIndex(secondCharIndex).uppercaseString + typeName.substringFromIndex(secondCharIndex)
 	}
 
 }

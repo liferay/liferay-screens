@@ -65,7 +65,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		return true
 	}
 	
-
 	//MARK: BaseWidgetView Methods
 
 	/*
@@ -73,9 +72,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	* setting colors, sizes, positioning, etc to the component's subviews.
 	*/
 	public func onCreate() {
-	}
-
-	public func onFinishOperation() {
 	}
 
 	public func onSetCustomActionForControl(control: UIControl) -> Bool {
@@ -91,6 +87,9 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	public func onStartOperation() {
 	}
+
+	public func onFinishOperation() {
+	}
 	
 	internal func customActionHandler(sender: UIControl!) {
 		endEditing(true)
@@ -98,14 +97,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		customAction?(sender.restorationIdentifier, sender)
 	}
 	
-	internal func themeName() -> String? {
-		var className = NSStringFromClass(self.dynamicType)
-
-		let components = className.componentsSeparatedByString("_")
-
-		return (components.count > 1) ? components.last : nil
-	}
-
 	internal func nextResponderForView(view:UIView) -> UIResponder {
 		if view.tag > 0 {
 			if let nextView = viewWithTag(view.tag + 1) {
@@ -113,6 +104,14 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 			}
 		}
 		return view
+	}
+
+	internal func themeName() -> String? {
+		var className = NSStringFromClass(self.dynamicType)
+
+		let components = className.componentsSeparatedByString("_")
+
+		return (components.count > 1) ? components.last : nil
 	}
 
 	private func addCustomActionForControl(control: UIControl) {
