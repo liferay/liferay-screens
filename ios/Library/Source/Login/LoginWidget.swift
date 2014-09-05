@@ -25,12 +25,12 @@ import UIKit
 
 public class LoginWidget: BaseWidget {
 
-    @IBOutlet var delegate: LoginWidgetDelegate?
-    
+	@IBOutlet var delegate: LoginWidgetDelegate?
+
 	public class func storedSession() -> LRSession? {
 		return LRSession.sessionFromStoredCredential()
 	}
-    
+
 	//FIXME
 	// XCode crashes with "swift_unknownWeakLoadStrong" error
 	// Storing the enum as a String seems to workaround the problem
@@ -45,9 +45,10 @@ public class LoginWidget: BaseWidget {
         loginView().setAuthType(authType)
         
         authClosure = authClosures[authType]
-    }
+	}
 
-    // BaseWidget METHODS
+
+	//MARK: BaseWidget METHODS
 
 	override public func onCreate() {
         setAuthType(AuthType.Email.toRaw())
@@ -68,14 +69,14 @@ public class LoginWidget: BaseWidget {
 		}
 	}
 
-    override public func onServerError(error: NSError) {
+	override public func onServerError(error: NSError) {
 		delegate?.onLoginError?(error)
 
 		LiferayContext.instance.clearSession()
 		LRSession.removeStoredCredential()
 
 		hideHUDWithMessage("Error signing in!")
-    }
+	}
 
 	override public func onServerResult(result: [String:AnyObject]) {
 		delegate?.onLoginResponse?(result)
@@ -87,9 +88,9 @@ public class LoginWidget: BaseWidget {
 		}
 
 		hideHUDWithMessage("Sign in completed")
-    }
+	}
 
-    // PRIVATE METHDOS
+	//MARK: PRIVATE METHDOS
 
 	private func loginView() -> LoginView {
 		return widgetView as LoginView

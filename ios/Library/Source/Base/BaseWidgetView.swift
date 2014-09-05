@@ -22,32 +22,11 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	var customAction: CustomActionType?
 
-	/*
-	* onCreate is fired after the initialization of the widget view. Override this method to perform actions such as
-	* setting colors, sizes, positioning, etc to the component's subviews.
-	*/
-	public func onCreate() {
-	}
 
-	public func onSetTranslations() {
-	}
-
-	public func onStartOperation() {
-	}
-
-	public func onFinishOperation() {
-	}
-
-	public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
-		return true
-	}
-
-	public func onSetCustomActionForControl(control: UIControl) -> Bool {
-		return true
-	}
+	//MARK: UIView
 
 	override public func awakeFromNib() {
-		setUpViewHierarchy(self)
+		setUpView(self)
 		onSetTranslations()
 		onCreate();
 	}
@@ -69,8 +48,10 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		return result
 	}
 
-	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
 
+	//MARK: UITextFieldDelegate
+
+	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		let nextResponder = nextResponderForView(textField)
 
 		if nextResponder != textField {
@@ -94,15 +75,34 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 		return true
 	}
+	
+	//MARK: BaseWidgetView Methods
 
-	internal func themeName() -> String? {
-		var className = NSStringFromClass(self.dynamicType)
-
-		let components = className.componentsSeparatedByString("_")
-
-		return (components.count > 1) ? components.last : nil
+	/*
+	* onCreate is fired after the initialization of the widget view. Override this method to perform actions such as
+	* setting colors, sizes, positioning, etc to the component's subviews.
+	*/
+	public func onCreate() {
 	}
 
+
+	public func onSetCustomActionForControl(control: UIControl) -> Bool {
+		return true
+	}
+
+	public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
+		return true
+	}
+
+	public func onSetTranslations() {
+	}
+
+	public func onStartOperation() {
+	}
+
+	public func onFinishOperation() {
+	}
+	
 	internal func nextResponderForView(view:UIView) -> UIResponder {
 		if view.tag > 0 {
 			if let nextView = viewWithTag(view.tag.successor()) {
@@ -112,11 +112,19 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		return view
 	}
 
-	func customActionHandler(#actionName: String?, sender: AnyObject?) {
+	internal func themeName() -> String? {
+		var className = NSStringFromClass(self.dynamicType)
+
+		let components = className.componentsSeparatedByString("_")
+
+		return (components.count > 1) ? components.last : nil
+	}
+
+	internal func customActionHandler(#actionName: String?, sender: AnyObject?) {
 		customAction?(actionName, sender)
 	}
 
-	func customActionHandler(sender: AnyObject?) {
+	internal func customActionHandler(sender: AnyObject?) {
 		endEditing(true)
 
 		if let controlSender = sender as? UIControl {
@@ -127,9 +135,7 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		}
 	}
 
-	func customActionHandler(actionName: String?) {
-		endEditing(true)
-
+	internal func customActionHandler(actionName: String?) {
 		customActionHandler(actionName:actionName, sender:nil)
 	}
 
@@ -137,21 +143,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		if onSetCustomActionForControl(control) {
 			control.addTarget(self, action: "customActionHandler:", forControlEvents: UIControlEvents.TouchUpInside)
 		}
-    }
-
-	private func setUpViewHierarchy(parentView: UIView) {
-		setUpView(parentView)
-
-		for subview:UIView in parentView.subviews as [UIView] {
-			setUpViewHierarchy(subview)
-		}
-	}
-
-	private func setUpView(view: UIView) {
-		if let control = view as? UIControl {
-			addCustomActionForControl(control)
-		}
-		addDefaultDelegatesForView(view)
 	}
 
 	private func addDefaultDelegatesForView(view:UIView) {
@@ -159,6 +150,18 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 			if onSetDefaultDelegate(self, view:textField) {
 				textField.delegate = self
 			}
+		}
+	}
+
+	private func setUpView(view: UIView) {
+		if let control = view as? UIControl {
+			addCustomActionForControl(control)
+		}
+
+		addDefaultDelegatesForView(view)
+
+		for subview:UIView in view.subviews as [UIView] {
+			setUpView(subview)
 		}
 	}
 

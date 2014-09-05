@@ -121,6 +121,7 @@
 		88DBC14019A4F85F0075E644 /* DDLBaseElementTextFieldTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC13F19A4F85F0075E644 /* DDLBaseElementTextFieldTableCell_default.swift */; };
 		88EAEE3A1993D8BF002D7C26 /* DDLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE371993D8BF002D7C26 /* DDLParser.swift */; };
 		88EAEE3C1993D923002D7C26 /* Bool+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */; };
+		88F6B19019BA72390039FEA8 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F6B18F19BA72390039FEA8 /* UIView+Animations.swift */; };
 		999BC69C19768EA400A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69B19768EA400A9B0D8 /* LRSession+CredentialStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -246,6 +247,7 @@
 		88E4604A19759FE4002C26C6 /* ForgotPasswordWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordWidget.swift; sourceTree = "<group>"; };
 		88EAEE371993D8BF002D7C26 /* DDLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser.swift; sourceTree = "<group>"; };
 		88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Conversion.swift"; sourceTree = "<group>"; };
+		88F6B18F19BA72390039FEA8 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		999BC69B19768EA400A9B0D8 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -459,6 +461,7 @@
 				888F61FC198FD3B10082786B /* NSLocale+CurrentLocale.swift */,
 				88999AF2198EF1A700E746A6 /* UIImage+Themes.h */,
 				88999AF3198EF1A700E746A6 /* UIImage+Themes.m */,
+				88F6B18F19BA72390039FEA8 /* UIView+Animations.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -778,6 +781,7 @@
 				88D5378519991C2600615515 /* DDLElementString.swift in Sources */,
 				884CE5151994F36600ADF047 /* DDLFormWidget.swift in Sources */,
 				8868AFCC19656B0500FD5214 /* AppDelegate.swift in Sources */,
+				88F6B19019BA72390039FEA8 /* UIView+Animations.swift in Sources */,
 				8885417119ADE0CE0029B8F0 /* DDLElementDocumentlibraryTableCell_default.swift in Sources */,
 				888D77BF198FF5030052C39C /* LoginView_default.swift in Sources */,
 				88D5378319991C1000615515 /* DDLElementTextTableCell_default.swift in Sources */,
