@@ -19,6 +19,9 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	internal var elementCellHeights: [DDLElementType:CGFloat] = [:]
 
+
+	//MARK: DDLFormView
+
 	override public func onCreate() {
 		super.onCreate()
 
@@ -31,11 +34,15 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		tableView!.reloadData()
 	}
 
+
+	// MARK: DDLFormTableView Methods
+
 	internal func registerElementCells() {
 		let currentBundle = NSBundle(forClass: self.dynamicType)
 
 		for elementType in DDLElementType.all() {
-			var nibName = "DDLElement\(elementType.toName())TableCell"
+			var nibName = "DDLElement\(elementType.toCapitalizedName())TableCell"
+
 			if let themeName = themeName() {
 				nibName += "-" + themeName
 			}
@@ -61,18 +68,19 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		}
 		else {
 			println("ERROR: Can't instantiate nib for cell \(type.toRaw())")
+
 			elementCellHeights[type] = 0
 		}
 	}
 
-	// MARK: UITableViewDataSource
+	
+	//MARK: UITableViewDataSource
 
 	public func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
 		return rows.count
 	}
 
 	public func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-
 		let element = rows[indexPath.row]
 
 		let cell = tableView.dequeueReusableCellWithIdentifier(element.type.toRaw()) as? DDLElementTableCell
@@ -85,7 +93,6 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	}
 
 	public func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-
 		let element = rows[indexPath.row]
 
 		return elementCellHeights[element.type] ?? 0

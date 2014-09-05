@@ -65,14 +65,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		return true
 	}
 	
-	internal func themeName() -> String? {
-		var className = NSStringFromClass(self.dynamicType)
-
-		let components = className.componentsSeparatedByString("_")
-
-		return (components.count > 1) ? components.last : nil
-	}
-
 	//MARK: BaseWidgetView Methods
 
 	/*
@@ -82,9 +74,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	public func onCreate() {
 	}
 
-
-	public func onFinishOperation() {
-	}
 
 	public func onSetCustomActionForControl(control: UIControl) -> Bool {
 		return true
@@ -98,6 +87,9 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	}
 
 	public func onStartOperation() {
+	}
+
+	public func onFinishOperation() {
 	}
 	
 	internal func customActionHandler(sender: UIControl!) {
@@ -113,6 +105,14 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 			}
 		}
 		return view
+	}
+
+	internal func themeName() -> String? {
+		var className = NSStringFromClass(self.dynamicType)
+
+		let components = className.componentsSeparatedByString("_")
+
+		return (components.count > 1) ? components.last : nil
 	}
 
 	private func addCustomActionForControl(control: UIControl) {
