@@ -65,7 +65,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		return true
 	}
 	
-
 	//MARK: BaseWidgetView Methods
 
 	/*
@@ -75,8 +74,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	public func onCreate() {
 	}
 
-	public func onFinishOperation() {
-	}
 
 	public func onSetCustomActionForControl(control: UIControl) -> Bool {
 		return true
@@ -90,6 +87,9 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	}
 
 	public func onStartOperation() {
+	}
+
+	public func onFinishOperation() {
 	}
 	
 	internal func customActionHandler(sender: UIControl!) {
