@@ -67,7 +67,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		let currentBundle = NSBundle(forClass: self.dynamicType)
 
 		for elementEditor in DDLElementEditor.all() {
-			var nibName = "DDLElement\(elementEditor.toName())TableCell"
+			var nibName = "DDLElement\(elementEditor.toCapitalizedName())TableCell"
 			if let themeName = themeName() {
 				nibName += "-" + themeName
 			}
@@ -75,7 +75,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
 				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
 
-				tableView?.registerNib(cellNib, forCellReuseIdentifier: elementEditor.toName())
+				tableView?.registerNib(cellNib, forCellReuseIdentifier: elementEditor.toCapitalizedName())
 
 				registerElementEditorHeight(editor:elementEditor, nib:cellNib)
 			}
@@ -141,10 +141,10 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		else {
 			let element = rows[row]
 			
-			cell = tableView.dequeueReusableCellWithIdentifier(element.editorType.toName()) as? DDLElementTableCell
+			cell = tableView.dequeueReusableCellWithIdentifier(element.editorType.toCapitalizedName()) as? DDLElementTableCell
 
 			if cell == nil {
-				println("ERROR: Cell XIB is not registerd for type \(element.editorType.toName())")
+				println("ERROR: Cell XIB is not registerd for type \(element.editorType.toCapitalizedName())")
 			}
 
 			cell!.formView = self

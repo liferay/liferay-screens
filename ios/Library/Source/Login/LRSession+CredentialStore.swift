@@ -15,9 +15,7 @@ import Foundation
 
 extension LRSession {
 
-    
-    // CLASS METHODS
-    
+	//MARK: CLASS METHODS
 	
 	public class func removeStoredCredential() {
 		let credentialTuple = credentialForServer(LiferayContext.instance.server)
@@ -30,18 +28,16 @@ extension LRSession {
 
 	public class func sessionFromStoredCredential() -> LRSession? {
 		let credentialTuple = credentialForServer(LiferayContext.instance.server)
-        
+
 		if let credential = credentialTuple.0 {
 			return LRSession(server:LiferayContext.instance.server, username:credential.user, password:credential.password)
 		}
-        
+
 		return nil
-    }
-    
+	}
 
-    // INSTANCE METHODS
+	//MARK: INSTANCE METHODS
 
-    
 	public func storeCredential() -> Bool {
 		var success = false
 
@@ -65,9 +61,7 @@ extension LRSession {
 		return success
 	}
 
-
-	// PRIVATE METHODS
-
+	//MARK: PRIVATE METHODS
 
 	private class func credentialForServer(server:String) -> (NSURLCredential?, NSURLProtectionSpace) {
 		let protectionSpace = protectionSpaceForServer(server)
