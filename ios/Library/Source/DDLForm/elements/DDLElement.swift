@@ -68,7 +68,7 @@ public enum DDLElementType: String {
 		return [Checkbox, Text, Textarea, Select, Radio, Date]
 	}
 
-	public func toName() -> String {
+	public func toCapitalizedName() -> String {
 		var elementName = toRaw()
 
 		// hack for names prefixed with ddm
