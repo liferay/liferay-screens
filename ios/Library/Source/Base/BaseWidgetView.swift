@@ -76,7 +76,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		return true
 	}
 	
-
 	//MARK: BaseWidgetView Methods
 
 	/*
@@ -84,9 +83,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	* setting colors, sizes, positioning, etc to the component's subviews.
 	*/
 	public func onCreate() {
-	}
-
-	public func onFinishOperation() {
 	}
 
 	public func onSetCustomActionForControl(control: UIControl) -> Bool {
@@ -102,7 +98,10 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	public func onStartOperation() {
 	}
-	
+
+	public func onFinishOperation() {
+	}
+
 	internal func customActionHandler(sender: AnyObject?) {
 		if let controlSender = sender as? UIControl {
 			customActionHandler(actionName:controlSender.restorationIdentifier, sender:sender)
@@ -113,12 +112,12 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	}
 
 	internal func customActionHandler(actionName: String?) {
-		endEditing(true)
-
 		customActionHandler(actionName:actionName, sender:nil)
 	}
 	
 	internal func customActionHandler(#actionName: String?, sender: AnyObject?) {
+		endEditing(true)
+		
 		customAction?(actionName, sender)
 	}
 

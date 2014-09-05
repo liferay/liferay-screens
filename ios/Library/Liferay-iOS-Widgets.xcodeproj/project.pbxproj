@@ -21,7 +21,6 @@
 		883CF3CE199B782D008F0EBC /* LRMobilewidgetsuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CF3CC199B782D008F0EBC /* LRMobilewidgetsuserService_v62.m */; };
 		8847035319A32F7000395B1C /* DDLElementBoolean_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8847035119A32F7000395B1C /* DDLElementBoolean_Tests.swift */; };
 		8847035419A32F7000395B1C /* DDLElementString_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8847035219A32F7000395B1C /* DDLElementString_Tests.swift */; };
-		884CE5081994ECF000ADF047 /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE5061994ECF000ADF047 /* DDLFormView.swift */; };
 		884CE5091994ECF000ADF047 /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE5061994ECF000ADF047 /* DDLFormView.swift */; };
 		884CE50A1994ECF000ADF047 /* DDLFormWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE5071994ECF000ADF047 /* DDLFormWidget.swift */; };
 		884CE50B1994ECF000ADF047 /* DDLFormWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE5071994ECF000ADF047 /* DDLFormWidget.swift */; };
@@ -54,6 +53,7 @@
 		8878524219B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8878523B19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell_default.swift */; };
 		8878524319B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8878523C19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib */; };
 		8878524419B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8878523C19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib */; };
+		8888386819BA75CE003B0238 /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE5061994ECF000ADF047 /* DDLFormView.swift */; };
 		888A282819938EFD00C713DA /* DDLParser_i18n_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A282719938EFD00C713DA /* DDLParser_i18n_Tests.swift */; };
 		888CE10B19923142001DCA6A /* BaseWidget_basic_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE10A19923142001DCA6A /* BaseWidget_basic_Tests.swift */; };
 		888CE11D19924D4A001DCA6A /* flat7-preview-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11919924D4A001DCA6A /* flat7-preview-signup@2x.png */; };
@@ -1192,8 +1192,8 @@
 				888F61FA198FD3740082786B /* NSLocale+CurrentLocale.swift in Sources */,
 				990C6E5C19B0B56500464E80 /* UIView+Animations.swift in Sources */,
 				88D537731999194A00615515 /* DDLFormTableView.swift in Sources */,
-				884CE5081994ECF000ADF047 /* DDLFormView.swift in Sources */,
 				888D77D619903F060052C39C /* SignUpView_default.swift in Sources */,
+				8888386819BA75CE003B0238 /* DDLFormView.swift in Sources */,
 				88F648A7198D2E1B003A8FD9 /* NSBundle+Paths.swift in Sources */,
 				88D789831998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift in Sources */,
 				88E3304C19928BF0002AD507 /* DDLParser.swift in Sources */,
