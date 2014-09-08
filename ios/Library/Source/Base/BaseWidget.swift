@@ -264,6 +264,12 @@ import QuartzCore
 		widgetView?.onFinishOperation()
 	}
 
+	internal func finishOperation() {
+		hideHUD()
+		onFinishOperation()
+		widgetView?.onFinishOperation()
+	}
+
 	private func createWidgetViewFromNib() -> BaseWidgetView? {
 		let viewName = widgetName() + "View"
 
