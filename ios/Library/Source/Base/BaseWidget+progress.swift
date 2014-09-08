@@ -123,6 +123,7 @@ extension BaseWidget {
 
 			MBProgressHUDInstance.instance?.customView = MBProgressHUDInstance.customView
 			MBProgressHUDInstance.instance?.color = MBProgressHUDInstance.customColor
+			MBProgressHUDInstance.instance!.minShowTime = 0.5
 
 			if closeMode.allowCloseOnTouch() {
 				MBProgressHUDInstance.touchHandler = HUDTouchHandler()
