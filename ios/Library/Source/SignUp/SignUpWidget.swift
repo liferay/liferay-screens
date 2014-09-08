@@ -46,7 +46,7 @@ import UIKit
 	override internal func onServerResult(result: [String:AnyObject]) {
 		delegate?.onSignUpResponse?(result)
 
-		if autologin {
+		if autologin && creatingPassword != nil {
 			LiferayContext.instance.clearSession()
 			LRSession.removeStoredCredential()
 
