@@ -26,7 +26,7 @@ class DDLElement_validation_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShoulTriggerValidatedClosure_WhenValidationFails() {
-		parser.xml = requiredBoolean
+		parser.xml = requiredBooleanFormDefinition
 
 		let elements = parser.parse()
 
@@ -45,7 +45,7 @@ class DDLElement_validation_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShoulTriggerValidatedClosure_WhenValidationSucceeds() {
-		parser.xml = requiredBoolean
+		parser.xml = requiredBooleanFormDefinition
 
 		let elements = parser.parse()
 
@@ -66,7 +66,7 @@ class DDLElement_validation_Tests: XCTestCase {
 	}
 
 	func test_ValidateOnBooleanElement_ShouldFail_WhenRequiredValueIsNil() {
-		parser.xml = requiredBoolean
+		parser.xml = requiredBooleanFormDefinition
 
 		let elements = parser.parse()
 
@@ -78,31 +78,26 @@ class DDLElement_validation_Tests: XCTestCase {
 	}
 
 	func test_ValidateOnStringElement_ShouldFail_WhenRequiredValueIsEmptyString() {
-		parser.xml = requiredText
-
-		let elements = parser.parse()
-
-		let stringElement = elements![0] as DDLElementString
-
-		stringElement.currentValue = ""
-
-		XCTAssertFalse(stringElement.validate())
+		validateOnStringElement_ShouldFail_WhenRequiredValueIs("");
 	}
 
 	func test_ValidateOnStringElement_ShouldFail_WhenRequiredValueIsEmptyStringWithSpaces() {
-		parser.xml = requiredText
+		validateOnStringElement_ShouldFail_WhenRequiredValueIs("  ");
+	}
+
+	private func validateOnStringElement_ShouldFail_WhenRequiredValueIs(value: String) {
+		parser.xml = requiredTextFormDefinition
 
 		let elements = parser.parse()
 
 		let stringElement = elements![0] as DDLElementString
 
-		stringElement.currentValue = "  "
+		stringElement.currentValue = value
 
 		XCTAssertFalse(stringElement.validate())
 	}
 
-
-	private let requiredBoolean =
+	private let requiredBooleanFormDefinition =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"boolean\" " +
 					"name=\"A_Boolean\" " +
@@ -118,7 +113,7 @@ class DDLElement_validation_Tests: XCTestCase {
 				"</meta-data> " +
 			"</dynamic-element> </root>"
 
-	private let requiredText =
+	private let requiredTextFormDefinition =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 				"<dynamic-element dataType=\"string\" " +
 						"name=\"A_Text\" " +
