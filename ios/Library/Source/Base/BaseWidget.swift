@@ -42,6 +42,13 @@ import QuartzCore
 	}
 
 	/*
+	 * onPreCreate is invoked before the widget is created.
+	 * properties.
+	 */
+	public func onPreCreate() {
+	}
+
+	/*
 	 * onHide is invoked when the widget is hidden from the app window.
 	 */
 	public func onHide() {
@@ -94,6 +101,9 @@ import QuartzCore
 
 	override public func awakeFromNib() {
 		super.awakeFromNib()
+
+		onPreCreate()
+
 		self.clipsToBounds = true;
 
 		widgetView = loadWidgetView();

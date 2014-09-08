@@ -26,6 +26,7 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	//MARK: UIView
 
 	override public func awakeFromNib() {
+		onPreCreate()
 		setUpView(self)
 		onSetTranslations()
 		onCreated()
@@ -84,6 +85,13 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	 * positioning, etc to the component's subviews.
 	*/
 	public func onCreated() {
+	}
+
+	/*
+	 * onPreCreate is fired before the initialization of the widget view. 
+	 * Override this method to create UI components programatically.
+	*/
+	public func onPreCreate() {
 	}
 
 	public func onSetCustomActionForControl(control: UIControl) -> Bool {
