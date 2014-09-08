@@ -38,27 +38,27 @@ import QuartzCore
 	 * onCreated is invoked after the widget is created. Override this method to set custom values for the widget
 	 * properties.
 	 */
-	public func onCreated() {
+	internal func onCreated() {
 	}
 
 	/*
 	 * onPreCreate is invoked before the widget is created.
 	 * properties.
 	 */
-	public func onPreCreate() {
+	internal func onPreCreate() {
 	}
 
 	/*
 	 * onHide is invoked when the widget is hidden from the app window.
 	 */
-	public func onHide() {
+	internal func onHide() {
 	}
 
 	/*
 	 * onShow is invoked when the widget is displayed on the app window. Override this method for example to reset
 	 * values when the widget is shown.
 	 */
-	public func onShow() {
+	internal func onShow() {
 	}
 
 
@@ -67,14 +67,14 @@ import QuartzCore
 	/*
 	 * onServerError is invoked when there is an error communicating with the Liferay server.
 	 */
-	public func onServerError(error: NSError) {
+	internal func onServerError(error: NSError) {
 	}
 
 	/*
 	 * onServerResult is invoked when there is an result from a communication with the Liferay server. The type of the
 	 * result will depend on the invocation done from specific subclasses.
 	 */
-	public func onServerResult(dict:[String:AnyObject]) {
+	internal func onServerResult(dict:[String:AnyObject]) {
 	}
 
 
@@ -83,17 +83,15 @@ import QuartzCore
 	/*
 	 * onCustomAction is invoked when a TouchUpInside even is fired from the UI.
 	 */
-	public func onCustomAction(actionName:String?, sender:AnyObject?) {
+	internal func onCustomAction(actionName:String?, sender:AnyObject?) {
 	}
 
 	//MARK: Operations template methods
 
-	public func onStartOperation() {
-
+	internal func onStartOperation() {
 	}
 
-	public func onFinishOperation() {
-
+	internal func onFinishOperation() {
 	}
 
 

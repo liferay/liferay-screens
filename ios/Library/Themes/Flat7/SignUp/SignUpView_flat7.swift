@@ -23,7 +23,7 @@ public class SignUpView_flat7: SignUpView_default {
 	@IBOutlet var emailAddressPlaceholder: UILabel?
 	@IBOutlet var passwordPlaceholder: UILabel?
 
-	override public func onSetTranslations() {
+	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
 		titleLabel!.text = NSLocalizedString("flat7-signup-title", tableName: "flat7", bundle: bundle, value: "", comment: "")

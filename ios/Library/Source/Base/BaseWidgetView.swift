@@ -84,31 +84,31 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	 * Override this method to perform actions such as setting colors, sizes, 
 	 * positioning, etc to the component's subviews.
 	*/
-	public func onCreated() {
+	internal func onCreated() {
 	}
 
 	/*
 	 * onPreCreate is fired before the initialization of the widget view. 
 	 * Override this method to create UI components programatically.
 	*/
-	public func onPreCreate() {
+	internal func onPreCreate() {
 	}
 
-	public func onSetCustomActionForControl(control: UIControl) -> Bool {
+	internal func onSetCustomActionForControl(control: UIControl) -> Bool {
 		return true
 	}
 
-	public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
+	internal func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
 		return true
 	}
 
-	public func onSetTranslations() {
+	internal func onSetTranslations() {
 	}
 
-	public func onStartOperation() {
+	internal func onStartOperation() {
 	}
 
-	public func onFinishOperation() {
+	internal func onFinishOperation() {
 	}
 
 	internal func customActionHandler(sender: AnyObject?) {

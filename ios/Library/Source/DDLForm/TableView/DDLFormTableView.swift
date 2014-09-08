@@ -21,7 +21,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	internal var submitButtonHeight:CGFloat = 0.0
 
-	override public func onCreated() {
+	override internal func onCreated() {
 		super.onCreated()
 
 		registerElementCells()

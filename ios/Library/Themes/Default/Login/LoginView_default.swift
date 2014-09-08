@@ -40,7 +40,7 @@ public class LoginView_default: LoginView {
 
 	//MARK: LoginView
 
-	override public func onCreated() {
+	override internal func onCreated() {
 		BaseWidget.setHUDCustomColor(UIColor(red: 0, green: 184/255.0, blue: 224/255.0, alpha: 0.87))
 	}
 
