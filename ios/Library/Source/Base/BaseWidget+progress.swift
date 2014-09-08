@@ -138,12 +138,7 @@ extension BaseWidget {
 				MBProgressHUDInstance.instance!.labelText = message
 			}
 
-			if let detailsValue = details {
-				MBProgressHUDInstance.instance!.detailsLabelText = detailsValue
-			}
-			else {
-				MBProgressHUDInstance.instance!.detailsLabelText = ""
-			}
+			MBProgressHUDInstance.instance!.detailsLabelText = (details ?? "") as String
 
 			var closeDelay: Double?
 
