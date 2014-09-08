@@ -31,7 +31,7 @@ extension BaseWidget {
 	/*
 	 * showHUDWithMessage shows an animated Progress HUD with the message and details provided.
 	*/
-	public func showHUDWithMessage(message:String?, details:String?) {
+	public func showHUDWithMessage(message:String?, details:String? = nil, secondsToShow:Double? = nil) {
 		synchronized(Lock.token) {
 			if MBProgressHUDInstance.instance == nil {
 				MBProgressHUDInstance.instance = MBProgressHUD.showHUDAddedTo(self.rootView(self), animated:true)
@@ -43,7 +43,15 @@ extension BaseWidget {
 
 			MBProgressHUDInstance.instance!.detailsLabelText = details?
 
+			if secondsToShow != nil {
+				MBProgressHUDInstance.instance!.mode = MBProgressHUDModeText
+			}
+
 			MBProgressHUDInstance.instance!.show(true)
+
+			if let delay = secondsToShow {
+				MBProgressHUDInstance.instance!.hide(true, afterDelay: delay)
+			}
 		}
 	}
 
@@ -51,7 +59,7 @@ extension BaseWidget {
 	 * hideHUDWithMessage hides an existing animated Progress HUD displaying the message and details provided first for
 	 * a few seconds, calculated based on the length of the message.
 	*/
-	public func hideHUDWithMessage(message:String, details:String?) {
+	public func hideHUDWithMessage(message:String, details:String? = nil) {
 		synchronized(Lock.token) {
 			if let instance = MBProgressHUDInstance.instance {
 				instance.mode = MBProgressHUDModeText

@@ -74,7 +74,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	public func onCreate() {
 	}
 
-
 	public func onSetCustomActionForControl(control: UIControl) -> Bool {
 		return true
 	}

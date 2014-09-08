@@ -59,6 +59,17 @@ public enum DDLElementType: String {
 
 public class DDLElement {
 
+	public var currentValue:AnyObject?
+
+	public var currentStringValue:String? {
+		get {
+			return convert(fromCurrentValue: currentValue)
+		}
+	}
+
+	public var validatedClosure: ((Bool) -> ())?
+
+
 	private(set) var dataType:DDLElementDataType
 	private(set) var type:DDLElementType
 
@@ -66,6 +77,7 @@ public class DDLElement {
 
 	private(set) var label:String
 	private(set) var tip:String
+
 	private(set) var predefinedValue:AnyObject?
 
 	private(set) var readOnly:Bool
@@ -74,6 +86,8 @@ public class DDLElement {
 
 	private(set) var showLabel:Bool 	// Makes sense in mobile??
 	private(set) var width:Int? 		// Makes sense in mobile??
+
+
 
 	public init(attributes:[String:String], localized:[String:String]) {
 		dataType = DDLElementDataType.fromRaw(attributes["dataType"] ?? "") ?? .Unsupported
@@ -88,10 +102,31 @@ public class DDLElement {
 		label = localized["label"] ?? ""
 		tip = localized["tip"] ?? ""
 		predefinedValue = convert(fromString:localized["predefinedValue"])
+		currentValue = predefinedValue
+	}
+
+	public func validate() -> Bool {
+		var valid = !(currentValue == nil && required)
+
+		if valid {
+			valid = doValidate()
+		}
+
+		validatedClosure?(valid)
+
+		return valid
+	}
+
+	internal func doValidate() -> Bool {
+		return true
 	}
 
 	internal func convert(fromString value:String?) -> AnyObject? {
 		return value
+	}
+
+	internal func convert(fromCurrentValue value:AnyObject?) -> String? {
+		return value?.description
 	}
 
 }

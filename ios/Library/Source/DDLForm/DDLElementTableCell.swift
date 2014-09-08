@@ -17,21 +17,15 @@ public class DDLElementTableCell: UITableViewCell {
 
 	public var element:DDLElement? {
 		didSet {
+			element?.validatedClosure = onValidated
 			onChangedElement()
 		}
 	}
 
-    override public func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override public func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
-
 	internal func onChangedElement() {
+	}
 
+	internal func onValidated(valid:Bool) {
 	}
 
 }

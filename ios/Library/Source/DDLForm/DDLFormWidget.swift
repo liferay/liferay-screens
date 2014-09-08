@@ -18,16 +18,26 @@ import UIKit
 	optional func onFormLoaded(elements: [DDLElement])
 	optional func onFormLoadError(error: NSError)
 
+	optional func onFormSubmitted(elements: [DDLElement])
+	optional func onFormSubmitError(error: NSError)
+
 }
 
 @IBDesignable public class DDLFormWidget: BaseWidget {
 
 	@IBInspectable var structureId: Int = 0
+	@IBInspectable var groupId: Int = 0
+	@IBInspectable var recordSetId: Int = 0
+	@IBInspectable var recordId:Int = 0
 
 	@IBOutlet var delegate: DDLFormWidgetDelegate?
 
+	private var userId:Int = 0
 
-    // MARK: BaseWidget METHODS
+	private var submitting = false
+
+
+	// MARK: BaseWidget METHODS
 
 	override public func onCreate() {
 	}
@@ -36,12 +46,37 @@ import UIKit
 	}
 
 	override public func onServerError(error: NSError) {
-		delegate?.onFormLoadError?(error)
-		finishOperationWithMessage("An error happened loading form", details: nil)
+		if submitting {
+			delegate?.onFormSubmitError?(error)
+			finishOperationWithMessage("An error happened submitting form")
+		}
+		else {
+			delegate?.onFormLoadError?(error)
+			finishOperationWithMessage("An error happened loading form")
+		}
 	}
 
 	override public func onServerResult(result: [String:AnyObject]) {
+		if submitting {
+			submitting = false
+
+			if let recordIdValue = result["recordId"]! as? Int {
+				recordId = recordIdValue
+			}
+
+			finishOperationWithMessage("Form submitted")
+		}
+		else {
+			onFormLoadResult(result)
+		}
+	}
+
+	private func onFormLoadResult(result: [String:AnyObject]) {
 		if let xml = result["xsd"]! as? String {
+			if let userIdValue = result["userId"]! as? Int {
+				userId = userIdValue
+			}
+
 			let parser = DDLParser(locale:NSLocale.currentLocale())
 
 			parser.xml = xml
@@ -51,7 +86,7 @@ import UIKit
 
 				delegate?.onFormLoaded?(elements)
 
-				finishOperationWithMessage("Form loaded", details: nil)
+				finishOperationWithMessage("Form loaded")
 			}
 			else {
 				//TODO error
@@ -60,7 +95,7 @@ import UIKit
 		else {
 			//TODO error
 		}
-    }
+	}
 
 	public func loadForm() -> Bool {
 		if LiferayContext.instance.currentSession == nil {
@@ -81,6 +116,67 @@ import UIKit
 		var outError: NSError?
 
 		service.getStructureWithStructureId((structureId as NSNumber).longLongValue, error: &outError)
+
+		if let error = outError {
+			onFailure(error)
+			return false
+		}
+
+		return true
+	}
+
+	public func submitForm() -> Bool {
+		if LiferayContext.instance.currentSession == nil {
+			return false
+		}
+
+		if groupId == 0 || recordSetId == 0 {
+			return false
+		}
+
+		if userId == 0 {
+			return false
+		}
+
+		if !formView().validateForm() {
+			showHUDWithMessage("Some values are not valid", details: "Please, review your form", secondsToShow: 1.5)
+			return false
+		}
+
+		submitting = true
+
+		startOperationWithMessage("Submitting form...", details: "Wait a second...")
+
+		let session = LRSession(session: LiferayContext.instance.currentSession)
+		session.callback = self
+
+		let service = LRDDLRecordService_v62(session: session)
+
+		var outError: NSError?
+
+		let serviceContextAttributes = ["userId":userId, "scopeGroupId":groupId]
+		//uuid??
+
+		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
+
+		if recordId == 0 {
+			service.addRecordWithGroupId(
+				(groupId as NSNumber).longLongValue,
+				recordSetId: (recordSetId as NSNumber).longLongValue,
+				displayIndex: 0,
+				fieldsMap: formView().values,
+				serviceContext: serviceContextWrapper,
+				error: &outError)
+		}
+		else {
+			service.updateRecordWithRecordId(
+				(recordId as NSNumber).longLongValue,
+				displayIndex: 0,
+				fieldsMap: formView().values,
+				mergeFields: true,
+				serviceContext: serviceContextWrapper,
+				error: &outError)
+		}
 
 		if let error = outError {
 			onFailure(error)

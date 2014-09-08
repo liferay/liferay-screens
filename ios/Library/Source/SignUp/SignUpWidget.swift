@@ -40,7 +40,7 @@ import UIKit
 	override public func onServerError(error: NSError) {
 		delegate?.onSignUpError?(error)
 
-		finishOperationWithMessage("Error signing up!", details: nil)
+		finishOperationWithMessage("Error signing up!")
 	}
 
 	override public func onServerResult(result: [String:AnyObject]) {
@@ -53,7 +53,7 @@ import UIKit
 			LiferayContext.instance.createSession(creatingUsername!, password: creatingPassword!)
 		}
 
-		finishOperationWithMessage("Sign up completed", details: nil)
+		finishOperationWithMessage("Sign up completed")
 	}
 
 

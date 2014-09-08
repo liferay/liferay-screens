@@ -21,6 +21,32 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 		}
 	}
 
+	public var values: [String:AnyObject] {
+		get {
+			var result:[String:AnyObject] = [:]
+
+			for element in rows {
+				if let value = element.currentStringValue {
+					result[element.name] = value
+				}
+			}
+
+			return result
+		}
+	}
+
+	public func validateForm() -> Bool {
+		var result = true
+
+		for element in rows {
+			if !element.validate() {
+				result = false
+			}
+		}
+
+		return result
+	}
+
 	internal func onChangedRows() {
 	}
 
