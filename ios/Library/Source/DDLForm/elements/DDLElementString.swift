@@ -15,10 +15,6 @@ import Foundation
 
 public class DDLElementString : DDLElement {
 
-	override func convert(fromCurrentValue value: AnyObject?) -> String? {
-		return value?.description
-	}
-
 	override func doValidate() -> Bool {
 		var result = super.doValidate()
 
