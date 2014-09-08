@@ -123,6 +123,7 @@ extension BaseWidget {
 
 			MBProgressHUDInstance.instance?.customView = MBProgressHUDInstance.customView
 			MBProgressHUDInstance.instance?.color = MBProgressHUDInstance.customColor
+			MBProgressHUDInstance.instance!.mode = spinnerMode.toProgressModeHUD()
 			MBProgressHUDInstance.instance!.minShowTime = 0.5
 
 			if closeMode.allowCloseOnTouch() {
@@ -143,8 +144,6 @@ extension BaseWidget {
 			else {
 				MBProgressHUDInstance.instance!.detailsLabelText = ""
 			}
-
-			MBProgressHUDInstance.instance!.mode = spinnerMode.toProgressModeHUD()
 
 			var closeDelay: Double?
 
