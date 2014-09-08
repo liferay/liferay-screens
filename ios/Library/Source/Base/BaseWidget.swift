@@ -35,10 +35,10 @@ import QuartzCore
 	//MARK: DISPLAY TEMPLATE METHODS
 
 	/*
-	 * onCreate is invoked after the widget is created. Override this method to set custom values for the widget
+	 * onCreated is invoked after the widget is created. Override this method to set custom values for the widget
 	 * properties.
 	 */
-	public func onCreate() {
+	public func onCreated() {
 	}
 
 	/*
@@ -98,7 +98,7 @@ import QuartzCore
 
 		widgetView = loadWidgetView();
 
-		onCreate()
+		onCreated()
 	}
 
 	override public func becomeFirstResponder() -> Bool {

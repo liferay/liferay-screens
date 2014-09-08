@@ -28,7 +28,7 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	override public func awakeFromNib() {
 		setUpView(self)
 		onSetTranslations()
-		onCreate();
+		onCreated()
 	}
 
 	/*
@@ -79,10 +79,11 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	//MARK: BaseWidgetView Methods
 
 	/*
-	* onCreate is fired after the initialization of the widget view. Override this method to perform actions such as
-	* setting colors, sizes, positioning, etc to the component's subviews.
+	 * onCreated is fired after the initialization of the widget view. 
+	 * Override this method to perform actions such as setting colors, sizes, 
+	 * positioning, etc to the component's subviews.
 	*/
-	public func onCreate() {
+	public func onCreated() {
 	}
 
 	public func onSetCustomActionForControl(control: UIControl) -> Bool {

@@ -56,7 +56,7 @@ import UIKit
 		return formView().becomeFirstResponder()
 	}
 
-	override public func onCreate() {
+	override public func onCreated() {
 		formView().showSubmitButton = showSubmitButton
 	}
 

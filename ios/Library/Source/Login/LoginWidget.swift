@@ -50,7 +50,7 @@ public class LoginWidget: BaseWidget {
 
 	//MARK: BaseWidget METHODS
 
-	override public func onCreate() {
+	override public func onCreated() {
         setAuthType(AuthType.Email.toRaw())
 
 		if let session = LRSession.sessionFromStoredCredential() {
