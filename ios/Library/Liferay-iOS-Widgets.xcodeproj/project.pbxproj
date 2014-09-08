@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2C2DF42D7FA747E4B953573C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA555EA8DC0458CA74C4ACE /* libPods.a */; };
-		880D63A419ADD3AF002907AD /* DDLElementDocument_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880D63A319ADD3AF002907AD /* DDLElementDocument_Tests.swift */; };
+		8803219B19BE103F0058062D /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537701999194A00615515 /* DDLFormTableView.swift */; };
+		8803219C19BE10520058062D /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537701999194A00615515 /* DDLFormTableView.swift */; };
 		880D63A619ADD413002907AD /* DDLElementDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880D63A519ADD413002907AD /* DDLElementDocument.swift */; };
 		880D63A719ADD413002907AD /* DDLElementDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880D63A519ADD413002907AD /* DDLElementDocument.swift */; };
 		8811DC4419BDF2CA008FE226 /* WebContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC4219BDF2CA008FE226 /* WebContentView.swift */; };
@@ -61,7 +62,6 @@
 		8878524219B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8878523B19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell_default.swift */; };
 		8878524319B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8878523C19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib */; };
 		8878524419B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8878523C19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib */; };
-		8888386819BA75CE003B0238 /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE5061994ECF000ADF047 /* DDLFormView.swift */; };
 		888A282819938EFD00C713DA /* DDLParser_i18n_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A282719938EFD00C713DA /* DDLParser_i18n_Tests.swift */; };
 		888CE10B19923142001DCA6A /* BaseWidget_basic_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE10A19923142001DCA6A /* BaseWidget_basic_Tests.swift */; };
 		888CE11D19924D4A001DCA6A /* flat7-preview-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11919924D4A001DCA6A /* flat7-preview-signup@2x.png */; };
@@ -178,8 +178,6 @@
 		88D537691999125400615515 /* DDLElementString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537671999125400615515 /* DDLElementString.swift */; };
 		88D537711999194A00615515 /* DDLElementTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5376F1999194A00615515 /* DDLElementTableCell.swift */; };
 		88D537721999194A00615515 /* DDLElementTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5376F1999194A00615515 /* DDLElementTableCell.swift */; };
-		88D537731999194A00615515 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537701999194A00615515 /* DDLFormTableView.swift */; };
-		88D537741999194A00615515 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537701999194A00615515 /* DDLFormTableView.swift */; };
 		88D537771999198C00615515 /* DDLElementTextTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537751999198C00615515 /* DDLElementTextTableCell_default.swift */; };
 		88D537781999198C00615515 /* DDLElementTextTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537751999198C00615515 /* DDLElementTextTableCell_default.swift */; };
 		88D537791999198C00615515 /* DDLElementTextTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D537761999198C00615515 /* DDLElementTextTableCell-default.xib */; };
@@ -251,6 +249,7 @@
 		999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BF19655F4B00664504 /* LiferayContext.swift */; };
 		999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
 		999BC69F19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
+		99DDA7CB19BDF9DB00729D97 /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE5061994ECF000ADF047 /* DDLFormView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1153,6 +1152,7 @@
 				88A91FC2199298CE009B5227 /* Bool+Conversion.swift in Sources */,
 				88D5376619990F0700615515 /* DDLElement_validation_Tests.swift in Sources */,
 				88F648B5198D3021003A8FD9 /* BaseWidget.swift in Sources */,
+				8803219C19BE10520058062D /* DDLFormTableView.swift in Sources */,
 				8847035319A32F7000395B1C /* DDLElementBoolean_Tests.swift in Sources */,
 				88D537721999194A00615515 /* DDLElementTableCell.swift in Sources */,
 				88E4F27619910E4000E69261 /* ForgotPasswordWidget.swift in Sources */,
@@ -1176,7 +1176,6 @@
 				888F61FB198FD3740082786B /* NSLocale+CurrentLocale.swift in Sources */,
 				8847035419A32F7000395B1C /* DDLElementString_Tests.swift in Sources */,
 				888D77D719903F060052C39C /* SignUpView_default.swift in Sources */,
-				88D537741999194A00615515 /* DDLFormTableView.swift in Sources */,
 				886C74B519A3851A00B689BA /* DDLElementStringWithOptions.swift in Sources */,
 				88DBC12419A4F7FF0075E644 /* DDLElementDateTableCell_default.swift in Sources */,
 				88F648A4198D2E11003A8FD9 /* ThemeManager.swift in Sources */,
@@ -1185,7 +1184,6 @@
 				88D789761998ACA500171FB7 /* DDLElementBoolean.swift in Sources */,
 				886C74AA19A368C000B689BA /* DDLElementSelectTableCell_default.swift in Sources */,
 				88F648B3198D301B003A8FD9 /* BaseWidgetView.swift in Sources */,
-				880D63A419ADD3AF002907AD /* DDLElementDocument_Tests.swift in Sources */,
 				884CE5091994ECF000ADF047 /* DDLFormView.swift in Sources */,
 				88DBC10F19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift in Sources */,
 				8878524219B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell_default.swift in Sources */,
@@ -1201,6 +1199,7 @@
 				8811DC4619BDF2CA008FE226 /* WebContentWidget.swift in Sources */,
 				8878523D19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift in Sources */,
 				8827E30919759F28004977A0 /* ForgotPasswordWidget.swift in Sources */,
+				8803219B19BE103F0058062D /* DDLFormTableView.swift in Sources */,
 				88D90A5D19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */,
 				888FAFA8196AE8C200057B26 /* AppDelegate.swift in Sources */,
 				886C74A919A368C000B689BA /* DDLElementSelectTableCell_default.swift in Sources */,
@@ -1224,14 +1223,13 @@
 				889CA4CA19655F4B00664504 /* LiferayContext.swift in Sources */,
 				888F61F7198FD3240082786B /* SignUpWidget.swift in Sources */,
 				8827E30719759F28004977A0 /* ForgotPasswordView.swift in Sources */,
+				99DDA7CB19BDF9DB00729D97 /* DDLFormView.swift in Sources */,
 				888F61F3198FD3240082786B /* SignUpView.swift in Sources */,
 				88E4F2711990FCA700E69261 /* LoginView_default.swift in Sources */,
 				88DBC12319A4F7FF0075E644 /* DDLElementDateTableCell_default.swift in Sources */,
 				888F61FA198FD3740082786B /* NSLocale+CurrentLocale.swift in Sources */,
 				990C6E5C19B0B56500464E80 /* UIView+Animations.swift in Sources */,
-				88D537731999194A00615515 /* DDLFormTableView.swift in Sources */,
 				888D77D619903F060052C39C /* SignUpView_default.swift in Sources */,
-				8888386819BA75CE003B0238 /* DDLFormView.swift in Sources */,
 				88F648A7198D2E1B003A8FD9 /* NSBundle+Paths.swift in Sources */,
 				88D789831998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift in Sources */,
 				88E3304C19928BF0002AD507 /* DDLParser.swift in Sources */,
