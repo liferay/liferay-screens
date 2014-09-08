@@ -40,6 +40,7 @@ public enum DDLElementType: String {
 
 	case Checkbox = "checkbox"
 	case Text = "text"
+	case Textarea = "textarea"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementType {
@@ -47,7 +48,7 @@ public enum DDLElementType: String {
 	}
 
 	public static func all() -> [DDLElementType] {
-		return [Checkbox, Text]
+		return [Checkbox, Text, Textarea]
 	}
 
 	public func toCapitalizedName() -> String {
@@ -58,12 +59,26 @@ public enum DDLElementType: String {
 		return typeName.substringToIndex(secondCharIndex).uppercaseString + typeName.substringFromIndex(secondCharIndex)
 	}
 
+	public func registerHeight(height:CGFloat) {
+		DDLElementType.elementTypeHeight[self] = height
+	}
+
+	public var registeredHeight: CGFloat {
+		get {
+			return DDLElementType.elementTypeHeight[self] ?? 0
+		}
+	}
+
+	private static var elementTypeHeight: [DDLElementType:CGFloat] = [:]
+
+
 }
 
 
-public class DDLElement {
+public class DDLElement: Equatable {
 
 	public var currentValue:AnyObject?
+	public var currentHeight:CGFloat = 0
 
 	public var currentStringValue:String? {
 		get {
@@ -90,7 +105,6 @@ public class DDLElement {
 
 	private(set) var showLabel:Bool 	// Makes sense in mobile??
 	private(set) var width:Int? 		// Makes sense in mobile??
-
 
 
 	public init(attributes:[String:String], localized:[String:String]) {
@@ -121,6 +135,10 @@ public class DDLElement {
 		return valid
 	}
 
+	public func resetCurrentHeight() {
+		currentHeight = type.registeredHeight
+	}
+
 	internal func doValidate() -> Bool {
 		return true
 	}
@@ -133,4 +151,11 @@ public class DDLElement {
 		return value?.description
 	}
 
+}
+
+
+// MARK Equatable
+
+public func ==(left: DDLElement, right: DDLElement) -> Bool {
+	return left.name == right.name
 }

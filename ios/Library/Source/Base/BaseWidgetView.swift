@@ -18,7 +18,7 @@ import UIKit
  */
 public class BaseWidgetView: UIView, UITextFieldDelegate {
 
-	typealias CustomActionType = (String?, UIControl) -> (Void)
+	typealias CustomActionType = (String?, UIControl?) -> (Void)
 
 	var customAction: CustomActionType?
 
@@ -103,11 +103,15 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	}
 	
 	internal func customActionHandler(sender: UIControl!) {
-		endEditing(true)
-
-		customAction?(sender.restorationIdentifier, sender)
+		customActionHandler(sender.restorationIdentifier)
 	}
 	
+	internal func customActionHandler(actionName: String?) {
+		endEditing(true)
+
+		customAction?(actionName, nil)
+	}
+
 	internal func nextResponderForView(view:UIView) -> UIResponder {
 		if view.tag > 0 {
 			if let nextView = viewWithTag(view.tag + 1) {

@@ -20,14 +20,16 @@ public class DDLElementTextTableCell_default: DDLElementTableCell, UITextFieldDe
 
 	private var failedValidation = false
 
-	@IBAction func textFieldValueChanged(sender: AnyObject) {
-		element?.currentValue = textField?.text
-	}
-
 	override func onChangedElement() {
 		if let stringElement = element as? DDLElementString {
 			textField?.placeholder = stringElement.label
-			textField?.text = stringElement.predefinedValue?.description
+
+			if stringElement.currentValue != nil {
+				textField?.text = stringElement.currentStringValue
+			}
+			else {
+				textField?.text = stringElement.predefinedValue?.description
+			}
 
 			textField?.returnKeyType = isLastCell ? .Send : .Next
 		}
@@ -37,7 +39,7 @@ public class DDLElementTextTableCell_default: DDLElementTableCell, UITextFieldDe
 		let imgName = valid ? "default-field" : "default-field-failed"
 		let imgNameHighlighted = valid ? "default-field-focused" : "default-field-failed"
 
-		textFieldBackground?.image = UIImage(named: imgNameHighlighted)
+		textFieldBackground?.image = UIImage(named: imgName)
 		textFieldBackground?.highlightedImage = UIImage(named: imgNameHighlighted)
 
 		failedValidation = !valid
@@ -63,7 +65,6 @@ public class DDLElementTextTableCell_default: DDLElementTableCell, UITextFieldDe
 	public func textFieldDidEndEditing(textField: UITextField!) {
 		textFieldBackground?.highlighted = false
 	}
-
 
 	public func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
 

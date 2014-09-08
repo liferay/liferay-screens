@@ -46,6 +46,15 @@ public class DDLElementTableCell: UITableViewCell {
 	internal func onValidated(valid:Bool) {
 	}
 
+	internal func changeCellHeight(height:CGFloat) {
+		element?.currentHeight = height
+		
+		// FIXME
+		// Hack to fire the repaint of the cells
+		tableView!.beginUpdates()
+		tableView!.endUpdates()
+	}
+
 	internal func nextCell(indexPath:NSIndexPath) -> UITableViewCell? {
 		var result:UITableViewCell?
 
@@ -66,34 +75,27 @@ public class DDLElementTableCell: UITableViewCell {
 		return result
 	}
 
-	internal func nextCellResponder(currentControl:UIControl) -> Bool {
+	internal func nextCellResponder(currentView:UIView) -> Bool {
 		var result = false
 
-		if let currentTextInput = currentControl as? UITextInput {
+		if let currentTextInput = currentView as? UITextInput {
 
 			switch currentTextInput.returnKeyType! {
 
 				case .Next:
 					if let nextCell = nextCell(indexPath!) {
-						if currentControl.canResignFirstResponder() {
-							currentControl.resignFirstResponder()
+						if currentView.canResignFirstResponder() {
+							currentView.resignFirstResponder()
 
 							if nextCell.canBecomeFirstResponder() {
-								nextCell.becomeFirstResponder()
-								result = true
+								result = nextCell.becomeFirstResponder()
 							}
 
 						}
 					}
 
 				case .Send:
-					// FIXME
-					// Dirty hack to fire custom action with "submit" name.
-					// The action is intercepted in the widget and submit if started.
-					let oldCustomActionIdentifier = currentControl.restorationIdentifier
-					currentControl.restorationIdentifier = "submit"
-					formView?.customActionHandler(currentControl)
-					currentControl.restorationIdentifier = oldCustomActionIdentifier
+					formView?.customActionHandler("submit")
 					result = true
 
 				default: ()

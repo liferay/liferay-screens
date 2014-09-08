@@ -11,16 +11,16 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-#import <Foundation/Foundation.h>
+
 #import "LRBaseService.h"
 
 /**
  * @author Bruno Farache
  */
-@interface LRMwuserService_v6201 : LRBaseService
+@interface LRMobilewidgetsuserService_v62 : LRBaseService
 
-- (BOOL)sendPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress serviceContext:(LRJSONObjectWrapper *)serviceContext error:(NSError **)error;
-- (BOOL)sendPasswordByScreenNameWithCompanyId:(long long)companyId screenName:(NSString *)screenName serviceContext:(LRJSONObjectWrapper *)serviceContext error:(NSError **)error;
-- (BOOL)sendPasswordByUserIdWithCompanyId:(long long)companyId userId:(long long)userId serviceContext:(LRJSONObjectWrapper *)serviceContext error:(NSError **)error;
+- (BOOL)sendPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress error:(NSError **)error;
+- (BOOL)sendPasswordByScreenNameWithCompanyId:(long long)companyId screenName:(NSString *)screenName error:(NSError **)error;
+- (BOOL)sendPasswordByUserIdWithUserId:(long long)userId error:(NSError **)error;
 
 @end

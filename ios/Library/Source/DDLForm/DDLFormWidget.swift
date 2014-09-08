@@ -29,6 +29,9 @@ import UIKit
 	@IBInspectable var groupId: Int = 0
 	@IBInspectable var recordSetId: Int = 0
 	@IBInspectable var recordId:Int = 0
+	@IBInspectable var autoLoad:Bool = true
+	@IBInspectable var autoscrollOnValidation:Bool = true
+	@IBInspectable var showSubmitButton:Bool = true
 
 	@IBOutlet var delegate: DDLFormWidgetDelegate?
 
@@ -44,9 +47,16 @@ import UIKit
 	}
 
 	override public func onCreate() {
+		formView().showSubmitButton = showSubmitButton
 	}
 
-	override public func onCustomAction(actionName: String?, sender: UIControl) {
+	override public func onShow() {
+		if autoLoad && structureId != 0 {
+			loadForm()
+		}
+	}
+
+	override public func onCustomAction(actionName: String?, sender: UIControl?) {
 		if actionName == "submit" {
 			submitForm()
 		}
@@ -106,10 +116,12 @@ import UIKit
 
 	public func loadForm() -> Bool {
 		if LiferayContext.instance.currentSession == nil {
+			println("ERROR: No session initialized. Can't load form without session")
 			return false
 		}
 
 		if structureId == 0 {
+			println("ERROR: StructureId is empty. Can't load form without it.")
 			return false
 		}
 
@@ -134,18 +146,21 @@ import UIKit
 
 	public func submitForm() -> Bool {
 		if LiferayContext.instance.currentSession == nil {
+			println("ERROR: No session initialized. Can't submit form without session")
 			return false
 		}
 
-		if groupId == 0 || recordSetId == 0 {
+		if recordSetId == 0 {
+			println("ERROR: RecordSetId is empty. Can't submit form without it.")
 			return false
 		}
 
 		if userId == 0 {
+			println("ERROR: UserId is empty. Can't submit form without loading the form before")
 			return false
 		}
 
-		if !formView().validateForm() {
+		if !formView().validateForm(autoscroll:autoscrollOnValidation) {
 			showHUDWithMessage("Some values are not valid", details: "Please, review your form", secondsToShow: 1.5)
 			return false
 		}
@@ -161,8 +176,9 @@ import UIKit
 
 		var outError: NSError?
 
-		let serviceContextAttributes = ["userId":userId, "scopeGroupId":groupId]
-		//uuid??
+		let serviceContextAttributes = [
+				"userId":userId,
+				"scopeGroupId":groupId != 0 ? groupId : LiferayContext.instance.groupId]
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
 
