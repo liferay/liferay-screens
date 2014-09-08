@@ -188,6 +188,7 @@ extension BaseWidget {
 		synchronized(Lock.token) {
 			if let instance = MBProgressHUDInstance.instance {
 				instance.hide(true)
+				MBProgressHUDInstance.instance = nil
 			}
 		}
 	}
