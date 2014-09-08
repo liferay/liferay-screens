@@ -11,21 +11,20 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
+import Foundation
 
-public class DDLElementTableCell: UITableViewCell {
+public class DDLElementString : DDLElement {
 
-	public var element:DDLElement? {
-		didSet {
-			element?.validatedClosure = onValidated
-			onChangedElement()
+	override func doValidate() -> Bool {
+		var result = super.doValidate()
+
+		if result && currentStringValue != nil && required {
+			let trimmedString = currentStringValue?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+
+			result = (trimmedString != "")
 		}
-	}
 
-	internal func onChangedElement() {
-	}
-
-	internal func onValidated(valid:Bool) {
+		return result
 	}
 
 }

@@ -54,11 +54,11 @@ class DDLParser_elements_Tests: XCTestCase {
 
 		XCTAssertTrue(elements != nil)
 		XCTAssertEqual(1, elements!.count)
-		XCTAssertTrue(elements![0] is DDLBooleanElement)
+		XCTAssertTrue(elements![0] is DDLElementBoolean)
 
-		let booleanElement = elements![0] as DDLBooleanElement
+		let booleanElement = elements![0] as DDLElementBoolean
 
-		XCTAssertEqual(DDLElementDataType.Boolean, booleanElement.dataType)
+		XCTAssertEqual(DDLElementDataType.DDLBoolean, booleanElement.dataType)
 		XCTAssertEqual(DDLElementType.Checkbox, booleanElement.type)
 		XCTAssertEqual("A_Boolean", booleanElement.name)
 		XCTAssertEqual("A Boolean", booleanElement.label)
@@ -69,6 +69,52 @@ class DDLParser_elements_Tests: XCTestCase {
 		XCTAssertTrue(booleanElement.repeatable)
 		XCTAssertFalse(booleanElement.required)
 		XCTAssertTrue(booleanElement.showLabel)
+	}
+
+	func test_Parse_ShouldExtractValues_WhenParsingStringTextFields() {
+		parser.xml =
+			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+				"<dynamic-element dataType=\"string\" " +
+						"indexType=\"keyword\" " +
+						"name=\"A_Text\" " +
+						"readOnly=\"false\" " +
+						"repeatable=\"true\" " +
+						"required=\"false\" " +
+						"showLabel=\"true\" " +
+						"type=\"text\" " +
+						"width=\"small\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[A Text]]>" +
+						"</entry> " +
+						"<entry name=\"predefinedValue\">" +
+							"<![CDATA[predefined text]]>" +
+						"</entry> " +
+						"<entry name=\"tip\">" +
+							"<![CDATA[The tip]]>" +
+						"</entry> " +
+					"</meta-data> " +
+				"</dynamic-element> </root>"
+
+		let elements = parser.parse()
+
+		XCTAssertTrue(elements != nil)
+		XCTAssertEqual(1, elements!.count)
+		XCTAssertTrue(elements![0] is DDLElementString)
+
+		let stringElement = elements![0] as DDLElementString
+
+		XCTAssertEqual(DDLElementDataType.DDLString, stringElement.dataType)
+		XCTAssertEqual(DDLElementType.Text, stringElement.type)
+		XCTAssertEqual("A_Text", stringElement.name)
+		XCTAssertEqual("A Text", stringElement.label)
+		XCTAssertEqual("The tip", stringElement.tip)
+		XCTAssertTrue(stringElement.predefinedValue is String)
+		XCTAssertEqual("predefined text", stringElement.predefinedValue as String)
+		XCTAssertFalse(stringElement.readOnly)
+		XCTAssertTrue(stringElement.repeatable)
+		XCTAssertFalse(stringElement.required)
+		XCTAssertTrue(stringElement.showLabel)
 	}
 
 }

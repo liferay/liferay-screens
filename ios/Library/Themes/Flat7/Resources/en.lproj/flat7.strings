@@ -10,7 +10,7 @@
 "flat7-signup-last-name"="Last Name";
 "flat7-signup-email"="Email Address";
 "flat7-signup-password"="Password";
-"flat7-signup-button"="Login";
+"flat7-signup-button"="Sign Up";
 
 "theme-flat7-forgotpassword-title"="Forgot Password";
 "theme-flat7-forgotpassword-subtitle"="Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nDonec auctor neque sed pretium luctus.";

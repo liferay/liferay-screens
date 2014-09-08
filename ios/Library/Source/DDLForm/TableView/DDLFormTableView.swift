@@ -34,8 +34,21 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		tableView!.reloadData()
 	}
 
+	override public func becomeFirstResponder() -> Bool {
+		var result = false
 
-	// MARK: DDLFormTableView Methods
+		let rowCount = tableView!.numberOfRowsInSection(0)
+		var indexPath = NSIndexPath(forRow: 0, inSection: 0)
+
+		while !result && indexPath.row < rowCount {
+			if let cell = tableView!.cellForRowAtIndexPath(indexPath) {
+				result = cell.becomeFirstResponder()
+			}
+			indexPath = NSIndexPath(forRow: indexPath.row.successor(), inSection: indexPath.section)
+		}
+
+		return result
+	}
 
 	internal func registerElementCells() {
 		let currentBundle = NSBundle(forClass: self.dynamicType)
@@ -86,6 +99,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		let cell = tableView.dequeueReusableCellWithIdentifier(element.type.toRaw()) as? DDLElementTableCell
 
 		if let cellValue = cell {
+			cellValue.tableView = tableView
+			cellValue.indexPath = indexPath
 			cellValue.element = element
 		}
 
@@ -95,7 +110,21 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	public func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
 		let element = rows[indexPath.row]
 
-		return elementCellHeights[element.type] ?? 0
+		var height = elementCellHeights[element.type] ?? 0
+
+		height *= indexPath.row == selectedNumber ? 2 : 1
+
+		return height
 	}
+
+	public func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+
+		selectedNumber = indexPath.row
+
+		tableView.beginUpdates()
+		tableView.endUpdates()
+	}
+
+	var selectedNumber = -1
 
 }

@@ -15,7 +15,8 @@ import Foundation
 
 public enum DDLElementDataType: String {
 
-	case Boolean = "boolean"
+	case DDLBoolean = "boolean"
+	case DDLString = "string"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementDataType {
@@ -24,8 +25,10 @@ public enum DDLElementDataType: String {
 
 	public func createElement(#attributes:[String:String], localized:[String:String]) -> DDLElement? {
 		switch self {
-		case .Boolean:
-			return DDLBooleanElement(attributes:attributes, localized:localized)
+		case .DDLBoolean:
+			return DDLElementBoolean(attributes:attributes, localized:localized)
+		case .DDLString:
+			return DDLElementString(attributes:attributes, localized:localized)
 		default:
 			return nil
 		}
@@ -36,6 +39,7 @@ public enum DDLElementDataType: String {
 public enum DDLElementType: String {
 
 	case Checkbox = "checkbox"
+	case Text = "text"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementType {
@@ -43,7 +47,7 @@ public enum DDLElementType: String {
 	}
 
 	public static func all() -> [DDLElementType] {
-		return [Checkbox]
+		return [Checkbox, Text]
 	}
 
 	public func toCapitalizedName() -> String {
