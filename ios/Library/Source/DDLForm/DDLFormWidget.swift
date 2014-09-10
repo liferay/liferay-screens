@@ -84,7 +84,7 @@ import UIKit
 				delegate?.onFormSubmitError?(error)
 				finishOperationWithError(error, message:"An error happened submitting form")
 
-			case .Loading:
+			case .LoadingForm:
 				delegate?.onFormLoadError?(error)
 				finishOperationWithError(error, message:"An error happened loading form")
 
@@ -116,7 +116,7 @@ import UIKit
 				finishOperationWithMessage("Form submitted")
 				currentOperation = .Idle
 
-			case .Loading:
+			case .LoadingForm:
 				onFormLoadResult(result)
 				currentOperation = .Idle
 
@@ -181,7 +181,7 @@ import UIKit
 
 		let service = LRDDMStructureService_v62(session: session)
 
-		currentOperation = .Loading
+		currentOperation = .LoadingForm
 
 		var outError: NSError?
 
@@ -217,7 +217,7 @@ import UIKit
 				showHUDWithMessage("Uploading file...", details: "Wait a second...")
 				return true
 
-			case .Loading, .Submitting:
+			case .LoadingForm, .Submitting:
 				println("ERROR: Cannot submit a form while it's being loading or submitting")
 				return false
 
@@ -342,7 +342,7 @@ import UIKit
 
 private enum FormOperation {
 	case Idle
-	case Loading
+	case LoadingForm
 	case Submitting
 	case Uploading(DDLElementDocument, Bool)
 }
