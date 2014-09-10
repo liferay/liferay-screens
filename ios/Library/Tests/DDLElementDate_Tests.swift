@@ -96,6 +96,33 @@ class DDLElementDate_Tests: XCTestCase {
 		XCTAssertEqual("1087596000000", dateElement.currentStringValue!)
 	}
 
+	func test_CurrentStringValue_ShouldSupportOneDigitMonth_WhenSettingTheStringValue() {
+		parser.xml = requiredDateElement
+		let elements = parser.parse()
+		let dateElement = elements![0] as DDLElementDate
+
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "dd/MM/yyyy"
+
+		dateElement.currentStringValue = "6/19/2004"
+
+		XCTAssertEqual("19/06/2004", dateFormatter.stringFromDate(dateElement.currentValue as NSDate))
+	}
+
+	func test_CurrentStringValue_ShouldSupportFourDigitsYear_WhenSettingTheStringValue() {
+		parser.xml = requiredDateElement
+		let elements = parser.parse()
+		let dateElement = elements![0] as DDLElementDate
+
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "dd/MM/yyyy"
+
+		dateElement.currentStringValue = "6/19/04"
+
+		XCTAssertEqual("19/06/2004", dateFormatter.stringFromDate(dateElement.currentValue as NSDate))
+	}
+
+
 	func test_CurrentDateLabel_ShouldReturnClientSideFormat() {
 		parser.xml = requiredDateElement
 		let elements = parser.parse()
