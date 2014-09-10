@@ -90,7 +90,7 @@ public class DDLElementStringWithOptions : DDLElement {
 	}
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
-		var result:AnyObject?
+		var result:[DDLStringOption] = []
 
 		func findOptionByValue(value:String) -> DDLStringOption? {
 			return options.filter { $0.value == value }.first

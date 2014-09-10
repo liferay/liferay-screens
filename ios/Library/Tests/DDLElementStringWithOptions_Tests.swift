@@ -138,7 +138,7 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 		XCTAssertEqual("value 3", currentOptions.first!.value)
 	}
 
-	func test_CurrentValue_ShouldBeNil_AfterChangedToNonExistingOptionLabel() {
+	func test_CurrentValue_ShouldBeEmpty_AfterChangedToNonExistingOptionLabel() {
 		parser.xml = selectWithPredefinedValues
 
 		let elements = parser.parse()
@@ -147,7 +147,8 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 
 		stringElement.currentValue = "this is not a valid option label"
 
-		XCTAssertTrue(stringElement.currentValue == nil)
+		XCTAssertTrue(stringElement.currentValue is [DDLStringOption])
+		XCTAssertTrue((stringElement.currentValue as [DDLStringOption]).isEmpty)
 	}
 
 	func test_CurrenStringValue_ShouldContainTheArrayOfValues() {
