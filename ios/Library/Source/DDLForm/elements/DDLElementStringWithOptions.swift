@@ -93,23 +93,11 @@ public class DDLElementStringWithOptions : DDLElement {
 		var result:AnyObject?
 
 		func findOptionByValue(value:String) -> DDLStringOption? {
-			for option in options {
-				if option.value == value {
-					return option
-				}
-			}
-
-			return nil
+			return options.filter { $0.value == value }.first
 		}
 
 		func findOptionByLabel(label:String) -> DDLStringOption? {
-			for option in options {
-				if option.label == label {
-					return option
-				}
-			}
-
-			return nil
+			return options.filter { $0.label == label }.first
 		}
 
 		func extractFirstOption(options:String) -> String? {
