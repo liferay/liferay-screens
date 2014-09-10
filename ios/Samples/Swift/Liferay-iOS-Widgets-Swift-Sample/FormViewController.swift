@@ -26,7 +26,13 @@ class FormViewController: UIViewController, DDLFormWidgetDelegate {
 
 	@IBAction func buttonClick(sender: AnyObject) {
 		LiferayContext.instance.createSession("jose.navarro@liferay.com", password: "jm")
-		widget!.loadForm()
+
+		if widget!.recordId == 0 {
+			widget!.loadForm()
+		}
+		else {
+			widget!.loadRecord()
+		}
 	}
 
 	@IBAction func button2Click(sender: AnyObject) {
