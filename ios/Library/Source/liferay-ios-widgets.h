@@ -42,5 +42,6 @@ FOUNDATION_EXPORT const unsigned char liferay_mobile_widgetsVersionString[];
 
 #import "LRCallback.h"
 #import "LRSession.h"
+#import "LRBatchSession.h"
 #import "LRError.h"
 #import "LRJSONObjectWrapper.h"
