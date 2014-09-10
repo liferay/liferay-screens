@@ -92,6 +92,26 @@ public class DDLElementStringWithOptions : DDLElement {
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		var result:AnyObject?
 
+		func findOptionByValue(value:String) -> DDLStringOption? {
+			for option in options {
+				if option.value == value {
+					return option
+				}
+			}
+
+			return nil
+		}
+
+		func findOptionByLabel(label:String) -> DDLStringOption? {
+			for option in options {
+				if option.label == label {
+					return option
+				}
+			}
+
+			return nil
+		}
+
 		func extractFirstOption(options:String) -> String? {
 
 			func removeFirstAndLastChars(value:String) -> String {
@@ -124,10 +144,10 @@ public class DDLElementStringWithOptions : DDLElement {
 		}
 
 		if let firstOptionValue = firstOption {
-			if let foundOption = findOption(byLabel: firstOptionValue) {
+			if let foundOption = findOptionByLabel(firstOptionValue) {
 				result = [foundOption]
 			}
-			else if let foundOption = findOption(byValue: firstOptionValue) {
+			else if let foundOption = findOptionByValue(firstOptionValue) {
 				result = [foundOption]
 			}
 		}
@@ -148,26 +168,5 @@ public class DDLElementStringWithOptions : DDLElement {
 			}
 		}
 	}
-
-	private func findOption(byValue value:String) -> DDLStringOption? {
-		for option in options {
-			if option.value == value {
-				return option
-			}
-		}
-
-		return nil
-	}
-
-	private func findOption(byLabel label:String) -> DDLStringOption? {
-		for option in options {
-			if option.label == label {
-				return option
-			}
-		}
-
-		return nil
-	}
-
 
 }
