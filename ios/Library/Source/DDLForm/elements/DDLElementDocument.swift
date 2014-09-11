@@ -83,7 +83,8 @@ import Foundation
 
 			case let videoURL as NSURL:
 				var outError:NSError?
-				if let attributes = NSFileManager.defaultManager().attributesOfItemAtPath(videoURL.path, error: &outError) {
+				if let attributes = NSFileManager.defaultManager().attributesOfItemAtPath(
+						videoURL.path!, error: &outError) {
 					if let sizeValue = attributes[NSFileSize] as? NSNumber {
 						size = sizeValue.longLongValue
 					}

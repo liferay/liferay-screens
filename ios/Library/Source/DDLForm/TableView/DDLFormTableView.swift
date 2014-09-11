@@ -114,10 +114,13 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 				tableView?.registerNib(cellNib, forCellReuseIdentifier: "SubmitButton")
 
-				if let views = cellNib.instantiateWithOwner(nil, options: nil) {
-					if let cellRootView = views.first as? UITableViewCell {
-						submitButtonHeight = cellRootView.bounds.size.height
-					}
+				let views = cellNib.instantiateWithOwner(nil, options: nil)
+
+				if let cellRootView = views.first as? UITableViewCell {
+					submitButtonHeight = cellRootView.bounds.size.height
+				}
+				else {
+					println("ERROR: Root view in submit button didn't found")
 				}
 			}
 			else {
@@ -127,22 +130,19 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	}
 
 	internal func registerElementEditorHeight(#editor:DDLElementEditor, nib:UINib) {
-		if let views = nib.instantiateWithOwner(nil, options: nil) {
-			if let cellRootView = views.first as? UITableViewCell {
-				editor.registerHeight(cellRootView.bounds.size.height)
-			}
-			else {
-				println("ERROR: Root view in cell \(editor.toRaw()) didn't found")
-			}
+		let views = nib.instantiateWithOwner(nil, options: nil)
+
+		if let cellRootView = views.first as? UITableViewCell {
+			editor.registerHeight(cellRootView.bounds.size.height)
 		}
 		else {
-			println("ERROR: Can't instantiate nib for cell \(editor.toRaw())")
+			println("ERROR: Root view in cell \(editor.toRaw()) didn't found")
 		}
 	}
 
 	// MARK: UITableViewDataSource
 
-	public func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if rows.count == 0 {
 			return 0
 		}
@@ -150,7 +150,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		return rows.count + (showSubmitButton ? 1 : 0)
 	}
 
-	public func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
 		var cell:DDLElementTableCell?
 		let row = indexPath.row
@@ -175,10 +175,10 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 			cell!.element = element
 		}
 
-		return cell
+		return cell!
 	}
 
-	public func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+	public func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
 		let row = indexPath.row
 

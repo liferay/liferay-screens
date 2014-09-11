@@ -49,7 +49,7 @@ public class DDLElementDate : DDLElement {
 			if countElements(stringValue) >= 6 {
 				let formatter = stringValue[stringValue.endIndex.predecessor().predecessor()] == "/" ?
 					serverYYDateFormatter : serverYYDateFormatter
-				return formatter.dateFromString(value)
+				return formatter.dateFromString(stringValue)
 			}
 		}
 

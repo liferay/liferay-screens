@@ -130,7 +130,7 @@ extension BaseWidget {
 				MBProgressHUDInstance.touchHandler = HUDTouchHandler()
 				MBProgressHUDInstance.instance!.addGestureRecognizer(
 						UITapGestureRecognizer(
-							target: MBProgressHUDInstance.touchHandler,
+							target: MBProgressHUDInstance.touchHandler!,
 							action: "simpleTapDetected:"))
 			}
 

@@ -75,7 +75,7 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 	//MARK: UITextFieldDelegate
 
 	public func textFieldDidBeginEditing(textField: UITextField!) {
-		tableView?.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+		tableView?.scrollToRowAtIndexPath(indexPath!, atScrollPosition: .Top, animated: true)
 
 		textFieldBackground?.highlighted = true
 
