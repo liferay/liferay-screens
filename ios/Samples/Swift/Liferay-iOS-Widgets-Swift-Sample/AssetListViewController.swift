@@ -23,4 +23,16 @@ class AssetListViewController: UIViewController, AssetListWidgetDelegate {
 		widget!.loadList()
 	}
 
+	func onAssetListResponse(entries:[AssetEntry]) {
+		println("Loaded \(entries.count) entries")
+	}
+
+	func onAssetListError(error: NSError) {
+	}
+
+	func onAssetSelected(entry:AssetEntry) {
+		println("selected \(entry.title)")
+	}
+
+
 }
