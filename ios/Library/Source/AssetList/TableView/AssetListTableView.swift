@@ -36,11 +36,18 @@ public class AssetListTableView: AssetListView, UITableViewDataSource, UITableVi
 
 		if cell == nil {
 			cell = UITableViewCell(style: .Default, reuseIdentifier: "assetCell")
+			cell!.accessoryType = .DisclosureIndicator
 		}
 
 		cell!.textLabel?.text = entries[indexPath.row].title
 
 		return cell!
+	}
+
+	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		tableView.deselectRowAtIndexPath(indexPath, animated: false)
+
+		onSelectedEntryClosure?(entries[indexPath.row])
 	}
 
 }

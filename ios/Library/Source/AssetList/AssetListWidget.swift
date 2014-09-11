@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class AssetEntry {
+@objc public class AssetEntry {
 
 	public var title:String
 
@@ -26,8 +26,10 @@ public class AssetEntry {
 
 @objc protocol AssetListWidgetDelegate {
 
-	optional func onAssetListResponse(entries:[[String:AnyObject]])
+	optional func onAssetListResponse(entries:[AssetEntry])
 	optional func onAssetListError(error: NSError)
+
+	optional func onAssetSelected(entry:AssetEntry)
 
 }
 
@@ -36,11 +38,15 @@ public class AssetEntry {
 	@IBInspectable var groupId: Int = 0
 	@IBInspectable var classNameId: Int = 0
 
-	public enum LiferayClassNameId: Int {
+	public enum AssetClassNameId: Int {
 		case WebContent = 10109
 	}
 
 	@IBOutlet var delegate: AssetListWidgetDelegate?
+
+	override public func onCreated() {
+		assetListView().onSelectedEntryClosure = onSelectedEntry
+	}
 
 	public func loadList() -> Bool {
 		if LiferayContext.instance.currentSession == nil {
@@ -102,12 +108,16 @@ public class AssetEntry {
 				return AssetEntry(title: title)
 			}
 
-			delegate?.onAssetListResponse?(responseArray)
+			delegate?.onAssetListResponse?(assetListView().entries)
 			finishOperation()
 		}
 		else {
 			finishOperationWithMessage("An error happened", details: "Can't load the list")
 		}
+	}
+
+	internal func onSelectedEntry(entry:AssetEntry) {
+		delegate?.onAssetSelected?(entry)
 	}
 
 	internal func assetListView() -> AssetListView {

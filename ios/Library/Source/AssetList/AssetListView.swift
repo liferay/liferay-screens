@@ -21,6 +21,8 @@ public class AssetListView: BaseWidgetView {
 		}
 	}
 
+	internal var onSelectedEntryClosure: ((AssetEntry) -> ())?
+
 	internal func onChangedEntries() {
 	}
 
