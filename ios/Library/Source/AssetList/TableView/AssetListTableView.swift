@@ -36,14 +36,20 @@ public class AssetListTableView: AssetListView, UITableViewDataSource, UITableVi
 
 		if cell == nil {
 			cell = UITableViewCell(style: .Default, reuseIdentifier: "assetCell")
-			cell!.accessoryType = .DisclosureIndicator
 		}
 
 		if let entry = entries[indexPath.row] {
 			cell!.textLabel?.text = entry.title
+			cell!.accessoryType = .DisclosureIndicator
+			cell!.accessoryView = nil
 		}
 		else {
-			cell!.textLabel?.text = "Loading..."
+			cell!.textLabel?.text = "..."
+			cell!.accessoryType = .None
+			let image = UIImage(named: "default-hourglass")
+			cell!.accessoryView = UIImageView(image: image)
+			cell!.accessoryView!.frame = CGRectMake(0, 0, image.size.width, image.size.height)
+
 			fetchPageForRow?(indexPath.row)
 		}
 
