@@ -15,13 +15,16 @@ import UIKit
 
 public class AssetListView: BaseWidgetView {
 
-	public var entries:[AssetEntry] = [] {
+	public var entries:[AssetEntry?] = [] {
 		didSet {
 			onChangedEntries()
 		}
 	}
 
+	public var entryCount:Int = 0
+
 	internal var onSelectedEntryClosure: ((AssetEntry) -> ())?
+	internal var fetchPageForRow: ((Int) -> ())?
 
 	internal func onChangedEntries() {
 	}

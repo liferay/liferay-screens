@@ -38,6 +38,13 @@ import UIKit
 	@IBInspectable var groupId: Int = 0
 	@IBInspectable var classNameId: Int = 0
 
+	private var entriesCount = 0
+
+	private var loadPageOperations: [Int:LoadPageOperation] = [:]
+
+	private let pageSize = 10
+	private let firstPageSize = 25
+
 	public enum AssetClassNameId: Int {
 		case WebContent = 10109
 	}
@@ -46,6 +53,74 @@ import UIKit
 
 	override public func onCreated() {
 		assetListView().onSelectedEntryClosure = onSelectedEntry
+		assetListView().fetchPageForRow = loadPageForRow
+	}
+
+	internal func loadPageForRow(row:Int) {
+		let page = pageFromRow(row)
+
+		if loadPageOperations.indexForKey(page) == nil {
+			loadPage(page)
+		}
+	}
+
+	internal func pageFromRow(row:Int) -> Int {
+		if row < firstPageSize {
+			return 0
+		}
+
+		return ((row - firstPageSize) / pageSize) + 1
+	}
+
+	internal func firstRowForPage(page:Int) -> Int {
+		if page == 0 {
+			return 0
+		}
+
+		return firstPageSize + (page - 1) * pageSize
+	}
+
+	internal func loadPage(page:Int) -> Bool {
+		let operation = LoadPageOperation(page:page)
+
+		operation.onOperationSuccess = onLoadPageResult
+		operation.onOperationFailure = onLoadPageError
+
+		loadPageOperations[page] = operation
+
+		let session = LRBatchSession(session: LiferayContext.instance.currentSession)
+		session.callback = operation
+
+		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber
+
+		let widgetsService = LRMobilewidgetsassetentryService_v62(session: session)
+
+		let entryQueryAttributes = [
+				"start":firstRowForPage(page),
+				"end":firstRowForPage(page + 1),
+				"classNameIds":classNameId,
+				"groupIds":groupIdToUse]
+
+		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
+
+		var outError: NSError?
+
+		widgetsService.getAssetEntriesWithAssetEntryQuery(entryQuery,
+				locale: NSLocale.currentLocaleString(),
+				error: &outError)
+
+		let assetsService = LRAssetEntryService_v62(session: session)
+
+		assetsService.getEntriesCountWithEntryQuery(entryQuery, error: &outError)
+
+		session.invoke(&outError)
+
+		if let error = outError {
+			operation.onFailure(error)
+			return false
+		}
+
+		return true
 	}
 
 	public func loadList() -> Bool {
@@ -61,59 +136,55 @@ import UIKit
 
 		startOperationWithMessage("Loading list...", details:"Wait few seconds...")
 
-		let session = LRSession(session: LiferayContext.instance.currentSession)
-		session.callback = self
-
-		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber
-
-		let service = LRMobilewidgetsassetService_v62(session: session)
-
-		let entryQueryAttributes = [
-				"classNameIds":classNameId,
-				"groupIds":groupIdToUse]
-
-		let entryQuery = LRJSONObjectWrapper(
-				className: "com.liferay.portlet.asset.service.persistence.AssetEntryQuery",
-				jsonObject: entryQueryAttributes)
-
-		var outError: NSError?
-
-		service.getEntriesWithEntryQuery(entryQuery, locale: NSLocale.currentLocaleString(), error: &outError)
-
-		if let error = outError {
-			onFailure(error)
-			return false
-		}
-
-		return true
+		return loadPage(0)
 	}
 
-
-	// MARK: BaseWidget METHODS
-
-	override internal func onServerError(error: NSError) {
+	internal func onLoadPageError(page: Int, error: NSError) {
 		delegate?.onAssetListError?(error)
 
-		finishOperationWithError(error, message:"Error requesting password!")
+		if page == 0 {
+			finishOperationWithError(error, message:"Error getting list!")
+		}
+
+		loadPageOperations.removeValueForKey(page)
 	}
 
-	override internal func onServerResult(result: [String:AnyObject]) {
-		if let responseArray = (result["result"] ?? nil) as? [[String:AnyObject]] {
+	internal func onLoadPageResult(page: Int, entries: [[String:AnyObject]], entryCount: Int) {
+		let assetEntries = entries.map() {
+			attrs -> AssetEntry in
 
-			assetListView().entries = responseArray.map() {
-				(var attrs) -> AssetEntry in
+			let title = (attrs["title"] ?? "") as String
 
-				let title = (attrs["titleCurrentValue"] ?? "") as String
+			return AssetEntry(title: title)
+		}
 
-				return AssetEntry(title: title)
-			}
+		delegate?.onAssetListResponse?(assetEntries)
 
-			delegate?.onAssetListResponse?(assetListView().entries)
+		var allAssetEntries = Array<AssetEntry?>(count: entryCount, repeatedValue: nil)
+
+		for (index, assetEntry) in enumerate(assetListView().entries) {
+			allAssetEntries[index] = assetEntry
+		}
+
+		var offset = (page == 0) ? 0 : firstPageSize + (page - 1) * pageSize
+
+		// last page could be incomplete
+		if offset >= entryCount {
+			offset = entryCount - 1
+		}
+
+		for (index, assetEntry) in enumerate(assetEntries) {
+			allAssetEntries[offset + index] = assetEntry
+		}
+
+		assetListView().entryCount = entryCount
+		assetListView().entries = allAssetEntries
+
+		if page == 0 {
 			finishOperation()
 		}
-		else {
-			finishOperationWithMessage("An error happened", details: "Can't load the list")
-		}
+
+		loadPageOperations.removeValueForKey(page)
 	}
 
 	internal func onSelectedEntry(entry:AssetEntry) {
@@ -123,4 +194,43 @@ import UIKit
 	internal func assetListView() -> AssetListView {
 		return widgetView as AssetListView
 	}
+}
+
+internal class LoadPageOperation: NSObject, LRCallback {
+
+	internal var onOperationSuccess: ((Int, [[String:AnyObject]], Int) -> ())?
+	internal var onOperationFailure: ((Int, NSError) -> ())?
+
+	private let page:Int
+
+	internal init(page:Int) {
+		self.page = page
+	}
+
+	internal func onFailure(error: NSError!) {
+		onOperationFailure?(page, error)
+	}
+
+	internal func onSuccess(result: AnyObject!) {
+		if let responses = result as? NSArray {
+			if let entriesResponse = responses.firstObject as? NSArray {
+				if let countResponse = responses.objectAtIndex(1) as? NSNumber {
+					onOperationSuccess?(page,
+						entriesResponse as [[String:AnyObject]],
+						countResponse as Int)
+				}
+				else {
+					// TODO error handling
+				}
+			}
+			else {
+				// TODO error handling
+			}
+		}
+		else {
+			// TODO error handling
+		}
+	}
+
+
 }

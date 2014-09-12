@@ -27,7 +27,7 @@ public class AssetListTableView: AssetListView, UITableViewDataSource, UITableVi
 	// MARK: UITableViewDataSource
 
 	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return entries.count
+		return entryCount
 	}
 
 	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -39,7 +39,13 @@ public class AssetListTableView: AssetListView, UITableViewDataSource, UITableVi
 			cell!.accessoryType = .DisclosureIndicator
 		}
 
-		cell!.textLabel?.text = entries[indexPath.row].title
+		if let entry = entries[indexPath.row] {
+			cell!.textLabel?.text = entry.title
+		}
+		else {
+			cell!.textLabel?.text = "Loading..."
+			fetchPageForRow?(indexPath.row)
+		}
 
 		return cell!
 	}
@@ -47,7 +53,9 @@ public class AssetListTableView: AssetListView, UITableViewDataSource, UITableVi
 	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: false)
 
-		onSelectedEntryClosure?(entries[indexPath.row])
+		if let entry = entries[indexPath.row] {
+			onSelectedEntryClosure?(entry)
+		}
 	}
 
 }
