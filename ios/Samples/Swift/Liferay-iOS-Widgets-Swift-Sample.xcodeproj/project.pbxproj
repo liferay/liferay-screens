@@ -14,7 +14,11 @@
 		8811DC3D19BDA700008FE226 /* WebContentView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8811DC3B19BDA700008FE226 /* WebContentView-default.xib */; };
 		8811DC3E19BDA700008FE226 /* WebContentView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC3C19BDA700008FE226 /* WebContentView_default.swift */; };
 		8811DC4019BDD0FA008FE226 /* WebContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC3F19BDD0FA008FE226 /* WebContentViewController.swift */; };
-		8817A40919BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 8817A40819BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.m */; };
+		8828A79A19C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 8828A79619C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.m */; };
+		8828A79B19C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 8828A79819C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.m */; };
+		8828A79D19C2E1C20051601A /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8828A79C19C2E1C20051601A /* Global.swift */; };
+		8828A7A019C319A40051601A /* default-hourglass.png in Resources */ = {isa = PBXBuildFile; fileRef = 8828A79E19C319A40051601A /* default-hourglass.png */; };
+		8828A7A119C319A40051601A /* default-hourglass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8828A79F19C319A40051601A /* default-hourglass@2x.png */; };
 		8835607C196AED36002AB222 /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8835607B196AED36002AB222 /* liferay-context-sample.plist */; };
 		883CF3D1199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CF3D0199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m */; };
 		88415D2A19A273F4006F7064 /* DDLElementSelectTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88415D2819A273F4006F7064 /* DDLElementSelectTableCell_default.swift */; };
@@ -89,6 +93,9 @@
 		8890CDA719ADF5570012B842 /* DDLElementDocumentlibraryPresenterViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8890CDA519ADF5570012B842 /* DDLElementDocumentlibraryPresenterViewController_default.swift */; };
 		8890CDA819ADF5570012B842 /* DDLElementDocumentlibraryPresenterViewController-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8890CDA619ADF5570012B842 /* DDLElementDocumentlibraryPresenterViewController-default.xib */; };
 		8890CDAA19AE1CA50012B842 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8890CDA919AE1CA50012B842 /* MobileCoreServices.framework */; };
+		889558DC19C1E7B500657AC7 /* AssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889558DA19C1E7B500657AC7 /* AssetListView.swift */; };
+		889558DD19C1E7B500657AC7 /* AssetListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889558DB19C1E7B500657AC7 /* AssetListWidget.swift */; };
+		889558DF19C1E7FD00657AC7 /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889558DE19C1E7FD00657AC7 /* AssetListViewController.swift */; };
 		8897D9C3198A810F00D3DF51 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E4604819759FE4002C26C6 /* ForgotPasswordView.swift */; };
 		8897D9C4198A812D00D3DF51 /* ForgotPasswordWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E4604A19759FE4002C26C6 /* ForgotPasswordWidget.swift */; };
 		8897D9C6198A883F00D3DF51 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8897D9C5198A883F00D3DF51 /* ThemeManager.swift */; };
@@ -106,6 +113,8 @@
 		88999AF4198EF1A700E746A6 /* UIImage+Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 88999AF3198EF1A700E746A6 /* UIImage+Themes.m */; };
 		88C16F1319A49CC8002BA31A /* DDLElementRadioTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C16F1119A49CC8002BA31A /* DDLElementRadioTableCell_default.swift */; };
 		88C16F1419A49CC8002BA31A /* DDLElementRadioTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C16F1219A49CC8002BA31A /* DDLElementRadioTableCell-default.xib */; };
+		88C546FD19C1EB2900A51E7D /* AssetListView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C546FB19C1EB2900A51E7D /* AssetListView-default.xib */; };
+		88C5470319C1EBBE00A51E7D /* AssetListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C5470119C1EBBE00A51E7D /* AssetListTableView.swift */; };
 		88D5376C199914BB00615515 /* DDLElementBoolean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5376A199914BB00615515 /* DDLElementBoolean.swift */; };
 		88D5377E19991C0400615515 /* DDLElementTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5377C19991C0400615515 /* DDLElementTableCell.swift */; };
 		88D5377F19991C0400615515 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5377D19991C0400615515 /* DDLFormTableView.swift */; };
@@ -140,8 +149,13 @@
 		8811DC3B19BDA700008FE226 /* WebContentView-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WebContentView-default.xib"; sourceTree = "<group>"; };
 		8811DC3C19BDA700008FE226 /* WebContentView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView_default.swift; sourceTree = "<group>"; };
 		8811DC3F19BDD0FA008FE226 /* WebContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentViewController.swift; sourceTree = "<group>"; };
-		8817A40719BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsddlService_v62.h; sourceTree = "<group>"; };
-		8817A40819BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsddlService_v62.m; sourceTree = "<group>"; };
+		8828A79619C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsassetentryService_v62.m; sourceTree = "<group>"; };
+		8828A79719C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsddlrecordService_v62.h; sourceTree = "<group>"; };
+		8828A79819C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsddlrecordService_v62.m; sourceTree = "<group>"; };
+		8828A79919C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsassetentryService_v62.h; sourceTree = "<group>"; };
+		8828A79C19C2E1C20051601A /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		8828A79E19C319A40051601A /* default-hourglass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-hourglass.png"; sourceTree = "<group>"; };
+		8828A79F19C319A40051601A /* default-hourglass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-hourglass@2x.png"; sourceTree = "<group>"; };
 		8835607B196AED36002AB222 /* liferay-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-context-sample.plist"; sourceTree = "<group>"; };
 		883CF3CF199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsuserService_v62.h; sourceTree = "<group>"; };
 		883CF3D0199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsuserService_v62.m; sourceTree = "<group>"; };
@@ -220,6 +234,9 @@
 		8890CDA519ADF5570012B842 /* DDLElementDocumentlibraryPresenterViewController_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementDocumentlibraryPresenterViewController_default.swift; sourceTree = "<group>"; };
 		8890CDA619ADF5570012B842 /* DDLElementDocumentlibraryPresenterViewController-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementDocumentlibraryPresenterViewController-default.xib"; sourceTree = "<group>"; };
 		8890CDA919AE1CA50012B842 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		889558DA19C1E7B500657AC7 /* AssetListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListView.swift; sourceTree = "<group>"; };
+		889558DB19C1E7B500657AC7 /* AssetListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListWidget.swift; sourceTree = "<group>"; };
+		889558DE19C1E7FD00657AC7 /* AssetListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListViewController.swift; sourceTree = "<group>"; };
 		8897D9C5198A883F00D3DF51 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		8897D9D0198A958000D3DF51 /* NSBundle+Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Paths.swift"; sourceTree = "<group>"; };
 		88999ACC198EE62E00E746A6 /* LoginView-flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginView-flat7.xib"; sourceTree = "<group>"; };
@@ -237,6 +254,8 @@
 		88999AF3198EF1A700E746A6 /* UIImage+Themes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Themes.m"; sourceTree = "<group>"; };
 		88C16F1119A49CC8002BA31A /* DDLElementRadioTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementRadioTableCell_default.swift; sourceTree = "<group>"; };
 		88C16F1219A49CC8002BA31A /* DDLElementRadioTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementRadioTableCell-default.xib"; sourceTree = "<group>"; };
+		88C546FB19C1EB2900A51E7D /* AssetListView-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AssetListView-default.xib"; sourceTree = "<group>"; };
+		88C5470119C1EBBE00A51E7D /* AssetListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListTableView.swift; sourceTree = "<group>"; };
 		88D5376A199914BB00615515 /* DDLElementBoolean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementBoolean.swift; sourceTree = "<group>"; };
 		88D5377C19991C0400615515 /* DDLElementTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementTableCell.swift; sourceTree = "<group>"; };
 		88D5377D19991C0400615515 /* DDLFormTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormTableView.swift; sourceTree = "<group>"; };
@@ -371,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				8868AFCB19656B0500FD5214 /* AppDelegate.swift */,
+				889558DE19C1E7FD00657AC7 /* AssetListViewController.swift */,
 				885FD6821996E1DF00F23BA1 /* FormViewController.swift */,
 				8868AFD219656B0500FD5214 /* Images.xcassets */,
 				88832F9019656B3F00E3DF9F /* liferay-context.plist */,
@@ -396,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				8811DC3519BDA0EE008FE226 /* AssetDisplay */,
+				889558D919C1E7B500657AC7 /* AssetList */,
 				88832F8819656B3F00E3DF9F /* Base */,
 				88EAEE341993D8BF002D7C26 /* DDLForm */,
 				8897D9CF198A957300D3DF51 /* Extensions */,
@@ -486,10 +507,21 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		889558D919C1E7B500657AC7 /* AssetList */ = {
+			isa = PBXGroup;
+			children = (
+				889558DA19C1E7B500657AC7 /* AssetListView.swift */,
+				889558DB19C1E7B500657AC7 /* AssetListWidget.swift */,
+				88C546FF19C1EBBE00A51E7D /* TableView */,
+			);
+			path = AssetList;
+			sourceTree = "<group>";
+		};
 		8897D9CF198A957300D3DF51 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */,
+				8828A79C19C2E1C20051601A /* Global.swift */,
 				8897D9D0198A958000D3DF51 /* NSBundle+Paths.swift */,
 				888F61FC198FD3B10082786B /* NSLocale+CurrentLocale.swift */,
 				88999AF2198EF1A700E746A6 /* UIImage+Themes.h */,
@@ -510,6 +542,8 @@
 				888D7750198FDB710052C39C /* default-field-focused@2x.png */,
 				888D7751198FDB710052C39C /* default-field.png */,
 				888D7752198FDB710052C39C /* default-field@2x.png */,
+				8828A79E19C319A40051601A /* default-hourglass.png */,
+				8828A79F19C319A40051601A /* default-hourglass@2x.png */,
 				888D7753198FDB710052C39C /* default-large-button-selected.png */,
 				888D7754198FDB710052C39C /* default-large-button-selected@2x.png */,
 				888D7755198FDB710052C39C /* default-large-button.png */,
@@ -574,6 +608,22 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		88C546FA19C1EB2900A51E7D /* AssetList */ = {
+			isa = PBXGroup;
+			children = (
+				88C546FB19C1EB2900A51E7D /* AssetListView-default.xib */,
+			);
+			path = AssetList;
+			sourceTree = "<group>";
+		};
+		88C546FF19C1EBBE00A51E7D /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				88C5470119C1EBBE00A51E7D /* AssetListTableView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		88D5377B19991C0400615515 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -595,8 +645,10 @@
 		88E4604E19759FEB002C26C6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8817A40719BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.h */,
-				8817A40819BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.m */,
+				8828A79919C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.h */,
+				8828A79619C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.m */,
+				8828A79719C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.h */,
+				8828A79819C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.m */,
 				883CF3CF199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.h */,
 				883CF3D0199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m */,
 			);
@@ -629,11 +681,12 @@
 			isa = PBXGroup;
 			children = (
 				8811DC3A19BDA700008FE226 /* AssetDisplay */,
+				88C546FA19C1EB2900A51E7D /* AssetList */,
 				884CE5171994F37100ADF047 /* DDLForm */,
 				888D77C5199038D10052C39C /* ForgotPassword */,
 				888D77BB198FF5030052C39C /* Login */,
-				888D77C0199031690052C39C /* SignUp */,
 				88999AA8198EE58300E746A6 /* Resources */,
+				888D77C0199031690052C39C /* SignUp */,
 			);
 			path = Default;
 			sourceTree = "<group>";
@@ -726,6 +779,7 @@
 				888D7775198FEACD0052C39C /* flat7-preview-signup@2x.png in Resources */,
 				888CE11319924821001DCA6A /* ForgotPasswordView-flat7.xib in Resources */,
 				888CE10F199247AD001DCA6A /* default-preview-forgotpassword.png in Resources */,
+				88C546FD19C1EB2900A51E7D /* AssetListView-default.xib in Resources */,
 				88D90A6419A215A8003E8D98 /* DDLSubmitButtonTableCell-default.xib in Resources */,
 				888CE10E199247AD001DCA6A /* default-preview-forgotpassword@2x.png in Resources */,
 				8890CDA819ADF5570012B842 /* DDLElementDocumentlibraryPresenterViewController-default.xib in Resources */,
@@ -745,6 +799,7 @@
 				88C16F1419A49CC8002BA31A /* DDLElementRadioTableCell-default.xib in Resources */,
 				888CE11819924AD4001DCA6A /* flat7-preview-forgotpassword.png in Resources */,
 				88999AD9198EE62E00E746A6 /* LoginView-flat7.xib in Resources */,
+				8828A7A119C319A40051601A /* default-hourglass@2x.png in Resources */,
 				888D7774198FEACD0052C39C /* flat7-preview-signup.png in Resources */,
 				88D537891999215500615515 /* default-field-failed.png in Resources */,
 				888D775C198FDB710052C39C /* default-field.png in Resources */,
@@ -759,6 +814,7 @@
 				888D77B6198FF0E20052C39C /* default-mail-icon@2x.png in Resources */,
 				88999AE5198EE83A00E746A6 /* flat7-preview-login.png in Resources */,
 				888D776B198FDCFA0052C39C /* default-preview-signup.png in Resources */,
+				8828A7A019C319A40051601A /* default-hourglass.png in Resources */,
 				888D77B9198FF0EC0052C39C /* default-user-icon.png in Resources */,
 				884CE51E1994F3A500ADF047 /* default-preview-ddlform.png in Resources */,
 				888D77B4198FF0E20052C39C /* default-lock-icon@2x.png in Resources */,
@@ -813,6 +869,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8828A79B19C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.m in Sources */,
 				88832FA119656B3F00E3DF9F /* LoginWidget.swift in Sources */,
 				8868AFCE19656B0500FD5214 /* ViewController.swift in Sources */,
 				88D5378519991C2600615515 /* DDLElementString.swift in Sources */,
@@ -829,6 +886,8 @@
 				8890CDA719ADF5570012B842 /* DDLElementDocumentlibraryPresenterViewController_default.swift in Sources */,
 				88999AF4198EF1A700E746A6 /* UIImage+Themes.m in Sources */,
 				888D7771198FE3D40052C39C /* SignUpView_flat7.swift in Sources */,
+				88C5470319C1EBBE00A51E7D /* AssetListTableView.swift in Sources */,
+				889558DC19C1E7B500657AC7 /* AssetListView.swift in Sources */,
 				884CE5161994F36600ADF047 /* DDLFormView.swift in Sources */,
 				888F6202198FD3DC0082786B /* SignUpView.swift in Sources */,
 				885FD67F19968E1900F23BA1 /* DDLElement.swift in Sources */,
@@ -841,12 +900,12 @@
 				888CE11419924821001DCA6A /* ForgotPasswordView_flat7.swift in Sources */,
 				88C16F1319A49CC8002BA31A /* DDLElementRadioTableCell_default.swift in Sources */,
 				886C74AE19A382D800B689BA /* DDLElementStringWithOptions.swift in Sources */,
+				8828A79A19C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.m in Sources */,
 				88D5377F19991C0400615515 /* DDLFormTableView.swift in Sources */,
 				88D7690B199A2C4800D152D5 /* DDLElementTextareaTableCell_default.swift in Sources */,
 				885FD6831996E1DF00F23BA1 /* FormViewController.swift in Sources */,
 				883CF3D1199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m in Sources */,
 				8897D9C4198A812D00D3DF51 /* ForgotPasswordWidget.swift in Sources */,
-				8817A40919BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.m in Sources */,
 				88EAEE3C1993D923002D7C26 /* Bool+Conversion.swift in Sources */,
 				88D5376C199914BB00615515 /* DDLElementBoolean.swift in Sources */,
 				88DBC12019A4F31A0075E644 /* DDLElementDate.swift in Sources */,
@@ -860,8 +919,10 @@
 				999BC69C19768EA400A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 				884CE5251994FAF500ADF047 /* DDLElementCheckboxTableCell_default.swift in Sources */,
 				88D90A6319A215A8003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */,
+				889558DD19C1E7B500657AC7 /* AssetListWidget.swift in Sources */,
 				8859354819A604990040E125 /* DDLElementNumberTableCell_default.swift in Sources */,
 				884CE51B1994F37100ADF047 /* DDLFormView_default.swift in Sources */,
+				889558DF19C1E7FD00657AC7 /* AssetListViewController.swift in Sources */,
 				888F61FD198FD3B10082786B /* NSLocale+CurrentLocale.swift in Sources */,
 				8811DC4019BDD0FA008FE226 /* WebContentViewController.swift in Sources */,
 				88D5377E19991C0400615515 /* DDLElementTableCell.swift in Sources */,
@@ -870,6 +931,7 @@
 				880D63A919ADE00F002907AD /* DDLElementDocument.swift in Sources */,
 				8897D9C6198A883F00D3DF51 /* ThemeManager.swift in Sources */,
 				88DBC14019A4F85F0075E644 /* DDLBaseElementTextFieldTableCell_default.swift in Sources */,
+				8828A79D19C2E1C20051601A /* Global.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
