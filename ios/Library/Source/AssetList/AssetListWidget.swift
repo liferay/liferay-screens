@@ -38,12 +38,10 @@ import UIKit
 	@IBInspectable var groupId: Int = 0
 	@IBInspectable var classNameId: Int = 0
 
-	private var entriesCount = 0
+	@IBInspectable var firstPageSize = 5
+	@IBInspectable var pageSize = 2
 
 	private var loadPageOperations: [Int:LoadPageOperation] = [:]
-
-	private let pageSize = 10
-	private let firstPageSize = 25
 
 	public enum AssetClassNameId: Int {
 		case WebContent = 10109
