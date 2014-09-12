@@ -25,6 +25,9 @@ class AssetListViewController: UIViewController, AssetListWidgetDelegate {
 
 	func onAssetListResponse(entries:[AssetEntry]) {
 		println("Loaded \(entries.count) entries")
+		for e in entries {
+			println("      \(e.title)")
+		}
 	}
 
 	func onAssetListError(error: NSError) {
