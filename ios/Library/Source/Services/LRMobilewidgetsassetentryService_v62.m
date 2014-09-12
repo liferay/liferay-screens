@@ -12,20 +12,20 @@
  * details.
  */
 
-#import "LRMobilewidgetsassetService_v62.h"
+#import "LRMobilewidgetsassetentryService_v62.h"
 
 /**
  * @author Bruno Farache
  */
-@implementation LRMobilewidgetsassetService_v62
+@implementation LRMobilewidgetsassetentryService_v62
 
-- (NSArray *)getEntriesWithEntryQuery:(LRJSONObjectWrapper *)entryQuery locale:(NSString *)locale error:(NSError **)error {
+- (NSArray *)getAssetEntriesWithAssetEntryQuery:(LRJSONObjectWrapper *)assetEntryQuery locale:(NSString *)locale error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"locale": locale
 	}];
 
-	[self mangleWrapperWithParams:_params name:@"entryQuery" className:@"com.liferay.portlet.asset.service.persistence.AssetEntryQuery" wrapper:entryQuery];
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsasset/get-entries": _params};
+	[self mangleWrapperWithParams:_params name:@"assetEntryQuery" className:@"com.liferay.portlet.asset.service.persistence.AssetEntryQuery" wrapper:assetEntryQuery];
+	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsassetentry/get-asset-entries": _params};
 
 	return (NSArray *)[self.session invoke:_command error:error];
 }

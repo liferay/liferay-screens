@@ -12,22 +12,13 @@
  * details.
  */
 
-#import "LRMobilewidgetsddlService_v62.h"
+#import "LRBaseService.h"
 
 /**
  * @author Bruno Farache
  */
-@implementation LRMobilewidgetsddlService_v62
+@interface LRMobilewidgetsassetentryService_v62 : LRBaseService
 
-- (NSDictionary *)getDdlRecordValuesWithRecordId:(long long)recordId locale:(NSString *)locale error:(NSError **)error {
-	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
-		@"recordId": @(recordId),
-		@"locale": locale
-	}];
-
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsddl/get-ddl-record-values": _params};
-
-	return (NSDictionary *)[self.session invoke:_command error:error];
-}
+- (NSArray *)getAssetEntriesWithAssetEntryQuery:(LRJSONObjectWrapper *)assetEntryQuery locale:(NSString *)locale error:(NSError **)error;
 
 @end

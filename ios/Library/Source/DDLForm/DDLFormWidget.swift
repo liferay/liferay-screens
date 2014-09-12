@@ -248,9 +248,9 @@ import UIKit
 
 		var outError: NSError?
 
-		let ddlService = LRMobilewidgetsddlService_v62(session: session)
+		let ddlService = LRMobilewidgetsddlrecordService_v62(session: session)
 
-		ddlService.getDdlRecordValuesWithRecordId((recordId as NSNumber).longLongValue, locale: NSLocale.currentLocaleString(), error: &outError)
+		ddlService.getDdlRecordValuesWithDdlRecordId((recordId as NSNumber).longLongValue, locale: NSLocale.currentLocaleString(), error: &outError)
 
 		if formView().rows.isEmpty {
 			let structureService = LRDDMStructureService_v62(session: session)
