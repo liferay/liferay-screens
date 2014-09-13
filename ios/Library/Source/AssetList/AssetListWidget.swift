@@ -35,19 +35,19 @@ import UIKit
 
 @IBDesignable public class AssetListWidget: BaseWidget {
 
+	public enum AssetClassNameId: Int {
+		case WebContent = 10109
+	}
+
 	@IBInspectable var groupId: Int = 0
 	@IBInspectable var classNameId: Int = 0
 
 	@IBInspectable var firstPageSize = 5
 	@IBInspectable var pageSize = 2
 
-	private var loadPageOperations: [Int:LoadPageOperation] = [:]
-
-	public enum AssetClassNameId: Int {
-		case WebContent = 10109
-	}
-
 	@IBOutlet var delegate: AssetListWidgetDelegate?
+
+	private var loadPageOperations: [Int:LoadPageOperation] = [:]
 
 	override public func onCreated() {
 		assetListView().onSelectedEntryClosure = onSelectedEntry
