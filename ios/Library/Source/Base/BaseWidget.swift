@@ -195,7 +195,7 @@ import QuartzCore
 			let selectedSignatureImage = Theme!
 			for themeName in ThemeManager.instance().installedThemes() {
 				if themeName != "default" {
-					let installedSignatureImage = signatureImageForTheme(themeName)
+					let installedSignatureImage = UIImage(contentsOfFile: signatureImagePathForTheme(themeName)!)
 
 					if installedSignatureImage.isBinaryEquals(selectedSignatureImage) {
 						result = themeName
@@ -221,35 +221,28 @@ import QuartzCore
 	}
 
 	internal func previewImageForTheme(themeName:String) -> UIImage {
-		let widgetView = createWidgetViewFromNib()
+		var result:UIImage?
 
-		if let widgetViewValue = widgetView {
-			widgetViewValue.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+		if let previewImagePath = previewImagePathForTheme(themeName) {
+			result = UIImage(contentsOfFile: previewImagePath)
+		}
+		else if let widgetView = createWidgetViewFromNib() {
+			widgetView.frame = bounds
 
-			return previewImageFromView(widgetViewValue)
+			result = previewImageFromView(widgetView)
 		}
 
-		return loadImageFromIB(previewImageNameForTheme(themeName))
+		return result!
 	}
 
-	internal func previewImageNameForTheme(themeName:String) -> String {
-		return "\(themeName)-preview-\(widgetName().lowercaseString)"
+	internal func previewImagePathForTheme(themeName:String) -> String? {
+		let imageName = "\(themeName)-preview-\(widgetName().lowercaseString)"
+
+		return NSBundle(forClass:self.dynamicType).pathForResource(imageName, ofType: "png")
 	}
 
-	internal func signatureImageForTheme(themeName:String) -> UIImage {
-		return loadImageFromIB(signatureImageNameForTheme(themeName))
-	}
-
-	internal func signatureImageNameForTheme(themeName:String) -> String {
-		return "theme-\(themeName)"
-	}
-
-	internal func loadImageFromIB(imageName:String) -> UIImage {
-		let bundle = NSBundle(forClass:self.dynamicType)
-
-		let fileName = bundle.pathForResource(imageName, ofType: "png")
-
-		return UIImage(contentsOfFile: fileName!)
+	internal func signatureImagePathForTheme(themeName:String) -> String? {
+		return NSBundle(forClass:self.dynamicType).pathForResource("theme-\(themeName)", ofType: "png")
 	}
 
 	internal func startOperationWithMessage(message:String, details:String? = nil) {
@@ -309,8 +302,6 @@ import QuartzCore
 		assert(views.count > 0, "Xib seems to be malformed. There're no views inside it");
 
 		let foundView = (views[0] as BaseWidgetView)
-
-		//??		foundView.backgroundColor = UIColor.clearColor()
 
 		return foundView
 	}
