@@ -70,10 +70,7 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 	private func setProgress(element:DDLElementDocument) {
 		let theme = progress!.theme
 
-		// FIXME Label's font is not updated. Change when PR is accepted
-		// https://github.com/mdinacci/MDRadialProgress/pull/24
-		//
-		//theme.font = UIFont(descriptor: textField!.font.fontDescriptor(), size: 2.0)
+		theme.font = UIFont(descriptor: textField!.font.fontDescriptor(), size: 2.0)
 
 		theme.sliceDividerHidden = true
 		theme.thickness = 10.0
