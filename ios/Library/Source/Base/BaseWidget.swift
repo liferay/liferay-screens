@@ -142,7 +142,11 @@ import QuartzCore
 
 		if _runningOnInterfaceBuilder {
 			if let currentPreviewImageValue = _currentPreviewImage {
-				let imageRect = CGRectMake(0, 0, currentPreviewImageValue.size.width, currentPreviewImageValue.size.height)
+				let imageRect = CGRectMake(
+						(frame.size.width - currentPreviewImageValue.size.width)/2,
+						(frame.size.height - currentPreviewImageValue.size.height)/2,
+						currentPreviewImageValue.size.width,
+						currentPreviewImageValue.size.height)
 
 				_previewLayer.frame = imageRect
 				_previewLayer.contents = currentPreviewImageValue.CGImage
