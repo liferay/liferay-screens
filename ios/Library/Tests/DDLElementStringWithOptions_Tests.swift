@@ -237,6 +237,7 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 					"name=\"A_Select\" " +
 					"repeatable=\"true\" " +
 					"required=\"true\" " +
+					"showLabel=\"true\" " +
 					"type=\"select\" " +
 					"width=\"small\"> " +
 				"<meta-data locale=\"en_US\"> " +

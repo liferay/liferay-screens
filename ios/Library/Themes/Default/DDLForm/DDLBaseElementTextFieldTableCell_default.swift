@@ -17,9 +17,33 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 
 	@IBOutlet var textField: UITextField?
 	@IBOutlet var textFieldBackground: UIImageView?
+	@IBOutlet var label: UILabel?
+
+	internal class var heightWithLabel:CGFloat {
+		return 81.0
+	}
+	internal class var heightWithoutLabel:CGFloat {
+		return 56.0
+	}
 
 	override func onChangedElement() {
-		textField?.placeholder = element!.label
+		if element!.showLabel {
+			textField?.placeholder = ""
+			label?.text = element!.label
+			label?.hidden = false
+
+			moveSubviewsVertically(0.0)
+		}
+		else {
+			textField?.placeholder = element!.label
+			label?.hidden = true
+
+			moveSubviewsVertically(-(
+				DDLBaseElementTextFieldTableCell_default.heightWithLabel -
+				DDLBaseElementTextFieldTableCell_default.heightWithoutLabel))
+			element?.currentHeight =
+				DDLBaseElementTextFieldTableCell_default.heightWithoutLabel
+		}
 
 		textField?.returnKeyType = isLastCell ? .Send : .Next
 
@@ -29,9 +53,6 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 
 		if element!.currentValue != nil {
 			textField?.text = element!.currentStringValue
-		}
-		else {
-			textField?.text = element!.predefinedValue?.description
 		}
 	}
 

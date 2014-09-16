@@ -122,4 +122,16 @@ public class DDLElementTableCell: UITableViewCell {
 		formView!.resignFirstResponder()
 	}
 
+	internal func moveSubviewsVertically(offsetY:CGFloat) {
+		for subview in contentView.subviews as [UIView] {
+			if offsetY == 0.0 {
+				subview.transform = CGAffineTransformIdentity
+			}
+			else {
+				subview.transform = CGAffineTransformTranslate(
+					CGAffineTransformIdentity, 0.0, offsetY)
+			}
+		}
+	}
+
 }
