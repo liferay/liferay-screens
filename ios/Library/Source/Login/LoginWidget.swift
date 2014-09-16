@@ -29,6 +29,13 @@ public class LoginWidget: BaseWidget {
 
 	@IBOutlet var delegate: LoginWidgetDelegate?
 
+	private let supportedAuthClosures = [
+		AuthType.Email.toRaw(): authWithEmail,
+		AuthType.ScreenName.toRaw(): authWithScreenName,
+		AuthType.UserId.toRaw(): authWithUserId]
+
+	private var authClosure: ((String, String, LRUserService_v62, NSError -> Void) -> Void)?
+
 	public class func storedSession() -> LRSession? {
 		return LRSession.sessionFromStoredCredential()
 	}
@@ -46,7 +53,7 @@ public class LoginWidget: BaseWidget {
 	public func setAuthType(authType:String) {
         loginView().setAuthType(authType)
         
-        authClosure = authClosures[authType]
+        authClosure = supportedAuthClosures[authType]
 	}
 
 
@@ -109,16 +116,6 @@ public class LoginWidget: BaseWidget {
 			self.onFailure($0)
 		}
 	}
-
-	private typealias AuthClosureType = (String, String, LRUserService_v62, (NSError)->()) -> ()
-
-
-	private let authClosures: [String : AuthClosureType] = [
-		AuthType.Email.toRaw(): authWithEmail,
-		AuthType.ScreenName.toRaw(): authWithScreenName,
-		AuthType.UserId.toRaw(): authWithUserId]
-
-	private var authClosure: AuthClosureType?
 
 }
 

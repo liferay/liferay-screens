@@ -29,23 +29,18 @@ import UIKit
 
 	@IBOutlet var delegate: ForgotPasswordWidgetDelegate?
 
-
-	private typealias ResetClosureType =
-			(String, LRMobilewidgetsuserService_v62, (NSError)->()) -> (Void)
-
-
-	private let resetClosures = [
+	private let supportedResetClosures = [
 		AuthType.Email.toRaw(): resetPasswordWithEmail,
 		AuthType.ScreenName.toRaw(): resetPasswordWithScreenName,
 		AuthType.UserId.toRaw(): resetPasswordWithUserId]
 
-	private var resetClosure: ResetClosureType?
+	private var resetClosure: ((String, LRMobilewidgetsuserService_v62, NSError -> Void) -> Void)?
 
 	
 	public func setAuthType(authType:String) {
 		forgotPasswordView().setAuthType(authType)
 
-		resetClosure = resetClosures[authType]
+		resetClosure = supportedResetClosures[authType]
 	}
 
 
@@ -113,8 +108,6 @@ import UIKit
 
 		session.callback = self
 
-		let companyId: CLongLong = (LiferayContext.instance.companyId as NSNumber).longLongValue
-
 		resetClosure!(username, LRMobilewidgetsuserService_v62(session: session)) {
 			self.onFailure($0)
 		}
@@ -123,13 +116,12 @@ import UIKit
 }
 
 func resetPasswordWithEmail(email:String, service:LRMobilewidgetsuserService_v62,
-		onError:(NSError)->()) {
-
-	let companyId = (LiferayContext.instance.companyId as NSNumber).longLongValue
+		onError:(NSError) -> Void) {
 
 	var outError: NSError?
 
-	service.sendPasswordByEmailAddressWithCompanyId(companyId,
+	service.sendPasswordByEmailAddressWithCompanyId(
+			(LiferayContext.instance.companyId as NSNumber).longLongValue,
 			emailAddress: email,
 			error: &outError)
 
@@ -139,13 +131,12 @@ func resetPasswordWithEmail(email:String, service:LRMobilewidgetsuserService_v62
 }
 
 func resetPasswordWithScreenName(screenName:String, service:LRMobilewidgetsuserService_v62,
-		onError:(NSError)->()) {
-
-	let companyId = (LiferayContext.instance.companyId as NSNumber).longLongValue
+		onError:(NSError) -> Void) {
 
 	var outError: NSError?
 
-	service.sendPasswordByScreenNameWithCompanyId(companyId,
+	service.sendPasswordByScreenNameWithCompanyId(
+			(LiferayContext.instance.companyId as NSNumber).longLongValue,
 			screenName: screenName,
 			error: &outError)
 
@@ -155,7 +146,7 @@ func resetPasswordWithScreenName(screenName:String, service:LRMobilewidgetsuserS
 }
 
 func resetPasswordWithUserId(userId:String, service:LRMobilewidgetsuserService_v62,
-		onError:(NSError)->()) {
+		onError:(NSError) -> Void) {
 
 	let userIdValue = (userId.toInt()! as NSNumber).longLongValue
 
