@@ -37,8 +37,8 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 
 		let stringElement = elements![0] as DDLElementStringWithOptions
 
-		XCTAssertEqual(DDLElementDataType.DDLString, stringElement.dataType)
-		XCTAssertEqual(DDLElementEditor.Select, stringElement.editorType)
+		XCTAssertEqual(DDLElement.DataType.DDLString, stringElement.dataType)
+		XCTAssertEqual(DDLElement.Editor.Select, stringElement.editorType)
 		XCTAssertEqual("A_Select", stringElement.name)
 		XCTAssertEqual("A Select", stringElement.label)
 		XCTAssertTrue(stringElement.multiple)

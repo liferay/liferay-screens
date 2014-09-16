@@ -67,7 +67,7 @@ public class DDLParser {
 	private func createFormElement(xmlElement:SMXMLElement) -> DDLElement? {
 		var result:DDLElement?
 
-		let dataType = DDLElementDataType.from(xmlElement:xmlElement)
+		let dataType = DDLElement.DataType.from(xmlElement:xmlElement)
 
 		let localizedMetadata = processLocalizedMetadata(xmlElement)
 

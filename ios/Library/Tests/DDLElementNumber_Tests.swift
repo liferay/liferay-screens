@@ -53,8 +53,8 @@ class DDLElementNumber_Tests: XCTestCase {
 		XCTAssertTrue(elements![0] is DDLElementNumber)
 		let numberElement = elements![0] as DDLElementNumber
 
-		XCTAssertEqual(DDLElementDataType.DDLInteger, numberElement.dataType)
-		XCTAssertEqual(DDLElementEditor.Number, numberElement.editorType)
+		XCTAssertEqual(DDLElement.DataType.DDLInteger, numberElement.dataType)
+		XCTAssertEqual(DDLElement.Editor.Number, numberElement.editorType)
 		XCTAssertTrue(numberElement.predefinedValue is NSInteger)
 		XCTAssertEqual(NSInteger(16), numberElement.predefinedValue as NSInteger)
 	}
@@ -86,8 +86,8 @@ class DDLElementNumber_Tests: XCTestCase {
 		XCTAssertTrue(elements![0] is DDLElementNumber)
 		let numberElement = elements![0] as DDLElementNumber
 
-		XCTAssertEqual(DDLElementDataType.DDLNumber, numberElement.dataType)
-		XCTAssertEqual(DDLElementEditor.Number, numberElement.editorType)
+		XCTAssertEqual(DDLElement.DataType.DDLNumber, numberElement.dataType)
+		XCTAssertEqual(DDLElement.Editor.Number, numberElement.editorType)
 		XCTAssertTrue(numberElement.predefinedValue is NSInteger)
 		XCTAssertEqual(NSInteger(16), numberElement.predefinedValue as NSInteger)
 	}
@@ -119,8 +119,8 @@ class DDLElementNumber_Tests: XCTestCase {
 		XCTAssertTrue(elements![0] is DDLElementNumber)
 		let numberElement = elements![0] as DDLElementNumber
 
-		XCTAssertEqual(DDLElementDataType.DDLDouble, numberElement.dataType)
-		XCTAssertEqual(DDLElementEditor.Number, numberElement.editorType)
+		XCTAssertEqual(DDLElement.DataType.DDLDouble, numberElement.dataType)
+		XCTAssertEqual(DDLElement.Editor.Number, numberElement.editorType)
 		XCTAssertTrue(numberElement.predefinedValue is NSDecimalNumber)
 		XCTAssertEqualWithAccuracy(16.05,
 			(numberElement.predefinedValue as NSDecimalNumber).floatValue, 0.001)

@@ -90,7 +90,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	internal func registerElementCells() {
 		let currentBundle = NSBundle(forClass: self.dynamicType)
 
-		for elementEditor in DDLElementEditor.all() {
+		for elementEditor in DDLElement.Editor.all() {
 			var nibName = "DDLElement\(elementEditor.toCapitalizedName())TableCell"
 			if let themeName = themeName() {
 				nibName += "-" + themeName
@@ -132,7 +132,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		}
 	}
 
-	internal func registerElementEditorHeight(#editor:DDLElementEditor, nib:UINib) {
+	internal func registerElementEditorHeight(#editor:DDLElement.Editor, nib:UINib) {
 		let views = nib.instantiateWithOwner(nil, options: nil)
 
 		if let cellRootView = views.first as? UITableViewCell {

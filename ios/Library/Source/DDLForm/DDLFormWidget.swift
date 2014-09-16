@@ -50,9 +50,20 @@ import UIKit
 
 	@IBOutlet var delegate: DDLFormWidgetDelegate?
 
+
+	private enum FormOperation {
+
+		case Idle
+		case LoadingForm
+		case LoadingRecord(Bool)
+		case Submitting
+		case Uploading(DDLElementDocument, Bool)
+
+	}
+
 	private var userId:Int = 0
 
-	private var currentOperation:FormOperation = .Idle
+	private var currentOperation = FormOperation.Idle
 
 
 	//MARK: BaseWidget METHODS
@@ -425,15 +436,5 @@ import UIKit
 	private func formView() -> DDLFormView {
 		return widgetView as DDLFormView
 	}
-
-}
-
-private enum FormOperation {
-
-	case Idle
-	case LoadingForm
-	case LoadingRecord(Bool)
-	case Submitting
-	case Uploading(DDLElementDocument, Bool)
 
 }

@@ -21,7 +21,7 @@ public class DDLElementNumber : DDLElement {
 
 	public var isDecimal:Bool {
 		get {
-			return dataType != DDLElementDataType.DDLInteger
+			return dataType != DataType.DDLInteger
 		}
 	}
 
