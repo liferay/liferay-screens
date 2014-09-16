@@ -12,7 +12,6 @@
 * details.
 */
 import UIKit
-import WebKit
 
 
 public class WebContentView: BaseWidgetView {

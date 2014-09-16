@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class SignUpView_flat7: SignUpView_default {
 
 	@IBOutlet var titleLabel: UILabel?

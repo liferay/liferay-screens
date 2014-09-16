@@ -13,6 +13,7 @@
 */
 import Foundation
 
+
 public enum DDLElementDataType: String {
 
 	case DDLBoolean = "boolean"

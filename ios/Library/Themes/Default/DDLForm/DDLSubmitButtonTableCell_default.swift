@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class DDLSubmitButtonTableCell_default: DDLElementTableCell {
 
 	override public func canBecomeFirstResponder() -> Bool {

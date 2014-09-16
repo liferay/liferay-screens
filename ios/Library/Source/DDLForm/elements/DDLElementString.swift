@@ -13,6 +13,7 @@
 */
 import Foundation
 
+
 public class DDLElementString : DDLElement {
 
 	override internal func doValidate() -> Bool {

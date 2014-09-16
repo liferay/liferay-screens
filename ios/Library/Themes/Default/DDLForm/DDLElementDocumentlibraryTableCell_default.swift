@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextFieldTableCell_default {
 
 	@IBOutlet var chooseButton: UIButton? {

@@ -13,6 +13,7 @@
 */
 import Foundation
 
+
 public class DDLElementNumber : DDLElement {
 
 	public var maximumDecimalDigits = 2

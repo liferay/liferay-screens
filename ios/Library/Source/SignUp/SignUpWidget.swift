@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 @objc protocol SignUpWidgetDelegate {
 
 	optional func onSignUpResponse(attributes: [String:AnyObject])

@@ -13,6 +13,7 @@
 */
 import Foundation
 
+
 public class DDLParser {
 
 	public var xml:String?

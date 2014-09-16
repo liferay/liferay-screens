@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class DDLElementTextTableCell_default: DDLBaseElementTextFieldTableCell_default {
 
 	override public func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {

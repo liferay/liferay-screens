@@ -13,6 +13,7 @@
 */
 import Foundation
 
+
 struct LiferayContext {
 
 	var server:String = "http://localhost:8080"

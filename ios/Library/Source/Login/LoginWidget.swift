@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 @objc protocol LoginWidgetDelegate {
 
 	optional func onLoginResponse(attributes: [String:AnyObject])

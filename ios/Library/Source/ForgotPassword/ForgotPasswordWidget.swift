@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 @objc protocol ForgotPasswordWidgetDelegate {
 
 	optional func onForgotPasswordResponse(newPasswordSent:Bool)

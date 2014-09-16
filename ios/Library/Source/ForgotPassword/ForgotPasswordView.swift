@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class ForgotPasswordView: BaseWidgetView, UITextFieldDelegate {
 
 	public func setAuthType(authType: String) {

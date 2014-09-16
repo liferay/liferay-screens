@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITextFieldDelegate {
 
 	@IBOutlet var textField: UITextField?

@@ -13,6 +13,7 @@
 */
 import Foundation
 
+
 public class DDLElementBoolean : DDLElement {
 
 	override internal func convert(fromString value:String?) -> AnyObject? {

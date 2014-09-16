@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class ForgotPasswordView_default: ForgotPasswordView {
 
 	@IBOutlet var userNameIcon: UIImageView?

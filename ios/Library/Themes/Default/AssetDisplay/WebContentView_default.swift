@@ -14,6 +14,7 @@
 import UIKit
 import WebKit
 
+
 public class WebContentView_default: WebContentView {
 
 	private var webView:WKWebView?

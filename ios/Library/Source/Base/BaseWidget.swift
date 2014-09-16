@@ -14,6 +14,7 @@
 import UIKit
 import QuartzCore
 
+
 /*!
  * BaseWidget is the base class from which all Widget classes must inherit.
  * A widget is the container for a widget view.

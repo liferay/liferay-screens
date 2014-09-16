@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 /*!
  * BaseWidgetView is the base class from which all Widget's View classes must inherit.
  */

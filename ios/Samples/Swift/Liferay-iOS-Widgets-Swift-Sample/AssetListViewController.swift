@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 public class AssetListViewController: UIViewController, AssetListWidgetDelegate {
 
 	@IBOutlet weak var widget: AssetListWidget?

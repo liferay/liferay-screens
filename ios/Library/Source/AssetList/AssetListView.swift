@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class AssetListView: BaseWidgetView {
 
 	public var entries:[AssetEntry?] = [] {

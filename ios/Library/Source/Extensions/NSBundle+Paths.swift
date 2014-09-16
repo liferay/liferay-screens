@@ -13,6 +13,7 @@
 */
 import Foundation
 
+
 extension NSBundle {
 
 	public func pathsForResourcesWithPrefix(prefix:String, suffix:String) -> [String] {

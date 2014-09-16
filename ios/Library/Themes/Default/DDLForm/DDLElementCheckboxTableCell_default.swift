@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 
 	@IBOutlet var switchView: UISwitch?

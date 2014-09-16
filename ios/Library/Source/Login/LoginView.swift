@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public enum AuthType: String {
 	case Email = "Email Address"
 	case ScreenName = "Screen Name"

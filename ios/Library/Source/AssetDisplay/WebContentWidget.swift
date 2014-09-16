@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 @objc protocol WebContentWidgetDelegate {
 
 	optional func onWebContentResponse(html:String)

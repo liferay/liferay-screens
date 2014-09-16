@@ -13,6 +13,7 @@
 */
 import Foundation
 
+
 public class DDLStringOption {
 
 	public var label:String

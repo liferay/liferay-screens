@@ -13,6 +13,7 @@
 */
 import Foundation
 
+
 public class ThemeManager: NSObject {
 
 	//MARK: Singleton

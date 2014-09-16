@@ -13,6 +13,7 @@
 */
 import Foundation
 
+
 extension LRSession {
 
 	//MARK: CLASS METHODS

@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 
 	@IBOutlet var titleLabel: UILabel?

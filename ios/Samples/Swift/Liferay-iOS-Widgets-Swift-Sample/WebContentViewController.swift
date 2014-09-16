@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 public class WebContentViewController: UIViewController, WebContentWidgetDelegate {
 
 	@IBOutlet weak var widget: WebContentWidget?

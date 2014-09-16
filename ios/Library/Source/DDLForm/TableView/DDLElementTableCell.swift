@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class DDLElementTableCell: UITableViewCell {
 
 	public var tableView:UITableView?

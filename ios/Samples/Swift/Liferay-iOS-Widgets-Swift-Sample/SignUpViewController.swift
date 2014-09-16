@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 public class SignUpViewController: UIViewController, SignUpWidgetDelegate {
 
 	@IBOutlet var widget: SignUpWidget?

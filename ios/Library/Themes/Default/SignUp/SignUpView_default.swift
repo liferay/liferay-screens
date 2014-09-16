@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class SignUpView_default: SignUpView {
 
 	@IBOutlet var emailAddressField: UITextField?

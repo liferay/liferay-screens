@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class LoginView_default: LoginView {
 
 	@IBOutlet var userNameIcon: UIImageView?
