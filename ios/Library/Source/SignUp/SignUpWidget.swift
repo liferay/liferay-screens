@@ -40,7 +40,7 @@ import UIKit
 	override public func onServerError(error: NSError) {
 		delegate?.onSignUpError?(error)
 
-		finishOperationWithMessage("Error signing up!")
+		finishOperationWithError(error, message:"Error signing up!")
 	}
 
 	override public func onServerResult(result: [String:AnyObject]) {

@@ -85,7 +85,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	public func onCreate() {
 	}
 
-
 	public func onSetCustomActionForControl(control: UIControl) -> Bool {
 		return true
 	}
@@ -103,30 +102,7 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	public func onFinishOperation() {
 	}	
 	
-	internal func nextResponderForView(view:UIView) -> UIResponder {
-		if view.tag > 0 {
-			if let nextView = viewWithTag(view.tag.successor()) {
-				return nextView
-			}
-		}
-		return view
-	}
-
-	internal func themeName() -> String? {
-		var className = NSStringFromClass(self.dynamicType)
-
-		let components = className.componentsSeparatedByString("_")
-
-		return (components.count > 1) ? components.last : nil
-	}
-
-	internal func customActionHandler(#actionName: String?, sender: AnyObject?) {
-		customAction?(actionName, sender)
-	}
-
 	internal func customActionHandler(sender: AnyObject?) {
-		endEditing(true)
-
 		if let controlSender = sender as? UIControl {
 			customActionHandler(actionName:controlSender.restorationIdentifier, sender:sender)
 		}
@@ -137,6 +113,28 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	internal func customActionHandler(actionName: String?) {
 		customActionHandler(actionName:actionName, sender:nil)
+	}
+	
+	internal func customActionHandler(#actionName: String?, sender: AnyObject?) {
+		endEditing(true)
+		customAction?(actionName, sender)
+	}
+
+	internal func themeName() -> String? {
+		var className = NSStringFromClass(self.dynamicType)
+
+		let components = className.componentsSeparatedByString("_")
+
+		return (components.count > 1) ? components.last : nil
+	}
+
+	internal func nextResponderForView(view:UIView) -> UIResponder {
+		if view.tag > 0 {
+			if let nextView = viewWithTag(view.tag + 1) {
+				return nextView
+			}
+		}
+		return view
 	}
 
 	private func addCustomActionForControl(control: UIControl) {

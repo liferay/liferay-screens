@@ -82,11 +82,11 @@ import UIKit
 		switch currentOperation {
 			case .Submitting:
 				delegate?.onFormSubmitError?(error)
-				finishOperationWithMessage("An error happened submitting form")
+				finishOperationWithError(error, message:"An error happened submitting form")
 
 			case .Loading:
 				delegate?.onFormLoadError?(error)
-				finishOperationWithMessage("An error happened loading form")
+				finishOperationWithError(error, message:"An error happened loading form")
 
 			case .Uploading(let document, _):
 				document.uploadStatus = .Failed(error)
@@ -99,7 +99,7 @@ import UIKit
 
 				delegate?.onDocumentUploadError?(document, error: error)
 
-				showHUDWithMessage("An error happened uploading file", details: nil, secondsToShow: 3.0)
+				finishOperationWithError(error, message:"An error happened uploading file")
 
 			default: ()
 		}
@@ -225,7 +225,7 @@ import UIKit
 		}
 
 		if !formView().validateForm(autoscroll:autoscrollOnValidation) {
-			showHUDWithMessage("Some values are not valid", details: "Please, review your form", secondsToShow: 1.5)
+			showHUDWithMessage("Some values are not valid", details: "Please, review your form", closeMode:.AutocloseDelayed(3.0, true), spinnerMode:.NoSpinner)
 			return false
 		}
 

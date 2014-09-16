@@ -23,7 +23,7 @@ public class LoginView_default: LoginView {
 	@IBOutlet var userNameBackground: UIImageView?
 	@IBOutlet var passwordBackground: UIImageView?
 
-	// MARK: Static methods
+	//MARK: Static methods
 
 	public class func setStylesForAuthType(authTypeLabel:String, userNameField:UITextField!, userNameIcon:UIImageView!) {
 
@@ -36,6 +36,12 @@ public class LoginView_default: LoginView {
 		else {
 			println("ERROR: Wrong auth type description \(authTypeLabel)")
 		}
+	}
+
+	//MARK: LoginView
+
+	override public func onCreate() {
+		BaseWidget.setHUDCustomColor(UIColor(red: 0, green: 184/255.0, blue: 224/255.0, alpha: 0.87))
 	}
 
 	override public var shouldRememberCredentials: Bool {
