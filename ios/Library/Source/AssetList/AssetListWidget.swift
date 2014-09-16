@@ -14,16 +14,6 @@
 import UIKit
 
 
-@objc public class AssetEntry {
-
-	public var title:String
-
-	public init(title:String) {
-		self.title = title
-	}
-
-}
-
 @objc protocol AssetListWidgetDelegate {
 
 	optional func onAssetListResponse(entries:[AssetEntry])
