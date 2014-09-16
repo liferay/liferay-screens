@@ -20,7 +20,8 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 	@IBOutlet var radioReferenceLabel: UILabel?
 	@IBOutlet var separator: UIView?
 
-	private let radioButtonColor = UIColor(red: 0.0, green: 184.0/255.0, blue: 224.0/255.0, alpha: 0.87)
+	private let radioButtonColor =
+			UIColor(red: 0.0, green: 184.0/255.0, blue: 224.0/255.0, alpha: 0.87)
 
 	private var radioGroup:TNRadioButtonGroup?
 
@@ -80,9 +81,7 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 			data.rectangleHeight = 8
 			data.rectangleWidth = 8
 			data.selected =
-				filter(element.currentValue as [DDLStringOption]) {
-					return $0.name == option.name
-				}.count > 0
+				filter(element.currentValue as [DDLStringOption]) {$0.name == option.name}.count > 0
 
 			radioButtons.append(data)
 		}

@@ -36,7 +36,10 @@ import UIKit
 	//MARK: BaseWidget METHODS
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
-		sendSignUpWithEmailAddress(signUpView().getEmailAddress(), password:signUpView().getPassword(), firstName:signUpView().getFirstName(), lastName:signUpView().getLastName())
+		sendSignUpWithEmailAddress(signUpView().getEmailAddress(),
+				password:signUpView().getPassword(),
+				firstName:signUpView().getFirstName(),
+				lastName:signUpView().getLastName())
 	}
 
 	override internal func onServerError(error: NSError) {
@@ -63,7 +66,8 @@ import UIKit
 		return widgetView as SignUpView
 	}
 
-	private func sendSignUpWithEmailAddress(emailAddress:String, password:String, firstName:String, lastName:String) {
+	private func sendSignUpWithEmailAddress(
+			emailAddress:String, password:String, firstName:String, lastName:String) {
 
 		if anonymousApiUserName == nil || anonymousApiPassword == nil {
 			println(
@@ -75,14 +79,13 @@ import UIKit
 
 		startOperationWithMessage("Sending sign up...", details:"Wait few seconds...")
 
-		let session = LiferayContext.instance.createSession(anonymousApiUserName!, password: anonymousApiPassword!)
+		let session = LiferayContext.instance.createSession(anonymousApiUserName!,
+				password: anonymousApiPassword!)
 		session.callback = self
 
 		let service = LRUserService_v62(session: session)
 
 		var outError: NSError?
-
-		let companyId: Int64 = (LiferayContext.instance.companyId as NSNumber).longLongValue
 
 		// user name
 		switch authType {
@@ -110,7 +113,7 @@ import UIKit
 
 		let emptyDict = []
 
-		service.addUserWithCompanyId(companyId,
+		service.addUserWithCompanyId((LiferayContext.instance.companyId as NSNumber).longLongValue,
 			autoPassword: autoPassword, password1: password, password2: password,
 			autoScreenName: autoScreenName, screenName: screenName,
 			emailAddress: signUpView().getEmailAddress(),

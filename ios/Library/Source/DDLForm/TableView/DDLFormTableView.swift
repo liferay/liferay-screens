@@ -80,7 +80,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	override internal func changeDocumentUploadStatus(element: DDLElementDocument) {
 		if let row = find(rows, element) {
-			if let cell = tableView!.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0)) as? DDLElementTableCell {
+			if let cell = tableView!.cellForRowAtIndexPath(
+					NSIndexPath(forRow: row, inSection: 0)) as? DDLElementTableCell {
 				cell.changeDocumentUploadStatus(element)
 			}
 		}
@@ -98,7 +99,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
 				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
 
-				tableView?.registerNib(cellNib, forCellReuseIdentifier: elementEditor.toCapitalizedName())
+				tableView?.registerNib(cellNib,
+						forCellReuseIdentifier: elementEditor.toCapitalizedName())
 
 				registerElementEditorHeight(editor:elementEditor, nib:cellNib)
 			}
@@ -152,23 +154,27 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		return rows.count + (showSubmitButton ? 1 : 0)
 	}
 
-	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->
+			UITableViewCell {
 
 		var cell:DDLElementTableCell?
 		let row = indexPath.row
 
 		if row == rows.count {
-			cell = tableView.dequeueReusableCellWithIdentifier("SubmitButton") as? DDLElementTableCell
+			cell = tableView.dequeueReusableCellWithIdentifier("SubmitButton") as?
+					DDLElementTableCell
 
 			cell!.formView = self
 		}
 		else {
 			let element = rows[row]
 			
-			cell = tableView.dequeueReusableCellWithIdentifier(element.editorType.toCapitalizedName()) as? DDLElementTableCell
+			cell = tableView.dequeueReusableCellWithIdentifier(
+					element.editorType.toCapitalizedName()) as? DDLElementTableCell
 
 			if cell == nil {
-				println("ERROR: Cell XIB is not registerd for type \(element.editorType.toCapitalizedName())")
+				println("ERROR: Cell XIB is not registerd for type " +
+						element.editorType.toCapitalizedName())
 			}
 
 			cell!.formView = self
@@ -180,7 +186,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		return cell!
 	}
 
-	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->
+			CGFloat {
 
 		let row = indexPath.row
 

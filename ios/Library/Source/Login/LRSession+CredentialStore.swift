@@ -31,7 +31,9 @@ extension LRSession {
 		let credentialTuple = credentialForServer(LiferayContext.instance.server)
 
 		if let credential = credentialTuple.0 {
-			return LRSession(server:LiferayContext.instance.server, username:credential.user, password:credential.password)
+			return LRSession(server:LiferayContext.instance.server,
+					username:credential.user,
+					password:credential.password)
 		}
 
 		return nil
@@ -63,12 +65,14 @@ extension LRSession {
 
 	//MARK: PRIVATE METHODS
 
-	private class func credentialForServer(server:String) -> (NSURLCredential?, NSURLProtectionSpace) {
+	private class func credentialForServer(server:String) ->
+			(NSURLCredential?, NSURLProtectionSpace) {
+
 		let protectionSpace = protectionSpaceForServer(server)
 
 		let credentialDict =
-			NSURLCredentialStorage.sharedCredentialStorage().credentialsForProtectionSpace(protectionSpace)
-				as NSDictionary?
+			NSURLCredentialStorage.sharedCredentialStorage().credentialsForProtectionSpace(
+					protectionSpace) as NSDictionary?
 		
 		if let credentialDictValue = credentialDict {
 			let username = credentialDictValue.keyEnumerator().nextObject() as NSString

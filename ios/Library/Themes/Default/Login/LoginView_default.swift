@@ -27,7 +27,8 @@ public class LoginView_default: LoginView {
 
 	//MARK: Static methods
 
-	public class func setStylesForAuthType(authTypeLabel:String, userNameField:UITextField!, userNameIcon:UIImageView!) {
+	public class func setStylesForAuthType(authTypeLabel:String,
+			userNameField:UITextField!, userNameIcon:UIImageView!) {
 
 		userNameField!.placeholder = authTypeLabel
 
@@ -44,7 +45,8 @@ public class LoginView_default: LoginView {
 	//MARK: LoginView
 
 	override internal func onCreated() {
-		BaseWidget.setHUDCustomColor(UIColor(red: 0, green: 184/255.0, blue: 224/255.0, alpha: 0.87))
+		BaseWidget.setHUDCustomColor(
+				UIColor(red: 0, green: 184/255.0, blue: 224/255.0, alpha: 0.87))
 	}
 
 	override public var shouldRememberCredentials: Bool {
@@ -56,7 +58,9 @@ public class LoginView_default: LoginView {
 	}
 
 	override public func setAuthType(authTypeLabel: String) {
-		LoginView_default.setStylesForAuthType(authTypeLabel, userNameField: userNameField, userNameIcon: userNameIcon)
+		LoginView_default.setStylesForAuthType(authTypeLabel,
+				userNameField: userNameField,
+				userNameIcon: userNameIcon)
 	}
 
 	override public func getUserName() -> String {

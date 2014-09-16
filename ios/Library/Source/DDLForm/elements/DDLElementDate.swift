@@ -48,8 +48,8 @@ public class DDLElementDate : DDLElement {
 		if let stringValue = value {
 			// minimum date length in mm/dd/yy is 6 characters
 			if countElements(stringValue) >= 6 {
-				let formatter = stringValue[stringValue.endIndex.predecessor().predecessor()] == "/" ?
-					serverYYDateFormatter : serverYYDateFormatter
+				let formatter = stringValue[stringValue.endIndex.predecessor().predecessor()] == "/"
+					? serverYYDateFormatter : serverYYDateFormatter
 				return formatter.dateFromString(stringValue)
 			}
 		}

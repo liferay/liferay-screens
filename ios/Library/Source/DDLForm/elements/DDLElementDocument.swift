@@ -124,8 +124,7 @@ import Foundation
 								"\"version\":\"\(version!)\"}"
 				}
 
-			default:
-				result = nil
+			default: ()
 		}
 
 		return result
@@ -151,6 +150,8 @@ import Foundation
 
 //MARK Equatable
 
-public func ==(left: DDLElementDocument.UploadStatus, right: DDLElementDocument.UploadStatus) -> Bool {
+public func ==(left: DDLElementDocument.UploadStatus, right: DDLElementDocument.UploadStatus) ->
+		Bool {
+
 	return left.hashValue == right.hashValue
 }

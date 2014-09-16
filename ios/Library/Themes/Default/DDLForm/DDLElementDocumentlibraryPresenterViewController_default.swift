@@ -15,7 +15,8 @@ import UIKit
 import MobileCoreServices
 
 
-public class DDLElementDocumentlibraryPresenterViewController_default: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+public class DDLElementDocumentlibraryPresenterViewController_default:
+		UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 	public var selectedDocumentClosure: ((UIImage?, NSURL?) -> ())?
 
@@ -70,7 +71,9 @@ public class DDLElementDocumentlibraryPresenterViewController_default: UIViewCon
 
 	//MARK: UIImagePickerControllerDelegate
 
-    public func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
+    public func imagePickerController(
+			picker: UIImagePickerController!,
+			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
 
 		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
 		let selectedURL = info[UIImagePickerControllerMediaURL] as? NSURL

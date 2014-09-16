@@ -69,8 +69,12 @@ class DDLElementDate_Tests: XCTestCase {
 
 		XCTAssertTrue(dateElement.predefinedValue != nil)
 		XCTAssertTrue(dateElement.predefinedValue is NSDate)
-		XCTAssertEqual("31/12/2001", dateFormatter.stringFromDate(dateElement.predefinedValue as NSDate))
-		XCTAssertEqual(dateElement.currentValue as NSDate, dateElement.predefinedValue as NSDate)
+		XCTAssertEqual(
+				"31/12/2001",
+				dateFormatter.stringFromDate(dateElement.predefinedValue as NSDate))
+		XCTAssertEqual(
+				dateElement.currentValue as NSDate,
+				dateElement.predefinedValue as NSDate)
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
@@ -107,7 +111,9 @@ class DDLElementDate_Tests: XCTestCase {
 
 		dateElement.currentStringValue = "6/19/2004"
 
-		XCTAssertEqual("19/06/2004", dateFormatter.stringFromDate(dateElement.currentValue as NSDate))
+		XCTAssertEqual(
+				"19/06/2004",
+				dateFormatter.stringFromDate(dateElement.currentValue as NSDate))
 	}
 
 	func test_CurrentStringValue_ShouldSupportFourDigitsYear_WhenSettingTheStringValue() {
@@ -120,7 +126,9 @@ class DDLElementDate_Tests: XCTestCase {
 
 		dateElement.currentStringValue = "6/19/04"
 
-		XCTAssertEqual("19/06/2004", dateFormatter.stringFromDate(dateElement.currentValue as NSDate))
+		XCTAssertEqual(
+				"19/06/2004",
+				dateFormatter.stringFromDate(dateElement.currentValue as NSDate))
 	}
 
 

@@ -29,7 +29,9 @@ public enum DDLElementDataType: String {
 		return fromRaw(xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 	}
 
-	public func createElement(#attributes:[String:String], localized:[String:AnyObject]) -> DDLElement? {
+	public func createElement(#attributes:[String:String], localized:[String:AnyObject]) ->
+			DDLElement? {
+
 		switch self {
 		case .DDLBoolean:
 			return DDLElementBoolean(attributes:attributes, localized:localized)
@@ -48,9 +50,10 @@ public enum DDLElementDataType: String {
 			return DDLElementNumber(attributes:attributes, localized:localized)
 		case .DDLDocument:
 			return DDLElementDocument(attributes:attributes, localized:localized)
-		default:
-			return nil
+		default: ()
 		}
+
+		return nil
 	}
 
 }
@@ -103,14 +106,18 @@ public enum DDLElementEditor: String {
 					start: typeName.startIndex,
 					end: typeName.endIndex)
 
-			typeName = typeName.stringByReplacingOccurrencesOfString("ddm-", withString: "", options: .CaseInsensitiveSearch, range: wholeRange)
+			typeName = typeName.stringByReplacingOccurrencesOfString("ddm-",
+					withString: "",
+					options: .CaseInsensitiveSearch,
+					range: wholeRange)
 		}
 
 		// Capitalize first char
 
 		let secondCharIndex = typeName.startIndex.successor()
 
-		return typeName.substringToIndex(secondCharIndex).uppercaseString + typeName.substringFromIndex(secondCharIndex)
+		return typeName.substringToIndex(secondCharIndex).uppercaseString +
+				typeName.substringFromIndex(secondCharIndex)
 	}
 
 	public func registerHeight(height:CGFloat) {

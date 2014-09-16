@@ -26,7 +26,8 @@ public class WebContentView_default: WebContentView {
 	override internal func onPreCreate() {
 		webView = WKWebView(frame: bounds, configuration: WKWebViewConfiguration())
 
-		webView!.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+		webView!.autoresizingMask =
+				UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
 
 		addSubview(webView!)
 	}

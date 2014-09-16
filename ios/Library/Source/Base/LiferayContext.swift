@@ -25,19 +25,22 @@ struct LiferayContext {
 	static var instance = LiferayContext()
 
 	init() {
-		if let propertiesPath = NSBundle.mainBundle().pathForResource("liferay-context", ofType:"plist") {
+		if let propertiesPath = NSBundle.mainBundle().pathForResource("liferay-context",
+				ofType:"plist") {
 			loadContextFile(propertiesPath)
 		}
 		else {
 			println("WARNING: liferay-context.plist file is not found. Falling back to template " +
 				"liferay-context-sample.list")
 
-			if let templatePath = NSBundle.mainBundle().pathForResource("liferay-context-sample", ofType:"plist") {
+			if let templatePath = NSBundle.mainBundle().pathForResource("liferay-context-sample",
+					ofType:"plist") {
 				loadContextFile(templatePath)
 			}
 			else {
-				println("WARNING: liferay-context-sample.plist file is not found. Using default values which will " +
-					"work in a default Liferay bundle installed in localhost")
+				println("WARNING: liferay-context-sample.plist file is not found. " +
+					"Using default values which will work in a default Liferay bundle installed " +
+					"in localhost")
 			}
 		}
 	}

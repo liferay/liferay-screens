@@ -33,25 +33,35 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 		DDLElementDocumentlibraryPresenterViewController_default()
 
 	private let completedColor = [
-			DDLElementDocument.UploadStatus.Uploading(0,0) : UIColor(red:0, green:184/255.0, blue:224/255.0, alpha:1),
-			DDLElementDocument.UploadStatus.Uploaded([:]) : UIColor(red:90/255.0, green:212/255.0, blue:39/255.0, alpha:1),
-			DDLElementDocument.UploadStatus.Failed(nil) : UIColor(red:1, green:0, blue:0, alpha:1)
+			DDLElementDocument.UploadStatus.Uploading(0,0) :
+					UIColor(red:0, green:184/255.0, blue:224/255.0, alpha:1),
+			DDLElementDocument.UploadStatus.Uploaded([:]) :
+					UIColor(red:90/255.0, green:212/255.0, blue:39/255.0, alpha:1),
+			DDLElementDocument.UploadStatus.Failed(nil) :
+					UIColor(red:1, green:0, blue:0, alpha:1)
 		]
 
 	private let incompletedColor = [
-			DDLElementDocument.UploadStatus.Uploading(0,0) : UIColor(red:176/255.0, green:238/255.0, blue:1.0, alpha:0.87)
+			DDLElementDocument.UploadStatus.Uploading(0,0) :
+					UIColor(red:176/255.0, green:238/255.0, blue:1.0, alpha:0.87)
 		]
 
 	private let centerColor = [
-			DDLElementDocument.UploadStatus.Uploading(0,0) : UIColor(red:240/255.0, green:1, blue:1.0, alpha:0.87),
-			DDLElementDocument.UploadStatus.Uploaded([:]) : UIColor(red:240/255.0, green:1, blue:1, alpha:1),
-			DDLElementDocument.UploadStatus.Failed(nil) : UIColor(red:1, green:220/255.0, blue:200/255.0, alpha:1)
+			DDLElementDocument.UploadStatus.Uploading(0,0) :
+					UIColor(red:240/255.0, green:1, blue:1.0, alpha:0.87),
+			DDLElementDocument.UploadStatus.Uploaded([:]) :
+					UIColor(red:240/255.0, green:1, blue:1, alpha:1),
+			DDLElementDocument.UploadStatus.Failed(nil) :
+					UIColor(red:1, green:220/255.0, blue:200/255.0, alpha:1)
 		]
 
 	private let labelColor = [
-			DDLElementDocument.UploadStatus.Uploading(0,0) : UIColor.whiteColor(),
-			DDLElementDocument.UploadStatus.Uploaded([:]) : UIColor(red:240/255.0, green:1, blue:1, alpha:1),
-			DDLElementDocument.UploadStatus.Failed(nil) : UIColor(red:1, green:220/255.0, blue:200/255.0, alpha:1)
+			DDLElementDocument.UploadStatus.Uploading(0,0) :
+					UIColor.whiteColor(),
+			DDLElementDocument.UploadStatus.Uploaded([:]) :
+					UIColor(red:240/255.0, green:1, blue:1, alpha:1),
+			DDLElementDocument.UploadStatus.Failed(nil) :
+					UIColor(red:1, green:220/255.0, blue:200/255.0, alpha:1)
 		]
 
 	override internal func onChangedElement() {

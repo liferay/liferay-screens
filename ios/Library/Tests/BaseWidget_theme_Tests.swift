@@ -61,7 +61,8 @@ class BaseWidget_theme_Tests: XCTestCase {
 	}
 
 	func test_PreviewImagePathForTheme_ShouldReturnThewImagePath_WhenExists() {
-		XCTAssertTrue(loginWidget!.previewImagePathForTheme("xyz")!.hasSuffix("xyz-preview-login.png"))
+		XCTAssertTrue(
+				loginWidget!.previewImagePathForTheme("xyz")!.hasSuffix("xyz-preview-login.png"))
 	}
 
 	func test_SignatureImagePathForTheme_ShouldReturnTheImagePath_WhenExists() {

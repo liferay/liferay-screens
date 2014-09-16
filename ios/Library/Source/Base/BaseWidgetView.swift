@@ -35,8 +35,8 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	}
 
 	/*
-	* becomeFirstResponder is invoked to make the widget view the first responder. Override this method to set one
-	* child component as first responder.
+	* becomeFirstResponder is invoked to make the widget view the first responder. Override this 
+	* method to set one child component as first responder.
 	*/
 	override public func becomeFirstResponder() -> Bool {
 		var result:Bool
@@ -70,7 +70,8 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 					}
 
 				case _ where nextResponder is UIControl:
-					(nextResponder as UIControl).sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+					(nextResponder as UIControl).sendActionsForControlEvents(
+							UIControlEvents.TouchUpInside)
 
 				default: ()
 			}
@@ -152,7 +153,9 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	private func addCustomActionForControl(control: UIControl) {
 		if onSetCustomActionForControl(control) {
-			control.addTarget(self, action: "customActionHandler:", forControlEvents: UIControlEvents.TouchUpInside)
+			control.addTarget(self,
+					action: "customActionHandler:",
+					forControlEvents: UIControlEvents.TouchUpInside)
 		}
 	}
 

@@ -99,7 +99,8 @@ class DDLElementDocument_Tests: XCTestCase {
 		let elements = parser.parse()
 		let docElement = elements![0] as DDLElementDocument
 
-		docElement.currentValue = NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
+		docElement.currentValue =
+				NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
 
 		XCTAssertEqual("video/mpeg", docElement.mimeType ?? "nil mimeType")
 	}
@@ -136,8 +137,10 @@ class DDLElementDocument_Tests: XCTestCase {
 		let elements = parser.parse()
 		let docElement = elements![0] as DDLElementDocument
 
-		let url = NSBundle(forClass: self.dynamicType).URLForResource("default-field", withExtension: "png")
-		let attributes = NSFileManager.defaultManager().attributesOfItemAtPath(url?.path, error: nil)
+		let url = NSBundle(forClass: self.dynamicType).URLForResource("default-field",
+				withExtension: "png")
+		let attributes =
+				NSFileManager.defaultManager().attributesOfItemAtPath(url?.path, error: nil)
 		let imageLength = attributes![NSFileSize] as NSNumber
 
 		docElement.currentValue = url
@@ -171,7 +174,8 @@ class DDLElementDocument_Tests: XCTestCase {
 		let elements = parser.parse()
 		let docElement = elements![0] as DDLElementDocument
 
-		docElement.currentValue = NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
+		docElement.currentValue =
+				NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
 
 		XCTAssertEqual("Video", docElement.currentDocumentLabel!)
 	}

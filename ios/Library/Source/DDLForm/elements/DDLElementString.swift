@@ -20,7 +20,8 @@ public class DDLElementString : DDLElement {
 		var result = super.doValidate()
 
 		if result && currentStringValue != nil && required {
-			let trimmedString = currentStringValue?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+			let trimmedString = currentStringValue?.stringByTrimmingCharactersInSet(
+					NSCharacterSet.whitespaceCharacterSet())
 
 			result = (trimmedString != "")
 		}

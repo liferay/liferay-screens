@@ -26,7 +26,8 @@ import UIKit
 	optional func onFormSubmitError(error: NSError)
 
 	optional func onDocumentUploadStarted(element:DDLElementDocument)
-	optional func onDocumentUploadedBytes(element:DDLElementDocument, bytes: UInt, sent: Int64, total: Int64);
+	optional func onDocumentUploadedBytes(element:DDLElementDocument, bytes: UInt, sent: Int64,
+			total: Int64);
 	optional func onDocumentUploadCompleted(element:DDLElementDocument, result:[String:AnyObject]);
 	optional func onDocumentUploadError(element:DDLElementDocument, error: NSError);
 
@@ -214,7 +215,8 @@ import UIKit
 
 		var outError: NSError?
 
-		service.getStructureWithStructureId((structureId as NSNumber).longLongValue, error: &outError)
+		service.getStructureWithStructureId((structureId as NSNumber).longLongValue,
+				error: &outError)
 
 		if let error = outError {
 			onFailure(error)
@@ -251,12 +253,15 @@ import UIKit
 
 		let ddlService = LRMobilewidgetsddlrecordService_v62(session: session)
 
-		ddlService.getDdlRecordValuesWithDdlRecordId((recordId as NSNumber).longLongValue, locale: NSLocale.currentLocaleString(), error: &outError)
+		ddlService.getDdlRecordValuesWithDdlRecordId((recordId as NSNumber).longLongValue,
+				locale: NSLocale.currentLocaleString(),
+				error: &outError)
 
 		if formView().rows.isEmpty {
 			let structureService = LRDDMStructureService_v62(session: session)
 
-			structureService.getStructureWithStructureId((structureId as NSNumber).longLongValue, error: &outError)
+			structureService.getStructureWithStructureId((structureId as NSNumber).longLongValue,
+					error: &outError)
 		}
 
 		session.invoke(&outError)
@@ -300,7 +305,10 @@ import UIKit
 		}
 
 		if !formView().validateForm(autoscroll:autoscrollOnValidation) {
-			showHUDWithMessage("Some values are not valid", details: "Please, review your form", closeMode:.AutocloseDelayed(3.0, true), spinnerMode:.NoSpinner)
+			showHUDWithMessage("Some values are not valid",
+					details: "Please, review your form",
+					closeMode:.AutocloseDelayed(3.0, true),
+					spinnerMode:.NoSpinner)
 			return false
 		}
 
@@ -357,7 +365,8 @@ import UIKit
 		}
 
 		if document.currentValue == nil {
-			println("ERROR: No current value in the document. Can't upload a document without a value")
+			println("ERROR: No current value in the document. " +
+					"Can't upload a document without a value")
 			return false
 		}
 
@@ -365,7 +374,11 @@ import UIKit
 		let fileName = "\(filePrefix)-\(NSUUID.UUID().UUIDString)"
 		var size:Int64 = 0
 		let stream = document.getStream(&size)
-		let uploadData = LRUploadData(inputStream: stream, length:size, fileName: fileName, mimeType: document.mimeType)
+		let uploadData = LRUploadData(
+				inputStream: stream,
+				length: size,
+				fileName: fileName,
+				mimeType: document.mimeType)
 		uploadData.progressDelegate = self
 
 		let session = LRSession(session: LiferayContext.instance.currentSession)

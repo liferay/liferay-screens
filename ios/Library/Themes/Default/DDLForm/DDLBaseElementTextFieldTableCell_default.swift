@@ -88,7 +88,9 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 		textFieldBackground?.highlighted = false
 	}
 
-	public func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+	public func textField(textField: UITextField!,
+			shouldChangeCharactersInRange range: NSRange,
+			replacementString string: String!) -> Bool {
 
 		if element!.lastValidationResult != nil && !element!.lastValidationResult! {
 			element!.lastValidationResult = true
@@ -96,8 +98,8 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 			onValidated(true)
 
 			//FIXME!
-			// This hack is the only way I found to repaint the text field while it's in edition mode.
-			// It doesn't produce flickering nor nasty effects.
+			// This hack is the only way I found to repaint the text field while it's in
+			// edition mode. It doesn't produce flickering nor nasty effects.
 
 			textFieldBackground?.highlighted = false
 			textFieldBackground?.highlighted = true

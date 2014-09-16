@@ -40,9 +40,12 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 		}
 	}
 
-	override public func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+	override public func textField(textField: UITextField!,
+			shouldChangeCharactersInRange range: NSRange,
+			replacementString string: String!) -> Bool {
 
-		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
+		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range,
+				withString:string)
 
 		if newText != "" {
 			element!.currentStringValue = newText
@@ -53,7 +56,9 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 
 		stepper?.value = Double(element!.currentValue as NSNumber)
 
-		return super.textField(textField, shouldChangeCharactersInRange: range, replacementString: string)
+		return super.textField(textField,
+				shouldChangeCharactersInRange: range,
+				replacementString: string)
 	}
 
 	public func textFieldShouldReturn(textField: UITextField!) -> Bool {

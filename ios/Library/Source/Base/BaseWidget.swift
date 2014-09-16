@@ -36,15 +36,16 @@ import QuartzCore
 	//MARK: DISPLAY TEMPLATE METHODS
 
 	/*
-	 * onCreated is invoked after the widget is created. Override this method to set custom values for the widget
-	 * properties.
+	 * onCreated is invoked after the widget is created. 
+	 * Override this method to set custom values for the widget properties.
 	 */
 	internal func onCreated() {
 	}
 
 	/*
 	 * onPreCreate is invoked before the widget is created.
-	 * properties.
+	 * Override this method to set create new UI components programatically.
+	 *
 	 */
 	internal func onPreCreate() {
 	}
@@ -56,8 +57,8 @@ import QuartzCore
 	}
 
 	/*
-	 * onShow is invoked when the widget is displayed on the app window. Override this method for example to reset
-	 * values when the widget is shown.
+	 * onShow is invoked when the widget is displayed on the app window. 
+	 * Override this method for example to reset values when the widget is shown.
 	 */
 	internal func onShow() {
 	}
@@ -72,8 +73,9 @@ import QuartzCore
 	}
 
 	/*
-	 * onServerResult is invoked when there is an result from a communication with the Liferay server. The type of the
-	 * result will depend on the invocation done from specific subclasses.
+	 * onServerResult is invoked when there is an result from a communication with the 
+	 * Liferay server.
+	 * The type of the result will depend on the invocation done from specific subclasses.
 	 */
 	internal func onServerResult(dict:[String:AnyObject]) {
 	}
@@ -202,7 +204,8 @@ import QuartzCore
 			let selectedSignatureImage = Theme!
 			for themeName in ThemeManager.instance().installedThemes() {
 				if themeName != "default" {
-					let installedSignatureImage = UIImage(contentsOfFile: signatureImagePathForTheme(themeName)!)
+					let installedSignatureImage =
+							UIImage(contentsOfFile: signatureImagePathForTheme(themeName)!)
 
 					if installedSignatureImage.isBinaryEquals(selectedSignatureImage) {
 						result = themeName
@@ -249,7 +252,8 @@ import QuartzCore
 	}
 
 	internal func signatureImagePathForTheme(themeName:String) -> String? {
-		return NSBundle(forClass:self.dynamicType).pathForResource("theme-\(themeName)", ofType: "png")
+		let bundle = NSBundle(forClass:self.dynamicType)
+		return bundle.pathForResource("theme-\(themeName)", ofType: "png")
 	}
 
 	internal func startOperationWithMessage(message:String, details:String? = nil) {
@@ -259,7 +263,10 @@ import QuartzCore
 	}
 
 	internal func finishOperationWithError(error:NSError, message:String, details:String? = nil) {
-		showHUDWithMessage(message, details: details, closeMode:.NoAutoclose(true), spinnerMode:.NoSpinner)
+		showHUDWithMessage(message,
+			details: details,
+			closeMode:.NoAutoclose(true),
+			spinnerMode:.NoSpinner)
 		onFinishOperation()
 		widgetView?.onFinishOperation()
 	}

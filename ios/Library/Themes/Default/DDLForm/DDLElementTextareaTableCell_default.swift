@@ -111,12 +111,16 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 				DDLBaseElementTextFieldTableCell_default.heightWithLabel -
 				DDLBaseElementTextFieldTableCell_default.heightWithoutLabel
 
-		changeCellHeight(element!.editorType.registeredHeight - (element!.showLabel ? 0.0 : heightLabelOffset))
+		changeCellHeight(
+				element!.editorType.registeredHeight -
+				(element!.showLabel ? 0.0 : heightLabelOffset))
 
 		textViewBackground?.highlighted = false
 	}
 
-	public func textView(textView: UITextView!, shouldChangeTextInRange range: NSRange, replacementText text: String!) -> Bool {
+	public func textView(textView: UITextView!,
+			shouldChangeTextInRange range: NSRange,
+			replacementText text: String!) -> Bool {
 
 		var result = false
 
@@ -127,7 +131,8 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		} else {
 			result = true
 
-			let newText = (textView!.text as NSString).stringByReplacingCharactersInRange(range, withString:text)
+			let newText = (textView!.text as NSString).stringByReplacingCharactersInRange(range,
+					withString:text)
 
 			showPlaceholder(placeholder!, show:newText == "")
 

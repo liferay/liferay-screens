@@ -109,7 +109,7 @@ public class LoginWidget: BaseWidget {
 		}
 	}
 
-	private typealias AuthClosureType = (String, String, LRUserService_v62, (NSError)->()) -> (Void)
+	private typealias AuthClosureType = (String, String, LRUserService_v62, (NSError)->()) -> ()
 
 
 	private let authClosures: [String : AuthClosureType] = [
@@ -121,36 +121,42 @@ public class LoginWidget: BaseWidget {
 
 }
 
-func authWithEmail(email:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
-	let companyId = (LiferayContext.instance.companyId as NSNumber).longLongValue
+func authWithEmail(email:String, password:String, service:LRUserService_v62,
+		onError:(NSError)->()) {
 
 	var outError: NSError?
 
-	service.getUserByEmailAddressWithCompanyId(companyId, emailAddress:email, error:&outError)
+	service.getUserByEmailAddressWithCompanyId(
+			(LiferayContext.instance.companyId as NSNumber).longLongValue,
+			emailAddress:email,
+			error:&outError)
 
 	if let error = outError {
 		onError(error)
 	}
 }
 
-func authWithScreenName(name:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
-	let companyId = (LiferayContext.instance.companyId as NSNumber).longLongValue
+func authWithScreenName(name:String, password:String, service:LRUserService_v62,
+		onError:(NSError)->()) {
 
 	var outError: NSError?
 
-	service.getUserByScreenNameWithCompanyId(companyId, screenName:name, error: &outError)
+	service.getUserByScreenNameWithCompanyId(
+			(LiferayContext.instance.companyId as NSNumber).longLongValue,
+			screenName:name,
+			error: &outError)
 
 	if let error = outError {
 		onError(error)
 	}
 }
 
-func authWithUserId(userId:String, password:String, service:LRUserService_v62, onError:(NSError)->()) {
-	let uid: CLongLong = (userId.toInt()! as NSNumber).longLongValue
+func authWithUserId(userId:String, password:String, service:LRUserService_v62,
+		onError:(NSError)->()) {
 
 	var outError: NSError?
 
-	service.getUserByIdWithUserId(uid, error: &outError)
+	service.getUserByIdWithUserId((userId.toInt()! as NSNumber).longLongValue, error: &outError)
 
 	if let error = outError {
 		onError(error)
