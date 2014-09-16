@@ -25,13 +25,16 @@ public class DDLElementDate : DDLElement {
 		return result
 	}
 
-	private let serverDateFormat = "MM/dd/yyyy"
+	private let serverYYYYDateFormat = "MM/dd/yyyy"
+	private let serverYYDateFormat = "MM/dd/yy"
 
-	private let serverDateFormatter = NSDateFormatter()
+	private let serverYYYYDateFormatter = NSDateFormatter()
+	private let serverYYDateFormatter = NSDateFormatter()
 	private let clientDateFormatter = NSDateFormatter()
 
 	override init(attributes: [String:String], localized: [String:AnyObject]) {
-		serverDateFormatter.dateFormat = serverDateFormat
+		serverYYYYDateFormatter.dateFormat = serverYYYYDateFormat
+		serverYYDateFormatter.dateFormat = serverYYDateFormat
 
 		clientDateFormatter.dateStyle = .MediumStyle
 		clientDateFormatter.timeStyle = .NoStyle
@@ -41,7 +44,16 @@ public class DDLElementDate : DDLElement {
 
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
-		return serverDateFormatter.dateFromString(value)
+		if let stringValue = value {
+			// minimum date length in mm/dd/yy is 6 characters
+			if countElements(stringValue) >= 6 {
+				let formatter = stringValue[stringValue.endIndex.predecessor().predecessor()] == "/" ?
+					serverYYDateFormatter : serverYYDateFormatter
+				return formatter.dateFromString(value)
+			}
+		}
+
+		return nil
 	}
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {

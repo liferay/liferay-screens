@@ -18,6 +18,9 @@ import UIKit
 	optional func onFormLoaded(elements: [DDLElement])
 	optional func onFormLoadError(error: NSError)
 
+	optional func onRecordLoaded(elements: [DDLElement])
+	optional func onRecordLoadError(error: NSError)
+
 	optional func onFormSubmitted(elements: [DDLElement])
 	optional func onFormSubmitError(error: NSError)
 
@@ -84,9 +87,13 @@ import UIKit
 				delegate?.onFormSubmitError?(error)
 				finishOperationWithError(error, message:"An error happened submitting form")
 
-			case .Loading:
+			case .LoadingForm:
 				delegate?.onFormLoadError?(error)
 				finishOperationWithError(error, message:"An error happened loading form")
+
+			case .LoadingRecord:
+				delegate?.onRecordLoadError?(error)
+				finishOperationWithError(error, message:"An error happened loading the record")
 
 			case .Uploading(let document, _):
 				document.uploadStatus = .Failed(error)
@@ -116,8 +123,19 @@ import UIKit
 				finishOperationWithMessage("Form submitted")
 				currentOperation = .Idle
 
-			case .Loading:
+			case .LoadingForm:
 				onFormLoadResult(result)
+				currentOperation = .Idle
+
+			case .LoadingRecord(let includesForm):
+				let responses = (result["result"] ?? []) as [AnyObject]
+
+				if includesForm && responses.count > 1 {
+					onFormLoadResult(responses[1] as [String:AnyObject])
+				}
+
+				onRecordLoadResult(responses[0] as [String:AnyObject])
+
 				currentOperation = .Idle
 
 			case .Uploading(let document, let submitAfter):
@@ -163,6 +181,16 @@ import UIKit
 		}
 	}
 
+	private func onRecordLoadResult(result: [String:AnyObject]) {
+		for (index,element) in enumerate(formView().rows) {
+			let elementValue = (result[element.name] ?? nil) as? String
+			if let elementStringValue = elementValue {
+				element.currentStringValue = elementStringValue
+				formView().rows[index] = element
+			}
+		}
+	}
+
 	public func loadForm() -> Bool {
 		if LiferayContext.instance.currentSession == nil {
 			println("ERROR: No session initialized. Can't load form without session")
@@ -181,7 +209,7 @@ import UIKit
 
 		let service = LRDDMStructureService_v62(session: session)
 
-		currentOperation = .Loading
+		currentOperation = .LoadingForm
 
 		var outError: NSError?
 
@@ -194,6 +222,52 @@ import UIKit
 
 		return true
 	}
+
+	public func loadRecord() -> Bool {
+		if LiferayContext.instance.currentSession == nil {
+			println("ERROR: No session initialized. Can't load a record without session")
+			return false
+		}
+
+		if structureId == 0 {
+			println("ERROR: StructureId is empty. Can't load a record without it.")
+			return false
+		}
+
+		if recordId == 0 {
+			println("ERROR: RecordId is empty. Can't load a record without it.")
+			return false
+		}
+
+		currentOperation = .LoadingRecord(formView().rows.isEmpty)
+
+		startOperationWithMessage("Loading record...", details: "Wait a second...")
+
+		let session = LRBatchSession(session: LiferayContext.instance.currentSession)
+		session.callback = self
+
+		var outError: NSError?
+
+		let ddlService = LRMobilewidgetsddlService_v62(session: session)
+
+		ddlService.getDdlRecordValuesWithRecordId((recordId as NSNumber).longLongValue, locale: NSLocale.currentLocaleString(), error: &outError)
+
+		if formView().rows.isEmpty {
+			let structureService = LRDDMStructureService_v62(session: session)
+
+			structureService.getStructureWithStructureId((structureId as NSNumber).longLongValue, error: &outError)
+		}
+
+		session.invoke(&outError)
+
+		if let error = outError {
+			onFailure(error)
+			return false
+		}
+
+		return true
+	}
+
 
 	public func submitForm() -> Bool {
 		if LiferayContext.instance.currentSession == nil {
@@ -217,7 +291,7 @@ import UIKit
 				showHUDWithMessage("Uploading file...", details: "Wait a second...")
 				return true
 
-			case .Loading, .Submitting:
+			case .LoadingForm, .LoadingRecord(_), .Submitting:
 				println("ERROR: Cannot submit a form while it's being loading or submitting")
 				return false
 
@@ -342,7 +416,8 @@ import UIKit
 
 private enum FormOperation {
 	case Idle
-	case Loading
+	case LoadingForm
+	case LoadingRecord(Bool)
 	case Submitting
 	case Uploading(DDLElementDocument, Bool)
 }

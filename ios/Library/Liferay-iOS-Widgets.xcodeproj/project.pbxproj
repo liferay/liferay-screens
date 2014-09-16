@@ -24,6 +24,8 @@
 		881A6E6619C856EB002ECC8F /* SignUpView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D77CF19903F060052C39C /* SignUpView_default.swift */; };
 		8827E30719759F28004977A0 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E30419759F28004977A0 /* ForgotPasswordView.swift */; };
 		8827E30919759F28004977A0 /* ForgotPasswordWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E30619759F28004977A0 /* ForgotPasswordWidget.swift */; };
+		8828A64B19C0632600DF69C6 /* LRMobilewidgetsddlService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 8828A64A19C0632600DF69C6 /* LRMobilewidgetsddlService_v62.m */; };
+		8828A64C19C0632600DF69C6 /* LRMobilewidgetsddlService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 8828A64A19C0632600DF69C6 /* LRMobilewidgetsddlService_v62.m */; };
 		883CF3C3199B7474008F0EBC /* DDLElementTextareaTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 883CF3C1199B7474008F0EBC /* DDLElementTextareaTableCell-default.xib */; };
 		883CF3C4199B7474008F0EBC /* DDLElementTextareaTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 883CF3C1199B7474008F0EBC /* DDLElementTextareaTableCell-default.xib */; };
 		883CF3C5199B7474008F0EBC /* DDLElementTextareaTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883CF3C2199B7474008F0EBC /* DDLElementTextareaTableCell_default.swift */; };
@@ -311,6 +313,8 @@
 		8811DC4A19BDF2F5008FE226 /* WebContentView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView_default.swift; sourceTree = "<group>"; };
 		8827E30419759F28004977A0 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		8827E30619759F28004977A0 /* ForgotPasswordWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordWidget.swift; sourceTree = "<group>"; };
+		8828A64919C0632600DF69C6 /* LRMobilewidgetsddlService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsddlService_v62.h; sourceTree = "<group>"; };
+		8828A64A19C0632600DF69C6 /* LRMobilewidgetsddlService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsddlService_v62.m; sourceTree = "<group>"; };
 		883CF3C1199B7474008F0EBC /* DDLElementTextareaTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementTextareaTableCell-default.xib"; sourceTree = "<group>"; };
 		883CF3C2199B7474008F0EBC /* DDLElementTextareaTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementTextareaTableCell_default.swift; sourceTree = "<group>"; };
 		883CF3CB199B782D008F0EBC /* LRMobilewidgetsuserService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsuserService_v62.h; sourceTree = "<group>"; };
@@ -502,6 +506,8 @@
 		8827E30A19759F3C004977A0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8828A64919C0632600DF69C6 /* LRMobilewidgetsddlService_v62.h */,
+				8828A64A19C0632600DF69C6 /* LRMobilewidgetsddlService_v62.m */,
 				883CF3CB199B782D008F0EBC /* LRMobilewidgetsuserService_v62.h */,
 				883CF3CC199B782D008F0EBC /* LRMobilewidgetsuserService_v62.m */,
 			);
@@ -1176,6 +1182,7 @@
 				88DBC12419A4F7FF0075E644 /* DDLElementDateTableCell_default.swift in Sources */,
 				88F648A4198D2E11003A8FD9 /* ThemeManager.swift in Sources */,
 				88D537691999125400615515 /* DDLElementString.swift in Sources */,
+				8828A64C19C0632600DF69C6 /* LRMobilewidgetsddlService_v62.m in Sources */,
 				88E3304D19928BF0002AD507 /* DDLParser.swift in Sources */,
 				88D789761998ACA500171FB7 /* DDLElementBoolean.swift in Sources */,
 				886C74AA19A368C000B689BA /* DDLElementSelectTableCell_default.swift in Sources */,
@@ -1195,6 +1202,7 @@
 				8811DC4619BDF2CA008FE226 /* WebContentWidget.swift in Sources */,
 				881A6E6619C856EB002ECC8F /* SignUpView_default.swift in Sources */,
 				8878523D19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift in Sources */,
+				8828A64B19C0632600DF69C6 /* LRMobilewidgetsddlService_v62.m in Sources */,
 				8827E30919759F28004977A0 /* ForgotPasswordWidget.swift in Sources */,
 				8803219B19BE103F0058062D /* DDLFormTableView.swift in Sources */,
 				88D90A5D19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */,

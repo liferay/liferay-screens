@@ -85,19 +85,14 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 		XCTAssertTrue(stringElement.predefinedValue is [DDLStringOption])
 		let predefinedOptions = stringElement.predefinedValue as [DDLStringOption]
 
-		XCTAssertEqual(2, predefinedOptions.count)
+		//FIXME only support one predefined value
+		XCTAssertEqual(1, predefinedOptions.count)
 
 		var predefinedOption = predefinedOptions[0]
 
 		XCTAssertEqual("option_1", predefinedOption.name)
 		XCTAssertEqual("value 1", predefinedOption.value)
 		XCTAssertEqual("Option 1", predefinedOption.label)
-
-		predefinedOption = predefinedOptions[1]
-
-		XCTAssertEqual("option_2", predefinedOption.name)
-		XCTAssertEqual("value 2", predefinedOption.value)
-		XCTAssertEqual("Option 2", predefinedOption.label)
 	}
 
 	func test_CurrentValue_ShouldBeTheSameAsPredefinedValue_WhenTheParsingIsDone() {
@@ -143,7 +138,7 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 		XCTAssertEqual("value 3", currentOptions.first!.value)
 	}
 
-	func test_CurrentValue_ShouldBeNil_AfterChangedToNonExistingOptionLabel() {
+	func test_CurrentValue_ShouldBeEmpty_AfterChangedToNonExistingOptionLabel() {
 		parser.xml = selectWithPredefinedValues
 
 		let elements = parser.parse()
@@ -152,7 +147,8 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 
 		stringElement.currentValue = "this is not a valid option label"
 
-		XCTAssertTrue(stringElement.currentValue == nil)
+		XCTAssertTrue(stringElement.currentValue is [DDLStringOption])
+		XCTAssertTrue((stringElement.currentValue as [DDLStringOption]).isEmpty)
 	}
 
 	func test_CurrenStringValue_ShouldContainTheArrayOfValues() {
@@ -176,7 +172,47 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 
 		stringElement.currentValue = nil
 
-		XCTAssertEqual("[\"\"]", stringElement.currentStringValue!)
+		XCTAssertEqual("[]", stringElement.currentStringValue!)
+	}
+
+	func test_CurrenStringValue_ShouldSupportOptionLabel_WhenSettingTheStringValue() {
+		parser.xml = selectWithPredefinedValues
+		let elements = parser.parse()
+		let stringElement = elements![0] as DDLElementStringWithOptions
+
+		stringElement.currentStringValue = "Option 3"
+
+		XCTAssertEqual("[\"value 3\"]", stringElement.currentStringValue!)
+	}
+
+	func test_CurrenStringValue_ShouldSupportOptionValue_WhenSettingTheStringValue() {
+		parser.xml = selectWithPredefinedValues
+		let elements = parser.parse()
+		let stringElement = elements![0] as DDLElementStringWithOptions
+
+		stringElement.currentStringValue = "value 3"
+
+		XCTAssertEqual("[\"value 3\"]", stringElement.currentStringValue!)
+	}
+
+	func test_CurrenStringValue_ShouldSupportNil_WhenSettingTheStringValue() {
+		parser.xml = selectWithPredefinedValues
+		let elements = parser.parse()
+		let stringElement = elements![0] as DDLElementStringWithOptions
+
+		stringElement.currentStringValue = nil
+
+		XCTAssertEqual("[]", stringElement.currentStringValue!)
+	}
+
+	func test_CurrenStringValue_ShouldSupportNonExistingString_WhenSettingTheStringValue() {
+		parser.xml = selectWithPredefinedValues
+		let elements = parser.parse()
+		let stringElement = elements![0] as DDLElementStringWithOptions
+
+		stringElement.currentStringValue = "this is neither a value nor a label"
+
+		XCTAssertEqual("[]", stringElement.currentStringValue!)
 	}
 
 	func test_CurrenOptionLabel_ShouldContainTheLabelOfSelectedOption() {

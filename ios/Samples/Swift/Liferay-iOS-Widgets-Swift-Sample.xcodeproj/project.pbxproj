@@ -14,6 +14,7 @@
 		8811DC3D19BDA700008FE226 /* WebContentView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8811DC3B19BDA700008FE226 /* WebContentView-default.xib */; };
 		8811DC3E19BDA700008FE226 /* WebContentView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC3C19BDA700008FE226 /* WebContentView_default.swift */; };
 		8811DC4019BDD0FA008FE226 /* WebContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC3F19BDD0FA008FE226 /* WebContentViewController.swift */; };
+		8817A40919BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 8817A40819BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.m */; };
 		8835607C196AED36002AB222 /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8835607B196AED36002AB222 /* liferay-context-sample.plist */; };
 		883CF3D1199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CF3D0199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m */; };
 		88415D2A19A273F4006F7064 /* DDLElementSelectTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88415D2819A273F4006F7064 /* DDLElementSelectTableCell_default.swift */; };
@@ -141,6 +142,8 @@
 		8811DC3B19BDA700008FE226 /* WebContentView-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WebContentView-default.xib"; sourceTree = "<group>"; };
 		8811DC3C19BDA700008FE226 /* WebContentView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView_default.swift; sourceTree = "<group>"; };
 		8811DC3F19BDD0FA008FE226 /* WebContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentViewController.swift; sourceTree = "<group>"; };
+		8817A40719BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsddlService_v62.h; sourceTree = "<group>"; };
+		8817A40819BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsddlService_v62.m; sourceTree = "<group>"; };
 		8835607B196AED36002AB222 /* liferay-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-context-sample.plist"; sourceTree = "<group>"; };
 		883CF3CF199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsuserService_v62.h; sourceTree = "<group>"; };
 		883CF3D0199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsuserService_v62.m; sourceTree = "<group>"; };
@@ -596,6 +599,8 @@
 		88E4604E19759FEB002C26C6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8817A40719BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.h */,
+				8817A40819BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.m */,
 				883CF3CF199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.h */,
 				883CF3D0199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m */,
 			);
@@ -845,6 +850,7 @@
 				885FD6831996E1DF00F23BA1 /* FormViewController.swift in Sources */,
 				883CF3D1199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m in Sources */,
 				8897D9C4198A812D00D3DF51 /* ForgotPasswordWidget.swift in Sources */,
+				8817A40919BF4B5700A992F4 /* LRMobilewidgetsddlService_v62.m in Sources */,
 				88EAEE3C1993D923002D7C26 /* Bool+Conversion.swift in Sources */,
 				88D5376C199914BB00615515 /* DDLElementBoolean.swift in Sources */,
 				88142E4919BA6DE60006C9B3 /* UIView+Animations.swift in Sources */,
@@ -854,7 +860,7 @@
 				88832F9919656B3F00E3DF9F /* BaseWidget.swift in Sources */,
 				88832F9819656B3F00E3DF9F /* BaseWidget+progress.swift in Sources */,
 				88EAEE3A1993D8BF002D7C26 /* DDLParser.swift in Sources */,
-				88C130E819BA6459001B6AD1 /* (null) in Sources */,
+				88C130E819BA6459001B6AD1 /* UIView+Animations.swift in Sources */,
 				88832F9F19656B3F00E3DF9F /* LoginView.swift in Sources */,
 				888F6206198FD3F20082786B /* SignUpViewController.swift in Sources */,
 				999BC69C19768EA400A9B0D8 /* LRSession+CredentialStore.swift in Sources */,

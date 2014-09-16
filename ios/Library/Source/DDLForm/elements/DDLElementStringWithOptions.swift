@@ -67,15 +67,10 @@ public class DDLElementStringWithOptions : DDLElement {
 		}
 
 		super.init(attributes: attributes, localized: localized)
-
-		if options.count > 0 {
-			predefinedValue = processPredefinedOptions()
-			currentValue = predefinedValue
-		}
 	}
 
-	override func convert(fromCurrentValue value: AnyObject?) -> String? {
-		var result:String = "[\""
+	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
+		var result:String = "["
 
 		if let currentOptions = value as? [DDLStringOption] {
 			var first = true
@@ -84,14 +79,68 @@ public class DDLElementStringWithOptions : DDLElement {
 					first = false
 				}
 				else {
-					result += "\", \""
+					result += ", "
 				}
 
-				result += option.value
+				result += "\"\(option.value)\""
 			}
 		}
 
-		return result + "\"]"
+		return result + "]"
+	}
+
+	override internal func convert(fromString value:String?) -> AnyObject? {
+		var result:[DDLStringOption] = []
+
+		func findOptionByValue(value:String) -> DDLStringOption? {
+			return options.filter { $0.value == value }.first
+		}
+
+		func findOptionByLabel(label:String) -> DDLStringOption? {
+			return options.filter { $0.label == label }.first
+		}
+
+		func extractFirstOption(options:String) -> String? {
+
+			func removeFirstAndLastChars(value:String) -> String {
+				var result: String = value
+
+				if countElements(value) >= 2 {
+					let range = Range<String.Index>(
+									start: value.startIndex.successor(),
+									end: value.endIndex.predecessor())
+					result = value.substringWithRange(range)
+				}
+
+				return result
+			}
+
+			let optionsArray = removeFirstAndLastChars(options).componentsSeparatedByString(",")
+
+			return optionsArray.isEmpty ? nil : removeFirstAndLastChars(optionsArray[0])
+		}
+
+		var firstOption:String?
+
+		if let valueString = value {
+			if valueString.hasPrefix("[") {
+				firstOption = extractFirstOption(valueString)
+			}
+			else {
+				firstOption = valueString
+			}
+		}
+
+		if let firstOptionValue = firstOption {
+			if let foundOption = findOptionByLabel(firstOptionValue) {
+				result = [foundOption]
+			}
+			else if let foundOption = findOptionByValue(firstOptionValue) {
+				result = [foundOption]
+			}
+		}
+
+		return result
 	}
 
 	override func doValidate() -> Bool {
@@ -101,69 +150,11 @@ public class DDLElementStringWithOptions : DDLElement {
 	}
 
 	override internal func onChangedCurrentValue() {
-		if !(currentValue is [DDLStringOption]) && currentValue is String {
-			if let foundOption = findOption(byLabel: currentValue as String) {
-				currentValue = [foundOption]
-			}
-			else {
-				currentValue = nil
+		if !(currentValue is [DDLStringOption]) {
+			if let currentStringValue = currentValue as? String {
+				currentValue = convert(fromString: currentStringValue)
 			}
 		}
 	}
-
-
-	private func processPredefinedOptions() -> [DDLStringOption] {
-		var result:[DDLStringOption] = []
-
-		if let predefinedStringValue = predefinedValue as? String {
-			if predefinedStringValue != "" {
-				let predefinedContent = removeFirstAndLastChars(predefinedStringValue)
-
-				for predefinedOption in predefinedContent.componentsSeparatedByString(",") {
-					let predefinedOptionValue = removeFirstAndLastChars(predefinedOption)
-
-					if let foundOption = findOption(byValue:predefinedOptionValue) {
-						result.append(foundOption)
-					}
-				}
-			}
-		}
-
-		return result
-	}
-
-	private func removeFirstAndLastChars(value:String) -> String {
-		var result: String = value
-
-		if countElements(value) >= 2 {
-			let range = Range<String.Index>(
-							start: value.startIndex.successor(),
-							end: value.endIndex.predecessor())
-			result = value.substringWithRange(range)
-		}
-
-		return result
-	}
-
-	private func findOption(byValue value:String) -> DDLStringOption? {
-		for option in options {
-			if option.value == value {
-				return option
-			}
-		}
-
-		return nil
-	}
-
-	private func findOption(byLabel label:String) -> DDLStringOption? {
-		for option in options {
-			if option.label == label {
-				return option
-			}
-		}
-
-		return nil
-	}
-
 
 }
