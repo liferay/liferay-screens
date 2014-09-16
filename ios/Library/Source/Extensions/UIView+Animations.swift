@@ -20,7 +20,7 @@ import Foundation
 extension UIView {
 
 	public func changeVisibility(#visible:Bool) {
-		self.changeVisibility(visible: visible, delay: defaultHideDelay)
+		changeVisibility(visible: visible, delay: defaultHideDelay)
 	}
 
 	public func changeVisibility(#visible:Bool, delay: Double) {

@@ -22,7 +22,7 @@ extension NSBundle {
 
 		var filePaths:[String] = []
 
-		if let enumerator = NSFileManager.defaultManager().enumeratorAtPath(self.bundlePath) {
+		if let enumerator = NSFileManager.defaultManager().enumeratorAtPath(bundlePath) {
 			var filePath: String? = enumerator.nextObject() as? String
 
 			do {

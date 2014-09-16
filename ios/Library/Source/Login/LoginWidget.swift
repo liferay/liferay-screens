@@ -104,8 +104,8 @@ public class LoginWidget: BaseWidget {
 		let session = LiferayContext.instance.createSession(userName, password: password)
 		session.callback = self
 
-		authClosure!(userName, password, LRUserService_v62(session: session)) {error in
-			self.onFailure(error)
+		authClosure!(userName, password, LRUserService_v62(session: session)) {
+			self.onFailure($0)
 		}
 	}
 

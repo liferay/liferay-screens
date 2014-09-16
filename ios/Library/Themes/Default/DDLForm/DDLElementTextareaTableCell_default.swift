@@ -61,7 +61,7 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 			originalBackgroundRect = textViewBackground!.frame
 
 			if stringElement.lastValidationResult != nil {
-				self.onValidated(stringElement.lastValidationResult!)
+				onValidated(stringElement.lastValidationResult!)
 			}
 		}
 	}
@@ -91,11 +91,11 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		separator!.frame.origin.y += expandedBackgroundHeight - originalBackgroundRect.size.height
 
 		textView.frame = CGRectMake(
-			self.originalTextViewRect.origin.x,
-			self.originalTextViewRect.origin.y,
-			self.originalTextViewRect.size.width,
+			originalTextViewRect.origin.x,
+			originalTextViewRect.origin.y,
+			originalTextViewRect.size.width,
 			expandedTextViewHeight)
-		self.textViewBackground!.frame.size.height = expandedBackgroundHeight
+		textViewBackground!.frame.size.height = expandedBackgroundHeight
 
 		textViewBackground?.highlighted = true
 

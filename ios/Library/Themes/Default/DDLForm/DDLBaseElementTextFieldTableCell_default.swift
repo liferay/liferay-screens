@@ -49,7 +49,7 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 		textField?.returnKeyType = isLastCell ? .Send : .Next
 
 		if element!.lastValidationResult != nil {
-			self.onValidated(element!.lastValidationResult!)
+			onValidated(element!.lastValidationResult!)
 		}
 
 		if element!.currentValue != nil {

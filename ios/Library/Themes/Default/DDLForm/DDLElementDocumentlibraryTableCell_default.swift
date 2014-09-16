@@ -119,8 +119,6 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 	}
 
 	private func changeProgressVisilibity(#show:Bool, delay:Double = 0.0) {
-		//FIXME Change to category
-
 		UIView.animateWithDuration(0.3, delay: delay, options: nil, animations: {
 			self.progress!.alpha = show ? 1.0 : 0.0
 			self.chooseButton!.alpha = show ? 0.0 : 1.0

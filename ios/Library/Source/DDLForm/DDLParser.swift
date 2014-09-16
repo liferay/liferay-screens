@@ -29,7 +29,7 @@ public class DDLParser {
 	public func parse() -> [DDLElement]? {
 		var result:[DDLElement]? = nil
 
-		let xmlString = self.xml as NSString?
+		let xmlString = xml as NSString?
 
 		if let xmlValue = xmlString {
 			let data = xmlValue.dataUsingEncoding(NSUTF8StringEncoding)

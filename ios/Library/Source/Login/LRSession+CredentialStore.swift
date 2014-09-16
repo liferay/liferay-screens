@@ -45,12 +45,12 @@ extension LRSession {
 	public func storeCredential() -> Bool {
 		var success = false
 
-		if self.username != nil && self.password != nil {
+		if username != nil && password != nil {
 			let protectionSpace = LRSession.protectionSpaceForServer(LiferayContext.instance.server)
 
 			let credential = NSURLCredential(
-								user:self.username!,
-								password:self.password!,
+								user:username!,
+								password:password!,
 								persistence: NSURLCredentialPersistence.Permanent)
 
 			NSURLCredentialStorage.sharedCredentialStorage().setCredential(credential,

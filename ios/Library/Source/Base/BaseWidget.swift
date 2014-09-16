@@ -106,7 +106,7 @@ import QuartzCore
 
 		onPreCreate()
 
-		self.clipsToBounds = true;
+		clipsToBounds = true;
 
 		widgetView = loadWidgetView();
 
@@ -118,11 +118,11 @@ import QuartzCore
 	}
 
 	override public func didMoveToWindow() {
-		if (self.window != nil) {
-			self.onShow();
+		if (window != nil) {
+			onShow();
 		}
 		else {
-			self.onHide();
+			onHide();
 		}
 	}
 
@@ -183,13 +183,13 @@ import QuartzCore
 	//MARK: Internal
 
 	internal func loadWidgetView() -> BaseWidgetView? {
-		let view = self.createWidgetViewFromNib();
+		let view = createWidgetViewFromNib();
 
 		if let viewValue = view {
-			viewValue.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-			viewValue.customAction = self.onCustomAction;
+			viewValue.frame = bounds
+			viewValue.customAction = onCustomAction;
 
-			self.addSubview(viewValue)
+			addSubview(viewValue)
 
 			return viewValue
 		}

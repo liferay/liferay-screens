@@ -43,13 +43,13 @@ public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_d
 
 		func onChange(selectedDate:NSDate!) {
 			element.currentValue = selectedDate
-			self.textField?.text = element.currentDateLabel
+			textField?.text = element.currentDateLabel
 
-			let fullRange = NSMakeRange(0, countElements(self.textField!.text!))
+			let fullRange = NSMakeRange(0, countElements(textField!.text!))
 
-			self.textField(self.textField,
+			textField(textField,
 				shouldChangeCharactersInRange: fullRange,
-				replacementString: self.textField!.text!)
+				replacementString: textField!.text!)
 		}
 
 		let presenter = DTDatePickerPresenter(changeBlock:onChange)

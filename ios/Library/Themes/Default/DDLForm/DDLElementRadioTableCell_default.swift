@@ -101,7 +101,7 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 		radioGroup!.position = CGPointMake(25.0,
 				radioGroupMarginTop + label!.frame.origin.y + label!.frame.size.height)
 
-		self.addSubview(radioGroup!)
+		addSubview(radioGroup!)
 
 		NSNotificationCenter.defaultCenter().addObserver(self,
 				selector: "radioButtonSelected:",
