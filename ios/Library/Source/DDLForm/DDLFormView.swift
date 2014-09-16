@@ -64,6 +64,9 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 		return result
 	}
 
+	internal func changeDocumentUploadStatus(element:DDLElementDocument) {
+	}
+
 	internal func showElement(element:DDLElement) {
 	}
 

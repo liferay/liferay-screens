@@ -17,6 +17,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	@IBOutlet var tableView: UITableView?
 
+	internal var firstCellResponder:UIResponder?
+
 	internal var submitButtonHeight:CGFloat = 0.0
 
 	override public func onCreate() {
@@ -33,6 +35,19 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		}
 		
 		tableView!.reloadData()
+	}
+
+	override public func resignFirstResponder() -> Bool {
+		var result:Bool = false
+
+		if let cellValue = firstCellResponder {
+			result = cellValue.resignFirstResponder()
+			if result {
+				firstCellResponder = nil
+			}
+		}
+
+		return result
 	}
 
 	override public func becomeFirstResponder() -> Bool {
@@ -55,10 +70,18 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		return result
 	}
 	override func showElement(element: DDLElement) {
-		if let index = find(rows, element) {
+		if let row = find(rows, element) {
 			tableView!.scrollToRowAtIndexPath(
-				NSIndexPath(forRow: index, inSection: 0),
+				NSIndexPath(forRow: row, inSection: 0),
 				atScrollPosition: .Top, animated: true)
+		}
+	}
+
+	override func changeDocumentUploadStatus(element: DDLElementDocument) {
+		if let row = find(rows, element) {
+			if let cell = tableView!.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0)) as? DDLElementTableCell {
+				cell.changeDocumentUploadStatus(element)
+			}
 		}
 	}
 

@@ -73,8 +73,46 @@ class DDLElementDate_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
-		parser.xml =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+		parser.xml = requiredDateElement
+		let elements = parser.parse()
+		let dateElement = elements![0] as DDLElementDate
+
+		XCTAssertTrue(dateElement.currentValue == nil)
+
+		XCTAssertFalse(dateElement.validate())
+	}
+
+	func test_CurrentStringValue_ShouldReturnEpochTimeInMilliseconds() {
+		parser.xml = requiredDateElement
+		let elements = parser.parse()
+		let dateElement = elements![0] as DDLElementDate
+
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "dd/MM/yyyy"
+
+		dateElement.currentValue = dateFormatter.dateFromString("19/06/2004")
+
+		// converted with http://www.epochconverter.com/
+		XCTAssertEqual("1087596000000", dateElement.currentStringValue!)
+	}
+
+	func test_CurrentDateLabel_ShouldReturnClientSideFormat() {
+		parser.xml = requiredDateElement
+		let elements = parser.parse()
+		let dateElement = elements![0] as DDLElementDate
+
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "dd/MM/yyyy"
+
+		dateElement.currentValue = dateFormatter.dateFromString("19/06/2004")
+
+		XCTAssertEqual("Jun 19, 2004", dateElement.currentDateLabel!)
+	}
+
+
+
+	private let requiredDateElement =
+		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"date\" " +
 				"fieldNamespace=\"ddm\" " +
 				"indexType=\"keyword\" " +
@@ -90,14 +128,6 @@ class DDLElementDate_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
-
-		let dateElement = elements![0] as DDLElementDate
-
-		XCTAssertTrue(dateElement.currentValue == nil)
-
-		XCTAssertFalse(dateElement.validate())
-	}
 
 
 }

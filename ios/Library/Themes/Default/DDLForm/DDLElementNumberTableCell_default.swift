@@ -23,6 +23,8 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 	}
 
 	override public func awakeFromNib() {
+		super.awakeFromNib()
+
 		stepper?.maximumValue = Double(UInt16.max)
 	}
 
@@ -30,10 +32,10 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 		super.onChangedElement()
 
 		if let numberElement = element as? DDLElementNumber {
-			stepper?.value = Double(numberElement.currentValue as NSNumber)
-			textField!.keyboardType =
-				(numberElement.dataType == DDLElementDataType.DDLInteger) ?
-					.NumberPad : .DecimalPad
+			if let currentValue = numberElement.currentValue as? NSNumber {
+				stepper?.value = currentValue
+			}
+			textField!.keyboardType = (numberElement.isDecimal) ? .DecimalPad : .NumberPad
 		}
 	}
 

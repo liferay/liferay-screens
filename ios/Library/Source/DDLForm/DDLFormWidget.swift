@@ -21,14 +21,24 @@ import UIKit
 	optional func onFormSubmitted(elements: [DDLElement])
 	optional func onFormSubmitError(error: NSError)
 
+	optional func onDocumentUploadStarted(element:DDLElementDocument)
+	optional func onDocumentUploadedBytes(element:DDLElementDocument, bytes: UInt, sent: Int64, total: Int64);
+	optional func onDocumentUploadCompleted(element:DDLElementDocument, result:[String:AnyObject]);
+	optional func onDocumentUploadError(element:DDLElementDocument, error: NSError);
+
 }
 
-@IBDesignable public class DDLFormWidget: BaseWidget {
+@IBDesignable public class DDLFormWidget: BaseWidget, LRProgressDelegate {
 
 	@IBInspectable var structureId: Int = 0
 	@IBInspectable var groupId: Int = 0
 	@IBInspectable var recordSetId: Int = 0
 	@IBInspectable var recordId:Int = 0
+
+	@IBInspectable var repositoryId:Int = 0
+	@IBInspectable var folderId:Int = 0
+	@IBInspectable var filePrefix = "form-file-"
+
 	@IBInspectable var autoLoad:Bool = true
 	@IBInspectable var autoscrollOnValidation:Bool = true
 	@IBInspectable var showSubmitButton:Bool = true
@@ -37,7 +47,7 @@ import UIKit
 
 	private var userId:Int = 0
 
-	private var submitting = false
+	private var currentOperation:FormOperation = .Idle
 
 
 	// MARK: BaseWidget METHODS
@@ -56,36 +66,75 @@ import UIKit
 		}
 	}
 
-	override public func onCustomAction(actionName: String?, sender: UIControl?) {
-		if actionName == "submit" {
-			submitForm()
+	override public func onCustomAction(actionName: String?, sender: AnyObject?) {
+		switch actionName! {
+			case "submit-form":
+				submitForm()
+			case "upload-document":
+				if let document = sender as? DDLElementDocument {
+					uploadDocument(document)
+				}
+			default: ()
 		}
 	}
 
 	override public func onServerError(error: NSError) {
-		if submitting {
-			delegate?.onFormSubmitError?(error)
-			finishOperationWithMessage("An error happened submitting form")
+		switch currentOperation {
+			case .Submitting:
+				delegate?.onFormSubmitError?(error)
+				finishOperationWithMessage("An error happened submitting form")
+
+			case .Loading:
+				delegate?.onFormLoadError?(error)
+				finishOperationWithMessage("An error happened loading form")
+
+			case .Uploading(let document, _):
+				document.uploadStatus = .Failed(error)
+
+				formView().changeDocumentUploadStatus(document)
+
+				if !document.validate() {
+					formView().showElement(document)
+				}
+
+				delegate?.onDocumentUploadError?(document, error: error)
+
+				showHUDWithMessage("An error happened uploading file", details: nil, secondsToShow: 3.0)
+
+			default: ()
 		}
-		else {
-			delegate?.onFormLoadError?(error)
-			finishOperationWithMessage("An error happened loading form")
-		}
+
+		currentOperation = .Idle
 	}
 
 	override public func onServerResult(result: [String:AnyObject]) {
-		if submitting {
-			submitting = false
+		switch currentOperation {
+			case .Submitting:
+				if let recordIdValue = result["recordId"]! as? Int {
+					recordId = recordIdValue
+				}
+				finishOperationWithMessage("Form submitted")
+				currentOperation = .Idle
 
-			if let recordIdValue = result["recordId"]! as? Int {
-				recordId = recordIdValue
-			}
+			case .Loading:
+				onFormLoadResult(result)
+				currentOperation = .Idle
 
-			finishOperationWithMessage("Form submitted")
+			case .Uploading(let document, let submitAfter):
+				document.uploadStatus = .Uploaded(result)
+
+				formView().changeDocumentUploadStatus(document)
+				delegate?.onDocumentUploadCompleted?(document, result: result)
+
+				currentOperation = .Idle
+
+				if submitAfter {
+					submitForm()
+				}
+
+			default: ()
 		}
-		else {
-			onFormLoadResult(result)
-		}
+
 	}
 
 	private func onFormLoadResult(result: [String:AnyObject]) {
@@ -132,6 +181,8 @@ import UIKit
 
 		let service = LRDDMStructureService_v62(session: session)
 
+		currentOperation = .Loading
+
 		var outError: NSError?
 
 		service.getStructureWithStructureId((structureId as NSNumber).longLongValue, error: &outError)
@@ -160,12 +211,25 @@ import UIKit
 			return false
 		}
 
+		switch currentOperation {
+			case .Uploading(let doc, _):
+				currentOperation = .Uploading(doc, true)
+				showHUDWithMessage("Uploading file...", details: "Wait a second...")
+				return true
+
+			case .Loading, .Submitting:
+				println("ERROR: Cannot submit a form while it's being loading or submitting")
+				return false
+
+			default: ()
+		}
+
 		if !formView().validateForm(autoscroll:autoscrollOnValidation) {
 			showHUDWithMessage("Some values are not valid", details: "Please, review your form", secondsToShow: 1.5)
 			return false
 		}
 
-		submitting = true
+		currentOperation = .Submitting
 
 		startOperationWithMessage("Submitting form...", details: "Wait a second...")
 
@@ -176,15 +240,17 @@ import UIKit
 
 		var outError: NSError?
 
+		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber
+
 		let serviceContextAttributes = [
 				"userId":userId,
-				"scopeGroupId":groupId != 0 ? groupId : LiferayContext.instance.groupId]
+				"scopeGroupId":groupIdToUse]
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
 
 		if recordId == 0 {
 			service.addRecordWithGroupId(
-				(groupId as NSNumber).longLongValue,
+				groupIdToUse.longLongValue,
 				recordSetId: (recordSetId as NSNumber).longLongValue,
 				displayIndex: 0,
 				fieldsMap: formView().values,
@@ -209,8 +275,74 @@ import UIKit
 		return true
 	}
 
+	private func uploadDocument(document:DDLElementDocument) -> Bool {
+		if LiferayContext.instance.currentSession == nil {
+			println("ERROR: No session initialized. Can't upload a document without session")
+			return false
+		}
+
+		if document.currentValue == nil {
+			println("ERROR: No current value in the document. Can't upload a document without a value")
+			return false
+		}
+
+		let repoId = (repositoryId != 0) ? repositoryId : groupId
+		let fileName = "\(filePrefix)-\(NSUUID.UUID().UUIDString)"
+		var size:Int64 = 0
+		let stream = document.getStream(&size)
+		let uploadData = LRUploadData(inputStream: stream, length:size, fileName: fileName, mimeType: document.mimeType)
+		uploadData.progressDelegate = self
+
+		let session = LRSession(session: LiferayContext.instance.currentSession)
+		session.callback = self
+
+		let service = LRDLAppService_v62(session: session)
+
+		currentOperation = .Uploading(document, false)
+
+		var outError: NSError?
+
+		service.addFileEntryWithRepositoryId(
+			(repoId as NSNumber).longLongValue,
+			folderId: (folderId as NSNumber).longLongValue,
+			sourceFileName: fileName, mimeType: document.mimeType,
+			title: fileName, description: "", changeLog: "Uploaded from Liferay Screens app",
+			file: uploadData, serviceContext: nil, error: &outError)
+
+		if let error = outError {
+			onFailure(error)
+			return false
+		}
+
+		delegate?.onDocumentUploadStarted?(document)
+
+		return true
+	}
+
+
+	//MARK LRProgressDelegate
+
+	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
+		switch currentOperation {
+			case .Uploading(let document, _):
+				document.uploadStatus = .Uploading(UInt(sent), UInt(total))
+				formView().changeDocumentUploadStatus(document)
+
+				delegate?.onDocumentUploadedBytes?(document, bytes: bytes, sent: sent, total: total)
+
+			default: ()
+		}
+	}
+
 	private func formView() -> DDLFormView {
 		return widgetView as DDLFormView
 	}
 
+}
+
+private enum FormOperation {
+	case Idle
+	case Loading
+	case Submitting
+	case Uploading(DDLElementDocument, Bool)
 }

@@ -53,11 +53,12 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 
 	//MARK: UITextFieldDelegate
 
-	public func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
+	public func textFieldDidBeginEditing(textField: UITextField!) {
 		tableView?.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+
 		textFieldBackground?.highlighted = true
 
-		return true
+		formView!.firstCellResponder = textField
 	}
 
 	public func textFieldDidEndEditing(textField: UITextField!) {

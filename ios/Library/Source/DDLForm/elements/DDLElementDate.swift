@@ -15,6 +15,16 @@ import Foundation
 
 public class DDLElementDate : DDLElement {
 
+	public var currentDateLabel: String? {
+		var result: String?
+
+		if let date = currentValue as? NSDate {
+			result = clientDateFormatter.stringFromDate(date)
+		}
+
+		return result
+	}
+
 	private let serverDateFormat = "MM/dd/yyyy"
 
 	private let serverDateFormatter = NSDateFormatter()
@@ -38,7 +48,10 @@ public class DDLElementDate : DDLElement {
 		var result: String?
 
 		if let date = value as? NSDate {
-			result = clientDateFormatter.stringFromDate(date)
+			// Java uses milliseconds instead of seconds
+			let epoch = UInt64(date.timeIntervalSince1970 * 1000)
+
+			result = "\(epoch)"
 		}
 
 		return result

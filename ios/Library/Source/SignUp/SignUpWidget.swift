@@ -33,7 +33,7 @@ import UIKit
 
 	//MARK: BaseWidget METHODS
 
-	override public func onCustomAction(actionName: String?, sender: UIControl?) {
+	override public func onCustomAction(actionName: String?, sender: AnyObject?) {
 		sendSignUpWithEmailAddress(signUpView().getEmailAddress(), password:signUpView().getPassword(), firstName:signUpView().getFirstName(), lastName:signUpView().getLastName())
 	}
 

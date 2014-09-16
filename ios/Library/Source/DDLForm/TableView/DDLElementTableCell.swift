@@ -17,13 +17,18 @@ public class DDLElementTableCell: UITableViewCell {
 
 	public var tableView:UITableView?
 	public var indexPath:NSIndexPath?
-	public var formView:DDLFormView?
+	public var formView:DDLFormTableView?
 
 	public var element:DDLElement? {
 		didSet {
 			element?.validatedClosure = onValidated
 			onChangedElement()
 		}
+	}
+
+	override public func awakeFromNib() {
+		let simpleTapRecognizer = UITapGestureRecognizer(target: self, action: "simpleTapDetected")
+		addGestureRecognizer(simpleTapRecognizer)
 	}
 
 	public var isLastCell:Bool {
@@ -100,7 +105,7 @@ public class DDLElementTableCell: UITableViewCell {
 					}
 
 				case .Send:
-					formView?.customActionHandler("submit")
+					formView?.customActionHandler("submit-form")
 					result = true
 
 				default: ()
@@ -108,6 +113,13 @@ public class DDLElementTableCell: UITableViewCell {
 		}
 		
 		return result
+	}
+
+	internal func changeDocumentUploadStatus(element: DDLElementDocument) {
+	}
+
+	internal func simpleTapDetected() {
+		formView!.resignFirstResponder()
 	}
 
 }

@@ -18,7 +18,7 @@ import UIKit
  */
 public class BaseWidgetView: UIView, UITextFieldDelegate {
 
-	typealias CustomActionType = (String?, UIControl?) -> (Void)
+	typealias CustomActionType = (String?, AnyObject?) -> ()
 
 	var customAction: CustomActionType?
 
@@ -120,14 +120,23 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		return (components.count > 1) ? components.last : nil
 	}
 
-	internal func customActionHandler(sender: UIControl!) {
-		customActionHandler(sender.restorationIdentifier)
+	internal func customActionHandler(#actionName: String?, sender: AnyObject?) {
+		customAction?(actionName, sender)
+	}
+
+	internal func customActionHandler(sender: AnyObject?) {
+		endEditing(true)
+
+		if let controlSender = sender as? UIControl {
+			customActionHandler(actionName:controlSender.restorationIdentifier, sender:sender)
+		}
+		else {
+			customActionHandler(actionName:nil, sender:sender)
+		}
 	}
 
 	internal func customActionHandler(actionName: String?) {
-		endEditing(true)
-
-		customAction?(actionName, nil)
+		customActionHandler(actionName:actionName, sender:nil)
 	}
 
 	private func addCustomActionForControl(control: UIControl) {
