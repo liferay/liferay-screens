@@ -56,17 +56,17 @@ import UIKit
 		return formView().becomeFirstResponder()
 	}
 
-	override public func onCreate() {
+	override internal func onCreated() {
 		formView().showSubmitButton = showSubmitButton
 	}
 
-	override public func onShow() {
+	override internal func onShow() {
 		if autoLoad && structureId != 0 {
 			loadForm()
 		}
 	}
 
-	override public func onCustomAction(actionName: String?, sender: AnyObject?) {
+	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
 		switch actionName! {
 			case "submit-form":
 				submitForm()
@@ -78,7 +78,7 @@ import UIKit
 		}
 	}
 
-	override public func onServerError(error: NSError) {
+	override internal func onServerError(error: NSError) {
 		switch currentOperation {
 			case .Submitting:
 				delegate?.onFormSubmitError?(error)
@@ -107,7 +107,7 @@ import UIKit
 		currentOperation = .Idle
 	}
 
-	override public func onServerResult(result: [String:AnyObject]) {
+	override internal func onServerResult(result: [String:AnyObject]) {
 		switch currentOperation {
 			case .Submitting:
 				if let recordIdValue = result["recordId"]! as? Int {

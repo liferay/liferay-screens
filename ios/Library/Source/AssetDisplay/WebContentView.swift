@@ -12,15 +12,12 @@
 * details.
 */
 import UIKit
+import WebKit
 
-public class DDLFormView_default: DDLFormTableView {
 
-	//MARK: DDLFormTableView 
+public class WebContentView: BaseWidgetView {
 
-	override internal func onCreated() {
-		super.onCreated()
-
-		BaseWidget.setHUDCustomColor(UIColor(red: 0, green: 184/255.0, blue: 224/255.0, alpha: 0.57))
+	public func setHtmlContent(html:String) {
 	}
 
 }

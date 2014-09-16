@@ -19,7 +19,7 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 	@IBOutlet var subtitleLabel: UILabel?
 	@IBOutlet var userNamePlaceholder: UILabel?
 
-	override public func onSetTranslations() {
+	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
 		titleLabel!.text = NSLocalizedString("theme-flat7-forgotpassword-title", tableName: "flat7", bundle: bundle, value: "", comment: "")

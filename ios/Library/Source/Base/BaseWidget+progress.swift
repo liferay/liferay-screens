@@ -123,6 +123,8 @@ extension BaseWidget {
 
 			MBProgressHUDInstance.instance?.customView = MBProgressHUDInstance.customView
 			MBProgressHUDInstance.instance?.color = MBProgressHUDInstance.customColor
+			MBProgressHUDInstance.instance!.mode = spinnerMode.toProgressModeHUD()
+			MBProgressHUDInstance.instance!.minShowTime = 0.5
 
 			if closeMode.allowCloseOnTouch() {
 				MBProgressHUDInstance.touchHandler = HUDTouchHandler()
@@ -136,14 +138,7 @@ extension BaseWidget {
 				MBProgressHUDInstance.instance!.labelText = message
 			}
 
-			if let detailsValue = details {
-				MBProgressHUDInstance.instance!.detailsLabelText = detailsValue
-			}
-			else {
-				MBProgressHUDInstance.instance!.detailsLabelText = ""
-			}
-
-			MBProgressHUDInstance.instance!.mode = spinnerMode.toProgressModeHUD()
+			MBProgressHUDInstance.instance!.detailsLabelText = (details ?? "") as String
 
 			var closeDelay: Double?
 
@@ -177,19 +172,31 @@ extension BaseWidget {
 	 * a few seconds, calculated based on the length of the message.
 	*/
 	public func hideHUDWithMessage(message:String, details:String? = nil) {
-		self.showHUDWithMessage(message,
-			details: details,
-			closeMode: .AutocloseComputedDelay(true),
-			spinnerMode:.NoSpinner)
+		synchronized(Lock.token) {
+			if let instance = MBProgressHUDInstance.instance {
+				instance.mode = MBProgressHUDModeText
+				instance.labelText = message
+				instance.detailsLabelText = (details ?? "") as String
+
+				let len: Int =
+					countElements(instance.labelText as String) + countElements(instance.detailsLabelText as String)
+				let delay = 1.5 + (Double(len) * 0.01)
+
+				instance.hide(true, afterDelay: delay)
+				MBProgressHUDInstance.instance = nil
+			}
+		}
 	}
 
 	public func hideHUD() {
 		synchronized(Lock.token) {
 			if let instance = MBProgressHUDInstance.instance {
 				instance.hide(true)
+				MBProgressHUDInstance.instance = nil
 			}
 		}
 	}
+
 
 	//MARK: PRIVATE METHODS
 

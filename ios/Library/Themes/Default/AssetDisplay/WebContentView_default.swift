@@ -12,15 +12,22 @@
 * details.
 */
 import UIKit
+import WebKit
 
-public class DDLFormView_default: DDLFormTableView {
+public class WebContentView_default: WebContentView {
 
-	//MARK: DDLFormTableView 
+	private var webView:WKWebView?
 
-	override internal func onCreated() {
-		super.onCreated()
+	override public func setHtmlContent(html:String) {
+		webView!.loadHTMLString(html, baseURL: NSURL(string:LiferayContext.instance.server))
+	}
 
-		BaseWidget.setHUDCustomColor(UIColor(red: 0, green: 184/255.0, blue: 224/255.0, alpha: 0.57))
+	override internal func onPreCreate() {
+		webView = WKWebView(frame: bounds, configuration: WKWebViewConfiguration())
+
+		webView!.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+
+		addSubview(webView!)
 	}
 
 }

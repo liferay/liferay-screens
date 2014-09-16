@@ -20,7 +20,7 @@ public class LoginView_flat7: LoginView_default {
 	@IBOutlet var userNamePlaceholder: UILabel?
 	@IBOutlet var passwordPlaceholder: UILabel?
 
-	override public func onSetTranslations() {
+	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
 		titleLabel!.text = NSLocalizedString("theme-flat7-login-title", tableName: "flat7", bundle: bundle, value: "", comment: "")

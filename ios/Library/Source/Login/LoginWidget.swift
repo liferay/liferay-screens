@@ -50,7 +50,7 @@ public class LoginWidget: BaseWidget {
 
 	//MARK: BaseWidget METHODS
 
-	override public func onCreate() {
+	override internal func onCreated() {
         setAuthType(AuthType.Email.toRaw())
 
 		if let session = LRSession.sessionFromStoredCredential() {
@@ -63,13 +63,13 @@ public class LoginWidget: BaseWidget {
 		}
 	}
 
-	override public func onCustomAction(actionName: String?, sender: AnyObject?) {
+	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
 		if actionName == "login-action" {
 			sendLoginWithUserName(loginView().getUserName(), password:loginView().getPassword())
 		}
 	}
 
-	override public func onServerError(error: NSError) {
+	override internal func onServerError(error: NSError) {
 		delegate?.onLoginError?(error)
 
 		LiferayContext.instance.clearSession()
@@ -78,7 +78,7 @@ public class LoginWidget: BaseWidget {
 		finishOperationWithError(error, message:"Error signing in!")
 	}
 
-	override public func onServerResult(result: [String:AnyObject]) {
+	override internal func onServerResult(result: [String:AnyObject]) {
 		delegate?.onLoginResponse?(result)
 
 		if loginView().shouldRememberCredentials {

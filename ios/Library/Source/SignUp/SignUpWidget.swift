@@ -33,20 +33,20 @@ import UIKit
 
 	//MARK: BaseWidget METHODS
 
-	override public func onCustomAction(actionName: String?, sender: AnyObject?) {
+	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
 		sendSignUpWithEmailAddress(signUpView().getEmailAddress(), password:signUpView().getPassword(), firstName:signUpView().getFirstName(), lastName:signUpView().getLastName())
 	}
 
-	override public func onServerError(error: NSError) {
+	override internal func onServerError(error: NSError) {
 		delegate?.onSignUpError?(error)
 
 		finishOperationWithError(error, message:"Error signing up!")
 	}
 
-	override public func onServerResult(result: [String:AnyObject]) {
+	override internal func onServerResult(result: [String:AnyObject]) {
 		delegate?.onSignUpResponse?(result)
 
-		if autologin {
+		if autologin && creatingPassword != nil {
 			LiferayContext.instance.clearSession()
 			LRSession.removeStoredCredential()
 

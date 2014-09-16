@@ -45,11 +45,11 @@ public class SignUpView_default: SignUpView {
 
 	// MARK: Overriden template methods
 
-	override public func onStartOperation() {
+	override internal func onStartOperation() {
 		signUpButton!.enabled = false
 	}
 
-	override public func onFinishOperation() {
+	override internal func onFinishOperation() {
 		signUpButton!.enabled = true
 	}
 
