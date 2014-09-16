@@ -19,10 +19,7 @@ import UIKit
  */
 public class BaseWidgetView: UIView, UITextFieldDelegate {
 
-	typealias CustomActionType = (String?, AnyObject?) -> ()
-
-
-	var customAction: CustomActionType?
+	internal var customAction: ((String?, AnyObject?) -> ())?
 
 
 	//MARK: UIView
