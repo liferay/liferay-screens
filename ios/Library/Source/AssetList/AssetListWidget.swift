@@ -84,6 +84,7 @@ import UIKit
 
 	}
 
+
 	@IBInspectable var groupId: Int = 0
 	@IBInspectable var classNameId: Int = 0
 

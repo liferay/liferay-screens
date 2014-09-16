@@ -31,6 +31,7 @@ import UIKit
 
 	private typealias ResetClosureType = (String, LRMobilewidgetsuserService_v62, (NSError)->()) -> (Void)
 
+
 	private let resetClosures = [
 		AuthType.Email.toRaw(): resetPasswordWithEmail,
 		AuthType.ScreenName.toRaw(): resetPasswordWithScreenName,

@@ -86,6 +86,7 @@ extension BaseWidget {
 		}
 	}
 
+
 	public enum SpinnerMode {
 		case IndeterminateSpinner
 		case DeterminateSpinner
@@ -102,6 +103,7 @@ extension BaseWidget {
 			}
 		}
 	}
+
 
 	public class func setHUDCustomView(newValue:UIView?) {
 		MBProgressHUDInstance.customView = newValue

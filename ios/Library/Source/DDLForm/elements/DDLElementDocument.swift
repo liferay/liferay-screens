@@ -43,6 +43,7 @@ import Foundation
 
 	}
 
+
 	public var currentDocumentLabel:String? {
 		var result: String?
 

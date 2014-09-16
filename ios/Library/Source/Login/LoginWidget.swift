@@ -110,6 +110,7 @@ public class LoginWidget: BaseWidget {
 
 	private typealias AuthClosureType = (String, String, LRUserService_v62, (NSError)->()) -> (Void)
 
+
 	private let authClosures: [String : AuthClosureType] = [
 		AuthType.Email.toRaw(): authWithEmail,
 		AuthType.ScreenName.toRaw(): authWithScreenName,
