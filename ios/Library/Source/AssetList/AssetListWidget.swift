@@ -81,6 +81,7 @@ import UIKit
 		case WikiPage = 10016
 		case WikiPageResource = 10153
 		case WikiNode = 10152
+
 	}
 
 	@IBInspectable var groupId: Int = 0
@@ -273,6 +274,5 @@ internal class LoadPageOperation: NSObject, LRCallback {
 			// TODO error handling
 		}
 	}
-
 
 }

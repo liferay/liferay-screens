@@ -416,9 +416,11 @@ import UIKit
 }
 
 private enum FormOperation {
+
 	case Idle
 	case LoadingForm
 	case LoadingRecord(Bool)
 	case Submitting
 	case Uploading(DDLElementDocument, Bool)
+
 }

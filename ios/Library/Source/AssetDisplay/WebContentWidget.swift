@@ -89,4 +89,5 @@ import UIKit
 	internal func webContentView() -> WebContentView {
 		return widgetView as WebContentView
 	}
+
 }

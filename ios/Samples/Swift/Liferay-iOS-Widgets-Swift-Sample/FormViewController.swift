@@ -39,4 +39,5 @@ public class FormViewController: UIViewController, DDLFormWidgetDelegate {
 	@IBAction func button2Click(sender: AnyObject) {
 		widget!.submitForm()
 	}
+
 }

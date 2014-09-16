@@ -17,7 +17,9 @@ import Foundation
 //FIME
 // This hack is because compiler error "Class variables not yet supported"
 internal struct Lock {
+
 	static var token = "token"
+
 }
 
 

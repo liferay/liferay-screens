@@ -112,6 +112,7 @@ import UIKit
 			self.onFailure(error)
 		}
 	}
+
 }
 
 func resetPasswordWithEmail(email:String, service:LRMobilewidgetsuserService_v62, onError:(NSError)->()) {

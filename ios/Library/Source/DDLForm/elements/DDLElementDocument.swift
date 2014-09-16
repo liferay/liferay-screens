@@ -145,7 +145,6 @@ import Foundation
 		return result
 	}
 
-
 }
 
 // MARK Equatable

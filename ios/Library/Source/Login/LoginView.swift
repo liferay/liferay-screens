@@ -15,6 +15,7 @@ import UIKit
 
 
 public enum AuthType: String {
+
 	case Email = "Email Address"
 	case ScreenName = "Screen Name"
 	case UserId = "User ID"
@@ -23,6 +24,7 @@ public enum AuthType: String {
 		AuthType.Email: UIKeyboardType.EmailAddress,
 		AuthType.ScreenName: UIKeyboardType.ASCIICapable,
 		AuthType.UserId: UIKeyboardType.NumberPad]
+
 }
 
 public class LoginView: BaseWidgetView {

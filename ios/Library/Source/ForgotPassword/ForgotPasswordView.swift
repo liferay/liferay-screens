@@ -25,4 +25,5 @@ public class ForgotPasswordView: BaseWidgetView, UITextFieldDelegate {
 
 	public func setUserName(userName: String) {
 	}
+
 }

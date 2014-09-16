@@ -23,4 +23,5 @@ public class DDLSubmitButtonTableCell_default: DDLElementTableCell {
 	@IBAction func submitButtonAction(sender: AnyObject) {
 		formView!.customActionHandler(sender as? UIControl)
 	}
+
 }

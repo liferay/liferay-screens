@@ -38,5 +38,4 @@ public class AssetListViewController: UIViewController, AssetListWidgetDelegate 
 		println("selected \(entry.title)")
 	}
 
-
 }

@@ -20,4 +20,5 @@ extension Bool {
 
 		return !(boolValue == "false" || boolValue == "0")
 	}
+
 }
