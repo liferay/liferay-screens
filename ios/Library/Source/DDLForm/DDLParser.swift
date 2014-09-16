@@ -72,19 +72,44 @@ public class DDLParser {
 		return dataType.createElement(attributes:xmlElement.attributes as [String:String], localized:localized)
 	}
 
-	private func processLocalizedMetadata(dynamicElement:SMXMLElement) -> [String:String] {
-		var result:[String:String] = [:]
+	private func processLocalizedMetadata(dynamicElement:SMXMLElement) -> [String:AnyObject] {
+		var result:[String:AnyObject] = [:]
 
-		func addElement(elementName:String, #metadata:SMXMLElement) {
+		func addElement(elementName:String, #metadata:SMXMLElement, inout toDict resultDict:[String:AnyObject]) {
 			if let element = metadata.childWithAttribute("name", value: elementName) {
-				result[elementName] = element.value
+				resultDict[elementName] = element.value
 			}
 		}
 
-		if let metadataElement = findMetadataElementForLocale(dynamicElement) {
-			addElement("label", metadata:metadataElement)
-			addElement("predefinedValue", metadata:metadataElement)
-			addElement("tip", metadata:metadataElement)
+		func findOptions() -> [[String:AnyObject]]? {
+			var options:[[String:AnyObject]] = []
+
+			let optionElements = childrenWithAttribute("type", value: "option", parent: dynamicElement)
+			
+			for optionElement in optionElements {
+				var option:[String:AnyObject] = [:]
+
+				option["name"] = optionElement.attributeNamed("name")
+				option["value"] = optionElement.attributeNamed("value")
+
+				if let localizedMetadata = findMetadataElementForLocale(optionElement) {
+					addElement("label", metadata: localizedMetadata, toDict:&option)
+				}
+
+				options.append(option)
+			}
+
+			return options.count == 0 ? nil : options
+		}
+
+		if let localizedMetadata = findMetadataElementForLocale(dynamicElement) {
+			addElement("label", metadata:localizedMetadata, toDict:&result)
+			addElement("predefinedValue", metadata:localizedMetadata, toDict:&result)
+			addElement("tip", metadata:localizedMetadata, toDict:&result)
+		}
+
+		if let options = findOptions() {
+			result["options"] = options
 		}
 
 		return result
@@ -153,10 +178,37 @@ public class DDLParser {
 		if resultElement == nil {
 			// Final fallback (a4, b3): find default metadata
 
-			resultElement = dynamicElement.childWithAttribute("locale", value: defaultLocale!.localeIdentifier)
+			resultElement = findElementWithAttribute("locale",
+				value:defaultLocale!.localeIdentifier, elements:metadataElements!)
 		}
 
 		return resultElement
+	}
+
+	private func childrenWithAttribute(attribute:String, value:String, parent:SMXMLElement) -> [SMXMLElement] {
+		var result:[SMXMLElement] = []
+
+		for element in parent.children {
+			let child = element as SMXMLElement
+			let attrValue = child.attributeNamed(attribute)
+			if attrValue != nil && attrValue == value {
+				result.append(child)
+			}
+		}
+
+		return result
+	}
+
+	private func findElementWithAttribute(attribute:String, value:String, elements:[SMXMLElement]) -> SMXMLElement? {
+
+		for element in elements {
+			let attrValue = element.attributeNamed(attribute)
+			if attrValue != nil && attrValue == value {
+				return element
+			}
+		}
+
+		return nil
 	}
 
 	private func processAvailableLocales(document:SMXMLDocument) -> [NSLocale] {

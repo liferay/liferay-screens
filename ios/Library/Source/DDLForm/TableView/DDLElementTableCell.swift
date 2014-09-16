@@ -32,7 +32,12 @@ public class DDLElementTableCell: UITableViewCell {
 
 			if let indexPathValue = indexPath {
 				if let rowCount = tableView?.numberOfRowsInSection(indexPathValue.section) {
-					result = (indexPathValue.row == rowCount - 1)
+					if formView!.showSubmitButton {
+						result = (indexPathValue.row == rowCount - 2)
+					}
+					else {
+						result = (indexPathValue.row == rowCount - 1)
+					}
 				}
 			}
 

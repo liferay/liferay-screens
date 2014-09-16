@@ -15,10 +15,6 @@ import Foundation
 
 public class DDLElementBoolean : DDLElement {
 
-	override public init(attributes:[String:String], localized:[String:String]) {
-		super.init(attributes: attributes, localized:localized)
-	}
-
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		return value != nil ? Bool.from(string: value!) : nil
 	}

@@ -23,12 +23,17 @@ public enum DDLElementDataType: String {
 		return fromRaw(xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 	}
 
-	public func createElement(#attributes:[String:String], localized:[String:String]) -> DDLElement? {
+	public func createElement(#attributes:[String:String], localized:[String:AnyObject]) -> DDLElement? {
 		switch self {
 		case .DDLBoolean:
 			return DDLElementBoolean(attributes:attributes, localized:localized)
 		case .DDLString:
-			return DDLElementString(attributes:attributes, localized:localized)
+			if attributes["multiple"] == nil {
+				return DDLElementString(attributes:attributes, localized:localized)
+			}
+			else {
+				return DDLElementStringWithOptions(attributes:attributes, localized:localized)
+			}
 		default:
 			return nil
 		}
@@ -41,6 +46,7 @@ public enum DDLElementType: String {
 	case Checkbox = "checkbox"
 	case Text = "text"
 	case Textarea = "textarea"
+	case Select = "select"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementType {
@@ -48,7 +54,7 @@ public enum DDLElementType: String {
 	}
 
 	public static func all() -> [DDLElementType] {
-		return [Checkbox, Text, Textarea]
+		return [Checkbox, Text, Textarea, Select]
 	}
 
 	public func toCapitalizedName() -> String {
@@ -77,7 +83,11 @@ public enum DDLElementType: String {
 
 public class DDLElement: Equatable {
 
-	public var currentValue:AnyObject?
+	public var currentValue:AnyObject? {
+		didSet {
+			onChangedCurrentValue()
+		}
+	}
 	public var currentHeight:CGFloat = 0
 
 	public var currentStringValue:String? {
@@ -88,26 +98,27 @@ public class DDLElement: Equatable {
 
 	public var validatedClosure: ((Bool) -> ())?
 
+	public var lastValidationResult:Bool?
 
-	private(set) var dataType:DDLElementDataType
-	private(set) var type:DDLElementType
+	internal(set) var dataType:DDLElementDataType
+	internal(set) var type:DDLElementType
 
-	private(set) var name:String
+	internal(set) var name:String
 
-	private(set) var label:String
-	private(set) var tip:String
+	internal(set) var label:String
+	internal(set) var tip:String
 
-	private(set) var predefinedValue:AnyObject?
+	internal(set) var predefinedValue:AnyObject?
 
-	private(set) var readOnly:Bool
-	private(set) var repeatable:Bool
-	private(set) var required:Bool
+	internal(set) var readOnly:Bool
+	internal(set) var repeatable:Bool
+	internal(set) var required:Bool
 
-	private(set) var showLabel:Bool 	// Makes sense in mobile??
-	private(set) var width:Int? 		// Makes sense in mobile??
+	internal(set) var showLabel:Bool 	// Makes sense in mobile??
+	internal(set) var width:Int? 		// Makes sense in mobile??
 
 
-	public init(attributes:[String:String], localized:[String:String]) {
+	public init(attributes:[String:String], localized:[String:AnyObject]) {
 		dataType = DDLElementDataType.fromRaw(attributes["dataType"] ?? "") ?? .Unsupported
 		type = DDLElementType.fromRaw(attributes["type"] ?? "") ?? .Unsupported
 		name = attributes["name"] ?? ""
@@ -117,9 +128,9 @@ public class DDLElement: Equatable {
 		required = Bool.from(string: attributes["required"] ?? "true")
 		showLabel = Bool.from(string: attributes["showLabel"] ?? "true")
 
-		label = localized["label"] ?? ""
-		tip = localized["tip"] ?? ""
-		predefinedValue = convert(fromString:localized["predefinedValue"])
+		label = (localized["label"] ?? "") as String
+		tip = (localized["tip"] ?? "") as String
+		predefinedValue = convert(fromString:(localized["predefinedValue"] ?? nil) as? String)
 		currentValue = predefinedValue
 	}
 
@@ -131,6 +142,8 @@ public class DDLElement: Equatable {
 		}
 
 		validatedClosure?(valid)
+
+		lastValidationResult = valid
 
 		return valid
 	}
@@ -149,6 +162,9 @@ public class DDLElement: Equatable {
 
 	internal func convert(fromCurrentValue value:AnyObject?) -> String? {
 		return value?.description
+	}
+
+	internal func onChangedCurrentValue() {
 	}
 
 }
