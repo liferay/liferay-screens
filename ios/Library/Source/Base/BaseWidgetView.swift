@@ -102,7 +102,7 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	public func onFinishOperation() {
 	}
-	
+		
 	internal func nextResponderForView(view:UIView) -> UIResponder {
 		if view.tag > 0 {
 			if let nextView = viewWithTag(view.tag.successor()) {
