@@ -22,7 +22,7 @@ public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_d
 		}
 	}
 
-	override func onChangedElement() {
+	override internal func onChangedElement() {
 		super.onChangedElement()
 
 		if let dateElement = element as? DDLElementDate {

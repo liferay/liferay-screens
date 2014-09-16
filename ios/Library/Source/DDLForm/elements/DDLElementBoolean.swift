@@ -19,7 +19,7 @@ public class DDLElementBoolean : DDLElement {
 		return value != nil ? Bool.from(string: value!) : nil
 	}
 
-	override func convert(fromCurrentValue value: AnyObject?) -> String? {
+	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		var result: String?
 
 		if let boolValue = value as? Bool {

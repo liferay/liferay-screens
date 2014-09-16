@@ -30,7 +30,7 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 	private let radioButtonHeight:CGFloat = 16
 
 
-	override func onChangedElement() {
+	override internal func onChangedElement() {
 		if let stringElement = element as? DDLElementStringWithOptions {
 			label!.text = stringElement.label
 
@@ -49,7 +49,7 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 		}
 	}
 
-	override func onValidated(valid: Bool) {
+	override internal func onValidated(valid: Bool) {
 		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()
 		let radioColor = valid ? radioButtonColor : UIColor.redColor()
 

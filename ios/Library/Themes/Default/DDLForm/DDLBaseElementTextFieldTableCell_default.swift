@@ -26,7 +26,7 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 		return 56.0
 	}
 
-	override func onChangedElement() {
+	override internal func onChangedElement() {
 		if element!.showLabel {
 			textField?.placeholder = ""
 			label?.text = element!.label
@@ -56,7 +56,7 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 		}
 	}
 
-	override func onValidated(valid: Bool) {
+	override internal func onValidated(valid: Bool) {
 		let imgName = valid ? "default-field" : "default-field-failed"
 		let imgNameHighlighted = valid ? "default-field-focused" : "default-field-failed"
 

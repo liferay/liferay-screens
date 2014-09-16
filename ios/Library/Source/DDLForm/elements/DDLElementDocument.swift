@@ -27,7 +27,7 @@ import Foundation
 			}
 		}
 
-		func toInt() -> Int {
+		private func toInt() -> Int {
 			switch self {
 				case .Uploaded(_):
     		        return Int.max

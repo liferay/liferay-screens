@@ -22,7 +22,7 @@ public class DDLElementSelectTableCell_default: DDLBaseElementTextFieldTableCell
 		}
 	}
 
-	override func onChangedElement() {
+	override internal func onChangedElement() {
 		super.onChangedElement()
 
 		if let stringElement = element as? DDLElementStringWithOptions {

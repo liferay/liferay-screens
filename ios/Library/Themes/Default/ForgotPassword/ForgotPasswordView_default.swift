@@ -35,7 +35,7 @@ public class ForgotPasswordView_default: ForgotPasswordView {
 
 	// MARK: UITextFieldDelegate
 
-	func textFieldDidBeginEditing(textField: UITextField!) {
+	internal func textFieldDidBeginEditing(textField: UITextField!) {
 		userNameField!.highlighted = (textField == userNameField)
 	}
 

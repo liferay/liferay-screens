@@ -27,7 +27,7 @@ public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 		}
 	}
 
-	override func onChangedElement() {
+	override internal func onChangedElement() {
 		if let boolElement = element as? DDLElementBoolean {
 			switchView?.on = boolElement.currentValue as Bool
 			label?.text = boolElement.label
@@ -38,7 +38,7 @@ public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 		}
 	}
 
-	override func onValidated(valid: Bool) {
+	override internal func onValidated(valid: Bool) {
 		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()
 	}
 

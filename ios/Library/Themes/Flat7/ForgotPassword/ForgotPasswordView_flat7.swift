@@ -40,7 +40,7 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 		showPlaceholder(userNamePlaceholder!, show:userName == "")
 	}
 
-	func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+	internal func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
 
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
 

@@ -143,7 +143,7 @@ public class DDLElementStringWithOptions : DDLElement {
 		return result
 	}
 
-	override func doValidate() -> Bool {
+	override internal func doValidate() -> Bool {
 		let current = (currentValue as [DDLStringOption]?) ?? []
 
 		return !(required && current.count == 0)

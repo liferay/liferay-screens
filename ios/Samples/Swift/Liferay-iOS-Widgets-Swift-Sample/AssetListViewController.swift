@@ -8,11 +8,11 @@
 
 import UIKit
 
-class AssetListViewController: UIViewController, AssetListWidgetDelegate {
+public class AssetListViewController: UIViewController, AssetListWidgetDelegate {
 
 	@IBOutlet weak var widget: AssetListWidget?
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         widget!.delegate = self
@@ -23,17 +23,17 @@ class AssetListViewController: UIViewController, AssetListWidgetDelegate {
 		widget!.loadList()
 	}
 
-	func onAssetListResponse(entries:[AssetEntry]) {
+	internal func onAssetListResponse(entries:[AssetEntry]) {
 		println("Loaded \(entries.count) entries")
 		for e in entries {
 			println("      \(e.title)")
 		}
 	}
 
-	func onAssetListError(error: NSError) {
+	internal func onAssetListError(error: NSError) {
 	}
 
-	func onAssetSelected(entry:AssetEntry) {
+	internal func onAssetSelected(entry:AssetEntry) {
 		println("selected \(entry.title)")
 	}
 

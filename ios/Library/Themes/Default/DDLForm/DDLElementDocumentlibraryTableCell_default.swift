@@ -53,7 +53,7 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 			DDLElementDocument.UploadStatus.Failed(nil) : UIColor(red:1, green:220/255.0, blue:200/255.0, alpha:1)
 		]
 
-	override func onChangedElement() {
+	override internal func onChangedElement() {
 		super.onChangedElement()
 
 		if let docElement = element as? DDLElementDocument {
@@ -80,7 +80,7 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 		changeDocumentUploadStatus(element)
 	}
 
-	override func changeDocumentUploadStatus(element: DDLElementDocument) {
+	override internal func changeDocumentUploadStatus(element: DDLElementDocument) {
 		let theme = progress!.theme
 
 		theme.completedColor = completedColor[element.uploadStatus]

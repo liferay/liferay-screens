@@ -74,7 +74,7 @@ public class LoginView_default: LoginView {
 
 	// MARK: UITextFieldDelegate
 
-	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
+	internal func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
 		if userNameBackground != nil {
 			userNameBackground!.highlighted = (textField == userNameField);
 		}

@@ -15,7 +15,7 @@ import Foundation
 
 public class DDLElementString : DDLElement {
 
-	override func doValidate() -> Bool {
+	override internal func doValidate() -> Bool {
 		var result = super.doValidate()
 
 		if result && currentStringValue != nil && required {

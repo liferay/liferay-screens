@@ -8,19 +8,19 @@
 
 import Foundation
 
-class FormViewController: UIViewController, DDLFormWidgetDelegate {
+public class FormViewController: UIViewController, DDLFormWidgetDelegate {
 
 	@IBOutlet var widget: DDLFormWidget?
 
-	override func viewDidLoad() {
+	override public func viewDidLoad() {
 		widget!.delegate = self
 	}
 
-	func onFormLoaded(elements: [DDLElement]) {
+	internal func onFormLoaded(elements: [DDLElement]) {
 		widget!.becomeFirstResponder()
 	}
 
-	func onFormLoadError(error: NSError) {
+	internal func onFormLoadError(error: NSError) {
 		println("Error with form -> " + error.description)
 	}
 

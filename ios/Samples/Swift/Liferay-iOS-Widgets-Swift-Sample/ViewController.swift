@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidgetDelegate {
+public class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidgetDelegate {
 
 	@IBOutlet var loginWidget: LoginWidget?
 	@IBOutlet var forgotWidget: ForgotPasswordWidget?
@@ -22,7 +22,7 @@ class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidge
     // UIViewController METHODS
     
     
-	override func viewDidLoad() {
+	override public func viewDidLoad() {
 		super.viewDidLoad()
 
 		// WORKAROUND!
@@ -34,36 +34,30 @@ class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidge
 		forgotWidget!.setAuthType(AuthType.ScreenName.toRaw())
 	}
 
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-	}
-
-    
     // LoginWidgetDelegate METHODS
 
     
-	func onCredentialsLoaded(session:LRSession) {
+	internal func onCredentialsLoaded(session:LRSession) {
 		print("Saved loaded for server " + session.server)
  	}
 
-	func onCredentialsSaved(session:LRSession) {
+	internal func onCredentialsSaved(session:LRSession) {
 		print("Saved credentials for server " + session.server)
  	}
  
- 	func onLoginError(error: NSError)  {
+ 	internal func onLoginError(error: NSError)  {
  		println("Error -> " + error.description)
 	}
 
-	func onLoginResponse(attributes: [String:AnyObject])  {
+	internal func onLoginResponse(attributes: [String:AnyObject])  {
 		NSLog("Login %@", attributes)
 	}
 
-	func onForgotPasswordError(error: NSError)  {
+	internal func onForgotPasswordError(error: NSError)  {
 		println("Error -> " + error.description)
-
 	}
 
-	func onForgotPasswordResponse(newPasswordSent:Bool)  {
+	internal func onForgotPasswordResponse(newPasswordSent:Bool)  {
 		let emailContent = newPasswordSent ? "new password" : "reset password link"
 
 		println("Email with \(emailContent) was sent")

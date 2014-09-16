@@ -27,7 +27,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		registerElementCells()
 	}
 
-	override func onChangedRows() {
+	override internal func onChangedRows() {
 		super.onChangedRows()
 
 		for element in rows {
@@ -69,7 +69,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 		return result
 	}
-	override func showElement(element: DDLElement) {
+	override internal func showElement(element: DDLElement) {
 		if let row = find(rows, element) {
 			tableView!.scrollToRowAtIndexPath(
 				NSIndexPath(forRow: row, inSection: 0),
@@ -77,7 +77,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		}
 	}
 
-	override func changeDocumentUploadStatus(element: DDLElementDocument) {
+	override internal func changeDocumentUploadStatus(element: DDLElementDocument) {
 		if let row = find(rows, element) {
 			if let cell = tableView!.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0)) as? DDLElementTableCell {
 				cell.changeDocumentUploadStatus(element)

@@ -28,7 +28,7 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 		stepper?.maximumValue = Double(UInt16.max)
 	}
 
-	override func onChangedElement() {
+	override internal func onChangedElement() {
 		super.onChangedElement()
 
 		if let numberElement = element as? DDLElementNumber {

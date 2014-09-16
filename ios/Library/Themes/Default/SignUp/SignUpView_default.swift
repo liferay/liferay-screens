@@ -55,7 +55,7 @@ public class SignUpView_default: SignUpView {
 
 	// MARK: UITextFieldDelegate
 
-	func textFieldDidBeginEditing(textField: UITextField!) {
+	internal func textFieldDidBeginEditing(textField: UITextField!) {
 		emailAddressBackground!.highlighted = (textField == emailAddressField)
 		passwordBackground!.highlighted = (textField == passwordField)
 		firstNameBackground!.highlighted = (textField == firstNameField)

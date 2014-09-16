@@ -43,7 +43,7 @@ public class LoginView_flat7: LoginView_default {
 		userNamePlaceholder!.changeVisibility(visible: userName == "")
 	}
 
-	func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+	internal func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
 
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
 

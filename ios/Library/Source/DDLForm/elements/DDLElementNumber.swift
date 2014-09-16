@@ -45,7 +45,7 @@ public class DDLElementNumber : DDLElement {
 		return result
 	}
 
-	override func convert(fromCurrentValue value: AnyObject?) -> String? {
+	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		var result: String?
 
 		if let numberValue = value as? NSNumber {
@@ -66,7 +66,7 @@ public class DDLElementNumber : DDLElement {
 		return result
 	}
 
-	override func onChangedCurrentValue() {
+	override internal func onChangedCurrentValue() {
 		if !isDecimal && currentValue is NSDecimalNumber {
 			let decimal = (currentValue as NSDecimalNumber).doubleValue
 			currentValue = NSNumber(double: decimal + 0.5).integerValue

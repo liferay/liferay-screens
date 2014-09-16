@@ -28,7 +28,7 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	private let expandedTextViewHeight:CGFloat = 84
 	private let expandedBackgroundHeight:CGFloat = 91
 
-	override func onChangedElement() {
+	override internal func onChangedElement() {
 		if let stringElement = element as? DDLElementString {
 
 			if stringElement.currentValue != nil {
@@ -74,7 +74,7 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		return false
 	}
 
-	override func onValidated(valid: Bool) {
+	override internal func onValidated(valid: Bool) {
 		let imgName = valid ? "default-field" : "default-field-failed"
 
 		textViewBackground?.image = UIImage(named: imgName)
