@@ -21,6 +21,7 @@ import UIKit
 
 }
 
+
 @IBDesignable public class SignUpWidget: BaseWidget {
 
 	@IBInspectable var anonymousApiUserName: String?

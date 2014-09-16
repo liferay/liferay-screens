@@ -33,6 +33,7 @@ import UIKit
 
 }
 
+
 @IBDesignable public class DDLFormWidget: BaseWidget, LRProgressDelegate {
 
 	@IBInspectable var structureId: Int = 0

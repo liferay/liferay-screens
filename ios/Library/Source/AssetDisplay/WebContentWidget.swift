@@ -21,6 +21,7 @@ import UIKit
 
 }
 
+
 @IBDesignable public class WebContentWidget: BaseWidget {
 
 	@IBInspectable var groupId: Int = 0

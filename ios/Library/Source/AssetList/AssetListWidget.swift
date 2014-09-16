@@ -33,6 +33,7 @@ import UIKit
 
 }
 
+
 @IBDesignable public class AssetListWidget: BaseWidget {
 
 	public enum AssetClassNameId: Int {

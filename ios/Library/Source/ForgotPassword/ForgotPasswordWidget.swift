@@ -21,6 +21,7 @@ import UIKit
 
 }
 
+
 @IBDesignable public class ForgotPasswordWidget: BaseWidget {
 
 	@IBInspectable var anonymousApiUserName: String?
