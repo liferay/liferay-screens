@@ -120,7 +120,7 @@ public class LoginWidget: BaseWidget {
 }
 
 func authWithEmail(email:String, password:String, service:LRUserService_v62,
-		onError:(NSError)->()) {
+		onError:(NSError) -> Void) {
 
 	var outError: NSError?
 
@@ -135,7 +135,7 @@ func authWithEmail(email:String, password:String, service:LRUserService_v62,
 }
 
 func authWithScreenName(name:String, password:String, service:LRUserService_v62,
-		onError:(NSError)->()) {
+		onError:(NSError) -> Void) {
 
 	var outError: NSError?
 
@@ -150,7 +150,7 @@ func authWithScreenName(name:String, password:String, service:LRUserService_v62,
 }
 
 func authWithUserId(userId:String, password:String, service:LRUserService_v62,
-		onError:(NSError)->()) {
+		onError:(NSError) -> Void) {
 
 	var outError: NSError?
 

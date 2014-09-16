@@ -60,7 +60,7 @@ public class DDLElementSelectTableCell_default: DDLBaseElementTextFieldTableCell
 		}
 
 		let onChangeClosure = {
-			(selectedComponents:[AnyObject]!, selectedIndexPath:NSIndexPath!) -> () in
+			(selectedComponents:[AnyObject]!, selectedIndexPath:NSIndexPath!) -> Void in
 
 			let text = selectedComponents.first?.description as NSString?
 

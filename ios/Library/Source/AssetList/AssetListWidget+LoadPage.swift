@@ -18,8 +18,8 @@ internal extension AssetListWidget {
 
 	internal class LoadPageOperation: NSObject, LRCallback {
 
-		internal var onOperationSuccess: ((Int, [[String:AnyObject]], Int) -> ())?
-		internal var onOperationFailure: ((Int, NSError) -> ())?
+		internal var onOperationSuccess: ((Int, [[String:AnyObject]], Int) -> Void)?
+		internal var onOperationFailure: ((Int, NSError) -> Void)?
 
 		private let page:Int
 

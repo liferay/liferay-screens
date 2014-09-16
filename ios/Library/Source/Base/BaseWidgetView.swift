@@ -19,7 +19,7 @@ import UIKit
  */
 public class BaseWidgetView: UIView, UITextFieldDelegate {
 
-	internal var customAction: ((String?, AnyObject?) -> ())?
+	internal var customAction: ((String?, AnyObject?) -> Void)?
 
 
 	//MARK: UIView

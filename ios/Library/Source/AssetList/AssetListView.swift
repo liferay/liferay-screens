@@ -24,8 +24,8 @@ public class AssetListView: BaseWidgetView {
 
 	public var entryCount:Int = 0
 
-	internal var onSelectedEntryClosure: ((AssetEntry) -> ())?
-	internal var fetchPageForRow: ((Int) -> ())?
+	internal var onSelectedEntryClosure: ((AssetEntry) -> Void)?
+	internal var fetchPageForRow: ((Int) -> Void)?
 
 	internal func onChangedEntries() {
 	}

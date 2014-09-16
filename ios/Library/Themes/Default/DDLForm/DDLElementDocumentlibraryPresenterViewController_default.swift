@@ -18,7 +18,7 @@ import MobileCoreServices
 public class DDLElementDocumentlibraryPresenterViewController_default:
 		UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-	public var selectedDocumentClosure: ((UIImage?, NSURL?) -> ())?
+	public var selectedDocumentClosure: ((UIImage?, NSURL?) -> Void)?
 
 	private let imagePicker = UIImagePickerController()
 

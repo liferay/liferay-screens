@@ -14,7 +14,7 @@
 import Foundation
 
 
-func synchronized(lock:AnyObject, closure: () -> ()) {
+func synchronized(lock:AnyObject, closure: Void -> Void) {
 	objc_sync_enter(lock)
 	closure()
 	objc_sync_exit(lock)

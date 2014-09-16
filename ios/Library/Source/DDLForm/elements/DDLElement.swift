@@ -32,7 +32,7 @@ import Foundation
 		}
 	}
 
-	public var validatedClosure: ((Bool) -> ())?
+	public var validatedClosure: (Bool -> Void)?
 
 	public var lastValidationResult:Bool?
 
