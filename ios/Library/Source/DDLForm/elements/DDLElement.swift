@@ -18,6 +18,9 @@ public enum DDLElementDataType: String {
 	case DDLBoolean = "boolean"
 	case DDLString = "string"
 	case DDLDate = "date"
+	case DDLInteger = "integer"
+	case DDLNumber = "number"
+	case DDLDouble = "double"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementDataType {
@@ -29,7 +32,7 @@ public enum DDLElementDataType: String {
 		case .DDLBoolean:
 			return DDLElementBoolean(attributes:attributes, localized:localized)
 		case .DDLString:
-			let type = DDLElementType.from(attributes: attributes)
+			let type = DDLElementEditor.from(attributes: attributes)
 
 			if type == .Select || type == .Radio {
 				return DDLElementStringWithOptions(attributes:attributes, localized:localized)
@@ -39,6 +42,8 @@ public enum DDLElementDataType: String {
 			}
 		case .DDLDate:
 			return DDLElementDate(attributes:attributes, localized:localized)
+		case .DDLInteger, .DDLNumber, .DDLDouble:
+			return DDLElementNumber(attributes:attributes, localized:localized)
 		default:
 			return nil
 		}
@@ -46,7 +51,7 @@ public enum DDLElementDataType: String {
 }
 
 
-public enum DDLElementType: String {
+public enum DDLElementEditor: String {
 
 	case Checkbox = "checkbox"
 	case Text = "text"
@@ -54,48 +59,65 @@ public enum DDLElementType: String {
 	case Select = "select"
 	case Radio = "radio"
 	case Date = "ddm-date"
+	case Number = "number"
 	case Unsupported = ""
 
-	public static func from(#xmlElement:SMXMLElement) -> DDLElementType {
-		return fromRaw(xmlElement.attributeNamed("type") ?? "") ?? .Unsupported
+	public static func from(#xmlElement:SMXMLElement) -> DDLElementEditor {
+		return from(attributeValue:(xmlElement.attributeNamed("type") ?? ""))
 	}
 
-	public static func from(#attributes:[String:String]) -> DDLElementType {
-		return fromRaw(attributes["type"] ?? "") ?? .Unsupported
+	public static func from(#attributes:[String:String]) -> DDLElementEditor {
+		return from(attributeValue:(attributes["type"] ?? ""))
 	}
 
-	public static func all() -> [DDLElementType] {
-		return [Checkbox, Text, Textarea, Select, Radio, Date]
+	public static func from(#attributeValue:String) -> DDLElementEditor {
+		var result:DDLElementEditor = .Unsupported
+
+		// hack to convert ddm-integer, ddm-number and ddm-decimal to just number
+		switch attributeValue {
+			case "ddm-integer", "ddm-number", "ddm-decimal":
+				result = .Number
+			default:
+				result = fromRaw(attributeValue) ?? .Unsupported
+		}
+
+		return result
+	}
+
+	public static func all() -> [DDLElementEditor] {
+		return [Checkbox, Text, Textarea, Select, Radio, Date, Number]
 	}
 
 	public func toCapitalizedName() -> String {
-		var elementName = toRaw()
+		var typeName = toRaw()
 
 		// hack for names prefixed with ddm
-		if elementName.hasPrefix("ddm-") {
+		if typeName.hasPrefix("ddm-") {
 			let wholeRange = Range<String.Index>(
-					start: elementName.startIndex,
-					end: elementName.endIndex)
+					start: typeName.startIndex,
+					end: typeName.endIndex)
 
-			elementName = elementName.stringByReplacingOccurrencesOfString("ddm-", withString: "", options: .CaseInsensitiveSearch, range: wholeRange)
+			typeName = typeName.stringByReplacingOccurrencesOfString("ddm-", withString: "", options: .CaseInsensitiveSearch, range: wholeRange)
 		}
 
-		let secondCharIndex = elementName.startIndex.successor()
+		// Capitalize first char
 
-		return elementName.substringToIndex(secondCharIndex).uppercaseString + elementName.substringFromIndex(secondCharIndex)
+		let secondCharIndex = typeName.startIndex.successor()
+
+		return typeName.substringToIndex(secondCharIndex).uppercaseString + typeName.substringFromIndex(secondCharIndex)
 	}
 
 	public func registerHeight(height:CGFloat) {
-		DDLElementType.elementTypeHeight[self] = height
+		DDLElementEditor.elementEditorHeight[self] = height
 	}
 
 	public var registeredHeight: CGFloat {
 		get {
-			return DDLElementType.elementTypeHeight[self] ?? 0
+			return DDLElementEditor.elementEditorHeight[self] ?? 0
 		}
 	}
 
-	private static var elementTypeHeight: [DDLElementType:CGFloat] = [:]
+	private static var elementEditorHeight: [DDLElementEditor:CGFloat] = [:]
 
 }
 
@@ -113,6 +135,9 @@ public class DDLElement: Equatable {
 		get {
 			return convert(fromCurrentValue: currentValue)
 		}
+		set {
+			currentValue = convert(fromString: newValue)
+		}
 	}
 
 	public var validatedClosure: ((Bool) -> ())?
@@ -120,7 +145,7 @@ public class DDLElement: Equatable {
 	public var lastValidationResult:Bool?
 
 	internal(set) var dataType:DDLElementDataType
-	internal(set) var type:DDLElementType
+	internal(set) var editorType:DDLElementEditor
 
 	internal(set) var name:String
 
@@ -139,7 +164,7 @@ public class DDLElement: Equatable {
 
 	public init(attributes:[String:String], localized:[String:AnyObject]) {
 		dataType = DDLElementDataType.fromRaw(attributes["dataType"] ?? "") ?? .Unsupported
-		type = DDLElementType.fromRaw(attributes["type"] ?? "") ?? .Unsupported
+		editorType = DDLElementEditor.from(attributes: attributes)
 		name = attributes["name"] ?? ""
 
 		readOnly = Bool.from(string: attributes["readOnly"] ?? "false")
@@ -168,7 +193,7 @@ public class DDLElement: Equatable {
 	}
 
 	public func resetCurrentHeight() {
-		currentHeight = type.registeredHeight
+		currentHeight = editorType.registeredHeight
 	}
 
 	internal func doValidate() -> Bool {

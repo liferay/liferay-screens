@@ -59,7 +59,7 @@ class DDLElementBoolean_Tests: XCTestCase {
 		let booleanElement = elements![0] as DDLElementBoolean
 
 		XCTAssertEqual(DDLElementDataType.DDLBoolean, booleanElement.dataType)
-		XCTAssertEqual(DDLElementType.Checkbox, booleanElement.type)
+		XCTAssertEqual(DDLElementEditor.Checkbox, booleanElement.editorType)
 		XCTAssertEqual("A_Boolean", booleanElement.name)
 		XCTAssertEqual("A Boolean", booleanElement.label)
 		XCTAssertEqual("The tip", booleanElement.tip)

@@ -59,7 +59,7 @@ class DDLElementString_Tests: XCTestCase {
 		let stringElement = elements![0] as DDLElementString
 
 		XCTAssertEqual(DDLElementDataType.DDLString, stringElement.dataType)
-		XCTAssertEqual(DDLElementType.Text, stringElement.type)
+		XCTAssertEqual(DDLElementEditor.Text, stringElement.editorType)
 		XCTAssertEqual("A_Text", stringElement.name)
 		XCTAssertEqual("A Text", stringElement.label)
 		XCTAssertEqual("The tip", stringElement.tip)

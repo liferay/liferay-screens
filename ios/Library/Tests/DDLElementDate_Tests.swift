@@ -54,7 +54,7 @@ class DDLElementDate_Tests: XCTestCase {
 		let dateElement = elements![0] as DDLElementDate
 
 		XCTAssertEqual(DDLElementDataType.DDLDate, dateElement.dataType)
-		XCTAssertEqual(DDLElementType.Date, dateElement.type)
+		XCTAssertEqual(DDLElementEditor.Date, dateElement.editorType)
 		XCTAssertEqual("A_Date", dateElement.name)
 		XCTAssertEqual("A Date", dateElement.label)
 		XCTAssertEqual("The tip", dateElement.tip)

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		171724ED3A0843AB9AC1B25E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D782ECE4B14578B67EA5D0 /* libPods.a */; };
-		882DA81A19B4D28500339615 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DA81919B4D28500339615 /* UIView+Animations.swift */; };
+		88142E4919BA6DE60006C9B3 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DA81919B4D28500339615 /* UIView+Animations.swift */; };
 		8835607C196AED36002AB222 /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8835607B196AED36002AB222 /* liferay-context-sample.plist */; };
 		883CF3D1199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CF3D0199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m */; };
 		88415D2A19A273F4006F7064 /* DDLElementSelectTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88415D2819A273F4006F7064 /* DDLElementSelectTableCell_default.swift */; };
@@ -21,6 +21,9 @@
 		884CE51F1994F3A500ADF047 /* default-preview-ddlform@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 884CE51D1994F3A500ADF047 /* default-preview-ddlform@2x.png */; };
 		884CE5211994F4ED00ADF047 /* DDLElementCheckboxTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 884CE5201994F4ED00ADF047 /* DDLElementCheckboxTableCell-default.xib */; };
 		884CE5251994FAF500ADF047 /* DDLElementCheckboxTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE5241994FAF500ADF047 /* DDLElementCheckboxTableCell_default.swift */; };
+		8859354719A604990040E125 /* DDLElementNumberTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8859354519A604990040E125 /* DDLElementNumberTableCell-default.xib */; };
+		8859354819A604990040E125 /* DDLElementNumberTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8859354619A604990040E125 /* DDLElementNumberTableCell_default.swift */; };
+		8859354A19A605C90040E125 /* DDLElementNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8859354919A605C90040E125 /* DDLElementNumber.swift */; };
 		885FD67F19968E1900F23BA1 /* DDLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FD67D19968E1900F23BA1 /* DDLElement.swift */; };
 		885FD6831996E1DF00F23BA1 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FD6821996E1DF00F23BA1 /* FormViewController.swift */; };
 		8860FF7419B862B5000F3FC4 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8860FF7319B862B5000F3FC4 /* UIView+Animations.swift */; };
@@ -135,6 +138,9 @@
 		884CE51D1994F3A500ADF047 /* default-preview-ddlform@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-ddlform@2x.png"; sourceTree = "<group>"; };
 		884CE5201994F4ED00ADF047 /* DDLElementCheckboxTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementCheckboxTableCell-default.xib"; sourceTree = "<group>"; };
 		884CE5241994FAF500ADF047 /* DDLElementCheckboxTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementCheckboxTableCell_default.swift; sourceTree = "<group>"; };
+		8859354519A604990040E125 /* DDLElementNumberTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementNumberTableCell-default.xib"; sourceTree = "<group>"; };
+		8859354619A604990040E125 /* DDLElementNumberTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementNumberTableCell_default.swift; sourceTree = "<group>"; };
+		8859354919A605C90040E125 /* DDLElementNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementNumber.swift; sourceTree = "<group>"; };
 		885FD67D19968E1900F23BA1 /* DDLElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElement.swift; sourceTree = "<group>"; };
 		885FD6821996E1DF00F23BA1 /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		8860FF7319B862B5000F3FC4 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
@@ -265,6 +271,8 @@
 				884CE5201994F4ED00ADF047 /* DDLElementCheckboxTableCell-default.xib */,
 				88DBC11719A4EC400075E644 /* DDLElementDateTableCell_default.swift */,
 				88DBC11819A4EC400075E644 /* DDLElementDateTableCell-default.xib */,
+				8859354619A604990040E125 /* DDLElementNumberTableCell_default.swift */,
+				8859354519A604990040E125 /* DDLElementNumberTableCell-default.xib */,
 				88C16F1119A49CC8002BA31A /* DDLElementRadioTableCell_default.swift */,
 				88C16F1219A49CC8002BA31A /* DDLElementRadioTableCell-default.xib */,
 				88415D2819A273F4006F7064 /* DDLElementSelectTableCell_default.swift */,
@@ -287,6 +295,7 @@
 				885FD67D19968E1900F23BA1 /* DDLElement.swift */,
 				88D5376A199914BB00615515 /* DDLElementBoolean.swift */,
 				88DBC11F19A4F31A0075E644 /* DDLElementDate.swift */,
+				8859354919A605C90040E125 /* DDLElementNumber.swift */,
 				88D5378419991C2600615515 /* DDLElementString.swift */,
 				886C74AD19A382D800B689BA /* DDLElementStringWithOptions.swift */,
 			);
@@ -520,8 +529,8 @@
 		88D5377B19991C0400615515 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				88D5377C19991C0400615515 /* DDLElementTableCell.swift */,
 				88D5377D19991C0400615515 /* DDLFormTableView.swift */,
+				88D5377C19991C0400615515 /* DDLElementTableCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -669,6 +678,7 @@
 				88999AE2198EE64700E746A6 /* theme-flat7.png in Resources */,
 				888D7761198FDB710052C39C /* default-large-button@2x.png in Resources */,
 				888D775F198FDB710052C39C /* default-large-button-selected@2x.png in Resources */,
+				8859354719A604990040E125 /* DDLElementNumberTableCell-default.xib in Resources */,
 				884CE51F1994F3A500ADF047 /* default-preview-ddlform@2x.png in Resources */,
 				888D776C198FDCFA0052C39C /* default-preview-signup@2x.png in Resources */,
 				888D77B3198FF0E20052C39C /* default-lock-icon.png in Resources */,
@@ -756,6 +766,7 @@
 				888D77BF198FF5030052C39C /* LoginView_default.swift in Sources */,
 				88D5378319991C1000615515 /* DDLElementTextTableCell_default.swift in Sources */,
 				88832F9B19656B3F00E3DF9F /* LiferayContext.swift in Sources */,
+				8859354A19A605C90040E125 /* DDLElementNumber.swift in Sources */,
 				88999AF4198EF1A700E746A6 /* UIImage+Themes.m in Sources */,
 				888D7771198FE3D40052C39C /* SignUpView_flat7.swift in Sources */,
 				884CE5161994F36600ADF047 /* DDLFormView.swift in Sources */,
@@ -776,6 +787,7 @@
 				8897D9C4198A812D00D3DF51 /* ForgotPasswordWidget.swift in Sources */,
 				88EAEE3C1993D923002D7C26 /* Bool+Conversion.swift in Sources */,
 				88D5376C199914BB00615515 /* DDLElementBoolean.swift in Sources */,
+				88142E4919BA6DE60006C9B3 /* UIView+Animations.swift in Sources */,
 				88DBC12019A4F31A0075E644 /* DDLElementDate.swift in Sources */,
 				88DBC11919A4EC400075E644 /* DDLElementDateTableCell_default.swift in Sources */,
 				888F6204198FD3DC0082786B /* SignUpWidget.swift in Sources */,
@@ -788,7 +800,7 @@
 				999BC69C19768EA400A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 				884CE5251994FAF500ADF047 /* DDLElementCheckboxTableCell_default.swift in Sources */,
 				88D90A6319A215A8003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */,
-				882DA81A19B4D28500339615 /* UIView+Animations.swift in Sources */,
+				8859354819A604990040E125 /* DDLElementNumberTableCell_default.swift in Sources */,
 				884CE51B1994F37100ADF047 /* DDLFormView_default.swift in Sources */,
 				888F61FD198FD3B10082786B /* NSLocale+CurrentLocale.swift in Sources */,
 				88D5377E19991C0400615515 /* DDLElementTableCell.swift in Sources */,
