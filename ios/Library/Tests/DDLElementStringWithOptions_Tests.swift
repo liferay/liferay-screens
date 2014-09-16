@@ -37,7 +37,7 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 		let stringElement = elements![0] as DDLElementStringWithOptions
 
 		XCTAssertEqual(DDLElementDataType.DDLString, stringElement.dataType)
-		XCTAssertEqual(DDLElementType.Text, stringElement.type)
+		XCTAssertEqual(DDLElementType.Select, stringElement.type)
 		XCTAssertEqual("A_Select", stringElement.name)
 		XCTAssertEqual("A Select", stringElement.label)
 		XCTAssertTrue(stringElement.multiple)
@@ -237,7 +237,7 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 					"name=\"A_Select\" " +
 					"repeatable=\"true\" " +
 					"required=\"true\" " +
-					"type=\"text\" " +
+					"type=\"select\" " +
 					"width=\"small\"> " +
 				"<meta-data locale=\"en_US\"> " +
 					"<entry name=\"label\"><![CDATA[A Select]]></entry> " +

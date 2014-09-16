@@ -111,7 +111,7 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 			if element!.lastValidationResult != nil && !element!.lastValidationResult! {
 				element!.lastValidationResult = true
 
-				textViewBackground?.image = UIImage(named: "default-field")
+				onValidated(true)
 			}
 		}
 

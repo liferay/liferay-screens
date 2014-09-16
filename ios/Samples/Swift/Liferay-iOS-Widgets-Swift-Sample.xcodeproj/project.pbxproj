@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		171724ED3A0843AB9AC1B25E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D782ECE4B14578B67EA5D0 /* libPods.a */; };
+		882DA81A19B4D28500339615 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DA81919B4D28500339615 /* UIView+Animations.swift */; };
 		8835607C196AED36002AB222 /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8835607B196AED36002AB222 /* liferay-context-sample.plist */; };
 		883CF3D1199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CF3D0199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m */; };
 		88415D2A19A273F4006F7064 /* DDLElementSelectTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88415D2819A273F4006F7064 /* DDLElementSelectTableCell_default.swift */; };
@@ -89,7 +90,9 @@
 		88999AE5198EE83A00E746A6 /* flat7-preview-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AE3198EE83A00E746A6 /* flat7-preview-login.png */; };
 		88999AE6198EE83A00E746A6 /* flat7-preview-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AE4198EE83A00E746A6 /* flat7-preview-login@2x.png */; };
 		88999AF4198EF1A700E746A6 /* UIImage+Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 88999AF3198EF1A700E746A6 /* UIImage+Themes.m */; };
-		88C130E819BA6459001B6AD1 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C130E719BA6459001B6AD1 /* UIView+Animations.swift */; };
+		88C130E819BA6459001B6AD1 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		88C16F1319A49CC8002BA31A /* DDLElementRadioTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C16F1119A49CC8002BA31A /* DDLElementRadioTableCell_default.swift */; };
+		88C16F1419A49CC8002BA31A /* DDLElementRadioTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C16F1219A49CC8002BA31A /* DDLElementRadioTableCell-default.xib */; };
 		88D5376C199914BB00615515 /* DDLElementBoolean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5376A199914BB00615515 /* DDLElementBoolean.swift */; };
 		88D5377E19991C0400615515 /* DDLElementTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5377C19991C0400615515 /* DDLElementTableCell.swift */; };
 		88D5377F19991C0400615515 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5377D19991C0400615515 /* DDLFormTableView.swift */; };
@@ -104,7 +107,6 @@
 		88D76917199A5D9200D152D5 /* default-multiline-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D76915199A5D9200D152D5 /* default-multiline-field.png */; };
 		88D90A6319A215A8003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D90A6119A215A8003E8D98 /* DDLSubmitButtonTableCell_default.swift */; };
 		88D90A6419A215A8003E8D98 /* DDLSubmitButtonTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D90A6219A215A8003E8D98 /* DDLSubmitButtonTableCell-default.xib */; };
-		88E2D93A19B8606C000E6418 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E2D93919B8606C000E6418 /* UIView+Animations.swift */; };
 		88EAEE3A1993D8BF002D7C26 /* DDLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE371993D8BF002D7C26 /* DDLParser.swift */; };
 		88EAEE3C1993D923002D7C26 /* Bool+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */; };
 		999BC69C19768EA400A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69B19768EA400A9B0D8 /* LRSession+CredentialStore.swift */; };
@@ -113,6 +115,7 @@
 /* Begin PBXFileReference section */
 		01D782ECE4B14578B67EA5D0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CDED001B92C49429A1F0D49 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		882DA81919B4D28500339615 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		8835607B196AED36002AB222 /* liferay-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-context-sample.plist"; sourceTree = "<group>"; };
 		883CF3CF199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsuserService_v62.h; sourceTree = "<group>"; };
 		883CF3D0199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsuserService_v62.m; sourceTree = "<group>"; };
@@ -198,7 +201,8 @@
 		88999AE4198EE83A00E746A6 /* flat7-preview-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-login@2x.png"; sourceTree = "<group>"; };
 		88999AF2198EF1A700E746A6 /* UIImage+Themes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Themes.h"; sourceTree = "<group>"; };
 		88999AF3198EF1A700E746A6 /* UIImage+Themes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Themes.m"; sourceTree = "<group>"; };
-		88C130E719BA6459001B6AD1 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
+		88C16F1119A49CC8002BA31A /* DDLElementRadioTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementRadioTableCell_default.swift; sourceTree = "<group>"; };
+		88C16F1219A49CC8002BA31A /* DDLElementRadioTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementRadioTableCell-default.xib"; sourceTree = "<group>"; };
 		88D5376A199914BB00615515 /* DDLElementBoolean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementBoolean.swift; sourceTree = "<group>"; };
 		88D5377C19991C0400615515 /* DDLElementTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementTableCell.swift; sourceTree = "<group>"; };
 		88D5377D19991C0400615515 /* DDLFormTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormTableView.swift; sourceTree = "<group>"; };
@@ -213,7 +217,6 @@
 		88D76915199A5D9200D152D5 /* default-multiline-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-multiline-field.png"; sourceTree = "<group>"; };
 		88D90A6119A215A8003E8D98 /* DDLSubmitButtonTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLSubmitButtonTableCell_default.swift; sourceTree = "<group>"; };
 		88D90A6219A215A8003E8D98 /* DDLSubmitButtonTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLSubmitButtonTableCell-default.xib"; sourceTree = "<group>"; };
-		88E2D93919B8606C000E6418 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		88E4604819759FE4002C26C6 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		88E4604A19759FE4002C26C6 /* ForgotPasswordWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordWidget.swift; sourceTree = "<group>"; };
 		88EAEE371993D8BF002D7C26 /* DDLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser.swift; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 			children = (
 				884CE5241994FAF500ADF047 /* DDLElementCheckboxTableCell_default.swift */,
 				884CE5201994F4ED00ADF047 /* DDLElementCheckboxTableCell-default.xib */,
+				88C16F1119A49CC8002BA31A /* DDLElementRadioTableCell_default.swift */,
+				88C16F1219A49CC8002BA31A /* DDLElementRadioTableCell-default.xib */,
 				88415D2819A273F4006F7064 /* DDLElementSelectTableCell_default.swift */,
 				88415D2919A273F4006F7064 /* DDLElementSelectTableCell-default.xib */,
 				88D76909199A2C4800D152D5 /* DDLElementTextareaTableCell_default.swift */,
@@ -416,7 +421,7 @@
 				888F61FC198FD3B10082786B /* NSLocale+CurrentLocale.swift */,
 				88999AF2198EF1A700E746A6 /* UIImage+Themes.h */,
 				88999AF3198EF1A700E746A6 /* UIImage+Themes.m */,
-				88C130E719BA6459001B6AD1 /* UIView+Animations.swift */,
+				882DA81919B4D28500339615 /* UIView+Animations.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -651,6 +656,7 @@
 				888D775E198FDB710052C39C /* default-large-button-selected.png in Resources */,
 				88832F9E19656B3F00E3DF9F /* liferay-context.plist in Resources */,
 				88D537881999215500615515 /* default-field-failed@2x.png in Resources */,
+				88C16F1419A49CC8002BA31A /* DDLElementRadioTableCell-default.xib in Resources */,
 				888CE11819924AD4001DCA6A /* flat7-preview-forgotpassword.png in Resources */,
 				88999AD9198EE62E00E746A6 /* LoginView-flat7.xib in Resources */,
 				888D7774198FEACD0052C39C /* flat7-preview-signup.png in Resources */,
@@ -740,6 +746,7 @@
 				8897D9D1198A958000D3DF51 /* NSBundle+Paths.swift in Sources */,
 				88415D2A19A273F4006F7064 /* DDLElementSelectTableCell_default.swift in Sources */,
 				888CE11419924821001DCA6A /* ForgotPasswordView_flat7.swift in Sources */,
+				88C16F1319A49CC8002BA31A /* DDLElementRadioTableCell_default.swift in Sources */,
 				886C74AE19A382D800B689BA /* DDLElementStringWithOptions.swift in Sources */,
 				88D5377F19991C0400615515 /* DDLFormTableView.swift in Sources */,
 				88D7690B199A2C4800D152D5 /* DDLElementTextareaTableCell_default.swift in Sources */,
@@ -752,15 +759,15 @@
 				88832F9919656B3F00E3DF9F /* BaseWidget.swift in Sources */,
 				88832F9819656B3F00E3DF9F /* BaseWidget+progress.swift in Sources */,
 				88EAEE3A1993D8BF002D7C26 /* DDLParser.swift in Sources */,
-				88C130E819BA6459001B6AD1 /* UIView+Animations.swift in Sources */,
+				88C130E819BA6459001B6AD1 /* (null) in Sources */,
 				88832F9F19656B3F00E3DF9F /* LoginView.swift in Sources */,
 				888F6206198FD3F20082786B /* SignUpViewController.swift in Sources */,
 				999BC69C19768EA400A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 				884CE5251994FAF500ADF047 /* DDLElementCheckboxTableCell_default.swift in Sources */,
 				88D90A6319A215A8003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */,
+				882DA81A19B4D28500339615 /* UIView+Animations.swift in Sources */,
 				884CE51B1994F37100ADF047 /* DDLFormView_default.swift in Sources */,
 				888F61FD198FD3B10082786B /* NSLocale+CurrentLocale.swift in Sources */,
-				88E2D93A19B8606C000E6418 /* UIView+Animations.swift in Sources */,
 				88D5377E19991C0400615515 /* DDLElementTableCell.swift in Sources */,
 				8897D9C3198A810F00D3DF51 /* ForgotPasswordView.swift in Sources */,
 				88832F9A19656B3F00E3DF9F /* BaseWidgetView.swift in Sources */,

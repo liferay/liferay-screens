@@ -74,9 +74,8 @@ public class DDLElementTextTableCell_default: DDLElementTableCell, UITextFieldDe
 
 		if element!.lastValidationResult != nil && !element!.lastValidationResult! {
 			element!.lastValidationResult = true
-			
-			textFieldBackground?.image = UIImage(named: "default-field")
-			textFieldBackground?.highlightedImage = UIImage(named: "default-field-focused")
+
+			onValidated(true)
 
 			//FIXME!
 			// This hack is the only way I found to repaint the text field while it's in edition mode.

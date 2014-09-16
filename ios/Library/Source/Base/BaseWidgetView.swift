@@ -85,6 +85,7 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	public func onCreate() {
 	}
 
+
 	public func onSetCustomActionForControl(control: UIControl) -> Bool {
 		return true
 	}
@@ -101,20 +102,10 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	public func onFinishOperation() {
 	}
-	
-	internal func customActionHandler(sender: UIControl!) {
-		customActionHandler(sender.restorationIdentifier)
-	}
-	
-	internal func customActionHandler(actionName: String?) {
-		endEditing(true)
-
-		customAction?(actionName, nil)
-	}
-
+		
 	internal func nextResponderForView(view:UIView) -> UIResponder {
 		if view.tag > 0 {
-			if let nextView = viewWithTag(view.tag + 1) {
+			if let nextView = viewWithTag(view.tag.successor()) {
 				return nextView
 			}
 		}
@@ -127,6 +118,16 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		let components = className.componentsSeparatedByString("_")
 
 		return (components.count > 1) ? components.last : nil
+	}
+
+	internal func customActionHandler(sender: UIControl!) {
+		customActionHandler(sender.restorationIdentifier)
+	}
+
+	internal func customActionHandler(actionName: String?) {
+		endEditing(true)
+
+		customAction?(actionName, nil)
 	}
 
 	private func addCustomActionForControl(control: UIControl) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -24,7 +24,8 @@
                     <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="submit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="sFo-9S-vne">
                         <rect key="frame" x="271" y="10" width="36" height="36"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" backgroundImage="default-large-button.png">
+                        <color key="backgroundColor" red="0.0" green="0.72156862745098038" blue="0.8784313725490196" alpha="0.87" colorSpace="deviceRGB"/>
+                        <state key="normal">
                             <attributedString key="attributedTitle">
                                 <fragment content="...">
                                     <attributes>
@@ -40,13 +41,6 @@
                             <action selector="chooseButtonAction:" destination="WWD-jz-pJ6" eventType="touchUpInside" id="yq6-JD-H6P"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" id="450-aU-fC9" userLabel="placeholder">
-                        <rect key="frame" x="15" y="13" width="247" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                        <color key="textColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="VAu-ld-FYJ">
                         <rect key="frame" x="15" y="13" width="247" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -62,7 +56,6 @@
                 <outlet property="chooseButton" destination="sFo-9S-vne" id="yvp-RX-zb5"/>
                 <outlet property="textField" destination="VAu-ld-FYJ" id="n3x-pa-fiI"/>
                 <outlet property="textFieldBackground" destination="ohg-xl-HdE" id="bhZ-pI-I05"/>
-                <outlet property="textPlaceholder" destination="450-aU-fC9" id="cGx-b4-TVl"/>
             </connections>
             <point key="canvasLocation" x="326" y="442"/>
         </tableViewCell>
@@ -71,7 +64,6 @@
         <image name="default-field-focused.png" width="228" height="44"/>
         <image name="default-field.png" width="228" height="44"/>
         <image name="default-large-button-selected.png" width="217" height="42"/>
-        <image name="default-large-button.png" width="228" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

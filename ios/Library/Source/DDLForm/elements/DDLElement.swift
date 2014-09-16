@@ -28,11 +28,13 @@ public enum DDLElementDataType: String {
 		case .DDLBoolean:
 			return DDLElementBoolean(attributes:attributes, localized:localized)
 		case .DDLString:
-			if attributes["multiple"] == nil {
-				return DDLElementString(attributes:attributes, localized:localized)
+			let type = DDLElementType.from(attributes: attributes)
+
+			if type == .Select || type == .Radio {
+				return DDLElementStringWithOptions(attributes:attributes, localized:localized)
 			}
 			else {
-				return DDLElementStringWithOptions(attributes:attributes, localized:localized)
+				return DDLElementString(attributes:attributes, localized:localized)
 			}
 		default:
 			return nil
@@ -47,14 +49,19 @@ public enum DDLElementType: String {
 	case Text = "text"
 	case Textarea = "textarea"
 	case Select = "select"
+	case Radio = "radio"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementType {
 		return fromRaw(xmlElement.attributeNamed("type") ?? "") ?? .Unsupported
 	}
 
+	public static func from(#attributes:[String:String]) -> DDLElementType {
+		return fromRaw(attributes["type"] ?? "") ?? .Unsupported
+	}
+
 	public static func all() -> [DDLElementType] {
-		return [Checkbox, Text, Textarea, Select]
+		return [Checkbox, Text, Textarea, Select, Radio]
 	}
 
 	public func toCapitalizedName() -> String {
