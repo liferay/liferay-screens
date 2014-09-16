@@ -154,4 +154,3 @@ func authWithUserId(userId:String, password:String, service:LRUserService_v62, o
 		onError(error)
 	}
 }
-

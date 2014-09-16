@@ -65,4 +65,3 @@ public class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswo
 	}
 
 }
-
