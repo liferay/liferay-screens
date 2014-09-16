@@ -41,9 +41,6 @@ extension LRSession {
 	public func storeCredential() -> Bool {
 		var success = false
 
-		//FIXME
-		// Compiler crash with compound if statement: if self.server && self.username && self.password {
-		// "While emitting IR SIL function @_TFCSo9LRSession5storefS_FT_T_ for 'store' at LRSession+storage.swift:36:2"
 		if self.username != nil && self.password != nil {
 			let protectionSpace = LRSession.protectionSpaceForServer(LiferayContext.instance.server)
 
