@@ -67,9 +67,9 @@ public class DDLParser {
 
 		let dataType = DDLElementDataType.from(xmlElement:xmlElement)
 
-		let localized = processLocalizedMetadata(xmlElement)
+		let localizedMetadata = processLocalizedMetadata(xmlElement)
 
-		return dataType.createElement(attributes:xmlElement.attributes as [String:String], localized:localized)
+		return dataType.createElement(attributes:xmlElement.attributes as [String:String], localized:localizedMetadata)
 	}
 
 	private func processLocalizedMetadata(dynamicElement:SMXMLElement) -> [String:AnyObject] {
@@ -141,12 +141,13 @@ public class DDLParser {
 			return nil
 		}
 
-		let currentLanguageCode = self.locale.objectForKey(NSLocaleLanguageCode) as String
-		let currentCountryCode = self.locale.objectForKey(NSLocaleCountryCode) as? String
+		let currentLanguageCode = locale.objectForKey(NSLocaleLanguageCode) as String
+		let currentCountryCode = locale.objectForKey(NSLocaleCountryCode) as? String
 
 		var resultElement:SMXMLElement?
 
-		if let metadataElement = findElementWithAttribute("locale", value:locale.localeIdentifier, elements:metadataElements!) {
+		if let metadataElement = findElementWithAttribute("locale",
+				value:locale.localeIdentifier, elements:metadataElements!) {
 			// cases 'a1' and 'b1'
 
 			resultElement = metadataElement
