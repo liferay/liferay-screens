@@ -107,6 +107,12 @@
 		88D76917199A5D9200D152D5 /* default-multiline-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D76915199A5D9200D152D5 /* default-multiline-field.png */; };
 		88D90A6319A215A8003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D90A6119A215A8003E8D98 /* DDLSubmitButtonTableCell_default.swift */; };
 		88D90A6419A215A8003E8D98 /* DDLSubmitButtonTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D90A6219A215A8003E8D98 /* DDLSubmitButtonTableCell-default.xib */; };
+		88DBC11919A4EC400075E644 /* DDLElementDateTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC11719A4EC400075E644 /* DDLElementDateTableCell_default.swift */; };
+		88DBC11A19A4EC400075E644 /* DDLElementDateTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC11819A4EC400075E644 /* DDLElementDateTableCell-default.xib */; };
+		88DBC11D19A4EF9D0075E644 /* default-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC11B19A4EF9D0075E644 /* default-calendar.png */; };
+		88DBC11E19A4EF9D0075E644 /* default-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC11C19A4EF9D0075E644 /* default-calendar@2x.png */; };
+		88DBC12019A4F31A0075E644 /* DDLElementDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC11F19A4F31A0075E644 /* DDLElementDate.swift */; };
+		88DBC14019A4F85F0075E644 /* DDLBaseElementTextFieldTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC13F19A4F85F0075E644 /* DDLBaseElementTextFieldTableCell_default.swift */; };
 		88EAEE3A1993D8BF002D7C26 /* DDLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE371993D8BF002D7C26 /* DDLParser.swift */; };
 		88EAEE3C1993D923002D7C26 /* Bool+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */; };
 		999BC69C19768EA400A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69B19768EA400A9B0D8 /* LRSession+CredentialStore.swift */; };
@@ -217,6 +223,12 @@
 		88D76915199A5D9200D152D5 /* default-multiline-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-multiline-field.png"; sourceTree = "<group>"; };
 		88D90A6119A215A8003E8D98 /* DDLSubmitButtonTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLSubmitButtonTableCell_default.swift; sourceTree = "<group>"; };
 		88D90A6219A215A8003E8D98 /* DDLSubmitButtonTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLSubmitButtonTableCell-default.xib"; sourceTree = "<group>"; };
+		88DBC11719A4EC400075E644 /* DDLElementDateTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementDateTableCell_default.swift; sourceTree = "<group>"; };
+		88DBC11819A4EC400075E644 /* DDLElementDateTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementDateTableCell-default.xib"; sourceTree = "<group>"; };
+		88DBC11B19A4EF9D0075E644 /* default-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-calendar.png"; sourceTree = "<group>"; };
+		88DBC11C19A4EF9D0075E644 /* default-calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-calendar@2x.png"; sourceTree = "<group>"; };
+		88DBC11F19A4F31A0075E644 /* DDLElementDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementDate.swift; sourceTree = "<group>"; };
+		88DBC13F19A4F85F0075E644 /* DDLBaseElementTextFieldTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLBaseElementTextFieldTableCell_default.swift; sourceTree = "<group>"; };
 		88E4604819759FE4002C26C6 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		88E4604A19759FE4002C26C6 /* ForgotPasswordWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordWidget.swift; sourceTree = "<group>"; };
 		88EAEE371993D8BF002D7C26 /* DDLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser.swift; sourceTree = "<group>"; };
@@ -248,8 +260,11 @@
 		884CE5171994F37100ADF047 /* DDLForm */ = {
 			isa = PBXGroup;
 			children = (
+				88DBC13F19A4F85F0075E644 /* DDLBaseElementTextFieldTableCell_default.swift */,
 				884CE5241994FAF500ADF047 /* DDLElementCheckboxTableCell_default.swift */,
 				884CE5201994F4ED00ADF047 /* DDLElementCheckboxTableCell-default.xib */,
+				88DBC11719A4EC400075E644 /* DDLElementDateTableCell_default.swift */,
+				88DBC11819A4EC400075E644 /* DDLElementDateTableCell-default.xib */,
 				88C16F1119A49CC8002BA31A /* DDLElementRadioTableCell_default.swift */,
 				88C16F1219A49CC8002BA31A /* DDLElementRadioTableCell-default.xib */,
 				88415D2819A273F4006F7064 /* DDLElementSelectTableCell_default.swift */,
@@ -271,6 +286,7 @@
 			children = (
 				885FD67D19968E1900F23BA1 /* DDLElement.swift */,
 				88D5376A199914BB00615515 /* DDLElementBoolean.swift */,
+				88DBC11F19A4F31A0075E644 /* DDLElementDate.swift */,
 				88D5378419991C2600615515 /* DDLElementString.swift */,
 				886C74AD19A382D800B689BA /* DDLElementStringWithOptions.swift */,
 			);
@@ -429,6 +445,8 @@
 		88999AA8198EE58300E746A6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				88DBC11B19A4EF9D0075E644 /* default-calendar.png */,
+				88DBC11C19A4EF9D0075E644 /* default-calendar@2x.png */,
 				88D537871999215500615515 /* default-field-failed.png */,
 				88D537861999215500615515 /* default-field-failed@2x.png */,
 				888D774F198FDB710052C39C /* default-field-focused.png */,
@@ -639,6 +657,8 @@
 				88415D2B19A273F4006F7064 /* DDLElementSelectTableCell-default.xib in Resources */,
 				8868AFD119656B0500FD5214 /* Main.storyboard in Resources */,
 				888D7767198FDC230052C39C /* default-preview-login.png in Resources */,
+				88DBC11D19A4EF9D0075E644 /* default-calendar.png in Resources */,
+				88DBC11A19A4EC400075E644 /* DDLElementDateTableCell-default.xib in Resources */,
 				884CE5211994F4ED00ADF047 /* DDLElementCheckboxTableCell-default.xib in Resources */,
 				88999ADD198EE62E00E746A6 /* flat7-button@2x.png in Resources */,
 				888D7775198FEACD0052C39C /* flat7-preview-signup@2x.png in Resources */,
@@ -655,6 +675,7 @@
 				888D7760198FDB710052C39C /* default-large-button.png in Resources */,
 				888D775E198FDB710052C39C /* default-large-button-selected.png in Resources */,
 				88832F9E19656B3F00E3DF9F /* liferay-context.plist in Resources */,
+				88DBC11E19A4EF9D0075E644 /* default-calendar@2x.png in Resources */,
 				88D537881999215500615515 /* default-field-failed@2x.png in Resources */,
 				88C16F1419A49CC8002BA31A /* DDLElementRadioTableCell-default.xib in Resources */,
 				888CE11819924AD4001DCA6A /* flat7-preview-forgotpassword.png in Resources */,
@@ -755,6 +776,8 @@
 				8897D9C4198A812D00D3DF51 /* ForgotPasswordWidget.swift in Sources */,
 				88EAEE3C1993D923002D7C26 /* Bool+Conversion.swift in Sources */,
 				88D5376C199914BB00615515 /* DDLElementBoolean.swift in Sources */,
+				88DBC12019A4F31A0075E644 /* DDLElementDate.swift in Sources */,
+				88DBC11919A4EC400075E644 /* DDLElementDateTableCell_default.swift in Sources */,
 				888F6204198FD3DC0082786B /* SignUpWidget.swift in Sources */,
 				88832F9919656B3F00E3DF9F /* BaseWidget.swift in Sources */,
 				88832F9819656B3F00E3DF9F /* BaseWidget+progress.swift in Sources */,
@@ -772,6 +795,7 @@
 				8897D9C3198A810F00D3DF51 /* ForgotPasswordView.swift in Sources */,
 				88832F9A19656B3F00E3DF9F /* BaseWidgetView.swift in Sources */,
 				8897D9C6198A883F00D3DF51 /* ThemeManager.swift in Sources */,
+				88DBC14019A4F85F0075E644 /* DDLBaseElementTextFieldTableCell_default.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,6 +26,7 @@ FOUNDATION_EXPORT const unsigned char liferay_mobile_widgetsVersionString[];
 
 // Default theme dependencies
 #import "DTPickerPresenter.h"
+#import "DTDatePickerPresenter.h"
 #import "TNRadioButtonGroup.h"
 
 // Liferay services

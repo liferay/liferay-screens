@@ -17,6 +17,7 @@ public enum DDLElementDataType: String {
 
 	case DDLBoolean = "boolean"
 	case DDLString = "string"
+	case DDLDate = "date"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementDataType {
@@ -36,6 +37,8 @@ public enum DDLElementDataType: String {
 			else {
 				return DDLElementString(attributes:attributes, localized:localized)
 			}
+		case .DDLDate:
+			return DDLElementDate(attributes:attributes, localized:localized)
 		default:
 			return nil
 		}
@@ -50,6 +53,7 @@ public enum DDLElementType: String {
 	case Textarea = "textarea"
 	case Select = "select"
 	case Radio = "radio"
+	case Date = "ddm-date"
 	case Unsupported = ""
 
 	public static func from(#xmlElement:SMXMLElement) -> DDLElementType {
@@ -61,15 +65,24 @@ public enum DDLElementType: String {
 	}
 
 	public static func all() -> [DDLElementType] {
-		return [Checkbox, Text, Textarea, Select, Radio]
+		return [Checkbox, Text, Textarea, Select, Radio, Date]
 	}
 
 	public func toCapitalizedName() -> String {
-		let typeName = toRaw()
+		var elementName = toRaw()
 
-		let secondCharIndex = typeName.startIndex.successor()
+		// hack for names prefixed with ddm
+		if elementName.hasPrefix("ddm-") {
+			let wholeRange = Range<String.Index>(
+					start: elementName.startIndex,
+					end: elementName.endIndex)
 
-		return typeName.substringToIndex(secondCharIndex).uppercaseString + typeName.substringFromIndex(secondCharIndex)
+			elementName = elementName.stringByReplacingOccurrencesOfString("ddm-", withString: "", options: .CaseInsensitiveSearch, range: wholeRange)
+		}
+
+		let secondCharIndex = elementName.startIndex.successor()
+
+		return elementName.substringToIndex(secondCharIndex).uppercaseString + elementName.substringFromIndex(secondCharIndex)
 	}
 
 	public func registerHeight(height:CGFloat) {
@@ -83,7 +96,6 @@ public enum DDLElementType: String {
 	}
 
 	private static var elementTypeHeight: [DDLElementType:CGFloat] = [:]
-
 
 }
 
