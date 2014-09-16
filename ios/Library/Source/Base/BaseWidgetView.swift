@@ -100,7 +100,7 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	}
 
 	public func onFinishOperation() {
-	}
+	}	
 
 	internal func customActionHandler(sender: AnyObject?) {
 		if let controlSender = sender as? UIControl {
