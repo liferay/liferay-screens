@@ -13,6 +13,7 @@
  */
 import XCTest
 
+
 class BaseWidget_theme_Tests: XCTestCase {
 
 	var loginWidget:LoginWidget?

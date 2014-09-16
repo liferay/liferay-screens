@@ -13,6 +13,7 @@
  */
 import XCTest
 
+
 class DDLElementStringWithOptions_Tests: XCTestCase {
 
 	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
@@ -298,6 +299,5 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 					"</meta-data>" +
 				"</dynamic-element> " +
 			"</dynamic-element> </root>"
-
 
 }

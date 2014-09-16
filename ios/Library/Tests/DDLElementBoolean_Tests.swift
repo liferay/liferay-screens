@@ -13,6 +13,7 @@
  */
 import XCTest
 
+
 class DDLElementBoolean_Tests: XCTestCase {
 
 	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
@@ -94,6 +95,5 @@ class DDLElementBoolean_Tests: XCTestCase {
 
 		XCTAssertFalse(booleanElement.validate())
 	}
-
 
 }

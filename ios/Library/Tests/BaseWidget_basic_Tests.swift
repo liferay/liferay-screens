@@ -13,6 +13,7 @@
  */
 import XCTest
 
+
 class BaseWidget_basic_Tests: XCTestCase {
 
 	var widget:SignUpWidget?

@@ -13,6 +13,7 @@
  */
 import XCTest
 
+
 class DDLParser_basic_Tests: XCTestCase {
 
 	override func setUp() {
@@ -52,6 +53,5 @@ class DDLParser_basic_Tests: XCTestCase {
 
 		XCTAssertNil(elements)
 	}
-
 
 }

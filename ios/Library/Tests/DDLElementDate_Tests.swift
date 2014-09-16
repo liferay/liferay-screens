@@ -13,6 +13,7 @@
  */
 import XCTest
 
+
 class DDLElementDate_Tests: XCTestCase {
 
 	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
@@ -154,7 +155,5 @@ class DDLElementDate_Tests: XCTestCase {
 						"<entry name=\"label\"><![CDATA[A Date]]></entry> " +
 					"</meta-data> " +
 			"</dynamic-element> </root>"
-
-
 
 }
