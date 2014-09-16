@@ -64,6 +64,14 @@
 		886EF30E19C31BE1005AB429 /* default-hourglass.png in Resources */ = {isa = PBXBuildFile; fileRef = 886EF30A19C31BE1005AB429 /* default-hourglass.png */; };
 		8875B023198FB173006955BA /* UIImage+Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8875B022198FB173006955BA /* UIImage+Themes.m */; };
 		8875B024198FB173006955BA /* UIImage+Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8875B022198FB173006955BA /* UIImage+Themes.m */; };
+		8876570E19C88EEF003E9478 /* AssetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876570D19C88EEF003E9478 /* AssetEntry.swift */; };
+		8876570F19C88EEF003E9478 /* AssetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876570D19C88EEF003E9478 /* AssetEntry.swift */; };
+		8876571A19C893C0003E9478 /* DDLElement+DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876571919C893C0003E9478 /* DDLElement+DataType.swift */; };
+		8876571B19C893C0003E9478 /* DDLElement+DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876571919C893C0003E9478 /* DDLElement+DataType.swift */; };
+		8876571D19C89415003E9478 /* DDLElement+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876571C19C89415003E9478 /* DDLElement+Editor.swift */; };
+		8876571E19C89415003E9478 /* DDLElement+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876571C19C89415003E9478 /* DDLElement+Editor.swift */; };
+		8876572019C8956B003E9478 /* AssetListWidget+LoadPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876571F19C8956B003E9478 /* AssetListWidget+LoadPage.swift */; };
+		8876572119C8956B003E9478 /* AssetListWidget+LoadPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876571F19C8956B003E9478 /* AssetListWidget+LoadPage.swift */; };
 		8878523D19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8878523919B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift */; };
 		8878523E19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8878523919B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift */; };
 		8878523F19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8878523A19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController-default.xib */; };
@@ -347,6 +355,10 @@
 		886EF30A19C31BE1005AB429 /* default-hourglass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-hourglass.png"; sourceTree = "<group>"; };
 		8875B021198FB173006955BA /* UIImage+Themes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Themes.h"; sourceTree = "<group>"; };
 		8875B022198FB173006955BA /* UIImage+Themes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Themes.m"; sourceTree = "<group>"; };
+		8876570D19C88EEF003E9478 /* AssetEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetEntry.swift; sourceTree = "<group>"; };
+		8876571919C893C0003E9478 /* DDLElement+DataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDLElement+DataType.swift"; sourceTree = "<group>"; };
+		8876571C19C89415003E9478 /* DDLElement+Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDLElement+Editor.swift"; sourceTree = "<group>"; };
+		8876571F19C8956B003E9478 /* AssetListWidget+LoadPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AssetListWidget+LoadPage.swift"; sourceTree = "<group>"; };
 		8878523919B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementDocumentlibraryPresenterViewController_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8878523A19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementDocumentlibraryPresenterViewController-default.xib"; sourceTree = "<group>"; };
 		8878523B19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementDocumentlibraryTableCell_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -762,8 +774,10 @@
 		88C4215419C19AE50067BB85 /* AssetList */ = {
 			isa = PBXGroup;
 			children = (
+				8876570D19C88EEF003E9478 /* AssetEntry.swift */,
 				88C4215519C19AE50067BB85 /* AssetListView.swift */,
 				88C4215619C19AE50067BB85 /* AssetListWidget.swift */,
+				8876571F19C8956B003E9478 /* AssetListWidget+LoadPage.swift */,
 				886EF30519C31BCD005AB429 /* TableView */,
 			);
 			name = AssetList;
@@ -783,6 +797,8 @@
 			isa = PBXGroup;
 			children = (
 				88D789741998ACA500171FB7 /* DDLElement.swift */,
+				8876571919C893C0003E9478 /* DDLElement+DataType.swift */,
+				8876571C19C89415003E9478 /* DDLElement+Editor.swift */,
 				88D789731998ACA500171FB7 /* DDLElementBoolean.swift */,
 				88DBC11219A4E03C0075E644 /* DDLElementDate.swift */,
 				880D63A519ADD413002907AD /* DDLElementDocument.swift */,
@@ -1173,6 +1189,7 @@
 				999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */,
 				88F648B1198D300A003A8FD9 /* LoginView.swift in Sources */,
 				88D789841998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift in Sources */,
+				8876570F19C88EEF003E9478 /* AssetEntry.swift in Sources */,
 				883CF3CE199B782D008F0EBC /* LRMobilewidgetsuserService_v62.m in Sources */,
 				880D63A719ADD413002907AD /* DDLElementDocument.swift in Sources */,
 				8878523E19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift in Sources */,
@@ -1193,7 +1210,9 @@
 				88D5376619990F0700615515 /* DDLElement_validation_Tests.swift in Sources */,
 				88F648B5198D3021003A8FD9 /* BaseWidget.swift in Sources */,
 				886EF30819C31BCD005AB429 /* AssetListTableView.swift in Sources */,
+				8876571E19C89415003E9478 /* DDLElement+Editor.swift in Sources */,
 				8803219C19BE10520058062D /* DDLFormTableView.swift in Sources */,
+				8876572119C8956B003E9478 /* AssetListWidget+LoadPage.swift in Sources */,
 				886EF30419C31BC1005AB429 /* LRMobilewidgetsassetentryService_v62.m in Sources */,
 				88D537721999194A00615515 /* DDLElementTableCell.swift in Sources */,
 				88E4F27619910E4000E69261 /* ForgotPasswordWidget.swift in Sources */,
@@ -1215,6 +1234,7 @@
 				88E4F27719912B5900E69261 /* LoginView_default.swift in Sources */,
 				88DBC11619A4E2E20075E644 /* DDLElementDate_Tests.swift in Sources */,
 				999BC69F19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
+				8876571B19C893C0003E9478 /* DDLElement+DataType.swift in Sources */,
 				888F61F4198FD3240082786B /* SignUpView.swift in Sources */,
 				888F61FB198FD3740082786B /* NSLocale+CurrentLocale.swift in Sources */,
 				888D77D719903F060052C39C /* SignUpView_default.swift in Sources */,
@@ -1239,6 +1259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				889CA4CD19655F4B00664504 /* LoginWidget.swift in Sources */,
+				8876572019C8956B003E9478 /* AssetListWidget+LoadPage.swift in Sources */,
 				8811DC4619BDF2CA008FE226 /* WebContentWidget.swift in Sources */,
 				881A6E6619C856EB002ECC8F /* SignUpView_default.swift in Sources */,
 				8878523D19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift in Sources */,
@@ -1268,6 +1289,7 @@
 				889CA4CA19655F4B00664504 /* LiferayContext.swift in Sources */,
 				888F61F7198FD3240082786B /* SignUpWidget.swift in Sources */,
 				8827E30719759F28004977A0 /* ForgotPasswordView.swift in Sources */,
+				8876570E19C88EEF003E9478 /* AssetEntry.swift in Sources */,
 				888F61F3198FD3240082786B /* SignUpView.swift in Sources */,
 				88E4F2711990FCA700E69261 /* LoginView_default.swift in Sources */,
 				886EF30119C31BC1005AB429 /* LRMobilewidgetsddlrecordService_v62.m in Sources */,
@@ -1286,11 +1308,13 @@
 				883CF3CD199B782D008F0EBC /* LRMobilewidgetsuserService_v62.m in Sources */,
 				88C4215719C19AE50067BB85 /* AssetListView.swift in Sources */,
 				8878524119B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell_default.swift in Sources */,
+				8876571D19C89415003E9478 /* DDLElement+Editor.swift in Sources */,
 				8811DC4419BDF2CA008FE226 /* WebContentView.swift in Sources */,
 				888CE13119924D74001DCA6A /* SignUpView_flat7.swift in Sources */,
 				88A91FC1199298CE009B5227 /* Bool+Conversion.swift in Sources */,
 				88DBC14219A4FDE10075E644 /* DDLBaseElementTextFieldTableCell_default.swift in Sources */,
 				888CE12D19924D74001DCA6A /* ForgotPasswordView_flat7.swift in Sources */,
+				8876571A19C893C0003E9478 /* DDLElement+DataType.swift in Sources */,
 				881A6E6519C856CA002ECC8F /* DDLFormView.swift in Sources */,
 				889CA4C719655F4B00664504 /* BaseWidget+progress.swift in Sources */,
 				999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
