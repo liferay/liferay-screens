@@ -14,17 +14,30 @@
 import Foundation
 
 
-struct LiferayContext {
+public class LiferayContext {
 
-	var server:String = "http://localhost:8080"
-	var companyId:Int = 10154
-	var groupId:Int = 10181
+	public var server:String = "http://localhost:8080"
+	public var companyId:Int = 10154
+	public var groupId:Int = 10181
 
-	var currentSession:LRSession?
+	public var currentSession:LRSession?
 
-	static var instance = LiferayContext()
+	//MARK: Singleton
 
-	init() {
+	class func instance() -> LiferayContext {
+		struct Static {
+			static var instance: LiferayContext? = nil
+			static var onceToken: dispatch_once_t = 0
+		}
+
+		dispatch_once(&Static.onceToken) {
+			Static.instance = self()
+		}
+
+		return Static.instance!
+	}
+
+	public required init() {
 		if let propertiesPath = NSBundle.mainBundle().pathForResource("liferay-context",
 				ofType:"plist") {
 			loadContextFile(propertiesPath)
@@ -45,7 +58,7 @@ struct LiferayContext {
 		}
 	}
 
-	mutating func loadContextFile(propertiesPath:String) {
+	public func loadContextFile(propertiesPath:String) {
 		let properties = NSDictionary(contentsOfFile: propertiesPath)
 
 		server = properties["server"] as String;
@@ -53,12 +66,12 @@ struct LiferayContext {
 		groupId = properties["groupId"] as Int
 	}
 
-	mutating func createSession(username:String, password:String) -> LRSession {
+	public func createSession(username:String, password:String) -> LRSession {
 		currentSession = LRSession(server:server, username:username, password:password)
 		return currentSession!
 	}
 
-	mutating func clearSession() {
+	public func clearSession() {
 		currentSession = nil
 	}
 

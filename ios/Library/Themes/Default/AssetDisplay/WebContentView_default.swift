@@ -20,7 +20,7 @@ public class WebContentView_default: WebContentView {
 	private var webView:WKWebView?
 
 	override public func setHtmlContent(html:String) {
-		webView!.loadHTMLString(html, baseURL: NSURL(string:LiferayContext.instance.server))
+		webView!.loadHTMLString(html, baseURL: NSURL(string:LiferayContext.instance().server))
 	}
 
 	override internal func onPreCreate() {

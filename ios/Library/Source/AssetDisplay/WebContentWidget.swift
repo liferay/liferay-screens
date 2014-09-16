@@ -30,7 +30,7 @@ import UIKit
 	@IBOutlet var delegate: WebContentWidgetDelegate?
 
 	public func loadWebContent() -> Bool {
-		if LiferayContext.instance.currentSession == nil {
+		if LiferayContext.instance().currentSession == nil {
 			println("ERROR: No session initialized. Can't load the web content without session")
 			return false
 		}
@@ -42,10 +42,10 @@ import UIKit
 
 		startOperationWithMessage("Loading content...", details:"Wait few seconds...")
 
-		let session = LRSession(session: LiferayContext.instance.currentSession)
+		let session = LRSession(session: LiferayContext.instance().currentSession)
 		session.callback = self
 
-		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber
+		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance().groupId) as NSNumber
 
 		let service = LRJournalArticleService_v62(session: session)
 

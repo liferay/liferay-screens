@@ -53,10 +53,10 @@ import UIKit
 		delegate?.onSignUpResponse?(result)
 
 		if autologin && creatingPassword != nil {
-			LiferayContext.instance.clearSession()
+			LiferayContext.instance().clearSession()
 			LRSession.removeStoredCredential()
 
-			LiferayContext.instance.createSession(creatingUsername!, password: creatingPassword!)
+			LiferayContext.instance().createSession(creatingUsername!, password: creatingPassword!)
 		}
 
 		finishOperationWithMessage("Sign up completed")
@@ -80,7 +80,7 @@ import UIKit
 
 		startOperationWithMessage("Sending sign up...", details:"Wait few seconds...")
 
-		let session = LiferayContext.instance.createSession(anonymousApiUserName!,
+		let session = LiferayContext.instance().createSession(anonymousApiUserName!,
 				password: anonymousApiPassword!)
 		session.callback = self
 
@@ -114,7 +114,7 @@ import UIKit
 
 		let emptyDict = []
 
-		service.addUserWithCompanyId((LiferayContext.instance.companyId as NSNumber).longLongValue,
+		service.addUserWithCompanyId((LiferayContext.instance().companyId as NSNumber).longLongValue,
 			autoPassword: autoPassword, password1: password, password2: password,
 			autoScreenName: autoScreenName, screenName: screenName,
 			emailAddress: signUpView().getEmailAddress(),
@@ -125,7 +125,7 @@ import UIKit
 			male: true,
 			birthdayMonth: 1, birthdayDay: 1, birthdayYear: 1970,
 			jobTitle: signUpView().getJobTitle(),
-			groupIds: [LiferayContext.instance.groupId],
+			groupIds: [LiferayContext.instance().groupId],
 			organizationIds: emptyDict,
 			roleIds: emptyDict,
 			userGroupIds: emptyDict,
