@@ -21,7 +21,7 @@ public class ForgotPasswordView_default: ForgotPasswordView {
 	@IBOutlet var requestPasswordButton: UIButton?
 
 
-	// MARK: Overriden accessors
+	//MARK: Overriden accessors
 
 	override public func getUserName() -> String {
 		return userNameField!.text
@@ -36,7 +36,7 @@ public class ForgotPasswordView_default: ForgotPasswordView {
 	}
 
 
-	// MARK: UITextFieldDelegate
+	//MARK: UITextFieldDelegate
 
 	internal func textFieldDidBeginEditing(textField: UITextField!) {
 		userNameField!.highlighted = (textField == userNameField)

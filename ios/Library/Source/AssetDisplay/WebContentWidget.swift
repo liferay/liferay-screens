@@ -63,7 +63,7 @@ import UIKit
 	}
 
 
-	// MARK: BaseWidget METHODS
+	//MARK: BaseWidget METHODS
 
 	override internal func onServerError(error: NSError) {
 		delegate?.onWebContentError?(error)

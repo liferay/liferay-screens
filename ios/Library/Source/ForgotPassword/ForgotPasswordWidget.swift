@@ -47,7 +47,7 @@ import UIKit
 	}
 
 
-	// MARK: BaseWidget METHODS
+	//MARK: BaseWidget METHODS
 
 	override internal func onCreated() {
 		setAuthType(AuthType.Email.toRaw())

@@ -219,7 +219,7 @@ public enum DDLElementEditor: String {
 }
 
 
-// MARK Equatable
+//MARK Equatable
 
 public func ==(left: DDLElement, right: DDLElement) -> Bool {
 	return left.name == right.name

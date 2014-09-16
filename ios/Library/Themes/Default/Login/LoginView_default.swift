@@ -76,7 +76,7 @@ public class LoginView_default: LoginView {
 	}
 
 
-	// MARK: UITextFieldDelegate
+	//MARK: UITextFieldDelegate
 
 	internal func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
 		if userNameBackground != nil {

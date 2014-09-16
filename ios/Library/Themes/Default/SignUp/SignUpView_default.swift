@@ -27,7 +27,7 @@ public class SignUpView_default: SignUpView {
 	@IBOutlet var lastNameBackground: UIImageView?
 
 
-	// MARK: Overriden setters
+	//MARK: Overriden setters
 
 	override public func getEmailAddress() -> String {
 		return emailAddressField!.text
@@ -46,7 +46,7 @@ public class SignUpView_default: SignUpView {
 	}
 
 
-	// MARK: Overriden template methods
+	//MARK: Overriden template methods
 
 	override internal func onStartOperation() {
 		signUpButton!.enabled = false
@@ -57,7 +57,7 @@ public class SignUpView_default: SignUpView {
 	}
 
 
-	// MARK: UITextFieldDelegate
+	//MARK: UITextFieldDelegate
 
 	internal func textFieldDidBeginEditing(textField: UITextField!) {
 		emailAddressBackground!.highlighted = (textField == emailAddressField)

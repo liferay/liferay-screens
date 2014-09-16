@@ -60,8 +60,7 @@ public class DDLElementTableCell: UITableViewCell {
 	internal func changeCellHeight(height:CGFloat) {
 		element?.currentHeight = height
 		
-		// FIXME
-		// Hack to fire the repaint of the cells
+		//FIXME Hack to fire the repaint of the cells
 		tableView!.beginUpdates()
 		tableView!.endUpdates()
 	}

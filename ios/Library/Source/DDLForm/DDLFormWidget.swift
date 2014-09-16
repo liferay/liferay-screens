@@ -54,7 +54,7 @@ import UIKit
 	private var currentOperation:FormOperation = .Idle
 
 
-	// MARK: BaseWidget METHODS
+	//MARK: BaseWidget METHODS
 
 	override public func becomeFirstResponder() -> Bool {
 		return formView().becomeFirstResponder()

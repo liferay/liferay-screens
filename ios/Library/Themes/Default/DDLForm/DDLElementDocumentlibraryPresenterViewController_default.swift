@@ -36,7 +36,7 @@ public class DDLElementDocumentlibraryPresenterViewController_default: UIViewCon
 	}
 
 
-	// MARK: Actions
+	//MARK: Actions
 
 	@IBAction func cancelButtonAction(sender: AnyObject) {
 		selectedDocumentClosure?(nil, nil)
@@ -68,7 +68,7 @@ public class DDLElementDocumentlibraryPresenterViewController_default: UIViewCon
 	}
 
 
-	// MARK: UIImagePickerControllerDelegate
+	//MARK: UIImagePickerControllerDelegate
 
     public func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
 

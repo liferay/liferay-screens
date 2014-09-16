@@ -149,7 +149,7 @@ import Foundation
 }
 
 
-// MARK Equatable
+//MARK Equatable
 
 public func ==(left: DDLElementDocument.UploadStatus, right: DDLElementDocument.UploadStatus) -> Bool {
 	return left.hashValue == right.hashValue
