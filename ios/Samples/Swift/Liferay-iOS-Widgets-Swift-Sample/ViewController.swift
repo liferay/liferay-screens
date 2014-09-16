@@ -38,27 +38,27 @@ public class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswo
     // LoginWidgetDelegate METHODS
 
     
-	internal func onCredentialsLoaded(session:LRSession) {
+	public func onCredentialsLoaded(session:LRSession) {
 		print("Saved loaded for server " + session.server)
  	}
 
-	internal func onCredentialsSaved(session:LRSession) {
+	public func onCredentialsSaved(session:LRSession) {
 		print("Saved credentials for server " + session.server)
  	}
  
- 	internal func onLoginError(error: NSError)  {
+ 	public func onLoginError(error: NSError)  {
  		println("Error -> " + error.description)
 	}
 
-	internal func onLoginResponse(attributes: [String:AnyObject])  {
+	public func onLoginResponse(attributes: [String:AnyObject])  {
 		NSLog("Login %@", attributes)
 	}
 
-	internal func onForgotPasswordError(error: NSError)  {
+	public func onForgotPasswordError(error: NSError)  {
 		println("Error -> " + error.description)
 	}
 
-	internal func onForgotPasswordResponse(newPasswordSent:Bool)  {
+	public func onForgotPasswordResponse(newPasswordSent:Bool)  {
 		let emailContent = newPasswordSent ? "new password" : "reset password link"
 
 		println("Email with \(emailContent) was sent")

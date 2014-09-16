@@ -16,9 +16,9 @@ import UIKit
 
 public class DDLElementRadioTableCell_default: DDLElementTableCell {
 
-	@IBOutlet var label: UILabel?
-	@IBOutlet var radioReferenceLabel: UILabel?
-	@IBOutlet var separator: UIView?
+	@IBOutlet private var label: UILabel?
+	@IBOutlet private var radioReferenceLabel: UILabel?
+	@IBOutlet private var separator: UIView?
 
 	private let radioButtonColor =
 			UIColor(red: 0.0, green: 184.0/255.0, blue: 224.0/255.0, alpha: 0.87)

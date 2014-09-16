@@ -16,11 +16,11 @@ import UIKit
 
 public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextViewDelegate {
 
-	@IBOutlet var textView: UITextView?
-	@IBOutlet var placeholder: UILabel?
-	@IBOutlet var textViewBackground: UIImageView?
-	@IBOutlet var label: UILabel?
-	@IBOutlet var separator: UIView?
+	@IBOutlet private var textView: UITextView?
+	@IBOutlet private var placeholder: UILabel?
+	@IBOutlet private var textViewBackground: UIImageView?
+	@IBOutlet private var label: UILabel?
+	@IBOutlet private var separator: UIView?
 
 	private var originalTextViewRect:CGRect = CGRectZero
 	private var originalBackgroundRect:CGRect = CGRectZero

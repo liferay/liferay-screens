@@ -16,7 +16,7 @@ import UIKit
 
 public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDelegate {
 
-	@IBOutlet var tableView: UITableView?
+	@IBOutlet private var tableView: UITableView?
 
 	internal var firstCellResponder:UIResponder?
 

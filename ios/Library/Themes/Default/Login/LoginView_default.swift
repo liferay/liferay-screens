@@ -16,13 +16,13 @@ import UIKit
 
 public class LoginView_default: LoginView {
 
-	@IBOutlet var userNameIcon: UIImageView?
-	@IBOutlet var userNameField: UITextField?
-	@IBOutlet var passwordField: UITextField?
-	@IBOutlet var rememberSwitch: UISwitch?
-	@IBOutlet var loginButton: UIButton?
-	@IBOutlet var userNameBackground: UIImageView?
-	@IBOutlet var passwordBackground: UIImageView?
+	@IBOutlet internal var userNameIcon: UIImageView?
+	@IBOutlet internal var userNameField: UITextField?
+	@IBOutlet internal var passwordField: UITextField?
+	@IBOutlet internal var rememberSwitch: UISwitch?
+	@IBOutlet internal var loginButton: UIButton?
+	@IBOutlet internal var userNameBackground: UIImageView?
+	@IBOutlet internal var passwordBackground: UIImageView?
 
 
 	//MARK: Static methods

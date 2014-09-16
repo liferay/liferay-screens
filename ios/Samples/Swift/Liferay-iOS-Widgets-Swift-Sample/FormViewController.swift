@@ -17,16 +17,16 @@ public class FormViewController: UIViewController, DDLFormWidgetDelegate {
 		widget!.delegate = self
 	}
 
-	internal func onFormLoaded(elements: [DDLElement]) {
+	public func onFormLoaded(elements: [DDLElement]) {
 		widget!.becomeFirstResponder()
 	}
 
-	internal func onFormLoadError(error: NSError) {
+	public func onFormLoadError(error: NSError) {
 		println("Error with form -> " + error.description)
 	}
 
-	@IBAction func buttonClick(sender: AnyObject) {
-		LiferayContext.instance.createSession("jose.navarro@liferay.com", password: "jm")
+	@IBAction internal func buttonClick(sender: AnyObject) {
+		LiferayContext.instance().createSession("jose.navarro@liferay.com", password: "jm")
 
 		if widget!.recordId == 0 {
 			widget!.loadForm()

@@ -16,15 +16,15 @@ import UIKit
 
 public class SignUpView_default: SignUpView {
 
-	@IBOutlet var emailAddressField: UITextField?
-	@IBOutlet var passwordField: UITextField?
-	@IBOutlet var firstNameField: UITextField?
-	@IBOutlet var lastNameField: UITextField?
-	@IBOutlet var signUpButton: UIButton?
-	@IBOutlet var emailAddressBackground: UIImageView?
-	@IBOutlet var passwordBackground: UIImageView?
-	@IBOutlet var firstNameBackground: UIImageView?
-	@IBOutlet var lastNameBackground: UIImageView?
+	@IBOutlet internal var emailAddressField: UITextField?
+	@IBOutlet internal var passwordField: UITextField?
+	@IBOutlet internal var firstNameField: UITextField?
+	@IBOutlet internal var lastNameField: UITextField?
+	@IBOutlet internal var signUpButton: UIButton?
+	@IBOutlet internal var emailAddressBackground: UIImageView?
+	@IBOutlet internal var passwordBackground: UIImageView?
+	@IBOutlet internal var firstNameBackground: UIImageView?
+	@IBOutlet internal var lastNameBackground: UIImageView?
 
 
 	//MARK: Overriden setters

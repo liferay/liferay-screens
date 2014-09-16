@@ -16,9 +16,9 @@ import UIKit
 
 public class ForgotPasswordView_default: ForgotPasswordView {
 
-	@IBOutlet var userNameIcon: UIImageView?
-	@IBOutlet var userNameField: UITextField?
-	@IBOutlet var requestPasswordButton: UIButton?
+	@IBOutlet internal var userNameIcon: UIImageView?
+	@IBOutlet internal var userNameField: UITextField?
+	@IBOutlet internal var requestPasswordButton: UIButton?
 
 
 	//MARK: Overriden accessors

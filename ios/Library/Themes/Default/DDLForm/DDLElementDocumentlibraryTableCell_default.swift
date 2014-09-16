@@ -16,16 +16,16 @@ import UIKit
 
 public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextFieldTableCell_default {
 
-	@IBOutlet var chooseButton: UIButton? {
+	@IBOutlet private var chooseButton: UIButton? {
 		didSet {
 			chooseButton!.layer.masksToBounds = true
 	        chooseButton!.layer.cornerRadius = 4.0
 		}
 	}
 
-	@IBOutlet var progress:MDRadialProgressView?
+	@IBOutlet private var progress:MDRadialProgressView?
 
-	@IBAction func chooseButtonAction(sender: AnyObject) {
+	@IBAction private func chooseButtonAction(sender: AnyObject) {
 		textField!.becomeFirstResponder()
 	}
 

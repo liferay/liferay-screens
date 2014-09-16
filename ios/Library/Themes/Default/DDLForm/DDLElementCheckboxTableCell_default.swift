@@ -16,10 +16,10 @@ import UIKit
 
 public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 
-	@IBOutlet var switchView: UISwitch?
-	@IBOutlet var label: UILabel?
+	@IBOutlet private var switchView: UISwitch?
+	@IBOutlet private var label: UILabel?
 
-	@IBAction func switchValueChanged(sender: AnyObject) {
+	@IBAction private func switchValueChanged(sender: AnyObject) {
 		element?.currentValue = switchView?.on
 
 		if element!.lastValidationResult != nil && !element!.lastValidationResult! {

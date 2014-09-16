@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc protocol SignUpWidgetDelegate {
+@objc public protocol SignUpWidgetDelegate {
 
 	optional func onSignUpResponse(attributes: [String:AnyObject])
 	optional func onSignUpError(error: NSError)
@@ -29,7 +29,7 @@ import UIKit
 
 	@IBInspectable var autologin: Bool = true
 
-	@IBOutlet var delegate: SignUpWidgetDelegate?
+	@IBOutlet public var delegate: SignUpWidgetDelegate?
 
 	public var authType: AuthType = AuthType.Email
 

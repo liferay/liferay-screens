@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc protocol LoginWidgetDelegate {
+@objc public protocol LoginWidgetDelegate {
 
 	optional func onLoginResponse(attributes: [String:AnyObject])
 	optional func onLoginError(error: NSError)
@@ -27,7 +27,7 @@ import UIKit
 
 public class LoginWidget: BaseWidget {
 
-	@IBOutlet var delegate: LoginWidgetDelegate?
+	@IBOutlet public var delegate: LoginWidgetDelegate?
 
 	private let supportedAuthClosures = [
 		AuthType.Email.toRaw(): authWithEmail,

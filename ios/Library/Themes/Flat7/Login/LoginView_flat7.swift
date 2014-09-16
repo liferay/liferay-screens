@@ -16,10 +16,10 @@ import UIKit
 
 public class LoginView_flat7: LoginView_default {
 
-	@IBOutlet var titleLabel: UILabel?
-	@IBOutlet var subtitleLabel: UILabel?
-	@IBOutlet var userNamePlaceholder: UILabel?
-	@IBOutlet var passwordPlaceholder: UILabel?
+	@IBOutlet private var titleLabel: UILabel?
+	@IBOutlet private var subtitleLabel: UILabel?
+	@IBOutlet private var userNamePlaceholder: UILabel?
+	@IBOutlet private var passwordPlaceholder: UILabel?
 
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)

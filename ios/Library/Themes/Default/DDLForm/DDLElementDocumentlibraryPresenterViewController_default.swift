@@ -39,11 +39,11 @@ public class DDLElementDocumentlibraryPresenterViewController_default:
 
 	//MARK: Actions
 
-	@IBAction func cancelButtonAction(sender: AnyObject) {
+	@IBAction private func cancelButtonAction(sender: AnyObject) {
 		selectedDocumentClosure?(nil, nil)
 	}
 
-	@IBAction func takePhotoAction(sender: AnyObject) {
+	@IBAction private func takePhotoAction(sender: AnyObject) {
 		cancelButtonAction(sender)
 
 		imagePicker.sourceType = .Camera
@@ -51,7 +51,7 @@ public class DDLElementDocumentlibraryPresenterViewController_default:
 		presentViewController(imagePicker, animated: true) {}
 	}
 
-	@IBAction func selectPhotosAction(sender: AnyObject) {
+	@IBAction private func selectPhotosAction(sender: AnyObject) {
 		cancelButtonAction(sender)
 
 		imagePicker.sourceType = .SavedPhotosAlbum
@@ -59,7 +59,7 @@ public class DDLElementDocumentlibraryPresenterViewController_default:
 		presentViewController(imagePicker, animated: true) {}
 	}
 
-	@IBAction func selectVideosAction(sender: AnyObject) {
+	@IBAction private func selectVideosAction(sender: AnyObject) {
 		cancelButtonAction(sender)
 
 		imagePicker.sourceType = .SavedPhotosAlbum

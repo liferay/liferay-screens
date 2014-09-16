@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc protocol WebContentWidgetDelegate {
+@objc public protocol WebContentWidgetDelegate {
 
 	optional func onWebContentResponse(html:String)
 	optional func onWebContentError(error: NSError)
@@ -27,7 +27,7 @@ import UIKit
 	@IBInspectable var groupId: Int = 0
 	@IBInspectable var articleId: String = ""
 
-	@IBOutlet var delegate: WebContentWidgetDelegate?
+	@IBOutlet public var delegate: WebContentWidgetDelegate?
 
 	public func loadWebContent() -> Bool {
 		if LiferayContext.instance().currentSession == nil {

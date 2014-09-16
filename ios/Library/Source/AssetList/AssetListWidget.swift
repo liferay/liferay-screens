@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc protocol AssetListWidgetDelegate {
+@objc public protocol AssetListWidgetDelegate {
 
 	optional func onAssetListResponse(entries:[AssetEntry])
 	optional func onAssetListError(error: NSError)
@@ -82,7 +82,7 @@ import UIKit
 	@IBInspectable var firstPageSize = 5
 	@IBInspectable var pageSize = 2
 
-	@IBOutlet var delegate: AssetListWidgetDelegate?
+	@IBOutlet public var delegate: AssetListWidgetDelegate?
 
 	private var loadPageOperations: [Int:LoadPageOperation] = [:]
 

@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc protocol DDLFormWidgetDelegate {
+@objc public protocol DDLFormWidgetDelegate {
 
 	optional func onFormLoaded(elements: [DDLElement])
 	optional func onFormLoadError(error: NSError)
@@ -49,7 +49,7 @@ import UIKit
 	@IBInspectable var autoscrollOnValidation:Bool = true
 	@IBInspectable var showSubmitButton:Bool = true
 
-	@IBOutlet var delegate: DDLFormWidgetDelegate?
+	@IBOutlet public var delegate: DDLFormWidgetDelegate?
 
 
 	private enum FormOperation {

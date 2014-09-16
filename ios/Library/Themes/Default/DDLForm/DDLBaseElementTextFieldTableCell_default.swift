@@ -16,9 +16,9 @@ import UIKit
 
 public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITextFieldDelegate {
 
-	@IBOutlet var textField: UITextField?
-	@IBOutlet var textFieldBackground: UIImageView?
-	@IBOutlet var label: UILabel?
+	@IBOutlet internal var textField: UITextField?
+	@IBOutlet private var textFieldBackground: UIImageView?
+	@IBOutlet private var label: UILabel?
 
 	internal class var heightWithLabel:CGFloat {
 		return 81.0

@@ -16,9 +16,9 @@ import UIKit
 
 public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 
-	@IBOutlet var titleLabel: UILabel?
-	@IBOutlet var subtitleLabel: UILabel?
-	@IBOutlet var userNamePlaceholder: UILabel?
+	@IBOutlet private var titleLabel: UILabel?
+	@IBOutlet private var subtitleLabel: UILabel?
+	@IBOutlet private var userNamePlaceholder: UILabel?
 
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)

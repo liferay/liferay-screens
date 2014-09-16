@@ -18,11 +18,11 @@ public class SignUpViewController: UIViewController, SignUpWidgetDelegate {
 		widget!.becomeFirstResponder()
 	}
 
-	internal func onSignUpError(error: NSError)  {
+	public func onSignUpError(error: NSError)  {
 		println("Error signing up -> " + error.description)
 	}
 
-	internal func onSignUpResponse(attributes: NSDictionary)  {
+	public func onSignUpResponse(attributes: NSDictionary)  {
 		println("Signed up -> " + attributes.description)
 	}
 

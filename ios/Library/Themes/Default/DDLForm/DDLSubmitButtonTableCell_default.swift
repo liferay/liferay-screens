@@ -20,7 +20,7 @@ public class DDLSubmitButtonTableCell_default: DDLElementTableCell {
 		return false
 	}
 
-	@IBAction func submitButtonAction(sender: AnyObject) {
+	@IBAction private func submitButtonAction(sender: AnyObject) {
 		formView!.customActionHandler(sender as? UIControl)
 	}
 

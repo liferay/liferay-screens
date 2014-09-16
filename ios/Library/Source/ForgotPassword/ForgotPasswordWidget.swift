@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc protocol ForgotPasswordWidgetDelegate {
+@objc public protocol ForgotPasswordWidgetDelegate {
 
 	optional func onForgotPasswordResponse(newPasswordSent:Bool)
 	optional func onForgotPasswordError(error: NSError)
@@ -27,7 +27,7 @@ import UIKit
 	@IBInspectable var anonymousApiUserName: String?
 	@IBInspectable var anonymousApiPassword: String?
 
-	@IBOutlet var delegate: ForgotPasswordWidgetDelegate?
+	@IBOutlet public var delegate: ForgotPasswordWidgetDelegate?
 
 	private let supportedResetClosures = [
 		AuthType.Email.toRaw(): resetPasswordWithEmail,

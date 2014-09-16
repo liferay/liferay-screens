@@ -16,13 +16,13 @@ import UIKit
 
 public class SignUpView_flat7: SignUpView_default {
 
-	@IBOutlet var titleLabel: UILabel?
-	@IBOutlet var subtitleLabel: UILabel?
+	@IBOutlet private var titleLabel: UILabel?
+	@IBOutlet private var subtitleLabel: UILabel?
 
-	@IBOutlet var firstNamePlaceholder: UILabel?
-	@IBOutlet var lastNamePlaceholder: UILabel?
-	@IBOutlet var emailAddressPlaceholder: UILabel?
-	@IBOutlet var passwordPlaceholder: UILabel?
+	@IBOutlet private var firstNamePlaceholder: UILabel?
+	@IBOutlet private var lastNamePlaceholder: UILabel?
+	@IBOutlet private var emailAddressPlaceholder: UILabel?
+	@IBOutlet private var passwordPlaceholder: UILabel?
 
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
