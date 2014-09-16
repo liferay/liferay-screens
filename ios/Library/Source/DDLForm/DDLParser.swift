@@ -165,8 +165,8 @@ public class DDLParser {
 		if resultElement == nil {
 			// Pre-final fallback (a3, b2): find any metadata starting with language
 
-			let foundMetadataElements =
-				metadataElements!.filter({ (metadataElement:SMXMLElement) -> Bool in
+			let foundMetadataElements = metadataElements!.filter(
+				{ (metadataElement:SMXMLElement) -> Bool in
 					if let metadataLocale = metadataElement.attributes["locale"]?.description {
 						return metadataLocale.hasPrefix(currentLanguageCode + "_")
 					}
@@ -175,7 +175,6 @@ public class DDLParser {
 				})
 
 			resultElement = foundMetadataElements.first
-
 		}
 
 		if resultElement == nil {
