@@ -82,9 +82,7 @@ extension DDLElement {
 		}
 
 		public var registeredHeight: CGFloat {
-			get {
-				return Editor.elementEditorHeight[self] ?? 0
-			}
+			return Editor.elementEditorHeight[self] ?? 0
 		}
 
 		private static var elementEditorHeight: [Editor:CGFloat] = [:]

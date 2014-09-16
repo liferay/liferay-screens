@@ -31,17 +31,15 @@ public class DDLStringOption {
 public class DDLElementStringWithOptions : DDLElement {
 
 	public var currentOptionLabel:String {
-		get {
-			var result = ""
+		var result = ""
 
-			if let currentOptions = currentValue as? [DDLStringOption] {
-				if let firstOption = currentOptions.first {
-					result = firstOption.label
-				}
+		if let currentOptions = currentValue as? [DDLStringOption] {
+			if let firstOption = currentOptions.first {
+				result = firstOption.label
 			}
-
-			return result
 		}
+
+		return result
 	}
 
 	//FIXME Multiple selection not supported yet

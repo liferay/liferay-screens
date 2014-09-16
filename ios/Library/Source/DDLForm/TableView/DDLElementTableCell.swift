@@ -33,22 +33,20 @@ public class DDLElementTableCell: UITableViewCell {
 	}
 
 	public var isLastCell:Bool {
-		get {
-			var result = false
+		var result = false
 
-			if let indexPathValue = indexPath {
-				if let rowCount = tableView?.numberOfRowsInSection(indexPathValue.section) {
-					if formView!.showSubmitButton {
-						result = (indexPathValue.row == rowCount - 2)
-					}
-					else {
-						result = (indexPathValue.row == rowCount - 1)
-					}
+		if let indexPathValue = indexPath {
+			if let rowCount = tableView?.numberOfRowsInSection(indexPathValue.section) {
+				if formView!.showSubmitButton {
+					result = (indexPathValue.row == rowCount - 2)
+				}
+				else {
+					result = (indexPathValue.row == rowCount - 1)
 				}
 			}
-
-			return result
 		}
+
+		return result
 	}
 
 	internal func onChangedElement() {

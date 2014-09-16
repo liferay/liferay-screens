@@ -23,9 +23,7 @@ import Foundation
 		case Pending
 
 		public var hashValue: Int {
-			get {
-			    return toInt()
-			}
+		    return toInt()
 		}
 
 		private func toInt() -> Int {

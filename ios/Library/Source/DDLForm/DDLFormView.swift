@@ -23,23 +23,21 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 	}
 
 	public var values: [String:AnyObject] {
-		get {
-			var result:[String:AnyObject] = [:]
+		var result:[String:AnyObject] = [:]
 
-			for element in rows {
-				if let value = element.currentStringValue {
-					//FIXME - LPS-49460
-					// Server rejects the request if the value is empty string.
-					// This way we workaround the problem but a field can't be
-					// emptied when you're editing an existing row.
-					if value != "" {
-						result[element.name] = value
-					}
+		for element in rows {
+			if let value = element.currentStringValue {
+				//FIXME - LPS-49460
+				// Server rejects the request if the value is empty string.
+				// This way we workaround the problem but a field can't be
+				// emptied when you're editing an existing row.
+				if value != "" {
+					result[element.name] = value
 				}
 			}
-
-			return result
 		}
+
+		return result
 	}
 
 	public var showSubmitButton: Bool = true
