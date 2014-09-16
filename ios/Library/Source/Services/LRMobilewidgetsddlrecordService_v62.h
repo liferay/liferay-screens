@@ -17,8 +17,8 @@
 /**
  * @author Bruno Farache
  */
-@interface LRMobilewidgetsddlService_v62 : LRBaseService
+@interface LRMobilewidgetsddlrecordService_v62 : LRBaseService
 
-- (NSDictionary *)getDdlRecordValuesWithRecordId:(long long)recordId locale:(NSString *)locale error:(NSError **)error;
+- (NSDictionary *)getDdlRecordValuesWithDdlRecordId:(long long)ddlRecordId locale:(NSString *)locale error:(NSError **)error;
 
 @end
