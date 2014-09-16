@@ -142,7 +142,11 @@ import QuartzCore
 
 		if _runningOnInterfaceBuilder {
 			if let currentPreviewImageValue = _currentPreviewImage {
-				let imageRect = CGRectMake(0, 0, currentPreviewImageValue.size.width, currentPreviewImageValue.size.height)
+				let imageRect = CGRectMake(
+						(frame.size.width - currentPreviewImageValue.size.width)/2,
+						(frame.size.height - currentPreviewImageValue.size.height)/2,
+						currentPreviewImageValue.size.width,
+						currentPreviewImageValue.size.height)
 
 				_previewLayer.frame = imageRect
 				_previewLayer.contents = currentPreviewImageValue.CGImage
@@ -195,7 +199,7 @@ import QuartzCore
 			let selectedSignatureImage = Theme!
 			for themeName in ThemeManager.instance().installedThemes() {
 				if themeName != "default" {
-					let installedSignatureImage = signatureImageForTheme(themeName)
+					let installedSignatureImage = UIImage(contentsOfFile: signatureImagePathForTheme(themeName)!)
 
 					if installedSignatureImage.isBinaryEquals(selectedSignatureImage) {
 						result = themeName
@@ -221,27 +225,28 @@ import QuartzCore
 	}
 
 	internal func previewImageForTheme(themeName:String) -> UIImage {
-		return loadImageFromIB(previewImageNameForTheme(themeName))
+		var result:UIImage?
+
+		if let previewImagePath = previewImagePathForTheme(themeName) {
+			result = UIImage(contentsOfFile: previewImagePath)
+		}
+		else if let widgetView = createWidgetViewFromNib() {
+			widgetView.frame = bounds
+
+			result = previewImageFromView(widgetView)
+		}
+
+		return result!
 	}
 
-	internal func previewImageNameForTheme(themeName:String) -> String {
-		return "\(themeName)-preview-\(widgetName().lowercaseString)"
+	internal func previewImagePathForTheme(themeName:String) -> String? {
+		let imageName = "\(themeName)-preview-\(widgetName().lowercaseString)"
+
+		return NSBundle(forClass:self.dynamicType).pathForResource(imageName, ofType: "png")
 	}
 
-	internal func signatureImageForTheme(themeName:String) -> UIImage {
-		return loadImageFromIB(signatureImageNameForTheme(themeName))
-	}
-
-	internal func signatureImageNameForTheme(themeName:String) -> String {
-		return "theme-\(themeName)"
-	}
-
-	internal func loadImageFromIB(imageName:String) -> UIImage {
-		let bundle = NSBundle(forClass:self.dynamicType)
-
-		let fileName = bundle.pathForResource(imageName, ofType: "png")
-
-		return UIImage(contentsOfFile: fileName!)
+	internal func signatureImagePathForTheme(themeName:String) -> String? {
+		return NSBundle(forClass:self.dynamicType).pathForResource("theme-\(themeName)", ofType: "png")
 	}
 
 	internal func startOperationWithMessage(message:String, details:String? = nil) {
@@ -268,6 +273,17 @@ import QuartzCore
 		widgetView?.onFinishOperation()
 	}
 
+	internal func previewImageFromView(view:UIView) -> UIImage {
+		UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
+
+		view.layer.renderInContext(UIGraphicsGetCurrentContext())
+		let previewImage = UIGraphicsGetImageFromCurrentImageContext()
+
+		UIGraphicsEndImageContext()
+
+		return previewImage
+	}
+
 	private func createWidgetViewFromNib() -> BaseWidgetView? {
 		let viewName = widgetName() + "View"
 
@@ -290,8 +306,6 @@ import QuartzCore
 		assert(views.count > 0, "Xib seems to be malformed. There're no views inside it");
 
 		let foundView = (views[0] as BaseWidgetView)
-
-		//??		foundView.backgroundColor = UIColor.clearColor()
 
 		return foundView
 	}
