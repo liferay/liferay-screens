@@ -87,6 +87,7 @@ import QuartzCore
 	internal func onCustomAction(actionName:String?, sender:AnyObject?) {
 	}
 
+
 	//MARK: Operations template methods
 
 	internal func onStartOperation() {
@@ -175,6 +176,7 @@ import QuartzCore
 			onServerResult(["result": result])
 		}
 	}
+
 
 	//MARK: Internal
 

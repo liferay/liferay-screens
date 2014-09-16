@@ -26,6 +26,7 @@ public class SignUpView_default: SignUpView {
 	@IBOutlet var firstNameBackground: UIImageView?
 	@IBOutlet var lastNameBackground: UIImageView?
 
+
 	// MARK: Overriden setters
 
 	override public func getEmailAddress() -> String {
@@ -44,6 +45,7 @@ public class SignUpView_default: SignUpView {
 		return lastNameField!.text
 	}
 
+
 	// MARK: Overriden template methods
 
 	override internal func onStartOperation() {
@@ -53,6 +55,7 @@ public class SignUpView_default: SignUpView {
 	override internal func onFinishOperation() {
 		signUpButton!.enabled = true
 	}
+
 
 	// MARK: UITextFieldDelegate
 

@@ -91,6 +91,7 @@ public class LoginWidget: BaseWidget {
 		finishOperationWithMessage("Sign in completed")
 	}
 
+
 	//MARK: PRIVATE METHDOS
 
 	private func loginView() -> LoginView {

@@ -20,6 +20,7 @@ public class ForgotPasswordView_default: ForgotPasswordView {
 	@IBOutlet var userNameField: UITextField?
 	@IBOutlet var requestPasswordButton: UIButton?
 
+
 	// MARK: Overriden accessors
 
 	override public func getUserName() -> String {
@@ -33,6 +34,7 @@ public class ForgotPasswordView_default: ForgotPasswordView {
 	override public func setAuthType(authTypeLabel: String) {
 		LoginView_default.setStylesForAuthType(authTypeLabel, userNameField: userNameField, userNameIcon: userNameIcon)
 	}
+
 
 	// MARK: UITextFieldDelegate
 

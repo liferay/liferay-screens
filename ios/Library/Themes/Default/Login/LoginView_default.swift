@@ -24,6 +24,7 @@ public class LoginView_default: LoginView {
 	@IBOutlet var userNameBackground: UIImageView?
 	@IBOutlet var passwordBackground: UIImageView?
 
+
 	//MARK: Static methods
 
 	public class func setStylesForAuthType(authTypeLabel:String, userNameField:UITextField!, userNameIcon:UIImageView!) {
@@ -38,6 +39,7 @@ public class LoginView_default: LoginView {
 			println("ERROR: Wrong auth type description \(authTypeLabel)")
 		}
 	}
+
 
 	//MARK: LoginView
 
@@ -72,6 +74,7 @@ public class LoginView_default: LoginView {
 	override public func setPassword(password: String) {
 		passwordField!.text = password
 	}
+
 
 	// MARK: UITextFieldDelegate
 

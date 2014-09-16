@@ -46,6 +46,7 @@ import UIKit
 		resetClosure = resetClosures[authType]
 	}
 
+
 	// MARK: BaseWidget METHODS
 
 	override internal func onCreated() {

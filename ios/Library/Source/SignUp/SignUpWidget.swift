@@ -32,6 +32,7 @@ import UIKit
 
 	public var authType: AuthType = AuthType.Email
 
+
 	//MARK: BaseWidget METHODS
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {

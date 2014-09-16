@@ -78,7 +78,8 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 		return true
 	}
-	
+
+
 	//MARK: BaseWidgetView Methods
 
 	/*

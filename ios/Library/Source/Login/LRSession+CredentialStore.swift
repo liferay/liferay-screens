@@ -37,6 +37,7 @@ extension LRSession {
 		return nil
 	}
 
+
 	//MARK: INSTANCE METHODS
 
 	public func storeCredential() -> Bool {
@@ -58,6 +59,7 @@ extension LRSession {
 
 		return success
 	}
+
 
 	//MARK: PRIVATE METHODS
 

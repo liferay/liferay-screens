@@ -73,6 +73,7 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 		return textField!.becomeFirstResponder()
 	}
 
+
 	//MARK: UITextFieldDelegate
 
 	public func textFieldDidBeginEditing(textField: UITextField!) {
