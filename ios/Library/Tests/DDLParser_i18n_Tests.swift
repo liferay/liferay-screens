@@ -78,6 +78,15 @@ class DDLParser_i18n_Tests: XCTestCase {
 		XCTAssertEqual("Un Booleano neutro para 'es'", elements![0].label)
 	}
 
+	func test_ParseElement_ShouldFindAnyLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
+		parser.locale = NSLocale(localeIdentifier: "en_GB")
+		parser.xml = booleanElementWithTranslations
+
+		let elements = parser.parse()
+
+		XCTAssertEqual("A Boolean for 'en_US'", elements![0].label)
+	}
+
 	func test_ParseOption_ShouldFindNeutralLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
 		parser.locale = NSLocale(localeIdentifier: "es_MX")
 		parser.xml = selectWithTranslatedOptions
