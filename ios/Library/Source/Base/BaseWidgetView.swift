@@ -105,13 +105,13 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	internal func customActionHandler(sender: UIControl!) {
 		customActionHandler(sender.restorationIdentifier)
 	}
-
+	
 	internal func customActionHandler(actionName: String?) {
 		endEditing(true)
 
 		customAction?(actionName, nil)
 	}
-	
+
 	internal func nextResponderForView(view:UIView) -> UIResponder {
 		if view.tag > 0 {
 			if let nextView = viewWithTag(view.tag + 1) {

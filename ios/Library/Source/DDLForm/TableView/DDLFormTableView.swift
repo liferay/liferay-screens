@@ -54,7 +54,6 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 		return result
 	}
-
 	override func showElement(element: DDLElement) {
 		if let index = find(rows, element) {
 			tableView!.scrollToRowAtIndexPath(

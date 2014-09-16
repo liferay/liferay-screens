@@ -26,7 +26,7 @@ class DDLElement_validation_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShoulTriggerValidatedClosure_WhenValidationFails() {
-		parser.xml = requiredBoolean
+		parser.xml = requiredBooleanFormDefinition
 
 		let elements = parser.parse()
 
@@ -45,7 +45,7 @@ class DDLElement_validation_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShoulTriggerValidatedClosure_WhenValidationSucceeds() {
-		parser.xml = requiredBoolean
+		parser.xml = requiredBooleanFormDefinition
 
 		let elements = parser.parse()
 
@@ -65,8 +65,39 @@ class DDLElement_validation_Tests: XCTestCase {
 		XCTAssertFalse(closureCalled)
 	}
 
+	func test_ValidateOnBooleanElement_ShouldFail_WhenRequiredValueIsNil() {
+		parser.xml = requiredBooleanFormDefinition
 
-	private let requiredBoolean =
+		let elements = parser.parse()
+
+		let booleanElement = elements![0] as DDLElementBoolean
+
+		XCTAssertTrue(booleanElement.currentValue == nil)
+
+		XCTAssertFalse(booleanElement.validate())
+	}
+
+	func test_ValidateOnStringElement_ShouldFail_WhenRequiredValueIsEmptyString() {
+		validateOnStringElement_ShouldFail_WhenRequiredValueIs("");
+	}
+
+	func test_ValidateOnStringElement_ShouldFail_WhenRequiredValueIsEmptyStringWithSpaces() {
+		validateOnStringElement_ShouldFail_WhenRequiredValueIs("  ");
+	}
+
+	private func validateOnStringElement_ShouldFail_WhenRequiredValueIs(value: String) {
+		parser.xml = requiredTextFormDefinition
+
+		let elements = parser.parse()
+
+		let stringElement = elements![0] as DDLElementString
+
+		stringElement.currentValue = value
+
+		XCTAssertFalse(stringElement.validate())
+	}
+
+	private let requiredBooleanFormDefinition =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"boolean\" " +
 					"name=\"A_Boolean\" " +
@@ -81,5 +112,22 @@ class DDLElement_validation_Tests: XCTestCase {
 					"</entry> " +
 				"</meta-data> " +
 			"</dynamic-element> </root>"
+
+	private let requiredTextFormDefinition =
+			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+				"<dynamic-element dataType=\"string\" " +
+						"name=\"A_Text\" " +
+						"readOnly=\"false\" " +
+						"repeatable=\"true\" " +
+						"required=\"true\" " +
+						"showLabel=\"true\" " +
+						"type=\"checkbox\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[A Text]]>" +
+						"</entry> " +
+					"</meta-data> " +
+				"</dynamic-element> </root>"
+
 
 }
