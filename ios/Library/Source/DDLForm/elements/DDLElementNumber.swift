@@ -25,18 +25,23 @@ public class DDLElementNumber : DDLElement {
 	}
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
-		var result = NSNumberFormatter().numberFromString(value)
+		var result:NSNumber?
 
-		if result != nil {
-			switch CFNumberGetType(result! as CFNumberRef) {
-				case .Float32Type, .Float64Type, .FloatType, .CGFloatType:
-					return NSDecimalNumber(float: result!.floatValue)
-				case .DoubleType:
-					return NSDecimalNumber(double: result!.doubleValue)
-				default:
-					return NSInteger(result!.integerValue)
+		if let stringValue = value {
+			result = NSNumberFormatter().numberFromString(stringValue)
+
+			if result != nil {
+				switch CFNumberGetType(result! as CFNumberRef) {
+					case .Float32Type, .Float64Type, .FloatType, .CGFloatType:
+						return NSDecimalNumber(float: result!.floatValue)
+					case .DoubleType:
+						return NSDecimalNumber(double: result!.doubleValue)
+					default:
+						return NSInteger(result!.integerValue)
+				}
 			}
 		}
+
 		return result
 	}
 

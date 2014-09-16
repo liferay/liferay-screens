@@ -35,8 +35,8 @@ public class SignUpView_flat7: SignUpView_default {
 
 		let str = signUpButton!.attributedTitleForState(UIControlState.Normal)
 		let translated = NSLocalizedString("flat7-signup-button", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		let newStr = NSMutableAttributedString(attributedString: str)
-		newStr.replaceCharactersInRange(NSMakeRange(0, str.length), withString:translated)
+		let newStr = NSMutableAttributedString(attributedString: str!)
+		newStr.replaceCharactersInRange(NSMakeRange(0, str!.length), withString:translated)
 		signUpButton!.setAttributedTitle(newStr, forState: UIControlState.Normal)
 
 		firstNameField!.placeholder = "";

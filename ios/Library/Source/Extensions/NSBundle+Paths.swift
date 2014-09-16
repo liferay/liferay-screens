@@ -21,19 +21,19 @@ extension NSBundle {
 
 		var filePaths:[String] = []
 
-		let enumerator = NSFileManager.defaultManager().enumeratorAtPath(self.bundlePath)
+		if let enumerator = NSFileManager.defaultManager().enumeratorAtPath(self.bundlePath) {
+			var filePath: String? = enumerator.nextObject() as? String
 
-		var filePath: String? = enumerator.nextObject() as? String
-
-		do {
-			if let filePathValue = filePath {
-				if filePathValue.hasPrefix(prefix) && filePathValue.hasSuffix(suffix) {
-					filePaths.append(filePathValue)
+			do {
+				if let filePathValue = filePath {
+					if filePathValue.hasPrefix(prefix) && filePathValue.hasSuffix(suffix) {
+						filePaths.append(filePathValue)
+					}
 				}
-			}
 
-			filePath = enumerator.nextObject() as? String
-		} while filePath != nil
+				filePath = enumerator.nextObject() as? String
+			} while filePath != nil
+		}
 
 		return filePaths
 	}

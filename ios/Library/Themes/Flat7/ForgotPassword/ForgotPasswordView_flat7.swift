@@ -28,8 +28,8 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 
 		let str = requestPasswordButton!.attributedTitleForState(UIControlState.Normal)
 		let translated = NSLocalizedString("theme-flat7-forgotpassword-request", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		let newStr = NSMutableAttributedString(attributedString: str)
-		newStr.replaceCharactersInRange(NSMakeRange(0, str.length), withString:translated)
+		let newStr = NSMutableAttributedString(attributedString: str!)
+		newStr.replaceCharactersInRange(NSMakeRange(0, str!.length), withString:translated)
 		requestPasswordButton!.setAttributedTitle(newStr, forState: UIControlState.Normal)
 
 		userNameField!.placeholder = "";

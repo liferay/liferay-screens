@@ -80,8 +80,10 @@ extension LRSession {
 	private class func protectionSpaceForServer(server:String) -> NSURLProtectionSpace {
 		let url = NSURL(string: server)
 
-		return NSURLProtectionSpace(host:url.host, port:url.port!.integerValue, `protocol`:url.scheme, realm:nil,
-			authenticationMethod:NSURLAuthenticationMethodHTTPDigest)
+		return NSURLProtectionSpace(
+				host:url.host!, port:url.port!.integerValue,
+				`protocol`:url.scheme, realm:nil,
+				authenticationMethod:NSURLAuthenticationMethodHTTPDigest)
 	}
 
 }

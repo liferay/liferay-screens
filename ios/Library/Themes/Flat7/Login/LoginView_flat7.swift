@@ -30,8 +30,8 @@ public class LoginView_flat7: LoginView_default {
 
 		let str = loginButton!.attributedTitleForState(UIControlState.Normal)
 		let translated = NSLocalizedString("theme-flat7-login-login", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		let newStr = NSMutableAttributedString(attributedString: str)
-		newStr.replaceCharactersInRange(NSMakeRange(0, str.length), withString:translated)
+		let newStr = NSMutableAttributedString(attributedString: str!)
+		newStr.replaceCharactersInRange(NSMakeRange(0, str!.length), withString:translated)
 		loginButton!.setAttributedTitle(newStr, forState: UIControlState.Normal)
 
 		userNameField!.placeholder = "";

@@ -241,7 +241,7 @@ import QuartzCore
 
 		let fileName = bundle.pathForResource(imageName, ofType: "png")
 
-		return UIImage(contentsOfFile: fileName)
+		return UIImage(contentsOfFile: fileName!)
 	}
 
 	internal func startOperationWithMessage(message:String, details:String? = nil) {
