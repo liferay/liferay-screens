@@ -54,7 +54,6 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 
 		let stringElement = elements![0] as DDLElementStringWithOptions
 
-		XCTAssertTrue(stringElement.options != nil)
 		XCTAssertEqual(3, stringElement.options.count)
 
 		var option = stringElement.options[0]

@@ -45,7 +45,7 @@ public class DDLParser {
 
 	private func processDocument(document:SMXMLDocument) -> [DDLElement]? {
 		availableLocales = processAvailableLocales(document)
-		defaultLocale = NSLocale(localeIdentifier:document.root?.attributeNamed("default-locale")?)
+		defaultLocale = NSLocale(localeIdentifier:document.root?.attributeNamed("default-locale") ?? "en_US")
 
 		var result:[DDLElement]?
 
@@ -75,9 +75,9 @@ public class DDLParser {
 	private func processLocalizedMetadata(dynamicElement:SMXMLElement) -> [String:AnyObject] {
 		var result:[String:AnyObject] = [:]
 
-		func addElement(elementName:String, #metadata:SMXMLElement, inout toDict resultDict:[String:AnyObject]) {
+		func addElement(elementName:String, #metadata:SMXMLElement) {
 			if let element = metadata.childWithAttribute("name", value: elementName) {
-				resultDict[elementName] = element.value
+				result[elementName] = element.value
 			}
 		}
 
@@ -93,7 +93,9 @@ public class DDLParser {
 				option["value"] = optionElement.attributeNamed("value")
 
 				if let localizedMetadata = findMetadataElementForLocale(optionElement) {
-					addElement("label", metadata: localizedMetadata, toDict:&option)
+					if let element = localizedMetadata.childWithAttribute("name", value: "label") {
+						option["label"] = element.value
+					}
 				}
 
 				options.append(option)
@@ -103,9 +105,9 @@ public class DDLParser {
 		}
 
 		if let localizedMetadata = findMetadataElementForLocale(dynamicElement) {
-			addElement("label", metadata:localizedMetadata, toDict:&result)
-			addElement("predefinedValue", metadata:localizedMetadata, toDict:&result)
-			addElement("tip", metadata:localizedMetadata, toDict:&result)
+			addElement("label", metadata:localizedMetadata)
+			addElement("predefinedValue", metadata:localizedMetadata)
+			addElement("tip", metadata:localizedMetadata)
 		}
 
 		if let options = findOptions() {
@@ -144,17 +146,21 @@ public class DDLParser {
 
 		var resultElement:SMXMLElement?
 
-		if let metadataElement = dynamicElement.childWithAttribute("locale", value: locale.localeIdentifier) {
+		let metadataElement = findElementWithAttribute("locale",
+				value:locale.localeIdentifier, elements:metadataElements!)
+		if metadataElement != nil {
 			// cases 'a1' and 'b1'
 
-			resultElement = metadataElement
+			resultElement = metadataElement!
 		}
 		else {
 			if currentCountryCode != nil {
-				if let metadataElement = dynamicElement.childWithAttribute("locale", value: currentLanguageCode) {
+				let metadataElement = findElementWithAttribute("locale",
+						value:currentLanguageCode, elements:metadataElements!)
+				if metadataElement != nil {
 					// case 'a2'
 
-					resultElement = metadataElement
+					resultElement = metadataElement!
 				}
 			}
 		}
@@ -162,8 +168,8 @@ public class DDLParser {
 		if resultElement == nil {
 			// Pre-final fallback (a3, b2): find any metadata starting with language
 
-			let foundMetadataElements =
-				metadataElements!.filter({ (metadataElement:SMXMLElement) -> Bool in
+			let foundMetadataElements = metadataElements!.filter(
+				{ (metadataElement:SMXMLElement) -> Bool in
 					if let metadataLocale = metadataElement.attributes["locale"]?.description {
 						return metadataLocale.hasPrefix(currentLanguageCode + "_")
 					}
@@ -172,7 +178,6 @@ public class DDLParser {
 				})
 
 			resultElement = foundMetadataElements.first
-
 		}
 
 		if resultElement == nil {
