@@ -108,9 +108,14 @@
 |----------|-------------| 
 | <pre>switch x {<br>    case A:<br>        statement<br>    default:<br>        statement<br>}| <pre>switch x {<br>case A:<br>    statement<br>default:<br>    statement<br>}|
 
-* Prefer implicit getters, read-only properties and subscripts
+* Prefer computed properies and subscripts over explicit getters/setters
 
-When possible, omit the `get` keyword on read-only computed properties and
+| Preferred|Not Preferred|
+|----------|-------------| 
+|<pre>var myValue: Int {<br>    get {<br>        return 0<br>    }<br>    set {<br>        ...store newValue somewhere...<br>    }<br>}</pre>|<pre>func getMyValue() -> Int {<br>    return 0<br>}<br><br>func setMyValue(newValue: Int) {<br>    ...store newValue somewhere...<br>}</pre>|
+
+
+* When possible, omit the `get` keyword on read-only computed properties and
 read-only subscripts.
 
 | Preferred|Not Preferred|
