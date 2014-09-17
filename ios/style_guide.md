@@ -39,7 +39,7 @@
 
 ## Marks
 
-* Use //MARK: to group the following elements if there's more than one element:
+* Use //MARK: to group the following elements. Avoid it if there is only one group.
 
 	* Attributes with IBOutlets: 
 		* `//MARK: Outlets`
