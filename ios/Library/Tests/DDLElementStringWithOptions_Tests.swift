@@ -83,8 +83,8 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 
 		let stringElement = elements![0] as DDLElementStringWithOptions
 
-		XCTAssertTrue(stringElement.predefinedValue is [DDLStringOption])
-		let predefinedOptions = stringElement.predefinedValue as [DDLStringOption]
+		XCTAssertTrue(stringElement.predefinedValue is [DDLElementStringWithOptions.Option])
+		let predefinedOptions = stringElement.predefinedValue as [DDLElementStringWithOptions.Option]
 
 		//FIXME only support one predefined value
 		XCTAssertEqual(1, predefinedOptions.count)
@@ -103,11 +103,11 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 
 		let stringElement = elements![0] as DDLElementStringWithOptions
 
-		XCTAssertTrue(stringElement.predefinedValue is [DDLStringOption])
-		let predefinedOptions = stringElement.predefinedValue as [DDLStringOption]
+		XCTAssertTrue(stringElement.predefinedValue is [DDLElementStringWithOptions.Option])
+		let predefinedOptions = stringElement.predefinedValue as [DDLElementStringWithOptions.Option]
 
-		XCTAssertTrue(stringElement.currentValue is [DDLStringOption])
-		let currentOptions = stringElement.currentValue as [DDLStringOption]
+		XCTAssertTrue(stringElement.currentValue is [DDLElementStringWithOptions.Option])
+		let currentOptions = stringElement.currentValue as [DDLElementStringWithOptions.Option]
 
 		XCTAssertEqual(currentOptions.count, predefinedOptions.count)
 
@@ -129,8 +129,8 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 
 		stringElement.currentValue = "Option 3"
 
-		XCTAssertTrue(stringElement.currentValue is [DDLStringOption])
-		let currentOptions = stringElement.currentValue as [DDLStringOption]
+		XCTAssertTrue(stringElement.currentValue is [DDLElementStringWithOptions.Option])
+		let currentOptions = stringElement.currentValue as [DDLElementStringWithOptions.Option]
 
 		XCTAssertEqual(1, currentOptions.count)
 
@@ -148,8 +148,8 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 
 		stringElement.currentValue = "this is not a valid option label"
 
-		XCTAssertTrue(stringElement.currentValue is [DDLStringOption])
-		XCTAssertTrue((stringElement.currentValue as [DDLStringOption]).isEmpty)
+		XCTAssertTrue(stringElement.currentValue is [DDLElementStringWithOptions.Option])
+		XCTAssertTrue((stringElement.currentValue as [DDLElementStringWithOptions.Option]).isEmpty)
 	}
 
 	func test_CurrenStringValue_ShouldContainTheArrayOfValues() {

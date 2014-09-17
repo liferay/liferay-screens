@@ -29,14 +29,14 @@ class BaseWidget_theme_Tests: XCTestCase {
 	}
 
 	func test_CurrentThemeName_ShouldReturnDefault_WhenNoThemeIsSelected() {
-		XCTAssertEqual("default", loginWidget!.currentThemeName())
+		XCTAssertEqual("default", loginWidget!.currentThemeName)
 	}
 
 	func test_CurrentThemeName_ShouldReturnTheNameOfTheSelectedTheme_WhenThemeIsSelected() {
 		let path = loginWidget!.signatureImagePathForTheme("xyz")
 		loginWidget!.Theme = UIImage(contentsOfFile: path!)
 
-		XCTAssertEqual("xyz", loginWidget!.currentThemeName())
+		XCTAssertEqual("xyz", loginWidget!.currentThemeName)
 	}
 
 	func test_LoadWidgetView_ShouldReturnBaseView_WhenNoThemeIsSelected() {
