@@ -20,14 +20,22 @@ public enum LoginAuthType: String {
 	case ScreenName = "Screen Name"
 	case UserId = "User ID"
 
-	public static let IconTypes = [
-		LoginAuthType.Email: "mail",
-		LoginAuthType.ScreenName: "user",
-		LoginAuthType.UserId: "user"]
+	public var iconType: String {
+		let iconTypes = [
+				LoginAuthType.Email: "mail",
+				LoginAuthType.ScreenName: "user",
+				LoginAuthType.UserId: "user"]
 
-	public static let KeyboardTypes = [
-		LoginAuthType.Email: UIKeyboardType.EmailAddress,
-		LoginAuthType.ScreenName: UIKeyboardType.ASCIICapable,
-		LoginAuthType.UserId: UIKeyboardType.NumberPad]
+		return iconTypes[self] ?? ""
+	}
+
+	public var keyboardType: UIKeyboardType {
+		let keyboardTypes = [
+				LoginAuthType.Email: UIKeyboardType.EmailAddress,
+				LoginAuthType.ScreenName: UIKeyboardType.ASCIICapable,
+				LoginAuthType.UserId: UIKeyboardType.NumberPad]
+
+		return keyboardTypes[self] ?? .Default
+	}
 
 }

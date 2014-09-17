@@ -20,7 +20,7 @@ public class LoginView: BaseWidgetView {
 		return true
 	}
 
-	public func setAuthType(authTypeLabel: String) {
+	public func setAuthType(authType: LoginAuthType) {
 	}
 
 	public func getUserName() -> String {

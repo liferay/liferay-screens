@@ -34,9 +34,9 @@ import UIKit
 	}
 
 	private let supportedResetClosures = [
-		LoginAuthType.Email.toRaw(): resetPasswordWithEmail,
-		LoginAuthType.ScreenName.toRaw(): resetPasswordWithScreenName,
-		LoginAuthType.UserId.toRaw(): resetPasswordWithUserId]
+		LoginAuthType.Email: resetPasswordWithEmail,
+		LoginAuthType.ScreenName: resetPasswordWithScreenName,
+		LoginAuthType.UserId: resetPasswordWithUserId]
 
 	private var resetClosure: ((String, LRMobilewidgetsuserService_v62, NSError -> Void) -> Void)?
 
@@ -44,7 +44,7 @@ import UIKit
 	//MARK: BaseWidget
 
 	override internal func onCreated() {
-		setAuthType(LoginAuthType.Email.toRaw())
+		setAuthType(LoginAuthType.Email)
 
 		if let userName = LiferayContext.instance().currentSession?.username {
 			forgotPasswordView.setUserName(userName)
@@ -87,7 +87,7 @@ import UIKit
 	
 	//MARK: Public methods
 
-	public func setAuthType(authType:String) {
+	public func setAuthType(authType:LoginAuthType) {
 		forgotPasswordView.setAuthType(authType)
 
 		resetClosure = supportedResetClosures[authType]

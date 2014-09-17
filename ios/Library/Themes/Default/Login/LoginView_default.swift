@@ -27,19 +27,13 @@ public class LoginView_default: LoginView {
 
 	//MARK: Class methods
 
-	public class func setStylesForAuthType(authTypeLabel:String,
+	public class func setStylesForAuthType(authType:LoginAuthType,
 			userNameField:UITextField!, userNameIcon:UIImageView!) {
 
-		userNameField!.placeholder = authTypeLabel
+		userNameField!.placeholder = authType.toRaw()
 
-		if let authType = LoginAuthType.fromRaw(authTypeLabel) {
-			userNameField!.keyboardType = LoginAuthType.KeyboardTypes[authType]!
-			userNameIcon?.image =
-				UIImage(named:"default-\(LoginAuthType.IconTypes[authType]!)-icon")
-		}
-		else {
-			println("ERROR: Wrong auth type description \(authTypeLabel)")
-		}
+		userNameField!.keyboardType = authType.keyboardType
+		userNameIcon?.image = UIImage(named:"default-\(authType.iconType)-icon")
 	}
 
 
@@ -53,8 +47,8 @@ public class LoginView_default: LoginView {
 		return super.shouldRememberCredentials
 	}
 
-	override public func setAuthType(authTypeLabel: String) {
-		LoginView_default.setStylesForAuthType(authTypeLabel,
+	override public func setAuthType(authType: LoginAuthType) {
+		LoginView_default.setStylesForAuthType(authType,
 				userNameField: userNameField,
 				userNameIcon: userNameIcon)
 	}

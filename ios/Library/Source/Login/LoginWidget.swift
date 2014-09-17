@@ -34,9 +34,9 @@ public class LoginWidget: BaseWidget {
 	}
 
 	private let supportedAuthClosures = [
-		LoginAuthType.Email.toRaw(): authWithEmail,
-		LoginAuthType.ScreenName.toRaw(): authWithScreenName,
-		LoginAuthType.UserId.toRaw(): authWithUserId]
+		LoginAuthType.Email: authWithEmail,
+		LoginAuthType.ScreenName: authWithScreenName,
+		LoginAuthType.UserId: authWithUserId]
 
 	private var authClosure: ((String, String, LRUserService_v62, NSError -> Void) -> Void)?
 
@@ -51,7 +51,7 @@ public class LoginWidget: BaseWidget {
 	//MARK: BaseWidget
 
 	override internal func onCreated() {
-        setAuthType(LoginAuthType.Email.toRaw())
+        setAuthType(LoginAuthType.Email)
 
 		if let session = LRSession.sessionFromStoredCredential() {
 			LiferayContext.instance().currentSession = session
@@ -93,17 +93,7 @@ public class LoginWidget: BaseWidget {
 
 	//MARK: Public methods
 
-	//FIXME:
-	// XCode crashes with "swift_unknownWeakLoadStrong" error
-	// Storing the enum as a String seems to workaround the problem
-	// This code is the optimal solution to be used when XCode is fixed
-	//
-	// var authType: AuthType = AuthType.Email {
-	// 	didSet {
-	//		loginView().setAuthType(authType)
-	//	}
-	// }
-	public func setAuthType(authType:String) {
+	public func setAuthType(authType:LoginAuthType) {
         loginView.setAuthType(authType)
         
         authClosure = supportedAuthClosures[authType]
