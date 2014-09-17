@@ -301,4 +301,9 @@ class func instance() -> TheClass {
 required override public init() {
 	super.init()
 }
+
+// == Invocation ==
+
+TheClass.instance()
+
 ```
