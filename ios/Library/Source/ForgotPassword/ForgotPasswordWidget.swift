@@ -46,7 +46,7 @@ import UIKit
 	override internal func onCreated() {
 		setAuthType(LoginAuthType.Email)
 
-		if let userName = LiferayContext.instance().currentSession?.username {
+		if let userName = LiferayContext.instance.currentSession?.username {
 			forgotPasswordView.setUserName(userName)
 		}
 	}
@@ -107,7 +107,7 @@ import UIKit
 
 		startOperationWithMessage("Sending password request...", details:"Wait few seconds...")
 
-		let session = LiferayContext.instance().createSession(anonymousApiUserName!,
+		let session = LiferayContext.instance.createSession(anonymousApiUserName!,
 				password: anonymousApiPassword!)
 
 		session.callback = self
@@ -125,7 +125,7 @@ func resetPasswordWithEmail(email:String, service:LRMobilewidgetsuserService_v62
 	var outError: NSError?
 
 	service.sendPasswordByEmailAddressWithCompanyId(
-			(LiferayContext.instance().companyId as NSNumber).longLongValue,
+			(LiferayContext.instance.companyId as NSNumber).longLongValue,
 			emailAddress: email,
 			error: &outError)
 
@@ -140,7 +140,7 @@ func resetPasswordWithScreenName(screenName:String, service:LRMobilewidgetsuserS
 	var outError: NSError?
 
 	service.sendPasswordByScreenNameWithCompanyId(
-			(LiferayContext.instance().companyId as NSNumber).longLongValue,
+			(LiferayContext.instance.companyId as NSNumber).longLongValue,
 			screenName: screenName,
 			error: &outError)
 

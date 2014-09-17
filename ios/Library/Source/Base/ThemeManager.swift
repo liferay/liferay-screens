@@ -21,7 +21,7 @@ public class ThemeManager: NSObject {
 
 	//MARK: Singleton
 
-	class func instance() -> ThemeManager {
+	class var instance: ThemeManager {
 		struct Singleton {
 			static var instance: ThemeManager? = nil
 			static var onceToken: dispatch_once_t = 0

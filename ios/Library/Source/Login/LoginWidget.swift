@@ -54,7 +54,7 @@ public class LoginWidget: BaseWidget {
         setAuthType(LoginAuthType.Email)
 
 		if let session = LRSession.sessionFromStoredCredential() {
-			LiferayContext.instance().currentSession = session
+			LiferayContext.instance.currentSession = session
 
 			loginView.setUserName(session.username)
 			loginView.setPassword(session.password)
@@ -72,7 +72,7 @@ public class LoginWidget: BaseWidget {
 	override internal func onServerError(error: NSError) {
 		delegate?.onLoginError?(error)
 
-		LiferayContext.instance().clearSession()
+		LiferayContext.instance.clearSession()
 		LRSession.removeStoredCredential()
 
 		finishOperationWithError(error, message:"Error signing in!")
@@ -82,8 +82,8 @@ public class LoginWidget: BaseWidget {
 		delegate?.onLoginResponse?(result)
 
 		if loginView.shouldRememberCredentials {
-			if LiferayContext.instance().currentSession!.storeCredential() {
-				delegate?.onCredentialsSaved?(LiferayContext.instance().currentSession!)
+			if LiferayContext.instance.currentSession!.storeCredential() {
+				delegate?.onCredentialsSaved?(LiferayContext.instance.currentSession!)
 			}
 		}
 
@@ -105,7 +105,7 @@ public class LoginWidget: BaseWidget {
 	private func sendLoginWithUserName(userName:String, password:String) {
 		startOperationWithMessage("Sending sign in...", details:"Wait few seconds...")
 
-		let session = LiferayContext.instance().createSession(userName, password: password)
+		let session = LiferayContext.instance.createSession(userName, password: password)
 		session.callback = self
 
 		authClosure!(userName, password, LRUserService_v62(session: session)) {
@@ -121,7 +121,7 @@ func authWithEmail(email:String, password:String, service:LRUserService_v62,
 	var outError: NSError?
 
 	service.getUserByEmailAddressWithCompanyId(
-			(LiferayContext.instance().companyId as NSNumber).longLongValue,
+			(LiferayContext.instance.companyId as NSNumber).longLongValue,
 			emailAddress:email,
 			error:&outError)
 
@@ -136,7 +136,7 @@ func authWithScreenName(name:String, password:String, service:LRUserService_v62,
 	var outError: NSError?
 
 	service.getUserByScreenNameWithCompanyId(
-			(LiferayContext.instance().companyId as NSNumber).longLongValue,
+			(LiferayContext.instance.companyId as NSNumber).longLongValue,
 			screenName:name,
 			error: &outError)
 

@@ -102,7 +102,7 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadList() -> Bool {
-		if LiferayContext.instance().currentSession == nil {
+		if LiferayContext.instance.currentSession == nil {
 			println("ERROR: No session initialized. Can't load the asset list without session")
 			return false
 		}
@@ -128,10 +128,10 @@ import UIKit
 
 		loadPageOperations[page] = operation
 
-		let session = LRBatchSession(session: LiferayContext.instance().currentSession)
+		let session = LRBatchSession(session: LiferayContext.instance.currentSession)
 		session.callback = operation
 
-		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance().groupId) as NSNumber
+		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber
 
 		let widgetsService = LRMobilewidgetsassetentryService_v62(session: session)
 

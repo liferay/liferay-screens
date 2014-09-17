@@ -24,7 +24,7 @@ public class LiferayContext {
 
 	//MARK: Singleton
 
-	class func instance() -> LiferayContext {
+	class var instance: LiferayContext {
 		struct Singleton {
 			static var instance: LiferayContext? = nil
 			static var onceToken: dispatch_once_t = 0

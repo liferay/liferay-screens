@@ -285,7 +285,7 @@ Try to use same idioms in the same project
 ```swift
 //MARK: Singleton
 
-class func instance() -> TheClass {
+class var instance: TheClass {
 	struct Singleton {
 		static var instance: TheClass? = nil
 		static var onceToken: dispatch_once_t = 0
@@ -304,6 +304,6 @@ required override public init() {
 
 // == Invocation ==
 
-TheClass.instance()
+TheClass.instance
 
 ```

@@ -190,7 +190,7 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadForm() -> Bool {
-		if LiferayContext.instance().currentSession == nil {
+		if LiferayContext.instance.currentSession == nil {
 			println("ERROR: No session initialized. Can't load form without session")
 			return false
 		}
@@ -202,7 +202,7 @@ import UIKit
 
 		startOperationWithMessage("Loading form...", details: "Wait a second...")
 
-		let session = LRSession(session: LiferayContext.instance().currentSession)
+		let session = LRSession(session: LiferayContext.instance.currentSession)
 		session.callback = self
 
 		let service = LRDDMStructureService_v62(session: session)
@@ -223,7 +223,7 @@ import UIKit
 	}
 
 	public func loadRecord() -> Bool {
-		if LiferayContext.instance().currentSession == nil {
+		if LiferayContext.instance.currentSession == nil {
 			println("ERROR: No session initialized. Can't load a record without session")
 			return false
 		}
@@ -242,7 +242,7 @@ import UIKit
 
 		startOperationWithMessage("Loading record...", details: "Wait a second...")
 
-		let session = LRBatchSession(session: LiferayContext.instance().currentSession)
+		let session = LRBatchSession(session: LiferayContext.instance.currentSession)
 		session.callback = self
 
 		var outError: NSError?
@@ -272,7 +272,7 @@ import UIKit
 
 
 	public func submitForm() -> Bool {
-		if LiferayContext.instance().currentSession == nil {
+		if LiferayContext.instance.currentSession == nil {
 			println("ERROR: No session initialized. Can't submit form without session")
 			return false
 		}
@@ -312,14 +312,14 @@ import UIKit
 
 		startOperationWithMessage("Submitting form...", details: "Wait a second...")
 
-		let session = LRSession(session: LiferayContext.instance().currentSession)
+		let session = LRSession(session: LiferayContext.instance.currentSession)
 		session.callback = self
 
 		let service = LRDDLRecordService_v62(session: session)
 
 		var outError: NSError?
 
-		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance().groupId) as NSNumber
+		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber
 
 		let serviceContextAttributes = [
 				"userId":userId,
@@ -394,7 +394,7 @@ import UIKit
 	}
 
 	private func uploadDocument(document:DDLElementDocument) -> Bool {
-		if LiferayContext.instance().currentSession == nil {
+		if LiferayContext.instance.currentSession == nil {
 			println("ERROR: No session initialized. Can't upload a document without session")
 			return false
 		}
@@ -416,7 +416,7 @@ import UIKit
 				mimeType: document.mimeType)
 		uploadData.progressDelegate = self
 
-		let session = LRSession(session: LiferayContext.instance().currentSession)
+		let session = LRSession(session: LiferayContext.instance.currentSession)
 		session.callback = self
 
 		let service = LRDLAppService_v62(session: session)

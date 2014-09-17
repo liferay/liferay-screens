@@ -19,7 +19,7 @@ extension LRSession {
 	//MARK: Class methods
 
 	public class func removeStoredCredential() {
-		let credentialTuple = credentialForServer(LiferayContext.instance().server)
+		let credentialTuple = credentialForServer(LiferayContext.instance.server)
 
 		if let credential = credentialTuple.0 {
 			NSURLCredentialStorage.sharedCredentialStorage().removeCredential(
@@ -28,10 +28,10 @@ extension LRSession {
 	}
 
 	public class func sessionFromStoredCredential() -> LRSession? {
-		let credentialTuple = credentialForServer(LiferayContext.instance().server)
+		let credentialTuple = credentialForServer(LiferayContext.instance.server)
 
 		if let credential = credentialTuple.0 {
-			return LRSession(server:LiferayContext.instance().server,
+			return LRSession(server:LiferayContext.instance.server,
 					username:credential.user,
 					password:credential.password)
 		}
@@ -77,7 +77,7 @@ extension LRSession {
 		var success = false
 
 		if username != nil && password != nil {
-			let protectionSpace = LRSession.protectionSpaceForServer(LiferayContext.instance().server)
+			let protectionSpace = LRSession.protectionSpaceForServer(LiferayContext.instance.server)
 
 			let credential = NSURLCredential(
 								user:username!,

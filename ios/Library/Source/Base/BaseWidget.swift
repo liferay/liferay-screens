@@ -37,7 +37,7 @@ import QuartzCore
 
 		if (Theme != nil) {
 			let selectedSignatureImage = Theme!
-			for themeName in ThemeManager.instance().installedThemes {
+			for themeName in ThemeManager.instance.installedThemes {
 				if themeName != "default" {
 					let installedSignatureImage =
 							UIImage(contentsOfFile: signatureImagePathForTheme(themeName)!)
@@ -325,7 +325,7 @@ import QuartzCore
 	}
 
 	private func updateCurrentPreviewImage() {
-		ThemeManager.instance().loadThemes()
+		ThemeManager.instance.loadThemes()
 
 		let themeName = currentThemeName
 
