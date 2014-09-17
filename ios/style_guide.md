@@ -74,7 +74,7 @@
 |----------|-------------| 
 | <pre>let myConstant =<br>        1 + (2 + 3) | <pre>let myConstant =<br>    1 + (2 + 3) |
 
-* In methods invokation, break on every parameter with label (if needed). Don't use this rule on methods definition.
+* In methods invocation and declaration, break on every named parameter unless all of them fit in one line. 
 
 | Preferred|Not Preferred|
 |----------|-------------| 
