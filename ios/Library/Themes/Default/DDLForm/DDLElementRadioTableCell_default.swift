@@ -20,16 +20,7 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 	@IBOutlet private var radioReferenceLabel: UILabel?
 	@IBOutlet private var separator: UIView?
 
-	private let radioButtonColor =
-			UIColor(red: 0.0, green: 184.0/255.0, blue: 224.0/255.0, alpha: 0.87)
-
 	private var radioGroup:TNRadioButtonGroup?
-
-	//FIXME hardcoded
-	private let radioGroupMarginTop:CGFloat = 15
-	private let radioGroupMarginBottom:CGFloat = 10
-	private let radioButtonMargin:CGFloat = 10
-	private let radioButtonHeight:CGFloat = 16
 
 
 	override internal func onChangedElement() {
@@ -38,8 +29,9 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 
 			stringElement.currentHeight = 
 				label!.frame.origin.y + label!.frame.size.height +
-				radioGroupMarginTop + radioGroupMarginBottom +
-				(CGFloat(stringElement.options.count) * (radioButtonHeight + radioButtonMargin))
+				DDLElementRadioGroupMarginTop + DDLElementRadioGroupMarginBottom +
+				(CGFloat(stringElement.options.count) *
+					(DDLElementRadioButtonHeight + DDLElementRadioButtonMargin))
 
 			separator!.frame.origin.y = stringElement.currentHeight
 
@@ -53,7 +45,7 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 
 	override internal func onValidated(valid: Bool) {
 		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()
-		let radioColor = valid ? radioButtonColor : UIColor.redColor()
+		let radioColor = valid ? DDLElementBasicBlue : UIColor.redColor()
 
 		for radioButton in radioGroup!.radioButtons as [TNRectangularRadioButton] {
 			radioButton.data.labelColor = label?.textColor
@@ -76,8 +68,8 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 			data.labelFont = radioReferenceLabel?.font
 			data.labelText = option.label
 			data.identifier = option.value
-			data.borderColor = radioButtonColor
-			data.rectangleColor = radioButtonColor
+			data.borderColor = DDLElementBasicBlue
+			data.rectangleColor = DDLElementBasicBlue
 			data.rectangleHeight = 8
 			data.rectangleWidth = 8
 			data.selected =
@@ -96,10 +88,10 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 		radioGroup = TNRadioButtonGroup(radioButtonData: radioButtons,
 				layout: TNRadioButtonGroupLayoutVertical)
 		radioGroup!.identifier = element.name
-		radioGroup!.marginBetweenItems = Int(radioButtonMargin)
+		radioGroup!.marginBetweenItems = Int(DDLElementRadioButtonMargin)
 		radioGroup!.create()
 		radioGroup!.position = CGPointMake(25.0,
-				radioGroupMarginTop + label!.frame.origin.y + label!.frame.size.height)
+				DDLElementRadioGroupMarginTop + label!.frame.origin.y + label!.frame.size.height)
 
 		addSubview(radioGroup!)
 

@@ -25,9 +25,6 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	private var originalTextViewRect:CGRect = CGRectZero
 	private var originalBackgroundRect:CGRect = CGRectZero
 
-	private let expandedCellHeight:CGFloat = 104
-	private let expandedTextViewHeight:CGFloat = 84
-	private let expandedBackgroundHeight:CGFloat = 91
 
 	override internal func onChangedElement() {
 		if let stringElement = element as? DDLElementString {
@@ -48,11 +45,9 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 				placeholder?.alpha = (textView?.text == "") ? 1.0 : 0.0
 				label?.hidden = true
 
-				moveSubviewsVertically(-(
-					DDLBaseElementTextFieldTableCell_default.heightWithLabel -
-					DDLBaseElementTextFieldTableCell_default.heightWithoutLabel))
-				element?.currentHeight =
-					DDLBaseElementTextFieldTableCell_default.heightWithoutLabel
+				moveSubviewsVertically(
+					-(DDLElementTextFieldHeightWithLabel - DDLElementTextFieldHeightWithoutLabel))
+				element?.currentHeight = DDLElementTextFieldHeightWithoutLabel
 			}
 
 			textView?.returnKeyType = isLastCell ? .Send : .Next
@@ -83,19 +78,19 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 
 	public func textViewDidBeginEditing(textView: UITextView!) {
 		var heightLabelOffset:CGFloat =
-				DDLBaseElementTextFieldTableCell_default.heightWithLabel -
-				DDLBaseElementTextFieldTableCell_default.heightWithoutLabel
+				DDLElementTextFieldHeightWithLabel - DDLElementTextFieldHeightWithoutLabel
+		changeCellHeight(DDLElementTextareaExpandedCellHeight +
+				(element!.showLabel ? heightLabelOffset : 0.0))
 
-		changeCellHeight(expandedCellHeight + (element!.showLabel ? heightLabelOffset : 0.0))
-
-		separator!.frame.origin.y += expandedBackgroundHeight - originalBackgroundRect.size.height
+		separator!.frame.origin.y +=
+				DDLElementTextareaExpandedBackgroundHeight - originalBackgroundRect.size.height
 
 		textView.frame = CGRectMake(
 			originalTextViewRect.origin.x,
 			originalTextViewRect.origin.y,
 			originalTextViewRect.size.width,
-			expandedTextViewHeight)
-		textViewBackground!.frame.size.height = expandedBackgroundHeight
+			DDLElementTextareaExpandedTextViewHeight)
+		textViewBackground!.frame.size.height = DDLElementTextareaExpandedBackgroundHeight
 
 		textViewBackground?.highlighted = true
 
@@ -103,13 +98,13 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	}
 
 	public func textViewDidEndEditing(textView: UITextView!) {
-		separator!.frame.origin.y -= expandedBackgroundHeight - originalBackgroundRect.size.height
+		separator!.frame.origin.y -=
+				DDLElementTextareaExpandedBackgroundHeight - originalBackgroundRect.size.height
 		textView.frame = originalTextViewRect
 		textViewBackground!.frame = originalBackgroundRect
 
 		var heightLabelOffset:CGFloat =
-				DDLBaseElementTextFieldTableCell_default.heightWithLabel -
-				DDLBaseElementTextFieldTableCell_default.heightWithoutLabel
+				DDLElementTextFieldHeightWithLabel - DDLElementTextFieldHeightWithoutLabel
 
 		changeCellHeight(
 				element!.editorType.registeredHeight -
@@ -134,7 +129,7 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 			let newText = (textView!.text as NSString).stringByReplacingCharactersInRange(range,
 					withString:text)
 
-			showPlaceholder(placeholder!, show:newText == "")
+			placeholder!.changeVisibility(visible: newText == "")
 
 			element?.currentValue = newText
 
@@ -146,12 +141,6 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		}
 
 		return result
-	}
-
-	private func showPlaceholder(placeholder:UILabel, show:Bool) {
-		UIView.animateWithDuration(0.2, animations: {
-			placeholder.alpha = show ? 1.0 : 0.0
-		})
 	}
 
 }

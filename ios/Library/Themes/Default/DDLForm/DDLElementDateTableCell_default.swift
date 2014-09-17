@@ -19,7 +19,7 @@ public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_d
 	@IBOutlet private var chooseButton: UIButton? {
 		didSet {
 			chooseButton?.layer.masksToBounds = true
-	        chooseButton?.layer.cornerRadius = 4.0
+	        chooseButton?.layer.cornerRadius = DDLElementButtonCornerRadius
 		}
 	}
 

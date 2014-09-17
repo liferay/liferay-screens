@@ -17,15 +17,8 @@ import UIKit
 public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITextFieldDelegate {
 
 	@IBOutlet internal var textField: UITextField?
-	@IBOutlet private var textFieldBackground: UIImageView?
-	@IBOutlet private var label: UILabel?
-
-	internal class var heightWithLabel:CGFloat {
-		return 81.0
-	}
-	internal class var heightWithoutLabel:CGFloat {
-		return 56.0
-	}
+	@IBOutlet internal var textFieldBackground: UIImageView?
+	@IBOutlet internal var label: UILabel?
 
 	override internal func onChangedElement() {
 		if element!.showLabel {
@@ -39,11 +32,9 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 			textField?.placeholder = element!.label
 			label?.hidden = true
 
-			moveSubviewsVertically(-(
-				DDLBaseElementTextFieldTableCell_default.heightWithLabel -
-				DDLBaseElementTextFieldTableCell_default.heightWithoutLabel))
-			element?.currentHeight =
-				DDLBaseElementTextFieldTableCell_default.heightWithoutLabel
+			moveSubviewsVertically(
+				-(DDLElementTextFieldHeightWithLabel - DDLElementTextFieldHeightWithoutLabel))
+			element?.currentHeight = DDLElementTextFieldHeightWithoutLabel
 		}
 
 		textField?.returnKeyType = isLastCell ? .Send : .Next
