@@ -117,6 +117,11 @@ read-only subscripts.
 |----------|-------------| 
 | <pre>var property: Int {<br>    return 0<br>}</pre>|<pre>var property: Int {<br>    get {<br>        return 0<br>    }<br>}</pre>|
 
+* Use `if let` structure when possible. Suffix with `Value` the variable used in let:
+
+| Preferred|Not Preferred|
+|----------|-------------| 
+| <pre>if let xValue = x {<br>    ...<br>}|<pre>if x != nil {<br>    ... (use x! expression)<br>}|
 
 ## Scope
 
