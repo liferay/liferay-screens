@@ -32,9 +32,10 @@ public class LoginView_default: LoginView {
 
 		userNameField!.placeholder = authTypeLabel
 
-		if let authType = AuthType.fromRaw(authTypeLabel) {
-			userNameField!.keyboardType = AuthType.KeyboardTypes[authType]!
-			userNameIcon?.image = UIImage(named:"default-\(AuthIconTypes[authType]!)-icon")
+		if let authType = LoginAuthType.fromRaw(authTypeLabel) {
+			userNameField!.keyboardType = LoginAuthType.KeyboardTypes[authType]!
+			userNameIcon?.image =
+				UIImage(named:"default-\(LoginAuthType.IconTypes[authType]!)-icon")
 		}
 		else {
 			println("ERROR: Wrong auth type description \(authTypeLabel)")
@@ -94,9 +95,3 @@ public class LoginView_default: LoginView {
 	}
 
 }
-
-//FIXME Should be static class constant, not supported yet
-private let AuthIconTypes = [
-	AuthType.Email: "mail",
-	AuthType.ScreenName: "user",
-	AuthType.UserId: "user"]

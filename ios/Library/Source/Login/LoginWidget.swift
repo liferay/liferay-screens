@@ -30,9 +30,9 @@ public class LoginWidget: BaseWidget {
 	@IBOutlet public var delegate: LoginWidgetDelegate?
 
 	private let supportedAuthClosures = [
-		AuthType.Email.toRaw(): authWithEmail,
-		AuthType.ScreenName.toRaw(): authWithScreenName,
-		AuthType.UserId.toRaw(): authWithUserId]
+		LoginAuthType.Email.toRaw(): authWithEmail,
+		LoginAuthType.ScreenName.toRaw(): authWithScreenName,
+		LoginAuthType.UserId.toRaw(): authWithUserId]
 
 	private var authClosure: ((String, String, LRUserService_v62, NSError -> Void) -> Void)?
 
@@ -63,7 +63,7 @@ public class LoginWidget: BaseWidget {
 	//MARK: BaseWidget METHODS
 
 	override internal func onCreated() {
-        setAuthType(AuthType.Email.toRaw())
+        setAuthType(LoginAuthType.Email.toRaw())
 
 		if let session = LRSession.sessionFromStoredCredential() {
 			LiferayContext.instance().currentSession = session

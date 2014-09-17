@@ -31,7 +31,7 @@ import UIKit
 
 	@IBOutlet public var delegate: SignUpWidgetDelegate?
 
-	public var authType: AuthType = AuthType.Email
+	public var authType = LoginAuthType.Email
 
 
 	//MARK: BaseWidget METHODS
@@ -90,11 +90,11 @@ import UIKit
 
 		// user name
 		switch authType {
-		case AuthType.Email:
+		case .Email:
 			creatingUsername = signUpView().getEmailAddress()
-		case AuthType.ScreenName:
+		case .ScreenName:
 			creatingUsername = signUpView().getScreenName()
-		case AuthType.UserId:
+		case .UserId:
 			println("ERROR: sign Up with User id is not supported")
 		default: ()
 		}

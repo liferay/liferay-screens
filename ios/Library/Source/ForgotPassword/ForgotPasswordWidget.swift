@@ -30,9 +30,9 @@ import UIKit
 	@IBOutlet public var delegate: ForgotPasswordWidgetDelegate?
 
 	private let supportedResetClosures = [
-		AuthType.Email.toRaw(): resetPasswordWithEmail,
-		AuthType.ScreenName.toRaw(): resetPasswordWithScreenName,
-		AuthType.UserId.toRaw(): resetPasswordWithUserId]
+		LoginAuthType.Email.toRaw(): resetPasswordWithEmail,
+		LoginAuthType.ScreenName.toRaw(): resetPasswordWithScreenName,
+		LoginAuthType.UserId.toRaw(): resetPasswordWithUserId]
 
 	private var resetClosure: ((String, LRMobilewidgetsuserService_v62, NSError -> Void) -> Void)?
 
@@ -47,7 +47,7 @@ import UIKit
 	//MARK: BaseWidget METHODS
 
 	override internal func onCreated() {
-		setAuthType(AuthType.Email.toRaw())
+		setAuthType(LoginAuthType.Email.toRaw())
 
 		if let userName = LiferayContext.instance().currentSession?.username {
 			forgotPasswordView().setUserName(userName)
