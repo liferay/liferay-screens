@@ -36,12 +36,8 @@ public class ThemeManager: NSObject {
 		loadThemes()
 	}
 
-	public func installedThemes() -> [String] {
-		return _installedThemes
-	}
-
 	internal func loadThemes() {
-		_installedThemes.removeAll(keepCapacity: true)
+		installedThemes.removeAll(keepCapacity: true)
 
 		let bundle = NSBundle(forClass:self.dynamicType)
 
@@ -56,9 +52,10 @@ public class ThemeManager: NSObject {
 			return name.lowercaseString
 		}
 
-		_installedThemes += widgetNames
+		installedThemes += widgetNames
 	}
 
-	private var _installedThemes:[String] = []
+	private(set) var installedThemes:[String] = []
+
 
 }

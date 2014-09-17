@@ -23,7 +23,7 @@ import QuartzCore
 
 	@IBInspectable var Theme:UIImage? {
 		didSet {
-			if _runningOnInterfaceBuilder {
+			if runningOnInterfaceBuilder {
 				updateCurrentPreviewImage()
 				setNeedsLayout()
 			}
@@ -130,34 +130,34 @@ import QuartzCore
 	//MARK: Interface Builder management methods
 
 	override public func prepareForInterfaceBuilder() {
-		_runningOnInterfaceBuilder = true
+		runningOnInterfaceBuilder = true
 
 		if Theme != nil {
 			updateCurrentPreviewImage()
 		}
 
-		if _currentPreviewImage == nil {
-			_currentPreviewImage = previewImageForTheme("default")
+		if currentPreviewImage == nil {
+			currentPreviewImage = previewImageForTheme("default")
 		}
 	}
 
 	override public func layoutSubviews() {
 		super.layoutSubviews()
 
-		if _runningOnInterfaceBuilder {
-			if let currentPreviewImageValue = _currentPreviewImage {
+		if runningOnInterfaceBuilder {
+			if let currentPreviewImageValue = currentPreviewImage {
 				let imageRect = CGRectMake(
 						(frame.size.width - currentPreviewImageValue.size.width)/2,
 						(frame.size.height - currentPreviewImageValue.size.height)/2,
 						currentPreviewImageValue.size.width,
 						currentPreviewImageValue.size.height)
 
-				_previewLayer.frame = imageRect
-				_previewLayer.contents = currentPreviewImageValue.CGImage
+				previewLayer.frame = imageRect
+				previewLayer.contents = currentPreviewImageValue.CGImage
 
-				if _previewLayer.superlayer != layer {
+				if previewLayer.superlayer != layer {
 					// add to the hierarchy the first time
-					layer.addSublayer(_previewLayer)
+					layer.addSublayer(previewLayer)
 				}
 			}
 		}
@@ -202,7 +202,7 @@ import QuartzCore
 
 		if (Theme != nil) {
 			let selectedSignatureImage = Theme!
-			for themeName in ThemeManager.instance().installedThemes() {
+			for themeName in ThemeManager.instance().installedThemes {
 				if themeName != "default" {
 					let installedSignatureImage =
 							UIImage(contentsOfFile: signatureImagePathForTheme(themeName)!)
@@ -325,15 +325,15 @@ import QuartzCore
 
 		let themeName = currentThemeName()
 
-		_currentPreviewImage = previewImageForTheme(themeName)
+		currentPreviewImage = previewImageForTheme(themeName)
 	}
 
-	private var _runningOnInterfaceBuilder:Bool = false
+	private var runningOnInterfaceBuilder:Bool = false
 
-	private lazy var _previewLayer: CALayer = {
+	private lazy var previewLayer: CALayer = {
 		return CALayer()
 	}()
 
-	private var _currentPreviewImage:UIImage?
+	private var currentPreviewImage:UIImage?
 
 }
