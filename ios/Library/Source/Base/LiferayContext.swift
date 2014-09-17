@@ -16,9 +16,9 @@ import Foundation
 
 public class LiferayContext {
 
-	public var server:String = "http://localhost:8080"
-	public var companyId:Int = 10154
-	public var groupId:Int = 10181
+	public var server = "http://localhost:8080"
+	public var companyId = 10154
+	public var groupId = 10181
 
 	public var currentSession:LRSession?
 

@@ -24,8 +24,8 @@ import UIKit
 
 @IBDesignable public class WebContentWidget: BaseWidget {
 
-	@IBInspectable public var groupId: Int = 0
-	@IBInspectable public var articleId: String = ""
+	@IBInspectable public var groupId = 0
+	@IBInspectable public var articleId = ""
 
 	@IBOutlet public var delegate: WebContentWidgetDelegate?
 

@@ -36,22 +36,6 @@ import UIKit
 
 @IBDesignable public class DDLFormWidget: BaseWidget, LRProgressDelegate {
 
-	@IBInspectable public var structureId: Int = 0
-	@IBInspectable public var groupId: Int = 0
-	@IBInspectable public var recordSetId: Int = 0
-	@IBInspectable public var recordId:Int = 0
-
-	@IBInspectable public var repositoryId:Int = 0
-	@IBInspectable public var folderId:Int = 0
-	@IBInspectable public var filePrefix = "form-file-"
-
-	@IBInspectable public var autoLoad:Bool = true
-	@IBInspectable public var autoscrollOnValidation:Bool = true
-	@IBInspectable public var showSubmitButton:Bool = true
-
-	@IBOutlet public var delegate: DDLFormWidgetDelegate?
-
-
 	private enum FormOperation {
 
 		case Idle
@@ -62,8 +46,22 @@ import UIKit
 
 	}
 
-	private var userId:Int = 0
+	@IBInspectable public var structureId = 0
+	@IBInspectable public var groupId = 0
+	@IBInspectable public var recordSetId = 0
+	@IBInspectable public var recordId = 0
 
+	@IBInspectable public var repositoryId = 0
+	@IBInspectable public var folderId = 0
+	@IBInspectable public var filePrefix = "form-file-"
+
+	@IBInspectable public var autoLoad = true
+	@IBInspectable public var autoscrollOnValidation = true
+	@IBInspectable public var showSubmitButton = true
+
+	@IBOutlet public var delegate: DDLFormWidgetDelegate?
+
+	private var userId = 0
 	private var currentOperation = FormOperation.Idle
 
 

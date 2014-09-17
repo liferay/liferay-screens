@@ -16,6 +16,8 @@ import UIKit
 
 public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 
+	public var showSubmitButton: Bool = true
+
 	public var rows: [DDLElement] = [] {
 		didSet {
 			onChangedRows()
@@ -39,9 +41,6 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 
 		return result
 	}
-
-	public var showSubmitButton: Bool = true
-
 
 	public func validateForm(#autoscroll:Bool) -> Bool {
 		var result = true

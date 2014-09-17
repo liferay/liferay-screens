@@ -27,7 +27,7 @@ import UIKit
 	@IBInspectable public var anonymousApiUserName: String?
 	@IBInspectable public var anonymousApiPassword: String?
 
-	@IBInspectable public var autologin: Bool = true
+	@IBInspectable public var autologin = true
 
 	@IBOutlet public var delegate: SignUpWidgetDelegate?
 
