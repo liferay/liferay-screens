@@ -24,10 +24,10 @@ import UIKit
 
 @IBDesignable public class SignUpWidget: BaseWidget {
 
-	@IBInspectable var anonymousApiUserName: String?
-	@IBInspectable var anonymousApiPassword: String?
+	@IBInspectable public var anonymousApiUserName: String?
+	@IBInspectable public var anonymousApiPassword: String?
 
-	@IBInspectable var autologin: Bool = true
+	@IBInspectable public var autologin: Bool = true
 
 	@IBOutlet public var delegate: SignUpWidgetDelegate?
 

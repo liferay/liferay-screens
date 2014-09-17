@@ -21,7 +21,7 @@ import QuartzCore
  */
 @IBDesignable public class BaseWidget: UIView, LRCallback {
 
-	@IBInspectable var Theme:UIImage? {
+	@IBInspectable public var Theme:UIImage? {
 		didSet {
 			if runningOnInterfaceBuilder {
 				updateCurrentPreviewImage()

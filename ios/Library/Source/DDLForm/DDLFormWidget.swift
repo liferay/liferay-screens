@@ -36,18 +36,18 @@ import UIKit
 
 @IBDesignable public class DDLFormWidget: BaseWidget, LRProgressDelegate {
 
-	@IBInspectable var structureId: Int = 0
-	@IBInspectable var groupId: Int = 0
-	@IBInspectable var recordSetId: Int = 0
-	@IBInspectable var recordId:Int = 0
+	@IBInspectable public var structureId: Int = 0
+	@IBInspectable public var groupId: Int = 0
+	@IBInspectable public var recordSetId: Int = 0
+	@IBInspectable public var recordId:Int = 0
 
-	@IBInspectable var repositoryId:Int = 0
-	@IBInspectable var folderId:Int = 0
-	@IBInspectable var filePrefix = "form-file-"
+	@IBInspectable public var repositoryId:Int = 0
+	@IBInspectable public var folderId:Int = 0
+	@IBInspectable public var filePrefix = "form-file-"
 
-	@IBInspectable var autoLoad:Bool = true
-	@IBInspectable var autoscrollOnValidation:Bool = true
-	@IBInspectable var showSubmitButton:Bool = true
+	@IBInspectable public var autoLoad:Bool = true
+	@IBInspectable public var autoscrollOnValidation:Bool = true
+	@IBInspectable public var showSubmitButton:Bool = true
 
 	@IBOutlet public var delegate: DDLFormWidgetDelegate?
 

@@ -76,11 +76,11 @@ import UIKit
 	}
 
 
-	@IBInspectable var groupId: Int = 0
-	@IBInspectable var classNameId: Int = 0
+	@IBInspectable public var groupId: Int = 0
+	@IBInspectable public var classNameId: Int = 0
 
-	@IBInspectable var firstPageSize = 5
-	@IBInspectable var pageSize = 2
+	@IBInspectable public var firstPageSize = 5
+	@IBInspectable public var pageSize = 2
 
 	@IBOutlet public var delegate: AssetListWidgetDelegate?
 
