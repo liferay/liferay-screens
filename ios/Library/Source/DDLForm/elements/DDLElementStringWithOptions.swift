@@ -14,26 +14,27 @@
 import Foundation
 
 
-public class DDLStringOption {
+public class DDLElementStringWithOptions : DDLElement {
 
-	public var label:String
-	public var name:String
-	public var value:String
+	public class Option {
 
-	public init(label:String, name:String, value:String) {
-		self.label = label
-		self.name = name
-		self.value = value
+		public var label:String
+		public var name:String
+		public var value:String
+
+		public init(label:String, name:String, value:String) {
+			self.label = label
+			self.name = name
+			self.value = value
+		}
+
 	}
 
-}
-
-public class DDLElementStringWithOptions : DDLElement {
 
 	public var currentOptionLabel:String {
 		var result = ""
 
-		if let currentOptions = currentValue as? [DDLStringOption] {
+		if let currentOptions = currentValue as? [Option] {
 			if let firstOption = currentOptions.first {
 				result = firstOption.label
 			}
@@ -45,7 +46,7 @@ public class DDLElementStringWithOptions : DDLElement {
 	//FIXME Multiple selection not supported yet
 	private(set) var multiple:Bool
 
-	private(set) var options:[DDLStringOption]
+	private(set) var options:[Option]
 
 	override init(attributes: [String:String], localized: [String:AnyObject]) {
 		multiple = Bool.from(string: attributes["multiple"] ?? "false")
@@ -59,7 +60,7 @@ public class DDLElementStringWithOptions : DDLElement {
 				let name = (optionDict["name"] ?? "") as String
 				let value = (optionDict["value"] ?? "") as String
 
-				let option = DDLStringOption(label:label, name:name, value:value)
+				let option = Option(label:label, name:name, value:value)
 
 				options.append(option)
 			}
@@ -71,7 +72,7 @@ public class DDLElementStringWithOptions : DDLElement {
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		var result:String = "["
 
-		if let currentOptions = value as? [DDLStringOption] {
+		if let currentOptions = value as? [Option] {
 			var first = true
 			for option in currentOptions {
 				if first {
@@ -89,13 +90,13 @@ public class DDLElementStringWithOptions : DDLElement {
 	}
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
-		var result:[DDLStringOption] = []
+		var result:[Option] = []
 
-		func findOptionByValue(value:String) -> DDLStringOption? {
+		func findOptionByValue(value:String) -> Option? {
 			return options.filter { $0.value == value }.first
 		}
 
-		func findOptionByLabel(label:String) -> DDLStringOption? {
+		func findOptionByLabel(label:String) -> Option? {
 			return options.filter { $0.label == label }.first
 		}
 
@@ -143,13 +144,13 @@ public class DDLElementStringWithOptions : DDLElement {
 	}
 
 	override internal func doValidate() -> Bool {
-		let current = (currentValue as [DDLStringOption]?) ?? []
+		let current = (currentValue as [Option]?) ?? []
 
 		return !(required && current.count == 0)
 	}
 
 	override internal func onChangedCurrentValue() {
-		if !(currentValue is [DDLStringOption]) {
+		if !(currentValue is [Option]) {
 			if let currentStringValue = currentValue as? String {
 				currentValue = convert(fromString: currentStringValue)
 			}

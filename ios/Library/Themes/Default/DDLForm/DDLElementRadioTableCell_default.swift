@@ -72,8 +72,9 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 			data.rectangleColor = DDLElementBasicBlue
 			data.rectangleHeight = 8
 			data.rectangleWidth = 8
-			data.selected =
-				filter(element.currentValue as [DDLStringOption]) {$0.name == option.name}.count > 0
+			data.selected = filter(element.currentValue as [DDLElementStringWithOptions.Option]) {
+				$0.name == option.name
+			}.count > 0
 
 			radioButtons.append(data)
 		}
