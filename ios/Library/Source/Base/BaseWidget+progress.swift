@@ -14,13 +14,7 @@
 import Foundation
 
 
-//FIXME
-// This hack is because compiler error "Class variables not yet supported"
-internal struct Lock {
-
-	static var token = "token"
-
-}
+internal let BaseWidgetHudLock = "hud-lock"
 
 
 internal struct MBProgressHUDInstance {
@@ -128,7 +122,7 @@ extension BaseWidget {
 			closeMode:CloseMode = .NoAutoclose(false),
 			spinnerMode:SpinnerMode = .IndeterminateSpinner) {
 
-		synchronized(Lock.token) {
+		synchronized(BaseWidgetHudLock) {
 			if MBProgressHUDInstance.instance == nil {
 				MBProgressHUDInstance.instance =
 					MBProgressHUD.showHUDAddedTo(self.rootView(self), animated:true)
@@ -192,7 +186,7 @@ extension BaseWidget {
 	}
 
 	public func hideHUD() {
-		synchronized(Lock.token) {
+		synchronized(BaseWidgetHudLock) {
 			if let instance = MBProgressHUDInstance.instance {
 				instance.hide(true)
 				MBProgressHUDInstance.instance = nil
