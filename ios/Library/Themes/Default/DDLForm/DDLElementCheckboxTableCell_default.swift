@@ -16,8 +16,8 @@ import UIKit
 
 public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 
-	@IBOutlet private var switchView: UISwitch?
-	@IBOutlet private var label: UILabel?
+	@IBOutlet internal var switchView: UISwitch?
+	@IBOutlet internal var label: UILabel?
 
 	@IBAction private func switchValueChanged(sender: AnyObject) {
 		element?.currentValue = switchView?.on

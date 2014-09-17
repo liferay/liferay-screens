@@ -16,9 +16,9 @@ import UIKit
 
 public class DDLElementRadioTableCell_default: DDLElementTableCell {
 
-	@IBOutlet private var label: UILabel?
-	@IBOutlet private var radioReferenceLabel: UILabel?
-	@IBOutlet private var separator: UIView?
+	@IBOutlet internal var label: UILabel?
+	@IBOutlet internal var radioReferenceLabel: UILabel?
+	@IBOutlet internal var separator: UIView?
 
 	private var radioGroup:TNRadioButtonGroup?
 

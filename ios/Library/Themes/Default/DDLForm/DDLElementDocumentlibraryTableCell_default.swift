@@ -16,7 +16,7 @@ import UIKit
 
 public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextFieldTableCell_default {
 
-	@IBOutlet private var chooseButton: UIButton? {
+	@IBOutlet internal var chooseButton: UIButton? {
 		didSet {
 			chooseButton!.layer.masksToBounds = true
 	        chooseButton!.layer.cornerRadius = DDLElementButtonCornerRadius

@@ -16,8 +16,8 @@ import UIKit
 
 public class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidgetDelegate {
 
-	@IBOutlet var loginWidget: LoginWidget?
-	@IBOutlet var forgotWidget: ForgotPasswordWidget?
+	@IBOutlet private var loginWidget: LoginWidget?
+	@IBOutlet private var forgotWidget: ForgotPasswordWidget?
 
     
     // UIViewController METHODS

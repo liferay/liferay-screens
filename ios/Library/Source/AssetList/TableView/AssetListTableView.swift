@@ -16,7 +16,7 @@ import UIKit
 
 public class AssetListTableView: AssetListView, UITableViewDataSource, UITableViewDelegate {
 
-	@IBOutlet private var tableView: UITableView?
+	@IBOutlet internal var tableView: UITableView?
 
 	override internal func onChangedEntries() {
 		super.onChangedEntries()
