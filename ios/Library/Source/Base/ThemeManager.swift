@@ -22,16 +22,16 @@ public class ThemeManager: NSObject {
 	//MARK: Singleton
 
 	class func instance() -> ThemeManager {
-		struct Static {
+		struct Singleton {
 			static var instance: ThemeManager? = nil
 			static var onceToken: dispatch_once_t = 0
 		}
 
-		dispatch_once(&Static.onceToken) {
-			Static.instance = self()
+		dispatch_once(&Singleton.onceToken) {
+			Singleton.instance = self()
 		}
 
-		return Static.instance!
+		return Singleton.instance!
 	}
 
 	required override public init() {

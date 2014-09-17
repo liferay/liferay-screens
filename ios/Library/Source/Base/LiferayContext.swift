@@ -25,21 +25,21 @@ public class LiferayContext {
 	//MARK: Singleton
 
 	class func instance() -> LiferayContext {
-		struct Static {
+		struct Singleton {
 			static var instance: LiferayContext? = nil
 			static var onceToken: dispatch_once_t = 0
 		}
 
-		dispatch_once(&Static.onceToken) {
-			Static.instance = self()
+		dispatch_once(&Singleton.onceToken) {
+			Singleton.instance = self()
 		}
 
-		return Static.instance!
+		return Singleton.instance!
 	}
 
 	public required init() {
-		if let propertiesPath = NSBundle.mainBundle().pathForResource("liferay-context",
-				ofType:"plist") {
+		if let propertiesPath =
+				NSBundle.mainBundle().pathForResource("liferay-context", ofType:"plist") {
 			loadContextFile(propertiesPath)
 		}
 		else {
