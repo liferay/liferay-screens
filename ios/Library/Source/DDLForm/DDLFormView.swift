@@ -16,7 +16,7 @@ import UIKit
 
 public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 
-	public var showSubmitButton: Bool = true
+	public var showSubmitButton = true
 
 	public var rows: [DDLElement] = [] {
 		didSet {
@@ -42,6 +42,9 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 		return result
 	}
 
+
+	//MARK: Public methods
+
 	public func validateForm(#autoscroll:Bool) -> Bool {
 		var result = true
 		var firstFailedElement:DDLElement?
@@ -61,6 +64,9 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 
 		return result
 	}
+
+
+	//MARK: Internal methods
 
 	internal func changeDocumentUploadStatus(element:DDLElementDocument) {
 	}

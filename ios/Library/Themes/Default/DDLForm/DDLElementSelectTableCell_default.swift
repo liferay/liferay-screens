@@ -23,6 +23,16 @@ public class DDLElementSelectTableCell_default: DDLBaseElementTextFieldTableCell
 		}
 	}
 
+
+	//MARK: Actions
+
+	@IBAction private func chooseButtonAction(sender: AnyObject) {
+		textField!.becomeFirstResponder()
+	}
+
+
+	//MARK: DDLBaseElementTextFieldTableCell
+
 	override internal func onChangedElement() {
 		super.onChangedElement()
 
@@ -33,9 +43,8 @@ public class DDLElementSelectTableCell_default: DDLBaseElementTextFieldTableCell
 		}
 	}
 
-	@IBAction private func chooseButtonAction(sender: AnyObject) {
-		textField!.becomeFirstResponder()
-	}
+
+	//MARK: Private methods
 
 	private func setFieldPresenter(element:DDLElementStringWithOptions) {
 

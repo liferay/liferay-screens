@@ -40,15 +40,15 @@ internal extension AssetListWidget {
 							countResponse as Int)
 					}
 					else {
-						//TODO error handling
+						//TODO: error handling
 					}
 				}
 				else {
-					//TODO error handling
+					//TODO: error handling
 				}
 			}
 			else {
-				//TODO error handling
+				//TODO: error handling
 			}
 		}
 

@@ -16,12 +16,16 @@ import Foundation
 
 @objc public class DDLElement: Equatable {
 
+	public var currentHeight:CGFloat = 0
+
+	public var validatedClosure: (Bool -> Void)?
+	public var lastValidationResult:Bool?
+
 	public var currentValue:AnyObject? {
 		didSet {
 			onChangedCurrentValue()
 		}
 	}
-	public var currentHeight:CGFloat = 0
 
 	public var currentStringValue:String? {
 		get {
@@ -31,10 +35,6 @@ import Foundation
 			currentValue = convert(fromString: newValue)
 		}
 	}
-
-	public var validatedClosure: (Bool -> Void)?
-
-	public var lastValidationResult:Bool?
 
 	internal(set) var dataType:DataType
 	internal(set) var editorType:Editor
@@ -86,6 +86,9 @@ import Foundation
 	public func resetCurrentHeight() {
 		currentHeight = editorType.registeredHeight
 	}
+
+
+	//MARK: Internal methods
 
 	internal func doValidate() -> Bool {
 		return true

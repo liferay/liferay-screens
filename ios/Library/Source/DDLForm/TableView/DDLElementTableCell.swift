@@ -27,11 +27,6 @@ public class DDLElementTableCell: UITableViewCell {
 		}
 	}
 
-	override public func awakeFromNib() {
-		let simpleTapRecognizer = UITapGestureRecognizer(target: self, action: "simpleTapDetected")
-		addGestureRecognizer(simpleTapRecognizer)
-	}
-
 	public var isLastCell:Bool {
 		var result = false
 
@@ -48,6 +43,17 @@ public class DDLElementTableCell: UITableViewCell {
 
 		return result
 	}
+
+
+	//MARK: UITableViewCell
+
+	override public func awakeFromNib() {
+		let simpleTapRecognizer = UITapGestureRecognizer(target: self, action: "simpleTapDetected")
+		addGestureRecognizer(simpleTapRecognizer)
+	}
+
+
+	//MARK: Internal methods
 
 	internal func onChangedElement() {
 	}

@@ -40,7 +40,7 @@ extension LRSession {
 	}
 
 
-	//MARK: Private class methods
+	//MARK: Private methods
 
 	private class func credentialForServer(server:String) ->
 			(NSURLCredential?, NSURLProtectionSpace) {
@@ -71,7 +71,7 @@ extension LRSession {
 	}
 
 
-	//MARK: Instance methods
+	//MARK: Public methods
 
 	public func storeCredential() -> Bool {
 		var success = false

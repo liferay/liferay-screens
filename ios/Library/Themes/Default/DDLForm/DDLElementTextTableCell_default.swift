@@ -16,6 +16,8 @@ import UIKit
 
 public class DDLElementTextTableCell_default: DDLBaseElementTextFieldTableCell_default {
 
+	//MARK: DDLBaseElementTextFieldTableCell
+
 	override public func textField(textField: UITextField!,
 			shouldChangeCharactersInRange range: NSRange,
 			replacementString string: String!) -> Bool {
@@ -28,6 +30,9 @@ public class DDLElementTextTableCell_default: DDLBaseElementTextFieldTableCell_d
 		return super.textField(textField, shouldChangeCharactersInRange: range,
 				replacementString: string)
 	}
+
+
+	//MARK: UITextFieldDelegate
 
 	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		return nextCellResponder(textField)

@@ -20,6 +20,9 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 	@IBOutlet private var subtitleLabel: UILabel?
 	@IBOutlet private var userNamePlaceholder: UILabel?
 
+
+	//MARK: ForgotPasswordView
+
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
@@ -36,24 +39,24 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 		userNameField!.placeholder = "";
 	}
 
+
+	//MARK: ForgotPasswordView
+	
 	override public func setUserName(userName: String) {
 		super.setUserName(userName)
-		showPlaceholder(userNamePlaceholder!, show:userName == "")
+		userNamePlaceholder!.changeVisibility(visible: userName == "")
 	}
 
+
+	//MARK: UITextFieldDelegate
+	
 	internal func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
 
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
 
-		showPlaceholder(userNamePlaceholder!, show:newText == "")
+		userNamePlaceholder!.changeVisibility(visible: newText == "")
 
 		return true
-	}
-
-	private func showPlaceholder(placeholder:UILabel, show:Bool) {
-		UIView.animateWithDuration(0.4, animations: {
-			placeholder.alpha = show ? 1.0 : 0.0
-		})
 	}
 
 }

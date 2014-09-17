@@ -29,6 +29,33 @@ import UIKit
 
 	@IBOutlet public var delegate: WebContentWidgetDelegate?
 
+
+	//MARK: BaseWidget
+
+	override internal func onServerError(error: NSError) {
+		delegate?.onWebContentError?(error)
+
+		finishOperationWithError(error, message:"Error requesting password!")
+	}
+
+	override internal func onServerResult(result: [String:AnyObject]) {
+		if let responseValue:AnyObject = result["result"] {
+			let htmlContent = responseValue as String
+
+			delegate?.onWebContentResponse?(htmlContent)
+
+			webContentView().setHtmlContent(htmlContent)
+
+			finishOperation()
+		}
+		else {
+			finishOperationWithMessage("An error happened", details: "Can't load the content")
+		}
+	}
+
+
+	//MARK: Public methods
+
 	public func loadWebContent() -> Bool {
 		if LiferayContext.instance().currentSession == nil {
 			println("ERROR: No session initialized. Can't load the web content without session")
@@ -64,28 +91,7 @@ import UIKit
 	}
 
 
-	//MARK: BaseWidget METHODS
-
-	override internal func onServerError(error: NSError) {
-		delegate?.onWebContentError?(error)
-
-		finishOperationWithError(error, message:"Error requesting password!")
-	}
-
-	override internal func onServerResult(result: [String:AnyObject]) {
-		if let responseValue:AnyObject = result["result"] {
-			let htmlContent = responseValue as String
-
-			delegate?.onWebContentResponse?(htmlContent)
-
-			webContentView().setHtmlContent(htmlContent)
-
-			finishOperation()
-		}
-		else {
-			finishOperationWithMessage("An error happened", details: "Can't load the content")
-		}
-	}
+	//MARK: Internal methods
 
 	internal func webContentView() -> WebContentView {
 		return widgetView as WebContentView

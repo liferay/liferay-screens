@@ -44,6 +44,9 @@ public class DDLParser {
 		return result
 	}
 
+
+	//MARK: Private methods
+
 	private func processDocument(document:SMXMLDocument) -> [DDLElement]? {
 		availableLocales = processAvailableLocales(document)
 		defaultLocale = NSLocale(

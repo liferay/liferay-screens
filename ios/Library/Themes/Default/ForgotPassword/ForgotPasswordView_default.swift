@@ -21,7 +21,7 @@ public class ForgotPasswordView_default: ForgotPasswordView {
 	@IBOutlet internal var requestPasswordButton: UIButton?
 
 
-	//MARK: Overriden accessors
+	//MARK: ForgotPasswordView
 
 	override public func getUserName() -> String {
 		return userNameField!.text

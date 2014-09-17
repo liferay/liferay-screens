@@ -86,34 +86,35 @@ import UIKit
 
 	private var loadPageOperations: [Int:LoadPageOperation] = [:]
 
+
+	//MARK: BaseWidget
+
 	override public func onCreated() {
 		assetListView().onSelectedEntryClosure = onSelectedEntry
 		assetListView().fetchPageForRow = loadPageForRow
 	}
 
-	internal func loadPageForRow(row:Int) {
-		let page = pageFromRow(row)
 
-		if loadPageOperations.indexForKey(page) == nil {
-			loadPage(page)
-		}
-	}
+	//MARK: Public methods
 
-	internal func pageFromRow(row:Int) -> Int {
-		if row < firstPageSize {
-			return 0
+	public func loadList() -> Bool {
+		if LiferayContext.instance().currentSession == nil {
+			println("ERROR: No session initialized. Can't load the asset list without session")
+			return false
 		}
 
-		return ((row - firstPageSize) / pageSize) + 1
-	}
-
-	internal func firstRowForPage(page:Int) -> Int {
-		if page == 0 {
-			return 0
+		if classNameId == 0 {
+			println("ERROR: ClassNameId is empty. Can't load the asset list without it.")
+			return false
 		}
 
-		return firstPageSize + (page - 1) * pageSize
+		startOperationWithMessage("Loading list...", details:"Wait few seconds...")
+
+		return loadPage(0)
 	}
+
+
+	//MARK: Internal methods
 
 	internal func loadPage(page:Int) -> Bool {
 		let operation = LoadPageOperation(page:page)
@@ -158,20 +159,28 @@ import UIKit
 		return true
 	}
 
-	public func loadList() -> Bool {
-		if LiferayContext.instance().currentSession == nil {
-			println("ERROR: No session initialized. Can't load the asset list without session")
-			return false
+	internal func loadPageForRow(row:Int) {
+		let page = pageFromRow(row)
+
+		if loadPageOperations.indexForKey(page) == nil {
+			loadPage(page)
+		}
+	}
+
+	internal func pageFromRow(row:Int) -> Int {
+		if row < firstPageSize {
+			return 0
 		}
 
-		if classNameId == 0 {
-			println("ERROR: ClassNameId is empty. Can't load the asset list without it.")
-			return false
+		return ((row - firstPageSize) / pageSize) + 1
+	}
+
+	internal func firstRowForPage(page:Int) -> Int {
+		if page == 0 {
+			return 0
 		}
 
-		startOperationWithMessage("Loading list...", details:"Wait few seconds...")
-
-		return loadPage(0)
+		return firstPageSize + (page - 1) * pageSize
 	}
 
 	internal func onLoadPageError(page: Int, error: NSError) {

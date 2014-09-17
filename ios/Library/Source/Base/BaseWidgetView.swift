@@ -31,10 +31,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		onCreated()
 	}
 
-	/*
-	* becomeFirstResponder is invoked to make the widget view the first responder. Override this 
-	* method to set one child component as first responder.
-	*/
 	override public func becomeFirstResponder() -> Bool {
 		var result:Bool
 
@@ -78,7 +74,7 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	}
 
 
-	//MARK: BaseWidgetView Methods
+	//MARK: Internal methods
 
 	/*
 	 * onCreated is fired after the initialization of the widget view. 
@@ -147,6 +143,9 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		}
 		return view
 	}
+
+
+	//MARK: Private methods
 
 	private func addCustomActionForControl(control: UIControl) {
 		if onSetCustomActionForControl(control) {

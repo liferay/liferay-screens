@@ -16,6 +16,9 @@ import Foundation
 
 public class ThemeManager: NSObject {
 
+	private(set) var installedThemes:[String] = []
+
+
 	//MARK: Singleton
 
 	class func instance() -> ThemeManager {
@@ -36,6 +39,9 @@ public class ThemeManager: NSObject {
 		loadThemes()
 	}
 
+
+	//MARK: Internal methods
+
 	internal func loadThemes() {
 		installedThemes.removeAll(keepCapacity: true)
 
@@ -54,8 +60,5 @@ public class ThemeManager: NSObject {
 
 		installedThemes += widgetNames
 	}
-
-	private(set) var installedThemes:[String] = []
-
 
 }

@@ -26,6 +26,17 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	private var originalBackgroundRect:CGRect = CGRectZero
 
 
+	//MARK: DDLElementTableCell
+
+	override public func canBecomeFirstResponder() -> Bool {
+		return textView!.canBecomeFirstResponder()
+	}
+
+	override public func becomeFirstResponder() -> Bool {
+		textView!.becomeFirstResponder()
+		return false
+	}
+
 	override internal func onChangedElement() {
 		if let stringElement = element as? DDLElementString {
 
@@ -61,20 +72,14 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		}
 	}
 
-	override public func canBecomeFirstResponder() -> Bool {
-		return textView!.canBecomeFirstResponder()
-	}
-
-	override public func becomeFirstResponder() -> Bool {
-		textView!.becomeFirstResponder()
-		return false
-	}
-
 	override internal func onValidated(valid: Bool) {
 		let imgName = valid ? "default-field" : "default-field-failed"
 
 		textViewBackground?.image = UIImage(named: imgName)
 	}
+
+
+	//MARK: UITextViewDelegate
 
 	public func textViewDidBeginEditing(textView: UITextView!) {
 		var heightLabelOffset:CGFloat =

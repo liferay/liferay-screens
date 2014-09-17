@@ -23,6 +23,9 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 		textField?.text = element!.currentStringValue
 	}
 
+
+	//MARK: DDLBaseElementTextFieldTableCell
+
 	override public func awakeFromNib() {
 		super.awakeFromNib()
 
@@ -60,6 +63,9 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 				shouldChangeCharactersInRange: range,
 				replacementString: string)
 	}
+
+
+	//MARK: UITextFieldDelegate
 
 	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		return nextCellResponder(textField)

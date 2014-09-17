@@ -22,21 +22,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	internal var submitButtonHeight:CGFloat = 0.0
 
-	override internal func onCreated() {
-		super.onCreated()
 
-		registerElementCells()
-	}
-
-	override internal func onChangedRows() {
-		super.onChangedRows()
-
-		for element in rows {
-			element.resetCurrentHeight()
-		}
-		
-		tableView!.reloadData()
-	}
+	//MARK: DDLFormView
 
 	override public func resignFirstResponder() -> Bool {
 		var result:Bool = false
@@ -70,6 +57,23 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 		return result
 	}
+
+	override internal func onCreated() {
+		super.onCreated()
+
+		registerElementCells()
+	}
+
+	override internal func onChangedRows() {
+		super.onChangedRows()
+
+		for element in rows {
+			element.resetCurrentHeight()
+		}
+		
+		tableView!.reloadData()
+	}
+
 	override internal func showElement(element: DDLElement) {
 		if let row = find(rows, element) {
 			tableView!.scrollToRowAtIndexPath(
@@ -86,6 +90,60 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 			}
 		}
 	}
+
+
+	//MARK: UITableViewDataSource
+
+	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if rows.count == 0 {
+			return 0
+		}
+
+		return rows.count + (showSubmitButton ? 1 : 0)
+	}
+
+	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->
+			UITableViewCell {
+
+		var cell:DDLElementTableCell?
+		let row = indexPath.row
+
+		if row == rows.count {
+			cell = tableView.dequeueReusableCellWithIdentifier("SubmitButton") as?
+					DDLElementTableCell
+
+			cell!.formView = self
+		}
+		else {
+			let element = rows[row]
+			
+			cell = tableView.dequeueReusableCellWithIdentifier(
+					element.editorType.toCapitalizedName()) as? DDLElementTableCell
+
+			if cell == nil {
+				println("ERROR: Cell XIB is not registerd for type " +
+						element.editorType.toCapitalizedName())
+			}
+
+			cell!.formView = self
+			cell!.tableView = tableView
+			cell!.indexPath = indexPath
+			cell!.element = element
+		}
+
+		return cell!
+	}
+
+	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->
+			CGFloat {
+
+		let row = indexPath.row
+
+		return (row == rows.count) ? submitButtonHeight : rows[row].currentHeight
+	}
+
+
+	//MARK: Internal methods
 
 	internal func registerElementCells() {
 		let currentBundle = NSBundle(forClass: self.dynamicType)
@@ -141,57 +199,6 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		else {
 			println("ERROR: Root view in cell \(editor.toRaw()) didn't found")
 		}
-	}
-
-
-	//MARK: UITableViewDataSource
-
-	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if rows.count == 0 {
-			return 0
-		}
-
-		return rows.count + (showSubmitButton ? 1 : 0)
-	}
-
-	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->
-			UITableViewCell {
-
-		var cell:DDLElementTableCell?
-		let row = indexPath.row
-
-		if row == rows.count {
-			cell = tableView.dequeueReusableCellWithIdentifier("SubmitButton") as?
-					DDLElementTableCell
-
-			cell!.formView = self
-		}
-		else {
-			let element = rows[row]
-			
-			cell = tableView.dequeueReusableCellWithIdentifier(
-					element.editorType.toCapitalizedName()) as? DDLElementTableCell
-
-			if cell == nil {
-				println("ERROR: Cell XIB is not registerd for type " +
-						element.editorType.toCapitalizedName())
-			}
-
-			cell!.formView = self
-			cell!.tableView = tableView
-			cell!.indexPath = indexPath
-			cell!.element = element
-		}
-
-		return cell!
-	}
-
-	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->
-			CGFloat {
-
-		let row = indexPath.row
-
-		return (row == rows.count) ? submitButtonHeight : rows[row].currentHeight
 	}
 
 }

@@ -45,10 +45,6 @@ public class LoginView_default: LoginView {
 
 	//MARK: LoginView
 
-	override internal func onCreated() {
-		BaseWidget.setHUDCustomColor(DDLElementBasicBlue)
-	}
-
 	override public var shouldRememberCredentials: Bool {
 		if let rememberSwitchValue = rememberSwitch {
 			return rememberSwitchValue.on;
@@ -77,6 +73,10 @@ public class LoginView_default: LoginView {
 
 	override public func setPassword(password: String) {
 		passwordField!.text = password
+	}
+
+	override internal func onCreated() {
+		BaseWidget.setHUDCustomColor(DDLElementBasicBlue)
 	}
 
 

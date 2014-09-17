@@ -43,24 +43,8 @@ public class LoginWidget: BaseWidget {
 		return LRSession.sessionFromStoredCredential()
 	}
 
-	//FIXME:
-	// XCode crashes with "swift_unknownWeakLoadStrong" error
-	// Storing the enum as a String seems to workaround the problem
-	// This code is the optimal solution to be used when XCode is fixed
-	//
-	// var authType: AuthType = AuthType.Email {
-	// 	didSet {
-	//		loginView().setAuthType(authType)
-	//	}
-	// }
-	public func setAuthType(authType:String) {
-        loginView().setAuthType(authType)
-        
-        authClosure = supportedAuthClosures[authType]
-	}
 
-
-	//MARK: BaseWidget METHODS
+	//MARK: BaseWidget
 
 	override internal func onCreated() {
         setAuthType(LoginAuthType.Email.toRaw())
@@ -103,11 +87,33 @@ public class LoginWidget: BaseWidget {
 	}
 
 
-	//MARK: PRIVATE METHDOS
+	//MARK: Public methods
 
-	private func loginView() -> LoginView {
+	//FIXME:
+	// XCode crashes with "swift_unknownWeakLoadStrong" error
+	// Storing the enum as a String seems to workaround the problem
+	// This code is the optimal solution to be used when XCode is fixed
+	//
+	// var authType: AuthType = AuthType.Email {
+	// 	didSet {
+	//		loginView().setAuthType(authType)
+	//	}
+	// }
+	public func setAuthType(authType:String) {
+        loginView().setAuthType(authType)
+        
+        authClosure = supportedAuthClosures[authType]
+	}
+
+
+	//MARK: Internal methods
+
+	internal func loginView() -> LoginView {
 		return widgetView as LoginView
 	}
+
+
+	//MARK: Private methods
 
 	private func sendLoginWithUserName(userName:String, password:String) {
 		startOperationWithMessage("Sending sign in...", details:"Wait few seconds...")

@@ -19,6 +19,13 @@ import Foundation
  */
 extension UIView {
 
+	private var defaultHideDelay:Double {
+		return 0.3
+	}
+
+
+	//MARK: Public methods
+
 	public func changeVisibility(#visible:Bool) {
 		changeVisibility(visible: visible, delay: defaultHideDelay)
 	}
@@ -36,10 +43,6 @@ extension UIView {
 				})
 			}
 		}
-	}
-
-	private var defaultHideDelay:Double {
-		return 0.3
 	}
 
 }

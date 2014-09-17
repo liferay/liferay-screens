@@ -18,6 +18,9 @@ public class AssetListTableView: AssetListView, UITableViewDataSource, UITableVi
 
 	@IBOutlet internal var tableView: UITableView?
 
+
+	// MARK: AssetListView
+
 	override internal func onChangedEntries() {
 		super.onChangedEntries()
 

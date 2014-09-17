@@ -32,74 +32,12 @@ import QuartzCore
 
 	internal var widgetView: BaseWidgetView?
 
-
-	//MARK: DISPLAY TEMPLATE METHODS
-
-	/*
-	 * onCreated is invoked after the widget is created. 
-	 * Override this method to set custom values for the widget properties.
-	 */
-	internal func onCreated() {
-	}
-
-	/*
-	 * onPreCreate is invoked before the widget is created.
-	 * Override this method to set create new UI components programatically.
-	 *
-	 */
-	internal func onPreCreate() {
-	}
-
-	/*
-	 * onHide is invoked when the widget is hidden from the app window.
-	 */
-	internal func onHide() {
-	}
-
-	/*
-	 * onShow is invoked when the widget is displayed on the app window. 
-	 * Override this method for example to reset values when the widget is shown.
-	 */
-	internal func onShow() {
-	}
+	private var runningOnInterfaceBuilder = false
+	private var currentPreviewImage:UIImage?
+	private lazy var previewLayer = CALayer()
 
 
-	//MARK: SERVER RESPONSE TEMPLATE METHODS
-
-	/*
-	 * onServerError is invoked when there is an error communicating with the Liferay server.
-	 */
-	internal func onServerError(error: NSError) {
-	}
-
-	/*
-	 * onServerResult is invoked when there is an result from a communication with the 
-	 * Liferay server.
-	 * The type of the result will depend on the invocation done from specific subclasses.
-	 */
-	internal func onServerResult(dict:[String:AnyObject]) {
-	}
-
-
-	//MARK: USER ACTIONS TEMPLATE METHOD
-
-	/*
-	 * onCustomAction is invoked when a TouchUpInside even is fired from the UI.
-	 */
-	internal func onCustomAction(actionName:String?, sender:AnyObject?) {
-	}
-
-
-	//MARK: Operations template methods
-
-	internal func onStartOperation() {
-	}
-
-	internal func onFinishOperation() {
-	}
-
-
-	//MARK: UIView METHODS
+	//MARK: UIView
 
 	override public func awakeFromNib() {
 		super.awakeFromNib()
@@ -180,7 +118,7 @@ import QuartzCore
 	}
 
 
-	//MARK: Internal
+	//MARK: Internal methods
 
 	internal func loadWidgetView() -> BaseWidgetView? {
 		let view = createWidgetViewFromNib();
@@ -294,6 +232,72 @@ import QuartzCore
 		return previewImage
 	}
 
+
+	//MARK: Templated/event methods: intended to be overwritten by children classes
+
+	/*
+	 * onCreated is invoked after the widget is created. 
+	 * Override this method to set custom values for the widget properties.
+	 */
+	internal func onCreated() {
+	}
+
+	/*
+	 * onPreCreate is invoked before the widget is created.
+	 * Override this method to set create new UI components programatically.
+	 *
+	 */
+	internal func onPreCreate() {
+	}
+
+	/*
+	 * onHide is invoked when the widget is hidden from the app window.
+	 */
+	internal func onHide() {
+	}
+
+	/*
+	 * onShow is invoked when the widget is displayed on the app window. 
+	 * Override this method for example to reset values when the widget is shown.
+	 */
+	internal func onShow() {
+	}
+
+	/*
+	 * onServerError is invoked when there is an error communicating with the Liferay server.
+	 */
+	internal func onServerError(error: NSError) {
+	}
+
+	/*
+	 * onServerResult is invoked when there is an result from a communication with the 
+	 * Liferay server.
+	 * The type of the result will depend on the invocation done from specific subclasses.
+	 */
+	internal func onServerResult(dict:[String:AnyObject]) {
+	}
+
+	/*
+	 * onCustomAction is invoked when a TouchUpInside even is fired from the UI.
+	 */
+	internal func onCustomAction(actionName:String?, sender:AnyObject?) {
+	}
+
+	/**
+	 * onStartOperation is called just before a widget request is sent to server
+	 */
+	internal func onStartOperation() {
+	}
+
+	/**
+	 * onFinishOperation is called when the server response arrives
+	 */
+	internal func onFinishOperation() {
+	}
+
+
+	//MARK: Private
+
 	private func createWidgetViewFromNib() -> BaseWidgetView? {
 		let viewName = widgetName() + "View"
 
@@ -327,13 +331,5 @@ import QuartzCore
 
 		currentPreviewImage = previewImageForTheme(themeName)
 	}
-
-	private var runningOnInterfaceBuilder:Bool = false
-
-	private lazy var previewLayer: CALayer = {
-		return CALayer()
-	}()
-
-	private var currentPreviewImage:UIImage?
 
 }

@@ -19,6 +19,9 @@ public class WebContentView_default: WebContentView {
 
 	private var webView:WKWebView?
 
+
+	//MARK: WebContentView
+
 	override public func setHtmlContent(html:String) {
 		webView!.loadHTMLString(html, baseURL: NSURL(string:LiferayContext.instance().server))
 	}

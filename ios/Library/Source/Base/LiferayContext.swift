@@ -58,6 +58,9 @@ public class LiferayContext {
 		}
 	}
 
+
+	//MARK: Public methods
+
 	public func loadContextFile(propertiesPath:String) {
 		let properties = NSDictionary(contentsOfFile: propertiesPath)
 

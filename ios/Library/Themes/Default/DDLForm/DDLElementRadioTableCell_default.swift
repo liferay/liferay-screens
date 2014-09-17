@@ -20,8 +20,14 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 	@IBOutlet internal var radioReferenceLabel: UILabel?
 	@IBOutlet internal var separator: UIView?
 
-	private var radioGroup:TNRadioButtonGroup?
+	internal var radioGroup:TNRadioButtonGroup?
 
+
+	//MARK: DDLElementTableCell
+
+	override public func canBecomeFirstResponder() -> Bool {
+		return false
+	}
 
 	override internal func onChangedElement() {
 		if let stringElement = element as? DDLElementStringWithOptions {
@@ -56,9 +62,8 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 		}
 	}
 
-	override public func canBecomeFirstResponder() -> Bool {
-		return false
-	}
+
+	//MARK: Private methods
 
 	private func createRadioButtons(element:DDLElementStringWithOptions) {
 		var radioButtons:[AnyObject] = []

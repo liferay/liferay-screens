@@ -36,15 +36,8 @@ import UIKit
 
 	private var resetClosure: ((String, LRMobilewidgetsuserService_v62, NSError -> Void) -> Void)?
 
-	
-	public func setAuthType(authType:String) {
-		forgotPasswordView().setAuthType(authType)
 
-		resetClosure = supportedResetClosures[authType]
-	}
-
-
-	//MARK: BaseWidget METHODS
+	//MARK: BaseWidget
 
 	override internal func onCreated() {
 		setAuthType(LoginAuthType.Email.toRaw())
@@ -87,6 +80,17 @@ import UIKit
 		}
 	}
 
+	
+	//MARK: Public methods
+
+	public func setAuthType(authType:String) {
+		forgotPasswordView().setAuthType(authType)
+
+		resetClosure = supportedResetClosures[authType]
+	}
+
+	
+	//MARK: Private methods
 
 	private func forgotPasswordView() -> ForgotPasswordView {
 		return widgetView as ForgotPasswordView

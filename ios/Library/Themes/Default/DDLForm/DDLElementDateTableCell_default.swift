@@ -23,6 +23,16 @@ public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_d
 		}
 	}
 
+
+	//MARK: Actions
+
+	@IBAction private func chooseButtonAction(sender: AnyObject) {
+		textField!.becomeFirstResponder()
+	}
+
+
+	//MARK: DDLBaseElementTextFieldTableCell
+
 	override internal func onChangedElement() {
 		super.onChangedElement()
 
@@ -35,9 +45,8 @@ public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_d
 		}
 	}
 
-	@IBAction private func chooseButtonAction(sender: AnyObject) {
-		textField!.becomeFirstResponder()
-	}
+
+	//MARK: Private methods
 
 	private func setFieldPresenter(element:DDLElementDate) {
 

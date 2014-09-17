@@ -65,7 +65,7 @@ import UIKit
 	private var currentOperation = FormOperation.Idle
 
 
-	//MARK: BaseWidget METHODS
+	//MARK: BaseWidget
 
 	override public func becomeFirstResponder() -> Bool {
 		return formView().becomeFirstResponder()
@@ -167,41 +167,23 @@ import UIKit
 
 	}
 
-	private func onFormLoadResult(result: [String:AnyObject]) {
-		if let xml = result["xsd"]! as? String {
-			if let userIdValue = result["userId"]! as? Int {
-				userId = userIdValue
-			}
 
-			let parser = DDLParser(locale:NSLocale.currentLocale())
+	//MARK: LRProgressDelegate
 
-			parser.xml = xml
+	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
+		switch currentOperation {
+			case .Uploading(let document, _):
+				document.uploadStatus = .Uploading(UInt(sent), UInt(total))
+				formView().changeDocumentUploadStatus(document)
 
-			if let elements = parser.parse() {
-				formView().rows = elements
+				delegate?.onDocumentUploadedBytes?(document, bytes: bytes, sent: sent, total: total)
 
-				delegate?.onFormLoaded?(elements)
-
-				finishOperationWithMessage("Form loaded")
-			}
-			else {
-				//TODO error
-			}
-		}
-		else {
-			//TODO error
+			default: ()
 		}
 	}
 
-	private func onRecordLoadResult(result: [String:AnyObject]) {
-		for (index,element) in enumerate(formView().rows) {
-			let elementValue = (result[element.name] ?? nil) as? String
-			if let elementStringValue = elementValue {
-				element.currentStringValue = elementStringValue
-				formView().rows[index] = element
-			}
-		}
-	}
+
+	//MARK: Public methods
 
 	public func loadForm() -> Bool {
 		if LiferayContext.instance().currentSession == nil {
@@ -368,6 +350,52 @@ import UIKit
 		return true
 	}
 
+
+	//MARK: Internal methods
+
+	internal func formView() -> DDLFormView {
+		return widgetView as DDLFormView
+	}
+
+
+	//MARK: Private methods
+
+	private func onFormLoadResult(result: [String:AnyObject]) {
+		if let xml = result["xsd"]! as? String {
+			if let userIdValue = result["userId"]! as? Int {
+				userId = userIdValue
+			}
+
+			let parser = DDLParser(locale:NSLocale.currentLocale())
+
+			parser.xml = xml
+
+			if let elements = parser.parse() {
+				formView().rows = elements
+
+				delegate?.onFormLoaded?(elements)
+
+				finishOperationWithMessage("Form loaded")
+			}
+			else {
+				//TODO error
+			}
+		}
+		else {
+			//TODO error
+		}
+	}
+
+	private func onRecordLoadResult(result: [String:AnyObject]) {
+		for (index,element) in enumerate(formView().rows) {
+			let elementValue = (result[element.name] ?? nil) as? String
+			if let elementStringValue = elementValue {
+				element.currentStringValue = elementStringValue
+				formView().rows[index] = element
+			}
+		}
+	}
+
 	private func uploadDocument(document:DDLElementDocument) -> Bool {
 		if LiferayContext.instance().currentSession == nil {
 			println("ERROR: No session initialized. Can't upload a document without session")
@@ -415,25 +443,6 @@ import UIKit
 		delegate?.onDocumentUploadStarted?(document)
 
 		return true
-	}
-
-
-	//MARK: LRProgressDelegate
-
-	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
-		switch currentOperation {
-			case .Uploading(let document, _):
-				document.uploadStatus = .Uploading(UInt(sent), UInt(total))
-				formView().changeDocumentUploadStatus(document)
-
-				delegate?.onDocumentUploadedBytes?(document, bytes: bytes, sent: sent, total: total)
-
-			default: ()
-		}
-	}
-
-	private func formView() -> DDLFormView {
-		return widgetView as DDLFormView
 	}
 
 }

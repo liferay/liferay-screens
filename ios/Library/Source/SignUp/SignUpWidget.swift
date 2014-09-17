@@ -33,8 +33,11 @@ import UIKit
 
 	public var authType = LoginAuthType.Email
 
+	private var creatingUsername: String?
+	private var creatingPassword: String?
 
-	//MARK: BaseWidget METHODS
+
+	//MARK: BaseWidget
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
 		sendSignUpWithEmailAddress(signUpView().getEmailAddress(),
@@ -63,9 +66,14 @@ import UIKit
 	}
 
 
-	private func signUpView() -> SignUpView {
+	//MARK: Internal methods
+
+	internal func signUpView() -> SignUpView {
 		return widgetView as SignUpView
 	}
+
+
+	//MARK: Private methods
 
 	private func sendSignUpWithEmailAddress(
 			emailAddress:String, password:String, firstName:String, lastName:String) {
@@ -136,8 +144,5 @@ import UIKit
 			onFailure(error)
 		}
 	}
-
-	private var creatingUsername: String?
-	private var creatingPassword: String?
 
 }

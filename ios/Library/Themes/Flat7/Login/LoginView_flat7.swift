@@ -21,6 +21,14 @@ public class LoginView_flat7: LoginView_default {
 	@IBOutlet private var userNamePlaceholder: UILabel?
 	@IBOutlet private var passwordPlaceholder: UILabel?
 
+
+	//MARK: LoginView
+
+	override public func setUserName(userName: String) {
+		super.setUserName(userName)
+		userNamePlaceholder!.changeVisibility(visible: userName == "")
+	}
+
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
@@ -39,10 +47,8 @@ public class LoginView_flat7: LoginView_default {
 		passwordField!.placeholder = "";
 	}
 
-	override public func setUserName(userName: String) {
-		super.setUserName(userName)
-		userNamePlaceholder!.changeVisibility(visible: userName == "")
-	}
+
+	//MARK: UITextFieldDelegate
 
 	internal func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
 

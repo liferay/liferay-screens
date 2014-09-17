@@ -16,6 +16,8 @@ import UIKit
 
 public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextFieldTableCell_default {
 
+	//MARK: Outlets
+
 	@IBOutlet internal var chooseButton: UIButton? {
 		didSet {
 			chooseButton!.layer.masksToBounds = true
@@ -23,11 +25,10 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 		}
 	}
 
-	@IBOutlet private var progress:MDRadialProgressView?
+	@IBOutlet internal var progress:MDRadialProgressView?
 
-	@IBAction private func chooseButtonAction(sender: AnyObject) {
-		textField!.becomeFirstResponder()
-	}
+
+	//MARK: Constants
 
 	private let presenterViewController =
 		DDLElementDocumentlibraryPresenterViewController_default()
@@ -64,6 +65,16 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 					UIColor(red:1, green:220/255.0, blue:200/255.0, alpha:1)
 		]
 
+
+	//MARK: Actions
+
+	@IBAction private func chooseButtonAction(sender: AnyObject) {
+		textField!.becomeFirstResponder()
+	}
+
+
+	//MARK: DDLBaseElementTextFieldTableCell
+
 	override internal func onChangedElement() {
 		super.onChangedElement()
 
@@ -76,19 +87,6 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 
 			setProgress(docElement)
 		}
-	}
-
-	private func setProgress(element:DDLElementDocument) {
-		let theme = progress!.theme
-
-		theme.font = UIFont(descriptor: textField!.font.fontDescriptor(), size: 2.0)
-
-		theme.sliceDividerHidden = true
-		theme.thickness = 10.0
-
-		progress!.theme = theme
-
-		changeDocumentUploadStatus(element)
 	}
 
 	override internal func changeDocumentUploadStatus(element: DDLElementDocument) {
@@ -116,6 +114,22 @@ public class DDLElementDocumentlibraryTableCell_default: DDLBaseElementTextField
 		dispatch_async(dispatch_get_main_queue()) {
 			self.progress!.setNeedsDisplay()
 	    }
+	}
+
+
+	//MARK: Private methods
+
+	private func setProgress(element:DDLElementDocument) {
+		let theme = progress!.theme
+
+		theme.font = UIFont(descriptor: textField!.font.fontDescriptor(), size: 2.0)
+
+		theme.sliceDividerHidden = true
+		theme.thickness = 10.0
+
+		progress!.theme = theme
+
+		changeDocumentUploadStatus(element)
 	}
 
 	private func changeProgressVisilibity(#show:Bool, delay:Double = 0.0) {

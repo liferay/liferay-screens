@@ -20,6 +20,9 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 	@IBOutlet internal var textFieldBackground: UIImageView?
 	@IBOutlet internal var label: UILabel?
 
+
+	//MARK: DDLElementTableCell
+
 	override internal func onChangedElement() {
 		if element!.showLabel {
 			textField?.placeholder = ""

@@ -24,6 +24,9 @@ public class SignUpView_flat7: SignUpView_default {
 	@IBOutlet private var emailAddressPlaceholder: UILabel?
 	@IBOutlet private var passwordPlaceholder: UILabel?
 
+
+	//MARK: SignUpView
+
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
@@ -46,33 +49,30 @@ public class SignUpView_flat7: SignUpView_default {
 		passwordField!.placeholder = "";
 	}
 
+
+	//MARK: UITextFieldDelegate
+
 	internal func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
 
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
 
-		var placeholder:UILabel = firstNamePlaceholder!
+		var placeholder = firstNamePlaceholder!
 
 		switch textField {
-		case firstNameField!:
-			placeholder = firstNamePlaceholder!
-		case lastNameField!:
-			placeholder = lastNamePlaceholder!
-		case emailAddressField!:
-			placeholder = emailAddressPlaceholder!
-		case passwordField!:
-			placeholder = passwordPlaceholder!
-		default: ()
+			case firstNameField!:
+				placeholder = firstNamePlaceholder!
+			case lastNameField!:
+				placeholder = lastNamePlaceholder!
+			case emailAddressField!:
+				placeholder = emailAddressPlaceholder!
+			case passwordField!:
+				placeholder = passwordPlaceholder!
+			default: ()
 		}
 
-		showPlaceholder(placeholder, show:newText == "")
+		placeholder.changeVisibility(visible: newText == "")
 
 		return true
-	}
-
-	private func showPlaceholder(placeholder:UILabel, show:Bool) {
-		UIView.animateWithDuration(0.4, animations: {
-			placeholder.alpha = show ? 1.0 : 0.0
-		})
 	}
 
 }

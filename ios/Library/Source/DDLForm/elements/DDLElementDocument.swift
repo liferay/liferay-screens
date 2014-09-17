@@ -42,60 +42,32 @@ import Foundation
 	}
 
 
-	public var currentDocumentLabel:String? {
-		var result: String?
-
-		switch currentValue {
-			case is UIImage:
-				result = "Image"
-			case is NSURL:
-				result = "Video"
-			default: ()
-		}
-
-		return result
-	}
-
 	public var uploadStatus:UploadStatus = .Pending
 
-	public var mimeType: String? {
-		var result:String?
-
+	public var currentDocumentLabel:String? {
 		switch currentValue {
 			case is UIImage:
-				result = "image/png"
+				return "Image"
 			case is NSURL:
-				result = "video/mpeg"
-			default: ()
+				return "Video"
+			default:
+				return nil
 		}
-
-		return result
 	}
 
-	public func getStream(inout size:Int64) -> NSInputStream? {
-		var result: NSInputStream?
-
+	public var mimeType: String? {
 		switch currentValue {
-			case let image as UIImage:
-				let imageData = UIImagePNGRepresentation(image)
-				size = Int64(imageData.length)
-				result = NSInputStream(data: imageData)
-
-			case let videoURL as NSURL:
-				var outError:NSError?
-				if let attributes = NSFileManager.defaultManager().attributesOfItemAtPath(
-						videoURL.path!, error: &outError) {
-					if let sizeValue = attributes[NSFileSize] as? NSNumber {
-						size = sizeValue.longLongValue
-					}
-				}
-				result = NSInputStream(URL: videoURL)
-
-			default: ()
+			case is UIImage:
+				return "image/png"
+			case is NSURL:
+				return "video/mpeg"
+			default:
+				return nil
 		}
-
-		return result
 	}
+
+
+	//MARK: DDLElement
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		var result:String? = nil
@@ -138,6 +110,34 @@ import Foundation
 				default: ()
 					result = true
 			}
+		}
+
+		return result
+	}
+
+
+	//MARK: Public methods
+
+	public func getStream(inout size:Int64) -> NSInputStream? {
+		var result: NSInputStream?
+
+		switch currentValue {
+			case let image as UIImage:
+				let imageData = UIImagePNGRepresentation(image)
+				size = Int64(imageData.length)
+				result = NSInputStream(data: imageData)
+
+			case let videoURL as NSURL:
+				var outError:NSError?
+				if let attributes = NSFileManager.defaultManager().attributesOfItemAtPath(
+						videoURL.path!, error: &outError) {
+					if let sizeValue = attributes[NSFileSize] as? NSNumber {
+						size = sizeValue.longLongValue
+					}
+				}
+				result = NSInputStream(URL: videoURL)
+
+			default: ()
 		}
 
 		return result

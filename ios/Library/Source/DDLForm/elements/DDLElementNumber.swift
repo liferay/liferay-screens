@@ -23,6 +23,9 @@ public class DDLElementNumber : DDLElement {
 		return dataType != DataType.DDLInteger
 	}
 
+
+	//MARK: DDLElement
+
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		var result:NSNumber?
 

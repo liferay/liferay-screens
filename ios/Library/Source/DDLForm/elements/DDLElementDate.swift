@@ -44,6 +44,8 @@ public class DDLElementDate : DDLElement {
 	}
 
 
+	//MARK: DDLElement
+
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		if let stringValue = value {
 			// minimum date length in mm/dd/yy is 6 characters

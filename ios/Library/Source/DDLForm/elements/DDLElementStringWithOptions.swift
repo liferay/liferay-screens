@@ -43,15 +43,13 @@ public class DDLElementStringWithOptions : DDLElement {
 		return result
 	}
 
-	//FIXME Multiple selection not supported yet
+	//FIXME: Multiple selection not supported yet
 	private(set) var multiple:Bool
 
-	private(set) var options:[Option]
+	private(set) var options:[Option] = []
 
 	override init(attributes: [String:String], localized: [String:AnyObject]) {
 		multiple = Bool.from(string: attributes["multiple"] ?? "false")
-
-		options = []
 
 		if let optionsArray = (localized["options"] as AnyObject?) as? [[String:AnyObject]] {
 
@@ -68,6 +66,9 @@ public class DDLElementStringWithOptions : DDLElement {
 
 		super.init(attributes: attributes, localized: localized)
 	}
+
+
+	//MARK: DDLElement
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		var result:String = "["
