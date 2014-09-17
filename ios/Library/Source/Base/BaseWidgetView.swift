@@ -21,6 +21,14 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	internal var customAction: ((String?, AnyObject?) -> Void)?
 
+	internal var themeName: String? {
+		var className = NSStringFromClass(self.dynamicType)
+
+		let components = className.componentsSeparatedByString("_")
+
+		return (components.count > 1) ? components.last : nil
+	}
+
 
 	//MARK: UIView
 
@@ -125,14 +133,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		endEditing(true)
 		
 		customAction?(actionName, sender)
-	}
-
-	internal func themeName() -> String? {
-		var className = NSStringFromClass(self.dynamicType)
-
-		let components = className.componentsSeparatedByString("_")
-
-		return (components.count > 1) ? components.last : nil
 	}
 
 	internal func nextResponderForView(view:UIView) -> UIResponder {

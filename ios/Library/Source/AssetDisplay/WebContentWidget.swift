@@ -29,6 +29,10 @@ import UIKit
 
 	@IBOutlet public var delegate: WebContentWidgetDelegate?
 
+	internal var webContentView: WebContentView {
+		return widgetView as WebContentView
+	}
+
 
 	//MARK: BaseWidget
 
@@ -44,7 +48,7 @@ import UIKit
 
 			delegate?.onWebContentResponse?(htmlContent)
 
-			webContentView().setHtmlContent(htmlContent)
+			webContentView.setHtmlContent(htmlContent)
 
 			finishOperation()
 		}
@@ -88,13 +92,6 @@ import UIKit
 		}
 
 		return true
-	}
-
-
-	//MARK: Internal methods
-
-	internal func webContentView() -> WebContentView {
-		return widgetView as WebContentView
 	}
 
 }

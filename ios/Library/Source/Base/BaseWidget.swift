@@ -32,6 +32,39 @@ import QuartzCore
 
 	internal var widgetView: BaseWidgetView?
 
+	internal var currentThemeName: String {
+		var result = "default"
+
+		if (Theme != nil) {
+			let selectedSignatureImage = Theme!
+			for themeName in ThemeManager.instance().installedThemes {
+				if themeName != "default" {
+					let installedSignatureImage =
+							UIImage(contentsOfFile: signatureImagePathForTheme(themeName)!)
+
+					if installedSignatureImage.isBinaryEquals(selectedSignatureImage) {
+						result = themeName
+						break;
+					}
+				}
+			}
+		}
+
+		return result
+	}
+
+	internal var widgetName: String {
+		// In Beta 5, className will constain ModuleName.ClassName
+		// just strip the first part
+
+		var className = NSStringFromClass(self.dynamicType)
+
+		className = className.componentsSeparatedByString(".")[1]
+		className = className.componentsSeparatedByString("Widget")[0]
+
+		return className
+	}
+
 	private var runningOnInterfaceBuilder = false
 	private var currentPreviewImage:UIImage?
 	private lazy var previewLayer = CALayer()
@@ -135,39 +168,6 @@ import QuartzCore
 		return nil;
 	}
 
-	internal func currentThemeName() -> String {
-		var result = "default"
-
-		if (Theme != nil) {
-			let selectedSignatureImage = Theme!
-			for themeName in ThemeManager.instance().installedThemes {
-				if themeName != "default" {
-					let installedSignatureImage =
-							UIImage(contentsOfFile: signatureImagePathForTheme(themeName)!)
-
-					if installedSignatureImage.isBinaryEquals(selectedSignatureImage) {
-						result = themeName
-						break;
-					}
-				}
-			}
-		}
-
-		return result
-	}
-
-	internal func widgetName() -> String {
-		// In Beta 5, className will constain ModuleName.ClassName
-		// just strip the first part
-
-		var className = NSStringFromClass(self.dynamicType)
-
-		className = className.componentsSeparatedByString(".")[1]
-		className = className.componentsSeparatedByString("Widget")[0]
-
-		return className
-	}
-
 	internal func previewImageForTheme(themeName:String) -> UIImage {
 		var result:UIImage?
 
@@ -184,7 +184,7 @@ import QuartzCore
 	}
 
 	internal func previewImagePathForTheme(themeName:String) -> String? {
-		let imageName = "\(themeName)-preview-\(widgetName().lowercaseString)"
+		let imageName = "\(themeName)-preview-\(widgetName.lowercaseString)"
 
 		return NSBundle(forClass:self.dynamicType).pathForResource(imageName, ofType: "png")
 	}
@@ -299,11 +299,11 @@ import QuartzCore
 	//MARK: Private
 
 	private func createWidgetViewFromNib() -> BaseWidgetView? {
-		let viewName = widgetName() + "View"
+		let viewName = widgetName + "View"
 
 		let bundle = NSBundle(forClass:self.dynamicType)
 
-		var nibName = viewName + "-" + currentThemeName()
+		var nibName = viewName + "-" + currentThemeName
 		var nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
 		if nibPath == nil {
@@ -327,7 +327,7 @@ import QuartzCore
 	private func updateCurrentPreviewImage() {
 		ThemeManager.instance().loadThemes()
 
-		let themeName = currentThemeName()
+		let themeName = currentThemeName
 
 		currentPreviewImage = previewImageForTheme(themeName)
 	}

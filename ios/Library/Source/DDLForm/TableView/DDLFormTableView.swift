@@ -150,8 +150,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 		for elementEditor in DDLElement.Editor.all() {
 			var nibName = "DDLElement\(elementEditor.toCapitalizedName())TableCell"
-			if let themeName = themeName() {
-				nibName += "-" + themeName
+			if let themeNameValue = themeName {
+				nibName += "-" + themeNameValue
 			}
 
 			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
@@ -166,8 +166,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 		if showSubmitButton {
 			var nibName = "DDLSubmitButtonTableCell"
-			if let themeName = themeName() {
-				nibName += "-" + themeName
+			if let themeNameValue = themeName {
+				nibName += "-" + themeNameValue
 			}
 
 			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {

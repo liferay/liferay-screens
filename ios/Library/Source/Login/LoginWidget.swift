@@ -29,6 +29,10 @@ public class LoginWidget: BaseWidget {
 
 	@IBOutlet public var delegate: LoginWidgetDelegate?
 
+	internal var loginView: LoginView {
+		return widgetView as LoginView
+	}
+
 	private let supportedAuthClosures = [
 		LoginAuthType.Email.toRaw(): authWithEmail,
 		LoginAuthType.ScreenName.toRaw(): authWithScreenName,
@@ -52,8 +56,8 @@ public class LoginWidget: BaseWidget {
 		if let session = LRSession.sessionFromStoredCredential() {
 			LiferayContext.instance().currentSession = session
 
-			loginView().setUserName(session.username)
-			loginView().setPassword(session.password)
+			loginView.setUserName(session.username)
+			loginView.setPassword(session.password)
 
 			delegate?.onCredentialsLoaded?(session)
 		}
@@ -61,7 +65,7 @@ public class LoginWidget: BaseWidget {
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
 		if actionName == "login-action" {
-			sendLoginWithUserName(loginView().getUserName(), password:loginView().getPassword())
+			sendLoginWithUserName(loginView.getUserName(), password:loginView.getPassword())
 		}
 	}
 
@@ -77,7 +81,7 @@ public class LoginWidget: BaseWidget {
 	override internal func onServerResult(result: [String:AnyObject]) {
 		delegate?.onLoginResponse?(result)
 
-		if loginView().shouldRememberCredentials {
+		if loginView.shouldRememberCredentials {
 			if LiferayContext.instance().currentSession!.storeCredential() {
 				delegate?.onCredentialsSaved?(LiferayContext.instance().currentSession!)
 			}
@@ -100,16 +104,9 @@ public class LoginWidget: BaseWidget {
 	//	}
 	// }
 	public func setAuthType(authType:String) {
-        loginView().setAuthType(authType)
+        loginView.setAuthType(authType)
         
         authClosure = supportedAuthClosures[authType]
-	}
-
-
-	//MARK: Internal methods
-
-	internal func loginView() -> LoginView {
-		return widgetView as LoginView
 	}
 
 

@@ -84,14 +84,18 @@ import UIKit
 
 	@IBOutlet public var delegate: AssetListWidgetDelegate?
 
+	internal var assetListView: AssetListView {
+		return widgetView as AssetListView
+	}
+
 	private var loadPageOperations: [Int:LoadPageOperation] = [:]
 
 
 	//MARK: BaseWidget
 
 	override public func onCreated() {
-		assetListView().onSelectedEntryClosure = onSelectedEntry
-		assetListView().fetchPageForRow = loadPageForRow
+		assetListView.onSelectedEntryClosure = onSelectedEntry
+		assetListView.fetchPageForRow = loadPageForRow
 	}
 
 
@@ -206,7 +210,7 @@ import UIKit
 
 		var allAssetEntries = Array<AssetEntry?>(count: entryCount, repeatedValue: nil)
 
-		for (index, assetEntry) in enumerate(assetListView().entries) {
+		for (index, assetEntry) in enumerate(assetListView.entries) {
 			allAssetEntries[index] = assetEntry
 		}
 
@@ -221,8 +225,8 @@ import UIKit
 			allAssetEntries[offset + index] = assetEntry
 		}
 
-		assetListView().entryCount = entryCount
-		assetListView().entries = allAssetEntries
+		assetListView.entryCount = entryCount
+		assetListView.entries = allAssetEntries
 
 		if page == 0 {
 			finishOperation()
@@ -233,10 +237,6 @@ import UIKit
 
 	internal func onSelectedEntry(entry:AssetEntry) {
 		delegate?.onAssetSelected?(entry)
-	}
-
-	internal func assetListView() -> AssetListView {
-		return widgetView as AssetListView
 	}
 
 }

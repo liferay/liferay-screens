@@ -61,6 +61,10 @@ import UIKit
 
 	@IBOutlet public var delegate: DDLFormWidgetDelegate?
 
+	internal var formView: DDLFormView {
+		return widgetView as DDLFormView
+	}
+
 	private var userId = 0
 	private var currentOperation = FormOperation.Idle
 
@@ -68,11 +72,11 @@ import UIKit
 	//MARK: BaseWidget
 
 	override public func becomeFirstResponder() -> Bool {
-		return formView().becomeFirstResponder()
+		return formView.becomeFirstResponder()
 	}
 
 	override internal func onCreated() {
-		formView().showSubmitButton = showSubmitButton
+		formView.showSubmitButton = showSubmitButton
 	}
 
 	override internal func onShow() {
@@ -110,10 +114,10 @@ import UIKit
 			case .Uploading(let document, _):
 				document.uploadStatus = .Failed(error)
 
-				formView().changeDocumentUploadStatus(document)
+				formView.changeDocumentUploadStatus(document)
 
 				if !document.validate() {
-					formView().showElement(document)
+					formView.showElement(document)
 				}
 
 				delegate?.onDocumentUploadError?(document, error: error)
@@ -153,7 +157,7 @@ import UIKit
 			case .Uploading(let document, let submitAfter):
 				document.uploadStatus = .Uploaded(result)
 
-				formView().changeDocumentUploadStatus(document)
+				formView.changeDocumentUploadStatus(document)
 				delegate?.onDocumentUploadCompleted?(document, result: result)
 
 				currentOperation = .Idle
@@ -174,7 +178,7 @@ import UIKit
 		switch currentOperation {
 			case .Uploading(let document, _):
 				document.uploadStatus = .Uploading(UInt(sent), UInt(total))
-				formView().changeDocumentUploadStatus(document)
+				formView.changeDocumentUploadStatus(document)
 
 				delegate?.onDocumentUploadedBytes?(document, bytes: bytes, sent: sent, total: total)
 
@@ -234,7 +238,7 @@ import UIKit
 			return false
 		}
 
-		currentOperation = .LoadingRecord(formView().rows.isEmpty)
+		currentOperation = .LoadingRecord(formView.rows.isEmpty)
 
 		startOperationWithMessage("Loading record...", details: "Wait a second...")
 
@@ -249,7 +253,7 @@ import UIKit
 				locale: NSLocale.currentLocaleString(),
 				error: &outError)
 
-		if formView().rows.isEmpty {
+		if formView.rows.isEmpty {
 			let structureService = LRDDMStructureService_v62(session: session)
 
 			structureService.getStructureWithStructureId((structureId as NSNumber).longLongValue,
@@ -296,7 +300,7 @@ import UIKit
 			default: ()
 		}
 
-		if !formView().validateForm(autoscroll:autoscrollOnValidation) {
+		if !formView.validateForm(autoscroll:autoscrollOnValidation) {
 			showHUDWithMessage("Some values are not valid",
 					details: "Please, review your form",
 					closeMode:.AutocloseDelayed(3.0, true),
@@ -328,7 +332,7 @@ import UIKit
 				groupIdToUse.longLongValue,
 				recordSetId: (recordSetId as NSNumber).longLongValue,
 				displayIndex: 0,
-				fieldsMap: formView().values,
+				fieldsMap: formView.values,
 				serviceContext: serviceContextWrapper,
 				error: &outError)
 		}
@@ -336,7 +340,7 @@ import UIKit
 			service.updateRecordWithRecordId(
 				(recordId as NSNumber).longLongValue,
 				displayIndex: 0,
-				fieldsMap: formView().values,
+				fieldsMap: formView.values,
 				mergeFields: true,
 				serviceContext: serviceContextWrapper,
 				error: &outError)
@@ -348,13 +352,6 @@ import UIKit
 		}
 
 		return true
-	}
-
-
-	//MARK: Internal methods
-
-	internal func formView() -> DDLFormView {
-		return widgetView as DDLFormView
 	}
 
 
@@ -371,7 +368,7 @@ import UIKit
 			parser.xml = xml
 
 			if let elements = parser.parse() {
-				formView().rows = elements
+				formView.rows = elements
 
 				delegate?.onFormLoaded?(elements)
 
@@ -387,11 +384,11 @@ import UIKit
 	}
 
 	private func onRecordLoadResult(result: [String:AnyObject]) {
-		for (index,element) in enumerate(formView().rows) {
+		for (index,element) in enumerate(formView.rows) {
 			let elementValue = (result[element.name] ?? nil) as? String
 			if let elementStringValue = elementValue {
 				element.currentStringValue = elementStringValue
-				formView().rows[index] = element
+				formView.rows[index] = element
 			}
 		}
 	}

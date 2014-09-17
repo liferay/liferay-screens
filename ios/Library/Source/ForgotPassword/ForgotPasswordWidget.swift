@@ -29,6 +29,10 @@ import UIKit
 
 	@IBOutlet public var delegate: ForgotPasswordWidgetDelegate?
 
+	internal var forgotPasswordView: ForgotPasswordView {
+		return widgetView as ForgotPasswordView
+	}
+
 	private let supportedResetClosures = [
 		LoginAuthType.Email.toRaw(): resetPasswordWithEmail,
 		LoginAuthType.ScreenName.toRaw(): resetPasswordWithScreenName,
@@ -43,12 +47,12 @@ import UIKit
 		setAuthType(LoginAuthType.Email.toRaw())
 
 		if let userName = LiferayContext.instance().currentSession?.username {
-			forgotPasswordView().setUserName(userName)
+			forgotPasswordView.setUserName(userName)
 		}
 	}
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
-		sendForgotPasswordRequest(forgotPasswordView().getUserName())
+		sendForgotPasswordRequest(forgotPasswordView.getUserName())
 	}
 
 	override internal func onServerError(error: NSError) {
@@ -84,17 +88,13 @@ import UIKit
 	//MARK: Public methods
 
 	public func setAuthType(authType:String) {
-		forgotPasswordView().setAuthType(authType)
+		forgotPasswordView.setAuthType(authType)
 
 		resetClosure = supportedResetClosures[authType]
 	}
 
 	
 	//MARK: Private methods
-
-	private func forgotPasswordView() -> ForgotPasswordView {
-		return widgetView as ForgotPasswordView
-	}
 
 	private func sendForgotPasswordRequest(username:String) {
 		if anonymousApiUserName == nil || anonymousApiPassword == nil {
