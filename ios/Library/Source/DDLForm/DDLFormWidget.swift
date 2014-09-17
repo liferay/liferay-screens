@@ -420,7 +420,7 @@ import UIKit
 	}
 
 
-	//MARK LRProgressDelegate
+	//MARK: LRProgressDelegate
 
 	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
 		switch currentOperation {

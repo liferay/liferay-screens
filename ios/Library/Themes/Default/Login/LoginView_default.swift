@@ -25,7 +25,7 @@ public class LoginView_default: LoginView {
 	@IBOutlet internal var passwordBackground: UIImageView?
 
 
-	//MARK: Static methods
+	//MARK: Class methods
 
 	public class func setStylesForAuthType(authTypeLabel:String,
 			userNameField:UITextField!, userNameIcon:UIImageView!) {

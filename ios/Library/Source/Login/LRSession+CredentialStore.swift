@@ -16,8 +16,8 @@ import Foundation
 
 extension LRSession {
 
-	//MARK: CLASS METHODS
-	
+	//MARK: Class methods
+
 	public class func removeStoredCredential() {
 		let credentialTuple = credentialForServer(LiferayContext.instance().server)
 
@@ -40,30 +40,7 @@ extension LRSession {
 	}
 
 
-	//MARK: INSTANCE METHODS
-
-	public func storeCredential() -> Bool {
-		var success = false
-
-		if username != nil && password != nil {
-			let protectionSpace = LRSession.protectionSpaceForServer(LiferayContext.instance().server)
-
-			let credential = NSURLCredential(
-								user:username!,
-								password:password!,
-								persistence: NSURLCredentialPersistence.Permanent)
-
-			NSURLCredentialStorage.sharedCredentialStorage().setCredential(credential,
-								forProtectionSpace:protectionSpace)
-
-			success = true
-		}
-
-		return success
-	}
-
-
-	//MARK: PRIVATE METHODS
+	//MARK: Private class methods
 
 	private class func credentialForServer(server:String) ->
 			(NSURLCredential?, NSURLProtectionSpace) {
@@ -92,5 +69,29 @@ extension LRSession {
 				`protocol`:url.scheme, realm:nil,
 				authenticationMethod:NSURLAuthenticationMethodHTTPDigest)
 	}
+
+
+	//MARK: Instance methods
+
+	public func storeCredential() -> Bool {
+		var success = false
+
+		if username != nil && password != nil {
+			let protectionSpace = LRSession.protectionSpaceForServer(LiferayContext.instance().server)
+
+			let credential = NSURLCredential(
+								user:username!,
+								password:password!,
+								persistence: NSURLCredentialPersistence.Permanent)
+
+			NSURLCredentialStorage.sharedCredentialStorage().setCredential(credential,
+								forProtectionSpace:protectionSpace)
+
+			success = true
+		}
+
+		return success
+	}
+
 
 }

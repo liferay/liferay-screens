@@ -106,6 +106,8 @@ extension BaseWidget {
 	}
 
 
+	//MARK: Class methods
+
 	public class func setHUDCustomView(newValue:UIView?) {
 		MBProgressHUDInstance.customView = newValue
 	}

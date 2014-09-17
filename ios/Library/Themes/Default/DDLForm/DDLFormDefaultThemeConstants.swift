@@ -14,24 +14,24 @@
 import Foundation
 
 
-//MARK Text field
+//MARK: Text field
 let DDLElementTextFieldHeightWithLabel:CGFloat =  81
 let DDLElementTextFieldHeightWithoutLabel:CGFloat = 56
 
 
-//MARK Text area
+//MARK: Text area
 let DDLElementTextareaExpandedCellHeight:CGFloat = 104
 let DDLElementTextareaExpandedTextViewHeight:CGFloat = 84
 let DDLElementTextareaExpandedBackgroundHeight:CGFloat = 91
 
 
-//MARK Radio group
+//MARK: Radio group
 let DDLElementRadioGroupMarginTop:CGFloat = 15
 let DDLElementRadioGroupMarginBottom:CGFloat = 10
 let DDLElementRadioButtonMargin:CGFloat = 10
 let DDLElementRadioButtonHeight:CGFloat = 16
 
 
-// Common
+// MARK: Common
 let DDLElementButtonCornerRadius:CGFloat = 4
 let DDLElementBasicBlue = UIColor(red: 0.0, green: 184.0/255.0, blue: 224.0/255.0, alpha: 0.87)

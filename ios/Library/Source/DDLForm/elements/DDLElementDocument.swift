@@ -146,7 +146,7 @@ import Foundation
 }
 
 
-//MARK Equatable
+//MARK: Equatable
 
 public func ==(left: DDLElementDocument.UploadStatus, right: DDLElementDocument.UploadStatus) ->
 		Bool {

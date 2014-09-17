@@ -36,11 +36,14 @@ public class LoginWidget: BaseWidget {
 
 	private var authClosure: ((String, String, LRUserService_v62, NSError -> Void) -> Void)?
 
+
+	//MARK: Class methods
+
 	public class func storedSession() -> LRSession? {
 		return LRSession.sessionFromStoredCredential()
 	}
 
-	//FIXME
+	//FIXME:
 	// XCode crashes with "swift_unknownWeakLoadStrong" error
 	// Storing the enum as a String seems to workaround the problem
 	// This code is the optimal solution to be used when XCode is fixed
