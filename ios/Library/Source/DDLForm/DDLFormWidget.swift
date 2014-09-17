@@ -375,11 +375,11 @@ import UIKit
 				finishOperationWithMessage("Form loaded")
 			}
 			else {
-				//TODO error
+				//TODO: error
 			}
 		}
 		else {
-			//TODO error
+			//TODO: error
 		}
 	}
 
@@ -428,9 +428,14 @@ import UIKit
 		service.addFileEntryWithRepositoryId(
 			(repoId as NSNumber).longLongValue,
 			folderId: (folderId as NSNumber).longLongValue,
-			sourceFileName: fileName, mimeType: document.mimeType,
-			title: fileName, description: "", changeLog: "Uploaded from Liferay Screens app",
-			file: uploadData, serviceContext: nil, error: &outError)
+			sourceFileName: fileName,
+			mimeType: document.mimeType,
+			title: fileName,
+			description: "",
+			changeLog: "Uploaded from Liferay Screens app",
+			file: uploadData,
+			serviceContext: nil,
+			error: &outError)
 
 		if let error = outError {
 			onFailure(error)
