@@ -16,16 +16,50 @@
 		8811DC4519BDF2CA008FE226 /* WebContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC4219BDF2CA008FE226 /* WebContentView.swift */; };
 		8811DC4619BDF2CA008FE226 /* WebContentWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC4319BDF2CA008FE226 /* WebContentWidget.swift */; };
 		8811DC4719BDF2CA008FE226 /* WebContentWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC4319BDF2CA008FE226 /* WebContentWidget.swift */; };
-		8811DC4B19BDF2F5008FE226 /* WebContentView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8811DC4919BDF2F5008FE226 /* WebContentView-default.xib */; };
-		8811DC4C19BDF2F5008FE226 /* WebContentView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8811DC4919BDF2F5008FE226 /* WebContentView-default.xib */; };
 		8811DC4D19BDF2F5008FE226 /* WebContentView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC4A19BDF2F5008FE226 /* WebContentView_default.swift */; };
 		8811DC4E19BDF2F5008FE226 /* WebContentView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC4A19BDF2F5008FE226 /* WebContentView_default.swift */; };
 		881A6E6519C856CA002ECC8F /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE5061994ECF000ADF047 /* DDLFormView.swift */; };
 		881A6E6619C856EB002ECC8F /* SignUpView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D77CF19903F060052C39C /* SignUpView_default.swift */; };
 		8827E30719759F28004977A0 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E30419759F28004977A0 /* ForgotPasswordView.swift */; };
 		8827E30919759F28004977A0 /* ForgotPasswordWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E30619759F28004977A0 /* ForgotPasswordWidget.swift */; };
-		883CF3C3199B7474008F0EBC /* DDLElementTextareaTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 883CF3C1199B7474008F0EBC /* DDLElementTextareaTableCell-default.xib */; };
-		883CF3C4199B7474008F0EBC /* DDLElementTextareaTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 883CF3C1199B7474008F0EBC /* DDLElementTextareaTableCell-default.xib */; };
+		88354B8C19C9E15500F3FE69 /* DDLElementCheckboxTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8119C9E15500F3FE69 /* DDLElementCheckboxTableCell_default.xib */; };
+		88354B8D19C9E15500F3FE69 /* DDLElementCheckboxTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8119C9E15500F3FE69 /* DDLElementCheckboxTableCell_default.xib */; };
+		88354B8E19C9E15500F3FE69 /* DDLElementDateTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8219C9E15500F3FE69 /* DDLElementDateTableCell_default.xib */; };
+		88354B8F19C9E15500F3FE69 /* DDLElementDateTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8219C9E15500F3FE69 /* DDLElementDateTableCell_default.xib */; };
+		88354B9019C9E15500F3FE69 /* DDLElementDocumentlibraryTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8319C9E15500F3FE69 /* DDLElementDocumentlibraryTableCell_default.xib */; };
+		88354B9119C9E15500F3FE69 /* DDLElementDocumentlibraryTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8319C9E15500F3FE69 /* DDLElementDocumentlibraryTableCell_default.xib */; };
+		88354B9219C9E15500F3FE69 /* DDLElementNumberTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8419C9E15500F3FE69 /* DDLElementNumberTableCell_default.xib */; };
+		88354B9319C9E15500F3FE69 /* DDLElementNumberTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8419C9E15500F3FE69 /* DDLElementNumberTableCell_default.xib */; };
+		88354B9419C9E15500F3FE69 /* DDLElementSelectTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8519C9E15500F3FE69 /* DDLElementSelectTableCell_default.xib */; };
+		88354B9519C9E15500F3FE69 /* DDLElementSelectTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8519C9E15500F3FE69 /* DDLElementSelectTableCell_default.xib */; };
+		88354B9619C9E15500F3FE69 /* DDLElementTextareaTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8619C9E15500F3FE69 /* DDLElementTextareaTableCell_default.xib */; };
+		88354B9719C9E15500F3FE69 /* DDLElementTextareaTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8619C9E15500F3FE69 /* DDLElementTextareaTableCell_default.xib */; };
+		88354B9819C9E15500F3FE69 /* DDLElementTextTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8719C9E15500F3FE69 /* DDLElementTextTableCell_default.xib */; };
+		88354B9919C9E15500F3FE69 /* DDLElementTextTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8719C9E15500F3FE69 /* DDLElementTextTableCell_default.xib */; };
+		88354B9A19C9E15500F3FE69 /* DDLElementDocumentlibraryPresenterViewController_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8819C9E15500F3FE69 /* DDLElementDocumentlibraryPresenterViewController_default.xib */; };
+		88354B9B19C9E15500F3FE69 /* DDLElementDocumentlibraryPresenterViewController_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8819C9E15500F3FE69 /* DDLElementDocumentlibraryPresenterViewController_default.xib */; };
+		88354B9C19C9E15500F3FE69 /* DDLSubmitButtonTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8919C9E15500F3FE69 /* DDLSubmitButtonTableCell_default.xib */; };
+		88354B9D19C9E15500F3FE69 /* DDLSubmitButtonTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8919C9E15500F3FE69 /* DDLSubmitButtonTableCell_default.xib */; };
+		88354B9E19C9E15500F3FE69 /* DDLElementRadioTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8A19C9E15500F3FE69 /* DDLElementRadioTableCell_default.xib */; };
+		88354B9F19C9E15500F3FE69 /* DDLElementRadioTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8A19C9E15500F3FE69 /* DDLElementRadioTableCell_default.xib */; };
+		88354BA019C9E15500F3FE69 /* DDLFormView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8B19C9E15500F3FE69 /* DDLFormView_default.xib */; };
+		88354BA119C9E15500F3FE69 /* DDLFormView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354B8B19C9E15500F3FE69 /* DDLFormView_default.xib */; };
+		88354BA319C9E16100F3FE69 /* LoginView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BA219C9E16100F3FE69 /* LoginView_default.xib */; };
+		88354BA419C9E16100F3FE69 /* LoginView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BA219C9E16100F3FE69 /* LoginView_default.xib */; };
+		88354BA619C9E16B00F3FE69 /* ForgotPasswordView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BA519C9E16B00F3FE69 /* ForgotPasswordView_default.xib */; };
+		88354BA719C9E16B00F3FE69 /* ForgotPasswordView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BA519C9E16B00F3FE69 /* ForgotPasswordView_default.xib */; };
+		88354BA919C9E17200F3FE69 /* SignUpView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BA819C9E17200F3FE69 /* SignUpView_default.xib */; };
+		88354BAA19C9E17200F3FE69 /* SignUpView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BA819C9E17200F3FE69 /* SignUpView_default.xib */; };
+		88354BAC19C9E18100F3FE69 /* WebContentView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BAB19C9E18100F3FE69 /* WebContentView_default.xib */; };
+		88354BAD19C9E18100F3FE69 /* WebContentView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BAB19C9E18100F3FE69 /* WebContentView_default.xib */; };
+		88354BAF19C9E18E00F3FE69 /* ForgotPasswordView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BAE19C9E18E00F3FE69 /* ForgotPasswordView_flat7.xib */; };
+		88354BB019C9E18E00F3FE69 /* ForgotPasswordView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BAE19C9E18E00F3FE69 /* ForgotPasswordView_flat7.xib */; };
+		88354BB219C9E19600F3FE69 /* LoginView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BB119C9E19600F3FE69 /* LoginView_flat7.xib */; };
+		88354BB319C9E19600F3FE69 /* LoginView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BB119C9E19600F3FE69 /* LoginView_flat7.xib */; };
+		88354BB519C9E1A100F3FE69 /* SignUpView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BB419C9E1A100F3FE69 /* SignUpView_flat7.xib */; };
+		88354BB619C9E1A100F3FE69 /* SignUpView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BB419C9E1A100F3FE69 /* SignUpView_flat7.xib */; };
+		88354BB819C9E1C900F3FE69 /* LoginView_xyz.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BB719C9E1C900F3FE69 /* LoginView_xyz.xib */; };
+		88354BB919C9E1C900F3FE69 /* LoginView_xyz.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BB719C9E1C900F3FE69 /* LoginView_xyz.xib */; };
 		883CF3C5199B7474008F0EBC /* DDLElementTextareaTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883CF3C2199B7474008F0EBC /* DDLElementTextareaTableCell_default.swift */; };
 		883CF3C6199B7474008F0EBC /* DDLElementTextareaTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883CF3C2199B7474008F0EBC /* DDLElementTextareaTableCell_default.swift */; };
 		883CF3CD199B782D008F0EBC /* LRMobilewidgetsuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CF3CC199B782D008F0EBC /* LRMobilewidgetsuserService_v62.m */; };
@@ -38,8 +72,6 @@
 		884CE5091994ECF000ADF047 /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE5061994ECF000ADF047 /* DDLFormView.swift */; };
 		884CE50A1994ECF000ADF047 /* DDLFormWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE5071994ECF000ADF047 /* DDLFormWidget.swift */; };
 		884CE50B1994ECF000ADF047 /* DDLFormWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE5071994ECF000ADF047 /* DDLFormWidget.swift */; };
-		884CE50F1994EDB100ADF047 /* DDLFormView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 884CE50D1994EDB100ADF047 /* DDLFormView-default.xib */; };
-		884CE5101994EDB100ADF047 /* DDLFormView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 884CE50D1994EDB100ADF047 /* DDLFormView-default.xib */; };
 		884CE5111994EDB100ADF047 /* DDLFormView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE50E1994EDB100ADF047 /* DDLFormView_default.swift */; };
 		884CE5121994EDB100ADF047 /* DDLFormView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884CE50E1994EDB100ADF047 /* DDLFormView_default.swift */; };
 		8851134219B88B54009D93CE /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990C6E5B19B0B56500464E80 /* UIView+Animations.swift */; };
@@ -48,12 +80,8 @@
 		8859354419A5F9790040E125 /* DDLElementNumber_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8859354319A5F9790040E125 /* DDLElementNumber_Tests.swift */; };
 		8859354D19A613E30040E125 /* DDLElementNumberTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8859354B19A613E30040E125 /* DDLElementNumberTableCell_default.swift */; };
 		8859354E19A613E30040E125 /* DDLElementNumberTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8859354B19A613E30040E125 /* DDLElementNumberTableCell_default.swift */; };
-		8859354F19A613E30040E125 /* DDLElementNumberTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8859354C19A613E30040E125 /* DDLElementNumberTableCell-default.xib */; };
-		8859355019A613E30040E125 /* DDLElementNumberTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8859354C19A613E30040E125 /* DDLElementNumberTableCell-default.xib */; };
 		886C74A919A368C000B689BA /* DDLElementSelectTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C74A719A368C000B689BA /* DDLElementSelectTableCell_default.swift */; };
 		886C74AA19A368C000B689BA /* DDLElementSelectTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C74A719A368C000B689BA /* DDLElementSelectTableCell_default.swift */; };
-		886C74AB19A368C000B689BA /* DDLElementSelectTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886C74A819A368C000B689BA /* DDLElementSelectTableCell-default.xib */; };
-		886C74AC19A368C000B689BA /* DDLElementSelectTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886C74A819A368C000B689BA /* DDLElementSelectTableCell-default.xib */; };
 		886C74B219A3848000B689BA /* DDLElementStringWithOptions_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C74B119A3848000B689BA /* DDLElementStringWithOptions_Tests.swift */; };
 		886C74B419A3851A00B689BA /* DDLElementStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C74B319A3851A00B689BA /* DDLElementStringWithOptions.swift */; };
 		886C74B519A3851A00B689BA /* DDLElementStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C74B319A3851A00B689BA /* DDLElementStringWithOptions.swift */; };
@@ -79,12 +107,8 @@
 		8876572119C8956B003E9478 /* AssetListWidget+LoadPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876571F19C8956B003E9478 /* AssetListWidget+LoadPage.swift */; };
 		8878523D19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8878523919B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift */; };
 		8878523E19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8878523919B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift */; };
-		8878523F19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8878523A19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController-default.xib */; };
-		8878524019B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8878523A19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController-default.xib */; };
 		8878524119B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8878523B19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell_default.swift */; };
 		8878524219B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8878523B19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell_default.swift */; };
-		8878524319B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8878523C19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib */; };
-		8878524419B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8878523C19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib */; };
 		888A282819938EFD00C713DA /* DDLParser_i18n_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A282719938EFD00C713DA /* DDLParser_i18n_Tests.swift */; };
 		888CE10B19923142001DCA6A /* BaseWidget_basic_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE10A19923142001DCA6A /* BaseWidget_basic_Tests.swift */; };
 		888CE11D19924D4A001DCA6A /* flat7-preview-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11919924D4A001DCA6A /* flat7-preview-signup@2x.png */; };
@@ -95,16 +119,10 @@
 		888CE12219924D51001DCA6A /* flat7-preview-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11A19924D4A001DCA6A /* flat7-preview-signup.png */; };
 		888CE12319924D51001DCA6A /* flat7-preview-forgotpassword@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11B19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png */; };
 		888CE12419924D51001DCA6A /* flat7-preview-forgotpassword.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11C19924D4A001DCA6A /* flat7-preview-forgotpassword.png */; };
-		888CE12B19924D74001DCA6A /* ForgotPasswordView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888CE12619924D74001DCA6A /* ForgotPasswordView-flat7.xib */; };
-		888CE12C19924D74001DCA6A /* ForgotPasswordView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888CE12619924D74001DCA6A /* ForgotPasswordView-flat7.xib */; };
 		888CE12D19924D74001DCA6A /* ForgotPasswordView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE12719924D74001DCA6A /* ForgotPasswordView_flat7.swift */; };
 		888CE12E19924D74001DCA6A /* ForgotPasswordView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE12719924D74001DCA6A /* ForgotPasswordView_flat7.swift */; };
-		888CE12F19924D74001DCA6A /* SignUpView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888CE12919924D74001DCA6A /* SignUpView-flat7.xib */; };
-		888CE13019924D74001DCA6A /* SignUpView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888CE12919924D74001DCA6A /* SignUpView-flat7.xib */; };
 		888CE13119924D74001DCA6A /* SignUpView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE12A19924D74001DCA6A /* SignUpView_flat7.swift */; };
 		888CE13219924D74001DCA6A /* SignUpView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE12A19924D74001DCA6A /* SignUpView_flat7.swift */; };
-		888D7704198FDAD30052C39C /* LoginView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888D76F7198FDAD30052C39C /* LoginView-flat7.xib */; };
-		888D7705198FDAD30052C39C /* LoginView-flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888D76F7198FDAD30052C39C /* LoginView-flat7.xib */; };
 		888D7708198FDAD30052C39C /* flat7.strings in Resources */ = {isa = PBXBuildFile; fileRef = 888D76FA198FDAD30052C39C /* flat7.strings */; };
 		888D7709198FDAD30052C39C /* flat7.strings in Resources */ = {isa = PBXBuildFile; fileRef = 888D76FA198FDAD30052C39C /* flat7.strings */; };
 		888D770A198FDAD30052C39C /* flat7-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D76FD198FDAD30052C39C /* flat7-button.png */; };
@@ -151,12 +169,8 @@
 		888D77AC198FEFFE0052C39C /* default-user-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7787198FEFFE0052C39C /* default-user-icon@2x.png */; };
 		888D77AD198FEFFE0052C39C /* theme-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7788198FEFFE0052C39C /* theme-default.png */; };
 		888D77AE198FEFFE0052C39C /* theme-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7788198FEFFE0052C39C /* theme-default.png */; };
-		888D77D019903F060052C39C /* ForgotPasswordView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888D77CB19903F060052C39C /* ForgotPasswordView-default.xib */; };
-		888D77D119903F060052C39C /* ForgotPasswordView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888D77CB19903F060052C39C /* ForgotPasswordView-default.xib */; };
 		888D77D219903F060052C39C /* ForgotPasswordView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D77CC19903F060052C39C /* ForgotPasswordView_default.swift */; };
 		888D77D319903F060052C39C /* ForgotPasswordView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D77CC19903F060052C39C /* ForgotPasswordView_default.swift */; };
-		888D77D419903F060052C39C /* SignUpView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888D77CE19903F060052C39C /* SignUpView-default.xib */; };
-		888D77D519903F060052C39C /* SignUpView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888D77CE19903F060052C39C /* SignUpView-default.xib */; };
 		888D77D719903F060052C39C /* SignUpView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D77CF19903F060052C39C /* SignUpView_default.swift */; };
 		888F61F3198FD3240082786B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888F61F0198FD3240082786B /* SignUpView.swift */; };
 		888F61F4198FD3240082786B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888F61F0198FD3240082786B /* SignUpView.swift */; };
@@ -177,7 +191,6 @@
 		8891527F19C48F6200F0B7F3 /* default-preview-assetlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 8891527719C48F6200F0B7F3 /* default-preview-assetlist.png */; };
 		8891528119C48F8600F0B7F3 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8891528019C48F8600F0B7F3 /* Global.swift */; };
 		8891528219C48F8600F0B7F3 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8891528019C48F8600F0B7F3 /* Global.swift */; };
-		88999AC3198EE5CB00E746A6 /* LoginView-xyz.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88999ABD198EE5CB00E746A6 /* LoginView-xyz.xib */; };
 		88999AC4198EE5CB00E746A6 /* LoginView_xyz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88999ABE198EE5CB00E746A6 /* LoginView_xyz.swift */; };
 		88999AC5198EE5CB00E746A6 /* theme-xyz.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AC0198EE5CB00E746A6 /* theme-xyz.png */; };
 		88999AC6198EE5CB00E746A6 /* xyz-preview-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AC1198EE5CB00E746A6 /* xyz-preview-login.png */; };
@@ -202,32 +215,22 @@
 		88D537721999194A00615515 /* DDLElementTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D5376F1999194A00615515 /* DDLElementTableCell.swift */; };
 		88D537771999198C00615515 /* DDLElementTextTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537751999198C00615515 /* DDLElementTextTableCell_default.swift */; };
 		88D537781999198C00615515 /* DDLElementTextTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D537751999198C00615515 /* DDLElementTextTableCell_default.swift */; };
-		88D537791999198C00615515 /* DDLElementTextTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D537761999198C00615515 /* DDLElementTextTableCell-default.xib */; };
-		88D5377A1999198C00615515 /* DDLElementTextTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D537761999198C00615515 /* DDLElementTextTableCell-default.xib */; };
 		88D789751998ACA500171FB7 /* DDLElementBoolean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789731998ACA500171FB7 /* DDLElementBoolean.swift */; };
 		88D789761998ACA500171FB7 /* DDLElementBoolean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789731998ACA500171FB7 /* DDLElementBoolean.swift */; };
 		88D789771998ACA500171FB7 /* DDLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789741998ACA500171FB7 /* DDLElement.swift */; };
 		88D789781998ACA500171FB7 /* DDLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789741998ACA500171FB7 /* DDLElement.swift */; };
-		88D789811998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D7897F1998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib */; };
-		88D789821998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D7897F1998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib */; };
 		88D789831998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789801998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift */; };
 		88D789841998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D789801998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift */; };
 		88D90A5D19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D90A5B19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift */; };
 		88D90A5E19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D90A5B19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift */; };
-		88D90A5F19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D90A5C19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib */; };
-		88D90A6019A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D90A5C19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib */; };
 		88D99C32196C42B30090F236 /* LRSession_storage_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */; };
 		88DBC10E19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC10C19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift */; };
 		88DBC10F19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC10C19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift */; };
-		88DBC11019A4D83D0075E644 /* DDLElementRadioTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC10D19A4D83D0075E644 /* DDLElementRadioTableCell-default.xib */; };
-		88DBC11119A4D83D0075E644 /* DDLElementRadioTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC10D19A4D83D0075E644 /* DDLElementRadioTableCell-default.xib */; };
 		88DBC11319A4E03C0075E644 /* DDLElementDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC11219A4E03C0075E644 /* DDLElementDate.swift */; };
 		88DBC11419A4E03C0075E644 /* DDLElementDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC11219A4E03C0075E644 /* DDLElementDate.swift */; };
 		88DBC11619A4E2E20075E644 /* DDLElementDate_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC11519A4E2E20075E644 /* DDLElementDate_Tests.swift */; };
 		88DBC12319A4F7FF0075E644 /* DDLElementDateTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC12119A4F7FF0075E644 /* DDLElementDateTableCell_default.swift */; };
 		88DBC12419A4F7FF0075E644 /* DDLElementDateTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBC12119A4F7FF0075E644 /* DDLElementDateTableCell_default.swift */; };
-		88DBC12519A4F7FF0075E644 /* DDLElementDateTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC12219A4F7FF0075E644 /* DDLElementDateTableCell-default.xib */; };
-		88DBC12619A4F7FF0075E644 /* DDLElementDateTableCell-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC12219A4F7FF0075E644 /* DDLElementDateTableCell-default.xib */; };
 		88DBC12F19A4F8100075E644 /* default-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC12719A4F8100075E644 /* default-calendar.png */; };
 		88DBC13019A4F8100075E644 /* default-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC12719A4F8100075E644 /* default-calendar.png */; };
 		88DBC13119A4F8100075E644 /* default-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC12819A4F8100075E644 /* default-calendar@2x.png */; };
@@ -251,8 +254,6 @@
 		88E3304D19928BF0002AD507 /* DDLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E3304B19928BF0002AD507 /* DDLParser.swift */; };
 		88E4F26E1990C2EF00E69261 /* BaseWidget_tab_sequence_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E4F26D1990C2EF00E69261 /* BaseWidget_tab_sequence_Tests.swift */; };
 		88E4F2711990FCA700E69261 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E4F26F1990FCA700E69261 /* LoginView_default.swift */; };
-		88E4F2731990FCA700E69261 /* LoginView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88E4F2701990FCA700E69261 /* LoginView-default.xib */; };
-		88E4F2741990FCA700E69261 /* LoginView-default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88E4F2701990FCA700E69261 /* LoginView-default.xib */; };
 		88E4F27519910E3B00E69261 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E30419759F28004977A0 /* ForgotPasswordView.swift */; };
 		88E4F27619910E4000E69261 /* ForgotPasswordWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827E30619759F28004977A0 /* ForgotPasswordWidget.swift */; };
 		88E4F27719912B5900E69261 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E4F26F1990FCA700E69261 /* LoginView_default.swift */; };
@@ -329,11 +330,28 @@
 		880D63A519ADD413002907AD /* DDLElementDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementDocument.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8811DC4219BDF2CA008FE226 /* WebContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8811DC4319BDF2CA008FE226 /* WebContentWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentWidget.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		8811DC4919BDF2F5008FE226 /* WebContentView-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WebContentView-default.xib"; sourceTree = "<group>"; };
 		8811DC4A19BDF2F5008FE226 /* WebContentView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8827E30419759F28004977A0 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8827E30619759F28004977A0 /* ForgotPasswordWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordWidget.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		883CF3C1199B7474008F0EBC /* DDLElementTextareaTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementTextareaTableCell-default.xib"; sourceTree = "<group>"; };
+		88354B8119C9E15500F3FE69 /* DDLElementCheckboxTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLElementCheckboxTableCell_default.xib; sourceTree = "<group>"; };
+		88354B8219C9E15500F3FE69 /* DDLElementDateTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLElementDateTableCell_default.xib; sourceTree = "<group>"; };
+		88354B8319C9E15500F3FE69 /* DDLElementDocumentlibraryTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLElementDocumentlibraryTableCell_default.xib; sourceTree = "<group>"; };
+		88354B8419C9E15500F3FE69 /* DDLElementNumberTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLElementNumberTableCell_default.xib; sourceTree = "<group>"; };
+		88354B8519C9E15500F3FE69 /* DDLElementSelectTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLElementSelectTableCell_default.xib; sourceTree = "<group>"; };
+		88354B8619C9E15500F3FE69 /* DDLElementTextareaTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLElementTextareaTableCell_default.xib; sourceTree = "<group>"; };
+		88354B8719C9E15500F3FE69 /* DDLElementTextTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLElementTextTableCell_default.xib; sourceTree = "<group>"; };
+		88354B8819C9E15500F3FE69 /* DDLElementDocumentlibraryPresenterViewController_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLElementDocumentlibraryPresenterViewController_default.xib; sourceTree = "<group>"; };
+		88354B8919C9E15500F3FE69 /* DDLSubmitButtonTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLSubmitButtonTableCell_default.xib; sourceTree = "<group>"; };
+		88354B8A19C9E15500F3FE69 /* DDLElementRadioTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLElementRadioTableCell_default.xib; sourceTree = "<group>"; };
+		88354B8B19C9E15500F3FE69 /* DDLFormView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFormView_default.xib; sourceTree = "<group>"; };
+		88354BA219C9E16100F3FE69 /* LoginView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_default.xib; sourceTree = "<group>"; };
+		88354BA519C9E16B00F3FE69 /* ForgotPasswordView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordView_default.xib; sourceTree = "<group>"; };
+		88354BA819C9E17200F3FE69 /* SignUpView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView_default.xib; sourceTree = "<group>"; };
+		88354BAB19C9E18100F3FE69 /* WebContentView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentView_default.xib; sourceTree = "<group>"; };
+		88354BAE19C9E18E00F3FE69 /* ForgotPasswordView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordView_flat7.xib; sourceTree = "<group>"; };
+		88354BB119C9E19600F3FE69 /* LoginView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_flat7.xib; sourceTree = "<group>"; };
+		88354BB419C9E1A100F3FE69 /* SignUpView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView_flat7.xib; sourceTree = "<group>"; };
+		88354BB719C9E1C900F3FE69 /* LoginView_xyz.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_xyz.xib; sourceTree = "<group>"; };
 		883CF3C2199B7474008F0EBC /* DDLElementTextareaTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementTextareaTableCell_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		883CF3CB199B782D008F0EBC /* LRMobilewidgetsuserService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsuserService_v62.h; sourceTree = "<group>"; };
 		883CF3CC199B782D008F0EBC /* LRMobilewidgetsuserService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsuserService_v62.m; sourceTree = "<group>"; };
@@ -343,14 +361,11 @@
 		8847035219A32F7000395B1C /* DDLElementString_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementString_Tests.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		884CE5061994ECF000ADF047 /* DDLFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		884CE5071994ECF000ADF047 /* DDLFormWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormWidget.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		884CE50D1994EDB100ADF047 /* DDLFormView-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLFormView-default.xib"; sourceTree = "<group>"; };
 		884CE50E1994EDB100ADF047 /* DDLFormView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormView_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8859354019A5F8030040E125 /* DDLElementNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementNumber.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8859354319A5F9790040E125 /* DDLElementNumber_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementNumber_Tests.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8859354B19A613E30040E125 /* DDLElementNumberTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementNumberTableCell_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		8859354C19A613E30040E125 /* DDLElementNumberTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementNumberTableCell-default.xib"; sourceTree = "<group>"; };
 		886C74A719A368C000B689BA /* DDLElementSelectTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementSelectTableCell_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		886C74A819A368C000B689BA /* DDLElementSelectTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementSelectTableCell-default.xib"; sourceTree = "<group>"; };
 		886C74B119A3848000B689BA /* DDLElementStringWithOptions_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementStringWithOptions_Tests.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		886C74B319A3851A00B689BA /* DDLElementStringWithOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementStringWithOptions.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		886EF2FD19C31BC1005AB429 /* LRMobilewidgetsddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsddlrecordService_v62.m; sourceTree = "<group>"; };
@@ -367,20 +382,15 @@
 		8876571C19C89415003E9478 /* DDLElement+Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDLElement+Editor.swift"; sourceTree = "<group>"; };
 		8876571F19C8956B003E9478 /* AssetListWidget+LoadPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AssetListWidget+LoadPage.swift"; sourceTree = "<group>"; };
 		8878523919B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementDocumentlibraryPresenterViewController_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		8878523A19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementDocumentlibraryPresenterViewController-default.xib"; sourceTree = "<group>"; };
 		8878523B19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementDocumentlibraryTableCell_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		8878523C19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementDocumentlibraryTableCell-default.xib"; sourceTree = "<group>"; };
 		888A282719938EFD00C713DA /* DDLParser_i18n_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser_i18n_Tests.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		888CE10A19923142001DCA6A /* BaseWidget_basic_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidget_basic_Tests.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		888CE11919924D4A001DCA6A /* flat7-preview-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-signup@2x.png"; sourceTree = "<group>"; };
 		888CE11A19924D4A001DCA6A /* flat7-preview-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-signup.png"; sourceTree = "<group>"; };
 		888CE11B19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-forgotpassword@2x.png"; sourceTree = "<group>"; };
 		888CE11C19924D4A001DCA6A /* flat7-preview-forgotpassword.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-forgotpassword.png"; sourceTree = "<group>"; };
-		888CE12619924D74001DCA6A /* ForgotPasswordView-flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ForgotPasswordView-flat7.xib"; sourceTree = "<group>"; };
 		888CE12719924D74001DCA6A /* ForgotPasswordView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView_flat7.swift; sourceTree = "<group>"; };
-		888CE12919924D74001DCA6A /* SignUpView-flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SignUpView-flat7.xib"; sourceTree = "<group>"; };
 		888CE12A19924D74001DCA6A /* SignUpView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_flat7.swift; sourceTree = "<group>"; };
-		888D76F7198FDAD30052C39C /* LoginView-flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginView-flat7.xib"; sourceTree = "<group>"; };
 		888D76F8198FDAD30052C39C /* LoginView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_flat7.swift; sourceTree = "<group>"; };
 		888D76FB198FDAD30052C39C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/flat7.strings; sourceTree = "<group>"; };
 		888D76FC198FDAD30052C39C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/flat7.strings; sourceTree = "<group>"; };
@@ -406,9 +416,7 @@
 		888D7786198FEFFE0052C39C /* default-user-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-user-icon.png"; sourceTree = "<group>"; };
 		888D7787198FEFFE0052C39C /* default-user-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-user-icon@2x.png"; sourceTree = "<group>"; };
 		888D7788198FEFFE0052C39C /* theme-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "theme-default.png"; sourceTree = "<group>"; };
-		888D77CB19903F060052C39C /* ForgotPasswordView-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ForgotPasswordView-default.xib"; sourceTree = "<group>"; };
 		888D77CC19903F060052C39C /* ForgotPasswordView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		888D77CE19903F060052C39C /* SignUpView-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SignUpView-default.xib"; sourceTree = "<group>"; };
 		888D77CF19903F060052C39C /* SignUpView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		888F61F0198FD3240082786B /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		888F61F2198FD3240082786B /* SignUpWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpWidget.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -422,7 +430,6 @@
 		8891527619C48F6200F0B7F3 /* default-preview-assetlist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-assetlist@2x.png"; sourceTree = "<group>"; };
 		8891527719C48F6200F0B7F3 /* default-preview-assetlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-assetlist.png"; sourceTree = "<group>"; };
 		8891528019C48F8600F0B7F3 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		88999ABD198EE5CB00E746A6 /* LoginView-xyz.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginView-xyz.xib"; sourceTree = "<group>"; };
 		88999ABE198EE5CB00E746A6 /* LoginView_xyz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_xyz.swift; sourceTree = "<group>"; };
 		88999AC0198EE5CB00E746A6 /* theme-xyz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "theme-xyz.png"; sourceTree = "<group>"; };
 		88999AC1198EE5CB00E746A6 /* xyz-preview-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xyz-preview-login.png"; sourceTree = "<group>"; };
@@ -443,20 +450,15 @@
 		88D5376F1999194A00615515 /* DDLElementTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementTableCell.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		88D537701999194A00615515 /* DDLFormTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormTableView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		88D537751999198C00615515 /* DDLElementTextTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementTextTableCell_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		88D537761999198C00615515 /* DDLElementTextTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementTextTableCell-default.xib"; sourceTree = "<group>"; };
 		88D789731998ACA500171FB7 /* DDLElementBoolean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementBoolean.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		88D789741998ACA500171FB7 /* DDLElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElement.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		88D7897F1998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementCheckboxTableCell-default.xib"; sourceTree = "<group>"; };
 		88D789801998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementCheckboxTableCell_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		88D90A5B19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLSubmitButtonTableCell_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		88D90A5C19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLSubmitButtonTableCell-default.xib"; sourceTree = "<group>"; };
 		88D99C31196C42B30090F236 /* LRSession_storage_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LRSession_storage_Tests.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		88DBC10C19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementRadioTableCell_default.swift; sourceTree = "<group>"; };
-		88DBC10D19A4D83D0075E644 /* DDLElementRadioTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementRadioTableCell-default.xib"; sourceTree = "<group>"; };
 		88DBC11219A4E03C0075E644 /* DDLElementDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementDate.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		88DBC11519A4E2E20075E644 /* DDLElementDate_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DDLElementDate_Tests.swift; path = Tests/DDLElementDate_Tests.swift; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
 		88DBC12119A4F7FF0075E644 /* DDLElementDateTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLElementDateTableCell_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		88DBC12219A4F7FF0075E644 /* DDLElementDateTableCell-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DDLElementDateTableCell-default.xib"; sourceTree = "<group>"; };
 		88DBC12719A4F8100075E644 /* default-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-calendar.png"; sourceTree = "<group>"; };
 		88DBC12819A4F8100075E644 /* default-calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-calendar@2x.png"; sourceTree = "<group>"; };
 		88DBC12919A4F8100075E644 /* default-multiline-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-multiline-field.png"; sourceTree = "<group>"; };
@@ -470,7 +472,6 @@
 		88E3304B19928BF0002AD507 /* DDLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		88E4F26D1990C2EF00E69261 /* BaseWidget_tab_sequence_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidget_tab_sequence_Tests.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		88E4F26F1990FCA700E69261 /* LoginView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		88E4F2701990FCA700E69261 /* LoginView-default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginView-default.xib"; sourceTree = "<group>"; };
 		88EA60FF19656751005F722C /* Liferay-iOS-Widgets-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Liferay-iOS-Widgets-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88F648A0198D2DE8003A8FD9 /* BaseWidget_theme_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidget_theme_Tests.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		88F648A2198D2E11003A8FD9 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -520,8 +521,8 @@
 		8811DC4819BDF2F5008FE226 /* AssetDisplay */ = {
 			isa = PBXGroup;
 			children = (
-				8811DC4919BDF2F5008FE226 /* WebContentView-default.xib */,
 				8811DC4A19BDF2F5008FE226 /* WebContentView_default.swift */,
+				88354BAB19C9E18100F3FE69 /* WebContentView_default.xib */,
 			);
 			path = AssetDisplay;
 			sourceTree = "<group>";
@@ -553,28 +554,28 @@
 			children = (
 				88DBC14119A4FDE10075E644 /* DDLBaseElementTextFieldTableCell_default.swift */,
 				88D789801998ACC600171FB7 /* DDLElementCheckboxTableCell_default.swift */,
-				88D7897F1998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib */,
+				88354B8119C9E15500F3FE69 /* DDLElementCheckboxTableCell_default.xib */,
 				88DBC12119A4F7FF0075E644 /* DDLElementDateTableCell_default.swift */,
-				88DBC12219A4F7FF0075E644 /* DDLElementDateTableCell-default.xib */,
+				88354B8219C9E15500F3FE69 /* DDLElementDateTableCell_default.xib */,
 				8878523919B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController_default.swift */,
-				8878523A19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController-default.xib */,
+				88354B8819C9E15500F3FE69 /* DDLElementDocumentlibraryPresenterViewController_default.xib */,
 				8878523B19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell_default.swift */,
-				8878523C19B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib */,
+				88354B8319C9E15500F3FE69 /* DDLElementDocumentlibraryTableCell_default.xib */,
 				8859354B19A613E30040E125 /* DDLElementNumberTableCell_default.swift */,
-				8859354C19A613E30040E125 /* DDLElementNumberTableCell-default.xib */,
+				88354B8419C9E15500F3FE69 /* DDLElementNumberTableCell_default.xib */,
 				88DBC10C19A4D83D0075E644 /* DDLElementRadioTableCell_default.swift */,
-				88DBC10D19A4D83D0075E644 /* DDLElementRadioTableCell-default.xib */,
+				88354B8A19C9E15500F3FE69 /* DDLElementRadioTableCell_default.xib */,
 				886C74A719A368C000B689BA /* DDLElementSelectTableCell_default.swift */,
-				886C74A819A368C000B689BA /* DDLElementSelectTableCell-default.xib */,
+				88354B8519C9E15500F3FE69 /* DDLElementSelectTableCell_default.xib */,
 				883CF3C2199B7474008F0EBC /* DDLElementTextareaTableCell_default.swift */,
-				883CF3C1199B7474008F0EBC /* DDLElementTextareaTableCell-default.xib */,
+				88354B8619C9E15500F3FE69 /* DDLElementTextareaTableCell_default.xib */,
 				88D537751999198C00615515 /* DDLElementTextTableCell_default.swift */,
-				88D537761999198C00615515 /* DDLElementTextTableCell-default.xib */,
+				88354B8719C9E15500F3FE69 /* DDLElementTextTableCell_default.xib */,
 				8844996F19C9D63700A46779 /* DDLFormDefaultThemeConstants.swift */,
 				884CE50E1994EDB100ADF047 /* DDLFormView_default.swift */,
-				884CE50D1994EDB100ADF047 /* DDLFormView-default.xib */,
+				88354B8B19C9E15500F3FE69 /* DDLFormView_default.xib */,
 				88D90A5B19A2158A003E8D98 /* DDLSubmitButtonTableCell_default.swift */,
-				88D90A5C19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib */,
+				88354B8919C9E15500F3FE69 /* DDLSubmitButtonTableCell_default.xib */,
 			);
 			path = DDLForm;
 			sourceTree = "<group>";
@@ -590,8 +591,8 @@
 		888CE12519924D74001DCA6A /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
-				888CE12619924D74001DCA6A /* ForgotPasswordView-flat7.xib */,
 				888CE12719924D74001DCA6A /* ForgotPasswordView_flat7.swift */,
+				88354BAE19C9E18E00F3FE69 /* ForgotPasswordView_flat7.xib */,
 			);
 			path = ForgotPassword;
 			sourceTree = "<group>";
@@ -599,8 +600,8 @@
 		888CE12819924D74001DCA6A /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				888CE12919924D74001DCA6A /* SignUpView-flat7.xib */,
 				888CE12A19924D74001DCA6A /* SignUpView_flat7.swift */,
+				88354BB419C9E1A100F3FE69 /* SignUpView_flat7.xib */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -619,8 +620,8 @@
 		888D76F6198FDAD30052C39C /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				888D76F7198FDAD30052C39C /* LoginView-flat7.xib */,
 				888D76F8198FDAD30052C39C /* LoginView_flat7.swift */,
+				88354BB119C9E19600F3FE69 /* LoginView_flat7.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -647,8 +648,8 @@
 		888D77CA19903F060052C39C /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
-				888D77CB19903F060052C39C /* ForgotPasswordView-default.xib */,
 				888D77CC19903F060052C39C /* ForgotPasswordView_default.swift */,
+				88354BA519C9E16B00F3FE69 /* ForgotPasswordView_default.xib */,
 			);
 			path = ForgotPassword;
 			sourceTree = "<group>";
@@ -656,8 +657,8 @@
 		888D77CD19903F060052C39C /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				888D77CE19903F060052C39C /* SignUpView-default.xib */,
 				888D77CF19903F060052C39C /* SignUpView_default.swift */,
+				88354BA819C9E17200F3FE69 /* SignUpView_default.xib */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -687,8 +688,8 @@
 		88999AB0198EE59E00E746A6 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				88E4F2701990FCA700E69261 /* LoginView-default.xib */,
 				88E4F26F1990FCA700E69261 /* LoginView_default.swift */,
+				88354BA219C9E16100F3FE69 /* LoginView_default.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -741,7 +742,7 @@
 		88999ABC198EE5CB00E746A6 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				88999ABD198EE5CB00E746A6 /* LoginView-xyz.xib */,
+				88354BB719C9E1C900F3FE69 /* LoginView_xyz.xib */,
 				88999ABE198EE5CB00E746A6 /* LoginView_xyz.swift */,
 			);
 			path = Login;
@@ -1014,70 +1015,70 @@
 			buildActionMask = 2147483647;
 			files = (
 				886EF30E19C31BE1005AB429 /* default-hourglass.png in Resources */,
+				88354BA719C9E16B00F3FE69 /* ForgotPasswordView_default.xib in Resources */,
 				888D778A198FEFFE0052C39C /* default-field-focused.png in Resources */,
 				888D778E198FEFFE0052C39C /* default-field.png in Resources */,
 				888D7796198FEFFE0052C39C /* default-large-button.png in Resources */,
+				88354B8F19C9E15500F3FE69 /* DDLElementDateTableCell_default.xib in Resources */,
 				888D77A0198FEFFE0052C39C /* default-mail-icon@2x.png in Resources */,
 				888D770F198FDAD30052C39C /* flat7-field.png in Resources */,
-				888D77D119903F060052C39C /* ForgotPasswordView-default.xib in Resources */,
 				888D7715198FDAD30052C39C /* flat7-preview-login@2x.png in Resources */,
 				8891527B19C48F6200F0B7F3 /* default-preview-webcontent.png in Resources */,
 				88DBC13C19A4F8100075E644 /* default-preview-ddlform.png in Resources */,
 				8891527F19C48F6200F0B7F3 /* default-preview-assetlist.png in Resources */,
-				88DBC12619A4F7FF0075E644 /* DDLElementDateTableCell-default.xib in Resources */,
-				8859355019A613E30040E125 /* DDLElementNumberTableCell-default.xib in Resources */,
-				884CE5101994EDB100ADF047 /* DDLFormView-default.xib in Resources */,
-				88DBC11119A4D83D0075E644 /* DDLElementRadioTableCell-default.xib in Resources */,
+				88354BB019C9E18E00F3FE69 /* ForgotPasswordView_flat7.xib in Resources */,
 				8891527D19C48F6200F0B7F3 /* default-preview-assetlist@2x.png in Resources */,
 				88DBC13619A4F8100075E644 /* default-multiline-field@2x.png in Resources */,
 				888D778C198FEFFE0052C39C /* default-field-focused@2x.png in Resources */,
+				88354B9119C9E15500F3FE69 /* DDLElementDocumentlibraryTableCell_default.xib in Resources */,
 				88999AC7198EE5CB00E746A6 /* xyz-preview-login@2x.png in Resources */,
 				888D7717198FDAD30052C39C /* theme-flat7.png in Resources */,
 				888D7792198FEFFE0052C39C /* default-large-button-selected.png in Resources */,
-				888CE12C19924D74001DCA6A /* ForgotPasswordView-flat7.xib in Resources */,
+				88354B9B19C9E15500F3FE69 /* DDLElementDocumentlibraryPresenterViewController_default.xib in Resources */,
 				88DBC13A19A4F8100075E644 /* default-field-failed@2x.png in Resources */,
-				88D789821998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib in Resources */,
-				88D90A6019A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib in Resources */,
 				88DBC13819A4F8100075E644 /* default-field-failed.png in Resources */,
+				88354BAD19C9E18100F3FE69 /* WebContentView_default.xib in Resources */,
 				8891527919C48F6200F0B7F3 /* default-preview-webcontent@2x.png in Resources */,
 				888D7790198FEFFE0052C39C /* default-field@2x.png in Resources */,
 				888D77AA198FEFFE0052C39C /* default-user-icon.png in Resources */,
 				88DBC13419A4F8100075E644 /* default-multiline-field.png in Resources */,
 				888D7709198FDAD30052C39C /* flat7.strings in Resources */,
 				888CE12319924D51001DCA6A /* flat7-preview-forgotpassword@2x.png in Resources */,
-				883CF3C4199B7474008F0EBC /* DDLElementTextareaTableCell-default.xib in Resources */,
-				8878524019B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController-default.xib in Resources */,
 				888FAFAB196AE8EF00057B26 /* TestsInfo.plist in Resources */,
 				888D779C198FEFFE0052C39C /* default-lock-icon@2x.png in Resources */,
-				888CE13019924D74001DCA6A /* SignUpView-flat7.xib in Resources */,
-				886C74AC19A368C000B689BA /* DDLElementSelectTableCell-default.xib in Resources */,
+				88354BA419C9E16100F3FE69 /* LoginView_default.xib in Resources */,
 				888D7798198FEFFE0052C39C /* default-large-button@2x.png in Resources */,
 				888D7794198FEFFE0052C39C /* default-large-button-selected@2x.png in Resources */,
-				8811DC4C19BDF2F5008FE226 /* WebContentView-default.xib in Resources */,
+				88354BAA19C9E17200F3FE69 /* SignUpView_default.xib in Resources */,
 				888D7713198FDAD30052C39C /* flat7-preview-login.png in Resources */,
+				88354B8D19C9E15500F3FE69 /* DDLElementCheckboxTableCell_default.xib in Resources */,
 				886EF30C19C31BE1005AB429 /* default-hourglass@2x.png in Resources */,
 				88DBC13E19A4F8100075E644 /* default-preview-ddlform@2x.png in Resources */,
+				88354BB319C9E19600F3FE69 /* LoginView_flat7.xib in Resources */,
 				888D779E198FEFFE0052C39C /* default-mail-icon.png in Resources */,
 				88999AC6198EE5CB00E746A6 /* xyz-preview-login.png in Resources */,
+				88354B9719C9E15500F3FE69 /* DDLElementTextareaTableCell_default.xib in Resources */,
 				888CE12419924D51001DCA6A /* flat7-preview-forgotpassword.png in Resources */,
-				8878524419B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib in Resources */,
 				88DBC13219A4F8100075E644 /* default-calendar@2x.png in Resources */,
-				888D77D519903F060052C39C /* SignUpView-default.xib in Resources */,
 				888D770D198FDAD30052C39C /* flat7-button@2x.png in Resources */,
+				88354B9F19C9E15500F3FE69 /* DDLElementRadioTableCell_default.xib in Resources */,
 				888D77AC198FEFFE0052C39C /* default-user-icon@2x.png in Resources */,
+				88354BB619C9E1A100F3FE69 /* SignUpView_flat7.xib in Resources */,
+				88354B9919C9E15500F3FE69 /* DDLElementTextTableCell_default.xib in Resources */,
 				888CE12219924D51001DCA6A /* flat7-preview-signup.png in Resources */,
+				88354B9519C9E15500F3FE69 /* DDLElementSelectTableCell_default.xib in Resources */,
 				888D77AE198FEFFE0052C39C /* theme-default.png in Resources */,
 				88999AC5198EE5CB00E746A6 /* theme-xyz.png in Resources */,
-				88999AC3198EE5CB00E746A6 /* LoginView-xyz.xib in Resources */,
 				888D7711198FDAD30052C39C /* flat7-field@2x.png in Resources */,
-				88E4F2741990FCA700E69261 /* LoginView-default.xib in Resources */,
+				88354B9D19C9E15500F3FE69 /* DDLSubmitButtonTableCell_default.xib in Resources */,
 				888CE12119924D51001DCA6A /* flat7-preview-signup@2x.png in Resources */,
 				88DBC13019A4F8100075E644 /* default-calendar.png in Resources */,
+				88354BB919C9E1C900F3FE69 /* LoginView_xyz.xib in Resources */,
+				88354B9319C9E15500F3FE69 /* DDLElementNumberTableCell_default.xib in Resources */,
 				888D770B198FDAD30052C39C /* flat7-button.png in Resources */,
-				88D5377A1999198C00615515 /* DDLElementTextTableCell-default.xib in Resources */,
 				88F648B7198D304B003A8FD9 /* liferay-context-sample.plist in Resources */,
 				888D779A198FEFFE0052C39C /* default-lock-icon.png in Resources */,
-				888D7705198FDAD30052C39C /* LoginView-flat7.xib in Resources */,
+				88354BA119C9E15500F3FE69 /* DDLFormView_default.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,36 +1087,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				888D7716198FDAD30052C39C /* theme-flat7.png in Resources */,
+				88354BAC19C9E18100F3FE69 /* WebContentView_default.xib in Resources */,
+				88354B9819C9E15500F3FE69 /* DDLElementTextTableCell_default.xib in Resources */,
 				888D7799198FEFFE0052C39C /* default-lock-icon.png in Resources */,
-				8878524319B0A0E300AE9B4F /* DDLElementDocumentlibraryTableCell-default.xib in Resources */,
 				888D770E198FDAD30052C39C /* flat7-field.png in Resources */,
-				886C74AB19A368C000B689BA /* DDLElementSelectTableCell-default.xib in Resources */,
 				8891527A19C48F6200F0B7F3 /* default-preview-webcontent.png in Resources */,
 				888D770C198FDAD30052C39C /* flat7-button@2x.png in Resources */,
-				888CE12F19924D74001DCA6A /* SignUpView-flat7.xib in Resources */,
-				888D77D019903F060052C39C /* ForgotPasswordView-default.xib in Resources */,
-				8878523F19B0A0E300AE9B4F /* DDLElementDocumentlibraryPresenterViewController-default.xib in Resources */,
+				88354BA319C9E16100F3FE69 /* LoginView_default.xib in Resources */,
+				88354B9A19C9E15500F3FE69 /* DDLElementDocumentlibraryPresenterViewController_default.xib in Resources */,
+				88354BA619C9E16B00F3FE69 /* ForgotPasswordView_default.xib in Resources */,
 				888D7793198FEFFE0052C39C /* default-large-button-selected@2x.png in Resources */,
-				88DBC12519A4F7FF0075E644 /* DDLElementDateTableCell-default.xib in Resources */,
+				88354B9E19C9E15500F3FE69 /* DDLElementRadioTableCell_default.xib in Resources */,
 				888D7708198FDAD30052C39C /* flat7.strings in Resources */,
-				88DBC11019A4D83D0075E644 /* DDLElementRadioTableCell-default.xib in Resources */,
 				888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */,
 				88DBC13719A4F8100075E644 /* default-field-failed.png in Resources */,
-				888D77D419903F060052C39C /* SignUpView-default.xib in Resources */,
 				886EF30B19C31BE1005AB429 /* default-hourglass@2x.png in Resources */,
-				88E4F2731990FCA700E69261 /* LoginView-default.xib in Resources */,
+				88354BB519C9E1A100F3FE69 /* SignUpView_flat7.xib in Resources */,
 				888D7797198FEFFE0052C39C /* default-large-button@2x.png in Resources */,
 				888D779F198FEFFE0052C39C /* default-mail-icon@2x.png in Resources */,
 				88DBC13D19A4F8100075E644 /* default-preview-ddlform@2x.png in Resources */,
 				888CE11F19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png in Resources */,
-				883CF3C3199B7474008F0EBC /* DDLElementTextareaTableCell-default.xib in Resources */,
-				888CE12B19924D74001DCA6A /* ForgotPasswordView-flat7.xib in Resources */,
 				888CE11E19924D4A001DCA6A /* flat7-preview-signup.png in Resources */,
+				88354BB819C9E1C900F3FE69 /* LoginView_xyz.xib in Resources */,
 				88DBC13119A4F8100075E644 /* default-calendar@2x.png in Resources */,
+				88354B9419C9E15500F3FE69 /* DDLElementSelectTableCell_default.xib in Resources */,
+				88354BAF19C9E18E00F3FE69 /* ForgotPasswordView_flat7.xib in Resources */,
+				88354B8C19C9E15500F3FE69 /* DDLElementCheckboxTableCell_default.xib in Resources */,
 				888D779B198FEFFE0052C39C /* default-lock-icon@2x.png in Resources */,
+				88354B9619C9E15500F3FE69 /* DDLElementTextareaTableCell_default.xib in Resources */,
 				88DBC13919A4F8100075E644 /* default-field-failed@2x.png in Resources */,
 				888CE12019924D4A001DCA6A /* flat7-preview-forgotpassword.png in Resources */,
 				888D77AB198FEFFE0052C39C /* default-user-icon@2x.png in Resources */,
+				88354BA019C9E15500F3FE69 /* DDLFormView_default.xib in Resources */,
 				8891527C19C48F6200F0B7F3 /* default-preview-assetlist@2x.png in Resources */,
 				888D77A9198FEFFE0052C39C /* default-user-icon.png in Resources */,
 				888CE11D19924D4A001DCA6A /* flat7-preview-signup@2x.png in Resources */,
@@ -1123,29 +1126,28 @@
 				888D778B198FEFFE0052C39C /* default-field-focused@2x.png in Resources */,
 				886EF30D19C31BE1005AB429 /* default-hourglass.png in Resources */,
 				88DBC13319A4F8100075E644 /* default-multiline-field.png in Resources */,
+				88354B9019C9E15500F3FE69 /* DDLElementDocumentlibraryTableCell_default.xib in Resources */,
 				8891527819C48F6200F0B7F3 /* default-preview-webcontent@2x.png in Resources */,
 				888D7789198FEFFE0052C39C /* default-field-focused.png in Resources */,
 				888D7714198FDAD30052C39C /* flat7-preview-login@2x.png in Resources */,
-				88D537791999198C00615515 /* DDLElementTextTableCell-default.xib in Resources */,
+				88354B8E19C9E15500F3FE69 /* DDLElementDateTableCell_default.xib in Resources */,
 				888D7710198FDAD30052C39C /* flat7-field@2x.png in Resources */,
 				888D77AD198FEFFE0052C39C /* theme-default.png in Resources */,
-				88D90A5F19A2158A003E8D98 /* DDLSubmitButtonTableCell-default.xib in Resources */,
 				888D779D198FEFFE0052C39C /* default-mail-icon.png in Resources */,
-				8811DC4B19BDF2F5008FE226 /* WebContentView-default.xib in Resources */,
-				88D789811998ACC600171FB7 /* DDLElementCheckboxTableCell-default.xib in Resources */,
+				88354B9219C9E15500F3FE69 /* DDLElementNumberTableCell_default.xib in Resources */,
 				888D7712198FDAD30052C39C /* flat7-preview-login.png in Resources */,
-				884CE50F1994EDB100ADF047 /* DDLFormView-default.xib in Resources */,
+				88354BA919C9E17200F3FE69 /* SignUpView_default.xib in Resources */,
 				88DBC12F19A4F8100075E644 /* default-calendar.png in Resources */,
 				888D778D198FEFFE0052C39C /* default-field.png in Resources */,
 				8891527E19C48F6200F0B7F3 /* default-preview-assetlist.png in Resources */,
 				88DBC13B19A4F8100075E644 /* default-preview-ddlform.png in Resources */,
-				8859354F19A613E30040E125 /* DDLElementNumberTableCell-default.xib in Resources */,
+				88354B9C19C9E15500F3FE69 /* DDLSubmitButtonTableCell_default.xib in Resources */,
 				88DBC13519A4F8100075E644 /* default-multiline-field@2x.png in Resources */,
 				888D778F198FEFFE0052C39C /* default-field@2x.png in Resources */,
+				88354BB219C9E19600F3FE69 /* LoginView_flat7.xib in Resources */,
 				88AEA25D19657C3100CD130B /* liferay-context-sample.plist in Resources */,
 				888D7795198FEFFE0052C39C /* default-large-button.png in Resources */,
 				888D770A198FDAD30052C39C /* flat7-button.png in Resources */,
-				888D7704198FDAD30052C39C /* LoginView-flat7.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -303,7 +303,7 @@ import QuartzCore
 
 		let bundle = NSBundle(forClass:self.dynamicType)
 
-		var nibName = viewName + "-" + currentThemeName
+		var nibName = viewName + "_" + currentThemeName
 		var nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
 		if nibPath == nil {
