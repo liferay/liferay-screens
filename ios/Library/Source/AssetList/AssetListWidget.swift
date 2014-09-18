@@ -16,15 +16,26 @@ import UIKit
 
 @objc public protocol AssetListWidgetDelegate {
 
-	optional func onAssetListResponse(entries:[AssetEntry])
+	optional func onAssetListResponse(entries:[AssetListWidget.Entry])
 	optional func onAssetListError(error: NSError)
 
-	optional func onAssetSelected(entry:AssetEntry)
+	optional func onAssetSelected(entry: AssetListWidget.Entry)
 
 }
 
 
 @IBDesignable public class AssetListWidget: BaseListWidget {
+
+	@objc public class Entry {
+
+		public var title:String
+
+		public init(title:String) {
+			self.title = title
+		}
+
+	}
+
 
 	public enum AssetClassNameId: Int {
 
@@ -123,7 +134,7 @@ import UIKit
 	override internal func convert(#serverResult:[String:AnyObject]) -> AnyObject {
 		let title = (serverResult["title"] ?? "") as String
 
-		return AssetEntry(title: title)
+		return Entry(title: title)
 	}
 
 	override internal func onLoadPageError(page: Int, error: NSError) {
@@ -139,7 +150,7 @@ import UIKit
 
 		let rowObjects = super.onLoadPageResult(page, serverRows: serverRows, rowCount: rowCount)
 
-		let assetEntries = rowObjects.map() { $0 as AssetEntry }
+		let assetEntries = rowObjects.map() { $0 as Entry }
 
 		delegate?.onAssetListResponse?(assetEntries)
 
@@ -147,7 +158,7 @@ import UIKit
 	}
 
 	override internal func onSelectedRow(row: AnyObject) {
-		delegate?.onAssetSelected?(row as AssetEntry)
+		delegate?.onAssetSelected?(row as Entry)
 	}
 
 }
