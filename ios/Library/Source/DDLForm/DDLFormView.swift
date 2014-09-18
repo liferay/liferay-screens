@@ -18,10 +18,14 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 
 	public var showSubmitButton = true
 
-	public var fields: [DDLField] = [] {
+	public var record: DDLRecord?  {
 		didSet {
-			onChangedFields()
+			onChangedRecord()
 		}
+	}
+
+	public var isRecordEmpty: Bool {
+		return record == nil ? true : record!.fields.isEmpty
 	}
 
 	public var values: [String:AnyObject] {
@@ -44,6 +48,18 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 
 
 	//MARK: Public methods
+
+	public func getField(index: Int) -> DDLField? {
+		return record == nil ? nil : record!.fields[index]
+	}
+
+	public func setFields(fields: [DDLField]) {
+		record = DDLRecord(fields:fields)
+	}
+
+	public func getFieldIndex(field: DDLField) -> Int? {
+		return record == nil ? nil : find(record!.fields, field)
+	}
 
 	public func validateForm(#autoscroll:Bool) -> Bool {
 		var result = true
@@ -72,15 +88,25 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 	}
 
 	internal func forEachField(body:DDLField -> Void) {
-		for field in fields {
-			body(field)
+		if let recordValue = record {
+			for field in recordValue.fields {
+				body(field)
+			}
+		}
+	}
+
+	internal func forEachFieldIndexed(body:(Int,DDLField) -> Void) {
+		if let recordValue = record {
+			for (index,field) in enumerate(recordValue.fields) {
+				body(index, field)
+			}
 		}
 	}
 
 	internal func showField(field:DDLField) {
 	}
 
-	internal func onChangedFields() {
+	internal func onChangedRecord() {
 	}
 
 }

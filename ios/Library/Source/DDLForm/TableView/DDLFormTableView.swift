@@ -64,8 +64,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		registerFieldCells()
 	}
 
-	override internal func onChangedFields() {
-		super.onChangedFields()
+	override internal func onChangedRecord() {
+		super.onChangedRecord()
 
 		forEachField() {
 			$0.resetCurrentHeight()
@@ -75,7 +75,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	}
 
 	override internal func showField(field: DDLField) {
-		if let row = find(fields, field) {
+		if let row = getFieldIndex(field) {
 			tableView!.scrollToRowAtIndexPath(
 				NSIndexPath(forRow: row, inSection: 0),
 				atScrollPosition: .Top, animated: true)
@@ -83,7 +83,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	}
 
 	override internal func changeDocumentUploadStatus(field: DDLFieldDocument) {
-		if let row = find(fields, field) {
+		if let row = getFieldIndex(field) {
 			if let cell = tableView!.cellForRowAtIndexPath(
 					NSIndexPath(forRow: row, inSection: 0)) as? DDLFieldTableCell {
 				cell.changeDocumentUploadStatus(field)
@@ -95,11 +95,11 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	//MARK: UITableViewDataSource
 
 	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if fields.count == 0 {
+		if isRecordEmpty {
 			return 0
 		}
 
-		return fields.count + (showSubmitButton ? 1 : 0)
+		return record!.fields.count + (showSubmitButton ? 1 : 0)
 	}
 
 	public func tableView(tableView: UITableView,
@@ -109,27 +109,26 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		var cell:DDLFieldTableCell?
 		let row = indexPath.row
 
-		if row == fields.count {
+		if row == record!.fields.count {
 			cell = tableView.dequeueReusableCellWithIdentifier("SubmitButton") as?
 					DDLFieldTableCell
 
 			cell!.formView = self
 		}
-		else {
-			let field = fields[row]
-			
+		else if let field = getField(row) {
 			cell = tableView.dequeueReusableCellWithIdentifier(
 					field.editorType.toCapitalizedName()) as? DDLFieldTableCell
 
-			if cell == nil {
+			if let cellValue = cell {
+				cellValue.formView = self
+				cellValue.tableView = tableView
+				cellValue.indexPath = indexPath
+				cellValue.field = field
+			}
+			else {
 				println("ERROR: Cell XIB is not registerd for type " +
 						field.editorType.toCapitalizedName())
 			}
-
-			cell!.formView = self
-			cell!.tableView = tableView
-			cell!.indexPath = indexPath
-			cell!.field = field
 		}
 
 		return cell!
@@ -141,7 +140,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 		let row = indexPath.row
 
-		return (row == fields.count) ? submitButtonHeight : fields[row].currentHeight
+		return (row == record!.fields.count) ? submitButtonHeight : getField(row)!.currentHeight
 	}
 
 

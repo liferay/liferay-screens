@@ -16,13 +16,13 @@ import UIKit
 
 @objc public protocol DDLFormWidgetDelegate {
 
-	optional func onFormLoaded(fields: [DDLField])
+	optional func onFormLoaded(record: DDLRecord)
 	optional func onFormLoadError(error: NSError)
 
-	optional func onRecordLoaded(fields: [DDLField])
+	optional func onRecordLoaded(record: DDLRecord)
 	optional func onRecordLoadError(error: NSError)
 
-	optional func onFormSubmitted(fields: [DDLField])
+	optional func onFormSubmitted(record: DDLRecord)
 	optional func onFormSubmitError(error: NSError)
 
 	optional func onDocumentUploadStarted(field:DDLFieldDocument)
@@ -137,6 +137,7 @@ import UIKit
 			case .Submitting:
 				if let recordIdValue = result["recordId"]! as? Int {
 					recordId = recordIdValue
+					formView.record!.recordId = recordIdValue
 				}
 				finishOperationWithMessage("Form submitted")
 				currentOperation = .Idle
@@ -153,6 +154,7 @@ import UIKit
 				}
 
 				onRecordLoadResult(responses[0] as [String:AnyObject])
+				formView.record!.recordId = recordId
 
 				currentOperation = .Idle
 
@@ -240,7 +242,7 @@ import UIKit
 			return false
 		}
 
-		currentOperation = .LoadingRecord(formView.fields.isEmpty)
+		currentOperation = .LoadingRecord(formView.isRecordEmpty)
 
 		startOperationWithMessage("Loading record...", details: "Wait a second...")
 
@@ -255,7 +257,7 @@ import UIKit
 				locale: NSLocale.currentLocaleString(),
 				error: &outError)
 
-		if formView.fields.isEmpty {
+		if formView.isRecordEmpty {
 			let structureService = LRDDMStructureService_v62(session: session)
 
 			structureService.getStructureWithStructureId((structureId as NSNumber).longLongValue,
@@ -370,9 +372,9 @@ import UIKit
 			parser.xml = xml
 
 			if let fields = parser.parse() {
-				formView.fields = fields
+				formView.setFields(fields)
 
-				delegate?.onFormLoaded?(fields)
+				delegate?.onFormLoaded?(formView.record!)
 
 				finishOperationWithMessage("Form loaded")
 			}
@@ -386,13 +388,18 @@ import UIKit
 	}
 
 	private func onRecordLoadResult(result: [String:AnyObject]) {
-		for (index,field) in enumerate(formView.fields) {
+		var fields: [DDLField] = []
+
+		formView.forEachFieldIndexed() { (index,field) in
 			let fieldValue = (result[field.name] ?? nil) as? String
 			if let fieldStringValue = fieldValue {
 				field.currentStringValue = fieldStringValue
-				formView.fields[index] = field
+
+				fields.append(field)
 			}
 		}
+
+		formView.setFields(fields)
 	}
 
 	private func uploadDocument(document:DDLFieldDocument) -> Bool {
