@@ -49,8 +49,8 @@ class DDLFieldDocument_Tests: XCTestCase {
 		XCTAssertTrue(fields![0] is DDLFieldDocument)
 		let docField = fields![0] as DDLFieldDocument
 
-		XCTAssertEqual(DDLFieldDataType.DDLDocument, docField.dataType)
-		XCTAssertEqual(DDLFieldEditor.Document, docField.editorType)
+		XCTAssertEqual(DDLField.DataType.DDLDocument, docField.dataType)
+		XCTAssertEqual(DDLField.Editor.Document, docField.editorType)
 		XCTAssertNil(docField.predefinedValue)
 		XCTAssertEqual("A_Document", docField.name)
 		XCTAssertEqual("A Document", docField.label)

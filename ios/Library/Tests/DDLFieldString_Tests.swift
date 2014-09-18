@@ -59,8 +59,8 @@ class DDLFieldString_Tests: XCTestCase {
 
 		let stringField = fields![0] as DDLFieldString
 
-		XCTAssertEqual(DDLFieldDataType.DDLString, stringField.dataType)
-		XCTAssertEqual(DDLFieldEditor.Text, stringField.editorType)
+		XCTAssertEqual(DDLField.DataType.DDLString, stringField.dataType)
+		XCTAssertEqual(DDLField.Editor.Text, stringField.editorType)
 		XCTAssertEqual("A_Text", stringField.name)
 		XCTAssertEqual("A Text", stringField.label)
 		XCTAssertEqual("The tip", stringField.tip)

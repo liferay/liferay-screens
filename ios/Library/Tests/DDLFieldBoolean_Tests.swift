@@ -59,8 +59,8 @@ class DDLFieldBoolean_Tests: XCTestCase {
 
 		let booleanField = fields![0] as DDLFieldBoolean
 
-		XCTAssertEqual(DDLFieldDataType.DDLBoolean, booleanField.dataType)
-		XCTAssertEqual(DDLFieldEditor.Checkbox, booleanField.editorType)
+		XCTAssertEqual(DDLField.DataType.DDLBoolean, booleanField.dataType)
+		XCTAssertEqual(DDLField.Editor.Checkbox, booleanField.editorType)
 		XCTAssertEqual("A_Boolean", booleanField.name)
 		XCTAssertEqual("A Boolean", booleanField.label)
 		XCTAssertEqual("The tip", booleanField.tip)
