@@ -14,14 +14,22 @@
 import UIKit
 
 
-public class AssetListTableView: BaseListTableView {
+public class BaseListView: BaseWidgetView {
 
-	override internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
-		// Apply cell style in the theme
+	public var rowCount:Int = 0
+
+	public var rows:[AnyObject?] = [] {
+		didSet {
+			onChangedRows()
+		}
 	}
 
-	override internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
-		// Apply cell style in the theme
+	internal var onSelectedRowClosure: (AnyObject -> Void)?
+
+	internal var fetchPageForRow: (Int -> Void)?
+
+
+	internal func onChangedRows() {
 	}
 
 }

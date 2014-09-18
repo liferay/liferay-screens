@@ -16,7 +16,7 @@ import UIKit
 
 public class LoadPageOperation: NSObject, LRCallback {
 
-	internal var onOperationSuccess: ((Int, [[String:AnyObject]], Int) -> Void)?
+	internal var onOperationSuccess: ((Int, [[String:AnyObject]], Int) -> [AnyObject])?
 	internal var onOperationFailure: ((Int, NSError) -> Void)?
 
 	private let page:Int

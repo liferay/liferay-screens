@@ -24,7 +24,7 @@ import UIKit
 }
 
 
-@IBDesignable public class AssetListWidget: BaseWidget {
+@IBDesignable public class AssetListWidget: BaseListWidget {
 
 	public enum AssetClassNameId: Int {
 
@@ -79,164 +79,75 @@ import UIKit
 	@IBInspectable public var groupId = 0
 	@IBInspectable public var classNameId = 0
 
-	@IBInspectable public var firstPageSize = 5
-	@IBInspectable public var pageSize = 2
-
 	@IBOutlet public var delegate: AssetListWidgetDelegate?
 
 	internal var assetListView: AssetListView {
 		return widgetView as AssetListView
 	}
 
-	private var loadPageOperations: [Int:LoadPageOperation] = [:]
 
+	//MARK: BaseListWidget
 
-	//MARK: BaseWidget
-
-	override public func onCreated() {
-		assetListView.onSelectedEntryClosure = onSelectedEntry
-		assetListView.fetchPageForRow = loadPageForRow
-	}
-
-
-	//MARK: Public methods
-
-	public func loadList() -> Bool {
-		if LiferayContext.instance.currentSession == nil {
-			println("ERROR: No session initialized. Can't load the asset list without session")
-			return false
-		}
-
-		if classNameId == 0 {
-			println("ERROR: ClassNameId is empty. Can't load the asset list without it.")
-			return false
-		}
-
-		startOperationWithMessage("Loading list...", details:"Wait few seconds...")
-
-		return loadPage(0)
-	}
-
-
-	//MARK: Internal methods
-
-	internal func loadPage(page:Int) -> Bool {
-		let operation = LoadPageOperation(page:page)
-
-		operation.onOperationSuccess = onLoadPageResult
-		operation.onOperationFailure = onLoadPageError
-
-		loadPageOperations[page] = operation
-
-		let session = LRBatchSession(session: LiferayContext.instance.currentSession)
-		session.callback = operation
-
+	override internal func doGetPageRowsOperation(#session: LRSession, page: Int) {
 		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber
 
 		let widgetsService = LRMobilewidgetsassetentryService_v62(session: session)
 
 		let entryQueryAttributes = [
-				"start":firstRowForPage(page),
-				"end":firstRowForPage(page + 1),
-				"classNameIds":classNameId,
-				"groupIds":groupIdToUse]
+				"start": firstRowForPage(page),
+				"end": firstRowForPage(page + 1),
+				"classNameIds": classNameId,
+				"groupIds": groupIdToUse]
 
 		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
-		var outError: NSError?
-
 		widgetsService.getAssetEntriesWithAssetEntryQuery(entryQuery,
 				locale: NSLocale.currentLocaleString(),
-				error: &outError)
+				error: nil)
+	}
+
+	override internal func doGetRowCountOperation(#session: LRSession) {
+		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber
 
 		let assetsService = LRAssetEntryService_v62(session: session)
 
-		assetsService.getEntriesCountWithEntryQuery(entryQuery, error: &outError)
+		let entryQueryAttributes = [
+				"classNameIds": classNameId,
+				"groupIds": groupIdToUse]
 
-		session.invoke(&outError)
+		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
-		if let error = outError {
-			operation.onFailure(error)
-			return false
-		}
-
-		return true
+		assetsService.getEntriesCountWithEntryQuery(entryQuery, error: nil)
 	}
 
-	internal func loadPageForRow(row:Int) {
-		let page = pageFromRow(row)
+	override internal func convert(#serverResult:[String:AnyObject]) -> AnyObject {
+		let title = (serverResult["title"] ?? "") as String
 
-		if loadPageOperations.indexForKey(page) == nil {
-			loadPage(page)
-		}
+		return AssetEntry(title: title)
 	}
 
-	internal func pageFromRow(row:Int) -> Int {
-		if row < firstPageSize {
-			return 0
-		}
+	override internal func onLoadPageError(page: Int, error: NSError) {
+		super.onLoadPageError(page, error: error)
 
-		return ((row - firstPageSize) / pageSize) + 1
-	}
-
-	internal func firstRowForPage(page:Int) -> Int {
-		if page == 0 {
-			return 0
-		}
-
-		return firstPageSize + (page - 1) * pageSize
-	}
-
-	internal func onLoadPageError(page: Int, error: NSError) {
 		delegate?.onAssetListError?(error)
-
-		if page == 0 {
-			finishOperationWithError(error, message:"Error getting list!")
-		}
-
-		loadPageOperations.removeValueForKey(page)
 	}
 
-	internal func onLoadPageResult(page: Int, entries: [[String:AnyObject]], entryCount: Int) {
-		let assetEntries = entries.map() {
-			attrs -> AssetEntry in
+	override internal func onLoadPageResult(page: Int,
+			serverRows: [[String:AnyObject]],
+			rowCount: Int)
+			-> [AnyObject] {
 
-			let title = (attrs["title"] ?? "") as String
+		let rowObjects = super.onLoadPageResult(page, serverRows: serverRows, rowCount: rowCount)
 
-			return AssetEntry(title: title)
-		}
+		let assetEntries = rowObjects.map() { $0 as AssetEntry }
 
 		delegate?.onAssetListResponse?(assetEntries)
 
-		var allAssetEntries = Array<AssetEntry?>(count: entryCount, repeatedValue: nil)
-
-		for (index, assetEntry) in enumerate(assetListView.entries) {
-			allAssetEntries[index] = assetEntry
-		}
-
-		var offset = (page == 0) ? 0 : firstPageSize + (page - 1) * pageSize
-
-		// last page could be incomplete
-		if offset >= entryCount {
-			offset = entryCount - 1
-		}
-
-		for (index, assetEntry) in enumerate(assetEntries) {
-			allAssetEntries[offset + index] = assetEntry
-		}
-
-		assetListView.entryCount = entryCount
-		assetListView.entries = allAssetEntries
-
-		if page == 0 {
-			finishOperation()
-		}
-
-		loadPageOperations.removeValueForKey(page)
+		return rowObjects
 	}
 
-	internal func onSelectedEntry(entry:AssetEntry) {
-		delegate?.onAssetSelected?(entry)
+	override internal func onSelectedRow(row: AnyObject) {
+		delegate?.onAssetSelected?(row as AssetEntry)
 	}
 
 }

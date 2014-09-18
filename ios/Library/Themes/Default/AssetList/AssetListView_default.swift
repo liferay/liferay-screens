@@ -14,14 +14,22 @@
 import UIKit
 
 
-public class AssetListTableView: BaseListTableView {
+public class AssetListView_default: AssetListTableView {
 
 	override internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
-		// Apply cell style in the theme
+		if let entry = object as? AssetEntry {
+			cell.textLabel?.text = entry.title
+			cell.accessoryType = .DisclosureIndicator
+			cell.accessoryView = nil
+		}
 	}
 
 	override internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
-		// Apply cell style in the theme
+		cell.textLabel?.text = "..."
+		cell.accessoryType = .None
+		let image = UIImage(named: "default-hourglass")
+		cell.accessoryView = UIImageView(image: image)
+		cell.accessoryView!.frame = CGRectMake(0, 0, image.size.width, image.size.height)
 	}
 
 }
