@@ -67,8 +67,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	override internal func onChangedFields() {
 		super.onChangedFields()
 
-		for field in fields {
-			field.resetCurrentHeight()
+		forEachField() {
+			$0.resetCurrentHeight()
 		}
 		
 		tableView!.reloadData()

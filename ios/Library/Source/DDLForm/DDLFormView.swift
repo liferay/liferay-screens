@@ -27,14 +27,14 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 	public var values: [String:AnyObject] {
 		var result:[String:AnyObject] = [:]
 
-		for field in fields {
-			if let value = field.currentStringValue {
+		forEachField() {
+			if let value = $0.currentStringValue {
 				//FIXME - LPS-49460
 				// Server rejects the request if the value is empty string.
 				// This way we workaround the problem but a field can't be
 				// emptied when you're editing an existing row.
 				if value != "" {
-					result[field.name] = value
+					result[$0.name] = value
 				}
 			}
 		}
@@ -49,10 +49,10 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 		var result = true
 		var firstFailedField:DDLField?
 
-		for field in fields {
-			if !field.validate() {
+		forEachField() {
+			if !$0.validate() {
 				if firstFailedField == nil {
-					firstFailedField = field
+					firstFailedField = $0
 				}
 				result = false
 			}
@@ -69,6 +69,12 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 	//MARK: Internal methods
 
 	internal func changeDocumentUploadStatus(field:DDLFieldDocument) {
+	}
+
+	internal func forEachField(body:DDLField -> Void) {
+		for field in fields {
+			body(field)
+		}
 	}
 
 	internal func showField(field:DDLField) {
