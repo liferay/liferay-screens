@@ -31,8 +31,8 @@ extension DDLElement {
 			return fromRaw(xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 		}
 
-		public func createElement(#attributes:[String:String], localized:[String:AnyObject]) ->
-				DDLElement? {
+		public func createElement(#attributes:[String:String],
+				localized:[String:AnyObject]) -> DDLElement? {
 
 			switch self {
 				case .DDLBoolean:

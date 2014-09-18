@@ -26,7 +26,9 @@ import UIKit
 	optional func onFormSubmitError(error: NSError)
 
 	optional func onDocumentUploadStarted(element:DDLElementDocument)
-	optional func onDocumentUploadedBytes(element:DDLElementDocument, bytes: UInt, sent: Int64,
+	optional func onDocumentUploadedBytes(element:DDLElementDocument,
+			bytes: UInt,
+			sent: Int64,
 			total: Int64);
 	optional func onDocumentUploadCompleted(element:DDLElementDocument, result:[String:AnyObject]);
 	optional func onDocumentUploadError(element:DDLElementDocument, error: NSError);

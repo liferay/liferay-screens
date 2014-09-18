@@ -26,12 +26,31 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
-		titleLabel!.text = NSLocalizedString("theme-flat7-forgotpassword-title", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		subtitleLabel!.text = NSLocalizedString("theme-flat7-forgotpassword-subtitle", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		userNamePlaceholder!.text = NSLocalizedString("theme-flat7-forgotpassword-email", tableName: "flat7", bundle: bundle, value: "", comment: "")
+		titleLabel!.text = NSLocalizedString("theme-flat7-forgotpassword-title",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+
+		subtitleLabel!.text = NSLocalizedString("theme-flat7-forgotpassword-subtitle",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+
+		userNamePlaceholder!.text = NSLocalizedString("theme-flat7-forgotpassword-email",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+
+		let translated = NSLocalizedString("theme-flat7-forgotpassword-request",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
 
 		let str = requestPasswordButton!.attributedTitleForState(UIControlState.Normal)
-		let translated = NSLocalizedString("theme-flat7-forgotpassword-request", tableName: "flat7", bundle: bundle, value: "", comment: "")
 		let newStr = NSMutableAttributedString(attributedString: str!)
 		newStr.replaceCharactersInRange(NSMakeRange(0, str!.length), withString:translated)
 		requestPasswordButton!.setAttributedTitle(newStr, forState: UIControlState.Normal)
@@ -50,9 +69,12 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 
 	//MARK: UITextFieldDelegate
 	
-	internal func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+	internal func textField(textField: UITextField!,
+			shouldChangeCharactersInRange range: NSRange,
+			replacementString string: String!) -> Bool {
 
-		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
+		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range,
+				withString:string)
 
 		userNamePlaceholder!.changeVisibility(visible: newText == "")
 

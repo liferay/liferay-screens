@@ -102,8 +102,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		return rows.count + (showSubmitButton ? 1 : 0)
 	}
 
-	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->
-			UITableViewCell {
+	public func tableView(tableView: UITableView,
+			cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
 		var cell:DDLElementTableCell?
 		let row = indexPath.row
@@ -134,8 +134,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		return cell!
 	}
 
-	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->
-			CGFloat {
+	public func tableView(tableView: UITableView,
+			heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
 		let row = indexPath.row
 

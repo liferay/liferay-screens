@@ -34,8 +34,9 @@ public class AssetListTableView: AssetListView, UITableViewDataSource, UITableVi
 		return entryCount
 	}
 
-	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->
-			UITableViewCell {
+	public func tableView(tableView: UITableView,
+			cellForRowAtIndexPath
+			indexPath: NSIndexPath) -> UITableViewCell {
 
 		var cell = tableView.dequeueReusableCellWithIdentifier("assetCell") as? UITableViewCell
 
