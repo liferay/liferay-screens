@@ -16,12 +16,44 @@ import Foundation
 
 public class DDLRecord: NSObject {
 
-	public var fields: [DDLField]
+	public var fields: [DDLField] = []
 
 	public var recordId: Int?
 
-	public init(fields: [DDLField]) {
-		self.fields = fields
+	public class func recordParsedFromXML(xml: String, locale: NSLocale) -> DDLRecord? {
+		var result: DDLRecord?
+
+		let parser = DDLParser(locale: locale)
+
+		parser.xml = xml
+
+		if let parsedFields = parser.parse() {
+		 	if !parsedFields.isEmpty {
+				result = DDLRecord()
+				result!.fields = parsedFields
+			}
+		}
+
+		return result
 	}
+
+	public func updateCurrentValues(values: [String:AnyObject]) {
+		if fields.isEmpty {
+			// TODO create list of DDLFields only with current value
+		}
+		else {
+			fields = []
+
+			for (index,field) in enumerate(fields) {
+				let fieldValue = (values[field.name] ?? nil) as? String
+				if let fieldStringValue = fieldValue {
+					field.currentStringValue = fieldStringValue
+
+					fields.append(field)
+				}
+			}
+		}
+	}
+
 
 }

@@ -367,14 +367,10 @@ import UIKit
 				userId = userIdValue
 			}
 
-			let parser = DDLParser(locale:NSLocale.currentLocale())
+			if let record = DDLRecord.recordParsedFromXML(xml, locale: NSLocale.currentLocale()) {
+				formView.record = record
 
-			parser.xml = xml
-
-			if let fields = parser.parse() {
-				formView.setFields(fields)
-
-				delegate?.onFormLoaded?(formView.record!)
+				delegate?.onFormLoaded?(record)
 
 				finishOperationWithMessage("Form loaded")
 			}
@@ -388,18 +384,9 @@ import UIKit
 	}
 
 	private func onRecordLoadResult(result: [String:AnyObject]) {
-		var fields: [DDLField] = []
-
-		formView.forEachFieldIndexed() { (index,field) in
-			let fieldValue = (result[field.name] ?? nil) as? String
-			if let fieldStringValue = fieldValue {
-				field.currentStringValue = fieldStringValue
-
-				fields.append(field)
-			}
+		if let recordValue = formView.record {
+			recordValue.updateCurrentValues(result)
 		}
-
-		formView.setFields(fields)
 	}
 
 	private func uploadDocument(document:DDLFieldDocument) -> Bool {

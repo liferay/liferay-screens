@@ -53,10 +53,6 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 		return record == nil ? nil : record!.fields[index]
 	}
 
-	public func setFields(fields: [DDLField]) {
-		record = DDLRecord(fields:fields)
-	}
-
 	public func getFieldIndex(field: DDLField) -> Int? {
 		return record == nil ? nil : find(record!.fields, field)
 	}
@@ -91,14 +87,6 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 		if let recordValue = record {
 			for field in recordValue.fields {
 				body(field)
-			}
-		}
-	}
-
-	internal func forEachFieldIndexed(body:(Int,DDLField) -> Void) {
-		if let recordValue = record {
-			for (index,field) in enumerate(recordValue.fields) {
-				body(index, field)
 			}
 		}
 	}
