@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class DDLElementTableCell: UITableViewCell {
 
 	public var tableView:UITableView?
@@ -26,29 +27,33 @@ public class DDLElementTableCell: UITableViewCell {
 		}
 	}
 
+	public var isLastCell:Bool {
+		var result = false
+
+		if let indexPathValue = indexPath {
+			if let rowCount = tableView?.numberOfRowsInSection(indexPathValue.section) {
+				if formView!.showSubmitButton {
+					result = (indexPathValue.row == rowCount - 2)
+				}
+				else {
+					result = (indexPathValue.row == rowCount - 1)
+				}
+			}
+		}
+
+		return result
+	}
+
+
+	//MARK: UITableViewCell
+
 	override public func awakeFromNib() {
 		let simpleTapRecognizer = UITapGestureRecognizer(target: self, action: "simpleTapDetected")
 		addGestureRecognizer(simpleTapRecognizer)
 	}
 
-	public var isLastCell:Bool {
-		get {
-			var result = false
 
-			if let indexPathValue = indexPath {
-				if let rowCount = tableView?.numberOfRowsInSection(indexPathValue.section) {
-					if formView!.showSubmitButton {
-						result = (indexPathValue.row == rowCount - 2)
-					}
-					else {
-						result = (indexPathValue.row == rowCount - 1)
-					}
-				}
-			}
-
-			return result
-		}
-	}
+	//MARK: Internal methods
 
 	internal func onChangedElement() {
 	}
@@ -59,8 +64,7 @@ public class DDLElementTableCell: UITableViewCell {
 	internal func changeCellHeight(height:CGFloat) {
 		element?.currentHeight = height
 		
-		// FIXME
-		// Hack to fire the repaint of the cells
+		//FIXME Hack to fire the repaint of the cells
 		tableView!.beginUpdates()
 		tableView!.endUpdates()
 	}

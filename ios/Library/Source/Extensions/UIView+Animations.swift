@@ -13,13 +13,21 @@
 */
 import Foundation
 
+
 /*
  * Delayed show and hide
  */
 extension UIView {
 
+	private var defaultHideDelay:Double {
+		return 0.3
+	}
+
+
+	//MARK: Public methods
+
 	public func changeVisibility(#visible:Bool) {
-		self.changeVisibility(visible: visible, delay: defaultHideDelay)
+		changeVisibility(visible: visible, delay: defaultHideDelay)
 	}
 
 	public func changeVisibility(#visible:Bool, delay: Double) {
@@ -35,10 +43,6 @@ extension UIView {
 				})
 			}
 		}
-	}
-
-	private var defaultHideDelay:Double {
-		return 0.3
 	}
 
 }

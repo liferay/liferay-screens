@@ -13,22 +13,31 @@
 */
 import UIKit
 
+
 public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextViewDelegate {
 
-	@IBOutlet var textView: UITextView?
-	@IBOutlet var placeholder: UILabel?
-	@IBOutlet var textViewBackground: UIImageView?
-	@IBOutlet var label: UILabel?
-	@IBOutlet var separator: UIView?
+	@IBOutlet internal var textView: UITextView?
+	@IBOutlet internal var placeholder: UILabel?
+	@IBOutlet internal var textViewBackground: UIImageView?
+	@IBOutlet internal var label: UILabel?
+	@IBOutlet internal var separator: UIView?
 
 	private var originalTextViewRect:CGRect = CGRectZero
 	private var originalBackgroundRect:CGRect = CGRectZero
 
-	private let expandedCellHeight:CGFloat = 104
-	private let expandedTextViewHeight:CGFloat = 84
-	private let expandedBackgroundHeight:CGFloat = 91
 
-	override func onChangedElement() {
+	//MARK: DDLElementTableCell
+
+	override public func canBecomeFirstResponder() -> Bool {
+		return textView!.canBecomeFirstResponder()
+	}
+
+	override public func becomeFirstResponder() -> Bool {
+		textView!.becomeFirstResponder()
+		return false
+	}
+
+	override internal func onChangedElement() {
 		if let stringElement = element as? DDLElementString {
 
 			if stringElement.currentValue != nil {
@@ -47,11 +56,9 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 				placeholder?.alpha = (textView?.text == "") ? 1.0 : 0.0
 				label?.hidden = true
 
-				moveSubviewsVertically(-(
-					DDLBaseElementTextFieldTableCell_default.heightWithLabel -
-					DDLBaseElementTextFieldTableCell_default.heightWithoutLabel))
-				element?.currentHeight =
-					DDLBaseElementTextFieldTableCell_default.heightWithoutLabel
+				moveSubviewsVertically(
+					-(DDLElementTextFieldHeightWithLabel - DDLElementTextFieldHeightWithoutLabel))
+				element?.currentHeight = DDLElementTextFieldHeightWithoutLabel
 			}
 
 			textView?.returnKeyType = isLastCell ? .Send : .Next
@@ -60,41 +67,35 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 			originalBackgroundRect = textViewBackground!.frame
 
 			if stringElement.lastValidationResult != nil {
-				self.onValidated(stringElement.lastValidationResult!)
+				onValidated(stringElement.lastValidationResult!)
 			}
 		}
 	}
 
-	override public func canBecomeFirstResponder() -> Bool {
-		return textView!.canBecomeFirstResponder()
-	}
-
-	override public func becomeFirstResponder() -> Bool {
-		textView!.becomeFirstResponder()
-		return false
-	}
-
-	override func onValidated(valid: Bool) {
+	override internal func onValidated(valid: Bool) {
 		let imgName = valid ? "default-field" : "default-field-failed"
 
 		textViewBackground?.image = UIImage(named: imgName)
 	}
 
+
+	//MARK: UITextViewDelegate
+
 	public func textViewDidBeginEditing(textView: UITextView!) {
 		var heightLabelOffset:CGFloat =
-				DDLBaseElementTextFieldTableCell_default.heightWithLabel -
-				DDLBaseElementTextFieldTableCell_default.heightWithoutLabel
+				DDLElementTextFieldHeightWithLabel - DDLElementTextFieldHeightWithoutLabel
+		changeCellHeight(DDLElementTextareaExpandedCellHeight +
+				(element!.showLabel ? heightLabelOffset : 0.0))
 
-		changeCellHeight(expandedCellHeight + (element!.showLabel ? heightLabelOffset : 0.0))
-
-		separator!.frame.origin.y += expandedBackgroundHeight - originalBackgroundRect.size.height
+		separator!.frame.origin.y +=
+				DDLElementTextareaExpandedBackgroundHeight - originalBackgroundRect.size.height
 
 		textView.frame = CGRectMake(
-			self.originalTextViewRect.origin.x,
-			self.originalTextViewRect.origin.y,
-			self.originalTextViewRect.size.width,
-			expandedTextViewHeight)
-		self.textViewBackground!.frame.size.height = expandedBackgroundHeight
+			originalTextViewRect.origin.x,
+			originalTextViewRect.origin.y,
+			originalTextViewRect.size.width,
+			DDLElementTextareaExpandedTextViewHeight)
+		textViewBackground!.frame.size.height = DDLElementTextareaExpandedBackgroundHeight
 
 		textViewBackground?.highlighted = true
 
@@ -102,20 +103,24 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 	}
 
 	public func textViewDidEndEditing(textView: UITextView!) {
-		separator!.frame.origin.y -= expandedBackgroundHeight - originalBackgroundRect.size.height
+		separator!.frame.origin.y -=
+				DDLElementTextareaExpandedBackgroundHeight - originalBackgroundRect.size.height
 		textView.frame = originalTextViewRect
 		textViewBackground!.frame = originalBackgroundRect
 
 		var heightLabelOffset:CGFloat =
-				DDLBaseElementTextFieldTableCell_default.heightWithLabel -
-				DDLBaseElementTextFieldTableCell_default.heightWithoutLabel
+				DDLElementTextFieldHeightWithLabel - DDLElementTextFieldHeightWithoutLabel
 
-		changeCellHeight(element!.editorType.registeredHeight - (element!.showLabel ? 0.0 : heightLabelOffset))
+		changeCellHeight(
+				element!.editorType.registeredHeight -
+				(element!.showLabel ? 0.0 : heightLabelOffset))
 
 		textViewBackground?.highlighted = false
 	}
 
-	public func textView(textView: UITextView!, shouldChangeTextInRange range: NSRange, replacementText text: String!) -> Bool {
+	public func textView(textView: UITextView!,
+			shouldChangeTextInRange range: NSRange,
+			replacementText text: String!) -> Bool {
 
 		var result = false
 
@@ -126,9 +131,10 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		} else {
 			result = true
 
-			let newText = (textView!.text as NSString).stringByReplacingCharactersInRange(range, withString:text)
+			let newText = (textView!.text as NSString).stringByReplacingCharactersInRange(range,
+					withString:text)
 
-			showPlaceholder(placeholder!, show:newText == "")
+			placeholder!.changeVisibility(visible: newText == "")
 
 			element?.currentValue = newText
 
@@ -140,12 +146,6 @@ public class DDLElementTextareaTableCell_default: DDLElementTableCell, UITextVie
 		}
 
 		return result
-	}
-
-	private func showPlaceholder(placeholder:UILabel, show:Bool) {
-		UIView.animateWithDuration(0.2, animations: {
-			placeholder.alpha = show ? 1.0 : 0.0
-		})
 	}
 
 }

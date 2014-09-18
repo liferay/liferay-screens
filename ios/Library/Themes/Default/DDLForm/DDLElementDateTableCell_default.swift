@@ -13,16 +13,27 @@
 */
 import UIKit
 
+
 public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_default {
 
-	@IBOutlet var chooseButton: UIButton? {
+	@IBOutlet internal var chooseButton: UIButton? {
 		didSet {
 			chooseButton?.layer.masksToBounds = true
-	        chooseButton?.layer.cornerRadius = 4.0
+	        chooseButton?.layer.cornerRadius = DDLElementButtonCornerRadius
 		}
 	}
 
-	override func onChangedElement() {
+
+	//MARK: Actions
+
+	@IBAction private func chooseButtonAction(sender: AnyObject) {
+		textField!.becomeFirstResponder()
+	}
+
+
+	//MARK: DDLBaseElementTextFieldTableCell
+
+	override internal func onChangedElement() {
 		super.onChangedElement()
 
 		if let dateElement = element as? DDLElementDate {
@@ -34,21 +45,20 @@ public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_d
 		}
 	}
 
-	@IBAction func chooseButtonAction(sender: AnyObject) {
-		textField!.becomeFirstResponder()
-	}
+
+	//MARK: Private methods
 
 	private func setFieldPresenter(element:DDLElementDate) {
 
 		func onChange(selectedDate:NSDate!) {
 			element.currentValue = selectedDate
-			self.textField?.text = element.currentDateLabel
+			textField?.text = element.currentDateLabel
 
-			let fullRange = NSMakeRange(0, countElements(self.textField!.text!))
+			let fullRange = NSMakeRange(0, countElements(textField!.text!))
 
-			self.textField(self.textField,
+			textField(textField,
 				shouldChangeCharactersInRange: fullRange,
-				replacementString: self.textField!.text!)
+				replacementString: textField!.text!)
 		}
 
 		let presenter = DTDatePickerPresenter(changeBlock:onChange)

@@ -13,13 +13,15 @@
 */
 import UIKit
 
+
 public class ForgotPasswordView_default: ForgotPasswordView {
 
-	@IBOutlet var userNameIcon: UIImageView?
-	@IBOutlet var userNameField: UITextField?
-	@IBOutlet var requestPasswordButton: UIButton?
+	@IBOutlet internal var userNameIcon: UIImageView?
+	@IBOutlet internal var userNameField: UITextField?
+	@IBOutlet internal var requestPasswordButton: UIButton?
 
-	// MARK: Overriden accessors
+
+	//MARK: ForgotPasswordView
 
 	override public func getUserName() -> String {
 		return userNameField!.text
@@ -29,13 +31,16 @@ public class ForgotPasswordView_default: ForgotPasswordView {
 		userNameField!.text = userName
 	}
 
-	override public func setAuthType(authTypeLabel: String) {
-		LoginView_default.setStylesForAuthType(authTypeLabel, userNameField: userNameField, userNameIcon: userNameIcon)
+	override public func setAuthType(authType: LoginAuthType) {
+		LoginView_default.setStylesForAuthType(authType,
+				userNameField: userNameField,
+				userNameIcon: userNameIcon)
 	}
 
-	// MARK: UITextFieldDelegate
 
-	func textFieldDidBeginEditing(textField: UITextField!) {
+	//MARK: UITextFieldDelegate
+
+	internal func textFieldDidBeginEditing(textField: UITextField!) {
 		userNameField!.highlighted = (textField == userNameField)
 	}
 

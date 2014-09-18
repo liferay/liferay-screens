@@ -13,28 +13,60 @@
 */
 import UIKit
 
+
 public class SignUpView_flat7: SignUpView_default {
 
-	@IBOutlet var titleLabel: UILabel?
-	@IBOutlet var subtitleLabel: UILabel?
+	@IBOutlet private var titleLabel: UILabel?
+	@IBOutlet private var subtitleLabel: UILabel?
 
-	@IBOutlet var firstNamePlaceholder: UILabel?
-	@IBOutlet var lastNamePlaceholder: UILabel?
-	@IBOutlet var emailAddressPlaceholder: UILabel?
-	@IBOutlet var passwordPlaceholder: UILabel?
+	@IBOutlet private var firstNamePlaceholder: UILabel?
+	@IBOutlet private var lastNamePlaceholder: UILabel?
+	@IBOutlet private var emailAddressPlaceholder: UILabel?
+	@IBOutlet private var passwordPlaceholder: UILabel?
+
+
+	//MARK: SignUpView
 
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
-		titleLabel!.text = NSLocalizedString("flat7-signup-title", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		subtitleLabel!.text = NSLocalizedString("flat7-signup-subtitle", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		firstNamePlaceholder!.text = NSLocalizedString("flat7-signup-first-name", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		lastNamePlaceholder!.text = NSLocalizedString("flat7-signup-last-name", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		emailAddressPlaceholder!.text = NSLocalizedString("flat7-signup-email", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		passwordPlaceholder!.text = NSLocalizedString("flat7-signup-password", tableName: "flat7", bundle: bundle, value: "", comment: "")
+		titleLabel!.text = NSLocalizedString("flat7-signup-title",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+		subtitleLabel!.text = NSLocalizedString("flat7-signup-subtitle",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+		firstNamePlaceholder!.text = NSLocalizedString("flat7-signup-first-name",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+		lastNamePlaceholder!.text = NSLocalizedString("flat7-signup-last-name",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+		emailAddressPlaceholder!.text = NSLocalizedString("flat7-signup-email",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+		passwordPlaceholder!.text = NSLocalizedString("flat7-signup-password",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
 
 		let str = signUpButton!.attributedTitleForState(UIControlState.Normal)
-		let translated = NSLocalizedString("flat7-signup-button", tableName: "flat7", bundle: bundle, value: "", comment: "")
+		let translated = NSLocalizedString("flat7-signup-button",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
 		let newStr = NSMutableAttributedString(attributedString: str!)
 		newStr.replaceCharactersInRange(NSMakeRange(0, str!.length), withString:translated)
 		signUpButton!.setAttributedTitle(newStr, forState: UIControlState.Normal)
@@ -45,33 +77,34 @@ public class SignUpView_flat7: SignUpView_default {
 		passwordField!.placeholder = "";
 	}
 
-	func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+
+	//MARK: UITextFieldDelegate
+
+
+	internal func textField(textField: UITextField!,
+			shouldChangeCharactersInRange range: NSRange,
+			replacementString string: String!)
+			-> Bool {
 
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
 
-		var placeholder:UILabel = firstNamePlaceholder!
+		var placeholder = firstNamePlaceholder!
 
 		switch textField {
-		case firstNameField!:
-			placeholder = firstNamePlaceholder!
-		case lastNameField!:
-			placeholder = lastNamePlaceholder!
-		case emailAddressField!:
-			placeholder = emailAddressPlaceholder!
-		case passwordField!:
-			placeholder = passwordPlaceholder!
-		default: ()
+			case firstNameField!:
+				placeholder = firstNamePlaceholder!
+			case lastNameField!:
+				placeholder = lastNamePlaceholder!
+			case emailAddressField!:
+				placeholder = emailAddressPlaceholder!
+			case passwordField!:
+				placeholder = passwordPlaceholder!
+			default: ()
 		}
 
-		showPlaceholder(placeholder, show:newText == "")
+		placeholder.changeVisibility(visible: newText == "")
 
 		return true
-	}
-
-	private func showPlaceholder(placeholder:UILabel, show:Bool) {
-		UIView.animateWithDuration(0.4, animations: {
-			placeholder.alpha = show ? 1.0 : 0.0
-		})
 	}
 
 }

@@ -13,16 +13,27 @@
 */
 import UIKit
 
+
 public class DDLElementTextTableCell_default: DDLBaseElementTextFieldTableCell_default {
 
-	override public func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+	//MARK: DDLBaseElementTextFieldTableCell
 
-		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
+	override public func textField(textField: UITextField!,
+			shouldChangeCharactersInRange range: NSRange,
+			replacementString string: String!)
+			-> Bool {
+
+		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range,
+				withString:string)
 
 		element!.currentValue = newText
 
-		return super.textField(textField, shouldChangeCharactersInRange: range, replacementString: string)
+		return super.textField(textField, shouldChangeCharactersInRange: range,
+				replacementString: string)
 	}
+
+
+	//MARK: UITextFieldDelegate
 
 	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		return nextCellResponder(textField)

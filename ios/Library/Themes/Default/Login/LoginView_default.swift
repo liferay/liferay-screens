@@ -13,36 +13,31 @@
 */
 import UIKit
 
+
 public class LoginView_default: LoginView {
 
-	@IBOutlet var userNameIcon: UIImageView?
-	@IBOutlet var userNameField: UITextField?
-	@IBOutlet var passwordField: UITextField?
-	@IBOutlet var rememberSwitch: UISwitch?
-	@IBOutlet var loginButton: UIButton?
-	@IBOutlet var userNameBackground: UIImageView?
-	@IBOutlet var passwordBackground: UIImageView?
+	@IBOutlet internal var userNameIcon: UIImageView?
+	@IBOutlet internal var userNameField: UITextField?
+	@IBOutlet internal var passwordField: UITextField?
+	@IBOutlet internal var rememberSwitch: UISwitch?
+	@IBOutlet internal var loginButton: UIButton?
+	@IBOutlet internal var userNameBackground: UIImageView?
+	@IBOutlet internal var passwordBackground: UIImageView?
 
-	//MARK: Static methods
 
-	public class func setStylesForAuthType(authTypeLabel:String, userNameField:UITextField!, userNameIcon:UIImageView!) {
+	//MARK: Class methods
 
-		userNameField!.placeholder = authTypeLabel
+	public class func setStylesForAuthType(authType:LoginAuthType,
+			userNameField:UITextField!, userNameIcon:UIImageView!) {
 
-		if let authType = AuthType.fromRaw(authTypeLabel) {
-			userNameField!.keyboardType = AuthType.KeyboardTypes[authType]!
-			userNameIcon?.image = UIImage(named:"default-\(AuthIconTypes[authType]!)-icon")
-		}
-		else {
-			println("ERROR: Wrong auth type description \(authTypeLabel)")
-		}
+		userNameField!.placeholder = authType.toRaw()
+
+		userNameField!.keyboardType = authType.keyboardType
+		userNameIcon?.image = UIImage(named:"default-\(authType.iconType)-icon")
 	}
+
 
 	//MARK: LoginView
-
-	override internal func onCreated() {
-		BaseWidget.setHUDCustomColor(UIColor(red: 0, green: 184/255.0, blue: 224/255.0, alpha: 0.87))
-	}
 
 	override public var shouldRememberCredentials: Bool {
 		if let rememberSwitchValue = rememberSwitch {
@@ -52,8 +47,10 @@ public class LoginView_default: LoginView {
 		return super.shouldRememberCredentials
 	}
 
-	override public func setAuthType(authTypeLabel: String) {
-		LoginView_default.setStylesForAuthType(authTypeLabel, userNameField: userNameField, userNameIcon: userNameIcon)
+	override public func setAuthType(authType: LoginAuthType) {
+		LoginView_default.setStylesForAuthType(authType,
+				userNameField: userNameField,
+				userNameIcon: userNameIcon)
 	}
 
 	override public func getUserName() -> String {
@@ -72,9 +69,14 @@ public class LoginView_default: LoginView {
 		passwordField!.text = password
 	}
 
-	// MARK: UITextFieldDelegate
+	override internal func onCreated() {
+		BaseWidget.setHUDCustomColor(DDLElementBasicBlue)
+	}
 
-	func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
+
+	//MARK: UITextFieldDelegate
+
+	internal func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
 		if userNameBackground != nil {
 			userNameBackground!.highlighted = (textField == userNameField);
 		}
@@ -87,9 +89,3 @@ public class LoginView_default: LoginView {
 	}
 
 }
-
-//FIXME Should be static class constant, not supported yet
-private let AuthIconTypes = [
-	AuthType.Email: "mail",
-	AuthType.ScreenName: "user",
-	AuthType.UserId: "user"]

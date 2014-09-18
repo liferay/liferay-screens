@@ -13,9 +13,13 @@
 */
 import UIKit
 
+
 public class AssetListTableView: AssetListView, UITableViewDataSource, UITableViewDelegate {
 
-	@IBOutlet var tableView: UITableView?
+	@IBOutlet internal var tableView: UITableView?
+
+
+	// MARK: AssetListView
 
 	override internal func onChangedEntries() {
 		super.onChangedEntries()
@@ -24,13 +28,16 @@ public class AssetListTableView: AssetListView, UITableViewDataSource, UITableVi
 	}
 
 
-	// MARK: UITableViewDataSource
+	//MARK: UITableViewDataSource
 
 	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return entryCount
 	}
 
-	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	public func tableView(tableView: UITableView,
+			cellForRowAtIndexPath
+			indexPath: NSIndexPath)
+			-> UITableViewCell {
 
 		var cell = tableView.dequeueReusableCellWithIdentifier("assetCell") as? UITableViewCell
 

@@ -58,6 +58,6 @@ And if you get bored of adding the same imports over and over again, you may add
 
 ## How to contribute new widgets
 
-You would like to contribute new widgets? Awesome :)
+Would you like to contribute new widgets? Awesome :)
 
-You have all the information in the [library documentation page](https://github.com/liferay/liferay-mobile-widgets/tree/master/ios/Library/README.md).
+It's so simple: just follow our [contributors guide](https://github.com/liferay/liferay-mobile-widgets/tree/master/CONTRIBUTING.md)

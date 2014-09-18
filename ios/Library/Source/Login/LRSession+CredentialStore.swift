@@ -13,10 +13,11 @@
 */
 import Foundation
 
+
 extension LRSession {
 
-	//MARK: CLASS METHODS
-	
+	//MARK: Class methods
+
 	public class func removeStoredCredential() {
 		let credentialTuple = credentialForServer(LiferayContext.instance.server)
 
@@ -30,42 +31,25 @@ extension LRSession {
 		let credentialTuple = credentialForServer(LiferayContext.instance.server)
 
 		if let credential = credentialTuple.0 {
-			return LRSession(server:LiferayContext.instance.server, username:credential.user, password:credential.password)
+			return LRSession(server:LiferayContext.instance.server,
+					username:credential.user,
+					password:credential.password)
 		}
 
 		return nil
 	}
 
-	//MARK: INSTANCE METHODS
 
-	public func storeCredential() -> Bool {
-		var success = false
+	//MARK: Private methods
 
-		if self.username != nil && self.password != nil {
-			let protectionSpace = LRSession.protectionSpaceForServer(LiferayContext.instance.server)
+	private class func credentialForServer(server:String) ->
+			(NSURLCredential?, NSURLProtectionSpace) {
 
-			let credential = NSURLCredential(
-								user:self.username!,
-								password:self.password!,
-								persistence: NSURLCredentialPersistence.Permanent)
-
-			NSURLCredentialStorage.sharedCredentialStorage().setCredential(credential,
-								forProtectionSpace:protectionSpace)
-
-			success = true
-		}
-
-		return success
-	}
-
-	//MARK: PRIVATE METHODS
-
-	private class func credentialForServer(server:String) -> (NSURLCredential?, NSURLProtectionSpace) {
 		let protectionSpace = protectionSpaceForServer(server)
 
 		let credentialDict =
-			NSURLCredentialStorage.sharedCredentialStorage().credentialsForProtectionSpace(protectionSpace)
-				as NSDictionary?
+			NSURLCredentialStorage.sharedCredentialStorage().credentialsForProtectionSpace(
+					protectionSpace) as NSDictionary?
 		
 		if let credentialDictValue = credentialDict {
 			let username = credentialDictValue.keyEnumerator().nextObject() as NSString
@@ -85,5 +69,29 @@ extension LRSession {
 				`protocol`:url.scheme, realm:nil,
 				authenticationMethod:NSURLAuthenticationMethodHTTPDigest)
 	}
+
+
+	//MARK: Public methods
+
+	public func storeCredential() -> Bool {
+		var success = false
+
+		if username != nil && password != nil {
+			let protectionSpace = LRSession.protectionSpaceForServer(LiferayContext.instance.server)
+
+			let credential = NSURLCredential(
+								user:username!,
+								password:password!,
+								persistence: NSURLCredentialPersistence.Permanent)
+
+			NSURLCredentialStorage.sharedCredentialStorage().setCredential(credential,
+								forProtectionSpace:protectionSpace)
+
+			success = true
+		}
+
+		return success
+	}
+
 
 }

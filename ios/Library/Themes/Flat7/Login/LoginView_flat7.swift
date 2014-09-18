@@ -13,23 +13,56 @@
 */
 import UIKit
 
+
 public class LoginView_flat7: LoginView_default {
 
-	@IBOutlet var titleLabel: UILabel?
-	@IBOutlet var subtitleLabel: UILabel?
-	@IBOutlet var userNamePlaceholder: UILabel?
-	@IBOutlet var passwordPlaceholder: UILabel?
+	@IBOutlet private var titleLabel: UILabel?
+	@IBOutlet private var subtitleLabel: UILabel?
+	@IBOutlet private var userNamePlaceholder: UILabel?
+	@IBOutlet private var passwordPlaceholder: UILabel?
+
+
+	//MARK: LoginView
+
+	override public func setUserName(userName: String) {
+		super.setUserName(userName)
+		userNamePlaceholder!.changeVisibility(visible: userName == "")
+	}
 
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
-		titleLabel!.text = NSLocalizedString("theme-flat7-login-title", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		subtitleLabel!.text = NSLocalizedString("theme-flat7-login-subtitle", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		userNamePlaceholder!.text = NSLocalizedString("theme-flat7-login-email", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		passwordPlaceholder!.text = NSLocalizedString("theme-flat7-login-password", tableName: "flat7", bundle: bundle, value: "", comment: "")
+		titleLabel!.text = NSLocalizedString("theme-flat7-login-title",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+
+		subtitleLabel!.text = NSLocalizedString("theme-flat7-login-subtitle",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+
+		userNamePlaceholder!.text = NSLocalizedString("theme-flat7-login-email",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+
+		passwordPlaceholder!.text = NSLocalizedString("theme-flat7-login-password",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+
+		let translated = NSLocalizedString("theme-flat7-login-login",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
 
 		let str = loginButton!.attributedTitleForState(UIControlState.Normal)
-		let translated = NSLocalizedString("theme-flat7-login-login", tableName: "flat7", bundle: bundle, value: "", comment: "")
 		let newStr = NSMutableAttributedString(attributedString: str!)
 		newStr.replaceCharactersInRange(NSMakeRange(0, str!.length), withString:translated)
 		loginButton!.setAttributedTitle(newStr, forState: UIControlState.Normal)
@@ -38,12 +71,13 @@ public class LoginView_flat7: LoginView_default {
 		passwordField!.placeholder = "";
 	}
 
-	override public func setUserName(userName: String) {
-		super.setUserName(userName)
-		userNamePlaceholder!.changeVisibility(visible: userName == "")
-	}
 
-	func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+	//MARK: UITextFieldDelegate
+
+	internal func textField(textField: UITextField!,
+			shouldChangeCharactersInRange range: NSRange,
+			replacementString string: String!)
+			-> Bool {
 
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
 

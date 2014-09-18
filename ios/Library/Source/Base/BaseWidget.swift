@@ -14,15 +14,16 @@
 import UIKit
 import QuartzCore
 
+
 /*!
  * BaseWidget is the base class from which all Widget classes must inherit.
  * A widget is the container for a widget view.
  */
 @IBDesignable public class BaseWidget: UIView, LRCallback {
 
-	@IBInspectable var Theme:UIImage? {
+	@IBInspectable public var Theme:UIImage? {
 		didSet {
-			if _runningOnInterfaceBuilder {
+			if runningOnInterfaceBuilder {
 				updateCurrentPreviewImage()
 				setNeedsLayout()
 			}
@@ -31,78 +32,52 @@ import QuartzCore
 
 	internal var widgetView: BaseWidgetView?
 
+	internal var currentThemeName: String {
+		var result = "default"
 
-	//MARK: DISPLAY TEMPLATE METHODS
+		if (Theme != nil) {
+			let selectedSignatureImage = Theme!
+			for themeName in ThemeManager.instance.installedThemes {
+				if themeName != "default" {
+					let installedSignatureImage =
+							UIImage(contentsOfFile: signatureImagePathForTheme(themeName)!)
 
-	/*
-	 * onCreated is invoked after the widget is created. Override this method to set custom values for the widget
-	 * properties.
-	 */
-	internal func onCreated() {
+					if installedSignatureImage.isBinaryEquals(selectedSignatureImage) {
+						result = themeName
+						break;
+					}
+				}
+			}
+		}
+
+		return result
 	}
 
-	/*
-	 * onPreCreate is invoked before the widget is created.
-	 * properties.
-	 */
-	internal func onPreCreate() {
+	internal var widgetName: String {
+		// In Beta 5, className will constain ModuleName.ClassName
+		// just strip the first part
+
+		var className = NSStringFromClass(self.dynamicType)
+
+		className = className.componentsSeparatedByString(".")[1]
+		className = className.componentsSeparatedByString("Widget")[0]
+
+		return className
 	}
 
-	/*
-	 * onHide is invoked when the widget is hidden from the app window.
-	 */
-	internal func onHide() {
-	}
-
-	/*
-	 * onShow is invoked when the widget is displayed on the app window. Override this method for example to reset
-	 * values when the widget is shown.
-	 */
-	internal func onShow() {
-	}
+	private var runningOnInterfaceBuilder = false
+	private var currentPreviewImage:UIImage?
+	private lazy var previewLayer = CALayer()
 
 
-	//MARK: SERVER RESPONSE TEMPLATE METHODS
-
-	/*
-	 * onServerError is invoked when there is an error communicating with the Liferay server.
-	 */
-	internal func onServerError(error: NSError) {
-	}
-
-	/*
-	 * onServerResult is invoked when there is an result from a communication with the Liferay server. The type of the
-	 * result will depend on the invocation done from specific subclasses.
-	 */
-	internal func onServerResult(dict:[String:AnyObject]) {
-	}
-
-
-	//MARK: USER ACTIONS TEMPLATE METHOD
-
-	/*
-	 * onCustomAction is invoked when a TouchUpInside even is fired from the UI.
-	 */
-	internal func onCustomAction(actionName:String?, sender:AnyObject?) {
-	}
-
-	//MARK: Operations template methods
-
-	internal func onStartOperation() {
-	}
-
-	internal func onFinishOperation() {
-	}
-
-
-	//MARK: UIView METHODS
+	//MARK: UIView
 
 	override public func awakeFromNib() {
 		super.awakeFromNib()
 
 		onPreCreate()
 
-		self.clipsToBounds = true;
+		clipsToBounds = true;
 
 		widgetView = loadWidgetView();
 
@@ -114,11 +89,11 @@ import QuartzCore
 	}
 
 	override public func didMoveToWindow() {
-		if (self.window != nil) {
-			self.onShow();
+		if (window != nil) {
+			onShow();
 		}
 		else {
-			self.onHide();
+			onHide();
 		}
 	}
 
@@ -126,34 +101,34 @@ import QuartzCore
 	//MARK: Interface Builder management methods
 
 	override public func prepareForInterfaceBuilder() {
-		_runningOnInterfaceBuilder = true
+		runningOnInterfaceBuilder = true
 
 		if Theme != nil {
 			updateCurrentPreviewImage()
 		}
 
-		if _currentPreviewImage == nil {
-			_currentPreviewImage = previewImageForTheme("default")
+		if currentPreviewImage == nil {
+			currentPreviewImage = previewImageForTheme("default")
 		}
 	}
 
 	override public func layoutSubviews() {
 		super.layoutSubviews()
 
-		if _runningOnInterfaceBuilder {
-			if let currentPreviewImageValue = _currentPreviewImage {
+		if runningOnInterfaceBuilder {
+			if let currentPreviewImageValue = currentPreviewImage {
 				let imageRect = CGRectMake(
 						(frame.size.width - currentPreviewImageValue.size.width)/2,
 						(frame.size.height - currentPreviewImageValue.size.height)/2,
 						currentPreviewImageValue.size.width,
 						currentPreviewImageValue.size.height)
 
-				_previewLayer.frame = imageRect
-				_previewLayer.contents = currentPreviewImageValue.CGImage
+				previewLayer.frame = imageRect
+				previewLayer.contents = currentPreviewImageValue.CGImage
 
-				if _previewLayer.superlayer != layer {
+				if previewLayer.superlayer != layer {
 					// add to the hierarchy the first time
-					layer.addSublayer(_previewLayer)
+					layer.addSublayer(previewLayer)
 				}
 			}
 		}
@@ -175,53 +150,22 @@ import QuartzCore
 		}
 	}
 
-	//MARK: Internal
+
+	//MARK: Internal methods
 
 	internal func loadWidgetView() -> BaseWidgetView? {
-		let view = self.createWidgetViewFromNib();
+		let view = createWidgetViewFromNib();
 
 		if let viewValue = view {
-			viewValue.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-			viewValue.customAction = self.onCustomAction;
+			viewValue.frame = bounds
+			viewValue.customAction = onCustomAction;
 
-			self.addSubview(viewValue)
+			addSubview(viewValue)
 
 			return viewValue
 		}
 
 		return nil;
-	}
-
-	internal func currentThemeName() -> String {
-		var result = "default"
-
-		if (Theme != nil) {
-			let selectedSignatureImage = Theme!
-			for themeName in ThemeManager.instance().installedThemes() {
-				if themeName != "default" {
-					let installedSignatureImage = UIImage(contentsOfFile: signatureImagePathForTheme(themeName)!)
-
-					if installedSignatureImage.isBinaryEquals(selectedSignatureImage) {
-						result = themeName
-						break;
-					}
-				}
-			}
-		}
-
-		return result
-	}
-
-	internal func widgetName() -> String {
-		// In Beta 5, className will constain ModuleName.ClassName
-		// just strip the first part
-
-		var className = NSStringFromClass(self.dynamicType)
-
-		className = className.componentsSeparatedByString(".")[1]
-		className = className.componentsSeparatedByString("Widget")[0]
-
-		return className
 	}
 
 	internal func previewImageForTheme(themeName:String) -> UIImage {
@@ -240,13 +184,14 @@ import QuartzCore
 	}
 
 	internal func previewImagePathForTheme(themeName:String) -> String? {
-		let imageName = "\(themeName)-preview-\(widgetName().lowercaseString)"
+		let imageName = "\(themeName)-preview-\(widgetName.lowercaseString)"
 
 		return NSBundle(forClass:self.dynamicType).pathForResource(imageName, ofType: "png")
 	}
 
 	internal func signatureImagePathForTheme(themeName:String) -> String? {
-		return NSBundle(forClass:self.dynamicType).pathForResource("theme-\(themeName)", ofType: "png")
+		let bundle = NSBundle(forClass:self.dynamicType)
+		return bundle.pathForResource("theme-\(themeName)", ofType: "png")
 	}
 
 	internal func startOperationWithMessage(message:String, details:String? = nil) {
@@ -256,7 +201,10 @@ import QuartzCore
 	}
 
 	internal func finishOperationWithError(error:NSError, message:String, details:String? = nil) {
-		showHUDWithMessage(message, details: details, closeMode:.NoAutoclose(true), spinnerMode:.NoSpinner)
+		showHUDWithMessage(message,
+			details: details,
+			closeMode:.NoAutoclose(true),
+			spinnerMode:.NoSpinner)
 		onFinishOperation()
 		widgetView?.onFinishOperation()
 	}
@@ -284,12 +232,78 @@ import QuartzCore
 		return previewImage
 	}
 
+
+	//MARK: Templated/event methods: intended to be overwritten by children classes
+
+	/*
+	 * onCreated is invoked after the widget is created. 
+	 * Override this method to set custom values for the widget properties.
+	 */
+	internal func onCreated() {
+	}
+
+	/*
+	 * onPreCreate is invoked before the widget is created.
+	 * Override this method to set create new UI components programatically.
+	 *
+	 */
+	internal func onPreCreate() {
+	}
+
+	/*
+	 * onHide is invoked when the widget is hidden from the app window.
+	 */
+	internal func onHide() {
+	}
+
+	/*
+	 * onShow is invoked when the widget is displayed on the app window. 
+	 * Override this method for example to reset values when the widget is shown.
+	 */
+	internal func onShow() {
+	}
+
+	/*
+	 * onServerError is invoked when there is an error communicating with the Liferay server.
+	 */
+	internal func onServerError(error: NSError) {
+	}
+
+	/*
+	 * onServerResult is invoked when there is an result from a communication with the 
+	 * Liferay server.
+	 * The type of the result will depend on the invocation done from specific subclasses.
+	 */
+	internal func onServerResult(dict:[String:AnyObject]) {
+	}
+
+	/*
+	 * onCustomAction is invoked when a TouchUpInside even is fired from the UI.
+	 */
+	internal func onCustomAction(actionName:String?, sender:AnyObject?) {
+	}
+
+	/**
+	 * onStartOperation is called just before a widget request is sent to server
+	 */
+	internal func onStartOperation() {
+	}
+
+	/**
+	 * onFinishOperation is called when the server response arrives
+	 */
+	internal func onFinishOperation() {
+	}
+
+
+	//MARK: Private
+
 	private func createWidgetViewFromNib() -> BaseWidgetView? {
-		let viewName = widgetName() + "View"
+		let viewName = widgetName + "View"
 
 		let bundle = NSBundle(forClass:self.dynamicType)
 
-		var nibName = viewName + "-" + currentThemeName()
+		var nibName = viewName + "_" + currentThemeName
 		var nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
 		if nibPath == nil {
@@ -311,19 +325,11 @@ import QuartzCore
 	}
 
 	private func updateCurrentPreviewImage() {
-		ThemeManager.instance().loadThemes()
+		ThemeManager.instance.loadThemes()
 
-		let themeName = currentThemeName()
+		let themeName = currentThemeName
 
-		_currentPreviewImage = previewImageForTheme(themeName)
+		currentPreviewImage = previewImageForTheme(themeName)
 	}
-
-	private var _runningOnInterfaceBuilder:Bool = false
-
-	private lazy var _previewLayer: CALayer = {
-		return CALayer()
-	}()
-
-	private var _currentPreviewImage:UIImage?
 
 }

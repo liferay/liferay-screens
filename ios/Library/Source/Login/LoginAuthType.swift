@@ -14,20 +14,28 @@
 import Foundation
 
 
-public class DDLElementBoolean : DDLElement {
+public enum LoginAuthType: String {
 
-	override internal func convert(fromString value:String?) -> AnyObject? {
-		return value != nil ? Bool.from(string: value!) : nil
+	case Email = "Email Address"
+	case ScreenName = "Screen Name"
+	case UserId = "User ID"
+
+	public var iconType: String {
+		let iconTypes = [
+				LoginAuthType.Email: "mail",
+				LoginAuthType.ScreenName: "user",
+				LoginAuthType.UserId: "user"]
+
+		return iconTypes[self] ?? ""
 	}
 
-	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
-		var result: String?
+	public var keyboardType: UIKeyboardType {
+		let keyboardTypes = [
+				LoginAuthType.Email: UIKeyboardType.EmailAddress,
+				LoginAuthType.ScreenName: UIKeyboardType.ASCIICapable,
+				LoginAuthType.UserId: UIKeyboardType.NumberPad]
 
-		if let boolValue = value as? Bool {
-			result = boolValue ? "true" : "false"
-		}
-
-		return result
+		return keyboardTypes[self] ?? .Default
 	}
 
 }

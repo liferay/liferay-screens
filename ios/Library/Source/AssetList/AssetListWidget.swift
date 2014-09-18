@@ -14,17 +14,7 @@
 import UIKit
 
 
-@objc public class AssetEntry {
-
-	public var title:String
-
-	public init(title:String) {
-		self.title = title
-	}
-
-}
-
-@objc protocol AssetListWidgetDelegate {
+@objc public protocol AssetListWidgetDelegate {
 
 	optional func onAssetListResponse(entries:[AssetEntry])
 	optional func onAssetListError(error: NSError)
@@ -32,6 +22,7 @@ import UIKit
 	optional func onAssetSelected(entry:AssetEntry)
 
 }
+
 
 @IBDesignable public class AssetListWidget: BaseWidget {
 
@@ -81,46 +72,53 @@ import UIKit
 		case WikiPage = 10016
 		case WikiPageResource = 10153
 		case WikiNode = 10152
+
 	}
 
-	@IBInspectable var groupId: Int = 0
-	@IBInspectable var classNameId: Int = 0
 
-	@IBInspectable var firstPageSize = 5
-	@IBInspectable var pageSize = 2
+	@IBInspectable public var groupId = 0
+	@IBInspectable public var classNameId = 0
 
-	@IBOutlet var delegate: AssetListWidgetDelegate?
+	@IBInspectable public var firstPageSize = 5
+	@IBInspectable public var pageSize = 2
+
+	@IBOutlet public var delegate: AssetListWidgetDelegate?
+
+	internal var assetListView: AssetListView {
+		return widgetView as AssetListView
+	}
 
 	private var loadPageOperations: [Int:LoadPageOperation] = [:]
 
+
+	//MARK: BaseWidget
+
 	override public func onCreated() {
-		assetListView().onSelectedEntryClosure = onSelectedEntry
-		assetListView().fetchPageForRow = loadPageForRow
+		assetListView.onSelectedEntryClosure = onSelectedEntry
+		assetListView.fetchPageForRow = loadPageForRow
 	}
 
-	internal func loadPageForRow(row:Int) {
-		let page = pageFromRow(row)
 
-		if loadPageOperations.indexForKey(page) == nil {
-			loadPage(page)
-		}
-	}
+	//MARK: Public methods
 
-	internal func pageFromRow(row:Int) -> Int {
-		if row < firstPageSize {
-			return 0
+	public func loadList() -> Bool {
+		if LiferayContext.instance.currentSession == nil {
+			println("ERROR: No session initialized. Can't load the asset list without session")
+			return false
 		}
 
-		return ((row - firstPageSize) / pageSize) + 1
-	}
-
-	internal func firstRowForPage(page:Int) -> Int {
-		if page == 0 {
-			return 0
+		if classNameId == 0 {
+			println("ERROR: ClassNameId is empty. Can't load the asset list without it.")
+			return false
 		}
 
-		return firstPageSize + (page - 1) * pageSize
+		startOperationWithMessage("Loading list...", details:"Wait few seconds...")
+
+		return loadPage(0)
 	}
+
+
+	//MARK: Internal methods
 
 	internal func loadPage(page:Int) -> Bool {
 		let operation = LoadPageOperation(page:page)
@@ -165,20 +163,28 @@ import UIKit
 		return true
 	}
 
-	public func loadList() -> Bool {
-		if LiferayContext.instance.currentSession == nil {
-			println("ERROR: No session initialized. Can't load the asset list without session")
-			return false
+	internal func loadPageForRow(row:Int) {
+		let page = pageFromRow(row)
+
+		if loadPageOperations.indexForKey(page) == nil {
+			loadPage(page)
+		}
+	}
+
+	internal func pageFromRow(row:Int) -> Int {
+		if row < firstPageSize {
+			return 0
 		}
 
-		if classNameId == 0 {
-			println("ERROR: ClassNameId is empty. Can't load the asset list without it.")
-			return false
+		return ((row - firstPageSize) / pageSize) + 1
+	}
+
+	internal func firstRowForPage(page:Int) -> Int {
+		if page == 0 {
+			return 0
 		}
 
-		startOperationWithMessage("Loading list...", details:"Wait few seconds...")
-
-		return loadPage(0)
+		return firstPageSize + (page - 1) * pageSize
 	}
 
 	internal func onLoadPageError(page: Int, error: NSError) {
@@ -204,7 +210,7 @@ import UIKit
 
 		var allAssetEntries = Array<AssetEntry?>(count: entryCount, repeatedValue: nil)
 
-		for (index, assetEntry) in enumerate(assetListView().entries) {
+		for (index, assetEntry) in enumerate(assetListView.entries) {
 			allAssetEntries[index] = assetEntry
 		}
 
@@ -219,8 +225,8 @@ import UIKit
 			allAssetEntries[offset + index] = assetEntry
 		}
 
-		assetListView().entryCount = entryCount
-		assetListView().entries = allAssetEntries
+		assetListView.entryCount = entryCount
+		assetListView.entries = allAssetEntries
 
 		if page == 0 {
 			finishOperation()
@@ -232,47 +238,5 @@ import UIKit
 	internal func onSelectedEntry(entry:AssetEntry) {
 		delegate?.onAssetSelected?(entry)
 	}
-
-	internal func assetListView() -> AssetListView {
-		return widgetView as AssetListView
-	}
-}
-
-internal class LoadPageOperation: NSObject, LRCallback {
-
-	internal var onOperationSuccess: ((Int, [[String:AnyObject]], Int) -> ())?
-	internal var onOperationFailure: ((Int, NSError) -> ())?
-
-	private let page:Int
-
-	internal init(page:Int) {
-		self.page = page
-	}
-
-	internal func onFailure(error: NSError!) {
-		onOperationFailure?(page, error)
-	}
-
-	internal func onSuccess(result: AnyObject!) {
-		if let responses = result as? NSArray {
-			if let entriesResponse = responses.firstObject as? NSArray {
-				if let countResponse = responses.objectAtIndex(1) as? NSNumber {
-					onOperationSuccess?(page,
-						entriesResponse as [[String:AnyObject]],
-						countResponse as Int)
-				}
-				else {
-					// TODO error handling
-				}
-			}
-			else {
-				// TODO error handling
-			}
-		}
-		else {
-			// TODO error handling
-		}
-	}
-
 
 }

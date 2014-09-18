@@ -8,24 +8,25 @@
 
 import Foundation
 
-class FormViewController: UIViewController, DDLFormWidgetDelegate {
+
+public class FormViewController: UIViewController, DDLFormWidgetDelegate {
 
 	@IBOutlet var widget: DDLFormWidget?
 
-	override func viewDidLoad() {
+	override public func viewDidLoad() {
 		widget!.delegate = self
 	}
 
-	func onFormLoaded(elements: [DDLElement]) {
+	public func onFormLoaded(elements: [DDLElement]) {
 		widget!.becomeFirstResponder()
 	}
 
-	func onFormLoadError(error: NSError) {
+	public func onFormLoadError(error: NSError) {
 		println("Error with form -> " + error.description)
 	}
 
-	@IBAction func buttonClick(sender: AnyObject) {
-		LiferayContext.instance.createSession("jose.navarro@liferay.com", password: "jm")
+	@IBAction internal func buttonClick(sender: AnyObject) {
+		LiferayContext.instance().createSession("jose.navarro@liferay.com", password: "jm")
 
 		if widget!.recordId == 0 {
 			widget!.loadForm()
@@ -38,4 +39,5 @@ class FormViewController: UIViewController, DDLFormWidgetDelegate {
 	@IBAction func button2Click(sender: AnyObject) {
 		widget!.submitForm()
 	}
+
 }

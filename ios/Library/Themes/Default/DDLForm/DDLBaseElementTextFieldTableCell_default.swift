@@ -13,20 +13,17 @@
 */
 import UIKit
 
+
 public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITextFieldDelegate {
 
-	@IBOutlet var textField: UITextField?
-	@IBOutlet var textFieldBackground: UIImageView?
-	@IBOutlet var label: UILabel?
+	@IBOutlet internal var textField: UITextField?
+	@IBOutlet internal var textFieldBackground: UIImageView?
+	@IBOutlet internal var label: UILabel?
 
-	internal class var heightWithLabel:CGFloat {
-		return 81.0
-	}
-	internal class var heightWithoutLabel:CGFloat {
-		return 56.0
-	}
 
-	override func onChangedElement() {
+	//MARK: DDLElementTableCell
+
+	override internal func onChangedElement() {
 		if element!.showLabel {
 			textField?.placeholder = ""
 			label?.text = element!.label
@@ -38,17 +35,15 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 			textField?.placeholder = element!.label
 			label?.hidden = true
 
-			moveSubviewsVertically(-(
-				DDLBaseElementTextFieldTableCell_default.heightWithLabel -
-				DDLBaseElementTextFieldTableCell_default.heightWithoutLabel))
-			element?.currentHeight =
-				DDLBaseElementTextFieldTableCell_default.heightWithoutLabel
+			moveSubviewsVertically(
+				-(DDLElementTextFieldHeightWithLabel - DDLElementTextFieldHeightWithoutLabel))
+			element?.currentHeight = DDLElementTextFieldHeightWithoutLabel
 		}
 
 		textField?.returnKeyType = isLastCell ? .Send : .Next
 
 		if element!.lastValidationResult != nil {
-			self.onValidated(element!.lastValidationResult!)
+			onValidated(element!.lastValidationResult!)
 		}
 
 		if element!.currentValue != nil {
@@ -56,7 +51,7 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 		}
 	}
 
-	override func onValidated(valid: Bool) {
+	override internal func onValidated(valid: Bool) {
 		let imgName = valid ? "default-field" : "default-field-failed"
 		let imgNameHighlighted = valid ? "default-field-focused" : "default-field-failed"
 
@@ -72,6 +67,7 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 		return textField!.becomeFirstResponder()
 	}
 
+
 	//MARK: UITextFieldDelegate
 
 	public func textFieldDidBeginEditing(textField: UITextField!) {
@@ -86,7 +82,9 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 		textFieldBackground?.highlighted = false
 	}
 
-	public func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+	public func textField(textField: UITextField!,
+			shouldChangeCharactersInRange range: NSRange,
+			replacementString string: String!) -> Bool {
 
 		if element!.lastValidationResult != nil && !element!.lastValidationResult! {
 			element!.lastValidationResult = true
@@ -94,8 +92,8 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 			onValidated(true)
 
 			//FIXME!
-			// This hack is the only way I found to repaint the text field while it's in edition mode.
-			// It doesn't produce flickering nor nasty effects.
+			// This hack is the only way I found to repaint the text field while it's in
+			// edition mode. It doesn't produce flickering nor nasty effects.
 
 			textFieldBackground?.highlighted = false
 			textFieldBackground?.highlighted = true

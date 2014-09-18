@@ -13,61 +13,55 @@
 */
 import UIKit
 
-class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidgetDelegate {
 
-	@IBOutlet var loginWidget: LoginWidget?
-	@IBOutlet var forgotWidget: ForgotPasswordWidget?
+public class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidgetDelegate {
+
+	@IBOutlet private var loginWidget: LoginWidget?
+	@IBOutlet private var forgotWidget: ForgotPasswordWidget?
 
     
     // UIViewController METHODS
     
     
-	override func viewDidLoad() {
+	override public func viewDidLoad() {
 		super.viewDidLoad()
 
 		// WORKAROUND!
 		// Delegate assignment in IB doesn't work!!
 		loginWidget!.delegate = self
-		loginWidget!.setAuthType(AuthType.ScreenName.toRaw())
+		loginWidget!.setAuthType(LoginAuthType.ScreenName)
 
 		forgotWidget!.delegate = self;
-		forgotWidget!.setAuthType(AuthType.ScreenName.toRaw())
+		forgotWidget!.setAuthType(LoginAuthType.ScreenName)
 	}
 
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-	}
-
-    
     // LoginWidgetDelegate METHODS
 
     
-	func onCredentialsLoaded(session:LRSession) {
+	public func onCredentialsLoaded(session:LRSession) {
 		print("Saved loaded for server " + session.server)
  	}
 
-	func onCredentialsSaved(session:LRSession) {
+	public func onCredentialsSaved(session:LRSession) {
 		print("Saved credentials for server " + session.server)
  	}
  
- 	func onLoginError(error: NSError)  {
+ 	public func onLoginError(error: NSError)  {
  		println("Error -> " + error.description)
 	}
 
-	func onLoginResponse(attributes: [String:AnyObject])  {
+	public func onLoginResponse(attributes: [String:AnyObject])  {
 		NSLog("Login %@", attributes)
 	}
 
-	func onForgotPasswordError(error: NSError)  {
+	public func onForgotPasswordError(error: NSError)  {
 		println("Error -> " + error.description)
-
 	}
 
-	func onForgotPasswordResponse(newPasswordSent:Bool)  {
+	public func onForgotPasswordResponse(newPasswordSent:Bool)  {
 		let emailContent = newPasswordSent ? "new password" : "reset password link"
 
 		println("Email with \(emailContent) was sent")
 	}
 
 }
-

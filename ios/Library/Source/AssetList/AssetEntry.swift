@@ -14,27 +14,13 @@
 import UIKit
 
 
-public class LoginView: BaseWidgetView {
+@objc public class AssetEntry {
 
-	public var shouldRememberCredentials: Bool {
-		return true
-	}
+	public var title:String
 
-	public func setAuthType(authType: LoginAuthType) {
-	}
 
-	public func getUserName() -> String {
-		return ""
-	}
-
-	public func getPassword() -> String {
-		return ""
-	}
-
-	public func setUserName(userName: String) {
-	}
-
-	public func setPassword(password: String) {
+	public init(title:String) {
+		self.title = title
 	}
 
 }

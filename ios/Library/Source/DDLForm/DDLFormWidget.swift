@@ -13,7 +13,8 @@
 */
 import UIKit
 
-@objc protocol DDLFormWidgetDelegate {
+
+@objc public protocol DDLFormWidgetDelegate {
 
 	optional func onFormLoaded(elements: [DDLElement])
 	optional func onFormLoadError(error: NSError)
@@ -25,42 +26,59 @@ import UIKit
 	optional func onFormSubmitError(error: NSError)
 
 	optional func onDocumentUploadStarted(element:DDLElementDocument)
-	optional func onDocumentUploadedBytes(element:DDLElementDocument, bytes: UInt, sent: Int64, total: Int64);
+	optional func onDocumentUploadedBytes(element:DDLElementDocument,
+			bytes: UInt,
+			sent: Int64,
+			total: Int64);
 	optional func onDocumentUploadCompleted(element:DDLElementDocument, result:[String:AnyObject]);
 	optional func onDocumentUploadError(element:DDLElementDocument, error: NSError);
 
 }
 
+
 @IBDesignable public class DDLFormWidget: BaseWidget, LRProgressDelegate {
 
-	@IBInspectable var structureId: Int = 0
-	@IBInspectable var groupId: Int = 0
-	@IBInspectable var recordSetId: Int = 0
-	@IBInspectable var recordId:Int = 0
+	private enum FormOperation {
 
-	@IBInspectable var repositoryId:Int = 0
-	@IBInspectable var folderId:Int = 0
-	@IBInspectable var filePrefix = "form-file-"
+		case Idle
+		case LoadingForm
+		case LoadingRecord(Bool)
+		case Submitting
+		case Uploading(DDLElementDocument, Bool)
 
-	@IBInspectable var autoLoad:Bool = true
-	@IBInspectable var autoscrollOnValidation:Bool = true
-	@IBInspectable var showSubmitButton:Bool = true
+	}
 
-	@IBOutlet var delegate: DDLFormWidgetDelegate?
+	@IBInspectable public var structureId = 0
+	@IBInspectable public var groupId = 0
+	@IBInspectable public var recordSetId = 0
+	@IBInspectable public var recordId = 0
 
-	private var userId:Int = 0
+	@IBInspectable public var repositoryId = 0
+	@IBInspectable public var folderId = 0
+	@IBInspectable public var filePrefix = "form-file-"
 
-	private var currentOperation:FormOperation = .Idle
+	@IBInspectable public var autoLoad = true
+	@IBInspectable public var autoscrollOnValidation = true
+	@IBInspectable public var showSubmitButton = true
+
+	@IBOutlet public var delegate: DDLFormWidgetDelegate?
+
+	internal var formView: DDLFormView {
+		return widgetView as DDLFormView
+	}
+
+	private var userId = 0
+	private var currentOperation = FormOperation.Idle
 
 
-	// MARK: BaseWidget METHODS
+	//MARK: BaseWidget
 
 	override public func becomeFirstResponder() -> Bool {
-		return formView().becomeFirstResponder()
+		return formView.becomeFirstResponder()
 	}
 
 	override internal func onCreated() {
-		formView().showSubmitButton = showSubmitButton
+		formView.showSubmitButton = showSubmitButton
 	}
 
 	override internal func onShow() {
@@ -98,10 +116,10 @@ import UIKit
 			case .Uploading(let document, _):
 				document.uploadStatus = .Failed(error)
 
-				formView().changeDocumentUploadStatus(document)
+				formView.changeDocumentUploadStatus(document)
 
 				if !document.validate() {
-					formView().showElement(document)
+					formView.showElement(document)
 				}
 
 				delegate?.onDocumentUploadError?(document, error: error)
@@ -141,7 +159,7 @@ import UIKit
 			case .Uploading(let document, let submitAfter):
 				document.uploadStatus = .Uploaded(result)
 
-				formView().changeDocumentUploadStatus(document)
+				formView.changeDocumentUploadStatus(document)
 				delegate?.onDocumentUploadCompleted?(document, result: result)
 
 				currentOperation = .Idle
@@ -155,41 +173,23 @@ import UIKit
 
 	}
 
-	private func onFormLoadResult(result: [String:AnyObject]) {
-		if let xml = result["xsd"]! as? String {
-			if let userIdValue = result["userId"]! as? Int {
-				userId = userIdValue
-			}
 
-			let parser = DDLParser(locale:NSLocale.currentLocale())
+	//MARK: LRProgressDelegate
 
-			parser.xml = xml
+	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
+		switch currentOperation {
+			case .Uploading(let document, _):
+				document.uploadStatus = .Uploading(UInt(sent), UInt(total))
+				formView.changeDocumentUploadStatus(document)
 
-			if let elements = parser.parse() {
-				formView().rows = elements
+				delegate?.onDocumentUploadedBytes?(document, bytes: bytes, sent: sent, total: total)
 
-				delegate?.onFormLoaded?(elements)
-
-				finishOperationWithMessage("Form loaded")
-			}
-			else {
-				//TODO error
-			}
-		}
-		else {
-			//TODO error
+			default: ()
 		}
 	}
 
-	private func onRecordLoadResult(result: [String:AnyObject]) {
-		for (index,element) in enumerate(formView().rows) {
-			let elementValue = (result[element.name] ?? nil) as? String
-			if let elementStringValue = elementValue {
-				element.currentStringValue = elementStringValue
-				formView().rows[index] = element
-			}
-		}
-	}
+
+	//MARK: Public methods
 
 	public func loadForm() -> Bool {
 		if LiferayContext.instance.currentSession == nil {
@@ -213,7 +213,8 @@ import UIKit
 
 		var outError: NSError?
 
-		service.getStructureWithStructureId((structureId as NSNumber).longLongValue, error: &outError)
+		service.getStructureWithStructureId((structureId as NSNumber).longLongValue,
+				error: &outError)
 
 		if let error = outError {
 			onFailure(error)
@@ -239,7 +240,7 @@ import UIKit
 			return false
 		}
 
-		currentOperation = .LoadingRecord(formView().rows.isEmpty)
+		currentOperation = .LoadingRecord(formView.rows.isEmpty)
 
 		startOperationWithMessage("Loading record...", details: "Wait a second...")
 
@@ -250,12 +251,15 @@ import UIKit
 
 		let ddlService = LRMobilewidgetsddlrecordService_v62(session: session)
 
-		ddlService.getDdlRecordValuesWithDdlRecordId((recordId as NSNumber).longLongValue, locale: NSLocale.currentLocaleString(), error: &outError)
+		ddlService.getDdlRecordValuesWithDdlRecordId((recordId as NSNumber).longLongValue,
+				locale: NSLocale.currentLocaleString(),
+				error: &outError)
 
-		if formView().rows.isEmpty {
+		if formView.rows.isEmpty {
 			let structureService = LRDDMStructureService_v62(session: session)
 
-			structureService.getStructureWithStructureId((structureId as NSNumber).longLongValue, error: &outError)
+			structureService.getStructureWithStructureId((structureId as NSNumber).longLongValue,
+					error: &outError)
 		}
 
 		session.invoke(&outError)
@@ -298,8 +302,11 @@ import UIKit
 			default: ()
 		}
 
-		if !formView().validateForm(autoscroll:autoscrollOnValidation) {
-			showHUDWithMessage("Some values are not valid", details: "Please, review your form", closeMode:.AutocloseDelayed(3.0, true), spinnerMode:.NoSpinner)
+		if !formView.validateForm(autoscroll:autoscrollOnValidation) {
+			showHUDWithMessage("Some values are not valid",
+					details: "Please, review your form",
+					closeMode:.AutocloseDelayed(3.0, true),
+					spinnerMode:.NoSpinner)
 			return false
 		}
 
@@ -327,7 +334,7 @@ import UIKit
 				groupIdToUse.longLongValue,
 				recordSetId: (recordSetId as NSNumber).longLongValue,
 				displayIndex: 0,
-				fieldsMap: formView().values,
+				fieldsMap: formView.values,
 				serviceContext: serviceContextWrapper,
 				error: &outError)
 		}
@@ -335,7 +342,7 @@ import UIKit
 			service.updateRecordWithRecordId(
 				(recordId as NSNumber).longLongValue,
 				displayIndex: 0,
-				fieldsMap: formView().values,
+				fieldsMap: formView.values,
 				mergeFields: true,
 				serviceContext: serviceContextWrapper,
 				error: &outError)
@@ -349,6 +356,45 @@ import UIKit
 		return true
 	}
 
+
+	//MARK: Private methods
+
+	private func onFormLoadResult(result: [String:AnyObject]) {
+		if let xml = result["xsd"]! as? String {
+			if let userIdValue = result["userId"]! as? Int {
+				userId = userIdValue
+			}
+
+			let parser = DDLParser(locale:NSLocale.currentLocale())
+
+			parser.xml = xml
+
+			if let elements = parser.parse() {
+				formView.rows = elements
+
+				delegate?.onFormLoaded?(elements)
+
+				finishOperationWithMessage("Form loaded")
+			}
+			else {
+				//TODO: error
+			}
+		}
+		else {
+			//TODO: error
+		}
+	}
+
+	private func onRecordLoadResult(result: [String:AnyObject]) {
+		for (index,element) in enumerate(formView.rows) {
+			let elementValue = (result[element.name] ?? nil) as? String
+			if let elementStringValue = elementValue {
+				element.currentStringValue = elementStringValue
+				formView.rows[index] = element
+			}
+		}
+	}
+
 	private func uploadDocument(document:DDLElementDocument) -> Bool {
 		if LiferayContext.instance.currentSession == nil {
 			println("ERROR: No session initialized. Can't upload a document without session")
@@ -356,7 +402,8 @@ import UIKit
 		}
 
 		if document.currentValue == nil {
-			println("ERROR: No current value in the document. Can't upload a document without a value")
+			println("ERROR: No current value in the document. " +
+					"Can't upload a document without a value")
 			return false
 		}
 
@@ -364,7 +411,11 @@ import UIKit
 		let fileName = "\(filePrefix)-\(NSUUID.UUID().UUIDString)"
 		var size:Int64 = 0
 		let stream = document.getStream(&size)
-		let uploadData = LRUploadData(inputStream: stream, length:size, fileName: fileName, mimeType: document.mimeType)
+		let uploadData = LRUploadData(
+				inputStream: stream,
+				length: size,
+				fileName: fileName,
+				mimeType: document.mimeType)
 		uploadData.progressDelegate = self
 
 		let session = LRSession(session: LiferayContext.instance.currentSession)
@@ -379,9 +430,14 @@ import UIKit
 		service.addFileEntryWithRepositoryId(
 			(repoId as NSNumber).longLongValue,
 			folderId: (folderId as NSNumber).longLongValue,
-			sourceFileName: fileName, mimeType: document.mimeType,
-			title: fileName, description: "", changeLog: "Uploaded from Liferay Screens app",
-			file: uploadData, serviceContext: nil, error: &outError)
+			sourceFileName: fileName,
+			mimeType: document.mimeType,
+			title: fileName,
+			description: "",
+			changeLog: "Uploaded from Liferay Screens app",
+			file: uploadData,
+			serviceContext: nil,
+			error: &outError)
 
 		if let error = outError {
 			onFailure(error)
@@ -393,31 +449,4 @@ import UIKit
 		return true
 	}
 
-
-	//MARK LRProgressDelegate
-
-	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
-		switch currentOperation {
-			case .Uploading(let document, _):
-				document.uploadStatus = .Uploading(UInt(sent), UInt(total))
-				formView().changeDocumentUploadStatus(document)
-
-				delegate?.onDocumentUploadedBytes?(document, bytes: bytes, sent: sent, total: total)
-
-			default: ()
-		}
-	}
-
-	private func formView() -> DDLFormView {
-		return widgetView as DDLFormView
-	}
-
-}
-
-private enum FormOperation {
-	case Idle
-	case LoadingForm
-	case LoadingRecord(Bool)
-	case Submitting
-	case Uploading(DDLElementDocument, Bool)
 }

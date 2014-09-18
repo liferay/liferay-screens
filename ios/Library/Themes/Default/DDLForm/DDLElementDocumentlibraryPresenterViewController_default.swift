@@ -14,9 +14,11 @@
 import UIKit
 import MobileCoreServices
 
-public class DDLElementDocumentlibraryPresenterViewController_default: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-	public var selectedDocumentClosure: ((UIImage?, NSURL?) -> ())?
+public class DDLElementDocumentlibraryPresenterViewController_default:
+		UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+	public var selectedDocumentClosure: ((UIImage?, NSURL?) -> Void)?
 
 	private let imagePicker = UIImagePickerController()
 
@@ -35,13 +37,13 @@ public class DDLElementDocumentlibraryPresenterViewController_default: UIViewCon
 	}
 
 
-	// MARK: Actions
+	//MARK: Actions
 
-	@IBAction func cancelButtonAction(sender: AnyObject) {
+	@IBAction private func cancelButtonAction(sender: AnyObject) {
 		selectedDocumentClosure?(nil, nil)
 	}
 
-	@IBAction func takePhotoAction(sender: AnyObject) {
+	@IBAction private func takePhotoAction(sender: AnyObject) {
 		cancelButtonAction(sender)
 
 		imagePicker.sourceType = .Camera
@@ -49,7 +51,7 @@ public class DDLElementDocumentlibraryPresenterViewController_default: UIViewCon
 		presentViewController(imagePicker, animated: true) {}
 	}
 
-	@IBAction func selectPhotosAction(sender: AnyObject) {
+	@IBAction private func selectPhotosAction(sender: AnyObject) {
 		cancelButtonAction(sender)
 
 		imagePicker.sourceType = .SavedPhotosAlbum
@@ -57,7 +59,7 @@ public class DDLElementDocumentlibraryPresenterViewController_default: UIViewCon
 		presentViewController(imagePicker, animated: true) {}
 	}
 
-	@IBAction func selectVideosAction(sender: AnyObject) {
+	@IBAction private func selectVideosAction(sender: AnyObject) {
 		cancelButtonAction(sender)
 
 		imagePicker.sourceType = .SavedPhotosAlbum
@@ -67,9 +69,11 @@ public class DDLElementDocumentlibraryPresenterViewController_default: UIViewCon
 	}
 
 
-	// MARK: UIImagePickerControllerDelegate
+	//MARK: UIImagePickerControllerDelegate
 
-    public func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
+    public func imagePickerController(
+			picker: UIImagePickerController!,
+			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
 
 		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
 		let selectedURL = info[UIImagePickerControllerMediaURL] as? NSURL

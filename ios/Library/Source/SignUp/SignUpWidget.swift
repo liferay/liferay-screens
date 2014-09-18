@@ -13,28 +13,41 @@
 */
 import UIKit
 
-@objc protocol SignUpWidgetDelegate {
+
+@objc public protocol SignUpWidgetDelegate {
 
 	optional func onSignUpResponse(attributes: [String:AnyObject])
 	optional func onSignUpError(error: NSError)
 
 }
 
+
 @IBDesignable public class SignUpWidget: BaseWidget {
 
-	@IBInspectable var anonymousApiUserName: String?
-	@IBInspectable var anonymousApiPassword: String?
+	@IBInspectable public var anonymousApiUserName: String?
+	@IBInspectable public var anonymousApiPassword: String?
 
-	@IBInspectable var autologin: Bool = true
+	@IBInspectable public var autologin = true
 
-	@IBOutlet var delegate: SignUpWidgetDelegate?
+	@IBOutlet public var delegate: SignUpWidgetDelegate?
 
-	public var authType: AuthType = AuthType.Email
+	public var authType = LoginAuthType.Email
 
-	//MARK: BaseWidget METHODS
+	internal var signUpView: SignUpView {
+		return widgetView as SignUpView
+	}
+
+	private var creatingUsername: String?
+	private var creatingPassword: String?
+
+
+	//MARK: BaseWidget
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
-		sendSignUpWithEmailAddress(signUpView().getEmailAddress(), password:signUpView().getPassword(), firstName:signUpView().getFirstName(), lastName:signUpView().getLastName())
+		sendSignUpWithEmailAddress(signUpView.getEmailAddress(),
+				password:signUpView.getPassword(),
+				firstName:signUpView.getFirstName(),
+				lastName:signUpView.getLastName())
 	}
 
 	override internal func onServerError(error: NSError) {
@@ -57,11 +70,10 @@ import UIKit
 	}
 
 
-	private func signUpView() -> SignUpView {
-		return widgetView as SignUpView
-	}
+	//MARK: Private methods
 
-	private func sendSignUpWithEmailAddress(emailAddress:String, password:String, firstName:String, lastName:String) {
+	private func sendSignUpWithEmailAddress(
+			emailAddress:String, password:String, firstName:String, lastName:String) {
 
 		if anonymousApiUserName == nil || anonymousApiPassword == nil {
 			println(
@@ -73,52 +85,51 @@ import UIKit
 
 		startOperationWithMessage("Sending sign up...", details:"Wait few seconds...")
 
-		let session = LiferayContext.instance.createSession(anonymousApiUserName!, password: anonymousApiPassword!)
+		let session = LiferayContext.instance.createSession(anonymousApiUserName!,
+				password: anonymousApiPassword!)
 		session.callback = self
 
 		let service = LRUserService_v62(session: session)
 
 		var outError: NSError?
 
-		let companyId: Int64 = (LiferayContext.instance.companyId as NSNumber).longLongValue
-
 		// user name
 		switch authType {
-		case AuthType.Email:
-			creatingUsername = signUpView().getEmailAddress()
-		case AuthType.ScreenName:
-			creatingUsername = signUpView().getScreenName()
-		case AuthType.UserId:
-			println("ERROR: sign Up with User id is not supported")
-		default: ()
+			case .Email:
+				creatingUsername = signUpView.getEmailAddress()
+			case .ScreenName:
+				creatingUsername = signUpView.getScreenName()
+			case .UserId:
+				println("ERROR: sign Up with User id is not supported")
+			default: ()
 		}
 
 		// password
-		creatingPassword = signUpView().getPassword();
+		creatingPassword = signUpView.getPassword();
 		let autoPassword = (creatingPassword == "")
 
 		// screen name
-		let screenName = signUpView().getScreenName();
+		let screenName = signUpView.getScreenName();
 		let autoScreenName = (screenName == "")
 
 		// names
-		let firstName = signUpView().getFirstName();
-		let middleName = signUpView().getMiddleName();
-		let lastName = signUpView().getLastName();
+		let firstName = signUpView.getFirstName();
+		let middleName = signUpView.getMiddleName();
+		let lastName = signUpView.getLastName();
 
 		let emptyDict = []
 
-		service.addUserWithCompanyId(companyId,
+		service.addUserWithCompanyId((LiferayContext.instance.companyId as NSNumber).longLongValue,
 			autoPassword: autoPassword, password1: password, password2: password,
 			autoScreenName: autoScreenName, screenName: screenName,
-			emailAddress: signUpView().getEmailAddress(),
+			emailAddress: signUpView.getEmailAddress(),
 			facebookId: 0, openId: "",
 			locale: NSLocale.currentLocaleString(),
 			firstName: firstName, middleName: middleName, lastName: lastName,
 			prefixId: 0, suffixId: 0,
 			male: true,
 			birthdayMonth: 1, birthdayDay: 1, birthdayYear: 1970,
-			jobTitle: signUpView().getJobTitle(),
+			jobTitle: signUpView.getJobTitle(),
 			groupIds: [LiferayContext.instance.groupId],
 			organizationIds: emptyDict,
 			roleIds: emptyDict,
@@ -130,8 +141,5 @@ import UIKit
 			onFailure(error)
 		}
 	}
-
-	private var creatingUsername: String?
-	private var creatingPassword: String?
 
 }

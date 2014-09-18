@@ -13,14 +13,21 @@
 */
 import UIKit
 
+
 /*!
  * BaseWidgetView is the base class from which all Widget's View classes must inherit.
  */
 public class BaseWidgetView: UIView, UITextFieldDelegate {
 
-	typealias CustomActionType = (String?, AnyObject?) -> ()
+	internal var customAction: ((String?, AnyObject?) -> Void)?
 
-	var customAction: CustomActionType?
+	internal var themeName: String? {
+		var className = NSStringFromClass(self.dynamicType)
+
+		let components = className.componentsSeparatedByString("_")
+
+		return (components.count > 1) ? components.last : nil
+	}
 
 
 	//MARK: UIView
@@ -32,10 +39,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		onCreated()
 	}
 
-	/*
-	* becomeFirstResponder is invoked to make the widget view the first responder. Override this method to set one
-	* child component as first responder.
-	*/
 	override public func becomeFirstResponder() -> Bool {
 		var result:Bool
 
@@ -68,7 +71,8 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 					}
 
 				case _ where nextResponder is UIControl:
-					(nextResponder as UIControl).sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+					(nextResponder as UIControl).sendActionsForControlEvents(
+							UIControlEvents.TouchUpInside)
 
 				default: ()
 			}
@@ -76,8 +80,9 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 		return true
 	}
-	
-	//MARK: BaseWidgetView Methods
+
+
+	//MARK: Internal methods
 
 	/*
 	 * onCreated is fired after the initialization of the widget view. 
@@ -130,14 +135,6 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		customAction?(actionName, sender)
 	}
 
-	internal func themeName() -> String? {
-		var className = NSStringFromClass(self.dynamicType)
-
-		let components = className.componentsSeparatedByString("_")
-
-		return (components.count > 1) ? components.last : nil
-	}
-
 	internal func nextResponderForView(view:UIView) -> UIResponder {
 		if view.tag > 0 {
 			if let nextView = viewWithTag(view.tag + 1) {
@@ -147,9 +144,14 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 		return view
 	}
 
+
+	//MARK: Private methods
+
 	private func addCustomActionForControl(control: UIControl) {
 		if onSetCustomActionForControl(control) {
-			control.addTarget(self, action: "customActionHandler:", forControlEvents: UIControlEvents.TouchUpInside)
+			control.addTarget(self,
+					action: "customActionHandler:",
+					forControlEvents: UIControlEvents.TouchUpInside)
 		}
 	}
 

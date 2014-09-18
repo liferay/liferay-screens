@@ -14,9 +14,13 @@
 import UIKit
 import WebKit
 
+
 public class WebContentView_default: WebContentView {
 
 	private var webView:WKWebView?
+
+
+	//MARK: WebContentView
 
 	override public func setHtmlContent(html:String) {
 		webView!.loadHTMLString(html, baseURL: NSURL(string:LiferayContext.instance.server))
@@ -25,7 +29,8 @@ public class WebContentView_default: WebContentView {
 	override internal func onPreCreate() {
 		webView = WKWebView(frame: bounds, configuration: WKWebViewConfiguration())
 
-		webView!.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+		webView!.autoresizingMask =
+				UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
 
 		addSubview(webView!)
 	}

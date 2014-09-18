@@ -15,10 +15,11 @@ import Foundation
 
 extension Bool {
 
-	static func from(string value:String) -> Bool {
-		let boolValue = value.lowercaseString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+	public static func from(string value:String) -> Bool {
+		let boolValue = value.lowercaseString.stringByTrimmingCharactersInSet(
+				NSCharacterSet.whitespaceCharacterSet())
 
 		return !(boolValue == "false" || boolValue == "0")
 	}
-}
 
+}

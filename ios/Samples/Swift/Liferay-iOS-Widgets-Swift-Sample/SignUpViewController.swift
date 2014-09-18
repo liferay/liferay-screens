@@ -8,20 +8,21 @@
 
 import Foundation
 
-class SignUpViewController: UIViewController, SignUpWidgetDelegate {
+
+public class SignUpViewController: UIViewController, SignUpWidgetDelegate {
 
 	@IBOutlet var widget: SignUpWidget?
 
-	override func viewDidLoad() {
+	override public func viewDidLoad() {
 		widget!.delegate = self
 		widget!.becomeFirstResponder()
 	}
 
-	func onSignUpError(error: NSError)  {
+	public func onSignUpError(error: NSError)  {
 		println("Error signing up -> " + error.description)
 	}
 
-	func onSignUpResponse(attributes: NSDictionary)  {
+	public func onSignUpResponse(attributes: NSDictionary)  {
 		println("Signed up -> " + attributes.description)
 	}
 

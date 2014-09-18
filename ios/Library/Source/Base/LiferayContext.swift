@@ -13,35 +13,55 @@
 */
 import Foundation
 
-struct LiferayContext {
 
-	var server:String = "http://localhost:8080"
-	var companyId:Int = 10154
-	var groupId:Int = 10181
+public class LiferayContext {
 
-	var currentSession:LRSession?
+	public var server = "http://localhost:8080"
+	public var companyId = 10154
+	public var groupId = 10181
 
-	static var instance = LiferayContext()
+	public var currentSession:LRSession?
 
-	init() {
-		if let propertiesPath = NSBundle.mainBundle().pathForResource("liferay-context", ofType:"plist") {
+	//MARK: Singleton
+
+	class var instance: LiferayContext {
+		struct Singleton {
+			static var instance: LiferayContext? = nil
+			static var onceToken: dispatch_once_t = 0
+		}
+
+		dispatch_once(&Singleton.onceToken) {
+			Singleton.instance = self()
+		}
+
+		return Singleton.instance!
+	}
+
+	public required init() {
+		if let propertiesPath =
+				NSBundle.mainBundle().pathForResource("liferay-context", ofType:"plist") {
 			loadContextFile(propertiesPath)
 		}
 		else {
 			println("WARNING: liferay-context.plist file is not found. Falling back to template " +
 				"liferay-context-sample.list")
 
-			if let templatePath = NSBundle.mainBundle().pathForResource("liferay-context-sample", ofType:"plist") {
+			if let templatePath = NSBundle.mainBundle().pathForResource("liferay-context-sample",
+					ofType:"plist") {
 				loadContextFile(templatePath)
 			}
 			else {
-				println("WARNING: liferay-context-sample.plist file is not found. Using default values which will " +
-					"work in a default Liferay bundle installed in localhost")
+				println("WARNING: liferay-context-sample.plist file is not found. " +
+					"Using default values which will work in a default Liferay bundle installed " +
+					"in localhost")
 			}
 		}
 	}
 
-	mutating func loadContextFile(propertiesPath:String) {
+
+	//MARK: Public methods
+
+	public func loadContextFile(propertiesPath:String) {
 		let properties = NSDictionary(contentsOfFile: propertiesPath)
 
 		server = properties["server"] as String;
@@ -49,13 +69,13 @@ struct LiferayContext {
 		groupId = properties["groupId"] as Int
 	}
 
-	mutating func createSession(username:String, password:String) -> LRSession {
-		self.currentSession = LRSession(server:server, username:username, password:password)
-		return self.currentSession!
+	public func createSession(username:String, password:String) -> LRSession {
+		currentSession = LRSession(server:server, username:username, password:password)
+		return currentSession!
 	}
 
-	mutating func clearSession() {
-		self.currentSession = nil
+	public func clearSession() {
+		currentSession = nil
 	}
 
 }

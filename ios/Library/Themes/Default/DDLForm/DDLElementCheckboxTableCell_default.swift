@@ -13,12 +13,16 @@
 */
 import UIKit
 
+
 public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 
-	@IBOutlet var switchView: UISwitch?
-	@IBOutlet var label: UILabel?
+	@IBOutlet internal var switchView: UISwitch?
+	@IBOutlet internal var label: UILabel?
 
-	@IBAction func switchValueChanged(sender: AnyObject) {
+
+	//MARK: Actions
+
+	@IBAction private func switchValueChanged(sender: AnyObject) {
 		element?.currentValue = switchView?.on
 
 		if element!.lastValidationResult != nil && !element!.lastValidationResult! {
@@ -27,7 +31,14 @@ public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 		}
 	}
 
-	override func onChangedElement() {
+
+	//MARK: DDLElementTableCell
+
+	override public func canBecomeFirstResponder() -> Bool {
+		return false
+	}
+
+	override internal func onChangedElement() {
 		if let boolElement = element as? DDLElementBoolean {
 			switchView?.on = boolElement.currentValue as Bool
 			label?.text = boolElement.label
@@ -38,12 +49,8 @@ public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 		}
 	}
 
-	override func onValidated(valid: Bool) {
+	override internal func onValidated(valid: Bool) {
 		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()
-	}
-
-	override public func canBecomeFirstResponder() -> Bool {
-		return false
 	}
 
 }

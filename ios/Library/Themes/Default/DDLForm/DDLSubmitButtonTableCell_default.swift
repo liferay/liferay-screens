@@ -13,13 +13,20 @@
 */
 import UIKit
 
+
 public class DDLSubmitButtonTableCell_default: DDLElementTableCell {
+
+	//MARK: Actions
+
+	@IBAction private func submitButtonAction(sender: AnyObject) {
+		formView!.customActionHandler(sender)
+	}
+
+
+	//MARK: DDLElementTableCell
 
 	override public func canBecomeFirstResponder() -> Bool {
 		return false
 	}
 
-	@IBAction func submitButtonAction(sender: AnyObject) {
-		formView!.customActionHandler(sender as? UIControl)
-	}
 }

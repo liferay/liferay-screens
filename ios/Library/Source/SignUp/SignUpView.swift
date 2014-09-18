@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class SignUpView: BaseWidgetView {
 
 	public func getEmailAddress() -> String {

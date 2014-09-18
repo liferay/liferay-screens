@@ -8,16 +8,17 @@
 
 import UIKit
 
-class WebContentViewController: UIViewController, WebContentWidgetDelegate {
 
-	@IBOutlet weak var widget: WebContentWidget?
+public class WebContentViewController: UIViewController, WebContentWidgetDelegate {
 
-	override func viewDidLoad() {
+	@IBOutlet private weak var widget: WebContentWidget?
+
+	override public func viewDidLoad() {
 		widget!.delegate = self
 	}
 
 	@IBAction func loadButtonAction(sender: AnyObject) {
-		LiferayContext.instance.createSession("jose.navarro@liferay.com", password: "jm")
+		LiferayContext.instance().createSession("jose.navarro@liferay.com", password: "jm")
 		widget!.loadWebContent()
 	}
 

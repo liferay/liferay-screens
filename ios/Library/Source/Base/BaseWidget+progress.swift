@@ -13,14 +13,12 @@
 */
 import Foundation
 
-//FIME
-// This hack is because compiler error "Class variables not yet supported"
-internal struct Lock {
-	static var token = "token"
-}
+
+internal let BaseWidgetHudLock = "hud-lock"
 
 
 internal struct MBProgressHUDInstance {
+
 	static var instance:MBProgressHUD?
 	static var touchHandler:HUDTouchHandler?
 	static var customView:UIView? {
@@ -44,10 +42,12 @@ internal struct MBProgressHUDInstance {
 			}
 		}
 	}
+
 }
 
 
 internal class HUDTouchHandler {
+
 	internal dynamic func simpleTapDetected(recognizer:UIGestureRecognizer!) {
 		if let hud = recognizer.view as? MBProgressHUD {
 			hud.hide(true)
@@ -63,6 +63,7 @@ internal class HUDTouchHandler {
 extension BaseWidget {
 
 	public enum CloseMode {
+
 		case NoAutoclose(Bool)
 		case AutocloseDelayed(Double, Bool)
 		case AutocloseComputedDelay(Bool)
@@ -81,9 +82,12 @@ extension BaseWidget {
 
 			return result
 		}
+
 	}
 
+
 	public enum SpinnerMode {
+
 		case IndeterminateSpinner
 		case DeterminateSpinner
 		case NoSpinner
@@ -98,7 +102,11 @@ extension BaseWidget {
 					return MBProgressHUDModeText
 			}
 		}
+
 	}
+
+
+	//MARK: Class methods
 
 	public class func setHUDCustomView(newValue:UIView?) {
 		MBProgressHUDInstance.customView = newValue
@@ -111,11 +119,12 @@ extension BaseWidget {
 	/*
 	 * showHUDWithMessage shows an animated Progress HUD with the message and details provided.
 	*/
-	public func showHUDWithMessage(message:String?, details:String? = nil,
+	public func showHUDWithMessage(message:String?,
+			details:String? = nil,
 			closeMode:CloseMode = .NoAutoclose(false),
 			spinnerMode:SpinnerMode = .IndeterminateSpinner) {
 
-		synchronized(Lock.token) {
+		synchronized(BaseWidgetHudLock) {
 			if MBProgressHUDInstance.instance == nil {
 				MBProgressHUDInstance.instance =
 					MBProgressHUD.showHUDAddedTo(self.rootView(self), animated:true)
@@ -168,15 +177,18 @@ extension BaseWidget {
 	}
 
 	/*
-	 * hideHUDWithMessage hides an existing animated Progress HUD displaying the message and details provided first for
-	 * a few seconds, calculated based on the length of the message.
+	 * hideHUDWithMessage hides an existing animated Progress HUD displaying the message and
+	 * details provided first for a few seconds, calculated based on the length of the message.
 	*/
 	public func hideHUDWithMessage(message:String, details:String? = nil) {
-		showHUDWithMessage(message, details:details, closeMode:.AutocloseComputedDelay(true), spinnerMode:.NoSpinner)
+		showHUDWithMessage(message,
+				details:details,
+				closeMode:.AutocloseComputedDelay(true),
+				spinnerMode:.NoSpinner)
 	}
 
 	public func hideHUD() {
-		synchronized(Lock.token) {
+		synchronized(BaseWidgetHudLock) {
 			if let instance = MBProgressHUDInstance.instance {
 				instance.hide(true)
 				MBProgressHUDInstance.instance = nil

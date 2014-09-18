@@ -13,14 +13,18 @@
 */
 import UIKit
 
+
 public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell_default {
 
-	@IBOutlet var stepper:UIStepper?
+	@IBOutlet internal var stepper:UIStepper?
 
-	@IBAction func stepperChanged(sender: AnyObject) {
+	@IBAction private func stepperChanged(sender: AnyObject) {
 		element!.currentValue = NSDecimalNumber(double: stepper!.value)
 		textField?.text = element!.currentStringValue
 	}
+
+
+	//MARK: DDLBaseElementTextFieldTableCell
 
 	override public func awakeFromNib() {
 		super.awakeFromNib()
@@ -28,7 +32,7 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 		stepper?.maximumValue = Double(UInt16.max)
 	}
 
-	override func onChangedElement() {
+	override internal func onChangedElement() {
 		super.onChangedElement()
 
 		if let numberElement = element as? DDLElementNumber {
@@ -39,9 +43,12 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 		}
 	}
 
-	override public func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+	override public func textField(textField: UITextField!,
+			shouldChangeCharactersInRange range: NSRange,
+			replacementString string: String!) -> Bool {
 
-		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
+		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range,
+				withString:string)
 
 		if newText != "" {
 			element!.currentStringValue = newText
@@ -52,8 +59,13 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 
 		stepper?.value = Double(element!.currentValue as NSNumber)
 
-		return super.textField(textField, shouldChangeCharactersInRange: range, replacementString: string)
+		return super.textField(textField,
+				shouldChangeCharactersInRange: range,
+				replacementString: string)
 	}
+
+
+	//MARK: UITextFieldDelegate
 
 	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
 		return nextCellResponder(textField)

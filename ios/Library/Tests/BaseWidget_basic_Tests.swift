@@ -13,6 +13,7 @@
  */
 import XCTest
 
+
 class BaseWidget_basic_Tests: XCTestCase {
 
 	var widget:SignUpWidget?
@@ -28,7 +29,7 @@ class BaseWidget_basic_Tests: XCTestCase {
 	}
 
 	func test_WidgetName_ShouldReturnTheCorrectName() {
-		XCTAssertEqual("SignUp", widget!.widgetName())
+		XCTAssertEqual("SignUp", widget!.widgetName)
 	}
 
 }

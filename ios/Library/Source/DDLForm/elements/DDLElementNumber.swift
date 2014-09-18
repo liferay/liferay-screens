@@ -13,16 +13,18 @@
 */
 import Foundation
 
+
 public class DDLElementNumber : DDLElement {
 
 	public var maximumDecimalDigits = 2
 	public var minimumDecimalDigits = 2
 
 	public var isDecimal:Bool {
-		get {
-			return dataType != DDLElementDataType.DDLInteger
-		}
+		return dataType != DataType.DDLInteger
 	}
+
+
+	//MARK: DDLElement
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		var result:NSNumber?
@@ -45,7 +47,7 @@ public class DDLElementNumber : DDLElement {
 		return result
 	}
 
-	override func convert(fromCurrentValue value: AnyObject?) -> String? {
+	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		var result: String?
 
 		if let numberValue = value as? NSNumber {
@@ -66,7 +68,7 @@ public class DDLElementNumber : DDLElement {
 		return result
 	}
 
-	override func onChangedCurrentValue() {
+	override internal func onChangedCurrentValue() {
 		if !isDecimal && currentValue is NSDecimalNumber {
 			let decimal = (currentValue as NSDecimalNumber).doubleValue
 			currentValue = NSNumber(double: decimal + 0.5).integerValue

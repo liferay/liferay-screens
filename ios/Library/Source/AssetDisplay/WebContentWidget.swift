@@ -13,19 +13,52 @@
 */
 import UIKit
 
-@objc protocol WebContentWidgetDelegate {
+
+@objc public protocol WebContentWidgetDelegate {
 
 	optional func onWebContentResponse(html:String)
 	optional func onWebContentError(error: NSError)
 
 }
 
+
 @IBDesignable public class WebContentWidget: BaseWidget {
 
-	@IBInspectable var groupId: Int = 0
-	@IBInspectable var articleId: String = ""
+	@IBInspectable public var groupId = 0
+	@IBInspectable public var articleId = ""
 
-	@IBOutlet var delegate: WebContentWidgetDelegate?
+	@IBOutlet public var delegate: WebContentWidgetDelegate?
+
+	internal var webContentView: WebContentView {
+		return widgetView as WebContentView
+	}
+
+
+	//MARK: BaseWidget
+
+	override internal func onServerError(error: NSError) {
+		delegate?.onWebContentError?(error)
+
+		finishOperationWithError(error, message:"Error requesting password!")
+	}
+
+	override internal func onServerResult(result: [String:AnyObject]) {
+		if let responseValue:AnyObject = result["result"] {
+			let htmlContent = responseValue as String
+
+			delegate?.onWebContentResponse?(htmlContent)
+
+			webContentView.setHtmlContent(htmlContent)
+
+			finishOperation()
+		}
+		else {
+			finishOperationWithMessage("An error happened", details: "Can't load the content")
+		}
+	}
+
+
+	//MARK: Public methods
 
 	public func loadWebContent() -> Bool {
 		if LiferayContext.instance.currentSession == nil {
@@ -61,31 +94,4 @@ import UIKit
 		return true
 	}
 
-
-	// MARK: BaseWidget METHODS
-
-	override internal func onServerError(error: NSError) {
-		delegate?.onWebContentError?(error)
-
-		finishOperationWithError(error, message:"Error requesting password!")
-	}
-
-	override internal func onServerResult(result: [String:AnyObject]) {
-		if let responseValue:AnyObject = result["result"] {
-			let htmlContent = responseValue as String
-
-			delegate?.onWebContentResponse?(htmlContent)
-
-			webContentView().setHtmlContent(htmlContent)
-
-			finishOperation()
-		}
-		else {
-			finishOperationWithMessage("An error happened", details: "Can't load the content")
-		}
-	}
-
-	internal func webContentView() -> WebContentView {
-		return widgetView as WebContentView
-	}
 }

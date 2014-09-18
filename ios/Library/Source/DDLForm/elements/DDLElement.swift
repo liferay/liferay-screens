@@ -13,127 +13,19 @@
 */
 import Foundation
 
-public enum DDLElementDataType: String {
-
-	case DDLBoolean = "boolean"
-	case DDLString = "string"
-	case DDLDate = "date"
-	case DDLInteger = "integer"
-	case DDLNumber = "number"
-	case DDLDouble = "double"
-	case DDLDocument = "document-library"
-	case Unsupported = ""
-
-	public static func from(#xmlElement:SMXMLElement) -> DDLElementDataType {
-		return fromRaw(xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
-	}
-
-	public func createElement(#attributes:[String:String], localized:[String:AnyObject]) -> DDLElement? {
-		switch self {
-		case .DDLBoolean:
-			return DDLElementBoolean(attributes:attributes, localized:localized)
-		case .DDLString:
-			let type = DDLElementEditor.from(attributes: attributes)
-
-			if type == .Select || type == .Radio {
-				return DDLElementStringWithOptions(attributes:attributes, localized:localized)
-			}
-			else {
-				return DDLElementString(attributes:attributes, localized:localized)
-			}
-		case .DDLDate:
-			return DDLElementDate(attributes:attributes, localized:localized)
-		case .DDLInteger, .DDLNumber, .DDLDouble:
-			return DDLElementNumber(attributes:attributes, localized:localized)
-		case .DDLDocument:
-			return DDLElementDocument(attributes:attributes, localized:localized)
-		default:
-			return nil
-		}
-	}
-}
-
-
-public enum DDLElementEditor: String {
-
-	case Checkbox = "checkbox"
-	case Text = "text"
-	case Textarea = "textarea"
-	case Select = "select"
-	case Radio = "radio"
-	case Date = "ddm-date"
-	case Number = "number"
-	case Document = "ddm-documentlibrary"
-	case Unsupported = ""
-
-	public static func from(#xmlElement:SMXMLElement) -> DDLElementEditor {
-		return from(attributeValue:(xmlElement.attributeNamed("type") ?? ""))
-	}
-
-	public static func from(#attributes:[String:String]) -> DDLElementEditor {
-		return from(attributeValue:(attributes["type"] ?? ""))
-	}
-
-	public static func from(#attributeValue:String) -> DDLElementEditor {
-		var result:DDLElementEditor = .Unsupported
-
-		// hack to convert ddm-integer, ddm-number and ddm-decimal to just number
-		switch attributeValue {
-			case "ddm-integer", "ddm-number", "ddm-decimal":
-				result = .Number
-			default:
-				result = fromRaw(attributeValue) ?? .Unsupported
-		}
-
-		return result
-	}
-
-	public static func all() -> [DDLElementEditor] {
-		return [Checkbox, Text, Textarea, Select, Radio, Date, Number, Document]
-	}
-
-	public func toCapitalizedName() -> String {
-		var typeName = toRaw()
-
-		// hack for names prefixed with ddm
-		if typeName.hasPrefix("ddm-") {
-			let wholeRange = Range<String.Index>(
-					start: typeName.startIndex,
-					end: typeName.endIndex)
-
-			typeName = typeName.stringByReplacingOccurrencesOfString("ddm-", withString: "", options: .CaseInsensitiveSearch, range: wholeRange)
-		}
-
-		// Capitalize first char
-
-		let secondCharIndex = typeName.startIndex.successor()
-
-		return typeName.substringToIndex(secondCharIndex).uppercaseString + typeName.substringFromIndex(secondCharIndex)
-	}
-
-	public func registerHeight(height:CGFloat) {
-		DDLElementEditor.elementEditorHeight[self] = height
-	}
-
-	public var registeredHeight: CGFloat {
-		get {
-			return DDLElementEditor.elementEditorHeight[self] ?? 0
-		}
-	}
-
-	private static var elementEditorHeight: [DDLElementEditor:CGFloat] = [:]
-
-}
-
 
 @objc public class DDLElement: Equatable {
+
+	public var currentHeight:CGFloat = 0
+
+	public var validatedClosure: (Bool -> Void)?
+	public var lastValidationResult:Bool?
 
 	public var currentValue:AnyObject? {
 		didSet {
 			onChangedCurrentValue()
 		}
 	}
-	public var currentHeight:CGFloat = 0
 
 	public var currentStringValue:String? {
 		get {
@@ -144,12 +36,8 @@ public enum DDLElementEditor: String {
 		}
 	}
 
-	public var validatedClosure: ((Bool) -> ())?
-
-	public var lastValidationResult:Bool?
-
-	internal(set) var dataType:DDLElementDataType
-	internal(set) var editorType:DDLElementEditor
+	internal(set) var dataType:DataType
+	internal(set) var editorType:Editor
 
 	internal(set) var name:String
 
@@ -166,8 +54,8 @@ public enum DDLElementEditor: String {
 
 
 	public init(attributes:[String:String], localized:[String:AnyObject]) {
-		dataType = DDLElementDataType.fromRaw(attributes["dataType"] ?? "") ?? .Unsupported
-		editorType = DDLElementEditor.from(attributes: attributes)
+		dataType = DataType.fromRaw(attributes["dataType"] ?? "") ?? .Unsupported
+		editorType = Editor.from(attributes: attributes)
 		name = attributes["name"] ?? ""
 
 		readOnly = Bool.from(string: attributes["readOnly"] ?? "false")
@@ -199,6 +87,9 @@ public enum DDLElementEditor: String {
 		currentHeight = editorType.registeredHeight
 	}
 
+
+	//MARK: Internal methods
+
 	internal func doValidate() -> Bool {
 		return true
 	}
@@ -217,7 +108,7 @@ public enum DDLElementEditor: String {
 }
 
 
-// MARK Equatable
+//MARK: Equatable
 
 public func ==(left: DDLElement, right: DDLElement) -> Bool {
 	return left.name == right.name

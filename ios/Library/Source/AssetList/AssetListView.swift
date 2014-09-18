@@ -13,7 +13,10 @@
 */
 import UIKit
 
+
 public class AssetListView: BaseWidgetView {
+
+	public var entryCount:Int = 0
 
 	public var entries:[AssetEntry?] = [] {
 		didSet {
@@ -21,10 +24,10 @@ public class AssetListView: BaseWidgetView {
 		}
 	}
 
-	public var entryCount:Int = 0
+	internal var onSelectedEntryClosure: (AssetEntry -> Void)?
 
-	internal var onSelectedEntryClosure: ((AssetEntry) -> ())?
-	internal var fetchPageForRow: ((Int) -> ())?
+	internal var fetchPageForRow: (Int -> Void)?
+
 
 	internal func onChangedEntries() {
 	}

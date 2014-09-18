@@ -13,6 +13,7 @@
 */
 import Foundation
 
+
 public class DDLParser {
 
 	public var xml:String?
@@ -28,7 +29,7 @@ public class DDLParser {
 	public func parse() -> [DDLElement]? {
 		var result:[DDLElement]? = nil
 
-		let xmlString = self.xml as NSString?
+		let xmlString = xml as NSString?
 
 		if let xmlValue = xmlString {
 			let data = xmlValue.dataUsingEncoding(NSUTF8StringEncoding)
@@ -43,9 +44,13 @@ public class DDLParser {
 		return result
 	}
 
+
+	//MARK: Private methods
+
 	private func processDocument(document:SMXMLDocument) -> [DDLElement]? {
 		availableLocales = processAvailableLocales(document)
-		defaultLocale = NSLocale(localeIdentifier:document.root?.attributeNamed("default-locale") ?? "en_US")
+		defaultLocale = NSLocale(
+				localeIdentifier:document.root?.attributeNamed("default-locale") ?? "en_US")
 
 		var result:[DDLElement]?
 
@@ -65,11 +70,13 @@ public class DDLParser {
 	private func createFormElement(xmlElement:SMXMLElement) -> DDLElement? {
 		var result:DDLElement?
 
-		let dataType = DDLElementDataType.from(xmlElement:xmlElement)
+		let dataType = DDLElement.DataType.from(xmlElement:xmlElement)
 
 		let localizedMetadata = processLocalizedMetadata(xmlElement)
 
-		return dataType.createElement(attributes:xmlElement.attributes as [String:String], localized:localizedMetadata)
+		return dataType.createElement(
+				attributes:xmlElement.attributes as [String:String],
+				localized:localizedMetadata)
 	}
 
 	private func processLocalizedMetadata(dynamicElement:SMXMLElement) -> [String:AnyObject] {
@@ -84,7 +91,9 @@ public class DDLParser {
 		func findOptions() -> [[String:AnyObject]]? {
 			var options:[[String:AnyObject]] = []
 
-			let optionElements = childrenWithAttribute("type", value: "option", parent: dynamicElement)
+			let optionElements = childrenWithAttribute("type",
+					value: "option",
+					parent: dynamicElement)
 			
 			for optionElement in optionElements {
 				var option:[String:AnyObject] = [:]
@@ -154,7 +163,9 @@ public class DDLParser {
 		}
 		else {
 			if currentCountryCode != nil {
-				if let metadataElement = findElementWithAttribute("locale", value:currentLanguageCode, elements:metadataElements!) {
+				if let metadataElement = findElementWithAttribute("locale",
+						value:currentLanguageCode,
+						elements:metadataElements!) {
 					// case 'a2'
 
 					resultElement = metadataElement
@@ -187,7 +198,9 @@ public class DDLParser {
 		return resultElement
 	}
 
-	private func childrenWithAttribute(attribute:String, value:String, parent:SMXMLElement) -> [SMXMLElement] {
+	private func childrenWithAttribute(attribute:String, value:String, parent:SMXMLElement) ->
+			[SMXMLElement] {
+
 		var result:[SMXMLElement] = []
 
 		for element in parent.children {
@@ -201,7 +214,8 @@ public class DDLParser {
 		return result
 	}
 
-	private func findElementWithAttribute(attribute:String, value:String, elements:[SMXMLElement]) -> SMXMLElement? {
+	private func findElementWithAttribute(attribute:String, value:String, elements:[SMXMLElement])
+			-> SMXMLElement? {
 
 		for element in elements {
 			let attrValue = element.attributeNamed(attribute)
@@ -220,7 +234,8 @@ public class DDLParser {
 			let locales = availableLocales.componentsSeparatedByString(",")
 
 			for locale in locales {
-				let localeIdentifier = locale.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+				let localeIdentifier = locale.stringByTrimmingCharactersInSet(
+						NSCharacterSet.whitespaceCharacterSet())
 				result.append(NSLocale(localeIdentifier:localeIdentifier))
 			}
 		}
@@ -229,4 +244,3 @@ public class DDLParser {
 	}
 
 }
-

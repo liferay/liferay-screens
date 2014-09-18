@@ -13,6 +13,7 @@
  */
 #import "UIImage+Themes.h"
 
+
 @implementation UIImage (Themes)
 
 - (BOOL)isBinaryEquals:(UIImage *)otherImage {

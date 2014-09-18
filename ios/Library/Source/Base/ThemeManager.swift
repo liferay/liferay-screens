@@ -13,21 +13,25 @@
 */
 import Foundation
 
+
 public class ThemeManager: NSObject {
+
+	private(set) var installedThemes:[String] = []
+
 
 	//MARK: Singleton
 
-	class func instance() -> ThemeManager {
-		struct Static {
+	class var instance: ThemeManager {
+		struct Singleton {
 			static var instance: ThemeManager? = nil
 			static var onceToken: dispatch_once_t = 0
 		}
 
-		dispatch_once(&Static.onceToken) {
-			Static.instance = self()
+		dispatch_once(&Singleton.onceToken) {
+			Singleton.instance = self()
 		}
 
-		return Static.instance!
+		return Singleton.instance!
 	}
 
 	required override public init() {
@@ -35,12 +39,11 @@ public class ThemeManager: NSObject {
 		loadThemes()
 	}
 
-	public func installedThemes() -> [String] {
-		return _installedThemes
-	}
+
+	//MARK: Internal methods
 
 	internal func loadThemes() {
-		_installedThemes.removeAll(keepCapacity: true)
+		installedThemes.removeAll(keepCapacity: true)
 
 		let bundle = NSBundle(forClass:self.dynamicType)
 
@@ -49,14 +52,13 @@ public class ThemeManager: NSObject {
 		let widgetNames = pngFileNames.map {(var fileName) -> String in
 			let prefixRange = NSMakeRange(0, 6)
 
-			var name = (fileName as NSString).stringByReplacingCharactersInRange(prefixRange, withString:"").stringByDeletingPathExtension
+			var name = (fileName as NSString).stringByReplacingCharactersInRange(prefixRange,
+					withString:"").stringByDeletingPathExtension
 
 			return name.lowercaseString
 		}
 
-		_installedThemes += widgetNames
+		installedThemes += widgetNames
 	}
-
-	private var _installedThemes:[String] = []
 
 }
