@@ -30,15 +30,43 @@ public class SignUpView_flat7: SignUpView_default {
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
-		titleLabel!.text = NSLocalizedString("flat7-signup-title", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		subtitleLabel!.text = NSLocalizedString("flat7-signup-subtitle", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		firstNamePlaceholder!.text = NSLocalizedString("flat7-signup-first-name", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		lastNamePlaceholder!.text = NSLocalizedString("flat7-signup-last-name", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		emailAddressPlaceholder!.text = NSLocalizedString("flat7-signup-email", tableName: "flat7", bundle: bundle, value: "", comment: "")
-		passwordPlaceholder!.text = NSLocalizedString("flat7-signup-password", tableName: "flat7", bundle: bundle, value: "", comment: "")
+		titleLabel!.text = NSLocalizedString("flat7-signup-title",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+		subtitleLabel!.text = NSLocalizedString("flat7-signup-subtitle",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+		firstNamePlaceholder!.text = NSLocalizedString("flat7-signup-first-name",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+		lastNamePlaceholder!.text = NSLocalizedString("flat7-signup-last-name",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+		emailAddressPlaceholder!.text = NSLocalizedString("flat7-signup-email",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
+		passwordPlaceholder!.text = NSLocalizedString("flat7-signup-password",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
 
 		let str = signUpButton!.attributedTitleForState(UIControlState.Normal)
-		let translated = NSLocalizedString("flat7-signup-button", tableName: "flat7", bundle: bundle, value: "", comment: "")
+		let translated = NSLocalizedString("flat7-signup-button",
+				tableName: "flat7",
+				bundle: bundle,
+				value: "",
+				comment: "")
 		let newStr = NSMutableAttributedString(attributedString: str!)
 		newStr.replaceCharactersInRange(NSMakeRange(0, str!.length), withString:translated)
 		signUpButton!.setAttributedTitle(newStr, forState: UIControlState.Normal)
@@ -52,9 +80,11 @@ public class SignUpView_flat7: SignUpView_default {
 
 	//MARK: UITextFieldDelegate
 
+
 	internal func textField(textField: UITextField!,
 			shouldChangeCharactersInRange range: NSRange,
-			replacementString string: String!) -> Bool {
+			replacementString string: String!)
+			-> Bool {
 
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
 

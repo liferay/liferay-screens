@@ -71,7 +71,8 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 	
 	internal func textField(textField: UITextField!,
 			shouldChangeCharactersInRange range: NSRange,
-			replacementString string: String!) -> Bool {
+			replacementString string: String!)
+			-> Bool {
 
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range,
 				withString:string)

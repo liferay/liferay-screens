@@ -36,7 +36,8 @@ public class AssetListTableView: AssetListView, UITableViewDataSource, UITableVi
 
 	public func tableView(tableView: UITableView,
 			cellForRowAtIndexPath
-			indexPath: NSIndexPath) -> UITableViewCell {
+			indexPath: NSIndexPath)
+			-> UITableViewCell {
 
 		var cell = tableView.dequeueReusableCellWithIdentifier("assetCell") as? UITableViewCell
 

@@ -103,7 +103,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	}
 
 	public func tableView(tableView: UITableView,
-			cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+			cellForRowAtIndexPath indexPath: NSIndexPath)
+			-> UITableViewCell {
 
 		var cell:DDLElementTableCell?
 		let row = indexPath.row
@@ -135,7 +136,8 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	}
 
 	public func tableView(tableView: UITableView,
-			heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+			heightForRowAtIndexPath indexPath: NSIndexPath)
+			-> CGFloat {
 
 		let row = indexPath.row
 

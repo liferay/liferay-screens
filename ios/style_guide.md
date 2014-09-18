@@ -78,7 +78,14 @@
 
 | Preferred|Not Preferred|
 |----------|-------------| 
-| <pre>fooWithInt(1,<br>        arg2: 2,<br>        arg3: 3,<br>        arg4: 4,) | <pre>fooWithInt(1, arg2: 2, arg3: 3<br>        arg4:4)</pre><pre>fooWithInt(1,<br>        arg2: 2, arg3: 3, arg4: 4) |
+| <pre>fooWithInt(1,<br>        arg2: 2,<br>        arg3: 3,<br>        arg4: 4) | <pre>fooWithInt(1, arg2: 2, arg3: 3<br>        arg4:4)</pre><pre>fooWithInt(1,<br>        arg2: 2, arg3: 3, arg4: 4) |
+
+* In methods declaration the return type should be in its own line, unless it fits in a single line together with all the parameters
+
+| Preferred|Not Preferred|
+|----------|-------------| 
+| <pre>fooWithInt(1,arg2: 2) -> Bool</pre> <pre>fooWithInt(1,<br>        arg2: 2,<br>        arg3: 3,<br>        arg4: 4) <br>        -> Bool| <pre>fooWithInt(1, arg2: 2, arg3: 3<br>        arg4:4) -> Bool</pre><pre>fooWithInt(1,<br>        arg2: 2,<br>        arg3: 3,<br>        arg4: 4) -> Bool  |
+
 
 * When break a line, try to do it without cutting expressions
 

@@ -20,7 +20,8 @@ public class DDLElementTextTableCell_default: DDLBaseElementTextFieldTableCell_d
 
 	override public func textField(textField: UITextField!,
 			shouldChangeCharactersInRange range: NSRange,
-			replacementString string: String!) -> Bool {
+			replacementString string: String!)
+			-> Bool {
 
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range,
 				withString:string)

@@ -119,7 +119,8 @@ import UIKit
 
 }
 
-func resetPasswordWithEmail(email:String, service:LRMobilewidgetsuserService_v62,
+func resetPasswordWithEmail(email:String,
+		service:LRMobilewidgetsuserService_v62,
 		onError:(NSError) -> Void) {
 
 	var outError: NSError?
@@ -134,7 +135,8 @@ func resetPasswordWithEmail(email:String, service:LRMobilewidgetsuserService_v62
 	}
 }
 
-func resetPasswordWithScreenName(screenName:String, service:LRMobilewidgetsuserService_v62,
+func resetPasswordWithScreenName(screenName:String,
+		service:LRMobilewidgetsuserService_v62,
 		onError:(NSError) -> Void) {
 
 	var outError: NSError?
@@ -149,7 +151,8 @@ func resetPasswordWithScreenName(screenName:String, service:LRMobilewidgetsuserS
 	}
 }
 
-func resetPasswordWithUserId(userId:String, service:LRMobilewidgetsuserService_v62,
+func resetPasswordWithUserId(userId:String,
+		service:LRMobilewidgetsuserService_v62,
 		onError:(NSError) -> Void) {
 
 	let userIdValue = (userId.toInt()! as NSNumber).longLongValue
