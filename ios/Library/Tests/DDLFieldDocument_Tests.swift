@@ -140,7 +140,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 		let url = NSBundle(forClass: self.dynamicType).URLForResource("default-field",
 				withExtension: "png")
 		let attributes =
-				NSFileManager.defaultManager().attributesOfItemAtPath(url?.path, error: nil)
+				NSFileManager.defaultManager().attributesOfItemAtPath(url!.path!, error: nil)
 		let imageLength = attributes![NSFileSize] as NSNumber
 
 		docField.currentValue = url
