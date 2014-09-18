@@ -14,17 +14,17 @@
 import UIKit
 
 
-public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell_default {
+public class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
 	@IBOutlet internal var stepper:UIStepper?
 
 	@IBAction private func stepperChanged(sender: AnyObject) {
-		element!.currentValue = NSDecimalNumber(double: stepper!.value)
-		textField?.text = element!.currentStringValue
+		field!.currentValue = NSDecimalNumber(double: stepper!.value)
+		textField?.text = field!.currentStringValue
 	}
 
 
-	//MARK: DDLBaseElementTextFieldTableCell
+	//MARK: DDLBaseFieldTextboxTableCell
 
 	override public func awakeFromNib() {
 		super.awakeFromNib()
@@ -32,14 +32,14 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 		stepper?.maximumValue = Double(UInt16.max)
 	}
 
-	override internal func onChangedElement() {
-		super.onChangedElement()
+	override internal func onChangedField() {
+		super.onChangedField()
 
-		if let numberElement = element as? DDLElementNumber {
-			if let currentValue = numberElement.currentValue as? NSNumber {
+		if let numberField = field as? DDLFieldNumber {
+			if let currentValue = numberField.currentValue as? NSNumber {
 				stepper?.value = currentValue
 			}
-			textField!.keyboardType = (numberElement.isDecimal) ? .DecimalPad : .NumberPad
+			textField!.keyboardType = (numberField.isDecimal) ? .DecimalPad : .NumberPad
 		}
 	}
 
@@ -51,13 +51,13 @@ public class DDLElementNumberTableCell_default: DDLBaseElementTextFieldTableCell
 				withString:string)
 
 		if newText != "" {
-			element!.currentStringValue = newText
+			field!.currentStringValue = newText
 		}
 		else {
-			element!.currentValue = NSDecimalNumber(double: 0)
+			field!.currentValue = NSDecimalNumber(double: 0)
 		}
 
-		stepper?.value = Double(element!.currentValue as NSNumber)
+		stepper?.value = Double(field!.currentValue as NSNumber)
 
 		return super.textField(textField,
 				shouldChangeCharactersInRange: range,

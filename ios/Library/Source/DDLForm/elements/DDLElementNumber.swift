@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class DDLElementNumber : DDLElement {
+public class DDLFieldNumber : DDLField {
 
 	public var maximumDecimalDigits = 2
 	public var minimumDecimalDigits = 2
@@ -24,7 +24,7 @@ public class DDLElementNumber : DDLElement {
 	}
 
 
-	//MARK: DDLElement
+	//MARK: DDLField
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		var result:NSNumber?

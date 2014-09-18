@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
+public class DDLFieldCheckboxTableCell_default: DDLFieldTableCell {
 
 	@IBOutlet internal var switchView: UISwitch?
 	@IBOutlet internal var label: UILabel?
@@ -23,28 +23,28 @@ public class DDLElementCheckboxTableCell_default: DDLElementTableCell {
 	//MARK: Actions
 
 	@IBAction private func switchValueChanged(sender: AnyObject) {
-		element?.currentValue = switchView?.on
+		field?.currentValue = switchView?.on
 
-		if element!.lastValidationResult != nil && !element!.lastValidationResult! {
-			element!.lastValidationResult = true
+		if field!.lastValidationResult != nil && !field!.lastValidationResult! {
+			field!.lastValidationResult = true
 			onValidated(true)
 		}
 	}
 
 
-	//MARK: DDLElementTableCell
+	//MARK: DDLFieldTableCell
 
 	override public func canBecomeFirstResponder() -> Bool {
 		return false
 	}
 
-	override internal func onChangedElement() {
-		if let boolElement = element as? DDLElementBoolean {
-			switchView?.on = boolElement.currentValue as Bool
-			label?.text = boolElement.label
+	override internal func onChangedField() {
+		if let boolField = field as? DDLFieldBoolean {
+			switchView?.on = boolField.currentValue as Bool
+			label?.text = boolField.label
 
-			if boolElement.lastValidationResult != nil {
-				onValidated(boolElement.lastValidationResult!)
+			if boolField.lastValidationResult != nil {
+				onValidated(boolField.lastValidationResult!)
 			}
 		}
 	}

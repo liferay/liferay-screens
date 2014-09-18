@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class DDLElementDate : DDLElement {
+public class DDLFieldDate : DDLField {
 
 	public var currentDateLabel: String? {
 		var result: String?
@@ -44,7 +44,7 @@ public class DDLElementDate : DDLElement {
 	}
 
 
-	//MARK: DDLElement
+	//MARK: DDLField
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		if let stringValue = value {

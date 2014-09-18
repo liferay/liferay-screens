@@ -17,7 +17,7 @@ public class FormViewController: UIViewController, DDLFormWidgetDelegate {
 		widget!.delegate = self
 	}
 
-	public func onFormLoaded(elements: [DDLElement]) {
+	public func onFormLoaded(fields: [DDLField]) {
 		widget!.becomeFirstResponder()
 	}
 

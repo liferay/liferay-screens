@@ -15,7 +15,7 @@ import UIKit
 import MobileCoreServices
 
 
-public class DDLElementDocumentlibraryPresenterViewController_default:
+public class DDLFieldDocumentlibraryPresenterViewController_default:
 		UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 	public var selectedDocumentClosure: ((UIImage?, NSURL?) -> Void)?
@@ -24,7 +24,7 @@ public class DDLElementDocumentlibraryPresenterViewController_default:
 
 	override public init() {
 		super.init(
-			nibName: "DDLElementDocumentlibraryPresenterViewController-default",
+			nibName: "DDLFieldDocumentlibraryPresenterViewController-default",
 			bundle: nil)
 
 		imagePicker.delegate = self

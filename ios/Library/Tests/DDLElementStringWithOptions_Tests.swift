@@ -14,7 +14,7 @@
 import XCTest
 
 
-class DDLElementStringWithOptions_Tests: XCTestCase {
+class DDLFieldStringWithOptions_Tests: XCTestCase {
 
 	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
 
@@ -29,47 +29,47 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 	func test_Parse_ShouldExtractValues() {
 		parser.xml = selectWithPredefinedValues
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		XCTAssertTrue(elements != nil)
-		XCTAssertEqual(1, elements!.count)
-		XCTAssertTrue(elements![0] is DDLElementStringWithOptions)
+		XCTAssertTrue(fields != nil)
+		XCTAssertEqual(1, fields!.count)
+		XCTAssertTrue(fields![0] is DDLFieldStringWithOptions)
 
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		XCTAssertEqual(DDLElement.DataType.DDLString, stringElement.dataType)
-		XCTAssertEqual(DDLElement.Editor.Select, stringElement.editorType)
-		XCTAssertEqual("A_Select", stringElement.name)
-		XCTAssertEqual("A Select", stringElement.label)
-		XCTAssertTrue(stringElement.multiple)
-		XCTAssertFalse(stringElement.readOnly)
-		XCTAssertTrue(stringElement.repeatable)
-		XCTAssertTrue(stringElement.required)
-		XCTAssertTrue(stringElement.showLabel)
+		XCTAssertEqual(DDLField.DataType.DDLString, stringField.dataType)
+		XCTAssertEqual(DDLField.Editor.Select, stringField.editorType)
+		XCTAssertEqual("A_Select", stringField.name)
+		XCTAssertEqual("A Select", stringField.label)
+		XCTAssertTrue(stringField.multiple)
+		XCTAssertFalse(stringField.readOnly)
+		XCTAssertTrue(stringField.repeatable)
+		XCTAssertTrue(stringField.required)
+		XCTAssertTrue(stringField.showLabel)
 	}
 
 	func test_Parse_ShouldExtractOptions() {
 		parser.xml = selectWithPredefinedValues
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		XCTAssertEqual(3, stringElement.options.count)
+		XCTAssertEqual(3, stringField.options.count)
 
-		var option = stringElement.options[0]
+		var option = stringField.options[0]
 
 		XCTAssertEqual("option_1", option.name)
 		XCTAssertEqual("value 1", option.value)
 		XCTAssertEqual("Option 1", option.label)
 
-		option = stringElement.options[1]
+		option = stringField.options[1]
 
 		XCTAssertEqual("option_2", option.name)
 		XCTAssertEqual("value 2", option.value)
 		XCTAssertEqual("Option 2", option.label)
 
-		option = stringElement.options[2]
+		option = stringField.options[2]
 
 		XCTAssertEqual("option_3", option.name)
 		XCTAssertEqual("value 3", option.value)
@@ -79,12 +79,12 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 	func test_Parse_ShouldExtractPredefinedOptions() {
 		parser.xml = selectWithPredefinedValues
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		XCTAssertTrue(stringElement.predefinedValue is [DDLElementStringWithOptions.Option])
-		let predefinedOptions = stringElement.predefinedValue as [DDLElementStringWithOptions.Option]
+		XCTAssertTrue(stringField.predefinedValue is [DDLFieldStringWithOptions.Option])
+		let predefinedOptions = stringField.predefinedValue as [DDLFieldStringWithOptions.Option]
 
 		//FIXME only support one predefined value
 		XCTAssertEqual(1, predefinedOptions.count)
@@ -99,15 +99,15 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 	func test_CurrentValue_ShouldBeTheSameAsPredefinedValue_WhenTheParsingIsDone() {
 		parser.xml = selectWithPredefinedValues
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		XCTAssertTrue(stringElement.predefinedValue is [DDLElementStringWithOptions.Option])
-		let predefinedOptions = stringElement.predefinedValue as [DDLElementStringWithOptions.Option]
+		XCTAssertTrue(stringField.predefinedValue is [DDLFieldStringWithOptions.Option])
+		let predefinedOptions = stringField.predefinedValue as [DDLFieldStringWithOptions.Option]
 
-		XCTAssertTrue(stringElement.currentValue is [DDLElementStringWithOptions.Option])
-		let currentOptions = stringElement.currentValue as [DDLElementStringWithOptions.Option]
+		XCTAssertTrue(stringField.currentValue is [DDLFieldStringWithOptions.Option])
+		let currentOptions = stringField.currentValue as [DDLFieldStringWithOptions.Option]
 
 		XCTAssertEqual(currentOptions.count, predefinedOptions.count)
 
@@ -123,14 +123,14 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 	func test_CurrentValue_ShouldBeChanged_AfterChangedToExistingOptionLabel() {
 		parser.xml = selectWithPredefinedValues
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		stringElement.currentValue = "Option 3"
+		stringField.currentValue = "Option 3"
 
-		XCTAssertTrue(stringElement.currentValue is [DDLElementStringWithOptions.Option])
-		let currentOptions = stringElement.currentValue as [DDLElementStringWithOptions.Option]
+		XCTAssertTrue(stringField.currentValue is [DDLFieldStringWithOptions.Option])
+		let currentOptions = stringField.currentValue as [DDLFieldStringWithOptions.Option]
 
 		XCTAssertEqual(1, currentOptions.count)
 
@@ -142,127 +142,127 @@ class DDLElementStringWithOptions_Tests: XCTestCase {
 	func test_CurrentValue_ShouldBeEmpty_AfterChangedToNonExistingOptionLabel() {
 		parser.xml = selectWithPredefinedValues
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		stringElement.currentValue = "this is not a valid option label"
+		stringField.currentValue = "this is not a valid option label"
 
-		XCTAssertTrue(stringElement.currentValue is [DDLElementStringWithOptions.Option])
-		XCTAssertTrue((stringElement.currentValue as [DDLElementStringWithOptions.Option]).isEmpty)
+		XCTAssertTrue(stringField.currentValue is [DDLFieldStringWithOptions.Option])
+		XCTAssertTrue((stringField.currentValue as [DDLFieldStringWithOptions.Option]).isEmpty)
 	}
 
 	func test_CurrenStringValue_ShouldContainTheArrayOfValues() {
 		parser.xml = selectWithPredefinedValues
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		stringElement.currentValue = "Option 3"
+		stringField.currentValue = "Option 3"
 
-		XCTAssertEqual("[\"value 3\"]", stringElement.currentStringValue!)
+		XCTAssertEqual("[\"value 3\"]", stringField.currentStringValue!)
 	}
 
 	func test_CurrenStringValue_ShouldContainEmptyArray_WhenCurrentValueWasSetToEmptyString() {
 		parser.xml = selectWithPredefinedValues
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		stringElement.currentValue = nil
+		stringField.currentValue = nil
 
-		XCTAssertEqual("[]", stringElement.currentStringValue!)
+		XCTAssertEqual("[]", stringField.currentStringValue!)
 	}
 
 	func test_CurrenStringValue_ShouldSupportOptionLabel_WhenSettingTheStringValue() {
 		parser.xml = selectWithPredefinedValues
-		let elements = parser.parse()
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let fields = parser.parse()
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		stringElement.currentStringValue = "Option 3"
+		stringField.currentStringValue = "Option 3"
 
-		XCTAssertEqual("[\"value 3\"]", stringElement.currentStringValue!)
+		XCTAssertEqual("[\"value 3\"]", stringField.currentStringValue!)
 	}
 
 	func test_CurrenStringValue_ShouldSupportOptionValue_WhenSettingTheStringValue() {
 		parser.xml = selectWithPredefinedValues
-		let elements = parser.parse()
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let fields = parser.parse()
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		stringElement.currentStringValue = "value 3"
+		stringField.currentStringValue = "value 3"
 
-		XCTAssertEqual("[\"value 3\"]", stringElement.currentStringValue!)
+		XCTAssertEqual("[\"value 3\"]", stringField.currentStringValue!)
 	}
 
 	func test_CurrenStringValue_ShouldSupportNil_WhenSettingTheStringValue() {
 		parser.xml = selectWithPredefinedValues
-		let elements = parser.parse()
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let fields = parser.parse()
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		stringElement.currentStringValue = nil
+		stringField.currentStringValue = nil
 
-		XCTAssertEqual("[]", stringElement.currentStringValue!)
+		XCTAssertEqual("[]", stringField.currentStringValue!)
 	}
 
 	func test_CurrenStringValue_ShouldSupportNonExistingString_WhenSettingTheStringValue() {
 		parser.xml = selectWithPredefinedValues
-		let elements = parser.parse()
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let fields = parser.parse()
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		stringElement.currentStringValue = "this is neither a value nor a label"
+		stringField.currentStringValue = "this is neither a value nor a label"
 
-		XCTAssertEqual("[]", stringElement.currentStringValue!)
+		XCTAssertEqual("[]", stringField.currentStringValue!)
 	}
 
 	func test_CurrenOptionLabel_ShouldContainTheLabelOfSelectedOption() {
 		parser.xml = selectWithPredefinedValues
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		stringElement.currentValue = "Option 3"
+		stringField.currentValue = "Option 3"
 
-		XCTAssertEqual("Option 3", stringElement.currentOptionLabel)
+		XCTAssertEqual("Option 3", stringField.currentOptionLabel)
 	}
 
 	func test_CurrenOptionLabel_ShouldContainEmptyString_WhenNoOptionSelected() {
 		parser.xml = selectWithPredefinedValues
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		stringElement.currentValue = nil
+		stringField.currentValue = nil
 
-		XCTAssertEqual("", stringElement.currentOptionLabel)
+		XCTAssertEqual("", stringField.currentOptionLabel)
 	}
 
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyString() {
 		parser.xml = selectWithPredefinedValues
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		stringElement.currentValue = nil
+		stringField.currentValue = nil
 
-		XCTAssertFalse(stringElement.validate())
+		XCTAssertFalse(stringField.validate())
 	}
 
 	func test_Validate_ShouldPass_WhenRequiredValueIsNotEmptyString() {
 		parser.xml = selectWithPredefinedValues
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementStringWithOptions
+		let stringField = fields![0] as DDLFieldStringWithOptions
 
-		stringElement.currentValue = "Option 3"
+		stringField.currentValue = "Option 3"
 
-		XCTAssertTrue(stringElement.validate())
+		XCTAssertTrue(stringField.validate())
 	}
 
 

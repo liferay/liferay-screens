@@ -14,7 +14,7 @@
 import XCTest
 
 
-class DDLElementString_Tests: XCTestCase {
+class DDLFieldString_Tests: XCTestCase {
 
 	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
 
@@ -51,49 +51,49 @@ class DDLElementString_Tests: XCTestCase {
 					"</meta-data> " +
 				"</dynamic-element> </root>"
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		XCTAssertTrue(elements != nil)
-		XCTAssertEqual(1, elements!.count)
-		XCTAssertTrue(elements![0] is DDLElementString)
+		XCTAssertTrue(fields != nil)
+		XCTAssertEqual(1, fields!.count)
+		XCTAssertTrue(fields![0] is DDLFieldString)
 
-		let stringElement = elements![0] as DDLElementString
+		let stringField = fields![0] as DDLFieldString
 
-		XCTAssertEqual(DDLElementDataType.DDLString, stringElement.dataType)
-		XCTAssertEqual(DDLElementEditor.Text, stringElement.editorType)
-		XCTAssertEqual("A_Text", stringElement.name)
-		XCTAssertEqual("A Text", stringElement.label)
-		XCTAssertEqual("The tip", stringElement.tip)
-		XCTAssertTrue(stringElement.predefinedValue is String)
-		XCTAssertEqual("predefined text", stringElement.predefinedValue as String)
-		XCTAssertFalse(stringElement.readOnly)
-		XCTAssertTrue(stringElement.repeatable)
-		XCTAssertFalse(stringElement.required)
-		XCTAssertTrue(stringElement.showLabel)
+		XCTAssertEqual(DDLFieldDataType.DDLString, stringField.dataType)
+		XCTAssertEqual(DDLFieldEditor.Text, stringField.editorType)
+		XCTAssertEqual("A_Text", stringField.name)
+		XCTAssertEqual("A Text", stringField.label)
+		XCTAssertEqual("The tip", stringField.tip)
+		XCTAssertTrue(stringField.predefinedValue is String)
+		XCTAssertEqual("predefined text", stringField.predefinedValue as String)
+		XCTAssertFalse(stringField.readOnly)
+		XCTAssertTrue(stringField.repeatable)
+		XCTAssertFalse(stringField.required)
+		XCTAssertTrue(stringField.showLabel)
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyString() {
 		parser.xml = requiredText
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementString
+		let stringField = fields![0] as DDLFieldString
 
-		stringElement.currentValue = ""
+		stringField.currentValue = ""
 
-		XCTAssertFalse(stringElement.validate())
+		XCTAssertFalse(stringField.validate())
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyStringWithSpaces() {
 		parser.xml = requiredText
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementString
+		let stringField = fields![0] as DDLFieldString
 
-		stringElement.currentValue = "  "
+		stringField.currentValue = "  "
 
-		XCTAssertFalse(stringElement.validate())
+		XCTAssertFalse(stringField.validate())
 	}
 
 	private let requiredText =

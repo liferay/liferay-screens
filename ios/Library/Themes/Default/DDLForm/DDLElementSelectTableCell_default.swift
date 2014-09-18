@@ -14,12 +14,12 @@
 import UIKit
 
 
-public class DDLElementSelectTableCell_default: DDLBaseElementTextFieldTableCell_default {
+public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
 	@IBOutlet internal var chooseButton: UIButton? {
 		didSet {
 			chooseButton?.layer.masksToBounds = true
-	        chooseButton?.layer.cornerRadius = DDLElementButtonCornerRadius
+	        chooseButton?.layer.cornerRadius = DDLFieldButtonCornerRadius
 		}
 	}
 
@@ -31,27 +31,27 @@ public class DDLElementSelectTableCell_default: DDLBaseElementTextFieldTableCell
 	}
 
 
-	//MARK: DDLBaseElementTextFieldTableCell
+	//MARK: DDLBaseFieldTextboxTableCell
 
-	override internal func onChangedElement() {
-		super.onChangedElement()
+	override internal func onChangedField() {
+		super.onChangedField()
 
-		if let stringElement = element as? DDLElementStringWithOptions {
-			textField?.text = stringElement.currentOptionLabel
+		if let stringField = field as? DDLFieldStringWithOptions {
+			textField?.text = stringField.currentOptionLabel
 
-			setFieldPresenter(stringElement)
+			setFieldPresenter(stringField)
 		}
 	}
 
 
 	//MARK: Private methods
 
-	private func setFieldPresenter(element:DDLElementStringWithOptions) {
+	private func setFieldPresenter(field:DDLFieldStringWithOptions) {
 
 		func dataSource() -> DTPickerDataSource {
 			var rows:[String] = [""]
 
-			for option in element.options {
+			for option in field.options {
 				rows.append(option.label)
 			}
 
@@ -59,8 +59,8 @@ public class DDLElementSelectTableCell_default: DDLBaseElementTextFieldTableCell
 		}
 
 		func currentValueIndex() -> Int? {
-			for (index,option) in enumerate(element.options) {
-				if option.label == element.currentOptionLabel {
+			for (index,option) in enumerate(field.options) {
+				if option.label == field.currentOptionLabel {
 					return index
 				}
 			}
@@ -74,7 +74,7 @@ public class DDLElementSelectTableCell_default: DDLBaseElementTextFieldTableCell
 			let text = selectedComponents.first?.description as NSString?
 
 			self.textField?.text = text
-			element.currentValue = text
+			field.currentValue = text
 
 			let fullRange = NSMakeRange(0, text!.length)
 

@@ -14,7 +14,7 @@
 import Foundation
 
 
-@objc public class DDLElementDocument : DDLElement {
+@objc public class DDLFieldDocument : DDLField {
 
 	public enum UploadStatus: Hashable, Equatable {
 		case Uploaded([String:AnyObject])
@@ -67,7 +67,7 @@ import Foundation
 	}
 
 
-	//MARK: DDLElement
+	//MARK: DDLField
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		var result:String? = nil
@@ -148,7 +148,7 @@ import Foundation
 
 //MARK: Equatable
 
-public func ==(left: DDLElementDocument.UploadStatus, right: DDLElementDocument.UploadStatus) ->
+public func ==(left: DDLFieldDocument.UploadStatus, right: DDLFieldDocument.UploadStatus) ->
 		Bool {
 
 	return left.hashValue == right.hashValue

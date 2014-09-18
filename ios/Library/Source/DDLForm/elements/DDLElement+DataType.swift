@@ -14,7 +14,7 @@
 import Foundation
 
 
-extension DDLElement {
+extension DDLField {
 
 	public enum DataType: String {
 
@@ -31,31 +31,31 @@ extension DDLElement {
 			return fromRaw(xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 		}
 
-		public func createElement(#attributes:[String:String],
-				localized:[String:AnyObject]) -> DDLElement? {
+		public func createField(#attributes:[String:String],
+				localized:[String:AnyObject]) -> DDLField? {
 
 			switch self {
 				case .DDLBoolean:
-					return DDLElementBoolean(attributes:attributes, localized:localized)
+					return DDLFieldBoolean(attributes:attributes, localized:localized)
 
 				case .DDLString:
-					switch DDLElement.Editor.from(attributes: attributes) {
+					switch DDLField.Editor.from(attributes: attributes) {
 						case .Select, .Radio:
-							return DDLElementStringWithOptions(
+							return DDLFieldStringWithOptions(
 									attributes:attributes,
 									localized:localized)
 						default:
-							return DDLElementString(attributes:attributes, localized:localized)
+							return DDLFieldString(attributes:attributes, localized:localized)
 					}
 
 				case .DDLDate:
-					return DDLElementDate(attributes:attributes, localized:localized)
+					return DDLFieldDate(attributes:attributes, localized:localized)
 
 				case .DDLInteger, .DDLNumber, .DDLDouble:
-					return DDLElementNumber(attributes:attributes, localized:localized)
+					return DDLFieldNumber(attributes:attributes, localized:localized)
 
 				case .DDLDocument:
-					return DDLElementDocument(attributes:attributes, localized:localized)
+					return DDLFieldDocument(attributes:attributes, localized:localized)
 
 				default: ()
 			}

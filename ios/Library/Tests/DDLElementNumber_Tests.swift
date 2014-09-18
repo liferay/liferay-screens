@@ -14,7 +14,7 @@
 import XCTest
 
 
-class DDLElementNumber_Tests: XCTestCase {
+class DDLFieldNumber_Tests: XCTestCase {
 
 	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
 
@@ -26,7 +26,7 @@ class DDLElementNumber_Tests: XCTestCase {
 		super.tearDown()
 	}
 
-	func test_Parse_ShouldExtractValues_WhenElementIsInteger() {
+	func test_Parse_ShouldExtractValues_WhenFieldIsInteger() {
 		parser.xml =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"integer\" " +
@@ -48,18 +48,18 @@ class DDLElementNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		XCTAssertTrue(elements![0] is DDLElementNumber)
-		let numberElement = elements![0] as DDLElementNumber
+		XCTAssertTrue(fields![0] is DDLFieldNumber)
+		let numberField = fields![0] as DDLFieldNumber
 
-		XCTAssertEqual(DDLElement.DataType.DDLInteger, numberElement.dataType)
-		XCTAssertEqual(DDLElement.Editor.Number, numberElement.editorType)
-		XCTAssertTrue(numberElement.predefinedValue is NSInteger)
-		XCTAssertEqual(NSInteger(16), numberElement.predefinedValue as NSInteger)
+		XCTAssertEqual(DDLField.DataType.DDLInteger, numberField.dataType)
+		XCTAssertEqual(DDLField.Editor.Number, numberField.editorType)
+		XCTAssertTrue(numberField.predefinedValue is NSInteger)
+		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as NSInteger)
 	}
 
-	func test_Parse_ShouldExtractValues_WhenElementIsNumber() {
+	func test_Parse_ShouldExtractValues_WhenFieldIsNumber() {
 		parser.xml =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"number\" " +
@@ -81,18 +81,18 @@ class DDLElementNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		XCTAssertTrue(elements![0] is DDLElementNumber)
-		let numberElement = elements![0] as DDLElementNumber
+		XCTAssertTrue(fields![0] is DDLFieldNumber)
+		let numberField = fields![0] as DDLFieldNumber
 
-		XCTAssertEqual(DDLElement.DataType.DDLNumber, numberElement.dataType)
-		XCTAssertEqual(DDLElement.Editor.Number, numberElement.editorType)
-		XCTAssertTrue(numberElement.predefinedValue is NSInteger)
-		XCTAssertEqual(NSInteger(16), numberElement.predefinedValue as NSInteger)
+		XCTAssertEqual(DDLField.DataType.DDLNumber, numberField.dataType)
+		XCTAssertEqual(DDLField.Editor.Number, numberField.editorType)
+		XCTAssertTrue(numberField.predefinedValue is NSInteger)
+		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as NSInteger)
 	}
 
-	func test_Parse_ShouldExtractValues_WhenElementIsDouble() {
+	func test_Parse_ShouldExtractValues_WhenFieldIsDouble() {
 		parser.xml =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"double\" " +
@@ -114,16 +114,16 @@ class DDLElementNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		XCTAssertTrue(elements![0] is DDLElementNumber)
-		let numberElement = elements![0] as DDLElementNumber
+		XCTAssertTrue(fields![0] is DDLFieldNumber)
+		let numberField = fields![0] as DDLFieldNumber
 
-		XCTAssertEqual(DDLElement.DataType.DDLDouble, numberElement.dataType)
-		XCTAssertEqual(DDLElement.Editor.Number, numberElement.editorType)
-		XCTAssertTrue(numberElement.predefinedValue is NSDecimalNumber)
+		XCTAssertEqual(DDLField.DataType.DDLDouble, numberField.dataType)
+		XCTAssertEqual(DDLField.Editor.Number, numberField.editorType)
+		XCTAssertTrue(numberField.predefinedValue is NSDecimalNumber)
 		XCTAssertEqualWithAccuracy(16.05,
-			(numberElement.predefinedValue as NSDecimalNumber).floatValue, 0.001)
+			(numberField.predefinedValue as NSDecimalNumber).floatValue, 0.001)
 	}
 
 	func test_CurrentValue_ShouldTruncateDecimal_WhenOriginalNumberIsInteger() {
@@ -145,13 +145,13 @@ class DDLElementNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
-		let numberElement = elements![0] as DDLElementNumber
+		let fields = parser.parse()
+		let numberField = fields![0] as DDLFieldNumber
 
-		numberElement.currentValue = 1.1
+		numberField.currentValue = 1.1
 
-		XCTAssertTrue(numberElement.currentValue is NSInteger)
-		XCTAssertEqual(NSInteger(1), numberElement.currentValue as NSInteger)
+		XCTAssertTrue(numberField.currentValue is NSInteger)
+		XCTAssertEqual(NSInteger(1), numberField.currentValue as NSInteger)
 	}
 
 	func test_CurrentStringValue_ShouldBeValid_WhenNumberIsInteger() {
@@ -173,12 +173,12 @@ class DDLElementNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
-		let numberElement = elements![0] as DDLElementNumber
+		let fields = parser.parse()
+		let numberField = fields![0] as DDLFieldNumber
 
-		numberElement.currentValue = 99
+		numberField.currentValue = 99
 
-		XCTAssertEqual("99", numberElement.currentStringValue!)
+		XCTAssertEqual("99", numberField.currentStringValue!)
 	}
 
 	func test_CurrentStringValue_ShouldBeValid_WhenNumberIsDecimal() {
@@ -200,12 +200,12 @@ class DDLElementNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
-		let numberElement = elements![0] as DDLElementNumber
+		let fields = parser.parse()
+		let numberField = fields![0] as DDLFieldNumber
 
-		numberElement.currentValue = 16.0599
+		numberField.currentValue = 16.0599
 
-		XCTAssertEqual("16.06", numberElement.currentStringValue!)
+		XCTAssertEqual("16.06", numberField.currentStringValue!)
 	}
 
 	func test_CurrentStringValue_ShouldBeValid_WhenNumberIsDecimalAndContentIsInteger() {
@@ -227,12 +227,12 @@ class DDLElementNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
-		let numberElement = elements![0] as DDLElementNumber
+		let fields = parser.parse()
+		let numberField = fields![0] as DDLFieldNumber
 
-		numberElement.currentValue = 16
+		numberField.currentValue = 16
 
-		XCTAssertEqual("16.00", numberElement.currentStringValue!)
+		XCTAssertEqual("16.00", numberField.currentStringValue!)
 	}
 
 	func test_CurrentStringValue_ShouldBeChanged_WhenNumberIsInteger() {
@@ -254,14 +254,14 @@ class DDLElementNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
-		let numberElement = elements![0] as DDLElementNumber
+		let fields = parser.parse()
+		let numberField = fields![0] as DDLFieldNumber
 
-		numberElement.currentStringValue = "99"
+		numberField.currentStringValue = "99"
 
-		XCTAssertEqual("99", numberElement.currentStringValue!)
-		XCTAssertTrue(numberElement.currentValue is NSInteger)
-		XCTAssertEqual(NSInteger(99), numberElement.currentValue as NSInteger)
+		XCTAssertEqual("99", numberField.currentStringValue!)
+		XCTAssertTrue(numberField.currentValue is NSInteger)
+		XCTAssertEqual(NSInteger(99), numberField.currentValue as NSInteger)
 	}
 
 	func test_CurrentStringValue_ShouldBeChanged_WhenNumberIsIntegerAndValueIsDecimal() {
@@ -283,14 +283,14 @@ class DDLElementNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
-		let numberElement = elements![0] as DDLElementNumber
+		let fields = parser.parse()
+		let numberField = fields![0] as DDLFieldNumber
 
-		numberElement.currentStringValue = "99.88"
+		numberField.currentStringValue = "99.88"
 
-		XCTAssertEqual("100", numberElement.currentStringValue!)
-		XCTAssertTrue(numberElement.currentValue is NSInteger)
-		XCTAssertEqual(NSInteger(100), numberElement.currentValue as NSInteger)
+		XCTAssertEqual("100", numberField.currentStringValue!)
+		XCTAssertTrue(numberField.currentValue is NSInteger)
+		XCTAssertEqual(NSInteger(100), numberField.currentValue as NSInteger)
 	}
 
 	func test_CurrentStringValue_ShouldBeChanged_WhenNumberIsDecimal() {
@@ -312,15 +312,15 @@ class DDLElementNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
-		let numberElement = elements![0] as DDLElementNumber
+		let fields = parser.parse()
+		let numberField = fields![0] as DDLFieldNumber
 
-		numberElement.currentStringValue = "99.98"
+		numberField.currentStringValue = "99.98"
 
-		XCTAssertEqual("99.98", numberElement.currentStringValue!)
-		XCTAssertTrue(numberElement.currentValue is NSDecimalNumber)
+		XCTAssertEqual("99.98", numberField.currentStringValue!)
+		XCTAssertTrue(numberField.currentValue is NSDecimalNumber)
 		XCTAssertEqualWithAccuracy(99.98,
-			(numberElement.currentValue as NSDecimalNumber).floatValue, 0.001)
+			(numberField.currentValue as NSDecimalNumber).floatValue, 0.001)
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
@@ -342,12 +342,12 @@ class DDLElementNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let numberElement = elements![0] as DDLElementNumber
+		let numberField = fields![0] as DDLFieldNumber
 
-		XCTAssertTrue(numberElement.currentValue == nil)
-		XCTAssertFalse(numberElement.validate())
+		XCTAssertTrue(numberField.currentValue == nil)
+		XCTAssertFalse(numberField.validate())
 	}
 
 }

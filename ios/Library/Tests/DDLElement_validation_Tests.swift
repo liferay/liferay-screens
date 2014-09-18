@@ -14,7 +14,7 @@
 import XCTest
 
 
-class DDLElement_validation_Tests: XCTestCase {
+class DDLField_validation_Tests: XCTestCase {
 
 	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
 
@@ -29,15 +29,15 @@ class DDLElement_validation_Tests: XCTestCase {
 	func test_Validate_ShoulTriggerValidatedClosure_WhenValidationFails() {
 		parser.xml = requiredBooleanFormDefinition
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let booleanElement = elements![0] as DDLElementBoolean
+		let booleanField = fields![0] as DDLFieldBoolean
 
-		XCTAssertFalse(booleanElement.validate())
+		XCTAssertFalse(booleanField.validate())
 
 		var closureCalled = false
 
-		booleanElement.validatedClosure = {isValid in
+		booleanField.validatedClosure = {isValid in
 			XCTAssertFalse(isValid)
 			closureCalled = true
 		}
@@ -48,17 +48,17 @@ class DDLElement_validation_Tests: XCTestCase {
 	func test_Validate_ShoulTriggerValidatedClosure_WhenValidationSucceeds() {
 		parser.xml = requiredBooleanFormDefinition
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let booleanElement = elements![0] as DDLElementBoolean
+		let booleanField = fields![0] as DDLFieldBoolean
 
-		booleanElement.currentValue = true
+		booleanField.currentValue = true
 
-		XCTAssertTrue(booleanElement.validate())
+		XCTAssertTrue(booleanField.validate())
 
 		var closureCalled = false
 
-		booleanElement.validatedClosure = {isValid in
+		booleanField.validatedClosure = {isValid in
 			XCTAssertTrue(isValid)
 			closureCalled = true
 		}
@@ -66,36 +66,36 @@ class DDLElement_validation_Tests: XCTestCase {
 		XCTAssertFalse(closureCalled)
 	}
 
-	func test_ValidateOnBooleanElement_ShouldFail_WhenRequiredValueIsNil() {
+	func test_ValidateOnbooleanField_ShouldFail_WhenRequiredValueIsNil() {
 		parser.xml = requiredBooleanFormDefinition
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let booleanElement = elements![0] as DDLElementBoolean
+		let booleanField = fields![0] as DDLFieldBoolean
 
-		XCTAssertTrue(booleanElement.currentValue == nil)
+		XCTAssertTrue(booleanField.currentValue == nil)
 
-		XCTAssertFalse(booleanElement.validate())
+		XCTAssertFalse(booleanField.validate())
 	}
 
-	func test_ValidateOnStringElement_ShouldFail_WhenRequiredValueIsEmptyString() {
-		validateOnStringElement_ShouldFail_WhenRequiredValueIs("");
+	func test_ValidateOnStringField_ShouldFail_WhenRequiredValueIsEmptyString() {
+		validateOnStringField_ShouldFail_WhenRequiredValueIs("");
 	}
 
-	func test_ValidateOnStringElement_ShouldFail_WhenRequiredValueIsEmptyStringWithSpaces() {
-		validateOnStringElement_ShouldFail_WhenRequiredValueIs("  ");
+	func test_ValidateOnStringField_ShouldFail_WhenRequiredValueIsEmptyStringWithSpaces() {
+		validateOnStringField_ShouldFail_WhenRequiredValueIs("  ");
 	}
 
-	private func validateOnStringElement_ShouldFail_WhenRequiredValueIs(value: String) {
+	private func validateOnStringField_ShouldFail_WhenRequiredValueIs(value: String) {
 		parser.xml = requiredTextFormDefinition
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let stringElement = elements![0] as DDLElementString
+		let stringField = fields![0] as DDLFieldString
 
-		stringElement.currentValue = value
+		stringField.currentValue = value
 
-		XCTAssertFalse(stringElement.validate())
+		XCTAssertFalse(stringField.validate())
 	}
 
 	private let requiredBooleanFormDefinition =

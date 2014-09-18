@@ -14,9 +14,9 @@
 import UIKit
 
 
-public class DDLElementTextTableCell_default: DDLBaseElementTextFieldTableCell_default {
+public class DDLFieldTextTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
-	//MARK: DDLBaseElementTextFieldTableCell
+	//MARK: DDLBaseFieldTextboxTableCell
 
 	override public func textField(textField: UITextField!,
 			shouldChangeCharactersInRange range: NSRange,
@@ -26,7 +26,7 @@ public class DDLElementTextTableCell_default: DDLBaseElementTextFieldTableCell_d
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range,
 				withString:string)
 
-		element!.currentValue = newText
+		field!.currentValue = newText
 
 		return super.textField(textField, shouldChangeCharactersInRange: range,
 				replacementString: string)

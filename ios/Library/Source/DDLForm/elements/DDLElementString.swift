@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class DDLElementString : DDLElement {
+public class DDLFieldString : DDLField {
 
 	override internal func doValidate() -> Bool {
 		var result = super.doValidate()

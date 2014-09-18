@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class DDLElementBoolean : DDLElement {
+public class DDLFieldBoolean : DDLField {
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		return value != nil ? Bool.from(string: value!) : nil

@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class DDLElementStringWithOptions : DDLElement {
+public class DDLFieldStringWithOptions : DDLField {
 
 	public class Option {
 
@@ -68,7 +68,7 @@ public class DDLElementStringWithOptions : DDLElement {
 	}
 
 
-	//MARK: DDLElement
+	//MARK: DDLField
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		var result:String = "["

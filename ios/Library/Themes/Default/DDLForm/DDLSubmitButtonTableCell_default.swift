@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class DDLSubmitButtonTableCell_default: DDLElementTableCell {
+public class DDLSubmitButtonTableCell_default: DDLFieldTableCell {
 
 	//MARK: Actions
 
@@ -23,7 +23,7 @@ public class DDLSubmitButtonTableCell_default: DDLElementTableCell {
 	}
 
 
-	//MARK: DDLElementTableCell
+	//MARK: DDLFieldTableCell
 
 	override public func canBecomeFirstResponder() -> Bool {
 		return false

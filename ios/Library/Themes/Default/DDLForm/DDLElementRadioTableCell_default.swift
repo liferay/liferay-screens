@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class DDLElementRadioTableCell_default: DDLElementTableCell {
+public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 
 	@IBOutlet internal var label: UILabel?
 	@IBOutlet internal var radioReferenceLabel: UILabel?
@@ -23,35 +23,35 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 	internal var radioGroup:TNRadioButtonGroup?
 
 
-	//MARK: DDLElementTableCell
+	//MARK: DDLFieldTableCell
 
 	override public func canBecomeFirstResponder() -> Bool {
 		return false
 	}
 
-	override internal func onChangedElement() {
-		if let stringElement = element as? DDLElementStringWithOptions {
-			label!.text = stringElement.label
+	override internal func onChangedField() {
+		if let stringField = field as? DDLFieldStringWithOptions {
+			label!.text = stringField.label
 
-			stringElement.currentHeight = 
+			stringField.currentHeight =
 				label!.frame.origin.y + label!.frame.size.height +
-				DDLElementRadioGroupMarginTop + DDLElementRadioGroupMarginBottom +
-				(CGFloat(stringElement.options.count) *
-					(DDLElementRadioButtonHeight + DDLElementRadioButtonMargin))
+				DDLFieldRadioGroupMarginTop + DDLFieldRadioGroupMarginBottom +
+				(CGFloat(stringField.options.count) *
+					(DDLFieldRadioButtonHeight + DDLFieldRadioButtonMargin))
 
-			separator!.frame.origin.y = stringElement.currentHeight
+			separator!.frame.origin.y = stringField.currentHeight
 
-			createRadioButtons(stringElement)
+			createRadioButtons(stringField)
 
-			if stringElement.lastValidationResult != nil {
-				onValidated(stringElement.lastValidationResult!)
+			if stringField.lastValidationResult != nil {
+				onValidated(stringField.lastValidationResult!)
 			}
 		}
 	}
 
 	override internal func onValidated(valid: Bool) {
 		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()
-		let radioColor = valid ? DDLElementBasicBlue : UIColor.redColor()
+		let radioColor = valid ? DDLFieldBasicBlue : UIColor.redColor()
 
 		for radioButton in radioGroup!.radioButtons as [TNRectangularRadioButton] {
 			radioButton.data.labelColor = label?.textColor
@@ -65,19 +65,19 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 
 	//MARK: Private methods
 
-	private func createRadioButtons(element:DDLElementStringWithOptions) {
+	private func createRadioButtons(field:DDLFieldStringWithOptions) {
 		var radioButtons:[AnyObject] = []
 
-		for option in element.options {
+		for option in field.options {
 			let data = TNRectangularRadioButtonData()
 			data.labelFont = radioReferenceLabel?.font
 			data.labelText = option.label
 			data.identifier = option.value
-			data.borderColor = DDLElementBasicBlue
-			data.rectangleColor = DDLElementBasicBlue
+			data.borderColor = DDLFieldBasicBlue
+			data.rectangleColor = DDLFieldBasicBlue
 			data.rectangleHeight = 8
 			data.rectangleWidth = 8
-			data.selected = filter(element.currentValue as [DDLElementStringWithOptions.Option]) {
+			data.selected = filter(field.currentValue as [DDLFieldStringWithOptions.Option]) {
 				$0.name == option.name
 			}.count > 0
 
@@ -93,11 +93,11 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 
 		radioGroup = TNRadioButtonGroup(radioButtonData: radioButtons,
 				layout: TNRadioButtonGroupLayoutVertical)
-		radioGroup!.identifier = element.name
-		radioGroup!.marginBetweenItems = Int(DDLElementRadioButtonMargin)
+		radioGroup!.identifier = field.name
+		radioGroup!.marginBetweenItems = Int(DDLFieldRadioButtonMargin)
 		radioGroup!.create()
 		radioGroup!.position = CGPointMake(25.0,
-				DDLElementRadioGroupMarginTop + label!.frame.origin.y + label!.frame.size.height)
+				DDLFieldRadioGroupMarginTop + label!.frame.origin.y + label!.frame.size.height)
 
 		addSubview(radioGroup!)
 
@@ -108,11 +108,11 @@ public class DDLElementRadioTableCell_default: DDLElementTableCell {
 	}
 
 	private dynamic func radioButtonSelected(notification:NSNotification) {
-		if let stringElement = element as? DDLElementStringWithOptions {
-			stringElement.currentValue = radioGroup!.selectedRadioButton.data.labelText
+		if let stringField = field as? DDLFieldStringWithOptions {
+			stringField.currentValue = radioGroup!.selectedRadioButton.data.labelText
 
-			if stringElement.lastValidationResult != nil && !stringElement.lastValidationResult! {
-				stringElement.lastValidationResult = true
+			if stringField.lastValidationResult != nil && !stringField.lastValidationResult! {
+				stringField.lastValidationResult = true
 				onValidated(true)
 			}
 		}

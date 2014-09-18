@@ -14,40 +14,40 @@
 import UIKit
 
 
-public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITextFieldDelegate {
+public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFieldDelegate {
 
 	@IBOutlet internal var textField: UITextField?
 	@IBOutlet internal var textFieldBackground: UIImageView?
 	@IBOutlet internal var label: UILabel?
 
 
-	//MARK: DDLElementTableCell
+	//MARK: DDLFieldTableCell
 
-	override internal func onChangedElement() {
-		if element!.showLabel {
+	override internal func onChangedField() {
+		if field!.showLabel {
 			textField?.placeholder = ""
-			label?.text = element!.label
+			label?.text = field!.label
 			label?.hidden = false
 
 			moveSubviewsVertically(0.0)
 		}
 		else {
-			textField?.placeholder = element!.label
+			textField?.placeholder = field!.label
 			label?.hidden = true
 
 			moveSubviewsVertically(
-				-(DDLElementTextFieldHeightWithLabel - DDLElementTextFieldHeightWithoutLabel))
-			element?.currentHeight = DDLElementTextFieldHeightWithoutLabel
+				-(DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel))
+			field?.currentHeight = DDLFieldTextFieldHeightWithoutLabel
 		}
 
 		textField?.returnKeyType = isLastCell ? .Send : .Next
 
-		if element!.lastValidationResult != nil {
-			onValidated(element!.lastValidationResult!)
+		if field!.lastValidationResult != nil {
+			onValidated(field!.lastValidationResult!)
 		}
 
-		if element!.currentValue != nil {
-			textField?.text = element!.currentStringValue
+		if field!.currentValue != nil {
+			textField?.text = field!.currentStringValue
 		}
 	}
 
@@ -86,8 +86,8 @@ public class DDLBaseElementTextFieldTableCell_default: DDLElementTableCell, UITe
 			shouldChangeCharactersInRange range: NSRange,
 			replacementString string: String!) -> Bool {
 
-		if element!.lastValidationResult != nil && !element!.lastValidationResult! {
-			element!.lastValidationResult = true
+		if field!.lastValidationResult != nil && !field!.lastValidationResult! {
+			field!.lastValidationResult = true
 
 			onValidated(true)
 

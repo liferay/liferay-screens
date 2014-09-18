@@ -18,23 +18,23 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 
 	public var showSubmitButton = true
 
-	public var rows: [DDLElement] = [] {
+	public var fields: [DDLField] = [] {
 		didSet {
-			onChangedRows()
+			onChangedFields()
 		}
 	}
 
 	public var values: [String:AnyObject] {
 		var result:[String:AnyObject] = [:]
 
-		for element in rows {
-			if let value = element.currentStringValue {
+		for field in fields {
+			if let value = field.currentStringValue {
 				//FIXME - LPS-49460
 				// Server rejects the request if the value is empty string.
 				// This way we workaround the problem but a field can't be
 				// emptied when you're editing an existing row.
 				if value != "" {
-					result[element.name] = value
+					result[field.name] = value
 				}
 			}
 		}
@@ -47,19 +47,19 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 
 	public func validateForm(#autoscroll:Bool) -> Bool {
 		var result = true
-		var firstFailedElement:DDLElement?
+		var firstFailedField:DDLField?
 
-		for element in rows {
-			if !element.validate() {
-				if firstFailedElement == nil {
-					firstFailedElement = element
+		for field in fields {
+			if !field.validate() {
+				if firstFailedField == nil {
+					firstFailedField = field
 				}
 				result = false
 			}
 		}
 
-		if autoscroll && firstFailedElement != nil {
-			showElement(firstFailedElement!)
+		if autoscroll && firstFailedField != nil {
+			showField(firstFailedField!)
 		}
 
 		return result
@@ -68,13 +68,13 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 
 	//MARK: Internal methods
 
-	internal func changeDocumentUploadStatus(element:DDLElementDocument) {
+	internal func changeDocumentUploadStatus(field:DDLFieldDocument) {
 	}
 
-	internal func showElement(element:DDLElement) {
+	internal func showField(field:DDLField) {
 	}
 
-	internal func onChangedRows() {
+	internal func onChangedFields() {
 	}
 
 }

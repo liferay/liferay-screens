@@ -29,9 +29,9 @@ class DDLParser_basic_Tests: XCTestCase {
 
 		parser.xml = "#root available-locales=\"en_US\" default-locale=\"en_US\"> "
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		XCTAssertNil(elements)
+		XCTAssertNil(fields)
 	}
 
 	func test_Parse_ShouldReturnEmpty_WhenEmptyString() {
@@ -39,9 +39,9 @@ class DDLParser_basic_Tests: XCTestCase {
 
 		parser.xml = ""
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		XCTAssertNil(elements)
+		XCTAssertNil(fields)
 	}
 
 	func test_Parse_ShouldReturnEmpty_WhenEmptyXML() {
@@ -49,9 +49,9 @@ class DDLParser_basic_Tests: XCTestCase {
 
 		parser.xml = "<root available-locales=\"en_US\" default-locale=\"en_US\"></root>"
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		XCTAssertNil(elements)
+		XCTAssertNil(fields)
 	}
 
 }

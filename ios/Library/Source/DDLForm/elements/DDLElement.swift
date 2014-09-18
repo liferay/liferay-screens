@@ -14,7 +14,7 @@
 import Foundation
 
 
-@objc public class DDLElement: Equatable {
+@objc public class DDLField: Equatable {
 
 	public var currentHeight:CGFloat = 0
 
@@ -110,6 +110,6 @@ import Foundation
 
 //MARK: Equatable
 
-public func ==(left: DDLElement, right: DDLElement) -> Bool {
+public func ==(left: DDLField, right: DDLField) -> Bool {
 	return left.name == right.name
 }

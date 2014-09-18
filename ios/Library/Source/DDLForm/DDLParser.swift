@@ -26,8 +26,8 @@ public class DDLParser {
 		self.locale = locale
 	}
 
-	public func parse() -> [DDLElement]? {
-		var result:[DDLElement]? = nil
+	public func parse() -> [DDLField]? {
+		var result:[DDLField]? = nil
 
 		let xmlString = xml as NSString?
 
@@ -47,19 +47,19 @@ public class DDLParser {
 
 	//MARK: Private methods
 
-	private func processDocument(document:SMXMLDocument) -> [DDLElement]? {
+	private func processDocument(document:SMXMLDocument) -> [DDLField]? {
 		availableLocales = processAvailableLocales(document)
 		defaultLocale = NSLocale(
 				localeIdentifier:document.root?.attributeNamed("default-locale") ?? "en_US")
 
-		var result:[DDLElement]?
+		var result:[DDLField]?
 
 		if let elements = document.root?.childrenNamed("dynamic-element") {
 			result = []
 
 			for element in elements as [SMXMLElement] {
-				if let formElement = createFormElement(element) {
-					result!.append(formElement)
+				if let formField = createFormField(element) {
+					result!.append(formField)
 				}
 			}
 		}
@@ -67,14 +67,14 @@ public class DDLParser {
 		return result
 	}
 
-	private func createFormElement(xmlElement:SMXMLElement) -> DDLElement? {
-		var result:DDLElement?
+	private func createFormField(xmlElement:SMXMLElement) -> DDLField? {
+		var result:DDLField?
 
-		let dataType = DDLElement.DataType.from(xmlElement:xmlElement)
+		let dataType = DDLField.DataType.from(xmlElement:xmlElement)
 
 		let localizedMetadata = processLocalizedMetadata(xmlElement)
 
-		return dataType.createElement(
+		return dataType.createField(
 				attributes:xmlElement.attributes as [String:String],
 				localized:localizedMetadata)
 	}

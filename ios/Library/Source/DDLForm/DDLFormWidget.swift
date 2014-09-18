@@ -16,22 +16,22 @@ import UIKit
 
 @objc public protocol DDLFormWidgetDelegate {
 
-	optional func onFormLoaded(elements: [DDLElement])
+	optional func onFormLoaded(fields: [DDLField])
 	optional func onFormLoadError(error: NSError)
 
-	optional func onRecordLoaded(elements: [DDLElement])
+	optional func onRecordLoaded(fields: [DDLField])
 	optional func onRecordLoadError(error: NSError)
 
-	optional func onFormSubmitted(elements: [DDLElement])
+	optional func onFormSubmitted(fields: [DDLField])
 	optional func onFormSubmitError(error: NSError)
 
-	optional func onDocumentUploadStarted(element:DDLElementDocument)
-	optional func onDocumentUploadedBytes(element:DDLElementDocument,
+	optional func onDocumentUploadStarted(field:DDLFieldDocument)
+	optional func onDocumentUploadedBytes(field:DDLFieldDocument,
 			bytes: UInt,
 			sent: Int64,
 			total: Int64);
-	optional func onDocumentUploadCompleted(element:DDLElementDocument, result:[String:AnyObject]);
-	optional func onDocumentUploadError(element:DDLElementDocument, error: NSError);
+	optional func onDocumentUploadCompleted(field:DDLFieldDocument, result:[String:AnyObject]);
+	optional func onDocumentUploadError(field:DDLFieldDocument, error: NSError);
 
 }
 
@@ -44,7 +44,7 @@ import UIKit
 		case LoadingForm
 		case LoadingRecord(Bool)
 		case Submitting
-		case Uploading(DDLElementDocument, Bool)
+		case Uploading(DDLFieldDocument, Bool)
 
 	}
 
@@ -92,7 +92,7 @@ import UIKit
 			case "submit-form":
 				submitForm()
 			case "upload-document":
-				if let document = sender as? DDLElementDocument {
+				if let document = sender as? DDLFieldDocument {
 					uploadDocument(document)
 				}
 			default: ()
@@ -119,7 +119,7 @@ import UIKit
 				formView.changeDocumentUploadStatus(document)
 
 				if !document.validate() {
-					formView.showElement(document)
+					formView.showField(document)
 				}
 
 				delegate?.onDocumentUploadError?(document, error: error)
@@ -240,7 +240,7 @@ import UIKit
 			return false
 		}
 
-		currentOperation = .LoadingRecord(formView.rows.isEmpty)
+		currentOperation = .LoadingRecord(formView.fields.isEmpty)
 
 		startOperationWithMessage("Loading record...", details: "Wait a second...")
 
@@ -255,7 +255,7 @@ import UIKit
 				locale: NSLocale.currentLocaleString(),
 				error: &outError)
 
-		if formView.rows.isEmpty {
+		if formView.fields.isEmpty {
 			let structureService = LRDDMStructureService_v62(session: session)
 
 			structureService.getStructureWithStructureId((structureId as NSNumber).longLongValue,
@@ -369,10 +369,10 @@ import UIKit
 
 			parser.xml = xml
 
-			if let elements = parser.parse() {
-				formView.rows = elements
+			if let fields = parser.parse() {
+				formView.fields = fields
 
-				delegate?.onFormLoaded?(elements)
+				delegate?.onFormLoaded?(fields)
 
 				finishOperationWithMessage("Form loaded")
 			}
@@ -386,16 +386,16 @@ import UIKit
 	}
 
 	private func onRecordLoadResult(result: [String:AnyObject]) {
-		for (index,element) in enumerate(formView.rows) {
-			let elementValue = (result[element.name] ?? nil) as? String
-			if let elementStringValue = elementValue {
-				element.currentStringValue = elementStringValue
-				formView.rows[index] = element
+		for (index,field) in enumerate(formView.fields) {
+			let fieldValue = (result[field.name] ?? nil) as? String
+			if let fieldStringValue = fieldValue {
+				field.currentStringValue = fieldStringValue
+				formView.fields[index] = field
 			}
 		}
 	}
 
-	private func uploadDocument(document:DDLElementDocument) -> Bool {
+	private func uploadDocument(document:DDLFieldDocument) -> Bool {
 		if LiferayContext.instance.currentSession == nil {
 			println("ERROR: No session initialized. Can't upload a document without session")
 			return false

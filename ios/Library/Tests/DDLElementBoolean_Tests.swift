@@ -14,7 +14,7 @@
 import XCTest
 
 
-class DDLElementBoolean_Tests: XCTestCase {
+class DDLFieldBoolean_Tests: XCTestCase {
 
 	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
 
@@ -51,25 +51,25 @@ class DDLElementBoolean_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		XCTAssertTrue(elements != nil)
-		XCTAssertEqual(1, elements!.count)
-		XCTAssertTrue(elements![0] is DDLElementBoolean)
+		XCTAssertTrue(fields != nil)
+		XCTAssertEqual(1, fields!.count)
+		XCTAssertTrue(fields![0] is DDLFieldBoolean)
 
-		let booleanElement = elements![0] as DDLElementBoolean
+		let booleanField = fields![0] as DDLFieldBoolean
 
-		XCTAssertEqual(DDLElementDataType.DDLBoolean, booleanElement.dataType)
-		XCTAssertEqual(DDLElementEditor.Checkbox, booleanElement.editorType)
-		XCTAssertEqual("A_Boolean", booleanElement.name)
-		XCTAssertEqual("A Boolean", booleanElement.label)
-		XCTAssertEqual("The tip", booleanElement.tip)
-		XCTAssertTrue(booleanElement.predefinedValue is Bool)
-		XCTAssertTrue(booleanElement.predefinedValue as Bool)
-		XCTAssertFalse(booleanElement.readOnly)
-		XCTAssertTrue(booleanElement.repeatable)
-		XCTAssertFalse(booleanElement.required)
-		XCTAssertTrue(booleanElement.showLabel)
+		XCTAssertEqual(DDLFieldDataType.DDLBoolean, booleanField.dataType)
+		XCTAssertEqual(DDLFieldEditor.Checkbox, booleanField.editorType)
+		XCTAssertEqual("A_Boolean", booleanField.name)
+		XCTAssertEqual("A Boolean", booleanField.label)
+		XCTAssertEqual("The tip", booleanField.tip)
+		XCTAssertTrue(booleanField.predefinedValue is Bool)
+		XCTAssertTrue(booleanField.predefinedValue as Bool)
+		XCTAssertFalse(booleanField.readOnly)
+		XCTAssertTrue(booleanField.repeatable)
+		XCTAssertFalse(booleanField.required)
+		XCTAssertTrue(booleanField.showLabel)
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
@@ -87,13 +87,13 @@ class DDLElementBoolean_Tests: XCTestCase {
 					"</meta-data> " +
 				"</dynamic-element> </root>"
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		let booleanElement = elements![0] as DDLElementBoolean
+		let booleanField = fields![0] as DDLFieldBoolean
 
-		XCTAssertTrue(booleanElement.currentValue == nil)
+		XCTAssertTrue(booleanField.currentValue == nil)
 
-		XCTAssertFalse(booleanElement.validate())
+		XCTAssertFalse(booleanField.validate())
 	}
 
 }

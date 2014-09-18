@@ -14,16 +14,16 @@
 import UIKit
 
 
-public class DDLElementTableCell: UITableViewCell {
+public class DDLFieldTableCell: UITableViewCell {
 
 	public var tableView:UITableView?
 	public var indexPath:NSIndexPath?
 	public var formView:DDLFormTableView?
 
-	public var element:DDLElement? {
+	public var field:DDLField? {
 		didSet {
-			element?.validatedClosure = onValidated
-			onChangedElement()
+			field?.validatedClosure = onValidated
+			onChangedField()
 		}
 	}
 
@@ -55,14 +55,14 @@ public class DDLElementTableCell: UITableViewCell {
 
 	//MARK: Internal methods
 
-	internal func onChangedElement() {
+	internal func onChangedField() {
 	}
 
 	internal func onValidated(valid:Bool) {
 	}
 
 	internal func changeCellHeight(height:CGFloat) {
-		element?.currentHeight = height
+		field?.currentHeight = height
 		
 		//FIXME Hack to fire the repaint of the cells
 		tableView!.beginUpdates()
@@ -119,7 +119,7 @@ public class DDLElementTableCell: UITableViewCell {
 		return result
 	}
 
-	internal func changeDocumentUploadStatus(element: DDLElementDocument) {
+	internal func changeDocumentUploadStatus(field: DDLFieldDocument) {
 	}
 
 	internal func simpleTapDetected() {

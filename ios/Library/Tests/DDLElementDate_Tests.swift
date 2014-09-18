@@ -14,7 +14,7 @@
 import XCTest
 
 
-class DDLElementDate_Tests: XCTestCase {
+class DDLFieldDate_Tests: XCTestCase {
 
 	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
 
@@ -46,108 +46,108 @@ class DDLElementDate_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		XCTAssertTrue(elements != nil)
-		XCTAssertEqual(1, elements!.count)
-		XCTAssertTrue(elements![0] is DDLElementDate)
+		XCTAssertTrue(fields != nil)
+		XCTAssertEqual(1, fields!.count)
+		XCTAssertTrue(fields![0] is DDLFieldDate)
 
-		let dateElement = elements![0] as DDLElementDate
+		let dateField = fields![0] as DDLFieldDate
 
-		XCTAssertEqual(DDLElement.DataType.DDLDate, dateElement.dataType)
-		XCTAssertEqual(DDLElement.Editor.Date, dateElement.editorType)
-		XCTAssertEqual("A_Date", dateElement.name)
-		XCTAssertEqual("A Date", dateElement.label)
-		XCTAssertEqual("The tip", dateElement.tip)
-		XCTAssertFalse(dateElement.readOnly)
-		XCTAssertTrue(dateElement.repeatable)
-		XCTAssertFalse(dateElement.required)
-		XCTAssertTrue(dateElement.showLabel)
+		XCTAssertEqual(DDLField.DataType.DDLDate, dateField.dataType)
+		XCTAssertEqual(DDLField.Editor.Date, dateField.editorType)
+		XCTAssertEqual("A_Date", dateField.name)
+		XCTAssertEqual("A Date", dateField.label)
+		XCTAssertEqual("The tip", dateField.tip)
+		XCTAssertFalse(dateField.readOnly)
+		XCTAssertTrue(dateField.repeatable)
+		XCTAssertFalse(dateField.required)
+		XCTAssertTrue(dateField.showLabel)
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		XCTAssertTrue(dateElement.predefinedValue != nil)
-		XCTAssertTrue(dateElement.predefinedValue is NSDate)
+		XCTAssertTrue(dateField.predefinedValue != nil)
+		XCTAssertTrue(dateField.predefinedValue is NSDate)
 		XCTAssertEqual(
 				"31/12/2001",
-				dateFormatter.stringFromDate(dateElement.predefinedValue as NSDate))
+				dateFormatter.stringFromDate(dateField.predefinedValue as NSDate))
 		XCTAssertEqual(
-				dateElement.currentValue as NSDate,
-				dateElement.predefinedValue as NSDate)
+				dateField.currentValue as NSDate,
+				dateField.predefinedValue as NSDate)
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
-		parser.xml = requiredDateElement
-		let elements = parser.parse()
-		let dateElement = elements![0] as DDLElementDate
+		parser.xml = requireddateField
+		let fields = parser.parse()
+		let dateField = fields![0] as DDLFieldDate
 
-		XCTAssertTrue(dateElement.currentValue == nil)
+		XCTAssertTrue(dateField.currentValue == nil)
 
-		XCTAssertFalse(dateElement.validate())
+		XCTAssertFalse(dateField.validate())
 	}
 
 	func test_CurrentStringValue_ShouldReturnEpochTimeInMilliseconds() {
-		parser.xml = requiredDateElement
-		let elements = parser.parse()
-		let dateElement = elements![0] as DDLElementDate
+		parser.xml = requireddateField
+		let fields = parser.parse()
+		let dateField = fields![0] as DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		dateElement.currentValue = dateFormatter.dateFromString("19/06/2004")
+		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
 
 		// converted with http://www.epochconverter.com/
-		XCTAssertEqual("1087596000000", dateElement.currentStringValue!)
+		XCTAssertEqual("1087596000000", dateField.currentStringValue!)
 	}
 
 	func test_CurrentStringValue_ShouldSupportOneDigitMonth_WhenSettingTheStringValue() {
-		parser.xml = requiredDateElement
-		let elements = parser.parse()
-		let dateElement = elements![0] as DDLElementDate
+		parser.xml = requireddateField
+		let fields = parser.parse()
+		let dateField = fields![0] as DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		dateElement.currentStringValue = "6/19/2004"
+		dateField.currentStringValue = "6/19/2004"
 
 		XCTAssertEqual(
 				"19/06/2004",
-				dateFormatter.stringFromDate(dateElement.currentValue as NSDate))
+				dateFormatter.stringFromDate(dateField.currentValue as NSDate))
 	}
 
 	func test_CurrentStringValue_ShouldSupportFourDigitsYear_WhenSettingTheStringValue() {
-		parser.xml = requiredDateElement
-		let elements = parser.parse()
-		let dateElement = elements![0] as DDLElementDate
+		parser.xml = requireddateField
+		let fields = parser.parse()
+		let dateField = fields![0] as DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		dateElement.currentStringValue = "6/19/04"
+		dateField.currentStringValue = "6/19/04"
 
 		XCTAssertEqual(
 				"19/06/2004",
-				dateFormatter.stringFromDate(dateElement.currentValue as NSDate))
+				dateFormatter.stringFromDate(dateField.currentValue as NSDate))
 	}
 
 
 	func test_CurrentDateLabel_ShouldReturnClientSideFormat() {
-		parser.xml = requiredDateElement
-		let elements = parser.parse()
-		let dateElement = elements![0] as DDLElementDate
+		parser.xml = requireddateField
+		let fields = parser.parse()
+		let dateField = fields![0] as DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		dateElement.currentValue = dateFormatter.dateFromString("19/06/2004")
+		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
 
-		XCTAssertEqual("Jun 19, 2004", dateElement.currentDateLabel!)
+		XCTAssertEqual("Jun 19, 2004", dateField.currentDateLabel!)
 	}
 
 
 
-	private let requiredDateElement =
+	private let requireddateField =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"date\" " +
 				"fieldNamespace=\"ddm\" " +

@@ -14,7 +14,7 @@
 import XCTest
 
 
-class DDLElementDocument_Tests: XCTestCase {
+class DDLFieldDocument_Tests: XCTestCase {
 
 	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
 
@@ -44,98 +44,98 @@ class DDLElementDocument_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let elements = parser.parse()
+		let fields = parser.parse()
 
-		XCTAssertTrue(elements![0] is DDLElementDocument)
-		let docElement = elements![0] as DDLElementDocument
+		XCTAssertTrue(fields![0] is DDLFieldDocument)
+		let docField = fields![0] as DDLFieldDocument
 
-		XCTAssertEqual(DDLElementDataType.DDLDocument, docElement.dataType)
-		XCTAssertEqual(DDLElementEditor.Document, docElement.editorType)
-		XCTAssertNil(docElement.predefinedValue)
-		XCTAssertEqual("A_Document", docElement.name)
-		XCTAssertEqual("A Document", docElement.label)
+		XCTAssertEqual(DDLFieldDataType.DDLDocument, docField.dataType)
+		XCTAssertEqual(DDLFieldEditor.Document, docField.editorType)
+		XCTAssertNil(docField.predefinedValue)
+		XCTAssertEqual("A_Document", docField.name)
+		XCTAssertEqual("A Document", docField.label)
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
-		XCTAssertTrue(docElement.currentValue == nil)
-		XCTAssertFalse(docElement.validate())
+		XCTAssertTrue(docField.currentValue == nil)
+		XCTAssertFalse(docField.validate())
 	}
 
 	func test_Validate_ShouldFail_WhenUploadFailed() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
-		docElement.currentValue = UIImage(named:"default-field")
-		docElement.uploadStatus = .Failed(NSError.errorWithDomain("", code: 0, userInfo:nil))
+		docField.currentValue = UIImage(named:"default-field")
+		docField.uploadStatus = .Failed(NSError.errorWithDomain("", code: 0, userInfo:nil))
 
-		XCTAssertFalse(docElement.validate())
+		XCTAssertFalse(docField.validate())
 	}
 
 	func test_MimeType_ShouldReturnNil_WhenCurrentValueIsEmpty() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
-		XCTAssertNil(docElement.mimeType)
+		XCTAssertNil(docField.mimeType)
 	}
 
 	func test_MimeType_ShouldReturnPNGImageType_WhenCurrentValueIsImage() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
-		docElement.currentValue = UIImage(named:"default-field")
+		docField.currentValue = UIImage(named:"default-field")
 
-		XCTAssertEqual("image/png", docElement.mimeType ?? "nil mimeType")
+		XCTAssertEqual("image/png", docField.mimeType ?? "nil mimeType")
 	}
 
 	func test_MimeType_ShouldReturnMPEGVideoType_WhenCurrentValueIsURL() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
-		docElement.currentValue =
+		docField.currentValue =
 				NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
 
-		XCTAssertEqual("video/mpeg", docElement.mimeType ?? "nil mimeType")
+		XCTAssertEqual("video/mpeg", docField.mimeType ?? "nil mimeType")
 	}
 
 	func test_Stream_ShouldReturnNil_WhenCurrentValueIsEmpty() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
 		var size:Int64 = 0
-		XCTAssertNil(docElement.getStream(&size))
+		XCTAssertNil(docField.getStream(&size))
 		XCTAssertEqual(0, size)
 	}
 
 	func test_Stream_ShouldReturnStream_WhenCurrentValueIsImage() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
 		let image = UIImage(named:"default-field")
 		let imageBytes = UIImagePNGRepresentation(image)
 		let imageLength = Int64(imageBytes.length)
 
-		docElement.currentValue = image
+		docField.currentValue = image
 
 		var size:Int64 = 0
-		let stream = docElement.getStream(&size)
+		let stream = docField.getStream(&size)
 		XCTAssertNotNil(stream)
 		XCTAssertEqual(imageLength, size)
 	}
 
 	func test_Stream_ShouldReturnStream_WhenCurrentValueIsURL() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
 		let url = NSBundle(forClass: self.dynamicType).URLForResource("default-field",
 				withExtension: "png")
@@ -143,77 +143,77 @@ class DDLElementDocument_Tests: XCTestCase {
 				NSFileManager.defaultManager().attributesOfItemAtPath(url?.path, error: nil)
 		let imageLength = attributes![NSFileSize] as NSNumber
 
-		docElement.currentValue = url
+		docField.currentValue = url
 
 		var size:Int64 = 0
-		let stream = docElement.getStream(&size)
+		let stream = docField.getStream(&size)
 		XCTAssertNotNil(stream)
 		XCTAssertEqual(imageLength.longLongValue, size)
 	}
 
 	func test_CurrentDocumentLabel_ShouldReturnNil_WhenCurrentValueIsNil() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
-		XCTAssertNil(docElement.currentDocumentLabel?)
+		XCTAssertNil(docField.currentDocumentLabel?)
 	}
 
 	func test_CurrentDocumentLabel_ShouldReturnImage_WhenCurrentValueIsImage() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
-		docElement.currentValue = UIImage(named:"default-field")
+		docField.currentValue = UIImage(named:"default-field")
 
-		XCTAssertEqual("Image", docElement.currentDocumentLabel!)
+		XCTAssertEqual("Image", docField.currentDocumentLabel!)
 	}
 
 	func test_CurrentDocumentLabel_ShouldReturnVideo_WhenCurrentValueIsURL() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
-		docElement.currentValue =
+		docField.currentValue =
 				NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
 
-		XCTAssertEqual("Video", docElement.currentDocumentLabel!)
+		XCTAssertEqual("Video", docField.currentDocumentLabel!)
 	}
 
 	func test_CurrentStringValue_ShouldReturnNil_WhenUploadStatusIsPending() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
-		docElement.uploadStatus = .Pending
+		docField.uploadStatus = .Pending
 
-		XCTAssertNil(docElement.currentStringValue?)
+		XCTAssertNil(docField.currentStringValue?)
 	}
 
 	func test_CurrentStringValue_ShouldReturnNil_WhenUploadStatusIsUploading() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
-		docElement.uploadStatus = .Uploading(1,10)
+		docField.uploadStatus = .Uploading(1,10)
 
-		XCTAssertNil(docElement.currentStringValue?)
+		XCTAssertNil(docField.currentStringValue?)
 	}
 
 	func test_CurrentStringValue_ShouldReturnNil_WhenUploadStatusIsFailed() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
-		docElement.uploadStatus = .Failed(nil)
+		docField.uploadStatus = .Failed(nil)
 
-		XCTAssertNil(docElement.currentStringValue?)
+		XCTAssertNil(docField.currentStringValue?)
 	}
 
 	func test_CurrentStringValue_ShouldReturnDDLJSON_WhenUploadStatusIsUploaded() {
 		parser.xml = requiredDocumentElement
-		let elements = parser.parse()
-		let docElement = elements![0] as DDLElementDocument
+		let fields = parser.parse()
+		let docField = fields![0] as DDLFieldDocument
 
 		let json:[String:AnyObject] = [
 			"groupId": 1234,
@@ -221,10 +221,10 @@ class DDLElementDocument_Tests: XCTestCase {
 			"version": "1.0",
 			"blablabla": "blebleble"]
 
-		docElement.uploadStatus = .Uploaded(json)
+		docField.uploadStatus = .Uploaded(json)
 
 		let expectedResult = "{\"groupId\":1234,\"uuid\":\"abcd\",\"version\":\"1.0\"}"
-		XCTAssertEqual(expectedResult, docElement.currentStringValue!)
+		XCTAssertEqual(expectedResult, docField.currentStringValue!)
 	}
 
 

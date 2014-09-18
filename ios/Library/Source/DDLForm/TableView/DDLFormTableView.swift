@@ -61,32 +61,32 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	override internal func onCreated() {
 		super.onCreated()
 
-		registerElementCells()
+		registerFieldCells()
 	}
 
-	override internal func onChangedRows() {
-		super.onChangedRows()
+	override internal func onChangedFields() {
+		super.onChangedFields()
 
-		for element in rows {
-			element.resetCurrentHeight()
+		for field in fields {
+			field.resetCurrentHeight()
 		}
 		
 		tableView!.reloadData()
 	}
 
-	override internal func showElement(element: DDLElement) {
-		if let row = find(rows, element) {
+	override internal func showField(field: DDLField) {
+		if let row = find(fields, field) {
 			tableView!.scrollToRowAtIndexPath(
 				NSIndexPath(forRow: row, inSection: 0),
 				atScrollPosition: .Top, animated: true)
 		}
 	}
 
-	override internal func changeDocumentUploadStatus(element: DDLElementDocument) {
-		if let row = find(rows, element) {
+	override internal func changeDocumentUploadStatus(field: DDLFieldDocument) {
+		if let row = find(fields, field) {
 			if let cell = tableView!.cellForRowAtIndexPath(
-					NSIndexPath(forRow: row, inSection: 0)) as? DDLElementTableCell {
-				cell.changeDocumentUploadStatus(element)
+					NSIndexPath(forRow: row, inSection: 0)) as? DDLFieldTableCell {
+				cell.changeDocumentUploadStatus(field)
 			}
 		}
 	}
@@ -95,41 +95,41 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	//MARK: UITableViewDataSource
 
 	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if rows.count == 0 {
+		if fields.count == 0 {
 			return 0
 		}
 
-		return rows.count + (showSubmitButton ? 1 : 0)
+		return fields.count + (showSubmitButton ? 1 : 0)
 	}
 
 	public func tableView(tableView: UITableView,
 			cellForRowAtIndexPath indexPath: NSIndexPath)
 			-> UITableViewCell {
 
-		var cell:DDLElementTableCell?
+		var cell:DDLFieldTableCell?
 		let row = indexPath.row
 
-		if row == rows.count {
+		if row == fields.count {
 			cell = tableView.dequeueReusableCellWithIdentifier("SubmitButton") as?
-					DDLElementTableCell
+					DDLFieldTableCell
 
 			cell!.formView = self
 		}
 		else {
-			let element = rows[row]
+			let field = fields[row]
 			
 			cell = tableView.dequeueReusableCellWithIdentifier(
-					element.editorType.toCapitalizedName()) as? DDLElementTableCell
+					field.editorType.toCapitalizedName()) as? DDLFieldTableCell
 
 			if cell == nil {
 				println("ERROR: Cell XIB is not registerd for type " +
-						element.editorType.toCapitalizedName())
+						field.editorType.toCapitalizedName())
 			}
 
 			cell!.formView = self
 			cell!.tableView = tableView
 			cell!.indexPath = indexPath
-			cell!.element = element
+			cell!.field = field
 		}
 
 		return cell!
@@ -141,17 +141,17 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 		let row = indexPath.row
 
-		return (row == rows.count) ? submitButtonHeight : rows[row].currentHeight
+		return (row == fields.count) ? submitButtonHeight : fields[row].currentHeight
 	}
 
 
 	//MARK: Internal methods
 
-	internal func registerElementCells() {
+	internal func registerFieldCells() {
 		let currentBundle = NSBundle(forClass: self.dynamicType)
 
-		for elementEditor in DDLElement.Editor.all() {
-			var nibName = "DDLElement\(elementEditor.toCapitalizedName())TableCell"
+		for fieldEditor in DDLField.Editor.all() {
+			var nibName = "DDLField\(fieldEditor.toCapitalizedName())TableCell"
 			if let themeNameValue = themeName {
 				nibName += "-" + themeNameValue
 			}
@@ -160,9 +160,9 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
 
 				tableView?.registerNib(cellNib,
-						forCellReuseIdentifier: elementEditor.toCapitalizedName())
+						forCellReuseIdentifier: fieldEditor.toCapitalizedName())
 
-				registerElementEditorHeight(editor:elementEditor, nib:cellNib)
+				registerFieldEditorHeight(editor:fieldEditor, nib:cellNib)
 			}
 		}
 
@@ -192,7 +192,7 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		}
 	}
 
-	internal func registerElementEditorHeight(#editor:DDLElement.Editor, nib:UINib) {
+	internal func registerFieldEditorHeight(#editor:DDLField.Editor, nib:UINib) {
 		let views = nib.instantiateWithOwner(nil, options: nil)
 
 		if let cellRootView = views.first as? UITableViewCell {

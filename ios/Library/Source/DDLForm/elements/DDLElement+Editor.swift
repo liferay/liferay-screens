@@ -14,7 +14,7 @@
 import Foundation
 
 
-extension DDLElement {
+extension DDLField {
 
 	public enum Editor: String {
 
@@ -78,14 +78,14 @@ extension DDLElement {
 		}
 
 		public func registerHeight(height:CGFloat) {
-			Editor.elementEditorHeight[self] = height
+			Editor.fieldEditorHeight[self] = height
 		}
 
 		public var registeredHeight: CGFloat {
-			return Editor.elementEditorHeight[self] ?? 0
+			return Editor.fieldEditorHeight[self] ?? 0
 		}
 
-		private static var elementEditorHeight: [Editor:CGFloat] = [:]
+		private static var fieldEditorHeight: [Editor:CGFloat] = [:]
 
 	}
 

@@ -14,12 +14,12 @@
 import UIKit
 
 
-public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_default {
+public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
 	@IBOutlet internal var chooseButton: UIButton? {
 		didSet {
 			chooseButton?.layer.masksToBounds = true
-	        chooseButton?.layer.cornerRadius = DDLElementButtonCornerRadius
+	        chooseButton?.layer.cornerRadius = DDLFieldButtonCornerRadius
 		}
 	}
 
@@ -31,16 +31,16 @@ public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_d
 	}
 
 
-	//MARK: DDLBaseElementTextFieldTableCell
+	//MARK: DDLBaseFieldTextboxTableCell
 
-	override internal func onChangedElement() {
-		super.onChangedElement()
+	override internal func onChangedField() {
+		super.onChangedField()
 
-		if let dateElement = element as? DDLElementDate {
-			setFieldPresenter(dateElement)
+		if let dateField = field as? DDLFieldDate {
+			setFieldPresenter(dateField)
 
-			if dateElement.currentValue != nil {
-				textField?.text = dateElement.currentDateLabel
+			if dateField.currentValue != nil {
+				textField?.text = dateField.currentDateLabel
 			}
 		}
 	}
@@ -48,11 +48,11 @@ public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_d
 
 	//MARK: Private methods
 
-	private func setFieldPresenter(element:DDLElementDate) {
+	private func setFieldPresenter(field:DDLFieldDate) {
 
 		func onChange(selectedDate:NSDate!) {
-			element.currentValue = selectedDate
-			textField?.text = element.currentDateLabel
+			field.currentValue = selectedDate
+			textField?.text = field.currentDateLabel
 
 			let fullRange = NSMakeRange(0, countElements(textField!.text!))
 
@@ -68,7 +68,7 @@ public class DDLElementDateTableCell_default: DDLBaseElementTextFieldTableCell_d
 		presenter.datePicker.layer.borderColor = UIColor.lightGrayColor().CGColor
 		presenter.datePicker.layer.borderWidth = 1.5
 
-		if let currentDate = element.currentValue as? NSDate {
+		if let currentDate = field.currentValue as? NSDate {
 			presenter.datePicker.setDate(currentDate, animated: false)
 		}
 
