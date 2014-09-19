@@ -367,10 +367,10 @@ import UIKit
 				userId = userIdValue
 			}
 
-			if let record = DDLRecord.recordParsedFromXML(xml, locale: NSLocale.currentLocale()) {
-				formView.record = record
+			formView.record = DDLRecord(xml: xml, locale: NSLocale.currentLocale())
 
-				delegate?.onFormLoaded?(record)
+			if !formView.record!.fields.isEmpty {
+				delegate?.onFormLoaded?(formView.record!)
 
 				finishOperationWithMessage("Form loaded")
 			}

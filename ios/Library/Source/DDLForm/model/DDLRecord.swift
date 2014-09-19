@@ -20,8 +20,10 @@ public class DDLRecord: NSObject {
 
 	public var recordId: Int?
 
-	public class func recordParsedFromXML(xml: String, locale: NSLocale) -> DDLRecord? {
-		var result: DDLRecord?
+
+	//MARK: Init
+	public init(xml: String, locale: NSLocale) {
+		super.init()
 
 		let parser = DDLParser(locale: locale)
 
@@ -29,28 +31,27 @@ public class DDLRecord: NSObject {
 
 		if let parsedFields = parser.parse() {
 		 	if !parsedFields.isEmpty {
-				result = DDLRecord()
-				result!.fields = parsedFields
+				fields = parsedFields
 			}
 		}
-
-		return result
 	}
 
+	public init(values: [String:AnyObject]) {
+		super.init()
+
+		updateCurrentValues(values)
+	}
+
+
+	//MARK: Public methods
+
 	public func updateCurrentValues(values: [String:AnyObject]) {
-		if fields.isEmpty {
-			// TODO create list of DDLFields only with current value
-		}
-		else {
-			fields = []
+		for (index,field) in enumerate(fields) {
+			let fieldValue = (values[field.name] ?? nil) as? String
+			if let fieldStringValue = fieldValue {
+				field.currentStringValue = fieldStringValue
 
-			for (index,field) in enumerate(fields) {
-				let fieldValue = (values[field.name] ?? nil) as? String
-				if let fieldStringValue = fieldValue {
-					field.currentStringValue = fieldStringValue
-
-					fields.append(field)
-				}
+				fields.append(field)
 			}
 		}
 	}
