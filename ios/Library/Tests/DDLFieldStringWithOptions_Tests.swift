@@ -18,14 +18,6 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
-	override func setUp() {
-		super.setUp()
-	}
-
-	override func tearDown() {
-		super.tearDown()
-	}
-
 	func test_Parse_ShouldExtractValues() {
 		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 

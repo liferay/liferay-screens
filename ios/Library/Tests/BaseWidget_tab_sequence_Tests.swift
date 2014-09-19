@@ -27,10 +27,6 @@ class BaseWidget_tab_sequence_Tests: XCTestCase {
 		XCTAssertNotNil(view)
 	}
 
-	override func tearDown() {
-		super.tearDown()
-	}
-
 /* Doesn't work because isFirstResponder always return false
 	func test_TabSequence_ShouldBeConfigured_WhenNextResponderForViewIsOverriden() {
 		view!.textFieldShouldReturn(view!.firstNameField)

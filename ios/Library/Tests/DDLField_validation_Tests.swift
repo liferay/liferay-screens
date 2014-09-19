@@ -18,14 +18,6 @@ class DDLField_validation_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
-	override func setUp() {
-		super.setUp()
-	}
-
-	override func tearDown() {
-		super.tearDown()
-	}
-
 	func test_Validate_ShoulTriggerValidatedClosure_WhenValidationFails() {
 		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 

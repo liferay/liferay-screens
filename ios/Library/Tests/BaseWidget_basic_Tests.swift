@@ -24,10 +24,6 @@ class BaseWidget_basic_Tests: XCTestCase {
 		widget = SignUpWidget(frame: CGRectMake(0, 0, 100, 100))
 	}
 
-	override func tearDown() {
-		super.tearDown()
-	}
-
 	func test_WidgetName_ShouldReturnTheCorrectName() {
 		XCTAssertEqual("SignUp", widget!.widgetName)
 	}

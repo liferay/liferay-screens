@@ -16,10 +16,6 @@ import XCTest
 
 class LRSession_Storage_Tests: XCTestCase {
 
-	override func setUp() {
-		super.setUp()
-	}
-
 	override func tearDown() {
 		LRSession.removeStoredCredential()
 

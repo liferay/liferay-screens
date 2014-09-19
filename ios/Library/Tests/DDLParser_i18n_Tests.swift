@@ -18,14 +18,6 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
-	override func setUp() {
-		super.setUp()
-	}
-
-	override func tearDown() {
-		super.tearDown()
-	}
-
 
 	//MARK: Checking full perfect match
 

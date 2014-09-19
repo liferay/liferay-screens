@@ -18,14 +18,6 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
-	override func setUp() {
-		super.setUp()
-	}
-
-	override func tearDown() {
-		super.tearDown()
-	}
-
 	func test_Parse_ShouldExtractValues_WhenFieldIsInteger() {
 		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
