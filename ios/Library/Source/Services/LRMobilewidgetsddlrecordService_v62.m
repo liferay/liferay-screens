@@ -30,4 +30,29 @@
 	return (NSDictionary *)[self.session invoke:_command error:error];
 }
 
+- (NSArray *)getDdlRecordsWithRecordSetId:(long long)recordSetId userId:(long long)userId start:(int)start end:(int)end locale:(NSString *)locale error:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+		@"recordSetId": @(recordSetId),
+		@"userId": @(userId),
+		@"start": @(start),
+		@"end": @(end),
+		@"locale": locale
+	}];
+
+	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-records": _params};
+
+	return (NSArray *)[self.session invoke:_command error:error];
+}
+
+- (NSNumber *)getDdlRecordsCountWithRecordSetId:(long long)recordSetId userId:(long long)userId error:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+		@"recordSetId": @(recordSetId),
+		@"userId": @(userId)
+	}];
+
+	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-records-count": _params};
+
+	return (NSNumber *)[self.session invoke:_command error:error];
+}
+
 @end

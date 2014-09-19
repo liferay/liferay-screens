@@ -20,5 +20,7 @@
 @interface LRMobilewidgetsddlrecordService_v62 : LRBaseService
 
 - (NSDictionary *)getDdlRecordValuesWithDdlRecordId:(long long)ddlRecordId locale:(NSString *)locale error:(NSError **)error;
+- (NSArray *)getDdlRecordsWithRecordSetId:(long long)recordSetId userId:(long long)userId start:(int)start end:(int)end locale:(NSString *)locale error:(NSError **)error;
+- (NSNumber *)getDdlRecordsCountWithRecordSetId:(long long)recordSetId userId:(long long)userId error:(NSError **)error;
 
 @end
