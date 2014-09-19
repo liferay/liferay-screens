@@ -16,7 +16,7 @@ import XCTest
 
 class DDLFieldBoolean_Tests: XCTestCase {
 
-	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
+	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
 	override func setUp() {
 		super.setUp()
@@ -27,7 +27,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldExtractValues() {
-		parser.xml =
+		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"boolean\" " +
 				"indexType=\"keyword\" " +
@@ -51,7 +51,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
 
 		XCTAssertTrue(fields != nil)
 		XCTAssertEqual(1, fields!.count)
@@ -73,7 +73,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
-		parser.xml =
+		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 				"<dynamic-element dataType=\"boolean\" " +
 						"name=\"A_Boolean\" " +
@@ -87,7 +87,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 					"</meta-data> " +
 				"</dynamic-element> </root>"
 
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
 
 		let booleanField = fields![0] as DDLFieldBoolean
 

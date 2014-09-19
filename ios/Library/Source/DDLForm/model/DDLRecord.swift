@@ -33,11 +33,7 @@ public class DDLRecord: NSObject {
 	public init(xsd: String, locale: NSLocale) {
 		super.init()
 
-		let parser = DDLXSDParser(locale: locale)
-
-		parser.xsd = xsd
-
-		if let parsedFields = parser.parse() {
+		if let parsedFields = DDLXSDParser().parse(xsd, locale: locale) {
 		 	if !parsedFields.isEmpty {
 				fields = parsedFields
 			}

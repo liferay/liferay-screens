@@ -16,7 +16,7 @@ import XCTest
 
 class DDLFieldDate_Tests: XCTestCase {
 
-	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
+	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
 	override func setUp() {
 		super.setUp()
@@ -27,7 +27,7 @@ class DDLFieldDate_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldExtractValues() {
-		parser.xml =
+		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"date\" " +
 				"fieldNamespace=\"ddm\" " +
@@ -46,7 +46,7 @@ class DDLFieldDate_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
 
 		XCTAssertTrue(fields != nil)
 		XCTAssertEqual(1, fields!.count)
@@ -78,8 +78,7 @@ class DDLFieldDate_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
-		parser.xml = requireddateField
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as DDLFieldDate
 
 		XCTAssertTrue(dateField.currentValue == nil)
@@ -88,8 +87,7 @@ class DDLFieldDate_Tests: XCTestCase {
 	}
 
 	func test_CurrentStringValue_ShouldReturnEpochTimeInMilliseconds() {
-		parser.xml = requireddateField
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
@@ -102,8 +100,7 @@ class DDLFieldDate_Tests: XCTestCase {
 	}
 
 	func test_CurrentStringValue_ShouldSupportOneDigitMonth_WhenSettingTheStringValue() {
-		parser.xml = requireddateField
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
@@ -117,8 +114,7 @@ class DDLFieldDate_Tests: XCTestCase {
 	}
 
 	func test_CurrentStringValue_ShouldSupportFourDigitsYear_WhenSettingTheStringValue() {
-		parser.xml = requireddateField
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
@@ -133,8 +129,7 @@ class DDLFieldDate_Tests: XCTestCase {
 
 
 	func test_CurrentDateLabel_ShouldReturnClientSideFormat() {
-		parser.xml = requireddateField
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
@@ -147,7 +142,7 @@ class DDLFieldDate_Tests: XCTestCase {
 
 
 
-	private let requireddateField =
+	private let requiredDateFieldXSD =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"date\" " +
 				"fieldNamespace=\"ddm\" " +

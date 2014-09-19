@@ -16,7 +16,7 @@ import XCTest
 
 class DDLField_validation_Tests: XCTestCase {
 
-	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
+	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
 	override func setUp() {
 		super.setUp()
@@ -27,9 +27,7 @@ class DDLField_validation_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShoulTriggerValidatedClosure_WhenValidationFails() {
-		parser.xml = requiredBooleanFormDefinition
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
 		let booleanField = fields![0] as DDLFieldBoolean
 
@@ -46,9 +44,7 @@ class DDLField_validation_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShoulTriggerValidatedClosure_WhenValidationSucceeds() {
-		parser.xml = requiredBooleanFormDefinition
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
 		let booleanField = fields![0] as DDLFieldBoolean
 
@@ -67,9 +63,7 @@ class DDLField_validation_Tests: XCTestCase {
 	}
 
 	func test_ValidateOnbooleanField_ShouldFail_WhenRequiredValueIsNil() {
-		parser.xml = requiredBooleanFormDefinition
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
 		let booleanField = fields![0] as DDLFieldBoolean
 
@@ -87,9 +81,7 @@ class DDLField_validation_Tests: XCTestCase {
 	}
 
 	private func validateOnStringField_ShouldFail_WhenRequiredValueIs(value: String) {
-		parser.xml = requiredTextFormDefinition
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(requiredTextFormDefinitionXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldString
 
@@ -98,7 +90,7 @@ class DDLField_validation_Tests: XCTestCase {
 		XCTAssertFalse(stringField.validate())
 	}
 
-	private let requiredBooleanFormDefinition =
+	private let requiredBooleanFormDefinitionXSD =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"boolean\" " +
 					"name=\"A_Boolean\" " +
@@ -114,7 +106,7 @@ class DDLField_validation_Tests: XCTestCase {
 				"</meta-data> " +
 			"</dynamic-element> </root>"
 
-	private let requiredTextFormDefinition =
+	private let requiredTextFormDefinitionXSD =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 				"<dynamic-element dataType=\"string\" " +
 						"name=\"A_Text\" " +

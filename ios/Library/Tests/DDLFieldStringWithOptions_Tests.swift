@@ -16,7 +16,7 @@ import XCTest
 
 class DDLFieldStringWithOptions_Tests: XCTestCase {
 
-	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
+	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
 	override func setUp() {
 		super.setUp()
@@ -27,9 +27,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldExtractValues() {
-		parser.xml = selectWithPredefinedValues
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		XCTAssertTrue(fields != nil)
 		XCTAssertEqual(1, fields!.count)
@@ -49,9 +47,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldExtractOptions() {
-		parser.xml = selectWithPredefinedValues
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -77,9 +73,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldExtractPredefinedOptions() {
-		parser.xml = selectWithPredefinedValues
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -97,9 +91,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_CurrentValue_ShouldBeTheSameAsPredefinedValue_WhenTheParsingIsDone() {
-		parser.xml = selectWithPredefinedValues
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -121,9 +113,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_CurrentValue_ShouldBeChanged_AfterChangedToExistingOptionLabel() {
-		parser.xml = selectWithPredefinedValues
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -140,9 +130,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_CurrentValue_ShouldBeEmpty_AfterChangedToNonExistingOptionLabel() {
-		parser.xml = selectWithPredefinedValues
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -153,9 +141,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_CurrenStringValue_ShouldContainTheArrayOfValues() {
-		parser.xml = selectWithPredefinedValues
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -165,9 +151,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_CurrenStringValue_ShouldContainEmptyArray_WhenCurrentValueWasSetToEmptyString() {
-		parser.xml = selectWithPredefinedValues
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -177,8 +161,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_CurrenStringValue_ShouldSupportOptionLabel_WhenSettingTheStringValue() {
-		parser.xml = selectWithPredefinedValues
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
 		stringField.currentStringValue = "Option 3"
@@ -187,8 +170,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_CurrenStringValue_ShouldSupportOptionValue_WhenSettingTheStringValue() {
-		parser.xml = selectWithPredefinedValues
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
 		stringField.currentStringValue = "value 3"
@@ -197,8 +179,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_CurrenStringValue_ShouldSupportNil_WhenSettingTheStringValue() {
-		parser.xml = selectWithPredefinedValues
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
 		stringField.currentStringValue = nil
@@ -207,8 +188,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_CurrenStringValue_ShouldSupportNonExistingString_WhenSettingTheStringValue() {
-		parser.xml = selectWithPredefinedValues
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
 		stringField.currentStringValue = "this is neither a value nor a label"
@@ -217,9 +197,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_CurrenOptionLabel_ShouldContainTheLabelOfSelectedOption() {
-		parser.xml = selectWithPredefinedValues
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -229,9 +207,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_CurrenOptionLabel_ShouldContainEmptyString_WhenNoOptionSelected() {
-		parser.xml = selectWithPredefinedValues
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -242,9 +218,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyString() {
-		parser.xml = selectWithPredefinedValues
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -254,9 +228,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShouldPass_WhenRequiredValueIsNotEmptyString() {
-		parser.xml = selectWithPredefinedValues
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -266,7 +238,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 	}
 
 
-	private let selectWithPredefinedValues =
+	private let selectWithPredefinedValuesXSD =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"string\" " +
 					"indexType=\"keyword\" " +

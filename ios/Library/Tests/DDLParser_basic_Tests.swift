@@ -16,6 +16,8 @@ import XCTest
 
 class DDLParser_basic_Tests: XCTestCase {
 
+	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
+
 	override func setUp() {
 		super.setUp()
 	}
@@ -25,31 +27,23 @@ class DDLParser_basic_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldReturnNil_WhenMalformedXML() {
-		let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
+		let xsd = "#root available-locales=\"en_US\" default-locale=\"en_US\"> "
 
-		parser.xml = "#root available-locales=\"en_US\" default-locale=\"en_US\"> "
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
 
 		XCTAssertNil(fields)
 	}
 
 	func test_Parse_ShouldReturnEmpty_WhenEmptyString() {
-		let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
-
-		parser.xml = ""
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse("", locale: spanishLocale)
 
 		XCTAssertNil(fields)
 	}
 
 	func test_Parse_ShouldReturnEmpty_WhenEmptyXML() {
-		let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
+		let xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"></root>"
 
-		parser.xml = "<root available-locales=\"en_US\" default-locale=\"en_US\"></root>"
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
 
 		XCTAssertNil(fields)
 	}

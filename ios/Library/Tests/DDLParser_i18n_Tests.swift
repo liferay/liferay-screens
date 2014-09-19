@@ -16,7 +16,7 @@ import XCTest
 
 class DDLParser_i18n_Tests: XCTestCase {
 
-	let parser:DDLParser = DDLParser(locale:NSLocale(localeIdentifier: "es_ES"))
+	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
 	override func setUp() {
 		super.setUp()
@@ -26,42 +26,17 @@ class DDLParser_i18n_Tests: XCTestCase {
 		super.tearDown()
 	}
 
-	//MARK: Checking header fields
 
-	func test_ParseHeader_ShouldReadAvailableLocales() {
-		parser.xml = "<root available-locales=\"en_US, es_ES\" default-locale=\"es_ES\"> </root>"
-
-		parser.parse()
-
-		XCTAssertNotNil(parser.availableLocales)
-		XCTAssertEqual(2, parser.availableLocales!.count)
-		XCTAssertEqual("en_US", parser.availableLocales![0].localeIdentifier)
-		XCTAssertEqual("es_ES", parser.availableLocales![1].localeIdentifier)
-	}
-
-	func test_ParseHeader_ShouldReadDefaultLocale() {
-		parser.xml = "<root available-locales=\"en_US, es_ES\" default-locale=\"es_ES\"> </root>"
-
-		parser.parse()
-
-		XCTAssertNotNil(parser.defaultLocale)
-		XCTAssertEqual("es_ES", parser.defaultLocale!.localeIdentifier)
-	}
+	//MARK: Checking full perfect match
 
 	func test_ParseElement_ShouldFindFullMatch_WhenExistingCompleteLocaleIsProvided() {
-		parser.locale = NSLocale(localeIdentifier: "es_ES")
-		parser.xml = booleanFieldWithTranslations
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(booleanFieldWithTranslationsXSD, locale: spanishLocale)
 
 		XCTAssertEqual("Un Booleano para 'es_ES'", fields![0].label)
 	}
 
 	func test_ParseOption_ShouldFindFullMatch_WhenExistingCompleteLocaleIsProvided() {
-		parser.locale = NSLocale(localeIdentifier: "es_ES")
-		parser.xml = selectWithTranslatedOptions
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithTranslatedOptionsXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -71,28 +46,19 @@ class DDLParser_i18n_Tests: XCTestCase {
 	//MARK: Checking locale match providing language and country locales
 
 	func test_ParseElement_ShouldFindNeutralLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
-		parser.locale = NSLocale(localeIdentifier: "es_MX")
-		parser.xml = booleanFieldWithTranslations
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(booleanFieldWithTranslationsXSD, locale: NSLocale(localeIdentifier: "es_MX"))
 
 		XCTAssertEqual("Un Booleano neutro para 'es'", fields![0].label)
 	}
 
 	func test_ParseElement_ShouldFindAnyLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
-		parser.locale = NSLocale(localeIdentifier: "en_GB")
-		parser.xml = booleanFieldWithTranslations
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(booleanFieldWithTranslationsXSD, locale: NSLocale(localeIdentifier: "en_GB"))
 
 		XCTAssertEqual("A Boolean for 'en_US'", fields![0].label)
 	}
 
 	func test_ParseOption_ShouldFindNeutralLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
-		parser.locale = NSLocale(localeIdentifier: "es_MX")
-		parser.xml = selectWithTranslatedOptions
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithTranslatedOptionsXSD, locale: NSLocale(localeIdentifier: "es_MX"))
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -100,19 +66,13 @@ class DDLParser_i18n_Tests: XCTestCase {
 	}
 
 	func test_ParseElement_ShouldFindDefault_WhenNoExistingCompleteLocaleIsProvided() {
-		parser.locale = NSLocale(localeIdentifier: "fr_FR")
-		parser.xml = booleanFieldWithTranslations
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(booleanFieldWithTranslationsXSD, locale: NSLocale(localeIdentifier: "fr_FR"))
 
 		XCTAssertEqual("Un Booleano para 'es_ES'", fields![0].label)
 	}
 
 	func test_ParseOption_ShouldFindDefault_WhenNoExistingCompleteLocaleIsProvided() {
-		parser.locale = NSLocale(localeIdentifier: "fr_FR")
-		parser.xml = selectWithTranslatedOptions
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithTranslatedOptionsXSD, locale: NSLocale(localeIdentifier: "fr_FR"))
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -123,19 +83,13 @@ class DDLParser_i18n_Tests: XCTestCase {
 	//MARK: Checking locale match providing neutral language locale
 
 	func test_ParseElement_ShouldFindNeutralLanguageMatch_WhenExistingNeutralLanguageIsProvided() {
-		parser.locale = NSLocale(localeIdentifier: "es")
-		parser.xml = booleanFieldWithTranslations
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(booleanFieldWithTranslationsXSD, locale: NSLocale(localeIdentifier: "es"))
 
 		XCTAssertEqual("Un Booleano neutro para 'es'", fields![0].label)
 	}
 
 	func test_ParseOption_ShouldFindNeutralLanguageMatch_WhenExistingNeutralLanguageIsProvided() {
-		parser.locale = NSLocale(localeIdentifier: "es")
-		parser.xml = selectWithTranslatedOptions
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithTranslatedOptionsXSD, locale: NSLocale(localeIdentifier: "es"))
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -143,19 +97,13 @@ class DDLParser_i18n_Tests: XCTestCase {
 	}
 
 	func test_ParseElement_ShouldFindDefault_WhenNoExistingNeutralLanguageIsProvided() {
-		parser.locale = NSLocale(localeIdentifier: "fr")
-		parser.xml = booleanFieldWithTranslations
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(booleanFieldWithTranslationsXSD, locale: NSLocale(localeIdentifier: "fr"))
 
 		XCTAssertEqual("Un Booleano para 'es_ES'", fields![0].label)
 	}
 
 	func test_ParseOption_ShouldFindDefault_WhenNoExistingNeutralLanguageIsProvided() {
-		parser.locale = NSLocale(localeIdentifier: "fr")
-		parser.xml = selectWithTranslatedOptions
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithTranslatedOptionsXSD, locale: NSLocale(localeIdentifier: "fr"))
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -163,19 +111,13 @@ class DDLParser_i18n_Tests: XCTestCase {
 	}
 
 	func test_ParseElement_ShouldFindAnyLanguageMatch_WhenNoExistingNeutralLanguageIsProvided() {
-		parser.locale = NSLocale(localeIdentifier: "en")
-		parser.xml = booleanFieldWithTranslations
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(booleanFieldWithTranslationsXSD, locale: NSLocale(localeIdentifier: "en"))
 
 		XCTAssertEqual("A Boolean for 'en_US'", fields![0].label)
 	}
 
 	func test_ParseOption_ShouldFindAnyLanguageMatch_WhenNoExistingNeutralLanguageIsProvided() {
-		parser.locale = NSLocale(localeIdentifier: "en")
-		parser.xml = selectWithTranslatedOptions
-
-		let fields = parser.parse()
+		let fields = DDLXSDParser().parse(selectWithTranslatedOptionsXSD, locale: NSLocale(localeIdentifier: "en"))
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
@@ -184,7 +126,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 
 
 
-	private let booleanFieldWithTranslations =
+	private let booleanFieldWithTranslationsXSD =
 		"<root available-locales=\"es_ES, es_AR, es, en_US, en_AU\" default-locale=\"es_ES\"> " +
 			"<dynamic-element dataType=\"boolean\" " +
 					"name=\"Un_booleano\" " +
@@ -220,7 +162,7 @@ class DDLParser_i18n_Tests: XCTestCase {
 				"</meta-data> " +
 		"</dynamic-element></root>"
 
-	private let selectWithTranslatedOptions =
+	private let selectWithTranslatedOptionsXSD =
 		"<root available-locales=\"en_US, es_ES, es_AR\" default-locale=\"es_ES\"> " +
 			"<dynamic-element dataType=\"string\" " +
 					"indexType=\"keyword\" " +

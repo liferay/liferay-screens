@@ -16,17 +16,10 @@ import Foundation
 
 public class DDLXSDParser {
 
-	public var xsd:String?
-	public var locale:NSLocale
-
-	private(set) var defaultLocale:NSLocale?
-	private(set) var availableLocales:[NSLocale]?
-
-	public init(locale:NSLocale) {
-		self.locale = locale
+	public init() {
 	}
 
-	public func parse() -> [DDLField]? {
+	public func parse(xsd: String, locale: NSLocale) -> [DDLField]? {
 		var result:[DDLField]? = nil
 
 		let xmlString = xsd as NSString?
@@ -37,7 +30,7 @@ public class DDLXSDParser {
 			var outError: NSError?
 
 			if let document = SMXMLDocument.documentWithData(data, error: &outError) {
-				result = processDocument(document)
+				result = processDocument(document, locale: locale)
 			}
 		}
 
@@ -47,18 +40,20 @@ public class DDLXSDParser {
 
 	//MARK: Private methods
 
-	private func processDocument(document:SMXMLDocument) -> [DDLField]? {
-		availableLocales = processAvailableLocales(document)
-		defaultLocale = NSLocale(
-				localeIdentifier:document.root?.attributeNamed("default-locale") ?? "en_US")
-
+	private func processDocument(document:SMXMLDocument, locale: NSLocale) -> [DDLField]? {
 		var result:[DDLField]?
 
 		if let elements = document.root?.childrenNamed("dynamic-element") {
+			let defaultLocale = NSLocale(
+				localeIdentifier:document.root?.attributeNamed("default-locale") ?? "en_US")
+
 			result = []
 
 			for element in elements as [SMXMLElement] {
-				if let formField = createFormField(element) {
+				if let formField = createFormField(element,
+						locale: locale,
+						defaultLocale: defaultLocale) {
+
 					result!.append(formField)
 				}
 			}
@@ -67,19 +62,29 @@ public class DDLXSDParser {
 		return result
 	}
 
-	private func createFormField(xmlElement:SMXMLElement) -> DDLField? {
+	private func createFormField(xmlElement:SMXMLElement,
+			locale: NSLocale,
+			defaultLocale: NSLocale)
+			-> DDLField? {
+
 		var result:DDLField?
 
 		let dataType = DDLField.DataType.from(xmlElement:xmlElement)
 
-		let localizedMetadata = processLocalizedMetadata(xmlElement)
+		let localizedMetadata = processLocalizedMetadata(xmlElement,
+				locale: locale,
+				defaultLocale: defaultLocale)
 
 		return dataType.createField(
 				attributes:xmlElement.attributes as [String:String],
 				localized:localizedMetadata)
 	}
 
-	private func processLocalizedMetadata(dynamicElement:SMXMLElement) -> [String:AnyObject] {
+	private func processLocalizedMetadata(dynamicElement:SMXMLElement,
+			locale: NSLocale,
+			defaultLocale: NSLocale)
+			-> [String:AnyObject] {
+
 		var result:[String:AnyObject] = [:]
 
 		func addElement(elementName:String, #metadata:SMXMLElement) {
@@ -101,7 +106,8 @@ public class DDLXSDParser {
 				option["name"] = optionElement.attributeNamed("name")
 				option["value"] = optionElement.attributeNamed("value")
 
-				if let localizedMetadata = findMetadataElementForLocale(optionElement) {
+				if let localizedMetadata = findMetadataElement(optionElement,
+						locale: locale, defaultLocale: defaultLocale) {
 					if let element = localizedMetadata.childWithAttribute("name", value: "label") {
 						option["label"] = element.value
 					}
@@ -113,7 +119,10 @@ public class DDLXSDParser {
 			return options.count == 0 ? nil : options
 		}
 
-		if let localizedMetadata = findMetadataElementForLocale(dynamicElement) {
+		if let localizedMetadata = findMetadataElement(dynamicElement,
+				locale: locale,
+				defaultLocale: defaultLocale) {
+
 			addElement("label", metadata:localizedMetadata)
 			addElement("predefinedValue", metadata:localizedMetadata)
 			addElement("tip", metadata:localizedMetadata)
@@ -126,7 +135,9 @@ public class DDLXSDParser {
 		return result
 	}
 
-	private func findMetadataElementForLocale(dynamicElement:SMXMLElement) -> SMXMLElement? {
+	private func findMetadataElement(dynamicElement:SMXMLElement,
+			locale: NSLocale, defaultLocale: NSLocale)
+			-> SMXMLElement? {
 
 		// Locale matching fallback mechanism: it's designed in such a way to return
 		// the most suitable locale among the available ones. It minimizes the default 
@@ -192,7 +203,7 @@ public class DDLXSDParser {
 			// Final fallback (a4, b3): find default metadata
 
 			resultElement = findElementWithAttribute("locale",
-				value:defaultLocale!.localeIdentifier, elements:metadataElements!)
+				value:defaultLocale.localeIdentifier, elements:metadataElements!)
 		}
 
 		return resultElement
@@ -225,22 +236,6 @@ public class DDLXSDParser {
 		}
 
 		return nil
-	}
-
-	private func processAvailableLocales(document:SMXMLDocument) -> [NSLocale] {
-		var result:[NSLocale] = []
-
-		if let availableLocales = document.root?.attributeNamed("available-locales") {
-			let locales = availableLocales.componentsSeparatedByString(",")
-
-			for locale in locales {
-				let localeIdentifier = locale.stringByTrimmingCharactersInSet(
-						NSCharacterSet.whitespaceCharacterSet())
-				result.append(NSLocale(localeIdentifier:localeIdentifier))
-			}
-		}
-
-		return result
 	}
 
 }
