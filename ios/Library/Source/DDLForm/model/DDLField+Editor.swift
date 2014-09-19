@@ -32,8 +32,8 @@ extension DDLField {
 			return from(attributeValue:(xmlElement.attributeNamed("type") ?? ""))
 		}
 
-		public static func from(#attributes:[String:String]) -> Editor {
-			return from(attributeValue:(attributes["type"] ?? ""))
+		public static func from(#attributes:[String:AnyObject]) -> Editor {
+			return from(attributeValue:((attributes["type"] ?? "") as String))
 		}
 
 		public static func from(#attributeValue:String) -> Editor {

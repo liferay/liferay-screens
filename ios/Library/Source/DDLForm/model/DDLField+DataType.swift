@@ -31,31 +31,28 @@ extension DDLField {
 			return fromRaw(xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 		}
 
-		public func createField(#attributes:[String:String],
-				localized:[String:AnyObject]) -> DDLField? {
+		public func createField(#attributes:[String:AnyObject]) -> DDLField? {
 
 			switch self {
 				case .DDLBoolean:
-					return DDLFieldBoolean(attributes:attributes, localized:localized)
+					return DDLFieldBoolean(attributes:attributes)
 
 				case .DDLString:
 					switch DDLField.Editor.from(attributes: attributes) {
 						case .Select, .Radio:
-							return DDLFieldStringWithOptions(
-									attributes:attributes,
-									localized:localized)
+							return DDLFieldStringWithOptions(attributes:attributes)
 						default:
-							return DDLFieldString(attributes:attributes, localized:localized)
+							return DDLFieldString(attributes:attributes)
 					}
 
 				case .DDLDate:
-					return DDLFieldDate(attributes:attributes, localized:localized)
+					return DDLFieldDate(attributes:attributes)
 
 				case .DDLInteger, .DDLNumber, .DDLDouble:
-					return DDLFieldNumber(attributes:attributes, localized:localized)
+					return DDLFieldNumber(attributes:attributes)
 
 				case .DDLDocument:
-					return DDLFieldDocument(attributes:attributes, localized:localized)
+					return DDLFieldDocument(attributes:attributes)
 
 				default: ()
 			}

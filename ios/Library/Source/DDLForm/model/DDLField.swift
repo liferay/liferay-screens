@@ -52,20 +52,19 @@ import Foundation
 
 	internal(set) var showLabel:Bool
 
-
-	public init(attributes:[String:String], localized:[String:AnyObject]) {
-		dataType = DataType.fromRaw(attributes["dataType"] ?? "") ?? .Unsupported
+	public init(attributes:[String:AnyObject]) {
+		dataType = DataType.fromRaw(valueAsString(attributes, key:"dataType")) ?? .Unsupported
 		editorType = Editor.from(attributes: attributes)
-		name = attributes["name"] ?? ""
+		name = valueAsString(attributes, key:"name")
 
-		readOnly = Bool.from(string: attributes["readOnly"] ?? "false")
-		repeatable = Bool.from(string: attributes["repeatable"] ?? "false")
-		required = Bool.from(string: attributes["required"] ?? "true")
-		showLabel = Bool.from(string: attributes["showLabel"] ?? "false")
+		readOnly = Bool.from(any: attributes["readOnly"] ?? "false")
+		repeatable = Bool.from(any: attributes["repeatable"] ?? "false")
+		required = Bool.from(any: attributes["required"] ?? "true")
+		showLabel = Bool.from(any: attributes["showLabel"] ?? "false")
 
-		label = (localized["label"] ?? "") as String
-		tip = (localized["tip"] ?? "") as String
-		predefinedValue = convert(fromString:(localized["predefinedValue"] ?? nil) as? String)
+		label = valueAsString(attributes, key:"label")
+		tip = valueAsString(attributes, key:"tip")
+		predefinedValue = convert(fromString:(attributes["predefinedValue"] ?? nil) as String?)
 		currentValue = predefinedValue
 	}
 
@@ -112,4 +111,11 @@ import Foundation
 
 public func ==(left: DDLField, right: DDLField) -> Bool {
 	return left.name == right.name
+}
+
+
+//MARK: Util func
+
+private func valueAsString(dict: [String:AnyObject], #key: String) -> String {
+	return (dict[key] ?? "") as String
 }

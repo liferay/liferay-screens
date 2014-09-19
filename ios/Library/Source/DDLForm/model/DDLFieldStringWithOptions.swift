@@ -48,11 +48,10 @@ public class DDLFieldStringWithOptions : DDLField {
 
 	private(set) var options:[Option] = []
 
-	override init(attributes: [String:String], localized: [String:AnyObject]) {
-		multiple = Bool.from(string: attributes["multiple"] ?? "false")
+	override public init(attributes: [String:AnyObject]) {
+		multiple = Bool.from(any: attributes["multiple"] ?? "false")
 
-		if let optionsArray = (localized["options"] as AnyObject?) as? [[String:AnyObject]] {
-
+		if let optionsArray = (attributes["options"] ?? nil) as? [[String:AnyObject]] {
 			for optionDict in optionsArray {
 				let label = (optionDict["label"] ?? "") as String
 				let name = (optionDict["name"] ?? "") as String
@@ -60,11 +59,11 @@ public class DDLFieldStringWithOptions : DDLField {
 
 				let option = Option(label:label, name:name, value:value)
 
-				options.append(option)
+				self.options.append(option)
 			}
 		}
 
-		super.init(attributes: attributes, localized: localized)
+		super.init(attributes: attributes)
 	}
 
 

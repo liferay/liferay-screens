@@ -33,14 +33,14 @@ public class DDLFieldDate : DDLField {
 	private let serverYYDateFormatter = NSDateFormatter()
 	private let clientDateFormatter = NSDateFormatter()
 
-	override init(attributes: [String:String], localized: [String:AnyObject]) {
+	override init(attributes: [String:AnyObject]) {
 		serverYYYYDateFormatter.dateFormat = serverYYYYDateFormat
 		serverYYDateFormatter.dateFormat = serverYYDateFormat
 
 		clientDateFormatter.dateStyle = .MediumStyle
 		clientDateFormatter.timeStyle = .NoStyle
 
-		super.init(attributes: attributes, localized: localized)
+		super.init(attributes: attributes)
 	}
 
 

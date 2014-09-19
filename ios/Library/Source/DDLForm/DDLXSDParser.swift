@@ -75,9 +75,29 @@ public class DDLXSDParser {
 				locale: locale,
 				defaultLocale: defaultLocale)
 
-		return dataType.createField(
-				attributes:xmlElement.attributes as [String:String],
-				localized:localizedMetadata)
+		let mergedAttributes = mergeDictionaries(
+				dict1: xmlElement.attributes as [String:AnyObject],
+				dict2: localizedMetadata)
+
+		return dataType.createField(attributes: mergedAttributes)
+	}
+
+	private func mergeDictionaries(
+			#dict1:[String:AnyObject],
+			dict2:[String:AnyObject])
+			-> [String:AnyObject] {
+
+		var result:[String:AnyObject] = [:]
+
+		for (key1,value1) in dict1 {
+			result.updateValue(value1, forKey: key1)
+		}
+
+		for (key2,value2) in dict2 {
+			result.updateValue(value2, forKey: key2)
+		}
+
+		return result
 	}
 
 	private func processLocalizedMetadata(dynamicElement:SMXMLElement,
