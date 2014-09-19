@@ -14,9 +14,9 @@
 import Foundation
 
 
-public class DDLParser {
+public class DDLXSDParser {
 
-	public var xml:String?
+	public var xsd:String?
 	public var locale:NSLocale
 
 	private(set) var defaultLocale:NSLocale?
@@ -29,7 +29,7 @@ public class DDLParser {
 	public func parse() -> [DDLField]? {
 		var result:[DDLField]? = nil
 
-		let xmlString = xml as NSString?
+		let xmlString = xsd as NSString?
 
 		if let xmlValue = xmlString {
 			let data = xmlValue.dataUsingEncoding(NSUTF8StringEncoding)

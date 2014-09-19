@@ -14,6 +14,9 @@
 import Foundation
 
 
+//TODO: Unit test
+
+
 public class DDLRecord: NSObject {
 
 	public var fields: [DDLField] = []
@@ -27,12 +30,12 @@ public class DDLRecord: NSObject {
 
 	//MARK: Init
 	
-	public init(xml: String, locale: NSLocale) {
+	public init(xsd: String, locale: NSLocale) {
 		super.init()
 
-		let parser = DDLParser(locale: locale)
+		let parser = DDLXSDParser(locale: locale)
 
-		parser.xml = xml
+		parser.xsd = xsd
 
 		if let parsedFields = parser.parse() {
 		 	if !parsedFields.isEmpty {

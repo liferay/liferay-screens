@@ -362,12 +362,12 @@ import UIKit
 	//MARK: Private methods
 
 	private func onFormLoadResult(result: [String:AnyObject]) {
-		if let xml = result["xsd"]! as? String {
+		if let xsd = result["xsd"]! as? String {
 			if let userIdValue = result["userId"]! as? Int {
 				userId = userIdValue
 			}
 
-			formView.record = DDLRecord(xml: xml, locale: NSLocale.currentLocale())
+			formView.record = DDLRecord(xsd: xsd, locale: NSLocale.currentLocale())
 
 			if !formView.record!.fields.isEmpty {
 				delegate?.onFormLoaded?(formView.record!)
