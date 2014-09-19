@@ -20,8 +20,13 @@ public class DDLRecord: NSObject {
 
 	public var recordId: Int?
 
+	public subscript(fieldName: String) -> DDLField? {
+		return fieldBy(name: fieldName)
+	}
+
 
 	//MARK: Init
+	
 	public init(xml: String, locale: NSLocale) {
 		super.init()
 
@@ -44,6 +49,16 @@ public class DDLRecord: NSObject {
 
 
 	//MARK: Public methods
+
+	public func fieldBy(#name: String) -> DDLField? {
+		for field in fields {
+			if field.name == name {
+				return field
+			}
+		}
+
+		return nil
+	}
 
 	public func updateCurrentValues(values: [String:AnyObject]) {
 		for (index,field) in enumerate(fields) {
