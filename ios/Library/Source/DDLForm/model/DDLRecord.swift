@@ -21,7 +21,16 @@ public class DDLRecord: NSObject {
 
 	public var fields: [DDLField] = []
 
-	public var recordId: Int?
+	public var attributes: [String:AnyObject] = [:]
+
+	public var recordId:Int? {
+		get {
+			return (attributes["recordId"] ?? nil) as? Int
+		}
+		set {
+			attributes["recordId"] = newValue
+		}
+	}
 
 	public subscript(fieldName: String) -> DDLField? {
 		return fieldBy(name: fieldName)
@@ -40,10 +49,19 @@ public class DDLRecord: NSObject {
 		}
 	}
 
-	public init(values: [String:AnyObject]) {
+	public init(recordData: [String:AnyObject]) {
 		super.init()
 
-		updateCurrentValues(values)
+		if let recordFields = (recordData["fields"] ?? nil) as? [String:AnyObject] {
+			let parsedFields = DDLValuesParser().parse(recordFields)
+		 	if !parsedFields.isEmpty {
+				fields = parsedFields
+			}
+		}
+
+		if let recordAttributes = (recordData["attributes"] ?? nil) as? [String:AnyObject] {
+			attributes = recordAttributes
+		}
 	}
 
 
