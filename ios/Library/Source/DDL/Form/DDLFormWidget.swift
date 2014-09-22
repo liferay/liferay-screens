@@ -386,6 +386,7 @@ import UIKit
 	private func onRecordLoadResult(result: [String:AnyObject]) {
 		if let recordValue = formView.record {
 			recordValue.updateCurrentValues(result)
+			formView.onChangedRecord()
 		}
 	}
 
