@@ -64,7 +64,16 @@ import Foundation
 
 		label = valueAsString(attributes, key:"label")
 		tip = valueAsString(attributes, key:"tip")
-		predefinedValue = convert(fromString:(attributes["predefinedValue"] ?? nil) as String?)
+
+		predefinedValue = attributes["predefinedValue"] ?? nil
+		if predefinedValue is String {
+			predefinedValue = convert(fromString: predefinedValue as? String)
+		}
+		else {
+			let predefinedStringValue = convert(fromCurrentValue: predefinedValue)
+			predefinedValue = convert(fromString: predefinedStringValue)
+		}
+
 		currentValue = predefinedValue
 	}
 

@@ -25,7 +25,7 @@ public class DDLValuesParser {
 		var result:[DDLField] = []
 
 		for (fieldName, fieldValue) in values {
-			let field = DDLFieldUntyped(name: fieldName, value: fieldValue as String)
+			let field = DDLFieldUntyped(name: fieldName, value: fieldValue)
 
 			result.append(field)
 		}

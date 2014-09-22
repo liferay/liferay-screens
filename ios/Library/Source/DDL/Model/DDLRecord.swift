@@ -79,9 +79,16 @@ public class DDLRecord: NSObject {
 
 	public func updateCurrentValues(values: [String:AnyObject]) {
 		for (index,field) in enumerate(fields) {
-			let fieldValue = (values[field.name] ?? nil) as? String
-			if let fieldStringValue = fieldValue {
-				field.currentStringValue = fieldStringValue
+			let fieldValue: AnyObject? = (values[field.name] ?? nil)
+			if fieldValue != nil {
+				if fieldValue is String {
+					println("\(field.name) String -> \(fieldValue as? String)")
+					field.currentStringValue = fieldValue as? String
+				}
+				else {
+					println("\(field.name) any -> \(fieldValue)")
+					field.currentValue = fieldValue
+				}
 
 				fields.append(field)
 			}

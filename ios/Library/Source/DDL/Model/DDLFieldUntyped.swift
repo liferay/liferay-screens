@@ -16,7 +16,7 @@ import Foundation
 
 @objc public class DDLFieldUntyped: DDLField {
 
-	public init(name: String, value: String) {
+	public init(name: String, value: AnyObject) {
 		let attributes = ["name": name, "predefinedValue": value]
 
 		super.init(attributes: attributes)
