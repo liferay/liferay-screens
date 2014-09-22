@@ -42,7 +42,7 @@ import Foundation
 	}
 
 
-	public var uploadStatus:UploadStatus = .Pending
+	public var uploadStatus = UploadStatus.Pending
 
 	public var currentDocumentLabel:String? {
 		switch currentValue {
@@ -50,6 +50,8 @@ import Foundation
 				return "Image"
 			case is NSURL:
 				return "Video"
+			case is [String:AnyObject]:
+				return "Uploaded file"
 			default:
 				return nil
 		}
@@ -61,6 +63,8 @@ import Foundation
 				return "image/png"
 			case is NSURL:
 				return "video/mpeg"
+			case is [String:AnyObject]:
+				return nil
 			default:
 				return nil
 		}
@@ -70,10 +74,25 @@ import Foundation
 	//MARK: DDLField
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
-		var result:String? = nil
+		var result:AnyObject?
 
-		if value != nil && value! != "" {
-			result = value!
+		if let valueString = value {
+			let data = valueString.dataUsingEncoding(NSUTF8StringEncoding,
+					allowLossyConversion: false)
+			if let jsonObject:AnyObject = NSJSONSerialization.JSONObjectWithData(data!,
+					options: NSJSONReadingOptions(0), error: nil) {
+				if let jsonDict = jsonObject as? NSDictionary {
+					let dict = ["groupId" : jsonDict["groupId"]!,
+							"uuid" : jsonDict["uuid"]!,
+							"version" : jsonDict["version"]!]
+
+					uploadStatus = UploadStatus.Uploaded(dict)
+					result = dict
+				}
+			}
+			else if valueString != "" {
+				result = valueString
+			}
 		}
 
 		return result

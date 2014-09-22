@@ -204,6 +204,26 @@ class DDLFieldDocument_Tests: XCTestCase {
 		XCTAssertEqual(expectedResult, docField.currentStringValue!)
 	}
 
+	func test_UploadStatus_ShouldBeUploaded_WhenSetJSONToCurrentStringValue() {
+		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let docField = fields![0] as DDLFieldDocument
+
+		let json = "{\"groupId\":1234,\"uuid\":\"abcd\",\"version\":\"1.0\"}"
+
+		docField.currentStringValue = json
+
+		switch docField.uploadStatus {
+			case .Uploaded(let uploadedAttributes):
+				let expectedJson:[String:AnyObject] = [
+						"groupId": 1234,
+						"uuid": "abcd",
+						"version": "1.0"]
+				XCTAssertEqual("\(expectedJson)", "\(uploadedAttributes)")
+
+			default:
+				XCTFail("Upload status is expected to be 'Uploaded'")
+		}
+	}
 
 	private let requiredDocumentElementXSD =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
