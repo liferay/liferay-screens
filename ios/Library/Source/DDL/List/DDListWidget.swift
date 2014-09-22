@@ -54,18 +54,18 @@ import UIKit
 	override internal func doGetPageRowsOperation(#session: LRSession, page: Int) {
 		let service = LRMobilewidgetsddlrecordService_v62(session: session)
 
-		service.getDdlRecordsWithRecordSetId((recordSetId as NSNumber).longLongValue,
+		service.getDdlRecordsWithDdlRecordSetId((recordSetId as NSNumber).longLongValue,
 				userId: (userId as NSNumber).longLongValue,
+				locale: NSLocale.currentLocaleString(),
 				start: (firstRowForPage(page) as NSNumber).intValue,
 				end: (firstRowForPage(page + 1) as NSNumber).intValue,
-				locale: NSLocale.currentLocaleString(),
 				error: nil)
 	}
 
 	override internal func doGetRowCountOperation(#session: LRSession) {
 		let service = LRMobilewidgetsddlrecordService_v62(session: session)
 
-		service.getDdlRecordsCountWithRecordSetId((recordSetId as NSNumber).longLongValue,
+		service.getDdlRecordsCountWithDdlRecordSetId((recordSetId as NSNumber).longLongValue,
 				userId: (userId as NSNumber).longLongValue,
 				error: nil)
 	}

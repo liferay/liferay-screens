@@ -52,14 +52,14 @@ public class DDLRecord: NSObject {
 	public init(recordData: [String:AnyObject]) {
 		super.init()
 
-		if let recordFields = (recordData["fields"] ?? nil) as? [String:AnyObject] {
+		if let recordFields = (recordData["modelValues"] ?? nil) as? [String:AnyObject] {
 			let parsedFields = DDLValuesParser().parse(recordFields)
 		 	if !parsedFields.isEmpty {
 				fields = parsedFields
 			}
 		}
 
-		if let recordAttributes = (recordData["attributes"] ?? nil) as? [String:AnyObject] {
+		if let recordAttributes = (recordData["modelAttributes"] ?? nil) as? [String:AnyObject] {
 			attributes = recordAttributes
 		}
 	}

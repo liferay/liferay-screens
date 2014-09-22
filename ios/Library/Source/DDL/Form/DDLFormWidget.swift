@@ -253,7 +253,7 @@ import UIKit
 
 		let ddlService = LRMobilewidgetsddlrecordService_v62(session: session)
 
-		ddlService.getDdlRecordValuesWithDdlRecordId((recordId as NSNumber).longLongValue,
+		ddlService.getDdlRecordWithDdlRecordId((recordId as NSNumber).longLongValue,
 				locale: NSLocale.currentLocaleString(),
 				error: &outError)
 
