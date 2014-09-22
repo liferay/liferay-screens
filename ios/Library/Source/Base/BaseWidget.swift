@@ -119,7 +119,7 @@ import QuartzCore
 			if let currentPreviewImageValue = currentPreviewImage {
 				let imageRect = CGRectMake(
 						(frame.size.width - currentPreviewImageValue.size.width)/2,
-						(frame.size.height - currentPreviewImageValue.size.height)/2,
+						0,
 						currentPreviewImageValue.size.width,
 						currentPreviewImageValue.size.height)
 
