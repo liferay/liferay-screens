@@ -64,6 +64,7 @@ public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default
 		let presenter = DTDatePickerPresenter(changeBlock:onChange)
 
 		presenter.datePicker.datePickerMode = .Date
+		presenter.datePicker.timeZone = NSTimeZone(abbreviation: "GMT")
 		presenter.datePicker.backgroundColor = UIColor.whiteColor()
 		presenter.datePicker.layer.borderColor = UIColor.lightGrayColor().CGColor
 		presenter.datePicker.layer.borderWidth = 1.5

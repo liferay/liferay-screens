@@ -33,12 +33,20 @@ public class DDLFieldDate : DDLField {
 	private let serverYYDateFormatter = NSDateFormatter()
 	private let clientDateFormatter = NSDateFormatter()
 
+	private let gmtTimeZone = NSTimeZone(abbreviation: "GMT")
+
+
 	override init(attributes: [String:AnyObject]) {
+
 		serverYYYYDateFormatter.dateFormat = serverYYYYDateFormat
 		serverYYDateFormatter.dateFormat = serverYYDateFormat
 
 		clientDateFormatter.dateStyle = .MediumStyle
 		clientDateFormatter.timeStyle = .NoStyle
+
+		serverYYYYDateFormatter.timeZone = gmtTimeZone
+		serverYYDateFormatter.timeZone = gmtTimeZone
+		clientDateFormatter.timeZone = gmtTimeZone
 
 		super.init(attributes: attributes)
 	}
