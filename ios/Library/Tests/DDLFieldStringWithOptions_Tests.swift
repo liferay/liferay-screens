@@ -170,6 +170,24 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 		XCTAssertEqual("[\"value 3\"]", stringField.currentStringValue!)
 	}
 
+	func test_CurrenStringValue_ShouldSupportOptionValue_WhenSettingAnArrayOfValues() {
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
+		let stringField = fields![0] as DDLFieldStringWithOptions
+
+		stringField.currentStringValue = "[\"value 3\"]"
+
+		XCTAssertEqual("[\"value 3\"]", stringField.currentStringValue!)
+	}
+
+	func test_CurrenStringValue_ShouldSupportOptionValue_WhenSettingAnArrayOfUnquotedValues() {
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
+		let stringField = fields![0] as DDLFieldStringWithOptions
+
+		stringField.currentStringValue = "[value 3]"
+
+		XCTAssertEqual("[\"value 3\"]", stringField.currentStringValue!)
+	}
+
 	func test_CurrenStringValue_ShouldSupportNil_WhenSettingTheStringValue() {
 		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 		let stringField = fields![0] as DDLFieldStringWithOptions

@@ -117,7 +117,14 @@ public class DDLFieldStringWithOptions : DDLField {
 
 			let optionsArray = removeFirstAndLastChars(options).componentsSeparatedByString(",")
 
-			return optionsArray.isEmpty ? nil : removeFirstAndLastChars(optionsArray[0])
+			var result:String?
+
+			if let firstOptionValue = optionsArray.first {
+				result = firstOptionValue.hasPrefix("\"")
+						? removeFirstAndLastChars(firstOptionValue) : firstOptionValue
+			}
+
+			return result
 		}
 
 		var firstOption:String?
