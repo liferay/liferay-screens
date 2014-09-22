@@ -18,6 +18,56 @@ class DDLFieldBoolean_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
+	func test_ConvertFromString_ShouldReturnNil_WhenNilStringIsSupplied() {
+		let boolField = DDLFieldBoolean(attributes: [:])
+
+		XCTAssertNil(boolField.convert(fromString: nil))
+	}
+
+	func test_ConvertFromString_ShouldReturnBool_WhenTrueStringIsSupplied() {
+		let boolField = DDLFieldBoolean(attributes: [:])
+
+		let convertedValue:AnyObject? = boolField.convert(fromString: "true")
+
+		XCTAssertNotNil(convertedValue)
+		XCTAssertTrue(convertedValue is Bool)
+		XCTAssertTrue(convertedValue as Bool)
+	}
+
+	func test_ConvertFromString_ShouldReturnBool_WhenFalseStringIsSupplied() {
+		let boolField = DDLFieldBoolean(attributes: [:])
+
+		let convertedValue:AnyObject? = boolField.convert(fromString: "false")
+
+		XCTAssertNotNil(convertedValue)
+		XCTAssertTrue(convertedValue is Bool)
+		XCTAssertFalse(convertedValue as Bool)
+	}
+
+	func test_ConvertFromCurrentValue_ShouldReturnNil_WhenNilIsSupplied() {
+		let boolField = DDLFieldBoolean(attributes: [:])
+
+		XCTAssertNil(boolField.convert(fromCurrentValue: nil))
+	}
+
+	func test_ConvertFromCurrentValue_ShouldReturnTrueString_WhenTrueIsSupplied() {
+		let boolField = DDLFieldBoolean(attributes: [:])
+
+		let convertedValue = boolField.convert(fromCurrentValue: true)
+
+		XCTAssertNotNil(convertedValue)
+		XCTAssertEqual("true", convertedValue!)
+	}
+
+	func test_ConvertFromCurrentValue_ShouldReturnFalseString_WhenFalseIsSupplied() {
+		let boolField = DDLFieldBoolean(attributes: [:])
+
+		let convertedValue = boolField.convert(fromCurrentValue: false)
+
+		XCTAssertNotNil(convertedValue)
+		XCTAssertEqual("false", convertedValue!)
+	}
+
 	func test_Parse_ShouldExtractValues() {
 		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
@@ -31,15 +81,9 @@ class DDLFieldBoolean_Tests: XCTestCase {
 				"type=\"checkbox\" " +
 				"width=\"\"> " +
 					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Boolean]]>" +
-						"</entry> " +
-						"<entry name=\"predefinedValue\"> " +
-							"<![CDATA[true]]> " +
-						"</entry> " +
-						"<entry name=\"tip\">" +
-							"<![CDATA[The tip]]>" +
-						"</entry> " +
+						"<entry name=\"label\"><![CDATA[A Boolean]]></entry> " +
+						"<entry name=\"predefinedValue\"><![CDATA[true]]></entry> " +
+						"<entry name=\"tip\"><![CDATA[The tip]]></entry> " +
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
@@ -56,6 +100,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 		XCTAssertEqual("A_Boolean", booleanField.name)
 		XCTAssertEqual("A Boolean", booleanField.label)
 		XCTAssertEqual("The tip", booleanField.tip)
+		XCTAssertNotNil(booleanField.predefinedValue)
 		XCTAssertTrue(booleanField.predefinedValue is Bool)
 		XCTAssertTrue(booleanField.predefinedValue as Bool)
 		XCTAssertFalse(booleanField.readOnly)
