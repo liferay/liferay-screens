@@ -134,7 +134,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 			let newText = (textView!.text as NSString).stringByReplacingCharactersInRange(range,
 					withString:text)
 
-			placeholder!.changeVisibility(visible: newText == "")
+			placeholder!.changeVisibility(visible: newText != "")
 
 			field?.currentValue = newText
 
