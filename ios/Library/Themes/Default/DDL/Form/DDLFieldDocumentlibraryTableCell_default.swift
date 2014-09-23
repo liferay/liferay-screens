@@ -122,7 +122,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 	private func setProgress(field:DDLFieldDocument) {
 		let theme = progress!.theme
 
-		theme.font = UIFont(descriptor: textField!.font.fontDescriptor(), size: 2.0)
+		theme.font = UIFont(descriptor: textField!.font.fontDescriptor(), size: 30.0)
 
 		theme.sliceDividerHidden = true
 		theme.thickness = 10.0
