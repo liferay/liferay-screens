@@ -32,7 +32,7 @@ import UIKit
 
 	@IBInspectable public var labelField: String = "" {
 		didSet {
-			onCreated()
+			onLabelFieldChanged()
 		}
 	}
 
@@ -47,8 +47,8 @@ import UIKit
 
 	override public func onCreated() {
 		super.onCreated()
-		
-		recordListView.labelField = labelField
+
+		onLabelFieldChanged()
 	}
 
 	override internal func doGetPageRowsOperation(#session: LRSession, page: Int) {
@@ -97,5 +97,12 @@ import UIKit
 	override internal func onSelectedRow(row: AnyObject) {
 		delegate?.onDDLRecordSelected?(row as DDLRecord)
 	}
+
+	internal func onLabelFieldChanged() {
+		if widgetView != nil {
+			recordListView.labelField = labelField
+		}
+	}
+
 
 }
