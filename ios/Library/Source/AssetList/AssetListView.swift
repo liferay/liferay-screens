@@ -14,22 +14,6 @@
 import UIKit
 
 
-public class AssetListView: BaseWidgetView {
-
-	public var entryCount:Int = 0
-
-	public var entries:[AssetEntry?] = [] {
-		didSet {
-			onChangedEntries()
-		}
-	}
-
-	internal var onSelectedEntryClosure: (AssetEntry -> Void)?
-
-	internal var fetchPageForRow: (Int -> Void)?
-
-
-	internal func onChangedEntries() {
-	}
+public class AssetListView: BaseListView {
 
 }

@@ -20,11 +20,11 @@ public class AssetListViewController: UIViewController, AssetListWidgetDelegate 
     }
 
 	@IBAction func loadAction(sender: AnyObject) {
-		LiferayContext.instance().createSession("jose.navarro@liferay.com", password: "jm")
+		LiferayContext.instance.createSession("jose.navarro@liferay.com", password: "jm")
 		widget!.loadList()
 	}
 
-	public func onAssetListResponse(entries:[AssetEntry]) {
+	public func onAssetListResponse(entries:[AssetListWidget.Entry]) {
 		println("Loaded \(entries.count) entries")
 		for e in entries {
 			println("      \(e.title)")
@@ -34,7 +34,7 @@ public class AssetListViewController: UIViewController, AssetListWidgetDelegate 
 	public func onAssetListError(error: NSError) {
 	}
 
-	public func onAssetSelected(entry:AssetEntry) {
+	public func onAssetSelected(entry: AssetListWidget.Entry) {
 		println("selected \(entry.title)")
 	}
 

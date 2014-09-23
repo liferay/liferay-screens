@@ -70,7 +70,7 @@ public class LoginView_default: LoginView {
 	}
 
 	override internal func onCreated() {
-		BaseWidget.setHUDCustomColor(DDLElementBasicBlue)
+		BaseWidget.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
 

@@ -17,7 +17,7 @@ public class FormViewController: UIViewController, DDLFormWidgetDelegate {
 		widget!.delegate = self
 	}
 
-	public func onFormLoaded(elements: [DDLElement]) {
+	public func onFormLoaded(record: DDLRecord) {
 		widget!.becomeFirstResponder()
 	}
 
@@ -25,8 +25,36 @@ public class FormViewController: UIViewController, DDLFormWidgetDelegate {
 		println("Error with form -> " + error.description)
 	}
 
+	public func onRecordLoaded(record: DDLRecord) {
+	}
+
+	public func onRecordLoadError(error: NSError) {
+	}
+
+	public func onFormSubmitted(record: DDLRecord) {
+	}
+
+	public func onFormSubmitError(error: NSError) {
+	}
+
+	public func onDocumentUploadStarted(field:DDLFieldDocument) {
+	}
+
+	public func onDocumentUploadedBytes(field:DDLFieldDocument,
+			bytes: UInt,
+			sent: Int64,
+			total: Int64) {
+	}
+
+	public func onDocumentUploadCompleted(field:DDLFieldDocument, result:[String:AnyObject]) {
+	}
+
+	public func onDocumentUploadError(field:DDLFieldDocument, error: NSError) {
+	}
+
+
 	@IBAction internal func buttonClick(sender: AnyObject) {
-		LiferayContext.instance().createSession("jose.navarro@liferay.com", password: "jm")
+		LiferayContext.instance.createSession("jose.navarro@liferay.com", password: "jm")
 
 		if widget!.recordId == 0 {
 			widget!.loadForm()

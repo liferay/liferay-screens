@@ -24,10 +24,6 @@ class BaseWidget_theme_Tests: XCTestCase {
 		loginWidget = LoginWidget(frame: CGRectMake(0, 0, 100, 100))
 	}
 
-	override func tearDown() {
-		super.tearDown()
-	}
-
 	func test_CurrentThemeName_ShouldReturnDefault_WhenNoThemeIsSelected() {
 		XCTAssertEqual("default", loginWidget!.currentThemeName)
 	}

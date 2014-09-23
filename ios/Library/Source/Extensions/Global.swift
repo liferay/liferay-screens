@@ -14,8 +14,21 @@
 import Foundation
 
 
+public enum WidgetsErrorCause: Int {
+
+	case InvalidServerResponse = -2
+
+}
+
+
+internal func createError(#cause: WidgetsErrorCause, userInfo: NSDictionary? = nil) -> NSError {
+	return NSError(domain: "LiferayWidgets", code: cause.toRaw(), userInfo: userInfo)
+}
+
+
 func synchronized(lock:AnyObject, closure: Void -> Void) {
 	objc_sync_enter(lock)
 	closure()
 	objc_sync_exit(lock)
 }
+

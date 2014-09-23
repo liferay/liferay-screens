@@ -22,4 +22,15 @@ extension Bool {
 		return !(boolValue == "false" || boolValue == "0")
 	}
 
+	public static func from(any value:AnyObject) -> Bool {
+		if let stringValue = value as? String {
+			return Bool.from(string: stringValue)
+		}
+		else if let numberValue = value as? NSNumber {
+			return numberValue.boolValue
+		}
+
+		return false
+	}
+
 }

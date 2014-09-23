@@ -14,61 +14,14 @@
 import UIKit
 
 
-public class AssetListTableView: AssetListView, UITableViewDataSource, UITableViewDelegate {
+public class AssetListTableView: BaseListTableView {
 
-	@IBOutlet internal var tableView: UITableView?
-
-
-	// MARK: AssetListView
-
-	override internal func onChangedEntries() {
-		super.onChangedEntries()
-
-		tableView!.reloadData()
+	override internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
+		// Apply cell style in the theme
 	}
 
-
-	//MARK: UITableViewDataSource
-
-	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return entryCount
-	}
-
-	public func tableView(tableView: UITableView,
-			cellForRowAtIndexPath
-			indexPath: NSIndexPath)
-			-> UITableViewCell {
-
-		var cell = tableView.dequeueReusableCellWithIdentifier("assetCell") as? UITableViewCell
-
-		if cell == nil {
-			cell = UITableViewCell(style: .Default, reuseIdentifier: "assetCell")
-		}
-
-		if let entry = entries[indexPath.row] {
-			cell!.textLabel?.text = entry.title
-			cell!.accessoryType = .DisclosureIndicator
-			cell!.accessoryView = nil
-		}
-		else {
-			cell!.textLabel?.text = "..."
-			cell!.accessoryType = .None
-			let image = UIImage(named: "default-hourglass")
-			cell!.accessoryView = UIImageView(image: image)
-			cell!.accessoryView!.frame = CGRectMake(0, 0, image.size.width, image.size.height)
-
-			fetchPageForRow?(indexPath.row)
-		}
-
-		return cell!
-	}
-
-	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		tableView.deselectRowAtIndexPath(indexPath, animated: false)
-
-		if let entry = entries[indexPath.row] {
-			onSelectedEntryClosure?(entry)
-		}
+	override internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
+		// Apply cell style in the theme
 	}
 
 }
