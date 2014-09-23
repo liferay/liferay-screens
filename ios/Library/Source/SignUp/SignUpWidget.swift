@@ -66,7 +66,7 @@ import UIKit
 			LiferayContext.instance.createSession(creatingUsername!, password: creatingPassword!)
 		}
 
-		finishOperationWithMessage("Sign up completed")
+		finishOperation()
 	}
 
 

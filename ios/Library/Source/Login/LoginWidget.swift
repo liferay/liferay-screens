@@ -87,7 +87,7 @@ public class LoginWidget: BaseWidget {
 			}
 		}
 
-		finishOperationWithMessage("Sign in completed")
+		finishOperation()
 	}
 
 

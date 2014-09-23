@@ -139,7 +139,7 @@ import UIKit
 					recordId = recordIdValue
 					formView.record!.recordId = recordIdValue
 				}
-				finishOperationWithMessage("Form submitted")
+				finishOperation()
 				currentOperation = .Idle
 
 			case .LoadingForm:
@@ -377,7 +377,7 @@ import UIKit
 			if !formView.record!.fields.isEmpty {
 				delegate?.onFormLoaded?(formView.record!)
 
-				finishOperationWithMessage("Form loaded")
+				finishOperation()
 
 				return true
 			}
