@@ -46,7 +46,6 @@ public class DDLFieldDate : DDLField {
 
 		serverYYYYDateFormatter.timeZone = gmtTimeZone
 		serverYYDateFormatter.timeZone = gmtTimeZone
-		clientDateFormatter.timeZone = gmtTimeZone
 
 		super.init(attributes: attributes)
 	}
