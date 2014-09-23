@@ -33,9 +33,3 @@ let DDLFieldRadioGroupMarginTop:CGFloat = 15
 let DDLFieldRadioGroupMarginBottom:CGFloat = 10
 let DDLFieldRadioButtonMargin:CGFloat = 10
 let DDLFieldRadioButtonHeight:CGFloat = 16
-
-
-// MARK: Common
-
-let DDLFieldButtonCornerRadius:CGFloat = 4
-let DDLFieldBasicBlue = UIColor(red: 0.0, green: 184.0/255.0, blue: 224.0/255.0, alpha: 0.87)

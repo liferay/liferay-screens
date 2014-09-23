@@ -293,6 +293,8 @@
 		88F648B4198D301E003A8FD9 /* BaseWidget+progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BC19655F4B00664504 /* BaseWidget+progress.swift */; };
 		88F648B5198D3021003A8FD9 /* BaseWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BD19655F4B00664504 /* BaseWidget.swift */; };
 		88F648B7198D304B003A8FD9 /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88AEA25C19657C3100CD130B /* liferay-context-sample.plist */; };
+		991C7A8719D1865500236D1A /* DefaultThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991C7A8619D1865500236D1A /* DefaultThemeConstants.swift */; };
+		991C7A8819D1865500236D1A /* DefaultThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991C7A8619D1865500236D1A /* DefaultThemeConstants.swift */; };
 		999BC6981975422900A9B0D8 /* LiferayContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889CA4BF19655F4B00664504 /* LiferayContext.swift */; };
 		999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
 		999BC69F19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */; };
@@ -514,6 +516,7 @@
 		88F648A6198D2E1B003A8FD9 /* NSBundle+Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Paths.swift"; sourceTree = "<group>"; wrapsLines = 0; };
 		88FE74D419655E1B003A7CE5 /* Liferay-iOS-Widgets-Dummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liferay-iOS-Widgets-Dummy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		990C6E5B19B0B56500464E80 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; wrapsLines = 0; };
+		991C7A8619D1865500236D1A /* DefaultThemeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultThemeConstants.swift; sourceTree = "<group>"; };
 		999BC69D19768ECC00A9B0D8 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; wrapsLines = 0; };
 		FEA555EA8DC0458CA74C4ACE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -821,6 +824,7 @@
 				88999AB0198EE59E00E746A6 /* Login */,
 				88999AB1198EE59E00E746A6 /* Resources */,
 				888D77CD19903F060052C39C /* SignUp */,
+				991C7A8619D1865500236D1A /* DefaultThemeConstants.swift */,
 			);
 			path = Default;
 			sourceTree = "<group>";
@@ -1319,6 +1323,7 @@
 				888CE10B19923142001DCA6A /* BaseWidget_basic_Tests.swift in Sources */,
 				8845B91B19CC5AF40025D1D2 /* DDLFormView_default.swift in Sources */,
 				881F351D19CB0F99002B9BEC /* DDLFieldDate_Tests.swift in Sources */,
+				991C7A8819D1865500236D1A /* DefaultThemeConstants.swift in Sources */,
 				888D77D319903F060052C39C /* ForgotPasswordView_default.swift in Sources */,
 				8845B91119CC5AF40025D1D2 /* DDLFieldTextareaTableCell_default.swift in Sources */,
 				8845B91919CC5AF40025D1D2 /* DDLFormDefaultThemeConstants.swift in Sources */,
@@ -1445,6 +1450,7 @@
 				8891528119C48F8600F0B7F3 /* Global.swift in Sources */,
 				8845B88119CC3A7C0025D1D2 /* AssetListView_default.swift in Sources */,
 				8845B8CD19CC5AE40025D1D2 /* DDLFieldString.swift in Sources */,
+				991C7A8719D1865500236D1A /* DefaultThemeConstants.swift in Sources */,
 				88C4215919C19AE50067BB85 /* AssetListWidget.swift in Sources */,
 				8845B8CF19CC5AE40025D1D2 /* DDLFieldStringWithOptions.swift in Sources */,
 				8845B8F219CC5AF40025D1D2 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,

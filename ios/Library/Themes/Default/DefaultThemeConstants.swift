@@ -11,17 +11,10 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
+import Foundation
 
 
-public class DDLFormView_default: DDLFormTableView {
+let DefaultThemeButtonCornerRadius:CGFloat = 4
 
-	//MARK: DDLFormTableView 
+let DefaultThemeBasicBlue = UIColor(red: 0.0, green: 184.0/255.0, blue: 224.0/255.0, alpha: 0.87)
 
-	override internal func onCreated() {
-		super.onCreated()
-
-		BaseWidget.setHUDCustomColor(DefaultThemeBasicBlue)
-	}
-
-}
