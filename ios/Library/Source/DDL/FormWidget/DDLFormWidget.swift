@@ -407,7 +407,9 @@ import UIKit
 			return false
 		}
 
-		let repoId = (repositoryId != 0) ? repositoryId : groupId
+		let groupIdToUse = ((groupId != 0) ? groupId : LiferayContext.instance.groupId) as NSNumber
+		let repositoryIdToUse = ((repositoryId != 0) ? repositoryId : groupIdToUse) as NSNumber
+
 		let fileName = "\(filePrefix)-\(NSUUID.UUID().UUIDString)"
 		var size:Int64 = 0
 		let stream = document.getStream(&size)
@@ -428,7 +430,7 @@ import UIKit
 		var outError: NSError?
 
 		service.addFileEntryWithRepositoryId(
-			(repoId as NSNumber).longLongValue,
+			repositoryIdToUse.longLongValue,
 			folderId: (folderId as NSNumber).longLongValue,
 			sourceFileName: fileName,
 			mimeType: document.mimeType,
