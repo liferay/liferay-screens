@@ -15,8 +15,8 @@
 		8811DC4D19BDF2F5008FE226 /* WebContentView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC4A19BDF2F5008FE226 /* WebContentView_default.swift */; };
 		8811DC4E19BDF2F5008FE226 /* WebContentView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC4A19BDF2F5008FE226 /* WebContentView_default.swift */; };
 		881A6E6619C856EB002ECC8F /* SignUpView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D77CF19903F060052C39C /* SignUpView_default.swift */; };
-		881F34BB19CB0CAB002B9BEC /* LoadPageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F34BA19CB0CAB002B9BEC /* LoadPageOperation.swift */; };
-		881F34BC19CB0CB1002B9BEC /* LoadPageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F34BA19CB0CAB002B9BEC /* LoadPageOperation.swift */; };
+		881F34BB19CB0CAB002B9BEC /* PaginationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F34BA19CB0CAB002B9BEC /* PaginationOperation.swift */; };
+		881F34BC19CB0CB1002B9BEC /* PaginationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F34BA19CB0CAB002B9BEC /* PaginationOperation.swift */; };
 		881F351919CB0F99002B9BEC /* DDLFieldNumber_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F351119CB0F99002B9BEC /* DDLFieldNumber_Tests.swift */; };
 		881F351B19CB0F99002B9BEC /* DDLFieldDocument_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F351219CB0F99002B9BEC /* DDLFieldDocument_Tests.swift */; };
 		881F351D19CB0F99002B9BEC /* DDLFieldDate_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F351319CB0F99002B9BEC /* DDLFieldDate_Tests.swift */; };
@@ -354,7 +354,7 @@
 		8811DC4219BDF2CA008FE226 /* WebContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8811DC4319BDF2CA008FE226 /* WebContentWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentWidget.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8811DC4A19BDF2F5008FE226 /* WebContentView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView_default.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		881F34BA19CB0CAB002B9BEC /* LoadPageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadPageOperation.swift; sourceTree = "<group>"; };
+		881F34BA19CB0CAB002B9BEC /* PaginationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PaginationOperation.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		881F351119CB0F99002B9BEC /* DDLFieldNumber_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldNumber_Tests.swift; sourceTree = "<group>"; };
 		881F351219CB0F99002B9BEC /* DDLFieldDocument_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDocument_Tests.swift; sourceTree = "<group>"; };
 		881F351319CB0F99002B9BEC /* DDLFieldDate_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDate_Tests.swift; sourceTree = "<group>"; };
@@ -377,7 +377,7 @@
 		883CF3CC199B782D008F0EBC /* LRMobilewidgetsuserService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsuserService_v62.m; sourceTree = "<group>"; };
 		8844996C19C9D62C00A46779 /* LoginAuthType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAuthType.swift; sourceTree = "<group>"; };
 		8845B85419CC3A4F0025D1D2 /* BaseListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListView.swift; sourceTree = "<group>"; };
-		8845B85519CC3A4F0025D1D2 /* BaseListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListWidget.swift; sourceTree = "<group>"; };
+		8845B85519CC3A4F0025D1D2 /* BaseListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BaseListWidget.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8845B85719CC3A4F0025D1D2 /* BaseListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListTableView.swift; sourceTree = "<group>"; };
 		8845B88019CC3A7C0025D1D2 /* AssetListView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListView_default.swift; sourceTree = "<group>"; };
 		8845B89819CC5AE40025D1D2 /* DDLValuesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLValuesParser.swift; sourceTree = "<group>"; };
@@ -906,7 +906,7 @@
 				889CA4BC19655F4B00664504 /* BaseWidget+progress.swift */,
 				889CA4BE19655F4B00664504 /* BaseWidgetView.swift */,
 				889CA4BF19655F4B00664504 /* LiferayContext.swift */,
-				881F34BA19CB0CAB002B9BEC /* LoadPageOperation.swift */,
+				881F34BA19CB0CAB002B9BEC /* PaginationOperation.swift */,
 				88F648A2198D2E11003A8FD9 /* ThemeManager.swift */,
 			);
 			path = Base;
@@ -1381,7 +1381,7 @@
 				88F648B3198D301B003A8FD9 /* BaseWidgetView.swift in Sources */,
 				8845B85D19CC3A4F0025D1D2 /* BaseListTableView.swift in Sources */,
 				88E4F26E1990C2EF00E69261 /* BaseWidget_tab_sequence_Tests.swift in Sources */,
-				881F34BC19CB0CB1002B9BEC /* LoadPageOperation.swift in Sources */,
+				881F34BC19CB0CB1002B9BEC /* PaginationOperation.swift in Sources */,
 				8845B8F319CC5AF40025D1D2 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1459,7 +1459,7 @@
 				88A91FC1199298CE009B5227 /* Bool+Conversion.swift in Sources */,
 				8845B91E19CC5AF40025D1D2 /* DDLSubmitButtonTableCell_default.swift in Sources */,
 				888CE12D19924D74001DCA6A /* ForgotPasswordView_flat7.swift in Sources */,
-				881F34BB19CB0CAB002B9BEC /* LoadPageOperation.swift in Sources */,
+				881F34BB19CB0CAB002B9BEC /* PaginationOperation.swift in Sources */,
 				889CA4C719655F4B00664504 /* BaseWidget+progress.swift in Sources */,
 				999BC69E19768ECC00A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
 			);

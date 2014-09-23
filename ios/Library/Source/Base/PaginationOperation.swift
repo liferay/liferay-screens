@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LoadPageOperation: NSObject, LRCallback {
+public class PaginationOperation: NSObject, LRCallback {
 
 	internal var onOperationSuccess: ((Int, [[String:AnyObject]], Int) -> [AnyObject])?
 	internal var onOperationFailure: ((Int, NSError) -> Void)?

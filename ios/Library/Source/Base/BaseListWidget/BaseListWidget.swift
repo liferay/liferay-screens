@@ -23,7 +23,7 @@ import UIKit
 		return widgetView as BaseListView
 	}
 
-	private var loadPageOperations: [Int:LoadPageOperation] = [:]
+	private var paginationOperations: [Int:PaginationOperation] = [:]
 
 
 	//MARK: BaseWidget
@@ -51,12 +51,12 @@ import UIKit
 	//MARK: Internal methods
 
 	internal func loadPage(page:Int) -> Bool {
-		let operation = LoadPageOperation(page:page)
+		let operation = PaginationOperation(page:page)
 
 		operation.onOperationSuccess = onLoadPageResult
 		operation.onOperationFailure = onLoadPageError
 
-		loadPageOperations[page] = operation
+		paginationOperations[page] = operation
 
 		let session = LRBatchSession(session: LiferayContext.instance.currentSession)
 		session.callback = operation
@@ -90,7 +90,7 @@ import UIKit
 	internal func loadPageForRow(row:Int) {
 		let page = pageFromRow(row)
 
-		if loadPageOperations.indexForKey(page) == nil {
+		if paginationOperations.indexForKey(page) == nil {
 			loadPage(page)
 		}
 	}
@@ -116,7 +116,7 @@ import UIKit
 			finishOperationWithError(error, message:"Error getting list!")
 		}
 
-		loadPageOperations.removeValueForKey(page)
+		paginationOperations.removeValueForKey(page)
 	}
 
 	internal func onLoadPageResult(page: Int,
@@ -150,7 +150,7 @@ import UIKit
 			finishOperation()
 		}
 
-		loadPageOperations.removeValueForKey(page)
+		paginationOperations.removeValueForKey(page)
 
 		return convertedRows
 	}
