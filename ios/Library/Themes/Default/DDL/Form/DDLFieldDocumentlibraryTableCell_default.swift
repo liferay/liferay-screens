@@ -25,7 +25,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 		}
 	}
 
-	@IBOutlet internal var progress:MDRadialProgressView?
+	@IBOutlet internal var progress: MDRadialProgressView?
 
 
 	//MARK: Constants
@@ -35,7 +35,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 
 	private let completedColor = [
 			DDLFieldDocument.UploadStatus.Uploading(0,0) :
-					UIColor(red:0, green:184/255.0, blue:224/255.0, alpha:1),
+					DefaultThemeBasicBlue,
 			DDLFieldDocument.UploadStatus.Uploaded([:]) :
 					UIColor(red:90/255.0, green:212/255.0, blue:39/255.0, alpha:1),
 			DDLFieldDocument.UploadStatus.Failed(nil) :
@@ -58,7 +58,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 
 	private let labelColor = [
 			DDLFieldDocument.UploadStatus.Uploading(0,0) :
-					UIColor.whiteColor(),
+					DefaultThemeBasicBlue,
 			DDLFieldDocument.UploadStatus.Uploaded([:]) :
 					UIColor(red:240/255.0, green:1, blue:1, alpha:1),
 			DDLFieldDocument.UploadStatus.Failed(nil) :
