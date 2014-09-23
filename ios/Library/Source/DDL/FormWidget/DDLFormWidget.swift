@@ -139,11 +139,13 @@ import UIKit
 					recordId = recordIdValue
 					formView.record!.recordId = recordIdValue
 				}
+
 				finishOperation()
 				currentOperation = .Idle
 
 			case .LoadingForm:
 				if onFormLoadResult(result) {
+					finishOperation()
 					currentOperation = .Idle
 				}
 
@@ -160,6 +162,7 @@ import UIKit
 					onRecordLoadResult(responses[0] as [String:AnyObject])
 					formView.record!.recordId = recordId
 
+					finishOperation()
 					currentOperation = .Idle
 				}
 
@@ -376,8 +379,6 @@ import UIKit
 
 			if !formView.record!.fields.isEmpty {
 				delegate?.onFormLoaded?(formView.record!)
-
-				finishOperation()
 
 				return true
 			}
