@@ -39,18 +39,13 @@ public class PaginationOperation: NSObject, LRCallback {
 					onOperationSuccess?(page,
 						entriesResponse as [[String:AnyObject]],
 						countResponse as Int)
-				}
-				else {
-					//TODO: error handling
+
+					return
 				}
 			}
-			else {
-				//TODO: error handling
-			}
 		}
-		else {
-			//TODO: error handling
-		}
+
+		onFailure(createError(cause: .InvalidServerResponse, userInfo: ["ServerResponse" : result]))
 	}
 
 }

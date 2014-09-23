@@ -143,20 +143,25 @@ import UIKit
 				currentOperation = .Idle
 
 			case .LoadingForm:
-				onFormLoadResult(result)
-				currentOperation = .Idle
+				if onFormLoadResult(result) {
+					currentOperation = .Idle
+				}
 
 			case .LoadingRecord(let includesForm):
 				let responses = (result["result"] ?? []) as [AnyObject]
 
+				var success = true
+
 				if includesForm && responses.count > 1 {
-					onFormLoadResult(responses[1] as [String:AnyObject])
+					success = onFormLoadResult(responses[1] as [String:AnyObject])
 				}
 
-				onRecordLoadResult(responses[0] as [String:AnyObject])
-				formView.record!.recordId = recordId
+				if success {
+					onRecordLoadResult(responses[0] as [String:AnyObject])
+					formView.record!.recordId = recordId
 
-				currentOperation = .Idle
+					currentOperation = .Idle
+				}
 
 			case .Uploading(let document, let submitAfter):
 				document.uploadStatus = .Uploaded(result)
@@ -361,7 +366,7 @@ import UIKit
 
 	//MARK: Private methods
 
-	private func onFormLoadResult(result: [String:AnyObject]) {
+	private func onFormLoadResult(result: [String:AnyObject]) -> Bool {
 		if let xsd = result["xsd"]! as? String {
 			if let userIdValue = result["userId"]! as? Int {
 				userId = userIdValue
@@ -373,14 +378,14 @@ import UIKit
 				delegate?.onFormLoaded?(formView.record!)
 
 				finishOperationWithMessage("Form loaded")
-			}
-			else {
-				//TODO: error
+
+				return true
 			}
 		}
-		else {
-			//TODO: error
-		}
+
+		onFailure(createError(cause: .InvalidServerResponse, userInfo: ["ServerResponse" : result]))
+
+		return false
 	}
 
 	private func onRecordLoadResult(result: [String:AnyObject]) {
