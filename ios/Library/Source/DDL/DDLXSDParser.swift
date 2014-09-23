@@ -16,9 +16,15 @@ import Foundation
 
 public class DDLXSDParser {
 
+
+	//MARK: Constructors
+
 	public init() {
 	}
 
+
+	//MARK: Public methods
+	
 	public func parse(xsd: String, locale: NSLocale) -> [DDLField]? {
 		var result:[DDLField]? = nil
 
