@@ -620,21 +620,21 @@
 			children = (
 				8845B89819CC5AE40025D1D2 /* DDLValuesParser.swift */,
 				8845B89919CC5AE40025D1D2 /* DDLXSDParser.swift */,
-				8845B89A19CC5AE40025D1D2 /* Form */,
-				8845B8A019CC5AE40025D1D2 /* List */,
+				8845B89A19CC5AE40025D1D2 /* FormWidget */,
+				8845B8A019CC5AE40025D1D2 /* ListWidget */,
 				8845B8A319CC5AE40025D1D2 /* Model */,
 			);
 			path = DDL;
 			sourceTree = "<group>";
 		};
-		8845B89A19CC5AE40025D1D2 /* Form */ = {
+		8845B89A19CC5AE40025D1D2 /* FormWidget */ = {
 			isa = PBXGroup;
 			children = (
 				8845B89B19CC5AE40025D1D2 /* DDLFormView.swift */,
 				8845B89C19CC5AE40025D1D2 /* DDLFormWidget.swift */,
 				8845B89D19CC5AE40025D1D2 /* TableView */,
 			);
-			path = Form;
+			path = FormWidget;
 			sourceTree = "<group>";
 		};
 		8845B89D19CC5AE40025D1D2 /* TableView */ = {
@@ -646,13 +646,13 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
-		8845B8A019CC5AE40025D1D2 /* List */ = {
+		8845B8A019CC5AE40025D1D2 /* ListWidget */ = {
 			isa = PBXGroup;
 			children = (
 				8845B8A119CC5AE40025D1D2 /* DDListView.swift */,
 				8845B8A219CC5AE40025D1D2 /* DDListWidget.swift */,
 			);
-			path = List;
+			path = ListWidget;
 			sourceTree = "<group>";
 		};
 		8845B8A319CC5AE40025D1D2 /* Model */ = {
