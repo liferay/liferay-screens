@@ -14,17 +14,17 @@
 import UIKit
 
 
-@objc public protocol DDListWidgetDelegate {
+@objc public protocol DDLListWidgetDelegate {
 
-	optional func onDDListResponse(records: [DDLRecord])
-	optional func onDDListError(error: NSError)
+	optional func onDDLListResponse(records: [DDLRecord])
+	optional func onDDLListError(error: NSError)
 
 	optional func onDDLRecordSelected(record: DDLRecord)
 
 }
 
 
-@IBDesignable public class DDListWidget: BaseListWidget {
+@IBDesignable public class DDLListWidget: BaseListWidget {
 
 	// FIXME user id should be obtained - See LMW-72
 	@IBInspectable public var userId = 0
@@ -32,14 +32,14 @@ import UIKit
 
 	@IBInspectable public var labelField: String = "" {
 		didSet {
-			onCreated()
+			onLabelFieldChanged()
 		}
 	}
 
-	@IBOutlet public var delegate: DDListWidgetDelegate?
+	@IBOutlet public var delegate: DDLListWidgetDelegate?
 
-	internal var recordListView: DDListView {
-		return widgetView as DDListView
+	internal var recordListView: DDLListView {
+		return widgetView as DDLListView
 	}
 
 
@@ -47,8 +47,8 @@ import UIKit
 
 	override public func onCreated() {
 		super.onCreated()
-		
-		recordListView.labelField = labelField
+
+		onLabelFieldChanged()
 	}
 
 	override internal func doGetPageRowsOperation(#session: LRSession, page: Int) {
@@ -77,7 +77,7 @@ import UIKit
 	override internal func onLoadPageError(page: Int, error: NSError) {
 		super.onLoadPageError(page, error: error)
 
-		delegate?.onDDListError?(error)
+		delegate?.onDDLListError?(error)
 	}
 
 	override internal func onLoadPageResult(page: Int,
@@ -89,7 +89,7 @@ import UIKit
 
 		let records = rowObjects.map() { $0 as DDLRecord }
 
-		delegate?.onDDListResponse?(records)
+		delegate?.onDDLListResponse?(records)
 
 		return rowObjects
 	}
@@ -97,5 +97,12 @@ import UIKit
 	override internal func onSelectedRow(row: AnyObject) {
 		delegate?.onDDLRecordSelected?(row as DDLRecord)
 	}
+
+	internal func onLabelFieldChanged() {
+		if widgetView != nil {
+			recordListView.labelField = labelField
+		}
+	}
+
 
 }

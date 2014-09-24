@@ -14,24 +14,23 @@
 import UIKit
 
 
-public class DDListView_default: DDListView {
+public class DDLListView: BaseListTableView {
 
-	override internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
-		if let record = object as? DDLRecord {
-			if let field = record[labelField] {
-				cell.textLabel?.text = field.currentStringValue
-				cell.accessoryType = .DisclosureIndicator
-				cell.accessoryView = nil
-			}
+	public var labelField: String = "" {
+		didSet {
+			onLabelFieldChanged()
 		}
 	}
 
+	override internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
+		// Apply cell style in the theme
+	}
+
 	override internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
-		cell.textLabel?.text = "..."
-		cell.accessoryType = .None
-		let image = UIImage(named: "default-hourglass")
-		cell.accessoryView = UIImageView(image: image)
-		cell.accessoryView!.frame = CGRectMake(0, 0, image.size.width, image.size.height)
+		// Apply cell style in the theme
+	}
+
+	internal func onLabelFieldChanged() {
 	}
 
 }
