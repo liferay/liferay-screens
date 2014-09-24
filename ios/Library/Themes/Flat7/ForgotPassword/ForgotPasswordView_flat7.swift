@@ -63,7 +63,7 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 	
 	override public func setUserName(userName: String) {
 		super.setUserName(userName)
-		userNamePlaceholder!.changeVisibility(visible: userName == "")
+		userNamePlaceholder!.changeVisibility(visible: userName != "")
 	}
 
 
@@ -77,7 +77,7 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range,
 				withString:string)
 
-		userNamePlaceholder!.changeVisibility(visible: newText == "")
+		userNamePlaceholder!.changeVisibility(visible: newText != "")
 
 		return true
 	}

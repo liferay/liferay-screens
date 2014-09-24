@@ -102,7 +102,7 @@ public class SignUpView_flat7: SignUpView_default {
 			default: ()
 		}
 
-		placeholder.changeVisibility(visible: newText == "")
+		placeholder.changeVisibility(visible: newText != "")
 
 		return true
 	}
