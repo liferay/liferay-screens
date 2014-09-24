@@ -146,6 +146,7 @@
 		88DBC11D19A4EF9D0075E644 /* default-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC11B19A4EF9D0075E644 /* default-calendar.png */; };
 		88DBC11E19A4EF9D0075E644 /* default-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC11C19A4EF9D0075E644 /* default-calendar@2x.png */; };
 		88EAEE3C1993D923002D7C26 /* Bool+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */; };
+		88EDB9B519D2D39D00A8F9DF /* Flat7ThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EDB9B419D2D39D00A8F9DF /* Flat7ThemeConstants.swift */; };
 		88F1C5B219C98B3300A5F297 /* LoginAuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1C5B119C98B3300A5F297 /* LoginAuthType.swift */; };
 		999BC69C19768EA400A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69B19768EA400A9B0D8 /* LRSession+CredentialStore.swift */; };
 /* End PBXBuildFile section */
@@ -299,6 +300,7 @@
 		88E4604819759FE4002C26C6 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		88E4604A19759FE4002C26C6 /* ForgotPasswordWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordWidget.swift; sourceTree = "<group>"; };
 		88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Conversion.swift"; sourceTree = "<group>"; };
+		88EDB9B419D2D39D00A8F9DF /* Flat7ThemeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flat7ThemeConstants.swift; sourceTree = "<group>"; };
 		88F1C5B119C98B3300A5F297 /* LoginAuthType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAuthType.swift; sourceTree = "<group>"; };
 		999BC69B19768EA400A9B0D8 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -679,6 +681,7 @@
 				88999AC9198EE62E00E746A6 /* Login */,
 				888D776D198FE3D40052C39C /* SignUp */,
 				88999ACE198EE62E00E746A6 /* Resources */,
+				88EDB9B419D2D39D00A8F9DF /* Flat7ThemeConstants.swift */,
 			);
 			path = Flat7;
 			sourceTree = "<group>";
@@ -964,6 +967,7 @@
 				8845B98519CC5B3E0025D1D2 /* DDLFieldStringWithOptions.swift in Sources */,
 				8845B94619CC5B270025D1D2 /* DDLFieldDateTableCell_default.swift in Sources */,
 				881F35A019CB27D3002B9BEC /* AssetListView_default.swift in Sources */,
+				88EDB9B519D2D39D00A8F9DF /* Flat7ThemeConstants.swift in Sources */,
 				881F35A819CB28B9002B9BEC /* BaseListTableView.swift in Sources */,
 				8845B95019CC5B270025D1D2 /* DDLFieldSelectTableCell_default.swift in Sources */,
 				8812E75D19D2B2EC00A6F5F8 /* DDLFormWidget.swift in Sources */,

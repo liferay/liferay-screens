@@ -24,6 +24,12 @@ public class LoginView_flat7: LoginView_default {
 
 	//MARK: LoginView
 
+	override internal func onCreated() {
+		super.onCreated()
+
+		BaseWidget.setHUDCustomColor(Flat7ThemeBasicGreen)
+	}
+
 	override public func setUserName(userName: String) {
 		super.setUserName(userName)
 		userNamePlaceholder!.changeVisibility(visible: userName != "")

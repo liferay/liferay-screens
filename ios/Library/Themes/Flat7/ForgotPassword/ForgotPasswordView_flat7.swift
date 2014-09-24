@@ -23,6 +23,12 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 
 	//MARK: ForgotPasswordView
 
+	override internal func onCreated() {
+		super.onCreated()
+
+		BaseWidget.setHUDCustomColor(Flat7ThemeBasicGreen)
+	}
+
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
