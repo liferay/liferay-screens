@@ -16,10 +16,12 @@
 		8812E75D19D2B2EC00A6F5F8 /* DDLFormWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E75519D2B2EC00A6F5F8 /* DDLFormWidget.swift */; };
 		8812E75E19D2B2EC00A6F5F8 /* DDLFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E75719D2B2EC00A6F5F8 /* DDLFieldTableCell.swift */; };
 		8812E75F19D2B2EC00A6F5F8 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E75819D2B2EC00A6F5F8 /* DDLFormTableView.swift */; };
-		8812E76019D2B2EC00A6F5F8 /* DDListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E75A19D2B2EC00A6F5F8 /* DDListView.swift */; };
-		8812E76119D2B2EC00A6F5F8 /* DDListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E75B19D2B2EC00A6F5F8 /* DDListWidget.swift */; };
 		8812E76319D2B30000A6F5F8 /* PaginationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E76219D2B30000A6F5F8 /* PaginationOperation.swift */; };
 		8812E76519D2B31500A6F5F8 /* DefaultThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E76419D2B31500A6F5F8 /* DefaultThemeConstants.swift */; };
+		8812E77019D2CF9200A6F5F8 /* DDLListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E76E19D2CF9200A6F5F8 /* DDLListWidget.swift */; };
+		8812E77119D2CF9200A6F5F8 /* DDLListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E76F19D2CF9200A6F5F8 /* DDLListView.swift */; };
+		8812E77419D2CF9D00A6F5F8 /* DDLListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E77219D2CF9D00A6F5F8 /* DDLListView_default.swift */; };
+		8812E77519D2CF9D00A6F5F8 /* DDLListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8812E77319D2CF9D00A6F5F8 /* DDLListView_default.xib */; };
 		881F35A019CB27D3002B9BEC /* AssetListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F359F19CB27D3002B9BEC /* AssetListView_default.swift */; };
 		881F35A619CB28B9002B9BEC /* BaseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F35A219CB28B9002B9BEC /* BaseListView.swift */; };
 		881F35A719CB28B9002B9BEC /* BaseListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F35A319CB28B9002B9BEC /* BaseListWidget.swift */; };
@@ -64,8 +66,6 @@
 		8845B95819CC5B270025D1D2 /* DDLFormView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B93D19CC5B270025D1D2 /* DDLFormView_default.xib */; };
 		8845B95919CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B93E19CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.swift */; };
 		8845B95A19CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B93F19CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.xib */; };
-		8845B95B19CC5B270025D1D2 /* DDListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B94119CC5B270025D1D2 /* DDListView_default.swift */; };
-		8845B95C19CC5B270025D1D2 /* DDListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B94219CC5B270025D1D2 /* DDListView_default.xib */; };
 		8845B97519CC5B3E0025D1D2 /* DDLValuesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B95E19CC5B3E0025D1D2 /* DDLValuesParser.swift */; };
 		8845B97619CC5B3E0025D1D2 /* DDLXSDParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B95F19CC5B3E0025D1D2 /* DDLXSDParser.swift */; };
 		8845B97D19CC5B3E0025D1D2 /* DDLField+DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B96A19CC5B3E0025D1D2 /* DDLField+DataType.swift */; };
@@ -167,10 +167,12 @@
 		8812E75519D2B2EC00A6F5F8 /* DDLFormWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormWidget.swift; sourceTree = "<group>"; };
 		8812E75719D2B2EC00A6F5F8 /* DDLFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldTableCell.swift; sourceTree = "<group>"; };
 		8812E75819D2B2EC00A6F5F8 /* DDLFormTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormTableView.swift; sourceTree = "<group>"; };
-		8812E75A19D2B2EC00A6F5F8 /* DDListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDListView.swift; sourceTree = "<group>"; };
-		8812E75B19D2B2EC00A6F5F8 /* DDListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDListWidget.swift; sourceTree = "<group>"; };
 		8812E76219D2B30000A6F5F8 /* PaginationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationOperation.swift; sourceTree = "<group>"; };
 		8812E76419D2B31500A6F5F8 /* DefaultThemeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultThemeConstants.swift; sourceTree = "<group>"; };
+		8812E76E19D2CF9200A6F5F8 /* DDLListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListWidget.swift; sourceTree = "<group>"; };
+		8812E76F19D2CF9200A6F5F8 /* DDLListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListView.swift; sourceTree = "<group>"; };
+		8812E77219D2CF9D00A6F5F8 /* DDLListView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListView_default.swift; sourceTree = "<group>"; };
+		8812E77319D2CF9D00A6F5F8 /* DDLListView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLListView_default.xib; sourceTree = "<group>"; };
 		881F359F19CB27D3002B9BEC /* AssetListView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListView_default.swift; sourceTree = "<group>"; };
 		881F35A219CB28B9002B9BEC /* BaseListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListView.swift; sourceTree = "<group>"; };
 		881F35A319CB28B9002B9BEC /* BaseListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListWidget.swift; sourceTree = "<group>"; };
@@ -218,8 +220,6 @@
 		8845B93D19CC5B270025D1D2 /* DDLFormView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFormView_default.xib; sourceTree = "<group>"; };
 		8845B93E19CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLSubmitButtonTableCell_default.swift; sourceTree = "<group>"; };
 		8845B93F19CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLSubmitButtonTableCell_default.xib; sourceTree = "<group>"; };
-		8845B94119CC5B270025D1D2 /* DDListView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDListView_default.swift; sourceTree = "<group>"; };
-		8845B94219CC5B270025D1D2 /* DDListView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDListView_default.xib; sourceTree = "<group>"; };
 		8845B95E19CC5B3E0025D1D2 /* DDLValuesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLValuesParser.swift; sourceTree = "<group>"; };
 		8845B95F19CC5B3E0025D1D2 /* DDLXSDParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLXSDParser.swift; sourceTree = "<group>"; };
 		8845B96A19CC5B3E0025D1D2 /* DDLField+DataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDLField+DataType.swift"; sourceTree = "<group>"; };
@@ -368,8 +368,8 @@
 		8812E75919D2B2EC00A6F5F8 /* ListWidget */ = {
 			isa = PBXGroup;
 			children = (
-				8812E75A19D2B2EC00A6F5F8 /* DDListView.swift */,
-				8812E75B19D2B2EC00A6F5F8 /* DDListWidget.swift */,
+				8812E76E19D2CF9200A6F5F8 /* DDLListWidget.swift */,
+				8812E76F19D2CF9200A6F5F8 /* DDLListView.swift */,
 			);
 			path = ListWidget;
 			sourceTree = "<group>";
@@ -444,8 +444,8 @@
 		8845B94019CC5B270025D1D2 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				8845B94119CC5B270025D1D2 /* DDListView_default.swift */,
-				8845B94219CC5B270025D1D2 /* DDListView_default.xib */,
+				8812E77219D2CF9D00A6F5F8 /* DDLListView_default.swift */,
+				8812E77319D2CF9D00A6F5F8 /* DDLListView_default.xib */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -885,7 +885,6 @@
 				88832F9E19656B3F00E3DF9F /* liferay-context.plist in Resources */,
 				88DBC11E19A4EF9D0075E644 /* default-calendar@2x.png in Resources */,
 				88D537881999215500615515 /* default-field-failed@2x.png in Resources */,
-				8845B95C19CC5B270025D1D2 /* DDListView_default.xib in Resources */,
 				8845B94919CC5B270025D1D2 /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */,
 				88354BD719C9E25300F3FE69 /* LoginView_default.xib in Resources */,
 				888CE11819924AD4001DCA6A /* flat7-preview-forgotpassword.png in Resources */,
@@ -897,6 +896,7 @@
 				8845B94519CC5B270025D1D2 /* DDLFieldCheckboxTableCell_default.xib in Resources */,
 				888D775C198FDB710052C39C /* default-field.png in Resources */,
 				8845B94D19CC5B270025D1D2 /* DDLFieldNumberTableCell_default.xib in Resources */,
+				8812E77519D2CF9D00A6F5F8 /* DDLListView_default.xib in Resources */,
 				888D775B198FDB710052C39C /* default-field-focused@2x.png in Resources */,
 				8845B94B19CC5B270025D1D2 /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
 				88354BDD19C9E27800F3FE69 /* LoginView_flat7.xib in Resources */,
@@ -969,12 +969,11 @@
 				8845B97619CC5B3E0025D1D2 /* DDLXSDParser.swift in Sources */,
 				88832FA119656B3F00E3DF9F /* LoginWidget.swift in Sources */,
 				8845B94E19CC5B270025D1D2 /* DDLFieldRadioTableCell_default.swift in Sources */,
-				8812E76119D2B2EC00A6F5F8 /* DDListWidget.swift in Sources */,
 				8868AFCE19656B0500FD5214 /* ViewController.swift in Sources */,
 				8868AFCC19656B0500FD5214 /* AppDelegate.swift in Sources */,
 				8851134119B88A51009D93CE /* UIView+Animations.swift in Sources */,
 				888D77BF198FF5030052C39C /* LoginView_default.swift in Sources */,
-				8812E76019D2B2EC00A6F5F8 /* DDListView.swift in Sources */,
+				8812E77119D2CF9200A6F5F8 /* DDLListView.swift in Sources */,
 				8845B98219CC5B3E0025D1D2 /* DDLFieldDocument.swift in Sources */,
 				8811DC3819BDA115008FE226 /* WebContentView.swift in Sources */,
 				8811DC3919BDA115008FE226 /* WebContentWidget.swift in Sources */,
@@ -1024,6 +1023,7 @@
 				8845B94C19CC5B270025D1D2 /* DDLFieldNumberTableCell_default.swift in Sources */,
 				8845B95219CC5B270025D1D2 /* DDLFieldTextareaTableCell_default.swift in Sources */,
 				8845B97F19CC5B3E0025D1D2 /* DDLField.swift in Sources */,
+				8812E77019D2CF9200A6F5F8 /* DDLListWidget.swift in Sources */,
 				88F1C5B219C98B3300A5F297 /* LoginAuthType.swift in Sources */,
 				8845B98619CC5B3E0025D1D2 /* DDLFieldUntyped.swift in Sources */,
 				88832F9F19656B3F00E3DF9F /* LoginView.swift in Sources */,
@@ -1033,11 +1033,11 @@
 				889558DD19C1E7B500657AC7 /* AssetListWidget.swift in Sources */,
 				889558DF19C1E7FD00657AC7 /* AssetListViewController.swift in Sources */,
 				8812E75C19D2B2EC00A6F5F8 /* DDLFormView.swift in Sources */,
-				8845B95B19CC5B270025D1D2 /* DDListView_default.swift in Sources */,
 				8845B95419CC5B270025D1D2 /* DDLFieldTextTableCell_default.swift in Sources */,
 				888F61FD198FD3B10082786B /* NSLocale+CurrentLocale.swift in Sources */,
 				8811DC4019BDD0FA008FE226 /* WebContentViewController.swift in Sources */,
 				8897D9C3198A810F00D3DF51 /* ForgotPasswordView.swift in Sources */,
+				8812E77419D2CF9D00A6F5F8 /* DDLListView_default.swift in Sources */,
 				88832F9A19656B3F00E3DF9F /* BaseWidgetView.swift in Sources */,
 				8812E76319D2B30000A6F5F8 /* PaginationOperation.swift in Sources */,
 				8845B94319CC5B270025D1D2 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,

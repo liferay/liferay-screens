@@ -8,9 +8,9 @@
 
 import UIKit
 
-class DDListViewController: UIViewController, DDListWidgetDelegate {
+class DDListViewController: UIViewController, DDLListWidgetDelegate {
 
-	@IBOutlet var widget: DDListWidget?
+	@IBOutlet var widget: DDLListWidget?
 
     override func viewDidLoad() {
         super.viewDidLoad()
