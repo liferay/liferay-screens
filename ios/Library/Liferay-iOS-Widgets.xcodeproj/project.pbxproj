@@ -162,14 +162,6 @@
 		8875B024198FB173006955BA /* UIImage+Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8875B022198FB173006955BA /* UIImage+Themes.m */; };
 		888A282819938EFD00C713DA /* DDLParser_i18n_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888A282719938EFD00C713DA /* DDLParser_i18n_Tests.swift */; };
 		888CE10B19923142001DCA6A /* BaseWidget_basic_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE10A19923142001DCA6A /* BaseWidget_basic_Tests.swift */; };
-		888CE11D19924D4A001DCA6A /* flat7-preview-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11919924D4A001DCA6A /* flat7-preview-signup@2x.png */; };
-		888CE11E19924D4A001DCA6A /* flat7-preview-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11A19924D4A001DCA6A /* flat7-preview-signup.png */; };
-		888CE11F19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11B19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png */; };
-		888CE12019924D4A001DCA6A /* flat7-preview-forgotpassword.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11C19924D4A001DCA6A /* flat7-preview-forgotpassword.png */; };
-		888CE12119924D51001DCA6A /* flat7-preview-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11919924D4A001DCA6A /* flat7-preview-signup@2x.png */; };
-		888CE12219924D51001DCA6A /* flat7-preview-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11A19924D4A001DCA6A /* flat7-preview-signup.png */; };
-		888CE12319924D51001DCA6A /* flat7-preview-forgotpassword@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11B19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png */; };
-		888CE12419924D51001DCA6A /* flat7-preview-forgotpassword.png in Resources */ = {isa = PBXBuildFile; fileRef = 888CE11C19924D4A001DCA6A /* flat7-preview-forgotpassword.png */; };
 		888CE12D19924D74001DCA6A /* ForgotPasswordView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE12719924D74001DCA6A /* ForgotPasswordView_flat7.swift */; };
 		888CE12E19924D74001DCA6A /* ForgotPasswordView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE12719924D74001DCA6A /* ForgotPasswordView_flat7.swift */; };
 		888CE13119924D74001DCA6A /* SignUpView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE12A19924D74001DCA6A /* SignUpView_flat7.swift */; };
@@ -184,10 +176,6 @@
 		888D770F198FDAD30052C39C /* flat7-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D76FF198FDAD30052C39C /* flat7-field.png */; };
 		888D7710198FDAD30052C39C /* flat7-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7700198FDAD30052C39C /* flat7-field@2x.png */; };
 		888D7711198FDAD30052C39C /* flat7-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7700198FDAD30052C39C /* flat7-field@2x.png */; };
-		888D7712198FDAD30052C39C /* flat7-preview-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7701198FDAD30052C39C /* flat7-preview-login.png */; };
-		888D7713198FDAD30052C39C /* flat7-preview-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7701198FDAD30052C39C /* flat7-preview-login.png */; };
-		888D7714198FDAD30052C39C /* flat7-preview-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7702198FDAD30052C39C /* flat7-preview-login@2x.png */; };
-		888D7715198FDAD30052C39C /* flat7-preview-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7702198FDAD30052C39C /* flat7-preview-login@2x.png */; };
 		888D7716198FDAD30052C39C /* theme-flat7.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7703198FDAD30052C39C /* theme-flat7.png */; };
 		888D7717198FDAD30052C39C /* theme-flat7.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7703198FDAD30052C39C /* theme-flat7.png */; };
 		888D7789198FEFFE0052C39C /* default-field-focused.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7776198FEFFE0052C39C /* default-field-focused.png */; };
@@ -438,10 +426,6 @@
 		8875B022198FB173006955BA /* UIImage+Themes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Themes.m"; sourceTree = "<group>"; };
 		888A282719938EFD00C713DA /* DDLParser_i18n_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser_i18n_Tests.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		888CE10A19923142001DCA6A /* BaseWidget_basic_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidget_basic_Tests.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		888CE11919924D4A001DCA6A /* flat7-preview-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-signup@2x.png"; sourceTree = "<group>"; };
-		888CE11A19924D4A001DCA6A /* flat7-preview-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-signup.png"; sourceTree = "<group>"; };
-		888CE11B19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-forgotpassword@2x.png"; sourceTree = "<group>"; };
-		888CE11C19924D4A001DCA6A /* flat7-preview-forgotpassword.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-forgotpassword.png"; sourceTree = "<group>"; };
 		888CE12719924D74001DCA6A /* ForgotPasswordView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView_flat7.swift; sourceTree = "<group>"; };
 		888CE12A19924D74001DCA6A /* SignUpView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_flat7.swift; sourceTree = "<group>"; };
 		888D76F8198FDAD30052C39C /* LoginView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_flat7.swift; sourceTree = "<group>"; };
@@ -451,8 +435,6 @@
 		888D76FE198FDAD30052C39C /* flat7-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-button@2x.png"; sourceTree = "<group>"; };
 		888D76FF198FDAD30052C39C /* flat7-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field.png"; sourceTree = "<group>"; };
 		888D7700198FDAD30052C39C /* flat7-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field@2x.png"; sourceTree = "<group>"; };
-		888D7701198FDAD30052C39C /* flat7-preview-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-login.png"; sourceTree = "<group>"; };
-		888D7702198FDAD30052C39C /* flat7-preview-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-preview-login@2x.png"; sourceTree = "<group>"; };
 		888D7703198FDAD30052C39C /* theme-flat7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "theme-flat7.png"; sourceTree = "<group>"; };
 		888D7776198FEFFE0052C39C /* default-field-focused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field-focused.png"; sourceTree = "<group>"; };
 		888D7777198FEFFE0052C39C /* default-field-focused@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field-focused@2x.png"; sourceTree = "<group>"; };
@@ -775,12 +757,6 @@
 				888D76FE198FDAD30052C39C /* flat7-button@2x.png */,
 				888D76FF198FDAD30052C39C /* flat7-field.png */,
 				888D7700198FDAD30052C39C /* flat7-field@2x.png */,
-				888CE11C19924D4A001DCA6A /* flat7-preview-forgotpassword.png */,
-				888CE11B19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png */,
-				888D7701198FDAD30052C39C /* flat7-preview-login.png */,
-				888D7702198FDAD30052C39C /* flat7-preview-login@2x.png */,
-				888CE11A19924D4A001DCA6A /* flat7-preview-signup.png */,
-				888CE11919924D4A001DCA6A /* flat7-preview-signup@2x.png */,
 				888D76FA198FDAD30052C39C /* flat7.strings */,
 				888D7703198FDAD30052C39C /* theme-flat7.png */,
 			);
@@ -1130,7 +1106,6 @@
 				888D77A0198FEFFE0052C39C /* default-mail-icon@2x.png in Resources */,
 				888D770F198FDAD30052C39C /* flat7-field.png in Resources */,
 				8845B90F19CC5AF40025D1D2 /* DDLFieldSelectTableCell_default.xib in Resources */,
-				888D7715198FDAD30052C39C /* flat7-preview-login@2x.png in Resources */,
 				8891527B19C48F6200F0B7F3 /* default-preview-webcontent.png in Resources */,
 				8845B91319CC5AF40025D1D2 /* DDLFieldTextareaTableCell_default.xib in Resources */,
 				8845B8F719CC5AF40025D1D2 /* DDLFieldCheckboxTableCell_default.xib in Resources */,
@@ -1154,7 +1129,6 @@
 				888D77AA198FEFFE0052C39C /* default-user-icon.png in Resources */,
 				88DBC13419A4F8100075E644 /* default-multiline-field.png in Resources */,
 				888D7709198FDAD30052C39C /* flat7.strings in Resources */,
-				888CE12319924D51001DCA6A /* flat7-preview-forgotpassword@2x.png in Resources */,
 				888FAFAB196AE8EF00057B26 /* TestsInfo.plist in Resources */,
 				888D779C198FEFFE0052C39C /* default-lock-icon@2x.png in Resources */,
 				88354BA419C9E16100F3FE69 /* LoginView_default.xib in Resources */,
@@ -1162,24 +1136,20 @@
 				888D7794198FEFFE0052C39C /* default-large-button-selected@2x.png in Resources */,
 				8845B92119CC5AF40025D1D2 /* DDLSubmitButtonTableCell_default.xib in Resources */,
 				88354BAA19C9E17200F3FE69 /* SignUpView_default.xib in Resources */,
-				888D7713198FDAD30052C39C /* flat7-preview-login.png in Resources */,
 				886EF30C19C31BE1005AB429 /* default-hourglass@2x.png in Resources */,
 				88DBC13E19A4F8100075E644 /* default-preview-ddlform@2x.png in Resources */,
 				88354BB319C9E19600F3FE69 /* LoginView_flat7.xib in Resources */,
 				888D779E198FEFFE0052C39C /* default-mail-icon.png in Resources */,
 				8845B90319CC5AF40025D1D2 /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
 				88999AC6198EE5CB00E746A6 /* xyz-preview-login.png in Resources */,
-				888CE12419924D51001DCA6A /* flat7-preview-forgotpassword.png in Resources */,
 				88DBC13219A4F8100075E644 /* default-calendar@2x.png in Resources */,
 				888D770D198FDAD30052C39C /* flat7-button@2x.png in Resources */,
 				888D77AC198FEFFE0052C39C /* default-user-icon@2x.png in Resources */,
 				88354BB619C9E1A100F3FE69 /* SignUpView_flat7.xib in Resources */,
-				888CE12219924D51001DCA6A /* flat7-preview-signup.png in Resources */,
 				888D77AE198FEFFE0052C39C /* theme-default.png in Resources */,
 				88999AC5198EE5CB00E746A6 /* theme-xyz.png in Resources */,
 				8845B90B19CC5AF40025D1D2 /* DDLFieldRadioTableCell_default.xib in Resources */,
 				888D7711198FDAD30052C39C /* flat7-field@2x.png in Resources */,
-				888CE12119924D51001DCA6A /* flat7-preview-signup@2x.png in Resources */,
 				88DBC13019A4F8100075E644 /* default-calendar.png in Resources */,
 				8845B92519CC5AF40025D1D2 /* DDLListView_default.xib in Resources */,
 				88354BB919C9E1C900F3FE69 /* LoginView_xyz.xib in Resources */,
@@ -1217,9 +1187,7 @@
 				888D7797198FEFFE0052C39C /* default-large-button@2x.png in Resources */,
 				888D779F198FEFFE0052C39C /* default-mail-icon@2x.png in Resources */,
 				88DBC13D19A4F8100075E644 /* default-preview-ddlform@2x.png in Resources */,
-				888CE11F19924D4A001DCA6A /* flat7-preview-forgotpassword@2x.png in Resources */,
 				881F359519CB26D7002B9BEC /* AssetListView_default.xib in Resources */,
-				888CE11E19924D4A001DCA6A /* flat7-preview-signup.png in Resources */,
 				8845B90219CC5AF40025D1D2 /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
 				88354BB819C9E1C900F3FE69 /* LoginView_xyz.xib in Resources */,
 				88DBC13119A4F8100075E644 /* default-calendar@2x.png in Resources */,
@@ -1227,11 +1195,9 @@
 				8845B90A19CC5AF40025D1D2 /* DDLFieldRadioTableCell_default.xib in Resources */,
 				888D779B198FEFFE0052C39C /* default-lock-icon@2x.png in Resources */,
 				88DBC13919A4F8100075E644 /* default-field-failed@2x.png in Resources */,
-				888CE12019924D4A001DCA6A /* flat7-preview-forgotpassword.png in Resources */,
 				888D77AB198FEFFE0052C39C /* default-user-icon@2x.png in Resources */,
 				8891527C19C48F6200F0B7F3 /* default-preview-assetlist@2x.png in Resources */,
 				888D77A9198FEFFE0052C39C /* default-user-icon.png in Resources */,
-				888CE11D19924D4A001DCA6A /* flat7-preview-signup@2x.png in Resources */,
 				888D7791198FEFFE0052C39C /* default-large-button-selected.png in Resources */,
 				888D778B198FEFFE0052C39C /* default-field-focused@2x.png in Resources */,
 				886EF30D19C31BE1005AB429 /* default-hourglass.png in Resources */,
@@ -1239,14 +1205,12 @@
 				8891527819C48F6200F0B7F3 /* default-preview-webcontent@2x.png in Resources */,
 				8845B8F619CC5AF40025D1D2 /* DDLFieldCheckboxTableCell_default.xib in Resources */,
 				888D7789198FEFFE0052C39C /* default-field-focused.png in Resources */,
-				888D7714198FDAD30052C39C /* flat7-preview-login@2x.png in Resources */,
 				8845B8FA19CC5AF40025D1D2 /* DDLFieldDateTableCell_default.xib in Resources */,
 				8845B91219CC5AF40025D1D2 /* DDLFieldTextareaTableCell_default.xib in Resources */,
 				888D7710198FDAD30052C39C /* flat7-field@2x.png in Resources */,
 				888D77AD198FEFFE0052C39C /* theme-default.png in Resources */,
 				888D779D198FEFFE0052C39C /* default-mail-icon.png in Resources */,
 				8845B91C19CC5AF40025D1D2 /* DDLFormView_default.xib in Resources */,
-				888D7712198FDAD30052C39C /* flat7-preview-login.png in Resources */,
 				88354BA919C9E17200F3FE69 /* SignUpView_default.xib in Resources */,
 				88DBC12F19A4F8100075E644 /* default-calendar.png in Resources */,
 				888D778D198FEFFE0052C39C /* default-field.png in Resources */,
