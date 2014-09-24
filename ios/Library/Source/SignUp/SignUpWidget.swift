@@ -60,7 +60,7 @@ import UIKit
 		delegate?.onSignUpResponse?(result)
 
 		if autologin && creatingPassword != nil {
-			LRSession.removeStoredCredential()
+			SessionContext.removeStoredSession()
 
 			SessionContext.instance.createSession(
 					username: creatingUsername!,

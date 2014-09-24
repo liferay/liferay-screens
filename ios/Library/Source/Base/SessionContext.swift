@@ -24,6 +24,10 @@ public class SessionContext {
 		return currentSession?.username
 	}
 
+	public var currentPassword: String? {
+		return currentSession?.password
+	}
+
 	public var userAttributes: [String:AnyObject] = [:]
 
 	private var currentSession:LRSession?
@@ -89,6 +93,28 @@ public class SessionContext {
 	public func storeSession() -> Bool {
 		if hasSession {
 			return currentSession!.storeCredential()
+		}
+
+		return false
+	}
+
+	public class func removeStoredSession() {
+		LRSession.removeStoredCredential()
+	}
+
+	public func loadSessionFromStore() -> Bool {
+		if let storedSession = LRSession.sessionFromStoredCredential() {
+
+			// TODO Retrieve from keychain
+			let userAttributes: [String:AnyObject] = [:]
+
+			createSession(
+					username: storedSession.username,
+					password: storedSession.password,
+					userAttributes: userAttributes)
+
+
+			return true
 		}
 
 		return false

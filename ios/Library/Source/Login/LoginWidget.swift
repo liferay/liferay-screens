@@ -43,23 +43,14 @@ public class LoginWidget: BaseWidget {
 	private var loginSession: LRSession?
 
 
-	//MARK: Class methods
-
-	public class func storedSession() -> LRSession? {
-		return LRSession.sessionFromStoredCredential()
-	}
-
-
 	//MARK: BaseWidget
 
 	override internal func onCreated() {
         setAuthType(LoginAuthType.Email)
 
-		if let session = LRSession.sessionFromStoredCredential() {
-			SessionContext.instance.createSession(username: session.username, password: session.password, userAttributes: [:])
-
-			loginView.setUserName(session.username)
-			loginView.setPassword(session.password)
+		if SessionContext.instance.loadSessionFromStore() {
+			loginView.setUserName(SessionContext.instance.currentUserName!)
+			loginView.setPassword(SessionContext.instance.currentPassword!)
 
 			delegate?.onCredentialsLoaded?()
 		}
@@ -74,7 +65,7 @@ public class LoginWidget: BaseWidget {
 	override internal func onServerError(error: NSError) {
 		delegate?.onLoginError?(error)
 
-		LRSession.removeStoredCredential()
+		SessionContext.removeStoredSession()
 
 		finishOperationWithError(error, message:"Error signing in!")
 	}
