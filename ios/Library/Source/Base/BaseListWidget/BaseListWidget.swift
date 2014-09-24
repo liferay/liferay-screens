@@ -63,7 +63,19 @@ import UIKit
 
 		doGetPageRowsOperation(session: session, page: page)
 
+		if session.commands.count < 1 {
+			println("Error: Get page rows operation couldn't be started")
+
+			return false
+		}
+
 		doGetRowCountOperation(session: session)
+
+		if session.commands.count < 2 {
+			println("Error: Get row count operation couldn't be started")
+
+			return false
+		}
 
 		var outError: NSError?
 
@@ -71,13 +83,14 @@ import UIKit
 
 		if let error = outError {
 			operation.onFailure(error)
+
 			return false
 		}
 
 		return true
 	}
 
-	internal func doGetPageRowsOperation(#session: LRSession, page: Int) {
+	internal func doGetPageRowsOperation(#session: LRSession, page: Int){
 	}
 
 	internal func doGetRowCountOperation(#session: LRSession) {

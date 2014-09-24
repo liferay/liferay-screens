@@ -52,6 +52,10 @@ import UIKit
 	}
 
 	override internal func doGetPageRowsOperation(#session: LRSession, page: Int) {
+		if userId == 0 {
+			return
+		}
+
 		let service = LRMobilewidgetsddlrecordService_v62(session: session)
 
 		service.getDdlRecordsWithDdlRecordSetId((recordSetId as NSNumber).longLongValue,
@@ -63,11 +67,15 @@ import UIKit
 	}
 
 	override internal func doGetRowCountOperation(#session: LRSession) {
+		if userId == 0 {
+			return
+		}
+
 		let service = LRMobilewidgetsddlrecordService_v62(session: session)
 
 		service.getDdlRecordsCountWithDdlRecordSetId((recordSetId as NSNumber).longLongValue,
-				userId: (userId as NSNumber).longLongValue,
-				error: nil)
+			userId: (userId as NSNumber).longLongValue,
+			error: nil)
 	}
 
 	override internal func convert(#serverResult:[String:AnyObject]) -> AnyObject {

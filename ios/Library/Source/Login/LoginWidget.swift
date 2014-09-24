@@ -80,7 +80,6 @@ public class LoginWidget: BaseWidget {
 	}
 
 	override internal func onServerResult(result: [String:AnyObject]) {
-
 		LiferayContext.instance.createSession(
 				username: loginSession!.username,
 				password: loginSession!.password,
