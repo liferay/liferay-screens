@@ -26,7 +26,6 @@ import UIKit
 
 @IBDesignable public class DDLListWidget: BaseListWidget {
 
-	// FIXME user id should be obtained - See LMW-72
 	@IBInspectable public var userId = 0
 	@IBInspectable public var recordSetId = 0
 
