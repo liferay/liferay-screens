@@ -62,7 +62,7 @@ import UIKit
 		if autologin && creatingPassword != nil {
 			LRSession.removeStoredCredential()
 
-			LiferayContext.instance.createSession(
+			SessionContext.instance.createSession(
 					username: creatingUsername!,
 					password: creatingPassword!,
 					userAttributes: result)

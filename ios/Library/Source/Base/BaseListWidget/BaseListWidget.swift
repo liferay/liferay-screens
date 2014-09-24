@@ -37,7 +37,7 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadList() -> Bool {
-		if LiferayContext.instance.currentSession == nil {
+		if SessionContext.instance.hasSession {
 			println("ERROR: No session initialized. Can't load the list without session")
 			return false
 		}
@@ -58,7 +58,7 @@ import UIKit
 
 		paginationOperations[page] = operation
 
-		let session = LRBatchSession(session: LiferayContext.instance.currentSession)
+		let session = SessionContext.instance.createBatchSessionFromCurrentSession()!
 		session.callback = operation
 
 		doGetPageRowsOperation(session: session, page: page)

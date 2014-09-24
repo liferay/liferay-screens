@@ -20,11 +20,6 @@ public class LiferayContext {
 	public var companyId = 10154
 	public var groupId = 10181
 
-	public var currentSession:LRSession?
-
-	public var userAttributes: [String:AnyObject] = [:]
-
-
 	//MARK: Singleton
 
 	class var instance: LiferayContext {
@@ -70,22 +65,6 @@ public class LiferayContext {
 		server = properties["server"] as String;
 		companyId = properties["companyId"] as Int
 		groupId = properties["groupId"] as Int
-	}
-
-	public func createSession(
-			#username:String,
-			password:String,
-			userAttributes: [String:AnyObject])
-			-> LRSession {
-
-		currentSession = LRSession(server:server, username:username, password:password)
-		self.userAttributes = userAttributes
-
-		return currentSession!
-	}
-
-	public func clearSession() {
-		currentSession = nil
 	}
 
 }

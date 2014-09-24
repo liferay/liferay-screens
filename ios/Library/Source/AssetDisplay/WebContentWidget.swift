@@ -61,7 +61,7 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadWebContent() -> Bool {
-		if LiferayContext.instance.currentSession == nil {
+		if SessionContext.instance.hasSession {
 			println("ERROR: No session initialized. Can't load the web content without session")
 			return false
 		}
@@ -73,7 +73,7 @@ import UIKit
 
 		startOperationWithMessage("Loading content...", details:"Wait few seconds...")
 
-		let session = LRSession(session: LiferayContext.instance.currentSession)
+		let session = SessionContext.instance.createSessionFromCurrentSession()!
 		session.callback = self
 
 		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber

@@ -46,7 +46,7 @@ import UIKit
 	override internal func onCreated() {
 		setAuthType(LoginAuthType.Email)
 
-		if let userName = LiferayContext.instance.currentSession?.username {
+		if let userName = SessionContext.instance.currentUserName {
 			forgotPasswordView.setUserName(userName)
 		}
 	}
