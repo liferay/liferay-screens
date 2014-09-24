@@ -22,6 +22,9 @@ public class LiferayContext {
 
 	public var currentSession:LRSession?
 
+	public var userAttributes: [String:AnyObject] = [:]
+
+
 	//MARK: Singleton
 
 	class var instance: LiferayContext {
@@ -69,8 +72,15 @@ public class LiferayContext {
 		groupId = properties["groupId"] as Int
 	}
 
-	public func createSession(#username:String, password:String) -> LRSession {
+	public func createSession(
+			#username:String,
+			password:String,
+			userAttributes: [String:AnyObject])
+			-> LRSession {
+
 		currentSession = LRSession(server:server, username:username, password:password)
+		self.userAttributes = userAttributes
+
 		return currentSession!
 	}
 

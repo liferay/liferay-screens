@@ -60,12 +60,12 @@ import UIKit
 		delegate?.onSignUpResponse?(result)
 
 		if autologin && creatingPassword != nil {
-			LiferayContext.instance.clearSession()
 			LRSession.removeStoredCredential()
 
 			LiferayContext.instance.createSession(
 					username: creatingUsername!,
-					password: creatingPassword!)
+					password: creatingPassword!,
+					userAttributes: result)
 		}
 
 		finishOperation()

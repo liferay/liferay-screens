@@ -40,6 +40,8 @@ public class LoginWidget: BaseWidget {
 
 	private var authClosure: ((String, String, LRUserService_v62, NSError -> Void) -> Void)?
 
+	private var loginSession: LRSession?
+
 
 	//MARK: Class methods
 
@@ -72,13 +74,18 @@ public class LoginWidget: BaseWidget {
 	override internal func onServerError(error: NSError) {
 		delegate?.onLoginError?(error)
 
-		LiferayContext.instance.clearSession()
 		LRSession.removeStoredCredential()
 
 		finishOperationWithError(error, message:"Error signing in!")
 	}
 
 	override internal func onServerResult(result: [String:AnyObject]) {
+
+		LiferayContext.instance.createSession(
+				username: loginSession!.username,
+				password: loginSession!.password,
+				userAttributes: result)
+
 		delegate?.onLoginResponse?(result)
 
 		if loginView.shouldRememberCredentials {
@@ -105,12 +112,15 @@ public class LoginWidget: BaseWidget {
 	private func sendLoginWithUserName(userName:String, password:String) {
 		startOperationWithMessage("Sending sign in...", details:"Wait few seconds...")
 
-		let session = LiferayContext.instance.createSession(
+		LiferayContext.instance.clearSession()
+
+		loginSession = LRSession(
+				server: LiferayContext.instance.server,
 				username: userName,
 				password: password)
-		session.callback = self
+		loginSession!.callback = self
 
-		authClosure!(userName, password, LRUserService_v62(session: session)) {
+		authClosure!(userName, password, LRUserService_v62(session: loginSession)) {
 			self.onFailure($0)
 		}
 	}
