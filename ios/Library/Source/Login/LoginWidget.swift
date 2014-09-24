@@ -105,7 +105,9 @@ public class LoginWidget: BaseWidget {
 	private func sendLoginWithUserName(userName:String, password:String) {
 		startOperationWithMessage("Sending sign in...", details:"Wait few seconds...")
 
-		let session = LiferayContext.instance.createSession(userName, password: password)
+		let session = LiferayContext.instance.createSession(
+				username: userName,
+				password: password)
 		session.callback = self
 
 		authClosure!(userName, password, LRUserService_v62(session: session)) {

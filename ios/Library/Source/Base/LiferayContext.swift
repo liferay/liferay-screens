@@ -69,7 +69,7 @@ public class LiferayContext {
 		groupId = properties["groupId"] as Int
 	}
 
-	public func createSession(username:String, password:String) -> LRSession {
+	public func createSession(#username:String, password:String) -> LRSession {
 		currentSession = LRSession(server:server, username:username, password:password)
 		return currentSession!
 	}

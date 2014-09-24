@@ -63,7 +63,9 @@ import UIKit
 			LiferayContext.instance.clearSession()
 			LRSession.removeStoredCredential()
 
-			LiferayContext.instance.createSession(creatingUsername!, password: creatingPassword!)
+			LiferayContext.instance.createSession(
+					username: creatingUsername!,
+					password: creatingPassword!)
 		}
 
 		finishOperation()

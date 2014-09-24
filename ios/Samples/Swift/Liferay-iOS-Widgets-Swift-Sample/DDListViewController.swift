@@ -25,20 +25,22 @@ class DDListViewController: UIViewController, DDListWidgetDelegate {
     }
 
 	@IBAction func loadAction(sender: AnyObject) {
-		LiferayContext.instance.createSession("jose.navarro@liferay.com", password: "jm")
+		LiferayContext.instance.createSession(
+				username: "jose.navarro@liferay.com",
+				password: "jm")
 
 		widget!.loadList()
 	}
 
-	func onDDListResponse(records: [DDLRecord]) {
+	func onDDLListResponse(records: [DDLRecord]) {
 		println("Loaded \(records.count) records")
 	}
 
-	func onDDListError(error: NSError) {
+	func onDDLListError(error: NSError) {
 		println("Load DDL List error")
 	}
 
-	func onDDLRecordSelected(record: DDLRecord) {
+	func onDDLLRecordSelected(record: DDLRecord) {
 		println("Selected DDL Record -> \(record.attributes)")
 	}
 
