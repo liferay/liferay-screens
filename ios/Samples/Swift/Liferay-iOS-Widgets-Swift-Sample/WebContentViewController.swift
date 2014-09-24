@@ -20,7 +20,8 @@ public class WebContentViewController: UIViewController, WebContentWidgetDelegat
 	@IBAction func loadButtonAction(sender: AnyObject) {
 		LiferayContext.instance.createSession(
 				username: "jose.navarro@liferay.com",
-				password: "jm")
+				password: "jm",
+				userAttributes: ["userId": 10198])
 		widget!.loadWebContent()
 	}
 

@@ -22,7 +22,8 @@ public class AssetListViewController: UIViewController, AssetListWidgetDelegate 
 	@IBAction func loadAction(sender: AnyObject) {
 		LiferayContext.instance.createSession(
 				username: "jose.navarro@liferay.com",
-				password: "jm")
+				password: "jm",
+				userAttributes: ["userId": 10198])
 		widget!.loadList()
 	}
 
