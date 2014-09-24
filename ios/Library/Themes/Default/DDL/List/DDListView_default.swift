@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class DDListView_default: DDListView {
+public class DDLListView_default: DDLListView {
 
 	override internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let record = object as? DDLRecord {

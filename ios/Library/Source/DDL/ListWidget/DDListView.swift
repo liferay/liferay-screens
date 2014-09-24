@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class DDListView: BaseListTableView {
+public class DDLListView: BaseListTableView {
 
 	public var labelField: String = "" {
 		didSet {
