@@ -107,9 +107,10 @@ import UIKit
 
 		startOperationWithMessage("Sending password request...", details:"Wait few seconds...")
 
-		let session = LiferayContext.instance.createSession(anonymousApiUserName!,
+		let session = LRSession(
+				server: LiferayContext.instance.server,
+				username: anonymousApiUserName!,
 				password: anonymousApiPassword!)
-
 		session.callback = self
 
 		resetClosure!(username, LRMobilewidgetsuserService_v62(session: session)) {
