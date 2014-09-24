@@ -2,5 +2,5 @@ pod 'MBProgressHUD', :git => 'https://github.com/jmnavarro/MBProgressHUD', :bran
 pod 'SMXMLDocument'
 pod 'DTPickerPresenter'
 pod 'TNRadioButtonGroup'
-pod 'MDRadialProgress', :git => 'https://github.com/jmnavarro/MDRadialProgress.git', :branch => 'update-font-changes'
+pod 'MDRadialProgress'
 pod 'Liferay-iOS-SDK', :git => 'https://github.com/liferay/liferay-mobile-sdk.git'
