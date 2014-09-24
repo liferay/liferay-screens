@@ -204,11 +204,13 @@ import UIKit
 	public func loadForm() -> Bool {
 		if LiferayContext.instance.currentSession == nil {
 			println("ERROR: No session initialized. Can't load form without session")
+
 			return false
 		}
 
 		if structureId == 0 {
 			println("ERROR: StructureId is empty. Can't load form without it.")
+
 			return false
 		}
 
@@ -228,6 +230,7 @@ import UIKit
 
 		if let error = outError {
 			onFailure(error)
+
 			return false
 		}
 
@@ -331,31 +334,31 @@ import UIKit
 
 		var outError: NSError?
 
-		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber
+		let groupId = (self.groupId != 0 ? self.groupId : LiferayContext.instance.groupId) as NSNumber
 
 		let serviceContextAttributes = [
-				"userId":userId,
-				"scopeGroupId":groupIdToUse]
+				"userId": userId,
+				"scopeGroupId": groupId]
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
 
 		if recordId == 0 {
 			service.addRecordWithGroupId(
-				groupIdToUse.longLongValue,
-				recordSetId: (recordSetId as NSNumber).longLongValue,
-				displayIndex: 0,
-				fieldsMap: formView.values,
-				serviceContext: serviceContextWrapper,
-				error: &outError)
+					groupId.longLongValue,
+					recordSetId: (recordSetId as NSNumber).longLongValue,
+					displayIndex: 0,
+					fieldsMap: formView.values,
+					serviceContext: serviceContextWrapper,
+					error: &outError)
 		}
 		else {
 			service.updateRecordWithRecordId(
-				(recordId as NSNumber).longLongValue,
-				displayIndex: 0,
-				fieldsMap: formView.values,
-				mergeFields: true,
-				serviceContext: serviceContextWrapper,
-				error: &outError)
+					(recordId as NSNumber).longLongValue,
+					displayIndex: 0,
+					fieldsMap: formView.values,
+					mergeFields: true,
+					serviceContext: serviceContextWrapper,
+					error: &outError)
 		}
 
 		if let error = outError {
@@ -408,7 +411,9 @@ import UIKit
 			return false
 		}
 
-		let repoId = (repositoryId != 0) ? repositoryId : groupId
+		let groupId = ((self.groupId != 0) ? self.groupId : LiferayContext.instance.groupId) as NSNumber
+		let repositoryId = ((self.repositoryId != 0) ? self.repositoryId : groupId) as NSNumber
+
 		let fileName = "\(filePrefix)-\(NSUUID.UUID().UUIDString)"
 		var size:Int64 = 0
 		let stream = document.getStream(&size)
@@ -429,16 +434,16 @@ import UIKit
 		var outError: NSError?
 
 		service.addFileEntryWithRepositoryId(
-			(repoId as NSNumber).longLongValue,
-			folderId: (folderId as NSNumber).longLongValue,
-			sourceFileName: fileName,
-			mimeType: document.mimeType,
-			title: fileName,
-			description: "",
-			changeLog: "Uploaded from Liferay Screens app",
-			file: uploadData,
-			serviceContext: nil,
-			error: &outError)
+				repositoryId.longLongValue,
+				folderId: (folderId as NSNumber).longLongValue,
+				sourceFileName: fileName,
+				mimeType: document.mimeType,
+				title: fileName,
+				description: "",
+				changeLog: "Uploaded from Liferay Screens app",
+				file: uploadData,
+				serviceContext: nil,
+				error: &outError)
 
 		if let error = outError {
 			onFailure(error)
