@@ -27,6 +27,14 @@ import UIKit
 
 public class LoginWidget: BaseWidget {
 
+	@IBInspectable public var saveCredentials: Bool = false {
+		didSet {
+			if widgetView != nil {
+				loginView.saveCredentials = self.saveCredentials
+			}
+		}
+	}
+
 	@IBOutlet public var delegate: LoginWidgetDelegate?
 
 	internal var loginView: LoginView {
@@ -47,6 +55,8 @@ public class LoginWidget: BaseWidget {
 
 	override internal func onCreated() {
         setAuthType(LoginAuthType.Email)
+
+		loginView.saveCredentials = self.saveCredentials
 
 		if SessionContext.loadSessionFromStore() {
 			loginView.setUserName(SessionContext.currentUserName!)
@@ -78,7 +88,7 @@ public class LoginWidget: BaseWidget {
 
 		delegate?.onLoginResponse?(result)
 
-		if loginView.shouldRememberCredentials {
+		if saveCredentials {
 			if SessionContext.storeSession() {
 				delegate?.onCredentialsSaved?()
 			}

@@ -16,8 +16,13 @@ import UIKit
 
 public class LoginView: BaseWidgetView {
 
-	public var shouldRememberCredentials: Bool {
-		return true
+	public var saveCredentials: Bool {
+		get {
+			return _saveCredentials
+		}
+		set {
+			_saveCredentials = newValue
+		}
 	}
 
 	public func setAuthType(authType: LoginAuthType) {
@@ -36,5 +41,7 @@ public class LoginView: BaseWidgetView {
 
 	public func setPassword(password: String) {
 	}
+
+	private var _saveCredentials: Bool = false
 
 }
