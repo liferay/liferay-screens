@@ -12,8 +12,8 @@ As developer, you'll be able to customize the UI, hide or extend widget's featur
 
 ## iOS
 
-The implementation of screens for iOS devices is the most advanced at the moment. It's developed using the new Swift language and modern development techniques. The goal is to distribute it using CocoaPods, but until Swift is supported in this project you'll have to include screen's source code into your project. If you have developed apps before CocoaPods appeared, this procedure will be familiar to you. As soon as CocoaPods works fine with Swift, Cocoa frameworks and ObjC-Swift interoperativity, we'll release a Pod to make it easier.
+The implementation of screens for iOS devices is the most advanced at the moment. It's developed using the new Swift language and modern development techniques. It will be eventually distributed with CocoaPods, but until Swift is supported in this project [[1](https://github.com/CocoaPods/CocoaPods/pull/2222), [2](https://github.com/CocoaPods/CocoaPods/issues/2272)] you have to include screen's source code into your project. 
 
 ## Android
 
-The implementation for Android is still very inmature, but we hope that it will catch up iOS in the next few months.
+The implementation for Android is still very inmature, not even released to the community, but we hope that it will catch up iOS in the next few months.
