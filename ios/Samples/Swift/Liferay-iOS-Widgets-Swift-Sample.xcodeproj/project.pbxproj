@@ -26,6 +26,7 @@
 		881F35A619CB28B9002B9BEC /* BaseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F35A219CB28B9002B9BEC /* BaseListView.swift */; };
 		881F35A719CB28B9002B9BEC /* BaseListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F35A319CB28B9002B9BEC /* BaseListWidget.swift */; };
 		881F35A819CB28B9002B9BEC /* BaseListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F35A519CB28B9002B9BEC /* BaseListTableView.swift */; };
+		882286FA19D424760072BCFC /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882286F919D424760072BCFC /* SessionContext.swift */; };
 		8828A79A19C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 8828A79619C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.m */; };
 		8828A79B19C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 8828A79819C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.m */; };
 		8828A79D19C2E1C20051601A /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8828A79C19C2E1C20051601A /* Global.swift */; };
@@ -172,6 +173,7 @@
 		881F35A219CB28B9002B9BEC /* BaseListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListView.swift; sourceTree = "<group>"; };
 		881F35A319CB28B9002B9BEC /* BaseListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListWidget.swift; sourceTree = "<group>"; };
 		881F35A519CB28B9002B9BEC /* BaseListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListTableView.swift; sourceTree = "<group>"; };
+		882286F919D424760072BCFC /* SessionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext.swift; sourceTree = "<group>"; };
 		8828A79619C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsassetentryService_v62.m; sourceTree = "<group>"; };
 		8828A79719C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsddlrecordService_v62.h; sourceTree = "<group>"; };
 		8828A79819C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsddlrecordService_v62.m; sourceTree = "<group>"; };
@@ -544,6 +546,7 @@
 				88832F8B19656B3F00E3DF9F /* BaseWidgetView.swift */,
 				88832F8C19656B3F00E3DF9F /* LiferayContext.swift */,
 				8812E76219D2B30000A6F5F8 /* PaginationOperation.swift */,
+				882286F919D424760072BCFC /* SessionContext.swift */,
 				8897D9C5198A883F00D3DF51 /* ThemeManager.swift */,
 			);
 			path = Base;
@@ -973,6 +976,7 @@
 				8812E75D19D2B2EC00A6F5F8 /* DDLFormWidget.swift in Sources */,
 				8845B97519CC5B3E0025D1D2 /* DDLValuesParser.swift in Sources */,
 				8845B85019CC32560025D1D2 /* DDListViewController.swift in Sources */,
+				882286FA19D424760072BCFC /* SessionContext.swift in Sources */,
 				888F6202198FD3DC0082786B /* SignUpView.swift in Sources */,
 				8845B95619CC5B270025D1D2 /* DDLFormDefaultThemeConstants.swift in Sources */,
 				888D77C9199038D10052C39C /* ForgotPasswordView_default.swift in Sources */,
