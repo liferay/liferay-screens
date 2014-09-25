@@ -202,7 +202,7 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadForm() -> Bool {
-		if SessionContext.hasSession {
+		if !SessionContext.hasSession {
 			println("ERROR: No session initialized. Can't load form without session")
 
 			return false
@@ -238,7 +238,7 @@ import UIKit
 	}
 
 	public func loadRecord() -> Bool {
-		if SessionContext.hasSession {
+		if !SessionContext.hasSession {
 			println("ERROR: No session initialized. Can't load a record without session")
 			return false
 		}
@@ -287,7 +287,7 @@ import UIKit
 
 
 	public func submitForm() -> Bool {
-		if SessionContext.hasSession {
+		if !SessionContext.hasSession {
 			println("ERROR: No session initialized. Can't submit form without session")
 			return false
 		}
@@ -400,7 +400,7 @@ import UIKit
 	}
 
 	private func uploadDocument(document:DDLFieldDocument) -> Bool {
-		if SessionContext.hasSession {
+		if !SessionContext.hasSession {
 			println("ERROR: No session initialized. Can't upload a document without session")
 			return false
 		}

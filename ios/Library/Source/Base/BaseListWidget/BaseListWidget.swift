@@ -37,7 +37,7 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadList() -> Bool {
-		if SessionContext.hasSession {
+		if !SessionContext.hasSession {
 			println("ERROR: No session initialized. Can't load the list without session")
 			return false
 		}

@@ -61,7 +61,7 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadWebContent() -> Bool {
-		if SessionContext.hasSession {
+		if !SessionContext.hasSession {
 			println("ERROR: No session initialized. Can't load the web content without session")
 			return false
 		}
