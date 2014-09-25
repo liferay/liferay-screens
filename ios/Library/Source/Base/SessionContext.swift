@@ -28,9 +28,8 @@ public class SessionContext {
 		return currentSession?.password
 	}
 
-	public var userAttributes: [String:AnyObject] = [:]
-
 	private var currentSession:LRSession?
+	private var userAttributes: [String:AnyObject] = [:]
 
 
 	//MARK: Singleton
@@ -53,6 +52,10 @@ public class SessionContext {
 
 
 	//MARK Public methods
+
+	public func userAttribute(key: String) -> AnyObject? {
+		return userAttributes[key]
+	}
 
 	public func createSession(
 			#username:String,
@@ -88,36 +91,54 @@ public class SessionContext {
 
 	public func clearSession() {
 		currentSession = nil
+		userAttributes = [:]
 	}
 
 	public func storeSession() -> Bool {
-		if hasSession {
-			return currentSession!.storeCredential()
-		}
-
-		return false
+		return (hasSession && currentSession!.storeCredential() && storeUserAttributes())
 	}
 
 	public class func removeStoredSession() {
 		LRSession.removeStoredCredential()
+		UICKeyChainStore.removeItemForKey("userAttributes")
 	}
 
 	public func loadSessionFromStore() -> Bool {
 		if let storedSession = LRSession.sessionFromStoredCredential() {
 
-			// TODO Retrieve from keychain
-			let userAttributes: [String:AnyObject] = [:]
+			if let userAttributes = loadUserAttributesFromStore() {
+				createSession(
+						username: storedSession.username,
+						password: storedSession.password,
+						userAttributes: userAttributes)
 
-			createSession(
-					username: storedSession.username,
-					password: storedSession.password,
-					userAttributes: userAttributes)
+				return true
+			}
 
-
-			return true
 		}
 
 		return false
+	}
+
+
+	private func storeUserAttributes() -> Bool {
+		if userAttributes.isEmpty {
+			return false
+		}
+
+		let encodedData = NSKeyedArchiver.archivedDataWithRootObject(userAttributes)
+
+		return UICKeyChainStore.setData(encodedData, forKey: "userAttributes")
+	}
+
+	private func loadUserAttributesFromStore() -> [String:AnyObject]? {
+		if let encodedData = UICKeyChainStore.dataForKey("userAttributes") {
+			let dictionary:AnyObject? = NSKeyedUnarchiver.unarchiveObjectWithData(encodedData)
+
+			return dictionary as? [String:AnyObject]
+		}
+
+		return nil
 	}
 
 }
