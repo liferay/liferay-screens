@@ -28,8 +28,10 @@ import UIKit
 	@IBInspectable public var anonymousApiPassword: String?
 
 	@IBInspectable public var autologin = true
+	@IBInspectable public var saveCredentials = false
 
 	@IBOutlet public var delegate: SignUpWidgetDelegate?
+	@IBOutlet public var autoLoginDelegate: LoginWidgetDelegate?
 
 	public var authType = LoginAuthType.Email
 
@@ -66,6 +68,14 @@ import UIKit
 					username: creatingUsername!,
 					password: creatingPassword!,
 					userAttributes: result)
+
+			autoLoginDelegate?.onLoginResponse?(result)
+
+			if saveCredentials {
+				if SessionContext.storeSession() {
+					autoLoginDelegate?.onCredentialsSaved?()
+				}
+			}
 		}
 
 		finishOperation()
