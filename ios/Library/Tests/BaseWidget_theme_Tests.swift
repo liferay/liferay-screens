@@ -14,7 +14,7 @@
 import XCTest
 
 
-class BaseWidget_theme_Tests: XCTestCase {
+class BaseWidget_Theme_Tests: XCTestCase {
 
 	var loginWidget:LoginWidget?
 
