@@ -16,16 +16,16 @@ import Foundation
 
 public class SessionContext {
 
-	public var hasSession: Bool {
-		return currentSession != nil
+	public class var hasSession: Bool {
+		return instance.currentSession != nil
 	}
 
-	public var currentUserName: String? {
-		return currentSession?.username
+	public class var currentUserName: String? {
+		return instance.currentSession?.username
 	}
 
-	public var currentPassword: String? {
-		return currentSession?.password
+	public class var currentPassword: String? {
+		return instance.currentSession?.password
 	}
 
 	private var currentSession:LRSession?
@@ -34,7 +34,7 @@ public class SessionContext {
 
 	//MARK: Singleton
 
-	class var instance: SessionContext {
+	private class var instance: SessionContext {
 		struct Singleton {
 			static var instance: SessionContext? = nil
 			static var onceToken: dispatch_once_t = 0
@@ -53,49 +53,51 @@ public class SessionContext {
 
 	//MARK Public methods
 
-	public func userAttribute(key: String) -> AnyObject? {
-		return userAttributes[key]
+	public class func userAttribute(key: String) -> AnyObject? {
+		return instance.userAttributes[key]
 	}
 
-	public func createSession(
+	public class func createSession(
 			#username:String,
 			password:String,
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
-		currentSession = LRSession(
+		instance.currentSession = LRSession(
 				server:LiferayContext.instance.server,
 				username:username,
 				password:password)
 
-		self.userAttributes = userAttributes
+		instance.userAttributes = userAttributes
 
-		return currentSession!
+		return instance.currentSession!
 	}
 
-	public func createSessionFromCurrentSession() -> LRSession? {
-		if let currentSessionValue = currentSession {
+	public class func createSessionFromCurrentSession() -> LRSession? {
+		if let currentSessionValue = instance.currentSession {
 			return LRSession(session: currentSessionValue)
 		}
 
 		return nil
 	}
 
-	public func createBatchSessionFromCurrentSession() -> LRBatchSession? {
-		if let currentSessionValue = currentSession {
+	public class func createBatchSessionFromCurrentSession() -> LRBatchSession? {
+		if let currentSessionValue = instance.currentSession {
 			return LRBatchSession(session: currentSessionValue)
 		}
 
 		return nil
 	}
 
-	public func clearSession() {
-		currentSession = nil
-		userAttributes = [:]
+	public class func clearSession() {
+		instance.currentSession = nil
+		instance.userAttributes = [:]
 	}
 
-	public func storeSession() -> Bool {
-		return (hasSession && currentSession!.storeCredential() && storeUserAttributes())
+	public class func storeSession() -> Bool {
+		return (hasSession &&
+				instance.currentSession!.storeCredential() &&
+				instance.storeUserAttributes())
 	}
 
 	public class func removeStoredSession() {
@@ -103,10 +105,9 @@ public class SessionContext {
 		UICKeyChainStore.removeItemForKey("userAttributes")
 	}
 
-	public func loadSessionFromStore() -> Bool {
+	public class func loadSessionFromStore() -> Bool {
 		if let storedSession = LRSession.sessionFromStoredCredential() {
-
-			if let userAttributes = loadUserAttributesFromStore() {
+			if let userAttributes = instance.loadUserAttributesFromStore() {
 				createSession(
 						username: storedSession.username,
 						password: storedSession.password,
@@ -114,7 +115,6 @@ public class SessionContext {
 
 				return true
 			}
-
 		}
 
 		return false

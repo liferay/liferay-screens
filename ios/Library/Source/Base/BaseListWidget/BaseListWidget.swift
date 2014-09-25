@@ -37,7 +37,7 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadList() -> Bool {
-		if SessionContext.instance.hasSession {
+		if SessionContext.hasSession {
 			println("ERROR: No session initialized. Can't load the list without session")
 			return false
 		}
@@ -58,7 +58,7 @@ import UIKit
 
 		paginationOperations[page] = operation
 
-		let session = SessionContext.instance.createBatchSessionFromCurrentSession()!
+		let session = SessionContext.createBatchSessionFromCurrentSession()!
 		session.callback = operation
 
 		doGetPageRowsOperation(session: session, page: page)

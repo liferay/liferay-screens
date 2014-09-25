@@ -25,7 +25,7 @@ class DDListViewController: UIViewController, DDLListWidgetDelegate {
     }
 
 	@IBAction func loadAction(sender: AnyObject) {
-		LiferayContext.instance.createSession(
+		SessionContext.createSession(
 				username: "jose.navarro@liferay.com",
 				password: "jm",
 				userAttributes: ["userId": 10198])

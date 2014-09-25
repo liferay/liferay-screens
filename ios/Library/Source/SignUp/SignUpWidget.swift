@@ -62,7 +62,7 @@ import UIKit
 		if autologin && creatingPassword != nil {
 			SessionContext.removeStoredSession()
 
-			SessionContext.instance.createSession(
+			SessionContext.createSession(
 					username: creatingUsername!,
 					password: creatingPassword!,
 					userAttributes: result)

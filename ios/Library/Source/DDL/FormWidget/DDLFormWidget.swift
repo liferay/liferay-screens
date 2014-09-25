@@ -202,7 +202,7 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadForm() -> Bool {
-		if SessionContext.instance.hasSession {
+		if SessionContext.hasSession {
 			println("ERROR: No session initialized. Can't load form without session")
 
 			return false
@@ -216,7 +216,7 @@ import UIKit
 
 		startOperationWithMessage("Loading form...", details: "Wait a second...")
 
-		let session = SessionContext.instance.createSessionFromCurrentSession()!
+		let session = SessionContext.createSessionFromCurrentSession()!
 		session.callback = self
 
 		let service = LRDDMStructureService_v62(session: session)
@@ -238,7 +238,7 @@ import UIKit
 	}
 
 	public func loadRecord() -> Bool {
-		if SessionContext.instance.hasSession {
+		if SessionContext.hasSession {
 			println("ERROR: No session initialized. Can't load a record without session")
 			return false
 		}
@@ -257,7 +257,7 @@ import UIKit
 
 		startOperationWithMessage("Loading record...", details: "Wait a second...")
 
-		let session = SessionContext.instance.createBatchSessionFromCurrentSession()!
+		let session = SessionContext.createBatchSessionFromCurrentSession()!
 		session.callback = self
 
 		var outError: NSError?
@@ -287,7 +287,7 @@ import UIKit
 
 
 	public func submitForm() -> Bool {
-		if SessionContext.instance.hasSession {
+		if SessionContext.hasSession {
 			println("ERROR: No session initialized. Can't submit form without session")
 			return false
 		}
@@ -327,7 +327,7 @@ import UIKit
 
 		startOperationWithMessage("Submitting form...", details: "Wait a second...")
 
-		let session = SessionContext.instance.createSessionFromCurrentSession()!
+		let session = SessionContext.createSessionFromCurrentSession()!
 		session.callback = self
 
 		let service = LRDDLRecordService_v62(session: session)
@@ -400,7 +400,7 @@ import UIKit
 	}
 
 	private func uploadDocument(document:DDLFieldDocument) -> Bool {
-		if SessionContext.instance.hasSession {
+		if SessionContext.hasSession {
 			println("ERROR: No session initialized. Can't upload a document without session")
 			return false
 		}
@@ -424,7 +424,7 @@ import UIKit
 				mimeType: document.mimeType)
 		uploadData.progressDelegate = self
 
-		let session = SessionContext.instance.createSessionFromCurrentSession()!
+		let session = SessionContext.createSessionFromCurrentSession()!
 		session.callback = self
 
 		let service = LRDLAppService_v62(session: session)

@@ -48,9 +48,9 @@ public class LoginWidget: BaseWidget {
 	override internal func onCreated() {
         setAuthType(LoginAuthType.Email)
 
-		if SessionContext.instance.loadSessionFromStore() {
-			loginView.setUserName(SessionContext.instance.currentUserName!)
-			loginView.setPassword(SessionContext.instance.currentPassword!)
+		if SessionContext.loadSessionFromStore() {
+			loginView.setUserName(SessionContext.currentUserName!)
+			loginView.setPassword(SessionContext.currentPassword!)
 
 			delegate?.onCredentialsLoaded?()
 		}
@@ -71,7 +71,7 @@ public class LoginWidget: BaseWidget {
 	}
 
 	override internal func onServerResult(result: [String:AnyObject]) {
-		SessionContext.instance.createSession(
+		SessionContext.createSession(
 				username: loginSession!.username,
 				password: loginSession!.password,
 				userAttributes: result)
@@ -79,7 +79,7 @@ public class LoginWidget: BaseWidget {
 		delegate?.onLoginResponse?(result)
 
 		if loginView.shouldRememberCredentials {
-			if SessionContext.instance.storeSession() {
+			if SessionContext.storeSession() {
 				delegate?.onCredentialsSaved?()
 			}
 		}
@@ -102,7 +102,7 @@ public class LoginWidget: BaseWidget {
 	private func sendLoginWithUserName(userName:String, password:String) {
 		startOperationWithMessage("Sending sign in...", details:"Wait few seconds...")
 
-		SessionContext.instance.clearSession()
+		SessionContext.clearSession()
 
 		loginSession = LRSession(
 				server: LiferayContext.instance.server,

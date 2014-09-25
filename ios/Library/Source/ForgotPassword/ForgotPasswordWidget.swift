@@ -46,7 +46,7 @@ import UIKit
 	override internal func onCreated() {
 		setAuthType(LoginAuthType.Email)
 
-		if let userName = SessionContext.instance.currentUserName {
+		if let userName = SessionContext.currentUserName {
 			forgotPasswordView.setUserName(userName)
 		}
 	}
