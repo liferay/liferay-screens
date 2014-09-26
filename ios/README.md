@@ -18,7 +18,7 @@ Screens library provides one standard theme called "Default" and another sample 
 
 Notice that themes provided in early versions supports only iPhone 5 and vertical resolution, but they will eventually support the wide range of screens and resolutions.
 
-For more details of the internal architecture, check the [library documentation page](https://github.com/liferay/liferay-mobile-widgets/tree/master/ios/Library/README.md)
+For more details of the internal architecture, check the [library documentation page](https://github.com/liferay/liferay-screens/tree/master/ios/Library/README.md)
 
 
 ## Compatibility 
@@ -40,13 +40,13 @@ Notice these steps are the manual way to install Liferay Screens in your project
 
 
 1. If you didn't do it yet, set up [CocoaPods](http://cocoapods.org) for your project
-1. Add depencendies to your `Podfile` and execute `pod install`. Use this [`Podfile`](/liferay/liferay-screens/raw/master/ios/Library/Podfile) as a template.
+1. Add depencendies to your `Podfile` and execute `pod install`. Use this [`Podfile`](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile) as a template.
 1. Edit the following Builder Settings in your project's configuration:
     - Objective-C Bridging Header: `${SRCROOT}/Liferay-Screens/Source/liferay-ios-widgets.h`
 
 	![Objective-C Bridging Header](Documentation/Images/project-header.png "Objective-C Bridging Header")
 
-1. Create a new file of type Property List called `liferay-server-context.plist` to configure the settings for your Liferay Portal (like the URL to the server). Use [`liferay-server-context-sample.plist`](/liferay/liferay-screens/raw/master/ios/Library/Source/liferay-server-context-sample.plist) as a template.
+1. Create a new file of type Property List called `liferay-server-context.plist` to configure the settings for your Liferay Portal (like the URL to the server). Use [`liferay-server-context-sample.plist`](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Source/liferay-server-context-sample.plist) as a template.
 
 	![liferay-context.plist file](Documentation/Images/liferay-context.png "liferay-context.plist file")
 
@@ -86,4 +86,4 @@ And if you get bored of adding the same imports over and over again, you may add
 
 Would you like to contribute new widgets? Awesome :)
 
-It's so simple: just follow our [contributors guide](https://github.com/liferay/liferay-mobile-widgets/tree/master/CONTRIBUTING.md)
+It's so simple: just follow our [contributors guide](https://github.com/liferay/liferay-screens/tree/master/CONTRIBUTING.md)

@@ -12,16 +12,16 @@ Note that this library is developed using iOS 8, so you'll need XCode6 in order 
 
 ## Internal architecture
 
-Read the [architecture guide](https://github.com/liferay/liferay-mobile-widgets/tree/master/ios/Library/architecture.md).
+Read the [architecture guide](https://github.com/liferay/liferay-screens/tree/master/ios/Library/architecture.md).
 
 ## Code style guide
 
-Read the [style guide](https://github.com/liferay/liferay-mobile-widgets/tree/master/ios/style_guide.md).
+Read the [style guide](https://github.com/liferay/liferay-screens/tree/master/ios/style_guide.md).
 
 
 ## Contribute
 
-Read the [contributing guide](https://github.com/liferay/liferay-mobile-widgets/tree/master/CONTRIBUTING.md).
+Read the [contributing guide](https://github.com/liferay/liferay-screens/tree/master/CONTRIBUTING.md).
 
 
     
