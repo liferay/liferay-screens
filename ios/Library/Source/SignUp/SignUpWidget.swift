@@ -28,8 +28,10 @@ import UIKit
 	@IBInspectable public var anonymousApiPassword: String?
 
 	@IBInspectable public var autologin = true
+	@IBInspectable public var saveCredentials = false
 
 	@IBOutlet public var delegate: SignUpWidgetDelegate?
+	@IBOutlet public var autoLoginDelegate: LoginWidgetDelegate?
 
 	public var authType = LoginAuthType.Email
 
@@ -60,10 +62,20 @@ import UIKit
 		delegate?.onSignUpResponse?(result)
 
 		if autologin && creatingPassword != nil {
-			LiferayContext.instance.clearSession()
-			LRSession.removeStoredCredential()
+			SessionContext.removeStoredSession()
 
-			LiferayContext.instance.createSession(creatingUsername!, password: creatingPassword!)
+			SessionContext.createSession(
+					username: creatingUsername!,
+					password: creatingPassword!,
+					userAttributes: result)
+
+			autoLoginDelegate?.onLoginResponse?(result)
+
+			if saveCredentials {
+				if SessionContext.storeSession() {
+					autoLoginDelegate?.onCredentialsSaved?()
+				}
+			}
 		}
 
 		finishOperation()
@@ -85,7 +97,9 @@ import UIKit
 
 		startOperationWithMessage("Sending sign up...", details:"Wait few seconds...")
 
-		let session = LiferayContext.instance.createSession(anonymousApiUserName!,
+		let session = LRSession(
+				server: LiferayServerContext.instance.server,
+				username: anonymousApiUserName!,
 				password: anonymousApiPassword!)
 		session.callback = self
 
@@ -119,7 +133,7 @@ import UIKit
 
 		let emptyDict = []
 
-		service.addUserWithCompanyId((LiferayContext.instance.companyId as NSNumber).longLongValue,
+		service.addUserWithCompanyId((LiferayServerContext.instance.companyId as NSNumber).longLongValue,
 			autoPassword: autoPassword, password1: password, password2: password,
 			autoScreenName: autoScreenName, screenName: screenName,
 			emailAddress: signUpView.getEmailAddress(),
@@ -130,7 +144,7 @@ import UIKit
 			male: true,
 			birthdayMonth: 1, birthdayDay: 1, birthdayYear: 1970,
 			jobTitle: signUpView.getJobTitle(),
-			groupIds: [LiferayContext.instance.groupId],
+			groupIds: [LiferayServerContext.instance.groupId],
 			organizationIds: emptyDict,
 			roleIds: emptyDict,
 			userGroupIds: emptyDict,

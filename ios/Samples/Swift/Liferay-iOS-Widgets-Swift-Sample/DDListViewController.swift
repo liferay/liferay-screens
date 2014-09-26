@@ -8,9 +8,9 @@
 
 import UIKit
 
-class DDListViewController: UIViewController, DDListWidgetDelegate {
+class DDListViewController: UIViewController, DDLListWidgetDelegate {
 
-	@IBOutlet var widget: DDListWidget?
+	@IBOutlet var widget: DDLListWidget?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,20 +25,23 @@ class DDListViewController: UIViewController, DDListWidgetDelegate {
     }
 
 	@IBAction func loadAction(sender: AnyObject) {
-		LiferayContext.instance.createSession("jose.navarro@liferay.com", password: "jm")
+		SessionContext.createSession(
+				username: "jose.navarro@liferay.com",
+				password: "jm",
+				userAttributes: ["userId": 10198])
 
 		widget!.loadList()
 	}
 
-	func onDDListResponse(records: [DDLRecord]) {
+	func onDDLListResponse(records: [DDLRecord]) {
 		println("Loaded \(records.count) records")
 	}
 
-	func onDDListError(error: NSError) {
+	func onDDLListError(error: NSError) {
 		println("Load DDL List error")
 	}
 
-	func onDDLRecordSelected(record: DDLRecord) {
+	func onDDLLRecordSelected(record: DDLRecord) {
 		println("Selected DDL Record -> \(record.attributes)")
 	}
 

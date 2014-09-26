@@ -14,7 +14,7 @@
 import XCTest
 
 
-class DDLParser_basic_Tests: XCTestCase {
+class DDLParser_Basic_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 

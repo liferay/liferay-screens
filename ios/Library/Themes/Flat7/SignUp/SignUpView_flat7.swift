@@ -27,6 +27,12 @@ public class SignUpView_flat7: SignUpView_default {
 
 	//MARK: SignUpView
 
+	override internal func onCreated() {
+		super.onCreated()
+
+		BaseWidget.setHUDCustomColor(Flat7ThemeBasicGreen)
+	}
+
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
@@ -102,7 +108,7 @@ public class SignUpView_flat7: SignUpView_default {
 			default: ()
 		}
 
-		placeholder.changeVisibility(visible: newText == "")
+		placeholder.changeVisibility(visible: newText != "")
 
 		return true
 	}

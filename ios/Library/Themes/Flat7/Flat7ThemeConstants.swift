@@ -11,28 +11,8 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
-import WebKit
+import Foundation
 
 
-public class WebContentView_default: WebContentView {
+let Flat7ThemeBasicGreen = UIColor(red: 39.0/255, green: 174.0/255, blue: 97.0/255, alpha: 1)
 
-	private var webView:WKWebView?
-
-
-	//MARK: WebContentView
-
-	override public func setHtmlContent(html:String) {
-		webView!.loadHTMLString(html, baseURL: NSURL(string:LiferayServerContext.instance.server))
-	}
-
-	override internal func onPreCreate() {
-		webView = WKWebView(frame: bounds, configuration: WKWebViewConfiguration())
-
-		webView!.autoresizingMask =
-				UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
-
-		addSubview(webView!)
-	}
-
-}

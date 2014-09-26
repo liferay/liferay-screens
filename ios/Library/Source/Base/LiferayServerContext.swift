@@ -14,19 +14,17 @@
 import Foundation
 
 
-public class LiferayContext {
+public class LiferayServerContext {
 
 	public var server = "http://localhost:8080"
 	public var companyId = 10154
 	public var groupId = 10181
 
-	public var currentSession:LRSession?
-
 	//MARK: Singleton
 
-	class var instance: LiferayContext {
+	class var instance: LiferayServerContext {
 		struct Singleton {
-			static var instance: LiferayContext? = nil
+			static var instance: LiferayServerContext? = nil
 			static var onceToken: dispatch_once_t = 0
 		}
 
@@ -39,19 +37,19 @@ public class LiferayContext {
 
 	public required init() {
 		if let propertiesPath =
-				NSBundle.mainBundle().pathForResource("liferay-context", ofType:"plist") {
+				NSBundle.mainBundle().pathForResource("liferay-server-context", ofType:"plist") {
 			loadContextFile(propertiesPath)
 		}
 		else {
-			println("WARNING: liferay-context.plist file is not found. Falling back to template " +
-				"liferay-context-sample.list")
+			println("WARNING: liferay-server-context.plist file is not found. Falling back to template " +
+				"liferay-server-context-sample.list")
 
-			if let templatePath = NSBundle.mainBundle().pathForResource("liferay-context-sample",
+			if let templatePath = NSBundle.mainBundle().pathForResource("liferay-server-context-sample",
 					ofType:"plist") {
 				loadContextFile(templatePath)
 			}
 			else {
-				println("WARNING: liferay-context-sample.plist file is not found. " +
+				println("WARNING: liferay-server-context-sample.plist file is not found. " +
 					"Using default values which will work in a default Liferay bundle installed " +
 					"in localhost")
 			}
@@ -67,15 +65,6 @@ public class LiferayContext {
 		server = properties["server"] as String;
 		companyId = properties["companyId"] as Int
 		groupId = properties["groupId"] as Int
-	}
-
-	public func createSession(username:String, password:String) -> LRSession {
-		currentSession = LRSession(server:server, username:username, password:password)
-		return currentSession!
-	}
-
-	public func clearSession() {
-		currentSession = nil
 	}
 
 }

@@ -19,13 +19,21 @@ import UIKit
 	optional func onLoginResponse(attributes: [String:AnyObject])
 	optional func onLoginError(error: NSError)
 
-	optional func onCredentialsSaved(session:LRSession)
-	optional func onCredentialsLoaded(session:LRSession)
+	optional func onCredentialsSaved()
+	optional func onCredentialsLoaded()
 
 }
 
 
 public class LoginWidget: BaseWidget {
+
+	@IBInspectable public var saveCredentials: Bool = false {
+		didSet {
+			if widgetView != nil {
+				loginView.saveCredentials = self.saveCredentials
+			}
+		}
+	}
 
 	@IBOutlet public var delegate: LoginWidgetDelegate?
 
@@ -40,12 +48,7 @@ public class LoginWidget: BaseWidget {
 
 	private var authClosure: ((String, String, LRUserService_v62, NSError -> Void) -> Void)?
 
-
-	//MARK: Class methods
-
-	public class func storedSession() -> LRSession? {
-		return LRSession.sessionFromStoredCredential()
-	}
+	private var loginSession: LRSession?
 
 
 	//MARK: BaseWidget
@@ -53,13 +56,13 @@ public class LoginWidget: BaseWidget {
 	override internal func onCreated() {
         setAuthType(LoginAuthType.Email)
 
-		if let session = LRSession.sessionFromStoredCredential() {
-			LiferayContext.instance.currentSession = session
+		loginView.saveCredentials = self.saveCredentials
 
-			loginView.setUserName(session.username)
-			loginView.setPassword(session.password)
+		if SessionContext.loadSessionFromStore() {
+			loginView.setUserName(SessionContext.currentUserName!)
+			loginView.setPassword(SessionContext.currentPassword!)
 
-			delegate?.onCredentialsLoaded?(session)
+			delegate?.onCredentialsLoaded?()
 		}
 	}
 
@@ -72,18 +75,22 @@ public class LoginWidget: BaseWidget {
 	override internal func onServerError(error: NSError) {
 		delegate?.onLoginError?(error)
 
-		LiferayContext.instance.clearSession()
-		LRSession.removeStoredCredential()
+		SessionContext.removeStoredSession()
 
 		finishOperationWithError(error, message:"Error signing in!")
 	}
 
 	override internal func onServerResult(result: [String:AnyObject]) {
+		SessionContext.createSession(
+				username: loginSession!.username,
+				password: loginSession!.password,
+				userAttributes: result)
+
 		delegate?.onLoginResponse?(result)
 
-		if loginView.shouldRememberCredentials {
-			if LiferayContext.instance.currentSession!.storeCredential() {
-				delegate?.onCredentialsSaved?(LiferayContext.instance.currentSession!)
+		if saveCredentials {
+			if SessionContext.storeSession() {
+				delegate?.onCredentialsSaved?()
 			}
 		}
 
@@ -105,10 +112,15 @@ public class LoginWidget: BaseWidget {
 	private func sendLoginWithUserName(userName:String, password:String) {
 		startOperationWithMessage("Sending sign in...", details:"Wait few seconds...")
 
-		let session = LiferayContext.instance.createSession(userName, password: password)
-		session.callback = self
+		SessionContext.clearSession()
 
-		authClosure!(userName, password, LRUserService_v62(session: session)) {
+		loginSession = LRSession(
+				server: LiferayServerContext.instance.server,
+				username: userName,
+				password: password)
+		loginSession!.callback = self
+
+		authClosure!(userName, password, LRUserService_v62(session: loginSession)) {
 			self.onFailure($0)
 		}
 	}
@@ -122,7 +134,7 @@ func authWithEmail(email:String, password:String,
 	var outError: NSError?
 
 	service.getUserByEmailAddressWithCompanyId(
-			(LiferayContext.instance.companyId as NSNumber).longLongValue,
+			(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
 			emailAddress:email,
 			error:&outError)
 
@@ -139,7 +151,7 @@ func authWithScreenName(name:String,
 	var outError: NSError?
 
 	service.getUserByScreenNameWithCompanyId(
-			(LiferayContext.instance.companyId as NSNumber).longLongValue,
+			(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
 			screenName:name,
 			error: &outError)
 

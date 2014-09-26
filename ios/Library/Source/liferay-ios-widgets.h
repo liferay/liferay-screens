@@ -21,6 +21,7 @@ FOUNDATION_EXPORT const unsigned char liferay_mobile_widgetsVersionString[];
 
 #import "MBProgressHUD.h"
 #import "SMXMLDocument.h"
+#import "UICKeyChainStore.h"
 
 #import "UIImage+Themes.h"
 

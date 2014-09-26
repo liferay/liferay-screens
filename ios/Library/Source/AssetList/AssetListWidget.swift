@@ -100,7 +100,7 @@ import UIKit
 	//MARK: BaseListWidget
 
 	override internal func doGetPageRowsOperation(#session: LRSession, page: Int) {
-		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber
+		let groupIdToUse = (groupId != 0 ? groupId : LiferayServerContext.instance.groupId) as NSNumber
 
 		let widgetsService = LRMobilewidgetsassetentryService_v62(session: session)
 
@@ -118,7 +118,7 @@ import UIKit
 	}
 
 	override internal func doGetRowCountOperation(#session: LRSession) {
-		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber
+		let groupIdToUse = (groupId != 0 ? groupId : LiferayServerContext.instance.groupId) as NSNumber
 
 		let assetsService = LRAssetEntryService_v62(session: session)
 

@@ -11,21 +11,20 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+import Foundation
 import XCTest
 
 
-class BaseWidget_Basic_Tests: XCTestCase {
+func XCTAssertOptional(expression: @autoclosure () -> AnyObject?, _ message: String? = nil) {
+	let evaluatedExpression:AnyObject? = expression()
 
-	var widget:SignUpWidget?
-
-	override func setUp() {
-		super.setUp()
-
-		widget = SignUpWidget(frame: CGRectMake(0, 0, 100, 100))
+	if evaluatedExpression == nil {
+		if let messageValue = message {
+			XCTFail(messageValue)
+		}
+		else {
+			XCTFail("Optional asertion failed: \(evaluatedExpression)")
+		}
 	}
-
-	func test_WidgetName_ShouldReturnTheCorrectName() {
-		XCTAssertEqual("SignUp", widget!.widgetName)
-	}
-
 }
+

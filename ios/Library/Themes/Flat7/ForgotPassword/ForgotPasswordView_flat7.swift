@@ -23,6 +23,12 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 
 	//MARK: ForgotPasswordView
 
+	override internal func onCreated() {
+		super.onCreated()
+
+		BaseWidget.setHUDCustomColor(Flat7ThemeBasicGreen)
+	}
+
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
@@ -63,7 +69,7 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 	
 	override public func setUserName(userName: String) {
 		super.setUserName(userName)
-		userNamePlaceholder!.changeVisibility(visible: userName == "")
+		userNamePlaceholder!.changeVisibility(visible: userName != "")
 	}
 
 
@@ -77,7 +83,7 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range,
 				withString:string)
 
-		userNamePlaceholder!.changeVisibility(visible: newText == "")
+		userNamePlaceholder!.changeVisibility(visible: newText != "")
 
 		return true
 	}

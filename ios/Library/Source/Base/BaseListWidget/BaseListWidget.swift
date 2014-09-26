@@ -37,7 +37,7 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadList() -> Bool {
-		if LiferayContext.instance.currentSession == nil {
+		if !SessionContext.hasSession {
 			println("ERROR: No session initialized. Can't load the list without session")
 			return false
 		}
@@ -58,12 +58,24 @@ import UIKit
 
 		paginationOperations[page] = operation
 
-		let session = LRBatchSession(session: LiferayContext.instance.currentSession)
+		let session = SessionContext.createBatchSessionFromCurrentSession()!
 		session.callback = operation
 
 		doGetPageRowsOperation(session: session, page: page)
 
+		if session.commands.count < 1 {
+			println("Error: Get page rows operation couldn't be started")
+
+			return false
+		}
+
 		doGetRowCountOperation(session: session)
+
+		if session.commands.count < 2 {
+			println("Error: Get row count operation couldn't be started")
+
+			return false
+		}
 
 		var outError: NSError?
 
@@ -71,13 +83,14 @@ import UIKit
 
 		if let error = outError {
 			operation.onFailure(error)
+
 			return false
 		}
 
 		return true
 	}
 
-	internal func doGetPageRowsOperation(#session: LRSession, page: Int) {
+	internal func doGetPageRowsOperation(#session: LRSession, page: Int){
 	}
 
 	internal func doGetRowCountOperation(#session: LRSession) {

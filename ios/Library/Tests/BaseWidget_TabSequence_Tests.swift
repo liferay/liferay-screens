@@ -14,7 +14,7 @@
 import XCTest
 
 
-class BaseWidget_tab_sequence_Tests: XCTestCase {
+class BaseWidget_TabSequence_Tests: XCTestCase {
 
 	var view:SignUpView_default?
 

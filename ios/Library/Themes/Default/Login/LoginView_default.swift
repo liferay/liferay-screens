@@ -39,12 +39,19 @@ public class LoginView_default: LoginView {
 
 	//MARK: LoginView
 
-	override public var shouldRememberCredentials: Bool {
-		if let rememberSwitchValue = rememberSwitch {
-			return rememberSwitchValue.on;
-		}
+	override public var saveCredentials: Bool {
+		get {
+			if let rememberSwitchValue = rememberSwitch {
+				return rememberSwitchValue.on;
+			}
 
-		return super.shouldRememberCredentials
+			return super.saveCredentials
+		}
+		set {
+			if let rememberSwitchValue = rememberSwitch {
+				rememberSwitchValue.on = newValue
+			}
+		}
 	}
 
 	override public func setAuthType(authType: LoginAuthType) {
