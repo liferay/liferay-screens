@@ -40,19 +40,13 @@ Notice these steps are the manual way to install Liferay Screens in your project
 
 
 1. If you didn't do it yet, set up [CocoaPods](http://cocoapods.org) for your project
-1. Add the following dependencies to your `Podfile` and execute `pod install`
-    - `pod 'MBProgressHUD', :git => 'https://github.com/jmnavarro/MBProgressHUD', :branch => 'cancel-delayed-hide'`
-    - `pod 'SMXMLDocument'`
-    - `pod 'DTPickerPresenter'`
-    - `pod 'TNRadioButtonGroup'`
-    - `pod 'MDRadialProgress'`
-    - `pod 'Liferay-iOS-SDK', :git => 'https://github.com/liferay/liferay-mobile-sdk.git'`
+1. Add depencendies to your `Podfile` and execute `pod install`. Use this [`Podfile`](/liferay/liferay-screens/raw/master/ios/Library/Podfile) as a template.
 1. Edit the following Builder Settings in your project's configuration:
     - Objective-C Bridging Header: `${SRCROOT}/Liferay-Screens/Source/liferay-ios-widgets.h`
 
 	![Objective-C Bridging Header](Documentation/Images/project-header.png "Objective-C Bridging Header")
 
-1. Create a new file of type Property List called `liferay-context.plist` to configure the settings for your Liferay Portal (like the URL to the server). Use [`liferay-context-sample.plist`](/liferay/liferay-mobile-widgets/raw/master/ios/framework/liferay-ios-widgets/liferay-context-sample.plist) as a template.
+1. Create a new file of type Property List called `liferay-server-context.plist` to configure the settings for your Liferay Portal (like the URL to the server). Use [`liferay-server-context-sample.plist`](/liferay/liferay-screens/raw/master/ios/Library/Source/liferay-server-context-sample.plist) as a template.
 
 	![liferay-context.plist file](Documentation/Images/liferay-context.png "liferay-context.plist file")
 
