@@ -87,8 +87,6 @@ public class DDLRecord: NSObject {
 				else {
 					field.currentValue = fieldValue
 				}
-
-				fields.append(field)
 			}
 		}
 	}

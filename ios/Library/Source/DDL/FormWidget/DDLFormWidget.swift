@@ -82,8 +82,13 @@ import UIKit
 	}
 
 	override internal func onShow() {
-		if autoLoad && structureId != 0 {
-			loadForm()
+		if autoLoad {
+			if recordId != 0 {
+				loadRecord()
+			}
+			else {
+				loadForm()
+			}
 		}
 	}
 
