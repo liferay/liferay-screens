@@ -289,6 +289,10 @@ Try to use same idioms in the same project
 
 ### Singleton
 
+Have in mind that [Singletons may be Evil](http://c2.com/cgi/wiki?SingletonsAreEvil) although could be useful only where you need some global state across your application.
+
+A simple `struct` using static fields and methods could be enough in most case, but if you really need a singleton, follow this idiomatic pattern:
+
 ```swift
 //MARK: Singleton
 
