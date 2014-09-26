@@ -120,13 +120,7 @@ import QuartzCore
 
 		if runningOnInterfaceBuilder {
 			if let currentPreviewImageValue = currentPreviewImage {
-				let imageRect = CGRectMake(
-						(frame.size.width - currentPreviewImageValue.size.width)/2,
-						0,
-						currentPreviewImageValue.size.width,
-						currentPreviewImageValue.size.height)
-
-				previewLayer.frame = imageRect
+				previewLayer.frame = centeredRectInWidget(size: currentPreviewImageValue.size)
 				previewLayer.contents = currentPreviewImageValue.CGImage
 
 				if previewLayer.superlayer != layer {
@@ -160,10 +154,11 @@ import QuartzCore
 		let view = createWidgetViewFromNib();
 
 		if let viewValue = view {
-			viewValue.frame = bounds
+			viewValue.frame = centeredRectInWidget(size: viewValue.frame.size)
 			viewValue.onUserAction = onUserAction;
 
 			addSubview(viewValue)
+			sendSubviewToBack(viewValue)
 
 			return viewValue
 		}
@@ -178,8 +173,6 @@ import QuartzCore
 			result = UIImage(contentsOfFile: previewImagePath)
 		}
 		else if let widgetView = createWidgetViewFromNib() {
-			widgetView.frame = bounds
-
 			result = previewImageFromView(widgetView)
 		}
 
@@ -225,7 +218,10 @@ import QuartzCore
 	}
 
 	internal func previewImageFromView(view:UIView) -> UIImage {
-		UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
+		let previewWidth = min(view.frame.size.width, self.frame.size.width)
+		let previewHeight = min(view.frame.size.height, self.frame.size.height)
+
+		UIGraphicsBeginImageContextWithOptions(CGSizeMake(previewWidth, previewHeight), false, 0.0)
 
 		view.layer.renderInContext(UIGraphicsGetCurrentContext())
 		let previewImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -333,6 +329,14 @@ import QuartzCore
 		let themeName = currentThemeName
 
 		currentPreviewImage = previewImageForTheme(themeName)
+	}
+
+	private func centeredRectInWidget(#size: CGSize) -> CGRect {
+		return CGRectMake(
+				(self.frame.size.width - size.width) / 2,
+				(self.frame.size.height - size.height) / 2,
+				size.width,
+				size.height)
 	}
 
 }
