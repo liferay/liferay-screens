@@ -339,7 +339,7 @@ import UIKit
 
 		var outError: NSError?
 
-		let groupId = (self.groupId != 0 ? self.groupId : LiferayContext.instance.groupId) as NSNumber
+		let groupId = (self.groupId != 0 ? self.groupId : LiferayServerContext.instance.groupId) as NSNumber
 
 		let serviceContextAttributes = [
 				"userId": userId,
@@ -416,7 +416,7 @@ import UIKit
 			return false
 		}
 
-		let groupId = ((self.groupId != 0) ? self.groupId : LiferayContext.instance.groupId) as NSNumber
+		let groupId = ((self.groupId != 0) ? self.groupId : LiferayServerContext.instance.groupId) as NSNumber
 		let repositoryId = ((self.repositoryId != 0) ? self.repositoryId : groupId) as NSNumber
 
 		let fileName = "\(filePrefix)-\(NSUUID.UUID().UUIDString)"

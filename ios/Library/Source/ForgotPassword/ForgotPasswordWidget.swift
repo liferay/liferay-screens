@@ -108,7 +108,7 @@ import UIKit
 		startOperationWithMessage("Sending password request...", details:"Wait few seconds...")
 
 		let session = LRSession(
-				server: LiferayContext.instance.server,
+				server: LiferayServerContext.instance.server,
 				username: anonymousApiUserName!,
 				password: anonymousApiPassword!)
 		session.callback = self
@@ -127,7 +127,7 @@ func resetPasswordWithEmail(email:String,
 	var outError: NSError?
 
 	service.sendPasswordByEmailAddressWithCompanyId(
-			(LiferayContext.instance.companyId as NSNumber).longLongValue,
+			(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
 			emailAddress: email,
 			error: &outError)
 
@@ -143,7 +143,7 @@ func resetPasswordWithScreenName(screenName:String,
 	var outError: NSError?
 
 	service.sendPasswordByScreenNameWithCompanyId(
-			(LiferayContext.instance.companyId as NSNumber).longLongValue,
+			(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
 			screenName: screenName,
 			error: &outError)
 

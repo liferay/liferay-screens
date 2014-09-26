@@ -115,7 +115,7 @@ public class LoginWidget: BaseWidget {
 		SessionContext.clearSession()
 
 		loginSession = LRSession(
-				server: LiferayContext.instance.server,
+				server: LiferayServerContext.instance.server,
 				username: userName,
 				password: password)
 		loginSession!.callback = self
@@ -134,7 +134,7 @@ func authWithEmail(email:String, password:String,
 	var outError: NSError?
 
 	service.getUserByEmailAddressWithCompanyId(
-			(LiferayContext.instance.companyId as NSNumber).longLongValue,
+			(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
 			emailAddress:email,
 			error:&outError)
 
@@ -151,7 +151,7 @@ func authWithScreenName(name:String,
 	var outError: NSError?
 
 	service.getUserByScreenNameWithCompanyId(
-			(LiferayContext.instance.companyId as NSNumber).longLongValue,
+			(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
 			screenName:name,
 			error: &outError)
 

@@ -64,7 +64,7 @@ public class SessionContext {
 			-> LRSession {
 
 		instance.currentSession = LRSession(
-				server:LiferayContext.instance.server,
+				server:LiferayServerContext.instance.server,
 				username:username,
 				password:password)
 

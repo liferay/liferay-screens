@@ -76,7 +76,7 @@ import UIKit
 		let session = SessionContext.createSessionFromCurrentSession()!
 		session.callback = self
 
-		let groupIdToUse = (groupId != 0 ? groupId : LiferayContext.instance.groupId) as NSNumber
+		let groupIdToUse = (groupId != 0 ? groupId : LiferayServerContext.instance.groupId) as NSNumber
 
 		let service = LRJournalArticleService_v62(session: session)
 
