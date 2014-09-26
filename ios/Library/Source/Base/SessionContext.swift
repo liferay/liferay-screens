@@ -95,9 +95,17 @@ public class SessionContext {
 	}
 
 	public class func storeSession() -> Bool {
-		return (hasSession &&
-				instance.currentSession!.storeCredential() &&
-				instance.storeUserAttributes())
+		if !hasSession {
+			return false
+		}
+
+		let success = instance.currentSession!.storeCredential()
+
+		if !success {
+			return false
+		}
+
+		return instance.storeUserAttributes()
 	}
 
 	public class func removeStoredSession() {
