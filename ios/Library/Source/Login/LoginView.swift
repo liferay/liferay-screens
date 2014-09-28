@@ -25,8 +25,7 @@ public class LoginView: BaseWidgetView {
 		}
 	}
 
-	public func setAuthType(authType: LoginAuthType) {
-	}
+	public var authType: LoginAuthType? = .Email
 
 	public func getUserName() -> String {
 		return ""
