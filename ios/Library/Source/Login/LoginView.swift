@@ -16,14 +16,7 @@ import UIKit
 
 public class LoginView: BaseWidgetView {
 
-	public var saveCredentials: Bool {
-		get {
-			return _saveCredentials
-		}
-		set {
-			_saveCredentials = newValue
-		}
-	}
+	public var saveCredentials = false
 
 	public var authType: LoginAuthType? = .Email
 
@@ -40,7 +33,5 @@ public class LoginView: BaseWidgetView {
 
 	public func setPassword(password: String) {
 	}
-
-	private var _saveCredentials: Bool = false
 
 }
