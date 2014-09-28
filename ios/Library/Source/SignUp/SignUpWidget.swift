@@ -52,24 +52,18 @@ import UIKit
 				lastName:signUpView.getLastName())
 	}
 
-	override internal func onServerError(error: NSError) {
-		delegate?.onSignUpError?(error)
+	internal func onSignUpResult(connector: LiferaySignUpConnector) {
+		delegate?.onSignUpResponse?(connector.createdUserAttributes!)
 
-		finishOperationWithError(error, message:"Error signing up!")
-	}
-
-	override internal func onServerResult(result: [String:AnyObject]) {
-		delegate?.onSignUpResponse?(result)
-
-		if autologin && creatingPassword != nil {
+		if autologin {
 			SessionContext.removeStoredSession()
 
 			SessionContext.createSession(
-					username: creatingUsername!,
-					password: creatingPassword!,
-					userAttributes: result)
+					username: connector.session!.username!,
+					password: connector.session!.password!,
+					userAttributes: connector.createdUserAttributes!)
 
-			autoLoginDelegate?.onLoginResponse?(result)
+			autoLoginDelegate?.onLoginResponse?(connector.createdUserAttributes!)
 
 			if saveCredentials {
 				if SessionContext.storeSession() {
@@ -101,59 +95,25 @@ import UIKit
 				server: LiferayServerContext.instance.server,
 				username: anonymousApiUserName!,
 				password: anonymousApiPassword!)
-		session.callback = self
 
-		let service = LRUserService_v62(session: session)
+		let connector = LiferaySignUpConnector(widget: self, session: session)
 
-		var outError: NSError?
+		connector.emailAddress = signUpView.getEmailAddress()
+		connector.password = signUpView.getPassword()
+		connector.firstName = signUpView.getFirstName()
+		connector.lastName = signUpView.getLastName()
 
-		// user name
-		switch authType {
-			case .Email:
-				creatingUsername = signUpView.getEmailAddress()
-			case .ScreenName:
-				creatingUsername = signUpView.getScreenName()
-			case .UserId:
-				println("ERROR: sign Up with User id is not supported")
-			default: ()
+		connector.addToQueue() {
+			if $0.lastError != nil {
+				self.delegate?.onSignUpError?($0.lastError!)
+
+				self.finishOperationWithError($0.lastError!, message:"Error signing up!")
+			}
+			else {
+				self.onSignUpResult($0 as LiferaySignUpConnector)
+			}
 		}
 
-		// password
-		creatingPassword = signUpView.getPassword();
-		let autoPassword = (creatingPassword == "")
-
-		// screen name
-		let screenName = signUpView.getScreenName();
-		let autoScreenName = (screenName == "")
-
-		// names
-		let firstName = signUpView.getFirstName();
-		let middleName = signUpView.getMiddleName();
-		let lastName = signUpView.getLastName();
-
-		let emptyDict = []
-
-		service.addUserWithCompanyId((LiferayServerContext.instance.companyId as NSNumber).longLongValue,
-			autoPassword: autoPassword, password1: password, password2: password,
-			autoScreenName: autoScreenName, screenName: screenName,
-			emailAddress: signUpView.getEmailAddress(),
-			facebookId: 0, openId: "",
-			locale: NSLocale.currentLocaleString(),
-			firstName: firstName, middleName: middleName, lastName: lastName,
-			prefixId: 0, suffixId: 0,
-			male: true,
-			birthdayMonth: 1, birthdayDay: 1, birthdayYear: 1970,
-			jobTitle: signUpView.getJobTitle(),
-			groupIds: [LiferayServerContext.instance.groupId],
-			organizationIds: emptyDict,
-			roleIds: emptyDict,
-			userGroupIds: emptyDict,
-			sendEmail: true,
-			serviceContext: nil, error: &outError)
-
-		if let error = outError {
-			onFailure(error)
-		}
 	}
 
 }
