@@ -29,7 +29,7 @@ public class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswo
 		// WORKAROUND!
 		// Delegate assignment in IB doesn't work!!
 		loginWidget!.delegate = self
-		loginWidget!.setAuthType(LoginAuthType.ScreenName)
+		loginWidget!.authType = .Email
 
 		forgotWidget!.delegate = self;
 		forgotWidget!.setAuthType(LoginAuthType.ScreenName)

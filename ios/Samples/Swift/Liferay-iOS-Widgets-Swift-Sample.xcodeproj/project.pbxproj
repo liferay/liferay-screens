@@ -8,231 +8,160 @@
 
 /* Begin PBXBuildFile section */
 		171724ED3A0843AB9AC1B25E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D782ECE4B14578B67EA5D0 /* libPods.a */; };
-		8811DC3819BDA115008FE226 /* WebContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC3619BDA115008FE226 /* WebContentView.swift */; };
-		8811DC3919BDA115008FE226 /* WebContentWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC3719BDA115008FE226 /* WebContentWidget.swift */; };
-		8811DC3E19BDA700008FE226 /* WebContentView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC3C19BDA700008FE226 /* WebContentView_default.swift */; };
 		8811DC4019BDD0FA008FE226 /* WebContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC3F19BDD0FA008FE226 /* WebContentViewController.swift */; };
-		8812E75C19D2B2EC00A6F5F8 /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E75419D2B2EC00A6F5F8 /* DDLFormView.swift */; };
-		8812E75D19D2B2EC00A6F5F8 /* DDLFormWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E75519D2B2EC00A6F5F8 /* DDLFormWidget.swift */; };
-		8812E75E19D2B2EC00A6F5F8 /* DDLFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E75719D2B2EC00A6F5F8 /* DDLFieldTableCell.swift */; };
-		8812E75F19D2B2EC00A6F5F8 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E75819D2B2EC00A6F5F8 /* DDLFormTableView.swift */; };
-		8812E76319D2B30000A6F5F8 /* PaginationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E76219D2B30000A6F5F8 /* PaginationOperation.swift */; };
-		8812E76519D2B31500A6F5F8 /* DefaultThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E76419D2B31500A6F5F8 /* DefaultThemeConstants.swift */; };
-		8812E77019D2CF9200A6F5F8 /* DDLListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E76E19D2CF9200A6F5F8 /* DDLListWidget.swift */; };
-		8812E77119D2CF9200A6F5F8 /* DDLListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E76F19D2CF9200A6F5F8 /* DDLListView.swift */; };
-		8812E77419D2CF9D00A6F5F8 /* DDLListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8812E77219D2CF9D00A6F5F8 /* DDLListView_default.swift */; };
-		8812E77519D2CF9D00A6F5F8 /* DDLListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8812E77319D2CF9D00A6F5F8 /* DDLListView_default.xib */; };
-		881F35A019CB27D3002B9BEC /* AssetListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F359F19CB27D3002B9BEC /* AssetListView_default.swift */; };
-		881F35A619CB28B9002B9BEC /* BaseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F35A219CB28B9002B9BEC /* BaseListView.swift */; };
-		881F35A719CB28B9002B9BEC /* BaseListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F35A319CB28B9002B9BEC /* BaseListWidget.swift */; };
-		881F35A819CB28B9002B9BEC /* BaseListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F35A519CB28B9002B9BEC /* BaseListTableView.swift */; };
-		882286FA19D424760072BCFC /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882286F919D424760072BCFC /* SessionContext.swift */; };
-		8828A79A19C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 8828A79619C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.m */; };
-		8828A79B19C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 8828A79819C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.m */; };
-		8828A79D19C2E1C20051601A /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8828A79C19C2E1C20051601A /* Global.swift */; };
-		8828A7A019C319A40051601A /* default-hourglass.png in Resources */ = {isa = PBXBuildFile; fileRef = 8828A79E19C319A40051601A /* default-hourglass.png */; };
-		8828A7A119C319A40051601A /* default-hourglass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8828A79F19C319A40051601A /* default-hourglass@2x.png */; };
-		88354BBB19C9E20900F3FE69 /* WebContentView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BBA19C9E20900F3FE69 /* WebContentView_default.xib */; };
-		88354BBD19C9E21500F3FE69 /* AssetListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BBC19C9E21500F3FE69 /* AssetListView_default.xib */; };
-		88354BD519C9E23D00F3FE69 /* ForgotPasswordView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BD419C9E23D00F3FE69 /* ForgotPasswordView_default.xib */; };
-		88354BD719C9E25300F3FE69 /* LoginView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BD619C9E25300F3FE69 /* LoginView_default.xib */; };
-		88354BD919C9E26600F3FE69 /* SignUpView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BD819C9E26600F3FE69 /* SignUpView_default.xib */; };
-		88354BDB19C9E27000F3FE69 /* ForgotPasswordView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BDA19C9E27000F3FE69 /* ForgotPasswordView_flat7.xib */; };
-		88354BDD19C9E27800F3FE69 /* LoginView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BDC19C9E27800F3FE69 /* LoginView_flat7.xib */; };
-		88354BDF19C9E27F00F3FE69 /* SignUpView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88354BDE19C9E27F00F3FE69 /* SignUpView_flat7.xib */; };
-		8835607C196AED36002AB222 /* liferay-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8835607B196AED36002AB222 /* liferay-context-sample.plist */; };
-		883CF3D1199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CF3D0199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m */; };
 		8845B85019CC32560025D1D2 /* DDListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B84F19CC32560025D1D2 /* DDListViewController.swift */; };
-		8845B94319CC5B270025D1D2 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B92819CC5B270025D1D2 /* DDLBaseFieldTextFieldTableCell_default.swift */; };
-		8845B94419CC5B270025D1D2 /* DDLFieldCheckboxTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B92919CC5B270025D1D2 /* DDLFieldCheckboxTableCell_default.swift */; };
-		8845B94519CC5B270025D1D2 /* DDLFieldCheckboxTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B92A19CC5B270025D1D2 /* DDLFieldCheckboxTableCell_default.xib */; };
-		8845B94619CC5B270025D1D2 /* DDLFieldDateTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B92B19CC5B270025D1D2 /* DDLFieldDateTableCell_default.swift */; };
-		8845B94719CC5B270025D1D2 /* DDLFieldDateTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B92C19CC5B270025D1D2 /* DDLFieldDateTableCell_default.xib */; };
-		8845B94819CC5B270025D1D2 /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B92D19CC5B270025D1D2 /* DDLFieldDocumentlibraryPresenterViewController_default.swift */; };
-		8845B94919CC5B270025D1D2 /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B92E19CC5B270025D1D2 /* DDLFieldDocumentlibraryPresenterViewController_default.xib */; };
-		8845B94A19CC5B270025D1D2 /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B92F19CC5B270025D1D2 /* DDLFieldDocumentlibraryTableCell_default.swift */; };
-		8845B94B19CC5B270025D1D2 /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B93019CC5B270025D1D2 /* DDLFieldDocumentlibraryTableCell_default.xib */; };
-		8845B94C19CC5B270025D1D2 /* DDLFieldNumberTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B93119CC5B270025D1D2 /* DDLFieldNumberTableCell_default.swift */; };
-		8845B94D19CC5B270025D1D2 /* DDLFieldNumberTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B93219CC5B270025D1D2 /* DDLFieldNumberTableCell_default.xib */; };
-		8845B94E19CC5B270025D1D2 /* DDLFieldRadioTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B93319CC5B270025D1D2 /* DDLFieldRadioTableCell_default.swift */; };
-		8845B94F19CC5B270025D1D2 /* DDLFieldRadioTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B93419CC5B270025D1D2 /* DDLFieldRadioTableCell_default.xib */; };
-		8845B95019CC5B270025D1D2 /* DDLFieldSelectTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B93519CC5B270025D1D2 /* DDLFieldSelectTableCell_default.swift */; };
-		8845B95119CC5B270025D1D2 /* DDLFieldSelectTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B93619CC5B270025D1D2 /* DDLFieldSelectTableCell_default.xib */; };
-		8845B95219CC5B270025D1D2 /* DDLFieldTextareaTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B93719CC5B270025D1D2 /* DDLFieldTextareaTableCell_default.swift */; };
-		8845B95319CC5B270025D1D2 /* DDLFieldTextareaTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B93819CC5B270025D1D2 /* DDLFieldTextareaTableCell_default.xib */; };
-		8845B95419CC5B270025D1D2 /* DDLFieldTextTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B93919CC5B270025D1D2 /* DDLFieldTextTableCell_default.swift */; };
-		8845B95519CC5B270025D1D2 /* DDLFieldTextTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B93A19CC5B270025D1D2 /* DDLFieldTextTableCell_default.xib */; };
-		8845B95619CC5B270025D1D2 /* DDLFormDefaultThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B93B19CC5B270025D1D2 /* DDLFormDefaultThemeConstants.swift */; };
-		8845B95719CC5B270025D1D2 /* DDLFormView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B93C19CC5B270025D1D2 /* DDLFormView_default.swift */; };
-		8845B95819CC5B270025D1D2 /* DDLFormView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B93D19CC5B270025D1D2 /* DDLFormView_default.xib */; };
-		8845B95919CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B93E19CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.swift */; };
-		8845B95A19CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8845B93F19CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.xib */; };
-		8845B97519CC5B3E0025D1D2 /* DDLValuesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B95E19CC5B3E0025D1D2 /* DDLValuesParser.swift */; };
-		8845B97619CC5B3E0025D1D2 /* DDLXSDParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B95F19CC5B3E0025D1D2 /* DDLXSDParser.swift */; };
-		8845B97D19CC5B3E0025D1D2 /* DDLField+DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B96A19CC5B3E0025D1D2 /* DDLField+DataType.swift */; };
-		8845B97E19CC5B3E0025D1D2 /* DDLField+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B96B19CC5B3E0025D1D2 /* DDLField+Editor.swift */; };
-		8845B97F19CC5B3E0025D1D2 /* DDLField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B96C19CC5B3E0025D1D2 /* DDLField.swift */; };
-		8845B98019CC5B3E0025D1D2 /* DDLFieldBoolean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B96D19CC5B3E0025D1D2 /* DDLFieldBoolean.swift */; };
-		8845B98119CC5B3E0025D1D2 /* DDLFieldDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B96E19CC5B3E0025D1D2 /* DDLFieldDate.swift */; };
-		8845B98219CC5B3E0025D1D2 /* DDLFieldDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B96F19CC5B3E0025D1D2 /* DDLFieldDocument.swift */; };
-		8845B98319CC5B3E0025D1D2 /* DDLFieldNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B97019CC5B3E0025D1D2 /* DDLFieldNumber.swift */; };
-		8845B98419CC5B3E0025D1D2 /* DDLFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B97119CC5B3E0025D1D2 /* DDLFieldString.swift */; };
-		8845B98519CC5B3E0025D1D2 /* DDLFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B97219CC5B3E0025D1D2 /* DDLFieldStringWithOptions.swift */; };
-		8845B98619CC5B3E0025D1D2 /* DDLFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B97319CC5B3E0025D1D2 /* DDLFieldUntyped.swift */; };
-		8845B98719CC5B3E0025D1D2 /* DDLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B97419CC5B3E0025D1D2 /* DDLRecord.swift */; };
-		884CE51E1994F3A500ADF047 /* default-preview-ddlform.png in Resources */ = {isa = PBXBuildFile; fileRef = 884CE51C1994F3A500ADF047 /* default-preview-ddlform.png */; };
-		884CE51F1994F3A500ADF047 /* default-preview-ddlform@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 884CE51D1994F3A500ADF047 /* default-preview-ddlform@2x.png */; };
-		8851134119B88A51009D93CE /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8851134019B88A51009D93CE /* UIView+Animations.swift */; };
 		885FD6831996E1DF00F23BA1 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FD6821996E1DF00F23BA1 /* FormViewController.swift */; };
 		8868AFCC19656B0500FD5214 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868AFCB19656B0500FD5214 /* AppDelegate.swift */; };
 		8868AFCE19656B0500FD5214 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8868AFCD19656B0500FD5214 /* ViewController.swift */; };
 		8868AFD119656B0500FD5214 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8868AFCF19656B0500FD5214 /* Main.storyboard */; };
 		8868AFD319656B0500FD5214 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8868AFD219656B0500FD5214 /* Images.xcassets */; };
-		88832F9819656B3F00E3DF9F /* BaseWidget+progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F8919656B3F00E3DF9F /* BaseWidget+progress.swift */; };
-		88832F9919656B3F00E3DF9F /* BaseWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F8A19656B3F00E3DF9F /* BaseWidget.swift */; };
-		88832F9A19656B3F00E3DF9F /* BaseWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F8B19656B3F00E3DF9F /* BaseWidgetView.swift */; };
-		88832F9B19656B3F00E3DF9F /* LiferayContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F8C19656B3F00E3DF9F /* LiferayContext.swift */; };
-		88832F9E19656B3F00E3DF9F /* liferay-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88832F9019656B3F00E3DF9F /* liferay-context.plist */; };
-		88832F9F19656B3F00E3DF9F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F9319656B3F00E3DF9F /* LoginView.swift */; };
-		88832FA119656B3F00E3DF9F /* LoginWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88832F9519656B3F00E3DF9F /* LoginWidget.swift */; };
-		888CE11419924821001DCA6A /* ForgotPasswordView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888CE11219924821001DCA6A /* ForgotPasswordView_flat7.swift */; };
-		888D775A198FDB710052C39C /* default-field-focused.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D774F198FDB710052C39C /* default-field-focused.png */; };
-		888D775B198FDB710052C39C /* default-field-focused@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7750198FDB710052C39C /* default-field-focused@2x.png */; };
-		888D775C198FDB710052C39C /* default-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7751198FDB710052C39C /* default-field.png */; };
-		888D775D198FDB710052C39C /* default-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7752198FDB710052C39C /* default-field@2x.png */; };
-		888D775E198FDB710052C39C /* default-large-button-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7753198FDB710052C39C /* default-large-button-selected.png */; };
-		888D775F198FDB710052C39C /* default-large-button-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7754198FDB710052C39C /* default-large-button-selected@2x.png */; };
-		888D7760198FDB710052C39C /* default-large-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7755198FDB710052C39C /* default-large-button.png */; };
-		888D7761198FDB710052C39C /* default-large-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7756198FDB710052C39C /* default-large-button@2x.png */; };
-		888D7764198FDB710052C39C /* theme-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D7759198FDB710052C39C /* theme-default.png */; };
-		888D7771198FE3D40052C39C /* SignUpView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D776F198FE3D40052C39C /* SignUpView_flat7.swift */; };
-		888D77B3198FF0E20052C39C /* default-lock-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D77AF198FF0E20052C39C /* default-lock-icon.png */; };
-		888D77B4198FF0E20052C39C /* default-lock-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D77B0198FF0E20052C39C /* default-lock-icon@2x.png */; };
-		888D77B5198FF0E20052C39C /* default-mail-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D77B1198FF0E20052C39C /* default-mail-icon.png */; };
-		888D77B6198FF0E20052C39C /* default-mail-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D77B2198FF0E20052C39C /* default-mail-icon@2x.png */; };
-		888D77B9198FF0EC0052C39C /* default-user-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D77B7198FF0EC0052C39C /* default-user-icon.png */; };
-		888D77BA198FF0EC0052C39C /* default-user-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888D77B8198FF0EC0052C39C /* default-user-icon@2x.png */; };
-		888D77BF198FF5030052C39C /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D77BD198FF5030052C39C /* LoginView_default.swift */; };
-		888D77C4199031690052C39C /* SignUpView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D77C2199031690052C39C /* SignUpView_default.swift */; };
-		888D77C9199038D10052C39C /* ForgotPasswordView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D77C7199038D10052C39C /* ForgotPasswordView_default.swift */; };
-		888F61FD198FD3B10082786B /* NSLocale+CurrentLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888F61FC198FD3B10082786B /* NSLocale+CurrentLocale.swift */; };
-		888F6202198FD3DC0082786B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888F61FF198FD3DC0082786B /* SignUpView.swift */; };
-		888F6204198FD3DC0082786B /* SignUpWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888F6201198FD3DC0082786B /* SignUpWidget.swift */; };
 		888F6206198FD3F20082786B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888F6205198FD3F20082786B /* SignUpViewController.swift */; };
+		889017F519D8AA7100CF2DCE /* LiferayLoginScreenNameConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889017F419D8AA7100CF2DCE /* LiferayLoginScreenNameConnector.swift */; };
+		889017F719D8AADA00CF2DCE /* BaseConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889017F619D8AADA00CF2DCE /* BaseConnector.swift */; };
+		889017F919D8AB8600CF2DCE /* LiferayLoginBaseConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889017F819D8AB8600CF2DCE /* LiferayLoginBaseConnector.swift */; };
+		889017FD19D8B76100CF2DCE /* LiferaySignUpConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889017FC19D8B76100CF2DCE /* LiferaySignUpConnector.swift */; };
 		8890CDAA19AE1CA50012B842 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8890CDA919AE1CA50012B842 /* MobileCoreServices.framework */; };
-		8891526E19C48B0F00F0B7F3 /* default-preview-assetlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8891526C19C48B0F00F0B7F3 /* default-preview-assetlist@2x.png */; };
-		8891526F19C48B0F00F0B7F3 /* default-preview-assetlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 8891526D19C48B0F00F0B7F3 /* default-preview-assetlist.png */; };
-		8891527219C48E1600F0B7F3 /* default-preview-webcontent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8891527019C48E1600F0B7F3 /* default-preview-webcontent@2x.png */; };
-		8891527319C48E1600F0B7F3 /* default-preview-webcontent.png in Resources */ = {isa = PBXBuildFile; fileRef = 8891527119C48E1600F0B7F3 /* default-preview-webcontent.png */; };
-		889558DC19C1E7B500657AC7 /* AssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889558DA19C1E7B500657AC7 /* AssetListView.swift */; };
-		889558DD19C1E7B500657AC7 /* AssetListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889558DB19C1E7B500657AC7 /* AssetListWidget.swift */; };
 		889558DF19C1E7FD00657AC7 /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889558DE19C1E7FD00657AC7 /* AssetListViewController.swift */; };
-		8897D9C3198A810F00D3DF51 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E4604819759FE4002C26C6 /* ForgotPasswordView.swift */; };
-		8897D9C4198A812D00D3DF51 /* ForgotPasswordWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E4604A19759FE4002C26C6 /* ForgotPasswordWidget.swift */; };
-		8897D9C6198A883F00D3DF51 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8897D9C5198A883F00D3DF51 /* ThemeManager.swift */; };
-		8897D9D1198A958000D3DF51 /* NSBundle+Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8897D9D0198A958000D3DF51 /* NSBundle+Paths.swift */; };
-		88999ADA198EE62E00E746A6 /* LoginView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88999ACD198EE62E00E746A6 /* LoginView_flat7.swift */; };
-		88999ADB198EE62E00E746A6 /* flat7.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88999ACF198EE62E00E746A6 /* flat7.strings */; };
-		88999ADC198EE62E00E746A6 /* flat7-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AD2198EE62E00E746A6 /* flat7-button.png */; };
-		88999ADD198EE62E00E746A6 /* flat7-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AD3198EE62E00E746A6 /* flat7-button@2x.png */; };
-		88999ADE198EE62E00E746A6 /* flat7-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AD4198EE62E00E746A6 /* flat7-field.png */; };
-		88999ADF198EE62E00E746A6 /* flat7-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AD5198EE62E00E746A6 /* flat7-field@2x.png */; };
-		88999AE2198EE64700E746A6 /* theme-flat7.png in Resources */ = {isa = PBXBuildFile; fileRef = 88999AE1198EE64700E746A6 /* theme-flat7.png */; };
-		88999AF4198EF1A700E746A6 /* UIImage+Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 88999AF3198EF1A700E746A6 /* UIImage+Themes.m */; };
-		88C5470319C1EBBE00A51E7D /* AssetListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C5470119C1EBBE00A51E7D /* AssetListTableView.swift */; };
-		88D537881999215500615515 /* default-field-failed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D537861999215500615515 /* default-field-failed@2x.png */; };
-		88D537891999215500615515 /* default-field-failed.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D537871999215500615515 /* default-field-failed.png */; };
-		88D76916199A5D9200D152D5 /* default-multiline-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D76914199A5D9200D152D5 /* default-multiline-field@2x.png */; };
-		88D76917199A5D9200D152D5 /* default-multiline-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D76915199A5D9200D152D5 /* default-multiline-field.png */; };
-		88DBC11D19A4EF9D0075E644 /* default-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC11B19A4EF9D0075E644 /* default-calendar.png */; };
-		88DBC11E19A4EF9D0075E644 /* default-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DBC11C19A4EF9D0075E644 /* default-calendar@2x.png */; };
-		88EAEE3C1993D923002D7C26 /* Bool+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */; };
-		88EDB9B519D2D39D00A8F9DF /* Flat7ThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EDB9B419D2D39D00A8F9DF /* Flat7ThemeConstants.swift */; };
-		88F1C5B219C98B3300A5F297 /* LoginAuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1C5B119C98B3300A5F297 /* LoginAuthType.swift */; };
-		999BC69C19768EA400A9B0D8 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999BC69B19768EA400A9B0D8 /* LRSession+CredentialStore.swift */; };
+		88DF666F19D8475B00EFE05E /* LiferayLoginEmailConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DF666E19D8475B00EFE05E /* LiferayLoginEmailConnector.swift */; };
+		88F3902B19D595B100169918 /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88F3902A19D595B100169918 /* liferay-server-context.plist */; };
+		88F390D719D595C200169918 /* WebContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3902E19D595C200169918 /* WebContentView.swift */; };
+		88F390D819D595C200169918 /* WebContentWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3902F19D595C200169918 /* WebContentWidget.swift */; };
+		88F390D919D595C200169918 /* AssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903119D595C200169918 /* AssetListView.swift */; };
+		88F390DA19D595C200169918 /* AssetListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903219D595C200169918 /* AssetListWidget.swift */; };
+		88F390DB19D595C200169918 /* AssetListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903419D595C200169918 /* AssetListTableView.swift */; };
+		88F390DC19D595C200169918 /* BaseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903719D595C200169918 /* BaseListView.swift */; };
+		88F390DD19D595C200169918 /* BaseListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903819D595C200169918 /* BaseListWidget.swift */; };
+		88F390DE19D595C200169918 /* BaseListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903A19D595C200169918 /* BaseListTableView.swift */; };
+		88F390DF19D595C200169918 /* BaseWidget+progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903B19D595C200169918 /* BaseWidget+progress.swift */; };
+		88F390E019D595C200169918 /* BaseWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903C19D595C200169918 /* BaseWidget.swift */; };
+		88F390E119D595C200169918 /* BaseWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903D19D595C200169918 /* BaseWidgetView.swift */; };
+		88F390E219D595C200169918 /* LiferayServerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903E19D595C200169918 /* LiferayServerContext.swift */; };
+		88F390E319D595C200169918 /* PaginationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903F19D595C200169918 /* PaginationOperation.swift */; };
+		88F390E419D595C200169918 /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904019D595C200169918 /* SessionContext.swift */; };
+		88F390E519D595C200169918 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904119D595C200169918 /* ThemeManager.swift */; };
+		88F390E619D595C200169918 /* DDLValuesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904319D595C200169918 /* DDLValuesParser.swift */; };
+		88F390E719D595C200169918 /* DDLXSDParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904419D595C200169918 /* DDLXSDParser.swift */; };
+		88F390E819D595C200169918 /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904619D595C200169918 /* DDLFormView.swift */; };
+		88F390E919D595C200169918 /* DDLFormWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904719D595C200169918 /* DDLFormWidget.swift */; };
+		88F390EA19D595C200169918 /* DDLFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904919D595C200169918 /* DDLFieldTableCell.swift */; };
+		88F390EB19D595C200169918 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904A19D595C200169918 /* DDLFormTableView.swift */; };
+		88F390EC19D595C200169918 /* DDLListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904C19D595C200169918 /* DDLListView.swift */; };
+		88F390ED19D595C200169918 /* DDLListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904D19D595C200169918 /* DDLListWidget.swift */; };
+		88F390EE19D595C200169918 /* DDLField+DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904F19D595C200169918 /* DDLField+DataType.swift */; };
+		88F390EF19D595C200169918 /* DDLField+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905019D595C200169918 /* DDLField+Editor.swift */; };
+		88F390F019D595C200169918 /* DDLField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905119D595C200169918 /* DDLField.swift */; };
+		88F390F119D595C200169918 /* DDLFieldBoolean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905219D595C200169918 /* DDLFieldBoolean.swift */; };
+		88F390F219D595C200169918 /* DDLFieldDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905319D595C200169918 /* DDLFieldDate.swift */; };
+		88F390F319D595C200169918 /* DDLFieldDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905419D595C200169918 /* DDLFieldDocument.swift */; };
+		88F390F419D595C200169918 /* DDLFieldNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905519D595C200169918 /* DDLFieldNumber.swift */; };
+		88F390F519D595C200169918 /* DDLFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905619D595C200169918 /* DDLFieldString.swift */; };
+		88F390F619D595C200169918 /* DDLFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905719D595C200169918 /* DDLFieldStringWithOptions.swift */; };
+		88F390F719D595C200169918 /* DDLFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905819D595C200169918 /* DDLFieldUntyped.swift */; };
+		88F390F819D595C200169918 /* DDLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905919D595C200169918 /* DDLRecord.swift */; };
+		88F390F919D595C200169918 /* Bool+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905B19D595C200169918 /* Bool+Conversion.swift */; };
+		88F390FA19D595C200169918 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905C19D595C200169918 /* Global.swift */; };
+		88F390FB19D595C200169918 /* NSBundle+Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905D19D595C200169918 /* NSBundle+Paths.swift */; };
+		88F390FC19D595C200169918 /* NSLocale+CurrentLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905E19D595C200169918 /* NSLocale+CurrentLocale.swift */; };
+		88F390FD19D595C200169918 /* UIImage+Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F3906019D595C200169918 /* UIImage+Themes.m */; };
+		88F390FE19D595C200169918 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3906119D595C200169918 /* UIView+Animations.swift */; };
+		88F390FF19D595C200169918 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3906319D595C200169918 /* ForgotPasswordView.swift */; };
+		88F3910019D595C200169918 /* ForgotPasswordWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3906419D595C200169918 /* ForgotPasswordWidget.swift */; };
+		88F3910119D595C200169918 /* liferay-server-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88F3906619D595C200169918 /* liferay-server-context-sample.plist */; };
+		88F3910219D595C200169918 /* LoginAuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3906819D595C200169918 /* LoginAuthType.swift */; };
+		88F3910319D595C200169918 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3906919D595C200169918 /* LoginView.swift */; };
+		88F3910419D595C200169918 /* LoginWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3906A19D595C200169918 /* LoginWidget.swift */; };
+		88F3910519D595C200169918 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3906B19D595C200169918 /* LRSession+CredentialStore.swift */; };
+		88F3910619D595C200169918 /* LRMobilewidgetsassetentryService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F3906E19D595C200169918 /* LRMobilewidgetsassetentryService_v62.m */; };
+		88F3910719D595C200169918 /* LRMobilewidgetsddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F3907019D595C200169918 /* LRMobilewidgetsddlrecordService_v62.m */; };
+		88F3910819D595C200169918 /* LRMobilewidgetsuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F3907219D595C200169918 /* LRMobilewidgetsuserService_v62.m */; };
+		88F3910919D595C200169918 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3907419D595C200169918 /* SignUpView.swift */; };
+		88F3910A19D595C200169918 /* SignUpWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3907519D595C200169918 /* SignUpWidget.swift */; };
+		88F3910B19D595C200169918 /* WebContentView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3907919D595C200169918 /* WebContentView_default.swift */; };
+		88F3910C19D595C200169918 /* WebContentView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3907A19D595C200169918 /* WebContentView_default.xib */; };
+		88F3910D19D595C200169918 /* AssetListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3907C19D595C200169918 /* AssetListView_default.swift */; };
+		88F3910E19D595C200169918 /* AssetListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3907D19D595C200169918 /* AssetListView_default.xib */; };
+		88F3910F19D595C200169918 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3908019D595C200169918 /* DDLBaseFieldTextFieldTableCell_default.swift */; };
+		88F3911019D595C200169918 /* DDLFieldCheckboxTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3908119D595C200169918 /* DDLFieldCheckboxTableCell_default.swift */; };
+		88F3911119D595C200169918 /* DDLFieldCheckboxTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3908219D595C200169918 /* DDLFieldCheckboxTableCell_default.xib */; };
+		88F3911219D595C200169918 /* DDLFieldDateTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3908319D595C200169918 /* DDLFieldDateTableCell_default.swift */; };
+		88F3911319D595C200169918 /* DDLFieldDateTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3908419D595C200169918 /* DDLFieldDateTableCell_default.xib */; };
+		88F3911419D595C200169918 /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3908519D595C200169918 /* DDLFieldDocumentlibraryPresenterViewController_default.swift */; };
+		88F3911519D595C200169918 /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3908619D595C200169918 /* DDLFieldDocumentlibraryPresenterViewController_default.xib */; };
+		88F3911619D595C200169918 /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3908719D595C200169918 /* DDLFieldDocumentlibraryTableCell_default.swift */; };
+		88F3911719D595C200169918 /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3908819D595C200169918 /* DDLFieldDocumentlibraryTableCell_default.xib */; };
+		88F3911819D595C200169918 /* DDLFieldNumberTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3908919D595C200169918 /* DDLFieldNumberTableCell_default.swift */; };
+		88F3911919D595C200169918 /* DDLFieldNumberTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3908A19D595C200169918 /* DDLFieldNumberTableCell_default.xib */; };
+		88F3911A19D595C200169918 /* DDLFieldRadioTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3908B19D595C200169918 /* DDLFieldRadioTableCell_default.swift */; };
+		88F3911B19D595C200169918 /* DDLFieldRadioTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3908C19D595C200169918 /* DDLFieldRadioTableCell_default.xib */; };
+		88F3911C19D595C200169918 /* DDLFieldSelectTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3908D19D595C200169918 /* DDLFieldSelectTableCell_default.swift */; };
+		88F3911D19D595C200169918 /* DDLFieldSelectTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3908E19D595C200169918 /* DDLFieldSelectTableCell_default.xib */; };
+		88F3911E19D595C200169918 /* DDLFieldTextareaTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3908F19D595C200169918 /* DDLFieldTextareaTableCell_default.swift */; };
+		88F3911F19D595C200169918 /* DDLFieldTextareaTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3909019D595C200169918 /* DDLFieldTextareaTableCell_default.xib */; };
+		88F3912019D595C200169918 /* DDLFieldTextTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3909119D595C200169918 /* DDLFieldTextTableCell_default.swift */; };
+		88F3912119D595C200169918 /* DDLFieldTextTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3909219D595C200169918 /* DDLFieldTextTableCell_default.xib */; };
+		88F3912219D595C200169918 /* DDLFormDefaultThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3909319D595C200169918 /* DDLFormDefaultThemeConstants.swift */; };
+		88F3912319D595C200169918 /* DDLFormView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3909419D595C200169918 /* DDLFormView_default.swift */; };
+		88F3912419D595C200169918 /* DDLFormView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3909519D595C200169918 /* DDLFormView_default.xib */; };
+		88F3912519D595C200169918 /* DDLSubmitButtonTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3909619D595C200169918 /* DDLSubmitButtonTableCell_default.swift */; };
+		88F3912619D595C200169918 /* DDLSubmitButtonTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3909719D595C200169918 /* DDLSubmitButtonTableCell_default.xib */; };
+		88F3912719D595C200169918 /* DDLListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3909919D595C200169918 /* DDLListView_default.swift */; };
+		88F3912819D595C200169918 /* DDLListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3909A19D595C200169918 /* DDLListView_default.xib */; };
+		88F3912919D595C200169918 /* DefaultThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3909B19D595C200169918 /* DefaultThemeConstants.swift */; };
+		88F3912A19D595C200169918 /* ForgotPasswordView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3909D19D595C200169918 /* ForgotPasswordView_default.swift */; };
+		88F3912B19D595C200169918 /* ForgotPasswordView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3909E19D595C200169918 /* ForgotPasswordView_default.xib */; };
+		88F3912C19D595C200169918 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F390A019D595C200169918 /* LoginView_default.swift */; };
+		88F3912D19D595C200169918 /* LoginView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F390A119D595C200169918 /* LoginView_default.xib */; };
+		88F3912E19D595C200169918 /* default-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390A319D595C200169918 /* default-calendar.png */; };
+		88F3912F19D595C200169918 /* default-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390A419D595C200169918 /* default-calendar@2x.png */; };
+		88F3913019D595C200169918 /* default-field-failed.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390A519D595C200169918 /* default-field-failed.png */; };
+		88F3913119D595C200169918 /* default-field-failed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390A619D595C200169918 /* default-field-failed@2x.png */; };
+		88F3913219D595C200169918 /* default-field-focused.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390A719D595C200169918 /* default-field-focused.png */; };
+		88F3913319D595C200169918 /* default-field-focused@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390A819D595C200169918 /* default-field-focused@2x.png */; };
+		88F3913419D595C200169918 /* default-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390A919D595C200169918 /* default-field.png */; };
+		88F3913519D595C200169918 /* default-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390AA19D595C200169918 /* default-field@2x.png */; };
+		88F3913619D595C200169918 /* default-hourglass.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390AB19D595C200169918 /* default-hourglass.png */; };
+		88F3913719D595C200169918 /* default-hourglass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390AC19D595C200169918 /* default-hourglass@2x.png */; };
+		88F3913819D595C200169918 /* default-large-button-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390AD19D595C200169918 /* default-large-button-selected.png */; };
+		88F3913919D595C200169918 /* default-large-button-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390AE19D595C200169918 /* default-large-button-selected@2x.png */; };
+		88F3913A19D595C200169918 /* default-large-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390AF19D595C200169918 /* default-large-button.png */; };
+		88F3913B19D595C200169918 /* default-large-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390B019D595C200169918 /* default-large-button@2x.png */; };
+		88F3913C19D595C200169918 /* default-lock-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390B119D595C200169918 /* default-lock-icon.png */; };
+		88F3913D19D595C200169918 /* default-lock-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390B219D595C200169918 /* default-lock-icon@2x.png */; };
+		88F3913E19D595C200169918 /* default-mail-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390B319D595C200169918 /* default-mail-icon.png */; };
+		88F3913F19D595C200169918 /* default-mail-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390B419D595C200169918 /* default-mail-icon@2x.png */; };
+		88F3914019D595C200169918 /* default-multiline-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390B519D595C200169918 /* default-multiline-field.png */; };
+		88F3914119D595C200169918 /* default-multiline-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390B619D595C200169918 /* default-multiline-field@2x.png */; };
+		88F3914219D595C200169918 /* default-preview-assetlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390B719D595C200169918 /* default-preview-assetlist.png */; };
+		88F3914319D595C200169918 /* default-preview-assetlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390B819D595C200169918 /* default-preview-assetlist@2x.png */; };
+		88F3914419D595C200169918 /* default-preview-ddlform.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390B919D595C200169918 /* default-preview-ddlform.png */; };
+		88F3914519D595C200169918 /* default-preview-ddlform@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390BA19D595C200169918 /* default-preview-ddlform@2x.png */; };
+		88F3914619D595C200169918 /* default-preview-webcontent.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390BB19D595C200169918 /* default-preview-webcontent.png */; };
+		88F3914719D595C200169918 /* default-preview-webcontent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390BC19D595C200169918 /* default-preview-webcontent@2x.png */; };
+		88F3914819D595C200169918 /* default-user-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390BD19D595C200169918 /* default-user-icon.png */; };
+		88F3914919D595C200169918 /* default-user-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390BE19D595C200169918 /* default-user-icon@2x.png */; };
+		88F3914A19D595C200169918 /* theme-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390BF19D595C200169918 /* theme-default.png */; };
+		88F3914B19D595C200169918 /* SignUpView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F390C119D595C200169918 /* SignUpView_default.swift */; };
+		88F3914C19D595C200169918 /* SignUpView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F390C219D595C200169918 /* SignUpView_default.xib */; };
+		88F3914D19D595C200169918 /* Flat7ThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F390C419D595C200169918 /* Flat7ThemeConstants.swift */; };
+		88F3914E19D595C200169918 /* ForgotPasswordView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F390C619D595C200169918 /* ForgotPasswordView_flat7.swift */; };
+		88F3914F19D595C200169918 /* ForgotPasswordView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F390C719D595C200169918 /* ForgotPasswordView_flat7.xib */; };
+		88F3915019D595C200169918 /* LoginView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F390C919D595C200169918 /* LoginView_flat7.swift */; };
+		88F3915119D595C200169918 /* LoginView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F390CA19D595C200169918 /* LoginView_flat7.xib */; };
+		88F3915219D595C200169918 /* flat7.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88F390CC19D595C200169918 /* flat7.strings */; };
+		88F3915319D595C200169918 /* flat7-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390CF19D595C200169918 /* flat7-button.png */; };
+		88F3915419D595C200169918 /* flat7-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390D019D595C200169918 /* flat7-button@2x.png */; };
+		88F3915519D595C200169918 /* flat7-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390D119D595C200169918 /* flat7-field.png */; };
+		88F3915619D595C200169918 /* flat7-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390D219D595C200169918 /* flat7-field@2x.png */; };
+		88F3915719D595C200169918 /* theme-flat7.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F390D319D595C200169918 /* theme-flat7.png */; };
+		88F3915819D595C200169918 /* SignUpView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F390D519D595C200169918 /* SignUpView_flat7.swift */; };
+		88F3915919D595C200169918 /* SignUpView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F390D619D595C200169918 /* SignUpView_flat7.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		01D782ECE4B14578B67EA5D0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CDED001B92C49429A1F0D49 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		8811DC3619BDA115008FE226 /* WebContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView.swift; sourceTree = "<group>"; };
-		8811DC3719BDA115008FE226 /* WebContentWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentWidget.swift; sourceTree = "<group>"; };
-		8811DC3C19BDA700008FE226 /* WebContentView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView_default.swift; sourceTree = "<group>"; };
 		8811DC3F19BDD0FA008FE226 /* WebContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentViewController.swift; sourceTree = "<group>"; };
-		8812E75419D2B2EC00A6F5F8 /* DDLFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormView.swift; sourceTree = "<group>"; };
-		8812E75519D2B2EC00A6F5F8 /* DDLFormWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormWidget.swift; sourceTree = "<group>"; };
-		8812E75719D2B2EC00A6F5F8 /* DDLFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldTableCell.swift; sourceTree = "<group>"; };
-		8812E75819D2B2EC00A6F5F8 /* DDLFormTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormTableView.swift; sourceTree = "<group>"; };
-		8812E76219D2B30000A6F5F8 /* PaginationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationOperation.swift; sourceTree = "<group>"; };
-		8812E76419D2B31500A6F5F8 /* DefaultThemeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultThemeConstants.swift; sourceTree = "<group>"; };
-		8812E76E19D2CF9200A6F5F8 /* DDLListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListWidget.swift; sourceTree = "<group>"; };
-		8812E76F19D2CF9200A6F5F8 /* DDLListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListView.swift; sourceTree = "<group>"; };
-		8812E77219D2CF9D00A6F5F8 /* DDLListView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListView_default.swift; sourceTree = "<group>"; };
-		8812E77319D2CF9D00A6F5F8 /* DDLListView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLListView_default.xib; sourceTree = "<group>"; };
-		881F359F19CB27D3002B9BEC /* AssetListView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListView_default.swift; sourceTree = "<group>"; };
-		881F35A219CB28B9002B9BEC /* BaseListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListView.swift; sourceTree = "<group>"; };
-		881F35A319CB28B9002B9BEC /* BaseListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListWidget.swift; sourceTree = "<group>"; };
-		881F35A519CB28B9002B9BEC /* BaseListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListTableView.swift; sourceTree = "<group>"; };
-		882286F919D424760072BCFC /* SessionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext.swift; sourceTree = "<group>"; };
-		8828A79619C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsassetentryService_v62.m; sourceTree = "<group>"; };
-		8828A79719C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsddlrecordService_v62.h; sourceTree = "<group>"; };
-		8828A79819C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsddlrecordService_v62.m; sourceTree = "<group>"; };
-		8828A79919C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsassetentryService_v62.h; sourceTree = "<group>"; };
-		8828A79C19C2E1C20051601A /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
-		8828A79E19C319A40051601A /* default-hourglass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-hourglass.png"; sourceTree = "<group>"; };
-		8828A79F19C319A40051601A /* default-hourglass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-hourglass@2x.png"; sourceTree = "<group>"; };
-		88354BBA19C9E20900F3FE69 /* WebContentView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentView_default.xib; sourceTree = "<group>"; };
-		88354BBC19C9E21500F3FE69 /* AssetListView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetListView_default.xib; sourceTree = "<group>"; };
-		88354BD419C9E23D00F3FE69 /* ForgotPasswordView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordView_default.xib; sourceTree = "<group>"; };
-		88354BD619C9E25300F3FE69 /* LoginView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_default.xib; sourceTree = "<group>"; };
-		88354BD819C9E26600F3FE69 /* SignUpView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView_default.xib; sourceTree = "<group>"; };
-		88354BDA19C9E27000F3FE69 /* ForgotPasswordView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordView_flat7.xib; sourceTree = "<group>"; };
-		88354BDC19C9E27800F3FE69 /* LoginView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_flat7.xib; sourceTree = "<group>"; };
-		88354BDE19C9E27F00F3FE69 /* SignUpView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView_flat7.xib; sourceTree = "<group>"; };
-		8835607B196AED36002AB222 /* liferay-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-context-sample.plist"; sourceTree = "<group>"; };
-		883CF3CF199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsuserService_v62.h; sourceTree = "<group>"; };
-		883CF3D0199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsuserService_v62.m; sourceTree = "<group>"; };
 		8845B84F19CC32560025D1D2 /* DDListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDListViewController.swift; sourceTree = "<group>"; };
-		8845B92819CC5B270025D1D2 /* DDLBaseFieldTextFieldTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLBaseFieldTextFieldTableCell_default.swift; sourceTree = "<group>"; };
-		8845B92919CC5B270025D1D2 /* DDLFieldCheckboxTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldCheckboxTableCell_default.swift; sourceTree = "<group>"; };
-		8845B92A19CC5B270025D1D2 /* DDLFieldCheckboxTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldCheckboxTableCell_default.xib; sourceTree = "<group>"; };
-		8845B92B19CC5B270025D1D2 /* DDLFieldDateTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDateTableCell_default.swift; sourceTree = "<group>"; };
-		8845B92C19CC5B270025D1D2 /* DDLFieldDateTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldDateTableCell_default.xib; sourceTree = "<group>"; };
-		8845B92D19CC5B270025D1D2 /* DDLFieldDocumentlibraryPresenterViewController_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDocumentlibraryPresenterViewController_default.swift; sourceTree = "<group>"; };
-		8845B92E19CC5B270025D1D2 /* DDLFieldDocumentlibraryPresenterViewController_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldDocumentlibraryPresenterViewController_default.xib; sourceTree = "<group>"; };
-		8845B92F19CC5B270025D1D2 /* DDLFieldDocumentlibraryTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDocumentlibraryTableCell_default.swift; sourceTree = "<group>"; };
-		8845B93019CC5B270025D1D2 /* DDLFieldDocumentlibraryTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldDocumentlibraryTableCell_default.xib; sourceTree = "<group>"; };
-		8845B93119CC5B270025D1D2 /* DDLFieldNumberTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldNumberTableCell_default.swift; sourceTree = "<group>"; };
-		8845B93219CC5B270025D1D2 /* DDLFieldNumberTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldNumberTableCell_default.xib; sourceTree = "<group>"; };
-		8845B93319CC5B270025D1D2 /* DDLFieldRadioTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldRadioTableCell_default.swift; sourceTree = "<group>"; };
-		8845B93419CC5B270025D1D2 /* DDLFieldRadioTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldRadioTableCell_default.xib; sourceTree = "<group>"; };
-		8845B93519CC5B270025D1D2 /* DDLFieldSelectTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldSelectTableCell_default.swift; sourceTree = "<group>"; };
-		8845B93619CC5B270025D1D2 /* DDLFieldSelectTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldSelectTableCell_default.xib; sourceTree = "<group>"; };
-		8845B93719CC5B270025D1D2 /* DDLFieldTextareaTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldTextareaTableCell_default.swift; sourceTree = "<group>"; };
-		8845B93819CC5B270025D1D2 /* DDLFieldTextareaTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldTextareaTableCell_default.xib; sourceTree = "<group>"; };
-		8845B93919CC5B270025D1D2 /* DDLFieldTextTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldTextTableCell_default.swift; sourceTree = "<group>"; };
-		8845B93A19CC5B270025D1D2 /* DDLFieldTextTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldTextTableCell_default.xib; sourceTree = "<group>"; };
-		8845B93B19CC5B270025D1D2 /* DDLFormDefaultThemeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormDefaultThemeConstants.swift; sourceTree = "<group>"; };
-		8845B93C19CC5B270025D1D2 /* DDLFormView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormView_default.swift; sourceTree = "<group>"; };
-		8845B93D19CC5B270025D1D2 /* DDLFormView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFormView_default.xib; sourceTree = "<group>"; };
-		8845B93E19CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLSubmitButtonTableCell_default.swift; sourceTree = "<group>"; };
-		8845B93F19CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLSubmitButtonTableCell_default.xib; sourceTree = "<group>"; };
-		8845B95E19CC5B3E0025D1D2 /* DDLValuesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLValuesParser.swift; sourceTree = "<group>"; };
-		8845B95F19CC5B3E0025D1D2 /* DDLXSDParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLXSDParser.swift; sourceTree = "<group>"; };
-		8845B96A19CC5B3E0025D1D2 /* DDLField+DataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDLField+DataType.swift"; sourceTree = "<group>"; };
-		8845B96B19CC5B3E0025D1D2 /* DDLField+Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDLField+Editor.swift"; sourceTree = "<group>"; };
-		8845B96C19CC5B3E0025D1D2 /* DDLField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLField.swift; sourceTree = "<group>"; };
-		8845B96D19CC5B3E0025D1D2 /* DDLFieldBoolean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldBoolean.swift; sourceTree = "<group>"; };
-		8845B96E19CC5B3E0025D1D2 /* DDLFieldDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDate.swift; sourceTree = "<group>"; };
-		8845B96F19CC5B3E0025D1D2 /* DDLFieldDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDocument.swift; sourceTree = "<group>"; };
-		8845B97019CC5B3E0025D1D2 /* DDLFieldNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldNumber.swift; sourceTree = "<group>"; };
-		8845B97119CC5B3E0025D1D2 /* DDLFieldString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldString.swift; sourceTree = "<group>"; };
-		8845B97219CC5B3E0025D1D2 /* DDLFieldStringWithOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldStringWithOptions.swift; sourceTree = "<group>"; };
-		8845B97319CC5B3E0025D1D2 /* DDLFieldUntyped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldUntyped.swift; sourceTree = "<group>"; };
-		8845B97419CC5B3E0025D1D2 /* DDLRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLRecord.swift; sourceTree = "<group>"; };
-		884CE51C1994F3A500ADF047 /* default-preview-ddlform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-ddlform.png"; sourceTree = "<group>"; };
-		884CE51D1994F3A500ADF047 /* default-preview-ddlform@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-ddlform@2x.png"; sourceTree = "<group>"; };
-		8851134019B88A51009D93CE /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		885FD6821996E1DF00F23BA1 /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		8868AFC619656B0500FD5214 /* Liferay-iOS-Widgets-Swift-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liferay-iOS-Widgets-Swift-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8868AFCA19656B0500FD5214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -240,71 +169,152 @@
 		8868AFCD19656B0500FD5214 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8868AFD019656B0500FD5214 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8868AFD219656B0500FD5214 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		88832F8919656B3F00E3DF9F /* BaseWidget+progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseWidget+progress.swift"; sourceTree = "<group>"; };
-		88832F8A19656B3F00E3DF9F /* BaseWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidget.swift; sourceTree = "<group>"; };
-		88832F8B19656B3F00E3DF9F /* BaseWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidgetView.swift; sourceTree = "<group>"; };
-		88832F8C19656B3F00E3DF9F /* LiferayContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayContext.swift; sourceTree = "<group>"; };
-		88832F9019656B3F00E3DF9F /* liferay-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-context.plist"; sourceTree = "<group>"; };
-		88832F9119656B3F00E3DF9F /* liferay-ios-widgets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "liferay-ios-widgets.h"; sourceTree = "<group>"; };
-		88832F9319656B3F00E3DF9F /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		88832F9519656B3F00E3DF9F /* LoginWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWidget.swift; sourceTree = "<group>"; };
-		888CE11219924821001DCA6A /* ForgotPasswordView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView_flat7.swift; sourceTree = "<group>"; };
-		888D774F198FDB710052C39C /* default-field-focused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field-focused.png"; sourceTree = "<group>"; };
-		888D7750198FDB710052C39C /* default-field-focused@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field-focused@2x.png"; sourceTree = "<group>"; };
-		888D7751198FDB710052C39C /* default-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field.png"; sourceTree = "<group>"; };
-		888D7752198FDB710052C39C /* default-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field@2x.png"; sourceTree = "<group>"; };
-		888D7753198FDB710052C39C /* default-large-button-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-large-button-selected.png"; sourceTree = "<group>"; };
-		888D7754198FDB710052C39C /* default-large-button-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-large-button-selected@2x.png"; sourceTree = "<group>"; };
-		888D7755198FDB710052C39C /* default-large-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-large-button.png"; sourceTree = "<group>"; };
-		888D7756198FDB710052C39C /* default-large-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-large-button@2x.png"; sourceTree = "<group>"; };
-		888D7759198FDB710052C39C /* theme-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "theme-default.png"; sourceTree = "<group>"; };
-		888D776F198FE3D40052C39C /* SignUpView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_flat7.swift; sourceTree = "<group>"; };
-		888D77AF198FF0E20052C39C /* default-lock-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-lock-icon.png"; sourceTree = "<group>"; };
-		888D77B0198FF0E20052C39C /* default-lock-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-lock-icon@2x.png"; sourceTree = "<group>"; };
-		888D77B1198FF0E20052C39C /* default-mail-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-mail-icon.png"; sourceTree = "<group>"; };
-		888D77B2198FF0E20052C39C /* default-mail-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-mail-icon@2x.png"; sourceTree = "<group>"; };
-		888D77B7198FF0EC0052C39C /* default-user-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-user-icon.png"; sourceTree = "<group>"; };
-		888D77B8198FF0EC0052C39C /* default-user-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-user-icon@2x.png"; sourceTree = "<group>"; };
-		888D77BD198FF5030052C39C /* LoginView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_default.swift; sourceTree = "<group>"; };
-		888D77C2199031690052C39C /* SignUpView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_default.swift; sourceTree = "<group>"; };
-		888D77C7199038D10052C39C /* ForgotPasswordView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView_default.swift; sourceTree = "<group>"; };
-		888F61FC198FD3B10082786B /* NSLocale+CurrentLocale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLocale+CurrentLocale.swift"; sourceTree = "<group>"; };
-		888F61FF198FD3DC0082786B /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		888F6201198FD3DC0082786B /* SignUpWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpWidget.swift; sourceTree = "<group>"; };
 		888F6205198FD3F20082786B /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		889017F419D8AA7100CF2DCE /* LiferayLoginScreenNameConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginScreenNameConnector.swift; sourceTree = "<group>"; };
+		889017F619D8AADA00CF2DCE /* BaseConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseConnector.swift; sourceTree = "<group>"; };
+		889017F819D8AB8600CF2DCE /* LiferayLoginBaseConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginBaseConnector.swift; sourceTree = "<group>"; };
+		889017FC19D8B76100CF2DCE /* LiferaySignUpConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferaySignUpConnector.swift; sourceTree = "<group>"; };
 		8890CDA919AE1CA50012B842 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		8891526C19C48B0F00F0B7F3 /* default-preview-assetlist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-assetlist@2x.png"; sourceTree = "<group>"; };
-		8891526D19C48B0F00F0B7F3 /* default-preview-assetlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-assetlist.png"; sourceTree = "<group>"; };
-		8891527019C48E1600F0B7F3 /* default-preview-webcontent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-webcontent@2x.png"; sourceTree = "<group>"; };
-		8891527119C48E1600F0B7F3 /* default-preview-webcontent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-webcontent.png"; sourceTree = "<group>"; };
-		889558DA19C1E7B500657AC7 /* AssetListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListView.swift; sourceTree = "<group>"; };
-		889558DB19C1E7B500657AC7 /* AssetListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListWidget.swift; sourceTree = "<group>"; };
 		889558DE19C1E7FD00657AC7 /* AssetListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListViewController.swift; sourceTree = "<group>"; };
-		8897D9C5198A883F00D3DF51 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
-		8897D9D0198A958000D3DF51 /* NSBundle+Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Paths.swift"; sourceTree = "<group>"; };
-		88999ACD198EE62E00E746A6 /* LoginView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_flat7.swift; sourceTree = "<group>"; };
-		88999AD0198EE62E00E746A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/flat7.strings; sourceTree = "<group>"; };
-		88999AD1198EE62E00E746A6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/flat7.strings; sourceTree = "<group>"; };
-		88999AD2198EE62E00E746A6 /* flat7-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-button.png"; sourceTree = "<group>"; };
-		88999AD3198EE62E00E746A6 /* flat7-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-button@2x.png"; sourceTree = "<group>"; };
-		88999AD4198EE62E00E746A6 /* flat7-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field.png"; sourceTree = "<group>"; };
-		88999AD5198EE62E00E746A6 /* flat7-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field@2x.png"; sourceTree = "<group>"; };
-		88999AE1198EE64700E746A6 /* theme-flat7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "theme-flat7.png"; sourceTree = "<group>"; };
-		88999AF2198EF1A700E746A6 /* UIImage+Themes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Themes.h"; sourceTree = "<group>"; };
-		88999AF3198EF1A700E746A6 /* UIImage+Themes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Themes.m"; sourceTree = "<group>"; };
-		88C5470119C1EBBE00A51E7D /* AssetListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListTableView.swift; sourceTree = "<group>"; };
-		88D537861999215500615515 /* default-field-failed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field-failed@2x.png"; sourceTree = "<group>"; };
-		88D537871999215500615515 /* default-field-failed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field-failed.png"; sourceTree = "<group>"; };
-		88D76914199A5D9200D152D5 /* default-multiline-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-multiline-field@2x.png"; sourceTree = "<group>"; };
-		88D76915199A5D9200D152D5 /* default-multiline-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-multiline-field.png"; sourceTree = "<group>"; };
-		88DBC11B19A4EF9D0075E644 /* default-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-calendar.png"; sourceTree = "<group>"; };
-		88DBC11C19A4EF9D0075E644 /* default-calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-calendar@2x.png"; sourceTree = "<group>"; };
-		88E4604819759FE4002C26C6 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
-		88E4604A19759FE4002C26C6 /* ForgotPasswordWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordWidget.swift; sourceTree = "<group>"; };
-		88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Conversion.swift"; sourceTree = "<group>"; };
-		88EDB9B419D2D39D00A8F9DF /* Flat7ThemeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flat7ThemeConstants.swift; sourceTree = "<group>"; };
-		88F1C5B119C98B3300A5F297 /* LoginAuthType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAuthType.swift; sourceTree = "<group>"; };
-		999BC69B19768EA400A9B0D8 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
+		88DF666E19D8475B00EFE05E /* LiferayLoginEmailConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginEmailConnector.swift; sourceTree = "<group>"; };
+		88F3902A19D595B100169918 /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = "<group>"; };
+		88F3902E19D595C200169918 /* WebContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView.swift; sourceTree = "<group>"; };
+		88F3902F19D595C200169918 /* WebContentWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentWidget.swift; sourceTree = "<group>"; };
+		88F3903119D595C200169918 /* AssetListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListView.swift; sourceTree = "<group>"; };
+		88F3903219D595C200169918 /* AssetListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListWidget.swift; sourceTree = "<group>"; };
+		88F3903419D595C200169918 /* AssetListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListTableView.swift; sourceTree = "<group>"; };
+		88F3903719D595C200169918 /* BaseListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListView.swift; sourceTree = "<group>"; };
+		88F3903819D595C200169918 /* BaseListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListWidget.swift; sourceTree = "<group>"; };
+		88F3903A19D595C200169918 /* BaseListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListTableView.swift; sourceTree = "<group>"; };
+		88F3903B19D595C200169918 /* BaseWidget+progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseWidget+progress.swift"; sourceTree = "<group>"; };
+		88F3903C19D595C200169918 /* BaseWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidget.swift; sourceTree = "<group>"; };
+		88F3903D19D595C200169918 /* BaseWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidgetView.swift; sourceTree = "<group>"; };
+		88F3903E19D595C200169918 /* LiferayServerContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayServerContext.swift; sourceTree = "<group>"; };
+		88F3903F19D595C200169918 /* PaginationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationOperation.swift; sourceTree = "<group>"; };
+		88F3904019D595C200169918 /* SessionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext.swift; sourceTree = "<group>"; };
+		88F3904119D595C200169918 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		88F3904319D595C200169918 /* DDLValuesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLValuesParser.swift; sourceTree = "<group>"; };
+		88F3904419D595C200169918 /* DDLXSDParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLXSDParser.swift; sourceTree = "<group>"; };
+		88F3904619D595C200169918 /* DDLFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormView.swift; sourceTree = "<group>"; };
+		88F3904719D595C200169918 /* DDLFormWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormWidget.swift; sourceTree = "<group>"; };
+		88F3904919D595C200169918 /* DDLFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldTableCell.swift; sourceTree = "<group>"; };
+		88F3904A19D595C200169918 /* DDLFormTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormTableView.swift; sourceTree = "<group>"; };
+		88F3904C19D595C200169918 /* DDLListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListView.swift; sourceTree = "<group>"; };
+		88F3904D19D595C200169918 /* DDLListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListWidget.swift; sourceTree = "<group>"; };
+		88F3904F19D595C200169918 /* DDLField+DataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDLField+DataType.swift"; sourceTree = "<group>"; };
+		88F3905019D595C200169918 /* DDLField+Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDLField+Editor.swift"; sourceTree = "<group>"; };
+		88F3905119D595C200169918 /* DDLField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLField.swift; sourceTree = "<group>"; };
+		88F3905219D595C200169918 /* DDLFieldBoolean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldBoolean.swift; sourceTree = "<group>"; };
+		88F3905319D595C200169918 /* DDLFieldDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDate.swift; sourceTree = "<group>"; };
+		88F3905419D595C200169918 /* DDLFieldDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDocument.swift; sourceTree = "<group>"; };
+		88F3905519D595C200169918 /* DDLFieldNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldNumber.swift; sourceTree = "<group>"; };
+		88F3905619D595C200169918 /* DDLFieldString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldString.swift; sourceTree = "<group>"; };
+		88F3905719D595C200169918 /* DDLFieldStringWithOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldStringWithOptions.swift; sourceTree = "<group>"; };
+		88F3905819D595C200169918 /* DDLFieldUntyped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldUntyped.swift; sourceTree = "<group>"; };
+		88F3905919D595C200169918 /* DDLRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLRecord.swift; sourceTree = "<group>"; };
+		88F3905B19D595C200169918 /* Bool+Conversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Conversion.swift"; sourceTree = "<group>"; };
+		88F3905C19D595C200169918 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		88F3905D19D595C200169918 /* NSBundle+Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Paths.swift"; sourceTree = "<group>"; };
+		88F3905E19D595C200169918 /* NSLocale+CurrentLocale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLocale+CurrentLocale.swift"; sourceTree = "<group>"; };
+		88F3905F19D595C200169918 /* UIImage+Themes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Themes.h"; sourceTree = "<group>"; };
+		88F3906019D595C200169918 /* UIImage+Themes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Themes.m"; sourceTree = "<group>"; };
+		88F3906119D595C200169918 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
+		88F3906319D595C200169918 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		88F3906419D595C200169918 /* ForgotPasswordWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordWidget.swift; sourceTree = "<group>"; };
+		88F3906519D595C200169918 /* liferay-ios-widgets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "liferay-ios-widgets.h"; sourceTree = "<group>"; };
+		88F3906619D595C200169918 /* liferay-server-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context-sample.plist"; sourceTree = "<group>"; };
+		88F3906819D595C200169918 /* LoginAuthType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAuthType.swift; sourceTree = "<group>"; };
+		88F3906919D595C200169918 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		88F3906A19D595C200169918 /* LoginWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWidget.swift; sourceTree = "<group>"; };
+		88F3906B19D595C200169918 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
+		88F3906D19D595C200169918 /* LRMobilewidgetsassetentryService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsassetentryService_v62.h; sourceTree = "<group>"; };
+		88F3906E19D595C200169918 /* LRMobilewidgetsassetentryService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsassetentryService_v62.m; sourceTree = "<group>"; };
+		88F3906F19D595C200169918 /* LRMobilewidgetsddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsddlrecordService_v62.h; sourceTree = "<group>"; };
+		88F3907019D595C200169918 /* LRMobilewidgetsddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsddlrecordService_v62.m; sourceTree = "<group>"; };
+		88F3907119D595C200169918 /* LRMobilewidgetsuserService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsuserService_v62.h; sourceTree = "<group>"; };
+		88F3907219D595C200169918 /* LRMobilewidgetsuserService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsuserService_v62.m; sourceTree = "<group>"; };
+		88F3907419D595C200169918 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		88F3907519D595C200169918 /* SignUpWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpWidget.swift; sourceTree = "<group>"; };
+		88F3907919D595C200169918 /* WebContentView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView_default.swift; sourceTree = "<group>"; };
+		88F3907A19D595C200169918 /* WebContentView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentView_default.xib; sourceTree = "<group>"; };
+		88F3907C19D595C200169918 /* AssetListView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListView_default.swift; sourceTree = "<group>"; };
+		88F3907D19D595C200169918 /* AssetListView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetListView_default.xib; sourceTree = "<group>"; };
+		88F3908019D595C200169918 /* DDLBaseFieldTextFieldTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLBaseFieldTextFieldTableCell_default.swift; sourceTree = "<group>"; };
+		88F3908119D595C200169918 /* DDLFieldCheckboxTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldCheckboxTableCell_default.swift; sourceTree = "<group>"; };
+		88F3908219D595C200169918 /* DDLFieldCheckboxTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldCheckboxTableCell_default.xib; sourceTree = "<group>"; };
+		88F3908319D595C200169918 /* DDLFieldDateTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDateTableCell_default.swift; sourceTree = "<group>"; };
+		88F3908419D595C200169918 /* DDLFieldDateTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldDateTableCell_default.xib; sourceTree = "<group>"; };
+		88F3908519D595C200169918 /* DDLFieldDocumentlibraryPresenterViewController_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDocumentlibraryPresenterViewController_default.swift; sourceTree = "<group>"; };
+		88F3908619D595C200169918 /* DDLFieldDocumentlibraryPresenterViewController_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldDocumentlibraryPresenterViewController_default.xib; sourceTree = "<group>"; };
+		88F3908719D595C200169918 /* DDLFieldDocumentlibraryTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDocumentlibraryTableCell_default.swift; sourceTree = "<group>"; };
+		88F3908819D595C200169918 /* DDLFieldDocumentlibraryTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldDocumentlibraryTableCell_default.xib; sourceTree = "<group>"; };
+		88F3908919D595C200169918 /* DDLFieldNumberTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldNumberTableCell_default.swift; sourceTree = "<group>"; };
+		88F3908A19D595C200169918 /* DDLFieldNumberTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldNumberTableCell_default.xib; sourceTree = "<group>"; };
+		88F3908B19D595C200169918 /* DDLFieldRadioTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldRadioTableCell_default.swift; sourceTree = "<group>"; };
+		88F3908C19D595C200169918 /* DDLFieldRadioTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldRadioTableCell_default.xib; sourceTree = "<group>"; };
+		88F3908D19D595C200169918 /* DDLFieldSelectTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldSelectTableCell_default.swift; sourceTree = "<group>"; };
+		88F3908E19D595C200169918 /* DDLFieldSelectTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldSelectTableCell_default.xib; sourceTree = "<group>"; };
+		88F3908F19D595C200169918 /* DDLFieldTextareaTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldTextareaTableCell_default.swift; sourceTree = "<group>"; };
+		88F3909019D595C200169918 /* DDLFieldTextareaTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldTextareaTableCell_default.xib; sourceTree = "<group>"; };
+		88F3909119D595C200169918 /* DDLFieldTextTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldTextTableCell_default.swift; sourceTree = "<group>"; };
+		88F3909219D595C200169918 /* DDLFieldTextTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldTextTableCell_default.xib; sourceTree = "<group>"; };
+		88F3909319D595C200169918 /* DDLFormDefaultThemeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormDefaultThemeConstants.swift; sourceTree = "<group>"; };
+		88F3909419D595C200169918 /* DDLFormView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormView_default.swift; sourceTree = "<group>"; };
+		88F3909519D595C200169918 /* DDLFormView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFormView_default.xib; sourceTree = "<group>"; };
+		88F3909619D595C200169918 /* DDLSubmitButtonTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLSubmitButtonTableCell_default.swift; sourceTree = "<group>"; };
+		88F3909719D595C200169918 /* DDLSubmitButtonTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLSubmitButtonTableCell_default.xib; sourceTree = "<group>"; };
+		88F3909919D595C200169918 /* DDLListView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListView_default.swift; sourceTree = "<group>"; };
+		88F3909A19D595C200169918 /* DDLListView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLListView_default.xib; sourceTree = "<group>"; };
+		88F3909B19D595C200169918 /* DefaultThemeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultThemeConstants.swift; sourceTree = "<group>"; };
+		88F3909D19D595C200169918 /* ForgotPasswordView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView_default.swift; sourceTree = "<group>"; };
+		88F3909E19D595C200169918 /* ForgotPasswordView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordView_default.xib; sourceTree = "<group>"; };
+		88F390A019D595C200169918 /* LoginView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_default.swift; sourceTree = "<group>"; };
+		88F390A119D595C200169918 /* LoginView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_default.xib; sourceTree = "<group>"; };
+		88F390A319D595C200169918 /* default-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-calendar.png"; sourceTree = "<group>"; };
+		88F390A419D595C200169918 /* default-calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-calendar@2x.png"; sourceTree = "<group>"; };
+		88F390A519D595C200169918 /* default-field-failed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field-failed.png"; sourceTree = "<group>"; };
+		88F390A619D595C200169918 /* default-field-failed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field-failed@2x.png"; sourceTree = "<group>"; };
+		88F390A719D595C200169918 /* default-field-focused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field-focused.png"; sourceTree = "<group>"; };
+		88F390A819D595C200169918 /* default-field-focused@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field-focused@2x.png"; sourceTree = "<group>"; };
+		88F390A919D595C200169918 /* default-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field.png"; sourceTree = "<group>"; };
+		88F390AA19D595C200169918 /* default-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field@2x.png"; sourceTree = "<group>"; };
+		88F390AB19D595C200169918 /* default-hourglass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-hourglass.png"; sourceTree = "<group>"; };
+		88F390AC19D595C200169918 /* default-hourglass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-hourglass@2x.png"; sourceTree = "<group>"; };
+		88F390AD19D595C200169918 /* default-large-button-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-large-button-selected.png"; sourceTree = "<group>"; };
+		88F390AE19D595C200169918 /* default-large-button-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-large-button-selected@2x.png"; sourceTree = "<group>"; };
+		88F390AF19D595C200169918 /* default-large-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-large-button.png"; sourceTree = "<group>"; };
+		88F390B019D595C200169918 /* default-large-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-large-button@2x.png"; sourceTree = "<group>"; };
+		88F390B119D595C200169918 /* default-lock-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-lock-icon.png"; sourceTree = "<group>"; };
+		88F390B219D595C200169918 /* default-lock-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-lock-icon@2x.png"; sourceTree = "<group>"; };
+		88F390B319D595C200169918 /* default-mail-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-mail-icon.png"; sourceTree = "<group>"; };
+		88F390B419D595C200169918 /* default-mail-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-mail-icon@2x.png"; sourceTree = "<group>"; };
+		88F390B519D595C200169918 /* default-multiline-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-multiline-field.png"; sourceTree = "<group>"; };
+		88F390B619D595C200169918 /* default-multiline-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-multiline-field@2x.png"; sourceTree = "<group>"; };
+		88F390B719D595C200169918 /* default-preview-assetlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-assetlist.png"; sourceTree = "<group>"; };
+		88F390B819D595C200169918 /* default-preview-assetlist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-assetlist@2x.png"; sourceTree = "<group>"; };
+		88F390B919D595C200169918 /* default-preview-ddlform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-ddlform.png"; sourceTree = "<group>"; };
+		88F390BA19D595C200169918 /* default-preview-ddlform@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-ddlform@2x.png"; sourceTree = "<group>"; };
+		88F390BB19D595C200169918 /* default-preview-webcontent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-webcontent.png"; sourceTree = "<group>"; };
+		88F390BC19D595C200169918 /* default-preview-webcontent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-webcontent@2x.png"; sourceTree = "<group>"; };
+		88F390BD19D595C200169918 /* default-user-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-user-icon.png"; sourceTree = "<group>"; };
+		88F390BE19D595C200169918 /* default-user-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-user-icon@2x.png"; sourceTree = "<group>"; };
+		88F390BF19D595C200169918 /* theme-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "theme-default.png"; sourceTree = "<group>"; };
+		88F390C119D595C200169918 /* SignUpView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_default.swift; sourceTree = "<group>"; };
+		88F390C219D595C200169918 /* SignUpView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView_default.xib; sourceTree = "<group>"; };
+		88F390C419D595C200169918 /* Flat7ThemeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flat7ThemeConstants.swift; sourceTree = "<group>"; };
+		88F390C619D595C200169918 /* ForgotPasswordView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView_flat7.swift; sourceTree = "<group>"; };
+		88F390C719D595C200169918 /* ForgotPasswordView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordView_flat7.xib; sourceTree = "<group>"; };
+		88F390C919D595C200169918 /* LoginView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_flat7.swift; sourceTree = "<group>"; };
+		88F390CA19D595C200169918 /* LoginView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_flat7.xib; sourceTree = "<group>"; };
+		88F390CD19D595C200169918 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/flat7.strings; sourceTree = "<group>"; };
+		88F390CE19D595C200169918 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/flat7.strings; sourceTree = "<group>"; };
+		88F390CF19D595C200169918 /* flat7-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-button.png"; sourceTree = "<group>"; };
+		88F390D019D595C200169918 /* flat7-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-button@2x.png"; sourceTree = "<group>"; };
+		88F390D119D595C200169918 /* flat7-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field.png"; sourceTree = "<group>"; };
+		88F390D219D595C200169918 /* flat7-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field@2x.png"; sourceTree = "<group>"; };
+		88F390D319D595C200169918 /* theme-flat7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "theme-flat7.png"; sourceTree = "<group>"; };
+		88F390D519D595C200169918 /* SignUpView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_flat7.swift; sourceTree = "<group>"; };
+		88F390D619D595C200169918 /* SignUpView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView_flat7.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,156 +330,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8811DC3519BDA0EE008FE226 /* AssetDisplay */ = {
-			isa = PBXGroup;
-			children = (
-				8811DC3619BDA115008FE226 /* WebContentView.swift */,
-				8811DC3719BDA115008FE226 /* WebContentWidget.swift */,
-			);
-			path = AssetDisplay;
-			sourceTree = "<group>";
-		};
-		8811DC3A19BDA700008FE226 /* AssetDisplay */ = {
-			isa = PBXGroup;
-			children = (
-				88354BBA19C9E20900F3FE69 /* WebContentView_default.xib */,
-				8811DC3C19BDA700008FE226 /* WebContentView_default.swift */,
-			);
-			path = AssetDisplay;
-			sourceTree = "<group>";
-		};
-		8812E75319D2B2EC00A6F5F8 /* FormWidget */ = {
-			isa = PBXGroup;
-			children = (
-				8812E75419D2B2EC00A6F5F8 /* DDLFormView.swift */,
-				8812E75519D2B2EC00A6F5F8 /* DDLFormWidget.swift */,
-				8812E75619D2B2EC00A6F5F8 /* TableView */,
-			);
-			path = FormWidget;
-			sourceTree = "<group>";
-		};
-		8812E75619D2B2EC00A6F5F8 /* TableView */ = {
-			isa = PBXGroup;
-			children = (
-				8812E75719D2B2EC00A6F5F8 /* DDLFieldTableCell.swift */,
-				8812E75819D2B2EC00A6F5F8 /* DDLFormTableView.swift */,
-			);
-			path = TableView;
-			sourceTree = "<group>";
-		};
-		8812E75919D2B2EC00A6F5F8 /* ListWidget */ = {
-			isa = PBXGroup;
-			children = (
-				8812E76E19D2CF9200A6F5F8 /* DDLListWidget.swift */,
-				8812E76F19D2CF9200A6F5F8 /* DDLListView.swift */,
-			);
-			path = ListWidget;
-			sourceTree = "<group>";
-		};
-		881F35A119CB28B9002B9BEC /* BaseListWidget */ = {
-			isa = PBXGroup;
-			children = (
-				881F35A219CB28B9002B9BEC /* BaseListView.swift */,
-				881F35A319CB28B9002B9BEC /* BaseListWidget.swift */,
-				881F35A419CB28B9002B9BEC /* TableView */,
-			);
-			path = BaseListWidget;
-			sourceTree = "<group>";
-		};
-		881F35A419CB28B9002B9BEC /* TableView */ = {
-			isa = PBXGroup;
-			children = (
-				881F35A519CB28B9002B9BEC /* BaseListTableView.swift */,
-			);
-			path = TableView;
-			sourceTree = "<group>";
-		};
 		8835607A196AED0E002AB222 /* Liferay-Widget-Library */ = {
 			isa = PBXGroup;
 			children = (
-				88832F8719656B3F00E3DF9F /* Source */,
-				88F64890198D2B70003A8FD9 /* Themes */,
+				88F3902C19D595C200169918 /* Source */,
+				88F3907619D595C200169918 /* Themes */,
 			);
 			name = "Liferay-Widget-Library";
-			sourceTree = "<group>";
-		};
-		8845B92619CC5B270025D1D2 /* DDL */ = {
-			isa = PBXGroup;
-			children = (
-				8845B92719CC5B270025D1D2 /* Form */,
-				8845B94019CC5B270025D1D2 /* List */,
-			);
-			path = DDL;
-			sourceTree = "<group>";
-		};
-		8845B92719CC5B270025D1D2 /* Form */ = {
-			isa = PBXGroup;
-			children = (
-				8845B92819CC5B270025D1D2 /* DDLBaseFieldTextFieldTableCell_default.swift */,
-				8845B92919CC5B270025D1D2 /* DDLFieldCheckboxTableCell_default.swift */,
-				8845B92A19CC5B270025D1D2 /* DDLFieldCheckboxTableCell_default.xib */,
-				8845B92B19CC5B270025D1D2 /* DDLFieldDateTableCell_default.swift */,
-				8845B92C19CC5B270025D1D2 /* DDLFieldDateTableCell_default.xib */,
-				8845B92D19CC5B270025D1D2 /* DDLFieldDocumentlibraryPresenterViewController_default.swift */,
-				8845B92E19CC5B270025D1D2 /* DDLFieldDocumentlibraryPresenterViewController_default.xib */,
-				8845B92F19CC5B270025D1D2 /* DDLFieldDocumentlibraryTableCell_default.swift */,
-				8845B93019CC5B270025D1D2 /* DDLFieldDocumentlibraryTableCell_default.xib */,
-				8845B93119CC5B270025D1D2 /* DDLFieldNumberTableCell_default.swift */,
-				8845B93219CC5B270025D1D2 /* DDLFieldNumberTableCell_default.xib */,
-				8845B93319CC5B270025D1D2 /* DDLFieldRadioTableCell_default.swift */,
-				8845B93419CC5B270025D1D2 /* DDLFieldRadioTableCell_default.xib */,
-				8845B93519CC5B270025D1D2 /* DDLFieldSelectTableCell_default.swift */,
-				8845B93619CC5B270025D1D2 /* DDLFieldSelectTableCell_default.xib */,
-				8845B93719CC5B270025D1D2 /* DDLFieldTextareaTableCell_default.swift */,
-				8845B93819CC5B270025D1D2 /* DDLFieldTextareaTableCell_default.xib */,
-				8845B93919CC5B270025D1D2 /* DDLFieldTextTableCell_default.swift */,
-				8845B93A19CC5B270025D1D2 /* DDLFieldTextTableCell_default.xib */,
-				8845B93B19CC5B270025D1D2 /* DDLFormDefaultThemeConstants.swift */,
-				8845B93C19CC5B270025D1D2 /* DDLFormView_default.swift */,
-				8845B93D19CC5B270025D1D2 /* DDLFormView_default.xib */,
-				8845B93E19CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.swift */,
-				8845B93F19CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.xib */,
-			);
-			path = Form;
-			sourceTree = "<group>";
-		};
-		8845B94019CC5B270025D1D2 /* List */ = {
-			isa = PBXGroup;
-			children = (
-				8812E77219D2CF9D00A6F5F8 /* DDLListView_default.swift */,
-				8812E77319D2CF9D00A6F5F8 /* DDLListView_default.xib */,
-			);
-			path = List;
-			sourceTree = "<group>";
-		};
-		8845B95D19CC5B3E0025D1D2 /* DDL */ = {
-			isa = PBXGroup;
-			children = (
-				8845B95E19CC5B3E0025D1D2 /* DDLValuesParser.swift */,
-				8845B95F19CC5B3E0025D1D2 /* DDLXSDParser.swift */,
-				8812E75319D2B2EC00A6F5F8 /* FormWidget */,
-				8812E75919D2B2EC00A6F5F8 /* ListWidget */,
-				8845B96919CC5B3E0025D1D2 /* Model */,
-			);
-			path = DDL;
-			sourceTree = "<group>";
-		};
-		8845B96919CC5B3E0025D1D2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				8845B96A19CC5B3E0025D1D2 /* DDLField+DataType.swift */,
-				8845B96B19CC5B3E0025D1D2 /* DDLField+Editor.swift */,
-				8845B96C19CC5B3E0025D1D2 /* DDLField.swift */,
-				8845B96D19CC5B3E0025D1D2 /* DDLFieldBoolean.swift */,
-				8845B96E19CC5B3E0025D1D2 /* DDLFieldDate.swift */,
-				8845B96F19CC5B3E0025D1D2 /* DDLFieldDocument.swift */,
-				8845B97019CC5B3E0025D1D2 /* DDLFieldNumber.swift */,
-				8845B97119CC5B3E0025D1D2 /* DDLFieldString.swift */,
-				8845B97219CC5B3E0025D1D2 /* DDLFieldStringWithOptions.swift */,
-				8845B97319CC5B3E0025D1D2 /* DDLFieldUntyped.swift */,
-				8845B97419CC5B3E0025D1D2 /* DDLRecord.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		8868AFBD19656B0500FD5214 = {
@@ -494,11 +361,11 @@
 		8868AFC819656B0500FD5214 /* Sample app */ = {
 			isa = PBXGroup;
 			children = (
+				88F3902A19D595B100169918 /* liferay-server-context.plist */,
 				8868AFCB19656B0500FD5214 /* AppDelegate.swift */,
 				889558DE19C1E7FD00657AC7 /* AssetListViewController.swift */,
 				885FD6821996E1DF00F23BA1 /* FormViewController.swift */,
 				8868AFD219656B0500FD5214 /* Images.xcassets */,
-				88832F9019656B3F00E3DF9F /* liferay-context.plist */,
 				8868AFCF19656B0500FD5214 /* Main.storyboard */,
 				888F6205198FD3F20082786B /* SignUpViewController.swift */,
 				8868AFC919656B0500FD5214 /* Supporting Files */,
@@ -518,261 +385,409 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		88832F8719656B3F00E3DF9F /* Source */ = {
+		88F3902C19D595C200169918 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				8811DC3519BDA0EE008FE226 /* AssetDisplay */,
-				889558D919C1E7B500657AC7 /* AssetList */,
-				88832F8819656B3F00E3DF9F /* Base */,
-				8845B95D19CC5B3E0025D1D2 /* DDL */,
-				8897D9CF198A957300D3DF51 /* Extensions */,
-				88E4604719759FE4002C26C6 /* ForgotPassword */,
-				8835607B196AED36002AB222 /* liferay-context-sample.plist */,
-				88832F9119656B3F00E3DF9F /* liferay-ios-widgets.h */,
-				88832F9219656B3F00E3DF9F /* Login */,
-				88E4604E19759FEB002C26C6 /* Services */,
-				888F61FE198FD3DC0082786B /* SignUp */,
+				88F3902D19D595C200169918 /* AssetDisplay */,
+				88F3903019D595C200169918 /* AssetList */,
+				88F3903519D595C200169918 /* Base */,
+				88F3904219D595C200169918 /* DDL */,
+				88F3905A19D595C200169918 /* Extensions */,
+				88F3906219D595C200169918 /* ForgotPassword */,
+				88F3906519D595C200169918 /* liferay-ios-widgets.h */,
+				88F3906619D595C200169918 /* liferay-server-context-sample.plist */,
+				88F3906719D595C200169918 /* Login */,
+				88F3906C19D595C200169918 /* Services */,
+				88F3907319D595C200169918 /* SignUp */,
 			);
 			name = Source;
 			path = ../../Library/Source;
 			sourceTree = "<group>";
 		};
-		88832F8819656B3F00E3DF9F /* Base */ = {
+		88F3902D19D595C200169918 /* AssetDisplay */ = {
 			isa = PBXGroup;
 			children = (
-				881F35A119CB28B9002B9BEC /* BaseListWidget */,
-				88832F8A19656B3F00E3DF9F /* BaseWidget.swift */,
-				88832F8919656B3F00E3DF9F /* BaseWidget+progress.swift */,
-				88832F8B19656B3F00E3DF9F /* BaseWidgetView.swift */,
-				88832F8C19656B3F00E3DF9F /* LiferayContext.swift */,
-				8812E76219D2B30000A6F5F8 /* PaginationOperation.swift */,
-				882286F919D424760072BCFC /* SessionContext.swift */,
-				8897D9C5198A883F00D3DF51 /* ThemeManager.swift */,
+				88F3902E19D595C200169918 /* WebContentView.swift */,
+				88F3902F19D595C200169918 /* WebContentWidget.swift */,
 			);
-			path = Base;
+			path = AssetDisplay;
 			sourceTree = "<group>";
 		};
-		88832F9219656B3F00E3DF9F /* Login */ = {
+		88F3903019D595C200169918 /* AssetList */ = {
 			isa = PBXGroup;
 			children = (
-				88F1C5B119C98B3300A5F297 /* LoginAuthType.swift */,
-				88832F9319656B3F00E3DF9F /* LoginView.swift */,
-				88832F9519656B3F00E3DF9F /* LoginWidget.swift */,
-				999BC69B19768EA400A9B0D8 /* LRSession+CredentialStore.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		888CE11019924821001DCA6A /* ForgotPassword */ = {
-			isa = PBXGroup;
-			children = (
-				888CE11219924821001DCA6A /* ForgotPasswordView_flat7.swift */,
-				88354BDA19C9E27000F3FE69 /* ForgotPasswordView_flat7.xib */,
-			);
-			path = ForgotPassword;
-			sourceTree = "<group>";
-		};
-		888D776D198FE3D40052C39C /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				888D776F198FE3D40052C39C /* SignUpView_flat7.swift */,
-				88354BDE19C9E27F00F3FE69 /* SignUpView_flat7.xib */,
-			);
-			path = SignUp;
-			sourceTree = "<group>";
-		};
-		888D77BB198FF5030052C39C /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				888D77BD198FF5030052C39C /* LoginView_default.swift */,
-				88354BD619C9E25300F3FE69 /* LoginView_default.xib */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		888D77C0199031690052C39C /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				888D77C2199031690052C39C /* SignUpView_default.swift */,
-				88354BD819C9E26600F3FE69 /* SignUpView_default.xib */,
-			);
-			path = SignUp;
-			sourceTree = "<group>";
-		};
-		888D77C5199038D10052C39C /* ForgotPassword */ = {
-			isa = PBXGroup;
-			children = (
-				888D77C7199038D10052C39C /* ForgotPasswordView_default.swift */,
-				88354BD419C9E23D00F3FE69 /* ForgotPasswordView_default.xib */,
-			);
-			path = ForgotPassword;
-			sourceTree = "<group>";
-		};
-		888F61FE198FD3DC0082786B /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				888F61FF198FD3DC0082786B /* SignUpView.swift */,
-				888F6201198FD3DC0082786B /* SignUpWidget.swift */,
-			);
-			path = SignUp;
-			sourceTree = "<group>";
-		};
-		889558D919C1E7B500657AC7 /* AssetList */ = {
-			isa = PBXGroup;
-			children = (
-				889558DA19C1E7B500657AC7 /* AssetListView.swift */,
-				889558DB19C1E7B500657AC7 /* AssetListWidget.swift */,
-				88C546FF19C1EBBE00A51E7D /* TableView */,
+				88F3903119D595C200169918 /* AssetListView.swift */,
+				88F3903219D595C200169918 /* AssetListWidget.swift */,
+				88F3903319D595C200169918 /* TableView */,
 			);
 			path = AssetList;
 			sourceTree = "<group>";
 		};
-		8897D9CF198A957300D3DF51 /* Extensions */ = {
+		88F3903319D595C200169918 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				88EAEE3B1993D923002D7C26 /* Bool+Conversion.swift */,
-				8828A79C19C2E1C20051601A /* Global.swift */,
-				8897D9D0198A958000D3DF51 /* NSBundle+Paths.swift */,
-				888F61FC198FD3B10082786B /* NSLocale+CurrentLocale.swift */,
-				88999AF2198EF1A700E746A6 /* UIImage+Themes.h */,
-				88999AF3198EF1A700E746A6 /* UIImage+Themes.m */,
-				8851134019B88A51009D93CE /* UIView+Animations.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		88999AA8198EE58300E746A6 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				88DBC11B19A4EF9D0075E644 /* default-calendar.png */,
-				88DBC11C19A4EF9D0075E644 /* default-calendar@2x.png */,
-				88D537871999215500615515 /* default-field-failed.png */,
-				88D537861999215500615515 /* default-field-failed@2x.png */,
-				888D774F198FDB710052C39C /* default-field-focused.png */,
-				888D7750198FDB710052C39C /* default-field-focused@2x.png */,
-				888D7751198FDB710052C39C /* default-field.png */,
-				888D7752198FDB710052C39C /* default-field@2x.png */,
-				8828A79E19C319A40051601A /* default-hourglass.png */,
-				8828A79F19C319A40051601A /* default-hourglass@2x.png */,
-				888D7753198FDB710052C39C /* default-large-button-selected.png */,
-				888D7754198FDB710052C39C /* default-large-button-selected@2x.png */,
-				888D7755198FDB710052C39C /* default-large-button.png */,
-				888D7756198FDB710052C39C /* default-large-button@2x.png */,
-				888D77AF198FF0E20052C39C /* default-lock-icon.png */,
-				888D77B0198FF0E20052C39C /* default-lock-icon@2x.png */,
-				888D77B1198FF0E20052C39C /* default-mail-icon.png */,
-				888D77B2198FF0E20052C39C /* default-mail-icon@2x.png */,
-				88D76915199A5D9200D152D5 /* default-multiline-field.png */,
-				88D76914199A5D9200D152D5 /* default-multiline-field@2x.png */,
-				8891526D19C48B0F00F0B7F3 /* default-preview-assetlist.png */,
-				8891526C19C48B0F00F0B7F3 /* default-preview-assetlist@2x.png */,
-				884CE51C1994F3A500ADF047 /* default-preview-ddlform.png */,
-				884CE51D1994F3A500ADF047 /* default-preview-ddlform@2x.png */,
-				8891527119C48E1600F0B7F3 /* default-preview-webcontent.png */,
-				8891527019C48E1600F0B7F3 /* default-preview-webcontent@2x.png */,
-				888D77B7198FF0EC0052C39C /* default-user-icon.png */,
-				888D77B8198FF0EC0052C39C /* default-user-icon@2x.png */,
-				888D7759198FDB710052C39C /* theme-default.png */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		88999AC8198EE62E00E746A6 /* Flat7 */ = {
-			isa = PBXGroup;
-			children = (
-				888CE11019924821001DCA6A /* ForgotPassword */,
-				88999AC9198EE62E00E746A6 /* Login */,
-				888D776D198FE3D40052C39C /* SignUp */,
-				88999ACE198EE62E00E746A6 /* Resources */,
-				88EDB9B419D2D39D00A8F9DF /* Flat7ThemeConstants.swift */,
-			);
-			path = Flat7;
-			sourceTree = "<group>";
-		};
-		88999AC9198EE62E00E746A6 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				88999ACD198EE62E00E746A6 /* LoginView_flat7.swift */,
-				88354BDC19C9E27800F3FE69 /* LoginView_flat7.xib */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		88999ACE198EE62E00E746A6 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				88999AD2198EE62E00E746A6 /* flat7-button.png */,
-				88999AD3198EE62E00E746A6 /* flat7-button@2x.png */,
-				88999AD4198EE62E00E746A6 /* flat7-field.png */,
-				88999AD5198EE62E00E746A6 /* flat7-field@2x.png */,
-				88999ACF198EE62E00E746A6 /* flat7.strings */,
-				88999AE1198EE64700E746A6 /* theme-flat7.png */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		88C546FA19C1EB2900A51E7D /* AssetList */ = {
-			isa = PBXGroup;
-			children = (
-				881F359F19CB27D3002B9BEC /* AssetListView_default.swift */,
-				88354BBC19C9E21500F3FE69 /* AssetListView_default.xib */,
-			);
-			path = AssetList;
-			sourceTree = "<group>";
-		};
-		88C546FF19C1EBBE00A51E7D /* TableView */ = {
-			isa = PBXGroup;
-			children = (
-				88C5470119C1EBBE00A51E7D /* AssetListTableView.swift */,
+				88F3903419D595C200169918 /* AssetListTableView.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
 		};
-		88E4604719759FE4002C26C6 /* ForgotPassword */ = {
+		88F3903519D595C200169918 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				88E4604819759FE4002C26C6 /* ForgotPasswordView.swift */,
-				88E4604A19759FE4002C26C6 /* ForgotPasswordWidget.swift */,
+				88F3903619D595C200169918 /* BaseListWidget */,
+				88F3903B19D595C200169918 /* BaseWidget+progress.swift */,
+				88F3903C19D595C200169918 /* BaseWidget.swift */,
+				88F3903D19D595C200169918 /* BaseWidgetView.swift */,
+				88F3903E19D595C200169918 /* LiferayServerContext.swift */,
+				88F3903F19D595C200169918 /* PaginationOperation.swift */,
+				88F3904019D595C200169918 /* SessionContext.swift */,
+				88F3904119D595C200169918 /* ThemeManager.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		88F3903619D595C200169918 /* BaseListWidget */ = {
+			isa = PBXGroup;
+			children = (
+				88F3903719D595C200169918 /* BaseListView.swift */,
+				88F3903819D595C200169918 /* BaseListWidget.swift */,
+				88F3903919D595C200169918 /* TableView */,
+			);
+			path = BaseListWidget;
+			sourceTree = "<group>";
+		};
+		88F3903919D595C200169918 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				88F3903A19D595C200169918 /* BaseListTableView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		88F3904219D595C200169918 /* DDL */ = {
+			isa = PBXGroup;
+			children = (
+				88F3904319D595C200169918 /* DDLValuesParser.swift */,
+				88F3904419D595C200169918 /* DDLXSDParser.swift */,
+				88F3904519D595C200169918 /* FormWidget */,
+				88F3904B19D595C200169918 /* ListWidget */,
+				88F3904E19D595C200169918 /* Model */,
+			);
+			path = DDL;
+			sourceTree = "<group>";
+		};
+		88F3904519D595C200169918 /* FormWidget */ = {
+			isa = PBXGroup;
+			children = (
+				88F3904619D595C200169918 /* DDLFormView.swift */,
+				88F3904719D595C200169918 /* DDLFormWidget.swift */,
+				88F3904819D595C200169918 /* TableView */,
+			);
+			path = FormWidget;
+			sourceTree = "<group>";
+		};
+		88F3904819D595C200169918 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				88F3904919D595C200169918 /* DDLFieldTableCell.swift */,
+				88F3904A19D595C200169918 /* DDLFormTableView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		88F3904B19D595C200169918 /* ListWidget */ = {
+			isa = PBXGroup;
+			children = (
+				88F3904C19D595C200169918 /* DDLListView.swift */,
+				88F3904D19D595C200169918 /* DDLListWidget.swift */,
+			);
+			path = ListWidget;
+			sourceTree = "<group>";
+		};
+		88F3904E19D595C200169918 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				88F3904F19D595C200169918 /* DDLField+DataType.swift */,
+				88F3905019D595C200169918 /* DDLField+Editor.swift */,
+				88F3905119D595C200169918 /* DDLField.swift */,
+				88F3905219D595C200169918 /* DDLFieldBoolean.swift */,
+				88F3905319D595C200169918 /* DDLFieldDate.swift */,
+				88F3905419D595C200169918 /* DDLFieldDocument.swift */,
+				88F3905519D595C200169918 /* DDLFieldNumber.swift */,
+				88F3905619D595C200169918 /* DDLFieldString.swift */,
+				88F3905719D595C200169918 /* DDLFieldStringWithOptions.swift */,
+				88F3905819D595C200169918 /* DDLFieldUntyped.swift */,
+				88F3905919D595C200169918 /* DDLRecord.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		88F3905A19D595C200169918 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				88F3905B19D595C200169918 /* Bool+Conversion.swift */,
+				88F3905C19D595C200169918 /* Global.swift */,
+				88F3905D19D595C200169918 /* NSBundle+Paths.swift */,
+				88F3905E19D595C200169918 /* NSLocale+CurrentLocale.swift */,
+				88F3905F19D595C200169918 /* UIImage+Themes.h */,
+				88F3906019D595C200169918 /* UIImage+Themes.m */,
+				88F3906119D595C200169918 /* UIView+Animations.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		88F3906219D595C200169918 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				88F3906319D595C200169918 /* ForgotPasswordView.swift */,
+				88F3906419D595C200169918 /* ForgotPasswordWidget.swift */,
 			);
 			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
-		88E4604E19759FEB002C26C6 /* Services */ = {
+		88F3906719D595C200169918 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				8828A79919C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.h */,
-				8828A79619C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.m */,
-				8828A79719C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.h */,
-				8828A79819C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.m */,
-				883CF3CF199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.h */,
-				883CF3D0199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m */,
+				88F3906819D595C200169918 /* LoginAuthType.swift */,
+				88F3906919D595C200169918 /* LoginView.swift */,
+				88F3906A19D595C200169918 /* LoginWidget.swift */,
+				88F3906B19D595C200169918 /* LRSession+CredentialStore.swift */,
+				889017F619D8AADA00CF2DCE /* BaseConnector.swift */,
+				889017F819D8AB8600CF2DCE /* LiferayLoginBaseConnector.swift */,
+				88DF666E19D8475B00EFE05E /* LiferayLoginEmailConnector.swift */,
+				889017F419D8AA7100CF2DCE /* LiferayLoginScreenNameConnector.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		88F3906C19D595C200169918 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				88F3906D19D595C200169918 /* LRMobilewidgetsassetentryService_v62.h */,
+				88F3906E19D595C200169918 /* LRMobilewidgetsassetentryService_v62.m */,
+				88F3906F19D595C200169918 /* LRMobilewidgetsddlrecordService_v62.h */,
+				88F3907019D595C200169918 /* LRMobilewidgetsddlrecordService_v62.m */,
+				88F3907119D595C200169918 /* LRMobilewidgetsuserService_v62.h */,
+				88F3907219D595C200169918 /* LRMobilewidgetsuserService_v62.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		88F64890198D2B70003A8FD9 /* Themes */ = {
+		88F3907319D595C200169918 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				88F64891198D2B70003A8FD9 /* Default */,
-				88999AC8198EE62E00E746A6 /* Flat7 */,
+				88F3907419D595C200169918 /* SignUpView.swift */,
+				88F3907519D595C200169918 /* SignUpWidget.swift */,
+				889017FC19D8B76100CF2DCE /* LiferaySignUpConnector.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		88F3907619D595C200169918 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				88F3907719D595C200169918 /* Default */,
+				88F390C319D595C200169918 /* Flat7 */,
 			);
 			name = Themes;
 			path = ../../Library/Themes;
 			sourceTree = "<group>";
 		};
-		88F64891198D2B70003A8FD9 /* Default */ = {
+		88F3907719D595C200169918 /* Default */ = {
 			isa = PBXGroup;
 			children = (
-				8811DC3A19BDA700008FE226 /* AssetDisplay */,
-				88C546FA19C1EB2900A51E7D /* AssetList */,
-				8845B92619CC5B270025D1D2 /* DDL */,
-				8812E76419D2B31500A6F5F8 /* DefaultThemeConstants.swift */,
-				888D77C5199038D10052C39C /* ForgotPassword */,
-				888D77BB198FF5030052C39C /* Login */,
-				88999AA8198EE58300E746A6 /* Resources */,
-				888D77C0199031690052C39C /* SignUp */,
+				88F3907819D595C200169918 /* AssetDisplay */,
+				88F3907B19D595C200169918 /* AssetList */,
+				88F3907E19D595C200169918 /* DDL */,
+				88F3909B19D595C200169918 /* DefaultThemeConstants.swift */,
+				88F3909C19D595C200169918 /* ForgotPassword */,
+				88F3909F19D595C200169918 /* Login */,
+				88F390A219D595C200169918 /* Resources */,
+				88F390C019D595C200169918 /* SignUp */,
 			);
 			path = Default;
+			sourceTree = "<group>";
+		};
+		88F3907819D595C200169918 /* AssetDisplay */ = {
+			isa = PBXGroup;
+			children = (
+				88F3907919D595C200169918 /* WebContentView_default.swift */,
+				88F3907A19D595C200169918 /* WebContentView_default.xib */,
+			);
+			path = AssetDisplay;
+			sourceTree = "<group>";
+		};
+		88F3907B19D595C200169918 /* AssetList */ = {
+			isa = PBXGroup;
+			children = (
+				88F3907C19D595C200169918 /* AssetListView_default.swift */,
+				88F3907D19D595C200169918 /* AssetListView_default.xib */,
+			);
+			path = AssetList;
+			sourceTree = "<group>";
+		};
+		88F3907E19D595C200169918 /* DDL */ = {
+			isa = PBXGroup;
+			children = (
+				88F3907F19D595C200169918 /* Form */,
+				88F3909819D595C200169918 /* List */,
+			);
+			path = DDL;
+			sourceTree = "<group>";
+		};
+		88F3907F19D595C200169918 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				88F3908019D595C200169918 /* DDLBaseFieldTextFieldTableCell_default.swift */,
+				88F3908119D595C200169918 /* DDLFieldCheckboxTableCell_default.swift */,
+				88F3908219D595C200169918 /* DDLFieldCheckboxTableCell_default.xib */,
+				88F3908319D595C200169918 /* DDLFieldDateTableCell_default.swift */,
+				88F3908419D595C200169918 /* DDLFieldDateTableCell_default.xib */,
+				88F3908519D595C200169918 /* DDLFieldDocumentlibraryPresenterViewController_default.swift */,
+				88F3908619D595C200169918 /* DDLFieldDocumentlibraryPresenterViewController_default.xib */,
+				88F3908719D595C200169918 /* DDLFieldDocumentlibraryTableCell_default.swift */,
+				88F3908819D595C200169918 /* DDLFieldDocumentlibraryTableCell_default.xib */,
+				88F3908919D595C200169918 /* DDLFieldNumberTableCell_default.swift */,
+				88F3908A19D595C200169918 /* DDLFieldNumberTableCell_default.xib */,
+				88F3908B19D595C200169918 /* DDLFieldRadioTableCell_default.swift */,
+				88F3908C19D595C200169918 /* DDLFieldRadioTableCell_default.xib */,
+				88F3908D19D595C200169918 /* DDLFieldSelectTableCell_default.swift */,
+				88F3908E19D595C200169918 /* DDLFieldSelectTableCell_default.xib */,
+				88F3908F19D595C200169918 /* DDLFieldTextareaTableCell_default.swift */,
+				88F3909019D595C200169918 /* DDLFieldTextareaTableCell_default.xib */,
+				88F3909119D595C200169918 /* DDLFieldTextTableCell_default.swift */,
+				88F3909219D595C200169918 /* DDLFieldTextTableCell_default.xib */,
+				88F3909319D595C200169918 /* DDLFormDefaultThemeConstants.swift */,
+				88F3909419D595C200169918 /* DDLFormView_default.swift */,
+				88F3909519D595C200169918 /* DDLFormView_default.xib */,
+				88F3909619D595C200169918 /* DDLSubmitButtonTableCell_default.swift */,
+				88F3909719D595C200169918 /* DDLSubmitButtonTableCell_default.xib */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
+		88F3909819D595C200169918 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				88F3909919D595C200169918 /* DDLListView_default.swift */,
+				88F3909A19D595C200169918 /* DDLListView_default.xib */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		88F3909C19D595C200169918 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				88F3909D19D595C200169918 /* ForgotPasswordView_default.swift */,
+				88F3909E19D595C200169918 /* ForgotPasswordView_default.xib */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		88F3909F19D595C200169918 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				88F390A019D595C200169918 /* LoginView_default.swift */,
+				88F390A119D595C200169918 /* LoginView_default.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		88F390A219D595C200169918 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88F390A319D595C200169918 /* default-calendar.png */,
+				88F390A419D595C200169918 /* default-calendar@2x.png */,
+				88F390A519D595C200169918 /* default-field-failed.png */,
+				88F390A619D595C200169918 /* default-field-failed@2x.png */,
+				88F390A719D595C200169918 /* default-field-focused.png */,
+				88F390A819D595C200169918 /* default-field-focused@2x.png */,
+				88F390A919D595C200169918 /* default-field.png */,
+				88F390AA19D595C200169918 /* default-field@2x.png */,
+				88F390AB19D595C200169918 /* default-hourglass.png */,
+				88F390AC19D595C200169918 /* default-hourglass@2x.png */,
+				88F390AD19D595C200169918 /* default-large-button-selected.png */,
+				88F390AE19D595C200169918 /* default-large-button-selected@2x.png */,
+				88F390AF19D595C200169918 /* default-large-button.png */,
+				88F390B019D595C200169918 /* default-large-button@2x.png */,
+				88F390B119D595C200169918 /* default-lock-icon.png */,
+				88F390B219D595C200169918 /* default-lock-icon@2x.png */,
+				88F390B319D595C200169918 /* default-mail-icon.png */,
+				88F390B419D595C200169918 /* default-mail-icon@2x.png */,
+				88F390B519D595C200169918 /* default-multiline-field.png */,
+				88F390B619D595C200169918 /* default-multiline-field@2x.png */,
+				88F390B719D595C200169918 /* default-preview-assetlist.png */,
+				88F390B819D595C200169918 /* default-preview-assetlist@2x.png */,
+				88F390B919D595C200169918 /* default-preview-ddlform.png */,
+				88F390BA19D595C200169918 /* default-preview-ddlform@2x.png */,
+				88F390BB19D595C200169918 /* default-preview-webcontent.png */,
+				88F390BC19D595C200169918 /* default-preview-webcontent@2x.png */,
+				88F390BD19D595C200169918 /* default-user-icon.png */,
+				88F390BE19D595C200169918 /* default-user-icon@2x.png */,
+				88F390BF19D595C200169918 /* theme-default.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		88F390C019D595C200169918 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				88F390C119D595C200169918 /* SignUpView_default.swift */,
+				88F390C219D595C200169918 /* SignUpView_default.xib */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		88F390C319D595C200169918 /* Flat7 */ = {
+			isa = PBXGroup;
+			children = (
+				88F390C419D595C200169918 /* Flat7ThemeConstants.swift */,
+				88F390C519D595C200169918 /* ForgotPassword */,
+				88F390C819D595C200169918 /* Login */,
+				88F390CB19D595C200169918 /* Resources */,
+				88F390D419D595C200169918 /* SignUp */,
+			);
+			path = Flat7;
+			sourceTree = "<group>";
+		};
+		88F390C519D595C200169918 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				88F390C619D595C200169918 /* ForgotPasswordView_flat7.swift */,
+				88F390C719D595C200169918 /* ForgotPasswordView_flat7.xib */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		88F390C819D595C200169918 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				88F390C919D595C200169918 /* LoginView_flat7.swift */,
+				88F390CA19D595C200169918 /* LoginView_flat7.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		88F390CB19D595C200169918 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88F390CC19D595C200169918 /* flat7.strings */,
+				88F390CF19D595C200169918 /* flat7-button.png */,
+				88F390D019D595C200169918 /* flat7-button@2x.png */,
+				88F390D119D595C200169918 /* flat7-field.png */,
+				88F390D219D595C200169918 /* flat7-field@2x.png */,
+				88F390D319D595C200169918 /* theme-flat7.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		88F390D419D595C200169918 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				88F390D519D595C200169918 /* SignUpView_flat7.swift */,
+				88F390D619D595C200169918 /* SignUpView_flat7.xib */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		F05CF7C2287C4AE6A3C1F243 /* Frameworks */ = {
@@ -844,65 +859,65 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88999ADE198EE62E00E746A6 /* flat7-field.png in Resources */,
-				88354BD519C9E23D00F3FE69 /* ForgotPasswordView_default.xib in Resources */,
-				8891526F19C48B0F00F0B7F3 /* default-preview-assetlist.png in Resources */,
-				88999ADB198EE62E00E746A6 /* flat7.strings in Resources */,
-				88D76917199A5D9200D152D5 /* default-multiline-field.png in Resources */,
-				888D77BA198FF0EC0052C39C /* default-user-icon@2x.png in Resources */,
-				8891527319C48E1600F0B7F3 /* default-preview-webcontent.png in Resources */,
+				88F3914219D595C200169918 /* default-preview-assetlist.png in Resources */,
 				8868AFD119656B0500FD5214 /* Main.storyboard in Resources */,
-				88DBC11D19A4EF9D0075E644 /* default-calendar.png in Resources */,
-				88354BDB19C9E27000F3FE69 /* ForgotPasswordView_flat7.xib in Resources */,
-				88999ADD198EE62E00E746A6 /* flat7-button@2x.png in Resources */,
-				8891527219C48E1600F0B7F3 /* default-preview-webcontent@2x.png in Resources */,
-				8845B95519CC5B270025D1D2 /* DDLFieldTextTableCell_default.xib in Resources */,
-				8845B94719CC5B270025D1D2 /* DDLFieldDateTableCell_default.xib in Resources */,
-				88354BBB19C9E20900F3FE69 /* WebContentView_default.xib in Resources */,
-				8845B95819CC5B270025D1D2 /* DDLFormView_default.xib in Resources */,
-				88999AE2198EE64700E746A6 /* theme-flat7.png in Resources */,
-				888D7761198FDB710052C39C /* default-large-button@2x.png in Resources */,
-				888D775F198FDB710052C39C /* default-large-button-selected@2x.png in Resources */,
-				884CE51F1994F3A500ADF047 /* default-preview-ddlform@2x.png in Resources */,
-				8845B95A19CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.xib in Resources */,
-				888D77B3198FF0E20052C39C /* default-lock-icon.png in Resources */,
-				888D7760198FDB710052C39C /* default-large-button.png in Resources */,
-				888D775E198FDB710052C39C /* default-large-button-selected.png in Resources */,
-				88354BBD19C9E21500F3FE69 /* AssetListView_default.xib in Resources */,
-				88832F9E19656B3F00E3DF9F /* liferay-context.plist in Resources */,
-				88DBC11E19A4EF9D0075E644 /* default-calendar@2x.png in Resources */,
-				88D537881999215500615515 /* default-field-failed@2x.png in Resources */,
-				8845B94919CC5B270025D1D2 /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */,
-				88354BD719C9E25300F3FE69 /* LoginView_default.xib in Resources */,
-				8828A7A119C319A40051601A /* default-hourglass@2x.png in Resources */,
-				88354BD919C9E26600F3FE69 /* SignUpView_default.xib in Resources */,
-				8845B95119CC5B270025D1D2 /* DDLFieldSelectTableCell_default.xib in Resources */,
-				88D537891999215500615515 /* default-field-failed.png in Resources */,
-				8845B94519CC5B270025D1D2 /* DDLFieldCheckboxTableCell_default.xib in Resources */,
-				888D775C198FDB710052C39C /* default-field.png in Resources */,
-				8845B94D19CC5B270025D1D2 /* DDLFieldNumberTableCell_default.xib in Resources */,
-				8812E77519D2CF9D00A6F5F8 /* DDLListView_default.xib in Resources */,
-				888D775B198FDB710052C39C /* default-field-focused@2x.png in Resources */,
-				8845B94B19CC5B270025D1D2 /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
-				88354BDD19C9E27800F3FE69 /* LoginView_flat7.xib in Resources */,
-				8835607C196AED36002AB222 /* liferay-context-sample.plist in Resources */,
-				888D775A198FDB710052C39C /* default-field-focused.png in Resources */,
-				88999ADF198EE62E00E746A6 /* flat7-field@2x.png in Resources */,
-				88999ADC198EE62E00E746A6 /* flat7-button.png in Resources */,
-				8891526E19C48B0F00F0B7F3 /* default-preview-assetlist@2x.png in Resources */,
-				888D77B6198FF0E20052C39C /* default-mail-icon@2x.png in Resources */,
-				88354BDF19C9E27F00F3FE69 /* SignUpView_flat7.xib in Resources */,
-				8845B94F19CC5B270025D1D2 /* DDLFieldRadioTableCell_default.xib in Resources */,
-				8828A7A019C319A40051601A /* default-hourglass.png in Resources */,
-				888D77B9198FF0EC0052C39C /* default-user-icon.png in Resources */,
-				884CE51E1994F3A500ADF047 /* default-preview-ddlform.png in Resources */,
-				888D77B4198FF0E20052C39C /* default-lock-icon@2x.png in Resources */,
-				888D7764198FDB710052C39C /* theme-default.png in Resources */,
-				8845B95319CC5B270025D1D2 /* DDLFieldTextareaTableCell_default.xib in Resources */,
+				88F3914119D595C200169918 /* default-multiline-field@2x.png in Resources */,
+				88F3911919D595C200169918 /* DDLFieldNumberTableCell_default.xib in Resources */,
+				88F3915219D595C200169918 /* flat7.strings in Resources */,
+				88F3914F19D595C200169918 /* ForgotPasswordView_flat7.xib in Resources */,
+				88F3912F19D595C200169918 /* default-calendar@2x.png in Resources */,
+				88F3912D19D595C200169918 /* LoginView_default.xib in Resources */,
+				88F3912E19D595C200169918 /* default-calendar.png in Resources */,
+				88F3915519D595C200169918 /* flat7-field.png in Resources */,
+				88F3913419D595C200169918 /* default-field.png in Resources */,
+				88F3914019D595C200169918 /* default-multiline-field.png in Resources */,
+				88F3915619D595C200169918 /* flat7-field@2x.png in Resources */,
+				88F3913B19D595C200169918 /* default-large-button@2x.png in Resources */,
+				88F3910E19D595C200169918 /* AssetListView_default.xib in Resources */,
+				88F3914A19D595C200169918 /* theme-default.png in Resources */,
+				88F3915919D595C200169918 /* SignUpView_flat7.xib in Resources */,
+				88F3912119D595C200169918 /* DDLFieldTextTableCell_default.xib in Resources */,
+				88F3914919D595C200169918 /* default-user-icon@2x.png in Resources */,
+				88F3915719D595C200169918 /* theme-flat7.png in Resources */,
+				88F3913219D595C200169918 /* default-field-focused.png in Resources */,
+				88F3914819D595C200169918 /* default-user-icon.png in Resources */,
+				88F3912619D595C200169918 /* DDLSubmitButtonTableCell_default.xib in Resources */,
+				88F3913119D595C200169918 /* default-field-failed@2x.png in Resources */,
+				88F3911119D595C200169918 /* DDLFieldCheckboxTableCell_default.xib in Resources */,
+				88F3913619D595C200169918 /* default-hourglass.png in Resources */,
+				88F3914C19D595C200169918 /* SignUpView_default.xib in Resources */,
+				88F3914419D595C200169918 /* default-preview-ddlform.png in Resources */,
+				88F3913919D595C200169918 /* default-large-button-selected@2x.png in Resources */,
+				88F3911F19D595C200169918 /* DDLFieldTextareaTableCell_default.xib in Resources */,
+				88F3913C19D595C200169918 /* default-lock-icon.png in Resources */,
+				88F3911D19D595C200169918 /* DDLFieldSelectTableCell_default.xib in Resources */,
+				88F3913E19D595C200169918 /* default-mail-icon.png in Resources */,
 				8868AFD319656B0500FD5214 /* Images.xcassets in Resources */,
-				88D76916199A5D9200D152D5 /* default-multiline-field@2x.png in Resources */,
-				888D77B5198FF0E20052C39C /* default-mail-icon.png in Resources */,
-				888D775D198FDB710052C39C /* default-field@2x.png in Resources */,
+				88F3911319D595C200169918 /* DDLFieldDateTableCell_default.xib in Resources */,
+				88F3910119D595C200169918 /* liferay-server-context-sample.plist in Resources */,
+				88F3914619D595C200169918 /* default-preview-webcontent.png in Resources */,
+				88F3912819D595C200169918 /* DDLListView_default.xib in Resources */,
+				88F3913D19D595C200169918 /* default-lock-icon@2x.png in Resources */,
+				88F3910C19D595C200169918 /* WebContentView_default.xib in Resources */,
+				88F3914319D595C200169918 /* default-preview-assetlist@2x.png in Resources */,
+				88F3911519D595C200169918 /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */,
+				88F3915319D595C200169918 /* flat7-button.png in Resources */,
+				88F3913719D595C200169918 /* default-hourglass@2x.png in Resources */,
+				88F3914519D595C200169918 /* default-preview-ddlform@2x.png in Resources */,
+				88F3902B19D595B100169918 /* liferay-server-context.plist in Resources */,
+				88F3913819D595C200169918 /* default-large-button-selected.png in Resources */,
+				88F3915119D595C200169918 /* LoginView_flat7.xib in Resources */,
+				88F3911B19D595C200169918 /* DDLFieldRadioTableCell_default.xib in Resources */,
+				88F3913319D595C200169918 /* default-field-focused@2x.png in Resources */,
+				88F3915419D595C200169918 /* flat7-button@2x.png in Resources */,
+				88F3911719D595C200169918 /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
+				88F3912419D595C200169918 /* DDLFormView_default.xib in Resources */,
+				88F3912B19D595C200169918 /* ForgotPasswordView_default.xib in Resources */,
+				88F3913A19D595C200169918 /* default-large-button.png in Resources */,
+				88F3913019D595C200169918 /* default-field-failed.png in Resources */,
+				88F3913F19D595C200169918 /* default-mail-icon@2x.png in Resources */,
+				88F3914719D595C200169918 /* default-preview-webcontent@2x.png in Resources */,
+				88F3913519D595C200169918 /* default-field@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -946,88 +961,93 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8845B98119CC5B3E0025D1D2 /* DDLFieldDate.swift in Sources */,
-				8828A79B19C2DEB80051601A /* LRMobilewidgetsddlrecordService_v62.m in Sources */,
-				8845B97619CC5B3E0025D1D2 /* DDLXSDParser.swift in Sources */,
-				88832FA119656B3F00E3DF9F /* LoginWidget.swift in Sources */,
-				8845B94E19CC5B270025D1D2 /* DDLFieldRadioTableCell_default.swift in Sources */,
+				88F3910619D595C200169918 /* LRMobilewidgetsassetentryService_v62.m in Sources */,
+				88F3912519D595C200169918 /* DDLSubmitButtonTableCell_default.swift in Sources */,
+				88F390E219D595C200169918 /* LiferayServerContext.swift in Sources */,
+				88F3910819D595C200169918 /* LRMobilewidgetsuserService_v62.m in Sources */,
+				88F3910419D595C200169918 /* LoginWidget.swift in Sources */,
+				88F3912919D595C200169918 /* DefaultThemeConstants.swift in Sources */,
+				88F390FE19D595C200169918 /* UIView+Animations.swift in Sources */,
 				8868AFCE19656B0500FD5214 /* ViewController.swift in Sources */,
+				88F390EC19D595C200169918 /* DDLListView.swift in Sources */,
+				88F3910A19D595C200169918 /* SignUpWidget.swift in Sources */,
+				88F390EA19D595C200169918 /* DDLFieldTableCell.swift in Sources */,
+				889017F719D8AADA00CF2DCE /* BaseConnector.swift in Sources */,
+				88F390FA19D595C200169918 /* Global.swift in Sources */,
+				88F3914D19D595C200169918 /* Flat7ThemeConstants.swift in Sources */,
+				88F390FC19D595C200169918 /* NSLocale+CurrentLocale.swift in Sources */,
+				88F390F319D595C200169918 /* DDLFieldDocument.swift in Sources */,
+				88F3911C19D595C200169918 /* DDLFieldSelectTableCell_default.swift in Sources */,
+				88F390D819D595C200169918 /* WebContentWidget.swift in Sources */,
+				88F3911219D595C200169918 /* DDLFieldDateTableCell_default.swift in Sources */,
+				88F390F019D595C200169918 /* DDLField.swift in Sources */,
+				88F390DB19D595C200169918 /* AssetListTableView.swift in Sources */,
+				88F390F519D595C200169918 /* DDLFieldString.swift in Sources */,
+				88F390F419D595C200169918 /* DDLFieldNumber.swift in Sources */,
+				88F3912019D595C200169918 /* DDLFieldTextTableCell_default.swift in Sources */,
+				88F390E919D595C200169918 /* DDLFormWidget.swift in Sources */,
+				88F390E419D595C200169918 /* SessionContext.swift in Sources */,
+				88F3915819D595C200169918 /* SignUpView_flat7.swift in Sources */,
+				88F3912A19D595C200169918 /* ForgotPasswordView_default.swift in Sources */,
+				88F3911E19D595C200169918 /* DDLFieldTextareaTableCell_default.swift in Sources */,
+				88F3914B19D595C200169918 /* SignUpView_default.swift in Sources */,
+				88F3910219D595C200169918 /* LoginAuthType.swift in Sources */,
+				88F390E719D595C200169918 /* DDLXSDParser.swift in Sources */,
+				88F390E619D595C200169918 /* DDLValuesParser.swift in Sources */,
+				88F390DF19D595C200169918 /* BaseWidget+progress.swift in Sources */,
+				88F390FD19D595C200169918 /* UIImage+Themes.m in Sources */,
+				88F390F819D595C200169918 /* DDLRecord.swift in Sources */,
 				8868AFCC19656B0500FD5214 /* AppDelegate.swift in Sources */,
-				8851134119B88A51009D93CE /* UIView+Animations.swift in Sources */,
-				888D77BF198FF5030052C39C /* LoginView_default.swift in Sources */,
-				8812E77119D2CF9200A6F5F8 /* DDLListView.swift in Sources */,
-				8845B98219CC5B3E0025D1D2 /* DDLFieldDocument.swift in Sources */,
-				8811DC3819BDA115008FE226 /* WebContentView.swift in Sources */,
-				8811DC3919BDA115008FE226 /* WebContentWidget.swift in Sources */,
-				88832F9B19656B3F00E3DF9F /* LiferayContext.swift in Sources */,
-				88999AF4198EF1A700E746A6 /* UIImage+Themes.m in Sources */,
-				8845B97D19CC5B3E0025D1D2 /* DDLField+DataType.swift in Sources */,
-				8845B95719CC5B270025D1D2 /* DDLFormView_default.swift in Sources */,
-				888D7771198FE3D40052C39C /* SignUpView_flat7.swift in Sources */,
-				88C5470319C1EBBE00A51E7D /* AssetListTableView.swift in Sources */,
-				8845B98719CC5B3E0025D1D2 /* DDLRecord.swift in Sources */,
-				889558DC19C1E7B500657AC7 /* AssetListView.swift in Sources */,
-				8845B98519CC5B3E0025D1D2 /* DDLFieldStringWithOptions.swift in Sources */,
-				8845B94619CC5B270025D1D2 /* DDLFieldDateTableCell_default.swift in Sources */,
-				881F35A019CB27D3002B9BEC /* AssetListView_default.swift in Sources */,
-				88EDB9B519D2D39D00A8F9DF /* Flat7ThemeConstants.swift in Sources */,
-				881F35A819CB28B9002B9BEC /* BaseListTableView.swift in Sources */,
-				8845B95019CC5B270025D1D2 /* DDLFieldSelectTableCell_default.swift in Sources */,
-				8812E75D19D2B2EC00A6F5F8 /* DDLFormWidget.swift in Sources */,
-				8845B97519CC5B3E0025D1D2 /* DDLValuesParser.swift in Sources */,
+				889017F919D8AB8600CF2DCE /* LiferayLoginBaseConnector.swift in Sources */,
+				88F390ED19D595C200169918 /* DDLListWidget.swift in Sources */,
+				88F3910F19D595C200169918 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
+				88F3914E19D595C200169918 /* ForgotPasswordView_flat7.swift in Sources */,
+				88F390F719D595C200169918 /* DDLFieldUntyped.swift in Sources */,
+				88F390E119D595C200169918 /* BaseWidgetView.swift in Sources */,
+				88F390FB19D595C200169918 /* NSBundle+Paths.swift in Sources */,
+				88F3912C19D595C200169918 /* LoginView_default.swift in Sources */,
 				8845B85019CC32560025D1D2 /* DDListViewController.swift in Sources */,
-				882286FA19D424760072BCFC /* SessionContext.swift in Sources */,
-				888F6202198FD3DC0082786B /* SignUpView.swift in Sources */,
-				8845B95619CC5B270025D1D2 /* DDLFormDefaultThemeConstants.swift in Sources */,
-				888D77C9199038D10052C39C /* ForgotPasswordView_default.swift in Sources */,
-				888D77C4199031690052C39C /* SignUpView_default.swift in Sources */,
-				8845B98019CC5B3E0025D1D2 /* DDLFieldBoolean.swift in Sources */,
-				88999ADA198EE62E00E746A6 /* LoginView_flat7.swift in Sources */,
-				8845B95919CC5B270025D1D2 /* DDLSubmitButtonTableCell_default.swift in Sources */,
-				8897D9D1198A958000D3DF51 /* NSBundle+Paths.swift in Sources */,
-				8845B98319CC5B3E0025D1D2 /* DDLFieldNumber.swift in Sources */,
-				8812E75E19D2B2EC00A6F5F8 /* DDLFieldTableCell.swift in Sources */,
-				8811DC3E19BDA700008FE226 /* WebContentView_default.swift in Sources */,
-				8845B94819CC5B270025D1D2 /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */,
-				888CE11419924821001DCA6A /* ForgotPasswordView_flat7.swift in Sources */,
-				8828A79A19C2DEB80051601A /* LRMobilewidgetsassetentryService_v62.m in Sources */,
-				8812E76519D2B31500A6F5F8 /* DefaultThemeConstants.swift in Sources */,
+				88F3910319D595C200169918 /* LoginView.swift in Sources */,
+				88F3911019D595C200169918 /* DDLFieldCheckboxTableCell_default.swift in Sources */,
+				88F3911819D595C200169918 /* DDLFieldNumberTableCell_default.swift in Sources */,
+				88F390F919D595C200169918 /* Bool+Conversion.swift in Sources */,
+				88F3910D19D595C200169918 /* AssetListView_default.swift in Sources */,
+				88F3910719D595C200169918 /* LRMobilewidgetsddlrecordService_v62.m in Sources */,
+				88F390F619D595C200169918 /* DDLFieldStringWithOptions.swift in Sources */,
+				88F390D719D595C200169918 /* WebContentView.swift in Sources */,
+				88F390EE19D595C200169918 /* DDLField+DataType.swift in Sources */,
+				88F390DE19D595C200169918 /* BaseListTableView.swift in Sources */,
+				88F390E819D595C200169918 /* DDLFormView.swift in Sources */,
+				88F390F219D595C200169918 /* DDLFieldDate.swift in Sources */,
+				88F390F119D595C200169918 /* DDLFieldBoolean.swift in Sources */,
+				88DF666F19D8475B00EFE05E /* LiferayLoginEmailConnector.swift in Sources */,
+				88F390FF19D595C200169918 /* ForgotPasswordView.swift in Sources */,
+				88F3910019D595C200169918 /* ForgotPasswordWidget.swift in Sources */,
+				88F390D919D595C200169918 /* AssetListView.swift in Sources */,
+				88F3910919D595C200169918 /* SignUpView.swift in Sources */,
+				88F390E319D595C200169918 /* PaginationOperation.swift in Sources */,
 				885FD6831996E1DF00F23BA1 /* FormViewController.swift in Sources */,
-				881F35A719CB28B9002B9BEC /* BaseListWidget.swift in Sources */,
-				883CF3D1199B78D8008F0EBC /* LRMobilewidgetsuserService_v62.m in Sources */,
-				8812E75F19D2B2EC00A6F5F8 /* DDLFormTableView.swift in Sources */,
-				8845B98419CC5B3E0025D1D2 /* DDLFieldString.swift in Sources */,
-				8897D9C4198A812D00D3DF51 /* ForgotPasswordWidget.swift in Sources */,
-				8845B94419CC5B270025D1D2 /* DDLFieldCheckboxTableCell_default.swift in Sources */,
-				88EAEE3C1993D923002D7C26 /* Bool+Conversion.swift in Sources */,
-				881F35A619CB28B9002B9BEC /* BaseListView.swift in Sources */,
-				888F6204198FD3DC0082786B /* SignUpWidget.swift in Sources */,
-				88832F9919656B3F00E3DF9F /* BaseWidget.swift in Sources */,
-				88832F9819656B3F00E3DF9F /* BaseWidget+progress.swift in Sources */,
-				8845B94C19CC5B270025D1D2 /* DDLFieldNumberTableCell_default.swift in Sources */,
-				8845B95219CC5B270025D1D2 /* DDLFieldTextareaTableCell_default.swift in Sources */,
-				8845B97F19CC5B3E0025D1D2 /* DDLField.swift in Sources */,
-				8812E77019D2CF9200A6F5F8 /* DDLListWidget.swift in Sources */,
-				88F1C5B219C98B3300A5F297 /* LoginAuthType.swift in Sources */,
-				8845B98619CC5B3E0025D1D2 /* DDLFieldUntyped.swift in Sources */,
-				88832F9F19656B3F00E3DF9F /* LoginView.swift in Sources */,
 				888F6206198FD3F20082786B /* SignUpViewController.swift in Sources */,
-				8845B97E19CC5B3E0025D1D2 /* DDLField+Editor.swift in Sources */,
-				999BC69C19768EA400A9B0D8 /* LRSession+CredentialStore.swift in Sources */,
-				889558DD19C1E7B500657AC7 /* AssetListWidget.swift in Sources */,
+				88F390EB19D595C200169918 /* DDLFormTableView.swift in Sources */,
+				88F3910B19D595C200169918 /* WebContentView_default.swift in Sources */,
 				889558DF19C1E7FD00657AC7 /* AssetListViewController.swift in Sources */,
-				8812E75C19D2B2EC00A6F5F8 /* DDLFormView.swift in Sources */,
-				8845B95419CC5B270025D1D2 /* DDLFieldTextTableCell_default.swift in Sources */,
-				888F61FD198FD3B10082786B /* NSLocale+CurrentLocale.swift in Sources */,
+				88F3911619D595C200169918 /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */,
+				889017F519D8AA7100CF2DCE /* LiferayLoginScreenNameConnector.swift in Sources */,
+				88F390DC19D595C200169918 /* BaseListView.swift in Sources */,
+				88F3915019D595C200169918 /* LoginView_flat7.swift in Sources */,
+				88F390EF19D595C200169918 /* DDLField+Editor.swift in Sources */,
+				88F390E019D595C200169918 /* BaseWidget.swift in Sources */,
+				88F3911A19D595C200169918 /* DDLFieldRadioTableCell_default.swift in Sources */,
+				88F3912719D595C200169918 /* DDLListView_default.swift in Sources */,
 				8811DC4019BDD0FA008FE226 /* WebContentViewController.swift in Sources */,
-				8897D9C3198A810F00D3DF51 /* ForgotPasswordView.swift in Sources */,
-				8812E77419D2CF9D00A6F5F8 /* DDLListView_default.swift in Sources */,
-				88832F9A19656B3F00E3DF9F /* BaseWidgetView.swift in Sources */,
-				8812E76319D2B30000A6F5F8 /* PaginationOperation.swift in Sources */,
-				8845B94319CC5B270025D1D2 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
-				8845B94A19CC5B270025D1D2 /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */,
-				8897D9C6198A883F00D3DF51 /* ThemeManager.swift in Sources */,
-				8828A79D19C2E1C20051601A /* Global.swift in Sources */,
+				88F390DD19D595C200169918 /* BaseListWidget.swift in Sources */,
+				88F390DA19D595C200169918 /* AssetListWidget.swift in Sources */,
+				88F3912319D595C200169918 /* DDLFormView_default.swift in Sources */,
+				88F3912219D595C200169918 /* DDLFormDefaultThemeConstants.swift in Sources */,
+				88F3910519D595C200169918 /* LRSession+CredentialStore.swift in Sources */,
+				88F3911419D595C200169918 /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */,
+				88F390E519D595C200169918 /* ThemeManager.swift in Sources */,
+				889017FD19D8B76100CF2DCE /* LiferaySignUpConnector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,11 +1062,11 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		88999ACF198EE62E00E746A6 /* flat7.strings */ = {
+		88F390CC19D595C200169918 /* flat7.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				88999AD0198EE62E00E746A6 /* en */,
-				88999AD1198EE62E00E746A6 /* es */,
+				88F390CD19D595C200169918 /* en */,
+				88F390CE19D595C200169918 /* es */,
 			);
 			name = flat7.strings;
 			sourceTree = "<group>";

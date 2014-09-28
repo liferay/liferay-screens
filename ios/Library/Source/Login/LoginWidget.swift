@@ -37,25 +37,31 @@ public class LoginWidget: BaseWidget {
 
 	@IBOutlet public var delegate: LoginWidgetDelegate?
 
+	public var authType: LoginAuthType = .Email {
+		didSet {
+			(widgetView as? LoginView)?.authType = authType
+
+			switch authType {
+				case .Email:
+					loginConnector = LiferayLoginEmailConnector(widget: self)
+				case .ScreenName:
+					loginConnector = LiferayLoginScreenNameConnector(widget: self)
+				default: ()
+			}
+		}
+	}
+
 	internal var loginView: LoginView {
 		return widgetView as LoginView
 	}
 
-	private let supportedAuthClosures = [
-		LoginAuthType.Email: authWithEmail,
-		LoginAuthType.ScreenName: authWithScreenName,
-		LoginAuthType.UserId: authWithUserId]
-
-	private var authClosure: ((String, String, LRUserService_v62, NSError -> Void) -> Void)?
-
 	private var loginSession: LRSession?
+	private var loginConnector: LiferayLoginBaseConnector?
 
 
 	//MARK: BaseWidget
 
 	override internal func onCreated() {
-        setAuthType(LoginAuthType.Email)
-
 		loginView.saveCredentials = self.saveCredentials
 
 		if SessionContext.loadSessionFromStore() {
@@ -72,18 +78,10 @@ public class LoginWidget: BaseWidget {
 		}
 	}
 
-	override internal func onServerError(error: NSError) {
-		delegate?.onLoginError?(error)
-
-		SessionContext.removeStoredSession()
-
-		finishOperationWithError(error, message:"Error signing in!")
-	}
-
-	override internal func onServerResult(result: [String:AnyObject]) {
+	internal func onLoginResult(result: [String:AnyObject], session: LRSession) {
 		SessionContext.createSession(
-				username: loginSession!.username,
-				password: loginSession!.password,
+				username: session.username,
+				password: session.password,
 				userAttributes: result)
 
 		delegate?.onLoginResponse?(result)
@@ -93,83 +91,25 @@ public class LoginWidget: BaseWidget {
 				delegate?.onCredentialsSaved?()
 			}
 		}
-
-		finishOperation()
-	}
-
-
-	//MARK: Public methods
-
-	public func setAuthType(authType:LoginAuthType) {
-        loginView.setAuthType(authType)
-        
-        authClosure = supportedAuthClosures[authType]
 	}
 
 
 	//MARK: Private methods
 
 	private func sendLoginWithUserName(userName:String, password:String) {
-		startOperationWithMessage("Sending sign in...", details:"Wait few seconds...")
+		loginConnector!.userName = userName
+		loginConnector!.password = password
 
-		SessionContext.clearSession()
+		loginConnector!.addToQueue() {
+			if let error = $0.lastError {
+				self.delegate?.onLoginError?(error)
+			}
+			else {
+				let loginConnector = $0 as LiferayLoginBaseConnector
 
-		loginSession = LRSession(
-				server: LiferayServerContext.instance.server,
-				username: userName,
-				password: password)
-		loginSession!.callback = self
-
-		authClosure!(userName, password, LRUserService_v62(session: loginSession)) {
-			self.onFailure($0)
+				self.onLoginResult(loginConnector.loggedUserAttributes!, session: loginConnector.session!)
+			}
 		}
 	}
 
-}
-
-func authWithEmail(email:String, password:String,
-		service:LRUserService_v62,
-		onError:(NSError) -> Void) {
-
-	var outError: NSError?
-
-	service.getUserByEmailAddressWithCompanyId(
-			(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
-			emailAddress:email,
-			error:&outError)
-
-	if let error = outError {
-		onError(error)
-	}
-}
-
-func authWithScreenName(name:String,
-		password:String,
-		service:LRUserService_v62,
-		onError:(NSError) -> Void) {
-
-	var outError: NSError?
-
-	service.getUserByScreenNameWithCompanyId(
-			(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
-			screenName:name,
-			error: &outError)
-
-	if let error = outError {
-		onError(error)
-	}
-}
-
-func authWithUserId(userId:String,
-		password:String,
-		service:LRUserService_v62,
-		onError:(NSError) -> Void) {
-
-	var outError: NSError?
-
-	service.getUserByIdWithUserId((userId.toInt()! as NSNumber).longLongValue, error: &outError)
-
-	if let error = outError {
-		onError(error)
-	}
 }
