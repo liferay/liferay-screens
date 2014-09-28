@@ -24,7 +24,6 @@ public class LoginView_default: LoginView {
 	@IBOutlet internal var userNameBackground: UIImageView?
 	@IBOutlet internal var passwordBackground: UIImageView?
 
-
 	//MARK: Class methods
 
 	public class func setStylesForAuthType(authType:LoginAuthType,
@@ -54,10 +53,12 @@ public class LoginView_default: LoginView {
 		}
 	}
 
-	override public func setAuthType(authType: LoginAuthType) {
-		LoginView_default.setStylesForAuthType(authType,
-				userNameField: userNameField,
-				userNameIcon: userNameIcon)
+	override public var authType: LoginAuthType? {
+		didSet {
+			LoginView_default.setStylesForAuthType(authType!,
+					userNameField: userNameField,
+					userNameIcon: userNameIcon)
+		}
 	}
 
 	override public func getUserName() -> String {

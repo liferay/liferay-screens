@@ -37,6 +37,20 @@ public class LoginWidget: BaseWidget {
 
 	@IBOutlet public var delegate: LoginWidgetDelegate?
 
+	public var authType: LoginAuthType = .Email {
+		didSet {
+			(widgetView as? LoginView)?.authType = authType
+
+			switch authType {
+				case .Email:
+					loginConnector = LiferayLoginEmailConnector(widget: self)
+				case .ScreenName:
+					loginConnector = LiferayLoginScreenNameConnector(widget: self)
+				default: ()
+			}
+		}
+	}
+
 	internal var loginView: LoginView {
 		return widgetView as LoginView
 	}
@@ -54,8 +68,6 @@ public class LoginWidget: BaseWidget {
 	//MARK: BaseWidget
 
 	override internal func onCreated() {
-        setAuthType(LoginAuthType.Email)
-
 		loginView.saveCredentials = self.saveCredentials
 
 		if SessionContext.loadSessionFromStore() {
