@@ -50,26 +50,26 @@ import UIKit
 	//MARK: BaseWidget
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
-		if signUpView.emailAddress == nil {
-			showHUDAlert(message: "Please, enter your email address at least")
+		if signUpView.emailAddress != nil {
+			sendSignUp()
 		}
 		else {
-			sendSignUp()
+			showHUDAlert(message: "Please, enter your email address at least")
 		}
 	}
 
-	internal func onSignUpResult(connector: LiferaySignUpConnector) {
-		delegate?.onSignUpResponse?(connector.createdUserAttributes!)
+	internal func onSignUpResult() {
+		delegate?.onSignUpResponse?(signUpConnector.createdUserAttributes!)
 
 		if autologin {
 			SessionContext.removeStoredSession()
 
 			SessionContext.createSession(
-					username: connector.emailAddress!,
-					password: connector.password!,
-					userAttributes: connector.createdUserAttributes!)
+					username: signUpConnector.emailAddress!,
+					password: signUpConnector.password!,
+					userAttributes: signUpConnector.createdUserAttributes!)
 
-			autoLoginDelegate?.onLoginResponse?(connector.createdUserAttributes!)
+			autoLoginDelegate?.onLoginResponse?(signUpConnector.createdUserAttributes!)
 
 			if saveCredentials {
 				if SessionContext.storeSession() {
@@ -98,7 +98,7 @@ import UIKit
 				self.delegate?.onSignUpError?($0.lastError!)
 			}
 			else {
-				self.onSignUpResult(self.signUpConnector)
+				self.onSignUpResult()
 			}
 		}
 
