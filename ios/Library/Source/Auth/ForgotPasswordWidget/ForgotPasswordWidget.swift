@@ -34,9 +34,9 @@ import UIKit
 	}
 
 	private let supportedResetClosures = [
-		LoginAuth.Email: resetPasswordWithEmail,
-		LoginAuth.ScreenName: resetPasswordWithScreenName,
-		LoginAuth.UserId: resetPasswordWithUserId]
+		AuthMethod.Email: resetPasswordWithEmail,
+		AuthMethod.ScreenName: resetPasswordWithScreenName,
+		AuthMethod.UserId: resetPasswordWithUserId]
 
 	private var resetClosure: ((String, LRMobilewidgetsuserService_v62, NSError -> Void) -> Void)?
 
@@ -44,7 +44,7 @@ import UIKit
 	//MARK: BaseWidget
 
 	override internal func onCreated() {
-		setAuthType(LoginAuth.Email.toRaw())
+		setAuthMethod(AuthMethod.Email.toRaw())
 
 		if let userName = SessionContext.currentUserName {
 			forgotPasswordView.setUserName(userName)
@@ -87,10 +87,10 @@ import UIKit
 	
 	//MARK: Public methods
 
-	public func setAuthType(authType:LoginAuthType) {
-		forgotPasswordView.setAuthType(authType)
+	public func setAuthMethod(authMethod:AuthMethodType) {
+		forgotPasswordView.setAuthMethod(authMethod)
 
-		resetClosure = supportedResetClosures[LoginAuth.fromRaw(authType)!]
+		resetClosure = supportedResetClosures[AuthMethod.fromRaw(authMethod)!]
 	}
 
 	

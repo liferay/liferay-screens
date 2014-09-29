@@ -33,7 +33,7 @@ import UIKit
 	@IBOutlet public var delegate: SignUpWidgetDelegate?
 	@IBOutlet public var autoLoginDelegate: LoginWidgetDelegate?
 
-	public var authType = LoginAuth.Email.toRaw()
+	public var authMethod = AuthMethod.Email.toRaw()
 
 	internal var signUpView: SignUpView {
 		return widgetView as SignUpView

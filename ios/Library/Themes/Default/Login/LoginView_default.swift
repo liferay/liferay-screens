@@ -24,17 +24,6 @@ public class LoginView_default: BaseWidgetView, LoginView {
 	@IBOutlet internal var userNameBackground: UIImageView?
 	@IBOutlet internal var passwordBackground: UIImageView?
 
-	//MARK: Class methods
-
-	public class func setStylesForAuthType(authType:LoginAuth,
-			userNameField:UITextField!, userNameIcon:UIImageView!) {
-
-		userNameField!.placeholder = authType.toRaw()
-
-		userNameField!.keyboardType = authType.keyboardType
-		userNameIcon?.image = UIImage(named:"default-\(authType.iconType)-icon")
-	}
-
 
 	//MARK: LoginView
 
@@ -53,9 +42,10 @@ public class LoginView_default: BaseWidgetView, LoginView {
 		}
 	}
 
-	public var authType: LoginAuthType = LoginAuth.Email.toRaw() {
+	public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
 		didSet {
-			LoginView_default.setStylesForAuthType(LoginAuth.fromRaw(authType)!,
+			setAuthMethodStyles(
+					authMethod: AuthMethod.fromRaw(authMethod)!,
 					userNameField: userNameField,
 					userNameIcon: userNameIcon)
 		}
