@@ -26,7 +26,7 @@ public class LoginView_default: LoginView {
 
 	//MARK: Class methods
 
-	public class func setStylesForAuthType(authType:LoginAuthType,
+	public class func setStylesForAuthType(authType:LoginAuth,
 			userNameField:UITextField!, userNameIcon:UIImageView!) {
 
 		userNameField!.placeholder = authType.toRaw()
@@ -53,9 +53,9 @@ public class LoginView_default: LoginView {
 		}
 	}
 
-	override public var authType: LoginAuthType? {
+	public var authType: LoginAuthType = LoginAuth.Email.toRaw() {
 		didSet {
-			LoginView_default.setStylesForAuthType(authType!,
+			LoginView_default.setStylesForAuthType(LoginAuth.fromRaw(authType)!,
 					userNameField: userNameField,
 					userNameIcon: userNameIcon)
 		}

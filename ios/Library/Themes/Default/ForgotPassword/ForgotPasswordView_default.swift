@@ -32,7 +32,7 @@ public class ForgotPasswordView_default: ForgotPasswordView {
 	}
 
 	override public func setAuthType(authType: LoginAuthType) {
-		LoginView_default.setStylesForAuthType(authType,
+		LoginView_default.setStylesForAuthType(LoginAuth.fromRaw(authType)!,
 				userNameField: userNameField,
 				userNameIcon: userNameIcon)
 	}

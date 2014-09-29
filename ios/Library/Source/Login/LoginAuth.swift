@@ -14,7 +14,14 @@
 import Foundation
 
 
-public enum LoginAuthType: String {
+public let LoginAuthTypeEmail = LoginAuth.Email.toRaw()
+public let LoginAuthTypeScreenName = LoginAuth.ScreenName.toRaw()
+public let LoginAuthTypeUserId = LoginAuth.UserId.toRaw()
+
+public typealias LoginAuthType = String
+
+
+public enum LoginAuth: String {
 
 	case Email = "Email Address"
 	case ScreenName = "Screen Name"
@@ -22,18 +29,18 @@ public enum LoginAuthType: String {
 
 	public var iconType: String {
 		let iconTypes = [
-				LoginAuthType.Email: "mail",
-				LoginAuthType.ScreenName: "user",
-				LoginAuthType.UserId: "user"]
+				LoginAuth.Email: "mail",
+				LoginAuth.ScreenName: "user",
+				LoginAuth.UserId: "user"]
 
 		return iconTypes[self] ?? ""
 	}
 
 	public var keyboardType: UIKeyboardType {
 		let keyboardTypes = [
-				LoginAuthType.Email: UIKeyboardType.EmailAddress,
-				LoginAuthType.ScreenName: UIKeyboardType.ASCIICapable,
-				LoginAuthType.UserId: UIKeyboardType.NumberPad]
+				LoginAuth.Email: UIKeyboardType.EmailAddress,
+				LoginAuth.ScreenName: UIKeyboardType.ASCIICapable,
+				LoginAuth.UserId: UIKeyboardType.NumberPad]
 
 		return keyboardTypes[self] ?? .Default
 	}

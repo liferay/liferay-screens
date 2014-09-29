@@ -37,11 +37,11 @@ public class LoginWidget: BaseWidget {
 
 	@IBOutlet public var delegate: LoginWidgetDelegate?
 
-	public var authType: LoginAuthType = .Email {
+	public var authType: LoginAuthType = LoginAuth.Email.toRaw() {
 		didSet {
 			(widgetView as? LoginView)?.authType = authType
 
-			switch authType {
+			switch LoginAuth.fromRaw(authType)! {
 				case .Email:
 					connector = LiferayLoginEmailConnector(widget: self)
 				case .ScreenName:
