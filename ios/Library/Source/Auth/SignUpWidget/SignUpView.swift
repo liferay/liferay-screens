@@ -14,34 +14,14 @@
 import UIKit
 
 
-public class SignUpView: BaseWidgetView {
+@objc public protocol SignUpView {
 
-	public func getEmailAddress() -> String {
-		return ""
-	}
-
-	public func getScreenName() -> String {
-		return ""
-	}
-
-	public func getPassword() -> String {
-		return ""
-	}
-
-	public func getFirstName() -> String {
-		return ""
-	}
-
-	public func getMiddleName() -> String {
-		return ""
-	}
-
-	public func getLastName() -> String {
-		return ""
-	}
-
-	public func getJobTitle() -> String {
-		return ""
-	}
+	var emailAddress: String? { get set }
+	var screenName: String? { get set }
+	var password: String? { get set }
+	var firstName: String? { get set }
+	var middleName: String? { get set }
+	var lastName: String? { get set }
+	var jobTitle: String? { get set }
 
 }

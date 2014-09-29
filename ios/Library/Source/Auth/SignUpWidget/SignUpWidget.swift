@@ -50,10 +50,12 @@ import UIKit
 	//MARK: BaseWidget
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
-		sendSignUpWithEmailAddress(signUpView.getEmailAddress(),
-				password:signUpView.getPassword(),
-				firstName:signUpView.getFirstName(),
-				lastName:signUpView.getLastName())
+		if signUpView.emailAddress == nil {
+			showHUDAlert(message: "Please, enter your email address at least")
+		}
+		else {
+			sendSignUp()
+		}
 	}
 
 	internal func onSignUpResult(connector: LiferaySignUpConnector) {
@@ -82,8 +84,7 @@ import UIKit
 
 	//MARK: Private methods
 
-	private func sendSignUpWithEmailAddress(
-			emailAddress:String, password:String, firstName:String, lastName:String) {
+	private func sendSignUp() {
 
 		if anonymousApiUserName == nil || anonymousApiPassword == nil {
 			println(
@@ -102,10 +103,10 @@ import UIKit
 
 		connector = LiferaySignUpConnector(widget: self, session: session)
 
-		signUpConnector.emailAddress = signUpView.getEmailAddress()
-		signUpConnector.password = signUpView.getPassword()
-		signUpConnector.firstName = signUpView.getFirstName()
-		signUpConnector.lastName = signUpView.getLastName()
+		signUpConnector.emailAddress = signUpView.emailAddress
+		signUpConnector.password = signUpView.password
+		signUpConnector.firstName = signUpView.firstName
+		signUpConnector.lastName = signUpView.lastName
 
 		signUpConnector.addToQueue() {
 			if $0.lastError != nil {

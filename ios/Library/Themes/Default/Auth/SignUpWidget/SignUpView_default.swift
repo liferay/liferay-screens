@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class SignUpView_default: SignUpView {
+public class SignUpView_default: BaseWidgetView, SignUpView {
 
 	@IBOutlet internal var emailAddressField: UITextField?
 	@IBOutlet internal var passwordField: UITextField?
@@ -27,23 +27,7 @@ public class SignUpView_default: SignUpView {
 	@IBOutlet internal var lastNameBackground: UIImageView?
 
 
-	//MARK: SignUpView
-
-	override public func getEmailAddress() -> String {
-		return emailAddressField!.text
-	}
-
-	override public func getPassword() -> String {
-		return passwordField!.text
-	}
-
-	override public func getFirstName() -> String {
-		return firstNameField!.text
-	}
-
-	override public func getLastName() -> String {
-		return lastNameField!.text
-	}
+	//MARK: BaseWidgetView
 
 	override internal func onStartOperation() {
 		signUpButton!.enabled = false
@@ -51,6 +35,60 @@ public class SignUpView_default: SignUpView {
 
 	override internal func onFinishOperation() {
 		signUpButton!.enabled = true
+	}
+
+
+	//MARK: SignUpView
+
+	public var emailAddress: String? {
+		get {
+			return nullIfEmpty(emailAddressField!.text)
+		}
+		set {
+			emailAddressField!.text = newValue
+		}
+	}
+
+	public var password: String? {
+		get {
+			return nullIfEmpty(passwordField!.text)
+		}
+		set {
+			passwordField!.text = newValue
+		}
+	}
+
+	public var firstName: String? {
+		get {
+			return nullIfEmpty(firstNameField!.text)
+		}
+		set {
+			firstNameField!.text = newValue
+		}
+	}
+
+	public var lastName: String? {
+		get {
+			return nullIfEmpty(lastNameField!.text)
+		}
+		set {
+			lastNameField!.text = newValue
+		}
+	}
+
+	public var screenName: String? {
+		get { return nil }
+		set {}
+	}
+
+	public var middleName: String? {
+		get { return nil }
+		set {}
+	}
+
+	public var jobTitle: String? {
+		get { return nil }
+		set {}
 	}
 
 
