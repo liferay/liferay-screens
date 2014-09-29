@@ -26,6 +26,18 @@ internal func createError(#cause: WidgetsErrorCause, userInfo: NSDictionary? = n
 }
 
 
+public func nullIfEmpty(string: String?) -> String? {
+	if string == nil {
+		return nil
+	}
+	else if string! == "" {
+		return nil
+	}
+
+	return string
+}
+
+
 func synchronized(lock:AnyObject, closure: Void -> Void) {
 	objc_sync_enter(lock)
 	closure()
