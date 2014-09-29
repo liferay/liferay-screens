@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LoginView_default: LoginView {
+public class LoginView_default: BaseWidgetView, LoginView {
 
 	@IBOutlet internal var userNameIcon: UIImageView?
 	@IBOutlet internal var userNameField: UITextField?
@@ -38,13 +38,13 @@ public class LoginView_default: LoginView {
 
 	//MARK: LoginView
 
-	override public var saveCredentials: Bool {
+	public var saveCredentials: Bool {
 		get {
 			if let rememberSwitchValue = rememberSwitch {
 				return rememberSwitchValue.on;
 			}
 
-			return super.saveCredentials
+			return false
 		}
 		set {
 			if let rememberSwitchValue = rememberSwitch {
@@ -61,20 +61,22 @@ public class LoginView_default: LoginView {
 		}
 	}
 
-	override public func getUserName() -> String {
-		return userNameField!.text
+	public var userName: String? {
+		get {
+			return userNameField!.text
+		}
+		set {
+			userNameField!.text = newValue
+		}
 	}
 
-	override public func getPassword() -> String {
-		return passwordField!.text
-	}
-
-	override public func setUserName(userName: String) {
-		userNameField!.text = userName
-	}
-
-	override public func setPassword(password: String) {
-		passwordField!.text = password
+	public var password: String? {
+		get {
+			return passwordField!.text
+		}
+		set {
+			passwordField!.text = newValue
+		}
 	}
 
 	override internal func onCreated() {

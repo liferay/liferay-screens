@@ -30,9 +30,10 @@ public class LoginView_flat7: LoginView_default {
 		BaseWidget.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}
 
-	override public func setUserName(userName: String) {
-		super.setUserName(userName)
-		userNamePlaceholder!.changeVisibility(visible: userName != "")
+	override public var userName: String? {
+		didSet {
+			userNamePlaceholder!.changeVisibility(visible: userName != "")
+		}
 	}
 
 	override internal func onSetTranslations() {

@@ -68,8 +68,8 @@ public class LoginWidget: BaseWidget {
 		loginView.saveCredentials = self.saveCredentials
 
 		if SessionContext.loadSessionFromStore() {
-			loginView.setUserName(SessionContext.currentUserName!)
-			loginView.setPassword(SessionContext.currentPassword!)
+			loginView.userName = SessionContext.currentUserName!
+			loginView.password = SessionContext.currentPassword!
 
 			delegate?.onCredentialsLoaded?()
 		}
@@ -77,7 +77,7 @@ public class LoginWidget: BaseWidget {
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
 		if actionName == "login-action" {
-			sendLoginWithUserName(loginView.getUserName(), password:loginView.getPassword())
+			sendLoginWithUserName(loginView.userName!, password:loginView.password!)
 		}
 	}
 
