@@ -13,17 +13,11 @@ enum LiferayConnectorsQueue {
 
 	static var queue: NSOperationQueue?
 
-	static func addConnector(connector: BaseConnector, onComplete: BaseConnector -> Void) {
+	static func addConnector(connector: BaseConnector) {
 		if queue == nil {
 			queue = NSOperationQueue()
 			queue!.maxConcurrentOperationCount = 1
 			queue!.qualityOfService = .UserInitiated
-		}
-
-		connector.completionBlock = {
-			dispatch_async(dispatch_get_main_queue()) {
-				onComplete(connector)
-			}
 		}
 
 		queue!.addOperation(connector)
@@ -38,6 +32,8 @@ class BaseConnector: NSOperation {
 	var session: LRSession?
 	var widget: BaseWidget
 
+	internal var onComplete: (BaseConnector -> Void)?
+
 	init(widget: BaseWidget, session: LRSession?) {
 		self.widget = widget
 		self.session = session
@@ -46,7 +42,50 @@ class BaseConnector: NSOperation {
 	}
 
 	func addToQueue(onComplete: BaseConnector -> Void) {
-		LiferayConnectorsQueue.addConnector(self, onComplete: onComplete)
+		self.onComplete = onComplete
+
+		LiferayConnectorsQueue.addConnector(self)
+	}
+
+	internal override func main() {
+		if preRun() {
+			doRun()
+			postRun()
+
+			if self.onComplete != nil {
+				dispatch_async(dispatch_get_main_queue()) {
+					self.onComplete!(self)
+				}
+			}
+		}
+	}
+
+	internal func preRun() -> Bool {
+		return false
+	}
+
+	internal func doRun() {
+	}
+
+	internal func postRun() {
+	}
+
+	internal func showHUD(#message: String, details: String? = nil) {
+		dispatch_async(dispatch_get_main_queue()) {
+			self.widget.startOperationWithMessage(message, details: details)
+		}
+	}
+
+	internal func hideHUD() {
+		dispatch_async(dispatch_get_main_queue()) {
+			self.widget.finishOperation()
+		}
+	}
+
+	internal func hideHUD(#error: NSError, message: String, details: String? = nil) {
+		dispatch_async(dispatch_get_main_queue()) {
+			self.widget.finishOperationWithError(error, message: message, details: details)
+		}
 	}
 
 }

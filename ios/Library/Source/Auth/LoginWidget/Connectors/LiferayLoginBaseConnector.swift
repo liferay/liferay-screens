@@ -19,14 +19,29 @@ class LiferayLoginBaseConnector: BaseConnector {
 		super.init(widget: widget, session: nil)
 	}
 
-	override func main() {
-		dispatch_async(dispatch_get_main_queue()) {
-			self.widget.startOperationWithMessage("Sending sign in...",
-					details:"Wait few seconds...")
+	override func preRun() -> Bool {
+		if userName == nil || password == nil {
+			return false
 		}
+
+		showHUD(message: "Sending sign in...", details:"Wait few seconds...")
 
 		SessionContext.clearSession()
 
+		return true
+	}
+
+	override func postRun() {
+		if lastError == nil {
+			hideHUD()
+		}
+		else {
+			SessionContext.removeStoredSession()
+			hideHUD(error: lastError!, message: "Error signing in!")
+		}
+	}
+
+	override func doRun() {
 		session = LRSession(
 				server: LiferayServerContext.instance.server,
 				username: userName,
@@ -39,21 +54,12 @@ class LiferayLoginBaseConnector: BaseConnector {
 				error: &outError)
 
 		if outError != nil || result?["userId"] == nil {
-			SessionContext.removeStoredSession()
 			lastError = outError
 			loggedUserAttributes = nil
-
-			dispatch_async(dispatch_get_main_queue()) {
-				self.widget.finishOperationWithError(self.lastError!, message:"Error signing in!")
-			}
 		}
 		else {
 			lastError = nil
 			loggedUserAttributes = result as? [String:AnyObject]
-
-			dispatch_async(dispatch_get_main_queue()) {
-				self.widget.finishOperation()
-			}
 		}
 	}
 
