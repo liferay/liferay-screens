@@ -39,8 +39,10 @@ class BaseConnector: NSOperation {
 		super.init()
 	}
 
-	func addToQueue(onComplete: BaseConnector -> Void) {
-		self.onComplete = onComplete
+	func addToQueue(onComplete: (BaseConnector -> Void)? = nil) {
+		if onComplete != nil {
+			self.onComplete = onComplete
+		}
 
 		LiferayConnectorsQueue.addConnector(self)
 	}
