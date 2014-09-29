@@ -57,8 +57,6 @@ public class LoginWidget: BaseWidget {
 		return connector as LiferayLoginBaseConnector
 	}
 
-	private var loginSession: LRSession?
-
 
 	//MARK: BaseWidget
 
@@ -74,8 +72,11 @@ public class LoginWidget: BaseWidget {
 	}
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
-		if actionName == "login-action" {
+		if loginView.userName != nil && loginView.password != nil {
 			sendLoginWithUserName(loginView.userName!, password:loginView.password!)
+		}
+		else {
+			showHUDAlert(message: "Please, enter the user name and password")
 		}
 	}
 
