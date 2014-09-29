@@ -28,12 +28,11 @@ import UIKit
 	@IBInspectable public var anonymousApiPassword: String?
 
 	@IBInspectable public var autologin = true
+
 	@IBInspectable public var saveCredentials = false
 
 	@IBOutlet public var delegate: SignUpWidgetDelegate?
 	@IBOutlet public var autoLoginDelegate: LoginWidgetDelegate?
-
-	public var authMethod = AuthMethod.Email.toRaw()
 
 	internal var signUpView: SignUpView {
 		return widgetView as SignUpView
@@ -42,9 +41,6 @@ import UIKit
 	internal var signUpConnector: LiferaySignUpConnector {
 		return connector as LiferaySignUpConnector
 	}
-
-	private var creatingUsername: String?
-	private var creatingPassword: String?
 
 
 	//MARK: BaseWidget

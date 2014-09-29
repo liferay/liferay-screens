@@ -22,14 +22,12 @@ import UIKit
 }
 
 
-@IBDesignable public class ForgotPasswordWidget: BaseWidget, AnonymousAuth {
+@IBDesignable public class ForgotPasswordWidget: BaseWidget, AuthBased, AnonymousAuth {
 
 	@IBInspectable public var anonymousApiUserName: String?
 	@IBInspectable public var anonymousApiPassword: String?
 
-	@IBOutlet public var delegate: ForgotPasswordWidgetDelegate?
-
-	public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
+	@IBInspectable public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
 		didSet {
 			(widgetView as? LoginView)?.authMethod = authMethod
 
@@ -43,6 +41,13 @@ import UIKit
 				default: ()
 			}
 		}
+	}
+
+	@IBOutlet public var delegate: ForgotPasswordWidgetDelegate?
+
+	public var saveCredentials: Bool {
+		get { return false }
+		set {}
 	}
 
 	internal var forgotPasswordView: ForgotPasswordView {

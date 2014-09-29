@@ -25,7 +25,23 @@ import UIKit
 }
 
 
-public class LoginWidget: BaseWidget {
+public class LoginWidget: BaseWidget, AuthBased {
+
+	@IBInspectable public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
+		didSet {
+			(widgetView as? LoginView)?.authMethod = authMethod
+
+			switch AuthMethod.fromRaw(authMethod)! {
+				case .Email:
+					connector = LiferayLoginEmailConnector(widget: self)
+				case .ScreenName:
+					connector = LiferayLoginScreenNameConnector(widget: self)
+				case .UserId:
+					connector = LiferayLoginUserIdConnector(widget: self)
+				default: ()
+			}
+		}
+	}
 
 	@IBInspectable public var saveCredentials: Bool = false {
 		didSet {
@@ -35,19 +51,6 @@ public class LoginWidget: BaseWidget {
 
 	@IBOutlet public var delegate: LoginWidgetDelegate?
 
-	public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
-		didSet {
-			(widgetView as? LoginView)?.authMethod = authMethod
-
-			switch AuthMethod.fromRaw(authMethod)! {
-				case .Email:
-					connector = LiferayLoginEmailConnector(widget: self)
-				case .ScreenName:
-					connector = LiferayLoginScreenNameConnector(widget: self)
-				default: ()
-			}
-		}
-	}
 
 	internal var loginView: LoginView {
 		return widgetView as LoginView

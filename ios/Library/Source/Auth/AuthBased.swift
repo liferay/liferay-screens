@@ -24,8 +24,8 @@ import UIKit
 
 @objc public protocol AuthBased {
 
-	var saveCredentials: Bool { get set }
 	var authMethod: AuthMethodType { get set }
+	var saveCredentials: Bool { get set }
 
 }
 
