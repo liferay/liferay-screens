@@ -29,7 +29,7 @@ public class LoginWidget: BaseWidget, AuthBased {
 
 	@IBInspectable public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
 		didSet {
-			(widgetView as? LoginView)?.authMethod = authMethod
+			copyAuth(source: self, target: widgetView)
 
 			switch AuthMethod.fromRaw(authMethod)! {
 				case .Email:
@@ -64,7 +64,7 @@ public class LoginWidget: BaseWidget, AuthBased {
 	//MARK: BaseWidget
 
 	override internal func onCreated() {
-		loginView.saveCredentials = self.saveCredentials
+		copyAuth(source: self, target: widgetView)
 
 		if SessionContext.loadSessionFromStore() {
 			loginView.userName = SessionContext.currentUserName!

@@ -29,7 +29,7 @@ import UIKit
 
 	@IBInspectable public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
 		didSet {
-			(widgetView as? LoginView)?.authMethod = authMethod
+			copyAuth(source: self, target: widgetView)
 
 			switch AuthMethod.fromRaw(authMethod)! {
 				case .Email:
@@ -62,6 +62,8 @@ import UIKit
 	//MARK: BaseWidget
 
 	override internal func onCreated() {
+		copyAuth(source: self, target: widgetView)
+
 		if let userName = SessionContext.currentUserName {
 			forgotPasswordView.userName = userName
 		}

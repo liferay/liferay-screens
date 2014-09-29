@@ -29,6 +29,15 @@ import UIKit
 
 }
 
+
+public func copyAuth(#source: AuthBased, #target: AnyObject?) {
+	if let authBasedTarget = target as? AuthBased {
+		authBasedTarget.authMethod = source.authMethod
+		authBasedTarget.saveCredentials = source.saveCredentials
+	}
+}
+
+
 public let AuthMethodTypeEmail = AuthMethod.Email.toRaw()
 public let AuthMethodTypeScreenName = AuthMethod.ScreenName.toRaw()
 public let AuthMethodTypeUserId = AuthMethod.UserId.toRaw()
