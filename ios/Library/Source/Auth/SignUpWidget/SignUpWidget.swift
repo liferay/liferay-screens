@@ -87,6 +87,9 @@ import UIKit
 	private func sendSignUp() {
 		connector = LiferaySignUpConnector(widget: self)
 
+		signUpConnector.anonymousApiUserName = anonymousApiUserName
+		signUpConnector.anonymousApiPassword = anonymousApiPassword
+
 		signUpConnector.emailAddress = signUpView.emailAddress
 		signUpConnector.password = signUpView.password
 		signUpConnector.firstName = signUpView.firstName
