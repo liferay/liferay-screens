@@ -33,21 +33,25 @@ import UIKit
 		didSet {
 			(widgetView as? LoginView)?.authMethod = authMethod
 
-			resetClosure = supportedResetClosures[AuthMethod.fromRaw(authMethod)!]
+			switch AuthMethod.fromRaw(authMethod)! {
+				case .Email:
+					connector = LiferayForgotPasswordEmailConnector(widget: self)
+				case .ScreenName:
+					connector = LiferayForgotPasswordScreenNameConnector(widget: self)
+				case .UserId:
+					connector = LiferayForgotPasswordUserIdConnector(widget: self)
+				default: ()
+			}
 		}
 	}
-
 
 	internal var forgotPasswordView: ForgotPasswordView {
 		return widgetView as ForgotPasswordView
 	}
 
-	private let supportedResetClosures = [
-		AuthMethod.Email: resetPasswordWithEmail,
-		AuthMethod.ScreenName: resetPasswordWithScreenName,
-		AuthMethod.UserId: resetPasswordWithUserId]
-
-	private var resetClosure: ((String, LRMobilewidgetsuserService_v62, NSError -> Void) -> Void)?
+	internal var forgotPasswordConnector: LiferayForgotPasswordBaseConnector {
+		return connector as LiferayForgotPasswordBaseConnector
+	}
 
 
 	//MARK: BaseWidget
@@ -59,113 +63,35 @@ import UIKit
 	}
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
-		if let userNameValue = forgotPasswordView.userName {
-			sendForgotPasswordRequest(userNameValue)
+		if forgotPasswordView.userName != nil {
+			sendForgotPasswordRequest(forgotPasswordView.userName!)
 		}
 		else {
 			showHUDAlert(message: "Please, enter the user name")
 		}
 	}
 
-	override internal func onServerError(error: NSError) {
-		delegate?.onForgotPasswordError?(error)
 
-		finishOperationWithError(error, message:"Error requesting password!")
-	}
-
-	override internal func onServerResult(result: [String:AnyObject]) {
-		if let resultValue:AnyObject = result["result"] {
-			let newPasswordSent = resultValue as Bool
-
-			delegate?.onForgotPasswordResponse?(newPasswordSent)
-
-			let userMessage = newPasswordSent
-					? "New password generated"
-					: "New password reset link sent"
-
-			finishOperationWithMessage(userMessage, details: "Check your email inbox")
-		}
-		else {
-			var errorMsg:String? = result["error"]?.description
-
-			if errorMsg == nil {
-				errorMsg = result["exception.localizedMessage"]?.description
-			}
-
-			finishOperationWithMessage("An error happened", details: errorMsg)
-		}
-	}
-
-	
 	//MARK: Private methods
 
-	private func sendForgotPasswordRequest(username:String) {
-		if anonymousApiUserName == nil || anonymousApiPassword == nil {
-			println(
-				"ERROR: The credentials to use for anonymous API calls must be set in order " +
-					"to use ForgotPasswordWidget")
+	private func sendForgotPasswordRequest(userName:String) {
+		forgotPasswordConnector.anonymousApiUserName = anonymousApiUserName
+		forgotPasswordConnector.anonymousApiPassword = anonymousApiPassword
 
-			return
+		forgotPasswordConnector.userName = userName
+
+		forgotPasswordConnector.onComplete = {
+			if let error = $0.lastError {
+				self.delegate?.onForgotPasswordError?(error)
+			}
+			else {
+				self.delegate?.onForgotPasswordResponse?(
+						self.forgotPasswordConnector.newPasswordSent!)
+			}
 		}
 
-		startOperationWithMessage("Sending password request...", details:"Wait few seconds...")
-
-		let session = LRSession(
-				server: LiferayServerContext.instance.server,
-				username: anonymousApiUserName!,
-				password: anonymousApiPassword!)
-		session.callback = self
-
-		resetClosure!(username, LRMobilewidgetsuserService_v62(session: session)) {
-			self.onFailure($0)
-		}
+		forgotPasswordConnector.addToQueue()
 	}
 
 }
 
-func resetPasswordWithEmail(email:String,
-		service:LRMobilewidgetsuserService_v62,
-		onError:(NSError) -> Void) {
-
-	var outError: NSError?
-
-	service.sendPasswordByEmailAddressWithCompanyId(
-			(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
-			emailAddress: email,
-			error: &outError)
-
-	if let error = outError {
-		onError(error)
-	}
-}
-
-func resetPasswordWithScreenName(screenName:String,
-		service:LRMobilewidgetsuserService_v62,
-		onError:(NSError) -> Void) {
-
-	var outError: NSError?
-
-	service.sendPasswordByScreenNameWithCompanyId(
-			(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
-			screenName: screenName,
-			error: &outError)
-
-	if let error = outError {
-		onError(error)
-	}
-}
-
-func resetPasswordWithUserId(userId:String,
-		service:LRMobilewidgetsuserService_v62,
-		onError:(NSError) -> Void) {
-
-	let userIdValue = (userId.toInt()! as NSNumber).longLongValue
-
-	var outError: NSError?
-
-	service.sendPasswordByUserIdWithUserId(userIdValue, error: &outError)
-
-	if let error = outError {
-		onError(error)
-	}
-}
