@@ -77,8 +77,6 @@ import UIKit
 				}
 			}
 		}
-
-		finishOperation()
 	}
 
 
@@ -98,8 +96,6 @@ import UIKit
 		signUpConnector.enqueue() {
 			if $0.lastError != nil {
 				self.delegate?.onSignUpError?($0.lastError!)
-
-				self.finishOperationWithError($0.lastError!, message:"Error signing up!")
 			}
 			else {
 				self.onSignUpResult(self.signUpConnector)

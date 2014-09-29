@@ -36,7 +36,12 @@ class LiferaySignUpConnector: BaseConnector {
 	}
 
 	override func postRun() {
-
+		if lastError != nil {
+			hideHUD(error: lastError!, message:"Error signing up!")
+		}
+		else {
+			hideHUD()
+		}
 	}
 
 
