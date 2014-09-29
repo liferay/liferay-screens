@@ -11,23 +11,11 @@ import UIKit
 
 class LiferayForgotPasswordBaseConnector: BaseConnector {
 
-	var anonymousApiUserName: String?
-	var anonymousApiPassword: String?
-
 	var userName: String?
 
 	var newPasswordSent: Bool?
 
-
 	override func preRun() -> Bool {
-		if anonymousApiUserName == nil || anonymousApiPassword == nil {
-			println(
-				"ERROR: The credentials to use for anonymous API calls must be set in order " +
-				"to use ForgetPasswordWidget")
-
-			return false
-		}
-
 		showHUD(message: "Sending password request...", details: "Wait few seconds...")
 
 		return true
@@ -52,8 +40,8 @@ class LiferayForgotPasswordBaseConnector: BaseConnector {
 	override func doRun() {
 		let session = LRSession(
 				server: LiferayServerContext.instance.server,
-				username: anonymousApiUserName!,
-				password: anonymousApiPassword!)
+				username: anonymousAuth!.anonymousApiUserName!,
+				password: anonymousAuth!.anonymousApiPassword!)
 
 		var outError: NSError?
 

@@ -22,7 +22,7 @@ import UIKit
 }
 
 
-@IBDesignable public class ForgotPasswordWidget: BaseWidget {
+@IBDesignable public class ForgotPasswordWidget: BaseWidget, AnonymousAuth {
 
 	@IBInspectable public var anonymousApiUserName: String?
 	@IBInspectable public var anonymousApiPassword: String?
@@ -75,9 +75,6 @@ import UIKit
 	//MARK: Private methods
 
 	private func sendForgotPasswordRequest(userName:String) {
-		forgotPasswordConnector.anonymousApiUserName = anonymousApiUserName
-		forgotPasswordConnector.anonymousApiPassword = anonymousApiPassword
-
 		forgotPasswordConnector.userName = userName
 
 		forgotPasswordConnector.onComplete = {

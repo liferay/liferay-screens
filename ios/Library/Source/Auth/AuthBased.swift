@@ -14,13 +14,20 @@
 import UIKit
 
 
+@objc public protocol AnonymousAuth {
+
+	var anonymousApiUserName: String? { get set }
+	var anonymousApiPassword: String? { get set }
+
+}
+
+
 @objc public protocol AuthBased {
 
 	var saveCredentials: Bool { get set }
 	var authMethod: AuthMethodType { get set }
 
 }
-
 
 public let AuthMethodTypeEmail = AuthMethod.Email.toRaw()
 public let AuthMethodTypeScreenName = AuthMethod.ScreenName.toRaw()

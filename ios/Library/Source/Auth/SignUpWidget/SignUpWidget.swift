@@ -22,7 +22,7 @@ import UIKit
 }
 
 
-@IBDesignable public class SignUpWidget: BaseWidget {
+@IBDesignable public class SignUpWidget: BaseWidget, AnonymousAuth {
 
 	@IBInspectable public var anonymousApiUserName: String?
 	@IBInspectable public var anonymousApiPassword: String?
@@ -84,9 +84,6 @@ import UIKit
 
 	private func sendSignUp() {
 		connector = LiferaySignUpConnector(widget: self)
-
-		signUpConnector.anonymousApiUserName = anonymousApiUserName
-		signUpConnector.anonymousApiPassword = anonymousApiPassword
 
 		signUpConnector.emailAddress = signUpView.emailAddress
 		signUpConnector.password = signUpView.password

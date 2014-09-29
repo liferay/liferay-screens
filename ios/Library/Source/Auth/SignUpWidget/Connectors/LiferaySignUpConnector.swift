@@ -21,14 +21,6 @@ class LiferaySignUpConnector: BaseConnector {
 	var lastName: String?
 
 	override func preRun() -> Bool {
-		if anonymousApiUserName == nil || anonymousApiPassword == nil {
-			println(
-				"ERROR: The credentials to use for anonymous API calls must be set in order to use " +
-				"SignUpWidget")
-
-			return false
-		}
-
 		showHUD(message: "Sending sign up...", details: "Wait few seconds...")
 
 		return true
@@ -43,7 +35,6 @@ class LiferaySignUpConnector: BaseConnector {
 			hideHUD()
 		}
 	}
-
 
 	override func doRun() {
 		let session = LRSession(

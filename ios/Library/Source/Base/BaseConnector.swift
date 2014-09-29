@@ -31,7 +31,12 @@ class BaseConnector: NSOperation {
 	var lastError: NSError?
 	var widget: BaseWidget
 
+	internal var anonymousAuth: AnonymousAuth? {
+		return widget as? AnonymousAuth
+	}
+
 	internal var onComplete: (BaseConnector -> Void)?
+
 
 	init(widget: BaseWidget) {
 		self.widget = widget
@@ -48,6 +53,17 @@ class BaseConnector: NSOperation {
 	}
 
 	internal override func main() {
+		if let anonymousAuthValue = anonymousAuth {
+			if anonymousAuthValue.anonymousApiUserName == nil ||
+					anonymousAuthValue.anonymousApiPassword == nil {
+
+				println("ERROR: The credentials to use for anonymous API calls must be set " +
+						"in order to use this widget")
+
+				return
+			}
+		}
+
 		if preRun() {
 			doRun()
 			postRun()
