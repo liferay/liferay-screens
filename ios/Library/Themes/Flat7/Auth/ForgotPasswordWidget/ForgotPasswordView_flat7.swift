@@ -67,9 +67,10 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 
 	//MARK: ForgotPasswordView
 	
-	override public func setUserName(userName: String) {
-		super.setUserName(userName)
-		userNamePlaceholder!.changeVisibility(visible: userName != "")
+	override public var userName: String? {
+		didSet {
+			userNamePlaceholder!.changeVisibility(visible: userName != "")
+		}
 	}
 
 

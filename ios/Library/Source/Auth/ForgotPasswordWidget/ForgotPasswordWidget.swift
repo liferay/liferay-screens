@@ -29,6 +29,15 @@ import UIKit
 
 	@IBOutlet public var delegate: ForgotPasswordWidgetDelegate?
 
+	public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
+		didSet {
+			(widgetView as? LoginView)?.authMethod = authMethod
+
+			resetClosure = supportedResetClosures[AuthMethod.fromRaw(authMethod)!]
+		}
+	}
+
+
 	internal var forgotPasswordView: ForgotPasswordView {
 		return widgetView as ForgotPasswordView
 	}
@@ -44,15 +53,18 @@ import UIKit
 	//MARK: BaseWidget
 
 	override internal func onCreated() {
-		setAuthMethod(AuthMethod.Email.toRaw())
-
 		if let userName = SessionContext.currentUserName {
-			forgotPasswordView.setUserName(userName)
+			forgotPasswordView.userName = userName
 		}
 	}
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
-		sendForgotPasswordRequest(forgotPasswordView.getUserName())
+		if let userNameValue = forgotPasswordView.userName {
+			sendForgotPasswordRequest(userNameValue)
+		}
+		else {
+			showHUDWithMessage("Please, enter the user name", details: nil, closeMode: .NoAutoclose(true), spinnerMode: .NoSpinner)
+		}
 	}
 
 	override internal func onServerError(error: NSError) {
@@ -82,15 +94,6 @@ import UIKit
 
 			finishOperationWithMessage("An error happened", details: errorMsg)
 		}
-	}
-
-	
-	//MARK: Public methods
-
-	public func setAuthMethod(authMethod:AuthMethodType) {
-		forgotPasswordView.setAuthMethod(authMethod)
-
-		resetClosure = supportedResetClosures[AuthMethod.fromRaw(authMethod)!]
 	}
 
 	

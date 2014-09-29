@@ -14,16 +14,8 @@
 import UIKit
 
 
-public class ForgotPasswordView: BaseWidgetView, UITextFieldDelegate {
+@objc public protocol ForgotPasswordView: AuthBased {
 
-	public func setAuthMethod(authMethod: AuthMethodType) {
-	}
-
-	public func getUserName() -> String {
-		return ""
-	}
-
-	public func setUserName(userName: String) {
-	}
+	var userName: String? { get set }
 
 }

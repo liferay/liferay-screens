@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class ForgotPasswordView_default: ForgotPasswordView {
+public class ForgotPasswordView_default: BaseWidgetView, ForgotPasswordView {
 
 	@IBOutlet internal var userNameIcon: UIImageView?
 	@IBOutlet internal var userNameField: UITextField?
@@ -23,20 +23,31 @@ public class ForgotPasswordView_default: ForgotPasswordView {
 
 	//MARK: ForgotPasswordView
 
-	override public func getUserName() -> String {
-		return userNameField!.text
+	public var userName: String? {
+		get {
+			return userNameField!.text == "" ? nil : userNameField!.text
+		}
+		set {
+			userNameField!.text = newValue
+		}
 	}
 
-	override public func setUserName(userName: String) {
-		userNameField!.text = userName
+	public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
+		didSet {
+			setAuthMethodStyles(
+					authMethod: AuthMethod.fromRaw(authMethod)!,
+					userNameField: userNameField,
+					userNameIcon: userNameIcon)
+		}
 	}
 
-	override public func setAuthMethod(authMethod: AuthMethodType) {
-		setAuthMethodStyles(
-				authMethod: AuthMethod.fromRaw(authMethod)!,
-				userNameField: userNameField,
-				userNameIcon: userNameIcon)
+	public var saveCredentials: Bool {
+		get {
+			return false
+		}
+		set {}
 	}
+
 
 
 	//MARK: UITextFieldDelegate
