@@ -95,7 +95,7 @@ import UIKit
 		signUpConnector.firstName = signUpView.firstName
 		signUpConnector.lastName = signUpView.lastName
 
-		signUpConnector.addToQueue() {
+		signUpConnector.enqueue() {
 			if $0.lastError != nil {
 				self.delegate?.onSignUpError?($0.lastError!)
 

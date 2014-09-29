@@ -39,7 +39,7 @@ class BaseConnector: NSOperation {
 		super.init()
 	}
 
-	func addToQueue(onComplete: (BaseConnector -> Void)? = nil) {
+	func enqueue(onComplete: (BaseConnector -> Void)? = nil) {
 		if onComplete != nil {
 			self.onComplete = onComplete
 		}

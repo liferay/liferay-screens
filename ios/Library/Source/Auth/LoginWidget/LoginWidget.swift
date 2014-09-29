@@ -102,7 +102,7 @@ public class LoginWidget: BaseWidget {
 		loginConnector.userName = userName
 		loginConnector.password = password
 
-		loginConnector.addToQueue() {
+		loginConnector.enqueue() {
 			if let error = $0.lastError {
 				self.delegate?.onLoginError?(error)
 			}

@@ -90,7 +90,7 @@ import UIKit
 			}
 		}
 
-		forgotPasswordConnector.addToQueue()
+		forgotPasswordConnector.enqueue()
 	}
 
 }
