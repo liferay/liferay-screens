@@ -37,12 +37,7 @@ class LiferayForgotPasswordBaseConnector: BaseConnector {
 		}
 	}
 
-	override func doRun() {
-		let session = LRSession(
-				server: LiferayServerContext.instance.server,
-				username: anonymousAuth!.anonymousApiUserName!,
-				password: anonymousAuth!.anonymousApiPassword!)
-
+	override func doRun(#session: LRSession) {
 		var outError: NSError?
 
 		let result = sendForgotPasswordRequest(

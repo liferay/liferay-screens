@@ -54,18 +54,28 @@ class BaseConnector: NSOperation {
 
 	internal override func main() {
 		if let anonymousAuthValue = anonymousAuth {
-			if anonymousAuthValue.anonymousApiUserName == nil ||
-					anonymousAuthValue.anonymousApiPassword == nil {
-
-				println("ERROR: The credentials to use for anonymous API calls must be set " +
-						"in order to use this widget")
-
-				return
-			}
+			assert(anonymousAuthValue.anonymousApiUserName != nil,
+					"User name required for anonymous API calls")
+			assert(anonymousAuthValue.anonymousApiPassword != nil,
+					"Password required for anonymous API calls")
 		}
 
 		if preRun() {
-			doRun()
+			var session: LRSession?
+
+			if let anonymousAuthValue = anonymousAuth {
+				session = LRSession(
+						server: LiferayServerContext.instance.server,
+						username: anonymousAuthValue.anonymousApiUserName!,
+						password: anonymousAuthValue.anonymousApiPassword!)
+			}
+			else {
+				session = SessionContext.createSessionFromCurrentSession()
+				assert(session != nil, "Login required to use this widget")
+			}
+
+			doRun(session: session!)
+
 			postRun()
 
 			if self.onComplete != nil {
@@ -80,7 +90,7 @@ class BaseConnector: NSOperation {
 		return false
 	}
 
-	internal func doRun() {
+	internal func doRun(#session: LRSession) {
 	}
 
 	internal func postRun() {

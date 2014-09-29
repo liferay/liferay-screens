@@ -36,12 +36,7 @@ class LiferaySignUpConnector: BaseConnector {
 		}
 	}
 
-	override func doRun() {
-		let session = LRSession(
-				server: LiferayServerContext.instance.server,
-				username: anonymousApiUserName!,
-				password: anonymousApiPassword!)
-
+	override func doRun(#session: LRSession) {
 		let service = LRUserService_v62(session: session)
 
 		var outError: NSError?

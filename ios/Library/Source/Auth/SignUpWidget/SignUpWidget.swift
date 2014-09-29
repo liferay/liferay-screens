@@ -98,7 +98,6 @@ import UIKit
 				self.onSignUpResult()
 			}
 		}
-
 	}
 
 }

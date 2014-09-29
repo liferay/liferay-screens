@@ -38,12 +38,7 @@ class LiferayLoginBaseConnector: BaseConnector {
 		}
 	}
 
-	override func doRun() {
-		let session = LRSession(
-				server: LiferayServerContext.instance.server,
-				username: userName,
-				password: password)
-
+	override func doRun(#session: LRSession) {
 		var outError: NSError?
 
 		let result = sendGetUserRequest(
