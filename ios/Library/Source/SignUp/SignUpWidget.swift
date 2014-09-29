@@ -39,6 +39,10 @@ import UIKit
 		return widgetView as SignUpView
 	}
 
+	internal var signUpConnector: LiferaySignUpConnector {
+		return connector as LiferaySignUpConnector
+	}
+
 	private var creatingUsername: String?
 	private var creatingPassword: String?
 
@@ -96,21 +100,21 @@ import UIKit
 				username: anonymousApiUserName!,
 				password: anonymousApiPassword!)
 
-		let connector = LiferaySignUpConnector(widget: self, session: session)
+		connector = LiferaySignUpConnector(widget: self, session: session)
 
-		connector.emailAddress = signUpView.getEmailAddress()
-		connector.password = signUpView.getPassword()
-		connector.firstName = signUpView.getFirstName()
-		connector.lastName = signUpView.getLastName()
+		signUpConnector.emailAddress = signUpView.getEmailAddress()
+		signUpConnector.password = signUpView.getPassword()
+		signUpConnector.firstName = signUpView.getFirstName()
+		signUpConnector.lastName = signUpView.getLastName()
 
-		connector.addToQueue() {
+		signUpConnector.addToQueue() {
 			if $0.lastError != nil {
 				self.delegate?.onSignUpError?($0.lastError!)
 
 				self.finishOperationWithError($0.lastError!, message:"Error signing up!")
 			}
 			else {
-				self.onSignUpResult($0 as LiferaySignUpConnector)
+				self.onSignUpResult(self.signUpConnector)
 			}
 		}
 

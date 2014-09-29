@@ -43,9 +43,9 @@ public class LoginWidget: BaseWidget {
 
 			switch authType {
 				case .Email:
-					loginConnector = LiferayLoginEmailConnector(widget: self)
+					connector = LiferayLoginEmailConnector(widget: self)
 				case .ScreenName:
-					loginConnector = LiferayLoginScreenNameConnector(widget: self)
+					connector = LiferayLoginScreenNameConnector(widget: self)
 				default: ()
 			}
 		}
@@ -55,8 +55,11 @@ public class LoginWidget: BaseWidget {
 		return widgetView as LoginView
 	}
 
+	internal var loginConnector: LiferayLoginBaseConnector {
+		return connector as LiferayLoginBaseConnector
+	}
+
 	private var loginSession: LRSession?
-	private var loginConnector: LiferayLoginBaseConnector?
 
 
 	//MARK: BaseWidget
@@ -97,17 +100,15 @@ public class LoginWidget: BaseWidget {
 	//MARK: Private methods
 
 	private func sendLoginWithUserName(userName:String, password:String) {
-		loginConnector!.userName = userName
-		loginConnector!.password = password
+		loginConnector.userName = userName
+		loginConnector.password = password
 
-		loginConnector!.addToQueue() {
+		loginConnector.addToQueue() {
 			if let error = $0.lastError {
 				self.delegate?.onLoginError?(error)
 			}
 			else {
-				let loginConnector = $0 as LiferayLoginBaseConnector
-
-				self.onLoginResult(loginConnector.loggedUserAttributes!, session: loginConnector.session!)
+				self.onLoginResult(self.loginConnector.loggedUserAttributes!, session: self.loginConnector.session!)
 			}
 		}
 	}

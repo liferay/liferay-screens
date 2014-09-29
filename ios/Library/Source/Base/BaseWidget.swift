@@ -31,6 +31,7 @@ import QuartzCore
 	}
 
 	internal var widgetView: BaseWidgetView?
+	internal var connector: BaseConnector?
 
 	internal var currentThemeName: String {
 		var result = "default"
