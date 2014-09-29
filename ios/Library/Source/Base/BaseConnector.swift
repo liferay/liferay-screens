@@ -29,14 +29,12 @@ enum LiferayConnectorsQueue {
 class BaseConnector: NSOperation {
 
 	var lastError: NSError?
-	var session: LRSession?
 	var widget: BaseWidget
 
 	internal var onComplete: (BaseConnector -> Void)?
 
-	init(widget: BaseWidget, session: LRSession?) {
+	init(widget: BaseWidget) {
 		self.widget = widget
-		self.session = session
 
 		super.init()
 	}

@@ -65,8 +65,8 @@ import UIKit
 			SessionContext.removeStoredSession()
 
 			SessionContext.createSession(
-					username: connector.session!.username!,
-					password: connector.session!.password!,
+					username: connector.emailAddress!,
+					password: connector.password!,
 					userAttributes: connector.createdUserAttributes!)
 
 			autoLoginDelegate?.onLoginResponse?(connector.createdUserAttributes!)
@@ -101,7 +101,7 @@ import UIKit
 				username: anonymousApiUserName!,
 				password: anonymousApiPassword!)
 
-		connector = LiferaySignUpConnector(widget: self, session: session)
+		connector = LiferaySignUpConnector(widget: self)
 
 		signUpConnector.emailAddress = signUpView.emailAddress
 		signUpConnector.password = signUpView.password

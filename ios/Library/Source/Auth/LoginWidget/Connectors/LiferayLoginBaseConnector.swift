@@ -15,9 +15,6 @@ class LiferayLoginBaseConnector: BaseConnector {
 	var userName: String?
 	var password: String?
 
-	init(widget: BaseWidget) {
-		super.init(widget: widget, session: nil)
-	}
 
 	override func preRun() -> Bool {
 		if userName == nil || password == nil {
@@ -42,7 +39,7 @@ class LiferayLoginBaseConnector: BaseConnector {
 	}
 
 	override func doRun() {
-		session = LRSession(
+		let session = LRSession(
 				server: LiferayServerContext.instance.server,
 				username: userName,
 				password: password)

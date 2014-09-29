@@ -79,13 +79,13 @@ public class LoginWidget: BaseWidget {
 		}
 	}
 
-	internal func onLoginResult(result: [String:AnyObject], session: LRSession) {
+	internal func onLoginResult() {
 		SessionContext.createSession(
-				username: session.username,
-				password: session.password,
-				userAttributes: result)
+				username: loginConnector.userName!,
+				password: loginConnector.password!,
+				userAttributes: loginConnector.loggedUserAttributes!)
 
-		delegate?.onLoginResponse?(result)
+		delegate?.onLoginResponse?(loginConnector.loggedUserAttributes!)
 
 		if saveCredentials {
 			if SessionContext.storeSession() {
@@ -106,7 +106,7 @@ public class LoginWidget: BaseWidget {
 				self.delegate?.onLoginError?(error)
 			}
 			else {
-				self.onLoginResult(self.loginConnector.loggedUserAttributes!, session: self.loginConnector.session!)
+				self.onLoginResult()
 			}
 		}
 	}
