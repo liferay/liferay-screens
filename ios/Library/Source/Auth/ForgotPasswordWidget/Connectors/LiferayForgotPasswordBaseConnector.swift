@@ -14,6 +14,9 @@ class LiferayForgotPasswordBaseConnector: BaseConnector {
 	var newPasswordSent: Bool?
 
 	override func preRun() -> Bool {
+		let view = widget.widgetView as ForgotPasswordView
+		assert(view.userName != nil, "User name is required to forgot password request")
+
 		showHUD(message: "Sending password request...", details: "Wait few seconds...")
 
 		return true

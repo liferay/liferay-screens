@@ -14,7 +14,6 @@ class LiferayLoginBaseConnector: BaseConnector {
 
 	override func preRun() -> Bool {
 		let view = widget.widgetView as LoginView
-
 		assert(view.userName != nil, "User name is required to log in")
 		assert(view.password != nil, "Password is required to log in")
 
