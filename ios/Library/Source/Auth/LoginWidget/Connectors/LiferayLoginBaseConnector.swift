@@ -22,7 +22,10 @@ class LiferayLoginBaseConnector: BaseConnector, NSCopying {
 
 		showHUD(message: "Sending sign in...", details:"Wait few seconds...")
 
-		SessionContext.clearSession()
+		SessionContext.createSession(
+				username: view.userName!,
+				password: view.password!,
+				userAttributes: [:])
 
 		return true
 	}
@@ -32,7 +35,7 @@ class LiferayLoginBaseConnector: BaseConnector, NSCopying {
 			hideHUD()
 		}
 		else {
-			SessionContext.removeStoredSession()
+			SessionContext.clearSession()
 			hideHUD(error: lastError!, message: "Error signing in!")
 		}
 	}
