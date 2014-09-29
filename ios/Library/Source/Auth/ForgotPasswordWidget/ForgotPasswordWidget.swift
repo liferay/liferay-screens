@@ -63,7 +63,7 @@ import UIKit
 			sendForgotPasswordRequest(userNameValue)
 		}
 		else {
-			showHUDWithMessage("Please, enter the user name", details: nil, closeMode: .NoAutoclose(true), spinnerMode: .NoSpinner)
+			showHUDAlert(message: "Please, enter the user name")
 		}
 	}
 

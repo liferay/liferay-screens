@@ -176,6 +176,12 @@ extension BaseWidget {
 		}
 	}
 
+	public func showHUDAlert(#message: String, details: String? = nil) {
+		//FIXME Change "NoAutoclose(true)" by "NoAutoclose" when LMW-83 is merged
+
+		showHUDWithMessage(message, details: details, closeMode: .NoAutoclose(true), spinnerMode: .NoSpinner)
+	}
+
 	/*
 	 * hideHUDWithMessage hides an existing animated Progress HUD displaying the message and
 	 * details provided first for a few seconds, calculated based on the length of the message.
