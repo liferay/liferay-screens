@@ -29,9 +29,7 @@ public class LoginWidget: BaseWidget {
 
 	@IBInspectable public var saveCredentials: Bool = false {
 		didSet {
-			if widgetView != nil {
-				loginView.saveCredentials = self.saveCredentials
-			}
+			(widgetView as? LoginView)?.saveCredentials = self.saveCredentials
 		}
 	}
 
