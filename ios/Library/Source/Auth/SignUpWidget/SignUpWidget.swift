@@ -85,22 +85,6 @@ import UIKit
 	//MARK: Private methods
 
 	private func sendSignUp() {
-
-		if anonymousApiUserName == nil || anonymousApiPassword == nil {
-			println(
-				"ERROR: The credentials to use for anonymous API calls must be set in order to use " +
-				"SignUpWidget")
-
-			return
-		}
-
-		startOperationWithMessage("Sending sign up...", details:"Wait few seconds...")
-
-		let session = LRSession(
-				server: LiferayServerContext.instance.server,
-				username: anonymousApiUserName!,
-				password: anonymousApiPassword!)
-
 		connector = LiferaySignUpConnector(widget: self)
 
 		signUpConnector.emailAddress = signUpView.emailAddress

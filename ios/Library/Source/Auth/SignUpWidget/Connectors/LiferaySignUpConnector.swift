@@ -12,13 +12,40 @@ class LiferaySignUpConnector: BaseConnector {
 
 	var createdUserAttributes: [String:AnyObject]?
 
+	var anonymousApiUserName: String?
+	var anonymousApiPassword: String?
+
 	var emailAddress: String?
 	var password: String?
 	var firstName: String?
 	var lastName: String?
 
+	override func preRun() -> Bool {
+		if anonymousApiUserName == nil || anonymousApiPassword == nil {
+			println(
+				"ERROR: The credentials to use for anonymous API calls must be set in order to use " +
+				"SignUpWidget")
 
-	override func main() {
+			return false
+		}
+
+		showHUD(message: "Sending sign up...", details: "Wait few seconds...")
+
+		return true
+
+	}
+
+	override func postRun() {
+
+	}
+
+
+	override func doRun() {
+		let session = LRSession(
+				server: LiferayServerContext.instance.server,
+				username: anonymousApiUserName!,
+				password: anonymousApiPassword!)
+
 		let service = LRUserService_v62(session: session)
 
 		var outError: NSError?
