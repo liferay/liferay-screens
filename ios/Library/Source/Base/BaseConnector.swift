@@ -80,6 +80,21 @@ class BaseConnector: NSOperation {
 		}
 	}
 
+	internal func hideHUD(#message: String, details: String? = nil) {
+		dispatch_async(dispatch_get_main_queue()) {
+			self.widget.finishOperationWithMessage(message, details: details)
+		}
+	}
+
+	internal func hideHUD(#errorMessage: String, details: String? = nil) {
+		dispatch_async(dispatch_get_main_queue()) {
+			self.widget.showHUDWithMessage(errorMessage,
+					details: details,
+					closeMode:.NoAutoclose(true),
+					spinnerMode:.NoSpinner)
+		}
+	}
+
 	internal func hideHUD(#error: NSError, message: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
 			self.widget.finishOperationWithError(error, message: message, details: details)
