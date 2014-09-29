@@ -25,7 +25,7 @@ public class ForgotPasswordView_default: BaseWidgetView, ForgotPasswordView {
 
 	public var userName: String? {
 		get {
-			return userNameField!.text == "" ? nil : userNameField!.text
+			return nullIfEmpty(userNameField!.text)
 		}
 		set {
 			userNameField!.text = newValue
