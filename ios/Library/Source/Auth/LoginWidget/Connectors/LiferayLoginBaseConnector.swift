@@ -8,9 +8,12 @@
 
 import UIKit
 
-class LiferayLoginBaseConnector: BaseConnector {
+class LiferayLoginBaseConnector: BaseConnector, NSCopying {
 
 	var loggedUserAttributes: [String:AnyObject]?
+
+
+	//MARK: BaseConnector
 
 	override func preRun() -> Bool {
 		let view = widget.widgetView as LoginView
@@ -51,7 +54,17 @@ class LiferayLoginBaseConnector: BaseConnector {
 		}
 	}
 
-	func sendGetUserRequest(#service: LRUserService_v62, error: NSErrorPointer) -> NSDictionary? {
+
+	//MARK: NSCopying
+
+	internal func copyWithZone(zone: NSZone) -> AnyObject {
+		return self
+	}
+
+
+	// MARK: Internal methods
+
+	internal func sendGetUserRequest(#service: LRUserService_v62, error: NSErrorPointer) -> NSDictionary? {
 		return nil
 	}
 

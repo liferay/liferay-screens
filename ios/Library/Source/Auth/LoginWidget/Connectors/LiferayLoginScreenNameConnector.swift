@@ -11,6 +11,8 @@ import UIKit
 
 class LiferayLoginScreenNameConnector: LiferayLoginBaseConnector {
 
+	//MARK: LiferayLoginBaseConnector
+
 	override func sendGetUserRequest(
 			#service: LRUserService_v62,
 			error: NSErrorPointer)
@@ -20,6 +22,17 @@ class LiferayLoginScreenNameConnector: LiferayLoginBaseConnector {
 				(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
 				screenName: (widget.widgetView as LoginView).userName!,
 				error: error)
+	}
+
+
+	//MARK: NSCopying
+
+	override internal func copyWithZone(zone: NSZone) -> AnyObject {
+		let result = LiferayLoginScreenNameConnector(widget: self.widget)
+
+		result.onComplete = self.onComplete
+
+		return result
 	}
 
 }

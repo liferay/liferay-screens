@@ -11,6 +11,8 @@ import UIKit
 
 class LiferayLoginUserIdConnector: LiferayLoginBaseConnector {
 
+	//MARK: LiferayLoginBaseConnector
+
 	override func sendGetUserRequest(
 			#service: LRUserService_v62,
 			error: NSErrorPointer)
@@ -21,6 +23,17 @@ class LiferayLoginUserIdConnector: LiferayLoginBaseConnector {
 		let userId = (view.userName!.toInt()! as NSNumber).longLongValue
 
 		return service.getUserByIdWithUserId(userId, error: error)
+	}
+
+
+	//MARK: NSCopying
+
+	override internal func copyWithZone(zone: NSZone) -> AnyObject {
+		let result = LiferayLoginUserIdConnector(widget: self.widget)
+
+		result.onComplete = self.onComplete
+
+		return result
 	}
 
 }

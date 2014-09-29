@@ -31,18 +31,20 @@ class BaseConnector: NSOperation {
 	var lastError: NSError?
 	var widget: BaseWidget
 
+	internal var onComplete: (BaseConnector -> Void)?
+
 	internal var anonymousAuth: AnonymousAuth? {
 		return widget as? AnonymousAuth
 	}
-
-	internal var onComplete: (BaseConnector -> Void)?
-
 
 	init(widget: BaseWidget) {
 		self.widget = widget
 
 		super.init()
+
+		self.name = NSStringFromClass(self.dynamicType)
 	}
+
 
 	func enqueue(onComplete: (BaseConnector -> Void)? = nil) {
 		if onComplete != nil {
@@ -79,9 +81,13 @@ class BaseConnector: NSOperation {
 			postRun()
 
 			if self.onComplete != nil {
-				dispatch_async(dispatch_get_main_queue()) {
+				dispatch_sync(dispatch_get_main_queue()) {
 					self.onComplete!(self)
 				}
+			}
+
+			if self is NSCopying {
+				widget.connector = self.copy() as? BaseConnector
 			}
 		}
 	}

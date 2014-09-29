@@ -8,9 +8,12 @@
 
 import UIKit
 
-class LiferaySignUpConnector: BaseConnector {
+class LiferaySignUpConnector: BaseConnector, NSCopying {
 
 	var createdUserAttributes: [String:AnyObject]?
+
+
+	//MARK: BaseConnector
 
 	override func preRun() -> Bool {
 		showHUD(message: "Sending sign up...", details: "Wait few seconds...")
@@ -81,6 +84,17 @@ class LiferaySignUpConnector: BaseConnector {
 			lastError = nil
 			createdUserAttributes = result as? [String:AnyObject]
 		}
+	}
+
+
+	//MARK: NSCopying
+
+	internal func copyWithZone(zone: NSZone) -> AnyObject {
+		let result = LiferaySignUpConnector(widget: self.widget)
+
+		result.onComplete = self.onComplete
+
+		return result
 	}
 
 }

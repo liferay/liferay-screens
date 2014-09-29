@@ -11,6 +11,8 @@ import UIKit
 
 class LiferayForgotPasswordEmailConnector: LiferayForgotPasswordBaseConnector {
 
+	//MARK: LiferayForgotPasswordBaseConnector
+
 	override func sendForgotPasswordRequest(
 			#service: LRMobilewidgetsuserService_v62,
 			error: NSErrorPointer)
@@ -20,6 +22,17 @@ class LiferayForgotPasswordEmailConnector: LiferayForgotPasswordBaseConnector {
 				(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
 				emailAddress: (widget.widgetView as ForgotPasswordView).userName!,
 				error: error)
+	}
+
+
+	//MARK: NSCopying
+
+	override internal func copyWithZone(zone: NSZone) -> AnyObject {
+		let result = LiferayForgotPasswordEmailConnector(widget: self.widget)
+
+		result.onComplete = self.onComplete
+
+		return result
 	}
 
 }

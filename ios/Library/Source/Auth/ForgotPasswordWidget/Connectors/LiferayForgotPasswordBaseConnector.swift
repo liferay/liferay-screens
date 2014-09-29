@@ -9,9 +9,12 @@
 import UIKit
 
 
-class LiferayForgotPasswordBaseConnector: BaseConnector {
+class LiferayForgotPasswordBaseConnector: BaseConnector, NSCopying {
 
 	var newPasswordSent: Bool?
+
+
+	//MARK BaseConnector
 
 	override func preRun() -> Bool {
 		let view = widget.widgetView as ForgotPasswordView
@@ -54,6 +57,14 @@ class LiferayForgotPasswordBaseConnector: BaseConnector {
 			newPasswordSent = result
 		}
 	}
+
+
+	//MARK: NSCopying
+
+	internal func copyWithZone(zone: NSZone) -> AnyObject {
+		return self
+	}
+
 
 	func sendForgotPasswordRequest(
 			#service: LRMobilewidgetsuserService_v62,
