@@ -37,6 +37,14 @@ public func nullIfEmpty(string: String?) -> String? {
 	return string
 }
 
+public func emptyIfNull(string: String?) -> String {
+	if string == nil {
+		return ""
+	}
+
+	return string!
+}
+
 
 func synchronized(lock:AnyObject, closure: Void -> Void) {
 	objc_sync_enter(lock)

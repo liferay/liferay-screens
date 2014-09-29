@@ -65,8 +65,8 @@ import UIKit
 			SessionContext.removeStoredSession()
 
 			SessionContext.createSession(
-					username: signUpConnector.emailAddress!,
-					password: signUpConnector.password!,
+					username: signUpView.emailAddress!,
+					password: signUpView.password!,
 					userAttributes: signUpConnector.createdUserAttributes!)
 
 			autoLoginDelegate?.onLoginResponse?(signUpConnector.createdUserAttributes!)
@@ -84,11 +84,6 @@ import UIKit
 
 	private func sendSignUp() {
 		connector = LiferaySignUpConnector(widget: self)
-
-		signUpConnector.emailAddress = signUpView.emailAddress
-		signUpConnector.password = signUpView.password
-		signUpConnector.firstName = signUpView.firstName
-		signUpConnector.lastName = signUpView.lastName
 
 		signUpConnector.enqueue() {
 			if $0.lastError != nil {

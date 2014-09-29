@@ -12,14 +12,6 @@ class LiferaySignUpConnector: BaseConnector {
 
 	var createdUserAttributes: [String:AnyObject]?
 
-	var anonymousApiUserName: String?
-	var anonymousApiPassword: String?
-
-	var emailAddress: String?
-	var password: String?
-	var firstName: String?
-	var lastName: String?
-
 	override func preRun() -> Bool {
 		showHUD(message: "Sending sign up...", details: "Wait few seconds...")
 
@@ -41,39 +33,38 @@ class LiferaySignUpConnector: BaseConnector {
 
 		var outError: NSError?
 
+		let view = widget.widgetView as SignUpView
+
 		// user name
-		let autoPassword = (password == "")
+		let autoPassword = (view.password == "")
 
 		// screen name
 		let screenName = "";
 		let autoScreenName = true
-
-		// names
-		let middleName = ""
 
 		let emptyDict = []
 
 		let result = service.addUserWithCompanyId(
 				(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
 				autoPassword: autoPassword,
-				password1: password,
-				password2: password,
+				password1: view.password,
+				password2: view.password,
 				autoScreenName: autoScreenName,
 				screenName: screenName,
-				emailAddress: emailAddress,
+				emailAddress: view.emailAddress,
 				facebookId: 0,
 				openId: "",
 				locale: NSLocale.currentLocaleString(),
-				firstName: firstName,
-				middleName: middleName,
-				lastName: lastName,
+				firstName: view.firstName,
+				middleName: emptyIfNull(view.middleName),
+				lastName: view.lastName,
 				prefixId: 0,
 				suffixId: 0,
 				male: true,
 				birthdayMonth: 1,
 				birthdayDay: 1,
 				birthdayYear: 1970,
-				jobTitle: "",
+				jobTitle: emptyIfNull(view.jobTitle),
 				groupIds: [LiferayServerContext.instance.groupId],
 				organizationIds: emptyDict,
 				roleIds: emptyDict,

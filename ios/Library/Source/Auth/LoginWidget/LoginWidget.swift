@@ -82,8 +82,8 @@ public class LoginWidget: BaseWidget {
 
 	internal func onLoginResult() {
 		SessionContext.createSession(
-				username: loginConnector.userName!,
-				password: loginConnector.password!,
+				username: loginView.userName!,
+				password: loginView.password!,
 				userAttributes: loginConnector.loggedUserAttributes!)
 
 		delegate?.onLoginResponse?(loginConnector.loggedUserAttributes!)
@@ -99,9 +99,6 @@ public class LoginWidget: BaseWidget {
 	//MARK: Private methods
 
 	private func sendLoginWithUserName(userName:String, password:String) {
-		loginConnector.userName = userName
-		loginConnector.password = password
-
 		loginConnector.enqueue() {
 			if let error = $0.lastError {
 				self.delegate?.onLoginError?(error)

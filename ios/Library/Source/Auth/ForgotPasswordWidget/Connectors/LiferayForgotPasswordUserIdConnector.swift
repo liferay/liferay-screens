@@ -16,7 +16,9 @@ class LiferayForgotPasswordUserIdConnector: LiferayForgotPasswordBaseConnector {
 			error: NSErrorPointer)
 			-> Bool? {
 
-		let userId = (userName!.toInt()! as NSNumber).longLongValue
+		let view = widget.widgetView as ForgotPasswordView
+
+		let userId = (view.userName!.toInt()! as NSNumber).longLongValue
 
 		return service.sendPasswordByUserIdWithUserId(userId, error: error)
 	}

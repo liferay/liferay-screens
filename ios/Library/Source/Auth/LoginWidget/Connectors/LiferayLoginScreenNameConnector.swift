@@ -11,10 +11,14 @@ import UIKit
 
 class LiferayLoginScreenNameConnector: LiferayLoginBaseConnector {
 
-	override func sendGetUserRequest(#service: LRUserService_v62, error: NSErrorPointer) -> NSDictionary? {
+	override func sendGetUserRequest(
+			#service: LRUserService_v62,
+			error: NSErrorPointer)
+			-> NSDictionary? {
+
 		return service.getUserByScreenNameWithCompanyId(
 				(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
-				screenName: userName,
+				screenName: (widget.widgetView as LoginView).userName!,
 				error: error)
 	}
 

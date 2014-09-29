@@ -75,9 +75,7 @@ import UIKit
 	//MARK: Private methods
 
 	private func sendForgotPasswordRequest(userName:String) {
-		forgotPasswordConnector.userName = userName
-
-		forgotPasswordConnector.onComplete = {
+		forgotPasswordConnector.enqueue() {
 			if let error = $0.lastError {
 				self.delegate?.onForgotPasswordError?(error)
 			}
@@ -86,8 +84,6 @@ import UIKit
 						self.forgotPasswordConnector.newPasswordSent!)
 			}
 		}
-
-		forgotPasswordConnector.enqueue()
 	}
 
 }

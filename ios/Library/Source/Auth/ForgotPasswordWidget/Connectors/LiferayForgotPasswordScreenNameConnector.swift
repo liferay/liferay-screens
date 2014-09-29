@@ -18,7 +18,7 @@ class LiferayForgotPasswordScreenNameConnector: LiferayForgotPasswordBaseConnect
 
 		return service.sendPasswordByScreenNameWithCompanyId(
 				(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
-				screenName: userName,
+				screenName: (widget.widgetView as ForgotPasswordView).userName!,
 				error: error)
 	}
 

@@ -11,8 +11,6 @@ import UIKit
 
 class LiferayForgotPasswordBaseConnector: BaseConnector {
 
-	var userName: String?
-
 	var newPasswordSent: Bool?
 
 	override func preRun() -> Bool {

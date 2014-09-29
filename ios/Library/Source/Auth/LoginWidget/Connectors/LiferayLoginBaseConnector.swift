@@ -12,14 +12,11 @@ class LiferayLoginBaseConnector: BaseConnector {
 
 	var loggedUserAttributes: [String:AnyObject]?
 
-	var userName: String?
-	var password: String?
-
-
 	override func preRun() -> Bool {
-		if userName == nil || password == nil {
-			return false
-		}
+		let view = widget.widgetView as LoginView
+
+		assert(view.userName != nil, "User name is required to log in")
+		assert(view.password != nil, "Password is required to log in")
 
 		showHUD(message: "Sending sign in...", details:"Wait few seconds...")
 

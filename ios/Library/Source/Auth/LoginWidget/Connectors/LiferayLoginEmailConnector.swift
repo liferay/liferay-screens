@@ -11,10 +11,14 @@ import UIKit
 
 class LiferayLoginEmailConnector: LiferayLoginBaseConnector {
 
-	override func sendGetUserRequest(#service: LRUserService_v62, error: NSErrorPointer) -> NSDictionary? {
+	override func sendGetUserRequest(
+			#service: LRUserService_v62,
+			error: NSErrorPointer)
+			-> NSDictionary? {
+
 		return service.getUserByEmailAddressWithCompanyId(
 				(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
-				emailAddress: userName,
+				emailAddress: (widget.widgetView as LoginView).userName!,
 				error: error)
 	}
    
