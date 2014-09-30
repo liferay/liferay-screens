@@ -76,6 +76,9 @@ public class SignUpView_default: BaseWidgetView, SignUpView {
 		}
 	}
 
+	// The following properties are not supported in this theme but
+	// may be supported in a child theme
+
 	public var screenName: String? {
 		get { return nil }
 		set {}

@@ -76,8 +76,12 @@ class LiferaySignUpConnector: BaseConnector, NSCopying {
 				serviceContext: nil,
 				error: &outError)
 
-		if outError != nil || result?["userId"] == nil {
+		if outError != nil {
 			lastError = outError!
+			createdUserAttributes = nil
+		}
+		else if result?["userId"] == nil {
+			lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
 			createdUserAttributes = nil
 		}
 		else {

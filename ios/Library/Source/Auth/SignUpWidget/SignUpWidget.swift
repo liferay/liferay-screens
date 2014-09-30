@@ -24,6 +24,8 @@ import UIKit
 
 @IBDesignable public class SignUpWidget: BaseWidget, AnonymousAuth {
 
+	//MARK: Inspectables
+
 	@IBInspectable public var anonymousApiUserName: String?
 	@IBInspectable public var anonymousApiPassword: String?
 
@@ -33,6 +35,7 @@ import UIKit
 
 	@IBOutlet public var delegate: SignUpWidgetDelegate?
 	@IBOutlet public var autoLoginDelegate: LoginWidgetDelegate?
+
 
 	internal var signUpView: SignUpView {
 		return widgetView as SignUpView
@@ -45,16 +48,32 @@ import UIKit
 
 	//MARK: BaseWidget
 
+	override func onCreated() {
+		super.onCreated()
+
+		connector = LiferaySignUpConnector(widget: self)
+	}
+
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
 		if signUpView.emailAddress != nil {
-			sendSignUp()
+			connector?.enqueue() {
+				if $0.lastError != nil {
+					self.delegate?.onSignUpError?($0.lastError!)
+				}
+				else {
+					self.onSignUpSuccess()
+				}
+			}
 		}
 		else {
 			showHUDAlert(message: "Please, enter your email address at least")
 		}
 	}
 
-	internal func onSignUpResult() {
+
+	//MARK: Private methods
+
+	private func onSignUpSuccess() {
 		delegate?.onSignUpResponse?(signUpConnector.createdUserAttributes!)
 
 		if autologin {
@@ -71,22 +90,6 @@ import UIKit
 				if SessionContext.storeSession() {
 					autoLoginDelegate?.onCredentialsSaved?()
 				}
-			}
-		}
-	}
-
-
-	//MARK: Private methods
-
-	private func sendSignUp() {
-		connector = LiferaySignUpConnector(widget: self)
-
-		signUpConnector.enqueue() {
-			if $0.lastError != nil {
-				self.delegate?.onSignUpError?($0.lastError!)
-			}
-			else {
-				self.onSignUpResult()
 			}
 		}
 	}
