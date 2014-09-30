@@ -21,6 +21,8 @@ class BaseWidget_TabSequence_Tests: XCTestCase {
 	override func setUp() {
 		super.setUp()
 
+		self.continueAfterFailure = false
+
 		let widget = SignUpWidget(frame: CGRectMake(0, 0, 100, 100))
 		view = widget.loadWidgetView() as? SignUpView_default
 		
@@ -35,14 +37,15 @@ class BaseWidget_TabSequence_Tests: XCTestCase {
 	}
 */
 	func test_TabSequence_ShouldFireCustomAction_WhenTabSequenceGoesToButton() {
-		var customActionFired = false
+		let expectation = expectationWithDescription("onUserAction must be called")
+
 		view!.onUserAction = { (actionName, control) -> Void in
-			customActionFired = true
+			expectation.fulfill()
 		}
 
 		view!.textFieldShouldReturn(view!.passwordField)
 
-		XCTAssertTrue(customActionFired)
+		waitForExpectationsWithTimeout(0, handler: nil)
 	}
 
 }

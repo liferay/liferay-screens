@@ -23,15 +23,15 @@ class DDLField_Validation_Tests: XCTestCase {
 
 		let booleanField = fields![0] as DDLFieldBoolean
 
-		var closureCalled = false
+		let expectation = expectationWithDescription("OnPostValidation must be called")
 
 		booleanField.onPostValidation = {
 			XCTAssertFalse($0)
-			closureCalled = true
+			expectation.fulfill()
 		}
 
 		XCTAssertFalse(booleanField.validate())
-		XCTAssertTrue(closureCalled)
+		waitForExpectationsWithTimeout(0, handler: nil)
 	}
 
 	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationSucceeds() {
@@ -41,15 +41,15 @@ class DDLField_Validation_Tests: XCTestCase {
 
 		booleanField.currentValue = true
 
-		var closureCalled = false
+		let expectation = expectationWithDescription("OnPostValidation must be called")
 
 		booleanField.onPostValidation = {
 			XCTAssertTrue($0)
-			closureCalled = true
+			expectation.fulfill()
 		}
 
 		XCTAssertTrue(booleanField.validate())
-		XCTAssertTrue(closureCalled)
+		waitForExpectationsWithTimeout(0, handler: nil)
 	}
 
 	func test_ValidateOnBooleanField_ShouldFail_WhenRequiredValueIsNil() {
