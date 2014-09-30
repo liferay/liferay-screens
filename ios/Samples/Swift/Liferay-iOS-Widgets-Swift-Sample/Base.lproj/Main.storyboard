@@ -19,6 +19,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="anonymousApiUserName" value="jose.navarro@liferay.com"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="anonymousApiPassword" value="jm"/>
                                     <userDefinedRuntimeAttribute type="image" keyPath="Theme" value="theme-flat7.png"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="flat7"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" id="XU3-jd-mfY" customClass="LoginWidget" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target">
@@ -26,6 +27,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="Theme" value="theme-flat7.png"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="flat7"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -53,6 +55,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="Theme" value="theme-flat7.png"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="flat7"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
