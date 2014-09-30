@@ -87,7 +87,7 @@ import UIKit
 	}
 
 
-	@IBInspectable public var groupId = 0
+	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var classNameId = 0
 
 	@IBOutlet public var delegate: AssetListWidgetDelegate?
@@ -108,7 +108,7 @@ import UIKit
 				"start": firstRowForPage(page),
 				"end": firstRowForPage(page + 1),
 				"classNameIds": classNameId,
-				"groupIds": groupIdToUse]
+				"groupIds": NSNumber(longLong: groupId)]
 
 		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 

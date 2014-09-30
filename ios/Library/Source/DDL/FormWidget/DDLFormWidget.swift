@@ -48,13 +48,13 @@ import UIKit
 
 	}
 
-	@IBInspectable public var structureId = 0
-	@IBInspectable public var groupId = 0
-	@IBInspectable public var recordSetId = 0
-	@IBInspectable public var recordId = 0
+	@IBInspectable public var structureId: Int64 = 0
+	@IBInspectable public var groupId: Int64 = 0
+	@IBInspectable public var recordSetId: Int64 = 0
+	@IBInspectable public var recordId: Int64 = 0
 
-	@IBInspectable public var repositoryId = 0
-	@IBInspectable public var folderId = 0
+	@IBInspectable public var repositoryId: Int64 = 0
+	@IBInspectable public var folderId: Int64 = 0
 	@IBInspectable public var filePrefix = "form-file-"
 
 	@IBInspectable public var autoLoad = true
@@ -67,7 +67,7 @@ import UIKit
 		return widgetView as DDLFormView
 	}
 
-	private var userId = 0
+	private var userId: Int64 = 0
 	private var currentOperation = FormOperation.Idle
 
 
@@ -141,8 +141,8 @@ import UIKit
 		switch currentOperation {
 			case .Submitting:
 				if let recordIdValue = result["recordId"]! as? Int {
-					recordId = recordIdValue
-					formView.record!.recordId = recordIdValue
+					recordId = Int64(recordIdValue)
+					formView.record!.recordId = recordId
 				}
 
 				finishOperation()
@@ -230,8 +230,7 @@ import UIKit
 
 		var outError: NSError?
 
-		service.getStructureWithStructureId((structureId as NSNumber).longLongValue,
-				error: &outError)
+		service.getStructureWithStructureId(structureId, error: &outError)
 
 		if let error = outError {
 			onFailure(error)
@@ -269,15 +268,14 @@ import UIKit
 
 		let ddlService = LRMobilewidgetsddlrecordService_v62(session: session)
 
-		ddlService.getDdlRecordWithDdlRecordId((recordId as NSNumber).longLongValue,
+		ddlService.getDdlRecordWithDdlRecordId(recordId,
 				locale: NSLocale.currentLocaleString(),
 				error: &outError)
 
 		if formView.isRecordEmpty {
 			let structureService = LRDDMStructureService_v62(session: session)
 
-			structureService.getStructureWithStructureId((structureId as NSNumber).longLongValue,
-					error: &outError)
+			structureService.getStructureWithStructureId(structureId, error: &outError)
 		}
 
 		session.invoke(&outError)
@@ -378,7 +376,7 @@ import UIKit
 	private func onFormLoadResult(result: [String:AnyObject]) -> Bool {
 		if let xsd = result["xsd"]! as? String {
 			if let userIdValue = result["userId"]! as? Int {
-				userId = userIdValue
+				userId = Int64(userIdValue)
 			}
 
 			formView.record = DDLRecord(xsd: xsd, locale: NSLocale.currentLocale())
@@ -436,9 +434,8 @@ import UIKit
 
 		var outError: NSError?
 
-		service.addFileEntryWithRepositoryId(
-				repositoryId.longLongValue,
-				folderId: (folderId as NSNumber).longLongValue,
+		service.addFileEntryWithRepositoryId(repositoryId,
+				folderId: folderId,
 				sourceFileName: fileName,
 				mimeType: document.mimeType,
 				title: fileName,

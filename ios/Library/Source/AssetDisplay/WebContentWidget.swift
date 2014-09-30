@@ -24,7 +24,7 @@ import UIKit
 
 @IBDesignable public class WebContentWidget: BaseWidget {
 
-	@IBInspectable public var groupId = 0
+	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var articleId = ""
 
 	@IBOutlet public var delegate: WebContentWidgetDelegate?
@@ -63,11 +63,13 @@ import UIKit
 	public func loadWebContent() -> Bool {
 		if !SessionContext.hasSession {
 			println("ERROR: No session initialized. Can't load the web content without session")
+
 			return false
 		}
 
 		if articleId == "" {
 			println("ERROR: ArticleId is empty. Can't load the web content without it.")
+
 			return false
 		}
 

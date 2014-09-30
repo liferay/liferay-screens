@@ -55,31 +55,24 @@ class LiferaySignUpConnector: BaseConnector, NSCopying {
 
 		var outError: NSError?
 
-		let view = widget.widgetView as SignUpView
-
-		// user name
-		let autoPassword = (view.password == "")
-
-		// screen name
-		let screenName = "";
-		let autoScreenName = true
-
 		let emptyDict = []
 
+		let password = emptyIfNull(signUpView.password)
+
 		let result = service.addUserWithCompanyId(
-				autoPassword: autoPassword,
-				password1: view.password,
-				password2: view.password,
-				autoScreenName: autoScreenName,
-				screenName: screenName,
-				emailAddress: view.emailAddress,
 				LiferayServerContext.companyId,
+				autoPassword: (password == ""),
+				password1: password,
+				password2: password,
+				autoScreenName: true,
+				screenName: "",
+				emailAddress: signUpView.emailAddress,
 				facebookId: 0,
 				openId: "",
 				locale: NSLocale.currentLocaleString(),
-				firstName: view.firstName,
-				middleName: emptyIfNull(view.middleName),
-				lastName: view.lastName,
+				firstName: emptyIfNull(signUpView.firstName),
+				middleName: emptyIfNull(signUpView.middleName),
+				lastName: emptyIfNull(signUpView.lastName),
 				prefixId: 0,
 				suffixId: 0,
 				male: true,
