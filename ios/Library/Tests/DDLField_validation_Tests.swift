@@ -18,12 +18,10 @@ class DDLField_Validation_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
-	func test_Validate_ShoulTriggerOnValidateClosure_WhenValidationFails() {
+	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationFails() {
 		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
 		let booleanField = fields![0] as DDLFieldBoolean
-
-		XCTAssertFalse(booleanField.validate())
 
 		var closureCalled = false
 
@@ -32,7 +30,8 @@ class DDLField_Validation_Tests: XCTestCase {
 			closureCalled = true
 		}
 
-		XCTAssertFalse(closureCalled)
+		XCTAssertFalse(booleanField.validate())
+		XCTAssertTrue(closureCalled)
 	}
 
 	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationSucceeds() {
@@ -42,8 +41,6 @@ class DDLField_Validation_Tests: XCTestCase {
 
 		booleanField.currentValue = true
 
-		XCTAssertTrue(booleanField.validate())
-
 		var closureCalled = false
 
 		booleanField.onPostValidation = {
@@ -51,7 +48,8 @@ class DDLField_Validation_Tests: XCTestCase {
 			closureCalled = true
 		}
 
-		XCTAssertFalse(closureCalled)
+		XCTAssertTrue(booleanField.validate())
+		XCTAssertTrue(closureCalled)
 	}
 
 	func test_ValidateOnBooleanField_ShouldFail_WhenRequiredValueIsNil() {
