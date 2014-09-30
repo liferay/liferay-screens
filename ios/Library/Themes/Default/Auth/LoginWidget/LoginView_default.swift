@@ -53,7 +53,7 @@ public class LoginView_default: BaseWidgetView, LoginView {
 
 	public var userName: String? {
 		get {
-			return userNameField!.text
+			return nullIfEmpty(userNameField!.text)
 		}
 		set {
 			userNameField!.text = newValue
@@ -62,15 +62,28 @@ public class LoginView_default: BaseWidgetView, LoginView {
 
 	public var password: String? {
 		get {
-			return passwordField!.text
+			return nullIfEmpty(passwordField!.text)
 		}
 		set {
 			passwordField!.text = newValue
 		}
 	}
 
+
+	//MARK: BaseWidgetView
+
 	override internal func onCreated() {
+		super.onCreated()
+		
 		BaseWidget.setHUDCustomColor(DefaultThemeBasicBlue)
+	}
+
+	override internal func onStartOperation() {
+		loginButton!.enabled = false
+	}
+
+	override internal func onFinishOperation() {
+		loginButton!.enabled = true
 	}
 
 

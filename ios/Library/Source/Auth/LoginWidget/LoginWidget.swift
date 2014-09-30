@@ -27,6 +27,8 @@ import UIKit
 
 public class LoginWidget: BaseWidget, AuthBased {
 
+	//MARK: Inspectables
+
 	@IBInspectable public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
 		didSet {
 			copyAuth(source: self, target: widgetView)
@@ -45,7 +47,7 @@ public class LoginWidget: BaseWidget, AuthBased {
 
 	@IBInspectable public var saveCredentials: Bool = false {
 		didSet {
-			(widgetView as? LoginView)?.saveCredentials = self.saveCredentials
+			(widgetView as? AuthBased)?.saveCredentials = self.saveCredentials
 		}
 	}
 
@@ -64,6 +66,8 @@ public class LoginWidget: BaseWidget, AuthBased {
 	//MARK: BaseWidget
 
 	override internal func onCreated() {
+		super.onCreated()
+		
 		copyAuth(source: self, target: widgetView)
 
 		if SessionContext.loadSessionFromStore() {
@@ -76,38 +80,29 @@ public class LoginWidget: BaseWidget, AuthBased {
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
 		if loginView.userName != nil && loginView.password != nil {
-			sendLoginWithUserName(loginView.userName!, password:loginView.password!)
+			connector?.enqueue() {
+				if let error = $0.lastError {
+					self.delegate?.onLoginError?(error)
+				}
+				else {
+					self.onLoginSuccess()
+				}
+			}
 		}
 		else {
 			showHUDAlert(message: "Please, enter the user name and password")
 		}
 	}
 
-	internal func onLoginResult() {
-		SessionContext.createSession(
-				username: loginView.userName!,
-				password: loginView.password!,
-				userAttributes: loginConnector.loggedUserAttributes!)
 
+	//MARK: Private methods
+
+	private func onLoginSuccess() {
 		delegate?.onLoginResponse?(loginConnector.loggedUserAttributes!)
 
 		if saveCredentials {
 			if SessionContext.storeSession() {
 				delegate?.onCredentialsSaved?()
-			}
-		}
-	}
-
-
-	//MARK: Private methods
-
-	private func sendLoginWithUserName(userName:String, password:String) {
-		loginConnector.enqueue() {
-			if let error = $0.lastError {
-				self.delegate?.onLoginError?(error)
-			}
-			else {
-				self.onLoginResult()
 			}
 		}
 	}

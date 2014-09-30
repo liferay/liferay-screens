@@ -32,10 +32,16 @@ class LiferayLoginBaseConnector: BaseConnector, NSCopying {
 
 	override func postRun() {
 		if lastError == nil {
+			SessionContext.createSession(
+					username: SessionContext.currentUserName!,
+					password: SessionContext.currentPassword!,
+					userAttributes: loggedUserAttributes!)
+
 			hideHUD()
 		}
 		else {
 			SessionContext.clearSession()
+
 			hideHUD(error: lastError!, message: "Error signing in!")
 		}
 	}
@@ -47,8 +53,12 @@ class LiferayLoginBaseConnector: BaseConnector, NSCopying {
 				service: LRUserService_v62(session: session),
 				error: &outError)
 
-		if outError != nil || result?["userId"] == nil {
+		if outError != nil {
 			lastError = outError
+			loggedUserAttributes = nil
+		}
+		else if result?["userId"] == nil {
+			lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
 			loggedUserAttributes = nil
 		}
 		else {
@@ -61,13 +71,18 @@ class LiferayLoginBaseConnector: BaseConnector, NSCopying {
 	//MARK: NSCopying
 
 	internal func copyWithZone(zone: NSZone) -> AnyObject {
+		assertionFailure("copyWithZone must be overriden")
 		return self
 	}
 
 
 	// MARK: Internal methods
 
-	internal func sendGetUserRequest(#service: LRUserService_v62, error: NSErrorPointer) -> NSDictionary? {
+	internal func sendGetUserRequest(
+			#service: LRUserService_v62,
+			error: NSErrorPointer)
+			-> NSDictionary? {
+
 		return nil
 	}
 
