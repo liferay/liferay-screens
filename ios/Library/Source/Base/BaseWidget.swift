@@ -21,38 +21,29 @@ import QuartzCore
  */
 @IBDesignable public class BaseWidget: UIView, LRCallback {
 
-	@IBInspectable public var Theme:UIImage? {
-		didSet {
+	@IBInspectable public var themeName:String? {
+		set {
+			let newName = (newValue ?? "default").lowercaseString
+
+			if ThemeManager.exists(themeName: newName) {
+				_themeName = newName
+			}
+			else {
+				_themeName = "default"
+			}
+
 			if runningOnInterfaceBuilder {
 				updateCurrentPreviewImage()
 				setNeedsLayout()
 			}
 		}
+		get {
+			return _themeName
+		}
 	}
 
 	internal var widgetView: BaseWidgetView?
 	internal var connector: BaseConnector?
-
-	internal var currentThemeName: String {
-		var result = "default"
-
-		if (Theme != nil) {
-			let selectedSignatureImage = Theme!
-			for themeName in ThemeManager.instance.installedThemes {
-				if themeName != "default" {
-					let installedSignatureImage =
-							UIImage(contentsOfFile: signatureImagePathForTheme(themeName)!)
-
-					if installedSignatureImage.isBinaryEquals(selectedSignatureImage) {
-						result = themeName
-						break;
-					}
-				}
-			}
-		}
-
-		return result
-	}
 
 	internal var widgetName: String {
 		// In Beta 5, className will constain ModuleName.ClassName
@@ -66,6 +57,7 @@ import QuartzCore
 		return className
 	}
 
+	private var _themeName = "default"
 	private var runningOnInterfaceBuilder = false
 	private var currentPreviewImage:UIImage?
 	private lazy var previewLayer = CALayer()
@@ -104,9 +96,7 @@ import QuartzCore
 	override public func prepareForInterfaceBuilder() {
 		runningOnInterfaceBuilder = true
 
-		if Theme != nil {
-			updateCurrentPreviewImage()
-		}
+		updateCurrentPreviewImage()
 
 		if currentPreviewImage == nil {
 			if let previewImage = previewImageForTheme("default") {
@@ -185,11 +175,6 @@ import QuartzCore
 		return NSBundle(forClass:self.dynamicType).pathForResource(imageName, ofType: "png")
 	}
 
-	internal func signatureImagePathForTheme(themeName:String) -> String? {
-		let bundle = NSBundle(forClass:self.dynamicType)
-		return bundle.pathForResource("theme-\(themeName)", ofType: "png")
-	}
-
 	internal func startOperationWithMessage(message:String, details:String? = nil) {
 		showHUDWithMessage(message, details: details)
 		onStartOperation()
@@ -217,7 +202,7 @@ import QuartzCore
 		widgetView?.onFinishOperation()
 	}
 
-	internal func previewImageFromView(view:UIView) -> UIImage {
+	internal func previewImageFromView(view: UIView) -> UIImage {
 		let previewWidth = min(view.frame.size.width, self.frame.size.width)
 		let previewHeight = min(view.frame.size.height, self.frame.size.height)
 
@@ -302,7 +287,7 @@ import QuartzCore
 
 		let bundle = NSBundle(forClass:self.dynamicType)
 
-		var nibName = viewName + "_" + currentThemeName
+		var nibName = "\(viewName)_\(_themeName)"
 		var nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
 		if nibPath == nil {
@@ -324,11 +309,7 @@ import QuartzCore
 	}
 
 	private func updateCurrentPreviewImage() {
-		ThemeManager.instance.loadThemes()
-
-		let themeName = currentThemeName
-
-		currentPreviewImage = previewImageForTheme(themeName)
+		currentPreviewImage = previewImageForTheme(_themeName)
 	}
 
 	private func centeredRectInWidget(#size: CGSize) -> CGRect {

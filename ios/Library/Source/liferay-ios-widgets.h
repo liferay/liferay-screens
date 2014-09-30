@@ -23,8 +23,6 @@ FOUNDATION_EXPORT const unsigned char liferay_mobile_widgetsVersionString[];
 #import "SMXMLDocument.h"
 #import "UICKeyChainStore.h"
 
-#import "UIImage+Themes.h"
-
 // Default theme dependencies
 #import "DTPickerPresenter.h"
 #import "DTDatePickerPresenter.h"

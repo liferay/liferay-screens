@@ -25,28 +25,44 @@ class BaseWidget_Theme_Tests: XCTestCase {
 	}
 
 	func test_CurrentThemeName_ShouldReturnDefault_WhenNoThemeIsSelected() {
-		XCTAssertEqual("default", loginWidget!.currentThemeName)
+		XCTAssertEqual("default", loginWidget!.themeName!)
 	}
 
-	func test_CurrentThemeName_ShouldReturnTheNameOfTheSelectedTheme_WhenThemeIsSelected() {
-		let path = loginWidget!.signatureImagePathForTheme("xyz")
-		loginWidget!.Theme = UIImage(contentsOfFile: path!)
+	func test_themeName_ShouldReturnTheNameOfTheSelectedTheme_WhenThemeExists() {
+		loginWidget!.themeName = "xyz"
 
-		XCTAssertEqual("xyz", loginWidget!.currentThemeName)
+		XCTAssertEqual("xyz", loginWidget!.themeName!)
 	}
 
-	func test_LoadWidgetView_ShouldReturnBaseView_WhenNoThemeIsSelected() {
+	func test_themeName_ShouldReturnTheNameOfTheSelectedThemeInLowercase() {
+		loginWidget!.themeName = "XyZ"
+
+		XCTAssertEqual("xyz", loginWidget!.themeName!)
+	}
+
+	func test_themeName_ShouldReturnDefaultTheme_WhenThemeDoesNotExist() {
+		loginWidget!.themeName = "not-exists"
+
+		XCTAssertEqual("default", loginWidget!.themeName!)
+	}
+
+	func test_themeName_ShouldReturnDefaultTheme_WhenThemeIsNil() {
+		loginWidget!.themeName = nil
+
+		XCTAssertEqual("default", loginWidget!.themeName!)
+	}
+
+	func test_LoadWidgetView_ShouldReturnDefaultView_WhenNoThemeIsSelected() {
 		let view = loginWidget!.loadWidgetView()
 
 		XCTAssertNotNil(view)
 		XCTAssertEqual(1, loginWidget!.subviews.count)
-		XCTAssertTrue(loginWidget!.subviews[0] is LoginView)
+		XCTAssertTrue(loginWidget!.subviews[0] is LoginView_default)
 		XCTAssertEqual(view!, loginWidget!.subviews[0] as BaseWidgetView)
 	}
 
 	func test_LoadWidgetView_ShouldReturnCustomizedView_WhenThemeIsSelected() {
-		let path = loginWidget!.signatureImagePathForTheme("xyz")
-		loginWidget!.Theme = UIImage(contentsOfFile: path!)
+		loginWidget!.themeName = "xyz"
 
 		let view = loginWidget!.loadWidgetView()
 
@@ -61,16 +77,8 @@ class BaseWidget_Theme_Tests: XCTestCase {
 				loginWidget!.previewImagePathForTheme("xyz")!.hasSuffix("xyz-preview-login.png"))
 	}
 
-	func test_SignatureImagePathForTheme_ShouldReturnTheImagePath_WhenExists() {
-		XCTAssertTrue(loginWidget!.signatureImagePathForTheme("xyz")!.hasSuffix("theme-xyz.png"))
-	}
-
 	func test_PreviewImagePathForTheme_ShouldReturnNil_WhenNotExists() {
-		XCTAssertNil(loginWidget!.previewImagePathForTheme("ABC"))
-	}
-
-	func test_SignatureImagePathForTheme_ShouldReturnNil_WhenNotExists() {
-		XCTAssertNil(loginWidget!.signatureImagePathForTheme("ABC"))
+		XCTAssertNil(loginWidget!.previewImagePathForTheme("not-exists"))
 	}
 
 }
