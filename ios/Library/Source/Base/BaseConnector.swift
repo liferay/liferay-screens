@@ -80,15 +80,15 @@ class BaseConnector: NSOperation {
 
 			postRun()
 
-			if self.onComplete != nil {
-				dispatch_sync(dispatch_get_main_queue()) {
-					self.onComplete!(self)
-				}
-			}
+			callOnComplete()
 
 			if self is NSCopying {
 				widget.connector = self.copy() as? BaseConnector
 			}
+		}
+		else {
+			lastError = createError(cause: .AbortedBecausePreconditions, userInfo: nil)
+			callOnComplete()
 		}
 	}
 
@@ -132,6 +132,17 @@ class BaseConnector: NSOperation {
 	internal func hideHUD(#error: NSError, message: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
 			self.widget.finishOperationWithError(error, message: message, details: details)
+		}
+	}
+
+
+	//MARK: Private methods
+
+	private func callOnComplete() {
+		if self.onComplete != nil {
+			dispatch_sync(dispatch_get_main_queue()) {
+				self.onComplete!(self)
+			}
 		}
 	}
 
