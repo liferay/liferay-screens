@@ -78,7 +78,7 @@ class DDLFieldDate_Tests: XCTestCase {
 		XCTAssertFalse(dateField.validate())
 	}
 
-	func test_CurrentStringValue_ShouldReturnEpochTimeInMilliseconds() {
+	func test_currentValueAsString_ShouldReturnEpochTimeInMilliseconds() {
 		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as DDLFieldDate
 
@@ -88,31 +88,31 @@ class DDLFieldDate_Tests: XCTestCase {
 		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
 
 		// converted with http://www.epochconverter.com/
-		XCTAssertEqual("1087596000000", dateField.currentStringValue!)
+		XCTAssertEqual("1087596000000", dateField.currentValueAsString!)
 	}
 
-	func test_CurrentStringValue_ShouldSupportOneDigitMonth_WhenSettingTheStringValue() {
+	func test_currentValueAsString_ShouldSupportOneDigitMonth_WhenSettingTheStringValue() {
 		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		dateField.currentStringValue = "6/19/2004"
+		dateField.currentValueAsString = "6/19/2004"
 
 		XCTAssertEqual(
 				"19/06/2004",
 				dateFormatter.stringFromDate(dateField.currentValue as NSDate))
 	}
 
-	func test_CurrentStringValue_ShouldSupportFourDigitsYear_WhenSettingTheStringValue() {
+	func test_currentValueAsString_ShouldSupportFourDigitsYear_WhenSettingTheStringValue() {
 		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		dateField.currentStringValue = "6/19/04"
+		dateField.currentValueAsString = "6/19/04"
 
 		XCTAssertEqual(
 				"19/06/2004",

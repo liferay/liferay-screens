@@ -41,7 +41,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 		if let stringField = field as? DDLFieldString {
 
 			if stringField.currentValue != nil {
-				textView?.text = stringField.currentStringValue
+				textView?.text = stringField.currentValueAsString
 			}
 
 			if stringField.showLabel {

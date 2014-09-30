@@ -158,8 +158,8 @@ public class DDLFieldStringWithOptions : DDLField {
 
 	override internal func onChangedCurrentValue() {
 		if !(currentValue is [Option]) {
-			if let currentStringValue = currentValue as? String {
-				currentValue = convert(fromString: currentStringValue)
+			if let currentValueAsString = currentValue as? String {
+				currentValue = convert(fromString: currentValueAsString)
 			}
 		}
 	}

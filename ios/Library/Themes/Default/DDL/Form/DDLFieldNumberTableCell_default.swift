@@ -20,7 +20,7 @@ public class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_defau
 
 	@IBAction private func stepperChanged(sender: AnyObject) {
 		field!.currentValue = NSDecimalNumber(double: stepper!.value)
-		textField?.text = field!.currentStringValue
+		textField?.text = field!.currentValueAsString
 	}
 
 
@@ -51,7 +51,7 @@ public class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_defau
 				withString:string)
 
 		if newText != "" {
-			field!.currentStringValue = newText
+			field!.currentValueAsString = newText
 		}
 		else {
 			field!.currentValue = NSDecimalNumber(double: 0)

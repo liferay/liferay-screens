@@ -32,7 +32,7 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 		var result:[String:AnyObject] = [:]
 
 		forEachField() {
-			if let value = $0.currentStringValue {
+			if let value = $0.currentValueAsString {
 				//FIXME - LPS-49460
 				// Server rejects the request if the value is empty string.
 				// This way we workaround the problem but a field can't be

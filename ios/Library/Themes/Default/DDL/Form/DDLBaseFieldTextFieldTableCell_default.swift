@@ -47,7 +47,7 @@ public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFiel
 		}
 
 		if field!.currentValue != nil {
-			textField?.text = field!.currentStringValue
+			textField?.text = field!.currentValueAsString
 		}
 	}
 

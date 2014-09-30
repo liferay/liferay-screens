@@ -82,7 +82,7 @@ public class DDLRecord: NSObject {
 			let fieldValue: AnyObject? = (values[field.name] ?? nil)
 			if fieldValue != nil {
 				if fieldValue is String {
-					field.currentStringValue = fieldValue as? String
+					field.currentValueAsString = fieldValue as? String
 				}
 				else {
 					field.currentValue = fieldValue

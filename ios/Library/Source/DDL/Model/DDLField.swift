@@ -27,7 +27,7 @@ import Foundation
 		}
 	}
 
-	public var currentStringValue:String? {
+	public var currentValueAsString:String? {
 		get {
 			return convert(fromCurrentValue: currentValue)
 		}

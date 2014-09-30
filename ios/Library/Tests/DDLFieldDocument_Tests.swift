@@ -161,34 +161,34 @@ class DDLFieldDocument_Tests: XCTestCase {
 		XCTAssertEqual("Video", docField.currentDocumentLabel!)
 	}
 
-	func test_CurrentStringValue_ShouldReturnNil_WhenUploadStatusIsPending() {
+	func test_currentValueAsString_ShouldReturnNil_WhenUploadStatusIsPending() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
 		docField.uploadStatus = .Pending
 
-		XCTAssertNil(docField.currentStringValue?)
+		XCTAssertNil(docField.currentValueAsString?)
 	}
 
-	func test_CurrentStringValue_ShouldReturnNil_WhenUploadStatusIsUploading() {
+	func test_currentValueAsString_ShouldReturnNil_WhenUploadStatusIsUploading() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
 		docField.uploadStatus = .Uploading(1,10)
 
-		XCTAssertNil(docField.currentStringValue?)
+		XCTAssertNil(docField.currentValueAsString?)
 	}
 
-	func test_CurrentStringValue_ShouldReturnNil_WhenUploadStatusIsFailed() {
+	func test_currentValueAsString_ShouldReturnNil_WhenUploadStatusIsFailed() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
 		docField.uploadStatus = .Failed(nil)
 
-		XCTAssertNil(docField.currentStringValue?)
+		XCTAssertNil(docField.currentValueAsString?)
 	}
 
-	func test_CurrentStringValue_ShouldReturnDDLJSON_WhenUploadStatusIsUploaded() {
+	func test_currentValueAsString_ShouldReturnDDLJSON_WhenUploadStatusIsUploaded() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
@@ -201,16 +201,16 @@ class DDLFieldDocument_Tests: XCTestCase {
 		docField.uploadStatus = .Uploaded(json)
 
 		let expectedResult = "{\"groupId\":1234,\"uuid\":\"abcd\",\"version\":\"1.0\"}"
-		XCTAssertEqual(expectedResult, docField.currentStringValue!)
+		XCTAssertEqual(expectedResult, docField.currentValueAsString!)
 	}
 
-	func test_UploadStatus_ShouldBeUploaded_WhenSetJSONToCurrentStringValue() {
+	func test_UploadStatus_ShouldBeUploaded_WhenSetJSONTocurrentValueAsString() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
 		let json = "{\"groupId\":1234,\"uuid\":\"abcd\",\"version\":\"1.0\"}"
 
-		docField.currentStringValue = json
+		docField.currentValueAsString = json
 
 		switch docField.uploadStatus {
 			case .Uploaded(let uploadedAttributes):
