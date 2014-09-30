@@ -113,13 +113,22 @@ public class DDLXSDParser {
 
 		var result:[String:AnyObject] = [:]
 
-		func addElement(elementName:String, #metadata:SMXMLElement) {
+		func addElement(
+				name elementName: String,
+				#metadata: SMXMLElement,
+				inout #result: [String:AnyObject]) {
+
 			if let element = metadata.childWithAttribute("name", value: elementName) {
 				result[elementName] = element.value
 			}
 		}
 
-		func findOptions() -> [[String:AnyObject]]? {
+		func findOptions(
+				#dynamicElement:SMXMLElement,
+				#locale: NSLocale,
+				#defaultLocale: NSLocale)
+				-> [[String:AnyObject]]? {
+
 			var options:[[String:AnyObject]] = []
 
 			let optionElements = childrenWithAttribute("type",
@@ -149,12 +158,16 @@ public class DDLXSDParser {
 				locale: locale,
 				defaultLocale: defaultLocale) {
 
-			addElement("label", metadata:localizedMetadata)
-			addElement("predefinedValue", metadata:localizedMetadata)
-			addElement("tip", metadata:localizedMetadata)
+			addElement(name: "label", metadata: localizedMetadata, result: &result)
+			addElement(name: "predefinedValue", metadata: localizedMetadata, result: &result)
+			addElement(name: "tip", metadata: localizedMetadata, result: &result)
 		}
 
-		if let options = findOptions() {
+		if let options = findOptions(
+				dynamicElement: dynamicElement,
+				locale: locale,
+				defaultLocale: defaultLocale) {
+
 			result["options"] = options
 		}
 
