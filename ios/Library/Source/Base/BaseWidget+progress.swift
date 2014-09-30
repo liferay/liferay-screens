@@ -64,7 +64,7 @@ extension BaseWidget {
 
 	public enum CloseMode {
 
-		case NoAutoclose
+		case ManualClose
 		case AutocloseDelayed(Double, Bool)
 		case AutocloseComputedDelay(Bool)
 
@@ -76,7 +76,7 @@ extension BaseWidget {
 					result = touchClose
 				case .AutocloseDelayed(let delay, let touchClose):
 					result = touchClose
-				case .NoAutoclose:
+				case .ManualClose:
 					result = true
 			}
 
@@ -121,7 +121,7 @@ extension BaseWidget {
 	*/
 	public func showHUDWithMessage(message:String?,
 			details:String? = nil,
-			closeMode:CloseMode = .NoAutoclose,
+			closeMode:CloseMode = .ManualClose,
 			spinnerMode:SpinnerMode = .IndeterminateSpinner) {
 
 		synchronized(BaseWidgetHudLock) {
