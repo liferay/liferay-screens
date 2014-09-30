@@ -36,7 +36,7 @@ class BaseWidget_TabSequence_Tests: XCTestCase {
 */
 	func test_TabSequence_ShouldFireCustomAction_WhenTabSequenceGoesToButton() {
 		var customActionFired = false
-		view!.customAction = { (actionName:String?, control:AnyObject?) -> Void in
+		view!.onUserAction = { (actionName, control) -> Void in
 			customActionFired = true
 		}
 

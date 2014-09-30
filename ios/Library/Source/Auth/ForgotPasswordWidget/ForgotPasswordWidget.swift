@@ -74,7 +74,7 @@ import UIKit
 		}
 	}
 
-	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
+	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
 		connector?.validateAndEnqueue() {
 			if let error = $0.lastError {
 				self.delegate?.onForgotPasswordError?(error)

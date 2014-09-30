@@ -157,7 +157,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 			
 			textField?.text = (field as DDLFieldDocument).currentDocumentLabel
 
-			formView?.customActionHandler(
+			formView?.userActionHandler(
 				actionName: "upload-document",
 				sender: field! as DDLFieldDocument)
 		}

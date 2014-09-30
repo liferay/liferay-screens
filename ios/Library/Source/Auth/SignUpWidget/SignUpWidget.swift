@@ -54,7 +54,7 @@ import UIKit
 		connector = LiferaySignUpConnector(widget: self)
 	}
 
-	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
+	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
 		connector?.validateAndEnqueue() {
 			if $0.lastError != nil {
 				self.delegate?.onSignUpError?($0.lastError!)

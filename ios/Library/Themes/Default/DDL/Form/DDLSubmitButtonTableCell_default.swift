@@ -19,7 +19,7 @@ public class DDLSubmitButtonTableCell_default: DDLFieldTableCell {
 	//MARK: Actions
 
 	@IBAction private func submitButtonAction(sender: AnyObject) {
-		formView!.customActionHandler(sender)
+		formView!.userActionHandler(sender)
 	}
 
 

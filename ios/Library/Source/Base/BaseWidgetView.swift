@@ -19,7 +19,7 @@ import UIKit
  */
 public class BaseWidgetView: UIView, UITextFieldDelegate {
 
-	internal var customAction: ((String?, AnyObject?) -> Void)?
+	internal var onUserAction: ((String?, AnyObject?) -> Void)?
 
 	internal var themeName: String? {
 		var className = NSStringFromClass(self.dynamicType)
@@ -99,7 +99,7 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	internal func onPreCreate() {
 	}
 
-	internal func onSetCustomActionForControl(control: UIControl) -> Bool {
+	internal func onSetUserActionForControl(control: UIControl) -> Bool {
 		return true
 	}
 
@@ -116,23 +116,23 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	internal func onFinishOperation() {
 	}	
 
-	internal func customActionHandler(sender: AnyObject?) {
+	internal func userActionHandler(sender: AnyObject?) {
 		if let controlSender = sender as? UIControl {
-			customActionHandler(actionName:controlSender.restorationIdentifier, sender:sender)
+			userActionHandler(actionName: controlSender.restorationIdentifier, sender: sender)
 		}
 		else {
-			customActionHandler(actionName:nil, sender:sender)
+			userActionHandler(actionName: nil, sender: sender)
 		}
 	}
 
-	internal func customActionHandler(actionName: String?) {
-		customActionHandler(actionName:actionName, sender:nil)
+	internal func userActionHandler(actionName: String?) {
+		userActionHandler(actionName: actionName, sender: nil)
 	}
 	
-	internal func customActionHandler(#actionName: String?, sender: AnyObject?) {
+	internal func userActionHandler(#actionName: String?, sender: AnyObject?) {
 		endEditing(true)
 		
-		customAction?(actionName, sender)
+		onUserAction?(actionName, sender)
 	}
 
 	internal func nextResponderForView(view:UIView) -> UIResponder {
@@ -147,10 +147,10 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	//MARK: Private methods
 
-	private func addCustomActionForControl(control: UIControl) {
-		if onSetCustomActionForControl(control) {
+	private func addUserActionForControl(control: UIControl) {
+		if onSetUserActionForControl(control) {
 			control.addTarget(self,
-					action: "customActionHandler:",
+					action: "userActionHandler:",
 					forControlEvents: UIControlEvents.TouchUpInside)
 		}
 	}
@@ -165,7 +165,7 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 
 	private func setUpView(view: UIView) {
 		if let control = view as? UIControl {
-			addCustomActionForControl(control)
+			addUserActionForControl(control)
 		}
 
 		addDefaultDelegatesForView(view)

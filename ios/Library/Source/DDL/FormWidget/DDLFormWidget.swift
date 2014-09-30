@@ -92,7 +92,7 @@ import UIKit
 		}
 	}
 
-	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
+	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
 		switch actionName! {
 			case "submit-form":
 				submitForm()
