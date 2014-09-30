@@ -55,18 +55,13 @@ import UIKit
 	}
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
-		if signUpView.emailAddress != nil {
-			connector?.enqueue() {
-				if $0.lastError != nil {
-					self.delegate?.onSignUpError?($0.lastError!)
-				}
-				else {
-					self.onSignUpSuccess()
-				}
+		connector?.validateAndEnqueue() {
+			if $0.lastError != nil {
+				self.delegate?.onSignUpError?($0.lastError!)
 			}
-		}
-		else {
-			showHUDAlert(message: "Please, enter your email address at least")
+			else {
+				self.onSignUpSuccess()
+			}
 		}
 	}
 

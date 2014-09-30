@@ -12,22 +12,39 @@ class LiferayLoginBaseConnector: BaseConnector, NSCopying {
 
 	var loggedUserAttributes: [String:AnyObject]?
 
+	private var loginView: LoginView {
+		return widget.widgetView as LoginView
+	}
+
 
 	//MARK: BaseConnector
 
+	override func validateView() -> Bool {
+		var result = super.validateView()
+
+		if result {
+			if loginView.userName == nil || loginView.password == nil {
+				showValidationHUD(message: "Please, enter the user name and password")
+				result = false
+			}
+		}
+
+		return result
+	}
+
 	override func preRun() -> Bool {
-		let view = widget.widgetView as LoginView
-		assert(view.userName != nil, "User name is required to log in")
-		assert(view.password != nil, "Password is required to log in")
+		var result = super.preRun()
 
-		showHUD(message: "Sending sign in...", details:"Wait few seconds...")
+		if result {
+			showHUD(message: "Sending sign in...", details:"Wait few seconds...")
 
-		SessionContext.createSession(
-				username: view.userName!,
-				password: view.password!,
-				userAttributes: [:])
+			SessionContext.createSession(
+					username: loginView.userName!,
+					password: loginView.password!,
+					userAttributes: [:])
+		}
 
-		return true
+		return result
 	}
 
 	override func postRun() {

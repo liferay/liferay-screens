@@ -9,7 +9,7 @@
 import UIKit
 
 
-enum LiferayConnectorsQueue {
+enum ConnectorsQueue {
 
 	static var queue: NSOperationQueue?
 
@@ -26,10 +26,10 @@ enum LiferayConnectorsQueue {
 }
 
 
-class BaseConnector: NSOperation {
+internal class BaseConnector: NSOperation {
 
-	var lastError: NSError?
-	var widget: BaseWidget
+	internal var lastError: NSError?
+	internal var widget: BaseWidget
 
 	internal var onComplete: (BaseConnector -> Void)?
 
@@ -37,7 +37,8 @@ class BaseConnector: NSOperation {
 		return widget as? AnonymousAuth
 	}
 
-	init(widget: BaseWidget) {
+
+	internal init(widget: BaseWidget) {
 		self.widget = widget
 
 		super.init()
@@ -46,22 +47,9 @@ class BaseConnector: NSOperation {
 	}
 
 
-	func enqueue(onComplete: (BaseConnector -> Void)? = nil) {
-		if onComplete != nil {
-			self.onComplete = onComplete
-		}
-
-		LiferayConnectorsQueue.addConnector(self)
-	}
+	//MARK: NSOperation
 
 	internal override func main() {
-		if let anonymousAuthValue = anonymousAuth {
-			assert(anonymousAuthValue.anonymousApiUserName != nil,
-					"User name required for anonymous API calls")
-			assert(anonymousAuthValue.anonymousApiPassword != nil,
-					"Password required for anonymous API calls")
-		}
-
 		if preRun() {
 			var session: LRSession?
 
@@ -81,19 +69,48 @@ class BaseConnector: NSOperation {
 			postRun()
 
 			callOnComplete()
-
-			if self is NSCopying {
-				widget.connector = self.copy() as? BaseConnector
-			}
 		}
 		else {
 			lastError = createError(cause: .AbortedBecausePreconditions, userInfo: nil)
 			callOnComplete()
 		}
+
+		// operation recycle
+		if self is NSCopying {
+			widget.connector = self.copy() as? BaseConnector
+		}
+	}
+
+
+	//MARK: Internal methods
+
+	internal func validateView() -> Bool {
+		return true
+	}
+
+	internal func validateAndEnqueue(onComplete: (BaseConnector -> Void)? = nil) -> Bool {
+		if onComplete != nil {
+			self.onComplete = onComplete
+		}
+
+		let result = validateView()
+
+		if result {
+			ConnectorsQueue.addConnector(self)
+		}
+
+		return result
 	}
 
 	internal func preRun() -> Bool {
-		return false
+		if let anonymousAuthValue = anonymousAuth {
+			assert(anonymousAuthValue.anonymousApiUserName != nil,
+					"User name required for anonymous API calls")
+			assert(anonymousAuthValue.anonymousApiPassword != nil,
+					"Password required for anonymous API calls")
+		}
+
+		return true
 	}
 
 	internal func doRun(#session: LRSession) {
@@ -102,9 +119,18 @@ class BaseConnector: NSOperation {
 	internal func postRun() {
 	}
 
+
+	//MARK: HUD methods
+
 	internal func showHUD(#message: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
 			self.widget.startOperationWithMessage(message, details: details)
+		}
+	}
+
+	internal func showValidationHUD(#message: String, details: String? = nil) {
+		dispatch_async(dispatch_get_main_queue()) {
+			self.widget.showHUDAlert(message: message, details: details)
 		}
 	}
 

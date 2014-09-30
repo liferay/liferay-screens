@@ -79,18 +79,13 @@ public class LoginWidget: BaseWidget, AuthBased {
 	}
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
-		if loginView.userName != nil && loginView.password != nil {
-			connector?.enqueue() {
-				if let error = $0.lastError {
-					self.delegate?.onLoginError?(error)
-				}
-				else {
-					self.onLoginSuccess()
-				}
+		connector?.validateAndEnqueue() {
+			if let error = $0.lastError {
+				self.delegate?.onLoginError?(error)
 			}
-		}
-		else {
-			showHUDAlert(message: "Please, enter the user name and password")
+			else {
+				self.onLoginSuccess()
+			}
 		}
 	}
 

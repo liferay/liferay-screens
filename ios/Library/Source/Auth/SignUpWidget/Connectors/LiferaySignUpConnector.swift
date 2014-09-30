@@ -12,14 +12,33 @@ class LiferaySignUpConnector: BaseConnector, NSCopying {
 
 	var createdUserAttributes: [String:AnyObject]?
 
+	private var signUpView: SignUpView {
+		return widget.widgetView as SignUpView
+	}
 
 	//MARK: BaseConnector
 
+	override func validateView() -> Bool {
+		var result = super.validateView()
+
+		if result {
+			if signUpView.emailAddress == nil {
+				showValidationHUD(message: "Please, enter your email address at least")
+				result = false
+			}
+		}
+
+		return result
+	}
+
 	override func preRun() -> Bool {
-		showHUD(message: "Sending sign up...", details: "Wait few seconds...")
+		var result = super.preRun()
 
-		return true
+		if result {
+			showHUD(message: "Sending sign up...", details: "Wait few seconds...")
+		}
 
+		return result
 	}
 
 	override func postRun() {

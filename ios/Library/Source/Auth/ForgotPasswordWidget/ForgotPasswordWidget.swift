@@ -75,19 +75,14 @@ import UIKit
 	}
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
-		if forgotPasswordView.userName != nil {
-			connector?.enqueue() {
-				if let error = $0.lastError {
-					self.delegate?.onForgotPasswordError?(error)
-				}
-				else {
-					self.delegate?.onForgotPasswordResponse?(
-							self.forgotPasswordConnector.newPasswordSent!)
-				}
+		connector?.validateAndEnqueue() {
+			if let error = $0.lastError {
+				self.delegate?.onForgotPasswordError?(error)
 			}
-		}
-		else {
-			showHUDAlert(message: "Please, enter the user name")
+			else {
+				self.delegate?.onForgotPasswordResponse?(
+						self.forgotPasswordConnector.newPasswordSent!)
+			}
 		}
 	}
 

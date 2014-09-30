@@ -13,16 +13,34 @@ class LiferayForgotPasswordBaseConnector: BaseConnector, NSCopying {
 
 	var newPasswordSent: Bool?
 
+	private var forgotPasswordView: ForgotPasswordView {
+		return widget.widgetView as ForgotPasswordView
+	}
+
 
 	//MARK BaseConnector
 
+	override func validateView() -> Bool {
+		var result = super.validateView()
+
+		if result {
+			if forgotPasswordView.userName == nil {
+				showValidationHUD(message: "Please, enter the user name")
+				result = false
+			}
+		}
+
+		return result
+	}
+
 	override func preRun() -> Bool {
-		let view = widget.widgetView as ForgotPasswordView
-		assert(view.userName != nil, "User name is required to forgot password request")
+		var result = super.preRun()
 
-		showHUD(message: "Sending password request...", details: "Wait few seconds...")
+		if result {
+			showHUD(message: "Sending password request...", details: "Wait few seconds...")
+		}
 
-		return true
+		return result
 	}
 
 	override func postRun() {
