@@ -62,6 +62,7 @@ class LiferayForgotPasswordBaseConnector: BaseConnector, NSCopying {
 	//MARK: NSCopying
 
 	internal func copyWithZone(zone: NSZone) -> AnyObject {
+		assertionFailure("copyWithZone must be overriden")
 		return self
 	}
 

@@ -32,6 +32,9 @@ public class ForgotPasswordView_default: BaseWidgetView, ForgotPasswordView {
 		}
 	}
 
+
+	//MARK: AuthBased
+
 	public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
 		didSet {
 			setAuthMethodStyles(
@@ -48,6 +51,22 @@ public class ForgotPasswordView_default: BaseWidgetView, ForgotPasswordView {
 		set {}
 	}
 
+
+	//MARK: BaseWidgetView
+
+	override internal func onCreated() {
+		super.onCreated()
+
+		BaseWidget.setHUDCustomColor(DefaultThemeBasicBlue)
+	}
+
+	override internal func onStartOperation() {
+		requestPasswordButton!.enabled = false
+	}
+
+	override internal func onFinishOperation() {
+		requestPasswordButton!.enabled = true
+	}
 
 
 	//MARK: UITextFieldDelegate

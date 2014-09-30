@@ -24,6 +24,8 @@ import UIKit
 
 @IBDesignable public class ForgotPasswordWidget: BaseWidget, AuthBased, AnonymousAuth {
 
+	//MARK: Inspectables
+
 	@IBInspectable public var anonymousApiUserName: String?
 	@IBInspectable public var anonymousApiPassword: String?
 
@@ -45,6 +47,7 @@ import UIKit
 
 	@IBOutlet public var delegate: ForgotPasswordWidgetDelegate?
 
+
 	public var saveCredentials: Bool {
 		get { return false }
 		set {}
@@ -62,6 +65,8 @@ import UIKit
 	//MARK: BaseWidget
 
 	override internal func onCreated() {
+		super.onCreated()
+
 		copyAuth(source: self, target: widgetView)
 
 		if let userName = SessionContext.currentUserName {
@@ -71,25 +76,18 @@ import UIKit
 
 	override internal func onCustomAction(actionName: String?, sender: AnyObject?) {
 		if forgotPasswordView.userName != nil {
-			sendForgotPasswordRequest(forgotPasswordView.userName!)
+			connector?.enqueue() {
+				if let error = $0.lastError {
+					self.delegate?.onForgotPasswordError?(error)
+				}
+				else {
+					self.delegate?.onForgotPasswordResponse?(
+							self.forgotPasswordConnector.newPasswordSent!)
+				}
+			}
 		}
 		else {
 			showHUDAlert(message: "Please, enter the user name")
-		}
-	}
-
-
-	//MARK: Private methods
-
-	private func sendForgotPasswordRequest(userName:String) {
-		forgotPasswordConnector.enqueue() {
-			if let error = $0.lastError {
-				self.delegate?.onForgotPasswordError?(error)
-			}
-			else {
-				self.delegate?.onForgotPasswordResponse?(
-						self.forgotPasswordConnector.newPasswordSent!)
-			}
 		}
 	}
 
