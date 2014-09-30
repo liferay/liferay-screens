@@ -19,7 +19,7 @@ class LiferayLoginScreenNameConnector: LiferayLoginBaseConnector {
 			-> NSDictionary? {
 
 		return service.getUserByScreenNameWithCompanyId(
-				(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
+				LiferayServerContext.companyId,
 				screenName: (widget.widgetView as LoginView).userName!,
 				error: error)
 	}

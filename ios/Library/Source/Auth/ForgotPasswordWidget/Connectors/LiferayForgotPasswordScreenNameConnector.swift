@@ -18,8 +18,7 @@ class LiferayForgotPasswordScreenNameConnector: LiferayForgotPasswordBaseConnect
 			error: NSErrorPointer)
 			-> Bool? {
 
-		return service.sendPasswordByScreenNameWithCompanyId(
-				(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
+		return service.sendPasswordByScreenNameWithCompanyId(LiferayServerContext.companyId,
 				screenName: (widget.widgetView as ForgotPasswordView).userName!,
 				error: error)
 	}

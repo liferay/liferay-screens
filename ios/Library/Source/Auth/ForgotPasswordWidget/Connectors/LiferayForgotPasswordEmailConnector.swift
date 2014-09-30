@@ -19,7 +19,7 @@ class LiferayForgotPasswordEmailConnector: LiferayForgotPasswordBaseConnector {
 			-> Bool? {
 
 		return service.sendPasswordByEmailAddressWithCompanyId(
-				(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
+				LiferayServerContext.companyId,
 				emailAddress: (widget.widgetView as ForgotPasswordView).userName!,
 				error: error)
 	}

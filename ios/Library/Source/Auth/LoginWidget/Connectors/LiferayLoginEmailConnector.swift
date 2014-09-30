@@ -19,7 +19,7 @@ class LiferayLoginEmailConnector: LiferayLoginBaseConnector {
 			-> NSDictionary? {
 
 		return service.getUserByEmailAddressWithCompanyId(
-				(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
+				LiferayServerContext.companyId,
 				emailAddress: (widget.widgetView as LoginView).userName!,
 				error: error)
 	}

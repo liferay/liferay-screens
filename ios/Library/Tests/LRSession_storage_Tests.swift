@@ -30,14 +30,14 @@ class LRSession_Storage_Tests: XCTestCase {
 
 	func test_SessionFromStoredCredential_ShouldHaveValidCredential_WhenCredentialWasStored() {
 		let session = LRSession(
-				server:LiferayServerContext.instance.server,
+				server:LiferayServerContext.server,
 				username:"user",
 				password:"pass")
 
 		XCTAssertTrue(session.storeCredential(), "storeCredential() is not saving the credentials!")
 
 		if let session = LRSession.sessionFromStoredCredential() {
-			XCTAssertEqual(LiferayServerContext.instance.server, session.server!)
+			XCTAssertEqual(LiferayServerContext.server, session.server!)
 			XCTAssertEqual(session.username!, session.username!)
 			XCTAssertEqual(session.password!, session.password!)
 		}
@@ -49,7 +49,7 @@ class LRSession_Storage_Tests: XCTestCase {
 
 	func test_StoreCredential_ShouldReturnFalse_WhenUsernameIsNil() {
 		let session = LRSession(
-				server:LiferayServerContext.instance.server,
+				server:LiferayServerContext.server,
 				username:nil,
 				password:"pass")
 
@@ -58,7 +58,7 @@ class LRSession_Storage_Tests: XCTestCase {
 
 	func test_StoreCredential_ShouldReturnFalse_WhenPasswordIsNil() {
 		let session = LRSession(
-				server:LiferayServerContext.instance.server,
+				server:LiferayServerContext.server,
 				username:"user",
 				password:nil)
 		
@@ -67,7 +67,7 @@ class LRSession_Storage_Tests: XCTestCase {
 
 	func test_RemoveStoredCredential_ShouldRemoveExistingCredential() {
 		let session = LRSession(
-				server:LiferayServerContext.instance.server,
+				server:LiferayServerContext.server,
 				username:"user",
 				password:"pass")
 

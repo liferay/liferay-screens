@@ -23,7 +23,7 @@ public class WebContentView_default: WebContentView {
 	//MARK: WebContentView
 
 	override public func setHtmlContent(html:String) {
-		webView!.loadHTMLString(html, baseURL: NSURL(string:LiferayServerContext.instance.server))
+		webView!.loadHTMLString(html, baseURL: NSURL(string:LiferayServerContext.server))
 	}
 
 	override internal func onPreCreate() {

@@ -76,13 +76,13 @@ import UIKit
 		let session = SessionContext.createSessionFromCurrentSession()!
 		session.callback = self
 
-		let groupIdToUse = (groupId != 0 ? groupId : LiferayServerContext.instance.groupId) as NSNumber
+		let groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
 
 		let service = LRJournalArticleService_v62(session: session)
 
 		var outError: NSError?
 
-		service.getArticleContentWithGroupId(groupIdToUse.longLongValue,
+		service.getArticleContentWithGroupId(groupId,
 				articleId: articleId, languageId: NSLocale.currentLocaleString(),
 				themeDisplay: nil, error: &outError)
 

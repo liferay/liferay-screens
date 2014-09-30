@@ -67,13 +67,13 @@ class LiferaySignUpConnector: BaseConnector, NSCopying {
 		let emptyDict = []
 
 		let result = service.addUserWithCompanyId(
-				(LiferayServerContext.instance.companyId as NSNumber).longLongValue,
 				autoPassword: autoPassword,
 				password1: view.password,
 				password2: view.password,
 				autoScreenName: autoScreenName,
 				screenName: screenName,
 				emailAddress: view.emailAddress,
+				LiferayServerContext.companyId,
 				facebookId: 0,
 				openId: "",
 				locale: NSLocale.currentLocaleString(),
@@ -86,8 +86,8 @@ class LiferaySignUpConnector: BaseConnector, NSCopying {
 				birthdayMonth: 1,
 				birthdayDay: 1,
 				birthdayYear: 1970,
-				jobTitle: emptyIfNull(view.jobTitle),
-				groupIds: [LiferayServerContext.instance.groupId],
+				jobTitle: emptyIfNull(signUpView.jobTitle),
+				groupIds: [NSNumber(longLong: LiferayServerContext.groupId)],
 				organizationIds: emptyDict,
 				roleIds: emptyDict,
 				userGroupIds: emptyDict,

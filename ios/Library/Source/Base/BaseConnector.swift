@@ -55,7 +55,7 @@ internal class BaseConnector: NSOperation {
 
 			if let anonymousAuthValue = anonymousAuth {
 				session = LRSession(
-						server: LiferayServerContext.instance.server,
+						server: LiferayServerContext.server,
 						username: anonymousAuthValue.anonymousApiUserName!,
 						password: anonymousAuthValue.anonymousApiPassword!)
 			}

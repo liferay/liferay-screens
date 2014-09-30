@@ -339,26 +339,24 @@ import UIKit
 
 		var outError: NSError?
 
-		let groupId = (self.groupId != 0 ? self.groupId : LiferayServerContext.instance.groupId) as NSNumber
+		let groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
 
 		let serviceContextAttributes = [
-				"userId": userId,
-				"scopeGroupId": groupId]
+				"userId": NSNumber(longLong: userId),
+				"scopeGroupId": NSNumber(longLong: groupId)]
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
 
 		if recordId == 0 {
-			service.addRecordWithGroupId(
-					groupId.longLongValue,
-					recordSetId: (recordSetId as NSNumber).longLongValue,
+			service.addRecordWithGroupId(groupId,
+					recordSetId: recordSetId,
 					displayIndex: 0,
 					fieldsMap: formView.values,
 					serviceContext: serviceContextWrapper,
 					error: &outError)
 		}
 		else {
-			service.updateRecordWithRecordId(
-					(recordId as NSNumber).longLongValue,
+			service.updateRecordWithRecordId(recordId,
 					displayIndex: 0,
 					fieldsMap: formView.values,
 					mergeFields: true,
@@ -416,8 +414,8 @@ import UIKit
 			return false
 		}
 
-		let groupId = ((self.groupId != 0) ? self.groupId : LiferayServerContext.instance.groupId) as NSNumber
-		let repositoryId = ((self.repositoryId != 0) ? self.repositoryId : groupId) as NSNumber
+		let groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
+		let repositoryId = (self.repositoryId != 0) ? self.repositoryId : groupId
 
 		let fileName = "\(filePrefix)-\(NSUUID.UUID().UUIDString)"
 		var size:Int64 = 0
