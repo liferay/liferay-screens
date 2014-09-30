@@ -44,12 +44,14 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 			createRadioButtons(stringField)
 
 			if stringField.lastValidationResult != nil {
-				onValidated(stringField.lastValidationResult!)
+				onPostValidation(stringField.lastValidationResult!)
 			}
 		}
 	}
 
-	override internal func onValidated(valid: Bool) {
+	override internal func onPostValidation(valid: Bool) {
+		super.onPostValidation(valid)
+
 		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()
 		let radioColor = valid ? DefaultThemeBasicBlue : UIColor.redColor()
 
@@ -113,7 +115,7 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 
 			if stringField.lastValidationResult != nil && !stringField.lastValidationResult! {
 				stringField.lastValidationResult = true
-				onValidated(true)
+				onPostValidation(true)
 			}
 		}
 	}

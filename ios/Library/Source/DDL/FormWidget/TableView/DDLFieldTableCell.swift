@@ -22,7 +22,7 @@ public class DDLFieldTableCell: UITableViewCell {
 
 	public var field:DDLField? {
 		didSet {
-			field?.validatedClosure = onValidated
+			field?.onPostValidation = onPostValidation
 			onChangedField()
 		}
 	}
@@ -58,7 +58,7 @@ public class DDLFieldTableCell: UITableViewCell {
 	internal func onChangedField() {
 	}
 
-	internal func onValidated(valid:Bool) {
+	internal func onPostValidation(valid: Bool) {
 	}
 
 	internal func changeCellHeight(height:CGFloat) {

@@ -27,7 +27,7 @@ public class DDLFieldCheckboxTableCell_default: DDLFieldTableCell {
 
 		if field!.lastValidationResult != nil && !field!.lastValidationResult! {
 			field!.lastValidationResult = true
-			onValidated(true)
+			onPostValidation(true)
 		}
 	}
 
@@ -44,12 +44,14 @@ public class DDLFieldCheckboxTableCell_default: DDLFieldTableCell {
 			label?.text = boolField.label
 
 			if boolField.lastValidationResult != nil {
-				onValidated(boolField.lastValidationResult!)
+				onPostValidation(boolField.lastValidationResult!)
 			}
 		}
 	}
 
-	override internal func onValidated(valid: Bool) {
+	override internal func onPostValidation(valid: Bool) {
+		super.onPostValidation(valid)
+
 		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()
 	}
 

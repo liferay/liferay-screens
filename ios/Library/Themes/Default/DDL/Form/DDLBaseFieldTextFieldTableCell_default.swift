@@ -43,7 +43,7 @@ public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFiel
 		textField?.returnKeyType = isLastCell ? .Send : .Next
 
 		if field!.lastValidationResult != nil {
-			onValidated(field!.lastValidationResult!)
+			onPostValidation(field!.lastValidationResult!)
 		}
 
 		if field!.currentValue != nil {
@@ -51,7 +51,9 @@ public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFiel
 		}
 	}
 
-	override internal func onValidated(valid: Bool) {
+	override internal func onPostValidation(valid: Bool) {
+		super.onPostValidation(valid)
+		
 		let imgName = valid ? "default-field" : "default-field-failed"
 		let imgNameHighlighted = valid ? "default-field-focused" : "default-field-failed"
 
@@ -88,8 +90,7 @@ public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFiel
 
 		if field!.lastValidationResult != nil && !field!.lastValidationResult! {
 			field!.lastValidationResult = true
-
-			onValidated(true)
+			onPostValidation(true)
 
 			//FIXME!
 			// This hack is the only way I found to repaint the text field while it's in

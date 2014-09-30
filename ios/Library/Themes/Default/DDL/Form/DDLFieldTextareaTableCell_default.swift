@@ -67,12 +67,14 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 			originalBackgroundRect = textViewBackground!.frame
 
 			if stringField.lastValidationResult != nil {
-				onValidated(stringField.lastValidationResult!)
+				onPostValidation(stringField.lastValidationResult!)
 			}
 		}
 	}
 
-	override internal func onValidated(valid: Bool) {
+	override internal func onPostValidation(valid: Bool) {
+		super.onPostValidation(valid)
+
 		let imgName = valid ? "default-field" : "default-field-failed"
 
 		textViewBackground?.image = UIImage(named: imgName)
@@ -140,8 +142,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 
 			if field!.lastValidationResult != nil && !field!.lastValidationResult! {
 				field!.lastValidationResult = true
-
-				onValidated(true)
+				onPostValidation(true)
 			}
 		}
 
