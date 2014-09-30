@@ -14,51 +14,62 @@
 import Foundation
 
 
-public class ThemeManager: NSObject {
+public struct ThemeManager {
 
-	private(set) var installedThemes:[String] = []
+	private static var installedThemes: [String]?
 
-
-	//MARK: Singleton
-
-	class var instance: ThemeManager {
-		struct Singleton {
-			static var instance: ThemeManager? = nil
-			static var onceToken: dispatch_once_t = 0
+	public static func exists(#themeName: String) -> Bool {
+		if installedThemes == nil {
+			loadThemes()
 		}
 
-		dispatch_once(&Singleton.onceToken) {
-			Singleton.instance = self()
-		}
-
-		return Singleton.instance!
-	}
-
-	required override public init() {
-		super.init()
-		loadThemes()
+		return !(installedThemes!.filter() { return $0 == themeName }).isEmpty
 	}
 
 
 	//MARK: Internal methods
 
-	internal func loadThemes() {
-		installedThemes.removeAll(keepCapacity: true)
+	private static func loadThemes() {
+		let allThemes = themedXibs().map { $0.stringByDeletingPathExtension.lowercaseString }
 
-		let bundle = NSBundle(forClass:self.dynamicType)
+		let notDuplicatedThemes = allThemes.reduce([String]()) { (acum, value) -> [String] in
+			if (acum.filter() { return $0 == value }).isEmpty {
+				return acum + [value]
+			}
 
-		let pngFileNames = bundle.pathsForResourcesWithPrefix("theme-", suffix: ".png")
-
-		let widgetNames = pngFileNames.map {(var fileName) -> String in
-			let prefixRange = NSMakeRange(0, 6)
-
-			var name = (fileName as NSString).stringByReplacingCharactersInRange(prefixRange,
-					withString:"").stringByDeletingPathExtension
-
-			return name.lowercaseString
+			return acum
 		}
 
-		installedThemes += widgetNames
+		installedThemes = notDuplicatedThemes
 	}
 
+	private static func themedXibs() -> [String] {
+		var filePaths:[String] = []
+
+		// create a dummy object in order to get the bundle where it lives
+
+		let bundle = NSBundle(forClass: DummyClass().dynamicType)
+
+		if let enumerator = NSFileManager.defaultManager().enumeratorAtPath(bundle.bundlePath) {
+			var filePath: String? = enumerator.nextObject() as? String
+
+			do {
+				if filePath != nil && filePath!.hasSuffix(".nib") {
+					let parts = filePath!.componentsSeparatedByString("_")
+					if parts.count > 1 {
+						filePaths.append(parts[1])
+//						filePaths.append((parts[1] as NSString).stringByDeletingPathExtension)
+					}
+				}
+
+				filePath = enumerator.nextObject() as? String
+			} while filePath != nil
+		}
+
+		return filePaths
+	}
+
+}
+
+private class DummyClass {
 }
