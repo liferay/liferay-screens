@@ -46,7 +46,7 @@ public struct ThemeManager {
 	private static func themedXibs() -> [String] {
 		var filePaths:[String] = []
 
-		// create a dummy object in order to get the bundle where it lives
+		// Create a dummy object in order to get the bundle where it lives
 
 		let bundle = NSBundle(forClass: DummyClass().dynamicType)
 
@@ -58,7 +58,6 @@ public struct ThemeManager {
 					let parts = filePath!.componentsSeparatedByString("_")
 					if parts.count > 1 {
 						filePaths.append(parts[1])
-//						filePaths.append((parts[1] as NSString).stringByDeletingPathExtension)
 					}
 				}
 
