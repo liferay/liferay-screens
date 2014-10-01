@@ -203,7 +203,7 @@ import QuartzCore
 	internal func finishOperationWithError(error:NSError, message:String, details:String? = nil) {
 		showHUDWithMessage(message,
 			details: details,
-			closeMode:.NoAutoclose(true),
+			closeMode:.ManualClose,
 			spinnerMode:.NoSpinner)
 		onFinishOperation()
 		widgetView?.onFinishOperation()
