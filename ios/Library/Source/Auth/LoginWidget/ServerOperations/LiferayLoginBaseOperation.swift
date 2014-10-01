@@ -17,6 +17,13 @@ public class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 
 	internal(set) var loggedUserAttributes: [String:AnyObject]?
 
+	internal override var hudLoadingMessage: HUDMessage? {
+		return ("Sending sign in...", details: "Wait few seconds...")
+	}
+	internal override var hudFailureMessage: HUDMessage? {
+		return ("Error signing in!", details: nil)
+	}
+
 	private var loginView: LoginView {
 		return widget.widgetView as LoginView
 	}
@@ -43,8 +50,6 @@ public class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 			return false
 		}
 
-		showHUD(message: "Sending sign in...", details:"Wait few seconds...")
-
 		SessionContext.createSession(
 				username: loginView.userName!,
 				password: loginView.password!,
@@ -59,13 +64,9 @@ public class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 					username: SessionContext.currentUserName!,
 					password: SessionContext.currentPassword!,
 					userAttributes: loggedUserAttributes!)
-
-			hideHUD()
 		}
 		else {
 			SessionContext.clearSession()
-
-			hideHUD(error: lastError!, message: "Error signing in!")
 		}
 	}
 

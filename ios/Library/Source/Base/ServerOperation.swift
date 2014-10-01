@@ -33,6 +33,9 @@ public class ServerOperation: NSOperation {
 	}
 
 
+	internal typealias HUDMessage = (String, details: String?)
+
+
 	internal var lastError: NSError?
 	internal var widget: BaseWidget
 
@@ -41,6 +44,10 @@ public class ServerOperation: NSOperation {
 	internal var anonymousAuth: AnonymousAuth? {
 		return widget as? AnonymousAuth
 	}
+
+	internal var hudLoadingMessage: HUDMessage? { return nil }
+	internal var hudFailureMessage: HUDMessage? { return nil }
+	internal var hudSuccessMessage: HUDMessage? { return nil }
 
 
 	internal init(widget: BaseWidget) {
@@ -69,9 +76,25 @@ public class ServerOperation: NSOperation {
 				assert(session != nil, "Login required to use this widget")
 			}
 
+			if let messageValue = hudLoadingMessage {
+				showHUD(message: messageValue.0, details: messageValue.details)
+			}
+
 			doRun(session: session!)
 
 			postRun()
+
+			if lastError == nil {
+				if let messageValue = hudSuccessMessage {
+					hideHUD(message: messageValue.0, details: messageValue.details)
+				}
+				else if hudLoadingMessage != nil {
+					hideHUD()
+				}
+			}
+			else if let messageValue = hudFailureMessage {
+				hideHUD(error: lastError!, message: messageValue.0, details: messageValue.details)
+			}
 
 			callOnComplete()
 		}

@@ -18,6 +18,21 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation, NSCopying {
 
 	internal(set) var newPasswordSent: Bool?
 
+	internal override var hudLoadingMessage: HUDMessage? {
+		return ("Sending password request...", details: "Wait few seconds...")
+	}
+	internal override var hudFailureMessage: HUDMessage? {
+		return ("An error happened requesting the password", details: nil)
+	}
+	internal override var hudSuccessMessage: HUDMessage? {
+		return (successMessage, details: "Check your email inbox")
+	}
+
+	private var successMessage = ""
+
+	private let newPasswordSuccessMessage = "New password generated"
+	private let resetPasswordSuccessMessage = "New password reset link sent"
+
 	private var forgotPasswordView: ForgotPasswordView {
 		return widget.widgetView as ForgotPasswordView
 	}
@@ -39,29 +54,11 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation, NSCopying {
 		return true
 	}
 
-	override func preRun() -> Bool {
-		if !super.preRun() {
-			return false
-		}
-
-		showHUD(message: "Sending password request...", details: "Wait few seconds...")
-
-		return true
-	}
-
 	override func postRun() {
 		if lastError != nil {
-			hideHUD(error: lastError!, message:"Error requesting password!")
-		}
-		else if newPasswordSent == nil {
-			hideHUD(errorMessage: "An error happened requesting the password")
-		}
-		else {
-			let userMessage = newPasswordSent!
-					? "New password generated"
-					: "New password reset link sent"
-
-			hideHUD(message: userMessage, details: "Check your email inbox")
+			successMessage = newPasswordSent!
+					? newPasswordSuccessMessage
+					: resetPasswordSuccessMessage
 		}
 	}
 
@@ -76,9 +73,13 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation, NSCopying {
 			lastError = outError!
 			newPasswordSent = nil
 		}
-		else {
+		else if result != nil {
 			lastError = nil
 			newPasswordSent = result
+		}
+		else {
+			lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
+			newPasswordSent = nil
 		}
 	}
 

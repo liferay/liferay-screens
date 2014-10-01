@@ -17,6 +17,13 @@ public class LiferaySignUpOperation: ServerOperation, NSCopying {
 
 	internal(set) var createdUserAttributes: [String:AnyObject]?
 
+	internal override var hudLoadingMessage: HUDMessage? {
+		return ("Sending sign up...", details: "Wait few seconds...")
+	}
+	internal override var hudFailureMessage: HUDMessage? {
+		return ("Error signing up!", details: nil)
+	}
+
 	private var signUpView: SignUpView {
 		return widget.widgetView as SignUpView
 	}
@@ -35,25 +42,6 @@ public class LiferaySignUpOperation: ServerOperation, NSCopying {
 		}
 
 		return true
-	}
-
-	override func preRun() -> Bool {
-		if !super.preRun() {
-			return false
-		}
-
-		showHUD(message: "Sending sign up...", details: "Wait few seconds...")
-
-		return true
-	}
-
-	override func postRun() {
-		if lastError != nil {
-			hideHUD(error: lastError!, message: "Error signing up!")
-		}
-		else {
-			hideHUD()
-		}
 	}
 
 	override func doRun(#session: LRSession) {
