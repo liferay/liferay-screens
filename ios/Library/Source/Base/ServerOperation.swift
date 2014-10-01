@@ -14,24 +14,24 @@
 import UIKit
 
 
-struct ServerOperationsQueue {
+public class ServerOperation: NSOperation {
 
-	static var queue: NSOperationQueue?
+	private struct OperationsQueue {
 
-	static func addOperation(operation: ServerOperation) {
-		if queue == nil {
-			queue = NSOperationQueue()
-			queue!.maxConcurrentOperationCount = 1
-			queue!.qualityOfService = .UserInitiated
+		static private var queue: NSOperationQueue?
+
+		static func addOperation(operation: ServerOperation) {
+			if queue == nil {
+				queue = NSOperationQueue()
+				queue!.maxConcurrentOperationCount = 1
+				queue!.qualityOfService = .UserInitiated
+			}
+
+			queue!.addOperation(operation)
 		}
 
-		queue!.addOperation(operation)
 	}
 
-}
-
-
-public class ServerOperation: NSOperation {
 
 	internal var lastError: NSError?
 	internal var widget: BaseWidget
@@ -97,7 +97,7 @@ public class ServerOperation: NSOperation {
 		let result = validateView()
 
 		if result {
-			ServerOperationsQueue.addOperation(self)
+			OperationsQueue.addOperation(self)
 		}
 
 		return result
