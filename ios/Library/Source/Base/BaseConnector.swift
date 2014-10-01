@@ -31,7 +31,7 @@ struct ConnectorsQueue {
 }
 
 
-internal class BaseConnector: NSOperation {
+public class BaseConnector: NSOperation {
 
 	internal var lastError: NSError?
 	internal var widget: BaseWidget
@@ -54,7 +54,7 @@ internal class BaseConnector: NSOperation {
 
 	//MARK: NSOperation
 
-	internal override func main() {
+	public override func main() {
 		if preRun() {
 			var session: LRSession?
 
@@ -87,13 +87,9 @@ internal class BaseConnector: NSOperation {
 	}
 
 
-	//MARK: Internal methods
+	//MARK: Public methods
 
-	internal func validateView() -> Bool {
-		return true
-	}
-
-	internal func validateAndEnqueue(onComplete: (BaseConnector -> Void)? = nil) -> Bool {
+	public func validateAndEnqueue(onComplete: (BaseConnector -> Void)? = nil) -> Bool {
 		if onComplete != nil {
 			self.onComplete = onComplete
 		}
@@ -105,6 +101,13 @@ internal class BaseConnector: NSOperation {
 		}
 
 		return result
+	}
+
+
+	//MARK: Internal methods
+
+	internal func validateView() -> Bool {
+		return true
 	}
 
 	internal func preRun() -> Bool {
