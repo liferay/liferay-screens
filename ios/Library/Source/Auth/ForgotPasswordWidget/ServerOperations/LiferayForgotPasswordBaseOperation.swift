@@ -41,7 +41,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation, NSCopying {
 
 	//MARK ServerOperation
 
-	override func validateView() -> Bool {
+	override func validateData() -> Bool {
 		if forgotPasswordData.userName == nil {
 			showValidationHUD(message: "Please, enter the user name")
 

@@ -122,7 +122,7 @@ public class ServerOperation: NSOperation {
 			self.onComplete = onComplete
 		}
 
-		let result = validateView()
+		let result = validateData()
 
 		if result {
 			OperationsQueue.addOperation(self)
@@ -134,7 +134,7 @@ public class ServerOperation: NSOperation {
 
 	//MARK: Internal methods
 
-	internal func validateView() -> Bool {
+	internal func validateData() -> Bool {
 		// Do not add any code here. Children classes may not call super
 		return true
 	}
