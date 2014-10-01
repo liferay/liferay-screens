@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol LoginView: AuthBased {
+@objc public protocol LoginData: AuthBasedData {
 
 	var userName: String? { get set }
 	var password: String? { get set }

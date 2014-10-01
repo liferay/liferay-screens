@@ -23,9 +23,8 @@ public class LiferayLoginScreenNameOperation: LiferayLoginBaseOperation {
 			error: NSErrorPointer)
 			-> NSDictionary? {
 
-		return service.getUserByScreenNameWithCompanyId(
-				LiferayServerContext.companyId,
-				screenName: (widget.widgetView as LoginView).userName!,
+		return service.getUserByScreenNameWithCompanyId(LiferayServerContext.companyId,
+				screenName: loginData.userName!,
 				error: error)
 	}
 

@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class SignUpView_default: BaseWidgetView, SignUpView {
+public class SignUpView_default: BaseWidgetView, SignUpData {
 
 	@IBOutlet internal var emailAddressField: UITextField?
 	@IBOutlet internal var passwordField: UITextField?
@@ -38,7 +38,7 @@ public class SignUpView_default: BaseWidgetView, SignUpView {
 	}
 
 
-	//MARK: SignUpView
+	//MARK: SignUpData
 
 	public var emailAddress: String? {
 		get {

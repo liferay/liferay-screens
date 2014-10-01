@@ -23,9 +23,8 @@ public class LiferayLoginEmailOperation: LiferayLoginBaseOperation {
 			error: NSErrorPointer)
 			-> NSDictionary? {
 
-		return service.getUserByEmailAddressWithCompanyId(
-				LiferayServerContext.companyId,
-				emailAddress: (widget.widgetView as LoginView).userName!,
+		return service.getUserByEmailAddressWithCompanyId(LiferayServerContext.companyId,
+				emailAddress: loginData.userName!,
 				error: error)
 	}
 

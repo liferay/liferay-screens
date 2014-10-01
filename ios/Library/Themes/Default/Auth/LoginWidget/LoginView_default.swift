@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LoginView_default: BaseWidgetView, LoginView {
+public class LoginView_default: BaseWidgetView, LoginData {
 
 	@IBOutlet internal var userNameIcon: UIImageView?
 	@IBOutlet internal var userNameField: UITextField?
@@ -25,7 +25,7 @@ public class LoginView_default: BaseWidgetView, LoginView {
 	@IBOutlet internal var passwordBackground: UIImageView?
 
 
-	//MARK: LoginView
+	//MARK: LoginData
 
 	public var saveCredentials: Bool {
 		get {

@@ -14,14 +14,14 @@
 import UIKit
 
 
-public class ForgotPasswordView_default: BaseWidgetView, ForgotPasswordView {
+public class ForgotPasswordView_default: BaseWidgetView, ForgotPasswordData {
 
 	@IBOutlet internal var userNameIcon: UIImageView?
 	@IBOutlet internal var userNameField: UITextField?
 	@IBOutlet internal var requestPasswordButton: UIButton?
 
 
-	//MARK: ForgotPasswordView
+	//MARK: ForgotPasswordData
 
 	public var userName: String? {
 		get {
@@ -33,7 +33,7 @@ public class ForgotPasswordView_default: BaseWidgetView, ForgotPasswordView {
 	}
 
 
-	//MARK: AuthBased
+	//MARK: AuthBasedData
 
 	public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
 		didSet {

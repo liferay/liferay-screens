@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol ForgotPasswordView: AuthBased {
+@objc public protocol ForgotPasswordData: AuthBasedData {
 
 	var userName: String? { get set }
 

@@ -25,7 +25,7 @@ import UIKit
 }
 
 
-public class LoginWidget: BaseWidget, AuthBased {
+public class LoginWidget: BaseWidget, AuthBasedData {
 
 	//MARK: Inspectables
 
@@ -47,15 +47,15 @@ public class LoginWidget: BaseWidget, AuthBased {
 
 	@IBInspectable public var saveCredentials: Bool = false {
 		didSet {
-			(widgetView as? AuthBased)?.saveCredentials = self.saveCredentials
+			(widgetView as? AuthBasedData)?.saveCredentials = self.saveCredentials
 		}
 	}
 
 	@IBOutlet public var delegate: LoginWidgetDelegate?
 
 
-	internal var loginView: LoginView {
-		return widgetView as LoginView
+	internal var loginData: LoginData {
+		return widgetView as LoginData
 	}
 
 	internal var loginOperation: LiferayLoginBaseOperation {
@@ -71,8 +71,8 @@ public class LoginWidget: BaseWidget, AuthBased {
 		copyAuth(source: self, target: widgetView)
 
 		if SessionContext.loadSessionFromStore() {
-			loginView.userName = SessionContext.currentUserName!
-			loginView.password = SessionContext.currentPassword!
+			loginData.userName = SessionContext.currentUserName!
+			loginData.password = SessionContext.currentPassword!
 
 			delegate?.onCredentialsLoaded?()
 		}

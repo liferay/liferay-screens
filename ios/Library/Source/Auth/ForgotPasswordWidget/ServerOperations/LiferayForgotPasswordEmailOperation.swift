@@ -23,9 +23,8 @@ public class LiferayForgotPasswordEmailOperation: LiferayForgotPasswordBaseOpera
 			error: NSErrorPointer)
 			-> Bool? {
 
-		return service.sendPasswordByEmailAddressWithCompanyId(
-				LiferayServerContext.companyId,
-				emailAddress: (widget.widgetView as ForgotPasswordView).userName!,
+		return service.sendPasswordByEmailAddressWithCompanyId(LiferayServerContext.companyId,
+				emailAddress: forgotPasswordData.userName!,
 				error: error)
 	}
 

@@ -22,7 +22,7 @@ import UIKit
 }
 
 
-@IBDesignable public class SignUpWidget: BaseWidget, AnonymousAuth {
+@IBDesignable public class SignUpWidget: BaseWidget, AnonymousAuthData {
 
 	//MARK: Inspectables
 
@@ -37,8 +37,8 @@ import UIKit
 	@IBOutlet public var autoLoginDelegate: LoginWidgetDelegate?
 
 
-	internal var signUpView: SignUpView {
-		return widgetView as SignUpView
+	internal var signUpData: SignUpData {
+		return widgetView as SignUpData
 	}
 
 	internal var signUpOperation: LiferaySignUpOperation {
@@ -75,8 +75,8 @@ import UIKit
 			SessionContext.removeStoredSession()
 
 			SessionContext.createSession(
-					username: signUpView.emailAddress!,
-					password: signUpView.password!,
+					username: signUpData.emailAddress!,
+					password: signUpData.password!,
 					userAttributes: signUpOperation.createdUserAttributes!)
 
 			autoLoginDelegate?.onLoginResponse?(signUpOperation.createdUserAttributes!)

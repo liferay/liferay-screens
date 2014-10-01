@@ -28,20 +28,21 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation, NSCopying {
 		return (successMessage, details: "Check your email inbox")
 	}
 
+	internal var forgotPasswordData: ForgotPasswordData {
+		return widget.widgetView as ForgotPasswordData
+	}
+
 	private var successMessage = ""
 
 	private let newPasswordSuccessMessage = "New password generated"
 	private let resetPasswordSuccessMessage = "New password reset link sent"
 
-	private var forgotPasswordView: ForgotPasswordView {
-		return widget.widgetView as ForgotPasswordView
-	}
 
 
 	//MARK ServerOperation
 
 	override func validateView() -> Bool {
-		if forgotPasswordView.userName == nil {
+		if forgotPasswordData.userName == nil {
 			showValidationHUD(message: "Please, enter the user name")
 
 			return false

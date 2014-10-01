@@ -22,7 +22,7 @@ import UIKit
 }
 
 
-@IBDesignable public class ForgotPasswordWidget: BaseWidget, AuthBased, AnonymousAuth {
+@IBDesignable public class ForgotPasswordWidget: BaseWidget, AuthBasedData, AnonymousAuthData {
 
 	//MARK: Inspectables
 
@@ -53,8 +53,8 @@ import UIKit
 		set {}
 	}
 
-	internal var forgotPasswordView: ForgotPasswordView {
-		return widgetView as ForgotPasswordView
+	internal var forgotPasswordData: ForgotPasswordData {
+		return widgetView as ForgotPasswordData
 	}
 
 	internal var forgotPasswordOperation: LiferayForgotPasswordBaseOperation {
@@ -70,7 +70,7 @@ import UIKit
 		copyAuth(source: self, target: widgetView)
 
 		if let userName = SessionContext.currentUserName {
-			forgotPasswordView.userName = userName
+			forgotPasswordData.userName = userName
 		}
 	}
 

@@ -24,15 +24,15 @@ public class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 		return ("Error signing in!", details: nil)
 	}
 
-	private var loginView: LoginView {
-		return widget.widgetView as LoginView
+	internal var loginData: LoginData {
+		return widget.widgetView as LoginData
 	}
 
 
 	//MARK: ServerOperation
 
 	override internal func validateView() -> Bool {
-		if loginView.userName == nil || loginView.password == nil {
+		if loginData.userName == nil || loginData.password == nil {
 			showValidationHUD(message: "Please, enter the user name and password")
 
 			return false
@@ -43,8 +43,8 @@ public class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 
 	override internal func preRun() -> Bool {
 		SessionContext.createSession(
-				username: loginView.userName!,
-				password: loginView.password!,
+				username: loginData.userName!,
+				password: loginData.password!,
 				userAttributes: [:])
 
 		return true

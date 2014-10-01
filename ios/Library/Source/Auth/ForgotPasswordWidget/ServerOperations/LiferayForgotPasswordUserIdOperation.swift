@@ -23,9 +23,7 @@ public class LiferayForgotPasswordUserIdOperation: LiferayForgotPasswordBaseOper
 			error: NSErrorPointer)
 			-> Bool? {
 
-		let view = widget.widgetView as ForgotPasswordView
-
-		let userId = (view.userName!.toInt()! as NSNumber).longLongValue
+		let userId = (forgotPasswordData.userName!.toInt()! as NSNumber).longLongValue
 
 		return service.sendPasswordByUserIdWithUserId(userId, error: error)
 	}

@@ -24,7 +24,7 @@ public class LiferayForgotPasswordScreenNameOperation: LiferayForgotPasswordBase
 			-> Bool? {
 
 		return service.sendPasswordByScreenNameWithCompanyId(LiferayServerContext.companyId,
-				screenName: (widget.widgetView as ForgotPasswordView).userName!,
+				screenName: forgotPasswordData.userName!,
 				error: error)
 	}
 

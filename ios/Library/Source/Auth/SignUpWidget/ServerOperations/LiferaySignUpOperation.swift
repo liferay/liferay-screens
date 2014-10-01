@@ -24,14 +24,14 @@ public class LiferaySignUpOperation: ServerOperation, NSCopying {
 		return ("Error signing up!", details: nil)
 	}
 
-	private var signUpView: SignUpView {
-		return widget.widgetView as SignUpView
+	private var signUpData: SignUpData {
+		return widget.widgetView as SignUpData
 	}
 
 	//MARK: ServerOperation
 
 	override func validateView() -> Bool {
-		if signUpView.emailAddress == nil {
+		if signUpData.emailAddress == nil {
 			showValidationHUD(message: "Please, enter your email address at least")
 
 			return false
@@ -47,7 +47,7 @@ public class LiferaySignUpOperation: ServerOperation, NSCopying {
 
 		let emptyDict = []
 
-		let password = emptyIfNull(signUpView.password)
+		let password = emptyIfNull(signUpData.password)
 
 		let result = service.addUserWithCompanyId(
 				LiferayServerContext.companyId,
@@ -56,20 +56,20 @@ public class LiferaySignUpOperation: ServerOperation, NSCopying {
 				password2: password,
 				autoScreenName: true,
 				screenName: "",
-				emailAddress: signUpView.emailAddress,
+				emailAddress: signUpData.emailAddress,
 				facebookId: 0,
 				openId: "",
 				locale: NSLocale.currentLocaleString(),
-				firstName: emptyIfNull(signUpView.firstName),
-				middleName: emptyIfNull(signUpView.middleName),
-				lastName: emptyIfNull(signUpView.lastName),
+				firstName: emptyIfNull(signUpData.firstName),
+				middleName: emptyIfNull(signUpData.middleName),
+				lastName: emptyIfNull(signUpData.lastName),
 				prefixId: 0,
 				suffixId: 0,
 				male: true,
 				birthdayMonth: 1,
 				birthdayDay: 1,
 				birthdayYear: 1970,
-				jobTitle: emptyIfNull(signUpView.jobTitle),
+				jobTitle: emptyIfNull(signUpData.jobTitle),
 				groupIds: [NSNumber(longLong: LiferayServerContext.groupId)],
 				organizationIds: emptyDict,
 				roleIds: emptyDict,

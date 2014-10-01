@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol AnonymousAuth {
+@objc public protocol AnonymousAuthData {
 
 	var anonymousApiUserName: String? { get set }
 	var anonymousApiPassword: String? { get set }
@@ -22,7 +22,7 @@ import UIKit
 }
 
 
-@objc public protocol AuthBased {
+@objc public protocol AuthBasedData {
 
 	var authMethod: AuthMethodType { get set }
 	var saveCredentials: Bool { get set }
@@ -30,8 +30,8 @@ import UIKit
 }
 
 
-public func copyAuth(#source: AuthBased, #target: AnyObject?) {
-	if let authBasedTarget = target as? AuthBased {
+public func copyAuth(#source: AuthBasedData, #target: AnyObject?) {
+	if let authBasedTarget = target as? AuthBasedData {
 		authBasedTarget.authMethod = source.authMethod
 		authBasedTarget.saveCredentials = source.saveCredentials
 	}

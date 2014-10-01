@@ -19,7 +19,18 @@ import QuartzCore
  * BaseWidget is the base class from which all Widget classes must inherit.
  * A widget is the container for a widget view.
  */
-@IBDesignable public class BaseWidget: UIView {
+@IBDesignable public class BaseWidget: UIView, LRCallback {
+
+	internal func onServerError(error: NSError) {
+	}
+	internal func onServerResult(result: [String:AnyObject]) {
+	}
+	public func onFailure(error: NSError!) {
+	}
+	public func onSuccess(result: AnyObject!) {
+	}
+
+
 
 	@IBInspectable public var themeName:String? {
 		set {
