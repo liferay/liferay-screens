@@ -13,9 +13,9 @@
 */
 import UIKit
 
-class LiferaySignUpOperation: ServerOperation, NSCopying {
+public class LiferaySignUpOperation: ServerOperation, NSCopying {
 
-	var createdUserAttributes: [String:AnyObject]?
+	internal(set) var createdUserAttributes: [String:AnyObject]?
 
 	private var signUpView: SignUpView {
 		return widget.widgetView as SignUpView
@@ -111,7 +111,7 @@ class LiferaySignUpOperation: ServerOperation, NSCopying {
 
 	//MARK: NSCopying
 
-	internal func copyWithZone(zone: NSZone) -> AnyObject {
+	public func copyWithZone(zone: NSZone) -> AnyObject {
 		let result = LiferaySignUpOperation(widget: self.widget)
 
 		result.onComplete = self.onComplete

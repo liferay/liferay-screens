@@ -14,11 +14,11 @@
 import UIKit
 
 
-class LiferayForgotPasswordEmailOperation: LiferayForgotPasswordBaseOperation {
+public class LiferayForgotPasswordEmailOperation: LiferayForgotPasswordBaseOperation {
 
 	//MARK: LiferayForgotPasswordBaseOperation
 
-	override func sendForgotPasswordRequest(
+	override internal func sendForgotPasswordRequest(
 			#service: LRMobilewidgetsuserService_v62,
 			error: NSErrorPointer)
 			-> Bool? {
@@ -32,7 +32,7 @@ class LiferayForgotPasswordEmailOperation: LiferayForgotPasswordBaseOperation {
 
 	//MARK: NSCopying
 
-	override internal func copyWithZone(zone: NSZone) -> AnyObject {
+	override public func copyWithZone(zone: NSZone) -> AnyObject {
 		let result = LiferayForgotPasswordEmailOperation(widget: self.widget)
 
 		result.onComplete = self.onComplete

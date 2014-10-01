@@ -14,11 +14,11 @@
 import UIKit
 
 
-class LiferayLoginUserIdOperation: LiferayLoginBaseOperation {
+public class LiferayLoginUserIdOperation: LiferayLoginBaseOperation {
 
 	//MARK: LiferayLoginBaseOperation
 
-	override func sendGetUserRequest(
+	override internal func sendGetUserRequest(
 			#service: LRUserService_v62,
 			error: NSErrorPointer)
 			-> NSDictionary? {
@@ -33,7 +33,7 @@ class LiferayLoginUserIdOperation: LiferayLoginBaseOperation {
 
 	//MARK: NSCopying
 
-	override internal func copyWithZone(zone: NSZone) -> AnyObject {
+	override public func copyWithZone(zone: NSZone) -> AnyObject {
 		let result = LiferayLoginUserIdOperation(widget: self.widget)
 
 		result.onComplete = self.onComplete

@@ -14,9 +14,9 @@
 import UIKit
 
 
-class LiferayForgotPasswordBaseOperation: ServerOperation, NSCopying {
+public class LiferayForgotPasswordBaseOperation: ServerOperation, NSCopying {
 
-	var newPasswordSent: Bool?
+	internal(set) var newPasswordSent: Bool?
 
 	private var forgotPasswordView: ForgotPasswordView {
 		return widget.widgetView as ForgotPasswordView
@@ -85,7 +85,7 @@ class LiferayForgotPasswordBaseOperation: ServerOperation, NSCopying {
 
 	//MARK: NSCopying
 
-	internal func copyWithZone(zone: NSZone) -> AnyObject {
+	public func copyWithZone(zone: NSZone) -> AnyObject {
 		assertionFailure("copyWithZone must be overriden")
 
 		return self

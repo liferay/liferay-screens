@@ -13,9 +13,9 @@
 */
 import UIKit
 
-class LiferayLoginBaseOperation: ServerOperation, NSCopying {
+public class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 
-	var loggedUserAttributes: [String:AnyObject]?
+	internal(set) var loggedUserAttributes: [String:AnyObject]?
 
 	private var loginView: LoginView {
 		return widget.widgetView as LoginView
@@ -24,7 +24,7 @@ class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 
 	//MARK: ServerOperation
 
-	override func validateView() -> Bool {
+	override internal func validateView() -> Bool {
 		if !super.validateView() {
 			return false
 		}
@@ -38,7 +38,7 @@ class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 		return true
 	}
 
-	override func preRun() -> Bool {
+	override internal func preRun() -> Bool {
 		if !super.preRun() {
 			return false
 		}
@@ -53,7 +53,7 @@ class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 		return true
 	}
 
-	override func postRun() {
+	override internal func postRun() {
 		if lastError == nil {
 			SessionContext.createSession(
 					username: SessionContext.currentUserName!,
@@ -69,7 +69,7 @@ class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 		}
 	}
 
-	override func doRun(#session: LRSession) {
+	override internal func doRun(#session: LRSession) {
 		var outError: NSError?
 
 		let result = sendGetUserRequest(
@@ -93,7 +93,7 @@ class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 
 	//MARK: NSCopying
 
-	internal func copyWithZone(zone: NSZone) -> AnyObject {
+	public func copyWithZone(zone: NSZone) -> AnyObject {
 		assertionFailure("copyWithZone must be overriden")
 		return self
 	}
