@@ -19,7 +19,7 @@ import QuartzCore
  * BaseWidget is the base class from which all Widget classes must inherit.
  * A widget is the container for a widget view.
  */
-@IBDesignable public class BaseWidget: UIView, LRCallback {
+@IBDesignable public class BaseWidget: UIView {
 
 	@IBInspectable public var themeName:String? {
 		set {
@@ -118,22 +118,6 @@ import QuartzCore
 					layer.addSublayer(previewLayer)
 				}
 			}
-		}
-	}
-
-
-	//MARK: LRCallback
-
-	public func onFailure(error: NSError!) {
-		onServerError(error ?? NSError(domain: "LiferayWidget", code: 0, userInfo: nil))
-	}
-
-	public func onSuccess(result: AnyObject!) {
-		if let objcDict = result as? NSDictionary {
-			onServerResult(result as [String:AnyObject])
-		}
-		else {
-			onServerResult(["result": result])
 		}
 	}
 
@@ -245,20 +229,6 @@ import QuartzCore
 	 * Override this method for example to reset values when the widget is shown.
 	 */
 	internal func onShow() {
-	}
-
-	/*
-	 * onServerError is invoked when there is an error communicating with the Liferay server.
-	 */
-	internal func onServerError(error: NSError) {
-	}
-
-	/*
-	 * onServerResult is invoked when there is an result from a communication with the 
-	 * Liferay server.
-	 * The type of the result will depend on the invocation done from specific subclasses.
-	 */
-	internal func onServerResult(dict:[String:AnyObject]) {
 	}
 
 	/*
