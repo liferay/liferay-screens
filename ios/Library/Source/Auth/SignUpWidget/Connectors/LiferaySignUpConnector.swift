@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class LiferaySignUpConnector: BaseConnector, NSCopying {
+class LiferaySignUpOperation: ServerOperation, NSCopying {
 
 	var createdUserAttributes: [String:AnyObject]?
 
@@ -21,7 +21,7 @@ class LiferaySignUpConnector: BaseConnector, NSCopying {
 		return widget.widgetView as SignUpView
 	}
 
-	//MARK: BaseConnector
+	//MARK: ServerOperation
 
 	override func validateView() -> Bool {
 		if !super.validateView() {
@@ -112,7 +112,7 @@ class LiferaySignUpConnector: BaseConnector, NSCopying {
 	//MARK: NSCopying
 
 	internal func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferaySignUpConnector(widget: self.widget)
+		let result = LiferaySignUpOperation(widget: self.widget)
 
 		result.onComplete = self.onComplete
 

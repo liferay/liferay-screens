@@ -14,9 +14,9 @@
 import UIKit
 
 
-class LiferayLoginUserIdConnector: LiferayLoginBaseConnector {
+class LiferayLoginUserIdOperation: LiferayLoginBaseOperation {
 
-	//MARK: LiferayLoginBaseConnector
+	//MARK: LiferayLoginBaseOperation
 
 	override func sendGetUserRequest(
 			#service: LRUserService_v62,
@@ -34,7 +34,7 @@ class LiferayLoginUserIdConnector: LiferayLoginBaseConnector {
 	//MARK: NSCopying
 
 	override internal func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayLoginUserIdConnector(widget: self.widget)
+		let result = LiferayLoginUserIdOperation(widget: self.widget)
 
 		result.onComplete = self.onComplete
 

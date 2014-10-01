@@ -14,29 +14,29 @@
 import UIKit
 
 
-struct ConnectorsQueue {
+struct ServerOperationsQueue {
 
 	static var queue: NSOperationQueue?
 
-	static func addConnector(connector: BaseConnector) {
+	static func addOperation(operation: ServerOperation) {
 		if queue == nil {
 			queue = NSOperationQueue()
 			queue!.maxConcurrentOperationCount = 1
 			queue!.qualityOfService = .UserInitiated
 		}
 
-		queue!.addOperation(connector)
+		queue!.addOperation(operation)
 	}
 
 }
 
 
-public class BaseConnector: NSOperation {
+public class ServerOperation: NSOperation {
 
 	internal var lastError: NSError?
 	internal var widget: BaseWidget
 
-	internal var onComplete: (BaseConnector -> Void)?
+	internal var onComplete: (ServerOperation -> Void)?
 
 	internal var anonymousAuth: AnonymousAuth? {
 		return widget as? AnonymousAuth
@@ -82,14 +82,14 @@ public class BaseConnector: NSOperation {
 
 		// operation recycle
 		if self is NSCopying {
-			widget.connector = self.copy() as? BaseConnector
+			widget.serverOperation = self.copy() as? ServerOperation
 		}
 	}
 
 
 	//MARK: Public methods
 
-	public func validateAndEnqueue(onComplete: (BaseConnector -> Void)? = nil) -> Bool {
+	public func validateAndEnqueue(onComplete: (ServerOperation -> Void)? = nil) -> Bool {
 		if onComplete != nil {
 			self.onComplete = onComplete
 		}
@@ -97,7 +97,7 @@ public class BaseConnector: NSOperation {
 		let result = validateView()
 
 		if result {
-			ConnectorsQueue.addConnector(self)
+			ServerOperationsQueue.addOperation(self)
 		}
 
 		return result

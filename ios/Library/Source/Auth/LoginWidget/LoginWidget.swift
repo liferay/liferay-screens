@@ -35,11 +35,11 @@ public class LoginWidget: BaseWidget, AuthBased {
 
 			switch AuthMethod.fromRaw(authMethod)! {
 				case .Email:
-					connector = LiferayLoginEmailConnector(widget: self)
+					serverOperation = LiferayLoginEmailOperation(widget: self)
 				case .ScreenName:
-					connector = LiferayLoginScreenNameConnector(widget: self)
+					serverOperation = LiferayLoginScreenNameOperation(widget: self)
 				case .UserId:
-					connector = LiferayLoginUserIdConnector(widget: self)
+					serverOperation = LiferayLoginUserIdOperation(widget: self)
 				default: ()
 			}
 		}
@@ -58,8 +58,8 @@ public class LoginWidget: BaseWidget, AuthBased {
 		return widgetView as LoginView
 	}
 
-	internal var loginConnector: LiferayLoginBaseConnector {
-		return connector as LiferayLoginBaseConnector
+	internal var loginOperation: LiferayLoginBaseOperation {
+		return serverOperation as LiferayLoginBaseOperation
 	}
 
 
@@ -79,7 +79,7 @@ public class LoginWidget: BaseWidget, AuthBased {
 	}
 
 	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
-		connector?.validateAndEnqueue() {
+		serverOperation?.validateAndEnqueue() {
 			if let error = $0.lastError {
 				self.delegate?.onLoginError?(error)
 			}
@@ -93,7 +93,7 @@ public class LoginWidget: BaseWidget, AuthBased {
 	//MARK: Private methods
 
 	private func onLoginSuccess() {
-		delegate?.onLoginResponse?(loginConnector.loggedUserAttributes!)
+		delegate?.onLoginResponse?(loginOperation.loggedUserAttributes!)
 
 		if saveCredentials {
 			if SessionContext.storeSession() {

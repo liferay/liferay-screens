@@ -14,9 +14,9 @@
 import UIKit
 
 
-class LiferayForgotPasswordUserIdConnector: LiferayForgotPasswordBaseConnector {
+class LiferayForgotPasswordUserIdOperation: LiferayForgotPasswordBaseOperation {
 
-	//MARK: LiferayForgotPasswordBaseConnector
+	//MARK: LiferayForgotPasswordBaseOperation
 
 	override func sendForgotPasswordRequest(
 			#service: LRMobilewidgetsuserService_v62,
@@ -34,7 +34,7 @@ class LiferayForgotPasswordUserIdConnector: LiferayForgotPasswordBaseConnector {
 	//MARK: NSCopying
 
 	override internal func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayForgotPasswordUserIdConnector(widget: self.widget)
+		let result = LiferayForgotPasswordUserIdOperation(widget: self.widget)
 
 		result.onComplete = self.onComplete
 

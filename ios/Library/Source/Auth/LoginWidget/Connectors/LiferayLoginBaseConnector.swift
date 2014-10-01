@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class LiferayLoginBaseConnector: BaseConnector, NSCopying {
+class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 
 	var loggedUserAttributes: [String:AnyObject]?
 
@@ -22,7 +22,7 @@ class LiferayLoginBaseConnector: BaseConnector, NSCopying {
 	}
 
 
-	//MARK: BaseConnector
+	//MARK: ServerOperation
 
 	override func validateView() -> Bool {
 		if !super.validateView() {

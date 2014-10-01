@@ -41,8 +41,8 @@ import UIKit
 		return widgetView as SignUpView
 	}
 
-	internal var signUpConnector: LiferaySignUpConnector {
-		return connector as LiferaySignUpConnector
+	internal var signUpOperation: LiferaySignUpOperation {
+		return serverOperation as LiferaySignUpOperation
 	}
 
 
@@ -51,11 +51,11 @@ import UIKit
 	override func onCreated() {
 		super.onCreated()
 
-		connector = LiferaySignUpConnector(widget: self)
+		serverOperation = LiferaySignUpOperation(widget: self)
 	}
 
 	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
-		connector?.validateAndEnqueue() {
+		serverOperation?.validateAndEnqueue() {
 			if $0.lastError != nil {
 				self.delegate?.onSignUpError?($0.lastError!)
 			}
@@ -69,7 +69,7 @@ import UIKit
 	//MARK: Private methods
 
 	private func onSignUpSuccess() {
-		delegate?.onSignUpResponse?(signUpConnector.createdUserAttributes!)
+		delegate?.onSignUpResponse?(signUpOperation.createdUserAttributes!)
 
 		if autologin {
 			SessionContext.removeStoredSession()
@@ -77,9 +77,9 @@ import UIKit
 			SessionContext.createSession(
 					username: signUpView.emailAddress!,
 					password: signUpView.password!,
-					userAttributes: signUpConnector.createdUserAttributes!)
+					userAttributes: signUpOperation.createdUserAttributes!)
 
-			autoLoginDelegate?.onLoginResponse?(signUpConnector.createdUserAttributes!)
+			autoLoginDelegate?.onLoginResponse?(signUpOperation.createdUserAttributes!)
 
 			if saveCredentials {
 				if SessionContext.storeSession() {

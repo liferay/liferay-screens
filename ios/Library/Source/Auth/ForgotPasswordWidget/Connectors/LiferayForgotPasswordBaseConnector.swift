@@ -14,7 +14,7 @@
 import UIKit
 
 
-class LiferayForgotPasswordBaseConnector: BaseConnector, NSCopying {
+class LiferayForgotPasswordBaseOperation: ServerOperation, NSCopying {
 
 	var newPasswordSent: Bool?
 
@@ -23,7 +23,7 @@ class LiferayForgotPasswordBaseConnector: BaseConnector, NSCopying {
 	}
 
 
-	//MARK BaseConnector
+	//MARK ServerOperation
 
 	override func validateView() -> Bool {
 		if !super.validateView() {

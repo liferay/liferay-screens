@@ -35,11 +35,11 @@ import UIKit
 
 			switch AuthMethod.fromRaw(authMethod)! {
 				case .Email:
-					connector = LiferayForgotPasswordEmailConnector(widget: self)
+					serverOperation = LiferayForgotPasswordEmailOperation(widget: self)
 				case .ScreenName:
-					connector = LiferayForgotPasswordScreenNameConnector(widget: self)
+					serverOperation = LiferayForgotPasswordScreenNameOperation(widget: self)
 				case .UserId:
-					connector = LiferayForgotPasswordUserIdConnector(widget: self)
+					serverOperation = LiferayForgotPasswordUserIdOperation(widget: self)
 				default: ()
 			}
 		}
@@ -57,8 +57,8 @@ import UIKit
 		return widgetView as ForgotPasswordView
 	}
 
-	internal var forgotPasswordConnector: LiferayForgotPasswordBaseConnector {
-		return connector as LiferayForgotPasswordBaseConnector
+	internal var forgotPasswordOperation: LiferayForgotPasswordBaseOperation {
+		return serverOperation as LiferayForgotPasswordBaseOperation
 	}
 
 
@@ -75,13 +75,13 @@ import UIKit
 	}
 
 	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
-		connector?.validateAndEnqueue() {
+		serverOperation?.validateAndEnqueue() {
 			if let error = $0.lastError {
 				self.delegate?.onForgotPasswordError?(error)
 			}
 			else {
 				self.delegate?.onForgotPasswordResponse?(
-						self.forgotPasswordConnector.newPasswordSent!)
+						self.forgotPasswordOperation.newPasswordSent!)
 			}
 		}
 	}

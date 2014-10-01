@@ -43,7 +43,7 @@ import QuartzCore
 	}
 
 	internal var widgetView: BaseWidgetView?
-	internal var connector: BaseConnector?
+	internal var serverOperation: ServerOperation?
 
 	internal var widgetName: String {
 		// In Beta 5, className will constain ModuleName.ClassName
