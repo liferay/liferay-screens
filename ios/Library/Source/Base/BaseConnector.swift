@@ -76,7 +76,7 @@ internal class BaseConnector: NSOperation {
 			callOnComplete()
 		}
 		else {
-			lastError = createError(cause: .AbortedBecausePreconditions, userInfo: nil)
+			lastError = createError(cause: .AbortedDueToPreconditions, userInfo: nil)
 			callOnComplete()
 		}
 

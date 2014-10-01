@@ -16,8 +16,8 @@ import Foundation
 
 public enum WidgetsErrorCause: Int {
 
-	case InvalidServerResponse = -2
-	case AbortedBecausePreconditions = -3
+	case AbortedDueToPreconditions = -2
+	case InvalidServerResponse = -3
 
 }
 
