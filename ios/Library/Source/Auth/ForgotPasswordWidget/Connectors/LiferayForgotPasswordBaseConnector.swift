@@ -26,26 +26,27 @@ class LiferayForgotPasswordBaseConnector: BaseConnector, NSCopying {
 	//MARK BaseConnector
 
 	override func validateView() -> Bool {
-		var result = super.validateView()
-
-		if result {
-			if forgotPasswordView.userName == nil {
-				showValidationHUD(message: "Please, enter the user name")
-				result = false
-			}
+		if !super.validateView() {
+			return false
 		}
 
-		return result
+		if forgotPasswordView.userName == nil {
+			showValidationHUD(message: "Please, enter the user name")
+
+			return false
+		}
+
+		return true
 	}
 
 	override func preRun() -> Bool {
-		var result = super.preRun()
-
-		if result {
-			showHUD(message: "Sending password request...", details: "Wait few seconds...")
+		if !super.preRun() {
+			return false
 		}
 
-		return result
+		showHUD(message: "Sending password request...", details: "Wait few seconds...")
+
+		return true
 	}
 
 	override func postRun() {
