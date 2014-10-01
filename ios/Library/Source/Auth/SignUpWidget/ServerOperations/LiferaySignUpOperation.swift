@@ -31,10 +31,6 @@ public class LiferaySignUpOperation: ServerOperation, NSCopying {
 	//MARK: ServerOperation
 
 	override func validateView() -> Bool {
-		if !super.validateView() {
-			return false
-		}
-
 		if signUpView.emailAddress == nil {
 			showValidationHUD(message: "Please, enter your email address at least")
 

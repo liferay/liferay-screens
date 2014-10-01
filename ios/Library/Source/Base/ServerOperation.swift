@@ -66,6 +66,11 @@ public class ServerOperation: NSOperation {
 			var session: LRSession?
 
 			if let anonymousAuthValue = anonymousAuth {
+				assert(anonymousAuthValue.anonymousApiUserName != nil,
+						"User name required for anonymous API calls")
+				assert(anonymousAuthValue.anonymousApiPassword != nil,
+						"Password required for anonymous API calls")
+
 				session = LRSession(
 						server: LiferayServerContext.server,
 						username: anonymousAuthValue.anonymousApiUserName!,
@@ -130,24 +135,21 @@ public class ServerOperation: NSOperation {
 	//MARK: Internal methods
 
 	internal func validateView() -> Bool {
+		// Do not add any code here. Children classes may not call super
 		return true
 	}
 
 	internal func preRun() -> Bool {
-		if let anonymousAuthValue = anonymousAuth {
-			assert(anonymousAuthValue.anonymousApiUserName != nil,
-					"User name required for anonymous API calls")
-			assert(anonymousAuthValue.anonymousApiPassword != nil,
-					"Password required for anonymous API calls")
-		}
-
+		// Do not add any code here. Children classes may not call super
 		return true
 	}
 
 	internal func doRun(#session: LRSession) {
+		// Do not add any code here. Children classes may not call super
 	}
 
 	internal func postRun() {
+		// Do not add any code here. Children classes may not call super
 	}
 
 

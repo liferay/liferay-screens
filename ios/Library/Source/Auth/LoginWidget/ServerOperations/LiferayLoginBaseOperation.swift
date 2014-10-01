@@ -32,10 +32,6 @@ public class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 	//MARK: ServerOperation
 
 	override internal func validateView() -> Bool {
-		if !super.validateView() {
-			return false
-		}
-
 		if loginView.userName == nil || loginView.password == nil {
 			showValidationHUD(message: "Please, enter the user name and password")
 
@@ -46,10 +42,6 @@ public class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 	}
 
 	override internal func preRun() -> Bool {
-		if !super.preRun() {
-			return false
-		}
-
 		SessionContext.createSession(
 				username: loginView.userName!,
 				password: loginView.password!,
