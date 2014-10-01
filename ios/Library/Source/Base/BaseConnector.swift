@@ -14,7 +14,7 @@
 import UIKit
 
 
-enum ConnectorsQueue {
+struct ConnectorsQueue {
 
 	static var queue: NSOperationQueue?
 
