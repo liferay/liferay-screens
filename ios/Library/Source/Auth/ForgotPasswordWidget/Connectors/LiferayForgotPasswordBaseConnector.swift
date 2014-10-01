@@ -87,14 +87,19 @@ class LiferayForgotPasswordBaseConnector: BaseConnector, NSCopying {
 
 	internal func copyWithZone(zone: NSZone) -> AnyObject {
 		assertionFailure("copyWithZone must be overriden")
+
 		return self
 	}
 
 
-	func sendForgotPasswordRequest(
+	//MARK: Template Methods
+	
+	internal func sendForgotPasswordRequest(
 			#service: LRMobilewidgetsuserService_v62,
 			error: NSErrorPointer)
 			-> Bool? {
+
+		assertionFailure("sendForgotPasswordRequest must be overriden")
 
 		return nil
 	}

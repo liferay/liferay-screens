@@ -99,12 +99,14 @@ class LiferayLoginBaseConnector: BaseConnector, NSCopying {
 	}
 
 
-	// MARK: Internal methods
+	// MARK: Template methods
 
 	internal func sendGetUserRequest(
 			#service: LRUserService_v62,
 			error: NSErrorPointer)
 			-> NSDictionary? {
+
+		assertionFailure("sendGetUserRequest must be overriden")
 
 		return nil
 	}

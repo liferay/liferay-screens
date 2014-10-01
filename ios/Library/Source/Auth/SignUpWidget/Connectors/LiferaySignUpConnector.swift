@@ -49,7 +49,7 @@ class LiferaySignUpConnector: BaseConnector, NSCopying {
 
 	override func postRun() {
 		if lastError != nil {
-			hideHUD(error: lastError!, message:"Error signing up!")
+			hideHUD(error: lastError!, message: "Error signing up!")
 		}
 		else {
 			hideHUD()
