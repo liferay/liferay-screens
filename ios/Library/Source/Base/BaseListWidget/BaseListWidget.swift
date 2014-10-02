@@ -16,8 +16,8 @@ import UIKit
 
 @IBDesignable public class BaseListWidget: BaseWidget {
 
-	@IBInspectable public var firstPageSize = 5
-	@IBInspectable public var pageSize = 2
+	@IBInspectable public var firstPageSize: Int = 50
+	@IBInspectable public var pageSize: Int = 25
 
 	internal var baseListView: BaseListView {
 		return widgetView as BaseListView
@@ -50,7 +50,7 @@ import UIKit
 
 	//MARK: Internal methods
 
-	internal func loadPage(page:Int) -> Bool {
+	internal func loadPage(page: Int) -> Bool {
 		let operation = PaginationOperation(page:page)
 
 		operation.onOperationSuccess = onLoadPageResult
@@ -100,7 +100,7 @@ import UIKit
 		return 0
 	}
 
-	internal func loadPageForRow(row:Int) {
+	internal func loadPageForRow(row: Int) {
 		let page = pageFromRow(row)
 
 		if paginationOperations.indexForKey(page) == nil {
@@ -108,7 +108,7 @@ import UIKit
 		}
 	}
 
-	internal func pageFromRow(row:Int) -> Int {
+	internal func pageFromRow(row: Int) -> Int {
 		if row < firstPageSize {
 			return 0
 		}
@@ -116,7 +116,7 @@ import UIKit
 		return ((row - firstPageSize) / pageSize) + 1
 	}
 
-	internal func firstRowForPage(page:Int) -> Int {
+	internal func firstRowForPage(page: Int) -> Int {
 		if page == 0 {
 			return 0
 		}

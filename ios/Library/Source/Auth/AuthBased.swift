@@ -24,7 +24,7 @@ import UIKit
 
 @objc public protocol AuthBasedData {
 
-	var authMethod: AuthMethodType { get set }
+	var authMethod: String? { get set }
 	var saveCredentials: Bool { get set }
 
 }
@@ -47,9 +47,19 @@ public typealias AuthMethodType = String
 
 public enum AuthMethod: String {
 
-	case Email = "Email Address"
-	case ScreenName = "Screen Name"
-	case UserId = "User ID"
+	case Email = "email"
+	case ScreenName = "screenName"
+	case UserId = "userId"
+
+	public static func create(text: String?) -> AuthMethod {
+		if text?.lowercaseString == AuthMethod.ScreenName.toRaw().lowercaseString {
+			return .ScreenName
+		} else if text?.lowercaseString == AuthMethod.UserId.toRaw().lowercaseString {
+			return .UserId
+		}
+
+		return .Email
+	}
 
 	public var iconType: String {
 		let iconTypes = [
@@ -69,6 +79,15 @@ public enum AuthMethod: String {
 		return keyboardTypes[self] ?? .Default
 	}
 
+	public var description: String {
+		let descriptions = [
+			AuthMethod.Email: "Email Address",
+			AuthMethod.ScreenName: "Screen Name",
+			AuthMethod.UserId: "User ID"]
+
+		return descriptions[self] ?? ""
+	}
+
 }
 
 
@@ -77,7 +96,7 @@ public func setAuthMethodStyles(
 		#userNameField: UITextField!,
 		#userNameIcon: UIImageView!) {
 
-	userNameField!.placeholder = authMethod.toRaw()
+	userNameField!.placeholder = authMethod.description
 	userNameField!.keyboardType = authMethod.keyboardType
 	userNameIcon?.image = UIImage(named:"default-\(authMethod.iconType)-icon")
 }

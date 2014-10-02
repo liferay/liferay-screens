@@ -88,7 +88,7 @@ import UIKit
 
 
 	@IBInspectable public var groupId: Int64 = 0
-	@IBInspectable public var classNameId = 0
+	@IBInspectable public var classNameId: Int = 0
 
 	@IBOutlet public var delegate: AssetListWidgetDelegate?
 
@@ -100,15 +100,16 @@ import UIKit
 	//MARK: BaseListWidget
 
 	override internal func doGetPageRowsOperation(#session: LRSession, page: Int) {
-		let groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
+		let groupId = self.groupId != 0 ? self.groupId : LiferayServerContext.groupId
 
 		let widgetsService = LRMobilewidgetsassetentryService_v62(session: session)
 
-		let entryQueryAttributes = [
-				"start": firstRowForPage(page),
-				"end": firstRowForPage(page + 1),
-				"classNameIds": classNameId,
-				"groupIds": NSNumber(longLong: groupId)]
+		var entryQueryAttributes: [NSString : AnyObject] = [:]
+
+		entryQueryAttributes["start"] = firstRowForPage(page)
+		entryQueryAttributes["end"] = firstRowForPage(page + 1)
+		entryQueryAttributes["classNameIds"] = classNameId
+		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId)
 
 		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
@@ -118,13 +119,14 @@ import UIKit
 	}
 
 	override internal func doGetRowCountOperation(#session: LRSession) {
-		let groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
+		let groupId = self.groupId != 0 ? self.groupId : LiferayServerContext.groupId
 
 		let assetsService = LRAssetEntryService_v62(session: session)
 
-		let entryQueryAttributes = [
-				"classNameIds": classNameId,
-				"groupIds": NSNumber(longLong: groupId)]
+		var entryQueryAttributes: [NSString : AnyObject] = [:]
+
+		entryQueryAttributes["classNameIds"] = classNameId
+		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId)
 
 		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 

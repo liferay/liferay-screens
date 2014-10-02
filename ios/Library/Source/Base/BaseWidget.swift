@@ -32,7 +32,7 @@ import QuartzCore
 
 
 
-	@IBInspectable public var themeName:String? {
+	@IBInspectable public var themeName: String? {
 		set {
 			let newName = (newValue ?? "default").lowercaseString
 

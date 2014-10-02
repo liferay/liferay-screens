@@ -29,18 +29,19 @@ public class LoginWidget: BaseWidget, AuthBasedData {
 
 	//MARK: Inspectables
 
-	@IBInspectable public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
+	@IBInspectable public var authMethod: String? = AuthMethod.Email.toRaw() {
 		didSet {
 			copyAuth(source: self, target: widgetView)
 
-			switch AuthMethod.fromRaw(authMethod)! {
+			switch AuthMethod.create(authMethod) {
 				case .Email:
 					serverOperation = LiferayLoginEmailOperation(widget: self)
 				case .ScreenName:
 					serverOperation = LiferayLoginScreenNameOperation(widget: self)
 				case .UserId:
 					serverOperation = LiferayLoginUserIdOperation(widget: self)
-				default: ()
+				default:
+					serverOperation = nil
 			}
 		}
 	}

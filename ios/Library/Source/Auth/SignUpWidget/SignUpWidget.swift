@@ -26,8 +26,8 @@ import UIKit
 
 	//MARK: Inspectables
 
-	@IBInspectable public var anonymousApiUserName: String?
-	@IBInspectable public var anonymousApiPassword: String?
+	@IBInspectable public var anonymousApiUserName: String? = "test@liferay.com"
+	@IBInspectable public var anonymousApiPassword: String? = "test"
 
 	@IBInspectable public var autologin = true
 

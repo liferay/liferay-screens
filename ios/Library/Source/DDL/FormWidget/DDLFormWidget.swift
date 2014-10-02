@@ -67,7 +67,7 @@ import UIKit
 		return widgetView as DDLFormView
 	}
 
-	private var userId: Int64 = 0
+	private var userId: Int64?
 	private var currentOperation = FormOperation.Idle
 
 
@@ -300,7 +300,7 @@ import UIKit
 			return false
 		}
 
-		if userId == 0 {
+		if userId == nil {
 			println("ERROR: UserId is empty. Can't submit form without loading the form before")
 			return false
 		}
@@ -318,7 +318,7 @@ import UIKit
 			default: ()
 		}
 
-		if !formView.validateForm(autoscroll:autoscrollOnValidation) {
+		if !formView.validateForm(autoscroll: autoscrollOnValidation) {
 			showHUDWithMessage("Some values are not valid",
 					details: "Please, review your form",
 					closeMode:.AutocloseDelayed(3.0, true),
@@ -337,10 +337,10 @@ import UIKit
 
 		var outError: NSError?
 
-		let groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
+		let groupId = self.groupId != 0 ? self.groupId : LiferayServerContext.groupId
 
 		let serviceContextAttributes = [
-				"userId": NSNumber(longLong: userId),
+				"userId": NSNumber(longLong: userId!),
 				"scopeGroupId": NSNumber(longLong: groupId)]
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)

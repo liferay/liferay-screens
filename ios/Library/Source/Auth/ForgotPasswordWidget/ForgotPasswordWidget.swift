@@ -26,21 +26,22 @@ import UIKit
 
 	//MARK: Inspectables
 
-	@IBInspectable public var anonymousApiUserName: String?
-	@IBInspectable public var anonymousApiPassword: String?
+	@IBInspectable public var anonymousApiUserName: String? = "test@liferay.com"
+	@IBInspectable public var anonymousApiPassword: String? = "test"
 
-	@IBInspectable public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
+	@IBInspectable public var authMethod: String? = AuthMethod.Email.toRaw() {
 		didSet {
 			copyAuth(source: self, target: widgetView)
 
-			switch AuthMethod.fromRaw(authMethod)! {
+			switch AuthMethod.create(authMethod) {
 				case .Email:
 					serverOperation = LiferayForgotPasswordEmailOperation(widget: self)
 				case .ScreenName:
 					serverOperation = LiferayForgotPasswordScreenNameOperation(widget: self)
 				case .UserId:
 					serverOperation = LiferayForgotPasswordUserIdOperation(widget: self)
-				default: ()
+				default:
+					serverOperation = nil
 			}
 		}
 	}

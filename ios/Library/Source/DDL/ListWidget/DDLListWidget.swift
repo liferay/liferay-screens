@@ -26,10 +26,10 @@ import UIKit
 
 @IBDesignable public class DDLListWidget: BaseListWidget {
 
-	@IBInspectable public var userId = 0
-	@IBInspectable public var recordSetId = 0
+	@IBInspectable public var userId: Int64 = 0
+	@IBInspectable public var recordSetId: Int64 = 0
 
-	@IBInspectable public var labelField: String = "" {
+	@IBInspectable public var labelField: String? {
 		didSet {
 			onLabelFieldChanged()
 		}
@@ -57,11 +57,11 @@ import UIKit
 
 		let service = LRMobilewidgetsddlrecordService_v62(session: session)
 
-		service.getDdlRecordsWithDdlRecordSetId((recordSetId as NSNumber).longLongValue,
-				userId: (userId as NSNumber).longLongValue,
+		service.getDdlRecordsWithDdlRecordSetId(recordSetId,
+				userId: userId,
 				locale: NSLocale.currentLocaleString(),
-				start: (firstRowForPage(page) as NSNumber).intValue,
-				end: (firstRowForPage(page + 1) as NSNumber).intValue,
+				start: Int32(firstRowForPage(page)),
+				end: Int32(firstRowForPage(page + 1)),
 				error: nil)
 	}
 
@@ -72,8 +72,8 @@ import UIKit
 
 		let service = LRMobilewidgetsddlrecordService_v62(session: session)
 
-		service.getDdlRecordsCountWithDdlRecordSetId((recordSetId as NSNumber).longLongValue,
-			userId: (userId as NSNumber).longLongValue,
+		service.getDdlRecordsCountWithDdlRecordSetId(recordSetId,
+			userId: userId,
 			error: nil)
 	}
 
@@ -106,8 +106,8 @@ import UIKit
 	}
 
 	internal func onLabelFieldChanged() {
-		if widgetView != nil {
-			recordListView.labelField = labelField
+		if widgetView != nil && labelField != nil {
+			recordListView.labelField = labelField!
 		}
 	}
 

@@ -35,10 +35,10 @@ public class ForgotPasswordView_default: BaseWidgetView, ForgotPasswordData {
 
 	//MARK: AuthBasedData
 
-	public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
+	public var authMethod: AuthMethodType? = AuthMethod.Email.toRaw() {
 		didSet {
 			setAuthMethodStyles(
-					authMethod: AuthMethod.fromRaw(authMethod)!,
+					authMethod: AuthMethod.create(authMethod),
 					userNameField: userNameField,
 					userNameIcon: userNameIcon)
 		}

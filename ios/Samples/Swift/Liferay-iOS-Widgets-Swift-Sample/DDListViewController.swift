@@ -16,12 +16,6 @@ class DDListViewController: UIViewController, DDLListWidgetDelegate {
         super.viewDidLoad()
 
 		widget!.delegate = self
-
-		//FIXME
-		// Inspectable properties on IB are broken in XCode 6.0.1!
-		widget!.userId = 10198
-		widget!.recordSetId = 13006
-		widget!.labelField = "Title"
     }
 
 	@IBAction func loadAction(sender: AnyObject) {

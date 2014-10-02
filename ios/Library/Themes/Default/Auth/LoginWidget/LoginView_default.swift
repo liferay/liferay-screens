@@ -42,10 +42,10 @@ public class LoginView_default: BaseWidgetView, LoginData {
 		}
 	}
 
-	public var authMethod: AuthMethodType = AuthMethod.Email.toRaw() {
+	public var authMethod: AuthMethodType? = AuthMethod.Email.toRaw() {
 		didSet {
 			setAuthMethodStyles(
-					authMethod: AuthMethod.fromRaw(authMethod)!,
+					authMethod: AuthMethod.create(authMethod),
 					userNameField: userNameField,
 					userNameIcon: userNameIcon)
 		}
