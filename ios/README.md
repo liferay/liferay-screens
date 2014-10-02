@@ -102,8 +102,8 @@ Modules:
 - **Auth**: all related widgets with user authentication. It uses the [user management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/management-liferay-portal-6-2-user-guide-16-en) features of your Liferay Portal. It includes:
 
 	- [LoginWidget](Documentation/LoginWidget.md): gives your app the capacity to sign in users into it.
-	- [SignUpWidget](): gives your app the capacity to sign up users into it.
-	- [ForgotPasswordWidget](): gives your app the capacity to send emails to users with new password or reset link.
+	- [SignUpWidget](Documentation/SignUpWidget.md): gives your app the capacity to sign up users into it.
+	- [ForgotPasswordWidget](Documentation/ForgotPasswordWidget.md): gives your app the capacity to send emails to users with new password or reset link.
 
 - **Dynamic Data Lists (DDL)**: all widgets that allow to interact with dynamically created data forms and records. It uses all the features available from [Dynamic Data List](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/using-web-forms-and-dynamic-data-lists-liferay-portal-6-2-user-guide-10-en) of your portal.
 
