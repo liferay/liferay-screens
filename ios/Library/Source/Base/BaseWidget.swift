@@ -108,7 +108,9 @@ import QuartzCore
 		}
 
 		if currentPreviewImage == nil {
-			currentPreviewImage = previewImageForTheme("default")
+			if let previewImage = previewImageForTheme("default") {
+				currentPreviewImage = previewImage
+			}
 		}
 	}
 
@@ -168,8 +170,8 @@ import QuartzCore
 		return nil;
 	}
 
-	internal func previewImageForTheme(themeName:String) -> UIImage {
-		var result:UIImage?
+	internal func previewImageForTheme(themeName:String) -> UIImage? {
+		var result: UIImage?
 
 		if let previewImagePath = previewImagePathForTheme(themeName) {
 			result = UIImage(contentsOfFile: previewImagePath)
@@ -180,7 +182,7 @@ import QuartzCore
 			result = previewImageFromView(widgetView)
 		}
 
-		return result!
+		return result
 	}
 
 	internal func previewImagePathForTheme(themeName:String) -> String? {
