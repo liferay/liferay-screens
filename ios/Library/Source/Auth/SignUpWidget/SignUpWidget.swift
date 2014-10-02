@@ -33,6 +33,12 @@ import UIKit
 
 	@IBInspectable public var saveCredentials = false
 
+	@IBInspectable public var companyId: Int64 = 0 {
+		didSet {
+			(widgetView as? SignUpData)?.companyId = self.companyId
+		}
+	}
+
 	@IBOutlet public var delegate: SignUpWidgetDelegate?
 	@IBOutlet public var autoLoginDelegate: LoginWidgetDelegate?
 
@@ -50,6 +56,8 @@ import UIKit
 
 	override func onCreated() {
 		super.onCreated()
+
+		signUpData.companyId = self.companyId
 
 		serverOperation = LiferaySignUpOperation(widget: self)
 	}

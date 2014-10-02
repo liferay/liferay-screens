@@ -32,6 +32,8 @@ public class ForgotPasswordView_default: BaseWidgetView, ForgotPasswordData {
 		}
 	}
 
+	public var companyId: Int64 = 0
+
 
 	//MARK: AuthBasedData
 

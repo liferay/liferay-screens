@@ -49,8 +49,10 @@ public class LiferaySignUpOperation: ServerOperation, NSCopying {
 
 		let password = emptyIfNull(signUpData.password)
 
-		let result = service.addUserWithCompanyId(
-				LiferayServerContext.companyId,
+		let companyId = (signUpData.companyId != 0)
+				? signUpData.companyId : LiferayServerContext.companyId
+
+		let result = service.addUserWithCompanyId(companyId,
 				autoPassword: (password == ""),
 				password1: password,
 				password2: password,

@@ -46,6 +46,13 @@ import UIKit
 		}
 	}
 
+	@IBInspectable var companyId: Int64 = 0 {
+		didSet {
+			(widgetView as? ForgotPasswordData)?.companyId = self.companyId
+		}
+	}
+
+
 	@IBOutlet public var delegate: ForgotPasswordWidgetDelegate?
 
 
@@ -69,6 +76,8 @@ import UIKit
 		super.onCreated()
 
 		copyAuth(source: self, target: widgetView)
+
+		forgotPasswordData.companyId = companyId
 
 		if let userName = SessionContext.currentUserName {
 			forgotPasswordData.userName = userName

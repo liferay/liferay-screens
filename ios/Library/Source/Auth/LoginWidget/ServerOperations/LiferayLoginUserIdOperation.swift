@@ -23,7 +23,7 @@ public class LiferayLoginUserIdOperation: LiferayLoginBaseOperation {
 			error: NSErrorPointer)
 			-> NSDictionary? {
 
-		let userId = (loginData.userName!.toInt()! as NSNumber).longLongValue
+		let userId = Int64(loginData.userName!.toInt()!)
 
 		return service.getUserByIdWithUserId(userId, error: error)
 	}

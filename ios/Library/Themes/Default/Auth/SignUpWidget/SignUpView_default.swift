@@ -76,6 +76,8 @@ public class SignUpView_default: BaseWidgetView, SignUpData {
 		}
 	}
 
+	public var companyId: Int64 = 0
+
 	// The following properties are not supported in this theme but
 	// may be supported in a child theme
 

@@ -23,7 +23,10 @@ public class LiferayLoginScreenNameOperation: LiferayLoginBaseOperation {
 			error: NSErrorPointer)
 			-> NSDictionary? {
 
-		return service.getUserByScreenNameWithCompanyId(LiferayServerContext.companyId,
+		let companyId = loginData.companyId != 0
+				? loginData.companyId : LiferayServerContext.companyId
+
+		return service.getUserByScreenNameWithCompanyId(companyId,
 				screenName: loginData.userName!,
 				error: error)
 	}

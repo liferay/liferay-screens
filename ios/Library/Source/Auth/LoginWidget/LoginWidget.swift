@@ -52,6 +52,13 @@ public class LoginWidget: BaseWidget, AuthBasedData {
 		}
 	}
 
+	@IBInspectable public var companyId: Int64 = 0 {
+		didSet {
+			(widgetView as? LoginData)?.companyId = self.companyId
+		}
+	}
+
+
 	@IBOutlet public var delegate: LoginWidgetDelegate?
 
 
@@ -70,6 +77,8 @@ public class LoginWidget: BaseWidget, AuthBasedData {
 		super.onCreated()
 		
 		copyAuth(source: self, target: widgetView)
+
+		loginData.companyId = companyId
 
 		if SessionContext.loadSessionFromStore() {
 			loginData.userName = SessionContext.currentUserName!

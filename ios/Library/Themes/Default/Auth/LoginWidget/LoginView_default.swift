@@ -25,7 +25,7 @@ public class LoginView_default: BaseWidgetView, LoginData {
 	@IBOutlet internal var passwordBackground: UIImageView?
 
 
-	//MARK: LoginData
+	//MARK: AuthBasedData
 
 	public var saveCredentials: Bool {
 		get {
@@ -51,6 +51,9 @@ public class LoginView_default: BaseWidgetView, LoginData {
 		}
 	}
 
+
+	//MARK: LoginData
+
 	public var userName: String? {
 		get {
 			return nullIfEmpty(userNameField!.text)
@@ -68,6 +71,8 @@ public class LoginView_default: BaseWidgetView, LoginData {
 			passwordField!.text = newValue
 		}
 	}
+
+	public var companyId: Int64 = 0
 
 
 	//MARK: BaseWidgetView

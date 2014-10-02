@@ -23,7 +23,10 @@ public class LiferayLoginEmailOperation: LiferayLoginBaseOperation {
 			error: NSErrorPointer)
 			-> NSDictionary? {
 
-		return service.getUserByEmailAddressWithCompanyId(LiferayServerContext.companyId,
+		let companyId = loginData.companyId != 0
+				? loginData.companyId : LiferayServerContext.companyId
+
+		return service.getUserByEmailAddressWithCompanyId(companyId,
 				emailAddress: loginData.userName!,
 				error: error)
 	}
