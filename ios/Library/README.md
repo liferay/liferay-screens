@@ -1,4 +1,4 @@
-# Liferay iOS Mobile Widget Library
+# Liferay Screens for iOS Library
 
 ## Important note
 __This product is under heavy development and most of the features aren't ready to be used in production.
