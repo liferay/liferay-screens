@@ -21,8 +21,19 @@ Notice that themes provided in early versions supports only iPhone 5 and vertica
 For more details of the internal architecture, check the [library documentation page](https://github.com/liferay/liferay-screens/tree/master/ios/Library/README.md)
 
 
+## Requirements
+In order to develop iOS apps using Liferay Screen, you will need:
+  - XCode 6.0 or above
+  - iOS 8 SDK
+  - [CocoaPods](http://cocoapods.org) installed
+  - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
+  - [Mobile Widgets plugin for 6.2.x](https://github.com/liferay/liferay-plugins/tree/6.2.x/webs/mobile-widgets-web). This plugin will be available soon in the [Liferay Marketplace](https://www.liferay.com/marketplace)
+  - Liferay Screen source code
+
+Your iOS app can we written both in Swift or Objective-C
+
 ## Compatibility 
-This implementation uses Swift language, but doesn't use new iOS 8 APIs, so it can be run in any device with iOS 7 and above.
+This implementation uses Swift language, but it doesn't use new iOS 8 APIs, so it can be run in any device with iOS 7 and above.
 
 
 ## How to prepare your project to use Liferay Screens
