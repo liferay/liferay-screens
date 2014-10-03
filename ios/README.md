@@ -21,8 +21,19 @@ Notice that themes provided in early versions supports only iPhone 5 and vertica
 For more details of the internal architecture, check the [library documentation page](https://github.com/liferay/liferay-screens/tree/master/ios/Library/README.md)
 
 
+## Requirements
+In order to develop iOS apps using Liferay Screen, you will need:
+  - XCode 6.0 or above
+  - iOS 8 SDK
+  - [CocoaPods](http://cocoapods.org) installed
+  - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
+  - [Mobile Widgets plugin for 6.2.x](https://github.com/liferay/liferay-plugins/tree/6.2.x/webs/mobile-widgets-web). This plugin will be available soon in the [Liferay Marketplace](https://www.liferay.com/marketplace)
+  - Liferay Screen source code
+
+Your iOS app can we written both in Swift or Objective-C
+
 ## Compatibility 
-This implementation uses Swift language, but doesn't use new iOS 8 APIs, so it can be run in any device with iOS 7 and above.
+This implementation uses Swift language, but it doesn't use new iOS 8 APIs, so it can be run in any device with iOS 7 and above.
 
 
 ## How to prepare your project to use Liferay Screens
@@ -82,8 +93,45 @@ And if you get bored of adding the same imports over and over again, you may add
     - Precompile Prefix Header: Yes
     - Prefix Header: path\_to\_your\_file\_Prefix.pch
 
+## List of available widgets
+
+Widgets are grouped in modules based on its internal dependencies. Each module is isolated, so you can use the modules that are neccesary in your project. You cannot use one widget from one module without using the whole module.
+
+Modules:
+
+- **Auth**: all related widgets with user authentication. It uses the [user management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/management-liferay-portal-6-2-user-guide-16-en) features of your Liferay Portal. It includes:
+
+	- [LoginWidget](Documentation/LoginWidget.md): gives your app the capacity to sign in users into it.
+	- [SignUpWidget](Documentation/SignUpWidget.md): gives your app the capacity to sign up users into it.
+	- [ForgotPasswordWidget](Documentation/ForgotPasswordWidget.md): gives your app the capacity to send emails to users with new password or reset link.
+
+- **Dynamic Data Lists (DDL)**: all widgets that allow to interact with dynamically created data forms and records. It uses all the features available from [Dynamic Data List](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/using-web-forms-and-dynamic-data-lists-liferay-portal-6-2-user-guide-10-en) of your portal.
+
+	- [DDLForm](): it gives your app the capacity to present dynamic forms, be filled by users and submitted back to the server
+	- [DDLList](): it gives your app the capacity to show a list of records based on DDL previously submitted by forms (web or app based)
+
+- **Other**: this widgets could be used individually without importing the whole module. It includes
+
+	- [AssetListWidget](): it shows a list of asset managed by [Liferay Portal's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). It includes users, organizations, groups (sites), etc.
+	- [WebContentDisplayWidget](): it shows the HTML content of a web content. It uses the features avaiable from [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en)
+
+## List of available themes
+
+Together with themes, we release set of themes that implement the Look and feel of the widgets.
+Themes are plugable, you can install new themes to extend and customize widgets to meet your app design and UX.
+
+Themes currently released are:
+  - **Default**: this is the standard theme that is used when you insert a widget in your screen.
+  - **Flat7**: it's a sample theme intended to demostrate how to develop your own theme from scratch.
+
 ## How to contribute new widgets
 
-Would you like to contribute new widgets? Awesome :)
+Do you have a piece of code that can be reused in other apps? Awesome :)
+
+It's so simple: just follow our [contributors guide](https://github.com/liferay/liferay-screens/tree/master/CONTRIBUTING.md)
+
+## How to contribute new themes
+
+Do you have a design implemented that could be reused in other apps? Awesome :)
 
 It's so simple: just follow our [contributors guide](https://github.com/liferay/liferay-screens/tree/master/CONTRIBUTING.md)
