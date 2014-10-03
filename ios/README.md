@@ -1,68 +1,98 @@
 # Liferay Screens for iOS
 
 ## Important note
-__This product is under heavy development and most of the features aren't ready to be used in production.
-It's public just in order to allow developers to preview the technology.__
+
+__This product is under heavy development and its features aren't ready for use 
+in production. It's being made public only to allow developers to preview the 
+technology.__
 
 ## Introduction
-This is the iOS implementation for Liferay Screens.
 
-It includes the widgets library and two sample projects: one to use Screens from Objective-C and another from Swift.
+The iOS implementation for Liferay Screens includes the widget library and two 
+sample projects. One sample project uses Screens from Objective-C, while the 
+other uses Screens from Swift.
 
-In Liferay Screens, we call "widget" to a visual component connected to Liferay's portal funcionallity. It's responsible of communicating with the server (Liferay Portal), and to get/show the information from/to the UI. Widgets also implements all typical [human interface guideliness described by Apple](https://developer.apple.com/library/ios/documentation/userexperience/conceptual/mobilehig/).
+In Liferay Screens, a *widget* is a visual component that is connected to 
+Liferay Portal's functionality. The widget is responsible for handling 
+communication between the server and the UI. Widgets also implement all typical 
+[human interface guidelines described by Apple](https://developer.apple.com/library/ios/documentation/userexperience/conceptual/mobilehig/).
 
-Each widget is tied to one or more service exposed by [Liferay's remote services](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/accessing-services-remotely-liferay-portal-6-2-dev-guide-05-en), and renders the information using one component called "theme". Themes can be contributed be third parties and are 100% plugable, so you're not limited to one specific look and feel.
-Screens library provides one standard theme called "Default" and another sample one called "Flat7"
+Each widget is tied to one or more services exposed by 
+[Liferay's remote services](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/accessing-services-remotely-liferay-portal-6-2-dev-guide-05-en). 
+The widget then renders information using a theme. Themes can be contributed by 
+third parties and are fully pluggable, so you're not limited to one specific 
+look and feel. The Screens library provides a standard theme called *Default* 
+and another sample theme called *Flat7*.
 
-![SignUp widget using Default and Flat7 themes](Documentation/Images/signup.png "SignUp widget using Default theme")
+![The SignUp widget using Default and Flat7 themes](Documentation/Images/signup.png)
 
-Notice that themes provided in early versions supports only iPhone 5 and vertical resolution, but they will eventually support the wide range of screens and resolutions.
+Please note that themes provided in early versions support only vertical screen 
+orientation and the iPhone 5, 5s, and 5c screen size. Support for the full range 
+of screen orientations and sizes will be added in the future.
 
-For more details of the internal architecture, check the [library documentation page](https://github.com/liferay/liferay-screens/tree/master/ios/Library/README.md)
-
+To learn more detail about the architecture of Screens, please see the 
+[library documentation page](https://github.com/liferay/liferay-screens/tree/master/ios/Library/README.md).
 
 ## Requirements
-In order to develop iOS apps using Liferay Screen, you will need:
+
+Development of iOS apps using Liferay Screens requires the following: 
+
   - XCode 6.0 or above
   - iOS 8 SDK
   - [CocoaPods](http://cocoapods.org) installed
   - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
-  - [Mobile Widgets plugin for 6.2.x](https://github.com/liferay/liferay-plugins/tree/6.2.x/webs/mobile-widgets-web). This plugin will be available soon in the [Liferay Marketplace](https://www.liferay.com/marketplace)
-  - Liferay Screen source code
+  - [Mobile Widgets plugin for 6.2.x](https://github.com/liferay/liferay-plugins/tree/6.2.x/webs/mobile-widgets-web). 
+    This plugin will be available soon in the [Liferay Marketplace](https://www.liferay.com/marketplace).
+  - Liferay Screens source code
 
-Your iOS app can we written both in Swift or Objective-C
+Your iOS app can we written in Swift or Objective-C.
 
 ## Compatibility 
-This implementation uses Swift language, but it doesn't use new iOS 8 APIs, so it can be run in any device with iOS 7 and above.
 
+This implementation of Liferay Screens uses the Swift language. However, it 
+doesn't use the new iOS 8 APIs, so it can be run only on devices with iOS 7 and 
+above.
 
-## How to prepare your project to use Liferay Screens
+## Preparing Your Project for Liferay Screens
 
-We are assuming that you have an XCode project already configured and have basic knowledge of iOS development.
+There are a few things you need to do with your XCode project to prepare it for 
+Liferay Screens. As soon as CocoaPods supports Swift libraries, you can prepare 
+your project by simply adding one new line to your `Podfile`. Until then, you 
+need to manually install Liferay Screens in your project.
 
-Notice these steps are the manual way to install Liferay Screens in your project. As soon as CocoaPods supports Swift libraries, it will be as easy as add one new line to your `Podfile`
+First, you need to download the [Liferay Screens source code](https://github.com/liferay/liferay-screens/archive/master.zip) 
+and add it to your project. The steps for doing this are shown here:
 
-1. Download [Liferay Screens's source code](https://github.com/liferay/liferay-screens/archive/master.zip) and add it to your project:
-	1. Create a folder at the root of the project called `Liferay-Screens`.
-	1. Copy folders `Library/Source` and `Library/Themes` from the downloaded source code into this new folder.
-	1. Drag `Liferay-Screens` from the Finder and drop it into your XCode project.
+1. Create a folder at the root of the project called `Liferay-Screens`.
+2. Copy the folders `Library/Source` and `Library/Themes` from the downloaded 
+   source code into this new folder.
+3. Drag `Liferay-Screens` from the Finder and drop it into your XCode project.
 
-	![XCode project with Liferay Screens](Documentation/Images/project-setup.png "XCode project with Liferay Screens")
+![This XCode project has Liferay Screens.](Documentation/Images/project-setup.png)
 
+Next, set up [CocoaPods](http://cocoapods.org) for your project if you haven't 
+done so already. Add the dependencies to your `Podfile` and then execute 
+`pod install`. Use this [`Podfile`](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile) 
+as a template.
 
-1. If you didn't do it yet, set up [CocoaPods](http://cocoapods.org) for your project
-1. Add depencendies to your `Podfile` and execute `pod install`. Use this [`Podfile`](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile) as a template.
-1. Edit the following Builder Settings in your project's configuration:
-    - Objective-C Bridging Header: `${SRCROOT}/Liferay-Screens/Source/liferay-ios-widgets.h`
+You also need to edit the following Builder Settings in your project's 
+configuration:
 
-	![Objective-C Bridging Header](Documentation/Images/project-header.png "Objective-C Bridging Header")
+    Objective-C Bridging Header: `${SRCROOT}/Liferay-Screens/Source/liferay-ios-widgets.h`
 
-1. Create a new file of type Property List called `liferay-server-context.plist` to configure the settings for your Liferay Portal (like the URL to the server). Use [`liferay-server-context-sample.plist`](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Source/liferay-server-context-sample.plist) as a template.
+![Objective-C Bridging Header](Documentation/Images/project-header.png)
 
-	![liferay-context.plist file](Documentation/Images/liferay-context.png "liferay-context.plist file")
+Create a new property list file called `liferay-server-context.plist` to 
+configure the settings for your Liferay Portal instance. Use 
+[`liferay-server-context-sample.plist`](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Source/liferay-server-context-sample.plist) 
+as a template.
 
+![liferay-context.plist file](Documentation/Images/liferay-context.png "liferay-context.plist file")
 
-## How to use a widget in your project
+Great! Now your project should be all ready for Liferay Screens. Next you'll 
+learn how to use widets in your project.
+
+## Using Widgets
 
 1. Using Interface Builder, insert a new UIView in your Storyboard or XIB file.
 
