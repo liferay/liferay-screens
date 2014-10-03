@@ -107,8 +107,8 @@ Modules:
 
 - **Dynamic Data Lists (DDL)**: all widgets that allow to interact with dynamically created data forms and records. It uses all the features available from [Dynamic Data List](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/using-web-forms-and-dynamic-data-lists-liferay-portal-6-2-user-guide-10-en) of your portal.
 
-	- [DDLForm](): it gives your app the capacity to present dynamic forms, be filled by users and submitted back to the server
-	- [DDLList](): it gives your app the capacity to show a list of records based on DDL previously submitted by forms (web or app based)
+	- [DDLForm](Documentation/DDLFormWidget.md): it gives your app the capacity to present dynamic forms, be filled by users and submitted back to the server
+	- [DDLList](Documentation/DDLListWidget.md): it gives your app the capacity to show a list of records based on DDL previously submitted by forms (web or app based)
 
 - **Other**: this widgets could be used individually without importing the whole module. It includes
 

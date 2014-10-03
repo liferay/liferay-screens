@@ -68,7 +68,7 @@ ForgotPasswordWidget delegates some event in an object that conforms `ForgotPass
 This protocol allows to implement the following methods:
 
 - `onForgotPasswordResponse(boolean)`: called when email was successfully sent. The boolean parameter indicates whether a new password was generated or a reset link was sent.
-- `onForgotPasswordError(error)`: called when an error happened in the process. The NSError object describing the error occurred.
+- `onForgotPasswordError(error)`: called when an error happened in the process. The NSError object describes the error occurred.
 
 
 

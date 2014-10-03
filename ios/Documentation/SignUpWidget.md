@@ -8,6 +8,7 @@ It's public, following our Open Source philosophy, in order to allow developers 
 - Creates a new user in the portal.
 - Could make a auto login if the creation is successful.
 - Could save the credentials of the user created in the keychain.
+- Support traverse the form fields from the keyboard
 
 ##Module
 Auth
@@ -59,7 +60,7 @@ If the `autologin` is enabled, login events will be delegated to an object confo
 The `SignUpWidgetDelegate` protocol allows to implement the following methods:
 
 - `onSignUpResponse(boolean)`: called when sign up is successfully completed. The user attributes are passed as a dictionary of keys (NSStrings) and values (NSObject). Keys supported are the same as [portal's User entity](https://github.com/liferay/liferay-portal/blob/6.2.x/portal-impl/src/com/liferay/portal/service.xml#L2227)
-- `onSignUpError(error)`: called when an error happened in the process. The NSError object describing the error occurred.
+- `onSignUpError(error)`: called when an error happened in the process. The NSError object describes the error occurred.
 
 
 
