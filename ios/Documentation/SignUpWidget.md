@@ -1,15 +1,18 @@
-# SignUpWidget for iOS (Auth module)
+# SignUpWidget for iOS
 
 ## Important note
 __This product is under heavy development and most of the features aren't ready to be used in production.
-It's public just in order to allow developers to preview the technology.__
+It's public, following our Open Source philosophy, in order to allow developers to preview the technology and contribute with feedback, ideas and bug fixes.__
 
 ## Features
 - Creates a new user in the portal.
 - Could make a auto login if the creation is successful.
 - Could save the credentials of the user created in the keychain.
 
-## Supported in themes
+##Module
+Auth
+
+## Themes
 
 - Default
 - Flat7
@@ -26,7 +29,7 @@ It's public just in order to allow developers to preview the technology.__
 
 - iOS 7 and above
 
-## Server configuration
+## Portal configuration
 
 The configuration related to this widget can be found at `Control Panel - Portal Settings - Authentication`
 
@@ -35,8 +38,7 @@ The configuration related to this widget can be found at `Control Panel - Portal
 Refer to [Configuring Portal Settings](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/portal-settings-liferay-portal-6-2-user-guide-16-en) section for more details.
 
 ### Anonymous request
-Given that this request is done without being logged in, it need to be authenticated against the API. It's recommended that the portal administrator creates an specific user with minimal permissions in order to allow this operation.
-
+This request is done without the user being logged in, but authentication is needed to call the API. It's recommended that the portal administrator creates a specific user with minimal permissions in order to allow this operation.
 
 ## Attributes
 

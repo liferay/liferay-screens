@@ -1,12 +1,12 @@
-# LoginWidget for iOS (Auth module)
+# LoginWidget for iOS
 
 ## Important note
 __This product is under heavy development and most of the features aren't ready to be used in production.
-It's public just in order to allow developers to preview the technology.__
+It's public, following our Open Source philosophy, in order to allow developers to preview the technology and contribute with feedback, ideas and bug fixes.__
 
 ## Features
 - Authenticate users against Liferay Portal user management.
-- Three different authentication methods are supported:
+- Supports the following three authentication methods:
 	- Email address
 	- Screen name
 	- User id
@@ -14,9 +14,10 @@ It's public just in order to allow developers to preview the technology.__
 - User credentials and attributes can be stored securely in the keychain.
 - Stored credentials and attributes can be used to perform auto login operations on next start ups.
 
+##Module
+Auth
 
-## Supported in themes
-
+## Themes
 - Default
 - Flat7
 
@@ -32,7 +33,8 @@ It's public just in order to allow developers to preview the technology.__
 
 - iOS 7 and above
 
-## Server configuration
+## Portal configuration
+
 The right authentication method should be configured in `Control Panel - Portal Settings - Authentication`
 
 ![Liferay portal authentication methods](Images/portal-auth.png "Liferay portal authentication methods")

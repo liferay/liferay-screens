@@ -1,19 +1,20 @@
-# ForgotPasswordWidget for iOS (Auth module)
+# ForgotPasswordWidget for iOS
 
 ## Important note
 __This product is under heavy development and most of the features aren't ready to be used in production.
-It's public just in order to allow developers to preview the technology.__
+It's public, following our Open Source philosophy, in order to allow developers to preview the technology and contribute with feedback, ideas and bug fixes.__
 
 ## Features
 - Send an email to an already registered user with the new password or reset link (depending on server configuration)
-- Three different authentication methods are supported:
+- Supports the following three authentication methods:
 	- Email address
 	- Screen name
 	- User id
 
+##Module
+Auth
 
-## Supported in themes
-
+## Themes
 - Default
 - Flat7
 
@@ -30,17 +31,17 @@ It's public just in order to allow developers to preview the technology.__
 
 - iOS 7 and above
 
-## Server configuration
+## Portal configuration
 
 ### Authentication method
-Note that the authentication method configured in the portal can be different than the used in this widget. You may want to allow users to remember their password providing their email address but the authentication method could be based on screen name.
+Note that the authentication method configured in the portal can be different than the used in this widget. It's *perfectly fine* to allow users to remember their password providing their email address but configure the authentication method could to use screen name.
 
 ### Password reset
-Depending on server configuration `Control Panel - Portal Settings - Authentication`, the forgot password features could be enabled or not.
+Depending on portal configuration `Control Panel - Portal Settings - Authentication`, the forgot password feature could be enabled or not.
 
 ![](Images/password-reset.png)
 
-- If both options are unchecked, this feature is be disabled.
+- If both options are unchecked, this feature will be disabled.
 - If both options are checked, an email with reset link will be sent
 - If first option is checked and second one is unchecked, an email with new password will be sent.
 
@@ -48,7 +49,7 @@ Refer to [Configuring Portal Settings](https://www.liferay.com/documentation/lif
 
 
 ### Anonymous request
-Given that this request is done without being logged in, it need to be authenticated against the API. It's recommended that the portal administrator creates an specific user with minimal permissions in order to allow this operation.
+This request is done without the user being logged in, but authentication is needed to call the API. It's recommended that the portal administrator creates a specific user with minimal permissions in order to allow this operation.
 
 
 ## Attributes
