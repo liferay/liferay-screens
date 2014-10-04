@@ -45,9 +45,16 @@ Refer to [Defining Data Types](https://www.liferay.com/documentation/liferay-por
 |  `labelField` | `string` | The name of the field to be shown in the list. Refer to the list's data definition to find the field names: `Dynamic Data Lists - Manage Data Definitions`. ![](Images/portal-datadefinition.png) |
 
 
+## Methods
+
+| Method | Return | Explanation |
+|-----------|-----------|-------------| 
+|  `loadList()` | `boolean` | Starts the request to load the list of records. When the response is received, the list is shown. Returns `true` if the request could be sent. |
+
+
 ## Delegate
 
-DDLListWidget delegates some event in an object that conforms `DDLListWidgetDelegate` protocol.
+This widget delegates some events in an object that conforms `DDLListWidgetDelegate` protocol.
 This protocol allows to implement the following methods:
 
 - `onDDLListResponse(list of records)`: called when a page of contents is received. Note this method may be called more than once, one for each page retrieved.

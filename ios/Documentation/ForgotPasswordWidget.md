@@ -64,7 +64,7 @@ This request is done without the user being logged in, but authentication is nee
 
 ## Delegate
 
-ForgotPasswordWidget delegates some event in an object that conforms `ForgotPasswordWidgetDelegate` protocol.
+This widget delegates some events in an object that conforms `ForgotPasswordWidgetDelegate` protocol.
 This protocol allows to implement the following methods:
 
 - `onForgotPasswordResponse(boolean)`: called when email was successfully sent. The boolean parameter indicates whether a new password was generated or a reset link was sent.

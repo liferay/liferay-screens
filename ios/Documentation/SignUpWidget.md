@@ -54,7 +54,7 @@ This request is done without the user being logged in, but authentication is nee
 
 ## Delegate
 
-This widget will delegate some event in an object that conforms `SignUpWidgetDelegate` protocol.
+This widget will delegate some events in an object that conforms `SignUpWidgetDelegate` protocol.
 If the `autologin` is enabled, login events will be delegated to an object conforming `LoginWidgetDelegate`. Refer to [LoginWidget documentation](LoginWidget.md) for more details on this.
 
 The `SignUpWidgetDelegate` protocol allows to implement the following methods:

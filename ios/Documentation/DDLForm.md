@@ -75,14 +75,14 @@ Refer to [Defining Data Types](https://www.liferay.com/documentation/liferay-por
 
 | Method | Return | Explanation |
 |-----------|-----------|-------------| 
-|  `loadForm()` | `boolean` | Starts the request to load the form definition. When the response is received, the form fields are shown. Returns `true` if the requests could be done. |
-|  `loadRecord()` | `boolean` | Starts the request to load the record specified in `recordId`. If needed, it will also load the form definition. When the response is received, the form fields are shown filled with record values. Returns `true` if the requests could be done. |
-|  `submitForm()` | `boolean` | Starts the request to submit form values to the Dynamic Data List specified in `recordSetId`. If needed, it will also load the form definition. When the response is received, the form fields are shown filled with record values. Returns `true` if the requests could be done. |
+|  `loadForm()` | `boolean` | Starts the request to load the form definition. When the response is received, the form fields are shown. Returns `true` if the request could be sent. |
+|  `loadRecord()` | `boolean` | Starts the request to load the record specified in `recordId`. If needed, it will also load the form definition. When the response is received, the form fields are shown filled with record values. Returns `true` if the request could be sent. |
+|  `submitForm()` | `boolean` | Starts the request to submit form values to the Dynamic Data List specified in `recordSetId`. If needed, it will also load the form definition. When the response is received, the form fields are shown filled with record values. Returns `true` if the request could be sent. |
 
 
 ## Delegate
 
-This widget delegates some event in an object that conforms `DDLFormWidgetDelegate` protocol.
+This widget delegates some events in an object that conforms `DDLFormWidgetDelegate` protocol.
 This protocol allows to implement the following methods:
 
 - `onFormLoaded(record)`: called when the form is loaded. The `record` will contain only field definitions.

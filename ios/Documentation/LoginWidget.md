@@ -52,7 +52,7 @@ Refer to [Configuring Portal Settings](https://www.liferay.com/documentation/lif
 
 ## Delegate
 
-LoginWidget delegates some event in an object that conforms `LoginWidgetDelegate` protocol.
+This widget delegates some events in an object that conforms `LoginWidgetDelegate` protocol.
 This protocol allows to implement the following methods:
 
 - `onLoginResponse(dictionary)`: called when login is successfully completed. The user attributes are passed as a dictionary of keys (NSStrings) and values (NSObject). Keys supported are the same as [portal's User entity](https://github.com/liferay/liferay-portal/blob/6.2.x/portal-impl/src/com/liferay/portal/service.xml#L2227)
