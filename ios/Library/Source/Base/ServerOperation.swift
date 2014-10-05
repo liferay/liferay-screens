@@ -86,21 +86,8 @@ public class ServerOperation: NSOperation {
 			}
 
 			doRun(session: session!)
-
 			postRun()
-
-			if lastError == nil {
-				if let messageValue = hudSuccessMessage {
-					hideHUD(message: messageValue.0, details: messageValue.details)
-				}
-				else if hudLoadingMessage != nil {
-					hideHUD()
-				}
-			}
-			else if let messageValue = hudFailureMessage {
-				hideHUD(error: lastError!, message: messageValue.0, details: messageValue.details)
-			}
-
+			closeHUD()
 			callOnComplete()
 		}
 		else {
@@ -201,6 +188,27 @@ public class ServerOperation: NSOperation {
 		if self.onComplete != nil {
 			dispatch_sync(dispatch_get_main_queue()) {
 				self.onComplete!(self)
+			}
+		}
+	}
+
+	private func closeHUD() {
+		if lastError == nil {
+			if let messageValue = hudSuccessMessage {
+				hideHUD(message: messageValue.0, details: messageValue.details)
+			}
+			else if hudLoadingMessage != nil {
+				hideHUD()
+			}
+		}
+		else {
+			if let messageValue = hudFailureMessage {
+				hideHUD(error: lastError!,
+						message: messageValue.0,
+						details: messageValue.details)
+			}
+			else if hudLoadingMessage != nil {
+				hideHUD()
 			}
 		}
 	}
