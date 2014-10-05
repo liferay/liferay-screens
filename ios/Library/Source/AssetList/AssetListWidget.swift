@@ -26,7 +26,7 @@ import UIKit
 
 @IBDesignable public class AssetListWidget: BaseListWidget {
 
-	@objc public class Entry {
+	@objc(AssetListEntry) public class Entry {
 
 		public var title:String
 
