@@ -52,6 +52,7 @@ import UIKit
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var recordSetId: Int64 = 0
 	@IBInspectable public var recordId: Int64 = 0
+	@IBInspectable public var userId: Int64 = 0
 
 	@IBInspectable public var repositoryId: Int64 = 0
 	@IBInspectable public var folderId: Int64 = 0
@@ -67,7 +68,6 @@ import UIKit
 		return widgetView as DDLFormView
 	}
 
-	private var userId: Int64?
 	private var currentOperation = FormOperation.Idle
 
 
@@ -300,7 +300,7 @@ import UIKit
 			return false
 		}
 
-		if userId == nil {
+		if userId == 0 {
 			println("ERROR: UserId is empty. Can't submit form without loading the form before")
 			return false
 		}
@@ -340,7 +340,7 @@ import UIKit
 		let groupId = self.groupId != 0 ? self.groupId : LiferayServerContext.groupId
 
 		let serviceContextAttributes = [
-				"userId": NSNumber(longLong: userId!),
+				"userId": NSNumber(longLong: userId),
 				"scopeGroupId": NSNumber(longLong: groupId)]
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
@@ -375,8 +375,10 @@ import UIKit
 
 	private func onFormLoadResult(result: [String:AnyObject]) -> Bool {
 		if let xsd = result["xsd"]! as? String {
-			if let userIdValue = result["userId"]! as? Int {
-				userId = Int64(userIdValue)
+			if userId == 0 {
+				if let userIdValue = result["userId"]! as? Int {
+					userId = Int64(userIdValue)
+				}
 			}
 
 			formView.record = DDLRecord(xsd: xsd, locale: NSLocale.currentLocale())
