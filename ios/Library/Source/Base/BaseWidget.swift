@@ -139,7 +139,16 @@ import QuartzCore
 		let view = createWidgetViewFromNib();
 
 		if let viewValue = view {
-			viewValue.frame = centeredRectInWidget(size: viewValue.frame.size)
+			//FIXME: full-autoresize value. Extract from UIViewAutoresizing
+			let flexibleMask = UIViewAutoresizing.fromMask(18)
+
+			if viewValue.autoresizingMask == flexibleMask {
+				viewValue.frame = self.bounds
+			}
+			else {
+				viewValue.frame = centeredRectInWidget(size: viewValue.frame.size)
+			}
+
 			viewValue.onUserAction = onUserAction;
 
 			addSubview(viewValue)
