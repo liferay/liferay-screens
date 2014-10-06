@@ -1,6 +1,6 @@
 //
 //  DDLListViewController.swift
-//  Liferay-iOS-Widgets-Swift-Sample
+//  Liferay-iOS-Screenlets-Swift-Sample
 //
 //  Created by jmWork on 19/09/14.
 //  Copyright (c) 2014 Liferay. All rights reserved.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class DDListViewController: UIViewController, DDLListWidgetDelegate {
+class DDListViewController: UIViewController, DDLListScreenletDelegate {
 
-	@IBOutlet var widget: DDLListWidget?
+	@IBOutlet var screenlet: DDLListScreenlet?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		widget!.delegate = self
+		screenlet!.delegate = self
     }
 
 	@IBAction func loadAction(sender: AnyObject) {
@@ -24,7 +24,7 @@ class DDListViewController: UIViewController, DDLListWidgetDelegate {
 				password: "jm",
 				userAttributes: ["userId": 10198])
 
-		widget!.loadList()
+		screenlet!.loadList()
 	}
 
 	func onDDLListResponse(records: [DDLRecord]) {

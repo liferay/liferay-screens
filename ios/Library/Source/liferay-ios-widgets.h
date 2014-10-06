@@ -13,11 +13,11 @@
  */
 #import <UIKit/UIKit.h>
 
-//! Project version number for liferay-mobile-widgets.
-FOUNDATION_EXPORT double liferay_mobile_widgetsVersionNumber;
+//! Project version number for liferay-mobile-screenlets.
+FOUNDATION_EXPORT double liferay_mobile_screenletsVersionNumber;
 
-//! Project version string for liferay-mobile-widgets.
-FOUNDATION_EXPORT const unsigned char liferay_mobile_widgetsVersionString[];
+//! Project version string for liferay-mobile-screenlets.
+FOUNDATION_EXPORT const unsigned char liferay_mobile_screenletsVersionString[];
 
 #import "MBProgressHUD.h"
 #import "SMXMLDocument.h"

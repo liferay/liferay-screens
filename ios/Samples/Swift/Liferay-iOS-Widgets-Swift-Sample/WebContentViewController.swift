@@ -1,6 +1,6 @@
 //
 //  WebContentViewController.swift
-//  Liferay-iOS-Widgets-Swift-Sample
+//  Liferay-iOS-Screenlets-Swift-Sample
 //
 //  Created by jmWork on 08/09/14.
 //  Copyright (c) 2014 Liferay. All rights reserved.
@@ -9,12 +9,12 @@
 import UIKit
 
 
-public class WebContentViewController: UIViewController, WebContentDisplayWidgetDelegate {
+public class WebContentViewController: UIViewController, WebContentDisplayScreenletDelegate {
 
-	@IBOutlet private weak var widget: WebContentDisplayWidget?
+	@IBOutlet private weak var screenlet: WebContentDisplayScreenlet?
 
 	override public func viewDidLoad() {
-		widget!.delegate = self
+		screenlet!.delegate = self
 	}
 
 	@IBAction func loadButtonAction(sender: AnyObject) {
@@ -22,7 +22,7 @@ public class WebContentViewController: UIViewController, WebContentDisplayWidget
 				username: "jose.navarro@liferay.com",
 				password: "jm",
 				userAttributes: ["userId": 10198])
-		widget!.loadWebContent()
+		screenlet!.loadWebContent()
 	}
 
 }

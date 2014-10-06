@@ -37,12 +37,12 @@ public class ServerOperation: NSOperation {
 
 
 	internal var lastError: NSError?
-	internal var widget: BaseWidget
+	internal var screenlet: BaseScreenlet
 
 	internal var onComplete: (ServerOperation -> Void)?
 
 	internal var anonymousAuth: AnonymousAuthData? {
-		return widget as? AnonymousAuthData
+		return screenlet as? AnonymousAuthData
 	}
 
 	internal var hudLoadingMessage: HUDMessage? { return nil }
@@ -50,8 +50,8 @@ public class ServerOperation: NSOperation {
 	internal var hudSuccessMessage: HUDMessage? { return nil }
 
 
-	internal init(widget: BaseWidget) {
-		self.widget = widget
+	internal init(screenlet: BaseScreenlet) {
+		self.screenlet = screenlet
 
 		super.init()
 
@@ -87,7 +87,7 @@ public class ServerOperation: NSOperation {
 				if session == nil {
 					lastError = createError(
 							cause: .AbortedDueToPreconditions,
-							message: "Login required to use this widget")
+							message: "Login required to use this screenlet")
 					callOnComplete()
 
 					return
@@ -110,7 +110,7 @@ public class ServerOperation: NSOperation {
 
 		// operation recycle
 		if self is NSCopying {
-			widget.serverOperation = self.copy() as? ServerOperation
+			screenlet.serverOperation = self.copy() as? ServerOperation
 		}
 	}
 
@@ -157,18 +157,18 @@ public class ServerOperation: NSOperation {
 
 	internal func showHUD(#message: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
-			self.widget.startOperationWithMessage(message, details: details)
+			self.screenlet.startOperationWithMessage(message, details: details)
 		}
 	}
 
 	internal func showHUD(
 			#message: String,
 			details: String?,
-			closeMode: BaseWidget.CloseMode,
-			spinnerMode: BaseWidget.SpinnerMode) {
+			closeMode: BaseScreenlet.CloseMode,
+			spinnerMode: BaseScreenlet.SpinnerMode) {
 
 		dispatch_async(dispatch_get_main_queue()) {
-			self.widget.showHUDWithMessage(message,
+			self.screenlet.showHUDWithMessage(message,
 					details: details,
 					closeMode: closeMode,
 					spinnerMode: spinnerMode)
@@ -177,25 +177,25 @@ public class ServerOperation: NSOperation {
 
 	internal func showValidationHUD(#message: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
-			self.widget.showHUDAlert(message: message, details: details)
+			self.screenlet.showHUDAlert(message: message, details: details)
 		}
 	}
 
 	internal func hideHUD() {
 		dispatch_async(dispatch_get_main_queue()) {
-			self.widget.finishOperation()
+			self.screenlet.finishOperation()
 		}
 	}
 
 	internal func hideHUD(#message: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
-			self.widget.finishOperationWithMessage(message, details: details)
+			self.screenlet.finishOperationWithMessage(message, details: details)
 		}
 	}
 
 	internal func hideHUD(#errorMessage: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
-			self.widget.showHUDWithMessage(errorMessage,
+			self.screenlet.showHUDWithMessage(errorMessage,
 					details: details,
 					closeMode: .ManualClose(true),
 					spinnerMode:.NoSpinner)
@@ -204,7 +204,7 @@ public class ServerOperation: NSOperation {
 
 	internal func hideHUD(#error: NSError, message: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
-			self.widget.finishOperationWithError(error, message: message, details: details)
+			self.screenlet.finishOperationWithError(error, message: message, details: details)
 		}
 	}
 

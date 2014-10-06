@@ -14,10 +14,10 @@
 import UIKit
 
 
-public class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidgetDelegate {
+public class ViewController: UIViewController, LoginScreenletDelegate, ForgotPasswordScreenletDelegate {
 
-	@IBOutlet private var loginWidget: LoginWidget?
-	@IBOutlet private var forgotWidget: ForgotPasswordWidget?
+	@IBOutlet private var loginScreenlet: LoginScreenlet?
+	@IBOutlet private var forgotScreenlet: ForgotPasswordScreenlet?
 
     
     // UIViewController METHODS
@@ -28,14 +28,14 @@ public class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswo
 
 		// WORKAROUND!
 		// Delegate assignment in IB doesn't work!!
-		loginWidget!.delegate = self
-		loginWidget!.authMethod = AuthMethod.Email.toRaw()
+		loginScreenlet!.delegate = self
+		loginScreenlet!.authMethod = AuthMethod.Email.toRaw()
 
-		forgotWidget!.delegate = self;
-		forgotWidget!.authMethod = AuthMethod.ScreenName.toRaw()
+		forgotScreenlet!.delegate = self;
+		forgotScreenlet!.authMethod = AuthMethod.ScreenName.toRaw()
 	}
 
-    // LoginWidgetDelegate METHODS
+    // LoginScreenletDelegate METHODS
 
     
 	public func onCredentialsLoaded(session:LRSession) {

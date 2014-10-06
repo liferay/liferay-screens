@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol DDLFormWidgetDelegate {
+@objc public protocol DDLFormScreenletDelegate {
 
 	optional func onFormLoaded(record: DDLRecord)
 	optional func onFormLoadError(error: NSError)
@@ -36,7 +36,7 @@ import UIKit
 }
 
 
-@IBDesignable public class DDLFormWidget: BaseWidget {
+@IBDesignable public class DDLFormScreenlet: BaseScreenlet {
 
 	private enum FormOperation {
 
@@ -59,10 +59,10 @@ import UIKit
 	@IBInspectable public var autoscrollOnValidation = true
 	@IBInspectable public var showSubmitButton = true
 
-	@IBOutlet public var delegate: DDLFormWidgetDelegate?
+	@IBOutlet public var delegate: DDLFormScreenletDelegate?
 
 	internal var formView: DDLFormView {
-		return widgetView as DDLFormView
+		return screenletView as DDLFormView
 	}
 
 	private var currentOperation = FormOperation.Idle
@@ -72,7 +72,7 @@ import UIKit
 	private var loadRecordOperation: LiferayDDLFormRecordLoadOperation?
 	private var uploadOperation: LiferayDDLFormUploadOperation?
 
-	//MARK: BaseWidget
+	//MARK: BaseScreenlet
 
 	override public func becomeFirstResponder() -> Bool {
 		return formView.becomeFirstResponder()
@@ -109,7 +109,7 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadForm() -> Bool {
-		loadFormOperation = LiferayDDLFormLoadOperation(widget: self)
+		loadFormOperation = LiferayDDLFormLoadOperation(screenlet: self)
 
 		loadFormOperation!.structureId = self.structureId
 		loadFormOperation!.userId = self.userId
@@ -129,7 +129,7 @@ import UIKit
 
 
 	public func loadRecord() -> Bool {
-		loadRecordOperation = LiferayDDLFormRecordLoadOperation(widget: self)
+		loadRecordOperation = LiferayDDLFormRecordLoadOperation(screenlet: self)
 
 		loadRecordOperation!.recordId = self.recordId
 
@@ -169,7 +169,7 @@ import UIKit
 			default: ()
 		}
 
-	 	submitOperation = LiferayDDLFormSubmitOperation(widget: self)
+	 	submitOperation = LiferayDDLFormSubmitOperation(screenlet: self)
 
 		submitOperation!.groupId = (self.groupId != 0)
 				? self.groupId : LiferayServerContext.groupId
@@ -203,7 +203,7 @@ import UIKit
 		let groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
 		let repositoryId = (self.repositoryId != 0) ? self.repositoryId : groupId
 
-		uploadOperation = LiferayDDLFormUploadOperation(widget: self)
+		uploadOperation = LiferayDDLFormUploadOperation(screenlet: self)
 
 		uploadOperation!.document = document
 		uploadOperation!.filePrefix = filePrefix

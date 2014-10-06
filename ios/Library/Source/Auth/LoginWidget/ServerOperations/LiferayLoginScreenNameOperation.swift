@@ -35,7 +35,7 @@ public class LiferayLoginScreenNameOperation: LiferayLoginBaseOperation {
 	//MARK: NSCopying
 
 	override public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayLoginScreenNameOperation(widget: self.widget)
+		let result = LiferayLoginScreenNameOperation(screenlet: self.screenlet)
 
 		result.onComplete = self.onComplete
 

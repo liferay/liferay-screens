@@ -35,7 +35,7 @@ public class LiferayForgotPasswordScreenNameOperation: LiferayForgotPasswordBase
 	//MARK: NSCopying
 
 	override public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayForgotPasswordScreenNameOperation(widget: self.widget)
+		let result = LiferayForgotPasswordScreenNameOperation(screenlet: self.screenlet)
 
 		result.onComplete = self.onComplete
 

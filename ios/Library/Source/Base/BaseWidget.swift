@@ -16,10 +16,10 @@ import QuartzCore
 
 
 /*!
- * BaseWidget is the base class from which all Widget classes must inherit.
- * A widget is the container for a widget view.
+ * BaseScreenlet is the base class from which all Screenlet classes must inherit.
+ * A screenlet is the container for a screenlet view.
  */
-@IBDesignable public class BaseWidget: UIView {
+@IBDesignable public class BaseScreenlet: UIView {
 
 	@IBInspectable public var themeName: String? {
 		set {
@@ -42,17 +42,17 @@ import QuartzCore
 		}
 	}
 
-	internal var widgetView: BaseWidgetView?
+	internal var screenletView: BaseScreenletView?
 	internal var serverOperation: ServerOperation?
 
-	internal var widgetName: String {
+	internal var screenletName: String {
 		// In Beta 5, className will constain ModuleName.ClassName
 		// just strip the first part
 
 		var className = NSStringFromClass(self.dynamicType)
 
 		className = className.componentsSeparatedByString(".")[1]
-		className = className.componentsSeparatedByString("Widget")[0]
+		className = className.componentsSeparatedByString("Screenlet")[0]
 
 		return className
 	}
@@ -72,13 +72,13 @@ import QuartzCore
 
 		clipsToBounds = true;
 
-		widgetView = loadWidgetView();
+		screenletView = loadScreenletView();
 
 		onCreated()
 	}
 
 	override public func becomeFirstResponder() -> Bool {
-		return widgetView!.becomeFirstResponder()
+		return screenletView!.becomeFirstResponder()
 	}
 
 	override public func didMoveToWindow() {
@@ -110,7 +110,7 @@ import QuartzCore
 
 		if runningOnInterfaceBuilder {
 			if let currentPreviewImageValue = currentPreviewImage {
-				previewLayer.frame = centeredRectInWidget(size: currentPreviewImageValue.size)
+				previewLayer.frame = centeredRectInScreenlet(size: currentPreviewImageValue.size)
 				previewLayer.contents = currentPreviewImageValue.CGImage
 
 				if previewLayer.superlayer != layer {
@@ -124,8 +124,8 @@ import QuartzCore
 
 	//MARK: Internal methods
 
-	internal func loadWidgetView() -> BaseWidgetView? {
-		let view = createWidgetViewFromNib();
+	internal func loadScreenletView() -> BaseScreenletView? {
+		let view = createScreenletViewFromNib();
 
 		if let viewValue = view {
 			//FIXME: full-autoresize value. Extract from UIViewAutoresizing
@@ -135,7 +135,7 @@ import QuartzCore
 				viewValue.frame = self.bounds
 			}
 			else {
-				viewValue.frame = centeredRectInWidget(size: viewValue.frame.size)
+				viewValue.frame = centeredRectInScreenlet(size: viewValue.frame.size)
 			}
 
 			viewValue.onUserAction = onUserAction;
@@ -155,15 +155,15 @@ import QuartzCore
 		if let previewImagePath = previewImagePathForTheme(themeName) {
 			result = UIImage(contentsOfFile: previewImagePath)
 		}
-		else if let widgetView = createWidgetViewFromNib() {
-			result = previewImageFromView(widgetView)
+		else if let screenletView = createScreenletViewFromNib() {
+			result = previewImageFromView(screenletView)
 		}
 
 		return result
 	}
 
 	internal func previewImagePathForTheme(themeName:String) -> String? {
-		let imageName = "\(themeName)-preview-\(widgetName.lowercaseString)"
+		let imageName = "\(themeName)-preview-\(screenletName.lowercaseString)"
 
 		return NSBundle(forClass:self.dynamicType).pathForResource(imageName, ofType: "png")
 	}
@@ -171,7 +171,7 @@ import QuartzCore
 	internal func startOperationWithMessage(message:String, details:String? = nil) {
 		showHUDWithMessage(message, details: details)
 		onStartOperation()
-		widgetView?.onStartOperation()
+		screenletView?.onStartOperation()
 	}
 
 	internal func finishOperationWithError(error:NSError, message:String, details:String? = nil) {
@@ -180,19 +180,19 @@ import QuartzCore
 			closeMode:.ManualClose(true),
 			spinnerMode:.NoSpinner)
 		onFinishOperation()
-		widgetView?.onFinishOperation()
+		screenletView?.onFinishOperation()
 	}
 
 	internal func finishOperationWithMessage(message:String, details:String? = nil) {
 		hideHUDWithMessage(message, details: details)
 		onFinishOperation()
-		widgetView?.onFinishOperation()
+		screenletView?.onFinishOperation()
 	}
 
 	internal func finishOperation() {
 		hideHUD()
 		onFinishOperation()
-		widgetView?.onFinishOperation()
+		screenletView?.onFinishOperation()
 	}
 
 	internal func previewImageFromView(view: UIView) -> UIImage {
@@ -213,14 +213,14 @@ import QuartzCore
 	//MARK: Templated/event methods: intended to be overwritten by children classes
 
 	/*
-	 * onCreated is invoked after the widget is created. 
-	 * Override this method to set custom values for the widget properties.
+	 * onCreated is invoked after the screenlet is created. 
+	 * Override this method to set custom values for the screenlet properties.
 	 */
 	internal func onCreated() {
 	}
 
 	/*
-	 * onPreCreate is invoked before the widget is created.
+	 * onPreCreate is invoked before the screenlet is created.
 	 * Override this method to set create new UI components programatically.
 	 *
 	 */
@@ -228,14 +228,14 @@ import QuartzCore
 	}
 
 	/*
-	 * onHide is invoked when the widget is hidden from the app window.
+	 * onHide is invoked when the screenlet is hidden from the app window.
 	 */
 	internal func onHide() {
 	}
 
 	/*
-	 * onShow is invoked when the widget is displayed on the app window. 
-	 * Override this method for example to reset values when the widget is shown.
+	 * onShow is invoked when the screenlet is displayed on the app window. 
+	 * Override this method for example to reset values when the screenlet is shown.
 	 */
 	internal func onShow() {
 	}
@@ -247,7 +247,7 @@ import QuartzCore
 	}
 
 	/**
-	 * onStartOperation is called just before a widget request is sent to server
+	 * onStartOperation is called just before a screenlet request is sent to server
 	 */
 	internal func onStartOperation() {
 	}
@@ -261,8 +261,8 @@ import QuartzCore
 
 	//MARK: Private
 
-	private func createWidgetViewFromNib() -> BaseWidgetView? {
-		let viewName = widgetName + "View"
+	private func createScreenletViewFromNib() -> BaseScreenletView? {
+		let viewName = screenletName + "View"
 
 		let bundle = NSBundle(forClass:self.dynamicType)
 
@@ -282,7 +282,7 @@ import QuartzCore
 		let views = bundle.loadNibNamed(nibName, owner:self, options:nil)
 		assert(views.count > 0, "Xib seems to be malformed. There're no views inside it");
 
-		let foundView = (views[0] as BaseWidgetView)
+		let foundView = (views[0] as BaseScreenletView)
 
 		return foundView
 	}
@@ -291,7 +291,7 @@ import QuartzCore
 		currentPreviewImage = previewImageForTheme(_themeName)
 	}
 
-	private func centeredRectInWidget(#size: CGSize) -> CGRect {
+	private func centeredRectInScreenlet(#size: CGSize) -> CGRect {
 		return CGRectMake(
 				(self.frame.size.width - size.width) / 2,
 				(self.frame.size.height - size.height) / 2,

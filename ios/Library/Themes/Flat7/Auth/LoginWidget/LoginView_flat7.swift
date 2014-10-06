@@ -27,7 +27,7 @@ public class LoginView_flat7: LoginView_default {
 	override internal func onCreated() {
 		super.onCreated()
 
-		BaseWidget.setHUDCustomColor(Flat7ThemeBasicGreen)
+		BaseScreenlet.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}
 
 	override public var userName: String? {

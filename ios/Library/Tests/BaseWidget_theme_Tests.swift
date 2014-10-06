@@ -14,71 +14,71 @@
 import XCTest
 
 
-class BaseWidget_Theme_Tests: XCTestCase {
+class BaseScreenlet_Theme_Tests: XCTestCase {
 
-	var loginWidget:LoginWidget?
+	var loginScreenlet:LoginScreenlet?
 
 	override func setUp() {
 		super.setUp()
 
-		loginWidget = LoginWidget(frame: CGRectMake(0, 0, 100, 100))
+		loginScreenlet = LoginScreenlet(frame: CGRectMake(0, 0, 100, 100))
 	}
 
 	func test_CurrentThemeName_ShouldReturnDefault_WhenNoThemeIsSelected() {
-		XCTAssertEqual("default", loginWidget!.themeName!)
+		XCTAssertEqual("default", loginScreenlet!.themeName!)
 	}
 
 	func test_themeName_ShouldReturnTheNameOfTheSelectedTheme_WhenThemeExists() {
-		loginWidget!.themeName = "xyz"
+		loginScreenlet!.themeName = "xyz"
 
-		XCTAssertEqual("xyz", loginWidget!.themeName!)
+		XCTAssertEqual("xyz", loginScreenlet!.themeName!)
 	}
 
 	func test_themeName_ShouldReturnTheNameOfTheSelectedThemeInLowercase() {
-		loginWidget!.themeName = "XyZ"
+		loginScreenlet!.themeName = "XyZ"
 
-		XCTAssertEqual("xyz", loginWidget!.themeName!)
+		XCTAssertEqual("xyz", loginScreenlet!.themeName!)
 	}
 
 	func test_themeName_ShouldReturnDefaultTheme_WhenThemeDoesNotExist() {
-		loginWidget!.themeName = "not-exists"
+		loginScreenlet!.themeName = "not-exists"
 
-		XCTAssertEqual("default", loginWidget!.themeName!)
+		XCTAssertEqual("default", loginScreenlet!.themeName!)
 	}
 
 	func test_themeName_ShouldReturnDefaultTheme_WhenThemeIsNil() {
-		loginWidget!.themeName = nil
+		loginScreenlet!.themeName = nil
 
-		XCTAssertEqual("default", loginWidget!.themeName!)
+		XCTAssertEqual("default", loginScreenlet!.themeName!)
 	}
 
-	func test_LoadWidgetView_ShouldReturnDefaultView_WhenNoThemeIsSelected() {
-		let view = loginWidget!.loadWidgetView()
+	func test_LoadScreenletView_ShouldReturnDefaultView_WhenNoThemeIsSelected() {
+		let view = loginScreenlet!.loadScreenletView()
 
 		XCTAssertNotNil(view)
-		XCTAssertEqual(1, loginWidget!.subviews.count)
-		XCTAssertTrue(loginWidget!.subviews[0] is LoginView_default)
-		XCTAssertEqual(view!, loginWidget!.subviews[0] as BaseWidgetView)
+		XCTAssertEqual(1, loginScreenlet!.subviews.count)
+		XCTAssertTrue(loginScreenlet!.subviews[0] is LoginView_default)
+		XCTAssertEqual(view!, loginScreenlet!.subviews[0] as BaseScreenletView)
 	}
 
-	func test_LoadWidgetView_ShouldReturnCustomizedView_WhenThemeIsSelected() {
-		loginWidget!.themeName = "xyz"
+	func test_LoadScreenletView_ShouldReturnCustomizedView_WhenThemeIsSelected() {
+		loginScreenlet!.themeName = "xyz"
 
-		let view = loginWidget!.loadWidgetView()
+		let view = loginScreenlet!.loadScreenletView()
 
 		XCTAssertNotNil(view)
-		XCTAssertEqual(1, loginWidget!.subviews.count)
-		XCTAssertTrue(loginWidget!.subviews[0] is LoginView_xyz)
-		XCTAssertEqual(view!, loginWidget!.subviews[0] as BaseWidgetView)
+		XCTAssertEqual(1, loginScreenlet!.subviews.count)
+		XCTAssertTrue(loginScreenlet!.subviews[0] is LoginView_xyz)
+		XCTAssertEqual(view!, loginScreenlet!.subviews[0] as BaseScreenletView)
 	}
 
 	func test_PreviewImagePathForTheme_ShouldReturnThewImagePath_WhenExists() {
 		XCTAssertTrue(
-				loginWidget!.previewImagePathForTheme("xyz")!.hasSuffix("xyz-preview-login.png"))
+				loginScreenlet!.previewImagePathForTheme("xyz")!.hasSuffix("xyz-preview-login.png"))
 	}
 
 	func test_PreviewImagePathForTheme_ShouldReturnNil_WhenNotExists() {
-		XCTAssertNil(loginWidget!.previewImagePathForTheme("not-exists"))
+		XCTAssertNil(loginScreenlet!.previewImagePathForTheme("not-exists"))
 	}
 
 }

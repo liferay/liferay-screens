@@ -15,7 +15,7 @@
 
 @interface ViewController ()
 
-@property (weak, nonatomic) IBOutlet LoginWidget *widget;
+@property (weak, nonatomic) IBOutlet LoginScreenlet *screenlet;
 
 @end
 
@@ -25,10 +25,10 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	self.widget.delegate = self;
+	self.screenlet.delegate = self;
 
 	// this opens the keyboard
-	[self.widget becomeFirstResponder];
+	[self.screenlet becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {

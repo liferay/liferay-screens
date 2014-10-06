@@ -29,7 +29,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation, NSCopying {
 	}
 
 	internal var forgotPasswordData: ForgotPasswordData {
-		return widget.widgetView as ForgotPasswordData
+		return screenlet.screenletView as ForgotPasswordData
 	}
 
 	private var successMessage = ""

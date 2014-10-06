@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class ForgotPasswordView_default: BaseWidgetView, ForgotPasswordData {
+public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordData {
 
 	@IBOutlet internal var userNameIcon: UIImageView?
 	@IBOutlet internal var userNameField: UITextField?
@@ -54,12 +54,12 @@ public class ForgotPasswordView_default: BaseWidgetView, ForgotPasswordData {
 	}
 
 
-	//MARK: BaseWidgetView
+	//MARK: BaseScreenletView
 
 	override internal func onCreated() {
 		super.onCreated()
 
-		BaseWidget.setHUDCustomColor(DefaultThemeBasicBlue)
+		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
 	override internal func onStartOperation() {

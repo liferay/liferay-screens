@@ -15,9 +15,9 @@ import UIKit
 
 
 /*!
- * BaseWidgetView is the base class from which all Widget's View classes must inherit.
+ * BaseScreenletView is the base class from which all Screenlet's View classes must inherit.
  */
-public class BaseWidgetView: UIView, UITextFieldDelegate {
+public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	internal var onUserAction: ((String?, AnyObject?) -> Void)?
 
@@ -85,7 +85,7 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	//MARK: Internal methods
 
 	/*
-	 * onCreated is fired after the initialization of the widget view. 
+	 * onCreated is fired after the initialization of the screenlet view. 
 	 * Override this method to perform actions such as setting colors, sizes, 
 	 * positioning, etc to the component's subviews.
 	*/
@@ -93,7 +93,7 @@ public class BaseWidgetView: UIView, UITextFieldDelegate {
 	}
 
 	/*
-	 * onPreCreate is fired before the initialization of the widget view. 
+	 * onPreCreate is fired before the initialization of the screenlet view. 
 	 * Override this method to create UI components programatically.
 	*/
 	internal func onPreCreate() {

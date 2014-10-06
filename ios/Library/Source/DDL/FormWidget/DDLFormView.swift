@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class DDLFormView: BaseWidgetView, DDLFormData, UITextFieldDelegate {
+public class DDLFormView: BaseScreenletView, DDLFormData, UITextFieldDelegate {
 
 	//MARK: DDLFormData
 

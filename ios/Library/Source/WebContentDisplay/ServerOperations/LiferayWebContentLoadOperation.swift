@@ -64,7 +64,7 @@ public class LiferayWebContentLoadOperation: ServerOperation, NSCopying {
 	//MARK: NSCopying
 
 	public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayWebContentLoadOperation(widget: self.widget)
+		let result = LiferayWebContentLoadOperation(screenlet: self.screenlet)
 
 		result.onComplete = self.onComplete
 

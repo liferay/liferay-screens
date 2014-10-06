@@ -31,7 +31,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 	}
 
 	internal var formData: DDLFormData {
-		return widget.widgetView as DDLFormData
+		return screenlet.screenletView as DDLFormData
 	}
 
 	private var requestSemaphore: dispatch_semaphore_t?
@@ -100,7 +100,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 	//MARK: NSCopying
 
 	public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayDDLFormUploadOperation(widget: self.widget)
+		let result = LiferayDDLFormUploadOperation(screenlet: self.screenlet)
 
 		result.onComplete = self.onComplete
 

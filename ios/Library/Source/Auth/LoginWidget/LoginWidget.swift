@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol LoginWidgetDelegate {
+@objc public protocol LoginScreenletDelegate {
 
 	optional func onLoginResponse(attributes: [String:AnyObject])
 	optional func onLoginError(error: NSError)
@@ -25,35 +25,35 @@ import UIKit
 }
 
 
-public class LoginWidget: BaseWidget, AuthBasedData {
+public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 
 	//MARK: Inspectables
 
 	@IBInspectable public var authMethod: String? = AuthMethod.Email.toRaw() {
 		didSet {
-			copyAuth(source: self, target: widgetView)
+			copyAuth(source: self, target: screenletView)
 			serverOperation = createLoginOperation(authMethod: AuthMethod.create(authMethod))
 		}
 	}
 
 	@IBInspectable public var saveCredentials: Bool = false {
 		didSet {
-			(widgetView as? AuthBasedData)?.saveCredentials = self.saveCredentials
+			(screenletView as? AuthBasedData)?.saveCredentials = self.saveCredentials
 		}
 	}
 
 	@IBInspectable public var companyId: Int64 = 0 {
 		didSet {
-			(widgetView as? LoginData)?.companyId = self.companyId
+			(screenletView as? LoginData)?.companyId = self.companyId
 		}
 	}
 
 
-	@IBOutlet public var delegate: LoginWidgetDelegate?
+	@IBOutlet public var delegate: LoginScreenletDelegate?
 
 
 	internal var loginData: LoginData {
-		return widgetView as LoginData
+		return screenletView as LoginData
 	}
 
 	internal var loginOperation: LiferayLoginBaseOperation {
@@ -61,12 +61,12 @@ public class LoginWidget: BaseWidget, AuthBasedData {
 	}
 
 
-	//MARK: BaseWidget
+	//MARK: BaseScreenlet
 
 	override internal func onCreated() {
 		super.onCreated()
 		
-		copyAuth(source: self, target: widgetView)
+		copyAuth(source: self, target: screenletView)
 		serverOperation = createLoginOperation(authMethod: AuthMethod.create(authMethod))
 
 		loginData.companyId = companyId
@@ -106,11 +106,11 @@ public class LoginWidget: BaseWidget, AuthBasedData {
 	private func createLoginOperation(#authMethod: AuthMethod) -> LiferayLoginBaseOperation {
 		switch authMethod {
 			case .ScreenName:
-				return LiferayLoginScreenNameOperation(widget: self)
+				return LiferayLoginScreenNameOperation(screenlet: self)
 			case .UserId:
-				return LiferayLoginUserIdOperation(widget: self)
+				return LiferayLoginUserIdOperation(screenlet: self)
 			default:
-				return LiferayLoginEmailOperation(widget: self)
+				return LiferayLoginEmailOperation(screenlet: self)
 		}
 	}
 

@@ -14,20 +14,20 @@
 import UIKit
 
 
-@IBDesignable public class BaseListWidget: BaseWidget {
+@IBDesignable public class BaseListScreenlet: BaseScreenlet {
 
 	@IBInspectable public var firstPageSize: Int = 50
 	@IBInspectable public var pageSize: Int = 25
 
 	internal var baseListView: BaseListView {
-		return widgetView as BaseListView
+		return screenletView as BaseListView
 	}
 
 	private var paginationOperations: [Int:LiferayPaginationOperation] = [:]
 	private var rowCount: Int = 0
 
 
-	//MARK: BaseWidget
+	//MARK: BaseScreenlet
 
 	override public func onCreated() {
 		baseListView.onSelectedRowClosure = onSelectedRow
@@ -74,7 +74,7 @@ import UIKit
 		assertionFailure("createPaginationOperation must be overriden")
 
 		return LiferayPaginationOperation(
-				widget: self,
+				screenlet: self,
 				page: page,
 				computeRowCount: computeRowCount)
 	}

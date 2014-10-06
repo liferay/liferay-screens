@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol WebContentDisplayWidgetDelegate {
+@objc public protocol WebContentDisplayScreenletDelegate {
 
 	optional func onWebContentResponse(html:String)
 	optional func onWebContentError(error: NSError)
@@ -22,15 +22,15 @@ import UIKit
 }
 
 
-@IBDesignable public class WebContentDisplayWidget: BaseWidget {
+@IBDesignable public class WebContentDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var articleId = ""
 
-	@IBOutlet public var delegate: WebContentDisplayWidgetDelegate?
+	@IBOutlet public var delegate: WebContentDisplayScreenletDelegate?
 
 	internal var webContentDisplayData: WebContentDisplayData {
-		return widgetView as WebContentDisplayData
+		return screenletView as WebContentDisplayData
 	}
 
 	internal var webContentOperation: LiferayWebContentLoadOperation {
@@ -38,12 +38,12 @@ import UIKit
 	}
 
 
-	//MARK: BaseWidget
+	//MARK: BaseScreenlet
 
 	override func onCreated() {
 		super.onCreated()
 
-		serverOperation = LiferayWebContentLoadOperation(widget: self)
+		serverOperation = LiferayWebContentLoadOperation(screenlet: self)
 	}
 
 

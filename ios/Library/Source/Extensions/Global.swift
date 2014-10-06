@@ -14,7 +14,7 @@
 import Foundation
 
 
-public enum WidgetsErrorCause: Int {
+public enum ScreenletsErrorCause: Int {
 
 	case AbortedDueToPreconditions = -2
 	case InvalidServerResponse = -3
@@ -22,14 +22,14 @@ public enum WidgetsErrorCause: Int {
 }
 
 
-internal func createError(#cause: WidgetsErrorCause, userInfo: NSDictionary? = nil) -> NSError {
-	return NSError(domain: "LiferayWidgets", code: cause.toRaw(), userInfo: userInfo)
+internal func createError(#cause: ScreenletsErrorCause, userInfo: NSDictionary? = nil) -> NSError {
+	return NSError(domain: "LiferayScreenlets", code: cause.toRaw(), userInfo: userInfo)
 }
 
-internal func createError(#cause: WidgetsErrorCause, #message: String) -> NSError {
+internal func createError(#cause: ScreenletsErrorCause, #message: String) -> NSError {
 	let userInfo = [NSUnderlyingErrorKey: message]
 
-	return NSError(domain: "LiferayWidgets", code: cause.toRaw(), userInfo: userInfo)
+	return NSError(domain: "LiferayScreenlets", code: cause.toRaw(), userInfo: userInfo)
 }
 
 

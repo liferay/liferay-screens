@@ -18,23 +18,23 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	public var groupId: Int64 = 0
 	public var classNameId: Int64 = 0
 
-	internal var assetListWidget: AssetListWidget {
-		return self.widget as AssetListWidget
+	internal var assetListScreenlet: AssetListScreenlet {
+		return self.screenlet as AssetListScreenlet
 	}
 
 	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
-		let widgetsService = LRMobilewidgetsassetentryService_v62(session: session)
+		let screenletsService = LRMobilewidgetsassetentryService_v62(session: session)
 
 		var entryQueryAttributes: [NSString : AnyObject] = [:]
 
-		entryQueryAttributes["start"] = assetListWidget.firstRowForPage(page)
-		entryQueryAttributes["end"] = assetListWidget.firstRowForPage(page + 1)
+		entryQueryAttributes["start"] = assetListScreenlet.firstRowForPage(page)
+		entryQueryAttributes["end"] = assetListScreenlet.firstRowForPage(page + 1)
 		entryQueryAttributes["classNameIds"] = NSNumber(longLong: classNameId)
 		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId)
 
 		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
-		widgetsService.getAssetEntriesWithAssetEntryQuery(entryQuery,
+		screenletsService.getAssetEntriesWithAssetEntryQuery(entryQuery,
 				locale: NSLocale.currentLocaleString(),
 				error: nil)
 	}

@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LoginView_default: BaseWidgetView, LoginData {
+public class LoginView_default: BaseScreenletView, LoginData {
 
 	@IBOutlet internal var userNameIcon: UIImageView?
 	@IBOutlet internal var userNameField: UITextField?
@@ -75,12 +75,12 @@ public class LoginView_default: BaseWidgetView, LoginData {
 	public var companyId: Int64 = 0
 
 
-	//MARK: BaseWidgetView
+	//MARK: BaseScreenletView
 
 	override internal func onCreated() {
 		super.onCreated()
 		
-		BaseWidget.setHUDCustomColor(DefaultThemeBasicBlue)
+		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
 	override internal func onStartOperation() {

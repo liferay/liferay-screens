@@ -32,7 +32,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation, NSCopying {
 	}
 
 	internal var formData: DDLFormData {
-		return widget.widgetView as DDLFormData
+		return screenlet.screenletView as DDLFormData
 	}
 
 
@@ -110,7 +110,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation, NSCopying {
 	//MARK: NSCopying
 
 	public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayDDLFormSubmitOperation(widget: self.widget)
+		let result = LiferayDDLFormSubmitOperation(screenlet: self.screenlet)
 
 		result.onComplete = self.onComplete
 

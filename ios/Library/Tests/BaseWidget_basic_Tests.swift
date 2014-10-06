@@ -14,18 +14,18 @@
 import XCTest
 
 
-class BaseWidget_Basic_Tests: XCTestCase {
+class BaseScreenlet_Basic_Tests: XCTestCase {
 
-	var widget:SignUpWidget?
+	var screenlet:SignUpScreenlet?
 
 	override func setUp() {
 		super.setUp()
 
-		widget = SignUpWidget(frame: CGRectMake(0, 0, 100, 100))
+		screenlet = SignUpScreenlet(frame: CGRectMake(0, 0, 100, 100))
 	}
 
-	func test_WidgetName_ShouldReturnTheCorrectName() {
-		XCTAssertEqual("SignUp", widget!.widgetName)
+	func test_ScreenletName_ShouldReturnTheCorrectName() {
+		XCTAssertEqual("SignUp", screenlet!.screenletName)
 	}
 
 }

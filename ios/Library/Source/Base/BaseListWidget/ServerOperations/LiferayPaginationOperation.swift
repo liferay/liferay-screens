@@ -32,11 +32,11 @@ public class LiferayPaginationOperation: ServerOperation {
 	private var computeRowCount: Bool
 	
 
-	internal init(widget: BaseWidget, page: Int, computeRowCount: Bool) {
+	internal init(screenlet: BaseScreenlet, page: Int, computeRowCount: Bool) {
 		self.page = page
 		self.computeRowCount = computeRowCount
 
-		super.init(widget: widget)
+		super.init(screenlet: screenlet)
 	}
 
 

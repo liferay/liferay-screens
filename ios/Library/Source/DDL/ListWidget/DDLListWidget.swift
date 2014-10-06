@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol DDLListWidgetDelegate {
+@objc public protocol DDLListScreenletDelegate {
 
 	optional func onDDLListResponse(records: [DDLRecord])
 	optional func onDDLListError(error: NSError)
@@ -24,25 +24,25 @@ import UIKit
 }
 
 
-@IBDesignable public class DDLListWidget: BaseListWidget {
+@IBDesignable public class DDLListScreenlet: BaseListScreenlet {
 
 	@IBInspectable public var userId: Int64 = 0
 	@IBInspectable public var recordSetId: Int64 = 0
 
 	@IBInspectable public var labelField: String? {
 		didSet {
-			(widgetView as? DDLListData)?.labelField = labelField ?? ""
+			(screenletView as? DDLListData)?.labelField = labelField ?? ""
 		}
 	}
 
-	@IBOutlet public var delegate: DDLListWidgetDelegate?
+	@IBOutlet public var delegate: DDLListScreenletDelegate?
 
 	internal var ddlListData: DDLListData {
-		return widgetView as DDLListData
+		return screenletView as DDLListData
 	}
 
 
-	//MARK: BaseListWidget
+	//MARK: BaseListScreenlet
 
 	override public func onCreated() {
 		super.onCreated()
@@ -56,7 +56,7 @@ import UIKit
 			-> LiferayPaginationOperation {
 
 		let operation = LiferayDDLListPageOperation(
-				widget: self,
+				screenlet: self,
 				page: page,
 				computeRowCount: computeRowCount)
 

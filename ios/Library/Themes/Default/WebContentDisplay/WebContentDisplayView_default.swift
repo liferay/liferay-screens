@@ -15,7 +15,7 @@ import UIKit
 import WebKit
 
 
-public class WebContentDisplayView_default: BaseWidgetView, WebContentDisplayData {
+public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayData {
 
 	private var webView:WKWebView?
 

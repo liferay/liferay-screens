@@ -14,7 +14,7 @@
 import XCTest
 
 
-class BaseWidget_TabSequence_Tests: XCTestCase {
+class BaseScreenlet_TabSequence_Tests: XCTestCase {
 
 	var view:SignUpView_default?
 
@@ -23,8 +23,8 @@ class BaseWidget_TabSequence_Tests: XCTestCase {
 
 		self.continueAfterFailure = false
 
-		let widget = SignUpWidget(frame: CGRectMake(0, 0, 100, 100))
-		view = widget.loadWidgetView() as? SignUpView_default
+		let screenlet = SignUpScreenlet(frame: CGRectMake(0, 0, 100, 100))
+		view = screenlet.loadScreenletView() as? SignUpView_default
 		
 		XCTAssertNotNil(view)
 	}

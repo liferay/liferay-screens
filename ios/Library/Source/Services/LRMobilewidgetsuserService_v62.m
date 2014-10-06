@@ -25,7 +25,7 @@
 		@"emailAddress": emailAddress
 	}];
 
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsuser/send-password-by-email-address": _params};
+	NSDictionary *_command = @{@"/mobile-screenlets-web/mobilescreenletsuser/send-password-by-email-address": _params};
 
 	return [self boolValue:(NSNumber *)[self.session invoke:_command error:error]];
 }
@@ -36,7 +36,7 @@
 		@"screenName": screenName
 	}];
 
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsuser/send-password-by-screen-name": _params};
+	NSDictionary *_command = @{@"/mobile-screenlets-web/mobilescreenletsuser/send-password-by-screen-name": _params};
 
 	return [self boolValue:(NSNumber *)[self.session invoke:_command error:error]];
 }
@@ -46,7 +46,7 @@
 		@"userId": @(userId)
 	}];
 
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsuser/send-password-by-user-id": _params};
+	NSDictionary *_command = @{@"/mobile-screenlets-web/mobilescreenletsuser/send-password-by-user-id": _params};
 
 	return [self boolValue:(NSNumber *)[self.session invoke:_command error:error]];
 }

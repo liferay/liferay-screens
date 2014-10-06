@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class BaseListView: BaseWidgetView {
+public class BaseListView: BaseScreenletView {
 
 	public var rowCount:Int = 0
 

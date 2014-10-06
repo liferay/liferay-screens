@@ -1,6 +1,6 @@
 //
 //  SignUpViewController.swift
-//  Liferay-iOS-Widgets-Swift-Sample
+//  Liferay-iOS-Screenlets-Swift-Sample
 //
 //  Created by jmWork on 18/07/14.
 //  Copyright (c) 2014 Liferay. All rights reserved.
@@ -9,16 +9,16 @@
 import Foundation
 
 
-public class FormViewController: UIViewController, DDLFormWidgetDelegate {
+public class FormViewController: UIViewController, DDLFormScreenletDelegate {
 
-	@IBOutlet var widget: DDLFormWidget?
+	@IBOutlet var screenlet: DDLFormScreenlet?
 
 	override public func viewDidLoad() {
-		widget!.delegate = self
+		screenlet!.delegate = self
 	}
 
 	public func onFormLoaded(record: DDLRecord) {
-		widget!.becomeFirstResponder()
+		screenlet!.becomeFirstResponder()
 	}
 
 	public func onFormLoadError(error: NSError) {
@@ -62,16 +62,16 @@ public class FormViewController: UIViewController, DDLFormWidgetDelegate {
 				password: "jm",
 				userAttributes: ["userId": 10198])
 */
-		if true || widget!.recordId == 0 {
-			widget!.loadForm()
+		if true || screenlet!.recordId == 0 {
+			screenlet!.loadForm()
 		}
 		else {
-			widget!.loadRecord()
+			screenlet!.loadRecord()
 		}
 	}
 
 	@IBAction func button2Click(sender: AnyObject) {
-		widget!.submitForm()
+		screenlet!.submitForm()
 	}
 
 }

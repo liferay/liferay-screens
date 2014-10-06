@@ -25,7 +25,7 @@ public class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 	}
 
 	internal var loginData: LoginData {
-		return widget.widgetView as LoginData
+		return screenlet.screenletView as LoginData
 	}
 
 

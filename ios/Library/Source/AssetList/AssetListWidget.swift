@@ -14,17 +14,17 @@
 import UIKit
 
 
-@objc public protocol AssetListWidgetDelegate {
+@objc public protocol AssetListScreenletDelegate {
 
-	optional func onAssetListResponse(entries:[AssetListWidget.Entry])
+	optional func onAssetListResponse(entries:[AssetListScreenlet.Entry])
 	optional func onAssetListError(error: NSError)
 
-	optional func onAssetSelected(entry: AssetListWidget.Entry)
+	optional func onAssetSelected(entry: AssetListScreenlet.Entry)
 
 }
 
 
-@IBDesignable public class AssetListWidget: BaseListWidget {
+@IBDesignable public class AssetListScreenlet: BaseListScreenlet {
 
 	@objc(AssetListEntry) public class Entry {
 
@@ -90,10 +90,10 @@ import UIKit
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var classNameId: Int = 0
 
-	@IBOutlet public var delegate: AssetListWidgetDelegate?
+	@IBOutlet public var delegate: AssetListScreenletDelegate?
 
 
-	//MARK: BaseListWidget
+	//MARK: BaseListScreenlet
 
 	override internal func createPaginationOperation(
 			#page: Int,
@@ -101,7 +101,7 @@ import UIKit
 			-> LiferayPaginationOperation {
 
 		let operation = LiferayAssetListPageOperation(
-				widget: self,
+				screenlet: self,
 				page: page,
 				computeRowCount: computeRowCount)
 

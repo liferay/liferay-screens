@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol SignUpWidgetDelegate {
+@objc public protocol SignUpScreenletDelegate {
 
 	optional func onSignUpResponse(attributes: [String:AnyObject])
 	optional func onSignUpError(error: NSError)
@@ -22,7 +22,7 @@ import UIKit
 }
 
 
-@IBDesignable public class SignUpWidget: BaseWidget, AnonymousAuthData {
+@IBDesignable public class SignUpScreenlet: BaseScreenlet, AnonymousAuthData {
 
 	//MARK: Inspectables
 
@@ -35,16 +35,16 @@ import UIKit
 
 	@IBInspectable public var companyId: Int64 = 0 {
 		didSet {
-			(widgetView as? SignUpData)?.companyId = self.companyId
+			(screenletView as? SignUpData)?.companyId = self.companyId
 		}
 	}
 
-	@IBOutlet public var delegate: SignUpWidgetDelegate?
-	@IBOutlet public var autoLoginDelegate: LoginWidgetDelegate?
+	@IBOutlet public var delegate: SignUpScreenletDelegate?
+	@IBOutlet public var autoLoginDelegate: LoginScreenletDelegate?
 
 
 	internal var signUpData: SignUpData {
-		return widgetView as SignUpData
+		return screenletView as SignUpData
 	}
 
 	internal var signUpOperation: LiferaySignUpOperation {
@@ -52,14 +52,14 @@ import UIKit
 	}
 
 
-	//MARK: BaseWidget
+	//MARK: BaseScreenlet
 
 	override func onCreated() {
 		super.onCreated()
 
 		signUpData.companyId = self.companyId
 
-		serverOperation = LiferaySignUpOperation(widget: self)
+		serverOperation = LiferaySignUpOperation(screenlet: self)
 	}
 
 	override internal func onUserAction(actionName: String?, sender: AnyObject?) {

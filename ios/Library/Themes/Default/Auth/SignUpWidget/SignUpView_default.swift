@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class SignUpView_default: BaseWidgetView, SignUpData {
+public class SignUpView_default: BaseScreenletView, SignUpData {
 
 	@IBOutlet internal var emailAddressField: UITextField?
 	@IBOutlet internal var passwordField: UITextField?
@@ -27,7 +27,7 @@ public class SignUpView_default: BaseWidgetView, SignUpData {
 	@IBOutlet internal var lastNameBackground: UIImageView?
 
 
-	//MARK: BaseWidgetView
+	//MARK: BaseScreenletView
 
 	override internal func onStartOperation() {
 		signUpButton!.enabled = false

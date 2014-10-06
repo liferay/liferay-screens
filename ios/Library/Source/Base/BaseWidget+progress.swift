@@ -14,7 +14,7 @@
 import Foundation
 
 
-internal let BaseWidgetHudLock = "hud-lock"
+internal let BaseScreenletHudLock = "hud-lock"
 
 
 internal struct MBProgressHUDInstance {
@@ -58,9 +58,9 @@ internal class HUDTouchHandler {
 
 
 /*!
- * This extension to BaseWidget adds methods to display an "In Progress" HUD.
+ * This extension to BaseScreenlet adds methods to display an "In Progress" HUD.
  */
-extension BaseWidget {
+extension BaseScreenlet {
 
 	public enum CloseMode {
 
@@ -124,7 +124,7 @@ extension BaseWidget {
 			closeMode:CloseMode = .ManualClose(false),
 			spinnerMode:SpinnerMode = .IndeterminateSpinner) {
 
-		synchronized(BaseWidgetHudLock) {
+		synchronized(BaseScreenletHudLock) {
 			if MBProgressHUDInstance.instance == nil {
 				MBProgressHUDInstance.instance =
 					MBProgressHUD.showHUDAddedTo(self.rootView(self), animated:true)
@@ -195,7 +195,7 @@ extension BaseWidget {
 	}
 
 	public func hideHUD() {
-		synchronized(BaseWidgetHudLock) {
+		synchronized(BaseScreenletHudLock) {
 			if let instance = MBProgressHUDInstance.instance {
 				instance.hide(true)
 				MBProgressHUDInstance.instance = nil

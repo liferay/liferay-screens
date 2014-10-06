@@ -25,7 +25,7 @@ public class LiferaySignUpOperation: ServerOperation, NSCopying {
 	}
 
 	private var signUpData: SignUpData {
-		return widget.widgetView as SignUpData
+		return screenlet.screenletView as SignUpData
 	}
 
 	//MARK: ServerOperation
@@ -98,7 +98,7 @@ public class LiferaySignUpOperation: ServerOperation, NSCopying {
 	//MARK: NSCopying
 
 	public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferaySignUpOperation(widget: self.widget)
+		let result = LiferaySignUpOperation(screenlet: self.screenlet)
 
 		result.onComplete = self.onComplete
 

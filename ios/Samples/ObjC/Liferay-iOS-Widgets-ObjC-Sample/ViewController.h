@@ -12,9 +12,9 @@
 * details.
 */
 #import <UIKit/UIKit.h>
-#import "Liferay_iOS_Widgets_ObjC_Sample-Swift.h"
+#import "Liferay_iOS_Screenlets_ObjC_Sample-Swift.h"
 
-@interface ViewController : UIViewController<LoginWidgetDelegate>
+@interface ViewController : UIViewController<LoginScreenletDelegate>
 
 
 @end

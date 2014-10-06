@@ -1,6 +1,6 @@
 //
 //  SignUpViewController.swift
-//  Liferay-iOS-Widgets-Swift-Sample
+//  Liferay-iOS-Screenlets-Swift-Sample
 //
 //  Created by jmWork on 18/07/14.
 //  Copyright (c) 2014 Liferay. All rights reserved.
@@ -9,13 +9,13 @@
 import Foundation
 
 
-public class SignUpViewController: UIViewController, SignUpWidgetDelegate {
+public class SignUpViewController: UIViewController, SignUpScreenletDelegate {
 
-	@IBOutlet var widget: SignUpWidget?
+	@IBOutlet var screenlet: SignUpScreenlet?
 
 	override public func viewDidLoad() {
-		widget!.delegate = self
-		widget!.becomeFirstResponder()
+		screenlet!.delegate = self
+		screenlet!.becomeFirstResponder()
 	}
 
 	public func onSignUpError(error: NSError)  {

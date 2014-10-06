@@ -26,7 +26,7 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 	override internal func onCreated() {
 		super.onCreated()
 
-		BaseWidget.setHUDCustomColor(Flat7ThemeBasicGreen)
+		BaseScreenlet.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}
 
 	override internal func onSetTranslations() {

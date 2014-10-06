@@ -21,7 +21,7 @@ public class DDLFormView_default: DDLFormTableView {
 	override internal func onCreated() {
 		super.onCreated()
 
-		BaseWidget.setHUDCustomColor(DefaultThemeBasicBlue)
+		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
 }

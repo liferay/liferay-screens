@@ -30,7 +30,7 @@ public class SignUpView_flat7: SignUpView_default {
 	override internal func onCreated() {
 		super.onCreated()
 
-		BaseWidget.setHUDCustomColor(Flat7ThemeBasicGreen)
+		BaseScreenlet.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}
 
 	override internal func onSetTranslations() {

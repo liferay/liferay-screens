@@ -18,16 +18,16 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 	public var userId: Int64 = 0
 	public var recordSetId: Int64 = 0
 
-	internal var ddlListWidget: DDLListWidget {
-		return self.widget as DDLListWidget
+	internal var ddlListScreenlet: DDLListScreenlet {
+		return self.screenlet as DDLListScreenlet
 	}
 
 	internal var ddlListData: DDLListData {
-		return widget.widgetView as DDLListData
+		return screenlet.screenletView as DDLListData
 	}
 
 	override func validateData() -> Bool {
-		//FIXME this widget should work without user
+		//FIXME this screenlet should work without user
 		if userId == 0 {
 			return false
 		}
@@ -49,8 +49,8 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 		service.getDdlRecordsWithDdlRecordSetId(recordSetId,
 				userId: userId,
 				locale: NSLocale.currentLocaleString(),
-				start: Int32(ddlListWidget.firstRowForPage(page)),
-				end: Int32(ddlListWidget.firstRowForPage(page + 1)),
+				start: Int32(ddlListScreenlet.firstRowForPage(page)),
+				end: Int32(ddlListScreenlet.firstRowForPage(page + 1)),
 				error: nil)
 	}
 

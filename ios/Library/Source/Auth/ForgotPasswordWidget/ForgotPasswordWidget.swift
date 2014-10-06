@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol ForgotPasswordWidgetDelegate {
+@objc public protocol ForgotPasswordScreenletDelegate {
 
 	optional func onForgotPasswordResponse(newPasswordSent:Bool)
 	optional func onForgotPasswordError(error: NSError)
@@ -22,7 +22,7 @@ import UIKit
 }
 
 
-@IBDesignable public class ForgotPasswordWidget: BaseWidget, AuthBasedData, AnonymousAuthData {
+@IBDesignable public class ForgotPasswordScreenlet: BaseScreenlet, AuthBasedData, AnonymousAuthData {
 
 	//MARK: Inspectables
 
@@ -31,19 +31,19 @@ import UIKit
 
 	@IBInspectable public var authMethod: String? = AuthMethod.Email.toRaw() {
 		didSet {
-			copyAuth(source: self, target: widgetView)
+			copyAuth(source: self, target: screenletView)
 			serverOperation = createForgotPasswordOperation(authMethod: AuthMethod.create(authMethod))
 		}
 	}
 
 	@IBInspectable var companyId: Int64 = 0 {
 		didSet {
-			(widgetView as? ForgotPasswordData)?.companyId = self.companyId
+			(screenletView as? ForgotPasswordData)?.companyId = self.companyId
 		}
 	}
 
 
-	@IBOutlet public var delegate: ForgotPasswordWidgetDelegate?
+	@IBOutlet public var delegate: ForgotPasswordScreenletDelegate?
 
 
 	public var saveCredentials: Bool {
@@ -52,7 +52,7 @@ import UIKit
 	}
 
 	internal var forgotPasswordData: ForgotPasswordData {
-		return widgetView as ForgotPasswordData
+		return screenletView as ForgotPasswordData
 	}
 
 	internal var forgotPasswordOperation: LiferayForgotPasswordBaseOperation {
@@ -60,12 +60,12 @@ import UIKit
 	}
 
 
-	//MARK: BaseWidget
+	//MARK: BaseScreenlet
 
 	override internal func onCreated() {
 		super.onCreated()
 
-		copyAuth(source: self, target: widgetView)
+		copyAuth(source: self, target: screenletView)
 		serverOperation = createForgotPasswordOperation(authMethod: AuthMethod.create(authMethod))
 
 		forgotPasswordData.companyId = companyId
@@ -93,11 +93,11 @@ import UIKit
 	private func createForgotPasswordOperation(#authMethod: AuthMethod) -> LiferayForgotPasswordBaseOperation {
 		switch authMethod {
 			case .ScreenName:
-				return LiferayForgotPasswordScreenNameOperation(widget: self)
+				return LiferayForgotPasswordScreenNameOperation(screenlet: self)
 			case .UserId:
-				return LiferayForgotPasswordUserIdOperation(widget: self)
+				return LiferayForgotPasswordUserIdOperation(screenlet: self)
 			default:
-				return LiferayForgotPasswordEmailOperation(widget: self)
+				return LiferayForgotPasswordEmailOperation(screenlet: self)
 		}
 	}
 
