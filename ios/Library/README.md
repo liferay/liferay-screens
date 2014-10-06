@@ -1,28 +1,30 @@
 # Liferay Screens for iOS Library
 
-## Important note
-__This product is under heavy development and most of the features aren't ready to be used in production.
-It's public just in order to allow developers to preview the technology.__
+## Important Note
+
+This product is under heavy development and its features aren't ready for use in 
+production. It's being made public only to allow developers to preview the 
+technology.
 
 ## Introduction
 
-This is the library which contains all available widgets for iOS. It also includes the infrastructure classes to develop and contribute new widgets.
+This is the library that contains all available Liferay Screens widgets for 
+iOS. It also includes the infrastructure classes required to develop and 
+contribute new widgets. Note that this library is developed using iOS 8, so 
+you'll need XCode6 in order to develop your own widgets.
 
-Note that this library is developed using iOS 8, so you'll need XCode6 in order to develop your own widgets.
+## Internal Architecture
 
-## Internal architecture
+For details regarding the internal architecture of the Liferay Screens for iOS 
+library, please see the [Architecture Guide](https://github.com/liferay/liferay-screens/tree/master/ios/Library/architecture.md).
 
-Read the [architecture guide](https://github.com/liferay/liferay-screens/tree/master/ios/Library/architecture.md).
+## Code Style Guide
 
-## Code style guide
-
-Read the [style guide](https://github.com/liferay/liferay-screens/tree/master/ios/style_guide.md).
-
+For details on Liferay's coding style for this project, please see the 
+[Style Guide](https://github.com/liferay/liferay-screens/tree/master/ios/style_guide.md).
 
 ## Contribute
 
-Read the [contributing guide](https://github.com/liferay/liferay-screens/tree/master/CONTRIBUTING.md).
+For information on contributing to the Liferay Screens for iOS library, please 
+see the [Contributing Guide](https://github.com/liferay/liferay-screens/tree/master/CONTRIBUTING.md).
 
-
-    
-    
