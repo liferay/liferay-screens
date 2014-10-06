@@ -29,71 +29,40 @@ import UIKit
 
 	@IBOutlet public var delegate: WebContentWidgetDelegate?
 
-	internal var webContentView: WebContentView {
-		return widgetView as WebContentView
+	internal var webContentData: WebContentData {
+		return widgetView as WebContentData
+	}
+
+	internal var webContentOperation: LiferayWebContentLoadOperation {
+		return serverOperation as LiferayWebContentLoadOperation
 	}
 
 
 	//MARK: BaseWidget
 
-	override internal func onServerError(error: NSError) {
-		delegate?.onWebContentError?(error)
+	override func onCreated() {
+		super.onCreated()
 
-		finishOperationWithError(error, message:"Error requesting password!")
-	}
-
-	override internal func onServerResult(result: [String:AnyObject]) {
-		if let responseValue:AnyObject = result["result"] {
-			let htmlContent = responseValue as String
-
-			delegate?.onWebContentResponse?(htmlContent)
-
-			webContentView.setHtmlContent(htmlContent)
-
-			finishOperation()
-		}
-		else {
-			finishOperationWithMessage("An error happened", details: "Can't load the content")
-		}
+		serverOperation = LiferayWebContentLoadOperation(widget: self)
 	}
 
 
 	//MARK: Public methods
 
 	public func loadWebContent() -> Bool {
-		if !SessionContext.hasSession {
-			println("ERROR: No session initialized. Can't load the web content without session")
+		webContentOperation.groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
+		webContentOperation.articleId = self.articleId
 
-			return false
+		return webContentOperation.validateAndEnqueue() {
+			if let error = $0.lastError {
+				self.delegate?.onWebContentError?(error)
+			}
+			else {
+				self.delegate?.onWebContentResponse?(self.webContentOperation.loadedHTML!)
+
+				self.webContentData.htmlContent = self.webContentOperation.loadedHTML!
+			}
 		}
-
-		if articleId == "" {
-			println("ERROR: ArticleId is empty. Can't load the web content without it.")
-
-			return false
-		}
-
-		startOperationWithMessage("Loading content...", details:"Wait few seconds...")
-
-		let session = SessionContext.createSessionFromCurrentSession()!
-		session.callback = self
-
-		let groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
-
-		let service = LRJournalArticleService_v62(session: session)
-
-		var outError: NSError?
-
-		service.getArticleContentWithGroupId(groupId,
-				articleId: articleId, languageId: NSLocale.currentLocaleString(),
-				themeDisplay: nil, error: &outError)
-
-		if let error = outError {
-			onFailure(error)
-			return false
-		}
-
-		return true
 	}
 
 }

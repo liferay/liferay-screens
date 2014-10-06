@@ -15,15 +15,20 @@ import UIKit
 import WebKit
 
 
-public class WebContentView_default: WebContentView {
+public class WebContentView_default: BaseWidgetView, WebContentDisplayData {
 
 	private var webView:WKWebView?
 
 
-	//MARK: WebContentView
+	//MARK: WebContentDisplayData
 
-	override public func setHtmlContent(html:String) {
-		webView!.loadHTMLString(html, baseURL: NSURL(string:LiferayServerContext.server))
+	public var htmlContent: String {
+		get {
+			return ""
+		}
+		set {
+			webView!.loadHTMLString(newValue, baseURL: NSURL(string:LiferayServerContext.server))
+		}
 	}
 
 	override internal func onPreCreate() {

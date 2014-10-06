@@ -14,9 +14,8 @@
 import UIKit
 
 
-public class WebContentView: BaseWidgetView {
+@objc public protocol WebContentData {
 
-	public func setHtmlContent(html:String) {
-	}
+	var htmlContent: String { get set }
 
 }
