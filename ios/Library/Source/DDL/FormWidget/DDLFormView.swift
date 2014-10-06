@@ -18,11 +18,7 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 
 	public var showSubmitButton = true
 
-	public var record: DDLRecord?  {
-		didSet {
-			onChangedRecord()
-		}
-	}
+	public var record: DDLRecord?
 
 	public var isRecordEmpty: Bool {
 		return record == nil ? true : record!.fields.isEmpty
@@ -92,9 +88,6 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 	}
 
 	internal func showField(field:DDLField) {
-	}
-
-	internal func onChangedRecord() {
 	}
 
 }

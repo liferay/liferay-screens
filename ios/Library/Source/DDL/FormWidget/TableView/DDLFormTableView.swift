@@ -18,6 +18,17 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 
 	@IBOutlet internal var tableView: UITableView?
 
+	override public var record: DDLRecord? {
+		didSet {
+			forEachField() {
+				$0.resetCurrentHeight()
+			}
+
+			tableView!.reloadData()
+		}
+	}
+
+
 	internal var firstCellResponder:UIResponder?
 
 	internal var submitButtonHeight:CGFloat = 0.0
@@ -62,16 +73,6 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		super.onCreated()
 
 		registerFieldCells()
-	}
-
-	override internal func onChangedRecord() {
-		super.onChangedRecord()
-
-		forEachField() {
-			$0.resetCurrentHeight()
-		}
-		
-		tableView!.reloadData()
 	}
 
 	override internal func showField(field: DDLField) {
