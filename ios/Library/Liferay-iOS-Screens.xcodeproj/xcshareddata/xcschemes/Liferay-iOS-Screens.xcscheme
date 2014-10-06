@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "88FE74D319655E1B003A7CE5"
-               BuildableName = "Liferay-iOS-Widgets-Dummy.app"
-               BlueprintName = "Liferay-iOS-Widgets-Dummy"
-               ReferencedContainer = "container:Liferay-iOS-Widgets.xcodeproj">
+               BuildableName = "Liferay-iOS-Screens.app"
+               BlueprintName = "Liferay-iOS-Screens"
+               ReferencedContainer = "container:Liferay-iOS-Screens.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "88EA60FE19656751005F722C"
-               BuildableName = "Liferay-iOS-Widgets-Tests.xctest"
-               BlueprintName = "Liferay-iOS-Widgets-Tests"
-               ReferencedContainer = "container:Liferay-iOS-Widgets.xcodeproj">
+               BuildableName = "Liferay-iOS-Screens-Tests.xctest"
+               BlueprintName = "Liferay-iOS-Screens-Tests"
+               ReferencedContainer = "container:Liferay-iOS-Screens.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "88EA60FE19656751005F722C"
-               BuildableName = "Liferay-iOS-Widgets-Tests.xctest"
-               BlueprintName = "Liferay-iOS-Widgets-Tests"
-               ReferencedContainer = "container:Liferay-iOS-Widgets.xcodeproj">
+               BuildableName = "Liferay-iOS-Screens-Tests.xctest"
+               BlueprintName = "Liferay-iOS-Screens-Tests"
+               ReferencedContainer = "container:Liferay-iOS-Screens.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "88FE74D319655E1B003A7CE5"
-            BuildableName = "Liferay-iOS-Widgets-Dummy.app"
-            BlueprintName = "Liferay-iOS-Widgets-Dummy"
-            ReferencedContainer = "container:Liferay-iOS-Widgets.xcodeproj">
+            BuildableName = "Liferay-iOS-Screens.app"
+            BlueprintName = "Liferay-iOS-Screens"
+            ReferencedContainer = "container:Liferay-iOS-Screens.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "88FE74D319655E1B003A7CE5"
-            BuildableName = "Liferay-iOS-Widgets-Dummy.app"
-            BlueprintName = "Liferay-iOS-Widgets-Dummy"
-            ReferencedContainer = "container:Liferay-iOS-Widgets.xcodeproj">
+            BuildableName = "Liferay-iOS-Screens.app"
+            BlueprintName = "Liferay-iOS-Screens"
+            ReferencedContainer = "container:Liferay-iOS-Screens.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "88FE74D319655E1B003A7CE5"
-            BuildableName = "Liferay-iOS-Widgets-Dummy.app"
-            BlueprintName = "Liferay-iOS-Widgets-Dummy"
-            ReferencedContainer = "container:Liferay-iOS-Widgets.xcodeproj">
+            BuildableName = "Liferay-iOS-Screens.app"
+            BlueprintName = "Liferay-iOS-Screens"
+            ReferencedContainer = "container:Liferay-iOS-Screens.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
