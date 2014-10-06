@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol WebContentWidgetDelegate {
+@objc public protocol WebContentDisplayWidgetDelegate {
 
 	optional func onWebContentResponse(html:String)
 	optional func onWebContentError(error: NSError)
@@ -22,15 +22,15 @@ import UIKit
 }
 
 
-@IBDesignable public class WebContentWidget: BaseWidget {
+@IBDesignable public class WebContentDisplayWidget: BaseWidget {
 
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var articleId = ""
 
-	@IBOutlet public var delegate: WebContentWidgetDelegate?
+	@IBOutlet public var delegate: WebContentDisplayWidgetDelegate?
 
-	internal var webContentData: WebContentData {
-		return widgetView as WebContentData
+	internal var webContentDisplayData: WebContentDisplayData {
+		return widgetView as WebContentDisplayData
 	}
 
 	internal var webContentOperation: LiferayWebContentLoadOperation {
@@ -60,7 +60,7 @@ import UIKit
 			else {
 				self.delegate?.onWebContentResponse?(self.webContentOperation.loadedHTML!)
 
-				self.webContentData.htmlContent = self.webContentOperation.loadedHTML!
+				self.webContentDisplayData.htmlContent = self.webContentOperation.loadedHTML!
 			}
 		}
 	}

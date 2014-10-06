@@ -12,32 +12,10 @@
 * details.
 */
 import UIKit
-import WebKit
 
 
-public class WebContentView_default: BaseWidgetView, WebContentDisplayData {
+@objc public protocol WebContentDisplayData {
 
-	private var webView:WKWebView?
-
-
-	//MARK: WebContentDisplayData
-
-	public var htmlContent: String {
-		get {
-			return ""
-		}
-		set {
-			webView!.loadHTMLString(newValue, baseURL: NSURL(string:LiferayServerContext.server))
-		}
-	}
-
-	override internal func onPreCreate() {
-		webView = WKWebView(frame: bounds, configuration: WKWebViewConfiguration())
-
-		webView!.autoresizingMask =
-				UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
-
-		addSubview(webView!)
-	}
+	var htmlContent: String { get set }
 
 }

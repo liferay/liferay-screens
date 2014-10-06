@@ -9,9 +9,9 @@
 import UIKit
 
 
-public class WebContentViewController: UIViewController, WebContentWidgetDelegate {
+public class WebContentViewController: UIViewController, WebContentDisplayWidgetDelegate {
 
-	@IBOutlet private weak var widget: WebContentWidget?
+	@IBOutlet private weak var widget: WebContentDisplayWidget?
 
 	override public func viewDidLoad() {
 		widget!.delegate = self
