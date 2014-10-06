@@ -26,6 +26,12 @@ internal func createError(#cause: WidgetsErrorCause, userInfo: NSDictionary? = n
 	return NSError(domain: "LiferayWidgets", code: cause.toRaw(), userInfo: userInfo)
 }
 
+internal func createError(#cause: WidgetsErrorCause, #message: String) -> NSError {
+	let userInfo = [NSUnderlyingErrorKey: message]
+
+	return NSError(domain: "LiferayWidgets", code: cause.toRaw(), userInfo: userInfo)
+}
+
 
 public func nullIfEmpty(string: String?) -> String? {
 	if string == nil {

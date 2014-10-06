@@ -66,10 +66,16 @@ public class ServerOperation: NSOperation {
 			var session: LRSession?
 
 			if let anonymousAuthValue = anonymousAuth {
-				assert(anonymousAuthValue.anonymousApiUserName != nil,
-						"User name required for anonymous API calls")
-				assert(anonymousAuthValue.anonymousApiPassword != nil,
-						"Password required for anonymous API calls")
+				if anonymousAuthValue.anonymousApiUserName == nil ||
+						anonymousAuthValue.anonymousApiPassword == nil {
+
+					lastError = createError(
+							cause: .AbortedDueToPreconditions,
+							message: "User name and password are required for anonymous API calls")
+					callOnComplete()
+
+					return
+				}
 
 				session = LRSession(
 						server: LiferayServerContext.server,
@@ -78,7 +84,14 @@ public class ServerOperation: NSOperation {
 			}
 			else {
 				session = SessionContext.createSessionFromCurrentSession()
-				assert(session != nil, "Login required to use this widget")
+				if session == nil {
+					lastError = createError(
+							cause: .AbortedDueToPreconditions,
+							message: "Login required to use this widget")
+					callOnComplete()
+
+					return
+				}
 			}
 
 			if let messageValue = hudLoadingMessage {
