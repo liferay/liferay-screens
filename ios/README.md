@@ -74,9 +74,8 @@ and add it to your project. The steps for doing this are shown here:
 
 Next, set up [CocoaPods](http://cocoapods.org) for your project if you haven't 
 done so already. Add the dependencies to your `Podfile` and then execute 
-`pod install`. Use the following Podfile as a template:
-
-    [https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile)
+`pod install`. Use this [Podfile](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile) 
+as a template.    
 
 In your project's build settings, you also need to edit the Objective-C Bridging 
 Header to include `${SRCROOT}/Liferay-Screens/Source/liferay-ios-widgets.h`. 
@@ -186,14 +185,14 @@ module that they belong to.
 	- [`DDLList`](): Gives your app the ability to show a list of records based 
 	  on a pre-existing DDL in a Liferay instance.
 
-Some widgets can be used individually without the need to import an entire 
+Also, some widgets can be used individually without the need to import an entire 
 module. These include:
 
-	- [`AssetListWidget`](): Shows a list of assets managed by 
-	  [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). 
-	  This includes users, organizations, sites, and more.
-	- [`WebContentDisplayWidget`](): Shows the HTML of web content. This widget 
-	  uses the features avaiable in [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en).
+- [`AssetListWidget`](): Shows a list of assets managed by 
+  [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). 
+  This includes users, organizations, sites, and more.
+- [`WebContentDisplayWidget`](): Shows the HTML of web content. This widget uses 
+  the features avaiable in [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en).
 
 <!--
 Don't forget to incldue links to the widgets once that content is ready.
