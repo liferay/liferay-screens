@@ -9,7 +9,17 @@
 /* Begin PBXBuildFile section */
 		171724ED3A0843AB9AC1B25E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D782ECE4B14578B67EA5D0 /* libPods.a */; };
 		8811DC4019BDD0FA008FE226 /* WebContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC3F19BDD0FA008FE226 /* WebContentViewController.swift */; };
+		882FD6F319E1F01C00038A3A /* LiferayAssetListPageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882FD6F219E1F01C00038A3A /* LiferayAssetListPageOperation.swift */; };
+		8844A78619E2992000441E8F /* LiferayDDLListPageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8844A78519E2992000441E8F /* LiferayDDLListPageOperation.swift */; };
+		8844A79019E29FD500441E8F /* LiferayPaginationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8844A78F19E29FD500441E8F /* LiferayPaginationOperation.swift */; };
+		8844A79219E2A0D900441E8F /* LiferayDDLFormSubmitOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8844A79119E2A0D900441E8F /* LiferayDDLFormSubmitOperation.swift */; };
 		8845B85019CC32560025D1D2 /* DDListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845B84F19CC32560025D1D2 /* DDListViewController.swift */; };
+		88462B8819E339C100BD875B /* LiferayWebContentLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88462B8519E339C100BD875B /* LiferayWebContentLoadOperation.swift */; };
+		88462B8919E339C100BD875B /* WebContentDisplayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88462B8619E339C100BD875B /* WebContentDisplayData.swift */; };
+		88462B8A19E339C100BD875B /* WebContentDisplayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88462B8719E339C100BD875B /* WebContentDisplayWidget.swift */; };
+		88462B8E19E339EE00BD875B /* WebContentDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88462B8C19E339EE00BD875B /* WebContentDisplayView_default.swift */; };
+		88462B8F19E339EE00BD875B /* WebContentDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88462B8D19E339EE00BD875B /* WebContentDisplayView_default.xib */; };
+		88462B9119E33A3800BD875B /* LiferayDDLFormUploadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88462B9019E33A3800BD875B /* LiferayDDLFormUploadOperation.swift */; };
 		8852292319DC1A5A00AE4DAA /* LiferayLoginBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8852291F19DC1A5A00AE4DAA /* LiferayLoginBaseOperation.swift */; };
 		8852292419DC1A5A00AE4DAA /* LiferayLoginEmailOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8852292019DC1A5A00AE4DAA /* LiferayLoginEmailOperation.swift */; };
 		8852292519DC1A5A00AE4DAA /* LiferayLoginScreenNameOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8852292119DC1A5A00AE4DAA /* LiferayLoginScreenNameOperation.swift */; };
@@ -45,13 +55,13 @@
 		88C7AE2119D972FB008F1B19 /* LoginView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C7AE1A19D972FB008F1B19 /* LoginView_flat7.xib */; };
 		88C7AE2219D972FB008F1B19 /* SignUpView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C7AE1C19D972FB008F1B19 /* SignUpView_flat7.swift */; };
 		88C7AE2319D972FB008F1B19 /* SignUpView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C7AE1D19D972FB008F1B19 /* SignUpView_flat7.xib */; };
+		88EFBAAE19E2CB7B008A8AEE /* DDLFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBAAD19E2CB7B008A8AEE /* DDLFormData.swift */; };
+		88EFBAB019E2D3B7008A8AEE /* LiferayDDLFormLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBAAF19E2D3B7008A8AEE /* LiferayDDLFormLoadOperation.swift */; };
+		88EFBAB219E2D643008A8AEE /* LiferayDDLFormRecordLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EFBAB119E2D643008A8AEE /* LiferayDDLFormRecordLoadOperation.swift */; };
 		88F1F2C319DC529F00EB58A9 /* ForgotPasswordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1F2C219DC529F00EB58A9 /* ForgotPasswordData.swift */; };
 		88F1F2C519DC52A800EB58A9 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1F2C419DC52A800EB58A9 /* LoginData.swift */; };
 		88F1F2C719DC52B200EB58A9 /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1F2C619DC52B200EB58A9 /* SignUpData.swift */; };
 		88F3902B19D595B100169918 /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88F3902A19D595B100169918 /* liferay-server-context.plist */; };
-		88F390D719D595C200169918 /* WebContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3902E19D595C200169918 /* WebContentView.swift */; };
-		88F390D819D595C200169918 /* WebContentWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3902F19D595C200169918 /* WebContentWidget.swift */; };
-		88F390D919D595C200169918 /* AssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903119D595C200169918 /* AssetListView.swift */; };
 		88F390DA19D595C200169918 /* AssetListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903219D595C200169918 /* AssetListWidget.swift */; };
 		88F390DB19D595C200169918 /* AssetListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903419D595C200169918 /* AssetListTableView.swift */; };
 		88F390DC19D595C200169918 /* BaseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903719D595C200169918 /* BaseListView.swift */; };
@@ -61,7 +71,6 @@
 		88F390E019D595C200169918 /* BaseWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903C19D595C200169918 /* BaseWidget.swift */; };
 		88F390E119D595C200169918 /* BaseWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903D19D595C200169918 /* BaseWidgetView.swift */; };
 		88F390E219D595C200169918 /* LiferayServerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903E19D595C200169918 /* LiferayServerContext.swift */; };
-		88F390E319D595C200169918 /* PaginationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3903F19D595C200169918 /* PaginationOperation.swift */; };
 		88F390E419D595C200169918 /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904019D595C200169918 /* SessionContext.swift */; };
 		88F390E519D595C200169918 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904119D595C200169918 /* ThemeManager.swift */; };
 		88F390E619D595C200169918 /* DDLValuesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904319D595C200169918 /* DDLValuesParser.swift */; };
@@ -70,7 +79,7 @@
 		88F390E919D595C200169918 /* DDLFormWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904719D595C200169918 /* DDLFormWidget.swift */; };
 		88F390EA19D595C200169918 /* DDLFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904919D595C200169918 /* DDLFieldTableCell.swift */; };
 		88F390EB19D595C200169918 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904A19D595C200169918 /* DDLFormTableView.swift */; };
-		88F390EC19D595C200169918 /* DDLListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904C19D595C200169918 /* DDLListView.swift */; };
+		88F390EC19D595C200169918 /* DDLListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904C19D595C200169918 /* DDLListData.swift */; };
 		88F390ED19D595C200169918 /* DDLListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904D19D595C200169918 /* DDLListWidget.swift */; };
 		88F390EE19D595C200169918 /* DDLField+DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3904F19D595C200169918 /* DDLField+DataType.swift */; };
 		88F390EF19D595C200169918 /* DDLField+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3905019D595C200169918 /* DDLField+Editor.swift */; };
@@ -91,8 +100,6 @@
 		88F3910619D595C200169918 /* LRMobilewidgetsassetentryService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F3906E19D595C200169918 /* LRMobilewidgetsassetentryService_v62.m */; };
 		88F3910719D595C200169918 /* LRMobilewidgetsddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F3907019D595C200169918 /* LRMobilewidgetsddlrecordService_v62.m */; };
 		88F3910819D595C200169918 /* LRMobilewidgetsuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F3907219D595C200169918 /* LRMobilewidgetsuserService_v62.m */; };
-		88F3910B19D595C200169918 /* WebContentView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3907919D595C200169918 /* WebContentView_default.swift */; };
-		88F3910C19D595C200169918 /* WebContentView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3907A19D595C200169918 /* WebContentView_default.xib */; };
 		88F3910D19D595C200169918 /* AssetListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3907C19D595C200169918 /* AssetListView_default.swift */; };
 		88F3910E19D595C200169918 /* AssetListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F3907D19D595C200169918 /* AssetListView_default.xib */; };
 		88F3910F19D595C200169918 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3908019D595C200169918 /* DDLBaseFieldTextFieldTableCell_default.swift */; };
@@ -162,7 +169,17 @@
 		01D782ECE4B14578B67EA5D0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CDED001B92C49429A1F0D49 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8811DC3F19BDD0FA008FE226 /* WebContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentViewController.swift; sourceTree = "<group>"; };
+		882FD6F219E1F01C00038A3A /* LiferayAssetListPageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayAssetListPageOperation.swift; sourceTree = "<group>"; };
+		8844A78519E2992000441E8F /* LiferayDDLListPageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayDDLListPageOperation.swift; sourceTree = "<group>"; };
+		8844A78F19E29FD500441E8F /* LiferayPaginationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayPaginationOperation.swift; sourceTree = "<group>"; };
+		8844A79119E2A0D900441E8F /* LiferayDDLFormSubmitOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayDDLFormSubmitOperation.swift; sourceTree = "<group>"; };
 		8845B84F19CC32560025D1D2 /* DDListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDListViewController.swift; sourceTree = "<group>"; };
+		88462B8519E339C100BD875B /* LiferayWebContentLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayWebContentLoadOperation.swift; sourceTree = "<group>"; };
+		88462B8619E339C100BD875B /* WebContentDisplayData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayData.swift; sourceTree = "<group>"; };
+		88462B8719E339C100BD875B /* WebContentDisplayWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayWidget.swift; sourceTree = "<group>"; };
+		88462B8C19E339EE00BD875B /* WebContentDisplayView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayView_default.swift; sourceTree = "<group>"; };
+		88462B8D19E339EE00BD875B /* WebContentDisplayView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentDisplayView_default.xib; sourceTree = "<group>"; };
+		88462B9019E33A3800BD875B /* LiferayDDLFormUploadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayDDLFormUploadOperation.swift; sourceTree = "<group>"; };
 		8852291F19DC1A5A00AE4DAA /* LiferayLoginBaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginBaseOperation.swift; sourceTree = "<group>"; };
 		8852292019DC1A5A00AE4DAA /* LiferayLoginEmailOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginEmailOperation.swift; sourceTree = "<group>"; };
 		8852292119DC1A5A00AE4DAA /* LiferayLoginScreenNameOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginScreenNameOperation.swift; sourceTree = "<group>"; };
@@ -200,13 +217,13 @@
 		88C7AE1A19D972FB008F1B19 /* LoginView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_flat7.xib; sourceTree = "<group>"; };
 		88C7AE1C19D972FB008F1B19 /* SignUpView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_flat7.swift; sourceTree = "<group>"; };
 		88C7AE1D19D972FB008F1B19 /* SignUpView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView_flat7.xib; sourceTree = "<group>"; };
+		88EFBAAD19E2CB7B008A8AEE /* DDLFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormData.swift; sourceTree = "<group>"; };
+		88EFBAAF19E2D3B7008A8AEE /* LiferayDDLFormLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayDDLFormLoadOperation.swift; sourceTree = "<group>"; };
+		88EFBAB119E2D643008A8AEE /* LiferayDDLFormRecordLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayDDLFormRecordLoadOperation.swift; sourceTree = "<group>"; };
 		88F1F2C219DC529F00EB58A9 /* ForgotPasswordData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordData.swift; sourceTree = "<group>"; };
 		88F1F2C419DC52A800EB58A9 /* LoginData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		88F1F2C619DC52B200EB58A9 /* SignUpData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
 		88F3902A19D595B100169918 /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = "<group>"; };
-		88F3902E19D595C200169918 /* WebContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView.swift; sourceTree = "<group>"; };
-		88F3902F19D595C200169918 /* WebContentWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentWidget.swift; sourceTree = "<group>"; };
-		88F3903119D595C200169918 /* AssetListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListView.swift; sourceTree = "<group>"; };
 		88F3903219D595C200169918 /* AssetListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListWidget.swift; sourceTree = "<group>"; };
 		88F3903419D595C200169918 /* AssetListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListTableView.swift; sourceTree = "<group>"; };
 		88F3903719D595C200169918 /* BaseListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListView.swift; sourceTree = "<group>"; };
@@ -216,7 +233,6 @@
 		88F3903C19D595C200169918 /* BaseWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidget.swift; sourceTree = "<group>"; };
 		88F3903D19D595C200169918 /* BaseWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWidgetView.swift; sourceTree = "<group>"; };
 		88F3903E19D595C200169918 /* LiferayServerContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayServerContext.swift; sourceTree = "<group>"; };
-		88F3903F19D595C200169918 /* PaginationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationOperation.swift; sourceTree = "<group>"; };
 		88F3904019D595C200169918 /* SessionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext.swift; sourceTree = "<group>"; };
 		88F3904119D595C200169918 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		88F3904319D595C200169918 /* DDLValuesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLValuesParser.swift; sourceTree = "<group>"; };
@@ -225,7 +241,7 @@
 		88F3904719D595C200169918 /* DDLFormWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormWidget.swift; sourceTree = "<group>"; };
 		88F3904919D595C200169918 /* DDLFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldTableCell.swift; sourceTree = "<group>"; };
 		88F3904A19D595C200169918 /* DDLFormTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormTableView.swift; sourceTree = "<group>"; };
-		88F3904C19D595C200169918 /* DDLListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListView.swift; sourceTree = "<group>"; };
+		88F3904C19D595C200169918 /* DDLListData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListData.swift; sourceTree = "<group>"; };
 		88F3904D19D595C200169918 /* DDLListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListWidget.swift; sourceTree = "<group>"; };
 		88F3904F19D595C200169918 /* DDLField+DataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDLField+DataType.swift"; sourceTree = "<group>"; };
 		88F3905019D595C200169918 /* DDLField+Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDLField+Editor.swift"; sourceTree = "<group>"; };
@@ -250,8 +266,6 @@
 		88F3907019D595C200169918 /* LRMobilewidgetsddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsddlrecordService_v62.m; sourceTree = "<group>"; };
 		88F3907119D595C200169918 /* LRMobilewidgetsuserService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsuserService_v62.h; sourceTree = "<group>"; };
 		88F3907219D595C200169918 /* LRMobilewidgetsuserService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsuserService_v62.m; sourceTree = "<group>"; };
-		88F3907919D595C200169918 /* WebContentView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentView_default.swift; sourceTree = "<group>"; };
-		88F3907A19D595C200169918 /* WebContentView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentView_default.xib; sourceTree = "<group>"; };
 		88F3907C19D595C200169918 /* AssetListView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListView_default.swift; sourceTree = "<group>"; };
 		88F3907D19D595C200169918 /* AssetListView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetListView_default.xib; sourceTree = "<group>"; };
 		88F3908019D595C200169918 /* DDLBaseFieldTextFieldTableCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLBaseFieldTextFieldTableCell_default.swift; sourceTree = "<group>"; };
@@ -331,6 +345,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		882FD6F119E1EFB800038A3A /* ServerOperations */ = {
+			isa = PBXGroup;
+			children = (
+				882FD6F219E1F01C00038A3A /* LiferayAssetListPageOperation.swift */,
+			);
+			path = ServerOperations;
+			sourceTree = "<group>";
+		};
 		8835607A196AED0E002AB222 /* Liferay-Widget-Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +360,60 @@
 				88F3907619D595C200169918 /* Themes */,
 			);
 			name = "Liferay-Widget-Library";
+			sourceTree = "<group>";
+		};
+		8844A78419E2992000441E8F /* ServerOperations */ = {
+			isa = PBXGroup;
+			children = (
+				8844A78519E2992000441E8F /* LiferayDDLListPageOperation.swift */,
+			);
+			path = ServerOperations;
+			sourceTree = "<group>";
+		};
+		8844A78D19E29F8800441E8F /* ServerOperations */ = {
+			isa = PBXGroup;
+			children = (
+				88EFBAAF19E2D3B7008A8AEE /* LiferayDDLFormLoadOperation.swift */,
+				88EFBAB119E2D643008A8AEE /* LiferayDDLFormRecordLoadOperation.swift */,
+				8844A79119E2A0D900441E8F /* LiferayDDLFormSubmitOperation.swift */,
+				88462B9019E33A3800BD875B /* LiferayDDLFormUploadOperation.swift */,
+			);
+			path = ServerOperations;
+			sourceTree = "<group>";
+		};
+		8844A78E19E29FD500441E8F /* ServerOperations */ = {
+			isa = PBXGroup;
+			children = (
+				8844A78F19E29FD500441E8F /* LiferayPaginationOperation.swift */,
+			);
+			path = ServerOperations;
+			sourceTree = "<group>";
+		};
+		88462B8319E339C100BD875B /* WebContentDisplay */ = {
+			isa = PBXGroup;
+			children = (
+				88462B8419E339C100BD875B /* ServerOperations */,
+				88462B8619E339C100BD875B /* WebContentDisplayData.swift */,
+				88462B8719E339C100BD875B /* WebContentDisplayWidget.swift */,
+			);
+			path = WebContentDisplay;
+			sourceTree = "<group>";
+		};
+		88462B8419E339C100BD875B /* ServerOperations */ = {
+			isa = PBXGroup;
+			children = (
+				88462B8519E339C100BD875B /* LiferayWebContentLoadOperation.swift */,
+			);
+			path = ServerOperations;
+			sourceTree = "<group>";
+		};
+		88462B8B19E339EE00BD875B /* WebContentDisplay */ = {
+			isa = PBXGroup;
+			children = (
+				88462B8C19E339EE00BD875B /* WebContentDisplayView_default.swift */,
+				88462B8D19E339EE00BD875B /* WebContentDisplayView_default.xib */,
+			);
+			path = WebContentDisplay;
 			sourceTree = "<group>";
 		};
 		8852291E19DC1A5A00AE4DAA /* ServerOperations */ = {
@@ -535,7 +611,6 @@
 		88F3902C19D595C200169918 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				88F3902D19D595C200169918 /* AssetDisplay */,
 				88F3903019D595C200169918 /* AssetList */,
 				88C7ADE419D97048008F1B19 /* Auth */,
 				88F3903519D595C200169918 /* Base */,
@@ -544,25 +619,17 @@
 				88F3906519D595C200169918 /* liferay-ios-widgets.h */,
 				88F3906619D595C200169918 /* liferay-server-context-sample.plist */,
 				88F3906C19D595C200169918 /* Services */,
+				88462B8319E339C100BD875B /* WebContentDisplay */,
 			);
 			name = Source;
 			path = ../../Library/Source;
 			sourceTree = "<group>";
 		};
-		88F3902D19D595C200169918 /* AssetDisplay */ = {
-			isa = PBXGroup;
-			children = (
-				88F3902E19D595C200169918 /* WebContentView.swift */,
-				88F3902F19D595C200169918 /* WebContentWidget.swift */,
-			);
-			path = AssetDisplay;
-			sourceTree = "<group>";
-		};
 		88F3903019D595C200169918 /* AssetList */ = {
 			isa = PBXGroup;
 			children = (
-				88F3903119D595C200169918 /* AssetListView.swift */,
 				88F3903219D595C200169918 /* AssetListWidget.swift */,
+				882FD6F119E1EFB800038A3A /* ServerOperations */,
 				88F3903319D595C200169918 /* TableView */,
 			);
 			path = AssetList;
@@ -584,7 +651,6 @@
 				88F3903B19D595C200169918 /* BaseWidget+progress.swift */,
 				88F3903D19D595C200169918 /* BaseWidgetView.swift */,
 				88F3903E19D595C200169918 /* LiferayServerContext.swift */,
-				88F3903F19D595C200169918 /* PaginationOperation.swift */,
 				8852293319DC1A8400AE4DAA /* ServerOperation.swift */,
 				88F3904019D595C200169918 /* SessionContext.swift */,
 				88F3904119D595C200169918 /* ThemeManager.swift */,
@@ -597,6 +663,7 @@
 			children = (
 				88F3903719D595C200169918 /* BaseListView.swift */,
 				88F3903819D595C200169918 /* BaseListWidget.swift */,
+				8844A78E19E29FD500441E8F /* ServerOperations */,
 				88F3903919D595C200169918 /* TableView */,
 			);
 			path = BaseListWidget;
@@ -625,8 +692,10 @@
 		88F3904519D595C200169918 /* FormWidget */ = {
 			isa = PBXGroup;
 			children = (
+				88EFBAAD19E2CB7B008A8AEE /* DDLFormData.swift */,
 				88F3904619D595C200169918 /* DDLFormView.swift */,
 				88F3904719D595C200169918 /* DDLFormWidget.swift */,
+				8844A78D19E29F8800441E8F /* ServerOperations */,
 				88F3904819D595C200169918 /* TableView */,
 			);
 			path = FormWidget;
@@ -644,8 +713,9 @@
 		88F3904B19D595C200169918 /* ListWidget */ = {
 			isa = PBXGroup;
 			children = (
-				88F3904C19D595C200169918 /* DDLListView.swift */,
+				88F3904C19D595C200169918 /* DDLListData.swift */,
 				88F3904D19D595C200169918 /* DDLListWidget.swift */,
+				8844A78419E2992000441E8F /* ServerOperations */,
 			);
 			path = ListWidget;
 			sourceTree = "<group>";
@@ -705,23 +775,14 @@
 		88F3907719D595C200169918 /* Default */ = {
 			isa = PBXGroup;
 			children = (
-				88F3907819D595C200169918 /* AssetDisplay */,
 				88F3907B19D595C200169918 /* AssetList */,
 				88C7AE0419D972EB008F1B19 /* Auth */,
 				88F3907E19D595C200169918 /* DDL */,
 				88F3909B19D595C200169918 /* DefaultThemeConstants.swift */,
 				88F390A219D595C200169918 /* Resources */,
+				88462B8B19E339EE00BD875B /* WebContentDisplay */,
 			);
 			path = Default;
-			sourceTree = "<group>";
-		};
-		88F3907819D595C200169918 /* AssetDisplay */ = {
-			isa = PBXGroup;
-			children = (
-				88F3907919D595C200169918 /* WebContentView_default.swift */,
-				88F3907A19D595C200169918 /* WebContentView_default.xib */,
-			);
-			path = AssetDisplay;
 			sourceTree = "<group>";
 		};
 		88F3907B19D595C200169918 /* AssetList */ = {
@@ -943,7 +1004,6 @@
 				88F3914619D595C200169918 /* default-preview-webcontent.png in Resources */,
 				88F3912819D595C200169918 /* DDLListView_default.xib in Resources */,
 				88F3913D19D595C200169918 /* default-lock-icon@2x.png in Resources */,
-				88F3910C19D595C200169918 /* WebContentView_default.xib in Resources */,
 				88F3914319D595C200169918 /* default-preview-assetlist@2x.png in Resources */,
 				88F3911519D595C200169918 /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */,
 				88F3915319D595C200169918 /* flat7-button.png in Resources */,
@@ -952,6 +1012,7 @@
 				88F3902B19D595B100169918 /* liferay-server-context.plist in Resources */,
 				88F3913819D595C200169918 /* default-large-button-selected.png in Resources */,
 				88F3911B19D595C200169918 /* DDLFieldRadioTableCell_default.xib in Resources */,
+				88462B8F19E339EE00BD875B /* WebContentDisplayView_default.xib in Resources */,
 				88C7AE2119D972FB008F1B19 /* LoginView_flat7.xib in Resources */,
 				88F3913319D595C200169918 /* default-field-focused@2x.png in Resources */,
 				88C7AE1119D972EB008F1B19 /* LoginView_default.xib in Resources */,
@@ -1010,14 +1071,17 @@
 			files = (
 				88F3910619D595C200169918 /* LRMobilewidgetsassetentryService_v62.m in Sources */,
 				88F3912519D595C200169918 /* DDLSubmitButtonTableCell_default.swift in Sources */,
+				882FD6F319E1F01C00038A3A /* LiferayAssetListPageOperation.swift in Sources */,
 				88F390E219D595C200169918 /* LiferayServerContext.swift in Sources */,
 				88F3910819D595C200169918 /* LRMobilewidgetsuserService_v62.m in Sources */,
 				88F3912919D595C200169918 /* DefaultThemeConstants.swift in Sources */,
 				88C7AE2219D972FB008F1B19 /* SignUpView_flat7.swift in Sources */,
 				8852292419DC1A5A00AE4DAA /* LiferayLoginEmailOperation.swift in Sources */,
 				88F390FE19D595C200169918 /* UIView+Animations.swift in Sources */,
+				88EFBAAE19E2CB7B008A8AEE /* DDLFormData.swift in Sources */,
 				8868AFCE19656B0500FD5214 /* ViewController.swift in Sources */,
-				88F390EC19D595C200169918 /* DDLListView.swift in Sources */,
+				88462B8A19E339C100BD875B /* WebContentDisplayWidget.swift in Sources */,
+				88F390EC19D595C200169918 /* DDLListData.swift in Sources */,
 				88F390EA19D595C200169918 /* DDLFieldTableCell.swift in Sources */,
 				88F390FA19D595C200169918 /* Global.swift in Sources */,
 				8852292E19DC1A6600AE4DAA /* LiferayForgotPasswordScreenNameOperation.swift in Sources */,
@@ -1026,11 +1090,13 @@
 				88F1F2C319DC529F00EB58A9 /* ForgotPasswordData.swift in Sources */,
 				88C7AE2019D972FB008F1B19 /* LoginView_flat7.swift in Sources */,
 				88F390F319D595C200169918 /* DDLFieldDocument.swift in Sources */,
+				8844A79219E2A0D900441E8F /* LiferayDDLFormSubmitOperation.swift in Sources */,
 				88F3911C19D595C200169918 /* DDLFieldSelectTableCell_default.swift in Sources */,
 				8852292F19DC1A6600AE4DAA /* LiferayForgotPasswordUserIdOperation.swift in Sources */,
 				8852292619DC1A5A00AE4DAA /* LiferayLoginUserIdOperation.swift in Sources */,
-				88F390D819D595C200169918 /* WebContentWidget.swift in Sources */,
+				8844A78619E2992000441E8F /* LiferayDDLListPageOperation.swift in Sources */,
 				88F3911219D595C200169918 /* DDLFieldDateTableCell_default.swift in Sources */,
+				88EFBAB219E2D643008A8AEE /* LiferayDDLFormRecordLoadOperation.swift in Sources */,
 				88F390F019D595C200169918 /* DDLField.swift in Sources */,
 				88C7ADFF19D97048008F1B19 /* LoginWidget.swift in Sources */,
 				88F390DB19D595C200169918 /* AssetListTableView.swift in Sources */,
@@ -1043,18 +1109,21 @@
 				88F3911E19D595C200169918 /* DDLFieldTextareaTableCell_default.swift in Sources */,
 				8852292519DC1A5A00AE4DAA /* LiferayLoginScreenNameOperation.swift in Sources */,
 				88F390E719D595C200169918 /* DDLXSDParser.swift in Sources */,
+				88462B8819E339C100BD875B /* LiferayWebContentLoadOperation.swift in Sources */,
 				88F390E619D595C200169918 /* DDLValuesParser.swift in Sources */,
 				88F390DF19D595C200169918 /* BaseWidget+progress.swift in Sources */,
 				88F390F819D595C200169918 /* DDLRecord.swift in Sources */,
 				8852293419DC1A8400AE4DAA /* ServerOperation.swift in Sources */,
 				88C7AE0E19D972EB008F1B19 /* ForgotPasswordView_default.swift in Sources */,
 				8868AFCC19656B0500FD5214 /* AppDelegate.swift in Sources */,
+				88EFBAB019E2D3B7008A8AEE /* LiferayDDLFormLoadOperation.swift in Sources */,
 				88F390ED19D595C200169918 /* DDLListWidget.swift in Sources */,
 				88F3910F19D595C200169918 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
 				88F390F719D595C200169918 /* DDLFieldUntyped.swift in Sources */,
 				88F1F2C719DC52B200EB58A9 /* SignUpData.swift in Sources */,
 				88F390E119D595C200169918 /* BaseWidgetView.swift in Sources */,
 				8845B85019CC32560025D1D2 /* DDListViewController.swift in Sources */,
+				88462B9119E33A3800BD875B /* LiferayDDLFormUploadOperation.swift in Sources */,
 				88C7ADF919D97048008F1B19 /* ForgotPasswordWidget.swift in Sources */,
 				88F3911019D595C200169918 /* DDLFieldCheckboxTableCell_default.swift in Sources */,
 				88C7ADF719D97048008F1B19 /* AuthBased.swift in Sources */,
@@ -1063,23 +1132,21 @@
 				88F3910D19D595C200169918 /* AssetListView_default.swift in Sources */,
 				88F3910719D595C200169918 /* LRMobilewidgetsddlrecordService_v62.m in Sources */,
 				88F390F619D595C200169918 /* DDLFieldStringWithOptions.swift in Sources */,
-				88F390D719D595C200169918 /* WebContentView.swift in Sources */,
 				88F390EE19D595C200169918 /* DDLField+DataType.swift in Sources */,
 				88F390DE19D595C200169918 /* BaseListTableView.swift in Sources */,
 				88F390E819D595C200169918 /* DDLFormView.swift in Sources */,
 				88F390F219D595C200169918 /* DDLFieldDate.swift in Sources */,
 				88F390F119D595C200169918 /* DDLFieldBoolean.swift in Sources */,
-				88F390D919D595C200169918 /* AssetListView.swift in Sources */,
-				88F390E319D595C200169918 /* PaginationOperation.swift in Sources */,
 				88C7AE1E19D972FB008F1B19 /* ForgotPasswordView_flat7.swift in Sources */,
 				885FD6831996E1DF00F23BA1 /* FormViewController.swift in Sources */,
 				888F6206198FD3F20082786B /* SignUpViewController.swift in Sources */,
 				8852292319DC1A5A00AE4DAA /* LiferayLoginBaseOperation.swift in Sources */,
 				88F390EB19D595C200169918 /* DDLFormTableView.swift in Sources */,
-				88F3910B19D595C200169918 /* WebContentView_default.swift in Sources */,
 				889558DF19C1E7FD00657AC7 /* AssetListViewController.swift in Sources */,
 				88C7AE0319D97048008F1B19 /* SignUpWidget.swift in Sources */,
+				8844A79019E29FD500441E8F /* LiferayPaginationOperation.swift in Sources */,
 				88F3911619D595C200169918 /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */,
+				88462B8E19E339EE00BD875B /* WebContentDisplayView_default.swift in Sources */,
 				88F390DC19D595C200169918 /* BaseListView.swift in Sources */,
 				8852293219DC1A7200AE4DAA /* LiferaySignUpOperation.swift in Sources */,
 				88F390EF19D595C200169918 /* DDLField+Editor.swift in Sources */,
@@ -1097,6 +1164,7 @@
 				88F3912219D595C200169918 /* DDLFormDefaultThemeConstants.swift in Sources */,
 				88F3911419D595C200169918 /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */,
 				88F390E519D595C200169918 /* ThemeManager.swift in Sources */,
+				88462B8919E339C100BD875B /* WebContentDisplayData.swift in Sources */,
 				88C7AE1219D972EB008F1B19 /* SignUpView_default.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

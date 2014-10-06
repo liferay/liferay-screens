@@ -29,6 +29,11 @@ class DDListViewController: UIViewController, DDLListWidgetDelegate {
 
 	func onDDLListResponse(records: [DDLRecord]) {
 		println("Loaded \(records.count) records")
+		for e in records {
+			let v = e["Title"]?.currentValueAsString
+			println("      \(v)")
+		}
+
 	}
 
 	func onDDLListError(error: NSError) {
