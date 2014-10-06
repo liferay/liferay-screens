@@ -129,6 +129,7 @@ class DDLFieldDate_Tests: XCTestCase {
 
 		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
 
+		// Simulator locale must be en_US.
 		XCTAssertEqual("Jun 19, 2004", dateField.currentDateLabel!)
 	}
 

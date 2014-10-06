@@ -37,7 +37,6 @@ public class DDLFieldDate : DDLField {
 
 
 	override init(attributes: [String:AnyObject]) {
-
 		serverYYYYDateFormatter.dateFormat = serverYYYYDateFormat
 		serverYYDateFormatter.dateFormat = serverYYDateFormat
 
