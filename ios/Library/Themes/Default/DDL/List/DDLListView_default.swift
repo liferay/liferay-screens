@@ -14,7 +14,11 @@
 import UIKit
 
 
-public class DDLListView_default: DDLListView {
+public class DDLListView_default: BaseListTableView, DDLListData {
+
+	// DDLListData
+
+	public var labelField: String = ""
 
 	override internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let record = object as? DDLRecord {

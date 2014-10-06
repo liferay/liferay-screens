@@ -31,14 +31,14 @@ import UIKit
 
 	@IBInspectable public var labelField: String? {
 		didSet {
-			onLabelFieldChanged()
+			(widgetView as? DDLListData)?.labelField = labelField ?? ""
 		}
 	}
 
 	@IBOutlet public var delegate: DDLListWidgetDelegate?
 
-	internal var recordListView: DDLListView {
-		return widgetView as DDLListView
+	internal var ddlListData: DDLListData {
+		return widgetView as DDLListData
 	}
 
 
@@ -47,69 +47,51 @@ import UIKit
 	override public func onCreated() {
 		super.onCreated()
 
-		onLabelFieldChanged()
+		ddlListData.labelField = labelField ?? ""
 	}
 
-	override internal func doGetPageRowsOperation(#session: LRSession, page: Int) {
-		if userId == 0 {
-			return
-		}
+	override internal func createPaginationOperation(
+			#page: Int,
+			computeRowCount: Bool)
+			-> PaginationOperation {
 
-		let service = LRMobilewidgetsddlrecordService_v62(session: session)
+		let operation = LiferayDDLListPageOperation(
+				widget: self,
+				page: page,
+				computeRowCount: computeRowCount)
 
-		service.getDdlRecordsWithDdlRecordSetId(recordSetId,
-				userId: userId,
-				locale: NSLocale.currentLocaleString(),
-				start: Int32(firstRowForPage(page)),
-				end: Int32(firstRowForPage(page + 1)),
-				error: nil)
-	}
+		operation.userId = self.userId
+		operation.recordSetId = self.recordSetId
 
-	override internal func doGetRowCountOperation(#session: LRSession) {
-		if userId == 0 {
-			return
-		}
-
-		let service = LRMobilewidgetsddlrecordService_v62(session: session)
-
-		service.getDdlRecordsCountWithDdlRecordSetId(recordSetId,
-			userId: userId,
-			error: nil)
+		return operation
 	}
 
 	override internal func convert(#serverResult:[String:AnyObject]) -> AnyObject {
-		return DDLRecord(recordData:serverResult)
+		return DDLRecord(recordData: serverResult)
 	}
 
-	override internal func onLoadPageError(page: Int, error: NSError) {
-		super.onLoadPageError(page, error: error)
+	override internal func onLoadPageError(#page: Int, error: NSError) {
+		super.onLoadPageError(page: page, error: error)
 
 		delegate?.onDDLListError?(error)
 	}
 
-	override internal func onLoadPageResult(page: Int,
+	override internal func onLoadPageResult(#page: Int,
 			serverRows: [[String:AnyObject]],
 			rowCount: Int)
 			-> [AnyObject] {
 
-		let rowObjects = super.onLoadPageResult(page, serverRows: serverRows, rowCount: rowCount)
+		let rowObjects = super.onLoadPageResult(page: page, serverRows: serverRows, rowCount: rowCount)
 
 		let records = rowObjects.map() { $0 as DDLRecord }
 
 		delegate?.onDDLListResponse?(records)
 
-		return rowObjects
+		return records
 	}
 
 	override internal func onSelectedRow(row: AnyObject) {
 		delegate?.onDDLRecordSelected?(row as DDLRecord)
 	}
-
-	internal func onLabelFieldChanged() {
-		if widgetView != nil && labelField != nil {
-			recordListView.labelField = labelField!
-		}
-	}
-
 
 }
