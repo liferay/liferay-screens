@@ -23,7 +23,7 @@ import UIKit
 		return widgetView as BaseListView
 	}
 
-	private var paginationOperations: [Int:PaginationOperation] = [:]
+	private var paginationOperations: [Int:LiferayPaginationOperation] = [:]
 	private var rowCount: Int = 0
 
 
@@ -69,11 +69,11 @@ import UIKit
 	internal func createPaginationOperation(
 			#page: Int,
 			computeRowCount: Bool)
-			-> PaginationOperation {
+			-> LiferayPaginationOperation {
 
 		assertionFailure("createPaginationOperation must be overriden")
 
-		return PaginationOperation(
+		return LiferayPaginationOperation(
 				widget: self,
 				page: page,
 				computeRowCount: computeRowCount)

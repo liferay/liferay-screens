@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class PaginationOperation: ServerOperation {
+public class LiferayPaginationOperation: ServerOperation {
 
 	public let page: Int
 

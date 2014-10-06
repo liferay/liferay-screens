@@ -98,7 +98,7 @@ import UIKit
 	override internal func createPaginationOperation(
 			#page: Int,
 			computeRowCount: Bool)
-			-> PaginationOperation {
+			-> LiferayPaginationOperation {
 
 		let operation = LiferayAssetListPageOperation(
 				widget: self,

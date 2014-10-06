@@ -13,7 +13,7 @@
 */
 import UIKit
 
-public class LiferayAssetListPageOperation: PaginationOperation {
+public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	public var groupId: Int64 = 0
 	public var classNameId: Int64 = 0
