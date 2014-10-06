@@ -24,6 +24,7 @@ import UIKit
 	}
 
 	private var paginationOperations: [Int:PaginationOperation] = [:]
+	private var rowCount: Int = 0
 
 
 	//MARK: BaseWidget
@@ -37,66 +38,49 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadList() -> Bool {
-		if !SessionContext.hasSession {
-			println("ERROR: No session initialized. Can't load the list without session")
-			return false
-		}
-
-		startOperationWithMessage("Loading list...", details:"Wait few seconds...")
-
-		return loadPage(0)
+		return loadPage(0, computeRowCount: true)
 	}
 
 
 	//MARK: Internal methods
 
-	internal func loadPage(page: Int) -> Bool {
-		let operation = PaginationOperation(page:page)
-
-		operation.onOperationSuccess = onLoadPageResult
-		operation.onOperationFailure = onLoadPageError
+	internal func loadPage(page: Int, computeRowCount: Bool = false) -> Bool {
+		let operation = createPaginationOperation(
+				page: page,
+				computeRowCount: computeRowCount)
 
 		paginationOperations[page] = operation
 
-		let session = SessionContext.createBatchSessionFromCurrentSession()!
-		session.callback = operation
+		return operation.validateAndEnqueue() {
+			if $0.lastError == nil {
+				self.onLoadPageResult(
+						page: operation.page,
+						serverRows: operation.pageContent!,
+						rowCount: operation.rowCount ?? self.rowCount)
+			}
+			else {
+				self.onLoadPageError(page: operation.page, error: $0.lastError!)
+			}
 
-		doGetPageRowsOperation(session: session, page: page)
-
-		if session.commands.count < 1 {
-			println("Error: Get page rows operation couldn't be started")
-
-			return false
+			self.paginationOperations.removeValueForKey(operation.page)
 		}
-
-		doGetRowCountOperation(session: session)
-
-		if session.commands.count < 2 {
-			println("Error: Get row count operation couldn't be started")
-
-			return false
-		}
-
-		var outError: NSError?
-
-		session.invoke(&outError)
-
-		if let error = outError {
-			operation.onFailure(error)
-
-			return false
-		}
-
-		return true
 	}
 
-	internal func doGetPageRowsOperation(#session: LRSession, page: Int){
-	}
+	internal func createPaginationOperation(
+			#page: Int,
+			computeRowCount: Bool)
+			-> PaginationOperation {
 
-	internal func doGetRowCountOperation(#session: LRSession) {
+		assertionFailure("createPaginationOperation must be overriden")
+
+		return PaginationOperation(
+				widget: self,
+				page: page,
+				computeRowCount: computeRowCount)
 	}
 
 	internal func convert(#serverResult:[String:AnyObject]) -> AnyObject {
+		assertionFailure("convert(serverResult) must be overriden")
 		return 0
 	}
 
@@ -124,15 +108,10 @@ import UIKit
 		return firstPageSize + (page - 1) * pageSize
 	}
 
-	internal func onLoadPageError(page: Int, error: NSError) {
-		if page == 0 {
-			finishOperationWithError(error, message:"Error getting list!")
-		}
-
-		paginationOperations.removeValueForKey(page)
+	internal func onLoadPageError(#page: Int, error: NSError) {
 	}
 
-	internal func onLoadPageResult(page: Int,
+	internal func onLoadPageResult(#page: Int,
 			serverRows: [[String:AnyObject]],
 			rowCount: Int)
 			-> [AnyObject] {
@@ -156,14 +135,9 @@ import UIKit
 			allRows[offset + index] = row
 		}
 
+		self.rowCount = rowCount
 		baseListView.rowCount = rowCount
 		baseListView.rows = allRows
-
-		if page == 0 {
-			finishOperation()
-		}
-
-		paginationOperations.removeValueForKey(page)
 
 		return convertedRows
 	}

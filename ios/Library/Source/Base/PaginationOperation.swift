@@ -14,38 +14,77 @@
 import UIKit
 
 
-public class PaginationOperation: NSObject, LRCallback {
+public class PaginationOperation: ServerOperation {
 
-	internal var onOperationSuccess: ((Int, [[String:AnyObject]], Int) -> [AnyObject])?
-	internal var onOperationFailure: ((Int, NSError) -> Void)?
+	public let page: Int
 
-	private let page:Int
+	internal(set) var pageContent: [[String:AnyObject]]?
+	internal(set) var rowCount: Int?
 
-	internal init(page:Int) {
+	internal override var hudLoadingMessage: HUDMessage? {
+		return (page == 0) ? ("Loading list...", details: "Wait few seconds...") : nil
+	}
+	internal override var hudFailureMessage: HUDMessage? {
+		return (page == 0) ? ("Error getting list!", details: nil) : nil
+	}
+
+
+	private var computeRowCount: Bool
+	
+
+	internal init(widget: BaseWidget, page: Int, computeRowCount: Bool) {
 		self.page = page
+		self.computeRowCount = computeRowCount
+
+		super.init(widget: widget)
 	}
 
 
-	//MARK: Public methods
+	//MARK: ServerOperation
 
-	public func onFailure(error: NSError!) {
-		onOperationFailure?(page, error)
-	}
+	override internal func doRun(#session: LRSession) {
+		let batchSession = LRBatchSession(session: session)
 
-	public func onSuccess(result: AnyObject!) {
-		if let responses = result as? NSArray {
-			if let entriesResponse = responses.firstObject as? NSArray {
-				if let countResponse = responses.objectAtIndex(1) as? NSNumber {
-					onOperationSuccess?(page,
-						entriesResponse as [[String:AnyObject]],
-						countResponse as Int)
+		doGetPageRowsOperation(session: batchSession, page: page)
 
-					return
-				}
-			}
+		if batchSession.commands.count < 1 {
+			lastError = createError(cause: .AbortedDueToPreconditions, userInfo: nil)
+
+			return
 		}
 
-		onFailure(createError(cause: .InvalidServerResponse, userInfo: ["ServerResponse" : result]))
+		if computeRowCount {
+			doGetRowCountOperation(session: batchSession)
+		}
+
+		pageContent = nil
+		rowCount = nil
+		lastError = nil
+
+		let responses = batchSession.invoke(&lastError)
+
+		if lastError == nil {
+			if let entriesResponse = responses[0] as? [[String:AnyObject]] {
+				pageContent = entriesResponse
+
+				if responses.count > 1 {
+					if let countResponse = responses[1] as? NSNumber {
+						rowCount = countResponse
+					}
+				}
+			}
+			else {
+				lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
+			}
+		}
+	}
+
+	internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
+		assertionFailure("doGetPageRowsOperation must be overriden")
+	}
+
+	internal func doGetRowCountOperation(#session: LRBatchSession) {
+		assertionFailure("doGetRowCountOperation must be overriden")
 	}
 
 }

@@ -92,45 +92,25 @@ import UIKit
 
 	@IBOutlet public var delegate: AssetListWidgetDelegate?
 
-	internal var assetListView: AssetListView {
-		return widgetView as AssetListView
-	}
-
 
 	//MARK: BaseListWidget
 
-	override internal func doGetPageRowsOperation(#session: LRSession, page: Int) {
-		let groupId = self.groupId != 0 ? self.groupId : LiferayServerContext.groupId
+	override internal func createPaginationOperation(
+			#page: Int,
+			computeRowCount: Bool)
+			-> PaginationOperation {
 
-		let widgetsService = LRMobilewidgetsassetentryService_v62(session: session)
+		let operation = LiferayAssetListPageOperation(
+				widget: self,
+				page: page,
+				computeRowCount: computeRowCount)
 
-		var entryQueryAttributes: [NSString : AnyObject] = [:]
+		operation.groupId = (self.groupId != 0)
+				? self.groupId : LiferayServerContext.groupId
 
-		entryQueryAttributes["start"] = firstRowForPage(page)
-		entryQueryAttributes["end"] = firstRowForPage(page + 1)
-		entryQueryAttributes["classNameIds"] = classNameId
-		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId)
+		operation.classNameId = Int64(self.classNameId)
 
-		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
-
-		widgetsService.getAssetEntriesWithAssetEntryQuery(entryQuery,
-				locale: NSLocale.currentLocaleString(),
-				error: nil)
-	}
-
-	override internal func doGetRowCountOperation(#session: LRSession) {
-		let groupId = self.groupId != 0 ? self.groupId : LiferayServerContext.groupId
-
-		let assetsService = LRAssetEntryService_v62(session: session)
-
-		var entryQueryAttributes: [NSString : AnyObject] = [:]
-
-		entryQueryAttributes["classNameIds"] = classNameId
-		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId)
-
-		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
-
-		assetsService.getEntriesCountWithEntryQuery(entryQuery, error: nil)
+		return operation
 	}
 
 	override internal func convert(#serverResult:[String:AnyObject]) -> AnyObject {
@@ -139,18 +119,22 @@ import UIKit
 		return Entry(title: title)
 	}
 
-	override internal func onLoadPageError(page: Int, error: NSError) {
-		super.onLoadPageError(page, error: error)
+	override internal func onLoadPageError(#page: Int, error: NSError) {
+		super.onLoadPageError(page: page, error: error)
 
 		delegate?.onAssetListError?(error)
 	}
 
-	override internal func onLoadPageResult(page: Int,
+	override internal func onLoadPageResult(
+			#page: Int,
 			serverRows: [[String:AnyObject]],
 			rowCount: Int)
 			-> [AnyObject] {
 
-		let rowObjects = super.onLoadPageResult(page, serverRows: serverRows, rowCount: rowCount)
+		let rowObjects = super.onLoadPageResult(
+				page: page,
+				serverRows: serverRows,
+				rowCount: rowCount)
 
 		let assetEntries = rowObjects.map() { $0 as Entry }
 
