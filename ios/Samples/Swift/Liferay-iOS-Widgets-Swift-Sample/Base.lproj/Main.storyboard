@@ -7,12 +7,12 @@
         <!--Login-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" userLabel="Login" customClass="ViewController" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" userLabel="Login" customClass="ViewController" customModule="Liferay_iOS_Screenlets_Swift_Sample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="vqN-kF-xhh" customClass="ForgotPasswordScreenlet" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="vqN-kF-xhh" customClass="ForgotPasswordScreenlet" customModule="Liferay_iOS_Screenlets_Swift_Sample" customModuleProvider="target">
                                 <rect key="frame" x="25" y="257" width="280" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
@@ -21,7 +21,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="flat7"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" id="XU3-jd-mfY" customClass="LoginScreenlet" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="XU3-jd-mfY" customClass="LoginScreenlet" customModule="Liferay_iOS_Screenlets_Swift_Sample" customModuleProvider="target">
                                 <rect key="frame" x="20" y="20" width="284" height="317"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
@@ -48,7 +48,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="Ph8-tD-auQ" customClass="SignUpScreenlet" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="Ph8-tD-auQ" customClass="SignUpScreenlet" customModule="Liferay_iOS_Screenlets_Swift_Sample" customModuleProvider="target">
                                 <rect key="frame" x="20" y="41" width="280" height="408"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <userDefinedRuntimeAttributes>
@@ -66,12 +66,12 @@
         <!--Web Content Display-->
         <scene sceneID="V8j-AC-P4q">
             <objects>
-                <viewController id="uml-aM-uca" userLabel="Web Content Display" customClass="WebContentViewController" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uml-aM-uca" userLabel="Web Content Display" customClass="WebContentViewController" customModule="Liferay_iOS_Screenlets_Swift_Sample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E6Z-fm-2eI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="U0U-1x-ZkL" customClass="WebContentScreenlet" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="U0U-1x-ZkL" customClass="WebContentScreenlet" customModule="Liferay_iOS_Screenlets_Swift_Sample" customModuleProvider="target">
                                 <rect key="frame" x="16" y="25" width="288" height="421"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -103,12 +103,12 @@
         <!--Form View Controller-->
         <scene sceneID="kxB-ew-KX0">
             <objects>
-                <viewController id="e4a-zS-VVG" customClass="FormViewController" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="e4a-zS-VVG" customClass="FormViewController" customModule="Liferay_iOS_Screenlets_Swift_Sample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q5o-VL-Qug">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="BPh-3A-oF0" customClass="DDLFormScreenlet" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="BPh-3A-oF0" customClass="DDLFormScreenlet" customModule="Liferay_iOS_Screenlets_Swift_Sample" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="320" height="445"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -161,7 +161,7 @@
         <!--Asset List View Controller-->
         <scene sceneID="rbQ-BL-hWd">
             <objects>
-                <viewController id="Xe9-0X-wbV" customClass="AssetListViewController" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Xe9-0X-wbV" customClass="AssetListViewController" customModule="Liferay_iOS_Screenlets_Swift_Sample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z4f-np-9Ai">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -176,7 +176,7 @@
                                     <action selector="loadAction:" destination="Xe9-0X-wbV" eventType="touchUpInside" id="TRd-ao-ntU"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" id="te1-SP-40c" customClass="AssetListScreenlet" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="te1-SP-40c" customClass="AssetListScreenlet" customModule="Liferay_iOS_Screenlets_Swift_Sample" customModuleProvider="target">
                                 <rect key="frame" x="16" y="20" width="288" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -200,12 +200,12 @@
         <!--DDLList View Controller-->
         <scene sceneID="Bzy-de-LFO">
             <objects>
-                <viewController id="IVS-8r-cyI" userLabel="DDLList View Controller" customClass="DDListViewController" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IVS-8r-cyI" userLabel="DDLList View Controller" customClass="DDListViewController" customModule="Liferay_iOS_Screenlets_Swift_Sample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BGJ-PN-n7h">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="VEf-wP-N5z" customClass="DDLListScreenlet" customModule="Liferay_iOS_Widgets_Swift_Sample" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="VEf-wP-N5z" customClass="DDLListScreenlet" customModule="Liferay_iOS_Screenlets_Swift_Sample" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="320" height="483"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
