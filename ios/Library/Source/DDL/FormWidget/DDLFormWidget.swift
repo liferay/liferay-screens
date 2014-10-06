@@ -29,9 +29,9 @@ import UIKit
 	optional func onDocumentUploadedBytes(field:DDLFieldDocument,
 			bytes: UInt,
 			sent: Int64,
-			total: Int64);
-	optional func onDocumentUploadCompleted(field:DDLFieldDocument, result:[String:AnyObject]);
-	optional func onDocumentUploadError(field:DDLFieldDocument, error: NSError);
+			total: Int64)
+	optional func onDocumentUploadCompleted(field:DDLFieldDocument, result:[String:AnyObject])
+	optional func onDocumentUploadError(field:DDLFieldDocument, error: NSError)
 
 }
 

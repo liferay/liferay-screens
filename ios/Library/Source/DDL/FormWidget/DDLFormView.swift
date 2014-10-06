@@ -21,7 +21,7 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 	public var record: DDLRecord?
 
 	public var isRecordEmpty: Bool {
-		return record == nil ? true : record!.fields.isEmpty
+		return (record == nil) ? true : record!.fields.isEmpty
 	}
 
 	public var values: [String:AnyObject] {
@@ -43,17 +43,7 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 	}
 
 
-	//MARK: Public methods
-
-	public func getField(index: Int) -> DDLField? {
-		return record == nil ? nil : record!.fields[index]
-	}
-
-	public func getFieldIndex(field: DDLField) -> Int? {
-		return record == nil ? nil : find(record!.fields, field)
-	}
-
-	public func validateForm(#autoscroll:Bool) -> Bool {
+	public func validateForm(#autoscroll: Bool) -> Bool {
 		var result = true
 		var firstFailedField:DDLField?
 
@@ -71,6 +61,17 @@ public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
 		}
 
 		return result
+	}
+
+
+	//MARK: Public methods
+
+	public func getField(index: Int) -> DDLField? {
+		return (record == nil) ? nil : record!.fields[index]
+	}
+
+	public func getFieldIndex(field: DDLField) -> Int? {
+		return (record == nil) ? nil : find(record!.fields, field)
 	}
 
 
