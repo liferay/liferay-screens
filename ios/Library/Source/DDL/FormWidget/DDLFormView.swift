@@ -14,7 +14,9 @@
 import UIKit
 
 
-public class DDLFormView: BaseWidgetView, UITextFieldDelegate {
+public class DDLFormView: BaseWidgetView, DDLFormData, UITextFieldDelegate {
+
+	//MARK: DDLFormData
 
 	public var showSubmitButton = true
 

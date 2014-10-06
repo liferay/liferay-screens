@@ -1,0 +1,140 @@
+/**
+* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+*
+* This library is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Lesser General Public License as published by the Free
+* Software Foundation; either version 2.1 of the License, or (at your option)
+* any later version.
+*
+* This library is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+* details.
+*/
+import UIKit
+
+
+public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgressDelegate, NSCopying {
+
+	var document: DDLFieldDocument?
+	var filePrefix: String?
+
+	var repositoryId: Int64?
+	var folderId: Int64?
+
+	var onUploadedBytes: ((UInt, Int64, Int64) -> Void)?
+
+	var uploadResult: [String:AnyObject]?
+
+	internal override var hudFailureMessage: HUDMessage? {
+		return ("An error happened uploading data", details: nil)
+	}
+
+	internal var formData: DDLFormData {
+		return widget.widgetView as DDLFormData
+	}
+
+	private var requestSemaphore: dispatch_semaphore_t?
+
+
+	//MARK: ServerOperation
+
+	override func validateData() -> Bool {
+		if document == nil {
+			return false
+		}
+
+		if document!.currentValue == nil {
+			return false
+		}
+
+		if filePrefix == nil {
+			return false
+		}
+
+		if repositoryId == nil {
+			return false
+		}
+
+		if folderId == nil {
+			return false
+		}
+
+		return true
+	}
+
+	override internal func doRun(#session: LRSession) {
+		session.callback = self
+
+		let fileName = "\(filePrefix!)\(NSUUID.UUID().UUIDString)"
+		var size:Int64 = 0
+		let stream = document!.getStream(&size)
+		let uploadData = LRUploadData(
+				inputStream: stream,
+				length: size,
+				fileName: fileName,
+				mimeType: document!.mimeType)
+		uploadData.progressDelegate = self
+
+		let service = LRDLAppService_v62(session: session)
+
+		requestSemaphore = dispatch_semaphore_create(0)
+
+		service.addFileEntryWithRepositoryId(repositoryId!,
+				folderId: folderId!,
+				sourceFileName: fileName,
+				mimeType: document!.mimeType,
+				title: fileName,
+				description: "",
+				changeLog: "Uploaded from Liferay Screens app",
+				file: uploadData,
+				serviceContext: nil,
+				error: &lastError)
+
+		dispatch_semaphore_wait(requestSemaphore, DISPATCH_TIME_FOREVER)
+
+		println("FIN")
+	}
+
+
+	//MARK: NSCopying
+
+	public func copyWithZone(zone: NSZone) -> AnyObject {
+		let result = LiferayDDLFormUploadOperation(widget: self.widget)
+
+		result.onComplete = self.onComplete
+
+		result.document = self.document
+		result.filePrefix = self.filePrefix
+		result.repositoryId = self.repositoryId
+		result.folderId = self.folderId
+
+		result.onUploadedBytes = self.onUploadedBytes
+
+		return result
+	}
+
+	//MARK: LRProgressDelegate
+
+	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
+		onUploadedBytes?(bytes, sent, total)
+	}
+
+
+	//MARK: LRCallback
+
+	public func onFailure(error: NSError?) {
+		lastError = error
+		uploadResult = nil
+
+		dispatch_semaphore_signal(requestSemaphore)
+	}
+
+	public func onSuccess(result: AnyObject?) {
+		lastError = nil
+		uploadResult = result as? [String:AnyObject]
+
+		dispatch_semaphore_signal(requestSemaphore)
+	}
+
+}

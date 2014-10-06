@@ -36,14 +36,11 @@ import UIKit
 }
 
 
-@IBDesignable public class DDLFormWidget: BaseWidget, LRProgressDelegate {
+@IBDesignable public class DDLFormWidget: BaseWidget {
 
 	private enum FormOperation {
 
 		case Idle
-		case LoadingForm
-		case LoadingRecord(Bool)
-		case Submitting
 		case Uploading(DDLFieldDocument, Bool)
 
 	}
@@ -70,6 +67,10 @@ import UIKit
 
 	private var currentOperation = FormOperation.Idle
 
+	private var submitOperation: LiferayDDLFormSubmitOperation?
+	private var loadFormOperation: LiferayDDLFormLoadOperation?
+	private var loadRecordOperation: LiferayDDLFormRecordLoadOperation?
+	private var uploadOperation: LiferayDDLFormUploadOperation?
 
 	//MARK: BaseWidget
 
@@ -104,357 +105,171 @@ import UIKit
 		}
 	}
 
-	override internal func onServerError(error: NSError) {
-		switch currentOperation {
-			case .Submitting:
-				delegate?.onFormSubmitError?(error)
-				finishOperationWithError(error, message:"An error happened submitting form")
-
-			case .LoadingForm:
-				delegate?.onFormLoadError?(error)
-				finishOperationWithError(error, message:"An error happened loading form")
-
-			case .LoadingRecord:
-				delegate?.onRecordLoadError?(error)
-				finishOperationWithError(error, message:"An error happened loading the record")
-
-			case .Uploading(let document, _):
-				document.uploadStatus = .Failed(error)
-
-				formView.changeDocumentUploadStatus(document)
-
-				if !document.validate() {
-					formView.showField(document)
-				}
-
-				delegate?.onDocumentUploadError?(document, error: error)
-
-				finishOperationWithError(error, message:"An error happened uploading file")
-
-			default: ()
-		}
-
-		currentOperation = .Idle
-	}
-
-	override internal func onServerResult(result: [String:AnyObject]) {
-		switch currentOperation {
-			case .Submitting:
-				if let recordIdValue = result["recordId"]! as? Int {
-					recordId = Int64(recordIdValue)
-					formView.record!.recordId = recordId
-				}
-
-				finishOperation()
-				currentOperation = .Idle
-
-			case .LoadingForm:
-				if onFormLoadResult(result) {
-					finishOperation()
-					currentOperation = .Idle
-				}
-
-			case .LoadingRecord(let includesForm):
-				let responses = (result["result"] ?? []) as [AnyObject]
-
-				var success = true
-
-				if includesForm && responses.count > 1 {
-					success = onFormLoadResult(responses[1] as [String:AnyObject])
-				}
-
-				if success {
-					onRecordLoadResult(responses[0] as [String:AnyObject])
-					formView.record!.recordId = recordId
-
-					finishOperation()
-					currentOperation = .Idle
-				}
-
-			case .Uploading(let document, let submitAfter):
-				document.uploadStatus = .Uploaded(result)
-
-				formView.changeDocumentUploadStatus(document)
-				delegate?.onDocumentUploadCompleted?(document, result: result)
-
-				currentOperation = .Idle
-
-				if submitAfter {
-					submitForm()
-				}
-
-			default: ()
-		}
-
-	}
-
-
-	//MARK: LRProgressDelegate
-
-	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
-		switch currentOperation {
-			case .Uploading(let document, _):
-				document.uploadStatus = .Uploading(UInt(sent), UInt(total))
-				formView.changeDocumentUploadStatus(document)
-
-				delegate?.onDocumentUploadedBytes?(document, bytes: bytes, sent: sent, total: total)
-
-			default: ()
-		}
-	}
-
 
 	//MARK: Public methods
 
 	public func loadForm() -> Bool {
-		if !SessionContext.hasSession {
-			println("ERROR: No session initialized. Can't load form without session")
+		loadFormOperation = LiferayDDLFormLoadOperation(widget: self)
 
-			return false
+		loadFormOperation!.structureId = self.structureId
+		loadFormOperation!.userId = self.userId
+
+		return loadFormOperation!.validateAndEnqueue() {
+			if let error = $0.lastError {
+				self.delegate?.onFormLoadError?(error)
+			}
+			else {
+				self.userId = self.loadFormOperation!.userId ?? self.userId
+				self.formView.record = self.loadFormOperation!.loadedRecord
+
+				self.delegate?.onFormLoaded?(self.formView.record!)
+			}
 		}
-
-		if structureId == 0 {
-			println("ERROR: StructureId is empty. Can't load form without it.")
-
-			return false
-		}
-
-		startOperationWithMessage("Loading form...", details: "Wait a second...")
-
-		let session = SessionContext.createSessionFromCurrentSession()!
-		session.callback = self
-
-		let service = LRDDMStructureService_v62(session: session)
-
-		currentOperation = .LoadingForm
-
-		var outError: NSError?
-
-		service.getStructureWithStructureId(structureId, error: &outError)
-
-		if let error = outError {
-			onFailure(error)
-
-			return false
-		}
-
-		return true
 	}
+
 
 	public func loadRecord() -> Bool {
-		if !SessionContext.hasSession {
-			println("ERROR: No session initialized. Can't load a record without session")
-			return false
-		}
+		loadRecordOperation = LiferayDDLFormRecordLoadOperation(widget: self)
 
-		if structureId == 0 {
-			println("ERROR: StructureId is empty. Can't load a record without it.")
-			return false
-		}
-
-		if recordId == 0 {
-			println("ERROR: RecordId is empty. Can't load a record without it.")
-			return false
-		}
-
-		currentOperation = .LoadingRecord(formView.isRecordEmpty)
-
-		startOperationWithMessage("Loading record...", details: "Wait a second...")
-
-		let session = SessionContext.createBatchSessionFromCurrentSession()!
-		session.callback = self
-
-		var outError: NSError?
-
-		let ddlService = LRMobilewidgetsddlrecordService_v62(session: session)
-
-		ddlService.getDdlRecordWithDdlRecordId(recordId,
-				locale: NSLocale.currentLocaleString(),
-				error: &outError)
+		loadRecordOperation!.recordId = self.recordId
 
 		if formView.isRecordEmpty {
-			let structureService = LRDDMStructureService_v62(session: session)
+			if !loadForm() {
+				return false
+			}
 
-			structureService.getStructureWithStructureId(structureId, error: &outError)
+			loadRecordOperation!.addDependency(loadFormOperation!)
 		}
 
-		session.invoke(&outError)
+		return loadRecordOperation!.validateAndEnqueue() {
+			if let error = $0.lastError {
+				self.delegate?.onRecordLoadError?(error)
+			}
+			else {
+				if let recordValue = self.formView.record {
+					recordValue.updateCurrentValues(self.loadRecordOperation!.loadedRecord!)
+					recordValue.recordId = self.recordId
 
-		if let error = outError {
-			onFailure(error)
-			return false
+					// Force didSet event
+					self.formView.record = recordValue
+
+					self.delegate?.onRecordLoaded?(recordValue)
+				}
+			}
 		}
-
-		return true
 	}
 
-
 	public func submitForm() -> Bool {
-		if !SessionContext.hasSession {
-			println("ERROR: No session initialized. Can't submit form without session")
-			return false
-		}
-
-		if recordSetId == 0 {
-			println("ERROR: RecordSetId is empty. Can't submit form without it.")
-			return false
-		}
-
-		if userId == 0 {
-			println("ERROR: UserId is empty. Can't submit form without loading the form before")
-			return false
-		}
-
 		switch currentOperation {
 			case .Uploading(let doc, _):
 				currentOperation = .Uploading(doc, true)
 				showHUDWithMessage("Uploading file...", details: "Wait a second...")
 				return true
 
-			case .LoadingForm, .LoadingRecord(_), .Submitting:
-				println("ERROR: Cannot submit a form while it's being loading or submitting")
-				return false
-
 			default: ()
 		}
 
-		if !formView.validateForm(autoscroll: autoscrollOnValidation) {
-			showHUDWithMessage("Some values are not valid",
-					details: "Please, review your form",
-					closeMode:.AutocloseDelayed(3.0, true),
-					spinnerMode:.NoSpinner)
-			return false
+	 	submitOperation = LiferayDDLFormSubmitOperation(widget: self)
+
+		submitOperation!.groupId = (self.groupId != 0)
+				? self.groupId : LiferayServerContext.groupId
+
+		submitOperation!.userId = (self.userId != 0)
+				? self.userId : Int64((SessionContext.userAttribute("userId") ?? 0) as Int)
+
+		submitOperation!.recordId = (self.recordId != 0) ? self.recordId : nil
+		submitOperation!.recordSetId = self.recordSetId
+
+		submitOperation!.autoscrollOnValidation = self.autoscrollOnValidation
+
+		return submitOperation!.validateAndEnqueue() {
+			if let error = $0.lastError {
+				self.delegate?.onFormSubmitError?(error)
+			}
+			else {
+				self.recordId = self.submitOperation!.recordId!
+				self.formView.record!.recordId = self.recordId
+
+				self.delegate?.onFormLoaded?(self.formView.record!)
+			}
 		}
 
-		currentOperation = .Submitting
-
-		startOperationWithMessage("Submitting form...", details: "Wait a second...")
-
-		let session = SessionContext.createSessionFromCurrentSession()!
-		session.callback = self
-
-		let service = LRDDLRecordService_v62(session: session)
-
-		var outError: NSError?
-
-		let groupId = self.groupId != 0 ? self.groupId : LiferayServerContext.groupId
-
-		let serviceContextAttributes = [
-				"userId": NSNumber(longLong: userId),
-				"scopeGroupId": NSNumber(longLong: groupId)]
-
-		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
-
-		if recordId == 0 {
-			service.addRecordWithGroupId(groupId,
-					recordSetId: recordSetId,
-					displayIndex: 0,
-					fieldsMap: formView.values,
-					serviceContext: serviceContextWrapper,
-					error: &outError)
-		}
-		else {
-			service.updateRecordWithRecordId(recordId,
-					displayIndex: 0,
-					fieldsMap: formView.values,
-					mergeFields: true,
-					serviceContext: serviceContextWrapper,
-					error: &outError)
-		}
-
-		if let error = outError {
-			onFailure(error)
-			return false
-		}
-
-		return true
 	}
 
 
 	//MARK: Private methods
 
-	private func onFormLoadResult(result: [String:AnyObject]) -> Bool {
-		if let xsd = result["xsd"]! as? String {
-			if userId == 0 {
-				if let userIdValue = result["userId"]! as? Int {
-					userId = Int64(userIdValue)
-				}
-			}
-
-			formView.record = DDLRecord(xsd: xsd, locale: NSLocale.currentLocale())
-
-			if !formView.record!.fields.isEmpty {
-				delegate?.onFormLoaded?(formView.record!)
-
-				return true
-			}
-		}
-
-		onFailure(createError(cause: .InvalidServerResponse, userInfo: ["ServerResponse" : result]))
-
-		return false
-	}
-
-	private func onRecordLoadResult(result: [String:AnyObject]) {
-		if let recordValue = formView.record {
-			recordValue.updateCurrentValues(result)
-			formView.onChangedRecord()
-		}
-	}
-
-	private func uploadDocument(document:DDLFieldDocument) -> Bool {
-		if !SessionContext.hasSession {
-			println("ERROR: No session initialized. Can't upload a document without session")
-			return false
-		}
-
-		if document.currentValue == nil {
-			println("ERROR: No current value in the document. " +
-					"Can't upload a document without a value")
-			return false
-		}
-
+	private func uploadDocument(document: DDLFieldDocument) -> Bool {
 		let groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
 		let repositoryId = (self.repositoryId != 0) ? self.repositoryId : groupId
 
-		let fileName = "\(filePrefix)-\(NSUUID.UUID().UUIDString)"
-		var size:Int64 = 0
-		let stream = document.getStream(&size)
-		let uploadData = LRUploadData(
-				inputStream: stream,
-				length: size,
-				fileName: fileName,
-				mimeType: document.mimeType)
-		uploadData.progressDelegate = self
+		uploadOperation = LiferayDDLFormUploadOperation(widget: self)
 
-		let session = SessionContext.createSessionFromCurrentSession()!
-		session.callback = self
+		uploadOperation!.document = document
+		uploadOperation!.filePrefix = filePrefix
+		uploadOperation!.repositoryId = repositoryId
+		uploadOperation!.folderId = folderId
+		uploadOperation!.onUploadedBytes = onUploadedBytes
 
-		let service = LRDLAppService_v62(session: session)
+		let result = uploadOperation!.validateAndEnqueue() {
+			let document = self.uploadOperation!.document!
 
-		currentOperation = .Uploading(document, false)
+			if let error = $0.lastError {
+				document.uploadStatus = .Failed(error)
 
-		var outError: NSError?
+				self.formView.changeDocumentUploadStatus(document)
 
-		service.addFileEntryWithRepositoryId(repositoryId,
-				folderId: folderId,
-				sourceFileName: fileName,
-				mimeType: document.mimeType,
-				title: fileName,
-				description: "",
-				changeLog: "Uploaded from Liferay Screens app",
-				file: uploadData,
-				serviceContext: nil,
-				error: &outError)
+				if !document.validate() {
+					self.formView.showField(document)
+				}
 
-		if let error = outError {
-			onFailure(error)
-			return false
+				self.delegate?.onDocumentUploadError?(document, error: error)
+
+				self.currentOperation = .Idle
+			}
+			else {
+				document.uploadStatus = .Uploaded(self.uploadOperation!.uploadResult!)
+
+				self.formView.changeDocumentUploadStatus(document)
+
+				self.delegate?.onDocumentUploadCompleted?(document,
+						result: self.uploadOperation!.uploadResult!)
+
+				switch self.currentOperation {
+					case .Uploading(let document, let submitAfter):
+						self.currentOperation = .Idle
+
+						if submitAfter {
+							self.submitForm()
+						}
+
+					default: ()
+				}
+
+			}
 		}
 
-		delegate?.onDocumentUploadStarted?(document)
+		if result {
+			delegate?.onDocumentUploadStarted?(document)
+			currentOperation = .Uploading(document, false)
+		}
 
-		return true
+		return result
+	}
+
+	private func onUploadedBytes(bytes: UInt, sent: Int64, total: Int64) {
+		switch currentOperation {
+			case .Uploading(let document, _):
+				document.uploadStatus = .Uploading(UInt(sent), UInt(total))
+				formView.changeDocumentUploadStatus(document)
+
+				delegate?.onDocumentUploadedBytes?(document,
+						bytes: bytes,
+						sent: sent,
+						total: total)
+
+			default: ()
+		}
 	}
 
 }

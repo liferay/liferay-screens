@@ -161,6 +161,20 @@ public class ServerOperation: NSOperation {
 		}
 	}
 
+	internal func showHUD(
+			#message: String,
+			details: String?,
+			closeMode: BaseWidget.CloseMode,
+			spinnerMode: BaseWidget.SpinnerMode) {
+
+		dispatch_async(dispatch_get_main_queue()) {
+			self.widget.showHUDWithMessage(message,
+					details: details,
+					closeMode: closeMode,
+					spinnerMode: spinnerMode)
+		}
+	}
+
 	internal func showValidationHUD(#message: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
 			self.widget.showHUDAlert(message: message, details: details)
