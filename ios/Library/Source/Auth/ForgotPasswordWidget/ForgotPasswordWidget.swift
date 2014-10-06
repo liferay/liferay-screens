@@ -32,17 +32,7 @@ import UIKit
 	@IBInspectable public var authMethod: String? = AuthMethod.Email.toRaw() {
 		didSet {
 			copyAuth(source: self, target: widgetView)
-
-			switch AuthMethod.create(authMethod) {
-				case .Email:
-					serverOperation = LiferayForgotPasswordEmailOperation(widget: self)
-				case .ScreenName:
-					serverOperation = LiferayForgotPasswordScreenNameOperation(widget: self)
-				case .UserId:
-					serverOperation = LiferayForgotPasswordUserIdOperation(widget: self)
-				default:
-					serverOperation = nil
-			}
+			serverOperation = createForgotPasswordOperation(authMethod: AuthMethod.create(authMethod))
 		}
 	}
 
@@ -76,6 +66,7 @@ import UIKit
 		super.onCreated()
 
 		copyAuth(source: self, target: widgetView)
+		serverOperation = createForgotPasswordOperation(authMethod: AuthMethod.create(authMethod))
 
 		forgotPasswordData.companyId = companyId
 
@@ -93,6 +84,20 @@ import UIKit
 				self.delegate?.onForgotPasswordResponse?(
 						self.forgotPasswordOperation.newPasswordSent!)
 			}
+		}
+	}
+
+
+	//MARK: Private methods
+
+	private func createForgotPasswordOperation(#authMethod: AuthMethod) -> LiferayForgotPasswordBaseOperation {
+		switch authMethod {
+			case .ScreenName:
+				return LiferayForgotPasswordScreenNameOperation(widget: self)
+			case .UserId:
+				return LiferayForgotPasswordUserIdOperation(widget: self)
+			default:
+				return LiferayForgotPasswordEmailOperation(widget: self)
 		}
 	}
 

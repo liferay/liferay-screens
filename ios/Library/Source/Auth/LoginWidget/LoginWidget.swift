@@ -32,17 +32,7 @@ public class LoginWidget: BaseWidget, AuthBasedData {
 	@IBInspectable public var authMethod: String? = AuthMethod.Email.toRaw() {
 		didSet {
 			copyAuth(source: self, target: widgetView)
-
-			switch AuthMethod.create(authMethod) {
-				case .Email:
-					serverOperation = LiferayLoginEmailOperation(widget: self)
-				case .ScreenName:
-					serverOperation = LiferayLoginScreenNameOperation(widget: self)
-				case .UserId:
-					serverOperation = LiferayLoginUserIdOperation(widget: self)
-				default:
-					serverOperation = nil
-			}
+			serverOperation = createLoginOperation(authMethod: AuthMethod.create(authMethod))
 		}
 	}
 
@@ -77,6 +67,7 @@ public class LoginWidget: BaseWidget, AuthBasedData {
 		super.onCreated()
 		
 		copyAuth(source: self, target: widgetView)
+		serverOperation = createLoginOperation(authMethod: AuthMethod.create(authMethod))
 
 		loginData.companyId = companyId
 
@@ -109,6 +100,17 @@ public class LoginWidget: BaseWidget, AuthBasedData {
 			if SessionContext.storeSession() {
 				delegate?.onCredentialsSaved?()
 			}
+		}
+	}
+
+	private func createLoginOperation(#authMethod: AuthMethod) -> LiferayLoginBaseOperation {
+		switch authMethod {
+			case .ScreenName:
+				return LiferayLoginScreenNameOperation(widget: self)
+			case .UserId:
+				return LiferayLoginUserIdOperation(widget: self)
+			default:
+				return LiferayLoginEmailOperation(widget: self)
 		}
 	}
 
