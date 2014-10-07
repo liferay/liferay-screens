@@ -32,7 +32,6 @@ import UIKit
 	@IBInspectable public var authMethod: String? = AuthMethod.Email.toRaw() {
 		didSet {
 			copyAuth(source: self, target: screenletView)
-			serverOperation = createForgotPasswordOperation(authMethod: AuthMethod.create(authMethod))
 		}
 	}
 
@@ -55,9 +54,7 @@ import UIKit
 		return screenletView as ForgotPasswordData
 	}
 
-	internal var forgotPasswordOperation: LiferayForgotPasswordBaseOperation {
-		return serverOperation as LiferayForgotPasswordBaseOperation
-	}
+	internal var forgotPasswordOperation: LiferayForgotPasswordBaseOperation?
 
 
 	//MARK: BaseScreenlet
@@ -66,7 +63,6 @@ import UIKit
 		super.onCreated()
 
 		copyAuth(source: self, target: screenletView)
-		serverOperation = createForgotPasswordOperation(authMethod: AuthMethod.create(authMethod))
 
 		forgotPasswordData.companyId = companyId
 
@@ -76,21 +72,29 @@ import UIKit
 	}
 
 	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
-		serverOperation?.validateAndEnqueue() {
+		forgotPasswordOperation = createForgotPasswordOperation(
+				authMethod: AuthMethod.create(authMethod))
+
+		forgotPasswordOperation!.validateAndEnqueue() {
 			if let error = $0.lastError {
 				self.delegate?.onForgotPasswordError?(error)
 			}
 			else {
 				self.delegate?.onForgotPasswordResponse?(
-						self.forgotPasswordOperation.newPasswordSent!)
+						self.forgotPasswordOperation!.newPasswordSent!)
 			}
+
+			self.forgotPasswordOperation = nil
 		}
 	}
 
 
 	//MARK: Private methods
 
-	private func createForgotPasswordOperation(#authMethod: AuthMethod) -> LiferayForgotPasswordBaseOperation {
+	private func createForgotPasswordOperation(
+			#authMethod: AuthMethod)
+			-> LiferayForgotPasswordBaseOperation {
+
 		switch authMethod {
 			case .ScreenName:
 				return LiferayForgotPasswordScreenNameOperation(screenlet: self)

@@ -124,6 +124,8 @@ import UIKit
 
 				self.delegate?.onFormLoaded?(self.formView.record!)
 			}
+
+			self.loadFormOperation = nil
 		}
 	}
 
@@ -156,6 +158,8 @@ import UIKit
 					self.delegate?.onRecordLoaded?(recordValue)
 				}
 			}
+
+			self.loadRecordOperation = nil
 		}
 	}
 
@@ -192,6 +196,8 @@ import UIKit
 
 				self.delegate?.onFormLoaded?(self.formView.record!)
 			}
+
+			self.submitOperation = nil
 		}
 
 	}
@@ -247,6 +253,8 @@ import UIKit
 				}
 
 			}
+
+			self.uploadOperation = nil
 		}
 
 		if result {

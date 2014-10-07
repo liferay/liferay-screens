@@ -43,7 +43,6 @@ import QuartzCore
 	}
 
 	internal var screenletView: BaseScreenletView?
-	internal var serverOperation: ServerOperation?
 
 	internal var screenletName: String {
 		// In Beta 5, className will constain ModuleName.ClassName

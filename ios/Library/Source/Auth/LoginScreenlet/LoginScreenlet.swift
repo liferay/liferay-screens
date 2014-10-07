@@ -32,7 +32,6 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 	@IBInspectable public var authMethod: String? = AuthMethod.Email.toRaw() {
 		didSet {
 			copyAuth(source: self, target: screenletView)
-			serverOperation = createLoginOperation(authMethod: AuthMethod.create(authMethod))
 		}
 	}
 
@@ -56,9 +55,7 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 		return screenletView as LoginData
 	}
 
-	internal var loginOperation: LiferayLoginBaseOperation {
-		return serverOperation as LiferayLoginBaseOperation
-	}
+	internal var loginOperation: LiferayLoginBaseOperation?
 
 
 	//MARK: BaseScreenlet
@@ -67,7 +64,6 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 		super.onCreated()
 		
 		copyAuth(source: self, target: screenletView)
-		serverOperation = createLoginOperation(authMethod: AuthMethod.create(authMethod))
 
 		loginData.companyId = companyId
 
@@ -80,13 +76,17 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 	}
 
 	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
-		serverOperation?.validateAndEnqueue() {
+		loginOperation = createLoginOperation(authMethod: AuthMethod.create(authMethod))
+
+		loginOperation!.validateAndEnqueue() {
 			if let error = $0.lastError {
 				self.delegate?.onLoginError?(error)
 			}
 			else {
 				self.onLoginSuccess()
 			}
+
+			self.loginOperation = nil
 		}
 	}
 
@@ -94,7 +94,7 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 	//MARK: Private methods
 
 	private func onLoginSuccess() {
-		delegate?.onLoginResponse?(loginOperation.loggedUserAttributes!)
+		delegate?.onLoginResponse?(loginOperation!.loggedUserAttributes!)
 
 		if saveCredentials {
 			if SessionContext.storeSession() {
