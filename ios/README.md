@@ -115,18 +115,14 @@ Widgets are grouped in modules based on internal dependencies. Each module is is
 
 - **Dynamic Data Lists (DDL)**: Module for interacting with [Dynamic Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/using-web-forms-and-dynamic-data-lists-liferay-portal-6-2-user-guide-10-en) in a Liferay instance. It includes the following widgets:
 
-	- [`DDLForm`](): Gives your app the ability to present dynamic forms to be filled by users and submitted back to the server.
-	- [`DDLList`](): Gives your app the ability to show a list of records based on a pre-existing DDL in a Liferay instance.
+	- [`DDLFormWidget`](Documentation/DDLFormWidget.md): Gives your app the ability to present dynamic forms to be filled by users and submitted back to the server.
+	- [`DDLListWidget`](Documentation/DDLListWidget.md): Gives your app the ability to show a list of records based on a pre-existing DDL in a Liferay instance.
 
 Also, some widgets can be used individually without the need to import an entire module. These include:
 
-- [`AssetListWidget`](): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). This includes users, organizations, sites, and more.
-- [`WebContentDisplayWidget`](): Shows the HTML of web content. This widget uses the features avaiable in [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en).
+- [`AssetListWidget`](Documentation/AssetListWidget.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). This includes users, organizations, sites, and more.
+- [`WebContentDisplayWidget`](Documentation/WebContentDisplayWidget.md): Shows the HTML of web content. This widget uses the features avaiable in [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en).
 
-<!--
-Don't forget to incldue links to the widgets once that content is ready.
-- Nick
--->
 Liferay Screens also contains themes that you can use to style widgets. A list of these themes is presented next.
 	  
 ## Listing of Available Themes
