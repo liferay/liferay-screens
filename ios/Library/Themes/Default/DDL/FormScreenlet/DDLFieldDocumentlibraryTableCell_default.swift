@@ -86,6 +86,10 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 			setFieldPresenter(docField)
 
 			setProgress(docField)
+
+			if field!.lastValidationResult != nil {
+				onPostValidation(field!.lastValidationResult!)
+			}
 		}
 	}
 
@@ -105,8 +109,13 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 				if progress!.alpha == 0 {
 					changeProgressVisilibity(show:true)
 				}
-			case .Failed(_): ()
+			case .Failed(_):
 				changeProgressVisilibity(show:false, delay:2.0)
+
+			case .Uploaded(_):
+				if field.lastValidationResult != nil {
+					onPostValidation(field.lastValidationResult!)
+				}
 
 			default: ()
 		}

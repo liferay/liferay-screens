@@ -123,11 +123,9 @@ import Foundation
 		var result = super.doValidate()
 
 		if result {
-			switch (uploadStatus) {
-				case .Failed(_): ()
-					result = false
-				default: ()
-					result = true
+			switch uploadStatus {
+				case .Failed(_): result = false
+				default: result = true
 			}
 		}
 
