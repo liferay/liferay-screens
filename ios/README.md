@@ -94,10 +94,9 @@ Simply replace `name_of_your_project` with your project's name. If your project'
 
 1. Create the file `Prefix.pch` and add it to your project.
 2. Add the previous imports to that file.
-3. Edit the following build settings of your target, using the indicated settings. Remember to replace `path\_to\_your\_file\` with the path to your `Prefix.pch` file:
-
-    - Precompile Prefix Header: `Yes`
-    - Prefix Header: `path\_to\_your\_file\_Prefix.pch`
+3. Edit the following build settings of your target, using the indicated settings. Remember to replace `path/to/your/file/` with the path to your `Prefix.pch` file:
+	- Precompile Prefix Header: `Yes`
+	- Prefix Header: `path/to/your/file/Prefix.pch`
 
 Super! Now you know how to call widgets from the Objective-C code in your project. Next, a list of the widgets available in Liferay Screens is presented.
     
