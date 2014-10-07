@@ -75,11 +75,11 @@ Now you need to conform the widget's delegate protocol in your `ViewController` 
 
 ![Conform delegate](Documentation/Images/conform-delegate.png "Conform delegate")
 
-Now that the widget's delegate protocol is set in your `ViewController` class, go back to Interface Builder and set the widget's delegate to your view controller. If the widget you're using has more outlets, you can assign them as well.
-<!-- 
-Screenshot or code sample?
-- Nick
--->
+Now that the widget's delegate protocol is conformed in your `ViewController` class, go back to Interface Builder and connect the widget's delegate to your view controller. If the widget you're using has more outlets, you can assign them as well.
+
+![Connect delegate in Interface Builder](Documentation/Images/xcode-delegate.png "Connect delegate in Interface Builder")
+
+_Note there are [some issues](http://stackoverflow.com/questions/26180268/interface-builder-iboutlet-and-protocols-for-delegate-and-datasource-in-swift/26180481#26180481) connecting outlet to Swift source code. You can change delegate datatype or just assign the outlets by code._
 
 Awesome! Now you know how to use widgets in your projects. However, if you want to use widgets from Objective-C code, there are a few more things that you need to take care of. These are presented in the next section. If you don't need to use widgets from Objective-C, you can skip this section and proceed to the list of available widgets below.
 
