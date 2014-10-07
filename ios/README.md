@@ -51,7 +51,7 @@ First, you need to download the [Liferay Screens source code](https://github.com
 
 Next, set up [CocoaPods](http://cocoapods.org) for your project if you haven't done so already. Add the dependencies to your `Podfile` and then execute `pod install`. Use this [Podfile](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile) as a template.    
 
-In your project's build settings, you also need to edit the Objective-C Bridging Header to include `${SRCROOT}/Liferay-Screens/Source/liferay-ios-widgets.h`. This is shown in the following screenshot:
+In your project's build settings, you also need to edit the _Objective-C Bridging_ Header to include `${SRCROOT}/Liferay-Screens/Source/liferay-screens-bridge.h`. This is shown in the following screenshot:
 
 ![Objective-C Bridging Header](Documentation/Images/project-header.png)
 
@@ -87,7 +87,7 @@ Awesome! Now you know how to use widgets in your projects. However, if you want 
 
 If you want to invoke widget classes from your Objective-C code, then there are a couple of additional header files that you need to import. Their import statements are shown here:
 
-    #import "liferay-ios-widgets.h"
+    #import "liferay-screens-bridge.h"
     #import "[name_of_your_project]-Swift.h"
     
 Simply replace `name_of_your_project` with your project's name. If your project's name uses non-alphanumeric characters, replace them with `_`. If you get tired of adding the same imports over and over again, you can add a precompiler header file using the following steps:
