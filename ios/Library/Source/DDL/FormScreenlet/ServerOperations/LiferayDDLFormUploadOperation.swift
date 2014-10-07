@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgressDelegate, NSCopying {
+public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgressDelegate {
 
 	var document: DDLFieldDocument?
 	var filePrefix: String?
@@ -96,23 +96,6 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 		println("FIN")
 	}
 
-
-	//MARK: NSCopying
-
-	public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayDDLFormUploadOperation(screenlet: self.screenlet)
-
-		result.onComplete = self.onComplete
-
-		result.document = self.document
-		result.filePrefix = self.filePrefix
-		result.repositoryId = self.repositoryId
-		result.folderId = self.folderId
-
-		result.onUploadedBytes = self.onUploadedBytes
-
-		return result
-	}
 
 	//MARK: LRProgressDelegate
 

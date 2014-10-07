@@ -31,15 +31,4 @@ public class LiferayLoginEmailOperation: LiferayLoginBaseOperation {
 				error: error)
 	}
 
-
-	//MARK: NSCopying
-
-	override public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayLoginEmailOperation(screenlet: self.screenlet)
-
-		result.onComplete = self.onComplete
-
-		return result
-	}
-
 }

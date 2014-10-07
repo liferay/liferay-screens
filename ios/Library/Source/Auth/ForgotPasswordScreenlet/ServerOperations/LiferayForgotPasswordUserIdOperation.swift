@@ -28,15 +28,4 @@ public class LiferayForgotPasswordUserIdOperation: LiferayForgotPasswordBaseOper
 		return service.sendPasswordByUserIdWithUserId(userId, error: error)
 	}
 
-
-	//MARK: NSCopying
-
-	override public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayForgotPasswordUserIdOperation(screenlet: self.screenlet)
-
-		result.onComplete = self.onComplete
-
-		return result
-	}
-
 }

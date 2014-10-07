@@ -13,7 +13,7 @@
 */
 import UIKit
 
-public class LiferaySignUpOperation: ServerOperation, NSCopying {
+public class LiferaySignUpOperation: ServerOperation {
 
 	internal(set) var createdUserAttributes: [String:AnyObject]?
 
@@ -92,17 +92,6 @@ public class LiferaySignUpOperation: ServerOperation, NSCopying {
 			lastError = nil
 			createdUserAttributes = result as? [String:AnyObject]
 		}
-	}
-
-
-	//MARK: NSCopying
-
-	public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferaySignUpOperation(screenlet: self.screenlet)
-
-		result.onComplete = self.onComplete
-
-		return result
 	}
 
 }

@@ -13,7 +13,7 @@
 */
 import UIKit
 
-public class LiferayLoginBaseOperation: ServerOperation, NSCopying {
+public class LiferayLoginBaseOperation: ServerOperation {
 
 	internal(set) var loggedUserAttributes: [String:AnyObject]?
 
@@ -81,14 +81,6 @@ public class LiferayLoginBaseOperation: ServerOperation, NSCopying {
 			lastError = nil
 			loggedUserAttributes = result as? [String:AnyObject]
 		}
-	}
-
-
-	//MARK: NSCopying
-
-	public func copyWithZone(zone: NSZone) -> AnyObject {
-		assertionFailure("copyWithZone must be overriden")
-		return self
 	}
 
 

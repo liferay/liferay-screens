@@ -31,15 +31,4 @@ public class LiferayForgotPasswordScreenNameOperation: LiferayForgotPasswordBase
 				error: error)
 	}
 
-
-	//MARK: NSCopying
-
-	override public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayForgotPasswordScreenNameOperation(screenlet: self.screenlet)
-
-		result.onComplete = self.onComplete
-
-		return result
-	}
-
 }

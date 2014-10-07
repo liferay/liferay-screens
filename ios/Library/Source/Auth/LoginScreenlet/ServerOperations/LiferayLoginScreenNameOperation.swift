@@ -31,15 +31,4 @@ public class LiferayLoginScreenNameOperation: LiferayLoginBaseOperation {
 				error: error)
 	}
 
-
-	//MARK: NSCopying
-
-	override public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayLoginScreenNameOperation(screenlet: self.screenlet)
-
-		result.onComplete = self.onComplete
-
-		return result
-	}
-
 }

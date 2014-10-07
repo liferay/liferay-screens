@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayWebContentLoadOperation: ServerOperation, NSCopying {
+public class LiferayWebContentLoadOperation: ServerOperation {
 
 	public var groupId: Int64?
 	public var articleId: String?
@@ -59,20 +59,5 @@ public class LiferayWebContentLoadOperation: ServerOperation, NSCopying {
 			loadedHTML = result
 		}
 	}
-
-
-	//MARK: NSCopying
-
-	public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayWebContentLoadOperation(screenlet: self.screenlet)
-
-		result.onComplete = self.onComplete
-
-		result.groupId = self.groupId
-		result.articleId = self.articleId
-
-		return result
-	}
-
 
 }

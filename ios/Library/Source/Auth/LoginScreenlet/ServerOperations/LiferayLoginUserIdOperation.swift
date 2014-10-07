@@ -28,15 +28,4 @@ public class LiferayLoginUserIdOperation: LiferayLoginBaseOperation {
 		return service.getUserByIdWithUserId(userId, error: error)
 	}
 
-
-	//MARK: NSCopying
-
-	override public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayLoginUserIdOperation(screenlet: self.screenlet)
-
-		result.onComplete = self.onComplete
-
-		return result
-	}
-
 }

@@ -108,10 +108,6 @@ public class ServerOperation: NSOperation {
 			callOnComplete()
 		}
 
-		// operation recycle
-		if self is NSCopying {
-			screenlet.serverOperation = self.copy() as? ServerOperation
-		}
 	}
 
 

@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayDDLFormSubmitOperation: ServerOperation, NSCopying {
+public class LiferayDDLFormSubmitOperation: ServerOperation {
 
 	public var groupId: Int64?
 	public var userId: Int64?
@@ -105,24 +105,5 @@ public class LiferayDDLFormSubmitOperation: ServerOperation, NSCopying {
 			}
 		}
 	}
-
-
-	//MARK: NSCopying
-
-	public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayDDLFormSubmitOperation(screenlet: self.screenlet)
-
-		result.onComplete = self.onComplete
-
-		result.groupId = self.groupId
-		result.userId = self.userId
-		result.recordId = self.recordId
-		result.recordSetId = self.recordSetId
-
-		result.autoscrollOnValidation = self.autoscrollOnValidation
-
-		return result
-	}
-
 
 }

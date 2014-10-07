@@ -31,15 +31,4 @@ public class LiferayForgotPasswordEmailOperation: LiferayForgotPasswordBaseOpera
 				error: error)
 	}
 
-
-	//MARK: NSCopying
-
-	override public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayForgotPasswordEmailOperation(screenlet: self.screenlet)
-
-		result.onComplete = self.onComplete
-
-		return result
-	}
-
 }

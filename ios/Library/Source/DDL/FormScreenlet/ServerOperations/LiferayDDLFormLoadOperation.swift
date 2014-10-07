@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayDDLFormLoadOperation: ServerOperation, NSCopying {
+public class LiferayDDLFormLoadOperation: ServerOperation {
 
 	public var structureId: Int64?
 	public var userId: Int64?
@@ -64,20 +64,5 @@ public class LiferayDDLFormLoadOperation: ServerOperation, NSCopying {
 			}
 		}
 	}
-
-
-	//MARK: NSCopying
-
-	public func copyWithZone(zone: NSZone) -> AnyObject {
-		let result = LiferayDDLFormLoadOperation(screenlet: self.screenlet)
-
-		result.onComplete = self.onComplete
-
-		result.structureId = self.structureId
-		result.userId = self.userId
-
-		return result
-	}
-
 
 }

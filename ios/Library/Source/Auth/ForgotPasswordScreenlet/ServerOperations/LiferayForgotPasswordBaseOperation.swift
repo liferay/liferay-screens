@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayForgotPasswordBaseOperation: ServerOperation, NSCopying {
+public class LiferayForgotPasswordBaseOperation: ServerOperation {
 
 	internal(set) var newPasswordSent: Bool?
 
@@ -78,15 +78,6 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation, NSCopying {
 			lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
 			newPasswordSent = nil
 		}
-	}
-
-
-	//MARK: NSCopying
-
-	public func copyWithZone(zone: NSZone) -> AnyObject {
-		assertionFailure("copyWithZone must be overriden")
-
-		return self
 	}
 
 
