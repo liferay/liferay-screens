@@ -64,7 +64,7 @@ import UIKit
 				self.delegate?.onSignUpError?($0.lastError!)
 			}
 			else {
-				self.onSignUpSuccess(userAttributes: signUpOperation.createdUserAttributes!)
+				self.onSignUpSuccess(userAttributes: signUpOperation.resultUserAttributes!)
 			}
 		}
 	}

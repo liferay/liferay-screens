@@ -15,7 +15,7 @@ import UIKit
 
 public class LiferaySignUpOperation: ServerOperation {
 
-	internal(set) var createdUserAttributes: [String:AnyObject]?
+	public var resultUserAttributes: [String:AnyObject]?
 
 	internal override var hudLoadingMessage: HUDMessage? {
 		return ("Sending sign up...", details: "Wait few seconds...")
@@ -82,15 +82,15 @@ public class LiferaySignUpOperation: ServerOperation {
 
 		if outError != nil {
 			lastError = outError!
-			createdUserAttributes = nil
+			resultUserAttributes = nil
 		}
 		else if result?["userId"] == nil {
 			lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
-			createdUserAttributes = nil
+			resultUserAttributes = nil
 		}
 		else {
 			lastError = nil
-			createdUserAttributes = result as? [String:AnyObject]
+			resultUserAttributes = result as? [String:AnyObject]
 		}
 	}
 

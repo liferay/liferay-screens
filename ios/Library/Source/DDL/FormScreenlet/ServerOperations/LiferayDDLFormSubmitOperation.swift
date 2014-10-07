@@ -23,6 +23,8 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 
 	public var autoscrollOnValidation = true
 
+	public var result: (recordId: Int64, attributes: NSDictionary)?
+
 
 	internal override var hudLoadingMessage: HUDMessage? {
 		return ("Submitting form...", details: "Wait few seconds...")
@@ -81,10 +83,12 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
 
-		var result: NSDictionary
+		var serverResult: NSDictionary
+
+		result = nil
 
 		if recordId == nil {
-			result = service.addRecordWithGroupId(groupId!,
+			serverResult = service.addRecordWithGroupId(groupId!,
 					recordSetId: recordSetId!,
 					displayIndex: 0,
 					fieldsMap: formData.values,
@@ -92,7 +96,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 					error: &lastError)
 		}
 		else {
-			result = service.updateRecordWithRecordId(recordId!,
+			serverResult = service.updateRecordWithRecordId(recordId!,
 					displayIndex: 0,
 					fieldsMap: formData.values,
 					mergeFields: true,
@@ -101,8 +105,10 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 		}
 
 		if lastError == nil {
-			if let recordIdValue = result["recordId"]! as? Int {
-				recordId = Int64(recordIdValue)
+			if let recordIdValue = serverResult["recordId"]! as? Int {
+				let serverRecordId = Int64(recordIdValue)
+
+				result = (serverRecordId, serverResult)
 			}
 			else {
 				lastError = createError(cause: .InvalidServerResponse)

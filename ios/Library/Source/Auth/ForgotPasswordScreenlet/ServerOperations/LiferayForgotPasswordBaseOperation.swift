@@ -16,7 +16,7 @@ import UIKit
 
 public class LiferayForgotPasswordBaseOperation: ServerOperation {
 
-	internal(set) var newPasswordSent: Bool?
+	public var resultPasswordSent: Bool?
 
 	internal override var hudLoadingMessage: HUDMessage? {
 		return ("Sending password request...", details: "Wait few seconds...")
@@ -53,7 +53,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 
 	override func postRun() {
 		if lastError != nil {
-			successMessage = newPasswordSent!
+			successMessage = resultPasswordSent!
 					? newPasswordSuccessMessage
 					: resetPasswordSuccessMessage
 		}
@@ -68,15 +68,15 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 
 		if outError != nil {
 			lastError = outError!
-			newPasswordSent = nil
+			resultPasswordSent = nil
 		}
 		else if result != nil {
 			lastError = nil
-			newPasswordSent = result
+			resultPasswordSent = result
 		}
 		else {
 			lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
-			newPasswordSent = nil
+			resultPasswordSent = nil
 		}
 	}
 

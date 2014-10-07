@@ -15,7 +15,7 @@ import UIKit
 
 public class LiferayLoginBaseOperation: ServerOperation {
 
-	internal(set) var loggedUserAttributes: [String:AnyObject]?
+	public var resultUserAttributes: [String:AnyObject]?
 
 	internal override var hudLoadingMessage: HUDMessage? {
 		return ("Sending sign in...", details: "Wait few seconds...")
@@ -55,7 +55,7 @@ public class LiferayLoginBaseOperation: ServerOperation {
 			SessionContext.createSession(
 					username: SessionContext.currentUserName!,
 					password: SessionContext.currentPassword!,
-					userAttributes: loggedUserAttributes!)
+					userAttributes: resultUserAttributes!)
 		}
 		else {
 			SessionContext.clearSession()
@@ -65,21 +65,23 @@ public class LiferayLoginBaseOperation: ServerOperation {
 	override internal func doRun(#session: LRSession) {
 		var outError: NSError?
 
+		resultUserAttributes = nil
+
 		let result = sendGetUserRequest(
 				service: LRUserService_v62(session: session),
 				error: &outError)
 
 		if outError != nil {
 			lastError = outError
-			loggedUserAttributes = nil
+			resultUserAttributes = nil
 		}
 		else if result?["userId"] == nil {
 			lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
-			loggedUserAttributes = nil
+			resultUserAttributes = nil
 		}
 		else {
 			lastError = nil
-			loggedUserAttributes = result as? [String:AnyObject]
+			resultUserAttributes = result as? [String:AnyObject]
 		}
 	}
 

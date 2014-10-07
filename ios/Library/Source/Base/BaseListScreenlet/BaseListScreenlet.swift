@@ -55,8 +55,8 @@ import UIKit
 			if $0.lastError == nil {
 				self.onLoadPageResult(
 						page: operation.page,
-						serverRows: operation.pageContent!,
-						rowCount: operation.rowCount ?? self.rowCount)
+						serverRows: operation.result!.pageContent,
+						rowCount: operation.result!.rowCount ?? self.rowCount)
 			}
 			else {
 				self.onLoadPageError(page: operation.page, error: $0.lastError!)

@@ -81,7 +81,7 @@ import UIKit
 			}
 			else {
 				self.delegate?.onForgotPasswordResponse?(
-						self.forgotPasswordOperation!.newPasswordSent!)
+						self.forgotPasswordOperation!.resultPasswordSent!)
 			}
 
 			self.forgotPasswordOperation = nil

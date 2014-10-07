@@ -94,7 +94,7 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 	//MARK: Private methods
 
 	private func onLoginSuccess() {
-		delegate?.onLoginResponse?(loginOperation!.loggedUserAttributes!)
+		delegate?.onLoginResponse?(loginOperation!.resultUserAttributes!)
 
 		if saveCredentials {
 			if SessionContext.storeSession() {

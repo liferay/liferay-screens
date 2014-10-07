@@ -19,7 +19,7 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 	public var groupId: Int64?
 	public var articleId: String?
 
-	public var loadedHTML: String?
+	public var resultHTML: String?
 
 
 	internal override var hudLoadingMessage: HUDMessage? {
@@ -47,7 +47,7 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 	override internal func doRun(#session: LRSession) {
 		let service = LRJournalArticleService_v62(session: session)
 
-		loadedHTML = nil
+		resultHTML = nil
 
 		let result = service.getArticleContentWithGroupId(groupId!,
 				articleId: articleId!,
@@ -56,7 +56,7 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 				error: &lastError)
 
 		if lastError == nil {
-			loadedHTML = result
+			resultHTML = result
 		}
 	}
 

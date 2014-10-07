@@ -47,9 +47,9 @@ import UIKit
 				self.delegate?.onWebContentError?(error)
 			}
 			else {
-				self.delegate?.onWebContentResponse?(webContentOperation.loadedHTML!)
+				self.delegate?.onWebContentResponse?(webContentOperation.resultHTML!)
 
-				self.webContentDisplayData.htmlContent = webContentOperation.loadedHTML!
+				self.webContentDisplayData.htmlContent = webContentOperation.resultHTML!
 			}
 		}
 	}
