@@ -1701,6 +1701,7 @@
 /* Begin XCBuildConfiguration section */
 		88EA610819656751005F722C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7232FADA42A9731228B1FDC2 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Liferay-iOS-Screens.app/Liferay-iOS-Screens";
 				CLANG_ENABLE_MODULES = YES;
@@ -1723,6 +1724,7 @@
 		};
 		88EA610919656751005F722C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B76C752ABEE8449EAC6C5FF0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Liferay-iOS-Screens.app/Liferay-iOS-Screens";
 				CLANG_ENABLE_MODULES = YES;
@@ -1776,7 +1778,7 @@
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Source/liferay-ios-widgets.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Source/liferay-screens-bridge.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1812,7 +1814,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Source/liferay-ios-widgets.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Source/liferay-screens-bridge.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1826,7 +1828,6 @@
 				INFOPLIST_FILE = Tests/AppInfo.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Liferay-iOS-Screens";
-				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Source/liferay-screens-bridge.h";
 			};
 			name = Debug;
 		};
@@ -1839,7 +1840,6 @@
 				INFOPLIST_FILE = Tests/AppInfo.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Liferay-iOS-Screens";
-				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Source/liferay-screens-bridge.h";
 			};
 			name = Release;
 		};
