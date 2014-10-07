@@ -4,18 +4,6 @@
 
 _This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology._
 
-## Features
-- Shows Web Content elements rendering the inner HTML
-- Supports i18n, rendering different contents depending on the current device locale.
-
-##Module
-None
-
-## Themes
-- Default: uses a standard `UIWebView` to render the HTML. Other themes may use a different component (like iOS 8's `WKWebView`).
-
-![WebContentDisplay screenlet using Default theme](Images/webcontent.png)
-
 ## Requirements
 
 - XCode 6.0 or above
@@ -23,41 +11,45 @@ None
 - Liferay Portal 6.2 CE or EE
 - Mobile Widgets plugin installed
 
-## Compatiblity
+## Compatibility
 
 - iOS 7 and above
 
-## Portal configuration
+## Portal Configuration
 
-Web content should be created in the portal.
+For the `WebContentDisplayScreenlet` to function properly, there should be web content in the Liferay instance your app connects to. For more details on web content, please refer to the [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en) section of the Liferay User Guide.
 
-Refer to [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en) sections for more details.
+## Features
 
+The `WebContentDisplayScreenlet` shows web content elements in your app, rendering the inner HTML of the web content. The screenlet also supports i18n, rendering contents differently depending on the device's current locale.
+
+## Module
+
+- None
+
+## Themes
+
+The Default theme uses a standard `UIWebView` to render the HTML. Other themes may use a different component, such as iOS 8's.
+
+![The `WebContentDisplayScreenlet` using the Default theme](Images/webcontent.png)
 
 ## Attributes
 
 | Attribute | Data type | Explanation |
 |-----------|-----------|-------------| 
-|  `groupId` | `number` | The site (group) identifier where the asset will be stored. If this value is 0, the `groupId` specified in `LiferayServerContext` will be used|
-|  `articleId` | `string` | The identifier of the Web Content. ![](Images/portal-webcontent.png) |
-
+| `groupId` | `number` | The site (group) identifier where the asset is stored. If this value is 0, the `groupId` specified in `LiferayServerContext` is used. |
+|  `articleId` | `string` | The identifier of the web content to display. You can find the identifier by clicking *Edit* on the web content in the portal. |
 
 ## Methods
 
 | Method | Return | Explanation |
 |-----------|-----------|-------------| 
-|  `loadWebContent()` | `boolean` | Starts the request to load the web content. When the response is received, the HTML is rendered. Returns `true` if the request could be sent. |
-
+|  `loadWebContent()` | `boolean` | Starts the request to load the web content. The HTML is rendered when the response is received. Returns `true` if the request is sent. |
 
 ## Delegate
 
-This screenlet delegates some events in an object that conforms `WebContentDisplayScreenletDelegate` protocol.
-This protocol allows to implement the following methods:
+The `WebContentDisplayScreenlet` delegates some events to an object that conforms to the `WebContentDisplayScreenletDelegate` protocol. This protocol lets you implement the following methods:
 
-- `onWebContentDisplayResponse(html)`: called when the web content's html is received.
-- `onWebContentDisplayError(error)`: called when an error happened in the process. The NSError object describes the error occurred.
+- `onWebContentDisplayResponse(html)`: Called when the web content's HTML is received.
+- `onWebContentDisplayError(error)`: Called when an error occurs in the process. The `NSError` object describes the error.
 
-
-
-    
-    

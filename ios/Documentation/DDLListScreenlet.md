@@ -4,20 +4,6 @@
 
 _This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology._
 
-## Features
-- Shows a collection of DDL records in a scrolleable way
-- Implements [fluent pagination](http://www.iosnomad.com/blog/2014/4/21/fluent-pagination) with configurable page size.
-- Allow to filter records by creator user.
-- Supports i18n in record values.
-
-##Module
-DDL
-
-## Themes
-- Default: uses a standard `UITableView` to show the scrolleable list. Other themes may use a different component (`UICollectionView` or whatever) to show the items.
-
-![DDLList screenlet using Default theme](Images/ddllist.png)
-
 ## Requirements
 
 - XCode 6.0 or above
@@ -25,43 +11,52 @@ DDL
 - Liferay Portal 6.2 CE or EE
 - Mobile Widgets plugin installed
 
-## Compatiblity
+## Compatibility
 
 - iOS 7 and above
 
-## Portal configuration
+## Portal Configuration
 
-Dynamic Data List and Data Types should be configured properly in the portal.
+Dynamic Data Lists (DDL) and Data Types should be properly configured in the portal. For more details, please refer to the Liferay User Guide sections [Defining Data Types](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/building-a-list-platform-in-liferay-and-liferay-portal-6-2-user-guide-10-en) and [Creating Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/creating-data-lists-liferay-portal-6-2-user-guide-10-en).
 
-Refer to [Defining Data Types](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/building-a-list-platform-in-liferay-and-liferay-portal-6-2-user-guide-10-en) and [Creating Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/creating-data-lists-liferay-portal-6-2-user-guide-10-en) sections for more details.
+## Features
 
+The `DDLListScreenlet` enables the following features:
+
+- Shows a scrollable collection of DDL records.
+- Implements [fluent pagination](http://www.iosnomad.com/blog/2014/4/21/fluent-pagination) with configurable page size.
+- Allows filtering of records by creator.
+- Supports i18n in record values.
+
+## Module
+
+- DDL
+
+## Themes
+
+- The Default theme uses a standard `UITableView` to show the scrollable list. Other themes may use a different component, such as `UICollectionView` or others, to show the items.
+
+![The DDLList screenlet using the Default theme.](Images/ddllist.png)
 
 ## Attributes
 
 | Attribute | Data type | Explanation |
 |-----------|-----------|-------------| 
-|  `recordSetId` | `number` | The identifier of the Dynamic Data List (or Record Set). You can find the identifier in the table of all lists: `Site Administration - Content - Dynamic Data Lists`. ![](Images/portal-datalist.png) |
-|  `userId` | `number` | The user identifier to filter the records. Records won't be filtered if `userId` is 0|
-|  `labelField` | `string` | The name of the field to be shown in the list. Refer to the list's data definition to find the field names: `Dynamic Data Lists - Manage Data Definitions`. ![](Images/portal-datadefinition.png) |
-
+| `recordSetId` | `number` | The identifier of the DDL being called. To find the identifiers for your DDLs, click *Admin* from the Dockbar and select *Content*. Then click *Dynamic Data Lists*. The identifier of each DDL is in the ID column of the table that appears. |
+| `userId` | `number` | The user identifier to filter records on. Records won't be filtered if the `userId` is `0`. |
+| `labelField` | `string` | The name of the DDL's field to show. Refer to the list's data definition to find the field names. To do so, click *Admin* from the Dockbar and select *Content*. Then click *Dynamic Data Lists* and click the *Manage Data Definitions* button. You can view the fields by clicking on any of the data definitions in the table that appears. |
 
 ## Methods
 
 | Method | Return | Explanation |
 |-----------|-----------|-------------| 
-|  `loadList()` | `boolean` | Starts the request to load the list of records. When the response is received, the list is shown. Returns `true` if the request could be sent. |
-
+|  `loadList()` | `boolean` | Starts the request to load the list of records. The list is shown when the response is received. This method returns `true` if the request is sent. |
 
 ## Delegate
 
-This screenlet delegates some events in an object that conforms `DDLListScreenletDelegate` protocol.
-This protocol allows to implement the following methods:
+The `DDLListScreenlet` delegates some events in an object that conforms to the `DDLListScreenletDelegate` protocol. This protocol lets you implement the following methods:
 
-- `onDDLListResponse(list of records)`: called when a page of contents is received. Note this method may be called more than once, one for each page retrieved.
-- `onDDLListError(error)`: called when an error happened in the process. The NSError object describes the error occurred.
-- `onDDLRecordSelected(record)`: called when an item in the list is selected. The parameter is an instance of the class `DLLRecord`.
+- `onDDLListResponse(list of records)`: Called when a page of contents is received. Note that this method may be called more than once; once for each retrieved page.
+- `onDDLListError(error)`: Called when an error occurs in the process. The `NSError` object describes the error.
+- `onDDLRecordSelected(record)`: Called when an item in the list is selected. The parameter is an instance of the class `DLLRecord`.
 
-
-
-    
-    

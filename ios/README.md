@@ -2,15 +2,15 @@
 
 ## Important Note
 
-_This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology._
+*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology*.
 
 ## Introduction
 
-The iOS implementation for Liferay Screens includes the components (_screenlets_) library and two sample projects. One sample project uses Screens from Objective-C, while the other uses Screens from Swift.
+The iOS implementation for Liferay Screens includes the components (*screenlets*) library and two sample projects. One sample project uses Screens from Objective-C, while the other uses Screens from Swift.
 
-In Liferay Screens, a *screenlet* is a visual component that is connected to Liferay Portal's functionality. The screenlet is responsible for handling communication between the server and the UI. screenlets also implement all typical [human interface guidelines described by Apple](https://developer.apple.com/library/ios/documentation/userexperience/conceptual/mobilehig/).
+In Liferay Screens, a screenlet is a visual component that is connected to Liferay Portal's functionality. The screenlet is responsible for handling communication between the server and the UI. screenlets also implement all typical [human interface guidelines described by Apple](https://developer.apple.com/library/ios/documentation/userexperience/conceptual/mobilehig/).
 
-Each screenlet is tied to one or more services exposed by [Liferay's remote services](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/accessing-services-remotely-liferay-portal-6-2-dev-guide-05-en).  The screenlet then renders information using a theme. Themes can be contributed by third parties and are fully pluggable, so you're not limited to one specific look and feel. The Screens library provides a standard theme called *Default*  and another sample theme called *Flat7*.
+Each screenlet is tied to one or more services exposed by [Liferay's remote services](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/accessing-services-remotely-liferay-portal-6-2-dev-guide-05-en). The screenlet then renders information using a theme. Themes can be contributed by third parties and are fully pluggable, so you're not limited to one specific look and feel. The Screens library provides a standard theme called *Default*  and another sample theme called *Flat7*.
 
 ![The SignUp screenlet using Default and Flat7 themes](Documentation/Images/signup.png)
 
@@ -51,7 +51,7 @@ First, you need to download the [Liferay Screens source code](https://github.com
 
 Next, set up [CocoaPods](http://cocoapods.org) for your project if you haven't done so already. Add the dependencies to your `Podfile` and then execute `pod install`. Use this [Podfile](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile) as a template.    
 
-In your project's build settings, you also need to edit the _Objective-C Bridging_ Header to include `${SRCROOT}/Liferay-Screens/Source/liferay-screens-bridge.h`. This is shown in the following screenshot:
+In your project's build settings, you also need to edit the *Objective-C Bridging* Header to include `${SRCROOT}/Liferay-Screens/Source/liferay-screens-bridge.h`. This is shown in the following screenshot:
 
 ![Objective-C Bridging Header](Documentation/Images/project-header.png)
 
@@ -79,7 +79,7 @@ Now that the screenlet's delegate protocol is conformed in your `ViewController`
 
 ![Connect delegate in Interface Builder](Documentation/Images/xcode-delegate.png "Connect delegate in Interface Builder")
 
-_Note there are [some issues](http://stackoverflow.com/questions/26180268/interface-builder-iboutlet-and-protocols-for-delegate-and-datasource-in-swift/26180481#26180481) connecting outlet to Swift source code. You can change delegate datatype or just assign the outlets by code._
+*Note that there are [some issues](http://stackoverflow.com/questions/26180268/interface-builder-iboutlet-and-protocols-for-delegate-and-datasource-in-swift/26180481#26180481) connecting an outlet to Swift source code. You can change the delegate data type or just assign the outlets by code.*
 
 Awesome! Now you know how to use screenlets in your projects. However, if you want to use screenlets from Objective-C code, there are a few more things that you need to take care of. These are presented in the next section. If you don't need to use screenlets from Objective-C, you can skip this section and proceed to the list of available screenlets below.
 
@@ -115,12 +115,12 @@ Screenlets are grouped in modules based on internal dependencies. Each module is
 	- [`DDLFormScreenlet`](Documentation/DDLFormScreenlet.md): Gives your app the ability to present dynamic forms to be filled by users and submitted back to the server.
 	- [`DDLListScreenlet`](Documentation/DDLListScreenlet.md): Gives your app the ability to show a list of records based on a pre-existing DDL in a Liferay instance.
 
-Also, some screenlet can be used individually without the need to import an entire module. These include:
+Also, some screenlets can be used individually without the need to import an entire module. These include:
 
 - [`AssetListScreenlet`](Documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). This includes users, organizations, sites, and more.
-- [`WebContentDisplayScreenlet`](Documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This acreenlet uses the features avaiable in [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en).
+- [`WebContentDisplayScreenlet`](Documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This screenlet uses the features avaiable in [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en).
 
-Liferay Screens also contains _themes_ that you can use to style screenlets. A list of these themes is presented next.
+Liferay Screens also contains *themes* that you can use to style screenlets. A list of these themes is presented next.
 	  
 ## Listing of Available Themes
 
@@ -133,7 +133,7 @@ The themes currently released with Liferay Screens are:
 
 ## Contributing New Screenlets and Themes
 
-If you have a piece of code that can be reused in other apps, you may want to contribute it to the Liferay Screens project. Doing so is very straightforward: just follow the instructions in [Contributors Guide](https://github.com/liferay/liferay-screens/tree/master/CONTRIBUTING.md).
+If you have a piece of code that can be reused in other apps, you may want to contribute it to the Liferay Screens project. Doing so is very straightforward: just follow the instructions in the [Contributors Guide](https://github.com/liferay/liferay-screens/tree/master/CONTRIBUTING.md).
 <!-- 
 Some kind of conclusion or related links/next steps is needed.
 - Nick

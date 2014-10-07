@@ -4,65 +4,59 @@
 
 _This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology._
 
-## Features
-- Creates a new user in the portal.
-- Could make a auto login if the creation is successful.
-- Could save the credentials of the user created in the keychain.
-- Support traverse the form fields from the keyboard
-
-##Module
-Auth
-
-## Themes
-
-- Default
-- Flat7
-
-![SignUp screenlet using Default and Flat7 themes](Images/signup.png "SignUp screenlet using Default and Flat7 themes")
-
 ## Requirements
 
 - XCode 6.0 or above
 - iOS 8 SDK
 - Liferay Portal 6.2 CE or EE
 
-## Compatiblity
+## Compatibility
 
 - iOS 7 and above
 
-## Portal configuration
+## Portal Configuration
 
-The configuration related to this screenlet can be found at `Control Panel - Portal Settings - Authentication`
+The configuration related to the `SignUpScreenlet` can be set in the Control Panel by clicking *Portal Settings* and then *Authentication*. These settings are shown in the following screenshot:
 
-![](Images/portal-signup.png)
+![The portal settings related to the `SignUpScreenlet`.](Images/portal-signup.png)
 
-Refer to [Configuring Portal Settings](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/portal-settings-liferay-portal-6-2-user-guide-16-en) section for more details.
+For more details, please refer to the [Configuring Portal Settings](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/portal-settings-liferay-portal-6-2-user-guide-16-en) section of the User Guide.
 
-### Anonymous request
-This request is done without the user being logged in, but authentication is needed to call the API. It's recommended that the portal administrator creates a specific user with minimal permissions in order to allow this operation.
+## Features
+
+The main function of the `SignUpScreenlet` is to create a new user in your Liferay instance. For example, by using the `SignUpScreenlet` a new user of your app can become a new user in your portal. You can also use this screenlet to save the credentials of the new user in their keychain. This enables auto login for future sessions. The screenlet also supports navigation of form fields from the keyboard of the user's device.
+
+## Module
+
+- Auth
+
+## Themes
+
+- Default
+- Flat7
+
+![The `SignUpScreenlet` with the Default and Flat7 themes.](Images/signup.png)
+
+## Anonymous Request
+
+An anonymous request can be done without the user being logged in. However, authentication is needed to call the API. To allow this operation, it's recommended that the portal administrator create a specific user with minimal permissions.
 
 ## Attributes
 
 | Attribute | Data type | Explanation |
 |-----------|-----------|-------------| 
-|  `anonymousApiUserName` | `string` | The user name, email adress, or userId (depending on portal's authentication method) to use for authenticate this request. |
-|  `anoymousApiPassword` | `string` | The password to be used to authenticate this request. |
-|  `companyId` | `number` | When set, the authentication is done for a user within the especified company. If the value is 0, the company especified in `LiferayServerContext` will be used. |
-|  `autologin` | `boolean` | Whether or not the user will be logged in after sucessful sign up. |
-|  `saveCredentials` | `boolean` | Whether or not the user credentials and attributes will be stored in the keychain after a sucessful log in. It's ignored if `autologin` is disabled. |
-
+|  `anonymousApiUserName` | `string` | The user name, email address, or user ID (depending on the portal's authentication method) to use for authenticating the request. |
+|  `anoymousApiPassword` | `string` | The password for use in authenticating the request. |
+|  `companyId` | `number` | When set, authentication is done for a user in the specified company. If the value is `0`, the company specified in `LiferayServerContext` is used. |
+|  `autologin` | `boolean` | Sets whether or not the user is logged in automatically after a successful sign up. |
+|  `saveCredentials` | `boolean` | Sets whether or not the user's credentials and attributes are stored in the keychain after a successful log in. This attribute is ignored if `autologin` is disabled. |
 
 ## Delegate
 
-This screenlet will delegate some events in an object that conforms `SignUpScreenletDelegate` protocol.
-If the `autologin` is enabled, login events will be delegated to an object conforming `LoginScreenletDelegate`. Refer to [LoginScreenlet documentation](LoginScreenlet.md) for more details on this.
+The `SignUpScreenlet` delegates some events to an object that conforms to the `SignUpScreenletDelegate` protocol. If the `autologin` attribute is enabled, login events are delegated to an object conforming to the `LoginScreenletDelegate` protocol. Refer to the [`LoginScreenlet` documentation](LoginScreenlet.md) for more details.
 
-The `SignUpScreenletDelegate` protocol allows to implement the following methods:
+The `SignUpScreenletDelegate` protocol lets you implement the following methods:
 
-- `onSignUpResponse(boolean)`: called when sign up is successfully completed. The user attributes are passed as a dictionary of keys (NSStrings) and values (NSObject). Keys supported are the same as [portal's User entity](https://github.com/liferay/liferay-portal/blob/6.2.x/portal-impl/src/com/liferay/portal/service.xml#L2227)
-- `onSignUpError(error)`: called when an error happened in the process. The NSError object describes the error occurred.
+- `onSignUpResponse(boolean)`: Called when sign up successfully completes. The user attributes are passed as a dictionary of keys (`NSStrings`) and values (`NSObject`). The supported keys are the same as [Liferay Portal's User entity](https://github.com/liferay/liferay-portal/blob/6.2.x/portal-impl/src/com/liferay/portal/service.xml#L2227).
+- `onSignUpError(error)`: Called when an error occurs in the process. The `NSError` object describes the error.
 
-
-
-    
-    
