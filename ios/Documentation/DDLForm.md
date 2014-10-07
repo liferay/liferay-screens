@@ -1,8 +1,8 @@
 # DDLForm for iOS
 
-## Important note
-__This product is under heavy development and most of the features aren't ready to be used in production.
-It's public, following our Open Source philosophy, in order to allow developers to preview the technology and contribute with feedback, ideas and bug fixes.__
+## Important Note
+
+_This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology._
 
 ## Features
 - Shows a collection of fields in order to allow user to fill their values.
