@@ -38,4 +38,13 @@ public class DDLListView_default: BaseListTableView, DDLListData {
 		cell.accessoryView!.frame = CGRectMake(0, 0, image.size.width, image.size.height)
 	}
 
+
+	//MARK: DDLFormTableView 
+
+	override internal func onCreated() {
+		super.onCreated()
+
+		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
+	}
+
 }
