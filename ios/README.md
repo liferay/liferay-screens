@@ -72,10 +72,8 @@ Next, change the Custom Class to widget's class name. For example, if you're usi
 ![Change Custom Class](Documentation/Images/custom-class.png "Change Custom Class")
 
 Now you need to conform the widget's delegate protocol in your `ViewController` class. For example, for the `LoginWidget` this is `LoginWidgetDelegate`.
-<!-- 
-Is "conform" supposed to be "confirm" here? Also, do you want to use a 
-screenshot or some other code sample following the text? - Nick
--->
+
+![Conform delegate](Documentation/Images/conform-delegate.png "Conform delegate")
 
 Now that the widget's delegate protocol is set in your `ViewController` class, go back to Interface Builder and set the widget's delegate to your view controller. If the widget you're using has more outlets, you can assign them as well.
 <!-- 
