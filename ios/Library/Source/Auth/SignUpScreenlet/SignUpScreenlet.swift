@@ -47,8 +47,6 @@ import UIKit
 		return screenletView as SignUpData
 	}
 
-	internal var signUpOperation: LiferaySignUpOperation?
-
 
 	//MARK: BaseScreenlet
 
@@ -59,25 +57,23 @@ import UIKit
 	}
 
 	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
-		signUpOperation = LiferaySignUpOperation(screenlet: self)
+		let signUpOperation = LiferaySignUpOperation(screenlet: self)
 
-		signUpOperation!.validateAndEnqueue() {
+		signUpOperation.validateAndEnqueue() {
 			if $0.lastError != nil {
 				self.delegate?.onSignUpError?($0.lastError!)
 			}
 			else {
-				self.onSignUpSuccess()
+				self.onSignUpSuccess(userAttributes: signUpOperation.createdUserAttributes!)
 			}
-
-			self.signUpOperation = nil
 		}
 	}
 
 
 	//MARK: Private methods
 
-	private func onSignUpSuccess() {
-		delegate?.onSignUpResponse?(signUpOperation!.createdUserAttributes!)
+	private func onSignUpSuccess(#userAttributes: [String:AnyObject]) {
+		delegate?.onSignUpResponse?(userAttributes)
 
 		if autologin {
 			SessionContext.removeStoredSession()
@@ -85,9 +81,9 @@ import UIKit
 			SessionContext.createSession(
 					username: signUpData.emailAddress!,
 					password: signUpData.password!,
-					userAttributes: signUpOperation!.createdUserAttributes!)
+					userAttributes: userAttributes)
 
-			autoLoginDelegate?.onLoginResponse?(signUpOperation!.createdUserAttributes!)
+			autoLoginDelegate?.onLoginResponse?(userAttributes)
 
 			if saveCredentials {
 				if SessionContext.storeSession() {

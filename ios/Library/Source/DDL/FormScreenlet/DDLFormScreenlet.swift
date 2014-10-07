@@ -67,10 +67,6 @@ import UIKit
 
 	private var currentOperation = FormOperation.Idle
 
-	private var submitOperation: LiferayDDLFormSubmitOperation?
-	private var loadFormOperation: LiferayDDLFormLoadOperation?
-	private var loadRecordOperation: LiferayDDLFormRecordLoadOperation?
-	private var uploadOperation: LiferayDDLFormUploadOperation?
 
 	//MARK: BaseScreenlet
 
@@ -109,47 +105,33 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadForm() -> Bool {
-		loadFormOperation = LiferayDDLFormLoadOperation(screenlet: self)
+		let loadFormOperation = createLoadFormOperation()
 
-		loadFormOperation!.structureId = self.structureId
-		loadFormOperation!.userId = self.userId
-
-		return loadFormOperation!.validateAndEnqueue() {
-			if let error = $0.lastError {
-				self.delegate?.onFormLoadError?(error)
-			}
-			else {
-				self.userId = self.loadFormOperation!.userId ?? self.userId
-				self.formView.record = self.loadFormOperation!.loadedRecord
-
-				self.delegate?.onFormLoaded?(self.formView.record!)
-			}
-
-			self.loadFormOperation = nil
-		}
+		return loadFormOperation.validateAndEnqueue()
 	}
 
-
 	public func loadRecord() -> Bool {
-		loadRecordOperation = LiferayDDLFormRecordLoadOperation(screenlet: self)
+		let loadRecordOperation = LiferayDDLFormRecordLoadOperation(screenlet: self)
 
-		loadRecordOperation!.recordId = self.recordId
+		loadRecordOperation.recordId = self.recordId
 
 		if formView.isRecordEmpty {
-			if !loadForm() {
+			let loadFormOperation = createLoadFormOperation()
+
+			if !loadFormOperation.validateAndEnqueue() {
 				return false
 			}
 
-			loadRecordOperation!.addDependency(loadFormOperation!)
+			loadRecordOperation.addDependency(loadFormOperation)
 		}
 
-		return loadRecordOperation!.validateAndEnqueue() {
+		return loadRecordOperation.validateAndEnqueue() {
 			if let error = $0.lastError {
 				self.delegate?.onRecordLoadError?(error)
 			}
 			else {
 				if let recordValue = self.formView.record {
-					recordValue.updateCurrentValues(self.loadRecordOperation!.loadedRecord!)
+					recordValue.updateCurrentValues(loadRecordOperation.loadedRecord!)
 					recordValue.recordId = self.recordId
 
 					// Force didSet event
@@ -158,8 +140,6 @@ import UIKit
 					self.delegate?.onRecordLoaded?(recordValue)
 				}
 			}
-
-			self.loadRecordOperation = nil
 		}
 	}
 
@@ -173,31 +153,29 @@ import UIKit
 			default: ()
 		}
 
-	 	submitOperation = LiferayDDLFormSubmitOperation(screenlet: self)
+	 	let submitOperation = LiferayDDLFormSubmitOperation(screenlet: self)
 
-		submitOperation!.groupId = (self.groupId != 0)
+		submitOperation.groupId = (self.groupId != 0)
 				? self.groupId : LiferayServerContext.groupId
 
-		submitOperation!.userId = (self.userId != 0)
+		submitOperation.userId = (self.userId != 0)
 				? self.userId : Int64((SessionContext.userAttribute("userId") ?? 0) as Int)
 
-		submitOperation!.recordId = (self.recordId != 0) ? self.recordId : nil
-		submitOperation!.recordSetId = self.recordSetId
+		submitOperation.recordId = (self.recordId != 0) ? self.recordId : nil
+		submitOperation.recordSetId = self.recordSetId
 
-		submitOperation!.autoscrollOnValidation = self.autoscrollOnValidation
+		submitOperation.autoscrollOnValidation = self.autoscrollOnValidation
 
-		return submitOperation!.validateAndEnqueue() {
+		return submitOperation.validateAndEnqueue() {
 			if let error = $0.lastError {
 				self.delegate?.onFormSubmitError?(error)
 			}
 			else {
-				self.recordId = self.submitOperation!.recordId!
+				self.recordId = submitOperation.recordId!
 				self.formView.record!.recordId = self.recordId
 
 				self.delegate?.onFormLoaded?(self.formView.record!)
 			}
-
-			self.submitOperation = nil
 		}
 
 	}
@@ -205,20 +183,41 @@ import UIKit
 
 	//MARK: Private methods
 
+	private func createLoadFormOperation() -> LiferayDDLFormLoadOperation {
+		let loadFormOperation = LiferayDDLFormLoadOperation(screenlet: self)
+
+		loadFormOperation.structureId = self.structureId
+		loadFormOperation.userId = self.userId
+
+		loadFormOperation.onComplete = {
+			if let error = $0.lastError {
+				self.delegate?.onFormLoadError?(error)
+			}
+			else {
+				self.userId = loadFormOperation.userId ?? self.userId
+				self.formView.record = loadFormOperation.loadedRecord
+
+				self.delegate?.onFormLoaded?(self.formView.record!)
+			}
+		}
+
+		return loadFormOperation
+	}
+
 	private func uploadDocument(document: DDLFieldDocument) -> Bool {
 		let groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
 		let repositoryId = (self.repositoryId != 0) ? self.repositoryId : groupId
 
-		uploadOperation = LiferayDDLFormUploadOperation(screenlet: self)
+		let uploadOperation = LiferayDDLFormUploadOperation(screenlet: self)
 
-		uploadOperation!.document = document
-		uploadOperation!.filePrefix = filePrefix
-		uploadOperation!.repositoryId = repositoryId
-		uploadOperation!.folderId = folderId
-		uploadOperation!.onUploadedBytes = onUploadedBytes
+		uploadOperation.document = document
+		uploadOperation.filePrefix = filePrefix
+		uploadOperation.repositoryId = repositoryId
+		uploadOperation.folderId = folderId
+		uploadOperation.onUploadedBytes = onUploadedBytes
 
-		let result = uploadOperation!.validateAndEnqueue() {
-			let document = self.uploadOperation!.document!
+		let result = uploadOperation.validateAndEnqueue() {
+			let document = uploadOperation.document!
 
 			if let error = $0.lastError {
 				document.uploadStatus = .Failed(error)
@@ -234,12 +233,12 @@ import UIKit
 				self.currentOperation = .Idle
 			}
 			else {
-				document.uploadStatus = .Uploaded(self.uploadOperation!.uploadResult!)
+				document.uploadStatus = .Uploaded(uploadOperation.uploadResult!)
 
 				self.formView.changeDocumentUploadStatus(document)
 
 				self.delegate?.onDocumentUploadCompleted?(document,
-						result: self.uploadOperation!.uploadResult!)
+						result: uploadOperation.uploadResult!)
 
 				switch self.currentOperation {
 					case .Uploading(let document, let submitAfter):
@@ -251,10 +250,7 @@ import UIKit
 
 					default: ()
 				}
-
 			}
-
-			self.uploadOperation = nil
 		}
 
 		if result {

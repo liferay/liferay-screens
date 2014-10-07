@@ -33,28 +33,24 @@ import UIKit
 		return screenletView as WebContentDisplayData
 	}
 
-	internal var webContentOperation: LiferayWebContentLoadOperation?
-
 
 	//MARK: Public methods
 
 	public func loadWebContent() -> Bool {
-		webContentOperation = LiferayWebContentLoadOperation(screenlet: self)
+		let webContentOperation = LiferayWebContentLoadOperation(screenlet: self)
 
-		webContentOperation!.groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
-		webContentOperation!.articleId = self.articleId
+		webContentOperation.groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
+		webContentOperation.articleId = self.articleId
 
-		return webContentOperation!.validateAndEnqueue() {
+		return webContentOperation.validateAndEnqueue() {
 			if let error = $0.lastError {
 				self.delegate?.onWebContentError?(error)
 			}
 			else {
-				self.delegate?.onWebContentResponse?(self.webContentOperation!.loadedHTML!)
+				self.delegate?.onWebContentResponse?(webContentOperation.loadedHTML!)
 
-				self.webContentDisplayData.htmlContent = self.webContentOperation!.loadedHTML!
+				self.webContentDisplayData.htmlContent = webContentOperation.loadedHTML!
 			}
-
-			self.webContentOperation = nil
 		}
 	}
 
