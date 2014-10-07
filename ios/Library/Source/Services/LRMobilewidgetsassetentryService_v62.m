@@ -25,7 +25,7 @@
 	}];
 
 	[self mangleWrapperWithParams:_params name:@"assetEntryQuery" className:@"com.liferay.portlet.asset.service.persistence.AssetEntryQuery" wrapper:assetEntryQuery];
-	NSDictionary *_command = @{@"/mobile-screenlets-web/mobilescreenletsassetentry/get-asset-entries": _params};
+	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsassetentry/get-asset-entries": _params};
 
 	return (NSArray *)[self.session invoke:_command error:error];
 }

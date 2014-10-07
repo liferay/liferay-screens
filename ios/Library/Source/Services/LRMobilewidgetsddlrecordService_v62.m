@@ -25,7 +25,7 @@
 		@"locale": locale
 	}];
 
-	NSDictionary *_command = @{@"/mobile-screenlets-web/mobilescreenletsddlrecord/get-ddl-record": _params};
+	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-record": _params};
 
 	return (NSDictionary *)[self.session invoke:_command error:error];
 }
@@ -39,7 +39,7 @@
 		@"end": @(end)
 	}];
 
-	NSDictionary *_command = @{@"/mobile-screenlets-web/mobilescreenletsddlrecord/get-ddl-records": _params};
+	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-records": _params};
 
 	return (NSArray *)[self.session invoke:_command error:error];
 }
@@ -50,7 +50,7 @@
 		@"userId": @(userId)
 	}];
 
-	NSDictionary *_command = @{@"/mobile-screenlets-web/mobilescreenletsddlrecord/get-ddl-records-count": _params};
+	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-records-count": _params};
 
 	return (NSNumber *)[self.session invoke:_command error:error];
 }
