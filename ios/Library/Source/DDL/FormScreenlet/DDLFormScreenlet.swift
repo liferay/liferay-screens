@@ -38,10 +38,11 @@ import UIKit
 
 @IBDesignable public class DDLFormScreenlet: BaseScreenlet {
 
-	private enum FormOperation {
+	private enum UploadStatus {
 
 		case Idle
-		case Uploading(DDLFieldDocument, Bool)
+		case Uploading(Int, Bool)
+		case Failed(NSError)
 
 	}
 
@@ -65,7 +66,7 @@ import UIKit
 		return screenletView as DDLFormView
 	}
 
-	private var currentOperation = FormOperation.Idle
+	private var uploadStatus = UploadStatus.Idle
 
 
 	//MARK: BaseScreenlet
@@ -144,13 +145,8 @@ import UIKit
 	}
 
 	public func submitForm() -> Bool {
-		switch currentOperation {
-			case .Uploading(let doc, _):
-				currentOperation = .Uploading(doc, true)
-				showHUDWithMessage("Uploading file...", details: "Wait a second...")
-				return true
-
-			default: ()
+		if waitForInProgressUpload() {
+			return true
 		}
 
 	 	let submitOperation = LiferayDDLFormSubmitOperation(screenlet: self)
@@ -230,7 +226,7 @@ import UIKit
 
 				self.delegate?.onDocumentUploadError?(document, error: error)
 
-				self.currentOperation = .Idle
+				self.uploadStatus = .Failed(error)
 			}
 			else {
 				document.uploadStatus = .Uploaded(uploadOperation.uploadResult!)
@@ -240,13 +236,19 @@ import UIKit
 				self.delegate?.onDocumentUploadCompleted?(document,
 						result: uploadOperation.uploadResult!)
 
-				switch self.currentOperation {
-					case .Uploading(let document, let submitAfter):
-						self.currentOperation = .Idle
+				switch self.uploadStatus {
+					case .Uploading(let uploadCount, let submitRequest)
+					where uploadCount > 1:
+						self.uploadStatus = .Uploading(uploadCount - 1, submitRequest)
 
-						if submitAfter {
-							self.submitForm()
-						}
+					case .Uploading(let uploadCount, let submitRequested)
+					where uploadCount == 1 && submitRequested:
+						self.uploadStatus = .Idle
+						self.submitForm()
+
+					case .Uploading(let uploadCount, let submitRequested)
+					where uploadCount == 1 && !submitRequested:
+						self.uploadStatus = .Idle
 
 					default: ()
 				}
@@ -255,22 +257,76 @@ import UIKit
 
 		if result {
 			delegate?.onDocumentUploadStarted?(document)
-			currentOperation = .Uploading(document, false)
+
+			switch uploadStatus {
+				case .Uploading(let uploadCount, let submitRequested):
+					uploadStatus = .Uploading(uploadCount + 1, submitRequested)
+
+				default:
+					uploadStatus = .Uploading(1, false)
+			}
 		}
 
 		return result
 	}
 
-	private func onUploadedBytes(bytes: UInt, sent: Int64, total: Int64) {
-		switch currentOperation {
-			case .Uploading(let document, _):
-				document.uploadStatus = .Uploading(UInt(sent), UInt(total))
+	private func waitForInProgressUpload() -> Bool {
+		switch uploadStatus {
+			case .Failed(_):
+				retryUploads()
+
+				return true
+
+			case .Uploading(let uploadCount, let submitRequested)
+			where submitRequested:
+				return true
+
+			case .Uploading(let uploadCount, let submitRequested)
+			where !submitRequested:
+				uploadStatus = .Uploading(uploadCount, true)
+
+				let uploadMessage = (uploadCount == 1)
+						? "Uploading file..." : "Uploading files..."
+
+				showHUDWithMessage(uploadMessage, details: "Wait a second...")
+
+				return true
+
+			default: ()
+		}
+
+		return false
+	}
+
+	private func retryUploads() {
+		let failedDocumentFields = formView.record?.fields.filter() {
+			if let fieldUploadStatus = ($0 as? DDLFieldDocument)?.uploadStatus {
+				switch fieldUploadStatus {
+					case .Failed(_): return true
+					default: ()
+				}
+			}
+
+			return false
+		}
+
+		if let failedUploads = failedDocumentFields {
+			showHUDWithMessage("Retrying failed upload...", details: "Wait a second...")
+
+			for failedDocumentField in failedUploads {
+				uploadDocument(failedDocumentField as DDLFieldDocument)
+			}
+
+			uploadStatus = .Uploading(failedUploads.count, true)
+		}
+	}
+
+	private func onUploadedBytes(document: DDLFieldDocument, bytes: UInt, sent: Int64, total: Int64) {
+		switch uploadStatus {
+			case .Uploading(_, _):
 				formView.changeDocumentUploadStatus(document)
 
-				delegate?.onDocumentUploadedBytes?(document,
-						bytes: bytes,
-						sent: sent,
-						total: total)
+				delegate?.onDocumentUploadedBytes?(document, bytes: bytes, sent: sent, total: total)
 
 			default: ()
 		}

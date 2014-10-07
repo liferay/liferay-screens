@@ -22,7 +22,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 	var repositoryId: Int64?
 	var folderId: Int64?
 
-	var onUploadedBytes: ((UInt, Int64, Int64) -> Void)?
+	var onUploadedBytes: ((DDLFieldDocument, UInt, Int64, Int64) -> Void)?
 
 	var uploadResult: [String:AnyObject]?
 
@@ -92,15 +92,14 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 				error: &lastError)
 
 		dispatch_semaphore_wait(requestSemaphore, DISPATCH_TIME_FOREVER)
-
-		println("FIN")
 	}
 
 
 	//MARK: LRProgressDelegate
 
 	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
-		onUploadedBytes?(bytes, sent, total)
+		document!.uploadStatus = .Uploading(UInt(sent), UInt(total))
+		onUploadedBytes?(document!, bytes, sent, total)
 	}
 
 

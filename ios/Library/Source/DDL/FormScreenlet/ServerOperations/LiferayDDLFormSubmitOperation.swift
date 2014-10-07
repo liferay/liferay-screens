@@ -27,6 +27,11 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	internal override var hudLoadingMessage: HUDMessage? {
 		return ("Submitting form...", details: "Wait few seconds...")
 	}
+
+	internal override var hudSuccessMessage: HUDMessage? {
+		return ("Done!", details: nil)
+	}
+
 	internal override var hudFailureMessage: HUDMessage? {
 		return ("An error happened submitting form", details: nil)
 	}
