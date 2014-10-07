@@ -1,4 +1,4 @@
-# LoginWidget for iOS
+# LoginScreenlet for iOS
 
 ## Important Note
 
@@ -21,7 +21,7 @@ Auth
 - Default
 - Flat7
 
-![Login widget using Default and Flat7 themes](Images/login.png "Login widget using Default and Flat7 themes")
+![Login screenlet using Default and Flat7 themes](Images/login.png "Login screenlet using Default and Flat7 themes")
 
 ## Requirements
 
@@ -52,13 +52,13 @@ Refer to [Configuring Portal Settings](https://www.liferay.com/documentation/lif
 
 ## Delegate
 
-This widget delegates some events in an object that conforms `LoginWidgetDelegate` protocol.
+This screenlet delegates some events in an object that conforms `LoginScreenletDelegate` protocol.
 This protocol allows to implement the following methods:
 
 - `onLoginResponse(dictionary)`: called when login is successfully completed. The user attributes are passed as a dictionary of keys (NSStrings) and values (NSObject). Keys supported are the same as [portal's User entity](https://github.com/liferay/liferay-portal/blob/6.2.x/portal-impl/src/com/liferay/portal/service.xml#L2227)
 - `onLoginError(error)`: called when an error happened in the login. The NSError object describes the error occurred.
 - `onCredentialsSaved`: called when the user credentials are successfully stored (after a successfull log in).
-- `onCredentialsLoaded`: called when the user credentials are retrieved (if the widget is used and stored credentials are available).
+- `onCredentialsLoaded`: called when the user credentials are retrieved (if the screenlet is used and stored credentials are available).
 
 
 

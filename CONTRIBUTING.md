@@ -1,11 +1,11 @@
-# Liferay Mobile Widgets contribution guide
+# Liferay Screens Contribution Guide
 
 ##Previous steps
 
-1. Read the [architecture guide](https://github.com/liferay/liferay-mobile-widgets/tree/master/ios/Library/architecture.md)
-1. Read the [code style guide](https://github.com/liferay/liferay-mobile-widgets/tree/master/ios/style_guide.md)
+1. Read the [architecture guide](https://github.com/liferay/liferay-screens/tree/master/ios/Library/architecture.md)
+1. Read the [code style guide](https://github.com/liferay/liferay-screens/tree/master/ios/style_guide.md)
 1. Sign up for [our issue tracker](https://issues.liferay.com/browse/LMW/?selectedTab=com.atlasn.jira.jira-projects-plugin:summary-panel)
-1. Fork [this repo](https://github.com/liferay/liferay-mobile-widgets/)
+1. Fork [this repo](https://github.com/liferay/liferay-screens/)
 
 ## If you already know what to do
 

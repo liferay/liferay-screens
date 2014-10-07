@@ -1,4 +1,4 @@
-# AssetListWidget for iOS
+# AssetListScreenlet for iOS
 
 ## Important Note
 
@@ -44,7 +44,7 @@ None
 ## Themes
 - Default: uses a standard `UITableView` to show the scrolleable list. Other themes may use a different component (`UICollectionView` or whatever) to show the items.
 
-![AssetList widget using Default theme](Images/assetlist.png)
+![AssetList screenlet using Default theme](Images/assetlist.png)
 
 ## Requirements
 
@@ -81,7 +81,7 @@ Refer to [Defining Data Types](https://www.liferay.com/documentation/liferay-por
 
 ## Delegate
 
-This widget delegates some events in an object that conforms `AssetListWidgetDelegate` protocol.
+This screenlet delegates some events in an object that conforms `AssetListScreenletDelegate` protocol.
 This protocol allows to implement the following methods:
 
 - `onAssetListResponse(list of records)`: called when a page of assets is received. Note this method may be called more than once, one for each page retrieved.

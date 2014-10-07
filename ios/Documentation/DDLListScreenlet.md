@@ -1,4 +1,4 @@
-# DDLListWidget for iOS
+# DDLListScreenlet for iOS
 
 ## Important Note
 
@@ -16,7 +16,7 @@ DDL
 ## Themes
 - Default: uses a standard `UITableView` to show the scrolleable list. Other themes may use a different component (`UICollectionView` or whatever) to show the items.
 
-![DDLList widget using Default theme](Images/ddllist.png)
+![DDLList screenlet using Default theme](Images/ddllist.png)
 
 ## Requirements
 
@@ -54,7 +54,7 @@ Refer to [Defining Data Types](https://www.liferay.com/documentation/liferay-por
 
 ## Delegate
 
-This widget delegates some events in an object that conforms `DDLListWidgetDelegate` protocol.
+This screenlet delegates some events in an object that conforms `DDLListScreenletDelegate` protocol.
 This protocol allows to implement the following methods:
 
 - `onDDLListResponse(list of records)`: called when a page of contents is received. Note this method may be called more than once, one for each page retrieved.

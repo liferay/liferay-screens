@@ -1,4 +1,4 @@
-# ForgotPasswordWidget for iOS
+# ForgotPasswordScreenlet for iOS
 
 ## Important Note
 
@@ -18,7 +18,7 @@ Auth
 - Default
 - Flat7
 
-![Forgot password widget using Default and Flat7 themes](Images/forgotpwd.png "Forgot password widget using Default and Flat7 themes")
+![Forgot password screenlet using Default and Flat7 themes](Images/forgotpwd.png "Forgot password screenlet using Default and Flat7 themes")
 
 ## Requirements
 
@@ -34,7 +34,7 @@ Auth
 ## Portal configuration
 
 ### Authentication method
-Note that the authentication method configured in the portal can be different than the used in this widget. It's *perfectly fine* to allow users to remember their password providing their email address but configure the authentication method could to use screen name.
+Note that the authentication method configured in the portal can be different than the used in this screenlet. It's *perfectly fine* to allow users to remember their password providing their email address but configure the authentication method could to use screen name.
 
 ### Password reset
 Depending on portal configuration `Control Panel - Portal Settings - Authentication`, the forgot password feature could be enabled or not.
@@ -64,7 +64,7 @@ This request is done without the user being logged in, but authentication is nee
 
 ## Delegate
 
-This widget delegates some events in an object that conforms `ForgotPasswordWidgetDelegate` protocol.
+This screenlet delegates some events in an object that conforms `ForgotPasswordScreenletDelegate` protocol.
 This protocol allows to implement the following methods:
 
 - `onForgotPasswordResponse(boolean)`: called when email was successfully sent. The boolean parameter indicates whether a new password was generated or a reset link was sent.

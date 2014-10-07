@@ -6,13 +6,13 @@ _This product is under heavy development and its features aren't ready for use i
 
 ## Introduction
 
-The iOS implementation for Liferay Screens includes the widget library and two sample projects. One sample project uses Screens from Objective-C, while the other uses Screens from Swift.
+The iOS implementation for Liferay Screens includes the components (_screenlets_) library and two sample projects. One sample project uses Screens from Objective-C, while the other uses Screens from Swift.
 
-In Liferay Screens, a *widget* is a visual component that is connected to Liferay Portal's functionality. The widget is responsible for handling communication between the server and the UI. Widgets also implement all typical [human interface guidelines described by Apple](https://developer.apple.com/library/ios/documentation/userexperience/conceptual/mobilehig/).
+In Liferay Screens, a *screenlet* is a visual component that is connected to Liferay Portal's functionality. The screenlet is responsible for handling communication between the server and the UI. screenlets also implement all typical [human interface guidelines described by Apple](https://developer.apple.com/library/ios/documentation/userexperience/conceptual/mobilehig/).
 
-Each widget is tied to one or more services exposed by [Liferay's remote services](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/accessing-services-remotely-liferay-portal-6-2-dev-guide-05-en).  The widget then renders information using a theme. Themes can be contributed by third parties and are fully pluggable, so you're not limited to one specific look and feel. The Screens library provides a standard theme called *Default*  and another sample theme called *Flat7*.
+Each screenlet is tied to one or more services exposed by [Liferay's remote services](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/accessing-services-remotely-liferay-portal-6-2-dev-guide-05-en).  The screenlet then renders information using a theme. Themes can be contributed by third parties and are fully pluggable, so you're not limited to one specific look and feel. The Screens library provides a standard theme called *Default*  and another sample theme called *Flat7*.
 
-![The SignUp widget using Default and Flat7 themes](Documentation/Images/signup.png)
+![The SignUp screenlet using Default and Flat7 themes](Documentation/Images/signup.png)
 
 Please note that themes provided in early versions support only vertical screen orientation and the iPhone 5, 5s, and 5c screen size. Support for the full range  of screen orientations and sizes will be added in the future.
 
@@ -59,33 +59,33 @@ There's just one more thing to take care of to ensure that your project is ready
 
 ![liferay-context.plist file](Documentation/Images/liferay-context.png)
 
-Great! Your project should now be ready for Liferay Screens. Next, you'll learn how to use widgets in your project.
+Great! Your project should now be ready for Liferay Screens. Next, you'll learn how to use screenlets in your project.
 
-## Using Widgets
+## Using Screenlets
 
-Now you're ready to start using widgets in your project. First, use Interface Builder to insert a new UIView in your Storyboard or XIB file. This is shown in the following screenshot:
+Now you're ready to start using screenlets in your project. First, use Interface Builder to insert a new UIView in your Storyboard or XIB file. This is shown in the following screenshot:
 
 ![Add UIWindow](Documentation/Images/add-uiwindow.png "Add UIWindow")
 
-Next, change the Custom Class to widget's class name. For example, if you're using `LoginWidget`, then enter that as the Custom Class name. This is shown here:
+Next, change the Custom Class to screenlet's class name. For example, if you're using `LoginScreenlet`, then enter that as the Custom Class name. This is shown here:
 
 ![Change Custom Class](Documentation/Images/custom-class.png "Change Custom Class")
 
-Now you need to conform the widget's delegate protocol in your `ViewController` class. For example, for the `LoginWidget` this is `LoginWidgetDelegate`.
+Now you need to conform the screenlet's delegate protocol in your `ViewController` class. For example, for the `LoginScreenlet` this is `LoginScreenletDelegate`.
 
 ![Conform delegate](Documentation/Images/conform-delegate.png "Conform delegate")
 
-Now that the widget's delegate protocol is conformed in your `ViewController` class, go back to Interface Builder and connect the widget's delegate to your view controller. If the widget you're using has more outlets, you can assign them as well.
+Now that the screenlet's delegate protocol is conformed in your `ViewController` class, go back to Interface Builder and connect the screenlet's delegate to your view controller. If the screenlet you're using has more outlets, you can assign them as well.
 
 ![Connect delegate in Interface Builder](Documentation/Images/xcode-delegate.png "Connect delegate in Interface Builder")
 
 _Note there are [some issues](http://stackoverflow.com/questions/26180268/interface-builder-iboutlet-and-protocols-for-delegate-and-datasource-in-swift/26180481#26180481) connecting outlet to Swift source code. You can change delegate datatype or just assign the outlets by code._
 
-Awesome! Now you know how to use widgets in your projects. However, if you want to use widgets from Objective-C code, there are a few more things that you need to take care of. These are presented in the next section. If you don't need to use widgets from Objective-C, you can skip this section and proceed to the list of available widgets below.
+Awesome! Now you know how to use screenlets in your projects. However, if you want to use screenlets from Objective-C code, there are a few more things that you need to take care of. These are presented in the next section. If you don't need to use screenlets from Objective-C, you can skip this section and proceed to the list of available screenlets below.
 
-### Using Widgets from Objective-C Code
+### Using Screenlets from Objective-C Code
 
-If you want to invoke widget classes from your Objective-C code, then there are a couple of additional header files that you need to import. Their import statements are shown here:
+If you want to invoke screenlet classes from your Objective-C code, then there are a couple of additional header files that you need to import. Their import statements are shown here:
 
     #import "liferay-screens-bridge.h"
     #import "[name_of_your_project]-Swift.h"
@@ -98,40 +98,40 @@ Simply replace `name_of_your_project` with your project's name. If your project'
 	- Precompile Prefix Header: `Yes`
 	- Prefix Header: `path/to/your/file/Prefix.pch`
 
-Super! Now you know how to call widgets from the Objective-C code in your project. Next, a list of the widgets available in Liferay Screens is presented.
+Super! Now you know how to call screenlets from the Objective-C code in your project. Next, a list of the screenlets available in Liferay Screens is presented.
     
-## Listing of Available Widgets
+## Listing of Available Screenlets
 
-Widgets are grouped in modules based on internal dependencies. Each module is isolated, so you can use only the modules that are neccesary for your project. However, it's important to note that you can't use a widget from a single module without using the entire module. The widgets here are listed according to the module that they belong to.
+Screenlets are grouped in modules based on internal dependencies. Each module is isolated, so you can use only the modules that are neccesary for your project. However, it's important to note that you can't use a screenlet from a single module without using the entire module. The screenlets here are listed according to the module that they belong to.
 
-- **Auth**: Module for user authentication. It uses the [user management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/management-liferay-portal-6-2-user-guide-16-en) features of Liferay Portal. It includes the following widgets:
+- **Auth**: Module for user authentication. It uses the [user management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/management-liferay-portal-6-2-user-guide-16-en) features of Liferay Portal. It includes the following screenlets:
 
-	- [`LoginWidget`](Documentation/LoginWidget.md): Gives your app the ability to sign users in to a Liferay instance.
-	- [`SignUpWidget`](Documentation/SignUpWidget.md): Gives your app the ability to sign new users in to a Liferay instance.
-	- [`ForgotPasswordWidget`](Documentation/ForgotPasswordWidget.md): Gives your app the ability to send emails containing a new password or password reset link to users.
+	- [`LoginScreenlet`](Documentation/LoginScreenlet.md): Gives your app the ability to sign users in to a Liferay instance.
+	- [`SignUpScreenlet`](Documentation/SignUpScreenlet.md): Gives your app the ability to sign new users in to a Liferay instance.
+	- [`ForgotPasswordScreenlet`](Documentation/ForgotPasswordScreenlet.md): Gives your app the ability to send emails containing a new password or password reset link to users.
 
-- **Dynamic Data Lists (DDL)**: Module for interacting with [Dynamic Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/using-web-forms-and-dynamic-data-lists-liferay-portal-6-2-user-guide-10-en) in a Liferay instance. It includes the following widgets:
+- **Dynamic Data Lists (DDL)**: Module for interacting with [Dynamic Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/using-web-forms-and-dynamic-data-lists-liferay-portal-6-2-user-guide-10-en) in a Liferay instance. It includes the following screenlet:
 
-	- [`DDLFormWidget`](Documentation/DDLFormWidget.md): Gives your app the ability to present dynamic forms to be filled by users and submitted back to the server.
-	- [`DDLListWidget`](Documentation/DDLListWidget.md): Gives your app the ability to show a list of records based on a pre-existing DDL in a Liferay instance.
+	- [`DDLFormScreenlet`](Documentation/DDLFormScreenlet.md): Gives your app the ability to present dynamic forms to be filled by users and submitted back to the server.
+	- [`DDLListScreenlet`](Documentation/DDLListScreenlet.md): Gives your app the ability to show a list of records based on a pre-existing DDL in a Liferay instance.
 
-Also, some widgets can be used individually without the need to import an entire module. These include:
+Also, some screenlet can be used individually without the need to import an entire module. These include:
 
-- [`AssetListWidget`](Documentation/AssetListWidget.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). This includes users, organizations, sites, and more.
-- [`WebContentDisplayWidget`](Documentation/WebContentDisplayWidget.md): Shows the HTML of web content. This widget uses the features avaiable in [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en).
+- [`AssetListScreenlet`](Documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). This includes users, organizations, sites, and more.
+- [`WebContentDisplayScreenlet`](Documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This acreenlet uses the features avaiable in [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en).
 
-Liferay Screens also contains themes that you can use to style widgets. A list of these themes is presented next.
+Liferay Screens also contains _themes_ that you can use to style screenlets. A list of these themes is presented next.
 	  
 ## Listing of Available Themes
 
-With themes, you can control the look and feel of any widgets that you decide to use in Liferay Screens. What's more, these themes are fully pluggable. You can install new themes to extend and customize widgets to meet the design and UX of your app.
+With themes, you can control the look and feel of any screenlet that you decide to use in you app. What's more, these themes are fully pluggable. You can install new themes to extend and customize any screenlet to meet the design and UX of your app.
 
 The themes currently released with Liferay Screens are:
 
-  - **Default**: The standard theme that is used when you insert a widget in your screen.
+  - **Default**: The standard theme that is used when you insert any screenlet in your screen.
   - **Flat7**: A sample theme intended to demostrate how to develop your own theme from scratch.
 
-## Contributing New Widgets and Themes
+## Contributing New Screenlets and Themes
 
 If you have a piece of code that can be reused in other apps, you may want to contribute it to the Liferay Screens project. Doing so is very straightforward: just follow the instructions in [Contributors Guide](https://github.com/liferay/liferay-screens/tree/master/CONTRIBUTING.md).
 <!-- 

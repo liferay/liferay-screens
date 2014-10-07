@@ -1,4 +1,4 @@
-# WebContentDisplayWidget for iOS
+# WebContentDisplayScreenlet for iOS
 
 ## Important Note
 
@@ -14,7 +14,7 @@ None
 ## Themes
 - Default: uses a standard `UIWebView` to render the HTML. Other themes may use a different component (like iOS 8's `WKWebView`).
 
-![WebContentDisplay widget using Default theme](Images/webcontent.png)
+![WebContentDisplay screenlet using Default theme](Images/webcontent.png)
 
 ## Requirements
 
@@ -51,7 +51,7 @@ Refer to [Web Content Management](https://www.liferay.com/documentation/liferay-
 
 ## Delegate
 
-This widget delegates some events in an object that conforms `WebContentDisplayWidgetDelegate` protocol.
+This screenlet delegates some events in an object that conforms `WebContentDisplayScreenletDelegate` protocol.
 This protocol allows to implement the following methods:
 
 - `onWebContentDisplayResponse(html)`: called when the web content's html is received.

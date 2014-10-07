@@ -34,7 +34,7 @@ DDL
 ## Themes
 - Default: uses a standard `UITableView` to show the scrolleable list of fields. Other themes may use a different component (`UICollectionView`, paginated form or whatever) to show the fields.
 
-![DDLForm widget using Default theme](Images/ddlform.png)
+![DDLForm screenlet using Default theme](Images/ddlform.png)
 
 ## Requirements
 
@@ -66,7 +66,7 @@ Refer to [Defining Data Types](https://www.liferay.com/documentation/liferay-por
 |  `repositoryId` | `number` | The identifier of the repository to be used in Document and Media uploads. If this value is 0, the default repository for the site specified in `groupId` is used. |
 |  `folderId` | `number` | The identifier of the folder where Document and Media files will be uploaded. If this value is 0, the root file will be used. |
 |  `filePrefix` | `string` | The prefix to be used for Document and Media uplaoded files. After the prefix, a random GUID string will be appended. |
-|  `autoLoad` | `boolean` | Whether or not the form will be loaded when the widget is shown. If `recordId` is set, the record value will be loaded together with the form definition |
+|  `autoLoad` | `boolean` | Whether or not the form will be loaded when the screenlet is shown. If `recordId` is set, the record value will be loaded together with the form definition |
 |  `autoscrollOnValidation` | `boolean` | Whether or not the form will to the first failed field when validation is done. |
 |  `showSubmitButton` | `boolean` | Whether or not the form will show a submit button at the bottom. If it's ´false´, the programmer should call `submitForm()` method. |
 
@@ -82,7 +82,7 @@ Refer to [Defining Data Types](https://www.liferay.com/documentation/liferay-por
 
 ## Delegate
 
-This widget delegates some events in an object that conforms `DDLFormWidgetDelegate` protocol.
+This screenlet delegates some events in an object that conforms `DDLFormScreenletDelegate` protocol.
 This protocol allows to implement the following methods:
 
 - `onFormLoaded(record)`: called when the form is loaded. The `record` will contain only field definitions.

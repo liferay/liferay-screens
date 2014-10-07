@@ -1,4 +1,4 @@
-# SignUpWidget for iOS
+# SignUpScreenlet for iOS
 
 ## Important Note
 
@@ -18,7 +18,7 @@ Auth
 - Default
 - Flat7
 
-![SignUp widget using Default and Flat7 themes](Images/signup.png "SignUp widget using Default and Flat7 themes")
+![SignUp screenlet using Default and Flat7 themes](Images/signup.png "SignUp screenlet using Default and Flat7 themes")
 
 ## Requirements
 
@@ -32,7 +32,7 @@ Auth
 
 ## Portal configuration
 
-The configuration related to this widget can be found at `Control Panel - Portal Settings - Authentication`
+The configuration related to this screenlet can be found at `Control Panel - Portal Settings - Authentication`
 
 ![](Images/portal-signup.png)
 
@@ -54,10 +54,10 @@ This request is done without the user being logged in, but authentication is nee
 
 ## Delegate
 
-This widget will delegate some events in an object that conforms `SignUpWidgetDelegate` protocol.
-If the `autologin` is enabled, login events will be delegated to an object conforming `LoginWidgetDelegate`. Refer to [LoginWidget documentation](LoginWidget.md) for more details on this.
+This screenlet will delegate some events in an object that conforms `SignUpScreenletDelegate` protocol.
+If the `autologin` is enabled, login events will be delegated to an object conforming `LoginScreenletDelegate`. Refer to [LoginScreenlet documentation](LoginScreenlet.md) for more details on this.
 
-The `SignUpWidgetDelegate` protocol allows to implement the following methods:
+The `SignUpScreenletDelegate` protocol allows to implement the following methods:
 
 - `onSignUpResponse(boolean)`: called when sign up is successfully completed. The user attributes are passed as a dictionary of keys (NSStrings) and values (NSObject). Keys supported are the same as [portal's User entity](https://github.com/liferay/liferay-portal/blob/6.2.x/portal-impl/src/com/liferay/portal/service.xml#L2227)
 - `onSignUpError(error)`: called when an error happened in the process. The NSError object describes the error occurred.
