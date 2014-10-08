@@ -14,7 +14,17 @@
 import UIKit
 
 
-public class ViewController: UIViewController, LoginWidgetDelegate, ForgotPasswordWidgetDelegate {
+public class ViewController: UIViewController, LoginWidgetDelegate {
+
+	public func onLoginResponse(attributes: [String:AnyObject])  {
+		// handle here when the login is succeeded. User attributes are passed
+	}
+
+ 	public func onLoginError(error: NSError)  {
+ 		// handle here when the login is failed.
+	}
+
+
 
 	@IBOutlet private var loginWidget: LoginWidget?
 	@IBOutlet private var forgotWidget: ForgotPasswordWidget?
