@@ -54,8 +54,6 @@ import UIKit
 		return screenletView as ForgotPasswordData
 	}
 
-	internal var forgotPasswordOperation: LiferayForgotPasswordBaseOperation?
-
 
 	//MARK: BaseScreenlet
 
@@ -72,19 +70,17 @@ import UIKit
 	}
 
 	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
-		forgotPasswordOperation = createForgotPasswordOperation(
+		let forgotPasswordOperation = createForgotPasswordOperation(
 				authMethod: AuthMethod.create(authMethod))
 
-		forgotPasswordOperation!.validateAndEnqueue() {
+		forgotPasswordOperation.validateAndEnqueue() {
 			if let error = $0.lastError {
 				self.delegate?.onForgotPasswordError?(error)
 			}
 			else {
 				self.delegate?.onForgotPasswordResponse?(
-						self.forgotPasswordOperation!.resultPasswordSent!)
+						forgotPasswordOperation.resultPasswordSent!)
 			}
-
-			self.forgotPasswordOperation = nil
 		}
 	}
 

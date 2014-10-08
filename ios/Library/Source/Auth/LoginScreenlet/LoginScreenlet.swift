@@ -55,8 +55,6 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 		return screenletView as LoginData
 	}
 
-	internal var loginOperation: LiferayLoginBaseOperation?
-
 
 	//MARK: BaseScreenlet
 
@@ -76,25 +74,23 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 	}
 
 	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
-		loginOperation = createLoginOperation(authMethod: AuthMethod.create(authMethod))
+		let loginOperation = createLoginOperation(authMethod: AuthMethod.create(authMethod))
 
-		loginOperation!.validateAndEnqueue() {
+		loginOperation.validateAndEnqueue() {
 			if let error = $0.lastError {
 				self.delegate?.onLoginError?(error)
 			}
 			else {
-				self.onLoginSuccess()
+				self.onLoginSuccess(loginOperation.resultUserAttributes!)
 			}
-
-			self.loginOperation = nil
 		}
 	}
 
 
 	//MARK: Private methods
 
-	private func onLoginSuccess() {
-		delegate?.onLoginResponse?(loginOperation!.resultUserAttributes!)
+	private func onLoginSuccess(userAttributes: [String:AnyObject]) {
+		delegate?.onLoginResponse?(userAttributes)
 
 		if saveCredentials {
 			if SessionContext.storeSession() {
