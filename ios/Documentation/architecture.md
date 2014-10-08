@@ -1,4 +1,4 @@
-# Liferay iOS Mobile Widget Library
+# Liferay Screens iOS Architecture
 
 ## Important note
 __This product is under heavy development and most of the features aren't ready to be used in production.
@@ -6,60 +6,88 @@ It's public just in order to allow developers to preview the technology.__
 
 ## Introduction
 
-This document explains the internal architecture of the Liferay Mobile Widgets for iOS.
+This document explains the internal architecture of the Liferay Screens for iOS.
 
 ## Architecture
 
-### View and classes hierarchy
+### High level architecture
 
-Widgets for iOS follow the architecture shown in the following diagram:
-
-![Architecture](http://liferay.github.io/liferay-mobile-widgets/ios/Library/svg/message-hierarchy.svg)
-
-From top to down in the view hierarchy, we have:
-
-  - _`BarViewController`_: this is your regular view controller, based on Storyboards or xib, where you insert your widgets into. It belongs to your iOS project.
-  - _`FooWidget`_: this is the view that you insert into previous view controller, using Interface Builder or programatically. Since it's based on `BaseWidget` (and this is a direct descendant of `UIControl`), it inherits all the business logic code that handles the remote services requets and responses. 
-  - _`FooView`_: the framework will insert this view into `FooWidget` automatically. Its UI is defined in `FooView.xib` and can be overwritten in `FooView-ext.xib`. It defines IBOutlets and IBActions to connect UI components to code.
+The whole system is organized in the following high level components:
 
 
-### Events and messages passing
+![Liferay Screens Components](http://liferay.github.io/liferay-screens/ios/Library/svg/architecture-components.svg)
 
-When the widget is initilized, event handlers are added to all components in your component. Only `TouchUpInside` even is wired automatically, although you can wire other events using Interface Builder.
-When this automatic event is fired, the flow goes as next:
+ - **Core**: it's the component that includes all base classes in order to allow to develop screenlets. It can be defined as a *micro-framework intended to allow programmers to write their own screenlets, themes and server operation classes*.
+ - **Screenlets**: it's the library of all available screenlets. Each screenlet is a Swift class (can be used from Objective-C also) that can be inserted in a UIView. It renders the selected theme (both in runtime and in Interface Builder) and it reacts to user interface events, starting server operations if neccessary. Screenlets also define a set of `@IBInspectable` properties, allowing programmer or designed to configure them from Interface Builder.
+ - **Server Operations**: it's a collection of *NSOperation* classes that interacts with data sources (remote or not). In case of Liferay, we have our own sey of *Liferay Operations* that use the [Mobile SDK](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/mobile-sdk-to-call-services-liferay-portal-6-2-dev-guide-en). Given that all Server Operations uses the [NSOperation framework](https://developer.apple.com/library/mac/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW1), they can be run concurrently and it's very easy to define priorities and dependencies between operations, so you can build your own graph of operations that would be resolved by the framework.
+ - **Themes**: it's a set of `xib` files and compaing UIView classes that presents the screenlet to the user.
 
-![Messages](http://liferay.github.io/liferay-mobile-widgets/ios/Library/svg/message-hierarchy.svg)
+ ### Core layer
+ 
+Core layer is the *micro-framework* intended to allow programmers to write their own screenlets, themes and server operation classes in a structured and isolated way. Each component (screenlet, theme and operation) have a clear aim and communication API, so it may be programmed even by different people.
+ 
+![Liferay Screens Core Layer](http://liferay.github.io/liferay-screens/ios/Library/svg/architecture-core.svg)
+ 
+- **Server Operation**: it's the base class for all operations started by screenlets. The operation is responsible of getting the data from its data source in a asynchronous way. Despite of its name, the data source could be a server backend or just a simple file. Screenlet classes instantiate and start operations, and eventually receive the responses which changes the state of the view classes.
+- **BaseScreenlet**: it's the base class for all screenlet classes. The main responsability of the screenlet class is to receive event from UI (user actions), start server operations and update view data when operation result arrives. It constains a set of [templated methods](http://www.oodesign.com/template-method-pattern.html) (called *onWhatever*) intended to be overwritten in children classes.
+- **BaseScreenletView**: it's the base class for all screenlet's view classes. These children classes belong to theme layer. The main responsability of the view classes is to render a specific UI (using standard `xib` files) and update its UI when data changes. It constains a set of templated methods (called *onWhatever*) intended to be overwritten in children classes.
+- **SessionContext**: it's a singleton class that holds the session of the user logged into the app. Apps could have implicit login (invisible to the user) to explict one (using a [LoginScreenlet](LoginScreenlet.md) in order to allow user to create the session.
+- **LiferayServerContext**: it's a singleton class that holds some server configuration parameters. It's loaded from `liferay-server-context.plist` file. Most screenlets uses these parameters as default values.
 
-The steps are:
+### Screenlet layer
 
-  1. _TouchUpInside even is fired_: because all components are automatically wired with this event, this will be received for all TouchUpInside even in every component inside the widget. In order to distinguish one event from the other, an action name parameter is supplied. This parameter is filled with sender component's [restorationIdentifier](https://developer.apple.com/library/ios/documentation/uikit/reference/uiview_class/uiview/uiview.html#//apple_ref/occ/instp/UIView/restorationIdentifier) property. This property value could be filled from Interface Builder's Identity Inspector
-  1. _Received event is delegated to `onCustomAction`_: `FooWidget` registerd the closure `onCustomAction` so it will receive the event there. In that callback, it will check the `actionName` parameter in order to identify the actual action and then call the remote service (using Mobile SDK)  or do any other action. If a remote service is called, it will eventually receive server's response in `onServerResult` (or an error in `onServerError`).
-  1. _Both `onServerResult` and `onServerError` are delegated to view controller's closures_: the view controller may implement both methods and use them as closures in order to receive the events.
-  1. Any widget may define other closures to notify other state changes to view controller's
+![Liferay Screens Core Layer](http://liferay.github.io/liferay-screens/ios/Library/svg/architecture-screenlets.svg)
 
+- **MyScreenletData**: it's an interface that defines the attributes of the screenlet. It typically includes the input values (i.e. user name and password for Login screenlet). The operation could validate this values and read them in order to configure the operation. The screenlet could change these values based on operation's result and default values.
+- **MyScreenlet**: it's the actual class that represents the screenlet component. It includes:
+	- A set of inspectable parameters, in order to allow to configure its behaviour (and optionally, set initial state in screenlet's data)
+	- A reference to its actual view, depending on the theme selected. All themes must implement de *Data* interface in order to meet the screenlet's requirements.
+	- Zero or more methods that create and start server operations (could be public methods, like *loadMyData()* intended to be called by programmer, or UI events coded received on *onUserAction()*
+	- Optionally (but recommended), can include a [delegate object](https://developer.apple.com/library/ios/documentation/general/conceptual/DevPedia-CocoaCore/Delegation.html) intented to be called when events happen.
+- **MyScreenletOperation**: related to the screenlet, but in a different layer, we have one or more server operations. Each operation is responsible of  getting a set of related values (typicalle one single requests if it's a backend call). The results will be stored in a *result* object, that can be read by the screenlet when it's notified.
+- **MyScreenletView_themeX**: this class belongs to one specific theme (*ThemeX* in the diagram) and renders the UI of the screenlet using it's related `xib` file. The view object and the `xib` file *talk* using standard mechanisms like `@IBOutlet` and `@IBAction`. When an user action occurs in the `xib` it's received by BaseScreenletView and passed to the screenlet class using the *onUserAction()* method. In order to identify different events, property `restorationIdentifier` of the component is used and passed to *onUserAction()* method.
+- **MyScreenletView_themeX.xib**: It's the `xib` file with the components used to render the view. Note that the name of this class is very important: by convenion, the `xib` file for screenlet called `FooScreenlet` and theme called `BarTheme` must be called `FooScreenlet_barTheme.xib`.
+ 
+### Theme (frontend) layer
 
-## How to create your own widgets
-If you want to develop one new widget, lets call it `Foo`, follow next steps:
+Theme layer allows developers to have more than one look and feel implementation (called *theme*) for any screenlet. The screenlet has a property called *themeName* which will be used to determine the theme to load.
+One theme can implement a look & feel just for a limited set of screenlets, depending on the requirements.
 
-1. Create a new xib called `FooView.xib`. Build your UI there as usual.
-1. Create a new class called `FooView` inherited from `BaseView`.
-1. Change the class of your view in `FooView.xib` to `FooView` using Interface Builder's Custom Class.
-1. Declare your `IBOutlets` in `FooView` class and connect to your xib components.
-1. Declare your `IBActions` in `FooView` class and connect to your xib events. Note that TouchUpInside events are automatically handled by the framework, but you can define other, or overwrite framework's automatic handling.
-1. Create a new class called `FooWidget` inherited from `BaseView`.
-1. Overrride next methods in `FooWidget`
-   - `onCreate`: called when the widget is created. You can initialize your outlets' properties here.
-   - `onShow`: guess...
-   - `onHide`: guess even more...
-   - `onCustomAction`: called when a TouchUpInside event is triggered. Here you can check the `actionName` parameter and perform any operation. The typical implementation here is to call one Liferay's remote service using MobileSDK. See Architecture section for more details. 
-   - `onServerResult`: if you called a remote service, the response will be received here.
-   - `onServerError`: called if the remote service request failed.
-1. Define your widget's delegate protocol called `FooWidgetDelegate`. Make sure the protocol is annotated with `@obj`. This will be the way to notify events to holder view controller.
-1. Define delegate's `IBOutlet`:
-   - `@IBOutlet var delegate: FooWidgetDelegate?`
-1. You may define other `IBOutlets` also.
-1. Call your delegate's methods when appropriate (when result or error is received from server is the typical one).
+![Liferay Screens Core Layer](http://liferay.github.io/liferay-screens/ios/Library/svg/architecture-themes.svg)
+
+- **Default theme**: it's a mandatory theme, supplied by Liferay, which is used when the screenlet's themeName is not specified. It uses a neutral flat white and blue design with standard UI components. For instance, for a Login screenlet, it uses standard text boxes for user name and password.
+- **Simple**: it's a theme that *inherits* from one theme (from *Default* in this case) and only changes the look and feel of the UI components. It inherits all attributes, should use all of them and the UI compoments must be the same. For instance, for a Login screenlet, if a theme want change the position and size of the standard text boxes, it just creates a theme inherited from default, and configures the `xib` files.
+- **Full**: it's a complete theme that can present a different set of attributes and components. For instance, for Login screenlet, a new theme can decide to present different components for user name and password, or even just show input to password and infer user name from somewhere.
 
 
-    
-    
+## How to create your own screenlet
+Imagine you want to create a Bookmark screenlet, with next requirements
+
+- Shows an input text box in order to type an URL
+- When the URL is typed, retrieves the content of the URL in order to check if the URL is valid and also to extract the title value. 
+- Shows both preview image and title for user confirmation.
+- The user can modify the title
+- Finally if the user confirms, the url and title is sent back to Liferay Portal's Bookmark services to be saved.
+	
+1. Create a new xib called `BookmarkView_default.xib`. Build your UI here using Interface Builder as usual: two text box (`UITextField`) for the URL and title. Also we add a couple of buttons to fire user actions: retrieve title and save the bookmark. Assign value for property `restorationIdentifier` in each button to discriminate each user actions.
+
+1. Create a new interface (protocol) called `BookmarkData`. Attributes associated could be: `url` and `title`.
+
+1. Create a new class called `BookmarkView_default` extending `BaseScreenletView` and implementing `BookmarkData`. It must wire all UI components and events from the `xib` using standard `@IBOutlet` and `@IBAction`. Getters and setters from `BookmarkData` should typically get/set data from UI components. Write also animations or frontend code here.
+
+1. Set `BookmarkView_default` as the Custom Class of your `BookmarkView_default.xib`
+
+1. Create a class called `BookmarkScreenlet` extending `BaseScreenlet`.
+
+1. Override *onUserAction* to receive both actions and use `actionName` paramenter to discriminate both of them:
+	- Preview
+	- Save
+
+1. Write two operation classes extending from `ServerOperation`. Override `doRun` method to perform the operation and `validateData` to check if the data stored in `BookmarkData` is valid:
+	- `GetSiteTitleOperation`: retrieves the first bytes of the URL until it reaches the `<title>` tag. The result is the title extracted from the HTML.
+	- `LiferaySaveBookmarkOperation`: sends title and URL to Liferay Portal using Liferay Portal bookmark services.
+
+1. On screenlet's *onUserAction* method, create and start these operations:
+	- Preview: creates and starts `GetSiteTitleOperation`. The closure specified should get the retrieved title and set it to the associated `BookmarkData` (using `screenletView` attribute). If the operation fails, show the error to the user.
+	- Save: get the URL and title from the `BookmarkData` and creates a `LiferaySaveBookmarkOperation` with these values configured. Start the operation and set the closure to show the success of failure to the user.
+
