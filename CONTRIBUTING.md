@@ -2,9 +2,9 @@
 
 Before contributing to Liferay Screens, make sure that you have done the following:
 
-1. Read the [Architecture Guide](https://github.com/liferay/liferay-screens/tree/master/ios/Library/architecture.md).
+1. Read the [Architecture Guide](https://github.com/liferay/liferay-screens/tree/master/ios/Documentation/architecture.md).
 
-2. Read the [Code Style Guide](https://github.com/liferay/liferay-screens/tree/master/ios/style_guide.md).
+2. Read the [Code Style Guide](https://github.com/liferay/liferay-screens/tree/master/ios/Documentation/style_guide.md).
 
 3. Sign up for [our issue tracker](https://issues.liferay.com/browse/LMW/?selectedTab=com.atlasn.jira.jira-projects-plugin:summary-panel).
 
