@@ -56,15 +56,13 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
 		result = nil
 
-		let serverResult = service.getDdlRecordWithDdlRecordId(recordId!,
+		let recordDictionary = service.getDdlRecordWithDdlRecordId(recordId!,
 				locale: NSLocale.currentLocaleString(),
 				error: &lastError)
 
 		if lastError == nil {
-			if serverResult is [String:AnyObject] {
-				let serverRecord = (serverResult as [String:AnyObject])
-
-				result = (serverRecord, self.recordId!)
+			if recordDictionary is [String:AnyObject] {
+				result = (recordDictionary as [String:AnyObject], self.recordId!)
 			}
 			else {
 				lastError = createError(cause: .InvalidServerResponse)

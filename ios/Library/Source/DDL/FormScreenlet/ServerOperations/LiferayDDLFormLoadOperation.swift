@@ -49,19 +49,19 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 
 		result = nil
 
-		let serverResult = service.getStructureWithStructureId(structureId!, error: &lastError)
+		let structureDataDictionary = service.getStructureWithStructureId(structureId!, error: &lastError)
 
 		if lastError == nil {
-			if let xsd = serverResult["xsd"]! as? String {
-				var serverUserId: Int64?
+			if let xsd = structureDataDictionary["xsd"]! as? String {
+				var userId: Int64?
 
-				if let userIdValue = serverResult["userId"]! as? Int {
-					serverUserId = Int64(userIdValue)
+				if let userIdValue = structureDataDictionary["userId"]! as? Int {
+					userId = Int64(userIdValue)
 				}
 
-				let serverRecord = DDLRecord(xsd: xsd, locale: NSLocale.currentLocale())
+				let record = DDLRecord(xsd: xsd, locale: NSLocale.currentLocale())
 
-				result = (serverRecord, serverUserId)
+				result = (record, userId)
 			}
 			else {
 				lastError = createError(cause: .InvalidServerResponse)
