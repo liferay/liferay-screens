@@ -10,15 +10,18 @@ This document explains the internal architecture of Liferay Screens for iOS. It 
 
 ## High Level Architecture
 
-Liferay Screens follows _a sort of_ [Model View Presenter architecture](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) in order to separate presentation code. However, it cannot be considered a canonical implementation because we don't have a real data model in the app itself. 
+Liferay Screens separates presentation code by following a sort of [Model-View-Presenter architecture](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter). However, it can't be considered a canonical MVP implementation because it doesn't have a real data model in the app itself. 
 
-We have the following high level components:
+Liferay Screens for iOS contains the following high level components:
 
 ![The high level components of Liferay Screens for iOS.](http://liferay.github.io/liferay-screens/ios/Library/svg/architecture-components.svg)
 
 - **Core**: This is the component that includes all the base classes needed to develop other components. It can be defined as a micro-framework that allows developers to write their own screenlets, themes, and server operation classes.
+
 - **Screenlets**: This is the library that contains all the available screenlets. Each screenlet is a Swift class that can be inserted in a `UIView`. Screenlets render the selected theme both in the runtime and Interface Builder. They also react to user interface events, starting server operations if necessary. Screenlets also define a set of `@IBInspectable` properties, which can be configured from Interface Builder.
+
 - **Server Operations**: This is a collection of `NSOperation` classes that interact with both remote and local data sources. Liferay has its own set of operations, Liferay Operations, that use the [Mobile SDK](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/mobile-sdk-to-call-services-liferay-portal-6-2-dev-guide-en). Given that all server operations use the [`NSOperation` framework](https://developer.apple.com/library/mac/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW1), they can be run concurrently. It's very easy to define priorities and dependencies between operations, so you can build your own graph of operations that can be resolved by the framework.
+
 - **Themes**: This is a set of `xib` files and accompanying `UIView` classes that present screenlets to the user.
 
 ## Core Layer
@@ -28,9 +31,13 @@ The core layer is the micro-framework that lets developers write their own compo
 ![The core layer of Liferay Screens for iOS.](http://liferay.github.io/liferay-screens/ios/Library/svg/architecture-core.svg)
  
 - **ServerOperation**: This is the base class for all operations started by screenlets. These operations retrieve data asynchronously. Despite the name `ServerOperation`, the data source can be local or remote. The screenlet classes instantiate and begin operations. They also receive the responses, which change the state of the view classes.
+
 - **BaseScreenlet**: This is the base class for all screenlet classes. The main task of a screenlet class is to receive user action events from the UI, begin server operations, and update any view data from the result. This class contains a set of [templated methods](http://www.oodesign.com/template-method-pattern.html) that are intended to be overwritten by children classes.
+
 - **BaseScreenletView**: This is the base class for the view classes of all screenlets. These children classes belong to the theme layer. The main task of the view classes is to render a specific UI using standard `xib` files and then update the UI when the data changes. This class contains a set of templated methods that are intended to be overwritten by children classes.
+
 - **SessionContext**: This is a singleton class that holds the session of the user that is logged in to the app. Apps can use an implicit login, which is invisible to the user, or a login that allows the user to manually create the session. Manual logins can be implemented with [`LoginScreenlet`](LoginScreenlet.md).
+
 - **LiferayServerContext**: This is a singleton class that holds some server configuration parameters. It's loaded from the `liferay-server-context.plist` file. Most screenlets use these parameters as default values.
 
 ## Screenlet Layer
@@ -61,12 +68,12 @@ The theme layer lets developers use more than one theme for any screenlet. Scree
 
 ![The theme layer of Liferay Screens for iOS](http://liferay.github.io/liferay-screens/ios/Library/svg/architecture-themes.svg)
 
-- **Default theme**: This is a mandatory theme that is supplied by Liferay. It's used by default when the screenlet's `themeName` isn't specified or is invalid. The _Default_ theme uses a neutral, flat white and blue design with standard UI components. For example, it uses standard text boxes for the user name and password in the `LoginScreenlet`. Right now, _Default_ theme is only prepared to be used in iPhone 5 resolution, using portrait orientation. In the near future, this theme will use Autolayout features in order to support different resolutions and orientations seamlessly.
+- **Default theme**: This is a mandatory theme that is supplied by Liferay. It's used by default when the screenlet's `themeName` isn't specified or is invalid. The Default theme uses a neutral, flat white and blue design with standard UI components. For example, it uses standard text boxes for the user name and password in the `LoginScreenlet`. Right now, the Default theme can only be used in the resolution of the iPhone 5, in portrait orientation. In the near future, this theme will use Autolayout features to seamlessly support different resolutions and orientations.
 
-- **Full**: This is a complete theme that can show a different set of attributes and components. Using the `LoginScreenlet` as an example, a _Full_ theme can be used to present different components for the user name and password fields. You could for instance show the password field and infer the user name from somewhere else. The _Default_ theme is a _full_ theme itself.
+- **Full**: This is a complete theme that can show a different set of attributes and components. Using the `LoginScreenlet` as an example, a Full theme can be used to present different components for the user name and password fields. For example, you can show the password field and then infer the user name from somewhere else. The Default theme is a Full theme itself.
 
-- **Child**: This theme inherits only the look and feel of the UI components from another theme. It doesn't include any code, just only a new `xib` file with different layout, colors, positions or any other visual change. Therefore, the UI components of the two themes must be the same. In the diagram, _Child_ inherits from _Default_ theme. As an example of implementing the _Child_ theme, you can change the position and size of the standard text boxes in `LoginScreenlet` by creating a theme inherited from _Default_ and then configuring the new `xib` file. Given _Default_ doesn't support iPad resolutions yet, this is the recommended option to create a theme that supports these resolutions.
+- **Child**: This theme inherits only the look and feel of the UI components from another theme. It doesn't include any code. It just contains a new `xib` file with a different layout, colors, positions, and any other visual changes. Therefore, the UI components of the two themes must be the same. In the diagram, Child inherits from the Default theme. As an example of implementing the Child theme, you can change the position and size of the standard text boxes in `LoginScreenlet` by creating a theme inherited from Default, and then configure the new `xib` file. Given that Default doesn't support iPad resolutions yet, this is the recommended way to create a theme that supports these resolutions.
 
-- **Extended**: This theme inherits from other parent theme, but providing an extended implementation also. If the diagram, the _Extended_ theme is extending the _Full_ theme, but provides a _view_ class for the screenlet (extending from the corresponding parent screenlet class).  If you check _[Flat7](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Themes/Flat7)_ theme, it's a good sample of an extended theme, in this case based on _Default_ theme.
+- **Extended**: This theme inherits from other parent theme, but provides an extended implementation. In the diagram, the Extended theme extends the Full theme, but provides a view class for the screenlet (extending from the corresponding parent screenlet class). The [Flat7](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Themes/Flat7) theme is a good sample of an Extended theme. In this case, it's based on the Default theme.
 
-For more details refer the [How to Create Your Own Theme Guide](theme_creation.md)
+For more details, see the guide [How to Create Your Own Theme](theme_creation.md).
