@@ -10,7 +10,9 @@ This document explains the internal architecture of Liferay Screens for iOS. It 
 
 ## High Level Architecture
 
-Liferay Screens for iOS is organized in the following high level components:
+Liferay Screens follows _a sort of_ [Model View Presenter architecture](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) in order to separate presentation code. However, it cannot be considered a canonical implementation because we don't have a real data model in the app itself. 
+
+We have the following high level components:
 
 ![The high level components of Liferay Screens for iOS.](http://liferay.github.io/liferay-screens/ios/Library/svg/architecture-components.svg)
 
@@ -50,52 +52,21 @@ The screenlet layer contains the screenlets available in Liferay Screens for iOS
 - **MyScreenletView_themeX**: This class belongs to one specific theme. In the diagram this theme is `ThemeX`. The class renders the UI of the screenlet using its related `xib` file. The view object and `xib` file communicate using standard mechanisms like `@IBOutlet` and `@IBAction`. When a user action occurs in the `xib` file, it's received by `BaseScreenletView` and then passed to the screenlet class using the `onUserAction()` method. To identify different events, the `restorationIdentifier` property of the component is passed to the `onUserAction()` method.
 
 - **MyScreenletView_themeX.xib**: This is the `xib` file with the components used to render the view. Note that the name of this class is very important. By convention, the `xib` file for a screenlet `FooScreenlet` and a theme `BarTheme` must be called `FooScreenlet_barTheme.xib`.
+
+For more details refer the [How to Create Your Own Screenlet Guide](screenlet_creation.md)
  
 ## Theme Layer
 
 The theme layer lets developers use more than one theme for any screenlet. Screenlets have a property called `themeName`, which is used to determine the theme to load. Depending on your requirements, a single theme can be used to implement a look and feel for a limited set of screenlets.
 
-![The theme layer of Liferay Screens for iOS.](http://liferay.github.io/liferay-screens/ios/Library/svg/architecture-themes.svg)
+![The theme layer of Liferay Screens for iOS](http://liferay.github.io/liferay-screens/ios/Library/svg/architecture-themes.svg)
 
-- **Default theme**: This is a mandatory theme that is supplied by Liferay. It's used by default when the screenlet's `themeName` isn't specified. The Default theme uses a neutral, flat white and blue design with standard UI components. For example, it uses standard text boxes for the user name and password in the `LoginScreenlet`.
-- **Simple**: This theme inherits only the look and feel of the UI components from another theme. In the diagram, Simple inherits from the Default theme. The Simple theme inherits and uses all attributes of its parent theme. Therefore, the UI components of the two themes must be the same. As an example of implementing the Simple theme, you can change the position and size of the standard text boxes in `LoginScreenlet` by creating a theme inherited from Default and then configuring the `xib` files.
-- **Full**: This is a complete theme that can present a different set of attributes and components. Using the `LoginScreenlet` again as an example, a Full theme can be used to present different components for the user name and password fields. You could even just show the password field and infer the user name from somewhere else.
+- **Default theme**: This is a mandatory theme that is supplied by Liferay. It's used by default when the screenlet's `themeName` isn't specified or is invalid. The _Default_ theme uses a neutral, flat white and blue design with standard UI components. For example, it uses standard text boxes for the user name and password in the `LoginScreenlet`. Right now, _Default_ theme is only prepared to be used in iPhone 5 resolution, using portrait orientation. In the near future, this theme will use Autolayout features in order to support different resolutions and orientations seamlessly.
 
-## Creating Your Own Screenlet
-<!--
-This section should probably be broken out into its own document, so that it's easier for users to find.
--Nick
--->
+- **Full**: This is a complete theme that can show a different set of attributes and components. Using the `LoginScreenlet` as an example, a _Full_ theme can be used to present different components for the user name and password fields. You could for instance show the password field and infer the user name from somewhere else. The _Default_ theme is a _full_ theme itself.
 
-Liferay Screens for iOS also lets you develop your own screenlets. This lets you customize Screens to your liking. As an example, imagine that you want to create a screenlet for bookmarks with the following features:
+- **Child**: This theme inherits only the look and feel of the UI components from another theme. It doesn't include any code, just only a new `xib` file with different layout, colors, positions or any other visual change. Therefore, the UI components of the two themes must be the same. In the diagram, _Child_ inherits from _Default_ theme. As an example of implementing the _Child_ theme, you can change the position and size of the standard text boxes in `LoginScreenlet` by creating a theme inherited from _Default_ and then configuring the new `xib` file. Given _Default_ doesn't support iPad resolutions yet, this is the recommended option to create a theme that supports these resolutions.
 
-- Allows entry of a URL in a text box.
-- Checks if the URL is valid and extract its title value. 
-- Shows a preview image and title for user confirmation.
-- Allows the user to modify the title.
-- Upon user confirmation, the URL and title is sent back to the Liferay instance's Bookmark services to be saved.
+- **Extended**: This theme inherits from other parent theme, but providing an extended implementation also. If the diagram, the _Extended_ theme is extending the _Full_ theme, but provides a _view_ class for the screenlet (extending from the corresponding parent screenlet class).  If you check _[Flat7](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Themes/Flat7)_ theme, it's a good sample of an extended theme, in this case based on _Default_ theme.
 
-Now that you know what this screenlet needs to do, it's time to implement it. The following steps walk you through this process:
-
-1. Create a new `xib` called `BookmarkView_default.xib`. You'll build your UI here using Interface Builder. Put in two text box fields (`UITextField`) for the URL and title. Also, add a couple of buttons to let the user retrieve the title and save the bookmark. Assign a value for the `restorationIdentifier` property in each button to differentiate between the user actions.
-
-2. Create a new interface (protocol) called `BookmarkData`. The associated attributes can be `url` and `title`.
-
-3. Create a new class called `BookmarkView_default` that extends `BaseScreenletView` and implements `BookmarkData`. It must wire all UI components and events from the `xib` using the standard `@IBOutlet` and `@IBAction`. Getters and setters from `BookmarkData` should respectively get and set the data from UI components. Also be sure to write any animations or front end code here.
-
-4. Set `BookmarkView_default` as the Custom Class of your `BookmarkView_default.xib` file.
-
-5. Create a class called `BookmarkScreenlet` that extends `BaseScreenlet`.
-
-6. Override the `onUserAction` method so that it receives both actions. Use the `actionName` parameter to differentiate between the actions:
-    - Preview
-    - Save
-
-7. Write two operation classes that extend `ServerOperation`. Override the `doRun` method to perform the operation. Also override the `validateData` method to check if the data stored in `BookmarkData` is valid. These two operation classes are described here:
-    - `GetSiteTitleOperation`: Retrieves content from start of the HTML to the `<title>` tag. This results in the title being extracted from the HTML.
-    - `LiferaySaveBookmarkOperation`: Sends URL and title to the Liferay instance's Bookmark services.
-
-8. In the screenlet's `onUserAction` method, create and start these operations:
-    - Preview: Create and start `GetSiteTitleOperation`. The closure specified should get the retrieved title and set it to the associated `BookmarkData` using the `screenletView`. If the operation fails, show the error to the user.
-    - Save: Get the URL and title from `BookmarkData` and create a `LiferaySaveBookmarkOperation` object with these values. Start the operation and set the closure to show the success or failure to the user.
-
+For more details refer the [How to Create Your Own Theme Guide](theme_creation.md)
