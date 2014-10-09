@@ -12,7 +12,7 @@ In Liferay Screens, a screenlet is a visual component that is connected to Lifer
 
 Each screenlet is tied to one or more services exposed by [Liferay's remote services](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/accessing-services-remotely-liferay-portal-6-2-dev-guide-05-en). The screenlet then renders information using a theme. Themes can be contributed by third parties and are fully pluggable, so you're not limited to one specific look and feel. The Screens library provides a standard theme called *Default*  and another sample theme called *Flat7*.
 
-![The SignUp screenlet using Default and Flat7 themes](Documentation/Images/signup.png)
+![The SignUp screenlet using Default and Flat7 themes](Documentation/Images/screens-phone2.png)
 
 Please note that themes provided in early versions support only vertical screen orientation and the iPhone 5, 5s, and 5c screen size. Support for the full range  of screen orientations and sizes will be added in the future.
 
@@ -38,9 +38,9 @@ This implementation of Liferay Screens uses the Swift programming language. Howe
 
 ## Preparing Your Project for Liferay Screens
 
-There are a few things you need to do with your XCode project to prepare it for Liferay Screens. As soon as CocoaPods supports Swift libraries, you can prepare your project by simply adding one new line to your `Podfile`. Until then, you need to manually install Liferay Screens in your project.
+Liferay Screens is released as plain source code library. As soon as CocoaPods supports Swift libraries ([[1](https://github.com/CocoaPods/CocoaPods/pull/2222), [2](https://github.com/CocoaPods/CocoaPods/issues/2272)]), you will be able to setup your project by simply adding one new line to your `Podfile`. 
 
-First, you need to download the [Liferay Screens source code](https://github.com/liferay/liferay-screens/archive/master.zip) and add it to your project. The steps for doing this are shown here:
+Meanwhile, there are a few things you need to manually setup in your app to prepare it for Liferay Screens. First, you need to download the [Liferay Screens source code](https://github.com/liferay/liferay-screens/archive/master.zip) and add it to your project. The steps for doing this are shown here:
 
 1. Create a folder at the root of the project called `Liferay-Screens`.
 2. Copy the folders `Library/Source` and `Library/Themes` from the downloaded 
@@ -128,8 +128,8 @@ With themes, you can control the look and feel of any screenlet that you decide 
 
 The themes currently released with Liferay Screens are:
 
-  - **Default**: The standard theme that is used when you insert any screenlet in your screen.
-  - **Flat7**: A sample theme intended to demostrate how to develop your own theme from scratch.
+  - **Default**: The standard theme that is used when you insert any screenlet in your screen. It can be used as the parent theme for any of your custom themes (refer to the [architecture documentation](Documentation/architecture.md#theme-layer) for more details on this).
+  - **Flat7**: A sample theme intended to demostrate how to develop your own full theme from scratch. (refer to [themes documentation](Documentation/themes.md) if you want to create your own theme).
 
 ## Contributing New Screenlets and Themes
 
