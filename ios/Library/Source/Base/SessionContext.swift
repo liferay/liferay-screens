@@ -45,7 +45,7 @@ public struct SessionContext {
 			-> LRSession {
 
 		currentSession = LRSession(
-				server:LiferayServerContext.instance.server,
+				server:LiferayServerContext.server,
 				username:username,
 				password:password)
 

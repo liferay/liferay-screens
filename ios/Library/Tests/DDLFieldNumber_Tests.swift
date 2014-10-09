@@ -146,7 +146,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual(NSInteger(1), numberField.currentValue as NSInteger)
 	}
 
-	func test_CurrentStringValue_ShouldBeValid_WhenNumberIsInteger() {
+	func test_currentValueAsString_ShouldBeValid_WhenNumberIsInteger() {
 		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"integer\" " +
@@ -170,10 +170,10 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 		numberField.currentValue = 99
 
-		XCTAssertEqual("99", numberField.currentStringValue!)
+		XCTAssertEqual("99", numberField.currentValueAsString!)
 	}
 
-	func test_CurrentStringValue_ShouldBeValid_WhenNumberIsDecimal() {
+	func test_currentValueAsString_ShouldBeValid_WhenNumberIsDecimal() {
 		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"double\" " +
@@ -197,10 +197,10 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 		numberField.currentValue = 16.0599
 
-		XCTAssertEqual("16.06", numberField.currentStringValue!)
+		XCTAssertEqual("16.06", numberField.currentValueAsString!)
 	}
 
-	func test_CurrentStringValue_ShouldBeValid_WhenNumberIsDecimalAndContentIsInteger() {
+	func test_currentValueAsString_ShouldBeValid_WhenNumberIsDecimalAndContentIsInteger() {
 		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"double\" " +
@@ -224,10 +224,10 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 		numberField.currentValue = 16
 
-		XCTAssertEqual("16.00", numberField.currentStringValue!)
+		XCTAssertEqual("16.00", numberField.currentValueAsString!)
 	}
 
-	func test_CurrentStringValue_ShouldBeChanged_WhenNumberIsInteger() {
+	func test_currentValueAsString_ShouldBeChanged_WhenNumberIsInteger() {
 		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"integer\" " +
@@ -249,14 +249,14 @@ class DDLFieldNumber_Tests: XCTestCase {
 		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
-		numberField.currentStringValue = "99"
+		numberField.currentValueAsString = "99"
 
-		XCTAssertEqual("99", numberField.currentStringValue!)
+		XCTAssertEqual("99", numberField.currentValueAsString!)
 		XCTAssertTrue(numberField.currentValue is NSInteger)
 		XCTAssertEqual(NSInteger(99), numberField.currentValue as NSInteger)
 	}
 
-	func test_CurrentStringValue_ShouldBeChanged_WhenNumberIsIntegerAndValueIsDecimal() {
+	func test_currentValueAsString_ShouldBeChanged_WhenNumberIsIntegerAndValueIsDecimal() {
 		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"integer\" " +
@@ -278,14 +278,14 @@ class DDLFieldNumber_Tests: XCTestCase {
 		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
-		numberField.currentStringValue = "99.88"
+		numberField.currentValueAsString = "99.88"
 
-		XCTAssertEqual("100", numberField.currentStringValue!)
+		XCTAssertEqual("100", numberField.currentValueAsString!)
 		XCTAssertTrue(numberField.currentValue is NSInteger)
 		XCTAssertEqual(NSInteger(100), numberField.currentValue as NSInteger)
 	}
 
-	func test_CurrentStringValue_ShouldBeChanged_WhenNumberIsDecimal() {
+	func test_currentValueAsString_ShouldBeChanged_WhenNumberIsDecimal() {
 		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"double\" " +
@@ -307,9 +307,9 @@ class DDLFieldNumber_Tests: XCTestCase {
 		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
-		numberField.currentStringValue = "99.98"
+		numberField.currentValueAsString = "99.98"
 
-		XCTAssertEqual("99.98", numberField.currentStringValue!)
+		XCTAssertEqual("99.98", numberField.currentValueAsString!)
 		XCTAssertTrue(numberField.currentValue is NSDecimalNumber)
 		XCTAssertEqualWithAccuracy(99.98,
 			(numberField.currentValue as NSDecimalNumber).floatValue, 0.001)

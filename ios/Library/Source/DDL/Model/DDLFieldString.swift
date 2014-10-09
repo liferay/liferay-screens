@@ -19,8 +19,8 @@ public class DDLFieldString : DDLField {
 	override internal func doValidate() -> Bool {
 		var result = super.doValidate()
 
-		if result && currentStringValue != nil && required {
-			let trimmedString = currentStringValue?.stringByTrimmingCharactersInSet(
+		if result && currentValueAsString != nil && required {
+			let trimmedString = currentValueAsString?.stringByTrimmingCharactersInSet(
 					NSCharacterSet.whitespaceCharacterSet())
 
 			result = (trimmedString != "")

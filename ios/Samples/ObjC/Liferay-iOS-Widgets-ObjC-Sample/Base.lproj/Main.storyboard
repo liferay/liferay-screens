@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VOa-h8-dXB" customClass="LoginWidget" customModule="Liferay_iOS_Widgets_ObjC_Sample" customModuleProvider="target">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VOa-h8-dXB" customClass="LoginScreenlet" customModule="Liferay_iOS_Screenlets_ObjC_Sample" customModuleProvider="target">
                                 <rect key="frame" x="25" y="20" width="263" height="393"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -24,7 +24,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="widget" destination="VOa-h8-dXB" id="X9V-9E-m0p"/>
+                        <outlet property="screenlet" destination="VOa-h8-dXB" id="X9V-9E-m0p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

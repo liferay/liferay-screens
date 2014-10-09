@@ -18,7 +18,7 @@ import Foundation
 
 	public var currentHeight:CGFloat = 0
 
-	public var validatedClosure: (Bool -> Void)?
+	public var onPostValidation: (Bool -> Void)?
 	public var lastValidationResult:Bool?
 
 	public var currentValue:AnyObject? {
@@ -27,7 +27,7 @@ import Foundation
 		}
 	}
 
-	public var currentStringValue:String? {
+	public var currentValueAsString:String? {
 		get {
 			return convert(fromCurrentValue: currentValue)
 		}
@@ -84,7 +84,7 @@ import Foundation
 			valid = doValidate()
 		}
 
-		validatedClosure?(valid)
+		onPostValidation?(valid)
 
 		lastValidationResult = valid
 

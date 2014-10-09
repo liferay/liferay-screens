@@ -23,12 +23,12 @@ public class DDLRecord: NSObject {
 
 	public var attributes: [String:AnyObject] = [:]
 
-	public var recordId:Int? {
+	public var recordId:Int64? {
 		get {
-			return (attributes["recordId"] ?? nil) as? Int
+			return attributes["recordId"]?.longLongValue
 		}
 		set {
-			attributes["recordId"] = newValue
+			attributes["recordId"] = (newValue == nil) ? nil : Int(newValue!)
 		}
 	}
 
@@ -82,7 +82,7 @@ public class DDLRecord: NSObject {
 			let fieldValue: AnyObject? = (values[field.name] ?? nil)
 			if fieldValue != nil {
 				if fieldValue is String {
-					field.currentStringValue = fieldValue as? String
+					field.currentValueAsString = fieldValue as? String
 				}
 				else {
 					field.currentValue = fieldValue

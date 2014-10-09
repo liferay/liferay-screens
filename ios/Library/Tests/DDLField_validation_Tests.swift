@@ -18,43 +18,41 @@ class DDLField_Validation_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
-	func test_Validate_ShoulTriggerValidatedClosure_WhenValidationFails() {
+	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationFails() {
 		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
 		let booleanField = fields![0] as DDLFieldBoolean
 
-		XCTAssertFalse(booleanField.validate())
+		let expectation = expectationWithDescription("OnPostValidation must be called")
 
-		var closureCalled = false
-
-		booleanField.validatedClosure = {isValid in
-			XCTAssertFalse(isValid)
-			closureCalled = true
+		booleanField.onPostValidation = {
+			XCTAssertFalse($0)
+			expectation.fulfill()
 		}
 
-		XCTAssertFalse(closureCalled)
+		XCTAssertFalse(booleanField.validate())
+		waitForExpectationsWithTimeout(0, handler: nil)
 	}
 
-	func test_Validate_ShoulTriggerValidatedClosure_WhenValidationSucceeds() {
+	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationSucceeds() {
 		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
 		let booleanField = fields![0] as DDLFieldBoolean
 
 		booleanField.currentValue = true
 
-		XCTAssertTrue(booleanField.validate())
+		let expectation = expectationWithDescription("OnPostValidation must be called")
 
-		var closureCalled = false
-
-		booleanField.validatedClosure = {isValid in
-			XCTAssertTrue(isValid)
-			closureCalled = true
+		booleanField.onPostValidation = {
+			XCTAssertTrue($0)
+			expectation.fulfill()
 		}
 
-		XCTAssertFalse(closureCalled)
+		XCTAssertTrue(booleanField.validate())
+		waitForExpectationsWithTimeout(0, handler: nil)
 	}
 
-	func test_ValidateOnbooleanField_ShouldFail_WhenRequiredValueIsNil() {
+	func test_ValidateOnBooleanField_ShouldFail_WhenRequiredValueIsNil() {
 		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
 		let booleanField = fields![0] as DDLFieldBoolean

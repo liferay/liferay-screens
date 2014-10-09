@@ -1,3 +1,5 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
 pod 'MBProgressHUD', :git => 'https://github.com/jmnavarro/MBProgressHUD', :branch => 'cancel-delayed-hide'
 pod 'SMXMLDocument'
 pod 'UICKeyChainStore'

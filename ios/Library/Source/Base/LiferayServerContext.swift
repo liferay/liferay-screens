@@ -14,31 +14,37 @@
 import Foundation
 
 
-public class LiferayServerContext {
+public struct LiferayServerContext {
 
-	public var server = "http://localhost:8080"
-	public var companyId = 10154
-	public var groupId = 10181
-
-	//MARK: Singleton
-
-	class var instance: LiferayServerContext {
-		struct Singleton {
-			static var instance: LiferayServerContext? = nil
-			static var onceToken: dispatch_once_t = 0
-		}
-
-		dispatch_once(&Singleton.onceToken) {
-			Singleton.instance = self()
-		}
-
-		return Singleton.instance!
+	public static var server: String {
+		loadContextFile()
+		return serverProperties!["server"] as String
 	}
 
-	public required init() {
+	public static var companyId: Int64 {
+		loadContextFile()
+		return (serverProperties!["companyId"] as NSNumber).longLongValue
+	}
+
+	public static var groupId: Int64 {
+		loadContextFile()
+		return (serverProperties!["groupId"] as NSNumber).longLongValue
+	}
+
+	private static var serverProperties: NSDictionary?
+
+
+	//MARK: Public methods
+
+	private static func loadContextFile() {
+		if serverProperties != nil {
+			return
+		}
+
 		if let propertiesPath =
 				NSBundle.mainBundle().pathForResource("liferay-server-context", ofType:"plist") {
-			loadContextFile(propertiesPath)
+
+			serverProperties = NSDictionary(contentsOfFile: propertiesPath)
 		}
 		else {
 			println("WARNING: liferay-server-context.plist file is not found. Falling back to template " +
@@ -46,25 +52,16 @@ public class LiferayServerContext {
 
 			if let templatePath = NSBundle.mainBundle().pathForResource("liferay-server-context-sample",
 					ofType:"plist") {
-				loadContextFile(templatePath)
+
+				serverProperties = NSDictionary(contentsOfFile: templatePath)
 			}
 			else {
 				println("WARNING: liferay-server-context-sample.plist file is not found. " +
-					"Using default values which will work in a default Liferay bundle installed " +
-					"in localhost")
+					"Using default values which will work in a default Liferay bundle running " +
+					"on localhost:8080")
 			}
 		}
-	}
 
-
-	//MARK: Public methods
-
-	public func loadContextFile(propertiesPath:String) {
-		let properties = NSDictionary(contentsOfFile: propertiesPath)
-
-		server = properties["server"] as String;
-		companyId = properties["companyId"] as Int
-		groupId = properties["groupId"] as Int
 	}
 
 }

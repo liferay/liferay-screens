@@ -15,4 +15,4 @@
 "theme-flat7-forgotpassword-title"="Nueva contraseña";
 "theme-flat7-forgotpassword-subtitle"="Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nDonec auctor neque sed pretium luctus.";
 "theme-flat7-forgotpassword-email"="Dirección de correo";
-"theme-flat7-forgotpassword-login"="Enviar";
+"theme-flat7-forgotpassword-request"="Enviar";
