@@ -110,7 +110,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 			}
 			else {
 				lastError = createError(cause: .InvalidServerResponse)
-				recordId = nil
+				result = nil
 			}
 		}
 	}
