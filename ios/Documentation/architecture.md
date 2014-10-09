@@ -38,13 +38,17 @@ The screenlet layer contains the screenlets available in Liferay Screens for iOS
 ![The screenlet layer in relation to the other components of Liferay Screens for iOS.](http://liferay.github.io/liferay-screens/ios/Library/svg/architecture-screenlets.svg)
 
 - **MyScreenletData**: This is an interface that defines the attributes of the screenlet. It typically includes the input values for the `LoginScreenlet`, such as the user name and password. The operation can read and validate these values to configure the operation. The screenlet can change these values based on the operation's result and any default values.
+
 - **MyScreenlet**: This is the class that represents the screenlet component. It includes:
 	- A set of inspectable parameters that allow configuration of its behavior. Optionally, the initial state can be set in the screenlet's data.
 	- A reference to its view, depending on the selected theme. To meet the screenlet's requirements, all themes must implement the `Data` interface.
 	- Zero or more methods that create and start server operations. These can be public methods like `loadMyData()`, which is intended to be called by a developer, or UI events received on `onUserAction()`.
 	- A [delegate object](https://developer.apple.com/library/ios/documentation/general/conceptual/DevPedia-CocoaCore/Delegation.html) to be called when events occur. this is optional, but recommended.
+
 - **MyScreenletOperation**: This is related to the screenlet, but is located in the server operations layer and has one or more server operations. If the server operation is a back-end call, then there's typically just a single request. Each server operation is responsible for retrieving a set of related values. The results are stored in a `result` object that can be read by the screenlet when it's notified.
+
 - **MyScreenletView_themeX**: This class belongs to one specific theme. In the diagram this theme is `ThemeX`. The class renders the UI of the screenlet using its related `xib` file. The view object and `xib` file communicate using standard mechanisms like `@IBOutlet` and `@IBAction`. When a user action occurs in the `xib` file, it's received by `BaseScreenletView` and then passed to the screenlet class using the `onUserAction()` method. To identify different events, the `restorationIdentifier` property of the component is passed to the `onUserAction()` method.
+
 - **MyScreenletView_themeX.xib**: This is the `xib` file with the components used to render the view. Note that the name of this class is very important. By convention, the `xib` file for a screenlet `FooScreenlet` and a theme `BarTheme` must be called `FooScreenlet_barTheme.xib`.
  
 ## Theme Layer
@@ -84,17 +88,14 @@ Now that you know what this screenlet needs to do, it's time to implement it. Th
 5. Create a class called `BookmarkScreenlet` that extends `BaseScreenlet`.
 
 6. Override the `onUserAction` method so that it receives both actions. Use the `actionName` parameter to differentiate between the actions:
-
     - Preview
     - Save
 
 7. Write two operation classes that extend `ServerOperation`. Override the `doRun` method to perform the operation. Also override the `validateData` method to check if the data stored in `BookmarkData` is valid. These two operation classes are described here:
-
     - `GetSiteTitleOperation`: Retrieves content from start of the HTML to the `<title>` tag. This results in the title being extracted from the HTML.
     - `LiferaySaveBookmarkOperation`: Sends URL and title to the Liferay instance's Bookmark services.
 
 8. In the screenlet's `onUserAction` method, create and start these operations:
-
     - Preview: Create and start `GetSiteTitleOperation`. The closure specified should get the retrieved title and set it to the associated `BookmarkData` using the `screenletView`. If the operation fails, show the error to the user.
     - Save: Get the URL and title from `BookmarkData` and create a `LiferaySaveBookmarkOperation` object with these values. Start the operation and set the closure to show the success or failure to the user.
 
