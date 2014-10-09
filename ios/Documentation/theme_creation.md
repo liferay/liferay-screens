@@ -16,7 +16,7 @@ The first step in creating a new theme is deciding what kind of theme to create:
 - **Child theme**
 - **Extended theme**
 
-For more details on these theme types, refer the [themes secion in the Architecture Guide](architecture.md#theme-layer).
+For more details on these theme types, refer the [themes section in the Architecture Guide](architecture.md#theme-layer).
 
 The following steps illustrate theme creation by creating a new theme for the `LoginScreenlet`.
 
@@ -24,37 +24,40 @@ The following steps illustrate theme creation by creating a new theme for the `L
 
 A Full theme can present a completely different layout, using different components and input data. The example here presents just a single `UITextField` for the user name. The [UDID](http://www.idownloadblog.com/2010/12/21/iphone-udid/) is used for the password. 
 
-1. Create a new `xib` called `LoginScreenlet_full.xib`. You'll build your new UI here as usual with Interface Builder. A good way to start is to duplicate `LoginScreenlet_default.xib` and use it as a template. Insert the text field for the user name and a _Sign In_ button with same `restorationIdentifier` as default's theme button. 
-	![New xib for full theme](Images/xcode-full-theme.png)
-1. Create a new _view_ class called `LoginScreenletView_full`. As previously, you can duplicate `LoginScreenletView_default` class and use it as a template. In this class, add all `@IBOutlet` properties or `@IBAction` methods you need to bind your UI components. This class has to inherit `BaseScreenletView` class and conform the `LoginScreenletData` protocol, implementing corresponding the getters and setters. In our case, the `password` getter will return the UDID.
+1. Create a new `xib` called `LoginScreenlet_full.xib`. You'll build your new UI here as usual with Interface Builder. A good way to start is to duplicate `LoginScreenlet_default.xib` and use it as a template. Insert the text field for the user name and add a *Sign In* button with the same `restorationIdentifier` as the Default theme's button.
 
-1. Set `LoginScreenletView_full ` as the Custom Class of your `LoginScreenlet_full.xib ` file and bind your `@IBOutlet` and `@IBAction` to your class.
+    ![New xib for full theme](Images/xcode-full-theme.png)
 
-1. Install the new theme, insert the `LoginScreenlet` in any of your view controllers, and use `full` value as `themeName` screenlet's property. Your new look and feel will be shown in Interface Builder.
+2. Create a new view class called `LoginScreenletView_full`. As before, you can duplicate the `LoginScreenletView_default` class and use it as a template. In this class, add all `@IBOutlet` properties or `@IBAction` methods you need to bind your UI components. This class must inherit the `BaseScreenletView` class and conform to the `LoginScreenletData` protocol, implementing the corresponding getters and setters. In this case, the `password` getter returns the UDID.
 
+3. Set `LoginScreenletView_full` as the custom class of your `LoginScreenlet_full.xib` file and bind your `@IBOutlet` and `@IBAction` to your class.
 
-###Child theme
+4. Install the new theme, insert the `LoginScreenlet` in any of your view controllers, and use the `full` value as the `themeName` screenlet's property. Your new look and feel is shown in Interface Builder.
 
-Our theme will present the same components as _Default_ theme, but adjusted to a larger resolution (iPad, iPhone 6 or whatever).
+## Child Theme
 
-1. Create a new `xib` called `LoginScreenlet_large.xib`. You'll build your new UI here as usual with Interface Builder. A good start is to duplicate `LoginScreenlet_default.xib` and use it as a template.
-	![New xib for child theme](Images/xcode-child-theme.png)
-1. Change the position, size or whatever property of the parent components. Don't change neither Custom class, outlet connection nor `restorationIdentifier`.
+The example theme here presents the same components as the Default theme, but is adjusted to a larger resolution. This makes it appropriate for iOS devices such as the iPad, iPhone 6, and iPhone 6 Plus.
 
-1. Install the new theme, insert the `LoginScreenlet` in any of your view controllers, and use `large` value as `themeName` screenlet's property. Your new look and feel will be shown in Interface Builder.
+1. Create a new `xib` called `LoginScreenlet_large.xib`. You'll build your new UI here as usual with Interface Builder. A good place to start is to duplicate `LoginScreenlet_default.xib` and use it as a template for your new `xib`.
 
+    ![New xib for child theme](Images/xcode-child-theme.png)
 
-###Extended theme
+2. Change the position, size, or other properties of the parent components. However, be sure not to change the custom class, outlet connection, or `restorationIdentifier`.
 
-Our theme will present the same components as _Default_ theme, but setting new translated strings and with few new animations. We also introduce a new UI component to configure whether or not the password will be shown when typed. 
+3. Install your new theme, insert the `LoginScreenlet` in any of your view controllers, and use `large` as the value of the screenlet's `themeName` property. Your new look and feel is shown in Interface Builder.
 
-Refer to _[Flat7 theme source code](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Themes/Flat7)_ for an actual sample of this kind of themes.
+## Extended Theme
 
+The example theme here presents the same components as the Default theme, but sets new translated strings and contains a few new animations. A new UI component is also introduces to configure whether or not the password is shown when typed by the user.
 
-1. Create a new `xib` called `LoginScreenlet_ext.xib`. You'll build your new UI here as usual with Interface Builder. A good start is to duplicate `LoginScreenlet_default.xib` and use it as a template. Add new `UISwitch` component to configure password presentation.
-	![New xib for extended theme](Images/xcode-ext-theme.png)
-1. Create a new _view_ class called `LoginScreenletView_ext` using `LoginScreenletView_default` as parent class. In order to set new translations, you can override `onSetTranslations` method. For other customizations, consider override other parent's methods or add new delegates to the class. Add new `@IBOutlet` or `@IBAction` for the new `IBSwitch` component.
+For an example of this kind of theme, refer to the [Flat7 theme source code](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Themes/Flat7).
 
-1. Set `LoginScreenletView_full ` as the Custom Class of your `LoginScreenlet_ext.xib ` file and bind your new `@IBOutlet` and `@IBAction` to your class.
+1. Create a new `xib` called `LoginScreenlet_ext.xib`. You'll build your new UI here as usual with Interface Builder. A good place to start is to duplicate `LoginScreenlet_default.xib` and use it as a template for your new `xib`. Add a new `UISwitch` component to configure the password presentation.
 
-1. Install the new theme, insert the `LoginScreenlet` in any of your view controllers, and use `ext` value as `themeName` screenlet's property. Your new look and feel will be shown in Interface Builder.
+    ![New xib for extended theme](Images/xcode-ext-theme.png)
+
+2. Create a new view class called `LoginScreenletView_ext` using `LoginScreenletView_default` as the parent class. To set new translations, you can override the `onSetTranslations` method. For other customizations, consider overriding other methods of the parent class, or add new delegates to the class. Add new `@IBOutlet` or `@IBAction` for the new `IBSwitch` component.
+
+3. Set `LoginScreenletView_full` as the custom class of your `LoginScreenlet_ext.xib ` file and bind your new `@IBOutlet` and `@IBAction` to your class.
+
+4. Install the new theme, insert `LoginScreenlet` in any of your view controllers, and use `ext` as the value for the screenlet's `themeName` property. Your new look and feel is shown in Interface Builder.

@@ -14,7 +14,7 @@ Each screenlet is tied to one or more services exposed by [Liferay's remote serv
 
 ![The SignUp screenlet using Default and Flat7 themes](Documentation/Images/screens-phone2.png)
 
-Please note that themes provided in early versions support only vertical screen orientation and the iPhone 5, 5s, and 5c screen size. Support for the full range  of screen orientations and sizes will be added in the future.
+Please note that themes provided in early versions support only vertical screen orientation and the iPhone 5, 5s, and 5c screen size. Support for the full range of screen orientations and sizes will be added in the future.
 
 To learn more detail about the architecture of Screens, please see the [library documentation page](https://github.com/liferay/liferay-screens/tree/master/ios/Library/README.md).
 
@@ -38,7 +38,7 @@ This implementation of Liferay Screens uses the Swift programming language. Howe
 
 ## Preparing Your Project for Liferay Screens
 
-Liferay Screens is released as plain source code library. As soon as CocoaPods supports Swift libraries ([[1](https://github.com/CocoaPods/CocoaPods/pull/2222), [2](https://github.com/CocoaPods/CocoaPods/issues/2272)]), you will be able to setup your project by simply adding one new line to your `Podfile`. 
+Liferay Screens is released as a plain source code library. As soon as CocoaPods supports Swift libraries ([1](https://github.com/CocoaPods/CocoaPods/pull/2222), [2](https://github.com/CocoaPods/CocoaPods/issues/2272)), you'll be able to set up your project by simply adding a single line to your `Podfile`. 
 
 Meanwhile, there are a few things you need to manually setup in your app to prepare it for Liferay Screens. First, you need to download the [Liferay Screens source code](https://github.com/liferay/liferay-screens/archive/master.zip) and add it to your project. The steps for doing this are shown here:
 
@@ -102,7 +102,7 @@ Super! Now you know how to call screenlets from the Objective-C code in your pro
     
 ## Listing of Available Screenlets
 
-Screenlets are grouped in modules based on internal dependencies. Each module is isolated, so you can use only the modules that are neccesary for your project. However, it's important to note that you can't use a screenlet from a single module without using the entire module. The screenlets here are listed according to the module that they belong to.
+Screenlets are grouped in modules based on internal dependencies. Each module is isolated, so you can use only the modules that are necessary for your project. However, it's important to note that you can't use a screenlet from a single module without using the entire module. The screenlets here are listed according to the module that they belong to.
 
 - **Auth**: Module for user authentication. It uses the [user management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/management-liferay-portal-6-2-user-guide-16-en) features of Liferay Portal. It includes the following screenlets:
 
@@ -117,7 +117,7 @@ Screenlets are grouped in modules based on internal dependencies. Each module is
 
 Also, some screenlets can be used individually without the need to import an entire module. These include:
 
-- [`AssetListScreenlet`](Documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). This includes web content, blog entries, documents and more.
+- [`AssetListScreenlet`](Documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). This includes web content, blog entries, documents, and more.
 - [`WebContentDisplayScreenlet`](Documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This screenlet uses the features avaiable in [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en).
 
 Liferay Screens also contains *themes* that you can use to style screenlets. A list of these themes is presented next.
@@ -128,13 +128,10 @@ With themes, you can control the look and feel of any screenlet that you decide 
 
 The themes currently released with Liferay Screens are:
 
-  - **Default**: The standard theme that is used when you insert any screenlet in your screen. It can be used as the parent theme for any of your custom themes (refer to the [architecture documentation](Documentation/architecture.md#theme-layer) for more details on this).
-  - **Flat7**: A sample theme intended to demostrate how to develop your own full theme from scratch. (refer to [themes documentation](Documentation/themes.md) if you want to create your own theme).
+- **Default**: The standard theme that is used when you insert any screenlet on your screen. It can be used as the parent theme for any of your custom themes (refer to the [Architecture Guide](Documentation/architecture.md#theme-layer) for more details on this).
+- **Flat7**: A sample theme intended to demonstrate how to develop your own full theme from scratch. For information on creating your own theme, refer to the [Theme Guide](Documentation/themes.md).
 
 ## Contributing New Screenlets and Themes
 
 If you have a piece of code that can be reused in other apps, you may want to contribute it to the Liferay Screens project. Doing so is very straightforward: just follow the instructions in the [Contributors Guide](https://github.com/liferay/liferay-screens/tree/master/CONTRIBUTING.md).
-<!-- 
-Some kind of conclusion or related links/next steps is needed.
-- Nick
--->
+
