@@ -49,7 +49,11 @@ Meanwhile, there are a few things you need to manually setup in your app to prep
 
 ![This XCode project has Liferay Screens.](Documentation/Images/project-setup.png)
 
-Next, set up [CocoaPods](http://cocoapods.org) for your project if you haven't done so already. Add the dependencies to your `Podfile` and then execute `pod install`. Use this [Podfile](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile) as a template.    
+Next, set up [CocoaPods](http://cocoapods.org) for your project if you haven't done so already. Add the dependencies to your `Podfile` and then execute `pod install`. Use this [Podfile](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile) as a template.
+Consider using [CocoaPods for Xcode plugin](https://github.com/kattrali/cocoapods-xcode-plugin) (install it through [Alcatraz package manager](http://alcatraz.io/)) to perform these task from Xcode.
+
+![Cocoapods for Xcode plugin](Documentation/Images/xcode-cocoapods.png)
+
 
 In your project's build settings, you also need to edit the *Objective-C Bridging* Header to include `${SRCROOT}/Liferay-Screens/Source/liferay-screens-bridge.h`. This is shown in the following screenshot:
 
