@@ -25,7 +25,7 @@ import UIKit
 @IBDesignable public class WebContentDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
-	@IBInspectable public var articleId = ""
+	@IBInspectable public var articleId: String = ""
 
 	@IBOutlet public var delegate: WebContentDisplayScreenletDelegate?
 

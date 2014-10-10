@@ -29,9 +29,9 @@ import UIKit
 	@IBInspectable public var anonymousApiUserName: String? = "test@liferay.com"
 	@IBInspectable public var anonymousApiPassword: String? = "test"
 
-	@IBInspectable public var autologin = true
+	@IBInspectable public var autologin: Bool = true
 
-	@IBInspectable public var saveCredentials = false
+	@IBInspectable public var saveCredentials: Bool = false
 
 	@IBInspectable public var companyId: Int64 = 0 {
 		didSet {
