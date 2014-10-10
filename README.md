@@ -12,9 +12,13 @@ The goal of Screens is to speed up mobile app development by hiding the addition
 
 ## iOS
 
-The implementation of Screens for iOS devices is the most mature at the moment. It's developed using the new Swift language and modern development techniques, such as functional Swift code and the [Model View Presenter architecture](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter).
+The implementation of Screens for iOS devices uses your standar development tools (XCode, iOS SDK, regular simulator, etc) and could be integrated seamlessly in any of your existing projects.
+It's developed using the new Swift language and modern development techniques, such as functional Swift code and the [Model View Presenter architecture](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) so it's a good way to architect your app in a modular way.
 
-The following screenlets are currently provided:
+###Quick start
+If you want to add Liferay Screens to your project right now, just jump to [Prepare your project for Liferay Screens](ios#preparing-your-project-for-liferay-screens) section.
+
+Once your project is ready, the following screenlets are available to be used in your app:
 
 - [`LoginScreenlet`](ios/Documentation/LoginScreenlet.md): Gives your app the ability to sign users in to a Liferay Portal.
 - [`SignUpScreenlet`](ios/Documentation/SignUpScreenlet.md): Gives your app the ability to sign new users in to a Liferay Portal.
