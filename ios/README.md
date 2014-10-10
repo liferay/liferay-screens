@@ -102,6 +102,8 @@ Simply replace `name_of_your_project` with your project's name. If your project'
 	- Precompile Prefix Header: `Yes`
 	- Prefix Header: `path/to/your/file/Prefix.pch`
 
+	![Prefix.pch configuration in Xcode settings](Documentation/Images/xcode-prefix.png "Connect delegate in Interface Builder")
+
 Super! Now you know how to call screenlets from the Objective-C code in your project. Next, a list of the screenlets available in Liferay Screens is presented.
     
 ## Listing of Available Screenlets
