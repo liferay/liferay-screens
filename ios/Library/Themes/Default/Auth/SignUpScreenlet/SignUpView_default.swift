@@ -38,6 +38,14 @@ public class SignUpView_default: BaseScreenletView, SignUpData {
 	}
 
 
+	//MARK: BaseScreenletView
+
+	override internal func onCreated() {
+		super.onCreated()
+
+		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
+	}
+
 	//MARK: SignUpData
 
 	public var emailAddress: String? {
