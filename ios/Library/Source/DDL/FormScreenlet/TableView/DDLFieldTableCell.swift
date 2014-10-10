@@ -109,7 +109,7 @@ public class DDLFieldTableCell: UITableViewCell {
 					}
 
 				case .Send:
-					formView?.userActionHandler("submit-form")
+					formView?.userActionWithName("submit-form")
 					result = true
 
 				default: ()

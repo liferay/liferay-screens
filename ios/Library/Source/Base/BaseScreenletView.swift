@@ -116,20 +116,20 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	internal func onFinishOperation() {
 	}	
 
-	internal func userActionHandler(sender: AnyObject?) {
+	internal func userActionWithSender(sender: AnyObject?) {
 		if let controlSender = sender as? UIControl {
-			userActionHandler(actionName: controlSender.restorationIdentifier, sender: sender)
+			userActionWithName(actionName: controlSender.restorationIdentifier, sender: sender)
 		}
 		else {
-			userActionHandler(actionName: nil, sender: sender)
+			userActionWithName(actionName: nil, sender: sender)
 		}
 	}
 
-	internal func userActionHandler(actionName: String?) {
-		userActionHandler(actionName: actionName, sender: nil)
+	internal func userActionWithName(actionName: String?) {
+		userActionWithName(actionName: actionName, sender: nil)
 	}
 	
-	internal func userActionHandler(#actionName: String?, sender: AnyObject?) {
+	internal func userActionWithName(#actionName: String?, sender: AnyObject?) {
 		endEditing(true)
 		
 		onUserAction?(actionName, sender)
@@ -150,7 +150,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	private func addUserActionForControl(control: UIControl) {
 		if onSetUserActionForControl(control) {
 			control.addTarget(self,
-					action: "userActionHandler:",
+					action: "userActionWithSender:",
 					forControlEvents: UIControlEvents.TouchUpInside)
 		}
 	}

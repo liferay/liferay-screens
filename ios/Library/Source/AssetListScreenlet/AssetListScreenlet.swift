@@ -16,25 +16,27 @@ import UIKit
 
 @objc public protocol AssetListScreenletDelegate {
 
-	optional func onAssetListResponse(entries:[AssetListScreenlet.Entry])
+	optional func onAssetListResponse(entries:[AssetListScreenletEntry])
 	optional func onAssetListError(error: NSError)
 
-	optional func onAssetSelected(entry: AssetListScreenlet.Entry)
+	optional func onAssetSelected(entry: AssetListScreenletEntry)
+
+}
+
+
+@objc public class AssetListScreenletEntry {
+
+	public var title:String
+
+	public init(title:String) {
+		self.title = title
+	}
 
 }
 
 
 @IBDesignable public class AssetListScreenlet: BaseListScreenlet {
 
-	@objc(AssetListEntry) public class Entry {
-
-		public var title:String
-
-		public init(title:String) {
-			self.title = title
-		}
-
-	}
 
 
 	public enum AssetClassNameId: Int {
@@ -116,7 +118,7 @@ import UIKit
 	override internal func convert(#serverResult:[String:AnyObject]) -> AnyObject {
 		let title = (serverResult["title"] ?? "") as String
 
-		return Entry(title: title)
+		return AssetListScreenletEntry(title: title)
 	}
 
 	override internal func onLoadPageError(#page: Int, error: NSError) {
@@ -136,7 +138,7 @@ import UIKit
 				serverRows: serverRows,
 				rowCount: rowCount)
 
-		let assetEntries = rowObjects.map() { $0 as Entry }
+		let assetEntries = rowObjects.map() { $0 as AssetListScreenletEntry }
 
 		delegate?.onAssetListResponse?(assetEntries)
 
@@ -144,7 +146,7 @@ import UIKit
 	}
 
 	override internal func onSelectedRow(row: AnyObject) {
-		delegate?.onAssetSelected?(row as Entry)
+		delegate?.onAssetSelected?(row as AssetListScreenletEntry)
 	}
 
 }
