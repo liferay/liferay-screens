@@ -27,7 +27,7 @@ internal func createError(#cause: ScreenletsErrorCause, userInfo: NSDictionary? 
 }
 
 internal func createError(#cause: ScreenletsErrorCause, #message: String) -> NSError {
-	let userInfo = [NSUnderlyingErrorKey: message]
+	let userInfo = [NSLocalizedDescriptionKey: message]
 
 	return NSError(domain: "LiferayScreenlets", code: cause.toRaw(), userInfo: userInfo)
 }
