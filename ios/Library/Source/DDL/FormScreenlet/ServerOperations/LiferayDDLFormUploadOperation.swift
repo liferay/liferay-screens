@@ -27,7 +27,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 	var uploadResult: [String:AnyObject]?
 
 	internal override var hudFailureMessage: HUDMessage? {
-		return ("An error happened uploading data", details: nil)
+		return ("Error uploading data", details: nil)
 	}
 
 	internal var formData: DDLFormData {
