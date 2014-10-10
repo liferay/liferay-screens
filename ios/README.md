@@ -22,7 +22,7 @@ To learn more detail about the architecture of Screens, please see the [library 
 
 Development of iOS apps using Liferay Screens requires the following: 
 
-  - XCode 6.0 or above
+  - Xcode 6.0 or above
   - iOS 8 SDK
   - [CocoaPods](http://cocoapods.org) installed
   - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
@@ -45,15 +45,13 @@ Meanwhile, there are a few things you need to manually setup in your app to prep
 1. Create a folder at the root of the project called `Liferay-Screens`.
 2. Copy the folders `Library/Source` and `Library/Themes` from the downloaded 
    source code into this new folder.
-3. Drag `Liferay-Screens` from the Finder and drop it into your XCode project.
+3. Drag `Liferay-Screens` from the Finder and drop it into your Xcode project.
 
-![This XCode project has Liferay Screens.](Documentation/Images/project-setup.png)
+![This Xcode project has Liferay Screens.](Documentation/Images/project-setup.png)
 
-Next, set up [CocoaPods](http://cocoapods.org) for your project if you haven't done so already. Add the dependencies to your `Podfile` and then execute `pod install`. Use this [Podfile](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile) as a template.
-Consider using [CocoaPods for Xcode plugin](https://github.com/kattrali/cocoapods-xcode-plugin) (install it through [Alcatraz package manager](http://alcatraz.io/)) to perform these task from Xcode.
+Next, set up [CocoaPods](http://cocoapods.org) for your project if you haven't done so already. Add the dependencies to your `Podfile` and then execute `pod install`. Use this [Podfile](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile) as a template. You should consider using the [CocoaPods for Xcode plugin](https://github.com/kattrali/cocoapods-xcode-plugin). You can install it through the [Alcatraz package manager](http://alcatraz.io/)) for Xcode. This way, you can perform these tasks from Xcode.
 
-![Cocoapods for Xcode plugin](Documentation/Images/xcode-cocoapods.png)
-
+![The CocoaPods for Xcode plugin.](Documentation/Images/xcode-cocoapods.png)
 
 In your project's build settings, you also need to edit the *Objective-C Bridging* Header to include `${SRCROOT}/Liferay-Screens/Source/liferay-screens-bridge.h`. This is shown in the following screenshot:
 
@@ -97,15 +95,18 @@ If you want to invoke screenlet classes from your Objective-C code, then there a
 Simply replace `name_of_your_project` with your project's name. If your project's name uses non-alphanumeric characters, replace them with `_`. If you get tired of adding the same imports over and over again, you can add a precompiler header file using the following steps:
 
 1. Create the file `Prefix.pch` and add it to your project.
-2. Add the previous imports to that file.
-3. Edit the following build settings of your target, using the indicated settings. Remember to replace `path/to/your/file/` with the path to your `Prefix.pch` file:
-	- Precompile Prefix Header: `Yes`
-	- Prefix Header: `path/to/your/file/Prefix.pch`
 
-	![Prefix.pch configuration in Xcode settings](Documentation/Images/xcode-prefix.png "Connect delegate in Interface Builder")
+2. Add the previous imports to that file.
+
+3. Edit the following build settings of your target, using the indicated settings. Remember to replace `path/to/your/file/` with the path to your `Prefix.pch` file:
+
+    - Precompile Prefix Header: `Yes`
+    - Prefix Header: `path/to/your/file/Prefix.pch`
+
+    ![The `Prefix.pch` configuration in Xcode settings.](Documentation/Images/xcode-prefix.png)
 
 Super! Now you know how to call screenlets from the Objective-C code in your project. Next, a list of the screenlets available in Liferay Screens is presented.
-    
+
 ## Listing of Available Screenlets
 
 Screenlets are grouped in modules based on internal dependencies. Each module is isolated, so you can use only the modules that are necessary for your project. However, it's important to note that you can't use a screenlet from a single module without using the entire module. The screenlets here are listed according to the module that they belong to.
