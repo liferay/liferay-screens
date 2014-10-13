@@ -14,37 +14,44 @@
 import Foundation
 
 
-public struct LiferayServerContext {
+public class LiferayServerContext {
 
-	public static var server: String {
-		loadContextFile()
-		return serverProperties!["server"] as String
+	//MARK: Singleton type
+
+	private struct StaticInstance {
+		static var serverProperties: NSDictionary?
 	}
 
-	public static var companyId: Int64 {
+
+	//MARK: Public properties
+
+	public class var server: String {
 		loadContextFile()
-		return (serverProperties!["companyId"] as NSNumber).longLongValue
+		return StaticInstance.serverProperties!["server"] as String
 	}
 
-	public static var groupId: Int64 {
+	public class var companyId: Int64 {
 		loadContextFile()
-		return (serverProperties!["groupId"] as NSNumber).longLongValue
+		return (StaticInstance.serverProperties!["companyId"] as NSNumber).longLongValue
 	}
 
-	private static var serverProperties: NSDictionary?
+	public class var groupId: Int64 {
+		loadContextFile()
+		return (StaticInstance.serverProperties!["groupId"] as NSNumber).longLongValue
+	}
 
 
 	//MARK: Public methods
 
-	private static func loadContextFile() {
-		if serverProperties != nil {
+	private class func loadContextFile() {
+		if StaticInstance.serverProperties != nil {
 			return
 		}
 
 		if let propertiesPath =
 				NSBundle.mainBundle().pathForResource("liferay-server-context", ofType:"plist") {
 
-			serverProperties = NSDictionary(contentsOfFile: propertiesPath)
+			StaticInstance.serverProperties = NSDictionary(contentsOfFile: propertiesPath)
 		}
 		else {
 			println("WARNING: liferay-server-context.plist file is not found. Falling back to template " +
@@ -53,7 +60,7 @@ public struct LiferayServerContext {
 			if let templatePath = NSBundle.mainBundle().pathForResource("liferay-server-context-sample",
 					ofType:"plist") {
 
-				serverProperties = NSDictionary(contentsOfFile: templatePath)
+				StaticInstance.serverProperties = NSDictionary(contentsOfFile: templatePath)
 			}
 			else {
 				println("WARNING: liferay-server-context-sample.plist file is not found. " +
