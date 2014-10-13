@@ -83,7 +83,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 
 	//MARK: UITextViewDelegate
 
-	public func textViewDidBeginEditing(textView: UITextView!) {
+	public func textViewShouldBeginEditing(textView: UITextView) -> Bool {
 		var heightLabelOffset:CGFloat =
 				DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel
 		changeCellHeight(DDLFieldTextareaExpandedCellHeight +
@@ -102,6 +102,8 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 		textViewBackground?.highlighted = true
 
 		formView!.firstCellResponder = textView
+
+		return true
 	}
 
 	public func textViewDidEndEditing(textView: UITextView!) {

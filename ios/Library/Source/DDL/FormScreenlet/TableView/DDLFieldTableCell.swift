@@ -16,6 +16,17 @@ import UIKit
 
 public class DDLFieldTableCell: UITableViewCell {
 
+	public class func viewAsFieldCell(view: UIView?) -> DDLFieldTableCell? {
+		if view == nil {
+			return nil
+		}
+		else if view is DDLFieldTableCell {
+			return (view as DDLFieldTableCell)
+		}
+
+		return viewAsFieldCell(view!.superview)
+	}
+
 	public var tableView: UITableView?
 	public var indexPath: NSIndexPath?
 	public var formView: DDLFormTableView?
@@ -42,6 +53,11 @@ public class DDLFieldTableCell: UITableViewCell {
 		}
 
 		return result
+	}
+
+	public var isFullyVisible: Bool {
+		let cellRect = tableView!.convertRect(self.frame, toView: tableView!.superview)
+		return CGRectContainsRect(tableView!.frame, cellRect)
 	}
 
 
