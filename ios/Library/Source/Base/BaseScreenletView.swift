@@ -29,6 +29,10 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		return (components.count > 1) ? components.last : nil
 	}
 
+	deinit {
+		onDestroy()
+	}
+
 
 	//MARK: UIView
 
@@ -90,6 +94,13 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * positioning, etc to the component's subviews.
 	*/
 	internal func onCreated() {
+	}
+
+	/*
+	 * onDestroy is fired before the destruction of the screenlet view.
+	 * Override this method to perform cleanup actions.
+	*/
+	internal func onDestroy() {
 	}
 
 	/*
