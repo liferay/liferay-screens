@@ -112,6 +112,17 @@ public class DDLFormTableView: DDLFormView,
 
 		let cell = DDLFieldTableCell.viewAsFieldCell(firstCellResponder as? UIView)
 
+		var scrollDone = false
+		let scrollClosure = { (completedAnimation: Bool) -> Void in
+			if let cellValue = cell {
+				if !cellValue.isFullyVisible {
+					cellValue.tableView!.scrollToRowAtIndexPath(cellValue.indexPath!,
+							atScrollPosition: .Middle,
+							animated: true)
+				}
+			}
+		}
+
 		if let textInput = firstCellResponder as? UITextInputTraits {
 			let absoluteFrame = convertRect(frame, toView: window!)
 
@@ -144,6 +155,8 @@ public class DDLFormTableView: DDLFormView,
 						originalFrame = frame
 					}
 
+					scrollDone = true
+
 					UIView.animateWithDuration(animation.time,
 							delay: 0,
 							options: UIViewAnimationOptions.fromRaw(animation.curve.unsignedLongValue)!,
@@ -153,17 +166,13 @@ public class DDLFormTableView: DDLFormView,
 										self.frame.origin.y,
 										self.frame.size.width,
 										newHeight)
-							}, completion: nil)
+							}, completion: scrollClosure)
 				}
 			}
 		}
 
-		if let cellValue = cell {
-			if !cellValue.isFullyVisible {
-				cellValue.tableView!.scrollToRowAtIndexPath(cellValue.indexPath!,
-						atScrollPosition: .Top,
-						animated: true)
-			}
+		if !scrollDone {
+			scrollClosure(true)
 		}
 	}
 
