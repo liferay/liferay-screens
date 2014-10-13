@@ -36,23 +36,23 @@ import Foundation
 		}
 	}
 
-	internal(set) var dataType:DataType
-	internal(set) var editorType:Editor
+	internal(set) var dataType: DataType
+	internal(set) var editorType: Editor
 
-	internal(set) var name:String
+	internal(set) var name: String
 
-	internal(set) var label:String
-	internal(set) var tip:String
+	internal(set) var label: String
+	internal(set) var tip: String
 
-	internal(set) var predefinedValue:AnyObject?
+	internal(set) var predefinedValue: AnyObject?
 
-	internal(set) var readOnly:Bool
-	internal(set) var repeatable:Bool
-	internal(set) var required:Bool
+	internal(set) var readOnly: Bool
+	internal(set) var repeatable: Bool
+	internal(set) var required: Bool
 
 	internal(set) var showLabel:Bool
 
-	public init(attributes:[String:AnyObject]) {
+	public init(attributes: [String:AnyObject]) {
 		dataType = DataType.fromRaw(valueAsString(attributes, key:"dataType")) ?? .Unsupported
 		editorType = Editor.from(attributes: attributes)
 		name = valueAsString(attributes, key:"name")

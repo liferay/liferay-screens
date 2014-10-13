@@ -29,15 +29,15 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	}
 
 
-	internal var firstCellResponder:UIResponder?
+	internal var firstCellResponder: UIResponder?
 
-	internal var submitButtonHeight:CGFloat = 0.0
+	internal var submitButtonHeight: CGFloat = 0.0
 
 
 	//MARK: DDLFormView
 
 	override public func resignFirstResponder() -> Bool {
-		var result:Bool = false
+		var result = false
 
 		if let cellValue = firstCellResponder {
 			result = cellValue.resignFirstResponder()

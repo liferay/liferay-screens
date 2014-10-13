@@ -16,11 +16,11 @@ import UIKit
 
 public class DDLFieldTableCell: UITableViewCell {
 
-	public var tableView:UITableView?
-	public var indexPath:NSIndexPath?
-	public var formView:DDLFormTableView?
+	public var tableView: UITableView?
+	public var indexPath: NSIndexPath?
+	public var formView: DDLFormTableView?
 
-	public var field:DDLField? {
+	public var field: DDLField? {
 		didSet {
 			field?.onPostValidation = onPostValidation
 			onChangedField()
