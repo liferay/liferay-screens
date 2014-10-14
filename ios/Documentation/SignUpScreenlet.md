@@ -14,14 +14,6 @@ _This product is under heavy development and its features aren't ready for use i
 
 - iOS 7 and above
 
-## Portal Configuration
-
-The configuration related to the `SignUpScreenlet` can be set in the Control Panel by clicking *Portal Settings* and then *Authentication*. These settings are shown in the following screenshot:
-
-![The portal settings related to the `SignUpScreenlet`.](Images/portal-signup.png)
-
-For more details, please refer to the [Configuring Portal Settings](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/portal-settings-liferay-portal-6-2-user-guide-16-en) section of the User Guide.
-
 ## Features
 
 The main function of the `SignUpScreenlet` is to create a new user in your Liferay instance. For example, by using the `SignUpScreenlet` a new user of your app can become a new user in your portal. You can also use this screenlet to save the credentials of the new user in their keychain. This enables auto login for future sessions. The screenlet also supports navigation of form fields from the keyboard of the user's device.
@@ -36,6 +28,14 @@ The main function of the `SignUpScreenlet` is to create a new user in your Lifer
 - Flat7
 
 ![The `SignUpScreenlet` with the Default and Flat7 themes.](Images/signup.png)
+
+## Portal Configuration
+
+The configuration related to the `SignUpScreenlet` can be set in the Control Panel by clicking *Portal Settings* and then *Authentication*. These settings are shown in the following screenshot:
+
+![The portal settings related to the `SignUpScreenlet`.](Images/portal-signup.png)
+
+For more details, please refer to the [Configuring Portal Settings](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/portal-settings-liferay-portal-6-2-user-guide-16-en) section of the User Guide.
 
 ## Anonymous Request
 

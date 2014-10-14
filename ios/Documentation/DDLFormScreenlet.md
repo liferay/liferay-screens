@@ -15,12 +15,6 @@ _This product is under heavy development and its features aren't ready for use i
 
 - iOS 7 and above
 
-## Portal Configuration
-
-Dynamic Data Lists and Data Types should be configured properly in the portal. If workflow is required, it also must be configured.
-
-For more details, please see the Liferay User Guide sections [Defining Data Types](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/building-a-list-platform-in-liferay-and-liferay-portal-6-2-user-guide-10-en), [Creating Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/creating-data-lists-liferay-portal-6-2-user-guide-10-en), and [Using Workflow](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/using-workflow-liferay-portal-6-2-user-guide-11-en).
-
 ## Features
 
 The `DDLForm` can be used to show a collection of fields so that a user can fill in their values. Initial or existing values may be shown in the fields. Fields of the following data types are supported:
@@ -56,6 +50,12 @@ There are also a few limitations that you should be aware of when using `DDLForm
 The Default theme uses a standard `UITableView` to show a scrollable list of fields. Other themes may use a different component, such as `UICollectionView` or others, to show the fields.
 
 ![The `DDLForm` screenlet using Default theme.](Images/ddlform.png)
+
+## Portal Configuration
+
+Dynamic Data Lists and Data Types should be configured properly in the portal. If workflow is required, it also must be configured.
+
+For more details, please see the Liferay User Guide sections [Defining Data Types](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/building-a-list-platform-in-liferay-and-liferay-portal-6-2-user-guide-10-en), [Creating Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/creating-data-lists-liferay-portal-6-2-user-guide-10-en), and [Using Workflow](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/using-workflow-liferay-portal-6-2-user-guide-11-en).
 
 ## Attributes
 
