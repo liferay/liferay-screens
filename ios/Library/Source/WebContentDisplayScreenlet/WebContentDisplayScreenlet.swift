@@ -16,7 +16,7 @@ import UIKit
 
 @objc public protocol WebContentDisplayScreenletDelegate {
 
-	optional func onWebContentResponse(html:String)
+	optional func onWebContentResponse(html:String) -> String?
 	optional func onWebContentError(error: NSError)
 
 }
@@ -58,9 +58,12 @@ import UIKit
 				self.delegate?.onWebContentError?(error)
 			}
 			else {
-				self.delegate?.onWebContentResponse?(webContentOperation.resultHTML!)
+				let modifiedHtml =
+						self.delegate?.onWebContentResponse?(webContentOperation.resultHTML!)
 
-				self.webContentDisplayData.htmlContent = webContentOperation.resultHTML!
+				self.webContentDisplayData.htmlContent =
+						(modifiedHtml != nil) ?
+							modifiedHtml! : webContentOperation.resultHTML!
 			}
 		}
 	}
