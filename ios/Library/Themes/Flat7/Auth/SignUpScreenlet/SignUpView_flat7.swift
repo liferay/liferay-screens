@@ -24,11 +24,22 @@ public class SignUpView_flat7: SignUpView_default {
 	@IBOutlet private var emailAddressPlaceholder: UILabel?
 	@IBOutlet private var passwordPlaceholder: UILabel?
 
+	@IBOutlet private var scrollView: UIScrollView?
+
 
 	//MARK: SignUpView
 
 	override internal func onCreated() {
 		super.onCreated()
+
+		let stretchableImage =
+				UIImage(named: "flat7-button").resizableImageWithCapInsets(
+					UIEdgeInsetsMake(19, 19, 19, 19),
+					resizingMode: UIImageResizingMode.Stretch)
+
+		signUpButton?.setBackgroundImage(stretchableImage, forState: UIControlState.Normal)
+
+		scrollView?.contentSize = scrollView!.frame.size
 
 		BaseScreenlet.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}
