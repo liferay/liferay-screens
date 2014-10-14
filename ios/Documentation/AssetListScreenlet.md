@@ -15,10 +15,6 @@ _This product is under heavy development and its features aren't ready for use i
 
 - iOS 7 and above
 
-## Portal Configuration
-
-Dynamic Data Lists and Data Types should be configured properly in the portal. Refer to [Defining Data Types](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/building-a-list-platform-in-liferay-and-liferay-portal-6-2-user-guide-10-en) and [Creating Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/creating-data-lists-liferay-portal-6-2-user-guide-10-en) sections for more details.
-
 ## Features
 
 The `AssetListScreenlet` can be used to show lists of [assets](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en) from a Liferay instance. For example, you can use the screenlet to show a scrollable collection of assets. It also implements [fluent pagination](http://www.iosnomad.com/blog/2014/4/21/fluent-pagination) with configurable page size. The `AssetListScreenlet` can show assets of the following classes:
@@ -62,6 +58,10 @@ The `AssetListScreenlet` also supports i18n in asset values.
 The Default theme uses a standard `UITableView` to show the scrollable list. Other themes may use a different component, such as `UICollectionView` or others, to show the items.
 
 ![`AssetListScreenlet` using the Default theme.](Images/assetlist.png)
+
+## Portal Configuration
+
+Dynamic Data Lists and Data Types should be configured properly in the portal. Refer to the [Defining Data Types](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/building-a-list-platform-in-liferay-and-liferay-portal-6-2-user-guide-10-en) and [Creating Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/creating-data-lists-liferay-portal-6-2-user-guide-10-en) sections of the User Guide for more details.
 
 ## Attributes
 

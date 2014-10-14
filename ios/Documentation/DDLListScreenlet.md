@@ -2,7 +2,7 @@
 
 ## Important Note
 
-_This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology._
+*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology.*
 
 ## Requirements
 
@@ -14,10 +14,6 @@ _This product is under heavy development and its features aren't ready for use i
 ## Compatibility
 
 - iOS 7 and above
-
-## Portal Configuration
-
-Dynamic Data Lists (DDL) and Data Types should be properly configured in the portal. For more details, please refer to the Liferay User Guide sections [Defining Data Types](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/building-a-list-platform-in-liferay-and-liferay-portal-6-2-user-guide-10-en) and [Creating Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/creating-data-lists-liferay-portal-6-2-user-guide-10-en).
 
 ## Features
 
@@ -37,6 +33,10 @@ The `DDLListScreenlet` enables the following features:
 - The Default theme uses a standard `UITableView` to show the scrollable list. Other themes may use a different component, such as `UICollectionView` or others, to show the items.
 
 ![The DDLList screenlet using the Default theme.](Images/ddllist.png)
+
+## Portal Configuration
+
+Dynamic Data Lists (DDL) and Data Types should be properly configured in the portal. For more details, please refer to the Liferay User Guide sections [Defining Data Types](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/building-a-list-platform-in-liferay-and-liferay-portal-6-2-user-guide-10-en) and [Creating Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/creating-data-lists-liferay-portal-6-2-user-guide-10-en).
 
 ## Attributes
 

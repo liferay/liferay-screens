@@ -2,7 +2,7 @@
 
 ## Important Note
 
-_This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology._
+*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology.*
 
 ## Requirements
 
@@ -13,14 +13,6 @@ _This product is under heavy development and its features aren't ready for use i
 ## Compatibility
 
 - iOS 7 and above
-
-## Portal Configuration
-
-The authentication method should be configured in your Liferay instance. You can set this in the Control Panel by clicking *Portal Settings* and then *Authentication*.
-
-![Setting the authentication method in Liferay Portal.](Images/portal-auth.png "Liferay portal authentication methods")
-
-For more details, please refer to the [Configuring Portal Settings](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/portal-settings-liferay-portal-6-2-user-guide-16-en) section of the User Guide.
 
 ## Features
 
@@ -42,6 +34,14 @@ When user is successfully authenticated, their attributes are retrieved for use 
 - Flat7
 
 ![The `LoginScreenlet` using the Default and Flat7 themes.](Images/login.png)
+
+## Portal Configuration
+
+The authentication method should be configured in your Liferay instance. You can set this in the Control Panel by clicking *Portal Settings* and then *Authentication*.
+
+![Setting the authentication method in Liferay Portal.](Images/portal-auth.png "Liferay portal authentication methods")
+
+For more details, please refer to the [Configuring Portal Settings](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/portal-settings-liferay-portal-6-2-user-guide-16-en) section of the User Guide.
 
 ## Attributes
 
