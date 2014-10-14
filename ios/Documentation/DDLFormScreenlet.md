@@ -1,8 +1,4 @@
-# DDLForm for iOS
-<!-- 
-Should this be DDLFormScreenlet throughout this document? 
-- Nick
--->
+# DDLFormScreenlet for iOS
 
 ## Important Note
 
