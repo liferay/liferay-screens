@@ -2,7 +2,7 @@
 
 ## Important Note
 
-_This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology._
+*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology.*
 
 ## Requirements
 
@@ -53,23 +53,23 @@ The Default theme uses a standard `UITableView` to show a scrollable list of fie
 
 ## Portal Configuration
 
-Dynamic Data Lists and Data Types should be configured properly in the portal. If workflow is required, it also must be configured.
+Dynamic Data Lists and Data Types should be configured properly in the portal. Refer to the [Defining Data Types](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/building-a-list-platform-in-liferay-and-liferay-portal-6-2-user-guide-10-en) and [Creating Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/creating-data-lists-liferay-portal-6-2-user-guide-10-en) sections of the User Guide for more details. If Workflow is required, it also must be configured. Please see the [Using Workflow](http://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/using-workflow-liferay-portal-6-2-user-guide-11-en) section of the User Guide for details.
 
 ### Permissions
 
-In order to add new records using this screenlet, you have to grant the "Add record" permission in the *Dynamic Data List* used:
+To add new records using this screenlet, you must grant the Add Record permission in the used Dynamic Data List:
 
-![Add record permission](Images/portal-permission-record-add.png)
+![The Add Record permission.](Images/portal-permission-record-add.png)
 
-If you want to view and/or edit record values, you have to grand "Update" and/or "View" permissions also:
+If you want to view or edit record values, you must also grant the View and Update permissions, respectively:
 
-![Edit record permission](Images/portal-permission-record-edit.png)
+![The permissions for viewing and editing records.](Images/portal-permission-record-edit.png)
 
-Also, if your form includes *Document and Media* fields, you have to grant permissions in the target repository and folder (see `repositoryId` and `folderId` attributes below).
+Also, if your form includes the Documents and Media field, you must grant permissions in the target repository and folder. For more details, see the `repositoryId` and `folderId` attributes below.
 
-![Add folder permission](Images/portal-permission-folder-add.png)
+![The permission for adding a folder.](Images/portal-permission-folder-add.png)
 
-For more details, please see the Liferay User Guide sections [Defining Data Types](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/building-a-list-platform-in-liferay-and-liferay-portal-6-2-user-guide-10-en), [Creating Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/creating-data-lists-liferay-portal-6-2-user-guide-10-en), and [Using Workflow](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/using-workflow-liferay-portal-6-2-user-guide-11-en).
+For more details, please see the User Guide sections [Defining Data Types](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/building-a-list-platform-in-liferay-and-liferay-portal-6-2-user-guide-10-en), [Creating Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/creating-data-lists-liferay-portal-6-2-user-guide-10-en), and [Using Workflow](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/using-workflow-liferay-portal-6-2-user-guide-11-en).
 
 ## Attributes
 

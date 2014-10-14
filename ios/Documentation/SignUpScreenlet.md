@@ -2,7 +2,7 @@
 
 ## Important Note
 
-_This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology._
+*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology.*
 
 ## Requirements
 

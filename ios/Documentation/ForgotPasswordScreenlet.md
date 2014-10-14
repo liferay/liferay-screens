@@ -2,7 +2,7 @@
 
 ## Important Note
 
-_This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology._
+*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology.*
 
 ## Requirements
 
@@ -36,12 +36,11 @@ The `ForgotPasswordScreenlet` can send an email a registered user with their new
 
 ## Portal Configuration
 
-You have to allow users to requests new passwords in the portal. In order to do that, follow next instructions:
-
+To use the `ForgotPasswordScreenlet`, you must allow users to request new passwords in the portal. The next sections show you how to do this.
 
 ### Authentication Method
 
-Note that the authentication method configured in the portal can be different than that used by this screenlet. For example, it's *perfectly fine* to use `screenName` for sign in authentication, but allow users to recover their password using `email` authentication method.
+Note that the authentication method configured in the portal can be different than that used by this screenlet. For example, it's *perfectly fine* to use `screenName` for sign in authentication, but allow users to recover their password using the `email` authentication method.
 
 ### Password Reset
 
