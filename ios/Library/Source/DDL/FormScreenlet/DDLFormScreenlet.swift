@@ -170,7 +170,7 @@ import UIKit
 				self.recordId = submitOperation.result!.recordId
 				self.formView.record!.recordId = submitOperation.result!.recordId
 
-				self.delegate?.onFormLoaded?(self.formView.record!)
+				self.delegate?.onFormSubmitted?(self.formView.record!)
 			}
 		}
 	}
