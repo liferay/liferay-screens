@@ -14,7 +14,7 @@
 import Foundation
 
 
-@objc public class DDLField: Equatable {
+public class DDLField: NSObject, Equatable {
 
 	public var currentHeight:CGFloat = 0
 
@@ -64,6 +64,8 @@ import Foundation
 
 		label = valueAsString(attributes, key:"label")
 		tip = valueAsString(attributes, key:"tip")
+
+		super.init()
 
 		predefinedValue = attributes["predefinedValue"] ?? nil
 		if predefinedValue is String {

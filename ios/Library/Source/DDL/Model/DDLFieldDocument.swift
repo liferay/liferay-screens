@@ -14,7 +14,7 @@
 import Foundation
 
 
-@objc public class DDLFieldDocument : DDLField {
+public class DDLFieldDocument : DDLField {
 
 	public enum UploadStatus: Hashable, Equatable {
 		case Uploaded([String:AnyObject])
