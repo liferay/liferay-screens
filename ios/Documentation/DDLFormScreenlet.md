@@ -55,6 +55,20 @@ The Default theme uses a standard `UITableView` to show a scrollable list of fie
 
 Dynamic Data Lists and Data Types should be configured properly in the portal. If workflow is required, it also must be configured.
 
+### Permissions
+
+In order to add new records using this screenlet, you have to grant the "Add record" permission in the *Dynamic Data List* used:
+
+![Add record permission](Images/portal-permission-record-add.png)
+
+If you want to view and/or edit record values, you have to grand "Update" and/or "View" permissions also:
+
+![Edit record permission](Images/portal-permission-record-edit.png)
+
+Also, if your form includes *Document and Media* fields, you have to grant permissions in the target repository and folder (see `repositoryId` and `folderId` attributes below).
+
+![Add folder permission](Images/portal-permission-folder-add.png)
+
 For more details, please see the Liferay User Guide sections [Defining Data Types](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/building-a-list-platform-in-liferay-and-liferay-portal-6-2-user-guide-10-en), [Creating Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/creating-data-lists-liferay-portal-6-2-user-guide-10-en), and [Using Workflow](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/using-workflow-liferay-portal-6-2-user-guide-11-en).
 
 ## Attributes
