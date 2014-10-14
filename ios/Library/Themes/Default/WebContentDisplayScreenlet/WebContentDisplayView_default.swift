@@ -17,17 +17,30 @@ import WebKit
 
 public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayData {
 
-	private var webView:WKWebView?
+	private var webView: WKWebView?
+
+	private let styles =
+		".MobileCSS {padding: 4%; width: 92%;} " +
+		".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
+			"font-size: 150%; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-weight: 200; } " +
+		".MobileCSS img { width: 100% !important; } " +
+		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
 
 
 	//MARK: WebContentDisplayData
+
+	override func onCreated() {
+		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
+	}
 
 	public var htmlContent: String {
 		get {
 			return ""
 		}
 		set {
-			webView!.loadHTMLString(newValue, baseURL: NSURL(string:LiferayServerContext.server))
+			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue)</div>"
+
+			webView!.loadHTMLString(styledHtml, baseURL: NSURL(string:LiferayServerContext.server))
 		}
 	}
 
