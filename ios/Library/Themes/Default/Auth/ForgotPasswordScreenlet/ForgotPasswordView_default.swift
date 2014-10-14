@@ -59,6 +59,9 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordData {
 	override internal func onCreated() {
 		super.onCreated()
 
+		setDefaultButtonBackground(
+				NSBundle(forClass: self.dynamicType), requestPasswordButton)
+
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 

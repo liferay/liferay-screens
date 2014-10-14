@@ -18,3 +18,18 @@ let DefaultThemeButtonCornerRadius:CGFloat = 4
 
 let DefaultThemeBasicBlue = UIColor(red: 0.0, green: 184.0/255.0, blue: 224.0/255.0, alpha: 0.87)
 
+
+func setDefaultButtonBackground(bundle: NSBundle, button: UIButton?) {
+	var stretchableImage = UIImage(
+			named: "default-button",
+			inBundle: bundle,
+			compatibleWithTraitCollection: nil)
+
+	stretchableImage = stretchableImage.resizableImageWithCapInsets(
+			UIEdgeInsetsMake(5, 5, 5, 5),
+			resizingMode: UIImageResizingMode.Stretch)
+
+	button?.setBackgroundImage(stretchableImage, forState: UIControlState.Normal)
+
+	button?.backgroundColor = UIColor.clearColor()
+}

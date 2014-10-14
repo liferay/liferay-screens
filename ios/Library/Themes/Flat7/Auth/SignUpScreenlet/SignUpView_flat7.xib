@@ -22,7 +22,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Donec auctor neque sed pretium luctus." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aN6-ti-9Kq">
-                            <rect key="frame" x="1" y="71" width="240" height="63"/>
+                            <rect key="frame" x="16" y="71" width="240" height="63"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -118,13 +118,14 @@
                         </textField>
                     </subviews>
                 </scrollView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="end-form.png" id="SUr-4N-io2">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="flat7-gradient-form.png" id="SUr-4N-io2">
                     <rect key="frame" x="-1" y="343" width="284" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                 </imageView>
                 <button opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="kq3-Yb-Mpp">
                     <rect key="frame" x="21" y="380" width="238" height="41"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <color key="backgroundColor" red="0.26666668057441711" green="0.72549021244049072" blue="0.43921571969985962" alpha="1" colorSpace="deviceRGB"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.074999999999999997" height="0.074999999999999997"/>
                     <state key="normal">
                         <attributedString key="attributedTitle">
@@ -164,8 +165,8 @@
         </view>
     </objects>
     <resources>
-        <image name="end-form.png" width="1" height="30"/>
         <image name="flat7-field.png" width="238" height="41"/>
+        <image name="flat7-gradient-form.png" width="1" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

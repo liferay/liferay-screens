@@ -26,6 +26,8 @@ public class SignUpView_default: BaseScreenletView, SignUpData {
 	@IBOutlet internal var firstNameBackground: UIImageView?
 	@IBOutlet internal var lastNameBackground: UIImageView?
 
+	@IBOutlet internal var scrollView: UIScrollView?
+
 
 	//MARK: BaseScreenletView
 
@@ -42,6 +44,11 @@ public class SignUpView_default: BaseScreenletView, SignUpData {
 
 	override internal func onCreated() {
 		super.onCreated()
+
+		setDefaultButtonBackground(
+				NSBundle(forClass: self.dynamicType), signUpButton)
+
+		scrollView?.contentSize = scrollView!.frame.size
 
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}

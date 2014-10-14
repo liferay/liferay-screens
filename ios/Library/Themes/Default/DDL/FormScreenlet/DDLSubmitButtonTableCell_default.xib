@@ -15,7 +15,8 @@
                     <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="submit-form" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="YfU-ZY-48B">
                         <rect key="frame" x="46" y="20" width="228" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" backgroundImage="default-large-button.png">
+                        <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                        <state key="normal">
                             <attributedString key="attributedTitle">
                                 <fragment content="SUBMIT">
                                     <attributes>
@@ -26,20 +27,18 @@
                                 </fragment>
                             </attributedString>
                         </state>
-                        <state key="selected" backgroundImage="default-large-button-selected.png"/>
                         <connections>
                             <action selector="submitButtonAction:" destination="WWD-jz-pJ6" eventType="touchUpInside" id="S38-qJ-wme"/>
                         </connections>
                     </button>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="submitButton" destination="YfU-ZY-48B" id="1Yn-mn-Bsa"/>
+            </connections>
             <point key="canvasLocation" x="299" y="426"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="default-large-button-selected.png" width="217" height="42"/>
-        <image name="default-large-button.png" width="228" height="44"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

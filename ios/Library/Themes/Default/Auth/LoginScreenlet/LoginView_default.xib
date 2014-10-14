@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LoginView_default" customModule="Liferay_iOS_Screens_Swift_Sample" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LoginView_default" customModule="beta_screens" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="228" height="235"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -39,7 +39,8 @@
                 <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="kq3-Yb-Mpp">
                     <rect key="frame" x="0.0" y="183" width="228" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" backgroundImage="default-large-button.png">
+                    <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                    <state key="normal">
                         <attributedString key="attributedTitle">
                             <fragment content="SIGN IN">
                                 <attributes>
@@ -49,7 +50,6 @@
                             </fragment>
                         </attributedString>
                     </state>
-                    <state key="selected" backgroundImage="default-large-button-selected.png"/>
                 </button>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="default-lock-icon.png" id="hYc-ZQ-knx">
                     <rect key="frame" x="16" y="70" width="16" height="16"/>
@@ -76,8 +76,6 @@
     <resources>
         <image name="default-field-focused.png" width="228" height="44"/>
         <image name="default-field.png" width="228" height="44"/>
-        <image name="default-large-button-selected.png" width="217" height="42"/>
-        <image name="default-large-button.png" width="228" height="44"/>
         <image name="default-lock-icon.png" width="12" height="16"/>
         <image name="default-mail-icon.png" width="16" height="16"/>
     </resources>
