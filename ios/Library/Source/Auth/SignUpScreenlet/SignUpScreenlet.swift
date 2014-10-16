@@ -31,7 +31,7 @@ import UIKit
 
 	@IBInspectable public var autologin: Bool = true
 
-	@IBInspectable public var saveCredentials: Bool = false
+	@IBInspectable public var saveCredentials: Bool = true
 
 	@IBInspectable public var companyId: Int64 = 0 {
 		didSet {

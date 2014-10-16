@@ -23,12 +23,12 @@ public class DDLRecord: NSObject {
 
 	public var attributes: [String:AnyObject] = [:]
 
-	public var recordId:Int64? {
+	public var recordId: Int64 {
 		get {
-			return attributes["recordId"]?.longLongValue
+			return (attributes["recordId"] ?? 0).longLongValue
 		}
 		set {
-			attributes["recordId"] = (newValue == nil) ? nil : Int(newValue!)
+			attributes["recordId"] = Int(newValue)
 		}
 	}
 
