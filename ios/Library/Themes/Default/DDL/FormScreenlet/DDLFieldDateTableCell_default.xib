@@ -28,7 +28,6 @@
                         <state key="normal" image="default-calendar.png">
                             <attributedString key="attributedTitle"/>
                         </state>
-                        <state key="selected" backgroundImage="default-large-button-selected.png"/>
                         <connections>
                             <action selector="chooseButtonAction:" destination="WWD-jz-pJ6" eventType="touchUpInside" id="yq6-JD-H6P"/>
                         </connections>
@@ -64,7 +63,6 @@
         <image name="default-calendar.png" width="22" height="22"/>
         <image name="default-field-focused.png" width="228" height="44"/>
         <image name="default-field.png" width="228" height="44"/>
-        <image name="default-large-button-selected.png" width="217" height="42"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
