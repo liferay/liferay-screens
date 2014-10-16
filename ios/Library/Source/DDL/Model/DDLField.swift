@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class DDLField: NSObject, Equatable {
+public class DDLField: NSObject, Equatable, Printable {
 
 	public var currentHeight:CGFloat = 0
 
@@ -36,6 +36,27 @@ public class DDLField: NSObject, Equatable {
 		}
 	}
 
+	public override var description: String {
+		let currentValue = self.currentValueAsString
+		var str = "DDLField[" +
+				" name=\( self.name )" +
+				" type=\( self.dataType.toRaw() )" +
+				" editor=\( self.editorType.toRaw() )"
+		if currentValue != nil {
+			if currentValue! == "" {
+				str += " value='' ]"
+			}
+			else {
+				str += " value=\( currentValue! ) ]"
+			}
+		}
+		else {
+			str += " ]"
+		}
+
+		return str
+	}
+
 	internal(set) var dataType: DataType
 	internal(set) var editorType: Editor
 
@@ -51,6 +72,7 @@ public class DDLField: NSObject, Equatable {
 	internal(set) var required: Bool
 
 	internal(set) var showLabel:Bool
+
 
 	public init(attributes: [String:AnyObject]) {
 		dataType = DataType.fromRaw(valueAsString(attributes, key:"dataType")) ?? .Unsupported
