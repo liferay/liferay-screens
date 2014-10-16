@@ -30,13 +30,7 @@ public class DDLFormTableView: DDLFormView,
 	}
 
 
-	internal var firstCellResponder: UIResponder? {
-		didSet {
-			if KeyboardManager.isVisible {
-				//self.layoutWhenKeyboardShown(KeyboardManager.currentHeight!)
-			}
-		}
-	}
+	internal var firstCellResponder: UIResponder?
 
 	internal var submitButtonHeight: CGFloat = 0.0
 
@@ -73,7 +67,9 @@ public class DDLFormTableView: DDLFormView,
 				}
 			}
 
-			indexPath = NSIndexPath(forRow: indexPath.row.successor(), inSection: indexPath.section)
+			indexPath = NSIndexPath(
+					forRow: indexPath.row.successor(),
+					inSection: indexPath.section)
 		}
 
 		return result
@@ -83,8 +79,14 @@ public class DDLFormTableView: DDLFormView,
 		super.onCreated()
 
 		registerFieldCells()
+	}
 
+	override internal func onShow() {
 		keyboardManager.registerObserver(self)
+	}
+
+	override internal func onHide() {
+		keyboardManager.unregisterObserver()
 	}
 
 	override internal func showField(field: DDLField) {

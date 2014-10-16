@@ -56,6 +56,15 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		return result
 	}
 
+	override public func didMoveToWindow() {
+		if (window != nil) {
+			onShow();
+		}
+		else {
+			onHide();
+		}
+	}
+
 
 	//MARK: UITextFieldDelegate
 
@@ -65,7 +74,8 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		if nextResponder != textField {
 
 			switch textField.returnKeyType {
-				case .Next where nextResponder is UITextInputTraits:
+				case .Next
+				where nextResponder is UITextInputTraits:
 					if textField.canResignFirstResponder() {
 						textField.resignFirstResponder()
 
@@ -74,7 +84,8 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 						}
 					}
 
-				case _ where nextResponder is UIControl:
+				case _
+				where nextResponder is UIControl:
 					(nextResponder as UIControl).sendActionsForControlEvents(
 							UIControlEvents.TouchUpInside)
 
@@ -108,6 +119,19 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * Override this method to create UI components programatically.
 	*/
 	internal func onPreCreate() {
+	}
+
+	/*
+	 * onHide is invoked when the screenlet's view is hidden
+	 */
+	internal func onHide() {
+	}
+
+	/*
+	 * onShow is invoked when the screenlet's view is displayed.
+	 * Override this method for example to reset values when the screenlet's view is shown.
+	 */
+	internal func onShow() {
 	}
 
 	internal func onSetUserActionForControl(control: UIControl) -> Bool {
