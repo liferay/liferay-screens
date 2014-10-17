@@ -21,7 +21,7 @@ func setFlat7ButtonBackground(bundle: NSBundle, button: UIButton?) {
 	var stretchableImage = UIImage(
 			named: "flat7-button",
 			inBundle: bundle,
-			compatibleWithTraitCollection: nil)
+			compatibleWithTraitCollection: nil)!
 
 	stretchableImage = stretchableImage.resizableImageWithCapInsets(
 			UIEdgeInsetsMake(19, 19, 19, 19),

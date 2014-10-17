@@ -66,7 +66,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 	override internal func doRun(#session: LRSession) {
 		session.callback = self
 
-		let fileName = "\(filePrefix!)\(NSUUID.UUID().UUIDString)"
+		let fileName = "\(filePrefix!)\(NSUUID().UUIDString)"
 		var size:Int64 = 0
 		let stream = document!.getStream(&size)
 		let uploadData = LRUploadData(

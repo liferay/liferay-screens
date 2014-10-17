@@ -62,7 +62,7 @@ extension LRSession {
 	}
 
 	private class func protectionSpaceForServer(server:String) -> NSURLProtectionSpace {
-		let url = NSURL(string: server)
+		let url = NSURL(string: server)!
 
 		return NSURLProtectionSpace(
 				host:url.host!, port:url.port!.integerValue,

@@ -35,7 +35,7 @@ public class DDLXSDParser {
 
 			var outError: NSError?
 
-			if let document = SMXMLDocument.documentWithData(data, error: &outError) {
+			if let document = SMXMLDocument(data: data, error: &outError) {
 				result = processDocument(document, locale: locale)
 			}
 		}

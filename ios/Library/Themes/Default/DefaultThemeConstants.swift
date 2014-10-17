@@ -23,7 +23,7 @@ func setDefaultButtonBackground(bundle: NSBundle, button: UIButton?) {
 	var stretchableImage = UIImage(
 			named: "default-button",
 			inBundle: bundle,
-			compatibleWithTraitCollection: nil)
+			compatibleWithTraitCollection: nil)!
 
 	stretchableImage = stretchableImage.resizableImageWithCapInsets(
 			UIEdgeInsetsMake(5, 5, 5, 5),
