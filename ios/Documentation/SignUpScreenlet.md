@@ -2,7 +2,7 @@
 
 ## Important Note
 
-_This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology._
+*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology.*
 
 ## Requirements
 
@@ -13,14 +13,6 @@ _This product is under heavy development and its features aren't ready for use i
 ## Compatibility
 
 - iOS 7 and above
-
-## Portal Configuration
-
-The configuration related to the `SignUpScreenlet` can be set in the Control Panel by clicking *Portal Settings* and then *Authentication*. These settings are shown in the following screenshot:
-
-![The portal settings related to the `SignUpScreenlet`.](Images/portal-signup.png)
-
-For more details, please refer to the [Configuring Portal Settings](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/portal-settings-liferay-portal-6-2-user-guide-16-en) section of the User Guide.
 
 ## Features
 
@@ -36,6 +28,14 @@ The main function of the `SignUpScreenlet` is to create a new user in your Lifer
 - Flat7
 
 ![The `SignUpScreenlet` with the Default and Flat7 themes.](Images/signup.png)
+
+## Portal Configuration
+
+The configuration related to the `SignUpScreenlet` can be set in the Control Panel by clicking *Portal Settings* and then *Authentication*. These settings are shown in the following screenshot:
+
+![The portal settings related to the `SignUpScreenlet`.](Images/portal-signup.png)
+
+For more details, please refer to the [Configuring Portal Settings](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/portal-settings-liferay-portal-6-2-user-guide-16-en) section of the User Guide.
 
 ## Anonymous Request
 

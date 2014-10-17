@@ -2,7 +2,7 @@
 
 ## Important Note
 
-_This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology._
+*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology.*
 
 ## Requirements
 
@@ -14,10 +14,6 @@ _This product is under heavy development and its features aren't ready for use i
 ## Compatibility
 
 - iOS 7 and above
-
-## Portal Configuration
-
-For the `WebContentDisplayScreenlet` to function properly, there should be web content in the Liferay instance your app connects to. For more details on web content, please refer to the [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en) section of the Liferay User Guide.
 
 ## Features
 
@@ -32,6 +28,10 @@ The `WebContentDisplayScreenlet` shows web content elements in your app, renderi
 The Default theme uses a standard `UIWebView` to render the HTML. Other themes may use a different component, such as iOS 8's.
 
 ![The `WebContentDisplayScreenlet` using the Default theme](Images/webcontent.png)
+
+## Portal Configuration
+
+For the `WebContentDisplayScreenlet` to function properly, there should be web content in the Liferay instance your app connects to. For more details on web content, please refer to the [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en) section of the Liferay User Guide.
 
 ## Attributes
 
