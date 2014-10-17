@@ -27,7 +27,7 @@ public class AssetListViewController: UIViewController, AssetListScreenletDelega
 		screenlet!.loadList()
 	}
 
-	public func onAssetListResponse(entries:[AssetListScreenlet.Entry]) {
+	public func onAssetListResponse(entries:[AssetListScreenletEntry]) {
 		println("Loaded \(entries.count) entries")
 		for e in entries {
 			println("      \(e.title)")
@@ -37,7 +37,7 @@ public class AssetListViewController: UIViewController, AssetListScreenletDelega
 	public func onAssetListError(error: NSError) {
 	}
 
-	public func onAssetSelected(entry: AssetListScreenlet.Entry) {
+	public func onAssetSelected(entry: AssetListScreenletEntry) {
 		println("selected \(entry.title)")
 	}
 
