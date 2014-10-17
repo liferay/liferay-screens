@@ -129,12 +129,27 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	/*
 	 * onShow is invoked when the screenlet's view is displayed.
-	 * Override this method for example to reset values when the screenlet's view is shown.
+	 * Override this method for example to reset values when the screenlet's 
+	 * view is shown.
 	 */
 	internal func onShow() {
 	}
 
+	/*
+	 * onSetUserActionForControl is invoked just before the user action handler 
+	 * is associated to one control.
+	 * Override this method to decide whether or not the handler should be 
+	 * associated to the control.
+	 */
 	internal func onSetUserActionForControl(control: UIControl) -> Bool {
+		return true
+	}
+
+	/*
+	 * onPreUserAction is invoked just before any user action is invoked.
+	 * Override this method to decide whether or not the user action should be fired.
+	 */
+	internal func onPreUserAction(actionName: String?, sender: AnyObject?) -> Bool {
 		return true
 	}
 
@@ -149,7 +164,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	}
 
 	internal func onFinishOperation() {
-	}	
+	}
 
 	internal func userActionWithSender(sender: AnyObject?) {
 		if let controlSender = sender as? UIControl {
@@ -165,9 +180,11 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	}
 	
 	internal func userActionWithName(#actionName: String?, sender: AnyObject?) {
-		endEditing(true)
+		if onPreUserAction(actionName, sender: sender) {
+			endEditing(true)
 		
-		onUserAction?(actionName, sender)
+			onUserAction?(actionName, sender)
+		}
 	}
 
 	internal func nextResponderForView(view:UIView) -> UIResponder {
