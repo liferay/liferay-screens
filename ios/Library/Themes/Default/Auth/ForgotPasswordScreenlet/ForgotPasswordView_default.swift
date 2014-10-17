@@ -37,7 +37,7 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordData {
 
 	//MARK: AuthBasedData
 
-	public var authMethod: AuthMethodType? = AuthMethod.Email.toRaw() {
+	public var authMethod: AuthMethodType? = AuthMethod.Email.rawValue {
 		didSet {
 			setAuthMethodStyles(
 					authMethod: AuthMethod.create(authMethod),

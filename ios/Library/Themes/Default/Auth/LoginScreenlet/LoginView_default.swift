@@ -42,7 +42,7 @@ public class LoginView_default: BaseScreenletView, LoginData {
 		}
 	}
 
-	public var authMethod: AuthMethodType? = AuthMethod.Email.toRaw() {
+	public var authMethod: AuthMethodType? = AuthMethod.Email.rawValue {
 		didSet {
 			setAuthMethodStyles(
 					authMethod: AuthMethod.create(authMethod),

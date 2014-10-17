@@ -29,7 +29,7 @@ import UIKit
 	@IBInspectable public var anonymousApiUserName: String? = "test@liferay.com"
 	@IBInspectable public var anonymousApiPassword: String? = "test"
 
-	@IBInspectable public var authMethod: String? = AuthMethod.Email.toRaw() {
+	@IBInspectable public var authMethod: String? = AuthMethod.Email.rawValue {
 		didSet {
 			copyAuth(source: self, target: screenletView)
 		}

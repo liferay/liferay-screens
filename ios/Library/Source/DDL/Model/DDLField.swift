@@ -40,8 +40,8 @@ public class DDLField: NSObject, Equatable, Printable {
 		let currentValue = self.currentValueAsString
 		var str = "DDLField[" +
 				" name=\( self.name )" +
-				" type=\( self.dataType.toRaw() )" +
-				" editor=\( self.editorType.toRaw() )"
+				" type=\( self.dataType.rawValue )" +
+				" editor=\( self.editorType.rawValue )"
 		if currentValue != nil {
 			if currentValue! == "" {
 				str += " value='' ]"
@@ -75,7 +75,7 @@ public class DDLField: NSObject, Equatable, Printable {
 
 
 	public init(attributes: [String:AnyObject]) {
-		dataType = DataType.fromRaw(valueAsString(attributes, key:"dataType")) ?? .Unsupported
+		dataType = DataType(rawValue: valueAsString(attributes, key:"dataType")) ?? .Unsupported
 		editorType = Editor.from(attributes: attributes)
 		name = valueAsString(attributes, key:"name")
 

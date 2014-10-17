@@ -23,13 +23,13 @@ public enum ScreenletsErrorCause: Int {
 
 
 internal func createError(#cause: ScreenletsErrorCause, userInfo: NSDictionary? = nil) -> NSError {
-	return NSError(domain: "LiferayScreenlets", code: cause.toRaw(), userInfo: userInfo)
+	return NSError(domain: "LiferayScreenlets", code: cause.rawValue, userInfo: userInfo)
 }
 
 internal func createError(#cause: ScreenletsErrorCause, #message: String) -> NSError {
 	let userInfo = [NSLocalizedDescriptionKey: message]
 
-	return NSError(domain: "LiferayScreenlets", code: cause.toRaw(), userInfo: userInfo)
+	return NSError(domain: "LiferayScreenlets", code: cause.rawValue, userInfo: userInfo)
 }
 
 

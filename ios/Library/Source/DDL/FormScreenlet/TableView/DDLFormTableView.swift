@@ -161,7 +161,7 @@ public class DDLFormTableView: DDLFormView,
 
 					UIView.animateWithDuration(animation.time,
 							delay: 0,
-							options: UIViewAnimationOptions.fromRaw(animation.curve.unsignedLongValue)!,
+							options: UIViewAnimationOptions(animation.curve.unsignedLongValue),
 							animations: {
 								self.frame = CGRectMake(
 										self.frame.origin.x,
@@ -292,7 +292,7 @@ public class DDLFormTableView: DDLFormView,
 			editor.registerHeight(cellRootView.bounds.size.height)
 		}
 		else {
-			println("ERROR: Root view in cell \(editor.toRaw()) didn't found")
+			println("ERROR: Root view in cell \(editor.rawValue) didn't found")
 		}
 	}
 
