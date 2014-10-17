@@ -68,7 +68,7 @@ public class LiferayPaginationOperation: ServerOperation {
 
 				if responses.count > 1 {
 					if let countResponse = responses[1] as? NSNumber {
-						serverRowCount = countResponse
+						serverRowCount = countResponse.integerValue
 					}
 				}
 

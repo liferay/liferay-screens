@@ -159,7 +159,7 @@ public class DDLFormTableView: DDLFormView,
 
 					scrollDone = true
 
-					UIView.animateWithDuration(animation.time,
+					UIView.animateWithDuration(animation.time.doubleValue,
 							delay: 0,
 							options: UIViewAnimationOptions(animation.curve.unsignedLongValue),
 							animations: {
@@ -168,7 +168,8 @@ public class DDLFormTableView: DDLFormView,
 										self.frame.origin.y,
 										self.frame.size.width,
 										newHeight)
-							}, completion: scrollClosure)
+							},
+							completion: scrollClosure)
 				}
 			}
 		}
@@ -250,7 +251,7 @@ public class DDLFormTableView: DDLFormView,
 			}
 
 			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
-				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
+				var cellNib = UINib(nibName: nibName, bundle: currentBundle)!
 
 				tableView?.registerNib(cellNib,
 						forCellReuseIdentifier: fieldEditor.toCapitalizedName())
@@ -266,7 +267,7 @@ public class DDLFormTableView: DDLFormView,
 			}
 
 			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
-				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
+				var cellNib = UINib(nibName: nibName, bundle: currentBundle)!
 
 				tableView?.registerNib(cellNib, forCellReuseIdentifier: "SubmitButton")
 
