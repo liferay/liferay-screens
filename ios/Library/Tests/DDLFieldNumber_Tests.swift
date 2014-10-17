@@ -114,7 +114,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual(DDLField.DataType.DDLDouble, numberField.dataType)
 		XCTAssertEqual(DDLField.Editor.Number, numberField.editorType)
 		XCTAssertTrue(numberField.predefinedValue is NSDecimalNumber)
-		XCTAssertEqualWithAccuracy(16.05,
+		XCTAssertEqualWithAccuracy(Float(16.05),
 			(numberField.predefinedValue as NSDecimalNumber).floatValue, 0.001)
 	}
 
@@ -311,7 +311,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 		XCTAssertEqual("99.98", numberField.currentValueAsString!)
 		XCTAssertTrue(numberField.currentValue is NSDecimalNumber)
-		XCTAssertEqualWithAccuracy(99.98,
+		XCTAssertEqualWithAccuracy(Float(99.98),
 			(numberField.currentValue as NSDecimalNumber).floatValue, 0.001)
 	}
 

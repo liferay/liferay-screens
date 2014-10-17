@@ -61,7 +61,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 		let docField = fields![0] as DDLFieldDocument
 
 		docField.currentValue = UIImage(named:"default-field")
-		docField.uploadStatus = .Failed(NSError.errorWithDomain("", code: 0, userInfo:nil))
+		docField.uploadStatus = .Failed(NSError(domain: "", code: 0, userInfo:nil))
 
 		XCTAssertFalse(docField.validate())
 	}
@@ -98,7 +98,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 		var size:Int64 = 0
 		XCTAssertNil(docField.getStream(&size))
-		XCTAssertEqual(0, size)
+		XCTAssertEqual(Int64(0), size)
 	}
 
 	func test_Stream_ShouldReturnStream_WhenCurrentValueIsImage() {
