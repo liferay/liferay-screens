@@ -57,7 +57,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 		result = nil
 
 		let recordDictionary = service.getDdlRecordWithDdlRecordId(recordId!,
-				locale: NSLocale.currentLocaleString(),
+				locale: NSLocale.currentLocaleString,
 				error: &lastError)
 
 		if lastError == nil {

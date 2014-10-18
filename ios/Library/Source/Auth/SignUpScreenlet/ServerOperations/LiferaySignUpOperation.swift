@@ -61,7 +61,7 @@ public class LiferaySignUpOperation: ServerOperation {
 				emailAddress: signUpData.emailAddress,
 				facebookId: 0,
 				openId: "",
-				locale: NSLocale.currentLocaleString(),
+				locale: NSLocale.currentLocaleString,
 				firstName: emptyIfNull(signUpData.firstName),
 				middleName: emptyIfNull(signUpData.middleName),
 				lastName: emptyIfNull(signUpData.lastName),

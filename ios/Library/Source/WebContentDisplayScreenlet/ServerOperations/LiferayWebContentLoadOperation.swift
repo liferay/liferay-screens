@@ -51,7 +51,7 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 
 		let result = service.getArticleContentWithGroupId(groupId!,
 				articleId: articleId!,
-				languageId: NSLocale.currentLocaleString(),
+				languageId: NSLocale.currentLocaleString,
 				themeDisplay: nil,
 				error: &lastError)
 

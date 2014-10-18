@@ -16,32 +16,39 @@ import Foundation
 
 extension NSLocale {
 
-	public class func currentLocaleString() -> String {
-		//FIXME Portal doesn't support any country, just few predefined ones
+	public class var currentLanguageString: String {
+		println(NSLocale.currentLocale().localeIdentifier)
 		var preferredLanguage = NSLocale.preferredLanguages()[0].description as String
 
 		preferredLanguage = preferredLanguage.substringToIndex(
 				advance(preferredLanguage.startIndex, 2))
 
-		switch preferredLanguage {
+		return preferredLanguage
+	}
+
+	public class var currentLocaleString: String {
+		//FIXME Portal doesn't support any country, just few predefined ones
+		let language = NSLocale.currentLanguageString
+
+		switch language {
 			case "ca", "es":
-				return preferredLanguage + "_ES"
+				return language + "_ES"
 			case "zh":
-				return preferredLanguage + "_CN"
+				return language + "_CN"
 			case "fi":
-				return preferredLanguage + "_FI"
+				return language + "_FI"
 			case "fr":
-				return preferredLanguage + "_FR"
+				return language + "_FR"
 			case "de":
-				return preferredLanguage + "_DE"
+				return language + "_DE"
 			case "iw", "he":
 				return "iw_IL"
 			case "hu":
-				return preferredLanguage + "_HU"
+				return language + "_HU"
 			case "ja":
-				return preferredLanguage + "_JP"
+				return language + "_JP"
 			case "pt":
-				return preferredLanguage + "_BR"
+				return language + "_BR"
 			default: ()
 		}
 
