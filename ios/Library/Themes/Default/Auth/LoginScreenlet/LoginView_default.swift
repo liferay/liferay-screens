@@ -85,6 +85,13 @@ public class LoginView_default: BaseScreenletView, LoginData {
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
+	override internal func onSetTranslations() {
+		passwordField?.placeholder = NSLocalizedString("default", "password-placeholder")
+
+		loginButton?.setAttributedTitle(NSLocalizedString("default", "sign-in-button"),
+				forState: .Normal)
+	}
+
 	override internal func onStartOperation() {
 		loginButton!.enabled = false
 	}

@@ -18,10 +18,11 @@ public class LiferayLoginBaseOperation: ServerOperation {
 	public var resultUserAttributes: [String:AnyObject]?
 
 	internal override var hudLoadingMessage: HUDMessage? {
-		return ("Sending sign in...", details: "Wait few seconds...")
+		return (NSLocalizedString("login-screenlet", "loading-message"),
+				details: NSLocalizedString("login-screenlet", "loading-details"))
 	}
 	internal override var hudFailureMessage: HUDMessage? {
-		return ("Error signing in!", details: nil)
+		return (NSLocalizedString("login-screenlet", "loading-error"), details: nil)
 	}
 
 	internal var loginData: LoginData {
@@ -33,7 +34,8 @@ public class LiferayLoginBaseOperation: ServerOperation {
 
 	override internal func validateData() -> Bool {
 		if loginData.userName == nil || loginData.password == nil {
-			showValidationHUD(message: "Please, enter the user name and password")
+			showValidationHUD(
+					message: NSLocalizedString("login-screenlet", "validation"))
 
 			return false
 		}
