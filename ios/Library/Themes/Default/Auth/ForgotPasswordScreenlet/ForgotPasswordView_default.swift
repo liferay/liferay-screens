@@ -64,6 +64,13 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordData {
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
+	override func onSetTranslations() {
+		requestPasswordButton?.setAttributedTitle(
+				NSLocalizedString("default", "forgot-password-button"),
+				forState: .Normal)
+
+	}
+
 	override internal func onStartOperation() {
 		requestPasswordButton!.enabled = false
 	}

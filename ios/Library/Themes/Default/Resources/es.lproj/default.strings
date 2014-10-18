@@ -3,3 +3,4 @@
 "default-auth-method-userid"="ID de usuario";
 "default-password-placeholder"="Contraseña";
 "default-sign-in-button"="ENTRAR";
+"default-forgot-password-button"="ENVIAR";

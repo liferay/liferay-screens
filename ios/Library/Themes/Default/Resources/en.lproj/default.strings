@@ -3,3 +3,4 @@
 "default-auth-method-userid"="User ID";
 "default-password-placeholder"="Password";
 "default-sign-in-button"="SIGN IN";
+"default-forgot-password-button"="REQUEST";
