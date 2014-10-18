@@ -90,14 +90,3 @@ public enum AuthMethod: String {
 
 }
 
-
-public func setAuthMethodStyles(
-		#authMethod: AuthMethod,
-		#userNameField: UITextField!,
-		#userNameIcon: UIImageView!) {
-
-	userNameField!.placeholder = authMethod.description
-	userNameField!.keyboardType = authMethod.keyboardType
-	userNameIcon?.image = UIImage(named:"default-\(authMethod.iconType)-icon")
-}
-
