@@ -24,7 +24,6 @@ public class ServerOperation: NSOperation {
 			if queue == nil {
 				queue = NSOperationQueue()
 				queue!.maxConcurrentOperationCount = 1
-				queue!.qualityOfService = .UserInitiated
 			}
 
 			queue!.addOperation(operation)
@@ -54,8 +53,6 @@ public class ServerOperation: NSOperation {
 		self.screenlet = screenlet
 
 		super.init()
-
-		self.name = NSStringFromClass(self.dynamicType)
 	}
 
 
