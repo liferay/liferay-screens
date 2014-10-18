@@ -65,7 +65,7 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordData {
 	}
 
 	override func onSetTranslations() {
-		requestPasswordButton?.setAttributedTitle(
+		requestPasswordButton?.replaceAttributedTitle(
 				NSLocalizedString("default", "forgot-password-button"),
 				forState: .Normal)
 

@@ -16,7 +16,7 @@ import Foundation
 
 extension UIButton {
 
-	public func setAttributedTitle(title: String, forState state: UIControlState) {
+	public func replaceAttributedTitle(title: String, forState state: UIControlState) {
 		if let attributedTitle = self.attributedTitleForState(state) {
 			let formattedString = NSMutableAttributedString(
 					attributedString: attributedTitle)
