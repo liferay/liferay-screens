@@ -23,10 +23,11 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 
 
 	internal override var hudLoadingMessage: HUDMessage? {
-		return ("Loading...", details: "Wait few seconds...")
+		return (NSLocalizedString("webcontentdisplay-screenlet", "loading-message"),
+				details: NSLocalizedString("webcontentdisplay-screenlet", "loading-details"))
 	}
 	internal override var hudFailureMessage: HUDMessage? {
-		return ("Error loading the content", details: nil)
+		return (NSLocalizedString("webcontentdisplay-screenlet", "loading-error"), details: nil)
 	}
 
 
