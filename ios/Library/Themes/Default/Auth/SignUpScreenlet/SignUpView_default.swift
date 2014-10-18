@@ -52,6 +52,17 @@ public class SignUpView_default: BaseScreenletView, SignUpData {
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
+	override func onSetTranslations() {
+		firstNameField?.placeholder = NSLocalizedString("default", "first-name-placeholder") 
+		lastNameField?.placeholder = NSLocalizedString("default", "last-name-placeholder")
+		emailAddressField?.placeholder = NSLocalizedString("default", "auth-method-email")
+		passwordField?.placeholder = NSLocalizedString("default", "password-placeholder")
+
+		signUpButton?.replaceAttributedTitle(
+				NSLocalizedString("default", "sign-up-button"),
+				forState: .Normal)
+	}
+
 	//MARK: SignUpData
 
 	public var emailAddress: String? {

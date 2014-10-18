@@ -18,10 +18,11 @@ public class LiferaySignUpOperation: ServerOperation {
 	public var resultUserAttributes: [String:AnyObject]?
 
 	internal override var hudLoadingMessage: HUDMessage? {
-		return ("Sending sign up...", details: "Wait few seconds...")
+		return (NSLocalizedString("signup-screenlet", "loading-message"),
+				details: NSLocalizedString("signup-screenlet", "loading-details"))
 	}
 	internal override var hudFailureMessage: HUDMessage? {
-		return ("Error signing up!", details: nil)
+		return (NSLocalizedString("signup-screenlet", "loading-error"), details: nil)
 	}
 
 	private var signUpData: SignUpData {
@@ -32,7 +33,8 @@ public class LiferaySignUpOperation: ServerOperation {
 
 	override func validateData() -> Bool {
 		if signUpData.emailAddress == nil {
-			showValidationHUD(message: "Please, enter your email address at least")
+			showValidationHUD(
+					message: NSLocalizedString("signup-screenlet", "validation"))
 
 			return false
 		}
