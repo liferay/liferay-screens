@@ -80,8 +80,7 @@ public class LoginView_default: BaseScreenletView, LoginData {
 	override internal func onCreated() {
 		super.onCreated()
 
-		setDefaultButtonBackground(
-				NSBundle(forClass: self.dynamicType), loginButton)
+		setDefaultButtonBackground(loginButton)
 
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}

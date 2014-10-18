@@ -30,8 +30,7 @@ public class DDLSubmitButtonTableCell_default: DDLFieldTableCell {
 	override public func awakeFromNib() {
 		super.awakeFromNib()
 
-		setDefaultButtonBackground(
-				NSBundle(forClass: self.dynamicType), submitButton)
+		setDefaultButtonBackground(submitButton)
 	}
 
 	override public func canBecomeFirstResponder() -> Bool {

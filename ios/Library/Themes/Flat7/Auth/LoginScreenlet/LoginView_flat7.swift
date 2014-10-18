@@ -27,8 +27,7 @@ public class LoginView_flat7: LoginView_default {
 	override internal func onCreated() {
 		super.onCreated()
 
-		setFlat7ButtonBackground(
-				NSBundle(forClass: self.dynamicType), loginButton)
+		setFlat7ButtonBackground(loginButton)
 
 		BaseScreenlet.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}

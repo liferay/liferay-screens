@@ -26,8 +26,7 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 	override internal func onCreated() {
 		super.onCreated()
 
-		setFlat7ButtonBackground(
-				NSBundle(forClass: self.dynamicType), requestPasswordButton)
+		setFlat7ButtonBackground(requestPasswordButton)
 
 		BaseScreenlet.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}

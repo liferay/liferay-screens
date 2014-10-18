@@ -17,11 +17,8 @@ import Foundation
 let Flat7ThemeBasicGreen = UIColor(red: 39.0/255, green: 174.0/255, blue: 97.0/255, alpha: 1)
 
 
-func setFlat7ButtonBackground(bundle: NSBundle, button: UIButton?) {
-	var stretchableImage = UIImage(
-			named: "flat7-button",
-			inBundle: bundle,
-			compatibleWithTraitCollection: nil)!
+func setFlat7ButtonBackground(button: UIButton?) {
+	var stretchableImage = UIImage(named: "flat7-button")!
 
 	stretchableImage = stretchableImage.resizableImageWithCapInsets(
 			UIEdgeInsetsMake(19, 19, 19, 19),
