@@ -1,6 +1,15 @@
 "default-auth-method-email"="Dirección de correo";
 "default-auth-method-screenname"="Nombre corto";
 "default-auth-method-userid"="ID de usuario";
-"default-password-placeholder"="Contraseña";
 "default-sign-in-button"="ENTRAR";
-"default-forgot-password-button"="ENVIAR";
+"default-sign-up-button"="REGISTRAR";
+"default-forgot-password-button"="SOLICITAR";
+"default-password-placeholder"="Contraseña";
+"default-first-name-placeholder"="Nombre";
+"default-last-name-placeholder"="Apellidos";
+"default-ddlform-upload-picker-take-new"="Sacar una foto o video...";
+"default-ddlform-upload-picker-select-photo"="Seleccionar una foto existente...";
+"default-ddlform-upload-picker-select-video"="Seleccionar un video existente...";
+"default-ddlform-upload-picker-cancel"="Cancelar";
+"ddlform-submit-button"="ENVIAR";
+

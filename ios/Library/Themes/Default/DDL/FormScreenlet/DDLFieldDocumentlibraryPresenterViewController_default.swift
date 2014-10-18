@@ -18,6 +18,11 @@ import MobileCoreServices
 public class DDLFieldDocumentlibraryPresenterViewController_default:
 		UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+	@IBOutlet internal var takeNewButton: UIButton?
+	@IBOutlet internal var selectPhotoButton: UIButton?
+	@IBOutlet internal var selectVideoButton: UIButton?
+	@IBOutlet internal var cancelButton: UIButton?
+
 	public var selectedDocumentClosure: ((UIImage?, NSURL?) -> Void)?
 
 	private let imagePicker = UIImagePickerController()
@@ -30,6 +35,19 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 		imagePicker.delegate = self
 		imagePicker.allowsEditing = false
 		imagePicker.modalPresentationStyle = .CurrentContext
+
+		takeNewButton?.replaceAttributedTitle(
+				NSLocalizedString("default", "ddlform-upload-picker-take-new"),
+				forState: .Normal)
+		selectPhotoButton?.replaceAttributedTitle(
+				NSLocalizedString("default", "ddlform-upload-picker-select-photo"),
+				forState: .Normal)
+		selectVideoButton?.replaceAttributedTitle(
+				NSLocalizedString("default", "ddlform-upload-picker-select-video"),
+				forState: .Normal)
+		cancelButton?.replaceAttributedTitle(
+				NSLocalizedString("default", "ddlform-upload-picker-cancel"),
+				forState: .Normal)
 	}
 
 	required public init(coder aDecoder: NSCoder) {

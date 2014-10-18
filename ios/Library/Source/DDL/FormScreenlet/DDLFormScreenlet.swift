@@ -285,9 +285,11 @@ import UIKit
 				uploadStatus = .Uploading(uploadCount, true)
 
 				let uploadMessage = (uploadCount == 1)
-						? "Uploading file..." : "Uploading files..."
+						? "uploading-message-singular" : "uploading-message-plural"
 
-				showHUDWithMessage(uploadMessage, details: "Wait a second...")
+				showHUDWithMessage(
+						NSLocalizedString("ddlform-screenlet", uploadMessage),
+						details: NSLocalizedString("ddlform-screenlet", "uploading-details"))
 
 				return true
 
@@ -310,7 +312,9 @@ import UIKit
 		}
 
 		if let failedUploads = failedDocumentFields {
-			showHUDWithMessage("Retrying failed upload...", details: "Wait a second...")
+			showHUDWithMessage(
+				NSLocalizedString("ddlform-screenlet", "uploading-retry"),
+				details: NSLocalizedString("ddlform-screenlet", "uploading-retry-details"))
 
 			for failedDocumentField in failedUploads {
 				uploadDocument(failedDocumentField as DDLFieldDocument)

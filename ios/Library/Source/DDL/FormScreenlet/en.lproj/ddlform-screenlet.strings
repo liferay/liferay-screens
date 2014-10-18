@@ -1,0 +1,23 @@
+"ddlform-screenlet-loading-message"="Loading form...";
+"ddlform-screenlet-loading-details"="Wait few seconds...";
+"ddlform-screenlet-loading-error"="Error loading the form";
+"ddlform-screenlet-loading-record-message"="Loading data...";
+"ddlform-screenlet-loading-record-details"="Wait few seconds...";
+"ddlform-screenlet-loading-record-error"="Error loading the data";
+"ddlform-screenlet-submitting-message"="Submitting form...";
+"ddlform-screenlet-submitting-details"="Wait few seconds...";
+"ddlform-screenlet-submitting-error"="Error submitting the form";
+"ddlform-screenlet-submitted"="Form submitted!";
+"ddlform-screenlet-validation"="Some values are not valid";
+"ddlform-screenlet-validation-details"="Please, review your form";
+"ddlform-screenlet-uploading-message-singular"="Uploading file...";
+"ddlform-screenlet-uploading-message-plural"="Uploading files...";
+"ddlform-screenlet-uploading-details"="Wait few seconds...";
+"ddlform-screenlet-uploading-retry"="Retrying failed upload...";
+"ddlform-screenlet-uploading-retry-details"="Wait few seconds...";
+"ddlform-screenlet-uploading-error"="Error uploading data";
+"ddlform-screenlet-upload-metadata-description"="";
+"ddlform-screenlet-upload-metadata-changelog"="Uploaded from Liferay Screens app";
+
+
+

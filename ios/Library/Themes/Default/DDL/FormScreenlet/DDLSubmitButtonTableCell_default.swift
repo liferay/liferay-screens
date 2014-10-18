@@ -31,6 +31,10 @@ public class DDLSubmitButtonTableCell_default: DDLFieldTableCell {
 		super.awakeFromNib()
 
 		setDefaultButtonBackground(submitButton)
+
+		submitButton?.replaceAttributedTitle(
+				NSLocalizedString("default", "ddlform-submit-button"),
+				forState: .Normal)
 	}
 
 	override public func canBecomeFirstResponder() -> Bool {
