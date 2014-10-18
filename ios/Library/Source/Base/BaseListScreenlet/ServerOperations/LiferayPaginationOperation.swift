@@ -21,10 +21,15 @@ public class LiferayPaginationOperation: ServerOperation {
 	public var result: (pageContent: [[String:AnyObject]], rowCount: Int?)?
 
 	internal override var hudLoadingMessage: HUDMessage? {
-		return (page == 0) ? ("Loading list...", details: "Wait few seconds...") : nil
+		return (page == 0)
+				? (NSLocalizedString("base", "base-list-loading-message"),
+						details: NSLocalizedString("base", "base-list-loading-message"))
+				: nil
 	}
 	internal override var hudFailureMessage: HUDMessage? {
-		return (page == 0) ? ("Error getting list!", details: nil) : nil
+		return (page == 0) 
+				? (NSLocalizedString("base", "base-list-loading-error"), details: nil)
+				: nil
 	}
 
 
