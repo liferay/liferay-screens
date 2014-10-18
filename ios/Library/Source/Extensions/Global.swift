@@ -59,3 +59,13 @@ func synchronized(lock:AnyObject, closure: Void -> Void) {
 	objc_sync_exit(lock)
 }
 
+
+func NSLocalizedString(tableName: String, key: String) -> String {
+	return NSLocalizedString(
+				"\(tableName)-\(key)",
+				tableName: tableName,
+				bundle: NSBundle.mainBundle(),
+				value: "",
+				comment: "")
+}
+
