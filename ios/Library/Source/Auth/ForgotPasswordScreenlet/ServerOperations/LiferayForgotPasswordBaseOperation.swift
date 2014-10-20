@@ -19,15 +19,15 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 	public var resultPasswordSent: Bool?
 
 	internal override var hudLoadingMessage: HUDMessage? {
-		return (NSLocalizedString("forgotpassword-screenlet", "loading-message"),
-		details: NSLocalizedString("forgotpassword-screenlet", "loading-details"))
+		return (LocalizedString("forgotpassword-screenlet", "loading-message"),
+		details: LocalizedString("forgotpassword-screenlet", "loading-details"))
 	}
 	internal override var hudFailureMessage: HUDMessage? {
-		return (NSLocalizedString("forgotpassword-screenlet", "loading-error"), details: nil)
+		return (LocalizedString("forgotpassword-screenlet", "loading-error"), details: nil)
 	}
 	internal override var hudSuccessMessage: HUDMessage? {
-		return (NSLocalizedString("forgotpassword-screenlet", successMessageKey),
-				details: NSLocalizedString("forgotpassword-screenlet", "loaded-details"))
+		return (LocalizedString("forgotpassword-screenlet", successMessageKey),
+				details: LocalizedString("forgotpassword-screenlet", "loaded-details"))
 	}
 
 	internal var forgotPasswordData: ForgotPasswordData {

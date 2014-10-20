@@ -36,7 +36,7 @@ public func setAuthMethodStyles(
 		#userNameField: UITextField!,
 		#userNameIcon: UIImageView!) {
 
-	userNameField!.placeholder = NSLocalizedString("default", authMethod.description)
+	userNameField!.placeholder = LocalizedString("default", authMethod.description)
 	userNameField!.keyboardType = authMethod.keyboardType
 	userNameIcon?.image = UIImage(named:"default-\(authMethod.iconType)-icon")
 }

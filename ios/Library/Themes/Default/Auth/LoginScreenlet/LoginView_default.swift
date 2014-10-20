@@ -86,9 +86,9 @@ public class LoginView_default: BaseScreenletView, LoginData {
 	}
 
 	override internal func onSetTranslations() {
-		passwordField?.placeholder = NSLocalizedString("default", "password-placeholder")
+		passwordField?.placeholder = LocalizedString("default", "password-placeholder")
 
-		loginButton?.replaceAttributedTitle(NSLocalizedString("default", "sign-in-button"),
+		loginButton?.replaceAttributedTitle(LocalizedString("default", "sign-in-button"),
 				forState: .Normal)
 	}
 

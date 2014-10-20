@@ -41,40 +41,13 @@ public class LoginView_flat7: LoginView_default {
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
-		titleLabel!.text = NSLocalizedString("theme-flat7-login-title",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
+		titleLabel!.text = LocalizedString("flat7", "login-title")
+		subtitleLabel!.text = LocalizedString("flat7", "login-subtitle")
+		userNamePlaceholder!.text = LocalizedString("flat7" ,"login-email")
+		passwordPlaceholder!.text = LocalizedString("flat7", "login-password")
 
-		subtitleLabel!.text = NSLocalizedString("theme-flat7-login-subtitle",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
-
-		userNamePlaceholder!.text = NSLocalizedString("theme-flat7-login-email",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
-
-		passwordPlaceholder!.text = NSLocalizedString("theme-flat7-login-password",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
-
-		let translated = NSLocalizedString("theme-flat7-login-login",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
-
-		let str = loginButton!.attributedTitleForState(UIControlState.Normal)
-		let newStr = NSMutableAttributedString(attributedString: str!)
-		newStr.replaceCharactersInRange(NSMakeRange(0, str!.length), withString:translated)
-		loginButton!.setAttributedTitle(newStr, forState: UIControlState.Normal)
+		loginButton!.replaceAttributedTitle(LocalizedString("flat7", "login-login"),
+				forState: .Normal)
 
 		userNameField!.placeholder = "";
 		passwordField!.placeholder = "";

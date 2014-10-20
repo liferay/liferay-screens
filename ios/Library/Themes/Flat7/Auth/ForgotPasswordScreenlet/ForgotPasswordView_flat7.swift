@@ -34,34 +34,13 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
-		titleLabel!.text = NSLocalizedString("theme-flat7-forgotpassword-title",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
+		titleLabel!.text = LocalizedString("flat7", "forgotpassword-title")
+		subtitleLabel!.text = LocalizedString("flat7", "forgotpassword-subtitle")
+		userNamePlaceholder!.text = LocalizedString("flat7", "forgotpassword-email")
 
-		subtitleLabel!.text = NSLocalizedString("theme-flat7-forgotpassword-subtitle",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
-
-		userNamePlaceholder!.text = NSLocalizedString("theme-flat7-forgotpassword-email",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
-
-		let translated = NSLocalizedString("theme-flat7-forgotpassword-request",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
-
-		let str = requestPasswordButton!.attributedTitleForState(UIControlState.Normal)
-		let newStr = NSMutableAttributedString(attributedString: str!)
-		newStr.replaceCharactersInRange(NSMakeRange(0, str!.length), withString:translated)
-		requestPasswordButton!.setAttributedTitle(newStr, forState: UIControlState.Normal)
+		requestPasswordButton!.replaceAttributedTitle(
+				LocalizedString("flat7", "forgotpassword-request"),
+				forState: .Normal)
 
 		userNameField!.placeholder = "";
 	}

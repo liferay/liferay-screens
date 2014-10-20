@@ -60,7 +60,7 @@ func synchronized(lock:AnyObject, closure: Void -> Void) {
 }
 
 
-func NSLocalizedString(tableName: String, key: String) -> String {
+func LocalizedString(tableName: String, key: String) -> String {
 	return NSLocalizedString(
 				"\(tableName)-\(key)",
 				tableName: tableName,

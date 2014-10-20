@@ -33,7 +33,7 @@ public class DDLSubmitButtonTableCell_default: DDLFieldTableCell {
 		setDefaultButtonBackground(submitButton)
 
 		submitButton?.replaceAttributedTitle(
-				NSLocalizedString("default", "ddlform-submit-button"),
+				LocalizedString("default", "ddlform-submit-button"),
 				forState: .Normal)
 	}
 

@@ -22,11 +22,11 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
 
 	internal override var hudLoadingMessage: HUDMessage? {
-		return (NSLocalizedString("ddlform-screenlet", "loading-record-message"),
-				details: NSLocalizedString("ddlform-screenlet", "loading-record-details"))
+		return (LocalizedString("ddlform-screenlet", "loading-record-message"),
+				details: LocalizedString("ddlform-screenlet", "loading-record-details"))
 	}
 	internal override var hudFailureMessage: HUDMessage? {
-		return (NSLocalizedString("ddlform-screenlet", "loading-record-error"), details: nil)
+		return (LocalizedString("ddlform-screenlet", "loading-record-error"), details: nil)
 	}
 
 	internal var formData: DDLFormData {
