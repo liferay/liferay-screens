@@ -26,6 +26,8 @@ public class SignUpView_default: BaseScreenletView, SignUpData {
 	@IBOutlet internal var firstNameBackground: UIImageView?
 	@IBOutlet internal var lastNameBackground: UIImageView?
 
+	@IBOutlet internal var scrollView: UIScrollView?
+
 
 	//MARK: BaseScreenletView
 
@@ -37,6 +39,19 @@ public class SignUpView_default: BaseScreenletView, SignUpData {
 		signUpButton!.enabled = true
 	}
 
+
+	//MARK: BaseScreenletView
+
+	override internal func onCreated() {
+		super.onCreated()
+
+		setDefaultButtonBackground(
+				NSBundle(forClass: self.dynamicType), signUpButton)
+
+		scrollView?.contentSize = scrollView!.frame.size
+
+		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
+	}
 
 	//MARK: SignUpData
 
@@ -100,10 +115,10 @@ public class SignUpView_default: BaseScreenletView, SignUpData {
 	//MARK: UITextFieldDelegate
 
 	internal func textFieldDidBeginEditing(textField: UITextField!) {
-		emailAddressBackground!.highlighted = (textField == emailAddressField)
-		passwordBackground!.highlighted = (textField == passwordField)
-		firstNameBackground!.highlighted = (textField == firstNameField)
-		lastNameBackground!.highlighted = (textField == lastNameField)
+		emailAddressBackground?.highlighted = (textField == emailAddressField)
+		passwordBackground?.highlighted = (textField == passwordField)
+		firstNameBackground?.highlighted = (textField == firstNameField)
+		lastNameBackground?.highlighted = (textField == lastNameField)
 	}
 
 }

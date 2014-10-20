@@ -29,6 +29,10 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		return (components.count > 1) ? components.last : nil
 	}
 
+	deinit {
+		onDestroy()
+	}
+
 
 	//MARK: UIView
 
@@ -52,6 +56,15 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		return result
 	}
 
+	override public func didMoveToWindow() {
+		if (window != nil) {
+			onShow();
+		}
+		else {
+			onHide();
+		}
+	}
+
 
 	//MARK: UITextFieldDelegate
 
@@ -61,7 +74,8 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		if nextResponder != textField {
 
 			switch textField.returnKeyType {
-				case .Next where nextResponder is UITextInputTraits:
+				case .Next
+				where nextResponder is UITextInputTraits:
 					if textField.canResignFirstResponder() {
 						textField.resignFirstResponder()
 
@@ -70,7 +84,8 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 						}
 					}
 
-				case _ where nextResponder is UIControl:
+				case _
+				where nextResponder is UIControl:
 					(nextResponder as UIControl).sendActionsForControlEvents(
 							UIControlEvents.TouchUpInside)
 
@@ -93,13 +108,48 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	}
 
 	/*
+	 * onDestroy is fired before the destruction of the screenlet view.
+	 * Override this method to perform cleanup actions.
+	*/
+	internal func onDestroy() {
+	}
+
+	/*
 	 * onPreCreate is fired before the initialization of the screenlet view. 
 	 * Override this method to create UI components programatically.
 	*/
 	internal func onPreCreate() {
 	}
 
+	/*
+	 * onHide is invoked when the screenlet's view is hidden
+	 */
+	internal func onHide() {
+	}
+
+	/*
+	 * onShow is invoked when the screenlet's view is displayed.
+	 * Override this method for example to reset values when the screenlet's 
+	 * view is shown.
+	 */
+	internal func onShow() {
+	}
+
+	/*
+	 * onSetUserActionForControl is invoked just before the user action handler 
+	 * is associated to one control.
+	 * Override this method to decide whether or not the handler should be 
+	 * associated to the control.
+	 */
 	internal func onSetUserActionForControl(control: UIControl) -> Bool {
+		return true
+	}
+
+	/*
+	 * onPreUserAction is invoked just before any user action is invoked.
+	 * Override this method to decide whether or not the user action should be fired.
+	 */
+	internal func onPreUserAction(actionName: String?, sender: AnyObject?) -> Bool {
 		return true
 	}
 
@@ -114,25 +164,27 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	}
 
 	internal func onFinishOperation() {
-	}	
+	}
 
-	internal func userActionHandler(sender: AnyObject?) {
+	internal func userActionWithSender(sender: AnyObject?) {
 		if let controlSender = sender as? UIControl {
-			userActionHandler(actionName: controlSender.restorationIdentifier, sender: sender)
+			userActionWithName(actionName: controlSender.restorationIdentifier, sender: sender)
 		}
 		else {
-			userActionHandler(actionName: nil, sender: sender)
+			userActionWithName(actionName: nil, sender: sender)
 		}
 	}
 
-	internal func userActionHandler(actionName: String?) {
-		userActionHandler(actionName: actionName, sender: nil)
+	internal func userActionWithName(actionName: String?) {
+		userActionWithName(actionName: actionName, sender: nil)
 	}
 	
-	internal func userActionHandler(#actionName: String?, sender: AnyObject?) {
-		endEditing(true)
+	internal func userActionWithName(#actionName: String?, sender: AnyObject?) {
+		if onPreUserAction(actionName, sender: sender) {
+			endEditing(true)
 		
-		onUserAction?(actionName, sender)
+			onUserAction?(actionName, sender)
+		}
 	}
 
 	internal func nextResponderForView(view:UIView) -> UIResponder {
@@ -150,7 +202,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	private func addUserActionForControl(control: UIControl) {
 		if onSetUserActionForControl(control) {
 			control.addTarget(self,
-					action: "userActionHandler:",
+					action: "userActionWithSender:",
 					forControlEvents: UIControlEvents.TouchUpInside)
 		}
 	}

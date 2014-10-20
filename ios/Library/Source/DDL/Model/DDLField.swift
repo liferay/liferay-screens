@@ -14,7 +14,7 @@
 import Foundation
 
 
-@objc public class DDLField: Equatable {
+public class DDLField: NSObject, Equatable, Printable {
 
 	public var currentHeight:CGFloat = 0
 
@@ -36,23 +36,45 @@ import Foundation
 		}
 	}
 
-	internal(set) var dataType:DataType
-	internal(set) var editorType:Editor
+	public override var description: String {
+		let currentValue = self.currentValueAsString
+		var str = "DDLField[" +
+				" name=\( self.name )" +
+				" type=\( self.dataType.toRaw() )" +
+				" editor=\( self.editorType.toRaw() )"
+		if currentValue != nil {
+			if currentValue! == "" {
+				str += " value='' ]"
+			}
+			else {
+				str += " value=\( currentValue! ) ]"
+			}
+		}
+		else {
+			str += " ]"
+		}
 
-	internal(set) var name:String
+		return str
+	}
 
-	internal(set) var label:String
-	internal(set) var tip:String
+	internal(set) var dataType: DataType
+	internal(set) var editorType: Editor
 
-	internal(set) var predefinedValue:AnyObject?
+	internal(set) var name: String
 
-	internal(set) var readOnly:Bool
-	internal(set) var repeatable:Bool
-	internal(set) var required:Bool
+	internal(set) var label: String
+	internal(set) var tip: String
+
+	internal(set) var predefinedValue: AnyObject?
+
+	internal(set) var readOnly: Bool
+	internal(set) var repeatable: Bool
+	internal(set) var required: Bool
 
 	internal(set) var showLabel:Bool
 
-	public init(attributes:[String:AnyObject]) {
+
+	public init(attributes: [String:AnyObject]) {
 		dataType = DataType.fromRaw(valueAsString(attributes, key:"dataType")) ?? .Unsupported
 		editorType = Editor.from(attributes: attributes)
 		name = valueAsString(attributes, key:"name")
@@ -64,6 +86,8 @@ import Foundation
 
 		label = valueAsString(attributes, key:"label")
 		tip = valueAsString(attributes, key:"tip")
+
+		super.init()
 
 		predefinedValue = attributes["predefinedValue"] ?? nil
 		if predefinedValue is String {

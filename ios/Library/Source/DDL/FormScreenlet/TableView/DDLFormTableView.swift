@@ -14,7 +14,8 @@
 import UIKit
 
 
-public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDelegate {
+public class DDLFormTableView: DDLFormView,
+		UITableViewDataSource, UITableViewDelegate, KeyboardLayoutable {
 
 	@IBOutlet internal var tableView: UITableView?
 
@@ -29,15 +30,19 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 	}
 
 
-	internal var firstCellResponder:UIResponder?
+	internal var firstCellResponder: UIResponder?
 
-	internal var submitButtonHeight:CGFloat = 0.0
+	internal var submitButtonHeight: CGFloat = 0.0
+
+	internal var originalFrame: CGRect?
+
+	internal var keyboardManager = KeyboardManager()
 
 
 	//MARK: DDLFormView
 
 	override public func resignFirstResponder() -> Bool {
-		var result:Bool = false
+		var result = false
 
 		if let cellValue = firstCellResponder {
 			result = cellValue.resignFirstResponder()
@@ -58,12 +63,13 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		while !result && indexPath.row < rowCount {
 			if let cell = tableView!.cellForRowAtIndexPath(indexPath) {
 				if cell.canBecomeFirstResponder() {
-					result = true
-					cell.becomeFirstResponder()
+					result = cell.becomeFirstResponder()
 				}
-
 			}
-			indexPath = NSIndexPath(forRow: indexPath.row.successor(), inSection: indexPath.section)
+
+			indexPath = NSIndexPath(
+					forRow: indexPath.row.successor(),
+					inSection: indexPath.section)
 		}
 
 		return result
@@ -73,6 +79,14 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 		super.onCreated()
 
 		registerFieldCells()
+	}
+
+	override internal func onShow() {
+		keyboardManager.registerObserver(self)
+	}
+
+	override internal func onHide() {
+		keyboardManager.unregisterObserver()
 	}
 
 	override internal func showField(field: DDLField) {
@@ -89,6 +103,85 @@ public class DDLFormTableView: DDLFormView, UITableViewDataSource, UITableViewDe
 					NSIndexPath(forRow: row, inSection: 0)) as? DDLFieldTableCell {
 				cell.changeDocumentUploadStatus(field)
 			}
+		}
+	}
+
+
+	//MARK: KeyboardLayoutable
+
+	internal func layoutWhenKeyboardShown(var keyboardHeight: CGFloat,
+			animation:(time: NSNumber, curve: NSNumber)) {
+
+		let cell = DDLFieldTableCell.viewAsFieldCell(firstCellResponder as? UIView)
+
+		var scrollDone = false
+		let scrollClosure = { (completedAnimation: Bool) -> Void in
+			if let cellValue = cell {
+				if !cellValue.isFullyVisible {
+					cellValue.tableView!.scrollToRowAtIndexPath(cellValue.indexPath!,
+							atScrollPosition: .Middle,
+							animated: true)
+				}
+			}
+		}
+
+		if let textInput = firstCellResponder as? UITextInputTraits {
+			let absoluteFrame = convertRect(frame, toView: window!)
+
+			var shouldWorkaroundUIPickerViewBug = false
+			if let cellValue = cell {
+				shouldWorkaroundUIPickerViewBug =
+						cellValue.field!.editorType == DDLField.Editor.Document ||
+						cellValue.field!.editorType == DDLField.Editor.Select
+			}
+
+			if shouldWorkaroundUIPickerViewBug {
+				//FIXME
+				// Height used by UIPickerView is 216, when the standard keyboard have 253
+				keyboardHeight = 253
+			}
+			else if textInput.autocorrectionType == UITextAutocorrectionType.Default ||
+				textInput.autocorrectionType == UITextAutocorrectionType.Yes {
+
+				keyboardHeight += KeyboardManager.defaultAutocorrectionBarHeight
+			}
+
+			if (absoluteFrame.origin.y + absoluteFrame.size.height >
+					UIScreen.mainScreen().bounds.height - keyboardHeight) || originalFrame != nil {
+
+				let newHeight = UIScreen.mainScreen().bounds.height -
+						keyboardHeight + absoluteFrame.origin.y
+
+				if Int(newHeight) != Int(self.frame.size.height) {
+					if originalFrame == nil {
+						originalFrame = frame
+					}
+
+					scrollDone = true
+
+					UIView.animateWithDuration(animation.time,
+							delay: 0,
+							options: UIViewAnimationOptions.fromRaw(animation.curve.unsignedLongValue)!,
+							animations: {
+								self.frame = CGRectMake(
+										self.frame.origin.x,
+										self.frame.origin.y,
+										self.frame.size.width,
+										newHeight)
+							}, completion: scrollClosure)
+				}
+			}
+		}
+
+		if !scrollDone {
+			scrollClosure(true)
+		}
+	}
+
+	internal func layoutWhenKeyboardHidden() {
+		if let originalFrameValue = originalFrame {
+			self.frame = originalFrameValue
+			originalFrame = nil
 		}
 	}
 

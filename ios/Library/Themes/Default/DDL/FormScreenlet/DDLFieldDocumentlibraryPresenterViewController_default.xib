@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DDLElementDocumentlibraryPresenterViewController_default" customModule="Liferay_iOS_Screens_Swift_Sample" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DDLElementDocumentlibraryPresenterViewController_default" customModule="beta_screens" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="submit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="sp4-EC-b28">
-                    <rect key="frame" x="8" y="143.00000027760001" width="254" height="36"/>
+                    <rect key="frame" x="8" y="143" width="254" height="36"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.057840337152370774" green="0.47049217733654602" blue="0.60271843112244894" alpha="0.87" colorSpace="calibratedRGB"/>
                     <state key="normal">
@@ -29,7 +29,6 @@
                             </fragment>
                         </attributedString>
                     </state>
-                    <state key="selected" backgroundImage="default-large-button-selected.png"/>
                     <connections>
                         <action selector="cancelButtonAction:" destination="-1" eventType="touchUpInside" id="KBM-0i-9QX"/>
                     </connections>
@@ -49,7 +48,6 @@
                             </fragment>
                         </attributedString>
                     </state>
-                    <state key="selected" backgroundImage="default-large-button-selected.png"/>
                     <connections>
                         <action selector="selectVideosAction:" destination="-1" eventType="touchUpInside" id="Ywg-gi-Jav"/>
                     </connections>
@@ -69,7 +67,6 @@
                             </fragment>
                         </attributedString>
                     </state>
-                    <state key="selected" backgroundImage="default-large-button-selected.png"/>
                     <connections>
                         <action selector="selectPhotosAction:" destination="-1" eventType="touchUpInside" id="6UL-Zx-dNr"/>
                     </connections>
@@ -89,7 +86,6 @@
                             </fragment>
                         </attributedString>
                     </state>
-                    <state key="selected" backgroundImage="default-large-button-selected.png"/>
                     <connections>
                         <action selector="takePhotoAction:" destination="-1" eventType="touchUpInside" id="cyv-D2-dyg"/>
                     </connections>
@@ -101,9 +97,6 @@
             <point key="canvasLocation" x="115" y="68.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="default-large-button-selected.png" width="217" height="42"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -26,7 +26,7 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 		return ("Loading...", details: "Wait few seconds...")
 	}
 	internal override var hudFailureMessage: HUDMessage? {
-		return ("An error happened loading the content", details: nil)
+		return ("Error loading the content", details: nil)
 	}
 
 

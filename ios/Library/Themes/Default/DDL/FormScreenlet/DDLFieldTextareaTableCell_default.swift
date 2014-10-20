@@ -22,8 +22,9 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 	@IBOutlet internal var label: UILabel?
 	@IBOutlet internal var separator: UIView?
 
-	private var originalTextViewRect:CGRect = CGRectZero
-	private var originalBackgroundRect:CGRect = CGRectZero
+	private var originalTextViewRect = CGRectZero
+	private var originalBackgroundRect = CGRectZero
+	private var originalSeparatorY: CGFloat = 0.0
 
 
 	//MARK: DDLFieldTableCell
@@ -33,8 +34,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 	}
 
 	override public func becomeFirstResponder() -> Bool {
-		textView!.becomeFirstResponder()
-		return false
+		return textView!.becomeFirstResponder()
 	}
 
 	override internal func onChangedField() {
@@ -65,6 +65,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 
 			originalTextViewRect = textView!.frame
 			originalBackgroundRect = textViewBackground!.frame
+			originalSeparatorY = separator!.frame.origin.y
 
 			if stringField.lastValidationResult != nil {
 				onPostValidation(stringField.lastValidationResult!)
@@ -83,7 +84,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 
 	//MARK: UITextViewDelegate
 
-	public func textViewDidBeginEditing(textView: UITextView!) {
+	public func textViewShouldBeginEditing(textView: UITextView) -> Bool {
 		var heightLabelOffset:CGFloat =
 				DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel
 		changeCellHeight(DDLFieldTextareaExpandedCellHeight +
@@ -102,11 +103,13 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 		textViewBackground?.highlighted = true
 
 		formView!.firstCellResponder = textView
+
+		return true
 	}
 
 	public func textViewDidEndEditing(textView: UITextView!) {
-		separator!.frame.origin.y -=
-				DDLFieldTextareaExpandedBackgroundHeight - originalBackgroundRect.size.height
+		separator!.frame.origin.y = originalSeparatorY
+
 		textView.frame = originalTextViewRect
 		textViewBackground!.frame = originalBackgroundRect
 

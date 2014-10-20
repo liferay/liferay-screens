@@ -14,73 +14,79 @@
 import Foundation
 
 
-public struct SessionContext {
+@objc public class SessionContext {
 
-	public static var hasSession: Bool {
-		return currentSession != nil
+	//MARK: Singleton type
+
+	private struct StaticInstance {
+		static var currentSession:LRSession?
+		static var userAttributes: [String:AnyObject] = [:]
 	}
 
-	public static var currentUserName: String? {
-		return currentSession?.username
+	//MARK: Public properties
+
+	public class var hasSession: Bool {
+		return StaticInstance.currentSession != nil
 	}
 
-	public static var currentPassword: String? {
-		return currentSession?.password
+	public class var currentUserName: String? {
+		return StaticInstance.currentSession?.username
 	}
 
-	private static var currentSession:LRSession?
-	private static var userAttributes: [String:AnyObject] = [:]
+	public class var currentPassword: String? {
+		return StaticInstance.currentSession?.password
+	}
 
 
 	//MARK Public methods
 
-	public static func userAttribute(key: String) -> AnyObject? {
-		return userAttributes[key]
+	public class func userAttribute(key: String) -> AnyObject? {
+		return StaticInstance.userAttributes[key]
 	}
 
-	public static func createSession(
+	public class func createSession(
 			#username:String,
 			password:String,
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
-		currentSession = LRSession(
+		StaticInstance.currentSession = LRSession(
 				server:LiferayServerContext.server,
 				username:username,
 				password:password)
 
-		self.userAttributes = userAttributes
+		StaticInstance.userAttributes = userAttributes
 
-		return currentSession!
+		return StaticInstance.currentSession!
 	}
 
-	public static func createSessionFromCurrentSession() -> LRSession? {
-		if let currentSessionValue = currentSession {
+	public class func createSessionFromCurrentSession() -> LRSession? {
+		if let currentSessionValue = StaticInstance.currentSession {
 			return LRSession(session: currentSessionValue)
 		}
 
 		return nil
 	}
 
-	public static func createBatchSessionFromCurrentSession() -> LRBatchSession? {
-		if let currentSessionValue = currentSession {
+	public class func createBatchSessionFromCurrentSession() -> LRBatchSession? {
+		if let currentSessionValue = StaticInstance.currentSession {
 			return LRBatchSession(session: currentSessionValue)
 		}
 
 		return nil
 	}
 
-	public static func clearSession() {
-		currentSession = nil
-		userAttributes = [:]
+	public class func clearSession() {
+		StaticInstance.currentSession = nil
+		StaticInstance.userAttributes = [:]
 	}
 
-	public static func storeSession() -> Bool {
+	public class func storeSession() -> Bool {
 		if !hasSession {
 			return false
 		}
 
-		let success = currentSession!.storeCredential()
+		let success = StaticInstance.currentSession!.storeCredential()
 
 		if !success {
 			return false
@@ -89,12 +95,12 @@ public struct SessionContext {
 		return storeUserAttributes()
 	}
 
-	public static func removeStoredSession() {
+	public class func removeStoredSession() {
 		LRSession.removeStoredCredential()
 		UICKeyChainStore.removeItemForKey("userAttributes")
 	}
 
-	public static func loadSessionFromStore() -> Bool {
+	public class func loadSessionFromStore() -> Bool {
 		if let storedSession = LRSession.sessionFromStoredCredential() {
 			if let userAttributes = loadUserAttributesFromStore() {
 				createSession(
@@ -110,17 +116,17 @@ public struct SessionContext {
 	}
 
 
-	private static func storeUserAttributes() -> Bool {
-		if userAttributes.isEmpty {
+	private class func storeUserAttributes() -> Bool {
+		if StaticInstance.userAttributes.isEmpty {
 			return false
 		}
 
-		let encodedData = NSKeyedArchiver.archivedDataWithRootObject(userAttributes)
+		let encodedData = NSKeyedArchiver.archivedDataWithRootObject(StaticInstance.userAttributes)
 
 		return UICKeyChainStore.setData(encodedData, forKey: "userAttributes")
 	}
 
-	private static func loadUserAttributesFromStore() -> [String:AnyObject]? {
+	private class func loadUserAttributesFromStore() -> [String:AnyObject]? {
 		if let encodedData = UICKeyChainStore.dataForKey("userAttributes") {
 			let dictionary:AnyObject? = NSKeyedUnarchiver.unarchiveObjectWithData(encodedData)
 

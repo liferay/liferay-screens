@@ -22,7 +22,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 		return ("Sending password request...", details: "Wait few seconds...")
 	}
 	internal override var hudFailureMessage: HUDMessage? {
-		return ("An error happened requesting the password", details: nil)
+		return ("Error requesting the password", details: nil)
 	}
 	internal override var hudSuccessMessage: HUDMessage? {
 		return (successMessage, details: "Check your email inbox")

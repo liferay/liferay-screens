@@ -35,7 +35,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	}
 
 	internal override var hudFailureMessage: HUDMessage? {
-		return ("An error happened submitting form", details: nil)
+		return ("Error submitting form", details: nil)
 	}
 
 	internal var formData: DDLFormData {

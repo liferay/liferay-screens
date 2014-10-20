@@ -85,7 +85,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 
 		let optionsPresenter = DTPickerViewPresenter(
 				datasource: dataSource(),
-				changeBlock:onChangeClosure)
+				changeBlock: onChangeClosure)
 
 		optionsPresenter.pickerView.backgroundColor = UIColor.whiteColor()
 		optionsPresenter.pickerView.layer.borderColor = UIColor.lightGrayColor().CGColor

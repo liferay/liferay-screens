@@ -24,11 +24,13 @@ public class SignUpView_flat7: SignUpView_default {
 	@IBOutlet private var emailAddressPlaceholder: UILabel?
 	@IBOutlet private var passwordPlaceholder: UILabel?
 
-
 	//MARK: SignUpView
 
 	override internal func onCreated() {
 		super.onCreated()
+
+		setFlat7ButtonBackground(
+				NSBundle(forClass: self.dynamicType), signUpButton)
 
 		BaseScreenlet.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}

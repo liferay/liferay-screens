@@ -16,14 +16,23 @@ import UIKit
 
 public class DDLSubmitButtonTableCell_default: DDLFieldTableCell {
 
+	@IBOutlet public var submitButton: UIButton?
+
 	//MARK: Actions
 
 	@IBAction private func submitButtonAction(sender: AnyObject) {
-		formView!.userActionHandler(sender)
+		formView!.userActionWithSender(sender)
 	}
 
 
 	//MARK: DDLFieldTableCell
+
+	override public func awakeFromNib() {
+		super.awakeFromNib()
+
+		setDefaultButtonBackground(
+				NSBundle(forClass: self.dynamicType), submitButton)
+	}
 
 	override public func canBecomeFirstResponder() -> Bool {
 		return false

@@ -25,7 +25,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 		return ("Loading data...", details: "Wait few seconds...")
 	}
 	internal override var hudFailureMessage: HUDMessage? {
-		return ("An error happened loading the record", details: nil)
+		return ("Error loading the record", details: nil)
 	}
 
 	internal var formData: DDLFormData {

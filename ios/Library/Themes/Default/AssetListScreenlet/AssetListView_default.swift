@@ -17,7 +17,7 @@ import UIKit
 public class AssetListView_default: AssetListTableView {
 
 	override internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
-		if let entry = object as? AssetListScreenlet.Entry {
+		if let entry = object as? AssetListScreenletEntry {
 			cell.textLabel?.text = entry.title
 			cell.accessoryType = .DisclosureIndicator
 			cell.accessoryView = nil

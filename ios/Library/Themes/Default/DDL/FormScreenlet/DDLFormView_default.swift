@@ -21,7 +21,17 @@ public class DDLFormView_default: DDLFormTableView {
 	override internal func onCreated() {
 		super.onCreated()
 
+		self.tableView?.alpha = 0.0
+
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
+	}
+
+	override func onFinishOperation() {
+		if self.tableView?.alpha == 0 {
+			UIView.animateWithDuration(0.3, animations: {
+				self.tableView!.alpha = 1.0
+			})
+		}
 	}
 
 }

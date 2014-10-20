@@ -16,11 +16,22 @@ import UIKit
 
 public class DDLFieldTableCell: UITableViewCell {
 
-	public var tableView:UITableView?
-	public var indexPath:NSIndexPath?
-	public var formView:DDLFormTableView?
+	public class func viewAsFieldCell(view: UIView?) -> DDLFieldTableCell? {
+		if view == nil {
+			return nil
+		}
+		else if view is DDLFieldTableCell {
+			return (view as DDLFieldTableCell)
+		}
 
-	public var field:DDLField? {
+		return viewAsFieldCell(view!.superview)
+	}
+
+	public var tableView: UITableView?
+	public var indexPath: NSIndexPath?
+	public var formView: DDLFormTableView?
+
+	public var field: DDLField? {
 		didSet {
 			field?.onPostValidation = onPostValidation
 			onChangedField()
@@ -42,6 +53,11 @@ public class DDLFieldTableCell: UITableViewCell {
 		}
 
 		return result
+	}
+
+	public var isFullyVisible: Bool {
+		let cellRect = tableView!.convertRect(self.frame, toView: tableView!.superview)
+		return CGRectContainsRect(tableView!.frame, cellRect)
 	}
 
 
@@ -109,7 +125,7 @@ public class DDLFieldTableCell: UITableViewCell {
 					}
 
 				case .Send:
-					formView?.userActionHandler("submit-form")
+					formView?.userActionWithName("submit-form")
 					result = true
 
 				default: ()

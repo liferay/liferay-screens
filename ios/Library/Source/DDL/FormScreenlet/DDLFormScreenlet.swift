@@ -54,11 +54,11 @@ import UIKit
 
 	@IBInspectable public var repositoryId: Int64 = 0
 	@IBInspectable public var folderId: Int64 = 0
-	@IBInspectable public var filePrefix = "form-file-"
+	@IBInspectable public var filePrefix: String = "form-file-"
 
-	@IBInspectable public var autoLoad = true
-	@IBInspectable public var autoscrollOnValidation = true
-	@IBInspectable public var showSubmitButton = true
+	@IBInspectable public var autoLoad: Bool = true
+	@IBInspectable public var autoscrollOnValidation: Bool = true
+	@IBInspectable public var showSubmitButton: Bool = true
 
 	@IBOutlet public var delegate: DDLFormScreenletDelegate?
 
@@ -170,7 +170,7 @@ import UIKit
 				self.recordId = submitOperation.result!.recordId
 				self.formView.record!.recordId = submitOperation.result!.recordId
 
-				self.delegate?.onFormLoaded?(self.formView.record!)
+				self.delegate?.onFormSubmitted?(self.formView.record!)
 			}
 		}
 	}

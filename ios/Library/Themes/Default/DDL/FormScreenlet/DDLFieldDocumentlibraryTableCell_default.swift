@@ -114,7 +114,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 
 			case .Uploaded(_):
 				if field.lastValidationResult != nil {
-					onPostValidation(field.lastValidationResult!)
+					field.validate()
 				}
 
 			default: ()
@@ -166,7 +166,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 			
 			textField?.text = (field as DDLFieldDocument).currentDocumentLabel
 
-			formView?.userActionHandler(
+			formView?.userActionWithName(
 				actionName: "upload-document",
 				sender: field! as DDLFieldDocument)
 		}

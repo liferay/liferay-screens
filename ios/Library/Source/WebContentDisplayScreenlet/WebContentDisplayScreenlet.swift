@@ -16,7 +16,7 @@ import UIKit
 
 @objc public protocol WebContentDisplayScreenletDelegate {
 
-	optional func onWebContentResponse(html:String)
+	optional func onWebContentResponse(html:String) -> String?
 	optional func onWebContentError(error: NSError)
 
 }
@@ -25,7 +25,9 @@ import UIKit
 @IBDesignable public class WebContentDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
-	@IBInspectable public var articleId = ""
+	@IBInspectable public var articleId: String = ""
+
+	@IBInspectable public var autoload: Bool = true
 
 	@IBOutlet public var delegate: WebContentDisplayScreenletDelegate?
 
@@ -36,10 +38,19 @@ import UIKit
 
 	//MARK: Public methods
 
+	override func onShow() {
+		if autoload && articleId != "" {
+			loadWebContent()
+		}
+	}
+
 	public func loadWebContent() -> Bool {
 		let webContentOperation = LiferayWebContentLoadOperation(screenlet: self)
 
-		webContentOperation.groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
+		webContentOperation.groupId =
+				(self.groupId != 0) ?
+						self.groupId : LiferayServerContext.groupId
+
 		webContentOperation.articleId = self.articleId
 
 		return webContentOperation.validateAndEnqueue() {
@@ -47,9 +58,12 @@ import UIKit
 				self.delegate?.onWebContentError?(error)
 			}
 			else {
-				self.delegate?.onWebContentResponse?(webContentOperation.resultHTML!)
+				let modifiedHtml =
+						self.delegate?.onWebContentResponse?(webContentOperation.resultHTML!)
 
-				self.webContentDisplayData.htmlContent = webContentOperation.resultHTML!
+				self.webContentDisplayData.htmlContent =
+						(modifiedHtml != nil) ?
+							modifiedHtml! : webContentOperation.resultHTML!
 			}
 		}
 	}

@@ -6,8 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="74" id="WWD-jz-pJ6" customClass="DDLSubmitButtonTableCell_default" customModule="Liferay_iOS_Screens_Swift_Sample" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="84" id="WWD-jz-pJ6" customClass="DDLSubmitButtonTableCell_default" customModule="beta_screens" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WWD-jz-pJ6" id="h6C-76-TvA">
                 <autoresizingMask key="autoresizingMask"/>
@@ -15,7 +15,8 @@
                     <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="submit-form" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="YfU-ZY-48B">
                         <rect key="frame" x="46" y="20" width="228" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" backgroundImage="default-large-button.png">
+                        <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                        <state key="normal">
                             <attributedString key="attributedTitle">
                                 <fragment content="SUBMIT">
                                     <attributes>
@@ -26,20 +27,18 @@
                                 </fragment>
                             </attributedString>
                         </state>
-                        <state key="selected" backgroundImage="default-large-button-selected.png"/>
                         <connections>
                             <action selector="submitButtonAction:" destination="WWD-jz-pJ6" eventType="touchUpInside" id="S38-qJ-wme"/>
                         </connections>
                     </button>
                 </subviews>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="299" y="421"/>
+            <connections>
+                <outlet property="submitButton" destination="YfU-ZY-48B" id="1Yn-mn-Bsa"/>
+            </connections>
+            <point key="canvasLocation" x="299" y="426"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="default-large-button-selected.png" width="217" height="42"/>
-        <image name="default-large-button.png" width="228" height="44"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
