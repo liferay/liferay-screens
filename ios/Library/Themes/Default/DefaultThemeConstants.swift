@@ -20,15 +20,15 @@ let DefaultThemeBasicBlue = UIColor(red: 0.0, green: 184.0/255.0, blue: 224.0/25
 
 
 func setDefaultButtonBackground(button: UIButton?) {
-	var stretchableImage = UIImage(named: "default-button")!
+	if let buttonImage = UIImage(named: "default-button") {
+		let stretchableImage = buttonImage.resizableImageWithCapInsets(
+				UIEdgeInsetsMake(5, 5, 5, 5),
+				resizingMode: UIImageResizingMode.Stretch)
 
-	stretchableImage = stretchableImage.resizableImageWithCapInsets(
-			UIEdgeInsetsMake(5, 5, 5, 5),
-			resizingMode: UIImageResizingMode.Stretch)
+		button?.setBackgroundImage(stretchableImage, forState: UIControlState.Normal)
 
-	button?.setBackgroundImage(stretchableImage, forState: UIControlState.Normal)
-
-	button?.backgroundColor = UIColor.clearColor()
+		button?.backgroundColor = UIColor.clearColor()
+	}
 }
 
 public func setAuthMethodStyles(
