@@ -34,12 +34,12 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
-		titleLabel!.text = LocalizedString("flat7", "forgotpassword-title")
-		subtitleLabel!.text = LocalizedString("flat7", "forgotpassword-subtitle")
-		userNamePlaceholder!.text = LocalizedString("flat7", "forgotpassword-email")
+		titleLabel!.text = LocalizedString("flat7", "forgotpassword-title", self)
+		subtitleLabel!.text = LocalizedString("flat7", "forgotpassword-subtitle", self)
+		userNamePlaceholder!.text = LocalizedString("flat7", "forgotpassword-email", self)
 
 		requestPasswordButton!.replaceAttributedTitle(
-				LocalizedString("flat7", "forgotpassword-request"),
+				LocalizedString("flat7", "forgotpassword-request", self),
 				forState: .Normal)
 
 		userNameField!.placeholder = "";

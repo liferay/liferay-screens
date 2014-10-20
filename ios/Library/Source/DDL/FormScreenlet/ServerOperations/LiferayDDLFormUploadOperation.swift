@@ -27,7 +27,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 	var uploadResult: [String:AnyObject]?
 
 	internal override var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "uploading-error"), details: nil)
+		return (LocalizedString("ddlform-screenlet", "uploading-error", self), details: nil)
 	}
 
 	internal var formData: DDLFormData {
@@ -85,8 +85,8 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 				sourceFileName: fileName,
 				mimeType: document!.mimeType,
 				title: fileName,
-				description: LocalizedString("ddlform-screenlet", "upload-metadata-description"),
-				changeLog: LocalizedString("ddlform-screenlet", "upload-metadata-changelog"),
+				description: LocalizedString("ddlform-screenlet", "upload-metadata-description", self),
+				changeLog: LocalizedString("ddlform-screenlet", "upload-metadata-changelog", self),
 				file: uploadData,
 				serviceContext: nil,
 				error: &lastError)

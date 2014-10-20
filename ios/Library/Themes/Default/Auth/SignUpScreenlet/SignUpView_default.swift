@@ -53,13 +53,13 @@ public class SignUpView_default: BaseScreenletView, SignUpData {
 	}
 
 	override func onSetTranslations() {
-		firstNameField?.placeholder = LocalizedString("default", "first-name-placeholder") 
-		lastNameField?.placeholder = LocalizedString("default", "last-name-placeholder")
-		emailAddressField?.placeholder = LocalizedString("default", "auth-method-email")
-		passwordField?.placeholder = LocalizedString("default", "password-placeholder")
+		firstNameField?.placeholder = LocalizedString("default", "first-name-placeholder", self)
+		lastNameField?.placeholder = LocalizedString("default", "last-name-placeholder", self)
+		emailAddressField?.placeholder = LocalizedString("default", "auth-method-email", self)
+		passwordField?.placeholder = LocalizedString("default", "password-placeholder", self)
 
 		signUpButton?.replaceAttributedTitle(
-				LocalizedString("default", "sign-up-button"),
+				LocalizedString("default", "sign-up-button", self),
 				forState: .Normal)
 	}
 

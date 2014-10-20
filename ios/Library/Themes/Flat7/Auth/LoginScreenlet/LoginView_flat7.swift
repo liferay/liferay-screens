@@ -41,12 +41,12 @@ public class LoginView_flat7: LoginView_default {
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
-		titleLabel!.text = LocalizedString("flat7", "login-title")
-		subtitleLabel!.text = LocalizedString("flat7", "login-subtitle")
-		userNamePlaceholder!.text = LocalizedString("flat7" ,"login-email")
-		passwordPlaceholder!.text = LocalizedString("flat7", "login-password")
+		titleLabel!.text = LocalizedString("flat7", "login-title", self)
+		subtitleLabel!.text = LocalizedString("flat7", "login-subtitle", self)
+		userNamePlaceholder!.text = LocalizedString("flat7" ,"login-email", self)
+		passwordPlaceholder!.text = LocalizedString("flat7", "login-password", self)
 
-		loginButton!.replaceAttributedTitle(LocalizedString("flat7", "login-login"),
+		loginButton!.replaceAttributedTitle(LocalizedString("flat7", "login-login", self),
 				forState: .Normal)
 
 		userNameField!.placeholder = "";

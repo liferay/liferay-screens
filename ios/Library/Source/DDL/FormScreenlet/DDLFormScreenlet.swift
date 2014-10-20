@@ -288,8 +288,8 @@ import UIKit
 						? "uploading-message-singular" : "uploading-message-plural"
 
 				showHUDWithMessage(
-						LocalizedString("ddlform-screenlet", uploadMessage),
-						details: LocalizedString("ddlform-screenlet", "uploading-details"))
+						LocalizedString("ddlform-screenlet", uploadMessage, self),
+						details: LocalizedString("ddlform-screenlet", "uploading-details", self))
 
 				return true
 
@@ -313,8 +313,8 @@ import UIKit
 
 		if let failedUploads = failedDocumentFields {
 			showHUDWithMessage(
-				LocalizedString("ddlform-screenlet", "uploading-retry"),
-				details: LocalizedString("ddlform-screenlet", "uploading-retry-details"))
+				LocalizedString("ddlform-screenlet", "uploading-retry", self),
+				details: LocalizedString("ddlform-screenlet", "uploading-retry-details", self))
 
 			for failedDocumentField in failedUploads {
 				uploadDocument(failedDocumentField as DDLFieldDocument)

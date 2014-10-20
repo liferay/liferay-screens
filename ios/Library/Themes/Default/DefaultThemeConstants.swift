@@ -32,11 +32,12 @@ func setDefaultButtonBackground(button: UIButton?) {
 }
 
 public func setAuthMethodStyles(
+		#view: UIView,
 		#authMethod: AuthMethod,
 		#userNameField: UITextField!,
 		#userNameIcon: UIImageView!) {
 
-	userNameField!.placeholder = LocalizedString("default", authMethod.description)
+	userNameField!.placeholder = LocalizedString("default", authMethod.description, view)
 	userNameField!.keyboardType = authMethod.keyboardType
 	userNameIcon?.image = UIImage(named:"default-\(authMethod.iconType)-icon")
 }

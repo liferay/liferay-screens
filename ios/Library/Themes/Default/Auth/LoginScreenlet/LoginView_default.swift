@@ -45,6 +45,7 @@ public class LoginView_default: BaseScreenletView, LoginData {
 	public var authMethod: AuthMethodType? = AuthMethod.Email.rawValue {
 		didSet {
 			setAuthMethodStyles(
+					view: self,
 					authMethod: AuthMethod.create(authMethod),
 					userNameField: userNameField,
 					userNameIcon: userNameIcon)
@@ -86,9 +87,9 @@ public class LoginView_default: BaseScreenletView, LoginData {
 	}
 
 	override internal func onSetTranslations() {
-		passwordField?.placeholder = LocalizedString("default", "password-placeholder")
+		passwordField?.placeholder = LocalizedString("default", "password-placeholder", self)
 
-		loginButton?.replaceAttributedTitle(LocalizedString("default", "sign-in-button"),
+		loginButton?.replaceAttributedTitle(LocalizedString("default", "sign-in-button", self),
 				forState: .Normal)
 	}
 

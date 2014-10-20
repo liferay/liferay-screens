@@ -27,16 +27,16 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 
 
 	internal override var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "submitting-message"),
-				details: LocalizedString("ddlform-screenlet", "submitting-details"))
+		return (LocalizedString("ddlform-screenlet", "submitting-message", self),
+				details: LocalizedString("ddlform-screenlet", "submitting-details", self))
 	}
 
 	internal override var hudSuccessMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "submitted"), details: nil)
+		return (LocalizedString("ddlform-screenlet", "submitted", self), details: nil)
 	}
 
 	internal override var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "submitting-error"), details: nil)
+		return (LocalizedString("ddlform-screenlet", "submitting-error", self), details: nil)
 	}
 
 	internal var formData: DDLFormData {
@@ -64,8 +64,8 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 		}
 
 		if !formData.validateForm(autoscroll: autoscrollOnValidation) {
-			showHUD(message: LocalizedString("ddlform-screenlet", "validation"),
-					details: LocalizedString("ddlform-screenlet", "validation-details"),
+			showHUD(message: LocalizedString("ddlform-screenlet", "validation", self),
+					details: LocalizedString("ddlform-screenlet", "validation-details", self),
 					closeMode: .AutocloseDelayed(3.0, true),
 					spinnerMode: .NoSpinner)
 
