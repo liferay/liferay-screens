@@ -11,5 +11,5 @@
 "default-ddlform-upload-picker-select-photo"="Select existing photo...";
 "default-ddlform-upload-picker-select-video"="Select existing video...";
 "default-ddlform-upload-picker-cancel"="Cancel";
-"ddlform-submit-button"="SUBMIT";
+"default-ddlform-submit-button"="SUBMIT";
 
