@@ -13,4 +13,4 @@ This plugin is open source and the sources are available in the following github
 
 https://github.com/liferay/liferay-plugins/tree/6.2.x/webs/mobile-widgets-web
 
-The Liferay Screens' Compatiblity Plugin will be eventually released as a marketplace plugin
+The Liferay Screens' Compatiblity Plugin will be eventually released as a marketplace plugin.
