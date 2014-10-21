@@ -38,9 +38,9 @@ public func copyAuth(#source: AuthBasedData, #target: AnyObject?) {
 }
 
 
-public let AuthMethodTypeEmail = AuthMethod.Email.toRaw()
-public let AuthMethodTypeScreenName = AuthMethod.ScreenName.toRaw()
-public let AuthMethodTypeUserId = AuthMethod.UserId.toRaw()
+public let AuthMethodTypeEmail = AuthMethod.Email.rawValue
+public let AuthMethodTypeScreenName = AuthMethod.ScreenName.rawValue
+public let AuthMethodTypeUserId = AuthMethod.UserId.rawValue
 
 public typealias AuthMethodType = String
 
@@ -52,9 +52,9 @@ public enum AuthMethod: String {
 	case UserId = "userId"
 
 	public static func create(text: String?) -> AuthMethod {
-		if text?.lowercaseString == AuthMethod.ScreenName.toRaw().lowercaseString {
+		if text?.lowercaseString == AuthMethod.ScreenName.rawValue.lowercaseString {
 			return .ScreenName
-		} else if text?.lowercaseString == AuthMethod.UserId.toRaw().lowercaseString {
+		} else if text?.lowercaseString == AuthMethod.UserId.rawValue.lowercaseString {
 			return .UserId
 		}
 

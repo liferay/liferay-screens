@@ -29,10 +29,10 @@ public class ViewController: UIViewController, LoginScreenletDelegate, ForgotPas
 		// WORKAROUND!
 		// Delegate assignment in IB doesn't work!!
 		loginScreenlet!.delegate = self
-		loginScreenlet!.authMethod = AuthMethod.Email.toRaw()
+		loginScreenlet!.authMethod = AuthMethod.Email.rawValue
 
 		forgotScreenlet!.delegate = self;
-		forgotScreenlet!.authMethod = AuthMethod.ScreenName.toRaw()
+		forgotScreenlet!.authMethod = AuthMethod.ScreenName.rawValue
 	}
 
     // LoginScreenletDelegate METHODS

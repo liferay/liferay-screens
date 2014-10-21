@@ -44,7 +44,7 @@ extension DDLField {
 				case "ddm-integer", "ddm-number", "ddm-decimal":
 					result = .Number
 				default:
-					result = fromRaw(attributeValue) ?? .Unsupported
+					result = Editor(rawValue: attributeValue) ?? .Unsupported
 			}
 
 			return result
@@ -55,7 +55,7 @@ extension DDLField {
 		}
 
 		public func toCapitalizedName() -> String {
-			var typeName = toRaw()
+			var typeName = rawValue
 
 			// hack for names prefixed with ddm
 			if typeName.hasPrefix("ddm-") {

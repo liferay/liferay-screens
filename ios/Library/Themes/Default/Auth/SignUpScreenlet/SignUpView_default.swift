@@ -45,8 +45,7 @@ public class SignUpView_default: BaseScreenletView, SignUpData {
 	override internal func onCreated() {
 		super.onCreated()
 
-		setDefaultButtonBackground(
-				NSBundle(forClass: self.dynamicType), signUpButton)
+		setDefaultButtonBackground(signUpButton)
 
 		scrollView?.contentSize = scrollView!.frame.size
 

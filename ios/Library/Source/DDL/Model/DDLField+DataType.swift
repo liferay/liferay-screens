@@ -28,7 +28,7 @@ extension DDLField {
 		case Unsupported = ""
 
 		public static func from(#xmlElement:SMXMLElement) -> DataType {
-			return fromRaw(xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
+			return DataType(rawValue: xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 		}
 
 		public func createField(#attributes:[String:AnyObject]) -> DDLField? {

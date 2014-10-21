@@ -128,7 +128,7 @@ import QuartzCore
 
 		if let viewValue = view {
 			//FIXME: full-autoresize value. Extract from UIViewAutoresizing
-			let flexibleMask = UIViewAutoresizing.fromMask(18)
+			let flexibleMask = UIViewAutoresizing(18)
 
 			if viewValue.autoresizingMask == flexibleMask {
 				viewValue.frame = self.bounds

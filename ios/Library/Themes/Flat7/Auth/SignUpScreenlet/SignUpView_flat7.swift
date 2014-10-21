@@ -29,8 +29,7 @@ public class SignUpView_flat7: SignUpView_default {
 	override internal func onCreated() {
 		super.onCreated()
 
-		setFlat7ButtonBackground(
-				NSBundle(forClass: self.dynamicType), signUpButton)
+		setFlat7ButtonBackground(signUpButton)
 
 		BaseScreenlet.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}

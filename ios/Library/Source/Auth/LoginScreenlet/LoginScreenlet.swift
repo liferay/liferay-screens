@@ -29,7 +29,7 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 
 	//MARK: Inspectables
 
-	@IBInspectable public var authMethod: String? = AuthMethod.Email.toRaw() {
+	@IBInspectable public var authMethod: String? = AuthMethod.Email.rawValue {
 		didSet {
 			copyAuth(source: self, target: screenletView)
 		}

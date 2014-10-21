@@ -159,16 +159,17 @@ public class DDLFormTableView: DDLFormView,
 
 					scrollDone = true
 
-					UIView.animateWithDuration(animation.time,
+					UIView.animateWithDuration(animation.time.doubleValue,
 							delay: 0,
-							options: UIViewAnimationOptions.fromRaw(animation.curve.unsignedLongValue)!,
+							options: UIViewAnimationOptions(animation.curve.unsignedLongValue),
 							animations: {
 								self.frame = CGRectMake(
 										self.frame.origin.x,
 										self.frame.origin.y,
 										self.frame.size.width,
 										newHeight)
-							}, completion: scrollClosure)
+							},
+							completion: scrollClosure)
 				}
 			}
 		}
@@ -250,7 +251,7 @@ public class DDLFormTableView: DDLFormView,
 			}
 
 			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
-				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
+				var cellNib = UINib(nibName: nibName, bundle: currentBundle)!
 
 				tableView?.registerNib(cellNib,
 						forCellReuseIdentifier: fieldEditor.toCapitalizedName())
@@ -266,7 +267,7 @@ public class DDLFormTableView: DDLFormView,
 			}
 
 			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
-				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
+				var cellNib = UINib(nibName: nibName, bundle: currentBundle)!
 
 				tableView?.registerNib(cellNib, forCellReuseIdentifier: "SubmitButton")
 
@@ -292,7 +293,7 @@ public class DDLFormTableView: DDLFormView,
 			editor.registerHeight(cellRootView.bounds.size.height)
 		}
 		else {
-			println("ERROR: Root view in cell \(editor.toRaw()) didn't found")
+			println("ERROR: Root view in cell \(editor.rawValue) didn't found")
 		}
 	}
 

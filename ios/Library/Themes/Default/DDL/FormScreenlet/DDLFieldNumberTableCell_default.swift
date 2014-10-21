@@ -37,7 +37,7 @@ public class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_defau
 
 		if let numberField = field as? DDLFieldNumber {
 			if let currentValue = numberField.currentValue as? NSNumber {
-				stepper?.value = currentValue
+				stepper?.value = currentValue.doubleValue
 			}
 			textField!.keyboardType = (numberField.isDecimal) ? .DecimalPad : .NumberPad
 		}
