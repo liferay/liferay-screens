@@ -251,7 +251,7 @@ public class DDLFormTableView: DDLFormView,
 			}
 
 			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
-				var cellNib = UINib(nibName: nibName, bundle: currentBundle)!
+				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
 
 				tableView?.registerNib(cellNib,
 						forCellReuseIdentifier: fieldEditor.toCapitalizedName())
@@ -267,7 +267,7 @@ public class DDLFormTableView: DDLFormView,
 			}
 
 			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
-				var cellNib = UINib(nibName: nibName, bundle: currentBundle)!
+				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
 
 				tableView?.registerNib(cellNib, forCellReuseIdentifier: "SubmitButton")
 
