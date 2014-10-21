@@ -35,7 +35,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
 		screenletsService.getAssetEntriesWithAssetEntryQuery(entryQuery,
-				locale: NSLocale.currentLocaleString(),
+				locale: NSLocale.currentLocaleString,
 				error: nil)
 	}
 

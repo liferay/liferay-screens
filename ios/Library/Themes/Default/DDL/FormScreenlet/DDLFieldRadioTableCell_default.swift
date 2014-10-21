@@ -20,7 +20,7 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 	@IBOutlet internal var radioReferenceLabel: UILabel?
 	@IBOutlet internal var separator: UIView?
 
-	internal var radioGroup:TNRadioButtonGroup?
+	internal var radioGroup: TNRadioButtonGroup?
 
 
 	//MARK: DDLFieldTableCell

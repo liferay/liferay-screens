@@ -22,10 +22,11 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
 
 	internal override var hudLoadingMessage: HUDMessage? {
-		return ("Loading data...", details: "Wait few seconds...")
+		return (LocalizedString("ddlform-screenlet", "loading-record-message", self),
+				details: LocalizedString("ddlform-screenlet", "loading-record-details", self))
 	}
 	internal override var hudFailureMessage: HUDMessage? {
-		return ("Error loading the record", details: nil)
+		return (LocalizedString("ddlform-screenlet", "loading-record-error", self), details: nil)
 	}
 
 	internal var formData: DDLFormData {
@@ -57,7 +58,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 		result = nil
 
 		let recordDictionary = service.getDdlRecordWithDdlRecordId(recordId!,
-				locale: NSLocale.currentLocaleString(),
+				locale: NSLocale.currentLocaleString,
 				error: &lastError)
 
 		if lastError == nil {

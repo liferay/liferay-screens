@@ -48,7 +48,7 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 
 		service.getDdlRecordsWithDdlRecordSetId(recordSetId,
 				userId: userId,
-				locale: NSLocale.currentLocaleString(),
+				locale: NSLocale.currentLocaleString,
 				start: Int32(ddlListScreenlet.firstRowForPage(page)),
 				end: Int32(ddlListScreenlet.firstRowForPage(page + 1)),
 				error: nil)

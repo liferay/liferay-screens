@@ -81,23 +81,12 @@ public enum AuthMethod: String {
 
 	public var description: String {
 		let descriptions = [
-			AuthMethod.Email: "Email Address",
-			AuthMethod.ScreenName: "Screen Name",
-			AuthMethod.UserId: "User ID"]
+			AuthMethod.Email: "auth-method-email",
+			AuthMethod.ScreenName: "auth-method-screenname",
+			AuthMethod.UserId: "auth-method-userid"]
 
 		return descriptions[self] ?? ""
 	}
 
-}
-
-
-public func setAuthMethodStyles(
-		#authMethod: AuthMethod,
-		#userNameField: UITextField!,
-		#userNameIcon: UIImageView!) {
-
-	userNameField!.placeholder = authMethod.description
-	userNameField!.keyboardType = authMethod.keyboardType
-	userNameIcon?.image = UIImage(named:"default-\(authMethod.iconType)-icon")
 }
 

@@ -273,7 +273,7 @@ import QuartzCore
 			nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
 			if nibPath == nil {
-				println("ERROR: Xib file \(nibName) was not found")
+				println("ERROR: Xib file '\(nibName)' was not found for theme '\(_themeName)'")
 				return nil
 			}
 		}

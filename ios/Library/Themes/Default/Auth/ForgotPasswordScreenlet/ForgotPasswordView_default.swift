@@ -40,6 +40,7 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordData {
 	public var authMethod: AuthMethodType? = AuthMethod.Email.rawValue {
 		didSet {
 			setAuthMethodStyles(
+					view: self,
 					authMethod: AuthMethod.create(authMethod),
 					userNameField: userNameField,
 					userNameIcon: userNameIcon)
@@ -62,6 +63,13 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordData {
 		setDefaultButtonBackground(requestPasswordButton)
 
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
+	}
+
+	override func onSetTranslations() {
+		requestPasswordButton?.replaceAttributedTitle(
+				LocalizedString("default", "forgot-password-button", self),
+				forState: .Normal)
+
 	}
 
 	override internal func onStartOperation() {

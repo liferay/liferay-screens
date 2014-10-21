@@ -37,46 +37,15 @@ public class SignUpView_flat7: SignUpView_default {
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
-		titleLabel!.text = NSLocalizedString("flat7-signup-title",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
-		subtitleLabel!.text = NSLocalizedString("flat7-signup-subtitle",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
-		firstNamePlaceholder!.text = NSLocalizedString("flat7-signup-first-name",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
-		lastNamePlaceholder!.text = NSLocalizedString("flat7-signup-last-name",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
-		emailAddressPlaceholder!.text = NSLocalizedString("flat7-signup-email",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
-		passwordPlaceholder!.text = NSLocalizedString("flat7-signup-password",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
+		titleLabel!.text = LocalizedString("flat7", "flat7-signup-title", self)
+		subtitleLabel!.text = LocalizedString("flat7", "signup-subtitle", self)
+		firstNamePlaceholder!.text = LocalizedString("flat7", "signup-first-name", self)
+		lastNamePlaceholder!.text = LocalizedString("flat7", "signup-last-name", self)
+		emailAddressPlaceholder!.text = LocalizedString("flat7", "signup-email", self)
+		passwordPlaceholder!.text = LocalizedString("flat7", "signup-password", self)
 
-		let str = signUpButton!.attributedTitleForState(UIControlState.Normal)
-		let translated = NSLocalizedString("flat7-signup-button",
-				tableName: "flat7",
-				bundle: bundle,
-				value: "",
-				comment: "")
-		let newStr = NSMutableAttributedString(attributedString: str!)
-		newStr.replaceCharactersInRange(NSMakeRange(0, str!.length), withString:translated)
-		signUpButton!.setAttributedTitle(newStr, forState: UIControlState.Normal)
+		signUpButton!.replaceAttributedTitle(LocalizedString("flat7", "signup-button", self),
+				forState: .Normal)
 
 		firstNameField!.placeholder = "";
 		lastNameField!.placeholder = "";

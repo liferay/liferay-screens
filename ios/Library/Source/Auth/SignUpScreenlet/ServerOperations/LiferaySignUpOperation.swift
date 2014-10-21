@@ -18,10 +18,11 @@ public class LiferaySignUpOperation: ServerOperation {
 	public var resultUserAttributes: [String:AnyObject]?
 
 	internal override var hudLoadingMessage: HUDMessage? {
-		return ("Sending sign up...", details: "Wait few seconds...")
+		return (LocalizedString("signup-screenlet", "loading-message", self),
+				details: LocalizedString("signup-screenlet", "loading-details", self))
 	}
 	internal override var hudFailureMessage: HUDMessage? {
-		return ("Error signing up!", details: nil)
+		return (LocalizedString("signup-screenlet", "loading-error", self), details: nil)
 	}
 
 	private var signUpData: SignUpData {
@@ -32,7 +33,8 @@ public class LiferaySignUpOperation: ServerOperation {
 
 	override func validateData() -> Bool {
 		if signUpData.emailAddress == nil {
-			showValidationHUD(message: "Please, enter your email address at least")
+			showValidationHUD(
+					message: LocalizedString("signup-screenlet", "validation", self))
 
 			return false
 		}
@@ -61,7 +63,7 @@ public class LiferaySignUpOperation: ServerOperation {
 				emailAddress: signUpData.emailAddress,
 				facebookId: 0,
 				openId: "",
-				locale: NSLocale.currentLocaleString(),
+				locale: NSLocale.currentLocaleString,
 				firstName: emptyIfNull(signUpData.firstName),
 				middleName: emptyIfNull(signUpData.middleName),
 				lastName: emptyIfNull(signUpData.lastName),

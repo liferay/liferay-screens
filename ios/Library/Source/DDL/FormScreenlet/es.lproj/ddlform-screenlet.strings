@@ -1,0 +1,23 @@
+"ddlform-screenlet-loading-message"="Cargando formulario...";
+"ddlform-screenlet-loading-details"="Espere unos segundos...";
+"ddlform-screenlet-loading-error"="Error cargando formulario";
+"ddlform-screenlet-loading-record-message"="Cargando datos...";
+"ddlform-screenlet-loading-record-details"="Espere unos segundos...";
+"ddlform-screenlet-loading-record-error"="Error cargando datos";
+"ddlform-screenlet-submitting-message"="Enviando formulario...";
+"ddlform-screenlet-submitting-details"="Espere unos segundos...";
+"ddlform-screenlet-submitting-error"="Error enviando formulario";
+"ddlform-screenlet-submitted"="Formulario enviado";
+"ddlform-screenlet-validation"="Algunos valores no son válidos";
+"ddlform-screenlet-validation-details"="Revisa el formulario";
+"ddlform-screenlet-uploading-message-singular"="Subiendo archivo...";
+"ddlform-screenlet-uploading-message-plural"="Subiendo archivos...";
+"ddlform-screenlet-uploading-details"="Espere unos segundos...";
+"ddlform-screenlet-uploading-retry"="Reintentando subida...";
+"ddlform-screenlet-uploading-retry-details"="Espere unos segundos...";
+"ddlform-screenlet-uploading-error"="Error subiendo datos";
+"ddlform-screenlet-upload-metadata-description"="";
+"ddlform-screenlet-upload-metadata-changelog"="Subido desde una app basada en Lifeary Screens";
+
+
+

@@ -11,34 +11,26 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
+import Foundation
 
 
-public class DDLSubmitButtonTableCell_default: DDLFieldTableCell {
+extension UIButton {
 
-	@IBOutlet public var submitButton: UIButton?
+	public func replaceAttributedTitle(title: String, forState state: UIControlState) {
+		if let attributedTitle = self.attributedTitleForState(state) {
+			let formattedString = NSMutableAttributedString(
+					attributedString: attributedTitle)
 
-	//MARK: Actions
+			formattedString.replaceCharactersInRange(
+					NSMakeRange(0, formattedString.length),
+					withString: title)
 
-	@IBAction private func submitButtonAction(sender: AnyObject) {
-		formView!.userActionWithSender(sender)
-	}
+			self.setAttributedTitle(formattedString, forState: state)
+		}
+		else {
+			self.setAttributedTitle(NSAttributedString(string: title), forState: state)
+		}
 
-
-	//MARK: DDLFieldTableCell
-
-	override public func awakeFromNib() {
-		super.awakeFromNib()
-
-		setDefaultButtonBackground(submitButton)
-
-		submitButton?.replaceAttributedTitle(
-				LocalizedString("default", "ddlform-submit-button", self),
-				forState: .Normal)
-	}
-
-	override public func canBecomeFirstResponder() -> Bool {
-		return false
 	}
 
 }

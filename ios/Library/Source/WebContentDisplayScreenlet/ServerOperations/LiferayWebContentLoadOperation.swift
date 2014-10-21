@@ -23,10 +23,11 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 
 
 	internal override var hudLoadingMessage: HUDMessage? {
-		return ("Loading...", details: "Wait few seconds...")
+		return (LocalizedString("webcontentdisplay-screenlet", "loading-message", self),
+				details: LocalizedString("webcontentdisplay-screenlet", "loading-details", self))
 	}
 	internal override var hudFailureMessage: HUDMessage? {
-		return ("Error loading the content", details: nil)
+		return (LocalizedString("webcontentdisplay-screenlet", "loading-error", self), details: nil)
 	}
 
 
@@ -51,7 +52,7 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 
 		let result = service.getArticleContentWithGroupId(groupId!,
 				articleId: articleId!,
-				languageId: NSLocale.currentLocaleString(),
+				languageId: NSLocale.currentLocaleString,
 				themeDisplay: nil,
 				error: &lastError)
 
