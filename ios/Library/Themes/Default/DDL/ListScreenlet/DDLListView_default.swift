@@ -23,7 +23,7 @@ public class DDLListView_default: BaseListTableView, DDLListData {
 	override internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let record = object as? DDLRecord {
 			if let field = record[labelField] {
-				cell.textLabel?.text = field.currentValueAsString
+				cell.textLabel.text = field.currentValueAsString
 				cell.accessoryType = .DisclosureIndicator
 				cell.accessoryView = nil
 			}
@@ -31,7 +31,7 @@ public class DDLListView_default: BaseListTableView, DDLListData {
 	}
 
 	override internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
-		cell.textLabel?.text = "..."
+		cell.textLabel.text = "..."
 		cell.accessoryType = .None
 		let image = UIImage(named: "default-hourglass")!
 		cell.accessoryView = UIImageView(image: image)
