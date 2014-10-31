@@ -71,3 +71,22 @@ func LocalizedString(tableName: String, key: String, obj: AnyObject) -> String {
 				comment: "")
 }
 
+
+func isOSAtLeastVersion(version: String) -> Bool {
+	let currentVersion = UIDevice.currentDevice().systemVersion
+
+	if currentVersion.compare(version,
+			options: .NumericSearch,
+			range: nil,
+			locale: nil) != NSComparisonResult.OrderedAscending {
+
+		return true
+	}
+
+	return false
+}
+
+
+func isOSEarlierThanVersion(version: String) -> Bool {
+	return !isOSAtLeastVersion(version)
+}
