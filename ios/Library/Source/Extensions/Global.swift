@@ -90,3 +90,22 @@ func isOSAtLeastVersion(version: String) -> Bool {
 func isOSEarlierThanVersion(version: String) -> Bool {
 	return !isOSAtLeastVersion(version)
 }
+
+
+func adjustRectForCurrentOrientation(rect: CGRect) -> CGRect {
+	var adjustedRect = rect
+
+	if isOSEarlierThanVersion("8.0") {
+		// For 7.x and earlier, the width and height are reversed when
+		// the device is landscaped
+		switch UIDevice.currentDevice().orientation {
+			case .LandscapeLeft, .LandscapeRight:
+				adjustedRect = CGRectMake(
+						rect.origin.y, rect.origin.x,
+						rect.size.height, rect.size.width)
+			default: ()
+		}
+	}
+
+	return adjustedRect
+}
