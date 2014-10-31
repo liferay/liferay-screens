@@ -17,7 +17,6 @@ import Foundation
 extension NSLocale {
 
 	public class var currentLanguageString: String {
-		println(NSLocale.currentLocale().localeIdentifier)
 		var preferredLanguage = NSLocale.preferredLanguages()[0].description as String
 
 		preferredLanguage = preferredLanguage.substringToIndex(

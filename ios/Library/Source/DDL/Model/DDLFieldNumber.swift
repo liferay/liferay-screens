@@ -53,7 +53,7 @@ public class DDLFieldNumber : DDLField {
 		if let numberValue = value as? NSNumber {
 			let formatter = NSNumberFormatter()
 
-			formatter.locale = NSLocale.currentLocale()
+			formatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocaleString)
 
 			if isDecimal {
 				formatter.numberStyle = .DecimalStyle
