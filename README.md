@@ -1,5 +1,18 @@
 # Liferay Screens
 
+[![License](http://img.shields.io/badge/license-LGPL_2.1-red.svg?style=flat-square)](http://opensource.org/licenses/LGPL-2.1)
+
+[![iOS Platform](http://img.shields.io/badge/platform-iOS_7+-blue.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tree/master/ios)
+[![Build Status](http://img.shields.io/travis/jmnavarro/liferay-screens.svg?style=flat-square)](https://travis-ci.org/jmnavarro/liferay-screens/)
+[![Release](http://img.shields.io/badge/release-Beta_1-orange.svg?style=flat-square)](https://github.com/liferay/liferay-screens/releases/)
+[![Tag](http://img.shields.io/github/tag/liferay/liferay-screens.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tags/)
+
+[![Android Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tree/master/android)
+[![Build Status](http://img.shields.io/badge/build-none-lightgray.svg?style=flat-square)](https://travis-ci.org/jmnavarro/liferay-screens/)
+[![Release](http://img.shields.io/badge/release-none-lightgray.svg?style=flat-square)](https://github.com/liferay/liferay-screens/releases/)
+[![Tag](http://img.shields.io/badge/tag-none-lightgray.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tags/)
+
+
 ## Introduction
 
 Screens is Liferay's effort to speed up and simplify the development of native apps for mobile devices. This may grow to include apps for any of the new categories of smart devices that are currently emerging. Liferay Screens provides a common infrastructure and a family of components called *screenlets* that are connected to the Liferay platform. This allows your mobile applications to leverage the wide variety of server-side features that Liferay already provides.
