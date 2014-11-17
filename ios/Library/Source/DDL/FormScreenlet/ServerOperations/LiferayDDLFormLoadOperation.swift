@@ -60,7 +60,7 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 					userId = Int64(userIdValue)
 				}
 
-				let record = DDLRecord(xsd: xsd, locale: NSLocale.currentLocale())
+				let record = DDLRecord(xsd: xsd, locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString))
 
 				result = (record, userId)
 			}

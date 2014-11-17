@@ -89,7 +89,7 @@ public class KeyboardManager {
 
 	private dynamic func keyboardShown(notification: NSNotification?) {
 		let value = notification!.userInfo![UIKeyboardFrameEndUserInfoKey] as NSValue
-		let frame = value.CGRectValue()
+		let frame = adjustRectForCurrentOrientation(value.CGRectValue())
 
 		StaticData.currentHeight = frame.size.height
 		StaticData.visible = true

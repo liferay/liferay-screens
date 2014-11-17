@@ -324,7 +324,9 @@
 		8834827F19E344AF001E6E2A /* flat7-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field.png"; sourceTree = "<group>"; };
 		8834828019E344AF001E6E2A /* flat7-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field@2x.png"; sourceTree = "<group>"; };
 		8845B84F19CC32560025D1D2 /* DDListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDListViewController.swift; sourceTree = "<group>"; };
+		8846CC021A1218630009FD1E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/default.strings; sourceTree = "<group>"; };
 		8848C7AA19E3D5AE00BA60D9 /* liferay-screens-bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "liferay-screens-bridge.h"; sourceTree = "<group>"; };
+		884903321A03A9CE0005682D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/ddlform-screenlet.strings"; sourceTree = "<group>"; };
 		885FD6821996E1DF00F23BA1 /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		8868379C19F3133A0053E502 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/login-screenlet.strings"; sourceTree = "<group>"; };
 		8868379D19F3133A0053E502 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/login-screenlet.strings"; sourceTree = "<group>"; };
@@ -1009,6 +1011,7 @@
 				en,
 				Base,
 				es,
+				de,
 			);
 			mainGroup = 8868AFBD19656B0500FD5214;
 			productRefGroup = 8868AFC719656B0500FD5214 /* Products */;
@@ -1264,6 +1267,7 @@
 			children = (
 				8868383519F3135D0053E502 /* en */,
 				8868383619F3135D0053E502 /* es */,
+				8846CC021A1218630009FD1E /* de */,
 			);
 			name = default.strings;
 			sourceTree = "<group>";
@@ -1309,6 +1313,7 @@
 			children = (
 				8868384B19F3227F0053E502 /* en */,
 				8868384C19F3227F0053E502 /* es */,
+				884903321A03A9CE0005682D /* de */,
 			);
 			name = "ddlform-screenlet.strings";
 			sourceTree = "<group>";

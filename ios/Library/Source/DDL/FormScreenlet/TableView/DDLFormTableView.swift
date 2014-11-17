@@ -126,7 +126,6 @@ public class DDLFormTableView: DDLFormView,
 		}
 
 		if let textInput = firstCellResponder as? UITextInputTraits {
-			let absoluteFrame = convertRect(frame, toView: window!)
 
 			var shouldWorkaroundUIPickerViewBug = false
 			if let cellValue = cell {
@@ -146,11 +145,13 @@ public class DDLFormTableView: DDLFormView,
 				keyboardHeight += KeyboardManager.defaultAutocorrectionBarHeight
 			}
 
-			if (absoluteFrame.origin.y + absoluteFrame.size.height >
-					UIScreen.mainScreen().bounds.height - keyboardHeight) || originalFrame != nil {
+			let absoluteFrame = adjustRectForCurrentOrientation(convertRect(frame, toView: window!))
+			let screenHeight = adjustRectForCurrentOrientation(UIScreen.mainScreen().bounds).height
 
-				let newHeight = UIScreen.mainScreen().bounds.height -
-						keyboardHeight + absoluteFrame.origin.y
+			if (absoluteFrame.origin.y + absoluteFrame.size.height >
+					screenHeight - keyboardHeight) || originalFrame != nil {
+
+				let newHeight = screenHeight - keyboardHeight + absoluteFrame.origin.y
 
 				if Int(newHeight) != Int(self.frame.size.height) {
 					if originalFrame == nil {

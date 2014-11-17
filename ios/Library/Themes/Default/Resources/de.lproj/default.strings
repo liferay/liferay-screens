@@ -1,0 +1,14 @@
+"default-auth-method-email"="E-Mail Addresse";
+"default-auth-method-screenname"="Anzeigename";
+"default-auth-method-userid"="Nutzer ID";
+"default-sign-in-button"="Anmelden";
+"default-sign-up-button"="Konto erstellen";
+"default-forgot-password-button"="Passwort vergessen";
+"default-password-placeholder"="Passwort";
+"default-first-name-placeholder"="Vorname";
+"default-last-name-placeholder"="Nachame";
+"default-ddlform-upload-picker-take-new"="Neues Photo oder Video wählen...";
+"default-ddlform-upload-picker-select-photo"="Wähle vorhandenes Photo...";
+"default-ddlform-upload-picker-select-video"="Wähle vorhandenes Video...";
+"default-ddlform-upload-picker-cancel"="Abbrechen";
+"default-ddlform-submit-button"="EINREICHEN";
