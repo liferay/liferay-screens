@@ -2,7 +2,6 @@
 
 [![License](http://img.shields.io/badge/license-LGPL_2.1-red.svg?style=flat-square)](http://opensource.org/licenses/LGPL-2.1)
 [![iOS Platform](http://img.shields.io/badge/platform-iOS_7+-blue.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tree/master/ios)
-[![Android Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tree/master/android)
 
 [![Build Status](http://img.shields.io/travis/jmnavarro/liferay-screens.svg?style=flat-square)](https://travis-ci.org/jmnavarro/liferay-screens/)
 [![Release](http://img.shields.io/badge/release-Beta_1-orange.svg?style=flat-square)](https://github.com/liferay/liferay-screens/releases/)
