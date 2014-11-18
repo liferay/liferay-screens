@@ -45,5 +45,3 @@ To get started with Liferay Screens for iOS, please see [this document](https://
 ## Android
 
 The implementation of Screens for Android is still in its early stages. It is not available to the community at this time. We hope to make it available in the next few months.
-
-Android implementation is in progress and will be published soon.
