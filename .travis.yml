@@ -1,0 +1,18 @@
+language: objective-c
+osx_image: xcode61
+
+before_install:
+    - export LANG=en_US.UTF-8
+    - env
+    - locale
+    - gem install cocoapods --quiet
+    - pod --version
+    - pod setup --silent
+    - pod repo update --silent
+
+script:
+    - cd ios/Library
+    - pod install
+    - cd ../..
+    - xctool clean test -workspace ./ios/Library/Liferay-iOS-Screens.xcworkspace -scheme Liferay-iOS-Screens -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+

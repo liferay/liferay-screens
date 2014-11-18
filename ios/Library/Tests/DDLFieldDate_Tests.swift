@@ -84,11 +84,12 @@ class DDLFieldDate_Tests: XCTestCase {
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
+		dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT")
 
 		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
 
 		// converted with http://www.epochconverter.com/
-		XCTAssertEqual("1087596000000", dateField.currentValueAsString!)
+		XCTAssertEqual("1087603200000", dateField.currentValueAsString!)
 	}
 
 	func test_currentValueAsString_ShouldSupportOneDigitMonth_WhenSettingTheStringValue() {
