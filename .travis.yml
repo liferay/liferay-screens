@@ -14,5 +14,5 @@ script:
     - cd ios/Library
     - pod install
     - cd ../..
-    - xctool clean build test -workspace ./ios/Library/Liferay-iOS-Screens.xcworkspace -scheme Liferay-iOS-Screens -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+    - xctool clean test -workspace ./ios/Library/Liferay-iOS-Screens.xcworkspace -scheme Liferay-iOS-Screens -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 
