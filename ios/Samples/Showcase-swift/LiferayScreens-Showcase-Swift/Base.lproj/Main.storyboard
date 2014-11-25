@@ -88,11 +88,12 @@
                     <navigationItem key="navigationItem" title="Screenlets available" id="gwH-gN-4Wt"/>
                     <connections>
                         <segue destination="ODv-YS-cr5" kind="push" identifier="LoginScreenlet" id="Z8M-Q1-xfN"/>
+                        <segue destination="5mf-Js-LTU" kind="push" identifier="SignUpScreenlet" id="jQ7-lB-KOf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="1017"/>
+            <point key="canvasLocation" x="400" y="1037"/>
         </scene>
         <!--Home Login View Controller-->
         <scene sceneID="AgL-gw-NGQ">
@@ -107,7 +108,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kjj-vx-Vp8">
-                                <rect key="frame" x="36" y="154" width="247" height="260"/>
+                                <rect key="frame" x="36" y="64" width="247" height="260"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQM-SD-8wC">
                                         <rect key="frame" x="0.0" y="82" width="247" height="21"/>
@@ -141,8 +142,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZC-yn-8lF" customClass="LoginScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZC-yn-8lF" customClass="LoginScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="262"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -163,7 +164,65 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="490-pt-lcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="883" y="943"/>
+            <point key="canvasLocation" x="947" y="319"/>
+        </scene>
+        <!--Sign Up Screenlet View Controller-->
+        <scene sceneID="cuM-yl-xjj">
+            <objects>
+                <viewController id="5mf-Js-LTU" customClass="SignUpScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zoG-n4-4Vn"/>
+                        <viewControllerLayoutGuide type="bottom" id="TCp-xh-fnI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BFH-xq-LvH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gYy-sn-04U">
+                                <rect key="frame" x="255" y="423" width="51" height="31"/>
+                                <color key="onTintColor" red="0.077612620909999999" green="0.63132638569999999" blue="0.80875318880000002" alpha="0.87" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="loginValueChangedAction:" destination="5mf-Js-LTU" eventType="valueChanged" id="gMO-a5-btz"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zs-7r-ZBh">
+                                <rect key="frame" x="255" y="468" width="51" height="31"/>
+                                <color key="onTintColor" red="0.077612620909999999" green="0.63132638569999999" blue="0.80875318880000002" alpha="0.87" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="credentialsValueChangedAction:" destination="5mf-Js-LTU" eventType="valueChanged" id="ABV-I3-lrw"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable autologin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAE-d7-2Ym">
+                                <rect key="frame" x="16" y="428" width="152" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save credentials" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtm-5D-L8a">
+                                <rect key="frame" x="16" y="473" width="152" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jc5-Qq-jbg" customClass="SignUpScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
+                                <rect key="frame" x="16" y="64" width="288" height="351"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autologin" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="saveCredentials" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BgR-TM-do8"/>
+                    <connections>
+                        <outlet property="screenlet" destination="jc5-Qq-jbg" id="3BZ-rr-ero"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="da8-L1-1hz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="947" y="949"/>
         </scene>
         <!--ScreenletsNavigation-->
         <scene sceneID="tyj-Dj-HfE">
