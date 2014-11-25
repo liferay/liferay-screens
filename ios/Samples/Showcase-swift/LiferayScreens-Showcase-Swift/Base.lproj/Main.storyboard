@@ -142,17 +142,29 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZC-yn-8lF" customClass="LoginScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZC-yn-8lF" customClass="LoginScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="320" height="262"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WlU-6U-lUO">
+                                <rect key="frame" x="257" y="472" width="51" height="31"/>
+                                <color key="onTintColor" red="0.077612620909999999" green="0.63132638569999999" blue="0.80875318880000002" alpha="0.87" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="credentialsValueChangedAction:" destination="ODv-YS-cr5" eventType="valueChanged" id="Nfs-0H-4dQ"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save credentials" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bod-IC-Feo">
+                                <rect key="frame" x="18" y="477" width="152" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="LZC-yn-8lF" secondAttribute="trailing" constant="-16" id="Z2f-az-Bak"/>
                             <constraint firstItem="LZC-yn-8lF" firstAttribute="top" secondItem="HGn-OR-5wv" secondAttribute="bottom" id="fmD-PE-DVi"/>
                             <constraint firstItem="LZC-yn-8lF" firstAttribute="leading" secondItem="KP8-er-SaD" secondAttribute="leadingMargin" constant="-16" id="h62-c9-p3h"/>
-                            <constraint firstItem="fn7-GB-315" firstAttribute="top" secondItem="LZC-yn-8lF" secondAttribute="bottom" id="kxr-Tb-nSd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qmE-Fe-IEp"/>

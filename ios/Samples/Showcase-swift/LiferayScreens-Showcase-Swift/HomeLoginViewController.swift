@@ -26,6 +26,10 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 		showLogged(animated: true);
 	}
 
+	@IBAction func credentialsValueChangedAction(sender: UISwitch) {
+		loginScreenlet?.saveCredentials = sender.on
+	}
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 

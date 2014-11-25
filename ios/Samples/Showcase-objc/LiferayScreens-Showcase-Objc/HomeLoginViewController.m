@@ -24,6 +24,10 @@
 
 @implementation HomeLoginViewController
 
+- (IBAction)credentialsValueChangedAction:(UISwitch *)sender {
+	self.screenlet.saveCredentials = sender.on;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
