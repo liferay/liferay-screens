@@ -171,6 +171,7 @@
 		88274FF51A24904100FE31C6 /* flat7-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88274F581A24904100FE31C6 /* flat7-field@2x.png */; };
 		88274FF61A24904100FE31C6 /* flat7-gradient-form.png in Resources */ = {isa = PBXBuildFile; fileRef = 88274F591A24904100FE31C6 /* flat7-gradient-form.png */; };
 		88274FF71A24904100FE31C6 /* flat7-gradient-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88274F5A1A24904100FE31C6 /* flat7-gradient-form@2x.png */; };
+		88274FFD1A24CD1A00FE31C6 /* SignUpScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88274FFC1A24CD1A00FE31C6 /* SignUpScreenletViewController.m */; };
 		B6BD414BAE42F1C83DFC21DF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D62D52D84D90CDB834C3F0C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -362,6 +363,8 @@
 		88274F591A24904100FE31C6 /* flat7-gradient-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form.png"; sourceTree = "<group>"; };
 		88274F5A1A24904100FE31C6 /* flat7-gradient-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form@2x.png"; sourceTree = "<group>"; };
 		88274FF81A24938000FE31C6 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		88274FFB1A24CD1A00FE31C6 /* SignUpScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpScreenletViewController.h; sourceTree = "<group>"; };
+		88274FFC1A24CD1A00FE31C6 /* SignUpScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpScreenletViewController.m; sourceTree = "<group>"; };
 		E182772292D6B64D53CBF633 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -413,6 +416,8 @@
 				88274E591A248DC100FE31C6 /* HomeLoginViewController.m */,
 				88274E5B1A248DC100FE31C6 /* HomeScreenletsViewController.h */,
 				88274E5C1A248DC100FE31C6 /* HomeScreenletsViewController.m */,
+				88274FFB1A24CD1A00FE31C6 /* SignUpScreenletViewController.h */,
+				88274FFC1A24CD1A00FE31C6 /* SignUpScreenletViewController.m */,
 				88274E5E1A248DC100FE31C6 /* Main.storyboard */,
 				88274E511A248DC100FE31C6 /* Supporting Files */,
 			);
@@ -1162,6 +1167,7 @@
 				88274F7D1A24904100FE31C6 /* SessionContext.swift in Sources */,
 				88274F901A24904100FE31C6 /* DDLField.swift in Sources */,
 				88274F971A24904100FE31C6 /* DDLFieldUntyped.swift in Sources */,
+				88274FFD1A24CD1A00FE31C6 /* SignUpScreenletViewController.m in Sources */,
 				88274F911A24904100FE31C6 /* DDLFieldBoolean.swift in Sources */,
 				88274F811A24904100FE31C6 /* DDLFormData.swift in Sources */,
 				88274F5D1A24904100FE31C6 /* AssetListTableView.swift in Sources */,
