@@ -89,11 +89,66 @@
                     <connections>
                         <segue destination="ODv-YS-cr5" kind="push" identifier="LoginScreenlet" id="Z8M-Q1-xfN"/>
                         <segue destination="5mf-Js-LTU" kind="push" identifier="SignUpScreenlet" id="jQ7-lB-KOf"/>
+                        <segue destination="MBO-1B-xI3" kind="push" identifier="ForgotPasswordScreenlet" id="qP9-aL-TR1"/>
+                        <segue destination="N5m-Be-zKQ" kind="push" id="7xV-17-sdQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="1037"/>
+            <point key="canvasLocation" x="400" y="1043"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Gof-EM-hXa">
+            <objects>
+                <viewController id="N5m-Be-zKQ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ik0-p5-DgI"/>
+                        <viewControllerLayoutGuide type="bottom" id="gB0-bg-czG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jep-9y-AIa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Miy-jz-jyL" customClass="AssetListScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="395"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vKJ-1q-GBo">
+                                <rect key="frame" x="16" y="467" width="288" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="CHANGE ASSET">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="signOutAction" destination="9pv-A4-QxB" eventType="touchUpInside" id="DMK-XW-uQB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vKJ-1q-GBo" firstAttribute="trailing" secondItem="jep-9y-AIa" secondAttribute="trailingMargin" id="2jB-Fe-eDG"/>
+                            <constraint firstAttribute="bottom" secondItem="Miy-jz-jyL" secondAttribute="bottom" constant="109" id="8z7-sa-H7T"/>
+                            <constraint firstItem="Miy-jz-jyL" firstAttribute="leading" secondItem="jep-9y-AIa" secondAttribute="leadingMargin" constant="-16" id="Hw8-yG-MkN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Miy-jz-jyL" secondAttribute="trailing" constant="-16" id="J0p-7u-nSD"/>
+                            <constraint firstItem="gB0-bg-czG" firstAttribute="top" secondItem="vKJ-1q-GBo" secondAttribute="bottom" constant="8" symbolic="YES" id="TEb-hC-VhP"/>
+                            <constraint firstItem="Miy-jz-jyL" firstAttribute="top" secondItem="ik0-p5-DgI" secondAttribute="bottom" id="TNm-Lu-ItY"/>
+                            <constraint firstItem="vKJ-1q-GBo" firstAttribute="top" secondItem="Miy-jz-jyL" secondAttribute="bottom" constant="8" symbolic="YES" id="eIQ-hf-VMG"/>
+                            <constraint firstItem="vKJ-1q-GBo" firstAttribute="leading" secondItem="jep-9y-AIa" secondAttribute="leadingMargin" id="sAg-ge-sBo"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="e1G-ar-7Sl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ziz-90-phY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="400" y="1734"/>
         </scene>
         <!--Home Login View Controller-->
         <scene sceneID="AgL-gw-NGQ">
@@ -142,9 +197,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZC-yn-8lF" customClass="LoginScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZC-yn-8lF" customClass="LoginScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="320" height="262"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="262" id="3IR-6A-nQl"/>
+                                </constraints>
                             </view>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WlU-6U-lUO">
                                 <rect key="frame" x="257" y="472" width="51" height="31"/>
@@ -234,7 +292,35 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="da8-L1-1hz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="947" y="949"/>
+            <point key="canvasLocation" x="947" y="938"/>
+        </scene>
+        <!--Forgot Password Screenlet View Controller-->
+        <scene sceneID="p81-1L-f7Z">
+            <objects>
+                <viewController id="MBO-1B-xI3" customClass="ForgotPasswordScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wTi-O8-iBr"/>
+                        <viewControllerLayoutGuide type="bottom" id="fbf-vJ-9tL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T3X-K7-47S">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="njp-TA-8Y6" customClass="ForgotPasswordScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="328"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="P4C-t5-uk4"/>
+                    <connections>
+                        <outlet property="screenlet" destination="njp-TA-8Y6" id="Bim-Li-ZpW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VuT-Lu-Ahb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="947" y="1567"/>
         </scene>
         <!--ScreenletsNavigation-->
         <scene sceneID="tyj-Dj-HfE">

@@ -154,7 +154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANP-8b-t7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="883" y="486"/>
+            <point key="canvasLocation" x="877" y="414"/>
         </scene>
         <!--Sign Up Screenlet View Controller-->
         <scene sceneID="hAw-dR-jLh">
@@ -208,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQD-EU-L8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="883" y="1118"/>
+            <point key="canvasLocation" x="877" y="1030"/>
         </scene>
         <!--Screenlets available-->
         <scene sceneID="JVr-HC-DHL">
@@ -235,6 +235,7 @@
                     <connections>
                         <segue destination="Xmw-Sf-x0t" kind="push" identifier="LoginScreenlet" id="lJm-A6-DVF"/>
                         <segue destination="FKF-ee-97Z" kind="push" identifier="SignUpScreenlet" id="ONY-A9-Iiq"/>
+                        <segue destination="Pdd-xQ-CWj" kind="push" identifier="ForgotPasswordScreenlet" id="MNo-Te-ena"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vf-l6-njl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -276,6 +277,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Forgot Password Screenlet View Controller-->
+        <scene sceneID="dkT-LS-a4t">
+            <objects>
+                <viewController id="Pdd-xQ-CWj" customClass="ForgotPasswordScreenletViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="O6s-wX-PVf"/>
+                        <viewControllerLayoutGuide type="bottom" id="F8M-e4-7W9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rCt-ZS-t5k">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dXQ-Ef-lMY" customClass="ForgotPasswordScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="328"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yYW-gd-KXd"/>
+                    <connections>
+                        <outlet property="screenlet" destination="dXQ-Ef-lMY" id="KNH-2a-8OM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vaa-fN-2Me" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="877" y="1649"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
