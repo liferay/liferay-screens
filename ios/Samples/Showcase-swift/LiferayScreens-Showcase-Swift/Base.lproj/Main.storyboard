@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login-->
+        <scene sceneID="hNz-n2-bh7">
+            <objects>
+                <viewController id="9pv-A4-QxB" userLabel="Login" customClass="HomeLoginViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
+                        <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ifh-gR-hEQ">
+                                <rect key="frame" x="37" y="94" width="247" height="260"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SD8-wp-12w">
+                                        <rect key="frame" x="0.0" y="82" width="247" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are logged as..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqb-Wh-9Fp">
+                                        <rect key="frame" x="0.0" y="32" width="247" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gpq-Db-Zcu">
+                                        <rect key="frame" x="11" y="138" width="228" height="44"/>
+                                        <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="SIGN OUT">
+                                                    <attributes>
+                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="signOutAction" destination="9pv-A4-QxB" eventType="touchUpInside" id="9mR-U0-f8b"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdc-z9-1zl" customClass="LoginScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
+                                <rect key="frame" x="16" y="105" width="288" height="244"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Sign in" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="loggedUsername" destination="SD8-wp-12w" id="pyX-cM-Qn5"/>
+                        <outlet property="loggedView" destination="Ifh-gR-hEQ" id="eX4-j1-7XZ"/>
+                        <outlet property="loginScreenlet" destination="gdc-z9-1zl" id="FBH-8F-zVS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="400" y="-303"/>
+        </scene>
+        <!--Content Table View Controller-->
+        <scene sceneID="gz0-F9-ThQ">
+            <objects>
+                <tableViewController id="RHb-l5-adC" userLabel="Content Table View Controller" customClass="HomeScreenletsViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="50" sectionFooterHeight="22" id="lHs-ao-xng">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="RHb-l5-adC" id="0HX-Tc-If4"/>
+                            <outlet property="delegate" destination="RHb-l5-adC" id="mWP-ap-UKX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Screenlets available" id="gwH-gN-4Wt"/>
+                    <connections>
+                        <segue destination="ODv-YS-cr5" kind="push" identifier="LoginScreenlet" id="Z8M-Q1-xfN"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="400" y="1017"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="AgL-gw-NGQ">
+            <objects>
+                <viewController id="ODv-YS-cr5" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HGn-OR-5wv"/>
+                        <viewControllerLayoutGuide type="bottom" id="fn7-GB-315"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KP8-er-SaD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZC-yn-8lF" customClass="LoginScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="LZC-yn-8lF" secondAttribute="trailing" constant="-16" id="Z2f-az-Bak"/>
+                            <constraint firstItem="LZC-yn-8lF" firstAttribute="top" secondItem="HGn-OR-5wv" secondAttribute="bottom" id="fmD-PE-DVi"/>
+                            <constraint firstItem="LZC-yn-8lF" firstAttribute="leading" secondItem="KP8-er-SaD" secondAttribute="leadingMargin" constant="-16" id="h62-c9-p3h"/>
+                            <constraint firstItem="fn7-GB-315" firstAttribute="top" secondItem="LZC-yn-8lF" secondAttribute="bottom" id="kxr-Tb-nSd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="qmE-Fe-IEp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="490-pt-lcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="883" y="943"/>
+        </scene>
+        <!--ScreenletsNavigation-->
+        <scene sceneID="tyj-Dj-HfE">
+            <objects>
+                <navigationController id="i5F-9R-XXy" userLabel="ScreenletsNavigation" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Screenlets" id="9L3-E9-h9m"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WHR-ks-AV3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="RHb-l5-adC" kind="relationship" relationship="rootViewController" id="uam-x0-LND"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GmX-C6-h5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="400" y="337"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="tni-rI-YZU"/>
+                        <segue destination="i5F-9R-XXy" kind="relationship" relationship="viewControllers" id="8Qf-Ao-qOm"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
