@@ -362,6 +362,7 @@
 		883D84851A234EAC00CC179B /* flat7-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field@2x.png"; sourceTree = "<group>"; };
 		883D84861A234EAC00CC179B /* flat7-gradient-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form.png"; sourceTree = "<group>"; };
 		883D84871A234EAC00CC179B /* flat7-gradient-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form@2x.png"; sourceTree = "<group>"; };
+		88CB07471A264B7100964F33 /* AssetListScreenletInterop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletInterop.h; sourceTree = "<group>"; };
 		D599D7796E7BE84936DB1C44 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -460,6 +461,7 @@
 			isa = PBXGroup;
 			children = (
 				883D83AA1A234EAC00CC179B /* AssetListScreenlet.swift */,
+				88CB07471A264B7100964F33 /* AssetListScreenletInterop.h */,
 				883D83AB1A234EAC00CC179B /* ServerOperations */,
 				883D83AD1A234EAC00CC179B /* TableView */,
 			);

@@ -23,6 +23,8 @@ FOUNDATION_EXPORT const unsigned char liferay_screens_VersionString[];
 #import "SMXMLDocument.h"
 #import "UICKeyChainStore.h"
 
+#import "AssetListScreenletInterop.h"
+
 // Default theme dependencies
 #import "DTPickerPresenter.h"
 #import "DTDatePickerPresenter.h"

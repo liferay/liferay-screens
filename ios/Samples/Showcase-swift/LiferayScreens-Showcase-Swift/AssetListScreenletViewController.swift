@@ -19,9 +19,9 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	@IBOutlet var screenlet: AssetListScreenlet?
 	@IBOutlet var picker: UIPickerView?
 
-	var selectedAsset = AssetListScreenlet.AssetClassNameId.Group
+	var selectedAsset = AssetClassNameId.Group
 
-	var pickerData:[(name:String, assetId:AssetListScreenlet.AssetClassNameId)] = []
+	var pickerData:[(name:String, assetId:AssetClassNameId)] = []
 
 	@IBAction func changeAssetAction(sender: AnyObject) {
 		showPicker(false, animated:true)
@@ -52,33 +52,33 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		pickerData.append(name:"Group", assetId:AssetListScreenlet.AssetClassNameId.Group)
-		pickerData.append(name:"Layout", assetId:AssetListScreenlet.AssetClassNameId.Layout)
-		pickerData.append(name:"Organization", assetId:AssetListScreenlet.AssetClassNameId.Organization)
-		pickerData.append(name:"User", assetId:AssetListScreenlet.AssetClassNameId.User)
-		pickerData.append(name:"UserGroup", assetId:AssetListScreenlet.AssetClassNameId.UserGroup)
-		pickerData.append(name:"BlogsEntry", assetId:AssetListScreenlet.AssetClassNameId.BlogsEntry)
-		pickerData.append(name:"BookmarksEntry", assetId:AssetListScreenlet.AssetClassNameId.BookmarksEntry)
-		pickerData.append(name:"BookmarksFolder", assetId:AssetListScreenlet.AssetClassNameId.BookmarksFolder)
-		pickerData.append(name:"CalendarEvent", assetId:AssetListScreenlet.AssetClassNameId.CalendarEvent)
-		pickerData.append(name:"DLFileEntry", assetId:AssetListScreenlet.AssetClassNameId.DLFileEntry)
-		pickerData.append(name:"DLFileEntryMetadata", assetId:AssetListScreenlet.AssetClassNameId.DLFileEntryMetadata)
-		pickerData.append(name:"DLFileEntryType", assetId:AssetListScreenlet.AssetClassNameId.DLFileEntryType)
-		pickerData.append(name:"DLFileRank", assetId:AssetListScreenlet.AssetClassNameId.DLFileRank)
-		pickerData.append(name:"DLFileShortcut", assetId:AssetListScreenlet.AssetClassNameId.DLFileShortcut)
-		pickerData.append(name:"DLFileVersion", assetId:AssetListScreenlet.AssetClassNameId.DLFileVersion)
-		pickerData.append(name:"DDLRecord", assetId:AssetListScreenlet.AssetClassNameId.DDLRecord)
-		pickerData.append(name:"DDLRecordSet", assetId:AssetListScreenlet.AssetClassNameId.DDLRecordSet)
-		pickerData.append(name:"JournalArticle", assetId:AssetListScreenlet.AssetClassNameId.JournalArticle)
-		pickerData.append(name:"JournalFolder", assetId:AssetListScreenlet.AssetClassNameId.JournalFolder)
-		pickerData.append(name:"MBMessage", assetId:AssetListScreenlet.AssetClassNameId.MBMessage)
-		pickerData.append(name:"MBThread", assetId:AssetListScreenlet.AssetClassNameId.MBThread)
-		pickerData.append(name:"MBCategory", assetId:AssetListScreenlet.AssetClassNameId.MBCategory)
-		pickerData.append(name:"MBDiscussion", assetId:AssetListScreenlet.AssetClassNameId.MBDiscussion)
-		pickerData.append(name:"MBMailingList", assetId:AssetListScreenlet.AssetClassNameId.MBMailingList)
-		pickerData.append(name:"WikiPage", assetId:AssetListScreenlet.AssetClassNameId.WikiPage)
-		pickerData.append(name:"WikiPageResource", assetId:AssetListScreenlet.AssetClassNameId.WikiPageResource)
-		pickerData.append(name:"WikiNode", assetId:AssetListScreenlet.AssetClassNameId.WikiNode)
+		pickerData.append(name:"Group", assetId:.Group)
+		pickerData.append(name:"Layout", assetId:.Layout)
+		pickerData.append(name:"Organization", assetId:.Organization)
+		pickerData.append(name:"User", assetId:.User)
+		pickerData.append(name:"UserGroup", assetId:.UserGroup)
+		pickerData.append(name:"BlogsEntry", assetId:.BlogsEntry)
+		pickerData.append(name:"BookmarksEntry", assetId:.BookmarksEntry)
+		pickerData.append(name:"BookmarksFolder", assetId:.BookmarksFolder)
+		pickerData.append(name:"CalendarEvent", assetId:.CalendarEvent)
+		pickerData.append(name:"DLFileEntry", assetId:.DLFileEntry)
+		pickerData.append(name:"DLFileEntryMetadata", assetId:.DLFileEntryMetadata)
+		pickerData.append(name:"DLFileEntryType", assetId:.DLFileEntryType)
+		pickerData.append(name:"DLFileRank", assetId:.DLFileRank)
+		pickerData.append(name:"DLFileShortcut", assetId:.DLFileShortcut)
+		pickerData.append(name:"DLFileVersion", assetId:.DLFileVersion)
+		pickerData.append(name:"DDLRecord", assetId:.DDLRecord)
+		pickerData.append(name:"DDLRecordSet", assetId:.DDLRecordSet)
+		pickerData.append(name:"JournalArticle", assetId:.JournalArticle)
+		pickerData.append(name:"JournalFolder", assetId:.JournalFolder)
+		pickerData.append(name:"MBMessage", assetId:.MBMessage)
+		pickerData.append(name:"MBThread", assetId:.MBThread)
+		pickerData.append(name:"MBCategory", assetId:.MBCategory)
+		pickerData.append(name:"MBDiscussion", assetId:.MBDiscussion)
+		pickerData.append(name:"MBMailingList", assetId:.MBMailingList)
+		pickerData.append(name:"WikiPage", assetId:.WikiPage)
+		pickerData.append(name:"WikiPageResource", assetId:.WikiPageResource)
+		pickerData.append(name:"WikiNode", assetId:.WikiNode)
 
 		self.screenlet?.delegate = self
 	}
