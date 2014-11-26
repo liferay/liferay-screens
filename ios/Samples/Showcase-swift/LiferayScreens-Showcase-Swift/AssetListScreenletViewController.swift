@@ -106,4 +106,3 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	}
 
 }
-

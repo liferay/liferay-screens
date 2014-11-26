@@ -236,6 +236,7 @@
                         <segue destination="Xmw-Sf-x0t" kind="push" identifier="LoginScreenlet" id="lJm-A6-DVF"/>
                         <segue destination="FKF-ee-97Z" kind="push" identifier="SignUpScreenlet" id="ONY-A9-Iiq"/>
                         <segue destination="Pdd-xQ-CWj" kind="push" identifier="ForgotPasswordScreenlet" id="MNo-Te-ena"/>
+                        <segue destination="aQD-kz-AXB" kind="push" identifier="AssetListScreenlet" id="93t-wg-a9L"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vf-l6-njl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -305,6 +306,118 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vaa-fN-2Me" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="877" y="1649"/>
+        </scene>
+        <!--Asset List Screenlet View Controller-->
+        <scene sceneID="KZ2-5e-7so">
+            <objects>
+                <viewController id="aQD-kz-AXB" customClass="AssetListScreenletViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fvZ-9C-XJO"/>
+                        <viewControllerLayoutGuide type="bottom" id="SYx-QR-2ij"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qTr-3a-WYp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Set-bf-VU6" customClass="AssetListScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="395"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="groupId">
+                                        <integer key="value" value="10197"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70O-se-ObQ">
+                                <rect key="frame" x="16" y="467" width="288" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="CHOOSE ASSET">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="openAssetPickerAction:" destination="aQD-kz-AXB" eventType="touchUpInside" id="n9E-2P-S6J"/>
+                                </connections>
+                            </button>
+                            <view alpha="0.98000001907348633" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WU0-Bi-KGL">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rVl-QV-ui2">
+                                        <rect key="frame" x="16" y="462" width="288" height="44"/>
+                                        <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="3XB-sp-8ks"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="CHOOSE AND LOAD">
+                                                    <attributes>
+                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="changeAssetAction:" destination="aQD-kz-AXB" eventType="touchUpInside" id="8hO-gL-fwI"/>
+                                        </connections>
+                                    </button>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZN-0o-xGg">
+                                        <rect key="frame" x="0.0" y="67" width="320" height="216"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="216" id="VKt-R6-Uch"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="aQD-kz-AXB" id="XFm-L9-s0O"/>
+                                            <outlet property="delegate" destination="aQD-kz-AXB" id="pnf-Ye-saL"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="rVl-QV-ui2" secondAttribute="centerX" id="K5O-LB-xj4"/>
+                                    <constraint firstItem="xZN-0o-xGg" firstAttribute="top" secondItem="WU0-Bi-KGL" secondAttribute="top" constant="67" id="L4B-Vu-ix3"/>
+                                    <constraint firstAttribute="bottom" secondItem="rVl-QV-ui2" secondAttribute="bottom" constant="62" id="M7N-Eh-07a"/>
+                                    <constraint firstAttribute="trailing" secondItem="xZN-0o-xGg" secondAttribute="trailing" id="NfX-Cx-52a"/>
+                                    <constraint firstItem="xZN-0o-xGg" firstAttribute="leading" secondItem="WU0-Bi-KGL" secondAttribute="leading" id="bwP-vk-m5C"/>
+                                    <constraint firstItem="rVl-QV-ui2" firstAttribute="leading" secondItem="WU0-Bi-KGL" secondAttribute="leading" constant="16" id="zO3-QR-7Vx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="70O-se-ObQ" firstAttribute="leading" secondItem="qTr-3a-WYp" secondAttribute="leadingMargin" id="0NH-wI-MrH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Set-bf-VU6" secondAttribute="trailing" constant="-16" id="8Zi-s6-jjb"/>
+                            <constraint firstItem="WU0-Bi-KGL" firstAttribute="leading" secondItem="qTr-3a-WYp" secondAttribute="leadingMargin" constant="-16" id="MDc-rH-dzS"/>
+                            <constraint firstItem="WU0-Bi-KGL" firstAttribute="bottom" secondItem="qTr-3a-WYp" secondAttribute="bottomMargin" id="MWa-hU-DRF"/>
+                            <constraint firstItem="SYx-QR-2ij" firstAttribute="top" secondItem="70O-se-ObQ" secondAttribute="bottom" constant="8" symbolic="YES" id="MZY-gh-MpU"/>
+                            <constraint firstItem="Set-bf-VU6" firstAttribute="top" secondItem="fvZ-9C-XJO" secondAttribute="bottom" id="TIi-cd-51M"/>
+                            <constraint firstItem="70O-se-ObQ" firstAttribute="trailing" secondItem="qTr-3a-WYp" secondAttribute="trailingMargin" id="U1v-WM-2I9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WU0-Bi-KGL" secondAttribute="trailing" constant="-16" id="gV7-4g-mRd"/>
+                            <constraint firstAttribute="bottom" secondItem="Set-bf-VU6" secondAttribute="bottom" constant="109" id="lg5-1k-CTc"/>
+                            <constraint firstItem="Set-bf-VU6" firstAttribute="leading" secondItem="qTr-3a-WYp" secondAttribute="leadingMargin" constant="-16" id="mZB-oU-WSo"/>
+                            <constraint firstItem="WU0-Bi-KGL" firstAttribute="top" secondItem="qTr-3a-WYp" secondAttribute="topMargin" id="nzr-H6-qkD"/>
+                            <constraint firstItem="70O-se-ObQ" firstAttribute="top" secondItem="Set-bf-VU6" secondAttribute="bottom" constant="8" symbolic="YES" id="uk6-3S-FNS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="zvS-mo-YSx"/>
+                    <connections>
+                        <outlet property="picker" destination="xZN-0o-xGg" id="OGu-ga-uJ2"/>
+                        <outlet property="screenlet" destination="Set-bf-VU6" id="5HV-3Y-LO3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wfl-Yw-nTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="400" y="1802"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

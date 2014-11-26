@@ -173,6 +173,7 @@
 		88274FF71A24904100FE31C6 /* flat7-gradient-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88274F5A1A24904100FE31C6 /* flat7-gradient-form@2x.png */; };
 		88274FFD1A24CD1A00FE31C6 /* SignUpScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88274FFC1A24CD1A00FE31C6 /* SignUpScreenletViewController.m */; };
 		882750021A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882750011A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.m */; };
+		88CB07451A2644FC00964F33 /* AssetListScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */; };
 		B6BD414BAE42F1C83DFC21DF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D62D52D84D90CDB834C3F0C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -368,6 +369,9 @@
 		88274FFC1A24CD1A00FE31C6 /* SignUpScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpScreenletViewController.m; sourceTree = "<group>"; };
 		882750001A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordScreenletViewController.h; sourceTree = "<group>"; };
 		882750011A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordScreenletViewController.m; sourceTree = "<group>"; };
+		88CB07431A2644FC00964F33 /* AssetListScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletViewController.h; sourceTree = "<group>"; };
+		88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListScreenletViewController.m; sourceTree = "<group>"; };
+		88CB07461A264A5D00964F33 /* AssetListScreenletInterop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletInterop.h; sourceTree = "<group>"; };
 		E182772292D6B64D53CBF633 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -423,6 +427,8 @@
 				88274FFC1A24CD1A00FE31C6 /* SignUpScreenletViewController.m */,
 				882750001A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.h */,
 				882750011A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.m */,
+				88CB07431A2644FC00964F33 /* AssetListScreenletViewController.h */,
+				88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */,
 				88274E5E1A248DC100FE31C6 /* Main.storyboard */,
 				88274E511A248DC100FE31C6 /* Supporting Files */,
 			);
@@ -472,6 +478,7 @@
 			isa = PBXGroup;
 			children = (
 				88274E7D1A24904100FE31C6 /* AssetListScreenlet.swift */,
+				88CB07461A264A5D00964F33 /* AssetListScreenletInterop.h */,
 				88274E7E1A24904100FE31C6 /* ServerOperations */,
 				88274E801A24904100FE31C6 /* TableView */,
 			);
@@ -1178,6 +1185,7 @@
 				88274F811A24904100FE31C6 /* DDLFormData.swift in Sources */,
 				88274F5D1A24904100FE31C6 /* AssetListTableView.swift in Sources */,
 				88274E571A248DC100FE31C6 /* AppDelegate.m in Sources */,
+				88CB07451A2644FC00964F33 /* AssetListScreenletViewController.m in Sources */,
 				88274F651A24904100FE31C6 /* LiferayForgotPasswordUserIdOperation.swift in Sources */,
 				88274FAE1A24904100FE31C6 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
 				88274FBD1A24904100FE31C6 /* DDLFieldTextareaTableCell_default.swift in Sources */,
