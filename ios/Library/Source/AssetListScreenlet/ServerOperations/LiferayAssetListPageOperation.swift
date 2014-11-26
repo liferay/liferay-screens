@@ -34,6 +34,9 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
+		// WARNING: note that only assets with visible column equals to 1
+		// will be returned by the server.
+
 		screenletsService.getAssetEntriesWithAssetEntryQuery(entryQuery,
 				locale: NSLocale.currentLocaleString,
 				error: nil)
