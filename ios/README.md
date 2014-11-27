@@ -26,8 +26,7 @@ Development of iOS apps using Liferay Screens requires the following:
   - iOS 8 SDK
   - [CocoaPods](http://cocoapods.org) installed
   - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
-  - [Mobile Widgets plugin for 6.2.x](https://github.com/liferay/liferay-plugins/tree/6.2.x/webs/mobile-widgets-web). 
-    This plugin will be available soon in the [Liferay Marketplace](https://www.liferay.com/marketplace).
+  - [Liferay Screens' compatiblity plugin](https://github.com/liferay/liferay-screens/tree/master/portal). 
   - Liferay Screens source code
 
 Your iOS app can we written in Swift or Objective-C.
