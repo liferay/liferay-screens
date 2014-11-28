@@ -173,6 +173,7 @@
 		88274FF71A24904100FE31C6 /* flat7-gradient-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88274F5A1A24904100FE31C6 /* flat7-gradient-form@2x.png */; };
 		88274FFD1A24CD1A00FE31C6 /* SignUpScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88274FFC1A24CD1A00FE31C6 /* SignUpScreenletViewController.m */; };
 		882750021A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882750011A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.m */; };
+		8833E9621A28A541006C4413 /* DDLListScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8833E9611A28A541006C4413 /* DDLListScreenletViewController.m */; };
 		88CB07451A2644FC00964F33 /* AssetListScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */; };
 		B6BD414BAE42F1C83DFC21DF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D62D52D84D90CDB834C3F0C /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -369,6 +370,8 @@
 		88274FFC1A24CD1A00FE31C6 /* SignUpScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpScreenletViewController.m; sourceTree = "<group>"; };
 		882750001A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordScreenletViewController.h; sourceTree = "<group>"; };
 		882750011A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordScreenletViewController.m; sourceTree = "<group>"; };
+		8833E9601A28A541006C4413 /* DDLListScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLListScreenletViewController.h; sourceTree = "<group>"; };
+		8833E9611A28A541006C4413 /* DDLListScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLListScreenletViewController.m; sourceTree = "<group>"; };
 		88CB07431A2644FC00964F33 /* AssetListScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletViewController.h; sourceTree = "<group>"; };
 		88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListScreenletViewController.m; sourceTree = "<group>"; };
 		88CB07461A264A5D00964F33 /* AssetListScreenletInterop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletInterop.h; sourceTree = "<group>"; };
@@ -419,17 +422,19 @@
 			children = (
 				88274E551A248DC100FE31C6 /* AppDelegate.h */,
 				88274E561A248DC100FE31C6 /* AppDelegate.m */,
+				88CB07431A2644FC00964F33 /* AssetListScreenletViewController.h */,
+				88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */,
+				8833E9601A28A541006C4413 /* DDLListScreenletViewController.h */,
+				8833E9611A28A541006C4413 /* DDLListScreenletViewController.m */,
+				882750001A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.h */,
+				882750011A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.m */,
 				88274E581A248DC100FE31C6 /* HomeLoginViewController.h */,
 				88274E591A248DC100FE31C6 /* HomeLoginViewController.m */,
 				88274E5B1A248DC100FE31C6 /* HomeScreenletsViewController.h */,
 				88274E5C1A248DC100FE31C6 /* HomeScreenletsViewController.m */,
+				88274E5E1A248DC100FE31C6 /* Main.storyboard */,
 				88274FFB1A24CD1A00FE31C6 /* SignUpScreenletViewController.h */,
 				88274FFC1A24CD1A00FE31C6 /* SignUpScreenletViewController.m */,
-				882750001A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.h */,
-				882750011A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.m */,
-				88CB07431A2644FC00964F33 /* AssetListScreenletViewController.h */,
-				88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */,
-				88274E5E1A248DC100FE31C6 /* Main.storyboard */,
 				88274E511A248DC100FE31C6 /* Supporting Files */,
 			);
 			name = Showcase;
@@ -1230,6 +1235,7 @@
 				88274F871A24904100FE31C6 /* LiferayDDLFormSubmitOperation.swift in Sources */,
 				88274FC11A24904100FE31C6 /* DDLFormDefaultThemeConstants.swift in Sources */,
 				88274F9C1A24904100FE31C6 /* UIButton+Title.swift in Sources */,
+				8833E9621A28A541006C4413 /* DDLListScreenletViewController.m in Sources */,
 				88274F711A24904100FE31C6 /* SignUpScreenlet.swift in Sources */,
 				88274F681A24904100FE31C6 /* LoginScreenlet.swift in Sources */,
 				88274FAF1A24904100FE31C6 /* DDLFieldCheckboxTableCell_default.swift in Sources */,
@@ -1387,7 +1393,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1425,7 +1431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "../../Library/Source/liferay-screens-bridge.h";

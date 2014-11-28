@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Sign in-->
+        <!--Initial Login-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="HomeLoginViewController" sceneMemberID="viewController">
+                <viewController title="Initial Login" id="9pv-A4-QxB" customClass="HomeLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -78,7 +79,7 @@
         <!--LoginScreenlet-->
         <scene sceneID="7BE-HQ-jos">
             <objects>
-                <viewController id="Xmw-Sf-x0t" userLabel="LoginScreenlet" customClass="HomeLoginViewController" sceneMemberID="viewController">
+                <viewController title="LoginScreenlet" id="Xmw-Sf-x0t" userLabel="LoginScreenlet" customClass="HomeLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x23-VT-R87"/>
                         <viewControllerLayoutGuide type="bottom" id="aGB-QC-H7X"/>
@@ -156,10 +157,10 @@
             </objects>
             <point key="canvasLocation" x="877" y="414"/>
         </scene>
-        <!--Sign Up Screenlet View Controller-->
+        <!--SignUpScreenlet-->
         <scene sceneID="hAw-dR-jLh">
             <objects>
-                <viewController id="FKF-ee-97Z" customClass="SignUpScreenletViewController" sceneMemberID="viewController">
+                <viewController title="SignUpScreenlet" id="FKF-ee-97Z" customClass="SignUpScreenletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RCp-yJ-PJl"/>
                         <viewControllerLayoutGuide type="bottom" id="8hD-s2-dOr"/>
@@ -237,6 +238,7 @@
                         <segue destination="FKF-ee-97Z" kind="push" identifier="SignUpScreenlet" id="ONY-A9-Iiq"/>
                         <segue destination="Pdd-xQ-CWj" kind="push" identifier="ForgotPasswordScreenlet" id="MNo-Te-ena"/>
                         <segue destination="aQD-kz-AXB" kind="push" identifier="AssetListScreenlet" id="93t-wg-a9L"/>
+                        <segue destination="aUf-GE-2Zq" kind="push" identifier="DDLListScreenlet" id="F3G-3P-pfm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vf-l6-njl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -279,10 +281,10 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Forgot Password Screenlet View Controller-->
+        <!--ForgotPasswordScreenlet-->
         <scene sceneID="dkT-LS-a4t">
             <objects>
-                <viewController id="Pdd-xQ-CWj" customClass="ForgotPasswordScreenletViewController" sceneMemberID="viewController">
+                <viewController title="ForgotPasswordScreenlet" id="Pdd-xQ-CWj" customClass="ForgotPasswordScreenletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="O6s-wX-PVf"/>
                         <viewControllerLayoutGuide type="bottom" id="F8M-e4-7W9"/>
@@ -305,12 +307,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vaa-fN-2Me" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="877" y="1649"/>
+            <point key="canvasLocation" x="877" y="1725"/>
         </scene>
-        <!--Asset List Screenlet View Controller-->
+        <!--AssetListScreenlet-->
         <scene sceneID="KZ2-5e-7so">
             <objects>
-                <viewController id="aQD-kz-AXB" customClass="AssetListScreenletViewController" sceneMemberID="viewController">
+                <viewController title="AssetListScreenlet" id="aQD-kz-AXB" customClass="AssetListScreenletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fvZ-9C-XJO"/>
                         <viewControllerLayoutGuide type="bottom" id="SYx-QR-2ij"/>
@@ -319,7 +321,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Set-bf-VU6" customClass="AssetListScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Set-bf-VU6" customClass="AssetListScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="320" height="395"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -328,7 +330,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70O-se-ObQ">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70O-se-ObQ">
                                 <rect key="frame" x="16" y="467" width="288" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                                 <state key="normal">
@@ -417,7 +419,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wfl-Yw-nTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="1802"/>
+            <point key="canvasLocation" x="-48" y="1680"/>
+        </scene>
+        <!--DDLListScreenlet-->
+        <scene sceneID="oeR-fe-fqI">
+            <objects>
+                <viewController title="DDLListScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="aUf-GE-2Zq" customClass="DDLListScreenletViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OUk-oe-KZL"/>
+                        <viewControllerLayoutGuide type="bottom" id="GXe-Fb-s8S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MCQ-tP-l6s">
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mog-xe-n6a" customClass="DDLListScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="recordSetId">
+                                        <integer key="value" value="10538"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelField" value="Company"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="mog-xe-n6a" secondAttribute="trailing" constant="-16" id="4kB-ui-w1i"/>
+                            <constraint firstItem="mog-xe-n6a" firstAttribute="top" secondItem="OUk-oe-KZL" secondAttribute="bottom" id="Emz-E3-NpY"/>
+                            <constraint firstItem="GXe-Fb-s8S" firstAttribute="top" secondItem="mog-xe-n6a" secondAttribute="bottom" id="R6O-z8-KhZ"/>
+                            <constraint firstItem="mog-xe-n6a" firstAttribute="leading" secondItem="MCQ-tP-l6s" secondAttribute="leadingMargin" constant="-16" id="iHJ-Ik-8J7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="1Pl-vz-ZGn"/>
+                    <connections>
+                        <outlet property="screenlet" destination="mog-xe-n6a" id="vFH-hZ-Eup"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9hp-0Q-bTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="520" y="1851"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
