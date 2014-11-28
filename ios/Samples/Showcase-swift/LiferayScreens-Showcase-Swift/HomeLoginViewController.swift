@@ -39,10 +39,20 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 	}
 
 	func onLoginResponse(attributes: [String:AnyObject]) {
+		println("DELEGATE: onLoginResponse called -> \(attributes)");
 		showLogged(animated: true);
 	}
 
 	func onLoginError(error: NSError) {
+		println("DELEGATE: onLoginError called -> \(error)");
+	}
+
+	func onCredentialsSaved() {
+		println("DELEGATE: onCredentialsSaved called");
+	}
+
+	func onCredentialsLoaded() {
+		println("DELEGATE: onCredentialsLoaded called");
 	}
 
 	private func showLogged(#animated:Bool) {
