@@ -27,7 +27,7 @@ import UIKit
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var articleId: String = ""
 
-	@IBInspectable public var autoload: Bool = true
+	@IBInspectable public var autoLoad: Bool = true
 
 	@IBOutlet public var delegate: WebContentDisplayScreenletDelegate?
 
@@ -39,7 +39,7 @@ import UIKit
 	//MARK: Public methods
 
 	override func onShow() {
-		if autoload && articleId != "" {
+		if autoLoad && articleId != "" {
 			loadWebContent()
 		}
 	}
