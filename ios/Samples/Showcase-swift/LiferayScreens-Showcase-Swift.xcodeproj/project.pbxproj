@@ -16,6 +16,7 @@
 		88274FFA1A24C7CB00FE31C6 /* SignUpScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88274FF91A24C7CB00FE31C6 /* SignUpScreenletViewController.swift */; };
 		88274FFF1A24DAF800FE31C6 /* ForgotPasswordScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88274FFE1A24DAF800FE31C6 /* ForgotPasswordScreenletViewController.swift */; };
 		882750041A24F80400FE31C6 /* AssetListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882750031A24F80400FE31C6 /* AssetListScreenletViewController.swift */; };
+		8833E95F1A289273006C4413 /* DDLListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8833E95E1A289273006C4413 /* DDLListScreenletViewController.swift */; };
 		883D84881A234EAC00CC179B /* AssetListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D83AA1A234EAC00CC179B /* AssetListScreenlet.swift */; };
 		883D84891A234EAC00CC179B /* LiferayAssetListPageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D83AC1A234EAC00CC179B /* LiferayAssetListPageOperation.swift */; };
 		883D848A1A234EAC00CC179B /* AssetListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D83AE1A234EAC00CC179B /* AssetListTableView.swift */; };
@@ -190,6 +191,7 @@
 		88274FF91A24C7CB00FE31C6 /* SignUpScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreenletViewController.swift; sourceTree = "<group>"; };
 		88274FFE1A24DAF800FE31C6 /* ForgotPasswordScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordScreenletViewController.swift; sourceTree = "<group>"; };
 		882750031A24F80400FE31C6 /* AssetListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListScreenletViewController.swift; sourceTree = "<group>"; };
+		8833E95E1A289273006C4413 /* DDLListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListScreenletViewController.swift; sourceTree = "<group>"; };
 		883D83AA1A234EAC00CC179B /* AssetListScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListScreenlet.swift; sourceTree = "<group>"; };
 		883D83AC1A234EAC00CC179B /* LiferayAssetListPageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayAssetListPageOperation.swift; sourceTree = "<group>"; };
 		883D83AE1A234EAC00CC179B /* AssetListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListTableView.swift; sourceTree = "<group>"; };
@@ -409,12 +411,13 @@
 			isa = PBXGroup;
 			children = (
 				88215F381A234184009B96C7 /* AppDelegate.swift */,
+				882750031A24F80400FE31C6 /* AssetListScreenletViewController.swift */,
+				8833E95E1A289273006C4413 /* DDLListScreenletViewController.swift */,
+				88274FFE1A24DAF800FE31C6 /* ForgotPasswordScreenletViewController.swift */,
 				88215F3A1A234184009B96C7 /* HomeLoginViewController.swift */,
 				88215F3C1A234184009B96C7 /* HomeScreenletsViewController.swift */,
-				88274FF91A24C7CB00FE31C6 /* SignUpScreenletViewController.swift */,
-				88274FFE1A24DAF800FE31C6 /* ForgotPasswordScreenletViewController.swift */,
-				882750031A24F80400FE31C6 /* AssetListScreenletViewController.swift */,
 				88215F3E1A234184009B96C7 /* Main.storyboard */,
+				88274FF91A24C7CB00FE31C6 /* SignUpScreenletViewController.swift */,
 				88215F361A234184009B96C7 /* Supporting Files */,
 			);
 			name = Showcase;
@@ -1142,6 +1145,7 @@
 				883D84BE1A234EAC00CC179B /* DDLFieldBoolean.swift in Sources */,
 				883D848F1A234EAC00CC179B /* LiferayForgotPasswordBaseOperation.swift in Sources */,
 				883D84921A234EAC00CC179B /* LiferayForgotPasswordUserIdOperation.swift in Sources */,
+				8833E95F1A289273006C4413 /* DDLListScreenletViewController.swift in Sources */,
 				883D848D1A234EAC00CC179B /* ForgotPasswordData.swift in Sources */,
 				883D848E1A234EAC00CC179B /* ForgotPasswordScreenlet.swift in Sources */,
 				883D85171A234EAC00CC179B /* ForgotPasswordView_flat7.swift in Sources */,

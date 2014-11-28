@@ -9,7 +9,7 @@
         <!--Login-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" userLabel="Login" customClass="HomeLoginViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Initial Login" id="9pv-A4-QxB" userLabel="Login" customClass="HomeLoginViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -91,16 +91,57 @@
                         <segue destination="5mf-Js-LTU" kind="push" identifier="SignUpScreenlet" id="jQ7-lB-KOf"/>
                         <segue destination="MBO-1B-xI3" kind="push" identifier="ForgotPasswordScreenlet" id="qP9-aL-TR1"/>
                         <segue destination="N5m-Be-zKQ" kind="push" identifier="AssetListScreenlet" id="7xV-17-sdQ"/>
+                        <segue destination="MGb-m9-wGz" kind="push" identifier="DDLListScreenlet" id="jqp-Ix-DHl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="400" y="1043"/>
         </scene>
-        <!--Asset List Screenlet View Controller-->
+        <!--DDLListScreenlet-->
+        <scene sceneID="N7w-1Z-GsW">
+            <objects>
+                <viewController title="DDLListScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="MGb-m9-wGz" customClass="DDLListScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iaB-gN-3UH"/>
+                        <viewControllerLayoutGuide type="bottom" id="cTM-Oc-iFx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NHf-o4-UUq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpq-oW-X15" customClass="DDLListScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="recordSetId">
+                                        <integer key="value" value="10538"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelField" value="Company"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="wpq-oW-X15" secondAttribute="trailing" constant="-16" id="7WB-qz-LAM"/>
+                            <constraint firstItem="wpq-oW-X15" firstAttribute="top" secondItem="iaB-gN-3UH" secondAttribute="bottom" id="LPO-02-p9y"/>
+                            <constraint firstItem="cTM-Oc-iFx" firstAttribute="top" secondItem="wpq-oW-X15" secondAttribute="bottom" id="cTT-4I-hUO"/>
+                            <constraint firstItem="wpq-oW-X15" firstAttribute="leading" secondItem="NHf-o4-UUq" secondAttribute="leadingMargin" constant="-16" id="va7-Qn-7Qd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gob-5s-h0O"/>
+                    <connections>
+                        <outlet property="screenlet" destination="wpq-oW-X15" id="7Hb-Yv-WLV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A6g-L6-eDf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="592" y="1999"/>
+        </scene>
+        <!--AssetListScreenlet-->
         <scene sceneID="Gof-EM-hXa">
             <objects>
-                <viewController id="N5m-Be-zKQ" customClass="AssetListScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="AssetListScreenlet" id="N5m-Be-zKQ" customClass="AssetListScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ik0-p5-DgI"/>
                         <viewControllerLayoutGuide type="bottom" id="gB0-bg-czG"/>
@@ -207,12 +248,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ziz-90-phY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="1733"/>
+            <point key="canvasLocation" x="-206" y="1769"/>
         </scene>
-        <!--Home Login View Controller-->
+        <!--LoginScreenlet-->
         <scene sceneID="AgL-gw-NGQ">
             <objects>
-                <viewController id="ODv-YS-cr5" customClass="HomeLoginViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="LoginScreenlet" id="ODv-YS-cr5" customClass="HomeLoginViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HGn-OR-5wv"/>
                         <viewControllerLayoutGuide type="bottom" id="fn7-GB-315"/>
@@ -295,10 +336,10 @@
             </objects>
             <point key="canvasLocation" x="947" y="319"/>
         </scene>
-        <!--Sign Up Screenlet View Controller-->
+        <!--SignUpScreenlet-->
         <scene sceneID="cuM-yl-xjj">
             <objects>
-                <viewController id="5mf-Js-LTU" customClass="SignUpScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SignUpScreenlet" id="5mf-Js-LTU" customClass="SignUpScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zoG-n4-4Vn"/>
                         <viewControllerLayoutGuide type="bottom" id="TCp-xh-fnI"/>
@@ -353,10 +394,10 @@
             </objects>
             <point key="canvasLocation" x="947" y="938"/>
         </scene>
-        <!--Forgot Password Screenlet View Controller-->
+        <!--ForgotPasswordScreenlet-->
         <scene sceneID="p81-1L-f7Z">
             <objects>
-                <viewController id="MBO-1B-xI3" customClass="ForgotPasswordScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ForgotPasswordScreenlet" id="MBO-1B-xI3" customClass="ForgotPasswordScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wTi-O8-iBr"/>
                         <viewControllerLayoutGuide type="bottom" id="fbf-vJ-9tL"/>
