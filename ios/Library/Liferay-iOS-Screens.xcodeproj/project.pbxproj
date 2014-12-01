@@ -67,7 +67,6 @@
 		8868387219F32ABB0053E502 /* default.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8868386F19F32ABB0053E502 /* default.strings */; };
 		8868387319F32ABB0053E502 /* default.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8868386F19F32ABB0053E502 /* default.strings */; };
 		888FAFA8196AE8C200057B26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888FAFA6196AE8C200057B26 /* AppDelegate.swift */; };
-		888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 888FAFA7196AE8C200057B26 /* AppInfo.plist */; };
 		888FAFAB196AE8EF00057B26 /* TestsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 888FAFAA196AE8EF00057B26 /* TestsInfo.plist */; };
 		88CB48AD19F1C8AF000A8255 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB48AC19F1C8AF000A8255 /* KeyboardManager.swift */; };
 		88CB48AE19F1C8B5000A8255 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB48AC19F1C8AF000A8255 /* KeyboardManager.swift */; };
@@ -346,7 +345,6 @@
 		88F9F2A819E3480D006268ED /* flat7-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F18919E3480D006268ED /* flat7-field@2x.png */; };
 		88F9F2A919E3480D006268ED /* flat7-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F18919E3480D006268ED /* flat7-field@2x.png */; };
 		88F9F2C619E3484B006268ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F2AB19E3484B006268ED /* AppDelegate.swift */; };
-		88F9F2C719E3484B006268ED /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F2AC19E3484B006268ED /* AppInfo.plist */; };
 		88F9F2C819E3484B006268ED /* Asserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F2AD19E3484B006268ED /* Asserts.swift */; };
 		88F9F2C919E3484B006268ED /* BaseScreenlet_Basic_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F2AE19E3484B006268ED /* BaseScreenlet_Basic_Tests.swift */; };
 		88F9F2CA19E3484B006268ED /* BaseScreenlet_TabSequence_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F2AF19E3484B006268ED /* BaseScreenlet_TabSequence_Tests.swift */; };
@@ -363,7 +361,6 @@
 		88F9F2D519E3484B006268ED /* LRSession_storage_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F2BA19E3484B006268ED /* LRSession_storage_Tests.swift */; };
 		88F9F2D619E3484B006268ED /* SessionContext_Basic_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F2BB19E3484B006268ED /* SessionContext_Basic_Tests.swift */; };
 		88F9F2D719E3484B006268ED /* SessionContext_Storage_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F2BC19E3484B006268ED /* SessionContext_Storage_Tests.swift */; };
-		88F9F2D819E3484B006268ED /* TestsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F2BD19E3484B006268ED /* TestsInfo.plist */; };
 		88F9F2D919E3484B006268ED /* LoginView_xyz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F2C019E3484B006268ED /* LoginView_xyz.swift */; };
 		88F9F2DA19E3484B006268ED /* LoginView_xyz.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F2C119E3484B006268ED /* LoginView_xyz.xib */; };
 		88F9F2DB19E3484B006268ED /* xyz-preview-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F2C319E3484B006268ED /* xyz-preview-login.png */; };
@@ -1378,7 +1375,6 @@
 				88F9F2DA19E3484B006268ED /* LoginView_xyz.xib in Resources */,
 				88F9F23119E3480D006268ED /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
 				88F9F23519E3480D006268ED /* DDLFieldNumberTableCell_default.xib in Resources */,
-				88F9F2C719E3484B006268ED /* AppInfo.plist in Resources */,
 				8868386619F32A7D0053E502 /* ddlform-screenlet.strings in Resources */,
 				88F9F22919E3480D006268ED /* DDLFieldDateTableCell_default.xib in Resources */,
 				88F9F21F19E3480D006268ED /* SignUpView_default.xib in Resources */,
@@ -1406,7 +1402,6 @@
 				88F9F2DC19E3484B006268ED /* xyz-preview-login@2x.png in Resources */,
 				88F9F27319E3480D006268ED /* default-lock-icon.png in Resources */,
 				88F9F25D19E3480D006268ED /* default-field-failed@2x.png in Resources */,
-				88F9F2D819E3484B006268ED /* TestsInfo.plist in Resources */,
 				88F9F29119E3480D006268ED /* WebContentDisplayView_default.xib in Resources */,
 				88CB48CC19F1C8F1000A8255 /* flat7-gradient-form@2x.png in Resources */,
 				88F9F27919E3480D006268ED /* default-mail-icon@2x.png in Resources */,
@@ -1478,7 +1473,6 @@
 				88F9F27819E3480D006268ED /* default-mail-icon@2x.png in Resources */,
 				88F9F23019E3480D006268ED /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
 				88F9F2A819E3480D006268ED /* flat7-field@2x.png in Resources */,
-				888FAFA9196AE8C200057B26 /* AppInfo.plist in Resources */,
 				88F9F25219E3480D006268ED /* DDLListView_default.xib in Resources */,
 				88F9F2A219E3480D006268ED /* flat7-button.png in Resources */,
 				88F9F25819E3480D006268ED /* default-calendar@2x.png in Resources */,
