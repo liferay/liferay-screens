@@ -16,6 +16,8 @@ import UIKit
 
 @IBDesignable public class BaseListScreenlet: BaseScreenlet {
 
+	@IBInspectable public var autoLoad: Bool = true
+
 	@IBInspectable public var firstPageSize: Int = 50
 	@IBInspectable public var pageSize: Int = 25
 
@@ -32,6 +34,12 @@ import UIKit
 	override public func onCreated() {
 		baseListView.onSelectedRowClosure = onSelectedRow
 		baseListView.fetchPageForRow = loadPageForRow
+	}
+
+	override func onShow() {
+		if autoLoad {
+			loadList()
+		}
 	}
 
 
