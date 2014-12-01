@@ -239,6 +239,7 @@
                         <segue destination="Pdd-xQ-CWj" kind="push" identifier="ForgotPasswordScreenlet" id="MNo-Te-ena"/>
                         <segue destination="aQD-kz-AXB" kind="push" identifier="AssetListScreenlet" id="93t-wg-a9L"/>
                         <segue destination="aUf-GE-2Zq" kind="push" identifier="DDLListScreenlet" id="F3G-3P-pfm"/>
+                        <segue destination="0IP-qt-DCi" kind="push" identifier="DDLFormScreenlet" id="V3n-AO-SqG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vf-l6-njl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -419,7 +420,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wfl-Yw-nTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-48" y="1680"/>
+            <point key="canvasLocation" x="-180" y="1566"/>
         </scene>
         <!--DDLListScreenlet-->
         <scene sceneID="oeR-fe-fqI">
@@ -459,7 +460,87 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9hp-0Q-bTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="520" y="1851"/>
+            <point key="canvasLocation" x="534" y="1801"/>
+        </scene>
+        <!--DDLFormScreenlet-->
+        <scene sceneID="BEQ-m0-Ee6">
+            <objects>
+                <viewController title="DDLFormScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="0IP-qt-DCi" customClass="DDLFormScreenletViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Z4i-Ar-ZkM"/>
+                        <viewControllerLayoutGuide type="bottom" id="MMM-V9-HYd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8ya-qX-vBr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UtX-xc-cgg" customClass="DDLFormScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="149" width="320" height="370"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="structureId">
+                                        <integer key="value" value="10536"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ebz-3z-LH8">
+                                <rect key="frame" x="214" y="87" width="97" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="9gT-sd-jjK"/>
+                                    <constraint firstAttribute="width" constant="97" id="NDs-AU-dht"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="LOAD">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="loadForm:" destination="0IP-qt-DCi" eventType="touchUpInside" id="54W-Ta-M9h"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XPm-AZ-jQm">
+                                <rect key="frame" x="86" y="93" width="120" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record Id" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMU-MT-dog">
+                                <rect key="frame" x="9" y="98" width="69" height="20.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XPm-AZ-jQm" firstAttribute="top" secondItem="Z4i-Ar-ZkM" secondAttribute="bottom" constant="29" id="1pb-if-9iq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ebz-3z-LH8" secondAttribute="trailing" constant="-7" id="3EZ-4e-S7o"/>
+                            <constraint firstItem="UtX-xc-cgg" firstAttribute="top" secondItem="Z4i-Ar-ZkM" secondAttribute="bottom" constant="85" id="6gn-IJ-UZZ"/>
+                            <constraint firstItem="ebz-3z-LH8" firstAttribute="leading" secondItem="XPm-AZ-jQm" secondAttribute="trailing" constant="8" id="BCf-RR-IOi"/>
+                            <constraint firstItem="eMU-MT-dog" firstAttribute="top" secondItem="Z4i-Ar-ZkM" secondAttribute="bottom" constant="34" id="IC6-lw-cCH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UtX-xc-cgg" secondAttribute="trailing" constant="-16" id="JEJ-YY-682"/>
+                            <constraint firstItem="ebz-3z-LH8" firstAttribute="top" secondItem="Z4i-Ar-ZkM" secondAttribute="bottom" constant="23" id="Luy-Wq-PiX"/>
+                            <constraint firstItem="UtX-xc-cgg" firstAttribute="leading" secondItem="8ya-qX-vBr" secondAttribute="leadingMargin" constant="-16" id="Nl8-6B-JPx"/>
+                            <constraint firstItem="MMM-V9-HYd" firstAttribute="top" secondItem="UtX-xc-cgg" secondAttribute="bottom" id="lvl-db-Gu2"/>
+                            <constraint firstItem="eMU-MT-dog" firstAttribute="leading" secondItem="8ya-qX-vBr" secondAttribute="leadingMargin" constant="-7" id="rsd-oO-Fim"/>
+                            <constraint firstItem="XPm-AZ-jQm" firstAttribute="leading" secondItem="eMU-MT-dog" secondAttribute="trailing" constant="8" id="wr9-MI-Xsh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gLl-b0-Rfl"/>
+                    <connections>
+                        <outlet property="recordIdField" destination="XPm-AZ-jQm" id="p4r-AH-xlS"/>
+                        <outlet property="screenlet" destination="UtX-xc-cgg" id="2t0-sh-ctS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wVA-g0-Q7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="180" y="1801"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

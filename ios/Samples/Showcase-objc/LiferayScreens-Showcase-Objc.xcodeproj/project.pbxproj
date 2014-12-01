@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88107F931A2C898F009583C2 /* DDLFormScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88107F921A2C898F009583C2 /* DDLFormScreenletViewController.m */; };
 		88274E541A248DC100FE31C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88274E531A248DC100FE31C6 /* main.m */; };
 		88274E571A248DC100FE31C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88274E561A248DC100FE31C6 /* AppDelegate.m */; };
 		88274E5A1A248DC100FE31C6 /* HomeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88274E591A248DC100FE31C6 /* HomeLoginViewController.m */; };
@@ -181,6 +182,8 @@
 /* Begin PBXFileReference section */
 		247359937734776BB1C16C3A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5D62D52D84D90CDB834C3F0C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		88107F911A2C898F009583C2 /* DDLFormScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLFormScreenletViewController.h; sourceTree = "<group>"; };
+		88107F921A2C898F009583C2 /* DDLFormScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLFormScreenletViewController.m; sourceTree = "<group>"; };
 		88274E4E1A248DC100FE31C6 /* LiferayScreens-Showcase-Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiferayScreens-Showcase-Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88274E521A248DC100FE31C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88274E531A248DC100FE31C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -424,6 +427,8 @@
 				88274E561A248DC100FE31C6 /* AppDelegate.m */,
 				88CB07431A2644FC00964F33 /* AssetListScreenletViewController.h */,
 				88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */,
+				88107F911A2C898F009583C2 /* DDLFormScreenletViewController.h */,
+				88107F921A2C898F009583C2 /* DDLFormScreenletViewController.m */,
 				8833E9601A28A541006C4413 /* DDLListScreenletViewController.h */,
 				8833E9611A28A541006C4413 /* DDLListScreenletViewController.m */,
 				882750001A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.h */,
@@ -1173,6 +1178,7 @@
 				88274F6C1A24904100FE31C6 /* LiferayLoginUserIdOperation.swift in Sources */,
 				88274F6F1A24904100FE31C6 /* LiferaySignUpOperation.swift in Sources */,
 				88274FB11A24904100FE31C6 /* DDLFieldDateTableCell_default.swift in Sources */,
+				88107F931A2C898F009583C2 /* DDLFormScreenletViewController.m in Sources */,
 				88274FC41A24904100FE31C6 /* DDLSubmitButtonTableCell_default.swift in Sources */,
 				88274FB31A24904100FE31C6 /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */,
 				88274E5D1A248DC100FE31C6 /* HomeScreenletsViewController.m in Sources */,
