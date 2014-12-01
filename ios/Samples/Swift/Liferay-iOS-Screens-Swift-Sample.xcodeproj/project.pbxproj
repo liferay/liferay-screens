@@ -165,8 +165,6 @@
 		8890CDAA19AE1CA50012B842 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8890CDA919AE1CA50012B842 /* MobileCoreServices.framework */; };
 		889558DF19C1E7FD00657AC7 /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889558DE19C1E7FD00657AC7 /* AssetListViewController.swift */; };
 		88CB489719F1C7F8000A8255 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB489619F1C7F8000A8255 /* KeyboardManager.swift */; };
-		88CB48A019F1C84F000A8255 /* default-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB489819F1C84F000A8255 /* default-button.png */; };
-		88CB48A119F1C84F000A8255 /* default-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB489919F1C84F000A8255 /* default-button@2x.png */; };
 		88CB48A219F1C84F000A8255 /* default-form-gradient-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB489A19F1C84F000A8255 /* default-form-gradient-bottom.png */; };
 		88CB48A319F1C84F000A8255 /* default-form-gradient-bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB489B19F1C84F000A8255 /* default-form-gradient-bottom@2x.png */; };
 		88CB48A419F1C84F000A8255 /* default-form-gradient-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB489C19F1C84F000A8255 /* default-form-gradient-top.png */; };
@@ -353,8 +351,6 @@
 		8890CDA919AE1CA50012B842 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		889558DE19C1E7FD00657AC7 /* AssetListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListViewController.swift; sourceTree = "<group>"; };
 		88CB489619F1C7F8000A8255 /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
-		88CB489819F1C84F000A8255 /* default-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-button.png"; sourceTree = "<group>"; };
-		88CB489919F1C84F000A8255 /* default-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-button@2x.png"; sourceTree = "<group>"; };
 		88CB489A19F1C84F000A8255 /* default-form-gradient-bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-form-gradient-bottom.png"; sourceTree = "<group>"; };
 		88CB489B19F1C84F000A8255 /* default-form-gradient-bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-form-gradient-bottom@2x.png"; sourceTree = "<group>"; };
 		88CB489C19F1C84F000A8255 /* default-form-gradient-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-form-gradient-top.png"; sourceTree = "<group>"; };
@@ -789,8 +785,6 @@
 		8834824D19E344AF001E6E2A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				88CB489819F1C84F000A8255 /* default-button.png */,
-				88CB489919F1C84F000A8255 /* default-button@2x.png */,
 				8834824E19E344AF001E6E2A /* default-calendar.png */,
 				8834824F19E344AF001E6E2A /* default-calendar@2x.png */,
 				8834825019E344AF001E6E2A /* default-field-failed.png */,
@@ -1079,12 +1073,10 @@
 				8834830D19E344AF001E6E2A /* flat7-button.png in Resources */,
 				883482F019E344AF001E6E2A /* default-hourglass@2x.png in Resources */,
 				883482FE19E344AF001E6E2A /* default-preview-ddlform@2x.png in Resources */,
-				88CB48A119F1C84F000A8255 /* default-button@2x.png in Resources */,
 				8868384919F321210053E502 /* webcontentdisplay-screenlet.strings in Resources */,
 				8834830619E344AF001E6E2A /* ForgotPasswordView_flat7.xib in Resources */,
 				883482D019E344AF001E6E2A /* DDLFieldDateTableCell_default.xib in Resources */,
 				883482D419E344AF001E6E2A /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
-				88CB48A019F1C84F000A8255 /* default-button.png in Resources */,
 				883482EC19E344AF001E6E2A /* default-field-focused@2x.png in Resources */,
 				8868379E19F3133A0053E502 /* login-screenlet.strings in Resources */,
 				8834830E19E344AF001E6E2A /* flat7-button@2x.png in Resources */,
