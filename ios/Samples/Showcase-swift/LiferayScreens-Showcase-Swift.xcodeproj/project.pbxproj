@@ -17,6 +17,7 @@
 		88274FFF1A24DAF800FE31C6 /* ForgotPasswordScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88274FFE1A24DAF800FE31C6 /* ForgotPasswordScreenletViewController.swift */; };
 		882750041A24F80400FE31C6 /* AssetListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882750031A24F80400FE31C6 /* AssetListScreenletViewController.swift */; };
 		8833E95F1A289273006C4413 /* DDLListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8833E95E1A289273006C4413 /* DDLListScreenletViewController.swift */; };
+		8833E9641A28ACFB006C4413 /* DDLFormScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8833E9631A28ACFB006C4413 /* DDLFormScreenletViewController.swift */; };
 		883D84881A234EAC00CC179B /* AssetListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D83AA1A234EAC00CC179B /* AssetListScreenlet.swift */; };
 		883D84891A234EAC00CC179B /* LiferayAssetListPageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D83AC1A234EAC00CC179B /* LiferayAssetListPageOperation.swift */; };
 		883D848A1A234EAC00CC179B /* AssetListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D83AE1A234EAC00CC179B /* AssetListTableView.swift */; };
@@ -192,6 +193,7 @@
 		88274FFE1A24DAF800FE31C6 /* ForgotPasswordScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordScreenletViewController.swift; sourceTree = "<group>"; };
 		882750031A24F80400FE31C6 /* AssetListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListScreenletViewController.swift; sourceTree = "<group>"; };
 		8833E95E1A289273006C4413 /* DDLListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListScreenletViewController.swift; sourceTree = "<group>"; };
+		8833E9631A28ACFB006C4413 /* DDLFormScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormScreenletViewController.swift; sourceTree = "<group>"; };
 		883D83AA1A234EAC00CC179B /* AssetListScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListScreenlet.swift; sourceTree = "<group>"; };
 		883D83AC1A234EAC00CC179B /* LiferayAssetListPageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayAssetListPageOperation.swift; sourceTree = "<group>"; };
 		883D83AE1A234EAC00CC179B /* AssetListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListTableView.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 			children = (
 				88215F381A234184009B96C7 /* AppDelegate.swift */,
 				882750031A24F80400FE31C6 /* AssetListScreenletViewController.swift */,
+				8833E9631A28ACFB006C4413 /* DDLFormScreenletViewController.swift */,
 				8833E95E1A289273006C4413 /* DDLListScreenletViewController.swift */,
 				88274FFE1A24DAF800FE31C6 /* ForgotPasswordScreenletViewController.swift */,
 				88215F3A1A234184009B96C7 /* HomeLoginViewController.swift */,
@@ -1201,6 +1204,7 @@
 				883D84A21A234EAC00CC179B /* BaseListTableView.swift in Sources */,
 				883D84CC1A234EAC00CC179B /* LRMobilewidgetsassetentryService_v62.m in Sources */,
 				883D84E41A234EAC00CC179B /* DDLFieldNumberTableCell_default.swift in Sources */,
+				8833E9641A28ACFB006C4413 /* DDLFormScreenletViewController.swift in Sources */,
 				883D84A41A234EAC00CC179B /* BaseScreenlet.swift in Sources */,
 				883D851D1A234EAC00CC179B /* Flat7ThemeConstants.swift in Sources */,
 				883D84BD1A234EAC00CC179B /* DDLField.swift in Sources */,
