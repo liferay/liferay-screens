@@ -19,16 +19,9 @@ let DefaultThemeButtonCornerRadius:CGFloat = 4
 let DefaultThemeBasicBlue = UIColor(red: 0.0, green: 184.0/255.0, blue: 224.0/255.0, alpha: 0.87)
 
 
-func setDefaultButtonBackground(button: UIButton?) {
-	if let buttonImage = UIImage(named: "default-button") {
-		let stretchableImage = buttonImage.resizableImageWithCapInsets(
-				UIEdgeInsetsMake(5, 5, 5, 5),
-				resizingMode: UIImageResizingMode.Stretch)
-
-		button?.setBackgroundImage(stretchableImage, forState: UIControlState.Normal)
-
-		button?.backgroundColor = UIColor.clearColor()
-	}
+func setButtonDefaultStyle(button: UIButton?) {
+	button?.layer.masksToBounds = true
+	button?.layer.cornerRadius = DefaultThemeButtonCornerRadius
 }
 
 public func setAuthMethodStyles(
