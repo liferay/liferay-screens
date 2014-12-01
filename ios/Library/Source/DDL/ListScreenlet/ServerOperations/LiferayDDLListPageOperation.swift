@@ -27,11 +27,6 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 	}
 
 	override func validateData() -> Bool {
-		//FIXME this screenlet should work without user
-		if userId == nil {
-			return false
-		}
-
 		if recordSetId == nil {
 			return false
 		}
@@ -46,20 +41,35 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
 		let service = LRMobilewidgetsddlrecordService_v62(session: session)
 
-		service.getDdlRecordsWithDdlRecordSetId(recordSetId!,
-				userId: userId!,
-				locale: NSLocale.currentLocaleString,
-				start: Int32(ddlListScreenlet.firstRowForPage(page)),
-				end: Int32(ddlListScreenlet.firstRowForPage(page + 1)),
-				error: nil)
+		if userId == nil {
+			service.getDdlRecordsWithDdlRecordSetId(recordSetId!,
+					locale: NSLocale.currentLocaleString,
+					start: Int32(ddlListScreenlet.firstRowForPage(page)),
+					end: Int32(ddlListScreenlet.firstRowForPage(page + 1)),
+					error: nil)
+		}
+		else {
+			service.getDdlRecordsWithDdlRecordSetId(recordSetId!,
+					userId: userId!,
+					locale: NSLocale.currentLocaleString,
+					start: Int32(ddlListScreenlet.firstRowForPage(page)),
+					end: Int32(ddlListScreenlet.firstRowForPage(page + 1)),
+					error: nil)
+		}
 	}
 
 	override internal func doGetRowCountOperation(#session: LRBatchSession) {
 		let service = LRMobilewidgetsddlrecordService_v62(session: session)
 
-		service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!,
-			userId: userId!,
-			error: nil)
+		if userId == nil {
+			service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!,
+					error: nil)
+		}
+		else {
+			service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!,
+					userId: userId!,
+					error: nil)
+		}
 	}
 
 }
