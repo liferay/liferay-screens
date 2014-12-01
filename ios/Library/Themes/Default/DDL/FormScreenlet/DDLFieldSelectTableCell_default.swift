@@ -18,8 +18,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 
 	@IBOutlet internal var chooseButton: UIButton? {
 		didSet {
-			chooseButton?.layer.masksToBounds = true
-	        chooseButton?.layer.cornerRadius = DefaultThemeButtonCornerRadius
+			setButtonDefaultStyle(chooseButton)
 		}
 	}
 
