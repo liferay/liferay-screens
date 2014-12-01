@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -240,6 +239,7 @@
                         <segue destination="aQD-kz-AXB" kind="push" identifier="AssetListScreenlet" id="93t-wg-a9L"/>
                         <segue destination="aUf-GE-2Zq" kind="push" identifier="DDLListScreenlet" id="F3G-3P-pfm"/>
                         <segue destination="0IP-qt-DCi" kind="push" identifier="DDLFormScreenlet" id="V3n-AO-SqG"/>
+                        <segue destination="cKJ-wa-YZu" kind="push" identifier="WebContentDisplayScreenlet" id="J7c-lI-ACV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vf-l6-njl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -541,6 +541,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wVA-g0-Q7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="180" y="1801"/>
+        </scene>
+        <!--WebContentDisplayScreenlet-->
+        <scene sceneID="iHe-vf-BRM">
+            <objects>
+                <viewController title="WebContentDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="cKJ-wa-YZu" customClass="WebContentDisplayScreenletViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="clY-zu-gkb"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZGP-IU-MNt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NN4-QD-sd4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ri-rD-kst" customClass="WebContentDisplayScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="articleId" value="10562"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Ri-rD-kst" firstAttribute="leading" secondItem="NN4-QD-sd4" secondAttribute="leadingMargin" constant="-16" id="BWQ-cE-W0N"/>
+                            <constraint firstItem="5Ri-rD-kst" firstAttribute="top" secondItem="clY-zu-gkb" secondAttribute="bottom" id="U0U-3l-TBQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Ri-rD-kst" secondAttribute="trailing" constant="-16" id="gYC-wT-zhM"/>
+                            <constraint firstItem="ZGP-IU-MNt" firstAttribute="top" secondItem="5Ri-rD-kst" secondAttribute="bottom" id="sFs-7D-FNM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="f6D-lN-Juw"/>
+                    <connections>
+                        <outlet property="screenlet" destination="5Ri-rD-kst" id="Ubc-3q-2ne"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7SB-hn-R3O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-180" y="877"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

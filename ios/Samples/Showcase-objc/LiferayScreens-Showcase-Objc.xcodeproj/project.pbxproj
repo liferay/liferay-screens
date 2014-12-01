@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		88107F931A2C898F009583C2 /* DDLFormScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88107F921A2C898F009583C2 /* DDLFormScreenletViewController.m */; };
+		88107F981A2C90E8009583C2 /* WebContentDisplayScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88107F971A2C90E8009583C2 /* WebContentDisplayScreenletViewController.m */; };
 		88274E541A248DC100FE31C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88274E531A248DC100FE31C6 /* main.m */; };
 		88274E571A248DC100FE31C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88274E561A248DC100FE31C6 /* AppDelegate.m */; };
 		88274E5A1A248DC100FE31C6 /* HomeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88274E591A248DC100FE31C6 /* HomeLoginViewController.m */; };
@@ -184,6 +185,8 @@
 		5D62D52D84D90CDB834C3F0C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		88107F911A2C898F009583C2 /* DDLFormScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLFormScreenletViewController.h; sourceTree = "<group>"; };
 		88107F921A2C898F009583C2 /* DDLFormScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLFormScreenletViewController.m; sourceTree = "<group>"; };
+		88107F961A2C90E8009583C2 /* WebContentDisplayScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebContentDisplayScreenletViewController.h; sourceTree = "<group>"; };
+		88107F971A2C90E8009583C2 /* WebContentDisplayScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebContentDisplayScreenletViewController.m; sourceTree = "<group>"; };
 		88274E4E1A248DC100FE31C6 /* LiferayScreens-Showcase-Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiferayScreens-Showcase-Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88274E521A248DC100FE31C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88274E531A248DC100FE31C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -441,6 +444,8 @@
 				88274FFB1A24CD1A00FE31C6 /* SignUpScreenletViewController.h */,
 				88274FFC1A24CD1A00FE31C6 /* SignUpScreenletViewController.m */,
 				88274E511A248DC100FE31C6 /* Supporting Files */,
+				88107F961A2C90E8009583C2 /* WebContentDisplayScreenletViewController.h */,
+				88107F971A2C90E8009583C2 /* WebContentDisplayScreenletViewController.m */,
 			);
 			name = Showcase;
 			path = "LiferayScreens-Showcase-Objc";
@@ -1242,6 +1247,7 @@
 				88274FC11A24904100FE31C6 /* DDLFormDefaultThemeConstants.swift in Sources */,
 				88274F9C1A24904100FE31C6 /* UIButton+Title.swift in Sources */,
 				8833E9621A28A541006C4413 /* DDLListScreenletViewController.m in Sources */,
+				88107F981A2C90E8009583C2 /* WebContentDisplayScreenletViewController.m in Sources */,
 				88274F711A24904100FE31C6 /* SignUpScreenlet.swift in Sources */,
 				88274F681A24904100FE31C6 /* LoginScreenlet.swift in Sources */,
 				88274FAF1A24904100FE31C6 /* DDLFieldCheckboxTableCell_default.swift in Sources */,
