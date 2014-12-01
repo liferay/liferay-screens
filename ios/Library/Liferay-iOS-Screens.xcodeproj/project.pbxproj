@@ -71,10 +71,6 @@
 		888FAFAB196AE8EF00057B26 /* TestsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 888FAFAA196AE8EF00057B26 /* TestsInfo.plist */; };
 		88CB48AD19F1C8AF000A8255 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB48AC19F1C8AF000A8255 /* KeyboardManager.swift */; };
 		88CB48AE19F1C8B5000A8255 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB48AC19F1C8AF000A8255 /* KeyboardManager.swift */; };
-		88CB48B719F1C8D8000A8255 /* default-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48AF19F1C8D8000A8255 /* default-button.png */; };
-		88CB48B819F1C8D8000A8255 /* default-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48AF19F1C8D8000A8255 /* default-button.png */; };
-		88CB48B919F1C8D8000A8255 /* default-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48B019F1C8D8000A8255 /* default-button@2x.png */; };
-		88CB48BA19F1C8D8000A8255 /* default-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48B019F1C8D8000A8255 /* default-button@2x.png */; };
 		88CB48BB19F1C8D8000A8255 /* default-form-gradient-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48B119F1C8D8000A8255 /* default-form-gradient-bottom.png */; };
 		88CB48BC19F1C8D8000A8255 /* default-form-gradient-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48B119F1C8D8000A8255 /* default-form-gradient-bottom.png */; };
 		88CB48BD19F1C8D8000A8255 /* default-form-gradient-bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48B219F1C8D8000A8255 /* default-form-gradient-bottom@2x.png */; };
@@ -445,8 +441,6 @@
 		888FAFA7196AE8C200057B26 /* AppInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppInfo.plist; path = Tests/AppInfo.plist; sourceTree = SOURCE_ROOT; };
 		888FAFAA196AE8EF00057B26 /* TestsInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TestsInfo.plist; path = ../Tests/TestsInfo.plist; sourceTree = "<group>"; };
 		88CB48AC19F1C8AF000A8255 /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
-		88CB48AF19F1C8D8000A8255 /* default-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-button.png"; sourceTree = "<group>"; };
-		88CB48B019F1C8D8000A8255 /* default-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-button@2x.png"; sourceTree = "<group>"; };
 		88CB48B119F1C8D8000A8255 /* default-form-gradient-bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-form-gradient-bottom.png"; sourceTree = "<group>"; };
 		88CB48B219F1C8D8000A8255 /* default-form-gradient-bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-form-gradient-bottom@2x.png"; sourceTree = "<group>"; };
 		88CB48B319F1C8D8000A8255 /* default-form-gradient-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-form-gradient-top.png"; sourceTree = "<group>"; };
@@ -1069,8 +1063,6 @@
 		88F9F15619E3480D006268ED /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				88CB48AF19F1C8D8000A8255 /* default-button.png */,
-				88CB48B019F1C8D8000A8255 /* default-button@2x.png */,
 				88F9F15719E3480D006268ED /* default-calendar.png */,
 				88F9F15819E3480D006268ED /* default-calendar@2x.png */,
 				88F9F15919E3480D006268ED /* default-field-failed.png */,
@@ -1361,7 +1353,6 @@
 				88F9F2A519E3480D006268ED /* flat7-button@2x.png in Resources */,
 				88F9F28D19E3480D006268ED /* default-user-icon@2x.png in Resources */,
 				8868386E19F32A9E0053E502 /* webcontentdisplay-screenlet.strings in Resources */,
-				88CB48BA19F1C8D8000A8255 /* default-button@2x.png in Resources */,
 				88F9F26319E3480D006268ED /* default-field.png in Resources */,
 				88F9F24F19E3480D006268ED /* DDLSubmitButtonTableCell_default.xib in Resources */,
 				88CB48C619F1C8D8000A8255 /* default-preview-webcontentdisplay@2x.png in Resources */,
@@ -1381,7 +1372,6 @@
 				88F9F22919E3480D006268ED /* DDLFieldDateTableCell_default.xib in Resources */,
 				88F9F21F19E3480D006268ED /* SignUpView_default.xib in Resources */,
 				88F9F21719E3480D006268ED /* ForgotPasswordView_default.xib in Resources */,
-				88CB48B819F1C8D8000A8255 /* default-button.png in Resources */,
 				88CB48C219F1C8D8000A8255 /* default-form-gradient-top@2x.png in Resources */,
 				88F9F2A719E3480D006268ED /* flat7-field.png in Resources */,
 				88F9F20319E3480D006268ED /* liferay-server-context-sample.plist in Resources */,
@@ -1457,7 +1447,6 @@
 				88CB48BD19F1C8D8000A8255 /* default-form-gradient-bottom@2x.png in Resources */,
 				88F9F23419E3480D006268ED /* DDLFieldNumberTableCell_default.xib in Resources */,
 				88F9F28A19E3480D006268ED /* default-user-icon.png in Resources */,
-				88CB48B919F1C8D8000A8255 /* default-button@2x.png in Resources */,
 				88F9F26819E3480D006268ED /* default-hourglass@2x.png in Resources */,
 				88F9F28219E3480D006268ED /* default-preview-ddlform.png in Resources */,
 				88F9F24E19E3480D006268ED /* DDLSubmitButtonTableCell_default.xib in Resources */,
@@ -1471,7 +1460,6 @@
 				88F9F21E19E3480D006268ED /* SignUpView_default.xib in Resources */,
 				88F9F25C19E3480D006268ED /* default-field-failed@2x.png in Resources */,
 				88F9F28019E3480D006268ED /* default-preview-assetlist@2x.png in Resources */,
-				88CB48B719F1C8D8000A8255 /* default-button.png in Resources */,
 				8868386519F32A7D0053E502 /* ddlform-screenlet.strings in Resources */,
 				88F9F27819E3480D006268ED /* default-mail-icon@2x.png in Resources */,
 				88F9F23019E3480D006268ED /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
