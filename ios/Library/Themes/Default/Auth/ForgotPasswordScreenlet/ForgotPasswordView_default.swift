@@ -60,7 +60,7 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordData {
 	override internal func onCreated() {
 		super.onCreated()
 
-		setDefaultButtonBackground(requestPasswordButton)
+		setButtonDefaultStyle(requestPasswordButton)
 
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}

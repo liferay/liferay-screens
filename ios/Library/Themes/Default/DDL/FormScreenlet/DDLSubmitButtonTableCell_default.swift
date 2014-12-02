@@ -30,7 +30,7 @@ public class DDLSubmitButtonTableCell_default: DDLFieldTableCell {
 	override public func awakeFromNib() {
 		super.awakeFromNib()
 
-		setDefaultButtonBackground(submitButton)
+		setButtonDefaultStyle(submitButton)
 
 		submitButton?.replaceAttributedTitle(
 				LocalizedString("default", "ddlform-submit-button", self),

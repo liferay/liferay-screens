@@ -45,7 +45,7 @@ public class SignUpView_default: BaseScreenletView, SignUpData {
 	override internal func onCreated() {
 		super.onCreated()
 
-		setDefaultButtonBackground(signUpButton)
+		setButtonDefaultStyle(signUpButton)
 
 		scrollView?.contentSize = scrollView!.frame.size
 
