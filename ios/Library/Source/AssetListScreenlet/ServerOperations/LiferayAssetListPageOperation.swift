@@ -22,6 +22,24 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 		return self.screenlet as AssetListScreenlet
 	}
 
+
+	//MARK: ServerOperation
+
+	override func validateData() -> Bool {
+		if groupId == 0 {
+			return false
+		}
+
+		if classNameId == 0 {
+			return false
+		}
+
+		return true
+	}
+
+
+	//MARK: LiferayPaginationOperation
+
 	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
 		let screenletsService = LRMobilewidgetsassetentryService_v62(session: session)
 
