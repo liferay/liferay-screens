@@ -16,6 +16,14 @@ import Foundation
 
 public class DDLFieldDate : DDLField {
 
+	public var clientDateFormatterLocale: NSLocale? {
+		get {
+			return clientDateFormatter.locale
+		}
+		set {
+			clientDateFormatter.locale = newValue
+		}
+	}
 	private let serverYYYYDateFormat = "MM/dd/yyyy"
 	private let serverYYDateFormat = "MM/dd/yy"
 
@@ -30,7 +38,7 @@ public class DDLFieldDate : DDLField {
 		serverYYYYDateFormatter.dateFormat = serverYYYYDateFormat
 		serverYYDateFormatter.dateFormat = serverYYDateFormat
 
-		clientDateFormatter.dateStyle = .MediumStyle
+		clientDateFormatter.dateStyle = .LongStyle
 		clientDateFormatter.timeStyle = .NoStyle
 
 		serverYYYYDateFormatter.timeZone = gmtTimeZone

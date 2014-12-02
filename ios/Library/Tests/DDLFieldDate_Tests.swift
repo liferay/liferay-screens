@@ -120,7 +120,7 @@ class DDLFieldDate_Tests: XCTestCase {
 				dateFormatter.stringFromDate(dateField.currentValue as NSDate))
 	}
 
-	func test_currentValueAsLabel_ShouldReturnClientSideFormat() {
+	func test_currentValueAsLabel_ShouldReturnLocalizedValue_WhenEnglishLocaleIsUsed() {
 		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as DDLFieldDate
 
@@ -128,12 +128,23 @@ class DDLFieldDate_Tests: XCTestCase {
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
 		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
+		dateField.clientDateFormatterLocale = NSLocale(localeIdentifier: "en_US")
 
-		// Simulator locale must be en_US.
-		XCTAssertEqual("Jun 19, 2004", dateField.currentValueAsLabel!)
+		XCTAssertEqual("June 19, 2004", dateField.currentValueAsLabel!)
 	}
 
+	func test_currentValueAsLabel_ShouldReturnLocalizedValue_WhenSpanishLocaleIsUsed() {
+		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
+		let dateField = fields![0] as DDLFieldDate
 
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "dd/MM/yyyy"
+
+		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
+		dateField.clientDateFormatterLocale = spanishLocale
+
+		XCTAssertEqual("19 de junio de 2004", dateField.currentValueAsLabel!)
+	}
 
 	private let requiredDateFieldXSD =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
