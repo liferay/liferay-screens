@@ -44,7 +44,7 @@ Dynamic Data Lists (DDL) and Data Types should be properly configured in the por
 |-----------|-----------|-------------| 
 | `recordSetId` | `number` | The identifier of the DDL being called. To find the identifiers for your DDLs, click *Admin* from the Dockbar and select *Content*. Then click *Dynamic Data Lists*. The identifier of each DDL is in the ID column of the table that appears. |
 | `userId` | `number` | The user identifier to filter records on. Records won't be filtered if the `userId` is `0`. |
-| `labelFields` | `string` | The name of the DDL's fields to show, separated by comma. Refer to the list's data definition to find the field names. To do so, click *Admin* from the Dockbar and select *Content*. Then click *Dynamic Data Lists* and click the *Manage Data Definitions* button. You can view the fields by clicking on any of the data definitions in the table that appears. Note that the actual appearance used to show this values will rely on the theme selected by the user.|
+| `labelFields` | `string` | The names of the DDL fields to show, separated by a comma. Refer to the list's data definition to find the field names. To do so, click *Admin* from the Dockbar and select *Content*. Then click *Dynamic Data Lists* and click the *Manage Data Definitions* button. You can view the fields by clicking on any of the data definitions in the table that appears. Note that the appearance of these values depends on the theme selected by the user. |
 
 ## Methods
 
