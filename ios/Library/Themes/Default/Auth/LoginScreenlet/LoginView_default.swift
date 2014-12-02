@@ -81,7 +81,7 @@ public class LoginView_default: BaseScreenletView, LoginData {
 	override internal func onCreated() {
 		super.onCreated()
 
-		setDefaultButtonBackground(loginButton)
+		setButtonDefaultStyle(loginButton)
 
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
