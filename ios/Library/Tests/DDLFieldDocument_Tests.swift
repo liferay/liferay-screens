@@ -147,30 +147,33 @@ class DDLFieldDocument_Tests: XCTestCase {
 		XCTAssertEqual(imageLength.longLongValue, size)
 	}
 
-	func test_CurrentDocumentLabel_ShouldReturnNil_WhenCurrentValueIsNil() {
+
+	//MARK: currentValueAsLabel
+
+	func test_CurrentValueAsLabel_ShouldReturnNil_WhenCurrentValueIsNil() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
-		XCTAssertNil(docField.currentDocumentLabel?)
+		XCTAssertNil(docField.currentValueAsLabel)
 	}
 
-	func test_CurrentDocumentLabel_ShouldReturnImage_WhenCurrentValueIsImage() {
+	func test_CurrentValueAsLabel_ShouldReturnImage_WhenCurrentValueIsImage() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
 		docField.currentValue = UIImage(named:"default-field")
 
-		XCTAssertEqual("Image", docField.currentDocumentLabel!)
+		XCTAssertEqual("Image", docField.currentValueAsLabel!)
 	}
 
-	func test_CurrentDocumentLabel_ShouldReturnVideo_WhenCurrentValueIsURL() {
+	func test_CurrentValueAsLabel_ShouldReturnVideo_WhenCurrentValueIsURL() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
 		docField.currentValue =
 				NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
 
-		XCTAssertEqual("Video", docField.currentDocumentLabel!)
+		XCTAssertEqual("Video", docField.currentValueAsLabel!)
 	}
 
 

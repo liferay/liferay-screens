@@ -44,19 +44,6 @@ public class DDLFieldDocument : DDLField {
 
 	public var uploadStatus = UploadStatus.Pending
 
-	public var currentDocumentLabel:String? {
-		switch currentValue {
-			case is UIImage:
-				return "Image"
-			case is NSURL:
-				return "Video"
-			case is [String:AnyObject]:
-				return "Uploaded file"
-			default:
-				return nil
-		}
-	}
-
 	public var mimeType: String? {
 		switch currentValue {
 			case is UIImage:
@@ -117,6 +104,20 @@ public class DDLFieldDocument : DDLField {
 		}
 
 		return result
+	}
+
+	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+		switch currentValue {
+			case is UIImage:
+				return "Image"
+			case is NSURL:
+				return "Video"
+			case is [String:AnyObject]:
+				return "Uploaded file"
+			default: ()
+		}
+
+		return nil
 	}
 
 	override internal func doValidate() -> Bool {
