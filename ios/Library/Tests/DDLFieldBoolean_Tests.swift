@@ -18,6 +18,9 @@ class DDLFieldBoolean_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
+
+	//MARK: ConvertFromString
+
 	func test_ConvertFromString_ShouldReturnNil_WhenNilStringIsSupplied() {
 		let boolField = DDLFieldBoolean(attributes: [:])
 
@@ -44,6 +47,9 @@ class DDLFieldBoolean_Tests: XCTestCase {
 		XCTAssertFalse(convertedValue as Bool)
 	}
 
+
+	//MARK: ConvertFromCurrentValue
+
 	func test_ConvertFromCurrentValue_ShouldReturnNil_WhenNilIsSupplied() {
 		let boolField = DDLFieldBoolean(attributes: [:])
 
@@ -67,6 +73,9 @@ class DDLFieldBoolean_Tests: XCTestCase {
 		XCTAssertNotNil(convertedValue)
 		XCTAssertEqual("false", convertedValue!)
 	}
+
+
+	//MARK: Parse
 
 	func test_Parse_ShouldExtractValues() {
 		let xsd =
@@ -108,6 +117,9 @@ class DDLFieldBoolean_Tests: XCTestCase {
 		XCTAssertFalse(booleanField.required)
 		XCTAssertTrue(booleanField.showLabel)
 	}
+
+
+	//MARK: Validate
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
 		let xsd =
