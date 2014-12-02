@@ -145,6 +145,29 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 
+	//MARK: currentValueAsLabel
+
+	func test_CurrentValueAsLabel_ShouldBeLocalizedToSpanish_WhenNumberIsDecimal() {
+		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
+		let numberField = fields![0] as DDLFieldNumber
+
+		numberField.currentValue = 16.0599
+
+		numberField.locale = spanishLocale
+		XCTAssertEqual("16,06", numberField.currentValueAsLabel!)
+	}
+
+	func test_CurrentValueAsLabel_ShouldBeLocalizedToEnglish_WhenNumberIsDecimal() {
+		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
+		let numberField = fields![0] as DDLFieldNumber
+
+		numberField.currentValue = 16.0599
+
+		numberField.locale = NSLocale(localeIdentifier: "en_US")
+		XCTAssertEqual("16.06", numberField.currentValueAsLabel!)
+	}
+
+
 	//MARK: validate
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {

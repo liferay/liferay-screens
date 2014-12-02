@@ -19,6 +19,8 @@ public class DDLFieldNumber : DDLField {
 	public var maximumDecimalDigits = 2
 	public var minimumDecimalDigits = 2
 
+	public var locale: NSLocale?
+
 	public var isDecimal:Bool {
 		return dataType != DataType.DDLInteger
 	}
@@ -48,24 +50,16 @@ public class DDLFieldNumber : DDLField {
 	}
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
-		var result: String?
+		return formatNumber(value as? NSNumber,
+				locale: NSLocale(localeIdentifier: "en_US"))
+	}
 
-		if let numberValue = value as? NSNumber {
-			let formatter = NSNumberFormatter()
+	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+		let locale = (self.locale != nil)
+				? self.locale!
+				: NSLocale(localeIdentifier: NSLocale.currentLocaleString)
 
-			formatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocaleString)
-
-			if isDecimal {
-				formatter.numberStyle = .DecimalStyle
-				formatter.roundingMode = .RoundHalfUp
-				formatter.maximumFractionDigits = maximumDecimalDigits
-				formatter.minimumFractionDigits = minimumDecimalDigits
-			}
-
-			result = formatter.stringFromNumber(numberValue)
-		}
-
-		return result
+		return formatNumber(value as? NSNumber, locale: locale)
 	}
 
 	override internal func onChangedCurrentValue() {
@@ -73,6 +67,28 @@ public class DDLFieldNumber : DDLField {
 			let decimal = (currentValue as NSDecimalNumber).doubleValue
 			currentValue = NSNumber(double: decimal + 0.5).integerValue
 		}
+	}
+
+
+	//MARK: Private methods
+
+	private func formatNumber(number: NSNumber?, locale:NSLocale) -> String? {
+		if number == nil {
+			return nil
+		}
+
+		let formatter = NSNumberFormatter()
+
+		formatter.locale = locale
+
+		if isDecimal {
+			formatter.numberStyle = .DecimalStyle
+			formatter.roundingMode = .RoundHalfUp
+			formatter.maximumFractionDigits = maximumDecimalDigits
+			formatter.minimumFractionDigits = minimumDecimalDigits
+		}
+
+		return formatter.stringFromNumber(number!)
 	}
 
 }
