@@ -18,6 +18,9 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
+
+	//MARK: parse
+
 	func test_Parse_ShouldExtractValues_WhenFieldIsInteger() {
 		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
 
@@ -65,6 +68,8 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 
+	//MARK: currentValue
+
 	func test_CurrentValue_ShouldTruncateDecimal_WhenOriginalNumberIsInteger() {
 		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
@@ -75,7 +80,10 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual(NSInteger(1), numberField.currentValue as NSInteger)
 	}
 
-	func test_currentValueAsString_ShouldBeValid_WhenNumberIsInteger() {
+
+	//MARK: currentValueAsString
+
+	func test_CurrentValueAsString_ShouldBeValid_WhenNumberIsInteger() {
 		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
@@ -84,7 +92,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual("99", numberField.currentValueAsString!)
 	}
 
-	func test_currentValueAsString_ShouldBeValid_WhenNumberIsDecimal() {
+	func test_CurrentValueAsString_ShouldBeValid_WhenNumberIsDecimal() {
 		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
@@ -93,7 +101,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual("16.06", numberField.currentValueAsString!)
 	}
 
-	func test_currentValueAsString_ShouldBeValid_WhenNumberIsDecimalAndContentIsInteger() {
+	func test_CurrentValueAsString_ShouldBeValid_WhenNumberIsDecimalAndContentIsInteger() {
 		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
@@ -102,7 +110,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual("16.00", numberField.currentValueAsString!)
 	}
 
-	func test_currentValueAsString_ShouldBeChanged_WhenNumberIsInteger() {
+	func test_CurrentValueAsString_ShouldBeChanged_WhenNumberIsInteger() {
 		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
@@ -113,7 +121,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual(NSInteger(99), numberField.currentValue as NSInteger)
 	}
 
-	func test_currentValueAsString_ShouldBeChanged_WhenNumberIsIntegerAndValueIsDecimal() {
+	func test_CurrentValueAsString_ShouldBeChanged_WhenNumberIsIntegerAndValueIsDecimal() {
 		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
@@ -124,7 +132,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual(NSInteger(100), numberField.currentValue as NSInteger)
 	}
 
-	func test_currentValueAsString_ShouldBeChanged_WhenNumberIsDecimal() {
+	func test_CurrentValueAsString_ShouldBeChanged_WhenNumberIsDecimal() {
 		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
@@ -135,6 +143,9 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertEqualWithAccuracy(Float(99.98),
 			(numberField.currentValue as NSDecimalNumber).floatValue, 0.001)
 	}
+
+
+	//MARK: validate
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
 		let xsd =
