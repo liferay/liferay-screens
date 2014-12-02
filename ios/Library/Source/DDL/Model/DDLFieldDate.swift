@@ -62,6 +62,16 @@ public class DDLFieldDate : DDLField {
 		return nil
 	}
 
+	override func convert(fromLabel label: String?) -> AnyObject? {
+		var result: AnyObject?
+
+		if label != nil {
+			result = clientDateFormatter.dateFromString(label!)
+		}
+
+		return result
+	}
+
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		var result: String?
 

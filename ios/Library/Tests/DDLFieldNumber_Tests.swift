@@ -153,7 +153,6 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 		numberField.currentValue = 16.0599
 
-		numberField.currentLocale = spanishLocale
 		XCTAssertEqual("16,06", numberField.currentValueAsLabel!)
 	}
 
@@ -161,10 +160,21 @@ class DDLFieldNumber_Tests: XCTestCase {
 		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
+		numberField.currentLocale = NSLocale(localeIdentifier: "en_US")
 		numberField.currentValue = 16.0599
 
-		numberField.currentLocale = NSLocale(localeIdentifier: "en_US")
 		XCTAssertEqual("16.06", numberField.currentValueAsLabel!)
+	}
+
+	func test_CurrentValueAsLabel_ShouldBeTheRightValue_WhenSetTheLabelValue() {
+		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
+		let numberField = fields![0] as DDLFieldNumber
+
+		numberField.currentValueAsLabel = "16,069"
+
+		XCTAssertNotNil(numberField.currentValue)
+		XCTAssertEqualWithAccuracy(Float(16.07),
+			(numberField.currentValue! as NSNumber).floatValue, 0.001)
 	}
 
 

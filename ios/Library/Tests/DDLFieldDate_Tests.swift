@@ -120,6 +120,9 @@ class DDLFieldDate_Tests: XCTestCase {
 				dateFormatter.stringFromDate(dateField.currentValue as NSDate))
 	}
 
+
+	//MARK: CurrentValueAsLabel
+
 	func test_currentValueAsLabel_ShouldReturnLocalizedValue_WhenEnglishLocaleIsUsed() {
 		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as DDLFieldDate
@@ -127,8 +130,8 @@ class DDLFieldDate_Tests: XCTestCase {
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
 		dateField.currentLocale = NSLocale(localeIdentifier: "en_US")
+		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
 
 		XCTAssertEqual("June 19, 2004", dateField.currentValueAsLabel!)
 	}
@@ -141,9 +144,22 @@ class DDLFieldDate_Tests: XCTestCase {
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
 		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
-		dateField.currentLocale = spanishLocale
 
 		XCTAssertEqual("19 de junio de 2004", dateField.currentValueAsLabel!)
+	}
+
+	func test_currentValueAsLabel_ShouldBeTheValidDate_WhenSetTheLabelDate() {
+		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
+		let dateField = fields![0] as DDLFieldDate
+
+		dateField.currentValueAsLabel = "19 de junio de 2004"
+
+		let date = dateField.currentValue as NSDate
+
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "dd/MM/yyyy"
+
+		XCTAssertEqual("19/06/2004", dateFormatter.stringFromDate(date))
 	}
 
 	private let requiredDateFieldXSD =

@@ -47,6 +47,27 @@ public class DDLFieldNumber : DDLField {
 		return result
 	}
 
+	override func convert(fromLabel label: String?) -> AnyObject? {
+		var result: AnyObject?
+
+		if label != nil {
+			let formatter = NSNumberFormatter()
+
+			formatter.locale = self.currentLocale
+
+			if isDecimal {
+				formatter.numberStyle = .DecimalStyle
+				formatter.roundingMode = .RoundHalfUp
+				formatter.maximumFractionDigits = maximumDecimalDigits
+				formatter.minimumFractionDigits = minimumDecimalDigits
+			}
+
+			result = formatter.numberFromString(label!)
+		}
+
+		return result
+	}
+
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		return formatNumber(value as? NSNumber,
 				locale: NSLocale(localeIdentifier: "en_US"))

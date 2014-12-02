@@ -85,6 +85,10 @@ public class DDLFieldDocument : DDLField {
 		return result
 	}
 
+	override func convert(fromLabel label: String?) -> AnyObject? {
+		return nil
+	}
+
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		var result: String?
 

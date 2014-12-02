@@ -238,6 +238,16 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 		XCTAssertEqual("", stringField.currentValueAsLabel!)
 	}
 
+	func test_CurrentValueAsLabel_ShouldStoreTheOption_WhenSetLabelValue() {
+		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
+
+		let stringField = fields![0] as DDLFieldStringWithOptions
+
+		stringField.currentValueAsLabel = "Option 3"
+
+		XCTAssertEqual("[\"value 3\"]", stringField.currentValueAsString!)
+	}
+
 
 	//MARK: Validate
 

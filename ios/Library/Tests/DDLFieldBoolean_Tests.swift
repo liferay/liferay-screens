@@ -131,6 +131,41 @@ class DDLFieldBoolean_Tests: XCTestCase {
 		XCTAssertEqual("No", boolField.currentValueAsLabel!)
 	}
 
+	func test_CurrentValueAsLabel_ShouldBeNil_WhenSetInvalidLabel() {
+		let boolField = DDLFieldBoolean(attributes: [:], locale: usLocale)
+
+		boolField.currentValueAsLabel = "invalid_bool"
+
+		XCTAssertNil(boolField.currentValue)
+	}
+
+	func test_CurrentValueAsLabel_ShouldBeTrue_WhenSetYesLabel() {
+		let boolField = DDLFieldBoolean(attributes: [:], locale: usLocale)
+
+		boolField.currentValueAsLabel = "Yes"
+
+		XCTAssertNotNil(boolField.currentValue)
+		XCTAssertTrue(boolField.currentValue as Bool)
+	}
+
+	func test_CurrentValueAsLabel_ShouldBeFalse_WhenSetNoLabel() {
+		let boolField = DDLFieldBoolean(attributes: [:], locale: usLocale)
+
+		boolField.currentValueAsLabel = "No"
+
+		XCTAssertNotNil(boolField.currentValue)
+		XCTAssertFalse(boolField.currentValue as Bool)
+	}
+
+	func test_CurrentValueAsLabel_ShouldBeTrue_WhenSetYesLabelWithCase() {
+		let boolField = DDLFieldBoolean(attributes: [:], locale: usLocale)
+
+		boolField.currentValueAsLabel = "yEs"
+
+		XCTAssertNotNil(boolField.currentValue)
+		XCTAssertTrue(boolField.currentValue as Bool)
+	}
+
 
 	//MARK: Parse
 

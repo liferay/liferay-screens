@@ -138,6 +138,25 @@ public class DDLFieldStringWithOptions : DDLField {
 		return result
 	}
 
+	override func convert(fromLabel label: String?) -> AnyObject? {
+
+		func findOptionByLabel(label:String) -> Option? {
+			return options.filter { $0.label == label }.first
+		}
+
+		var result: [Option] = []
+
+		if label != nil {
+			let foundOption = findOptionByLabel(label!)
+			if let foundOptionValue = foundOption {
+				result.append(foundOptionValue)
+			}
+		}
+
+		return result
+	}
+
+
 	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
 		var result = ""
 
