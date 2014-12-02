@@ -36,7 +36,7 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 			return false
 		}
 
-		if ddlListData.labelField == "" {
+		if ddlListData.labelFields.count == 0 {
 			return false
 		}
 
