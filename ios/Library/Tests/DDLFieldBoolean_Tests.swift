@@ -75,6 +75,62 @@ class DDLFieldBoolean_Tests: XCTestCase {
 	}
 
 
+	//MARK CurrentValueAsString
+
+	func test_CurrentValueAsString_ShouldReturnNil_WhenNoValueIsSupplied() {
+		let boolField = DDLFieldBoolean(attributes: [:])
+
+		XCTAssertNil(boolField.currentValueAsString)
+	}
+
+	func test_CurrentValueAsString_ShouldReturnTrueString_WhenTrueIsSupplied() {
+		let boolField = DDLFieldBoolean(attributes: [:])
+
+		boolField.currentValue = true
+
+		XCTAssertNotNil(boolField.currentValueAsString)
+		XCTAssertEqual("true", boolField.currentValueAsString!)
+	}
+
+	func test_CurrentValueAsString_ShouldReturnFalseString_WhenFalseIsSupplied() {
+		let boolField = DDLFieldBoolean(attributes: [:])
+
+		boolField.currentValue = false
+
+		XCTAssertNotNil(boolField.currentValueAsString)
+		XCTAssertEqual("false", boolField.currentValueAsString!)
+	}
+
+
+	//MARK CurrentValueAsLabel
+
+	func test_CurrentValueAsLabel_ShouldReturnNil_WhenNoValueIsSupplied() {
+		let boolField = DDLFieldBoolean(attributes: [:])
+
+		XCTAssertNil(boolField.currentValueAsLabel)
+	}
+
+	func test_CurrentValueAsLabel_ShouldReturnTrueString_WhenTrueIsSupplied() {
+		let boolField = DDLFieldBoolean(attributes: [:])
+
+		boolField.currentValue = true
+
+		XCTAssertNotNil(boolField.currentValueAsLabel)
+
+		// We assume the simulator is configured in en_US
+		XCTAssertEqual("Yes", boolField.currentValueAsLabel!)
+	}
+
+	func test_CurrentValueAsLabel_ShouldReturnFalseString_WhenFalseIsSupplied() {
+		let boolField = DDLFieldBoolean(attributes: [:])
+
+		boolField.currentValue = false
+
+		XCTAssertNotNil(boolField.currentValueAsLabel)
+		XCTAssertEqual("No", boolField.currentValueAsLabel!)
+	}
+
+
 	//MARK: Parse
 
 	func test_Parse_ShouldExtractValues() {

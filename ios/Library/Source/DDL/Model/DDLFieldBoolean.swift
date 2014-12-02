@@ -30,4 +30,14 @@ public class DDLFieldBoolean : DDLField {
 		return result
 	}
 
+	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+		var result: String?
+
+		if let boolValue = value as? Bool {
+			result = LocalizedString("base", boolValue ? "yes" : "no", self)
+		}
+
+		return result
+	}
+
 }
