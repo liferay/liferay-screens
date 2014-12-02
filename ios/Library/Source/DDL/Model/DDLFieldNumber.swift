@@ -19,8 +19,6 @@ public class DDLFieldNumber : DDLField {
 	public var maximumDecimalDigits = 2
 	public var minimumDecimalDigits = 2
 
-	public var locale: NSLocale?
-
 	public var isDecimal:Bool {
 		return dataType != DataType.DDLInteger
 	}
@@ -55,11 +53,7 @@ public class DDLFieldNumber : DDLField {
 	}
 
 	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
-		let locale = (self.locale != nil)
-				? self.locale!
-				: NSLocale(localeIdentifier: NSLocale.currentLocaleString)
-
-		return formatNumber(value as? NSNumber, locale: locale)
+		return formatNumber(value as? NSNumber, locale: self.currentLocale)
 	}
 
 	override internal func onChangedCurrentValue() {

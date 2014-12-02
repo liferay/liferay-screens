@@ -24,8 +24,13 @@ public class DDLValuesParser {
 	public func parse(values: [String:AnyObject]) -> [DDLField] {
 		var result:[DDLField] = []
 
+		let locale = NSLocale(localeIdentifier: NSLocale.currentLocaleString)
+
 		for (fieldName, fieldValue) in values {
-			let field = DDLFieldUntyped(name: fieldName, value: fieldValue)
+			let field = DDLFieldUntyped(
+					name: fieldName,
+					value: fieldValue,
+					locale: locale)
 
 			result.append(field)
 		}

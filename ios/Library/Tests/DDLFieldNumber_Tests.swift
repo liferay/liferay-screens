@@ -153,7 +153,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 		numberField.currentValue = 16.0599
 
-		numberField.locale = spanishLocale
+		numberField.currentLocale = spanishLocale
 		XCTAssertEqual("16,06", numberField.currentValueAsLabel!)
 	}
 
@@ -163,7 +163,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 		numberField.currentValue = 16.0599
 
-		numberField.locale = NSLocale(localeIdentifier: "en_US")
+		numberField.currentLocale = NSLocale(localeIdentifier: "en_US")
 		XCTAssertEqual("16.06", numberField.currentValueAsLabel!)
 	}
 

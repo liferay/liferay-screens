@@ -128,7 +128,7 @@ class DDLFieldDate_Tests: XCTestCase {
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
 		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
-		dateField.clientDateFormatterLocale = NSLocale(localeIdentifier: "en_US")
+		dateField.currentLocale = NSLocale(localeIdentifier: "en_US")
 
 		XCTAssertEqual("June 19, 2004", dateField.currentValueAsLabel!)
 	}
@@ -141,7 +141,7 @@ class DDLFieldDate_Tests: XCTestCase {
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
 		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
-		dateField.clientDateFormatterLocale = spanishLocale
+		dateField.currentLocale = spanishLocale
 
 		XCTAssertEqual("19 de junio de 2004", dateField.currentValueAsLabel!)
 	}

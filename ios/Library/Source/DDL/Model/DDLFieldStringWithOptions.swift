@@ -36,7 +36,7 @@ public class DDLFieldStringWithOptions : DDLField {
 
 	private(set) var options:[Option] = []
 
-	override public init(attributes: [String:AnyObject]) {
+	override public init(attributes: [String:AnyObject], locale: NSLocale) {
 		multiple = Bool.from(any: attributes["multiple"] ?? "false")
 
 		if let optionsArray = (attributes["options"] ?? nil) as? [[String:AnyObject]] {
@@ -51,7 +51,7 @@ public class DDLFieldStringWithOptions : DDLField {
 			}
 		}
 
-		super.init(attributes: attributes)
+		super.init(attributes: attributes, locale: locale)
 	}
 
 

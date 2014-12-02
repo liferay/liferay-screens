@@ -16,14 +16,12 @@ import Foundation
 
 public class DDLFieldDate : DDLField {
 
-	public var clientDateFormatterLocale: NSLocale? {
-		get {
-			return clientDateFormatter.locale
-		}
-		set {
-			clientDateFormatter.locale = newValue
+	override public var currentLocale: NSLocale {
+		didSet {
+			clientDateFormatter.locale = self.currentLocale
 		}
 	}
+
 	private let serverYYYYDateFormat = "MM/dd/yyyy"
 	private let serverYYDateFormat = "MM/dd/yy"
 
@@ -34,17 +32,18 @@ public class DDLFieldDate : DDLField {
 	private let gmtTimeZone = NSTimeZone(abbreviation: "GMT")
 
 
-	override init(attributes: [String:AnyObject]) {
+	override init(attributes: [String:AnyObject], locale: NSLocale) {
 		serverYYYYDateFormatter.dateFormat = serverYYYYDateFormat
 		serverYYDateFormatter.dateFormat = serverYYDateFormat
 
 		clientDateFormatter.dateStyle = .LongStyle
 		clientDateFormatter.timeStyle = .NoStyle
+		clientDateFormatter.locale = locale
 
 		serverYYYYDateFormatter.timeZone = gmtTimeZone
 		serverYYDateFormatter.timeZone = gmtTimeZone
 
-		super.init(attributes: attributes)
+		super.init(attributes: attributes, locale: locale)
 	}
 
 

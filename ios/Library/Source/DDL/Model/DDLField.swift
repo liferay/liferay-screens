@@ -61,6 +61,9 @@ public class DDLField: NSObject, Equatable, Printable {
 		return str
 	}
 
+	public var currentLocale: NSLocale
+
+
 	internal(set) var dataType: DataType
 	internal(set) var editorType: Editor
 
@@ -75,10 +78,10 @@ public class DDLField: NSObject, Equatable, Printable {
 	internal(set) var repeatable: Bool
 	internal(set) var required: Bool
 
-	internal(set) var showLabel:Bool
+	internal(set) var showLabel: Bool
 
 
-	public init(attributes: [String:AnyObject]) {
+	public init(attributes: [String:AnyObject], locale: NSLocale) {
 		dataType = DataType(rawValue: valueAsString(attributes, key:"dataType")) ?? .Unsupported
 		editorType = Editor.from(attributes: attributes)
 		name = valueAsString(attributes, key:"name")
@@ -90,6 +93,8 @@ public class DDLField: NSObject, Equatable, Printable {
 
 		label = valueAsString(attributes, key:"label")
 		tip = valueAsString(attributes, key:"tip")
+
+		currentLocale = locale
 
 		super.init()
 
