@@ -18,6 +18,9 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
+
+	//MARK: Parse
+
 	func test_Parse_ShouldExtractValues() {
 		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
@@ -48,6 +51,9 @@ class DDLFieldDocument_Tests: XCTestCase {
 		XCTAssertEqual("A Document", docField.label)
 	}
 
+
+	//MARK: Validate
+
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
@@ -65,6 +71,9 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 		XCTAssertFalse(docField.validate())
 	}
+
+
+	//MARK: MimeType
 
 	func test_MimeType_ShouldReturnNil_WhenCurrentValueIsEmpty() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
@@ -91,6 +100,9 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 		XCTAssertEqual("video/mpeg", docField.mimeType ?? "nil mimeType")
 	}
+
+
+	//MARK: Stream
 
 	func test_Stream_ShouldReturnNil_WhenCurrentValueIsEmpty() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
@@ -161,34 +173,37 @@ class DDLFieldDocument_Tests: XCTestCase {
 		XCTAssertEqual("Video", docField.currentDocumentLabel!)
 	}
 
-	func test_currentValueAsString_ShouldReturnNil_WhenUploadStatusIsPending() {
+
+	//MARK: CurrentValueAsString
+
+	func test_CurrentValueAsString_ShouldReturnNil_WhenUploadStatusIsPending() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
 		docField.uploadStatus = .Pending
 
-		XCTAssertNil(docField.currentValueAsString?)
+		XCTAssertNil(docField.currentValueAsString)
 	}
 
-	func test_currentValueAsString_ShouldReturnNil_WhenUploadStatusIsUploading() {
+	func test_CurrentValueAsString_ShouldReturnNil_WhenUploadStatusIsUploading() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
 		docField.uploadStatus = .Uploading(1,10)
 
-		XCTAssertNil(docField.currentValueAsString?)
+		XCTAssertNil(docField.currentValueAsString)
 	}
 
-	func test_currentValueAsString_ShouldReturnNil_WhenUploadStatusIsFailed() {
+	func test_CurrentValueAsString_ShouldReturnNil_WhenUploadStatusIsFailed() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
 		docField.uploadStatus = .Failed(nil)
 
-		XCTAssertNil(docField.currentValueAsString?)
+		XCTAssertNil(docField.currentValueAsString)
 	}
 
-	func test_currentValueAsString_ShouldReturnDDLJSON_WhenUploadStatusIsUploaded() {
+	func test_CurrentValueAsString_ShouldReturnDDLJSON_WhenUploadStatusIsUploaded() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
@@ -203,6 +218,9 @@ class DDLFieldDocument_Tests: XCTestCase {
 		let expectedResult = "{\"groupId\":1234,\"uuid\":\"abcd\",\"version\":\"1.0\"}"
 		XCTAssertEqual(expectedResult, docField.currentValueAsString!)
 	}
+
+
+	//MARK: UploadStatus
 
 	func test_UploadStatus_ShouldBeUploaded_WhenSetJSONTocurrentValueAsString() {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
