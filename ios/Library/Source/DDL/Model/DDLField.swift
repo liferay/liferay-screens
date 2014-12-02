@@ -36,6 +36,10 @@ public class DDLField: NSObject, Equatable, Printable {
 		}
 	}
 
+	public var currentValueAsLabel: String? {
+		return convertToLabel(fromCurrentValue: currentValue)
+	}
+
 	public override var description: String {
 		let currentValue = self.currentValueAsString
 		var str = "DDLField[" +
@@ -131,6 +135,10 @@ public class DDLField: NSObject, Equatable, Printable {
 	}
 
 	internal func convert(fromCurrentValue value:AnyObject?) -> String? {
+		return value?.description
+	}
+
+	internal func convertToLabel(fromCurrentValue value:AnyObject?) -> String? {
 		return value?.description
 	}
 
