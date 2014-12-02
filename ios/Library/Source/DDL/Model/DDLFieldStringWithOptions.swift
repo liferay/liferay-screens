@@ -31,18 +31,6 @@ public class DDLFieldStringWithOptions : DDLField {
 	}
 
 
-	public var currentOptionLabel:String {
-		var result = ""
-
-		if let currentOptions = currentValue as? [Option] {
-			if let firstOption = currentOptions.first {
-				result = firstOption.label
-			}
-		}
-
-		return result
-	}
-
 	//FIXME: Multiple selection not supported yet
 	private(set) var multiple:Bool
 
@@ -144,6 +132,18 @@ public class DDLFieldStringWithOptions : DDLField {
 			}
 			else if let foundOption = findOptionByValue(firstOptionValue) {
 				result = [foundOption]
+			}
+		}
+
+		return result
+	}
+
+	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+		var result = ""
+
+		if let currentOptions = currentValue as? [Option] {
+			if let firstOption = currentOptions.first {
+				result = firstOption.label
 			}
 		}
 

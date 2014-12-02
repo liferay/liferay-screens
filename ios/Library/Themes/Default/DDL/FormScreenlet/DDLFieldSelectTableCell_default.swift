@@ -36,7 +36,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 		super.onChangedField()
 
 		if let stringField = field as? DDLFieldStringWithOptions {
-			textField?.text = stringField.currentOptionLabel
+			textField?.text = stringField.currentValueAsLabel
 
 			setFieldPresenter(stringField)
 		}
@@ -59,7 +59,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 
 		func currentValueIndex() -> Int? {
 			for (index,option) in enumerate(field.options) {
-				if option.label == field.currentOptionLabel {
+				if option.label == field.currentValueAsLabel {
 					return index
 				}
 			}

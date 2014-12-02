@@ -215,24 +215,27 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 		XCTAssertEqual("[]", stringField.currentValueAsString!)
 	}
 
-	func test_CurrenOptionLabel_ShouldContainTheLabelOfSelectedOption() {
+
+	//MARK: CurrentValueAsLabel
+
+	func test_CurrentValueAsLabel_ShouldContainTheLabelOfSelectedOption() {
 		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
 		stringField.currentValue = "Option 3"
 
-		XCTAssertEqual("Option 3", stringField.currentOptionLabel)
+		XCTAssertEqual("Option 3", stringField.currentValueAsLabel!)
 	}
 
-	func test_CurrenOptionLabel_ShouldContainEmptyString_WhenNoOptionSelected() {
+	func test_CurrentValueAsLabel_ShouldContainEmptyString_WhenNoOptionSelected() {
 		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as DDLFieldStringWithOptions
 
 		stringField.currentValue = nil
 
-		XCTAssertEqual("", stringField.currentOptionLabel)
+		XCTAssertEqual("", stringField.currentValueAsLabel!)
 	}
 
 
