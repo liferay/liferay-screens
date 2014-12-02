@@ -19,28 +19,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
 	func test_Parse_ShouldExtractValues_WhenFieldIsInteger() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"integer\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-integer\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-						"<entry name=\"predefinedValue\"> " +
-							"<![CDATA[16]]> " +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
-
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
 
 		XCTAssertTrue(fields![0] is DDLFieldNumber)
 		let numberField = fields![0] as DDLFieldNumber
@@ -52,28 +31,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldExtractValues_WhenFieldIsNumber() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"number\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-number\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-						"<entry name=\"predefinedValue\"> " +
-							"<![CDATA[16]]> " +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
-
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLXSDParser().parse(numberXSD, locale: spanishLocale)
 
 		XCTAssertTrue(fields![0] is DDLFieldNumber)
 		let numberField = fields![0] as DDLFieldNumber
@@ -85,28 +43,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldExtractValues_WhenFieldIsDouble() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"double\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-decimal\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-						"<entry name=\"predefinedValue\"> " +
-							"<![CDATA[16.05]]> " +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
-
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
 
 		XCTAssertTrue(fields![0] is DDLFieldNumber)
 		let numberField = fields![0] as DDLFieldNumber
@@ -118,26 +55,18 @@ class DDLFieldNumber_Tests: XCTestCase {
 			(numberField.predefinedValue as NSDecimalNumber).floatValue, 0.001)
 	}
 
-	func test_CurrentValue_ShouldTruncateDecimal_WhenOriginalNumberIsInteger() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"integer\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-integer\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
 
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+	func test_Parse_ShouldExtractPredefinedValueValues_WhenFieldIsInteger() {
+		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
+		let numberField = fields![0] as DDLFieldNumber
+
+		XCTAssertTrue(numberField.predefinedValue is NSInteger)
+		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as NSInteger)
+	}
+
+
+	func test_CurrentValue_ShouldTruncateDecimal_WhenOriginalNumberIsInteger() {
+		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
 		numberField.currentValue = 1.1
@@ -147,25 +76,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_currentValueAsString_ShouldBeValid_WhenNumberIsInteger() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"integer\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-integer\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
-
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
 		numberField.currentValue = 99
@@ -174,25 +85,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_currentValueAsString_ShouldBeValid_WhenNumberIsDecimal() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"double\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-decimal\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
-
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
 		numberField.currentValue = 16.0599
@@ -201,25 +94,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_currentValueAsString_ShouldBeValid_WhenNumberIsDecimalAndContentIsInteger() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"double\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-decimal\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
-
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
 		numberField.currentValue = 16
@@ -228,25 +103,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_currentValueAsString_ShouldBeChanged_WhenNumberIsInteger() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"integer\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-integer\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
-
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
 		numberField.currentValueAsString = "99"
@@ -257,25 +114,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_currentValueAsString_ShouldBeChanged_WhenNumberIsIntegerAndValueIsDecimal() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"integer\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-integer\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
-
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
 		numberField.currentValueAsString = "99.88"
@@ -286,25 +125,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_currentValueAsString_ShouldBeChanged_WhenNumberIsDecimal() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"double\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-decimal\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
-
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as DDLFieldNumber
 
 		numberField.currentValueAsString = "99.98"
@@ -341,5 +162,69 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertTrue(numberField.currentValue == nil)
 		XCTAssertFalse(numberField.validate())
 	}
+
+
+	private let decimalXSD =
+			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+			"<dynamic-element dataType=\"double\" " +
+				"indexType=\"keyword\" " +
+				"name=\"A_Number\" " +
+				"readOnly=\"false\" " +
+				"repeatable=\"true\" " +
+				"required=\"true\" " +
+				"showLabel=\"true\" " +
+				"type=\"ddm-decimal\" " +
+				"width=\"small\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[A Number]]>" +
+						"</entry> " +
+						"<entry name=\"predefinedValue\"> " +
+							"<![CDATA[16.05]]> " +
+						"</entry> " +
+					"</meta-data> " +
+			"</dynamic-element> </root>"
+
+	private let integerXSD =
+			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+			"<dynamic-element dataType=\"integer\" " +
+				"indexType=\"keyword\" " +
+				"name=\"A_Number\" " +
+				"readOnly=\"false\" " +
+				"repeatable=\"true\" " +
+				"required=\"false\" " +
+				"showLabel=\"true\" " +
+				"type=\"ddm-integer\" " +
+				"width=\"small\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[A Number]]>" +
+						"</entry> " +
+						"<entry name=\"predefinedValue\"> " +
+							"<![CDATA[16]]> " +
+						"</entry> " +
+					"</meta-data> " +
+			"</dynamic-element> </root>"
+
+	private let numberXSD =
+			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+			"<dynamic-element dataType=\"number\" " +
+				"indexType=\"keyword\" " +
+				"name=\"A_Number\" " +
+				"readOnly=\"false\" " +
+				"repeatable=\"true\" " +
+				"required=\"false\" " +
+				"showLabel=\"true\" " +
+				"type=\"ddm-number\" " +
+				"width=\"small\"> " +
+					"<meta-data locale=\"en_US\"> " +
+						"<entry name=\"label\">" +
+							"<![CDATA[A Number]]>" +
+						"</entry> " +
+						"<entry name=\"predefinedValue\"> " +
+							"<![CDATA[16]]> " +
+						"</entry> " +
+					"</meta-data> " +
+			"</dynamic-element> </root>"
 
 }
