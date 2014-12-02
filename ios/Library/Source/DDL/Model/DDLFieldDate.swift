@@ -16,16 +16,6 @@ import Foundation
 
 public class DDLFieldDate : DDLField {
 
-	public var currentDateLabel: String? {
-		var result: String?
-
-		if let date = currentValue as? NSDate {
-			result = clientDateFormatter.stringFromDate(date)
-		}
-
-		return result
-	}
-
 	private let serverYYYYDateFormat = "MM/dd/yyyy"
 	private let serverYYDateFormat = "MM/dd/yy"
 
@@ -73,6 +63,16 @@ public class DDLFieldDate : DDLField {
 			let epoch = UInt64(date.timeIntervalSince1970 * 1000)
 
 			result = "\(epoch)"
+		}
+
+		return result
+	}
+
+	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+		var result: String?
+
+		if let date = currentValue as? NSDate {
+			result = clientDateFormatter.stringFromDate(date)
 		}
 
 		return result

@@ -120,8 +120,7 @@ class DDLFieldDate_Tests: XCTestCase {
 				dateFormatter.stringFromDate(dateField.currentValue as NSDate))
 	}
 
-
-	func test_CurrentDateLabel_ShouldReturnClientSideFormat() {
+	func test_currentValueAsLabel_ShouldReturnClientSideFormat() {
 		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as DDLFieldDate
 
@@ -131,7 +130,7 @@ class DDLFieldDate_Tests: XCTestCase {
 		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
 
 		// Simulator locale must be en_US.
-		XCTAssertEqual("Jun 19, 2004", dateField.currentDateLabel!)
+		XCTAssertEqual("Jun 19, 2004", dateField.currentValueAsLabel!)
 	}
 
 
