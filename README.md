@@ -48,8 +48,7 @@ The implementation of Screens for Android is still in its early stages. It is no
 
 ## Contributing
 
-Liferay welcomes any and all contributions! Please read the [CONTRIBUTING
-guide](CONTRIBUTING.md) for details on developing and submitting your contributions.
+Liferay welcomes any and all contributions! Please read the [Liferay Screens Contribution Guide](CONTRIBUTING.md) for details on developing and submitting your contributions.
 
 ## License
 
