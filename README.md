@@ -45,3 +45,18 @@ To get started with Liferay Screens for iOS, please see [this document](https://
 ## Android
 
 The implementation of Screens for Android is still in its early stages. It is not available to the community at this time. We hope to make it available in the next few months.
+
+## Contributing
+
+Liferay welcomes any and all contributions! Please read the [Liferay Screens Contribution Guide](CONTRIBUTING.md) for details on developing and submitting your contributions.
+
+## License
+
+This library is free software ("Licensed Software"); you can redistribute it and/or modify it under the terms of the [GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl-2.1.html) as
+published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; including but not limited to, the implied warranty of MERCHANTABILITY, NONINFRINGEMENT, or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the [GNU Lesser General Public
+License](http://www.gnu.org/licenses/lgpl-2.1.html) along with this library; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+Floor, Boston, MA 02110-1301 USA
