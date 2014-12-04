@@ -19,12 +19,32 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	@IBOutlet internal var tableView: UITableView?
 
 
-	// MARK: AssetListView
 
-	override internal func onChangedRows() {
-		super.onChangedRows()
+	// MARK: BaseListView
 
-		tableView!.reloadData()
+	override internal func onChangedRows(oldRows:[AnyObject?]) {
+		super.onChangedRows(oldRows)
+
+		if oldRows.isEmpty {
+			var indexPaths: [NSIndexPath] = []
+			for (index,row) in enumerate(self.rows) {
+				indexPaths.append(NSIndexPath(forRow:index, inSection:0))
+			}
+			tableView!.insertRowsAtIndexPaths(indexPaths, withRowAnimation:UITableViewRowAnimation.Top)
+		}
+		else if let visibleRows = tableView!.indexPathsForVisibleRows() {
+			if visibleRows.count > 0 {
+				tableView!.reloadRowsAtIndexPaths(visibleRows, withRowAnimation:UITableViewRowAnimation.None)
+			}
+			else {
+				tableView!.reloadData()
+			}
+		}
+		else {
+			tableView!.reloadData()
+		}
+	}
+
 	}
 
 
