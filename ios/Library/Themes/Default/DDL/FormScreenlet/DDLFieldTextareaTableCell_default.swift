@@ -58,7 +58,8 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 
 				moveSubviewsVertically(
 					-(DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel))
-				field?.currentHeight = DDLFieldTextFieldHeightWithoutLabel
+
+				setCellHeight(DDLFieldTextFieldHeightWithoutLabel)
 			}
 
 			textView?.returnKeyType = isLastCell ? .Send : .Next
@@ -87,7 +88,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 	public func textViewShouldBeginEditing(textView: UITextView) -> Bool {
 		var heightLabelOffset:CGFloat =
 				DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel
-		changeCellHeight(DDLFieldTextareaExpandedCellHeight +
+		setCellHeight(DDLFieldTextareaExpandedCellHeight +
 				(field!.showLabel ? heightLabelOffset : 0.0))
 
 		separator!.frame.origin.y +=
@@ -116,9 +117,11 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 		var heightLabelOffset:CGFloat =
 				DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel
 
-		changeCellHeight(
-				field!.editorType.registeredHeight -
-				(field!.showLabel ? 0.0 : heightLabelOffset))
+		let height = resetCellHeight()
+
+		if (!field!.showLabel) {
+			setCellHeight(height - heightLabelOffset)
+		}
 
 		textViewBackground?.highlighted = false
 	}

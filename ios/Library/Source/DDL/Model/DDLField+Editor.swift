@@ -77,16 +77,6 @@ extension DDLField {
 					typeName.substringFromIndex(secondCharIndex)
 		}
 
-		public func registerHeight(height:CGFloat) {
-			Editor.fieldEditorHeight[self] = height
-		}
-
-		public var registeredHeight: CGFloat {
-			return Editor.fieldEditorHeight[self] ?? 0
-		}
-
-		private static var fieldEditorHeight: [Editor:CGFloat] = [:]
-
 	}
 
 }

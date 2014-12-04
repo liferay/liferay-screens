@@ -16,8 +16,6 @@ import Foundation
 
 public class DDLField: NSObject, Equatable, Printable {
 
-	public var currentHeight:CGFloat = 0
-
 	public var onPostValidation: (Bool -> Void)?
 	public var lastValidationResult:Bool?
 
@@ -114,11 +112,6 @@ public class DDLField: NSObject, Equatable, Printable {
 
 		return valid
 	}
-
-	public func resetCurrentHeight() {
-		currentHeight = editorType.registeredHeight
-	}
-
 
 	//MARK: Internal methods
 

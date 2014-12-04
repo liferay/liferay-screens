@@ -22,7 +22,8 @@ public class DDLFormTableView: DDLFormView,
 	override public var record: DDLRecord? {
 		didSet {
 			forEachField() {
-				$0.resetCurrentHeight()
+				self.resetCellHeightForField($0)
+				return
 			}
 
 			tableView!.reloadData()
@@ -31,6 +32,8 @@ public class DDLFormTableView: DDLFormView,
 
 
 	internal var firstCellResponder: UIResponder?
+
+	internal var cellHeights: [String : (registered:CGFloat, current:CGFloat)] = [:]
 
 	internal var submitButtonHeight: CGFloat = 0.0
 
@@ -236,7 +239,7 @@ public class DDLFormTableView: DDLFormView,
 
 		let row = indexPath.row
 
-		return (row == record!.fields.count) ? submitButtonHeight : getField(row)!.currentHeight
+		return (row == record!.fields.count) ? submitButtonHeight : cellHeightForField(getField(row)!)
 	}
 
 
@@ -249,7 +252,9 @@ public class DDLFormTableView: DDLFormView,
 			if let cellView = registerFieldEditorCell(
 					nibName: "DDLField\(fieldEditor.toCapitalizedName())TableCell",
 					cellId: fieldEditor.toCapitalizedName()) {
-				fieldEditor.registerHeight(cellView.bounds.size.height)
+
+				cellHeights[fieldEditor.toCapitalizedName()] =
+						(cellView.bounds.size.height, cellView.bounds.size.height)
 			}
 		}
 
@@ -282,6 +287,46 @@ public class DDLFormTableView: DDLFormView,
 		}
 
 		return cell
+	}
+
+	internal func cellHeightForField(field: DDLField) -> CGFloat {
+		var result: CGFloat = 0.0
+
+		if let cellHeight = cellHeights[field.name] {
+			result = cellHeight.current
+		}
+		else if let typeHeight = cellHeights[field.editorType.toCapitalizedName()] {
+			result = typeHeight.current
+		}
+		else {
+			println("ERROR: Height doesn't found for field \(field)")
+		}
+
+		return result
+	}
+
+	internal func setCellHeight(height: CGFloat, forField field: DDLField) {
+		if let cellHeight = cellHeights[field.name] {
+			cellHeights[field.name] = (cellHeight.registered, height)
+		}
+		else {
+			cellHeights[field.name] = (height, height)
+		}
+	}
+
+	internal func resetCellHeightForField(field: DDLField) -> CGFloat {
+		var result: CGFloat = 0.0
+
+		if let cellHeight = cellHeights[field.name] {
+			cellHeights[field.name] = (cellHeight.registered, cellHeight.registered)
+			result = cellHeight.registered
+		}
+		else if let typeHeight = cellHeights[field.editorType.toCapitalizedName()] {
+			cellHeights[field.name] = (typeHeight.registered, typeHeight.registered)
+			result = typeHeight.registered
+		}
+
+		return result
 	}
 
 }
