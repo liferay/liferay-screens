@@ -246,56 +246,42 @@ public class DDLFormTableView: DDLFormView,
 		let currentBundle = NSBundle(forClass: self.dynamicType)
 
 		for fieldEditor in DDLField.Editor.all() {
-			var nibName = "DDLField\(fieldEditor.toCapitalizedName())TableCell"
-			if let themeNameValue = themeName {
-				nibName += "_" + themeNameValue
-			}
-
-			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
-				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
-
-				tableView?.registerNib(cellNib,
-						forCellReuseIdentifier: fieldEditor.toCapitalizedName())
-
-				registerFieldEditorHeight(editor:fieldEditor, nib:cellNib)
+			if let cellView = registerFieldEditorCell(
+					nibName: "DDLField\(fieldEditor.toCapitalizedName())TableCell",
+					cellId: fieldEditor.toCapitalizedName()) {
+				fieldEditor.registerHeight(cellView.bounds.size.height)
 			}
 		}
 
 		if showSubmitButton {
-			var nibName = "DDLSubmitButtonTableCell"
-			if let themeNameValue = themeName {
-				nibName += "_" + themeNameValue
-			}
-
-			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
-				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
-
-				tableView?.registerNib(cellNib, forCellReuseIdentifier: "SubmitButton")
-
-				let views = cellNib.instantiateWithOwner(nil, options: nil)
-
-				if let cellRootView = views.first as? UITableViewCell {
-					submitButtonHeight = cellRootView.bounds.size.height
-				}
-				else {
-					println("ERROR: Root view in submit button didn't found")
-				}
-			}
-			else {
-				println("ERROR: Can't register cell for submit button: \(nibName)")
+			if let cellView = registerFieldEditorCell(
+					nibName: "DDLSubmitButtonTableCell",
+					cellId: "SubmitButton") {
+				submitButtonHeight = cellView.bounds.size.height
 			}
 		}
 	}
 
-	internal func registerFieldEditorHeight(#editor:DDLField.Editor, nib:UINib) {
-		let views = nib.instantiateWithOwner(nil, options: nil)
+	internal func registerFieldEditorCell(#nibName: String, cellId: String) -> UITableViewCell? {
+		var themedNibName = nibName
+		if let themeNameValue = themeName {
+			themedNibName += "_" + themeNameValue
+		}
 
-		if let cellRootView = views.first as? UITableViewCell {
-			editor.registerHeight(cellRootView.bounds.size.height)
+		var cell: UITableViewCell?
+		let currentBundle = NSBundle(forClass: self.dynamicType)
+		if currentBundle.pathForResource(themedNibName, ofType: "nib") != nil {
+			let nib = UINib(nibName: themedNibName, bundle: currentBundle)
+			tableView?.registerNib(nib, forCellReuseIdentifier: cellId)
+
+			let views = nib.instantiateWithOwner(nil, options: nil)
+			cell = views.first as? UITableViewCell
+			if cell == nil {
+				println("ERROR: Root view in cell for \(nibName) didn't found")
+			}
 		}
-		else {
-			println("ERROR: Root view in cell \(editor.rawValue) didn't found")
-		}
+
+		return cell
 	}
 
 }
