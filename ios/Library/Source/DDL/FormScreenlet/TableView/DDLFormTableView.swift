@@ -22,6 +22,7 @@ public class DDLFormTableView: DDLFormView,
 	override public var record: DDLRecord? {
 		didSet {
 			forEachField() {
+				self.registerFieldCustomEditor($0)
 				self.resetCellHeightForField($0)
 				return
 			}
@@ -209,14 +210,19 @@ public class DDLFormTableView: DDLFormView,
 		let row = indexPath.row
 
 		if row == record!.fields.count {
-			cell = tableView.dequeueReusableCellWithIdentifier("SubmitButton") as?
-					DDLFieldTableCell
+			cell = tableView.dequeueReusableCellWithIdentifier("SubmitButton")
+					as? DDLFieldTableCell
 
 			cell!.formView = self
 		}
 		else if let field = getField(row) {
-			cell = tableView.dequeueReusableCellWithIdentifier(
-					field.editorType.toCapitalizedName()) as? DDLFieldTableCell
+			cell = tableView.dequeueReusableCellWithIdentifier(field.name)
+					as? DDLFieldTableCell
+
+			if cell == nil {
+				cell = tableView.dequeueReusableCellWithIdentifier(
+						field.editorType.toCapitalizedName()) as? DDLFieldTableCell
+			}
 
 			if let cellValue = cell {
 				cellValue.formView = self
@@ -265,6 +271,19 @@ public class DDLFormTableView: DDLFormView,
 				submitButtonHeight = cellView.bounds.size.height
 			}
 		}
+	}
+
+	internal func registerFieldCustomEditor(field: DDLField) -> Bool {
+		let cellView = registerFieldEditorCell(
+				nibName: "DDLCustomField\(field.name)TableCell",
+				cellId: field.name)
+
+		if cellView != nil {
+			println("Found custom \(field.name) -> \(cellView!.bounds.size.height)" )
+			setCellHeight(cellView!.bounds.size.height, forField: field)
+		}
+
+		return cellView != nil
 	}
 
 	internal func registerFieldEditorCell(#nibName: String, cellId: String) -> UITableViewCell? {
