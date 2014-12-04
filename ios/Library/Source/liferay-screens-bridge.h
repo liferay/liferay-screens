@@ -22,6 +22,7 @@ FOUNDATION_EXPORT const unsigned char liferay_screens_VersionString[];
 #import "MBProgressHUD.h"
 #import "SMXMLDocument.h"
 #import "UICKeyChainStore.h"
+#import "ODRefreshControl.h"
 
 // Default theme dependencies
 #import "DTPickerPresenter.h"
