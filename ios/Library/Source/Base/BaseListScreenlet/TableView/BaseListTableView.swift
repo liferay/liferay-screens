@@ -18,6 +18,13 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 
 	@IBOutlet internal var tableView: UITableView?
 
+	internal var refreshControlView: ODRefreshControl?
+
+	internal var refreshClosure: (Void -> Bool)? {
+		didSet {
+			updateRefreshControl()
+		}
+	}
 
 
 	// MARK: BaseListView
@@ -45,6 +52,12 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 
+	override func onFinishOperation() {
+		if let currentRefreshControl = refreshControlView {
+			delayed(0.3) {
+				currentRefreshControl.endRefreshing()
+			}
+		}
 	}
 
 
@@ -80,8 +93,6 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			onSelectedRowClosure?(row)
 		}
 	}
-
-
 	//MARK: Internal methods
 
 	internal func doDequeueReusableCell(#row: Int) -> UITableViewCell {
@@ -99,5 +110,29 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 
 	internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
 	}
+
+	internal func updateRefreshControl() {
+		if let closureValue = refreshClosure {
+			if refreshControlView == nil {
+				refreshControlView = ODRefreshControl(inScrollView: self.tableView)
+				refreshControlView!.addTarget(self,
+						action: "refreshControlBeginRefresh:",
+						forControlEvents: UIControlEvents.ValueChanged)
+			}
+		}
+		else if let currentControl = refreshControlView {
+			currentControl.endRefreshing()
+			currentControl.removeFromSuperview()
+			refreshControlView = nil
+		}
+	}
+
+	internal func refreshControlBeginRefresh(sender:AnyObject?) {
+		delayed(0.3) {
+			self.refreshClosure?()
+			return
+		}
+	}
+
 
 }
