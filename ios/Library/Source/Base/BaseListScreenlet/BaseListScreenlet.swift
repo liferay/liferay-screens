@@ -117,6 +117,7 @@ import UIKit
 	}
 
 	internal func onLoadPageError(#page: Int, error: NSError) {
+		println("ERROR: Load page error \(page) -> \(error)")
 	}
 
 	internal func onLoadPageResult(#page: Int,
@@ -132,7 +133,7 @@ import UIKit
 			allRows[index] = row
 		}
 
-		var offset = (page == 0) ? 0 : firstPageSize + (page - 1) * pageSize
+		var offset = firstRowForPage(page)
 
 		// last page could be incomplete
 		if offset >= rowCount {
