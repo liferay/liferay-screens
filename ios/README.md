@@ -22,7 +22,7 @@ To learn more detail about the architecture of Screens, please see the [library 
 
 Development of iOS apps using Liferay Screens requires the following: 
 
-  - Xcode 6.0 or above
+  - Xcode 6.1 or above
   - iOS 8 SDK
   - [CocoaPods](http://cocoapods.org) installed
   - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
