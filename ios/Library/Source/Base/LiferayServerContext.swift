@@ -26,19 +26,35 @@ public class LiferayServerContext {
 	//MARK: Public properties
 
 	public class var server: String {
-		loadContextFile()
-		return StaticInstance.serverProperties!["server"] as String
+		get {
+			loadContextFile()
+			return StaticInstance.serverProperties!["server"] as String
+		}
+		set {
+			StaticInstance.serverProperties!["server"] = newValue
+		}
 	}
 
 	public class var companyId: Int64 {
-		loadContextFile()
-		return (StaticInstance.serverProperties!["companyId"] as NSNumber).longLongValue
+		get {
+			loadContextFile()
+			return (StaticInstance.serverProperties!["companyId"] as NSNumber).longLongValue
+		}
+		set {
+			StaticInstance.serverProperties!["companyId"] = NSNumber(longLong: newValue)
+		}
 	}
 
 	public class var groupId: Int64 {
-		loadContextFile()
-		return (StaticInstance.serverProperties!["groupId"] as NSNumber).longLongValue
+		get {
+			loadContextFile()
+			return (StaticInstance.serverProperties!["groupId"] as NSNumber).longLongValue
+		}
+		set {
+			StaticInstance.serverProperties!["groupId"] = NSNumber(longLong: newValue)
+		}
 	}
+
 
 
 	//MARK: Public methods
