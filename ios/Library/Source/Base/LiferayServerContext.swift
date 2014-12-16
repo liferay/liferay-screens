@@ -19,7 +19,7 @@ public class LiferayServerContext {
 	//MARK: Singleton type
 
 	private struct StaticInstance {
-		static var serverProperties: NSDictionary?
+		static var serverProperties: NSMutableDictionary?
 	}
 
 
@@ -51,7 +51,7 @@ public class LiferayServerContext {
 		if let propertiesPath =
 				NSBundle.mainBundle().pathForResource("liferay-server-context", ofType:"plist") {
 
-			StaticInstance.serverProperties = NSDictionary(contentsOfFile: propertiesPath)
+			StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: propertiesPath)
 		}
 		else {
 			println("WARNING: liferay-server-context.plist file is not found. Falling back to template " +
@@ -60,7 +60,7 @@ public class LiferayServerContext {
 			if let templatePath = NSBundle.mainBundle().pathForResource("liferay-server-context-sample",
 					ofType:"plist") {
 
-				StaticInstance.serverProperties = NSDictionary(contentsOfFile: templatePath)
+				StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: templatePath)
 			}
 			else {
 				println("WARNING: liferay-server-context-sample.plist file is not found. " +
