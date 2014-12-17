@@ -37,7 +37,7 @@ class HomeScreenletsViewController: UITableViewController {
 		let cell = UITableViewCell(style: .Default, reuseIdentifier: "default-cell");
 
 		if let record = data[indexPath.section] {
-			cell.textLabel.text = record[indexPath.row + 1]
+			cell.textLabel?.text = record[indexPath.row + 1]
 		}
 
 		return cell
