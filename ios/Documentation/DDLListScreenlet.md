@@ -36,7 +36,7 @@ The `DDLListScreenlet` enables the following features:
 
 ## Portal Configuration
 
-Dynamic Data Lists (DDL) and Data Types should be properly configured in the portal. For more details, please refer to the Liferay User Guide sections [Defining Data Types](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/building-a-list-platform-in-liferay-and-liferay-portal-6-2-user-guide-10-en) and [Creating Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/creating-data-lists-liferay-portal-6-2-user-guide-10-en).
+Dynamic Data Lists (DDL) and Data Types should be properly configured in the portal. For more details, please refer to the Liferay User Guide sections [Defining Data Types](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/building-a-list-platform-in-liferay-and-defining-data-) and [Creating Data Lists](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/creating-data-lists).
 
 ## Attributes
 

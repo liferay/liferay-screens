@@ -50,7 +50,7 @@ Password recovery depends on the authentication settings in the portal:
 
 If both of these options are unchecked, then password recovery is disabled. If both options are checked, an email containing a password reset link is sent when a user requests it. If only the first option is checked, an email containing a new password is sent when a user requests it.
 
-For more details on authentication in Liferay Portal, please refer to the [Configuring Portal Settings](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/portal-settings-liferay-portal-6-2-user-guide-16-en) section of the User Guide.
+For more details on authentication in Liferay Portal, please refer to the [Configuring Portal Settings](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/configuring-portal-settings) section of the User Guide.
 
 ### Anonymous Request
 

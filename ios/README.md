@@ -110,13 +110,13 @@ Super! Now you know how to call screenlets from the Objective-C code in your pro
 
 Screenlets are grouped in modules based on internal dependencies. Each module is isolated, so you can use only the modules that are necessary for your project. However, it's important to note that you can't use a screenlet from a single module without using the entire module. The screenlets here are listed according to the module that they belong to.
 
-- **Auth**: Module for user authentication. It uses the [user management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/management-liferay-portal-6-2-user-guide-16-en) features of Liferay Portal. It includes the following screenlets:
+- **Auth**: Module for user authentication. It uses the [user management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/user-management) features of Liferay Portal. It includes the following screenlets:
 
 	- [`LoginScreenlet`](Documentation/LoginScreenlet.md): Gives your app the ability to sign users in to a Liferay instance.
 	- [`SignUpScreenlet`](Documentation/SignUpScreenlet.md): Gives your app the ability to sign new users in to a Liferay instance.
 	- [`ForgotPasswordScreenlet`](Documentation/ForgotPasswordScreenlet.md): Gives your app the ability to send emails containing a new password or password reset link to users.
 
-- **Dynamic Data Lists (DDL)**: Module for interacting with [Dynamic Data Lists](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/using-web-forms-and-dynamic-data-lists-liferay-portal-6-2-user-guide-10-en) in a Liferay instance. It includes the following screenlet:
+- **Dynamic Data Lists (DDL)**: Module for interacting with [Dynamic Data Lists](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-web-forms-and-dynamic-data-lists) in a Liferay instance. It includes the following screenlet:
 
 	- [`DDLFormScreenlet`](Documentation/DDLFormScreenlet.md): Gives your app the ability to present dynamic forms to be filled by users and submitted back to the server.
 	- [`DDLListScreenlet`](Documentation/DDLListScreenlet.md): Gives your app the ability to show a list of records based on a pre-existing DDL in a Liferay instance.
@@ -124,7 +124,7 @@ Screenlets are grouped in modules based on internal dependencies. Each module is
 Also, some screenlets can be used individually without the need to import an entire module. These include:
 
 - [`AssetListScreenlet`](Documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). This includes web content, blog entries, documents, and more.
-- [`WebContentDisplayScreenlet`](Documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This screenlet uses the features avaiable in [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en).
+- [`WebContentDisplayScreenlet`](Documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This screenlet uses the features avaiable in [Web Content Management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/web-content-management).
 
 Liferay Screens also contains *themes* that you can use to style screenlets. A list of these themes is presented next.
 	  
