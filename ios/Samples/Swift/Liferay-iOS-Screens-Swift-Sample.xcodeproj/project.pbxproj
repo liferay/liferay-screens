@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		171724ED3A0843AB9AC1B25E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D782ECE4B14578B67EA5D0 /* libPods.a */; };
+		753B7CCB1A4262A300664282 /* default-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 753B7CC91A4262A300664282 /* default-portrait-placeholder.png */; };
+		753B7CCC1A4262A300664282 /* default-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 753B7CCA1A4262A300664282 /* default-portrait-placeholder@2x.png */; };
 		75ECB5731A4243FC0066859C /* PortraitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECB5711A4243FC0066859C /* PortraitData.swift */; };
 		75ECB5741A4243FC0066859C /* PortraitScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECB5721A4243FC0066859C /* PortraitScreenlet.swift */; };
 		75ECB5781A4244120066859C /* PortraitView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECB5761A4244120066859C /* PortraitView_default.swift */; };
@@ -182,6 +184,8 @@
 
 /* Begin PBXFileReference section */
 		01D782ECE4B14578B67EA5D0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		753B7CC91A4262A300664282 /* default-portrait-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-portrait-placeholder.png"; sourceTree = "<group>"; };
+		753B7CCA1A4262A300664282 /* default-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
 		75ECB5711A4243FC0066859C /* PortraitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitData.swift; sourceTree = "<group>"; };
 		75ECB5721A4243FC0066859C /* PortraitScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitScreenlet.swift; sourceTree = "<group>"; };
 		75ECB5761A4244120066859C /* PortraitView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitView_default.swift; sourceTree = "<group>"; };
@@ -834,6 +838,8 @@
 				8834825F19E344AF001E6E2A /* default-mail-icon@2x.png */,
 				8834826019E344AF001E6E2A /* default-multiline-field.png */,
 				8834826119E344AF001E6E2A /* default-multiline-field@2x.png */,
+				753B7CC91A4262A300664282 /* default-portrait-placeholder.png */,
+				753B7CCA1A4262A300664282 /* default-portrait-placeholder@2x.png */,
 				8834826219E344AF001E6E2A /* default-preview-assetlist.png */,
 				8834826319E344AF001E6E2A /* default-preview-assetlist@2x.png */,
 				8834826419E344AF001E6E2A /* default-preview-ddlform.png */,
@@ -1071,6 +1077,7 @@
 				8834830219E344AF001E6E2A /* default-user-icon@2x.png in Resources */,
 				8834830419E344AF001E6E2A /* WebContentDisplayView_default.xib in Resources */,
 				8868384519F31F7C0053E502 /* base.strings in Resources */,
+				753B7CCB1A4262A300664282 /* default-portrait-placeholder.png in Resources */,
 				88CB48A419F1C84F000A8255 /* default-form-gradient-top.png in Resources */,
 				883482EB19E344AF001E6E2A /* default-field-focused.png in Resources */,
 				8834830119E344AF001E6E2A /* default-user-icon.png in Resources */,
@@ -1082,6 +1089,7 @@
 				883482E519E344AF001E6E2A /* DDLListView_default.xib in Resources */,
 				8868383B19F313CF0053E502 /* forgotpassword-screenlet.strings in Resources */,
 				8868384119F319A30053E502 /* signup-screenlet.strings in Resources */,
+				753B7CCC1A4262A300664282 /* default-portrait-placeholder@2x.png in Resources */,
 				8834830A19E344AF001E6E2A /* SignUpView_flat7.xib in Resources */,
 				883482F519E344AF001E6E2A /* default-lock-icon.png in Resources */,
 				883482E119E344AF001E6E2A /* DDLFormView_default.xib in Resources */,

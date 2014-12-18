@@ -23,16 +23,19 @@ public class PortraitScreenlet: BaseScreenlet {
 	@IBInspectable public var uuid: String = ""
 
 	func load() -> Bool {
-		var URL: NSURL?
+		var object: AnyObject
 
-		if portraitId == 0 || uuid == "" {
-			URL = getLoggedUserPortraitURL()
+		if uuid == "" {
+			object = getLoggedUserPortraitURL() as NSURL!
+		}
+		else if portraitId == 0 {
+			object = UIImage(named: "default-portrait-placeholder") as UIImage!
 		}
 		else {
-			URL = getUserPortraitURL(male: male, portraitId: portraitId, uuid: uuid)
+			object = getUserPortraitURL(male: male, portraitId: portraitId, uuid: uuid)
 		}
 
-		(screenletView as PortraitData).loadPortrait(URL!)
+		(screenletView as PortraitData).loadPortrait(object)
 
 		return true
 	}

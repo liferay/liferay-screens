@@ -16,6 +16,6 @@ import UIKit
 
 @objc public protocol PortraitData {
 
-	func loadPortrait(portraitURL: NSURL)
+	func loadPortrait(object: AnyObject)
 
 }
