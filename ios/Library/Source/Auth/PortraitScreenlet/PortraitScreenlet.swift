@@ -22,6 +22,25 @@ public class PortraitScreenlet: BaseScreenlet {
 	@IBInspectable public var portraitId: Int64 = 0
 	@IBInspectable public var uuid: String = ""
 
+
+	public func load() -> Bool {
+		var object: AnyObject
+
+		if uuid == "" {
+			object = getLoggedUserPortraitURL() as NSURL!
+		}
+		else if portraitId == 0 {
+			object = UIImage(named: "default-portrait-placeholder") as UIImage!
+		}
+		else {
+			object = getUserPortraitURL(male: male, portraitId: portraitId, uuid: uuid)
+		}
+
+		(screenletView as PortraitData).loadPortrait(object)
+
+		return true
+	}
+
 	private func getLoggedUserPortraitURL() -> NSURL? {
 		if let portraitId = SessionContext.userAttribute("portrait") as? NSNumber {
 			if let uuid = SessionContext.userAttribute("uuid") as? String {
@@ -61,24 +80,6 @@ public class PortraitScreenlet: BaseScreenlet {
 		var SHA1 = LRHttpUtil.encodeURL(encodedString)
 
 		return SHA1
-	}
-
-	func load() -> Bool {
-		var object: AnyObject
-
-		if uuid == "" {
-			object = getLoggedUserPortraitURL() as NSURL!
-		}
-		else if portraitId == 0 {
-			object = UIImage(named: "default-portrait-placeholder") as UIImage!
-		}
-		else {
-			object = getUserPortraitURL(male: male, portraitId: portraitId, uuid: uuid)
-		}
-
-		(screenletView as PortraitData).loadPortrait(object)
-
-		return true
 	}
 
 	override func onShow() {
