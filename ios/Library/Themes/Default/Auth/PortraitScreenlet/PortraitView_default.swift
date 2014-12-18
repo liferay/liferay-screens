@@ -16,10 +16,14 @@ import UIKit
 
 class PortraitView_default: BaseScreenletView, PortraitData {
 
-
 	@IBOutlet var activityIndicator: UIActivityIndicatorView?
 	@IBOutlet var portraitBorder: UIView?
 	@IBOutlet var portraitImage: UIImageView?
+
+
+	private func getPortraitPlaceholder() -> UIImage {
+		return UIImage(named: "default-portrait-placeholder")!
+	}
 
 	func loadPortrait(object: AnyObject) {
 		if let image = object as? UIImage {
@@ -29,7 +33,7 @@ class PortraitView_default: BaseScreenletView, PortraitData {
 			loadPortrait(portraitURL: URL as NSURL)
 		}
 		else {
-			loadPortrait(image: UIImage(named: "default-portrait-placeholder")!)
+			loadPortrait(image: getPortraitPlaceholder())
 		}
 	}
 
@@ -44,14 +48,15 @@ class PortraitView_default: BaseScreenletView, PortraitData {
 
 		portraitImage?.setImageWithURLRequest(request, placeholderImage: nil, success: {
 			(request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) -> Void in
-
-			self.portraitImage?.image = image
-			self.activityIndicator?.stopAnimating()
-
-			}, failure: { (request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) -> Void in
-				self.portraitImage?.image = UIImage(named: "default-portrait-placeholder")
+				self.portraitImage?.image = image
 				self.activityIndicator?.stopAnimating()
-		})
+
+			},
+			failure: {
+				(request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) -> Void in
+					self.portraitImage?.image = self.getPortraitPlaceholder()
+					self.activityIndicator?.stopAnimating()
+			})
 	}
 
 	override func onShow() {

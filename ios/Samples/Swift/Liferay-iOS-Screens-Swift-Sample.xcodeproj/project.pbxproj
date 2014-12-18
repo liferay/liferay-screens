@@ -413,12 +413,12 @@
 			children = (
 				883481C019E344AE001E6E2A /* AssetListScreenlet */,
 				883481C619E344AE001E6E2A /* Auth */,
-				75ECB5701A4243FC0066859C /* PortraitScreenlet */,
 				883481DE19E344AE001E6E2A /* Base */,
 				883481ED19E344AE001E6E2A /* DDL */,
 				8834820D19E344AE001E6E2A /* Extensions */,
 				8848C7AA19E3D5AE00BA60D9 /* liferay-screens-bridge.h */,
 				8834821319E344AE001E6E2A /* liferay-server-context-sample.plist */,
+				75ECB5701A4243FC0066859C /* PortraitScreenlet */,
 				8834821419E344AE001E6E2A /* Services */,
 				8834821B19E344AF001E6E2A /* WebContentDisplayScreenlet */,
 			);
@@ -731,9 +731,9 @@
 		8834822519E344AF001E6E2A /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				75ECB5751A4244120066859C /* PortraitScreenlet */,
 				8834822619E344AF001E6E2A /* ForgotPasswordScreenlet */,
 				8834822919E344AF001E6E2A /* LoginScreenlet */,
+				75ECB5751A4244120066859C /* PortraitScreenlet */,
 				8834822C19E344AF001E6E2A /* SignUpScreenlet */,
 			);
 			path = Auth;

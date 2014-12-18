@@ -22,6 +22,47 @@ public class PortraitScreenlet: BaseScreenlet {
 	@IBInspectable public var portraitId: Int64 = 0
 	@IBInspectable public var uuid: String = ""
 
+	private func getLoggedUserPortraitURL() -> NSURL? {
+		if let portraitId = SessionContext.userAttribute("portrait") as? NSNumber {
+			if let uuid = SessionContext.userAttribute("uuid") as? String {
+				let portraitIdLong = portraitId.longLongValue
+
+				return getUserPortraitURL(male: true, portraitId: portraitIdLong, uuid: uuid)
+			}
+		}
+
+		return nil
+	}
+
+	private func getUserPortraitURL(#male: Bool, portraitId: Int64, uuid: String) -> NSURL {
+		let maleString = male ? "male" : "female"
+		var URL: String = String()
+
+		URL = LiferayServerContext.server
+		URL = URL + "/image/user_\(maleString)/_portrait?img_id="
+		URL = URL + "\(portraitId)"
+		URL = URL + "&img_id_token=" + getSHA1(uuid)
+
+		return NSURL(string: URL)!
+	}
+
+	private func getSHA1(input: String) -> String {
+		var digestLength: Int = Int(CC_SHA1_DIGEST_LENGTH)
+
+		var result: [UInt8] = [Byte](count: digestLength, repeatedValue: 0)
+
+		CC_SHA1(input, CC_LONG(countElements(input)), &result)
+
+		var data: NSData = NSData(bytes: result, length: result.count)
+
+		var encodedString: String = data.base64EncodedStringWithOptions(
+			NSDataBase64EncodingOptions(0))
+
+		var SHA1 = LRHttpUtil.encodeURL(encodedString)
+
+		return SHA1
+	}
+
 	func load() -> Bool {
 		var object: AnyObject
 
@@ -40,52 +81,10 @@ public class PortraitScreenlet: BaseScreenlet {
 		return true
 	}
 
-	func getLoggedUserPortraitURL() -> NSURL? {
-		if let portraitId = SessionContext.userAttribute("portrait") as? NSNumber {
-			if let uuid = SessionContext.userAttribute("uuid") as? String {
-				return getUserPortraitURL(
-						male: true,
-						portraitId: portraitId.longLongValue,
-						uuid: uuid)
-			}
-		}
-
-		return nil
-	}
-
-	func getUserPortraitURL(#male: Bool, portraitId: Int64, uuid: String) -> NSURL {
-		let maleString = male ? "male" : "female"
-		var URL: String = String()
-
-		URL = LiferayServerContext.server
-		URL = URL + "/image/user_\(maleString)/_portrait?img_id="
-		URL = URL + "\(portraitId)"
-		URL = URL + "&img_id_token=" + getSHA1(uuid)
-
-		return NSURL(string: URL)!
-	}
-
 	override func onShow() {
 		if autoLoad {
 			load()
 		}
-	}
-
-	private func getSHA1(input: String) -> String {
-		var digestLength: Int = Int(CC_SHA1_DIGEST_LENGTH)
-
-		var result: [UInt8] = [Byte](count: digestLength, repeatedValue: 0)
-
-		CC_SHA1(input, CC_LONG(countElements(input)), &result)
-
-		var data: NSData = NSData(bytes: result, length: result.count)
-
-		var encodedString: String = data.base64EncodedStringWithOptions(
-			NSDataBase64EncodingOptions(0))
-
-		var SHA1 = LRHttpUtil.encodeURL(encodedString)
-
-		return SHA1
 	}
 
 }
