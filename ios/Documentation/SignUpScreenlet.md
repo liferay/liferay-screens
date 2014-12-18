@@ -35,7 +35,7 @@ The configuration related to the `SignUpScreenlet` can be set in the Control Pan
 
 ![The portal settings related to the `SignUpScreenlet`.](Images/portal-signup.png)
 
-For more details, please refer to the [Configuring Portal Settings](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/portal-settings-liferay-portal-6-2-user-guide-16-en) section of the User Guide.
+For more details, please refer to the [Configuring Portal Settings](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/configuring-portal-settings) section of the User Guide.
 
 ## Anonymous Request
 
