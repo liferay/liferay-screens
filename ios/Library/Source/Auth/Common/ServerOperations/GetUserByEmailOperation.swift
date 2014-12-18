@@ -14,7 +14,33 @@
 import UIKit
 
 
-public class LiferayLoginEmailOperation: LiferayLoginBaseOperation {
+public class GetUserByEmailOperation: GetUserBaseOperation {
+
+	private var companyId: Int64
+	private var emailAddress: String?
+
+	public init(screenlet: BaseScreenlet, companyId: Int64, emailAddress:String?) {
+		self.companyId = companyId
+		self.emailAddress = emailAddress
+
+		super.init(screenlet: screenlet)
+	}
+
+	override internal func validateData() -> Bool {
+		var valid = super.validateData()
+
+		if valid {
+			if let emailAddressValue = emailAddress {
+				valid = (emailAddressValue != "")
+			}
+			else {
+				valid = false
+			}
+		}
+
+		return valid
+	}
+
 
 	//MARK: LiferayLoginBaseOperation
 
@@ -23,11 +49,11 @@ public class LiferayLoginEmailOperation: LiferayLoginBaseOperation {
 			error: NSErrorPointer)
 			-> NSDictionary? {
 
-		let companyId = loginData.companyId != 0
-				? loginData.companyId : LiferayServerContext.companyId
+		let companyId = (self.companyId != 0)
+				? self.companyId : LiferayServerContext.companyId
 
 		return service.getUserByEmailAddressWithCompanyId(companyId,
-				emailAddress: loginData.userName!,
+				emailAddress: emailAddress,
 				error: error)
 	}
 
