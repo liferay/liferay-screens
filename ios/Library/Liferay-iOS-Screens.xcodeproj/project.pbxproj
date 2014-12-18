@@ -11,8 +11,6 @@
 		75BB3E011A40E6F200113B8C /* PortraitScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB3E001A40E6F200113B8C /* PortraitScreenlet.swift */; };
 		75BB3E051A40F97B00113B8C /* PortraitView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB3E031A40F97B00113B8C /* PortraitView_default.swift */; };
 		75BB3E061A40F97B00113B8C /* PortraitView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75BB3E041A40F97B00113B8C /* PortraitView_default.xib */; };
-		75BB3E091A40FEF100113B8C /* default-portrait-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BB3E071A40FEF100113B8C /* default-portrait-shadow.png */; };
-		75BB3E0A1A40FEF100113B8C /* default-portrait-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BB3E081A40FEF100113B8C /* default-portrait-shadow@2x.png */; };
 		75BB3E0C1A42195400113B8C /* PortraitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB3E0B1A42195300113B8C /* PortraitData.swift */; };
 		88311BA01A1B37CF00A91249 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F13319E3480D006268ED /* LoginView_default.swift */; };
 		88311BA11A1B37E200A91249 /* SignUpView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F13619E3480D006268ED /* SignUpView_default.swift */; };
@@ -430,8 +428,6 @@
 		75BB3E001A40E6F200113B8C /* PortraitScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PortraitScreenlet.swift; path = PortraitScreenlet/PortraitScreenlet.swift; sourceTree = "<group>"; };
 		75BB3E031A40F97B00113B8C /* PortraitView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PortraitView_default.swift; path = Auth/PortraitScreenlet/PortraitView_default.swift; sourceTree = "<group>"; };
 		75BB3E041A40F97B00113B8C /* PortraitView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PortraitView_default.xib; path = Auth/PortraitScreenlet/PortraitView_default.xib; sourceTree = "<group>"; };
-		75BB3E071A40FEF100113B8C /* default-portrait-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-portrait-shadow.png"; sourceTree = "<group>"; };
-		75BB3E081A40FEF100113B8C /* default-portrait-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-portrait-shadow@2x.png"; sourceTree = "<group>"; };
 		75BB3E0B1A42195300113B8C /* PortraitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PortraitData.swift; path = PortraitScreenlet/PortraitData.swift; sourceTree = "<group>"; };
 		8848C7A919E3D58000BA60D9 /* liferay-screens-bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "liferay-screens-bridge.h"; sourceTree = "<group>"; };
 		8868384F19F32A380053E502 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/forgotpassword-screenlet.strings"; sourceTree = "<group>"; };
@@ -1116,8 +1112,6 @@
 				88F9F16819E3480D006268ED /* default-mail-icon@2x.png */,
 				88F9F16919E3480D006268ED /* default-multiline-field.png */,
 				88F9F16A19E3480D006268ED /* default-multiline-field@2x.png */,
-				75BB3E071A40FEF100113B8C /* default-portrait-shadow.png */,
-				75BB3E081A40FEF100113B8C /* default-portrait-shadow@2x.png */,
 				88F9F16B19E3480D006268ED /* default-preview-assetlist.png */,
 				88F9F16C19E3480D006268ED /* default-preview-assetlist@2x.png */,
 				88F9F16D19E3480D006268ED /* default-preview-ddlform.png */,
@@ -1463,9 +1457,7 @@
 				88F9F22419E3480D006268ED /* DDLFieldCheckboxTableCell_default.xib in Resources */,
 				88F9F23819E3480D006268ED /* DDLFieldRadioTableCell_default.xib in Resources */,
 				88F9F26219E3480D006268ED /* default-field.png in Resources */,
-				75BB3E091A40FEF100113B8C /* default-portrait-shadow.png in Resources */,
 				88F9F25A19E3480D006268ED /* default-field-failed.png in Resources */,
-				75BB3E0A1A40FEF100113B8C /* default-portrait-shadow@2x.png in Resources */,
 				88F9F22819E3480D006268ED /* DDLFieldDateTableCell_default.xib in Resources */,
 				88F9F29C19E3480D006268ED /* SignUpView_flat7.xib in Resources */,
 				88F9F27C19E3480D006268ED /* default-multiline-field@2x.png in Resources */,

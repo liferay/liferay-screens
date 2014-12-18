@@ -17,7 +17,9 @@ import UIKit
 class PortraitView_default: BaseScreenletView, PortraitData {
 
 
+	@IBOutlet var portraitBorder: UIView?
 	@IBOutlet var portraitImage: UIImageView?
+
 
 	func loadPortrait(portraitURL: NSURL) {
 		let request = NSURLRequest(URL: portraitURL)
@@ -32,5 +34,13 @@ class PortraitView_default: BaseScreenletView, PortraitData {
 			}, failure: { (request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) -> Void in
 				//TODO: show default image
 		})
+	}
+
+	override func onShow() {
+		let borderRadius = portraitBorder!.frame.width / 2
+		let imageRadius = portraitImage!.frame.width / 2
+
+		portraitBorder!.layer.cornerRadius = borderRadius
+		portraitImage!.layer.cornerRadius = imageRadius
 	}
 }
