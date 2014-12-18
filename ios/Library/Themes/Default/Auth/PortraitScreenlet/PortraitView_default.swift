@@ -17,6 +17,7 @@ import UIKit
 class PortraitView_default: BaseScreenletView, PortraitData {
 
 
+	@IBOutlet var activityIndicator: UIActivityIndicatorView?
 	@IBOutlet var portraitBorder: UIView?
 	@IBOutlet var portraitImage: UIImageView?
 
@@ -39,21 +40,24 @@ class PortraitView_default: BaseScreenletView, PortraitData {
 	private func loadPortrait(#portraitURL: NSURL) {
 		let request = NSURLRequest(URL: portraitURL)
 
+		activityIndicator?.startAnimating()
+
 		portraitImage?.setImageWithURLRequest(request, placeholderImage: nil, success: {
 			(request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) -> Void in
 
 			self.portraitImage?.image = image
-
-			return
+			self.activityIndicator?.stopAnimating()
 
 			}, failure: { (request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) -> Void in
 				self.portraitImage?.image = UIImage(named: "default-portrait-placeholder")
-
-				return
+				self.activityIndicator?.stopAnimating()
 		})
 	}
 
 	override func onShow() {
+		activityIndicator?.hidesWhenStopped = true
+		activityIndicator?.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+
 		let borderRadius = portraitBorder!.frame.width / 2
 		let imageRadius = portraitImage!.frame.width / 2
 
