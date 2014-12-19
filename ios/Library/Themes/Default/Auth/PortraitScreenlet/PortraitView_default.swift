@@ -14,34 +14,19 @@
 import UIKit
 
 
-class PortraitView_default: BaseScreenletView, PortraitData {
+public class PortraitView_default: BaseScreenletView, PortraitData {
 
 	@IBOutlet var activityIndicator: UIActivityIndicatorView?
 	@IBOutlet var portraitBorder: UIView?
 	@IBOutlet var portraitImage: UIImageView?
 
 
-	private func getPortraitPlaceholder() -> UIImage {
-		return UIImage(named: "default-portrait-placeholder")!
+	public func loadPlaceholder() {
+		self.portraitImage?.image = UIImage(named: "default-portrait-placeholder")
 	}
 
-	func loadPortrait(object: AnyObject) {
-		if let image = object as? UIImage {
-			loadPortrait(image: image)
-		}
-		else if let URL = object as? NSURL {
-			loadPortrait(portraitURL: URL as NSURL)
-		}
-		else {
-			loadPortrait(image: getPortraitPlaceholder())
-		}
-	}
 
-	private func loadPortrait(#image: UIImage) {
-		self.portraitImage?.image = image
-	}
-
-	private func loadPortrait(#portraitURL: NSURL) {
+	public func loadPortrait(portraitURL: NSURL) {
 		let request = NSURLRequest(URL: portraitURL)
 
 		activityIndicator?.startAnimating()
@@ -54,7 +39,7 @@ class PortraitView_default: BaseScreenletView, PortraitData {
 			},
 			failure: {
 				(request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) -> Void in
-					self.portraitImage?.image = self.getPortraitPlaceholder()
+					self.loadPlaceholder()
 					self.activityIndicator?.stopAnimating()
 			})
 	}

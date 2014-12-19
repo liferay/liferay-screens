@@ -16,33 +16,114 @@ import UIKit
 
 public class PortraitScreenlet: BaseScreenlet {
 
-	@IBInspectable public var autoLoad: Bool = true
-
-	@IBInspectable public var male: Bool = true
-	@IBInspectable public var portraitId: Int64 = 0
-	@IBInspectable public var uuid: String = ""
+	private var portraitView: PortraitData {
+		return screenletView as PortraitData
+	}
 
 
-	public func load() -> Bool {
-		var object: AnyObject
+	public func loadLoggedUserPortrait() -> Bool {
+		loadPortrait(url: getLoggedUserPortraitURL())
 
-		if uuid == "" {
-			object = getLoggedUserPortraitURL() as NSURL!
-		}
-		else if portraitId == 0 {
-			object = UIImage(named: "default-portrait-placeholder") as UIImage!
+		return SessionContext.hasSession
+	}
+
+	public func load(#portraitId: Int64, uuid: String, male: Bool = true) {
+
+		if portraitId == 0 {
+			portraitView.loadPlaceholder()
 		}
 		else {
-			object = getUserPortraitURL(male: male, portraitId: portraitId, uuid: uuid)
+			loadPortrait(
+					url: getUserPortraitURL(
+							male: male,
+							portraitId: portraitId,
+							uuid: uuid))
+		}
+	}
+
+	public func load(#userId: Int64) {
+		if let url = getLoggedUserPortraitURLByAttribute(
+				key: "userId",
+				value: NSNumber(longLong: userId)) {
+			portraitView.loadPortrait(url)
+		}
+		else {
+			let operation = GetUserByUserIdOperation(
+						screenlet: self,
+						userId: userId)
+
+			if !operation.validateAndEnqueue(loadedUser) {
+				portraitView.loadPlaceholder()
+			}
+		}
+	}
+
+	public func load(#companyId: Int64, emailAddress: String) {
+		if let url = getLoggedUserPortraitURLByAttribute(
+				key: "emailAddress",
+				value: emailAddress) {
+			portraitView.loadPortrait(url)
+		}
+		else {
+			let operation = GetUserByEmailOperation(
+						screenlet: self,
+						companyId: companyId,
+						emailAddress: emailAddress)
+
+			if !operation.validateAndEnqueue(loadedUser) {
+				portraitView.loadPlaceholder()
+			}
+		}
+	}
+
+
+	public func load(#companyId: Int64, screenName: String) {
+		if let url = getLoggedUserPortraitURLByAttribute(
+				key: "screenName",
+				value: screenName) {
+			portraitView.loadPortrait(url)
+		}
+		else {
+			let operation = GetUserByScreenNameOperation(
+						screenlet: self,
+						companyId: companyId,
+						screenName: screenName)
+
+			if !operation.validateAndEnqueue(loadedUser) {
+				portraitView.loadPlaceholder()
+			}
+		}
+	}
+
+	private func getLoggedUserPortraitURLByAttribute(
+			#key: String,
+			value: AnyObject) -> NSURL? {
+
+		var url: NSURL?
+
+		if let loggedUserAttributeValue:AnyObject = SessionContext.userAttribute(key) {
+			if loggedUserAttributeValue.isEqual(value) {
+				url = getLoggedUserPortraitURL()
+			}
 		}
 
-		(screenletView as PortraitData).loadPortrait(object)
+		return url
+	}
 
-		return true
+	private func loadedUser(operation: ServerOperation) {
+		let userOperation = operation as GetUserBaseOperation
+
+		if let userAttributes = userOperation.resultUserAttributes {
+			self.load(portraitId:(userAttributes["portraitId"] as NSNumber).longLongValue,
+					uuid: userAttributes["uuid"] as String)
+		}
+		else {
+			portraitView.loadPlaceholder()
+		}
 	}
 
 	private func getLoggedUserPortraitURL() -> NSURL? {
-		if let portraitId = SessionContext.userAttribute("portrait") as? NSNumber {
+		if let portraitId = SessionContext.userAttribute("portraitId") as? NSNumber {
 			if let uuid = SessionContext.userAttribute("uuid") as? String {
 				let portraitIdLong = portraitId.longLongValue
 
@@ -53,7 +134,16 @@ public class PortraitScreenlet: BaseScreenlet {
 		return nil
 	}
 
-	private func getUserPortraitURL(#male: Bool, portraitId: Int64, uuid: String) -> NSURL {
+	private func loadPortrait(#url: NSURL?) {
+		if let urlValue = url {
+			portraitView.loadPortrait(urlValue)
+		}
+		else {
+			portraitView.loadPlaceholder()
+		}
+	}
+
+	private func getUserPortraitURL(#male: Bool, portraitId: Int64, uuid: String) -> NSURL? {
 		let maleString = male ? "male" : "female"
 		var URL: String = String()
 
@@ -62,7 +152,7 @@ public class PortraitScreenlet: BaseScreenlet {
 		URL = URL + "\(portraitId)"
 		URL = URL + "&img_id_token=" + getSHA1(uuid)
 
-		return NSURL(string: URL)!
+		return NSURL(string: URL)
 	}
 
 	private func getSHA1(input: String) -> String {
@@ -80,12 +170,6 @@ public class PortraitScreenlet: BaseScreenlet {
 		var SHA1 = LRHttpUtil.encodeURL(encodedString)
 
 		return SHA1
-	}
-
-	override func onShow() {
-		if autoLoad {
-			load()
-		}
 	}
 
 }

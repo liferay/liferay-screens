@@ -24,7 +24,12 @@ public class GetUserBaseOperation: ServerOperation {
 
 	override internal func validateData() -> Bool {
 		if userName == nil || password == nil {
-			return false
+			userName = SessionContext.currentUserName
+			password = SessionContext.currentPassword
+
+			if userName == nil || password == nil {
+				return false
+			}
 		}
 
 		return true
