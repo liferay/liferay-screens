@@ -55,6 +55,9 @@ public class PortraitScreenlet: BaseScreenlet {
 			if !operation.validateAndEnqueue(loadedUser) {
 				portraitView.loadPlaceholder()
 			}
+			else {
+				screenletView?.onStartOperation()
+			}
 		}
 	}
 
@@ -72,6 +75,9 @@ public class PortraitScreenlet: BaseScreenlet {
 
 			if !operation.validateAndEnqueue(loadedUser) {
 				portraitView.loadPlaceholder()
+			}
+			else {
+				screenletView?.onStartOperation()
 			}
 		}
 	}
@@ -91,6 +97,9 @@ public class PortraitScreenlet: BaseScreenlet {
 
 			if !operation.validateAndEnqueue(loadedUser) {
 				portraitView.loadPlaceholder()
+			}
+			else {
+				screenletView?.onStartOperation()
 			}
 		}
 	}
