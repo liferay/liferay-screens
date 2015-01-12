@@ -22,7 +22,9 @@ class DDLListScreenletViewController: UIViewController, DDLListScreenletDelegate
 
 		self.screenlet?.delegate = self
 
-		self.screenlet?.userId = Int64(SessionContext.userAttribute("userId") as Int)
+		if let userId = SessionContext.userAttribute("userId") as? Int {
+			self.screenlet?.userId = Int64(userId)
+		}
 	}
 
 	func onDDLListResponse(records: [DDLRecord]) {
