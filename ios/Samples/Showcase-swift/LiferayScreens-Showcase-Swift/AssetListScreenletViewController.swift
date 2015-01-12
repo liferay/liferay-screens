@@ -33,6 +33,10 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 		showPicker(true, animated:true)
 	}
 
+	@IBAction func refreshControlChanged(sender: UISwitch) {
+		self.screenlet?.refreshControl = sender.on
+	}
+
 	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		selectedAsset = pickerData[row].assetId
 	}

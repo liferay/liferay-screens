@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -270,7 +269,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Miy-jz-jyL" customClass="AssetListScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="320" height="395"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="324"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="groupId">
@@ -281,9 +280,12 @@
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vKJ-1q-GBo">
                                 <rect key="frame" x="16" y="467" width="288" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="hVz-pW-P7g"/>
+                                </constraints>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="CHOOSE ASSET">
+                                        <fragment content="CHANGE ASSET TYPE">
                                             <attributes>
                                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="16" name="HelveticaNeue"/>
@@ -296,8 +298,21 @@
                                     <action selector="openAssetPickerAction:" destination="N5m-Be-zKQ" eventType="touchUpInside" id="Pfn-8P-vBd"/>
                                 </connections>
                             </button>
-                            <view alpha="0.97999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFK-ML-U5n">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="11h-6k-dtb">
+                                <rect key="frame" x="254" y="419" width="51" height="31"/>
+                                <color key="onTintColor" red="0.077612620909999999" green="0.63132638569999999" blue="0.80875318880000002" alpha="0.87" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="refreshControlChanged:" destination="N5m-Be-zKQ" eventType="valueChanged" id="fSl-D2-hTh"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable refresh control" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6z7-20-fIV">
+                                <rect key="frame" x="19" y="424" width="188" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view alpha="0.97999999999999998" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YFK-ML-U5n" userLabel="Choose Asset Type">
+                                <rect key="frame" x="195" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5a-JZ-5gn">
                                         <rect key="frame" x="16" y="462" width="288" height="44"/>
@@ -345,17 +360,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="vKJ-1q-GBo" firstAttribute="top" secondItem="6z7-20-fIV" secondAttribute="bottom" constant="22" id="2P0-vb-dew"/>
                             <constraint firstItem="vKJ-1q-GBo" firstAttribute="trailing" secondItem="jep-9y-AIa" secondAttribute="trailingMargin" id="2jB-Fe-eDG"/>
-                            <constraint firstAttribute="bottom" secondItem="Miy-jz-jyL" secondAttribute="bottom" constant="109" id="8z7-sa-H7T"/>
+                            <constraint firstItem="6z7-20-fIV" firstAttribute="leading" secondItem="jep-9y-AIa" secondAttribute="leadingMargin" constant="3" id="7Me-gq-xHf"/>
                             <constraint firstItem="YFK-ML-U5n" firstAttribute="leading" secondItem="jep-9y-AIa" secondAttribute="leadingMargin" constant="-16" id="HWe-wg-UiR"/>
-                            <constraint firstItem="Miy-jz-jyL" firstAttribute="leading" secondItem="jep-9y-AIa" secondAttribute="leadingMargin" constant="-16" id="Hw8-yG-MkN"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Miy-jz-jyL" secondAttribute="trailing" constant="-16" id="J0p-7u-nSD"/>
+                            <constraint firstItem="vKJ-1q-GBo" firstAttribute="top" secondItem="11h-6k-dtb" secondAttribute="bottom" constant="17" id="JJ6-b8-ZhV"/>
                             <constraint firstItem="YFK-ML-U5n" firstAttribute="bottom" secondItem="jep-9y-AIa" secondAttribute="bottomMargin" id="Pnz-aX-mip"/>
+                            <constraint firstItem="Miy-jz-jyL" firstAttribute="leading" secondItem="jep-9y-AIa" secondAttribute="leadingMargin" constant="-16" id="QuJ-0X-YoH"/>
                             <constraint firstItem="gB0-bg-czG" firstAttribute="top" secondItem="vKJ-1q-GBo" secondAttribute="bottom" constant="8" symbolic="YES" id="TEb-hC-VhP"/>
-                            <constraint firstItem="Miy-jz-jyL" firstAttribute="top" secondItem="ik0-p5-DgI" secondAttribute="bottom" id="TNm-Lu-ItY"/>
                             <constraint firstItem="YFK-ML-U5n" firstAttribute="top" secondItem="jep-9y-AIa" secondAttribute="topMargin" id="TrQ-W4-Vco"/>
-                            <constraint firstItem="vKJ-1q-GBo" firstAttribute="top" secondItem="Miy-jz-jyL" secondAttribute="bottom" constant="8" symbolic="YES" id="eIQ-hf-VMG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="11h-6k-dtb" secondAttribute="trailing" constant="1" id="UjB-nE-gBM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Miy-jz-jyL" secondAttribute="trailing" constant="-16" id="V8v-9b-4Ps"/>
+                            <constraint firstItem="Miy-jz-jyL" firstAttribute="top" secondItem="ik0-p5-DgI" secondAttribute="bottom" id="WbI-OV-wKu"/>
+                            <constraint firstItem="11h-6k-dtb" firstAttribute="leading" secondItem="6z7-20-fIV" secondAttribute="trailing" constant="47" id="ZZe-a7-X5r"/>
+                            <constraint firstItem="6z7-20-fIV" firstAttribute="top" secondItem="Miy-jz-jyL" secondAttribute="bottom" constant="36" id="jKS-hJ-FmX"/>
+                            <constraint firstItem="11h-6k-dtb" firstAttribute="leading" secondItem="6z7-20-fIV" secondAttribute="trailing" constant="47" id="kqh-FQ-Nfz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YFK-ML-U5n" secondAttribute="trailing" constant="-16" id="lNe-R4-eTo"/>
+                            <constraint firstItem="11h-6k-dtb" firstAttribute="top" secondItem="Miy-jz-jyL" secondAttribute="bottom" constant="31" id="qhK-p4-ei1"/>
                             <constraint firstItem="vKJ-1q-GBo" firstAttribute="leading" secondItem="jep-9y-AIa" secondAttribute="leadingMargin" id="sAg-ge-sBo"/>
                         </constraints>
                     </view>
