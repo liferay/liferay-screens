@@ -26,10 +26,41 @@ import UIKit
 
 @objc public class AssetListScreenletEntry {
 
-	public var title:String
+	public let attributes:[String:AnyObject]
 
-	public init(title:String) {
-		self.title = title
+	public var title: String {
+		return attributes["title"] as String
+	}
+
+	public var description: String {
+		return attributes["description"] as String
+	}
+
+	public var classNameId: Int64 {
+		return Int64(attributes["classNameId"] as Int)
+	}
+
+	public var classPK: Int64 {
+		return Int64(attributes["classPK"] as Int)
+	}
+
+	public var groupId: Int64 {
+		return Int64(attributes["groupId"] as Int)
+	}
+
+	public var companyId: Int64 {
+		return Int64(attributes["companyId"] as Int)
+	}
+
+	public var entryId: Int64 {
+		return Int64(attributes["entryId"] as Int)
+	}
+
+
+	//MARK: Init
+
+	public init(attributes:[String:AnyObject]) {
+		self.attributes = attributes
 	}
 
 }
@@ -63,9 +94,7 @@ import UIKit
 	}
 
 	override internal func convert(#serverResult:[String:AnyObject]) -> AnyObject {
-		let title = (serverResult["title"] ?? "") as String
-
-		return AssetListScreenletEntry(title: title)
+		return AssetListScreenletEntry(attributes: serverResult)
 	}
 
 	override internal func onLoadPageError(#page: Int, error: NSError) {
