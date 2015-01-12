@@ -51,12 +51,12 @@ The Default theme uses a standard `UITableView` to show a scrollable list of fie
 
 ![The `DDLForm` screenlet using Default theme.](Images/ddlform.png)
 
-### Custom cells
+### Custom Cells
 
-Any theme should define a cell view for each kind of field type. For instance, the `xib` file called `DDLFieldDateTableCell_default` will be used to render `Date` fields in the `Default` theme. 
+A theme needs to define a cell view for each field type. For instance, the `xib` file `DDLFieldDateTableCell_default` is used to render `Date` fields in the `Default` theme. 
 
-However, you can customize how to show one specific field using the following filename: `DDLCustomFieldXXXTableCell_default` where `XXX` will be your field name.
-For instance, the GUI for text fields in the Default theme looks like you can see above (field "Are you a subscriber?). If you want a custom GUI, you needn't to create a whole theme. You just need to create a `xib` file called `DDLCustomFieldSubscriberNameTableCell_default` (considering the field's name is 'subscriberName') and the custom version will be rendered. Be careful to keep the same components and `IBOutlet` defined in the custom file.
+What if you want a specific field to have a unique appearance though? No problem! You can customize your field's display by using the following filename pattern, where `XXX` is your field's name: `DDLCustomFieldXXXTableCell_default`. 
+For example, the the "Are you a subscriber?" field in screenshot above shows how text fields appear in the Default theme. If you want to customize this, you don't need to create an entire theme. You just need to create an `xib` file for the field `subscriberName`. The filename is therefore `DDLCustomFieldSubscriberNameTableCell_default`. Be careful to keep the same components and `IBOutlet` defined in the custom file.
 
 ## Portal Configuration
 
