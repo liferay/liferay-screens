@@ -127,8 +127,6 @@
 		88274FC71A24904100FE31C6 /* DDLListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88274F1D1A24904100FE31C6 /* DDLListView_default.xib */; };
 		88274FC81A24904100FE31C6 /* DefaultThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88274F1E1A24904100FE31C6 /* DefaultThemeConstants.swift */; };
 		88274FC91A24904100FE31C6 /* default.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88274F201A24904100FE31C6 /* default.strings */; };
-		88274FCA1A24904100FE31C6 /* default-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 88274F221A24904100FE31C6 /* default-button.png */; };
-		88274FCB1A24904100FE31C6 /* default-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88274F231A24904100FE31C6 /* default-button@2x.png */; };
 		88274FCC1A24904100FE31C6 /* default-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 88274F241A24904100FE31C6 /* default-calendar.png */; };
 		88274FCD1A24904100FE31C6 /* default-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88274F251A24904100FE31C6 /* default-calendar@2x.png */; };
 		88274FCE1A24904100FE31C6 /* default-field-failed.png in Resources */ = {isa = PBXBuildFile; fileRef = 88274F261A24904100FE31C6 /* default-field-failed.png */; };
@@ -322,8 +320,6 @@
 		88274F1D1A24904100FE31C6 /* DDLListView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLListView_default.xib; sourceTree = "<group>"; };
 		88274F1E1A24904100FE31C6 /* DefaultThemeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultThemeConstants.swift; sourceTree = "<group>"; };
 		88274F211A24904100FE31C6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/default.strings; sourceTree = "<group>"; };
-		88274F221A24904100FE31C6 /* default-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-button.png"; sourceTree = "<group>"; };
-		88274F231A24904100FE31C6 /* default-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-button@2x.png"; sourceTree = "<group>"; };
 		88274F241A24904100FE31C6 /* default-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-calendar.png"; sourceTree = "<group>"; };
 		88274F251A24904100FE31C6 /* default-calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-calendar@2x.png"; sourceTree = "<group>"; };
 		88274F261A24904100FE31C6 /* default-field-failed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-field-failed.png"; sourceTree = "<group>"; };
@@ -882,8 +878,6 @@
 			isa = PBXGroup;
 			children = (
 				88274F201A24904100FE31C6 /* default.strings */,
-				88274F221A24904100FE31C6 /* default-button.png */,
-				88274F231A24904100FE31C6 /* default-button@2x.png */,
 				88274F241A24904100FE31C6 /* default-calendar.png */,
 				88274F251A24904100FE31C6 /* default-calendar@2x.png */,
 				88274F261A24904100FE31C6 /* default-field-failed.png */,
@@ -1112,7 +1106,6 @@
 				88274FE71A24904100FE31C6 /* default-user-icon@2x.png in Resources */,
 				88274FDE1A24904100FE31C6 /* default-multiline-field.png in Resources */,
 				88274FD51A24904100FE31C6 /* default-form-gradient-bottom@2x.png in Resources */,
-				88274FCB1A24904100FE31C6 /* default-button@2x.png in Resources */,
 				88274FBA1A24904100FE31C6 /* DDLFieldRadioTableCell_default.xib in Resources */,
 				88274FDD1A24904100FE31C6 /* default-mail-icon@2x.png in Resources */,
 				88274FC91A24904100FE31C6 /* default.strings in Resources */,
@@ -1121,7 +1114,6 @@
 				88274FD81A24904100FE31C6 /* default-hourglass.png in Resources */,
 				88274E621A248DC100FE31C6 /* Images.xcassets in Resources */,
 				88274FBC1A24904100FE31C6 /* DDLFieldSelectTableCell_default.xib in Resources */,
-				88274FCA1A24904100FE31C6 /* default-button.png in Resources */,
 				88274FE21A24904100FE31C6 /* default-preview-ddlform.png in Resources */,
 				88274FE61A24904100FE31C6 /* default-user-icon.png in Resources */,
 			);
