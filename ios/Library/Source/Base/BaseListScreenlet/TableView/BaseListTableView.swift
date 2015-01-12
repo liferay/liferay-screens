@@ -18,13 +18,46 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 
 	@IBOutlet internal var tableView: UITableView?
 
+	internal var refreshControlView: ODRefreshControl?
 
-	// MARK: AssetListView
+	internal var refreshClosure: (Void -> Bool)? {
+		didSet {
+			updateRefreshControl()
+		}
+	}
 
-	override internal func onChangedRows() {
-		super.onChangedRows()
 
-		tableView!.reloadData()
+	// MARK: BaseListView
+
+	override internal func onChangedRows(oldRows:[AnyObject?]) {
+		super.onChangedRows(oldRows)
+
+		if oldRows.isEmpty {
+			var indexPaths: [NSIndexPath] = []
+			for (index,row) in enumerate(self.rows) {
+				indexPaths.append(NSIndexPath(forRow:index, inSection:0))
+			}
+			tableView!.insertRowsAtIndexPaths(indexPaths, withRowAnimation:UITableViewRowAnimation.Top)
+		}
+		else if let visibleRows = tableView!.indexPathsForVisibleRows() {
+			if visibleRows.count > 0 {
+				tableView!.reloadRowsAtIndexPaths(visibleRows, withRowAnimation:UITableViewRowAnimation.None)
+			}
+			else {
+				tableView!.reloadData()
+			}
+		}
+		else {
+			tableView!.reloadData()
+		}
+	}
+
+	override func onFinishOperation() {
+		if let currentRefreshControl = refreshControlView {
+			delayed(0.3) {
+				currentRefreshControl.endRefreshing()
+			}
+		}
 	}
 
 
@@ -60,8 +93,6 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			onSelectedRowClosure?(row)
 		}
 	}
-
-
 	//MARK: Internal methods
 
 	internal func doDequeueReusableCell(#row: Int) -> UITableViewCell {
@@ -79,5 +110,29 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 
 	internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
 	}
+
+	internal func updateRefreshControl() {
+		if let closureValue = refreshClosure {
+			if refreshControlView == nil {
+				refreshControlView = ODRefreshControl(inScrollView: self.tableView)
+				refreshControlView!.addTarget(self,
+						action: "refreshControlBeginRefresh:",
+						forControlEvents: UIControlEvents.ValueChanged)
+			}
+		}
+		else if let currentControl = refreshControlView {
+			currentControl.endRefreshing()
+			currentControl.removeFromSuperview()
+			refreshControlView = nil
+		}
+	}
+
+	internal func refreshControlBeginRefresh(sender:AnyObject?) {
+		delayed(0.3) {
+			self.refreshClosure?()
+			return
+		}
+	}
+
 
 }

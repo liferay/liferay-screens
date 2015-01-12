@@ -18,18 +18,23 @@ public class BaseListView: BaseScreenletView {
 
 	public var rowCount:Int = 0
 
-	public var rows:[AnyObject?] = [] {
-		didSet {
-			onChangedRows()
+	public var rows:[AnyObject?] {
+		set {
+			let oldRows = _rows
+			_rows = newValue
+			onChangedRows(oldRows)
+		}
+		get {
+			return _rows
 		}
 	}
 
 	internal var onSelectedRowClosure: (AnyObject -> Void)?
-
 	internal var fetchPageForRow: (Int -> Void)?
 
+	private var _rows:[AnyObject?] = []
 
-	internal func onChangedRows() {
+	internal func onChangedRows(oldRows:[AnyObject?]) {
 	}
 
 }
