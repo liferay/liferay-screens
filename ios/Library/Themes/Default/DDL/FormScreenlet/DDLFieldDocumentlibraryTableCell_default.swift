@@ -78,12 +78,11 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 		super.onChangedField()
 
 		if let docField = field as? DDLFieldDocument {
-			textField?.text = docField.currentDocumentLabel
+			textField?.text = docField.currentValueAsLabel
 
 			presenterViewController.selectedDocumentClosure = selectedDocumentClosure
 
 			setFieldPresenter(docField)
-
 			setProgress(docField)
 
 			if field!.lastValidationResult != nil {
@@ -163,7 +162,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 		if image != nil || url != nil {
 			field!.currentValue = image ?? url
 			
-			textField?.text = (field as DDLFieldDocument).currentDocumentLabel
+			textField?.text = field?.currentValueAsLabel
 
 			formView?.userActionWithName(
 				actionName: "upload-document",
