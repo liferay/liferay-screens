@@ -16,14 +16,10 @@ import Foundation
 
 public class DDLFieldDate : DDLField {
 
-	public var currentDateLabel: String? {
-		var result: String?
-
-		if let date = currentValue as? NSDate {
-			result = clientDateFormatter.stringFromDate(date)
+	override public var currentLocale: NSLocale {
+		didSet {
+			clientDateFormatter.locale = self.currentLocale
 		}
-
-		return result
 	}
 
 	private let serverYYYYDateFormat = "MM/dd/yyyy"
@@ -36,17 +32,18 @@ public class DDLFieldDate : DDLField {
 	private let gmtTimeZone = NSTimeZone(abbreviation: "GMT")
 
 
-	override init(attributes: [String:AnyObject]) {
+	override init(attributes: [String:AnyObject], locale: NSLocale) {
 		serverYYYYDateFormatter.dateFormat = serverYYYYDateFormat
 		serverYYDateFormatter.dateFormat = serverYYDateFormat
 
-		clientDateFormatter.dateStyle = .MediumStyle
+		clientDateFormatter.dateStyle = .LongStyle
 		clientDateFormatter.timeStyle = .NoStyle
+		clientDateFormatter.locale = locale
 
 		serverYYYYDateFormatter.timeZone = gmtTimeZone
 		serverYYDateFormatter.timeZone = gmtTimeZone
 
-		super.init(attributes: attributes)
+		super.init(attributes: attributes, locale: locale)
 	}
 
 
@@ -65,6 +62,16 @@ public class DDLFieldDate : DDLField {
 		return nil
 	}
 
+	override func convert(fromLabel label: String?) -> AnyObject? {
+		var result: AnyObject?
+
+		if label != nil {
+			result = clientDateFormatter.dateFromString(label!)
+		}
+
+		return result
+	}
+
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		var result: String?
 
@@ -73,6 +80,16 @@ public class DDLFieldDate : DDLField {
 			let epoch = UInt64(date.timeIntervalSince1970 * 1000)
 
 			result = "\(epoch)"
+		}
+
+		return result
+	}
+
+	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+		var result: String?
+
+		if let date = currentValue as? NSDate {
+			result = clientDateFormatter.stringFromDate(date)
 		}
 
 		return result

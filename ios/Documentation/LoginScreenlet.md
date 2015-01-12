@@ -41,7 +41,7 @@ The authentication method should be configured in your Liferay instance. You can
 
 ![Setting the authentication method in Liferay Portal.](Images/portal-auth.png "Liferay portal authentication methods")
 
-For more details, please refer to the [Configuring Portal Settings](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/portal-settings-liferay-portal-6-2-user-guide-16-en) section of the User Guide.
+For more details, please refer to the [Configuring Portal Settings](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/configuring-portal-settings) section of the User Guide.
 
 ## Attributes
 
