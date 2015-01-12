@@ -47,7 +47,7 @@ public class DDLFieldNumber : DDLField {
 		return result
 	}
 
-	override func convert(fromLabel label: String?) -> AnyObject? {
+	override internal func convert(fromLabel label: String?) -> AnyObject? {
 		var result: AnyObject?
 
 		if label != nil {
@@ -73,7 +73,7 @@ public class DDLFieldNumber : DDLField {
 				locale: NSLocale(localeIdentifier: "en_US"))
 	}
 
-	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+	override internal func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
 		return formatNumber(value as? NSNumber, locale: self.currentLocale)
 	}
 
