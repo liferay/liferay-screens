@@ -31,7 +31,7 @@ The Default theme uses a standard `UIWebView` to render the HTML. Other themes m
 
 ## Portal Configuration
 
-For the `WebContentDisplayScreenlet` to function properly, there should be web content in the Liferay instance your app connects to. For more details on web content, please refer to the [Web Content Management](https://www.liferay.com/documentation/liferay-portal/6.2/user-guide/-/ai/web-content-management-liferay-portal-6-2-user-guide-02-en) section of the Liferay User Guide.
+For the `WebContentDisplayScreenlet` to function properly, there should be web content in the Liferay instance your app connects to. For more details on web content, please refer to the [Web Content Management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/web-content-management) section of the Liferay User Guide.
 
 ## Attributes
 
