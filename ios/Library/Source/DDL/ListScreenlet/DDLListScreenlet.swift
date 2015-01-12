@@ -60,7 +60,7 @@ import UIKit
 				page: page,
 				computeRowCount: computeRowCount)
 
-		operation.userId = self.userId
+		operation.userId = (self.userId != 0) ? self.userId : nil
 		operation.recordSetId = self.recordSetId
 
 		return operation
