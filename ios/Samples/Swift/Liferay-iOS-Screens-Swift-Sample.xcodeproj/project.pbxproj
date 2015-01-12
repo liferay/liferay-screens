@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		171724ED3A0843AB9AC1B25E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D782ECE4B14578B67EA5D0 /* libPods.a */; };
+		753B7CCB1A4262A300664282 /* default-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 753B7CC91A4262A300664282 /* default-portrait-placeholder.png */; };
+		753B7CCC1A4262A300664282 /* default-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 753B7CCA1A4262A300664282 /* default-portrait-placeholder@2x.png */; };
+		75ECB5731A4243FC0066859C /* PortraitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECB5711A4243FC0066859C /* PortraitData.swift */; };
+		75ECB5741A4243FC0066859C /* PortraitScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECB5721A4243FC0066859C /* PortraitScreenlet.swift */; };
+		75ECB5781A4244120066859C /* PortraitView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECB5761A4244120066859C /* PortraitView_default.swift */; };
+		75ECB5791A4244120066859C /* PortraitView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75ECB5771A4244120066859C /* PortraitView_default.xib */; };
 		8811DC4019BDD0FA008FE226 /* WebContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811DC3F19BDD0FA008FE226 /* WebContentViewController.swift */; };
 		8834828119E344AF001E6E2A /* AssetListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883481C119E344AE001E6E2A /* AssetListScreenlet.swift */; };
 		8834828219E344AF001E6E2A /* LiferayAssetListPageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883481C319E344AE001E6E2A /* LiferayAssetListPageOperation.swift */; };
@@ -178,6 +184,12 @@
 
 /* Begin PBXFileReference section */
 		01D782ECE4B14578B67EA5D0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		753B7CC91A4262A300664282 /* default-portrait-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-portrait-placeholder.png"; sourceTree = "<group>"; };
+		753B7CCA1A4262A300664282 /* default-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
+		75ECB5711A4243FC0066859C /* PortraitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitData.swift; sourceTree = "<group>"; };
+		75ECB5721A4243FC0066859C /* PortraitScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitScreenlet.swift; sourceTree = "<group>"; };
+		75ECB5761A4244120066859C /* PortraitView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitView_default.swift; sourceTree = "<group>"; };
+		75ECB5771A4244120066859C /* PortraitView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortraitView_default.xib; sourceTree = "<group>"; };
 		8811DC3F19BDD0FA008FE226 /* WebContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentViewController.swift; sourceTree = "<group>"; };
 		883481C119E344AE001E6E2A /* AssetListScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListScreenlet.swift; sourceTree = "<group>"; };
 		883481C319E344AE001E6E2A /* LiferayAssetListPageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayAssetListPageOperation.swift; sourceTree = "<group>"; };
@@ -377,6 +389,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		75ECB5701A4243FC0066859C /* PortraitScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				75ECB5711A4243FC0066859C /* PortraitData.swift */,
+				75ECB5721A4243FC0066859C /* PortraitScreenlet.swift */,
+			);
+			name = PortraitScreenlet;
+			path = Auth/PortraitScreenlet;
+			sourceTree = "<group>";
+		};
+		75ECB5751A4244120066859C /* PortraitScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				75ECB5761A4244120066859C /* PortraitView_default.swift */,
+				75ECB5771A4244120066859C /* PortraitView_default.xib */,
+			);
+			path = PortraitScreenlet;
+			sourceTree = "<group>";
+		};
 		883481BF19E344AE001E6E2A /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +418,7 @@
 				8834820D19E344AE001E6E2A /* Extensions */,
 				8848C7AA19E3D5AE00BA60D9 /* liferay-screens-bridge.h */,
 				8834821319E344AE001E6E2A /* liferay-server-context-sample.plist */,
+				75ECB5701A4243FC0066859C /* PortraitScreenlet */,
 				8834821419E344AE001E6E2A /* Services */,
 				8834821B19E344AF001E6E2A /* WebContentDisplayScreenlet */,
 			);
@@ -701,6 +733,7 @@
 			children = (
 				8834822619E344AF001E6E2A /* ForgotPasswordScreenlet */,
 				8834822919E344AF001E6E2A /* LoginScreenlet */,
+				75ECB5751A4244120066859C /* PortraitScreenlet */,
 				8834822C19E344AF001E6E2A /* SignUpScreenlet */,
 			);
 			path = Auth;
@@ -805,6 +838,8 @@
 				8834825F19E344AF001E6E2A /* default-mail-icon@2x.png */,
 				8834826019E344AF001E6E2A /* default-multiline-field.png */,
 				8834826119E344AF001E6E2A /* default-multiline-field@2x.png */,
+				753B7CC91A4262A300664282 /* default-portrait-placeholder.png */,
+				753B7CCA1A4262A300664282 /* default-portrait-placeholder@2x.png */,
 				8834826219E344AF001E6E2A /* default-preview-assetlist.png */,
 				8834826319E344AF001E6E2A /* default-preview-assetlist@2x.png */,
 				8834826419E344AF001E6E2A /* default-preview-ddlform.png */,
@@ -1042,6 +1077,7 @@
 				8834830219E344AF001E6E2A /* default-user-icon@2x.png in Resources */,
 				8834830419E344AF001E6E2A /* WebContentDisplayView_default.xib in Resources */,
 				8868384519F31F7C0053E502 /* base.strings in Resources */,
+				753B7CCB1A4262A300664282 /* default-portrait-placeholder.png in Resources */,
 				88CB48A419F1C84F000A8255 /* default-form-gradient-top.png in Resources */,
 				883482EB19E344AF001E6E2A /* default-field-focused.png in Resources */,
 				8834830119E344AF001E6E2A /* default-user-icon.png in Resources */,
@@ -1053,6 +1089,7 @@
 				883482E519E344AF001E6E2A /* DDLListView_default.xib in Resources */,
 				8868383B19F313CF0053E502 /* forgotpassword-screenlet.strings in Resources */,
 				8868384119F319A30053E502 /* signup-screenlet.strings in Resources */,
+				753B7CCC1A4262A300664282 /* default-portrait-placeholder@2x.png in Resources */,
 				8834830A19E344AF001E6E2A /* SignUpView_flat7.xib in Resources */,
 				883482F519E344AF001E6E2A /* default-lock-icon.png in Resources */,
 				883482E119E344AF001E6E2A /* DDLFormView_default.xib in Resources */,
@@ -1082,6 +1119,7 @@
 				8834830E19E344AF001E6E2A /* flat7-button@2x.png in Resources */,
 				883482E319E344AF001E6E2A /* DDLSubmitButtonTableCell_default.xib in Resources */,
 				88CB48A219F1C84F000A8255 /* default-form-gradient-bottom.png in Resources */,
+				75ECB5791A4244120066859C /* PortraitView_default.xib in Resources */,
 				88CB48A619F1C84F000A8255 /* default-preview-webcontentdisplay.png in Resources */,
 				88F3902B19D595B100169918 /* liferay-server-context.plist in Resources */,
 				883482D219E344AF001E6E2A /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */,
@@ -1151,6 +1189,7 @@
 				8834829719E344AF001E6E2A /* LiferayPaginationOperation.swift in Sources */,
 				8834829319E344AF001E6E2A /* SignUpData.swift in Sources */,
 				8845B85019CC32560025D1D2 /* DDListViewController.swift in Sources */,
+				75ECB5731A4243FC0066859C /* PortraitData.swift in Sources */,
 				8834828C19E344AF001E6E2A /* LoginScreenlet.swift in Sources */,
 				883482BA19E344AF001E6E2A /* Global.swift in Sources */,
 				883482AA19E344AF001E6E2A /* DDLFormTableView.swift in Sources */,
@@ -1161,11 +1200,13 @@
 				883482D119E344AF001E6E2A /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */,
 				8834829019E344AF001E6E2A /* LiferayLoginUserIdOperation.swift in Sources */,
 				883482D919E344AF001E6E2A /* DDLFieldSelectTableCell_default.swift in Sources */,
+				75ECB5741A4243FC0066859C /* PortraitScreenlet.swift in Sources */,
 				883482B319E344AF001E6E2A /* DDLFieldDocument.swift in Sources */,
 				883482D719E344AF001E6E2A /* DDLFieldRadioTableCell_default.swift in Sources */,
 				8868383D19F317130053E502 /* UIButton+Title.swift in Sources */,
 				8834829219E344AF001E6E2A /* LiferaySignUpOperation.swift in Sources */,
 				883482C119E344AF001E6E2A /* LiferayWebContentLoadOperation.swift in Sources */,
+				75ECB5781A4244120066859C /* PortraitView_default.swift in Sources */,
 				8834829F19E344AF001E6E2A /* ThemeManager.swift in Sources */,
 				885FD6831996E1DF00F23BA1 /* FormViewController.swift in Sources */,
 				8834828119E344AF001E6E2A /* AssetListScreenlet.swift in Sources */,
