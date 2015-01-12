@@ -5,6 +5,6 @@
 "base-yes"="Sí";
 "base-no"="No";
 
-"base-an-image-has-been-selected"="Una imagen ha sido seleccionada"
-"base-a-video-has-been-selected"="Un vídeo ha sido seleccionado"
-"base-a-file-is-already-uploaded"="Un fichero ha sido subido previamente"
+"base-an-image-has-been-selected"="Una imagen ha sido seleccionada";
+"base-a-video-has-been-selected"="Un vídeo ha sido seleccionado";
+"base-a-file-is-already-uploaded"="Un fichero ha sido subido previamente";
