@@ -174,6 +174,7 @@
 		883D85221A234EAC00CC179B /* flat7-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D84851A234EAC00CC179B /* flat7-field@2x.png */; };
 		883D85231A234EAC00CC179B /* flat7-gradient-form.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D84861A234EAC00CC179B /* flat7-gradient-form.png */; };
 		883D85241A234EAC00CC179B /* flat7-gradient-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D84871A234EAC00CC179B /* flat7-gradient-form@2x.png */; };
+		8847A7E51A64193F0098B92E /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8847A7E41A64193F0098B92E /* liferay-server-context.plist */; };
 		DADBA59292975E248939609C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EB65E3D4DC189357A623BA6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -364,6 +365,7 @@
 		883D84851A234EAC00CC179B /* flat7-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field@2x.png"; sourceTree = "<group>"; };
 		883D84861A234EAC00CC179B /* flat7-gradient-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form.png"; sourceTree = "<group>"; };
 		883D84871A234EAC00CC179B /* flat7-gradient-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form@2x.png"; sourceTree = "<group>"; };
+		8847A7E41A64193F0098B92E /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = "<group>"; };
 		88CB07471A264B7100964F33 /* AssetListScreenletInterop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletInterop.h; sourceTree = "<group>"; };
 		D599D7796E7BE84936DB1C44 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -417,6 +419,7 @@
 				88274FFE1A24DAF800FE31C6 /* ForgotPasswordScreenletViewController.swift */,
 				88215F3A1A234184009B96C7 /* HomeLoginViewController.swift */,
 				88215F3C1A234184009B96C7 /* HomeScreenletsViewController.swift */,
+				8847A7E41A64193F0098B92E /* liferay-server-context.plist */,
 				88215F3E1A234184009B96C7 /* Main.storyboard */,
 				88274FF91A24C7CB00FE31C6 /* SignUpScreenletViewController.swift */,
 				88215F361A234184009B96C7 /* Supporting Files */,
@@ -1039,6 +1042,7 @@
 				883D84F41A234EAC00CC179B /* DDLListView_default.xib in Resources */,
 				883D84E31A234EAC00CC179B /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
 				883D850C1A234EAC00CC179B /* default-multiline-field@2x.png in Resources */,
+				8847A7E51A64193F0098B92E /* liferay-server-context.plist in Resources */,
 				883D84931A234EAC00CC179B /* login-screenlet.strings in Resources */,
 				883D84E11A234EAC00CC179B /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */,
 				883D84DA1A234EAC00CC179B /* SignUpView_default.xib in Resources */,

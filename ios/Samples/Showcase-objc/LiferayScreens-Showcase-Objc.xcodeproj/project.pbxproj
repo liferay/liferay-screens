@@ -174,6 +174,7 @@
 		88274FFD1A24CD1A00FE31C6 /* SignUpScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88274FFC1A24CD1A00FE31C6 /* SignUpScreenletViewController.m */; };
 		882750021A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882750011A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.m */; };
 		8833E9621A28A541006C4413 /* DDLListScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8833E9611A28A541006C4413 /* DDLListScreenletViewController.m */; };
+		8847A7E71A6421A40098B92E /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8847A7E61A6421A40098B92E /* liferay-server-context.plist */; };
 		88CB07451A2644FC00964F33 /* AssetListScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */; };
 		B6BD414BAE42F1C83DFC21DF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D62D52D84D90CDB834C3F0C /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -374,6 +375,7 @@
 		882750011A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordScreenletViewController.m; sourceTree = "<group>"; };
 		8833E9601A28A541006C4413 /* DDLListScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLListScreenletViewController.h; sourceTree = "<group>"; };
 		8833E9611A28A541006C4413 /* DDLListScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLListScreenletViewController.m; sourceTree = "<group>"; };
+		8847A7E61A6421A40098B92E /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = "<group>"; };
 		88CB07431A2644FC00964F33 /* AssetListScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletViewController.h; sourceTree = "<group>"; };
 		88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListScreenletViewController.m; sourceTree = "<group>"; };
 		88CB07461A264A5D00964F33 /* AssetListScreenletInterop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletInterop.h; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 				88274E591A248DC100FE31C6 /* HomeLoginViewController.m */,
 				88274E5B1A248DC100FE31C6 /* HomeScreenletsViewController.h */,
 				88274E5C1A248DC100FE31C6 /* HomeScreenletsViewController.m */,
+				8847A7E61A6421A40098B92E /* liferay-server-context.plist */,
 				88274E5E1A248DC100FE31C6 /* Main.storyboard */,
 				88274FFB1A24CD1A00FE31C6 /* SignUpScreenletViewController.h */,
 				88274FFC1A24CD1A00FE31C6 /* SignUpScreenletViewController.m */,
@@ -1062,6 +1065,7 @@
 				88274FC71A24904100FE31C6 /* DDLListView_default.xib in Resources */,
 				88274FB61A24904100FE31C6 /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
 				88274FDF1A24904100FE31C6 /* default-multiline-field@2x.png in Resources */,
+				8847A7E71A6421A40098B92E /* liferay-server-context.plist in Resources */,
 				88274F661A24904100FE31C6 /* login-screenlet.strings in Resources */,
 				88274FB41A24904100FE31C6 /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */,
 				88274FAD1A24904100FE31C6 /* SignUpView_default.xib in Resources */,
