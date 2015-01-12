@@ -29,9 +29,9 @@ import UIKit
 	@IBInspectable public var userId: Int64 = 0
 	@IBInspectable public var recordSetId: Int64 = 0
 
-	@IBInspectable public var labelField: String? {
+	@IBInspectable public var labelFields: String? {
 		didSet {
-			(screenletView as? DDLListData)?.labelField = labelField ?? ""
+			(screenletView as? DDLListData)?.labelFields = parseFields(labelFields)
 		}
 	}
 
@@ -47,7 +47,7 @@ import UIKit
 	override public func onCreated() {
 		super.onCreated()
 
-		ddlListData.labelField = labelField ?? ""
+		ddlListData.labelFields = parseFields(self.labelFields)
 	}
 
 	override internal func createPaginationOperation(
@@ -60,7 +60,7 @@ import UIKit
 				page: page,
 				computeRowCount: computeRowCount)
 
-		operation.userId = self.userId
+		operation.userId = (self.userId != 0) ? self.userId : nil
 		operation.recordSetId = self.recordSetId
 
 		return operation
@@ -92,6 +92,23 @@ import UIKit
 
 	override internal func onSelectedRow(row: AnyObject) {
 		delegate?.onDDLRecordSelected?(row as DDLRecord)
+	}
+
+
+	//MARK: Private methods
+
+	private func parseFields(fields: String?) -> [String] {
+		var result: [String] = []
+
+		if let fieldsValue = fields {
+			let dirtyFields = (fieldsValue as NSString).componentsSeparatedByString(",")
+			result = dirtyFields.map() {
+				$0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+			}
+			result = result.filter() { return $0 != "" }
+		}
+
+		return result
 	}
 
 }

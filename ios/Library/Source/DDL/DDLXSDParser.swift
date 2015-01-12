@@ -85,7 +85,7 @@ public class DDLXSDParser {
 				dict1: xmlElement.attributes as [String:AnyObject],
 				dict2: localizedMetadata)
 
-		return dataType.createField(attributes: mergedAttributes)
+		return dataType.createField(attributes: mergedAttributes, locale: locale)
 	}
 
 	private func mergeDictionaries(

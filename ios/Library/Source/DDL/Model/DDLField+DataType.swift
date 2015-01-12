@@ -31,28 +31,43 @@ extension DDLField {
 			return DataType(rawValue: xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 		}
 
-		public func createField(#attributes:[String:AnyObject]) -> DDLField? {
+		public func createField(
+				#attributes:[String:AnyObject],
+				locale: NSLocale)
+				-> DDLField? {
 
 			switch self {
 				case .DDLBoolean:
-					return DDLFieldBoolean(attributes:attributes)
+					return DDLFieldBoolean(
+							attributes:attributes,
+							locale: locale)
 
 				case .DDLString:
 					switch DDLField.Editor.from(attributes: attributes) {
 						case .Select, .Radio:
-							return DDLFieldStringWithOptions(attributes:attributes)
+							return DDLFieldStringWithOptions(
+									attributes: attributes,
+									locale: locale)
 						default:
-							return DDLFieldString(attributes:attributes)
+							return DDLFieldString(
+									attributes:attributes,
+									locale: locale)
 					}
 
 				case .DDLDate:
-					return DDLFieldDate(attributes:attributes)
+					return DDLFieldDate(
+							attributes:attributes,
+							locale: locale)
 
 				case .DDLInteger, .DDLNumber, .DDLDouble:
-					return DDLFieldNumber(attributes:attributes)
+					return DDLFieldNumber(
+							attributes:attributes,
+							locale: locale)
 
 				case .DDLDocument:
-					return DDLFieldDocument(attributes:attributes)
+					return DDLFieldDocument(
+							attributes:attributes,
+							locale: locale)
 
 				default: ()
 			}

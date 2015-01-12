@@ -18,15 +18,13 @@ public class DDLListView_default: BaseListTableView, DDLListData {
 
 	// DDLListData
 
-	public var labelField: String = ""
+	public var labelFields: [String] = []
 
 	override internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let record = object as? DDLRecord {
-			if let field = record[labelField] {
-				cell.textLabel?.text = field.currentValueAsString
-				cell.accessoryType = .DisclosureIndicator
-				cell.accessoryView = nil
-			}
+			cell.textLabel?.text = composeLabel(record)
+			cell.accessoryType = .DisclosureIndicator
+			cell.accessoryView = nil
 		}
 	}
 
@@ -46,5 +44,25 @@ public class DDLListView_default: BaseListTableView, DDLListData {
 
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
+
+	internal func composeLabel(record: DDLRecord) -> String {
+		var result: String = ""
+
+		for labelField in labelFields {
+			if let field = record[labelField] {
+				if let currentValue = field.currentValueAsLabel {
+					if currentValue != "" {
+						result += currentValue
+						result += " "
+					}
+				}
+			}
+		}
+
+		result.removeAtIndex(result.endIndex.predecessor())
+
+		return result
+	}
+
 
 }

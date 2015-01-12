@@ -29,7 +29,7 @@ public class AssetListView_default: AssetListTableView {
 		cell.accessoryType = .None
 		let image = UIImage(named: "default-hourglass")!
 		cell.accessoryView = UIImageView(image: image)
-		cell.accessoryView!.frame = CGRectMake(0, 0, image.size.width, image.size.height)
+		cell.accessoryView?.frame = CGRectMake(0, 0, image.size.width, image.size.height)
 	}
 
 }

@@ -31,24 +31,12 @@ public class DDLFieldStringWithOptions : DDLField {
 	}
 
 
-	public var currentOptionLabel:String {
-		var result = ""
-
-		if let currentOptions = currentValue as? [Option] {
-			if let firstOption = currentOptions.first {
-				result = firstOption.label
-			}
-		}
-
-		return result
-	}
-
 	//FIXME: Multiple selection not supported yet
 	private(set) var multiple:Bool
 
 	private(set) var options:[Option] = []
 
-	override public init(attributes: [String:AnyObject]) {
+	override public init(attributes: [String:AnyObject], locale: NSLocale) {
 		multiple = Bool.from(any: attributes["multiple"] ?? "false")
 
 		if let optionsArray = (attributes["options"] ?? nil) as? [[String:AnyObject]] {
@@ -63,7 +51,7 @@ public class DDLFieldStringWithOptions : DDLField {
 			}
 		}
 
-		super.init(attributes: attributes)
+		super.init(attributes: attributes, locale: locale)
 	}
 
 
@@ -144,6 +132,37 @@ public class DDLFieldStringWithOptions : DDLField {
 			}
 			else if let foundOption = findOptionByValue(firstOptionValue) {
 				result = [foundOption]
+			}
+		}
+
+		return result
+	}
+
+	override func convert(fromLabel label: String?) -> AnyObject? {
+
+		func findOptionByLabel(label:String) -> Option? {
+			return options.filter { $0.label == label }.first
+		}
+
+		var result: [Option] = []
+
+		if label != nil {
+			let foundOption = findOptionByLabel(label!)
+			if let foundOptionValue = foundOption {
+				result.append(foundOptionValue)
+			}
+		}
+
+		return result
+	}
+
+
+	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+		var result = ""
+
+		if let currentOptions = currentValue as? [Option] {
+			if let firstOption = currentOptions.first {
+				result = firstOption.label
 			}
 		}
 
