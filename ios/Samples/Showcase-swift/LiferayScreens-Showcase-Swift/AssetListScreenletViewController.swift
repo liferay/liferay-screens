@@ -39,6 +39,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 
 	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		selectedAsset = pickerData[row].assetId
+		println("[ASSET TYPE] -> Selected \(selectedAsset.rawValue)")
 	}
 
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {

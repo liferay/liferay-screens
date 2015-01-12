@@ -76,6 +76,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
 	self.selectedAsset = [self.pickerData[row][1] intValue];
+	NSLog(@"[ASSET TYPE] Selected -> %ld", (long)self.selectedAsset);
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {

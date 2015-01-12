@@ -43,17 +43,12 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
 		let screenletsService = LRMobilewidgetsassetentryService_v62(session: session)
 
-		var entryQueryAttributes: [NSString : AnyObject] = [:]
+		var entryQueryAttributes = configureEntryQueryAttributes()
 
 		entryQueryAttributes["start"] = assetListScreenlet.firstRowForPage(page)
 		entryQueryAttributes["end"] = assetListScreenlet.firstRowForPage(page + 1)
-		entryQueryAttributes["classNameIds"] = NSNumber(longLong: classNameId!)
-		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId!)
 
 		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
-
-		// WARNING: note that only assets with visible column equals to 1
-		// will be returned by the server.
 
 		screenletsService.getAssetEntriesWithAssetEntryQuery(entryQuery,
 				locale: NSLocale.currentLocaleString,
@@ -62,15 +57,27 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	override internal func doGetRowCountOperation(#session: LRBatchSession) {
 		let assetsService = LRAssetEntryService_v62(session: session)
+		let entryQueryAttributes = configureEntryQueryAttributes()
+		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
+		assetsService.getEntriesCountWithEntryQuery(entryQuery, error: nil)
+	}
+
+
+	//MARK: Private methods
+
+	private func configureEntryQueryAttributes() -> [NSString : AnyObject] {
 		var entryQueryAttributes: [NSString : AnyObject] = [:]
 
 		entryQueryAttributes["classNameIds"] = NSNumber(longLong: classNameId!)
 		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId!)
 
-		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
+		// WARNING: note that only assets with visible column equals to 1
+		// will be returned by the server.
+		// Make sure your assets are visible to be shown in this screenlets
+		entryQueryAttributes["visible"] = "true"
 
-		assetsService.getEntriesCountWithEntryQuery(entryQuery, error: nil)
+		return entryQueryAttributes
 	}
 
 }
