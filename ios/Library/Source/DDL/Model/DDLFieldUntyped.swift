@@ -16,10 +16,10 @@ import Foundation
 
 public class DDLFieldUntyped: DDLField {
 
-	public init(name: String, value: AnyObject) {
+	public init(name: String, value: AnyObject, locale: NSLocale) {
 		let attributes = ["name": name, "predefinedValue": value]
 
-		super.init(attributes: attributes)
+		super.init(attributes: attributes, locale: locale)
 	}
 
 }

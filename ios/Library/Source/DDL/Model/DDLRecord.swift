@@ -79,13 +79,13 @@ public class DDLRecord: NSObject {
 
 	public func updateCurrentValues(values: [String:AnyObject]) {
 		for (index,field) in enumerate(fields) {
-			let fieldValue: AnyObject? = (values[field.name] ?? nil)
-			if fieldValue != nil {
-				if fieldValue is String {
-					field.currentValueAsString = fieldValue as? String
+			let fieldValueLabel: AnyObject? = (values[field.name] ?? nil)
+			if fieldValueLabel != nil {
+				if fieldValueLabel is String {
+					field.currentValueAsLabel = fieldValueLabel as? String
 				}
 				else {
-					field.currentValue = fieldValue
+					field.currentValue = fieldValueLabel
 				}
 			}
 		}
