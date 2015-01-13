@@ -77,12 +77,22 @@ public class DDLFieldTableCell: UITableViewCell {
 	internal func onPostValidation(valid: Bool) {
 	}
 
-	internal func changeCellHeight(height:CGFloat) {
-		field?.currentHeight = height
+	internal func setCellHeight(height: CGFloat) {
+		formView!.setCellHeight(height, forField: field!)
 		
 		//FIXME Hack to fire the repaint of the cells
 		tableView!.beginUpdates()
 		tableView!.endUpdates()
+	}
+
+	internal func resetCellHeight() -> CGFloat {
+		let height = formView!.resetCellHeightForField(field!)
+
+		//FIXME Hack to fire the repaint of the cells
+		tableView!.beginUpdates()
+		tableView!.endUpdates()
+
+		return height
 	}
 
 	internal func nextCell(indexPath:NSIndexPath) -> UITableViewCell? {

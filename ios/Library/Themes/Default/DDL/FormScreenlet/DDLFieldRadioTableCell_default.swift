@@ -33,13 +33,14 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 		if let stringField = field as? DDLFieldStringWithOptions {
 			label!.text = stringField.label
 
-			stringField.currentHeight =
+			let height =
 				label!.frame.origin.y + label!.frame.size.height +
 				DDLFieldRadioGroupMarginTop + DDLFieldRadioGroupMarginBottom +
 				(CGFloat(stringField.options.count) *
 					(DDLFieldRadioButtonHeight + DDLFieldRadioButtonMargin))
 
-			separator!.frame.origin.y = stringField.currentHeight
+			formView!.setCellHeight(height, forField:stringField)
+			separator!.frame.origin.y = height
 
 			createRadioButtons(stringField)
 

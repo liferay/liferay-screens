@@ -22,7 +22,9 @@ public class DDLFormTableView: DDLFormView,
 	override public var record: DDLRecord? {
 		didSet {
 			forEachField() {
-				$0.resetCurrentHeight()
+				self.registerFieldCustomEditor($0)
+				self.resetCellHeightForField($0)
+				return
 			}
 
 			tableView!.reloadData()
@@ -31,6 +33,8 @@ public class DDLFormTableView: DDLFormView,
 
 
 	internal var firstCellResponder: UIResponder?
+
+	internal var cellHeights: [String : (registered:CGFloat, current:CGFloat)] = [:]
 
 	internal var submitButtonHeight: CGFloat = 0.0
 
@@ -206,14 +210,19 @@ public class DDLFormTableView: DDLFormView,
 		let row = indexPath.row
 
 		if row == record!.fields.count {
-			cell = tableView.dequeueReusableCellWithIdentifier("SubmitButton") as?
-					DDLFieldTableCell
+			cell = tableView.dequeueReusableCellWithIdentifier("SubmitButton")
+					as? DDLFieldTableCell
 
 			cell!.formView = self
 		}
 		else if let field = getField(row) {
-			cell = tableView.dequeueReusableCellWithIdentifier(
-					field.editorType.toCapitalizedName()) as? DDLFieldTableCell
+			cell = tableView.dequeueReusableCellWithIdentifier(field.name)
+					as? DDLFieldTableCell
+
+			if cell == nil {
+				cell = tableView.dequeueReusableCellWithIdentifier(
+						field.editorType.toCapitalizedName()) as? DDLFieldTableCell
+			}
 
 			if let cellValue = cell {
 				cellValue.formView = self
@@ -236,7 +245,7 @@ public class DDLFormTableView: DDLFormView,
 
 		let row = indexPath.row
 
-		return (row == record!.fields.count) ? submitButtonHeight : getField(row)!.currentHeight
+		return (row == record!.fields.count) ? submitButtonHeight : cellHeightForField(getField(row)!)
 	}
 
 
@@ -246,56 +255,97 @@ public class DDLFormTableView: DDLFormView,
 		let currentBundle = NSBundle(forClass: self.dynamicType)
 
 		for fieldEditor in DDLField.Editor.all() {
-			var nibName = "DDLField\(fieldEditor.toCapitalizedName())TableCell"
-			if let themeNameValue = themeName {
-				nibName += "_" + themeNameValue
-			}
+			if let cellView = registerFieldEditorCell(
+					nibName: "DDLField\(fieldEditor.toCapitalizedName())TableCell",
+					cellId: fieldEditor.toCapitalizedName()) {
 
-			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
-				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
-
-				tableView?.registerNib(cellNib,
-						forCellReuseIdentifier: fieldEditor.toCapitalizedName())
-
-				registerFieldEditorHeight(editor:fieldEditor, nib:cellNib)
+				cellHeights[fieldEditor.toCapitalizedName()] =
+						(cellView.bounds.size.height, cellView.bounds.size.height)
 			}
 		}
 
 		if showSubmitButton {
-			var nibName = "DDLSubmitButtonTableCell"
-			if let themeNameValue = themeName {
-				nibName += "_" + themeNameValue
-			}
-
-			if currentBundle.pathForResource(nibName, ofType: "nib") != nil {
-				var cellNib = UINib(nibName: nibName, bundle: currentBundle)
-
-				tableView?.registerNib(cellNib, forCellReuseIdentifier: "SubmitButton")
-
-				let views = cellNib.instantiateWithOwner(nil, options: nil)
-
-				if let cellRootView = views.first as? UITableViewCell {
-					submitButtonHeight = cellRootView.bounds.size.height
-				}
-				else {
-					println("ERROR: Root view in submit button didn't found")
-				}
-			}
-			else {
-				println("ERROR: Can't register cell for submit button: \(nibName)")
+			if let cellView = registerFieldEditorCell(
+					nibName: "DDLSubmitButtonTableCell",
+					cellId: "SubmitButton") {
+				submitButtonHeight = cellView.bounds.size.height
 			}
 		}
 	}
 
-	internal func registerFieldEditorHeight(#editor:DDLField.Editor, nib:UINib) {
-		let views = nib.instantiateWithOwner(nil, options: nil)
+	internal func registerFieldCustomEditor(field: DDLField) -> Bool {
+		let cellView = registerFieldEditorCell(
+				nibName: "DDLCustomField\(field.name)TableCell",
+				cellId: field.name)
 
-		if let cellRootView = views.first as? UITableViewCell {
-			editor.registerHeight(cellRootView.bounds.size.height)
+		if cellView != nil {
+			println("Found custom \(field.name) -> \(cellView!.bounds.size.height)" )
+			setCellHeight(cellView!.bounds.size.height, forField: field)
+		}
+
+		return cellView != nil
+	}
+
+	internal func registerFieldEditorCell(#nibName: String, cellId: String) -> UITableViewCell? {
+		var themedNibName = nibName
+		if let themeNameValue = themeName {
+			themedNibName += "_" + themeNameValue
+		}
+
+		var cell: UITableViewCell?
+		let currentBundle = NSBundle(forClass: self.dynamicType)
+		if currentBundle.pathForResource(themedNibName, ofType: "nib") != nil {
+			let nib = UINib(nibName: themedNibName, bundle: currentBundle)
+			tableView?.registerNib(nib, forCellReuseIdentifier: cellId)
+
+			let views = nib.instantiateWithOwner(nil, options: nil)
+			cell = views.first as? UITableViewCell
+			if cell == nil {
+				println("ERROR: Root view in cell for \(nibName) didn't found")
+			}
+		}
+
+		return cell
+	}
+
+	internal func cellHeightForField(field: DDLField) -> CGFloat {
+		var result: CGFloat = 0.0
+
+		if let cellHeight = cellHeights[field.name] {
+			result = cellHeight.current
+		}
+		else if let typeHeight = cellHeights[field.editorType.toCapitalizedName()] {
+			result = typeHeight.current
 		}
 		else {
-			println("ERROR: Root view in cell \(editor.rawValue) didn't found")
+			println("ERROR: Height doesn't found for field \(field)")
 		}
+
+		return result
+	}
+
+	internal func setCellHeight(height: CGFloat, forField field: DDLField) {
+		if let cellHeight = cellHeights[field.name] {
+			cellHeights[field.name] = (cellHeight.registered, height)
+		}
+		else {
+			cellHeights[field.name] = (height, height)
+		}
+	}
+
+	internal func resetCellHeightForField(field: DDLField) -> CGFloat {
+		var result: CGFloat = 0.0
+
+		if let cellHeight = cellHeights[field.name] {
+			cellHeights[field.name] = (cellHeight.registered, cellHeight.registered)
+			result = cellHeight.registered
+		}
+		else if let typeHeight = cellHeights[field.editorType.toCapitalizedName()] {
+			cellHeights[field.name] = (typeHeight.registered, typeHeight.registered)
+			result = typeHeight.registered
+		}
+
+		return result
 	}
 
 }
