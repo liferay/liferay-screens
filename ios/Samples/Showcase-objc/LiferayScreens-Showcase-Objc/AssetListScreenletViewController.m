@@ -38,6 +38,10 @@
 	[self showPicker:YES animated:YES];
 }
 
+- (IBAction)refreshControlChanged:(UISwitch *)sender {
+	self.screenlet.refreshControl = sender.on;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
@@ -72,6 +76,8 @@
 	[data addObject:@[@"WikiPage", @(AssetClassNameIdWikiPage)]];
 	[data addObject:@[@"WikiPageResource", @(AssetClassNameIdWikiPageResource)]];
 	[data addObject:@[@"WikiNode", @(AssetClassNameIdWikiNode)]];
+
+	self.pickerData = [[NSArray alloc] initWithArray:data];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
