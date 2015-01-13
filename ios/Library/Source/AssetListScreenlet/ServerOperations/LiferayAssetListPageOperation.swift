@@ -71,10 +71,6 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 		entryQueryAttributes["classNameIds"] = NSNumber(longLong: classNameId!)
 		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId!)
-
-		// WARNING: note that only assets with visible column equals to 1
-		// will be returned by the server.
-		// Make sure your assets are visible to be shown in this screenlets
 		entryQueryAttributes["visible"] = "true"
 
 		return entryQueryAttributes
