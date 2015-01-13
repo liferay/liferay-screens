@@ -42,6 +42,7 @@
 }
 
 - (void)onLoginError:(NSError *)error {
+	NSLog(@"DELEGATE onLoginError -> %@", error);
 }
 
 - (void)showLoggedWithAnimation:(BOOL)animated {
