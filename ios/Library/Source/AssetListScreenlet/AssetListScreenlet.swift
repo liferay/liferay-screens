@@ -24,7 +24,7 @@ import UIKit
 }
 
 
-@objc public class AssetListScreenletEntry {
+@objc public class AssetListScreenletEntry : NSObject {
 
 	public let attributes:[String:AnyObject]
 
@@ -32,7 +32,7 @@ import UIKit
 		return attributes["title"] as String
 	}
 
-	public var description: String {
+	override public var description: String {
 		return attributes["description"] as String
 	}
 
