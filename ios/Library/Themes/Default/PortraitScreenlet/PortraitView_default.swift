@@ -25,8 +25,14 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 		activityIndicator?.startAnimating()
 	}
 
+	override func onCreated() {
+		loadPlaceholder()
+	}
+
 	public func loadPlaceholder() {
-		self.portraitImage?.image = UIImage(named: "default-portrait-placeholder")
+		if self.portraitImage?.image == nil {
+			self.portraitImage?.image = UIImage(named: "default-portrait-placeholder")
+		}
 	}
 
 
