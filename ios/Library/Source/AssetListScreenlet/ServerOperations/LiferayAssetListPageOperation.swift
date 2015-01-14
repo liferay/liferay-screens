@@ -43,12 +43,10 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
 		let screenletsService = LRMobilewidgetsassetentryService_v62(session: session)
 
-		var entryQueryAttributes: [NSString : AnyObject] = [:]
+		var entryQueryAttributes = configureEntryQueryAttributes()
 
 		entryQueryAttributes["start"] = assetListScreenlet.firstRowForPage(page)
 		entryQueryAttributes["end"] = assetListScreenlet.firstRowForPage(page + 1)
-		entryQueryAttributes["classNameIds"] = NSNumber(longLong: classNameId!)
-		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId!)
 
 		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
@@ -59,15 +57,23 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	override internal func doGetRowCountOperation(#session: LRBatchSession) {
 		let assetsService = LRAssetEntryService_v62(session: session)
+		let entryQueryAttributes = configureEntryQueryAttributes()
+		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
+		assetsService.getEntriesCountWithEntryQuery(entryQuery, error: nil)
+	}
+
+
+	//MARK: Private methods
+
+	private func configureEntryQueryAttributes() -> [NSString : AnyObject] {
 		var entryQueryAttributes: [NSString : AnyObject] = [:]
 
 		entryQueryAttributes["classNameIds"] = NSNumber(longLong: classNameId!)
 		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId!)
+		entryQueryAttributes["visible"] = "true"
 
-		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
-
-		assetsService.getEntriesCountWithEntryQuery(entryQuery, error: nil)
+		return entryQueryAttributes
 	}
 
 }

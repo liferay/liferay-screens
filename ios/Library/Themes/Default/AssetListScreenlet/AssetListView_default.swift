@@ -25,7 +25,7 @@ public class AssetListView_default: AssetListTableView {
 	}
 
 	override internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
-		cell.textLabel!.text = "..."
+		cell.textLabel?.text = "..."
 		cell.accessoryType = .None
 		let image = UIImage(named: "default-hourglass")!
 		cell.accessoryView = UIImageView(image: image)

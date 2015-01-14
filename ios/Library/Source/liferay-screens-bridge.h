@@ -24,6 +24,8 @@ FOUNDATION_EXPORT const unsigned char liferay_screens_VersionString[];
 #import "UICKeyChainStore.h"
 #import "ODRefreshControl.h"
 
+#import "AssetListScreenletInterop.h"
+
 // Default theme dependencies
 #import "DTPickerPresenter.h"
 #import "DTDatePickerPresenter.h"

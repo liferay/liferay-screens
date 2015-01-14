@@ -24,7 +24,7 @@ import UIKit
 }
 
 
-@objc public class AssetListScreenletEntry {
+@objc public class AssetListScreenletEntry : NSObject {
 
 	public let attributes:[String:AnyObject]
 
@@ -32,7 +32,7 @@ import UIKit
 		return attributes["title"] as String
 	}
 
-	public var description: String {
+	override public var description: String {
 		return attributes["description"] as String
 	}
 
@@ -68,63 +68,10 @@ import UIKit
 
 @IBDesignable public class AssetListScreenlet: BaseListScreenlet {
 
-
-
-	public enum AssetClassNameId: Int {
-
-		// Users and sites
-		case Group = 10001
-		case Layout = 10002
-		case Organization = 10003
-		case User = 10005
-		case UserGroup = 10006
-
-		// Blogs
-		case BlogsEntry = 10007
-
-		// Bookmarks
-		case BookmarksEntry = 10008
-		case BookmarksFolder = 10009
-
-		// Calendar
-		case CalendarEvent = 10010
-
-		// Document Library
-		case DLFileEntry = 10011
-		case DLFileEntryMetadata = 10091
-		case DLFileEntryType = 10092
-		case DLFileRank = 10093
-		case DLFileShortcut = 10094
-		case DLFileVersion = 10095
-
-		// DDL
-		case DDLRecord = 10097
-		case DDLRecordSet = 10098
-
-		// Journal
-		case JournalArticle = 10109
-		case JournalFolder = 10013
-
-		// MessageBoard
-		case MBMessage = 10014
-		case MBThread = 10015
-		case MBCategory = 10115
-		case MBDiscussion = 10116
-		case MBMailingList = 10117
-
-		// Wiki
-		case WikiPage = 10016
-		case WikiPageResource = 10153
-		case WikiNode = 10152
-
-	}
-
-
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var classNameId: Int = 0
 
 	@IBOutlet public var delegate: AssetListScreenletDelegate?
-
 
 	//MARK: BaseListScreenlet
 
