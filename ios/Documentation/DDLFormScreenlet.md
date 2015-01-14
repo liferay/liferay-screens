@@ -51,6 +51,13 @@ The Default theme uses a standard `UITableView` to show a scrollable list of fie
 
 ![The `DDLForm` screenlet using Default theme.](Images/ddlform.png)
 
+### Custom Cells
+
+A theme needs to define a cell view for each field type. For instance, the `xib` file `DDLFieldDateTableCell_default` is used to render `Date` fields in the `Default` theme. 
+
+What if you want a specific field to have a unique appearance though? No problem! You can customize your field's display by using the following filename pattern, where `XXX` is your field's name: `DDLCustomFieldXXXTableCell_default`. 
+For example, the the "Are you a subscriber?" field in screenshot above shows how text fields appear in the Default theme. If you want to customize this, you don't need to create an entire theme. You just need to create an `xib` file for the field `subscriberName`. The filename is therefore `DDLCustomFieldSubscriberNameTableCell_default`. Be careful to keep the same components and `IBOutlet` defined in the custom file.
+
 ## Portal Configuration
 
 Dynamic Data Lists and Data Types should be configured properly in the portal. Refer to the [Defining Data Types](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/building-a-list-platform-in-liferay-and-defining-data-) and [Creating Data Lists](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/creating-data-lists) sections of the User Guide for more details. If Workflow is required, it also must be configured. Please see the [Using Workflow](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-workflow) section of the User Guide for details.

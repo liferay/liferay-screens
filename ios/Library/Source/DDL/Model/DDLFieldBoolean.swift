@@ -20,6 +20,20 @@ public class DDLFieldBoolean : DDLField {
 		return value != nil ? Bool.from(string: value!) : nil
 	}
 
+	override func convert(fromLabel label: String?) -> AnyObject? {
+		let trueLabel = LocalizedString("base", "yes", self).lowercaseString
+		let falseLabel = LocalizedString("base", "no", self).lowercaseString
+
+		if label?.lowercaseString == trueLabel {
+			return true
+		}
+		else if label?.lowercaseString == falseLabel {
+			return false
+		}
+
+		return nil
+	}
+
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		var result: String?
 
@@ -29,5 +43,16 @@ public class DDLFieldBoolean : DDLField {
 
 		return result
 	}
+
+	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+		var result: String?
+
+		if let boolValue = value as? Bool {
+			result = LocalizedString("base", boolValue ? "yes" : "no", self)
+		}
+
+		return result
+	}
+
 
 }

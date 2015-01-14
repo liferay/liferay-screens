@@ -35,11 +35,11 @@ public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default
 	override internal func onChangedField() {
 		super.onChangedField()
 
-		if let dateField = field as? DDLFieldDate {
-			setFieldPresenter(dateField)
+		if let fieldValue = field {
+			setFieldPresenter(fieldValue)
 
-			if dateField.currentValue != nil {
-				textField?.text = dateField.currentDateLabel
+			if fieldValue.currentValue != nil {
+				textField?.text = fieldValue.currentValueAsLabel
 			}
 		}
 	}
@@ -47,11 +47,11 @@ public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default
 
 	//MARK: Private methods
 
-	private func setFieldPresenter(field:DDLFieldDate) {
+	private func setFieldPresenter(field:DDLField) {
 
 		func onChange(selectedDate:NSDate!) {
 			field.currentValue = selectedDate
-			textField?.text = field.currentDateLabel
+			textField?.text = field.currentValueAsLabel
 
 			let fullRange = NSMakeRange(0, countElements(textField!.text!))
 

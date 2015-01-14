@@ -18,18 +18,18 @@ public class AssetListView_default: AssetListTableView {
 
 	override internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let entry = object as? AssetListScreenletEntry {
-			cell.textLabel.text = entry.title
+			cell.textLabel?.text = entry.title
 			cell.accessoryType = .DisclosureIndicator
 			cell.accessoryView = nil
 		}
 	}
 
 	override internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
-		cell.textLabel.text = "..."
+		cell.textLabel?.text = "..."
 		cell.accessoryType = .None
 		let image = UIImage(named: "default-hourglass")!
 		cell.accessoryView = UIImageView(image: image)
-		cell.accessoryView!.frame = CGRectMake(0, 0, image.size.width, image.size.height)
+		cell.accessoryView?.frame = CGRectMake(0, 0, image.size.width, image.size.height)
 	}
 
 }

@@ -16,8 +16,6 @@ import Foundation
 
 public class DDLField: NSObject, Equatable, Printable {
 
-	public var currentHeight:CGFloat = 0
-
 	public var onPostValidation: (Bool -> Void)?
 	public var lastValidationResult:Bool?
 
@@ -33,6 +31,15 @@ public class DDLField: NSObject, Equatable, Printable {
 		}
 		set {
 			currentValue = convert(fromString: newValue)
+		}
+	}
+
+	public var currentValueAsLabel: String? {
+		get {
+			return convertToLabel(fromCurrentValue: currentValue)
+		}
+		set {
+			currentValue = convert(fromLabel: newValue)
 		}
 	}
 
@@ -57,6 +64,9 @@ public class DDLField: NSObject, Equatable, Printable {
 		return str
 	}
 
+	public var currentLocale: NSLocale
+
+
 	internal(set) var dataType: DataType
 	internal(set) var editorType: Editor
 
@@ -71,10 +81,10 @@ public class DDLField: NSObject, Equatable, Printable {
 	internal(set) var repeatable: Bool
 	internal(set) var required: Bool
 
-	internal(set) var showLabel:Bool
+	internal(set) var showLabel: Bool
 
 
-	public init(attributes: [String:AnyObject]) {
+	public init(attributes: [String:AnyObject], locale: NSLocale) {
 		dataType = DataType(rawValue: valueAsString(attributes, key:"dataType")) ?? .Unsupported
 		editorType = Editor.from(attributes: attributes)
 		name = valueAsString(attributes, key:"name")
@@ -86,6 +96,8 @@ public class DDLField: NSObject, Equatable, Printable {
 
 		label = valueAsString(attributes, key:"label")
 		tip = valueAsString(attributes, key:"tip")
+
+		currentLocale = locale
 
 		super.init()
 
@@ -115,11 +127,6 @@ public class DDLField: NSObject, Equatable, Printable {
 		return valid
 	}
 
-	public func resetCurrentHeight() {
-		currentHeight = editorType.registeredHeight
-	}
-
-
 	//MARK: Internal methods
 
 	internal func doValidate() -> Bool {
@@ -130,7 +137,15 @@ public class DDLField: NSObject, Equatable, Printable {
 		return value
 	}
 
+	internal func convert(fromLabel value:String?) -> AnyObject? {
+		return value
+	}
+
 	internal func convert(fromCurrentValue value:AnyObject?) -> String? {
+		return value?.description
+	}
+
+	internal func convertToLabel(fromCurrentValue value:AnyObject?) -> String? {
 		return value?.description
 	}
 

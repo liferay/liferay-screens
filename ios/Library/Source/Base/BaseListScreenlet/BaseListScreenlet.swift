@@ -18,6 +18,13 @@ import UIKit
 
 	@IBInspectable public var autoLoad: Bool = true
 
+	@IBInspectable public var refreshControl: Bool = true {
+		didSet {
+			(screenletView as? BaseListTableView)?.refreshClosure =
+					refreshControl ? self.loadList : nil
+		}
+	}
+
 	@IBInspectable public var firstPageSize: Int = 50
 	@IBInspectable public var pageSize: Int = 25
 
@@ -34,6 +41,9 @@ import UIKit
 	override public func onCreated() {
 		baseListView.onSelectedRowClosure = onSelectedRow
 		baseListView.fetchPageForRow = loadPageForRow
+
+		(screenletView as? BaseListTableView)?.refreshClosure =
+				refreshControl ? self.loadList : nil
 	}
 
 	override func onShow() {
@@ -117,6 +127,7 @@ import UIKit
 	}
 
 	internal func onLoadPageError(#page: Int, error: NSError) {
+		println("ERROR: Load page error \(page) -> \(error)")
 	}
 
 	internal func onLoadPageResult(#page: Int,
@@ -132,7 +143,7 @@ import UIKit
 			allRows[index] = row
 		}
 
-		var offset = (page == 0) ? 0 : firstPageSize + (page - 1) * pageSize
+		var offset = firstRowForPage(page)
 
 		// last page could be incomplete
 		if offset >= rowCount {

@@ -1,3 +1,10 @@
 "base-base-list-loading-message"="Cargando lista...";
 "base-base-list-loading-details"="Espere unos segundos...";
 "base-base-list-loading-error"="Error cargando lista";
+
+"base-yes"="Sí";
+"base-no"="No";
+
+"base-an-image-has-been-selected"="Una imagen ha sido seleccionada";
+"base-a-video-has-been-selected"="Un vídeo ha sido seleccionado";
+"base-a-file-is-already-uploaded"="Un fichero ha sido subido previamente";

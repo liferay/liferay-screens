@@ -37,7 +37,8 @@ public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFiel
 
 			moveSubviewsVertically(
 				-(DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel))
-			field?.currentHeight = DDLFieldTextFieldHeightWithoutLabel
+
+			setCellHeight(DDLFieldTextFieldHeightWithoutLabel)
 		}
 
 		textField?.returnKeyType = isLastCell ? .Send : .Next
