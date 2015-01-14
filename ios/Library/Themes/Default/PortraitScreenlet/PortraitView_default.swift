@@ -17,9 +17,10 @@ import UIKit
 public class PortraitView_default: BaseScreenletView, PortraitData {
 
 	@IBOutlet var activityIndicator: UIActivityIndicatorView?
-	@IBOutlet var portraitBorder: UIView?
 	@IBOutlet var portraitImage: UIImageView?
 
+
+	//MARK: BaseScreenletView
 
 	override func onStartOperation() {
 		activityIndicator?.startAnimating()
@@ -29,12 +30,19 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 		loadPlaceholder()
 	}
 
+	override func onShow() {
+		activityIndicator?.hidesWhenStopped = true
+		activityIndicator?.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+	}
+
+
+	//MARK: Public methods
+
 	public func loadPlaceholder() {
 		if self.portraitImage?.image == nil {
 			self.portraitImage?.image = UIImage(named: "default-portrait-placeholder")
 		}
 	}
-
 
 	public func loadPortrait(portraitURL: NSURL) {
 		let request = NSURLRequest(URL: portraitURL)
@@ -54,14 +62,4 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 			})
 	}
 
-	override func onShow() {
-		activityIndicator?.hidesWhenStopped = true
-		activityIndicator?.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-
-		let borderRadius = portraitBorder!.frame.width / 2
-		let imageRadius = portraitImage!.frame.width / 2
-
-		portraitBorder!.layer.cornerRadius = borderRadius
-		portraitImage!.layer.cornerRadius = imageRadius
-	}
 }

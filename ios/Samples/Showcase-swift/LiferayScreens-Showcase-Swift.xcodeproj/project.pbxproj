@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		88107F951A2C8D60009583C2 /* WebContentDisplayScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88107F941A2C8D60009583C2 /* WebContentDisplayScreenletViewController.swift */; };
+		881770211A66C4F10093DCFF /* PortraitView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8817701F1A66C4F10093DCFF /* PortraitView_flat7.swift */; };
+		881770221A66C4F10093DCFF /* PortraitView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881770201A66C4F10093DCFF /* PortraitView_flat7.xib */; };
+		881A10001A66CD55005D0EB0 /* flat7-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 881A0FFE1A66CD55005D0EB0 /* flat7-portrait-placeholder.png */; };
+		881A10011A66CD55005D0EB0 /* flat7-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 881A0FFF1A66CD55005D0EB0 /* flat7-portrait-placeholder@2x.png */; };
 		88215F391A234184009B96C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88215F381A234184009B96C7 /* AppDelegate.swift */; };
 		88215F3B1A234184009B96C7 /* HomeLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88215F3A1A234184009B96C7 /* HomeLoginViewController.swift */; };
 		88215F3D1A234184009B96C7 /* HomeScreenletsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88215F3C1A234184009B96C7 /* HomeScreenletsViewController.swift */; };
@@ -192,6 +196,10 @@
 		1EB65E3D4DC189357A623BA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		20EF6B149053C358F64C97DD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		88107F941A2C8D60009583C2 /* WebContentDisplayScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayScreenletViewController.swift; sourceTree = "<group>"; };
+		8817701F1A66C4F10093DCFF /* PortraitView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitView_flat7.swift; sourceTree = "<group>"; };
+		881770201A66C4F10093DCFF /* PortraitView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortraitView_flat7.xib; sourceTree = "<group>"; };
+		881A0FFE1A66CD55005D0EB0 /* flat7-portrait-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder.png"; sourceTree = "<group>"; };
+		881A0FFF1A66CD55005D0EB0 /* flat7-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
 		88215F331A234184009B96C7 /* LiferayScreens-Showcase-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiferayScreens-Showcase-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88215F371A234184009B96C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88215F381A234184009B96C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -408,6 +416,15 @@
 				1EB65E3D4DC189357A623BA6 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8817701E1A66C4F10093DCFF /* PortraitScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				8817701F1A66C4F10093DCFF /* PortraitView_flat7.swift */,
+				881770201A66C4F10093DCFF /* PortraitView_flat7.xib */,
+			);
+			path = PortraitScreenlet;
 			sourceTree = "<group>";
 		};
 		88215F2A1A234184009B96C7 = {
@@ -917,6 +934,7 @@
 			children = (
 				883D84731A234EAC00CC179B /* Auth */,
 				883D847D1A234EAC00CC179B /* Flat7ThemeConstants.swift */,
+				8817701E1A66C4F10093DCFF /* PortraitScreenlet */,
 				883D847E1A234EAC00CC179B /* Resources */,
 			);
 			path = Flat7;
@@ -962,13 +980,15 @@
 		883D847E1A234EAC00CC179B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				883D847F1A234EAC00CC179B /* flat7.strings */,
 				883D84821A234EAC00CC179B /* flat7-button.png */,
 				883D84831A234EAC00CC179B /* flat7-button@2x.png */,
 				883D84841A234EAC00CC179B /* flat7-field.png */,
 				883D84851A234EAC00CC179B /* flat7-field@2x.png */,
 				883D84861A234EAC00CC179B /* flat7-gradient-form.png */,
 				883D84871A234EAC00CC179B /* flat7-gradient-form@2x.png */,
+				881A0FFE1A66CD55005D0EB0 /* flat7-portrait-placeholder.png */,
+				881A0FFF1A66CD55005D0EB0 /* flat7-portrait-placeholder@2x.png */,
+				883D847F1A234EAC00CC179B /* flat7.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1111,6 +1131,7 @@
 				883D84F01A234EAC00CC179B /* DDLFormView_default.xib in Resources */,
 				883D85061A234EAC00CC179B /* default-hourglass@2x.png in Resources */,
 				883D851C1A234EAC00CC179B /* SignUpView_flat7.xib in Resources */,
+				881A10011A66CD55005D0EB0 /* flat7-portrait-placeholder@2x.png in Resources */,
 				883D85091A234EAC00CC179B /* default-mail-icon.png in Resources */,
 				883D85121A234EAC00CC179B /* default-preview-webcontentdisplay@2x.png in Resources */,
 				88260FBD1A2487A400D7A832 /* LaunchScreen.xib in Resources */,
@@ -1144,10 +1165,12 @@
 				883D84D41A234EAC00CC179B /* AssetListView_default.xib in Resources */,
 				883D850D1A234EAC00CC179B /* default-preview-assetlist.png in Resources */,
 				883D84F91A234EAC00CC179B /* default-calendar.png in Resources */,
+				881770221A66C4F10093DCFF /* PortraitView_flat7.xib in Resources */,
 				883D851A1A234EAC00CC179B /* LoginView_flat7.xib in Resources */,
 				883D849B1A234EAC00CC179B /* signup-screenlet.strings in Resources */,
 				883D84EB1A234EAC00CC179B /* DDLFieldTextareaTableCell_default.xib in Resources */,
 				883D84FC1A234EAC00CC179B /* default-field-failed@2x.png in Resources */,
+				881A10001A66CD55005D0EB0 /* flat7-portrait-placeholder.png in Resources */,
 				883D85141A234EAC00CC179B /* default-user-icon@2x.png in Resources */,
 				883D850B1A234EAC00CC179B /* default-multiline-field.png in Resources */,
 				883D85021A234EAC00CC179B /* default-form-gradient-bottom@2x.png in Resources */,
@@ -1270,6 +1293,7 @@
 				883D84AA1A234EAC00CC179B /* SessionContext.swift in Sources */,
 				883D84A21A234EAC00CC179B /* BaseListTableView.swift in Sources */,
 				883D84CC1A234EAC00CC179B /* LRMobilewidgetsassetentryService_v62.m in Sources */,
+				881770211A66C4F10093DCFF /* PortraitView_flat7.swift in Sources */,
 				883D84E41A234EAC00CC179B /* DDLFieldNumberTableCell_default.swift in Sources */,
 				8843AE481A668E67002AB625 /* LRSession+CredentialStore.swift in Sources */,
 				8833E9641A28ACFB006C4413 /* DDLFormScreenletViewController.swift in Sources */,

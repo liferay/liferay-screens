@@ -27,20 +27,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ifh-gR-hEQ">
                                 <rect key="frame" x="37" y="94" width="247" height="260"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SD8-wp-12w">
-                                        <rect key="frame" x="0.0" y="82" width="247" height="21"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are logged as..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqb-Wh-9Fp">
-                                        <rect key="frame" x="0.0" y="32" width="247" height="21"/>
+                                        <rect key="frame" x="0.0" y="32" width="247" height="20"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gpq-Db-Zcu">
-                                        <rect key="frame" x="11" y="138" width="228" height="44"/>
+                                        <rect key="frame" x="11" y="136" width="228" height="44"/>
                                         <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="TST-3j-qUE"/>
@@ -59,6 +53,12 @@
                                             <action selector="signOutAction" destination="9pv-A4-QxB" eventType="touchUpInside" id="9mR-U0-f8b"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SD8-wp-12w">
+                                        <rect key="frame" x="0.0" y="81" width="247" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -133,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BPI-fb-cHq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-266" y="2473"/>
+            <point key="canvasLocation" x="-173" y="2473"/>
         </scene>
         <!--Content Table View Controller-->
         <scene sceneID="gz0-F9-ThQ">
@@ -412,7 +412,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ziz-90-phY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-248" y="1763"/>
+            <point key="canvasLocation" x="-173" y="1793"/>
         </scene>
         <!--LoginScreenlet-->
         <scene sceneID="AgL-gw-NGQ">
@@ -637,6 +637,9 @@
                                     <constraint firstAttribute="height" constant="288" id="15x-fl-uMr"/>
                                     <constraint firstAttribute="width" constant="288" id="aob-04-j5w"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="flat7"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -660,7 +663,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zEG-lu-IJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="182" y="2560"/>
+            <point key="canvasLocation" x="204" y="2473"/>
         </scene>
         <!--ScreenletsNavigation-->
         <scene sceneID="tyj-Dj-HfE">

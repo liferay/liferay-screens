@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		88107F931A2C898F009583C2 /* DDLFormScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88107F921A2C898F009583C2 /* DDLFormScreenletViewController.m */; };
 		88107F981A2C90E8009583C2 /* WebContentDisplayScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88107F971A2C90E8009583C2 /* WebContentDisplayScreenletViewController.m */; };
+		881A0FC91A66C9E5005D0EB0 /* PortraitView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FC71A66C9E5005D0EB0 /* PortraitView_flat7.swift */; };
+		881A0FCA1A66C9E5005D0EB0 /* PortraitView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881A0FC81A66C9E5005D0EB0 /* PortraitView_flat7.xib */; };
+		881A10041A66D0A5005D0EB0 /* flat7-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 881A10021A66D0A5005D0EB0 /* flat7-portrait-placeholder.png */; };
+		881A10051A66D0A5005D0EB0 /* flat7-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 881A10031A66D0A5005D0EB0 /* flat7-portrait-placeholder@2x.png */; };
 		88274E541A248DC100FE31C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88274E531A248DC100FE31C6 /* main.m */; };
 		88274E571A248DC100FE31C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88274E561A248DC100FE31C6 /* AppDelegate.m */; };
 		88274E5A1A248DC100FE31C6 /* HomeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88274E591A248DC100FE31C6 /* HomeLoginViewController.m */; };
@@ -196,6 +200,10 @@
 		88107F921A2C898F009583C2 /* DDLFormScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLFormScreenletViewController.m; sourceTree = "<group>"; };
 		88107F961A2C90E8009583C2 /* WebContentDisplayScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebContentDisplayScreenletViewController.h; sourceTree = "<group>"; };
 		88107F971A2C90E8009583C2 /* WebContentDisplayScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebContentDisplayScreenletViewController.m; sourceTree = "<group>"; };
+		881A0FC71A66C9E5005D0EB0 /* PortraitView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitView_flat7.swift; sourceTree = "<group>"; };
+		881A0FC81A66C9E5005D0EB0 /* PortraitView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortraitView_flat7.xib; sourceTree = "<group>"; };
+		881A10021A66D0A5005D0EB0 /* flat7-portrait-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder.png"; sourceTree = "<group>"; };
+		881A10031A66D0A5005D0EB0 /* flat7-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
 		88274E4E1A248DC100FE31C6 /* LiferayScreens-Showcase-Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiferayScreens-Showcase-Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88274E521A248DC100FE31C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88274E531A248DC100FE31C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -421,6 +429,15 @@
 				5D62D52D84D90CDB834C3F0C /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		881A0FC61A66C9E5005D0EB0 /* PortraitScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				881A0FC71A66C9E5005D0EB0 /* PortraitView_flat7.swift */,
+				881A0FC81A66C9E5005D0EB0 /* PortraitView_flat7.xib */,
+			);
+			path = PortraitScreenlet;
 			sourceTree = "<group>";
 		};
 		88274E451A248DC100FE31C6 = {
@@ -942,6 +959,7 @@
 			children = (
 				88274F461A24904100FE31C6 /* Auth */,
 				88274F501A24904100FE31C6 /* Flat7ThemeConstants.swift */,
+				881A0FC61A66C9E5005D0EB0 /* PortraitScreenlet */,
 				88274F511A24904100FE31C6 /* Resources */,
 			);
 			path = Flat7;
@@ -987,13 +1005,15 @@
 		88274F511A24904100FE31C6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				88274F521A24904100FE31C6 /* flat7.strings */,
 				88274F551A24904100FE31C6 /* flat7-button.png */,
 				88274F561A24904100FE31C6 /* flat7-button@2x.png */,
 				88274F571A24904100FE31C6 /* flat7-field.png */,
 				88274F581A24904100FE31C6 /* flat7-field@2x.png */,
 				88274F591A24904100FE31C6 /* flat7-gradient-form.png */,
 				88274F5A1A24904100FE31C6 /* flat7-gradient-form@2x.png */,
+				881A10021A66D0A5005D0EB0 /* flat7-portrait-placeholder.png */,
+				881A10031A66D0A5005D0EB0 /* flat7-portrait-placeholder@2x.png */,
+				88274F521A24904100FE31C6 /* flat7.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1136,6 +1156,7 @@
 				88274FC31A24904100FE31C6 /* DDLFormView_default.xib in Resources */,
 				88274FD91A24904100FE31C6 /* default-hourglass@2x.png in Resources */,
 				88274FEF1A24904100FE31C6 /* SignUpView_flat7.xib in Resources */,
+				881A10051A66D0A5005D0EB0 /* flat7-portrait-placeholder@2x.png in Resources */,
 				88274FDC1A24904100FE31C6 /* default-mail-icon.png in Resources */,
 				88274FE51A24904100FE31C6 /* default-preview-webcontentdisplay@2x.png in Resources */,
 				88274FDA1A24904100FE31C6 /* default-lock-icon.png in Resources */,
@@ -1169,10 +1190,12 @@
 				88274FA71A24904100FE31C6 /* AssetListView_default.xib in Resources */,
 				88274FE01A24904100FE31C6 /* default-preview-assetlist.png in Resources */,
 				88274FCC1A24904100FE31C6 /* default-calendar.png in Resources */,
+				881A0FCA1A66C9E5005D0EB0 /* PortraitView_flat7.xib in Resources */,
 				88274FED1A24904100FE31C6 /* LoginView_flat7.xib in Resources */,
 				88274F6E1A24904100FE31C6 /* signup-screenlet.strings in Resources */,
 				88274FBE1A24904100FE31C6 /* DDLFieldTextareaTableCell_default.xib in Resources */,
 				88274FCF1A24904100FE31C6 /* default-field-failed@2x.png in Resources */,
+				881A10041A66D0A5005D0EB0 /* flat7-portrait-placeholder.png in Resources */,
 				88274FE71A24904100FE31C6 /* default-user-icon@2x.png in Resources */,
 				88274FDE1A24904100FE31C6 /* default-multiline-field.png in Resources */,
 				88274FD51A24904100FE31C6 /* default-form-gradient-bottom@2x.png in Resources */,
@@ -1296,6 +1319,7 @@
 				88274F5C1A24904100FE31C6 /* LiferayAssetListPageOperation.swift in Sources */,
 				88274F7E1A24904100FE31C6 /* ThemeManager.swift in Sources */,
 				88274E5A1A248DC100FE31C6 /* HomeLoginViewController.m in Sources */,
+				881A0FC91A66C9E5005D0EB0 /* PortraitView_flat7.swift in Sources */,
 				88274FAC1A24904100FE31C6 /* SignUpView_default.swift in Sources */,
 				88274FA11A24904100FE31C6 /* LRMobilewidgetsuserService_v62.m in Sources */,
 				8843AE761A66B7B5002AB625 /* LiferayLoginByUserIdOperation.swift in Sources */,

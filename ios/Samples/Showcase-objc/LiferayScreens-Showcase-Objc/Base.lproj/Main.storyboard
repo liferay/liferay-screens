@@ -26,13 +26,13 @@
                                 <rect key="frame" x="0.0" y="128" width="320" height="259"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You're signed in as..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLF-dm-XSf">
-                                        <rect key="frame" x="8" y="30" width="304" height="21"/>
+                                        <rect key="frame" x="8" y="30" width="304" height="20.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIY-0D-zpB">
-                                        <rect key="frame" x="8" y="85" width="304" height="21"/>
+                                        <rect key="frame" x="8" y="84.5" width="304" height="20"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -188,31 +188,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GpE-sI-Acu" customClass="SignUpScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GpE-sI-Acu" customClass="SignUpScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
                                 <rect key="frame" x="16" y="64" width="288" height="350"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zuk-EI-Jlp">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zuk-EI-Jlp">
                                 <rect key="frame" x="255" y="442" width="51" height="31"/>
                                 <color key="onTintColor" red="0.077612620909999999" green="0.63132638569999999" blue="0.80875318880000002" alpha="0.87" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="loginValueChangedAction:" destination="FKF-ee-97Z" eventType="valueChanged" id="M2c-PO-UXk"/>
                                 </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F5J-Le-Whi">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F5J-Le-Whi">
                                 <rect key="frame" x="255" y="482" width="51" height="31"/>
                                 <color key="onTintColor" red="0.077612620909999999" green="0.63132638569999999" blue="0.80875318880000002" alpha="0.87" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="credentialsValueChangedAction:" destination="FKF-ee-97Z" eventType="valueChanged" id="m7t-Cm-Kxz"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable autologin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qg8-Ga-azb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable autologin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qg8-Ga-azb">
                                 <rect key="frame" x="16" y="447" width="152" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save credentials" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94b-eJ-eO1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save credentials" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94b-eJ-eO1">
                                 <rect key="frame" x="16" y="487" width="152" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -315,7 +315,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dXQ-Ef-lMY" customClass="ForgotPasswordScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dXQ-Ef-lMY" customClass="ForgotPasswordScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="320" height="328"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -454,7 +454,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wfl-Yw-nTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-180" y="1566"/>
+            <point key="canvasLocation" x="-183" y="1801"/>
         </scene>
         <!--DDLListScreenlet-->
         <scene sceneID="oeR-fe-fqI">
@@ -611,7 +611,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7SB-hn-R3O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-190" y="2541"/>
+            <point key="canvasLocation" x="-183" y="2502"/>
         </scene>
         <!--Portrait Screenlet View Controller-->
         <scene sceneID="HRu-qV-4yl">
@@ -690,7 +690,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xdQ-VP-yfj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="220" y="2541"/>
+            <point key="canvasLocation" x="180" y="2502"/>
         </scene>
     </scenes>
     <resources>
