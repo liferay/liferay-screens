@@ -16,8 +16,7 @@ import UIKit
 
 @objc public protocol PortraitData {
 
-	func loadPortrait(url: NSURL)
-	func loadPlaceholder()
+	var portraitURL: NSURL? {get set}
 
 	var borderWidth: CGFloat {set get}
 	var borderColor: UIColor? {set get}

@@ -30,6 +30,20 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 		}
 	}
 
+	public var portraitURL: NSURL? {
+		get {
+			return nil
+		}
+		set {
+			if let url = newValue {
+				loadPortrait(URL: url)
+			}
+			else {
+				loadPlaceholder()
+			}
+		}
+	}
+
 
 	//MARK: BaseScreenletView
 
@@ -52,16 +66,16 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 	}
 
 
-	//MARK: Public methods
+	//MARK: Internal methods
 
-	public func loadPlaceholder() {
+	internal func loadPlaceholder() {
 		if self.portraitImage?.image == nil {
 			self.portraitImage?.image = UIImage(named: "default-portrait-placeholder")
 		}
 	}
 
-	public func loadPortrait(portraitURL: NSURL) {
-		let request = NSURLRequest(URL: portraitURL)
+	internal func loadPortrait(URL url: NSURL) {
+		let request = NSURLRequest(URL: url)
 
 		activityIndicator?.startAnimating()
 

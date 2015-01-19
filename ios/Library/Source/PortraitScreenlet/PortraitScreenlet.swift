@@ -42,21 +42,20 @@ public class PortraitScreenlet: BaseScreenlet {
 	}
 
 	public func loadLoggedUserPortrait() -> Bool {
-		loadPortrait(url: getLoggedUserPortraitURL())
+		portraitView.portraitURL = getLoggedUserPortraitURL()
 
 		return SessionContext.hasSession
 	}
 
 	public func load(#portraitId: Int64, uuid: String, male: Bool = true) {
-
 		if portraitId == 0 {
-			portraitView.loadPlaceholder()
+			portraitView.portraitURL = nil
 		}
 		else {
-			loadPortrait(url: getUserPortraitURL(
+			portraitView.portraitURL = getUserPortraitURL(
 					male: male,
 					portraitId: portraitId,
-					uuid: uuid))
+					uuid: uuid)
 		}
 	}
 
@@ -64,15 +63,15 @@ public class PortraitScreenlet: BaseScreenlet {
 		if let url = getLoggedUserPortraitURLByAttribute(
 				key: "userId",
 				value: NSNumber(longLong: userId)) {
-			portraitView.loadPortrait(url)
+			portraitView.portraitURL = url
 		}
 		else {
 			let operation = GetUserByUserIdOperation(
-						screenlet: self,
-						userId: userId)
+					screenlet: self,
+					userId: userId)
 
 			if !operation.validateAndEnqueue(loadedUser) {
-				portraitView.loadPlaceholder()
+				portraitView.portraitURL = nil
 			}
 			else {
 				screenletView?.onStartOperation()
@@ -84,7 +83,7 @@ public class PortraitScreenlet: BaseScreenlet {
 		if let url = getLoggedUserPortraitURLByAttribute(
 				key: "emailAddress",
 				value: emailAddress) {
-			portraitView.loadPortrait(url)
+			portraitView.portraitURL = url
 		}
 		else {
 			let operation = GetUserByEmailOperation(
@@ -93,7 +92,7 @@ public class PortraitScreenlet: BaseScreenlet {
 					emailAddress: emailAddress)
 
 			if !operation.validateAndEnqueue(loadedUser) {
-				portraitView.loadPlaceholder()
+				portraitView.portraitURL = nil
 			}
 			else {
 				screenletView?.onStartOperation()
@@ -101,12 +100,11 @@ public class PortraitScreenlet: BaseScreenlet {
 		}
 	}
 
-
 	public func load(#companyId: Int64, screenName: String) {
 		if let url = getLoggedUserPortraitURLByAttribute(
 				key: "screenName",
 				value: screenName) {
-			portraitView.loadPortrait(url)
+			portraitView.portraitURL = url
 		}
 		else {
 			let operation = GetUserByScreenNameOperation(
@@ -115,7 +113,7 @@ public class PortraitScreenlet: BaseScreenlet {
 					screenName: screenName)
 
 			if !operation.validateAndEnqueue(loadedUser) {
-				portraitView.loadPlaceholder()
+				portraitView.portraitURL = nil
 			}
 			else {
 				screenletView?.onStartOperation()
@@ -127,15 +125,13 @@ public class PortraitScreenlet: BaseScreenlet {
 			#key: String,
 			value: AnyObject) -> NSURL? {
 
-		var url: NSURL?
-
 		if let loggedUserAttributeValue:AnyObject = SessionContext.userAttribute(key) {
 			if loggedUserAttributeValue.isEqual(value) {
-				url = getLoggedUserPortraitURL()
+				return getLoggedUserPortraitURL()
 			}
 		}
 
-		return url
+		return nil
 	}
 
 	private func loadedUser(operation: ServerOperation) {
@@ -146,7 +142,7 @@ public class PortraitScreenlet: BaseScreenlet {
 					uuid: userAttributes["uuid"] as String)
 		}
 		else {
-			portraitView.loadPlaceholder()
+			portraitView.portraitURL = nil
 		}
 	}
 
@@ -162,23 +158,14 @@ public class PortraitScreenlet: BaseScreenlet {
 		return nil
 	}
 
-	private func loadPortrait(#url: NSURL?) {
-		if let urlValue = url {
-			portraitView.loadPortrait(urlValue)
-		}
-		else {
-			portraitView.loadPlaceholder()
-		}
-	}
-
-	private func getUserPortraitURL(#male: Bool, portraitId: Int64, uuid: String) -> NSURL? {
+	private func getUserPortraitURL(#male: Bool, portraitId: Int64, uuid: String) -> NSURL {
 		let maleString = male ? "male" : "female"
 
 		let URL = "\(LiferayServerContext.server)/image/user_\(maleString)/_portrait" +
 				"?img_id=\(portraitId)" +
 				"&img_id_token=\(encodedSHA1(uuid))"
 
-		return NSURL(string: URL)
+		return NSURL(string: URL)!
 	}
 
 	private func encodedSHA1(input: String) -> String {
