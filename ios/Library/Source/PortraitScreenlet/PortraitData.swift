@@ -19,4 +19,7 @@ import UIKit
 	func loadPortrait(url: NSURL)
 	func loadPlaceholder()
 
+	var borderWidth: CGFloat {set get}
+	var borderColor: UIColor? {set get}
+
 }

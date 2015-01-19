@@ -632,25 +632,28 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="dUK-mV-I2G" customClass="PortraitScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
-                                <rect key="frame" x="16" y="161" width="288" height="288"/>
+                                <rect key="frame" x="85" y="164" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="288" id="15x-fl-uMr"/>
-                                    <constraint firstAttribute="width" constant="288" id="aob-04-j5w"/>
+                                    <constraint firstAttribute="width" constant="150" id="Mvx-Ec-JnR"/>
+                                    <constraint firstAttribute="height" constant="150" id="mXE-qG-BK2"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="flat7"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="g8B-1u-S4d" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" constant="63" id="8eW-x3-2u9"/>
+                            <constraint firstItem="dUK-mV-I2G" firstAttribute="top" secondItem="9ha-iK-R4n" secondAttribute="bottom" constant="100" id="DeC-7j-j5D"/>
                             <constraint firstItem="7UY-Og-Tpf" firstAttribute="leading" secondItem="g8B-1u-S4d" secondAttribute="trailing" constant="8" id="FAS-9b-qvD"/>
                             <constraint firstItem="g8B-1u-S4d" firstAttribute="top" secondItem="9ha-iK-R4n" secondAttribute="bottom" constant="32" id="FsA-JS-WCe"/>
-                            <constraint firstItem="dUK-mV-I2G" firstAttribute="top" secondItem="7UY-Og-Tpf" secondAttribute="bottom" constant="29" id="JiY-Sa-iyC"/>
                             <constraint firstItem="7UY-Og-Tpf" firstAttribute="top" secondItem="9ha-iK-R4n" secondAttribute="bottom" constant="24" id="MV7-aQ-LvZ"/>
                             <constraint firstItem="Wf5-FK-eyq" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="PUW-Rf-CFB"/>
-                            <constraint firstItem="dUK-mV-I2G" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="XYz-C7-S7U"/>
+                            <constraint firstItem="dUK-mV-I2G" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" constant="69" id="a6A-0m-3ah"/>
                             <constraint firstItem="7UY-Og-Tpf" firstAttribute="trailing" secondItem="EqH-kn-vAc" secondAttribute="trailingMargin" id="f2h-cP-E51"/>
                             <constraint firstItem="Wf5-FK-eyq" firstAttribute="top" secondItem="9ha-iK-R4n" secondAttribute="bottom" constant="35" id="isc-Ao-1fI"/>
                         </constraints>

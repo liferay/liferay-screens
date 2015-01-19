@@ -16,10 +16,30 @@ import UIKit
 
 public class PortraitScreenlet: BaseScreenlet {
 
+	@IBInspectable public var borderWidth: CGFloat = 1.0 {
+		didSet {
+			(screenletView as? PortraitData)?.borderWidth = self.borderWidth
+		}
+	}
+	@IBInspectable public var borderColor: UIColor? {
+		didSet {
+			(screenletView as? PortraitData)?.borderColor = self.borderColor
+		}
+	}
+
 	private var portraitView: PortraitData {
 		return screenletView as PortraitData
 	}
 
+
+	//MARK: BaseScreenlet
+
+	override internal func onCreated() {
+		super.onCreated()
+
+		portraitView.borderWidth = self.borderWidth
+		portraitView.borderColor = self.borderColor
+	}
 
 	public func loadLoggedUserPortrait() -> Bool {
 		loadPortrait(url: getLoggedUserPortraitURL())

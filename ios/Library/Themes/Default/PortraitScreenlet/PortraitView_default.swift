@@ -19,6 +19,17 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 	@IBOutlet var activityIndicator: UIActivityIndicatorView?
 	@IBOutlet var portraitImage: UIImageView?
 
+	public var borderWidth: CGFloat = 1.0 {
+		didSet {
+			portraitImage?.layer.borderWidth = borderWidth
+		}
+	}
+	public var borderColor: UIColor? {
+		didSet {
+			portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
+		}
+	}
+
 
 	//MARK: BaseScreenletView
 
@@ -33,6 +44,11 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 	override func onShow() {
 		activityIndicator?.hidesWhenStopped = true
 		activityIndicator?.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+
+		portraitImage?.layer.borderWidth = borderWidth
+		portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
+		portraitImage?.layer.cornerRadius = DefaultThemeButtonCornerRadius
+
 	}
 
 
