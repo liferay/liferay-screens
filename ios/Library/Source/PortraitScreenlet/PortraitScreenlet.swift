@@ -33,11 +33,10 @@ public class PortraitScreenlet: BaseScreenlet {
 			portraitView.loadPlaceholder()
 		}
 		else {
-			loadPortrait(
-					url: getUserPortraitURL(
-							male: male,
-							portraitId: portraitId,
-							uuid: uuid))
+			loadPortrait(url: getUserPortraitURL(
+					male: male,
+					portraitId: portraitId,
+					uuid: uuid))
 		}
 	}
 
@@ -69,9 +68,9 @@ public class PortraitScreenlet: BaseScreenlet {
 		}
 		else {
 			let operation = GetUserByEmailOperation(
-						screenlet: self,
-						companyId: companyId,
-						emailAddress: emailAddress)
+					screenlet: self,
+					companyId: companyId,
+					emailAddress: emailAddress)
 
 			if !operation.validateAndEnqueue(loadedUser) {
 				portraitView.loadPlaceholder()
@@ -91,9 +90,9 @@ public class PortraitScreenlet: BaseScreenlet {
 		}
 		else {
 			let operation = GetUserByScreenNameOperation(
-						screenlet: self,
-						companyId: companyId,
-						screenName: screenName)
+					screenlet: self,
+					companyId: companyId,
+					screenName: screenName)
 
 			if !operation.validateAndEnqueue(loadedUser) {
 				portraitView.loadPlaceholder()
@@ -154,31 +153,24 @@ public class PortraitScreenlet: BaseScreenlet {
 
 	private func getUserPortraitURL(#male: Bool, portraitId: Int64, uuid: String) -> NSURL? {
 		let maleString = male ? "male" : "female"
-		var URL: String = String()
 
-		URL = LiferayServerContext.server
-		URL = URL + "/image/user_\(maleString)/_portrait?img_id="
-		URL = URL + "\(portraitId)"
-		URL = URL + "&img_id_token=" + getSHA1(uuid)
+		let URL = "\(LiferayServerContext.server)/image/user_\(maleString)/_portrait" +
+				"?img_id=\(portraitId)" +
+				"&img_id_token=\(encodedSHA1(uuid))"
 
 		return NSURL(string: URL)
 	}
 
-	private func getSHA1(input: String) -> String {
-		var digestLength: Int = Int(CC_SHA1_DIGEST_LENGTH)
-
-		var result: [UInt8] = [Byte](count: digestLength, repeatedValue: 0)
+	private func encodedSHA1(input: String) -> String {
+		var result = [Byte](count: Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
 
 		CC_SHA1(input, CC_LONG(countElements(input)), &result)
 
-		var data: NSData = NSData(bytes: result, length: result.count)
+		let data = NSData(bytes: result, length: result.count)
 
-		var encodedString: String = data.base64EncodedStringWithOptions(
-			NSDataBase64EncodingOptions(0))
+		let encodedString = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
 
-		var SHA1 = LRHttpUtil.encodeURL(encodedString)
-
-		return SHA1
+		return LRHttpUtil.encodeURL(encodedString)
 	}
 
 }
