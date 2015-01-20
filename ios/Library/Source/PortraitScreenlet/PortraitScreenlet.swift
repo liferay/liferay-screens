@@ -64,7 +64,10 @@ public class PortraitScreenlet: BaseScreenlet {
 				screenlet: self,
 				userId: userId)
 
-		load(userAttribute: "userId", value: NSNumber(longLong: userId), operation: operation)
+		loadUserOrGetFromSession(
+				userAttribute: "userId",
+				value: NSNumber(longLong: userId),
+				operation: operation)
 	}
 
 	public func load(#companyId: Int64, emailAddress: String) {
@@ -73,7 +76,10 @@ public class PortraitScreenlet: BaseScreenlet {
 				companyId: companyId,
 				emailAddress: emailAddress)
 
-		load(userAttribute: "emailAddress", value: emailAddress, operation: operation)
+		loadUserOrGetFromSession(
+				userAttribute: "emailAddress",
+				value: emailAddress,
+				operation: operation)
 	}
 
 	public func load(#companyId: Int64, screenName: String) {
@@ -82,10 +88,16 @@ public class PortraitScreenlet: BaseScreenlet {
 				companyId: companyId,
 				screenName: screenName)
 
-		load(userAttribute: "screenName", value: screenName, operation: operation)
+		loadUserOrGetFromSession(
+				userAttribute: "screenName",
+				value: screenName,
+				operation: operation)
 	}
 
-	private func load(
+
+	//MARK: Private methods
+
+	private func loadUserOrGetFromSession(
 			#userAttribute: String,
 			value: AnyObject,
 			operation: GetUserBaseOperation) {
