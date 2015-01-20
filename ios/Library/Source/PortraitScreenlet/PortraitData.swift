@@ -18,7 +18,9 @@ import UIKit
 
 	var portraitURL: NSURL? {get set}
 
-	var borderWidth: CGFloat {set get}
-	var borderColor: UIColor? {set get}
+	var borderWidth: CGFloat {get set}
+	var borderColor: UIColor? {get set}
+
+	var portraitLoaded: ((NSError?) -> (Void))? {get set}
 
 }
