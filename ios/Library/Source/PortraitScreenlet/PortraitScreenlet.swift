@@ -42,20 +42,20 @@ public class PortraitScreenlet: BaseScreenlet {
 	}
 
 	public func loadLoggedUserPortrait() -> Bool {
-		portraitView.portraitURL = getLoggedUserPortraitURL()
+		setPortraitURL(getLoggedUserPortraitURL())
 
 		return SessionContext.hasSession
 	}
 
 	public func load(#portraitId: Int64, uuid: String, male: Bool = true) {
 		if portraitId == 0 {
-			portraitView.portraitURL = nil
+			setPortraitURL(nil)
 		}
 		else {
-			portraitView.portraitURL = getUserPortraitURL(
+			setPortraitURL(getUserPortraitURL(
 					male: male,
 					portraitId: portraitId,
-					uuid: uuid)
+					uuid: uuid))
 		}
 	}
 
@@ -111,23 +111,27 @@ public class PortraitScreenlet: BaseScreenlet {
 					uuid: userAttributes["uuid"] as String)
 			}
 			else {
-				portraitView.portraitURL = nil
+				setPortraitURL(nil)
 			}
 		}
 
 		if let url = getLoggedUserPortraitURLByAttribute(
 				key: userAttribute,
 				value: value) {
-			portraitView.portraitURL = url
+			setPortraitURL(url)
 		}
 		else {
 			if operation.validateAndEnqueue(onUserLoaded) {
 				screenletView?.onStartOperation()
 			}
 			else {
-				portraitView.portraitURL = nil
+				setPortraitURL(nil)
 			}
 		}
+	}
+
+	private func setPortraitURL(url: NSURL?) {
+		portraitView.portraitURL = url
 	}
 
 	private func getLoggedUserPortraitURLByAttribute(
