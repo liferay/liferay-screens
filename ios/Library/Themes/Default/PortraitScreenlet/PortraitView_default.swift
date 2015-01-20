@@ -48,6 +48,10 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 		activityIndicator?.startAnimating()
 	}
 
+	override func onFinishOperation() {
+		activityIndicator?.stopAnimating()
+	}
+
 	override func onShow() {
 		portraitImage?.layer.borderWidth = borderWidth
 		portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
@@ -65,13 +69,13 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 		portraitImage?.setImageWithURLRequest(request, placeholderImage: nil, success: {
 			(request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) -> Void in
 				self.portraitImage?.image = image
-				self.activityIndicator?.stopAnimating()
+				self.onFinishOperation()
 
 			},
 			failure: {
 				(request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) -> Void in
 					self.portraitImage?.image = UIImage(named: "default-portrait-placeholder")
-					self.activityIndicator?.stopAnimating()
+					self.onFinishOperation()
 			})
 	}
 
