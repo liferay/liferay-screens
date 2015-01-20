@@ -102,6 +102,19 @@ public class PortraitScreenlet: BaseScreenlet {
 			value: AnyObject,
 			operation: GetUserBaseOperation) {
 
+		func onUserLoaded(operation: ServerOperation) {
+			let userOperation = operation as GetUserBaseOperation
+
+			if let userAttributes = userOperation.resultUserAttributes {
+				load(
+					portraitId:(userAttributes["portraitId"] as NSNumber).longLongValue,
+					uuid: userAttributes["uuid"] as String)
+			}
+			else {
+				portraitView.portraitURL = nil
+			}
+		}
+
 		if let url = getLoggedUserPortraitURLByAttribute(
 				key: userAttribute,
 				value: value) {
@@ -128,18 +141,6 @@ public class PortraitScreenlet: BaseScreenlet {
 		}
 
 		return nil
-	}
-
-	private func onUserLoaded(operation: ServerOperation) {
-		let userOperation = operation as GetUserBaseOperation
-
-		if let userAttributes = userOperation.resultUserAttributes {
-			self.load(portraitId:(userAttributes["portraitId"] as NSNumber).longLongValue,
-					uuid: userAttributes["uuid"] as String)
-		}
-		else {
-			portraitView.portraitURL = nil
-		}
 	}
 
 	private func getLoggedUserPortraitURL() -> NSURL? {
