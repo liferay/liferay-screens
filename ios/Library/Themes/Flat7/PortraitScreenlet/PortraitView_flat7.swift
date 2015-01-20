@@ -16,12 +16,6 @@ import UIKit
 
 public class PortraitView_flat7: PortraitView_default {
 
-	override internal func loadPlaceholder() {
-		if self.portraitImage?.image == nil {
-			self.portraitImage?.image = UIImage(named: "flat7-portrait-placeholder")
-		}
-	}
-
 	override func onShow() {
 		super.onShow()
 

@@ -35,11 +35,8 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 			return nil
 		}
 		set {
-			if let url = newValue {
-				loadPortrait(URL: url)
-			}
-			else {
-				loadPlaceholder()
+			if let urlValue = newValue {
+				loadPortrait(URL: urlValue)
 			}
 		}
 	}
@@ -51,28 +48,14 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 		activityIndicator?.startAnimating()
 	}
 
-	override func onCreated() {
-		loadPlaceholder()
-	}
-
 	override func onShow() {
-		activityIndicator?.hidesWhenStopped = true
-		activityIndicator?.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-
 		portraitImage?.layer.borderWidth = borderWidth
 		portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
 		portraitImage?.layer.cornerRadius = DefaultThemeButtonCornerRadius
-
 	}
 
 
 	//MARK: Internal methods
-
-	internal func loadPlaceholder() {
-		if self.portraitImage?.image == nil {
-			self.portraitImage?.image = UIImage(named: "default-portrait-placeholder")
-		}
-	}
 
 	internal func loadPortrait(URL url: NSURL) {
 		let request = NSURLRequest(URL: url)
@@ -87,7 +70,7 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 			},
 			failure: {
 				(request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) -> Void in
-					self.loadPlaceholder()
+					self.portraitImage?.image = UIImage(named: "default-portrait-placeholder")
 					self.activityIndicator?.stopAnimating()
 			})
 	}
