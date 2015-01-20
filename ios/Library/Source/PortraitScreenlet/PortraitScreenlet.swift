@@ -60,63 +60,47 @@ public class PortraitScreenlet: BaseScreenlet {
 	}
 
 	public func load(#userId: Int64) {
-		if let url = getLoggedUserPortraitURLByAttribute(
-				key: "userId",
-				value: NSNumber(longLong: userId)) {
-			portraitView.portraitURL = url
-		}
-		else {
-			let operation = GetUserByUserIdOperation(
-					screenlet: self,
-					userId: userId)
+		let operation = GetUserByUserIdOperation(
+				screenlet: self,
+				userId: userId)
 
-			if !operation.validateAndEnqueue(onUserLoaded) {
-				portraitView.portraitURL = nil
-			}
-			else {
-				screenletView?.onStartOperation()
-			}
-		}
+		load(userAttribute: "userId", value: NSNumber(longLong: userId), operation: operation)
 	}
 
 	public func load(#companyId: Int64, emailAddress: String) {
-		if let url = getLoggedUserPortraitURLByAttribute(
-				key: "emailAddress",
-				value: emailAddress) {
-			portraitView.portraitURL = url
-		}
-		else {
-			let operation = GetUserByEmailOperation(
-					screenlet: self,
-					companyId: companyId,
-					emailAddress: emailAddress)
+		let operation = GetUserByEmailOperation(
+				screenlet: self,
+				companyId: companyId,
+				emailAddress: emailAddress)
 
-			if !operation.validateAndEnqueue(onUserLoaded) {
-				portraitView.portraitURL = nil
-			}
-			else {
-				screenletView?.onStartOperation()
-			}
-		}
+		load(userAttribute: "emailAddress", value: emailAddress, operation: operation)
 	}
 
 	public func load(#companyId: Int64, screenName: String) {
+		let operation = GetUserByScreenNameOperation(
+				screenlet: self,
+				companyId: companyId,
+				screenName: screenName)
+
+		load(userAttribute: "screenName", value: screenName, operation: operation)
+	}
+
+	private func load(
+			#userAttribute: String,
+			value: AnyObject,
+			operation: GetUserBaseOperation) {
+
 		if let url = getLoggedUserPortraitURLByAttribute(
-				key: "screenName",
-				value: screenName) {
+				key: userAttribute,
+				value: value) {
 			portraitView.portraitURL = url
 		}
 		else {
-			let operation = GetUserByScreenNameOperation(
-					screenlet: self,
-					companyId: companyId,
-					screenName: screenName)
-
-			if !operation.validateAndEnqueue(onUserLoaded) {
-				portraitView.portraitURL = nil
+			if operation.validateAndEnqueue(onUserLoaded) {
+				screenletView?.onStartOperation()
 			}
 			else {
-				screenletView?.onStartOperation()
+				portraitView.portraitURL = nil
 			}
 		}
 	}
