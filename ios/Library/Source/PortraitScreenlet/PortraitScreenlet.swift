@@ -14,6 +14,14 @@
 import UIKit
 
 
+@objc public protocol PortraitScreenletDelegate {
+
+	optional func onPortraitResponse(image: UIImage) -> UIImage
+	optional func onPortraitError(error: NSError)
+
+}
+
+
 public class PortraitScreenlet: BaseScreenlet {
 
 	@IBInspectable public var borderWidth: CGFloat = 1.0 {
@@ -27,6 +35,9 @@ public class PortraitScreenlet: BaseScreenlet {
 		}
 	}
 
+	@IBOutlet public var delegate: PortraitScreenletDelegate?
+
+
 	private var portraitView: PortraitData {
 		return screenletView as PortraitData
 	}
@@ -39,6 +50,8 @@ public class PortraitScreenlet: BaseScreenlet {
 
 		portraitView.borderWidth = self.borderWidth
 		portraitView.borderColor = self.borderColor
+
+		portraitView.portraitLoaded = onPortraitLoaded
 	}
 
 	public func loadLoggedUserPortrait() -> Bool {
@@ -132,6 +145,10 @@ public class PortraitScreenlet: BaseScreenlet {
 
 	private func setPortraitURL(url: NSURL?) {
 		portraitView.portraitURL = url
+
+		if url == nil {
+			delegate?.onPortraitError?(createError(cause: .AbortedDueToPreconditions))
+		}
 	}
 
 	private func getLoggedUserPortraitURLByAttribute(
@@ -181,4 +198,16 @@ public class PortraitScreenlet: BaseScreenlet {
 		return LRHttpUtil.encodeURL(encodedString)
 	}
 
+	private func onPortraitLoaded(image: UIImage?, error: NSError?) -> UIImage? {
+		var finalImage = image
+
+		if let errorValue = error {
+			delegate?.onPortraitError?(errorValue)
+		}
+		else if let imageValue = image {
+			finalImage = delegate?.onPortraitResponse?(imageValue)
+		}
+
+		return finalImage
+	}
 }
