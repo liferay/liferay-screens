@@ -21,6 +21,6 @@ import UIKit
 	var borderWidth: CGFloat {get set}
 	var borderColor: UIColor? {get set}
 
-	var portraitLoaded: ((NSError?) -> (Void))? {get set}
+	var portraitLoaded: ((UIImage?, NSError?) -> (UIImage?))? {get set}
 
 }
