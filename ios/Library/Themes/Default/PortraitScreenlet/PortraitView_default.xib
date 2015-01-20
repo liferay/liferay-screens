@@ -15,7 +15,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="rsf-V2-RcI">
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="rsf-V2-RcI">
                     <rect key="frame" x="20" y="20" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <color key="color" red="0.0" green="0.81572645030000002" blue="1" alpha="0.87" colorSpace="calibratedRGB"/>
