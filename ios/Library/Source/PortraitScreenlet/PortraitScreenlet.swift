@@ -70,7 +70,7 @@ public class PortraitScreenlet: BaseScreenlet {
 					screenlet: self,
 					userId: userId)
 
-			if !operation.validateAndEnqueue(loadedUser) {
+			if !operation.validateAndEnqueue(onUserLoaded) {
 				portraitView.portraitURL = nil
 			}
 			else {
@@ -91,7 +91,7 @@ public class PortraitScreenlet: BaseScreenlet {
 					companyId: companyId,
 					emailAddress: emailAddress)
 
-			if !operation.validateAndEnqueue(loadedUser) {
+			if !operation.validateAndEnqueue(onUserLoaded) {
 				portraitView.portraitURL = nil
 			}
 			else {
@@ -112,7 +112,7 @@ public class PortraitScreenlet: BaseScreenlet {
 					companyId: companyId,
 					screenName: screenName)
 
-			if !operation.validateAndEnqueue(loadedUser) {
+			if !operation.validateAndEnqueue(onUserLoaded) {
 				portraitView.portraitURL = nil
 			}
 			else {
@@ -134,7 +134,7 @@ public class PortraitScreenlet: BaseScreenlet {
 		return nil
 	}
 
-	private func loadedUser(operation: ServerOperation) {
+	private func onUserLoaded(operation: ServerOperation) {
 		let userOperation = operation as GetUserBaseOperation
 
 		if let userAttributes = userOperation.resultUserAttributes {
