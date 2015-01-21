@@ -89,7 +89,12 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 	//MARK: Internal methods
 
 	internal func loadPortrait(URL url: NSURL) {
-		let request = NSURLRequest(URL: url)
+		// ignore AFNetworking's cache by now
+		// TODO contribute to UIImageView+AFNetworking to support "If-Modified-Since" header
+		let request = NSURLRequest(
+				URL: url,
+				cachePolicy: .ReloadIgnoringLocalCacheData,
+				timeoutInterval: 60.0)
 
 		onStartOperation()
 
