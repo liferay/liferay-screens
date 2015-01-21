@@ -50,11 +50,30 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 	//MARK: BaseScreenletView
 
 	override func onStartOperation() {
-		activityIndicator?.startAnimating()
+		objc_sync_enter(self)
+
+		// use tag to track the start count
+		if activityIndicator?.tag == 0 {
+			activityIndicator?.startAnimating()
+		}
+
+		activityIndicator?.tag++
+
+		objc_sync_exit(self)
 	}
 
 	override func onFinishOperation() {
-		activityIndicator?.stopAnimating()
+		if activityIndicator?.tag > 0 {
+			objc_sync_enter(self)
+
+			activityIndicator?.tag--
+
+			if activityIndicator?.tag == 0 {
+				activityIndicator?.stopAnimating()
+			}
+
+			objc_sync_exit(self)
+		}
 	}
 
 	override func onShow() {
@@ -69,7 +88,7 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 	internal func loadPortrait(URL url: NSURL) {
 		let request = NSURLRequest(URL: url)
 
-		activityIndicator?.startAnimating()
+		onStartOperation()
 
 		portraitImage?.setImageWithURLRequest(request, placeholderImage: nil, success: {
 			(request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) -> Void in
