@@ -18,7 +18,7 @@ class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, 
 	@IBOutlet var screenlet: SignUpScreenlet?
 
 	@IBAction func credentialsValueChangedAction(sender: UISwitch) {
-		self.screenlet?.autologin = sender.on
+		self.screenlet?.autoLogin = sender.on
 	}
 
 	@IBAction func loginValueChangedAction(sender: UISwitch) {
