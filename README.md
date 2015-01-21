@@ -34,7 +34,7 @@ Once your project is ready, the following screenlets are available for use in yo
 - [`DDLListScreenlet`](ios/Documentation/DDLListScreenlet.md): Gives your app the ability to show a list of records based on a pre-existing [Dynamic Data List](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-web-forms-and-dynamic-data-lists) in a Liferay instance.
 - [`AssetListScreenlet`](ios/Documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). Assets include web content, blog entries, documents and more.
 - [`WebContentDisplayScreenlet`](Documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This screenlet uses the features available in [Web Content Management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/web-content-management).
-- [`PortraitScreenlet`](Documentation/PortraitScreenlet.md): Shows the portrait picture for one user.
+- [`PortraitScreenlet`](Documentation/PortraitScreenlet.md): Shows the user's portrait picture.
 
 Liferay Screens for iOS also contains a set of *themes* that you can use to style screenlets:
 	  
