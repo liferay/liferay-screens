@@ -38,7 +38,7 @@ None
 | Attribute | Data type | Explanation |
 |-----------|-----------|-------------| 
 | `borderWidth` | `number` | The size in pixels for the portrait's border. The default value is 1. Set this to 0 if you want to hide the border.|
-|  `borderColor` | `UIColor` | The border's color. Use clear color to hide the border. |
+|  `borderColor` | `UIColor` | The border's color. Use the system's transparent color to hide the border. |
 
 ## Methods
 
