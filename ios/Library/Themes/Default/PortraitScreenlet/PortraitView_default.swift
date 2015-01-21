@@ -38,6 +38,9 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 			if let urlValue = newValue {
 				loadPortrait(URL: urlValue)
 			}
+			else {
+				loadPlaceholder()
+			}
 		}
 	}
 
@@ -111,11 +114,15 @@ public class PortraitView_default: BaseScreenletView, PortraitData {
 			},
 			failure: {
 				(request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) -> Void in
-					self.portraitImage?.image = UIImage(named: "default-portrait-placeholder")
+					self.loadPlaceholder()
 					self.loadedURL = nil
 					self.portraitLoaded?(nil, error)
 					self.onFinishOperation()
 			})
+	}
+
+	internal func loadPlaceholder() {
+		self.portraitImage?.image = UIImage(named: "default-portrait-placeholder")
 	}
 
 }

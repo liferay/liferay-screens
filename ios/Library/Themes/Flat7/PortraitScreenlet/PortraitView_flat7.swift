@@ -16,12 +16,16 @@ import UIKit
 
 public class PortraitView_flat7: PortraitView_default {
 
-	override func onShow() {
+	override internal func onShow() {
 		super.onShow()
 
 		self.borderColor = Flat7ThemeBasicGreen
 
 		portraitImage?.layer.cornerRadius = min(frame.size.width, frame.size.height) / 2
+	}
+
+	override internal func loadPlaceholder() {
+		self.portraitImage?.image = UIImage(named: "flat7-portrait-placeholder")
 	}
 
 }
