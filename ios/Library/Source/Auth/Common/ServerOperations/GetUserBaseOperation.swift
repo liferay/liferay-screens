@@ -26,13 +26,9 @@ public class GetUserBaseOperation: ServerOperation {
 		if userName == nil || password == nil {
 			userName = SessionContext.currentUserName
 			password = SessionContext.currentPassword
-
-			if userName == nil || password == nil {
-				return false
-			}
 		}
 
-		return true
+		return (userName != nil && password != nil)
 	}
 
 	override internal func preRun() -> Bool {
@@ -47,16 +43,17 @@ public class GetUserBaseOperation: ServerOperation {
 	}
 
 	override internal func postRun() {
-		if lastError == nil {
-			if SessionContext.currentUserName == userName! {
+		if SessionContext.userAttribute("userId") == nil {
+			// the session was created ad-hoc for self.userName
+			if lastError == nil {
 				SessionContext.createSession(
-						username: SessionContext.currentUserName!,
-						password: SessionContext.currentPassword!,
+						username: userName!,
+						password: password!,
 						userAttributes: resultUserAttributes!)
 			}
-		}
-		else {
-			SessionContext.clearSession()
+			else {
+				SessionContext.clearSession()
+			}
 		}
 	}
 
