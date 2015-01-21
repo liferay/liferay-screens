@@ -22,7 +22,7 @@ class PortraitScreenletViewController: UIViewController, PortraitScreenletDelega
 	@IBAction func loadPortrait(sender: AnyObject) {
 		if let userId = userIdField.text.toInt() {
 			screenlet.load(userId: Int64(userId))
-			//screenletWithDelegate.load(userId: Int64(userId))
+			screenletWithDelegate.load(userId: Int64(userId))
 		}
 	}
 
