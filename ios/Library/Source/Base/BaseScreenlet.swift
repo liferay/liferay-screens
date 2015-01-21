@@ -167,33 +167,6 @@ import QuartzCore
 		return NSBundle(forClass:self.dynamicType).pathForResource(imageName, ofType: "png")
 	}
 
-	internal func startOperationWithMessage(message:String, details:String? = nil) {
-		showHUDWithMessage(message, details: details)
-		onStartOperation()
-		screenletView?.onStartOperation()
-	}
-
-	internal func finishOperationWithError(error:NSError, message:String, details:String? = nil) {
-		showHUDWithMessage(message,
-			details: details,
-			closeMode:.ManualClose(true),
-			spinnerMode:.NoSpinner)
-		onFinishOperation()
-		screenletView?.onFinishOperation()
-	}
-
-	internal func finishOperationWithMessage(message:String, details:String? = nil) {
-		hideHUDWithMessage(message, details: details)
-		onFinishOperation()
-		screenletView?.onFinishOperation()
-	}
-
-	internal func finishOperation() {
-		hideHUD()
-		onFinishOperation()
-		screenletView?.onFinishOperation()
-	}
-
 	internal func previewImageFromView(view: UIView) -> UIImage {
 		let previewWidth = min(view.frame.size.width, self.frame.size.width)
 		let previewHeight = min(view.frame.size.height, self.frame.size.height)

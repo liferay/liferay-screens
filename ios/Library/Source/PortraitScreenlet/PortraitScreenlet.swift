@@ -147,6 +147,7 @@ public class PortraitScreenlet: BaseScreenlet {
 		portraitView.portraitURL = url
 
 		if url == nil {
+			screenletView?.onFinishOperation()
 			delegate?.onPortraitError?(createError(cause: .AbortedDueToPreconditions))
 		}
 	}
@@ -207,6 +208,8 @@ public class PortraitScreenlet: BaseScreenlet {
 		else if let imageValue = image {
 			finalImage = delegate?.onPortraitResponse?(imageValue)
 		}
+
+		screenletView?.onFinishOperation()
 
 		return finalImage
 	}
