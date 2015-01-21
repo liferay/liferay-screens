@@ -189,6 +189,7 @@
 		8843AE4F1A66B19C002AB625 /* default-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 8843AE4D1A66B19C002AB625 /* default-portrait-placeholder.png */; };
 		8843AE501A66B19C002AB625 /* default-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8843AE4E1A66B19C002AB625 /* default-portrait-placeholder@2x.png */; };
 		8847A7E51A64193F0098B92E /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8847A7E41A64193F0098B92E /* liferay-server-context.plist */; };
+		88BF016A1A6FB9C5000868A9 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF01691A6FB9C5000868A9 /* UIImageExtension.swift */; };
 		DADBA59292975E248939609C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EB65E3D4DC189357A623BA6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -394,6 +395,7 @@
 		8843AE4D1A66B19C002AB625 /* default-portrait-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-portrait-placeholder.png"; sourceTree = "<group>"; };
 		8843AE4E1A66B19C002AB625 /* default-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
 		8847A7E41A64193F0098B92E /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = "<group>"; };
+		88BF01691A6FB9C5000868A9 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		88CB07471A264B7100964F33 /* AssetListScreenletInterop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletInterop.h; sourceTree = "<group>"; };
 		D599D7796E7BE84936DB1C44 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -462,6 +464,7 @@
 				88274FF91A24C7CB00FE31C6 /* SignUpScreenletViewController.swift */,
 				88215F361A234184009B96C7 /* Supporting Files */,
 				88107F941A2C8D60009583C2 /* WebContentDisplayScreenletViewController.swift */,
+				88BF01691A6FB9C5000868A9 /* UIImageExtension.swift */,
 			);
 			name = Showcase;
 			path = "LiferayScreens-Showcase-Swift";
@@ -597,11 +600,11 @@
 		883D83D11A234EAC00CC179B /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				883D83D21A234EAC00CC179B /* BaseListScreenlet */,
-				883D83D91A234EAC00CC179B /* BaseScreenlet+progress.swift */,
-				883D83DA1A234EAC00CC179B /* BaseScreenlet.swift */,
-				883D83DB1A234EAC00CC179B /* BaseScreenletView.swift */,
 				883D83DC1A234EAC00CC179B /* base.strings */,
+				883D83D21A234EAC00CC179B /* BaseListScreenlet */,
+				883D83DA1A234EAC00CC179B /* BaseScreenlet.swift */,
+				883D83D91A234EAC00CC179B /* BaseScreenlet+progress.swift */,
+				883D83DB1A234EAC00CC179B /* BaseScreenletView.swift */,
 				883D83DF1A234EAC00CC179B /* KeyboardManager.swift */,
 				883D83E01A234EAC00CC179B /* LiferayServerContext.swift */,
 				883D83E11A234EAC00CC179B /* ServerOperation.swift */,
@@ -1331,6 +1334,7 @@
 				88274FFF1A24DAF800FE31C6 /* ForgotPasswordScreenletViewController.swift in Sources */,
 				883D84D21A234EAC00CC179B /* WebContentDisplayScreenlet.swift in Sources */,
 				883D84A81A234EAC00CC179B /* LiferayServerContext.swift in Sources */,
+				88BF016A1A6FB9C5000868A9 /* UIImageExtension.swift in Sources */,
 				883D84BB1A234EAC00CC179B /* DDLField+DataType.swift in Sources */,
 				883D84B71A234EAC00CC179B /* DDLFormTableView.swift in Sources */,
 				883D84C81A234EAC00CC179B /* NSLocale+CurrentLocale.swift in Sources */,

@@ -13,14 +13,16 @@
  */
 import UIKit
 
-class PortraitScreenletViewController: UIViewController {
+class PortraitScreenletViewController: UIViewController, PortraitScreenletDelegate {
 
 	@IBOutlet weak var screenlet: PortraitScreenlet!
+	@IBOutlet weak var screenletWithDelegate: PortraitScreenlet!
 	@IBOutlet weak var userIdField: UITextField!
 
 	@IBAction func loadPortrait(sender: AnyObject) {
 		if let userId = userIdField.text.toInt() {
 			screenlet.load(userId: Int64(userId))
+			//screenletWithDelegate.load(userId: Int64(userId))
 		}
 	}
 
@@ -30,6 +32,18 @@ class PortraitScreenletViewController: UIViewController {
 		if SessionContext.hasSession {
 			userIdField.text = SessionContext.userAttribute("userId")?.description
 		}
+
+		screenletWithDelegate?.delegate = self
     }
+
+	func onPortraitResponse(image: UIImage) -> UIImage {
+		println("DELEGATE: onPortraitResponse -> \(image.size)")
+
+		return image.getGrayScale() ?? image
+	}
+
+	func onPortraitError(error: NSError) {
+		println("DELEGATE: onPortraitError -> \(error)")
+	}
 
 }

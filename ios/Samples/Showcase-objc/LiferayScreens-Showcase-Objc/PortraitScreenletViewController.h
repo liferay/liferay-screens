@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PortraitScreenletViewController : UIViewController
+@interface PortraitScreenletViewController : UIViewController<PortraitScreenletDelegate>
 
 @end

@@ -189,6 +189,7 @@
 		8843AE751A66B7B5002AB625 /* LiferayLoginByScreenNameOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843AE721A66B7B5002AB625 /* LiferayLoginByScreenNameOperation.swift */; };
 		8843AE761A66B7B5002AB625 /* LiferayLoginByUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843AE731A66B7B5002AB625 /* LiferayLoginByUserIdOperation.swift */; };
 		8847A7E71A6421A40098B92E /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8847A7E61A6421A40098B92E /* liferay-server-context.plist */; };
+		88BF016D1A6FBACE000868A9 /* UIImage+Grayscale.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BF016C1A6FBACE000868A9 /* UIImage+Grayscale.m */; };
 		88CB07451A2644FC00964F33 /* AssetListScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */; };
 		B6BD414BAE42F1C83DFC21DF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D62D52D84D90CDB834C3F0C /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -405,6 +406,8 @@
 		8843AE721A66B7B5002AB625 /* LiferayLoginByScreenNameOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginByScreenNameOperation.swift; sourceTree = "<group>"; };
 		8843AE731A66B7B5002AB625 /* LiferayLoginByUserIdOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginByUserIdOperation.swift; sourceTree = "<group>"; };
 		8847A7E61A6421A40098B92E /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = "<group>"; };
+		88BF016B1A6FBACE000868A9 /* UIImage+Grayscale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Grayscale.h"; sourceTree = "<group>"; };
+		88BF016C1A6FBACE000868A9 /* UIImage+Grayscale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Grayscale.m"; sourceTree = "<group>"; };
 		88CB07431A2644FC00964F33 /* AssetListScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletViewController.h; sourceTree = "<group>"; };
 		88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListScreenletViewController.m; sourceTree = "<group>"; };
 		88CB07461A264A5D00964F33 /* AssetListScreenletInterop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletInterop.h; sourceTree = "<group>"; };
@@ -483,6 +486,8 @@
 				88274FFB1A24CD1A00FE31C6 /* SignUpScreenletViewController.h */,
 				88274FFC1A24CD1A00FE31C6 /* SignUpScreenletViewController.m */,
 				88274E511A248DC100FE31C6 /* Supporting Files */,
+				88BF016B1A6FBACE000868A9 /* UIImage+Grayscale.h */,
+				88BF016C1A6FBACE000868A9 /* UIImage+Grayscale.m */,
 				88107F961A2C90E8009583C2 /* WebContentDisplayScreenletViewController.h */,
 				88107F971A2C90E8009583C2 /* WebContentDisplayScreenletViewController.m */,
 			);
@@ -1338,6 +1343,7 @@
 				88274F991A24904100FE31C6 /* Bool+Conversion.swift in Sources */,
 				88274F871A24904100FE31C6 /* LiferayDDLFormSubmitOperation.swift in Sources */,
 				88274FC11A24904100FE31C6 /* DDLFormDefaultThemeConstants.swift in Sources */,
+				88BF016D1A6FBACE000868A9 /* UIImage+Grayscale.m in Sources */,
 				88274F9C1A24904100FE31C6 /* UIButton+Title.swift in Sources */,
 				8833E9621A28A541006C4413 /* DDLListScreenletViewController.m in Sources */,
 				88107F981A2C90E8009583C2 /* WebContentDisplayScreenletViewController.m in Sources */,
