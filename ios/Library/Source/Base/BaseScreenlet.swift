@@ -23,14 +23,7 @@ import QuartzCore
 
 	@IBInspectable public var themeName: String? {
 		set {
-			let newName = (newValue ?? "default").lowercaseString
-
-			if ThemeManager.exists(themeName: newName) {
-				_themeName = newName
-			}
-			else {
-				_themeName = "default"
-			}
+			_themeName = (newValue ?? "default").lowercaseString
 
 			if runningOnInterfaceBuilder {
 				updateCurrentPreviewImage()
