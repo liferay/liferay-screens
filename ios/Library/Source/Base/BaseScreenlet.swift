@@ -34,7 +34,6 @@ import QuartzCore
 
 			if runningOnInterfaceBuilder {
 				updateCurrentPreviewImage()
-				setNeedsLayout()
 			}
 		}
 		get {
@@ -45,9 +44,6 @@ import QuartzCore
 	internal var screenletView: BaseScreenletView?
 
 	internal var screenletName: String {
-		// In Beta 5, className will constain ModuleName.ClassName
-		// just strip the first part
-
 		var className = NSStringFromClass(self.dynamicType)
 
 		className = className.componentsSeparatedByString(".")[1]
@@ -96,12 +92,6 @@ import QuartzCore
 		runningOnInterfaceBuilder = true
 
 		updateCurrentPreviewImage()
-
-		if currentPreviewImage == nil {
-			if let previewImage = previewImageForTheme("default") {
-				currentPreviewImage = previewImage
-			}
-		}
 	}
 
 	override public func layoutSubviews() {
@@ -158,13 +148,7 @@ import QuartzCore
 			}
 		}
 
-		return result
-	}
-
-	internal func previewImagePathForTheme(themeName:String) -> String? {
-		let imageName = "\(themeName)-preview-\(screenletName.lowercaseString)"
-
-		return NSBundle(forClass:self.dynamicType).pathForResource(imageName, ofType: "png")
+		return nil
 	}
 
 	internal func startOperationWithMessage(message:String, details:String? = nil) {
@@ -192,20 +176,6 @@ import QuartzCore
 		hideHUD()
 		onFinishOperation()
 		screenletView?.onFinishOperation()
-	}
-
-	internal func previewImageFromView(view: UIView) -> UIImage {
-		let previewWidth = min(view.frame.size.width, self.frame.size.width)
-		let previewHeight = min(view.frame.size.height, self.frame.size.height)
-
-		UIGraphicsBeginImageContextWithOptions(CGSizeMake(previewWidth, previewHeight), false, 0.0)
-
-		view.layer.renderInContext(UIGraphicsGetCurrentContext())
-		let previewImage = UIGraphicsGetImageFromCurrentImageContext()
-
-		UIGraphicsEndImageContext()
-
-		return previewImage
 	}
 
 
@@ -288,7 +258,19 @@ import QuartzCore
 
 	private func updateCurrentPreviewImage() {
 		currentPreviewImage = previewImageForTheme(_themeName)
-	}
+		if currentPreviewImage == nil {
+			if let previewImage = previewImageForTheme("default") {
+				currentPreviewImage = previewImage
+			}
+		}
+
+		if let screenletViewValue = screenletView {
+			screenletViewValue.removeFromSuperview()
+		}
+
+		if currentPreviewImage == nil {
+			screenletView = loadScreenletView()
+		}
 
 		setNeedsLayout()
 	}
