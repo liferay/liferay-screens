@@ -52,7 +52,7 @@ import QuartzCore
 	private var _themeName = "default"
 	private var runningOnInterfaceBuilder = false
 	private var currentPreviewImage:UIImage?
-	private lazy var previewLayer = CALayer()
+	private var previewLayer: CALayer?
 
 
 	//MARK: UIView
@@ -88,25 +88,10 @@ import QuartzCore
 	override public func prepareForInterfaceBuilder() {
 		runningOnInterfaceBuilder = true
 
+		previewLayer = CALayer()
+
 		updateCurrentPreviewImage()
 	}
-
-	override public func layoutSubviews() {
-		super.layoutSubviews()
-
-		if runningOnInterfaceBuilder {
-			if let currentPreviewImageValue = currentPreviewImage {
-				previewLayer.frame = centeredRectInView(self, size: currentPreviewImageValue.size)
-				previewLayer.contents = currentPreviewImageValue.CGImage
-
-				if previewLayer.superlayer != layer {
-					// add to the hierarchy the first time
-					layer.addSublayer(previewLayer)
-				}
-			}
-		}
-	}
-
 
 	//MARK: Internal methods
 
@@ -265,7 +250,15 @@ import QuartzCore
 			screenletViewValue.removeFromSuperview()
 		}
 
-		if currentPreviewImage == nil {
+		if let currentPreviewImageValue = currentPreviewImage {
+			previewLayer!.frame = centeredRectInView(self, size: currentPreviewImageValue.size)
+			previewLayer!.contents = currentPreviewImageValue.CGImage
+
+			if previewLayer!.superlayer != layer {
+				layer.addSublayer(previewLayer!)
+			}
+		}
+		else {
 			screenletView = loadScreenletView()
 		}
 
