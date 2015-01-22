@@ -45,6 +45,10 @@ import QuartzCore
 		return className
 	}
 
+	internal var isRunningOnInterfaceBuilder: Bool {
+		return runningOnInterfaceBuilder
+	}
+
 	private var _themeName = "default"
 	private var runningOnInterfaceBuilder = false
 	private var currentPreviewImage:UIImage?
