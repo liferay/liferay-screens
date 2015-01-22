@@ -109,7 +109,7 @@ import QuartzCore
 
 		if runningOnInterfaceBuilder {
 			if let currentPreviewImageValue = currentPreviewImage {
-				previewLayer.frame = centeredRectInScreenlet(size: currentPreviewImageValue.size)
+				previewLayer.frame = centeredRectInView(self, size: currentPreviewImageValue.size)
 				previewLayer.contents = currentPreviewImageValue.CGImage
 
 				if previewLayer.superlayer != layer {
@@ -134,7 +134,7 @@ import QuartzCore
 				viewValue.frame = self.bounds
 			}
 			else {
-				viewValue.frame = centeredRectInScreenlet(size: viewValue.frame.size)
+				viewValue.frame = centeredRectInView(self, size: viewValue.frame.size)
 			}
 
 			viewValue.onUserAction = onUserAction;
@@ -290,12 +290,7 @@ import QuartzCore
 		currentPreviewImage = previewImageForTheme(_themeName)
 	}
 
-	private func centeredRectInScreenlet(#size: CGSize) -> CGRect {
-		return CGRectMake(
-				(self.frame.size.width - size.width) / 2,
-				(self.frame.size.height - size.height) / 2,
-				size.width,
-				size.height)
+		setNeedsLayout()
 	}
 
 }
