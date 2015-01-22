@@ -51,7 +51,6 @@
 		88274F7B1A24904100FE31C6 /* LiferayServerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88274EB31A24904100FE31C6 /* LiferayServerContext.swift */; };
 		88274F7C1A24904100FE31C6 /* ServerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88274EB41A24904100FE31C6 /* ServerOperation.swift */; };
 		88274F7D1A24904100FE31C6 /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88274EB51A24904100FE31C6 /* SessionContext.swift */; };
-		88274F7E1A24904100FE31C6 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88274EB61A24904100FE31C6 /* ThemeManager.swift */; };
 		88274F7F1A24904100FE31C6 /* DDLValuesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88274EB81A24904100FE31C6 /* DDLValuesParser.swift */; };
 		88274F801A24904100FE31C6 /* DDLXSDParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88274EB91A24904100FE31C6 /* DDLXSDParser.swift */; };
 		88274F811A24904100FE31C6 /* DDLFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88274EBB1A24904100FE31C6 /* DDLFormData.swift */; };
@@ -238,7 +237,6 @@
 		88274EB31A24904100FE31C6 /* LiferayServerContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayServerContext.swift; sourceTree = "<group>"; };
 		88274EB41A24904100FE31C6 /* ServerOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerOperation.swift; sourceTree = "<group>"; };
 		88274EB51A24904100FE31C6 /* SessionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext.swift; sourceTree = "<group>"; };
-		88274EB61A24904100FE31C6 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		88274EB81A24904100FE31C6 /* DDLValuesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLValuesParser.swift; sourceTree = "<group>"; };
 		88274EB91A24904100FE31C6 /* DDLXSDParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLXSDParser.swift; sourceTree = "<group>"; };
 		88274EBB1A24904100FE31C6 /* DDLFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormData.swift; sourceTree = "<group>"; };
@@ -602,7 +600,6 @@
 				88274EB31A24904100FE31C6 /* LiferayServerContext.swift */,
 				88274EB41A24904100FE31C6 /* ServerOperation.swift */,
 				88274EB51A24904100FE31C6 /* SessionContext.swift */,
-				88274EB61A24904100FE31C6 /* ThemeManager.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1222,7 +1219,6 @@
 				88274FBB1A24904100FE31C6 /* DDLFieldSelectTableCell_default.swift in Sources */,
 				88274F5C1A24904100FE31C6 /* LiferayAssetListPageOperation.swift in Sources */,
 				88274F6B1A24904100FE31C6 /* LiferayLoginScreenNameOperation.swift in Sources */,
-				88274F7E1A24904100FE31C6 /* ThemeManager.swift in Sources */,
 				88274E5A1A248DC100FE31C6 /* HomeLoginViewController.m in Sources */,
 				88274FAC1A24904100FE31C6 /* SignUpView_default.swift in Sources */,
 				88274FA11A24904100FE31C6 /* LRMobilewidgetsuserService_v62.m in Sources */,

@@ -54,7 +54,6 @@
 		883D84A81A234EAC00CC179B /* LiferayServerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D83E01A234EAC00CC179B /* LiferayServerContext.swift */; };
 		883D84A91A234EAC00CC179B /* ServerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D83E11A234EAC00CC179B /* ServerOperation.swift */; };
 		883D84AA1A234EAC00CC179B /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D83E21A234EAC00CC179B /* SessionContext.swift */; };
-		883D84AB1A234EAC00CC179B /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D83E31A234EAC00CC179B /* ThemeManager.swift */; };
 		883D84AC1A234EAC00CC179B /* DDLValuesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D83E51A234EAC00CC179B /* DDLValuesParser.swift */; };
 		883D84AD1A234EAC00CC179B /* DDLXSDParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D83E61A234EAC00CC179B /* DDLXSDParser.swift */; };
 		883D84AE1A234EAC00CC179B /* DDLFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D83E81A234EAC00CC179B /* DDLFormData.swift */; };
@@ -150,11 +149,8 @@
 		883D850A1A234EAC00CC179B /* default-mail-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D84621A234EAC00CC179B /* default-mail-icon@2x.png */; };
 		883D850B1A234EAC00CC179B /* default-multiline-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D84631A234EAC00CC179B /* default-multiline-field.png */; };
 		883D850C1A234EAC00CC179B /* default-multiline-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D84641A234EAC00CC179B /* default-multiline-field@2x.png */; };
-		883D850D1A234EAC00CC179B /* default-preview-assetlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D84651A234EAC00CC179B /* default-preview-assetlist.png */; };
 		883D850E1A234EAC00CC179B /* default-preview-assetlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D84661A234EAC00CC179B /* default-preview-assetlist@2x.png */; };
-		883D850F1A234EAC00CC179B /* default-preview-ddlform.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D84671A234EAC00CC179B /* default-preview-ddlform.png */; };
 		883D85101A234EAC00CC179B /* default-preview-ddlform@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D84681A234EAC00CC179B /* default-preview-ddlform@2x.png */; };
-		883D85111A234EAC00CC179B /* default-preview-webcontentdisplay.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D84691A234EAC00CC179B /* default-preview-webcontentdisplay.png */; };
 		883D85121A234EAC00CC179B /* default-preview-webcontentdisplay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D846A1A234EAC00CC179B /* default-preview-webcontentdisplay@2x.png */; };
 		883D85131A234EAC00CC179B /* default-user-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D846B1A234EAC00CC179B /* default-user-icon.png */; };
 		883D85141A234EAC00CC179B /* default-user-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 883D846C1A234EAC00CC179B /* default-user-icon@2x.png */; };
@@ -235,7 +231,6 @@
 		883D83E01A234EAC00CC179B /* LiferayServerContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayServerContext.swift; sourceTree = "<group>"; };
 		883D83E11A234EAC00CC179B /* ServerOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerOperation.swift; sourceTree = "<group>"; };
 		883D83E21A234EAC00CC179B /* SessionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext.swift; sourceTree = "<group>"; };
-		883D83E31A234EAC00CC179B /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		883D83E51A234EAC00CC179B /* DDLValuesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLValuesParser.swift; sourceTree = "<group>"; };
 		883D83E61A234EAC00CC179B /* DDLXSDParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLXSDParser.swift; sourceTree = "<group>"; };
 		883D83E81A234EAC00CC179B /* DDLFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormData.swift; sourceTree = "<group>"; };
@@ -338,11 +333,8 @@
 		883D84621A234EAC00CC179B /* default-mail-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-mail-icon@2x.png"; sourceTree = "<group>"; };
 		883D84631A234EAC00CC179B /* default-multiline-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-multiline-field.png"; sourceTree = "<group>"; };
 		883D84641A234EAC00CC179B /* default-multiline-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-multiline-field@2x.png"; sourceTree = "<group>"; };
-		883D84651A234EAC00CC179B /* default-preview-assetlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-assetlist.png"; sourceTree = "<group>"; };
 		883D84661A234EAC00CC179B /* default-preview-assetlist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-assetlist@2x.png"; sourceTree = "<group>"; };
-		883D84671A234EAC00CC179B /* default-preview-ddlform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-ddlform.png"; sourceTree = "<group>"; };
 		883D84681A234EAC00CC179B /* default-preview-ddlform@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-ddlform@2x.png"; sourceTree = "<group>"; };
-		883D84691A234EAC00CC179B /* default-preview-webcontentdisplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-webcontentdisplay.png"; sourceTree = "<group>"; };
 		883D846A1A234EAC00CC179B /* default-preview-webcontentdisplay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-webcontentdisplay@2x.png"; sourceTree = "<group>"; };
 		883D846B1A234EAC00CC179B /* default-user-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-user-icon.png"; sourceTree = "<group>"; };
 		883D846C1A234EAC00CC179B /* default-user-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-user-icon@2x.png"; sourceTree = "<group>"; };
@@ -579,7 +571,6 @@
 				883D83E01A234EAC00CC179B /* LiferayServerContext.swift */,
 				883D83E11A234EAC00CC179B /* ServerOperation.swift */,
 				883D83E21A234EAC00CC179B /* SessionContext.swift */,
-				883D83E31A234EAC00CC179B /* ThemeManager.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -878,11 +869,8 @@
 				883D84621A234EAC00CC179B /* default-mail-icon@2x.png */,
 				883D84631A234EAC00CC179B /* default-multiline-field.png */,
 				883D84641A234EAC00CC179B /* default-multiline-field@2x.png */,
-				883D84651A234EAC00CC179B /* default-preview-assetlist.png */,
 				883D84661A234EAC00CC179B /* default-preview-assetlist@2x.png */,
-				883D84671A234EAC00CC179B /* default-preview-ddlform.png */,
 				883D84681A234EAC00CC179B /* default-preview-ddlform@2x.png */,
-				883D84691A234EAC00CC179B /* default-preview-webcontentdisplay.png */,
 				883D846A1A234EAC00CC179B /* default-preview-webcontentdisplay@2x.png */,
 				883D846B1A234EAC00CC179B /* default-user-icon.png */,
 				883D846C1A234EAC00CC179B /* default-user-icon@2x.png */,
@@ -1059,7 +1047,6 @@
 				883D85201A234EAC00CC179B /* flat7-button@2x.png in Resources */,
 				883D84D81A234EAC00CC179B /* LoginView_default.xib in Resources */,
 				883D85101A234EAC00CC179B /* default-preview-ddlform@2x.png in Resources */,
-				883D85111A234EAC00CC179B /* default-preview-webcontentdisplay.png in Resources */,
 				883D84FF1A234EAC00CC179B /* default-field.png in Resources */,
 				883D85241A234EAC00CC179B /* flat7-gradient-form@2x.png in Resources */,
 				883D84F21A234EAC00CC179B /* DDLSubmitButtonTableCell_default.xib in Resources */,
@@ -1078,7 +1065,6 @@
 				883D84FA1A234EAC00CC179B /* default-calendar@2x.png in Resources */,
 				883D84DF1A234EAC00CC179B /* DDLFieldDateTableCell_default.xib in Resources */,
 				883D84D41A234EAC00CC179B /* AssetListView_default.xib in Resources */,
-				883D850D1A234EAC00CC179B /* default-preview-assetlist.png in Resources */,
 				883D84F91A234EAC00CC179B /* default-calendar.png in Resources */,
 				883D851A1A234EAC00CC179B /* LoginView_flat7.xib in Resources */,
 				883D849B1A234EAC00CC179B /* signup-screenlet.strings in Resources */,
@@ -1095,7 +1081,6 @@
 				883D85051A234EAC00CC179B /* default-hourglass.png in Resources */,
 				88215F421A234185009B96C7 /* Images.xcassets in Resources */,
 				883D84E91A234EAC00CC179B /* DDLFieldSelectTableCell_default.xib in Resources */,
-				883D850F1A234EAC00CC179B /* default-preview-ddlform.png in Resources */,
 				883D85131A234EAC00CC179B /* default-user-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1210,7 +1195,6 @@
 				883D84EC1A234EAC00CC179B /* DDLFieldTextTableCell_default.swift in Sources */,
 				883D84C11A234EAC00CC179B /* DDLFieldNumber.swift in Sources */,
 				883D84DE1A234EAC00CC179B /* DDLFieldDateTableCell_default.swift in Sources */,
-				883D84AB1A234EAC00CC179B /* ThemeManager.swift in Sources */,
 				88215F3B1A234184009B96C7 /* HomeLoginViewController.swift in Sources */,
 				883D849E1A234EAC00CC179B /* SignUpScreenlet.swift in Sources */,
 				883D84AD1A234EAC00CC179B /* DDLXSDParser.swift in Sources */,
