@@ -149,13 +149,13 @@ import QuartzCore
 	}
 
 	internal func previewImageForTheme(themeName:String) -> UIImage? {
-		var result: UIImage?
+		let bundle = NSBundle(forClass:self.dynamicType)
+		let imageName = "\(themeName)-preview-\(screenletName.lowercaseString)@2x"
 
-		if let previewImagePath = previewImagePathForTheme(themeName) {
-			result = UIImage(contentsOfFile: previewImagePath)
-		}
-		else if let screenletView = createScreenletViewFromNib() {
-			result = previewImageFromView(screenletView)
+		if let imagePath = bundle.pathForResource(imageName, ofType: "png") {
+			if let imageData = NSData(contentsOfFile: imagePath) {
+				return UIImage(data: imageData, scale: 2.0)
+			}
 		}
 
 		return result
