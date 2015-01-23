@@ -12,19 +12,44 @@ buildscript {
 	}
 }
 
-repositories {
-	mavenLocal()
-
-	maven {
-		url 'https://repository.liferay.com/nexus/content/groups/liferay-ce'
-	}
-
-	jcenter()
-	mavenCentral()
-}
-
-allprojects {
+subprojects {
 	repositories {
+		mavenLocal()
+
+		maven {
+			url 'https://repository.liferay.com/nexus/content/groups/liferay-ce'
+		}
+
 		jcenter()
+		mavenCentral()
 	}
+
+	configurations {
+		formatter
+	}
+
+	dependencies {
+		formatter group: 'com.liferay.portal', name: 'portal-impl', version: '6.2.0-ga1'
+		formatter group: 'com.liferay.portal', name: 'portal-service', version: '6.2.0-ga1'
+		formatter group: 'com.liferay.portal', name: 'util-java', version: '6.2.0-ga1'
+		formatter group: 'dom4j', name: 'dom4j', version: '1.6.1'
+		formatter group: 'org.apache.ant', name: 'ant', version: '1.8.2'
+	}
+
+	task format(type: JavaExec) {
+		main = 'com.liferay.portal.tools.sourceformatter.SourceFormatter'
+		classpath = configurations.formatter
+		workingDir = 'src'
+	}
+
+	task formatResources(type: JavaExec) {
+		main = format.main
+		classpath = format.classpath
+		workingDir = 'res'
+	}
+
+	task wrapper(type: Wrapper) {
+		gradleVersion = '2.2.1'
+	}
+
 }
