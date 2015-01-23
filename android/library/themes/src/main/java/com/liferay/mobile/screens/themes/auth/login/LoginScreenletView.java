@@ -26,8 +26,8 @@ import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.auth.login.interactor.AuthMethod;
 import com.liferay.mobile.screens.auth.login.listener.OnLoginListener;
-import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.auth.login.screenlet.LoginScreenlet;
+import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.themes.R;
 
 /**
