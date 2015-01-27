@@ -23,6 +23,10 @@ public class LiferayServerContext {
 		return 10154;
 	}
 
+	public static long getGroupId() {
+		return 10184;
+	}
+
 	public static String getServer() {
 		return "http://192.168.56.1:8080";
 	}
