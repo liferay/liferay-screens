@@ -22,12 +22,13 @@ import android.view.View;
 
 import android.widget.FrameLayout;
 
+import com.liferay.mobile.screens.base.BaseViewModel;
 import com.liferay.mobile.screens.base.interactor.event.interactor.Interactor;
 
 /**
  * @author Silvio Santos
  */
-public abstract class BaseScreenlet<V, I extends Interactor>
+public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interactor>
 	extends FrameLayout {
 
 	public BaseScreenlet(Context context) {
