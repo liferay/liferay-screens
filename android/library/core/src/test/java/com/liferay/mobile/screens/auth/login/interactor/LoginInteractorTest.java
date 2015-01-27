@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.auth.login.interactor;
 
-import com.liferay.mobile.screens.util.LiferayServerContext;
 import com.liferay.mobile.screens.util.MockFactory;
 
 import org.junit.Test;
@@ -24,11 +23,29 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import static org.mockito.Mockito.verify;
+
 /**
  * @author Silvio Santos
  */
 @RunWith(Enclosed.class)
 public class LoginInteractorTest {
+
+	@Config(emulateSdk = 18)
+	@RunWith(RobolectricTestRunner.class)
+	public static class WhenLoginMethodIsCalled {
+
+		@Test
+		public void shouldCallValidate() {
+			LoginInteractorImpl interactor = MockFactory.spyLoginInteractor();
+
+			interactor.login(_LOGIN_EMAIL, _LOGIN_PASSWORD, AuthMethod.EMAIL);
+
+			verify(
+				interactor
+			).validate(_LOGIN_EMAIL, _LOGIN_PASSWORD, AuthMethod.EMAIL);
+		}
+	}
 
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
