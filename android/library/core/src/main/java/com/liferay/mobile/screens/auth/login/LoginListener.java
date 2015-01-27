@@ -12,21 +12,12 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.interactor.event;
+package com.liferay.mobile.screens.auth.login;
 
-import com.liferay.mobile.screens.base.interactor.event.interactor.event.BaseEvent;
+public interface LoginListener {
 
-/**
- * @author Silvio Santos
- */
-public class LoginEvent extends BaseEvent {
+	void onLoginSuccess();
 
-	public LoginEvent(int type) {
-		super(type);
-	}
-
-	public LoginEvent(int type, Exception e) {
-		super(type, e);
-	}
+	void onLoginFailure(Exception e);
 
 }

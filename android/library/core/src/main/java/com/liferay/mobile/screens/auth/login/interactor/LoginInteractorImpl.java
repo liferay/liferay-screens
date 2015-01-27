@@ -16,9 +16,7 @@ package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
-import com.liferay.mobile.screens.auth.login.interactor.callback.LoginCallback;
-import com.liferay.mobile.screens.auth.login.interactor.event.LoginEvent;
-import com.liferay.mobile.screens.auth.login.listener.LoginListener;
+import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 import com.liferay.mobile.screens.util.SessionContext;
