@@ -19,16 +19,11 @@ package com.liferay.mobile.screens.base.interactor.event.interactor.event;
  */
 public abstract class BaseEvent {
 
-	public static final int REQUEST_FAILED = 0;
-
-	public static final int REQUEST_SUCCESS = 1;
-
-	public BaseEvent(int type) {
-		this(type, null);
+	public BaseEvent() {
+		this(null);
 	}
 
-	public BaseEvent(int type, Exception exception) {
-		_type = type;
+	public BaseEvent(Exception exception) {
 		_exception = exception;
 	}
 
@@ -36,11 +31,10 @@ public abstract class BaseEvent {
 		return _exception;
 	}
 
-	public int getType() {
-		return _type;
+	public boolean isFailed() {
+		return _exception != null;
 	}
 
 	private Exception _exception;
-	private int _type;
 
 }

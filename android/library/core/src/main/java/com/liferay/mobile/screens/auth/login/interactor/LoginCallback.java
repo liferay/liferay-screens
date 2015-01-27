@@ -26,12 +26,12 @@ public class LoginCallback extends JSONObjectAsyncTaskCallback {
 
 	@Override
 	public void onFailure(Exception e) {
-		EventBusUtil.post(new LoginEvent(LoginEvent.REQUEST_FAILED, e));
+		EventBusUtil.post(new LoginEvent(e));
 	}
 
 	@Override
 	public void onSuccess(JSONObject jsonObject) {
-		EventBusUtil.post(new LoginEvent(LoginEvent.REQUEST_SUCCESS));
+		EventBusUtil.post(new LoginEvent());
 	}
 
 }

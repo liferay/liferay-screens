@@ -52,11 +52,11 @@ public class LoginInteractorImpl implements LoginInteractor {
 			return;
 		}
 
-		if (event.getType() == LoginEvent.REQUEST_SUCCESS) {
-			_listener.onLoginSuccess();
+		if (event.isFailed()) {
+			_listener.onLoginFailure(event.getException());
 		}
 		else {
-			_listener.onLoginFailure(event.getException());
+			_listener.onLoginSuccess();
 		}
 	}
 

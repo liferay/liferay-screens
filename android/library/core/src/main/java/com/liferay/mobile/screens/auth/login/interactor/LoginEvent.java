@@ -21,12 +21,12 @@ import com.liferay.mobile.screens.base.interactor.event.interactor.event.BaseEve
  */
 public class LoginEvent extends BaseEvent {
 
-	public LoginEvent(int type) {
-		super(type);
+	public LoginEvent() {
+		super();
 	}
 
-	public LoginEvent(int type, Exception e) {
-		super(type, e);
+	public LoginEvent(Exception e) {
+		super(e);
 	}
 
 }
