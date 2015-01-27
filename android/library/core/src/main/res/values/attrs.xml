@@ -15,4 +15,11 @@
 		<attr name="backgroundColor" format="color" />
 		<attr name="layoutId" />
 	</declare-styleable>
+
+	<declare-styleable name="WebContentDisplayScreenlet">
+		<attr name="layoutId" />
+		<attr name="groupId" format="integer" />
+		<attr name="articleId" format="string" />
+	</declare-styleable>
+
 </resources>
