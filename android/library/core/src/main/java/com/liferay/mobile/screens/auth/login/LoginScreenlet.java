@@ -26,9 +26,8 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.login.interactor.AuthMethod;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
-import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
-import com.liferay.mobile.screens.base.interactor.event.screenlet.BaseScreenlet;
+import com.liferay.mobile.screens.base.BaseScreenlet;
 
 /**
  * @author Silvio Santos

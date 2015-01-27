@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.base.interactor.event.interactor.Interactor;
+import com.liferay.mobile.screens.base.interactor.Interactor;
 
 /**
  * @author Silvio Santos

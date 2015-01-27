@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.interactor.event.screenlet;
+package com.liferay.mobile.screens.base;
 
 import android.content.Context;
 
@@ -22,8 +22,7 @@ import android.view.View;
 
 import android.widget.FrameLayout;
 
-import com.liferay.mobile.screens.base.BaseViewModel;
-import com.liferay.mobile.screens.base.interactor.event.interactor.Interactor;
+import com.liferay.mobile.screens.base.interactor.Interactor;
 
 /**
  * @author Silvio Santos

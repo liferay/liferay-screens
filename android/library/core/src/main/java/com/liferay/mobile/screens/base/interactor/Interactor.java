@@ -12,29 +12,15 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.interactor.event.interactor.event;
+package com.liferay.mobile.screens.base.interactor;
 
 /**
  * @author Silvio Santos
  */
-public abstract class BaseEvent {
+public interface Interactor<L> {
 
-	public BaseEvent() {
-		this(null);
-	}
+	public void onScreenletAttachted(L listener);
 
-	public BaseEvent(Exception exception) {
-		_exception = exception;
-	}
-
-	public Exception getException() {
-		return _exception;
-	}
-
-	public boolean isFailed() {
-		return _exception != null;
-	}
-
-	private Exception _exception;
+	public void onScreenletDetached(L listener);
 
 }
