@@ -26,7 +26,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.login.interactor.AuthMethod;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
-import com.liferay.mobile.screens.auth.login.listener.OnLoginListener;
+import com.liferay.mobile.screens.auth.login.listener.LoginListener;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.interactor.event.screenlet.BaseScreenlet;
 
@@ -35,7 +35,7 @@ import com.liferay.mobile.screens.base.interactor.event.screenlet.BaseScreenlet;
  */
 public class LoginScreenlet
 	extends BaseScreenlet<LoginViewModel, LoginInteractor>
-	implements OnLoginListener {
+	implements LoginListener {
 
 	public LoginScreenlet(Context context) {
 		this(context, null);
@@ -55,22 +55,22 @@ public class LoginScreenlet
 
 	@Override
 	public void onLoginFailure(Exception e) {
+		LoginListener listenerView = (LoginListener)getScreenletView();
+		listenerView.onLoginFailure(e);
+
 		if (_listener != null) {
 			_listener.onLoginFailure(e);
 		}
-
-		OnLoginListener listenerView = (OnLoginListener)getScreenletView();
-		listenerView.onLoginFailure(e);
 	}
 
 	@Override
 	public void onLoginSuccess() {
+		LoginListener listenerView = (LoginListener)getScreenletView();
+		listenerView.onLoginSuccess();
+
 		if (_listener != null) {
 			_listener.onLoginSuccess();
 		}
-
-		OnLoginListener listenerView = (OnLoginListener)getScreenletView();
-		listenerView.onLoginSuccess();
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class LoginScreenlet
 		getInteractor().login(login, password, method);
 	}
 
-	public void setOnLoginListener(OnLoginListener listener) {
+	public void setListener(LoginListener listener) {
 		_listener = listener;
 	}
 
@@ -110,6 +110,6 @@ public class LoginScreenlet
 		return view;
 	}
 
-	private OnLoginListener _listener;
+	private LoginListener _listener;
 
 }

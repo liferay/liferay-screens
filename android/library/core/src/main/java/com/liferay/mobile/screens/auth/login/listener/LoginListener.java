@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.auth.login.listener;
 
-public interface OnLoginListener {
+public interface LoginListener {
 
 	void onLoginSuccess();
 

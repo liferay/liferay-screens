@@ -25,7 +25,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.auth.login.interactor.AuthMethod;
-import com.liferay.mobile.screens.auth.login.listener.OnLoginListener;
+import com.liferay.mobile.screens.auth.login.listener.LoginListener;
 import com.liferay.mobile.screens.auth.login.screenlet.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.themes.R;
@@ -34,7 +34,7 @@ import com.liferay.mobile.screens.themes.R;
  * @author Silvio Santos
  */
 public class LoginScreenletView extends LinearLayout
-	implements LoginViewModel, View.OnClickListener, OnLoginListener {
+	implements LoginViewModel, View.OnClickListener, LoginListener {
 
 	public LoginScreenletView(Context context) {
 		this(context, null);

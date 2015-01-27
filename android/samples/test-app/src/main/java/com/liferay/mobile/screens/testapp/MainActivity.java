@@ -11,7 +11,7 @@ import com.liferay.mobile.screens.auth.login.screenlet.LoginScreenlet;
  * @author Silvio Santos
  */
 public class MainActivity extends Activity
-	implements OnLoginListener {
+	implements LoginListener {
 
 	@Override
 	protected void onCreate(Bundle state) {
@@ -22,7 +22,7 @@ public class MainActivity extends Activity
 		LoginScreenlet loginScreenlet = (LoginScreenlet)findViewById(
 			R.id.login_screenlet);
 
-		loginScreenlet.setOnLoginListener(this);
+		loginScreenlet.setListener(this);
 	}
 
 	@Override
