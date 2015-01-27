@@ -15,6 +15,8 @@
 package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.android.v62.user.UserService;
+import com.liferay.mobile.screens.auth.login.interactor.event.LoginEvent;
+import com.liferay.mobile.screens.auth.login.listener.OnLoginListener;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 import com.liferay.mobile.screens.util.MockFactory;
 
@@ -22,11 +24,15 @@ import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * @author Silvio Santos
@@ -131,6 +137,69 @@ public class LoginInteractorTest {
 			verify(
 				interactor
 			).validate(_LOGIN_EMAIL, _LOGIN_PASSWORD, AuthMethod.EMAIL);
+		}
+	}
+
+	@Config(emulateSdk = 18)
+	@RunWith(RobolectricTestRunner.class)
+	public static class WhenLoginRequestCompletes {
+
+		@Test
+		public void shouldCallListenerSuccess() throws Exception {
+			OnLoginListener listener = MockFactory.mockLoginListener();
+			LoginEvent event = new LoginEvent(LoginEvent.REQUEST_SUCCESS);
+
+			_loginWithResponseEvent(event, listener);
+
+			verify(listener).onLoginSuccess();
+		}
+
+		@Test
+		public void shouldCallListenerFailure() throws Exception {
+			OnLoginListener listener = MockFactory.mockLoginListener();
+			Exception e = new Exception();
+			LoginEvent event = new LoginEvent(LoginEvent.REQUEST_FAILED, e);
+
+			_loginWithResponseEvent(event, listener);
+
+			verify(
+				listener
+			).onLoginFailure(e);
+		}
+
+		private void _loginWithResponseEvent(
+			final LoginEvent event, OnLoginListener listener)
+			throws Exception {
+
+			final LoginInteractorImpl interactor =
+				MockFactory.spyLoginInteractor();
+
+			UserService service = MockFactory.mockUserService();
+
+			doReturn(
+				service
+			).when(
+				interactor
+			).getUserService(_LOGIN_EMAIL, _LOGIN_PASSWORD);
+
+			interactor.onScreenletAttachted(listener);
+
+			when(
+				service.getUserByEmailAddress(_companyId, _LOGIN_EMAIL)
+			).then(
+				new Answer<Void>() {
+
+					@Override
+					public Void answer(InvocationOnMock invocation)
+						throws Throwable {
+
+						interactor.onEvent(event);
+
+						return null;
+					}
+				});
+
+			interactor.login(_LOGIN_EMAIL, _LOGIN_PASSWORD, AuthMethod.EMAIL);
 		}
 	}
 
