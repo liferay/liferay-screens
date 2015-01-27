@@ -29,6 +29,8 @@ import com.liferay.mobile.screens.util.SessionContext;
 public class LoginInteractorImpl implements LoginInteractor {
 
 	public void login(String login, String password, AuthMethod authMethod) {
+		validate(login, password, authMethod);
+
 		switch (authMethod) {
 			case EMAIL:
 				sendGetUserByEmailRequest(login, password);
@@ -113,6 +115,22 @@ public class LoginInteractorImpl implements LoginInteractor {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	protected void validate(
+		String login, String password, AuthMethod authMethod) {
+
+		if (login == null) {
+			throw new IllegalArgumentException("Login cannot be null");
+		}
+
+		if (password == null) {
+			throw new IllegalArgumentException("Password cannot be null");
+		}
+
+		if (authMethod == null) {
+			throw new IllegalArgumentException("AuthMethod cannot be null");
 		}
 	}
 
