@@ -57,7 +57,7 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	public void onUserAction(int id) {
+	public void onUserAction(String userActionName) {
 	}
 
 	@Override

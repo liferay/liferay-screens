@@ -35,6 +35,7 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 public class LoginScreenlet
 	extends BaseScreenlet<LoginViewModel, LoginInteractor>
 	implements LoginListener {
+	public static final String LOGIN_ACTION = "login";
 
 	public LoginScreenlet(Context context) {
 		this(context, null);
@@ -73,7 +74,7 @@ public class LoginScreenlet
 	}
 
 	@Override
-	public void onUserAction(int id) {
+	public void onUserAction(String userActionName) {
 		LoginViewModel loginViewModel = (LoginViewModel)getScreenletView();
 		String login = loginViewModel.getLogin();
 		String password = loginViewModel.getPassword();

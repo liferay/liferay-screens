@@ -69,11 +69,12 @@ public class LoginScreenletView extends LinearLayout
 	public void onClick(View view) {
 		LoginScreenlet loginScreenlet = (LoginScreenlet)getParent();
 
-		loginScreenlet.onUserAction(view.getId());
+		loginScreenlet.onUserAction(LoginScreenlet.LOGIN_ACTION);
 	}
 
 	@Override
 	public void onLoginFailure(Exception e) {
+		//TODO show login error to user??
 	}
 
 	@Override

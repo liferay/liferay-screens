@@ -77,7 +77,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		_interactor.onScreenletDetached(this);
 	}
 
-	protected abstract void onUserAction(int id);
+	protected abstract void onUserAction(String userActionName);
 
 	private I _interactor;
 	private View _screenletView;
