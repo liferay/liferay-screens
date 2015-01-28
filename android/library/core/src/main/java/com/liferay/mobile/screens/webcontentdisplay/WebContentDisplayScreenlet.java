@@ -80,17 +80,14 @@ public class WebContentDisplayScreenlet
 
 	@Override
 	public String onWebContentReceived(String html) {
-		String modifiedHtml;
+		String modifiedHtml = html;
 
 		if (_listener != null) {
-			modifiedHtml = _listener.onWebContentReceived(html);
+			String listenerHtml = _listener.onWebContentReceived(html);
 
-			if (modifiedHtml == null) {
-				modifiedHtml = html;
+			if (listenerHtml != null) {
+				modifiedHtml = listenerHtml;
 			}
-		}
-		else {
-			modifiedHtml = html;
 		}
 
 		WebContentDisplayListener listenerView =
@@ -110,17 +107,17 @@ public class WebContentDisplayScreenlet
 		Context context, AttributeSet attributes) {
 
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-				attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
+			attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
 
 		_articleId = typedArray.getString(
 			R.styleable.WebContentDisplayScreenlet_articleId);
 
 		_groupId = typedArray.getInt(
-				R.styleable.WebContentDisplayScreenlet_groupId,
-				(int)LiferayServerContext.getGroupId());
+			R.styleable.WebContentDisplayScreenlet_groupId,
+			(int)LiferayServerContext.getGroupId());
 
 		int layoutId = typedArray.getResourceId(
-				R.styleable.WebContentDisplayScreenlet_layoutId, 0);
+			R.styleable.WebContentDisplayScreenlet_layoutId, 0);
 
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
 

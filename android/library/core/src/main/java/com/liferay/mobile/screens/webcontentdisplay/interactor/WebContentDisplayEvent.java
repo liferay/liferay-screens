@@ -27,6 +27,7 @@ public class WebContentDisplayEvent extends BaseEvent {
 
 	public WebContentDisplayEvent(String html) {
 		super();
+
 		_html = html;
 	}
 
