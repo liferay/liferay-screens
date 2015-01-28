@@ -24,7 +24,7 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.base.BaseViewModel;
+import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractor;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractorImpl;

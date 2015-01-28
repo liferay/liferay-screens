@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.liferay.mobile.screens.base.interactor.Interactor;
+import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 /**
  * @author Silvio Santos

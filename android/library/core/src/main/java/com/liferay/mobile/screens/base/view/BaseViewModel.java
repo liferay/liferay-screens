@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base;
+package com.liferay.mobile.screens.base.view;
 
 public interface BaseViewModel {
 
