@@ -12,12 +12,8 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.listener;
+package com.liferay.mobile.screens.base.view;
 
-public interface OnLoginListener {
-
-	void onLoginSuccess();
-
-	void onLoginFailure(Exception e);
+public interface BaseViewModel {
 
 }

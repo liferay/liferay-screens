@@ -24,9 +24,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.liferay.mobile.screens.auth.login.LoginListener;
+import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.interactor.AuthMethod;
-import com.liferay.mobile.screens.auth.login.listener.OnLoginListener;
-import com.liferay.mobile.screens.auth.login.screenlet.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.themes.R;
 
@@ -34,7 +34,7 @@ import com.liferay.mobile.screens.themes.R;
  * @author Silvio Santos
  */
 public class LoginScreenletView extends LinearLayout
-	implements LoginViewModel, View.OnClickListener, OnLoginListener {
+	implements LoginViewModel, View.OnClickListener, LoginListener {
 
 	public LoginScreenletView(Context context) {
 		this(context, null);
@@ -69,11 +69,12 @@ public class LoginScreenletView extends LinearLayout
 	public void onClick(View view) {
 		LoginScreenlet loginScreenlet = (LoginScreenlet)getParent();
 
-		loginScreenlet.onUserAction(view.getId());
+		loginScreenlet.onUserAction(LoginScreenlet.LOGIN_ACTION);
 	}
 
 	@Override
 	public void onLoginFailure(Exception e) {
+		//TODO show login error to user??
 	}
 
 	@Override

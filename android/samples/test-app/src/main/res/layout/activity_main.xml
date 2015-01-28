@@ -8,7 +8,7 @@
 	android:background="@android:color/holo_blue_dark"
 	tools:context=".MainActivity">
 
-	<com.liferay.mobile.screens.auth.login.screenlet.LoginScreenlet
+	<com.liferay.mobile.screens.auth.login.LoginScreenlet
 		android:id="@+id/login_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

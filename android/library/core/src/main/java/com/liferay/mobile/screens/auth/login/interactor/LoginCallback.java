@@ -12,10 +12,9 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.interactor.callback;
+package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.android.task.callback.typed.JSONObjectAsyncTaskCallback;
-import com.liferay.mobile.screens.auth.login.interactor.event.LoginEvent;
 import com.liferay.mobile.screens.util.EventBusUtil;
 
 import org.json.JSONObject;
@@ -27,12 +26,12 @@ public class LoginCallback extends JSONObjectAsyncTaskCallback {
 
 	@Override
 	public void onFailure(Exception e) {
-		EventBusUtil.post(new LoginEvent(LoginEvent.REQUEST_FAILED, e));
+		EventBusUtil.post(new LoginEvent(e));
 	}
 
 	@Override
 	public void onSuccess(JSONObject jsonObject) {
-		EventBusUtil.post(new LoginEvent(LoginEvent.REQUEST_SUCCESS));
+		EventBusUtil.post(new LoginEvent());
 	}
 
 }

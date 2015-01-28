@@ -14,13 +14,13 @@
 
 package com.liferay.mobile.screens.auth.login.interactor;
 
-import com.liferay.mobile.screens.auth.login.listener.OnLoginListener;
-import com.liferay.mobile.screens.base.interactor.event.interactor.Interactor;
+import com.liferay.mobile.screens.auth.login.LoginListener;
+import com.liferay.mobile.screens.base.interactor.Interactor;
 
 /**
  * @author Silvio Santos
  */
-public interface LoginInteractor extends Interactor<OnLoginListener> {
+public interface LoginInteractor extends Interactor<LoginListener> {
 
 	public void login(String login, String password, AuthMethod method);
 

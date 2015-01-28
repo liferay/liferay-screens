@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.interactor.event.screenlet;
+package com.liferay.mobile.screens.base;
 
 import android.content.Context;
 
@@ -22,12 +22,13 @@ import android.view.View;
 
 import android.widget.FrameLayout;
 
-import com.liferay.mobile.screens.base.interactor.event.interactor.Interactor;
+import com.liferay.mobile.screens.base.interactor.Interactor;
+import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 /**
  * @author Silvio Santos
  */
-public abstract class BaseScreenlet<V, I extends Interactor>
+public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interactor>
 	extends FrameLayout {
 
 	public BaseScreenlet(Context context) {
@@ -63,9 +64,17 @@ public abstract class BaseScreenlet<V, I extends Interactor>
 		return _screenletView;
 	}
 
+	protected void onScreenletAttached() {
+	}
+
+	protected void onScreenletDetached() {
+	}
+
 	@Override
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
+
+		onScreenletAttached();
 
 		_interactor.onScreenletAttachted(this);
 	}
@@ -75,9 +84,11 @@ public abstract class BaseScreenlet<V, I extends Interactor>
 		super.onDetachedFromWindow();
 
 		_interactor.onScreenletDetached(this);
+
+		onScreenletDetached();
 	}
 
-	protected abstract void onUserAction(int id);
+	protected abstract void onUserAction(String userActionName);
 
 	private I _interactor;
 	private View _screenletView;

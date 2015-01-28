@@ -12,22 +12,24 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.view;
+package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
-import com.liferay.mobile.screens.auth.login.interactor.AuthMethod;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.android.task.callback.typed.StringAsyncTaskCallback;
+import com.liferay.mobile.screens.util.EventBusUtil;
 
 /**
- * @author Silvio Santos
+ * @author Jose Manuel Navarro
  */
-public interface LoginViewModel extends BaseViewModel {
+public class WebContentDisplayCallback extends StringAsyncTaskCallback {
 
-	public AuthMethod getAuthMethod();
+	@Override
+	public void onFailure(Exception e) {
+		EventBusUtil.post(new WebContentDisplayEvent(e));
+	}
 
-	public String getLogin();
-
-	public String getPassword();
-
-	public void setAuthMethod(AuthMethod authMethod);
+	@Override
+	public void onSuccess(String result) {
+		EventBusUtil.post(new WebContentDisplayEvent(result));
+	}
 
 }

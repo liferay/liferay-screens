@@ -12,21 +12,29 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.interactor.event;
-
-import com.liferay.mobile.screens.base.interactor.event.interactor.event.BaseEvent;
+package com.liferay.mobile.screens.base.interactor;
 
 /**
  * @author Silvio Santos
  */
-public class LoginEvent extends BaseEvent {
+public abstract class BaseEvent {
 
-	public LoginEvent(int type) {
-		super(type);
+	public BaseEvent() {
+		this(null);
 	}
 
-	public LoginEvent(int type, Exception e) {
-		super(type, e);
+	public BaseEvent(Exception exception) {
+		_exception = exception;
 	}
+
+	public Exception getException() {
+		return _exception;
+	}
+
+	public boolean isFailed() {
+		return _exception != null;
+	}
+
+	private Exception _exception;
 
 }

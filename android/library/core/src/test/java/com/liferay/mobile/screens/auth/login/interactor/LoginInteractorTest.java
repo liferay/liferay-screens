@@ -15,8 +15,7 @@
 package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.android.v62.user.UserService;
-import com.liferay.mobile.screens.auth.login.interactor.event.LoginEvent;
-import com.liferay.mobile.screens.auth.login.listener.OnLoginListener;
+import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 import com.liferay.mobile.screens.util.MockFactory;
 
@@ -31,8 +30,8 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 
 /**
  * @author Silvio Santos
@@ -152,8 +151,8 @@ public class LoginInteractorTest {
 
 		@Test
 		public void shouldCallListenerSuccess() throws Exception {
-			OnLoginListener listener = MockFactory.mockLoginListener();
-			LoginEvent event = new LoginEvent(LoginEvent.REQUEST_SUCCESS);
+			LoginListener listener = MockFactory.mockLoginListener();
+			LoginEvent event = new LoginEvent();
 
 			_loginWithResponseEvent(event, listener);
 
@@ -162,9 +161,9 @@ public class LoginInteractorTest {
 
 		@Test
 		public void shouldCallListenerFailure() throws Exception {
-			OnLoginListener listener = MockFactory.mockLoginListener();
+			LoginListener listener = MockFactory.mockLoginListener();
 			Exception e = new Exception();
-			LoginEvent event = new LoginEvent(LoginEvent.REQUEST_FAILED, e);
+			LoginEvent event = new LoginEvent(e);
 
 			_loginWithResponseEvent(event, listener);
 
@@ -174,10 +173,11 @@ public class LoginInteractorTest {
 		}
 
 		private void _loginWithResponseEvent(
-			final LoginEvent event, OnLoginListener listener)
+				final LoginEvent event, LoginListener listener)
 			throws Exception {
 
-			final LoginInteractorImpl interactorSpy = MockFactory.spyLoginInteractor();
+			final LoginInteractorImpl interactorSpy =
+				MockFactory.spyLoginInteractor();
 
 			UserService serviceMock = MockFactory.mockUserService();
 
@@ -195,8 +195,7 @@ public class LoginInteractorTest {
 				new Answer<Void>() {
 
 					@Override
-					public Void answer(InvocationOnMock invocation)
-						throws Throwable {
+					public Void answer(InvocationOnMock invocation) throws Throwable {
 
 						interactorSpy.onEvent(event);
 

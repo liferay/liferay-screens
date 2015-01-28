@@ -34,8 +34,19 @@ public class SessionContext {
 		return _session;
 	}
 
-	public static Session getSession() {
-		return _session;
+	public static Session createSessionFromCurrentSession() {
+		if (_session == null) {
+			return null;
+		}
+
+		BasicAuthentication basicAuth =
+			(BasicAuthentication) _session.getAuthentication();
+
+		return createSession(basicAuth.getUsername(), basicAuth.getPassword());
+	}
+
+	public static boolean hasSession() {
+		return _session != null;
 	}
 
 	private static Session _session;

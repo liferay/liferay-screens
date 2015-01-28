@@ -12,15 +12,17 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.interactor.event.interactor;
+package com.liferay.mobile.screens.webcontentdisplay.interactor;
+
+import com.liferay.mobile.screens.base.interactor.Interactor;
+import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 
 /**
- * @author Silvio Santos
+ * @author Jose Manuel Navarro
  */
-public interface Interactor<L> {
+public interface WebContentDisplayInteractor
+	extends Interactor<WebContentDisplayListener> {
 
-	public void onScreenletAttachted(L listener);
-
-	public void onScreenletDetached(L listener);
+	public void load(long groupId, String articleId) throws Exception;
 
 }

@@ -12,22 +12,29 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.view;
+package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
-import com.liferay.mobile.screens.auth.login.interactor.AuthMethod;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.base.interactor.BaseEvent;
 
 /**
- * @author Silvio Santos
+ * @author Jose Manuel Navarro
  */
-public interface LoginViewModel extends BaseViewModel {
+public class WebContentDisplayEvent extends BaseEvent {
 
-	public AuthMethod getAuthMethod();
+	public WebContentDisplayEvent(Exception e) {
+		super(e);
+	}
 
-	public String getLogin();
+	public WebContentDisplayEvent(String html) {
+		super();
 
-	public String getPassword();
+		_html = html;
+	}
 
-	public void setAuthMethod(AuthMethod authMethod);
+	public String getHtml() {
+		return _html;
+	}
+
+	private String _html;
 
 }

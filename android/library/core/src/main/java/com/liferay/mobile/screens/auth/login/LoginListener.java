@@ -12,22 +12,12 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.view;
+package com.liferay.mobile.screens.auth.login;
 
-import com.liferay.mobile.screens.auth.login.interactor.AuthMethod;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
+public interface LoginListener {
 
-/**
- * @author Silvio Santos
- */
-public interface LoginViewModel extends BaseViewModel {
+	void onLoginSuccess();
 
-	public AuthMethod getAuthMethod();
-
-	public String getLogin();
-
-	public String getPassword();
-
-	public void setAuthMethod(AuthMethod authMethod);
+	void onLoginFailure(Exception e);
 
 }

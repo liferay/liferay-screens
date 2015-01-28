@@ -12,35 +12,15 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.interactor.event.interactor.event;
+package com.liferay.mobile.screens.webcontentdisplay;
 
 /**
- * @author Silvio Santos
+ * @author Jose Manuel Navarro
  */
-public abstract class BaseEvent {
+public interface WebContentDisplayListener {
 
-	public static final int REQUEST_FAILED = 0;
+	String onWebContentReceived(String html);
 
-	public static final int REQUEST_SUCCESS = 1;
-
-	public BaseEvent(int type) {
-		this(type, null);
-	}
-
-	public BaseEvent(int type, Exception exception) {
-		_type = type;
-		_exception = exception;
-	}
-
-	public Exception getException() {
-		return _exception;
-	}
-
-	public int getType() {
-		return _type;
-	}
-
-	private Exception _exception;
-	private int _type;
+	void onWebContentFailure(Exception e);
 
 }
