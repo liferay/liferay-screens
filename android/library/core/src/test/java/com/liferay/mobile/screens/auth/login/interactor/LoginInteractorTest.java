@@ -132,6 +132,12 @@ public class LoginInteractorTest {
 		public void shouldCallValidate() {
 			LoginInteractorImpl interactor = MockFactory.spyLoginInteractor();
 
+			doReturn(
+				MockFactory.mockUserService()
+			).when(
+				interactor
+			).getUserService(_LOGIN_EMAIL, _LOGIN_PASSWORD);
+
 			interactor.login(_LOGIN_EMAIL, _LOGIN_PASSWORD, AuthMethod.EMAIL);
 
 			verify(
