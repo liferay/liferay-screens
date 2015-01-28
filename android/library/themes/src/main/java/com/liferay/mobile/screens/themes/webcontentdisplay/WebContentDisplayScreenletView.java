@@ -30,7 +30,7 @@ import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 /**
  * @author Silvio Santos
  */
-public class WebContentDisplayScreenletView extends FrameLayout
+public class WebContentDisplayScreenletView extends WebView
 	implements BaseViewModel, WebContentDisplayListener {
 
 	public WebContentDisplayScreenletView(Context context) {
@@ -60,18 +60,11 @@ public class WebContentDisplayScreenletView extends FrameLayout
 			STYLES + "<div class=\"MobileCSS\">" + html + "</div>";
 
 		//TODO check encoding
-		_webView.loadDataWithBaseURL(
+		loadDataWithBaseURL(
 			LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8",
 			null);
 
 		return html;
-	}
-
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-
-		_webView = (WebView)findViewById(R.id.web_view);
 	}
 
 	private static final String STYLES =
@@ -84,7 +77,5 @@ public class WebContentDisplayScreenletView extends FrameLayout
 		".MobileCSS img { width: 100% !important; } " +
 		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }" +
 		"</style>";
-
-	private WebView _webView;
 
 }
