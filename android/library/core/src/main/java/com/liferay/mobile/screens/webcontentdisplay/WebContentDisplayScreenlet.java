@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.util.LiferayServerContext;
+import com.liferay.mobile.screens.util.SessionContext;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractor;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractorImpl;
 
@@ -67,6 +68,13 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
+	protected void onScreenletAttached() {
+		if (_autoLoad) {
+			autoLoad();
+		}
+	}
+
+	@Override
 	public void onWebContentFailure(Exception e) {
 		if (_listener != null) {
 			_listener.onWebContentFailure(e);
@@ -102,12 +110,25 @@ public class WebContentDisplayScreenlet
 		_listener = listener;
 	}
 
+	protected void autoLoad() {
+		if ((_articleId != null) && SessionContext.hasSession()) {
+			try {
+				load();
+			}
+			catch (Exception e) {
+			}
+		}
+	}
+
 	@Override
 	protected View createScreenletView(
 		Context context, AttributeSet attributes) {
 
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
+
+		_autoLoad = typedArray.getBoolean(
+			R.styleable.WebContentDisplayScreenlet_autoLoad, true);
 
 		_articleId = typedArray.getString(
 			R.styleable.WebContentDisplayScreenlet_articleId);
@@ -127,6 +148,7 @@ public class WebContentDisplayScreenlet
 	}
 
 	private String _articleId;
+	private boolean _autoLoad;
 	private long _groupId;
 	private WebContentDisplayListener _listener;
 
