@@ -57,7 +57,7 @@ public class WebContentDisplayScreenletView extends FrameLayout
 	}
 
 	@Override
-	public void onWebContentError(Exception e) {
+	public void onWebContentFailure(Exception e) {
 		//TODO show load error to user??
 	}
 

@@ -44,7 +44,7 @@ public class WebContentDisplayInteractorImpl implements WebContentDisplayInterac
 			_listener.onWebContentReceived(receivedHtml);
 		}
 		else {
-			_listener.onWebContentError(event.getException());
+			_listener.onWebContentFailure(event.getException());
 		}
 	}
 

@@ -82,13 +82,13 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	public void onWebContentError(Exception e) {
+	public void onWebContentFailure(Exception e) {
 		if (_listener != null) {
-			_listener.onWebContentError(e);
+			_listener.onWebContentFailure(e);
 		}
 
 		WebContentDisplayListener listenerView = (WebContentDisplayListener)getScreenletView();
-		listenerView.onWebContentError(e);
+		listenerView.onWebContentFailure(e);
 	}
 
 	public void setListener(WebContentDisplayListener listener) {

@@ -21,6 +21,6 @@ public interface WebContentDisplayListener {
 
     String onWebContentReceived(String html);
 
-    void onWebContentError(Exception e);
+    void onWebContentFailure(Exception e);
 
 }
