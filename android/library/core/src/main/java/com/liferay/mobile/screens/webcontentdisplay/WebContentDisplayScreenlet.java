@@ -16,7 +16,9 @@ package com.liferay.mobile.screens.webcontentdisplay;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+
 import android.util.AttributeSet;
+
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -38,11 +40,15 @@ public class WebContentDisplayScreenlet
 		this(context, null);
 	}
 
-	public WebContentDisplayScreenlet(Context context, AttributeSet attributes) {
+	public WebContentDisplayScreenlet(
+		Context context, AttributeSet attributes) {
+
 		this(context, attributes, 0);
 	}
 
-	public WebContentDisplayScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
+	public WebContentDisplayScreenlet(
+		Context context, AttributeSet attributes, int defaultStyle) {
+
 		super(context, attributes, defaultStyle);
 
 		setInteractor(new WebContentDisplayInteractorImpl());
@@ -61,6 +67,18 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
+	public void onWebContentFailure(Exception e) {
+		if (_listener != null) {
+			_listener.onWebContentFailure(e);
+		}
+
+		WebContentDisplayListener listenerView =
+			(WebContentDisplayListener)getScreenletView();
+
+		listenerView.onWebContentFailure(e);
+	}
+
+	@Override
 	public String onWebContentReceived(String html) {
 		String modifiedHtml;
 
@@ -75,20 +93,12 @@ public class WebContentDisplayScreenlet
 			modifiedHtml = html;
 		}
 
-		WebContentDisplayListener listenerView = (WebContentDisplayListener)getScreenletView();
+		WebContentDisplayListener listenerView =
+			(WebContentDisplayListener)getScreenletView();
+
 		listenerView.onWebContentReceived(modifiedHtml);
 
 		return modifiedHtml;
-	}
-
-	@Override
-	public void onWebContentFailure(Exception e) {
-		if (_listener != null) {
-			_listener.onWebContentFailure(e);
-		}
-
-		WebContentDisplayListener listenerView = (WebContentDisplayListener)getScreenletView();
-		listenerView.onWebContentFailure(e);
 	}
 
 	public void setListener(WebContentDisplayListener listener) {
@@ -96,15 +106,18 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
+	protected View createScreenletView(
+		Context context, AttributeSet attributes) {
+
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 				attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
 
-		_articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
+		_articleId = typedArray.getString(
+			R.styleable.WebContentDisplayScreenlet_articleId);
 
 		_groupId = typedArray.getInt(
 				R.styleable.WebContentDisplayScreenlet_groupId,
-				(int) LiferayServerContext.getGroupId());
+				(int)LiferayServerContext.getGroupId());
 
 		int layoutId = typedArray.getResourceId(
 				R.styleable.WebContentDisplayScreenlet_layoutId, 0);
@@ -116,9 +129,8 @@ public class WebContentDisplayScreenlet
 		return view;
 	}
 
-	private WebContentDisplayListener _listener;
-
-	private long _groupId;
 	private String _articleId;
+	private long _groupId;
+	private WebContentDisplayListener _listener;
 
 }

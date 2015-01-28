@@ -39,7 +39,8 @@ public class SessionContext {
 			return null;
 		}
 
-		BasicAuthentication basicAuth = (BasicAuthentication) _session.getAuthentication();
+		BasicAuthentication basicAuth =
+			(BasicAuthentication) _session.getAuthentication();
 
 		return createSession(basicAuth.getUsername(), basicAuth.getPassword());
 	}

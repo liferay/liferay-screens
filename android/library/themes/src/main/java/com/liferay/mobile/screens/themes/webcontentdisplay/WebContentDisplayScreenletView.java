@@ -15,8 +15,11 @@
 package com.liferay.mobile.screens.themes.webcontentdisplay;
 
 import android.content.Context;
+
 import android.util.AttributeSet;
+
 import android.webkit.WebView;
+
 import android.widget.FrameLayout;
 
 import com.liferay.mobile.screens.base.BaseViewModel;
@@ -34,7 +37,9 @@ public class WebContentDisplayScreenletView extends FrameLayout
 		this(context, null);
 	}
 
-	public WebContentDisplayScreenletView(Context context, AttributeSet attributes) {
+	public WebContentDisplayScreenletView(
+		Context context, AttributeSet attributes) {
+
 		this(context, attributes, 0);
 	}
 
@@ -45,33 +50,35 @@ public class WebContentDisplayScreenletView extends FrameLayout
 	}
 
 	@Override
-	public String onWebContentReceived(String html) {
-		String styledHtml = STYLES + "<div class=\"MobileCSS\">" + html + "</div>";
-
-		_webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml,
-				"text/html",
-				"utf-8",	 //TODO <- really?
-				null);
-
-		return html;
+	public void onWebContentFailure(Exception e) {
+		//TODO show load error to user??
 	}
 
 	@Override
-	public void onWebContentFailure(Exception e) {
-		//TODO show load error to user??
+	public String onWebContentReceived(String html) {
+		String styledHtml =
+			STYLES + "<div class=\"MobileCSS\">" + html + "</div>";
+
+		//TODO check encoding
+		_webView.loadDataWithBaseURL(
+			LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8",
+			null);
+
+		return html;
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_webView = (WebView) findViewById(R.id.web_view);
+		_webView = (WebView)findViewById(R.id.web_view);
 	}
 
 	private static final String STYLES =
 		"<style>" +
 		".MobileCSS {padding: 4%; width: 92%;} " +
-		".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3{ " +
+		".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, " +
+			".MobileCSS h2, .MobileCSS h3{ " +
 		"font-size: 110%; font-weight: 200;" +
 			"font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;} " +
 		".MobileCSS img { width: 100% !important; } " +

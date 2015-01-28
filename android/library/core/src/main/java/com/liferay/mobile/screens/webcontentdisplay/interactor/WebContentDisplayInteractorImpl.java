@@ -23,14 +23,14 @@ import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 /**
  * @author Jose Manuel Navarro
  */
-public class WebContentDisplayInteractorImpl implements WebContentDisplayInteractor {
+public class WebContentDisplayInteractorImpl
+	implements WebContentDisplayInteractor {
 
 	public void load(long groupId, String articleId) throws Exception {
 		JournalArticleService service = getJournalArticleService();
 
-		service.getArticleContent(groupId, articleId,
-			"en_US", //TODO get languageId from global context
-			null);
+		//TODO get languageId from global context
+		service.getArticleContent(groupId, articleId, "en_US", null);
 	}
 
 	public void onEvent(WebContentDisplayEvent event) {
@@ -73,7 +73,7 @@ public class WebContentDisplayInteractorImpl implements WebContentDisplayInterac
 		return new JournalArticleService(session);
 	}
 
-	private WebContentDisplayListener _listener;
 	private String _html;
+	private WebContentDisplayListener _listener;
 
 }

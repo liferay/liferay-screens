@@ -19,8 +19,8 @@ package com.liferay.mobile.screens.webcontentdisplay;
  */
 public interface WebContentDisplayListener {
 
-    String onWebContentReceived(String html);
+	String onWebContentReceived(String html);
 
-    void onWebContentFailure(Exception e);
+	void onWebContentFailure(Exception e);
 
 }

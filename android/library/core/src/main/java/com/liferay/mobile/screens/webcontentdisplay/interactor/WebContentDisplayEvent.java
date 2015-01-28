@@ -21,13 +21,13 @@ import com.liferay.mobile.screens.base.interactor.BaseEvent;
  */
 public class WebContentDisplayEvent extends BaseEvent {
 
+	public WebContentDisplayEvent(Exception e) {
+		super(e);
+	}
+
 	public WebContentDisplayEvent(String html) {
 		super();
 		_html = html;
-	}
-
-	public WebContentDisplayEvent(Exception e) {
-		super(e);
 	}
 
 	public String getHtml() {

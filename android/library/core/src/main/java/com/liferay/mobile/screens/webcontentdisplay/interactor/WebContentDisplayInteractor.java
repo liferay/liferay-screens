@@ -20,7 +20,8 @@ import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 /**
  * @author Jose Manuel Navarro
  */
-public interface WebContentDisplayInteractor extends Interactor<WebContentDisplayListener> {
+public interface WebContentDisplayInteractor
+	extends Interactor<WebContentDisplayListener> {
 
 	public void load(long groupId, String articleId) throws Exception;
 

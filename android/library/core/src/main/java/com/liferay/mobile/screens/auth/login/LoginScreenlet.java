@@ -35,6 +35,7 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 public class LoginScreenlet
 	extends BaseScreenlet<LoginViewModel, LoginInteractor>
 	implements LoginListener {
+
 	public static final String LOGIN_ACTION = "login";
 
 	public LoginScreenlet(Context context) {

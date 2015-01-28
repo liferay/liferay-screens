@@ -174,10 +174,11 @@ public class LoginInteractorTest {
 		}
 
 		private void _loginWithResponseEvent(
-			final LoginEvent event, OnLoginListener listener)
+				final LoginEvent event, LoginListener listener)
 			throws Exception {
 
-			final LoginInteractorImpl interactorSpy = MockFactory.spyLoginInteractor();
+			final LoginInteractorImpl interactorSpy =
+				MockFactory.spyLoginInteractor();
 
 			UserService serviceMock = MockFactory.mockUserService();
 
@@ -195,8 +196,7 @@ public class LoginInteractorTest {
 				new Answer<Void>() {
 
 					@Override
-					public Void answer(InvocationOnMock invocation)
-						throws Throwable {
+					public Void answer(InvocationOnMock invocation) throws Throwable {
 
 						interactorSpy.onEvent(event);
 
