@@ -23,7 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.auth.login.interactor.AuthMethod;
+import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
