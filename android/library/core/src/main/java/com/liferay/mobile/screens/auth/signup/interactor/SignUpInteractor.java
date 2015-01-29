@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.auth.signup.interactor;
 
+import com.liferay.mobile.screens.auth.signup.SignUpListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 
 import java.util.Locale;

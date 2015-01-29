@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.signup.interactor;
+package com.liferay.mobile.screens.auth.signup;
 
 import org.json.JSONObject;
 
