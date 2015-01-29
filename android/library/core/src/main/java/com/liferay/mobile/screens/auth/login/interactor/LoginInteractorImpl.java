@@ -34,7 +34,9 @@ public class LoginInteractorImpl
 		super(targetScreenletId);
 	}
 
-	public void login(String login, String password, AuthMethod authMethod) {
+	public void login(String login, String password, AuthMethod authMethod)
+		throws Exception {
+
 		validate(login, password, authMethod);
 
 		UserService service = getUserService(login, password);
@@ -75,36 +77,25 @@ public class LoginInteractorImpl
 	}
 
 	protected void sendGetUserByEmailRequest(
-		UserService service, String email) {
+			UserService service, String email)
+		throws Exception {
 
-		try {
-			service.getUserByEmailAddress(
-				LiferayServerContext.getCompanyId(), email);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		service.getUserByEmailAddress(
+			LiferayServerContext.getCompanyId(), email);
 	}
 
-	protected void sendGetUserByIdRequest(UserService service, long userId) {
-		try {
-			service.getUserById(userId);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+	protected void sendGetUserByIdRequest(UserService service, long userId)
+		throws Exception {
+
+		service.getUserById(userId);
 	}
 
 	protected void sendGetUserByScreenNameRequest(
-		UserService service, String screenName) {
+			UserService service, String screenName)
+		throws Exception {
 
-		try {
-			service.getUserByScreenName(
-				LiferayServerContext.getCompanyId(), screenName);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		service.getUserByScreenName(
+			LiferayServerContext.getCompanyId(), screenName);
 	}
 
 	protected void validate(

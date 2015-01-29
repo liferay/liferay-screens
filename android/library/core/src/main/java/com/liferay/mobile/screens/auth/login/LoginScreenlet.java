@@ -83,7 +83,14 @@ public class LoginScreenlet
 		String password = loginViewModel.getPassword();
 		AuthMethod method = loginViewModel.getAuthMethod();
 
-		getInteractor().login(login, password, method);
+		try {
+			getInteractor().login(login, password, method);
+		}
+		catch (Exception e) {
+			if (_listener != null) {
+				_listener.onLoginFailure(e);
+			}
+		}
 	}
 
 	public void setListener(LoginListener listener) {

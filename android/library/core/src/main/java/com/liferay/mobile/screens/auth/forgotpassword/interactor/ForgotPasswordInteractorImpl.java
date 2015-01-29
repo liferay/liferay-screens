@@ -37,8 +37,9 @@ public class ForgotPasswordInteractorImpl
 
 	@Override
 	public void requestPassword(
-		long companyId, String login, AuthMethod authMethod,
-		String anonymousApiUserName, String anonymousApiPassword) {
+			long companyId, String login, AuthMethod authMethod,
+			String anonymousApiUserName, String anonymousApiPassword)
+		throws Exception {
 
 		validate(
 			companyId, login, authMethod, anonymousApiUserName,
@@ -92,36 +93,25 @@ public class ForgotPasswordInteractorImpl
 
 
 	protected void sendForgotPasswordByEmailRequest(
-		MobilewidgetsuserService service, long companyId, String emailAddress) {
+			MobilewidgetsuserService service, long companyId,
+			String emailAddress)
+		throws Exception {
 
-		try {
-			service.sendPasswordByEmailAddress(companyId, emailAddress);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		service.sendPasswordByEmailAddress(companyId, emailAddress);
 	}
 
 	protected void sendForgotPasswordByScreenNameRequest(
-		MobilewidgetsuserService service, long companyId, String screenName) {
+			MobilewidgetsuserService service, long companyId, String screenName)
+		throws Exception {
 
-		try {
-			service.sendPasswordByScreenName(companyId, screenName);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		service.sendPasswordByScreenName(companyId, screenName);
 	}
 
 	protected void sendForgotPasswordByIdRequest(
-			MobilewidgetsuserService service, long userId) {
+			MobilewidgetsuserService service, long userId)
+		throws Exception {
 
-		try {
-			service.sendPasswordByUserId(userId);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		service.sendPasswordByUserId(userId);
 	}
 
 	protected void validate(
@@ -130,7 +120,7 @@ public class ForgotPasswordInteractorImpl
 
 		if (companyId <= 0 && authMethod != AuthMethod.USER_ID) {
 			throw new IllegalArgumentException(
-				"Company cannot be 0 or negative");
+				"CompanyId cannot be 0 or negative");
 		}
 
 		if (login == null) {
