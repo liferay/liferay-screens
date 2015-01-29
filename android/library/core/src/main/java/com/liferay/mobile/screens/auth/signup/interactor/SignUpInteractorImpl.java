@@ -49,20 +49,6 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 		}
 	}
 
-	@Override
-	public void onScreenletAttachted(SignUpListener listener) {
-		_listener = listener;
-
-		EventBusUtil.register(this);
-	}
-
-	@Override
-	public void onScreenletDetached(SignUpListener listener) {
-		EventBusUtil.unregister(this);
-
-		_listener = null;
-	}
-
 	public void signUp(
 			long companyId, String firstName, String middleName,
 			String lastName, String emailAddress, String screenName,
