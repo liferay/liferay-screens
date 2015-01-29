@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.auth.signup.interactor;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
+import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 
 import org.json.JSONObject;
 
@@ -35,12 +36,12 @@ public class SignUpCallback extends InteractorAsyncTaskCallback<JSONObject> {
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new SignUpEvent(targetScreenletId, e);
+		return new JSONObjectEvent(targetScreenletId, e);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new SignUpEvent(targetScreenletId, result);
+		return new JSONObjectEvent(targetScreenletId, result);
 	}
 
 }

@@ -21,6 +21,7 @@ import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.signup.SignUpListener;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
+import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 import com.liferay.mobile.screens.util.SessionContext;
@@ -39,7 +40,7 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 		super(targetScreenletId);
 	}
 
-	public void onEvent(SignUpEvent event) {
+	public void onEvent(JSONObjectEvent event) {
 		if (_listener == null) {
 			return;
 		}
@@ -48,7 +49,7 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 			_listener.onSignUpFailure(event.getException());
 		}
 		else {
-			_listener.onSignUpSuccess(event.getUserAttributes());
+			_listener.onSignUpSuccess(event.getJSONObject());
 		}
 	}
 
