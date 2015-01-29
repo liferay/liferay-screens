@@ -59,10 +59,12 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 			String anonymousApiUserName, String anonymousApiPassword)
 		throws Exception {
 
-		validate(anonymousApiUserName, anonymousApiPassword);
+		validate(
+			companyId, firstName, emailAddress, locale, anonymousApiUserName,
+			anonymousApiPassword);
 
 		UserService service = getUserService(
-				anonymousApiUserName, anonymousApiPassword);
+			anonymousApiUserName, anonymousApiPassword);
 
 		sendSignUpRequest(
 			service, companyId, firstName, middleName, lastName, emailAddress,
@@ -118,14 +120,35 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 	}
 
 	protected void validate(
+		long companyId, String firstName, String emailAddress, Locale locale,
 		String anonymousApiUserName, String anonymousApiPassword) {
 
-		if (anonymousApiUserName == null) {
+		if (companyId <= 0) {
+			throw new IllegalArgumentException(
+				"CompanyId cannot be 0 or negative");
+		}
+
+		if ((firstName == null) || firstName.isEmpty()) {
+			throw new IllegalArgumentException(
+				"First name cannot be null or empty");
+		}
+
+		if ((emailAddress == null) || emailAddress.isEmpty()) {
+			throw new IllegalArgumentException(
+				"Email address cannot be null or empty");
+		}
+
+		if (locale == null) {
+			throw new IllegalArgumentException(
+				"Locale cannot be null");
+		}
+
+		if ((anonymousApiUserName == null) || anonymousApiUserName.isEmpty()) {
 			throw new IllegalArgumentException(
 				"Anonymous api user name cannot be null");
 		}
 
-		if (anonymousApiPassword == null) {
+		if ((anonymousApiPassword == null) || anonymousApiPassword.isEmpty()) {
 			throw new IllegalArgumentException(
 				"Anonymous api password cannot be null");
 		}
