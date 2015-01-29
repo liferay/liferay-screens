@@ -51,7 +51,7 @@ public class LoginScreenlet
 
 		super(context, attributes, defaultStyle);
 
-		setInteractor(new LoginInteractorImpl());
+		setInteractor(new LoginInteractorImpl(getScreenletId()));
 	}
 
 	@Override
