@@ -28,8 +28,8 @@ public class WebContentDisplayCallback
 	}
 
 	@Override
-	protected BasicEvent createEvent(int targetScreenletId, String result) {
-		return new WebContentDisplayEvent(targetScreenletId, result);
+	public String transform(Object obj) throws Exception {
+		return obj.toString();
 	}
 
 	@Override
@@ -38,8 +38,8 @@ public class WebContentDisplayCallback
 	}
 
 	@Override
-	public String transform(Object obj) throws Exception {
-		return obj.toString();
+	protected BasicEvent createEvent(int targetScreenletId, String result) {
+		return new WebContentDisplayEvent(targetScreenletId, result);
 	}
 
 }

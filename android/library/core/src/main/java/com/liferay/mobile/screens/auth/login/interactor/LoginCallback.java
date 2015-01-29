@@ -29,8 +29,8 @@ public class LoginCallback extends InteractorAsyncTaskCallback<JSONObject> {
 	}
 
 	@Override
-	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new LoginEvent(targetScreenletId, result);
+	public JSONObject transform(Object obj) throws Exception {
+		return (JSONObject)obj;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class LoginCallback extends InteractorAsyncTaskCallback<JSONObject> {
 	}
 
 	@Override
-	public JSONObject transform(Object obj) throws Exception {
-		return (JSONObject)obj;
+	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
+		return new LoginEvent(targetScreenletId, result);
 	}
 
 }

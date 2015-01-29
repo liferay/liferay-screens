@@ -23,14 +23,14 @@ import org.json.JSONObject;
  */
 public class LoginEvent extends BasicEvent {
 
+	public LoginEvent(int targetScreenletId, Exception e) {
+		super(targetScreenletId, e);
+	}
+
 	public LoginEvent(int targetScreenletId, JSONObject userAttributes) {
 		super(targetScreenletId);
 
 		_userAttributes = userAttributes;
-	}
-
-	public LoginEvent(int targetScreenletId, Exception e) {
-		super(targetScreenletId, e);
 	}
 
 	public JSONObject getUserAttributes() {
