@@ -17,13 +17,14 @@ package com.liferay.mobile.screens.base.interactor;
 /**
  * @author Silvio Santos
  */
-public abstract class BaseEvent {
+public abstract class BasicEvent {
 
-	public BaseEvent() {
-		this(null);
+	public BasicEvent(int targetScreenletId) {
+		this(targetScreenletId, null);
 	}
 
-	public BaseEvent(Exception exception) {
+	public BasicEvent(int targetScreenletId, Exception exception) {
+		_targetScreenletId = targetScreenletId;
 		_exception = exception;
 	}
 
@@ -31,10 +32,15 @@ public abstract class BaseEvent {
 		return _exception;
 	}
 
+	public int getTargetScreenletId() {
+		return _targetScreenletId;
+	}
+
 	public boolean isFailed() {
 		return _exception != null;
 	}
 
 	private Exception _exception;
+	private int _targetScreenletId;
 
 }

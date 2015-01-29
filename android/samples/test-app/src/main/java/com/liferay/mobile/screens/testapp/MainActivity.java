@@ -7,6 +7,8 @@ import android.widget.Toast;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 
+import org.json.JSONObject;
+
 /**
  * @author Silvio Santos
  */
@@ -33,7 +35,7 @@ public class MainActivity extends Activity
 	}
 
 	@Override
-	public void onLoginSuccess() {
+	public void onLoginSuccess(JSONObject userAttributes) {
 		Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show();
 	}
 

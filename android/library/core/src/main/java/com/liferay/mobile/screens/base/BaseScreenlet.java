@@ -25,6 +25,8 @@ import android.widget.FrameLayout;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @author Silvio Santos
  */
@@ -51,6 +53,10 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	public I getInteractor() {
 		return _interactor;
+	}
+
+	public int getScreenletId() {
+		return _screenletId;
 	}
 
 	public void setInteractor(I interactor) {
@@ -90,7 +96,23 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	protected abstract void onUserAction(String userActionName);
 
+	private static int _generateScreenletId() {
+		// This implementation is copied from View.generateViewId() method
+		// We cannot rely on that method because it's introduced in API Level 17
+		for (;;) {
+			final int result = sNextScreenletId.get();
+			int newValue = result + 1;
+			if (sNextScreenletId.compareAndSet(result, newValue)) {
+				return result;
+			}
+		}
+	}
+
 	private I _interactor;
 	private View _screenletView;
+	private int _screenletId = _generateScreenletId();
+
+	private static final AtomicInteger sNextScreenletId = new AtomicInteger(1);
+
 
 }

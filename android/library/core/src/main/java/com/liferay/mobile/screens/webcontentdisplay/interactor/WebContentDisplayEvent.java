@@ -14,19 +14,19 @@
 
 package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
-import com.liferay.mobile.screens.base.interactor.BaseEvent;
+import com.liferay.mobile.screens.base.interactor.BasicEvent;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class WebContentDisplayEvent extends BaseEvent {
+public class WebContentDisplayEvent extends BasicEvent {
 
-	public WebContentDisplayEvent(Exception e) {
-		super(e);
+	public WebContentDisplayEvent(int targetScreenletId, Exception e) {
+		super(targetScreenletId, e);
 	}
 
-	public WebContentDisplayEvent(String html) {
-		super();
+	public WebContentDisplayEvent(int targetScreenletId, String html) {
+		super(targetScreenletId);
 
 		_html = html;
 	}

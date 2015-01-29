@@ -52,7 +52,7 @@ public class WebContentDisplayScreenlet
 
 		super(context, attributes, defaultStyle);
 
-		setInteractor(new WebContentDisplayInteractorImpl());
+		setInteractor(new WebContentDisplayInteractorImpl(getScreenletId()));
 	}
 
 	public void load() throws Exception {
