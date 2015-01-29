@@ -30,6 +30,8 @@ import com.liferay.mobile.screens.util.SessionContext;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractor;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractorImpl;
 
+import java.util.Locale;
+
 /**
  * @author Jose Manuel Navarro
  */
@@ -60,7 +62,9 @@ public class WebContentDisplayScreenlet
 			throw new IllegalArgumentException("articleId cannot be null");
 		}
 
-		getInteractor().load(_groupId, _articleId);
+		Locale locale = getResources().getConfiguration().locale;
+
+		getInteractor().load(_groupId, _articleId, locale);
 	}
 
 	@Override

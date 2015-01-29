@@ -16,6 +16,8 @@ package com.liferay.mobile.screens.auth.signup.interactor;
 
 import com.liferay.mobile.screens.base.interactor.Interactor;
 
+import java.util.Locale;
+
 /**
  * @author Silvio Santos
  */
@@ -24,8 +26,8 @@ public interface SignUpInteractor extends Interactor<SignUpListener> {
 	public void signUp(
 			long companyId, String firstName, String middleName,
 			String lastName, String emailAddress, String screenName,
-			String password, String jobTitle, String anonymousApiUserName,
-			String anonymousApiPassword)
+			String password, String jobTitle, Locale locale,
+			String anonymousApiUserName, String anonymousApiPassword)
 		throws Exception;
 
 }

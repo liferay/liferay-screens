@@ -21,6 +21,8 @@ import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 import com.liferay.mobile.screens.util.SessionContext;
 
+import java.util.Locale;
+
 import org.json.JSONArray;
 
 /**
@@ -63,15 +65,15 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 	public void signUp(
 			long companyId, String firstName, String middleName,
 			String lastName, String emailAddress, String screenName,
-			String password, String jobTitle, String anonymousApiUserName,
-			String anonymousApiPassword)
+			String password, String jobTitle, Locale locale,
+			String anonymousApiUserName, String anonymousApiPassword)
 		throws Exception {
 
 		validate(anonymousApiUserName, anonymousApiPassword);
 
 		sendSignUpRequest(
 			companyId, firstName, middleName, lastName, emailAddress,
-			screenName, password, jobTitle, anonymousApiUserName,
+			screenName, password, jobTitle, locale, anonymousApiUserName,
 			anonymousApiPassword);
 	}
 
@@ -86,8 +88,8 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 	protected void sendSignUpRequest(
 			long companyId, String firstName, String middleName,
 			String lastName, String emailAddress, String screenName,
-			String password, String jobTitle, String anonymousApiUserName,
-			String anonymousApiPassword)
+			String password, String jobTitle, Locale locale,
+			String anonymousApiUserName, String anonymousApiPassword)
 		throws Exception {
 
 		UserService service = getUserService(
@@ -97,7 +99,6 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 		boolean autoScreenName = screenName.isEmpty();
 		long facebookId = 0;
 		String openId = "";
-		String currentLocale = "currentLocale"; //TODO get current locale
 		int preffixId = 0;
 		int suffixId = 0;
 		boolean male = true;
@@ -114,7 +115,7 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 
 		service.addUser(
 			companyId, autoPassword, password, password, autoScreenName,
-			screenName, emailAddress, facebookId, openId, currentLocale,
+			screenName, emailAddress, facebookId, openId, locale.toString(),
 			firstName, middleName, lastName, preffixId, suffixId, male,
 			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
 			organizationIds, roleIds, userGroupIds, sendEmail, null);

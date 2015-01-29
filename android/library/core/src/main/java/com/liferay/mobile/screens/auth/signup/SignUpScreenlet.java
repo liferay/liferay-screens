@@ -30,6 +30,8 @@ import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 
+import java.util.Locale;
+
 /**
  * @author Silvio Santos
  */
@@ -87,11 +89,12 @@ public class SignUpScreenlet
 		String password = signUpViewModel.getPassword();
 		String screenName = signUpViewModel.getScreenName();
 		String jobTitle = signUpViewModel.getJobTitle();
+		Locale locale = getResources().getConfiguration().locale;
 
 		try {
 			getInteractor().signUp(
 				_companyId, firstName, middleName, lastName, emailAddress,
-				screenName, password, jobTitle, _anonymousApiUserName,
+				screenName, password, jobTitle, locale, _anonymousApiUserName,
 				_anonymousApiPassword);
 		}
 		catch (Exception e) {
