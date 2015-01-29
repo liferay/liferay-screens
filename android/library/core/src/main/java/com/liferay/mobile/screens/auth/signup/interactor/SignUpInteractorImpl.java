@@ -14,7 +14,10 @@
 
 package com.liferay.mobile.screens.auth.signup.interactor;
 
+import com.liferay.mobile.android.auth.Authentication;
+import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.signup.SignUpListener;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
@@ -64,12 +67,20 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 			anonymousApiPassword);
 	}
 
-	protected UserService getUserService(String login, String password) {
-		Session session = SessionContext.createSession(login, password);
-		session.setCallback(new SignUpCallback(getTargetScreenletId()));
-		UserService service = new UserService(session);
+	protected UserService getUserService(
+		String anonymousApiUserName, String anonymousApiPassword) {
 
-		return service;
+		Authentication authentication = new BasicAuthentication(
+			anonymousApiUserName, anonymousApiPassword);
+
+		Session anonymousSession = new SessionImpl(
+			LiferayServerContext.getServer(), authentication);
+
+		anonymousSession.setCallback(
+			new SignUpCallback(getTargetScreenletId()));
+
+
+		return  new UserService(anonymousSession);
 	}
 
 	protected void sendSignUpRequest(
