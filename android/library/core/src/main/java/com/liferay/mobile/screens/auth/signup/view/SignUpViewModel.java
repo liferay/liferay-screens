@@ -21,10 +21,6 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  */
 public interface SignUpViewModel extends BaseViewModel {
 
-	public String getAnonymousApiPassword();
-
-	public String getAnonymousApiUserName();
-
 	public String getEmailAddress();
 
 	public String getFirstName();

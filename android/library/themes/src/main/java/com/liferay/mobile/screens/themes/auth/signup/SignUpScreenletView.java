@@ -52,16 +52,6 @@ public class SignUpScreenletView extends LinearLayout
 	}
 
 	@Override
-	public String getAnonymousApiPassword() {
-		return "";
-	}
-
-	@Override
-	public String getAnonymousApiUserName() {
-		return "";
-	}
-
-	@Override
 	public String getEmailAddress() {
 		return _emailAddress.getText().toString();
 	}
