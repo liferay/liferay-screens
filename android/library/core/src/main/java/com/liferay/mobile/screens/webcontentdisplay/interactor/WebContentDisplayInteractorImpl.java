@@ -17,9 +17,10 @@ package com.liferay.mobile.screens.webcontentdisplay.interactor;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
-import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.SessionContext;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
+
+import java.util.Locale;
 
 /**
  * @author Jose Manuel Navarro
@@ -32,11 +33,12 @@ public class WebContentDisplayInteractorImpl
 		super(targetScreenletId);
 	}
 
-	public void load(long groupId, String articleId) throws Exception {
+	public void load(long groupId, String articleId, Locale locale)
+		throws Exception {
+
 		JournalArticleService service = getJournalArticleService();
 
-		//TODO get languageId from global context
-		service.getArticleContent(groupId, articleId, "en_US", null);
+		service.getArticleContent(groupId, articleId, locale.toString(), null);
 	}
 
 	public void onEvent(WebContentDisplayEvent event) {
@@ -55,11 +57,6 @@ public class WebContentDisplayInteractorImpl
 	}
 
 	protected JournalArticleService getJournalArticleService() {
-		if (!SessionContext.hasSession()) {
-			throw new IllegalStateException(
-				"You need to be logged in to get the Journal Article");
-		}
-
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(
 			new WebContentDisplayCallback(getTargetScreenletId()));

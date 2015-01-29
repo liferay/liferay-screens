@@ -19,7 +19,7 @@ import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
-import com.liferay.mobile.screens.util.EventBusUtil;
+import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 import com.liferay.mobile.screens.util.SessionContext;
 
@@ -56,16 +56,17 @@ public class LoginInteractorImpl
 		}
 	}
 
-	public void onEvent(LoginEvent event) {
+	public void onEvent(JSONObjectEvent event) {
 		if (!isValidEvent(event)) {
 			return;
 		}
 
 		if (event.isFailed()) {
+			SessionContext.clearSession();
 			getListener().onLoginFailure(event.getException());
 		}
 		else {
-			getListener().onLoginSuccess(event.getUserAttributes());
+			getListener().onLoginSuccess(event.getJSONObject());
 		}
 	}
 

@@ -18,6 +18,13 @@
 		<attr name="layoutId" />
 	</declare-styleable>
 
+	<declare-styleable name="SignUpScreenlet">
+		<attr name="layoutId" />
+		<attr name="companyId" format="integer" />
+		<attr name="anonymousApiUserName" format="string" />
+		<attr name="anonymousApiPassword" format="string" />
+	</declare-styleable>
+
 	<declare-styleable name="WebContentDisplayScreenlet">
 		<attr name="layoutId" />
 		<attr name="autoLoad" format="boolean" />

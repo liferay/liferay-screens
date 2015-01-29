@@ -12,29 +12,29 @@
  * details.
  */
 
-package com.liferay.mobile.screens.util;
+package com.liferay.mobile.screens.base.interactor;
 
-import com.liferay.mobile.android.v62.user.UserService;
-import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
-
-import static org.mockito.Mockito.mock;
+import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
  */
-public class MockFactory {
+public class JSONObjectEvent extends BasicEvent {
 
-	public static LoginListener mockLoginListener() {
-		return mock(LoginListener.class);
+	public JSONObjectEvent(int targetScreenletId, Exception e) {
+		super(targetScreenletId, e);
 	}
 
-	public static UserService mockUserService() {
-		return mock(UserService.class);
+	public JSONObjectEvent(int targetScreenletId, JSONObject jsonObject) {
+		super(targetScreenletId);
+
+		_jsonObject = jsonObject;
 	}
 
-	public static LoginInteractorImpl spyLoginInteractor() {
-		return spy(new LoginInteractorImpl());
+	public JSONObject getJSONObject() {
+		return _jsonObject;
 	}
+
+	private JSONObject _jsonObject;
 
 }

@@ -12,34 +12,36 @@
  * details.
  */
 
-package com.liferay.mobile.screens.webcontentdisplay.interactor;
+package com.liferay.mobile.screens.auth.signup.interactor;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
+import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
+
+import org.json.JSONObject;
 
 /**
- * @author Jose Manuel Navarro
+ * @author Silvio Santos
  */
-public class WebContentDisplayCallback
-	extends InteractorAsyncTaskCallback<String> {
+public class SignUpCallback extends InteractorAsyncTaskCallback<JSONObject> {
 
-	public WebContentDisplayCallback(int targetScreenletId) {
+	public SignUpCallback(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 
 	@Override
-	public String transform(Object obj) throws Exception {
-		return obj.toString();
+	public JSONObject transform(Object obj) throws Exception {
+		return (JSONObject)obj;
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new WebContentDisplayEvent(targetScreenletId, e);
+		return new JSONObjectEvent(targetScreenletId, e);
 	}
 
 	@Override
-	protected BasicEvent createEvent(int targetScreenletId, String result) {
-		return new WebContentDisplayEvent(targetScreenletId, result);
+	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
+		return new JSONObjectEvent(targetScreenletId, result);
 	}
 
 }
