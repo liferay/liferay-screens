@@ -63,7 +63,7 @@ public class LoginInteractorImpl
 			getListener().onLoginFailure(event.getException());
 		}
 		else {
-			getListener().onLoginSuccess();
+			getListener().onLoginSuccess(event.getUserAttributes());
 		}
 	}
 

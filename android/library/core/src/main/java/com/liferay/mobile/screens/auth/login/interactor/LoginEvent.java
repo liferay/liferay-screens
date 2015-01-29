@@ -16,17 +16,27 @@ package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 
+import org.json.JSONObject;
+
 /**
  * @author Silvio Santos
  */
 public class LoginEvent extends BasicEvent {
 
-	public LoginEvent(int targetScreenletId) {
+	public LoginEvent(int targetScreenletId, JSONObject userAttributes) {
 		super(targetScreenletId);
+
+		_userAttributes = userAttributes;
 	}
 
 	public LoginEvent(int targetScreenletId, Exception e) {
 		super(targetScreenletId, e);
 	}
+
+	public JSONObject getUserAttributes() {
+		return _userAttributes;
+	}
+
+	private JSONObject _userAttributes;
 
 }

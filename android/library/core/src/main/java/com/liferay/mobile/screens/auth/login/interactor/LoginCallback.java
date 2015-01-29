@@ -32,7 +32,7 @@ public class LoginCallback extends ScreenletAsyncTaskCallback<JSONObject> {
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new LoginEvent(targetScreenletId);
+		return new LoginEvent(targetScreenletId, result);
 	}
 
 	@Override

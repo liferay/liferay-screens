@@ -29,6 +29,8 @@ import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 
+import org.json.JSONObject;
+
 /**
  * @author Silvio Santos
  */
@@ -65,12 +67,12 @@ public class LoginScreenlet
 	}
 
 	@Override
-	public void onLoginSuccess() {
+	public void onLoginSuccess(JSONObject userAttributes) {
 		LoginListener listenerView = (LoginListener)getScreenletView();
-		listenerView.onLoginSuccess();
+		listenerView.onLoginSuccess(userAttributes);
 
 		if (_listener != null) {
-			_listener.onLoginSuccess();
+			_listener.onLoginSuccess(userAttributes);
 		}
 	}
 
