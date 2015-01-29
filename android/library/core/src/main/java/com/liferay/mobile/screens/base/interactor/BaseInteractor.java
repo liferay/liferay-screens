@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.base.interactor;
 import com.liferay.mobile.screens.util.EventBusUtil;
 
 /**
- * @author Silvio Santos
+ * @author Jose Manuel Navarro
  */
 public abstract class BaseInteractor<L> implements Interactor<L> {
 
