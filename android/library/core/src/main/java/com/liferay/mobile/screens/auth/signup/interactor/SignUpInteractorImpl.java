@@ -41,15 +41,15 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 	}
 
 	public void onEvent(JSONObjectEvent event) {
-		if (_listener == null) {
+		if (!isValidEvent(event)) {
 			return;
 		}
 
 		if (event.isFailed()) {
-			_listener.onSignUpFailure(event.getException());
+			getListener().onSignUpFailure(event.getException());
 		}
 		else {
-			_listener.onSignUpSuccess(event.getJSONObject());
+			getListener().onSignUpSuccess(event.getJSONObject());
 		}
 	}
 
@@ -154,7 +154,5 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 				"Anonymous api password cannot be null");
 		}
 	}
-
-	private SignUpListener _listener;
 
 }
