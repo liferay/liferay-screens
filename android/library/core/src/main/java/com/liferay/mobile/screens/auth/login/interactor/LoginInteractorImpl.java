@@ -60,6 +60,7 @@ public class LoginInteractorImpl
 		}
 
 		if (event.isFailed()) {
+			SessionContext.clearSession();
 			getListener().onLoginFailure(event.getException());
 		}
 		else {

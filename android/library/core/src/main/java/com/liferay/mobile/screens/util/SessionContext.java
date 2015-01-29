@@ -46,6 +46,10 @@ public class SessionContext {
 		return createSession(basicAuth.getUsername(), basicAuth.getPassword());
 	}
 
+	public static void clearSession() {
+		_session = null;
+	}
+
 	public static boolean hasSession() {
 		return _session != null;
 	}
