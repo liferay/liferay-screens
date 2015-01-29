@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
+import com.liferay.mobile.screens.base.interactor.BaseInteractor;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.SessionContext;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
@@ -24,7 +25,12 @@ import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayInteractorImpl
+	extends BaseInteractor<WebContentDisplayListener>
 	implements WebContentDisplayInteractor {
+
+	public WebContentDisplayInteractorImpl(int targetScreenletId) {
+		super(targetScreenletId);
+	}
 
 	public void load(long groupId, String articleId) throws Exception {
 		JournalArticleService service = getJournalArticleService();
@@ -34,32 +40,18 @@ public class WebContentDisplayInteractorImpl
 	}
 
 	public void onEvent(WebContentDisplayEvent event) {
-		if (_listener == null) {
+		if (!isValidEvent(event)) {
 			return;
 		}
 
 		String receivedHtml = event.getHtml();
 
 		if (receivedHtml != null) {
-			_listener.onWebContentReceived(receivedHtml);
+			getListener().onWebContentReceived(receivedHtml);
 		}
 		else {
-			_listener.onWebContentFailure(event.getException());
+			getListener().onWebContentFailure(event.getException());
 		}
-	}
-
-	@Override
-	public void onScreenletAttachted(WebContentDisplayListener listener) {
-		_listener = listener;
-
-		EventBusUtil.register(this);
-	}
-
-	@Override
-	public void onScreenletDetached(WebContentDisplayListener listener) {
-		EventBusUtil.unregister(this);
-
-		_listener = null;
 	}
 
 	protected JournalArticleService getJournalArticleService() {
@@ -69,11 +61,10 @@ public class WebContentDisplayInteractorImpl
 		}
 
 		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new WebContentDisplayCallback());
+		session.setCallback(
+			new WebContentDisplayCallback(getTargetScreenletId()));
 
 		return new JournalArticleService(session);
 	}
-
-	private WebContentDisplayListener _listener;
 
 }

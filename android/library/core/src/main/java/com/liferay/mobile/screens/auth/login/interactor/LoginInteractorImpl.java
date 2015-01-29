@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.auth.login.interactor;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.login.LoginListener;
+import com.liferay.mobile.screens.base.interactor.BaseInteractor;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 import com.liferay.mobile.screens.util.SessionContext;
@@ -24,7 +25,13 @@ import com.liferay.mobile.screens.util.SessionContext;
 /**
  * @author Silvio Santos
  */
-public class LoginInteractorImpl implements LoginInteractor {
+public class LoginInteractorImpl
+	extends BaseInteractor<LoginListener>
+	implements LoginInteractor {
+
+	public LoginInteractorImpl(int targetScreenletId) {
+		super(targetScreenletId);
+	}
 
 	public void login(String login, String password, AuthMethod authMethod) {
 		validate(login, password, authMethod);
@@ -48,35 +55,21 @@ public class LoginInteractorImpl implements LoginInteractor {
 	}
 
 	public void onEvent(LoginEvent event) {
-		if (_listener == null) {
+		if (!isValidEvent(event)) {
 			return;
 		}
 
 		if (event.isFailed()) {
-			_listener.onLoginFailure(event.getException());
+			getListener().onLoginFailure(event.getException());
 		}
 		else {
-			_listener.onLoginSuccess();
+			getListener().onLoginSuccess();
 		}
-	}
-
-	@Override
-	public void onScreenletAttachted(LoginListener listener) {
-		EventBusUtil.register(this);
-
-		_listener = listener;
-	}
-
-	@Override
-	public void onScreenletDetached(LoginListener listener) {
-		EventBusUtil.unregister(this);
-
-		_listener = null;
 	}
 
 	protected UserService getUserService(String login, String password) {
 		Session session = SessionContext.createSession(login, password);
-		session.setCallback(new LoginCallback());
+		session.setCallback(new LoginCallback(getTargetScreenletId()));
 
 		return new UserService(session);
 	}
@@ -131,7 +124,5 @@ public class LoginInteractorImpl implements LoginInteractor {
 			throw new IllegalArgumentException("AuthMethod cannot be null");
 		}
 	}
-
-	private LoginListener _listener;
 
 }
