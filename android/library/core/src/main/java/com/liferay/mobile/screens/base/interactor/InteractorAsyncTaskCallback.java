@@ -20,10 +20,10 @@ import com.liferay.mobile.screens.util.EventBusUtil;
 /**
  * @author Jose Manuel Navarro
  */
-public abstract class ScreenletAsyncTaskCallback<T>
+public abstract class InteractorAsyncTaskCallback<T>
 	extends GenericAsyncTaskCallback<T> {
 
-	public ScreenletAsyncTaskCallback(int targetScreenletId) {
+	public InteractorAsyncTaskCallback(int targetScreenletId) {
 		_targetScreenletId = targetScreenletId;
 	}
 

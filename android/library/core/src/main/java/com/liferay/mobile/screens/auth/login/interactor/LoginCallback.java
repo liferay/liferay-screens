@@ -15,14 +15,14 @@
 package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.ScreenletAsyncTaskCallback;
+import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
 
 import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
  */
-public class LoginCallback extends ScreenletAsyncTaskCallback<JSONObject> {
+public class LoginCallback extends InteractorAsyncTaskCallback<JSONObject> {
 
 	public LoginCallback(int targetScreenletId) {
 		super(targetScreenletId);

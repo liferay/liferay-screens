@@ -14,16 +14,14 @@
 
 package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
-import com.liferay.mobile.android.task.callback.typed.StringAsyncTaskCallback;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.ScreenletAsyncTaskCallback;
-import com.liferay.mobile.screens.util.EventBusUtil;
+import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
 
 /**
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayCallback
-	extends ScreenletAsyncTaskCallback<String> {
+	extends InteractorAsyncTaskCallback<String> {
 
 	public WebContentDisplayCallback(int targetScreenletId) {
 		super(targetScreenletId);
