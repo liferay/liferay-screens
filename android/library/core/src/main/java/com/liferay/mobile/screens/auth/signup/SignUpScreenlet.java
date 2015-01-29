@@ -32,6 +32,8 @@ import com.liferay.mobile.screens.util.LiferayServerContext;
 
 import java.util.Locale;
 
+import org.json.JSONObject;
+
 /**
  * @author Silvio Santos
  */
@@ -69,12 +71,12 @@ public class SignUpScreenlet
 	}
 
 	@Override
-	public void onSignUpSuccess() {
+	public void onSignUpSuccess(JSONObject userAttributes) {
 		SignUpListener listenerView = (SignUpListener)getScreenletView();
-		listenerView.onSignUpSuccess();
+		listenerView.onSignUpSuccess(userAttributes);
 
 		if (_listener != null) {
-			_listener.onSignUpSuccess();
+			_listener.onSignUpSuccess(userAttributes);
 		}
 	}
 

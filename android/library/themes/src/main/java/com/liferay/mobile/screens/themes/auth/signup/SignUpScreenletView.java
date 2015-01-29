@@ -29,6 +29,8 @@ import com.liferay.mobile.screens.auth.signup.interactor.SignUpListener;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
 import com.liferay.mobile.screens.themes.R;
 
+import org.json.JSONObject;
+
 /**
  * @author Silvio Santos
  */
@@ -106,7 +108,7 @@ public class SignUpScreenletView extends LinearLayout
 	}
 
 	@Override
-	public void onSignUpSuccess() {
+	public void onSignUpSuccess(JSONObject userAttributes) {
 	}
 
 	@Override

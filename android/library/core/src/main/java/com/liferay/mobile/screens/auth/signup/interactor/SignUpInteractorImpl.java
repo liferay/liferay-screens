@@ -44,7 +44,7 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 			_listener.onSignUpFailure(event.getException());
 		}
 		else {
-			_listener.onSignUpSuccess();
+			_listener.onSignUpSuccess(event.getUserAttributes());
 		}
 	}
 

@@ -23,16 +23,20 @@ import org.json.JSONObject;
  */
 public class SignUpEvent extends BasicEvent {
 
-	public SignUpEvent(int targetScreenletId, JSONObject jsonObject) {
+	public SignUpEvent(int targetScreenletId, JSONObject userAttributes) {
 		super(targetScreenletId);
 
-		_jsonObject = jsonObject;
+		_userAttributes = userAttributes;
 	}
 
 	public SignUpEvent(int targetScreenletId, Exception e) {
 		super(targetScreenletId, e);
 	}
 
-	private JSONObject _jsonObject;
+	public JSONObject getUserAttributes() {
+		return _userAttributes;
+	}
+
+	private JSONObject _userAttributes;
 
 }
