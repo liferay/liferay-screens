@@ -21,12 +21,12 @@ import com.liferay.mobile.screens.base.interactor.BasicEvent;
  */
 public class LoginEvent extends BasicEvent {
 
-	public LoginEvent() {
-		super();
+	public LoginEvent(int targetScreenletId) {
+		super(targetScreenletId);
 	}
 
-	public LoginEvent(Exception e) {
-		super(e);
+	public LoginEvent(int targetScreenletId, Exception e) {
+		super(targetScreenletId, e);
 	}
 
 }

@@ -19,11 +19,12 @@ package com.liferay.mobile.screens.base.interactor;
  */
 public abstract class BasicEvent {
 
-	public BasicEvent() {
-		this(null);
+	public BasicEvent(int targetScreenletId) {
+		this(targetScreenletId, null);
 	}
 
-	public BasicEvent(Exception exception) {
+	public BasicEvent(int targetScreenletId, Exception exception) {
+		_targetScreenletId = targetScreenletId;
 		_exception = exception;
 	}
 
@@ -31,10 +32,15 @@ public abstract class BasicEvent {
 		return _exception;
 	}
 
+	public int getTargetScreenletId() {
+		return _targetScreenletId;
+	}
+
 	public boolean isFailed() {
 		return _exception != null;
 	}
 
 	private Exception _exception;
+	private int _targetScreenletId;
 
 }
