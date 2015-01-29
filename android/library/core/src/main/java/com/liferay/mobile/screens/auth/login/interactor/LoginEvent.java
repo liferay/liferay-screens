@@ -14,12 +14,12 @@
 
 package com.liferay.mobile.screens.auth.login.interactor;
 
-import com.liferay.mobile.screens.base.interactor.BaseEvent;
+import com.liferay.mobile.screens.base.interactor.BasicEvent;
 
 /**
  * @author Silvio Santos
  */
-public class LoginEvent extends BaseEvent {
+public class LoginEvent extends BasicEvent {
 
 	public LoginEvent() {
 		super();

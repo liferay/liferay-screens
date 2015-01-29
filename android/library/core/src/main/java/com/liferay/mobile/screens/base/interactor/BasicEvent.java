@@ -17,13 +17,13 @@ package com.liferay.mobile.screens.base.interactor;
 /**
  * @author Silvio Santos
  */
-public abstract class BaseEvent {
+public abstract class BasicEvent {
 
-	public BaseEvent() {
+	public BasicEvent() {
 		this(null);
 	}
 
-	public BaseEvent(Exception exception) {
+	public BasicEvent(Exception exception) {
 		_exception = exception;
 	}
 
