@@ -2,13 +2,15 @@
 <resources>
 	<attr name="layoutId" format="reference" />
 
+	<attr name="authMethod" format="enum">
+		<enum name="email" value="0" />
+		<enum name="screen_name" value="1" />
+		<enum name="user_id" value="2" />
+	</attr>
+
 	<declare-styleable name="LoginScreenlet">
 		<attr name="layoutId" />
-		<attr name="authMethod" format="enum">
-			<enum name="email" value="0" />
-			<enum name="screen_name" value="1" />
-			<enum name="user_id" value="2" />
-		</attr>
+		<attr name="authMethod" />
 	</declare-styleable>
 
 	<declare-styleable name="PortraitScreenlet">
@@ -22,4 +24,13 @@
 		<attr name="groupId" format="integer" />
 		<attr name="articleId" format="string" />
 	</declare-styleable>
+
+	<declare-styleable name="ForgotPasswordScreenlet">
+		<attr name="layoutId" />
+		<attr name="authMethod" />
+		<attr name="companyId" format="integer" />
+		<attr name="anonymousApiUserName" format="string" />
+		<attr name="anonymousApiPassword" format="string" />
+	</declare-styleable>
+
 </resources>
