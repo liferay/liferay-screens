@@ -70,12 +70,6 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return _screenletView;
 	}
 
-	protected void onScreenletAttached() {
-	}
-
-	protected void onScreenletDetached() {
-	}
-
 	@Override
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
@@ -92,6 +86,12 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		_interactor.onScreenletDetached(this);
 
 		onScreenletDetached();
+	}
+
+	protected void onScreenletAttached() {
+	}
+
+	protected void onScreenletDetached() {
 	}
 
 	protected abstract void onUserAction(String userActionName);

@@ -68,13 +68,6 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	protected void onScreenletAttached() {
-		if (_autoLoad) {
-			autoLoad();
-		}
-	}
-
-	@Override
 	public void onWebContentFailure(Exception e) {
 		if (_listener != null) {
 			_listener.onWebContentFailure(e);
@@ -145,6 +138,13 @@ public class WebContentDisplayScreenlet
 		typedArray.recycle();
 
 		return view;
+	}
+
+	@Override
+	protected void onScreenletAttached() {
+		if (_autoLoad) {
+			autoLoad();
+		}
 	}
 
 	private String _articleId;
