@@ -37,20 +37,19 @@ public class LoginInteractorImpl
 	public void login(String login, String password, AuthMethod authMethod) {
 		validate(login, password, authMethod);
 
+		UserService service = getUserService(login, password);
+
 		switch (authMethod) {
 			case EMAIL:
-				sendGetUserByEmailRequest(login, password);
-
+				sendGetUserByEmailRequest(service, login);
 				break;
 
 			case USER_ID:
-				sendGetUserByIdRequest(Long.parseLong(login), password);
-
+				sendGetUserByIdRequest(service, Long.parseLong(login));
 				break;
 
 			case SCREEN_NAME:
-				sendGetUserByScreenName(login, password);
-
+				sendGetUserByScreenNameRequest(service, login);
 				break;
 		}
 	}
@@ -75,8 +74,8 @@ public class LoginInteractorImpl
 		return new UserService(session);
 	}
 
-	protected void sendGetUserByEmailRequest(String email, String password) {
-		UserService service = getUserService(email, password);
+	protected void sendGetUserByEmailRequest(
+		UserService service, String email) {
 
 		try {
 			service.getUserByEmailAddress(
@@ -87,9 +86,7 @@ public class LoginInteractorImpl
 		}
 	}
 
-	protected void sendGetUserByIdRequest(long userId, String password) {
-		UserService service = getUserService(String.valueOf(userId), password);
-
+	protected void sendGetUserByIdRequest(UserService service, long userId) {
 		try {
 			service.getUserById(userId);
 		}
@@ -98,8 +95,8 @@ public class LoginInteractorImpl
 		}
 	}
 
-	protected void sendGetUserByScreenName(String screenName, String password) {
-		UserService service = getUserService(screenName, password);
+	protected void sendGetUserByScreenNameRequest(
+		UserService service, String screenName) {
 
 		try {
 			service.getUserByScreenName(
