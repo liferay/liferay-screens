@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.auth.login;
 
 import org.json.JSONObject;
-
 public interface LoginListener {
 
 	void onLoginSuccess(JSONObject userAttributes);

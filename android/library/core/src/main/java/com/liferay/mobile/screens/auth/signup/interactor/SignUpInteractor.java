@@ -12,29 +12,23 @@
  * details.
  */
 
-package com.liferay.mobile.screens.util;
+package com.liferay.mobile.screens.auth.signup.interactor;
 
-import com.liferay.mobile.android.v62.user.UserService;
-import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
+import com.liferay.mobile.screens.auth.signup.SignUpListener;
+import com.liferay.mobile.screens.base.interactor.Interactor;
 
-import static org.mockito.Mockito.mock;
+import java.util.Locale;
 
 /**
  * @author Silvio Santos
  */
-public class MockFactory {
+public interface SignUpInteractor extends Interactor<SignUpListener> {
 
-	public static LoginListener mockLoginListener() {
-		return mock(LoginListener.class);
-	}
-
-	public static UserService mockUserService() {
-		return mock(UserService.class);
-	}
-
-	public static LoginInteractorImpl spyLoginInteractor() {
-		return spy(new LoginInteractorImpl());
-	}
+	public void signUp(
+			long companyId, String firstName, String middleName,
+			String lastName, String emailAddress, String screenName,
+			String password, String jobTitle, Locale locale,
+			String anonymousApiUserName, String anonymousApiPassword)
+		throws Exception;
 
 }

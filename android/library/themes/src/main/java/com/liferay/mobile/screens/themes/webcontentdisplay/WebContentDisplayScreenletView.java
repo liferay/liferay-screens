@@ -20,10 +20,7 @@ import android.util.AttributeSet;
 
 import android.webkit.WebView;
 
-import android.widget.FrameLayout;
-
 import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.themes.R;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 

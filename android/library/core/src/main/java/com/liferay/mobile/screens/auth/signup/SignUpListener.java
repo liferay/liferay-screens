@@ -12,31 +12,17 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.interactor;
-
-import com.liferay.mobile.screens.base.interactor.BasicEvent;
+package com.liferay.mobile.screens.auth.signup;
 
 import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
  */
-public class LoginEvent extends BasicEvent {
+public interface SignUpListener {
 
-	public LoginEvent(int targetScreenletId, JSONObject userAttributes) {
-		super(targetScreenletId);
+	public void onSignUpFailure(Exception e);
 
-		_userAttributes = userAttributes;
-	}
-
-	public LoginEvent(int targetScreenletId, Exception e) {
-		super(targetScreenletId, e);
-	}
-
-	public JSONObject getUserAttributes() {
-		return _userAttributes;
-	}
-
-	private JSONObject _userAttributes;
+	public void onSignUpSuccess(JSONObject userAttributes);
 
 }

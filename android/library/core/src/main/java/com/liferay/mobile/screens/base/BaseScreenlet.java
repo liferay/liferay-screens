@@ -70,12 +70,6 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return _screenletView;
 	}
 
-	protected void onScreenletAttached() {
-	}
-
-	protected void onScreenletDetached() {
-	}
-
 	@Override
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
@@ -94,25 +88,33 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		onScreenletDetached();
 	}
 
+	protected void onScreenletAttached() {
+	}
+
+	protected void onScreenletDetached() {
+	}
+
 	protected abstract void onUserAction(String userActionName);
 
 	private static int _generateScreenletId() {
-		// This implementation is copied from View.generateViewId() method
-		// We cannot rely on that method because it's introduced in API Level 17
-		for (;;) {
+
+		// This implementation is copied from View.generateViewId() method We
+		// cannot rely on that method because it's introduced in API Level 17
+
+		while (true) {
 			final int result = sNextScreenletId.get();
 			int newValue = result + 1;
+
 			if (sNextScreenletId.compareAndSet(result, newValue)) {
 				return result;
 			}
 		}
 	}
 
-	private I _interactor;
-	private View _screenletView;
-	private int _screenletId = _generateScreenletId();
-
 	private static final AtomicInteger sNextScreenletId = new AtomicInteger(1);
 
+	private I _interactor;
+	private int _screenletId = _generateScreenletId();
+	private View _screenletView;
 
 }

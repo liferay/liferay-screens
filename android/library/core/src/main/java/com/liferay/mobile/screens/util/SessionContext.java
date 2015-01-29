@@ -36,13 +36,18 @@ public class SessionContext {
 
 	public static Session createSessionFromCurrentSession() {
 		if (_session == null) {
-			return null;
+			throw new IllegalStateException(
+				"You need to be logged in to get a session");
 		}
 
 		BasicAuthentication basicAuth =
 			(BasicAuthentication) _session.getAuthentication();
 
 		return createSession(basicAuth.getUsername(), basicAuth.getPassword());
+	}
+
+	public static void clearSession() {
+		_session = null;
 	}
 
 	public static boolean hasSession() {

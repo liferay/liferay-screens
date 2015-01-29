@@ -41,6 +41,14 @@ public abstract class BaseInteractor<L> implements Interactor<L> {
 		_listener = null;
 	}
 
+	protected L getListener() {
+		return _listener;
+	}
+
+	protected int getTargetScreenletId() {
+		return _targetScreenletId;
+	}
+
 	protected boolean isValidEvent(BasicEvent event) {
 		if (getListener() == null) {
 			return false;
@@ -53,14 +61,7 @@ public abstract class BaseInteractor<L> implements Interactor<L> {
 		return true;
 	}
 
-	protected L getListener() {
-		return _listener;
-	}
-
-	protected int getTargetScreenletId() {
-		return _targetScreenletId;
-	}
-
 	private L _listener;
 	private int _targetScreenletId;
+
 }
