@@ -14,18 +14,13 @@
 
 package com.liferay.mobile.screens.auth.forgotpassword.view;
 
-import com.liferay.mobile.screens.auth.login.interactor.AuthMethod;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.auth.AuthBasedViewModel;
 
 /**
  * @author Jose Manuel Navarro
  */
-public interface ForgotPasswordViewModel extends BaseViewModel {
-
-	public AuthMethod getAuthMethod();
+public interface ForgotPasswordViewModel extends AuthBasedViewModel {
 
 	public String getLogin();
-
-	public void setAuthMethod(AuthMethod authMethod);
 
 }
