@@ -57,11 +57,6 @@ public class WebContentDisplayInteractorImpl
 	}
 
 	protected JournalArticleService getJournalArticleService() {
-		if (!SessionContext.hasSession()) {
-			throw new IllegalStateException(
-				"You need to be logged in to get the Journal Article");
-		}
-
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(
 			new WebContentDisplayCallback(getTargetScreenletId()));

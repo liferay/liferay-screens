@@ -36,7 +36,8 @@ public class SessionContext {
 
 	public static Session createSessionFromCurrentSession() {
 		if (_session == null) {
-			return null;
+			throw new IllegalStateException(
+				"You need to be logged in to get a session");
 		}
 
 		BasicAuthentication basicAuth =
