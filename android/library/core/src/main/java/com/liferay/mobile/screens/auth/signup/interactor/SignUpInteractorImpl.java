@@ -61,10 +61,12 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 
 		validate(anonymousApiUserName, anonymousApiPassword);
 
+		UserService service = getUserService(
+				anonymousApiUserName, anonymousApiPassword);
+
 		sendSignUpRequest(
-			companyId, firstName, middleName, lastName, emailAddress,
-			screenName, password, jobTitle, locale, anonymousApiUserName,
-			anonymousApiPassword);
+			service, companyId, firstName, middleName, lastName, emailAddress,
+			screenName, password, jobTitle, locale);
 	}
 
 	protected UserService getUserService(
@@ -84,14 +86,10 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 	}
 
 	protected void sendSignUpRequest(
-			long companyId, String firstName, String middleName,
-			String lastName, String emailAddress, String screenName,
-			String password, String jobTitle, Locale locale,
-			String anonymousApiUserName, String anonymousApiPassword)
+			UserService service, long companyId, String firstName,
+			String middleName, String lastName, String emailAddress,
+			String screenName, String password, String jobTitle, Locale locale)
 		throws Exception {
-
-		UserService service = getUserService(
-			anonymousApiUserName, anonymousApiPassword);
 
 		boolean autoPassword = password.isEmpty();
 		boolean autoScreenName = screenName.isEmpty();
