@@ -63,7 +63,7 @@ public class SignUpScreenletView extends LinearLayout
 
 	@Override
 	public String getJobTitle() {
-		return "";
+		return null;
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class SignUpScreenletView extends LinearLayout
 
 	@Override
 	public String getMiddleName() {
-		return "";
+		return null;
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class SignUpScreenletView extends LinearLayout
 
 	@Override
 	public String getScreenName() {
-		return "";
+		return null;
 	}
 
 	@Override

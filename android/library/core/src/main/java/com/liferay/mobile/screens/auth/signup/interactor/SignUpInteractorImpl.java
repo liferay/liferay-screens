@@ -94,6 +94,12 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 			String screenName, String password, String jobTitle, Locale locale)
 		throws Exception {
 
+		middleName = (middleName != null) ? middleName : "";
+		lastName = (lastName != null) ? lastName : "";
+		screenName = (screenName != null) ? screenName : "";
+		password = (password != null) ? password : "";
+		jobTitle = (jobTitle != null) ? jobTitle : "";
+
 		boolean autoPassword = password.isEmpty();
 		boolean autoScreenName = screenName.isEmpty();
 		long facebookId = 0;
