@@ -41,12 +41,12 @@ public class AssetListCallback extends InteractorAsyncTaskCallback<JSONArray> {
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new JSONArrayEvent(0, e);
+		return new JSONArrayEvent(targetScreenletId, e);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, JSONArray result) {
-		return new JSONArrayEvent(0, result);
+		return new JSONArrayEvent(targetScreenletId, result);
 	}
 
 }

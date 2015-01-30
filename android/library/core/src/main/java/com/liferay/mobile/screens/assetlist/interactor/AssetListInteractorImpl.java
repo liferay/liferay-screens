@@ -35,18 +35,26 @@ import org.json.JSONObject;
 public class AssetListInteractorImpl
 	extends BaseInteractor<AssetListListener> implements AssetListInteractor {
 
-	public AssetListInteractorImpl(int targetScreenletId) {
+	public AssetListInteractorImpl(
+		int targetScreenletId, int firstPageSize, int pageSize) {
+
 		super(targetScreenletId);
+
+		_firstPageSize = (firstPageSize != 0) ? firstPageSize : pageSize;
+		_pageSize = pageSize;
 	}
 
-	public void loadPage(long groupId, long classNameId, Locale locale)
+	public void loadPage(
+			long groupId, long classNameId, int page, Locale locale)
 		throws Exception {
 
 		Session session = SessionContext.createSessionFromCurrentSession();
 		BatchSessionImpl batchSession = new BatchSessionImpl(session);
 		batchSession.setCallback(new AssetListCallback(getTargetScreenletId()));
 
-		sendGetPageRowsRequest(batchSession, groupId, classNameId, locale);
+		sendGetPageRowsRequest(
+			batchSession, groupId, classNameId, page, locale);
+
 		sendGetEntriesCountRequest(batchSession, groupId, classNameId);
 
 		batchSession.invoke();
@@ -81,6 +89,14 @@ public class AssetListInteractorImpl
 		return new AssetEntryService(session);
 	}
 
+	protected int getFirstRowForPage(int page) {
+		if (page == 0) {
+			return 0;
+		}
+
+		return (_firstPageSize + (page - 1) * _pageSize);
+	}
+
 	protected MobilewidgetsassetentryService getMWAssetEntryService(
 		Session session) {
 
@@ -102,14 +118,15 @@ public class AssetListInteractorImpl
 	}
 
 	protected void sendGetPageRowsRequest(
-			Session session, long groupId, long classNameId, Locale locale)
+			Session session, long groupId, long classNameId, int page,
+			Locale locale)
 		throws Exception {
 
 		JSONObject entryQueryAttributes = configureEntryQueryAttributes(
 			groupId, classNameId);
 
-		entryQueryAttributes.put("start", -1);
-		entryQueryAttributes.put("end", -1);
+		entryQueryAttributes.put("start", getFirstRowForPage(page));
+		entryQueryAttributes.put("end", getFirstRowForPage(page + 1));
 
 		JSONObjectWrapper entryQuery = new JSONObjectWrapper(
 			entryQueryAttributes);
@@ -119,5 +136,8 @@ public class AssetListInteractorImpl
 
 		service.getAssetEntries(entryQuery, locale.toString());
 	}
+
+	private int _firstPageSize = 50;
+	private int _pageSize = 25;
 
 }

@@ -24,7 +24,8 @@ import java.util.Locale;
  */
 public interface AssetListInteractor extends Interactor<AssetListListener> {
 
-	public void loadPage(long groupId, long classNameId, Locale locale)
+	public void loadPage(
+			long groupId, long classNameId, int page, Locale locale)
 		throws Exception;
 
 }
