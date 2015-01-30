@@ -38,9 +38,23 @@ public class UserPortraitInteractorImpl
 
 	@Override
 	public void load(boolean male, long portraitId, String uuid) throws Exception {
+		validate(portraitId, uuid);
+
 		Uri uri = getUserPortraitURL(male, portraitId, uuid);
 
 		Picasso.with(LiferayScreensContext.getContext()).load(uri).into(getListener());
+	}
+
+	private void validate(long portraitId, String uuid) {
+		if (getListener() == null) {
+			throw new IllegalArgumentException("Listener cannot be null");
+		}
+		if (portraitId == 0) {
+			throw new IllegalArgumentException("portraitId cannot be null");
+		}
+		if (uuid == null || uuid.isEmpty()) {
+			throw new IllegalArgumentException("userId cannot be null or empty");
+		}
 	}
 
 	private Uri getUserPortraitURL(boolean male, long portraitId, String uuid) {
