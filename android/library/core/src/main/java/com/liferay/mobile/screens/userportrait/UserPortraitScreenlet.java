@@ -71,6 +71,32 @@ public class UserPortraitScreenlet
 	public void onUserAction(String userActionName) {
 	}
 
+	@Override
+	public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+		UserPortraitListener view = (UserPortraitListener)getScreenletView();
+		view.onUserPortraitReceived(bitmap);
+
+		if (_listener != null) {
+			_listener.onUserPortraitReceived(bitmap);
+		}
+	}
+
+	@Override
+	public void onBitmapFailed(Drawable errorDrawable) {
+		IOException exception = new IOException("Portrait cannot be loaded");
+
+		UserPortraitListener view = (UserPortraitListener)getScreenletView();
+		view.onUserPortraitFailure(exception);
+
+		if (_listener != null) {
+			_listener.onUserPortraitFailure(exception);
+		}
+	}
+
+	@Override
+	public void onPrepareLoad(Drawable placeHolderDrawable) {
+	}
+
 	public void setListener(UserPortraitListener listener) {
 		_listener = listener;
 	}
@@ -124,29 +150,4 @@ public class UserPortraitScreenlet
 	private String _uuid;
 	private long _userId;
 
-	@Override
-	public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-		UserPortraitListener view = (UserPortraitListener)getScreenletView();
-		view.onUserPortraitReceived(bitmap);
-
-		if (_listener != null) {
-			_listener.onUserPortraitReceived(bitmap);
-		}
-	}
-
-	@Override
-	public void onBitmapFailed(Drawable errorDrawable) {
-		IOException exception = new IOException("Portrait cannot be loaded");
-
-		UserPortraitListener view = (UserPortraitListener)getScreenletView();
-		view.onUserPortraitFailure(exception);
-
-		if (_listener != null) {
-			_listener.onUserPortraitFailure(exception);
-		}
-	}
-
-	@Override
-	public void onPrepareLoad(Drawable placeHolderDrawable) {
-	}
 }
