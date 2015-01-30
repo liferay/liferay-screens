@@ -47,9 +47,8 @@ public class UserPortraitScreenletView extends ImageView
 
 
 	@Override
-	public String onUserPortraitReceived(Bitmap bitmap) {
+	public void onUserPortraitReceived(Bitmap bitmap) {
 		setImageBitmap(bitmap);
-		return null;
 	}
 
 	@Override

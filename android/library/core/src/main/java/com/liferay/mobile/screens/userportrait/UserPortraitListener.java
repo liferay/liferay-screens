@@ -22,7 +22,7 @@ import android.graphics.Bitmap;
  */
 public interface UserPortraitListener {
 
-	String onUserPortraitReceived(Bitmap bitmap);
+	void onUserPortraitReceived(Bitmap bitmap);
 
 	void onUserPortraitFailure(Exception e);
 
