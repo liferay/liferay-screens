@@ -24,6 +24,7 @@ import android.widget.FrameLayout;
 
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -45,6 +46,8 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
+
+		LiferayScreensContext.init(context);
 
 		_screenletView = createScreenletView(context, attributes);
 
