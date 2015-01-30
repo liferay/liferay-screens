@@ -17,13 +17,19 @@ package com.liferay.mobile.screens.util;
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
+import com.squareup.picasso.Target;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 
 /**
  * @author Silvio Santos
  */
 public class MockFactory {
+
+	public static Target mockPicassoTargetListener() {
+		return mock(Target.class);
+	}
 
 	public static LoginListener mockLoginListener() {
 		return mock(LoginListener.class);
