@@ -37,5 +37,6 @@
 		<attr name="male" format="boolean" />
 		<attr name="portraitId" format="integer" />
 		<attr name="uuid" format="string" />
+		<attr name="userId" format="integer" />
 	</declare-styleable>
 </resources>

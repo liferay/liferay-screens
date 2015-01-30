@@ -17,11 +17,20 @@ package com.liferay.mobile.screens.userportrait.interactor;
 import android.net.Uri;
 import android.util.Base64;
 
+import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
+import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -33,8 +42,12 @@ import java.security.NoSuchAlgorithmException;
  * @author Jose Manuel Navarro
  */
 public class UserPortraitInteractorImpl
-	extends BaseInteractor<Target>
+	extends BaseRemoteInteractor<Target>
 	implements UserPortraitInteractor {
+
+	public UserPortraitInteractorImpl(int targetScreenletId) {
+		super(targetScreenletId);
+	}
 
 	@Override
 	public void load(boolean male, long portraitId, String uuid) throws Exception {
@@ -44,6 +57,39 @@ public class UserPortraitInteractorImpl
 
 		Picasso.with(LiferayScreensContext.getContext()).load(uri).into(getListener());
 	}
+
+	@Override
+	public void load(long userId) throws Exception {
+		validate(userId);
+
+		UserService service = getUserService();
+
+		service.getUserById(userId);
+	}
+
+	public void onEvent(JSONObjectEvent event) {
+		if (!isValidEvent(event)) {
+			return;
+		}
+
+		if (event.isFailed()) {
+			getListener().onBitmapFailed(null);
+		}
+		else {
+			JSONObject userAttributes = event.getJSONObject();
+
+			try {
+				boolean male = true;
+				long portraitId = userAttributes.getLong("portraitId");
+				String uuid = userAttributes.getString("uuid");
+
+				load(male, portraitId, uuid);
+			} catch (Exception e) {
+				getListener().onBitmapFailed(null);
+			}
+		}
+	}
+
 
 	private void validate(long portraitId, String uuid) {
 		if (getListener() == null) {
@@ -56,6 +102,20 @@ public class UserPortraitInteractorImpl
 			throw new IllegalArgumentException("userId cannot be null or empty");
 		}
 	}
+
+	private void validate(long userId) {
+		if (userId == 0) {
+			throw new IllegalArgumentException("userId cannot be null");
+		}
+	}
+
+	protected UserService getUserService() {
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
+
+		return new UserService(session);
+	}
+
 
 	private Uri getUserPortraitURL(boolean male, long portraitId, String uuid) {
 		String maleString = male ? "male" : "female";

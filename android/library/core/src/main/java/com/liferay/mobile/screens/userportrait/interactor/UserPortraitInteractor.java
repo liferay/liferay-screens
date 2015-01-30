@@ -30,4 +30,6 @@ public interface UserPortraitInteractor extends Interactor<Target> {
 	public void load(boolean male, long portraitId, String uuid)
 		throws Exception;
 
+	public void load(long userId) throws Exception;
+
 }

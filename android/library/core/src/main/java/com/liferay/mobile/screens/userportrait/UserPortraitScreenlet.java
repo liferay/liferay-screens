@@ -55,18 +55,16 @@ public class UserPortraitScreenlet
 
 		super(context, attributes, defaultStyle);
 
-		setInteractor(new UserPortraitInteractorImpl());
+		setInteractor(new UserPortraitInteractorImpl(getScreenletId()));
 	}
 
 	public void load() throws Exception {
-		if (_portraitId == 0) {
-			throw new IllegalArgumentException("portraitId cannot be 0");
+		if (_userId != 0) {
+			getInteractor().load(_userId);
 		}
-		if (_uuid == null) {
-			throw new IllegalArgumentException("uuidId cannot be null");
+		else {
+			getInteractor().load(_male, _portraitId, _uuid);
 		}
-
-		getInteractor().load(_male, _portraitId, _uuid);
 	}
 
 	@Override
@@ -78,7 +76,7 @@ public class UserPortraitScreenlet
 	}
 
 	protected void autoLoad() {
-		if ((_portraitId != 0) && (_uuid != null)) {
+		if (((_portraitId != 0) && (_uuid != null)) || (_userId != 0)) {
 			try {
 				load();
 			}
@@ -98,9 +96,10 @@ public class UserPortraitScreenlet
 			R.styleable.UserPortraitScreenlet_autoLoad, true);
 
 		_male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
-
 		_portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
+
+		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, 0);
 
 		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId, 0);
 
@@ -123,6 +122,7 @@ public class UserPortraitScreenlet
 	private boolean _male;
 	private long _portraitId;
 	private String _uuid;
+	private long _userId;
 
 	@Override
 	public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
