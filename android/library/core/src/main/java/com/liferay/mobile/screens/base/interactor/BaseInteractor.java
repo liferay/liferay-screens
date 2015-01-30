@@ -14,8 +14,6 @@
 
 package com.liferay.mobile.screens.base.interactor;
 
-import com.liferay.mobile.screens.util.EventBusUtil;
-
 /**
  * @author Jose Manuel Navarro
  */

@@ -77,11 +77,11 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
 
-		onScreenletAttached();
-
 		if (!isInEditMode()) {
 			_interactor.onScreenletAttachted(this);
 		}
+
+		onScreenletAttached();
 	}
 
 	@Override
