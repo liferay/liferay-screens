@@ -21,7 +21,7 @@ import android.util.AttributeSet;
 import android.webkit.WebView;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.util.LiferayServerContext;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 
 /**

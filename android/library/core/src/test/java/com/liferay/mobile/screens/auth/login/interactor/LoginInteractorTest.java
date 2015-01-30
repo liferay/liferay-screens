@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.util.LiferayServerContext;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.MockFactory;
 
 import org.junit.Test;

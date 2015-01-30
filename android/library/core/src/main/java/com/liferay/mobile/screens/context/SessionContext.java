@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.util;
+package com.liferay.mobile.screens.context;
 
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;

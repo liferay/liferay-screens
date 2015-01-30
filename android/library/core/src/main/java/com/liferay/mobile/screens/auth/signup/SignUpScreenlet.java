@@ -27,7 +27,7 @@ import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractor;
 import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractorImpl;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.util.LiferayServerContext;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 
 import java.util.Locale;
 
