@@ -12,20 +12,16 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.interactor;
-
-import com.liferay.mobile.screens.base.interactor.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
+package com.liferay.mobile.screens.base.interactor;
 
 import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
  */
-public class LoginCallback extends InteractorAsyncTaskCallback<JSONObject> {
+public class JSONObjectCallback extends InteractorAsyncTaskCallback<JSONObject> {
 
-	public LoginCallback(int targetScreenletId) {
+	public JSONObjectCallback(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 

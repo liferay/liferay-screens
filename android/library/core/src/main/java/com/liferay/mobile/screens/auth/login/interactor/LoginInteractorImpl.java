@@ -18,6 +18,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -70,7 +71,7 @@ public class LoginInteractorImpl
 
 	protected UserService getUserService(String login, String password) {
 		Session session = SessionContext.createSession(login, password);
-		session.setCallback(new LoginCallback(getTargetScreenletId()));
+		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
 
 		return new UserService(session);
 	}
