@@ -101,6 +101,38 @@ public class UserPortraitScreenlet
 		_listener = listener;
 	}
 
+	public boolean isMale() {
+		return _male;
+	}
+
+	public void setMale(boolean male) {
+		_male = male;
+	}
+
+	public long getPortraitId() {
+		return _portraitId;
+	}
+
+	public void setPortraitId(long portraitId) {
+		_portraitId = portraitId;
+	}
+
+	public String getUuid() {
+		return _uuid;
+	}
+
+	public void setUuid(String uuid) {
+		_uuid = uuid;
+	}
+
+	public long getUserId() {
+		return _userId;
+	}
+
+	public void setUserId(long userId) {
+		_userId = userId;
+	}
+
 	protected void autoLoad() {
 		if (((_portraitId != 0) && (_uuid != null)) || (_userId != 0)) {
 			try {
