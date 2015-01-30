@@ -65,6 +65,7 @@ public class LoginInteractorImpl
 			getListener().onLoginFailure(event.getException());
 		}
 		else {
+			SessionContext.setUserAttributes(event.getJSONObject());
 			getListener().onLoginSuccess(event.getJSONObject());
 		}
 	}
