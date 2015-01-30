@@ -55,7 +55,7 @@ public class UserPortraitScreenlet
 
 		super(context, attributes, defaultStyle);
 
-		setInteractor(new UserPortraitInteractorImpl(getScreenletId()));
+		setInteractor(new UserPortraitInteractorImpl());
 	}
 
 	public void load() throws Exception {

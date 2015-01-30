@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.auth.login.interactor;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.base.interactor.BaseInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -26,7 +26,7 @@ import com.liferay.mobile.screens.context.SessionContext;
  * @author Silvio Santos
  */
 public class LoginInteractorImpl
-	extends BaseInteractor<LoginListener>
+	extends BaseRemoteInteractor<LoginListener>
 	implements LoginInteractor {
 
 	public LoginInteractorImpl(int targetScreenletId) {

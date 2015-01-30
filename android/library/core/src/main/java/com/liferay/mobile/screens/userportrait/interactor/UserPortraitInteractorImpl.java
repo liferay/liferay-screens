@@ -20,12 +20,10 @@ import android.util.Base64;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.userportrait.UserPortraitListener;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -37,10 +35,6 @@ import java.security.NoSuchAlgorithmException;
 public class UserPortraitInteractorImpl
 	extends BaseInteractor<Target>
 	implements UserPortraitInteractor {
-
-	public UserPortraitInteractorImpl(int targetScreenletId) {
-		super(targetScreenletId);
-	}
 
 	@Override
 	public void load(boolean male, long portraitId, String uuid) throws Exception {

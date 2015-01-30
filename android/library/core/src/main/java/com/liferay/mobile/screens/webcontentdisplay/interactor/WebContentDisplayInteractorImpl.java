@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
-import com.liferay.mobile.screens.base.interactor.BaseInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 
@@ -26,7 +26,7 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayInteractorImpl
-	extends BaseInteractor<WebContentDisplayListener>
+	extends BaseRemoteInteractor<WebContentDisplayListener>
 	implements WebContentDisplayInteractor {
 
 	public WebContentDisplayInteractorImpl(int targetScreenletId) {
