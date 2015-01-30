@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.util.SessionContext;
 
 import java.util.Locale;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,7 +70,14 @@ public class AssetListInteractorImpl
 			getListener().onAssetListFailure(event.getException());
 		}
 		else {
-			getListener().onAssetListReceived(event.getJsonArray());
+			try {
+				JSONArray jsonArray = event.getJsonArray().getJSONArray(0);
+
+				getListener().onAssetListPageReceived(0, jsonArray);
+			}
+			catch (JSONException e) {
+				getListener().onAssetListFailure(e);
+			}
 		}
 	}
 

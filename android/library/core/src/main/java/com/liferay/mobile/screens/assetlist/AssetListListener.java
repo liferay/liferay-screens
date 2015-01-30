@@ -23,6 +23,6 @@ public interface AssetListListener {
 
 	public void onAssetListFailure(Exception e);
 
-	public void onAssetListReceived(JSONArray jsonArray);
+	public void onAssetListPageReceived(int page, JSONArray rows);
 
 }

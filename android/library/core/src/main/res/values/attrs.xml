@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<attr name="autoLoad" format="boolean" />
+	<attr name="groupId" format="integer" />
 	<attr name="layoutId" format="reference" />
+
+	<declare-styleable name="AssetListScreenlet">
+		<attr name="layoutId" />
+		<attr name="autoLoad" />
+		<attr name="groupId" />
+		<attr name="classNameId" format="integer" /> //TODO add enumeration with available class name ids
+		<attr name="firstPageSize" format="integer" />
+		<attr name="pageSize" format="integer" />
+	</declare-styleable>
 
 	<declare-styleable name="LoginScreenlet">
 		<attr name="layoutId" />
@@ -25,8 +36,8 @@
 
 	<declare-styleable name="WebContentDisplayScreenlet">
 		<attr name="layoutId" />
-		<attr name="autoLoad" format="boolean" />
-		<attr name="groupId" format="integer" />
+		<attr name="autoLoad" />
+		<attr name="groupId" />
 		<attr name="articleId" format="string" />
 	</declare-styleable>
 </resources>
