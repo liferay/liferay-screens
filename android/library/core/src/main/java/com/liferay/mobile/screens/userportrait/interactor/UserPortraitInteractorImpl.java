@@ -62,9 +62,16 @@ public class UserPortraitInteractorImpl
 	public void load(long userId) throws Exception {
 		validate(userId);
 
-		UserService service = getUserService();
+		if (SessionContext.getUser().getId() == userId) {
+			boolean male = true;
+			long portraitId = SessionContext.getUser().getPortraitId();
+			String uuid = SessionContext.getUser().getUuid();
 
-		service.getUserById(userId);
+			load(male, portraitId, uuid);
+		}
+		else {
+			getUserService().getUserById(userId);
+		}
 	}
 
 	public void onEvent(JSONObjectEvent event) {
