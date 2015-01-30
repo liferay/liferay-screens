@@ -19,22 +19,44 @@ import com.liferay.mobile.screens.util.EventBusUtil;
 /**
  * @author Jose Manuel Navarro
  */
-public abstract class BaseInteractor<L> implements Interactor<L> {
+public abstract class BaseRemoteInteractor<L> extends BaseInteractor<L> {
+
+	public BaseRemoteInteractor(int targetScreenletId) {
+		super();
+
+		_targetScreenletId = targetScreenletId;
+	}
 
 	@Override
 	public void onScreenletAttachted(L listener) {
-		_listener = listener;
+		super.onScreenletAttachted(listener);
+
+		EventBusUtil.register(this);
 	}
 
 	@Override
 	public void onScreenletDetached(L listener) {
-		_listener = null;
+		EventBusUtil.unregister(this);
+
+		super.onScreenletDetached(listener);
 	}
 
-	protected L getListener() {
-		return _listener;
+	protected int getTargetScreenletId() {
+		return _targetScreenletId;
 	}
 
-	private L _listener;
+	protected boolean isValidEvent(BasicEvent event) {
+		if (getListener() == null) {
+			return false;
+		}
+
+		if (event.getTargetScreenletId() != getTargetScreenletId()) {
+			return false;
+		}
+
+		return true;
+	}
+
+	private int _targetScreenletId;
 
 }
