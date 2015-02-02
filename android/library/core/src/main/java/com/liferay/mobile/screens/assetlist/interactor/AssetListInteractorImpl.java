@@ -19,14 +19,15 @@ import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.assetentry.AssetEntryService;
 import com.liferay.mobile.screens.assetlist.AssetListListener;
+import com.liferay.mobile.screens.assetlist.AssetListScreenletEntry;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
-import com.liferay.mobile.screens.base.interactor.JSONArrayEvent;
 import com.liferay.mobile.screens.service.MobilewidgetsassetentryService;
 import com.liferay.mobile.screens.util.SessionContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,6 +61,16 @@ public class AssetListInteractorImpl
 		sendGetEntriesCountRequest(batchSession, groupId, classNameId);
 
 		batchSession.invoke();
+	}
+
+	@Override
+	public void loadPageForRow(
+			long groupId, long classNameId, int row, Locale locale)
+		throws Exception {
+
+		int page = getPageFromRow(row);
+
+		loadPage(groupId, classNameId, page, locale);
 	}
 
 	public void onEvent(AssetListEvent event) {
@@ -109,6 +120,14 @@ public class AssetListInteractorImpl
 		Session session) {
 
 		return new MobilewidgetsassetentryService(session);
+	}
+
+	protected int getPageFromRow(int row) {
+		if (row < _firstPageSize) {
+			return 0;
+		}
+
+		return ((row - _firstPageSize) / _pageSize) + 1;
 	}
 
 	protected void sendGetEntriesCountRequest(

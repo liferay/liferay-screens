@@ -57,6 +57,28 @@ public class AssetListScreenlet
 			getScreenletId(), _firstPageSize, _pageSize));
 	}
 
+	public void load(int page) {
+		Locale locale = getResources().getConfiguration().locale;
+
+		try {
+			getInteractor().loadPage(_groupId, _classNameId, page, locale);
+		}
+		catch (Exception e) {
+			onAssetListLoadFailure(e);
+		}
+	}
+
+	public void loadPageForRow(int row) {
+		Locale locale = getResources().getConfiguration().locale;
+
+		try {
+			getInteractor().loadPageForRow(_groupId, _classNameId, row, locale);
+		}
+		catch (Exception e) {
+			onAssetListLoadFailure(e);
+		}
+	}
+
 	@Override
 	public void onAssetListLoadFailure(Exception e) {
 		AssetListListener listenerView = (AssetListListener)getScreenletView();

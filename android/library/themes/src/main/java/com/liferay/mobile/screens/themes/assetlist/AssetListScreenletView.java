@@ -22,6 +22,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.assetlist.AssetListListener;
+import com.liferay.mobile.screens.assetlist.AssetListScreenlet;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListPageListener;
 import com.liferay.mobile.screens.themes.R;
 
@@ -70,6 +71,9 @@ public class AssetListScreenletView extends RecyclerView
 
 	@Override
 	public void onPageNotFound(int row) {
+		AssetListScreenlet screenlet = ((AssetListScreenlet)getParent());
+
+		screenlet.loadPageForRow(row);
 	}
 
 }

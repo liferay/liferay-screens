@@ -28,4 +28,8 @@ public interface AssetListInteractor extends Interactor<AssetListListener> {
 			long groupId, long classNameId, int page, Locale locale)
 		throws Exception;
 
+	public void loadPageForRow(
+			long groupId, long classNameId, int row, Locale locale)
+		throws Exception;
+
 }
