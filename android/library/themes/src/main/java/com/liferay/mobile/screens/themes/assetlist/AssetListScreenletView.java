@@ -22,6 +22,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.assetlist.AssetListListener;
+import com.liferay.mobile.screens.assetlist.interactor.AssetListPageListener;
+import com.liferay.mobile.screens.themes.R;
 
 import java.util.List;
 
@@ -29,8 +31,8 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class AssetListScreenletView extends RecyclerView
-	implements AssetListListener
-{
+	implements AssetListListener, AssetListPageListener {
+
 	public AssetListScreenletView(Context context) {
 		this(context, null);
 	}
@@ -40,10 +42,17 @@ public class AssetListScreenletView extends RecyclerView
 	}
 
 	public AssetListScreenletView(
-		Context context, AttributeSet attrs, int defaultStyle) {
+		Context context, AttributeSet attributes, int defaultStyle) {
 
-		super(context, attrs, defaultStyle);
+		super(context, attributes, defaultStyle);
 
+		int itemLayoutId = R.layout.asset_list_item_default;
+		int itemProgressLayoutId = R.layout.asset_list_item_progress_default;
+
+		AssetListAdapter adapter = new AssetListAdapter(
+			itemLayoutId, itemProgressLayoutId, this);
+
+		setAdapter(adapter);
 		setHasFixedSize(true);
 		setLayoutManager(new LinearLayoutManager(context));
 	}
@@ -58,4 +67,9 @@ public class AssetListScreenletView extends RecyclerView
 		int rowCount) {
 
 	}
+
+	@Override
+	public void onPageNotFound(int row) {
+	}
+
 }
