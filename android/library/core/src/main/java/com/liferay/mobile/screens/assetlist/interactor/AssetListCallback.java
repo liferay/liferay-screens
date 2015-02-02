@@ -14,39 +14,67 @@
 
 package com.liferay.mobile.screens.assetlist.interactor;
 
+import com.liferay.mobile.screens.assetlist.AssetListScreenletEntry;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
-import com.liferay.mobile.screens.base.interactor.JSONArrayEvent;
+import com.liferay.mobile.screens.base.interactor.InteractorBatchAsyncTaskCallback;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
  */
-public class AssetListCallback extends InteractorAsyncTaskCallback<JSONArray> {
+public class AssetListCallback
+	extends InteractorBatchAsyncTaskCallback<AssetListCallback.Result> {
 
-	public AssetListCallback(int targetScreenletId) {
+	public AssetListCallback(int targetScreenletId, int page) {
 		super(targetScreenletId);
+
+		_page = page;
 	}
 
 	@Override
-	public void onPostExecute(JSONArray jsonArray) throws Exception {
-		onSuccess(transform(jsonArray));
+	public AssetListCallback.Result transform(Object obj) throws Exception {
+		AssetListCallback.Result result = new AssetListCallback.Result();
+
+		JSONArray jsonArray = ((JSONArray)obj).getJSONArray(0);
+		List<AssetListScreenletEntry> entries = new ArrayList<>();
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			entries.add(new AssetListScreenletEntry(jsonObject));
+		}
+
+		result.entries = entries;
+		result.rowCount = ((JSONArray)obj).getInt(1);
+
+		return result;
+	}
+
+	public static class Result {
+
+		List<AssetListScreenletEntry> entries;
+		int rowCount;
+
 	}
 
 	@Override
-	public JSONArray transform(Object obj) throws Exception {
-		return (JSONArray)obj;
+	protected BasicEvent createEvent(
+		int targetScreenletId, AssetListCallback.Result result) {
+
+		return new AssetListEvent(
+			targetScreenletId, _page, result.entries, result.rowCount);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new JSONArrayEvent(targetScreenletId, e);
+		return new AssetListEvent(targetScreenletId, e);
 	}
 
-	@Override
-	protected BasicEvent createEvent(int targetScreenletId, JSONArray result) {
-		return new JSONArrayEvent(targetScreenletId, result);
-	}
+	private int _page;
 
 }
