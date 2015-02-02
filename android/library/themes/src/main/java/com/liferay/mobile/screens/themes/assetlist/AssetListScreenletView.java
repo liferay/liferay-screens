@@ -23,9 +23,11 @@ import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.assetlist.AssetListListener;
 import com.liferay.mobile.screens.assetlist.AssetListScreenlet;
+import com.liferay.mobile.screens.assetlist.AssetListScreenletEntry;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListPageListener;
 import com.liferay.mobile.screens.themes.R;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -67,6 +69,22 @@ public class AssetListScreenletView extends RecyclerView
 		int firstRowForPage, List<AssetListScreenletEntry> serverEntries,
 		int rowCount) {
 
+		AssetListAdapter adapter = (AssetListAdapter)getAdapter();
+		List<AssetListScreenletEntry> entries = adapter.getEntries();
+		AssetListScreenletEntry[] allEntries =
+			new AssetListScreenletEntry[rowCount];
+
+		for (int i = 0; i < entries.size(); i++) {
+			allEntries[i] = entries.get(i);
+		}
+
+		for (int i = 0; i < (serverEntries.size()); i++) {
+			allEntries[i + firstRowForPage] = serverEntries.get(i);
+		}
+
+		adapter.setRowCount(rowCount);
+		adapter.setEntries(Arrays.asList(allEntries));
+		adapter.notifyDataSetChanged();
 	}
 
 	@Override
