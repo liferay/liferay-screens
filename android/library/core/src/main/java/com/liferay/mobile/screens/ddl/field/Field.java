@@ -138,10 +138,22 @@ public abstract class Field<T> {
 		return _currentValue;
 	}
 
+	public void setCurrentValue(T value) {
+		_currentValue = value;
+	}
+
 	public Locale getCurrentLocale() {
 		return _currentLocale;
 	}
 
+	@Override
+	public String toString() {
+		return convertToString(_currentValue);
+	}
+
+	public String toLabel() {
+		return convertToLabel(_currentValue);
+	}
 
 	protected String getAttributeStringValue(Map<String,String> attributes, String key) {
 		Object value = attributes.get(key);
@@ -150,7 +162,9 @@ public abstract class Field<T> {
 
 	protected abstract T convertFromString(String stringValue);
 
+	protected abstract String convertToString(T value);
 
+	protected abstract String convertToLabel(T value);
 
 	private DataType _dataType;
 	private String _name;

@@ -28,7 +28,29 @@ public class BooleanField extends Field<Boolean> {
 
 	@Override
 	protected Boolean convertFromString(String stringValue) {
-		return Boolean.valueOf(stringValue);
+		if (stringValue == null) {
+			return null;
+		}
+		return Boolean.valueOf(stringValue.toLowerCase());
+	}
+
+	@Override
+	protected String convertToString(Boolean value) {
+		if (value == null) {
+			return null;
+		}
+
+		return (value) ? "true" : "false";
+	}
+
+	@Override
+	protected String convertToLabel(Boolean value) {
+		//TODO localized yes/no
+		if (value == null) {
+			return null;
+		}
+
+		return (value) ? "Yes" : "No";
 	}
 
 }

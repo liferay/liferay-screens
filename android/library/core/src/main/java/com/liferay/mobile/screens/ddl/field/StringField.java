@@ -31,4 +31,14 @@ public class StringField extends Field<String> {
 		return stringValue;
 	}
 
+	@Override
+	protected String convertToString(String value) {
+		return value;
+	}
+
+	@Override
+	protected String convertToLabel(String value) {
+		return value;
+	}
+
 }
