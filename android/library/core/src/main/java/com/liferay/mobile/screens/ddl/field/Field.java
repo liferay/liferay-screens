@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * @author Jose Manuel Navarro
  */
-public abstract class Field<V> {
+public abstract class Field<T> {
 
 	public static enum DataType {
 		BOOLEAN("boolean"),
@@ -130,11 +130,11 @@ public abstract class Field<V> {
 		return _tip;
 	}
 
-	public V getPredefinedValue() {
+	public T getPredefinedValue() {
 		return _predefinedValue;
 	}
 
-	public V getCurrentValue() {
+	public T getCurrentValue() {
 		return _currentValue;
 	}
 
@@ -148,7 +148,7 @@ public abstract class Field<V> {
 		return (value != null) ? value.toString() : "";
 	}
 
-	protected abstract V convertFromString(String stringValue);
+	protected abstract T convertFromString(String stringValue);
 
 
 
@@ -162,8 +162,8 @@ public abstract class Field<V> {
 	private String _label;
 	private String _tip;
 
-	private V _predefinedValue;
-	private V _currentValue;
+	private T _predefinedValue;
+	private T _currentValue;
 
 	private Locale _currentLocale;
 
