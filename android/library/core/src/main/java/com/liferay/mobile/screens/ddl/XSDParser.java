@@ -73,13 +73,29 @@ public class XSDParser {
 
 		Element root = document.getDocumentElement();
 
+		String defaultLocaleValue = root.getAttribute("default-locale");
+		if (defaultLocaleValue == null) {
+			return null;
+		}
+
+		Locale defaultLocale;
+		int separator = defaultLocaleValue.indexOf('_');
+		if (separator == -1) {
+			defaultLocale = new Locale(defaultLocaleValue);
+		}
+		else {
+			String language = defaultLocaleValue.substring(0, separator);
+			String country = defaultLocaleValue.substring(separator + 1);
+			defaultLocale = new Locale(language, country);
+		}
+
 		NodeList dynamicElementList = root.getElementsByTagName("dynamic-element");
 
 		int len = dynamicElementList.getLength();
 		for (int i = 0; i < len; ++i) {
 			Element dynamicElement = (Element) dynamicElementList.item(i);
 
-			Field formField = createFormField(dynamicElement, locale);
+			Field formField = createFormField(dynamicElement, locale, defaultLocale);
 
 			if (formField != null) {
 				result.add(formField);
@@ -89,26 +105,28 @@ public class XSDParser {
 		return result;
 	}
 
-	protected Field createFormField(Element dynamicElement, Locale locale) {
+	protected Field createFormField(Element dynamicElement, Locale locale, Locale defaultLocale) {
 		Field.DataType dataType = Field.DataType.valueOf(dynamicElement);
-
-		Map<String, String> localizedMetadata =
-			processLocalizedMetadata(dynamicElement, locale);
 
 		Map<String, String> attributes = getAttributes(dynamicElement);
 
+		Map<String, String> localizedMetadata =
+			processLocalizedMetadata(dynamicElement, locale, defaultLocale);
+
 		Map<String, String> mergedMap = new HashMap<String, String>();
 
-		mergedMap.putAll(localizedMetadata);
 		mergedMap.putAll(attributes);
+		mergedMap.putAll(localizedMetadata);
 
 		return dataType.createField(mergedMap, locale);
 	}
 
-	protected Map<String,String> processLocalizedMetadata(Element dynamicElement, Locale locale) {
+	protected Map<String,String> processLocalizedMetadata(
+		Element dynamicElement, Locale locale, Locale defaultLocale) {
+
 		Map<String, String> result = new HashMap<String, String>();
 
-		Element localizedMetadata = findMetadataElement(dynamicElement, locale);
+		Element localizedMetadata = findMetadataElement(dynamicElement, locale, defaultLocale);
 		if (localizedMetadata != null) {
 			addLocalizedElement(localizedMetadata, "label", result);
 			addLocalizedElement(localizedMetadata, "predefinedValue", result);
@@ -127,10 +145,71 @@ public class XSDParser {
 		}
 	}
 
-	protected Element findMetadataElement(Element dynamicElement, Locale locale) {
+	protected Element findMetadataElement(
+		Element dynamicElement, Locale locale, Locale defaultLocale) {
+
+		// Locale matching fallback mechanism: it's designed in such a way to return
+		// the most suitable locale among the available ones. It minimizes the default
+		// locale fallback. It supports input both with one component (language) and
+		// two components (language and country).
+		//
+		// Examples for locale = "es_ES"
+		// 	a1. Matches elements with "es_ES" (full match)
+		//  a2. Matches elements with "es"
+		//  a3. Matches elements for any country: "es_ES", "es_AR"...
+		//  a4. Matches elements for default locale
+
+		// Examples for locale = "es"
+		// 	b1. Matches elements with "es" (full match)
+		//  b2. Matches elements for any country: "es_ES", "es_AR"...
+		//  b3. Matches elements for default locale
+
 		NodeList metadataList = dynamicElement.getElementsByTagName("meta-data");
-		//TODO locale matching
-		return (Element) metadataList.item(0);
+		int metadataLen = (metadataList == null) ? 0 : metadataList.getLength();
+
+		if (metadataLen == 0) {
+			return null;
+		}
+
+		Element resultElement = null;
+
+		Element metadataElement = getChild(
+			dynamicElement, "meta-data", "locale", locale.toString());
+
+		if (metadataElement != null) {
+			// cases 'a1' and 'b1'
+			resultElement = metadataElement;
+		}
+		else {
+			if (locale.getCountry() != null) {
+				metadataElement = getChild(
+					dynamicElement, "meta-data", "locale", locale.getLanguage());
+
+				if (metadataElement != null) {
+					// case 'a2'
+					resultElement = metadataElement;
+				}
+			}
+		}
+
+		if (resultElement == null) {
+			// Pre-final fallback (a3, b2): find any metadata starting with language
+			for (int i = 0; resultElement == null && i < metadataLen; ++i) {
+				Element childElement = (Element) metadataList.item(i);
+				String childLocale = childElement.getAttribute("locale");
+				if (childLocale != null && childLocale.startsWith(locale.getLanguage() + "_")) {
+					resultElement = childElement;
+				}
+			}
+		}
+
+		if (resultElement == null) {
+			// Final fallback (a4, b3): find default metadata
+			resultElement = getChild(
+				dynamicElement, "meta-data", "locale", defaultLocale.toString());
+		}
+
+		return resultElement;
 	}
 
 	protected Map<String, String> getAttributes(Element element) {

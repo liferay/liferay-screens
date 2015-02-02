@@ -61,8 +61,11 @@ public abstract class Field<V> {
 		}
 
 		public Field createField(Map<String,String> attributes, Locale locale) {
-			if (STRING.equals(this)) {
+			if (this.equals(STRING)) {
 				return new StringField(attributes, locale);
+			}
+			else if  (this.equals(BOOLEAN)) {
+				return new BooleanField(attributes, locale);
 			}
 
 			return null;
