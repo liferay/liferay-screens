@@ -14,15 +14,16 @@
 
 package com.liferay.mobile.screens.assetlist;
 
-import org.json.JSONArray;
+import java.util.List;
 
 /**
  * @author Silvio Santos
  */
 public interface AssetListListener {
 
-	public void onAssetListFailure(Exception e);
+	public void onAssetListLoadFailure(Exception e);
 
-	public void onAssetListPageReceived(int page, JSONArray rows);
+	public void onAssetListPageReceived(
+		int page, List<AssetListScreenletEntry> entries, int rowCount);
 
 }

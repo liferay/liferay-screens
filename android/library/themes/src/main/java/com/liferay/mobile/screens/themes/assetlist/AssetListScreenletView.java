@@ -15,14 +15,15 @@
 package com.liferay.mobile.screens.themes.assetlist;
 
 import android.content.Context;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
 import android.util.AttributeSet;
-import android.util.Log;
 
 import com.liferay.mobile.screens.assetlist.AssetListListener;
 
-import org.json.JSONArray;
+import java.util.List;
 
 /**
  * @author Silvio Santos
@@ -48,12 +49,13 @@ public class AssetListScreenletView extends RecyclerView
 	}
 
 	@Override
-	public void onAssetListFailure(Exception e) {
-
+	public void onAssetListLoadFailure(Exception e) {
 	}
 
 	@Override
-	public void onAssetListPageReceived(int page, JSONArray rows) {
-		Log.i("test", rows.toString());
+	public void onAssetListPageReceived(
+		int firstRowForPage, List<AssetListScreenletEntry> serverEntries,
+		int rowCount) {
+
 	}
 }

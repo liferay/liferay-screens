@@ -29,9 +29,8 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 
+import java.util.List;
 import java.util.Locale;
-
-import org.json.JSONArray;
 
 /**
  * @author Silvio Santos
@@ -59,22 +58,24 @@ public class AssetListScreenlet
 	}
 
 	@Override
-	public void onAssetListFailure(Exception e) {
+	public void onAssetListLoadFailure(Exception e) {
 		AssetListListener listenerView = (AssetListListener)getScreenletView();
-		listenerView.onAssetListFailure(e);
+		listenerView.onAssetListLoadFailure(e);
 
 		if (_listener != null) {
-			_listener.onAssetListFailure(e);
+			_listener.onAssetListLoadFailure(e);
 		}
 	}
 
 	@Override
-	public void onAssetListPageReceived(int page, JSONArray rows) {
+	public void onAssetListPageReceived(
+		int page, List<AssetListScreenletEntry> entries, int rowCount) {
+
 		AssetListListener listenerView = (AssetListListener)getScreenletView();
-		listenerView.onAssetListPageReceived(page, rows);
+		listenerView.onAssetListPageReceived(page, entries, rowCount);
 
 		if (_listener != null) {
-			_listener.onAssetListPageReceived(page, rows);
+			_listener.onAssetListPageReceived(page, entries, rowCount);
 		}
 	}
 
@@ -124,9 +125,7 @@ public class AssetListScreenlet
 				getInteractor().loadPage(_groupId, _classNameId, 0, locale);
 			}
 			catch (Exception e) {
-				//TODO also notify programmer that failure happened
-
-				_listener.onAssetListFailure(e);
+				onAssetListLoadFailure(e);
 			}
 		}
 	}

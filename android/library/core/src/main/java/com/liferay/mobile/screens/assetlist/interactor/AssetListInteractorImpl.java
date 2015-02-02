@@ -51,7 +51,8 @@ public class AssetListInteractorImpl
 
 		Session session = SessionContext.createSessionFromCurrentSession();
 		BatchSessionImpl batchSession = new BatchSessionImpl(session);
-		batchSession.setCallback(new AssetListCallback(getTargetScreenletId()));
+		batchSession.setCallback(
+			new AssetListCallback(getTargetScreenletId(), page));
 
 		sendGetPageRowsRequest(
 			batchSession, groupId, classNameId, page, locale);
@@ -61,28 +62,27 @@ public class AssetListInteractorImpl
 		batchSession.invoke();
 	}
 
-	public void onEvent(JSONArrayEvent event) {
+	public void onEvent(AssetListEvent event) {
 		if (!isValidEvent(event)) {
 			return;
 		}
 
 		if (event.isFailed()) {
-			getListener().onAssetListFailure(event.getException());
+			getListener().onAssetListLoadFailure(event.getException());
 		}
 		else {
-			try {
-				JSONArray jsonArray = event.getJsonArray().getJSONArray(0);
+			int firstRowForPage = getFirstRowForPage(event.getPage());
+			List<AssetListScreenletEntry> entries = event.getEntries();
+			int rowCount = event.getRowCount();
 
-				getListener().onAssetListPageReceived(0, jsonArray);
-			}
-			catch (JSONException e) {
-				getListener().onAssetListFailure(e);
-			}
+			getListener().onAssetListPageReceived(
+				firstRowForPage, entries, rowCount);
 		}
 	}
 
 	protected JSONObject configureEntryQueryAttributes(
-		long groupId, long classNameId) throws JSONException {
+			long groupId, long classNameId)
+		throws JSONException {
 
 		JSONObject entryQueryAttributes = new JSONObject();
 
