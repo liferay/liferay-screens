@@ -176,17 +176,9 @@ public class BooleanFieldTest {
 					"<dynamic-element " +
 							"dataType=\"boolean\" " +
 							"type=\"checkbox\" " +
-							"indexType=\"keyword\" " +
-							"name=\"A_Bool\" " +
-							"readOnly=\"false\" " +
-							"repeatable=\"true\" " +
-							"required=\"false\" " +
-							"showLabel=\"true\" " +
-							"width=\"small\"> " +
+							"name=\"A_Bool\" > " +
 						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"label\"><![CDATA[A Bool]]></entry> " +
 							"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
-							"<entry name=\"tip\"><![CDATA[The tip]]></entry> " +
 						"</meta-data> " +
 					"</dynamic-element>" +
 				"</root>";
@@ -203,12 +195,6 @@ public class BooleanFieldTest {
 			assertEquals(Field.DataType.BOOLEAN.getValue(), booleanField.getDataType().getValue());
 			assertEquals(Field.EditorType.CHECKBOX.getValue(), booleanField.getEditorType().getValue());
 			assertEquals("A_Bool", booleanField.getName());
-			assertEquals("A Bool", booleanField.getLabel());
-			assertEquals("The tip", booleanField.getTip());
-			assertFalse(booleanField.isReadOnly());
-			assertTrue(booleanField.isRepeatable());
-			assertFalse(booleanField.isRequired());
-			assertTrue(booleanField.isShowLabel());
 			assertFalse(booleanField.getCurrentValue());
 			assertFalse(booleanField.getPredefinedValue());
 		}

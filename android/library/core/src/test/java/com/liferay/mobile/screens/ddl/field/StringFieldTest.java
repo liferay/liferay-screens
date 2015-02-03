@@ -43,17 +43,9 @@ public class StringFieldTest {
 					"<dynamic-element " +
 							"dataType=\"string\" " +
 							"type=\"text\" " +
-							"indexType=\"keyword\" " +
-							"name=\"A_Text\" " +
-							"readOnly=\"false\" " +
-							"repeatable=\"true\" " +
-							"required=\"false\" " +
-							"showLabel=\"true\" " +
-							"width=\"small\"> " +
+							"name=\"A_Text\" > " +
 						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
 							"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
-							"<entry name=\"tip\"><![CDATA[The tip]]></entry> " +
 						"</meta-data> " +
 					"</dynamic-element>" +
 				"</root>";
@@ -70,12 +62,6 @@ public class StringFieldTest {
 			assertEquals(Field.DataType.STRING.getValue(), stringField.getDataType().getValue());
 			assertEquals(Field.EditorType.TEXT.getValue(), stringField.getEditorType().getValue());
 			assertEquals("A_Text", stringField.getName());
-			assertEquals("A Text", stringField.getLabel());
-			assertEquals("The tip", stringField.getTip());
-			assertFalse(stringField.isReadOnly());
-			assertTrue(stringField.isRepeatable());
-			assertFalse(stringField.isRequired());
-			assertTrue(stringField.isShowLabel());
 			assertEquals("default text", stringField.getCurrentValue());
 			assertEquals(stringField.getCurrentValue(), stringField.getPredefinedValue());
 		}

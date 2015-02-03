@@ -195,17 +195,9 @@ public class DateFieldTest {
 							"dataType=\"date\" " +
 							"fieldNamespace=\"ddm\" " +
 							"type=\"ddm-date\" " +
-							"indexType=\"keyword\" " +
-							"name=\"A_Date\" " +
-							"readOnly=\"false\" " +
-							"repeatable=\"true\" " +
-							"required=\"false\" " +
-							"showLabel=\"true\" " +
-							"width=\"small\"> " +
+							"name=\"A_Date\" > " +
 						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"label\"><![CDATA[A Date]]></entry> " +
 							"<entry name=\"predefinedValue\"><![CDATA[06/19/2004]]></entry> " +
-							"<entry name=\"tip\"><![CDATA[The tip]]></entry> " +
 						"</meta-data> " +
 					"</dynamic-element>" +
 				"</root>";
@@ -222,12 +214,6 @@ public class DateFieldTest {
 			assertEquals(Field.DataType.DATE.getValue(), dateField.getDataType().getValue());
 			assertEquals(Field.EditorType.DATE.getValue(), dateField.getEditorType().getValue());
 			assertEquals("A_Date", dateField.getName());
-			assertEquals("A Date", dateField.getLabel());
-			assertEquals("The tip", dateField.getTip());
-			assertFalse(dateField.isReadOnly());
-			assertTrue(dateField.isRepeatable());
-			assertFalse(dateField.isRequired());
-			assertTrue(dateField.isShowLabel());
 
 			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 			calendar.setTimeInMillis(1087603200000L);
