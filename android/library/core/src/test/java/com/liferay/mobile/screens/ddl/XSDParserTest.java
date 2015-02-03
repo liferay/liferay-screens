@@ -48,42 +48,27 @@ public class XSDParserTest {
 
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
-	public static class WhenMalformedXML {
+	public static class ShouldRaiseException {
 
 		@Test(expected = SAXParseException.class)
-		public void shouldRaiseParserException() throws Exception {
+		public void whenParseMalformedXML() throws Exception {
 			String malformedXML = "<root available-locales=\"en_US>";
 
 			new XSDParser().parse(malformedXML, _spanishLocale);
 		}
-	}
-
-	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenEmptyStringXML {
 
 		@Test(expected = IllegalArgumentException.class)
-		public void shouldRaiseIllegalArgument() throws Exception {
+		public void whenParseEmptyStringXML() throws Exception {
 			new XSDParser().parse("", _spanishLocale);
 		}
-	}
-
-	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenNullXML {
 
 		@Test(expected = IllegalArgumentException.class)
-		public void shouldRaiseIllegalArgument() throws Exception {
+		public void whenParseNullXML() throws Exception {
 			new XSDParser().parse(null, _spanishLocale);
 		}
-	}
-
-	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenEmptyXML {
 
 		@Test
-		public void shouldReturnEmptyResult() throws Exception {
+		public void whenParseEmptyXML() throws Exception {
 			String malformedXML = "<root available-locales=\"en_US\"></root>";
 
 			List<Field> resultList = new XSDParser().parse(malformedXML, _spanishLocale);
@@ -92,6 +77,7 @@ public class XSDParserTest {
 			assertEquals(0, resultList.size());
 		}
 	}
+
 
 	private static final Locale _spanishLocale = new Locale("es", "ES");
 
