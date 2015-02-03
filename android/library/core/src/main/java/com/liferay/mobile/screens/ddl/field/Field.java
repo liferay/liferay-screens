@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.ddl.field;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 
 import java.util.Locale;
 import java.util.Map;
@@ -78,18 +77,58 @@ public abstract class Field<T> {
 		private String _value;
 	}
 
+
+	public static enum EditorType {
+		CHECKBOX("checkbox"),
+		TEXT("text"),
+		UNSUPPORTED(null);
+
+		private EditorType(String value) {
+			_value = value;
+		}
+
+		public static EditorType valueOf(Map<String,String> attributes) {
+			Object mapValue = attributes.get("type");
+			return (mapValue == null) ?
+				UNSUPPORTED : valueOfString(mapValue.toString());
+		}
+
+		public static EditorType valueOfString(String name) {
+			EditorType result = UNSUPPORTED;
+
+			if (name != null) {
+				for (EditorType editorType : values()) {
+					if (editorType._value.equals(name)) {
+						return editorType;
+					}
+				}
+			}
+
+			return result;
+		}
+
+		public String getValue() {
+			return _value;
+		}
+
+		private String _value;
+
+	}
+
+
+
 	public Field(Map<String,String> attributes, Locale locale) {
 		_dataType = DataType.valueOf(attributes);
-		//_editor
+		_editorType = EditorType.valueOf(attributes);
+
 		_name = getAttributeStringValue(attributes, "name");
+		_label = getAttributeStringValue(attributes, "label");
+		_tip = getAttributeStringValue(attributes, "tip");
 
 		_readOnly = Boolean.valueOf(getAttributeStringValue(attributes, "readOnly"));
 		_repeatable = Boolean.valueOf(getAttributeStringValue(attributes, "repeatable"));
 		_required = Boolean.valueOf(getAttributeStringValue(attributes, "required"));
 		_showLabel = Boolean.valueOf(getAttributeStringValue(attributes, "showLabel"));
-
-		_label = getAttributeStringValue(attributes, "label");
-		_tip = getAttributeStringValue(attributes, "tip");
 
 		_predefinedValue = convertFromString(
 			getAttributeStringValue(attributes, "predefinedValue"));
@@ -104,6 +143,10 @@ public abstract class Field<T> {
 
 	public DataType getDataType() {
 		return _dataType;
+	}
+
+	public EditorType getEditorType() {
+		return _editorType;
 	}
 
 	public boolean isReadOnly() {
@@ -167,14 +210,16 @@ public abstract class Field<T> {
 	protected abstract String convertToLabel(T value);
 
 	private DataType _dataType;
+	private EditorType _editorType;
+
 	private String _name;
+	private String _label;
+	private String _tip;
+
 	private boolean _readOnly;
 	private boolean _repeatable;
 	private boolean _required;
 	private boolean _showLabel;
-
-	private String _label;
-	private String _tip;
 
 	private T _predefinedValue;
 	private T _currentValue;

@@ -134,6 +134,7 @@ public class XSDParserTest {
 			StringField stringField = (StringField) resultField;
 
 			assertEquals(Field.DataType.STRING.getValue(), stringField.getDataType().getValue());
+			assertEquals(Field.EditorType.TEXT.getValue(), stringField.getEditorType().getValue());
 			assertEquals("A_Text", stringField.getName());
 			assertFalse(stringField.isReadOnly());
 			assertTrue(stringField.isRepeatable());
