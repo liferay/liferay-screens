@@ -16,6 +16,9 @@ package com.liferay.mobile.screens.base;
 
 import android.content.Context;
 
+import android.os.Bundle;
+import android.os.Parcelable;
+
 import android.util.AttributeSet;
 
 import android.view.View;
@@ -56,6 +59,10 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	}
 
 	public int getScreenletId() {
+		if (_screenletId == 0) {
+			_screenletId = _generateScreenletId();
+		}
+
 		return _screenletId;
 	}
 
@@ -88,6 +95,27 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		onScreenletDetached();
 	}
 
+	@Override
+	protected void onRestoreInstanceState(Parcelable inState) {
+		Bundle state = ((Bundle)inState);
+		Parcelable superState = state.getParcelable(_STATE_SUPER);
+
+		super.onRestoreInstanceState(superState);
+
+		_screenletId = state.getInt(_STATE_SCREENLET_ID);
+	}
+
+	@Override
+	protected Parcelable onSaveInstanceState() {
+		Parcelable superState = super.onSaveInstanceState();
+
+		Bundle state = new Bundle();
+		state.putParcelable(_STATE_SUPER, superState);
+		state.putInt(_STATE_SCREENLET_ID, _screenletId);
+
+		return state;
+	}
+
 	protected void onScreenletAttached() {
 	}
 
@@ -111,10 +139,14 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		}
 	}
 
+	private static final String _STATE_SCREENLET_ID = "screenletId";
+
+	private static final String _STATE_SUPER = "super";
+
 	private static final AtomicInteger sNextScreenletId = new AtomicInteger(1);
 
 	private I _interactor;
-	private int _screenletId = _generateScreenletId();
+	private int _screenletId;
 	private View _screenletView;
 
 }
