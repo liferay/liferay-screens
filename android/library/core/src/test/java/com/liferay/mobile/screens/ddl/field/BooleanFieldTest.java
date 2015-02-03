@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.ddl.field;
 
+import com.liferay.mobile.screens.ddl.XSDParser;
+
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -21,12 +23,10 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertNull;
-import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.*;
 
 /**
  * @author Jose Manuel Navarro
@@ -163,6 +163,54 @@ public class BooleanFieldTest {
 			field.setCurrentValue(false);
 
 			assertEquals("No", field.toLabel());
+		}
+	}
+
+	@Config(emulateSdk = 18)
+	@RunWith(RobolectricTestRunner.class)
+	public static class WhenParsingXSD {
+		@Test
+		public void shouldReturnStringFieldObject() throws Exception {
+			String xsd =
+				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+					"<dynamic-element " +
+							"dataType=\"boolean\" " +
+							"type=\"checkbox\" " +
+							"indexType=\"keyword\" " +
+							"name=\"A_Bool\" " +
+							"readOnly=\"false\" " +
+							"repeatable=\"true\" " +
+							"required=\"false\" " +
+							"showLabel=\"true\" " +
+							"width=\"small\"> " +
+						"<meta-data locale=\"en_US\"> " +
+							"<entry name=\"label\"><![CDATA[A Bool]]></entry> " +
+							"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
+							"<entry name=\"tip\"><![CDATA[The tip]]></entry> " +
+						"</meta-data> " +
+					"</dynamic-element>" +
+				"</root>";
+
+			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+
+			assertNotNull(resultList);
+			assertEquals(1, resultList.size());
+
+			Field resultField = resultList.get(0);
+			assertTrue(resultField instanceof BooleanField);
+			BooleanField booleanField = (BooleanField) resultField;
+
+			assertEquals(Field.DataType.BOOLEAN.getValue(), booleanField.getDataType().getValue());
+			assertEquals(Field.EditorType.CHECKBOX.getValue(), booleanField.getEditorType().getValue());
+			assertEquals("A_Bool", booleanField.getName());
+			assertEquals("A Bool", booleanField.getLabel());
+			assertEquals("The tip", booleanField.getTip());
+			assertFalse(booleanField.isReadOnly());
+			assertTrue(booleanField.isRepeatable());
+			assertFalse(booleanField.isRequired());
+			assertTrue(booleanField.isShowLabel());
+			assertFalse(booleanField.getCurrentValue());
+			assertFalse(booleanField.getPredefinedValue());
 		}
 	}
 

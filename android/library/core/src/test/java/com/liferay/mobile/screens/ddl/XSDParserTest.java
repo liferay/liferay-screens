@@ -93,62 +93,6 @@ public class XSDParserTest {
 		}
 	}
 
-	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenStringFieldExists {
-
-		@Test
-		public void shouldReturnStringFieldObject() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element dataType=\"string\" " +
-							"indexType=\"keyword\" " +
-							"name=\"A_Text\" " +
-							"readOnly=\"false\" " +
-							"repeatable=\"true\" " +
-							"required=\"false\" " +
-							"showLabel=\"true\" " +
-							"type=\"text\" " +
-							"width=\"small\"> " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"label\">" +
-								"<![CDATA[A Text]]>" +
-							"</entry> " +
-							"<entry name=\"predefinedValue\">" +
-								"<![CDATA[predefined text]]>" +
-							"</entry> " +
-							"<entry name=\"tip\">" +
-								"<![CDATA[The tip]]>" +
-							"</entry> " +
-						"</meta-data> " +
-					"</dynamic-element>" +
-				"</root>";
-
-			List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
-
-			assertNotNull(resultList);
-			assertEquals(1, resultList.size());
-
-			Field resultField = resultList.get(0);
-			assertTrue(resultField instanceof StringField);
-			StringField stringField = (StringField) resultField;
-
-			assertEquals(Field.DataType.STRING.getValue(), stringField.getDataType().getValue());
-			assertEquals(Field.EditorType.TEXT.getValue(), stringField.getEditorType().getValue());
-			assertEquals("A_Text", stringField.getName());
-			assertFalse(stringField.isReadOnly());
-			assertTrue(stringField.isRepeatable());
-			assertFalse(stringField.isRequired());
-			assertTrue(stringField.isShowLabel());
-			assertEquals("A Text", stringField.getLabel());
-			assertEquals("The tip", stringField.getTip());
-			assertEquals("predefined text", stringField.getPredefinedValue());
-			assertEquals("predefined text", stringField.getCurrentValue());
-		}
-	}
-
-
-
 	private static final Locale _spanishLocale = new Locale("es", "ES");
 
 }

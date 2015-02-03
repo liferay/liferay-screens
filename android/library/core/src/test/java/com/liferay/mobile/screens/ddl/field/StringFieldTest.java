@@ -21,13 +21,11 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import org.xml.sax.SAXParseException;
 
 import java.util.List;
 import java.util.Locale;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.*;
 
 /**
  * @author Jose Manuel Navarro
@@ -37,52 +35,50 @@ public class StringFieldTest {
 
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
-	public static class WhenMalformedXML {
-
-		@Test(expected = SAXParseException.class)
-		public void shouldRaiseParserException() throws Exception {
-			String malformedXML = "<root available-locales=\"en_US>";
-
-			new XSDParser().parse(malformedXML, _spanishLocale);
-		}
-	}
-
-	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenEmptyStringXML {
-
-		@Test(expected = IllegalArgumentException.class)
-		public void shouldRaiseIllegalArgument() throws Exception {
-			new XSDParser().parse("", _spanishLocale);
-		}
-	}
-
-	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenNullXML {
-
-		@Test(expected = IllegalArgumentException.class)
-		public void shouldRaiseIllegalArgument() throws Exception {
-			new XSDParser().parse(null, _spanishLocale);
-		}
-	}
-
-	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenEmptyXML {
-
+	public static class WhenParsingXSD {
 		@Test
-		public void shouldReturnEmptyResult() throws Exception {
-			String malformedXML = "<root available-locales=\"en_US\"></root>";
+		public void shouldReturnStringFieldObject() throws Exception {
+			String xsd =
+				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+					"<dynamic-element " +
+							"dataType=\"string\" " +
+							"type=\"text\" " +
+							"indexType=\"keyword\" " +
+							"name=\"A_Text\" " +
+							"readOnly=\"false\" " +
+							"repeatable=\"true\" " +
+							"required=\"false\" " +
+							"showLabel=\"true\" " +
+							"width=\"small\"> " +
+						"<meta-data locale=\"en_US\"> " +
+							"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
+							"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
+							"<entry name=\"tip\"><![CDATA[The tip]]></entry> " +
+						"</meta-data> " +
+					"</dynamic-element>" +
+				"</root>";
 
-			List resultList = new XSDParser().parse(malformedXML, _spanishLocale);
+			List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
 
 			assertNotNull(resultList);
-			assertEquals(0, resultList.size());
+			assertEquals(1, resultList.size());
+
+			Field resultField = resultList.get(0);
+			assertTrue(resultField instanceof StringField);
+			StringField stringField = (StringField) resultField;
+
+			assertEquals(Field.DataType.STRING.getValue(), stringField.getDataType().getValue());
+			assertEquals(Field.EditorType.TEXT.getValue(), stringField.getEditorType().getValue());
+			assertEquals("A_Text", stringField.getName());
+			assertEquals("A Text", stringField.getLabel());
+			assertEquals("The tip", stringField.getTip());
+			assertFalse(stringField.isReadOnly());
+			assertTrue(stringField.isRepeatable());
+			assertFalse(stringField.isRequired());
+			assertTrue(stringField.isShowLabel());
+			assertEquals("default text", stringField.getCurrentValue());
+			assertEquals(stringField.getCurrentValue(), stringField.getPredefinedValue());
 		}
 	}
-
-
-	private static final Locale _spanishLocale = new Locale("es", "ES");
 
 }
