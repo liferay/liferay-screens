@@ -22,9 +22,7 @@ import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.signup.SignUpListener;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
-import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayServerContext;
-import com.liferay.mobile.screens.util.SessionContext;
 
 import java.util.Locale;
 
@@ -84,8 +82,7 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 		anonymousSession.setCallback(
 			new SignUpCallback(getTargetScreenletId()));
 
-
-		return  new UserService(anonymousSession);
+		return new UserService(anonymousSession);
 	}
 
 	protected void sendSignUpRequest(
@@ -146,8 +143,7 @@ public class SignUpInteractorImpl extends BaseInteractor<SignUpListener>
 		}
 
 		if (locale == null) {
-			throw new IllegalArgumentException(
-				"Locale cannot be null");
+			throw new IllegalArgumentException("Locale cannot be null");
 		}
 
 		if ((anonymousApiUserName == null) || anonymousApiUserName.isEmpty()) {
