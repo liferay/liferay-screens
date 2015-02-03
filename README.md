@@ -39,11 +39,9 @@ Liferay Screens for iOS also contains a set of *themes* that you can use to styl
 - **Default**: The standard theme that is used when you insert any screenlet in your app's UI. The Default theme can be used as the parent theme for any of your custom themes. Please refer to the [Architecture Guide](ios/Documentation/architecture.md#theme-layer) for more details on this.
 - **Flat7**: A sample theme intended to demonstrate how to develop your own full theme from scratch. Please refer to the [Theme Guide](ios/Documentation/themes.md) for instructions on creating your own theme.
 
-To get started with Liferay Screens for iOS, please see [this document](https://github.com/liferay/liferay-screens/tree/master/ios).
-
 ## Android
 
-The implementation of Screens for Android is still in its early stages. It is not available to the community at this time. We hope to make it available in the next few months.
+The implementation of Screens for Android is still in its early stages. Stay tuned!
 
 ## Contributing
 
