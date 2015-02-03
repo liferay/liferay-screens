@@ -27,6 +27,8 @@ public abstract class Field<T> {
 	public static enum DataType {
 		BOOLEAN("boolean"),
 		STRING("string"),
+		DATE("date"),
+		NUMBER("number"),
 		UNSUPPORTED(null);
 
 		private DataType(String value) {
@@ -50,9 +52,13 @@ public abstract class Field<T> {
 
 			if (name != null) {
 				for (DataType dataType : values()) {
-					if (dataType._value.equals(name)) {
+					if (name.equals(dataType._value)) {
 						return dataType;
 					}
+				}
+
+				if (name.equals("integer") || name.equals("double")) {
+					return NUMBER;
 				}
 			}
 
@@ -63,8 +69,14 @@ public abstract class Field<T> {
 			if (this.equals(STRING)) {
 				return new StringField(attributes, locale);
 			}
-			else if  (this.equals(BOOLEAN)) {
+			else if (this.equals(BOOLEAN)) {
 				return new BooleanField(attributes, locale);
+			}
+			else if (this.equals(DATE)) {
+				return new DateField(attributes, locale);
+			}
+			else if (this.equals(NUMBER)) {
+				return new NumberField(attributes, locale);
 			}
 
 			return null;
@@ -81,6 +93,8 @@ public abstract class Field<T> {
 	public static enum EditorType {
 		CHECKBOX("checkbox"),
 		TEXT("text"),
+		DATE("ddm-date"),
+		NUMBER("ddm-number"),
 		UNSUPPORTED(null);
 
 		private EditorType(String value) {
@@ -98,9 +112,13 @@ public abstract class Field<T> {
 
 			if (name != null) {
 				for (EditorType editorType : values()) {
-					if (editorType._value.equals(name)) {
+					if (name.equals(editorType._value)) {
 						return editorType;
 					}
+				}
+
+				if (name.equals("ddm-integer") || name.equals("ddm-decimal")) {
+					return NUMBER;
 				}
 			}
 
