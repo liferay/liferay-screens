@@ -34,10 +34,10 @@ Once your project is ready, the following screenlets are available for use in yo
 - [`AssetListScreenlet`](ios/Documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). Assets include web content, blog entries, documents and more.
 - [`WebContentDisplayScreenlet`](Documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This screenlet uses the features available in [Web Content Management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/web-content-management).
 
-You can also check out the [Showcase app](ios/Samples/README.md) in order to learn how to configure and use the screenlets above.
+You can also check out the [Showcase app](ios/Samples/README.md) to learn how to configure and use the above screenlets.
 
-Liferay Screens for iOS also contains a set of *themes* that you can use to change both the UI and the UX of the screenlets:
-	  
+Liferay Screens for iOS also contains a set of *themes* that you can use to change the UI and UX of the screenlets:
+
 - **Default**: The standard theme that is used when you insert any screenlet in your app's UI. The Default theme can be used as the parent theme for any of your custom themes. Please refer to the [Architecture Guide](ios/Documentation/architecture.md#theme-layer) for more details on this.
 - **Flat7**: A sample theme intended to demonstrate how to develop your own full theme from scratch. Please refer to the [Theme Guide](ios/Documentation/themes.md) for instructions on creating your own theme.
 
