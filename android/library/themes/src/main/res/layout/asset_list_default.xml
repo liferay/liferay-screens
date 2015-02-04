@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.themes.assetlist.AssetListScreenletView
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/asset_list_screenlet"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent" />

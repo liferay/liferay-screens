@@ -14,21 +14,53 @@
 
 package com.liferay.mobile.screens.assetlist;
 
-import org.json.JSONObject;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
-public class AssetEntry {
+public class AssetEntry implements Parcelable {
 
-	public AssetEntry(JSONObject jsonObject) {
-		_jsonObject = jsonObject;
+	public static final Parcelable.Creator<AssetEntry> CREATOR =
+		new Parcelable.Creator<AssetEntry>() {
+
+			public AssetEntry createFromParcel(Parcel in) {
+				return new AssetEntry(in);
+			}
+
+			public AssetEntry[] newArray(int size) {
+				return new AssetEntry[size];
+			}
+		};
+
+	public AssetEntry(Map<String, Object> values) {
+		_values = values;
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
 	}
 
 	public String getTitle() {
-		return _jsonObject.optString("title");
+		return (String)_values.get("title");
 	}
 
-	private JSONObject _jsonObject;
+	@Override
+	public void writeToParcel(Parcel destination, int flags) {
+		destination.writeMap(_values);
+	}
+
+	private AssetEntry(Parcel in) {
+		_values = new HashMap<>();
+
+		in.readMap(_values, ClassLoader.getSystemClassLoader());
+	}
+
+	private Map<String, Object> _values;
 
 }

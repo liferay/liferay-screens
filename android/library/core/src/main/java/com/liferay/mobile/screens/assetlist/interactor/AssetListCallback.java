@@ -19,6 +19,7 @@ import com.liferay.mobile.screens.base.context.RequestStateEvent;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.InteractorBatchAsyncTaskCallback;
 import com.liferay.mobile.screens.util.EventBusUtil;
+import com.liferay.mobile.screens.util.JSONUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,7 @@ public class AssetListCallback
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-			entries.add(new AssetEntry(jsonObject));
+			entries.add(new AssetEntry(JSONUtil.toMap(jsonObject)));
 		}
 
 		result.entries = entries;

@@ -16,6 +16,9 @@ package com.liferay.mobile.screens.themes.assetlist;
 
 import android.content.Context;
 
+import android.os.Bundle;
+import android.os.Parcelable;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -27,7 +30,8 @@ import com.liferay.mobile.screens.assetlist.AssetListScreenlet;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListPageListener;
 import com.liferay.mobile.screens.themes.R;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -70,18 +74,19 @@ public class AssetListScreenletView extends RecyclerView
 
 		AssetListAdapter adapter = (AssetListAdapter)getAdapter();
 		List<AssetEntry> entries = adapter.getEntries();
-		AssetEntry[] allEntries = new AssetEntry[rowCount];
+		List<AssetEntry> allEntries = new ArrayList<>(
+			Collections.<AssetEntry>nCopies(rowCount, null));
 
 		for (int i = 0; i < entries.size(); i++) {
-			allEntries[i] = entries.get(i);
+			allEntries.set(i, entries.get(i));
 		}
 
 		for (int i = 0; i < (serverEntries.size()); i++) {
-			allEntries[i + firstRowForPage] = serverEntries.get(i);
+			allEntries.set(i + firstRowForPage, serverEntries.get(i));
 		}
 
 		adapter.setRowCount(rowCount);
-		adapter.setEntries(Arrays.asList(allEntries));
+		adapter.setEntries(allEntries);
 		adapter.notifyDataSetChanged();
 	}
 
@@ -91,5 +96,42 @@ public class AssetListScreenletView extends RecyclerView
 
 		screenlet.loadPageForRow(row);
 	}
+
+	@Override
+	protected void onRestoreInstanceState(Parcelable inState) {
+		Bundle state = (Bundle)inState;
+		Parcelable superState = state.getParcelable(_STATE_SUPER);
+
+		super.onRestoreInstanceState(superState);
+
+		List<AssetEntry> entries = state.getParcelableArrayList(_STATE_ENTRIES);
+
+		AssetListAdapter adapter = (AssetListAdapter)getAdapter();
+		adapter.setRowCount(state.getInt(_STATE_ROW_COUNT));
+		adapter.setEntries(entries);
+		adapter.notifyDataSetChanged();
+	}
+
+	@Override
+	protected Parcelable onSaveInstanceState() {
+		Parcelable superState = super.onSaveInstanceState();
+
+		AssetListAdapter adapter = (AssetListAdapter)getAdapter();
+		ArrayList<AssetEntry> entries = (ArrayList<AssetEntry>)
+			adapter.getEntries();
+
+		Bundle state = new Bundle();
+		state.putParcelableArrayList(_STATE_ENTRIES, entries);
+		state.putSerializable(_STATE_ROW_COUNT, adapter.getItemCount());
+		state.putParcelable(_STATE_SUPER, superState);
+
+		return state;
+	}
+
+	private static final String _STATE_ENTRIES = "entries";
+
+	private static final String _STATE_ROW_COUNT = "rowCount";
+
+	private static final String _STATE_SUPER = "super";
 
 }
