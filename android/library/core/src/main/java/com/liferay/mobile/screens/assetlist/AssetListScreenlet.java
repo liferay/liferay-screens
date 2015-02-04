@@ -51,10 +51,20 @@ public class AssetListScreenlet
 		Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
+	}
 
-		setInteractor(
-			new AssetListInteractorImpl(
-			getScreenletId(), _firstPageSize, _pageSize));
+	@Override
+	public AssetListInteractor getInteractor() {
+		AssetListInteractor interactor = super.getInteractor();
+
+		if (interactor == null) {
+			interactor = new AssetListInteractorImpl(
+				getScreenletId(), _firstPageSize, _pageSize);
+
+			setInteractor(interactor);
+		}
+
+		return interactor;
 	}
 
 	public void load(int page) {
