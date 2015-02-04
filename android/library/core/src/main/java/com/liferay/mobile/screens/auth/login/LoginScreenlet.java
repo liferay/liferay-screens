@@ -52,8 +52,19 @@ public class LoginScreenlet
 		Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
+	}
 
-		setInteractor(new LoginInteractorImpl(getScreenletId()));
+	@Override
+	public LoginInteractor getInteractor() {
+		LoginInteractor interactor = super.getInteractor();
+
+		if (interactor == null) {
+			interactor = new LoginInteractorImpl(getScreenletId());
+
+			setInteractor(interactor);
+		}
+
+		return interactor;
 	}
 
 	@Override
