@@ -102,7 +102,18 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 		super.onRestoreInstanceState(superState);
 
-		_screenletId = state.getInt(_STATE_SCREENLET_ID);
+		// The screenletId is restored only if it was not generated yet. If the
+		// screenletId already exists at this point, it means that an interactor
+		// is using it, so we cannot restore the previous value. As a side
+		// effect, any previous executing task will not deliver the result to
+		// the new interactor. To avoid this behavior, only call screenlet
+		// methods after onStart() activity/fragment callback. This ensures that
+		// onRestoreInstanceState was already called.
+		// TODO: Create restore method?
+
+		if (_screenletId == 0) {
+			_screenletId = state.getInt(_STATE_SCREENLET_ID);
+		}
 	}
 
 	@Override
