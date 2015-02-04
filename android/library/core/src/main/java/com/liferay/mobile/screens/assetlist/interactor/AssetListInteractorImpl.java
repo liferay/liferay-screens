@@ -20,11 +20,11 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.assetentry.AssetEntryService;
 import com.liferay.mobile.screens.assetlist.AssetListListener;
 import com.liferay.mobile.screens.assetlist.AssetListScreenletEntry;
+import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
 import com.liferay.mobile.screens.service.MobilewidgetsassetentryService;
 import com.liferay.mobile.screens.util.SessionContext;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -50,6 +50,12 @@ public class AssetListInteractorImpl
 			long groupId, long classNameId, int page, Locale locale)
 		throws Exception {
 
+		RequestState requestState = RequestState.getInstance();
+
+		if (requestState.contains(getTargetScreenletId(), page)) {
+			return;
+		}
+
 		Session session = SessionContext.createSessionFromCurrentSession();
 		BatchSessionImpl batchSession = new BatchSessionImpl(session);
 		batchSession.setCallback(
@@ -61,6 +67,8 @@ public class AssetListInteractorImpl
 		sendGetEntriesCountRequest(batchSession, groupId, classNameId);
 
 		batchSession.invoke();
+
+		requestState.put(getTargetScreenletId(), page);
 	}
 
 	@Override
