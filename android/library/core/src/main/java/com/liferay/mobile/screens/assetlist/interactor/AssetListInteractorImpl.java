@@ -50,6 +50,8 @@ public class AssetListInteractorImpl
 			long groupId, long classNameId, int page, Locale locale)
 		throws Exception {
 
+		validate(groupId, classNameId, page, locale);
+
 		RequestState requestState = RequestState.getInstance();
 
 		if (requestState.contains(getTargetScreenletId(), page)) {
@@ -170,6 +172,28 @@ public class AssetListInteractorImpl
 			session);
 
 		service.getAssetEntries(entryQuery, locale.toString());
+	}
+
+	protected void validate(
+		long groupId, long classNameId, int page, Locale locale) {
+
+		if (groupId <= 0) {
+			throw new IllegalArgumentException(
+				"GroupId cannot be 0 or negative");
+		}
+
+		if (classNameId <= 0) {
+			throw new IllegalArgumentException(
+				"ClassNameId cannot be 0 or negative");
+		}
+
+		if (page < 0) {
+			throw new IllegalArgumentException("Page cannot be negative");
+		}
+
+		if (locale == null) {
+			throw new IllegalArgumentException("Locale cannot be null");
+		}
 	}
 
 	private int _firstPageSize = 50;
