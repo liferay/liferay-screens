@@ -18,8 +18,8 @@ import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.assetentry.AssetEntryService;
+import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.assetlist.AssetListListener;
-import com.liferay.mobile.screens.assetlist.AssetListScreenletEntry;
 import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
 import com.liferay.mobile.screens.service.MobilewidgetsassetentryService;
@@ -93,7 +93,7 @@ public class AssetListInteractorImpl
 		}
 		else {
 			int firstRowForPage = getFirstRowForPage(event.getPage());
-			List<AssetListScreenletEntry> entries = event.getEntries();
+			List<AssetEntry> entries = event.getEntries();
 			int rowCount = event.getRowCount();
 
 			getListener().onAssetListPageReceived(

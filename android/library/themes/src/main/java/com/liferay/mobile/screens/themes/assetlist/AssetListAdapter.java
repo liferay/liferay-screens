@@ -22,7 +22,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-import com.liferay.mobile.screens.assetlist.AssetListScreenletEntry;
+import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListPageListener;
 import com.liferay.mobile.screens.themes.R;
 
@@ -44,7 +44,7 @@ public class AssetListAdapter
 		_listener = listener;
 	}
 
-	public List<AssetListScreenletEntry> getEntries() {
+	public List<AssetEntry> getEntries() {
 		return _entries;
 	}
 
@@ -55,7 +55,7 @@ public class AssetListAdapter
 
 	@Override
 	public int getItemViewType(int position) {
-		AssetListScreenletEntry entry = _entries.get(position);
+		AssetEntry entry = _entries.get(position);
 
 		if (entry != null) {
 			return _LAYOUT_TYPE_DEFAULT;
@@ -66,7 +66,7 @@ public class AssetListAdapter
 
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
-		AssetListScreenletEntry entry = _entries.get(position);
+		AssetEntry entry = _entries.get(position);
 
 		if (entry != null) {
 			holder.textView.setText(entry.getTitle());
@@ -92,7 +92,7 @@ public class AssetListAdapter
 		return new ViewHolder(view);
 	}
 
-	public void setEntries(List<AssetListScreenletEntry> entries) {
+	public void setEntries(List<AssetEntry> entries) {
 		_entries = entries;
 	}
 
@@ -115,7 +115,7 @@ public class AssetListAdapter
 
 	private static final int _LAYOUT_TYPE_PROGRESS = 1;
 
-	private List<AssetListScreenletEntry> _entries;
+	private List<AssetEntry> _entries;
 	private int _layoutId;
 	private AssetListPageListener _listener;
 	private int _progressLayoutId;

@@ -19,9 +19,9 @@ import org.json.JSONObject;
 /**
  * @author Silvio Santos
  */
-public class AssetListScreenletEntry {
+public class AssetEntry {
 
-	public AssetListScreenletEntry(JSONObject jsonObject) {
+	public AssetEntry(JSONObject jsonObject) {
 		_jsonObject = jsonObject;
 	}
 

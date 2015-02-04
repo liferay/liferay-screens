@@ -24,6 +24,6 @@ public interface AssetListListener {
 	public void onAssetListLoadFailure(Exception e);
 
 	public void onAssetListPageReceived(
-		int page, List<AssetListScreenletEntry> entries, int rowCount);
+		int page, List<AssetEntry> entries, int rowCount);
 
 }

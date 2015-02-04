@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.assetlist.interactor;
 
-import com.liferay.mobile.screens.assetlist.AssetListScreenletEntry;
+import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.context.RequestStateEvent;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.InteractorBatchAsyncTaskCallback;
@@ -43,12 +43,12 @@ public class AssetListCallback
 		AssetListCallback.Result result = new AssetListCallback.Result();
 
 		JSONArray jsonArray = ((JSONArray)obj).getJSONArray(0);
-		List<AssetListScreenletEntry> entries = new ArrayList<>();
+		List<AssetEntry> entries = new ArrayList<>();
 
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-			entries.add(new AssetListScreenletEntry(jsonObject));
+			entries.add(new AssetEntry(jsonObject));
 		}
 
 		result.entries = entries;
@@ -78,7 +78,7 @@ public class AssetListCallback
 
 	static class Result {
 
-		List<AssetListScreenletEntry> entries;
+		List<AssetEntry> entries;
 		int rowCount;
 
 	}

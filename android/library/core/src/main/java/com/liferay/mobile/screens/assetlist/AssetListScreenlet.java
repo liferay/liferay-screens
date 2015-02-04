@@ -101,7 +101,7 @@ public class AssetListScreenlet
 
 	@Override
 	public void onAssetListPageReceived(
-		int page, List<AssetListScreenletEntry> entries, int rowCount) {
+		int page, List<AssetEntry> entries, int rowCount) {
 
 		AssetListListener listenerView = (AssetListListener)getScreenletView();
 		listenerView.onAssetListPageReceived(page, entries, rowCount);
