@@ -15,8 +15,10 @@
 package com.liferay.mobile.screens.assetlist.interactor;
 
 import com.liferay.mobile.screens.assetlist.AssetListScreenletEntry;
+import com.liferay.mobile.screens.base.context.RequestStateEvent;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.InteractorBatchAsyncTaskCallback;
+import com.liferay.mobile.screens.util.EventBusUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,16 +57,11 @@ public class AssetListCallback
 		return result;
 	}
 
-	public static class Result {
-
-		List<AssetListScreenletEntry> entries;
-		int rowCount;
-
-	}
-
 	@Override
 	protected BasicEvent createEvent(
 		int targetScreenletId, AssetListCallback.Result result) {
+
+		EventBusUtil.post(new RequestStateEvent(targetScreenletId, _page));
 
 		return new AssetListEvent(
 			targetScreenletId, _page, result.entries, result.rowCount);
@@ -72,9 +69,18 @@ public class AssetListCallback
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
+		EventBusUtil.post(new RequestStateEvent(targetScreenletId, _page));
+
 		return new AssetListEvent(targetScreenletId, e);
 	}
 
 	private int _page;
+
+	static class Result {
+
+		List<AssetListScreenletEntry> entries;
+		int rowCount;
+
+	}
 
 }
