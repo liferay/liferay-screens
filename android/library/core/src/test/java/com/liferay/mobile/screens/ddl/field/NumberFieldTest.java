@@ -117,6 +117,43 @@ public class NumberFieldTest {
 
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
+	public static class WhenConvertingToLabel {
+
+		@Test
+		public void shouldReturnEmptyWhenNullNumberIsSupplied() {
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
+
+			assertEquals("", field.convertToLabel(null));
+		}
+
+		@Test
+		public void shouldReturnSpanishFormattedIntegerNumber() {
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
+
+			assertEquals("1234", field.convertToString(Integer.valueOf(1234)));
+			assertEquals("1234", field.convertToString(Long.valueOf(1234L)));
+		}
+
+		@Test
+		public void shouldReturnUSFormattedIntegerNumber() {
+			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
+
+			assertEquals("1234", field.convertToString(Integer.valueOf(1234)));
+			assertEquals("1234", field.convertToString(Long.valueOf(1234L)));
+		}
+
+		@Test
+		public void shouldReturnUSFormattedDecimalNumber() {
+			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
+
+			assertEquals("123.4", field.convertToString(Double.valueOf(123.4)));
+			assertEquals("123.4", field.convertToString(Float.valueOf(123.4f)));
+		}
+
+	}
+
+	@Config(emulateSdk = 18)
+	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 
 		@Test

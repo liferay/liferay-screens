@@ -25,6 +25,8 @@ public class NumberField extends Field<Number> {
 
 	public NumberField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
+
+		_labelFormatter = NumberFormat.getNumberInstance(locale);
 	}
 
 	@Override
@@ -56,11 +58,9 @@ public class NumberField extends Field<Number> {
 
 	@Override
 	protected String convertToLabel(Number value) {
-		if (value == null) {
-			return null;
-		}
-
-		return "Yes";
+		return (value == null) ? "" : _labelFormatter.format(value);
 	}
+
+	private NumberFormat _labelFormatter;
 
 }
