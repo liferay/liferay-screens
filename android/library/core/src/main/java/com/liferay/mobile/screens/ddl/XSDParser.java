@@ -108,12 +108,12 @@ public class XSDParser {
 	protected Field createFormField(Element dynamicElement, Locale locale, Locale defaultLocale) {
 		Field.DataType dataType = Field.DataType.valueOf(dynamicElement);
 
-		Map<String, String> attributes = getAttributes(dynamicElement);
+		Map<String, Object> attributes = getAttributes(dynamicElement);
 
-		Map<String, String> localizedMetadata =
+		Map<String, Object> localizedMetadata =
 			processLocalizedMetadata(dynamicElement, locale, defaultLocale);
 
-		Map<String, String> mergedMap = new HashMap<String, String>();
+		Map<String, Object> mergedMap = new HashMap<String, Object>();
 
 		mergedMap.putAll(attributes);
 		mergedMap.putAll(localizedMetadata);
@@ -121,10 +121,10 @@ public class XSDParser {
 		return dataType.createField(mergedMap, locale);
 	}
 
-	protected Map<String,String> processLocalizedMetadata(
+	protected Map<String,Object> processLocalizedMetadata(
 		Element dynamicElement, Locale locale, Locale defaultLocale) {
 
-		Map<String, String> result = new HashMap<String, String>();
+		Map<String, Object> result = new HashMap<String, Object>();
 
 		Element localizedMetadata = findMetadataElement(dynamicElement, locale, defaultLocale);
 		if (localizedMetadata != null) {
@@ -137,7 +137,7 @@ public class XSDParser {
 	}
 
 	protected void addLocalizedElement(
-		Element localizedMetadata, String elementName, Map<String, String> result) {
+		Element localizedMetadata, String elementName, Map<String, Object> result) {
 
 		Element foundElement = getChild(localizedMetadata, "entry", "name", elementName);
 		if (foundElement != null) {
@@ -212,11 +212,11 @@ public class XSDParser {
 		return resultElement;
 	}
 
-	protected Map<String, String> getAttributes(Element element) {
+	protected Map<String, Object> getAttributes(Element element) {
 		NamedNodeMap nodeMap = element.getAttributes();
 		int len = (nodeMap == null) ? 0 : nodeMap.getLength();
 
-		Map<String, String> result = new HashMap<String, String>(len);
+		Map<String, Object> result = new HashMap<String, Object>(len);
 
 		for (int i = 0; i < len; ++i) {
 			Attr n = (Attr) nodeMap.item(i);

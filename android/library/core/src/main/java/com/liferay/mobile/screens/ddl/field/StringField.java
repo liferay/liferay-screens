@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public class StringField extends Field<String> {
 
-	public StringField(Map<String, String> attributes, Locale locale) {
+	public StringField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
 	}
 

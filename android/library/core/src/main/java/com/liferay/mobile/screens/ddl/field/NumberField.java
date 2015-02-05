@@ -23,7 +23,7 @@ import java.util.Map;
  */
 public class NumberField extends Field<Number> {
 
-	public NumberField(Map<String, String> attributes, Locale locale) {
+	public NumberField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
 	}
 

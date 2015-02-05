@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public class BooleanField extends Field<Boolean> {
 
-	public BooleanField(Map<String, String> attributes, Locale locale) {
+	public BooleanField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
 	}
 

@@ -35,7 +35,7 @@ public abstract class Field<T> {
 			_value = value;
 		}
 
-		public static DataType valueOf(Map<String,String> attributes) {
+		public static DataType valueOf(Map<String,Object> attributes) {
 			Object mapValue = attributes.get("dataType");
 			return (mapValue == null) ?
 				UNSUPPORTED : valueOfString(mapValue.toString());
@@ -65,7 +65,7 @@ public abstract class Field<T> {
 			return result;
 		}
 
-		public Field createField(Map<String,String> attributes, Locale locale) {
+		public Field createField(Map<String,Object> attributes, Locale locale) {
 			if (this.equals(STRING)) {
 				return new StringField(attributes, locale);
 			}
@@ -101,7 +101,7 @@ public abstract class Field<T> {
 			_value = value;
 		}
 
-		public static EditorType valueOf(Map<String,String> attributes) {
+		public static EditorType valueOf(Map<String,Object> attributes) {
 			Object mapValue = attributes.get("type");
 			return (mapValue == null) ?
 				UNSUPPORTED : valueOfString(mapValue.toString());
@@ -135,7 +135,7 @@ public abstract class Field<T> {
 
 
 
-	public Field(Map<String,String> attributes, Locale locale) {
+	public Field(Map<String,Object> attributes, Locale locale) {
 		_dataType = DataType.valueOf(attributes);
 		_editorType = EditorType.valueOf(attributes);
 
@@ -216,7 +216,7 @@ public abstract class Field<T> {
 		return convertToLabel(_currentValue);
 	}
 
-	protected String getAttributeStringValue(Map<String,String> attributes, String key) {
+	protected String getAttributeStringValue(Map<String,Object> attributes, String key) {
 		Object value = attributes.get(key);
 		return (value != null) ? value.toString() : "";
 	}

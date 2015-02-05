@@ -45,21 +45,21 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 
 			assertNull(field.convertFromString(null));
 		}
 
 		@Test
 		public void shouldReturnNullWhenEmptyStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 
 			assertNull(field.convertFromString(""));
 		}
 
 		@Test
 		public void shouldReturnNullWhenInvalidStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 
 			assertNull(field.convertFromString("12a3"));
 			assertNull(field.convertFromString("12,3"));
@@ -68,7 +68,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnLongWhenIntegerStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 
 			Number result = field.convertFromString("123");
 
@@ -78,7 +78,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnDoubleWhenDecimalStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 
 			Number result = field.convertFromString("123.4");
 
@@ -94,21 +94,21 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 
 			assertNull(field.convertToString(null));
 		}
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 
 			assertEquals("true", field.convertToString(true));
 		}
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 
 			assertEquals("false", field.convertToString(false));
 		}
@@ -120,21 +120,21 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
 
 			assertNull(field.convertToLabel(null));
 		}
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
 
 			assertEquals("Yes", field.convertToLabel(true));
 		}
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
 
 			assertEquals("No", field.convertToLabel(false));
 		}
@@ -144,7 +144,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 			field.setCurrentValue(null);
 
 			assertNull(field.toString());
@@ -152,7 +152,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 			field.setCurrentValue(true);
 
 			assertEquals("true", field.toString());
@@ -160,7 +160,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 			field.setCurrentValue(false);
 
 			assertEquals("false", field.toString());
@@ -171,7 +171,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
 			field.setCurrentValue(null);
 
 			assertNull(field.toLabel());
@@ -179,7 +179,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
 			field.setCurrentValue(true);
 
 			assertEquals("Yes", field.toLabel());
@@ -187,7 +187,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, String>(), _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
 			field.setCurrentValue(false);
 
 			assertEquals("No", field.toLabel());

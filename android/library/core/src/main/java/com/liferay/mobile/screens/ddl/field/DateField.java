@@ -27,7 +27,7 @@ import java.util.TimeZone;
  */
 public class DateField extends Field<Date> {
 
-	public DateField(Map<String, String> attributes, Locale locale) {
+	public DateField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
 
 		_clientFormat = DateFormat.getDateInstance(DateFormat.LONG, locale);
