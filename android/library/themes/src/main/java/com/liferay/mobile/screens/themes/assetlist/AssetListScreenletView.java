@@ -64,7 +64,8 @@ public class AssetListScreenletView extends RecyclerView
 	}
 
 	@Override
-	public void onAssetListLoadFailure(Exception e) {
+	public void onAssetListPageFailed(int page, Exception e) {
+		//TODO what should we do when the page load fails?
 	}
 
 	@Override
