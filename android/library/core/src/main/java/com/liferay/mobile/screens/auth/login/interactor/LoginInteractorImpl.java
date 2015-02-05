@@ -77,8 +77,7 @@ public class LoginInteractorImpl
 		return new UserService(session);
 	}
 
-	protected void sendGetUserByEmailRequest(
-			UserService service, String email)
+	protected void sendGetUserByEmailRequest(UserService service, String email)
 		throws Exception {
 
 		service.getUserByEmailAddress(

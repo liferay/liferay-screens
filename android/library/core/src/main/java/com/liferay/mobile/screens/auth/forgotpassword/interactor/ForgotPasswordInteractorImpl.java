@@ -35,6 +35,20 @@ public class ForgotPasswordInteractorImpl
 		super(targetScreenletId);
 	}
 
+	public void onEvent(ForgotPasswordEvent event) {
+		if (!isValidEvent(event)) {
+			return;
+		}
+
+		if (event.isFailed()) {
+			getListener().onForgotPasswordRequestFailure(event.getException());
+		}
+		else {
+			getListener().onForgotPasswordRequestSuccess(
+				event.isPasswordSent());
+		}
+	}
+
 	@Override
 	public void requestPassword(
 			long companyId, String login, AuthMethod authMethod,
@@ -58,21 +72,10 @@ public class ForgotPasswordInteractorImpl
 				break;
 
 			case SCREEN_NAME:
-				sendForgotPasswordByScreenNameRequest(service, companyId, login);
+				sendForgotPasswordByScreenNameRequest(
+					service, companyId, login);
+
 				break;
-		}
-	}
-
-	public void onEvent(ForgotPasswordEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			getListener().onForgotPasswordRequestFailure(event.getException());
-		}
-		else {
-			getListener().onForgotPasswordRequestSuccess(event.isPasswordSent());
 		}
 	}
 
@@ -80,17 +83,16 @@ public class ForgotPasswordInteractorImpl
 		String anonymousApiUserName, String anonymousApiPassword) {
 
 		Authentication authentication = new BasicAuthentication(
-				anonymousApiUserName, anonymousApiPassword);
+			anonymousApiUserName, anonymousApiPassword);
 
 		Session anonymousSession = new SessionImpl(
-				LiferayServerContext.getServer(), authentication);
+			LiferayServerContext.getServer(), authentication);
 
 		anonymousSession.setCallback(
-				new ForgotPasswordCallback(getTargetScreenletId()));
+			new ForgotPasswordCallback(getTargetScreenletId()));
 
 		return new MobilewidgetsuserService(anonymousSession);
 	}
-
 
 	protected void sendForgotPasswordByEmailRequest(
 			MobilewidgetsuserService service, long companyId,
@@ -100,13 +102,6 @@ public class ForgotPasswordInteractorImpl
 		service.sendPasswordByEmailAddress(companyId, emailAddress);
 	}
 
-	protected void sendForgotPasswordByScreenNameRequest(
-			MobilewidgetsuserService service, long companyId, String screenName)
-		throws Exception {
-
-		service.sendPasswordByScreenName(companyId, screenName);
-	}
-
 	protected void sendForgotPasswordByIdRequest(
 			MobilewidgetsuserService service, long userId)
 		throws Exception {
@@ -114,11 +109,18 @@ public class ForgotPasswordInteractorImpl
 		service.sendPasswordByUserId(userId);
 	}
 
-	protected void validate(
-			long companyId, String login, AuthMethod authMethod,
-			String anonymousApiUserName, String anonymousApiPassword) {
+	protected void sendForgotPasswordByScreenNameRequest(
+			MobilewidgetsuserService service, long companyId, String screenName)
+		throws Exception {
 
-		if (companyId <= 0 && authMethod != AuthMethod.USER_ID) {
+		service.sendPasswordByScreenName(companyId, screenName);
+	}
+
+	protected void validate(
+		long companyId, String login, AuthMethod authMethod,
+		String anonymousApiUserName, String anonymousApiPassword) {
+
+		if ((companyId <= 0) && (authMethod != AuthMethod.USER_ID)) {
 			throw new IllegalArgumentException(
 				"CompanyId cannot be 0 or negative");
 		}

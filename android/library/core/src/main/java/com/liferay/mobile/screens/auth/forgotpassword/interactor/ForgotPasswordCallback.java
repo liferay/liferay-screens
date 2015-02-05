@@ -28,6 +28,11 @@ public class ForgotPasswordCallback
 	}
 
 	@Override
+	public Boolean transform(Object obj) throws Exception {
+		return (Boolean)obj;
+	}
+
+	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Boolean result) {
 		return new ForgotPasswordEvent(targetScreenletId, result);
 	}
@@ -35,11 +40,6 @@ public class ForgotPasswordCallback
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
 		return new ForgotPasswordEvent(targetScreenletId, e);
-	}
-
-	@Override
-	public Boolean transform(Object obj) throws Exception {
-		return (Boolean)obj;
 	}
 
 }

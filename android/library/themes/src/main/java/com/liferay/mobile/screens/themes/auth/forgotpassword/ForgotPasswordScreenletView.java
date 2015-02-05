@@ -15,8 +15,11 @@
 package com.liferay.mobile.screens.themes.auth.forgotpassword;
 
 import android.content.Context;
+
 import android.util.AttributeSet;
+
 import android.view.View;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -38,7 +41,9 @@ public class ForgotPasswordScreenletView extends LinearLayout
 		this(context, null);
 	}
 
-	public ForgotPasswordScreenletView(Context context, AttributeSet attributes) {
+	public ForgotPasswordScreenletView(
+		Context context, AttributeSet attributes) {
+
 		this(context, attributes, 0);
 	}
 
@@ -67,11 +72,11 @@ public class ForgotPasswordScreenletView extends LinearLayout
 	}
 
 	@Override
-	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
+	public void onForgotPasswordRequestFailure(Exception e) {
 	}
 
 	@Override
-	public void onForgotPasswordRequestFailure(Exception e) {
+	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
 	}
 
 	public void setAuthMethod(AuthMethod authMethod) {

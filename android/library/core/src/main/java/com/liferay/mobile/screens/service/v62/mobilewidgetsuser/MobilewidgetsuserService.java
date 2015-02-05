@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2014 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.service.v62.mobilewidgetsuser;
 
 import com.liferay.mobile.android.service.BaseService;
-import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 
 import org.json.JSONArray;

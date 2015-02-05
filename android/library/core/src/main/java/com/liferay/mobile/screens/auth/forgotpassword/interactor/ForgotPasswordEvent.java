@@ -16,8 +16,6 @@ package com.liferay.mobile.screens.auth.forgotpassword.interactor;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 
-import org.json.JSONObject;
-
 /**
  * @author Jose Manuel Navarro
  */

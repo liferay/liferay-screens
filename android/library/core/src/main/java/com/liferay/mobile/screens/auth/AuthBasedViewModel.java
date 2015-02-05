@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.auth;
 
-import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 /**

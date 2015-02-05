@@ -24,6 +24,10 @@ import com.liferay.mobile.android.service.SessionImpl;
  */
 public class SessionContext {
 
+	public static void clearSession() {
+		_session = null;
+	}
+
 	public static Session createSession(String username, String password) {
 		Authentication authentication = new BasicAuthentication(
 			username, password);
@@ -44,10 +48,6 @@ public class SessionContext {
 			(BasicAuthentication) _session.getAuthentication();
 
 		return createSession(basicAuth.getUsername(), basicAuth.getPassword());
-	}
-
-	public static void clearSession() {
-		_session = null;
 	}
 
 	public static boolean hasSession() {
