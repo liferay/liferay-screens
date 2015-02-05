@@ -16,7 +16,7 @@
 
 ## Features
 
-The `PortraitScreenlet` shows the user portrait configured in the Liferay Portal. If the user doesn't have a protrait configured, it shows a placeholder image.
+The `PortraitScreenlet` shows the user's portrait from Liferay Portal. If the user doesn't have a portrait configured, a placeholder image is shown.
 
 ## Module
 
@@ -27,7 +27,7 @@ The `PortraitScreenlet` shows the user portrait configured in the Liferay Portal
 - Default
 - Flat7
 
-![The `PortraitScreenlet` using both the Default and Flat7 themes](Images/portrait.png)
+![The `PortraitScreenlet` using the Default and Flat7 themes.](Images/portrait.png)
 
 ## Portal Configuration
 
@@ -37,21 +37,21 @@ None
 
 | Attribute | Data type | Explanation |
 |-----------|-----------|-------------| 
-| `borderWidth` | `number` | The size (in pixels) for the border of the portrait. Default value is 1 pixel. If you want to hide the border at all, use 0 pixels here.|
-|  `borderColor` | `UIColor` | The color to be used in the border. If you want to hide the border at all, use clear color here. |
+| `borderWidth` | `number` | The size in pixels for the portrait's border. The default value is 1. Set this to 0 if you want to hide the border.|
+|  `borderColor` | `UIColor` | The border's color. Use the system's transparent color to hide the border. |
 
 ## Methods
 
 | Method | Return | Explanation |
 |-----------|-----------|-------------| 
-|  `loadLoggedUserPortrait()` | `boolean` | Starts the request to load the portrait image for the user currently logged in (see `SessionContext` class) |
-|  `load(userId)` | `boolean` | Starts the request to load the portrait image for specified user |
-|  `load(portraitId, uuid, male)` | `boolean` | Starts the request to load the portrait image for specified user's data. `PortraitId` and `uuid` can be got using `SessionContext.userAttribute()` method.|
+|  `loadLoggedUserPortrait()` | `boolean` | Starts the request to load the currently logged in user's portrait image (see the `SessionContext` class). |
+|  `load(userId)` | `boolean` | Starts the request to load the specified user's  portrait image. |
+|  `load(portraitId, uuid, male)` | `boolean` | Starts the request to load the portrait image using the specified user's data. The parameters `portraitId` and `uuid` can be retrieved by using the `SessionContext.userAttribute()` method.|
 
 ## Delegate
 
 The `PortraitScreenlet` delegates some events to an object that conforms to the `PortraitScreenletDelegate ` protocol. This protocol lets you implement the following methods:
 
-- `onPortraitResponse(image)`: Called when an image is received from the server. You can here apply some filters to the image (i.e. grayscale) and return the new image or just return the image supplied as the argument if you don't want to modify it.
+- `onPortraitResponse(image)`: Called when an image is received from the server. You can then apply image filters (grayscale, for example) and return the new image. You can return the original image supplied as the argument if you don't want to modify it.
 - `onPortraitError(error)`: Called when an error occurs in the process. The `NSError` object describes the error.
 
