@@ -42,8 +42,8 @@ public class AssetListCallback
 	}
 
 	@Override
-	public AssetListCallback.Result transform(Object obj) throws Exception {
-		AssetListCallback.Result result = new AssetListCallback.Result();
+	public Result transform(Object obj) throws Exception {
+		Result result = new Result();
 
 		JSONArray jsonArray = ((JSONArray)obj).getJSONArray(0);
 		List<AssetEntry> entries = new ArrayList<>();
@@ -61,8 +61,7 @@ public class AssetListCallback
 	}
 
 	@Override
-	protected BasicEvent createEvent(
-		int targetScreenletId, AssetListCallback.Result result) {
+	protected BasicEvent createEvent(int targetScreenletId, Result result) {
 
 		EventBusUtil.post(new RequestStateEvent(targetScreenletId, _rowsRange));
 
