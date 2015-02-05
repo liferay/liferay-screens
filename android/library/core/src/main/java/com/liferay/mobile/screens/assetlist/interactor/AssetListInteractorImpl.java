@@ -108,13 +108,6 @@ public class AssetListInteractorImpl
 		return new AssetEntryService(session);
 	}
 
-	//JM why this method?
-	protected MobilewidgetsassetentryService getMWAssetEntryService(
-		Session session) {
-
-		return new MobilewidgetsassetentryService(session);
-	}
-
 	protected void sendGetEntriesCountRequest(
 			Session session, long groupId, long classNameId)
 		throws Exception {
@@ -143,8 +136,8 @@ public class AssetListInteractorImpl
 		JSONObjectWrapper entryQuery = new JSONObjectWrapper(
 			entryQueryAttributes);
 
-		MobilewidgetsassetentryService service = getMWAssetEntryService(
-			session);
+		MobilewidgetsassetentryService service =
+			new MobilewidgetsassetentryService(session);
 
 		service.getAssetEntries(entryQuery, locale.toString());
 	}
