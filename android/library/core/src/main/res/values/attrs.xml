@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<attr name="anonymousApiUserName" format="string" />
+	<attr name="anonymousApiPassword" format="string" />
+	<attr name="companyId" format="integer" />
 	<attr name="layoutId" format="reference" />
 
 	<attr name="authMethod" format="enum">
@@ -20,9 +23,9 @@
 
 	<declare-styleable name="SignUpScreenlet">
 		<attr name="layoutId" />
-		<attr name="companyId" format="integer" />
-		<attr name="anonymousApiUserName" format="string" />
-		<attr name="anonymousApiPassword" format="string" />
+		<attr name="companyId" />
+		<attr name="anonymousApiUserName" />
+		<attr name="anonymousApiPassword" />
 	</declare-styleable>
 
 	<declare-styleable name="WebContentDisplayScreenlet">
@@ -35,9 +38,8 @@
 	<declare-styleable name="ForgotPasswordScreenlet">
 		<attr name="layoutId" />
 		<attr name="authMethod" />
-		<attr name="companyId" format="integer" />
-		<attr name="anonymousApiUserName" format="string" />
-		<attr name="anonymousApiPassword" format="string" />
+		<attr name="companyId" />
+		<attr name="anonymousApiUserName" />
+		<attr name="anonymousApiPassword" />
 	</declare-styleable>
-
 </resources>
