@@ -28,8 +28,6 @@ import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewMod
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 
-import org.json.JSONObject;
-
 /**
  * @author Silvio Santos
  */
@@ -56,26 +54,26 @@ public class ForgotPasswordScreenlet
 	}
 
 	@Override
-	public void onForgotPasswordFailure(Exception e) {
+	public void onForgotPasswordRequestFailure(Exception e) {
 		ForgotPasswordListener listenerView =
 			(ForgotPasswordListener)getScreenletView();
 
-		listenerView.onForgotPasswordFailure(e);
+		listenerView.onForgotPasswordRequestFailure(e);
 
 		if (_listener != null) {
-			_listener.onForgotPasswordFailure(e);
+			_listener.onForgotPasswordRequestFailure(e);
 		}
 	}
 
 	@Override
-	public void onForgotPasswordSuccess(boolean passwordSent) {
+	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
 		ForgotPasswordListener listenerView =
 			(ForgotPasswordListener)getScreenletView();
 
-		listenerView.onForgotPasswordSuccess(passwordSent);
+		listenerView.onForgotPasswordRequestSuccess(passwordSent);
 
 		if (_listener != null) {
-			_listener.onForgotPasswordSuccess(passwordSent);
+			_listener.onForgotPasswordRequestSuccess(passwordSent);
 		}
 	}
 
@@ -93,7 +91,7 @@ public class ForgotPasswordScreenlet
 				_anonymousApiPassword);
 		}
 		catch (Exception e) {
-			onForgotPasswordFailure(e);
+			onForgotPasswordRequestFailure(e);
 		}
 	}
 

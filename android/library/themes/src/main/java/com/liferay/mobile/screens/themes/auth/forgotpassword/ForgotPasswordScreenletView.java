@@ -67,11 +67,11 @@ public class ForgotPasswordScreenletView extends LinearLayout
 	}
 
 	@Override
-	public void onForgotPasswordSuccess(boolean passwordSent) {
+	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
 	}
 
 	@Override
-	public void onForgotPasswordFailure(Exception e) {
+	public void onForgotPasswordRequestFailure(Exception e) {
 	}
 
 	public void setAuthMethod(AuthMethod authMethod) {

@@ -14,15 +14,13 @@
 
 package com.liferay.mobile.screens.auth.forgotpassword;
 
-import org.json.JSONObject;
-
 /**
  * @author Jose Manuel Navarro
  */
 public interface ForgotPasswordListener {
 
-	void onForgotPasswordSuccess(boolean passwordSent);
+	void onForgotPasswordRequestSuccess(boolean passwordSent);
 
-	void onForgotPasswordFailure(Exception e);
+	void onForgotPasswordRequestFailure(Exception e);
 
 }

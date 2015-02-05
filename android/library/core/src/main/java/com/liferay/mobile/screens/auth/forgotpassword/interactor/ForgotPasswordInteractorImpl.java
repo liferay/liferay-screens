@@ -69,10 +69,10 @@ public class ForgotPasswordInteractorImpl
 		}
 
 		if (event.isFailed()) {
-			getListener().onForgotPasswordFailure(event.getException());
+			getListener().onForgotPasswordRequestFailure(event.getException());
 		}
 		else {
-			getListener().onForgotPasswordSuccess(event.isPasswordSent());
+			getListener().onForgotPasswordRequestSuccess(event.isPasswordSent());
 		}
 	}
 
