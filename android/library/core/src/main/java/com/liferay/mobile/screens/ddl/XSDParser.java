@@ -94,11 +94,12 @@ public class XSDParser {
 		int len = dynamicElementList.getLength();
 		for (int i = 0; i < len; ++i) {
 			Element dynamicElement = (Element) dynamicElementList.item(i);
+			if (dynamicElement.getParentNode() == root) {
+				Field formField = createFormField(dynamicElement, locale, defaultLocale);
 
-			Field formField = createFormField(dynamicElement, locale, defaultLocale);
-
-			if (formField != null) {
-				result.add(formField);
+				if (formField != null) {
+					result.add(formField);
+				}
 			}
 		}
 
@@ -131,6 +132,41 @@ public class XSDParser {
 			addLocalizedElement(localizedMetadata, "label", result);
 			addLocalizedElement(localizedMetadata, "predefinedValue", result);
 			addLocalizedElement(localizedMetadata, "tip", result);
+		}
+
+		List<Map<String,String>> options = findOptions(dynamicElement, locale, defaultLocale);
+		if (!options.isEmpty()) {
+			result.put("options", options);
+		}
+
+		return result;
+	}
+
+	protected List<Map<String,String>> findOptions(
+		Element dynamicElement, Locale locale, Locale defaultLocale) {
+
+		List<Element> options = getChildren(dynamicElement, "dynamic-element", "type", "option");
+
+		List<Map<String,String>> result = new ArrayList<Map<String,String>>(options.size());
+
+		for (Element optionDynamicElement : options) {
+			Map<String,String> optionMap = new HashMap<String,String>();
+
+			optionMap.put("name", optionDynamicElement.getAttribute("name"));
+			optionMap.put("value", optionDynamicElement.getAttribute("value"));
+
+			Element localizedLabelMetadata = findMetadataElement(optionDynamicElement, locale, defaultLocale);
+
+			Element foundLabelElement = getChild(localizedLabelMetadata, "entry", "name", "label");
+			if (foundLabelElement != null) {
+				optionMap.put("label", foundLabelElement.getFirstChild().getNodeValue());
+			}
+			else {
+				// use value as fallback
+				optionMap.put("label", optionDynamicElement.getAttribute("value"));
+			}
+
+			result.add(optionMap);
 		}
 
 		return result;
@@ -227,18 +263,25 @@ public class XSDParser {
 	}
 
 	protected Element getChild(Element element, String tagName, String attrName, String attrValue) {
-		NodeList childList = element.getElementsByTagName(tagName);
+		List<Element> elements = getChildren(element, tagName, attrName, attrValue);
+		return elements.isEmpty() ? null : elements.get(0);
+	}
 
+	protected List<Element> getChildren(Element element, String tagName, String attrName, String attrValue) {
+		NodeList childList = element.getElementsByTagName(tagName);
 		int len = (childList == null) ? 0 : childList.getLength();
+
+		List<Element> result = new ArrayList<Element>(len);
+
 		for (int i = 0; i < len; ++i) {
 			Element childElement = (Element) childList.item(i);
 
 			if (attrValue.equals(childElement.getAttribute(attrName))) {
-				return childElement;
+				result.add(childElement);
 			}
 		}
 
-		return null;
+		return result;
 	}
 
 }

@@ -67,7 +67,14 @@ public abstract class Field<T> {
 
 		public Field createField(Map<String,Object> attributes, Locale locale) {
 			if (this.equals(STRING)) {
-				return new StringField(attributes, locale);
+				EditorType editor = EditorType.valueOf(attributes);
+
+				if (editor == EditorType.SELECT || editor == EditorType.RADIO) {
+					return new StringWithOptionsField(attributes, locale);
+				}
+				else {
+					return new StringField(attributes, locale);
+				}
 			}
 			else if (this.equals(BOOLEAN)) {
 				return new BooleanField(attributes, locale);
@@ -95,6 +102,8 @@ public abstract class Field<T> {
 		TEXT("text"),
 		DATE("ddm-date"),
 		NUMBER("ddm-number"),
+		SELECT("select"),
+		RADIO("radio"),
 		UNSUPPORTED(null);
 
 		private EditorType(String value) {
