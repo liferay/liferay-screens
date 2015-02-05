@@ -1,11 +1,10 @@
 # Liferay Screens
 
 [![License](http://img.shields.io/badge/license-LGPL_2.1-red.svg?style=flat-square)](http://opensource.org/licenses/LGPL-2.1)
-[![iOS Platform](http://img.shields.io/badge/platform-iOS_7+-blue.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tree/master/ios)
 
-[![Build Status](http://img.shields.io/travis/liferay/liferay-screens.svg?style=flat-square)](https://travis-ci.org/liferay/liferay-screens/)
-[![Release](http://img.shields.io/badge/release-Beta_1-orange.svg?style=flat-square)](https://github.com/liferay/liferay-screens/releases/)
-[![Tag](http://img.shields.io/github/tag/liferay/liferay-screens.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tags/)
+[![iOS Platform](http://img.shields.io/badge/platform-iOS_7+-blue.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tree/master/ios) [![Build Status](http://img.shields.io/travis/liferay/liferay-screens.svg?style=flat-square)](https://travis-ci.org/liferay/liferay-screens/) [![Release](http://img.shields.io/badge/release-Beta_2-orange.svg?style=flat-square)](https://github.com/liferay/liferay-screens/releases/) [![Tag](http://img.shields.io/github/tag/liferay/liferay-screens.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tags/)
+
+[![Android Platform](http://img.shields.io/badge/platform-Android-green.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tree/master/android) [![Build Status](http://img.shields.io/travis/liferay/liferay-screens.svg?style=flat-square)](https://travis-ci.org/liferay/liferay-screens/) [![Release](http://img.shields.io/badge/release-Alpha-orange.svg?style=flat-square)](https://github.com/liferay/liferay-screens/releases/) 
 
 ## Introduction
 
@@ -36,16 +35,16 @@ Once your project is ready, the following screenlets are available for use in yo
 - [`WebContentDisplayScreenlet`](Documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This screenlet uses the features available in [Web Content Management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/web-content-management).
 - [`PortraitScreenlet`](Documentation/PortraitScreenlet.md): Shows the portrait picture for one user.
 
-Liferay Screens for iOS also contains a set of *themes* that you can use to style screenlets:
-	  
+You can also check out the [Showcase app](ios/Samples/README.md) to learn how to configure and use the above screenlets.
+
+Liferay Screens for iOS also contains a set of *themes* that you can use to change the UI and UX of the screenlets:
+
 - **Default**: The standard theme that is used when you insert any screenlet in your app's UI. The Default theme can be used as the parent theme for any of your custom themes. Please refer to the [Architecture Guide](ios/Documentation/architecture.md#theme-layer) for more details on this.
 - **Flat7**: A sample theme intended to demonstrate how to develop your own full theme from scratch. Please refer to the [Theme Guide](ios/Documentation/themes.md) for instructions on creating your own theme.
 
-To get started with Liferay Screens for iOS, please see [this document](https://github.com/liferay/liferay-screens/tree/master/ios).
-
 ## Android
 
-The implementation of Screens for Android is still in its early stages. It is not available to the community at this time. We hope to make it available in the next few months.
+The implementation of Screens for Android is still in its early stages. Stay tuned!
 
 ## Contributing
 
