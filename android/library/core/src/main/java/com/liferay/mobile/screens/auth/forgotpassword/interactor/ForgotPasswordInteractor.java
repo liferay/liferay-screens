@@ -12,17 +12,21 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.view;
+package com.liferay.mobile.screens.auth.forgotpassword.interactor;
 
-import com.liferay.mobile.screens.auth.AuthBasedViewModel;
+import com.liferay.mobile.screens.auth.AuthMethod;
+import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
+import com.liferay.mobile.screens.base.interactor.Interactor;
 
 /**
- * @author Silvio Santos
+ * @author Jose Manuel Navarro
  */
-public interface LoginViewModel extends AuthBasedViewModel {
+public interface ForgotPasswordInteractor
+	extends Interactor<ForgotPasswordListener> {
 
-	public String getLogin();
-
-	public String getPassword();
+	public void requestPassword(
+			long companyId, String login, AuthMethod authMethod,
+			String anonymousApiUserName, String anonymousApiPassword)
+		throws Exception;
 
 }

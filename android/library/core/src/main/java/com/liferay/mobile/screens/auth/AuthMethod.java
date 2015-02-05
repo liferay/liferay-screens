@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.interactor;
+package com.liferay.mobile.screens.auth;
 
 /**
  * @author Silvio Santos

@@ -110,7 +110,7 @@ public class SignUpScreenlet
 				_anonymousApiPassword);
 		}
 		catch (Exception e) {
-			_listener.onSignUpFailure(e);
+			onSignUpFailure(e);
 		}
 	}
 
