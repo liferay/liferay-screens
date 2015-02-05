@@ -12,17 +12,15 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.view;
-
-import com.liferay.mobile.screens.auth.AuthBasedViewModel;
+package com.liferay.mobile.screens.auth.forgotpassword;
 
 /**
- * @author Silvio Santos
+ * @author Jose Manuel Navarro
  */
-public interface LoginViewModel extends AuthBasedViewModel {
+public interface ForgotPasswordListener {
 
-	public String getLogin();
+	void onForgotPasswordRequestSuccess(boolean passwordSent);
 
-	public String getPassword();
+	void onForgotPasswordRequestFailure(Exception e);
 
 }

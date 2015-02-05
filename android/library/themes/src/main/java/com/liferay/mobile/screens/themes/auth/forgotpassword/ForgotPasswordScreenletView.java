@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.themes.auth.login;
+package com.liferay.mobile.screens.themes.auth.forgotpassword;
 
 import android.content.Context;
 
@@ -25,29 +25,30 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.auth.AuthMethod;
-import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.auth.login.LoginScreenlet;
-import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
+import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
+import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
+import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewModel;
 import com.liferay.mobile.screens.themes.R;
 
-import org.json.JSONObject;
-
 /**
- * @author Silvio Santos
+ * @author Jose Manuel Navarro
  */
-public class LoginScreenletView extends LinearLayout
-	implements LoginViewModel, View.OnClickListener, LoginListener {
+public class ForgotPasswordScreenletView extends LinearLayout
+	implements ForgotPasswordViewModel, View.OnClickListener,
+		ForgotPasswordListener {
 
-	public LoginScreenletView(Context context) {
+	public ForgotPasswordScreenletView(Context context) {
 		this(context, null);
 	}
 
-	public LoginScreenletView(Context context, AttributeSet attributes) {
+	public ForgotPasswordScreenletView(
+		Context context, AttributeSet attributes) {
+
 		this(context, attributes, 0);
 	}
 
-	public LoginScreenletView(
-		Context context, AttributeSet attributes, int defaultStyle) {
+	public ForgotPasswordScreenletView(
+			Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
 	}
@@ -63,24 +64,19 @@ public class LoginScreenletView extends LinearLayout
 	}
 
 	@Override
-	public String getPassword() {
-		return _passwordEditText.getText().toString();
-	}
-
-	@Override
 	public void onClick(View view) {
-		LoginScreenlet loginScreenlet = (LoginScreenlet)getParent();
+		ForgotPasswordScreenlet screenlet =
+			(ForgotPasswordScreenlet)getParent();
 
-		loginScreenlet.onUserAction(LoginScreenlet.LOGIN_ACTION);
+		screenlet.onUserAction(ForgotPasswordScreenlet.REQUEST_PASSWORD_ACTION);
 	}
 
 	@Override
-	public void onLoginFailure(Exception e) {
-		//TODO show login error to user??
+	public void onForgotPasswordRequestFailure(Exception e) {
 	}
 
 	@Override
-	public void onLoginSuccess(JSONObject userAttributes) {
+	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
 	}
 
 	public void setAuthMethod(AuthMethod authMethod) {
@@ -92,14 +88,12 @@ public class LoginScreenletView extends LinearLayout
 		super.onFinishInflate();
 
 		_loginEditText = (EditText)findViewById(R.id.login);
-		_passwordEditText = (EditText)findViewById(R.id.password);
 
-		Button loginButton = (Button)findViewById(R.id.login_button);
-		loginButton.setOnClickListener(this);
+		Button requestButton = (Button)findViewById(R.id.request_button);
+		requestButton.setOnClickListener(this);
 	}
 
 	private AuthMethod _authMethod;
 	private EditText _loginEditText;
-	private EditText _passwordEditText;
 
 }

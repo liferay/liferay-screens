@@ -12,17 +12,15 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.view;
+package com.liferay.mobile.screens.auth.forgotpassword.view;
 
 import com.liferay.mobile.screens.auth.AuthBasedViewModel;
 
 /**
- * @author Silvio Santos
+ * @author Jose Manuel Navarro
  */
-public interface LoginViewModel extends AuthBasedViewModel {
+public interface ForgotPasswordViewModel extends AuthBasedViewModel {
 
 	public String getLogin();
-
-	public String getPassword();
 
 }

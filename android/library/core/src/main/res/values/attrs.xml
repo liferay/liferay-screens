@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<attr name="anonymousApiUserName" format="string" />
+	<attr name="anonymousApiPassword" format="string" />
+	<attr name="companyId" format="integer" />
 	<attr name="layoutId" format="reference" />
+
+	<attr name="authMethod" format="enum">
+		<enum name="email" value="0" />
+		<enum name="screen_name" value="1" />
+		<enum name="user_id" value="2" />
+	</attr>
+
+	<declare-styleable name="ForgotPasswordScreenlet">
+		<attr name="layoutId" />
+		<attr name="anonymousApiUserName" />
+		<attr name="anonymousApiPassword" />
+		<attr name="authMethod" />
+		<attr name="companyId" />
+	</declare-styleable>
 
 	<declare-styleable name="LoginScreenlet">
 		<attr name="layoutId" />
-		<attr name="authMethod" format="enum">
-			<enum name="email" value="0" />
-			<enum name="screen_name" value="1" />
-			<enum name="user_id" value="2" />
-		</attr>
-	</declare-styleable>
-
-	<declare-styleable name="PortraitScreenlet">
-		<attr name="backgroundColor" format="color" />
-		<attr name="layoutId" />
+		<attr name="authMethod" />
 	</declare-styleable>
 
 	<declare-styleable name="SignUpScreenlet">
 		<attr name="layoutId" />
-		<attr name="companyId" format="integer" />
-		<attr name="anonymousApiUserName" format="string" />
-		<attr name="anonymousApiPassword" format="string" />
+		<attr name="anonymousApiUserName" />
+		<attr name="anonymousApiPassword" />
+		<attr name="companyId" />
 	</declare-styleable>
 
 	<declare-styleable name="WebContentDisplayScreenlet">
 		<attr name="layoutId" />
+		<attr name="articleId" format="string" />
 		<attr name="autoLoad" format="boolean" />
 		<attr name="groupId" format="integer" />
-		<attr name="articleId" format="string" />
 	</declare-styleable>
 </resources>

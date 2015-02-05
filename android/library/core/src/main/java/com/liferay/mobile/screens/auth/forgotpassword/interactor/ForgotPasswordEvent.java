@@ -12,17 +12,29 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.view;
+package com.liferay.mobile.screens.auth.forgotpassword.interactor;
 
-import com.liferay.mobile.screens.auth.AuthBasedViewModel;
+import com.liferay.mobile.screens.base.interactor.BasicEvent;
 
 /**
- * @author Silvio Santos
+ * @author Jose Manuel Navarro
  */
-public interface LoginViewModel extends AuthBasedViewModel {
+public class ForgotPasswordEvent extends BasicEvent {
 
-	public String getLogin();
+	public ForgotPasswordEvent(int targetScreenletId, Boolean passwordSent) {
+		super(targetScreenletId);
 
-	public String getPassword();
+		_passwordSent = passwordSent;
+	}
+
+	public ForgotPasswordEvent(int targetScreenletId, Exception e) {
+		super(targetScreenletId, e);
+	}
+
+	public Boolean isPasswordSent() {
+		return _passwordSent;
+	}
+
+	private Boolean _passwordSent;
 
 }
