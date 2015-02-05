@@ -87,9 +87,7 @@ public class LoginScreenlet
 			getInteractor().login(login, password, method);
 		}
 		catch (Exception e) {
-			if (_listener != null) {
-				_listener.onLoginFailure(e);
-			}
+			onLoginFailure(e);
 		}
 	}
 

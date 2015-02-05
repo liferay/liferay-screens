@@ -93,9 +93,7 @@ public class ForgotPasswordScreenlet
 				_anonymousApiPassword);
 		}
 		catch (Exception e) {
-			if (_listener != null) {
-				_listener.onForgotPasswordFailure(e);
-			}
+			onForgotPasswordFailure(e);
 		}
 	}
 
