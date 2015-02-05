@@ -14,22 +14,12 @@
 
 package com.liferay.mobile.screens.ddl;
 
-import com.liferay.mobile.android.v62.user.UserService;
-import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.auth.login.interactor.AuthMethod;
-import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
 import com.liferay.mobile.screens.ddl.field.Field;
 import com.liferay.mobile.screens.ddl.field.StringField;
-import com.liferay.mobile.screens.util.LiferayServerContext;
-import com.liferay.mobile.screens.util.MockFactory;
-
-import junit.framework.Assert;
 
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.xml.sax.SAXParseException;
@@ -37,8 +27,10 @@ import org.xml.sax.SAXParseException;
 import java.util.List;
 import java.util.Locale;
 
-import static junit.framework.Assert.*;
-import static org.mockito.Mockito.doReturn;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * @author Jose Manuel Navarro
