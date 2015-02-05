@@ -37,6 +37,10 @@ public abstract class InteractorAsyncTaskCallback<T>
 		EventBusUtil.post(createEvent(_targetScreenletId, result));
 	}
 
+	public int getTargetScreenletId() {
+		return _targetScreenletId;
+	}
+
 	protected abstract BasicEvent createEvent(
 		int targetScreenletId, Exception e);
 

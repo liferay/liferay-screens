@@ -126,16 +126,18 @@ Also, some screenlets can be used individually without the need to import an ent
 - [`AssetListScreenlet`](Documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). This includes web content, blog entries, documents, and more.
 - [`WebContentDisplayScreenlet`](Documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This screenlet uses the features avaiable in [Web Content Management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/web-content-management).
 
-Liferay Screens also contains *themes* that you can use to style screenlets. A list of these themes is presented next.
-	  
 ## Listing of Available Themes
 
-With themes, you can control the look and feel of any screenlet that you decide to use in you app. What's more, these themes are fully pluggable. You can install new themes to extend and customize any screenlet to meet the design and UX of your app.
+With themes, you can control the look and feel of any screenlet that you decide to use in you app. What's more, these themes are fully pluggable. You can match the UI and UX of your app by installing new themes to extend and customize any screenlet.
 
 The themes currently released with Liferay Screens are:
 
 - **Default**: The standard theme that is used when you insert any screenlet on your screen. It can be used as the parent theme for any of your custom themes (refer to the [Architecture Guide](Documentation/architecture.md#theme-layer) for more details on this).
 - **Flat7**: A sample theme intended to demonstrate how to develop your own full theme from scratch. For information on creating your own theme, refer to the [Theme Guide](Documentation/themes.md).
+
+## Sample Apps
+
+To learn how to configure and use the available screenlets, see the [Showcase app](Samples/README.md).
 
 ## Contributing New Screenlets and Themes
 

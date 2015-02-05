@@ -14,20 +14,15 @@
 
 package com.liferay.mobile.screens.auth.login.view;
 
-import com.liferay.mobile.screens.auth.login.interactor.AuthMethod;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.auth.AuthBasedViewModel;
 
 /**
  * @author Silvio Santos
  */
-public interface LoginViewModel extends BaseViewModel {
-
-	public AuthMethod getAuthMethod();
+public interface LoginViewModel extends AuthBasedViewModel {
 
 	public String getLogin();
 
 	public String getPassword();
-
-	public void setAuthMethod(AuthMethod authMethod);
 
 }

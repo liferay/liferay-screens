@@ -53,8 +53,19 @@ public class WebContentDisplayScreenlet
 		Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
+	}
 
-		setInteractor(new WebContentDisplayInteractorImpl(getScreenletId()));
+	@Override
+	public WebContentDisplayInteractor getInteractor() {
+		WebContentDisplayInteractor interactor = super.getInteractor();
+
+		if (interactor == null) {
+			interactor = new WebContentDisplayInteractorImpl(getScreenletId());
+
+			setInteractor(interactor);
+		}
+
+		return interactor;
 	}
 
 	public void load() throws Exception {

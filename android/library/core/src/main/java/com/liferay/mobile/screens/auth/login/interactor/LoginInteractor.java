@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.auth.login.interactor;
 
+import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 
@@ -22,6 +23,7 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
  */
 public interface LoginInteractor extends Interactor<LoginListener> {
 
-	public void login(String login, String password, AuthMethod method);
+	public void login(String login, String password, AuthMethod authMethod)
+		throws Exception;
 
 }

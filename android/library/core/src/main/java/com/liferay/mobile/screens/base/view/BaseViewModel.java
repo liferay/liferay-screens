@@ -16,4 +16,6 @@ package com.liferay.mobile.screens.base.view;
 
 public interface BaseViewModel {
 
+	//TODO Create save and restore methods to save view model state?
+
 }

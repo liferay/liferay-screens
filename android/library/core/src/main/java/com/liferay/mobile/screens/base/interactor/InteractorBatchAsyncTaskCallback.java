@@ -12,29 +12,22 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.interactor;
+package com.liferay.mobile.screens.base.interactor;
+
+import org.json.JSONArray;
 
 /**
  * @author Silvio Santos
  */
-public enum AuthMethod {
+public abstract class InteractorBatchAsyncTaskCallback<T>
+	extends InteractorAsyncTaskCallback<T> {
 
-	EMAIL(0), SCREEN_NAME(1), USER_ID(2);
-
-	public static AuthMethod getValue(int value) {
-		for (AuthMethod method : AuthMethod.values()) {
-			if (method._value == value) {
-				return method;
-			}
-		}
-
-		return EMAIL;
+	public InteractorBatchAsyncTaskCallback(int targetScreenletId) {
+		super(targetScreenletId);
 	}
 
-	private AuthMethod(int value) {
-		_value = value;
+	public void onPostExecute(JSONArray jsonArray) throws Exception {
+		onSuccess(transform(jsonArray));
 	}
-
-	private int _value;
 
 }

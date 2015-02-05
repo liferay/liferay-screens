@@ -46,13 +46,11 @@ public class WebContentDisplayInteractorImpl
 			return;
 		}
 
-		String receivedHtml = event.getHtml();
-
-		if (receivedHtml != null) {
-			getListener().onWebContentReceived(receivedHtml);
+		if (event.isFailed()) {
+			getListener().onWebContentFailure(event.getException());
 		}
 		else {
-			getListener().onWebContentFailure(event.getException());
+			getListener().onWebContentReceived(event.getHtml());
 		}
 	}
 
