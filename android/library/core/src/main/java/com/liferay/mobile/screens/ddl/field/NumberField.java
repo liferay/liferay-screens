@@ -51,11 +51,7 @@ public class NumberField extends Field<Number> {
 
 	@Override
 	protected String convertToString(Number value) {
-		if (value == null) {
-			return null;
-		}
-
-		return "true";
+		return (value == null) ? null : value.toString();
 	}
 
 	@Override

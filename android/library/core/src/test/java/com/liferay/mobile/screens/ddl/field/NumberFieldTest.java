@@ -87,113 +87,34 @@ public class NumberFieldTest {
 		}
 	}
 
-	/*
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToString {
 
 		@Test
-		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
+		public void shouldReturnNullWhenNullNumberIsSupplied() throws Exception {
 			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 
 			assertNull(field.convertToString(null));
 		}
 
 		@Test
-		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
+		public void shouldReturnIntegerStringWhenIntegerNumberIsSupplied() throws Exception {
 			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 
-			assertEquals("true", field.convertToString(true));
+			assertEquals("123", field.convertToString(Integer.valueOf(123)));
+			assertEquals("123", field.convertToString(Long.valueOf(123L)));
 		}
 
 		@Test
-		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
+		public void shouldReturnDecimalStringWhenDecimalNumberIsSupplied() throws Exception {
 			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 
-			assertEquals("false", field.convertToString(false));
+			assertEquals("123.4", field.convertToString(Double.valueOf(123.4)));
+			assertEquals("123.4", field.convertToString(Float.valueOf(123.4f)));
 		}
 	}
 
-	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenConvertingToLabel {
-
-		@Test
-		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
-
-			assertNull(field.convertToLabel(null));
-		}
-
-		@Test
-		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
-
-			assertEquals("Yes", field.convertToLabel(true));
-		}
-
-		@Test
-		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
-
-			assertEquals("No", field.convertToLabel(false));
-		}
-	}
-
-	public static class WhenToString {
-
-		@Test
-		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
-			field.setCurrentValue(null);
-
-			assertNull(field.toString());
-		}
-
-		@Test
-		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
-			field.setCurrentValue(true);
-
-			assertEquals("true", field.toString());
-		}
-
-		@Test
-		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
-			field.setCurrentValue(false);
-
-			assertEquals("false", field.toString());
-		}
-	}
-
-	public static class WhenToLabel {
-
-		@Test
-		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
-			field.setCurrentValue(null);
-
-			assertNull(field.toLabel());
-		}
-
-		@Test
-		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
-			field.setCurrentValue(true);
-
-			assertEquals("Yes", field.toLabel());
-		}
-
-		@Test
-		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
-			field.setCurrentValue(false);
-
-			assertEquals("No", field.toLabel());
-		}
-	}
-*/
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
