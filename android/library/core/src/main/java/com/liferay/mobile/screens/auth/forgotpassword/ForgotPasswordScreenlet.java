@@ -35,7 +35,7 @@ public class ForgotPasswordScreenlet
 	extends BaseScreenlet<ForgotPasswordViewModel, ForgotPasswordInteractor>
 	implements ForgotPasswordListener {
 
-	public static final String REQUEST_ACTION = "forgotPassword";
+	public static final String REQUEST_PASSWORD_ACTION = "requestPassword";
 
 	public ForgotPasswordScreenlet(Context context) {
 		this(context, null);

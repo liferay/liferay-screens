@@ -63,7 +63,7 @@ public class ForgotPasswordScreenletView extends LinearLayout
 		ForgotPasswordScreenlet screenlet =
 			(ForgotPasswordScreenlet)getParent();
 
-		screenlet.onUserAction(ForgotPasswordScreenlet.REQUEST_ACTION);
+		screenlet.onUserAction(ForgotPasswordScreenlet.REQUEST_PASSWORD_ACTION);
 	}
 
 	@Override
