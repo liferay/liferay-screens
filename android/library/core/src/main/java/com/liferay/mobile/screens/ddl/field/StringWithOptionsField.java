@@ -144,7 +144,11 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 
 	@Override
 	protected String convertToLabel(List<Option> value) {
-		return "";
+		if (value == null || value.isEmpty()) {
+			return "";
+		}
+
+		return value.get(0).label;
 	}
 
 	protected Option findOptionByValue(String value) {

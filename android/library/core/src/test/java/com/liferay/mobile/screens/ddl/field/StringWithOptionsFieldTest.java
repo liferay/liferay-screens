@@ -270,6 +270,37 @@ public class StringWithOptionsFieldTest {
 
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
+	public static class WhenConvertingToLabel {
+
+		@Test
+		public void shouldReturnEmptyWhenNullSelectedOptions() {
+			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
+
+			assertEquals("", field.convertToLabel(null));
+		}
+
+		@Test
+		public void shouldReturnEmptyWhenEmptySelectedOptions() {
+			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
+
+			assertEquals("", field.convertToLabel(new ArrayList<StringWithOptionsField.Option>()));
+		}
+
+		@Test
+		public void shouldReturnTheOptionLabelWhenSelectedOption() {
+			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
+
+			List<StringWithOptionsField.Option> selectedOptions = new ArrayList<>();
+
+			selectedOptions.add(field.getAvailableOptions().get(0));
+
+			assertEquals("Option 1", field.convertToLabel(selectedOptions));
+		}
+
+	}
+
+	@Config(emulateSdk = 18)
+	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 		@Test
 		public void shouldReturnStringWithOptionsFieldObject() throws Exception {
