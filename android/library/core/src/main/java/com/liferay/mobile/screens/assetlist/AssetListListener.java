@@ -21,7 +21,7 @@ import java.util.List;
  */
 public interface AssetListListener {
 
-	public void onAssetListLoadFailure(Exception e);
+	public void onAssetListPageFailed(int page, Exception e);
 
 	public void onAssetListPageReceived(
 		int page, List<AssetEntry> entries, int rowCount);

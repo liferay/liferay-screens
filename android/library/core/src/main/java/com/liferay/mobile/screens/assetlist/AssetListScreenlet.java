@@ -87,11 +87,13 @@ public class AssetListScreenlet
 
 	@Override
 	public void onAssetListRowsFailure(int startRow, int endRow, Exception e) {
+		int page = getPageFromRow(startRow);
+
 		AssetListListener listenerView = (AssetListListener)getScreenletView();
-		listenerView.onAssetListLoadFailure(e);
+		listenerView.onAssetListPageFailed(page, e);
 
 		if (_listener != null) {
-			_listener.onAssetListLoadFailure(e);
+			_listener.onAssetListPageFailed(page, e);
 		}
 	}
 
