@@ -19,7 +19,7 @@ package com.liferay.mobile.screens.base.context;
  */
 public class RequestStateEvent {
 
-	public RequestStateEvent(int targetScreenletId, int object) {
+	public RequestStateEvent(int targetScreenletId, Object object) {
 		_targetScreenletId = targetScreenletId;
 		_state = object;
 	}
