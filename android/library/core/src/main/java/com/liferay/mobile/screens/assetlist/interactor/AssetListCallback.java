@@ -18,17 +18,15 @@ import android.util.Pair;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.context.RequestStateEvent;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.InteractorBatchAsyncTaskCallback;
-import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.JSONUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Silvio Santos
@@ -62,19 +60,27 @@ public class AssetListCallback
 	}
 
 	@Override
-	protected BasicEvent createEvent(int targetScreenletId, Result result) {
-
-		//TODO overwrite onSuccess & onFailure to call the state there
+	public void onSuccess(Result result) {
 		cleanRequestState();
 
+		super.onSuccess(result);
+	}
+
+	@Override
+	public void onFailure(Exception e) {
+		cleanRequestState();
+
+		super.onFailure(e);
+	}
+
+	@Override
+	protected BasicEvent createEvent(int targetScreenletId, Result result) {
 		return new AssetListEvent(
 			targetScreenletId, _rowsRange.first, _rowsRange.second, result.entries, result.rowCount);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		cleanRequestState();
-
 		return new AssetListEvent(targetScreenletId, e);
 	}
 
