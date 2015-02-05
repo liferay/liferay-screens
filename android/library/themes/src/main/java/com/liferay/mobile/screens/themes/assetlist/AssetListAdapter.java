@@ -23,7 +23,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.assetlist.interactor.AssetListPageListener;
 import com.liferay.mobile.screens.themes.R;
 
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class AssetListAdapter
 	extends RecyclerView.Adapter<AssetListAdapter.ViewHolder> {
 
 	public AssetListAdapter(
-		int layoutId, int progressLayoutId, AssetListPageListener listener) {
+		int layoutId, int progressLayoutId, AssetListAdapterListener listener) {
 
 		_entries = new ArrayList<>();
 		_layoutId = layoutId;
@@ -117,7 +116,7 @@ public class AssetListAdapter
 
 	private List<AssetEntry> _entries;
 	private int _layoutId;
-	private AssetListPageListener _listener;
+	private AssetListAdapterListener _listener;
 	private int _progressLayoutId;
 	private int _rowCount;
 

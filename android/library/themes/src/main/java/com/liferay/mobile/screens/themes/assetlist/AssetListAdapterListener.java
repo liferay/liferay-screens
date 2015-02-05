@@ -12,12 +12,12 @@
  * details.
  */
 
-package com.liferay.mobile.screens.assetlist.interactor;
+package com.liferay.mobile.screens.themes.assetlist;
 
 /**
  * @author Silvio Santos
  */
-public interface AssetListPageListener {
+public interface AssetListAdapterListener {
 
 	public void onPageNotFound(int row);
 
