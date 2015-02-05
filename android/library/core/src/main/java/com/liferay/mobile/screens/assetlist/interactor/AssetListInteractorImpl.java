@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.assetlist.interactor;
 
+import android.util.Pair;
+
 import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
@@ -35,52 +37,40 @@ import org.json.JSONObject;
  * @author Silvio Santos
  */
 public class AssetListInteractorImpl
-	extends BaseInteractor<AssetListListener> implements AssetListInteractor {
+	extends BaseInteractor<AssetListRowsListener> implements AssetListInteractor {
 
-	public AssetListInteractorImpl(
-		int targetScreenletId, int firstPageSize, int pageSize) {
-
+	public AssetListInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
-
-		_firstPageSize = (firstPageSize != 0) ? firstPageSize : pageSize;
-		_pageSize = pageSize;
 	}
 
-	public void loadPage(
-			long groupId, long classNameId, int page, Locale locale)
+	public void loadRows(
+			long groupId, long classNameId, int startRow, int endRow, Locale locale)
 		throws Exception {
 
-		validate(groupId, classNameId, page, locale);
+		validate(groupId, classNameId, startRow, endRow, locale);
+
+		Pair<Integer, Integer> rowsRange = new Pair<>(startRow, endRow);
 
 		RequestState requestState = RequestState.getInstance();
 
-		if (requestState.contains(getTargetScreenletId(), page)) {
+		// check if this page is already being loaded
+		if (requestState.contains(getTargetScreenletId(), rowsRange)) {
 			return;
 		}
 
 		Session session = SessionContext.createSessionFromCurrentSession();
 		BatchSessionImpl batchSession = new BatchSessionImpl(session);
 		batchSession.setCallback(
-			new AssetListCallback(getTargetScreenletId(), page));
+			new AssetListCallback(getTargetScreenletId(), rowsRange));
 
 		sendGetPageRowsRequest(
-			batchSession, groupId, classNameId, page, locale);
+			batchSession, groupId, classNameId, startRow, endRow, locale);
 
 		sendGetEntriesCountRequest(batchSession, groupId, classNameId);
 
 		batchSession.invoke();
 
-		requestState.put(getTargetScreenletId(), page);
-	}
-
-	@Override
-	public void loadPageForRow(
-			long groupId, long classNameId, int row, Locale locale)
-		throws Exception {
-
-		int page = getPageFromRow(row);
-
-		loadPage(groupId, classNameId, page, locale);
+		requestState.put(getTargetScreenletId(), rowsRange);
 	}
 
 	public void onEvent(AssetListEvent event) {
@@ -89,15 +79,15 @@ public class AssetListInteractorImpl
 		}
 
 		if (event.isFailed()) {
-			getListener().onAssetListLoadFailure(event.getException());
+			getListener().onAssetListRowsFailure(
+				event.getStartRow(), event.getEndRow(), event.getException());
 		}
 		else {
-			int firstRowForPage = getFirstRowForPage(event.getPage());
 			List<AssetEntry> entries = event.getEntries();
 			int rowCount = event.getRowCount();
 
-			getListener().onAssetListPageReceived(
-				firstRowForPage, entries, rowCount);
+			getListener().onAssetListRowsReceived(
+				event.getStartRow(), event.getEndRow(), entries, rowCount);
 		}
 	}
 
@@ -118,26 +108,11 @@ public class AssetListInteractorImpl
 		return new AssetEntryService(session);
 	}
 
-	protected int getFirstRowForPage(int page) {
-		if (page == 0) {
-			return 0;
-		}
-
-		return (_firstPageSize + (page - 1) * _pageSize);
-	}
-
+	//JM why this method?
 	protected MobilewidgetsassetentryService getMWAssetEntryService(
 		Session session) {
 
 		return new MobilewidgetsassetentryService(session);
-	}
-
-	protected int getPageFromRow(int row) {
-		if (row < _firstPageSize) {
-			return 0;
-		}
-
-		return ((row - _firstPageSize) / _pageSize) + 1;
 	}
 
 	protected void sendGetEntriesCountRequest(
@@ -155,15 +130,15 @@ public class AssetListInteractorImpl
 	}
 
 	protected void sendGetPageRowsRequest(
-			Session session, long groupId, long classNameId, int page,
+			Session session, long groupId, long classNameId, int startRow, int endRow,
 			Locale locale)
 		throws Exception {
 
 		JSONObject entryQueryAttributes = configureEntryQueryAttributes(
 			groupId, classNameId);
 
-		entryQueryAttributes.put("start", getFirstRowForPage(page));
-		entryQueryAttributes.put("end", getFirstRowForPage(page + 1));
+		entryQueryAttributes.put("start", startRow);
+		entryQueryAttributes.put("end", endRow);
 
 		JSONObjectWrapper entryQuery = new JSONObjectWrapper(
 			entryQueryAttributes);
@@ -175,7 +150,7 @@ public class AssetListInteractorImpl
 	}
 
 	protected void validate(
-		long groupId, long classNameId, int page, Locale locale) {
+		long groupId, long classNameId, int startRow, int endRow, Locale locale) {
 
 		if (groupId <= 0) {
 			throw new IllegalArgumentException(
@@ -187,8 +162,16 @@ public class AssetListInteractorImpl
 				"ClassNameId cannot be 0 or negative");
 		}
 
-		if (page < 0) {
-			throw new IllegalArgumentException("Page cannot be negative");
+		if (startRow < 0) {
+			throw new IllegalArgumentException("Start row cannot be negative");
+		}
+
+		if (endRow < 0) {
+			throw new IllegalArgumentException("End row cannot be negative");
+		}
+
+		if (startRow >= endRow) {
+			throw new IllegalArgumentException("Start row cannot be greater or equals than end row");
 		}
 
 		if (locale == null) {

@@ -69,7 +69,7 @@ public class AssetListScreenletView extends RecyclerView
 
 	@Override
 	public void onAssetListPageReceived(
-		int firstRowForPage, List<AssetEntry> serverEntries, int rowCount) {
+		int page, List<AssetEntry> serverEntries, int rowCount) {
 
 		AssetListAdapter adapter = (AssetListAdapter)getAdapter();
 		List<AssetEntry> entries = adapter.getEntries();
@@ -79,6 +79,10 @@ public class AssetListScreenletView extends RecyclerView
 		for (int i = 0; i < entries.size(); i++) {
 			allEntries.set(i, entries.get(i));
 		}
+
+		AssetListScreenlet screenlet = ((AssetListScreenlet)getParent());
+
+		int firstRowForPage = screenlet.getFirstRowForPage(page);
 
 		for (int i = 0; i < (serverEntries.size()); i++) {
 			allEntries.set(i + firstRowForPage, serverEntries.get(i));

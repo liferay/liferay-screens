@@ -22,14 +22,10 @@ import java.util.Locale;
 /**
  * @author Silvio Santos
  */
-public interface AssetListInteractor extends Interactor<AssetListListener> {
+public interface AssetListInteractor extends Interactor<AssetListRowsListener> {
 
-	public void loadPage(
-			long groupId, long classNameId, int page, Locale locale)
-		throws Exception;
-
-	public void loadPageForRow(
-			long groupId, long classNameId, int row, Locale locale)
+	public void loadRows(
+			long groupId, long classNameId, int startRow, int endRow, Locale locale)
 		throws Exception;
 
 }

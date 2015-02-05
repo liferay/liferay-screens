@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.assetlist.interactor;
 
+import android.util.Pair;
+
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.context.RequestStateEvent;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
@@ -33,10 +35,10 @@ import org.json.JSONObject;
 public class AssetListCallback
 	extends InteractorBatchAsyncTaskCallback<AssetListCallback.Result> {
 
-	public AssetListCallback(int targetScreenletId, int page) {
+	public AssetListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
 		super(targetScreenletId);
 
-		_page = page;
+		_rowsRange = rowsRange;
 	}
 
 	@Override
@@ -62,20 +64,20 @@ public class AssetListCallback
 	protected BasicEvent createEvent(
 		int targetScreenletId, AssetListCallback.Result result) {
 
-		EventBusUtil.post(new RequestStateEvent(targetScreenletId, _page));
+		EventBusUtil.post(new RequestStateEvent(targetScreenletId, _rowsRange));
 
 		return new AssetListEvent(
-			targetScreenletId, _page, result.entries, result.rowCount);
+			targetScreenletId, _rowsRange.first, _rowsRange.second, result.entries, result.rowCount);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		EventBusUtil.post(new RequestStateEvent(targetScreenletId, _page));
+		EventBusUtil.post(new RequestStateEvent(targetScreenletId, _rowsRange));
 
 		return new AssetListEvent(targetScreenletId, e);
 	}
 
-	private int _page;
+	private final Pair<Integer, Integer> _rowsRange;
 
 	static class Result {
 
