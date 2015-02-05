@@ -79,7 +79,6 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToString {
@@ -144,8 +143,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-
-		@RunWith(Enclosed.class)
+	@RunWith(Enclosed.class)
 	public static class WhenConvertingFromString {
 
 		@Config(emulateSdk = 18)
