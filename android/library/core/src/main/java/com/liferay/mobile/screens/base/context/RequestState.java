@@ -25,6 +25,8 @@ import java.util.HashSet;
  */
 public class RequestState {
 
+	//TODO we should add javadoc for the most important classes like this one.
+
 	public synchronized boolean contains(int targetScreenletId, Object state) {
 		HashSet<Object> set = _states.get(targetScreenletId);
 
@@ -43,10 +45,6 @@ public class RequestState {
 		return _instance;
 	}
 
-	public void onEvent(RequestStateEvent event) {
-		remove(event.getTargetScreenletId(), event.getState());
-	}
-
 	public synchronized void put(int targetScreenletId, Object state) {
 		HashSet<Object> set = _states.get(targetScreenletId);
 
@@ -59,7 +57,7 @@ public class RequestState {
 		set.add(state);
 	}
 
-	protected synchronized void remove(int targetScreenletId, Object state) {
+	public synchronized void remove(int targetScreenletId, Object state) {
 		HashSet<Object> set = _states.get(targetScreenletId);
 
 		if (set == null) {
@@ -71,10 +69,6 @@ public class RequestState {
 		if (set.isEmpty()) {
 			_states.remove(targetScreenletId);
 		}
-	}
-
-	private RequestState() {
-		EventBusUtil.register(this);
 	}
 
 	private static RequestState _instance;

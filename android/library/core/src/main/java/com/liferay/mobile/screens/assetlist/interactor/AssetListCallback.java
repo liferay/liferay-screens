@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.assetlist.interactor;
 import android.util.Pair;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.context.RequestStateEvent;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.InteractorBatchAsyncTaskCallback;
@@ -63,7 +64,8 @@ public class AssetListCallback
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Result result) {
 
-		EventBusUtil.post(new RequestStateEvent(targetScreenletId, _rowsRange));
+		//TODO overwrite onSuccess & onFailure to call the state there
+		cleanRequestState();
 
 		return new AssetListEvent(
 			targetScreenletId, _rowsRange.first, _rowsRange.second, result.entries, result.rowCount);
@@ -71,9 +73,13 @@ public class AssetListCallback
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		EventBusUtil.post(new RequestStateEvent(targetScreenletId, _rowsRange));
+		cleanRequestState();
 
 		return new AssetListEvent(targetScreenletId, e);
+	}
+
+	protected void cleanRequestState() {
+		RequestState.getInstance().remove(getTargetScreenletId(), _rowsRange);
 	}
 
 	private final Pair<Integer, Integer> _rowsRange;
