@@ -12,10 +12,18 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.view;
+package com.liferay.mobile.screens.assetlist;
 
-public interface BaseViewModel {
+import java.util.List;
 
-	//TODO Create save and restore methods to save view model state?
+/**
+ * @author Silvio Santos
+ */
+public interface AssetListListener {
+
+	public void onAssetListPageFailed(int page, Exception e);
+
+	public void onAssetListPageReceived(
+		int page, List<AssetEntry> entries, int rowCount);
 
 }

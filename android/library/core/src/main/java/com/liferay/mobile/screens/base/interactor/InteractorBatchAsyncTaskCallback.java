@@ -12,10 +12,22 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.view;
+package com.liferay.mobile.screens.base.interactor;
 
-public interface BaseViewModel {
+import org.json.JSONArray;
 
-	//TODO Create save and restore methods to save view model state?
+/**
+ * @author Silvio Santos
+ */
+public abstract class InteractorBatchAsyncTaskCallback<T>
+	extends InteractorAsyncTaskCallback<T> {
+
+	public InteractorBatchAsyncTaskCallback(int targetScreenletId) {
+		super(targetScreenletId);
+	}
+
+	public void onPostExecute(JSONArray jsonArray) throws Exception {
+		onSuccess(transform(jsonArray));
+	}
 
 }

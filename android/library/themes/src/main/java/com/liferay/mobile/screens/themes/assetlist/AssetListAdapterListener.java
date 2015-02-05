@@ -12,10 +12,13 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.view;
+package com.liferay.mobile.screens.themes.assetlist;
 
-public interface BaseViewModel {
+/**
+ * @author Silvio Santos
+ */
+public interface AssetListAdapterListener {
 
-	//TODO Create save and restore methods to save view model state?
+	public void onPageNotFound(int row);
 
 }

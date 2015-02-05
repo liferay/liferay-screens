@@ -12,10 +12,29 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.view;
+package com.liferay.mobile.screens.base.interactor;
 
-public interface BaseViewModel {
+import org.json.JSONArray;
 
-	//TODO Create save and restore methods to save view model state?
+/**
+ * @author Silvio Santos
+ */
+public class JSONArrayEvent extends BasicEvent {
+
+	public JSONArrayEvent(int targetScreenletId, Exception e) {
+		super(targetScreenletId, e);
+	}
+
+	public JSONArrayEvent(int targetScreenletId, JSONArray jsonArray) {
+		super(targetScreenletId);
+
+		_jsonArray = jsonArray;
+	}
+
+	public JSONArray getJsonArray() {
+		return _jsonArray;
+	}
+
+	private JSONArray _jsonArray;
 
 }

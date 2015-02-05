@@ -2,14 +2,24 @@
 <resources>
 	<attr name="anonymousApiUserName" format="string" />
 	<attr name="anonymousApiPassword" format="string" />
-	<attr name="companyId" format="integer" />
-	<attr name="layoutId" format="reference" />
-
 	<attr name="authMethod" format="enum">
 		<enum name="email" value="0" />
 		<enum name="screen_name" value="1" />
 		<enum name="user_id" value="2" />
 	</attr>
+	<attr name="autoLoad" format="boolean" />
+	<attr name="companyId" format="integer" />
+	<attr name="groupId" format="integer" />
+	<attr name="layoutId" format="reference" />
+
+	<declare-styleable name="AssetListScreenlet">
+		<attr name="layoutId" />
+		<attr name="autoLoad" />
+		<attr name="groupId" />
+		<attr name="classNameId" format="integer" />
+		<attr name="firstPageSize" format="integer" />
+		<attr name="pageSize" format="integer" />
+	</declare-styleable>
 
 	<declare-styleable name="ForgotPasswordScreenlet">
 		<attr name="layoutId" />
@@ -26,15 +36,15 @@
 
 	<declare-styleable name="SignUpScreenlet">
 		<attr name="layoutId" />
+		<attr name="companyId" />
 		<attr name="anonymousApiUserName" />
 		<attr name="anonymousApiPassword" />
-		<attr name="companyId" />
 	</declare-styleable>
 
 	<declare-styleable name="WebContentDisplayScreenlet">
 		<attr name="layoutId" />
+		<attr name="autoLoad" />
+		<attr name="groupId" />
 		<attr name="articleId" format="string" />
-		<attr name="autoLoad" format="boolean" />
-		<attr name="groupId" format="integer" />
 	</declare-styleable>
 </resources>

@@ -54,8 +54,19 @@ public class SignUpScreenlet
 		Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
+	}
 
-		setInteractor(new SignUpInteractorImpl(getScreenletId()));
+	@Override
+	public SignUpInteractor getInteractor() {
+		SignUpInteractor interactor = super.getInteractor();
+
+		if (interactor == null) {
+			interactor = new SignUpInteractorImpl(getScreenletId());
+
+			setInteractor(interactor);
+		}
+
+		return interactor;
 	}
 
 	@Override
