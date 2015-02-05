@@ -111,10 +111,6 @@ public class AssetListScreenlet
 		}
 	}
 
-	public void setListener(AssetListListener listener) {
-		_listener = listener;
-	}
-
 	public int getFirstRowForPage(int page) {
 		if (page == 0) {
 			return 0;
@@ -129,6 +125,54 @@ public class AssetListScreenlet
 		}
 
 		return ((row - _firstPageSize) / _pageSize) + 1;
+	}
+
+	public boolean isAutoLoad() {
+		return _autoLoad;
+	}
+
+	public void setAutoLoad(boolean autoLoad) {
+		_autoLoad = autoLoad;
+	}
+
+	public int getClassNameId() {
+		return _classNameId;
+	}
+
+	public void setClassNameId(int classNameId) {
+		_classNameId = classNameId;
+	}
+
+	public int getFirstPageSize() {
+		return _firstPageSize;
+	}
+
+	public void setFirstPageSize(int firstPageSize) {
+		_firstPageSize = firstPageSize;
+	}
+
+	public int getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(int groupId) {
+		_groupId = groupId;
+	}
+
+	public AssetListListener getListener() {
+		return _listener;
+	}
+
+	public void setListener(AssetListListener listener) {
+		_listener = listener;
+	}
+
+	public int getPageSize() {
+		return _pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		_pageSize = pageSize;
 	}
 
 	@Override
