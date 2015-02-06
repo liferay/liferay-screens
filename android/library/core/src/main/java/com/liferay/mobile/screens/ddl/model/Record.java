@@ -30,6 +30,7 @@ import java.util.Map;
  */
 public class Record {
 
+
 	public Record(String xsd, Locale locale) throws SAXException {
 		XSDParser parser = new XSDParser();
 
@@ -48,5 +49,11 @@ public class Record {
 		return _fields.size();
 	}
 
+	public void setCreatorUserId(long value) {
+		_creatorUserId = value;
+	}
+
 	private List<Field> _fields;
+	private long _creatorUserId;
+
 }
