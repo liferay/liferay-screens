@@ -55,19 +55,6 @@ public class LoginScreenlet
 	}
 
 	@Override
-	public LoginInteractor getInteractor() {
-		LoginInteractor interactor = super.getInteractor();
-
-		if (interactor == null) {
-			interactor = new LoginInteractorImpl(getScreenletId());
-
-			setInteractor(interactor);
-		}
-
-		return interactor;
-	}
-
-	@Override
 	public void onLoginFailure(Exception e) {
 		LoginListener listenerView = (LoginListener)getScreenletView();
 		listenerView.onLoginFailure(e);
@@ -84,21 +71,6 @@ public class LoginScreenlet
 
 		if (_listener != null) {
 			_listener.onLoginSuccess(userAttributes);
-		}
-	}
-
-	@Override
-	public void onUserAction(String userActionName) {
-		LoginViewModel loginViewModel = (LoginViewModel)getScreenletView();
-		String login = loginViewModel.getLogin();
-		String password = loginViewModel.getPassword();
-		AuthMethod method = loginViewModel.getAuthMethod();
-
-		try {
-			getInteractor().login(login, password, method);
-		}
-		catch (Exception e) {
-			onLoginFailure(e);
 		}
 	}
 
@@ -127,6 +99,26 @@ public class LoginScreenlet
 		typedArray.recycle();
 
 		return view;
+	}
+
+	@Override
+	protected LoginInteractor createInteractor(String actionName) {
+		return new LoginInteractorImpl(getScreenletId());
+	}
+
+	@Override
+	protected void onUserAction(String userActionName, LoginInteractor interactor) {
+		LoginViewModel loginViewModel = (LoginViewModel)getScreenletView();
+		String login = loginViewModel.getLogin();
+		String password = loginViewModel.getPassword();
+		AuthMethod method = loginViewModel.getAuthMethod();
+
+		try {
+			interactor.login(login, password, method);
+		}
+		catch (Exception e) {
+			onLoginFailure(e);
+		}
 	}
 
 	private LoginListener _listener;
