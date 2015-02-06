@@ -14,8 +14,8 @@
 
 package com.liferay.mobile.screens.ddl;
 
-import com.liferay.mobile.screens.ddl.field.Field;
-import com.liferay.mobile.screens.ddl.field.StringField;
+import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.ddl.model.StringField;
 
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;

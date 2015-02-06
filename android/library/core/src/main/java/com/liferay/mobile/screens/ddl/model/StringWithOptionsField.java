@@ -12,18 +12,13 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.field;
-
-import android.util.Pair;
+package com.liferay.mobile.screens.ddl.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 
 /**

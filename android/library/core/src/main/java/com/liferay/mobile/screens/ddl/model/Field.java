@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.field;
+package com.liferay.mobile.screens.ddl.model;
 
 import org.w3c.dom.Element;
 

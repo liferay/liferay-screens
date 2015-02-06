@@ -12,9 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.field;
-
-import android.util.Pair;
+package com.liferay.mobile.screens.ddl.model;
 
 import com.liferay.mobile.screens.ddl.XSDParser;
 
@@ -29,7 +27,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;

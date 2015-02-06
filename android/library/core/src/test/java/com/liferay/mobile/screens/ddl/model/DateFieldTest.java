@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.field;
+package com.liferay.mobile.screens.ddl.model;
 
 import com.liferay.mobile.screens.ddl.XSDParser;
 
@@ -22,8 +22,6 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
