@@ -56,10 +56,6 @@ public class WebContentDisplayScreenlet
 	}
 
 	public void load() throws Exception {
-		if (_articleId == null) {
-			throw new IllegalArgumentException("articleId cannot be null");
-		}
-
 		Locale locale = getResources().getConfiguration().locale;
 
 		getInteractor(LOAD_ACTION).load(_groupId, _articleId, locale);
