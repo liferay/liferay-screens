@@ -51,8 +51,6 @@ public class ForgotPasswordScreenlet
 		Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
-
-		setInteractor(new ForgotPasswordInteractorImpl(getScreenletId()));
 	}
 
 	@Override
@@ -76,24 +74,6 @@ public class ForgotPasswordScreenlet
 
 		if (_listener != null) {
 			_listener.onForgotPasswordRequestSuccess(passwordSent);
-		}
-	}
-
-	@Override
-	public void onUserAction(String userActionName) {
-		ForgotPasswordViewModel viewModel =
-			(ForgotPasswordViewModel)getScreenletView();
-
-		String login = viewModel.getLogin();
-		AuthMethod method = viewModel.getAuthMethod();
-
-		try {
-			getInteractor().requestPassword(
-				_companyId, login, method, _anonymousApiUserName,
-				_anonymousApiPassword);
-		}
-		catch (Exception e) {
-			onForgotPasswordRequestFailure(e);
 		}
 	}
 
@@ -132,6 +112,27 @@ public class ForgotPasswordScreenlet
 		typedArray.recycle();
 
 		return view;
+	}
+
+	@Override
+	protected ForgotPasswordInteractor createInteractor(String actionName) {
+		return new ForgotPasswordInteractorImpl(getScreenletId());
+	}
+
+	@Override
+	protected void onUserAction(String userActionName, ForgotPasswordInteractor interactor) {
+		ForgotPasswordViewModel viewModel = (ForgotPasswordViewModel)getScreenletView();
+
+		String login = viewModel.getLogin();
+		AuthMethod method = viewModel.getAuthMethod();
+
+		try {
+			interactor.requestPassword(
+				_companyId, login, method, _anonymousApiUserName, _anonymousApiPassword);
+		}
+		catch (Exception e) {
+			onForgotPasswordRequestFailure(e);
+		}
 	}
 
 	private String _anonymousApiPassword;
