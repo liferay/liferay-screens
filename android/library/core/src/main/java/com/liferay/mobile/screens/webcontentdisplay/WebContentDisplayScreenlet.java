@@ -55,19 +55,6 @@ public class WebContentDisplayScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
-	@Override
-	public WebContentDisplayInteractor getInteractor() {
-		WebContentDisplayInteractor interactor = super.getInteractor();
-
-		if (interactor == null) {
-			interactor = new WebContentDisplayInteractorImpl(getScreenletId());
-
-			setInteractor(interactor);
-		}
-
-		return interactor;
-	}
-
 	public void load() throws Exception {
 		if (_articleId == null) {
 			throw new IllegalArgumentException("articleId cannot be null");
@@ -75,11 +62,7 @@ public class WebContentDisplayScreenlet
 
 		Locale locale = getResources().getConfiguration().locale;
 
-		getInteractor().load(_groupId, _articleId, locale);
-	}
-
-	@Override
-	public void onUserAction(String userActionName) {
+		getInteractor(LOAD_ACTION).load(_groupId, _articleId, locale);
 	}
 
 	@Override
@@ -156,11 +139,23 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
+	protected WebContentDisplayInteractor createInteractor(String actionName) {
+		return new WebContentDisplayInteractorImpl(getScreenletId());
+	}
+
+	@Override
+	protected void onUserAction(String userActionName, WebContentDisplayInteractor interactor) {
+		// No user action from UI
+	}
+
+	@Override
 	protected void onScreenletAttached() {
 		if (_autoLoad) {
 			autoLoad();
 		}
 	}
+
+	private static final String LOAD_ACTION = "load";
 
 	private String _articleId;
 	private boolean _autoLoad;
