@@ -36,6 +36,8 @@ public class WebContentDisplayInteractorImpl
 	public void load(long groupId, String articleId, Locale locale)
 		throws Exception {
 
+		validate(groupId, articleId, locale);
+
 		JournalArticleService service = getJournalArticleService();
 
 		service.getArticleContent(groupId, articleId, locale.toString(), null);
@@ -60,6 +62,20 @@ public class WebContentDisplayInteractorImpl
 			new WebContentDisplayCallback(getTargetScreenletId()));
 
 		return new JournalArticleService(session);
+	}
+
+	protected void validate(long groupId, String articleId, Locale locale) {
+		if (groupId <= 0) {
+			throw new IllegalArgumentException("GroupId cannot be 0 or negative");
+		}
+
+		if (articleId == null || articleId.isEmpty()) {
+			throw new IllegalArgumentException("ArticleId cannot be null or empty");
+		}
+
+		if (locale == null) {
+			throw new IllegalArgumentException("Locale cannot be null");
+		}
 	}
 
 }
