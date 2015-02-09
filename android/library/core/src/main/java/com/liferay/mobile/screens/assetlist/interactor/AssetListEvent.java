@@ -25,7 +25,7 @@ import java.util.List;
 public class AssetListEvent extends BasicEvent {
 
 	public AssetListEvent(int targetScreenletId, Exception e) {
-		super(targetScreenletId);
+		super(targetScreenletId, e);
 	}
 
 	public AssetListEvent(
