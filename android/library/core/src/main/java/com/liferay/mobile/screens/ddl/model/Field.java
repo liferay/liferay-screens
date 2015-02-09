@@ -16,6 +16,10 @@ package com.liferay.mobile.screens.ddl.model;
 
 import org.w3c.dom.Element;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -108,6 +112,15 @@ public abstract class Field<T> {
 
 		private EditorType(String value) {
 			_value = value;
+		}
+
+		public static List<EditorType> all() {
+			List<EditorType> editorTypes = new ArrayList<>(
+				Arrays.asList(EditorType.values()));
+
+			editorTypes.remove(UNSUPPORTED);
+
+			return editorTypes;
 		}
 
 		public static EditorType valueOf(Map<String,Object> attributes) {
