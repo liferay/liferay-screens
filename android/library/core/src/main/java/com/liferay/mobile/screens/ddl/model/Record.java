@@ -90,12 +90,20 @@ public class Record {
 		_recordId = recordId;
 	}
 
+	public void setRecordSetId(long recordSetId) {
+		_recordSetId = recordSetId;
+	}
+
 	public void setStructureId(long structureId) {
 		_structureId = structureId;
 	}
 
 	public void setCreatorUserId(long value) {
 		_creatorUserId = value;
+	}
+
+	public boolean isRecordStructurePresent() {
+		return (_fields.size() > 0);
 	}
 
 	private List<Field> _fields = new ArrayList<>();

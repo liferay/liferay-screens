@@ -25,10 +25,17 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormAddRecordInteractor;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormAddRecordInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUpdateRecordInteractor;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUpdateRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.view.DDLFormViewModel;
+import com.liferay.mobile.screens.util.LiferayServerContext;
+import com.liferay.mobile.screens.util.SessionContext;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,9 +60,37 @@ public class DDLFormScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	@Override
 	protected Interactor createInteractor(String actionName) {
-		return new DDLFormLoadInteractorImpl(getScreenletId());
+		Interactor result = null;
+
+		if (_LOAD_FORM_ACTION.equals(actionName)) {
+			result = new DDLFormLoadInteractorImpl(getScreenletId());
+		}
+		else if (_LOAD_RECORD_ACTION.equals(actionName)) {
+			if (_record.isRecordStructurePresent()) {
+				// TODO request just data
+			}
+			else {
+				// TODO request both structure and data
+			}
+		}
+		else if (_ADD_RECORD_ACTION.equals(actionName)) {
+			result = new DDLFormAddRecordInteractorImpl(getScreenletId());
+		}
+		else if (_UPDATE_RECORD_ACTION.equals(actionName)) {
+			result = new DDLFormUpdateRecordInteractorImpl(getScreenletId());
+		}
+
+		return result;
 	}
 
 	@Override
@@ -67,6 +102,29 @@ public class DDLFormScreenlet
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.DDLFormScreenlet_layoutId, 0);
+
+		_groupId = typedArray.getInteger(
+			R.styleable.DDLFormScreenlet_groupId,
+			(int) LiferayServerContext.getGroupId());
+
+		_structureId = typedArray.getInteger(
+			R.styleable.DDLFormScreenlet_structureId, 0);
+
+		_recordSetId = typedArray.getInteger(
+			R.styleable.DDLFormScreenlet_recordSetId, 0);
+
+		_recordId = typedArray.getInteger(
+			R.styleable.DDLFormScreenlet_recordSetId, 0);
+
+		//TODO use current user id from SessionContext as default
+		_userId = typedArray.getInteger(
+			R.styleable.DDLFormScreenlet_userId, 0);
+
+		_record = new Record(getResources().getConfiguration().locale);
+		_record.setStructureId(_structureId);
+		_record.setRecordSetId(_recordSetId);
+		_record.setRecordId(_recordId);
+		_record.setCreatorUserId(_userId);
 
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
 
@@ -114,6 +172,44 @@ public class DDLFormScreenlet
 
 	@Override
 	protected void onUserAction(String userActionName, Interactor interactor) {
+		if (_LOAD_FORM_ACTION.equals(userActionName)) {
+			DDLFormLoadInteractor loadInteractor = (DDLFormLoadInteractor) interactor;
+
+			try {
+				loadInteractor.load(_record);
+			}
+			catch (Exception e) {
+				// TODO user message
+			}
+		}
+		else if (_LOAD_RECORD_ACTION.equals(userActionName)) {
+			if (_record.isRecordStructurePresent()) {
+				// TODO request data
+			}
+			else {
+				// TODO request both structure and data
+			}
+		}
+		else if (_ADD_RECORD_ACTION.equals(userActionName)) {
+			DDLFormAddRecordInteractor addInteractor = (DDLFormAddRecordInteractor) interactor;
+
+			try {
+				addInteractor.addRecord(_groupId, _record);
+			}
+			catch (Exception e) {
+				// TODO user message
+			}
+		}
+		else if (_UPDATE_RECORD_ACTION.equals(userActionName)) {
+			DDLFormUpdateRecordInteractor updateInteractor = (DDLFormUpdateRecordInteractor) interactor;
+
+			try {
+				updateInteractor.updateRecord(_groupId, _record);
+			}
+			catch (Exception e) {
+				// TODO user message
+			}
+		}
 	}
 
 	protected void setFieldLayoutId(
@@ -146,5 +242,20 @@ public class DDLFormScreenlet
 
 		_defaultLayoutNames.put(Field.EditorType.TEXT, "ddlfield_text_default");
 	}
+
+
+	private static final String _LOAD_FORM_ACTION = "loadForm";
+	private static final String _LOAD_RECORD_ACTION = "loadRecord";
+	private static final String _ADD_RECORD_ACTION = "addRecord";
+	private static final String _UPDATE_RECORD_ACTION = "updateRecord";
+
+	private long _groupId;
+	private long _structureId;
+	private long _recordSetId;
+	private long _recordId;
+	private long _userId;
+
+	// TODO make Record parcelable
+	private Record _record;
 
 }
