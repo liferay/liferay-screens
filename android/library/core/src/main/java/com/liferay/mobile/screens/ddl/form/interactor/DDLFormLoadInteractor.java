@@ -22,7 +22,7 @@ import java.util.Locale;
 /**
  * @author Jose Manuel Navarro
  */
-public interface DDLFormInteractor extends Interactor<DDLFormListener> {
+public interface DDLFormLoadInteractor extends Interactor<DDLFormListener> {
 
 	public void load(long structureId, Locale locale) throws Exception;
 

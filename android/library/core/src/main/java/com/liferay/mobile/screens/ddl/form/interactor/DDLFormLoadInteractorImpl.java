@@ -16,16 +16,11 @@ package com.liferay.mobile.screens.ddl.form.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.ddmstructure.DDMStructureService;
-import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.SessionContext;
-import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
-import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayCallback;
-import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayEvent;
-import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractor;
 
 import org.json.JSONException;
 import org.xml.sax.SAXException;
@@ -35,11 +30,11 @@ import java.util.Locale;
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFormInteractorImpl
+public class DDLFormLoadInteractorImpl
 	extends BaseInteractor<DDLFormListener>
-	implements DDLFormInteractor {
+	implements DDLFormLoadInteractor {
 
-	public DDLFormInteractorImpl(int targetScreenletId) {
+	public DDLFormLoadInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 
