@@ -30,16 +30,17 @@ import java.util.Map;
  */
 public class Record {
 
-	public Record(String xsd, Locale locale) throws SAXException {
+	public Record(Locale locale) {
+		_locale = locale;
+	}
+
+	public void parseXsd(String xsd) throws SAXException {
 		XSDParser parser = new XSDParser();
 
-		_fields = parser.parse(xsd, locale);
-
-		if (_fields == null) {
+		try {
+			_fields = parser.parse(xsd, _locale);
+		} catch (SAXException e) {
 			_fields = new ArrayList<>();
-		}
-		else {
-			_locale = locale;
 		}
 	}
 
@@ -57,6 +58,10 @@ public class Record {
 
 	public long getRecordId() {
 		return _recordId;
+	}
+
+	public long getStructureId() {
+		return _structureId;
 	}
 
 	public long getCreatorUserId() {
@@ -77,16 +82,25 @@ public class Record {
 		return values;
 	}
 
+	public Locale getLocale() {
+		return _locale;
+	}
+
 	public void setRecordId(long recordId) {
 		_recordId = recordId;
+	}
+
+	public void setStructureId(long structureId) {
+		_structureId = structureId;
 	}
 
 	public void setCreatorUserId(long value) {
 		_creatorUserId = value;
 	}
 
-	private List<Field> _fields;
+	private List<Field> _fields = new ArrayList<>();
 	private long _creatorUserId;
+	private long _structureId;
 	private long _recordSetId;
 	private long _recordId;
 	private Locale _locale;

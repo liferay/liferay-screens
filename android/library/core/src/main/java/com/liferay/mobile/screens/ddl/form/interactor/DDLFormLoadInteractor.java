@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddl.form.interactor;
 
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
+import com.liferay.mobile.screens.ddl.model.Record;
 
 import java.util.Locale;
 
@@ -24,6 +25,6 @@ import java.util.Locale;
  */
 public interface DDLFormLoadInteractor extends Interactor<DDLFormListener> {
 
-	public void load(long structureId, Locale locale) throws Exception;
+	public void load(Record record) throws Exception;
 
 }

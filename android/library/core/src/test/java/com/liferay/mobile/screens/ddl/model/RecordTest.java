@@ -57,7 +57,8 @@ public class RecordTest {
 					"</dynamic-element>" +
 				"</root>";
 
-			Record record = new Record(xsd, new Locale("en", "US"));
+			Record record = new Record(new Locale("en", "US"));
+			record.parseXsd(xsd);
 
 			assertEquals(1, record.getFieldCount());
 
@@ -86,7 +87,8 @@ public class RecordTest {
 					"</dynamic-element>" +
 				"</root>";
 
-			Record record = new Record(xsd, new Locale("en", "US"));
+			Record record = new Record(new Locale("en", "US"));
+			record.parseXsd(xsd);
 
 			BooleanField field = (BooleanField)record.getField(0);
 
@@ -122,7 +124,8 @@ public class RecordTest {
 					"</dynamic-element>" +
 				"</root>";
 
-			Record record = new Record(xsd, new Locale("en", "US"));
+			Record record = new Record(new Locale("en", "US"));
+			record.parseXsd(xsd);
 
 			assertTrue(record.getField(1) instanceof  StringField);
 			StringField field = (StringField)record.getField(1);

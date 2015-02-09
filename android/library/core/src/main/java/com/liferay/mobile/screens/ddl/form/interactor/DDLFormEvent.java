@@ -19,8 +19,6 @@ import com.liferay.mobile.screens.ddl.model.Record;
 
 import org.json.JSONObject;
 
-import java.util.Locale;
-
 /**
  * @author Silvio Santos
  */
@@ -30,27 +28,16 @@ public class DDLFormEvent extends JSONObjectEvent {
 		super(targetScreenletId, e);
 	}
 
-	public DDLFormEvent(int targetScreenletId, JSONObject jsonObject, Locale locale) {
-		super(targetScreenletId, jsonObject);
-
-		_locale = locale;
-	}
-
 	public DDLFormEvent(int targetScreenletId, JSONObject jsonObject, Record record) {
 		super(targetScreenletId, jsonObject);
 
 		_record = record;
 	}
 
-	public Locale getLocale() {
-		return _locale;
-	}
-
 	public Record getRecord() {
 		return _record;
 	}
 
-	private Locale _locale;
 	private Record _record;
 
 }

@@ -37,10 +37,10 @@ public class DDLFormLoadInteractorImpl
 	}
 
 	@Override
-	public void load(long structureId, Locale locale) throws Exception {
-		validate(structureId, locale);
+	public void load(Record record) throws Exception {
+		validate(record);
 
-		getDDMStructureService(locale).getStructure(structureId);
+		getDDMStructureService(record).getStructure(record.getStructureId());
 	}
 
 	public void onEvent(DDLFormEvent event) {
@@ -56,9 +56,13 @@ public class DDLFormLoadInteractorImpl
 				String xsd = event.getJSONObject().getString("xsd");
 				long userId = event.getJSONObject().getLong("userId");
 
-				Record formRecord = new Record(xsd, event.getLocale());
+				Record formRecord = event.getRecord();
 
-				formRecord.setCreatorUserId(userId);
+				formRecord.parseXsd(xsd);
+
+				if (formRecord.getCreatorUserId() == 0) {
+					formRecord.setCreatorUserId(userId);
+				}
 
 				getListener().onDDLFormLoaded(formRecord);
 			}
@@ -71,20 +75,25 @@ public class DDLFormLoadInteractorImpl
 		}
 	}
 
-	protected DDMStructureService getDDMStructureService(Locale locale) {
+	protected DDMStructureService getDDMStructureService(Record record) {
 		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new DDLFormCallback(getTargetScreenletId(), locale));
+
+		session.setCallback(new DDLFormCallback(getTargetScreenletId(), record));
 
 		return new DDMStructureService(session);
 	}
 
-	protected void validate(long structureId, Locale locale) {
-		if (structureId <= 0) {
-			throw new IllegalArgumentException("StructureId cannot be 0 or negative");
+	protected void validate(Record record) {
+		if (record == null) {
+			throw new IllegalArgumentException("record cannot be null");
 		}
 
-		if (locale == null) {
-			throw new IllegalArgumentException("Locale cannot be null");
+		if (record.getStructureId() <= 0) {
+			throw new IllegalArgumentException("Record's structureId cannot be 0 or negative");
+		}
+
+		if (record.getLocale() == null) {
+			throw new IllegalArgumentException("Record's Locale cannot be null");
 		}
 	}
 
