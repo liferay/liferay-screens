@@ -19,7 +19,7 @@ import com.liferay.mobile.screens.ddl.XSDParser;
 import org.xml.sax.SAXException;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -30,7 +30,6 @@ import java.util.Map;
  */
 public class Record {
 
-
 	public Record(String xsd, Locale locale) throws SAXException {
 		XSDParser parser = new XSDParser();
 
@@ -38,6 +37,9 @@ public class Record {
 
 		if (_fields == null) {
 			_fields = new ArrayList<>();
+		}
+		else {
+			_locale = locale;
 		}
 	}
 
@@ -49,11 +51,44 @@ public class Record {
 		return _fields.size();
 	}
 
+	public long getRecordSetId() {
+		return _recordSetId;
+	}
+
+	public long getRecordId() {
+		return _recordId;
+	}
+
+	public long getCreatorUserId() {
+		return _creatorUserId;
+	}
+
+	public Map<String, String> getValues() {
+		Map<String, String> values = new HashMap<>(_fields.size());
+
+		for (Field f : _fields) {
+			String fieldValue = f.toString();
+
+			if (fieldValue != null && !fieldValue.isEmpty()) {
+				values.put(f.getName(), fieldValue);
+			}
+		}
+
+		return values;
+	}
+
+	public void setRecordId(long recordId) {
+		_recordId = recordId;
+	}
+
 	public void setCreatorUserId(long value) {
 		_creatorUserId = value;
 	}
 
 	private List<Field> _fields;
 	private long _creatorUserId;
+	private long _recordSetId;
+	private long _recordId;
+	private Locale _locale;
 
 }

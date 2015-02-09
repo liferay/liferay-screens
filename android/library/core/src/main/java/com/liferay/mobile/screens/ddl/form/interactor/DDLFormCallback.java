@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.ddl.form.interactor;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
 
 import org.json.JSONObject;
@@ -32,6 +31,12 @@ public class DDLFormCallback extends InteractorAsyncTaskCallback<JSONObject> {
 		super(targetScreenletId);
 
 		_locale = locale;
+	}
+
+	public DDLFormCallback(int targetScreenletId, Record record) {
+		super(targetScreenletId);
+
+		_record = record;
 	}
 
 	@Override
@@ -50,9 +55,19 @@ public class DDLFormCallback extends InteractorAsyncTaskCallback<JSONObject> {
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new DDLFormEvent(targetScreenletId, result, _locale);
+		DDLFormEvent resultEvent = null;
+
+		if (_locale != null) {
+			resultEvent = new DDLFormEvent(targetScreenletId, result, _locale);
+		}
+		else if (_record != null) {
+			resultEvent = new DDLFormEvent(targetScreenletId, result, _record);
+		}
+
+		return resultEvent;
 	}
 
 	private Locale _locale;
+	private Record _record;
 
 }

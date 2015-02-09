@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.ddl.form.interactor;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.ddmstructure.DDMStructureService;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.SessionContext;
