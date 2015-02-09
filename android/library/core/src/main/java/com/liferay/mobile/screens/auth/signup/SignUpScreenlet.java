@@ -57,19 +57,6 @@ public class SignUpScreenlet
 	}
 
 	@Override
-	public SignUpInteractor getInteractor() {
-		SignUpInteractor interactor = super.getInteractor();
-
-		if (interactor == null) {
-			interactor = new SignUpInteractorImpl(getScreenletId());
-
-			setInteractor(interactor);
-		}
-
-		return interactor;
-	}
-
-	@Override
 	public void onSignUpFailure(Exception e) {
 		SignUpListener listener = (SignUpListener)getScreenletView();
 
@@ -87,30 +74,6 @@ public class SignUpScreenlet
 
 		if (_listener != null) {
 			_listener.onSignUpSuccess(userAttributes);
-		}
-	}
-
-	@Override
-	public void onUserAction(String userActionName) {
-		SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
-
-		String firstName = signUpViewModel.getFirstName();
-		String middleName = signUpViewModel.getMiddleName();
-		String lastName = signUpViewModel.getLastName();
-		String emailAddress = signUpViewModel.getEmailAddress();
-		String password = signUpViewModel.getPassword();
-		String screenName = signUpViewModel.getScreenName();
-		String jobTitle = signUpViewModel.getJobTitle();
-		Locale locale = getResources().getConfiguration().locale;
-
-		try {
-			getInteractor().signUp(
-				_companyId, firstName, middleName, lastName, emailAddress,
-				screenName, password, jobTitle, locale, _anonymousApiUserName,
-				_anonymousApiPassword);
-		}
-		catch (Exception e) {
-			onSignUpFailure(e);
 		}
 	}
 
@@ -144,6 +107,36 @@ public class SignUpScreenlet
 
 		return view;
 	}
+
+	@Override
+	protected SignUpInteractor createInteractor(String actionName) {
+		return new SignUpInteractorImpl(getScreenletId());
+	}
+
+	@Override
+	protected void onUserAction(String userActionName, SignUpInteractor interactor) {
+		SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
+
+		String firstName = signUpViewModel.getFirstName();
+		String middleName = signUpViewModel.getMiddleName();
+		String lastName = signUpViewModel.getLastName();
+		String emailAddress = signUpViewModel.getEmailAddress();
+		String password = signUpViewModel.getPassword();
+		String screenName = signUpViewModel.getScreenName();
+		String jobTitle = signUpViewModel.getJobTitle();
+		Locale locale = getResources().getConfiguration().locale;
+
+		try {
+			interactor.signUp(
+				_companyId, firstName, middleName, lastName, emailAddress,
+				screenName, password, jobTitle, locale, _anonymousApiUserName,
+				_anonymousApiPassword);
+		}
+		catch (Exception e) {
+			onSignUpFailure(e);
+		}
+	}
+
 
 	private String _anonymousApiPassword;
 	private String _anonymousApiUserName;
