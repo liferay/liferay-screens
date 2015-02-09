@@ -54,19 +54,6 @@ public class AssetListScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
-	@Override
-	public AssetListInteractor getInteractor() {
-		AssetListInteractor interactor = super.getInteractor();
-
-		if (interactor == null) {
-			interactor = new AssetListInteractorImpl(getScreenletId());
-
-			setInteractor(interactor);
-		}
-
-		return interactor;
-	}
-
 	public void loadPage(int page) {
 		Locale locale = getResources().getConfiguration().locale;
 
@@ -74,7 +61,8 @@ public class AssetListScreenlet
 		int endRow = getFirstRowForPage(page + 1);
 
 		try {
-			getInteractor().loadRows(_groupId, _classNameId, startRow, endRow, locale);
+			getInteractor(_LOAD_PAGE_ACTION).loadRows(
+				_groupId, _classNameId, startRow, endRow, locale);
 		}
 		catch (Exception e) {
 			onAssetListRowsFailure(startRow, endRow, e);
@@ -207,6 +195,15 @@ public class AssetListScreenlet
 	}
 
 	@Override
+	protected AssetListInteractor createInteractor(String actionName) {
+		return new AssetListInteractorImpl(getScreenletId());
+	}
+
+	@Override
+	protected void onUserAction(String userActionName, AssetListInteractor interactor) {
+	}
+
+	@Override
 	protected void onScreenletAttached() {
 		super.onScreenletAttached();
 
@@ -216,9 +213,7 @@ public class AssetListScreenlet
 		}
 	}
 
-	@Override
-	protected void onUserAction(String userActionName) {
-	}
+	private static final String _LOAD_PAGE_ACTION = "loadPage";
 
 	private static final int _FIRST_PAGE_SIZE = 50;
 
