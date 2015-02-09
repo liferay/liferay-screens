@@ -21,7 +21,7 @@ import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
-import com.liferay.mobile.screens.service.v62.mobilewidgetsuser.MobilewidgetsuserService;
+import com.liferay.mobile.screens.service.v62.MobilewidgetsuserService;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 
 /**

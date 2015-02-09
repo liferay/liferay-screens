@@ -24,7 +24,7 @@ import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.assetlist.AssetListListener;
 import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
-import com.liferay.mobile.screens.service.MobilewidgetsassetentryService;
+import com.liferay.mobile.screens.service.v62.MobilewidgetsassetentryService;
 import com.liferay.mobile.screens.util.SessionContext;
 
 import java.util.List;
