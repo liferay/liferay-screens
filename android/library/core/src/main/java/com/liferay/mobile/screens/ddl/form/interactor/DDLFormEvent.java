@@ -14,8 +14,6 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor;
 
-import com.liferay.mobile.screens.base.interactor.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
 
@@ -24,35 +22,35 @@ import org.json.JSONObject;
 import java.util.Locale;
 
 /**
- * @author Jose Manuel Navarro
+ * @author Silvio Santos
  */
-public class DDLFormCallback extends InteractorAsyncTaskCallback<JSONObject> {
+public class DDLFormEvent extends JSONObjectEvent {
 
-	public DDLFormCallback(int targetScreenletId, Locale locale) {
-		super(targetScreenletId);
+	public DDLFormEvent(int targetScreenletId, Exception e) {
+		super(targetScreenletId, e);
+	}
+
+	public DDLFormEvent(int targetScreenletId, JSONObject jsonObject, Locale locale) {
+		super(targetScreenletId, jsonObject);
 
 		_locale = locale;
 	}
 
-	@Override
-	public JSONObject transform(Object obj) throws Exception {
-		return (JSONObject)obj;
+	public DDLFormEvent(int targetScreenletId, JSONObject jsonObject, Record record) {
+		super(targetScreenletId, jsonObject);
+
+		_record = record;
 	}
 
 	public Locale getLocale() {
 		return _locale;
 	}
 
-	@Override
-	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new DDLFormEvent(targetScreenletId, e);
-	}
-
-	@Override
-	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new DDLFormEvent(targetScreenletId, result, _locale);
+	public Record getRecord() {
+		return _record;
 	}
 
 	private Locale _locale;
+	private Record _record;
 
 }

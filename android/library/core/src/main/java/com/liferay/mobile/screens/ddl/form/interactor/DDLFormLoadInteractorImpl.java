@@ -31,8 +31,7 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class DDLFormLoadInteractorImpl
-	extends BaseInteractor<DDLFormListener>
-	implements DDLFormLoadInteractor {
+	extends BaseInteractor<DDLFormListener> implements DDLFormLoadInteractor {
 
 	public DDLFormLoadInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
@@ -40,14 +39,12 @@ public class DDLFormLoadInteractorImpl
 
 	@Override
 	public void load(long structureId, Locale locale) throws Exception {
-		_locale = locale;
-
 		validate(structureId, locale);
 
-		getDDMStructureService().getStructure(structureId);
+		getDDMStructureService(locale).getStructure(structureId);
 	}
 
-	public void onEvent(JSONObjectEvent event) {
+	public void onEvent(DDLFormEvent event) {
 		if (!isValidEvent(event)) {
 			return;
 		}
@@ -60,7 +57,7 @@ public class DDLFormLoadInteractorImpl
 				String xsd = event.getJSONObject().getString("xsd");
 				long userId = event.getJSONObject().getLong("userId");
 
-				Record formRecord = new Record(xsd, _locale);
+				Record formRecord = new Record(xsd, event.getLocale());
 
 				formRecord.setCreatorUserId(userId);
 
@@ -75,9 +72,9 @@ public class DDLFormLoadInteractorImpl
 		}
 	}
 
-	protected DDMStructureService getDDMStructureService() {
+	protected DDMStructureService getDDMStructureService(Locale locale) {
 		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new DDLFormCallback(getTargetScreenletId()));
+		session.setCallback(new DDLFormCallback(getTargetScreenletId(), locale));
 
 		return new DDMStructureService(session);
 	}
@@ -92,5 +89,4 @@ public class DDLFormLoadInteractorImpl
 		}
 	}
 
-	private Locale _locale;
 }
