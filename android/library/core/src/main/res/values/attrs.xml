@@ -21,6 +21,16 @@
 		<attr name="pageSize" format="integer" />
 	</declare-styleable>
 
+	<declare-styleable name="DDLFormScreenlet">
+		<attr name="layoutId" />
+		<attr name="checkboxFieldLayoutId" format="reference" />
+		<attr name="dateFieldLayoutId" format="reference" />
+		<attr name="numberFieldLayoutId" format="reference" />
+		<attr name="radioFieldLayoutId" format="reference" />
+		<attr name="selectFieldLayoutId" format="reference" />
+		<attr name="textFieldLayoutId" format="reference" />
+	</declare-styleable>
+
 	<declare-styleable name="ForgotPasswordScreenlet">
 		<attr name="layoutId" />
 		<attr name="anonymousApiUserName" />
