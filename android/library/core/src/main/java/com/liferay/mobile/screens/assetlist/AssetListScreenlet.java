@@ -208,7 +208,7 @@ public class AssetListScreenlet
 		super.onScreenletAttached();
 
 		if (_autoLoad) {
-			//TODO handle when first page is already loaded
+			//TODO handle when first page is already loaded. See branch LMW-176-auto-load-fix
 			loadPage(0);
 		}
 	}
