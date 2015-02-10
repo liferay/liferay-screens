@@ -20,6 +20,7 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -174,7 +175,10 @@ public class XSDParser {
 
 		Element foundElement = getChild(localizedMetadata, "entry", "name", elementName);
 		if (foundElement != null) {
-			result.put(elementName, foundElement.getFirstChild().getNodeValue());
+			Node contentNode = foundElement.getFirstChild();
+			if (contentNode != null) {
+				result.put(elementName, contentNode.getNodeValue());
+			}
 		}
 	}
 

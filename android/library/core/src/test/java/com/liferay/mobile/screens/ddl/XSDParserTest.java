@@ -73,6 +73,7 @@ public class XSDParserTest {
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
+
 		@Test
 		public void shouldReturnStringFieldObject() throws Exception {
 			String xsd =
@@ -80,13 +81,11 @@ public class XSDParserTest {
 					"<dynamic-element " +
 							"dataType=\"string\" " +
 							"type=\"text\" " +
-							"indexType=\"keyword\" " +
 							"name=\"A_Text\" " +
 							"readOnly=\"false\" " +
 							"repeatable=\"true\" " +
 							"required=\"false\" " +
-							"showLabel=\"true\" " +
-							"width=\"small\"> " +
+							"showLabel=\"true\" > " +
 						"<meta-data locale=\"en_US\"> " +
 							"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
 							"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
@@ -95,7 +94,7 @@ public class XSDParserTest {
 					"</dynamic-element>" +
 				"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
+			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
@@ -116,10 +115,91 @@ public class XSDParserTest {
 			assertEquals("default text", stringField.getCurrentValue());
 			assertEquals(stringField.getCurrentValue(), stringField.getPredefinedValue());
 		}
+
+		@Test
+		public void shouldUseEmptyStringWhenCDATAIsEmpty() throws Exception {
+			String xsd =
+				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+					"<dynamic-element " +
+							"dataType=\"string\" " +
+							"type=\"text\" " +
+							"name=\"A_Text\" > " +
+						"<meta-data locale=\"en_US\"> " +
+							"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
+							"<entry name=\"predefinedValue\"><![CDATA[]]></entry> " +
+							"<entry name=\"tip\"><![CDATA[]]></entry> " +
+						"</meta-data> " +
+					"</dynamic-element>" +
+				"</root>";
+
+			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			Field resultField = resultList.get(0);
+
+			assertEquals("", resultField.getTip());
+		}
+
+		@Test
+		public void shouldUseEmptyStringWhenEntryIsEmpty() throws Exception {
+			String xsd =
+				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+					"<dynamic-element " +
+							"dataType=\"string\" " +
+							"type=\"text\" " +
+							"name=\"A_Text\" > " +
+						"<meta-data locale=\"en_US\"> " +
+							"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
+							"<entry name=\"predefinedValue\"></entry> " +
+							"<entry name=\"tip\"></entry> " +
+						"</meta-data> " +
+					"</dynamic-element>" +
+				"</root>";
+
+			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			Field resultField = resultList.get(0);
+
+			assertEquals("", resultField.getTip());
+		}
+
+		@Test
+		public void shouldUseEmptyStringWhenEntryIsNotPresent() throws Exception {
+			String xsd =
+				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+					"<dynamic-element " +
+							"dataType=\"string\" " +
+							"type=\"text\" " +
+							"name=\"A_Text\" > " +
+						"<meta-data locale=\"en_US\"> " +
+							"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
+						"</meta-data> " +
+					"</dynamic-element>" +
+				"</root>";
+
+			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			Field resultField = resultList.get(0);
+
+			assertEquals("", resultField.getTip());
+		}
+
+		@Test
+		public void shouldUseEmptyStringWhenMetaDataIsNotPresent() throws Exception {
+			String xsd =
+				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+					"<dynamic-element " +
+							"dataType=\"string\" " +
+							"type=\"text\" " +
+							"name=\"A_Text\" > " +
+					"</dynamic-element>" +
+				"</root>";
+
+			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			Field resultField = resultList.get(0);
+
+			assertEquals("", resultField.getTip());
+		}
+
 	}
 
-
-
 	private static final Locale _spanishLocale = new Locale("es", "ES");
+	private static final Locale _usLocale = new Locale("en", "US");
 
 }
