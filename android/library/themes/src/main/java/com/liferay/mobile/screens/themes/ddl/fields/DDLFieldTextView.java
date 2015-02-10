@@ -28,18 +28,18 @@ import com.liferay.mobile.screens.themes.R;
 /**
  * @author Silvio Santos
  */
-public class DDLFormTextFieldView extends LinearLayout
+public class DDLFieldTextView extends LinearLayout
 	implements DDLFieldViewModel {
 
-	public DDLFormTextFieldView(Context context) {
+	public DDLFieldTextView(Context context) {
 		this(context, null);
 	}
 
-	public DDLFormTextFieldView(Context context, AttributeSet attributes) {
+	public DDLFieldTextView(Context context, AttributeSet attributes) {
 		this(context, attributes, 0);
 	}
 
-	public DDLFormTextFieldView(
+	public DDLFieldTextView(
 		Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
