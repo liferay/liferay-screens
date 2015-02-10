@@ -24,6 +24,7 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormAddRecordInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormAddRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseInteractor;
@@ -35,7 +36,6 @@ import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.view.DDLFormViewModel;
 import com.liferay.mobile.screens.util.LiferayServerContext;
-import com.liferay.mobile.screens.util.SessionContext;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,6 +45,7 @@ import java.util.Map;
  */
 public class DDLFormScreenlet
 	extends BaseScreenlet<DDLFormViewModel, DDLFormBaseInteractor>
+	implements DDLFormListener {
 
 	public DDLFormScreenlet(Context context) {
 		this(context, null);
@@ -58,6 +59,42 @@ public class DDLFormScreenlet
 		Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
+	}
+
+	@Override
+	public void onDDLFormLoaded(Record record) {
+		DDLFormListener view = (DDLFormListener)getScreenletView();
+		view.onDDLFormLoaded(record);
+	}
+
+	@Override
+	public void onDDLFormRecordAdded(Record record) {
+		DDLFormListener view = (DDLFormListener)getScreenletView();
+		view.onDDLFormRecordAdded(record);
+	}
+
+	@Override
+	public void onDDLFormRecordUpdated(Record record) {
+		DDLFormListener view = (DDLFormListener)getScreenletView();
+		view.onDDLFormRecordUpdated(record);
+	}
+
+	@Override
+	public void onDDLFormLoadFailed(Exception e) {
+		DDLFormListener view = (DDLFormListener)getScreenletView();
+		view.onDDLFormLoadFailed(e);
+	}
+
+	@Override
+	public void onDDLFormAddRecordFailed(Exception e) {
+		DDLFormListener view = (DDLFormListener)getScreenletView();
+		view.onDDLFormAddRecordFailed(e);
+	}
+
+	@Override
+	public void onDDLFormUpdateRecordFailed(Exception e) {
+		DDLFormListener view = (DDLFormListener)getScreenletView();
+		view.onDDLFormUpdateRecordFailed(e);
 	}
 
 	public long getGroupId() {

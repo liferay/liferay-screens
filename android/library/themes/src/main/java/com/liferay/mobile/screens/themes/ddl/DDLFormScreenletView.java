@@ -23,7 +23,9 @@ import android.view.View;
 
 import android.widget.LinearLayout;
 
+import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.view.DDLFormViewModel;
 
@@ -35,7 +37,7 @@ import java.util.Map;
  * @author Silvio Santos
  */
 public class DDLFormScreenletView
-	extends LinearLayout implements DDLFormViewModel {
+	extends LinearLayout implements DDLFormViewModel, DDLFormListener {
 
 	public DDLFormScreenletView(Context context) {
 		this(context, null);
@@ -83,6 +85,38 @@ public class DDLFormScreenletView
 			//if will conflict with other views
 			addFieldView(fields.get(i), i);
 		}
+	}
+
+	@Override
+	public void onDDLFormLoaded(Record record) {
+		for (int i = 0; i < record.getFieldCount(); ++i) {
+			addFieldView(record.getField(i));
+		}
+	}
+
+	@Override
+	public void onDDLFormRecordAdded(Record record) {
+
+	}
+
+	@Override
+	public void onDDLFormRecordUpdated(Record record) {
+
+	}
+
+	@Override
+	public void onDDLFormLoadFailed(Exception e) {
+
+	}
+
+	@Override
+	public void onDDLFormAddRecordFailed(Exception e) {
+
+	}
+
+	@Override
+	public void onDDLFormUpdateRecordFailed(Exception e) {
+
 	}
 
 	protected void addFieldView(Field field, int id) {
