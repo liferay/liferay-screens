@@ -30,6 +30,7 @@ import com.liferay.mobile.screens.ddl.form.interactor.DDLFormAddRecordInteractor
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadRecordInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUpdateRecordInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUpdateRecordInteractorImpl;
@@ -286,7 +287,14 @@ public class DDLFormScreenlet
 		}
 		else if (_LOAD_RECORD_ACTION.equals(userActionName)) {
 			if (_record.isRecordStructurePresent()) {
-				// TODO request data
+				DDLFormLoadRecordInteractor loadInteractor = (DDLFormLoadRecordInteractor) interactor;
+
+				try {
+					loadInteractor.loadRecord(_record);
+				}
+				catch (Exception e) {
+					// TODO user message
+				}
 			}
 			else {
 				// TODO request both structure and data
