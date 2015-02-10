@@ -76,6 +76,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			result = createInteractor(actionName);
 
 			if (result != null) {
+				result.onScreenletAttachted(this);
 				_interactors.put(actionName, result);
 			}
 		}
