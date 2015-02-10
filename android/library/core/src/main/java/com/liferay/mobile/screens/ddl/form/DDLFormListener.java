@@ -21,11 +21,11 @@ import com.liferay.mobile.screens.ddl.model.Record;
  */
 public interface DDLFormListener {
 
-	String onDDLFormLoaded(Record record);
+	void onDDLFormLoaded(Record record);
 
-	String onDDLFormRecordAdded(Record record);
+	void onDDLFormRecordAdded(Record record);
 
-	String onDDLFormRecordUpdated(Record record);
+	void onDDLFormRecordUpdated(Record record);
 
 	void onDDLFormLoadFailed(Exception e);
 
