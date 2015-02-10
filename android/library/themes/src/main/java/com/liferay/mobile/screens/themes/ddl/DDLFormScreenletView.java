@@ -15,9 +15,12 @@
 package com.liferay.mobile.screens.themes.ddl;
 
 import android.content.Context;
+
 import android.util.AttributeSet;
+
 import android.view.LayoutInflater;
 import android.view.View;
+
 import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.ddl.model.Field;
@@ -74,16 +77,20 @@ public class DDLFormScreenletView
 
 	@Override
 	public void setFields(List<Field> fields) {
-		for (Field field : fields) {
-			addFieldView(field);
+		for (int i = 0; i < fields.size(); i++) {
+			//TODO We have to assign ids to onSave/onRestore methods be fired
+			//Assign ids by position should not be a problem, but have to check
+			//if will conflict with other views
+			addFieldView(fields.get(i), i);
 		}
 	}
 
-	protected void addFieldView(Field field) {
+	protected void addFieldView(Field field, int id) {
 		int layoutId = getFieldLayoutId(field.getEditorType());
 
 		LayoutInflater inflater = LayoutInflater.from(getContext());
 		View view = inflater.inflate(layoutId, this, false);
+		view.setId(id);
 
 		DDLFieldViewModel viewModel = (DDLFieldViewModel)view;
 		viewModel.setField(field);
