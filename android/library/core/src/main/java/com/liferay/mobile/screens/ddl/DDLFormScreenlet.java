@@ -61,6 +61,23 @@ public class DDLFormScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
+	public void loadForm() {
+		performUserAction(_LOAD_FORM_ACTION);
+	}
+
+	public void loadRecord() {
+		performUserAction(_LOAD_RECORD_ACTION);
+	}
+
+	public void submitForm() {
+		if (_record.getRecordId() == 0) {
+			performUserAction(_ADD_RECORD_ACTION);
+		}
+		else {
+			performUserAction(_UPDATE_RECORD_ACTION);
+		}
+	}
+
 	@Override
 	public void onDDLFormLoaded(Record record) {
 		DDLFormListener view = (DDLFormListener)getScreenletView();
