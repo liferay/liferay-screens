@@ -90,6 +90,16 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 	}
 
 	@Override
+	protected void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+
+		if (_pickerDialog != null) {
+			_pickerDialog.dismiss();
+			_pickerDialog = null;
+		}
+	}
+
+	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
