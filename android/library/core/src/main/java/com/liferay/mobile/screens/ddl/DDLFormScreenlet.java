@@ -65,36 +65,60 @@ public class DDLFormScreenlet
 	public void onDDLFormLoaded(Record record) {
 		DDLFormListener view = (DDLFormListener)getScreenletView();
 		view.onDDLFormLoaded(record);
+
+		if (_listener != null) {
+			_listener.onDDLFormLoaded(record);
+		}
 	}
 
 	@Override
 	public void onDDLFormRecordAdded(Record record) {
 		DDLFormListener view = (DDLFormListener)getScreenletView();
 		view.onDDLFormRecordAdded(record);
+
+		if (_listener != null) {
+			_listener.onDDLFormRecordAdded(record);
+		}
 	}
 
 	@Override
 	public void onDDLFormRecordUpdated(Record record) {
 		DDLFormListener view = (DDLFormListener)getScreenletView();
 		view.onDDLFormRecordUpdated(record);
+
+		if (_listener != null) {
+			_listener.onDDLFormRecordUpdated(record);
+		}
 	}
 
 	@Override
 	public void onDDLFormLoadFailed(Exception e) {
 		DDLFormListener view = (DDLFormListener)getScreenletView();
 		view.onDDLFormLoadFailed(e);
+
+		if (_listener != null) {
+			_listener.onDDLFormLoadFailed(e);
+		}
 	}
 
 	@Override
 	public void onDDLFormAddRecordFailed(Exception e) {
 		DDLFormListener view = (DDLFormListener)getScreenletView();
 		view.onDDLFormAddRecordFailed(e);
+
+		if (_listener != null) {
+			_listener.onDDLFormAddRecordFailed(e);
+		}
 	}
 
 	@Override
 	public void onDDLFormUpdateRecordFailed(Exception e) {
 		DDLFormListener view = (DDLFormListener)getScreenletView();
 		view.onDDLFormUpdateRecordFailed(e);
+
+		if (_listener != null) {
+			_listener.onDDLFormUpdateRecordFailed(e);
+		}
 	}
 
 	public long getGroupId() {
@@ -103,6 +127,14 @@ public class DDLFormScreenlet
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+	}
+
+	public DDLFormListener getListener() {
+		return _listener;
+	}
+
+	public void setListener(DDLFormListener listener) {
+		_listener = listener;
 	}
 
 	@Override
@@ -294,5 +326,7 @@ public class DDLFormScreenlet
 
 	// TODO make Record parcelable
 	private Record _record;
+
+	private DDLFormListener _listener;
 
 }
