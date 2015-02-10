@@ -15,7 +15,9 @@
 package com.liferay.mobile.screens.themes.ddl.pager;
 
 import android.content.Context;
+
 import android.support.v4.view.ViewPager;
+
 import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.ddl.model.Field;
@@ -40,18 +42,11 @@ public class DDLFormScreenletPagerView extends DDLFormScreenletView {
 	}
 
 	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-
-		_pager = (ViewPager)findViewById(R.id.pager);
-	}
-
-	@Override
 	public void setFields(List<Field> fields) {
 		List<Field.EditorType> editorTypes = Field.EditorType.all();
 		Map<Field.EditorType, Integer> layoutIds = new HashMap<>();
 
-		for (Field.EditorType editorType: editorTypes) {
+		for (Field.EditorType editorType : editorTypes) {
 			layoutIds.put(editorType, getFieldLayoutId(editorType));
 		}
 
@@ -59,6 +54,13 @@ public class DDLFormScreenletPagerView extends DDLFormScreenletView {
 			fields, layoutIds);
 
 		_pager.setAdapter(adapter);
+	}
+
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		_pager = (ViewPager)findViewById(R.id.pager);
 	}
 
 	private ViewPager _pager;

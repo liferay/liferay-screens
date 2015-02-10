@@ -15,10 +15,13 @@
 package com.liferay.mobile.screens.themes.ddl.pager;
 
 import android.content.Context;
+
 import android.support.v4.view.PagerAdapter;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.ddl.model.Field;
@@ -42,11 +45,6 @@ public class DDLFormViewPagerAdapter extends PagerAdapter {
 	@Override
 	public int getCount() {
 		return 2;
-	}
-
-	@Override
-	public boolean isViewFromObject(View view, Object object) {
-		return (view == object);
 	}
 
 	@Override
@@ -76,6 +74,10 @@ public class DDLFormViewPagerAdapter extends PagerAdapter {
 		return layout;
 	}
 
+	@Override
+	public boolean isViewFromObject(View view, Object object) {
+		return (view == object);
+	}
 
 	private List<Field> _fields;
 	private Map<Field.EditorType, Integer> _layoutIds;
