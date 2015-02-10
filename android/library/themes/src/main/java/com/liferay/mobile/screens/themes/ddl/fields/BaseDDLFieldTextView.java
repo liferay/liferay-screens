@@ -100,6 +100,11 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 		_textEditText = (EditText)findViewById(R.id.text);
 
 		_textEditText.addTextChangedListener(this);
+
+		//We are not saving the text view state because when state is restored,
+		//the ids of other DDLFields are conflicting.
+		//It is not a problem because all state is stored in Field objects.
+		_textEditText.setSaveEnabled(false);
 	}
 
 	protected abstract void onTextChanged(String text);
