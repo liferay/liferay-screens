@@ -15,21 +15,15 @@
 package com.liferay.mobile.screens.themes.ddl.fields;
 
 import android.content.Context;
-import android.util.AttributeSet;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.liferay.mobile.screens.ddl.model.Field;
+import android.util.AttributeSet;
+
 import com.liferay.mobile.screens.ddl.model.StringField;
-import com.liferay.mobile.screens.ddl.view.DDLFieldViewModel;
-import com.liferay.mobile.screens.themes.R;
 
 /**
  * @author Silvio Santos
  */
-public class DDLFieldTextView extends LinearLayout
-	implements DDLFieldViewModel {
+public class DDLFieldTextView extends BaseDDLFieldTextView<StringField> {
 
 	public DDLFieldTextView(Context context) {
 		this(context, null);
@@ -46,35 +40,15 @@ public class DDLFieldTextView extends LinearLayout
 	}
 
 	@Override
-	public Field getField() {
-		return null;
+	public void setField(StringField field) {
+		super.setField(field);
+
+		getTextEditText().setText(field.getCurrentValue());
 	}
 
 	@Override
-	public void setField(Field field) {
-		StringField stringField = (StringField)field;
-
-		if (stringField.isShowLabel()) {
-			_labelTextView.setVisibility(VISIBLE);
-			_labelTextView.setText(stringField.getLabel());
-		}
-		else {
-			_textEditText.setHint(stringField.getLabel());
-			_labelTextView.setVisibility(GONE);
-		}
-
-		_textEditText.setText(stringField.getCurrentValue());
+	protected void onTextChanged(String text) {
+		getField().setCurrentValue(text);
 	}
-
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-
-		_labelTextView = (TextView)findViewById(R.id.label);
-		_textEditText = (EditText)findViewById(R.id.text);
-	}
-
-	private EditText _textEditText;
-	private TextView _labelTextView;
 
 }

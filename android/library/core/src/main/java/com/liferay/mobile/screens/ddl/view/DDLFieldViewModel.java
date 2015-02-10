@@ -19,10 +19,10 @@ import com.liferay.mobile.screens.ddl.model.Field;
 /**
  * @author Silvio Santos
  */
-public interface DDLFieldViewModel {
+public interface DDLFieldViewModel<T extends Field> {
 
-	public Field getField();
+	public T getField();
 
-	public void setField(Field field);
+	public void setField(T field);
 
 }
