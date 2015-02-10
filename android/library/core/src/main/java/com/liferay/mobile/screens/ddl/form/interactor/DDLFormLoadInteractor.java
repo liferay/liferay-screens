@@ -23,7 +23,7 @@ import java.util.Locale;
 /**
  * @author Jose Manuel Navarro
  */
-public interface DDLFormLoadInteractor extends Interactor<DDLFormListener> {
+public interface DDLFormLoadInteractor extends DDLFormBaseInteractor {
 
 	public void load(Record record) throws Exception;
 

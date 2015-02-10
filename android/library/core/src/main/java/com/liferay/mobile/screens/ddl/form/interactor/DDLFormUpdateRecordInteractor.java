@@ -21,7 +21,7 @@ import com.liferay.mobile.screens.ddl.model.Record;
 /**
  * @author Jose Manuel Navarro
  */
-public interface DDLFormUpdateRecordInteractor extends Interactor<DDLFormListener> {
+public interface DDLFormUpdateRecordInteractor extends DDLFormBaseInteractor {
 
 	public void updateRecord(long groupId, Record record) throws Exception;
 

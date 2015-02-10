@@ -24,9 +24,9 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormAddRecordInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormAddRecordInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUpdateRecordInteractor;
@@ -44,7 +44,7 @@ import java.util.Map;
  * @author Silvio Santos
  */
 public class DDLFormScreenlet
-	extends BaseScreenlet<DDLFormViewModel, Interactor> {
+	extends BaseScreenlet<DDLFormViewModel, DDLFormBaseInteractor>
 
 	public DDLFormScreenlet(Context context) {
 		this(context, null);
@@ -69,8 +69,8 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	protected Interactor createInteractor(String actionName) {
-		Interactor result = null;
+	protected DDLFormBaseInteractor createInteractor(String actionName) {
+		DDLFormBaseInteractor result = null;
 
 		if (_LOAD_FORM_ACTION.equals(actionName)) {
 			result = new DDLFormLoadInteractorImpl(getScreenletId());
@@ -171,7 +171,7 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, Interactor interactor) {
+	protected void onUserAction(String userActionName, DDLFormBaseInteractor interactor) {
 		if (_LOAD_FORM_ACTION.equals(userActionName)) {
 			DDLFormLoadInteractor loadInteractor = (DDLFormLoadInteractor) interactor;
 

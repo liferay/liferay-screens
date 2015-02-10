@@ -18,13 +18,9 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Record;
 
-import java.util.Locale;
-
 /**
  * @author Jose Manuel Navarro
  */
-public interface DDLFormAddRecordInteractor extends DDLFormBaseInteractor {
-
-	public void addRecord(long groupId, Record record) throws Exception;
+public interface DDLFormBaseInteractor extends Interactor<DDLFormListener> {
 
 }
