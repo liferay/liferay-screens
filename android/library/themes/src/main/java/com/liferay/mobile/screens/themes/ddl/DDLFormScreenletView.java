@@ -95,6 +95,11 @@ public class DDLFormScreenletView
 	}
 
 	@Override
+	public void onDDLFormRecordLoaded(Record record) {
+
+	}
+
+	@Override
 	public void onDDLFormRecordAdded(Record record) {
 
 	}
@@ -106,6 +111,11 @@ public class DDLFormScreenletView
 
 	@Override
 	public void onDDLFormLoadFailed(Exception e) {
+
+	}
+
+	@Override
+	public void onDDLFormRecordLoadFailed(Exception e) {
 
 	}
 

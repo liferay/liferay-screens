@@ -102,6 +102,15 @@ public class Record {
 		_creatorUserId = value;
 	}
 
+	public void setValues(Map<String,Object> values) {
+		for (Field f : _fields) {
+			Object fieldValue = values.get(f.getName());
+			if (fieldValue != null) {
+				f.setCurrentValue(f.convertFromString(fieldValue.toString()));
+			}
+		}
+	}
+
 	public boolean isRecordStructurePresent() {
 		return (_fields.size() > 0);
 	}

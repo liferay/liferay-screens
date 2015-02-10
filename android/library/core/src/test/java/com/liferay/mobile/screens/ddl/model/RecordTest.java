@@ -142,4 +142,37 @@ public class RecordTest {
 
 	}
 
+	@Config(emulateSdk = 18)
+	@RunWith(RobolectricTestRunner.class)
+	public static class WhenSettingValues {
+
+		@Test
+		public void shouldChangeTheFieldsCurrentValue() throws Exception {
+			String xsd =
+				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+					"<dynamic-element " +
+							"dataType=\"string\" " +
+							"type=\"text\" " +
+							"name=\"A_Text\" > " +
+						"<meta-data locale=\"en_US\"> " +
+							"<entry name=\"predefinedValue\"><![CDATA[abc]]></entry> " +
+						"</meta-data> " +
+					"</dynamic-element>" +
+				"</root>";
+
+			Record record = new Record(new Locale("en", "US"));
+			record.parseXsd(xsd);
+
+			StringField field = (StringField)record.getField(0);
+
+			Map<String, Object> newValues = new HashMap<>();
+			newValues.put("A_Text", "xyz");
+
+			record.setValues(newValues);
+
+			assertEquals("xyz", field.getCurrentValue());
+		}
+
+	}
+
 }

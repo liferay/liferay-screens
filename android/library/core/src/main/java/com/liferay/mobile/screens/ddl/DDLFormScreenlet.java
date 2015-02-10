@@ -30,6 +30,7 @@ import com.liferay.mobile.screens.ddl.form.interactor.DDLFormAddRecordInteractor
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUpdateRecordInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUpdateRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.model.Field;
@@ -89,6 +90,16 @@ public class DDLFormScreenlet
 	}
 
 	@Override
+	public void onDDLFormRecordLoaded(Record record) {
+		DDLFormListener view = (DDLFormListener)getScreenletView();
+		view.onDDLFormRecordLoaded(record);
+
+		if (_listener != null) {
+			_listener.onDDLFormRecordLoaded(record);
+		}
+	}
+
+	@Override
 	public void onDDLFormRecordAdded(Record record) {
 		DDLFormListener view = (DDLFormListener)getScreenletView();
 		view.onDDLFormRecordAdded(record);
@@ -116,6 +127,11 @@ public class DDLFormScreenlet
 		if (_listener != null) {
 			_listener.onDDLFormLoadFailed(e);
 		}
+	}
+
+	@Override
+	public void onDDLFormRecordLoadFailed(Exception e) {
+
 	}
 
 	@Override
@@ -163,7 +179,7 @@ public class DDLFormScreenlet
 		}
 		else if (_LOAD_RECORD_ACTION.equals(actionName)) {
 			if (_record.isRecordStructurePresent()) {
-				// TODO request just data
+				result = new DDLFormLoadRecordInteractorImpl(getScreenletId());
 			}
 			else {
 				// TODO request both structure and data
@@ -200,7 +216,7 @@ public class DDLFormScreenlet
 			R.styleable.DDLFormScreenlet_recordSetId, 0);
 
 		_recordId = typedArray.getInteger(
-			R.styleable.DDLFormScreenlet_recordSetId, 0);
+			R.styleable.DDLFormScreenlet_recordId, 0);
 
 		//TODO use current user id from SessionContext as default
 		_userId = typedArray.getInteger(

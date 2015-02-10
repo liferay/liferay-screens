@@ -12,29 +12,15 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.form;
+package com.liferay.mobile.screens.ddl.form.interactor;
 
 import com.liferay.mobile.screens.ddl.model.Record;
 
 /**
  * @author Jose Manuel Navarro
  */
-public interface DDLFormListener {
+public interface DDLFormLoadRecordInteractor extends DDLFormBaseInteractor {
 
-	void onDDLFormLoaded(Record record);
-
-	void onDDLFormRecordLoaded(Record record);
-
-	void onDDLFormRecordAdded(Record record);
-
-	void onDDLFormRecordUpdated(Record record);
-
-	void onDDLFormLoadFailed(Exception e);
-
-	void onDDLFormRecordLoadFailed(Exception e);
-
-	void onDDLFormAddRecordFailed(Exception e);
-
-	void onDDLFormUpdateRecordFailed(Exception e);
+	public void loadRecord(Record record) throws Exception;
 
 }
