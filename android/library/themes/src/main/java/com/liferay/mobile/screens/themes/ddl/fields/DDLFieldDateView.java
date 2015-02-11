@@ -87,6 +87,7 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 	protected void onDetachedFromWindow() {
 		super.onDetachedFromWindow();
 
+		// Avoid WindowLeak error on orientation changes
 		if (_pickerDialog != null) {
 			_pickerDialog.dismiss();
 			_pickerDialog = null;
