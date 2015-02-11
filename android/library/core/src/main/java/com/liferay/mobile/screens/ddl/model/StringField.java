@@ -32,7 +32,7 @@ public class StringField extends Field<String> {
 	}
 
 	@Override
-	protected String convertToString(String value) {
+	protected String convertToData(String value) {
 		return value;
 	}
 

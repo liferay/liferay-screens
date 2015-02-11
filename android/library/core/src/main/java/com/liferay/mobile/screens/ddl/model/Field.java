@@ -18,7 +18,6 @@ import org.w3c.dom.Element;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -231,7 +230,7 @@ public abstract class Field<T> {
 
 	@Override
 	public String toString() {
-		return convertToString(_currentValue);
+		return convertToData(_currentValue);
 	}
 
 	public String toLabel() {
@@ -245,7 +244,7 @@ public abstract class Field<T> {
 
 	protected abstract T convertFromString(String stringValue);
 
-	protected abstract String convertToString(T value);
+	protected abstract String convertToData(T value);
 
 	protected abstract String convertToLabel(T value);
 

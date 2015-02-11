@@ -136,7 +136,7 @@ public class DateFieldTest {
 		public void shouldReturnNullWhenNullDateIsSupplied() throws Exception {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE);
 
-			assertNull(field.convertToString(null));
+			assertNull(field.convertToData(null));
 		}
 
 		@Test
@@ -146,7 +146,7 @@ public class DateFieldTest {
 			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 			calendar.setTimeInMillis(1087666200000L);
 
-			assertEquals("1087666200000", field.convertToString(calendar.getTime()));
+			assertEquals("1087666200000", field.convertToData(calendar.getTime()));
 		}
 	}
 

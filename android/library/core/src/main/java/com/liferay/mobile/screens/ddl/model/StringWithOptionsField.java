@@ -108,7 +108,7 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 	}
 
 	@Override
-	protected String convertToString(List<Option> selectedOptions) {
+	protected String convertToData(List<Option> selectedOptions) {
 		if (selectedOptions == null || selectedOptions.isEmpty()) {
 			return "[]";
 		}

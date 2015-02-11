@@ -52,7 +52,7 @@ public class NumberField extends Field<Number> {
 	}
 
 	@Override
-	protected String convertToString(Number value) {
+	protected String convertToData(Number value) {
 		return (value == null) ? null : value.toString();
 	}
 

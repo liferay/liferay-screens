@@ -68,21 +68,21 @@ public class BooleanFieldTest {
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
 			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
 
-			assertNull(field.convertToString(null));
+			assertNull(field.convertToData(null));
 		}
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
 			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
 
-			assertEquals("true", field.convertToString(true));
+			assertEquals("true", field.convertToData(true));
 		}
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
 			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
 
-			assertEquals("false", field.convertToString(false));
+			assertEquals("false", field.convertToData(false));
 		}
 	}
 

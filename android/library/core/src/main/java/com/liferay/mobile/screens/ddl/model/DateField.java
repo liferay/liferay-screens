@@ -66,7 +66,7 @@ public class DateField extends Field<Date> {
 	}
 
 	@Override
-	protected String convertToString(Date value) {
+	protected String convertToData(Date value) {
 		return (value == null) ? null : Long.valueOf(value.getTime()).toString();
 	}
 

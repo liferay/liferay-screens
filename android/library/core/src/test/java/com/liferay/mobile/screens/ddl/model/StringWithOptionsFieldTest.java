@@ -84,7 +84,7 @@ public class StringWithOptionsFieldTest {
 		public void shouldReturnEmptyListWhenSelectedOptionsIsNull() {
 			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), _spanishLocale);
 
-			String result = field.convertToString(null);
+			String result = field.convertToData(null);
 
 			assertNotNull(result);
 			assertEquals("[]", result);
@@ -95,7 +95,7 @@ public class StringWithOptionsFieldTest {
 			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), _spanishLocale);
 			List<StringWithOptionsField.Option> selected = new ArrayList<StringWithOptionsField.Option>();
 
-			String result = field.convertToString(selected);
+			String result = field.convertToData(selected);
 
 			assertNotNull(result);
 			assertEquals("[]", result);
@@ -112,7 +112,7 @@ public class StringWithOptionsFieldTest {
 
 			selected.add(option1);
 
-			String result = field.convertToString(selected);
+			String result = field.convertToData(selected);
 
 			assertNotNull(result);
 			assertEquals("[\"option1\"]", result);
@@ -132,7 +132,7 @@ public class StringWithOptionsFieldTest {
 			selected.add(option1);
 			selected.add(option2);
 
-			String result = field.convertToString(selected);
+			String result = field.convertToData(selected);
 
 			assertNotNull(result);
 			assertEquals("[\"option1\", \"option2\"]", result);

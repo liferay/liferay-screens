@@ -35,7 +35,7 @@ public class BooleanField extends Field<Boolean> {
 	}
 
 	@Override
-	protected String convertToString(Boolean value) {
+	protected String convertToData(Boolean value) {
 		if (value == null) {
 			return null;
 		}
