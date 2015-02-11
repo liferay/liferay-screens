@@ -67,6 +67,47 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 		return _availableOptions;
 	}
 
+	@Override
+	public List<Option> getCurrentValue() {
+		List<Option> options = super.getCurrentValue();
+
+		if (options == null) {
+			options = new ArrayList<>();
+		}
+
+		return options;
+	}
+
+	public void clearOption(Option option) {
+		List<Option> options = getCurrentValue();
+
+		if (options == null) {
+			return;
+		}
+
+		options.remove(option);
+	}
+
+	public void selectOption(Option option) {
+		if (!isMultiple()) {
+			List<Option> options = new ArrayList<>();
+			options.add(option);
+
+			setCurrentValue(options);
+		}
+		else {
+			List<Option> options = getCurrentValue();
+
+			if (options == null) {
+				options = new ArrayList<>();
+			}
+
+			if (!options.contains(option)) {
+				options.add(option);
+			}
+		}
+	}
+
 	public boolean isMultiple() {
 		// Multiple selection is not supported yet
 		return false;
