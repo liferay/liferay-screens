@@ -81,11 +81,6 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	public void setField(T field) {
 		_field = field;
 
-		refresh();
-	}
-
-	@Override
-	public void refresh() {
 		if (_field.isShowLabel()) {
 			_textEditText.setHint("");
 			_labelTextView.setText(_field.getLabel());
@@ -96,6 +91,11 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 			_labelTextView.setVisibility(GONE);
 		}
 
+		refresh();
+	}
+
+	@Override
+	public void refresh() {
 		_textEditText.setText(_field.toFormattedString());
 	}
 
