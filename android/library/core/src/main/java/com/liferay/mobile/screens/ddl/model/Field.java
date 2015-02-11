@@ -97,6 +97,7 @@ public abstract class Field<T> {
 		}
 
 		private String _value;
+
 	}
 
 
@@ -105,6 +106,8 @@ public abstract class Field<T> {
 		TEXT("text"),
 		DATE("ddm-date"),
 		NUMBER("ddm-number"),
+		INTEGER("ddm-integer"),
+		DECIMAL("ddm-decimal"),
 		SELECT("select"),
 		RADIO("radio"),
 		UNSUPPORTED(null);
@@ -136,10 +139,6 @@ public abstract class Field<T> {
 					if (name.equals(editorType._value)) {
 						return editorType;
 					}
-				}
-
-				if (name.equals("ddm-integer") || name.equals("ddm-decimal")) {
-					return NUMBER;
 				}
 			}
 
@@ -222,6 +221,10 @@ public abstract class Field<T> {
 
 	public void setCurrentValue(T value) {
 		_currentValue = value;
+	}
+
+	public void setCurrentStringValue(String value) {
+		setCurrentValue(convertFromString(value));
 	}
 
 	public Locale getCurrentLocale() {

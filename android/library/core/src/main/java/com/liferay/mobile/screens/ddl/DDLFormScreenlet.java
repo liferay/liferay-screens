@@ -246,6 +246,14 @@ public class DDLFormScreenlet
 			R.styleable.DDLFormScreenlet_numberFieldLayoutId);
 
 		setFieldLayoutId(
+			viewModel, Field.EditorType.INTEGER, typedArray,
+			R.styleable.DDLFormScreenlet_numberFieldLayoutId);
+
+		setFieldLayoutId(
+			viewModel, Field.EditorType.DECIMAL, typedArray,
+			R.styleable.DDLFormScreenlet_numberFieldLayoutId);
+
+		setFieldLayoutId(
 			viewModel, Field.EditorType.RADIO, typedArray,
 			R.styleable.DDLFormScreenlet_radioFieldLayoutId);
 
@@ -336,19 +344,19 @@ public class DDLFormScreenlet
 
 	static {
 		_defaultLayoutNames = new HashMap<>();
-		_defaultLayoutNames.put(
-			Field.EditorType.CHECKBOX, "ddlfield_checkbox_default");
+		_defaultLayoutNames.put(Field.EditorType.CHECKBOX, "ddlfield_checkbox_default");
 
 		_defaultLayoutNames.put(Field.EditorType.DATE, "ddlfield_date_default");
 
-		_defaultLayoutNames.put(
-			Field.EditorType.NUMBER, "ddlfield_number_default");
+		_defaultLayoutNames.put(Field.EditorType.NUMBER, "ddlfield_number_default");
 
-		_defaultLayoutNames.put(
-			Field.EditorType.RADIO, "ddlfield_radio_default");
+		_defaultLayoutNames.put(Field.EditorType.INTEGER, "ddlfield_number_default");
 
-		_defaultLayoutNames.put(
-			Field.EditorType.SELECT, "ddlfield_select_default");
+		_defaultLayoutNames.put(Field.EditorType.DECIMAL, "ddlfield_number_default");
+
+		_defaultLayoutNames.put(Field.EditorType.RADIO, "ddlfield_radio_default");
+
+		_defaultLayoutNames.put(Field.EditorType.SELECT, "ddlfield_select_default");
 
 		_defaultLayoutNames.put(Field.EditorType.TEXT, "ddlfield_text_default");
 	}
