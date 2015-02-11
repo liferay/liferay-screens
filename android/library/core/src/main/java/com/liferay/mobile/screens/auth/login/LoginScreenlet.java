@@ -41,16 +41,14 @@ public class LoginScreenlet
 	public static final String LOGIN_ACTION = "login";
 
 	public LoginScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public LoginScreenlet(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public LoginScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public LoginScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

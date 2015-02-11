@@ -39,21 +39,21 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	extends FrameLayout {
 
 	public BaseScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
+
+		init(context, null);
 	}
 
 	public BaseScreenlet(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
+
+		init(context, attributes);
 	}
 
-	public BaseScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public BaseScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 
-		_screenletView = createScreenletView(context, attributes);
-
-		addView(_screenletView);
+		init(context, attributes);
 	}
 
 	public int getScreenletId() {
@@ -64,10 +64,13 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return _screenletId;
 	}
 
-	protected abstract View createScreenletView(
-		Context context, AttributeSet attributes);
+	public void performUserAction(String userActionName) {
+		I interactor = getInteractor(userActionName);
 
-	protected abstract I createInteractor(String actionName);
+		if (interactor != null) {
+			onUserAction(userActionName, interactor);
+		}
+	}
 
 	public I getInteractor(String actionName) {
 		I result = _interactors.get(actionName);
@@ -82,6 +85,12 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		}
 
 		return result;
+	}
+
+	protected void init(Context context, AttributeSet attributes) {
+		_screenletView = createScreenletView(context, attributes);
+
+		addView(_screenletView);
 	}
 
 	protected View getScreenletView() {
@@ -148,13 +157,9 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	protected void onScreenletDetached() {
 	}
 
-	public void performUserAction(String userActionName) {
-		I interactor = getInteractor(userActionName);
+	protected abstract View createScreenletView(Context context, AttributeSet attributes);
 
-		if (interactor != null) {
-			onUserAction(userActionName, interactor);
-		}
-	}
+	protected abstract I createInteractor(String actionName);
 
 	protected abstract void onUserAction(String userActionName, I interactor);
 

@@ -38,18 +38,14 @@ public class ForgotPasswordScreenletView extends LinearLayout
 		ForgotPasswordListener {
 
 	public ForgotPasswordScreenletView(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
-	public ForgotPasswordScreenletView(
-		Context context, AttributeSet attributes) {
-
-		this(context, attributes, 0);
+	public ForgotPasswordScreenletView(Context context, AttributeSet attributes) {
+		super(context, attributes, 0);
 	}
 
-	public ForgotPasswordScreenletView(
-			Context context, AttributeSet attributes, int defaultStyle) {
-
+	public ForgotPasswordScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

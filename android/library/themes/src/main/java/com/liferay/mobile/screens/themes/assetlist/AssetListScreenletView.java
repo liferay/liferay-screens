@@ -40,27 +40,21 @@ public class AssetListScreenletView extends RecyclerView
 	implements AssetListListener, AssetListAdapterListener {
 
 	public AssetListScreenletView(Context context) {
-		this(context, null);
+		super(context, null);
+
+		init(context);
 	}
 
 	public AssetListScreenletView(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
+
+		init(context);
 	}
 
-	public AssetListScreenletView(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public AssetListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 
-		int itemLayoutId = R.layout.asset_list_item_default;
-		int itemProgressLayoutId = R.layout.asset_list_item_progress_default;
-
-		AssetListAdapter adapter = new AssetListAdapter(
-			itemLayoutId, itemProgressLayoutId, this);
-
-		setAdapter(adapter);
-		setHasFixedSize(true);
-		setLayoutManager(new LinearLayoutManager(context));
+		init(context);
 	}
 
 	@Override
@@ -99,6 +93,18 @@ public class AssetListScreenletView extends RecyclerView
 		AssetListScreenlet screenlet = ((AssetListScreenlet)getParent());
 
 		screenlet.loadPageForRow(row);
+	}
+
+	protected void init(Context context) {
+		int itemLayoutId = R.layout.asset_list_item_default;
+		int itemProgressLayoutId = R.layout.asset_list_item_progress_default;
+
+		AssetListAdapter adapter = new AssetListAdapter(
+			itemLayoutId, itemProgressLayoutId, this);
+
+		setAdapter(adapter);
+		setHasFixedSize(true);
+		setLayoutManager(new LinearLayoutManager(context));
 	}
 
 	@Override

@@ -40,16 +40,14 @@ public class DDLFormScreenletView
 	extends LinearLayout implements DDLFormViewModel, DDLFormListener {
 
 	public DDLFormScreenletView(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public DDLFormScreenletView(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public DDLFormScreenletView(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public DDLFormScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

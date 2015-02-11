@@ -38,16 +38,14 @@ public class SignUpScreenletView extends LinearLayout
 	implements SignUpListener, SignUpViewModel, View.OnClickListener {
 
 	public SignUpScreenletView(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public SignUpScreenletView(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public SignUpScreenletView(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public SignUpScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

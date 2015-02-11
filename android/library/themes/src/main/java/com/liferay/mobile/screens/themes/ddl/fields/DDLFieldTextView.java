@@ -26,16 +26,14 @@ import com.liferay.mobile.screens.ddl.model.StringField;
 public class DDLFieldTextView extends BaseDDLFieldTextView<StringField> {
 
 	public DDLFieldTextView(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public DDLFieldTextView(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public DDLFieldTextView(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public DDLFieldTextView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

@@ -44,16 +44,14 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 	implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
 	public DDLFieldDateView(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public DDLFieldDateView(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public DDLFieldDateView(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public DDLFieldDateView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

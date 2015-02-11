@@ -39,16 +39,14 @@ public class LoginScreenletView extends LinearLayout
 	implements LoginViewModel, View.OnClickListener, LoginListener {
 
 	public LoginScreenletView(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public LoginScreenletView(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public LoginScreenletView(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public LoginScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

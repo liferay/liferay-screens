@@ -41,16 +41,14 @@ public class AssetListScreenlet
 	implements AssetListRowsListener {
 
 	public AssetListScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public AssetListScreenlet(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public AssetListScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public AssetListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

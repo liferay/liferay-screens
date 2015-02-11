@@ -37,7 +37,7 @@ import java.util.Map;
 public class DDLFormScreenletPagerView extends DDLFormScreenletView {
 
 	public DDLFormScreenletPagerView(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public DDLFormScreenletPagerView(Context context, AttributeSet attributes) {

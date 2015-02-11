@@ -50,16 +50,14 @@ public class DDLFormScreenlet
 	implements DDLFormListener {
 
 	public DDLFormScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public DDLFormScreenlet(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public DDLFormScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public DDLFormScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

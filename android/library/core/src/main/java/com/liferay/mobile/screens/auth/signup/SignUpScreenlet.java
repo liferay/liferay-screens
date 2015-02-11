@@ -43,16 +43,14 @@ public class SignUpScreenlet
 	public static final String SIGN_UP_ACTION = "signUp";
 
 	public SignUpScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public SignUpScreenlet(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public SignUpScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public SignUpScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

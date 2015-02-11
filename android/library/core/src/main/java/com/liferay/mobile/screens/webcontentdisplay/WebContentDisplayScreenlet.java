@@ -40,18 +40,14 @@ public class WebContentDisplayScreenlet
 		implements WebContentDisplayListener {
 
 	public WebContentDisplayScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
-	public WebContentDisplayScreenlet(
-		Context context, AttributeSet attributes) {
-
-		this(context, attributes, 0);
+	public WebContentDisplayScreenlet(Context context, AttributeSet attributes) {
+		super(context, attributes, 0);
 	}
 
-	public WebContentDisplayScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public WebContentDisplayScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

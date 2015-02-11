@@ -36,16 +36,14 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	implements DDLFieldViewModel<T>, TextWatcher {
 
 	public BaseDDLFieldTextView(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public BaseDDLFieldTextView(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public BaseDDLFieldTextView(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public BaseDDLFieldTextView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

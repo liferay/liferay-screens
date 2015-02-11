@@ -40,16 +40,14 @@ public class ForgotPasswordScreenlet
 	public static final String REQUEST_PASSWORD_ACTION = "requestPassword";
 
 	public ForgotPasswordScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public ForgotPasswordScreenlet(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public ForgotPasswordScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public ForgotPasswordScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 
