@@ -27,6 +27,21 @@ public class StringField extends Field<String> {
 	}
 
 	@Override
+	protected  boolean doValidate() {
+		boolean valid = true;
+
+		String currentValue = getCurrentValue();
+
+		if (currentValue != null && isRequired()) {
+			String trimmedString = currentValue.trim();
+
+			valid = !trimmedString.equals("");
+		}
+
+		return valid;
+	}
+
+	@Override
 	protected String convertFromString(String stringValue) {
 		return stringValue;
 	}

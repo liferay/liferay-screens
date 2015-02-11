@@ -372,6 +372,44 @@ public class StringWithOptionsFieldTest {
 		}
 	}
 
+	@Config(emulateSdk = 18)
+	@RunWith(RobolectricTestRunner.class)
+	public static class WhenValidating {
+
+		@Test
+		public void shouldReturnFalseWhenNoOptionWasSelected() {
+			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
+
+			assertFalse(field.isValid());
+		}
+
+		@Test
+		public void shouldReturnFalseWhenSelectionIsCleared() {
+			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
+
+			List<StringWithOptionsField.Option> availableOptions =
+				field.getAvailableOptions();
+
+			field.selectOption(availableOptions.get(0));
+			field.clearOption(availableOptions.get(0));
+
+			assertFalse(field.isValid());
+		}
+
+		@Test
+		public void shouldReturnTrueWhenOptionIsSelected() {
+			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
+
+			List<StringWithOptionsField.Option> availableOptions =
+				field.getAvailableOptions();
+
+			field.selectOption(availableOptions.get(0));
+
+			assertTrue(field.isValid());
+		}
+
+	}
+
 	private static Map<String, Object> _createParsedData() {
 		Map<String, String> optionData1 = new HashMap<String, String>();
 		optionData1.put("label", "Option 1");

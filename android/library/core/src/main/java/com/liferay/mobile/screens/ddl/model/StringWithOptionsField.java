@@ -73,6 +73,13 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 	}
 
 	@Override
+	protected boolean doValidate() {
+		List<Option> options = getCurrentValue();
+
+		return (options != null && !options.isEmpty());
+	}
+
+	@Override
 	protected List<Option> convertFromString(String stringValue) {
 		if (stringValue == null) {
 			return null;

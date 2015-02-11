@@ -203,8 +203,24 @@ public abstract class Field<T> {
 		return _showLabel;
 	}
 
+	public boolean isValid() {
+		boolean valid = !((_currentValue == null) && isRequired());
+
+		if (valid) {
+			valid = doValidate();
+		}
+
+		_lastValidationResult = valid;
+
+		return valid;
+	}
+
 	public String getLabel() {
 		return _label;
+	}
+
+	public boolean getLastValidationResult() {
+		return _lastValidationResult;
 	}
 
 	public String getTip() {
@@ -225,6 +241,10 @@ public abstract class Field<T> {
 
 	public void setCurrentStringValue(String value) {
 		setCurrentValue(convertFromString(value));
+	}
+
+	public void setLastValidationResult(boolean lastValidationResult) {
+		_lastValidationResult = lastValidationResult;
 	}
 
 	public Locale getCurrentLocale() {
@@ -250,6 +270,10 @@ public abstract class Field<T> {
 
 	protected abstract String convertToFormattedString(T value);
 
+	protected boolean doValidate() {
+		return true;
+	}
+
 	private DataType _dataType;
 	private EditorType _editorType;
 
@@ -264,6 +288,8 @@ public abstract class Field<T> {
 
 	private T _predefinedValue;
 	private T _currentValue;
+
+	private boolean _lastValidationResult;
 
 	private Locale _currentLocale;
 
