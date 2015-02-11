@@ -40,13 +40,6 @@ public class DDLFieldTextView extends BaseDDLFieldTextView<StringField> {
 	}
 
 	@Override
-	public void setField(StringField field) {
-		super.setField(field);
-
-		getTextEditText().setText(field.getCurrentValue());
-	}
-
-	@Override
 	protected void onTextChanged(String text) {
 		getField().setCurrentValue(text);
 	}

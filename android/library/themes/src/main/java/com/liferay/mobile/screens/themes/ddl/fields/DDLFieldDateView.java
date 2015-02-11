@@ -82,13 +82,6 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		Calendar calendar = Calendar.getInstance(locale);
 		calendar.set(year, month, day);
 
-		long time = calendar.getTimeInMillis();
-
-		String date = DateUtils.formatDateTime(
-			getContext(), time, DateUtils.FORMAT_NUMERIC_DATE);
-
-		getTextEditText().setText(date);
-
 		getField().setCurrentValue(calendar.getTime());
 	}
 

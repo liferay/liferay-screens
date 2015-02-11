@@ -25,4 +25,6 @@ public interface DDLFieldViewModel<T extends Field> {
 
 	public void setField(T field);
 
+	public void refresh();
+
 }

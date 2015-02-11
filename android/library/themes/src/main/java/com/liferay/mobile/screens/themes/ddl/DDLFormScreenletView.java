@@ -98,7 +98,7 @@ public class DDLFormScreenletView
 	public void onDDLFormRecordLoaded(Record record) {
 		for (int i = 0; i < record.getFieldCount(); ++i) {
 			DDLFieldViewModel viewModel = (DDLFieldViewModel) findViewById(i);
-			viewModel.setField(record.getField(i));
+			viewModel.refresh();
 		}
 	}
 
