@@ -228,8 +228,7 @@ public abstract class Field<T> {
 		return _currentLocale;
 	}
 
-	@Override
-	public String toString() {
+	public String toData() {
 		return convertToData(_currentValue);
 	}
 

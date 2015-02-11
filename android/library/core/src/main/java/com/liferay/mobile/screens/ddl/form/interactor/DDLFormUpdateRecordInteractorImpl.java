@@ -42,7 +42,7 @@ public class DDLFormUpdateRecordInteractorImpl
 		serviceContextAttributes.put("userId", record.getCreatorUserId());
 		serviceContextAttributes.put("scopeGroupId", groupId);
 
-		JSONObject fieldsValues = new JSONObject(record.getValues());
+		JSONObject fieldsValues = new JSONObject(record.getData());
 
 		JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
 

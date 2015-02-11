@@ -14,8 +14,6 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
-import com.liferay.mobile.screens.ddl.XSDParser;
-
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -23,7 +21,6 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -94,7 +91,7 @@ public class RecordTest {
 
 			field.setCurrentValue(true);
 
-			Map<String, String> values = record.getValues();
+			Map<String, String> values = record.getData();
 
 			assertNotNull(values);
 			assertEquals(1, values.size());
@@ -132,7 +129,7 @@ public class RecordTest {
 
 			field.setCurrentValue("");
 
-			Map<String, String> values = record.getValues();
+			Map<String, String> values = record.getData();
 
 			assertNotNull(values);
 			assertEquals(1, values.size());

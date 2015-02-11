@@ -112,14 +112,14 @@ public class BooleanFieldTest {
 		}
 	}
 
-	public static class WhenToString {
+	public static class WhenToData {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
 			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
 			field.setCurrentValue(null);
 
-			assertNull(field.toString());
+			assertNull(field.toData());
 		}
 
 		@Test
@@ -127,7 +127,7 @@ public class BooleanFieldTest {
 			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
 			field.setCurrentValue(true);
 
-			assertEquals("true", field.toString());
+			assertEquals("true", field.toData());
 		}
 
 		@Test
@@ -135,7 +135,7 @@ public class BooleanFieldTest {
 			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
 			field.setCurrentValue(false);
 
-			assertEquals("false", field.toString());
+			assertEquals("false", field.toData());
 		}
 	}
 

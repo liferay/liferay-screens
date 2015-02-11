@@ -68,11 +68,11 @@ public class Record {
 		return _creatorUserId;
 	}
 
-	public Map<String, String> getValues() {
+	public Map<String, String> getData() {
 		Map<String, String> values = new HashMap<>(_fields.size());
 
 		for (Field f : _fields) {
-			String fieldValue = f.toString();
+			String fieldValue = f.toData();
 
 			if (fieldValue != null && !fieldValue.isEmpty()) {
 				values.put(f.getName(), fieldValue);
