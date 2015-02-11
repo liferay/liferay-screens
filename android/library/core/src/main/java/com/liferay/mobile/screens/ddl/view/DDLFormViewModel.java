@@ -28,6 +28,4 @@ public interface DDLFormViewModel extends BaseViewModel {
 
 	public void setFieldLayoutId(Field.EditorType editorType, int layoutId);
 
-	public void setFields(List<Field> fields);
-
 }

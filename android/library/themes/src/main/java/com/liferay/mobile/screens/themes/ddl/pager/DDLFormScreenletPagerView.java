@@ -20,10 +20,13 @@ import android.support.v4.view.ViewPager;
 
 import android.util.AttributeSet;
 
+import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.themes.R;
 import com.liferay.mobile.screens.themes.ddl.DDLFormScreenletView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,18 +45,20 @@ public class DDLFormScreenletPagerView extends DDLFormScreenletView {
 	}
 
 	@Override
-	public void setFields(List<Field> fields) {
+	public void onDDLFormLoaded(Record record) {
 		List<Field.EditorType> editorTypes = Field.EditorType.all();
-		Map<Field.EditorType, Integer> layoutIds = new HashMap<>();
 
+		Map<Field.EditorType, Integer> layoutIds = new HashMap<>();
 		for (Field.EditorType editorType : editorTypes) {
 			layoutIds.put(editorType, getFieldLayoutId(editorType));
 		}
 
-		DDLFormViewPagerAdapter adapter = new DDLFormViewPagerAdapter(
-			fields, layoutIds);
+		List<Field> fields = new ArrayList<>(record.getFieldCount());
+		for (int i = 0; i < record.getFieldCount(); ++i) {
+			fields.add(record.getField(i));
+		}
 
-		_pager.setAdapter(adapter);
+		_pager.setAdapter(new DDLFormViewPagerAdapter(fields, layoutIds));
 	}
 
 	@Override
