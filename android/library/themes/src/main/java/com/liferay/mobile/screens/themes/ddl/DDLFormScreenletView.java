@@ -78,18 +78,11 @@ public class DDLFormScreenletView
 	}
 
 	@Override
-	public void setFields(List<Field> fields) {
-		for (int i = 0; i < fields.size(); i++) {
-			//TODO We have to assign ids to onSave/onRestore methods be fired
-			//Assign ids by position should not be a problem, but have to check
-			//if will conflict with other views
-			addFieldView(fields.get(i), i);
-		}
-	}
-
-	@Override
 	public void onDDLFormLoaded(Record record) {
 		for (int i = 0; i < record.getFieldCount(); ++i) {
+			// We have to assign ids to onSave/onRestore methods be fired
+			//TODO Assign ids by position should not be a problem, but
+			// we have to check if it will conflict with other views
 			addFieldView(record.getField(i), i);
 		}
 	}
