@@ -152,13 +152,13 @@ public class DateFieldTest {
 
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
-	public static class WhenConvertingToLabel {
+	public static class WhenConvertingToFormattedString {
 
 		@Test
 		public void shouldReturnNullWhenNullDateIsSupplied() throws Exception {
 			DateField field = new DateField(new HashMap<String, Object>(), US_LOCALE);
 
-			assertNull(field.convertToLabel(null));
+			assertNull(field.convertToFormattedString(null));
 		}
 
 		@Test
@@ -168,7 +168,7 @@ public class DateFieldTest {
 			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 			calendar.setTimeInMillis(1087666200000L);
 
-			assertEquals("19 de junio de 2004", field.convertToLabel(calendar.getTime()));
+			assertEquals("19 de junio de 2004", field.convertToFormattedString(calendar.getTime()));
 		}
 
 		@Test
@@ -178,7 +178,7 @@ public class DateFieldTest {
 			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 			calendar.setTimeInMillis(1087666200000L);
 
-			assertEquals("June 19, 2004", field.convertToLabel(calendar.getTime()));
+			assertEquals("June 19, 2004", field.convertToFormattedString(calendar.getTime()));
 		}
 	}
 

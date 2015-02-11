@@ -71,7 +71,7 @@ public class DateField extends Field<Date> {
 	}
 
 	@Override
-	protected String convertToLabel(Date value) {
+	protected String convertToFormattedString(Date value) {
 		return (value == null) ? null : _clientFormat.format(value);
 	}
 

@@ -96,7 +96,7 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 			_labelTextView.setVisibility(GONE);
 		}
 
-		_textEditText.setText(_field.toLabel());
+		_textEditText.setText(_field.toFormattedString());
 	}
 
 	@Override

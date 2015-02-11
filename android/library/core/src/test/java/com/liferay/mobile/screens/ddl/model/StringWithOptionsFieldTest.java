@@ -267,20 +267,20 @@ public class StringWithOptionsFieldTest {
 
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
-	public static class WhenConvertingToLabel {
+	public static class WhenConvertingToFormattedString {
 
 		@Test
 		public void shouldReturnEmptyWhenNullSelectedOptions() {
 			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
 
-			assertEquals("", field.convertToLabel(null));
+			assertEquals("", field.convertToFormattedString(null));
 		}
 
 		@Test
 		public void shouldReturnEmptyWhenEmptySelectedOptions() {
 			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
 
-			assertEquals("", field.convertToLabel(new ArrayList<StringWithOptionsField.Option>()));
+			assertEquals("", field.convertToFormattedString(new ArrayList<StringWithOptionsField.Option>()));
 		}
 
 		@Test
@@ -291,7 +291,7 @@ public class StringWithOptionsFieldTest {
 
 			selectedOptions.add(field.getAvailableOptions().get(0));
 
-			assertEquals("Option 1", field.convertToLabel(selectedOptions));
+			assertEquals("Option 1", field.convertToFormattedString(selectedOptions));
 		}
 
 	}

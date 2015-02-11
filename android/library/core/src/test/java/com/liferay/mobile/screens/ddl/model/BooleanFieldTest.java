@@ -88,27 +88,27 @@ public class BooleanFieldTest {
 
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
-	public static class WhenConvertingToLabel {
+	public static class WhenConvertingToFormattedString {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
 			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale);
 
-			assertNull(field.convertToLabel(null));
+			assertNull(field.convertToFormattedString(null));
 		}
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
 			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale);
 
-			assertEquals("Yes", field.convertToLabel(true));
+			assertEquals("Yes", field.convertToFormattedString(true));
 		}
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
 			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale);
 
-			assertEquals("No", field.convertToLabel(false));
+			assertEquals("No", field.convertToFormattedString(false));
 		}
 	}
 
@@ -139,14 +139,14 @@ public class BooleanFieldTest {
 		}
 	}
 
-	public static class WhenToLabel {
+	public static class WhenToFormattedString {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
 			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale);
 			field.setCurrentValue(null);
 
-			assertNull(field.toLabel());
+			assertNull(field.toFormattedString());
 		}
 
 		@Test
@@ -154,7 +154,7 @@ public class BooleanFieldTest {
 			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale);
 			field.setCurrentValue(true);
 
-			assertEquals("Yes", field.toLabel());
+			assertEquals("Yes", field.toFormattedString());
 		}
 
 		@Test
@@ -162,7 +162,7 @@ public class BooleanFieldTest {
 			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale);
 			field.setCurrentValue(false);
 
-			assertEquals("No", field.toLabel());
+			assertEquals("No", field.toFormattedString());
 		}
 	}
 

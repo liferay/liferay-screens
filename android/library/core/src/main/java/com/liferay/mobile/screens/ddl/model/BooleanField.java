@@ -44,7 +44,7 @@ public class BooleanField extends Field<Boolean> {
 	}
 
 	@Override
-	protected String convertToLabel(Boolean value) {
+	protected String convertToFormattedString(Boolean value) {
 		//TODO localized yes/no
 		if (value == null) {
 			return null;

@@ -232,8 +232,8 @@ public abstract class Field<T> {
 		return convertToData(_currentValue);
 	}
 
-	public String toLabel() {
-		return convertToLabel(_currentValue);
+	public String toFormattedString() {
+		return convertToFormattedString(_currentValue);
 	}
 
 	protected String getAttributeStringValue(Map<String,Object> attributes, String key) {
@@ -245,7 +245,7 @@ public abstract class Field<T> {
 
 	protected abstract String convertToData(T value);
 
-	protected abstract String convertToLabel(T value);
+	protected abstract String convertToFormattedString(T value);
 
 	private DataType _dataType;
 	private EditorType _editorType;

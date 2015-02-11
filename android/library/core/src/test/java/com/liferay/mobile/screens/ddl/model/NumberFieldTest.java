@@ -117,13 +117,13 @@ public class NumberFieldTest {
 
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
-	public static class WhenConvertingToLabel {
+	public static class WhenConvertingToFormattedString {
 
 		@Test
 		public void shouldReturnEmptyWhenNullNumberIsSupplied() {
 			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
 
-			assertEquals("", field.convertToLabel(null));
+			assertEquals("", field.convertToFormattedString(null));
 		}
 
 		@Test

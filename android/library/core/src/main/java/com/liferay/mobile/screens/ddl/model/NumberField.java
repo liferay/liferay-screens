@@ -57,7 +57,7 @@ public class NumberField extends Field<Number> {
 	}
 
 	@Override
-	protected String convertToLabel(Number value) {
+	protected String convertToFormattedString(Number value) {
 		return (value == null) ? "" : _labelFormatter.format(value);
 	}
 

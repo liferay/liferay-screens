@@ -138,7 +138,7 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 	}
 
 	@Override
-	protected String convertToLabel(List<Option> value) {
+	protected String convertToFormattedString(List<Option> value) {
 		if (value == null || value.isEmpty()) {
 			return "";
 		}

@@ -37,7 +37,7 @@ public class StringField extends Field<String> {
 	}
 
 	@Override
-	protected String convertToLabel(String value) {
+	protected String convertToFormattedString(String value) {
 		return value;
 	}
 
