@@ -103,11 +103,6 @@ public class DDLFormScreenletView
 	}
 
 	@Override
-	public void onDDLFormRecordLoaded(Record record) {
-
-	}
-
-	@Override
 	public void onDDLFormRecordAdded(Record record) {
 
 	}
