@@ -58,6 +58,11 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 	@Override
 	public void onClick(View view) {
 		Date date = getField().getCurrentValue();
+
+		if (date == null) {
+			date = new Date();
+		}
+
 		Calendar.getInstance().setTime(date);
 
 		Calendar calendar = Calendar.getInstance();
