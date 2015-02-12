@@ -104,6 +104,7 @@ public abstract class Field<T> {
 	public static enum EditorType {
 		CHECKBOX("checkbox"),
 		TEXT("text"),
+		TEXT_AREA("textarea"),
 		DATE("ddm-date"),
 		NUMBER("ddm-number"),
 		INTEGER("ddm-integer"),

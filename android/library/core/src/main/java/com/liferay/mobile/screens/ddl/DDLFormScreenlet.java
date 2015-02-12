@@ -278,6 +278,11 @@ public class DDLFormScreenlet
 			viewModel, Field.EditorType.TEXT, typedArray,
 			R.styleable.DDLFormScreenlet_textFieldLayoutId);
 
+		setFieldLayoutId(
+			viewModel, Field.EditorType.TEXT_AREA, typedArray,
+			R.styleable.DDLFormScreenlet_textAreaFieldLayoutId);
+
+
 		typedArray.recycle();
 
 		return view;
@@ -372,6 +377,8 @@ public class DDLFormScreenlet
 		_defaultLayoutNames.put(Field.EditorType.SELECT, "ddlfield_select_default");
 
 		_defaultLayoutNames.put(Field.EditorType.TEXT, "ddlfield_text_default");
+
+		_defaultLayoutNames.put(Field.EditorType.TEXT_AREA, "ddlfield_text_area_default");
 	}
 
 
