@@ -54,6 +54,7 @@ public class UserPortraitScreenletView extends FrameLayout
 
         _portraitImage = (ImageView) findViewById(R.id.portrait_image);
         _portraitProgress = (ProgressBar) findViewById(R.id.portrait_progress);
+        setDefaultImagePlaceholder();
     }
 
     @Override
@@ -65,6 +66,12 @@ public class UserPortraitScreenletView extends FrameLayout
     @Override
     public void onUserPortraitFailure(Exception e) {
         _portraitProgress.setVisibility(INVISIBLE);
+        setDefaultImagePlaceholder();
+    }
+
+    private void setDefaultImagePlaceholder() {
+        Drawable defaultPortrait = getContext().getResources().getDrawable(R.drawable.default_portrait_placeholder);
+        _portraitImage.setImageDrawable(defaultPortrait);
     }
 
     private ImageView _portraitImage;
