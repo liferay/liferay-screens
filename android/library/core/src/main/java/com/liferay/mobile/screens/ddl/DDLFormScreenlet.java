@@ -153,7 +153,7 @@ public class DDLFormScreenlet
 		}
 	}
 
-	public boolean getAutoScrollOnValidation() {
+	public boolean isAutoScrollOnValidation() {
 		return _autoScrollOnValidation;
 	}
 

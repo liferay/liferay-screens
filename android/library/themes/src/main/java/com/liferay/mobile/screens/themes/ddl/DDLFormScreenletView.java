@@ -158,7 +158,7 @@ public class DDLFormScreenletView
 			viewModel.onPostValidation(validField);
 		}
 
-		boolean autoScroll = screenlet.getAutoScrollOnValidation();
+		boolean autoScroll = screenlet.isAutoScrollOnValidation();
 
 		if (autoScroll && (firstInvalidFieldView != null)) {
 			firstInvalidFieldView.requestFocus();
