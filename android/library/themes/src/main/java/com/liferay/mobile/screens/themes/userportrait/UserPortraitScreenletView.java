@@ -16,43 +16,58 @@ package com.liferay.mobile.screens.themes.userportrait;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.themes.R;
 import com.liferay.mobile.screens.userportrait.UserPortraitListener;
 
 /**
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public class UserPortraitScreenletView extends ImageView
-	implements BaseViewModel, UserPortraitListener {
+public class UserPortraitScreenletView extends FrameLayout
+        implements BaseViewModel, UserPortraitListener {
 
-	public UserPortraitScreenletView(Context context) {
-		this(context, null);
-	}
+    public UserPortraitScreenletView(Context context) {
+        this(context, null);
+    }
 
-	public UserPortraitScreenletView(
-		Context context, AttributeSet attributes) {
+    public UserPortraitScreenletView(
+            Context context, AttributeSet attributes) {
+        this(context, attributes, 0);
+    }
 
-		this(context, attributes, 0);
-	}
+    public UserPortraitScreenletView(
+            Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	public UserPortraitScreenletView(
-		Context context, AttributeSet attributes, int defaultStyle) {
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		super(context, attributes, defaultStyle);
-	}
+        _portraitImage = (ImageView) findViewById(R.id.portrait_image);
+        _portraitProgress = (ProgressBar) findViewById(R.id.portrait_progress);
+    }
 
+    @Override
+    public void onUserPortraitReceived(Bitmap bitmap) {
+        _portraitProgress.setVisibility(INVISIBLE);
+        _portraitImage.setImageBitmap(bitmap);
+    }
 
-	@Override
-	public void onUserPortraitReceived(Bitmap bitmap) {
-		setImageBitmap(bitmap);
-	}
+    @Override
+    public void onUserPortraitFailure(Exception e) {
+        _portraitProgress.setVisibility(INVISIBLE);
+    }
 
-	@Override
-	public void onUserPortraitFailure(Exception e) {
-		//TODO show default image??
-	}
+    private ImageView _portraitImage;
+    private ProgressBar _portraitProgress;
+
 }
