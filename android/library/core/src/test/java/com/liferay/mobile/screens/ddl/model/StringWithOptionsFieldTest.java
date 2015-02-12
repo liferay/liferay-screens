@@ -42,6 +42,59 @@ public class StringWithOptionsFieldTest {
 
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
+	public static class WhenClearingOptions {
+
+		@Test
+		public void shouldClearOptionWhenOptionWasSelected() {
+			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
+
+			List<StringWithOptionsField.Option> availableOptions =
+				field.getAvailableOptions();
+
+			field.selectOption(availableOptions.get(0));
+			field.clearOption(availableOptions.get(0));
+
+			List<StringWithOptionsField.Option> selectedOptions =
+				field.getCurrentValue();
+
+			assertTrue(selectedOptions.isEmpty());
+		}
+
+		@Test
+		public void shouldDoNothingWhenNoOptionsWasSelected() {
+			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
+
+			List<StringWithOptionsField.Option> availableOptions =
+				field.getAvailableOptions();
+
+			field.clearOption(availableOptions.get(0));
+
+			List<StringWithOptionsField.Option> selectedOptions =
+				field.getCurrentValue();
+
+			assertTrue(selectedOptions.isEmpty());
+		}
+
+		@Test
+		public void shouldDoNothingOptionWhenThatOptionWasNotSelected() {
+			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
+
+			List<StringWithOptionsField.Option> availableOptions =
+				field.getAvailableOptions();
+
+			field.selectOption(availableOptions.get(0));
+			field.clearOption(availableOptions.get(1));
+
+			List<StringWithOptionsField.Option> selectedOptions =
+				field.getCurrentValue();
+
+			assertEquals(1, selectedOptions.size());
+		}
+
+	}
+
+	@Config(emulateSdk = 18)
+	@RunWith(RobolectricTestRunner.class)
 	public static class WhenCreating {
 
 		@Test
@@ -370,6 +423,53 @@ public class StringWithOptionsFieldTest {
 			// Multiple is not supported yet
 			assertFalse(optionsField.isMultiple());
 		}
+	}
+
+	@Config(emulateSdk = 18)
+	@RunWith(RobolectricTestRunner.class)
+	public static class WhenSelectingOption {
+
+		@Test
+		public void shouldStoreOptionWhenOptionIsSelected() {
+			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
+
+			List<StringWithOptionsField.Option> availableOptions =
+				field.getAvailableOptions();
+
+			field.selectOption(availableOptions.get(0));
+
+			List<StringWithOptionsField.Option> selectedOptions =
+				field.getCurrentValue();
+
+			assertEquals(1, selectedOptions.size());
+		}
+
+		@Test
+		public void shouldStoreOnlyOneOptionWhenMultipleOptionsAreSelected() {
+			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
+
+			List<StringWithOptionsField.Option> availableOptions =
+				field.getAvailableOptions();
+
+			field.selectOption(availableOptions.get(0));
+			field.selectOption(availableOptions.get(1));
+
+			List<StringWithOptionsField.Option> selectedOptions =
+				field.getCurrentValue();
+
+			assertEquals(1, selectedOptions.size());
+		}
+
+		@Test
+		public void shouldReturnEmptyListWhenNoOptionsWereSelected() {
+			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
+
+			List<StringWithOptionsField.Option> selectedOptions =
+				field.getCurrentValue();
+
+			assertTrue(selectedOptions.isEmpty());
+		}
+
 	}
 
 	@Config(emulateSdk = 18)
