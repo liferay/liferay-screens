@@ -27,4 +27,6 @@ public interface DDLFieldViewModel<T extends Field> {
 
 	public void refresh();
 
+	public void onPostValidation(boolean valid);
+
 }

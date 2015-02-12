@@ -289,7 +289,7 @@ public abstract class Field<T> {
 	private T _predefinedValue;
 	private T _currentValue;
 
-	private boolean _lastValidationResult;
+	private boolean _lastValidationResult = true;
 
 	private Locale _currentLocale;
 

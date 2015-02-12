@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.themes.ddl.fields;
 
 import android.content.Context;
 
+import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 
@@ -95,6 +96,18 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	@Override
 	public void refresh() {
 		_textEditText.setText(_field.toFormattedString());
+	}
+
+	@Override
+	public void onPostValidation(boolean valid) {
+		int drawableId = 0;
+
+		if (!valid) {
+			drawableId = android.R.drawable.ic_delete;
+		}
+
+		_textEditText.setCompoundDrawablesWithIntrinsicBounds(
+			0, 0, drawableId, 0);
 	}
 
 	@Override
