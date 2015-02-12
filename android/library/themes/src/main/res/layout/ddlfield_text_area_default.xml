@@ -3,7 +3,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="@dimen/ddlform_field_height"
+	android:layout_height="@dimen/ddlform_field_height_expanded"
 	android:orientation="vertical"
 	android:padding="@dimen/ddlform_field_padding">
 
@@ -17,6 +17,9 @@
 		android:id="@+id/text"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:inputType="text"
-		tools:text="Some input text" />
+		android:inputType="textMultiLine"
+		android:ems="10"
+		android:gravity="top"
+		tools:text="Some multi line input text bla bla bla blabla bla bla bla"/>
+
 </com.liferay.mobile.screens.themes.ddl.fields.DDLFieldTextView>
