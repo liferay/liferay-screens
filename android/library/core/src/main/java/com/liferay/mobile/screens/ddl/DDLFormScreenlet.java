@@ -308,7 +308,7 @@ public class DDLFormScreenlet
 				loadInteractor.load(_record);
 			}
 			catch (Exception e) {
-				// TODO user message
+				onDDLFormLoadFailed(e);
 			}
 		}
 		else if (_LOAD_RECORD_ACTION.equals(userActionName)) {
@@ -319,7 +319,7 @@ public class DDLFormScreenlet
 					loadInteractor.loadRecord(_record);
 				}
 				catch (Exception e) {
-					// TODO user message
+					onDDLFormRecordLoadFailed(e);
 				}
 			}
 			else {
@@ -333,7 +333,7 @@ public class DDLFormScreenlet
 				addInteractor.addRecord(_groupId, _record);
 			}
 			catch (Exception e) {
-				// TODO user message
+				onDDLFormAddRecordFailed(e);
 			}
 		}
 		else if (_UPDATE_RECORD_ACTION.equals(userActionName)) {
@@ -343,7 +343,7 @@ public class DDLFormScreenlet
 				updateInteractor.updateRecord(_groupId, _record);
 			}
 			catch (Exception e) {
-				// TODO user message
+				onDDLFormUpdateRecordFailed(e);
 			}
 		}
 	}
