@@ -5,8 +5,20 @@
 	android:layout_height="match_parent">
 
 	<LinearLayout
-		android:id="@+id/ddlfields_container"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical" />
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:id="@+id/ddlfields_container"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical" />
+
+		<Button
+			android:id="@+id/submit"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/submit" />
+	</LinearLayout>
 </com.liferay.mobile.screens.themes.ddl.DDLFormScreenletView>
