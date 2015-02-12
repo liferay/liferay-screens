@@ -81,6 +81,5 @@ public class DDLFieldCheckboxView extends Switch
 	}
 
 	private BooleanField _field;
-	private Switch _switch;
 
 }
