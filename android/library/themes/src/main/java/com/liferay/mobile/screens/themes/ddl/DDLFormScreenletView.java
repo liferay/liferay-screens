@@ -152,10 +152,19 @@ public class DDLFormScreenletView
 				validForm = false;
 			}
 
+			fieldView.clearFocus();
+
 			DDLFieldViewModel viewModel = (DDLFieldViewModel)fieldView;
 			viewModel.onPostValidation(validField);
 		}
 
+		boolean autoScroll = screenlet.getAutoScrollOnValidation();
+
+		if (autoScroll && (firstInvalidFieldView != null)) {
+			firstInvalidFieldView.requestFocus();
+
+			smoothScrollTo(0, firstInvalidFieldView.getTop());
+		}
 
 		return validForm;
 	}

@@ -24,6 +24,7 @@
 	<declare-styleable name="DDLFormScreenlet">
 		<attr name="layoutId" />
 		<attr name="groupId" />
+		<attr name="autoScrollOnValidation" format="boolean" />
 		<attr name="structureId" format="integer" />
 		<attr name="recordSetId" format="integer" />
 		<attr name="recordId" format="integer" />

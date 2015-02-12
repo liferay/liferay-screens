@@ -153,12 +153,20 @@ public class DDLFormScreenlet
 		}
 	}
 
+	public boolean getAutoScrollOnValidation() {
+		return _autoScrollOnValidation;
+	}
+
 	public long getGroupId() {
 		return _groupId;
 	}
 
 	public Record getRecord() {
 		return _record;
+	}
+
+	public void setAutoScrellOnValidation(boolean autoScrollOnValidation) {
+		_autoScrollOnValidation = autoScrollOnValidation;
 	}
 
 	public void setGroupId(long groupId) {
@@ -207,6 +215,9 @@ public class DDLFormScreenlet
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.DDLFormScreenlet_layoutId, 0);
+
+		_autoScrollOnValidation = typedArray.getBoolean(
+			R.styleable.DDLFormScreenlet_autoScrollOnValidation, true);
 
 		_groupId = typedArray.getInteger(
 			R.styleable.DDLFormScreenlet_groupId,
@@ -369,6 +380,7 @@ public class DDLFormScreenlet
 	private static final String _ADD_RECORD_ACTION = "addRecord";
 	private static final String _UPDATE_RECORD_ACTION = "updateRecord";
 
+	private boolean _autoScrollOnValidation;
 	private long _groupId;
 	private long _structureId;
 	private long _recordSetId;
