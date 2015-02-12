@@ -46,7 +46,7 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenListenerIsNull() throws Exception {
-			UserPortraitInteractorImpl interactor = new UserPortraitInteractorImpl();
+			UserPortraitInteractorImpl interactor = new UserPortraitInteractorImpl(0);
 
 			try {
 				interactor.load(true, 123, "xxx");
@@ -57,7 +57,7 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenPortraitIdIsZero() throws Exception {
-			UserPortraitInteractorImpl interactor = new UserPortraitInteractorImpl();
+			UserPortraitInteractorImpl interactor = new UserPortraitInteractorImpl(0);
 			interactor.onScreenletAttachted(MockFactory.mockPicassoTargetListener());
 
 			try {
@@ -69,7 +69,7 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenUUIDIsNull() throws Exception {
-			UserPortraitInteractorImpl interactor = new UserPortraitInteractorImpl();
+			UserPortraitInteractorImpl interactor = new UserPortraitInteractorImpl(0);
 			interactor.onScreenletAttachted(MockFactory.mockPicassoTargetListener());
 
 			try {
@@ -81,7 +81,7 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenUUIDIsEmpty() throws Exception {
-			UserPortraitInteractorImpl interactor = new UserPortraitInteractorImpl();
+			UserPortraitInteractorImpl interactor = new UserPortraitInteractorImpl(0);
 			interactor.onScreenletAttachted(MockFactory.mockPicassoTargetListener());
 
 			try {

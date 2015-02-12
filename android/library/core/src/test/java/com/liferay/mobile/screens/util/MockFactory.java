@@ -39,8 +39,10 @@ public class MockFactory {
 		return mock(UserService.class);
 	}
 
-	public static LoginInteractorImpl spyLoginInteractor() {
-		return spy(new LoginInteractorImpl());
+	public static LoginInteractorImpl spyLoginInteractor(
+		int targetScreenletId) {
+
+		return spy(new LoginInteractorImpl(targetScreenletId));
 	}
 
 }

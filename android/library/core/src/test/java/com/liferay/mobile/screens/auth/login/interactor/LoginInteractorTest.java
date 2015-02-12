@@ -15,10 +15,13 @@
 package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.android.v62.user.UserService;
+import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
+import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.MockFactory;
 
+import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -30,6 +33,8 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * @author Silvio Santos
@@ -44,7 +49,7 @@ public class LoginInteractorTest {
 		@Test
 		public void shouldCallGetUserByEmailService() throws Exception {
 			LoginInteractorImpl interactorSpy =
-				MockFactory.spyLoginInteractor();
+				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			UserService serviceMock = MockFactory.mockUserService();
 
@@ -59,7 +64,7 @@ public class LoginInteractorTest {
 
 			verify(
 				interactorSpy
-			).sendGetUserByEmailRequest(_LOGIN_EMAIL, _LOGIN_PASSWORD);
+			).sendGetUserByEmailRequest(serviceMock, _LOGIN_EMAIL);
 
 			verify(
 				serviceMock
@@ -74,7 +79,7 @@ public class LoginInteractorTest {
 		@Test
 		public void shouldCallGetUserByIdService() throws Exception {
 			LoginInteractorImpl interactorSpy =
-				MockFactory.spyLoginInteractor();
+				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			UserService serviceMock = MockFactory.mockUserService();
 
@@ -90,7 +95,7 @@ public class LoginInteractorTest {
 
 			verify(
 				interactorSpy
-			).sendGetUserByIdRequest(_LOGIN_USER_ID, _LOGIN_PASSWORD);
+			).sendGetUserByIdRequest(serviceMock, _LOGIN_USER_ID);
 
 			verify(
 				serviceMock
@@ -105,7 +110,7 @@ public class LoginInteractorTest {
 		@Test
 		public void shouldCallGetUserByScreenNameService() throws Exception {
 			LoginInteractorImpl interactorSpy =
-				MockFactory.spyLoginInteractor();
+				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			UserService serviceMock = MockFactory.mockUserService();
 
@@ -120,7 +125,7 @@ public class LoginInteractorTest {
 
 			verify(
 				interactorSpy
-			).sendGetUserByScreenName(_LOGIN_SCREEN_NAME, _LOGIN_PASSWORD);
+			).sendGetUserByScreenNameRequest(serviceMock, _LOGIN_SCREEN_NAME);
 
 			verify(
 				serviceMock
@@ -133,9 +138,9 @@ public class LoginInteractorTest {
 	public static class WhenLoginMethodIsCalled {
 
 		@Test
-		public void shouldCallValidate() {
+		public void shouldCallValidate() throws Exception {
 			LoginInteractorImpl interactorSpy =
-				MockFactory.spyLoginInteractor();
+				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			doReturn(
 				MockFactory.mockUserService()
@@ -159,18 +164,21 @@ public class LoginInteractorTest {
 		@Test
 		public void shouldCallListenerSuccess() throws Exception {
 			LoginListener listener = MockFactory.mockLoginListener();
-			LoginEvent event = new LoginEvent();
+			JSONObject result = new JSONObject();
+			JSONObjectEvent event = new JSONObjectEvent(
+				_TARGET_SCREENLET_ID, result);
 
 			_loginWithResponseEvent(event, listener);
 
-			verify(listener).onLoginSuccess();
+			verify(listener).onLoginSuccess(event.getJSONObject());
 		}
 
 		@Test
 		public void shouldCallListenerFailure() throws Exception {
 			LoginListener listener = MockFactory.mockLoginListener();
 			Exception e = new Exception();
-			LoginEvent event = new LoginEvent(e);
+			JSONObjectEvent event = new JSONObjectEvent(
+				_TARGET_SCREENLET_ID, e);
 
 			_loginWithResponseEvent(event, listener);
 
@@ -180,11 +188,11 @@ public class LoginInteractorTest {
 		}
 
 		private void _loginWithResponseEvent(
-				final LoginEvent event, LoginListener listener)
+				final JSONObjectEvent event, LoginListener listener)
 			throws Exception {
 
 			final LoginInteractorImpl interactorSpy =
-				MockFactory.spyLoginInteractor();
+				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			UserService serviceMock = MockFactory.mockUserService();
 
@@ -223,7 +231,7 @@ public class LoginInteractorTest {
 		@Test (expected = IllegalArgumentException.class)
 		public void shouldRaiseExceptionOnNullLogin() {
 			LoginInteractorImpl interactorSpy =
-				MockFactory.spyLoginInteractor();
+				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			interactorSpy.validate(null, _LOGIN_PASSWORD, AuthMethod.EMAIL);
 		}
@@ -231,7 +239,7 @@ public class LoginInteractorTest {
 		@Test (expected = IllegalArgumentException.class)
 		public void shouldRaiseExceptionOnNullPassword() {
 			LoginInteractorImpl interactorSpy =
-				MockFactory.spyLoginInteractor();
+				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			interactorSpy.validate(_LOGIN_EMAIL, null, AuthMethod.EMAIL);
 		}
@@ -239,17 +247,19 @@ public class LoginInteractorTest {
 		@Test (expected = IllegalArgumentException.class)
 		public void shouldRaiseExceptionOnNullAuthMethod() {
 			LoginInteractorImpl interactorSpy =
-				MockFactory.spyLoginInteractor();
+				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			interactorSpy.validate(_LOGIN_EMAIL, _LOGIN_PASSWORD, null);
 		}
 	}
 
+	private static final int _TARGET_SCREENLET_ID = 0;
+
 	private static final String _LOGIN_EMAIL = "test@liferay.com";
 
 	private static final String _LOGIN_PASSWORD = "test";
 
-	private static final String _LOGIN_SCREEN_NAME = "test";
+	private static final String _LOGIN_SCREEN_NAME = "test_screen_name";
 
 	private static final long _LOGIN_USER_ID = 10658;
 

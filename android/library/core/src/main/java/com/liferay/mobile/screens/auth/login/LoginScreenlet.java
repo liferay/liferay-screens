@@ -23,7 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.auth.login.interactor.AuthMethod;
+import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
@@ -52,8 +52,19 @@ public class LoginScreenlet
 		Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
+	}
 
-		setInteractor(new LoginInteractorImpl(getScreenletId()));
+	@Override
+	public LoginInteractor getInteractor() {
+		LoginInteractor interactor = super.getInteractor();
+
+		if (interactor == null) {
+			interactor = new LoginInteractorImpl(getScreenletId());
+
+			setInteractor(interactor);
+		}
+
+		return interactor;
 	}
 
 	@Override
@@ -83,7 +94,12 @@ public class LoginScreenlet
 		String password = loginViewModel.getPassword();
 		AuthMethod method = loginViewModel.getAuthMethod();
 
-		getInteractor().login(login, password, method);
+		try {
+			getInteractor().login(login, password, method);
+		}
+		catch (Exception e) {
+			onLoginFailure(e);
+		}
 	}
 
 	public void setListener(LoginListener listener) {

@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
+import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
@@ -34,23 +35,24 @@ public class LoginInteractorImpl
 		super(targetScreenletId);
 	}
 
-	public void login(String login, String password, AuthMethod authMethod) {
+	public void login(String login, String password, AuthMethod authMethod)
+		throws Exception {
+
 		validate(login, password, authMethod);
+
+		UserService service = getUserService(login, password);
 
 		switch (authMethod) {
 			case EMAIL:
-				sendGetUserByEmailRequest(login, password);
-
+				sendGetUserByEmailRequest(service, login);
 				break;
 
 			case USER_ID:
-				sendGetUserByIdRequest(Long.parseLong(login), password);
-
+				sendGetUserByIdRequest(service, Long.parseLong(login));
 				break;
 
 			case SCREEN_NAME:
-				sendGetUserByScreenName(login, password);
-
+				sendGetUserByScreenNameRequest(service, login);
 				break;
 		}
 	}
@@ -77,39 +79,25 @@ public class LoginInteractorImpl
 		return new UserService(session);
 	}
 
-	protected void sendGetUserByEmailRequest(String email, String password) {
-		UserService service = getUserService(email, password);
+	protected void sendGetUserByEmailRequest(UserService service, String email)
+		throws Exception {
 
-		try {
-			service.getUserByEmailAddress(
-				LiferayServerContext.getCompanyId(), email);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		service.getUserByEmailAddress(
+			LiferayServerContext.getCompanyId(), email);
 	}
 
-	protected void sendGetUserByIdRequest(long userId, String password) {
-		UserService service = getUserService(String.valueOf(userId), password);
+	protected void sendGetUserByIdRequest(UserService service, long userId)
+		throws Exception {
 
-		try {
-			service.getUserById(userId);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		service.getUserById(userId);
 	}
 
-	protected void sendGetUserByScreenName(String screenName, String password) {
-		UserService service = getUserService(screenName, password);
+	protected void sendGetUserByScreenNameRequest(
+			UserService service, String screenName)
+		throws Exception {
 
-		try {
-			service.getUserByScreenName(
-				LiferayServerContext.getCompanyId(), screenName);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		service.getUserByScreenName(
+			LiferayServerContext.getCompanyId(), screenName);
 	}
 
 	protected void validate(

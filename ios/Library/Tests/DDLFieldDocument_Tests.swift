@@ -163,7 +163,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 		docField.currentValue = UIImage(named:"default-field")
 
-		XCTAssertEqual("Image", docField.currentValueAsLabel!)
+		XCTAssertEqual("An image has been selected", docField.currentValueAsLabel!)
 	}
 
 	func test_CurrentValueAsLabel_ShouldReturnVideo_WhenCurrentValueIsURL() {
@@ -173,7 +173,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 		docField.currentValue =
 				NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
 
-		XCTAssertEqual("Video", docField.currentValueAsLabel!)
+		XCTAssertEqual("A video has been selected", docField.currentValueAsLabel!)
 	}
 
 

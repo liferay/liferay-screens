@@ -83,8 +83,7 @@ public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
 		anonymousSession.setCallback(
 			new JSONObjectCallback(getTargetScreenletId()));
 
-
-		return  new UserService(anonymousSession);
+		return new UserService(anonymousSession);
 	}
 
 	protected void sendSignUpRequest(
@@ -145,8 +144,7 @@ public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
 		}
 
 		if (locale == null) {
-			throw new IllegalArgumentException(
-				"Locale cannot be null");
+			throw new IllegalArgumentException("Locale cannot be null");
 		}
 
 		if ((anonymousApiUserName == null) || anonymousApiUserName.isEmpty()) {
