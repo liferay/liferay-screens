@@ -74,11 +74,13 @@ public class UserPortraitScreenlet
 	@Override
 	public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
 		UserPortraitListener view = (UserPortraitListener)getScreenletView();
-		view.onUserPortraitReceived(bitmap);
 
-		if (_listener != null) {
-			_listener.onUserPortraitReceived(bitmap);
-		}
+        Bitmap finalImage = bitmap;
+        if (_listener != null) {
+            finalImage = _listener.onUserPortraitReceived(bitmap);
+        }
+
+        view.onUserPortraitReceived(finalImage);
 	}
 
 	@Override

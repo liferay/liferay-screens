@@ -58,9 +58,10 @@ public class UserPortraitScreenletView extends FrameLayout
     }
 
     @Override
-    public void onUserPortraitReceived(Bitmap bitmap) {
+    public Bitmap onUserPortraitReceived(Bitmap bitmap) {
         _portraitProgress.setVisibility(INVISIBLE);
         _portraitImage.setImageBitmap(bitmap);
+        return bitmap;
     }
 
     @Override
