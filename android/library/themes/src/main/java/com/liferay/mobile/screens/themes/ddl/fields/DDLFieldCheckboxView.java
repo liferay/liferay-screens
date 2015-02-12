@@ -67,6 +67,11 @@ public class DDLFieldCheckboxView extends Switch
 	}
 
 	@Override
+	public void onPostValidation(boolean valid) {
+		//This field is always valid because it has always a value
+	}
+
+	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		_field.setCurrentValue(isChecked);
 	}

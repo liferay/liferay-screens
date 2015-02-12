@@ -198,6 +198,24 @@ public class BooleanFieldTest {
 			assertFalse(booleanField.getCurrentValue());
 			assertFalse(booleanField.getPredefinedValue());
 		}
+
+		@Test
+		public void shouldUseFalseAsDefaultValueWhenNoPredefinedValue() throws Exception {
+			String xsd =
+				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+					"<dynamic-element " +
+					"dataType=\"boolean\" " +
+					"type=\"checkbox\" " +
+					"name=\"A_Bool\" > " +
+					"</dynamic-element>" +
+					"</root>";
+
+			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+
+			BooleanField booleanField = (BooleanField) resultList.get(0);
+
+			assertFalse(booleanField.getCurrentValue());
+		}
 	}
 
 	private static final Locale _spanishLocale = new Locale("es", "ES");
