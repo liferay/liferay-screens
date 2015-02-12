@@ -50,6 +50,12 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 	@Override
 	public void afterTextChanged(Editable editable) {
+		if (!_field.getLastValidationResult()) {
+			_field.setLastValidationResult(true);
+
+			onPostValidation(true);
+		}
+
 		onTextChanged(editable.toString());
 	}
 
