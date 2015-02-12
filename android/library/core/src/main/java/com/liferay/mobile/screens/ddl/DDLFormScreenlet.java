@@ -157,6 +157,10 @@ public class DDLFormScreenlet
 		return _groupId;
 	}
 
+	public Record getRecord() {
+		return _record;
+	}
+
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 	}

@@ -23,10 +23,10 @@ import android.view.View;
 
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
+import com.liferay.mobile.screens.ddl.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.view.DDLFieldViewModel;
@@ -34,14 +34,14 @@ import com.liferay.mobile.screens.ddl.view.DDLFormViewModel;
 import com.liferay.mobile.screens.themes.R;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
 public class DDLFormScreenletView
-	extends ScrollView implements DDLFormViewModel, DDLFormListener {
+	extends ScrollView implements DDLFormViewModel, DDLFormListener,
+	View.OnClickListener {
 
 	public DDLFormScreenletView(Context context) {
 		super(context, null);
@@ -127,6 +127,39 @@ public class DDLFormScreenletView
 
 	}
 
+	protected DDLFormScreenlet getDDLFormScreenlet() {
+		return (DDLFormScreenlet)getParent();
+	}
+
+	public boolean validateForm() {
+		boolean validForm = true;
+		View firstInvalidFieldView = null;
+
+		DDLFormScreenlet screenlet = getDDLFormScreenlet();
+		Record record = screenlet.getRecord();
+
+		for (int i = 0; i < record.getFieldCount(); i++) {
+			Field field = record.getField(i);
+
+			View fieldView = findViewById(i);
+			boolean validField = field.isValid();
+
+			if (!validField) {
+				if (firstInvalidFieldView == null) {
+					firstInvalidFieldView = fieldView;
+				}
+
+				validForm = false;
+			}
+
+			DDLFieldViewModel viewModel = (DDLFieldViewModel)fieldView;
+			viewModel.onPostValidation(validField);
+		}
+
+
+		return validForm;
+	}
+
 	protected void addFieldView(Field field, int id) {
 		int layoutId = getFieldLayoutId(field.getEditorType());
 
@@ -153,6 +186,11 @@ public class DDLFormScreenletView
 
 	@Override
 	public void onClick(View view) {
+		if (validateForm()) {
+			DDLFormScreenlet screenlet = (DDLFormScreenlet)getParent();
+
+			screenlet.performUserAction(DDLFormScreenlet.ADD_RECORD_ACTION);
+		}
 	}
 
 	private ViewGroup _fieldsContainerView;
