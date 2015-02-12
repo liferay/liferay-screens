@@ -21,13 +21,16 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.view.DDLFormViewModel;
+import com.liferay.mobile.screens.themes.R;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +40,7 @@ import java.util.Map;
  * @author Silvio Santos
  */
 public class DDLFormScreenletView
-	extends LinearLayout implements DDLFormViewModel, DDLFormListener {
+	extends ScrollView implements DDLFormViewModel, DDLFormListener {
 
 	public DDLFormScreenletView(Context context) {
 		super(context, null);
@@ -133,9 +136,18 @@ public class DDLFormScreenletView
 		DDLFieldViewModel viewModel = (DDLFieldViewModel)view;
 		viewModel.setField(field);
 
-		addView(view);
+		_fieldsContainerView.addView(view);
 	}
 
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		_fieldsContainerView = (ViewGroup)
+			findViewById(R.id.ddlfields_container);
+	}
+
+	private ViewGroup _fieldsContainerView;
 	private Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
 
 }

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.themes.ddl.DDLFormScreenletView
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent" />
+	android:layout_height="match_parent">
+
+	<LinearLayout
+		android:id="@+id/ddlfields_container"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical" />
+</com.liferay.mobile.screens.themes.ddl.DDLFormScreenletView>
