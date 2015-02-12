@@ -196,9 +196,7 @@ public class DDLFormScreenletView
 	@Override
 	public void onClick(View view) {
 		if (validateForm()) {
-			DDLFormScreenlet screenlet = (DDLFormScreenlet)getParent();
-
-			screenlet.performUserAction(DDLFormScreenlet.ADD_RECORD_ACTION);
+			getDDLFormScreenlet().submitForm();
 		}
 	}
 
