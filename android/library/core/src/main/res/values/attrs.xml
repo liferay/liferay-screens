@@ -29,6 +29,7 @@
 		<attr name="recordSetId" format="integer" />
 		<attr name="recordId" format="integer" />
 		<attr name="userId" format="integer" />
+		<attr name="showSubmitButton" format="boolean" />
 		<attr name="checkboxFieldLayoutId" format="reference" />
 		<attr name="dateFieldLayoutId" format="reference" />
 		<attr name="numberFieldLayoutId" format="reference" />

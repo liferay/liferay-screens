@@ -87,6 +87,12 @@ public class DDLFormScreenletView
 			// we have to check if it will conflict with other views
 			addFieldView(record.getField(i), i);
 		}
+
+		DDLFormScreenlet screenlet = getDDLFormScreenlet();
+
+		if (record.getFieldCount() > 0 && screenlet.isShowSubmitButton()) {
+			_submitButton.setVisibility(VISIBLE);
+		}
 	}
 
 	@Override
@@ -189,8 +195,8 @@ public class DDLFormScreenletView
 		_fieldsContainerView = (ViewGroup)
 			findViewById(R.id.ddlfields_container);
 
-		Button submitButton = (Button) findViewById(R.id.submit);
-		submitButton.setOnClickListener(this);
+		_submitButton = (Button) findViewById(R.id.submit);
+		_submitButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -201,6 +207,7 @@ public class DDLFormScreenletView
 	}
 
 	private ViewGroup _fieldsContainerView;
+	private Button _submitButton;
 	private Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
 
 }

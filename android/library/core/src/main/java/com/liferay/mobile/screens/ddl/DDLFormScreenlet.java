@@ -157,6 +157,10 @@ public class DDLFormScreenlet
 		return _autoScrollOnValidation;
 	}
 
+	public boolean isShowSubmitButton() {
+		return _showSubmitButton;
+	}
+
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -218,6 +222,9 @@ public class DDLFormScreenlet
 
 		_autoScrollOnValidation = typedArray.getBoolean(
 			R.styleable.DDLFormScreenlet_autoScrollOnValidation, true);
+
+		_showSubmitButton = typedArray.getBoolean(
+			R.styleable.DDLFormScreenlet_showSubmitButton, true);
 
 		_groupId = typedArray.getInteger(
 			R.styleable.DDLFormScreenlet_groupId,
@@ -388,6 +395,7 @@ public class DDLFormScreenlet
 	private static final String _UPDATE_RECORD_ACTION = "updateRecord";
 
 	private boolean _autoScrollOnValidation;
+	private boolean _showSubmitButton;
 	private long _groupId;
 	private long _structureId;
 	private long _recordSetId;
