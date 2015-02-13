@@ -68,10 +68,10 @@ public class UserPortraitScreenletView extends FrameLayout
     @Override
     public Bitmap onUserPortraitReceived(Bitmap bitmap) {
         _portraitProgress.setVisibility(INVISIBLE);
-        _portraitImage.setImageBitmap(roundCorners(bitmap));
+        _portraitImage.setImageBitmap(transformBitmap(bitmap));
         return bitmap;
     }
-    
+
     @Override
     public void onUserPortraitFailure(Exception e) {
         _portraitProgress.setVisibility(INVISIBLE);
@@ -80,31 +80,43 @@ public class UserPortraitScreenletView extends FrameLayout
 
     private void setDefaultImagePlaceholder() {
         Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_portrait_placeholder);
-        _portraitImage.setImageBitmap(roundCorners(defaultBitmap));
+        _portraitImage.setImageBitmap(transformBitmap(defaultBitmap));
     }
 
-    private Bitmap roundCorners(Bitmap bitmap) {
-        BitmapShader shader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
-        Paint paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setShader(shader);
+    protected Bitmap transformBitmap(Bitmap bitmap) {
 
+        RectF rect = getRectF(bitmap);
+
+        Bitmap finalBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(finalBitmap);
+        canvas.drawRoundRect(rect, ROUNDED_BORDER, ROUNDED_BORDER, getPaint(bitmap));
+        canvas.drawRoundRect(rect, ROUNDED_BORDER, ROUNDED_BORDER, getBorderPaint());
+
+        return finalBitmap;
+    }
+
+    protected RectF getRectF(Bitmap bitmap) {
+        RectF rect = new RectF(0.0f, 0.0f, bitmap.getWidth(), bitmap.getHeight());
+        rect.inset(BORDER_WIDTH, BORDER_WIDTH);
+        return rect;
+    }
+
+    protected Paint getBorderPaint() {
         Paint borderPaint = new Paint();
         borderPaint.setAntiAlias(true);
         borderPaint.setColor(Color.DKGRAY);
         borderPaint.setStyle(Paint.Style.STROKE);
         borderPaint.setStrokeWidth(BORDER_WIDTH);
+        return borderPaint;
+    }
 
-        RectF rect = new RectF(0.0f, 0.0f, bitmap.getWidth(), bitmap.getHeight());
-        rect.inset(BORDER_WIDTH, BORDER_WIDTH);
-
-        Bitmap finalBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-
-        Canvas canvas = new Canvas(finalBitmap);
-        canvas.drawRoundRect(rect, ROUNDED_BORDER, ROUNDED_BORDER, paint);
-        canvas.drawRoundRect(rect, ROUNDED_BORDER, ROUNDED_BORDER, borderPaint);
-
-        return finalBitmap;
+    protected Paint getPaint(Bitmap bitmap) {
+        BitmapShader shader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setShader(shader);
+        return paint;
     }
 
     private ImageView _portraitImage;
