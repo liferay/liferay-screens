@@ -16,11 +16,16 @@ package com.liferay.mobile.screens.themes.userportrait;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
@@ -33,6 +38,9 @@ import com.liferay.mobile.screens.userportrait.UserPortraitListener;
  */
 public class UserPortraitScreenletView extends FrameLayout
         implements BaseViewModel, UserPortraitListener {
+
+    public static final float BORDER_WIDTH = 3f;
+    public static final float ROUNDED_BORDER = 10f;
 
     public UserPortraitScreenletView(Context context) {
         this(context, null);
@@ -60,10 +68,10 @@ public class UserPortraitScreenletView extends FrameLayout
     @Override
     public Bitmap onUserPortraitReceived(Bitmap bitmap) {
         _portraitProgress.setVisibility(INVISIBLE);
-        _portraitImage.setImageBitmap(bitmap);
+        _portraitImage.setImageBitmap(roundCorners(bitmap));
         return bitmap;
     }
-
+    
     @Override
     public void onUserPortraitFailure(Exception e) {
         _portraitProgress.setVisibility(INVISIBLE);
@@ -71,8 +79,32 @@ public class UserPortraitScreenletView extends FrameLayout
     }
 
     private void setDefaultImagePlaceholder() {
-        Drawable defaultPortrait = getContext().getResources().getDrawable(R.drawable.default_portrait_placeholder);
-        _portraitImage.setImageDrawable(defaultPortrait);
+        Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_portrait_placeholder);
+        _portraitImage.setImageBitmap(roundCorners(defaultBitmap));
+    }
+
+    private Bitmap roundCorners(Bitmap bitmap) {
+        BitmapShader shader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setShader(shader);
+
+        Paint borderPaint = new Paint();
+        borderPaint.setAntiAlias(true);
+        borderPaint.setColor(Color.DKGRAY);
+        borderPaint.setStyle(Paint.Style.STROKE);
+        borderPaint.setStrokeWidth(BORDER_WIDTH);
+
+        RectF rect = new RectF(0.0f, 0.0f, bitmap.getWidth(), bitmap.getHeight());
+        rect.inset(BORDER_WIDTH, BORDER_WIDTH);
+
+        Bitmap finalBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(finalBitmap);
+        canvas.drawRoundRect(rect, ROUNDED_BORDER, ROUNDED_BORDER, paint);
+        canvas.drawRoundRect(rect, ROUNDED_BORDER, ROUNDED_BORDER, borderPaint);
+
+        return finalBitmap;
     }
 
     private ImageView _portraitImage;
