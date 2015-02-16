@@ -16,9 +16,7 @@ package com.liferay.mobile.screens.assetlist;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-
 import android.util.AttributeSet;
-
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -28,7 +26,7 @@ import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorImpl;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListRowsListener;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.util.LiferayServerContext;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 
 import java.util.List;
 import java.util.Locale;
@@ -199,7 +197,7 @@ public class AssetListScreenlet
 
 		_groupId = typedArray.getInteger(
 			R.styleable.AssetListScreenlet_groupId,
-			(int)LiferayServerContext.getGroupId());
+			(int) LiferayServerContext.getGroupId());
 
 		typedArray.recycle();
 

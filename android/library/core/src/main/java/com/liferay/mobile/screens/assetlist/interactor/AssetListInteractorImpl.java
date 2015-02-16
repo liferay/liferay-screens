@@ -21,23 +21,22 @@ import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.assetentry.AssetEntryService;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.assetlist.AssetListListener;
 import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.interactor.BaseInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.MobilewidgetsassetentryService;
-import com.liferay.mobile.screens.util.SessionContext;
-
-import java.util.List;
-import java.util.Locale;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Silvio Santos
  */
 public class AssetListInteractorImpl
-	extends BaseInteractor<AssetListRowsListener> implements AssetListInteractor {
+	extends BaseRemoteInteractor<AssetListRowsListener> implements AssetListInteractor {
 
 	public AssetListInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
