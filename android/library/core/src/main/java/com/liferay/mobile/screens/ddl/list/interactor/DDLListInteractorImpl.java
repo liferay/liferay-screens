@@ -19,17 +19,13 @@ import android.util.Pair;
 import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.interactor.BaseInteractor;
-import com.liferay.mobile.screens.base.list.ListEvent;
-import com.liferay.mobile.screens.base.list.ListRowsListener;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
+import com.liferay.mobile.screens.base.list.BaseListInteractor;
 import com.liferay.mobile.screens.service.MobilewidgetsddlrecordService;
 import com.liferay.mobile.screens.util.SessionContext;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -37,7 +33,7 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public class DDLListInteractorImpl
-	extends BaseInteractor<DDLListRowsListener> implements DDLListInteractor {
+	extends BaseListInteractor<DDLListRowsListener> implements DDLListInteractor {
 
 	public DDLListInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
@@ -73,41 +69,12 @@ public class DDLListInteractorImpl
 		requestState.put(getTargetScreenletId(), rowsRange);
 	}
 
-	public void onEvent(ListEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			getListener().onListRowsFailure(
-                    event.getStartRow(), event.getEndRow(), event.getException());
-		}
-		else {
-			List<DDLEntry> entries = event.getEntries();
-			int rowCount = event.getRowCount();
-
-			getListener().onListRowsReceived(
-                    event.getStartRow(), event.getEndRow(), entries, rowCount);
-		}
-	}
-
-	protected JSONObject configureEntryQueryAttributes(
-			long recordSetId)
-		throws JSONException {
-
-		JSONObject entryQueryAttributes = new JSONObject();
-
-		entryQueryAttributes.put("ddlRecordSetId", recordSetId);
-
-		return entryQueryAttributes;
-	}
-
 	protected void sendGetEntriesCountRequest(
 			Session session, long recordSetId)
 		throws Exception {
 
-		JSONObject entryQueryAttributes = configureEntryQueryAttributes(
-			recordSetId);
+		JSONObject entryQueryAttributes = addRecordSetIdParam(
+                recordSetId);
 
         MobilewidgetsddlrecordService service =
                 new MobilewidgetsddlrecordService(session);
@@ -119,8 +86,7 @@ public class DDLListInteractorImpl
 			Locale locale)
 		throws Exception {
 
-		JSONObject entryQueryAttributes = configureEntryQueryAttributes(recordSetId
-			);
+		JSONObject entryQueryAttributes = addRecordSetIdParam(recordSetId);
 
 		entryQueryAttributes.put("start", startRow);
 		entryQueryAttributes.put("end", endRow);
@@ -131,33 +97,23 @@ public class DDLListInteractorImpl
 		service.getDDLEntries(entryQueryAttributes, locale.toString());
 	}
 
+    protected JSONObject addRecordSetIdParam(
+            long recordSetId)
+            throws JSONException {
+
+        JSONObject entryQueryAttributes = new JSONObject();
+        entryQueryAttributes.put("ddlRecordSetId", recordSetId);
+        return entryQueryAttributes;
+    }
+
 	protected void validate(
 		long recordSetId, int startRow, int endRow, Locale locale) {
+        super.validate(startRow, endRow, locale);
 
 		if (recordSetId <= 0) {
 			throw new IllegalArgumentException(
 				"ddlRecordSetId cannot be 0 or negative");
 		}
-
-
-		if (startRow < 0) {
-			throw new IllegalArgumentException("Start row cannot be negative");
-		}
-
-		if (endRow < 0) {
-			throw new IllegalArgumentException("End row cannot be negative");
-		}
-
-		if (startRow >= endRow) {
-			throw new IllegalArgumentException("Start row cannot be greater or equals than end row");
-		}
-
-		if (locale == null) {
-			throw new IllegalArgumentException("Locale cannot be null");
-		}
 	}
-
-	private int _firstPageSize = 50;
-	private int _pageSize = 25;
 
 }

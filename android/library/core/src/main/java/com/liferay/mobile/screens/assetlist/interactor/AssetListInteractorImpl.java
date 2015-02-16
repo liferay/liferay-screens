@@ -20,13 +20,11 @@ import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.assetentry.AssetEntryService;
-import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.interactor.BaseInteractor;
+import com.liferay.mobile.screens.base.list.BaseListInteractor;
 import com.liferay.mobile.screens.service.MobilewidgetsassetentryService;
 import com.liferay.mobile.screens.util.SessionContext;
 
-import java.util.List;
 import java.util.Locale;
 
 import org.json.JSONException;
@@ -36,7 +34,7 @@ import org.json.JSONObject;
  * @author Silvio Santos
  */
 public class AssetListInteractorImpl
-	extends BaseInteractor<AssetListRowsListener> implements AssetListInteractor {
+	extends BaseListInteractor<AssetListRowsListener> implements AssetListInteractor {
 
 	public AssetListInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
@@ -70,24 +68,6 @@ public class AssetListInteractorImpl
 		batchSession.invoke();
 
 		requestState.put(getTargetScreenletId(), rowsRange);
-	}
-
-	public void onEvent(AssetListEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			getListener().onListRowsFailure(
-				event.getStartRow(), event.getEndRow(), event.getException());
-		}
-		else {
-			List<AssetEntry> entries = event.getEntries();
-			int rowCount = event.getRowCount();
-
-			getListener().onListRowsReceived(
-				event.getStartRow(), event.getEndRow(), entries, rowCount);
-		}
 	}
 
 	protected JSONObject configureEntryQueryAttributes(
@@ -154,24 +134,7 @@ public class AssetListInteractorImpl
 				"ClassNameId cannot be 0 or negative");
 		}
 
-		if (startRow < 0) {
-			throw new IllegalArgumentException("Start row cannot be negative");
-		}
-
-		if (endRow < 0) {
-			throw new IllegalArgumentException("End row cannot be negative");
-		}
-
-		if (startRow >= endRow) {
-			throw new IllegalArgumentException("Start row cannot be greater or equals than end row");
-		}
-
-		if (locale == null) {
-			throw new IllegalArgumentException("Locale cannot be null");
-		}
+		super.validate(startRow,endRow,locale);
 	}
-
-	private int _firstPageSize = 50;
-	private int _pageSize = 25;
 
 }
