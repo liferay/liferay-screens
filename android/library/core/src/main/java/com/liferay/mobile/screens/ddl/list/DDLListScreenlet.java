@@ -21,14 +21,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.base.list.ListListener;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListRowsListener;
 
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -36,7 +33,7 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public class DDLListScreenlet
-	extends BaseScreenlet<BaseViewModel, DDLListInteractor>
+	extends BaseListScreenlet<DDLEntry, DDLListInteractor>
 	implements DDLListRowsListener {
 
 	public DDLListScreenlet(Context context) {
@@ -80,60 +77,6 @@ public class DDLListScreenlet
 		}
 	}
 
-	public void loadPageForRow(int row) {
-		loadPage(getPageFromRow(row));
-	}
-
-	@Override
-	public void onListRowsFailure(int startRow, int endRow, Exception e) {
-		int page = getPageFromRow(startRow);
-
-		ListListener listenerView = (ListListener)getScreenletView();
-		listenerView.onListPageFailed(page, e);
-
-		if (_listener != null) {
-			_listener.onListPageFailed(page, e);
-		}
-	}
-
-	@Override
-	public void onListRowsReceived(
-		int startRow, int endRow, List<DDLEntry> entries, int rowCount) {
-
-		int page = getPageFromRow(startRow);
-
-		ListListener listenerView = (ListListener)getScreenletView();
-		listenerView.onListPageReceived(page, entries, rowCount);
-
-		if (_listener != null) {
-			_listener.onListPageReceived(page, entries, rowCount);
-		}
-	}
-
-	public int getFirstRowForPage(int page) {
-		if (page == 0) {
-			return 0;
-		}
-
-		return (_firstPageSize + (page - 1) * _pageSize);
-	}
-
-	public int getPageFromRow(int row) {
-		if (row < _firstPageSize) {
-			return 0;
-		}
-
-		return ((row - _firstPageSize) / _pageSize) + 1;
-	}
-
-	public boolean isAutoLoad() {
-		return _autoLoad;
-	}
-
-	public void setAutoLoad(boolean autoLoad) {
-		_autoLoad = autoLoad;
-	}
-
     public int getRecordSetId() {
         return _recordSetId;
     }
@@ -142,29 +85,6 @@ public class DDLListScreenlet
         _recordSetId = recordSetId;
     }
 
-	public int getFirstPageSize() {
-		return _firstPageSize;
-	}
-
-	public void setFirstPageSize(int firstPageSize) {
-		_firstPageSize = firstPageSize;
-	}
-
-	public ListListener<DDLEntry> getListener() {
-		return _listener;
-	}
-
-	public void setListener(ListListener<DDLEntry> listener) {
-		_listener = listener;
-	}
-
-	public int getPageSize() {
-		return _pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		_pageSize = pageSize;
-	}
 
 	@Override
 	protected View createScreenletView(
@@ -193,28 +113,6 @@ public class DDLListScreenlet
 		return LayoutInflater.from(getContext()).inflate(layoutId, null);
 	}
 
-	@Override
-	protected void onScreenletAttached() {
-		super.onScreenletAttached();
-
-		if (_autoLoad) {
-			//TODO handle when first page is already loaded
-			loadPage(0);
-		}
-	}
-
-	@Override
-	protected void onUserAction(String userActionName) {
-	}
-
-	private static final int _FIRST_PAGE_SIZE = 50;
-
-	private static final int _PAGE_SIZE = 25;
-
-	private boolean _autoLoad;
 	private int _recordSetId;
-	private int _firstPageSize;
-	private ListListener<DDLEntry> _listener;
-	private int _pageSize;
 
 }

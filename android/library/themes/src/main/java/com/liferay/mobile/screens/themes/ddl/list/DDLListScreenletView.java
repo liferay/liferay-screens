@@ -25,6 +25,7 @@ import com.liferay.mobile.screens.base.list.ListListener;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.themes.R;
+import com.liferay.mobile.screens.themes.list.ListAdapterListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +36,7 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class DDLListScreenletView extends RecyclerView
-	implements ListListener<DDLEntry>, DDLListAdapterListener {
+	implements ListListener<DDLEntry>, ListAdapterListener {
 
 	public DDLListScreenletView(Context context) {
 		this(context, null);
