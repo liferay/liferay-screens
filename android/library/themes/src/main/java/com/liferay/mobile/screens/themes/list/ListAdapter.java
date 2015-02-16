@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.themes.R;
 
 import java.util.ArrayList;
