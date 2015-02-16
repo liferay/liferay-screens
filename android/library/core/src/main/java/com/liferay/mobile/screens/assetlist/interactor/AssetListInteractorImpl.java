@@ -27,7 +27,6 @@ import com.liferay.mobile.screens.service.MobilewidgetsassetentryService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.Locale;
 
 /**
@@ -35,7 +34,6 @@ import java.util.Locale;
  */
 public class AssetListInteractorImpl
 	extends BaseListInteractor<AssetEntry, AssetListRowsListener> implements AssetListInteractor {
-
 
     public AssetListInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
