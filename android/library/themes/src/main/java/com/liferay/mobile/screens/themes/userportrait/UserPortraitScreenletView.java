@@ -39,9 +39,6 @@ import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractor
 public class UserPortraitScreenletView extends FrameLayout
         implements BaseViewModel, UserPortraitInteractorListener {
 
-    public static final float BORDER_WIDTH = 3f;
-    public static final float ROUNDED_BORDER = 10f;
-
     public UserPortraitScreenletView(Context context) {
         this(context, null);
     }
@@ -54,15 +51,6 @@ public class UserPortraitScreenletView extends FrameLayout
     public UserPortraitScreenletView(
             Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
-    }
-
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-
-        _portraitImage = (ImageView) findViewById(R.id.portrait_image);
-        _portraitProgress = (ProgressBar) findViewById(R.id.portrait_progress);
-        setDefaultImagePlaceholder();
     }
 
 	@Override
@@ -83,36 +71,53 @@ public class UserPortraitScreenletView extends FrameLayout
         setDefaultImagePlaceholder();
     }
 
-    private void setDefaultImagePlaceholder() {
-        Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_portrait_placeholder);
-        _portraitImage.setImageBitmap(transformBitmap(defaultBitmap));
-    }
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		_portraitImage = (ImageView) findViewById(R.id.portrait_image);
+		_portraitProgress = (ProgressBar) findViewById(R.id.portrait_progress);
+		setDefaultImagePlaceholder();
+	}
+
+
+	protected float getBorderRadius() {
+		return (float) getResources().getInteger(R.integer.userportrait_default_border_radius);
+	}
+
+	protected float getBorderWidth() {
+		return (float) getResources().getInteger(R.integer.userportrait_default_border_width);
+	}
 
     protected Bitmap transformBitmap(Bitmap bitmap) {
 
-        RectF rect = getRectF(bitmap);
+		float borderRadius = getBorderRadius();
+		float borderWidth = getBorderWidth();
+
+		RectF rect = getRectF(bitmap, borderWidth);
 
         Bitmap finalBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 
         Canvas canvas = new Canvas(finalBitmap);
-        canvas.drawRoundRect(rect, ROUNDED_BORDER, ROUNDED_BORDER, getPaint(bitmap));
-        canvas.drawRoundRect(rect, ROUNDED_BORDER, ROUNDED_BORDER, getBorderPaint());
+
+        canvas.drawRoundRect(rect, borderRadius, borderRadius, getPaint(bitmap));
+        canvas.drawRoundRect(rect, borderRadius, borderRadius, getBorderPaint(borderWidth));
 
         return finalBitmap;
     }
 
-    protected RectF getRectF(Bitmap bitmap) {
+    protected RectF getRectF(Bitmap bitmap, float borderWidth) {
         RectF rect = new RectF(0.0f, 0.0f, bitmap.getWidth(), bitmap.getHeight());
-        rect.inset(BORDER_WIDTH, BORDER_WIDTH);
+        rect.inset(borderWidth, borderWidth);
         return rect;
     }
 
-    protected Paint getBorderPaint() {
+    protected Paint getBorderPaint(float borderWidth) {
         Paint borderPaint = new Paint();
         borderPaint.setAntiAlias(true);
         borderPaint.setColor(Color.DKGRAY);
         borderPaint.setStyle(Paint.Style.STROKE);
-        borderPaint.setStrokeWidth(BORDER_WIDTH);
+        borderPaint.setStrokeWidth(borderWidth);
         return borderPaint;
     }
 
@@ -123,6 +128,11 @@ public class UserPortraitScreenletView extends FrameLayout
         paint.setShader(shader);
         return paint;
     }
+
+	private void setDefaultImagePlaceholder() {
+		Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_portrait_placeholder);
+		_portraitImage.setImageBitmap(transformBitmap(defaultBitmap));
+	}
 
     private ImageView _portraitImage;
     private ProgressBar _portraitProgress;

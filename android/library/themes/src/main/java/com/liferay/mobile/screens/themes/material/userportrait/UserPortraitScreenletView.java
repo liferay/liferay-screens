@@ -20,6 +20,8 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 
+import com.liferay.mobile.screens.themes.R;
+
 /**
  * @author Javier Gamarra
  */
@@ -41,15 +43,22 @@ public class UserPortraitScreenletView
         super(context, attributes, defaultStyle);
     }
 
+	@Override
+	protected float getBorderWidth() {
+		return (float) getResources().getInteger(R.integer.userportrait_material_border_width);
+	}
+
     @Override
     protected Bitmap transformBitmap(Bitmap bitmap) {
-        RectF rect = getRectF(bitmap);
+		float borderWidth = getBorderWidth();
+
+        RectF rect = getRectF(bitmap, borderWidth);
 
         Bitmap finalBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 
         Canvas canvas = new Canvas(finalBitmap);
         canvas.drawOval(rect, getPaint(bitmap));
-        canvas.drawOval(rect, getBorderPaint());
+        canvas.drawOval(rect, getBorderPaint(borderWidth));
 
         return finalBitmap;
     }
