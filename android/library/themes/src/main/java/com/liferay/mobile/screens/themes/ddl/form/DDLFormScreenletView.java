@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.themes.ddl;
+package com.liferay.mobile.screens.themes.ddl.form;
 
 import android.content.Context;
 
@@ -26,11 +26,11 @@ import android.widget.Button;
 import android.widget.ScrollView;
 
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
-import com.liferay.mobile.screens.ddl.DDLFormScreenlet;
+import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.ddl.view.DDLFieldViewModel;
-import com.liferay.mobile.screens.ddl.view.DDLFormViewModel;
+import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
+import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.themes.R;
 
 import java.util.HashMap;

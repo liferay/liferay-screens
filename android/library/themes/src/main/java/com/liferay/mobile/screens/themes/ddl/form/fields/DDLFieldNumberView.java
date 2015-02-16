@@ -12,15 +12,13 @@
  * details.
  */
 
-package com.liferay.mobile.screens.themes.ddl.fields;
+package com.liferay.mobile.screens.themes.ddl.form.fields;
 
 import android.content.Context;
 import android.text.InputType;
 import android.util.AttributeSet;
 
-import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.NumberField;
-import com.liferay.mobile.screens.ddl.model.StringField;
 
 /**
  * @author Jose Manuel Navarro

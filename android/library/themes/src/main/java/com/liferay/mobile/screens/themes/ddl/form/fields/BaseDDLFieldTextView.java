@@ -12,11 +12,10 @@
  * details.
  */
 
-package com.liferay.mobile.screens.themes.ddl.fields;
+package com.liferay.mobile.screens.themes.ddl.form.fields;
 
 import android.content.Context;
 
-import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 
@@ -27,7 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.liferay.mobile.screens.ddl.model.Field;
-import com.liferay.mobile.screens.ddl.view.DDLFieldViewModel;
+import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.themes.R;
 
 /**

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.themes.ddl.fields;
+package com.liferay.mobile.screens.themes.ddl.form.fields;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -20,7 +20,7 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import com.liferay.mobile.screens.ddl.model.BooleanField;
-import com.liferay.mobile.screens.ddl.view.DDLFieldViewModel;
+import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 
 /**
  * @author Jose Manuel Navarro

@@ -25,7 +25,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.ddl.model.Field;
-import com.liferay.mobile.screens.ddl.view.DDLFieldViewModel;
+import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 
 import java.util.List;
 import java.util.Map;

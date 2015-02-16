@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.themes.ddl.fields;
+package com.liferay.mobile.screens.themes.ddl.form.fields;
 
 import android.content.Context;
 

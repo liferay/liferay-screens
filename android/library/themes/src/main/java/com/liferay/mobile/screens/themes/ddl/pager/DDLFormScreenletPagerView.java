@@ -20,11 +20,10 @@ import android.support.v4.view.ViewPager;
 
 import android.util.AttributeSet;
 
-import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.themes.R;
-import com.liferay.mobile.screens.themes.ddl.DDLFormScreenletView;
+import com.liferay.mobile.screens.themes.ddl.form.DDLFormScreenletView;
 
 import java.util.ArrayList;
 import java.util.HashMap;

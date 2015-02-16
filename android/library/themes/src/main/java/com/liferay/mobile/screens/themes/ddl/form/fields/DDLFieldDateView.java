@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.themes.ddl.fields;
+package com.liferay.mobile.screens.themes.ddl.form.fields;
 
 import android.app.DatePickerDialog;
 
@@ -22,7 +22,6 @@ import android.os.Bundle;
 import android.os.Parcelable;
 
 import android.text.InputType;
-import android.text.format.DateUtils;
 
 import android.util.AttributeSet;
 

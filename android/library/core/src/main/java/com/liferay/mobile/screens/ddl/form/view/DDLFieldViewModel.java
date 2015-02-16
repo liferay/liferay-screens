@@ -12,20 +12,21 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.view;
+package com.liferay.mobile.screens.ddl.form.view;
 
-import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
-
-import java.util.List;
 
 /**
  * @author Silvio Santos
  */
-public interface DDLFormViewModel extends BaseViewModel {
+public interface DDLFieldViewModel<T extends Field> {
 
-	public int getFieldLayoutId(Field.EditorType editorType);
+	public T getField();
 
-	public void setFieldLayoutId(Field.EditorType editorType, int layoutId);
+	public void setField(T field);
+
+	public void refresh();
+
+	public void onPostValidation(boolean valid);
 
 }
