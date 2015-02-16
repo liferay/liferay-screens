@@ -75,16 +75,11 @@ public class AssetListInteractorImpl
 		throws JSONException {
 
 		JSONObject entryQueryAttributes = new JSONObject();
-
 		entryQueryAttributes.put("classNameIds", classNameId);
 		entryQueryAttributes.put("groupIds", groupId);
 		entryQueryAttributes.put("visible", "true");
 
 		return entryQueryAttributes;
-	}
-
-	protected AssetEntryService getAssetEntryService(Session session) {
-		return new AssetEntryService(session);
 	}
 
 	protected void sendGetEntriesCountRequest(
@@ -97,7 +92,7 @@ public class AssetListInteractorImpl
 		JSONObjectWrapper entryQuery = new JSONObjectWrapper(
 			entryQueryAttributes);
 
-		AssetEntryService service = getAssetEntryService(session);
+		AssetEntryService service = new AssetEntryService(session);
 		service.getEntriesCount(entryQuery);
 	}
 
@@ -108,7 +103,6 @@ public class AssetListInteractorImpl
 
 		JSONObject entryQueryAttributes = configureEntryQueryAttributes(
 			groupId, classNameId);
-
 		entryQueryAttributes.put("start", startRow);
 		entryQueryAttributes.put("end", endRow);
 
@@ -117,7 +111,6 @@ public class AssetListInteractorImpl
 
 		MobilewidgetsassetentryService service =
 			new MobilewidgetsassetentryService(session);
-
 		service.getAssetEntries(entryQuery, locale.toString());
 	}
 
