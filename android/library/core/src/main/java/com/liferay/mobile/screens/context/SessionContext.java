@@ -12,12 +12,14 @@
  * details.
  */
 
-package com.liferay.mobile.screens.util;
+package com.liferay.mobile.screens.context;
 
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
+
+import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
@@ -54,6 +56,15 @@ public class SessionContext {
 		return _session != null;
 	}
 
+	public static void setUserAttributes(JSONObject userAttributes) {
+		_user = new User(userAttributes);
+	}
+
+	public static User getUser() {
+		return _user;
+	}
+
 	private static Session _session;
+	private static User _user;
 
 }

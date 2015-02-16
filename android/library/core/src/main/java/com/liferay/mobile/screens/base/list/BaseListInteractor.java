@@ -4,10 +4,9 @@ import android.util.Pair;
 
 import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.assetlist.interactor.AssetListCallback;
 import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.interactor.BaseInteractor;
-import com.liferay.mobile.screens.util.SessionContext;
+import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.context.SessionContext;
 
 import java.util.List;
 import java.util.Locale;
@@ -15,7 +14,7 @@ import java.util.Locale;
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseListInteractor<E, L extends BaseListRowsListener> extends BaseInteractor<L> {
+public abstract class BaseListInteractor<E, L extends BaseListRowsListener> extends BaseRemoteInteractor<L> {
 
     public BaseListInteractor(int targetScreenletId) {
         super(targetScreenletId);

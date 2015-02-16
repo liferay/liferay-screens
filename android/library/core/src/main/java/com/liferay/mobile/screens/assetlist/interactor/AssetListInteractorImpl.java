@@ -25,10 +25,10 @@ import com.liferay.mobile.screens.base.list.BaseListCallback;
 import com.liferay.mobile.screens.base.list.BaseListInteractor;
 import com.liferay.mobile.screens.service.MobilewidgetsassetentryService;
 
-import java.util.Locale;
-
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Locale;
 
 /**
  * @author Silvio Santos

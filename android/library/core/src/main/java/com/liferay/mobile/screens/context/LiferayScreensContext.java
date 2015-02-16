@@ -12,27 +12,26 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.interactor;
+package com.liferay.mobile.screens.context;
+
+import android.content.Context;
 
 /**
  * @author Jose Manuel Navarro
  */
-public abstract class BaseInteractor<L> implements Interactor<L> {
+public class LiferayScreensContext {
 
-	@Override
-	public void onScreenletAttachted(L listener) {
-		_listener = listener;
+	public static void init(Context context) {
+		_context = context.getApplicationContext();
 	}
 
-	@Override
-	public void onScreenletDetached(L listener) {
-		_listener = null;
+	public static Context getContext() {
+		return _context;
 	}
 
-	protected L getListener() {
-		return _listener;
+	private LiferayScreensContext() {
 	}
 
-	private L _listener;
+	private static Context _context;
 
 }

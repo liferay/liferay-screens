@@ -12,27 +12,19 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.interactor;
+package com.liferay.mobile.screens.userportrait.interactor;
+
+import com.liferay.mobile.screens.base.interactor.Interactor;
 
 /**
+ * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public abstract class BaseInteractor<L> implements Interactor<L> {
+public interface UserPortraitInteractor extends Interactor<UserPortraitInteractorListener> {
 
-	@Override
-	public void onScreenletAttachted(L listener) {
-		_listener = listener;
-	}
+	public void load(boolean male, long portraitId, String uuid)
+		throws Exception;
 
-	@Override
-	public void onScreenletDetached(L listener) {
-		_listener = null;
-	}
-
-	protected L getListener() {
-		return _listener;
-	}
-
-	private L _listener;
+	public void load(long userId) throws Exception;
 
 }

@@ -12,27 +12,20 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.interactor;
+package com.liferay.mobile.screens.userportrait.interactor;
+
+import android.graphics.Bitmap;
 
 /**
+ * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public abstract class BaseInteractor<L> implements Interactor<L> {
+public interface UserPortraitInteractorListener {
 
-	@Override
-	public void onScreenletAttachted(L listener) {
-		_listener = listener;
-	}
+	void onStartUserPortraitRequest();
 
-	@Override
-	public void onScreenletDetached(L listener) {
-		_listener = null;
-	}
+	Bitmap onEndUserPortraitRequest(Bitmap bitmap);
 
-	protected L getListener() {
-		return _listener;
-	}
-
-	private L _listener;
+	void onUserPortraitFailure(Exception e);
 
 }
