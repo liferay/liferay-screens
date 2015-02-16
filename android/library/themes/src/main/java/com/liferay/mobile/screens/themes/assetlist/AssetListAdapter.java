@@ -14,27 +14,15 @@
 
 package com.liferay.mobile.screens.themes.assetlist;
 
-import android.support.v7.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.TextView;
-
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.themes.R;
 import com.liferay.mobile.screens.themes.list.ListAdapter;
 import com.liferay.mobile.screens.themes.list.ListAdapterListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Silvio Santos
  */
 public class AssetListAdapter
-	extends ListAdapter<AssetEntry> {
+        extends ListAdapter<AssetEntry> {
 
     public AssetListAdapter(int layoutId, int progressLayoutId, ListAdapterListener listener) {
         super(layoutId, progressLayoutId, listener);
