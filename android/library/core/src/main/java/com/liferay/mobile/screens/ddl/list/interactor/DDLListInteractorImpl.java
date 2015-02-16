@@ -20,6 +20,8 @@ import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
+import com.liferay.mobile.screens.base.list.ListEvent;
+import com.liferay.mobile.screens.base.list.ListRowsListener;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.service.MobilewidgetsddlrecordService;
 import com.liferay.mobile.screens.util.SessionContext;
@@ -35,7 +37,7 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public class DDLListInteractorImpl
-	extends BaseInteractor<DDLListRowsListener> implements DDLListInteractor {
+	extends BaseInteractor<ListRowsListener<DDLEntry>> implements DDLListInteractor {
 
 	public DDLListInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
@@ -71,20 +73,20 @@ public class DDLListInteractorImpl
 		requestState.put(getTargetScreenletId(), rowsRange);
 	}
 
-	public void onEvent(DDLListEvent event) {
+	public void onEvent(ListEvent event) {
 		if (!isValidEvent(event)) {
 			return;
 		}
 
 		if (event.isFailed()) {
-			getListener().onDDLListRowsFailure(
+			getListener().onListRowsFailure(
                     event.getStartRow(), event.getEndRow(), event.getException());
 		}
 		else {
 			List<DDLEntry> entries = event.getEntries();
 			int rowCount = event.getRowCount();
 
-			getListener().onDDLListRowsReceived(
+			getListener().onListRowsReceived(
                     event.getStartRow(), event.getEndRow(), entries, rowCount);
 		}
 	}

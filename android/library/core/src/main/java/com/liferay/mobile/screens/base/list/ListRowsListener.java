@@ -12,22 +12,19 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.list.interactor;
+package com.liferay.mobile.screens.base.list;
 
-import com.liferay.mobile.screens.base.interactor.Interactor;
-import com.liferay.mobile.screens.base.list.ListRowsListener;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
-
-import java.util.Locale;
+import java.util.List;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface DDLListInteractor extends Interactor<ListRowsListener<DDLEntry>> {
+public interface ListRowsListener<E> {
 
-	public void loadRows(
-            long recordSetId, int startRow, int endRow, Locale locale)
-		throws Exception;
+    public void onListRowsFailure(int startRow, int endRow, Exception e);
+
+    public void onListRowsReceived(
+            int startRow, int endRow, List<E> entries, int rowCount);
 
 }

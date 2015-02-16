@@ -16,9 +16,8 @@ package com.liferay.mobile.screens.ddl.list.interactor;
 
 import android.util.Pair;
 
-import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.interactor.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.InteractorBatchAsyncTaskCallback;
+import com.liferay.mobile.screens.base.list.ListCallback;
+import com.liferay.mobile.screens.base.list.ListResult;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
 
@@ -33,69 +32,31 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class DDLListCallback
-	extends InteractorBatchAsyncTaskCallback<DDLListCallback.Result> {
+        extends ListCallback<DDLEntry> {
 
-	public DDLListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
-		super(targetScreenletId);
 
-		_rowsRange = rowsRange;
-	}
+    public DDLListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
+        super(targetScreenletId, rowsRange);
+    }
 
-	@Override
-	public Result transform(Object obj) throws Exception {
-		Result result = new Result();
+    @Override
+    public ListResult transform(Object obj) throws Exception {
+        ListResult result = new ListResult();
 
-		JSONArray jsonArray = ((JSONArray)obj).getJSONArray(0);
-		List<DDLEntry> entries = new ArrayList<>();
+        JSONArray jsonArray = ((JSONArray) obj).getJSONArray(0);
+        List<DDLEntry> entries = new ArrayList<>();
 
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-			entries.add(new DDLEntry(JSONUtil.toMap(jsonObject)));
-		}
+            entries.add(new DDLEntry(JSONUtil.toMap(jsonObject)));
+        }
 
-		result.entries = entries;
-		result.rowCount = ((JSONArray)obj).getInt(1);
+        result.setEntries(entries);
+        result.setRowCount(((JSONArray) obj).getInt(1));
 
-		return result;
-	}
+        return result;
+    }
 
-	@Override
-	public void onSuccess(Result result) {
-		cleanRequestState();
-
-		super.onSuccess(result);
-	}
-
-	@Override
-	public void onFailure(Exception e) {
-		cleanRequestState();
-
-		super.onFailure(e);
-	}
-
-	@Override
-	protected BasicEvent createEvent(int targetScreenletId, Result result) {
-		return new DDLListEvent(
-			targetScreenletId, _rowsRange.first, _rowsRange.second, result.entries, result.rowCount);
-	}
-
-	@Override
-	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new DDLListEvent(targetScreenletId, e);
-	}
-
-	protected void cleanRequestState() {
-		RequestState.getInstance().remove(getTargetScreenletId(), _rowsRange);
-	}
-
-	private final Pair<Integer, Integer> _rowsRange;
-
-	static class Result {
-
-		List<DDLEntry> entries;
-		int rowCount;
-
-	}
 
 }
