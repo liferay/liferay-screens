@@ -27,6 +27,7 @@
         <attr name="recordSetId" format="integer"/>
         <attr name="firstPageSize" />
         <attr name="pageSize" />
+        <attr name="userId" />
     </declare-styleable>
 
 	<declare-styleable name="ForgotPasswordScreenlet">

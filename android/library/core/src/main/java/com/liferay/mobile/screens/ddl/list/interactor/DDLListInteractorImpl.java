@@ -40,9 +40,10 @@ public class DDLListInteractorImpl
 	}
 
     public void loadRows(
-			long recordSetId, int startRow, int endRow, Locale locale)
+			long recordSetId, long userId, int startRow, int endRow, Locale locale)
 		throws Exception {
-        this._recordSetId = recordSetId;
+        _recordSetId = recordSetId;
+        _userId = userId;
 
         loadRows(startRow, endRow, locale);
 	}
@@ -55,17 +56,17 @@ public class DDLListInteractorImpl
     @Override
     protected void sendPageRequests(BatchSessionImpl batchSession, int startRow, int endRow, Locale locale) throws Exception {
         sendGetPageRowsRequest(
-                batchSession, _recordSetId, startRow, endRow, locale);
+                batchSession, _recordSetId, _userId, startRow, endRow, locale);
 
-        sendGetEntriesCountRequest(batchSession, _recordSetId);
+        sendGetEntriesCountRequest(batchSession, _recordSetId, _userId);
     }
 
 	protected void sendGetEntriesCountRequest(
-			Session session, long recordSetId)
+			Session session, long recordSetId, long userId)
 		throws Exception {
 
 		JSONObject entryQueryAttributes = addRecordSetIdParam(
-                recordSetId);
+                recordSetId, userId);
 
         MobilewidgetsddlrecordService service =
                 new MobilewidgetsddlrecordService(session);
@@ -73,11 +74,11 @@ public class DDLListInteractorImpl
 	}
 
 	protected void sendGetPageRowsRequest(
-			Session session, long recordSetId, int startRow, int endRow,
+			Session session, long recordSetId, long userId, int startRow, int endRow,
 			Locale locale)
 		throws Exception {
 
-		JSONObject entryQueryAttributes = addRecordSetIdParam(recordSetId);
+		JSONObject entryQueryAttributes = addRecordSetIdParam(recordSetId, userId);
 
 		entryQueryAttributes.put("start", startRow);
 		entryQueryAttributes.put("end", endRow);
@@ -89,11 +90,16 @@ public class DDLListInteractorImpl
 	}
 
     protected JSONObject addRecordSetIdParam(
-            long recordSetId)
+            long recordSetId, long userId)
             throws JSONException {
 
         JSONObject entryQueryAttributes = new JSONObject();
         entryQueryAttributes.put("ddlRecordSetId", recordSetId);
+
+        if (userId != 0) {
+            entryQueryAttributes.put("userId", _userId);
+        }
+
         return entryQueryAttributes;
     }
 
@@ -108,5 +114,7 @@ public class DDLListInteractorImpl
 	}
 
     private long _recordSetId;
+    private long _userId;
+
 
 }

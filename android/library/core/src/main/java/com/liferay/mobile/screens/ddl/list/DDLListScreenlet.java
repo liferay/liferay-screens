@@ -65,7 +65,7 @@ public class DDLListScreenlet
 
     @Override
     protected void loadRows(int startRow, int endRow, Locale locale) throws Exception {
-        getInteractor().loadRows(_recordSetId, startRow, endRow, locale);
+        getInteractor().loadRows(_recordSetId,_userId, startRow, endRow, locale);
     }
 
     public int getRecordSetId() {
@@ -76,6 +76,14 @@ public class DDLListScreenlet
         _recordSetId = recordSetId;
     }
 
+    public int getUserId() {
+        return _userId;
+    }
+
+    public void setUserId(int userId) {
+        _userId = userId;
+    }
+
 	@Override
 	protected View createScreenletView(
 		Context context, AttributeSet attributes) {
@@ -84,11 +92,14 @@ public class DDLListScreenlet
                 attributes, R.styleable.DDLListScreenlet, 0, 0);
         _recordSetId = typedArray.getInteger(
                 R.styleable.DDLListScreenlet_recordSetId, 0);
+        _userId = typedArray.getInteger(
+                R.styleable.DDLListScreenlet_userId, 0);
         typedArray.recycle();
 
         return super.createScreenletView(context, attributes);
 	}
 
 	private int _recordSetId;
+    private int _userId;
 
 }
