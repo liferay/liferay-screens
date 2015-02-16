@@ -27,6 +27,7 @@ import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractor;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorImpl;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListRowsListener;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.base.list.ListListener;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 
@@ -89,11 +90,11 @@ public class AssetListScreenlet
 	public void onAssetListRowsFailure(int startRow, int endRow, Exception e) {
 		int page = getPageFromRow(startRow);
 
-		AssetListListener listenerView = (AssetListListener)getScreenletView();
-		listenerView.onAssetListPageFailed(page, e);
+		ListListener listenerView = (ListListener)getScreenletView();
+		listenerView.onListPageFailed(page, e);
 
 		if (_listener != null) {
-			_listener.onAssetListPageFailed(page, e);
+			_listener.onListPageFailed(page, e);
 		}
 	}
 
@@ -103,11 +104,11 @@ public class AssetListScreenlet
 
 		int page = getPageFromRow(startRow);
 
-		AssetListListener listenerView = (AssetListListener)getScreenletView();
-		listenerView.onAssetListPageReceived(page, entries, rowCount);
+		ListListener listenerView = (ListListener)getScreenletView();
+		listenerView.onListPageReceived(page, entries, rowCount);
 
 		if (_listener != null) {
-			_listener.onAssetListPageReceived(page, entries, rowCount);
+			_listener.onListPageReceived(page, entries, rowCount);
 		}
 	}
 
@@ -159,11 +160,11 @@ public class AssetListScreenlet
 		_groupId = groupId;
 	}
 
-	public AssetListListener getListener() {
+	public ListListener<AssetEntry> getListener() {
 		return _listener;
 	}
 
-	public void setListener(AssetListListener listener) {
+	public void setListener(ListListener<AssetEntry> listener) {
 		_listener = listener;
 	}
 
@@ -228,7 +229,7 @@ public class AssetListScreenlet
 	private int _classNameId;
 	private int _firstPageSize;
 	private int _groupId;
-	private AssetListListener _listener;
+	private ListListener<AssetEntry> _listener;
 	private int _pageSize;
 
 }

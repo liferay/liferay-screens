@@ -25,8 +25,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.assetlist.AssetListListener;
 import com.liferay.mobile.screens.assetlist.AssetListScreenlet;
+import com.liferay.mobile.screens.base.list.ListListener;
 import com.liferay.mobile.screens.themes.R;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class AssetListScreenletView extends RecyclerView
-	implements AssetListListener, AssetListAdapterListener {
+	implements ListListener<AssetEntry>, AssetListAdapterListener {
 
 	public AssetListScreenletView(Context context) {
 		this(context, null);
@@ -64,12 +64,12 @@ public class AssetListScreenletView extends RecyclerView
 	}
 
 	@Override
-	public void onAssetListPageFailed(int page, Exception e) {
+	public void onListPageFailed(int page, Exception e) {
 		//TODO what should we do when the page load fails?
 	}
 
 	@Override
-	public void onAssetListPageReceived(
+	public void onListPageReceived(
 		int page, List<AssetEntry> serverEntries, int rowCount) {
 
 		AssetListAdapter adapter = (AssetListAdapter)getAdapter();

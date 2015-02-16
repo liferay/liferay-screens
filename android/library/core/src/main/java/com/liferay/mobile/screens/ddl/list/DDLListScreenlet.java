@@ -22,6 +22,7 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.base.list.ListListener;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
@@ -88,11 +89,11 @@ public class DDLListScreenlet
 	public void onDDLListRowsFailure(int startRow, int endRow, Exception e) {
 		int page = getPageFromRow(startRow);
 
-		DDLListListener listenerView = (DDLListListener)getScreenletView();
-		listenerView.onDDLListPageFailed(page, e);
+		ListListener listenerView = (ListListener)getScreenletView();
+		listenerView.onListPageFailed(page, e);
 
 		if (_listener != null) {
-			_listener.onDDLListPageFailed(page, e);
+			_listener.onListPageFailed(page, e);
 		}
 	}
 
@@ -102,11 +103,11 @@ public class DDLListScreenlet
 
 		int page = getPageFromRow(startRow);
 
-		DDLListListener listenerView = (DDLListListener)getScreenletView();
-		listenerView.onDDLListPageReceived(page, entries, rowCount);
+		ListListener listenerView = (ListListener)getScreenletView();
+		listenerView.onListPageReceived(page, entries, rowCount);
 
 		if (_listener != null) {
-			_listener.onDDLListPageReceived(page, entries, rowCount);
+			_listener.onListPageReceived(page, entries, rowCount);
 		}
 	}
 
@@ -150,11 +151,11 @@ public class DDLListScreenlet
 		_firstPageSize = firstPageSize;
 	}
 
-	public DDLListListener getListener() {
+	public ListListener<DDLEntry> getListener() {
 		return _listener;
 	}
 
-	public void setListener(DDLListListener listener) {
+	public void setListener(ListListener<DDLEntry> listener) {
 		_listener = listener;
 	}
 
@@ -214,7 +215,7 @@ public class DDLListScreenlet
 	private boolean _autoLoad;
 	private int _recordSetId;
 	private int _firstPageSize;
-	private DDLListListener _listener;
+	private ListListener<DDLEntry> _listener;
 	private int _pageSize;
 
 }

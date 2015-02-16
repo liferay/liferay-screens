@@ -21,8 +21,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
+import com.liferay.mobile.screens.base.list.ListListener;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
-import com.liferay.mobile.screens.ddl.list.DDLListListener;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.themes.R;
 
@@ -35,7 +35,7 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class DDLListScreenletView extends RecyclerView
-	implements DDLListListener, DDLListAdapterListener {
+	implements ListListener<DDLEntry>, DDLListAdapterListener {
 
 	public DDLListScreenletView(Context context) {
 		this(context, null);
@@ -62,12 +62,12 @@ public class DDLListScreenletView extends RecyclerView
 	}
 
 	@Override
-	public void onDDLListPageFailed(int page, Exception e) {
+	public void onListPageFailed(int page, Exception e) {
 		//TODO what should we do when the page load fails?
 	}
 
 	@Override
-	public void onDDLListPageReceived(
+	public void onListPageReceived(
 		int page, List<DDLEntry> serverEntries, int rowCount) {
 
 		DDLListAdapter adapter = (DDLListAdapter)getAdapter();
