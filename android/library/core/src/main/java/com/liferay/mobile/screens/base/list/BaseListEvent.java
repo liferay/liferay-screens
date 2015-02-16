@@ -21,13 +21,13 @@ import java.util.List;
 /**
  * @author Javier Gamarra
  */
-public class ListEvent<E> extends BasicEvent {
+public class BaseListEvent<E> extends BasicEvent {
 
-	public ListEvent(int targetScreenletId, Exception e) {
+	public BaseListEvent(int targetScreenletId, Exception e) {
 		super(targetScreenletId);
 	}
 
-	public ListEvent(
+	public BaseListEvent(
             int targetScreenletId, int startRow, int endRow, List<E> entries,
             int rowCount) {
 

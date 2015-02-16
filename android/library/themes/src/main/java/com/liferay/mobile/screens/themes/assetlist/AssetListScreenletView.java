@@ -26,7 +26,7 @@ import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.assetlist.AssetListScreenlet;
-import com.liferay.mobile.screens.base.list.ListListener;
+import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.themes.R;
 import com.liferay.mobile.screens.themes.list.ListAdapterListener;
 
@@ -38,7 +38,7 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class AssetListScreenletView extends RecyclerView
-	implements ListListener<AssetEntry>, ListAdapterListener {
+	implements BaseListListener<AssetEntry>, ListAdapterListener {
 
 	public AssetListScreenletView(Context context) {
 		this(context, null);
@@ -49,7 +49,7 @@ public class AssetListScreenletView extends RecyclerView
 	}
 
 	public AssetListScreenletView(
-		Context context, AttributeSet attributes, int defaultStyle) {
+            Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
 

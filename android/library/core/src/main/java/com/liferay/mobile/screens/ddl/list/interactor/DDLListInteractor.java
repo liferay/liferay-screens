@@ -15,8 +15,6 @@
 package com.liferay.mobile.screens.ddl.list.interactor;
 
 import com.liferay.mobile.screens.base.interactor.Interactor;
-import com.liferay.mobile.screens.base.list.ListRowsListener;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
 
 import java.util.Locale;
 

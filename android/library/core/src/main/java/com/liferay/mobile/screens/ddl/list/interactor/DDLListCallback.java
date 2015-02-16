@@ -16,47 +16,25 @@ package com.liferay.mobile.screens.ddl.list.interactor;
 
 import android.util.Pair;
 
-import com.liferay.mobile.screens.base.list.ListCallback;
-import com.liferay.mobile.screens.base.list.ListResult;
+import com.liferay.mobile.screens.base.list.BaseListCallback;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
-import com.liferay.mobile.screens.util.JSONUtil;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
 public class DDLListCallback
-        extends ListCallback<DDLEntry> {
-
+        extends BaseListCallback<DDLEntry> {
 
     public DDLListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
         super(targetScreenletId, rowsRange);
     }
 
     @Override
-    public ListResult transform(Object obj) throws Exception {
-        ListResult result = new ListResult();
-
-        JSONArray jsonArray = ((JSONArray) obj).getJSONArray(0);
-        List<DDLEntry> entries = new ArrayList<>();
-
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-            entries.add(new DDLEntry(JSONUtil.toMap(jsonObject)));
-        }
-
-        result.setEntries(entries);
-        result.setRowCount(((JSONArray) obj).getInt(1));
-
-        return result;
+    public DDLEntry createEntity(Map<String, Object> stringObjectMap) {
+        return new DDLEntry(stringObjectMap);
     }
-
 
 }

@@ -19,24 +19,46 @@ import android.util.Pair;
 import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.InteractorBatchAsyncTaskCallback;
+import com.liferay.mobile.screens.util.JSONUtil;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
-public abstract class ListCallback<E>
-        extends InteractorBatchAsyncTaskCallback<ListResult<E>> {
+public abstract class BaseListCallback<E>
+        extends InteractorBatchAsyncTaskCallback<BaseListResult<E>> {
 
-    public ListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
+    public BaseListResult transform(Object obj) throws Exception {
+        BaseListResult result = new BaseListResult();
+        JSONArray jsonArray = ((JSONArray) obj).getJSONArray(0);
+        List<E> entries = new ArrayList<>();
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            entries.add(createEntity(JSONUtil.toMap(jsonObject)));
+        }
+
+        result.setEntries(entries);
+        result.setRowCount(((JSONArray) obj).getInt(1));
+        return result;
+    }
+
+    public abstract E createEntity(Map<String, Object> stringObjectMap);
+
+    public BaseListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
         super(targetScreenletId);
 
         _rowsRange = rowsRange;
     }
 
     @Override
-    public abstract ListResult<E> transform(Object obj) throws Exception;
-
-    @Override
-    public void onSuccess(ListResult<E> result) {
+    public void onSuccess(BaseListResult<E> result) {
         cleanRequestState();
 
         super.onSuccess(result);
@@ -50,14 +72,14 @@ public abstract class ListCallback<E>
     }
 
     @Override
-    protected BasicEvent createEvent(int targetScreenletId, ListResult<E> result) {
-        return new ListEvent<E>(
+    protected BasicEvent createEvent(int targetScreenletId, BaseListResult<E> result) {
+        return new BaseListEvent<E>(
                 targetScreenletId, _rowsRange.first, _rowsRange.second, result.getEntries(), result.getRowCount());
     }
 
     @Override
     protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-        return new ListEvent<E>(targetScreenletId, e);
+        return new BaseListEvent<E>(targetScreenletId, e);
     }
 
     protected void cleanRequestState() {

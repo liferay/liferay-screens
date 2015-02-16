@@ -20,7 +20,7 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface ListRowsListener<E> {
+public interface BaseListRowsListener<E> {
 
     public void onListRowsFailure(int startRow, int endRow, Exception e);
 

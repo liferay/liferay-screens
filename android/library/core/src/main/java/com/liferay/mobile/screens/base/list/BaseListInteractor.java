@@ -9,13 +9,13 @@ import java.util.Locale;
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseListInteractor<E extends ListRowsListener> extends BaseInteractor<E> {
+public abstract class BaseListInteractor<L extends BaseListRowsListener> extends BaseInteractor<L> {
 
     public BaseListInteractor(int targetScreenletId) {
         super(targetScreenletId);
     }
 
-    public void onEvent(ListEvent event) {
+    public void onEvent(BaseListEvent event) {
         if (!isValidEvent(event)) {
             return;
         }

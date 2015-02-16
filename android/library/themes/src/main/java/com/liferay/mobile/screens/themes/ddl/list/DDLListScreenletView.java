@@ -21,7 +21,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
-import com.liferay.mobile.screens.base.list.ListListener;
+import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.themes.R;
@@ -36,7 +36,7 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class DDLListScreenletView extends RecyclerView
-	implements ListListener<DDLEntry>, ListAdapterListener {
+	implements BaseListListener<DDLEntry>, ListAdapterListener {
 
 	public DDLListScreenletView(Context context) {
 		this(context, null);
@@ -47,7 +47,7 @@ public class DDLListScreenletView extends RecyclerView
 	}
 
 	public DDLListScreenletView(
-		Context context, AttributeSet attributes, int defaultStyle) {
+            Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
 

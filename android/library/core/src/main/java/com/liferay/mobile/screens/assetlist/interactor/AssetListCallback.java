@@ -17,44 +17,22 @@ package com.liferay.mobile.screens.assetlist.interactor;
 import android.util.Pair;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.base.list.ListCallback;
-import com.liferay.mobile.screens.base.list.ListResult;
-import com.liferay.mobile.screens.util.JSONUtil;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.liferay.mobile.screens.base.list.BaseListCallback;
+import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
 public class AssetListCallback
-	extends ListCallback<AssetEntry> {
-
+	extends BaseListCallback<AssetEntry> {
 
     public AssetListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
         super(targetScreenletId, rowsRange);
     }
 
     @Override
-	public ListResult<AssetEntry> transform(Object obj) throws Exception {
-        ListResult result = new ListResult();
-
-		JSONArray jsonArray = ((JSONArray)obj).getJSONArray(0);
-		List<AssetEntry> entries = new ArrayList<>();
-
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-			entries.add(new AssetEntry(JSONUtil.toMap(jsonObject)));
-		}
-
-		result.setEntries(entries);
-		result.setRowCount(((JSONArray)obj).getInt(1));
-
-		return result;
-	}
+    public AssetEntry createEntity(Map<String, Object> stringObjectMap) {
+        return new AssetEntry(stringObjectMap);
+    }
 
 }

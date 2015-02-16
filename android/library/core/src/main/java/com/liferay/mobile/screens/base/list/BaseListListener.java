@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * @author Javier Gamarra
  */
-public interface ListListener<E> {
+public interface BaseListListener<E> {
 
     public void onListPageFailed(int page, Exception e);
 

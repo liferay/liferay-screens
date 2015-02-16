@@ -32,7 +32,7 @@ import java.util.List;
  */
 public abstract class BaseListScreenlet<E, N extends Interactor>
         extends BaseScreenlet<BaseViewModel, N>
-        implements ListRowsListener<E> {
+        implements BaseListRowsListener<E> {
 
     public BaseListScreenlet(Context context) {
         this(context, null);
@@ -57,7 +57,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     public void onListRowsFailure(int startRow, int endRow, Exception e) {
         int page = getPageFromRow(startRow);
 
-        ListListener listenerView = (ListListener) getScreenletView();
+        BaseListListener listenerView = (BaseListListener) getScreenletView();
         listenerView.onListPageFailed(page, e);
 
         if (_listener != null) {
@@ -71,7 +71,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 
         int page = getPageFromRow(startRow);
 
-        ListListener listenerView = (ListListener) getScreenletView();
+        BaseListListener listenerView = (BaseListListener) getScreenletView();
         listenerView.onListPageReceived(page, entries, rowCount);
 
         if (_listener != null) {
@@ -113,11 +113,11 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     }
 
 
-    public ListListener getListener() {
+    public BaseListListener getListener() {
         return _listener;
     }
 
-    public void setListener(ListListener listener) {
+    public void setListener(BaseListListener listener) {
         _listener = listener;
     }
 
@@ -172,7 +172,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 
     protected boolean _autoLoad;
     protected int _firstPageSize;
-    protected ListListener<E> _listener;
+    protected BaseListListener<E> _listener;
     protected int _pageSize;
 
 }
