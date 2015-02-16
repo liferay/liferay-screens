@@ -15,50 +15,20 @@
 package com.liferay.mobile.screens.assetlist.interactor;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.base.interactor.BasicEvent;
+import com.liferay.mobile.screens.base.list.ListEvent;
 
 import java.util.List;
 
 /**
  * @author Silvio Santos
  */
-public class AssetListEvent extends BasicEvent {
+public class AssetListEvent extends ListEvent<AssetEntry> {
 
-	public AssetListEvent(int targetScreenletId, Exception e) {
-		super(targetScreenletId);
-	}
+    public AssetListEvent(int targetScreenletId, Exception e) {
+        super(targetScreenletId, e);
+    }
 
-	public AssetListEvent(
-		int targetScreenletId, int startRow, int endRow, List<AssetEntry> entries,
-		int rowCount) {
-
-		super(targetScreenletId);
-
-		_entries = entries;
-		_startRow = startRow;
-		_endRow = endRow;
-		_rowCount = rowCount;
-	}
-
-	public List<AssetEntry> getEntries() {
-		return _entries;
-	}
-
-	public int getStartRow() {
-		return _startRow;
-	}
-
-	public int getEndRow() {
-		return _endRow;
-	}
-
-	public int getRowCount() {
-		return _rowCount;
-	}
-
-	private List<AssetEntry> _entries;
-	private int _startRow;
-	private int _endRow;
-	private int _rowCount;
-
+    public AssetListEvent(int targetScreenletId, Integer startRow, Integer endRow, List<AssetEntry> entries, int rowCount) {
+        super(targetScreenletId, startRow, endRow, entries, rowCount);
+    }
 }
