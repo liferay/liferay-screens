@@ -49,8 +49,8 @@ public abstract class ListScreenletView<E extends Parcelable, A extends ListAdap
 
         super(context, attributes, defaultStyle);
 
-        int itemLayoutId = R.layout.ddl_list_item_default;
-        int itemProgressLayoutId = R.layout.ddl_list_item_progress_default;
+        int itemLayoutId = R.layout.list_item_default;
+        int itemProgressLayoutId = R.layout.list_item_progress_default;
 
         A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
 
