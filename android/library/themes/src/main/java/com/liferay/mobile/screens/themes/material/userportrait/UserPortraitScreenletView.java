@@ -16,28 +16,15 @@ package com.liferay.mobile.screens.themes.material.userportrait;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.RectF;
-import android.graphics.Shader;
 import android.util.AttributeSet;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-
-import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.themes.R;
-import com.liferay.mobile.screens.userportrait.UserPortraitListener;
-import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 
 /**
  * @author Javier Gamarra
  */
-public class UserPortraitScreenletView extends com.liferay.mobile.screens.themes.userportrait.UserPortraitScreenletView
-        implements BaseViewModel, UserPortraitListener {
+public class UserPortraitScreenletView
+	extends com.liferay.mobile.screens.themes.userportrait.UserPortraitScreenletView {
 
 
     public UserPortraitScreenletView(Context context) {
@@ -66,4 +53,5 @@ public class UserPortraitScreenletView extends com.liferay.mobile.screens.themes
 
         return finalBitmap;
     }
+
 }

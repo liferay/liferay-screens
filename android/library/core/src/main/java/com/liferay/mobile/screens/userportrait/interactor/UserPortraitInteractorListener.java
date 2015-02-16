@@ -14,17 +14,18 @@
 
 package com.liferay.mobile.screens.userportrait.interactor;
 
-import com.liferay.mobile.screens.base.interactor.Interactor;
+import android.graphics.Bitmap;
 
 /**
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public interface UserPortraitInteractor extends Interactor<UserPortraitInteractorListener> {
+public interface UserPortraitInteractorListener {
 
-	public void load(boolean male, long portraitId, String uuid)
-		throws Exception;
+	void onStartUserPortraitRequest();
 
-	public void load(long userId) throws Exception;
+	Bitmap onEndUserPortraitRequest(Bitmap bitmap);
+
+	void onUserPortraitFailure(Exception e);
 
 }

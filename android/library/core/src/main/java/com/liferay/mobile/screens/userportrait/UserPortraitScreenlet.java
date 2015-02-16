@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.userportrait;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,10 +26,7 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorImpl;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
-
-import java.io.IOException;
+import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 
 /**
  * @author Javier Gamarra
@@ -38,7 +34,7 @@ import java.io.IOException;
  */
 public class UserPortraitScreenlet
 	extends BaseScreenlet<BaseViewModel, UserPortraitInteractor>
-	implements Target {
+	implements UserPortraitInteractorListener {
 
 	public UserPortraitScreenlet(Context context) {
 		this(context, null);
@@ -72,31 +68,37 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-		UserPortraitListener view = (UserPortraitListener)getScreenletView();
+	public void onStartUserPortraitRequest() {
+		UserPortraitInteractorListener view = (UserPortraitInteractorListener)getScreenletView();
 
-        Bitmap finalImage = bitmap;
-        if (_listener != null) {
-            finalImage = _listener.onUserPortraitReceived(bitmap);
-        }
-
-        view.onUserPortraitReceived(finalImage);
+		view.onStartUserPortraitRequest();
 	}
 
 	@Override
-	public void onBitmapFailed(Drawable errorDrawable) {
-		IOException exception = new IOException("Portrait cannot be loaded");
-
-		UserPortraitListener view = (UserPortraitListener)getScreenletView();
-		view.onUserPortraitFailure(exception);
+	public Bitmap onEndUserPortraitRequest(Bitmap bitmap) {
+		Bitmap finalImage = bitmap;
 
 		if (_listener != null) {
-			_listener.onUserPortraitFailure(exception);
+			finalImage = _listener.onUserPortraitReceived(bitmap);
+
+			if (finalImage == null) {
+				finalImage = bitmap;
+			}
 		}
+
+		UserPortraitInteractorListener view = (UserPortraitInteractorListener)getScreenletView();
+
+		return view.onEndUserPortraitRequest(finalImage);
 	}
 
 	@Override
-	public void onPrepareLoad(Drawable placeHolderDrawable) {
+	public void onUserPortraitFailure(Exception e) {
+		if (_listener != null) {
+			_listener.onUserPortraitFailure(e);
+		}
+
+		UserPortraitInteractorListener view = (UserPortraitInteractorListener)getScreenletView();
+		view.onUserPortraitFailure(e);
 	}
 
 	public void setListener(UserPortraitListener listener) {

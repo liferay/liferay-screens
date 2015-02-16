@@ -30,14 +30,14 @@ import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.themes.R;
-import com.liferay.mobile.screens.userportrait.UserPortraitListener;
+import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 
 /**
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
 public class UserPortraitScreenletView extends FrameLayout
-        implements BaseViewModel, UserPortraitListener {
+        implements BaseViewModel, UserPortraitInteractorListener {
 
     public static final float BORDER_WIDTH = 3f;
     public static final float ROUNDED_BORDER = 10f;
@@ -65,14 +65,19 @@ public class UserPortraitScreenletView extends FrameLayout
         setDefaultImagePlaceholder();
     }
 
-    @Override
-    public Bitmap onUserPortraitReceived(Bitmap bitmap) {
-        _portraitProgress.setVisibility(INVISIBLE);
-        _portraitImage.setImageBitmap(transformBitmap(bitmap));
-        return bitmap;
-    }
+	@Override
+	public void onStartUserPortraitRequest() {
+		_portraitProgress.setVisibility(VISIBLE);
+	}
 
-    @Override
+	@Override
+	public Bitmap onEndUserPortraitRequest(Bitmap bitmap) {
+		_portraitProgress.setVisibility(INVISIBLE);
+		_portraitImage.setImageBitmap(transformBitmap(bitmap));
+		return bitmap;
+	}
+
+	@Override
     public void onUserPortraitFailure(Exception e) {
         _portraitProgress.setVisibility(INVISIBLE);
         setDefaultImagePlaceholder();

@@ -14,12 +14,13 @@
 
 package com.liferay.mobile.screens.userportrait.interactor;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Base64;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
-import com.liferay.mobile.screens.base.interactor.BaseInteractor;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
@@ -29,9 +30,9 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
@@ -42,8 +43,8 @@ import java.security.NoSuchAlgorithmException;
  * @author Jose Manuel Navarro
  */
 public class UserPortraitInteractorImpl
-	extends BaseRemoteInteractor<Target>
-	implements UserPortraitInteractor {
+	extends BaseRemoteInteractor<UserPortraitInteractorListener>
+	implements UserPortraitInteractor, Target {
 
 	public UserPortraitInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
@@ -55,7 +56,11 @@ public class UserPortraitInteractorImpl
 
 		Uri uri = getUserPortraitURL(male, portraitId, uuid);
 
-		Picasso.with(LiferayScreensContext.getContext()).load(uri).into(getListener());
+		if (getListener() != null) {
+			getListener().onStartUserPortraitRequest();
+		}
+
+		Picasso.with(LiferayScreensContext.getContext()).load(uri).into(this);
 	}
 
 	@Override
@@ -70,6 +75,10 @@ public class UserPortraitInteractorImpl
 			load(male, portraitId, uuid);
 		}
 		else {
+			if (getListener() != null) {
+				getListener().onStartUserPortraitRequest();
+			}
+
 			getUserService().getUserById(userId);
 		}
 	}
@@ -80,7 +89,7 @@ public class UserPortraitInteractorImpl
 		}
 
 		if (event.isFailed()) {
-			getListener().onBitmapFailed(null);
+			getListener().onUserPortraitFailure(event.getException());
 		}
 		else {
 			JSONObject userAttributes = event.getJSONObject();
@@ -91,10 +100,29 @@ public class UserPortraitInteractorImpl
 				String uuid = userAttributes.getString("uuid");
 
 				load(male, portraitId, uuid);
-			} catch (Exception e) {
-				getListener().onBitmapFailed(null);
+			}
+			catch (Exception e) {
+				getListener().onUserPortraitFailure(e);
 			}
 		}
+	}
+
+	@Override
+	public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+		if (getListener() != null) {
+			getListener().onEndUserPortraitRequest(bitmap);
+		}
+	}
+
+	@Override
+	public void onBitmapFailed(Drawable errorDrawable) {
+		if (getListener() != null) {
+			getListener().onUserPortraitFailure(new IOException("Portrait cannot be loaded"));
+		}
+	}
+
+	@Override
+	public void onPrepareLoad(Drawable placeHolderDrawable) {
 	}
 
 
