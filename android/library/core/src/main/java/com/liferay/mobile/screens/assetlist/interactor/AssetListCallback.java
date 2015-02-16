@@ -17,9 +17,6 @@ package com.liferay.mobile.screens.assetlist.interactor;
 import android.util.Pair;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.interactor.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.InteractorBatchAsyncTaskCallback;
 import com.liferay.mobile.screens.base.list.ListCallback;
 import com.liferay.mobile.screens.base.list.ListResult;
 import com.liferay.mobile.screens.util.JSONUtil;

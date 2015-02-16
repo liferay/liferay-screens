@@ -36,7 +36,6 @@ public class MobilewidgetsddlrecordService extends BaseService {
 
         try {
             _params.put("locale", locale);
-
             _command.put("/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-records", _params);
         } catch (JSONException _je) {
             throw new Exception(_je);

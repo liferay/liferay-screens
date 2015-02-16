@@ -1,7 +1,5 @@
 package com.liferay.mobile.screens.base.list;
 
-import com.liferay.mobile.screens.assetlist.AssetEntry;
-
 import java.util.List;
 
 public class ListResult<E> {

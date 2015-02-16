@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.base.list;
 
-import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 
 import java.util.List;
