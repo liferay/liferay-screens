@@ -17,14 +17,13 @@ package com.liferay.mobile.screens.ddl.list;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.ddl.list.interactor.DDLListRowsListener;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
-import com.liferay.mobile.screens.ddl.list.interactor.DDLListRowsListener;
 
 import java.util.Locale;
 
@@ -55,6 +54,7 @@ public class DDLListScreenlet
 		DDLListInteractor interactor = super.getInteractor();
 
 		if (interactor == null) {
+            //TODO review when DDL form is merged
 			interactor = new DDLListInteractorImpl(getScreenletId());
 
 			setInteractor(interactor);
@@ -63,19 +63,10 @@ public class DDLListScreenlet
 		return interactor;
 	}
 
-	public void loadPage(int page) {
-		Locale locale = getResources().getConfiguration().locale;
-
-		int startRow = getFirstRowForPage(page);
-		int endRow = getFirstRowForPage(page + 1);
-
-		try {
-			getInteractor().loadRows(_recordSetId, startRow, endRow, locale);
-		}
-		catch (Exception e) {
-			onListRowsFailure(startRow, endRow, e);
-		}
-	}
+    @Override
+    protected void loadRows(int startRow, int endRow, Locale locale) throws Exception {
+        getInteractor().loadRows(_recordSetId, startRow, endRow, locale);
+    }
 
     public int getRecordSetId() {
         return _recordSetId;
@@ -85,32 +76,17 @@ public class DDLListScreenlet
         _recordSetId = recordSetId;
     }
 
-
 	@Override
 	protected View createScreenletView(
 		Context context, AttributeSet attributes) {
 
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.DDLListScreenlet, 0, 0);
-
-		int layoutId = typedArray.getResourceId(
-			R.styleable.DDLListScreenlet_layoutId, 0);
-
-		_firstPageSize = typedArray.getInteger(
-			R.styleable.DDLListScreenlet_firstPageSize, _FIRST_PAGE_SIZE);
-
-		_pageSize = typedArray.getInteger(
-			R.styleable.DDLListScreenlet_pageSize, _PAGE_SIZE);
-
-		_autoLoad = typedArray.getBoolean(
-			R.styleable.DDLListScreenlet_autoLoad, true);
-
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(
+                attributes, R.styleable.DDLListScreenlet, 0, 0);
         _recordSetId = typedArray.getInteger(
                 R.styleable.DDLListScreenlet_recordSetId, 0);
+        typedArray.recycle();
 
-		typedArray.recycle();
-
-		return LayoutInflater.from(getContext()).inflate(layoutId, null);
+        return super.createScreenletView(context, attributes);
 	}
 
 	private int _recordSetId;

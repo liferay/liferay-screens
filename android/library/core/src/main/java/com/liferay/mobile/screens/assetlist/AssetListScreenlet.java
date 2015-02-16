@@ -65,19 +65,10 @@ public class AssetListScreenlet
 		return interactor;
 	}
 
-	public void loadPage(int page) {
-		Locale locale = getResources().getConfiguration().locale;
-
-		int startRow = getFirstRowForPage(page);
-		int endRow = getFirstRowForPage(page + 1);
-
-		try {
-			getInteractor().loadRows(_groupId, _classNameId, startRow, endRow, locale);
-		}
-		catch (Exception e) {
-			onListRowsFailure(startRow, endRow, e);
-		}
-	}
+    @Override
+    protected void loadRows(int startRow, int endRow, Locale locale) throws Exception {
+        getInteractor().loadRows(_groupId, _classNameId, startRow, endRow, locale);
+    }
 
 	public int getClassNameId() {
 		return _classNameId;
@@ -101,29 +92,14 @@ public class AssetListScreenlet
 
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.AssetListScreenlet, 0, 0);
-
-		int layoutId = typedArray.getResourceId(
-			R.styleable.AssetListScreenlet_layoutId, 0);
-
-		_firstPageSize = typedArray.getInteger(
-			R.styleable.AssetListScreenlet_firstPageSize, _FIRST_PAGE_SIZE);
-
-		_pageSize = typedArray.getInteger(
-			R.styleable.AssetListScreenlet_pageSize, _PAGE_SIZE);
-
-		_autoLoad = typedArray.getBoolean(
-			R.styleable.AssetListScreenlet_autoLoad, true);
-
 		_classNameId = typedArray.getInt(
 			R.styleable.AssetListScreenlet_classNameId, 0);
-
 		_groupId = typedArray.getInteger(
 			R.styleable.AssetListScreenlet_groupId,
 			(int)LiferayServerContext.getGroupId());
-
 		typedArray.recycle();
 
-		return LayoutInflater.from(getContext()).inflate(layoutId, null);
+		return super.createScreenletView(context, attributes);
 	}
 
 	private int _classNameId;

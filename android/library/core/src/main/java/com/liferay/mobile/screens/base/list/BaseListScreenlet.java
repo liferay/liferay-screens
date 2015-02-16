@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Silvio Santos
@@ -46,8 +47,6 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
             Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
     }
-
-    public abstract void loadPage(int page);
 
     public void loadPageForRow(int row) {
         loadPage(getPageFromRow(row));
@@ -95,6 +94,22 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
         return ((row - _firstPageSize) / _pageSize) + 1;
     }
 
+    public void loadPage(int page) {
+        Locale locale = getResources().getConfiguration().locale;
+
+        int startRow = getFirstRowForPage(page);
+        int endRow = getFirstRowForPage(page + 1);
+
+        try {
+            loadRows(startRow, endRow, locale);
+        }
+        catch (Exception e) {
+            onListRowsFailure(startRow, endRow, e);
+        }
+    }
+
+    protected abstract void loadRows(int startRow, int endRow, Locale locale) throws Exception;
+
     public boolean isAutoLoad() {
         return _autoLoad;
     }
@@ -103,7 +118,6 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
         _autoLoad = autoLoad;
     }
 
-
     public int getFirstPageSize() {
         return _firstPageSize;
     }
@@ -111,7 +125,6 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     public void setFirstPageSize(int firstPageSize) {
         _firstPageSize = firstPageSize;
     }
-
 
     public BaseListListener getListener() {
         return _listener;
