@@ -216,7 +216,7 @@ public class NumberFieldTest {
 			NumberField numberField = (NumberField) resultField;
 
 			assertEquals(Field.DataType.NUMBER.getValue(), numberField.getDataType().getValue());
-			assertEquals(Field.EditorType.NUMBER.getValue(), numberField.getEditorType().getValue());
+			assertEquals(Field.EditorType.INTEGER.getValue(), numberField.getEditorType().getValue());
 			assertEquals("An_Integer", numberField.getName());
 
 			Number result = numberField.getCurrentValue();
@@ -251,7 +251,7 @@ public class NumberFieldTest {
 			NumberField numberField = (NumberField) resultField;
 
 			assertEquals(Field.DataType.NUMBER.getValue(), numberField.getDataType().getValue());
-			assertEquals(Field.EditorType.NUMBER.getValue(), numberField.getEditorType().getValue());
+			assertEquals(Field.EditorType.DECIMAL.getValue(), numberField.getEditorType().getValue());
 			assertEquals("A_Decimal", numberField.getName());
 
 			Number result = numberField.getCurrentValue();
