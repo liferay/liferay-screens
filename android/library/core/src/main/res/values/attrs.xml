@@ -21,6 +21,14 @@
 		<attr name="pageSize" format="integer" />
 	</declare-styleable>
 
+    <declare-styleable name="DDLListScreenlet">
+        <attr name="layoutId" />
+        <attr name="autoLoad" />
+        <attr name="recordSetId" format="integer"/>
+        <attr name="firstPageSize" />
+        <attr name="pageSize" />
+    </declare-styleable>
+
 	<declare-styleable name="ForgotPasswordScreenlet">
 		<attr name="layoutId" />
 		<attr name="anonymousApiUserName" />
