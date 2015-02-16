@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.themes.R;
+import com.liferay.mobile.screens.themes.list.ListAdapter;
 import com.liferay.mobile.screens.themes.list.ListAdapterListener;
 
 import java.util.ArrayList;
@@ -33,92 +34,15 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class AssetListAdapter
-	extends RecyclerView.Adapter<AssetListAdapter.ViewHolder> {
+	extends ListAdapter<AssetEntry> {
 
-	public AssetListAdapter(
-		int layoutId, int progressLayoutId, ListAdapterListener listener) {
+    public AssetListAdapter(int layoutId, int progressLayoutId, ListAdapterListener listener) {
+        super(layoutId, progressLayoutId, listener);
+    }
 
-		_entries = new ArrayList<>();
-		_layoutId = layoutId;
-		_progressLayoutId = progressLayoutId;
-		_listener = listener;
-	}
-
-	public List<AssetEntry> getEntries() {
-		return _entries;
-	}
-
-	@Override
-	public int getItemCount() {
-		return _rowCount;
-	}
-
-	@Override
-	public int getItemViewType(int position) {
-		AssetEntry entry = _entries.get(position);
-
-		if (entry != null) {
-			return _LAYOUT_TYPE_DEFAULT;
-		}
-
-		return _LAYOUT_TYPE_PROGRESS;
-	}
-
-	@Override
-	public void onBindViewHolder(ViewHolder holder, int position) {
-		AssetEntry entry = _entries.get(position);
-
-		if (entry != null) {
-			holder.textView.setText(entry.getTitle());
-		}
-		else {
-			_listener.onPageNotFound(position);
-		}
-	}
-
-	@Override
-	public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-
-		View view;
-
-		if (viewType == _LAYOUT_TYPE_DEFAULT) {
-			view = inflater.inflate(_layoutId, parent, false);
-		}
-		else {
-			view = inflater.inflate(_progressLayoutId, parent, false);
-		}
-
-		return new ViewHolder(view);
-	}
-
-	public void setEntries(List<AssetEntry> entries) {
-		_entries = entries;
-	}
-
-	public void setRowCount(int rowCount) {
-		_rowCount = rowCount;
-	}
-
-	public static class ViewHolder extends RecyclerView.ViewHolder {
-
-		public TextView textView;
-
-		public ViewHolder(View view) {
-			super(view);
-
-			this.textView = (TextView)view.findViewById(R.id.title);
-		}
-	}
-
-	private static final int _LAYOUT_TYPE_DEFAULT = 0;
-
-	private static final int _LAYOUT_TYPE_PROGRESS = 1;
-
-	private List<AssetEntry> _entries;
-	private int _layoutId;
-	private ListAdapterListener _listener;
-	private int _progressLayoutId;
-	private int _rowCount;
+    @Override
+    protected void fillHolder(AssetEntry entry, ListAdapter.ViewHolder holder) {
+        holder.textView.setText(entry.getTitle());
+    }
 
 }
