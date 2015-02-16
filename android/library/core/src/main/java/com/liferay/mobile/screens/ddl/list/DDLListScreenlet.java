@@ -27,7 +27,6 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListRowsListener;
-import com.liferay.mobile.screens.util.LiferayServerContext;
 
 import java.util.List;
 import java.util.Locale;
@@ -77,7 +76,7 @@ public class DDLListScreenlet
 			getInteractor().loadRows(_recordSetId, startRow, endRow, locale);
 		}
 		catch (Exception e) {
-			onDDLListRowsFailure(startRow, endRow, e);
+			onListRowsFailure(startRow, endRow, e);
 		}
 	}
 
@@ -86,7 +85,7 @@ public class DDLListScreenlet
 	}
 
 	@Override
-	public void onDDLListRowsFailure(int startRow, int endRow, Exception e) {
+	public void onListRowsFailure(int startRow, int endRow, Exception e) {
 		int page = getPageFromRow(startRow);
 
 		ListListener listenerView = (ListListener)getScreenletView();
@@ -98,7 +97,7 @@ public class DDLListScreenlet
 	}
 
 	@Override
-	public void onDDLListRowsReceived(
+	public void onListRowsReceived(
 		int startRow, int endRow, List<DDLEntry> entries, int rowCount) {
 
 		int page = getPageFromRow(startRow);

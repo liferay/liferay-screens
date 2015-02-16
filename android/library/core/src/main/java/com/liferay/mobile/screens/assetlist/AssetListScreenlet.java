@@ -78,7 +78,7 @@ public class AssetListScreenlet
 			getInteractor().loadRows(_groupId, _classNameId, startRow, endRow, locale);
 		}
 		catch (Exception e) {
-			onAssetListRowsFailure(startRow, endRow, e);
+			onListRowsFailure(startRow, endRow, e);
 		}
 	}
 
@@ -87,7 +87,7 @@ public class AssetListScreenlet
 	}
 
 	@Override
-	public void onAssetListRowsFailure(int startRow, int endRow, Exception e) {
+	public void onListRowsFailure(int startRow, int endRow, Exception e) {
 		int page = getPageFromRow(startRow);
 
 		ListListener listenerView = (ListListener)getScreenletView();
@@ -99,7 +99,7 @@ public class AssetListScreenlet
 	}
 
 	@Override
-	public void onAssetListRowsReceived(
+	public void onListRowsReceived(
 		int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
 
 		int page = getPageFromRow(startRow);

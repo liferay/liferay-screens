@@ -14,20 +14,13 @@
 
 package com.liferay.mobile.screens.ddl.list.interactor;
 
-import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.base.list.ListRowsListener;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
-
-import java.util.List;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface DDLListRowsListener {
-
-	public void onDDLListRowsFailure(int startRow, int endRow, Exception e);
-
-	public void onDDLListRowsReceived(
-            int startRow, int endRow, List<DDLEntry> entries, int rowCount);
+public interface DDLListRowsListener extends ListRowsListener<DDLEntry> {
 
 }

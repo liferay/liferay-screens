@@ -15,17 +15,12 @@
 package com.liferay.mobile.screens.assetlist.interactor;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-
-import java.util.List;
+import com.liferay.mobile.screens.base.list.ListRowsListener;
+import com.liferay.mobile.screens.ddl.list.DDLEntry;
 
 /**
  * @author Silvio Santos
  */
-public interface AssetListRowsListener {
-
-	public void onAssetListRowsFailure(int startRow, int endRow, Exception e);
-
-	public void onAssetListRowsReceived(
-		int startRow, int endRow, List<AssetEntry> entries, int rowCount);
+public interface AssetListRowsListener extends ListRowsListener<AssetEntry> {
 
 }

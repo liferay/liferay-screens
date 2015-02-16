@@ -78,14 +78,14 @@ public class AssetListInteractorImpl
 		}
 
 		if (event.isFailed()) {
-			getListener().onAssetListRowsFailure(
+			getListener().onListRowsFailure(
 				event.getStartRow(), event.getEndRow(), event.getException());
 		}
 		else {
 			List<AssetEntry> entries = event.getEntries();
 			int rowCount = event.getRowCount();
 
-			getListener().onAssetListRowsReceived(
+			getListener().onListRowsReceived(
 				event.getStartRow(), event.getEndRow(), entries, rowCount);
 		}
 	}

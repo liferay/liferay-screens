@@ -24,7 +24,7 @@ import java.util.Locale;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface DDLListInteractor extends Interactor<ListRowsListener<DDLEntry>> {
+public interface DDLListInteractor extends Interactor<DDLListRowsListener> {
 
 	public void loadRows(
             long recordSetId, int startRow, int endRow, Locale locale)
