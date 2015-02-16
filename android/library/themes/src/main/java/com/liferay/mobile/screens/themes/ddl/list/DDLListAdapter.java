@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.themes.R;
+import com.liferay.mobile.screens.themes.list.ListAdapterListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class DDLListAdapter
 	extends RecyclerView.Adapter<DDLListAdapter.ViewHolder> {
 
 	public DDLListAdapter(
-		int layoutId, int progressLayoutId, DDLListAdapterListener listener) {
+		int layoutId, int progressLayoutId, ListAdapterListener listener) {
 
 		_entries = new ArrayList<>();
 		_layoutId = layoutId;
@@ -115,7 +116,7 @@ public class DDLListAdapter
 
 	private List<DDLEntry> _entries;
 	private int _layoutId;
-	private DDLListAdapterListener _listener;
+	private ListAdapterListener _listener;
 	private int _progressLayoutId;
 	private int _rowCount;
 

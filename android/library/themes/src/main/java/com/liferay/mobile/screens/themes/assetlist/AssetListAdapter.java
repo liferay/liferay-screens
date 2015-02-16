@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.themes.R;
+import com.liferay.mobile.screens.themes.list.ListAdapterListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class AssetListAdapter
 	extends RecyclerView.Adapter<AssetListAdapter.ViewHolder> {
 
 	public AssetListAdapter(
-		int layoutId, int progressLayoutId, AssetListAdapterListener listener) {
+		int layoutId, int progressLayoutId, ListAdapterListener listener) {
 
 		_entries = new ArrayList<>();
 		_layoutId = layoutId;
@@ -116,7 +117,7 @@ public class AssetListAdapter
 
 	private List<AssetEntry> _entries;
 	private int _layoutId;
-	private AssetListAdapterListener _listener;
+	private ListAdapterListener _listener;
 	private int _progressLayoutId;
 	private int _rowCount;
 

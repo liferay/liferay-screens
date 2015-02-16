@@ -12,13 +12,13 @@
  * details.
  */
 
-package com.liferay.mobile.screens.themes.ddl.list;
+package com.liferay.mobile.screens.themes.list;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface DDLListAdapterListener {
+public interface ListAdapterListener {
 
 	public void onPageNotFound(int row);
 
