@@ -18,10 +18,10 @@ import android.util.Pair;
 
 import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.context.RequestState;
+import com.liferay.mobile.screens.base.list.BaseListCallback;
 import com.liferay.mobile.screens.base.list.BaseListInteractor;
+import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.service.MobilewidgetsddlrecordService;
-import com.liferay.mobile.screens.util.SessionContext;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,41 +33,32 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public class DDLListInteractorImpl
-	extends BaseListInteractor<DDLListRowsListener> implements DDLListInteractor {
+	extends BaseListInteractor<DDLEntry,DDLListRowsListener> implements DDLListInteractor {
 
-	public DDLListInteractorImpl(int targetScreenletId) {
+    public DDLListInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 
-	public void loadRows(
+    public void loadRows(
 			long recordSetId, int startRow, int endRow, Locale locale)
 		throws Exception {
+        this._recordSetId = recordSetId;
 
-		validate(recordSetId, startRow, endRow, locale);
-
-		Pair<Integer, Integer> rowsRange = new Pair<>(startRow, endRow);
-
-		RequestState requestState = RequestState.getInstance();
-
-		// check if this page is already being loaded
-		if (requestState.contains(getTargetScreenletId(), rowsRange)) {
-			return;
-		}
-
-		Session session = SessionContext.createSessionFromCurrentSession();
-		BatchSessionImpl batchSession = new BatchSessionImpl(session);
-		batchSession.setCallback(
-			new DDLListCallback(getTargetScreenletId(), rowsRange));
-
-		sendGetPageRowsRequest(
-			batchSession, recordSetId, startRow, endRow, locale);
-
-		sendGetEntriesCountRequest(batchSession, recordSetId);
-
-		batchSession.invoke();
-
-		requestState.put(getTargetScreenletId(), rowsRange);
+        loadRows(startRow, endRow, locale);
 	}
+
+    @Override
+    protected BaseListCallback<DDLEntry> getCallback(Pair<Integer, Integer> rowsRange) {
+        return new DDLListCallback(getTargetScreenletId(), rowsRange);
+    }
+
+    @Override
+    protected void sendPageRequests(BatchSessionImpl batchSession, int startRow, int endRow, Locale locale) throws Exception {
+        sendGetPageRowsRequest(
+                batchSession, _recordSetId, startRow, endRow, locale);
+
+        sendGetEntriesCountRequest(batchSession, _recordSetId);
+    }
 
 	protected void sendGetEntriesCountRequest(
 			Session session, long recordSetId)
@@ -115,5 +106,7 @@ public class DDLListInteractorImpl
 				"ddlRecordSetId cannot be 0 or negative");
 		}
 	}
+
+    private long _recordSetId;
 
 }

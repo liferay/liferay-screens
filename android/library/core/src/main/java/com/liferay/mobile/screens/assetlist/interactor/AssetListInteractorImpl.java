@@ -20,10 +20,10 @@ import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.assetentry.AssetEntryService;
-import com.liferay.mobile.screens.base.context.RequestState;
+import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.base.list.BaseListCallback;
 import com.liferay.mobile.screens.base.list.BaseListInteractor;
 import com.liferay.mobile.screens.service.MobilewidgetsassetentryService;
-import com.liferay.mobile.screens.util.SessionContext;
 
 import java.util.Locale;
 
@@ -34,53 +34,33 @@ import org.json.JSONObject;
  * @author Silvio Santos
  */
 public class AssetListInteractorImpl
-	extends BaseListInteractor<AssetListRowsListener> implements AssetListInteractor {
+	extends BaseListInteractor<AssetEntry, AssetListRowsListener> implements AssetListInteractor {
 
-	public AssetListInteractorImpl(int targetScreenletId) {
+
+    public AssetListInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 
-	public void loadRows(
+    public void loadRows(
 			long groupId, long classNameId, int startRow, int endRow, Locale locale)
 		throws Exception {
-
-		validate(groupId, classNameId, startRow, endRow, locale);
-
-		Pair<Integer, Integer> rowsRange = new Pair<>(startRow, endRow);
-
-		RequestState requestState = RequestState.getInstance();
-
-		// check if this page is already being loaded
-		if (requestState.contains(getTargetScreenletId(), rowsRange)) {
-			return;
-		}
-
-		Session session = SessionContext.createSessionFromCurrentSession();
-		BatchSessionImpl batchSession = new BatchSessionImpl(session);
-		batchSession.setCallback(
-			new AssetListCallback(getTargetScreenletId(), rowsRange));
-
-		sendGetPageRowsRequest(
-			batchSession, groupId, classNameId, startRow, endRow, locale);
-
-		sendGetEntriesCountRequest(batchSession, groupId, classNameId);
-
-		batchSession.invoke();
-
-		requestState.put(getTargetScreenletId(), rowsRange);
+        this._groupId = groupId;
+        this._classNameId = classNameId;
+        loadRows(startRow, endRow, locale);
 	}
 
-	protected JSONObject configureEntryQueryAttributes(
-			long groupId, long classNameId)
-		throws JSONException {
+    @Override
+    protected BaseListCallback<AssetEntry> getCallback(Pair<Integer, Integer> rowsRange) {
+        return new AssetListCallback(getTargetScreenletId(), rowsRange);
+    }
 
-		JSONObject entryQueryAttributes = new JSONObject();
-		entryQueryAttributes.put("classNameIds", classNameId);
-		entryQueryAttributes.put("groupIds", groupId);
-		entryQueryAttributes.put("visible", "true");
+    @Override
+    protected void sendPageRequests(BatchSessionImpl batchSession, int startRow, int endRow, Locale locale) throws Exception {
+        sendGetPageRowsRequest(
+                batchSession, _groupId, _classNameId, startRow, endRow, locale);
 
-		return entryQueryAttributes;
-	}
+        sendGetEntriesCountRequest(batchSession, _groupId, _classNameId);
+    }
 
 	protected void sendGetEntriesCountRequest(
 			Session session, long groupId, long classNameId)
@@ -114,20 +94,36 @@ public class AssetListInteractorImpl
 		service.getAssetEntries(entryQuery, locale.toString());
 	}
 
-	protected void validate(
-		long groupId, long classNameId, int startRow, int endRow, Locale locale) {
+    protected JSONObject configureEntryQueryAttributes(
+            long groupId, long classNameId)
+            throws JSONException {
 
-		if (groupId <= 0) {
+        JSONObject entryQueryAttributes = new JSONObject();
+        entryQueryAttributes.put("classNameIds", classNameId);
+        entryQueryAttributes.put("groupIds", groupId);
+        entryQueryAttributes.put("visible", "true");
+
+        return entryQueryAttributes;
+    }
+
+    @Override
+	protected void validate(
+		int startRow, int endRow, Locale locale) {
+
+		if (_groupId <= 0) {
 			throw new IllegalArgumentException(
 				"GroupId cannot be 0 or negative");
 		}
 
-		if (classNameId <= 0) {
+		if (_classNameId <= 0) {
 			throw new IllegalArgumentException(
 				"ClassNameId cannot be 0 or negative");
 		}
 
 		super.validate(startRow,endRow,locale);
 	}
+
+    private long _groupId;
+    private long _classNameId;
 
 }
