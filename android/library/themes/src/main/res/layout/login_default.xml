@@ -5,7 +5,7 @@
     <EditText
         android:id="@+id/login"
         style="@style/default_edit_text"
-        android:drawableLeft="@drawable/abc_ic_clear_mtrl_alpha"
+        android:drawableLeft="@drawable/default_mail_icon"
         android:hint="@string/email_address"
         android:inputType="text"
         android:text="test@liferay.com" />
@@ -13,7 +13,7 @@
     <EditText
         android:id="@+id/password"
         style="@style/default_edit_text"
-        android:drawableLeft="@drawable/abc_ic_clear_mtrl_alpha"
+        android:drawableLeft="@drawable/default_lock_icon"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:text="test" />
