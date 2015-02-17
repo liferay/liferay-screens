@@ -23,7 +23,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListListener;
-import com.liferay.mobile.screens.ddl.list.interactor.DDLListRowsListener;
+import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
 
@@ -38,7 +38,7 @@ import java.util.Locale;
  */
 public class DDLListScreenlet
 	extends BaseListScreenlet<DDLEntry, DDLListInteractor>
-	implements DDLListRowsListener {
+	implements DDLListInteractorListener {
 
 	public DDLListScreenlet(Context context) {
 		this(context, null);

@@ -12,19 +12,15 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.list.interactor;
+package com.liferay.mobile.screens.ddl.list.interactor;
 
-import java.util.List;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
+import com.liferay.mobile.screens.ddl.list.DDLEntry;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface BaseListRowsListener<E> {
-
-    public void onListRowsFailure(int startRow, int endRow, Exception e);
-
-    public void onListRowsReceived(
-            int startRow, int endRow, List<E> entries, int rowCount);
+public interface DDLListInteractorListener extends BaseListInteractorListener<DDLEntry> {
 
 }

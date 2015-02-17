@@ -21,7 +21,7 @@ import java.util.Locale;
 /**
  * @author Silvio Santos
  */
-public interface AssetListInteractor extends Interactor<AssetListRowsListener> {
+public interface AssetListInteractor extends Interactor<AssetListInteractorListener> {
 
 	public void loadRows(
 			long groupId, long classNameId, int startRow, int endRow, Locale locale)
