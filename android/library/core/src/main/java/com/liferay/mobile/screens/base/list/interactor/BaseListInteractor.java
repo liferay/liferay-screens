@@ -14,7 +14,7 @@ import java.util.Locale;
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseListInteractor<E, L extends BaseListRowsListener> extends BaseRemoteInteractor<L> {
+public abstract class BaseListInteractor<E, L extends BaseListInteractorListener> extends BaseRemoteInteractor<L> {
 
 	public BaseListInteractor(int targetScreenletId) {
 		super(targetScreenletId);

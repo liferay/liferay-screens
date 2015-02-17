@@ -12,15 +12,14 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.list.interactor;
+package com.liferay.mobile.screens.assetlist.interactor;
 
-import com.liferay.mobile.screens.base.list.interactor.BaseListRowsListener;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
+import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 
 /**
- * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface DDLListRowsListener extends BaseListRowsListener<DDLEntry> {
+public interface AssetListInteractorListener extends BaseListInteractorListener<AssetEntry> {
 
 }

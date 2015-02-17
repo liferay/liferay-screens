@@ -20,15 +20,12 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.ddl.list.interactor.DDLListListener;
-import com.liferay.mobile.screens.ddl.list.interactor.DDLListRowsListener;
+import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -38,7 +35,7 @@ import java.util.Locale;
  */
 public class DDLListScreenlet
 	extends BaseListScreenlet<DDLEntry, DDLListInteractor>
-	implements DDLListRowsListener {
+	implements DDLListInteractorListener {
 
 	public DDLListScreenlet(Context context) {
 		this(context, null);
@@ -71,17 +68,15 @@ public class DDLListScreenlet
         getInteractor().loadRows(_recordSetId, _userId, startRow, endRow, locale);
     }
 
-    @Override
-    public void onListRowsReceived(int startRow, int endRow, List<DDLEntry> entries, int rowCount) {
-        int page = getPageFromRow(startRow);
+	@Override
+	public DDLListListener getListener() {
+		return (DDLListListener) super.getListener();
+	}
 
-        DDLListListener listenerView = (DDLListListener) getScreenletView();
-        listenerView.onListPageReceived(page, entries, _labelFields, rowCount);
+	public void setListener(DDLListListener listener) {
+		super.setListener(listener);
+	}
 
-        if (_listener != null) {
-            _listener.onListPageReceived(page, entries, rowCount);
-        }
-    }
 
     public int getRecordSetId() {
         return _recordSetId;

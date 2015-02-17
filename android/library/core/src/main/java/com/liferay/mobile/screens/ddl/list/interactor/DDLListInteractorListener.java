@@ -12,14 +12,15 @@
  * details.
  */
 
-package com.liferay.mobile.screens.themes.list;
+package com.liferay.mobile.screens.ddl.list.interactor;
+
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
+import com.liferay.mobile.screens.ddl.list.DDLEntry;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface ListAdapterListener {
-
-	public void onPageNotFound(int row);
+public interface DDLListInteractorListener extends BaseListInteractorListener<DDLEntry> {
 
 }

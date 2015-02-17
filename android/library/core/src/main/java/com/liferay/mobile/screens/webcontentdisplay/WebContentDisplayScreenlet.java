@@ -83,33 +83,35 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	public void onWebContentFailure(Exception e) {
+	public void onWebContentFailure(WebContentDisplayScreenlet source, Exception e) {
 		if (_listener != null) {
-			_listener.onWebContentFailure(e);
+			_listener.onWebContentFailure(this, e);
 		}
 
-		WebContentDisplayListener listenerView =
-			(WebContentDisplayListener)getScreenletView();
+		WebContentDisplayListener listenerView = (WebContentDisplayListener)getScreenletView();
 
-		listenerView.onWebContentFailure(e);
+		listenerView.onWebContentFailure(this, e);
 	}
 
 	@Override
-	public String onWebContentReceived(String html) {
+	public String onWebContentReceived(WebContentDisplayScreenlet source, String html) {
 		String modifiedHtml = html;
 
 		if (_listener != null) {
-			String listenerHtml = _listener.onWebContentReceived(html);
+			String listenerHtml = _listener.onWebContentReceived(this, html);
 
 			if (listenerHtml != null) {
 				modifiedHtml = listenerHtml;
 			}
 		}
 
-		WebContentDisplayListener listenerView =
-			(WebContentDisplayListener)getScreenletView();
+		WebContentDisplayListener listenerView = (WebContentDisplayListener)getScreenletView();
 
-		listenerView.onWebContentReceived(modifiedHtml);
+		String viewHtml = listenerView.onWebContentReceived(this, modifiedHtml);
+
+		if (viewHtml != null) {
+			modifiedHtml = viewHtml;
+		}
 
 		return modifiedHtml;
 	}
