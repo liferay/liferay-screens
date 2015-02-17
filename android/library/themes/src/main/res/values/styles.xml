@@ -11,11 +11,20 @@
         <item name="android:singleLine">true</item>
     </style>
 
-    <style name="default_button">
+    <style name="default_submit_button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/default_button_selector</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_marginTop">40dp</item>
+    </style>
+
+    <style name="default_screenlet">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">50dp</item>
+        <item name="android:showDividers">middle</item>
     </style>
 
 </resources>
