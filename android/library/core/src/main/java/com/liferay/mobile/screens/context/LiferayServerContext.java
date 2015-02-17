@@ -19,25 +19,25 @@ package com.liferay.mobile.screens.context;
  */
 public class LiferayServerContext {
 
-	public static long getCompanyId() {
-		return _companyId;
-	}
+    public static long getCompanyId() {
+        return _companyId;
+    }
 
     public static void setCompanyId(long companyId) {
         _companyId = companyId;
     }
 
     public static long getGroupId() {
-		return _groupId;
-	}
+        return _groupId;
+    }
 
     public static void setGroupId(long groupId) {
         _groupId = groupId;
     }
 
-	public static String getServer() {
-		return _server;
-	}
+    public static String getServer() {
+        return _server;
+    }
 
     public static void setServer(String server) {
         _server = server;
