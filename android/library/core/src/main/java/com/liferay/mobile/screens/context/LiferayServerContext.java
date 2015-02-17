@@ -20,15 +20,31 @@ package com.liferay.mobile.screens.context;
 public class LiferayServerContext {
 
 	public static long getCompanyId() {
-		return 10154;
+		return _companyId;
+	}
+
+	public static void setCompanyId(long companyId) {
+		_companyId = companyId;
 	}
 
 	public static long getGroupId() {
-		return 10184;
+		return _groupId;
+	}
+
+	public static void setGroupId(long groupId) {
+		_groupId = groupId;
 	}
 
 	public static String getServer() {
-		return "http://192.168.56.1:8080";
+		return _server;
 	}
+
+	public static void setServer(String server) {
+		_server = server;
+	}
+
+	private static long _companyId;
+	private static long _groupId;
+	private static String _server;
 
 }
