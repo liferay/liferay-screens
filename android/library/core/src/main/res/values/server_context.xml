@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="liferay_company_id">10155</integer>
+    <integer name="liferay_group_id">10182</integer>
+    <string name="liferay_server">http://192.168.40.238:8080</string>
+</resources>
