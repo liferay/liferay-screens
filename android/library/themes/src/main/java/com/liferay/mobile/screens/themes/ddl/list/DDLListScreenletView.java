@@ -40,7 +40,7 @@ public class DDLListScreenletView extends ListScreenletView<DDLEntry, DDLListAda
     }
 
     public DDLListScreenletView(Context context, AttributeSet attributes) {
-        this(context, attributes, 0);
+        super(context, attributes, 0);
     }
 
     public DDLListScreenletView(

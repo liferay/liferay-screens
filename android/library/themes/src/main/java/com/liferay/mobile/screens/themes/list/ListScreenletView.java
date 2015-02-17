@@ -37,31 +37,32 @@ public abstract class ListScreenletView<E extends Parcelable, A extends ListAdap
 	implements BaseListListener<E>, ListAdapterListener {
 
 	public ListScreenletView(Context context) {
-		this(context, null);
+		super(context);
+
+		init(context);
 	}
 
 	public ListScreenletView(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes);
+
+		init(context);
 	}
 
-	public ListScreenletView(
-            Context context, AttributeSet attributes, int defaultStyle) {
-
+	public ListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
 
-        int itemLayoutId = R.layout.list_item_default;
-        int itemProgressLayoutId = R.layout.list_item_progress_default;
-
-        A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
-
-        setAdapter(adapter);
-        setHasFixedSize(true);
-        setLayoutManager(new LinearLayoutManager(context));
+		init(context);
     }
 
-    @Override
-	public void onListPageFailed(int page, Exception e) {
-		//TODO what should we do when the page load fails?
+	protected void init(Context context) {
+		int itemLayoutId = R.layout.list_item_default;
+		int itemProgressLayoutId = R.layout.list_item_progress_default;
+
+		A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
+
+		setAdapter(adapter);
+		setHasFixedSize(true);
+		setLayoutManager(new LinearLayoutManager(context));
 	}
 
 	@Override
@@ -122,8 +123,7 @@ public abstract class ListScreenletView<E extends Parcelable, A extends ListAdap
 		Parcelable superState = super.onSaveInstanceState();
 
 		A adapter = (A) getAdapter();
-		ArrayList<E> entries = (ArrayList<E>)
-			adapter.getEntries();
+		ArrayList<E> entries = (ArrayList<E>) adapter.getEntries();
 
 		Bundle state = new Bundle();
 		state.putParcelableArrayList(_STATE_ENTRIES, entries);
