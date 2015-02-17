@@ -30,7 +30,7 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class DDLListScreenletView extends BaseListScreenletView<DDLEntry, DDLListAdapter>
-        implements DDLListViewModel, BaseListAdapterListener {
+        implements DDLListViewModel {
 
     public DDLListScreenletView(Context context) {
         super(context);

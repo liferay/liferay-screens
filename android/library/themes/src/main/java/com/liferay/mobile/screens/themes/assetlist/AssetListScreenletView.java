@@ -18,13 +18,15 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.assetlist.view.AssetListViewModel;
 import com.liferay.mobile.screens.themes.list.BaseListScreenletView;
 
 
 /**
  * @author Silvio Santos
  */
-public class AssetListScreenletView extends BaseListScreenletView<AssetEntry, AssetListAdapter> {
+public class AssetListScreenletView extends BaseListScreenletView<AssetEntry, AssetListAdapter>
+	implements AssetListViewModel {
 
 	public AssetListScreenletView(Context context) {
 		this(context, null);
@@ -41,8 +43,7 @@ public class AssetListScreenletView extends BaseListScreenletView<AssetEntry, As
 
     @Override
     protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-        return new AssetListAdapter(
-                itemLayoutId, itemProgressLayoutId, this);
+        return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
     }
 
 
