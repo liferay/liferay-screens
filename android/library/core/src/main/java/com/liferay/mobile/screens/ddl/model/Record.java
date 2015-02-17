@@ -14,11 +14,15 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.liferay.mobile.screens.ddl.XSDParser;
 
 import org.xml.sax.SAXException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -28,10 +32,40 @@ import java.util.Map;
 /**
  * @author Jose Manuel Navarro
  */
-public class Record {
+public class Record implements Parcelable {
+
+	public static final Parcelable.ClassLoaderCreator<Record> CREATOR =
+		new ClassLoaderCreator<Record>() {
+
+			public Record createFromParcel(Parcel in, ClassLoader loader) {
+				return new Record(in, loader);
+			}
+
+			@Override
+			public Record createFromParcel(Parcel in) {
+				assert false;
+				return null;
+			}
+
+			public Record[] newArray(int size) {
+				return new Record[size];
+			}
+
+		};
+
 
 	public Record(Locale locale) {
 		_locale = locale;
+	}
+
+	private Record(Parcel in, ClassLoader loader) {
+		Parcelable[] array = in.readParcelableArray(loader);
+		_fields = new ArrayList(Arrays.asList(array));
+		_creatorUserId = in.readLong();
+		_structureId = in.readLong();
+		_recordSetId = in.readLong();
+		_recordId = in.readLong();
+		_locale = (Locale) in.readSerializable();
 	}
 
 	public void parseXsd(String xsd) throws SAXException {
@@ -113,6 +147,21 @@ public class Record {
 
 	public boolean isRecordStructurePresent() {
 		return (_fields.size() > 0);
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel destination, int flags) {
+		destination.writeParcelableArray(_fields.toArray(new Field[0]), flags);
+		destination.writeLong(_creatorUserId);
+		destination.writeLong(_structureId);
+		destination.writeLong(_recordSetId);
+		destination.writeLong(_recordId);
+		destination.writeSerializable(_locale);
 	}
 
 	private List<Field> _fields = new ArrayList<>();
