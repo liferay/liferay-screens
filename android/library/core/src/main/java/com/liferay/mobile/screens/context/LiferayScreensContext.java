@@ -27,10 +27,10 @@ public class LiferayScreensContext {
 	public static void init(Context context) {
 		_context = context.getApplicationContext();
 
-        Resources resources = context.getResources();
-        LiferayServerContext.setCompanyId(resources.getInteger(R.integer.liferay_company_id));
-        LiferayServerContext.setGroupId(resources.getInteger(R.integer.liferay_group_id));
-        LiferayServerContext.setServer(resources.getString(R.string.liferay_server));
+		Resources resources = context.getResources();
+		LiferayServerContext.setCompanyId(resources.getInteger(R.integer.liferay_company_id));
+		LiferayServerContext.setGroupId(resources.getInteger(R.integer.liferay_group_id));
+		LiferayServerContext.setServer(resources.getString(R.string.liferay_server));
 	}
 
 	public static Context getContext() {
