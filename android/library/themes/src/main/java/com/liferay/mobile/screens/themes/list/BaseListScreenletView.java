@@ -24,6 +24,7 @@ import android.util.AttributeSet;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.themes.R;
+import com.liferay.mobile.screens.themes.ddl.list.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,6 +65,8 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 		setAdapter(adapter);
 		setHasFixedSize(true);
 		setLayoutManager(new LinearLayoutManager(context));
+
+		addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.abc_list_divider_mtrl_alpha)));
 	}
 
     protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
