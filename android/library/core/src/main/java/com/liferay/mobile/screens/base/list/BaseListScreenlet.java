@@ -172,7 +172,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
         super.onScreenletAttached();
 
         if (_autoLoad) {
-            //TODO handle when first page is already loaded
+            //LMW-176 TODO handle when first page is already loaded
             loadPage(0);
         }
     }

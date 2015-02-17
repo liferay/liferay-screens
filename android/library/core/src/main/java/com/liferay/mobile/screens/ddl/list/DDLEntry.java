@@ -26,6 +26,8 @@ import java.util.Map;
  */
 public class DDLEntry implements Parcelable {
 
+	// TODO check if we should merge with DDLRecord when DDLForm branch is integrated
+
 	public static final Creator<DDLEntry> CREATOR =
 		new Creator<DDLEntry>() {
 
@@ -51,10 +53,6 @@ public class DDLEntry implements Parcelable {
 	public void writeToParcel(Parcel destination, int flags) {
 		destination.writeMap(_values);
 	}
-
-    public String getUser() {
-        return ((Integer) ((HashMap)_values.get("modelAttributes")).get("userId")).toString();
-    }
 
     public String getValue(String field) {
         return ((HashMap<String,String>) _values.get("modelValues")).get(field);

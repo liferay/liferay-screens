@@ -9,6 +9,5 @@ public interface BaseListListener<E> {
 
     public void onListPageFailed(int page, Exception e);
 
-    public void onListPageReceived(
-            int page, List<E> entries, int rowCount);
+    public void onListPageReceived(int page, List<E> entries, int rowCount);
 }
