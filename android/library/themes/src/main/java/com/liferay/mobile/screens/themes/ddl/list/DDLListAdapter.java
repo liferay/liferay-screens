@@ -12,25 +12,43 @@
  * details.
  */
 
-package com.liferay.mobile.screens.themes.assetlist;
+package com.liferay.mobile.screens.themes.ddl.list;
 
-import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.themes.list.ListAdapter;
 import com.liferay.mobile.screens.themes.list.ListAdapterListener;
 
+import java.util.List;
+
 /**
+ * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class AssetListAdapter
-        extends ListAdapter<AssetEntry> {
+public class DDLListAdapter extends ListAdapter<DDLEntry> {
 
-    public AssetListAdapter(int layoutId, int progressLayoutId, ListAdapterListener listener) {
+    public DDLListAdapter(int layoutId, int progressLayoutId, ListAdapterListener listener) {
         super(layoutId, progressLayoutId, listener);
     }
 
-    @Override
-    protected void fillHolder(AssetEntry entry, ListAdapter.ViewHolder holder) {
-        holder.textView.setText(entry.getTitle());
+    public void setLabelFields(List<String> labelFields) {
+        _labelFields = labelFields;
     }
+
+    @Override
+    protected void fillHolder(DDLEntry entry, ListAdapter.ViewHolder holder) {
+        StringBuilder builder = new StringBuilder();
+
+		for (String field : _labelFields) {
+			String value = entry.getValue(field);
+			if (value!= null && !value.isEmpty()) {
+				builder.append(value);
+				builder.append(" ");
+			}
+		}
+
+        holder.textView.setText(builder.toString());
+    }
+
+    private List<String> _labelFields;
 
 }

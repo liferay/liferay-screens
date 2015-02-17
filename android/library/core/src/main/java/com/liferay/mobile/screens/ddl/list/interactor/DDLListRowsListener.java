@@ -12,13 +12,15 @@
  * details.
  */
 
-package com.liferay.mobile.screens.themes.assetlist;
+package com.liferay.mobile.screens.ddl.list.interactor;
+
+import com.liferay.mobile.screens.base.list.interactor.BaseListRowsListener;
+import com.liferay.mobile.screens.ddl.list.DDLEntry;
 
 /**
+ * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface AssetListAdapterListener {
-
-	public void onPageNotFound(int row);
+public interface DDLListRowsListener extends BaseListRowsListener<DDLEntry> {
 
 }

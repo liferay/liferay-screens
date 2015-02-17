@@ -12,25 +12,14 @@
  * details.
  */
 
-package com.liferay.mobile.screens.themes.assetlist;
-
-import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.themes.list.ListAdapter;
-import com.liferay.mobile.screens.themes.list.ListAdapterListener;
+package com.liferay.mobile.screens.themes.list;
 
 /**
+ * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class AssetListAdapter
-        extends ListAdapter<AssetEntry> {
+public interface ListAdapterListener {
 
-    public AssetListAdapter(int layoutId, int progressLayoutId, ListAdapterListener listener) {
-        super(layoutId, progressLayoutId, listener);
-    }
-
-    @Override
-    protected void fillHolder(AssetEntry entry, ListAdapter.ViewHolder holder) {
-        holder.textView.setText(entry.getTitle());
-    }
+	public void onPageNotFound(int row);
 
 }

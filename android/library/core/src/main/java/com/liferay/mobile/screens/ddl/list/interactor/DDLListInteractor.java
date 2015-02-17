@@ -12,18 +12,20 @@
  * details.
  */
 
-package com.liferay.mobile.screens.assetlist;
+package com.liferay.mobile.screens.ddl.list.interactor;
 
-import java.util.List;
+import com.liferay.mobile.screens.base.interactor.Interactor;
+
+import java.util.Locale;
 
 /**
+ * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface AssetListListener {
+public interface DDLListInteractor extends Interactor<DDLListRowsListener> {
 
-	public void onAssetListPageFailed(int page, Exception e);
-
-	public void onAssetListPageReceived(
-		int page, List<AssetEntry> entries, int rowCount);
+	public void loadRows(
+            long recordSetId, long userId, int startRow, int endRow, Locale locale)
+		throws Exception;
 
 }

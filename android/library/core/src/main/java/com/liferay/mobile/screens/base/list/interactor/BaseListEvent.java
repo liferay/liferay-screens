@@ -12,25 +12,24 @@
  * details.
  */
 
-package com.liferay.mobile.screens.assetlist.interactor;
+package com.liferay.mobile.screens.base.list.interactor;
 
-import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 
 import java.util.List;
 
 /**
- * @author Silvio Santos
+ * @author Javier Gamarra
  */
-public class AssetListEvent extends BasicEvent {
+public class BaseListEvent<E> extends BasicEvent {
 
-	public AssetListEvent(int targetScreenletId, Exception e) {
+	public BaseListEvent(int targetScreenletId, Exception e) {
 		super(targetScreenletId);
 	}
 
-	public AssetListEvent(
-		int targetScreenletId, int startRow, int endRow, List<AssetEntry> entries,
-		int rowCount) {
+	public BaseListEvent(
+            int targetScreenletId, int startRow, int endRow, List<E> entries,
+            int rowCount) {
 
 		super(targetScreenletId);
 
@@ -40,7 +39,7 @@ public class AssetListEvent extends BasicEvent {
 		_rowCount = rowCount;
 	}
 
-	public List<AssetEntry> getEntries() {
+	public List<E> getEntries() {
 		return _entries;
 	}
 
@@ -56,7 +55,7 @@ public class AssetListEvent extends BasicEvent {
 		return _rowCount;
 	}
 
-	private List<AssetEntry> _entries;
+	private List<E> _entries;
 	private int _startRow;
 	private int _endRow;
 	private int _rowCount;

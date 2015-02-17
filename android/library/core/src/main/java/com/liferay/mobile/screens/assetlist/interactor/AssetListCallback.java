@@ -17,84 +17,21 @@ package com.liferay.mobile.screens.assetlist.interactor;
 import android.util.Pair;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.interactor.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.InteractorBatchAsyncTaskCallback;
-import com.liferay.mobile.screens.util.JSONUtil;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
+import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
-public class AssetListCallback
-	extends InteractorBatchAsyncTaskCallback<AssetListCallback.Result> {
+public class AssetListCallback extends BaseListCallback<AssetEntry> {
 
-	public AssetListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
-		super(targetScreenletId);
+    public AssetListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
+        super(targetScreenletId, rowsRange);
+    }
 
-		_rowsRange = rowsRange;
-	}
-
-	@Override
-	public Result transform(Object obj) throws Exception {
-		Result result = new Result();
-
-		JSONArray jsonArray = ((JSONArray)obj).getJSONArray(0);
-		List<AssetEntry> entries = new ArrayList<>();
-
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-			entries.add(new AssetEntry(JSONUtil.toMap(jsonObject)));
-		}
-
-		result.entries = entries;
-		result.rowCount = ((JSONArray)obj).getInt(1);
-
-		return result;
-	}
-
-	@Override
-	public void onSuccess(Result result) {
-		cleanRequestState();
-
-		super.onSuccess(result);
-	}
-
-	@Override
-	public void onFailure(Exception e) {
-		cleanRequestState();
-
-		super.onFailure(e);
-	}
-
-	@Override
-	protected BasicEvent createEvent(int targetScreenletId, Result result) {
-		return new AssetListEvent(
-			targetScreenletId, _rowsRange.first, _rowsRange.second, result.entries, result.rowCount);
-	}
-
-	@Override
-	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new AssetListEvent(targetScreenletId, e);
-	}
-
-	protected void cleanRequestState() {
-		RequestState.getInstance().remove(getTargetScreenletId(), _rowsRange);
-	}
-
-	private final Pair<Integer, Integer> _rowsRange;
-
-	static class Result {
-
-		List<AssetEntry> entries;
-		int rowCount;
-
-	}
+    @Override
+    public AssetEntry createEntity(Map<String, Object> stringObjectMap) {
+        return new AssetEntry(stringObjectMap);
+    }
 
 }

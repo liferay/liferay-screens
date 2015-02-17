@@ -12,25 +12,29 @@
  * details.
  */
 
-package com.liferay.mobile.screens.themes.assetlist;
+package com.liferay.mobile.screens.ddl.list.interactor;
 
-import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.themes.list.ListAdapter;
-import com.liferay.mobile.screens.themes.list.ListAdapterListener;
+import android.util.Pair;
+
+import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
+import com.liferay.mobile.screens.ddl.list.DDLEntry;
+
+import java.util.Map;
 
 /**
+ * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class AssetListAdapter
-        extends ListAdapter<AssetEntry> {
+public class DDLListCallback
+        extends BaseListCallback<DDLEntry> {
 
-    public AssetListAdapter(int layoutId, int progressLayoutId, ListAdapterListener listener) {
-        super(layoutId, progressLayoutId, listener);
+    public DDLListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
+        super(targetScreenletId, rowsRange);
     }
 
     @Override
-    protected void fillHolder(AssetEntry entry, ListAdapter.ViewHolder holder) {
-        holder.textView.setText(entry.getTitle());
+    public DDLEntry createEntity(Map<String, Object> stringObjectMap) {
+        return new DDLEntry(stringObjectMap);
     }
 
 }
