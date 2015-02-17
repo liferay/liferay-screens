@@ -68,29 +68,34 @@ public abstract class ListScreenletView<E extends Parcelable, A extends ListAdap
 	public void onListPageReceived(
 		int page, List<E> serverEntries, int rowCount) {
 
-		A adapter = (A)getAdapter();
-		List<E> entries = adapter.getEntries();
-		List<E> allEntries = new ArrayList<>(
-			Collections.<E>nCopies(rowCount, null));
-
-		for (int i = 0; i < entries.size(); i++) {
-			allEntries.set(i, entries.get(i));
-		}
-
-        BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
-
-		int firstRowForPage = screenlet.getFirstRowForPage(page);
-
-		for (int i = 0; i < (serverEntries.size()); i++) {
-			allEntries.set(i + firstRowForPage, serverEntries.get(i));
-		}
+		A adapter = (A) getAdapter();
+        List<E> allEntries = createAllEntries(page, serverEntries, rowCount, adapter);
 
 		adapter.setRowCount(rowCount);
 		adapter.setEntries(allEntries);
 		adapter.notifyDataSetChanged();
 	}
 
-	@Override
+    protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
+        List<E> entries = adapter.getEntries();
+        List<E> allEntries = new ArrayList<>(
+            Collections.<E>nCopies(rowCount, null));
+
+        for (int i = 0; i < entries.size(); i++) {
+            allEntries.set(i, entries.get(i));
+        }
+
+        BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
+
+        int firstRowForPage = screenlet.getFirstRowForPage(page);
+
+        for (int i = 0; i < (serverEntries.size()); i++) {
+            allEntries.set(i + firstRowForPage, serverEntries.get(i));
+        }
+        return allEntries;
+    }
+
+    @Override
 	public void onPageNotFound(int row) {
 		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
 
@@ -116,7 +121,7 @@ public abstract class ListScreenletView<E extends Parcelable, A extends ListAdap
 	protected Parcelable onSaveInstanceState() {
 		Parcelable superState = super.onSaveInstanceState();
 
-		A adapter = (A)getAdapter();
+		A adapter = (A) getAdapter();
 		ArrayList<E> entries = (ArrayList<E>)
 			adapter.getEntries();
 

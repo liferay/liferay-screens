@@ -70,7 +70,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 
         int page = getPageFromRow(startRow);
 
-        BaseListListener listenerView = (BaseListListener) getScreenletView();
+        BaseListListener<E> listenerView = (BaseListListener<E>) getScreenletView();
         listenerView.onListPageReceived(page, entries, rowCount);
 
         if (_listener != null) {
@@ -126,11 +126,11 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
         _firstPageSize = firstPageSize;
     }
 
-    public BaseListListener getListener() {
+    public BaseListListener<E> getListener() {
         return _listener;
     }
 
-    public void setListener(BaseListListener listener) {
+    public void setListener(BaseListListener<E> listener) {
         _listener = listener;
     }
 

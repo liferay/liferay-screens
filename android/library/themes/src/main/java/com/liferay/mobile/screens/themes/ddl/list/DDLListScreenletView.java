@@ -17,14 +17,23 @@ package com.liferay.mobile.screens.themes.ddl.list;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import com.liferay.mobile.screens.base.list.BaseListListener;
+import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
+import com.liferay.mobile.screens.ddl.list.interactor.DDLListListener;
+import com.liferay.mobile.screens.themes.list.ListAdapterListener;
 import com.liferay.mobile.screens.themes.list.ListScreenletView;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListScreenletView extends ListScreenletView<DDLEntry, DDLListAdapter> {
+public class DDLListScreenletView extends ListScreenletView<DDLEntry, DDLListAdapter>
+        implements DDLListListener, ListAdapterListener {
 
     public DDLListScreenletView(Context context) {
         super(context);
@@ -40,8 +49,20 @@ public class DDLListScreenletView extends ListScreenletView<DDLEntry, DDLListAda
     }
 
     @Override
+    public void onListPageReceived(int page, List<DDLEntry> entries, String[] labelFields, int rowCount) {
+        DDLListAdapter adapter = (DDLListAdapter) getAdapter();
+        List<DDLEntry> allEntries = createAllEntries(page, entries, rowCount, adapter);
+
+        adapter.setRowCount(rowCount);
+        adapter.setEntries(allEntries);
+        adapter.setLabelFields(labelFields);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
     protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
         return new DDLListAdapter(
                 itemLayoutId, itemProgressLayoutId, this);
     }
+
 }
