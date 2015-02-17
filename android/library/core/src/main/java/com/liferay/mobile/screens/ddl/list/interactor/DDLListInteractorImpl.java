@@ -32,7 +32,7 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public class DDLListInteractorImpl
-	extends BaseListInteractor<DDLEntry,DDLListRowsListener> implements DDLListInteractor {
+	extends BaseListInteractor<DDLEntry,DDLListInteractorListener> implements DDLListInteractor {
 
     public DDLListInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);

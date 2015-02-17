@@ -12,14 +12,19 @@
  * details.
  */
 
-package com.liferay.mobile.screens.assetlist.interactor;
+package com.liferay.mobile.screens.base.list.interactor;
 
-import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.base.list.interactor.BaseListRowsListener;
+import java.util.List;
 
 /**
+ * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface AssetListRowsListener extends BaseListRowsListener<AssetEntry> {
+public interface BaseListInteractorListener<E> {
+
+    public void onListRowsFailure(int startRow, int endRow, Exception e);
+
+    public void onListRowsReceived(
+            int startRow, int endRow, List<E> entries, int rowCount);
 
 }

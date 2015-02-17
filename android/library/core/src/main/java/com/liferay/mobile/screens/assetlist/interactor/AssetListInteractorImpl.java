@@ -33,7 +33,7 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public class AssetListInteractorImpl
-	extends BaseListInteractor<AssetEntry, AssetListRowsListener> implements AssetListInteractor {
+	extends BaseListInteractor<AssetEntry, AssetListInteractorListener> implements AssetListInteractor {
 
     public AssetListInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);

@@ -21,8 +21,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
-import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.themes.R;
 
 import java.util.ArrayList;
@@ -33,47 +33,37 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public abstract class ListScreenletView<E extends Parcelable, A extends ListAdapter<E>> extends RecyclerView
-	implements BaseListListener<E>, ListAdapterListener {
+public abstract class BaseListScreenletView<E extends Parcelable, A extends BaseListAdapter<E>>
+	extends RecyclerView
+	implements BaseListViewModel<E>, BaseListAdapterListener {
 
-	public ListScreenletView(Context context) {
-		this(context, null);
+	public BaseListScreenletView(Context context) {
+		super(context);
+
+		init(context);
 	}
 
-	public ListScreenletView(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+	public BaseListScreenletView(Context context, AttributeSet attributes) {
+		super(context, attributes);
+
+		init(context);
 	}
 
-	public ListScreenletView(
-            Context context, AttributeSet attributes, int defaultStyle) {
-
+	public BaseListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
 
-        int itemLayoutId = R.layout.list_item_default;
-        int itemProgressLayoutId = R.layout.list_item_progress_default;
-
-        A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
-
-        setAdapter(adapter);
-        setHasFixedSize(true);
-        setLayoutManager(new LinearLayoutManager(context));
+		init(context);
     }
 
-    @Override
-	public void onListPageFailed(int page, Exception e) {
-		//TODO what should we do when the page load fails?
-	}
+	protected void init(Context context) {
+		int itemLayoutId = R.layout.list_item_default;
+		int itemProgressLayoutId = R.layout.list_item_progress_default;
 
-	@Override
-	public void onListPageReceived(
-		int page, List<E> serverEntries, int rowCount) {
+		A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
 
-		A adapter = (A) getAdapter();
-        List<E> allEntries = createAllEntries(page, serverEntries, rowCount, adapter);
-
-		adapter.setRowCount(rowCount);
-		adapter.setEntries(allEntries);
-		adapter.notifyDataSetChanged();
+		setAdapter(adapter);
+		setHasFixedSize(true);
+		setLayoutManager(new LinearLayoutManager(context));
 	}
 
     protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
@@ -94,6 +84,16 @@ public abstract class ListScreenletView<E extends Parcelable, A extends ListAdap
         }
         return allEntries;
     }
+
+	@Override
+	public void setListPage(int page, List<E> entries, int rowCount) {
+		A adapter = (A) getAdapter();
+		List<E> allEntries = createAllEntries(page, entries, rowCount, adapter);
+
+		adapter.setRowCount(rowCount);
+		adapter.setEntries(allEntries);
+		adapter.notifyDataSetChanged();
+	}
 
     @Override
 	public void onPageNotFound(int row) {
@@ -122,8 +122,7 @@ public abstract class ListScreenletView<E extends Parcelable, A extends ListAdap
 		Parcelable superState = super.onSaveInstanceState();
 
 		A adapter = (A) getAdapter();
-		ArrayList<E> entries = (ArrayList<E>)
-			adapter.getEntries();
+		ArrayList<E> entries = (ArrayList<E>) adapter.getEntries();
 
 		Bundle state = new Bundle();
 		state.putParcelableArrayList(_STATE_ENTRIES, entries);

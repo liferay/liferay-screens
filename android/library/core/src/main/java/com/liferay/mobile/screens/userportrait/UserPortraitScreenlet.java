@@ -79,7 +79,7 @@ public class UserPortraitScreenlet
 		Bitmap finalImage = bitmap;
 
 		if (_listener != null) {
-			finalImage = _listener.onUserPortraitReceived(bitmap);
+			finalImage = _listener.onUserPortraitReceived(this, bitmap);
 
 			if (finalImage == null) {
 				finalImage = bitmap;
@@ -94,7 +94,7 @@ public class UserPortraitScreenlet
 	@Override
 	public void onUserPortraitFailure(Exception e) {
 		if (_listener != null) {
-			_listener.onUserPortraitFailure(e);
+			_listener.onUserPortraitFailure(this, e);
 		}
 
 		UserPortraitInteractorListener view = (UserPortraitInteractorListener)getScreenletView();

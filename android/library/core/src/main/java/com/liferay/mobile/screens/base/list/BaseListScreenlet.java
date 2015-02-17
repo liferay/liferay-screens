@@ -23,7 +23,8 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
-import com.liferay.mobile.screens.base.list.interactor.BaseListRowsListener;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
+import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 import java.util.List;
@@ -34,7 +35,7 @@ import java.util.Locale;
  */
 public abstract class BaseListScreenlet<E, N extends Interactor>
         extends BaseScreenlet<BaseViewModel, N>
-        implements BaseListRowsListener<E> {
+        implements BaseListInteractorListener<E> {
 
     public BaseListScreenlet(Context context) {
         this(context, null);
@@ -58,24 +59,22 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
         int page = getPageFromRow(startRow);
 
         BaseListListener listenerView = (BaseListListener) getScreenletView();
-        listenerView.onListPageFailed(page, e);
+        listenerView.onListPageFailed(this, page, e);
 
         if (_listener != null) {
-            _listener.onListPageFailed(page, e);
+            _listener.onListPageFailed(this, page, e);
         }
     }
 
     @Override
-    public void onListRowsReceived(
-            int startRow, int endRow, List<E> entries, int rowCount) {
-
+    public void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount) {
         int page = getPageFromRow(startRow);
 
-        BaseListListener<E> listenerView = (BaseListListener<E>) getScreenletView();
-        listenerView.onListPageReceived(page, entries, rowCount);
+        BaseListViewModel<E> view = (BaseListViewModel<E>) getScreenletView();
+		view.setListPage(page, entries, rowCount);
 
         if (_listener != null) {
-            _listener.onListPageReceived(page, entries, rowCount);
+            _listener.onListPageReceived(this, page, entries, rowCount);
         }
     }
 

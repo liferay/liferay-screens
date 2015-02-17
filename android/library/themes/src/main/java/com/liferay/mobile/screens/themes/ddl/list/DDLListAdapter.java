@@ -15,8 +15,8 @@
 package com.liferay.mobile.screens.themes.ddl.list;
 
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
-import com.liferay.mobile.screens.themes.list.ListAdapter;
-import com.liferay.mobile.screens.themes.list.ListAdapterListener;
+import com.liferay.mobile.screens.themes.list.BaseListAdapter;
+import com.liferay.mobile.screens.themes.list.BaseListAdapterListener;
 
 import java.util.List;
 
@@ -24,9 +24,9 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListAdapter extends ListAdapter<DDLEntry> {
+public class DDLListAdapter extends BaseListAdapter<DDLEntry> {
 
-    public DDLListAdapter(int layoutId, int progressLayoutId, ListAdapterListener listener) {
+    public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
         super(layoutId, progressLayoutId, listener);
     }
 
@@ -35,7 +35,7 @@ public class DDLListAdapter extends ListAdapter<DDLEntry> {
     }
 
     @Override
-    protected void fillHolder(DDLEntry entry, ListAdapter.ViewHolder holder) {
+    protected void fillHolder(DDLEntry entry, BaseListAdapter.ViewHolder holder) {
         StringBuilder builder = new StringBuilder();
 
 		for (String field : _labelFields) {

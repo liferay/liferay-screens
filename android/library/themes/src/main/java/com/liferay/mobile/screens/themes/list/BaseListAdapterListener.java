@@ -12,19 +12,14 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.list.interactor;
-
-import java.util.List;
+package com.liferay.mobile.screens.themes.list;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface BaseListRowsListener<E> {
+public interface BaseListAdapterListener {
 
-    public void onListRowsFailure(int startRow, int endRow, Exception e);
-
-    public void onListRowsReceived(
-            int startRow, int endRow, List<E> entries, int rowCount);
+	public void onPageNotFound(int row);
 
 }

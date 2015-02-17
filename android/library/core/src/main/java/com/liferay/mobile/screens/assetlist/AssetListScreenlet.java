@@ -22,7 +22,8 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractor;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorImpl;
-import com.liferay.mobile.screens.assetlist.interactor.AssetListRowsListener;
+import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorListener;
+import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 
@@ -33,7 +34,7 @@ import java.util.Locale;
  */
 public class AssetListScreenlet
 	extends BaseListScreenlet<AssetEntry, AssetListInteractor>
-	implements AssetListRowsListener {
+	implements AssetListInteractorListener {
 
 	public AssetListScreenlet(Context context) {
 		this(context, null);
@@ -81,6 +82,15 @@ public class AssetListScreenlet
 
 	public void setGroupId(int groupId) {
 		_groupId = groupId;
+	}
+
+	@Override
+	public AssetListListener getListener() {
+		return (AssetListListener) super.getListener();
+	}
+
+	public void setListener(AssetListListener listener) {
+		super.setListener(listener);
 	}
 
 	@Override

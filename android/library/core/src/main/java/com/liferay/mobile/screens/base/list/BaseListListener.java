@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface BaseListListener<E> {
 
-    public void onListPageFailed(int page, Exception e);
+    public void onListPageFailed(BaseListScreenlet source, int page, Exception e);
 
-    public void onListPageReceived(int page, List<E> entries, int rowCount);
+    public void onListPageReceived(BaseListScreenlet source, int page, List<E> entries, int rowCount);
 }
