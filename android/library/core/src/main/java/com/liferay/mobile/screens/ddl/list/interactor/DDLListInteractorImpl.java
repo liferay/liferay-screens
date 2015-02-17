@@ -41,6 +41,7 @@ public class DDLListInteractorImpl
     public void loadRows(
 			long recordSetId, long userId, int startRow, int endRow, Locale locale)
 		throws Exception {
+
         _recordSetId = recordSetId;
         _userId = userId;
 
@@ -52,54 +53,33 @@ public class DDLListInteractorImpl
         return new DDLListCallback(getTargetScreenletId(), rowsRange);
     }
 
-    @Override
-    protected void sendPageRequests(BatchSessionImpl batchSession, int startRow, int endRow, Locale locale) throws Exception {
-        sendGetPageRowsRequest(
-                batchSession, _recordSetId, _userId, startRow, endRow, locale);
+	@Override
+	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
+		JSONObject entryQueryParams = addQueryParams(_recordSetId, _userId);
 
-        sendGetEntriesCountRequest(batchSession, _recordSetId, _userId);
-    }
+		entryQueryParams.put("start", startRow);
+		entryQueryParams.put("end", endRow);
 
-	protected void sendGetEntriesCountRequest(
-			Session session, long recordSetId, long userId)
-		throws Exception {
-
-		JSONObject entryQueryAttributes = addRecordSetIdParam(
-                recordSetId, userId);
-
-        MobilewidgetsddlrecordService service =
-                new MobilewidgetsddlrecordService(session);
-		service.getEntriesCount(entryQueryAttributes);
+		new MobilewidgetsddlrecordService(session).getDDLEntries(entryQueryParams, locale.toString());
 	}
 
-	protected void sendGetPageRowsRequest(
-			Session session, long recordSetId, long userId, int startRow, int endRow,
-			Locale locale)
-		throws Exception {
+	@Override
+	protected void getPageRowCountRequest(Session session) throws Exception {
+		JSONObject entryQueryParams = addQueryParams(_recordSetId, _userId);
 
-		JSONObject entryQueryAttributes = addRecordSetIdParam(recordSetId, userId);
-
-		entryQueryAttributes.put("start", startRow);
-		entryQueryAttributes.put("end", endRow);
-
-		MobilewidgetsddlrecordService service =
-			new MobilewidgetsddlrecordService(session);
-
-		service.getDDLEntries(entryQueryAttributes, locale.toString());
+		new MobilewidgetsddlrecordService(session).getEntriesCount(entryQueryParams);
 	}
 
-    protected JSONObject addRecordSetIdParam(
-            long recordSetId, long userId)
-            throws JSONException {
+    protected JSONObject addQueryParams(long recordSetId, long userId) throws JSONException {
+        JSONObject entryQueryParams = new JSONObject();
 
-        JSONObject entryQueryAttributes = new JSONObject();
-        entryQueryAttributes.put("ddlRecordSetId", recordSetId);
+        entryQueryParams.put("ddlRecordSetId", recordSetId);
 
         if (userId != 0) {
-            entryQueryAttributes.put("userId", _userId);
+            entryQueryParams.put("userId", _userId);
         }
 
-        return entryQueryAttributes;
+        return entryQueryParams;
     }
 
 	protected void validate(

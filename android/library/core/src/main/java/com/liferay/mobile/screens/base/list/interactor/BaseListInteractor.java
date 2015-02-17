@@ -16,79 +16,89 @@ import java.util.Locale;
  */
 public abstract class BaseListInteractor<E, L extends BaseListRowsListener> extends BaseRemoteInteractor<L> {
 
-    public BaseListInteractor(int targetScreenletId) {
-        super(targetScreenletId);
-    }
+	public BaseListInteractor(int targetScreenletId) {
+		super(targetScreenletId);
+	}
 
-    public void loadRows(
-            int startRow, int endRow, Locale locale)
-            throws Exception {
+	public void loadRows(
+		int startRow, int endRow, Locale locale)
+		throws Exception {
 
-        validate(startRow, endRow, locale);
+		validate(startRow, endRow, locale);
 
-        Pair<Integer, Integer> rowsRange = new Pair<>(startRow, endRow);
+		Pair<Integer, Integer> rowsRange = new Pair<>(startRow, endRow);
 
-        RequestState requestState = RequestState.getInstance();
+		RequestState requestState = RequestState.getInstance();
 
-        // check if this page is already being loaded
-        if (requestState.contains(getTargetScreenletId(), rowsRange)) {
-            return;
-        }
+		// check if this page is already being loaded
+		if (requestState.contains(getTargetScreenletId(), rowsRange)) {
+			return;
+		}
 
-        Session session = SessionContext.createSessionFromCurrentSession();
-        BatchSessionImpl batchSession = new BatchSessionImpl(session);
-        batchSession.setCallback(
-                getCallback(rowsRange));
+		BatchSessionImpl session = getSession(rowsRange);
 
-        sendPageRequests(batchSession, startRow, endRow, locale);
+		getPageRowsRequest(session, startRow, endRow, locale);
+		getPageRowCountRequest(session);
 
-        batchSession.invoke();
+		session.invoke();
 
-        requestState.put(getTargetScreenletId(), rowsRange);
-    }
+		requestState.put(getTargetScreenletId(), rowsRange);
+	}
 
-    public void onEvent(BaseListEvent event) {
-        if (!isValidEvent(event)) {
-            return;
-        }
+	public void onEvent(BaseListEvent event) {
+		if (!isValidEvent(event)) {
+			return;
+		}
 
-        if (event.isFailed()) {
-            getListener().onListRowsFailure(
-                    event.getStartRow(), event.getEndRow(), event.getException());
-        } else {
-            List<E> entries = event.getEntries();
-            int rowCount = event.getRowCount();
+		if (event.isFailed()) {
+			getListener().onListRowsFailure(
+				event.getStartRow(), event.getEndRow(), event.getException());
+		} else {
+			List<E> entries = event.getEntries();
+			int rowCount = event.getRowCount();
 
-            getListener().onListRowsReceived(
-                    event.getStartRow(), event.getEndRow(), entries, rowCount);
-        }
-    }
+			getListener().onListRowsReceived(
+				event.getStartRow(), event.getEndRow(), entries, rowCount);
+		}
+	}
 
-    protected void validate(
-            int startRow, int endRow, Locale locale) {
+	protected BatchSessionImpl getSession(Pair<Integer, Integer> rowsRange) {
+		Session currentSession = SessionContext.createSessionFromCurrentSession();
 
-        if (startRow < 0) {
-            throw new IllegalArgumentException("Start row cannot be negative");
-        }
+		BatchSessionImpl batchSession = new BatchSessionImpl(currentSession);
 
-        if (endRow < 0) {
-            throw new IllegalArgumentException("End row cannot be negative");
-        }
+		batchSession.setCallback(getCallback(rowsRange));
 
-        if (startRow >= endRow) {
-            throw new IllegalArgumentException("Start row cannot be greater or equals than end row");
-        }
+		return batchSession;
+	}
 
-        if (locale == null) {
-            throw new IllegalArgumentException("Locale cannot be null");
-        }
-    }
+	protected void validate(
+		int startRow, int endRow, Locale locale) {
 
-    protected abstract BaseListCallback<E> getCallback(Pair<Integer, Integer> rowsRange);
+		if (startRow < 0) {
+			throw new IllegalArgumentException("Start row cannot be negative");
+		}
 
-    protected abstract void sendPageRequests(BatchSessionImpl batchSession, int startRow, int endRow, Locale locale) throws Exception;
+		if (endRow < 0) {
+			throw new IllegalArgumentException("End row cannot be negative");
+		}
 
-    protected int _firstPageSize = 50;
-    protected int _pageSize = 25;
+		if (startRow >= endRow) {
+			throw new IllegalArgumentException("Start row cannot be greater or equals than end row");
+		}
+
+		if (locale == null) {
+			throw new IllegalArgumentException("Locale cannot be null");
+		}
+	}
+
+	protected abstract BaseListCallback<E> getCallback(Pair<Integer, Integer> rowsRange);
+
+	protected abstract void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception;
+
+	protected abstract void getPageRowCountRequest(Session session) throws Exception;
+
+	protected int _firstPageSize = 50;
+	protected int _pageSize = 25;
 
 }

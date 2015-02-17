@@ -52,61 +52,39 @@ public class AssetListInteractorImpl
         return new AssetListCallback(getTargetScreenletId(), rowsRange);
     }
 
-    @Override
-    protected void sendPageRequests(BatchSessionImpl batchSession, int startRow, int endRow, Locale locale) throws Exception {
-        sendGetPageRowsRequest(
-                batchSession, _groupId, _classNameId, startRow, endRow, locale);
-
-        sendGetEntriesCountRequest(batchSession, _groupId, _classNameId);
-    }
-
-	protected void sendGetEntriesCountRequest(
-			Session session, long groupId, long classNameId)
-		throws Exception {
-
-		JSONObject entryQueryAttributes = configureEntryQueryAttributes(
-			groupId, classNameId);
-
-		JSONObjectWrapper entryQuery = new JSONObjectWrapper(
-			entryQueryAttributes);
-
-		AssetEntryService service = new AssetEntryService(session);
-		service.getEntriesCount(entryQuery);
-	}
-
-	protected void sendGetPageRowsRequest(
-			Session session, long groupId, long classNameId, int startRow, int endRow,
-			Locale locale)
-		throws Exception {
-
-		JSONObject entryQueryAttributes = configureEntryQueryAttributes(
-			groupId, classNameId);
+	@Override
+	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
+		JSONObject entryQueryAttributes = addQueryParams(_groupId, _classNameId);
 		entryQueryAttributes.put("start", startRow);
 		entryQueryAttributes.put("end", endRow);
 
-		JSONObjectWrapper entryQuery = new JSONObjectWrapper(
-			entryQueryAttributes);
+		JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryAttributes);
 
-		MobilewidgetsassetentryService service =
-			new MobilewidgetsassetentryService(session);
+		MobilewidgetsassetentryService service = new MobilewidgetsassetentryService(session);
 		service.getAssetEntries(entryQuery, locale.toString());
 	}
 
-    protected JSONObject configureEntryQueryAttributes(
-            long groupId, long classNameId)
-            throws JSONException {
+	@Override
+	protected void getPageRowCountRequest(Session session) throws Exception {
+		JSONObject entryQueryParams = addQueryParams(_groupId, _classNameId);
 
-        JSONObject entryQueryAttributes = new JSONObject();
-        entryQueryAttributes.put("classNameIds", classNameId);
-        entryQueryAttributes.put("groupIds", groupId);
-        entryQueryAttributes.put("visible", "true");
+		JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryParams);
 
-        return entryQueryAttributes;
+		new AssetEntryService(session).getEntriesCount(entryQuery);
+	}
+
+    protected JSONObject addQueryParams(long groupId, long classNameId) throws JSONException {
+        JSONObject entryQueryParams = new JSONObject();
+
+        entryQueryParams.put("classNameIds", classNameId);
+        entryQueryParams.put("groupIds", groupId);
+        entryQueryParams.put("visible", "true");
+
+        return entryQueryParams;
     }
 
     @Override
-	protected void validate(
-		int startRow, int endRow, Locale locale) {
+	protected void validate(int startRow, int endRow, Locale locale) {
 
 		if (_groupId <= 0) {
 			throw new IllegalArgumentException(
