@@ -27,4 +27,18 @@
         <item name="android:showDividers">middle</item>
     </style>
 
+    <style name="default_list_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:drawableRight">@drawable/abc_ic_go_search_api_mtrl_alpha</item>
+        <item name="android:color">@android:color/black</item>
+    </style>
+
+    <style name="default_list">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
 </resources>
