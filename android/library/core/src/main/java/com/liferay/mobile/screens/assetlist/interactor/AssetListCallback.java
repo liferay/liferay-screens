@@ -17,14 +17,13 @@ package com.liferay.mobile.screens.assetlist.interactor;
 import android.util.Pair;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.base.list.BaseListCallback;
+import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
-public class AssetListCallback
-	extends BaseListCallback<AssetEntry> {
+public class AssetListCallback extends BaseListCallback<AssetEntry> {
 
     public AssetListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
         super(targetScreenletId, rowsRange);

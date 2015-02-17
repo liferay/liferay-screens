@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.ddl.list.interactor;
 
 import android.util.Pair;
 
-import com.liferay.mobile.screens.base.list.BaseListCallback;
+import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 
 import java.util.Map;

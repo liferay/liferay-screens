@@ -16,10 +16,9 @@ package com.liferay.mobile.screens.ddl.list.interactor;
 
 import android.util.Pair;
 
-import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.list.BaseListCallback;
-import com.liferay.mobile.screens.base.list.BaseListInteractor;
+import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.service.MobilewidgetsddlrecordService;
 

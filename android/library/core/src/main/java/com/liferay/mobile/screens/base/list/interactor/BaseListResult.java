@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.base.list;
+package com.liferay.mobile.screens.base.list.interactor;
 
 import java.util.List;
 

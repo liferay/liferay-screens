@@ -23,6 +23,7 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
+import com.liferay.mobile.screens.base.list.interactor.BaseListRowsListener;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 import java.util.List;

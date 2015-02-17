@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.assetlist.interactor;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.base.list.BaseListRowsListener;
+import com.liferay.mobile.screens.base.list.interactor.BaseListRowsListener;
 
 /**
  * @author Silvio Santos

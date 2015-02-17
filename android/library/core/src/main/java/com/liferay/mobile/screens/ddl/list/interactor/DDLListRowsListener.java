@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.list.interactor;
 
-import com.liferay.mobile.screens.base.list.BaseListRowsListener;
+import com.liferay.mobile.screens.base.list.interactor.BaseListRowsListener;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 
 /**
