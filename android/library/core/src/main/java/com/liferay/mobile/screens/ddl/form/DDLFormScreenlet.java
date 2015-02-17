@@ -16,11 +16,9 @@ package com.liferay.mobile.screens.ddl.form;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -35,9 +33,9 @@ import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadRecordInteracto
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUpdateRecordInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUpdateRecordInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.util.LiferayServerContext;
 
 import java.util.HashMap;
@@ -374,6 +372,9 @@ public class DDLFormScreenlet
 		Parcelable superState = state.getParcelable(_STATE_SUPER);
 
 		super.onRestoreInstanceState(superState);
+
+		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
+		view.setRecordFields(_record);
 	}
 
 	@Override
