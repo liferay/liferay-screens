@@ -84,6 +84,14 @@ public class DDLListScreenlet
         _userId = userId;
     }
 
+    public String[] getLabelFields() {
+        return _labelFields;
+    }
+
+    public void setLabelFields(String[] labelFields) {
+        _labelFields = labelFields;
+    }
+
 	@Override
 	protected View createScreenletView(
 		Context context, AttributeSet attributes) {
@@ -94,12 +102,23 @@ public class DDLListScreenlet
                 R.styleable.DDLListScreenlet_recordSetId, 0);
         _userId = typedArray.getInteger(
                 R.styleable.DDLListScreenlet_userId, 0);
+        _labelFields = parse(typedArray.getString(
+                R.styleable.DDLListScreenlet_labelFields));
         typedArray.recycle();
 
         return super.createScreenletView(context, attributes);
 	}
 
-	private int _recordSetId;
+    private String[] parse(String labelFields) {
+        List<String> parsedFields = new ArrayList<String>();
+        for (String text : labelFields.split(",")) {
+            parsedFields.add(text.trim());
+        }
+        return parsedFields.toArray(new String[parsedFields.size()]);
+    }
+
+    private int _recordSetId;
     private int _userId;
+    private String[] _labelFields;
 
 }

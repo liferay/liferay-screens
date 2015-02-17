@@ -28,6 +28,7 @@
         <attr name="firstPageSize" />
         <attr name="pageSize" />
         <attr name="userId" />
+        <attr name="labelFields" format="string"/>
     </declare-styleable>
 
 	<declare-styleable name="ForgotPasswordScreenlet">
