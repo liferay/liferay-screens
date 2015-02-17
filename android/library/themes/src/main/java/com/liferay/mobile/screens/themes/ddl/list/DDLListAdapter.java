@@ -18,6 +18,8 @@ import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.themes.list.ListAdapter;
 import com.liferay.mobile.screens.themes.list.ListAdapterListener;
 
+import java.util.List;
+
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
@@ -25,14 +27,27 @@ import com.liferay.mobile.screens.themes.list.ListAdapterListener;
 public class DDLListAdapter
         extends ListAdapter<DDLEntry> {
 
-
     public DDLListAdapter(int layoutId, int progressLayoutId, ListAdapterListener listener) {
         super(layoutId, progressLayoutId, listener);
     }
 
+    public void setLabelFields(String[] labelFields) {
+        _labelFields = labelFields;
+    }
+
     @Override
     protected void fillHolder(DDLEntry entry, ListAdapter.ViewHolder holder) {
-        holder.textView.setText(entry.getUser());
+        StringBuilder builder = new StringBuilder();
+        for (String field : _labelFields) {
+            String value = entry.getValue(field);
+            if (value!= null && !value.isEmpty()) {
+                builder.append(value);
+                builder.append(" ");
+            }
+        }
+        holder.textView.setText(builder.toString());
     }
+
+    private String[] _labelFields;
 
 }
