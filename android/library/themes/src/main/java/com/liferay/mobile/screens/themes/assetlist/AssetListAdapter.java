@@ -15,21 +15,21 @@
 package com.liferay.mobile.screens.themes.assetlist;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.themes.list.ListAdapter;
-import com.liferay.mobile.screens.themes.list.ListAdapterListener;
+import com.liferay.mobile.screens.themes.list.BaseListAdapter;
+import com.liferay.mobile.screens.themes.list.BaseListAdapterListener;
 
 /**
  * @author Silvio Santos
  */
 public class AssetListAdapter
-        extends ListAdapter<AssetEntry> {
+        extends BaseListAdapter<AssetEntry> {
 
-    public AssetListAdapter(int layoutId, int progressLayoutId, ListAdapterListener listener) {
+    public AssetListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
         super(layoutId, progressLayoutId, listener);
     }
 
     @Override
-    protected void fillHolder(AssetEntry entry, ListAdapter.ViewHolder holder) {
+    protected void fillHolder(AssetEntry entry, BaseListAdapter.ViewHolder holder) {
         holder.textView.setText(entry.getTitle());
     }
 

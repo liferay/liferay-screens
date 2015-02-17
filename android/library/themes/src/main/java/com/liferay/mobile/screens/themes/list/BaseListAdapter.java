@@ -29,11 +29,11 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public abstract class ListAdapter<E>
-	extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
+public abstract class BaseListAdapter<E>
+	extends RecyclerView.Adapter<BaseListAdapter.ViewHolder> {
 
-	public ListAdapter(
-            int layoutId, int progressLayoutId, ListAdapterListener listener) {
+	public BaseListAdapter(
+		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 
 		_entries = new ArrayList<>();
 		_layoutId = layoutId;
@@ -116,7 +116,7 @@ public abstract class ListAdapter<E>
 
 	private List<E> _entries;
 	private int _layoutId;
-	private ListAdapterListener _listener;
+	private BaseListAdapterListener _listener;
 	private int _progressLayoutId;
 	private int _rowCount;
 

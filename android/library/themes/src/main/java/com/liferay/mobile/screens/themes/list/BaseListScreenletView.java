@@ -21,7 +21,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
-import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.themes.R;
@@ -34,22 +33,23 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public abstract class ListScreenletView<E extends Parcelable, A extends ListAdapter<E>> extends RecyclerView
-	implements BaseListViewModel<E>, ListAdapterListener {
+public abstract class BaseListScreenletView<E extends Parcelable, A extends BaseListAdapter<E>>
+	extends RecyclerView
+	implements BaseListViewModel<E>, BaseListAdapterListener {
 
-	public ListScreenletView(Context context) {
+	public BaseListScreenletView(Context context) {
 		super(context);
 
 		init(context);
 	}
 
-	public ListScreenletView(Context context, AttributeSet attributes) {
+	public BaseListScreenletView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 
 		init(context);
 	}
 
-	public ListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
+	public BaseListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
 
 		init(context);

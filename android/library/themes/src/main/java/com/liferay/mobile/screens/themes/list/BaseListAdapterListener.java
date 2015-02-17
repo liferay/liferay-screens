@@ -18,7 +18,7 @@ package com.liferay.mobile.screens.themes.list;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface ListAdapterListener {
+public interface BaseListAdapterListener {
 
 	public void onPageNotFound(int row);
 

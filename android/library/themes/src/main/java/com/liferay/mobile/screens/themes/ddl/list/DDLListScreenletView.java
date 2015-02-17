@@ -20,8 +20,8 @@ import android.util.AttributeSet;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
-import com.liferay.mobile.screens.themes.list.ListAdapterListener;
-import com.liferay.mobile.screens.themes.list.ListScreenletView;
+import com.liferay.mobile.screens.themes.list.BaseListAdapterListener;
+import com.liferay.mobile.screens.themes.list.BaseListScreenletView;
 
 import java.util.List;
 
@@ -29,8 +29,8 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListScreenletView extends ListScreenletView<DDLEntry, DDLListAdapter>
-        implements DDLListViewModel, ListAdapterListener {
+public class DDLListScreenletView extends BaseListScreenletView<DDLEntry, DDLListAdapter>
+        implements DDLListViewModel, BaseListAdapterListener {
 
     public DDLListScreenletView(Context context) {
         super(context);
