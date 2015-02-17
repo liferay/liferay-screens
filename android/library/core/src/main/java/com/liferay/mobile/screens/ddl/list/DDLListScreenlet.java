@@ -28,6 +28,7 @@ import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -47,9 +48,7 @@ public class DDLListScreenlet
 		this(context, attributes, 0);
 	}
 
-	public DDLListScreenlet(
-            Context context, AttributeSet attributes, int defaultStyle) {
-
+	public DDLListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 
@@ -58,7 +57,7 @@ public class DDLListScreenlet
 		DDLListInteractor interactor = super.getInteractor();
 
 		if (interactor == null) {
-            //TODO review when DDL form is merged
+            //TODO review interactor creation when DDL form is merged
 			interactor = new DDLListInteractorImpl(getScreenletId());
 
 			setInteractor(interactor);
@@ -73,9 +72,7 @@ public class DDLListScreenlet
     }
 
     @Override
-    public void onListRowsReceived(
-            int startRow, int endRow, List<DDLEntry> entries, int rowCount) {
-
+    public void onListRowsReceived(int startRow, int endRow, List<DDLEntry> entries, int rowCount) {
         int page = getPageFromRow(startRow);
 
         DDLListListener listenerView = (DDLListListener) getScreenletView();
@@ -102,11 +99,11 @@ public class DDLListScreenlet
         _userId = userId;
     }
 
-    public String[] getLabelFields() {
+    public List<String> getLabelFields() {
         return _labelFields;
     }
 
-    public void setLabelFields(String[] labelFields) {
+    public void setLabelFields(List<String> labelFields) {
         _labelFields = labelFields;
     }
 
@@ -127,16 +124,17 @@ public class DDLListScreenlet
         return super.createScreenletView(context, attributes);
 	}
 
-    private String[] parse(String labelFields) {
+    private List<String> parse(String labelFields) {
         List<String> parsedFields = new ArrayList<String>();
         for (String text : labelFields.split(",")) {
             parsedFields.add(text.trim());
         }
-        return parsedFields.toArray(new String[parsedFields.size()]);
+
+        return parsedFields;
     }
 
     private int _recordSetId;
     private int _userId;
-    private String[] _labelFields;
+    private List<String> _labelFields;
 
 }

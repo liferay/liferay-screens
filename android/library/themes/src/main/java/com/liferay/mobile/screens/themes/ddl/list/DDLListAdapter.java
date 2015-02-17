@@ -24,30 +24,31 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListAdapter
-        extends ListAdapter<DDLEntry> {
+public class DDLListAdapter extends ListAdapter<DDLEntry> {
 
     public DDLListAdapter(int layoutId, int progressLayoutId, ListAdapterListener listener) {
         super(layoutId, progressLayoutId, listener);
     }
 
-    public void setLabelFields(String[] labelFields) {
+    public void setLabelFields(List<String> labelFields) {
         _labelFields = labelFields;
     }
 
     @Override
     protected void fillHolder(DDLEntry entry, ListAdapter.ViewHolder holder) {
         StringBuilder builder = new StringBuilder();
-        for (String field : _labelFields) {
-            String value = entry.getValue(field);
-            if (value!= null && !value.isEmpty()) {
-                builder.append(value);
-                builder.append(" ");
-            }
-        }
+
+		for (String field : _labelFields) {
+			String value = entry.getValue(field);
+			if (value!= null && !value.isEmpty()) {
+				builder.append(value);
+				builder.append(" ");
+			}
+		}
+
         holder.textView.setText(builder.toString());
     }
 
-    private String[] _labelFields;
+    private List<String> _labelFields;
 
 }

@@ -49,7 +49,7 @@ public class DDLListScreenletView extends ListScreenletView<DDLEntry, DDLListAda
     }
 
     @Override
-    public void onListPageReceived(int page, List<DDLEntry> entries, String[] labelFields, int rowCount) {
+    public void onListPageReceived(int page, List<DDLEntry> entries, List<String> labelFields, int rowCount) {
         DDLListAdapter adapter = (DDLListAdapter) getAdapter();
         List<DDLEntry> allEntries = createAllEntries(page, entries, rowCount, adapter);
 

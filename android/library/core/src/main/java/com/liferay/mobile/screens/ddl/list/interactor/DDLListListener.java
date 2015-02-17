@@ -12,5 +12,5 @@ public interface DDLListListener {
     public void onListPageFailed(int page, Exception e);
 
     public void onListPageReceived(
-            int page, List<DDLEntry> entries, String[] labelFields, int rowCount);
+            int page, List<DDLEntry> entries, List<String> labelFields, int rowCount);
 }
