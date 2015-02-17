@@ -23,6 +23,7 @@ import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.themes.R;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ import java.util.List;
  * @author Silvio Santos
  */
 public abstract class ListScreenletView<E extends Parcelable, A extends ListAdapter<E>> extends RecyclerView
-	implements BaseListListener<E>, ListAdapterListener {
+	implements BaseListViewModel<E>, ListAdapterListener {
 
 	public ListScreenletView(Context context) {
 		super(context);
@@ -65,18 +66,6 @@ public abstract class ListScreenletView<E extends Parcelable, A extends ListAdap
 		setLayoutManager(new LinearLayoutManager(context));
 	}
 
-	@Override
-	public void onListPageReceived(
-		int page, List<E> serverEntries, int rowCount) {
-
-		A adapter = (A) getAdapter();
-        List<E> allEntries = createAllEntries(page, serverEntries, rowCount, adapter);
-
-		adapter.setRowCount(rowCount);
-		adapter.setEntries(allEntries);
-		adapter.notifyDataSetChanged();
-	}
-
     protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
         List<E> entries = adapter.getEntries();
         List<E> allEntries = new ArrayList<>(
@@ -95,6 +84,16 @@ public abstract class ListScreenletView<E extends Parcelable, A extends ListAdap
         }
         return allEntries;
     }
+
+	@Override
+	public void setListPage(int page, List<E> entries, int rowCount) {
+		A adapter = (A) getAdapter();
+		List<E> allEntries = createAllEntries(page, entries, rowCount, adapter);
+
+		adapter.setRowCount(rowCount);
+		adapter.setEntries(allEntries);
+		adapter.notifyDataSetChanged();
+	}
 
     @Override
 	public void onPageNotFound(int row) {

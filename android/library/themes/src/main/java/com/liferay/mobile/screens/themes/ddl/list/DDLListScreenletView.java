@@ -17,15 +17,12 @@ package com.liferay.mobile.screens.themes.ddl.list;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.liferay.mobile.screens.base.list.BaseListListener;
-import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
-import com.liferay.mobile.screens.ddl.list.interactor.DDLListListener;
+import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
+import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
 import com.liferay.mobile.screens.themes.list.ListAdapterListener;
 import com.liferay.mobile.screens.themes.list.ListScreenletView;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,7 +30,7 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class DDLListScreenletView extends ListScreenletView<DDLEntry, DDLListAdapter>
-        implements DDLListListener, ListAdapterListener {
+        implements DDLListViewModel, ListAdapterListener {
 
     public DDLListScreenletView(Context context) {
         super(context);
@@ -43,26 +40,23 @@ public class DDLListScreenletView extends ListScreenletView<DDLEntry, DDLListAda
         super(context, attributes, 0);
     }
 
-    public DDLListScreenletView(
-            Context context, AttributeSet attributes, int defaultStyle) {
+    public DDLListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
     }
 
-    @Override
-    public void onListPageReceived(int page, List<DDLEntry> entries, List<String> labelFields, int rowCount) {
-        DDLListAdapter adapter = (DDLListAdapter) getAdapter();
-        List<DDLEntry> allEntries = createAllEntries(page, entries, rowCount, adapter);
+	@Override
+	public void setListPage(int page, List<DDLEntry> entries, int rowCount) {
+		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
+		DDLListAdapter adapter = (DDLListAdapter) getAdapter();
 
-        adapter.setRowCount(rowCount);
-        adapter.setEntries(allEntries);
-        adapter.setLabelFields(labelFields);
-        adapter.notifyDataSetChanged();
-    }
+		adapter.setLabelFields(screenlet.getLabelFields());
+
+		super.setListPage(page, entries, rowCount);
+	}
 
     @Override
     protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-        return new DDLListAdapter(
-                itemLayoutId, itemProgressLayoutId, this);
+        return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
     }
 
 }
