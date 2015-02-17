@@ -22,8 +22,8 @@ import android.graphics.Bitmap;
  */
 public interface UserPortraitListener {
 
-	Bitmap onUserPortraitReceived(Bitmap bitmap);
+	Bitmap onUserPortraitReceived(UserPortraitScreenlet source, Bitmap bitmap);
 
-	void onUserPortraitFailure(Exception e);
+	void onUserPortraitFailure(UserPortraitScreenlet source, Exception e);
 
 }
