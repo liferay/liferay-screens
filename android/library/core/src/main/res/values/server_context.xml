@@ -2,5 +2,5 @@
 <resources>
     <integer name="liferay_company_id">10154</integer>
     <integer name="liferay_group_id">10181</integer>
-    <string name="liferay_server">http://localhost:8080</string>
+    <string name="liferay_server">http://192.168.56.1:8080</string>
 </resources>
