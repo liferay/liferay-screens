@@ -14,8 +14,12 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.w3c.dom.Element;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +29,7 @@ import java.util.Map;
 /**
  * @author Jose Manuel Navarro
  */
-public abstract class Field<T> {
+public abstract class Field<T extends Serializable> implements Parcelable {
 
 	public static enum DataType {
 		BOOLEAN("boolean"),
@@ -155,7 +159,6 @@ public abstract class Field<T> {
 	}
 
 
-
 	public Field(Map<String,Object> attributes, Locale locale) {
 		_dataType = DataType.valueOf(attributes);
 		_editorType = EditorType.valueOf(attributes);
@@ -175,6 +178,28 @@ public abstract class Field<T> {
 
 		_currentLocale = locale;
 	}
+
+	protected Field(Parcel in) {
+		_dataType = DataType.valueOfString(in.readString());
+		_editorType = EditorType.valueOfString(in.readString());
+
+		_name = in.readString();
+		_label = in.readString();
+		_tip = in.readString();
+
+		_readOnly = (in.readInt() == 1);
+		_repeatable = (in.readInt() == 1);
+		_required = (in.readInt() == 1);
+		_showLabel =  (in.readInt() == 1);
+
+		_predefinedValue = (T) in.readSerializable();
+		_currentValue = (T) in.readSerializable();
+
+		_currentLocale = (Locale) in.readSerializable();
+
+		_lastValidationResult = (in.readInt() == 1);
+	}
+
 
 	public String getName() {
 		return _name;
@@ -259,6 +284,34 @@ public abstract class Field<T> {
 	public String toFormattedString() {
 		return convertToFormattedString(_currentValue);
 	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel destination, int flags) {
+		destination.writeString(_dataType.getValue());
+		destination.writeString(_editorType.getValue());
+
+		destination.writeString(_name);
+		destination.writeString(_label);
+		destination.writeString(_tip);
+
+		destination.writeInt(_readOnly ? 1 : 0);
+		destination.writeInt(_repeatable ? 1 : 0);
+		destination.writeInt(_required ? 1 : 0);
+		destination.writeInt(_showLabel ? 1 : 0);
+
+		destination.writeSerializable(_predefinedValue);
+		destination.writeSerializable(_currentValue);
+
+		destination.writeSerializable(_currentLocale);
+
+		destination.writeInt(_lastValidationResult ? 1 : 0);
+	}
+
 
 	protected String getAttributeStringValue(Map<String,Object> attributes, String key) {
 		Object value = attributes.get(key);

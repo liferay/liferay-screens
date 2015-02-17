@@ -146,7 +146,7 @@ public class StringWithOptionsFieldTest {
 		@Test
 		public void shouldReturnEmptyListWhenSelectedOptionsIsEmpty() {
 			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), _spanishLocale);
-			List<StringWithOptionsField.Option> selected = new ArrayList<StringWithOptionsField.Option>();
+			ArrayList<StringWithOptionsField.Option> selected = new ArrayList<StringWithOptionsField.Option>();
 
 			String result = field.convertToData(selected);
 
@@ -161,7 +161,7 @@ public class StringWithOptionsFieldTest {
 			StringWithOptionsField.Option option1 =
 				new StringWithOptionsField.Option("Option 1", "option987", "option1");
 
-			List<StringWithOptionsField.Option> selected = new ArrayList<StringWithOptionsField.Option>();
+			ArrayList<StringWithOptionsField.Option> selected = new ArrayList<StringWithOptionsField.Option>();
 
 			selected.add(option1);
 
@@ -180,7 +180,7 @@ public class StringWithOptionsFieldTest {
 			StringWithOptionsField.Option option2 =
 				new StringWithOptionsField.Option("Option 2", "option989", "option2");
 
-			List<StringWithOptionsField.Option> selected = new ArrayList<StringWithOptionsField.Option>();
+			ArrayList<StringWithOptionsField.Option> selected = new ArrayList<StringWithOptionsField.Option>();
 
 			selected.add(option1);
 			selected.add(option2);
@@ -340,7 +340,7 @@ public class StringWithOptionsFieldTest {
 		public void shouldReturnTheOptionLabelWhenSelectedOption() {
 			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale);
 
-			List<StringWithOptionsField.Option> selectedOptions = new ArrayList<>();
+			ArrayList<StringWithOptionsField.Option> selectedOptions = new ArrayList<>();
 
 			selectedOptions.add(field.getAvailableOptions().get(0));
 

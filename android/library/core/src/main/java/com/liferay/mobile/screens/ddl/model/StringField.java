@@ -14,6 +14,9 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Locale;
 import java.util.Map;
 
@@ -22,8 +25,25 @@ import java.util.Map;
  */
 public class StringField extends Field<String> {
 
+	public static final Parcelable.Creator<StringField> CREATOR =
+		new Parcelable.Creator<StringField>() {
+
+			public StringField createFromParcel(Parcel in) {
+				return new StringField(in);
+			}
+
+			public StringField[] newArray(int size) {
+				return new StringField[size];
+			}
+		};
+
+
 	public StringField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
+	}
+
+	protected StringField(Parcel in) {
+		super(in);
 	}
 
 	@Override

@@ -14,6 +14,9 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,9 +30,32 @@ import java.util.TimeZone;
  */
 public class DateField extends Field<Date> {
 
+	public static final Parcelable.Creator<DateField> CREATOR =
+		new Parcelable.Creator<DateField>() {
+
+			public DateField createFromParcel(Parcel in) {
+				return new DateField(in);
+			}
+
+			public DateField[] newArray(int size) {
+				return new DateField[size];
+			}
+		};
+
+
 	public DateField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
 
+		init(locale);
+	}
+
+	protected DateField(Parcel in) {
+		super(in);
+
+		init(getCurrentLocale());
+	}
+
+	private void init(Locale locale) {
 		_clientFormat = DateFormat.getDateInstance(DateFormat.LONG, locale);
 		_clientFormat.setTimeZone(_GMT_TIMEZONE);
 	}

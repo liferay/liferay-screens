@@ -14,6 +14,9 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
@@ -23,9 +26,32 @@ import java.util.Map;
  */
 public class NumberField extends Field<Number> {
 
+	public static final Parcelable.Creator<NumberField> CREATOR =
+		new Parcelable.Creator<NumberField>() {
+
+			public NumberField createFromParcel(Parcel in) {
+				return new NumberField(in);
+			}
+
+			public NumberField[] newArray(int size) {
+				return new NumberField[size];
+			}
+		};
+
+
 	public NumberField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
 
+		init(locale);
+	}
+
+	protected NumberField(Parcel in) {
+		super(in);
+
+		init(getCurrentLocale());
+	}
+
+	private void init(Locale locale) {
 		_labelFormatter = NumberFormat.getNumberInstance(locale);
 	}
 

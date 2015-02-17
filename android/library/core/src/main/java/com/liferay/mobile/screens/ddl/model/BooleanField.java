@@ -14,6 +14,9 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Locale;
 import java.util.Map;
 
@@ -22,8 +25,25 @@ import java.util.Map;
  */
 public class BooleanField extends Field<Boolean> {
 
+	public static final Parcelable.Creator<BooleanField> CREATOR =
+		new Parcelable.Creator<BooleanField>() {
+
+			public BooleanField createFromParcel(Parcel in) {
+				return new BooleanField(in);
+			}
+
+			public BooleanField[] newArray(int size) {
+				return new BooleanField[size];
+			}
+		};
+
+
 	public BooleanField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
+	}
+
+	protected BooleanField(Parcel in) {
+		super(in);
 	}
 
 	@Override

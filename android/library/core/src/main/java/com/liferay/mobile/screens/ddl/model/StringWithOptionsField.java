@@ -14,6 +14,10 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,9 +28,21 @@ import java.util.Map;
 /**
  * @author Jose Manuel Navarro
  */
-public class StringWithOptionsField extends Field<List<StringWithOptionsField.Option>> {
+public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsField.Option>> {
 
-	public static class Option {
+	public static final Parcelable.Creator<StringWithOptionsField> CREATOR =
+		new Parcelable.Creator<StringWithOptionsField>() {
+
+			public StringWithOptionsField createFromParcel(Parcel in) {
+				return new StringWithOptionsField(in);
+			}
+
+			public StringWithOptionsField[] newArray(int size) {
+				return new StringWithOptionsField[size];
+			}
+		};
+
+	public static class Option implements Serializable {
 
 		public Option(Map<String,String> optionMap) {
 			this(optionMap.get("label"), optionMap.get("name"), optionMap.get("value"));
@@ -38,6 +54,21 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 			this.value = value;
 		}
 
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == null) {
+				return false;
+			}
+
+			if (obj instanceof Option) {
+				Option opt = (Option) obj;
+
+				return label.equals(opt.label) && name.equals(opt.name) && value.equals(opt.value);
+			}
+
+			return super.equals(obj);
+		}
+
 		protected String label;
 		protected String name;
 		protected String value;
@@ -46,10 +77,11 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 	public StringWithOptionsField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
 
-		List<Map<String,String>> availableOptions = (List<Map<String,String>>) attributes.get("options");
+		List<Map<String,String>> availableOptions =
+			(List<Map<String,String>>) attributes.get("options");
 
 		if (availableOptions == null) {
-			_availableOptions = Collections.emptyList();
+			_availableOptions = new ArrayList<>();
 		}
 		else {
 			_availableOptions = new ArrayList<Option>(availableOptions.size());
@@ -63,13 +95,20 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 		_multiple = (multipleValue != null) ? Boolean.valueOf(multipleValue.toString()) : false;
 	}
 
+	protected StringWithOptionsField(Parcel in) {
+		super(in);
+
+		_availableOptions = (ArrayList<Option>) in.readSerializable();
+		_multiple = (in.readInt() == 1);
+	}
+
 	public List<Option> getAvailableOptions() {
 		return _availableOptions;
 	}
 
 	@Override
-	public List<Option> getCurrentValue() {
-		List<Option> options = super.getCurrentValue();
+	public ArrayList<Option> getCurrentValue() {
+		ArrayList<Option> options = super.getCurrentValue();
 
 		if (options == null) {
 			options = new ArrayList<>();
@@ -90,13 +129,14 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 
 	public void selectOption(Option option) {
 		if (!isMultiple()) {
-			List<Option> options = new ArrayList<>();
+			ArrayList<Option> options = new ArrayList<>();
+
 			options.add(option);
 
 			setCurrentValue(options);
 		}
 		else {
-			List<Option> options = getCurrentValue();
+			ArrayList<Option> options = getCurrentValue();
 
 			if (options == null) {
 				options = new ArrayList<>();
@@ -106,6 +146,14 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 				options.add(option);
 			}
 		}
+	}
+
+	@Override
+	public void writeToParcel(Parcel destination, int flags) {
+		super.writeToParcel(destination, flags);
+
+		destination.writeSerializable(_availableOptions);
+		destination.writeInt(_multiple ? 1 : 0);
 	}
 
 	public boolean isMultiple() {
@@ -121,7 +169,7 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 	}
 
 	@Override
-	protected List<Option> convertFromString(String stringValue) {
+	protected ArrayList<Option> convertFromString(String stringValue) {
 		if (stringValue == null) {
 			return null;
 		}
@@ -146,7 +194,7 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 			foundOption = findOptionByValue(fistOptionString);
 		}
 
-		List<Option> result = new ArrayList<Option>(1);
+		ArrayList<Option> result = new ArrayList<Option>(1);
 
 		if (foundOption != null) {
 			result.add(foundOption);
@@ -156,7 +204,7 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 	}
 
 	@Override
-	protected String convertToData(List<Option> selectedOptions) {
+	protected String convertToData(ArrayList<Option> selectedOptions) {
 		if (selectedOptions == null || selectedOptions.isEmpty()) {
 			return "[]";
 		}
@@ -186,7 +234,7 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 	}
 
 	@Override
-	protected String convertToFormattedString(List<Option> value) {
+	protected String convertToFormattedString(ArrayList<Option> value) {
 		if (value == null || value.isEmpty()) {
 			return "";
 		}
@@ -222,7 +270,7 @@ public class StringWithOptionsField extends Field<List<StringWithOptionsField.Op
 		return null;
 	}
 
-	private List<Option> _availableOptions;
+	private ArrayList<Option> _availableOptions;
 	private boolean _multiple;
 
 }
