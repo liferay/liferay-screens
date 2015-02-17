@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddl.form.view;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.ddl.model.Record;
 
 /**
  * @author Silvio Santos
@@ -25,5 +26,8 @@ public interface DDLFormViewModel extends BaseViewModel {
 	public int getFieldLayoutId(Field.EditorType editorType);
 
 	public void setFieldLayoutId(Field.EditorType editorType, int layoutId);
+
+	public void setRecordFields(Record record);
+	public void setRecordValues(Record record);
 
 }

@@ -44,7 +44,7 @@ public class DDLFormScreenletPagerView extends DDLFormScreenletView {
 	}
 
 	@Override
-	public void onDDLFormLoaded(Record record) {
+	public void setRecordFields(Record record) {
 		List<Field.EditorType> editorTypes = Field.EditorType.all();
 
 		Map<Field.EditorType, Integer> layoutIds = new HashMap<>();

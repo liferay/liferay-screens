@@ -40,8 +40,7 @@ import java.util.Map;
  * @author Silvio Santos
  */
 public class DDLFormScreenletView
-	extends ScrollView implements DDLFormViewModel, DDLFormListener,
-	View.OnClickListener {
+	extends ScrollView implements DDLFormViewModel, View.OnClickListener {
 
 	public DDLFormScreenletView(Context context) {
 		super(context, null);
@@ -80,7 +79,7 @@ public class DDLFormScreenletView
 	}
 
 	@Override
-	public void onDDLFormLoaded(Record record) {
+	public void setRecordFields(Record record) {
 		for (int i = 0; i < record.getFieldCount(); ++i) {
 			// We have to assign ids to onSave/onRestore methods be fired
 			//TODO Assign ids by position should not be a problem, but
@@ -96,41 +95,11 @@ public class DDLFormScreenletView
 	}
 
 	@Override
-	public void onDDLFormRecordLoaded(Record record) {
+	public void setRecordValues(Record record) {
 		for (int i = 0; i < record.getFieldCount(); ++i) {
 			DDLFieldViewModel viewModel = (DDLFieldViewModel) findViewById(i);
 			viewModel.refresh();
 		}
-	}
-
-	@Override
-	public void onDDLFormRecordAdded(Record record) {
-
-	}
-
-	@Override
-	public void onDDLFormRecordUpdated(Record record) {
-
-	}
-
-	@Override
-	public void onDDLFormLoadFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormRecordLoadFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormAddRecordFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormUpdateRecordFailed(Exception e) {
-
 	}
 
 	protected DDLFormScreenlet getDDLFormScreenlet() {
