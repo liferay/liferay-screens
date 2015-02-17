@@ -23,6 +23,7 @@ import android.webkit.WebView;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
+import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
 
 /**
  * @author Silvio Santos
@@ -47,12 +48,12 @@ public class WebContentDisplayScreenletView extends WebView
 	}
 
 	@Override
-	public void onWebContentFailure(Exception e) {
+	public void onWebContentFailure(WebContentDisplayScreenlet source, Exception e) {
 		//TODO show load error to user??
 	}
 
 	@Override
-	public String onWebContentReceived(String html) {
+	public String onWebContentReceived(WebContentDisplayScreenlet source, String html) {
 		String styledHtml =
 			STYLES + "<div class=\"MobileCSS\">" + html + "</div>";
 

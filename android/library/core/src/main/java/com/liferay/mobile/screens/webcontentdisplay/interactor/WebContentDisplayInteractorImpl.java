@@ -47,10 +47,10 @@ public class WebContentDisplayInteractorImpl
 		}
 
 		if (event.isFailed()) {
-			getListener().onWebContentFailure(event.getException());
+			getListener().onWebContentFailure(null, event.getException());
 		}
 		else {
-			getListener().onWebContentReceived(event.getHtml());
+			getListener().onWebContentReceived(null, event.getHtml());
 		}
 	}
 
