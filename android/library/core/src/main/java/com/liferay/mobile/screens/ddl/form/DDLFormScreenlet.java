@@ -17,6 +17,8 @@ package com.liferay.mobile.screens.ddl.form;
 import android.content.Context;
 import android.content.res.TypedArray;
 
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 
 import android.view.LayoutInflater;
@@ -364,6 +366,42 @@ public class DDLFormScreenlet
 		viewModel.setFieldLayoutId(editorType, layoutId);
 	}
 
+	@Override
+	protected void onRestoreInstanceState(Parcelable inState) {
+		Bundle state = (Bundle) inState;
+
+		_record = state.getParcelable(_STATE_RECORD);
+		_userId = state.getLong(_STATE_USER_ID);
+		_recordId = state.getLong(_STATE_RECORD_ID);
+		_recordSetId = state.getLong(_STATE_RECORDSET_ID);
+		_structureId = state.getLong(_STATE_STRUCTURE_ID);
+		_groupId = state.getLong(_STATE_GROUP_ID);
+		_showSubmitButton = state.getBoolean(_STATE_SHOW_SUBMIT_BUTTON);
+		_autoScrollOnValidation = state.getBoolean(_STATE_AUTOSCROLL_ON_VALIDATION);
+		Parcelable superState = state.getParcelable(_STATE_SUPER);
+
+		super.onRestoreInstanceState(superState);
+	}
+
+	@Override
+	protected Parcelable onSaveInstanceState() {
+		Parcelable superState = super.onSaveInstanceState();
+
+		Bundle state = new Bundle();
+		state.putParcelable(_STATE_SUPER, superState);
+		state.putBoolean(_STATE_AUTOSCROLL_ON_VALIDATION, _autoScrollOnValidation);
+		state.putBoolean(_STATE_SHOW_SUBMIT_BUTTON, _showSubmitButton);
+		state.putLong(_STATE_GROUP_ID, _groupId);
+		state.putLong(_STATE_STRUCTURE_ID, _structureId);
+		state.putLong(_STATE_RECORDSET_ID, _recordSetId);
+		state.putLong(_STATE_RECORD_ID, _recordId);
+		state.putLong(_STATE_USER_ID, _userId);
+		state.putParcelable(_STATE_RECORD, _record);
+
+		return state;
+	}
+
+
 	private static Map<Field.EditorType, String> _defaultLayoutNames;
 
 	static {
@@ -393,6 +431,16 @@ public class DDLFormScreenlet
 	private static final String _ADD_RECORD_ACTION = "addRecord";
 	private static final String _UPDATE_RECORD_ACTION = "updateRecord";
 
+	private static final String _STATE_SUPER = "ddlform-super";
+	private static final String _STATE_AUTOSCROLL_ON_VALIDATION = "ddlform-autoScrollOnValidation";
+	private static final String _STATE_SHOW_SUBMIT_BUTTON = "ddlform-showSubmitButton";
+	private static final String _STATE_GROUP_ID = "ddlform-groupId";
+	private static final String _STATE_STRUCTURE_ID = "ddlform-structureId";
+	private static final String _STATE_RECORDSET_ID = "ddlform-recordSetId";
+	private static final String _STATE_RECORD_ID = "ddlform-recordId";
+	private static final String _STATE_USER_ID = "ddlform-userId";
+	private static final String _STATE_RECORD = "ddlform-record";
+
 	private boolean _autoScrollOnValidation;
 	private boolean _showSubmitButton;
 	private long _groupId;
@@ -401,7 +449,6 @@ public class DDLFormScreenlet
 	private long _recordId;
 	private long _userId;
 
-	// TODO make Record parcelable
 	private Record _record;
 
 	private DDLFormListener _listener;
