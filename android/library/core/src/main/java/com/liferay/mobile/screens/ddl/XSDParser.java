@@ -277,7 +277,8 @@ public class XSDParser {
 		for (int i = 0; i < len; ++i) {
 			Element childElement = (Element) childList.item(i);
 
-			if (attrValue.equals(childElement.getAttribute(attrName))) {
+			if (attrValue.equals(childElement.getAttribute(attrName)) &&
+				childElement.getParentNode() == element) {
 				result.add(childElement);
 			}
 		}

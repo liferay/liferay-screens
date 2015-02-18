@@ -360,12 +360,6 @@ public class StringWithOptionsFieldTest {
 							"multiple=\"true\" " +
 							"name=\"A_Select\" " +
 							"type=\"select\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"label\"><![CDATA[A Select]]></entry> " +
-							"<entry name=\"predefinedValue\">" +
-								"<![CDATA[[\"value 1\",\"value 2\"]]]>" +
-							"</entry>" +
-						"</meta-data> " +
 						"<dynamic-element name=\"option_1\" type=\"option\" value=\"value 1\"> " +
 							"<meta-data locale=\"en_US\"> " +
 								"<entry name=\"label\"><![CDATA[Option 1]]></entry> " +
@@ -381,6 +375,12 @@ public class StringWithOptionsFieldTest {
 								"<entry name=\"label\"><![CDATA[Option 3]]></entry> " +
 							"</meta-data>" +
 						"</dynamic-element> " +
+						"<meta-data locale=\"en_US\"> " +
+							"<entry name=\"label\"><![CDATA[A Select]]></entry> " +
+							"<entry name=\"predefinedValue\">" +
+								"<![CDATA[[\"value 2\"]]]>" +
+							"</entry>" +
+						"</meta-data> " +
 					"</dynamic-element>" +
 				"</root>";
 
@@ -396,9 +396,20 @@ public class StringWithOptionsFieldTest {
 			assertEquals(Field.DataType.STRING.getValue(), optionsField.getDataType().getValue());
 			assertEquals(Field.EditorType.SELECT.getValue(), optionsField.getEditorType().getValue());
 
+			List<StringWithOptionsField.Option> predefinedOptions = optionsField.getPredefinedValue();
+			assertNotNull(predefinedOptions);
+			assertEquals(1, predefinedOptions.size());
+
 			List<StringWithOptionsField.Option> selectedOptions = optionsField.getCurrentValue();
 			assertNotNull(selectedOptions);
-			assertEquals(0, selectedOptions.size());
+			assertEquals(1, selectedOptions.size());
+
+			StringWithOptionsField.Option selectedOption = selectedOptions.get(0);
+
+			assertEquals("Option 2", selectedOption.label);
+			assertEquals("option_2", selectedOption.name);
+			assertEquals("value 2", selectedOption.value);
+
 			assertEquals(optionsField.getCurrentValue(), optionsField.getPredefinedValue());
 
 			List<StringWithOptionsField.Option> availableOptions = optionsField.getAvailableOptions();

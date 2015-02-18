@@ -93,6 +93,12 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 
 		Object multipleValue = attributes.get("multiple");
 		_multiple = (multipleValue != null) ? Boolean.valueOf(multipleValue.toString()) : false;
+
+		ArrayList<Option> predefinedOptions =
+			convertFromString(getAttributeStringValue(attributes, "predefinedValue"));
+
+		setPredefinedValue(predefinedOptions);
+		setCurrentValue(predefinedOptions);
 	}
 
 	protected StringWithOptionsField(Parcel in) {

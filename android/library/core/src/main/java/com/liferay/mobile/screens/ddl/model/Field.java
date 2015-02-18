@@ -257,6 +257,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return _predefinedValue;
 	}
 
+	public void setPredefinedValue(T value) {
+		_predefinedValue = value;
+	}
+
 	public T getCurrentValue() {
 		return _currentValue;
 	}
