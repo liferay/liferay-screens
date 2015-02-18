@@ -54,7 +54,7 @@ public class WebContentDisplayScreenlet
 	public void load() throws Exception {
 		Locale locale = getResources().getConfiguration().locale;
 
-		getInteractor(LOAD_ACTION).load(_groupId, _articleId, locale);
+		getInteractor().load(_groupId, _articleId, locale);
 	}
 
 	@Override
@@ -148,8 +148,6 @@ public class WebContentDisplayScreenlet
 			autoLoad();
 		}
 	}
-
-	private static final String LOAD_ACTION = "load";
 
 	private String _articleId;
 	private boolean _autoLoad;

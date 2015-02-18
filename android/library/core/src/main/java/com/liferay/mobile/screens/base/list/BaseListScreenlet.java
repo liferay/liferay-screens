@@ -100,7 +100,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
         int endRow = getFirstRowForPage(page + 1);
 
         try {
-			N loadPageInteractor = getInteractor("");
+			N loadPageInteractor = getInteractor();
 
             loadRows(loadPageInteractor, startRow, endRow, locale);
         }

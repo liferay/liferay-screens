@@ -23,7 +23,6 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractor;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorImpl;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorListener;
-import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 

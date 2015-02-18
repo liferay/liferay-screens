@@ -50,10 +50,10 @@ public class UserPortraitScreenlet
 
 	public void load() throws Exception {
 		if (_userId != 0) {
-			getInteractor("").load(_userId);
+			getInteractor().load(_userId);
 		}
 		else {
-			getInteractor("").load(_male, _portraitId, _uuid);
+			getInteractor().load(_male, _portraitId, _uuid);
 		}
 	}
 
