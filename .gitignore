@@ -22,3 +22,4 @@ Pods/
 Podfile.lock
 
 .idea
+*.iml
