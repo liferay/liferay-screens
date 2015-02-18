@@ -14,21 +14,20 @@
 
 package com.liferay.mobile.screens.themes.ddl.form.fields;
 
-import android.app.DatePickerDialog;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Jose Manuel Navarro
@@ -50,27 +49,8 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 
 	@Override
 	public void onClick(View view) {
-		/*
-		Date date = getField().getCurrentValue();
-
-		if (date == null) {
-			date = new Date();
-		}
-
-		Calendar.getInstance().setTime(date);
-
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-
-		int year = calendar.get(Calendar.YEAR);
-		int month = calendar.get(Calendar.MONTH);
-		int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-		_pickerDialog = new DatePickerDialog(
-			getContext(), this, year, month, day);
-
-		_pickerDialog.show();
-		*/
+		createAlertDialog();
+		_alertDialog.show();
 	}
 
 	@Override
@@ -78,9 +58,9 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 		super.onDetachedFromWindow();
 
 		// Avoid WindowLeak error on orientation changes
-		if (_pickerDialog != null) {
-			_pickerDialog.dismiss();
-			_pickerDialog = null;
+		if (_alertDialog != null) {
+			_alertDialog.dismiss();
+			_alertDialog = null;
 		}
 	}
 
@@ -101,14 +81,14 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 		Parcelable superState = state.getParcelable(_STATE_SUPER);
 
 		super.onRestoreInstanceState(superState);
-/*
+
 		Bundle dialogState = state.getBundle(_STATE_DIALOG);
 
 		if (dialogState != null) {
-			_pickerDialog = new DatePickerDialog(getContext(), this, 0, 0, 0);
-			_pickerDialog.onRestoreInstanceState(dialogState);
+			createAlertDialog();
+
+			_alertDialog.onRestoreInstanceState(dialogState);
 		}
-*/
 	}
 
 	@Override
@@ -117,24 +97,51 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 
 		Bundle state = new Bundle();
 		state.putParcelable(_STATE_SUPER, superState);
-/*
-		if (_pickerDialog != null && _pickerDialog.isShowing()) {
-			state.putBundle(_STATE_DIALOG, _pickerDialog.onSaveInstanceState());
+
+		if (_alertDialog != null && _alertDialog.isShowing()) {
+			state.putBundle(_STATE_DIALOG, _alertDialog.onSaveInstanceState());
 		}
-*/
+
 		return state;
 	}
 
 	@Override
 	protected void onTextChanged(String text) {
-		//not doing anything at the moment, because field is being set
-		//using the DatePickerDialog
+	}
+
+	protected void createAlertDialog() {
+		List<String> labels = getOptionsLabels();
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+		DialogInterface.OnClickListener selectOptionHandler =
+			new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					getField().selectOption(getField().getAvailableOptions().get(which));
+					refresh();
+				}
+			};
+
+		builder.setTitle(getField().getLabel())
+			.setItems(labels.toArray(new String[0]), selectOptionHandler);
+
+		_alertDialog = builder.create();
+	}
+
+	protected List<String> getOptionsLabels() {
+		List<String> result = new ArrayList<>();
+
+		for (StringWithOptionsField.Option opt : getField().getAvailableOptions()) {
+			result.add(opt.label);
+		}
+
+		return result;
 	}
 
 	private static final String _STATE_DIALOG = "dialog";
 
 	private static final String _STATE_SUPER = "super";
 
-	private DatePickerDialog _pickerDialog;
+	private AlertDialog _alertDialog;
 
 }

@@ -69,9 +69,9 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			return super.equals(obj);
 		}
 
-		protected String label;
-		protected String name;
-		protected String value;
+		public String label;
+		public String name;
+		public String value;
 	}
 
 	public StringWithOptionsField(Map<String, Object> attributes, Locale locale) {
