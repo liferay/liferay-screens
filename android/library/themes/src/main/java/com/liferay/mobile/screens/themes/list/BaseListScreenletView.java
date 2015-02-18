@@ -66,7 +66,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 		setHasFixedSize(true);
 		setLayoutManager(new LinearLayoutManager(context));
 
-		addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.abc_list_divider_mtrl_alpha)));
+		addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.pixel_grey)));
 	}
 
     protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
