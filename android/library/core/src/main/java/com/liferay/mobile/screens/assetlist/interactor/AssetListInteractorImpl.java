@@ -96,7 +96,7 @@ public class AssetListInteractorImpl
 				"ClassNameId cannot be 0 or negative");
 		}
 
-		super.validate(startRow,endRow,locale);
+		super.validate(startRow, endRow, locale);
 	}
 
     private long _groupId;
