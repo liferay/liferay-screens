@@ -99,20 +99,19 @@ public class LoginScreenletView extends LinearLayout
 		Button loginButton = (Button)findViewById(R.id.login_button);
 		loginButton.setOnClickListener(this);
 
-
 	}
 
 	@Override
 	protected void onAttachedToWindow() {
 		int drawableId;
 		if (AuthMethod.USER_ID.equals(_authMethod)) {
-			_passwordEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+			_loginEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
 			drawableId = R.drawable.default_user_icon;
 		} else if (AuthMethod.EMAIL.equals(_authMethod)) {
-			_passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+			_loginEditText.setInputType(InputType.TYPE_CLASS_TEXT);
 			drawableId = R.drawable.default_mail_icon;
 		} else {
-			_passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+			_loginEditText.setInputType(InputType.TYPE_CLASS_TEXT);
 			drawableId = R.drawable.default_user_icon;
 		}
 
