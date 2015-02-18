@@ -68,16 +68,6 @@ public class DDLListScreenlet
         getInteractor().loadRows(_recordSetId, _userId, startRow, endRow, locale);
     }
 
-	@Override
-	public DDLListListener getListener() {
-		return (DDLListListener) super.getListener();
-	}
-
-	public void setListener(DDLListListener listener) {
-		super.setListener(listener);
-	}
-
-
     public int getRecordSetId() {
         return _recordSetId;
     }

@@ -85,15 +85,6 @@ public class AssetListScreenlet
 	}
 
 	@Override
-	public AssetListListener getListener() {
-		return (AssetListListener) super.getListener();
-	}
-
-	public void setListener(AssetListListener listener) {
-		super.setListener(listener);
-	}
-
-	@Override
 	protected View createScreenletView(
 		Context context, AttributeSet attributes) {
 
