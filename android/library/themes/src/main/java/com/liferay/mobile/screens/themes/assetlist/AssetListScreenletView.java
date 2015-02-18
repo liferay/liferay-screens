@@ -51,16 +51,4 @@ public class AssetListScreenletView extends BaseListScreenletView<AssetEntry, As
         return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
     }
 
-	protected void init(Context context) {
-		int itemLayoutId = R.layout.asset_list_item_default;
-		int itemProgressLayoutId = R.layout.asset_list_item_progress_default;
-
-		AssetListAdapter adapter = new AssetListAdapter(
-			itemLayoutId, itemProgressLayoutId, this);
-
-		setAdapter(adapter);
-		setHasFixedSize(true);
-		setLayoutManager(new LinearLayoutManager(context));
-	}
-
 }
