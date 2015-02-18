@@ -106,6 +106,14 @@ public class LoginScreenlet
 		_listener = listener;
 	}
 
+	public AuthMethod getAuthMethod() {
+		return _authMethod;
+	}
+
+	public void setAuthMethod(AuthMethod authMethod) {
+		_authMethod = authMethod;
+	}
+
 	@Override
 	protected View createScreenletView(
 		Context context, AttributeSet attributes) {
@@ -118,11 +126,12 @@ public class LoginScreenlet
 
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
 
-		int authMethod = typedArray.getInt(
+		int authMethodId = typedArray.getInt(
 			R.styleable.LoginScreenlet_authMethod, 0);
 
-		LoginViewModel viewModel = (LoginViewModel)view;
-		viewModel.setAuthMethod(AuthMethod.getValue(authMethod));
+		LoginViewModel viewModel = (LoginViewModel) view;
+		_authMethod = AuthMethod.getValue(authMethodId);
+		viewModel.setAuthMethod(_authMethod);
 
 		typedArray.recycle();
 
@@ -130,5 +139,6 @@ public class LoginScreenlet
 	}
 
 	private LoginListener _listener;
+	private AuthMethod _authMethod;
 
 }
