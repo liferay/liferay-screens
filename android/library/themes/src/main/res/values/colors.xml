@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="liferay_light_blue" type="color">#DD00b8e0</item>
+    <item name="liferay_light_gray" type="color">#d3d3d3</item>
 </resources>

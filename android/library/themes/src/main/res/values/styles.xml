@@ -2,17 +2,17 @@
 <resources>
 
     <style name="default_edit_text">
-        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginBottom">@dimen/default_edit_text_margin_bottom</item>
         <item name="android:background">@drawable/default_edit_text_selector</item>
-        <item name="android:drawablePadding">15dp</item>
-        <item name="android:paddingBottom">10dp</item>
-        <item name="android:paddingLeft">15dp</item>
-        <item name="android:paddingRight">10dp</item>
-        <item name="android:paddingTop">10dp</item>
+        <item name="android:drawablePadding">@dimen/default_edit_text_drawable_padding</item>
+        <item name="android:paddingBottom">@dimen/default_edit_text_padding</item>
+        <item name="android:paddingLeft">@dimen/default_edit_text_drawable_padding</item>
+        <item name="android:paddingRight">@dimen/default_edit_text_padding</item>
+        <item name="android:paddingTop">@dimen/default_edit_text_padding</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textColorHint">#d3d3d3</item>
+        <item name="android:textColorHint">@color/liferay_light_gray</item>
     </style>
 
     <style name="default_submit_button">
@@ -20,7 +20,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/default_button_selector</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_marginTop">@dimen/default_button_margin_top</item>
         <item name="android:textSize">17sp</item>
     </style>
 
@@ -28,23 +28,23 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:padding">50dp</item>
+        <item name="android:padding">@dimen/default_screenlet_padding</item>
         <item name="android:showDividers">middle</item>
     </style>
 
     <style name="default_list_item">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:paddingRight">8dp</item>
-        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">@dimen/default_list_padding</item>
+        <item name="android:paddingLeft">@dimen/default_list_padding</item>
+        <item name="android:paddingRight">@dimen/default_list_padding</item>
+        <item name="android:paddingTop">@dimen/default_list_padding</item>
         <item name="android:drawableRight">@drawable/abc_ic_go_search_api_mtrl_alpha</item>
     </style>
 
     <style name="default_list">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingLeft">@dimen/default_list_left_padding</item>
         <item name="android:layout_height">match_parent</item>
     </style>
 
