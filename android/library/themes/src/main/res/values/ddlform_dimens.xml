@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<dimen name="ddlform_field_height">70dp</dimen>
-	<dimen name="ddlform_field_height_expanded">200dp</dimen>
 	<dimen name="ddlform_field_padding">8dp</dimen>
 </resources>
