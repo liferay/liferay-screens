@@ -15,29 +15,18 @@
 package com.liferay.mobile.screens.themes.assetlist;
 
 import android.content.Context;
-
-import android.os.Bundle;
-import android.os.Parcelable;
-
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-
 import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.assetlist.AssetListListener;
-import com.liferay.mobile.screens.assetlist.AssetListScreenlet;
-import com.liferay.mobile.screens.themes.R;
+import com.liferay.mobile.screens.assetlist.view.AssetListViewModel;
+import com.liferay.mobile.screens.themes.list.BaseListScreenletView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * @author Silvio Santos
  */
-public class AssetListScreenletView extends RecyclerView
-	implements AssetListListener, AssetListAdapterListener {
+public class AssetListScreenletView extends BaseListScreenletView<AssetEntry, AssetListAdapter>
+	implements AssetListViewModel {
 
 	public AssetListScreenletView(Context context) {
 		super(context, null);
@@ -57,43 +46,10 @@ public class AssetListScreenletView extends RecyclerView
 		init(context);
 	}
 
-	@Override
-	public void onAssetListPageFailed(int page, Exception e) {
-		//TODO what should we do when the page load fails?
-	}
-
-	@Override
-	public void onAssetListPageReceived(
-		int page, List<AssetEntry> serverEntries, int rowCount) {
-
-		AssetListAdapter adapter = (AssetListAdapter)getAdapter();
-		List<AssetEntry> entries = adapter.getEntries();
-		List<AssetEntry> allEntries = new ArrayList<>(
-			Collections.<AssetEntry>nCopies(rowCount, null));
-
-		for (int i = 0; i < entries.size(); i++) {
-			allEntries.set(i, entries.get(i));
-		}
-
-		AssetListScreenlet screenlet = ((AssetListScreenlet)getParent());
-
-		int firstRowForPage = screenlet.getFirstRowForPage(page);
-
-		for (int i = 0; i < (serverEntries.size()); i++) {
-			allEntries.set(i + firstRowForPage, serverEntries.get(i));
-		}
-
-		adapter.setRowCount(rowCount);
-		adapter.setEntries(allEntries);
-		adapter.notifyDataSetChanged();
-	}
-
-	@Override
-	public void onPageNotFound(int row) {
-		AssetListScreenlet screenlet = ((AssetListScreenlet)getParent());
-
-		screenlet.loadPageForRow(row);
-	}
+    @Override
+    protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+        return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
+    }
 
 	protected void init(Context context) {
 		int itemLayoutId = R.layout.asset_list_item_default;
@@ -106,42 +62,5 @@ public class AssetListScreenletView extends RecyclerView
 		setHasFixedSize(true);
 		setLayoutManager(new LinearLayoutManager(context));
 	}
-
-	@Override
-	protected void onRestoreInstanceState(Parcelable inState) {
-		Bundle state = (Bundle)inState;
-		Parcelable superState = state.getParcelable(_STATE_SUPER);
-
-		super.onRestoreInstanceState(superState);
-
-		List<AssetEntry> entries = state.getParcelableArrayList(_STATE_ENTRIES);
-
-		AssetListAdapter adapter = (AssetListAdapter)getAdapter();
-		adapter.setRowCount(state.getInt(_STATE_ROW_COUNT));
-		adapter.setEntries(entries);
-		adapter.notifyDataSetChanged();
-	}
-
-	@Override
-	protected Parcelable onSaveInstanceState() {
-		Parcelable superState = super.onSaveInstanceState();
-
-		AssetListAdapter adapter = (AssetListAdapter)getAdapter();
-		ArrayList<AssetEntry> entries = (ArrayList<AssetEntry>)
-			adapter.getEntries();
-
-		Bundle state = new Bundle();
-		state.putParcelableArrayList(_STATE_ENTRIES, entries);
-		state.putSerializable(_STATE_ROW_COUNT, adapter.getItemCount());
-		state.putParcelable(_STATE_SUPER, superState);
-
-		return state;
-	}
-
-	private static final String _STATE_ENTRIES = "entries";
-
-	private static final String _STATE_ROW_COUNT = "rowCount";
-
-	private static final String _STATE_SUPER = "super";
 
 }

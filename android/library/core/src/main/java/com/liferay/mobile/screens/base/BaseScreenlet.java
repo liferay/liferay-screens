@@ -27,6 +27,7 @@ import android.widget.FrameLayout;
 
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -101,22 +102,26 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
 
-		onScreenletAttached();
-
-		for (I interactor : _interactors.values()) {
-			interactor.onScreenletAttachted(this);
+		if (!isInEditMode()) {
+			for (I interactor : _interactors.values()) {
+				interactor.onScreenletAttachted(this);
+			}
 		}
+
+		onScreenletAttached();
 	}
 
 	@Override
 	protected void onDetachedFromWindow() {
 		super.onDetachedFromWindow();
 
-		for (I interactor : _interactors.values()) {
-			interactor.onScreenletDetached(this);
-		}
-
 		onScreenletDetached();
+
+		if (!isInEditMode()) {
+			for (I interactor : _interactors.values()) {
+				interactor.onScreenletDetached(this);
+			}
+		}
 	}
 
 	@Override

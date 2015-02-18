@@ -20,15 +20,15 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
-import com.liferay.mobile.screens.base.interactor.BaseInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.service.v62.MobilewidgetsuserService;
-import com.liferay.mobile.screens.util.LiferayServerContext;
 
 /**
  * @author Jose Manuel Navarro
  */
 public class ForgotPasswordInteractorImpl
-	extends BaseInteractor<ForgotPasswordListener>
+	extends BaseRemoteInteractor<ForgotPasswordListener>
 	implements ForgotPasswordInteractor {
 
 	public ForgotPasswordInteractorImpl(int targetScreenletId) {

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    android:id="@+id/title"
+    style="@style/default_list_item"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawableRight="@drawable/default_hourglass"
+    android:paddingRight="20dp"
+    android:text="@string/default_empty_value"/>

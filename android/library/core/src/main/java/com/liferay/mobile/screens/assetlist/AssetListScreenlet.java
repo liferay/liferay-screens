@@ -16,29 +16,25 @@ package com.liferay.mobile.screens.assetlist;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-
 import android.util.AttributeSet;
-
-import android.view.LayoutInflater;
 import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractor;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorImpl;
-import com.liferay.mobile.screens.assetlist.interactor.AssetListRowsListener;
-import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.util.LiferayServerContext;
+import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorListener;
+import com.liferay.mobile.screens.base.list.BaseListListener;
+import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 
-import java.util.List;
 import java.util.Locale;
 
 /**
  * @author Silvio Santos
  */
 public class AssetListScreenlet
-	extends BaseScreenlet<BaseViewModel, AssetListInteractor>
-	implements AssetListRowsListener {
+	extends BaseListScreenlet<AssetEntry, AssetListInteractor>
+	implements AssetListInteractorListener {
 
 	public AssetListScreenlet(Context context) {
 		super(context, null);
@@ -52,74 +48,12 @@ public class AssetListScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
-	public void loadPage(int page) {
-		Locale locale = getResources().getConfiguration().locale;
+    @Override
+    protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale)
+		throws Exception {
 
-		int startRow = getFirstRowForPage(page);
-		int endRow = getFirstRowForPage(page + 1);
-
-		try {
-			getInteractor(_LOAD_PAGE_ACTION).loadRows(
-				_groupId, _classNameId, startRow, endRow, locale);
-		}
-		catch (Exception e) {
-			onAssetListRowsFailure(startRow, endRow, e);
-		}
-	}
-
-	public void loadPageForRow(int row) {
-		loadPage(getPageFromRow(row));
-	}
-
-	@Override
-	public void onAssetListRowsFailure(int startRow, int endRow, Exception e) {
-		int page = getPageFromRow(startRow);
-
-		AssetListListener listenerView = (AssetListListener)getScreenletView();
-		listenerView.onAssetListPageFailed(page, e);
-
-		if (_listener != null) {
-			_listener.onAssetListPageFailed(page, e);
-		}
-	}
-
-	@Override
-	public void onAssetListRowsReceived(
-		int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
-
-		int page = getPageFromRow(startRow);
-
-		AssetListListener listenerView = (AssetListListener)getScreenletView();
-		listenerView.onAssetListPageReceived(page, entries, rowCount);
-
-		if (_listener != null) {
-			_listener.onAssetListPageReceived(page, entries, rowCount);
-		}
-	}
-
-	public int getFirstRowForPage(int page) {
-		if (page == 0) {
-			return 0;
-		}
-
-		return (_firstPageSize + (page - 1) * _pageSize);
-	}
-
-	public int getPageFromRow(int row) {
-		if (row < _firstPageSize) {
-			return 0;
-		}
-
-		return ((row - _firstPageSize) / _pageSize) + 1;
-	}
-
-	public boolean isAutoLoad() {
-		return _autoLoad;
-	}
-
-	public void setAutoLoad(boolean autoLoad) {
-		_autoLoad = autoLoad;
-	}
+		interactor.loadRows(_groupId, _classNameId, startRow, endRow, locale);
+    }
 
 	public int getClassNameId() {
 		return _classNameId;
@@ -127,14 +61,6 @@ public class AssetListScreenlet
 
 	public void setClassNameId(int classNameId) {
 		_classNameId = classNameId;
-	}
-
-	public int getFirstPageSize() {
-		return _firstPageSize;
-	}
-
-	public void setFirstPageSize(int firstPageSize) {
-		_firstPageSize = firstPageSize;
 	}
 
 	public int getGroupId() {
@@ -145,51 +71,27 @@ public class AssetListScreenlet
 		_groupId = groupId;
 	}
 
+	@Override
 	public AssetListListener getListener() {
-		return _listener;
+		return (AssetListListener) super.getListener();
 	}
 
 	public void setListener(AssetListListener listener) {
-		_listener = listener;
-	}
-
-	public int getPageSize() {
-		return _pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		_pageSize = pageSize;
+		super.setListener(listener);
 	}
 
 	@Override
-	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
-
+	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.AssetListScreenlet, 0, 0);
-
-		int layoutId = typedArray.getResourceId(
-			R.styleable.AssetListScreenlet_layoutId, 0);
-
-		_firstPageSize = typedArray.getInteger(
-			R.styleable.AssetListScreenlet_firstPageSize, _FIRST_PAGE_SIZE);
-
-		_pageSize = typedArray.getInteger(
-			R.styleable.AssetListScreenlet_pageSize, _PAGE_SIZE);
-
-		_autoLoad = typedArray.getBoolean(
-			R.styleable.AssetListScreenlet_autoLoad, true);
-
 		_classNameId = typedArray.getInt(
 			R.styleable.AssetListScreenlet_classNameId, 0);
-
 		_groupId = typedArray.getInteger(
 			R.styleable.AssetListScreenlet_groupId,
-			(int)LiferayServerContext.getGroupId());
-
+			(int) LiferayServerContext.getGroupId());
 		typedArray.recycle();
 
-		return LayoutInflater.from(getContext()).inflate(layoutId, null);
+		return super.createScreenletView(context, attributes);
 	}
 
 	@Override
@@ -197,31 +99,7 @@ public class AssetListScreenlet
 		return new AssetListInteractorImpl(getScreenletId());
 	}
 
-	@Override
-	protected void onUserAction(String userActionName, AssetListInteractor interactor) {
-	}
-
-	@Override
-	protected void onScreenletAttached() {
-		super.onScreenletAttached();
-
-		if (_autoLoad) {
-			//TODO handle when first page is already loaded. See branch LMW-176-auto-load-fix
-			loadPage(0);
-		}
-	}
-
-	private static final String _LOAD_PAGE_ACTION = "loadPage";
-
-	private static final int _FIRST_PAGE_SIZE = 50;
-
-	private static final int _PAGE_SIZE = 25;
-
-	private boolean _autoLoad;
 	private int _classNameId;
-	private int _firstPageSize;
 	private int _groupId;
-	private AssetListListener _listener;
-	private int _pageSize;
 
 }

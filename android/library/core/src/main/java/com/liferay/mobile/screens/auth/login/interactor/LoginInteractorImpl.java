@@ -18,16 +18,17 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.base.interactor.BaseInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
-import com.liferay.mobile.screens.util.LiferayServerContext;
-import com.liferay.mobile.screens.util.SessionContext;
+import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.SessionContext;
 
 /**
  * @author Silvio Santos
  */
 public class LoginInteractorImpl
-	extends BaseInteractor<LoginListener>
+	extends BaseRemoteInteractor<LoginListener>
 	implements LoginInteractor {
 
 	public LoginInteractorImpl(int targetScreenletId) {
@@ -66,13 +67,14 @@ public class LoginInteractorImpl
 			getListener().onLoginFailure(event.getException());
 		}
 		else {
+			SessionContext.setUserAttributes(event.getJSONObject());
 			getListener().onLoginSuccess(event.getJSONObject());
 		}
 	}
 
 	protected UserService getUserService(String login, String password) {
 		Session session = SessionContext.createSession(login, password);
-		session.setCallback(new LoginCallback(getTargetScreenletId()));
+		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
 
 		return new UserService(session);
 	}

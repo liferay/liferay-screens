@@ -17,10 +17,10 @@ package com.liferay.mobile.screens.ddl.form.interactor;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.ddlrecord.DDLRecordService;
-import com.liferay.mobile.screens.base.interactor.BaseInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.util.SessionContext;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +29,7 @@ import org.json.JSONObject;
  * @author Jose Manuel Navarro
  */
 public class DDLFormAddRecordInteractorImpl
-	extends BaseInteractor<DDLFormListener> implements DDLFormAddRecordInteractor {
+	extends BaseRemoteInteractor<DDLFormListener> implements DDLFormAddRecordInteractor {
 
 	public DDLFormAddRecordInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);

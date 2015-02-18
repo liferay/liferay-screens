@@ -2,15 +2,17 @@
 <resources>
 	<attr name="anonymousApiUserName" format="string" />
 	<attr name="anonymousApiPassword" format="string" />
+	<attr name="autoLoad" format="boolean" />
 	<attr name="authMethod" format="enum">
 		<enum name="email" value="0" />
 		<enum name="screen_name" value="1" />
 		<enum name="user_id" value="2" />
 	</attr>
-	<attr name="autoLoad" format="boolean" />
 	<attr name="companyId" format="integer" />
 	<attr name="groupId" format="integer" />
 	<attr name="layoutId" format="reference" />
+	<attr name="recordSetId" format="integer" />
+	<attr name="userId" format="integer" />
 
 	<declare-styleable name="AssetListScreenlet">
 		<attr name="layoutId" />
@@ -26,9 +28,9 @@
 		<attr name="groupId" />
 		<attr name="autoScrollOnValidation" format="boolean" />
 		<attr name="structureId" format="integer" />
-		<attr name="recordSetId" format="integer" />
 		<attr name="recordId" format="integer" />
-		<attr name="userId" format="integer" />
+		<attr name="recordSetId" />
+		<attr name="userId" />
 		<attr name="showSubmitButton" format="boolean" />
 		<attr name="checkboxFieldLayoutId" format="reference" />
 		<attr name="dateFieldLayoutId" format="reference" />
@@ -38,6 +40,16 @@
 		<attr name="textFieldLayoutId" format="reference" />
 		<attr name="textAreaFieldLayoutId" format="reference" />
 	</declare-styleable>
+
+    <declare-styleable name="DDLListScreenlet">
+        <attr name="layoutId" />
+        <attr name="autoLoad" />
+		<attr name="recordSetId" />
+        <attr name="firstPageSize" />
+        <attr name="pageSize" />
+        <attr name="userId" />
+        <attr name="labelFields" format="string"/>
+    </declare-styleable>
 
 	<declare-styleable name="ForgotPasswordScreenlet">
 		<attr name="layoutId" />
@@ -50,6 +62,7 @@
 	<declare-styleable name="LoginScreenlet">
 		<attr name="layoutId" />
 		<attr name="authMethod" />
+		<attr name="companyId" />
 	</declare-styleable>
 
 	<declare-styleable name="SignUpScreenlet">
@@ -64,5 +77,14 @@
 		<attr name="autoLoad" />
 		<attr name="groupId" />
 		<attr name="articleId" format="string" />
+	</declare-styleable>
+
+	<declare-styleable name="UserPortraitScreenlet">
+		<attr name="layoutId" />
+		<attr name="autoLoad" />
+		<attr name="male" format="boolean" />
+		<attr name="portraitId" format="integer" />
+		<attr name="uuid" format="string" />
+		<attr name="userId" />
 	</declare-styleable>
 </resources>

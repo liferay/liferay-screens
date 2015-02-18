@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.assetlist.interactor;
 
-import com.liferay.mobile.screens.assetlist.AssetListListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 
 import java.util.Locale;
@@ -22,7 +21,7 @@ import java.util.Locale;
 /**
  * @author Silvio Santos
  */
-public interface AssetListInteractor extends Interactor<AssetListRowsListener> {
+public interface AssetListInteractor extends Interactor<AssetListInteractorListener> {
 
 	public void loadRows(
 			long groupId, long classNameId, int startRow, int endRow, Locale locale)

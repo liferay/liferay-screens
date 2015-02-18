@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="liferay_light_blue" type="color">#DD00b8e0</item>
+    <item name="liferay_light_gray" type="color">#d3d3d3</item>
+    <item name="liferay_dark_gray" type="color">@android:color/darker_gray</item>
+    <item name="liferay_red" type="color">@android:color/holo_red_light</item>
+</resources>

@@ -28,7 +28,7 @@ import com.liferay.mobile.screens.auth.forgotpassword.interactor.ForgotPasswordI
 import com.liferay.mobile.screens.auth.forgotpassword.interactor.ForgotPasswordInteractorImpl;
 import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.util.LiferayServerContext;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 
 /**
  * @author Silvio Santos

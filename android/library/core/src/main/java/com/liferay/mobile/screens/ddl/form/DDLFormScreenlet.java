@@ -24,6 +24,7 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormAddRecordInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormAddRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseInteractor;
@@ -36,7 +37,6 @@ import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUpdateRecordInterac
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.util.LiferayServerContext;
 
 import java.util.HashMap;
 import java.util.Map;

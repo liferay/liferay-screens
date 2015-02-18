@@ -16,6 +16,8 @@ package com.liferay.mobile.screens.themes.auth.login;
 
 import android.content.Context;
 
+import android.graphics.drawable.Drawable;
+import android.text.InputType;
 import android.util.AttributeSet;
 
 import android.view.View;
@@ -94,6 +96,24 @@ public class LoginScreenletView extends LinearLayout
 
 		Button loginButton = (Button)findViewById(R.id.login_button);
 		loginButton.setOnClickListener(this);
+
+	}
+
+	@Override
+	protected void onAttachedToWindow() {
+		int drawableId;
+		if (AuthMethod.USER_ID.equals(_authMethod)) {
+			_loginEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+			drawableId = R.drawable.default_user_icon;
+		} else if (AuthMethod.EMAIL.equals(_authMethod)) {
+			_loginEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+			drawableId = R.drawable.default_mail_icon;
+		} else {
+			_loginEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+			drawableId = R.drawable.default_user_icon;
+		}
+
+		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(drawableId), null, null, null);
 	}
 
 	private AuthMethod _authMethod;

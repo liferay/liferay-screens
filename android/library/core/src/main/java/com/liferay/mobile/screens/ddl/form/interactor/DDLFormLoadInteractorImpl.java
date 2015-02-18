@@ -16,21 +16,19 @@ package com.liferay.mobile.screens.ddl.form.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.ddmstructure.DDMStructureService;
-import com.liferay.mobile.screens.base.interactor.BaseInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.util.SessionContext;
 
 import org.json.JSONException;
 import org.xml.sax.SAXException;
-
-import java.util.Locale;
 
 /**
  * @author Jose Manuel Navarro
  */
 public class DDLFormLoadInteractorImpl
-	extends BaseInteractor<DDLFormListener> implements DDLFormLoadInteractor {
+	extends BaseRemoteInteractor<DDLFormListener> implements DDLFormLoadInteractor {
 
 	public DDLFormLoadInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
