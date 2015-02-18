@@ -5,10 +5,10 @@
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:background">@drawable/default_edit_text_selector</item>
         <item name="android:drawablePadding">15dp</item>
-        <item name="android:paddingLeft">15dp</item>
-        <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">15dp</item>
         <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">10dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:singleLine">true</item>
@@ -35,9 +35,11 @@
     <style name="default_list_item">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:paddingTop">8dp</item>
         <item name="android:drawableRight">@drawable/abc_ic_go_search_api_mtrl_alpha</item>
-        <item name="android:color">@android:color/black</item>
     </style>
 
     <style name="default_list">
