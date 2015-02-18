@@ -115,7 +115,7 @@ public class UserPortraitScreenletView extends FrameLayout
     protected Paint getBorderPaint(float borderWidth) {
         Paint borderPaint = new Paint();
         borderPaint.setAntiAlias(true);
-        borderPaint.setColor(Color.DKGRAY);
+        borderPaint.setColor(getResources().getColor(R.color.liferay_dark_gray));
         borderPaint.setStyle(Paint.Style.STROKE);
         borderPaint.setStrokeWidth(borderWidth);
         return borderPaint;
