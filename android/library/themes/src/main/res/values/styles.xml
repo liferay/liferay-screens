@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="default_edit_text">
+    <style name="DefaultTheme" parent="Theme.AppCompat.Light">
+        <item name="android:textViewStyle">@style/default_edit_text</item>
+        <item name="android:buttonStyle">@style/default_submit_button</item>
+        <item name="android:listViewStyle">@style/default_list</item>
+    </style>
+
+    <style name="default_edit_text" parent="base_default_edit_text"/>
+
+    <style name="base_default_edit_text" parent="android:Widget.TextView">
         <item name="android:layout_marginBottom">@dimen/default_edit_text_margin_bottom</item>
         <item name="android:background">@drawable/default_edit_text_selector</item>
         <item name="android:drawablePadding">@dimen/default_edit_text_drawable_padding</item>
@@ -15,7 +23,9 @@
         <item name="android:textColorHint">@color/liferay_light_gray</item>
     </style>
 
-    <style name="default_submit_button">
+    <style name="default_submit_button" parent="base_default_submit_button"/>
+
+    <style name="base_default_submit_button" parent="android:Widget.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/default_button_selector</item>
@@ -38,11 +48,11 @@
         <item name="android:paddingBottom">@dimen/default_list_padding</item>
         <item name="android:paddingLeft">@dimen/default_list_padding</item>
         <item name="android:paddingRight">@dimen/default_list_padding</item>
-        <item name="android:paddingTop">@dimen/default_list_padding</item>
-        <item name="android:drawableRight">@drawable/abc_ic_go_search_api_mtrl_alpha</item>
+        <item name="android:paddingTop">9dp</item>
+        <item name="android:drawableRight">@drawable/default_arrow</item>
     </style>
 
-    <style name="default_list">
+    <style name="default_list" parent="android:Widget.ListView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:paddingLeft">@dimen/default_list_left_padding</item>
         <item name="android:layout_height">match_parent</item>
