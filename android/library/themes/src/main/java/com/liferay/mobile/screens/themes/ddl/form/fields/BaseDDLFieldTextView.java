@@ -87,12 +87,16 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 		if (_field.isShowLabel()) {
 			_textEditText.setHint("");
-			_labelTextView.setText(_field.getLabel());
-			_labelTextView.setVisibility(VISIBLE);
+			if (_labelTextView != null) {
+				_labelTextView.setText(_field.getLabel());
+				_labelTextView.setVisibility(VISIBLE);
+			}
 		}
 		else {
 			_textEditText.setHint(_field.getLabel());
-			_labelTextView.setVisibility(GONE);
+			if (_labelTextView != null) {
+				_labelTextView.setVisibility(GONE);
+			}
 		}
 
 		refresh();
