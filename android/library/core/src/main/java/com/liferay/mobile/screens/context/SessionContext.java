@@ -28,6 +28,7 @@ public class SessionContext {
 
 	public static void clearSession() {
 		_session = null;
+		_user = null;
 	}
 
 	public static Session createSession(String username, String password) {
