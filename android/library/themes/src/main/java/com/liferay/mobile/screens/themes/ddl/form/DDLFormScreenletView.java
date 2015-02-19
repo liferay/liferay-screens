@@ -25,15 +25,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ScrollView;
 
-import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.themes.R;
+import com.liferay.mobile.screens.util.ViewUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -82,9 +84,7 @@ public class DDLFormScreenletView
 	public void setRecordFields(Record record) {
 		for (int i = 0; i < record.getFieldCount(); ++i) {
 			// We have to assign ids to onSave/onRestore methods be fired
-			//TODO Assign ids by position should not be a problem, but
-			// we have to check if it will conflict with other views
-			addFieldView(record.getField(i), i);
+			addFieldView(record.getField(i));
 		}
 
 		DDLFormScreenlet screenlet = getDDLFormScreenlet();
@@ -96,8 +96,8 @@ public class DDLFormScreenletView
 
 	@Override
 	public void setRecordValues(Record record) {
-		for (int i = 0; i < record.getFieldCount(); ++i) {
-			DDLFieldViewModel viewModel = (DDLFieldViewModel) findViewById(i);
+		for (Integer id : _fieldIds) {
+			DDLFieldViewModel viewModel = (DDLFieldViewModel) findViewById(id);
 			viewModel.refresh();
 		}
 	}
@@ -116,7 +116,7 @@ public class DDLFormScreenletView
 		for (int i = 0; i < record.getFieldCount(); i++) {
 			Field field = record.getField(i);
 
-			View fieldView = findViewById(i);
+			View fieldView = findViewById(_fieldIds.get(i));
 			boolean validField = field.isValid();
 
 			if (!validField) {
@@ -144,11 +144,13 @@ public class DDLFormScreenletView
 		return validForm;
 	}
 
-	protected void addFieldView(Field field, int id) {
+	protected void addFieldView(Field field) {
 		int layoutId = getFieldLayoutId(field.getEditorType());
 
 		LayoutInflater inflater = LayoutInflater.from(getContext());
 		View view = inflater.inflate(layoutId, this, false);
+		int id = ViewUtil._generateUniqueId();
+		_fieldIds.add(id);
 		view.setId(id);
 
 		DDLFieldViewModel viewModel = (DDLFieldViewModel)view;
@@ -178,5 +180,6 @@ public class DDLFormScreenletView
 	private ViewGroup _fieldsContainerView;
 	private Button _submitButton;
 	private Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
+	private List<Integer> _fieldIds = new ArrayList<>();
 
 }
