@@ -79,4 +79,8 @@
         <item name="android:background">@color/liferay_light_gray</item>
     </style>
 
+    <style name="default_font">
+        <item name="android:typeface">normal</item>
+    </style>
+
 </resources>
