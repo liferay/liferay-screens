@@ -15,6 +15,8 @@
 package com.liferay.mobile.screens.themes.ddl.form.fields;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -72,6 +74,7 @@ public class DDLFieldRadioView extends RadioGroup
 			radioButton.setText(opt.label);
 			radioButton.setTag(opt);
 			radioButton.setOnCheckedChangeListener(this);
+			radioButton.setTypeface(getTypeface());
 
 			// TODO find an id to avoid collisions
 			radioButton.setId(10 + i);
@@ -80,6 +83,14 @@ public class DDLFieldRadioView extends RadioGroup
 		}
 
 		refresh();
+	}
+
+	private Typeface getTypeface() {
+		//FIXME replace with constructor with styles when we have the drawables
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+			return Typeface.DEFAULT;
+		}
+		return Typeface.create("sans-serif-light", Typeface.NORMAL);
 	}
 
 	@Override

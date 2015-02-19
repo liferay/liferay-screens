@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldRadioView
-    style="@style/default_font"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
