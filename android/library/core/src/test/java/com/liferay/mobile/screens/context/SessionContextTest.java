@@ -29,6 +29,7 @@ import org.robolectric.annotation.Config;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;
+import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertNotNull;
 
@@ -119,6 +120,12 @@ public class SessionContextTest {
 		@Test
 		public void userObjectShouldContainTheUserAttributes() throws Exception {
 			assertEquals(123, SessionContext.getUser().getId());
+		}
+
+		@Test
+		public void shouldClearUserWhenSessionIsCleared() throws Exception {
+			SessionContext.clearSession();
+			assertNull(SessionContext.getUser());
 		}
 
 	}
