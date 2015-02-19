@@ -86,14 +86,6 @@ public class DDLFieldRadioView extends RadioGroup
 		refresh();
 	}
 
-	private Typeface getTypeface() {
-		//FIXME replace with constructor with styles when we have the drawables
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-			return Typeface.DEFAULT;
-		}
-		return Typeface.create("sans-serif-light", Typeface.NORMAL);
-	}
-
 	@Override
 	public void refresh() {
 		List<StringWithOptionsField.Option> selectedOptions = _field.getCurrentValue();
@@ -143,6 +135,14 @@ public class DDLFieldRadioView extends RadioGroup
 		StringWithOptionsField.Option opt = (StringWithOptionsField.Option) radioButton.getTag();
 
 		_field.selectOption(opt);
+	}
+
+	private Typeface getTypeface() {
+		//FIXME replace with constructor with styles when we have the drawables
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+			return Typeface.DEFAULT;
+		}
+		return Typeface.create("sans-serif-light", Typeface.NORMAL);
 	}
 
 	private StringWithOptionsField _field;
