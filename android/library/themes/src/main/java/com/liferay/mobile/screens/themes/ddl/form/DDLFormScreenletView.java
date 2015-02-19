@@ -82,6 +82,9 @@ public class DDLFormScreenletView
 
 	@Override
 	public void setRecordFields(Record record) {
+		if (record == null) {
+			return;
+		}
 		for (int i = 0; i < record.getFieldCount(); ++i) {
 			// We have to assign ids to onSave/onRestore methods be fired
 			addFieldView(record.getField(i));
