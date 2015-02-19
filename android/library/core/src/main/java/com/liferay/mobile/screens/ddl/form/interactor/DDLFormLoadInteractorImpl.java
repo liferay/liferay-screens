@@ -65,10 +65,10 @@ public class DDLFormLoadInteractorImpl
 				getListener().onDDLFormLoaded(formRecord);
 			}
 			catch (JSONException e) {
-				getListener().onDDLFormLoadFailed(event.getException());
+				getListener().onDDLFormLoadFailed(e);
 			}
 			catch (SAXException e) {
-				getListener().onDDLFormLoadFailed(event.getException());
+				getListener().onDDLFormLoadFailed(e);
 			}
 		}
 	}
