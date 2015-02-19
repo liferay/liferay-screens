@@ -27,6 +27,7 @@ import java.util.Map;
 public class User {
 
 	public User(JSONObject jsonObject) {
+		_jsonObject = jsonObject;
 		_attributes = new HashMap<String, Object>(jsonObject.length());
 
 		Iterator<String> it = jsonObject.keys();
@@ -53,5 +54,11 @@ public class User {
 		return (int) _attributes.get("portraitId");
 	}
 
+	@Override
+	public String toString() {
+		return _jsonObject.toString();
+	}
+
 	private Map<String, Object> _attributes;
+	private JSONObject _jsonObject;
 }
