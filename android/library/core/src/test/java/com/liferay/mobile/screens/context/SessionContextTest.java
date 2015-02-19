@@ -30,6 +30,7 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import static com.liferay.mobile.screens.context.SessionContext.StorageType.*;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;
@@ -143,7 +144,7 @@ public class SessionContextTest {
 
 			SessionContext.setUserAttributes(new JSONObject().put("userId", 123));
 
-			SessionContext.storeSession();
+			SessionContext.storeSession(SHARED_PREFERENCES);
 		}
 
 		@Test(expected = IllegalStateException.class)
@@ -154,7 +155,7 @@ public class SessionContextTest {
 			SessionContext.setUserAttributes(new JSONObject().put("userId", 123));
 
 			SessionContext.clearSession();
-			SessionContext.storeSession();
+			SessionContext.storeSession(SHARED_PREFERENCES);
 		}
 
 		@Test(expected = IllegalStateException.class)
@@ -164,7 +165,7 @@ public class SessionContextTest {
 			Context ctx = Robolectric.getShadowApplication().getApplicationContext();
 			LiferayScreensContext.init(ctx);
 
-			SessionContext.storeSession();
+			SessionContext.storeSession(SHARED_PREFERENCES);
 		}
 
 		@Test
@@ -177,7 +178,7 @@ public class SessionContextTest {
 			JSONObject userAttributes = new JSONObject().put("userId", 123);
 			SessionContext.setUserAttributes(userAttributes);
 
-			SessionContext.storeSession();
+			SessionContext.storeSession(SHARED_PREFERENCES);
 
 			SharedPreferences sharedPref =
 				ctx.getSharedPreferences("liferay-screens", Context.MODE_PRIVATE);
