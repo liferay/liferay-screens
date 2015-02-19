@@ -124,6 +124,42 @@ public class SignUpScreenlet
 		}
 	}
 
+	public String getAnonymousApiPassword() {
+		return _anonymousApiPassword;
+	}
+
+	public void setAnonymousApiPassword(String value) {
+		_anonymousApiPassword = value;
+	}
+
+	public String getAnonymousApiUserName() {
+		return _anonymousApiUserName;
+	}
+
+	public void setAnonymousApiUserName(String value) {
+		_anonymousApiUserName = value;
+	}
+
+	public boolean isAutoLogin() {
+		return _autoLogin;
+	}
+
+	public void setAutoLogin(boolean value) {
+		_autoLogin = value;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long value) {
+		_companyId = value;
+	}
+
+	public SignUpListener getListener() {
+		return _listener;
+	}
+
 	public void setListener(SignUpListener listener) {
 		_listener = listener;
 	}
