@@ -56,24 +56,11 @@ public class DDLFormScreenletView
 		super(context, attributes, defaultStyle);
 	}
 
-	/**
-	 * The layout associated with each form field.
-	 *
-	 * @return a layout resource id associated with the field editor type
-	 */
-
 	@Override
 	public int getFieldLayoutId(Field.EditorType editorType) {
 		return _layoutIds.get(editorType);
 	}
 
-	/**
-	 * Sets the layout associated a field
-	 * You should use this method if you want to change the layout of your fields
-	 *
-	 * @param editorType EditorType associated with this layout
-	 * @param layoutId the layout resource id for this editor type
-	 */
 
 	@Override
 	public void setFieldLayoutId(Field.EditorType editorType, int layoutId) {
