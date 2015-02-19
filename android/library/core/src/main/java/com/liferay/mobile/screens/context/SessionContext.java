@@ -14,6 +14,9 @@
 
 package com.liferay.mobile.screens.context;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
@@ -59,6 +62,36 @@ public class SessionContext {
 
 	public static User getUser() {
 		return _user;
+	}
+
+	public static void storeSession() {
+		if (LiferayScreensContext.getContext() == null) {
+			throw new IllegalStateException("LiferayScreensContext has to be init");
+		}
+		if (_session == null) {
+			throw new IllegalStateException("You need to be logged in to store the session");
+		}
+		if (_user == null) {
+			throw new IllegalStateException("You need to set user attributes to store the session");
+		}
+
+		SharedPreferences sharedPref =
+			LiferayScreensContext.getContext().getSharedPreferences(
+				"liferay-screens", Context.MODE_PRIVATE);
+
+		BasicAuthentication basicAuth =
+			(BasicAuthentication) _session.getAuthentication();
+
+		SharedPreferences.Editor editor = sharedPref.edit();
+
+		editor.putString("username", basicAuth.getUsername());
+		editor.putString("password", basicAuth.getPassword());
+		editor.putString("attributes", _user.toString());
+		editor.putString("server", LiferayServerContext.getServer());
+		editor.putLong("groupId", LiferayServerContext.getGroupId());
+		editor.putLong("companyId", LiferayServerContext.getCompanyId());
+
+		editor.commit();
 	}
 
 	private static Session _session;

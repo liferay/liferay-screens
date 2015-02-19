@@ -14,6 +14,9 @@
 
 package com.liferay.mobile.screens.context;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
 
@@ -23,6 +26,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
@@ -108,7 +112,6 @@ public class SessionContextTest {
 		@Before
 		public void setUp() throws JSONException {
 			SessionContext.createSession("username", "password");
-
 			SessionContext.setUserAttributes(new JSONObject().put("userId", 123));
 		}
 
@@ -126,6 +129,65 @@ public class SessionContextTest {
 		public void shouldClearUserWhenSessionIsCleared() throws Exception {
 			SessionContext.clearSession();
 			assertNull(SessionContext.getUser());
+		}
+
+	}
+
+	@Config(emulateSdk = 18)
+	@RunWith(RobolectricTestRunner.class)
+	public static class WhenStoringTheCredentials {
+
+		@Test(expected = IllegalStateException.class)
+		public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
+			SessionContext.createSession("user123", "pass123");
+
+			SessionContext.setUserAttributes(new JSONObject().put("userId", 123));
+
+			SessionContext.storeSession();
+		}
+
+		@Test(expected = IllegalStateException.class)
+		public void shouldRaiseExceptionWhenSessionIsNotPresent() throws Exception {
+			Context ctx = Robolectric.getShadowApplication().getApplicationContext();
+			LiferayScreensContext.init(ctx);
+
+			SessionContext.setUserAttributes(new JSONObject().put("userId", 123));
+
+			SessionContext.clearSession();
+			SessionContext.storeSession();
+		}
+
+		@Test(expected = IllegalStateException.class)
+		public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
+			SessionContext.createSession("user123", "pass123");
+
+			Context ctx = Robolectric.getShadowApplication().getApplicationContext();
+			LiferayScreensContext.init(ctx);
+
+			SessionContext.storeSession();
+		}
+
+		@Test
+		public void shouldStoreTheCredentialsInSharedPreferences() throws Exception {
+			SessionContext.createSession("user123", "pass123");
+
+			Context ctx = Robolectric.getShadowApplication().getApplicationContext();
+			LiferayScreensContext.init(ctx);
+
+			JSONObject userAttributes = new JSONObject().put("userId", 123);
+			SessionContext.setUserAttributes(userAttributes);
+
+			SessionContext.storeSession();
+
+			SharedPreferences sharedPref =
+				ctx.getSharedPreferences("liferay-screens", Context.MODE_PRIVATE);
+
+			assertEquals("user123", sharedPref.getString("username", "not-present"));
+			assertEquals("pass123", sharedPref.getString("password", "not-present"));
+			assertEquals(LiferayServerContext.getServer(), sharedPref.getString("server", "not-present"));
+			assertEquals(LiferayServerContext.getGroupId(), sharedPref.getLong("groupId", 0));
+			assertEquals(LiferayServerContext.getCompanyId(), sharedPref.getLong("companyId", 0));
+			assertEquals(userAttributes.toString(), sharedPref.getString("attributes", "not-present"));
 		}
 
 	}
