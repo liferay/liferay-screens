@@ -109,14 +109,14 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 	@Override
 	public void onPostValidation(boolean valid) {
-		int drawableId = 0;
-
 		if (!valid) {
-			drawableId = android.R.drawable.ic_delete;
+			String invalid = getResources().getString(R.string.invalid);
+			if (_labelTextView == null) {
+				_textEditText.setError(invalid);
+			} else {
+				_labelTextView.setError(invalid);
+			}
 		}
-
-		_textEditText.setCompoundDrawablesWithIntrinsicBounds(
-			0, 0, drawableId, 0);
 	}
 
 	@Override

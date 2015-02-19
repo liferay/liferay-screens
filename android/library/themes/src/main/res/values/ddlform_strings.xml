@@ -2,4 +2,5 @@
 <resources>
 	<string name="submit">SUBMIT</string>
 	<string name="required_value">Required value</string>
+    <string name="invalid"/>
 </resources>

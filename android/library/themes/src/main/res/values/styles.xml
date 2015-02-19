@@ -25,7 +25,7 @@
 
     <style name="default_text_view" parent="base_default_text_view"/>
 
-    <style name="base_default_text_view" parent="android:Widget.TextView">
+    <style name="base_default_text_view" parent="android:Widget.EditText">
         <item name="android:paddingBottom">@dimen/default_text_view_padding</item>
         <item name="android:paddingLeft">@dimen/default_text_view_padding</item>
         <item name="android:paddingRight">@dimen/default_text_view_padding</item>
