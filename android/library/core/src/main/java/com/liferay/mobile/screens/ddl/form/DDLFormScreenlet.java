@@ -200,6 +200,12 @@ public class DDLFormScreenlet
 		_listener = listener;
 	}
 
+	public void setCustomFieldLayoutId(String fieldName, int layoutId) {
+		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
+
+		view.setCustomFieldLayoutId(fieldName, layoutId);
+	}
+
 	@Override
 	protected DDLFormBaseInteractor createInteractor(String actionName) {
 		DDLFormBaseInteractor result = null;

@@ -68,6 +68,16 @@ public class DDLFormScreenletView
 	}
 
 	@Override
+	public int getCustomFieldLayoutId(String fieldName) {
+		return _customLayoutIds.get(fieldName);
+	}
+
+	@Override
+	public void setCustomFieldLayoutId(String fieldName, int layoutId) {
+		_customLayoutIds.put(fieldName, layoutId);
+	}
+
+	@Override
 	public void setRecordFields(Record record) {
 
 
@@ -138,7 +148,14 @@ public class DDLFormScreenletView
 	}
 
 	protected void addFieldView(Field field) {
-		int layoutId = getFieldLayoutId(field.getEditorType());
+		int layoutId;
+
+		if (_customLayoutIds.containsKey(field.getName())) {
+			layoutId = getCustomFieldLayoutId(field.getName());
+		}
+		else {
+			layoutId = getFieldLayoutId(field.getEditorType());
+		}
 
 		LayoutInflater inflater = LayoutInflater.from(getContext());
 		View view = inflater.inflate(layoutId, this, false);
@@ -170,5 +187,6 @@ public class DDLFormScreenletView
 	private ViewGroup _fieldsContainerView;
 	private Button _submitButton;
 	private Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
+	private Map<String, Integer> _customLayoutIds = new HashMap<>();
 
 }

@@ -39,6 +39,22 @@ public interface DDLFormViewModel extends BaseViewModel {
 	 */
 	public void setFieldLayoutId(Field.EditorType editorType, int layoutId);
 
+	/**
+	 * The layout associated with one specific field.
+	 *
+	 * @return a layout resource id associated with specified field
+	 */
+	public int getCustomFieldLayoutId(String fieldName);
+
+	/**
+	 * Sets the layout associated a specific field
+	 * You should use this method if you want to change the layout of one specific field
+	 *
+	 * @param fieldName the name of the field to change its layout
+	 * @param layoutId the layout resource id for the specified field
+	 */
+	public void setCustomFieldLayoutId(String fieldName, int layoutId);
+
 	public void setRecordFields(Record record);
 	public void setRecordValues(Record record);
 
