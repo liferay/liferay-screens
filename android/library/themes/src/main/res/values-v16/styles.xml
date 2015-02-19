@@ -16,4 +16,9 @@
     <style name="default_font">
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
+
+    <style name="custom_dialog_theme">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
 </resources>

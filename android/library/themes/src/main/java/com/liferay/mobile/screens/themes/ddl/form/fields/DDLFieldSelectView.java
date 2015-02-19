@@ -21,10 +21,14 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
 import android.util.AttributeSet;
+import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
+import com.liferay.mobile.screens.themes.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,7 +116,14 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 	protected void createAlertDialog() {
 		List<String> labels = getOptionsLabels();
 
-		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+		Context context = new ContextThemeWrapper(getContext(), R.style.custom_dialog_theme);
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+		LayoutInflater factory = LayoutInflater.from(context);
+		final View customDialogView = factory.inflate(
+				R.layout.ddlfield_select_dialog_default, null);
+		TextView title = (TextView) customDialogView.findViewById(R.id.dialog_title);
+		title.setText(getField().getLabel());
 
 		DialogInterface.OnClickListener selectOptionHandler =
 			new DialogInterface.OnClickListener() {
@@ -122,8 +133,8 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 				}
 			};
 
-		builder.setTitle(getField().getLabel())
-			.setItems(labels.toArray(new String[0]), selectOptionHandler);
+		builder.setCustomTitle(customDialogView);
+		builder.setItems(labels.toArray(new String[0]), selectOptionHandler);
 
 		_alertDialog = builder.create();
 	}
