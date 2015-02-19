@@ -111,6 +111,9 @@ public class DDLFieldRadioView extends RadioGroup
 
 	@Override
 	public void onPostValidation(boolean valid) {
+		if (valid) {
+			return;
+		}
 		if (_field.isShowLabel()) {
 			TextView label = (TextView) findViewById(R.id.label);
 
