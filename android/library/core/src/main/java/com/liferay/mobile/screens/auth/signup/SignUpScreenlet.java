@@ -23,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractor;
 import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractorImpl;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
@@ -97,6 +98,10 @@ public class SignUpScreenlet
 
 			SessionContext.createSession(emailAddress, password);
 			SessionContext.setUserAttributes(userAttributes);
+
+			if (_autoLoginListener != null) {
+				_autoLoginListener.onLoginSuccess(userAttributes);
+			}
 		}
 	}
 
@@ -160,8 +165,16 @@ public class SignUpScreenlet
 		return _listener;
 	}
 
-	public void setListener(SignUpListener listener) {
-		_listener = listener;
+	public void setListener(SignUpListener value) {
+		_listener = value;
+	}
+
+	public LoginListener getAutoLoginListener() {
+		return _autoLoginListener;
+	}
+
+	public void setAutoLoginListener(LoginListener value) {
+		_autoLoginListener = value;
 	}
 
 	@Override
@@ -194,6 +207,8 @@ public class SignUpScreenlet
 	private String _anonymousApiUserName;
 	private boolean _autoLogin;
 	private long _companyId;
+
 	private SignUpListener _listener;
+	private LoginListener _autoLoginListener;
 
 }
