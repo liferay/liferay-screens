@@ -15,18 +15,23 @@
 package com.liferay.mobile.screens.themes.ddl.form.fields;
 
 import android.content.Context;
+import android.text.Editable;
 import android.util.AttributeSet;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.liferay.mobile.screens.ddl.model.BooleanField;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
+import com.liferay.mobile.screens.themes.R;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFieldCheckboxView extends Switch
-	implements DDLFieldViewModel<BooleanField>, CompoundButton.OnCheckedChangeListener {
+public class DDLFieldCheckboxView extends LinearLayout
+		implements DDLFieldViewModel<BooleanField>, CompoundButton.OnCheckedChangeListener {
 
 	public DDLFieldCheckboxView(Context context) {
 		super(context);
@@ -50,12 +55,12 @@ public class DDLFieldCheckboxView extends Switch
 		_field = field;
 
 		if (_field.isShowLabel()) {
-			setHint("");
-			setText(_field.getLabel());
+			_switch.setHint("");
+			_switch.setText(_field.getLabel());
 		}
 		else {
-			setHint(_field.getLabel());
-			setText("");
+			_switch.setHint(_field.getLabel());
+			_switch.setText("");
 		}
 
 		refresh();
@@ -63,7 +68,7 @@ public class DDLFieldCheckboxView extends Switch
 
 	@Override
 	public void refresh() {
-		this.setChecked(_field.getCurrentValue());
+		_switch.setChecked(_field.getCurrentValue());
 	}
 
 	@Override
@@ -82,9 +87,15 @@ public class DDLFieldCheckboxView extends Switch
 
 		setSaveEnabled(false);
 
-		setOnCheckedChangeListener(this);
+
+		_switch = (Switch) findViewById(R.id.default_switch);
+
+		_switch.setOnCheckedChangeListener(this);
 	}
 
 	private BooleanField _field;
+
+
+	private Switch _switch;
 
 }

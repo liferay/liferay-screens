@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldCheckboxView
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" />
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <Switch
+        android:id="@+id/default_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/default_edit_text_padding"
+        android:paddingTop="@dimen/default_edit_text_padding"/>
+
+    <View
+        style="@style/default_form_divider"/>
+
+</com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldCheckboxView>

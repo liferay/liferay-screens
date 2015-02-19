@@ -76,7 +76,7 @@ public class DDLFieldRadioView extends RadioGroup
 			// TODO find an id to avoid collisions
 			radioButton.setId(10 + i);
 
-			addView(radioButton);
+			addView(radioButton, getChildCount() - 1);
 		}
 
 		refresh();
