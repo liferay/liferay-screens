@@ -120,9 +120,9 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	public void onDDLFormAddRecordFailed(Exception e) {
+	public void onDDLFormRecordAddFailed(Exception e) {
 		if (_listener != null) {
-			_listener.onDDLFormAddRecordFailed(e);
+			_listener.onDDLFormRecordAddFailed(e);
 		}
 	}
 
@@ -344,7 +344,7 @@ public class DDLFormScreenlet
 				addInteractor.addRecord(_groupId, _record);
 			}
 			catch (Exception e) {
-				onDDLFormAddRecordFailed(e);
+				onDDLFormRecordAddFailed(e);
 			}
 		}
 		else if (_UPDATE_RECORD_ACTION.equals(userActionName)) {

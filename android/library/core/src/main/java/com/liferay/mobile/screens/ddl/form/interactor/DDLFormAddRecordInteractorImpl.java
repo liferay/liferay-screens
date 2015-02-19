@@ -57,7 +57,7 @@ public class DDLFormAddRecordInteractorImpl
 		}
 
 		if (event.isFailed()) {
-			getListener().onDDLFormAddRecordFailed(event.getException());
+			getListener().onDDLFormRecordAddFailed(event.getException());
 		}
 		else {
 			try {
@@ -68,7 +68,7 @@ public class DDLFormAddRecordInteractorImpl
 				getListener().onDDLFormRecordAdded(event.getRecord());
 			}
 			catch (JSONException e) {
-				getListener().onDDLFormAddRecordFailed(event.getException());
+				getListener().onDDLFormRecordAddFailed(event.getException());
 			}
 		}
 	}

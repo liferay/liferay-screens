@@ -33,7 +33,7 @@ public interface DDLFormListener {
 
 	void onDDLFormRecordLoadFailed(Exception e);
 
-	void onDDLFormAddRecordFailed(Exception e);
+	void onDDLFormRecordAddFailed(Exception e);
 
 	void onDDLFormUpdateRecordFailed(Exception e);
 
