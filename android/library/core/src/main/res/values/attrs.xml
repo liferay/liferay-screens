@@ -11,6 +11,8 @@
 	<attr name="companyId" format="integer" />
 	<attr name="groupId" format="integer" />
 	<attr name="layoutId" format="reference" />
+	<attr name="userId" format="integer" />
+
 
 	<declare-styleable name="AssetListScreenlet">
 		<attr name="layoutId" />
@@ -65,6 +67,6 @@
 		<attr name="male" format="boolean" />
 		<attr name="portraitId" format="integer" />
 		<attr name="uuid" format="string" />
-		<attr name="userId" format="integer" />
+		<attr name="userId" />
 	</declare-styleable>
 </resources>
