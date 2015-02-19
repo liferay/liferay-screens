@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldRadioView
+    style="@style/default_font"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
+        style="@style/default_text_view"
         android:visibility="gone"/>
 
     <View

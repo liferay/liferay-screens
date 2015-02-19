@@ -4,6 +4,7 @@
     <dimen name="default_button_margin_top">40dp</dimen>
     <dimen name="default_screenlet_padding">50dp</dimen>
     <dimen name="default_list_left_padding">15dp</dimen>
+    <dimen name="default_text_view_padding">10dp</dimen>
     <dimen name="default_edit_text_padding">10dp</dimen>
     <dimen name="default_edit_text_drawable_padding">15dp</dimen>
     <dimen name="default_edit_text_margin_bottom">10dp</dimen>

@@ -9,7 +9,7 @@
 
     <style name="default_edit_text" parent="base_default_edit_text"/>
 
-    <style name="base_default_edit_text" parent="android:Widget.TextView">
+    <style name="base_default_edit_text" parent="android:Widget.EditText">
         <item name="android:layout_marginBottom">@dimen/default_edit_text_margin_bottom</item>
         <item name="android:background">@drawable/default_edit_text_selector</item>
         <item name="android:drawablePadding">@dimen/default_edit_text_drawable_padding</item>
@@ -21,6 +21,17 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:singleLine">true</item>
         <item name="android:textColorHint">@color/liferay_light_gray</item>
+    </style>
+
+    <style name="default_text_view" parent="base_default_text_view"/>
+
+    <style name="base_default_text_view" parent="android:Widget.TextView">
+        <item name="android:paddingBottom">@dimen/default_text_view_padding</item>
+        <item name="android:paddingLeft">@dimen/default_text_view_padding</item>
+        <item name="android:paddingRight">@dimen/default_text_view_padding</item>
+        <item name="android:paddingTop">@dimen/default_text_view_padding</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="default_submit_button" parent="base_default_submit_button"/>
