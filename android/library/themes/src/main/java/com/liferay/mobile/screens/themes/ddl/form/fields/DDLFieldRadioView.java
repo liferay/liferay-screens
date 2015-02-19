@@ -24,9 +24,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
 import com.liferay.mobile.screens.themes.R;
+import com.liferay.mobile.screens.util.ViewUtil;
 
 import java.util.List;
 
@@ -76,8 +78,7 @@ public class DDLFieldRadioView extends RadioGroup
 			radioButton.setOnCheckedChangeListener(this);
 			radioButton.setTypeface(getTypeface());
 
-			// TODO find an id to avoid collisions
-			radioButton.setId(10 + i);
+			radioButton.setId(ViewUtil._generateUniqueId());
 
 			addView(radioButton, getChildCount() - 1);
 		}

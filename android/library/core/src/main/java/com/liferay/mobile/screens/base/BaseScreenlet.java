@@ -28,6 +28,7 @@ import android.widget.FrameLayout;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.util.ViewUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,7 +62,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	public int getScreenletId() {
 		if (_screenletId == 0) {
-			_screenletId = _generateScreenletId();
+			_screenletId = ViewUtil._generateUniqueId();
 		}
 
 		return _screenletId;
@@ -174,26 +175,9 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	protected abstract void onUserAction(String userActionName, I interactor);
 
-	private static int _generateScreenletId() {
-
-		// This implementation is copied from View.generateViewId() method We
-		// cannot rely on that method because it's introduced in API Level 17
-
-		while (true) {
-			final int result = sNextScreenletId.get();
-			int newValue = result + 1;
-
-			if (sNextScreenletId.compareAndSet(result, newValue)) {
-				return result;
-			}
-		}
-	}
-
 	private static final String _STATE_SCREENLET_ID = "basescreenlet-screenletId";
 
 	private static final String _STATE_SUPER = "basescreenlet-super";
-
-	private static final AtomicInteger sNextScreenletId = new AtomicInteger(1);
 
 	private Map<String,I> _interactors = new HashMap<>();
 	private int _screenletId;
