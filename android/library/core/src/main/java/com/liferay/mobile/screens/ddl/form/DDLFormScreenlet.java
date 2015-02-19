@@ -60,6 +60,15 @@ public class DDLFormScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
+	public void load() {
+		if (_record.getRecordId() == 0) {
+			loadForm();
+		}
+		else {
+			loadRecord();
+		}
+	}
+
 	public void loadForm() {
 		performUserAction(_LOAD_FORM_ACTION);
 	}
@@ -84,6 +93,11 @@ public class DDLFormScreenlet
 
 		if (_listener != null) {
 			_listener.onDDLFormLoaded(record);
+		}
+
+		if (_loadRecordAfterForm) {
+			_loadRecordAfterForm = false;
+			loadRecord();
 		}
 	}
 
@@ -185,12 +199,7 @@ public class DDLFormScreenlet
 			result = new DDLFormLoadInteractorImpl(getScreenletId());
 		}
 		else if (_LOAD_RECORD_ACTION.equals(actionName)) {
-			if (_record.isRecordStructurePresent()) {
-				result = new DDLFormLoadRecordInteractorImpl(getScreenletId());
-			}
-			else {
-				// TODO request both structure and data
-			}
+			result = new DDLFormLoadRecordInteractorImpl(getScreenletId());
 		}
 		else if (_ADD_RECORD_ACTION.equals(actionName)) {
 			result = new DDLFormAddRecordInteractorImpl(getScreenletId());
@@ -322,7 +331,9 @@ public class DDLFormScreenlet
 				}
 			}
 			else {
-				// TODO request both structure and data
+				// request both structure and data
+				_loadRecordAfterForm = true;
+				loadForm();
 			}
 		}
 		else if (_ADD_RECORD_ACTION.equals(userActionName)) {
@@ -446,5 +457,7 @@ public class DDLFormScreenlet
 	private Record _record;
 
 	private DDLFormListener _listener;
+
+	private boolean _loadRecordAfterForm;
 
 }
