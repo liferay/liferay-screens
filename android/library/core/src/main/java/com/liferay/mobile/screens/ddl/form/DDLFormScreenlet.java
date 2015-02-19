@@ -102,13 +102,14 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	public void onDDLFormRecordLoaded(Record record) {
+	public void onDDLFormLoadFailed(Exception e) {
 		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.setRecordValues(record);
+		view.setRecordFields(null);
 
 		if (_listener != null) {
-			_listener.onDDLFormRecordLoaded(record);
+			_listener.onDDLFormLoadFailed(e);
 		}
+		_loadRecordAfterForm = false;
 	}
 
 	@Override
@@ -119,19 +120,19 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	public void onDDLFormRecordUpdated(Record record) {
+	public void onDDLFormAddRecordFailed(Exception e) {
 		if (_listener != null) {
-			_listener.onDDLFormRecordUpdated(record);
+			_listener.onDDLFormAddRecordFailed(e);
 		}
 	}
 
 	@Override
-	public void onDDLFormLoadFailed(Exception e) {
+	public void onDDLFormRecordLoaded(Record record) {
 		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.setRecordFields(null);
+		view.setRecordValues(record);
 
 		if (_listener != null) {
-			_listener.onDDLFormLoadFailed(e);
+			_listener.onDDLFormRecordLoaded(record);
 		}
 	}
 
@@ -146,9 +147,9 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	public void onDDLFormAddRecordFailed(Exception e) {
+	public void onDDLFormRecordUpdated(Record record) {
 		if (_listener != null) {
-			_listener.onDDLFormAddRecordFailed(e);
+			_listener.onDDLFormRecordUpdated(record);
 		}
 	}
 
