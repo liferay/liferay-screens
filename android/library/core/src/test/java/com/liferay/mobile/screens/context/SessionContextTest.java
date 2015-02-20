@@ -31,7 +31,7 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import static com.liferay.mobile.screens.context.storage.SessionStorageFactory.StorageType.SHARED_PREFERENCES;
+import static com.liferay.mobile.screens.context.storage.SessionStoreFactory.StorageType.SHARED_PREFERENCES;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;
