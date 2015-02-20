@@ -80,6 +80,10 @@ public class SessionContext {
 		return _user;
 	}
 
+	public static String getStoreName() {
+		return "liferay-screens-" + LiferayServerContext.getServer();
+	}
+
 	public static void storeSession(StorageType storage) {
 		if (LiferayScreensContext.getContext() == null) {
 			throw new IllegalStateException("LiferayScreensContext has to be init");
@@ -109,7 +113,7 @@ public class SessionContext {
 
 			SharedPreferences sharedPref =
 				LiferayScreensContext.getContext().getSharedPreferences(
-					"liferay-screens", Context.MODE_PRIVATE);
+					getStoreName(), Context.MODE_PRIVATE);
 
 			storeSession(sharedPref);
 		}
