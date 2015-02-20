@@ -8,6 +8,12 @@
 		<enum name="screen_name" value="1" />
 		<enum name="user_id" value="2" />
 	</attr>
+	<attr name="credentialsStore" format="enum">
+		<enum name="none" value="0" />
+		<enum name="auto" value="1" />
+		<enum name="shared_preferences" value="2" />
+		<enum name="account_manager" value="3" />
+	</attr>
 	<attr name="companyId" format="integer" />
 	<attr name="groupId" format="integer" />
 	<attr name="layoutId" format="reference" />
@@ -45,6 +51,7 @@
 		<attr name="layoutId" />
 		<attr name="authMethod" />
 		<attr name="companyId" />
+		<attr name="credentialsStore" />
 	</declare-styleable>
 
 	<declare-styleable name="SignUpScreenlet">

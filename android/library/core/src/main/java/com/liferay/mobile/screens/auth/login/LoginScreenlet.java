@@ -28,6 +28,8 @@ import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.context.storage.SessionStoreFactory;
 
 import org.json.JSONObject;
 
@@ -85,6 +87,10 @@ public class LoginScreenlet
 		if (_listener != null) {
 			_listener.onLoginSuccess(userAttributes);
 		}
+
+		if (_credentialsStore != CREDENTIAL_STORE_NONE) {
+			SessionContext.storeSession(SessionStoreFactory.StorageType.valueOf(_credentialsStore));
+		}
 	}
 
 	@Override
@@ -114,9 +120,16 @@ public class LoginScreenlet
 		_authMethod = authMethod;
 	}
 
+	public int getCredentialsStore() {
+		return _credentialsStore;
+	}
+
+	public void setCredentialsStore(int value) {
+		_credentialsStore = value;
+	}
+
 	@Override
-	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
+	protected View createScreenletView(Context context, AttributeSet attributes) {
 
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.LoginScreenlet, 0, 0);
@@ -126,19 +139,24 @@ public class LoginScreenlet
 
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
 
-		int authMethodId = typedArray.getInt(
-			R.styleable.LoginScreenlet_authMethod, 0);
+		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
 
 		LoginViewModel viewModel = (LoginViewModel) view;
 		_authMethod = AuthMethod.getValue(authMethodId);
 		viewModel.setAuthMethod(_authMethod);
+
+		_credentialsStore = typedArray.getInt(R.styleable.LoginScreenlet_credentialsStore,
+			CREDENTIAL_STORE_NONE);
 
 		typedArray.recycle();
 
 		return view;
 	}
 
+	private static final int CREDENTIAL_STORE_NONE = 0;
+
 	private LoginListener _listener;
 	private AuthMethod _authMethod;
+	private int _credentialsStore;
 
 }
