@@ -27,7 +27,7 @@ import com.liferay.mobile.screens.context.User;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static android.Manifest.permission.ACCOUNT_MANAGER;
+import static android.Manifest.permission.MANAGE_ACCOUNTS;
 import static android.Manifest.permission.AUTHENTICATE_ACCOUNTS;
 import static android.Manifest.permission.GET_ACCOUNTS;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
@@ -104,7 +104,7 @@ public class SessionStoreAccountManager implements SessionStore {
 
 		int getAccounts = packageMgr.checkPermission(GET_ACCOUNTS, packageName);
 		int authenticateAccounts = packageMgr.checkPermission(AUTHENTICATE_ACCOUNTS, packageName);
-		int manageAccounts = packageMgr.checkPermission(ACCOUNT_MANAGER, packageName);
+		int manageAccounts = packageMgr.checkPermission(MANAGE_ACCOUNTS, packageName);
 
 		return getAccounts == PERMISSION_GRANTED
 			&& authenticateAccounts == PERMISSION_GRANTED
