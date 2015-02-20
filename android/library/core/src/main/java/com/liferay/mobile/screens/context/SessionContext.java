@@ -22,6 +22,8 @@ import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
+import com.liferay.mobile.screens.context.storage.SessionStorage;
+import com.liferay.mobile.screens.context.storage.SessionStoreSharedPreferences;
 
 import org.json.JSONObject;
 
@@ -95,6 +97,8 @@ public class SessionContext {
 			throw new IllegalStateException("You need to set user attributes to store the session");
 		}
 
+		SessionStorage storage;
+
 		boolean permissionGranted = isAccountManagerPermissionGranted();
 
 		if (storageType == StorageType.ACCOUNT_MANAGER
@@ -107,31 +111,14 @@ public class SessionContext {
 			}
 
 			// TODO store in AccountManager
+			storage = null;
 		}
-
-			SharedPreferences sharedPref =
-				LiferayScreensContext.getContext().getSharedPreferences(
-					getStoreName(), Context.MODE_PRIVATE);
-
-			storeSession(sharedPref);
 		else {
+			storage = new SessionStoreSharedPreferences(
+				LiferayScreensContext.getContext(), getStoreName());
 		}
-	}
 
-	protected static void storeSession(SharedPreferences sharedPref) {
-		BasicAuthentication basicAuth =
-			(BasicAuthentication) _session.getAuthentication();
-
-		SharedPreferences.Editor editor = sharedPref.edit();
-
-		editor.putString("username", basicAuth.getUsername());
-		editor.putString("password", basicAuth.getPassword());
-		editor.putString("attributes", _user.toString());
-		editor.putString("server", LiferayServerContext.getServer());
-		editor.putLong("groupId", LiferayServerContext.getGroupId());
-		editor.putLong("companyId", LiferayServerContext.getCompanyId());
-
-		editor.commit();
+		storage.storeSession();
 	}
 
 	protected static boolean isAccountManagerPermissionGranted() {
