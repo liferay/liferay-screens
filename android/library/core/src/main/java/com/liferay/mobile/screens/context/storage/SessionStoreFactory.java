@@ -88,7 +88,7 @@ public class SessionStoreFactory {
 
 			if (!_accountManagerPermissionsGranted) {
 				throw new IllegalStateException("You need to grant " +
-					"GET_ACCOUNTS, AUTHENTICATE_ACCOUNTS and ACCOUNT_MANAGER permissions in your " +
+					"GET_ACCOUNTS, AUTHENTICATE_ACCOUNTS and MANAGE_ACCOUNTS permissions in your " +
 					"manifest in order to store the session in the AccountManager");
 			}
 		}
