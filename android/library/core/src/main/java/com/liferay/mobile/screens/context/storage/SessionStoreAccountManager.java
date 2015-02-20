@@ -14,12 +14,18 @@
 
 package com.liferay.mobile.screens.context.storage;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.User;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static android.Manifest.permission.ACCOUNT_MANAGER;
 import static android.Manifest.permission.AUTHENTICATE_ACCOUNTS;
@@ -33,11 +39,47 @@ public class SessionStoreAccountManager implements SessionStore {
 
 	@Override
 	public void storeSession() {
+		if (_accountManager == null) {
+			throw new IllegalStateException("You need to set the context");
+		}
+		if (_auth == null) {
+			throw new IllegalStateException("You need to be logged in to store the session");
+		}
+		if (_user == null) {
+			throw new IllegalStateException("You need to set user attributes to store the session");
+		}
+
+		Account account = getUserAccount(_auth.getUsername());
+		if (account == null) {
+			Bundle userData = new Bundle();
+			userData.putString("attributes", _user.toString());
+			userData.putString("server", LiferayServerContext.getServer());
+			userData.putLong("groupId", LiferayServerContext.getGroupId());
+			userData.putLong("companyId", LiferayServerContext.getCompanyId());
+
+			_accountManager.addAccountExplicitly(
+				new Account(_auth.getUsername(), getStoreName()), _auth.getPassword(), userData);
+		}
+		else {
+			_accountManager.setUserData(account, "attributes", _user.toString());
+			_accountManager.setUserData(account, "server", LiferayServerContext.getServer());
+			_accountManager.setUserData(account, "groupId", String.valueOf(LiferayServerContext.getGroupId()));
+			_accountManager.setUserData(account, "companyId", String.valueOf(LiferayServerContext.getCompanyId()));
+
+			_accountManager.setPassword(account, _auth.getPassword());
+		}
 	}
 
 	@Override
 	public String getStoreName() {
-		return "liferay-screens-" + LiferayServerContext.getServer();
+		try {
+			URL url = new URL(LiferayServerContext.getServer());
+			return "liferay-screens-" + url.getHost() + "-" + url.getPort();
+		}
+		catch (MalformedURLException e) {
+		}
+
+		return "liferay-screens";
 	}
 
 	@Override
@@ -52,7 +94,8 @@ public class SessionStoreAccountManager implements SessionStore {
 
 	@Override
 	public void setContext(Context ctx) {
-		_ctx = ctx;
+		_accountManager = AccountManager.get(ctx);
+
 	}
 
 	public static boolean isPermissionGranted(Context ctx) {
@@ -68,9 +111,20 @@ public class SessionStoreAccountManager implements SessionStore {
 			&& manageAccounts == PERMISSION_GRANTED;
 	}
 
+	protected Account getUserAccount(String userName) {
+		Account[] accounts = _accountManager.getAccountsByType(getStoreName());
+
+		for (Account account : accounts) {
+			if (account.name.equals(userName)) {
+				return account;
+			}
+		}
+
+		return null;
+	}
 
 	private BasicAuthentication _auth;
 	private User _user;
-	private Context _ctx;
+	private AccountManager _accountManager;
 
 }
