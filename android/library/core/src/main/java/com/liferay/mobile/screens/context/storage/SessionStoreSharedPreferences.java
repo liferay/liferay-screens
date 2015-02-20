@@ -14,33 +14,17 @@
 
 package com.liferay.mobile.screens.context.storage;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
 
-import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
-import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.service.SessionImpl;
-import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.context.User;
-
-import org.json.JSONObject;
-
-import static android.Manifest.permission.ACCOUNT_MANAGER;
-import static android.Manifest.permission.AUTHENTICATE_ACCOUNTS;
-import static android.Manifest.permission.GET_ACCOUNTS;
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class SessionStoreSharedPreferences implements SessionStorage {
+public class SessionStoreSharedPreferences implements SessionStore {
 
 	public SessionStoreSharedPreferences(Context ctx) {
 		_sharedPref = ctx.getSharedPreferences(getStoreName(), Context.MODE_PRIVATE);

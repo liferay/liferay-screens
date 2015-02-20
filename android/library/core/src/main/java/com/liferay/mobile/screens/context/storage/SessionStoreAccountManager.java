@@ -15,13 +15,9 @@
 package com.liferay.mobile.screens.context.storage;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 
-import com.liferay.mobile.android.auth.basic.BasicAuthentication;
-import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.context.SessionContext;
 
 import static android.Manifest.permission.ACCOUNT_MANAGER;
 import static android.Manifest.permission.AUTHENTICATE_ACCOUNTS;
@@ -31,7 +27,7 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 /**
  * @author Jose Manuel Navarro
  */
-public class SessionStoreAccountManager implements SessionStorage {
+public class SessionStoreAccountManager implements SessionStore {
 
 	public SessionStoreAccountManager(Context ctx) {
 		_ctx = ctx;
