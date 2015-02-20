@@ -21,6 +21,9 @@ import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.User;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
  * @author Jose Manuel Navarro
  */
@@ -52,7 +55,14 @@ public class SessionStoreSharedPreferences implements SessionStore {
 
 	@Override
 	public String getStoreName() {
-		return "liferay-screens-" + LiferayServerContext.getServer();
+		try {
+			URL url = new URL(LiferayServerContext.getServer());
+			return "liferay-screens-" + url.getHost() + "-" + url.getPort();
+		}
+		catch (MalformedURLException e) {
+		}
+
+		return "liferay-screens";
 	}
 
 	@Override
