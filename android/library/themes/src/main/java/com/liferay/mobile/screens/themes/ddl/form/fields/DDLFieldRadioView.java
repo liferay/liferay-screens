@@ -129,8 +129,11 @@ public class DDLFieldRadioView extends RadioGroup
 		RadioButton radioButton = (RadioButton) buttonView;
 
 		StringWithOptionsField.Option opt = (StringWithOptionsField.Option) radioButton.getTag();
-
-		_field.selectOption(opt);
+		if (isChecked) {
+			_field.selectOption(opt);
+		} else {
+			_field.clearOption(opt);
+		}
 	}
 
 	private Typeface getTypeface() {
