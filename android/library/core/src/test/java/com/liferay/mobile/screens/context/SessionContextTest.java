@@ -19,6 +19,7 @@ import android.content.SharedPreferences;
 
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.screens.context.storage.SessionStoreSharedPreferences;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +31,7 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import static com.liferay.mobile.screens.context.SessionContext.StorageType.*;
+import static com.liferay.mobile.screens.context.storage.SessionStorageFactory.StorageType.SHARED_PREFERENCES;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;
@@ -196,8 +197,10 @@ public class SessionContextTest {
 
 			SessionContext.storeSession(SHARED_PREFERENCES);
 
+			String sharedPreferencesName = new SessionStoreSharedPreferences(ctx).getStoreName();
+
 			SharedPreferences sharedPref =
-				ctx.getSharedPreferences(SessionContext.getStoreName(), Context.MODE_PRIVATE);
+				ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
 
 			assertEquals("user123", sharedPref.getString("username", "not-present"));
 			assertEquals("pass123", sharedPref.getString("password", "not-present"));

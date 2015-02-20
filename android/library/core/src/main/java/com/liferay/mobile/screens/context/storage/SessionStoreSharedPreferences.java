@@ -42,10 +42,11 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
  */
 public class SessionStoreSharedPreferences implements SessionStorage {
 
-	public SessionStoreSharedPreferences(Context ctx, String sharedPreferencesName) {
-		_sharedPref = ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
+	public SessionStoreSharedPreferences(Context ctx) {
+		_sharedPref = ctx.getSharedPreferences(getStoreName(), Context.MODE_PRIVATE);
 	}
 
+	@Override
 	public void storeSession() {
 		BasicAuthentication auth = SessionContext.getAuthentication();
 
@@ -66,6 +67,11 @@ public class SessionStoreSharedPreferences implements SessionStorage {
 		editor.putLong("companyId", LiferayServerContext.getCompanyId());
 
 		editor.commit();
+	}
+
+	@Override
+	public String getStoreName() {
+		return "liferay-screens-" + LiferayServerContext.getServer();
 	}
 
 	private static SharedPreferences _sharedPref;

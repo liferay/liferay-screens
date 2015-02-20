@@ -23,5 +23,6 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
 public interface SessionStorage extends BaseViewModel {
 
 	public void storeSession();
+	public String getStoreName();
 
 }
