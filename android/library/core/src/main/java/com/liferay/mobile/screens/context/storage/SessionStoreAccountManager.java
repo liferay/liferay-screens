@@ -17,7 +17,9 @@ package com.liferay.mobile.screens.context.storage;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
+import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.User;
 
 import static android.Manifest.permission.ACCOUNT_MANAGER;
 import static android.Manifest.permission.AUTHENTICATE_ACCOUNTS;
@@ -29,10 +31,6 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
  */
 public class SessionStoreAccountManager implements SessionStore {
 
-	public SessionStoreAccountManager(Context ctx) {
-		_ctx = ctx;
-	}
-
 	@Override
 	public void storeSession() {
 	}
@@ -40,6 +38,21 @@ public class SessionStoreAccountManager implements SessionStore {
 	@Override
 	public String getStoreName() {
 		return "liferay-screens-" + LiferayServerContext.getServer();
+	}
+
+	@Override
+	public void setAuthentication(BasicAuthentication auth) {
+		_auth = auth;
+	}
+
+	@Override
+	public void setUser(User user) {
+		_user = user;
+	}
+
+	@Override
+	public void setContext(Context ctx) {
+		_ctx = ctx;
 	}
 
 	public static boolean isPermissionGranted(Context ctx) {
@@ -56,6 +69,8 @@ public class SessionStoreAccountManager implements SessionStore {
 	}
 
 
+	private BasicAuthentication _auth;
+	private User _user;
 	private Context _ctx;
 
 }

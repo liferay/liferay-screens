@@ -89,24 +89,34 @@ public class SessionStoreFactory {
 			throw new IllegalStateException("You must call setUser() before");
 		}
 
+		SessionStore sessionStore;
+
 		switch (_storageType) {
 			case ACCOUNT_MANAGER:
-				return new SessionStoreAccountManager(_ctx);
+				sessionStore = new SessionStoreAccountManager();
+				break;
 
 			case SHARED_PREFERENCES:
-				return new SessionStoreSharedPreferences(_ctx);
+				sessionStore = new SessionStoreSharedPreferences();
+				break;
 
-			case AUTO:
+			default:
 				if (_accountManagerPermissionsGranted = null) {
 					_accountManagerPermissionsGranted =
 						SessionStoreAccountManager.isPermissionGranted(_ctx);
 				}
 
-				return (_accountManagerPermissionsGranted) ?
-					new SessionStoreAccountManager(_ctx) : new SessionStoreSharedPreferences(_ctx);
+				sessionStore = (_accountManagerPermissionsGranted) ?
+					new SessionStoreAccountManager() : new SessionStoreSharedPreferences();
+
+				break;
 		}
 
-		return null;
+		sessionStore.setContext(_ctx);
+		sessionStore.setAuthentication(_auth);
+		sessionStore.setUser(_user);
+
+		return sessionStore;
 	}
 
 	private BasicAuthentication _auth;

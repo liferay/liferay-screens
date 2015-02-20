@@ -14,8 +14,12 @@
 
 package com.liferay.mobile.screens.context.storage;
 
+import android.content.Context;
+
+import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.context.User;
 
 /**
  * @author Jose Manuel Navarro
@@ -24,5 +28,9 @@ public interface SessionStore extends BaseViewModel {
 
 	public void storeSession();
 	public String getStoreName();
+
+	public void setAuthentication(BasicAuthentication auth);
+	public void setUser(User user);
+	public void setContext(Context ctx);
 
 }
