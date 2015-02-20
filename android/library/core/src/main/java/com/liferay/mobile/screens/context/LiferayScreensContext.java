@@ -33,6 +33,13 @@ public class LiferayScreensContext {
 		LiferayServerContext.setServer(resources.getString(R.string.liferay_server));
 	}
 
+	/**
+	 * Only intented to be used in unit tests
+	 */
+	protected static void deinit() {
+		_context = null;
+	}
+
 	public static Context getContext() {
 		return _context;
 	}
