@@ -65,12 +65,14 @@ public class SessionStoreFactory {
 			throw new IllegalStateException("You must set the context before storageType");
 		}
 
-		_accountManagerPermissionsGranted = SessionStoreAccountManager.isPermissionGranted(_ctx);
+		if (storageType == StorageType.ACCOUNT_MANAGER) {
+			_accountManagerPermissionsGranted = SessionStoreAccountManager.isPermissionGranted(_ctx);
 
-		if (storageType == StorageType.ACCOUNT_MANAGER && !_accountManagerPermissionsGranted) {
-			throw new IllegalStateException("You need to grant " +
-				"GET_ACCOUNTS, AUTHENTICATE_ACCOUNTS and ACCOUNT_MANAGER permissions in your " +
-				"manifest in order to store the session in the AccountManager");
+			if (!_accountManagerPermissionsGranted) {
+				throw new IllegalStateException("You need to grant " +
+					"GET_ACCOUNTS, AUTHENTICATE_ACCOUNTS and ACCOUNT_MANAGER permissions in your " +
+					"manifest in order to store the session in the AccountManager");
+			}
 		}
 
 		_storageType = storageType;
