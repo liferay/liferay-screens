@@ -35,6 +35,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.assertSame;
 import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertNotNull;
 
@@ -78,6 +79,17 @@ public class SessionContextTest {
 			assertEquals(auth1.getPassword(), auth2.getPassword());
 
 			assertNotSame(_session, secondSession);
+		}
+
+		@Test
+		public void shouldReturnTheBasicAuthentication() throws Exception {
+			BasicAuthentication auth = SessionContext.getAuthentication();
+
+			assertNotNull(auth);
+			assertSame(_session.getAuthentication(), auth);
+
+			assertEquals("username", auth.getUsername());
+			assertEquals("password", auth.getPassword());
 		}
 
 		private Session _session;
