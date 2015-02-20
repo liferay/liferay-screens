@@ -87,11 +87,9 @@ public class DDLFormScreenletView
 		if (record == null) {
 			return;
 		}
-		_fieldIds = new ArrayList<>();
 		_fieldsContainerView.removeAllViews();
 
 		for (int i = 0; i < record.getFieldCount(); ++i) {
-			// We have to assign ids to onSave/onRestore methods be fired
 			addFieldView(record.getField(i));
 		}
 
@@ -104,8 +102,8 @@ public class DDLFormScreenletView
 
 	@Override
 	public void setRecordValues(Record record) {
-		for (Integer id : _fieldIds) {
-			DDLFieldViewModel viewModel = (DDLFieldViewModel) findViewById(id);
+		for (int i = 0; i < _fieldsContainerView.getChildCount(); i++) {
+			DDLFieldViewModel viewModel = (DDLFieldViewModel) _fieldsContainerView.getChildAt(i);
 			viewModel.refresh();
 		}
 	}
@@ -121,10 +119,10 @@ public class DDLFormScreenletView
 		DDLFormScreenlet screenlet = getDDLFormScreenlet();
 		Record record = screenlet.getRecord();
 
-		for (int i = 0; i < record.getFieldCount(); i++) {
+		for (int i = 0; i < _fieldsContainerView.getChildCount(); i++) {
 			Field field = record.getField(i);
 
-			View fieldView = findViewById(_fieldIds.get(i));
+			View fieldView = _fieldsContainerView.getChildAt(i);
 			boolean validField = field.isValid();
 
 			if (!validField) {
@@ -158,7 +156,6 @@ public class DDLFormScreenletView
 		LayoutInflater inflater = LayoutInflater.from(getContext());
 		View view = inflater.inflate(layoutId, this, false);
 		int id = ViewUtil._generateUniqueId();
-		_fieldIds.add(id);
 		view.setId(id);
 
 		DDLFieldViewModel viewModel = (DDLFieldViewModel)view;
@@ -188,6 +185,5 @@ public class DDLFormScreenletView
 	private ViewGroup _fieldsContainerView;
 	private Button _submitButton;
 	private Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
-	private List<Integer> _fieldIds = new ArrayList<>();
 
 }
