@@ -25,9 +25,27 @@ import com.liferay.mobile.screens.context.User;
 public class SessionStoreFactory {
 
 	public static enum StorageType {
-		AUTO,
-		SHARED_PREFERENCES,
-		ACCOUNT_MANAGER
+
+		// There values ar synch-ed with 'credentialStore' attr
+		AUTO(1),
+		SHARED_PREFERENCES(2),
+		ACCOUNT_MANAGER(3);
+
+		StorageType(int value) {
+			_value = value;
+		}
+
+		public static StorageType valueOf(int value) {
+			for (StorageType s : StorageType.values()) {
+				if (s._value == value) {
+					return s;
+				}
+			}
+
+			return AUTO;
+		}
+
+		private int _value;
 	}
 
 	public SessionStoreFactory setAuthentication(BasicAuthentication auth) {
