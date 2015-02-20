@@ -24,7 +24,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
 import com.liferay.mobile.screens.themes.R;
@@ -71,15 +70,13 @@ public class DDLFieldRadioView extends RadioGroup
 			StringWithOptionsField.Option opt = availableOptions.get(i);
 
 			RadioButton radioButton = new RadioButton(getContext());
-
 			radioButton.setLayoutParams(layoutParams);
 			radioButton.setText(opt.label);
 			radioButton.setTag(opt);
 			radioButton.setOnCheckedChangeListener(this);
 			radioButton.setTypeface(getTypeface());
-
+			radioButton.setSaveEnabled(true);
 			radioButton.setId(ViewUtil._generateUniqueId());
-
 			addView(radioButton, getChildCount() - 1);
 		}
 
@@ -108,7 +105,6 @@ public class DDLFieldRadioView extends RadioGroup
 		}
 		if (_field.isShowLabel()) {
 			TextView label = (TextView) findViewById(R.id.label);
-
 			label.setError(getContext().getString(R.string.required_value));
 		}
 		else {
@@ -125,7 +121,7 @@ public class DDLFieldRadioView extends RadioGroup
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		setSaveEnabled(false);
+		setSaveEnabled(true);
 	}
 
 	@Override

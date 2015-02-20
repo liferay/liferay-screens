@@ -155,11 +155,11 @@ public class DDLFormScreenletView
 
 		LayoutInflater inflater = LayoutInflater.from(getContext());
 		View view = inflater.inflate(layoutId, this, false);
-		int id = ViewUtil._generateUniqueId();
-		view.setId(id);
 
 		DDLFieldViewModel viewModel = (DDLFieldViewModel)view;
 		viewModel.setField(field);
+		//We need to generate an id to allow Android to call the onSave and onRestore of the fields
+		view.setId(ViewUtil._generateUniqueId());
 
 		_fieldsContainerView.addView(view);
 	}
