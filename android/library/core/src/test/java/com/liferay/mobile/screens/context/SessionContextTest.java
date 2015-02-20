@@ -160,6 +160,7 @@ public class SessionContextTest {
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
+			SessionContext.clearSession(); // to clean user
 			SessionContext.createSession("user123", "pass123");
 
 			Context ctx = Robolectric.getShadowApplication().getApplicationContext();
@@ -181,7 +182,7 @@ public class SessionContextTest {
 			SessionContext.storeSession(SHARED_PREFERENCES);
 
 			SharedPreferences sharedPref =
-				ctx.getSharedPreferences("liferay-screens", Context.MODE_PRIVATE);
+				ctx.getSharedPreferences(SessionContext.getStoreName(), Context.MODE_PRIVATE);
 
 			assertEquals("user123", sharedPref.getString("username", "not-present"));
 			assertEquals("pass123", sharedPref.getString("password", "not-present"));
