@@ -36,7 +36,7 @@ public class LiferayScreensContext {
 	/**
 	 * Only intented to be used in unit tests
 	 */
-	protected static void deinit() {
+	public static void deinit() {
 		_context = null;
 	}
 
