@@ -152,6 +152,8 @@ public class SessionContextTest {
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
+			LiferayScreensContext.deinit();
+
 			SessionContext.createSession("user123", "pass123");
 
 			SessionContext.setUserAttributes(new JSONObject().put("userId", 123));
@@ -164,19 +166,20 @@ public class SessionContextTest {
 			Context ctx = Robolectric.getShadowApplication().getApplicationContext();
 			LiferayScreensContext.init(ctx);
 
+			SessionContext.clearSession();
+
 			SessionContext.setUserAttributes(new JSONObject().put("userId", 123));
 
-			SessionContext.clearSession();
 			SessionContext.storeSession(SHARED_PREFERENCES);
 		}
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
-			SessionContext.clearSession(); // to clean user
-			SessionContext.createSession("user123", "pass123");
-
 			Context ctx = Robolectric.getShadowApplication().getApplicationContext();
 			LiferayScreensContext.init(ctx);
+
+			SessionContext.clearSession(); // to clean user
+			SessionContext.createSession("user123", "pass123");
 
 			SessionContext.storeSession(SHARED_PREFERENCES);
 		}
