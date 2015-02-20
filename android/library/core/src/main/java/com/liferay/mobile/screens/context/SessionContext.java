@@ -72,6 +72,10 @@ public class SessionContext {
 		_user = new User(userAttributes);
 	}
 
+	public static BasicAuthentication getAuthentication() {
+		return (_session == null) ? null : (BasicAuthentication) _session.getAuthentication();
+	}
+
 	public static User getUser() {
 		return _user;
 	}
