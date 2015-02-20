@@ -14,34 +14,19 @@
 
 package com.liferay.mobile.screens.context;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
-import com.liferay.mobile.screens.context.storage.SessionStorage;
-import com.liferay.mobile.screens.context.storage.SessionStoreSharedPreferences;
+import com.liferay.mobile.screens.context.storage.SessionStore;
+import com.liferay.mobile.screens.context.storage.SessionStoreFactory;
 
 import org.json.JSONObject;
-
-import static android.Manifest.permission.ACCOUNT_MANAGER;
-import static android.Manifest.permission.AUTHENTICATE_ACCOUNTS;
-import static android.Manifest.permission.GET_ACCOUNTS;
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 /**
  * @author Silvio Santos
  */
 public class SessionContext {
-
-	public static enum StorageType {
-		AUTO,
-		SHARED_PREFERENCES,
-		ACCOUNT_MANAGER
-	}
 
 	public static void clearSession() {
 		_session = null;
@@ -82,56 +67,24 @@ public class SessionContext {
 		return _user;
 	}
 
-	public static String getStoreName() {
-		return "liferay-screens-" + LiferayServerContext.getServer();
-	}
 
-	public static void storeSession(StorageType storageType) {
-		if (LiferayScreensContext.getContext() == null) {
-			throw new IllegalStateException("LiferayScreensContext has to be init");
-		}
-		if (_session == null) {
-			throw new IllegalStateException("You need to be logged in to store the session");
-		}
-		if (_user == null) {
-			throw new IllegalStateException("You need to set user attributes to store the session");
+	public static void storeSession(SessionStoreFactory.StorageType storageType) {
+		if (!hasSession()) {
+			throw new IllegalStateException("You must have a session created to store it");
 		}
 
-		SessionStorage storage;
+		SessionStore storage = new SessionStoreFactory()
+			.setContext(LiferayScreensContext.getContext())
+			.setAuthentication((BasicAuthentication) _session.getAuthentication())
+			.setUser(getUser())
+			.setStorageType(storageType)
+			.create();
 
-		boolean permissionGranted = isAccountManagerPermissionGranted();
-
-		if (storageType == StorageType.ACCOUNT_MANAGER
-			|| (storageType == StorageType.AUTO && permissionGranted)) {
-
-			if (!permissionGranted) {
-				throw new IllegalStateException("You need to grant " +
-					"GET_ACCOUNTS, AUTHENTICATE_ACCOUNTS and ACCOUNT_MANAGER permissions in your " +
-					"manifest in order to store the session in the AccountManager");
-			}
-
-			// TODO store in AccountManager
-			storage = null;
-		}
-		else {
-			storage = new SessionStoreSharedPreferences(
-				LiferayScreensContext.getContext(), getStoreName());
+		if (storage == null) {
+			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
 		}
 
 		storage.storeSession();
-	}
-
-	protected static boolean isAccountManagerPermissionGranted() {
-		PackageManager packageMgr = LiferayScreensContext.getContext().getPackageManager();
-		String packageName = LiferayScreensContext.getContext().getPackageName();
-
-		int getAccounts = packageMgr.checkPermission(GET_ACCOUNTS, packageName);
-		int authenticateAccounts = packageMgr.checkPermission(AUTHENTICATE_ACCOUNTS, packageName);
-		int manageAccounts = packageMgr.checkPermission(ACCOUNT_MANAGER, packageName);
-
-		return getAccounts == PERMISSION_GRANTED
-			&& authenticateAccounts == PERMISSION_GRANTED
-			&& manageAccounts == PERMISSION_GRANTED;
 	}
 
 	private static Session _session;
