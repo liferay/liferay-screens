@@ -88,7 +88,7 @@ public class SessionContext {
 		return "liferay-screens-" + LiferayServerContext.getServer();
 	}
 
-	public static void storeSession(StorageType storage) {
+	public static void storeSession(StorageType storageType) {
 		if (LiferayScreensContext.getContext() == null) {
 			throw new IllegalStateException("LiferayScreensContext has to be init");
 		}
@@ -101,8 +101,8 @@ public class SessionContext {
 
 		boolean permissionGranted = isAccountManagerPermissionGranted();
 
-		if (storage == StorageType.ACCOUNT_MANAGER
-			|| (storage == StorageType.AUTO && permissionGranted)) {
+		if (storageType == StorageType.ACCOUNT_MANAGER
+			|| (storageType == StorageType.AUTO && permissionGranted)) {
 
 			if (!permissionGranted) {
 				throw new IllegalStateException("You need to grant " +
@@ -112,14 +112,13 @@ public class SessionContext {
 
 			// TODO store in AccountManager
 		}
-		else if (storage == StorageType.SHARED_PREFERENCES
-			|| (storage == StorageType.AUTO && !permissionGranted)) {
 
 			SharedPreferences sharedPref =
 				LiferayScreensContext.getContext().getSharedPreferences(
 					getStoreName(), Context.MODE_PRIVATE);
 
 			storeSession(sharedPref);
+		else {
 		}
 	}
 
