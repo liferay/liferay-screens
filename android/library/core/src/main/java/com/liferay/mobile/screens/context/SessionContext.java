@@ -19,7 +19,7 @@ import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.context.storage.SessionStore;
-import com.liferay.mobile.screens.context.storage.SessionStoreFactory;
+import com.liferay.mobile.screens.context.storage.SessionStoreBuilder;
 
 import org.json.JSONObject;
 
@@ -68,17 +68,17 @@ public class SessionContext {
 	}
 
 
-	public static void storeSession(SessionStoreFactory.StorageType storageType) {
+	public static void storeSession(SessionStoreBuilder.StorageType storageType) {
 		if (!hasSession()) {
 			throw new IllegalStateException("You must have a session created to store it");
 		}
 
-		SessionStore storage = new SessionStoreFactory()
+		SessionStore storage = new SessionStoreBuilder()
 			.setContext(LiferayScreensContext.getContext())
 			.setAuthentication((BasicAuthentication) _session.getAuthentication())
 			.setUser(getUser())
 			.setStorageType(storageType)
-			.create();
+			.build();
 
 		if (storage == null) {
 			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
