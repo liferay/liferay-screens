@@ -15,16 +15,13 @@
 package com.liferay.mobile.screens.themes.ddl.form.fields;
 
 import android.content.Context;
-import android.text.Editable;
+import android.support.v7.widget.SwitchCompat;
 import android.util.AttributeSet;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Switch;
-import android.widget.TextView;
 
-import com.liferay.mobile.screens.ddl.model.BooleanField;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
+import com.liferay.mobile.screens.ddl.model.BooleanField;
 import com.liferay.mobile.screens.themes.R;
 
 /**
@@ -88,7 +85,7 @@ public class DDLFieldCheckboxView extends LinearLayout
 		setSaveEnabled(false);
 
 
-		_switch = (Switch) findViewById(R.id.default_switch);
+		_switch = (SwitchCompat) findViewById(R.id.default_switch);
 
 		_switch.setOnCheckedChangeListener(this);
 	}
@@ -96,6 +93,6 @@ public class DDLFieldCheckboxView extends LinearLayout
 	private BooleanField _field;
 
 
-	private Switch _switch;
+	private SwitchCompat _switch;
 
 }

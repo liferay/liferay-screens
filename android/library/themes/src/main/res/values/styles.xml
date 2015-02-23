@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="DefaultTheme" parent="Theme.AppCompat.Light">
-        <item name="android:textViewStyle">@style/default_edit_text</item>
+    <style name="default_theme" parent="Theme.AppCompat.Light">
+        <item name="android:textViewStyle">@style/default_text_view</item>
         <item name="android:buttonStyle">@style/default_submit_button</item>
         <item name="android:listViewStyle">@style/default_list</item>
+        <item name="colorAccent">@color/liferay_light_blue</item>
     </style>
 
     <style name="default_edit_text" parent="base_default_edit_text"/>
@@ -25,7 +26,7 @@
 
     <style name="default_text_view" parent="base_default_text_view"/>
 
-    <style name="base_default_text_view" parent="android:Widget.EditText">
+    <style name="base_default_text_view" parent="android:Widget.TextView">
         <item name="android:paddingBottom">@dimen/default_text_view_padding</item>
         <item name="android:paddingLeft">@dimen/default_text_view_padding</item>
         <item name="android:paddingRight">@dimen/default_text_view_padding</item>
