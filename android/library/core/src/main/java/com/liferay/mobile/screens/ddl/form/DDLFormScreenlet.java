@@ -160,6 +160,14 @@ public class DDLFormScreenlet
 		}
 	}
 
+	public boolean getAutoLoad() {
+		return _autoLoad;
+	}
+
+	public void setAutoLoad(boolean autoLoad) {
+		_autoLoad = autoLoad;
+	}
+
 	public boolean isAutoScrollOnValidation() {
 		return _autoScrollOnValidation;
 	}
@@ -221,6 +229,8 @@ public class DDLFormScreenlet
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.DDLFormScreenlet_layoutId, 0);
+
+		_autoLoad = typedArray.getBoolean(R.styleable.DDLFormScreenlet_autoLoad, false);
 
 		_autoScrollOnValidation = typedArray.getBoolean(
 			R.styleable.DDLFormScreenlet_autoScrollOnValidation, true);
@@ -407,6 +417,12 @@ public class DDLFormScreenlet
 		return state;
 	}
 
+	@Override
+	protected void onScreenletAttached() {
+		if (_autoLoad) {
+			load();
+		}
+	}
 
 	private static Map<Field.EditorType, String> _defaultLayoutNames;
 
@@ -447,6 +463,7 @@ public class DDLFormScreenlet
 	private static final String _STATE_USER_ID = "ddlform-userId";
 	private static final String _STATE_RECORD = "ddlform-record";
 
+	private boolean _autoLoad;
 	private boolean _autoScrollOnValidation;
 	private boolean _showSubmitButton;
 	private long _groupId;
