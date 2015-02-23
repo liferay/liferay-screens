@@ -22,7 +22,7 @@ import com.liferay.mobile.screens.context.User;
 /**
  * @author Jose Manuel Navarro
  */
-public class SessionStoreFactory {
+public class SessionStoreBuilder {
 
 	public static enum StorageType {
 
@@ -47,7 +47,7 @@ public class SessionStoreFactory {
 		private int _value;
 	}
 
-	public SessionStoreFactory setAuthentication(BasicAuthentication auth) {
+	public SessionStoreBuilder setAuthentication(BasicAuthentication auth) {
 		if (auth == null) {
 			throw new IllegalStateException("Authentication cannot be null. Make sure you have a session created");
 		}
@@ -57,7 +57,7 @@ public class SessionStoreFactory {
 		return this;
 	}
 
-	public SessionStoreFactory setUser(User user) {
+	public SessionStoreBuilder setUser(User user) {
 		if (user == null) {
 			throw new IllegalStateException("User cannot be null. Make sure you have a session created");
 		}
@@ -67,7 +67,7 @@ public class SessionStoreFactory {
 		return this;
 	}
 
-	public SessionStoreFactory setContext(Context ctx) {
+	public SessionStoreBuilder setContext(Context ctx) {
 		if (ctx == null) {
 			throw new IllegalStateException("Context cannot be null");
 		}
@@ -77,7 +77,7 @@ public class SessionStoreFactory {
 		return this;
 	}
 
-	public SessionStoreFactory setStorageType(StorageType storageType) {
+	public SessionStoreBuilder setStorageType(StorageType storageType) {
 		if (_ctx == null) {
 			throw new IllegalStateException("You must set the context before storageType");
 		}
@@ -87,7 +87,7 @@ public class SessionStoreFactory {
 		return this;
 	}
 
-	public SessionStore create() {
+	public SessionStore build() {
 		if (_ctx == null) {
 			throw new IllegalStateException("You must call setContext() before");
 		}

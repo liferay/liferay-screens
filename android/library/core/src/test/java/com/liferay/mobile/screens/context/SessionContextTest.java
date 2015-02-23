@@ -14,12 +14,8 @@
 
 package com.liferay.mobile.screens.context;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.context.storage.SessionStoreSharedPreferences;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,11 +23,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import static com.liferay.mobile.screens.context.storage.SessionStoreFactory.StorageType.SHARED_PREFERENCES;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;

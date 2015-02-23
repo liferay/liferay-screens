@@ -29,7 +29,7 @@ import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.context.storage.SessionStoreFactory;
+import com.liferay.mobile.screens.context.storage.SessionStoreBuilder;
 
 import org.json.JSONObject;
 
@@ -89,7 +89,7 @@ public class LoginScreenlet
 		}
 
 		if (_credentialsStore != CREDENTIAL_STORE_NONE) {
-			SessionContext.storeSession(SessionStoreFactory.StorageType.valueOf(_credentialsStore));
+			SessionContext.storeSession(SessionStoreBuilder.StorageType.valueOf(_credentialsStore));
 		}
 	}
 
