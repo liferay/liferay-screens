@@ -26,7 +26,7 @@ public class SessionStoreFactory {
 
 	public static enum StorageType {
 
-		// There values ar synch-ed with 'credentialStore' attr
+		// These values are synch-ed with 'credentialStore' attr
 		AUTO(1),
 		SHARED_PREFERENCES(2);
 
