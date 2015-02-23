@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.context.storage;
 import android.content.Context;
 
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
-import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.context.User;
 
