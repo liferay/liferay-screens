@@ -4,11 +4,12 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-
     <TextView
         android:id="@+id/dialog_title"
+        android:textSize="18sp"
         style="@style/default_text_view"
         android:background="@color/liferay_light_blue"
+        android:paddingLeft="10dp"
         android:textColor="@android:color/white"/>
 
 </LinearLayout>
