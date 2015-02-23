@@ -28,8 +28,7 @@ public class SessionStoreFactory {
 
 		// There values ar synch-ed with 'credentialStore' attr
 		AUTO(1),
-		SHARED_PREFERENCES(2),
-		ACCOUNT_MANAGER(3);
+		SHARED_PREFERENCES(2);
 
 		StorageType(int value) {
 			_value = value;
@@ -83,16 +82,6 @@ public class SessionStoreFactory {
 			throw new IllegalStateException("You must set the context before storageType");
 		}
 
-		if (storageType == StorageType.ACCOUNT_MANAGER) {
-			_accountManagerPermissionsGranted = SessionStoreAccountManager.isPermissionGranted(_ctx);
-
-			if (!_accountManagerPermissionsGranted) {
-				throw new IllegalStateException("You need to grant " +
-					"GET_ACCOUNTS, AUTHENTICATE_ACCOUNTS and MANAGE_ACCOUNTS permissions in your " +
-					"manifest in order to store the session in the AccountManager");
-			}
-		}
-
 		_storageType = storageType;
 
 		return this;
@@ -109,28 +98,8 @@ public class SessionStoreFactory {
 			throw new IllegalStateException("You must call setUser() before");
 		}
 
-		SessionStore sessionStore;
-
-		switch (_storageType) {
-			case ACCOUNT_MANAGER:
-				sessionStore = new SessionStoreAccountManager();
-				break;
-
-			case SHARED_PREFERENCES:
-				sessionStore = new SessionStoreSharedPreferences();
-				break;
-
-			default:
-				if (_accountManagerPermissionsGranted = null) {
-					_accountManagerPermissionsGranted =
-						SessionStoreAccountManager.isPermissionGranted(_ctx);
-				}
-
-				sessionStore = (_accountManagerPermissionsGranted) ?
-					new SessionStoreAccountManager() : new SessionStoreSharedPreferences();
-
-				break;
-		}
+		// TODO right now, we only support Shared Prefs.
+		SessionStore sessionStore = new SessionStoreSharedPreferences();
 
 		sessionStore.setContext(_ctx);
 		sessionStore.setAuthentication(_auth);
@@ -143,7 +112,5 @@ public class SessionStoreFactory {
 	private User _user;
 	private StorageType _storageType = StorageType.AUTO;
 	private Context _ctx;
-
-	private Boolean _accountManagerPermissionsGranted;
 
 }

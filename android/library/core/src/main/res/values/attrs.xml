@@ -12,7 +12,6 @@
 		<enum name="none" value="0" />
 		<enum name="auto" value="1" />
 		<enum name="shared_preferences" value="2" />
-		<enum name="account_manager" value="3" />
 	</attr>
 	<attr name="companyId" format="integer" />
 	<attr name="groupId" format="integer" />
