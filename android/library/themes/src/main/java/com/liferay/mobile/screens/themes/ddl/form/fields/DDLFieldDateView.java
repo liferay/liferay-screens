@@ -112,35 +112,6 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 	}
 
 	@Override
-	protected void onRestoreInstanceState(Parcelable inState) {
-		Bundle state = (Bundle)inState;
-		Parcelable superState = state.getParcelable(_STATE_SUPER);
-
-		super.onRestoreInstanceState(superState);
-
-		Bundle dialogState = state.getBundle(_STATE_DIALOG);
-
-		if (dialogState != null) {
-			_pickerDialog = new DatePickerDialog(getContext(), this, 0, 0, 0);
-			_pickerDialog.onRestoreInstanceState(dialogState);
-		}
-	}
-
-	@Override
-	protected Parcelable onSaveInstanceState() {
-		Parcelable superState = super.onSaveInstanceState();
-
-		Bundle state = new Bundle();
-		state.putParcelable(_STATE_SUPER, superState);
-
-		if (_pickerDialog != null && _pickerDialog.isShowing()) {
-			state.putBundle(_STATE_DIALOG, _pickerDialog.onSaveInstanceState());
-		}
-
-		return state;
-	}
-
-	@Override
 	protected void onTextChanged(String text) {
 		//not doing anything at the moment, because field is being set
 		//using the DatePickerDialog

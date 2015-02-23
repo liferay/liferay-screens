@@ -158,8 +158,6 @@ public class DDLFormScreenletView
 
 		DDLFieldViewModel viewModel = (DDLFieldViewModel)view;
 		viewModel.setField(field);
-		//We need to generate an id to allow Android to call the onSave and onRestore of the fields
-		view.setId(ViewUtil._generateUniqueId());
 
 		_fieldsContainerView.addView(view);
 	}

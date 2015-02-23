@@ -80,36 +80,6 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 	}
 
 	@Override
-	protected void onRestoreInstanceState(Parcelable inState) {
-		Bundle state = (Bundle)inState;
-		Parcelable superState = state.getParcelable(_STATE_SUPER);
-
-		super.onRestoreInstanceState(superState);
-
-		Bundle dialogState = state.getBundle(_STATE_DIALOG);
-
-		if (dialogState != null) {
-			createAlertDialog();
-
-			_alertDialog.onRestoreInstanceState(dialogState);
-		}
-	}
-
-	@Override
-	protected Parcelable onSaveInstanceState() {
-		Parcelable superState = super.onSaveInstanceState();
-
-		Bundle state = new Bundle();
-		state.putParcelable(_STATE_SUPER, superState);
-
-		if (_alertDialog != null && _alertDialog.isShowing()) {
-			state.putBundle(_STATE_DIALOG, _alertDialog.onSaveInstanceState());
-		}
-
-		return state;
-	}
-
-	@Override
 	protected void onTextChanged(String text) {
 	}
 
