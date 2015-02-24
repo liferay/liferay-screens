@@ -419,7 +419,7 @@ public class DDLFormScreenlet
 
 	@Override
 	protected void onScreenletAttached() {
-		if (_autoLoad) {
+		if (_autoLoad && _record.getFieldCount() == 0) {
 			load();
 		}
 	}
