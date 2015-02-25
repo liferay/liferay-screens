@@ -193,7 +193,7 @@ public class SignUpScreenlet
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, SignUpInteractor interactor) {
+	protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
 		SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
 
 		String firstName = signUpViewModel.getFirstName();

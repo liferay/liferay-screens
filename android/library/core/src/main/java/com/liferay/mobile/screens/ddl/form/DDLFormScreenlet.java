@@ -344,7 +344,7 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, DDLFormBaseInteractor interactor) {
+	protected void onUserAction(String userActionName, DDLFormBaseInteractor interactor, Object... args) {
 		if (_LOAD_FORM_ACTION.equals(userActionName)) {
 			DDLFormLoadInteractor loadInteractor = (DDLFormLoadInteractor) interactor;
 

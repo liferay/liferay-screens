@@ -138,7 +138,7 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, WebContentDisplayInteractor interactor) {
+	protected void onUserAction(String userActionName, WebContentDisplayInteractor interactor, Object... args) {
 		// No user action from UI
 	}
 

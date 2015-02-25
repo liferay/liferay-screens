@@ -166,7 +166,7 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, UserPortraitInteractor interactor) {
+	protected void onUserAction(String userActionName, UserPortraitInteractor interactor, Object... args) {
 	}
 
 	@Override

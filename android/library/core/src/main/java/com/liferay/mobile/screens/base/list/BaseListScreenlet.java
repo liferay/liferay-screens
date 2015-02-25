@@ -175,7 +175,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     }
 
     @Override
-    protected void onUserAction(String userActionName, N interactor) {
+    protected void onUserAction(String userActionName, N interactor, Object... args) {
     }
 
     protected static final int _FIRST_PAGE_SIZE = 50;

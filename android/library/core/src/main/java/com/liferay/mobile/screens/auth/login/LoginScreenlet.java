@@ -114,7 +114,7 @@ public class LoginScreenlet
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, LoginInteractor interactor) {
+	protected void onUserAction(String userActionName, LoginInteractor interactor, Object... args) {
 		LoginViewModel loginViewModel = (LoginViewModel)getScreenletView();
 		String login = loginViewModel.getLogin();
 		String password = loginViewModel.getPassword();
