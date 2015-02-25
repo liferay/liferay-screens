@@ -119,10 +119,6 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 		return result;
 	}
 
-	private static final String _STATE_DIALOG = "dialog";
-
-	private static final String _STATE_SUPER = "super";
-
 	private AlertDialog _alertDialog;
 
 }

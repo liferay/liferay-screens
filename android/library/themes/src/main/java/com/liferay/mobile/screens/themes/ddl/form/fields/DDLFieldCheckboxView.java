@@ -84,7 +84,6 @@ public class DDLFieldCheckboxView extends LinearLayout
 
 		setSaveEnabled(false);
 
-
 		_switch = (SwitchCompat) findViewById(R.id.default_switch);
 
 		_switch.setOnCheckedChangeListener(this);
