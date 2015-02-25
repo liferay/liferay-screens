@@ -10,7 +10,7 @@ This document explains the internal architecture of Liferay Screens for iOS. It 
 
 ## High Level Architecture
 
-Liferay Screens separates presentation code by following a sort of [Model-View-Presenter architecture](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter). However, it can't be considered a canonical MVP implementation because it doesn't have a real data model in the app itself. 
+Liferay Screens separates presentation and business-logic code, inspired by and following ideas taken from [Model View Presenter](http://en.wikipedia.org/wiki/Model-view-presenter), [Model View ViewModel](http://en.wikipedia.org/wiki/Model_View_ViewModel) or [VIPER](http://www.objc.io/issue-13/viper.html) architectures. However, it can't be considered a canonical implementation of none of them because they are architectures designed for apps, and Liferay Screens isn't a app but a suite of visual components.
 
 Liferay Screens for iOS contains the following high level components:
 
