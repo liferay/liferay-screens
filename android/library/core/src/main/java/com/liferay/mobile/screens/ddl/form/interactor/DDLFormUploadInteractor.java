@@ -12,34 +12,18 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.form;
+package com.liferay.mobile.screens.ddl.form.interactor;
 
 import com.liferay.mobile.screens.ddl.model.FileField;
 import com.liferay.mobile.screens.ddl.model.Record;
 
+import java.io.File;
+
 /**
- * @author Jose Manuel Navarro
+ * @author Javier Gamarra
  */
-public interface DDLFormListener {
+public interface DDLFormUploadInteractor extends DDLFormBaseInteractor {
 
-	void onDDLFormLoaded(Record record);
-
-	void onDDLFormRecordLoaded(Record record);
-
-	void onDDLFormRecordAdded(Record record);
-
-	void onDDLFormRecordUpdated(Record record);
-
-	void onDDLFormLoadFailed(Exception e);
-
-	void onDDLFormRecordLoadFailed(Exception e);
-
-	void onDDLFormRecordAddFailed(Exception e);
-
-	void onDDLFormUpdateRecordFailed(Exception e);
-
-	void onDDLFormFileUploaded(FileField file);
-
-	void onDDLFormFileUploadFailed(Exception e);
+	public void upload(long groupId, long userId, long repositoryId, long folderId, FileField file) throws Exception;
 
 }
