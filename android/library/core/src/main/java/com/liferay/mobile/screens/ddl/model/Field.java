@@ -36,6 +36,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		STRING("string"),
 		DATE("date"),
 		NUMBER("number"),
+		FILE("document-library"),
 		UNSUPPORTED(null);
 
 		private DataType(String value) {
@@ -73,7 +74,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		}
 
 		public Field createField(Map<String,Object> attributes, Locale locale) {
-			if (this.equals(STRING)) {
+			if (STRING.equals(this)) {
 				EditorType editor = EditorType.valueOf(attributes);
 
 				if (editor == EditorType.SELECT || editor == EditorType.RADIO) {
@@ -83,16 +84,18 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 					return new StringField(attributes, locale);
 				}
 			}
-			else if (this.equals(BOOLEAN)) {
+			else if (BOOLEAN.equals(this)) {
 				return new BooleanField(attributes, locale);
 			}
-			else if (this.equals(DATE)) {
+			else if (DATE.equals(this)) {
 				return new DateField(attributes, locale);
 			}
-			else if (this.equals(NUMBER)) {
+			else if (NUMBER.equals(this)) {
 				return new NumberField(attributes, locale);
 			}
-
+			else if (FILE.equals(this)) {
+				return new FileField(attributes, locale);
+			}
 			return null;
 		}
 
@@ -115,6 +118,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		DECIMAL("ddm-decimal"),
 		SELECT("select"),
 		RADIO("radio"),
+		FILE("ddm-documentlibrary"),
 		UNSUPPORTED(null);
 
 		private EditorType(String value) {

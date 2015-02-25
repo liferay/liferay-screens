@@ -34,10 +34,12 @@ import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadRecordInteracto
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormLoadRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUpdateRecordInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUpdateRecordInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUploadInteractor;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUploadInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
+import com.liferay.mobile.screens.ddl.model.FileField;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,6 +86,10 @@ public class DDLFormScreenlet
 		else {
 			performUserAction(_UPDATE_RECORD_ACTION);
 		}
+	}
+
+	public void upload(FileField field) {
+		performUserAction(_UPLOAD_FILE, field);
 	}
 
 	@Override
@@ -160,6 +166,20 @@ public class DDLFormScreenlet
 		}
 	}
 
+	@Override
+	public void onDDLFormFileUploaded(FileField file) {
+		if (_listener != null) {
+			_listener.onDDLFormFileUploaded(file);
+		}
+	}
+
+	@Override
+	public void onDDLFormFileUploadFailed(Exception e) {
+		if (_listener != null) {
+			_listener.onDDLFormFileUploadFailed(e);
+		}
+	}
+
 	public boolean getAutoLoad() {
 		return _autoLoad;
 	}
@@ -202,22 +222,20 @@ public class DDLFormScreenlet
 
 	@Override
 	protected DDLFormBaseInteractor createInteractor(String actionName) {
-		DDLFormBaseInteractor result = null;
-
-		if (_LOAD_FORM_ACTION.equals(actionName)) {
-			result = new DDLFormLoadInteractorImpl(getScreenletId());
+		switch (actionName) {
+			case _LOAD_FORM_ACTION:
+				return new DDLFormLoadInteractorImpl(getScreenletId());
+			case _LOAD_RECORD_ACTION:
+				return new DDLFormLoadRecordInteractorImpl(getScreenletId());
+			case _ADD_RECORD_ACTION:
+				return new DDLFormAddRecordInteractorImpl(getScreenletId());
+			case _UPDATE_RECORD_ACTION:
+				return new DDLFormUpdateRecordInteractorImpl(getScreenletId());
+			case _UPLOAD_FILE:
+				return new DDLFormUploadInteractorImpl(getScreenletId());
+			default:
+				return null;
 		}
-		else if (_LOAD_RECORD_ACTION.equals(actionName)) {
-			result = new DDLFormLoadRecordInteractorImpl(getScreenletId());
-		}
-		else if (_ADD_RECORD_ACTION.equals(actionName)) {
-			result = new DDLFormAddRecordInteractorImpl(getScreenletId());
-		}
-		else if (_UPDATE_RECORD_ACTION.equals(actionName)) {
-			result = new DDLFormUpdateRecordInteractorImpl(getScreenletId());
-		}
-
-		return result;
 	}
 
 	@Override
@@ -250,6 +268,9 @@ public class DDLFormScreenlet
 
 		_recordId = typedArray.getInteger(
 			R.styleable.DDLFormScreenlet_recordId, 0);
+
+		_repositoryId = typedArray.getInteger(R.styleable.DDLFormScreenlet_repositoryId, 0);
+		_folderId = typedArray.getInteger(R.styleable.DDLFormScreenlet_folderId, 0);
 
 		//TODO use current user id from SessionContext as default
 		_userId = typedArray.getInteger(
@@ -300,6 +321,10 @@ public class DDLFormScreenlet
 		setFieldLayoutId(
 			viewModel, Field.EditorType.TEXT_AREA, typedArray,
 			R.styleable.DDLFormScreenlet_textAreaFieldLayoutId);
+
+		setFieldLayoutId(
+				viewModel, Field.EditorType.FILE, typedArray,
+				R.styleable.DDLFormScreenlet_fileFieldLayoutId);
 
 
 		typedArray.recycle();
@@ -365,6 +390,14 @@ public class DDLFormScreenlet
 			}
 			catch (Exception e) {
 				onDDLFormUpdateRecordFailed(e);
+			}
+		}
+		else if (_UPLOAD_FILE.equals(userActionName)) {
+			DDLFormUploadInteractor ddlFormUploadInteractor = (DDLFormUploadInteractor) interactor;
+			try {
+				ddlFormUploadInteractor.upload(_groupId, _userId, _repositoryId, _folderId, (FileField) args[0]);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -445,6 +478,8 @@ public class DDLFormScreenlet
 		_defaultLayoutNames.put(Field.EditorType.TEXT, "ddlfield_text_default");
 
 		_defaultLayoutNames.put(Field.EditorType.TEXT_AREA, "ddlfield_text_area_default");
+
+		_defaultLayoutNames.put(Field.EditorType.FILE, "ddlfield_file_default");
 	}
 
 
@@ -452,6 +487,7 @@ public class DDLFormScreenlet
 	private static final String _LOAD_RECORD_ACTION = "loadRecord";
 	private static final String _ADD_RECORD_ACTION = "addRecord";
 	private static final String _UPDATE_RECORD_ACTION = "updateRecord";
+	private static final String _UPLOAD_FILE = "uploadFile";
 
 	private static final String _STATE_SUPER = "ddlform-super";
 	private static final String _STATE_AUTOSCROLL_ON_VALIDATION = "ddlform-autoScrollOnValidation";
@@ -471,6 +507,8 @@ public class DDLFormScreenlet
 	private long _recordSetId;
 	private long _recordId;
 	private long _userId;
+	private long _repositoryId;
+	private long _folderId;
 
 	private Record _record;
 
