@@ -73,7 +73,7 @@ public class DDLFieldRadioView extends RadioGroup
 			radioButton.setText(opt.label);
 			radioButton.setTag(opt);
 			radioButton.setOnCheckedChangeListener(this);
-			radioButton.setTypeface(getTypeface());
+			radioButton.setTypeface(_getTypeface());
 			radioButton.setSaveEnabled(true);
 			addView(radioButton, getChildCount() - 1);
 		}
@@ -134,7 +134,7 @@ public class DDLFieldRadioView extends RadioGroup
 		}
 	}
 
-	private Typeface getTypeface() {
+	private Typeface _getTypeface() {
 		//FIXME replace with constructor with styles when we have the drawables
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
 			return Typeface.DEFAULT;
