@@ -20,19 +20,19 @@ Before making contributions to the Liferay Screens for iOS project, please make 
 
 | Preferred|Not Preferred|
 |----------|-------------| 
-| <pre>import UIKit<br/><br/><br/>public class MyClass {<br/>… | <pre>import UIKit<br/><br/>public class MyClass {<br/>… |
+| <pre>import UIKit<br/><br/><br/>public class MyClass {<br/>… | <pre>import UIKit<br/><br/>public class MyClass {<br/>…<br/><br/> |
 
 - As an exception to the previous rule, use only one blank line for the first inner type definition:
 
 | Preferred|Not Preferred|
 |----------|-------------| 
-| <pre>public class MyClass {<br/><br/>    public enum MyEnum {<br/>… | <pre>public class MyClass {<br/><br/><br/>    public enum MyEnum {<br/>… |
+| <pre>public class MyClass {<br/><br/>    public enum MyEnum {<br/>…<br/><br/> | <pre>public class MyClass {<br/><br/><br/>    public enum MyEnum {<br/>… |
 
 - Leave leading and trailing blank lines in the body of enclosing types:
 
 | Preferred|Not Preferred|
 |----------|-------------| 
-| <pre>public class MyClass {<br/><br/>    var a = 0<br/><br/>} | <pre>public class MyClass {<br/>    var a = 0<br/>} |
+| <pre>public class MyClass {<br/><br/>    var a = 0<br/><br/>} | <pre>public class MyClass {<br/>    var a = 0<br/>}<br/><br/><br/> |
 
 ## Marks
 
@@ -59,7 +59,7 @@ Before making contributions to the Liferay Screens for iOS project, please make 
 
 | Preferred|Not Preferred|
 |----------|-------------| 
-| <pre>let a = 1<br><br><br>//MARK: Public methods | <pre>let a = 1<br><br>//MARK: Public methods |
+| <pre>let a = 1<br><br><br>//MARK: Public methods | <pre>let a = 1<br><br>//MARK: Public methods<br/><br/> |
 
 ## Line Breaks
 
@@ -74,7 +74,7 @@ Before making contributions to the Liferay Screens for iOS project, please make 
 
 | Preferred|Not Preferred|
 |----------|-------------| 
-| <pre>fooWithInt(1,<br>        arg2: 2,<br>        arg3: 3,<br>        arg4: 4) | <pre>fooWithInt(1, arg2: 2, arg3: 3<br>        arg4:4)</pre><pre>fooWithInt(1,<br>        arg2: 2, arg3: 3, arg4: 4) |
+| <pre>fooWithInt(1,<br>        arg2: 2,<br>        arg3: 3,<br>        arg4: 4)<br/><br/><br/> | <pre>fooWithInt(1, arg2: 2, arg3: 3<br>        arg4:4)</pre><pre>fooWithInt(1,<br>        arg2: 2, arg3: 3, arg4: 4) |
 
 - In method declarations, the return type should be on its own line, unless it fits on a single line together with all the parameters:
 
@@ -95,7 +95,7 @@ Before making contributions to the Liferay Screens for iOS project, please make 
 
 | Preferred|Not Preferred|
 |----------|-------------| 
-| <pre>public func fooWithInt(arg1: Int, arg2: Int, arg3: Int,<br>        arg4: Int) {<br><br>    let firstLine = 1 | <pre>public func fooWithInt(arg1: Int, arg2: Int, arg3: Int,<br>        arg4: Int) {<br>    let firstLine = 1|
+| <pre>public func fooWithInt(arg1: Int, arg2: Int, arg3: Int,<br>        arg4: Int) {<br><br>    let firstLine = 1 | <pre>public func fooWithInt(arg1: Int, arg2: Int, arg3: Int,<br>        arg4: Int) {<br>    let firstLine = 1<br/><br/>|
 
 ## Control Structures
 
@@ -103,7 +103,7 @@ Before making contributions to the Liferay Screens for iOS project, please make 
 
 | Preferred|Not Preferred|
 |----------|-------------| 
-| <pre>public func foo() {<br>    ...</pre><pre>if x {<br>    ...</pre>| <pre>public func foo()<br>{<br>    ...</pre><pre>if x<br>{    <br>    ...</pre>|
+| <pre>public func foo() {<br>    ...<br/><br/></pre><pre>if x {<br>    ...<br/><br/></pre>| <pre>public func foo()<br>{<br>    ...</pre><pre>if x<br>{    <br>    ...</pre>|
 
 - Indent `case` clauses in `switch` structures:
 
@@ -115,14 +115,14 @@ Before making contributions to the Liferay Screens for iOS project, please make 
 
 | Preferred|Not Preferred|
 |----------|-------------| 
-|<pre>var myValue: Int {<br>    get {<br>        return 0<br>    }<br>    set {<br>        ...store newValue somewhere...<br>    }<br>}</pre>|<pre>func getMyValue() -> Int {<br>    return 0<br>}<br><br>func setMyValue(newValue: Int) {<br>    ...store newValue somewhere...<br>}</pre>|
+|<pre>var myValue: Int {<br>    get {<br>        return 0<br>    }<br>    set {<br>        ...store newValue somewhere...<br>    }<br>}</pre>|<pre>func getMyValue() -> Int {<br>    return 0<br>}<br><br>func setMyValue(newValue: Int) {<br>    ...store newValue somewhere...<br/>}<br/><br/></pre>|
 
 - When possible, omit the `get` keyword on read-only computed properties and
 read-only subscripts:
 
 | Preferred|Not Preferred|
 |----------|-------------| 
-| <pre>var property: Int {<br>    return 0<br>}</pre>|<pre>var property: Int {<br>    get {<br>        return 0<br>    }<br>}</pre>|
+| <pre>var property: Int {<br>    return 0<br>}<br/><br/><br/></pre>|<pre>var property: Int {<br>    get {<br>        return 0<br>    }<br>}</pre>|
 
 - Use the `if let` structure when possible. Suffix the variable used in `let` with `Value`:
 
@@ -156,7 +156,7 @@ read-only subscripts:
 
 | Preferred|Not Preferred|
 |----------|-------------| 
-| <pre>let MaximumWidgetCount = 100<br><br>class WidgetContainer {<br><br>    var widgetButton: UIButton<br>    let widgetHeightPercentage = 0.85<br><br>} | <pre>let MAX_WIDGET_COUNT = 100<br><br>class app_widgetContainer {<br><br>    var wBut: UIButton<br>    let wHeightPct = 0.85<br>}|
+| <pre>let MaximumWidgetCount = 100<br><br>class WidgetContainer {<br><br>    var widgetButton: UIButton<br>    let widgetHeightPercentage = 0.85<br><br>} | <pre>let MAX_WIDGET_COUNT = 100<br><br>class app_widgetContainer {<br><br>    var wBut: UIButton<br>    let wHeightPct = 0.85<br>}<br/><br/>|
 
 - For functions and methods, named parameters for all arguments are preferred unless the context is very clear. Include external parameter names if it makes function calls more readable:
 
@@ -188,13 +188,13 @@ Invocations should look like:
 
 | Preferred|Not Preferred|
 |----------|-------------| 
-| <pre>let filtered = filter(collection) { $0 == 1 }| <pre>let filtered = filter(collection) {number in<br>     number == 1<br>} |
+| <pre>let filtered = filter(collection) { $0 == 1 }<br/><br/><br/>| <pre>let filtered = filter(collection) {number in<br>     number == 1<br>} |
 
 - If the closure has only one expression, use the inline syntax with an implicit return and no new line:
 
 | Preferred|Not Preferred|
 |----------|-------------| 
-| <pre>let filtered = filter(collection) { $0 == 1 }| <pre>let filtered = filter(collection) {<br>    return $0 == 1<br>} |
+| <pre>let filtered = filter(collection) { $0 == 1 }<br/><br/><br/>| <pre>let filtered = filter(collection) {<br>    return $0 == 1<br>} |
 
 - `Void` syntax is preferred over `()` for the closure return type. This makes the optional closure syntax cleaner:
 
