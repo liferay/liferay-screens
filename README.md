@@ -20,7 +20,7 @@ The goal of Screens is to speed up mobile app development by hiding the addition
 
 The implementation of Screens for iOS devices uses standard development tools for iOS, such as Xcode, iOS SDK, iOS Simulator, and others. What's more, Screens can be seamlessly integrated into any of your existing projects. It's developed using the new Swift language and modern development techniques, such as functional Swift code and the [Model View Presenter architecture](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter). This makes Screens a great way to construct your app in a modular way.
 
-### iOS Quick Start
+### iOS Getting Started
 
 If you want to add Liferay Screens to your project right away, just jump to the section [Preparing Your Project for Liferay Screens](ios#preparing-your-project-for-liferay-screens).
 
@@ -43,7 +43,26 @@ Liferay Screens for iOS also contains a set of *themes* that you can use to chan
 
 ## Android
 
-The implementation of Screens for Android is still in its early stages. Stay tuned!
+This implementation uses also the standard development tools for Android, such as Android SDK (starting from 4.0, API Level 14) and Android Studio. As same as in iOS, Screens can be seamlessly integrated into any of your existing Android projects. Given that [the architecture](android/documentation/architecture.md) is designed to isolate the development of the screenlets, it a great way to construct your app in a modular way following the screenlets approach.
+
+### Android Getting Started
+
+If you want to add Liferay Screens to your project right away, just jump to the section [Preparing Your Project for Liferay Screens](android#preparing-your-project-for-liferay-screens).
+
+Once your project is ready, the following screenlets are available for use in your app:
+
+- [`LoginScreenlet`](android/documentation/LoginScreenlet.md): Gives your app the ability to sign users in to a Liferay Portal.
+- [`SignUpScreenlet`](android/documentation/SignUpScreenlet.md): Gives your app the ability to sign new users in to a Liferay Portal.
+- [`ForgotPasswordScreenlet`](android/documentation/ForgotPasswordScreenlet.md): Gives your app the ability to send emails containing a new password or password reset link to users.
+- [`DDLFormScreenlet`](android/documentation/DDLFormScreenlet.md): Gives your app the ability to present dynamic forms to be filled out by users and submitted back to the server.
+- [`DDLListScreenlet`](android/documentation/DDLListScreenlet.md): Gives your app the ability to show a list of records based on a pre-existing [Dynamic Data List](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-web-forms-and-dynamic-data-lists) in a Liferay instance.
+- [`AssetListScreenlet`](android/documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). Assets include web content, blog entries, documents, users and more.
+- [`WebContentDisplayScreenlet`](android/documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This screenlet uses the features available in [Web Content Management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/web-content-management).
+
+Liferay Screens for Android also contains a set of views that you can use to change the UI and UX of the screenlets:
+
+- **Default views**: these are the standard views used when you add a screenlet in your app's activities or fragment and don't change the attribute `liferay:layoutId`. The Default views can be used as parent view for any of your custom views. Please refer to the [Architecture Guide](android/documentation/architecture.md#view-layer) for more details on this.
+- **Material views**: sample views intended to demonstrate how to develop your own full view set from scratch. Please refer to the [Views Guide](android/documentation/views.md) for instructions on creating your own view set.
 
 ## Contributing
 
