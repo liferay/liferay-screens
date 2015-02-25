@@ -31,11 +31,9 @@ import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.themes.R;
-import com.liferay.mobile.screens.util.ViewUtil;
+import com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldFileView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -175,8 +173,13 @@ public class DDLFormScreenletView
 
 	@Override
 	public void onClick(View view) {
-		if (validateForm()) {
-			getDDLFormScreenlet().submitForm();
+		if (view.getId() == R.id.default_activity_button) {
+			if (validateForm()) {
+				getDDLFormScreenlet().submitForm();
+			}
+			//FIXME referencia
+		} else {
+			getDDLFormScreenlet().upload(((DDLFieldFileView) view.getParent()).getField());
 		}
 	}
 
