@@ -7,9 +7,6 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.service.UploadService;
 import com.liferay.mobile.screens.ddl.model.FileField;
-import com.liferay.mobile.screens.ddl.model.Record;
-
-import java.io.File;
 
 /**
  * @author Javier Gamarra
@@ -42,7 +39,7 @@ public class DDLFormUploadInteractorImpl extends BaseRemoteInteractor<DDLFormLis
 		if (event.isFailed()) {
 			getListener().onDDLFormFileUploadFailed(event.getException());
 		} else {
-			getListener().onDDLFormFileUploaded(event.getDDLFile());
+			getListener().onDDLFormFileUploaded(event.getFileField());
 		}
 	}
 

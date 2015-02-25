@@ -16,7 +16,7 @@ public class DDLFormFileEvent extends JSONObjectEvent {
 		_FileField = FileField;
 	}
 
-	public FileField getDDLFile() {
+	public FileField getFileField() {
 		return _FileField;
 	}
 
