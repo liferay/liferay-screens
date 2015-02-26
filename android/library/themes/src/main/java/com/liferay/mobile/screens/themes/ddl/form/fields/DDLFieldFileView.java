@@ -44,10 +44,10 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<FileField>
 
 	@Override
 	public void onClick(final View view) {
-		SimpleFileDialog dialog = new SimpleFileDialog(getContext(), new SimpleFileDialog.SimpleFileDialogListener() {
+		_dialog = new SimpleFileDialog().createDialog(getContext(), new SimpleFileDialog.SimpleFileDialogListener() {
 			@Override
 			public void onFileChosen(String path) {
-				findViewById(R.id.fileProgress).setVisibility(View.VISIBLE);
+				_progressBar.setVisibility(View.VISIBLE);
 				getTextEditText().setText(path);
 
 				FileField field = getField();
@@ -58,7 +58,7 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<FileField>
 
 			}
 		});
-		dialog.chooseFile();
+		_dialog.show();
 	}
 
 	@Override
@@ -70,9 +70,19 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<FileField>
 	}
 
 	@Override
+	protected void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+
+		// Avoid WindowLeak error on orientation changes
+		if (_dialog != null) {
+			_dialog.dismiss();
+			_dialog = null;
+		}
+	}
+
+	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-
 		getTextEditText().setOnClickListener(this);
 	}
 
@@ -80,4 +90,7 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<FileField>
 	protected void onTextChanged(String text) {
 
 	}
+
+	private ProgressBar _progressBar;
+	private AlertDialog _dialog;
 }

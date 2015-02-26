@@ -22,9 +22,6 @@ import java.util.List;
 
 public class SimpleFileDialog {
 
-	private final Context context;
-	private final SimpleFileDialogListener listener;
-
 	private String currentFile = "";
 	private String currentDir = "";
 
@@ -35,27 +32,15 @@ public class SimpleFileDialog {
 		public void onFileChosen(String path);
 	}
 
-	public SimpleFileDialog(Context context, SimpleFileDialogListener listener) {
-		this.context = context;
-		this.listener = listener;
-	}
-
-	public void chooseFile() {
+	public AlertDialog createDialog(final Context context, final SimpleFileDialogListener listener) {
 		final String defaultPath = checkDir("");
 
 		if (SD_PATH != null) {
 			currentDir = SD_PATH;
 		} else if (defaultPath != null) {
 			currentDir = defaultPath;
-		} else {
-			return;
 		}
 
-		AlertDialog dialog = createDialog();
-		dialog.show();
-	}
-
-	private AlertDialog createDialog() {
 		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService
 				(Context.LAYOUT_INFLATER_SERVICE);
