@@ -48,7 +48,7 @@ An anonymous request can be done without the user being logged in. However, auth
 |  `anonymousApiUserName` | `string` | The user name, email address, or user ID (depending on the portal's authentication method) to use for authenticating the request. |
 |  `anoymousApiPassword` | `string` | The password for use in authenticating the request. |
 |  `companyId` | `number` | When set, authentication is done for a user in the specified company. If the value is `0`, the company specified in `LiferayServerContext` is used. |
-|  `autologin` | `boolean` | Sets whether or not the user is logged in automatically after a successful sign up. |
+|  `autoLogin` | `boolean` | Sets whether or not the user is logged in automatically after a successful sign up. |
 |  `saveCredentials` | `boolean` | Sets whether or not the user's credentials and attributes are stored in the keychain after a successful log in. This attribute is ignored if `autologin` is disabled. |
 
 ## Delegate

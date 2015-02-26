@@ -17,7 +17,7 @@
 
 ## Features
 
-The `ForgotPasswordScreenlet` can send an email a registered user with their new password or a password reset link, depending on the server configuration. The available authentication methods are:
+The `ForgotPasswordScreenlet` can send an email to a registered user with their new password or a password reset link, depending on the server configuration. The available authentication methods are:
 
 - Email address
 - Screen name
@@ -40,7 +40,7 @@ To use the `ForgotPasswordScreenlet`, you must allow users to request new passwo
 
 ### Authentication Method
 
-Note that the authentication method configured in the portal can be different than that used by this screenlet. For example, it's *perfectly fine* to use `screenName` for sign in authentication, but allow users to recover their password using the `email` authentication method.
+Note that the authentication method configured in the portal can be different than the used by this screenlet. For example, it's *perfectly fine* to use `screenName` for sign in authentication, but allow users to recover their password using the `email` authentication method.
 
 ### Password Reset
 
