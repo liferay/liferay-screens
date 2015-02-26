@@ -45,7 +45,7 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
 
 	@Override
 	public void onClick(final View view) {
-		_dialog = new SimpleFileDialog().createDialog(getContext(), new SimpleFileDialog.SimpleFileDialogListener() {
+		_fileDialog = new FileDialog().createDialog(getContext(), new FileDialog.SimpleFileDialogListener() {
 			@Override
 			public void onFileChosen(String path) {
 				_progressBar.setVisibility(View.VISIBLE);
@@ -59,7 +59,7 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
 
 			}
 		});
-		_dialog.show();
+		_fileDialog.show();
 	}
 
 	@Override
@@ -67,9 +67,11 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
 		getTextEditText().setText(getField().toFormattedString());
 		if (DocumentField.State.LOADED.equals(getField().getCurrentValue().getState())) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.abc_btn_radio_material, 0);
-		} else if (DocumentField.State.ERROR.equals(getField().getCurrentValue().getState())) {
+		}
+		else if (DocumentField.State.ERROR.equals(getField().getCurrentValue().getState())) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.abc_btn_check_material, 0);
-		} else if (getField().getCurrentValue().getState() != null) {
+		}
+		else if (getField().getCurrentValue().getState() != null) {
 			_progressBar.setVisibility(View.VISIBLE);
 		}
 	}
@@ -83,9 +85,9 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
 		super.onDetachedFromWindow();
 
 		// Avoid WindowLeak error on orientation changes
-		if (_dialog != null) {
-			_dialog.dismiss();
-			_dialog = null;
+		if (_fileDialog != null) {
+			_fileDialog.dismiss();
+			_fileDialog = null;
 		}
 	}
 
@@ -102,5 +104,5 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
 	}
 
 	private ProgressBar _progressBar;
-	private AlertDialog _dialog;
+	private AlertDialog _fileDialog;
 }

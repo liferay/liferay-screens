@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class SimpleFileDialog {
+public class FileDialog {
 
 	private String currentFile = "";
 	private String currentDir = "";
