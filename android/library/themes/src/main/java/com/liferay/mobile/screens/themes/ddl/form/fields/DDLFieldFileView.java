@@ -21,15 +21,15 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
-import com.liferay.mobile.screens.ddl.model.FileField;
+import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.themes.R;
 import com.liferay.mobile.screens.themes.ddl.form.DDLFormScreenletView;
 
 /**
  * @author Javier Gamarra
  */
-public class DDLFieldFileView extends BaseDDLFieldTextView<FileField>
-		implements DDLFieldViewModel<FileField>, View.OnClickListener {
+public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
+		implements DDLFieldViewModel<DocumentField>, View.OnClickListener {
 
 	public DDLFieldFileView(Context context) {
 		super(context, null);
@@ -51,9 +51,9 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<FileField>
 				_progressBar.setVisibility(View.VISIBLE);
 				getTextEditText().setText(path);
 
-				FileField field = getField();
+				DocumentField field = getField();
 				field.getCurrentValue().setName(path);
-				field.getCurrentValue().setState(FileField.State.PENDING);
+				field.getCurrentValue().setState(DocumentField.State.PENDING);
 				view.setTag(field);
 				((DDLFormScreenletView) getParentView()).onClick(view);
 
@@ -65,9 +65,9 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<FileField>
 	@Override
 	public void refresh() {
 		getTextEditText().setText(getField().toFormattedString());
-		if (FileField.State.LOADED.equals(getField().getCurrentValue().getState())) {
+		if (DocumentField.State.LOADED.equals(getField().getCurrentValue().getState())) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.abc_btn_radio_material, 0);
-		} else if (FileField.State.ERROR.equals(getField().getCurrentValue().getState())) {
+		} else if (DocumentField.State.ERROR.equals(getField().getCurrentValue().getState())) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.abc_btn_check_material, 0);
 		} else if (getField().getCurrentValue().getState() != null) {
 			_progressBar.setVisibility(View.VISIBLE);

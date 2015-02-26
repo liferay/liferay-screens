@@ -14,13 +14,13 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor;
 
-import com.liferay.mobile.screens.ddl.model.FileField;
+import com.liferay.mobile.screens.ddl.model.DocumentField;
 
 /**
  * @author Javier Gamarra
  */
 public interface DDLFormUploadInteractor extends DDLFormBaseInteractor {
 
-	public void upload(long groupId, long userId, long repositoryId, long folderId, FileField file) throws Exception;
+	public void upload(long groupId, long userId, long repositoryId, long folderId, DocumentField file) throws Exception;
 
 }

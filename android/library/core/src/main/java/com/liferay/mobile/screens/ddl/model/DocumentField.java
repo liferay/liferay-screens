@@ -12,22 +12,22 @@ import java.util.Map;
 /**
  * @author Javier Gamarra
  */
-public class FileField extends Field<FileField.File> {
+public class DocumentField extends Field<DocumentField.File> {
 
-	public static final Parcelable.Creator<FileField> CREATOR =
-			new Parcelable.Creator<FileField>() {
+	public static final Parcelable.Creator<DocumentField> CREATOR =
+			new Parcelable.Creator<DocumentField>() {
 
-				public FileField createFromParcel(Parcel in) {
-					return new FileField(in);
+				public DocumentField createFromParcel(Parcel in) {
+					return new DocumentField(in);
 				}
 
-				public FileField[] newArray(int size) {
-					return new FileField[size];
+				public DocumentField[] newArray(int size) {
+					return new DocumentField[size];
 				}
 			};
 
 
-	public FileField(Map<String, Object> attributes, Locale locale) {
+	public DocumentField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
 	}
 
@@ -85,14 +85,14 @@ public class FileField extends Field<FileField.File> {
 
 	@Override
 	public boolean equals(Object o) {
-		if (o instanceof FileField) {
-			FileField other = (FileField) o;
+		if (o instanceof DocumentField) {
+			DocumentField other = (DocumentField) o;
 			return getCurrentValue().equals(other.getCurrentValue());
 		}
 		return false;
 	}
 
-	protected FileField(Parcel in) {
+	protected DocumentField(Parcel in) {
 		super(in);
 	}
 

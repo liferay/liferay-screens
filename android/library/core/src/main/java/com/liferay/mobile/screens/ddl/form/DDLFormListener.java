@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.form;
 
-import com.liferay.mobile.screens.ddl.model.FileField;
+import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 
 /**
@@ -38,8 +38,8 @@ public interface DDLFormListener {
 
 	void onDDLFormUpdateRecordFailed(Exception e);
 
-	void onDDLFormFileUploaded(FileField file);
+	void onDDLFormFileUploaded(DocumentField file);
 
-	void onDDLFormFileUploadFailed(FileField file, Exception e);
+	void onDDLFormFileUploadFailed(DocumentField file, Exception e);
 
 }

@@ -38,7 +38,7 @@ import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUpdateRecordInterac
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUploadInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormUploadInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
-import com.liferay.mobile.screens.ddl.model.FileField;
+import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import java.util.HashMap;
@@ -92,7 +92,7 @@ public class DDLFormScreenlet
 		}
 	}
 
-	public void upload(FileField field) {
+	public void upload(DocumentField field) {
 		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
 		view.hideProgressBar(field, false);
 		performUserAction(_UPLOAD_FILE, field);
@@ -173,10 +173,10 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	public void onDDLFormFileUploaded(FileField file) {
-		FileField newFile = findFile(file);
+	public void onDDLFormFileUploaded(DocumentField file) {
+		DocumentField newFile = findFile(file);
 		if (newFile != null) {
-			newFile.getCurrentValue().setState(FileField.State.LOADED);
+			newFile.getCurrentValue().setState(DocumentField.State.LOADED);
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
 			view.hideProgressBar(newFile, true);
 			view.showFileUploaded(newFile);
@@ -188,10 +188,10 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	public void onDDLFormFileUploadFailed(FileField file, Exception e) {
-		FileField newFile = findFile(file);
+	public void onDDLFormFileUploadFailed(DocumentField file, Exception e) {
+		DocumentField newFile = findFile(file);
 		if (newFile != null) {
-			newFile.getCurrentValue().setState(FileField.State.ERROR);
+			newFile.getCurrentValue().setState(DocumentField.State.ERROR);
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
 			view.hideProgressBar(newFile, true);
 			view.showFileUploadFailed(newFile);
@@ -416,9 +416,9 @@ public class DDLFormScreenlet
 		else if (_UPLOAD_FILE.equals(userActionName)) {
 			DDLFormUploadInteractor ddlFormUploadInteractor = (DDLFormUploadInteractor) interactor;
 			try {
-				ddlFormUploadInteractor.upload(_groupId, _userId, _repositoryId, _folderId, (FileField) args[0]);
+				ddlFormUploadInteractor.upload(_groupId, _userId, _repositoryId, _folderId, (DocumentField) args[0]);
 			} catch (Exception e) {
-				onDDLFormFileUploadFailed((FileField) args[0], e);
+				onDDLFormFileUploadFailed((DocumentField) args[0], e);
 			}
 		}
 	}
@@ -427,14 +427,14 @@ public class DDLFormScreenlet
 		boolean validFiles = true;
 		for (int i = 0; i < record.getFieldCount(); i++) {
 			Field field = record.getField(i);
-			if (field instanceof FileField) {
-				FileField file = (FileField) field;
-				FileField.State state = file.getCurrentValue().getState();
-				if (FileField.State.UPLOADING.equals(state) ||  FileField.State.PENDING.equals(state)) {
+			if (field instanceof DocumentField) {
+				DocumentField file = (DocumentField) field;
+				DocumentField.State state = file.getCurrentValue().getState();
+				if (DocumentField.State.UPLOADING.equals(state) ||  DocumentField.State.PENDING.equals(state)) {
 					validFiles = false;
 				}
 				else {
-					if (FileField.State.ERROR.equals(state)) {
+					if (DocumentField.State.ERROR.equals(state)) {
 						upload(file);
 						validFiles = false;
 					}
@@ -499,10 +499,10 @@ public class DDLFormScreenlet
 		}
 	}
 
-	private FileField findFile(FileField file) {
+	private DocumentField findFile(DocumentField file) {
 		for (int i =0; i < _record.getFieldCount(); i++) {
 			if (_record.getField(i).equals(file)) {
-				return (FileField) _record.getField(i);
+				return (DocumentField) _record.getField(i);
 			}
 		}
 		return null;

@@ -94,7 +94,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 				return new NumberField(attributes, locale);
 			}
 			else if (FILE.equals(this)) {
-				return new FileField(attributes, locale);
+				return new DocumentField(attributes, locale);
 			}
 			return null;
 		}

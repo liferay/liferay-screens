@@ -25,7 +25,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.dlapp.DLAppService;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormFileEvent;
-import com.liferay.mobile.screens.ddl.model.FileField;
+import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.EventBusUtil;
 
 import org.json.JSONException;
@@ -54,7 +54,7 @@ public class UploadService extends IntentService {
 	}
 
 	private void uploadFromIntent(Intent intent) {
-		FileField file = intent.getParcelableExtra("file");
+		DocumentField file = intent.getParcelableExtra("file");
 		Long userId = intent.getLongExtra("userId", 0);
 		Long groupId = intent.getLongExtra("groupId", 0);
 		Long repositoryId = intent.getLongExtra("repositoryId", 0);

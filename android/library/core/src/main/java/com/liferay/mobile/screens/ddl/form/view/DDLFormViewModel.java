@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.ddl.form.view;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.ddl.model.FileField;
+import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 
@@ -32,9 +32,9 @@ public interface DDLFormViewModel extends BaseViewModel {
 
 	void setRecordValues(Record record);
 
-	void hideProgressBar(FileField file, boolean b);
+	void hideProgressBar(DocumentField file, boolean b);
 
-	void showFileUploaded(FileField newFile);
+	void showFileUploaded(DocumentField newFile);
 
-	void showFileUploadFailed(FileField newFile);
+	void showFileUploadFailed(DocumentField newFile);
 }

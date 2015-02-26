@@ -27,7 +27,7 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
-import com.liferay.mobile.screens.ddl.model.FileField;
+import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
@@ -114,12 +114,12 @@ public class DDLFormScreenletView
 				getDDLFormScreenlet().submitForm();
 			}
 		} else {
-			getDDLFormScreenlet().upload((FileField) view.getTag());
+			getDDLFormScreenlet().upload((DocumentField) view.getTag());
 		}
 	}
 
 	@Override
-	public void hideProgressBar(FileField file, boolean hide) {
+	public void hideProgressBar(DocumentField file, boolean hide) {
 		View view = findFileFieldView(file);
 		if (view != null) {
 			view.findViewById(R.id.fileProgress).setVisibility(hide ? View.GONE : View.VISIBLE);
@@ -127,7 +127,7 @@ public class DDLFormScreenletView
 	}
 
 	@Override
-	public void showFileUploaded(FileField file) {
+	public void showFileUploaded(DocumentField file) {
 		View view = findFileFieldView(file);
 		if (view != null) {
 			EditText editText = (EditText) view.findViewById(R.id.text);
@@ -136,7 +136,7 @@ public class DDLFormScreenletView
 	}
 
 	@Override
-	public void showFileUploadFailed(FileField file) {
+	public void showFileUploadFailed(DocumentField file) {
 		View view = findFileFieldView(file);
 		if (view != null) {
 			EditText editText = (EditText) view.findViewById(R.id.text);
@@ -210,7 +210,7 @@ public class DDLFormScreenletView
 		_submitButton.setOnClickListener(this);
 	}
 
-	private View findFileFieldView(FileField file) {
+	private View findFileFieldView(DocumentField file) {
 		DDLFormScreenlet screenlet = getDDLFormScreenlet();
 		Record record = screenlet.getRecord();
 		for (int i = 0; i < _fieldsContainerView.getChildCount(); i++) {

@@ -6,7 +6,7 @@ import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.service.UploadService;
-import com.liferay.mobile.screens.ddl.model.FileField;
+import com.liferay.mobile.screens.ddl.model.DocumentField;
 
 /**
  * @author Javier Gamarra
@@ -19,7 +19,7 @@ public class DDLFormUploadInteractorImpl extends BaseRemoteInteractor<DDLFormLis
 	}
 
 	@Override
-	public void upload(long groupId, long userId, long repositoryId, long folderId, FileField file) throws Exception {
+	public void upload(long groupId, long userId, long repositoryId, long folderId, DocumentField file) throws Exception {
 
 		Intent service = new Intent(LiferayScreensContext.getContext(), UploadService.class);
 		service.putExtra("file", file);

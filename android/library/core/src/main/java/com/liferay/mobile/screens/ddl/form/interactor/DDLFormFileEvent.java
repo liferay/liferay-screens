@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.ddl.form.interactor;
 
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
-import com.liferay.mobile.screens.ddl.model.FileField;
+import com.liferay.mobile.screens.ddl.model.DocumentField;
 
 import org.json.JSONObject;
 
@@ -10,21 +10,21 @@ import org.json.JSONObject;
  */
 public class DDLFormFileEvent extends JSONObjectEvent {
 
-	public DDLFormFileEvent(int targetScreenletId, JSONObject jsonObject, FileField fileField) {
+	public DDLFormFileEvent(int targetScreenletId, JSONObject jsonObject, DocumentField documentField) {
 		super(targetScreenletId, jsonObject);
 
-		_fileField = fileField;
+		_documentField = documentField;
 	}
 
-	public DDLFormFileEvent(int targetScreenletId, Exception e, FileField fileField) {
+	public DDLFormFileEvent(int targetScreenletId, Exception e, DocumentField documentField) {
 		super(targetScreenletId, e);
 
-		_fileField = fileField;
+		_documentField = documentField;
 	}
 
-	public FileField getFileField() {
-		return _fileField;
+	public DocumentField getFileField() {
+		return _documentField;
 	}
 
-	private FileField _fileField;
+	private DocumentField _documentField;
 }
