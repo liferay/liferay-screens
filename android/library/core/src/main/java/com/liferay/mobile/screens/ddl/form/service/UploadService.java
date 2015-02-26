@@ -16,8 +16,6 @@ package com.liferay.mobile.screens.ddl.form.service;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.net.Uri;
-import android.util.Log;
 import android.webkit.MimeTypeMap;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
@@ -28,10 +26,10 @@ import com.liferay.mobile.screens.ddl.form.interactor.DDLFormFileEvent;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.EventBusUtil;
 
+import org.apache.http.entity.mime.content.InputStreamBody;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -61,18 +59,21 @@ public class UploadService extends IntentService {
 		Long folderId = intent.getLongExtra("folderId", 0);
 		int targetScreenletId = intent.getIntExtra("screenletId", 0);
 
-		String path = file.getCurrentValue().getName();
-		String name = path.substring(path.lastIndexOf("/") + 1);
-		String date = new SimpleDateFormat("yyyyMMddHHmmdss").format(new Date());
-
 		InputStream is = null;
 		try {
+			String path = file.getCurrentValue().getName();
+			String name = path.substring(path.lastIndexOf("/") + 1);
+			String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
 			is = new FileInputStream(new File(path));
+			InputStreamBody inputStreamBody = new InputStreamBody(is, name);
+
 			Session session = SessionContext.createSessionFromCurrentSession();
 			DLAppService service = new DLAppService(session);
+
 			JSONObjectWrapper serviceContextWrapper = getJsonObjectWrapper(userId, groupId);
-			JSONObject jsonObject = service.addFileEntry(repositoryId, folderId, name, getMimeType(path), date + "_" + name, "", "", getBytes(is), serviceContextWrapper);
+
+			JSONObject jsonObject = service.addFileEntry(repositoryId, folderId, name, getMimeType(path), date + "_" + name, "", "", inputStreamBody, serviceContextWrapper);
 
 			EventBusUtil.post(new DDLFormFileEvent(targetScreenletId, jsonObject, file));
 
@@ -88,17 +89,6 @@ public class UploadService extends IntentService {
 		serviceContextAttributes.put("userId", userId);
 		serviceContextAttributes.put("scopeGroupId", groupId);
 		return new JSONObjectWrapper(serviceContextAttributes);
-	}
-
-	private byte[] getBytes(InputStream inputStream) throws IOException {
-		ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
-		byte[] buffer = new byte[1024];
-
-		int len = 0;
-		while ((len = inputStream.read(buffer)) != -1) {
-			byteBuffer.write(buffer, 0, len);
-		}
-		return byteBuffer.toByteArray();
 	}
 
 	private static String getMimeType(String path) {
@@ -117,5 +107,4 @@ public class UploadService extends IntentService {
 			}
 		}
 	}
-
 }
