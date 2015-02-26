@@ -6,16 +6,18 @@
 
 ## Introduction
 
-This document explains the steps required to create your own screenlet. Before proceeding, you may want to read the [Architecture Guide](architecture.md) in order to understand the underlying concepts. You may also want to read the guide [How to Create Your Own View](view_creation.md) in order to support the new screenlet from the Default or other view sets.
+This document explains the steps required to create your own screenlets in Liferay Screens for Android. Before proceeding, you may want to read the [Architecture Guide](architecture.md) to understand the concepts underlying screenlets. You may also want to read the guide [How to Create Your Own View](view_creation.md) to support the new screenlet from the Default or other view sets.
 
 The steps below walk you through creating an example screenlet for bookmarks that has the following features:
 
-- Allows the user to enter an URL and title in a text box.
-- When the user touches the submit button, the URL and title entered are sent to the Liferay instance's Bookmark service to be saved.
+- Allows the user to enter a URL and title in a text box.
+- When the user touches the submit button, the URL and title are sent to the Liferay instance's Bookmark service to be saved.
 
-Steps:
+Now that you know the basic ideas behind Screenlets and have a goal for the screenlet you'll create here, it's time to get started!
 
-- Create a new interface called `AddBookmarkViewModel`. This will include all attributes that will be presented in the view. In our case, these are `url` and `title`. Any screenlet view must implement this interface.
+## Creating Your Screenlet
+
+1. Create a new interface called `AddBookmarkViewModel`. This is for adding the attributes to show in the view. In this case, the attributes are `url` and `title`. Any screenlet view must implement this interface.
 
 ```java
 public interface AddBookmarkViewModel {
@@ -29,7 +31,7 @@ public interface AddBookmarkViewModel {
 }
 ```
 
-- Build your UI here using a layout XML. Put in two `EditText` for the URL and title. Also, add button to let the user save the bookmark. Note the root element is a custom class. We'll cover that class later.
+2. Build your UI using a layout XML file. Put in two `EditText` tags: one for the URL and another for the title. Also, add a `Button` tag to let the user save the bookmark. Note that the root element is a custom class. You'll create this class in the next step.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -57,11 +59,11 @@ public interface AddBookmarkViewModel {
 </com.your.package.AddBookmarkDefaultView>
 ```
 
-- The Android Studio's previewer will look like this:
+At this point, the graphical layout viewer in Android Studio should look like this:
 
-![App based on Liferay Screens](images/addbookmark_view.png)
+![An app based on Liferay Screens.](images/addbookmark_view.png)
 
-- Create a new custom view class called `AddBookmarkDefaultView` extending from `LinearLayout` and implementing `AddBookmarkViewModel`. This class will implement the UI together with the previous layout XML.
+3. Create a new custom view class called `AddBookmarkDefaultView`, that extends `LinearLayout` and implements `AddBookmarkViewModel`. This new class is where you implement the UI using the layout XML file from the previous step.
 
 ```java
 public class AddBookmarkDefaultView
@@ -89,7 +91,7 @@ public class AddBookmarkDefaultView
 }
 ```
 
-- In the `onFinishInflate` method, get the reference to the components. Then complete the getters and setters using the inner value of the components:
+4. In the `onFinishInflate` method, get the reference to the components. Then complete the getters and setters using the inner value of the components:
 
 ```java
 	@Override
@@ -117,7 +119,7 @@ public class AddBookmarkDefaultView
 	}	
 ```
 
-- Now, create the interactor class. It will be responsible for sending the bookmark to the Liferay Portal (or any other backend). Note that it's a good practice to use [IoC](http://en.wikipedia.org/wiki/Inversion_of_control) in your interactor classes. This way, anyone could provide a different implementation without breaking the rest of the code. `Interactor` base class also needs as a parameter the type of listener to notify to. We'll define this type below:
+5. Now, create the interactor class. It will be responsible for sending the bookmark to the Liferay Portal (or any other backend). Note that it's a good practice to use [IoC](http://en.wikipedia.org/wiki/Inversion_of_control) in your interactor classes. This way, anyone could provide a different implementation without breaking the rest of the code. `Interactor` base class also needs as a parameter the type of listener to notify to. We'll define this type below:
 
 ```java
 public interface AddBookmarkInteractor extends Interactor<AddBookmarkListener> {
