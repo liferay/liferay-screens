@@ -84,14 +84,19 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		I result = _interactors.get(actionName);
 
 		if (result == null) {
-			result = createInteractor(actionName);
-
-			if (result != null) {
-				result.onScreenletAttachted(this);
-				_interactors.put(actionName, result);
-			}
+			result = initInteractors(actionName);
 		}
 
+		return result;
+	}
+
+	private I initInteractors(String actionName) {
+		I result = createInteractor(actionName);
+
+		if (result != null) {
+			result.onScreenletAttachted(this);
+			_interactors.put(actionName, result);
+		}
 		return result;
 	}
 
@@ -150,6 +155,10 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		if (_screenletId == 0) {
 			_screenletId = state.getInt(_STATE_SCREENLET_ID);
 		}
+
+		for (String actionName : ((Bundle) inState).getStringArray(_STATE_INTERACTORS)) {
+			initInteractors(actionName);
+		}
 	}
 
 	@Override
@@ -159,6 +168,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		Bundle state = new Bundle();
 		state.putParcelable(_STATE_SUPER, superState);
 		state.putInt(_STATE_SCREENLET_ID, _screenletId);
+		state.putStringArray(_STATE_INTERACTORS, _interactors.keySet().toArray(new String[0]));
 
 		return state;
 	}
@@ -178,6 +188,8 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	private static final String _STATE_SCREENLET_ID = "basescreenlet-screenletId";
 
 	private static final String _STATE_SUPER = "basescreenlet-super";
+
+	private static final String _STATE_INTERACTORS = "basescreenlet-interactors";
 
 	private Map<String,I> _interactors = new HashMap<>();
 	private int _screenletId;
