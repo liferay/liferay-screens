@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.form;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -80,15 +81,20 @@ public class DDLFormScreenlet
 	}
 
 	public void submitForm() {
-		if (_record.getRecordId() == 0) {
-			performUserAction(_ADD_RECORD_ACTION);
+		if (allFilesUploaded(_record)) {
+			if (_record.getRecordId() == 0) {
+				performUserAction(_ADD_RECORD_ACTION);
+			} else {
+				performUserAction(_UPDATE_RECORD_ACTION);
+			}
 		}
 		else {
-			performUserAction(_UPDATE_RECORD_ACTION);
 		}
 	}
 
 	public void upload(FileField field) {
+		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
+		view.hideProgressBar(field, false);
 		performUserAction(_UPLOAD_FILE, field);
 	}
 
@@ -168,15 +174,30 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormFileUploaded(FileField file) {
+		FileField newFile = findFile(file);
+		if (newFile != null) {
+			newFile.getCurrentValue().setState(FileField.State.LOADED);
+			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
+			view.hideProgressBar(newFile, true);
+			view.showFileUploaded(newFile);
+		}
+
 		if (_listener != null) {
 			_listener.onDDLFormFileUploaded(file);
 		}
 	}
 
 	@Override
-	public void onDDLFormFileUploadFailed(Exception e) {
+	public void onDDLFormFileUploadFailed(FileField file, Exception e) {
+		FileField newFile = findFile(file);
+		if (newFile != null) {
+			newFile.getCurrentValue().setState(FileField.State.ERROR);
+			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
+			view.hideProgressBar(newFile, true);
+			view.showFileUploadFailed(newFile);
+		}
 		if (_listener != null) {
-			_listener.onDDLFormFileUploadFailed(e);
+			_listener.onDDLFormFileUploadFailed(file, e);
 		}
 	}
 
@@ -397,9 +418,30 @@ public class DDLFormScreenlet
 			try {
 				ddlFormUploadInteractor.upload(_groupId, _userId, _repositoryId, _folderId, (FileField) args[0]);
 			} catch (Exception e) {
-				e.printStackTrace();
+				onDDLFormFileUploadFailed((FileField) args[0], e);
 			}
 		}
+	}
+
+	private boolean allFilesUploaded(Record record) {
+		boolean validFiles = true;
+		for (int i = 0; i < record.getFieldCount(); i++) {
+			Field field = record.getField(i);
+			if (field instanceof FileField) {
+				FileField file = (FileField) field;
+				FileField.State state = file.getCurrentValue().getState();
+				if (FileField.State.UPLOADING.equals(state) ||  FileField.State.PENDING.equals(state)) {
+					validFiles = false;
+				}
+				else {
+					if (FileField.State.ERROR.equals(state)) {
+						upload(file);
+						validFiles = false;
+					}
+				}
+			}
+		}
+		return validFiles;
 	}
 
 	protected void setFieldLayoutId(
@@ -455,6 +497,15 @@ public class DDLFormScreenlet
 		if (_autoLoad && _record.getFieldCount() == 0) {
 			load();
 		}
+	}
+
+	private FileField findFile(FileField file) {
+		for (int i =0; i < _record.getFieldCount(); i++) {
+			if (_record.getField(i).equals(file)) {
+				return (FileField) _record.getField(i);
+			}
+		}
+		return null;
 	}
 
 	private static Map<Field.EditorType, String> _defaultLayoutNames;
