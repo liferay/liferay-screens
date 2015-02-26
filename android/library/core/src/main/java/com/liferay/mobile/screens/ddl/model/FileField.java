@@ -3,6 +3,8 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.liferay.mobile.screens.util.ViewUtil;
+
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Map;
@@ -30,14 +32,15 @@ public class FileField extends Field<FileField.File> {
 	}
 
 	public enum State {
-		PENDING, UPLOADING, LOADED;
+		PENDING, UPLOADING, LOADED, ERROR;
 	}
 
 	public static class File implements Serializable {
 
-		public File(String name, State state) {
-			this.name = name;
-			this.state = state;
+		public File(String name, Integer id, State state) {
+			_name = name;
+			_id = id;
+			_state = state;
 		}
 
 		@Override
@@ -49,14 +52,35 @@ public class FileField extends Field<FileField.File> {
 			if (obj instanceof File) {
 				File file = (File) obj;
 
-				return name.equals(file.name);
+				return _name.equals(file.getName()) && _id.equals(file.getId());
 			}
 
 			return super.equals(obj);
 		}
 
-		public String name;
-		public State state;
+		public String getName() {
+			return _name;
+		}
+
+		public void setName(String name) {
+			_name = name;
+		}
+
+		public Integer getId() {
+			return _id;
+		}
+
+		public State getState() {
+			return _state;
+		}
+
+		public void setState(State state) {
+			_state = state;
+		}
+
+		private String _name;
+		private Integer _id;
+		private State _state;
 	}
 
 	protected FileField(Parcel in) {
@@ -65,32 +89,41 @@ public class FileField extends Field<FileField.File> {
 
 	@Override
 	protected File convertFromString(String name) {
-		return new File(name, State.PENDING);
+		return new File(name, ViewUtil._generateUniqueId(), null);
 	}
 
 	@Override
 	protected String convertToData(File file) {
-		return file.name;
+		return file.getName();
 	}
 
 	@Override
 	protected String convertToFormattedString(File file) {
-		return file.name;
+		return file.getName();
 	}
 
 	@Override
-	protected  boolean doValidate() {
+	protected boolean doValidate() {
 		boolean valid = true;
 
 		File currentValue = getCurrentValue();
 
 		if (currentValue != null && isRequired()) {
-			String trimmedString = currentValue.name.trim();
-
-			valid = !trimmedString.equals("");
+			String trimmedString = currentValue.getName().trim();
+			valid = !trimmedString.isEmpty();
 		}
 
 		return valid;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof FileField) {
+			FileField other = (FileField) o;
+			return getCurrentValue().equals(other.getCurrentValue());
+		}
+		return false;
+	}
+
 
 }
