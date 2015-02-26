@@ -27,13 +27,12 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
-import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.FileField;
+import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.themes.R;
-import com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldFileView;
 
 import java.util.HashMap;
 import java.util.Map;

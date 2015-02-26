@@ -15,8 +15,8 @@
 package com.liferay.mobile.screens.ddl.form.view;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.FileField;
+import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 
 /**

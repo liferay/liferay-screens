@@ -15,9 +15,6 @@
 package com.liferay.mobile.screens.ddl.form.interactor;
 
 import com.liferay.mobile.screens.ddl.model.FileField;
-import com.liferay.mobile.screens.ddl.model.Record;
-
-import java.io.File;
 
 /**
  * @author Javier Gamarra

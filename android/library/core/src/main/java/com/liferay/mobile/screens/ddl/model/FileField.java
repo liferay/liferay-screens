@@ -83,6 +83,15 @@ public class FileField extends Field<FileField.File> {
 		private State _state;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof FileField) {
+			FileField other = (FileField) o;
+			return getCurrentValue().equals(other.getCurrentValue());
+		}
+		return false;
+	}
+
 	protected FileField(Parcel in) {
 		super(in);
 	}
@@ -115,15 +124,5 @@ public class FileField extends Field<FileField.File> {
 
 		return valid;
 	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (o instanceof FileField) {
-			FileField other = (FileField) o;
-			return getCurrentValue().equals(other.getCurrentValue());
-		}
-		return false;
-	}
-
 
 }
