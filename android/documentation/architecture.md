@@ -89,7 +89,7 @@ For more details refer the [How to Create Your Own Screenlet Guide](screenlet_cr
 
 This layer lets developers use more than one look and feel for any screenlet. Screenlets have an attribute called `liferay:layoutId`, which is used to determine the view which is responsible for rendering the UI.
 
-![The view layer of Liferay Screens for Android](http://liferay.github.io/liferay-screens/android/library/svg/architecture-themes.svg)
+![The view layer of Liferay Screens for Android](http://liferay.github.io/liferay-screens/android/library/svg/architecture-views.svg)
 
 You have different types of views:
 
