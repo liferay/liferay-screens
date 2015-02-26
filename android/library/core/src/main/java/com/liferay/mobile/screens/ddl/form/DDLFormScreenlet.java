@@ -269,7 +269,7 @@ public class DDLFormScreenlet
 		int layoutId = typedArray.getResourceId(
 			R.styleable.DDLFormScreenlet_layoutId, 0);
 
-		_autoLoad = typedArray.getBoolean(R.styleable.DDLFormScreenlet_autoLoad, false);
+		_autoLoad = typedArray.getBoolean(R.styleable.DDLFormScreenlet_autoLoad, true);
 
 		_autoScrollOnValidation = typedArray.getBoolean(
 			R.styleable.DDLFormScreenlet_autoScrollOnValidation, true);
