@@ -67,7 +67,11 @@ Dynamic Data Lists and Data Types should be configured properly in the portal. R
 
 | Attribute | Data type | Explanation |
 |-----------|-----------|-------------| 
-|  `groupId` | `number` | The site (group) identifier where the asset will be stored. If this value is 0, the `groupId` specified in `LiferayServerContext` is be used. |
+|  `autoLoad` | `boolean` | Whether or not the list should be loaded when it's presented in the screen. Default value is `true`.|
+|  `refreshControl` | `boolean` | Whether or not an starndar [UIRefreshControl](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIRefreshControl_class/) will be shown when the "pull to refresh" gesture is done by the user. Default value is `true`.|
+|  `firstPageSize` | `number` | The number of items to be retrieved from the server in the first page. Default value is `50`.|
+|  `pageSize` | `number` | The number of items to be retrieved from the server in the second page and next. Default value is `25`.|
+|  `groupId` | `number` | The site (group) identifier where the asset is stored. If this value is `0`, the `groupId` specified in `LiferayServerContext` is be used. Default value is `0`.|
 |  `classNameId` | `number` | The identifier of asset's class name. Use values from `AssetClassNameId` enumeration or the `classname_` database table. |
 
 ## Methods
