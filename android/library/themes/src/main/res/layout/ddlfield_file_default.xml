@@ -10,11 +10,29 @@
         style="@style/default_text_view"
         android:visibility="gone"/>
 
-    <EditText
-        android:id="@+id/text"
-        style="@style/default_edit_text"
-        android:layout_marginBottom="0dp"/>
 
-    <View
-        style="@style/default_form_divider"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/text"
+            style="@style/default_edit_text"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="0dp"
+            android:editable="false"
+            android:focusable="false"
+            android:clickable="true"
+            android:inputType="none"/>
+
+        <ProgressBar
+            android:id="@+id/fileProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center_vertical"
+            android:paddingBottom="0dp"
+            android:paddingTop="0dp"
+            android:visibility="invisible"/>
+    </FrameLayout>
+
 </com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldFileView>
