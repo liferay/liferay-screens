@@ -13,10 +13,7 @@
     <EditText
         android:id="@+id/text"
         style="@style/default_edit_text"
-        android:layout_marginBottom="0dp"
         android:drawableRight="@drawable/default_calendar"
         android:inputType="date"/>
 
-    <View
-        style="@style/default_form_divider"/>
 </com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldDateView>

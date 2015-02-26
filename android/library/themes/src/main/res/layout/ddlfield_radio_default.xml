@@ -11,6 +11,4 @@
         style="@style/default_text_view"
         android:visibility="gone"/>
 
-    <View
-        style="@style/default_form_divider"/>
 </com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldRadioView>

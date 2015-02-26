@@ -13,11 +13,6 @@
     <EditText
         android:id="@+id/text"
         style="@style/default_edit_text"
-        android:layout_marginBottom="0dp"
-        android:ems="10"
         android:inputType="textMultiLine"
         android:minLines="3"/>
-
-    <View
-        style="@style/default_form_divider"/>
 </com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldTextView>

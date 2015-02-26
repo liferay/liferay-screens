@@ -15,7 +15,10 @@
             android:id="@+id/ddlfields_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"/>
+            android:divider="@drawable/default_divider"
+            android:dividerPadding="8dp"
+            android:orientation="vertical"
+            android:showDividers="middle"/>
 
         <Button
             android:id="@+id/submit"

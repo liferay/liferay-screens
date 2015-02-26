@@ -15,7 +15,4 @@
         android:text="switch"
         android:theme="@style/default_theme"/>
 
-    <View
-        style="@style/default_form_divider"/>
-
 </com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldCheckboxView>
