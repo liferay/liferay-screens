@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.themes.ddl.form;
 
 import android.content.Context;
 
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import android.view.LayoutInflater;
@@ -128,7 +129,7 @@ public class DDLFormScreenletView
 		View view = findFileFieldView(file);
 		if (view != null) {
 			EditText editText = (EditText) view.findViewById(R.id.text);
-			editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.abc_btn_check_material, 0);
+			editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_success, 0);
 		}
 	}
 
@@ -137,7 +138,7 @@ public class DDLFormScreenletView
 		View view = findFileFieldView(file);
 		if (view != null) {
 			EditText editText = (EditText) view.findViewById(R.id.text);
-			editText.setCompoundDrawablesWithIntrinsicBounds(0, 0 , R.drawable.abc_btn_radio_material, 0);
+			editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_failed, 0);
 		}
 	}
 

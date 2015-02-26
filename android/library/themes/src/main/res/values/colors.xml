@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="liferay_light_blue" type="color">#DD00b8e0</item>
-    <item name="liferay_light_gray" type="color">#D5D5D7</item>
-    <item name="liferay_dark_gray" type="color">#919394</item>
-    <item name="liferay_red" type="color">#e00000</item>
+	<item name="liferay_light_blue" type="color">#DD00b8e0</item>
+	<item name="liferay_light_gray" type="color">#D5D5D7</item>
+	<item name="liferay_dark_gray" type="color">#919394</item>
+	<item name="liferay_red" type="color">#e00000</item>
+	<item name="liferay_green" type="color">#5AD427</item>
+	<item name="liferay_clear_blue" type="color">#F0FFFF</item>
+	<item name="liferay_pure_red" type="color">#FF0000</item>
+	<item name="liferay_clear_red" type="color">#FFDCC8</item>
 </resources>

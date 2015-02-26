@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldFileView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/label"
-        style="@style/default_text_view"
-        android:visibility="gone"/>
+	<TextView
+		android:id="@+id/label"
+		style="@style/default_text_view"
+		android:visibility="gone"/>
 
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/text"
-            style="@style/default_edit_text"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="0dp"
-            android:editable="false"
-            android:focusable="false"
-            android:clickable="true"
-            android:inputType="none"/>
+		<EditText
+			android:id="@+id/text"
+			style="@style/default_edit_text"
+			android:layout_height="match_parent"
+			android:layout_marginBottom="0dp"
+			android:clickable="true"
+			android:paddingRight="9dp"
+			android:editable="false"
+			android:focusable="false"
+			android:inputType="none"/>
 
-        <ProgressBar
-            android:id="@+id/fileProgress"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="right|center_vertical"
-            android:paddingBottom="0dp"
-            android:paddingTop="0dp"
-            android:visibility="invisible"/>
-    </FrameLayout>
+		<ProgressBar
+			android:id="@+id/fileProgress"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_gravity="right|center_vertical"
+			android:paddingBottom="0dp"
+			android:paddingTop="0dp"
+			android:visibility="invisible"/>
+	</FrameLayout>
 
 </com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldFileView>
