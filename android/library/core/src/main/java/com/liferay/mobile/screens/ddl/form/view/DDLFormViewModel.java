@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddl.form.view;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.ddl.model.FileField;
 import com.liferay.mobile.screens.ddl.model.Record;
 
 /**
@@ -23,11 +24,17 @@ import com.liferay.mobile.screens.ddl.model.Record;
  */
 public interface DDLFormViewModel extends BaseViewModel {
 
-	public int getFieldLayoutId(Field.EditorType editorType);
+	int getFieldLayoutId(Field.EditorType editorType);
 
-	public void setFieldLayoutId(Field.EditorType editorType, int layoutId);
+	void setFieldLayoutId(Field.EditorType editorType, int layoutId);
 
-	public void setRecordFields(Record record);
-	public void setRecordValues(Record record);
+	void setRecordFields(Record record);
 
+	void setRecordValues(Record record);
+
+	void hideProgressBar(FileField file, boolean b);
+
+	void showFileUploaded(FileField newFile);
+
+	void showFileUploadFailed(FileField newFile);
 }

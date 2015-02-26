@@ -23,10 +23,12 @@ import android.view.View;
 
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ScrollView;
 
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.ddl.model.FileField;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
@@ -106,6 +108,43 @@ public class DDLFormScreenletView
 		}
 	}
 
+	@Override
+	public void onClick(View view) {
+		if (view.getId() == R.id.submit) {
+			if (validateForm()) {
+				getDDLFormScreenlet().submitForm();
+			}
+		} else {
+			getDDLFormScreenlet().upload((FileField) view.getTag());
+		}
+	}
+
+	@Override
+	public void hideProgressBar(FileField file, boolean hide) {
+		View view = findFileFieldView(file);
+		if (view != null) {
+			view.findViewById(R.id.fileProgress).setVisibility(hide ? View.GONE : View.VISIBLE);
+		}
+	}
+
+	@Override
+	public void showFileUploaded(FileField file) {
+		View view = findFileFieldView(file);
+		if (view != null) {
+			EditText editText = (EditText) view.findViewById(R.id.text);
+			editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.abc_btn_check_material, 0);
+		}
+	}
+
+	@Override
+	public void showFileUploadFailed(FileField file) {
+		View view = findFileFieldView(file);
+		if (view != null) {
+			EditText editText = (EditText) view.findViewById(R.id.text);
+			editText.setCompoundDrawablesWithIntrinsicBounds(0, 0 , R.drawable.abc_btn_radio_material, 0);
+		}
+	}
+
 	protected DDLFormScreenlet getDDLFormScreenlet() {
 		return (DDLFormScreenlet)getParent();
 	}
@@ -156,6 +195,7 @@ public class DDLFormScreenletView
 
 		DDLFieldViewModel viewModel = (DDLFieldViewModel)view;
 		viewModel.setField(field);
+		viewModel.setParentView(this);
 
 		_fieldsContainerView.addView(view);
 	}
@@ -171,16 +211,16 @@ public class DDLFormScreenletView
 		_submitButton.setOnClickListener(this);
 	}
 
-	@Override
-	public void onClick(View view) {
-		if (view.getId() == R.id.default_activity_button) {
-			if (validateForm()) {
-				getDDLFormScreenlet().submitForm();
+	private View findFileFieldView(FileField file) {
+		DDLFormScreenlet screenlet = getDDLFormScreenlet();
+		Record record = screenlet.getRecord();
+		for (int i = 0; i < _fieldsContainerView.getChildCount(); i++) {
+			Field field = record.getField(i);
+			if (field.equals(file)) {
+				return _fieldsContainerView.getChildAt(i);
 			}
-			//FIXME referencia
-		} else {
-			getDDLFormScreenlet().upload(((DDLFieldFileView) view.getParent()).getField());
 		}
+		return null;
 	}
 
 	private ViewGroup _fieldsContainerView;
