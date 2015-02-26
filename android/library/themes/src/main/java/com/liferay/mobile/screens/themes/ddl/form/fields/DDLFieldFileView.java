@@ -14,27 +14,21 @@
 
 package com.liferay.mobile.screens.themes.ddl.form.fields;
 
-import android.app.Activity;
 import android.content.Context;
-import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 
-import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
+import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.FileField;
-import com.liferay.mobile.screens.ddl.model.StringField;
 import com.liferay.mobile.screens.themes.R;
-import com.liferay.mobile.screens.themes.crouton.LiferayCroutonStyle;
 import com.liferay.mobile.screens.themes.ddl.form.DDLFormScreenletView;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-
 /**
- * @author Jose Manuel Navarro
+ * @author Javier Gamarra
  */
 public class DDLFieldFileView extends BaseDDLFieldTextView<FileField>
-		implements View.OnClickListener {
+		implements DDLFieldViewModel<FileField>, View.OnClickListener {
 
 	public DDLFieldFileView(Context context) {
 		super(context, null);
@@ -49,30 +43,18 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<FileField>
 	}
 
 	@Override
-	protected void onDetachedFromWindow() {
-		super.onDetachedFromWindow();
-	}
-
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-
-		EditText editText = getTextEditText();
-		editText.setCursorVisible(false);
-		editText.setFocusableInTouchMode(false);
-		editText.setOnClickListener(this);
-		editText.setInputType(InputType.TYPE_NULL);
-	}
-
-	@Override
 	public void onClick(final View view) {
 		SimpleFileDialog dialog = new SimpleFileDialog(getContext(), new SimpleFileDialog.SimpleFileDialogListener() {
 			@Override
 			public void onFileChosen(String path) {
-				//FIXME referencia
+				findViewById(R.id.fileProgress).setVisibility(View.VISIBLE);
 				getTextEditText().setText(path);
-				getField().setCurrentStringValue(path);
-				((DDLFormScreenletView) getParent().getParent().getParent()).onClick(view);
+
+				FileField field = getField();
+				field.getCurrentValue().setName(path);
+				field.getCurrentValue().setState(FileField.State.PENDING);
+				view.setTag(field);
+				((DDLFormScreenletView) getParentView()).onClick(view);
 
 			}
 		});
@@ -80,7 +62,22 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<FileField>
 	}
 
 	@Override
-	protected void onTextChanged(String text) {
+	public void refresh() {
 	}
 
+	@Override
+	public void onPostValidation(boolean valid) {
+	}
+
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		getTextEditText().setOnClickListener(this);
+	}
+
+	@Override
+	protected void onTextChanged(String text) {
+
+	}
 }
