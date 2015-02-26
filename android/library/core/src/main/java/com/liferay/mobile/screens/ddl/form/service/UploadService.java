@@ -23,13 +23,12 @@ import android.webkit.MimeTypeMap;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.dlapp.DLAppService;
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormFileEvent;
 import com.liferay.mobile.screens.ddl.model.FileField;
-import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.EventBusUtil;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -62,49 +61,40 @@ public class UploadService extends IntentService {
 		Long folderId = intent.getLongExtra("folderId", 0);
 		int targetScreenletId = intent.getIntExtra("screenletId", 0);
 
-		//FIXME valor!
-		String path = file.getCurrentValue().name;
-		//FIXME uri?
-		Uri uri = Uri.parse("");
+		String path = file.getCurrentValue().getName();
+		String name = path.substring(path.lastIndexOf("/") + 1);
+		String date = new SimpleDateFormat("yyyyMMddHHmmdss").format(new Date());
+
 		InputStream is = null;
 		try {
+
 			is = new FileInputStream(new File(path));
 			Session session = SessionContext.createSessionFromCurrentSession();
 			DLAppService service = new DLAppService(session);
-
-			JSONObject serviceContextAttributes = new JSONObject();
-			serviceContextAttributes.put("userId", userId);
-			serviceContextAttributes.put("scopeGroupId", groupId);
-			JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
-
-			//FIXME nombre?
-			//uri.getLastPathSegment();
-
-			String name = path.substring(path.lastIndexOf("/") +1);
-
-			String date = new SimpleDateFormat("yyyyMMddHHmmdss").format(new Date());
+			JSONObjectWrapper serviceContextWrapper = getJsonObjectWrapper(userId, groupId);
 			JSONObject jsonObject = service.addFileEntry(repositoryId, folderId, name, getMimeType(path), date + "_" + name, "", "", getBytes(is), serviceContextWrapper);
 
 			EventBusUtil.post(new DDLFormFileEvent(targetScreenletId, jsonObject, file));
 
-
 		} catch (Exception e) {
-			Log.e("asd", "asd", e);
 			if (is != null) {
 				try {
 					is.close();
 				} catch (IOException e1) {
-					e1.printStackTrace();
 				}
 			}
-			EventBusUtil.post(new JSONObjectEvent(targetScreenletId, e));
-
-		} finally {
-
+			EventBusUtil.post(new DDLFormFileEvent(targetScreenletId, e, file));
 		}
 	}
 
-	public byte[] getBytes(InputStream inputStream) throws IOException {
+	private JSONObjectWrapper getJsonObjectWrapper(Long userId, Long groupId) throws JSONException {
+		JSONObject serviceContextAttributes = new JSONObject();
+		serviceContextAttributes.put("userId", userId);
+		serviceContextAttributes.put("scopeGroupId", groupId);
+		return new JSONObjectWrapper(serviceContextAttributes);
+	}
+
+	private byte[] getBytes(InputStream inputStream) throws IOException {
 		ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
 		byte[] buffer = new byte[1024];
 
@@ -115,8 +105,7 @@ public class UploadService extends IntentService {
 		return byteBuffer.toByteArray();
 	}
 
-	public static String getMimeType(String path)
-	{
+	private static String getMimeType(String path) {
 		String extension = MimeTypeMap.getFileExtensionFromUrl(path);
 		if (extension != null) {
 			return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
