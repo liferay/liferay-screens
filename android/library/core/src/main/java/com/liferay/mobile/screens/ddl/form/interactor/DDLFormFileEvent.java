@@ -10,15 +10,21 @@ import org.json.JSONObject;
  */
 public class DDLFormFileEvent extends JSONObjectEvent {
 
-	public DDLFormFileEvent(int targetScreenletId, JSONObject jsonObject, FileField FileField) {
+	public DDLFormFileEvent(int targetScreenletId, JSONObject jsonObject, FileField fileField) {
 		super(targetScreenletId, jsonObject);
 
-		_FileField = FileField;
+		_fileField = fileField;
+	}
+
+	public DDLFormFileEvent(int targetScreenletId, Exception e, FileField fileField) {
+		super(targetScreenletId, e);
+
+		_fileField = fileField;
 	}
 
 	public FileField getFileField() {
-		return _FileField;
+		return _fileField;
 	}
 
-	private FileField _FileField;
+	private FileField _fileField;
 }
