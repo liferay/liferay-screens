@@ -12,6 +12,8 @@ In Liferay Screens, a *screenlet* is a visual component that is connected to Lif
 
 Each screenlet is tied to one or more services exposed by [Liferay's remote services](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/accessing-services-remotely-liferay-portal-6-2-dev-guide-05-en). When the screenlet needs to show some information to the user, it relies on a View. View sets can be contributed by third parties and are fully pluggable, so you're not limited to one specific look and feel. The Screens library provides a standard view set called *Default* and another sample one called *Material*.
 
+TODO Cool picture with android phone
+
 ![The SignUp screenlet using Default and Flat7 themes](Documentation/Images/screens-phone2.png)
 
 To learn more details about the architecture of Screen for Android, please see the [library documentation page](library/README.md).
@@ -41,6 +43,7 @@ So you need to use Maven or Gradle to set amd download your dependencies.
 
 Next you can find the steps to perform to configure your project with Gradle:
 
+TODO
 1. XXX
 2. XXX
 3. XXX
