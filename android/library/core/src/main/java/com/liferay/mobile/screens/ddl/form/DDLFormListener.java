@@ -40,6 +40,6 @@ public interface DDLFormListener {
 
 	void onDDLFormFileUploaded(FileField file);
 
-	void onDDLFormFileUploadFailed(Exception e);
+	void onDDLFormFileUploadFailed(FileField file, Exception e);
 
 }
