@@ -64,12 +64,12 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<FileField>
 
 	@Override
 	public void refresh() {
-		_textEditText.setText(_field.toFormattedString());
-		if (FileField.State.LOADED.equals(_field.getCurrentValue().getState())) {
-			_textEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.abc_btn_radio_material, 0);
-		} else if (FileField.State.ERROR.equals(_field.getCurrentValue().getState())) {
-			_textEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.abc_btn_check_material, 0);
-		} else if (_field.getCurrentValue().getState() != null) {
+		getTextEditText().setText(getField().toFormattedString());
+		if (FileField.State.LOADED.equals(getField().getCurrentValue().getState())) {
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.abc_btn_radio_material, 0);
+		} else if (FileField.State.ERROR.equals(getField().getCurrentValue().getState())) {
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.abc_btn_check_material, 0);
+		} else if (getField().getCurrentValue().getState() != null) {
 			_progressBar.setVisibility(View.VISIBLE);
 		}
 	}
