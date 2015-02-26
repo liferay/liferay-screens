@@ -77,20 +77,9 @@ public class UploadService extends IntentService {
 			EventBusUtil.post(new DDLFormFileEvent(targetScreenletId, jsonObject, file));
 
 		} catch (Exception e) {
-			if (is != null) {
-				try {
-					is.close();
-				} catch (IOException e1) {
-				}
-			}
 			EventBusUtil.post(new DDLFormFileEvent(targetScreenletId, e, file));
 		} finally {
-			if (is != null) {
-				try {
-					is.close();
-				} catch (IOException e1) {
-				}
-			}
+			tryToCloseInputStream(is);
 		}
 	}
 
@@ -118,6 +107,15 @@ public class UploadService extends IntentService {
 			return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
 		}
 		return null;
+	}
+
+	private void tryToCloseInputStream(InputStream is) {
+		if (is != null) {
+			try {
+				is.close();
+			} catch (IOException e) {
+			}
+		}
 	}
 
 }
