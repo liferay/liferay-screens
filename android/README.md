@@ -39,9 +39,9 @@ TODO: Mention compat library???
 
 Liferay Screens is released as [AAR file](http://tools.android.com/tech-docs/new-build-system/aar-format) published in Maven Central repository. 
 
-So you need to use Maven or Gradle to set amd download your dependencies.
+So you need to use Maven or Gradle to set and download your dependencies.
 
-Next you can find the steps to perform to configure your project with Gradle:
+Next you can find the steps to perform in order to configure your project with Gradle:
 
 TODO
 1. XXX
@@ -54,19 +54,19 @@ Great! Your project should now be ready for Liferay Screens. Next, you'll learn 
 
 Now you're ready to start using screenlets in your project. First, insert a screenlet in your activity's or fragment's layout. You can use the XML editor or the Android Studio's visual one:
 
-![Add UIWindow](Documentation/Images/add-uiwindow.png "Add UIWindow")
+![Insert screenlet](documentation/images/insert_screenlet.png)
 
-Next, set the properties of the screenlet in the XML tag:
+Next, set the attributes of the screenlet in the XML tag. Refer to the screenlet documentation to read about attributes supported by each screenlet:
 
-![Change Custom Class](Documentation/Images/custom-class.png "Change Custom Class")
+![Set screenlet attributes](documentation/images/set_attributes.png)
 
-Now you need to listener the events produced by the screenlet. For this, implement the xxxListener interface in your Activity or Fragment class. For instance, for the `LoginScreenlet` you need to implement the interface `LoginListener`.
+Now you need to listen the events produced by the screenlet. For this, implement the listener interface associated to the screenlet in your Activity or Fragment class. For instance, for the `LoginScreenlet` you need to implement the interface `LoginListener`.
 
 ![Conform delegate](Documentation/Images/conform-delegate.png "Conform delegate")
 
-And finally, set your activity or fragment class as screenlet's listener:
+And finally, set your activity or fragment as screenlet's listener:
 
-![Connect delegate in Interface Builder](Documentation/Images/xcode-delegate.png "Connect delegate in Interface Builder")
+![Implement listener in your activity](documentation/images/implement_listener.png)
 
 Awesome! Now you know how to use screenlets in your app.
 
@@ -97,8 +97,8 @@ With Views sets, you can control the look and feel of any screenlet that you dec
 
 The view sets currently released with Liferay Screens are:
 
-- **Default**: The standard view set that is used when you include any screenlet on your activity or fragment and don't change de values of `liferay:layoutId` attribute. It can be used as the parent view for any of your custom views (refer to the [Architecture Guide](Documentation/architecture.md#view-layer) for more details on this).
-- **Material**: A sample view set intended to demonstrate how to develop your own full views from scratch. For information on creating your own view set, refer to the [Views Guide](Documentation/views.md).
+- **Default**: The standard view set that is used when you include any screenlet on your activity or fragment and don't change de values of `liferay:layoutId` attribute. It can be used as the parent view for any of your custom views (refer to the [Architecture Guide](documentation/architecture.md#view-layer) for more details on this).
+- **Material**: A sample view set intended to demonstrate how to develop your own full views from scratch. For information on creating your own view set, refer to the [Views Guide](documentation/views.md).
 
 ## Contributing New Screenlets and Views
 
