@@ -14,10 +14,11 @@
 
 package com.liferay.mobile.screens.themes.ddl.form.fields;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.FileField;
@@ -63,6 +64,14 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<FileField>
 
 	@Override
 	public void refresh() {
+		_textEditText.setText(_field.toFormattedString());
+		if (FileField.State.LOADED.equals(_field.getCurrentValue().getState())) {
+			_textEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.abc_btn_radio_material, 0);
+		} else if (FileField.State.ERROR.equals(_field.getCurrentValue().getState())) {
+			_textEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.abc_btn_check_material, 0);
+		} else if (_field.getCurrentValue().getState() != null) {
+			_progressBar.setVisibility(View.VISIBLE);
+		}
 	}
 
 	@Override
@@ -83,6 +92,7 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<FileField>
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
+		_progressBar = (ProgressBar) findViewById(R.id.fileProgress);
 		getTextEditText().setOnClickListener(this);
 	}
 
