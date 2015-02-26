@@ -18,6 +18,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
@@ -116,6 +117,16 @@ public class DDLFieldRadioView extends RadioGroup
 	}
 
 	@Override
+	public View getParentView() {
+		return _parentView;
+	}
+
+	@Override
+	public void setParentView(View view) {
+		_parentView = view;
+	}
+
+	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
@@ -142,6 +153,7 @@ public class DDLFieldRadioView extends RadioGroup
 		return Typeface.create("sans-serif-light", Typeface.NORMAL);
 	}
 
+	private View _parentView;
 	private StringWithOptionsField _field;
 
 }

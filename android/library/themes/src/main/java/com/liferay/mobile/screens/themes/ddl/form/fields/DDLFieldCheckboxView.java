@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.themes.ddl.form.fields;
 import android.content.Context;
 import android.support.v7.widget.SwitchCompat;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
@@ -74,6 +75,16 @@ public class DDLFieldCheckboxView extends LinearLayout
 	}
 
 	@Override
+	public View getParentView() {
+		return _parentView;
+	}
+
+	@Override
+	public void setParentView(View view) {
+		_parentView = view;
+	}
+
+	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		_field.setCurrentValue(isChecked);
 	}
@@ -90,8 +101,7 @@ public class DDLFieldCheckboxView extends LinearLayout
 	}
 
 	private BooleanField _field;
-
-
 	private SwitchCompat _switch;
+	private View _parentView;
 
 }

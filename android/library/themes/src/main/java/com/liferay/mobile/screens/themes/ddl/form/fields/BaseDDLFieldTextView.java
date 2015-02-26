@@ -21,6 +21,7 @@ import android.text.TextWatcher;
 
 import android.util.AttributeSet;
 
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -74,6 +75,16 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 	public EditText getTextEditText() {
 		return _textEditText;
+	}
+
+	@Override
+	public View getParentView() {
+		return _parentView;
+	}
+
+	@Override
+	public void setParentView(View view) {
+		_parentView = view;
 	}
 
 	@Override
@@ -139,5 +150,6 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	private T _field;
 	private TextView _labelTextView;
 	private EditText _textEditText;
+	private View _parentView;
 
 }
