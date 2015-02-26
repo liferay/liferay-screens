@@ -24,9 +24,37 @@ import com.liferay.mobile.screens.ddl.model.Record;
  */
 public interface DDLFormViewModel extends BaseViewModel {
 
+	/**
+	 * The layout associated with each form field.
+	 *
+	 * @return a layout resource id associated with the field editor type
+	 */
 	int getFieldLayoutId(Field.EditorType editorType);
 
+	/**
+	 * Sets the layout associated a field
+	 * You should use this method if you want to change the layout of your fields
+	 *
+	 * @param editorType EditorType associated with this layout
+	 * @param layoutId   the layout resource id for this editor type
+	 */
 	void setFieldLayoutId(Field.EditorType editorType, int layoutId);
+
+	/**
+	 * The layout associated with one specific field.
+	 *
+	 * @return a layout resource id associated with specified field
+	 */
+	int getCustomFieldLayoutId(String fieldName);
+
+	/**
+	 * Sets the layout associated a specific field
+	 * You should use this method if you want to change the layout of one specific field
+	 *
+	 * @param fieldName the name of the field to change its layout
+	 * @param layoutId  the layout resource id for the specified field
+	 */
+	void setCustomFieldLayoutId(String fieldName, int layoutId);
 
 	void setRecordFields(Record record);
 

@@ -55,28 +55,25 @@ public class DDLFormScreenletView
 		super(context, attributes, defaultStyle);
 	}
 
-	/**
-	 * The layout associated with each form field.
-	 *
-	 * @return a layout resource id associated with the field editor type
-	 */
-
 	@Override
 	public int getFieldLayoutId(Field.EditorType editorType) {
 		return _layoutIds.get(editorType);
 	}
 
-	/**
-	 * Sets the layout associated a field
-	 * You should use this method if you want to change the layout of your fields
-	 *
-	 * @param editorType EditorType associated with this layout
-	 * @param layoutId the layout resource id for this editor type
-	 */
 
 	@Override
 	public void setFieldLayoutId(Field.EditorType editorType, int layoutId) {
 		_layoutIds.put(editorType, layoutId);
+	}
+
+	@Override
+	public int getCustomFieldLayoutId(String fieldName) {
+		return _customLayoutIds.get(fieldName);
+	}
+
+	@Override
+	public void setCustomFieldLayoutId(String fieldName, int layoutId) {
+		_customLayoutIds.put(fieldName, layoutId);
 	}
 
 	@Override
@@ -187,7 +184,14 @@ public class DDLFormScreenletView
 	}
 
 	protected void addFieldView(Field field) {
-		int layoutId = getFieldLayoutId(field.getEditorType());
+		int layoutId;
+
+		if (_customLayoutIds.containsKey(field.getName())) {
+			layoutId = getCustomFieldLayoutId(field.getName());
+		}
+		else {
+			layoutId = getFieldLayoutId(field.getEditorType());
+		}
 
 		LayoutInflater inflater = LayoutInflater.from(getContext());
 		View view = inflater.inflate(layoutId, this, false);
@@ -225,5 +229,6 @@ public class DDLFormScreenletView
 	private ViewGroup _fieldsContainerView;
 	private Button _submitButton;
 	private Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
+	private Map<String, Integer> _customLayoutIds = new HashMap<>();
 
 }
