@@ -105,8 +105,22 @@ public class SessionStoreBuilder {
 			throw new IllegalStateException("You must call setUser() before");
 		}
 
-		// TODO right now, we only support Shared Prefs.
-		SessionStore sessionStore = new SessionStoreSharedPreferences();
+		SessionStore sessionStore;
+
+		switch (_storageType) {
+			case SHARED_PREFERENCES:
+				sessionStore = new SessionStoreSharedPreferences();
+				break;
+
+			case AUTO:
+				// TODO right now, we only support Shared Prefs.
+				sessionStore = new SessionStoreSharedPreferences();
+				break;
+
+			default:
+				sessionStore = new SessionStoreVoid();
+				break;
+		}
 
 		sessionStore.setContext(_ctx);
 		sessionStore.setAuthentication(_auth);
