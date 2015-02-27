@@ -29,6 +29,10 @@ public class SessionStoreVoid implements SessionStore {
 	}
 
 	@Override
+	public void removeStoredSession() {
+	}
+
+	@Override
 	public String getStoreName() {
 		return null;
 	}

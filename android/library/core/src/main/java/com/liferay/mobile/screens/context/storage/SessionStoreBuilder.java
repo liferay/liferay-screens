@@ -98,12 +98,6 @@ public class SessionStoreBuilder {
 		if (_ctx == null) {
 			throw new IllegalStateException("You must call setContext() before");
 		}
-		if (_auth == null) {
-			throw new IllegalStateException("You must call setAuthentication() before");
-		}
-		if (_user == null) {
-			throw new IllegalStateException("You must call setUser() before");
-		}
 
 		SessionStore sessionStore;
 
@@ -123,8 +117,14 @@ public class SessionStoreBuilder {
 		}
 
 		sessionStore.setContext(_ctx);
-		sessionStore.setAuthentication(_auth);
-		sessionStore.setUser(_user);
+
+		if (_auth != null) {
+			sessionStore.setAuthentication(_auth);
+		}
+
+		if (_user != null) {
+			sessionStore.setUser(_user);
+		}
 
 		return sessionStore;
 	}
