@@ -27,11 +27,16 @@ public interface SessionStore extends BaseViewModel {
 
 	public void storeSession();
 	public void removeStoredSession();
+	public boolean loadStoredSession() throws IllegalStateException;
 
 	public String getStoreName();
 
+	public BasicAuthentication getAuthentication();
 	public void setAuthentication(BasicAuthentication auth);
+
+	public User getUser();
 	public void setUser(User user);
+
 	public void setContext(Context ctx);
 
 }

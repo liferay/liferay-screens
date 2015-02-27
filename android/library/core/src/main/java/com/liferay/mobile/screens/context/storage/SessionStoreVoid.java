@@ -33,12 +33,27 @@ public class SessionStoreVoid implements SessionStore {
 	}
 
 	@Override
+	public boolean loadStoredSession() {
+		return false;
+	}
+
+	@Override
 	public String getStoreName() {
 		return null;
 	}
 
 	@Override
+	public BasicAuthentication getAuthentication() {
+		return null;
+	}
+
+	@Override
 	public void setAuthentication(BasicAuthentication auth) {
+	}
+
+	@Override
+	public User getUser() {
+		return null;
 	}
 
 	@Override
