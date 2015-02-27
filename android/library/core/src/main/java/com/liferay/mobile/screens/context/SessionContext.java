@@ -34,23 +34,19 @@ public class SessionContext {
 	}
 
 	public static Session createSession(String username, String password) {
-		Authentication authentication = new BasicAuthentication(
-			username, password);
+		Authentication authentication = new BasicAuthentication(username, password);
 
-		_session = new SessionImpl(
-			LiferayServerContext.getServer(), authentication);
+		_session = new SessionImpl(LiferayServerContext.getServer(), authentication);
 
 		return _session;
 	}
 
 	public static Session createSessionFromCurrentSession() {
 		if (_session == null) {
-			throw new IllegalStateException(
-				"You need to be logged in to get a session");
+			throw new IllegalStateException("You need to be logged in to get a session");
 		}
 
-		BasicAuthentication basicAuth =
-			(BasicAuthentication) _session.getAuthentication();
+		BasicAuthentication basicAuth = (BasicAuthentication) _session.getAuthentication();
 
 		return createSession(basicAuth.getUsername(), basicAuth.getPassword());
 	}

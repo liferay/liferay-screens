@@ -57,10 +57,6 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     @Override
     public void onListRowsFailure(int startRow, int endRow, Exception e) {
         int page = getPageFromRow(startRow);
-
-        BaseListListener listenerView = (BaseListListener) getScreenletView();
-        listenerView.onListPageFailed(this, page, e);
-
         if (_listener != null) {
             _listener.onListPageFailed(this, page, e);
         }
