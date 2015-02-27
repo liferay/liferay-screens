@@ -11,13 +11,6 @@ import java.util.Map;
  */
 public class DocumentField extends Field<String> {
 
-	public enum State {
-		PENDING,
-		UPLOADING,
-		UPLOADED,
-		FAILED;
-	}
-
 	public static final Parcelable.Creator<DocumentField> CREATOR =
 			new Parcelable.Creator<DocumentField>() {
 
@@ -37,6 +30,41 @@ public class DocumentField extends Field<String> {
 
 	protected DocumentField(Parcel in) {
 		super(in);
+	}
+
+	public boolean moveToUploadInProgressState() {
+		if (_state == State.IDLE || _state == State.FAILED || _state == State.UPLOADED) {
+			_state = State.UPLOADING;
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean moveToUploadCompleteState() {
+		if (_state == State.UPLOADING) {
+			_state = State.UPLOADED;
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean moveToUploadFailureState() {
+		if (_state == State.UPLOADING) {
+			_state = State.FAILED;
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isUploading() {
+		return (_state == State.UPLOADING);
+	}
+
+	public boolean isUploadFailed() {
+		return (_state == State.FAILED);
 	}
 
 	@Override
@@ -66,14 +94,13 @@ public class DocumentField extends Field<String> {
 		return valid;
 	}
 
-	public State getState() {
-		return _state;
+	private enum State {
+		IDLE,
+		UPLOADING,
+		UPLOADED,
+		FAILED;
 	}
 
-	public void setState(State state) {
-		_state = state;
-	}
-
-	private State _state;
+	private State _state = State.IDLE;
 
 }

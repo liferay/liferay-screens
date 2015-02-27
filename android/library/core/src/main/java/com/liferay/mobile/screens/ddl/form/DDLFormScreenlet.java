@@ -178,7 +178,8 @@ public class DDLFormScreenlet
 			(DocumentField) _record.getFieldByName(documentField.getName());
 
 		if (originalField != null) {
-			originalField.setState(DocumentField.State.UPLOADED);
+			originalField.moveToUploadCompleteState();
+
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
 			view.showDocumentUploaded(originalField);
 		}
@@ -194,7 +195,8 @@ public class DDLFormScreenlet
 			(DocumentField) _record.getFieldByName(documentField.getName());
 
 		if (originalField != null) {
-			originalField.setState(DocumentField.State.FAILED);
+			originalField.moveToUploadFailureState();
+
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
 			view.showDocumentUploadFailed(originalField);
 		}
@@ -427,7 +429,8 @@ public class DDLFormScreenlet
 			DDLFormUploadInteractor uploadInteractor = (DDLFormUploadInteractor) interactor;
 			DocumentField documentToUpload = (DocumentField) args[0];
 
-			documentToUpload.setState(DocumentField.State.PENDING);
+			documentToUpload.moveToUploadInProgressState();
+
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
 			view.showStartDocumentUpload(documentToUpload);
 
@@ -446,16 +449,14 @@ public class DDLFormScreenlet
 		for (int i = 0; i < record.getFieldCount(); i++) {
 			Field field = record.getField(i);
 			if (field instanceof DocumentField) {
-				DocumentField file = (DocumentField) field;
-				DocumentField.State state = file.getState();
-				if (DocumentField.State.UPLOADING.equals(state) ||  DocumentField.State.PENDING.equals(state)) {
+				DocumentField documentField = (DocumentField) field;
+
+				if (documentField.isUploading()) {
 					result = false;
 				}
-				else {
-					if (DocumentField.State.FAILED.equals(state)) {
-						startUpload(file);
-						result = false;
-					}
+				else if (documentField.isUploadFailed()) {
+					startUpload(documentField);
+					result = false;
 				}
 			}
 		}
