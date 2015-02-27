@@ -81,9 +81,11 @@ public class UploadService extends IntentService {
 
 			EventBusUtil.post(new DDLFormFileEvent(targetScreenletId, jsonObject, file));
 
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			EventBusUtil.post(new DDLFormFileEvent(targetScreenletId, e, file));
-		} finally {
+		}
+		finally {
 			tryToCloseInputStream(is);
 		}
 	}
@@ -107,7 +109,8 @@ public class UploadService extends IntentService {
 		if (is != null) {
 			try {
 				is.close();
-			} catch (IOException e) {
+			}
+			catch (IOException e) {
 			}
 		}
 	}
