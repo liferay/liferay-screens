@@ -117,29 +117,24 @@ public class DDLFormScreenletView
 	}
 
 	@Override
-	public void hideProgressBar(DocumentField file, boolean hide) {
-		View view = findFileFieldView(file);
-		if (view != null) {
-			view.findViewById(R.id.fileProgress).setVisibility(hide ? View.GONE : View.VISIBLE);
-		}
+	public void startUpload(DocumentField file) {
+		DDLFieldViewModel view = findFileFieldView(file);
+		file.getCurrentValue().setState(DocumentField.State.PENDING);
+		view.refresh();
 	}
 
 	@Override
 	public void showFileUploaded(DocumentField file) {
-		View view = findFileFieldView(file);
-		if (view != null) {
-			EditText editText = (EditText) view.findViewById(R.id.text);
-			editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_success, 0);
-		}
+		DDLFieldViewModel view = findFileFieldView(file);
+		file.getCurrentValue().setState(DocumentField.State.LOADED);
+		view.refresh();
 	}
 
 	@Override
 	public void showFileUploadFailed(DocumentField file) {
-		View view = findFileFieldView(file);
-		if (view != null) {
-			EditText editText = (EditText) view.findViewById(R.id.text);
-			editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_failed, 0);
-		}
+		DDLFieldViewModel view = findFileFieldView(file);
+		file.getCurrentValue().setState(DocumentField.State.ERROR);
+		view.refresh();
 	}
 
 	protected DDLFormScreenlet getDDLFormScreenlet() {
@@ -215,13 +210,11 @@ public class DDLFormScreenletView
 		_submitButton.setOnClickListener(this);
 	}
 
-	private View findFileFieldView(DocumentField file) {
-		DDLFormScreenlet screenlet = getDDLFormScreenlet();
-		Record record = screenlet.getRecord();
+	private DDLFieldViewModel findFileFieldView(DocumentField field) {
 		for (int i = 0; i < _fieldsContainerView.getChildCount(); i++) {
-			Field field = record.getField(i);
-			if (field.equals(file)) {
-				return _fieldsContainerView.getChildAt(i);
+			DDLFieldViewModel viewModel = (DDLFieldViewModel) _fieldsContainerView.getChildAt(i);
+			if (field.equals(viewModel.getField())) {
+				return viewModel;
 			}
 		}
 		return null;

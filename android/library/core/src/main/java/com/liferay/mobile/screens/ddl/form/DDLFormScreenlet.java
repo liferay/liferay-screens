@@ -94,7 +94,7 @@ public class DDLFormScreenlet
 
 	public void upload(DocumentField field) {
 		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.hideProgressBar(field, false);
+		view.startUpload(field);
 		performUserAction(_UPLOAD_FILE, field);
 	}
 
@@ -178,7 +178,6 @@ public class DDLFormScreenlet
 		if (newFile != null) {
 			newFile.getCurrentValue().setState(DocumentField.State.LOADED);
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-			view.hideProgressBar(newFile, true);
 			view.showFileUploaded(newFile);
 		}
 
@@ -193,7 +192,6 @@ public class DDLFormScreenlet
 		if (newFile != null) {
 			newFile.getCurrentValue().setState(DocumentField.State.ERROR);
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-			view.hideProgressBar(newFile, true);
 			view.showFileUploadFailed(newFile);
 		}
 		if (_listener != null) {

@@ -60,9 +60,9 @@ public interface DDLFormViewModel extends BaseViewModel {
 
 	void setRecordValues(Record record);
 
-	void hideProgressBar(DocumentField file, boolean b);
+	void startUpload(DocumentField file);
 
-	void showFileUploaded(DocumentField newFile);
+	void showFileUploaded(DocumentField file);
 
-	void showFileUploadFailed(DocumentField newFile);
+	void showFileUploadFailed(DocumentField file);
 }
