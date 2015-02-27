@@ -65,21 +65,26 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
 	@Override
 	public void refresh() {
 		getTextEditText().setText(getField().toFormattedString());
-		switch (getField().getCurrentValue().getState()) {
-			case UPLOADED:
-				getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_success, 0);
-				_progressBar.setVisibility(View.GONE);
-				break;
-			case FAILED:
-				getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_failed, 0);
-				_progressBar.setVisibility(View.GONE);
-				break;
-			case UPLOADING:
-			case PENDING:
-				_progressBar.setVisibility(View.VISIBLE);
-				break;
-			default:
-				_progressBar.setVisibility(View.GONE);
+		if (getField().getCurrentValue() != null && getField().getCurrentValue().getState() !=
+				null) {
+			switch (getField().getCurrentValue().getState()) {
+				case UPLOADED:
+					getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_success, 0);
+					_progressBar.setVisibility(View.GONE);
+					break;
+				case FAILED:
+					getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_failed, 0);
+					_progressBar.setVisibility(View.GONE);
+					break;
+				case UPLOADING:
+				case PENDING:
+					getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+					_progressBar.setVisibility(View.VISIBLE);
+					break;
+				default:
+					getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+					_progressBar.setVisibility(View.GONE);
+			}
 		}
 	}
 
