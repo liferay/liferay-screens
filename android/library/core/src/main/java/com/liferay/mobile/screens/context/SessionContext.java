@@ -18,8 +18,8 @@ import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
-import com.liferay.mobile.screens.context.storage.SessionStore;
-import com.liferay.mobile.screens.context.storage.SessionStoreBuilder;
+import com.liferay.mobile.screens.context.storage.CredentialsStore;
+import com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder;
 
 import org.json.JSONObject;
 
@@ -68,12 +68,12 @@ public class SessionContext {
 	}
 
 
-	public static void storeSession(SessionStoreBuilder.StorageType storageType) {
+	public static void storeSession(CredentialsStoreBuilder.StorageType storageType) {
 		if (!hasSession()) {
 			throw new IllegalStateException("You must have a session created to store it");
 		}
 
-		SessionStore storage = new SessionStoreBuilder()
+		CredentialsStore storage = new CredentialsStoreBuilder()
 			.setContext(LiferayScreensContext.getContext())
 			.setAuthentication((BasicAuthentication) _session.getAuthentication())
 			.setUser(getUser())
@@ -84,11 +84,11 @@ public class SessionContext {
 			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
 		}
 
-		storage.storeSession();
+		storage.storeCredentials();
 	}
 
-	public static void removeStoredSession(SessionStoreBuilder.StorageType storageType) {
-		SessionStore storage = new SessionStoreBuilder()
+	public static void removeStoredSession(CredentialsStoreBuilder.StorageType storageType) {
+		CredentialsStore storage = new CredentialsStoreBuilder()
 			.setContext(LiferayScreensContext.getContext())
 			.setStorageType(storageType)
 			.build();
@@ -97,13 +97,13 @@ public class SessionContext {
 			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
 		}
 
-		storage.removeStoredSession();
+		storage.removeStoredCredentials();
 	}
 
-	public static void loadSessionFromStore(SessionStoreBuilder.StorageType storageType)
+	public static void loadSessionFromStore(CredentialsStoreBuilder.StorageType storageType)
 		throws IllegalStateException {
 
-		SessionStore storage = new SessionStoreBuilder()
+		CredentialsStore storage = new CredentialsStoreBuilder()
 			.setContext(LiferayScreensContext.getContext())
 			.setStorageType(storageType)
 			.build();
@@ -112,7 +112,7 @@ public class SessionContext {
 			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
 		}
 
-		if (storage.loadStoredSession()) {
+		if (storage.loadStoredCredentials()) {
 			_session = new SessionImpl(
 				LiferayServerContext.getServer(), storage.getAuthentication());
 			_user = storage.getUser();

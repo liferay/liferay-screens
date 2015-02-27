@@ -17,26 +17,51 @@ package com.liferay.mobile.screens.context.storage;
 import android.content.Context;
 
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.context.User;
 
 /**
  * @author Jose Manuel Navarro
  */
-public interface SessionStore extends BaseViewModel {
+public class CredentialsStoreVoid implements CredentialsStore {
 
-	public void storeSession();
-	public void removeStoredSession();
-	public boolean loadStoredSession() throws IllegalStateException;
+	@Override
+	public void storeCredentials() {
+	}
 
-	public String getStoreName();
+	@Override
+	public void removeStoredCredentials() {
+	}
 
-	public BasicAuthentication getAuthentication();
-	public void setAuthentication(BasicAuthentication auth);
+	@Override
+	public boolean loadStoredCredentials() {
+		return false;
+	}
 
-	public User getUser();
-	public void setUser(User user);
+	@Override
+	public String getStoreName() {
+		return null;
+	}
 
-	public void setContext(Context ctx);
+	@Override
+	public BasicAuthentication getAuthentication() {
+		return null;
+	}
+
+	@Override
+	public void setAuthentication(BasicAuthentication auth) {
+	}
+
+	@Override
+	public User getUser() {
+		return null;
+	}
+
+	@Override
+	public void setUser(User user) {
+	}
+
+	@Override
+	public void setContext(Context ctx) {
+	}
 
 }
