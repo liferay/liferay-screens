@@ -26,20 +26,13 @@ public class FileDialog {
 	private String currentDir = "";
 
 	private static final String SD_DIRECTORY = Environment.getExternalStorageDirectory().getAbsolutePath();
-	private static final String SD_PATH = checkDir(SD_DIRECTORY);
 
 	public interface SimpleFileDialogListener {
 		public void onFileChosen(String path);
 	}
 
 	public AlertDialog createDialog(final Context context, final SimpleFileDialogListener listener) {
-		final String defaultPath = checkDir("");
-
-		if (SD_PATH != null) {
-			currentDir = SD_PATH;
-		} else if (defaultPath != null) {
-			currentDir = defaultPath;
-		}
+		currentDir = calculateDefaultPath();
 
 		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService
@@ -68,7 +61,13 @@ public class FileDialog {
 		final ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.select_dialog_item, android.R.id.text1, files);
 		ListView listView = (ListView) view.findViewById(R.id.default_list);
 		listView.setAdapter(adapter);
-		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		listView.setOnItemClickListener(createListener(files, editText, adapter));
+
+		return dialogBuilder.create();
+	}
+
+	private AdapterView.OnItemClickListener createListener(final List<String> files, final EditText editText, final ArrayAdapter<String> adapter) {
+		return new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -77,16 +76,19 @@ public class FileDialog {
 				String newPath = currentDir;
 				if ("..".equals(selection)) {
 					newPath = currentDir.substring(0, currentDir.lastIndexOf("/"));
-				} else if (selection.indexOf('/') != -1) {
+				}
+				else if (selection.indexOf('/') != -1) {
 					newPath += "/" + selection.substring(0, selection.length() - 1);
-				} else {
+				}
+				else {
 					newPath += "/" + selection;
 				}
 
 				currentFile = "";
 				if (new File(newPath).isFile()) {
 					currentFile = selection;
-				} else {
+				}
+				else {
 					currentDir = newPath;
 				}
 
@@ -95,12 +97,22 @@ public class FileDialog {
 				adapter.notifyDataSetChanged();
 				editText.setText(currentFile);
 			}
-		});
-
-		return dialogBuilder.create();
+		};
 	}
 
-	public static String checkDir(String directory) {
+	private String calculateDefaultPath() {
+		final String defaultPath = checkIfDirExists("");
+		final String sdPath = checkIfDirExists(SD_DIRECTORY);
+		if (sdPath != null) {
+			return sdPath;
+		}
+		else if (defaultPath != null) {
+			return defaultPath;
+		}
+		return "";
+	}
+
+	public static String checkIfDirExists(String directory) {
 		try {
 			File file = new File(directory);
 			return file.exists() && file.isDirectory() ? file.getCanonicalPath() : null;
@@ -112,7 +124,7 @@ public class FileDialog {
 	private List<String> getFileEntries(String directory) {
 		List<String> entries = new ArrayList<String>();
 
-		if (!currentDir.equals(SD_PATH)) {
+		if (!currentDir.equals(SD_DIRECTORY)) {
 			entries.add("..");
 		}
 
@@ -124,7 +136,8 @@ public class FileDialog {
 		for (File file : dirFile.listFiles()) {
 			if (file.isDirectory()) {
 				entries.add(file.getName() + "/");
-			} else {
+			}
+			else {
 				entries.add(file.getName());
 			}
 		}

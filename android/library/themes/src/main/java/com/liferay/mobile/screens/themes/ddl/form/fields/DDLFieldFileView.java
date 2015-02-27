@@ -14,16 +14,29 @@
 
 package com.liferay.mobile.screens.themes.ddl.form.fields;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.themes.R;
 import com.liferay.mobile.screens.themes.ddl.form.DDLFormScreenletView;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author Javier Gamarra
@@ -45,21 +58,8 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
 
 	@Override
 	public void onClick(final View view) {
-		_fileDialog = new FileDialog().createDialog(getContext(), new FileDialog.SimpleFileDialogListener() {
-			@Override
-			public void onFileChosen(String path) {
-				_progressBar.setVisibility(View.VISIBLE);
-				getTextEditText().setText(path);
-
-				DocumentField field = getField();
-				field.getCurrentValue().setName(path);
-				field.getCurrentValue().setState(DocumentField.State.PENDING);
-				view.setTag(field);
-				((DDLFormScreenletView) getParentView()).onClick(view);
-
-			}
-		});
-		_fileDialog.show();
+		_choseOriginDialog = createOriginDialog(view);
+		_choseOriginDialog.show();
 	}
 
 	@Override
@@ -87,8 +87,19 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
 	}
 
 	@Override
+	public void setPositionInParent(int position) {
+		_positionInForm = position;
+	}
+
+	@Override
 	protected void onDetachedFromWindow() {
 		super.onDetachedFromWindow();
+
+		// Avoid WindowLeak error on orientation changes
+		if (_choseOriginDialog != null) {
+			_choseOriginDialog.dismiss();
+			_choseOriginDialog = null;
+		}
 
 		// Avoid WindowLeak error on orientation changes
 		if (_fileDialog != null) {
@@ -109,6 +120,76 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
 
 	}
 
+	private AlertDialog createOriginDialog(final View view) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(getContext()).setPositiveButton(getContext().getString(R.string.makeAPhoto), new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				launchCameraIntent();
+			}
+		}).setNegativeButton(getContext().getString(R.string.selectAFile), new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				showFileDialog(view);
+			}
+		});
+
+		LayoutInflater factory = LayoutInflater.from(getContext());
+		final View customDialogView = factory.inflate(
+				R.layout.ddlfield_select_dialog_default, null);
+		TextView title = (TextView) customDialogView.findViewById(R.id.dialog_title);
+		title.setText(getContext().getString(R.string.origin_of_file));
+		builder.setCustomTitle(customDialogView);
+		return builder.create();
+	}
+
+	private void launchCameraIntent() {
+		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+		File photoFile = null;
+		try {
+			photoFile = createImageFile();
+			getField().getCurrentValue().setName(photoFile.getAbsolutePath());
+
+			if (photoFile != null) {
+				cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+						Uri.fromFile(photoFile));
+				//TODO Activity? or fragment?
+				((Activity) getContext()).startActivityForResult(cameraIntent, _positionInForm);
+			}
+		} catch (IOException e) {
+			//TODO Notify user?
+		}
+	}
+
+	private void showFileDialog(final View view) {
+		_fileDialog = new FileDialog().createDialog(getContext(), new FileDialog.SimpleFileDialogListener() {
+			@Override
+			public void onFileChosen(String path) {
+				_progressBar.setVisibility(View.VISIBLE);
+				getTextEditText().setText(path);
+
+				DocumentField field = getField();
+				field.getCurrentValue().setName(path);
+				field.getCurrentValue().setState(DocumentField.State.PENDING);
+				view.setTag(field);
+				((DDLFormScreenletView) getParentView()).onClick(view);
+
+			}
+		});
+		_fileDialog.show();
+	}
+
+	private File createImageFile() throws IOException {
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+		String imageFileName = "JPEG_" + timeStamp + "_";
+		File storageDir = Environment.getExternalStoragePublicDirectory(
+				Environment.DIRECTORY_PICTURES);
+		File image = File.createTempFile(imageFileName, ".jpg", storageDir);
+		return image;
+	}
+
+	private int _positionInForm;
 	private ProgressBar _progressBar;
+	private AlertDialog _choseOriginDialog;
 	private AlertDialog _fileDialog;
 }

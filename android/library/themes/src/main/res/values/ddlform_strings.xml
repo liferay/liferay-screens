@@ -4,4 +4,7 @@
 	<string name="required_value">Required value</string>
     <string name="invalid"/>
     <string name="open">Open:</string>
+	<string name="makeAPhoto">Make a photo</string>
+	<string name="selectAFile">Select a file</string>
+	<string name="origin_of_file">Choose origin of file</string>
 </resources>
