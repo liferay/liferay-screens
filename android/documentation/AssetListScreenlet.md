@@ -1,4 +1,4 @@
-# AssetListScreenlet for iOS
+# AssetListScreenlet for Android
 
 ## Important Note
 
@@ -6,14 +6,13 @@ _This product is under heavy development and its features aren't ready for use i
 
 ## Requirements
 
-- XCode 6.0 or above
-- iOS 8 SDK
+- Android SDK 4.0 (API Level 14) and above
 - Liferay Portal 6.2 CE or EE
 - Mobile Widgets plugin installed
 
 ## Compatibility
 
-- iOS 7 and above
+- Android SDK 4.0 (API Level 14) and above
 
 ## Features
 
@@ -53,10 +52,11 @@ The `AssetListScreenlet` also supports i18n in asset values.
 
 - None
 
-## Themes
+## Views
 
-The Default theme uses a standard `UITableView` to show the scrollable list. Other themes may use a different component, such as `UICollectionView` or others, to show the items.
+The Default views uses a standard `RecyclerView` to show the scrollable list. Other views may use a different component, such as `ViewPager` or others, to show the items.
 
+TODO image
 ![`AssetListScreenlet` using the Default theme.](Images/assetlist.png)
 
 ## Portal Configuration
@@ -67,24 +67,26 @@ Dynamic Data Lists and Data Types should be configured properly in the portal. R
 
 | Attribute | Data type | Explanation |
 |-----------|-----------|-------------| 
+|  `layoutId` | `@layout` | The layout to be used to show the view.|
 |  `autoLoad` | `boolean` | Whether or not the list should be loaded when it's presented in the screen. Default value is `true`.|
-|  `refreshControl` | `boolean` | Whether or not an starndar [UIRefreshControl](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIRefreshControl_class/) will be shown when the "pull to refresh" gesture is done by the user. Default value is `true`.|
 |  `firstPageSize` | `number` | The number of items to be retrieved from the server in the first page. Default value is `50`.|
 |  `pageSize` | `number` | The number of items to be retrieved from the server in the second page and next. Default value is `25`.|
-|  `groupId` | `number` | The site (group) identifier where the asset is stored. If this value is `0`, the `groupId` specified in `LiferayServerContext` is be used. Default value is `0`.|
+|  `groupId` | `number` | The site (group) identifier where the asset is stored. If this value is `0`, the `groupId` specified in `LiferayServerContext` is be used. Default value is `0 `.|
 |  `classNameId` | `number` | The identifier of asset's class name. Use values from `AssetClassNameId` enumeration or the `classname_` database table. |
 
 ## Methods
 
 | Method | Return | Explanation |
 |-----------|-----------|-------------| 
-|  `loadList()` | `boolean` | Starts the request to load the list of assets. This list is shown when the response is received. Returns `true` if the request could be sent. |
+|  `loadPage(pageNumber)` | `void` | Starts the request to load the specified page of assets. The page is shown when the response is received.|
 
-## Delegate
+## Listener
 
-The `AssetListScreenlet` delegates some events to an object that conforms to the `AssetListScreenletDelegate` protocol. This protocol lets you implement the following methods:
+The `AssetListScreenlet` delegates some events to an object that implements the `AssetListListener` interface. This interface extends from `BaseListListener` and let you implement the following methods:
 
-- `onAssetListResponse(list of records)`: Called when a page of assets is received. Note that this method may be called more than once; one call for each page received.
-- `onAssetListError(error)`: Called when an error occurs in the process. The `NSError` object describes the error.
-- `onAssetListSelected(asset)`: Called when an item in the list is selected.
+| Method | Explanation |
+|-----------|-------------| 
+|  <pre>onListPageReceived(<br/>      BaseListScreenlet source, <br/>      int page,<br/>      List<AssetEntry> entries,<br/>      int rowCount)</pre> | Called when a page of assets is received. Note that this method may be called more than once; once for each page received.|
+|  <pre>onListPageFailed(<br/>      BaseListScreenlet source, <br/>      int page,<br/>      Exception e)</pre> | Called when an error occurs in the process.|
+|  <pre>onListItemSelected(<br/>      BaseListScreenlet source, <br/>      AssetEntry entry)</pre> |Called when an item in the list is selected.|
 

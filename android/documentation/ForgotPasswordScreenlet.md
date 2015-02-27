@@ -1,4 +1,4 @@
-# ForgotPasswordScreenlet for iOS
+# ForgotPasswordScreenlet for Android
 
 ## Important Note
 
@@ -6,14 +6,13 @@
 
 ## Requirements
 
-- XCode 6.0 or above
-- iOS 8 SDK
+- Android SDK 4.0 (API Level 14) and above
 - Liferay Portal 6.2 CE or EE
 - Mobile Widgets plugin installed
 
 ## Compatibility
 
-- iOS 7 and above
+- Android SDK 4.0 (API Level 14) and above
 
 ## Features
 
@@ -27,11 +26,11 @@ The `ForgotPasswordScreenlet` can send an email to a registered user with their 
 
 - Auth
 
-## Themes
+## Views
 
 - Default
-- Flat7
 
+TODO picture
 ![The `ForgotPasswordScreenlet` with the Default and Flat7 themes.](Images/forgotpwd.png)
 
 ## Portal Configuration
@@ -40,13 +39,13 @@ To use the `ForgotPasswordScreenlet`, you must allow users to request new passwo
 
 ### Authentication Method
 
-Note that the authentication method configured in the portal can be different than the used by this screenlet. For example, it's *perfectly fine* to use `screenName` for sign in authentication, but allow users to recover their password using the `email` authentication method.
+Note that the authentication method configured in the portal can be different that the used by this screenlet. For example, it's *perfectly fine* to use `screenName` for sign in authentication, but allow users to recover their password using the `email` authentication method.
 
 ### Password Reset
 
 Password recovery depends on the authentication settings in the portal:
 
-![Checkboxes for the password recovery features in Liferay Portal.](Images/password-reset.png)
+![Checkboxes for the password recovery features in Liferay Portal.](../../ios/Documentation/Images/password-reset.png)
 
 If both of these options are unchecked, then password recovery is disabled. If both options are checked, an email containing a password reset link is sent when a user requests it. If only the first option is checked, an email containing a new password is sent when a user requests it.
 
@@ -60,15 +59,18 @@ An anonymous request can be done without the user being logged in. However, auth
 
 | Attribute | Data type | Explanation |
 |-----------|-----------|-------------| 
+|  `layoutId` | `@layout` | The layout to be used to show the view.|
 | `anonymousApiUserName` | `string` | The user name, email address, or userId (depending on the portal's authentication method) to use for authenticating the request. |
 | `anonymousApiPassword` | `string` | The password to use to authenticate the request. |
 | `companyId` | `number` | When set, the authentication is done for a user within the specified company. If the value is `0`, the company specified in `LiferayServerContext` is used. |
-| `authMethod` | `string` | The authentication method that is presented to the user. This can be `email`, `screenName`, or `userId`. |
+| `authMethod` | `string` | The authentication method that is presented to the user. This can be `email`, `screenName`, or `userId`. Default value is "email".|
 
-## Delegate
+## Listener
 
-The `ForgotPasswordScreenlet` delegates some events to an object that conforms to the `ForgotPasswordScreenletDelegate` protocol. This protocol lets you implement the following methods:
+The `ForgotPasswordScreenlet` delegates some events to an object that implements the `ForgotPasswordListener` interface. This interface let you implement the following methods:
 
-- `onForgotPasswordResponse(boolean)`: Called when a password reset email is successfully sent. The Boolean parameter indicates whether the email contains the new password or a password reset link.
-- `onForgotPasswordError(error)`: Called when an error occurs in the process. The `NSError` object describes the error.
+| Method | Explanation |
+|-----------|-------------| 
+|  <pre>onForgotPasswordRequestSuccess(boolean passwordSent)</pre> | Called when a password reset email is successfully sent. The boolean parameter indicates whether the email contains the new password or a password reset link.|
+|  <pre>onForgotPasswordRequestFailure(Exception e)</pre> | Called when an error occurs in the process.|
 
