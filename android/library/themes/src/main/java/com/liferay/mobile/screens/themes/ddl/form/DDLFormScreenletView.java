@@ -119,22 +119,18 @@ public class DDLFormScreenletView
 	@Override
 	public void startUpload(DocumentField file) {
 		DDLFieldViewModel view = findFileFieldView(file);
-		file.getCurrentValue().setState(DocumentField.State.PENDING);
+
 		view.refresh();
 	}
 
 	@Override
 	public void showFileUploaded(DocumentField file) {
-		DDLFieldViewModel view = findFileFieldView(file);
-		file.getCurrentValue().setState(DocumentField.State.LOADED);
-		view.refresh();
+		findFileFieldView(file).refresh();
 	}
 
 	@Override
 	public void showFileUploadFailed(DocumentField file) {
-		DDLFieldViewModel view = findFileFieldView(file);
-		file.getCurrentValue().setState(DocumentField.State.ERROR);
-		view.refresh();
+		findFileFieldView(file).refresh();
 	}
 
 	protected DDLFormScreenlet getDDLFormScreenlet() {

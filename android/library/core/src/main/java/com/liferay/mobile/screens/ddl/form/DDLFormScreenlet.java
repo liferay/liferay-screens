@@ -95,6 +95,7 @@ public class DDLFormScreenlet
 	}
 
 	public void upload(DocumentField field) {
+		field.getCurrentValue().setState(DocumentField.State.PENDING);
 		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
 		view.startUpload(field);
 		performUserAction(_UPLOAD_FILE, field);
@@ -178,7 +179,7 @@ public class DDLFormScreenlet
 	public void onDDLFormFileUploaded(DocumentField file) {
 		DocumentField newFile = findFile(file);
 		if (newFile != null) {
-			newFile.getCurrentValue().setState(DocumentField.State.LOADED);
+			newFile.getCurrentValue().setState(DocumentField.State.UPLOADED);
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
 			view.showFileUploaded(newFile);
 		}
@@ -192,7 +193,7 @@ public class DDLFormScreenlet
 	public void onDDLFormFileUploadFailed(DocumentField file, Exception e) {
 		DocumentField newFile = findFile(file);
 		if (newFile != null) {
-			newFile.getCurrentValue().setState(DocumentField.State.ERROR);
+			newFile.getCurrentValue().setState(DocumentField.State.FAILED);
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
 			view.showFileUploadFailed(newFile);
 		}
@@ -442,7 +443,7 @@ public class DDLFormScreenlet
 					validFiles = false;
 				}
 				else {
-					if (DocumentField.State.ERROR.equals(state)) {
+					if (DocumentField.State.FAILED.equals(state)) {
 						upload(file);
 						validFiles = false;
 					}

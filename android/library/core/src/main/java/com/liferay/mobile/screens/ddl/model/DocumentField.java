@@ -32,7 +32,7 @@ public class DocumentField extends Field<DocumentField.File> {
 	}
 
 	public enum State {
-		PENDING, UPLOADING, LOADED, ERROR;
+		PENDING, UPLOADING, UPLOADED, FAILED;
 	}
 
 	public static class File implements Serializable {
