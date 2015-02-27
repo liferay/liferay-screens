@@ -49,7 +49,7 @@ public class SessionStoreSharedPreferences implements SessionStore {
 			.putString("server", LiferayServerContext.getServer())
 			.putLong("groupId", LiferayServerContext.getGroupId())
 			.putLong("companyId", LiferayServerContext.getCompanyId())
-			.commit();
+			.apply();
 	}
 
 	}
