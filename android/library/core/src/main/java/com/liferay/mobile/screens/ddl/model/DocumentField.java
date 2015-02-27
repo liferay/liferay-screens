@@ -115,11 +115,8 @@ public class DocumentField extends Field<DocumentField.File> {
 	protected boolean doValidate() {
 		boolean valid = true;
 
-		File currentValue = getCurrentValue();
-
-		if (currentValue != null && isRequired()) {
-			String trimmedString = currentValue.getName().trim();
-			valid = !trimmedString.isEmpty();
+		if (getCurrentValue() == null && isRequired()) {
+			valid = false;
 		}
 
 		return valid;
