@@ -32,15 +32,15 @@ public class DDLFormUploadInteractorImpl extends BaseRemoteInteractor<DDLFormLis
 		LiferayScreensContext.getContext().startService(service);
 	}
 
-	public void onEventMainThread(DDLFormFileEvent event) {
+	public void onEventMainThread(DDLFormDocumentEvent event) {
 		if (!isValidEvent(event)) {
 			return;
 		}
 
 		if (event.isFailed()) {
-			getListener().onDDLFormFileUploadFailed(event.getFileField(), event.getException());
+			getListener().onDDLFormDocumentUploadFailed(event.getDocumentField(), event.getException());
 		} else {
-			getListener().onDDLFormFileUploaded(event.getFileField());
+			getListener().onDDLFormDocumentUploaded(event.getDocumentField());
 		}
 	}
 

@@ -41,18 +41,18 @@ import java.util.Date;
 /**
  * @author Javier Gamarra
  */
-public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
+public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		implements DDLFieldViewModel<DocumentField>, View.OnClickListener {
 
-	public DDLFieldFileView(Context context) {
+	public DDLDocumentFieldView(Context context) {
 		super(context, null);
 	}
 
-	public DDLFieldFileView(Context context, AttributeSet attributes) {
+	public DDLDocumentFieldView(Context context, AttributeSet attributes) {
 		super(context, attributes, 0);
 	}
 
-	public DDLFieldFileView(Context context, AttributeSet attributes, int defaultStyle) {
+	public DDLDocumentFieldView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 
@@ -135,7 +135,7 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
 		}).setNegativeButton(getContext().getString(R.string.selectAFile), new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				showFileDialog(view);
+				showSelectFileDialog(view);
 			}
 		});
 
@@ -167,21 +167,24 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
 		}
 	}
 
-	private void showFileDialog(final View view) {
-		_fileDialog = new FileDialog().createDialog(getContext(), new FileDialog.SimpleFileDialogListener() {
-			@Override
-			public void onFileChosen(String path) {
-				_progressBar.setVisibility(View.VISIBLE);
-				getTextEditText().setText(path);
+	private void showSelectFileDialog(final View view) {
+		_fileDialog = new SelectFileDialog().createDialog(getContext(),
+			new SelectFileDialog.SimpleFileDialogListener() {
 
-				DocumentField field = getField();
-				field.getCurrentValue().setName(path);
-				field.getCurrentValue().setState(DocumentField.State.PENDING);
-				view.setTag(field);
-				((DDLFormScreenletView) getParentView()).onClick(view);
+				@Override
+				public void onFileChosen(String path) {
+					_progressBar.setVisibility(View.VISIBLE);
+					getTextEditText().setText(path);
 
-			}
-		});
+					DocumentField field = getField();
+					field.getCurrentValue().setName(path);
+					field.getCurrentValue().setState(DocumentField.State.PENDING);
+					view.setTag(field);
+					((DDLFormScreenletView) getParentView()).onClick(view);
+				}
+
+			});
+
 		_fileDialog.show();
 	}
 
@@ -198,4 +201,5 @@ public class DDLFieldFileView extends BaseDDLFieldTextView<DocumentField>
 	private ProgressBar _progressBar;
 	private AlertDialog _choseOriginDialog;
 	private AlertDialog _fileDialog;
+
 }

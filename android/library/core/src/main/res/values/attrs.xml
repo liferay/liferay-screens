@@ -43,7 +43,7 @@
 		<attr name="selectFieldLayoutId" format="reference"/>
 		<attr name="textFieldLayoutId" format="reference"/>
 		<attr name="textAreaFieldLayoutId" format="reference"/>
-		<attr name="fileFieldLayoutId" format="reference"/>
+		<attr name="documentFieldLayoutId" format="reference"/>
 	</declare-styleable>
 
 	<declare-styleable name="DDLListScreenlet">

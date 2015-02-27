@@ -38,8 +38,8 @@ public interface DDLFormListener {
 
 	void onDDLFormUpdateRecordFailed(Exception e);
 
-	void onDDLFormFileUploaded(DocumentField file);
+	void onDDLFormDocumentUploaded(DocumentField documentField);
 
-	void onDDLFormFileUploadFailed(DocumentField file, Exception e);
+	void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e);
 
 }
