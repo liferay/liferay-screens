@@ -41,16 +41,17 @@ public class SessionStoreSharedPreferences implements SessionStore {
 			throw new IllegalStateException("You need to set user attributes to store the session");
 		}
 
-		SharedPreferences.Editor editor = _sharedPref.edit();
+		_sharedPref
+			.edit()
+			.putString("username", _auth.getUsername())
+			.putString("password", _auth.getPassword())
+			.putString("attributes", _user.toString())
+			.putString("server", LiferayServerContext.getServer())
+			.putLong("groupId", LiferayServerContext.getGroupId())
+			.putLong("companyId", LiferayServerContext.getCompanyId())
+			.commit();
+	}
 
-		editor.putString("username", _auth.getUsername());
-		editor.putString("password", _auth.getPassword());
-		editor.putString("attributes", _user.toString());
-		editor.putString("server", LiferayServerContext.getServer());
-		editor.putLong("groupId", LiferayServerContext.getGroupId());
-		editor.putLong("companyId", LiferayServerContext.getCompanyId());
-
-		editor.commit();
 	}
 
 	@Override
