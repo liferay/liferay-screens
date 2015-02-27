@@ -19,6 +19,8 @@ import android.content.Context;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.context.User;
 
+import static com.liferay.mobile.screens.context.storage.SessionStoreBuilder.*;
+
 /**
  * @author Jose Manuel Navarro
  */
@@ -27,6 +29,7 @@ public class SessionStoreBuilder {
 	public static enum StorageType {
 
 		// These values are synch-ed with 'credentialStore' attr
+		NONE(0),
 		AUTO(1),
 		SHARED_PREFERENCES(2);
 
@@ -35,13 +38,17 @@ public class SessionStoreBuilder {
 		}
 
 		public static StorageType valueOf(int value) {
-			for (StorageType s : StorageType.values()) {
+			for (StorageType s : values()) {
 				if (s._value == value) {
 					return s;
 				}
 			}
 
-			return AUTO;
+			return NONE;
+		}
+
+		public int toInt() {
+			return _value;
 		}
 
 		private int _value;

@@ -33,6 +33,8 @@ import com.liferay.mobile.screens.context.storage.SessionStoreBuilder;
 
 import org.json.JSONObject;
 
+import static com.liferay.mobile.screens.context.storage.SessionStoreBuilder.*;
+
 /**
  * @author Silvio Santos
  */
@@ -120,11 +122,11 @@ public class LoginScreenlet
 		_authMethod = authMethod;
 	}
 
-	public int getCredentialsStore() {
+	public StorageType getCredentialsStore() {
 		return _credentialsStore;
 	}
 
-	public void setCredentialsStore(int value) {
+	public void setCredentialsStore(StorageType value) {
 		_credentialsStore = value;
 	}
 
@@ -145,18 +147,18 @@ public class LoginScreenlet
 		_authMethod = AuthMethod.getValue(authMethodId);
 		viewModel.setAuthMethod(_authMethod);
 
-		_credentialsStore = typedArray.getInt(R.styleable.LoginScreenlet_credentialsStore,
-			CREDENTIAL_STORE_NONE);
+		int storeValue = typedArray.getInt(R.styleable.LoginScreenlet_credentialsStore,
+			StorageType.NONE.toInt());
+
+		_credentialsStore = StorageType.valueOf(storeValue);
 
 		typedArray.recycle();
 
 		return view;
 	}
 
-	private static final int CREDENTIAL_STORE_NONE = 0;
-
 	private LoginListener _listener;
 	private AuthMethod _authMethod;
-	private int _credentialsStore;
+	private StorageType _credentialsStore;
 
 }
