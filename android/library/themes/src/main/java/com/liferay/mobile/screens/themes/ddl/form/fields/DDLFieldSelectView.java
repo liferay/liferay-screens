@@ -121,4 +121,8 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 
 	private AlertDialog _alertDialog;
 
+	@Override
+	public void setPositionInParent(int position) {
+
+	}
 }

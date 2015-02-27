@@ -123,4 +123,7 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 
 	private DatePickerDialog _pickerDialog;
 
+	@Override
+	public void setPositionInParent(int position) {
+	}
 }

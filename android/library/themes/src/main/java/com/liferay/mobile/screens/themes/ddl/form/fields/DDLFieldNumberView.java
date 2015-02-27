@@ -61,4 +61,9 @@ public class DDLFieldNumberView extends BaseDDLFieldTextView<NumberField> {
 		}
 	}
 
+	@Override
+	public void setPositionInParent(int position) {
+
+	}
+
 }

@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.ddl.form;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -88,8 +87,11 @@ public class DDLFormScreenlet
 				performUserAction(_UPDATE_RECORD_ACTION);
 			}
 		}
-		else {
-		}
+	}
+
+	public void upload(int position) {
+		DocumentField field = (DocumentField) _record.getField(position);
+		upload(field);
 	}
 
 	public void upload(DocumentField field) {

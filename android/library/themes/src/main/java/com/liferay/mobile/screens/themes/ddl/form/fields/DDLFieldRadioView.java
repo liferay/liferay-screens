@@ -127,6 +127,11 @@ public class DDLFieldRadioView extends RadioGroup
 	}
 
 	@Override
+	public void setPositionInParent(int position) {
+
+	}
+
+	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 

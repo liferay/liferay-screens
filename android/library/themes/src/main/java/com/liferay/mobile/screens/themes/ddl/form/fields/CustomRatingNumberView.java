@@ -97,6 +97,10 @@ public class CustomRatingNumberView extends LinearLayout implements DDLFieldView
 	}
 
 	@Override
+	public void setPositionInParent(int position) {
+	}
+
+	@Override
 	public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 		if (!fromUser) {
 			return;

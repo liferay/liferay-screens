@@ -85,6 +85,11 @@ public class DDLFieldCheckboxView extends LinearLayout
 	}
 
 	@Override
+	public void setPositionInParent(int position) {
+
+	}
+
+	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		_field.setCurrentValue(isChecked);
 	}

@@ -42,4 +42,8 @@ public class DDLFieldTextView extends BaseDDLFieldTextView<StringField> {
 		getField().setCurrentValue(text);
 	}
 
+	@Override
+	public void setPositionInParent(int position) {
+
+	}
 }

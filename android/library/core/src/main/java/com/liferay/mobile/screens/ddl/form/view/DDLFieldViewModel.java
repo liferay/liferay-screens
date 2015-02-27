@@ -35,5 +35,7 @@ public interface DDLFieldViewModel<T extends Field> {
 
 	public void setParentView(View view);
 
+	public void setPositionInParent(int position);
+
 
 }

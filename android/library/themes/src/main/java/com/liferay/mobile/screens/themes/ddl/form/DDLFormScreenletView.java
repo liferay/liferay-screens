@@ -34,6 +34,7 @@ import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.themes.R;
+import com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldFileView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -80,14 +81,13 @@ public class DDLFormScreenletView
 	@Override
 	public void setRecordFields(Record record) {
 
-
 		if (record == null) {
 			return;
 		}
 		_fieldsContainerView.removeAllViews();
 
 		for (int i = 0; i < record.getFieldCount(); ++i) {
-			addFieldView(record.getField(i));
+			addFieldView(record.getField(i), i);
 		}
 
 		DDLFormScreenlet screenlet = getDDLFormScreenlet();
@@ -179,7 +179,7 @@ public class DDLFormScreenletView
 		return validForm;
 	}
 
-	protected void addFieldView(Field field) {
+	protected void addFieldView(Field field, int position) {
 		int layoutId;
 
 		if (_customLayoutIds.containsKey(field.getName())) {
@@ -195,6 +195,7 @@ public class DDLFormScreenletView
 		DDLFieldViewModel viewModel = (DDLFieldViewModel)view;
 		viewModel.setField(field);
 		viewModel.setParentView(this);
+		viewModel.setPositionInParent(position);
 
 		_fieldsContainerView.addView(view);
 	}
