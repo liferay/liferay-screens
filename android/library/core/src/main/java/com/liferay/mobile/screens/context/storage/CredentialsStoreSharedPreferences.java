@@ -30,10 +30,10 @@ import java.net.URL;
 /**
  * @author Jose Manuel Navarro
  */
-public class SessionStoreSharedPreferences implements SessionStore {
+public class CredentialsStoreSharedPreferences implements CredentialsStore {
 
 	@Override
-	public void storeSession() {
+	public void storeCredentials() {
 		if (_sharedPref == null) {
 			throw new IllegalStateException("You need to set the context");
 		}
@@ -56,7 +56,7 @@ public class SessionStoreSharedPreferences implements SessionStore {
 	}
 
 	@Override
-	public void removeStoredSession() {
+	public void removeStoredCredentials() {
 		if (_sharedPref == null) {
 			throw new IllegalStateException("You need to set the context");
 		}
@@ -71,7 +71,7 @@ public class SessionStoreSharedPreferences implements SessionStore {
 	}
 
 	@Override
-	public boolean loadStoredSession() throws IllegalStateException {
+	public boolean loadStoredCredentials() throws IllegalStateException {
 		if (_sharedPref == null) {
 			throw new IllegalStateException("You need to set the context");
 		}

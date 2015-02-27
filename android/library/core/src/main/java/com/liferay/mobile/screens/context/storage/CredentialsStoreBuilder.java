@@ -19,12 +19,10 @@ import android.content.Context;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.context.User;
 
-import static com.liferay.mobile.screens.context.storage.SessionStoreBuilder.*;
-
 /**
  * @author Jose Manuel Navarro
  */
-public class SessionStoreBuilder {
+public class CredentialsStoreBuilder {
 
 	public static enum StorageType {
 
@@ -54,7 +52,7 @@ public class SessionStoreBuilder {
 		private int _value;
 	}
 
-	public SessionStoreBuilder setAuthentication(BasicAuthentication auth) {
+	public CredentialsStoreBuilder setAuthentication(BasicAuthentication auth) {
 		if (auth == null) {
 			throw new IllegalStateException("Authentication cannot be null. Make sure you have a session created");
 		}
@@ -64,7 +62,7 @@ public class SessionStoreBuilder {
 		return this;
 	}
 
-	public SessionStoreBuilder setUser(User user) {
+	public CredentialsStoreBuilder setUser(User user) {
 		if (user == null) {
 			throw new IllegalStateException("User cannot be null. Make sure you have a session created");
 		}
@@ -74,7 +72,7 @@ public class SessionStoreBuilder {
 		return this;
 	}
 
-	public SessionStoreBuilder setContext(Context ctx) {
+	public CredentialsStoreBuilder setContext(Context ctx) {
 		if (ctx == null) {
 			throw new IllegalStateException("Context cannot be null");
 		}
@@ -84,7 +82,7 @@ public class SessionStoreBuilder {
 		return this;
 	}
 
-	public SessionStoreBuilder setStorageType(StorageType storageType) {
+	public CredentialsStoreBuilder setStorageType(StorageType storageType) {
 		if (_ctx == null) {
 			throw new IllegalStateException("You must set the context before storageType");
 		}
@@ -94,39 +92,39 @@ public class SessionStoreBuilder {
 		return this;
 	}
 
-	public SessionStore build() {
+	public CredentialsStore build() {
 		if (_ctx == null) {
 			throw new IllegalStateException("You must call setContext() before");
 		}
 
-		SessionStore sessionStore;
+		CredentialsStore credentialsStore;
 
 		switch (_storageType) {
 			case SHARED_PREFERENCES:
-				sessionStore = new SessionStoreSharedPreferences();
+				credentialsStore = new CredentialsStoreSharedPreferences();
 				break;
 
 			case AUTO:
 				// TODO right now, we only support Shared Prefs.
-				sessionStore = new SessionStoreSharedPreferences();
+				credentialsStore = new CredentialsStoreSharedPreferences();
 				break;
 
 			default:
-				sessionStore = new SessionStoreVoid();
+				credentialsStore = new CredentialsStoreVoid();
 				break;
 		}
 
-		sessionStore.setContext(_ctx);
+		credentialsStore.setContext(_ctx);
 
 		if (_auth != null) {
-			sessionStore.setAuthentication(_auth);
+			credentialsStore.setAuthentication(_auth);
 		}
 
 		if (_user != null) {
-			sessionStore.setUser(_user);
+			credentialsStore.setUser(_user);
 		}
 
-		return sessionStore;
+		return credentialsStore;
 	}
 
 	private BasicAuthentication _auth;

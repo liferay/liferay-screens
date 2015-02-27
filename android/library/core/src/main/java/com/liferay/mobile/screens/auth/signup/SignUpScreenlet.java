@@ -30,7 +30,7 @@ import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.context.storage.SessionStoreBuilder.*;
+import com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.*;
 
 import java.util.Locale;
 

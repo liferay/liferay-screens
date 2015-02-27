@@ -29,11 +29,10 @@ import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.context.storage.SessionStoreBuilder;
 
 import org.json.JSONObject;
 
-import static com.liferay.mobile.screens.context.storage.SessionStoreBuilder.*;
+import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.*;
 
 /**
  * @author Silvio Santos

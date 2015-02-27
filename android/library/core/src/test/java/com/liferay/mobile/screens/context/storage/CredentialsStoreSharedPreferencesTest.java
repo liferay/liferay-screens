@@ -41,47 +41,47 @@ import static junit.framework.Assert.assertTrue;
  * @author Jose Manuel Navarro
  */
 @RunWith(Enclosed.class)
-public class SessionStoreSharedPreferencesTest {
+public class CredentialsStoreSharedPreferencesTest {
 
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
-	public static class WhenStoreSession {
+	public static class WhenStoreCredentials {
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
-			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
+			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
 			setTestData(store);
 
 			store.setContext(null);
 
-			store.storeSession();
+			store.storeCredentials();
 		}
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenSessionIsNotPresent() throws Exception {
-			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
+			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
 			setTestData(store);
 
 			store.setAuthentication(null);
 
-			store.storeSession();
+			store.storeCredentials();
 		}
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
-			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
+			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
 			setTestData(store);
 
 			store.setUser(null);
 
-			store.storeSession();
+			store.storeCredentials();
 		}
 
 		@Test
 		public void shouldStoreTheCredentialsInSharedPreferences() throws Exception {
-			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
+			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
 			setTestData(store);
-			store.storeSession();
+			store.storeCredentials();
 
 			SharedPreferences sharedPref =
 				Robolectric.getShadowApplication().getApplicationContext().getSharedPreferences(
@@ -103,11 +103,11 @@ public class SessionStoreSharedPreferencesTest {
 
 		@Test
 		public void shouldRemoveTheStoredCredentials() throws Exception {
-			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
+			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
 			setTestData(store);
-			store.storeSession();
+			store.storeCredentials();
 
-			store.removeStoredSession();
+			store.removeStoredCredentials();
 
 			SharedPreferences sharedPref =
 				Robolectric.getShadowApplication().getApplicationContext().getSharedPreferences(
@@ -124,37 +124,37 @@ public class SessionStoreSharedPreferencesTest {
 
 		@Test
 		public void shouldNotLoadWhenCredentialsAreNotStored() throws Exception {
-			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
+			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
 			store.setContext(Robolectric.getShadowApplication().getApplicationContext());
-			store.removeStoredSession();
+			store.removeStoredCredentials();
 
-			assertFalse(store.loadStoredSession());
+			assertFalse(store.loadStoredCredentials());
 		}
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionIfStoredCredentialsAreNotConsistent() throws Exception {
-			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
+			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
 			setTestData(store);
-			store.storeSession();
+			store.storeCredentials();
 
 			// Don't recreate the store object because SharedPreferences are mocked by
 			// Robolectric and it uses an in-memory store
 
 			LiferayServerContext.setServer("http://otherhost.com");
 
-			store.loadStoredSession();
+			store.loadStoredCredentials();
 		}
 
 		@Test
 		public void shouldLoadTheStoredValues() throws Exception {
-			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
+			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
 			setTestData(store);
-			store.storeSession();
+			store.storeCredentials();
 
 			BasicAuthentication savedAuth = store.getAuthentication();
 			User savedUser = store.getUser();
 
-			assertTrue(store.loadStoredSession());
+			assertTrue(store.loadStoredCredentials());
 
 			assertNotNull(store.getAuthentication());
 			assertNotNull(store.getUser());
@@ -169,7 +169,7 @@ public class SessionStoreSharedPreferencesTest {
 
 	}
 
-	private static void setTestData(SessionStore store) {
+	private static void setTestData(CredentialsStore store) {
 		store.setContext(Robolectric.getShadowApplication().getApplicationContext());
 
 		JSONObject userAttributes = null;
