@@ -95,9 +95,6 @@ public class DDLFormScreenlet
 	}
 
 	public void startUpload(DocumentField field) {
-		field.setState(DocumentField.State.PENDING);
-		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.showStartDocumentUpload(field);
 		performUserAction(_UPLOAD_DOCUMENT_ACTION, field);
 	}
 
@@ -428,8 +425,12 @@ public class DDLFormScreenlet
 		}
 		else if (_UPLOAD_DOCUMENT_ACTION.equals(userActionName)) {
 			DDLFormUploadInteractor uploadInteractor = (DDLFormUploadInteractor) interactor;
-
 			DocumentField documentToUpload = (DocumentField) args[0];
+
+			documentToUpload.setState(DocumentField.State.PENDING);
+			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
+			view.showStartDocumentUpload(documentToUpload);
+
 			try {
 				uploadInteractor.upload(
 					_groupId, _userId, _repositoryId, _folderId, _filePrefix, documentToUpload);
