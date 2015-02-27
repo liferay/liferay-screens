@@ -108,13 +108,12 @@ public class SessionStoreSharedPreferencesTest {
 
 			store.removeStoredSession();
 
-			String sharedPreferencesName = SessionStoreBuilder.StorageType.getStoreName();
-
 			SharedPreferences sharedPref =
 				Robolectric.getShadowApplication().getApplicationContext().getSharedPreferences(
-					sharedPreferencesName, Context.MODE_PRIVATE);
+					store.getStoreName(), Context.MODE_PRIVATE);
 
-			assertEquals(-1, sharedPref.getInt("value", -1));
+			assertFalse(sharedPref.contains("username"));
+
 		}
 
 	}
