@@ -18,7 +18,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.provider.DocumentsContract;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +40,7 @@ import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -178,7 +178,9 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormDocumentUploaded(DocumentField documentField) {
-		DocumentField originalField = (DocumentField) findFieldByName(documentField.getName());
+		DocumentField originalField =
+			(DocumentField) _record.getFieldByName(documentField.getName());
+
 		if (originalField != null) {
 			originalField.getCurrentValue().setState(DocumentField.State.UPLOADED);
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
@@ -192,7 +194,9 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
-		DocumentField originalField = (DocumentField) findFieldByName(documentField.getName());
+		DocumentField originalField =
+			(DocumentField) _record.getFieldByName(documentField.getName());
+
 		if (originalField != null) {
 			originalField.getCurrentValue().setState(DocumentField.State.FAILED);
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
@@ -520,16 +524,6 @@ public class DDLFormScreenlet
 		if (_autoLoad && _record.getFieldCount() == 0) {
 			load();
 		}
-	}
-
-	//REF mover esto a record
-	private Field findFieldByName(String fieldName) {
-		for (int i =0; i < _record.getFieldCount(); i++) {
-			if (_record.getField(i).getName().equals(fieldName)) {
-				return _record.getField(i);
-			}
-		}
-		return null;
 	}
 
 	private static Map<Field.EditorType, String> _defaultLayoutNames;
