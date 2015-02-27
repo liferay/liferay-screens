@@ -114,4 +114,35 @@ public class SessionStoreSharedPreferencesTest {
 
 	}
 
+	@Config(emulateSdk = 18)
+	@RunWith(RobolectricTestRunner.class)
+	public static class WhenRemoveStoredCredentials {
+
+		@Test
+		public void shouldRemoveTheStoredCredentials() throws Exception {
+			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
+
+			store.setContext(Robolectric.getShadowApplication().getApplicationContext());
+
+			JSONObject userAttributes = new JSONObject().put("userId", 123);
+			store.setUser(new User(userAttributes));
+
+			SessionContext.createSession("user123", "pass123");
+			store.setAuthentication(SessionContext.getAuthentication());
+
+			store.storeSession();
+
+			store.removeStoredSession();
+
+			String sharedPreferencesName = SessionStoreBuilder.StorageType.getStoreName();
+
+			SharedPreferences sharedPref =
+				Robolectric.getShadowApplication().getApplicationContext().getSharedPreferences(
+					sharedPreferencesName, Context.MODE_PRIVATE);
+
+			assertEquals(-1, sharedPref.getInt("value", -1));
+		}
+
+	}
+
 }

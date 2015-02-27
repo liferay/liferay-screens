@@ -52,6 +52,16 @@ public class SessionStoreSharedPreferences implements SessionStore {
 			.apply();
 	}
 
+	@Override
+	public void removeStoredSession() {
+		if (_sharedPref == null) {
+			throw new IllegalStateException("You need to set the context");
+		}
+
+		_sharedPref
+			.edit()
+			.clear()
+			.apply();
 	}
 
 	@Override

@@ -26,6 +26,8 @@ import com.liferay.mobile.screens.context.User;
 public interface SessionStore extends BaseViewModel {
 
 	public void storeSession();
+	public void removeStoredSession();
+
 	public String getStoreName();
 
 	public void setAuthentication(BasicAuthentication auth);

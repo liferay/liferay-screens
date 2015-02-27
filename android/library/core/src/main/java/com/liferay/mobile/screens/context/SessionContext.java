@@ -87,6 +87,19 @@ public class SessionContext {
 		storage.storeSession();
 	}
 
+	public static void removeStoredSession(SessionStoreBuilder.StorageType storageType) {
+		SessionStore storage = new SessionStoreBuilder()
+			.setContext(LiferayScreensContext.getContext())
+			.setStorageType(storageType)
+			.build();
+
+		if (storage == null) {
+			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
+		}
+
+		storage.removeStoredSession();
+	}
+
 	private static Session _session;
 	private static User _user;
 
