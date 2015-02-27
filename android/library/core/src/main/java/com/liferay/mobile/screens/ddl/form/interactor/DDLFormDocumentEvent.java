@@ -8,23 +8,26 @@ import org.json.JSONObject;
 /**
  * @author Javier Gamarra
  */
-public class DDLFormFileEvent extends JSONObjectEvent {
+public class DDLFormDocumentEvent extends JSONObjectEvent {
 
-	public DDLFormFileEvent(int targetScreenletId, JSONObject jsonObject, DocumentField documentField) {
+	public DDLFormDocumentEvent(
+		int targetScreenletId, JSONObject jsonObject, DocumentField documentField) {
+
 		super(targetScreenletId, jsonObject);
 
 		_documentField = documentField;
 	}
 
-	public DDLFormFileEvent(int targetScreenletId, Exception e, DocumentField documentField) {
+	public DDLFormDocumentEvent(int targetScreenletId, Exception e, DocumentField documentField) {
 		super(targetScreenletId, e);
 
 		_documentField = documentField;
 	}
 
-	public DocumentField getFileField() {
+	public DocumentField getDocumentField() {
 		return _documentField;
 	}
 
 	private DocumentField _documentField;
+
 }

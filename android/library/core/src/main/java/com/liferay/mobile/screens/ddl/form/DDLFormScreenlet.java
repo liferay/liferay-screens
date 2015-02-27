@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.provider.DocumentsContract;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,7 +81,7 @@ public class DDLFormScreenlet
 	}
 
 	public void submitForm() {
-		if (allFilesUploaded(_record)) {
+		if (allDocumentsUploaded(_record)) {
 			if (_record.getRecordId() == 0) {
 				performUserAction(_ADD_RECORD_ACTION);
 			} else {
@@ -97,8 +98,8 @@ public class DDLFormScreenlet
 	public void upload(DocumentField field) {
 		field.getCurrentValue().setState(DocumentField.State.PENDING);
 		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.startUpload(field);
-		performUserAction(_UPLOAD_FILE, field);
+		view.showStartDocumentUpload(field);
+		performUserAction(_UPLOAD_DOCUMENT_ACTION, field);
 	}
 
 	@Override
@@ -176,29 +177,30 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	public void onDDLFormFileUploaded(DocumentField file) {
-		DocumentField newFile = findFile(file);
-		if (newFile != null) {
-			newFile.getCurrentValue().setState(DocumentField.State.UPLOADED);
+	public void onDDLFormDocumentUploaded(DocumentField documentField) {
+		DocumentField originalField = (DocumentField) findFieldByName(documentField.getName());
+		if (originalField != null) {
+			originalField.getCurrentValue().setState(DocumentField.State.UPLOADED);
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-			view.showFileUploaded(newFile);
+			view.showDocumentUploaded(originalField);
 		}
 
 		if (_listener != null) {
-			_listener.onDDLFormFileUploaded(file);
+			_listener.onDDLFormDocumentUploaded(documentField);
 		}
 	}
 
 	@Override
-	public void onDDLFormFileUploadFailed(DocumentField file, Exception e) {
-		DocumentField newFile = findFile(file);
-		if (newFile != null) {
-			newFile.getCurrentValue().setState(DocumentField.State.FAILED);
+	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
+		DocumentField originalField = (DocumentField) findFieldByName(documentField.getName());
+		if (originalField != null) {
+			originalField.getCurrentValue().setState(DocumentField.State.FAILED);
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-			view.showFileUploadFailed(newFile);
+			view.showDocumentUploadFailed(originalField);
 		}
+
 		if (_listener != null) {
-			_listener.onDDLFormFileUploadFailed(file, e);
+			_listener.onDDLFormDocumentUploadFailed(documentField, e);
 		}
 	}
 
@@ -259,7 +261,7 @@ public class DDLFormScreenlet
 				return new DDLFormAddRecordInteractorImpl(getScreenletId());
 			case _UPDATE_RECORD_ACTION:
 				return new DDLFormUpdateRecordInteractorImpl(getScreenletId());
-			case _UPLOAD_FILE:
+			case _UPLOAD_DOCUMENT_ACTION:
 				return new DDLFormUploadInteractorImpl(getScreenletId());
 			default:
 				return null;
@@ -353,9 +355,8 @@ public class DDLFormScreenlet
 			R.styleable.DDLFormScreenlet_textAreaFieldLayoutId);
 
 		setFieldLayoutId(
-				viewModel, Field.EditorType.FILE, typedArray,
-				R.styleable.DDLFormScreenlet_fileFieldLayoutId);
-
+				viewModel, Field.EditorType.DOCUMENT, typedArray,
+				R.styleable.DDLFormScreenlet_documentFieldLayoutId);
 
 		typedArray.recycle();
 
@@ -422,35 +423,39 @@ public class DDLFormScreenlet
 				onDDLFormUpdateRecordFailed(e);
 			}
 		}
-		else if (_UPLOAD_FILE.equals(userActionName)) {
-			DDLFormUploadInteractor ddlFormUploadInteractor = (DDLFormUploadInteractor) interactor;
+		else if (_UPLOAD_DOCUMENT_ACTION.equals(userActionName)) {
+			DDLFormUploadInteractor uploadInteractor = (DDLFormUploadInteractor) interactor;
+
+			DocumentField documentToUpload = (DocumentField) args[0];
 			try {
-				ddlFormUploadInteractor.upload(_groupId, _userId, _repositoryId, _folderId, _filePrefix, (DocumentField) args[0]);
-			} catch (Exception e) {
-				onDDLFormFileUploadFailed((DocumentField) args[0], e);
+				uploadInteractor.upload(
+					_groupId, _userId, _repositoryId, _folderId, _filePrefix, documentToUpload);
+			}
+			catch (Exception e) {
+				onDDLFormDocumentUploadFailed(documentToUpload, e);
 			}
 		}
 	}
 
-	private boolean allFilesUploaded(Record record) {
-		boolean validFiles = true;
+	private boolean allDocumentsUploaded(Record record) {
+		boolean result = true;
 		for (int i = 0; i < record.getFieldCount(); i++) {
 			Field field = record.getField(i);
 			if (field instanceof DocumentField) {
 				DocumentField file = (DocumentField) field;
 				DocumentField.State state = file.getCurrentValue().getState();
 				if (DocumentField.State.UPLOADING.equals(state) ||  DocumentField.State.PENDING.equals(state)) {
-					validFiles = false;
+					result = false;
 				}
 				else {
 					if (DocumentField.State.FAILED.equals(state)) {
 						upload(file);
-						validFiles = false;
+						result = false;
 					}
 				}
 			}
 		}
-		return validFiles;
+		return result;
 	}
 
 	protected void setFieldLayoutId(
@@ -517,10 +522,11 @@ public class DDLFormScreenlet
 		}
 	}
 
-	private DocumentField findFile(DocumentField file) {
+	//REF mover esto a record
+	private Field findFieldByName(String fieldName) {
 		for (int i =0; i < _record.getFieldCount(); i++) {
-			if (_record.getField(i).equals(file)) {
-				return (DocumentField) _record.getField(i);
+			if (_record.getField(i).getName().equals(fieldName)) {
+				return _record.getField(i);
 			}
 		}
 		return null;
@@ -548,7 +554,7 @@ public class DDLFormScreenlet
 
 		_defaultLayoutNames.put(Field.EditorType.TEXT_AREA, "ddlfield_text_area_default");
 
-		_defaultLayoutNames.put(Field.EditorType.FILE, "ddlfield_file_default");
+		_defaultLayoutNames.put(Field.EditorType.DOCUMENT, "ddlfield_document_default");
 	}
 
 
@@ -556,7 +562,7 @@ public class DDLFormScreenlet
 	private static final String _LOAD_RECORD_ACTION = "loadRecord";
 	private static final String _ADD_RECORD_ACTION = "addRecord";
 	private static final String _UPDATE_RECORD_ACTION = "updateRecord";
-	private static final String _UPLOAD_FILE = "uploadFile";
+	private static final String _UPLOAD_DOCUMENT_ACTION = "uploadDocument";
 
 
 	private static final String _STATE_SUPER = "ddlform-super";

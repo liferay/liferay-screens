@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.themes.ddl.form;
 
 import android.content.Context;
 
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import android.view.LayoutInflater;
@@ -24,7 +23,6 @@ import android.view.View;
 
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ScrollView;
 
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
@@ -34,7 +32,6 @@ import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.themes.R;
-import com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldFileView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -117,24 +114,22 @@ public class DDLFormScreenletView
 	}
 
 	@Override
-	public void startUpload(DocumentField file) {
-		DDLFieldViewModel view = findFileFieldView(file);
-
-		view.refresh();
+	public void showStartDocumentUpload(DocumentField documentField) {
+		findFieldView(documentField).refresh();
 	}
 
 	@Override
-	public void showFileUploaded(DocumentField file) {
-		findFileFieldView(file).refresh();
+	public void showDocumentUploaded(DocumentField documentField) {
+		findFieldView(documentField).refresh();
 	}
 
 	@Override
-	public void showFileUploadFailed(DocumentField file) {
-		findFileFieldView(file).refresh();
+	public void showDocumentUploadFailed(DocumentField documentField) {
+		findFieldView(documentField).refresh();
 	}
 
 	protected DDLFormScreenlet getDDLFormScreenlet() {
-		return (DDLFormScreenlet)getParent();
+		return (DDLFormScreenlet) getParent();
 	}
 
 	public boolean validateForm() {
@@ -200,14 +195,13 @@ public class DDLFormScreenletView
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_fieldsContainerView = (ViewGroup)
-			findViewById(R.id.ddlfields_container);
+		_fieldsContainerView = (ViewGroup) findViewById(R.id.ddlfields_container);
 
 		_submitButton = (Button) findViewById(R.id.submit);
 		_submitButton.setOnClickListener(this);
 	}
 
-	private DDLFieldViewModel findFileFieldView(DocumentField field) {
+	private DDLFieldViewModel findFieldView(Field field) {
 		for (int i = 0; i < _fieldsContainerView.getChildCount(); i++) {
 			DDLFieldViewModel viewModel = (DDLFieldViewModel) _fieldsContainerView.getChildAt(i);
 			if (field.equals(viewModel.getField())) {

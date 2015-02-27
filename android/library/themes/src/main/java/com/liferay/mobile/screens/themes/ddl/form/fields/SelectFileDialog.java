@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class FileDialog {
+public class SelectFileDialog {
 
 	private String currentFile = "";
 	private String currentDir = "";
@@ -38,7 +38,7 @@ public class FileDialog {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService
 				(Context.LAYOUT_INFLATER_SERVICE);
 
-		View view = inflater.inflate(R.layout.default_custom_dialog, null);
+		View view = inflater.inflate(R.layout.select_file_default, null);
 		dialogBuilder.setView(view);
 
 		dialogBuilder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
