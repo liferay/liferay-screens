@@ -41,7 +41,7 @@ public class SessionStoreSharedPreferencesTest {
 
 	@Config(emulateSdk = 18)
 	@RunWith(RobolectricTestRunner.class)
-	public static class WhenStoreDirectly {
+	public static class WhenStoreSession {
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
@@ -103,71 +103,6 @@ public class SessionStoreSharedPreferencesTest {
 			SharedPreferences sharedPref =
 				Robolectric.getShadowApplication().getApplicationContext().getSharedPreferences(
 					sharedPreferencesName, Context.MODE_PRIVATE);
-
-			assertEquals("user123", sharedPref.getString("username", "not-present"));
-			assertEquals("pass123", sharedPref.getString("password", "not-present"));
-			assertEquals(LiferayServerContext.getServer(), sharedPref.getString("server", "not-present"));
-			assertEquals(LiferayServerContext.getGroupId(), sharedPref.getLong("groupId", 0));
-			assertEquals(LiferayServerContext.getCompanyId(), sharedPref.getLong("companyId", 0));
-			assertEquals(userAttributes.toString(), sharedPref.getString("attributes", "not-present"));
-		}
-
-	}
-
-	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenStoreFromSessionContext {
-
-		@Test(expected = IllegalStateException.class)
-		public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
-			LiferayScreensContext.deinit();
-
-			SessionContext.createSession("user123", "pass123");
-
-			SessionContext.setUserAttributes(new JSONObject().put("userId", 123));
-
-			SessionContext.storeSession(SHARED_PREFERENCES);
-		}
-
-		@Test(expected = IllegalStateException.class)
-		public void shouldRaiseExceptionWhenSessionIsNotPresent() throws Exception {
-			Context ctx = Robolectric.getShadowApplication().getApplicationContext();
-			LiferayScreensContext.init(ctx);
-
-			SessionContext.clearSession();
-
-			SessionContext.setUserAttributes(new JSONObject().put("userId", 123));
-
-			SessionContext.storeSession(SHARED_PREFERENCES);
-		}
-
-		@Test(expected = IllegalStateException.class)
-		public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
-			Context ctx = Robolectric.getShadowApplication().getApplicationContext();
-			LiferayScreensContext.init(ctx);
-
-			SessionContext.clearSession(); // to clean user
-			SessionContext.createSession("user123", "pass123");
-
-			SessionContext.storeSession(SHARED_PREFERENCES);
-		}
-
-		@Test
-		public void shouldStoreTheCredentialsInSharedPreferences() throws Exception {
-			SessionContext.createSession("user123", "pass123");
-
-			Context ctx = Robolectric.getShadowApplication().getApplicationContext();
-			LiferayScreensContext.init(ctx);
-
-			JSONObject userAttributes = new JSONObject().put("userId", 123);
-			SessionContext.setUserAttributes(userAttributes);
-
-			SessionContext.storeSession(SHARED_PREFERENCES);
-
-			String sharedPreferencesName = new SessionStoreSharedPreferences().getStoreName();
-
-			SharedPreferences sharedPref =
-				ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
 
 			assertEquals("user123", sharedPref.getString("username", "not-present"));
 			assertEquals("pass123", sharedPref.getString("password", "not-present"));
