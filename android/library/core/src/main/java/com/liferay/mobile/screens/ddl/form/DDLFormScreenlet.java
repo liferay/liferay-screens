@@ -296,6 +296,8 @@ public class DDLFormScreenlet
 		_recordId = typedArray.getInteger(
 			R.styleable.DDLFormScreenlet_recordId, 0);
 
+		_filePrefix = typedArray.getString(R.styleable.DDLFormScreenlet_filePrefix);
+
 		_repositoryId = typedArray.getInteger(R.styleable.DDLFormScreenlet_repositoryId, 0);
 		_folderId = typedArray.getInteger(R.styleable.DDLFormScreenlet_folderId, 0);
 
@@ -422,7 +424,7 @@ public class DDLFormScreenlet
 		else if (_UPLOAD_FILE.equals(userActionName)) {
 			DDLFormUploadInteractor ddlFormUploadInteractor = (DDLFormUploadInteractor) interactor;
 			try {
-				ddlFormUploadInteractor.upload(_groupId, _userId, _repositoryId, _folderId, (DocumentField) args[0]);
+				ddlFormUploadInteractor.upload(_groupId, _userId, _repositoryId, _folderId, _filePrefix, (DocumentField) args[0]);
 			} catch (Exception e) {
 				onDDLFormFileUploadFailed((DocumentField) args[0], e);
 			}
@@ -472,6 +474,11 @@ public class DDLFormScreenlet
 		_groupId = state.getLong(_STATE_GROUP_ID);
 		_showSubmitButton = state.getBoolean(_STATE_SHOW_SUBMIT_BUTTON);
 		_autoScrollOnValidation = state.getBoolean(_STATE_AUTOSCROLL_ON_VALIDATION);
+		_loadRecordAfterForm = state.getBoolean(_STATE_LOAD_RECORD_AFTER_FORM);
+		_repositoryId = state.getLong(_STATE_REPOSITORY_ID);
+		_folderId = state.getLong(_STATE_FOLDER_ID);
+		_filePrefix = state.getString(_STATE_FILE_PREFIX);
+
 		Parcelable superState = state.getParcelable(_STATE_SUPER);
 
 		super.onRestoreInstanceState(superState);
@@ -494,6 +501,10 @@ public class DDLFormScreenlet
 		state.putLong(_STATE_RECORD_ID, _recordId);
 		state.putLong(_STATE_USER_ID, _userId);
 		state.putParcelable(_STATE_RECORD, _record);
+		state.putBoolean(_STATE_LOAD_RECORD_AFTER_FORM, _loadRecordAfterForm);
+		state.putLong(_STATE_REPOSITORY_ID, _repositoryId);
+		state.putLong(_STATE_FOLDER_ID, _folderId);
+		state.putString(_STATE_FILE_PREFIX, _filePrefix);
 
 		return state;
 	}
@@ -546,6 +557,7 @@ public class DDLFormScreenlet
 	private static final String _UPDATE_RECORD_ACTION = "updateRecord";
 	private static final String _UPLOAD_FILE = "uploadFile";
 
+
 	private static final String _STATE_SUPER = "ddlform-super";
 	private static final String _STATE_AUTOSCROLL_ON_VALIDATION = "ddlform-autoScrollOnValidation";
 	private static final String _STATE_SHOW_SUBMIT_BUTTON = "ddlform-showSubmitButton";
@@ -555,6 +567,10 @@ public class DDLFormScreenlet
 	private static final String _STATE_RECORD_ID = "ddlform-recordId";
 	private static final String _STATE_USER_ID = "ddlform-userId";
 	private static final String _STATE_RECORD = "ddlform-record";
+	private static final String _STATE_LOAD_RECORD_AFTER_FORM = "ddlform-loadRecordAfterForm";
+	private static final String _STATE_REPOSITORY_ID = "ddlform-repositoryId";
+	private static final String _STATE_FOLDER_ID = "ddlform-folderId";
+	private static final String _STATE_FILE_PREFIX = "ddlform-filePrefixId";
 
 	private boolean _autoLoad;
 	private boolean _autoScrollOnValidation;
@@ -566,6 +582,7 @@ public class DDLFormScreenlet
 	private long _userId;
 	private long _repositoryId;
 	private long _folderId;
+	private String _filePrefix;
 
 	private Record _record;
 

@@ -57,6 +57,7 @@ public class UploadService extends IntentService {
 		Long groupId = intent.getLongExtra("groupId", 0);
 		Long repositoryId = intent.getLongExtra("repositoryId", 0);
 		Long folderId = intent.getLongExtra("folderId", 0);
+		String filePrefix = intent.getStringExtra("filePrefix");
 		int targetScreenletId = intent.getIntExtra("screenletId", 0);
 
 		InputStream is = null;
@@ -73,7 +74,10 @@ public class UploadService extends IntentService {
 
 			JSONObjectWrapper serviceContextWrapper = getJsonObjectWrapper(userId, groupId);
 
-			JSONObject jsonObject = service.addFileEntry(repositoryId, folderId, name, getMimeType(path), date + "_" + name, "", "", inputStreamBody, serviceContextWrapper);
+			String fileName = (filePrefix == null ? "" : filePrefix) + date + "_" + name;
+
+			JSONObject jsonObject = service.addFileEntry(repositoryId, folderId, name,
+					getMimeType(path), fileName, "", "", inputStreamBody, serviceContextWrapper);
 
 			EventBusUtil.post(new DDLFormFileEvent(targetScreenletId, jsonObject, file));
 

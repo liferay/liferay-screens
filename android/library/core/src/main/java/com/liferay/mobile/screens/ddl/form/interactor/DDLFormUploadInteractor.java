@@ -21,6 +21,6 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
  */
 public interface DDLFormUploadInteractor extends DDLFormBaseInteractor {
 
-	public void upload(long groupId, long userId, long repositoryId, long folderId, DocumentField file) throws Exception;
+	public void upload(long groupId, long userId, long repositoryId, long folderId, String _filePrefix, DocumentField file) throws Exception;
 
 }

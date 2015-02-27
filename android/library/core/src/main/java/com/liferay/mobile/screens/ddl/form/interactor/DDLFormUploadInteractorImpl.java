@@ -19,7 +19,7 @@ public class DDLFormUploadInteractorImpl extends BaseRemoteInteractor<DDLFormLis
 	}
 
 	@Override
-	public void upload(long groupId, long userId, long repositoryId, long folderId, DocumentField file) throws Exception {
+	public void upload(long groupId, long userId, long repositoryId, long folderId, String filePrefix, DocumentField file) throws Exception {
 
 		Intent service = new Intent(LiferayScreensContext.getContext(), UploadService.class);
 		service.putExtra("file", file);
@@ -28,6 +28,7 @@ public class DDLFormUploadInteractorImpl extends BaseRemoteInteractor<DDLFormLis
 		service.putExtra("repositoryId", repositoryId);
 		service.putExtra("folderId", folderId);
 		service.putExtra("screenletId", getTargetScreenletId());
+		service.putExtra("filePrefix", filePrefix);
 		LiferayScreensContext.getContext().startService(service);
 	}
 
