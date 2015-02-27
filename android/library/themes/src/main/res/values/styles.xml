@@ -5,6 +5,7 @@
         <item name="android:textViewStyle">@style/default_text_view</item>
         <item name="android:buttonStyle">@style/default_submit_button</item>
         <item name="android:listViewStyle">@style/default_list</item>
+		<item name="colorPrimary">@color/liferay_light_blue</item>
         <item name="colorAccent">@color/liferay_light_blue</item>
     </style>
 
