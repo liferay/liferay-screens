@@ -59,6 +59,7 @@
 		<attr name="anonymousApiUserName" />
 		<attr name="anonymousApiPassword" />
 		<attr name="autoLogin" format="boolean" />
+		<attr name="credentialsStore" />
 	</declare-styleable>
 
 	<declare-styleable name="WebContentDisplayScreenlet">
