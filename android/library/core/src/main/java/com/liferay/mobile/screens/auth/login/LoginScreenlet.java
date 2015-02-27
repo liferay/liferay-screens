@@ -90,9 +90,7 @@ public class LoginScreenlet
 			_listener.onLoginSuccess(userAttributes);
 		}
 
-		if (_credentialsStore != CREDENTIAL_STORE_NONE) {
-			SessionContext.storeSession(SessionStoreBuilder.StorageType.valueOf(_credentialsStore));
-		}
+		SessionContext.storeSession(_credentialsStore);
 	}
 
 	@Override
@@ -139,18 +137,18 @@ public class LoginScreenlet
 		int layoutId = typedArray.getResourceId(
 			R.styleable.LoginScreenlet_layoutId, 0);
 
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
-
 		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
-
-		LoginViewModel viewModel = (LoginViewModel) view;
-		_authMethod = AuthMethod.getValue(authMethodId);
-		viewModel.setAuthMethod(_authMethod);
 
 		int storeValue = typedArray.getInt(R.styleable.LoginScreenlet_credentialsStore,
 			StorageType.NONE.toInt());
 
 		_credentialsStore = StorageType.valueOf(storeValue);
+
+		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
+
+		LoginViewModel viewModel = (LoginViewModel) view;
+		_authMethod = AuthMethod.getValue(authMethodId);
+		viewModel.setAuthMethod(_authMethod);
 
 		typedArray.recycle();
 
