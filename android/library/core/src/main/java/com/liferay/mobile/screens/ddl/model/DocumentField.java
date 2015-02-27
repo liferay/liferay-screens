@@ -11,6 +11,13 @@ import java.util.Map;
  */
 public class DocumentField extends Field<String> {
 
+	public enum State {
+		PENDING,
+		UPLOADING,
+		UPLOADED,
+		FAILED;
+	}
+
 	public static final Parcelable.Creator<DocumentField> CREATOR =
 			new Parcelable.Creator<DocumentField>() {
 
@@ -26,10 +33,6 @@ public class DocumentField extends Field<String> {
 
 	public DocumentField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
-	}
-
-	public enum State {
-		PENDING, UPLOADING, UPLOADED, FAILED;
 	}
 
 	protected DocumentField(Parcel in) {
