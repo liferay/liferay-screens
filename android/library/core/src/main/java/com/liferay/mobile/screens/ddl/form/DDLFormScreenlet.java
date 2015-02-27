@@ -90,12 +90,11 @@ public class DDLFormScreenlet
 		}
 	}
 
-	public void upload(int position) {
-		DocumentField field = (DocumentField) _record.getField(position);
-		upload(field);
+	public void startUploadByPosition(int position) {
+		startUpload((DocumentField) _record.getField(position));
 	}
 
-	public void upload(DocumentField field) {
+	public void startUpload(DocumentField field) {
 		field.setState(DocumentField.State.PENDING);
 		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
 		view.showStartDocumentUpload(field);
@@ -453,7 +452,7 @@ public class DDLFormScreenlet
 				}
 				else {
 					if (DocumentField.State.FAILED.equals(state)) {
-						upload(file);
+						startUpload(file);
 						result = false;
 					}
 				}
