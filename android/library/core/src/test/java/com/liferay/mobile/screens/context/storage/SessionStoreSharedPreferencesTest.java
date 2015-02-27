@@ -22,6 +22,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -32,6 +33,8 @@ import org.robolectric.annotation.Config;
 
 import static com.liferay.mobile.screens.context.storage.SessionStoreBuilder.StorageType.SHARED_PREFERENCES;
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * @author Jose Manuel Navarro
@@ -46,13 +49,9 @@ public class SessionStoreSharedPreferencesTest {
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
 			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
+			setTestData(store);
 
 			store.setContext(null);
-
-			store.setUser(new User(new JSONObject().put("userId", 123)));
-
-			SessionContext.createSession("user123", "pass123");
-			store.setAuthentication(SessionContext.getAuthentication());
 
 			store.storeSession();
 		}
@@ -60,10 +59,7 @@ public class SessionStoreSharedPreferencesTest {
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenSessionIsNotPresent() throws Exception {
 			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
-
-			store.setContext(Robolectric.getShadowApplication().getApplicationContext());
-
-			store.setUser(new User(new JSONObject().put("userId", 123)));
+			setTestData(store);
 
 			store.setAuthentication(null);
 
@@ -73,13 +69,9 @@ public class SessionStoreSharedPreferencesTest {
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
 			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
-
-			store.setContext(Robolectric.getShadowApplication().getApplicationContext());
+			setTestData(store);
 
 			store.setUser(null);
-
-			SessionContext.createSession("user123", "pass123");
-			store.setAuthentication(SessionContext.getAuthentication());
 
 			store.storeSession();
 		}
@@ -87,15 +79,7 @@ public class SessionStoreSharedPreferencesTest {
 		@Test
 		public void shouldStoreTheCredentialsInSharedPreferences() throws Exception {
 			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
-
-			store.setContext(Robolectric.getShadowApplication().getApplicationContext());
-
-			JSONObject userAttributes = new JSONObject().put("userId", 123);
-			store.setUser(new User(userAttributes));
-
-			SessionContext.createSession("user123", "pass123");
-			store.setAuthentication(SessionContext.getAuthentication());
-
+			setTestData(store);
 			store.storeSession();
 
 			String sharedPreferencesName = store.getStoreName();
@@ -109,7 +93,7 @@ public class SessionStoreSharedPreferencesTest {
 			assertEquals(LiferayServerContext.getServer(), sharedPref.getString("server", "not-present"));
 			assertEquals(LiferayServerContext.getGroupId(), sharedPref.getLong("groupId", 0));
 			assertEquals(LiferayServerContext.getCompanyId(), sharedPref.getLong("companyId", 0));
-			assertEquals(userAttributes.toString(), sharedPref.getString("attributes", "not-present"));
+			assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
 		}
 
 	}
@@ -121,15 +105,7 @@ public class SessionStoreSharedPreferencesTest {
 		@Test
 		public void shouldRemoveTheStoredCredentials() throws Exception {
 			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
-
-			store.setContext(Robolectric.getShadowApplication().getApplicationContext());
-
-			JSONObject userAttributes = new JSONObject().put("userId", 123);
-			store.setUser(new User(userAttributes));
-
-			SessionContext.createSession("user123", "pass123");
-			store.setAuthentication(SessionContext.getAuthentication());
-
+			setTestData(store);
 			store.storeSession();
 
 			store.removeStoredSession();
@@ -143,6 +119,20 @@ public class SessionStoreSharedPreferencesTest {
 			assertEquals(-1, sharedPref.getInt("value", -1));
 		}
 
+	}
+
+	private static void setTestData(SessionStore store) {
+		store.setContext(Robolectric.getShadowApplication().getApplicationContext());
+
+		JSONObject userAttributes = null;
+		try {
+			userAttributes = new JSONObject().put("userId", 123);
+		} catch (JSONException e) {
+		}
+		store.setUser(new User(userAttributes));
+
+		SessionContext.createSession("user123", "pass123");
+		store.setAuthentication(SessionContext.getAuthentication());
 	}
 
 }
