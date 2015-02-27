@@ -119,7 +119,7 @@ public class AddBookmarkDefaultView
 	}	
 ```
 
-5. Now, create the interactor class. It will be responsible for sending the bookmark to the Liferay Portal (or any other backend). Note that it's a good practice to use [IoC](http://en.wikipedia.org/wiki/Inversion_of_control) in your interactor classes. This way, anyone could provide a different implementation without breaking the rest of the code. `Interactor` base class also needs as a parameter the type of listener to notify to. We'll define this type below:
+5. Create the interactor class. It's responsible for sending the bookmark to the Liferay instance (or any other backend). Note that it's a good practice to use [IoC](http://en.wikipedia.org/wiki/Inversion_of_control) in your interactor classes. This way, anyone can provide a different implementation without breaking the code. The `Interactor` base class also needs a parameter that represents the type of listener to notify. This is defined here:
 
 ```java
 public interface AddBookmarkInteractor extends Interactor<AddBookmarkListener> {
@@ -128,6 +128,7 @@ public interface AddBookmarkInteractor extends Interactor<AddBookmarkListener> {
 
 }
 ```
+
 ```java
 public class AddBookmarkInteractorImpl
 	extends BaseRemoteInteractor<AddBookmarkListener>
@@ -163,9 +164,9 @@ public class AddBookmarkInteractorImpl
 }
 ```
 
-- Pay special attention to the second step in the `addBookmark` method. When the request ends, make sure you post an event into the bus using `EventBusUtil.post(event)`, where 'event' is a `BasicEvent` object containing the `targetScreenletId` together with either the result or the exception. Every interactor should also implement the `onEvent` method. It will be invoked by the EventBus and it will call the registered listener.
+Pay special attention to the second step in the `addBookmark` method. When the request ends, make sure you post an event into the bus using `EventBusUtil.post(event)`, where `event` is a `BasicEvent` object containing the `targetScreenletId` together with either the result or the exception. Every interactor should also implement the `onEvent` method. This method is invoked by the `EventBus` and calls the registered listener.
 
-- Once you have your interactor ready, you need to create the screenlet class. This is the cornerstone and the entry point that your app developer will see and interact with. Let's call our class `AddBookmarkScreenlet` and extend it from `BaseScreenlet`. Again, this class have to be parametrized with the interactor class. Given that the screenlet will be notified by the interactor when the asynchronous operation ends, we have to implement the listener interface used by the interactor (`AddBookmarkListener` in our case). Also, in order to notify the app, this class usually has another listener. This new listener may be the same you used in the interactor, or a different one (if you want different methods or signatures) or even you can notify the app using a different mechanism (event bus, Android's BroadcastReceiver, etc.).  Note that the implemented interface methods, call both the view (to modify the UI) and the app's listener (to allow the app to perform any action):
+6. Once your interactor is ready, you need to create the screenlet class. This is the cornerstone and entry point that your app developer sees and interacts with. In this example, this class is called `AddBookmarkScreenlet` and extends from `BaseScreenlet`. Again, this class needs to be parameterized with the interactor class. Since the screenlet is notified by the interactor when the asynchronous operation ends, you must implement the listener interface used by the interactor (`AddBookmarkListener`, in this case). Also, to notify the app, this class usually has another listener. This listener can be the same one you used in the interactor or a different one altogether (if you want different methods or signatures). You could even notify the app using a different mechanism such as the Event Bus, Android's `BroadcastReceiver`, or others.  Note that the implemented interface methods call the view to modify the UI and the app's listener to allow the app to perform any action:
 
 ```java
 public class AddBookmarkScreenlet
@@ -213,7 +214,8 @@ public class AddBookmarkScreenlet
 
 }
 ```
-- We're getting close. The next step is to implement the abstract methods of the screenlets. Let's do it one by one: first is the `createScreenletView` method. In there you get attributes from the XML definition (and in turn store them as class attributes or use it somehow) and finally inflate the view using the layout specified in the `liferay:layoutId` attribute. You can even configure the initial state of the view, using the attributes read.
+
+7. You're almost finished! The next step is to implement the screenlet's abstract methods. First is the `createScreenletView` method. In this method you get attributes from the XML definition and either store them as class attributes or otherwise make use of them. Then inflate the view using the layout specified in the `liferay:layoutId` attribute. You can even configure the initial state of the view, using the attributes read.
 
 ```java
 	@Override
@@ -235,7 +237,7 @@ public class AddBookmarkScreenlet
 	}
 ```
 
-- Second abstract method is the `createInteractor` one. This is a factory method where you have to create the corresponding interactor for one specific action name. Note that one screenlet may have several "interactions" (or use cases), so each interaction should be implemented in a separated interactor. In our case, we have only one interactor, so we create the object (or get the instance using your IoC framework) in there. You'll have to pass the `screenletId` (a number autogenerated by the `BaseScreenlet` class in the constructor:
+The Second abstract method to implement is `createInteractor`. This is a factory method in which you have to create the corresponding interactor for a specific action name. Note that a single screenlet may have several interactions (use cases). Each interaction should therefore be implemented in a separate interactor. In this example there is only one interactor, so the object is created in the method. Alternatively, you can retrieve the instance by using your IoC framework. Also, you need to pass the `screenletId` (a number autogenerated by the `BaseScreenlet` class) to the constructor:
 
 ```java
 	protected AddBookmarkInteractor createInteractor(String actionName) {
@@ -243,7 +245,7 @@ public class AddBookmarkScreenlet
 	}
 ```
 
-- And finally, the third abstract method is the `onUserAction` one. In there, you get the data entered in the view, and starts the operation using the supplied interactor and the data.
+The third and final abstract method to implement is `onUserAction`. In this method, retrieve the data entered in the view and start the operation by using the supplied interactor and the data:
 
 ```java
 	protected void onUserAction(String userActionName, AddBookmarkInteractor interactor) {
@@ -255,7 +257,7 @@ public class AddBookmarkScreenlet
 	}
 ```
 
-- And at the end, the only missing thing is to trigger the user action when the button is touched. So we go back to the view, and add a listener to the button:
+8. The only thing left to do is to trigger the user action when the button is pressed. To do this, go back to the view and add a listener to the button:
 
 ```java
 	protected void onFinishInflate() {
@@ -273,3 +275,5 @@ public class AddBookmarkScreenlet
 		screenlet.performUserAction();
 	}
 ```
+
+Congratulations! Now you know how to create your own screenlets.
