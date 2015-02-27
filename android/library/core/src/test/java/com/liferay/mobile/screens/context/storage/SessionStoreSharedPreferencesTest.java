@@ -82,11 +82,9 @@ public class SessionStoreSharedPreferencesTest {
 			setTestData(store);
 			store.storeSession();
 
-			String sharedPreferencesName = store.getStoreName();
-
 			SharedPreferences sharedPref =
 				Robolectric.getShadowApplication().getApplicationContext().getSharedPreferences(
-					sharedPreferencesName, Context.MODE_PRIVATE);
+					store.getStoreName(), Context.MODE_PRIVATE);
 
 			assertEquals("user123", sharedPref.getString("username", "not-present"));
 			assertEquals("pass123", sharedPref.getString("password", "not-present"));
