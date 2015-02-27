@@ -83,4 +83,7 @@
         <item name="android:typeface">normal</item>
     </style>
 
+	<style name="custom_dialog_theme">
+	</style>
+
 </resources>
