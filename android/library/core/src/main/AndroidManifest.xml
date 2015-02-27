@@ -1,9 +1,9 @@
 <manifest
-    package="com.liferay.mobile.screens"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+	package="com.liferay.mobile.screens"
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <application>
-        <service android:name="com.liferay.mobile.screens.ddl.form.service.UploadService"/>
-    </application>
+	<application>
+		<service android:name="com.liferay.mobile.screens.ddl.form.service.UploadService"/>
+	</application>
 
 </manifest>
