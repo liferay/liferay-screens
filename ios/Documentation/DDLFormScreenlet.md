@@ -20,7 +20,7 @@
 The `DDLFormScreenlet` can be used to show a collection of fields so that a user can fill in their values. Initial or existing values may be shown in the fields. Fields of the following data types are supported:
 
 - *Boolean*: A two state value typically shown using a checkbox.
-- *Date*: A formatted date value. The format will depend on the current device's locale.
+- *Date*: A formatted date value. The format depends on the device's locale.
 - *Decimal, Integer, and Number*: A numeric value.
 - *Document and Media*: A file stored on the current device. It can be uploaded to a specific portal repository.
 - *Radio*: A set of options to choose from. A single option must be chosen. 
@@ -36,7 +36,7 @@ The `DDLFormScreenlet` also supports the following features:
 - Users can traverse the form fields from the keyboard.
 - Supports i18n in record values and labels.
 
-There are also a few limitations that you should be aware of when using `DDLFormScreenlet`. They are listed here:
+There are also a few limitations you should be aware of when using `DDLFormScreenlet`. They are listed here:
 
 - Nested fields in the data definition aren't supported.
 - Selection of multiple items in the Radio and Select data types isn't supported yet.
@@ -98,12 +98,12 @@ For more details, please see the User Guide sections [Defining Data Types](https
 | Method | Return Type | Explanation |
 |-----------|-----------|-------------| 
 | `loadForm()` | `boolean` | Starts the request to load the form definition. The form fields are shown when the response is received. This method returns `true` if the request is sent. |
-| `loadRecord()` | `boolean` | Starts the request to load the record specified in `recordId`. If needed, it will also load the form definition. The form fields are shown filled with record values when the response is received. This method returns `true` if the request is sent. |
-| `submitForm()` | `boolean` | Starts the request to submit form values to the dynamic data list specified in `recordSetId`. It will validate all the fields before and will show the validations errors detected stopping the submit process.|
+| `loadRecord()` | `boolean` | Starts the request to load the record specified in `recordId`. If needed, the form definition is also loaded. The form fields are shown filled with record values when the response is received. This method returns `true` if the request is sent. |
+| `submitForm()` | `boolean` | Starts the request to submit form values to the dynamic data list specified in `recordSetId`. All fields are validated prior to submission. Validation errors stop the submit process. |
 
 ## Delegate
 
-The `DDLFormScreenlet` delegates some events in an object that conforms to the `DDLFormScreenletDelegate` protocol. This protocol lets you implement the following methods:
+The `DDLFormScreenlet` delegates some events to an object that conforms with the `DDLFormScreenletDelegate` protocol. This protocol lets you implement the following methods:
 
 - `onFormLoaded(record)`: Called when the form is loaded. The `record` contains only field definitions.
 - `onFormLoadError(error)`: Called when an error occurs while loading the form. The `NSError` object describes the error.

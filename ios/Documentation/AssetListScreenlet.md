@@ -67,18 +67,18 @@ Dynamic Data Lists and Data Types should be configured properly in the portal. R
 
 | Attribute | Data type | Explanation |
 |-----------|-----------|-------------| 
-|  `autoLoad` | `boolean` | Whether or not the list should be loaded when it's presented in the screen. Default value is `true`.|
-|  `refreshControl` | `boolean` | Whether or not an starndar [UIRefreshControl](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIRefreshControl_class/) will be shown when the "pull to refresh" gesture is done by the user. Default value is `true`.|
-|  `firstPageSize` | `number` | The number of items to be retrieved from the server in the first page. Default value is `50`.|
-|  `pageSize` | `number` | The number of items to be retrieved from the server in the second page and next. Default value is `25`.|
-|  `groupId` | `number` | The site (group) identifier where the asset is stored. If this value is `0`, the `groupId` specified in `LiferayServerContext` is be used. Default value is `0`.|
-|  `classNameId` | `number` | The identifier of asset's class name. Use values from `AssetClassNameId` enumeration or the `classname_` database table. |
+| `autoLoad` | `boolean` | Whether the list should be loaded when it's presented on the screen. The default value is `true`. |
+| `refreshControl` | `boolean` | Whether a standard [UIRefreshControl](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIRefreshControl_class/) is shown when the user does the pull to refresh gesture. The default value is `true`. |
+| `firstPageSize` | `number` | The number of items retrieved from the server for display on the first page. The default value is `50`. |
+| `pageSize` | `number` | The number of items retrieved from the server for display on the second and subsequent pages. The default value is `25`. |
+| `groupId` | `number` | The ID of the site (group) where the asset is stored. If set to `0`, the `groupId` specified in `LiferayServerContext` is used. The default value is `0`. |
+| `classNameId` | `number` | The ID of the asset's class name. Use values from the `AssetClassNameId` enumeration or the `classname_` database table. |
 
 ## Methods
 
 | Method | Return | Explanation |
 |-----------|-----------|-------------| 
-|  `loadList()` | `boolean` | Starts the request to load the list of assets. This list is shown when the response is received. Returns `true` if the request could be sent. |
+| `loadList()` | `boolean` | Starts the request to load the list of assets. This list is shown when the response is received. Returns `true` if the request is sent. |
 
 ## Delegate
 
@@ -87,4 +87,3 @@ The `AssetListScreenlet` delegates some events to an object that conforms to the
 - `onAssetListResponse(list of records)`: Called when a page of assets is received. Note that this method may be called more than once; one call for each page received.
 - `onAssetListError(error)`: Called when an error occurs in the process. The `NSError` object describes the error.
 - `onAssetListSelected(asset)`: Called when an item in the list is selected.
-

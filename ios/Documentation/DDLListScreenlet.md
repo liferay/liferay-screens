@@ -42,13 +42,13 @@ Dynamic Data Lists (DDL) and Data Types should be properly configured in the por
 
 | Attribute | Data type | Explanation |
 |-----------|-----------|-------------| 
-|  `autoLoad` | `boolean` | Whether or not the list should be loaded when it's presented in the screen. Default value is `true`.|
-|  `refreshControl` | `boolean` | Whether or not an starndar [UIRefreshControl](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIRefreshControl_class/) will be shown when the "pull to refresh" gesture is done by the user. Default value is `true`.|
-|  `firstPageSize` | `number` | The number of items to be retrieved from the server in the first page. Default value is `50`.|
-|  `pageSize` | `number` | The number of items to be retrieved from the server in the second page and next. Default value is `25`.|
-| `recordSetId` | `number` | The identifier of the DDL being called. To find the identifiers for your DDLs, click *Admin* from the Dockbar and select *Content*. Then click *Dynamic Data Lists*. The identifier of each DDL is in the ID column of the table that appears. |
-| `userId` | `number` | The user identifier to filter records on. Records won't be filtered if the `userId` is `0`. Default value is `0 `|
-| `labelFields` | `string` | The names of the DDL fields to show, separated by a comma. Refer to the list's data definition to find the field names. To do so, click *Admin* from the Dockbar and select *Content*. Then click *Dynamic Data Lists* and click the *Manage Data Definitions* button. You can view the fields by clicking on any of the data definitions in the table that appears. Note that the appearance of these values depends on the theme selected by the user. |
+| `autoLoad` | `boolean` | Whether the list loads when it's presented on the screen. The default value is `true`. |
+| `refreshControl` | `boolean` | Whether a standard [UIRefreshControl](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIRefreshControl_class/) is shown when the user performs the pull to refresh gesture. The default value is `true`. |
+| `firstPageSize` | `number` | The number of items retrieved from the server for display on the first page. The default value is `50`. |
+| `pageSize` | `number` | The number of items retrieved from the server for display on the second and subsequent pages. The default value is `25`. |
+| `recordSetId` | `number` | The ID of the DDL being called. To find the IDs for your DDLs, click *Admin* &rarr; *Content* from the Dockbar. Then click *Dynamic Data Lists*. Each DDL's ID is in the table's ID column. |
+| `userId` | `number` | The ID of the user to filter records on. Records aren't filtered if the `userId` is `0`. The default value is `0`. |
+| `labelFields` | `string` | The comma separated names of the DDL fields to show. Refer to the list's data definition to find the field names. To do so, click *Admin* &rarr; *Content* from the Dockbar. Then click *Dynamic Data Lists* and click the *Manage Data Definitions* button. You can view the fields by clicking on any of the data definitions in the table that appears. Note that the appearance of these values depends on the theme selected by the user. |
 
 ## Methods
 

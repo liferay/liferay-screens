@@ -40,7 +40,7 @@ To use the `ForgotPasswordScreenlet`, you must allow users to request new passwo
 
 ### Authentication Method
 
-Note that the authentication method configured in the portal can be different than the used by this screenlet. For example, it's *perfectly fine* to use `screenName` for sign in authentication, but allow users to recover their password using the `email` authentication method.
+Note that the authentication method configured in the portal can be different than the one used by this screenlet. For example, it's *perfectly fine* to use `screenName` for sign in authentication, but allow users to recover their password using the `email` authentication method.
 
 ### Password Reset
 
