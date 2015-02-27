@@ -100,6 +100,25 @@ public class SessionContext {
 		storage.removeStoredSession();
 	}
 
+	public static void loadSessionFromStore(SessionStoreBuilder.StorageType storageType)
+		throws IllegalStateException {
+
+		SessionStore storage = new SessionStoreBuilder()
+			.setContext(LiferayScreensContext.getContext())
+			.setStorageType(storageType)
+			.build();
+
+		if (storage == null) {
+			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
+		}
+
+		if (storage.loadStoredSession()) {
+			_session = new SessionImpl(
+				LiferayServerContext.getServer(), storage.getAuthentication());
+			_user = storage.getUser();
+		}
+	}
+
 	private static Session _session;
 	private static User _user;
 

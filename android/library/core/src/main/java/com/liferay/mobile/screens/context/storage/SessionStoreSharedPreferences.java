@@ -21,6 +21,9 @@ import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.User;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -62,6 +65,46 @@ public class SessionStoreSharedPreferences implements SessionStore {
 			.edit()
 			.clear()
 			.apply();
+
+		_user = null;
+		_auth = null;
+	}
+
+	@Override
+	public boolean loadStoredSession() throws IllegalStateException {
+		if (_sharedPref == null) {
+			throw new IllegalStateException("You need to set the context");
+		}
+
+		String server = _sharedPref.getString("server", null);
+		String userName = _sharedPref.getString("username", null);
+		String password = _sharedPref.getString("password", null);
+		String userAttributes = _sharedPref.getString("attributes", null);
+
+		if (server == null || userName == null || password == null || userAttributes == null) {
+			// nothing saved
+			return false;
+		}
+
+		long groupId = _sharedPref.getLong("groupId", 0);
+		long companyId = _sharedPref.getLong("companyId", 0);
+
+		if (!server.equals(LiferayServerContext.getServer()) ||
+			groupId != LiferayServerContext.getGroupId() ||
+			companyId != LiferayServerContext.getCompanyId()) {
+
+			throw new IllegalStateException("Stored credential values are not consistent with current ones");
+		}
+
+		_auth = new BasicAuthentication(userName, password);
+
+		try {
+			_user = new User(new JSONObject(userAttributes));
+		} catch (JSONException e) {
+			throw new IllegalStateException("Stored user attributes are corrupted");
+		}
+
+		return true;
 	}
 
 	@Override
@@ -77,8 +120,18 @@ public class SessionStoreSharedPreferences implements SessionStore {
 	}
 
 	@Override
+	public BasicAuthentication getAuthentication() {
+		return _auth;
+	}
+
+	@Override
 	public void setAuthentication(BasicAuthentication auth) {
 		_auth = auth;
+	}
+
+	@Override
+	public User getUser() {
+		return _user;
 	}
 
 	@Override

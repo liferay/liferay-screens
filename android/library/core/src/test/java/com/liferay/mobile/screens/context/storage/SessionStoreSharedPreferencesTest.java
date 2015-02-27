@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.context.storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
@@ -31,9 +31,10 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import static com.liferay.mobile.screens.context.storage.SessionStoreBuilder.StorageType.SHARED_PREFERENCES;
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertTrue;
 
 /**
@@ -113,7 +114,57 @@ public class SessionStoreSharedPreferencesTest {
 					store.getStoreName(), Context.MODE_PRIVATE);
 
 			assertFalse(sharedPref.contains("username"));
+		}
 
+	}
+
+	@Config(emulateSdk = 18)
+	@RunWith(RobolectricTestRunner.class)
+	public static class WhenLoadingStoredCredentials {
+
+		@Test
+		public void shouldNotLoadWhenCredentialsAreNotStored() throws Exception {
+			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
+			store.setContext(Robolectric.getShadowApplication().getApplicationContext());
+			store.removeStoredSession();
+
+			assertFalse(store.loadStoredSession());
+		}
+
+		@Test(expected = IllegalStateException.class)
+		public void shouldRaiseExceptionIfStoredCredentialsAreNotConsistent() throws Exception {
+			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
+			setTestData(store);
+			store.storeSession();
+
+			// Don't recreate the store object because SharedPreferences are mocked by
+			// Robolectric and it uses an in-memory store
+
+			LiferayServerContext.setServer("http://otherhost.com");
+
+			store.loadStoredSession();
+		}
+
+		@Test
+		public void shouldLoadTheStoredValues() throws Exception {
+			SessionStoreSharedPreferences store = new SessionStoreSharedPreferences();
+			setTestData(store);
+			store.storeSession();
+
+			BasicAuthentication savedAuth = store.getAuthentication();
+			User savedUser = store.getUser();
+
+			assertTrue(store.loadStoredSession());
+
+			assertNotNull(store.getAuthentication());
+			assertNotNull(store.getUser());
+
+			assertNotSame(savedAuth, store.getAuthentication());
+			assertNotSame(savedUser, store.getUser());
+
+			assertEquals("user123", store.getAuthentication().getUsername());
+			assertEquals("pass123", store.getAuthentication().getPassword());
+			assertEquals(123, store.getUser().getId());
 		}
 
 	}
