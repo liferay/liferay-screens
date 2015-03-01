@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.themes.ddl.form.fields;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -35,8 +34,6 @@ import com.liferay.mobile.screens.themes.ddl.form.DDLFormScreenletView;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @author Javier Gamarra
@@ -58,9 +55,24 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 
 	@Override
 	public void onClick(final View view) {
-		_choseOriginDialog = createOriginDialog(view);
-		_choseOriginDialog.show();
+		if (view.getId() == R.id.text) {
+			_choseOriginDialog = createOriginDialog();
+			_choseOriginDialog.show();
+		}
+		else if (view.getId() == R.id.default_dialog_take_video) {
+			launchCameraIntent(MediaStore.ACTION_VIDEO_CAPTURE, createVideoFile());
+			_choseOriginDialog.dismiss();
+		}
+		else if (view.getId() == R.id.default_dialog_take_photo) {
+			launchCameraIntent(MediaStore.ACTION_IMAGE_CAPTURE, createImageFile());
+			_choseOriginDialog.dismiss();
+		}
+		else if (view.getId() == R.id.default_dialog_select_file) {
+			showSelectFileDialog(view);
+			_choseOriginDialog.dismiss();
+		}
 	}
+
 
 	@Override
 	public void refresh() {
@@ -126,75 +138,71 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 
 	}
 
-	private AlertDialog createOriginDialog(final View view) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(getContext()).setPositiveButton(getContext().getString(R.string.makeAPhoto), new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				launchCameraIntent();
-			}
-		}).setNegativeButton(getContext().getString(R.string.selectAFile), new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				showSelectFileDialog(view);
-			}
-		});
+	private AlertDialog createOriginDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
 		LayoutInflater factory = LayoutInflater.from(getContext());
 		final View customDialogView = factory.inflate(
-				R.layout.ddlfield_select_dialog_default, null);
-		TextView title = (TextView) customDialogView.findViewById(R.id.dialog_title);
-		title.setText(getContext().getString(R.string.origin_of_file));
-		builder.setCustomTitle(customDialogView);
+				R.layout.ddlfield_document_chose_option_default, null);
+
+		customDialogView.findViewById(R.id.default_dialog_select_file).setOnClickListener(this);
+		customDialogView.findViewById(R.id.default_dialog_take_photo).setOnClickListener(this);
+		customDialogView.findViewById(R.id.default_dialog_take_video).setOnClickListener(this);
+
+		builder.setView(customDialogView);
+
 		return builder.create();
 	}
 
-	private void launchCameraIntent() {
-		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+	private void launchCameraIntent(String intent, File file) {
+		Intent cameraIntent = new Intent(intent);
 
-		File photoFile = null;
-		try {
-			photoFile = createImageFile();
-			getField().getCurrentValue().setName(photoFile.getAbsolutePath());
-
-			if (photoFile != null) {
-				cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-						Uri.fromFile(photoFile));
-				//TODO Activity? or fragment?
-				((Activity) getContext()).startActivityForResult(cameraIntent, _positionInForm);
-			}
-		} catch (IOException e) {
-			//TODO Notify user?
+		if (file != null) {
+			getField().getCurrentValue().setName(file.getAbsolutePath());
+			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+			((Activity) getContext()).startActivityForResult(cameraIntent, _positionInForm);
 		}
 	}
 
 	private void showSelectFileDialog(final View view) {
 		_fileDialog = new SelectFileDialog().createDialog(getContext(),
-			new SelectFileDialog.SimpleFileDialogListener() {
+				new SelectFileDialog.SimpleFileDialogListener() {
 
-				@Override
-				public void onFileChosen(String path) {
-					_progressBar.setVisibility(View.VISIBLE);
-					getTextEditText().setText(path);
+					@Override
+					public void onFileChosen(String path) {
+						_progressBar.setVisibility(View.VISIBLE);
+						getTextEditText().setText(path);
 
-					DocumentField field = getField();
-					field.getCurrentValue().setName(path);
-					field.getCurrentValue().setState(DocumentField.State.PENDING);
-					view.setTag(field);
-					((DDLFormScreenletView) getParentView()).onClick(view);
-				}
+						DocumentField field = getField();
+						field.getCurrentValue().setName(path);
+						field.getCurrentValue().setState(DocumentField.State.PENDING);
+						view.setTag(field);
+						((DDLFormScreenletView) getParentView()).onClick(view);
+					}
 
-			});
+				});
 
 		_fileDialog.show();
 	}
 
-	private File createImageFile() throws IOException {
-		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-		String imageFileName = "JPEG_" + timeStamp + "_";
-		File storageDir = Environment.getExternalStoragePublicDirectory(
-				Environment.DIRECTORY_PICTURES);
-		File image = File.createTempFile(imageFileName, ".jpg", storageDir);
-		return image;
+	private File createImageFile() {
+		return createFile("PHOTO", Environment.DIRECTORY_PICTURES, ".jpg");
+	}
+
+	private File createVideoFile() {
+		return createFile("VIDEO", Environment.DIRECTORY_MOVIES, ".mp4");
+	}
+
+	private File createFile(String name, String directory, String extension) {
+		try {
+			File storageDir = Environment.getExternalStoragePublicDirectory(
+					directory);
+			return File.createTempFile(name, extension, storageDir);
+		}
+		catch (IOException e) {
+			//TODO Notify user?
+		}
+		return null;
 	}
 
 	private int _positionInForm;
