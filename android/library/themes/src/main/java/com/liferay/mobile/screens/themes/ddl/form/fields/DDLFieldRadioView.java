@@ -17,11 +17,11 @@ package com.liferay.mobile.screens.themes.ddl.form.fields;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.support.v7.internal.widget.TintRadioButton;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -69,14 +69,14 @@ public class DDLFieldRadioView extends RadioGroup
 		for (int i = 0; i < availableOptions.size(); ++i) {
 			StringWithOptionsField.Option opt = availableOptions.get(i);
 
-			RadioButton radioButton = new RadioButton(getContext());
+			TintRadioButton radioButton = new TintRadioButton(getContext());
 			radioButton.setLayoutParams(layoutParams);
 			radioButton.setText(opt.label);
 			radioButton.setTag(opt);
 			radioButton.setOnCheckedChangeListener(this);
 			radioButton.setTypeface(_getTypeface());
 			radioButton.setSaveEnabled(true);
-			addView(radioButton, getChildCount() - 1);
+			addView(radioButton);
 		}
 
 		refresh();
@@ -88,7 +88,7 @@ public class DDLFieldRadioView extends RadioGroup
 
 		if (selectedOptions != null) {
 			for (StringWithOptionsField.Option opt : selectedOptions) {
-				RadioButton radioButton = (RadioButton) findViewWithTag(opt);
+				TintRadioButton radioButton = (TintRadioButton) findViewWithTag(opt);
 
 				if (radioButton != null) {
 					radioButton.setChecked(true);
@@ -109,7 +109,7 @@ public class DDLFieldRadioView extends RadioGroup
 		else {
 			List<StringWithOptionsField.Option> availableOptions = _field.getAvailableOptions();
 			StringWithOptionsField.Option opt = availableOptions.get(0);
-			RadioButton radioButton = (RadioButton) findViewWithTag(opt);
+			TintRadioButton radioButton = (TintRadioButton) findViewWithTag(opt);
 			if (radioButton != null) {
 				radioButton.setError(getContext().getString(R.string.required_value));
 			}
@@ -140,7 +140,7 @@ public class DDLFieldRadioView extends RadioGroup
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		RadioButton radioButton = (RadioButton) buttonView;
+		TintRadioButton radioButton = (TintRadioButton) buttonView;
 
 		StringWithOptionsField.Option opt = (StringWithOptionsField.Option) radioButton.getTag();
 		if (isChecked) {

@@ -9,11 +9,7 @@
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/default_switch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/default_edit_text_padding"
-        android:paddingTop="@dimen/default_edit_text_padding"
-        android:text="switch"
-        android:theme="@style/default_theme"/>
+		android:text="switch"
+		style="@style/default_checkbox"/>
 
 </com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldCheckboxView>
