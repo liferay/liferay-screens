@@ -11,9 +11,10 @@
 		android:visibility="gone"/>
 
 
-	<FrameLayout android:layout_marginBottom="5dp"
+	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="5dp">
 
 		<EditText
 			android:id="@+id/text"
@@ -21,10 +22,13 @@
 			android:layout_height="match_parent"
 			android:layout_marginBottom="0dp"
 			android:clickable="true"
-			android:paddingRight="9dp"
+			android:drawableRight="@drawable/default_blue"
 			android:editable="false"
 			android:focusable="false"
-			android:inputType="none"/>
+			android:inputType="none"
+			android:paddingBottom="5dp"
+			android:paddingRight="9dp"
+			android:paddingTop="5dp"/>
 
 		<ProgressBar
 			android:id="@+id/fileProgress"

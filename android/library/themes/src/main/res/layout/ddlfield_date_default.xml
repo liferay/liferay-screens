@@ -14,6 +14,8 @@
 		android:id="@+id/text"
 		style="@style/default_edit_text"
 		android:drawableRight="@drawable/default_calendar_blue"
-		android:inputType="date"/>
+		android:inputType="date"
+		android:paddingBottom="5dp"
+		android:paddingTop="5dp"/>
 
 </com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldDateView>
