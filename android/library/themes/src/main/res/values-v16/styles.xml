@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="default_edit_text" parent="base_default_edit_text">
-        <item name="android:fontFamily">sans-serif-light</item>
-    </style>
+	<style name="default_edit_text" parent="base_default_edit_text">
+		<item name="android:fontFamily">sans-serif-light</item>
+	</style>
 
-    <style name="default_submit_button" parent="base_default_submit_button">
-        <item name="android:fontFamily">sans-serif-light</item>
-    </style>
+	<style name="default_submit_button" parent="base_default_submit_button">
+		<item name="android:fontFamily">sans-serif-light</item>
+	</style>
 
-    <style name="default_text_view" parent="base_default_text_view">
-        <item name="android:fontFamily">sans-serif-light</item>
-    </style>
+	<style name="default_text_view" parent="base_default_text_view">
+		<item name="android:fontFamily">sans-serif-light</item>
+	</style>
 
-    <style name="default_font">
-        <item name="android:fontFamily">sans-serif-light</item>
-    </style>
+	<style name="default_font">
+		<item name="android:fontFamily">sans-serif-light</item>
+	</style>
 
-    <style name="custom_dialog_theme">
-        <item name="android:fontFamily">sans-serif-light</item>
-    </style>
+	<style name="custom_dialog_theme">
+		<item name="android:fontFamily">sans-serif-light</item>
+	</style>
+
+	<style name="default_checkbox" parent="base_default_checkbox">
+		<item name="android:fontFamily">sans-serif-light</item>
+	</style>
 
 </resources>
