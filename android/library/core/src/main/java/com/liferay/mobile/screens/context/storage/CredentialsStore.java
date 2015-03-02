@@ -2,13 +2,13 @@
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
+ * the terms of the GNU Lesser General  License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General  License for more
  * details.
  */
 
@@ -25,18 +25,22 @@ import com.liferay.mobile.screens.context.User;
  */
 public interface CredentialsStore extends BaseViewModel {
 
-	public void storeCredentials();
-	public void removeStoredCredentials();
-	public boolean loadStoredCredentials() throws IllegalStateException;
+	void storeCredentials();
 
-	public String getStoreName();
+	void removeStoredCredentials();
 
-	public BasicAuthentication getAuthentication();
-	public void setAuthentication(BasicAuthentication auth);
+	boolean loadStoredCredentials() throws IllegalStateException;
 
-	public User getUser();
-	public void setUser(User user);
+	String getStoreName();
 
-	public void setContext(Context ctx);
+	BasicAuthentication getAuthentication();
+
+	void setAuthentication(BasicAuthentication auth);
+
+	User getUser();
+
+	void setUser(User user);
+
+	void setContext(Context ctx);
 
 }
