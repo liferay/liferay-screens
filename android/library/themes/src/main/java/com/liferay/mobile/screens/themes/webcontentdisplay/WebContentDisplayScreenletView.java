@@ -32,17 +32,16 @@ public class WebContentDisplayScreenletView extends WebView
 	implements BaseViewModel, WebContentDisplayListener {
 
 	public WebContentDisplayScreenletView(Context context) {
-		this(context, null);
+		super(context, null);
+	}
+
+	public WebContentDisplayScreenletView(Context context, AttributeSet attributes) {
+
+		super(context, attributes, 0);
 	}
 
 	public WebContentDisplayScreenletView(
-		Context context, AttributeSet attributes) {
-
-		this(context, attributes, 0);
-	}
-
-	public WebContentDisplayScreenletView(
-			Context context, AttributeSet attributes, int defaultStyle) {
+		Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
 	}

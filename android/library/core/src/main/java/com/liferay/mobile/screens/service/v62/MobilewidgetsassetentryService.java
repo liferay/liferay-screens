@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.service;
+package com.liferay.mobile.screens.service.v62;
 
 import com.liferay.mobile.android.service.BaseService;
 import com.liferay.mobile.android.service.JSONObjectWrapper;

@@ -15,20 +15,18 @@
 package com.liferay.mobile.screens.base;
 
 import android.content.Context;
-
 import android.os.Bundle;
 import android.os.Parcelable;
-
 import android.util.AttributeSet;
-
 import android.view.View;
-
 import android.widget.FrameLayout;
 
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -38,27 +36,23 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	extends FrameLayout {
 
 	public BaseScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
+
+		init(context, null);
 	}
 
 	public BaseScreenlet(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
+
+		init(context, attributes);
 	}
 
-	public BaseScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public BaseScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 
 		LiferayScreensContext.init(context);
 
-		_screenletView = createScreenletView(context, attributes);
-
-		addView(_screenletView);
-	}
-
-	public I getInteractor() {
-		return _interactor;
+		init(context, attributes);
 	}
 
 	public int getScreenletId() {
@@ -69,12 +63,43 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return _screenletId;
 	}
 
-	public void setInteractor(I interactor) {
-		_interactor = interactor;
+	public void performUserAction(String userActionName, Object... args) {
+		I interactor = getInteractor(userActionName);
+
+		if (interactor != null) {
+			onUserAction(userActionName, interactor, args);
+		}
 	}
 
-	protected abstract View createScreenletView(
-		Context context, AttributeSet attributes);
+	public I getInteractor() {
+		return getInteractor("soleInteractor");
+	}
+
+	public I getInteractor(String actionName) {
+		I result = _interactors.get(actionName);
+
+		if (result == null) {
+			result = initInteractors(actionName);
+		}
+
+		return result;
+	}
+
+	private I initInteractors(String actionName) {
+		I result = createInteractor(actionName);
+
+		if (result != null) {
+			result.onScreenletAttachted(this);
+			_interactors.put(actionName, result);
+		}
+		return result;
+	}
+
+	protected void init(Context context, AttributeSet attributes) {
+		_screenletView = createScreenletView(context, attributes);
+
+		addView(_screenletView);
+	}
 
 	protected View getScreenletView() {
 		return _screenletView;
@@ -85,7 +110,9 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		super.onAttachedToWindow();
 
 		if (!isInEditMode()) {
-			getInteractor().onScreenletAttachted(this);
+			for (I interactor : _interactors.values()) {
+				interactor.onScreenletAttachted(this);
+			}
 		}
 
 		onScreenletAttached();
@@ -95,11 +122,13 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	protected void onDetachedFromWindow() {
 		super.onDetachedFromWindow();
 
-		if (!isInEditMode()) {
-			getInteractor().onScreenletDetached(this);
-		}
-
 		onScreenletDetached();
+
+		if (!isInEditMode()) {
+			for (I interactor : _interactors.values()) {
+				interactor.onScreenletDetached(this);
+			}
+		}
 	}
 
 	@Override
@@ -121,6 +150,10 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		if (_screenletId == 0) {
 			_screenletId = state.getInt(_STATE_SCREENLET_ID);
 		}
+
+		for (String actionName : ((Bundle) inState).getStringArray(_STATE_INTERACTORS)) {
+			initInteractors(actionName);
+		}
 	}
 
 	@Override
@@ -130,6 +163,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		Bundle state = new Bundle();
 		state.putParcelable(_STATE_SUPER, superState);
 		state.putInt(_STATE_SCREENLET_ID, _screenletId);
+		state.putStringArray(_STATE_INTERACTORS, _interactors.keySet().toArray(new String[0]));
 
 		return state;
 	}
@@ -140,7 +174,15 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	protected void onScreenletDetached() {
 	}
 
-	protected abstract void onUserAction(String userActionName);
+	protected abstract View createScreenletView(Context context, AttributeSet attributes);
+
+	protected abstract I createInteractor(String actionName);
+
+	protected abstract void onUserAction(String userActionName, I interactor, Object... args);
+
+	private static final String _STATE_SCREENLET_ID = "basescreenlet-screenletId";
+	private static final String _STATE_SUPER = "basescreenlet-super";
+	private static final String _STATE_INTERACTORS = "basescreenlet-interactors";
 
 	private static int _generateScreenletId() {
 
@@ -148,22 +190,18 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		// cannot rely on that method because it's introduced in API Level 17
 
 		while (true) {
-			final int result = sNextScreenletId.get();
+			final int result = sNextId.get();
 			int newValue = result + 1;
-
-			if (sNextScreenletId.compareAndSet(result, newValue)) {
+			if (newValue > 0x00FFFFFF) newValue = 1;
+			if (sNextId.compareAndSet(result, newValue)) {
 				return result;
 			}
 		}
 	}
 
-	private static final String _STATE_SCREENLET_ID = "screenletId";
+	private static final AtomicInteger sNextId = new AtomicInteger(1);
 
-	private static final String _STATE_SUPER = "super";
-
-	private static final AtomicInteger sNextScreenletId = new AtomicInteger(1);
-
-	private I _interactor;
+	private Map<String,I> _interactors = new HashMap<>();
 	private int _screenletId;
 	private View _screenletView;
 

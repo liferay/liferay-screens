@@ -20,10 +20,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
-import com.liferay.mobile.screens.service.MobilewidgetsddlrecordService;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.liferay.mobile.screens.service.v62.MobilewidgetsddlrecordService;
 
 import java.util.Locale;
 
@@ -55,32 +52,25 @@ public class DDLListInteractorImpl
 
 	@Override
 	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
-		JSONObject entryQueryParams = addQueryParams(_recordSetId, _userId);
-
-		entryQueryParams.put("start", startRow);
-		entryQueryParams.put("end", endRow);
-
-		new MobilewidgetsddlrecordService(session).getDDLEntries(entryQueryParams, locale.toString());
+		MobilewidgetsddlrecordService ddlRecordService = new MobilewidgetsddlrecordService(session);
+		if (_userId != 0) {
+			ddlRecordService.getDdlRecords(_recordSetId, _userId, locale.toString(), startRow, endRow);
+		}
+		else {
+			ddlRecordService.getDdlRecords(_recordSetId, locale.toString(), startRow, endRow);
+		}
 	}
 
 	@Override
 	protected void getPageRowCountRequest(Session session) throws Exception {
-		JSONObject entryQueryParams = addQueryParams(_recordSetId, _userId);
-
-		new MobilewidgetsddlrecordService(session).getEntriesCount(entryQueryParams);
+		MobilewidgetsddlrecordService ddlRecordService = new MobilewidgetsddlrecordService(session);
+		if (_userId != 0) {
+			ddlRecordService.getDdlRecordsCount(_recordSetId, _userId);
+		}
+		else {
+			ddlRecordService.getDdlRecordsCount(_recordSetId);
+		}
 	}
-
-    protected JSONObject addQueryParams(long recordSetId, long userId) throws JSONException {
-        JSONObject entryQueryParams = new JSONObject();
-
-        entryQueryParams.put("ddlRecordSetId", recordSetId);
-
-        if (userId != 0) {
-            entryQueryParams.put("userId", _userId);
-        }
-
-        return entryQueryParams;
-    }
 
 	protected void validate(
 		long recordSetId, int startRow, int endRow, Locale locale) {

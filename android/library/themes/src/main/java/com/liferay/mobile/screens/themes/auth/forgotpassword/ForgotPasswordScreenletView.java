@@ -38,18 +38,14 @@ public class ForgotPasswordScreenletView extends LinearLayout
 		ForgotPasswordListener {
 
 	public ForgotPasswordScreenletView(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
-	public ForgotPasswordScreenletView(
-		Context context, AttributeSet attributes) {
-
-		this(context, attributes, 0);
+	public ForgotPasswordScreenletView(Context context, AttributeSet attributes) {
+		super(context, attributes, 0);
 	}
 
-	public ForgotPasswordScreenletView(
-			Context context, AttributeSet attributes, int defaultStyle) {
-
+	public ForgotPasswordScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 
@@ -68,15 +64,17 @@ public class ForgotPasswordScreenletView extends LinearLayout
 		ForgotPasswordScreenlet screenlet =
 			(ForgotPasswordScreenlet)getParent();
 
-		screenlet.onUserAction(ForgotPasswordScreenlet.REQUEST_PASSWORD_ACTION);
+		screenlet.performUserAction(ForgotPasswordScreenlet.REQUEST_PASSWORD_ACTION);
 	}
 
 	@Override
 	public void onForgotPasswordRequestFailure(Exception e) {
+		//TODO show user error?
 	}
 
 	@Override
 	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
+		//TODO show user success?
 	}
 
 	public void setAuthMethod(AuthMethod authMethod) {

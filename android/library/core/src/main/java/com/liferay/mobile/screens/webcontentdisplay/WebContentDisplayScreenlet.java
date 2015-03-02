@@ -40,46 +40,21 @@ public class WebContentDisplayScreenlet
 		implements WebContentDisplayListener {
 
 	public WebContentDisplayScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
-	public WebContentDisplayScreenlet(
-		Context context, AttributeSet attributes) {
-
-		this(context, attributes, 0);
+	public WebContentDisplayScreenlet(Context context, AttributeSet attributes) {
+		super(context, attributes, 0);
 	}
 
-	public WebContentDisplayScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public WebContentDisplayScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 
-	@Override
-	public WebContentDisplayInteractor getInteractor() {
-		WebContentDisplayInteractor interactor = super.getInteractor();
-
-		if (interactor == null) {
-			interactor = new WebContentDisplayInteractorImpl(getScreenletId());
-
-			setInteractor(interactor);
-		}
-
-		return interactor;
-	}
-
 	public void load() throws Exception {
-		if (_articleId == null) {
-			throw new IllegalArgumentException("articleId cannot be null");
-		}
-
 		Locale locale = getResources().getConfiguration().locale;
 
 		getInteractor().load(_groupId, _articleId, locale);
-	}
-
-	@Override
-	public void onUserAction(String userActionName) {
 	}
 
 	@Override
@@ -155,6 +130,16 @@ public class WebContentDisplayScreenlet
 		typedArray.recycle();
 
 		return view;
+	}
+
+	@Override
+	protected WebContentDisplayInteractor createInteractor(String actionName) {
+		return new WebContentDisplayInteractorImpl(getScreenletId());
+	}
+
+	@Override
+	protected void onUserAction(String userActionName, WebContentDisplayInteractor interactor, Object... args) {
+		// No user action from UI
 	}
 
 	@Override

@@ -22,7 +22,7 @@ import com.liferay.mobile.android.v62.assetentry.AssetEntryService;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
-import com.liferay.mobile.screens.service.MobilewidgetsassetentryService;
+import com.liferay.mobile.screens.service.v62.MobilewidgetsassetentryService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -96,7 +96,7 @@ public class AssetListInteractorImpl
 				"ClassNameId cannot be 0 or negative");
 		}
 
-		super.validate(startRow,endRow,locale);
+		super.validate(startRow, endRow, locale);
 	}
 
     private long _groupId;

@@ -37,21 +37,15 @@ public class UserPortraitScreenlet
 	implements UserPortraitInteractorListener {
 
 	public UserPortraitScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
-	public UserPortraitScreenlet(
-		Context context, AttributeSet attributes) {
-
-		this(context, attributes, 0);
+	public UserPortraitScreenlet(Context context, AttributeSet attributes) {
+		super(context, attributes, 0);
 	}
 
-	public UserPortraitScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public UserPortraitScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-
-		setInteractor(new UserPortraitInteractorImpl(getScreenletId()));
 	}
 
 	public void load() throws Exception {
@@ -61,10 +55,6 @@ public class UserPortraitScreenlet
 		else {
 			getInteractor().load(_male, _portraitId, _uuid);
 		}
-	}
-
-	@Override
-	public void onUserAction(String userActionName) {
 	}
 
 	@Override
@@ -148,9 +138,7 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
-
+	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.UserPortraitScreenlet, 0, 0);
 
@@ -170,6 +158,15 @@ public class UserPortraitScreenlet
 		typedArray.recycle();
 
 		return view;
+	}
+
+	@Override
+	protected UserPortraitInteractor createInteractor(String actionName) {
+		return new UserPortraitInteractorImpl(getScreenletId());
+	}
+
+	@Override
+	protected void onUserAction(String userActionName, UserPortraitInteractor interactor, Object... args) {
 	}
 
 	@Override

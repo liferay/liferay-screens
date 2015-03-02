@@ -23,7 +23,6 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractor;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorImpl;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorListener;
-import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 
@@ -37,35 +36,22 @@ public class AssetListScreenlet
 	implements AssetListInteractorListener {
 
 	public AssetListScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public AssetListScreenlet(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public AssetListScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public AssetListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 
-	@Override
-	public AssetListInteractor getInteractor() {
-		AssetListInteractor interactor = super.getInteractor();
-
-		if (interactor == null) {
-			interactor = new AssetListInteractorImpl(getScreenletId());
-
-			setInteractor(interactor);
-		}
-
-		return interactor;
-	}
-
     @Override
-    protected void loadRows(int startRow, int endRow, Locale locale) throws Exception {
-        getInteractor().loadRows(_groupId, _classNameId, startRow, endRow, locale);
+    protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale)
+		throws Exception {
+
+		interactor.loadRows(_groupId, _classNameId, startRow, endRow, locale);
     }
 
 	public int getClassNameId() {
@@ -85,9 +71,7 @@ public class AssetListScreenlet
 	}
 
 	@Override
-	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
-
+	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.AssetListScreenlet, 0, 0);
 		_classNameId = typedArray.getInt(
@@ -98,6 +82,11 @@ public class AssetListScreenlet
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
+	}
+
+	@Override
+	protected AssetListInteractor createInteractor(String actionName) {
+		return new AssetListInteractorImpl(getScreenletId());
 	}
 
 	private int _classNameId;
