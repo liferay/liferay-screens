@@ -98,19 +98,15 @@ public class CredentialsStoreBuilder {
 
 		CredentialsStore credentialsStore;
 
-		switch (_storageType) {
-			case SHARED_PREFERENCES:
-				credentialsStore = new CredentialsStoreSharedPreferences();
-				break;
-
-			case AUTO:
-				// TODO right now, we only support Shared Prefs.
-				credentialsStore = new CredentialsStoreSharedPreferences();
-				break;
-
-			default:
-				credentialsStore = new CredentialsStoreVoid();
-				break;
+		if (StorageType.SHARED_PREFERENCES.equals(_storageType)) {
+			credentialsStore = new CredentialsStoreSharedPreferences();
+		}
+		else if (StorageType.AUTO.equals(_storageType)) {
+			// TODO right now, we only support Shared Prefs.
+			credentialsStore = new CredentialsStoreSharedPreferences();
+		}
+		else {
+			credentialsStore = new CredentialsStoreVoid();
 		}
 
 		credentialsStore.setContext(_context);
