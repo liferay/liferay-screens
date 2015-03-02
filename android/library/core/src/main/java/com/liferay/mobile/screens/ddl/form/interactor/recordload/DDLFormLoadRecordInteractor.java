@@ -12,8 +12,9 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.form.interactor;
+package com.liferay.mobile.screens.ddl.form.interactor.recordload;
 
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseInteractor;
 import com.liferay.mobile.screens.ddl.model.Record;
 
 /**

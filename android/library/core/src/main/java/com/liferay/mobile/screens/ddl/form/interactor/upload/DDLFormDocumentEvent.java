@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.ddl.form.interactor;
+package com.liferay.mobile.screens.ddl.form.interactor.upload;
 
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.ddl.model.DocumentField;

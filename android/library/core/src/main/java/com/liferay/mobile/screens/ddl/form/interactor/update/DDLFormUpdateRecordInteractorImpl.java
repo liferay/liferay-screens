@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.form.interactor;
+package com.liferay.mobile.screens.ddl.form.interactor.update;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
@@ -20,6 +20,8 @@ import com.liferay.mobile.android.v62.ddlrecord.DDLRecordService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormCallback;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
 
 import org.json.JSONObject;

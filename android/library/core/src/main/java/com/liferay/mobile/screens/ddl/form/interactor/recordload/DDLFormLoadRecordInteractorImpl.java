@@ -12,12 +12,14 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.form.interactor;
+package com.liferay.mobile.screens.ddl.form.interactor.recordload;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormCallback;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.service.v62.MobilewidgetsddlrecordService;
 import com.liferay.mobile.screens.util.JSONUtil;

@@ -22,7 +22,7 @@ import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.dlapp.DLAppService;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.ddl.form.interactor.DDLFormDocumentEvent;
+import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentEvent;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.EventBusUtil;
 

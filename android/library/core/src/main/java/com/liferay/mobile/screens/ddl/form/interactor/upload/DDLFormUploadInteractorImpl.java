@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.ddl.form.interactor;
+package com.liferay.mobile.screens.ddl.form.interactor.upload;
 
 import android.content.Intent;
 

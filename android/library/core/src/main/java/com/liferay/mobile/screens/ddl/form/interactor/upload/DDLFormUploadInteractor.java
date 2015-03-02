@@ -12,19 +12,16 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.form.interactor;
+package com.liferay.mobile.screens.ddl.form.interactor.upload;
 
-import com.liferay.mobile.screens.base.interactor.Interactor;
-import com.liferay.mobile.screens.ddl.form.DDLFormListener;
-import com.liferay.mobile.screens.ddl.model.Record;
-
-import java.util.Locale;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseInteractor;
+import com.liferay.mobile.screens.ddl.model.DocumentField;
 
 /**
- * @author Jose Manuel Navarro
+ * @author Javier Gamarra
  */
-public interface DDLFormLoadInteractor extends DDLFormBaseInteractor {
+public interface DDLFormUploadInteractor extends DDLFormBaseInteractor {
 
-	public void load(Record record) throws Exception;
+	public void upload(long groupId, long userId, long repositoryId, long folderId, String _filePrefix, DocumentField file) throws Exception;
 
 }
