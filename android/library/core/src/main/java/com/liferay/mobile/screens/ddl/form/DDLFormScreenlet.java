@@ -228,36 +228,96 @@ public class DDLFormScreenlet
 		}
 	}
 
-	public boolean getAutoLoad() {
+	public boolean isAutoLoad() {
 		return _autoLoad;
 	}
 
-	public void setAutoLoad(boolean autoLoad) {
-		_autoLoad = autoLoad;
+	public void setAutoLoad(boolean value) {
+		_autoLoad = value;
 	}
 
 	public boolean isAutoScrollOnValidation() {
 		return _autoScrollOnValidation;
 	}
 
+	public void setAutoScrollOnValidation(boolean value) {
+		_autoScrollOnValidation = value;
+	}
+
 	public boolean isShowSubmitButton() {
 		return _showSubmitButton;
+	}
+
+	public void setShowSubmitButton(boolean value) {
+		_showSubmitButton = value;
 	}
 
 	public long getGroupId() {
 		return _groupId;
 	}
 
-	public Record getRecord() {
-		return _record;
-	}
-
-	public void setAutoScrollOnValidation(boolean autoScrollOnValidation) {
-		_autoScrollOnValidation = autoScrollOnValidation;
-	}
-
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+	}
+
+	public long getStructureId() {
+		return _structureId;
+	}
+
+	public void setStructureId(long value) {
+		_structureId = value;
+	}
+
+	public long getRecordSetId() {
+		return _recordSetId;
+	}
+
+	public void setRecordSetId(long value) {
+		_recordSetId = value;
+	}
+
+	public long getRecordId() {
+		return _recordId;
+	}
+
+	public void setRecordId(long value) {
+		_recordId = value;
+	}
+
+	public long getUserId() {
+		return _userId;
+	}
+
+	public void setUserId(long value) {
+		_userId = value;
+	}
+
+	public long getRepositoryId() {
+		return _repositoryId;
+	}
+
+	public void setRepositoryId(long value) {
+		_repositoryId = value;
+	}
+
+	public long getFolderId() {
+		return _folderId;
+	}
+
+	public void setFolderId(long value) {
+		_folderId = value;
+	}
+
+	public String getFilePrefix() {
+		return _filePrefix;
+	}
+
+	public void setFilePrefix(String value) {
+		_filePrefix = value;
+	}
+
+	public Record getRecord() {
+		return _record;
 	}
 
 	public DDLFormListener getListener() {
