@@ -140,11 +140,11 @@ public class CredentialsStoreSharedPreferences implements CredentialsStore {
 	}
 
 	@Override
-	public void setContext(Context ctx) {
-		if (ctx == null) {
+	public void setContext(Context context) {
+		if (context == null) {
 			throw new IllegalStateException("Context cannot be null");
 		}
-		_sharedPref = ctx.getSharedPreferences(getStoreName(), Context.MODE_PRIVATE);
+		_sharedPref = context.getSharedPreferences(getStoreName(), Context.MODE_PRIVATE);
 	}
 
 	private SharedPreferences _sharedPref;
