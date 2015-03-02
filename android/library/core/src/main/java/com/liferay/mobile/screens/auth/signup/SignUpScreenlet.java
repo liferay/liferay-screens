@@ -83,10 +83,10 @@ public class SignUpScreenlet
 			String password = signUpViewModel.getPassword();
 
 			SessionContext.createSession(emailAddress, password);
-			SessionContext.setUserAttributes(userAttributes);
+			SessionContext.setLoggedUser(user);
 
 			if (_autoLoginListener != null) {
-				_autoLoginListener.onLoginSuccess(userAttributes);
+				_autoLoginListener.onLoginSuccess(user);
 			}
 
 			SessionContext.storeSession(_credentialsStore);
