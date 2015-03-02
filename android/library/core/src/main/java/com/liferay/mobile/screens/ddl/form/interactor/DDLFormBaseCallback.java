@@ -23,9 +23,9 @@ import org.json.JSONObject;
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFormCallback extends InteractorAsyncTaskCallback<JSONObject> {
+public class DDLFormBaseCallback extends InteractorAsyncTaskCallback<JSONObject> {
 
-	public DDLFormCallback(int targetScreenletId, Record record) {
+	public DDLFormBaseCallback(int targetScreenletId, Record record) {
 		super(targetScreenletId);
 
 		_record = record;
@@ -38,12 +38,12 @@ public class DDLFormCallback extends InteractorAsyncTaskCallback<JSONObject> {
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new DDLFormEvent(targetScreenletId, e);
+		return new DDLFormBaseEvent(targetScreenletId, e);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new DDLFormEvent(targetScreenletId, result, _record);
+		return new DDLFormBaseEvent(targetScreenletId, result, _record);
 	}
 
 	private Record _record;

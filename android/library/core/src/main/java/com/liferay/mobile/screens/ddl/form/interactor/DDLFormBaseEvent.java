@@ -22,13 +22,13 @@ import org.json.JSONObject;
 /**
  * @author Silvio Santos
  */
-public class DDLFormEvent extends JSONObjectEvent {
+public class DDLFormBaseEvent extends JSONObjectEvent {
 
-	public DDLFormEvent(int targetScreenletId, Exception e) {
+	public DDLFormBaseEvent(int targetScreenletId, Exception e) {
 		super(targetScreenletId, e);
 	}
 
-	public DDLFormEvent(int targetScreenletId, JSONObject jsonObject, Record record) {
+	public DDLFormBaseEvent(int targetScreenletId, JSONObject jsonObject, Record record) {
 		super(targetScreenletId, jsonObject);
 
 		_record = record;
