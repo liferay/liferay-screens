@@ -56,7 +56,22 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 		init(context);
     }
 
+	@Override
+	public void setListPage(int page, List<E> entries, int rowCount) {
+		A adapter = (A) getAdapter();
+		List<E> allEntries = createAllEntries(page, entries, rowCount, adapter);
 
+		adapter.setRowCount(rowCount);
+		adapter.setEntries(allEntries);
+		adapter.notifyDataSetChanged();
+	}
+
+	@Override
+	public void onPageNotFound(int row) {
+		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
+
+		screenlet.loadPageForRow(row);
+	}
 
 	public void onItemClick(int position) {
 		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
@@ -66,8 +81,6 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 			screenlet.getListener().onListItemSelected(entries.get(position));
 		}
 	}
-
-
 
 	protected void init(Context context) {
 		int itemLayoutId = R.layout.list_item_default;
@@ -100,23 +113,6 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
         }
         return allEntries;
     }
-
-	@Override
-	public void setListPage(int page, List<E> entries, int rowCount) {
-		A adapter = (A) getAdapter();
-		List<E> allEntries = createAllEntries(page, entries, rowCount, adapter);
-
-		adapter.setRowCount(rowCount);
-		adapter.setEntries(allEntries);
-		adapter.notifyDataSetChanged();
-	}
-
-	@Override
-	public void onPageNotFound(int row) {
-		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
-
-		screenlet.loadPageForRow(row);
-	}
 
 	@Override
 	protected void onRestoreInstanceState(Parcelable inState) {
