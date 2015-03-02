@@ -26,7 +26,7 @@ public class CredentialsStoreBuilder {
 
 	public static enum StorageType {
 
-		// These values are synch-ed with 'credentialStore' attr
+		// These values are synced with 'credentialStore' attr
 		NONE(0),
 		AUTO(1),
 		SHARED_PREFERENCES(2);
@@ -41,7 +41,6 @@ public class CredentialsStoreBuilder {
 					return s;
 				}
 			}
-
 			return NONE;
 		}
 
@@ -77,13 +76,13 @@ public class CredentialsStoreBuilder {
 			throw new IllegalStateException("Context cannot be null");
 		}
 
-		_ctx = ctx;
+		_context = ctx;
 
 		return this;
 	}
 
 	public CredentialsStoreBuilder setStorageType(StorageType storageType) {
-		if (_ctx == null) {
+		if (_context == null) {
 			throw new IllegalStateException("You must set the context before storageType");
 		}
 
@@ -93,7 +92,7 @@ public class CredentialsStoreBuilder {
 	}
 
 	public CredentialsStore build() {
-		if (_ctx == null) {
+		if (_context == null) {
 			throw new IllegalStateException("You must call setContext() before");
 		}
 
@@ -114,7 +113,7 @@ public class CredentialsStoreBuilder {
 				break;
 		}
 
-		credentialsStore.setContext(_ctx);
+		credentialsStore.setContext(_context);
 
 		if (_auth != null) {
 			credentialsStore.setAuthentication(_auth);
@@ -130,6 +129,6 @@ public class CredentialsStoreBuilder {
 	private BasicAuthentication _auth;
 	private User _user;
 	private StorageType _storageType = StorageType.AUTO;
-	private Context _ctx;
+	private Context _context;
 
 }
