@@ -29,22 +29,26 @@ public class AssetListScreenletView extends BaseListScreenletView<AssetEntry, As
 	implements AssetListViewModel {
 
 	public AssetListScreenletView(Context context) {
-		this(context, null);
+		super(context, null);
+
+		init(context);
 	}
 
 	public AssetListScreenletView(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
+
+		init(context);
 	}
 
-	public AssetListScreenletView(
-            Context context, AttributeSet attributes, int defaultStyle) {
+	public AssetListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
+
+		init(context);
 	}
 
     @Override
     protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
         return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
     }
-
 
 }

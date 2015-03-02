@@ -45,8 +45,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
         this(context, attributes, 0);
     }
 
-    public BaseListScreenlet(
-            Context context, AttributeSet attributes, int defaultStyle) {
+    public BaseListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
     }
 
@@ -97,14 +96,17 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
         int endRow = getFirstRowForPage(page + 1);
 
         try {
-            loadRows(startRow, endRow, locale);
+			N loadPageInteractor = getInteractor();
+
+            loadRows(loadPageInteractor, startRow, endRow, locale);
         }
         catch (Exception e) {
             onListRowsFailure(startRow, endRow, e);
         }
     }
 
-    protected abstract void loadRows(int startRow, int endRow, Locale locale) throws Exception;
+    protected abstract void loadRows(N interactor, int startRow, int endRow, Locale locale)
+		throws Exception;
 
     public boolean isAutoLoad() {
         return _autoLoad;
@@ -173,7 +175,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     }
 
     @Override
-    protected void onUserAction(String userActionName) {
+    protected void onUserAction(String userActionName, N interactor, Object... args) {
     }
 
     protected static final int _FIRST_PAGE_SIZE = 50;

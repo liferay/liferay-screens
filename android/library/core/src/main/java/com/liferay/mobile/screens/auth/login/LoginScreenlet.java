@@ -44,30 +44,15 @@ public class LoginScreenlet
 	public static final String LOGIN_ACTION = "login";
 
 	public LoginScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public LoginScreenlet(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public LoginScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public LoginScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-	}
-
-	@Override
-	public LoginInteractor getInteractor() {
-		LoginInteractor interactor = super.getInteractor();
-
-		if (interactor == null) {
-			interactor = new LoginInteractorImpl(getScreenletId());
-
-			setInteractor(interactor);
-		}
-
-		return interactor;
 	}
 
 	@Override
@@ -90,21 +75,6 @@ public class LoginScreenlet
 		}
 
 		SessionContext.storeSession(_credentialsStore);
-	}
-
-	@Override
-	public void onUserAction(String userActionName) {
-		LoginViewModel loginViewModel = (LoginViewModel)getScreenletView();
-		String login = loginViewModel.getLogin();
-		String password = loginViewModel.getPassword();
-		AuthMethod method = loginViewModel.getAuthMethod();
-
-		try {
-			getInteractor().login(login, password, method);
-		}
-		catch (Exception e) {
-			onLoginFailure(e);
-		}
 	}
 
 	public void setListener(LoginListener listener) {
@@ -152,6 +122,26 @@ public class LoginScreenlet
 		typedArray.recycle();
 
 		return view;
+	}
+
+	@Override
+	protected LoginInteractor createInteractor(String actionName) {
+		return new LoginInteractorImpl(getScreenletId());
+	}
+
+	@Override
+	protected void onUserAction(String userActionName, LoginInteractor interactor, Object... args) {
+		LoginViewModel loginViewModel = (LoginViewModel)getScreenletView();
+		String login = loginViewModel.getLogin();
+		String password = loginViewModel.getPassword();
+		AuthMethod method = loginViewModel.getAuthMethod();
+
+		try {
+			interactor.login(login, password, method);
+		}
+		catch (Exception e) {
+			onLoginFailure(e);
+		}
 	}
 
 	private LoginListener _listener;

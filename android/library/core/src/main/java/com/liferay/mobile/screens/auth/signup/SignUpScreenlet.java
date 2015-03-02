@@ -46,30 +46,15 @@ public class SignUpScreenlet
 	public static final String SIGN_UP_ACTION = "signUp";
 
 	public SignUpScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public SignUpScreenlet(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
-	public SignUpScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public SignUpScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-	}
-
-	@Override
-	public SignUpInteractor getInteractor() {
-		SignUpInteractor interactor = super.getInteractor();
-
-		if (interactor == null) {
-			interactor = new SignUpInteractorImpl(getScreenletId());
-
-			setInteractor(interactor);
-		}
-
-		return interactor;
 	}
 
 	@Override
@@ -108,7 +93,6 @@ public class SignUpScreenlet
 		}
 	}
 
-	@Override
 	public void onUserAction(String userActionName) {
 		SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
 
@@ -218,6 +202,36 @@ public class SignUpScreenlet
 
 		return view;
 	}
+
+	@Override
+	protected SignUpInteractor createInteractor(String actionName) {
+		return new SignUpInteractorImpl(getScreenletId());
+	}
+
+	@Override
+	protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
+		SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
+
+		String firstName = signUpViewModel.getFirstName();
+		String middleName = signUpViewModel.getMiddleName();
+		String lastName = signUpViewModel.getLastName();
+		String emailAddress = signUpViewModel.getEmailAddress();
+		String password = signUpViewModel.getPassword();
+		String screenName = signUpViewModel.getScreenName();
+		String jobTitle = signUpViewModel.getJobTitle();
+		Locale locale = getResources().getConfiguration().locale;
+
+		try {
+			interactor.signUp(
+				_companyId, firstName, middleName, lastName, emailAddress,
+				screenName, password, jobTitle, locale, _anonymousApiUserName,
+				_anonymousApiPassword);
+		}
+		catch (Exception e) {
+			onSignUpFailure(e);
+		}
+	}
+
 
 	private String _anonymousApiPassword;
 	private String _anonymousApiUserName;

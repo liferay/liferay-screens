@@ -22,7 +22,7 @@ import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.service.v62.mobilewidgetsuser.MobilewidgetsuserService;
+import com.liferay.mobile.screens.service.v62.MobilewidgetsuserService;
 
 /**
  * @author Jose Manuel Navarro

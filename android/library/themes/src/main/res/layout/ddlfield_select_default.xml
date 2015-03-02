@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldSelectView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
+
+	<TextView
+		android:id="@+id/label"
+		style="@style/default_text_view"
+		android:visibility="gone"/>
+
+	<EditText
+		android:paddingBottom="5dp"
+		android:paddingTop="5dp"
+		android:id="@+id/text"
+		style="@style/default_edit_text"
+		android:drawableRight="@drawable/default_blue"
+		android:inputType="date"/>
+
+</com.liferay.mobile.screens.themes.ddl.form.fields.DDLFieldSelectView>

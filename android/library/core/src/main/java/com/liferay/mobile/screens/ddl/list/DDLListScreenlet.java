@@ -38,11 +38,11 @@ public class DDLListScreenlet
 	implements DDLListInteractorListener {
 
 	public DDLListScreenlet(Context context) {
-		this(context, null);
+		super(context, null);
 	}
 
 	public DDLListScreenlet(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes, 0);
 	}
 
 	public DDLListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
@@ -50,23 +50,9 @@ public class DDLListScreenlet
 	}
 
 	@Override
-	public DDLListInteractor getInteractor() {
-		DDLListInteractor interactor = super.getInteractor();
-
-		if (interactor == null) {
-            //TODO review interactor creation when DDL form is merged
-			interactor = new DDLListInteractorImpl(getScreenletId());
-
-			setInteractor(interactor);
-		}
-
-		return interactor;
+	protected void loadRows(DDLListInteractor interactor, int startRow, int endRow, Locale locale) throws Exception {
+		interactor.loadRows(_recordSetId, _userId, startRow, endRow, locale);
 	}
-
-    @Override
-    protected void loadRows(int startRow, int endRow, Locale locale) throws Exception {
-        getInteractor().loadRows(_recordSetId, _userId, startRow, endRow, locale);
-    }
 
     public int getRecordSetId() {
         return _recordSetId;
@@ -93,9 +79,7 @@ public class DDLListScreenlet
     }
 
 	@Override
-	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
-
+	protected View createScreenletView(Context context, AttributeSet attributes) {
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(
                 attributes, R.styleable.DDLListScreenlet, 0, 0);
         _recordSetId = typedArray.getInteger(
@@ -109,7 +93,12 @@ public class DDLListScreenlet
         return super.createScreenletView(context, attributes);
 	}
 
-    private List<String> parse(String labelFields) {
+	@Override
+	protected DDLListInteractor createInteractor(String actionName) {
+		return new DDLListInteractorImpl(getScreenletId());
+	}
+
+	private List<String> parse(String labelFields) {
 		if (labelFields == null) {
 			throw new IllegalArgumentException("DDLListScreenlet must define 'labelFields' parameter");
 		}
