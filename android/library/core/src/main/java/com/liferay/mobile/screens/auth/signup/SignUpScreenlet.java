@@ -30,6 +30,7 @@ import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.*;
 
 import java.util.Locale;
 
@@ -87,6 +88,8 @@ public class SignUpScreenlet
 			if (_autoLoginListener != null) {
 				_autoLoginListener.onLoginSuccess(userAttributes);
 			}
+
+			SessionContext.storeSession(_credentialsStore);
 		}
 	}
 
@@ -161,6 +164,14 @@ public class SignUpScreenlet
 		_autoLoginListener = value;
 	}
 
+	public StorageType getCredentialsStore() {
+		return _credentialsStore;
+	}
+
+	public void setCredentialsStore(StorageType value) {
+		_credentialsStore = value;
+	}
+
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
@@ -179,6 +190,11 @@ public class SignUpScreenlet
 			R.styleable.SignUpScreenlet_anonymousApiPassword);
 
 		_autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
+
+		int storeValue = typedArray.getInt(R.styleable.SignUpScreenlet_credentialsStore,
+			StorageType.NONE.toInt());
+
+		_credentialsStore = StorageType.valueOf(storeValue);
 
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
 
@@ -221,6 +237,7 @@ public class SignUpScreenlet
 	private String _anonymousApiUserName;
 	private boolean _autoLogin;
 	private long _companyId;
+	private StorageType _credentialsStore;
 
 	private SignUpListener _listener;
 	private LoginListener _autoLoginListener;

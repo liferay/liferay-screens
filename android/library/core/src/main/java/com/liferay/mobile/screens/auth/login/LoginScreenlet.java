@@ -28,8 +28,11 @@ import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.context.SessionContext;
 
 import org.json.JSONObject;
+
+import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.*;
 
 /**
  * @author Silvio Santos
@@ -70,6 +73,8 @@ public class LoginScreenlet
 		if (_listener != null) {
 			_listener.onLoginSuccess(userAttributes);
 		}
+
+		SessionContext.storeSession(_credentialsStore);
 	}
 
 	public void setListener(LoginListener listener) {
@@ -84,9 +89,16 @@ public class LoginScreenlet
 		_authMethod = authMethod;
 	}
 
+	public StorageType getCredentialsStore() {
+		return _credentialsStore;
+	}
+
+	public void setCredentialsStore(StorageType value) {
+		_credentialsStore = value;
+	}
+
 	@Override
-	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
+	protected View createScreenletView(Context context, AttributeSet attributes) {
 
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.LoginScreenlet, 0, 0);
@@ -94,10 +106,14 @@ public class LoginScreenlet
 		int layoutId = typedArray.getResourceId(
 			R.styleable.LoginScreenlet_layoutId, 0);
 
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
+		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
 
-		int authMethodId = typedArray.getInt(
-			R.styleable.LoginScreenlet_authMethod, 0);
+		int storeValue = typedArray.getInt(R.styleable.LoginScreenlet_credentialsStore,
+			StorageType.NONE.toInt());
+
+		_credentialsStore = StorageType.valueOf(storeValue);
+
+		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
 
 		LoginViewModel viewModel = (LoginViewModel) view;
 		_authMethod = AuthMethod.getValue(authMethodId);
@@ -130,5 +146,6 @@ public class LoginScreenlet
 
 	private LoginListener _listener;
 	private AuthMethod _authMethod;
+	private StorageType _credentialsStore;
 
 }
