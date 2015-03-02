@@ -25,6 +25,7 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseInteractor;
@@ -327,9 +328,11 @@ public class DDLFormScreenlet
 		_repositoryId = typedArray.getInteger(R.styleable.DDLFormScreenlet_repositoryId, 0);
 		_folderId = typedArray.getInteger(R.styleable.DDLFormScreenlet_folderId, 0);
 
-		//TODO use current user id from SessionContext as default
+		int defaultCreatorUserId = SessionContext.hasSession() ?
+			(int) SessionContext.getUser().getId() : 0;
+
 		_userId = typedArray.getInteger(
-			R.styleable.DDLFormScreenlet_userId, 0);
+			R.styleable.DDLFormScreenlet_userId, defaultCreatorUserId);
 
 		_record = new Record(getResources().getConfiguration().locale);
 		_record.setStructureId(_structureId);
