@@ -82,6 +82,20 @@ public class Record implements Parcelable {
 		return _fields.get(index);
 	}
 
+	public Field getFieldByName(String fieldName) {
+		if (fieldName == null) {
+			return null;
+		}
+
+		for (Field f : _fields) {
+			if (fieldName.equals(f.getName())) {
+				return f;
+			}
+		}
+
+		return null;
+	}
+
 	public int getFieldCount() {
 		return _fields.size();
 	}

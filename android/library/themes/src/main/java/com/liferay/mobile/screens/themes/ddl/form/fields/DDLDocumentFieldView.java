@@ -25,7 +25,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
@@ -77,26 +76,18 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	@Override
 	public void refresh() {
 		getTextEditText().setText(getField().toFormattedString());
-		if (getField().getCurrentValue() != null && getField().getCurrentValue().getState() !=
-				null) {
-			switch (getField().getCurrentValue().getState()) {
-				case UPLOADED:
-					getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_success, 0);
-					_progressBar.setVisibility(View.GONE);
-					break;
-				case FAILED:
-					getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_failed, 0);
-					_progressBar.setVisibility(View.GONE);
-					break;
-				case UPLOADING:
-				case PENDING:
-					getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-					_progressBar.setVisibility(View.VISIBLE);
-					break;
-				default:
-					getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-					_progressBar.setVisibility(View.GONE);
-			}
+		if (getField().isUploaded()) {
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_success, 0);
+			_progressBar.setVisibility(View.GONE);
+		} else if (getField().isUploadFailed()) {
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_failed, 0);
+			_progressBar.setVisibility(View.GONE);
+		} else if (getField().isUploading()) {
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+			_progressBar.setVisibility(View.VISIBLE);
+		} else {
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+			_progressBar.setVisibility(View.GONE);
 		}
 	}
 
@@ -158,7 +149,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		Intent cameraIntent = new Intent(intent);
 
 		if (file != null) {
-			getField().getCurrentValue().setName(file.getAbsolutePath());
+			getField().setCurrentValue(file.getAbsolutePath());
 			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
 			((Activity) getContext()).startActivityForResult(cameraIntent, _positionInForm);
 		}
@@ -174,8 +165,8 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 						getTextEditText().setText(path);
 
 						DocumentField field = getField();
-						field.getCurrentValue().setName(path);
-						field.getCurrentValue().setState(DocumentField.State.PENDING);
+						field.setCurrentValue(path);
+						field.moveToUploadInProgressState();
 						view.setTag(field);
 						((DDLFormScreenletView) getParentView()).onClick(view);
 					}

@@ -109,7 +109,7 @@ public class DDLFormScreenletView
 				getDDLFormScreenlet().submitForm();
 			}
 		} else {
-			getDDLFormScreenlet().upload((DocumentField) view.getTag());
+			getDDLFormScreenlet().startUpload((DocumentField) view.getTag());
 		}
 	}
 
