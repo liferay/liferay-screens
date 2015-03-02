@@ -92,10 +92,6 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	}
 
 	@Override
-	public void onPostValidation(boolean valid) {
-	}
-
-	@Override
 	public void setPositionInParent(int position) {
 		_positionInForm = position;
 	}

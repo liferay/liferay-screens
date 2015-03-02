@@ -99,19 +99,18 @@ public class DDLFieldRadioView extends RadioGroup
 
 	@Override
 	public void onPostValidation(boolean valid) {
-		if (valid) {
-			return;
-		}
+		String errorText = valid ? null : getContext().getString(R.string.required_value);
+
 		if (_field.isShowLabel()) {
 			TextView label = (TextView) findViewById(R.id.label);
-			label.setError(getContext().getString(R.string.required_value));
+			label.setError(errorText);
 		}
 		else {
 			List<StringWithOptionsField.Option> availableOptions = _field.getAvailableOptions();
 			StringWithOptionsField.Option opt = availableOptions.get(0);
 			TintRadioButton radioButton = (TintRadioButton) findViewWithTag(opt);
 			if (radioButton != null) {
-				radioButton.setError(getContext().getString(R.string.required_value));
+				radioButton.setError(errorText);
 			}
 		}
 	}
