@@ -5,9 +5,9 @@ import java.io.Serializable;
 /**
  * @author Javier Gamarra
  */
-public class LocalFile extends DocumentFile implements Serializable {
+public class DocumentLocalFile extends DocumentFile implements Serializable {
 
-	public LocalFile(String name) {
+	public DocumentLocalFile(String name) {
 		_name = name;
 	}
 

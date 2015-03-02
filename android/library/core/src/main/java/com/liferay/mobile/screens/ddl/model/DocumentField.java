@@ -77,7 +77,7 @@ public class DocumentField extends Field<DocumentFile> {
 			return null;
 		}
 
-		return new RemoteFile(string);
+		return new DocumentRemoteFile(string);
 	}
 
 	public void createLocalFile(String path) {
@@ -85,7 +85,7 @@ public class DocumentField extends Field<DocumentFile> {
 			return;
 		}
 
-		setCurrentValue(new LocalFile(path));
+		setCurrentValue(new DocumentLocalFile(path));
 	}
 
 	@Override

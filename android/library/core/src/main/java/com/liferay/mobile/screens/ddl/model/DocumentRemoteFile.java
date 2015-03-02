@@ -8,9 +8,9 @@ import java.io.Serializable;
 /**
  * @author Javier Gamarra
  */
-public class RemoteFile extends DocumentFile implements Serializable {
+public class DocumentRemoteFile extends DocumentFile implements Serializable {
 
-	public RemoteFile(String name) {
+	public DocumentRemoteFile(String name) {
 		try {
 			JSONObject jsonObject = new JSONObject(name);
 			_uuid = jsonObject.getString("uuid");
