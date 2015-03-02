@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.form.interactor;
+package com.liferay.mobile.screens.ddl.form.interactor.add;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseCallback;
 import com.liferay.mobile.screens.ddl.model.Record;
 
 import org.json.JSONObject;
@@ -23,33 +23,20 @@ import org.json.JSONObject;
 /**
  * @author Jose Manuel Navarro
  */
-public abstract class DDLFormBaseCallback extends InteractorAsyncTaskCallback<JSONObject> {
+public class DDLFormAddRecordCallback extends DDLFormBaseCallback {
 
-	public DDLFormBaseCallback(int targetScreenletId, Record record) {
-		super(targetScreenletId);
-
-		_record = record;
-	}
-
-	@Override
-	public JSONObject transform(Object obj) throws Exception {
-		return (JSONObject)obj;
+	public DDLFormAddRecordCallback(int targetScreenletId, Record record) {
+		super(targetScreenletId, record);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new DDLFormBaseEvent(targetScreenletId, e);
+		return new DDLFormAddRecordEvent(targetScreenletId, e);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new DDLFormBaseEvent(targetScreenletId, result, _record);
+		return new DDLFormAddRecordEvent(targetScreenletId, result, getRecord());
 	}
-
-	protected Record getRecord() {
-		return _record;
-	}
-
-	private Record _record;
 
 }

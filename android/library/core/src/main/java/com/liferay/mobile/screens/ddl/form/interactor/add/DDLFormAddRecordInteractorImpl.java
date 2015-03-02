@@ -20,8 +20,6 @@ import com.liferay.mobile.android.v62.ddlrecord.DDLRecordService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
-import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseCallback;
-import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
 
 import org.json.JSONException;
@@ -53,7 +51,7 @@ public class DDLFormAddRecordInteractorImpl
 			groupId, record.getRecordSetId(), 0, fieldsValues, serviceContextWrapper);
 	}
 
-	public void onEvent(DDLFormBaseEvent event) {
+	public void onEvent(DDLFormAddRecordEvent event) {
 		if (!isValidEvent(event)) {
 			return;
 		}
@@ -78,7 +76,7 @@ public class DDLFormAddRecordInteractorImpl
 	protected DDLRecordService getDDLRecordService(Record record) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 
-		session.setCallback(new DDLFormBaseCallback(getTargetScreenletId(), record));
+		session.setCallback(new DDLFormAddRecordCallback(getTargetScreenletId(), record));
 
 		return new DDLRecordService(session);
 	}
