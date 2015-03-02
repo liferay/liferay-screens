@@ -86,7 +86,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 			_progressBar.setVisibility(View.VISIBLE);
 		} else {
-			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_blue, 0);
 			_progressBar.setVisibility(View.GONE);
 		}
 	}
@@ -149,7 +149,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		Intent cameraIntent = new Intent(intent);
 
 		if (file != null) {
-			getField().setCurrentValue(file.getAbsolutePath());
+			getField().createLocalFile(file.getAbsolutePath());
 			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
 			((Activity) getContext()).startActivityForResult(cameraIntent, _positionInForm);
 		}
@@ -165,7 +165,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 						getTextEditText().setText(path);
 
 						DocumentField field = getField();
-						field.setCurrentValue(path);
+						field.createLocalFile(path);
 						field.moveToUploadInProgressState();
 						view.setTag(field);
 						((DDLFormScreenletView) getParentView()).onClick(view);

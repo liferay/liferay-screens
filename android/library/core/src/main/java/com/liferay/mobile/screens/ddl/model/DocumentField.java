@@ -3,16 +3,13 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.Locale;
 import java.util.Map;
 
 /**
  * @author Javier Gamarra
  */
-public class DocumentField extends Field<String> {
+public class DocumentField extends Field<DocumentFile> {
 
 	public static final Parcelable.Creator<DocumentField> CREATOR =
 			new Parcelable.Creator<DocumentField>() {
@@ -75,35 +72,25 @@ public class DocumentField extends Field<String> {
 	}
 
 	@Override
-	protected String convertFromString(String name) {
-		if (State.UPLOADED.equals(_state)) {
-			try {
-				JSONObject jsonObject = new JSONObject(name);
-
-				_uuid = jsonObject.getString("uuid");
-				_version = jsonObject.getInt("version");
-				_groupId = jsonObject.getInt("groupId");
-				return name;
-			}
-			catch (JSONException e) {
-			}
-
+	protected DocumentFile convertFromString(String string) {
+		if (!string.isEmpty()) {
+			return new RemoteFile(string);
 		}
-		return name;
+		return new LocalFile("");
+	}
+
+	public void createLocalFile(String path) {
+		setCurrentValue(new LocalFile(path));
 	}
 
 	@Override
-	protected String convertToData(String fileName) {
-		if (State.UPLOADED.equals(_state)) {
-			return "{groupId:" + _groupId + ",uuid:" + _uuid + "," +
-					"version:" + _version + "}";
-		}
-		return fileName;
+	protected String convertToData(DocumentFile document) {
+		return document.toData();
 	}
 
 	@Override
-	protected String convertToFormattedString(String fileName) {
-		return fileName;
+	protected String convertToFormattedString(DocumentFile document) {
+		return document.toString();
 	}
 
 	@Override
@@ -117,6 +104,8 @@ public class DocumentField extends Field<String> {
 		return valid;
 	}
 
+
+
 	private enum State {
 		IDLE,
 		UPLOADING,
@@ -125,8 +114,5 @@ public class DocumentField extends Field<String> {
 	}
 
 	private State _state = State.IDLE;
-		private Integer _groupId;
-		private String _uuid;
-		private Integer _version;
 
 }

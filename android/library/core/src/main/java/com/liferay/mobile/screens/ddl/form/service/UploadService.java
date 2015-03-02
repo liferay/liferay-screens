@@ -62,7 +62,7 @@ public class UploadService extends IntentService {
 
 		InputStream is = null;
 		try {
-			String path = file.getCurrentValue();
+			String path = file.getCurrentValue().toString();
 			String name = path.substring(path.lastIndexOf("/") + 1);
 			String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
