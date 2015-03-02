@@ -39,18 +39,18 @@ import java.util.Map;
 /**
  * @author Silvio Santos
  */
-public class DDLFormScreenletView
+public class DDLFormDefaultView
 	extends ScrollView implements DDLFormViewModel, View.OnClickListener {
 
-	public DDLFormScreenletView(Context context) {
+	public DDLFormDefaultView(Context context) {
 		super(context, null);
 	}
 
-	public DDLFormScreenletView(Context context, AttributeSet attributes) {
+	public DDLFormDefaultView(Context context, AttributeSet attributes) {
 		super(context, attributes, 0);
 	}
 
-	public DDLFormScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
+	public DDLFormDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

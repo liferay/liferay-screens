@@ -34,18 +34,18 @@ import org.json.JSONObject;
 /**
  * @author Silvio Santos
  */
-public class SignUpScreenletView extends LinearLayout
+public class SignUpDefaultView extends LinearLayout
 	implements SignUpListener, SignUpViewModel, View.OnClickListener {
 
-	public SignUpScreenletView(Context context) {
+	public SignUpDefaultView(Context context) {
 		super(context, null);
 	}
 
-	public SignUpScreenletView(Context context, AttributeSet attributes) {
+	public SignUpDefaultView(Context context, AttributeSet attributes) {
 		super(context, attributes, 0);
 	}
 
-	public SignUpScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
+	public SignUpDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

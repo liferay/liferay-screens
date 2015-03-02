@@ -35,20 +35,20 @@ import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractor
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public class UserPortraitScreenletView extends FrameLayout
+public class UserPortraitDefaultView extends FrameLayout
         implements BaseViewModel, UserPortraitInteractorListener {
 
-    public UserPortraitScreenletView(Context context) {
+    public UserPortraitDefaultView(Context context) {
         this(context, null);
     }
 
-    public UserPortraitScreenletView(
-            Context context, AttributeSet attributes) {
+    public UserPortraitDefaultView(
+		Context context, AttributeSet attributes) {
         this(context, attributes, 0);
     }
 
-    public UserPortraitScreenletView(
-            Context context, AttributeSet attributes, int defaultStyle) {
+    public UserPortraitDefaultView(
+		Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
     }
 

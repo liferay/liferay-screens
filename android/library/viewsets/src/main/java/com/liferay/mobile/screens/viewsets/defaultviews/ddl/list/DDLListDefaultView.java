@@ -28,18 +28,18 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListScreenletView extends BaseListScreenletView<DDLEntry, DDLListAdapter>
+public class DDLListDefaultView extends BaseListScreenletView<DDLEntry, DDLListAdapter>
         implements DDLListViewModel {
 
-    public DDLListScreenletView(Context context) {
+    public DDLListDefaultView(Context context) {
         super(context);
     }
 
-    public DDLListScreenletView(Context context, AttributeSet attributes) {
+    public DDLListDefaultView(Context context, AttributeSet attributes) {
         super(context, attributes, 0);
     }
 
-    public DDLListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
+    public DDLListDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
     }
 

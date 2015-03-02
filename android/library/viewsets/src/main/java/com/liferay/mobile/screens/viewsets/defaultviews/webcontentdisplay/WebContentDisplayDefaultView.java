@@ -28,19 +28,19 @@ import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
 /**
  * @author Silvio Santos
  */
-public class WebContentDisplayScreenletView extends WebView
+public class WebContentDisplayDefaultView extends WebView
 	implements BaseViewModel, WebContentDisplayListener {
 
-	public WebContentDisplayScreenletView(Context context) {
+	public WebContentDisplayDefaultView(Context context) {
 		super(context, null);
 	}
 
-	public WebContentDisplayScreenletView(Context context, AttributeSet attributes) {
+	public WebContentDisplayDefaultView(Context context, AttributeSet attributes) {
 
 		super(context, attributes, 0);
 	}
 
-	public WebContentDisplayScreenletView(
+	public WebContentDisplayDefaultView(
 		Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);

@@ -33,19 +33,19 @@ import com.liferay.mobile.screens.viewsets.R;
 /**
  * @author Jose Manuel Navarro
  */
-public class ForgotPasswordScreenletView extends LinearLayout
+public class ForgotPasswordDefaultView extends LinearLayout
 	implements ForgotPasswordViewModel, View.OnClickListener,
 		ForgotPasswordListener {
 
-	public ForgotPasswordScreenletView(Context context) {
+	public ForgotPasswordDefaultView(Context context) {
 		super(context, null);
 	}
 
-	public ForgotPasswordScreenletView(Context context, AttributeSet attributes) {
+	public ForgotPasswordDefaultView(Context context, AttributeSet attributes) {
 		super(context, attributes, 0);
 	}
 
-	public ForgotPasswordScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
+	public ForgotPasswordDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

@@ -23,7 +23,7 @@ import android.util.AttributeSet;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.R;
-import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormScreenletView;
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormDefaultView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,13 +33,13 @@ import java.util.Map;
 /**
  * @author Silvio Santos
  */
-public class DDLFormScreenletPagerView extends DDLFormScreenletView {
+public class DDLFormPagerDefaultView extends DDLFormDefaultView {
 
-	public DDLFormScreenletPagerView(Context context) {
+	public DDLFormPagerDefaultView(Context context) {
 		super(context, null);
 	}
 
-	public DDLFormScreenletPagerView(Context context, AttributeSet attributes) {
+	public DDLFormPagerDefaultView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
 
@@ -57,7 +57,7 @@ public class DDLFormScreenletPagerView extends DDLFormScreenletView {
 			fields.add(record.getField(i));
 		}
 
-		_pager.setAdapter(new DDLFormViewPagerAdapter(fields, layoutIds));
+		_pager.setAdapter(new DDLFormPagerDefaultViewAdapter(fields, layoutIds));
 	}
 
 	@Override

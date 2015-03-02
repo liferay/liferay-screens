@@ -33,9 +33,9 @@ import java.util.Map;
 /**
  * @author Silvio Santos
  */
-public class DDLFormViewPagerAdapter extends PagerAdapter {
+public class DDLFormPagerDefaultViewAdapter extends PagerAdapter {
 
-	public DDLFormViewPagerAdapter(
+	public DDLFormPagerDefaultViewAdapter(
 		List<Field> fields, Map<Field.EditorType, Integer> layoutIds) {
 
 		_fields = fields;

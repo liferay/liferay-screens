@@ -36,18 +36,18 @@ import org.json.JSONObject;
 /**
  * @author Silvio Santos
  */
-public class LoginScreenletView extends LinearLayout
+public class LoginDefaultView extends LinearLayout
 	implements LoginViewModel, View.OnClickListener, LoginListener {
 
-	public LoginScreenletView(Context context) {
+	public LoginDefaultView(Context context) {
 		super(context, null);
 	}
 
-	public LoginScreenletView(Context context, AttributeSet attributes) {
+	public LoginDefaultView(Context context, AttributeSet attributes) {
 		super(context, attributes, 0);
 	}
 
-	public LoginScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
+	public LoginDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

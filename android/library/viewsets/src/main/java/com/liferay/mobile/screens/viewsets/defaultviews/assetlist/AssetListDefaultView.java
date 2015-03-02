@@ -25,22 +25,22 @@ import com.liferay.mobile.screens.viewsets.base.list.BaseListScreenletView;
 /**
  * @author Silvio Santos
  */
-public class AssetListScreenletView extends BaseListScreenletView<AssetEntry, AssetListAdapter>
+public class AssetListDefaultView extends BaseListScreenletView<AssetEntry, AssetListAdapter>
 	implements AssetListViewModel {
 
-	public AssetListScreenletView(Context context) {
+	public AssetListDefaultView(Context context) {
 		super(context, null);
 
 		init(context);
 	}
 
-	public AssetListScreenletView(Context context, AttributeSet attributes) {
+	public AssetListDefaultView(Context context, AttributeSet attributes) {
 		super(context, attributes, 0);
 
 		init(context);
 	}
 
-	public AssetListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
+	public AssetListDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 
 		init(context);

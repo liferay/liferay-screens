@@ -29,7 +29,7 @@ import android.widget.ProgressBar;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.viewsets.R;
-import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormScreenletView;
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormDefaultView;
 
 import java.io.File;
 import java.io.IOException;
@@ -164,7 +164,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 						field.createLocalFile(path);
 						field.moveToUploadInProgressState();
 						view.setTag(field);
-						((DDLFormScreenletView) getParentView()).onClick(view);
+						((DDLFormDefaultView) getParentView()).onClick(view);
 					}
 
 				});
