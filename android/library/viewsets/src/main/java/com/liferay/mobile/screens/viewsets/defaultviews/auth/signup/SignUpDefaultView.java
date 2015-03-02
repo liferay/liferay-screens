@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import com.liferay.mobile.screens.auth.signup.SignUpListener;
 import com.liferay.mobile.screens.auth.signup.SignUpScreenlet;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
+import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.R;
 
 import org.json.JSONObject;
@@ -96,7 +97,7 @@ public class SignUpDefaultView extends LinearLayout
 	}
 
 	@Override
-	public void onSignUpSuccess(JSONObject userAttributes) {
+	public void onSignUpSuccess(User userAttributes) {
 	}
 
 	@Override

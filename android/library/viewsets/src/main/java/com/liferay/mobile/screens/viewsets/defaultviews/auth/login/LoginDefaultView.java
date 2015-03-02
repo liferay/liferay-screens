@@ -29,6 +29,7 @@ import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
+import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.R;
 
 import org.json.JSONObject;
@@ -79,7 +80,7 @@ public class LoginDefaultView extends LinearLayout
 	}
 
 	@Override
-	public void onLoginSuccess(JSONObject userAttributes) {
+	public void onLoginSuccess(User userAttributes) {
 	}
 
 	public void setAuthMethod(AuthMethod authMethod) {
