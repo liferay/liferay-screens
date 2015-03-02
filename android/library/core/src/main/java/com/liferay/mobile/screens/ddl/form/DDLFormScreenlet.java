@@ -92,6 +92,26 @@ public class DDLFormScreenlet
 		}
 	}
 
+	public boolean validateForm() {
+		Map<Field, Boolean> fieldResults = new HashMap<>(_record.getFieldCount());
+		boolean result = true;
+
+		for (int i = 0; i < _record.getFieldCount(); i++) {
+			Field field = _record.getField(i);
+
+			boolean isFieldValid = field.isValid();
+
+			fieldResults.put(field, isFieldValid);
+
+			result &= isFieldValid;
+		}
+
+		DDLFormViewModel viewModel = (DDLFormViewModel) getScreenletView();
+		viewModel.setValidationFailedFields(fieldResults, _autoScrollOnValidation);
+
+		return result;
+	}
+
 	public void startUploadByPosition(int position) {
 		startUpload((DocumentField) _record.getField(position));
 	}

@@ -76,6 +76,27 @@ public class DDLFormScreenletView
 	}
 
 	@Override
+	public void setValidationFailedFields(Map<Field, Boolean> fieldResults, boolean autoscroll) {
+		boolean scrolled = false;
+
+		for (int i = 0; i < _fieldsContainerView.getChildCount(); i++) {
+			View fieldView = _fieldsContainerView.getChildAt(i);
+			DDLFieldViewModel fieldViewModel = (DDLFieldViewModel) fieldView;
+			boolean isFieldValid = fieldResults.get(fieldViewModel.getField());
+
+			fieldView.clearFocus();
+
+			fieldViewModel.onPostValidation(isFieldValid);
+
+			if (!isFieldValid && autoscroll && !scrolled) {
+				fieldView.requestFocus();
+				smoothScrollTo(0, fieldView.getTop());
+				scrolled = true;
+			}
+		}
+	}
+
+	@Override
 	public void setRecordFields(Record record) {
 
 		if (record == null) {
@@ -105,7 +126,7 @@ public class DDLFormScreenletView
 	@Override
 	public void onClick(View view) {
 		if (view.getId() == R.id.submit) {
-			if (validateForm()) {
+			if (getDDLFormScreenlet().validateForm()) {
 				getDDLFormScreenlet().submitForm();
 			}
 		} else {
@@ -130,44 +151,6 @@ public class DDLFormScreenletView
 
 	protected DDLFormScreenlet getDDLFormScreenlet() {
 		return (DDLFormScreenlet) getParent();
-	}
-
-	public boolean validateForm() {
-		boolean validForm = true;
-		View firstInvalidFieldView = null;
-
-		DDLFormScreenlet screenlet = getDDLFormScreenlet();
-		Record record = screenlet.getRecord();
-
-		for (int i = 0; i < _fieldsContainerView.getChildCount(); i++) {
-			Field field = record.getField(i);
-
-			View fieldView = _fieldsContainerView.getChildAt(i);
-			boolean validField = field.isValid();
-
-			if (!validField) {
-				if (firstInvalidFieldView == null) {
-					firstInvalidFieldView = fieldView;
-				}
-
-				validForm = false;
-			}
-
-			fieldView.clearFocus();
-
-			DDLFieldViewModel viewModel = (DDLFieldViewModel)fieldView;
-			viewModel.onPostValidation(validField);
-		}
-
-		boolean autoScroll = screenlet.isAutoScrollOnValidation();
-
-		if (autoScroll && (firstInvalidFieldView != null)) {
-			firstInvalidFieldView.requestFocus();
-
-			smoothScrollTo(0, firstInvalidFieldView.getTop());
-		}
-
-		return validForm;
 	}
 
 	protected void addFieldView(Field field, int position) {

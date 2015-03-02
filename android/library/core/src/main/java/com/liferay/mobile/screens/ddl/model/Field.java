@@ -203,6 +203,26 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		_lastValidationResult = (in.readInt() == 1);
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o instanceof Field) {
+			Field field = (Field) o;
+
+			if (_name.equals(field._name)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return _name.hashCode();
+	}
 
 	public String getName() {
 		return _name;

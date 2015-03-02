@@ -19,6 +19,8 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 
+import java.util.Map;
+
 /**
  * @author Silvio Santos
  */
@@ -56,6 +58,8 @@ public interface DDLFormViewModel extends BaseViewModel {
 	 */
 	void setCustomFieldLayoutId(String fieldName, int layoutId);
 
+	void setValidationFailedFields(Map<Field, Boolean> fieldResults, boolean autoscroll);
+
 	void setRecordFields(Record record);
 
 	void setRecordValues(Record record);
@@ -65,4 +69,5 @@ public interface DDLFormViewModel extends BaseViewModel {
 	void showDocumentUploaded(DocumentField documentField);
 
 	void showDocumentUploadFailed(DocumentField documentField);
+
 }
