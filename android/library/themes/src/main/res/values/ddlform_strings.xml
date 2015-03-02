@@ -2,7 +2,7 @@
 <resources>
 	<string name="submit">SUBMIT</string>
 	<string name="required_value">Required value</string>
-    <string name="invalid"/>
+    <string name="invalid">Invalid value</string>
     <string name="open">Open:</string>
 	<string name="make_a_photo">Make a photo</string>
 	<string name="select_a_file">Select a file</string>

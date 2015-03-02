@@ -83,12 +83,11 @@ public class DDLFormScreenlet
 	}
 
 	public void submitForm() {
-		if (allDocumentsUploaded(_record)) {
-			if (_record.getRecordId() == 0) {
-				performUserAction(_ADD_RECORD_ACTION);
-			} else {
-				performUserAction(_UPDATE_RECORD_ACTION);
-			}
+		if (_record.getRecordId() == 0) {
+			performUserAction(_ADD_RECORD_ACTION);
+		}
+		else {
+			performUserAction(_UPDATE_RECORD_ACTION);
 		}
 	}
 
@@ -464,25 +463,6 @@ public class DDLFormScreenlet
 				onDDLFormDocumentUploadFailed(documentToUpload, e);
 			}
 		}
-	}
-
-	private boolean allDocumentsUploaded(Record record) {
-		boolean result = true;
-		for (int i = 0; i < record.getFieldCount(); i++) {
-			Field field = record.getField(i);
-			if (field instanceof DocumentField) {
-				DocumentField documentField = (DocumentField) field;
-
-				if (documentField.isUploading()) {
-					result = false;
-				}
-				else if (documentField.isUploadFailed()) {
-					startUpload(documentField);
-					result = false;
-				}
-			}
-		}
-		return result;
 	}
 
 	protected void setFieldLayoutId(

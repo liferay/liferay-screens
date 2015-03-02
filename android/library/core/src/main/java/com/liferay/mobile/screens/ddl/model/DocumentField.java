@@ -100,6 +100,12 @@ public class DocumentField extends Field<DocumentFile> {
 		if (getCurrentValue() == null && isRequired()) {
 			valid = false;
 		}
+		else if (isUploading()) {
+			valid = false;
+		}
+		else if (isUploadFailed()) {
+			valid = false;
+		}
 
 		return valid;
 	}
