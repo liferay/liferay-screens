@@ -98,20 +98,25 @@ public class DDLFormScreenletView
 
 	@Override
 	public void setRecordFields(Record record) {
-
-		if (record == null) {
-			return;
-		}
 		_fieldsContainerView.removeAllViews();
-
-		for (int i = 0; i < record.getFieldCount(); ++i) {
-			addFieldView(record.getField(i), i);
-		}
 
 		DDLFormScreenlet screenlet = getDDLFormScreenlet();
 
-		if (record.getFieldCount() > 0 && screenlet.isShowSubmitButton()) {
-			_submitButton.setVisibility(VISIBLE);
+		int fieldCount = (record == null) ? 0 : record.getFieldCount();
+
+		int submitButtonVisibility;
+
+		if (fieldCount > 0 && screenlet.isShowSubmitButton()) {
+			submitButtonVisibility = VISIBLE;
+		}
+		else {
+			submitButtonVisibility = GONE;
+		}
+
+		_submitButton.setVisibility(submitButtonVisibility);
+
+		for (int i = 0; i < fieldCount; ++i) {
+			addFieldView(record.getField(i), i);
 		}
 	}
 
