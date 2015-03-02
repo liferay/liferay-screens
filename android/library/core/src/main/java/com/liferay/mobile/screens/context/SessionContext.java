@@ -80,9 +80,7 @@ public class SessionContext {
 			.setStorageType(storageType)
 			.build();
 
-		if (storage == null) {
-			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
-		}
+		checkIfStorageTypeIsSupported(storageType, storage);
 
 		storage.storeCredentials();
 	}
@@ -93,9 +91,7 @@ public class SessionContext {
 			.setStorageType(storageType)
 			.build();
 
-		if (storage == null) {
-			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
-		}
+		checkIfStorageTypeIsSupported(storageType, storage);
 
 		storage.removeStoredCredentials();
 	}
@@ -108,14 +104,18 @@ public class SessionContext {
 			.setStorageType(storageType)
 			.build();
 
-		if (storage == null) {
-			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
-		}
+		checkIfStorageTypeIsSupported(storageType, storage);
 
 		if (storage.loadStoredCredentials()) {
 			_session = new SessionImpl(
 				LiferayServerContext.getServer(), storage.getAuthentication());
 			_user = storage.getUser();
+		}
+	}
+
+	private static void checkIfStorageTypeIsSupported(CredentialsStoreBuilder.StorageType storageType, CredentialsStore storage) {
+		if (storage == null) {
+			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
 		}
 	}
 
