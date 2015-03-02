@@ -25,10 +25,11 @@ public class DDLFormUploadInteractorImpl extends BaseRemoteInteractor<DDLFormLis
 		service.putExtra("file", file);
 		service.putExtra("userId", userId);
 		service.putExtra("groupId", groupId);
-		service.putExtra("repositoryId", repositoryId);
+		service.putExtra("repositoryId", (repositoryId != 0) ? repositoryId : groupId);
 		service.putExtra("folderId", folderId);
 		service.putExtra("screenletId", getTargetScreenletId());
 		service.putExtra("filePrefix", filePrefix);
+
 		LiferayScreensContext.getContext().startService(service);
 	}
 
