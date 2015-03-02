@@ -24,8 +24,9 @@ public class DocumentRemoteFile extends DocumentFile implements Serializable {
 
 	@Override
 	public String toData() {
-		return "{groupId:" + _groupId + ",uuid:" + _uuid + "," +
-				"version:" + _version + "}";
+		return "{\"groupId\":" + _groupId + ", " +
+				"\"uuid\":\"" + _uuid + "\", " +
+				"\"version\":" + _version + "}";
 	}
 
 	@Override
