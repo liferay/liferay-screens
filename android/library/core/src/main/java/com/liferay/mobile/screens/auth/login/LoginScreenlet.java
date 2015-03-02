@@ -103,8 +103,7 @@ public class LoginScreenlet
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.LoginScreenlet, 0, 0);
 
-		int layoutId = typedArray.getResourceId(
-			R.styleable.LoginScreenlet_layoutId, 0);
+		int layoutId = typedArray.getResourceId(R.styleable.LoginScreenlet_layoutId, 0);
 
 		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
 
