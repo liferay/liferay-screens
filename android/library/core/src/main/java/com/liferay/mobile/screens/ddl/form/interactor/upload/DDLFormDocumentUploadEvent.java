@@ -8,9 +8,9 @@ import org.json.JSONObject;
 /**
  * @author Javier Gamarra
  */
-public class DDLFormDocumentEvent extends JSONObjectEvent {
+public class DDLFormDocumentUploadEvent extends JSONObjectEvent {
 
-	public DDLFormDocumentEvent(
+	public DDLFormDocumentUploadEvent(
 		int targetScreenletId, JSONObject jsonObject, DocumentField documentField) {
 
 		super(targetScreenletId, jsonObject);
@@ -18,7 +18,7 @@ public class DDLFormDocumentEvent extends JSONObjectEvent {
 		_documentField = documentField;
 	}
 
-	public DDLFormDocumentEvent(int targetScreenletId, Exception e, DocumentField documentField) {
+	public DDLFormDocumentUploadEvent(int targetScreenletId, Exception e, DocumentField documentField) {
 		super(targetScreenletId, e);
 
 		_documentField = documentField;

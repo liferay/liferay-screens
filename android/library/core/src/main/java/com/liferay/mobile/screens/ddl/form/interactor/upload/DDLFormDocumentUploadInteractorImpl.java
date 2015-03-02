@@ -11,10 +11,10 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
 /**
  * @author Javier Gamarra
  */
-public class DDLFormUploadInteractorImpl extends BaseRemoteInteractor<DDLFormListener>
-		implements DDLFormUploadInteractor {
+public class DDLFormDocumentUploadInteractorImpl extends BaseRemoteInteractor<DDLFormListener>
+		implements DDLFormDocumentUploadInteractor {
 
-	public DDLFormUploadInteractorImpl(int targetScreenletId) {
+	public DDLFormDocumentUploadInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 
@@ -33,7 +33,7 @@ public class DDLFormUploadInteractorImpl extends BaseRemoteInteractor<DDLFormLis
 		LiferayScreensContext.getContext().startService(service);
 	}
 
-	public void onEventMainThread(DDLFormDocumentEvent event) {
+	public void onEventMainThread(DDLFormDocumentUploadEvent event) {
 		if (!isValidEvent(event)) {
 			return;
 		}

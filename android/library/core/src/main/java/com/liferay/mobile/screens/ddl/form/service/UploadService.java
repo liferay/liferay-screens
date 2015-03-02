@@ -22,7 +22,7 @@ import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.dlapp.DLAppService;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentEvent;
+import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.EventBusUtil;
 
@@ -79,9 +79,9 @@ public class UploadService extends IntentService {
 			JSONObject jsonObject = service.addFileEntry(repositoryId, folderId, name,
 					getMimeType(path), fileName, "", "", inputStreamBody, serviceContextWrapper);
 
-			EventBusUtil.post(new DDLFormDocumentEvent(targetScreenletId, jsonObject, file));
+			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, jsonObject, file));
 		} catch (Exception e) {
-			EventBusUtil.post(new DDLFormDocumentEvent(targetScreenletId, e, file));
+			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, e, file));
 		} finally {
 			tryToCloseInputStream(is);
 		}

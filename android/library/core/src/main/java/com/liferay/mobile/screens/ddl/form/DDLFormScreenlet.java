@@ -34,8 +34,8 @@ import com.liferay.mobile.screens.ddl.form.interactor.recordload.DDLFormLoadReco
 import com.liferay.mobile.screens.ddl.form.interactor.recordload.DDLFormLoadRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.update.DDLFormUpdateRecordInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.update.DDLFormUpdateRecordInteractorImpl;
-import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormUploadInteractor;
-import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormUploadInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadInteractor;
+import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Field;
@@ -285,7 +285,7 @@ public class DDLFormScreenlet
 			case _UPDATE_RECORD_ACTION:
 				return new DDLFormUpdateRecordInteractorImpl(getScreenletId());
 			case _UPLOAD_DOCUMENT_ACTION:
-				return new DDLFormUploadInteractorImpl(getScreenletId());
+				return new DDLFormDocumentUploadInteractorImpl(getScreenletId());
 			default:
 				return null;
 		}
@@ -447,7 +447,7 @@ public class DDLFormScreenlet
 			}
 		}
 		else if (_UPLOAD_DOCUMENT_ACTION.equals(userActionName)) {
-			DDLFormUploadInteractor uploadInteractor = (DDLFormUploadInteractor) interactor;
+			DDLFormDocumentUploadInteractor uploadInteractor = (DDLFormDocumentUploadInteractor) interactor;
 			DocumentField documentToUpload = (DocumentField) args[0];
 
 			documentToUpload.moveToUploadInProgressState();
