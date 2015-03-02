@@ -3,7 +3,8 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.liferay.mobile.screens.util.ViewUtil;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -37,37 +38,12 @@ public class DocumentField extends Field<DocumentField.File> {
 
 	public static class File implements Serializable {
 
-		public File(String name, Integer id, State state) {
-			_name = name;
-			_id = id;
-			_state = state;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (obj == null) {
-				return false;
-			}
-
-			if (obj instanceof File) {
-				File file = (File) obj;
-
-				return _name.equals(file.getName()) && _id.equals(file.getId());
-			}
-
-			return super.equals(obj);
-		}
-
 		public String getName() {
 			return _name;
 		}
 
 		public void setName(String name) {
 			_name = name;
-		}
-
-		public Integer getId() {
-			return _id;
 		}
 
 		public State getState() {
@@ -78,9 +54,35 @@ public class DocumentField extends Field<DocumentField.File> {
 			_state = state;
 		}
 
+		public String getUUID() {
+			return _uuid;
+		}
+
+		public void setUUID(String uuid) {
+			_uuid = uuid;
+		}
+
+		public Integer getGroupId() {
+			return _groupId;
+		}
+
+		public void setGroupId(Integer groupId) {
+			_groupId = groupId;
+		}
+
+		public Integer getVersion() {
+			return _version;
+		}
+
+		public void setVersion(Integer version) {
+			_version = version;
+		}
+
 		private String _name;
-		private Integer _id;
 		private State _state;
+		private Integer _groupId;
+		private String _uuid;
+		private Integer _version;
 	}
 
 	@Override
@@ -98,12 +100,30 @@ public class DocumentField extends Field<DocumentField.File> {
 
 	@Override
 	protected File convertFromString(String name) {
-		return new File(name, ViewUtil._generateUniqueId(), null);
+		File file = getCurrentValue();
+		if (file != null && State.UPLOADED.equals(file.getState())) {
+			try {
+				JSONObject jsonObject = new JSONObject(name);
+
+				file.setUUID(jsonObject.getString("uuid"));
+				file.setVersion(jsonObject.getInt("version"));
+				file.setGroupId(jsonObject.getInt("groupId"));
+				return file;
+			}
+			catch (JSONException e) {
+			}
+
+		}
+		return new File();
 	}
 
 	@Override
 	protected String convertToData(File file) {
-		return file.getName();
+		if (State.UPLOADED.equals(getCurrentValue().getState())) {
+			return "{groupId:" + file.getGroupId() + ",uuid:" + file.getUUID() + "," +
+					"version:" + file.getVersion() + "}";
+		}
+		return null;
 	}
 
 	@Override

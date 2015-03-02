@@ -18,7 +18,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.provider.DocumentsContract;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +40,9 @@ import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
+
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -177,16 +179,17 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	public void onDDLFormDocumentUploaded(DocumentField documentField) {
+	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
 		DocumentField originalField = (DocumentField) findFieldByName(documentField.getName());
 		if (originalField != null) {
 			originalField.getCurrentValue().setState(DocumentField.State.UPLOADED);
+			originalField.setCurrentStringValue(jsonObject.toString());
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
 			view.showDocumentUploaded(originalField);
 		}
 
 		if (_listener != null) {
-			_listener.onDDLFormDocumentUploaded(documentField);
+			_listener.onDDLFormDocumentUploaded(documentField, null);
 		}
 	}
 

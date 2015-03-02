@@ -17,6 +17,8 @@ package com.liferay.mobile.screens.ddl.form;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 
+import org.json.JSONObject;
+
 /**
  * @author Jose Manuel Navarro
  */
@@ -38,7 +40,7 @@ public interface DDLFormListener {
 
 	void onDDLFormUpdateRecordFailed(Exception e);
 
-	void onDDLFormDocumentUploaded(DocumentField documentField);
+	void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject);
 
 	void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e);
 

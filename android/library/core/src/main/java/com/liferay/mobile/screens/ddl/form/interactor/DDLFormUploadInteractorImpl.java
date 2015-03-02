@@ -40,7 +40,7 @@ public class DDLFormUploadInteractorImpl extends BaseRemoteInteractor<DDLFormLis
 		if (event.isFailed()) {
 			getListener().onDDLFormDocumentUploadFailed(event.getDocumentField(), event.getException());
 		} else {
-			getListener().onDDLFormDocumentUploaded(event.getDocumentField());
+			getListener().onDDLFormDocumentUploaded(event.getDocumentField(), event.getJSONObject());
 		}
 	}
 
