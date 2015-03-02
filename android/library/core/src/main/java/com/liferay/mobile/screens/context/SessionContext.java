@@ -21,8 +21,6 @@ import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.context.storage.CredentialsStore;
 import com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder;
 
-import org.json.JSONObject;
-
 /**
  * @author Silvio Santos
  */
@@ -30,7 +28,7 @@ public class SessionContext {
 
 	public static void clearSession() {
 		_session = null;
-		_user = null;
+		_loggedUser = null;
 	}
 
 	public static Session createSession(String username, String password) {
@@ -55,18 +53,17 @@ public class SessionContext {
 		return _session != null;
 	}
 
-	public static void setUserAttributes(JSONObject userAttributes) {
-		_user = new User(userAttributes);
-	}
-
 	public static BasicAuthentication getAuthentication() {
 		return (_session == null) ? null : (BasicAuthentication) _session.getAuthentication();
 	}
 
-	public static User getUser() {
-		return _user;
+	public static User getLoggedUser() {
+		return _loggedUser;
 	}
 
+	public static void setLoggedUser(User value) {
+		_loggedUser = value;
+	}
 
 	public static void storeSession(CredentialsStoreBuilder.StorageType storageType) {
 		if (!hasSession()) {
@@ -76,7 +73,7 @@ public class SessionContext {
 		CredentialsStore storage = new CredentialsStoreBuilder()
 			.setContext(LiferayScreensContext.getContext())
 			.setAuthentication((BasicAuthentication) _session.getAuthentication())
-			.setUser(getUser())
+			.setUser(getLoggedUser())
 			.setStorageType(storageType)
 			.build();
 
@@ -109,7 +106,7 @@ public class SessionContext {
 		if (storage.loadStoredCredentials()) {
 			_session = new SessionImpl(
 				LiferayServerContext.getServer(), storage.getAuthentication());
-			_user = storage.getUser();
+			_loggedUser = storage.getUser();
 		}
 	}
 
@@ -120,6 +117,6 @@ public class SessionContext {
 	}
 
 	private static Session _session;
-	private static User _user;
+	private static User _loggedUser;
 
 }

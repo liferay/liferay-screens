@@ -389,7 +389,7 @@ public class DDLFormScreenlet
 		_folderId = typedArray.getInteger(R.styleable.DDLFormScreenlet_folderId, 0);
 
 		int defaultCreatorUserId = SessionContext.hasSession() ?
-			(int) SessionContext.getUser().getId() : 0;
+			(int) SessionContext.getLoggedUser().getId() : 0;
 
 		_userId = typedArray.getInteger(
 			R.styleable.DDLFormScreenlet_userId, defaultCreatorUserId);
