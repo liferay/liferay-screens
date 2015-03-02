@@ -22,4 +22,6 @@ public interface BaseListAdapterListener {
 
 	public void onPageNotFound(int row);
 
+	void onItemClick(int position);
+
 }

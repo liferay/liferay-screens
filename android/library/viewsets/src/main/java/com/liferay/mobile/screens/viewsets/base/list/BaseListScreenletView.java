@@ -56,6 +56,19 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 		init(context);
     }
 
+
+
+	public void onItemClick(int position) {
+		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
+		List<E> entries = ((A) getAdapter()).getEntries();
+		// we do not want to crash if the user manages to do a phantom click
+		if (!entries.isEmpty() && entries.size() > position && screenlet.getListener() != null) {
+			screenlet.getListener().onListItemSelected(entries.get(position));
+		}
+	}
+
+
+
 	protected void init(Context context) {
 		int itemLayoutId = R.layout.list_item_default;
 		int itemProgressLayoutId = R.layout.list_item_progress_default;
@@ -98,7 +111,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 		adapter.notifyDataSetChanged();
 	}
 
-    @Override
+	@Override
 	public void onPageNotFound(int row) {
 		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
 
