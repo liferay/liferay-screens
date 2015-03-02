@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.base;
+package com.liferay.mobile.screens.viewsets.defaultviews;
 
 import com.liferay.mobile.screens.viewsets.R;
 
@@ -7,7 +7,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 /**
  * @author Javier Gamarra
  */
-public class LiferayCroutonStyle {
+public class DefaultCrouton {
 
 	public static final Style INFO;
 	public static final Style ALERT;
