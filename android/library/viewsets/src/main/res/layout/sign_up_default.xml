@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpDefaultView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/default_screenlet">
+
+    <EditText
+        android:id="@+id/first_name"
+        style="@style/default_edit_text"
+        android:hint="@string/first_name" />
+
+    <EditText
+        android:id="@+id/last_name"
+        style="@style/default_edit_text"
+        android:hint="@string/last_name" />
+
+    <EditText
+        android:id="@+id/email_address"
+        style="@style/default_edit_text"
+        android:hint="@string/email_address"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/password"
+        style="@style/default_edit_text"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/sign_up"
+        style="@style/default_submit_button"
+        android:text="@string/sign_up" />
+</com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpDefaultView>

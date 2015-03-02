@@ -14,5 +14,5 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
 		android:layout_margin="16dp"
-		liferay:layoutId="@layout/login_theme2" />
+		liferay:layoutId="@layout/login_default" />
 </FrameLayout>
