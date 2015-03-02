@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.assetlist.AssetListScreenletView
+<com.liferay.mobile.screens.viewsets.defaultviews.assetlist.AssetListScreenletView
     android:id="@+id/asset_list_screenlet"
     style="@style/default_list"
     xmlns:android="http://schemas.android.com/apk/res/android"/>

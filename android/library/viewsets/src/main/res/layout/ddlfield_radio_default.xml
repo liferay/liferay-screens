@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.ddl.form.fields.DDLFieldRadioView
+<com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldRadioView
     android:id="@+id/radio_group"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -11,4 +11,4 @@
         style="@style/default_text_view"
         android:visibility="gone"/>
 
-</com.liferay.mobile.screens.viewsets.ddl.form.fields.DDLFieldRadioView>
+</com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldRadioView>

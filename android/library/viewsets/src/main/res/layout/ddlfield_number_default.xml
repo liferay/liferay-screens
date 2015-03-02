@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.ddl.form.fields.DDLFieldNumberView
+<com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldNumberView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -15,4 +15,4 @@
         style="@style/default_edit_text"
         android:inputType="number"/>
 
-</com.liferay.mobile.screens.viewsets.ddl.form.fields.DDLFieldNumberView>
+</com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldNumberView>

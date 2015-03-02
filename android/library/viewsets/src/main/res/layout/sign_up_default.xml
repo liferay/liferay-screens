@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.auth.signup.SignUpScreenletView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpScreenletView xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/default_screenlet">
 
     <EditText
@@ -28,4 +28,4 @@
         android:id="@+id/sign_up"
         style="@style/default_submit_button"
         android:text="@string/sign_up" />
-</com.liferay.mobile.screens.viewsets.auth.signup.SignUpScreenletView>
+</com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpScreenletView>

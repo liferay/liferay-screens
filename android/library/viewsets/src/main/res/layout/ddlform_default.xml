@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.ddl.form.DDLFormScreenletView
+<com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormScreenletView
     style="@style/default_screenlet"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -28,4 +28,4 @@
             android:text="@string/submit"
             android:visibility="gone"/>
     </LinearLayout>
-</com.liferay.mobile.screens.viewsets.ddl.form.DDLFormScreenletView>
+</com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormScreenletView>

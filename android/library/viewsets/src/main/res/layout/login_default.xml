@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.auth.login.LoginScreenletView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginScreenletView xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/default_screenlet">
 
     <EditText
@@ -22,4 +22,4 @@
         android:id="@+id/login_button"
         style="@style/default_submit_button"
         android:text="@string/sign_in" />
-</com.liferay.mobile.screens.viewsets.auth.login.LoginScreenletView>
+</com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginScreenletView>

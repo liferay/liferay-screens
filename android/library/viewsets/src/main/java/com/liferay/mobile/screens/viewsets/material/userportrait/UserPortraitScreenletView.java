@@ -26,7 +26,7 @@ import com.liferay.mobile.screens.viewsets.R;
  * @author Javier Gamarra
  */
 public class UserPortraitScreenletView
-	extends com.liferay.mobile.screens.viewsets.userportrait.UserPortraitScreenletView {
+	extends com.liferay.mobile.screens.viewsets.defaultviews.userportrait.UserPortraitScreenletView {
 
 
     public UserPortraitScreenletView(Context context) {
