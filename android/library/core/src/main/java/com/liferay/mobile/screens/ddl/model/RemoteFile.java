@@ -33,6 +33,11 @@ public class RemoteFile extends DocumentFile implements Serializable {
 		return _name == null ? "File in server" : _name;
 	}
 
+	@Override
+	public boolean isValid() {
+		return _uuid != null;
+	}
+
 	private Integer _groupId;
 	private String _uuid;
 	private Integer _version;

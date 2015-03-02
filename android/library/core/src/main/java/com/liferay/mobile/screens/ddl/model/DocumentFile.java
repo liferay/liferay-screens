@@ -16,6 +16,8 @@ public abstract class DocumentFile implements Serializable {
 		return _name;
 	}
 
+	public abstract boolean isValid();
+
 	protected String _name;
 
 }

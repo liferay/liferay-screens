@@ -16,4 +16,9 @@ public class LocalFile extends DocumentFile implements Serializable {
 		return _name;
 	}
 
+	@Override
+	public boolean isValid() {
+		return _name != null && !_name.isEmpty();
+	}
+
 }

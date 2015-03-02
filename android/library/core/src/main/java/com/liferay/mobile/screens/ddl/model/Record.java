@@ -122,6 +122,10 @@ public class Record implements Parcelable {
 		for (Field f : _fields) {
 			String fieldValue = f.toData();
 
+			//FIXME - LPS-49460
+			// Server rejects the request if the value is empty string.
+			// This way we workaround the problem but a field can't be
+			// emptied when you're editing an existing row.
 			if (fieldValue != null && !fieldValue.isEmpty()) {
 				values.put(f.getName(), fieldValue);
 			}

@@ -73,34 +73,49 @@ public class DocumentField extends Field<DocumentFile> {
 
 	@Override
 	protected DocumentFile convertFromString(String string) {
-		if (!string.isEmpty()) {
-			return new RemoteFile(string);
+		if (string == null || string.isEmpty()) {
+			return null;
 		}
-		return new LocalFile("");
+
+		return new RemoteFile(string);
 	}
 
 	public void createLocalFile(String path) {
+		if (path == null || path.isEmpty()) {
+			return;
+		}
+
 		setCurrentValue(new LocalFile(path));
 	}
 
 	@Override
 	protected String convertToData(DocumentFile document) {
-		return document.toData();
+		return document == null ? null : document.toData();
 	}
 
 	@Override
 	protected String convertToFormattedString(DocumentFile document) {
-		return document.toString();
+		return document == null ? "" : document.toString();
 	}
 
 	@Override
 	protected boolean doValidate() {
 		boolean valid = true;
 
-		if (getCurrentValue() == null && isRequired()) {
-			valid = false;
+		DocumentFile currentValue = getCurrentValue();
+
+		if (currentValue == null) {
+			if (isRequired()) {
+				valid = false;
+			}
 		}
-		else if (isUploading()) {
+		else {
+			if (!currentValue.isValid()) {
+				valid = false;
+			}
+		}
+
+		if (isUploading()) {
 			valid = false;
 		}
 		else if (isUploadFailed()) {
