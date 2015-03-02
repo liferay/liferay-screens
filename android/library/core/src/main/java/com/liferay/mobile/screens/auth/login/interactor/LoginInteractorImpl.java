@@ -23,6 +23,9 @@ import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.context.User;
+
+import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
@@ -67,8 +70,9 @@ public class LoginInteractorImpl
 			getListener().onLoginFailure(event.getException());
 		}
 		else {
-			SessionContext.setUserAttributes(event.getJSONObject());
-			getListener().onLoginSuccess(event.getJSONObject());
+			User user = new User(event.getJSONObject());
+			SessionContext.setLoggedUser(user);
+			getListener().onLoginSuccess(user);
 		}
 	}
 

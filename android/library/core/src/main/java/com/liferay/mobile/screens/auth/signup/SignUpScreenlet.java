@@ -30,6 +30,7 @@ import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.*;
 
 import java.util.Locale;
@@ -69,12 +70,12 @@ public class SignUpScreenlet
 	}
 
 	@Override
-	public void onSignUpSuccess(JSONObject userAttributes) {
+	public void onSignUpSuccess(User user) {
 		SignUpListener listenerView = (SignUpListener)getScreenletView();
-		listenerView.onSignUpSuccess(userAttributes);
+		listenerView.onSignUpSuccess(user);
 
 		if (_listener != null) {
-			_listener.onSignUpSuccess(userAttributes);
+			_listener.onSignUpSuccess(user);
 		}
 
 		if (_autoLogin) {

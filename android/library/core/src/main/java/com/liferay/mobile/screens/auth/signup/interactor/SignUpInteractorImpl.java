@@ -24,6 +24,7 @@ import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.User;
 
 import org.json.JSONArray;
 
@@ -48,7 +49,7 @@ public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
 			getListener().onSignUpFailure(event.getException());
 		}
 		else {
-			getListener().onSignUpSuccess(event.getJSONObject());
+			getListener().onSignUpSuccess(new User(event.getJSONObject()));
 		}
 	}
 
