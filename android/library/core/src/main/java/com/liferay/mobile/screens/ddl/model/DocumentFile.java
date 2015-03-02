@@ -7,17 +7,8 @@ import java.io.Serializable;
 */
 public abstract class DocumentFile implements Serializable {
 
-	public String toData() {
-		return _name;
-	}
-
-	@Override
-	public String toString() {
-		return _name;
-	}
+	public abstract String toData();
 
 	public abstract boolean isValid();
-
-	protected String _name;
 
 }

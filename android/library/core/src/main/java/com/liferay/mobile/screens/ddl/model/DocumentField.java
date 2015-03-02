@@ -2,6 +2,9 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
+
+import org.json.JSONException;
 
 import java.util.Locale;
 import java.util.Map;
@@ -77,7 +80,15 @@ public class DocumentField extends Field<DocumentFile> {
 			return null;
 		}
 
-		return new DocumentRemoteFile(string);
+		DocumentRemoteFile result = null;
+
+		try {
+			result = new DocumentRemoteFile(string);
+		} catch (JSONException e) {
+			Log.e("liferay-screens", "Can't parse the document JSON", e);
+		}
+
+		return result;
 	}
 
 	public void createLocalFile(String path) {

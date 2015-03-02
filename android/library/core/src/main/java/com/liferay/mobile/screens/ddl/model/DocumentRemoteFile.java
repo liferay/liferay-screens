@@ -8,18 +8,17 @@ import java.io.Serializable;
 /**
  * @author Javier Gamarra
  */
-public class DocumentRemoteFile extends DocumentFile implements Serializable {
+public class DocumentRemoteFile extends DocumentFile {
 
-	public DocumentRemoteFile(String name) {
-		try {
-			JSONObject jsonObject = new JSONObject(name);
-			_uuid = jsonObject.getString("uuid");
-			_version = jsonObject.getInt("version");
-			_groupId = jsonObject.getInt("groupId");
-			_name = jsonObject.getString("title");
-		}
-		catch (JSONException e) {
-		}
+	public DocumentRemoteFile(String json) throws JSONException {
+		JSONObject jsonObject = new JSONObject(json);
+
+		_uuid = jsonObject.getString("uuid");
+		_version = jsonObject.getInt("version");
+		_groupId = jsonObject.getInt("groupId");
+
+		// this is empty if we're retrieving the record
+		_title = jsonObject.optString("title");
 	}
 
 	@Override
@@ -31,7 +30,7 @@ public class DocumentRemoteFile extends DocumentFile implements Serializable {
 
 	@Override
 	public String toString() {
-		return _name == null ? "File in server" : _name;
+		return _title.isEmpty() ? "File in server" : _title;
 	}
 
 	@Override
@@ -42,4 +41,5 @@ public class DocumentRemoteFile extends DocumentFile implements Serializable {
 	private Integer _groupId;
 	private String _uuid;
 	private Integer _version;
+	private String _title;
 }

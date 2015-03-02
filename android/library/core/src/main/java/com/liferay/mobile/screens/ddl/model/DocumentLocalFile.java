@@ -5,20 +5,29 @@ import java.io.Serializable;
 /**
  * @author Javier Gamarra
  */
-public class DocumentLocalFile extends DocumentFile implements Serializable {
+public class DocumentLocalFile extends DocumentFile {
 
-	public DocumentLocalFile(String name) {
-		_name = name;
+	public DocumentLocalFile(String path) {
+		_path = path;
 	}
 
 	@Override
 	public String toData() {
-		return _name;
+		// it's not possible to sent the local file, so fast-fail
+		assert false;
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		return _path;
 	}
 
 	@Override
 	public boolean isValid() {
-		return _name != null && !_name.isEmpty();
+		return _path != null && !_path.isEmpty();
 	}
+
+	private String _path;
 
 }
