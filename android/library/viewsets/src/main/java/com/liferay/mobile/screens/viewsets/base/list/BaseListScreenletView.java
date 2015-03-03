@@ -20,6 +20,10 @@ import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
@@ -35,41 +39,41 @@ import java.util.List;
  * @author Silvio Santos
  */
 public abstract class BaseListScreenletView<E extends Parcelable, A extends BaseListAdapter<E>>
-	extends RecyclerView
+	extends FrameLayout
 	implements BaseListViewModel<E>, BaseListAdapterListener {
 
 	public BaseListScreenletView(Context context) {
 		super(context);
-
-		init(context);
 	}
 
 	public BaseListScreenletView(Context context, AttributeSet attributes) {
 		super(context, attributes);
-
-		init(context);
 	}
 
 	public BaseListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
-
-		init(context);
     }
 
-	protected void init(Context context) {
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
 		int itemLayoutId = R.layout.list_item_default;
 		int itemProgressLayoutId = R.layout.list_item_progress_default;
 
+		_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+		_progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+
 		A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
+		_recyclerView.setAdapter(adapter);
+		_recyclerView.setHasFixedSize(true);
+		_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-		setAdapter(adapter);
-		setHasFixedSize(true);
-		setLayoutManager(new LinearLayoutManager(context));
-
-		addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.pixel_grey)));
+		_recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R
+				.drawable.pixel_grey)));
 	}
 
-    protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
+	protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
         List<E> entries = adapter.getEntries();
         List<E> allEntries = new ArrayList<>(
             Collections.<E>nCopies(rowCount, null));
@@ -90,7 +94,8 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 
 	@Override
 	public void showStartOperation(String actionName) {
-		// TODO show progress?
+		_progressBar.setVisibility(View.VISIBLE);
+		_recyclerView.setVisibility(View.GONE);
 	}
 
 	@Override
@@ -100,6 +105,9 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 
 	@Override
 	public void showFinishOperation(int page, List<E> entries, int rowCount) {
+		_progressBar.setVisibility(View.GONE);
+		_recyclerView.setVisibility(View.VISIBLE);
+
 		A adapter = (A) getAdapter();
 		List<E> allEntries = createAllEntries(page, entries, rowCount, adapter);
 
@@ -115,6 +123,8 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 
 	@Override
 	public void showFinishOperation(int page, Exception e) {
+		_progressBar.setVisibility(View.GONE);
+		_recyclerView.setVisibility(View.VISIBLE);
 		// TODO show error?
 	}
 
@@ -123,6 +133,10 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 		BaseListScreenlet screenlet = (BaseListScreenlet) getParent();
 
 		screenlet.loadPageForRow(row);
+	}
+
+	public A getAdapter() {
+		return (A) _recyclerView.getAdapter();
 	}
 
 	@Override
@@ -156,6 +170,9 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 	}
 
     protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
+
+	private ProgressBar _progressBar;
+	private RecyclerView _recyclerView;
 
 	private static final String _STATE_ENTRIES = "entries";
 	private static final String _STATE_ROW_COUNT = "rowCount";
