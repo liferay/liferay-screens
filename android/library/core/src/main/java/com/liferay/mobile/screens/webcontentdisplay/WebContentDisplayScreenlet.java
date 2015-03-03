@@ -29,6 +29,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractor;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractorImpl;
+import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewModel;
 
 import java.util.Locale;
 
@@ -36,7 +37,7 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayScreenlet
-		extends BaseScreenlet<BaseViewModel, WebContentDisplayInteractor>
+		extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayInteractor>
 		implements WebContentDisplayListener {
 
 	public WebContentDisplayScreenlet(Context context) {
@@ -59,13 +60,11 @@ public class WebContentDisplayScreenlet
 
 	@Override
 	public void onWebContentFailure(WebContentDisplayScreenlet source, Exception e) {
+		getViewModel().showError(e);
+
 		if (_listener != null) {
 			_listener.onWebContentFailure(this, e);
 		}
-
-		WebContentDisplayListener listenerView = (WebContentDisplayListener)getScreenletView();
-
-		listenerView.onWebContentFailure(this, e);
 	}
 
 	@Override
@@ -80,13 +79,7 @@ public class WebContentDisplayScreenlet
 			}
 		}
 
-		WebContentDisplayListener listenerView = (WebContentDisplayListener)getScreenletView();
-
-		String viewHtml = listenerView.onWebContentReceived(this, modifiedHtml);
-
-		if (viewHtml != null) {
-			modifiedHtml = viewHtml;
-		}
+		getViewModel().showWebContent(modifiedHtml);
 
 		return modifiedHtml;
 	}
