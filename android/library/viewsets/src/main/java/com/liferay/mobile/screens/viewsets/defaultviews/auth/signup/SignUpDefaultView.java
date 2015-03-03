@@ -103,7 +103,7 @@ public class SignUpDefaultView extends LinearLayout
 	public void onClick(View view) {
 		SignUpScreenlet signUpScreenlet = (SignUpScreenlet)getParent();
 
-		signUpScreenlet.performUserAction(SignUpScreenlet.SIGN_UP_ACTION);
+		signUpScreenlet.performUserAction();
 	}
 
 	@Override

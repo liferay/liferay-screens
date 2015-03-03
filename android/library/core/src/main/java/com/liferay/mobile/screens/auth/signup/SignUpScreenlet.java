@@ -42,8 +42,6 @@ public class SignUpScreenlet
 	extends BaseScreenlet<SignUpViewModel, SignUpInteractor>
 	implements SignUpListener {
 
-	public static final String SIGN_UP_ACTION = "signUp";
-
 	public SignUpScreenlet(Context context) {
 		super(context, null);
 	}

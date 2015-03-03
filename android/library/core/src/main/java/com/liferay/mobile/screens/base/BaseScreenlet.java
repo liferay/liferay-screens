@@ -63,6 +63,14 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return _screenletId;
 	}
 
+	public void performUserAction() {
+		I interactor = getInteractor();
+
+		if (interactor != null) {
+			onUserAction(null, interactor, null);
+		}
+	}
+
 	public void performUserAction(String userActionName, Object... args) {
 		I interactor = getInteractor(userActionName);
 

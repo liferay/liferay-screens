@@ -85,7 +85,7 @@ public class LoginDefaultView extends LinearLayout
 	public void onClick(View view) {
 		LoginScreenlet loginScreenlet = (LoginScreenlet) getParent();
 
-		loginScreenlet.performUserAction(LoginScreenlet.LOGIN_ACTION);
+		loginScreenlet.performUserAction();
 	}
 
 	public void setAuthMethod(AuthMethod authMethod) {
