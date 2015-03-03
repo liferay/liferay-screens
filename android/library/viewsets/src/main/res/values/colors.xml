@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<item name="liferay_light_blue" type="color">#DD00B8E0</item>
-	<item name="liferay_primary_blue" type="color">#FF00B8E0</item>
-	<item name="liferay_light_gray" type="color">#FFD5D5D7</item>
-	<item name="liferay_dark_gray" type="color">#FF919394</item>
-	<item name="liferay_red" type="color">#FFE00000</item>
-	<item name="liferay_green" type="color">#FF5AD427</item>
-	<item name="liferay_clear_blue" type="color">#FFF0FFFF</item>
-	<item name="liferay_pure_red" type="color">#FFFF0000</item>
-	<item name="liferay_clear_red" type="color">#FFFFDCC8</item>
+	<color name="liferay_light_blue" >#DD00B8E0</color>
+	<color name="liferay_primary_blue" >#FF00B8E0</color>
+	<color name="liferay_light_gray" >#FFD5D5D7</color>
+	<color name="liferay_dark_gray" >#FF919394</color>
+	<color name="liferay_red" >#FFE00000</color>
+	<color name="liferay_green" >#FF5AD427</color>
+	<color name="liferay_clear_blue" >#FFF0FFFF</color>
+	<color name="liferay_pure_red" >#FFFF0000</color>
+	<color name="liferay_clear_red" >#FFFFDCC8</color>
+
+	<color name="material_light_green" >#FF27AE61</color>
+	<color name="primary">#8BC34A</color>
+	<color name="primary_dark">#689F38</color>
+	<color name="primary_light">#DCEDC8</color>
+	<color name="accent">#CDDC39</color>
+	<color name="primary_text">#212121</color>
+	<color name="secondary_text">#727272</color>
+	<color name="icons">#212121</color>
+	<color name="divider">#B6B6B6</color>
+
 </resources>
