@@ -18,14 +18,16 @@
 	<attr name="layoutId" format="reference"/>
 	<attr name="recordSetId" format="integer"/>
 	<attr name="userId" format="integer"/>
+	<attr name="firstPageSize" format="integer"/>
+	<attr name="pageSize" format="integer"/>
 
 	<declare-styleable name="AssetListScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
 		<attr name="classNameId" format="integer"/>
-		<attr name="firstPageSize" format="integer"/>
-		<attr name="pageSize" format="integer"/>
+		<attr name="firstPageSize" />
+		<attr name="pageSize" />
 	</declare-styleable>
 
 	<declare-styleable name="DDLFormScreenlet">
