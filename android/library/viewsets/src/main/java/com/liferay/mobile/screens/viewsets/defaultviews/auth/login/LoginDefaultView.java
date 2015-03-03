@@ -68,7 +68,7 @@ public class LoginDefaultView extends ProgressDefaultView
 
 	@Override
 	public void showStartOperation(String actionName) {
-		//TODO show progress dialog
+		showDialog();
 	}
 
 	@Override
@@ -94,10 +94,6 @@ public class LoginDefaultView extends ProgressDefaultView
 		LoginScreenlet loginScreenlet = (LoginScreenlet) getParent();
 
 		loginScreenlet.performUserAction();
-
-		_loading = true;
-
-		showDialog();
 	}
 
 	public void setAuthMethod(AuthMethod authMethod) {

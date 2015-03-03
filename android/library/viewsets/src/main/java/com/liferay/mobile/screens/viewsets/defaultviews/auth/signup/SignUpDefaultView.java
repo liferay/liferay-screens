@@ -19,18 +19,20 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.auth.signup.SignUpScreenlet;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
+import com.liferay.mobile.screens.viewsets.defaultviews.auth.ProgressDefaultView;
 
 /**
  * @author Silvio Santos
  */
-public class SignUpDefaultView extends LinearLayout
-	implements SignUpViewModel, View.OnClickListener {
+public class SignUpDefaultView extends ProgressDefaultView
+		implements SignUpViewModel, View.OnClickListener {
 
 	public SignUpDefaultView(Context context) {
 		super(context, null);
@@ -81,7 +83,7 @@ public class SignUpDefaultView extends LinearLayout
 
 	@Override
 	public void showStartOperation(String actionName) {
-		// TODO show progress dialog
+		showDialog();
 	}
 
 	@Override
@@ -91,17 +93,20 @@ public class SignUpDefaultView extends LinearLayout
 
 	@Override
 	public void showFinishOperation(User user) {
-		// TODO show success?
+		dismisDialog();
+		LiferayLogger.i("Sign-up successful: " + user.getId());
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		// TODO show error?
+		dismisDialog();
+		LiferayLogger.e("Could not sign up", e);
+		DefaultCrouton.error(getContext(), getContext().getString(R.string.sign_up_error), e);
 	}
 
 	@Override
 	public void onClick(View view) {
-		SignUpScreenlet signUpScreenlet = (SignUpScreenlet)getParent();
+		SignUpScreenlet signUpScreenlet = (SignUpScreenlet) getParent();
 
 		signUpScreenlet.performUserAction();
 	}
@@ -110,12 +115,12 @@ public class SignUpDefaultView extends LinearLayout
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_firstName = (EditText)findViewById(R.id.first_name);
-		_lastName = (EditText)findViewById(R.id.last_name);
-		_emailAddress = (EditText)findViewById(R.id.email_address);
-		_password = (EditText)findViewById(R.id.password);
+		_firstName = (EditText) findViewById(R.id.first_name);
+		_lastName = (EditText) findViewById(R.id.last_name);
+		_emailAddress = (EditText) findViewById(R.id.email_address);
+		_password = (EditText) findViewById(R.id.password);
 
-		Button signUpButton = (Button)findViewById(R.id.sign_up);
+		Button signUpButton = (Button) findViewById(R.id.sign_up);
 		signUpButton.setOnClickListener(this);
 	}
 

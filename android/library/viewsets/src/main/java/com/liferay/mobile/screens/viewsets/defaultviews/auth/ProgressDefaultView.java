@@ -59,6 +59,7 @@ public class ProgressDefaultView extends LinearLayout {
 			final View customDialogView = factory.inflate(
 					R.layout.progress_dialog_default, null);
 			_progressDialog = builder.setView(customDialogView).create();
+			_loading = true;
 		}
 		_progressDialog.show();
 	}
