@@ -110,8 +110,8 @@ public class DDLFormDefaultView
 	}
 
 	@Override
-	public void showFinishOperation() {
-		// not used
+	public void showFinishOperation(String actionName) {
+		showFinishOperation(actionName, null);
 	}
 
 	@Override

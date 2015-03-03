@@ -94,12 +94,8 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 	}
 
 	@Override
-	public void showFinishOperation() {
-	}
-
-	@Override
-	public void showFailedOperation(Exception e, Object... args) {
-		// use method with page
+	public void showFinishOperation(String actionName) {
+		assert false : "Use showFinishOperation(page, entries, rowCount) instead";
 	}
 
 	@Override
@@ -110,6 +106,11 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 		adapter.setRowCount(rowCount);
 		adapter.setEntries(allEntries);
 		adapter.notifyDataSetChanged();
+	}
+
+	@Override
+	public void showFailedOperation(Exception e, Object... args) {
+		// use method with page
 	}
 
 	@Override

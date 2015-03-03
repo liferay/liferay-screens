@@ -517,7 +517,7 @@ public class DDLFormScreenlet
 
 				documentToUpload.moveToUploadInProgressState();
 
-				getViewModel().showStartOperation("", UPLOAD_DOCUMENT_ACTION, documentToUpload);
+				getViewModel().showStartOperation(UPLOAD_DOCUMENT_ACTION, documentToUpload);
 
 				try {
 					DDLFormDocumentUploadInteractor uploadInteractor =

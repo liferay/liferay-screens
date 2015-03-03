@@ -67,8 +67,8 @@ public class LoginDefaultView extends LinearLayout
 	}
 
 	@Override
-	public void showFinishOperation() {
-		// not used
+	public void showFinishOperation(String actionName) {
+		assert false : "Use showFinishOperation(user) instead";
 	}
 
 	@Override

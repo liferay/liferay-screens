@@ -54,8 +54,8 @@ public class UserPortraitDefaultView extends FrameLayout implements UserPortrait
 	}
 
 	@Override
-	public void showFinishOperation() {
-		// not used
+	public void showFinishOperation(String actionName) {
+		assert false : "Use showFinishOperation(bitmap) instead";
 	}
 
 	@Override

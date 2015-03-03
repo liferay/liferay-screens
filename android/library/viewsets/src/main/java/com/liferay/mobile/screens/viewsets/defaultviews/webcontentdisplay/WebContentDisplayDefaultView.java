@@ -44,11 +44,6 @@ public class WebContentDisplayDefaultView extends WebView implements WebContentD
 	}
 
 	@Override
-	public void showFinishOperation() {
-		// not used
-	}
-
-	@Override
 	public void showFinishOperation(String html) {
 		String styledHtml =
 			STYLES + "<div class=\"MobileCSS\">" + html + "</div>";
@@ -61,7 +56,7 @@ public class WebContentDisplayDefaultView extends WebView implements WebContentD
 
 	@Override
 	public void showFailedOperation(Exception e, Object... args) {
-		// TODO show error?
+		// TODO show error
 	}
 
 	private static final String STYLES =
