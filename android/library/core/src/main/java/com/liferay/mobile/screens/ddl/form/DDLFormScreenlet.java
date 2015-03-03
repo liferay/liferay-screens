@@ -374,17 +374,10 @@ public class DDLFormScreenlet
 			R.styleable.DDLFormScreenlet_groupId,
 			(int) LiferayServerContext.getGroupId());
 
-		_structureId = typedArray.getInteger(
-			R.styleable.DDLFormScreenlet_structureId, 0);
-
-		_recordSetId = typedArray.getInteger(
-			R.styleable.DDLFormScreenlet_recordSetId, 0);
-
-		_recordId = typedArray.getInteger(
-			R.styleable.DDLFormScreenlet_recordId, 0);
-
+		_structureId = typedArray.getInteger(R.styleable.DDLFormScreenlet_structureId, 0);
+		_recordSetId = typedArray.getInteger(R.styleable.DDLFormScreenlet_recordSetId, 0);
+		_recordId = typedArray.getInteger(R.styleable.DDLFormScreenlet_recordId, 0);
 		_filePrefix = typedArray.getString(R.styleable.DDLFormScreenlet_filePrefix);
-
 		_repositoryId = typedArray.getInteger(R.styleable.DDLFormScreenlet_repositoryId, 0);
 		_folderId = typedArray.getInteger(R.styleable.DDLFormScreenlet_folderId, 0);
 
@@ -454,8 +447,7 @@ public class DDLFormScreenlet
 		String layoutName = _defaultLayoutNames.get(type);
 		String packageName = context.getPackageName();
 
-		int layoutId = context.getResources().getIdentifier(
-			layoutName, "layout", packageName);
+		int layoutId = context.getResources().getIdentifier(layoutName, "layout", packageName);
 
 		return layoutId;
 	}
