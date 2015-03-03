@@ -82,6 +82,8 @@ public class LoginScreenlet
 
 	public void setAuthMethod(AuthMethod authMethod) {
 		_authMethod = authMethod;
+
+		getViewModel().setAuthMethod(_authMethod);
 	}
 
 	public StorageType getCredentialsStore() {
@@ -98,20 +100,18 @@ public class LoginScreenlet
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.LoginScreenlet, 0, 0);
 
-		int layoutId = typedArray.getResourceId(R.styleable.LoginScreenlet_layoutId, 0);
-
-		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
-
 		int storeValue = typedArray.getInt(R.styleable.LoginScreenlet_credentialsStore,
 			StorageType.NONE.toInt());
 
 		_credentialsStore = StorageType.valueOf(storeValue);
 
+		int layoutId = typedArray.getResourceId(R.styleable.LoginScreenlet_layoutId, 0);
+
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
 
-		LoginViewModel viewModel = (LoginViewModel) view;
-		_authMethod = AuthMethod.getValue(authMethodId);
-		viewModel.setAuthMethod(_authMethod);
+		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
+
+		setAuthMethod(AuthMethod.getValue(authMethodId));
 
 		typedArray.recycle();
 

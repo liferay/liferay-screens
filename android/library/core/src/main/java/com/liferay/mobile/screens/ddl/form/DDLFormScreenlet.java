@@ -401,47 +401,45 @@ public class DDLFormScreenlet
 
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
 
-		DDLFormViewModel viewModel = (DDLFormViewModel)view;
-
 		setFieldLayoutId(
-			viewModel, Field.EditorType.CHECKBOX, typedArray,
+			Field.EditorType.CHECKBOX, typedArray,
 			R.styleable.DDLFormScreenlet_checkboxFieldLayoutId);
 
 		setFieldLayoutId(
-			viewModel, Field.EditorType.DATE, typedArray,
+			Field.EditorType.DATE, typedArray,
 			R.styleable.DDLFormScreenlet_dateFieldLayoutId);
 
 		setFieldLayoutId(
-			viewModel, Field.EditorType.NUMBER, typedArray,
+			Field.EditorType.NUMBER, typedArray,
 			R.styleable.DDLFormScreenlet_numberFieldLayoutId);
 
 		setFieldLayoutId(
-			viewModel, Field.EditorType.INTEGER, typedArray,
+			Field.EditorType.INTEGER, typedArray,
 			R.styleable.DDLFormScreenlet_numberFieldLayoutId);
 
 		setFieldLayoutId(
-			viewModel, Field.EditorType.DECIMAL, typedArray,
+			Field.EditorType.DECIMAL, typedArray,
 			R.styleable.DDLFormScreenlet_numberFieldLayoutId);
 
 		setFieldLayoutId(
-			viewModel, Field.EditorType.RADIO, typedArray,
+			Field.EditorType.RADIO, typedArray,
 			R.styleable.DDLFormScreenlet_radioFieldLayoutId);
 
 		setFieldLayoutId(
-			viewModel, Field.EditorType.SELECT, typedArray,
+			Field.EditorType.SELECT, typedArray,
 			R.styleable.DDLFormScreenlet_selectFieldLayoutId);
 
 		setFieldLayoutId(
-			viewModel, Field.EditorType.TEXT, typedArray,
+			Field.EditorType.TEXT, typedArray,
 			R.styleable.DDLFormScreenlet_textFieldLayoutId);
 
 		setFieldLayoutId(
-			viewModel, Field.EditorType.TEXT_AREA, typedArray,
+			Field.EditorType.TEXT_AREA, typedArray,
 			R.styleable.DDLFormScreenlet_textAreaFieldLayoutId);
 
 		setFieldLayoutId(
-				viewModel, Field.EditorType.DOCUMENT, typedArray,
-				R.styleable.DDLFormScreenlet_documentFieldLayoutId);
+			Field.EditorType.DOCUMENT, typedArray,
+			R.styleable.DDLFormScreenlet_documentFieldLayoutId);
 
 		typedArray.recycle();
 
@@ -533,14 +531,10 @@ public class DDLFormScreenlet
 		}
 	}
 
-	protected void setFieldLayoutId(
-		DDLFormViewModel viewModel, Field.EditorType editorType,
-		TypedArray typedArray, int index) {
+	protected void setFieldLayoutId(Field.EditorType editorType, TypedArray typedArray, int index) {
+		int layoutId = typedArray.getResourceId(index, getDefaultLayoutId(editorType));
 
-		int layoutId = typedArray.getResourceId(
-			index, getDefaultLayoutId(editorType));
-
-		viewModel.setFieldLayoutId(editorType, layoutId);
+		getViewModel().setFieldLayoutId(editorType, layoutId);
 	}
 
 	@Override
