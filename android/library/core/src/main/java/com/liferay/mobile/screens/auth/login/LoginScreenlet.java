@@ -54,7 +54,7 @@ public class LoginScreenlet
 
 	@Override
 	public void onLoginFailure(Exception e) {
-		getViewModel().showFailedOperation(e);
+		getViewModel().showFailedOperation(null, e);
 
 		if (_listener != null) {
 			_listener.onLoginFailure(e);

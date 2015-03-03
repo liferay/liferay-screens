@@ -76,7 +76,7 @@ public class ForgotPasswordDefaultView extends LinearLayout
 	}
 
 	@Override
-	public void showFailedOperation(Exception e, Object... args) {
+	public void showFailedOperation(String actionName, Exception e) {
 		//TODO show user error?
 	}
 

@@ -18,6 +18,6 @@ public interface BaseViewModel {
 
 	void showStartOperation(String actionName);
 	void showFinishOperation(String actionName);
-	void showFailedOperation(Exception e, Object... args);
+	void showFailedOperation(String actionName, Exception e);
 
 }

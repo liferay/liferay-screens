@@ -59,7 +59,7 @@ public class WebContentDisplayScreenlet
 
 	@Override
 	public void onWebContentFailure(WebContentDisplayScreenlet source, Exception e) {
-		getViewModel().showFailedOperation(e);
+		getViewModel().showFailedOperation(null, e);
 
 		if (_listener != null) {
 			_listener.onWebContentFailure(this, e);

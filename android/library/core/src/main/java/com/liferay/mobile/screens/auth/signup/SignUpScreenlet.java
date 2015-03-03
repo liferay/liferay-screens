@@ -56,7 +56,7 @@ public class SignUpScreenlet
 
 	@Override
 	public void onSignUpFailure(Exception e) {
-		getViewModel().showFailedOperation(e);
+		getViewModel().showFailedOperation(null, e);
 
 		if (_listener != null) {
 			_listener.onSignUpFailure(e);

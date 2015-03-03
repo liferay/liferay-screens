@@ -135,16 +135,19 @@ public class DDLFormDefaultView
 	}
 
 	@Override
-	public void showFailedOperation(Exception e, Object... args) {
-		// TODO show error?
+	public void showFailedOperation(String actionName, Exception e) {
+		showFailedOperation(actionName, e, null);
+	}
 
-		String actionName = (String) args[0];
+	@Override
+	public void showFailedOperation(String actionName, Exception e, Object argument) {
+		// TODO show error?
 
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
 			clearFormFields();
 		}
 		else if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
-			DocumentField documentField = (DocumentField) args[1];
+			DocumentField documentField = (DocumentField) argument;
 
 			findFieldView(documentField).refresh();
 		}

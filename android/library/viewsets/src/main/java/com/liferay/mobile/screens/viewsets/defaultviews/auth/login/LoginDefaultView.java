@@ -77,7 +77,7 @@ public class LoginDefaultView extends LinearLayout
 	}
 
 	@Override
-	public void showFailedOperation(Exception e, Object... args) {
+	public void showFailedOperation(String actionName, Exception e) {
 		//TODO show login error to user
 	}
 

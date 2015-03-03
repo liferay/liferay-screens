@@ -64,5 +64,6 @@ public interface DDLFormViewModel extends BaseViewModel {
 
 	void showStartOperation(String actionName, Object argument);
 	void showFinishOperation(String actionName, Object argument);
+	void showFailedOperation(String actionName, Exception e, Object argument);
 
 }

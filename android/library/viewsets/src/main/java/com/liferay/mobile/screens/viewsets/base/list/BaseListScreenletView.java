@@ -109,8 +109,8 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 	}
 
 	@Override
-	public void showFailedOperation(Exception e, Object... args) {
-		// use method with page
+	public void showFailedOperation(String actionName, Exception e) {
+		assert false : "Use showFinishOperation(page, entries, rowCount) instead";
 	}
 
 	@Override
