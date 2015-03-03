@@ -22,7 +22,7 @@
 
         <Button
             android:id="@+id/submit"
-            style="@style/default_submit_button"
+            style="@style/default_button"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:text="@string/submit"

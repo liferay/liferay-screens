@@ -5,7 +5,7 @@
 		<item name="android:fontFamily">sans-serif-light</item>
 	</style>
 
-	<style name="default_submit_button" parent="base_default_submit_button">
+	<style name="default_button" parent="base_default_button">
 		<item name="android:fontFamily">sans-serif-light</item>
 	</style>
 

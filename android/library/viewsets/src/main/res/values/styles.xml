@@ -2,11 +2,29 @@
 <resources>
 
 	<style name="default_theme" parent="Theme.AppCompat.Light">
-		<item name="android:textViewStyle">@style/default_text_view</item>
-		<item name="android:listViewStyle">@style/default_list</item>
 		<item name="colorPrimary">@color/liferay_primary_blue</item>
 		<item name="colorAccent">@color/liferay_light_blue</item>
+		<item name="android:textViewStyle">@style/default_text_view</item>
+		<item name="android:listViewStyle">@style/default_list</item>
+		<item name="android:editTextStyle">@style/default_edit_text</item>
+		<item name="android:buttonStyle">@style/default_button</item>
 	</style>
+
+	<style name="material_theme" parent="Theme.AppCompat.Light">
+		<item name="colorPrimary">@color/material_light_green</item>
+		<item name="colorAccent">@color/material_light_green</item>
+		<item name="android:textViewStyle">@style/material_text_view</item>
+		<item name="android:listViewStyle">@style/material_list</item>
+		<item name="android:editTextStyle">@style/material_edit_text</item>
+		<item name="android:buttonStyle">@style/material_button</item>
+	</style>
+
+	<style name="base_theme" parent="material_theme"/>
+
+	<style name="material_edit_text" parent="android:Widget.EditText"/>
+	<style name="material_text_view" parent="android:Widget.TextView"/>
+	<style name="material_list" parent="android:Widget.ListView"/>
+	<style name="material_button" parent="android:Widget.Button"/>
 
 	<style name="default_edit_text" parent="base_default_edit_text"/>
 
@@ -15,11 +33,8 @@
 		<item name="android:paddingBottom">@dimen/default_edit_text_padding</item>
 		<item name="android:paddingLeft">@dimen/default_edit_text_drawable_padding</item>
 		<item name="android:paddingRight">@dimen/default_edit_text_padding</item>
-		<item name="android:layout_marginBottom">@dimen/default_edit_text_margin_bottom</item>
 		<item name="android:background">@drawable/default_edit_text_selector</item>
 		<item name="android:drawablePadding">@dimen/default_edit_text_drawable_padding</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
 		<item name="android:singleLine">true</item>
 		<item name="android:textColorHint">@color/liferay_light_gray</item>
 	</style>
@@ -34,25 +49,13 @@
 		<item name="android:layout_height">wrap_content</item>
 	</style>
 
-	<style name="default_submit_button" parent="base_default_submit_button"/>
+	<style name="default_button" parent="base_default_button"/>
 
-	<style name="base_default_submit_button" parent="default_button">
-		<item name="android:layout_marginBottom">0dp</item>
-		<item name="android:layout_marginLeft">0dp</item>
-		<item name="android:layout_marginRight">0dp</item>
-		<item name="android:layout_marginTop">@dimen/default_button_margin_top</item>
-	</style>
-
-	<style name="default_button" parent="android:Widget.Button">
-		<item name="android:layout_marginBottom">5dp</item>
-		<item name="android:layout_marginLeft">1dp</item>
-		<item name="android:layout_marginRight">1dp</item>
-		<item name="android:layout_marginTop">5dp</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
+	<style name="base_default_button" parent="android:Widget.Button">
 		<item name="android:background">@drawable/default_button_selector</item>
 		<item name="android:textColor">@android:color/white</item>
 		<item name="android:textSize">17sp</item>
+		<item name="android:padding">10dp</item>
 	</style>
 
 	<style name="default_screenlet">
@@ -82,8 +85,7 @@
 		<item name="android:typeface">normal</item>
 	</style>
 
-	<style name="custom_dialog_theme">
-	</style>
+	<style name="custom_dialog_theme"></style>
 
 	<style name="default_checkbox" parent="base_default_checkbox"/>
 
