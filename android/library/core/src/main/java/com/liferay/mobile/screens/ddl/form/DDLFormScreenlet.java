@@ -54,6 +54,12 @@ public class DDLFormScreenlet
 	extends BaseScreenlet<DDLFormViewModel, DDLFormBaseInteractor>
 	implements DDLFormListener {
 
+	public static final String LOAD_FORM_ACTION = "loadForm";
+	public static final String LOAD_RECORD_ACTION = "loadRecord";
+	public static final String ADD_RECORD_ACTION = "addRecord";
+	public static final String UPDATE_RECORD_ACTION = "updateRecord";
+	public static final String UPLOAD_DOCUMENT_ACTION = "uploadDocument";
+
 	public DDLFormScreenlet(Context context) {
 		super(context, null);
 	}
@@ -76,19 +82,19 @@ public class DDLFormScreenlet
 	}
 
 	public void loadForm() {
-		performUserAction(_LOAD_FORM_ACTION);
+		performUserAction(LOAD_FORM_ACTION);
 	}
 
 	public void loadRecord() {
-		performUserAction(_LOAD_RECORD_ACTION);
+		performUserAction(LOAD_RECORD_ACTION);
 	}
 
 	public void submitForm() {
 		if (_record.getRecordId() == 0) {
-			performUserAction(_ADD_RECORD_ACTION);
+			performUserAction(ADD_RECORD_ACTION);
 		}
 		else {
-			performUserAction(_UPDATE_RECORD_ACTION);
+			performUserAction(UPDATE_RECORD_ACTION);
 		}
 	}
 
@@ -117,7 +123,7 @@ public class DDLFormScreenlet
 	}
 
 	public void startUpload(DocumentField field) {
-		performUserAction(_UPLOAD_DOCUMENT_ACTION, field);
+		performUserAction(UPLOAD_DOCUMENT_ACTION, field);
 	}
 
 	@Override
@@ -337,15 +343,15 @@ public class DDLFormScreenlet
 	@Override
 	protected DDLFormBaseInteractor createInteractor(String actionName) {
 		switch (actionName) {
-			case _LOAD_FORM_ACTION:
+			case LOAD_FORM_ACTION:
 				return new DDLFormLoadInteractorImpl(getScreenletId());
-			case _LOAD_RECORD_ACTION:
+			case LOAD_RECORD_ACTION:
 				return new DDLFormLoadRecordInteractorImpl(getScreenletId());
-			case _ADD_RECORD_ACTION:
+			case ADD_RECORD_ACTION:
 				return new DDLFormAddRecordInteractorImpl(getScreenletId());
-			case _UPDATE_RECORD_ACTION:
+			case UPDATE_RECORD_ACTION:
 				return new DDLFormUpdateRecordInteractorImpl(getScreenletId());
-			case _UPLOAD_DOCUMENT_ACTION:
+			case UPLOAD_DOCUMENT_ACTION:
 				return new DDLFormDocumentUploadInteractorImpl(getScreenletId());
 			default:
 				return null;
@@ -616,14 +622,6 @@ public class DDLFormScreenlet
 
 		_defaultLayoutNames.put(Field.EditorType.DOCUMENT, "ddlfield_document_default");
 	}
-
-
-	private static final String _LOAD_FORM_ACTION = "loadForm";
-	private static final String _LOAD_RECORD_ACTION = "loadRecord";
-	private static final String _ADD_RECORD_ACTION = "addRecord";
-	private static final String _UPDATE_RECORD_ACTION = "updateRecord";
-	private static final String _UPLOAD_DOCUMENT_ACTION = "uploadDocument";
-
 
 	private static final String _STATE_SUPER = "ddlform-super";
 	private static final String _STATE_AUTOSCROLL_ON_VALIDATION = "ddlform-autoScrollOnValidation";
