@@ -30,20 +30,14 @@ public class AssetListDefaultView extends BaseListScreenletView<AssetEntry, Asse
 
 	public AssetListDefaultView(Context context) {
 		super(context, null);
-
-		init(context);
 	}
 
 	public AssetListDefaultView(Context context, AttributeSet attributes) {
 		super(context, attributes, 0);
-
-		init(context);
 	}
 
 	public AssetListDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-
-		init(context);
 	}
 
     @Override
