@@ -53,7 +53,7 @@ public class ForgotPasswordScreenlet
 
 	@Override
 	public void onForgotPasswordRequestFailure(Exception e) {
-		getViewModel().showError(e);
+		getViewModel().showFinishOperation(e);
 
 		if (_listener != null) {
 			_listener.onForgotPasswordRequestFailure(e);
@@ -62,7 +62,11 @@ public class ForgotPasswordScreenlet
 
 	@Override
 	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
-		getViewModel().showPasswordSent(passwordSent);
+		int operationMsg = (passwordSent) ? R.string.password_sent : R.string.password_sent;
+
+		getViewModel().showFinishOperation(
+			getContext().getString(operationMsg) + " " +
+				getContext().getString(R.string.check_your_inbox));
 
 		if (_listener != null) {
 			_listener.onForgotPasswordRequestSuccess(passwordSent);
@@ -74,9 +78,7 @@ public class ForgotPasswordScreenlet
 	}
 
 	@Override
-	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
-
+	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.ForgotPasswordScreenlet, 0, 0);
 

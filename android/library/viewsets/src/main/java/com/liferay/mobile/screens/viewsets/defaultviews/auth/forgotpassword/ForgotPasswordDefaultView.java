@@ -59,13 +59,18 @@ public class ForgotPasswordDefaultView extends LinearLayout
 	}
 
 	@Override
-	public void showError(Exception e, Object... args) {
-		//TODO show user error?
+	public void showStartOperation(String message, Object... args) {
+		//TODO show progress dialog
 	}
 
 	@Override
-	public void showPasswordSent(boolean passwordSent) {
+	public void showFinishOperation(String message, Object... args) {
 		//TODO show success?
+	}
+
+	@Override
+	public void showFinishOperation(Exception message, Object... args) {
+		//TODO show user error?
 	}
 
 	@Override
