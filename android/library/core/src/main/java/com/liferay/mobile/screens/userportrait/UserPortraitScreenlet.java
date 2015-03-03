@@ -23,7 +23,6 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorImpl;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
@@ -60,7 +59,8 @@ public class UserPortraitScreenlet
 
 	@Override
 	public void onStartUserPortraitRequest() {
-		// TODO notify start to view
+		//TODO use loading message instead of null
+		getViewModel().showStartOperation(null);
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class UserPortraitScreenlet
 			}
 		}
 
-		getViewModel().showUserPortrait(finalImage);
+		getViewModel().showFinishOperation(finalImage);
 
 		return finalImage;
 	}
@@ -86,7 +86,7 @@ public class UserPortraitScreenlet
 			_listener.onUserPortraitFailure(this, e);
 		}
 
-		getViewModel().showError(e);
+		getViewModel().showFinishOperation(e);
 	}
 
 	public void setListener(UserPortraitListener listener) {

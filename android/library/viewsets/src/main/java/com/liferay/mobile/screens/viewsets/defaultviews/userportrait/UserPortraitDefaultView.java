@@ -27,10 +27,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.viewsets.R;
-import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 
 /**
  * @author Javier Gamarra
@@ -51,13 +49,22 @@ public class UserPortraitDefaultView extends FrameLayout implements UserPortrait
     }
 
 	@Override
-	public void showUserPortrait(Bitmap bitmap) {
+	public void showStartOperation(String message, Object... args) {
+		_portraitProgress.setVisibility(VISIBLE);
+	}
+
+	@Override
+	public void showFinishOperation(String message, Object... args) {
+	}
+
+	@Override
+	public void showFinishOperation(Bitmap bitmap) {
 		_portraitProgress.setVisibility(INVISIBLE);
 		_portraitImage.setImageBitmap(transformBitmap(bitmap));
 	}
 
 	@Override
-	public void showError(Exception e, Object... args) {
+	public void showFinishOperation(Exception message, Object... args) {
 		_portraitProgress.setVisibility(INVISIBLE);
 		setDefaultImagePlaceholder();
 	}
@@ -68,6 +75,7 @@ public class UserPortraitDefaultView extends FrameLayout implements UserPortrait
 
 		_portraitImage = (ImageView) findViewById(R.id.portrait_image);
 		_portraitProgress = (ProgressBar) findViewById(R.id.portrait_progress);
+
 		setDefaultImagePlaceholder();
 	}
 

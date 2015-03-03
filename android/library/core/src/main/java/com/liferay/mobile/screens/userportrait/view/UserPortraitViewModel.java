@@ -23,6 +23,6 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  */
 public interface UserPortraitViewModel extends BaseViewModel {
 
-	void showUserPortrait(Bitmap bitmap);
+	void showFinishOperation(Bitmap bitmap);
 
 }
