@@ -53,10 +53,7 @@ public class ForgotPasswordScreenlet
 
 	@Override
 	public void onForgotPasswordRequestFailure(Exception e) {
-		ForgotPasswordListener listenerView =
-			(ForgotPasswordListener)getScreenletView();
-
-		listenerView.onForgotPasswordRequestFailure(e);
+		getViewModel().showError(e);
 
 		if (_listener != null) {
 			_listener.onForgotPasswordRequestFailure(e);
@@ -65,10 +62,7 @@ public class ForgotPasswordScreenlet
 
 	@Override
 	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
-		ForgotPasswordListener listenerView =
-			(ForgotPasswordListener)getScreenletView();
-
-		listenerView.onForgotPasswordRequestSuccess(passwordSent);
+		getViewModel().showPasswordSent(passwordSent);
 
 		if (_listener != null) {
 			_listener.onForgotPasswordRequestSuccess(passwordSent);

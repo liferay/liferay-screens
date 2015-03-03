@@ -34,8 +34,7 @@ import com.liferay.mobile.screens.viewsets.R;
  * @author Jose Manuel Navarro
  */
 public class ForgotPasswordDefaultView extends LinearLayout
-	implements ForgotPasswordViewModel, View.OnClickListener,
-		ForgotPasswordListener {
+	implements ForgotPasswordViewModel, View.OnClickListener {
 
 	public ForgotPasswordDefaultView(Context context) {
 		super(context, null);
@@ -60,21 +59,21 @@ public class ForgotPasswordDefaultView extends LinearLayout
 	}
 
 	@Override
+	public void showError(Exception e, Object... args) {
+		//TODO show user error?
+	}
+
+	@Override
+	public void showPasswordSent(boolean passwordSent) {
+		//TODO show success?
+	}
+
+	@Override
 	public void onClick(View view) {
 		ForgotPasswordScreenlet screenlet =
 			(ForgotPasswordScreenlet)getParent();
 
 		screenlet.performUserAction(ForgotPasswordScreenlet.REQUEST_PASSWORD_ACTION);
-	}
-
-	@Override
-	public void onForgotPasswordRequestFailure(Exception e) {
-		//TODO show user error?
-	}
-
-	@Override
-	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
-		//TODO show user success?
 	}
 
 	public void setAuthMethod(AuthMethod authMethod) {
