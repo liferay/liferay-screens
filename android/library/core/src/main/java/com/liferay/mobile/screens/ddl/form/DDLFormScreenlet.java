@@ -220,7 +220,7 @@ public class DDLFormScreenlet
 			originalField.moveToUploadFailureState();
 
 			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-			view.showDocumentUploadFailed(originalField);
+			view.showDocumentUploadFailed(originalField, e);
 		}
 
 		if (_listener != null) {

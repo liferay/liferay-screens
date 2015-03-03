@@ -150,7 +150,7 @@ public class DDLFormDefaultView
 	}
 
 	@Override
-	public void showDocumentUploadFailed(DocumentField documentField) {
+	public void showDocumentUploadFailed(DocumentField documentField, Exception e) {
 		findFieldView(documentField).refresh();
 	}
 

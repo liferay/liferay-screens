@@ -68,6 +68,6 @@ public interface DDLFormViewModel extends BaseViewModel {
 
 	void showDocumentUploaded(DocumentField documentField);
 
-	void showDocumentUploadFailed(DocumentField documentField);
+	void showDocumentUploadFailed(DocumentField documentField, Exception e);
 
 }
