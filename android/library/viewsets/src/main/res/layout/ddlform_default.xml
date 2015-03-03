@@ -11,12 +11,6 @@
 		android:layout_height="match_parent"
 		android:orientation="vertical">
 
-		<ProgressBar
-			android:id="@+id/ddlform_progress_bar"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:visibility="gone"/>
-
 		<LinearLayout
 			android:id="@+id/ddlfields_container"
 			android:layout_width="match_parent"
@@ -25,6 +19,13 @@
 			android:dividerPadding="8dp"
 			android:orientation="vertical"
 			android:showDividers="middle"/>
+
+		<ProgressBar
+			android:id="@+id/ddlform_progress_bar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:visibility="gone"/>
 
 		<Button
 			android:id="@+id/submit"
