@@ -89,7 +89,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
     }
 
 	@Override
-	public void showStartOperation(String message, Object... args) {
+	public void showStartOperation(String actionName) {
 		// TODO show progress?
 	}
 

@@ -80,7 +80,7 @@ public class SignUpDefaultView extends LinearLayout
 	}
 
 	@Override
-	public void showStartOperation(String message, Object... args) {
+	public void showStartOperation(String actionName) {
 		// TODO show progress dialog
 	}
 

@@ -39,7 +39,7 @@ public class WebContentDisplayDefaultView extends WebView implements WebContentD
 	}
 
 	@Override
-	public void showStartOperation(String message, Object... args) {
+	public void showStartOperation(String actionName) {
 		// TODO show progress dialog
 	}
 

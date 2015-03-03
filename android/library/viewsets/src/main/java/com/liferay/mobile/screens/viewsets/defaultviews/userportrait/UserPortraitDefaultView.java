@@ -49,7 +49,7 @@ public class UserPortraitDefaultView extends FrameLayout implements UserPortrait
     }
 
 	@Override
-	public void showStartOperation(String message, Object... args) {
+	public void showStartOperation(String actionName) {
 		_portraitProgress.setVisibility(VISIBLE);
 	}
 

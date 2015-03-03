@@ -97,13 +97,16 @@ public class DDLFormDefaultView
 	}
 
 	@Override
-	public void showStartOperation(String message, Object... args) {
+	public void showStartOperation(String actionName) {
+		assert false : "Use showStartOperation(actionName, argument) instead";
+	}
+
+	@Override
+	public void showStartOperation(String actionName, Object argument) {
 		// TODO show progress dialog?
 
-		String actionName = (String) args[0];
-
 		if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
-			DocumentField documentField = (DocumentField) args[1];
+			DocumentField documentField = (DocumentField) argument;
 
 			findFieldView(documentField).refresh();
 		}
