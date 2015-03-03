@@ -19,7 +19,6 @@ import android.util.AttributeSet;
 import android.webkit.WebView;
 
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
 import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewModel;
 
 /**
@@ -40,7 +39,12 @@ public class WebContentDisplayDefaultView extends WebView implements WebContentD
 	}
 
 	@Override
-	public void showWebContent(String html) {
+	public void showStartOperation(String message, Object... args) {
+		// TODO show progress dialog
+	}
+
+	@Override
+	public void showFinishOperation(String html, Object... args) {
 		String styledHtml =
 			STYLES + "<div class=\"MobileCSS\">" + html + "</div>";
 
@@ -51,8 +55,8 @@ public class WebContentDisplayDefaultView extends WebView implements WebContentD
 	}
 
 	@Override
-	public void showError(Exception e, Object... args) {
-		//TODO show load error to user??
+	public void showFinishOperation(Exception message, Object... args) {
+		// TODO show error?
 	}
 
 	private static final String STYLES =

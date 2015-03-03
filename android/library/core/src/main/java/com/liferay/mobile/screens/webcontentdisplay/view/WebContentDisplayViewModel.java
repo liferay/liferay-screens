@@ -21,6 +21,4 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  */
 public interface WebContentDisplayViewModel extends BaseViewModel {
 
-	void showWebContent(String html);
-
 }
