@@ -114,7 +114,7 @@ public class WebContentDisplayScreenlet
 
 		typedArray.recycle();
 
-		return LayoutInflater.from(getContext()).inflate(layoutId, null);
+		return LayoutInflater.from(context).inflate(layoutId, null);
 	}
 
 	@Override

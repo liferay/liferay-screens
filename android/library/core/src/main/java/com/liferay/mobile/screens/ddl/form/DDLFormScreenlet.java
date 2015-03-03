@@ -399,7 +399,7 @@ public class DDLFormScreenlet
 		_record.setRecordId(_recordId);
 		_record.setCreatorUserId(_userId);
 
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
+		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
 		setFieldLayoutId(
 			Field.EditorType.CHECKBOX, typedArray,

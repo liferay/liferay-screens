@@ -158,7 +158,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 
         typedArray.recycle();
 
-        return LayoutInflater.from(getContext()).inflate(layoutId, null);
+        return LayoutInflater.from(context).inflate(layoutId, null);
     }
 
     @Override

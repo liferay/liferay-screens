@@ -107,7 +107,7 @@ public class LoginScreenlet
 
 		int layoutId = typedArray.getResourceId(R.styleable.LoginScreenlet_layoutId, 0);
 
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
+		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
 		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
 
