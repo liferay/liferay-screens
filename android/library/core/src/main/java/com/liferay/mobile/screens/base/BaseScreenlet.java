@@ -105,6 +105,10 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return _screenletView;
 	}
 
+	protected V getViewModel() {
+		return (V)_screenletView;
+	}
+
 	@Override
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
