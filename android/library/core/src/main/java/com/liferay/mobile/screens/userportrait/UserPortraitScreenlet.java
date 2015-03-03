@@ -49,17 +49,7 @@ public class UserPortraitScreenlet
 	}
 
 	public void load() {
-		try {
-			if (_userId != 0) {
-				getInteractor().load(_userId);
-			}
-			else {
-				getInteractor().load(_male, _portraitId, _uuid);
-			}
-		}
-		catch (Exception e) {
-			onUserPortraitFailure(e);
-		}
+		performUserAction();
 	}
 
 	@Override
@@ -165,7 +155,20 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, UserPortraitInteractor interactor, Object... args) {
+	protected void onUserAction(
+		String userActionName, UserPortraitInteractor interactor, Object... args) {
+
+		try {
+			if (_userId != 0) {
+				getInteractor().load(_userId);
+			}
+			else {
+				getInteractor().load(_male, _portraitId, _uuid);
+			}
+		}
+		catch (Exception e) {
+			onUserPortraitFailure(e);
+		}
 	}
 
 	@Override

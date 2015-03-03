@@ -52,9 +52,7 @@ public class WebContentDisplayScreenlet
 	}
 
 	public void load() throws Exception {
-		Locale locale = getResources().getConfiguration().locale;
-
-		getInteractor().load(_groupId, _articleId, locale);
+		performUserAction();
 	}
 
 	@Override
@@ -130,8 +128,17 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, WebContentDisplayInteractor interactor, Object... args) {
-		// No user action from UI
+	protected void onUserAction(
+		String userActionName, WebContentDisplayInteractor interactor, Object... args) {
+
+		Locale locale = getResources().getConfiguration().locale;
+
+		try {
+			getInteractor().load(_groupId, _articleId, locale);
+		}
+		catch (Exception e) {
+			onWebContentFailure(this, e);
+		}
 	}
 
 	@Override
