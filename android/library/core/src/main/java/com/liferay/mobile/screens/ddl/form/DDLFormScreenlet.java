@@ -466,7 +466,8 @@ public class DDLFormScreenlet
 					DDLFormLoadInteractor loadInteractor = (DDLFormLoadInteractor) interactor;
 
 					loadInteractor.load(_record);
-				} catch (Exception e) {
+				}
+				catch (Exception e) {
 					onDDLFormLoadFailed(e);
 				}
 				break;
@@ -478,10 +479,12 @@ public class DDLFormScreenlet
 							(DDLFormLoadRecordInteractor) interactor;
 
 						loadInteractor.loadRecord(_record);
-					} catch (Exception e) {
+					}
+					catch (Exception e) {
 						onDDLFormRecordLoadFailed(e);
 					}
-				} else {
+				}
+				else {
 					// request both structure and data
 					_loadRecordAfterForm = true;
 					loadForm();
@@ -494,7 +497,8 @@ public class DDLFormScreenlet
 						(DDLFormAddRecordInteractor) interactor;
 
 					addInteractor.addRecord(_groupId, _record);
-				} catch (Exception e) {
+				}
+				catch (Exception e) {
 					onDDLFormRecordAddFailed(e);
 				}
 				break;
@@ -505,7 +509,8 @@ public class DDLFormScreenlet
 						(DDLFormUpdateRecordInteractor) interactor;
 
 					updateInteractor.updateRecord(_groupId, _record);
-				} catch (Exception e) {
+				}
+				catch (Exception e) {
 					onDDLFormUpdateRecordFailed(e);
 				}
 				break;
@@ -523,7 +528,8 @@ public class DDLFormScreenlet
 
 					uploadInteractor.upload(
 						_groupId, _userId, _repositoryId, _folderId, _filePrefix, documentToUpload);
-				} catch (Exception e) {
+				}
+				catch (Exception e) {
 					onDDLFormDocumentUploadFailed(documentToUpload, e);
 				}
 				break;

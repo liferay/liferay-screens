@@ -171,8 +171,6 @@ public class SignUpScreenlet
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.SignUpScreenlet, 0, 0);
 
-		int layoutId = typedArray.getResourceId(R.styleable.SignUpScreenlet_layoutId, 0);
-
 		_companyId = typedArray.getInt(
 			R.styleable.SignUpScreenlet_companyId,
 			(int)LiferayServerContext.getCompanyId());
@@ -190,11 +188,11 @@ public class SignUpScreenlet
 
 		_credentialsStore = StorageType.valueOf(storeValue);
 
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
+		int layoutId = typedArray.getResourceId(R.styleable.SignUpScreenlet_layoutId, 0);
 
 		typedArray.recycle();
 
-		return view;
+		return LayoutInflater.from(getContext()).inflate(layoutId, null);
 	}
 
 	@Override
@@ -225,7 +223,6 @@ public class SignUpScreenlet
 			onSignUpFailure(e);
 		}
 	}
-
 
 	private String _anonymousApiPassword;
 	private String _anonymousApiUserName;

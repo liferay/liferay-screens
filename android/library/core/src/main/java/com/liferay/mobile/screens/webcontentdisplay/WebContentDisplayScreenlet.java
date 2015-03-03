@@ -102,24 +102,19 @@ public class WebContentDisplayScreenlet
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
 
-		_autoLoad = typedArray.getBoolean(
-			R.styleable.WebContentDisplayScreenlet_autoLoad, true);
+		_autoLoad = typedArray.getBoolean(R.styleable.WebContentDisplayScreenlet_autoLoad, true);
 
-		_articleId = typedArray.getString(
-			R.styleable.WebContentDisplayScreenlet_articleId);
+		_articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
 
 		_groupId = typedArray.getInt(
 			R.styleable.WebContentDisplayScreenlet_groupId,
 			(int)LiferayServerContext.getGroupId());
 
-		int layoutId = typedArray.getResourceId(
-			R.styleable.WebContentDisplayScreenlet_layoutId, 0);
-
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
+		int layoutId = typedArray.getResourceId(R.styleable.WebContentDisplayScreenlet_layoutId, 0);
 
 		typedArray.recycle();
 
-		return view;
+		return LayoutInflater.from(getContext()).inflate(layoutId, null);
 	}
 
 	@Override

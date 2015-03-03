@@ -206,10 +206,9 @@ public class DDLFormDefaultView
 			layoutId = getFieldLayoutId(field.getEditorType());
 		}
 
-		LayoutInflater inflater = LayoutInflater.from(getContext());
-		View view = inflater.inflate(layoutId, this, false);
+		View view = LayoutInflater.from(getContext()).inflate(layoutId, this, false);
+		DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
 
-		DDLFieldViewModel viewModel = (DDLFieldViewModel)view;
 		viewModel.setField(field);
 		viewModel.setParentView(this);
 		viewModel.setPositionInParent(position);

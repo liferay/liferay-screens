@@ -147,17 +147,14 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(
                 attributes, R.styleable.AssetListScreenlet, 0, 0);
 
-        int layoutId = typedArray.getResourceId(
-                R.styleable.AssetListScreenlet_layoutId, 0);
+        int layoutId = typedArray.getResourceId(R.styleable.AssetListScreenlet_layoutId, 0);
 
         _firstPageSize = typedArray.getInteger(
-                R.styleable.AssetListScreenlet_firstPageSize, _FIRST_PAGE_SIZE);
+			R.styleable.AssetListScreenlet_firstPageSize, _FIRST_PAGE_SIZE);
 
-        _pageSize = typedArray.getInteger(
-                R.styleable.AssetListScreenlet_pageSize, _PAGE_SIZE);
+        _pageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_pageSize, _PAGE_SIZE);
 
-        _autoLoad = typedArray.getBoolean(
-                R.styleable.AssetListScreenlet_autoLoad, true);
+        _autoLoad = typedArray.getBoolean(R.styleable.AssetListScreenlet_autoLoad, true);
 
         typedArray.recycle();
 

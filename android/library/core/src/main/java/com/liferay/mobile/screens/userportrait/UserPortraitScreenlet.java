@@ -142,11 +142,9 @@ public class UserPortraitScreenlet
 
 		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId, 0);
 
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
-
 		typedArray.recycle();
 
-		return view;
+		return LayoutInflater.from(getContext()).inflate(layoutId, null);
 	}
 
 	@Override
