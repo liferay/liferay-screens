@@ -129,10 +129,10 @@ public class ForgotPasswordScreenlet
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
 		int authMethod = typedArray.getInt(R.styleable.ForgotPasswordScreenlet_authMethod, 0);
+		_authMethod = AuthMethod.getValue(authMethod);
+		((ForgotPasswordViewModel) view).setAuthMethod(_authMethod);
 
 		typedArray.recycle();
-
-		setAuthMethod(AuthMethod.getValue(authMethod));
 
 		return view;
 	}

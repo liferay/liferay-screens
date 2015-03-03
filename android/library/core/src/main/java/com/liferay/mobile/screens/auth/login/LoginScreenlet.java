@@ -111,7 +111,8 @@ public class LoginScreenlet
 
 		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
 
-		setAuthMethod(AuthMethod.getValue(authMethodId));
+		_authMethod = AuthMethod.getValue(authMethodId);
+		((LoginViewModel) view).setAuthMethod(_authMethod);
 
 		typedArray.recycle();
 
