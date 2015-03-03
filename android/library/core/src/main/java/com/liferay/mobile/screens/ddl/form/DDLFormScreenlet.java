@@ -495,6 +495,7 @@ public class DDLFormScreenlet
 			case ADD_RECORD_ACTION: {
 				try {
 					getViewModel().showStartOperation(ADD_RECORD_ACTION, _record);
+					
 					DDLFormAddRecordInteractor addInteractor =
 						(DDLFormAddRecordInteractor) interactor;
 
@@ -508,6 +509,7 @@ public class DDLFormScreenlet
 			case UPDATE_RECORD_ACTION: {
 				try {
 					getViewModel().showStartOperation(UPDATE_RECORD_ACTION, _record);
+
 					DDLFormUpdateRecordInteractor updateInteractor =
 						(DDLFormUpdateRecordInteractor) interactor;
 
@@ -523,9 +525,9 @@ public class DDLFormScreenlet
 
 				documentToUpload.moveToUploadInProgressState();
 
-				getViewModel().showStartOperation(UPLOAD_DOCUMENT_ACTION, documentToUpload);
-
 				try {
+					getViewModel().showStartOperation(UPLOAD_DOCUMENT_ACTION, documentToUpload);
+
 					DDLFormDocumentUploadInteractor uploadInteractor =
 						(DDLFormDocumentUploadInteractor) interactor;
 
