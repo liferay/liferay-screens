@@ -153,6 +153,8 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormRecordAdded(Record record) {
+		getViewModel().showFinishOperation(ADD_RECORD_ACTION, record);
+
 		if (_listener != null) {
 			_listener.onDDLFormRecordAdded(record);
 		}
@@ -160,6 +162,8 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormRecordAddFailed(Exception e) {
+		getViewModel().showFailedOperation(ADD_RECORD_ACTION, e);
+
 		if (_listener != null) {
 			_listener.onDDLFormRecordAddFailed(e);
 		}
