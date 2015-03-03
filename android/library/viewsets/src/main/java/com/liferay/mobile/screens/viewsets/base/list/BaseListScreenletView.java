@@ -27,7 +27,9 @@ import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 
 import java.util.ArrayList;
@@ -96,6 +98,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 	public void showStartOperation(String actionName) {
 		_progressBar.setVisibility(View.VISIBLE);
 		_recyclerView.setVisibility(View.GONE);
+		LiferayLogger.i("loading list");
 	}
 
 	@Override
@@ -105,6 +108,8 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 
 	@Override
 	public void showFinishOperation(int page, List<E> entries, int rowCount) {
+		LiferayLogger.i("loaded page " + page + " of list with " + entries);
+
 		_progressBar.setVisibility(View.GONE);
 		_recyclerView.setVisibility(View.VISIBLE);
 
@@ -125,7 +130,8 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 	public void showFinishOperation(int page, Exception e) {
 		_progressBar.setVisibility(View.GONE);
 		_recyclerView.setVisibility(View.VISIBLE);
-		// TODO show error?
+		LiferayLogger.e(getContext().getString(R.string.loading_list_error), e);
+		DefaultCrouton.error(getContext(), getContext().getString(R.string.loading_list_error), e);
 	}
 
     @Override
