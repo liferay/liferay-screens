@@ -73,7 +73,7 @@ public class LoginDefaultView extends ProgressDefaultView
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		assert false : "Use showFinishOperation(user) instead";
+		throw new AssertionError("Use showFinishOperation(user) instead");
 	}
 
 	@Override

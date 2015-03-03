@@ -63,7 +63,7 @@ public class ForgotPasswordDefaultView extends ProgressDefaultView
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		assert false : "Use showFinishOperation(passwordSent) instead";
+		throw new AssertionError("Use showFinishOperation(passwordSent) instead");
 	}
 
 	@Override

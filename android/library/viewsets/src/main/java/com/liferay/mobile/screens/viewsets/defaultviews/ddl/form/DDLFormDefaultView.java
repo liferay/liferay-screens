@@ -98,7 +98,7 @@ public class DDLFormDefaultView
 
 	@Override
 	public void showStartOperation(String actionName) {
-		assert false : "Use showStartOperation(actionName, argument) instead";
+		throw new AssertionError("Use showStartOperation(actionName, argument) instead");
 	}
 
 	@Override

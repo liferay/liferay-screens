@@ -103,7 +103,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		assert false : "Use showFinishOperation(page, entries, rowCount) instead";
+		throw new AssertionError("Use showFinishOperation(page, entries, rowCount) instead");
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		assert false : "Use showFinishOperation(page, entries, rowCount) instead";
+		throw new AssertionError("Use showFinishOperation(page, entries, rowCount) instead");
 	}
 
 	@Override
