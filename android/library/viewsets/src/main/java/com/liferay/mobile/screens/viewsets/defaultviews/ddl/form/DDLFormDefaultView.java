@@ -129,17 +129,6 @@ public class DDLFormDefaultView
 	}
 
 	@Override
-	public void onClick(View view) {
-		if (view.getId() == R.id.submit) {
-			if (getDDLFormScreenlet().validateForm()) {
-				getDDLFormScreenlet().submitForm();
-			}
-		} else {
-			getDDLFormScreenlet().startUpload((DocumentField) view.getTag());
-		}
-	}
-
-	@Override
 	public void showStartDocumentUpload(DocumentField documentField) {
 		findFieldView(documentField).refresh();
 	}
@@ -152,6 +141,17 @@ public class DDLFormDefaultView
 	@Override
 	public void showDocumentUploadFailed(DocumentField documentField, Exception e) {
 		findFieldView(documentField).refresh();
+	}
+
+	@Override
+	public void onClick(View view) {
+		if (view.getId() == R.id.submit) {
+			if (getDDLFormScreenlet().validateForm()) {
+				getDDLFormScreenlet().submitForm();
+			}
+		} else {
+			getDDLFormScreenlet().startUpload((DocumentField) view.getTag());
+		}
 	}
 
 	protected DDLFormScreenlet getDDLFormScreenlet() {
