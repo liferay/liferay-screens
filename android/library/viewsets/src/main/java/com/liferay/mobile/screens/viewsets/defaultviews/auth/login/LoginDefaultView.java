@@ -62,12 +62,21 @@ public class LoginDefaultView extends LinearLayout
 	}
 
 	@Override
-	public void setUser(User user) {
+	public void showStartOperation(String message, Object... args) {
+		//TODO show progress dialog
+	}
+
+	@Override
+	public void showFinishOperation(User user) {
 		// TODO show success
 	}
 
 	@Override
-	public void showError(Exception e, Object... args) {
+	public void showFinishOperation(String message, Object... args) {
+	}
+
+	@Override
+	public void showFinishOperation(Exception message, Object... args) {
 		//TODO show login error to user
 	}
 

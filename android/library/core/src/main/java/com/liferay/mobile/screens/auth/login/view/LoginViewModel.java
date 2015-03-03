@@ -26,6 +26,5 @@ public interface LoginViewModel extends AuthBasedViewModel {
 
 	String getPassword();
 
-	void setUser(User user);
-
+	void showFinishOperation(User user);
 }
