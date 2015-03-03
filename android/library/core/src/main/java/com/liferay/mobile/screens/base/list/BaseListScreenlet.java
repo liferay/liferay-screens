@@ -38,11 +38,11 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
         implements BaseListInteractorListener<E> {
 
     public BaseListScreenlet(Context context) {
-        this(context, null);
+        super(context);
     }
 
     public BaseListScreenlet(Context context, AttributeSet attributes) {
-        this(context, attributes, 0);
+        super(context, attributes);
     }
 
     public BaseListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {

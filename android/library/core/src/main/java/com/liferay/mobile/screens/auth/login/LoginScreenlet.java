@@ -41,11 +41,11 @@ public class LoginScreenlet
 	implements LoginListener {
 
 	public LoginScreenlet(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public LoginScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public LoginScreenlet(Context context, AttributeSet attributes, int defaultStyle) {

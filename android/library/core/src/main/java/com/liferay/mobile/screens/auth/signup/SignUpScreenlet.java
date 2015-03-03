@@ -43,11 +43,11 @@ public class SignUpScreenlet
 	implements SignUpListener {
 
 	public SignUpScreenlet(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public SignUpScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public SignUpScreenlet(Context context, AttributeSet attributes, int defaultStyle) {

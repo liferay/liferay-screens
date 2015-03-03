@@ -36,7 +36,7 @@ import java.util.Map;
 public class DDLFormPagerDefaultView extends DDLFormDefaultView {
 
 	public DDLFormPagerDefaultView(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public DDLFormPagerDefaultView(Context context, AttributeSet attributes) {

@@ -35,11 +35,11 @@ public class SignUpDefaultView extends ProgressDefaultView
 		implements SignUpViewModel, View.OnClickListener {
 
 	public SignUpDefaultView(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public SignUpDefaultView(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public SignUpDefaultView(Context context, AttributeSet attributes, int defaultStyle) {

@@ -47,11 +47,11 @@ public class DDLFormDefaultView
 	extends ScrollView implements DDLFormViewModel, View.OnClickListener {
 
 	public DDLFormDefaultView(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public DDLFormDefaultView(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public DDLFormDefaultView(Context context, AttributeSet attributes, int defaultStyle) {

@@ -61,11 +61,11 @@ public class DDLFormScreenlet
 	public static final String UPLOAD_DOCUMENT_ACTION = "uploadDocument";
 
 	public DDLFormScreenlet(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public DDLFormScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public DDLFormScreenlet(Context context, AttributeSet attributes, int defaultStyle) {

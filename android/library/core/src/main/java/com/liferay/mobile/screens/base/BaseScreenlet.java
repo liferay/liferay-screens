@@ -36,13 +36,13 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	extends FrameLayout {
 
 	public BaseScreenlet(Context context) {
-		super(context, null);
+		super(context);
 
 		init(context, null);
 	}
 
 	public BaseScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 
 		init(context, attributes);
 	}

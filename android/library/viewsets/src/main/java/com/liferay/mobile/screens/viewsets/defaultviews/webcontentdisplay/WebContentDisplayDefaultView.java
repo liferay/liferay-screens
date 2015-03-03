@@ -34,11 +34,11 @@ import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewMo
 public class WebContentDisplayDefaultView extends FrameLayout implements WebContentDisplayViewModel {
 
 	public WebContentDisplayDefaultView(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public WebContentDisplayDefaultView(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public WebContentDisplayDefaultView(Context context, AttributeSet attributes, int defaultStyle) {

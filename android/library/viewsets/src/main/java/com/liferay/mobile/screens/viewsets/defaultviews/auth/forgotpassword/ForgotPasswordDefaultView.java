@@ -35,11 +35,11 @@ public class ForgotPasswordDefaultView extends ProgressDefaultView
 		implements ForgotPasswordViewModel, View.OnClickListener {
 
 	public ForgotPasswordDefaultView(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public ForgotPasswordDefaultView(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public ForgotPasswordDefaultView(Context context, AttributeSet attributes, int defaultStyle) {

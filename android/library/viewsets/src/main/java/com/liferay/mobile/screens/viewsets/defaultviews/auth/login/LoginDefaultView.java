@@ -40,11 +40,11 @@ public class LoginDefaultView extends ProgressDefaultView
 	implements LoginViewModel, View.OnClickListener {
 
 	public LoginDefaultView(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public LoginDefaultView(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public LoginDefaultView(Context context, AttributeSet attributes, int defaultStyle) {

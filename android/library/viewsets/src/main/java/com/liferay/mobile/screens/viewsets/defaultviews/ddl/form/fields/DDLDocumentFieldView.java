@@ -45,11 +45,11 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		implements DDLFieldViewModel<DocumentField>, View.OnClickListener {
 
 	public DDLDocumentFieldView(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public DDLDocumentFieldView(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public DDLDocumentFieldView(Context context, AttributeSet attributes, int defaultStyle) {

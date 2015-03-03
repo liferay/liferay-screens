@@ -36,7 +36,7 @@ public class DDLListDefaultView extends BaseListScreenletView<DDLEntry, DDLListA
     }
 
     public DDLListDefaultView(Context context, AttributeSet attributes) {
-        super(context, attributes, 0);
+        super(context, attributes);
     }
 
     public DDLListDefaultView(Context context, AttributeSet attributes, int defaultStyle) {

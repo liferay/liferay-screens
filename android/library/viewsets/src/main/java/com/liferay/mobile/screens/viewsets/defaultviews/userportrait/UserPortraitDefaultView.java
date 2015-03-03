@@ -38,11 +38,11 @@ import com.liferay.mobile.screens.viewsets.R;
 public class UserPortraitDefaultView extends FrameLayout implements UserPortraitViewModel {
 
     public UserPortraitDefaultView(Context context) {
-        this(context, null);
+        super(context);
     }
 
     public UserPortraitDefaultView(Context context, AttributeSet attributes) {
-        this(context, attributes, 0);
+        super(context, attributes);
     }
 
     public UserPortraitDefaultView(Context context, AttributeSet attributes, int defaultStyle) {

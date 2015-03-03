@@ -38,11 +38,11 @@ public class ForgotPasswordScreenlet
 	implements ForgotPasswordListener {
 
 	public ForgotPasswordScreenlet(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public ForgotPasswordScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public ForgotPasswordScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
