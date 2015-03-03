@@ -70,6 +70,11 @@ public class DDLFormDefaultView
 	}
 
 	@Override
+	public void resetFieldLayoutId(Field.EditorType editorType) {
+		_layoutIds.put(editorType, _defaultLayoutIds.get(editorType));
+	}
+
+	@Override
 	public int getCustomFieldLayoutId(String fieldName) {
 		return _customLayoutIds.get(fieldName);
 	}
@@ -77,6 +82,11 @@ public class DDLFormDefaultView
 	@Override
 	public void setCustomFieldLayoutId(String fieldName, int layoutId) {
 		_customLayoutIds.put(fieldName, layoutId);
+	}
+
+	@Override
+	public void resetCustomFieldLayoutId(String fieldName) {
+		_customLayoutIds.remove(fieldName);
 	}
 
 	@Override
@@ -258,6 +268,21 @@ public class DDLFormDefaultView
 			}
 		}
 		return null;
+	}
+
+	private static Map<Field.EditorType, Integer> _defaultLayoutIds = new HashMap<>(16);
+
+	static {
+		_defaultLayoutIds.put(Field.EditorType.CHECKBOX, R.layout.ddlfield_checkbox_default);
+		_defaultLayoutIds.put(Field.EditorType.DATE, R.layout.ddlfield_date_default);
+		_defaultLayoutIds.put(Field.EditorType.NUMBER, R.layout.ddlfield_number_default);
+		_defaultLayoutIds.put(Field.EditorType.INTEGER, R.layout.ddlfield_number_default);
+		_defaultLayoutIds.put(Field.EditorType.DECIMAL, R.layout.ddlfield_number_default);
+		_defaultLayoutIds.put(Field.EditorType.RADIO, R.layout.ddlfield_radio_default);
+		_defaultLayoutIds.put(Field.EditorType.SELECT, R.layout.ddlfield_select_default);
+		_defaultLayoutIds.put(Field.EditorType.TEXT, R.layout.ddlfield_text_default);
+		_defaultLayoutIds.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_default);
+		_defaultLayoutIds.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_default);
 	}
 
 	private ProgressBar _progressBar;

@@ -339,9 +339,11 @@ public class DDLFormScreenlet
 	}
 
 	public void setCustomFieldLayoutId(String fieldName, int layoutId) {
-		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
+		getViewModel().setCustomFieldLayoutId(fieldName, layoutId);
+	}
 
-		view.setCustomFieldLayoutId(fieldName, layoutId);
+	public void resetCustomFieldLayoutId(String fieldName) {
+		getViewModel().resetCustomFieldLayoutId(fieldName);
 	}
 
 	@Override
@@ -369,8 +371,7 @@ public class DDLFormScreenlet
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.DDLFormScreenlet, 0, 0);
 
-		int layoutId = typedArray.getResourceId(
-			R.styleable.DDLFormScreenlet_layoutId, 0);
+		int layoutId = typedArray.getResourceId(R.styleable.DDLFormScreenlet_layoutId, 0);
 
 		_autoLoad = typedArray.getBoolean(R.styleable.DDLFormScreenlet_autoLoad, true);
 
@@ -394,8 +395,7 @@ public class DDLFormScreenlet
 		int defaultCreatorUserId = SessionContext.hasSession() ?
 			(int) SessionContext.getLoggedUser().getId() : 0;
 
-		_userId = typedArray.getInteger(
-			R.styleable.DDLFormScreenlet_userId, defaultCreatorUserId);
+		_userId = typedArray.getInteger(R.styleable.DDLFormScreenlet_userId, defaultCreatorUserId);
 
 		_record = new Record(getResources().getConfiguration().locale);
 		_record.setStructureId(_structureId);
@@ -442,19 +442,18 @@ public class DDLFormScreenlet
 		return view;
 	}
 
-	private void setFieldLayoutId(DDLFormViewModel viewModel, TypedArray typedArray, Field.EditorType editorType, Integer id) {
-		int resourceId = typedArray.getResourceId(id, getDefaultLayoutId(editorType));
-		viewModel.setFieldLayoutId(editorType, resourceId);
-	}
+	private void setFieldLayoutId(
+		DDLFormViewModel viewModel, TypedArray typedArray, Field.EditorType editorType,
+		Integer id) {
 
-	protected int getDefaultLayoutId(Field.EditorType type) {
-		Context context = getContext();
-		String layoutName = _defaultLayoutNames.get(type);
-		String packageName = context.getPackageName();
+		int resourceId = typedArray.getResourceId(id, 0);
 
-		int layoutId = context.getResources().getIdentifier(layoutName, "layout", packageName);
-
-		return layoutId;
+		if (resourceId == 0) {
+			viewModel.resetFieldLayoutId(editorType);
+		}
+		else {
+			viewModel.setFieldLayoutId(editorType, resourceId);
+		}
 	}
 
 	@Override
@@ -547,9 +546,14 @@ public class DDLFormScreenlet
 	}
 
 	protected void setFieldLayoutId(Field.EditorType editorType, TypedArray typedArray, int index) {
-		int layoutId = typedArray.getResourceId(index, getDefaultLayoutId(editorType));
+		int layoutId = typedArray.getResourceId(index, -1);
 
-		getViewModel().setFieldLayoutId(editorType, layoutId);
+		if (layoutId == -1) {
+			getViewModel().resetFieldLayoutId(editorType);
+		}
+		else {
+			getViewModel().setFieldLayoutId(editorType, layoutId);
+		}
 	}
 
 	@Override
@@ -603,31 +607,6 @@ public class DDLFormScreenlet
 		if (_autoLoad && _record.getFieldCount() == 0) {
 			load();
 		}
-	}
-
-	private static Map<Field.EditorType, String> _defaultLayoutNames;
-
-	static {
-		_defaultLayoutNames = new HashMap<>();
-		_defaultLayoutNames.put(Field.EditorType.CHECKBOX, "ddlfield_checkbox_default");
-
-		_defaultLayoutNames.put(Field.EditorType.DATE, "ddlfield_date_default");
-
-		_defaultLayoutNames.put(Field.EditorType.NUMBER, "ddlfield_number_default");
-
-		_defaultLayoutNames.put(Field.EditorType.INTEGER, "ddlfield_number_default");
-
-		_defaultLayoutNames.put(Field.EditorType.DECIMAL, "ddlfield_number_default");
-
-		_defaultLayoutNames.put(Field.EditorType.RADIO, "ddlfield_radio_default");
-
-		_defaultLayoutNames.put(Field.EditorType.SELECT, "ddlfield_select_default");
-
-		_defaultLayoutNames.put(Field.EditorType.TEXT, "ddlfield_text_default");
-
-		_defaultLayoutNames.put(Field.EditorType.TEXT_AREA, "ddlfield_text_area_default");
-
-		_defaultLayoutNames.put(Field.EditorType.DOCUMENT, "ddlfield_document_default");
 	}
 
 	private static final String _STATE_SUPER = "ddlform-super";
