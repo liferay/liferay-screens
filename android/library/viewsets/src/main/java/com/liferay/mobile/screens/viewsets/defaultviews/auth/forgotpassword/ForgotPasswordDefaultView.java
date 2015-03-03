@@ -15,26 +15,24 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.auth.forgotpassword;
 
 import android.content.Context;
-
 import android.util.AttributeSet;
-
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.auth.AuthMethod;
-import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewModel;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
+import com.liferay.mobile.screens.viewsets.defaultviews.auth.ProgressDefaultView;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class ForgotPasswordDefaultView extends LinearLayout
-	implements ForgotPasswordViewModel, View.OnClickListener {
+public class ForgotPasswordDefaultView extends ProgressDefaultView
+		implements ForgotPasswordViewModel, View.OnClickListener {
 
 	public ForgotPasswordDefaultView(Context context) {
 		super(context, null);
@@ -60,7 +58,7 @@ public class ForgotPasswordDefaultView extends LinearLayout
 
 	@Override
 	public void showStartOperation(String actionName) {
-		//TODO show progress dialog
+		showDialog();
 	}
 
 	@Override
@@ -72,17 +70,20 @@ public class ForgotPasswordDefaultView extends LinearLayout
 	public void showFinishOperation(boolean passwordSent) {
 		int operationMsg = (passwordSent) ? R.string.password_sent : R.string.password_sent;
 
-		//TODO show success with message
+		dismisDialog();
+		LiferayLogger.i(getResources().getString(operationMsg));
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		//TODO show user error?
+		dismisDialog();
+		LiferayLogger.e("Could not send password", e);
+		DefaultCrouton.error(getContext(), getContext().getString(R.string.password_request_error), e);
 	}
 
 	@Override
 	public void onClick(View view) {
-		ForgotPasswordScreenlet screenlet = (ForgotPasswordScreenlet)getParent();
+		ForgotPasswordScreenlet screenlet = (ForgotPasswordScreenlet) getParent();
 
 		screenlet.performUserAction();
 	}
@@ -95,9 +96,9 @@ public class ForgotPasswordDefaultView extends LinearLayout
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_loginEditText = (EditText)findViewById(R.id.login);
+		_loginEditText = (EditText) findViewById(R.id.login);
 
-		Button requestButton = (Button)findViewById(R.id.request_button);
+		Button requestButton = (Button) findViewById(R.id.request_button);
 		requestButton.setOnClickListener(this);
 	}
 
