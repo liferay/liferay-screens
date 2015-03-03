@@ -79,19 +79,20 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		I result = _interactors.get(actionName);
 
 		if (result == null) {
-			result = initInteractors(actionName);
+			result = prepareInteractor(actionName);
 		}
 
 		return result;
 	}
 
-	private I initInteractors(String actionName) {
+	protected I prepareInteractor(String actionName) {
 		I result = createInteractor(actionName);
 
 		if (result != null) {
 			result.onScreenletAttachted(this);
 			_interactors.put(actionName, result);
 		}
+
 		return result;
 	}
 
@@ -137,7 +138,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	@Override
 	protected void onRestoreInstanceState(Parcelable inState) {
-		Bundle state = ((Bundle)inState);
+		Bundle state = (Bundle) inState;
 		Parcelable superState = state.getParcelable(_STATE_SUPER);
 
 		super.onRestoreInstanceState(superState);
@@ -155,8 +156,8 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			_screenletId = state.getInt(_STATE_SCREENLET_ID);
 		}
 
-		for (String actionName : ((Bundle) inState).getStringArray(_STATE_INTERACTORS)) {
-			initInteractors(actionName);
+		for (String actionName : state.getStringArray(_STATE_INTERACTORS)) {
+			prepareInteractor(actionName);
 		}
 	}
 
