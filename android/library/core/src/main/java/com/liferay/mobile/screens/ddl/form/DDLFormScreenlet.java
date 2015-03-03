@@ -107,7 +107,7 @@ public class DDLFormScreenlet
 		}
 
 		DDLFormViewModel viewModel = (DDLFormViewModel) getScreenletView();
-		viewModel.setValidationFailedFields(fieldResults, _autoScrollOnValidation);
+		viewModel.showValidationResults(fieldResults, _autoScrollOnValidation);
 
 		return result;
 	}

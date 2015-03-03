@@ -76,7 +76,7 @@ public class DDLFormDefaultView
 	}
 
 	@Override
-	public void setValidationFailedFields(Map<Field, Boolean> fieldResults, boolean autoscroll) {
+	public void showValidationResults(Map<Field, Boolean> fieldResults, boolean autoscroll) {
 		boolean scrolled = false;
 
 		for (int i = 0; i < _fieldsContainerView.getChildCount(); i++) {
@@ -97,7 +97,7 @@ public class DDLFormDefaultView
 	}
 
 	@Override
-	public void setRecordFields(Record record) {
+	public void showFormFields(Record record) {
 		_fieldsContainerView.removeAllViews();
 
 		DDLFormScreenlet screenlet = getDDLFormScreenlet();
@@ -121,7 +121,7 @@ public class DDLFormDefaultView
 	}
 
 	@Override
-	public void setRecordValues(Record record) {
+	public void showRecordValues(Record record) {
 		for (int i = 0; i < _fieldsContainerView.getChildCount(); i++) {
 			DDLFieldViewModel viewModel = (DDLFieldViewModel) _fieldsContainerView.getChildAt(i);
 			viewModel.refresh();

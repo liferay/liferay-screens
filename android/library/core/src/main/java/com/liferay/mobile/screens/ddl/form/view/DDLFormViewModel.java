@@ -58,16 +58,13 @@ public interface DDLFormViewModel extends BaseViewModel {
 	 */
 	void setCustomFieldLayoutId(String fieldName, int layoutId);
 
-	void setValidationFailedFields(Map<Field, Boolean> fieldResults, boolean autoscroll);
+	void showValidationResults(Map<Field, Boolean> fieldResults, boolean autoscroll);
 
-	void setRecordFields(Record record);
-
-	void setRecordValues(Record record);
+	void showFormFields(Record record);
+	void showRecordValues(Record record);
 
 	void showStartDocumentUpload(DocumentField documentField);
-
 	void showDocumentUploaded(DocumentField documentField);
-
 	void showDocumentUploadFailed(DocumentField documentField, Exception e);
 
 }
