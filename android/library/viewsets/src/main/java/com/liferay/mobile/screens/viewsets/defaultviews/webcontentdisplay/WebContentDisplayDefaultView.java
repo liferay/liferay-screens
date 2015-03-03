@@ -55,7 +55,7 @@ public class WebContentDisplayDefaultView extends WebView implements WebContentD
 	}
 
 	@Override
-	public void showFinishOperation(Exception message, Object... args) {
+	public void showFinishOperation(Exception e, Object... args) {
 		// TODO show error?
 	}
 

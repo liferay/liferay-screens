@@ -19,6 +19,6 @@ public interface BaseViewModel {
 	void showStartOperation(String message, Object... args);
 
 	void showFinishOperation(String message, Object... args);
-	void showFinishOperation(Exception message, Object... args);
+	void showFinishOperation(Exception e, Object... args);
 
 }

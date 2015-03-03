@@ -89,7 +89,7 @@ public class SignUpDefaultView extends LinearLayout
 	}
 
 	@Override
-	public void showFinishOperation(Exception message, Object... args) {
+	public void showFinishOperation(Exception e, Object... args) {
 		// TODO show error?
 	}
 

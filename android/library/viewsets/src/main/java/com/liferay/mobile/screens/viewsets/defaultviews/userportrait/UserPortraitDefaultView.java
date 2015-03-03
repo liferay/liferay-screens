@@ -64,7 +64,7 @@ public class UserPortraitDefaultView extends FrameLayout implements UserPortrait
 	}
 
 	@Override
-	public void showFinishOperation(Exception message, Object... args) {
+	public void showFinishOperation(Exception e, Object... args) {
 		_portraitProgress.setVisibility(INVISIBLE);
 		setDefaultImagePlaceholder();
 	}
