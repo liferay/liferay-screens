@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.auth.login;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -25,8 +26,12 @@ import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.auth.ProgressDefaultView;
+
+import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 /**
  * @author Silvio Santos
@@ -73,12 +78,15 @@ public class LoginDefaultView extends ProgressDefaultView
 
 	@Override
 	public void showFinishOperation(User user) {
-		// TODO show success
+		dismisDialog();
+		LiferayLogger.i("Login successful: " + user.getId());
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		//TODO show login error to user
+		dismisDialog();
+		LiferayLogger.e("Could not login", e);
+		Crouton.makeText((Activity) getContext(), getContext().getString(R.string.login_error), DefaultCrouton.ALERT).show();
 	}
 
 	@Override
