@@ -461,69 +461,77 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, DDLFormBaseInteractor interactor, Object... args) {
-		if (_LOAD_FORM_ACTION.equals(userActionName)) {
-			DDLFormLoadInteractor loadInteractor = (DDLFormLoadInteractor) interactor;
+	protected void onUserAction(
+		String userActionName, DDLFormBaseInteractor interactor, Object... args) {
 
-			try {
-				loadInteractor.load(_record);
+		switch (userActionName) {
+			case LOAD_FORM_ACTION: {
+				try {
+					DDLFormLoadInteractor loadInteractor = (DDLFormLoadInteractor) interactor;
+
+					loadInteractor.load(_record);
+				} catch (Exception e) {
+					onDDLFormLoadFailed(e);
+				}
+				break;
 			}
-			catch (Exception e) {
-				onDDLFormLoadFailed(e);
+			case LOAD_RECORD_ACTION: {
+				if (_record.isRecordStructurePresent()) {
+					try {
+						DDLFormLoadRecordInteractor loadInteractor =
+							(DDLFormLoadRecordInteractor) interactor;
+
+						loadInteractor.loadRecord(_record);
+					} catch (Exception e) {
+						onDDLFormRecordLoadFailed(e);
+					}
+				} else {
+					// request both structure and data
+					_loadRecordAfterForm = true;
+					loadForm();
+				}
+				break;
 			}
-		}
-		else if (_LOAD_RECORD_ACTION.equals(userActionName)) {
-			if (_record.isRecordStructurePresent()) {
-				DDLFormLoadRecordInteractor loadInteractor = (DDLFormLoadRecordInteractor) interactor;
+			case ADD_RECORD_ACTION: {
+				try {
+					DDLFormAddRecordInteractor addInteractor =
+						(DDLFormAddRecordInteractor) interactor;
+
+					addInteractor.addRecord(_groupId, _record);
+				} catch (Exception e) {
+					onDDLFormRecordAddFailed(e);
+				}
+				break;
+			}
+			case UPDATE_RECORD_ACTION: {
+				try {
+					DDLFormUpdateRecordInteractor updateInteractor =
+						(DDLFormUpdateRecordInteractor) interactor;
+
+					updateInteractor.updateRecord(_groupId, _record);
+				} catch (Exception e) {
+					onDDLFormUpdateRecordFailed(e);
+				}
+				break;
+			}
+			case UPLOAD_DOCUMENT_ACTION: {
+				DocumentField documentToUpload = (DocumentField) args[0];
+
+				documentToUpload.moveToUploadInProgressState();
+
+				DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
+				view.showStartDocumentUpload(documentToUpload);
 
 				try {
-					loadInteractor.loadRecord(_record);
+					DDLFormDocumentUploadInteractor uploadInteractor =
+						(DDLFormDocumentUploadInteractor) interactor;
+
+					uploadInteractor.upload(
+						_groupId, _userId, _repositoryId, _folderId, _filePrefix, documentToUpload);
+				} catch (Exception e) {
+					onDDLFormDocumentUploadFailed(documentToUpload, e);
 				}
-				catch (Exception e) {
-					onDDLFormRecordLoadFailed(e);
-				}
-			}
-			else {
-				// request both structure and data
-				_loadRecordAfterForm = true;
-				loadForm();
-			}
-		}
-		else if (_ADD_RECORD_ACTION.equals(userActionName)) {
-			DDLFormAddRecordInteractor addInteractor = (DDLFormAddRecordInteractor) interactor;
-
-			try {
-				addInteractor.addRecord(_groupId, _record);
-			}
-			catch (Exception e) {
-				onDDLFormRecordAddFailed(e);
-			}
-		}
-		else if (_UPDATE_RECORD_ACTION.equals(userActionName)) {
-			DDLFormUpdateRecordInteractor updateInteractor = (DDLFormUpdateRecordInteractor) interactor;
-
-			try {
-				updateInteractor.updateRecord(_groupId, _record);
-			}
-			catch (Exception e) {
-				onDDLFormUpdateRecordFailed(e);
-			}
-		}
-		else if (_UPLOAD_DOCUMENT_ACTION.equals(userActionName)) {
-			DDLFormDocumentUploadInteractor uploadInteractor = (DDLFormDocumentUploadInteractor) interactor;
-			DocumentField documentToUpload = (DocumentField) args[0];
-
-			documentToUpload.moveToUploadInProgressState();
-
-			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-			view.showStartDocumentUpload(documentToUpload);
-
-			try {
-				uploadInteractor.upload(
-					_groupId, _userId, _repositoryId, _folderId, _filePrefix, documentToUpload);
-			}
-			catch (Exception e) {
-				onDDLFormDocumentUploadFailed(documentToUpload, e);
+				break;
 			}
 		}
 	}
