@@ -23,4 +23,6 @@ public interface ForgotPasswordViewModel extends AuthBasedViewModel {
 
 	String getLogin();
 
+	void showFinishOperation(boolean passwordSent);
+
 }

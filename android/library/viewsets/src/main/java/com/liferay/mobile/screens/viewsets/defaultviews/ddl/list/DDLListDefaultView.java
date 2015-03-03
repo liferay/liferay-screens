@@ -44,13 +44,13 @@ public class DDLListDefaultView extends BaseListScreenletView<DDLEntry, DDLListA
     }
 
 	@Override
-	public void setListPage(int page, List<DDLEntry> entries, int rowCount) {
+	public void showFinishOperation(int page, List<DDLEntry> entries, int rowCount) {
 		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
 		DDLListAdapter adapter = (DDLListAdapter) getAdapter();
 
 		adapter.setLabelFields(screenlet.getLabelFields());
 
-		super.setListPage(page, entries, rowCount);
+		super.showFinishOperation(page, entries, rowCount);
 	}
 
     @Override

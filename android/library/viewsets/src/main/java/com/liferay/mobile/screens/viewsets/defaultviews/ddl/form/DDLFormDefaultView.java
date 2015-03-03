@@ -110,11 +110,14 @@ public class DDLFormDefaultView
 	}
 
 	@Override
-	public void showFinishOperation(String message, Object... args) {
-		String actionName = (String) args[0];
+	public void showFinishOperation() {
+		// not used
+	}
 
+	@Override
+	public void showFinishOperation(String actionName, Object argument) {
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
-			Record record = (Record) args[1];
+			Record record = (Record) argument;
 
 			showFormFields(record);
 		}
@@ -122,7 +125,7 @@ public class DDLFormDefaultView
 			showRecordValues();
 		}
 		else if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
-			DocumentField documentField = (DocumentField) args[1];
+			DocumentField documentField = (DocumentField) argument;
 
 			findFieldView(documentField).refresh();
 		}

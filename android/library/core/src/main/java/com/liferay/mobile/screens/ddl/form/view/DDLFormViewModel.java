@@ -62,4 +62,6 @@ public interface DDLFormViewModel extends BaseViewModel {
 
 	void showFormFields(Record record);
 
+	void showFinishOperation(String actionName, Object argument);
+
 }

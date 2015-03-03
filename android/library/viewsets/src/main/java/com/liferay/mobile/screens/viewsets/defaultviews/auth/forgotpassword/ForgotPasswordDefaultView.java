@@ -64,8 +64,15 @@ public class ForgotPasswordDefaultView extends LinearLayout
 	}
 
 	@Override
-	public void showFinishOperation(String message, Object... args) {
-		//TODO show success?
+	public void showFinishOperation() {
+		// not used
+	}
+
+	@Override
+	public void showFinishOperation(boolean passwordSent) {
+		int operationMsg = (passwordSent) ? R.string.password_sent : R.string.password_sent;
+
+		//TODO show success with message
 	}
 
 	@Override

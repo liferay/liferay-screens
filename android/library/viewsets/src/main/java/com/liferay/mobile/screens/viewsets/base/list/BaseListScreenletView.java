@@ -94,7 +94,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 	}
 
 	@Override
-	public void showFinishOperation(String message, Object... args) {
+	public void showFinishOperation() {
 	}
 
 	@Override

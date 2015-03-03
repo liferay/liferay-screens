@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="uploadInProgress">There are uploads in progress</string>
-	<string name="password_sent">New password generated.</string>
-	<string name="password_reset_sent">New password reset link sent.</string>
-	<string name="check_your_inbox">Check your email inbox.</string>
 </resources>

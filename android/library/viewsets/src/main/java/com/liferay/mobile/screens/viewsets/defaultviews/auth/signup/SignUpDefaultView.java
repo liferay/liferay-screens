@@ -85,17 +85,18 @@ public class SignUpDefaultView extends LinearLayout
 	}
 
 	@Override
-	public void showFinishOperation(String message, Object... args) {
-	}
-
-	@Override
-	public void showFinishOperation(Exception e, Object... args) {
-		// TODO show error?
+	public void showFinishOperation() {
+		// not used
 	}
 
 	@Override
 	public void showFinishOperation(User user) {
 		// TODO show success?
+	}
+
+	@Override
+	public void showFinishOperation(Exception e, Object... args) {
+		// TODO show error?
 	}
 
 	@Override

@@ -54,7 +54,8 @@ public class UserPortraitDefaultView extends FrameLayout implements UserPortrait
 	}
 
 	@Override
-	public void showFinishOperation(String message, Object... args) {
+	public void showFinishOperation() {
+		// not used
 	}
 
 	@Override

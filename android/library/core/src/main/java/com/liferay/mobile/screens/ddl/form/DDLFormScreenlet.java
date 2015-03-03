@@ -128,7 +128,7 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormLoaded(Record record) {
-		getViewModel().showFinishOperation("", LOAD_FORM_ACTION, record);
+		getViewModel().showFinishOperation(LOAD_FORM_ACTION, record);
 
 		if (_listener != null) {
 			_listener.onDDLFormLoaded(record);
@@ -167,7 +167,7 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormRecordLoaded(Record record) {
-		getViewModel().showFinishOperation("", LOAD_RECORD_ACTION, record);
+		getViewModel().showFinishOperation(LOAD_RECORD_ACTION, record);
 
 		if (_listener != null) {
 			_listener.onDDLFormRecordLoaded(record);
@@ -185,7 +185,7 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormRecordUpdated(Record record) {
-		getViewModel().showFinishOperation("", UPDATE_RECORD_ACTION);
+		getViewModel().showFinishOperation(UPDATE_RECORD_ACTION, record);
 
 		if (_listener != null) {
 			_listener.onDDLFormRecordUpdated(record);
@@ -210,7 +210,7 @@ public class DDLFormScreenlet
 			originalField.moveToUploadCompleteState();
 			originalField.setCurrentStringValue(jsonObject.toString());
 
-			getViewModel().showFinishOperation("", UPLOAD_DOCUMENT_ACTION, originalField);
+			getViewModel().showFinishOperation(UPLOAD_DOCUMENT_ACTION, originalField);
 		}
 
 		if (_listener != null) {

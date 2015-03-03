@@ -62,11 +62,7 @@ public class ForgotPasswordScreenlet
 
 	@Override
 	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
-		int operationMsg = (passwordSent) ? R.string.password_sent : R.string.password_sent;
-
-		getViewModel().showFinishOperation(
-			getContext().getString(operationMsg) + " " +
-				getContext().getString(R.string.check_your_inbox));
+		getViewModel().showFinishOperation(passwordSent);
 
 		if (_listener != null) {
 			_listener.onForgotPasswordRequestSuccess(passwordSent);

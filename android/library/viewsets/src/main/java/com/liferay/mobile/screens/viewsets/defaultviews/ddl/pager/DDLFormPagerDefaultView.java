@@ -44,7 +44,7 @@ public class DDLFormPagerDefaultView extends DDLFormDefaultView {
 	}
 
 	@Override
-	public void setRecordFields(Record record) {
+	public void showFormFields(Record record) {
 		List<Field.EditorType> editorTypes = Field.EditorType.all();
 
 		Map<Field.EditorType, Integer> layoutIds = new HashMap<>();

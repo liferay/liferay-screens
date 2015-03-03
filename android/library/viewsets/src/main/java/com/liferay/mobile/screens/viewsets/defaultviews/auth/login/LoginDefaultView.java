@@ -67,12 +67,13 @@ public class LoginDefaultView extends LinearLayout
 	}
 
 	@Override
-	public void showFinishOperation(User user) {
-		// TODO show success
+	public void showFinishOperation() {
+		// not used
 	}
 
 	@Override
-	public void showFinishOperation(String message, Object... args) {
+	public void showFinishOperation(User user) {
+		// TODO show success
 	}
 
 	@Override
