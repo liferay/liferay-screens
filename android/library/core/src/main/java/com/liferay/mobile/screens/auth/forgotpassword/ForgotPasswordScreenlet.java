@@ -67,6 +67,43 @@ public class ForgotPasswordScreenlet
 		}
 	}
 
+	public String getAnonymousApiPassword() {
+		return _anonymousApiPassword;
+	}
+
+	public void setAnonymousApiPassword(String value) {
+		_anonymousApiPassword = value;
+	}
+
+	public String getAnonymousApiUserName() {
+		return _anonymousApiUserName;
+	}
+
+	public void setAnonymousApiUserName(String value) {
+		_anonymousApiUserName = value;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long value) {
+		_companyId = value;
+	}
+
+	public AuthMethod getAuthMethod() {
+		return _authMethod;
+	}
+
+	public void setAuthMethod(AuthMethod value) {
+		_authMethod = value;
+		getViewModel().setAuthMethod(value);
+	}
+
+	public ForgotPasswordListener getListener() {
+		return _listener;
+	}
+
 	public void setListener(ForgotPasswordListener listener) {
 		_listener = listener;
 	}
@@ -126,6 +163,7 @@ public class ForgotPasswordScreenlet
 	private String _anonymousApiPassword;
 	private String _anonymousApiUserName;
 	private long _companyId;
+	private AuthMethod _authMethod;
 	private ForgotPasswordListener _listener;
 
 }
