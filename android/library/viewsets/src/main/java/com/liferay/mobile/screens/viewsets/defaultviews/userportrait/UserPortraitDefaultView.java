@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 
@@ -35,40 +36,31 @@ import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractor
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public class UserPortraitDefaultView extends FrameLayout
-        implements BaseViewModel, UserPortraitInteractorListener {
+public class UserPortraitDefaultView extends FrameLayout implements UserPortraitViewModel {
 
     public UserPortraitDefaultView(Context context) {
         this(context, null);
     }
 
-    public UserPortraitDefaultView(
-		Context context, AttributeSet attributes) {
+    public UserPortraitDefaultView(Context context, AttributeSet attributes) {
         this(context, attributes, 0);
     }
 
-    public UserPortraitDefaultView(
-		Context context, AttributeSet attributes, int defaultStyle) {
+    public UserPortraitDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
     }
 
 	@Override
-	public void onStartUserPortraitRequest() {
-		_portraitProgress.setVisibility(VISIBLE);
-	}
-
-	@Override
-	public Bitmap onEndUserPortraitRequest(Bitmap bitmap) {
+	public void showUserPortrait(Bitmap bitmap) {
 		_portraitProgress.setVisibility(INVISIBLE);
 		_portraitImage.setImageBitmap(transformBitmap(bitmap));
-		return bitmap;
 	}
 
 	@Override
-    public void onUserPortraitFailure(Exception e) {
-        _portraitProgress.setVisibility(INVISIBLE);
-        setDefaultImagePlaceholder();
-    }
+	public void showError(Exception e, Object... args) {
+		_portraitProgress.setVisibility(INVISIBLE);
+		setDefaultImagePlaceholder();
+	}
 
 	@Override
 	protected void onFinishInflate() {
@@ -79,7 +71,6 @@ public class UserPortraitDefaultView extends FrameLayout
 		setDefaultImagePlaceholder();
 	}
 
-
 	protected float getBorderRadius() {
 		return (float) getResources().getInteger(R.integer.userportrait_default_border_radius);
 	}
@@ -89,13 +80,13 @@ public class UserPortraitDefaultView extends FrameLayout
 	}
 
     protected Bitmap transformBitmap(Bitmap bitmap) {
-
 		float borderRadius = getBorderRadius();
 		float borderWidth = getBorderWidth();
 
 		RectF rect = getRectF(bitmap, borderWidth);
 
-        Bitmap finalBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Bitmap finalBitmap = Bitmap.createBitmap(
+			bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 
         Canvas canvas = new Canvas(finalBitmap);
 
@@ -129,7 +120,8 @@ public class UserPortraitDefaultView extends FrameLayout
     }
 
 	private void setDefaultImagePlaceholder() {
-		Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_portrait_placeholder);
+		Bitmap defaultBitmap = BitmapFactory.decodeResource(
+			getResources(), R.drawable.default_portrait_placeholder);
 		_portraitImage.setImageBitmap(transformBitmap(defaultBitmap));
 	}
 
