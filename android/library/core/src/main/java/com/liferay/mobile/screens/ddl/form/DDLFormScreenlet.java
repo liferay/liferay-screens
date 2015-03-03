@@ -128,8 +128,7 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormLoaded(Record record) {
-		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.setRecordFields(record);
+		getViewModel().showFinishOperation("", LOAD_FORM_ACTION, record);
 
 		if (_listener != null) {
 			_listener.onDDLFormLoaded(record);
@@ -143,12 +142,12 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormLoadFailed(Exception e) {
-		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.setRecordFields(null);
+		getViewModel().showFinishOperation(e, LOAD_FORM_ACTION);
 
 		if (_listener != null) {
 			_listener.onDDLFormLoadFailed(e);
 		}
+
 		_loadRecordAfterForm = false;
 	}
 
@@ -168,8 +167,7 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormRecordLoaded(Record record) {
-		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.setRecordValues(record);
+		getViewModel().showFinishOperation("", LOAD_RECORD_ACTION, record);
 
 		if (_listener != null) {
 			_listener.onDDLFormRecordLoaded(record);
@@ -178,8 +176,7 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormRecordLoadFailed(Exception e) {
-		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.setRecordValues(null);
+		getViewModel().showFinishOperation(e, LOAD_RECORD_ACTION);
 
 		if (_listener != null) {
 			_listener.onDDLFormRecordLoadFailed(e);
@@ -188,6 +185,8 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormRecordUpdated(Record record) {
+		getViewModel().showFinishOperation("", UPDATE_RECORD_ACTION);
+
 		if (_listener != null) {
 			_listener.onDDLFormRecordUpdated(record);
 		}
@@ -195,12 +194,15 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormUpdateRecordFailed(Exception e) {
+		getViewModel().showFinishOperation(e, UPDATE_RECORD_ACTION);
+
 		if (_listener != null) {
 			_listener.onDDLFormUpdateRecordFailed(e);
 		}
 	}
 
 	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
+		//TODO this is confusing. Why can't I use the argument? Change to receive only the name
 		DocumentField originalField =
 			(DocumentField) _record.getFieldByName(documentField.getName());
 
@@ -208,8 +210,7 @@ public class DDLFormScreenlet
 			originalField.moveToUploadCompleteState();
 			originalField.setCurrentStringValue(jsonObject.toString());
 
-			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-			view.showDocumentUploaded(originalField);
+			getViewModel().showFinishOperation("", UPLOAD_DOCUMENT_ACTION, originalField);
 		}
 
 		if (_listener != null) {
@@ -225,8 +226,7 @@ public class DDLFormScreenlet
 		if (originalField != null) {
 			originalField.moveToUploadFailureState();
 
-			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-			view.showDocumentUploadFailed(originalField, e);
+			getViewModel().showFinishOperation(e, UPLOAD_DOCUMENT_ACTION, originalField);
 		}
 
 		if (_listener != null) {
@@ -517,8 +517,7 @@ public class DDLFormScreenlet
 
 				documentToUpload.moveToUploadInProgressState();
 
-				DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-				view.showStartDocumentUpload(documentToUpload);
+				getViewModel().showStartOperation("", UPLOAD_DOCUMENT_ACTION, documentToUpload);
 
 				try {
 					DDLFormDocumentUploadInteractor uploadInteractor =
@@ -565,8 +564,7 @@ public class DDLFormScreenlet
 
 		super.onRestoreInstanceState(superState);
 
-		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.setRecordFields(_record);
+		getViewModel().showFormFields(_record);
 	}
 
 	@Override

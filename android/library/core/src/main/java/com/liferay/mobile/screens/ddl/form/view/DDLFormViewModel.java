@@ -61,10 +61,5 @@ public interface DDLFormViewModel extends BaseViewModel {
 	void showValidationResults(Map<Field, Boolean> fieldResults, boolean autoscroll);
 
 	void showFormFields(Record record);
-	void showRecordValues(Record record);
-
-	void showStartDocumentUpload(DocumentField documentField);
-	void showDocumentUploaded(DocumentField documentField);
-	void showDocumentUploadFailed(DocumentField documentField, Exception e);
 
 }
