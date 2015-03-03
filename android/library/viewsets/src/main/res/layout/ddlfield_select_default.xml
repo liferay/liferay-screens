@@ -11,11 +11,13 @@
 		android:visibility="gone"/>
 
 	<EditText
-		android:paddingBottom="5dp"
-		android:paddingTop="5dp"
 		android:id="@+id/text"
 		style="@style/default_edit_text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
 		android:drawableRight="@drawable/default_blue"
-		android:inputType="date"/>
+		android:inputType="date"
+		android:paddingBottom="5dp"
+		android:paddingTop="5dp"/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView>

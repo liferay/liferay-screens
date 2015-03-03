@@ -13,6 +13,8 @@
 	<EditText
 		android:id="@+id/text"
 		style="@style/default_edit_text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
 		android:drawableRight="@drawable/default_calendar_blue"
 		android:inputType="date"
 		android:paddingBottom="5dp"

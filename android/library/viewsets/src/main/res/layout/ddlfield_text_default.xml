@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/label"
-        style="@style/default_text_view"
-        android:visibility="gone"/>
+	<TextView
+		android:id="@+id/label"
+		style="@style/default_text_view"
+		android:visibility="gone"/>
 
-    <EditText
-        android:id="@+id/text"
-        style="@style/default_edit_text"
-        android:inputType="text"/>
+	<EditText
+		android:id="@+id/text"
+		style="@style/default_edit_text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:inputType="text"/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView>
