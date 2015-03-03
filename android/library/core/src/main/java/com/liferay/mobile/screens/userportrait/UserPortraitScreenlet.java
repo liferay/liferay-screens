@@ -86,7 +86,7 @@ public class UserPortraitScreenlet
 			_listener.onUserPortraitFailure(this, e);
 		}
 
-		getViewModel().showFinishOperation(e);
+		getViewModel().showFailedOperation(e);
 	}
 
 	public void setListener(UserPortraitListener listener) {

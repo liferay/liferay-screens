@@ -53,7 +53,7 @@ public class ForgotPasswordScreenlet
 
 	@Override
 	public void onForgotPasswordRequestFailure(Exception e) {
-		getViewModel().showFinishOperation(e);
+		getViewModel().showFailedOperation(e);
 
 		if (_listener != null) {
 			_listener.onForgotPasswordRequestFailure(e);

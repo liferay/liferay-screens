@@ -132,7 +132,7 @@ public class DDLFormDefaultView
 	}
 
 	@Override
-	public void showFinishOperation(Exception e, Object... args) {
+	public void showFailedOperation(Exception e, Object... args) {
 		// TODO show error?
 
 		String actionName = (String) args[0];

@@ -24,7 +24,6 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractor;
@@ -60,7 +59,7 @@ public class WebContentDisplayScreenlet
 
 	@Override
 	public void onWebContentFailure(WebContentDisplayScreenlet source, Exception e) {
-		getViewModel().showFinishOperation(e);
+		getViewModel().showFailedOperation(e);
 
 		if (_listener != null) {
 			_listener.onWebContentFailure(this, e);

@@ -98,7 +98,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 	}
 
 	@Override
-	public void showFinishOperation(Exception e, Object... args) {
+	public void showFailedOperation(Exception e, Object... args) {
 		// use method with page
 	}
 

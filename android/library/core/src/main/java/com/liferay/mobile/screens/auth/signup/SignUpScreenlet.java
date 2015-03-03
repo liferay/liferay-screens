@@ -35,8 +35,6 @@ import com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.*;
 
 import java.util.Locale;
 
-import org.json.JSONObject;
-
 /**
  * @author Silvio Santos
  */
@@ -60,7 +58,7 @@ public class SignUpScreenlet
 
 	@Override
 	public void onSignUpFailure(Exception e) {
-		getViewModel().showFinishOperation(e);
+		getViewModel().showFailedOperation(e);
 
 		if (_listener != null) {
 			_listener.onSignUpFailure(e);

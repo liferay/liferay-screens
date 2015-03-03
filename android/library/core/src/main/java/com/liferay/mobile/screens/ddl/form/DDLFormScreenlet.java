@@ -142,7 +142,7 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormLoadFailed(Exception e) {
-		getViewModel().showFinishOperation(e, LOAD_FORM_ACTION);
+		getViewModel().showFailedOperation(e, LOAD_FORM_ACTION);
 
 		if (_listener != null) {
 			_listener.onDDLFormLoadFailed(e);
@@ -176,7 +176,7 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormRecordLoadFailed(Exception e) {
-		getViewModel().showFinishOperation(e, LOAD_RECORD_ACTION);
+		getViewModel().showFailedOperation(e, LOAD_RECORD_ACTION);
 
 		if (_listener != null) {
 			_listener.onDDLFormRecordLoadFailed(e);
@@ -194,7 +194,7 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormUpdateRecordFailed(Exception e) {
-		getViewModel().showFinishOperation(e, UPDATE_RECORD_ACTION);
+		getViewModel().showFailedOperation(e, UPDATE_RECORD_ACTION);
 
 		if (_listener != null) {
 			_listener.onDDLFormUpdateRecordFailed(e);
@@ -226,7 +226,7 @@ public class DDLFormScreenlet
 		if (originalField != null) {
 			originalField.moveToUploadFailureState();
 
-			getViewModel().showFinishOperation(e, UPLOAD_DOCUMENT_ACTION, originalField);
+			getViewModel().showFailedOperation(e, UPLOAD_DOCUMENT_ACTION, originalField);
 		}
 
 		if (_listener != null) {
