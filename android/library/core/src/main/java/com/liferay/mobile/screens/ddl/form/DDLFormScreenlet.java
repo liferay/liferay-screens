@@ -463,6 +463,8 @@ public class DDLFormScreenlet
 		switch (userActionName) {
 			case LOAD_FORM_ACTION: {
 				try {
+					getViewModel().showStartOperation(LOAD_FORM_ACTION);
+
 					DDLFormLoadInteractor loadInteractor = (DDLFormLoadInteractor) interactor;
 
 					loadInteractor.load(_record);
@@ -475,6 +477,8 @@ public class DDLFormScreenlet
 			case LOAD_RECORD_ACTION: {
 				if (_record.isRecordStructurePresent()) {
 					try {
+						getViewModel().showStartOperation(LOAD_RECORD_ACTION);
+
 						DDLFormLoadRecordInteractor loadInteractor =
 							(DDLFormLoadRecordInteractor) interactor;
 
@@ -493,6 +497,7 @@ public class DDLFormScreenlet
 			}
 			case ADD_RECORD_ACTION: {
 				try {
+					getViewModel().showStartOperation(ADD_RECORD_ACTION, _record);
 					DDLFormAddRecordInteractor addInteractor =
 						(DDLFormAddRecordInteractor) interactor;
 
@@ -505,6 +510,7 @@ public class DDLFormScreenlet
 			}
 			case UPDATE_RECORD_ACTION: {
 				try {
+					getViewModel().showStartOperation(UPDATE_RECORD_ACTION, _record);
 					DDLFormUpdateRecordInteractor updateInteractor =
 						(DDLFormUpdateRecordInteractor) interactor;
 

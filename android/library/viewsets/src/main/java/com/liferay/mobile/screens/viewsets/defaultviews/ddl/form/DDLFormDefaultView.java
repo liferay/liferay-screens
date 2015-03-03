@@ -18,11 +18,13 @@ import android.content.Context;
 
 import android.util.AttributeSet;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
@@ -31,7 +33,9 @@ import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -103,12 +107,13 @@ public class DDLFormDefaultView
 
 	@Override
 	public void showStartOperation(String actionName, Object argument) {
-		// TODO show progress dialog?
-
 		if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
 			DocumentField documentField = (DocumentField) argument;
 
 			findFieldView(documentField).refresh();
+		} else {
+			LiferayLogger.i("loading DDLForm");
+			showProgressBar();
 		}
 	}
 
@@ -119,15 +124,19 @@ public class DDLFormDefaultView
 
 	@Override
 	public void showFinishOperation(String actionName, Object argument) {
+		hideProgressBar();
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
+			LiferayLogger.i("loaded form");
 			Record record = (Record) argument;
 
 			showFormFields(record);
 		}
 		else if (actionName.equals(DDLFormScreenlet.LOAD_RECORD_ACTION)) {
+			LiferayLogger.i("loaded record");
 			showRecordValues();
 		}
 		else if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
+			LiferayLogger.i("uploaded document");
 			DocumentField documentField = (DocumentField) argument;
 
 			findFieldView(documentField).refresh();
@@ -141,12 +150,17 @@ public class DDLFormDefaultView
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e, Object argument) {
-		// TODO show error?
-
+		hideProgressBar();
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
+			LiferayLogger.e("error loading DDLForm", e);
+			DefaultCrouton.error(getContext(), getContext().getString(R.string.loading_form_error), e);
+
 			clearFormFields();
 		}
 		else if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
+			LiferayLogger.e("error uploading", e);
+			DefaultCrouton.error(getContext(), getContext().getString(R.string.uploading_document_error), e);
+
 			DocumentField documentField = (DocumentField) argument;
 
 			findFieldView(documentField).refresh();
@@ -172,6 +186,14 @@ public class DDLFormDefaultView
 	protected void clearFormFields() {
 		_fieldsContainerView.removeAllViews();
 		_submitButton.setVisibility(GONE);
+	}
+
+	protected void showProgressBar() {
+		_progressBar.setVisibility(VISIBLE);
+	}
+
+	protected void hideProgressBar() {
+		_progressBar.setVisibility(GONE);
 	}
 
 	protected void showRecordValues() {
@@ -224,6 +246,8 @@ public class DDLFormDefaultView
 
 		_submitButton = (Button) findViewById(R.id.submit);
 		_submitButton.setOnClickListener(this);
+
+		_progressBar = (ProgressBar) findViewById(R.id.ddlform_progress_bar);
 	}
 
 	private DDLFieldViewModel findFieldView(Field field) {
@@ -236,6 +260,7 @@ public class DDLFormDefaultView
 		return null;
 	}
 
+	private ProgressBar _progressBar;
 	private ViewGroup _fieldsContainerView;
 	private Button _submitButton;
 	private Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();

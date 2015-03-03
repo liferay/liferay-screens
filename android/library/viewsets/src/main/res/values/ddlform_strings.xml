@@ -8,4 +8,6 @@
 	<string name="select_a_file">Select a file</string>
 	<string name="origin_of_file">Choose origin of file</string>
 	<string name="take_a_video">Take a video</string>
+	<string name="loading_form_error">Error loading DDLForm</string>
+	<string name="uploading_document_error">Error uploading document</string>
 </resources>
