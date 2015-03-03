@@ -16,6 +16,9 @@ package com.liferay.mobile.screens.base.view;
 
 public interface BaseViewModel {
 
-	void showError(Exception e, Object... args);
+	void showStartOperation(String message, Object... args);
+
+	void showFinishOperation(String message, Object... args);
+	void showFinishOperation(Exception message, Object... args);
 
 }
