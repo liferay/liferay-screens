@@ -34,7 +34,7 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public abstract class BaseListScreenlet<E, N extends Interactor>
-        extends BaseScreenlet<BaseViewModel, N>
+        extends BaseScreenlet<BaseListViewModel, N>
         implements BaseListInteractorListener<E> {
 
     public BaseListScreenlet(Context context) {
@@ -56,6 +56,9 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     @Override
     public void onListRowsFailure(int startRow, int endRow, Exception e) {
         int page = getPageFromRow(startRow);
+
+		getViewModel().showFinishOperation(page, e);
+
         if (_listener != null) {
             _listener.onListPageFailed(this, page, e);
         }
@@ -65,8 +68,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     public void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount) {
         int page = getPageFromRow(startRow);
 
-        BaseListViewModel<E> view = (BaseListViewModel<E>) getScreenletView();
-		view.setListPage(page, entries, rowCount);
+		getViewModel().showFinishOperation(page, entries, rowCount);
 
         if (_listener != null) {
             _listener.onListPageReceived(this, page, entries, rowCount);
@@ -96,9 +98,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
         int endRow = getFirstRowForPage(page + 1);
 
         try {
-			N loadPageInteractor = getInteractor();
-
-            loadRows(loadPageInteractor, startRow, endRow, locale);
+            loadRows(getInteractor(), startRow, endRow, locale);
         }
         catch (Exception e) {
             onListRowsFailure(startRow, endRow, e);

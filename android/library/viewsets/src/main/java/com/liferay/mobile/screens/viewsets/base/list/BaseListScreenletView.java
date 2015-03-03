@@ -82,14 +82,28 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 
         int firstRowForPage = screenlet.getFirstRowForPage(page);
 
-        for (int i = 0; i < (serverEntries.size()); i++) {
+        for (int i = 0; i < serverEntries.size(); i++) {
             allEntries.set(i + firstRowForPage, serverEntries.get(i));
         }
         return allEntries;
     }
 
 	@Override
-	public void setListPage(int page, List<E> entries, int rowCount) {
+	public void showStartOperation(String message, Object... args) {
+		// TODO show progress?
+	}
+
+	@Override
+	public void showFinishOperation(String message, Object... args) {
+	}
+
+	@Override
+	public void showFinishOperation(Exception message, Object... args) {
+		// use method with page
+	}
+
+	@Override
+	public void showFinishOperation(int page, List<E> entries, int rowCount) {
 		A adapter = (A) getAdapter();
 		List<E> allEntries = createAllEntries(page, entries, rowCount, adapter);
 
@@ -98,9 +112,14 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 		adapter.notifyDataSetChanged();
 	}
 
+	@Override
+	public void showFinishOperation(int page, Exception e) {
+		// TODO show error?
+	}
+
     @Override
 	public void onPageNotFound(int row) {
-		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
+		BaseListScreenlet screenlet = (BaseListScreenlet) getParent();
 
 		screenlet.loadPageForRow(row);
 	}
@@ -138,9 +157,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
     protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
 
 	private static final String _STATE_ENTRIES = "entries";
-
 	private static final String _STATE_ROW_COUNT = "rowCount";
-
 	private static final String _STATE_SUPER = "super";
 
 }
