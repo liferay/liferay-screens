@@ -15,22 +15,16 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.auth.signup;
 
 import android.content.Context;
-
 import android.util.AttributeSet;
-
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.liferay.mobile.screens.auth.signup.SignUpListener;
 import com.liferay.mobile.screens.auth.signup.SignUpScreenlet;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.R;
-
-import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
@@ -86,11 +80,22 @@ public class SignUpDefaultView extends LinearLayout
 	}
 
 	@Override
-	public void setUser(User user) {
+	public void showStartOperation(String message, Object... args) {
+		// TODO show progress dialog
 	}
 
 	@Override
-	public void showError(Exception e, Object... args) {
+	public void showFinishOperation(String message, Object... args) {
+	}
+
+	@Override
+	public void showFinishOperation(Exception message, Object... args) {
+		// TODO show error?
+	}
+
+	@Override
+	public void showFinishOperation(User user) {
+		// TODO show success?
 	}
 
 	@Override

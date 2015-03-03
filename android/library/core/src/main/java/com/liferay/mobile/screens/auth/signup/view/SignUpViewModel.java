@@ -36,6 +36,6 @@ public interface SignUpViewModel extends BaseViewModel {
 
 	String getScreenName();
 
-	void setUser(User user);
+	void showFinishOperation(User user);
 
 }

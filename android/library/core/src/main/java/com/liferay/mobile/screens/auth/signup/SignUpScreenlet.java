@@ -60,7 +60,7 @@ public class SignUpScreenlet
 
 	@Override
 	public void onSignUpFailure(Exception e) {
-		getViewModel().showError(e);
+		getViewModel().showFinishOperation(e);
 
 		if (_listener != null) {
 			_listener.onSignUpFailure(e);
@@ -69,7 +69,7 @@ public class SignUpScreenlet
 
 	@Override
 	public void onSignUpSuccess(User user) {
-		getViewModel().setUser(user);
+		getViewModel().showFinishOperation(user);
 
 		if (_listener != null) {
 			_listener.onSignUpSuccess(user);
