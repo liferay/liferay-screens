@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginDefaultView xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/default_screenlet">
+    style="@style/default_screenlet"
+	android:id="@+id/loginScreenlet">
 
     <EditText
         android:id="@+id/login"

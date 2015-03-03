@@ -20,18 +20,18 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.auth.ProgressDefaultView;
 
 /**
  * @author Silvio Santos
  */
-public class LoginDefaultView extends LinearLayout
+public class LoginDefaultView extends ProgressDefaultView
 	implements LoginViewModel, View.OnClickListener {
 
 	public LoginDefaultView(Context context) {
@@ -86,6 +86,10 @@ public class LoginDefaultView extends LinearLayout
 		LoginScreenlet loginScreenlet = (LoginScreenlet) getParent();
 
 		loginScreenlet.performUserAction();
+
+		_loading = true;
+
+		showDialog();
 	}
 
 	public void setAuthMethod(AuthMethod authMethod) {
@@ -96,10 +100,10 @@ public class LoginDefaultView extends LinearLayout
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_loginEditText = (EditText)findViewById(R.id.login);
-		_passwordEditText = (EditText)findViewById(R.id.password);
+		_loginEditText = (EditText) findViewById(R.id.login);
+		_passwordEditText = (EditText) findViewById(R.id.password);
 
-		Button loginButton = (Button)findViewById(R.id.login_button);
+		Button loginButton = (Button) findViewById(R.id.login_button);
 		loginButton.setOnClickListener(this);
 	}
 
@@ -109,10 +113,12 @@ public class LoginDefaultView extends LinearLayout
 		if (AuthMethod.USER_ID.equals(_authMethod)) {
 			_loginEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
 			drawableId = R.drawable.default_user_icon;
-		} else if (AuthMethod.EMAIL.equals(_authMethod)) {
+		}
+		else if (AuthMethod.EMAIL.equals(_authMethod)) {
 			_loginEditText.setInputType(InputType.TYPE_CLASS_TEXT);
 			drawableId = R.drawable.default_mail_icon;
-		} else {
+		}
+		else {
 			_loginEditText.setInputType(InputType.TYPE_CLASS_TEXT);
 			drawableId = R.drawable.default_user_icon;
 		}
