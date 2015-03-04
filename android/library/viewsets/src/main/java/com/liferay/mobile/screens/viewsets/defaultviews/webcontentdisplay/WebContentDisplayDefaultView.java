@@ -15,16 +15,23 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.webcontentdisplay;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.AttributeSet;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewModel;
 
 /**
  * @author Silvio Santos
  */
-public class WebContentDisplayDefaultView extends WebView implements WebContentDisplayViewModel {
+public class WebContentDisplayDefaultView extends FrameLayout implements WebContentDisplayViewModel {
 
 	public WebContentDisplayDefaultView(Context context) {
 		super(context, null);
@@ -40,23 +47,42 @@ public class WebContentDisplayDefaultView extends WebView implements WebContentD
 
 	@Override
 	public void showStartOperation(String actionName) {
-		// TODO show progress dialog
+		_progressBar.setVisibility(View.VISIBLE);
+		_webView.setVisibility(View.GONE);
 	}
 
 	@Override
 	public void showFinishOperation(String html) {
+		_progressBar.setVisibility(View.GONE);
+		_webView.setVisibility(View.VISIBLE);
+
+		LiferayLogger.i("article loaded: " + html);
+
 		String styledHtml =
 			STYLES + "<div class=\"MobileCSS\">" + html + "</div>";
 
 		//TODO check encoding
-		loadDataWithBaseURL(
-			LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8",
-			null);
+		_webView.loadDataWithBaseURL(
+				LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8",
+				null);
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		// TODO show error
+
+		_progressBar.setVisibility(View.GONE);
+		_webView.setVisibility(View.VISIBLE);
+
+		DefaultCrouton.error(getContext(), getContext().getString(R.string.loading_article_error), e);
+		LiferayLogger.e(getContext().getString(R.string.loading_article_error), e);
+	}
+
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		_webView = (WebView) findViewById(R.id.webview);
+		_progressBar = (ProgressBar) findViewById(R.id.webview_progress_bar);
 	}
 
 	private static final String STYLES =
@@ -69,5 +95,8 @@ public class WebContentDisplayDefaultView extends WebView implements WebContentD
 		".MobileCSS img { width: 100% !important; } " +
 		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }" +
 		"</style>";
+
+	private WebView _webView;
+	private ProgressBar _progressBar;
 
 }

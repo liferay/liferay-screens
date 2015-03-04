@@ -51,7 +51,7 @@ public class WebContentDisplayScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
-	public void load() throws Exception {
+	public void load() {
 		performUserAction();
 	}
 
@@ -91,6 +91,7 @@ public class WebContentDisplayScreenlet
 				load();
 			}
 			catch (Exception e) {
+				onWebContentFailure(this, e);
 			}
 		}
 	}
@@ -127,6 +128,7 @@ public class WebContentDisplayScreenlet
 		String userActionName, WebContentDisplayInteractor interactor, Object... args) {
 
 		Locale locale = getResources().getConfiguration().locale;
+		getViewModel().showStartOperation(userActionName);
 
 		try {
 			getInteractor().load(_groupId, _articleId, locale);
