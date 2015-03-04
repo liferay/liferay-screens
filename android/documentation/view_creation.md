@@ -27,19 +27,19 @@ By using different components and input data, a Full view can present a complete
 	```xml
 	<?xml version="1.0" encoding="utf-8"?>
 	<com.your.package.LoginFullView
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical">
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical">
 	
 	    <EditText
-		android:id="@+id/login"
-		android:hint="@string/email_address"
-		android:inputType="textEmailAddress" />
+	        android:id="@+id/login"
+	        android:hint="@string/email_address"
+	        android:inputType="textEmailAddress" />
 	
-		<Button
-			android:id="@+id/login_button"
-			android:text="@string/sign_in" />
+	    <Button
+		android:id="@+id/login_button"
+		android:text="@string/sign_in" />
 	
 	</com.your.package.LoginFullView>
 	```
@@ -97,7 +97,7 @@ The example Extended view here presents the same components as the Default view,
 		xmlns:android="http://schemas.android.com/apk/res/android"
 	    style="@style/default_screenlet">
 	    
-		<include layout="@layout/login_default"/>
+	    <include layout="@layout/login_default"/>
 	
 	</com.your.package.LoginCheckPasswordView>
 	```

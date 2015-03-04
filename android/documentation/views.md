@@ -1,4 +1,4 @@
-# Views in Liferay Screens for iOS
+# Views in Liferay Screens for Android
 
 ## Important Note
 
