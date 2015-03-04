@@ -67,7 +67,7 @@ public class UserPortraitInteractorImpl
 	public void load(long userId) throws Exception {
 		validate(userId);
 
-		if (SessionContext.getLoggedUser().getId() == userId) {
+		if (SessionContext.hasSession() && SessionContext.getLoggedUser().getId() == userId) {
 			boolean male = true;
 			long portraitId = SessionContext.getLoggedUser().getPortraitId();
 			String uuid = SessionContext.getLoggedUser().getUuid();
