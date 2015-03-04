@@ -2,10 +2,25 @@
 <resources>
 
 	<style name="default_theme" parent="Theme.AppCompat.Light">
-		<item name="android:textViewStyle">@style/default_text_view</item>
-		<item name="android:listViewStyle">@style/default_list</item>
 		<item name="colorPrimary">@color/liferay_primary_blue</item>
 		<item name="colorAccent">@color/liferay_light_blue</item>
+		<item name="android:textViewStyle">@style/default_text_view</item>
+		<item name="android:listViewStyle">@style/default_list</item>
+		<item name="android:editTextStyle">@style/default_edit_text</item>
+		<item name="android:buttonStyle">@style/default_button</item>
+		<item name="android:background">@android:color/white</item>
+	</style>
+
+	<style name="material_theme" parent="Theme.AppCompat.Light">
+		<item name="colorPrimary">@color/primary</item>
+		<item name="colorAccent">@color/accent</item>
+		<item name="colorPrimaryDark">@color/primary_dark</item>
+		<item name="android:editTextStyle">@style/material_edit_text</item>
+		<item name="android:buttonStyle">@style/material_button</item>
+		<item name="android:background">@android:color/white</item>
+
+		<!-- You can also set colorControlNormal, colorControlActivated
+		 colorControlHighlight, and colorSwitchThumbNormal. -->
 	</style>
 
 	<style name="default_edit_text" parent="base_default_edit_text"/>
@@ -30,8 +45,6 @@
 		<item name="android:paddingBottom">@dimen/default_text_view_padding</item>
 		<item name="android:paddingRight">@dimen/default_text_view_padding</item>
 		<item name="android:paddingTop">@dimen/default_text_view_padding</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
 	</style>
 
 	<style name="default_submit_button" parent="base_default_submit_button"/>
