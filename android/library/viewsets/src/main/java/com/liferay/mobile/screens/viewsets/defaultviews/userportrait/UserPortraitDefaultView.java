@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 
 /**
@@ -60,12 +61,14 @@ public class UserPortraitDefaultView extends FrameLayout implements UserPortrait
 
 	@Override
 	public void showFinishOperation(Bitmap bitmap) {
+		LiferayLogger.i("portrait loaded");
 		_portraitProgress.setVisibility(INVISIBLE);
 		_portraitImage.setImageBitmap(transformBitmap(bitmap));
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
+		LiferayLogger.e("portrait failed to load", e);
 		_portraitProgress.setVisibility(INVISIBLE);
 		setDefaultImagePlaceholder();
 	}
