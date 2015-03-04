@@ -19,7 +19,7 @@ import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.assetlist.view.AssetListViewModel;
-import com.liferay.mobile.screens.viewsets.base.list.BaseListScreenletView;
+import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 
 
 /**

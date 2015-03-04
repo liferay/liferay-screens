@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.viewsets.base.list;
+package com.liferay.mobile.screens.base.list;
 
 /**
  * @author Javier Gamarra

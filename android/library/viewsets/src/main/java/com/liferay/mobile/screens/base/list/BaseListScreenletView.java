@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.viewsets.base.list;
+package com.liferay.mobile.screens.base.list;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -22,10 +22,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;

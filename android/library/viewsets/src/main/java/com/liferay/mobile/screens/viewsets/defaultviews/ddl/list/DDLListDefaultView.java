@@ -20,7 +20,7 @@ import android.util.AttributeSet;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
-import com.liferay.mobile.screens.viewsets.base.list.BaseListScreenletView;
+import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 
 import java.util.List;
 
