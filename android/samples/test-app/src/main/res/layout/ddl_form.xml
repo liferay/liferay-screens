@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:liferay="http://schemas.android.com/apk/res-auto"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="@android:color/white"
+			  android:orientation="vertical">
+
+	<com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
+		android:id="@+id/ddl"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="0dp"
+		android:paddingTop="0dp"
+		liferay:autoLoad="true"
+		liferay:filePrefix="jre"
+		liferay:folderId="10687"
+		liferay:layoutId="@layout/ddlform_default"
+		liferay:recordSetId="10714"
+		liferay:repositoryId="10685"
+		liferay:structureId="10712"/>
+
+</LinearLayout>
