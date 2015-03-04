@@ -50,8 +50,6 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	public BaseScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 
-		LiferayScreensContext.init(context);
-
 		init(context, attributes);
 	}
 
@@ -105,6 +103,8 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	}
 
 	protected void init(Context context, AttributeSet attributes) {
+		LiferayScreensContext.init(context);
+
 		_screenletView = createScreenletView(context, attributes);
 
 		addView(_screenletView);

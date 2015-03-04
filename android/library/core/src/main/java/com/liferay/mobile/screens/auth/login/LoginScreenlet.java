@@ -96,7 +96,6 @@ public class LoginScreenlet
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.LoginScreenlet, 0, 0);
 
