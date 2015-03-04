@@ -31,7 +31,8 @@ import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewMo
 /**
  * @author Silvio Santos
  */
-public class WebContentDisplayDefaultView extends FrameLayout implements WebContentDisplayViewModel {
+public class WebContentDisplayDefaultView extends FrameLayout
+	implements WebContentDisplayViewModel {
 
 	public WebContentDisplayDefaultView(Context context) {
 		super(context);
@@ -58,8 +59,7 @@ public class WebContentDisplayDefaultView extends FrameLayout implements WebCont
 
 		LiferayLogger.i("article loaded: " + html);
 
-		String styledHtml =
-			STYLES + "<div class=\"MobileCSS\">" + html + "</div>";
+		String styledHtml = STYLES + "<div class=\"MobileCSS\">" + html + "</div>";
 
 		//TODO check encoding
 		_webView.loadDataWithBaseURL(
@@ -69,7 +69,6 @@ public class WebContentDisplayDefaultView extends FrameLayout implements WebCont
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-
 		_progressBar.setVisibility(View.GONE);
 		_webView.setVisibility(View.VISIBLE);
 

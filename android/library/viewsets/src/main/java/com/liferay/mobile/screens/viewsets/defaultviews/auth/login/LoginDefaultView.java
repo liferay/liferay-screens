@@ -21,6 +21,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
@@ -28,15 +30,15 @@ import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
-import com.liferay.mobile.screens.viewsets.defaultviews.auth.ProgressDefaultView;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 /**
  * @author Silvio Santos
  */
-public class LoginDefaultView extends ProgressDefaultView
+public class LoginDefaultView extends LinearLayout
 	implements LoginViewModel, View.OnClickListener {
 
 	public LoginDefaultView(Context context) {
@@ -68,7 +70,7 @@ public class LoginDefaultView extends ProgressDefaultView
 
 	@Override
 	public void showStartOperation(String actionName) {
-		showDialog();
+		_progressBar.startProgress();
 	}
 
 	@Override
@@ -78,13 +80,15 @@ public class LoginDefaultView extends ProgressDefaultView
 
 	@Override
 	public void showFinishOperation(User user) {
-		dismisDialog();
+		_progressBar.finishProgress();
+
 		LiferayLogger.i("Login successful: " + user.getId());
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		dismisDialog();
+		_progressBar.finishProgress();
+
 		LiferayLogger.e("Could not login", e);
 		Crouton.makeText((Activity) getContext(), getContext().getString(R.string.login_error), DefaultCrouton.ALERT).show();
 	}
@@ -106,9 +110,10 @@ public class LoginDefaultView extends ProgressDefaultView
 
 		_loginEditText = (EditText) findViewById(R.id.login);
 		_passwordEditText = (EditText) findViewById(R.id.password);
+		_progressBar = (ModalProgressBar) findViewById(R.id.progress_bar);
 
-		Button loginButton = (Button) findViewById(R.id.login_button);
-		loginButton.setOnClickListener(this);
+		Button submitButton = (Button) findViewById(R.id.login_button);
+		submitButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -133,5 +138,7 @@ public class LoginDefaultView extends ProgressDefaultView
 	private AuthMethod _authMethod;
 	private EditText _loginEditText;
 	private EditText _passwordEditText;
+	private Button _submitButton;
+	private ModalProgressBar _progressBar;
 
 }

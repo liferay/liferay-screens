@@ -19,19 +19,20 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewModel;
+import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
-import com.liferay.mobile.screens.viewsets.defaultviews.auth.ProgressDefaultView;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class ForgotPasswordDefaultView extends ProgressDefaultView
+public class ForgotPasswordDefaultView extends LinearLayout
 		implements ForgotPasswordViewModel, View.OnClickListener {
 
 	public ForgotPasswordDefaultView(Context context) {
@@ -58,7 +59,7 @@ public class ForgotPasswordDefaultView extends ProgressDefaultView
 
 	@Override
 	public void showStartOperation(String actionName) {
-		showDialog();
+		_progressBar.startProgress();
 	}
 
 	@Override
@@ -68,17 +69,23 @@ public class ForgotPasswordDefaultView extends ProgressDefaultView
 
 	@Override
 	public void showFinishOperation(boolean passwordSent) {
+		_progressBar.finishProgress();
+
 		int operationMsg = (passwordSent) ? R.string.password_sent : R.string.password_sent;
 
-		dismisDialog();
-		LiferayLogger.i(getResources().getString(operationMsg));
+		String msg = getResources().getString(operationMsg) + " " +
+			getResources().getString(R.string.check_your_inbox);
+
+		DefaultCrouton.info(getContext(), msg);
+		LiferayLogger.i(msg);
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		dismisDialog();
-		LiferayLogger.e("Could not send password", e);
+		_progressBar.finishProgress();
+
 		DefaultCrouton.error(getContext(), getContext().getString(R.string.password_request_error), e);
+		LiferayLogger.e("Could not send password", e);
 	}
 
 	@Override
@@ -97,6 +104,7 @@ public class ForgotPasswordDefaultView extends ProgressDefaultView
 		super.onFinishInflate();
 
 		_loginEditText = (EditText) findViewById(R.id.login);
+		_progressBar = (ModalProgressBar) findViewById(R.id.progress_bar);
 
 		Button requestButton = (Button) findViewById(R.id.request_button);
 		requestButton.setOnClickListener(this);
@@ -104,5 +112,6 @@ public class ForgotPasswordDefaultView extends ProgressDefaultView
 
 	private AuthMethod _authMethod;
 	private EditText _loginEditText;
+	private ModalProgressBar _progressBar;
 
 }

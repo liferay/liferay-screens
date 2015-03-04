@@ -19,19 +19,21 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.auth.signup.SignUpScreenlet;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
+import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
-import com.liferay.mobile.screens.viewsets.defaultviews.auth.ProgressDefaultView;
 
 /**
  * @author Silvio Santos
  */
-public class SignUpDefaultView extends ProgressDefaultView
+public class SignUpDefaultView extends LinearLayout
 		implements SignUpViewModel, View.OnClickListener {
 
 	public SignUpDefaultView(Context context) {
@@ -83,7 +85,7 @@ public class SignUpDefaultView extends ProgressDefaultView
 
 	@Override
 	public void showStartOperation(String actionName) {
-		showDialog();
+		_progressBar.startProgress();
 	}
 
 	@Override
@@ -93,13 +95,15 @@ public class SignUpDefaultView extends ProgressDefaultView
 
 	@Override
 	public void showFinishOperation(User user) {
-		dismisDialog();
+		_progressBar.finishProgress();
+
 		LiferayLogger.i("Sign-up successful: " + user.getId());
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		dismisDialog();
+		_progressBar.finishProgress();
+
 		LiferayLogger.e("Could not sign up", e);
 		DefaultCrouton.error(getContext(), getContext().getString(R.string.sign_up_error), e);
 	}
@@ -119,6 +123,7 @@ public class SignUpDefaultView extends ProgressDefaultView
 		_lastName = (EditText) findViewById(R.id.last_name);
 		_emailAddress = (EditText) findViewById(R.id.email_address);
 		_password = (EditText) findViewById(R.id.password);
+		_progressBar = (ModalProgressBar) findViewById(R.id.progress_bar);
 
 		Button signUpButton = (Button) findViewById(R.id.sign_up);
 		signUpButton.setOnClickListener(this);
@@ -128,5 +133,6 @@ public class SignUpDefaultView extends ProgressDefaultView
 	private EditText _firstName;
 	private EditText _lastName;
 	private EditText _password;
+	private ModalProgressBar _progressBar;
 
 }
