@@ -1,7 +1,5 @@
 package com.liferay.mobile.screens.ddl.model;
 
-import java.io.Serializable;
-
 /**
  * @author Javier Gamarra
  */

@@ -1,7 +1,5 @@
 package com.liferay.mobile.screens.base.list.view;
 
-import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-
 import java.util.List;
 
 /**

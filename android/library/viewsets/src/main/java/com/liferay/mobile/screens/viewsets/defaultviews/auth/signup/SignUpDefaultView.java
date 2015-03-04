@@ -31,8 +31,6 @@ import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
-import org.json.JSONObject;
-
 /**
  * @author Silvio Santos
  */

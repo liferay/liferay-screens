@@ -25,8 +25,6 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 
-import org.json.JSONObject;
-
 /**
  * @author Silvio Santos
  */

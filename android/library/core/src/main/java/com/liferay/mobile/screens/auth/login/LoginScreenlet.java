@@ -31,8 +31,6 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 
-import org.json.JSONObject;
-
 import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.*;
 
 /**
