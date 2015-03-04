@@ -122,7 +122,7 @@ public class SelectFileDialog {
 	}
 
 	private List<String> getFileEntries(String directory) {
-		List<String> entries = new ArrayList<String>();
+		List<String> entries = new ArrayList<>();
 
 		if (!currentDir.equals(SD_DIRECTORY)) {
 			entries.add("..");

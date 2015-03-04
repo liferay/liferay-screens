@@ -28,7 +28,7 @@ public class User {
 
 	public User(JSONObject jsonObject) {
 		_jsonObject = jsonObject;
-		_attributes = new HashMap<String, Object>(jsonObject.length());
+		_attributes = new HashMap<>(jsonObject.length());
 
 		Iterator<String> it = jsonObject.keys();
 
