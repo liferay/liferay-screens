@@ -20,7 +20,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.auth.signup.SignUpScreenlet;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
@@ -125,7 +124,7 @@ public class SignUpDefaultView extends LinearLayout
 		_password = (EditText) findViewById(R.id.password);
 		_progressBar = (ModalProgressBar) findViewById(R.id.progress_bar);
 
-		Button signUpButton = (Button) findViewById(R.id.sign_up);
+		Button signUpButton = (Button) findViewById(R.id.sign_up_button);
 		signUpButton.setOnClickListener(this);
 	}
 
