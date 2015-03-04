@@ -38,11 +38,11 @@ public class DDLListScreenlet
 	implements DDLListInteractorListener {
 
 	public DDLListScreenlet(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public DDLListScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public DDLListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {

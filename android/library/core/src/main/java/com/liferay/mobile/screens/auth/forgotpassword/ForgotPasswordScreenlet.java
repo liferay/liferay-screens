@@ -37,14 +37,12 @@ public class ForgotPasswordScreenlet
 	extends BaseScreenlet<ForgotPasswordViewModel, ForgotPasswordInteractor>
 	implements ForgotPasswordListener {
 
-	public static final String REQUEST_PASSWORD_ACTION = "requestPassword";
-
 	public ForgotPasswordScreenlet(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public ForgotPasswordScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public ForgotPasswordScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
@@ -53,10 +51,7 @@ public class ForgotPasswordScreenlet
 
 	@Override
 	public void onForgotPasswordRequestFailure(Exception e) {
-		ForgotPasswordListener listenerView =
-			(ForgotPasswordListener)getScreenletView();
-
-		listenerView.onForgotPasswordRequestFailure(e);
+		getViewModel().showFailedOperation(null, e);
 
 		if (_listener != null) {
 			_listener.onForgotPasswordRequestFailure(e);
@@ -65,14 +60,48 @@ public class ForgotPasswordScreenlet
 
 	@Override
 	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
-		ForgotPasswordListener listenerView =
-			(ForgotPasswordListener)getScreenletView();
-
-		listenerView.onForgotPasswordRequestSuccess(passwordSent);
+		getViewModel().showFinishOperation(passwordSent);
 
 		if (_listener != null) {
 			_listener.onForgotPasswordRequestSuccess(passwordSent);
 		}
+	}
+
+	public String getAnonymousApiPassword() {
+		return _anonymousApiPassword;
+	}
+
+	public void setAnonymousApiPassword(String value) {
+		_anonymousApiPassword = value;
+	}
+
+	public String getAnonymousApiUserName() {
+		return _anonymousApiUserName;
+	}
+
+	public void setAnonymousApiUserName(String value) {
+		_anonymousApiUserName = value;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long value) {
+		_companyId = value;
+	}
+
+	public AuthMethod getAuthMethod() {
+		return _authMethod;
+	}
+
+	public void setAuthMethod(AuthMethod value) {
+		_authMethod = value;
+		getViewModel().setAuthMethod(value);
+	}
+
+	public ForgotPasswordListener getListener() {
+		return _listener;
 	}
 
 	public void setListener(ForgotPasswordListener listener) {
@@ -80,9 +109,7 @@ public class ForgotPasswordScreenlet
 	}
 
 	@Override
-	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
-
+	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.ForgotPasswordScreenlet, 0, 0);
 
@@ -97,15 +124,13 @@ public class ForgotPasswordScreenlet
 			R.styleable.ForgotPasswordScreenlet_anonymousApiPassword);
 
 		int layoutId = typedArray.getResourceId(
-			R.styleable.ForgotPasswordScreenlet_layoutId, 0);
+			R.styleable.ForgotPasswordScreenlet_layoutId, getDefaultLayoutId());
 
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
+		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
-		int authMethod = typedArray.getInt(
-			R.styleable.ForgotPasswordScreenlet_authMethod, 0);
-
-		ForgotPasswordViewModel viewModel = (ForgotPasswordViewModel)view;
-		viewModel.setAuthMethod(AuthMethod.getValue(authMethod));
+		int authMethod = typedArray.getInt(R.styleable.ForgotPasswordScreenlet_authMethod, 0);
+		_authMethod = AuthMethod.getValue(authMethod);
+		((ForgotPasswordViewModel) view).setAuthMethod(_authMethod);
 
 		typedArray.recycle();
 
@@ -120,6 +145,7 @@ public class ForgotPasswordScreenlet
 	@Override
 	protected void onUserAction(String userActionName, ForgotPasswordInteractor interactor, Object... args) {
 		ForgotPasswordViewModel viewModel = (ForgotPasswordViewModel)getScreenletView();
+		viewModel.showStartOperation(userActionName);
 
 		String login = viewModel.getLogin();
 		AuthMethod method = viewModel.getAuthMethod();
@@ -136,6 +162,7 @@ public class ForgotPasswordScreenlet
 	private String _anonymousApiPassword;
 	private String _anonymousApiUserName;
 	private long _companyId;
+	private AuthMethod _authMethod;
 	private ForgotPasswordListener _listener;
 
 }

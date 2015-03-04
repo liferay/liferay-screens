@@ -43,8 +43,7 @@ public class Record implements Parcelable {
 
 			@Override
 			public Record createFromParcel(Parcel in) {
-				assert false;
-				return null;
+				throw new AssertionError();
 			}
 
 			public Record[] newArray(int size) {

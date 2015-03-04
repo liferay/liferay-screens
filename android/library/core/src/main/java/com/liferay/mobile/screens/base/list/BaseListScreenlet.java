@@ -25,7 +25,6 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 import java.util.List;
 import java.util.Locale;
@@ -34,15 +33,15 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public abstract class BaseListScreenlet<E, N extends Interactor>
-        extends BaseScreenlet<BaseViewModel, N>
+        extends BaseScreenlet<BaseListViewModel, N>
         implements BaseListInteractorListener<E> {
 
     public BaseListScreenlet(Context context) {
-        this(context, null);
+        super(context);
     }
 
     public BaseListScreenlet(Context context, AttributeSet attributes) {
-        this(context, attributes, 0);
+        super(context, attributes);
     }
 
     public BaseListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
@@ -56,6 +55,9 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     @Override
     public void onListRowsFailure(int startRow, int endRow, Exception e) {
         int page = getPageFromRow(startRow);
+
+		getViewModel().showFinishOperation(page, e);
+
         if (_listener != null) {
             _listener.onListPageFailed(this, page, e);
         }
@@ -65,8 +67,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     public void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount) {
         int page = getPageFromRow(startRow);
 
-        BaseListViewModel<E> view = (BaseListViewModel<E>) getScreenletView();
-		view.setListPage(page, entries, rowCount);
+		getViewModel().showFinishOperation(page, entries, rowCount);
 
         if (_listener != null) {
             _listener.onListPageReceived(this, page, entries, rowCount);
@@ -90,15 +91,15 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     }
 
     public void loadPage(int page) {
+		getViewModel().showStartOperation(null);
+
         Locale locale = getResources().getConfiguration().locale;
 
         int startRow = getFirstRowForPage(page);
         int endRow = getFirstRowForPage(page + 1);
 
         try {
-			N loadPageInteractor = getInteractor();
-
-            loadRows(loadPageInteractor, startRow, endRow, locale);
+            loadRows(getInteractor(), startRow, endRow, locale);
         }
         catch (Exception e) {
             onListRowsFailure(startRow, endRow, e);
@@ -148,20 +149,18 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
                 attributes, R.styleable.AssetListScreenlet, 0, 0);
 
         int layoutId = typedArray.getResourceId(
-                R.styleable.AssetListScreenlet_layoutId, 0);
+			R.styleable.AssetListScreenlet_layoutId, getDefaultLayoutId());
 
         _firstPageSize = typedArray.getInteger(
-                R.styleable.AssetListScreenlet_firstPageSize, _FIRST_PAGE_SIZE);
+			R.styleable.AssetListScreenlet_firstPageSize, _FIRST_PAGE_SIZE);
 
-        _pageSize = typedArray.getInteger(
-                R.styleable.AssetListScreenlet_pageSize, _PAGE_SIZE);
+        _pageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_pageSize, _PAGE_SIZE);
 
-        _autoLoad = typedArray.getBoolean(
-                R.styleable.AssetListScreenlet_autoLoad, true);
+        _autoLoad = typedArray.getBoolean(R.styleable.AssetListScreenlet_autoLoad, true);
 
         typedArray.recycle();
 
-        return LayoutInflater.from(getContext()).inflate(layoutId, null);
+        return LayoutInflater.from(context).inflate(layoutId, null);
     }
 
     @Override

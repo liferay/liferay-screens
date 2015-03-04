@@ -19,7 +19,7 @@ import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.assetlist.view.AssetListViewModel;
-import com.liferay.mobile.screens.viewsets.base.list.BaseListScreenletView;
+import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 
 
 /**
@@ -29,11 +29,11 @@ public class AssetListDefaultView extends BaseListScreenletView<AssetEntry, Asse
 	implements AssetListViewModel {
 
 	public AssetListDefaultView(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public AssetListDefaultView(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public AssetListDefaultView(Context context, AttributeSet attributes, int defaultStyle) {

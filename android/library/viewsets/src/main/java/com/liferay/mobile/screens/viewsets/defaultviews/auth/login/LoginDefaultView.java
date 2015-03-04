@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.auth.login;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -23,21 +24,25 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.auth.AuthMethod;
-import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
+import com.liferay.mobile.screens.base.ModalProgressBar;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
+
+import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 /**
  * @author Silvio Santos
  */
 public class LoginDefaultView extends LinearLayout
-		implements LoginViewModel, View.OnClickListener, LoginListener {
+		implements LoginViewModel, View.OnClickListener {
 
 	public LoginDefaultView(Context context) {
-		super(context, null);
+		super(context);
 
 		DefaultTheme.initIfThemeNotPresent(context);
 	}
@@ -70,19 +75,35 @@ public class LoginDefaultView extends LinearLayout
 	}
 
 	@Override
+	public void showStartOperation(String actionName) {
+		_progressBar.startProgress();
+	}
+
+	@Override
+	public void showFinishOperation(String actionName) {
+		throw new AssertionError("Use showFinishOperation(user) instead");
+	}
+
+	@Override
+	public void showFinishOperation(User user) {
+		_progressBar.finishProgress();
+
+		LiferayLogger.i("Login successful: " + user.getId());
+	}
+
+	@Override
+	public void showFailedOperation(String actionName, Exception e) {
+		_progressBar.finishProgress();
+
+		LiferayLogger.e("Could not login", e);
+		Crouton.makeText((Activity) getContext(), getContext().getString(R.string.login_error), DefaultCrouton.ALERT).show();
+	}
+
+	@Override
 	public void onClick(View view) {
 		LoginScreenlet loginScreenlet = (LoginScreenlet) getParent();
 
-		loginScreenlet.performUserAction(LoginScreenlet.LOGIN_ACTION);
-	}
-
-	@Override
-	public void onLoginFailure(Exception e) {
-		//TODO show login error to user??
-	}
-
-	@Override
-	public void onLoginSuccess(User userAttributes) {
+		loginScreenlet.performUserAction();
 	}
 
 	public void setAuthMethod(AuthMethod authMethod) {
@@ -95,10 +116,10 @@ public class LoginDefaultView extends LinearLayout
 
 		_loginEditText = (EditText) findViewById(R.id.login);
 		_passwordEditText = (EditText) findViewById(R.id.password);
+		_progressBar = (ModalProgressBar) findViewById(R.id.progress_bar);
 
-		Button loginButton = (Button) findViewById(R.id.login_button);
-		loginButton.setOnClickListener(this);
-
+		Button submitButton = (Button) findViewById(R.id.login_button);
+		submitButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -123,5 +144,7 @@ public class LoginDefaultView extends LinearLayout
 	private AuthMethod _authMethod;
 	private EditText _loginEditText;
 	private EditText _passwordEditText;
+	private Button _submitButton;
+	private ModalProgressBar _progressBar;
 
 }

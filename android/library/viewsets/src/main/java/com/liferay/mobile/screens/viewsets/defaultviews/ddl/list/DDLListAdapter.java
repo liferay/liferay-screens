@@ -15,8 +15,8 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.list;
 
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
-import com.liferay.mobile.screens.viewsets.base.list.BaseListAdapter;
-import com.liferay.mobile.screens.viewsets.base.list.BaseListAdapterListener;
+import com.liferay.mobile.screens.base.list.BaseListAdapter;
+import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 
 import java.util.List;
 

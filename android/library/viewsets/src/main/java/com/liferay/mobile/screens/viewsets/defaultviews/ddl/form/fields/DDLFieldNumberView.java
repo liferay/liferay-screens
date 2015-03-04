@@ -26,11 +26,11 @@ import com.liferay.mobile.screens.ddl.model.NumberField;
 public class DDLFieldNumberView extends BaseDDLFieldTextView<NumberField> {
 
 	public DDLFieldNumberView(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public DDLFieldNumberView(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public DDLFieldNumberView(Context context, AttributeSet attributes, int defaultStyle) {

@@ -33,13 +33,11 @@ public class UserPortraitMaterialView
         super(context);
     }
 
-    public UserPortraitMaterialView(
-		Context context, AttributeSet attributes) {
-        this(context, attributes, 0);
+    public UserPortraitMaterialView(Context context, AttributeSet attributes) {
+        super(context, attributes);
     }
 
-    public UserPortraitMaterialView(
-		Context context, AttributeSet attributes, int defaultStyle) {
+    public UserPortraitMaterialView(Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
     }
 

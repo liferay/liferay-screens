@@ -12,14 +12,17 @@
  * details.
  */
 
-package com.liferay.mobile.screens.viewsets.base.list;
+package com.liferay.mobile.screens.userportrait.view;
+
+import android.graphics.Bitmap;
+
+import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 /**
- * @author Javier Gamarra
- * @author Silvio Santos
+ * @author Jose Manuel Navarro
  */
-public interface BaseListAdapterListener {
+public interface UserPortraitViewModel extends BaseViewModel {
 
-	public void onPageNotFound(int row);
+	void showFinishOperation(Bitmap bitmap);
 
 }

@@ -38,11 +38,11 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 	implements View.OnClickListener {
 
 	public DDLFieldSelectView(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public DDLFieldSelectView(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public DDLFieldSelectView(Context context, AttributeSet attributes, int defaultStyle) {

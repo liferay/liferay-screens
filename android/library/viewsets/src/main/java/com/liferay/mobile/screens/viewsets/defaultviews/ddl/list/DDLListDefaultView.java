@@ -20,7 +20,7 @@ import android.util.AttributeSet;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
-import com.liferay.mobile.screens.viewsets.base.list.BaseListScreenletView;
+import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class DDLListDefaultView extends BaseListScreenletView<DDLEntry, DDLListA
     }
 
     public DDLListDefaultView(Context context, AttributeSet attributes) {
-        super(context, attributes, 0);
+        super(context, attributes);
     }
 
     public DDLListDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
@@ -44,13 +44,13 @@ public class DDLListDefaultView extends BaseListScreenletView<DDLEntry, DDLListA
     }
 
 	@Override
-	public void setListPage(int page, List<DDLEntry> entries, int rowCount) {
+	public void showFinishOperation(int page, List<DDLEntry> entries, int rowCount) {
 		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
 		DDLListAdapter adapter = (DDLListAdapter) getAdapter();
 
 		adapter.setLabelFields(screenlet.getLabelFields());
 
-		super.setListPage(page, entries, rowCount);
+		super.showFinishOperation(page, entries, rowCount);
 	}
 
     @Override

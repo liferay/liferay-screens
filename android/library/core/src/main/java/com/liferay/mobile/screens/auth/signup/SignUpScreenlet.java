@@ -42,14 +42,12 @@ public class SignUpScreenlet
 	extends BaseScreenlet<SignUpViewModel, SignUpInteractor>
 	implements SignUpListener {
 
-	public static final String SIGN_UP_ACTION = "signUp";
-
 	public SignUpScreenlet(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public SignUpScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public SignUpScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
@@ -58,9 +56,7 @@ public class SignUpScreenlet
 
 	@Override
 	public void onSignUpFailure(Exception e) {
-		SignUpListener listener = (SignUpListener)getScreenletView();
-
-		listener.onSignUpFailure(e);
+		getViewModel().showFailedOperation(null, e);
 
 		if (_listener != null) {
 			_listener.onSignUpFailure(e);
@@ -69,8 +65,7 @@ public class SignUpScreenlet
 
 	@Override
 	public void onSignUpSuccess(User user) {
-		SignUpListener listenerView = (SignUpListener)getScreenletView();
-		listenerView.onSignUpSuccess(user);
+		getViewModel().showFinishOperation(user);
 
 		if (_listener != null) {
 			_listener.onSignUpSuccess(user);
@@ -94,6 +89,7 @@ public class SignUpScreenlet
 
 	public void onUserAction(String userActionName) {
 		SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
+		signUpViewModel.showStartOperation(userActionName);
 
 		String firstName = signUpViewModel.getFirstName();
 		String middleName = signUpViewModel.getMiddleName();
@@ -176,8 +172,6 @@ public class SignUpScreenlet
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.SignUpScreenlet, 0, 0);
 
-		int layoutId = typedArray.getResourceId(R.styleable.SignUpScreenlet_layoutId, 0);
-
 		_companyId = typedArray.getInt(
 			R.styleable.SignUpScreenlet_companyId,
 			(int)LiferayServerContext.getCompanyId());
@@ -195,11 +189,12 @@ public class SignUpScreenlet
 
 		_credentialsStore = StorageType.valueOf(storeValue);
 
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
+		int layoutId = typedArray.getResourceId(
+			R.styleable.SignUpScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
-		return view;
+		return LayoutInflater.from(context).inflate(layoutId, null);
 	}
 
 	@Override
@@ -230,7 +225,6 @@ public class SignUpScreenlet
 			onSignUpFailure(e);
 		}
 	}
-
 
 	private String _anonymousApiPassword;
 	private String _anonymousApiUserName;

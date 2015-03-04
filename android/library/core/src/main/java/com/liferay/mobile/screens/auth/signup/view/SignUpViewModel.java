@@ -15,24 +15,27 @@
 package com.liferay.mobile.screens.auth.signup.view;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.context.User;
 
 /**
  * @author Silvio Santos
  */
 public interface SignUpViewModel extends BaseViewModel {
 
-	public String getEmailAddress();
+	String getEmailAddress();
 
-	public String getFirstName();
+	String getFirstName();
 
-	public String getJobTitle();
+	String getJobTitle();
 
-	public String getLastName();
+	String getLastName();
 
-	public String getMiddleName();
+	String getMiddleName();
 
-	public String getPassword();
+	String getPassword();
 
-	public String getScreenName();
+	String getScreenName();
+
+	void showFinishOperation(User user);
 
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpDefaultView
 	style="@style/default_screenlet"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:liferay="http://schemas.android.com/apk/res-auto">
 
 	<EditText
 		android:id="@+id/first_name"
@@ -27,15 +28,27 @@
 
 	<EditText
 		android:id="@+id/password"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		style="@style/default_edit_text"
 		android:layout_marginBottom="10dp"
 		android:hint="@string/password"
 		android:inputType="textPassword"/>
 
-	<Button
-		android:id="@+id/sign_up"
+	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:text="@string/sign_up"/>
+		android:layout_height="wrap_content">
+
+		<Button
+			android:id="@+id/sign_up_button"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/sign_up"/>
+
+		<com.liferay.mobile.screens.base.ModalProgressBar
+			android:id="@+id/progress_bar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical|left"
+			android:visibility="invisible"
+			liferay:actionViewId="@id/sign_up_button"/>
+	</FrameLayout>
 </com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpDefaultView>

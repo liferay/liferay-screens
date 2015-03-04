@@ -43,6 +43,14 @@ public interface DDLFormViewModel extends BaseViewModel {
 	void setFieldLayoutId(Field.EditorType editorType, int layoutId);
 
 	/**
+	 * Sets the default layout associated a field
+	 * You should use this method if you want to use the default/standard layout for this field
+	 *
+	 * @param editorType EditorType associated with this layout
+	 */
+	void resetFieldLayoutId(Field.EditorType editorType);
+
+	/**
 	 * The layout associated with one specific field.
 	 *
 	 * @return a layout resource id associated with specified field
@@ -58,16 +66,20 @@ public interface DDLFormViewModel extends BaseViewModel {
 	 */
 	void setCustomFieldLayoutId(String fieldName, int layoutId);
 
-	void setValidationFailedFields(Map<Field, Boolean> fieldResults, boolean autoscroll);
+	/**
+	 * Sets the default layout corresponding to fieldName's editor
+	 * You should use this method if you want to use the default/standard layour
+	 *
+	 * @param fieldName the name of the field to change its layout
+	 */
+	void resetCustomFieldLayoutId(String fieldName);
 
-	void setRecordFields(Record record);
+	void showValidationResults(Map<Field, Boolean> fieldResults, boolean autoscroll);
 
-	void setRecordValues(Record record);
+	void showFormFields(Record record);
 
-	void showStartDocumentUpload(DocumentField documentField);
-
-	void showDocumentUploaded(DocumentField documentField);
-
-	void showDocumentUploadFailed(DocumentField documentField);
+	void showStartOperation(String actionName, Object argument);
+	void showFinishOperation(String actionName, Object argument);
+	void showFailedOperation(String actionName, Exception e, Object argument);
 
 }

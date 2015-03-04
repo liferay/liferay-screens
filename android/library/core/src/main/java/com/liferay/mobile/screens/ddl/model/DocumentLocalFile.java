@@ -11,9 +11,7 @@ public class DocumentLocalFile extends DocumentFile {
 
 	@Override
 	public String toData() {
-		// it's not possible to sent the local file, so fast-fail
-		assert false;
-		return null;
+		throw new AssertionError("it's not possible to sent the local file, so fast-fail");
 	}
 
 	@Override

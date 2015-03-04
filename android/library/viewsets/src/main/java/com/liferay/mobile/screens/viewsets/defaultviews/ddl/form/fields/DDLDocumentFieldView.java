@@ -28,11 +28,15 @@ import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormDefaultView;
 
 import java.io.File;
 import java.io.IOException;
+
+import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 /**
  * @author Javier Gamarra
@@ -41,11 +45,11 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		implements DDLFieldViewModel<DocumentField>, View.OnClickListener {
 
 	public DDLDocumentFieldView(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public DDLDocumentFieldView(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public DDLDocumentFieldView(Context context, AttributeSet attributes, int defaultStyle) {
@@ -187,7 +191,8 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 			return File.createTempFile(name, extension, storageDir);
 		}
 		catch (IOException e) {
-			//TODO Notify user?
+			LiferayLogger.e("error creating temporal file at uploading", e);
+			DefaultCrouton.error(getContext(), getContext().getString(R.string.creating_file_error), e);
 		}
 		return null;
 	}

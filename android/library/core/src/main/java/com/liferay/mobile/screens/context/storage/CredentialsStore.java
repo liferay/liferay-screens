@@ -17,13 +17,12 @@ package com.liferay.mobile.screens.context.storage;
 import android.content.Context;
 
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.context.User;
 
 /**
  * @author Jose Manuel Navarro
  */
-public interface CredentialsStore extends BaseViewModel {
+public interface CredentialsStore {
 
 	void storeCredentials();
 
