@@ -127,6 +127,8 @@ public class LoginScreenlet
 	@Override
 	protected void onUserAction(String userActionName, LoginInteractor interactor, Object... args) {
 		LoginViewModel loginViewModel = (LoginViewModel)getScreenletView();
+		loginViewModel.showStartOperation(userActionName);
+
 		String login = loginViewModel.getLogin();
 		String password = loginViewModel.getPassword();
 		AuthMethod method = loginViewModel.getAuthMethod();

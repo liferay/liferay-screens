@@ -89,6 +89,7 @@ public class SignUpScreenlet
 
 	public void onUserAction(String userActionName) {
 		SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
+		signUpViewModel.showStartOperation(userActionName);
 
 		String firstName = signUpViewModel.getFirstName();
 		String middleName = signUpViewModel.getMiddleName();
