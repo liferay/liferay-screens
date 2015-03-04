@@ -140,7 +140,8 @@ public class UserPortraitScreenlet
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, 0);
 
-		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId, 0);
+		int layoutId = typedArray.getResourceId(
+			R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 

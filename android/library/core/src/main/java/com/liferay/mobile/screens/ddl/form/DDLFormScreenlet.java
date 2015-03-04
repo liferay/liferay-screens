@@ -365,13 +365,9 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
-
+	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.DDLFormScreenlet, 0, 0);
-
-		int layoutId = typedArray.getResourceId(R.styleable.DDLFormScreenlet_layoutId, 0);
 
 		_autoLoad = typedArray.getBoolean(R.styleable.DDLFormScreenlet_autoLoad, true);
 
@@ -402,6 +398,9 @@ public class DDLFormScreenlet
 		_record.setRecordSetId(_recordSetId);
 		_record.setRecordId(_recordId);
 		_record.setCreatorUserId(_userId);
+
+		int layoutId = typedArray.getResourceId(
+			R.styleable.DDLFormScreenlet_layoutId, getDefaultLayoutId());
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
@@ -546,9 +545,9 @@ public class DDLFormScreenlet
 	}
 
 	protected void setFieldLayoutId(Field.EditorType editorType, TypedArray typedArray, int index) {
-		int layoutId = typedArray.getResourceId(index, -1);
+		int layoutId = typedArray.getResourceId(index, 0);
 
-		if (layoutId == -1) {
+		if (layoutId == 0) {
 			getViewModel().resetFieldLayoutId(editorType);
 		}
 		else {

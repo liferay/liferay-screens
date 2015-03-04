@@ -124,7 +124,7 @@ public class ForgotPasswordScreenlet
 			R.styleable.ForgotPasswordScreenlet_anonymousApiPassword);
 
 		int layoutId = typedArray.getResourceId(
-			R.styleable.ForgotPasswordScreenlet_layoutId, 0);
+			R.styleable.ForgotPasswordScreenlet_layoutId, getDefaultLayoutId());
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 

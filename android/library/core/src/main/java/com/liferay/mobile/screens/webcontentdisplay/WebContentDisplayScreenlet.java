@@ -108,10 +108,10 @@ public class WebContentDisplayScreenlet
 		_articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
 
 		_groupId = typedArray.getInt(
-			R.styleable.WebContentDisplayScreenlet_groupId,
-			(int)LiferayServerContext.getGroupId());
+			R.styleable.WebContentDisplayScreenlet_groupId, (int)LiferayServerContext.getGroupId());
 
-		int layoutId = typedArray.getResourceId(R.styleable.WebContentDisplayScreenlet_layoutId, 0);
+		int layoutId = typedArray.getResourceId(
+			R.styleable.WebContentDisplayScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 

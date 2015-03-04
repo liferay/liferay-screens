@@ -118,6 +118,21 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return (V)_screenletView;
 	}
 
+	protected int getDefaultLayoutId() {
+		Context ctx = getContext().getApplicationContext();
+		String packageName = ctx.getPackageName();
+
+		// first, get the identifier of the string key
+		String layoutNameKeyName = getClass().getSimpleName() + "_defaultLayout";
+		int layoutNameKeyId = ctx.getResources().getIdentifier(
+			layoutNameKeyName, "string", packageName);
+
+		// second, get the identifier of the layout specified in key layoutNameKeyId
+		String layoutName = ctx.getString(layoutNameKeyId);
+
+		return ctx.getResources().getIdentifier(layoutName, "layout", packageName);
+	}
+
 	@Override
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();

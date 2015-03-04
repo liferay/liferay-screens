@@ -105,7 +105,8 @@ public class LoginScreenlet
 
 		_credentialsStore = StorageType.valueOf(storeValue);
 
-		int layoutId = typedArray.getResourceId(R.styleable.LoginScreenlet_layoutId, 0);
+		int layoutId = typedArray.getResourceId(
+			R.styleable.LoginScreenlet_layoutId, getDefaultLayoutId());
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 

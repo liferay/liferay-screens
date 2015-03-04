@@ -189,7 +189,8 @@ public class SignUpScreenlet
 
 		_credentialsStore = StorageType.valueOf(storeValue);
 
-		int layoutId = typedArray.getResourceId(R.styleable.SignUpScreenlet_layoutId, 0);
+		int layoutId = typedArray.getResourceId(
+			R.styleable.SignUpScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
