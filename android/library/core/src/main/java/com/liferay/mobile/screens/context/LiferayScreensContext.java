@@ -15,9 +15,6 @@
 package com.liferay.mobile.screens.context;
 
 import android.content.Context;
-import android.content.res.Resources;
-
-import com.liferay.mobile.screens.R;
 
 /**
  * @author Jose Manuel Navarro
@@ -27,10 +24,7 @@ public class LiferayScreensContext {
 	public static void init(Context context) {
 		_context = context.getApplicationContext();
 
-		Resources resources = context.getResources();
-		LiferayServerContext.setCompanyId(resources.getInteger(R.integer.liferay_company_id));
-		LiferayServerContext.setGroupId(resources.getInteger(R.integer.liferay_group_id));
-		LiferayServerContext.setServer(resources.getString(R.string.liferay_server));
+		LiferayServerContext.loadFromResources(context.getResources());
 	}
 
 	/**

@@ -14,10 +14,20 @@
 
 package com.liferay.mobile.screens.context;
 
+import android.content.res.Resources;
+
+import com.liferay.mobile.screens.R;
+
 /**
  * @author Silvio Santos
  */
 public class LiferayServerContext {
+
+	public static void loadFromResources(Resources resources) {
+		LiferayServerContext.setCompanyId(resources.getInteger(R.integer.liferay_company_id));
+		LiferayServerContext.setGroupId(resources.getInteger(R.integer.liferay_group_id));
+		LiferayServerContext.setServer(resources.getString(R.string.liferay_server));
+	}
 
 	public static long getCompanyId() {
 		return _companyId;
