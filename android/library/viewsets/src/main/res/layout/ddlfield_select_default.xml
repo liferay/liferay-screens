@@ -15,6 +15,7 @@
 		style="@style/default_edit_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_marginBottom="5dp"
 		android:drawableRight="@drawable/default_blue"
 		android:inputType="date"
 		android:paddingBottom="5dp"

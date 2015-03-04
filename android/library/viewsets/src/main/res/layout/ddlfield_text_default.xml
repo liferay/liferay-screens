@@ -10,11 +10,11 @@
 		style="@style/default_text_view"
 		android:visibility="gone"/>
 
-	<EditText
-		android:id="@+id/text"
+	<EditText android:id="@+id/text"
 		style="@style/default_edit_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_marginBottom="5dp"
 		android:inputType="text"/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView>

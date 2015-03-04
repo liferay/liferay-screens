@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpDefaultView
 	style="@style/default_screenlet"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:theme="@style/default_theme">
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<EditText
 		android:id="@+id/first_name"
@@ -13,7 +12,6 @@
 
 	<EditText
 		android:id="@+id/last_name"
-		style="@style/default_edit_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="10dp"

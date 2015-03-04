@@ -6,7 +6,6 @@
 
 
 	<TextView
-		style="@style/default_text_view"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:background="@color/liferay_light_blue"
@@ -18,7 +17,6 @@
 
 	<EditText
 		android:id="@+id/default_dialog_edit_text"
-		style="@style/default_edit_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_margin="10dp"/>

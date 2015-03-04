@@ -15,6 +15,7 @@
 		style="@style/default_edit_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_marginBottom="5dp"
 		android:inputType="number"/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldNumberView>

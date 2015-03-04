@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldRadioView
-    android:id="@+id/radio_group"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:theme="@style/default_theme">
+	android:id="@+id/radio_group"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="@android:color/transparent"
+	android:theme="@style/default_theme">
 
-    <TextView
-        android:id="@+id/label"
-        style="@style/default_text_view"
-        android:visibility="gone"/>
+	<TextView
+		android:id="@+id/label"
+		style="@style/default_text_view"
+		android:layout_marginBottom="5dp"
+		android:visibility="gone"/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldRadioView>
