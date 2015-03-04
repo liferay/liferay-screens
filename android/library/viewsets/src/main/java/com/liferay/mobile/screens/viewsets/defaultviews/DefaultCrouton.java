@@ -20,7 +20,6 @@ public class DefaultCrouton {
 		ALERT = new Style.Builder().setBackgroundColor(R.color.liferay_red).build();
 	}
 
-	//TODO move to other class
 	public static void error(Context context, String message, Exception e) {
 		String error = message;
 		if (e instanceof IllegalArgumentException) {
@@ -29,4 +28,9 @@ public class DefaultCrouton {
 		}
 		Crouton.makeText((android.app.Activity) context, error, DefaultCrouton.ALERT).show();
 	}
+
+	public static void info(Context context, String message) {
+		Crouton.makeText((android.app.Activity) context, message, DefaultCrouton.INFO).show();
+	}
+
 }
