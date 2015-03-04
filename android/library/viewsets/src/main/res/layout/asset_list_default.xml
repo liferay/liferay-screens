@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.assetlist.AssetListDefaultView
-    android:id="@+id/asset_list_screenlet"
-    style="@style/default_list"
-    xmlns:android="http://schemas.android.com/apk/res/android"/>
+	android:id="@+id/asset_list_screenlet"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<ProgressBar
+		android:id="@+id/progress_bar"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:visibility="gone"/>
+
+	<android.support.v7.widget.RecyclerView
+		android:id="@+id/recycler_view"
+		style="@style/default_list"
+		android:visibility="gone"/>
+</com.liferay.mobile.screens.viewsets.defaultviews.assetlist.AssetListDefaultView>

@@ -54,12 +54,18 @@ public class DDLFormScreenlet
 	extends BaseScreenlet<DDLFormViewModel, DDLFormBaseInteractor>
 	implements DDLFormListener {
 
+	public static final String LOAD_FORM_ACTION = "loadForm";
+	public static final String LOAD_RECORD_ACTION = "loadRecord";
+	public static final String ADD_RECORD_ACTION = "addRecord";
+	public static final String UPDATE_RECORD_ACTION = "updateRecord";
+	public static final String UPLOAD_DOCUMENT_ACTION = "uploadDocument";
+
 	public DDLFormScreenlet(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public DDLFormScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public DDLFormScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
@@ -76,19 +82,19 @@ public class DDLFormScreenlet
 	}
 
 	public void loadForm() {
-		performUserAction(_LOAD_FORM_ACTION);
+		performUserAction(LOAD_FORM_ACTION);
 	}
 
 	public void loadRecord() {
-		performUserAction(_LOAD_RECORD_ACTION);
+		performUserAction(LOAD_RECORD_ACTION);
 	}
 
 	public void submitForm() {
 		if (_record.getRecordId() == 0) {
-			performUserAction(_ADD_RECORD_ACTION);
+			performUserAction(ADD_RECORD_ACTION);
 		}
 		else {
-			performUserAction(_UPDATE_RECORD_ACTION);
+			performUserAction(UPDATE_RECORD_ACTION);
 		}
 	}
 
@@ -107,7 +113,7 @@ public class DDLFormScreenlet
 		}
 
 		DDLFormViewModel viewModel = (DDLFormViewModel) getScreenletView();
-		viewModel.setValidationFailedFields(fieldResults, _autoScrollOnValidation);
+		viewModel.showValidationResults(fieldResults, _autoScrollOnValidation);
 
 		return result;
 	}
@@ -117,13 +123,12 @@ public class DDLFormScreenlet
 	}
 
 	public void startUpload(DocumentField field) {
-		performUserAction(_UPLOAD_DOCUMENT_ACTION, field);
+		performUserAction(UPLOAD_DOCUMENT_ACTION, field);
 	}
 
 	@Override
 	public void onDDLFormLoaded(Record record) {
-		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.setRecordFields(record);
+		getViewModel().showFinishOperation(LOAD_FORM_ACTION, record);
 
 		if (_listener != null) {
 			_listener.onDDLFormLoaded(record);
@@ -137,17 +142,19 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormLoadFailed(Exception e) {
-		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.setRecordFields(null);
+		getViewModel().showFailedOperation(LOAD_FORM_ACTION, e);
 
 		if (_listener != null) {
 			_listener.onDDLFormLoadFailed(e);
 		}
+
 		_loadRecordAfterForm = false;
 	}
 
 	@Override
 	public void onDDLFormRecordAdded(Record record) {
+		getViewModel().showFinishOperation(ADD_RECORD_ACTION, record);
+
 		if (_listener != null) {
 			_listener.onDDLFormRecordAdded(record);
 		}
@@ -155,6 +162,8 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormRecordAddFailed(Exception e) {
+		getViewModel().showFailedOperation(ADD_RECORD_ACTION, e);
+
 		if (_listener != null) {
 			_listener.onDDLFormRecordAddFailed(e);
 		}
@@ -162,8 +171,7 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormRecordLoaded(Record record) {
-		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.setRecordValues(record);
+		getViewModel().showFinishOperation(LOAD_RECORD_ACTION, record);
 
 		if (_listener != null) {
 			_listener.onDDLFormRecordLoaded(record);
@@ -172,8 +180,7 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormRecordLoadFailed(Exception e) {
-		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.setRecordValues(null);
+		getViewModel().showFailedOperation(LOAD_RECORD_ACTION, e);
 
 		if (_listener != null) {
 			_listener.onDDLFormRecordLoadFailed(e);
@@ -182,6 +189,8 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormRecordUpdated(Record record) {
+		getViewModel().showFinishOperation(UPDATE_RECORD_ACTION, record);
+
 		if (_listener != null) {
 			_listener.onDDLFormRecordUpdated(record);
 		}
@@ -189,12 +198,15 @@ public class DDLFormScreenlet
 
 	@Override
 	public void onDDLFormUpdateRecordFailed(Exception e) {
+		getViewModel().showFailedOperation(UPDATE_RECORD_ACTION, e);
+
 		if (_listener != null) {
 			_listener.onDDLFormUpdateRecordFailed(e);
 		}
 	}
 
 	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
+		//TODO this is confusing. Why can't I use the argument? Change to receive only the name
 		DocumentField originalField =
 			(DocumentField) _record.getFieldByName(documentField.getName());
 
@@ -202,8 +214,7 @@ public class DDLFormScreenlet
 			originalField.moveToUploadCompleteState();
 			originalField.setCurrentStringValue(jsonObject.toString());
 
-			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-			view.showDocumentUploaded(originalField);
+			getViewModel().showFinishOperation(UPLOAD_DOCUMENT_ACTION, originalField);
 		}
 
 		if (_listener != null) {
@@ -219,8 +230,7 @@ public class DDLFormScreenlet
 		if (originalField != null) {
 			originalField.moveToUploadFailureState();
 
-			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-			view.showDocumentUploadFailed(originalField);
+			getViewModel().showFailedOperation(UPLOAD_DOCUMENT_ACTION, e, originalField);
 		}
 
 		if (_listener != null) {
@@ -329,23 +339,25 @@ public class DDLFormScreenlet
 	}
 
 	public void setCustomFieldLayoutId(String fieldName, int layoutId) {
-		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
+		getViewModel().setCustomFieldLayoutId(fieldName, layoutId);
+	}
 
-		view.setCustomFieldLayoutId(fieldName, layoutId);
+	public void resetCustomFieldLayoutId(String fieldName) {
+		getViewModel().resetCustomFieldLayoutId(fieldName);
 	}
 
 	@Override
 	protected DDLFormBaseInteractor createInteractor(String actionName) {
 		switch (actionName) {
-			case _LOAD_FORM_ACTION:
+			case LOAD_FORM_ACTION:
 				return new DDLFormLoadInteractorImpl(getScreenletId());
-			case _LOAD_RECORD_ACTION:
+			case LOAD_RECORD_ACTION:
 				return new DDLFormLoadRecordInteractorImpl(getScreenletId());
-			case _ADD_RECORD_ACTION:
+			case ADD_RECORD_ACTION:
 				return new DDLFormAddRecordInteractorImpl(getScreenletId());
-			case _UPDATE_RECORD_ACTION:
+			case UPDATE_RECORD_ACTION:
 				return new DDLFormUpdateRecordInteractorImpl(getScreenletId());
-			case _UPLOAD_DOCUMENT_ACTION:
+			case UPLOAD_DOCUMENT_ACTION:
 				return new DDLFormDocumentUploadInteractorImpl(getScreenletId());
 			default:
 				return null;
@@ -353,14 +365,9 @@ public class DDLFormScreenlet
 	}
 
 	@Override
-	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
-
+	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.DDLFormScreenlet, 0, 0);
-
-		int layoutId = typedArray.getResourceId(
-			R.styleable.DDLFormScreenlet_layoutId, 0);
 
 		_autoLoad = typedArray.getBoolean(R.styleable.DDLFormScreenlet_autoLoad, true);
 
@@ -374,25 +381,17 @@ public class DDLFormScreenlet
 			R.styleable.DDLFormScreenlet_groupId,
 			(int) LiferayServerContext.getGroupId());
 
-		_structureId = typedArray.getInteger(
-			R.styleable.DDLFormScreenlet_structureId, 0);
-
-		_recordSetId = typedArray.getInteger(
-			R.styleable.DDLFormScreenlet_recordSetId, 0);
-
-		_recordId = typedArray.getInteger(
-			R.styleable.DDLFormScreenlet_recordId, 0);
-
+		_structureId = typedArray.getInteger(R.styleable.DDLFormScreenlet_structureId, 0);
+		_recordSetId = typedArray.getInteger(R.styleable.DDLFormScreenlet_recordSetId, 0);
+		_recordId = typedArray.getInteger(R.styleable.DDLFormScreenlet_recordId, 0);
 		_filePrefix = typedArray.getString(R.styleable.DDLFormScreenlet_filePrefix);
-
 		_repositoryId = typedArray.getInteger(R.styleable.DDLFormScreenlet_repositoryId, 0);
 		_folderId = typedArray.getInteger(R.styleable.DDLFormScreenlet_folderId, 0);
 
 		int defaultCreatorUserId = SessionContext.hasSession() ?
 			(int) SessionContext.getLoggedUser().getId() : 0;
 
-		_userId = typedArray.getInteger(
-			R.styleable.DDLFormScreenlet_userId, defaultCreatorUserId);
+		_userId = typedArray.getInteger(R.styleable.DDLFormScreenlet_userId, defaultCreatorUserId);
 
 		_record = new Record(getResources().getConfiguration().locale);
 		_record.setStructureId(_structureId);
@@ -400,48 +399,41 @@ public class DDLFormScreenlet
 		_record.setRecordId(_recordId);
 		_record.setCreatorUserId(_userId);
 
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
+		int layoutId = typedArray.getResourceId(
+			R.styleable.DDLFormScreenlet_layoutId, getDefaultLayoutId());
 
-		DDLFormViewModel viewModel = (DDLFormViewModel)view;
+		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
-		setFieldLayoutId(
-			viewModel, Field.EditorType.CHECKBOX, typedArray,
-			R.styleable.DDLFormScreenlet_checkboxFieldLayoutId);
+		DDLFormViewModel viewModel = (DDLFormViewModel) view;
 
-		setFieldLayoutId(
-			viewModel, Field.EditorType.DATE, typedArray,
-			R.styleable.DDLFormScreenlet_dateFieldLayoutId);
+		setFieldLayoutId(viewModel, typedArray, Field.EditorType.CHECKBOX,
+				R.styleable.DDLFormScreenlet_checkboxFieldLayoutId);
 
-		setFieldLayoutId(
-			viewModel, Field.EditorType.NUMBER, typedArray,
-			R.styleable.DDLFormScreenlet_numberFieldLayoutId);
+		setFieldLayoutId(viewModel, typedArray, Field.EditorType.DATE,
+				R.styleable.DDLFormScreenlet_dateFieldLayoutId);
 
-		setFieldLayoutId(
-			viewModel, Field.EditorType.INTEGER, typedArray,
-			R.styleable.DDLFormScreenlet_numberFieldLayoutId);
+		setFieldLayoutId(viewModel, typedArray, Field.EditorType.NUMBER,
+				R.styleable.DDLFormScreenlet_numberFieldLayoutId);
 
-		setFieldLayoutId(
-			viewModel, Field.EditorType.DECIMAL, typedArray,
-			R.styleable.DDLFormScreenlet_numberFieldLayoutId);
+		setFieldLayoutId(viewModel, typedArray, Field.EditorType.INTEGER,
+				R.styleable.DDLFormScreenlet_numberFieldLayoutId);
 
-		setFieldLayoutId(
-			viewModel, Field.EditorType.RADIO, typedArray,
-			R.styleable.DDLFormScreenlet_radioFieldLayoutId);
+		setFieldLayoutId(viewModel, typedArray, Field.EditorType.DECIMAL,
+				R.styleable.DDLFormScreenlet_numberFieldLayoutId);
 
-		setFieldLayoutId(
-			viewModel, Field.EditorType.SELECT, typedArray,
-			R.styleable.DDLFormScreenlet_selectFieldLayoutId);
+		setFieldLayoutId(viewModel, typedArray, Field.EditorType.RADIO,
+				R.styleable.DDLFormScreenlet_radioFieldLayoutId);
 
-		setFieldLayoutId(
-			viewModel, Field.EditorType.TEXT, typedArray,
-			R.styleable.DDLFormScreenlet_textFieldLayoutId);
+		setFieldLayoutId(viewModel, typedArray, Field.EditorType.SELECT,
+				R.styleable.DDLFormScreenlet_selectFieldLayoutId);
 
-		setFieldLayoutId(
-			viewModel, Field.EditorType.TEXT_AREA, typedArray,
-			R.styleable.DDLFormScreenlet_textAreaFieldLayoutId);
+		setFieldLayoutId(viewModel, typedArray, Field.EditorType.TEXT,
+				R.styleable.DDLFormScreenlet_textFieldLayoutId);
 
-		setFieldLayoutId(
-				viewModel, Field.EditorType.DOCUMENT, typedArray,
+		setFieldLayoutId(viewModel, typedArray, Field.EditorType.TEXT_AREA,
+				R.styleable.DDLFormScreenlet_textAreaFieldLayoutId);
+
+		setFieldLayoutId(viewModel, typedArray, Field.EditorType.DOCUMENT,
 				R.styleable.DDLFormScreenlet_documentFieldLayoutId);
 
 		typedArray.recycle();
@@ -449,93 +441,118 @@ public class DDLFormScreenlet
 		return view;
 	}
 
-	protected int getDefaultLayoutId(Field.EditorType type) {
-		Context context = getContext();
-		String layoutName = _defaultLayoutNames.get(type);
-		String packageName = context.getPackageName();
+	private void setFieldLayoutId(
+		DDLFormViewModel viewModel, TypedArray typedArray, Field.EditorType editorType,
+		Integer id) {
 
-		int layoutId = context.getResources().getIdentifier(
-			layoutName, "layout", packageName);
+		int resourceId = typedArray.getResourceId(id, 0);
 
-		return layoutId;
+		if (resourceId == 0) {
+			viewModel.resetFieldLayoutId(editorType);
+		}
+		else {
+			viewModel.setFieldLayoutId(editorType, resourceId);
+		}
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, DDLFormBaseInteractor interactor, Object... args) {
-		if (_LOAD_FORM_ACTION.equals(userActionName)) {
-			DDLFormLoadInteractor loadInteractor = (DDLFormLoadInteractor) interactor;
+	protected void onUserAction(
+		String userActionName, DDLFormBaseInteractor interactor, Object... args) {
 
-			try {
-				loadInteractor.load(_record);
-			}
-			catch (Exception e) {
-				onDDLFormLoadFailed(e);
-			}
-		}
-		else if (_LOAD_RECORD_ACTION.equals(userActionName)) {
-			if (_record.isRecordStructurePresent()) {
-				DDLFormLoadRecordInteractor loadInteractor = (DDLFormLoadRecordInteractor) interactor;
-
+		switch (userActionName) {
+			case LOAD_FORM_ACTION: {
 				try {
-					loadInteractor.loadRecord(_record);
+					getViewModel().showStartOperation(LOAD_FORM_ACTION, _record);
+
+					DDLFormLoadInteractor loadInteractor = (DDLFormLoadInteractor) interactor;
+
+					loadInteractor.load(_record);
 				}
 				catch (Exception e) {
-					onDDLFormRecordLoadFailed(e);
+					onDDLFormLoadFailed(e);
 				}
+				break;
 			}
-			else {
-				// request both structure and data
-				_loadRecordAfterForm = true;
-				loadForm();
-			}
-		}
-		else if (_ADD_RECORD_ACTION.equals(userActionName)) {
-			DDLFormAddRecordInteractor addInteractor = (DDLFormAddRecordInteractor) interactor;
+			case LOAD_RECORD_ACTION: {
+				if (_record.isRecordStructurePresent()) {
+					try {
+						getViewModel().showStartOperation(LOAD_RECORD_ACTION, _record);
 
-			try {
-				addInteractor.addRecord(_groupId, _record);
-			}
-			catch (Exception e) {
-				onDDLFormRecordAddFailed(e);
-			}
-		}
-		else if (_UPDATE_RECORD_ACTION.equals(userActionName)) {
-			DDLFormUpdateRecordInteractor updateInteractor = (DDLFormUpdateRecordInteractor) interactor;
+						DDLFormLoadRecordInteractor loadInteractor =
+							(DDLFormLoadRecordInteractor) interactor;
 
-			try {
-				updateInteractor.updateRecord(_groupId, _record);
+						loadInteractor.loadRecord(_record);
+					}
+					catch (Exception e) {
+						onDDLFormRecordLoadFailed(e);
+					}
+				}
+				else {
+					// request both structure and data
+					_loadRecordAfterForm = true;
+					loadForm();
+				}
+				break;
 			}
-			catch (Exception e) {
-				onDDLFormUpdateRecordFailed(e);
+			case ADD_RECORD_ACTION: {
+				try {
+					getViewModel().showStartOperation(ADD_RECORD_ACTION, _record);
+
+					DDLFormAddRecordInteractor addInteractor =
+						(DDLFormAddRecordInteractor) interactor;
+
+					addInteractor.addRecord(_groupId, _record);
+				}
+				catch (Exception e) {
+					onDDLFormRecordAddFailed(e);
+				}
+				break;
 			}
-		}
-		else if (_UPLOAD_DOCUMENT_ACTION.equals(userActionName)) {
-			DDLFormDocumentUploadInteractor uploadInteractor = (DDLFormDocumentUploadInteractor) interactor;
-			DocumentField documentToUpload = (DocumentField) args[0];
+			case UPDATE_RECORD_ACTION: {
+				try {
+					getViewModel().showStartOperation(UPDATE_RECORD_ACTION, _record);
 
-			documentToUpload.moveToUploadInProgressState();
+					DDLFormUpdateRecordInteractor updateInteractor =
+						(DDLFormUpdateRecordInteractor) interactor;
 
-			DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-			view.showStartDocumentUpload(documentToUpload);
-
-			try {
-				uploadInteractor.upload(
-					_groupId, _userId, _repositoryId, _folderId, _filePrefix, documentToUpload);
+					updateInteractor.updateRecord(_groupId, _record);
+				}
+				catch (Exception e) {
+					onDDLFormUpdateRecordFailed(e);
+				}
+				break;
 			}
-			catch (Exception e) {
-				onDDLFormDocumentUploadFailed(documentToUpload, e);
+			case UPLOAD_DOCUMENT_ACTION: {
+				DocumentField documentToUpload = (DocumentField) args[0];
+
+				documentToUpload.moveToUploadInProgressState();
+
+				try {
+					getViewModel().showStartOperation(UPLOAD_DOCUMENT_ACTION, documentToUpload);
+
+					DDLFormDocumentUploadInteractor uploadInteractor =
+						(DDLFormDocumentUploadInteractor) interactor;
+
+					uploadInteractor.upload(
+						_groupId, _userId, _repositoryId, _folderId, _filePrefix, documentToUpload);
+				}
+				catch (Exception e) {
+					onDDLFormDocumentUploadFailed(documentToUpload, e);
+				}
+				break;
 			}
 		}
 	}
 
-	protected void setFieldLayoutId(
-		DDLFormViewModel viewModel, Field.EditorType editorType,
-		TypedArray typedArray, int index) {
+	protected void setFieldLayoutId(Field.EditorType editorType, TypedArray typedArray, int index) {
+		int layoutId = typedArray.getResourceId(index, 0);
 
-		int layoutId = typedArray.getResourceId(
-			index, getDefaultLayoutId(editorType));
-
-		viewModel.setFieldLayoutId(editorType, layoutId);
+		if (layoutId == 0) {
+			getViewModel().resetFieldLayoutId(editorType);
+		}
+		else {
+			getViewModel().setFieldLayoutId(editorType, layoutId);
+		}
 	}
 
 	@Override
@@ -559,8 +576,7 @@ public class DDLFormScreenlet
 
 		super.onRestoreInstanceState(superState);
 
-		DDLFormViewModel view = (DDLFormViewModel) getScreenletView();
-		view.setRecordFields(_record);
+		getViewModel().showFormFields(_record);
 	}
 
 	@Override
@@ -591,39 +607,6 @@ public class DDLFormScreenlet
 			load();
 		}
 	}
-
-	private static Map<Field.EditorType, String> _defaultLayoutNames;
-
-	static {
-		_defaultLayoutNames = new HashMap<>();
-		_defaultLayoutNames.put(Field.EditorType.CHECKBOX, "ddlfield_checkbox_default");
-
-		_defaultLayoutNames.put(Field.EditorType.DATE, "ddlfield_date_default");
-
-		_defaultLayoutNames.put(Field.EditorType.NUMBER, "ddlfield_number_default");
-
-		_defaultLayoutNames.put(Field.EditorType.INTEGER, "ddlfield_number_default");
-
-		_defaultLayoutNames.put(Field.EditorType.DECIMAL, "ddlfield_number_default");
-
-		_defaultLayoutNames.put(Field.EditorType.RADIO, "ddlfield_radio_default");
-
-		_defaultLayoutNames.put(Field.EditorType.SELECT, "ddlfield_select_default");
-
-		_defaultLayoutNames.put(Field.EditorType.TEXT, "ddlfield_text_default");
-
-		_defaultLayoutNames.put(Field.EditorType.TEXT_AREA, "ddlfield_text_area_default");
-
-		_defaultLayoutNames.put(Field.EditorType.DOCUMENT, "ddlfield_document_default");
-	}
-
-
-	private static final String _LOAD_FORM_ACTION = "loadForm";
-	private static final String _LOAD_RECORD_ACTION = "loadRecord";
-	private static final String _ADD_RECORD_ACTION = "addRecord";
-	private static final String _UPDATE_RECORD_ACTION = "updateRecord";
-	private static final String _UPLOAD_DOCUMENT_ACTION = "uploadDocument";
-
 
 	private static final String _STATE_SUPER = "ddlform-super";
 	private static final String _STATE_AUTOSCROLL_ON_VALIDATION = "ddlform-autoScrollOnValidation";

@@ -15,35 +15,32 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.auth.signup;
 
 import android.content.Context;
-
 import android.util.AttributeSet;
-
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.liferay.mobile.screens.auth.signup.SignUpListener;
 import com.liferay.mobile.screens.auth.signup.SignUpScreenlet;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
+import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
-
-import org.json.JSONObject;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 
 /**
  * @author Silvio Santos
  */
 public class SignUpDefaultView extends LinearLayout
-	implements SignUpListener, SignUpViewModel, View.OnClickListener {
+		implements SignUpViewModel, View.OnClickListener {
 
 	public SignUpDefaultView(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public SignUpDefaultView(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public SignUpDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
@@ -86,30 +83,48 @@ public class SignUpDefaultView extends LinearLayout
 	}
 
 	@Override
+	public void showStartOperation(String actionName) {
+		_progressBar.startProgress();
+	}
+
+	@Override
+	public void showFinishOperation(String actionName) {
+		throw new AssertionError("Use showFinishOperation(user) instead");
+	}
+
+	@Override
+	public void showFinishOperation(User user) {
+		_progressBar.finishProgress();
+
+		LiferayLogger.i("Sign-up successful: " + user.getId());
+	}
+
+	@Override
+	public void showFailedOperation(String actionName, Exception e) {
+		_progressBar.finishProgress();
+
+		LiferayLogger.e("Could not sign up", e);
+		DefaultCrouton.error(getContext(), getContext().getString(R.string.sign_up_error), e);
+	}
+
+	@Override
 	public void onClick(View view) {
-		SignUpScreenlet signUpScreenlet = (SignUpScreenlet)getParent();
+		SignUpScreenlet signUpScreenlet = (SignUpScreenlet) getParent();
 
-		signUpScreenlet.performUserAction(SignUpScreenlet.SIGN_UP_ACTION);
-	}
-
-	@Override
-	public void onSignUpFailure(Exception e) {
-	}
-
-	@Override
-	public void onSignUpSuccess(User userAttributes) {
+		signUpScreenlet.performUserAction();
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_firstName = (EditText)findViewById(R.id.first_name);
-		_lastName = (EditText)findViewById(R.id.last_name);
-		_emailAddress = (EditText)findViewById(R.id.email_address);
-		_password = (EditText)findViewById(R.id.password);
+		_firstName = (EditText) findViewById(R.id.first_name);
+		_lastName = (EditText) findViewById(R.id.last_name);
+		_emailAddress = (EditText) findViewById(R.id.email_address);
+		_password = (EditText) findViewById(R.id.password);
+		_progressBar = (ModalProgressBar) findViewById(R.id.progress_bar);
 
-		Button signUpButton = (Button)findViewById(R.id.sign_up);
+		Button signUpButton = (Button) findViewById(R.id.sign_up_button);
 		signUpButton.setOnClickListener(this);
 	}
 
@@ -117,5 +132,6 @@ public class SignUpDefaultView extends LinearLayout
 	private EditText _firstName;
 	private EditText _lastName;
 	private EditText _password;
+	private ModalProgressBar _progressBar;
 
 }

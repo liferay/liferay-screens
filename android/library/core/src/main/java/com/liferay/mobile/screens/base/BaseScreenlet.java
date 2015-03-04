@@ -36,21 +36,19 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	extends FrameLayout {
 
 	public BaseScreenlet(Context context) {
-		super(context, null);
+		super(context);
 
 		init(context, null);
 	}
 
 	public BaseScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 
 		init(context, attributes);
 	}
 
 	public BaseScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-
-		LiferayScreensContext.init(context);
 
 		init(context, attributes);
 	}
@@ -61,6 +59,14 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		}
 
 		return _screenletId;
+	}
+
+	public void performUserAction() {
+		I interactor = getInteractor();
+
+		if (interactor != null) {
+			onUserAction(null, interactor, null);
+		}
 	}
 
 	public void performUserAction(String userActionName, Object... args) {
@@ -79,23 +85,26 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		I result = _interactors.get(actionName);
 
 		if (result == null) {
-			result = initInteractors(actionName);
+			result = prepareInteractor(actionName);
 		}
 
 		return result;
 	}
 
-	private I initInteractors(String actionName) {
+	protected I prepareInteractor(String actionName) {
 		I result = createInteractor(actionName);
 
 		if (result != null) {
 			result.onScreenletAttachted(this);
 			_interactors.put(actionName, result);
 		}
+
 		return result;
 	}
 
 	protected void init(Context context, AttributeSet attributes) {
+		LiferayScreensContext.init(context);
+
 		_screenletView = createScreenletView(context, attributes);
 
 		addView(_screenletView);
@@ -103,6 +112,25 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	protected View getScreenletView() {
 		return _screenletView;
+	}
+
+	protected V getViewModel() {
+		return (V)_screenletView;
+	}
+
+	protected int getDefaultLayoutId() {
+		Context ctx = getContext().getApplicationContext();
+		String packageName = ctx.getPackageName();
+
+		// first, get the identifier of the string key
+		String layoutNameKeyName = getClass().getSimpleName() + "_defaultLayout";
+		int layoutNameKeyId = ctx.getResources().getIdentifier(
+			layoutNameKeyName, "string", packageName);
+
+		// second, get the identifier of the layout specified in key layoutNameKeyId
+		String layoutName = ctx.getString(layoutNameKeyId);
+
+		return ctx.getResources().getIdentifier(layoutName, "layout", packageName);
 	}
 
 	@Override
@@ -133,7 +161,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	@Override
 	protected void onRestoreInstanceState(Parcelable inState) {
-		Bundle state = ((Bundle)inState);
+		Bundle state = (Bundle) inState;
 		Parcelable superState = state.getParcelable(_STATE_SUPER);
 
 		super.onRestoreInstanceState(superState);
@@ -151,8 +179,8 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			_screenletId = state.getInt(_STATE_SCREENLET_ID);
 		}
 
-		for (String actionName : ((Bundle) inState).getStringArray(_STATE_INTERACTORS)) {
-			initInteractors(actionName);
+		for (String actionName : state.getStringArray(_STATE_INTERACTORS)) {
+			prepareInteractor(actionName);
 		}
 	}
 

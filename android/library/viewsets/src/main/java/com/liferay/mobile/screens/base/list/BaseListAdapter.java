@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.viewsets.base.list;
+package com.liferay.mobile.screens.base.list;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

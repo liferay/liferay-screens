@@ -12,19 +12,15 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.view;
+package com.liferay.mobile.screens.webcontentdisplay.view;
 
-import com.liferay.mobile.screens.auth.AuthBasedViewModel;
-import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 /**
- * @author Silvio Santos
+ * @author Jose Manuel Navarro
  */
-public interface LoginViewModel extends AuthBasedViewModel {
+public interface WebContentDisplayViewModel extends BaseViewModel {
 
-	String getLogin();
+	void showFinishOperation(String html);
 
-	String getPassword();
-
-	void showFinishOperation(User user);
 }

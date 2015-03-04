@@ -31,8 +31,6 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 
-import org.json.JSONObject;
-
 import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.*;
 
 /**
@@ -42,14 +40,12 @@ public class LoginScreenlet
 	extends BaseScreenlet<LoginViewModel, LoginInteractor>
 	implements LoginListener {
 
-	public static final String LOGIN_ACTION = "login";
-
 	public LoginScreenlet(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public LoginScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public LoginScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
@@ -58,8 +54,7 @@ public class LoginScreenlet
 
 	@Override
 	public void onLoginFailure(Exception e) {
-		LoginListener listenerView = (LoginListener)getScreenletView();
-		listenerView.onLoginFailure(e);
+		getViewModel().showFailedOperation(null, e);
 
 		if (_listener != null) {
 			_listener.onLoginFailure(e);
@@ -68,8 +63,7 @@ public class LoginScreenlet
 
 	@Override
 	public void onLoginSuccess(User user) {
-		LoginListener listenerView = (LoginListener)getScreenletView();
-		listenerView.onLoginSuccess(user);
+		getViewModel().showFinishOperation(user);
 
 		if (_listener != null) {
 			_listener.onLoginSuccess(user);
@@ -88,6 +82,8 @@ public class LoginScreenlet
 
 	public void setAuthMethod(AuthMethod authMethod) {
 		_authMethod = authMethod;
+
+		getViewModel().setAuthMethod(_authMethod);
 	}
 
 	public StorageType getCredentialsStore() {
@@ -100,24 +96,23 @@ public class LoginScreenlet
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.LoginScreenlet, 0, 0);
-
-		int layoutId = typedArray.getResourceId(R.styleable.LoginScreenlet_layoutId, 0);
-
-		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
 
 		int storeValue = typedArray.getInt(R.styleable.LoginScreenlet_credentialsStore,
 			StorageType.NONE.toInt());
 
 		_credentialsStore = StorageType.valueOf(storeValue);
 
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
+		int layoutId = typedArray.getResourceId(
+			R.styleable.LoginScreenlet_layoutId, getDefaultLayoutId());
 
-		LoginViewModel viewModel = (LoginViewModel) view;
+		View view = LayoutInflater.from(context).inflate(layoutId, null);
+
+		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
+
 		_authMethod = AuthMethod.getValue(authMethodId);
-		viewModel.setAuthMethod(_authMethod);
+		((LoginViewModel) view).setAuthMethod(_authMethod);
 
 		typedArray.recycle();
 
@@ -132,6 +127,8 @@ public class LoginScreenlet
 	@Override
 	protected void onUserAction(String userActionName, LoginInteractor interactor, Object... args) {
 		LoginViewModel loginViewModel = (LoginViewModel)getScreenletView();
+		loginViewModel.showStartOperation(userActionName);
+
 		String login = loginViewModel.getLogin();
 		String password = loginViewModel.getPassword();
 		AuthMethod method = loginViewModel.getAuthMethod();

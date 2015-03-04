@@ -36,11 +36,11 @@ public class AssetListScreenlet
 	implements AssetListInteractorListener {
 
 	public AssetListScreenlet(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public AssetListScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
 	}
 
 	public AssetListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {

@@ -21,6 +21,8 @@ import com.liferay.mobile.screens.auth.AuthBasedViewModel;
  */
 public interface ForgotPasswordViewModel extends AuthBasedViewModel {
 
-	public String getLogin();
+	String getLogin();
+
+	void showFinishOperation(boolean passwordSent);
 
 }

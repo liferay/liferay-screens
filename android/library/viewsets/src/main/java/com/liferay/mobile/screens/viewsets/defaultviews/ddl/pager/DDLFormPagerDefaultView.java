@@ -36,7 +36,7 @@ import java.util.Map;
 public class DDLFormPagerDefaultView extends DDLFormDefaultView {
 
 	public DDLFormPagerDefaultView(Context context) {
-		super(context, null);
+		super(context);
 	}
 
 	public DDLFormPagerDefaultView(Context context, AttributeSet attributes) {
@@ -44,7 +44,7 @@ public class DDLFormPagerDefaultView extends DDLFormDefaultView {
 	}
 
 	@Override
-	public void setRecordFields(Record record) {
+	public void showFormFields(Record record) {
 		List<Field.EditorType> editorTypes = Field.EditorType.all();
 
 		Map<Field.EditorType, Integer> layoutIds = new HashMap<>();

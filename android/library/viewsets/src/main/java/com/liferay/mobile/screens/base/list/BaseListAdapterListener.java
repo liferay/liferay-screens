@@ -12,19 +12,14 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.view;
-
-import com.liferay.mobile.screens.auth.AuthBasedViewModel;
-import com.liferay.mobile.screens.context.User;
+package com.liferay.mobile.screens.base.list;
 
 /**
+ * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface LoginViewModel extends AuthBasedViewModel {
+public interface BaseListAdapterListener {
 
-	String getLogin();
+	public void onPageNotFound(int row);
 
-	String getPassword();
-
-	void showFinishOperation(User user);
 }
