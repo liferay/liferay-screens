@@ -10,4 +10,5 @@
 	<string name="take_a_video">Take a video</string>
 	<string name="loading_form_error">Error loading DDLForm</string>
 	<string name="uploading_document_error">Error uploading document</string>
+	<string name="creating_file_error">Error creating file</string>
 </resources>
