@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:liferay="http://schemas.android.com/apk/res-auto"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="@android:color/white"
+			  android:orientation="vertical">
+
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="User portrait default:"/>
+
+	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
+		android:layout_width="100dp"
+		android:layout_height="100dp"
+		liferay:autoLoad="true"
+		liferay:layoutId="@layout/userportrait_default"
+		liferay:userId="10199"/>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="User portrait alternative:"/>
+
+	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
+		android:layout_width="100dp"
+		android:layout_height="100dp"
+		liferay:layoutId="@layout/userportrait_material"
+		liferay:userId="10199"/>
+
+</LinearLayout>

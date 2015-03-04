@@ -34,6 +34,6 @@ public class DefaultTheme {
 		}
 	}
 
-	public static final int ATTRIBUTE_TO_SEARCH_FOR = R.attr.colorAccent;
+	public static final int ATTRIBUTE_TO_SEARCH_FOR = R.attr.colorPrimary;
 	private static final Integer DEFAULT_THEME = R.style.default_theme;
 }

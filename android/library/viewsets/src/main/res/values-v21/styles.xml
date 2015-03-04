@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+  ~
+  ~ This library is free software; you can redistribute it and/or modify it under
+  ~ the terms of the GNU Lesser General Public License as published by the Free
+  ~ Software Foundation; either version 2.1 of the License, or (at your option)
+  ~ any later version.
+  ~
+  ~ This library is distributed in the hope that it will be useful, but WITHOUT
+  ~ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  ~ FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+  ~ details.
+  -->
+
+<resources>
+
+	<style name="material_theme" parent="android:Theme.Material.Light">
+		<item name="colorPrimary">@color/primary</item>
+		<item name="android:colorPrimary">@color/primary</item>
+		<item name="android:colorAccent">@color/primary</item>
+		<item name="colorControlActivated">@color/primary</item>
+
+
+		<item name="colorPrimaryDark">@color/primary_dark</item>
+		<item name="android:colorPrimaryDark">@color/primary_dark</item>
+		<item name="colorControlNormal">@color/primary_dark</item>
+		<item name="colorControlHighlight">@color/primary_dark</item>
+
+		<item name="android:textColorPrimary">@color/primary_text</item>
+		<item name="android:textColorSecondary">@color/secondary_text</item>
+
+		<item name="android:editTextStyle">@style/material_edit_text</item>
+		<item name="android:buttonStyle">@style/material_button</item>
+		<item name="android:background">@android:color/white</item>
+		<item name="android:windowContentTransitions">true</item>
+		<item name="android:windowAllowEnterTransitionOverlap">true</item>
+		<item name="android:windowAllowReturnTransitionOverlap">true</item>
+		<item name="android:windowSharedElementEnterTransition">@android:transition/explode</item>
+		<item name="android:windowSharedElementExitTransition">@android:transition/slide_left</item>
+
+		<!-- You can also set colorControlNormal, colorControlActivated
+		 colorControlHighlight, and colorSwitchThumbNormal. -->
+	</style>
+
+	<style name="material_button" parent="android:Widget.Material.Light.Button">
+		<item name="android:textColor">@android:color/white</item>
+		<item name="android:elevation">4dp</item>
+		<item name="android:translationZ">2dp</item>
+		<item name="android:background">@drawable/primary_round</item>
+	</style>
+
+	<style name="material_edit_text" parent="android:Widget.Material.Light.EditText"></style>
+
+</resources>
