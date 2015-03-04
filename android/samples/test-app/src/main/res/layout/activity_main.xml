@@ -1,18 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:liferay="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	android:background="@android:color/holo_blue_dark"
-	tools:context=".MainActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:theme="@style/material_theme">
 
-	<com.liferay.mobile.screens.auth.login.LoginScreenlet
-		android:id="@+id/login_screenlet"
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:layout_margin="16dp"
-		liferay:layoutId="@layout/login_default" />
-</FrameLayout>
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+
+		<Button android:elevation="4dp"
+			android:id="@+id/login"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:text="Login"/>
+
+		<Button
+			android:id="@+id/sign_up"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:text="Sign Up"/>
+
+		<Button
+			android:id="@+id/forgot_password"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:text="Forgot Password"/>
+
+		<Button
+			android:id="@+id/user_portrait"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:text="User Portrait"/>
+
+		<Button
+			android:id="@+id/web_view"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:text="Web View"/>
+
+		<Button
+			android:id="@+id/asset_list"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:text="Asset List"/>
+
+		<Button
+			android:id="@+id/ddl_form"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:text="DDL Form"/>
+
+		<Button
+			android:id="@+id/ddl_list"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:text="DDL List"/>
+
+	</LinearLayout>
+</ScrollView>
