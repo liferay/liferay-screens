@@ -48,13 +48,18 @@ public class UserPortraitScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
-	public void load() throws Exception {
-		if (_userId != 0) {
-			getInteractor().load(_userId);
+	public void load() {
+		try {
+			if (_userId != 0) {
+				getInteractor().load(_userId);
+			}
+			else {
+				getInteractor().load(_male, _portraitId, _uuid);
+			}
+		} catch (Exception e) {
+			onUserPortraitFailure(e);
 		}
-		else {
-			getInteractor().load(_male, _portraitId, _uuid);
-		}
+
 	}
 
 	@Override
