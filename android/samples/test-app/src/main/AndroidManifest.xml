@@ -20,5 +20,14 @@
 			</intent-filter>
 		</activity>
 
+		<activity android:name=".AssetListActivity"/>
+		<activity android:name=".DDLFormActivity"/>
+		<activity android:name=".DDLListActivity"/>
+		<activity android:name=".ForgotPasswordActivity"/>
+		<activity android:name=".LoginActivity"/>
+		<activity android:name=".SignUpActivity"/>
+		<activity android:name=".UserPortraitActivity"/>
+		<activity android:name=".WebViewActivity"/>
+
 	</application>
 </manifest>
