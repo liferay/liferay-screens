@@ -57,10 +57,10 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="recordSetId"/>
-		<attr name="firstPageSize"/>
-		<attr name="pageSize"/>
 		<attr name="userId"/>
 		<attr name="labelFields" format="string"/>
+		<attr name="firstPageSize"/>
+		<attr name="pageSize"/>
 	</declare-styleable>
 
 	<declare-styleable name="ForgotPasswordScreenlet">
@@ -101,5 +101,9 @@
 		<attr name="portraitId" format="integer"/>
 		<attr name="uuid" format="string"/>
 		<attr name="userId"/>
+	</declare-styleable>
+
+	<declare-styleable name="ModalProgressBar">
+		<attr name="actionViewId" format="reference"/>
 	</declare-styleable>
 </resources>
