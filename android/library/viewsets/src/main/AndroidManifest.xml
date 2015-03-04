@@ -1,6 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.liferay.mobile.screens.viewsets">
+<manifest package="com.liferay.mobile.screens.viewsets">
 
-	<application />
+	<application/>
 
 </manifest>

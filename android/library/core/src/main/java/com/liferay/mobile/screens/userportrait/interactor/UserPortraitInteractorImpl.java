@@ -51,7 +51,7 @@ public class UserPortraitInteractorImpl
 	}
 
 	@Override
-	public void load(boolean male, long portraitId, String uuid) throws Exception {
+	public void load(boolean male, long portraitId, String uuid) {
 		validate(portraitId, uuid);
 
 		Uri uri = getUserPortraitURL(male, portraitId, uuid);
@@ -169,8 +169,7 @@ public class UserPortraitInteractorImpl
 
 			return URLEncoder.encode(token, "UTF8");
 
-		} catch (NoSuchAlgorithmException e) {
-		} catch (UnsupportedEncodingException e) {
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
 		}
 
 		return null;

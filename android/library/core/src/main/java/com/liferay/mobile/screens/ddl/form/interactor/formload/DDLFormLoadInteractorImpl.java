@@ -67,9 +67,6 @@ public class DDLFormLoadInteractorImpl
 			catch (JSONException e) {
 				getListener().onDDLFormLoadFailed(e);
 			}
-			catch (SAXException e) {
-				getListener().onDDLFormLoadFailed(e);
-			}
 		}
 	}
 

@@ -142,7 +142,7 @@ public class DocumentField extends Field<DocumentFile> {
 		IDLE,
 		UPLOADING,
 		UPLOADED,
-		FAILED;
+		FAILED
 	}
 
 	private State _state = State.IDLE;

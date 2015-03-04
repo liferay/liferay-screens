@@ -56,10 +56,7 @@ public class XSDParser {
 
 			result = processDocument(document, locale);
 		}
-		catch (ParserConfigurationException e) {
-			//TODO this shouldn't happen
-		}
-		catch (IOException e) {
+		catch (ParserConfigurationException | IOException e) {
 			//TODO this shouldn't happen
 		}
 

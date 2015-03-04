@@ -98,7 +98,4 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 
 	protected abstract void getPageRowCountRequest(Session session) throws Exception;
 
-	protected int _firstPageSize = 50;
-	protected int _pageSize = 25;
-
 }

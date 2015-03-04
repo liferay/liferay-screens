@@ -68,7 +68,7 @@ public class Record implements Parcelable {
 		_locale = (Locale) in.readSerializable();
 	}
 
-	public void parseXsd(String xsd) throws SAXException {
+	public void parseXsd(String xsd) {
 		XSDParser parser = new XSDParser();
 
 		try {
