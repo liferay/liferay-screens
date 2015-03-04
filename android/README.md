@@ -55,8 +55,6 @@ Next, set the screenlet's attributes in its XML tag. Refer to the screenlet docu
 
 You now need to configure your app to listen for the events the screenlet produces. To do this, implement the listener interface associated with the screenlet in your activity or fragment class. For example, for the `LoginScreenlet` you need to implement the `LoginListener` interface. Then set your activity or fragment as the screenlet's listener:
 
-<!-- ![Conform delegate.](Documentation/Images/conform-delegate.png "Conform delegate") -->
-
 ![Implement listener in your activity](documentation/images/implement_listener.png)
 
 Awesome! Now you know how to use screenlets in your app. Next, the screenlets available in Screens for Android are listed.
