@@ -29,6 +29,7 @@ import com.liferay.mobile.screens.auth.signup.SignUpScreenlet;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 import org.json.JSONObject;
 
@@ -40,14 +41,20 @@ public class SignUpDefaultView extends LinearLayout
 
 	public SignUpDefaultView(Context context) {
 		super(context, null);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public SignUpDefaultView(Context context, AttributeSet attributes) {
 		super(context, attributes, 0);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public SignUpDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override

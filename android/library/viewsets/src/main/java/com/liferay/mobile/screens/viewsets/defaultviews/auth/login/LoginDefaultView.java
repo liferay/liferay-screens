@@ -15,12 +15,9 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.auth.login;
 
 import android.content.Context;
-
 import android.text.InputType;
 import android.util.AttributeSet;
-
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -31,25 +28,30 @@ import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.R;
-
-import org.json.JSONObject;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 /**
  * @author Silvio Santos
  */
 public class LoginDefaultView extends LinearLayout
-	implements LoginViewModel, View.OnClickListener, LoginListener {
+		implements LoginViewModel, View.OnClickListener, LoginListener {
 
 	public LoginDefaultView(Context context) {
 		super(context, null);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public LoginDefaultView(Context context, AttributeSet attributes) {
-		super(context, attributes, 0);
+		super(context, attributes);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public LoginDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override
@@ -69,7 +71,7 @@ public class LoginDefaultView extends LinearLayout
 
 	@Override
 	public void onClick(View view) {
-		LoginScreenlet loginScreenlet = (LoginScreenlet)getParent();
+		LoginScreenlet loginScreenlet = (LoginScreenlet) getParent();
 
 		loginScreenlet.performUserAction(LoginScreenlet.LOGIN_ACTION);
 	}
@@ -91,10 +93,10 @@ public class LoginDefaultView extends LinearLayout
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_loginEditText = (EditText)findViewById(R.id.login);
-		_passwordEditText = (EditText)findViewById(R.id.password);
+		_loginEditText = (EditText) findViewById(R.id.login);
+		_passwordEditText = (EditText) findViewById(R.id.password);
 
-		Button loginButton = (Button)findViewById(R.id.login_button);
+		Button loginButton = (Button) findViewById(R.id.login_button);
 		loginButton.setOnClickListener(this);
 
 	}
@@ -105,10 +107,12 @@ public class LoginDefaultView extends LinearLayout
 		if (AuthMethod.USER_ID.equals(_authMethod)) {
 			_loginEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
 			drawableId = R.drawable.default_user_icon;
-		} else if (AuthMethod.EMAIL.equals(_authMethod)) {
+		}
+		else if (AuthMethod.EMAIL.equals(_authMethod)) {
 			_loginEditText.setInputType(InputType.TYPE_CLASS_TEXT);
 			drawableId = R.drawable.default_mail_icon;
-		} else {
+		}
+		else {
 			_loginEditText.setInputType(InputType.TYPE_CLASS_TEXT);
 			drawableId = R.drawable.default_user_icon;
 		}

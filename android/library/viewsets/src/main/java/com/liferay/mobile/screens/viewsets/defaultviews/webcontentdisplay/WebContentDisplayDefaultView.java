@@ -22,6 +22,7 @@ import android.webkit.WebView;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
 
@@ -33,17 +34,23 @@ public class WebContentDisplayDefaultView extends WebView
 
 	public WebContentDisplayDefaultView(Context context) {
 		super(context, null);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public WebContentDisplayDefaultView(Context context, AttributeSet attributes) {
 
 		super(context, attributes, 0);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public WebContentDisplayDefaultView(
 		Context context, AttributeSet attributes, int defaultStyle) {
 
 		super(context, attributes, defaultStyle);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override

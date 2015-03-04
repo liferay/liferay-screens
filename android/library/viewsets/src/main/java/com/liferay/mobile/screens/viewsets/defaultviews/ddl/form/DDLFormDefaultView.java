@@ -32,6 +32,7 @@ import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,14 +45,20 @@ public class DDLFormDefaultView
 
 	public DDLFormDefaultView(Context context) {
 		super(context, null);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public DDLFormDefaultView(Context context, AttributeSet attributes) {
 		super(context, attributes, 0);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public DDLFormDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override

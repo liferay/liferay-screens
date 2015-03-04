@@ -29,6 +29,7 @@ import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewModel;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 /**
  * @author Jose Manuel Navarro
@@ -39,14 +40,20 @@ public class ForgotPasswordDefaultView extends LinearLayout
 
 	public ForgotPasswordDefaultView(Context context) {
 		super(context, null);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public ForgotPasswordDefaultView(Context context, AttributeSet attributes) {
 		super(context, attributes, 0);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public ForgotPasswordDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override

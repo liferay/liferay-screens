@@ -30,6 +30,7 @@ import android.widget.ProgressBar;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 /**
  * @author Javier Gamarra
@@ -40,16 +41,22 @@ public class UserPortraitDefaultView extends FrameLayout
 
     public UserPortraitDefaultView(Context context) {
         this(context, null);
+
+		DefaultTheme.initIfThemeNotPresent(context);
     }
 
     public UserPortraitDefaultView(
 		Context context, AttributeSet attributes) {
         this(context, attributes, 0);
+
+		DefaultTheme.initIfThemeNotPresent(context);
     }
 
     public UserPortraitDefaultView(
 		Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
+
+		DefaultTheme.initIfThemeNotPresent(context);
     }
 
 	@Override
