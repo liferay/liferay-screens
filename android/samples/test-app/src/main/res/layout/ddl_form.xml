@@ -15,9 +15,13 @@
 		liferay:autoLoad="true"
 		liferay:filePrefix="jre"
 		liferay:folderId="10687"
-		liferay:layoutId="@layout/ddlform_default"
+		liferay:layoutId="@layout/ddlform_material"
 		liferay:recordSetId="10714"
 		liferay:repositoryId="10685"
+		liferay:checkboxFieldLayoutId="@layout/ddlfield_checkbox_material"
+		liferay:selectFieldLayoutId="@layout/ddlfield_select_material"
+		liferay:dateFieldLayoutId="@layout/ddlfield_date_material"
+		liferay:documentFieldLayoutId="@layout/ddlfield_document_material"
 		liferay:structureId="10712"/>
 
 </LinearLayout>
