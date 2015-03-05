@@ -11,26 +11,6 @@
 		<item name="android:background">@android:color/white</item>
 	</style>
 
-	<style name="material_theme" parent="Theme.AppCompat.Light">
-		<item name="colorPrimary">@color/primary</item>
-		<item name="colorAccent">@color/accent</item>
-		<item name="colorPrimaryDark">@color/primary_dark</item>
-		<item name="android:editTextStyle">@style/material_edit_text</item>
-		<item name="android:buttonStyle">@style/material_button</item>
-		<item name="android:background">@android:color/white</item>
-
-		<!-- You can also set colorControlNormal, colorControlActivated
-		 colorControlHighlight, and colorSwitchThumbNormal. -->
-	</style>
-
-	<style name="material_edit_text" parent="android:Widget.EditText"/>
-
-	<style name="material_text_view" parent="android:Widget.TextView"/>
-
-	<style name="material_list" parent="android:Widget.ListView"/>
-
-	<style name="material_button" parent="android:Widget.Button"/>
-
 	<style name="default_edit_text" parent="base_default_edit_text"/>
 
 	<style name="base_default_edit_text" parent="android:Widget.EditText">
@@ -115,5 +95,7 @@
 		<item name="android:textColor">@color/liferay_light_blue</item>
 		<item name="android:textSize">15sp</item>
 	</style>
+
+
 
 </resources>
