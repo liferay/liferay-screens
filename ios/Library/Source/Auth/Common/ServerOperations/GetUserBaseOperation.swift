@@ -13,54 +13,47 @@
 */
 import UIKit
 
-public class LiferayLoginBaseOperation: ServerOperation {
+public class GetUserBaseOperation: ServerOperation {
 
 	public var resultUserAttributes: [String:AnyObject]?
 
-	internal override var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("login-screenlet", "loading-message", self),
-				details: LocalizedString("login-screenlet", "loading-details", self))
-	}
-	internal override var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("login-screenlet", "loading-error", self), details: nil)
-	}
-
-	internal var loginData: LoginData {
-		return screenlet.screenletView as LoginData
-	}
-
+	public var userName: String?
+	public var password: String?
 
 	//MARK: ServerOperation
 
 	override internal func validateData() -> Bool {
-		if loginData.userName == nil || loginData.password == nil {
-			showValidationHUD(
-					message: LocalizedString("login-screenlet", "validation", self))
-
-			return false
+		if userName == nil || password == nil {
+			userName = SessionContext.currentUserName
+			password = SessionContext.currentPassword
 		}
 
-		return true
+		return (userName != nil && password != nil)
 	}
 
 	override internal func preRun() -> Bool {
-		SessionContext.createSession(
-				username: loginData.userName!,
-				password: loginData.password!,
-				userAttributes: [:])
+		if !SessionContext.hasSession {
+			SessionContext.createSession(
+					username: userName!,
+					password: password!,
+					userAttributes: [:])
+		}
 
 		return true
 	}
 
 	override internal func postRun() {
-		if lastError == nil {
-			SessionContext.createSession(
-					username: SessionContext.currentUserName!,
-					password: SessionContext.currentPassword!,
-					userAttributes: resultUserAttributes!)
-		}
-		else {
-			SessionContext.clearSession()
+		if SessionContext.userAttribute("userId") == nil {
+			// the session was created ad-hoc for self.userName
+			if lastError == nil {
+				SessionContext.createSession(
+						username: userName!,
+						password: password!,
+						userAttributes: resultUserAttributes!)
+			}
+			else {
+				SessionContext.clearSession()
+			}
 		}
 	}
 

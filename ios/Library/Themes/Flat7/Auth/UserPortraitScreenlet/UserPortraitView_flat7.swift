@@ -14,18 +14,18 @@
 import UIKit
 
 
-public class LiferayLoginUserIdOperation: LiferayLoginBaseOperation {
+public class UserPortraitView_flat7: UserPortraitView_default {
 
-	//MARK: LiferayLoginBaseOperation
+	override internal func onShow() {
+		super.onShow()
 
-	override internal func sendGetUserRequest(
-			#service: LRUserService_v62,
-			error: NSErrorPointer)
-			-> NSDictionary? {
+		self.borderColor = Flat7ThemeBasicGreen
 
-		let userId = Int64(loginData.userName!.toInt()!)
+		portraitImage?.layer.cornerRadius = min(frame.size.width, frame.size.height) / 2
+	}
 
-		return service.getUserByIdWithUserId(userId, error: error)
+	override internal func loadPlaceholder() {
+		self.portraitImage?.image = UIImage(named: "flat7-portrait-placeholder")
 	}
 
 }

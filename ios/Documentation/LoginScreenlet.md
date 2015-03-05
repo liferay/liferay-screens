@@ -22,7 +22,8 @@ The `LoginScreenlet` lets you authenticate portal users in your iOS app. The fol
 - Screen name
 - User id
 
-When user is successfully authenticated, their attributes are retrieved for use in the app. It's important to note that user credentials and attributes can be stored securely in the keychain. This information can then be used to perform automatic login in subsequent sessions.
+When the user is successfully authenticated, their attributes are retrieved for use in the app. You can use the `SessionContext` class to get current user attributes. It's important to note that user credentials and attributes can be stored securely in the keychain. This information can then be used to perform automatic login in subsequent sessions (see the `saveCredentials` attribute).
+
 
 ## Module
 

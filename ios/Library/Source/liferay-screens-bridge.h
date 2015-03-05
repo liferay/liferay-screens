@@ -12,6 +12,7 @@
  * details.
  */
 #import <UIKit/UIKit.h>
+#import <CommonCrypto/CommonDigest.h>
 
 //! Project version number for liferay-screens.
 FOUNDATION_EXPORT double liferay_screens_VersionNumber;
@@ -32,8 +33,10 @@ FOUNDATION_EXPORT const unsigned char liferay_screens_VersionString[];
 #import "TNRadioButtonGroup.h"
 #import "MDRadialProgressView.h"
 #import "MDRadialProgressTheme.h"
+#import "UIImageView+AFNetworking.h"
 
 // Liferay services
+#import "LRHttpUtil.h"
 #import "LRUserService_v62.h"
 #import "LRMobilewidgetsassetentryService_v62.h"
 #import "LRMobilewidgetsddlrecordService_v62.h"

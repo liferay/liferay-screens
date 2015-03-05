@@ -38,6 +38,8 @@
 
 
 - (void)onLoginResponse:(NSDictionary *)attributes {
+	NSLog(@"DELEGATE onLoginResponse -> %@", attributes);
+
 	[self showLoggedWithAnimation:YES];
 }
 
