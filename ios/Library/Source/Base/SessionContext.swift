@@ -30,13 +30,18 @@ import Foundation
 	}
 
 	public class var currentUserName: String? {
-		return StaticInstance.currentSession?.username
+		var authentication = StaticInstance.currentSession?.authentication
+			as LRBasicAuthentication?
+
+		return authentication?.username
 	}
 
 	public class var currentPassword: String? {
-		return StaticInstance.currentSession?.password
-	}
+		var authentication = StaticInstance.currentSession?.authentication
+			as LRBasicAuthentication?
 
+		return authentication?.password
+	}
 
 	//MARK Public methods
 
@@ -45,19 +50,18 @@ import Foundation
 	}
 
 	public class func createSession(
-			#username:String,
-			password:String,
+			#username: String,
+			password: String,
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
-		StaticInstance.currentSession = LRSession(
-				server:LiferayServerContext.server,
-				username:username,
-				password:password)
+		let authentication = LRBasicAuthentication(
+				username: username,
+				password: password)
 
-		StaticInstance.userAttributes = userAttributes
-
-		return StaticInstance.currentSession!
+		return createSession(
+				authentication: authentication,
+				userAttributes: userAttributes)
 	}
 
 	public class func createSessionFromCurrentSession() -> LRSession? {
@@ -104,8 +108,7 @@ import Foundation
 		if let storedSession = LRSession.sessionFromStoredCredential() {
 			if let userAttributes = loadUserAttributesFromStore() {
 				createSession(
-						username: storedSession.username,
-						password: storedSession.password,
+						authentication:storedSession.authentication,
 						userAttributes: userAttributes)
 
 				return true
@@ -114,7 +117,6 @@ import Foundation
 
 		return false
 	}
-
 
 	private class func storeUserAttributes() -> Bool {
 		if StaticInstance.userAttributes.isEmpty {
@@ -134,6 +136,20 @@ import Foundation
 		}
 
 		return nil
+	}
+
+	private class func createSession(
+			#authentication: LRAuthentication,
+			userAttributes: [String:AnyObject])
+			-> LRSession {
+
+		StaticInstance.currentSession = LRSession(
+				server: LiferayServerContext.server,
+				authentication: authentication)
+
+		StaticInstance.userAttributes = userAttributes
+
+		return StaticInstance.currentSession!
 	}
 
 }

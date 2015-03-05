@@ -31,9 +31,13 @@ extension LRSession {
 		let credentialTuple = credentialForServer(LiferayServerContext.server)
 
 		if let credential = credentialTuple.0 {
-			return LRSession(server:LiferayServerContext.server,
+			let authentication = LRBasicAuthentication(
 					username:credential.user,
 					password:credential.password)
+
+			return LRSession(
+					server: LiferayServerContext.server,
+					authentication: authentication)
 		}
 
 		return nil
@@ -76,12 +80,14 @@ extension LRSession {
 	public func storeCredential() -> Bool {
 		var success = false
 
-		if username != nil && password != nil {
+		var authentication = self.authentication as LRBasicAuthentication?
+
+		if authentication?.username != nil && authentication?.password != nil {
 			let protectionSpace = LRSession.protectionSpaceForServer(LiferayServerContext.server)
 
 			let credential = NSURLCredential(
-								user:username!,
-								password:password!,
+								user: authentication!.username,
+								password: authentication!.password,
 								persistence: NSURLCredentialPersistence.Permanent)
 
 			NSURLCredentialStorage.sharedCredentialStorage().setCredential(credential,
