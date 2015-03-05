@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:theme="@style/default_theme">
+			android:theme="@style/material_theme">
 
 	<LinearLayout
 		android:layout_width="match_parent"

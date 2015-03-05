@@ -11,6 +11,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		liferay:authMethod="email"
-		liferay:layoutId="@layout/login_default"/>
+		liferay:layoutId="@layout/login_material"/>
 
 </LinearLayout>
