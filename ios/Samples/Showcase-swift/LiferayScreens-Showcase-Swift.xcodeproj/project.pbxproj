@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		880053F41AA88589009D58A6 /* UserPortraitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880053F21AA88589009D58A6 /* UserPortraitData.swift */; };
-		880053F51AA88589009D58A6 /* UserPortraitScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880053F31AA88589009D58A6 /* UserPortraitScreenlet.swift */; };
-		880053FE1AA885A2009D58A6 /* UserPortraitView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880053FC1AA885A2009D58A6 /* UserPortraitView_flat7.swift */; };
-		880053FF1AA885A2009D58A6 /* UserPortraitView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 880053FD1AA885A2009D58A6 /* UserPortraitView_flat7.xib */; };
-		880054031AA885AE009D58A6 /* UserPortraitView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880054011AA885AE009D58A6 /* UserPortraitView_default.swift */; };
-		880054041AA885AE009D58A6 /* UserPortraitView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 880054021AA885AE009D58A6 /* UserPortraitView_default.xib */; };
 		88107F951A2C8D60009583C2 /* WebContentDisplayScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88107F941A2C8D60009583C2 /* WebContentDisplayScreenletViewController.swift */; };
 		881A10001A66CD55005D0EB0 /* flat7-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 881A0FFE1A66CD55005D0EB0 /* flat7-portrait-placeholder.png */; };
 		881A10011A66CD55005D0EB0 /* flat7-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 881A0FFF1A66CD55005D0EB0 /* flat7-portrait-placeholder@2x.png */; };
@@ -189,6 +183,12 @@
 		8843AE4F1A66B19C002AB625 /* default-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 8843AE4D1A66B19C002AB625 /* default-portrait-placeholder.png */; };
 		8843AE501A66B19C002AB625 /* default-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8843AE4E1A66B19C002AB625 /* default-portrait-placeholder@2x.png */; };
 		8847A7E51A64193F0098B92E /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8847A7E41A64193F0098B92E /* liferay-server-context.plist */; };
+		88A365A11AA8885400AC5AF1 /* UserPortraitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A3659F1AA8885400AC5AF1 /* UserPortraitData.swift */; };
+		88A365A21AA8885400AC5AF1 /* UserPortraitScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A365A01AA8885400AC5AF1 /* UserPortraitScreenlet.swift */; };
+		88A365A61AA8886700AC5AF1 /* UserPortraitView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A365A41AA8886700AC5AF1 /* UserPortraitView_default.swift */; };
+		88A365A71AA8886700AC5AF1 /* UserPortraitView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A365A51AA8886700AC5AF1 /* UserPortraitView_default.xib */; };
+		88A365AB1AA8887400AC5AF1 /* UserPortraitView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A365A91AA8887400AC5AF1 /* UserPortraitView_flat7.swift */; };
+		88A365AC1AA8887400AC5AF1 /* UserPortraitView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A365AA1AA8887400AC5AF1 /* UserPortraitView_flat7.xib */; };
 		88BF016A1A6FB9C5000868A9 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF01691A6FB9C5000868A9 /* UIImageExtension.swift */; };
 		DADBA59292975E248939609C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EB65E3D4DC189357A623BA6 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -196,12 +196,6 @@
 /* Begin PBXFileReference section */
 		1EB65E3D4DC189357A623BA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		20EF6B149053C358F64C97DD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		880053F21AA88589009D58A6 /* UserPortraitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitData.swift; sourceTree = "<group>"; };
-		880053F31AA88589009D58A6 /* UserPortraitScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitScreenlet.swift; sourceTree = "<group>"; };
-		880053FC1AA885A2009D58A6 /* UserPortraitView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitView_flat7.swift; sourceTree = "<group>"; };
-		880053FD1AA885A2009D58A6 /* UserPortraitView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPortraitView_flat7.xib; sourceTree = "<group>"; };
-		880054011AA885AE009D58A6 /* UserPortraitView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitView_default.swift; sourceTree = "<group>"; };
-		880054021AA885AE009D58A6 /* UserPortraitView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPortraitView_default.xib; sourceTree = "<group>"; };
 		88107F941A2C8D60009583C2 /* WebContentDisplayScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayScreenletViewController.swift; sourceTree = "<group>"; };
 		881A0FFE1A66CD55005D0EB0 /* flat7-portrait-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder.png"; sourceTree = "<group>"; };
 		881A0FFF1A66CD55005D0EB0 /* flat7-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
@@ -395,6 +389,12 @@
 		8843AE4D1A66B19C002AB625 /* default-portrait-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-portrait-placeholder.png"; sourceTree = "<group>"; };
 		8843AE4E1A66B19C002AB625 /* default-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
 		8847A7E41A64193F0098B92E /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = "<group>"; };
+		88A3659F1AA8885400AC5AF1 /* UserPortraitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitData.swift; sourceTree = "<group>"; };
+		88A365A01AA8885400AC5AF1 /* UserPortraitScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitScreenlet.swift; sourceTree = "<group>"; };
+		88A365A41AA8886700AC5AF1 /* UserPortraitView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitView_default.swift; sourceTree = "<group>"; };
+		88A365A51AA8886700AC5AF1 /* UserPortraitView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPortraitView_default.xib; sourceTree = "<group>"; };
+		88A365A91AA8887400AC5AF1 /* UserPortraitView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitView_flat7.swift; sourceTree = "<group>"; };
+		88A365AA1AA8887400AC5AF1 /* UserPortraitView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPortraitView_flat7.xib; sourceTree = "<group>"; };
 		88BF01691A6FB9C5000868A9 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		88CB07471A264B7100964F33 /* AssetListScreenletInterop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletInterop.h; sourceTree = "<group>"; };
 		D599D7796E7BE84936DB1C44 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -418,33 +418,6 @@
 				1EB65E3D4DC189357A623BA6 /* libPods.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		880053F11AA88589009D58A6 /* UserPortraitScreenlet */ = {
-			isa = PBXGroup;
-			children = (
-				880053F21AA88589009D58A6 /* UserPortraitData.swift */,
-				880053F31AA88589009D58A6 /* UserPortraitScreenlet.swift */,
-			);
-			path = UserPortraitScreenlet;
-			sourceTree = "<group>";
-		};
-		880053FB1AA885A2009D58A6 /* UserPortraitScreenlet */ = {
-			isa = PBXGroup;
-			children = (
-				880053FC1AA885A2009D58A6 /* UserPortraitView_flat7.swift */,
-				880053FD1AA885A2009D58A6 /* UserPortraitView_flat7.xib */,
-			);
-			path = UserPortraitScreenlet;
-			sourceTree = "<group>";
-		};
-		880054001AA885AE009D58A6 /* UserPortraitScreenlet */ = {
-			isa = PBXGroup;
-			children = (
-				880054011AA885AE009D58A6 /* UserPortraitView_default.swift */,
-				880054021AA885AE009D58A6 /* UserPortraitView_default.xib */,
-			);
-			path = UserPortraitScreenlet;
 			sourceTree = "<group>";
 		};
 		88215F2A1A234184009B96C7 = {
@@ -517,7 +490,6 @@
 				883D84081A234EAC00CC179B /* Extensions */,
 				883D840E1A234EAC00CC179B /* liferay-screens-bridge.h */,
 				883D840F1A234EAC00CC179B /* liferay-server-context-sample.plist */,
-				880053F11AA88589009D58A6 /* UserPortraitScreenlet */,
 				883D84101A234EAC00CC179B /* Services */,
 				883D84171A234EAC00CC179B /* WebContentDisplayScreenlet */,
 			);
@@ -559,6 +531,7 @@
 				883D83B11A234EAC00CC179B /* ForgotPasswordScreenlet */,
 				883D83BC1A234EAC00CC179B /* LoginScreenlet */,
 				883D83C81A234EAC00CC179B /* SignUpScreenlet */,
+				88A3659E1AA8885400AC5AF1 /* UserPortraitScreenlet */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -797,7 +770,6 @@
 		883D84201A234EAC00CC179B /* Default */ = {
 			isa = PBXGroup;
 			children = (
-				880054001AA885AE009D58A6 /* UserPortraitScreenlet */,
 				883D84211A234EAC00CC179B /* AssetListScreenlet */,
 				883D84241A234EAC00CC179B /* Auth */,
 				883D842E1A234EAC00CC179B /* DDL */,
@@ -823,6 +795,7 @@
 				883D84251A234EAC00CC179B /* ForgotPasswordScreenlet */,
 				883D84281A234EAC00CC179B /* LoginScreenlet */,
 				883D842B1A234EAC00CC179B /* SignUpScreenlet */,
+				88A365A31AA8886700AC5AF1 /* UserPortraitScreenlet */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -953,7 +926,6 @@
 		883D84721A234EAC00CC179B /* Flat7 */ = {
 			isa = PBXGroup;
 			children = (
-				880053FB1AA885A2009D58A6 /* UserPortraitScreenlet */,
 				883D84731A234EAC00CC179B /* Auth */,
 				883D847D1A234EAC00CC179B /* Flat7ThemeConstants.swift */,
 				883D847E1A234EAC00CC179B /* Resources */,
@@ -967,6 +939,7 @@
 				883D84741A234EAC00CC179B /* ForgotPasswordScreenlet */,
 				883D84771A234EAC00CC179B /* LoginScreenlet */,
 				883D847A1A234EAC00CC179B /* SignUpScreenlet */,
+				88A365A81AA8887400AC5AF1 /* UserPortraitScreenlet */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1043,6 +1016,33 @@
 				8843AE461A668E67002AB625 /* GetUserByUserIdOperation.swift */,
 			);
 			path = ServerOperations;
+			sourceTree = "<group>";
+		};
+		88A3659E1AA8885400AC5AF1 /* UserPortraitScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				88A3659F1AA8885400AC5AF1 /* UserPortraitData.swift */,
+				88A365A01AA8885400AC5AF1 /* UserPortraitScreenlet.swift */,
+			);
+			path = UserPortraitScreenlet;
+			sourceTree = "<group>";
+		};
+		88A365A31AA8886700AC5AF1 /* UserPortraitScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				88A365A41AA8886700AC5AF1 /* UserPortraitView_default.swift */,
+				88A365A51AA8886700AC5AF1 /* UserPortraitView_default.xib */,
+			);
+			path = UserPortraitScreenlet;
+			sourceTree = "<group>";
+		};
+		88A365A81AA8887400AC5AF1 /* UserPortraitScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				88A365A91AA8887400AC5AF1 /* UserPortraitView_flat7.swift */,
+				88A365AA1AA8887400AC5AF1 /* UserPortraitView_flat7.xib */,
+			);
+			path = UserPortraitScreenlet;
 			sourceTree = "<group>";
 		};
 		CDF71B9BFCCC2C208E7CB8BB /* Pods */ = {
@@ -1163,6 +1163,7 @@
 				883D85211A234EAC00CC179B /* flat7-field.png in Resources */,
 				883D851F1A234EAC00CC179B /* flat7-button.png in Resources */,
 				883D84FA1A234EAC00CC179B /* default-calendar@2x.png in Resources */,
+				88A365A71AA8886700AC5AF1 /* UserPortraitView_default.xib in Resources */,
 				883D84DF1A234EAC00CC179B /* DDLFieldDateTableCell_default.xib in Resources */,
 				883D84D41A234EAC00CC179B /* AssetListView_default.xib in Resources */,
 				883D850D1A234EAC00CC179B /* default-preview-assetlist.png in Resources */,
@@ -1172,7 +1173,7 @@
 				883D84EB1A234EAC00CC179B /* DDLFieldTextareaTableCell_default.xib in Resources */,
 				883D84FC1A234EAC00CC179B /* default-field-failed@2x.png in Resources */,
 				881A10001A66CD55005D0EB0 /* flat7-portrait-placeholder.png in Resources */,
-				880053FF1AA885A2009D58A6 /* UserPortraitView_flat7.xib in Resources */,
+				88A365AC1AA8887400AC5AF1 /* UserPortraitView_flat7.xib in Resources */,
 				883D85141A234EAC00CC179B /* default-user-icon@2x.png in Resources */,
 				883D850B1A234EAC00CC179B /* default-multiline-field.png in Resources */,
 				883D85021A234EAC00CC179B /* default-form-gradient-bottom@2x.png in Resources */,
@@ -1185,7 +1186,6 @@
 				8843AE501A66B19C002AB625 /* default-portrait-placeholder@2x.png in Resources */,
 				88215F421A234185009B96C7 /* Images.xcassets in Resources */,
 				883D84E91A234EAC00CC179B /* DDLFieldSelectTableCell_default.xib in Resources */,
-				880054041AA885AE009D58A6 /* UserPortraitView_default.xib in Resources */,
 				883D850F1A234EAC00CC179B /* default-preview-ddlform.png in Resources */,
 				883D85131A234EAC00CC179B /* default-user-icon.png in Resources */,
 			);
@@ -1260,7 +1260,7 @@
 				88215F391A234184009B96C7 /* AppDelegate.swift in Sources */,
 				883D84BC1A234EAC00CC179B /* DDLField+Editor.swift in Sources */,
 				883D84B81A234EAC00CC179B /* DDLListData.swift in Sources */,
-				880053F41AA88589009D58A6 /* UserPortraitData.swift in Sources */,
+				88A365A11AA8885400AC5AF1 /* UserPortraitData.swift in Sources */,
 				883D84A11A234EAC00CC179B /* LiferayPaginationOperation.swift in Sources */,
 				883D84B31A234EAC00CC179B /* LiferayDDLFormRecordLoadOperation.swift in Sources */,
 				883D84911A234EAC00CC179B /* LiferayForgotPasswordScreenNameOperation.swift in Sources */,
@@ -1269,7 +1269,6 @@
 				8843AE321A668E38002AB625 /* LiferayLoginByEmailOperation.swift in Sources */,
 				8843AE341A668E38002AB625 /* LiferayLoginByUserIdOperation.swift in Sources */,
 				883D84941A234EAC00CC179B /* LoginData.swift in Sources */,
-				880054031AA885AE009D58A6 /* UserPortraitView_default.swift in Sources */,
 				883D84B91A234EAC00CC179B /* DDLListScreenlet.swift in Sources */,
 				883D84F11A234EAC00CC179B /* DDLSubmitButtonTableCell_default.swift in Sources */,
 				883D84F51A234EAC00CC179B /* DefaultThemeConstants.swift in Sources */,
@@ -1292,6 +1291,7 @@
 				883D84E61A234EAC00CC179B /* DDLFieldRadioTableCell_default.swift in Sources */,
 				8843AE4B1A668E67002AB625 /* GetUserByScreenNameOperation.swift in Sources */,
 				88274FFA1A24C7CB00FE31C6 /* SignUpScreenletViewController.swift in Sources */,
+				88A365A61AA8886700AC5AF1 /* UserPortraitView_default.swift in Sources */,
 				883D84AA1A234EAC00CC179B /* SessionContext.swift in Sources */,
 				883D84A21A234EAC00CC179B /* BaseListTableView.swift in Sources */,
 				883D84CC1A234EAC00CC179B /* LRMobilewidgetsassetentryService_v62.m in Sources */,
@@ -1309,8 +1309,8 @@
 				883D84AB1A234EAC00CC179B /* ThemeManager.swift in Sources */,
 				88215F3B1A234184009B96C7 /* HomeLoginViewController.swift in Sources */,
 				883D849E1A234EAC00CC179B /* SignUpScreenlet.swift in Sources */,
-				880053F51AA88589009D58A6 /* UserPortraitScreenlet.swift in Sources */,
-				880053FE1AA885A2009D58A6 /* UserPortraitView_flat7.swift in Sources */,
+				88A365A21AA8885400AC5AF1 /* UserPortraitScreenlet.swift in Sources */,
+				88A365AB1AA8887400AC5AF1 /* UserPortraitView_flat7.swift in Sources */,
 				883D84AD1A234EAC00CC179B /* DDLXSDParser.swift in Sources */,
 				883D84C01A234EAC00CC179B /* DDLFieldDocument.swift in Sources */,
 				883D84B61A234EAC00CC179B /* DDLFieldTableCell.swift in Sources */,
