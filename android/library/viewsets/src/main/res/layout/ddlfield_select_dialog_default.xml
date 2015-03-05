@@ -8,7 +8,7 @@
 		android:id="@+id/dialog_title"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="@color/liferay_light_blue"
+		android:background="?attr/colorPrimary"
 		android:paddingLeft="10dp"
 		android:textColor="@android:color/white"
 		android:textSize="18sp"/>
