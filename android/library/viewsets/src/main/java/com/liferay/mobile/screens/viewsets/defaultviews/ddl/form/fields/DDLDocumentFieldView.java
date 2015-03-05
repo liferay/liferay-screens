@@ -198,7 +198,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	}
 
 	private int _positionInForm;
-	private ProgressBar _progressBar;
+	protected ProgressBar _progressBar;
 	private AlertDialog _choseOriginDialog;
 	private AlertDialog _fileDialog;
 
