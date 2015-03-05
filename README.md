@@ -54,6 +54,7 @@ Once your project is ready, you can use the following screenlets in your app:
 - [`LoginScreenlet`](android/documentation/LoginScreenlet.md): Gives your app the ability to sign users in to a Liferay Portal.
 - [`SignUpScreenlet`](android/documentation/SignUpScreenlet.md): Gives your app the ability to sign new users in to a Liferay Portal.
 - [`ForgotPasswordScreenlet`](android/documentation/ForgotPasswordScreenlet.md): Gives your app the ability to send emails containing a new password or password reset link to users.
+- [`UserPortraitScreenlet`](android/documentation/UserPortraitScreenlet.md): Gives your app the ability to shows the user's portrait picture.
 - [`DDLFormScreenlet`](android/documentation/DDLFormScreenlet.md): Gives your app the ability to present dynamic forms to be filled out by users and submitted back to the server.
 - [`DDLListScreenlet`](android/documentation/DDLListScreenlet.md): Gives your app the ability to show a list of records based on a pre-existing [Dynamic Data List](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-web-forms-and-dynamic-data-lists) in a Liferay instance.
 - [`AssetListScreenlet`](android/documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). Assets include web content, blog entries, documents, users and more.
@@ -61,7 +62,7 @@ Once your project is ready, you can use the following screenlets in your app:
 
 Liferay Screens for Android also contains a set of *views* that you can use to change the UI and UX of the screenlets:
 
-- **Default views**: The standard views used when you add a screenlet in your app's activities or fragments and don't change the `liferay:layoutId` attribute. The Default views can be used as parent view for any of your custom views. Refer to the [Architecture Guide](android/documentation/architecture.md#view-layer) for more details.
+- **Default views**: The standard views used when you add a screenlet in your app's activities or fragments and don't set the `liferay:layoutId` attribute. The Default views can be used as parent view for any of your custom views. Refer to the [Architecture Guide](android/documentation/architecture.md#view-layer) for more details.
 - **Material views**: The sample views intended to demonstrate how to develop your own full view set from scratch. Refer to the [Views Guide](android/documentation/views.md) for instructions on creating your own view set.
 
 ## Contributing

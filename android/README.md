@@ -10,8 +10,6 @@ Liferay Screens for Android includes the component (*screenlets*) library and a 
 
 Each screenlet is tied to one or more of [Liferay's remote services](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/accessing-services-remotely-liferay-portal-6-2-dev-guide-05-en). When the screenlet needs to show information to the user, it relies on a *view*. View sets can be contributed by third parties and are fully pluggable, so you aren't limited to one specific look and feel. The Screens library provides the standard *Default* view set and the sample *Material* view set.
 
-<!-- TODO Cool picture with android phone -->
-
 <!-- ![The SignUp screenlet using the Default and Flat7 themes.](Documentation/Images/screens-phone2.png) -->
 
 To learn about the architecture of Screens for Android, see the [library documentation page.](library/README.md).
@@ -22,7 +20,6 @@ Development of Android apps using Liferay Screens requires the following:
 
 - Android Studio 1.0.2 or above
 - Android SDK 4.0 (API Level 14) or above
-<!-- - Gradle??? -->
 - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
 - [Liferay Screens' compatiblity plugin](https://github.com/liferay/liferay-screens/tree/master/portal). 
 - Liferay Screens' source code
@@ -30,7 +27,8 @@ Development of Android apps using Liferay Screens requires the following:
 ## Compatibility
 
 Liferay Screens for Android is compatible with Android 4.0 (API Level 14) and higher. 
-<!-- TODO: Mention compat library??? -->
+
+[](TODO: Mention compat library)
 
 ## Preparing Your Project for Liferay Screens
 

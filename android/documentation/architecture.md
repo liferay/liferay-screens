@@ -46,7 +46,7 @@ The core layer is the micro-framework that lets developers write their own scree
 
 - **SessionContext**: A singleton object that holds the logged in user's session. Apps can use an implicit login, which is invisible to the user, or a login that relies on explicit user input to create the session. User logins can be implemented with [`LoginScreenlet`](LoginScreenlet.md).
 
-- **LiferayServerContext**: A singleton object that holds server configuration parameters. It's loaded from the `server-context.xml` file, or from any other XML file that overrides the keys defined in that file.
+- **LiferayServerContext**: A singleton object that holds server configuration parameters. It's loaded from the `server_context.xml` file, or from any other XML file that overrides the keys defined in that file.
 
 - **LiferayScreensContext**: A singleton object that holds a reference to the application context. It's used internally where the context is necessary.
 
