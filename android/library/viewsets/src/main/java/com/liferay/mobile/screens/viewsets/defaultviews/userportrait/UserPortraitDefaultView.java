@@ -111,7 +111,7 @@ public class UserPortraitDefaultView extends FrameLayout implements UserPortrait
         Canvas canvas = new Canvas(finalBitmap);
 
         canvas.drawRoundRect(rect, borderRadius, borderRadius, getPaint(bitmap));
-        canvas.drawRoundRect(rect, borderRadius, borderRadius, getBorderPaint(borderWidth));
+        canvas.drawRoundRect(rect, borderRadius, borderRadius, getBorderPaint(borderWidth, R.color.liferay_dark_gray));
 
         return finalBitmap;
     }
@@ -122,10 +122,10 @@ public class UserPortraitDefaultView extends FrameLayout implements UserPortrait
         return rect;
     }
 
-    protected Paint getBorderPaint(float borderWidth) {
+    protected Paint getBorderPaint(float borderWidth, int color) {
         Paint borderPaint = new Paint();
         borderPaint.setAntiAlias(true);
-        borderPaint.setColor(getResources().getColor(R.color.liferay_dark_gray));
+        borderPaint.setColor(getResources().getColor(color));
         borderPaint.setStyle(Paint.Style.STROKE);
         borderPaint.setStrokeWidth(borderWidth);
         return borderPaint;
