@@ -96,7 +96,9 @@ public class LoginDefaultView extends LinearLayout
 		_progressBar.finishProgress();
 
 		LiferayLogger.e("Could not login", e);
-		Crouton.makeText((Activity) getContext(), getContext().getString(R.string.login_error), DefaultCrouton.ALERT).show();
+
+		Crouton.makeText((Activity) getContext(), getContext().getString(R.string
+				.login_error), DefaultCrouton.ALERT).show();
 	}
 
 	@Override
@@ -141,10 +143,10 @@ public class LoginDefaultView extends LinearLayout
 		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(drawableId), null, null, null);
 	}
 
+	protected EditText _loginEditText;
+	protected EditText _passwordEditText;
+	protected Button _submitButton;
 	private AuthMethod _authMethod;
-	private EditText _loginEditText;
-	private EditText _passwordEditText;
-	private Button _submitButton;
 	private ModalProgressBar _progressBar;
 
 }
