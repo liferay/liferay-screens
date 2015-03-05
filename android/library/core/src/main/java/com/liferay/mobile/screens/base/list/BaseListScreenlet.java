@@ -106,9 +106,6 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
         }
     }
 
-    protected abstract void loadRows(N interactor, int startRow, int endRow, Locale locale)
-		throws Exception;
-
     public boolean isAutoLoad() {
         return _autoLoad;
     }
@@ -140,6 +137,9 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     public void setPageSize(int pageSize) {
         _pageSize = pageSize;
     }
+
+	protected abstract void loadRows(N interactor, int startRow, int endRow, Locale locale)
+			throws Exception;
 
     @Override
     protected View createScreenletView(

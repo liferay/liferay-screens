@@ -59,10 +59,23 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
+		init(getContext());
+	}
+
+	public void onItemClick(int position) {
+		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
+		List<E> entries = ((A) getAdapter()).getEntries();
+		// we do not want to crash if the user manages to do a phantom click
+		if (!entries.isEmpty() && entries.size() > position && screenlet.getListener() != null) {
+			screenlet.getListener().onListItemSelected(entries.get(position));
+		}
+	}
+
+	protected void init(Context context) {
 		DefaultTheme.initIfThemeNotPresent(getContext());
 
-		int itemLayoutId = R.layout.list_item_default;
-		int itemProgressLayoutId = R.layout.list_item_progress_default;
+		int itemLayoutId = R.layout.list_item_material;
+		int itemProgressLayoutId = R.layout.list_item_progress_material;
 
 		_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 		_progressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -74,6 +87,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 
 		_recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R
 				.drawable.pixel_grey)));
+
 	}
 
 	protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {

@@ -88,7 +88,7 @@ public abstract class BaseListAdapter<E>
 			view = inflater.inflate(_progressLayoutId, parent, false);
 		}
 
-		return new ViewHolder(view);
+		return new ViewHolder(view, _listener);
 	}
 
 	public void setEntries(List<E> entries) {
@@ -99,15 +99,24 @@ public abstract class BaseListAdapter<E>
 		_rowCount = rowCount;
 	}
 
-	public static class ViewHolder extends RecyclerView.ViewHolder {
+	public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 		public TextView textView;
 
-		public ViewHolder(View view) {
+		public ViewHolder(View view, BaseListAdapterListener listener) {
 			super(view);
 
 			this.textView = (TextView)view.findViewById(R.id.title);
+			_listener = listener;
+			view.setOnClickListener(this);
 		}
+
+		@Override
+		public void onClick(View v) {
+			_listener.onItemClick(getPosition());
+		}
+
+		private BaseListAdapterListener _listener;
 	}
 
 	private static final int _LAYOUT_TYPE_DEFAULT = 0;
