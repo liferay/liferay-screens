@@ -8,20 +8,20 @@ technology.
 
 ## Introduction
 
-This is the library that contains all available Liferay Screens widgets for 
+This is the library that contains all available screenlets for 
 iOS. It also includes the infrastructure classes required to develop and 
-contribute new widgets. Note that this library is developed using iOS 8, so 
-you'll need XCode6 in order to develop your own widgets.
+contribute new screenlets. Note that this library is developed using iOS 8, so 
+you'll need XCode6 in order to develop your own screenlets.
 
 ## Internal Architecture
 
 For details regarding the internal architecture of the Liferay Screens for iOS 
-library, please see the [Architecture Guide](https://github.com/liferay/liferay-screens/tree/master/ios/Library/architecture.md).
+library, please see the [Architecture Guide](https://github.com/liferay/liferay-screens/tree/master/ios/Documentation/architecture.md).
 
 ## Code Style Guide
 
 For details on Liferay's coding style for this project, please see the 
-[Style Guide](https://github.com/liferay/liferay-screens/tree/master/ios/style_guide.md).
+[Style Guide](https://github.com/liferay/liferay-screens/tree/master/ios/Documentation/style_guide.md).
 
 ## Contribute
 

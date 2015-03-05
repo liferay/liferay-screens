@@ -41,7 +41,8 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 
 	override func validateData() -> Bool {
 		if forgotPasswordData.userName == nil {
-			showValidationHUD(message: "Please, enter the user name")
+			showValidationHUD(
+					message: LocalizedString("forgotpassword-screenlet", "validation", self))
 
 			return false
 		}

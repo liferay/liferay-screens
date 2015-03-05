@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+
+	<TextView
+		android:id="@+id/dialog_title"
+		style="@style/default_text_view"
+		android:background="@color/liferay_light_blue"
+		android:paddingLeft="10dp"
+		android:text="@string/origin_of_file"
+		android:textColor="@android:color/white"
+		android:textSize="18sp"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/dialog_title">
+
+		<TextView
+			android:id="@+id/default_dialog_select_file"
+			style="@style/default_dialog_button"
+			android:text="@string/select_a_file"/>
+
+		<TextView
+			android:id="@+id/default_dialog_take_video"
+			style="@style/default_dialog_button"
+			android:text="@string/take_a_video"/>
+
+		<TextView
+			android:id="@+id/default_dialog_take_photo"
+			style="@style/default_dialog_button"
+			android:text="@string/make_a_photo"/>
+
+	</LinearLayout>
+
+</RelativeLayout>

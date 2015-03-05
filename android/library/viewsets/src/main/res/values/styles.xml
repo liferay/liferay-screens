@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="default_theme" parent="Theme.AppCompat.Light">
+		<item name="android:textViewStyle">@style/default_text_view</item>
+		<item name="android:listViewStyle">@style/default_list</item>
+		<item name="colorPrimary">@color/liferay_primary_blue</item>
+		<item name="colorAccent">@color/liferay_light_blue</item>
+	</style>
+
+	<style name="default_edit_text" parent="base_default_edit_text"/>
+
+	<style name="base_default_edit_text" parent="android:Widget.EditText">
+		<item name="android:paddingTop">@dimen/default_edit_text_padding</item>
+		<item name="android:paddingBottom">@dimen/default_edit_text_padding</item>
+		<item name="android:paddingLeft">@dimen/default_edit_text_drawable_padding</item>
+		<item name="android:paddingRight">@dimen/default_edit_text_padding</item>
+		<item name="android:layout_marginBottom">@dimen/default_edit_text_margin_bottom</item>
+		<item name="android:background">@drawable/default_edit_text_selector</item>
+		<item name="android:drawablePadding">@dimen/default_edit_text_drawable_padding</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:textColorHint">@color/liferay_light_gray</item>
+	</style>
+
+	<style name="default_text_view" parent="base_default_text_view"/>
+
+	<style name="base_default_text_view" parent="android:Widget.TextView">
+		<item name="android:paddingBottom">@dimen/default_text_view_padding</item>
+		<item name="android:paddingRight">@dimen/default_text_view_padding</item>
+		<item name="android:paddingTop">@dimen/default_text_view_padding</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+
+	<style name="default_submit_button" parent="base_default_submit_button"/>
+
+	<style name="base_default_submit_button" parent="default_button">
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginTop">@dimen/default_button_margin_top</item>
+	</style>
+
+	<style name="default_button" parent="android:Widget.Button">
+		<item name="android:layout_marginBottom">5dp</item>
+		<item name="android:layout_marginLeft">1dp</item>
+		<item name="android:layout_marginRight">1dp</item>
+		<item name="android:layout_marginTop">5dp</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:background">@drawable/default_button_selector</item>
+		<item name="android:textColor">@android:color/white</item>
+		<item name="android:textSize">17sp</item>
+	</style>
+
+	<style name="default_screenlet">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:orientation">vertical</item>
+		<item name="android:padding">@dimen/default_screenlet_padding</item>
+	</style>
+
+	<style name="default_list_item">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:paddingBottom">@dimen/default_list_padding</item>
+		<item name="android:paddingLeft">@dimen/default_list_padding</item>
+		<item name="android:paddingRight">@dimen/default_list_padding</item>
+		<item name="android:paddingTop">9dp</item>
+		<item name="android:drawableRight">@drawable/default_arrow</item>
+	</style>
+
+	<style name="default_list" parent="android:Widget.ListView">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:paddingLeft">@dimen/default_list_left_padding</item>
+		<item name="android:layout_height">match_parent</item>
+	</style>
+
+	<style name="default_font">
+		<item name="android:typeface">normal</item>
+	</style>
+
+	<style name="custom_dialog_theme">
+	</style>
+
+	<style name="default_checkbox" parent="base_default_checkbox"/>
+
+	<style name="base_default_checkbox">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingBottom">@dimen/default_edit_text_padding</item>
+		<item name="android:textColor">@color/liferay_dark_gray</item>
+		<item name="android:paddingTop">@dimen/default_edit_text_padding</item>
+		<item name="android:theme">@style/default_theme</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+
+	<style name="default_dialog_button" parent="default_text_view">
+		<item name="android:layout_weight">1</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textColor">@color/liferay_light_blue</item>
+		<item name="android:textSize">15sp</item>
+	</style>
+
+</resources>

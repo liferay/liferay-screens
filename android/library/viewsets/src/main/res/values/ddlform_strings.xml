@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="submit">SUBMIT</string>
+	<string name="required_value">Required value</string>
+    <string name="invalid">Invalid value</string>
+    <string name="open">Open:</string>
+	<string name="make_a_photo">Make a photo</string>
+	<string name="select_a_file">Select a file</string>
+	<string name="origin_of_file">Choose origin of file</string>
+	<string name="take_a_video">Take a video</string>
+	<string name="loading_form_error">Error loading DDLForm</string>
+	<string name="uploading_document_error">Error uploading document</string>
+	<string name="creating_file_error">Error creating file</string>
+</resources>

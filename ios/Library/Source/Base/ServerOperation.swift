@@ -91,13 +91,10 @@ public class ServerOperation: NSOperation {
 				}
 			}
 
-			if let messageValue = hudLoadingMessage {
-				showHUD(message: messageValue.0, details: messageValue.details)
-			}
-
+			prepareRun()
 			doRun(session: session!)
 			postRun()
-			closeHUD()
+			finishRun()
 			callOnComplete()
 		}
 		else {
@@ -132,6 +129,8 @@ public class ServerOperation: NSOperation {
 		return true
 	}
 
+
+
 	internal func preRun() -> Bool {
 		// Do not add any code here. Children classes may not call super
 		return true
@@ -150,7 +149,7 @@ public class ServerOperation: NSOperation {
 
 	internal func showHUD(#message: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.startOperationWithMessage(message, details: details)
+			self.screenlet.showHUDWithMessage(message, details: details)
 		}
 	}
 
@@ -176,13 +175,13 @@ public class ServerOperation: NSOperation {
 
 	internal func hideHUD() {
 		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.finishOperation()
+			self.screenlet.hideHUD()
 		}
 	}
 
 	internal func hideHUD(#message: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.finishOperationWithMessage(message, details: details)
+			self.screenlet.hideHUDWithMessage(message, details: details)
 		}
 	}
 
@@ -197,7 +196,10 @@ public class ServerOperation: NSOperation {
 
 	internal func hideHUD(#error: NSError, message: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.finishOperationWithError(error, message: message, details: details)
+			self.screenlet.showHUDWithMessage(message,
+				details: details,
+				closeMode:.ManualClose(true),
+				spinnerMode:.NoSpinner)
 		}
 	}
 
@@ -212,18 +214,19 @@ public class ServerOperation: NSOperation {
 		}
 	}
 
-	private func closeHUD() {
-		if lastError == nil {
-			if let messageValue = hudSuccessMessage {
-				hideHUD(message: messageValue.0, details: messageValue.details)
-			}
-			else if hudLoadingMessage != nil {
-				hideHUD()
-			}
+	private func prepareRun() {
+		self.screenlet.onStartOperation()
+		self.screenlet.screenletView?.onStartOperation()
+
+		if let messageValue = hudLoadingMessage {
+			showHUD(message: messageValue.0, details: messageValue.details)
 		}
-		else {
+	}
+
+	private func finishRun() {
+		if let lastErrorValue = lastError {
 			if let messageValue = hudFailureMessage {
-				hideHUD(error: lastError!,
+				hideHUD(error: lastErrorValue,
 						message: messageValue.0,
 						details: messageValue.details)
 			}
@@ -231,6 +234,17 @@ public class ServerOperation: NSOperation {
 				hideHUD()
 			}
 		}
+		else {
+			if let messageValue = hudSuccessMessage {
+				hideHUD(message: messageValue.0, details: messageValue.details)
+			}
+			else if hudLoadingMessage != nil {
+				hideHUD()
+			}
+		}
+
+		self.screenlet.onFinishOperation()
+		self.screenlet.screenletView?.onFinishOperation()
 	}
 
 }

@@ -133,33 +133,6 @@ import QuartzCore
 		return nil
 	}
 
-	internal func startOperationWithMessage(message:String, details:String? = nil) {
-		showHUDWithMessage(message, details: details)
-		onStartOperation()
-		screenletView?.onStartOperation()
-	}
-
-	internal func finishOperationWithError(error:NSError, message:String, details:String? = nil) {
-		showHUDWithMessage(message,
-			details: details,
-			closeMode:.ManualClose(true),
-			spinnerMode:.NoSpinner)
-		onFinishOperation()
-		screenletView?.onFinishOperation()
-	}
-
-	internal func finishOperationWithMessage(message:String, details:String? = nil) {
-		hideHUDWithMessage(message, details: details)
-		onFinishOperation()
-		screenletView?.onFinishOperation()
-	}
-
-	internal func finishOperation() {
-		hideHUD()
-		onFinishOperation()
-		screenletView?.onFinishOperation()
-	}
-
 
 	//MARK: Templated/event methods: intended to be overwritten by children classes
 
