@@ -10,6 +10,14 @@
 		2C2DF42D7FA747E4B953573C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA555EA8DC0458CA74C4ACE /* libPods.a */; };
 		753B7CCF1A4262B900664282 /* default-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 753B7CCD1A4262B900664282 /* default-portrait-placeholder.png */; };
 		753B7CD01A4262B900664282 /* default-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 753B7CCE1A4262B900664282 /* default-portrait-placeholder@2x.png */; };
+		880054081AA886A9009D58A6 /* UserPortraitView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880054061AA886A9009D58A6 /* UserPortraitView_default.swift */; };
+		880054091AA886A9009D58A6 /* UserPortraitView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 880054071AA886A9009D58A6 /* UserPortraitView_default.xib */; };
+		8800540A1AA886C0009D58A6 /* UserPortraitView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880054061AA886A9009D58A6 /* UserPortraitView_default.swift */; };
+		8800540B1AA886C4009D58A6 /* UserPortraitView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 880054071AA886A9009D58A6 /* UserPortraitView_default.xib */; };
+		8800540F1AA886D6009D58A6 /* UserPortraitView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800540D1AA886D6009D58A6 /* UserPortraitView_flat7.swift */; };
+		880054101AA886D6009D58A6 /* UserPortraitView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800540D1AA886D6009D58A6 /* UserPortraitView_flat7.swift */; };
+		880054111AA886D6009D58A6 /* UserPortraitView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8800540E1AA886D6009D58A6 /* UserPortraitView_flat7.xib */; };
+		880054121AA886D6009D58A6 /* UserPortraitView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8800540E1AA886D6009D58A6 /* UserPortraitView_flat7.xib */; };
 		881A0FD31A66CAC3005D0EB0 /* AuthBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FCC1A66CAC3005D0EB0 /* AuthBased.swift */; };
 		881A0FD41A66CAC3005D0EB0 /* LRSession+CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FCD1A66CAC3005D0EB0 /* LRSession+CredentialStore.swift */; };
 		881A0FD51A66CAC3005D0EB0 /* GetUserBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FCF1A66CAC3005D0EB0 /* GetUserBaseOperation.swift */; };
@@ -28,18 +36,10 @@
 		881A0FE61A66CAEC005D0EB0 /* GetUserByEmailOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FD01A66CAC3005D0EB0 /* GetUserByEmailOperation.swift */; };
 		881A0FE71A66CAEC005D0EB0 /* GetUserByScreenNameOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FD11A66CAC3005D0EB0 /* GetUserByScreenNameOperation.swift */; };
 		881A0FE81A66CAEC005D0EB0 /* GetUserByUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FD21A66CAC3005D0EB0 /* GetUserByUserIdOperation.swift */; };
-		881A0FEC1A66CB42005D0EB0 /* PortraitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FEA1A66CB42005D0EB0 /* PortraitData.swift */; };
-		881A0FED1A66CB42005D0EB0 /* PortraitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FEA1A66CB42005D0EB0 /* PortraitData.swift */; };
-		881A0FEE1A66CB42005D0EB0 /* PortraitScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FEB1A66CB42005D0EB0 /* PortraitScreenlet.swift */; };
-		881A0FEF1A66CB42005D0EB0 /* PortraitScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FEB1A66CB42005D0EB0 /* PortraitScreenlet.swift */; };
-		881A0FF31A66CB54005D0EB0 /* PortraitView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FF11A66CB54005D0EB0 /* PortraitView_default.swift */; };
-		881A0FF41A66CB54005D0EB0 /* PortraitView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FF11A66CB54005D0EB0 /* PortraitView_default.swift */; };
-		881A0FF51A66CB54005D0EB0 /* PortraitView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881A0FF21A66CB54005D0EB0 /* PortraitView_default.xib */; };
-		881A0FF61A66CB54005D0EB0 /* PortraitView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881A0FF21A66CB54005D0EB0 /* PortraitView_default.xib */; };
-		881A0FFA1A66CB83005D0EB0 /* PortraitView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FF81A66CB83005D0EB0 /* PortraitView_flat7.swift */; };
-		881A0FFB1A66CB83005D0EB0 /* PortraitView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FF81A66CB83005D0EB0 /* PortraitView_flat7.swift */; };
-		881A0FFC1A66CB83005D0EB0 /* PortraitView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881A0FF91A66CB83005D0EB0 /* PortraitView_flat7.xib */; };
-		881A0FFD1A66CB83005D0EB0 /* PortraitView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881A0FF91A66CB83005D0EB0 /* PortraitView_flat7.xib */; };
+		881A0FEC1A66CB42005D0EB0 /* UserPortraitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FEA1A66CB42005D0EB0 /* UserPortraitData.swift */; };
+		881A0FED1A66CB42005D0EB0 /* UserPortraitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FEA1A66CB42005D0EB0 /* UserPortraitData.swift */; };
+		881A0FEE1A66CB42005D0EB0 /* UserPortraitScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FEB1A66CB42005D0EB0 /* UserPortraitScreenlet.swift */; };
+		881A0FEF1A66CB42005D0EB0 /* UserPortraitScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A0FEB1A66CB42005D0EB0 /* UserPortraitScreenlet.swift */; };
 		881A10081A66D0CF005D0EB0 /* flat7-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 881A10061A66D0CF005D0EB0 /* flat7-portrait-placeholder.png */; };
 		881A10091A66D0CF005D0EB0 /* flat7-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 881A10071A66D0CF005D0EB0 /* flat7-portrait-placeholder@2x.png */; };
 		88311BA01A1B37CF00A91249 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F13319E3480D006268ED /* LoginView_default.swift */; };
@@ -442,6 +442,10 @@
 		7232FADA42A9731228B1FDC2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		753B7CCD1A4262B900664282 /* default-portrait-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-portrait-placeholder.png"; sourceTree = "<group>"; };
 		753B7CCE1A4262B900664282 /* default-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
+		880054061AA886A9009D58A6 /* UserPortraitView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitView_default.swift; sourceTree = "<group>"; };
+		880054071AA886A9009D58A6 /* UserPortraitView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPortraitView_default.xib; sourceTree = "<group>"; };
+		8800540D1AA886D6009D58A6 /* UserPortraitView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitView_flat7.swift; sourceTree = "<group>"; };
+		8800540E1AA886D6009D58A6 /* UserPortraitView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPortraitView_flat7.xib; sourceTree = "<group>"; };
 		881A0FCC1A66CAC3005D0EB0 /* AuthBased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthBased.swift; sourceTree = "<group>"; };
 		881A0FCD1A66CAC3005D0EB0 /* LRSession+CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+CredentialStore.swift"; sourceTree = "<group>"; };
 		881A0FCF1A66CAC3005D0EB0 /* GetUserBaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserBaseOperation.swift; sourceTree = "<group>"; };
@@ -451,12 +455,8 @@
 		881A0FDA1A66CADA005D0EB0 /* LiferayLoginByEmailOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginByEmailOperation.swift; sourceTree = "<group>"; };
 		881A0FDB1A66CADA005D0EB0 /* LiferayLoginByScreenNameOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginByScreenNameOperation.swift; sourceTree = "<group>"; };
 		881A0FDC1A66CADA005D0EB0 /* LiferayLoginByUserIdOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginByUserIdOperation.swift; sourceTree = "<group>"; };
-		881A0FEA1A66CB42005D0EB0 /* PortraitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitData.swift; sourceTree = "<group>"; };
-		881A0FEB1A66CB42005D0EB0 /* PortraitScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitScreenlet.swift; sourceTree = "<group>"; };
-		881A0FF11A66CB54005D0EB0 /* PortraitView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitView_default.swift; sourceTree = "<group>"; };
-		881A0FF21A66CB54005D0EB0 /* PortraitView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortraitView_default.xib; sourceTree = "<group>"; };
-		881A0FF81A66CB83005D0EB0 /* PortraitView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortraitView_flat7.swift; sourceTree = "<group>"; };
-		881A0FF91A66CB83005D0EB0 /* PortraitView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortraitView_flat7.xib; sourceTree = "<group>"; };
+		881A0FEA1A66CB42005D0EB0 /* UserPortraitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitData.swift; sourceTree = "<group>"; };
+		881A0FEB1A66CB42005D0EB0 /* UserPortraitScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitScreenlet.swift; sourceTree = "<group>"; };
 		881A10061A66D0CF005D0EB0 /* flat7-portrait-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder.png"; sourceTree = "<group>"; };
 		881A10071A66D0CF005D0EB0 /* flat7-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
 		8848C7A919E3D58000BA60D9 /* liferay-screens-bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "liferay-screens-bridge.h"; sourceTree = "<group>"; };
@@ -690,6 +690,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		880054051AA886A9009D58A6 /* UserPortraitScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				880054061AA886A9009D58A6 /* UserPortraitView_default.swift */,
+				880054071AA886A9009D58A6 /* UserPortraitView_default.xib */,
+			);
+			path = UserPortraitScreenlet;
+			sourceTree = "<group>";
+		};
+		8800540C1AA886D6009D58A6 /* UserPortraitScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				8800540D1AA886D6009D58A6 /* UserPortraitView_flat7.swift */,
+				8800540E1AA886D6009D58A6 /* UserPortraitView_flat7.xib */,
+			);
+			path = UserPortraitScreenlet;
+			sourceTree = "<group>";
+		};
 		881A0FCB1A66CAC3005D0EB0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,31 +739,13 @@
 			path = ServerOperations;
 			sourceTree = "<group>";
 		};
-		881A0FE91A66CB42005D0EB0 /* PortraitScreenlet */ = {
+		881A0FE91A66CB42005D0EB0 /* UserPortraitScreenlet */ = {
 			isa = PBXGroup;
 			children = (
-				881A0FEA1A66CB42005D0EB0 /* PortraitData.swift */,
-				881A0FEB1A66CB42005D0EB0 /* PortraitScreenlet.swift */,
+				881A0FEA1A66CB42005D0EB0 /* UserPortraitData.swift */,
+				881A0FEB1A66CB42005D0EB0 /* UserPortraitScreenlet.swift */,
 			);
-			path = PortraitScreenlet;
-			sourceTree = "<group>";
-		};
-		881A0FF01A66CB54005D0EB0 /* PortraitScreenlet */ = {
-			isa = PBXGroup;
-			children = (
-				881A0FF11A66CB54005D0EB0 /* PortraitView_default.swift */,
-				881A0FF21A66CB54005D0EB0 /* PortraitView_default.xib */,
-			);
-			path = PortraitScreenlet;
-			sourceTree = "<group>";
-		};
-		881A0FF71A66CB83005D0EB0 /* PortraitScreenlet */ = {
-			isa = PBXGroup;
-			children = (
-				881A0FF81A66CB83005D0EB0 /* PortraitView_flat7.swift */,
-				881A0FF91A66CB83005D0EB0 /* PortraitView_flat7.xib */,
-			);
-			path = PortraitScreenlet;
+			path = UserPortraitScreenlet;
 			sourceTree = "<group>";
 		};
 		88F9F0C819E3480D006268ED /* Source */ = {
@@ -758,7 +758,7 @@
 				88F9F11619E3480D006268ED /* Extensions */,
 				8848C7A919E3D58000BA60D9 /* liferay-screens-bridge.h */,
 				88F9F11C19E3480D006268ED /* liferay-server-context-sample.plist */,
-				881A0FE91A66CB42005D0EB0 /* PortraitScreenlet */,
+				881A0FE91A66CB42005D0EB0 /* UserPortraitScreenlet */,
 				88F9F11D19E3480D006268ED /* Services */,
 				88F9F12419E3480D006268ED /* WebContentDisplayScreenlet */,
 			);
@@ -1036,11 +1036,11 @@
 		88F9F12A19E3480D006268ED /* Default */ = {
 			isa = PBXGroup;
 			children = (
+				880054051AA886A9009D58A6 /* UserPortraitScreenlet */,
 				88F9F12B19E3480D006268ED /* AssetListScreenlet */,
 				88F9F12E19E3480D006268ED /* Auth */,
 				88F9F13819E3480D006268ED /* DDL */,
 				88F9F15519E3480D006268ED /* DefaultThemeConstants.swift */,
-				881A0FF01A66CB54005D0EB0 /* PortraitScreenlet */,
 				88F9F15619E3480D006268ED /* Resources */,
 				88F9F17319E3480D006268ED /* WebContentDisplayScreenlet */,
 			);
@@ -1192,9 +1192,9 @@
 		88F9F17619E3480D006268ED /* Flat7 */ = {
 			isa = PBXGroup;
 			children = (
+				8800540C1AA886D6009D58A6 /* UserPortraitScreenlet */,
 				88F9F17719E3480D006268ED /* Auth */,
 				88F9F18119E3480D006268ED /* Flat7ThemeConstants.swift */,
-				881A0FF71A66CB83005D0EB0 /* PortraitScreenlet */,
 				88F9F18219E3480D006268ED /* Resources */,
 			);
 			path = Flat7;
@@ -1465,8 +1465,8 @@
 				88F9F27B19E3480D006268ED /* default-multiline-field.png in Resources */,
 				88F9F2A919E3480D006268ED /* flat7-field@2x.png in Resources */,
 				8868385719F32A470053E502 /* login-screenlet.strings in Resources */,
+				8800540B1AA886C4009D58A6 /* UserPortraitView_default.xib in Resources */,
 				8868385C19F32A560053E502 /* signup-screenlet.strings in Resources */,
-				881A0FF61A66CB54005D0EB0 /* PortraitView_default.xib in Resources */,
 				88F9F26119E3480D006268ED /* default-field-focused@2x.png in Resources */,
 				88F9F28319E3480D006268ED /* default-preview-ddlform.png in Resources */,
 				88F9F23D19E3480D006268ED /* DDLFieldSelectTableCell_default.xib in Resources */,
@@ -1495,8 +1495,8 @@
 				88F9F23919E3480D006268ED /* DDLFieldRadioTableCell_default.xib in Resources */,
 				88F9F25919E3480D006268ED /* default-calendar@2x.png in Resources */,
 				88F9F2A319E3480D006268ED /* flat7-button.png in Resources */,
+				880054121AA886D6009D58A6 /* UserPortraitView_flat7.xib in Resources */,
 				88F9F28B19E3480D006268ED /* default-user-icon.png in Resources */,
-				881A0FFD1A66CB83005D0EB0 /* PortraitView_flat7.xib in Resources */,
 				88CB48CA19F1C8F1000A8255 /* flat7-gradient-form.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1541,6 +1541,7 @@
 				88F9F28219E3480D006268ED /* default-preview-ddlform.png in Resources */,
 				88F9F24E19E3480D006268ED /* DDLSubmitButtonTableCell_default.xib in Resources */,
 				88F9F21619E3480D006268ED /* ForgotPasswordView_default.xib in Resources */,
+				880054091AA886A9009D58A6 /* UserPortraitView_default.xib in Resources */,
 				88CB48CB19F1C8F1000A8255 /* flat7-gradient-form@2x.png in Resources */,
 				8868386D19F32A9E0053E502 /* webcontentdisplay-screenlet.strings in Resources */,
 				88F9F25619E3480D006268ED /* default-calendar.png in Resources */,
@@ -1565,13 +1566,12 @@
 				88F9F29819E3480D006268ED /* LoginView_flat7.xib in Resources */,
 				88CB48C319F1C8D8000A8255 /* default-preview-webcontentdisplay.png in Resources */,
 				88F9F28C19E3480D006268ED /* default-user-icon@2x.png in Resources */,
-				881A0FFC1A66CB83005D0EB0 /* PortraitView_flat7.xib in Resources */,
-				881A0FF51A66CB54005D0EB0 /* PortraitView_default.xib in Resources */,
 				88F9F24A19E3480D006268ED /* DDLFormView_default.xib in Resources */,
 				88F9F28419E3480D006268ED /* default-preview-ddlform@2x.png in Resources */,
 				88CB48BB19F1C8D8000A8255 /* default-form-gradient-bottom.png in Resources */,
 				881A10091A66D0CF005D0EB0 /* flat7-portrait-placeholder@2x.png in Resources */,
 				88F9F29419E3480D006268ED /* ForgotPasswordView_flat7.xib in Resources */,
+				880054111AA886D6009D58A6 /* UserPortraitView_flat7.xib in Resources */,
 				88F9F26419E3480D006268ED /* default-field@2x.png in Resources */,
 				88F9F27619E3480D006268ED /* default-mail-icon.png in Resources */,
 			);
@@ -1647,12 +1647,13 @@
 				88311BAC1A1B38B400A91249 /* DDLFieldNumberTableCell_default.xib in Sources */,
 				88311BAD1A1B38B400A91249 /* DDLFieldRadioTableCell_default.swift in Sources */,
 				88311BAE1A1B38B400A91249 /* DDLFieldRadioTableCell_default.xib in Sources */,
+				8800540A1AA886C0009D58A6 /* UserPortraitView_default.swift in Sources */,
 				88311BAF1A1B38B400A91249 /* DDLFieldSelectTableCell_default.swift in Sources */,
 				88311BB01A1B38B400A91249 /* DDLFieldSelectTableCell_default.xib in Sources */,
 				88311BB11A1B38B400A91249 /* DDLFieldTextareaTableCell_default.swift in Sources */,
 				88311BB21A1B38B400A91249 /* DDLFieldTextareaTableCell_default.xib in Sources */,
 				88311BB31A1B38B400A91249 /* DDLFieldTextTableCell_default.swift in Sources */,
-				881A0FED1A66CB42005D0EB0 /* PortraitData.swift in Sources */,
+				881A0FED1A66CB42005D0EB0 /* UserPortraitData.swift in Sources */,
 				88311BB41A1B38B400A91249 /* DDLFieldTextTableCell_default.xib in Sources */,
 				88311BB51A1B38B400A91249 /* DDLFormView_default.swift in Sources */,
 				88311BB61A1B38B400A91249 /* DDLFormView_default.xib in Sources */,
@@ -1699,9 +1700,7 @@
 				88F9F2D019E3484B006268ED /* DDLFieldNumber_Tests.swift in Sources */,
 				88F9F1DF19E3480D006268ED /* DDLListData.swift in Sources */,
 				88F9F1DD19E3480D006268ED /* DDLFormTableView.swift in Sources */,
-				881A0FFB1A66CB83005D0EB0 /* PortraitView_flat7.swift in Sources */,
 				88F9F1EF19E3480D006268ED /* DDLFieldDocument.swift in Sources */,
-				881A0FF41A66CB54005D0EB0 /* PortraitView_default.swift in Sources */,
 				88F9F1B119E3480D006268ED /* SignUpScreenlet.swift in Sources */,
 				88F9F25519E3480D006268ED /* DefaultThemeConstants.swift in Sources */,
 				881A0FE21A66CADA005D0EB0 /* LiferayLoginByUserIdOperation.swift in Sources */,
@@ -1719,7 +1718,7 @@
 				88F9F19719E3480D006268ED /* LiferayForgotPasswordBaseOperation.swift in Sources */,
 				88F9F1CF19E3480D006268ED /* DDLFormScreenlet.swift in Sources */,
 				88F9F19D19E3480D006268ED /* LiferayForgotPasswordUserIdOperation.swift in Sources */,
-				881A0FEF1A66CB42005D0EB0 /* PortraitScreenlet.swift in Sources */,
+				881A0FEF1A66CB42005D0EB0 /* UserPortraitScreenlet.swift in Sources */,
 				88F9F1EB19E3480D006268ED /* DDLFieldBoolean.swift in Sources */,
 				88F9F2C619E3484B006268ED /* AppDelegate.swift in Sources */,
 				88F9F1D719E3480D006268ED /* LiferayDDLFormSubmitOperation.swift in Sources */,
@@ -1747,6 +1746,7 @@
 				88F9F2D119E3484B006268ED /* DDLFieldString_Tests.swift in Sources */,
 				88F9F2CF19E3484B006268ED /* DDLFieldDocument_Tests.swift in Sources */,
 				88F9F2D919E3484B006268ED /* LoginView_xyz.swift in Sources */,
+				880054101AA886D6009D58A6 /* UserPortraitView_flat7.swift in Sources */,
 				88F9F2CE19E3484B006268ED /* DDLFieldDate_Tests.swift in Sources */,
 				88F9F19B19E3480D006268ED /* LiferayForgotPasswordScreenNameOperation.swift in Sources */,
 				88F9F1F719E3480D006268ED /* DDLFieldUntyped.swift in Sources */,
@@ -1770,6 +1770,7 @@
 				881A0FD31A66CAC3005D0EB0 /* AuthBased.swift in Sources */,
 				88F9F1E019E3480D006268ED /* DDLListScreenlet.swift in Sources */,
 				881A0FDD1A66CADA005D0EB0 /* LiferayLoginByEmailOperation.swift in Sources */,
+				880054081AA886A9009D58A6 /* UserPortraitView_default.swift in Sources */,
 				88F9F23619E3480D006268ED /* DDLFieldRadioTableCell_default.swift in Sources */,
 				88F9F29619E3480D006268ED /* LoginView_flat7.swift in Sources */,
 				88F9F1BA19E3480D006268ED /* BaseScreenlet+progress.swift in Sources */,
@@ -1784,7 +1785,7 @@
 				88F9F1BE19E3480D006268ED /* BaseScreenletView.swift in Sources */,
 				88F9F24219E3480D006268ED /* DDLFieldTextTableCell_default.swift in Sources */,
 				88F9F21419E3480D006268ED /* ForgotPasswordView_default.swift in Sources */,
-				881A0FEE1A66CB42005D0EB0 /* PortraitScreenlet.swift in Sources */,
+				881A0FEE1A66CB42005D0EB0 /* UserPortraitScreenlet.swift in Sources */,
 				88F9F24819E3480D006268ED /* DDLFormView_default.swift in Sources */,
 				88F9F1FA19E3480D006268ED /* Bool+Conversion.swift in Sources */,
 				88F9F25419E3480D006268ED /* DefaultThemeConstants.swift in Sources */,
@@ -1799,7 +1800,6 @@
 				88CB48AD19F1C8AF000A8255 /* KeyboardManager.swift in Sources */,
 				881A0FD81A66CAC3005D0EB0 /* GetUserByUserIdOperation.swift in Sources */,
 				888FAFA8196AE8C200057B26 /* AppDelegate.swift in Sources */,
-				881A0FF31A66CB54005D0EB0 /* PortraitView_default.swift in Sources */,
 				88F9F20A19E3480D006268ED /* LiferayWebContentLoadOperation.swift in Sources */,
 				88F9F21019E3480D006268ED /* AssetListView_default.swift in Sources */,
 				88F9F1DE19E3480D006268ED /* DDLListData.swift in Sources */,
@@ -1840,7 +1840,8 @@
 				88F9F19A19E3480D006268ED /* LiferayForgotPasswordScreenNameOperation.swift in Sources */,
 				88F9F1E419E3480D006268ED /* DDLField+DataType.swift in Sources */,
 				88F9F1F419E3480D006268ED /* DDLFieldStringWithOptions.swift in Sources */,
-				881A0FEC1A66CB42005D0EB0 /* PortraitData.swift in Sources */,
+				881A0FEC1A66CB42005D0EB0 /* UserPortraitData.swift in Sources */,
+				8800540F1AA886D6009D58A6 /* UserPortraitView_flat7.swift in Sources */,
 				88F9F1DC19E3480D006268ED /* DDLFormTableView.swift in Sources */,
 				881A0FE11A66CADA005D0EB0 /* LiferayLoginByUserIdOperation.swift in Sources */,
 				88F9F1FE19E3480D006268ED /* NSLocale+CurrentLocale.swift in Sources */,
@@ -1858,7 +1859,6 @@
 				88F9F19819E3480D006268ED /* LiferayForgotPasswordEmailOperation.swift in Sources */,
 				88F9F1AE19E3480D006268ED /* SignUpData.swift in Sources */,
 				88F9F29219E3480D006268ED /* ForgotPasswordView_flat7.swift in Sources */,
-				881A0FFA1A66CB83005D0EB0 /* PortraitView_flat7.swift in Sources */,
 				88F9F20619E3480D006268ED /* LRMobilewidgetsddlrecordService_v62.m in Sources */,
 				88F9F22019E3480D006268ED /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
 				88F9F29A19E3480D006268ED /* SignUpView_flat7.swift in Sources */,

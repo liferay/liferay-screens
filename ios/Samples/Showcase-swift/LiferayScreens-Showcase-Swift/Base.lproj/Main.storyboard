@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -32,7 +32,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gpq-Db-Zcu">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gpq-Db-Zcu">
                                         <rect key="frame" x="11" y="136" width="228" height="44"/>
                                         <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                                         <constraints>
@@ -157,7 +157,7 @@
                         <segue destination="MGb-m9-wGz" kind="push" identifier="DDLListScreenlet" id="jqp-Ix-DHl"/>
                         <segue destination="oOo-3A-Uui" kind="push" identifier="DDLFormScreenlet" id="WbH-nt-XHO"/>
                         <segue destination="kiQ-mD-UG4" kind="push" identifier="WebContentDisplayScreenlet" id="yAA-vv-JOl"/>
-                        <segue destination="TY4-Ql-4pF" kind="push" identifier="PortraitScreenlet" id="Htp-wh-EAz"/>
+                        <segue destination="TY4-Ql-4pF" kind="push" identifier="UserPortraitScreenlet" id="Htp-wh-EAz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -585,10 +585,10 @@
             </objects>
             <point key="canvasLocation" x="947" y="1567"/>
         </scene>
-        <!--Portrait Screenlet View Controller-->
+        <!--User Portrait Screenlet View Controller-->
         <scene sceneID="HvN-Yo-cMo">
             <objects>
-                <viewController id="TY4-Ql-4pF" customClass="PortraitScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TY4-Ql-4pF" customClass="UserPortraitScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9ha-iK-R4n"/>
                         <viewControllerLayoutGuide type="bottom" id="Snu-6a-iji"/>
@@ -637,13 +637,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default portrait:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxD-R4-XEe">
-                                <rect key="frame" x="16" y="278" width="107" height="21"/>
+                                <rect key="frame" x="16" y="270" width="107" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="dUK-mV-I2G" customClass="PortraitScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
-                                <rect key="frame" x="85" y="189" width="60" height="60"/>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="dUK-mV-I2G" customClass="UserPortraitScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
+                                <rect key="frame" x="85" y="190" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Mvx-Ec-JnR"/>
@@ -655,8 +655,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="ELj-YS-lCR" customClass="PortraitScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
-                                <rect key="frame" x="85" y="314" width="60" height="60"/>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="ELj-YS-lCR" customClass="UserPortraitScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
+                                <rect key="frame" x="85" y="306" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Vky-bN-g7s"/>
@@ -669,13 +669,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modified portrait:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAy-4I-6tH">
-                                <rect key="frame" x="16" y="403" width="118" height="21"/>
+                                <rect key="frame" x="16" y="386" width="118" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="OfG-dw-9hx" customClass="PortraitScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
-                                <rect key="frame" x="85" y="438" width="60" height="60"/>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="OfG-dw-9hx" customClass="UserPortraitScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
+                                <rect key="frame" x="85" y="422" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="SFn-bl-PtN"/>
@@ -703,12 +703,12 @@
                             <constraint firstItem="OfG-dw-9hx" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" constant="69" id="fEQ-ql-adK"/>
                             <constraint firstItem="Wf5-FK-eyq" firstAttribute="top" secondItem="9ha-iK-R4n" secondAttribute="bottom" constant="35" id="gR0-Hj-afg"/>
                             <constraint firstItem="ELj-YS-lCR" firstAttribute="top" secondItem="BxD-R4-XEe" secondAttribute="bottom" constant="15" id="iHs-ik-TF8"/>
-                            <constraint firstItem="rAy-4I-6tH" firstAttribute="top" secondItem="ELj-YS-lCR" secondAttribute="bottom" constant="29" id="kKt-wK-TGL"/>
+                            <constraint firstItem="rAy-4I-6tH" firstAttribute="top" secondItem="ELj-YS-lCR" secondAttribute="bottom" constant="20" id="kKt-wK-TGL"/>
                             <constraint firstItem="dUK-mV-I2G" firstAttribute="top" secondItem="2EO-gK-6EG" secondAttribute="bottom" constant="15" id="mcF-rw-kxF"/>
                             <constraint firstItem="rAy-4I-6tH" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="sEi-oT-56w"/>
                             <constraint firstItem="BxD-R4-XEe" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="tEy-63-t9x"/>
                             <constraint firstItem="OfG-dw-9hx" firstAttribute="top" secondItem="rAy-4I-6tH" secondAttribute="bottom" constant="15" id="vKO-Uk-bv7"/>
-                            <constraint firstItem="BxD-R4-XEe" firstAttribute="top" secondItem="dUK-mV-I2G" secondAttribute="bottom" constant="29" id="ybl-DP-NqZ"/>
+                            <constraint firstItem="BxD-R4-XEe" firstAttribute="top" secondItem="dUK-mV-I2G" secondAttribute="bottom" constant="20" id="ybl-DP-NqZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Xgo-At-ulf"/>

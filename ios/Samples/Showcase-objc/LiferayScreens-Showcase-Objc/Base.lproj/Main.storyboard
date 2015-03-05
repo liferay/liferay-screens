@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -37,8 +37,8 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aqU-CU-zkE">
-                                        <rect key="frame" x="46" y="154" width="228" height="44"/>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aqU-CU-zkE">
+                                        <rect key="frame" x="46" y="153" width="228" height="44"/>
                                         <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="DfE-9H-DOz"/>
@@ -107,22 +107,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YyA-60-tdZ">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YyA-60-tdZ">
                                 <rect key="frame" x="0.0" y="155" width="320" height="259"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You're signed in as..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKY-LD-UeW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You're signed in as..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKY-LD-UeW">
                                         <rect key="frame" x="8" y="30" width="304" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYY-fn-zag">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYY-fn-zag">
                                         <rect key="frame" x="8" y="85" width="304" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iS3-vu-P42">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iS3-vu-P42">
                                         <rect key="frame" x="46" y="154" width="228" height="44"/>
                                         <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                                         <state key="normal">
@@ -142,21 +142,21 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2NT-aU-vfG" customClass="LoginScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2NT-aU-vfG" customClass="LoginScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="320" height="350"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="saveCredentials" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yS9-aj-CXq">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yS9-aj-CXq">
                                 <rect key="frame" x="255" y="473" width="51" height="31"/>
                                 <color key="onTintColor" red="0.077612620909999999" green="0.63132638569999999" blue="0.80875318880000002" alpha="0.87" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="credentialsValueChangedAction:" destination="Xmw-Sf-x0t" eventType="valueChanged" id="vn7-BF-B0f"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save credentials" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpK-zt-cBU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save credentials" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpK-zt-cBU">
                                 <rect key="frame" x="16" y="478" width="152" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -188,31 +188,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GpE-sI-Acu" customClass="SignUpScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GpE-sI-Acu" customClass="SignUpScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
                                 <rect key="frame" x="16" y="64" width="288" height="350"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zuk-EI-Jlp">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zuk-EI-Jlp">
                                 <rect key="frame" x="255" y="442" width="51" height="31"/>
                                 <color key="onTintColor" red="0.077612620909999999" green="0.63132638569999999" blue="0.80875318880000002" alpha="0.87" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="loginValueChangedAction:" destination="FKF-ee-97Z" eventType="valueChanged" id="M2c-PO-UXk"/>
                                 </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F5J-Le-Whi">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F5J-Le-Whi">
                                 <rect key="frame" x="255" y="482" width="51" height="31"/>
                                 <color key="onTintColor" red="0.077612620909999999" green="0.63132638569999999" blue="0.80875318880000002" alpha="0.87" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="credentialsValueChangedAction:" destination="FKF-ee-97Z" eventType="valueChanged" id="m7t-Cm-Kxz"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable autologin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qg8-Ga-azb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable autologin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qg8-Ga-azb">
                                 <rect key="frame" x="16" y="447" width="152" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save credentials" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94b-eJ-eO1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save credentials" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94b-eJ-eO1">
                                 <rect key="frame" x="16" y="487" width="152" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -260,7 +260,7 @@
                         <segue destination="aUf-GE-2Zq" kind="push" identifier="DDLListScreenlet" id="F3G-3P-pfm"/>
                         <segue destination="0IP-qt-DCi" kind="push" identifier="DDLFormScreenlet" id="V3n-AO-SqG"/>
                         <segue destination="cKJ-wa-YZu" kind="push" identifier="WebContentDisplayScreenlet" id="J7c-lI-ACV"/>
-                        <segue destination="bQj-dZ-GVT" kind="push" identifier="PortraitScreenlet" id="LSB-4j-pZS"/>
+                        <segue destination="bQj-dZ-GVT" kind="push" identifier="UserPortraitScreenlet" id="LSB-4j-pZS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vf-l6-njl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -343,11 +343,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Set-bf-VU6" customClass="AssetListScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Set-bf-VU6" customClass="AssetListScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="320" height="352"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70O-se-ObQ">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70O-se-ObQ">
                                 <rect key="frame" x="16" y="467" width="288" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                                 <state key="normal">
@@ -365,14 +365,14 @@
                                     <action selector="openAssetPickerAction:" destination="aQD-kz-AXB" eventType="touchUpInside" id="n9E-2P-S6J"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1AR-tN-KG4">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1AR-tN-KG4">
                                 <rect key="frame" x="254" y="424" width="51" height="31"/>
                                 <color key="onTintColor" red="0.077612620909999999" green="0.63132638569999999" blue="0.80875318880000002" alpha="0.87" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="refreshControlChanged:" destination="aQD-kz-AXB" eventType="valueChanged" id="xBC-sp-RHO"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable refresh control" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRt-Fj-7Dd">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Enable refresh control" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRt-Fj-7Dd">
                                 <rect key="frame" x="18" y="429" width="166" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -613,10 +613,10 @@
             </objects>
             <point key="canvasLocation" x="-183" y="2502"/>
         </scene>
-        <!--Portrait Screenlet View Controller-->
+        <!--User Portrait Screenlet View Controller-->
         <scene sceneID="HRu-qV-4yl">
             <objects>
-                <viewController id="bQj-dZ-GVT" customClass="PortraitScreenletViewController" sceneMemberID="viewController">
+                <viewController id="bQj-dZ-GVT" customClass="UserPortraitScreenletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jD5-pF-i7u"/>
                         <viewControllerLayoutGuide type="bottom" id="MDk-2n-fxD"/>
@@ -628,8 +628,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1e-Lp-Ykp">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n26-x5-YQB">
-                                        <rect key="frame" x="207" y="88" width="97" height="44"/>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n26-x5-YQB">
+                                        <rect key="frame" x="215" y="88" width="97" height="44"/>
                                         <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="97" id="Rfx-Mr-4hm"/>
@@ -650,31 +650,31 @@
                                             <action selector="loadPortrait:" destination="bQj-dZ-GVT" eventType="touchUpInside" id="qMX-gR-sh3"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n13-TP-JAp">
-                                        <rect key="frame" x="79" y="96" width="120" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n13-TP-JAp">
+                                        <rect key="frame" x="71" y="96" width="136" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="User Id" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Yz-ZZ-kOp">
-                                        <rect key="frame" x="16" y="99" width="51" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Id" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Yz-ZZ-kOp">
+                                        <rect key="frame" x="8" y="99" width="51" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="User's portrait:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xgh-zk-nO4">
-                                        <rect key="frame" x="16" y="154" width="103" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User's portrait:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xgh-zk-nO4">
+                                        <rect key="frame" x="8" y="155" width="103" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Default portrait:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgN-DO-G7l">
-                                        <rect key="frame" x="16" y="278" width="107" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default portrait:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgN-DO-G7l">
+                                        <rect key="frame" x="8" y="271" width="107" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="QAE-2t-knb" customClass="PortraitScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
-                                        <rect key="frame" x="85" y="189" width="60" height="60"/>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="QAE-2t-knb" customClass="UserPortraitScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                                        <rect key="frame" x="77" y="191" width="60" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="4T9-MU-2d3"/>
@@ -686,8 +686,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="qWc-4g-oBk" customClass="PortraitScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
-                                        <rect key="frame" x="85" y="314" width="60" height="60"/>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="qWc-4g-oBk" customClass="UserPortraitScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                                        <rect key="frame" x="77" y="307" width="60" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="TY0-GP-lEs"/>
@@ -699,14 +699,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Modified portrait:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5j-Ge-PFf">
-                                        <rect key="frame" x="16" y="403" width="118" height="21"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="hlb-fY-Zd6" customClass="PortraitScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
-                                        <rect key="frame" x="85" y="438" width="60" height="60"/>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="hlb-fY-Zd6" customClass="UserPortraitScreenlet" customModule="LiferayScreens_Showcase_Objc" customModuleProvider="target">
+                                        <rect key="frame" x="77" y="423" width="60" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="E3J-7o-W9l"/>
@@ -718,25 +712,31 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modified portrait:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5j-Ge-PFf">
+                                        <rect key="frame" x="8" y="387" width="118" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="fgN-DO-G7l" firstAttribute="leading" secondItem="B1e-Lp-Ykp" secondAttribute="leading" constant="8" id="0de-nu-kQf"/>
                                     <constraint firstItem="7Yz-ZZ-kOp" firstAttribute="top" secondItem="B1e-Lp-Ykp" secondAttribute="top" constant="99" id="1V4-yY-z9m"/>
                                     <constraint firstItem="qWc-4g-oBk" firstAttribute="top" secondItem="fgN-DO-G7l" secondAttribute="bottom" constant="15" id="2pE-vb-77u"/>
                                     <constraint firstItem="n26-x5-YQB" firstAttribute="trailing" secondItem="B1e-Lp-Ykp" secondAttribute="trailingMargin" id="8FT-jp-Lgi"/>
-                                    <constraint firstItem="fgN-DO-G7l" firstAttribute="leading" secondItem="B1e-Lp-Ykp" secondAttribute="leadingMargin" id="GmW-AW-Lnn"/>
                                     <constraint firstItem="QAE-2t-knb" firstAttribute="top" secondItem="Xgh-zk-nO4" secondAttribute="bottom" constant="15" id="M4H-ld-7Ou"/>
-                                    <constraint firstItem="v5j-Ge-PFf" firstAttribute="leading" secondItem="B1e-Lp-Ykp" secondAttribute="leadingMargin" id="MFt-Df-Gc4"/>
                                     <constraint firstItem="qWc-4g-oBk" firstAttribute="leading" secondItem="B1e-Lp-Ykp" secondAttribute="leadingMargin" constant="69" id="NIf-le-9UC"/>
-                                    <constraint firstItem="fgN-DO-G7l" firstAttribute="top" secondItem="QAE-2t-knb" secondAttribute="bottom" constant="29" id="Nrf-yf-Ozr"/>
-                                    <constraint firstItem="v5j-Ge-PFf" firstAttribute="top" secondItem="qWc-4g-oBk" secondAttribute="bottom" constant="29" id="Qmo-3f-7sF"/>
+                                    <constraint firstItem="fgN-DO-G7l" firstAttribute="top" secondItem="QAE-2t-knb" secondAttribute="bottom" constant="20" id="Nrf-yf-Ozr"/>
+                                    <constraint firstItem="v5j-Ge-PFf" firstAttribute="top" secondItem="qWc-4g-oBk" secondAttribute="bottom" constant="20" id="Qmo-3f-7sF"/>
                                     <constraint firstItem="QAE-2t-knb" firstAttribute="leading" secondItem="B1e-Lp-Ykp" secondAttribute="leadingMargin" constant="69" id="RSK-GF-Lm4"/>
                                     <constraint firstItem="hlb-fY-Zd6" firstAttribute="top" secondItem="v5j-Ge-PFf" secondAttribute="bottom" constant="15" id="SHI-WW-UNu"/>
-                                    <constraint firstItem="Xgh-zk-nO4" firstAttribute="top" secondItem="n13-TP-JAp" secondAttribute="bottom" constant="28" id="U48-Er-nZS"/>
+                                    <constraint firstItem="Xgh-zk-nO4" firstAttribute="leading" secondItem="B1e-Lp-Ykp" secondAttribute="leading" constant="8" id="SnY-aa-hmm"/>
+                                    <constraint firstItem="Xgh-zk-nO4" firstAttribute="top" secondItem="n13-TP-JAp" secondAttribute="bottom" constant="29" id="U48-Er-nZS"/>
+                                    <constraint firstItem="v5j-Ge-PFf" firstAttribute="leading" secondItem="B1e-Lp-Ykp" secondAttribute="leading" constant="8" id="XEf-31-VAq"/>
                                     <constraint firstItem="7Yz-ZZ-kOp" firstAttribute="leading" secondItem="B1e-Lp-Ykp" secondAttribute="leadingMargin" id="bbw-7G-OWH"/>
                                     <constraint firstItem="n26-x5-YQB" firstAttribute="leading" secondItem="n13-TP-JAp" secondAttribute="trailing" constant="8" id="fNG-Cb-iCx"/>
                                     <constraint firstItem="n13-TP-JAp" firstAttribute="leading" secondItem="7Yz-ZZ-kOp" secondAttribute="trailing" constant="12" id="gG9-9w-ZIm"/>
-                                    <constraint firstItem="Xgh-zk-nO4" firstAttribute="leading" secondItem="B1e-Lp-Ykp" secondAttribute="leadingMargin" id="i3Z-vC-uAc"/>
                                     <constraint firstItem="n26-x5-YQB" firstAttribute="top" secondItem="B1e-Lp-Ykp" secondAttribute="top" constant="88" id="sYP-M5-VLB"/>
                                     <constraint firstItem="hlb-fY-Zd6" firstAttribute="leading" secondItem="B1e-Lp-Ykp" secondAttribute="leadingMargin" constant="69" id="tbA-2t-C58"/>
                                     <constraint firstItem="n13-TP-JAp" firstAttribute="top" secondItem="B1e-Lp-Ykp" secondAttribute="top" constant="96" id="uiJ-1W-eoT"/>

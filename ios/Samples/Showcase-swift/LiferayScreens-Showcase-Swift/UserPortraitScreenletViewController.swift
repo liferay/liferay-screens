@@ -13,10 +13,10 @@
  */
 import UIKit
 
-class PortraitScreenletViewController: UIViewController, PortraitScreenletDelegate {
+class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenletDelegate {
 
-	@IBOutlet weak var screenlet: PortraitScreenlet!
-	@IBOutlet weak var screenletWithDelegate: PortraitScreenlet!
+	@IBOutlet weak var screenlet: UserPortraitScreenlet!
+	@IBOutlet weak var screenletWithDelegate: UserPortraitScreenlet!
 	@IBOutlet weak var userIdField: UITextField!
 
 	@IBAction func loadPortrait(sender: AnyObject) {
@@ -36,14 +36,14 @@ class PortraitScreenletViewController: UIViewController, PortraitScreenletDelega
 		screenletWithDelegate?.delegate = self
     }
 
-	func onPortraitResponse(image: UIImage) -> UIImage {
-		println("DELEGATE: onPortraitResponse -> \(image.size)")
+	func onUserPortraitResponse(image: UIImage) -> UIImage {
+		println("DELEGATE: onUserPortraitResponse -> \(image.size)")
 
 		return image.getGrayScale() ?? image
 	}
 
-	func onPortraitError(error: NSError) {
-		println("DELEGATE: onPortraitError -> \(error)")
+	func onUserPortraitError(error: NSError) {
+		println("DELEGATE: onUserPortraitError -> \(error)")
 	}
 
 }

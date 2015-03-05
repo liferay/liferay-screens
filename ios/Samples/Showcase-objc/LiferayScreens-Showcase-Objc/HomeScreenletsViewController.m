@@ -27,7 +27,7 @@
 	self.data = @{
 		@0 : @[@"Auth Module", @"LoginScreenlet", @"SignUpScreenlet", @"ForgotPasswordScreenlet"],
 		@1 : @[@"DDL Module", @"DDLListScreenlet", @"DDLFormScreenlet"],
-		@2 : @[@"Others", @"AssetListScreenlet", @"PortraitScreenlet", @"WebContentDisplayScreenlet"]
+		@2 : @[@"Others", @"AssetListScreenlet", @"UserPortraitScreenlet", @"WebContentDisplayScreenlet"]
 	};
 }
 

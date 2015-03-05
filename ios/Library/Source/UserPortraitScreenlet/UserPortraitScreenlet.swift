@@ -14,32 +14,32 @@
 import UIKit
 
 
-@objc public protocol PortraitScreenletDelegate {
+@objc public protocol UserPortraitScreenletDelegate {
 
-	optional func onPortraitResponse(image: UIImage) -> UIImage
-	optional func onPortraitError(error: NSError)
+	optional func onUserPortraitResponse(image: UIImage) -> UIImage
+	optional func onUserPortraitError(error: NSError)
 
 }
 
 
-public class PortraitScreenlet: BaseScreenlet {
+public class UserPortraitScreenlet: BaseScreenlet {
 
 	@IBInspectable public var borderWidth: CGFloat = 1.0 {
 		didSet {
-			(screenletView as? PortraitData)?.borderWidth = self.borderWidth
+			(screenletView as? UserPortraitData)?.borderWidth = self.borderWidth
 		}
 	}
 	@IBInspectable public var borderColor: UIColor? {
 		didSet {
-			(screenletView as? PortraitData)?.borderColor = self.borderColor
+			(screenletView as? UserPortraitData)?.borderColor = self.borderColor
 		}
 	}
 
-	@IBOutlet public var delegate: PortraitScreenletDelegate?
+	@IBOutlet public var delegate: UserPortraitScreenletDelegate?
 
 
-	private var portraitView: PortraitData {
-		return screenletView as PortraitData
+	private var portraitView: UserPortraitData {
+		return screenletView as UserPortraitData
 	}
 
 
@@ -148,7 +148,7 @@ public class PortraitScreenlet: BaseScreenlet {
 
 		if url == nil {
 			screenletView?.onFinishOperation()
-			delegate?.onPortraitError?(createError(cause: .AbortedDueToPreconditions))
+			delegate?.onUserPortraitError?(createError(cause: .AbortedDueToPreconditions))
 		}
 	}
 
@@ -203,10 +203,10 @@ public class PortraitScreenlet: BaseScreenlet {
 		var finalImage = image
 
 		if let errorValue = error {
-			delegate?.onPortraitError?(errorValue)
+			delegate?.onUserPortraitError?(errorValue)
 		}
 		else if let imageValue = image {
-			finalImage = delegate?.onPortraitResponse?(imageValue)
+			finalImage = delegate?.onUserPortraitResponse?(imageValue)
 		}
 
 		screenletView?.onFinishOperation()

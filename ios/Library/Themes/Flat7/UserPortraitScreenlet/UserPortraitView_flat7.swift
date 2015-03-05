@@ -14,13 +14,18 @@
 import UIKit
 
 
-@objc public protocol PortraitData {
+public class UserPortraitView_flat7: UserPortraitView_default {
 
-	var portraitURL: NSURL? {get set}
+	override internal func onShow() {
+		super.onShow()
 
-	var borderWidth: CGFloat {get set}
-	var borderColor: UIColor? {get set}
+		self.borderColor = Flat7ThemeBasicGreen
 
-	var portraitLoaded: ((UIImage?, NSError?) -> (UIImage?))? {get set}
+		portraitImage?.layer.cornerRadius = min(frame.size.width, frame.size.height) / 2
+	}
+
+	override internal func loadPlaceholder() {
+		self.portraitImage?.image = UIImage(named: "flat7-portrait-placeholder")
+	}
 
 }

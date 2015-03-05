@@ -1,4 +1,4 @@
-# PortraitScreenlet for iOS
+# UserPortraitScreenlet for iOS
 
 ## Important Note
 
@@ -16,7 +16,7 @@
 
 ## Features
 
-The `PortraitScreenlet` shows the user's portrait from Liferay Portal. If the user doesn't have a portrait configured, a placeholder image is shown.
+The `UserPortraitScreenlet` shows the user's portrait from Liferay Portal. If the user doesn't have a portrait configured, a placeholder image is shown.
 
 ## Module
 
@@ -27,7 +27,7 @@ The `PortraitScreenlet` shows the user's portrait from Liferay Portal. If the us
 - Default
 - Flat7
 
-![The `PortraitScreenlet` using the Default and Flat7 themes.](Images/portrait.png)
+![The UserPortraitScreenlet using the Default and Flat7 themes.](Images/portrait.png)
 
 ## Portal Configuration
 
@@ -50,8 +50,8 @@ None
 
 ## Delegate
 
-The `PortraitScreenlet` delegates some events to an object that conforms to the `PortraitScreenletDelegate ` protocol. This protocol lets you implement the following methods:
+The `UserPortraitScreenlet` delegates some events to an object that conforms to the `UserPortraitScreenletDelegate ` protocol. This protocol lets you implement the following methods:
 
-- `onPortraitResponse(image)`: Called when an image is received from the server. You can then apply image filters (grayscale, for example) and return the new image. You can return the original image supplied as the argument if you don't want to modify it.
-- `onPortraitError(error)`: Called when an error occurs in the process. The `NSError` object describes the error.
+- `onUserPortraitResponse(image)`: Called when an image is received from the server. You can then apply image filters (grayscale, for example) and return the new image. You can return the original image supplied as the argument if you don't want to modify it.
+- `onUserPortraitError(error)`: Called when an error occurs in the process. The `NSError` object describes the error.
 
