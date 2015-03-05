@@ -15,22 +15,26 @@
 <resources>
 
 	<style name="material_theme" parent="android:Theme.Material.Light">
-		<item name="colorPrimary">@color/primary</item>
-		<item name="android:colorPrimary">@color/primary</item>
-		<item name="android:colorAccent">@color/primary</item>
-		<item name="colorControlActivated">@color/primary</item>
+		<item name="android:colorAccent">@color/material_accent</item>
+		<item name="colorAccent">@color/material_accent</item>
+
+		<item name="android:colorPrimary">@color/material_primary</item>
+		<item name="colorPrimary">@color/material_primary</item>
+
+		<item name="android:colorPrimaryDark">@color/material_primary_dark</item>
+
+		<item name="android:colorControlNormal">@color/material_primary</item>
+		<item name="android:colorControlHighlight">@color/material_primary</item>
+		<item name="android:colorControlActivated">@color/material_primary</item>
 
 
-		<item name="colorPrimaryDark">@color/primary_dark</item>
-		<item name="android:colorPrimaryDark">@color/primary_dark</item>
-		<item name="colorControlNormal">@color/primary_dark</item>
-		<item name="colorControlHighlight">@color/primary_dark</item>
-
-		<item name="android:textColorPrimary">@color/primary_text</item>
-		<item name="android:textColorSecondary">@color/secondary_text</item>
+		<item name="android:textColorPrimary">@color/material_primary_text</item>
+		<item name="android:textColorSecondary">@color/material_secondary_text</item>
 
 		<item name="android:editTextStyle">@style/material_edit_text</item>
 		<item name="android:buttonStyle">@style/material_button</item>
+
+
 		<item name="android:background">@android:color/white</item>
 		<item name="android:windowContentTransitions">true</item>
 		<item name="android:windowAllowEnterTransitionOverlap">true</item>
@@ -38,17 +42,43 @@
 		<item name="android:windowSharedElementEnterTransition">@android:transition/explode</item>
 		<item name="android:windowSharedElementExitTransition">@android:transition/slide_left</item>
 
-		<!-- You can also set colorControlNormal, colorControlActivated
-		 colorControlHighlight, and colorSwitchThumbNormal. -->
 	</style>
 
 	<style name="material_button" parent="android:Widget.Material.Light.Button">
 		<item name="android:textColor">@android:color/white</item>
-		<item name="android:elevation">4dp</item>
-		<item name="android:translationZ">2dp</item>
+		<item name="android:elevation">8dp</item>
 		<item name="android:background">@drawable/primary_round</item>
 	</style>
 
-	<style name="material_edit_text" parent="android:Widget.Material.Light.EditText"></style>
+	<style name="material_text_view" parent="android:Widget.TextView"/>
+
+	<style name="material_list" parent="android:Widget.ListView"/>
+
+
+	<style name="material_row">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">48dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
+		<item name="android:orientation">horizontal</item>
+	</style>
+
+	<style name="material_icon">
+		<item name="android:layout_width">24dp</item>
+		<item name="android:layout_height">24dp</item>
+		<item name="android:layout_margin">12dp</item>
+	</style>
+
+	<style name="material_edit_text" parent="android:Widget.Material.Light.EditText">
+		<item name="android:inputType">text</item>
+		<item name="android:textSize">16sp</item>
+	</style>
+
+	<style name="material_checkbox">
+		<item name="android:paddingBottom">@dimen/default_edit_text_padding</item>
+		<item name="android:textColor">@color/material_primary_text</item>
+		<item name="android:paddingTop">@dimen/default_edit_text_padding</item>
+		<item name="android:theme">@style/material_theme</item>
+		<item name="android:textSize">14sp</item>
+	</style>
 
 </resources>
