@@ -8,7 +8,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:background="?attr/colorPrimary"
-		android:paddingLeft="10dp"
+		android:padding="10dp"
 		android:text="@string/origin_of_file"
 		android:textColor="@android:color/white"
 		android:textSize="18sp"/>
@@ -17,7 +17,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@id/dialog_title"
-		android:orientation="vertical">
+		android:divider="?android:attr/textColorSecondary"
+		android:orientation="vertical"
+		android:showDividers="middle">
 
 		<TextView
 			android:id="@+id/default_dialog_select_file"
