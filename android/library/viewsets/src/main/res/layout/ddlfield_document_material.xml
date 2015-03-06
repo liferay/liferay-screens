@@ -23,7 +23,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="0dp"
 			android:clickable="true"
-			android:drawableRight="@drawable/ic_perm_media_grey600_36dp"
+			android:drawableRight="@drawable/ic_perm_media"
 			android:editable="false"
 			android:focusable="false"
 			android:inputType="none"

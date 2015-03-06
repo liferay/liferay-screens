@@ -10,7 +10,7 @@
 		<ImageView
 			android:id="@+id/drawable_login"
 			style="@style/material_icon"
-			android:src="@drawable/ic_email_grey600_36dp"/>
+			android:src="@drawable/ic_email"/>
 
 		<EditText
 			android:id="@+id/login"
@@ -27,7 +27,7 @@
 		<ImageView
 			android:id="@+id/drawable_password"
 			style="@style/material_icon"
-			android:src="@drawable/ic_https_grey600_36dp"/>
+			android:src="@drawable/ic_https"/>
 
 		<EditText
 			android:id="@+id/password"

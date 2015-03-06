@@ -3,6 +3,6 @@
 	android:id="@+id/title"
 	style="@style/material_list_item"
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:drawableRight="@drawable/ic_query_builder_grey600_36dp"
+	android:drawableRight="@drawable/ic_query_builder"
 	android:paddingRight="20dp"
 	android:text="@string/default_empty_value"/>
