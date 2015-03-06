@@ -62,9 +62,9 @@ import QuartzCore
 
 		onPreCreate()
 
-		clipsToBounds = true;
+		clipsToBounds = true
 
-		screenletView = loadScreenletView();
+		screenletView = loadScreenletView()
 
 		onCreated()
 	}
@@ -75,10 +75,10 @@ import QuartzCore
 
 	override public func didMoveToWindow() {
 		if (window != nil) {
-			onShow();
+			onShow()
 		}
 		else {
-			onHide();
+			onHide()
 		}
 	}
 
@@ -96,7 +96,7 @@ import QuartzCore
 	//MARK: Internal methods
 
 	internal func loadScreenletView() -> BaseScreenletView? {
-		let view = createScreenletViewFromNib();
+		let view = createScreenletViewFromNib()
 
 		if let viewValue = view {
 			//FIXME: full-autoresize value. Extract from UIViewAutoresizing
@@ -109,7 +109,7 @@ import QuartzCore
 				viewValue.frame = centeredRectInView(self, size: viewValue.frame.size)
 			}
 
-			viewValue.onUserAction = onUserAction;
+			viewValue.onUserAction = onUserAction
 
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)
@@ -117,7 +117,7 @@ import QuartzCore
 			return viewValue
 		}
 
-		return nil;
+		return nil
 	}
 
 	internal func previewImageForTheme(themeName:String) -> UIImage? {
