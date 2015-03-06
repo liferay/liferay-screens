@@ -23,18 +23,10 @@ import QuartzCore
 
 	@IBInspectable public var themeName: String? {
 		set {
-			let newName = (newValue ?? "default").lowercaseString
-
-			if ThemeManager.exists(themeName: newName) {
-				_themeName = newName
-			}
-			else {
-				_themeName = "default"
-			}
+			_themeName = (newValue ?? "default").lowercaseString
 
 			if runningOnInterfaceBuilder {
-				updateCurrentPreviewImage()
-				setNeedsLayout()
+				_themeName = updateCurrentPreviewImage()
 			}
 		}
 		get {
@@ -45,9 +37,6 @@ import QuartzCore
 	internal var screenletView: BaseScreenletView?
 
 	internal var screenletName: String {
-		// In Beta 5, className will constain ModuleName.ClassName
-		// just strip the first part
-
 		var className = NSStringFromClass(self.dynamicType)
 
 		className = className.componentsSeparatedByString(".")[1]
@@ -56,10 +45,14 @@ import QuartzCore
 		return className
 	}
 
+	internal var isRunningOnInterfaceBuilder: Bool {
+		return runningOnInterfaceBuilder
+	}
+
 	private var _themeName = "default"
 	private var runningOnInterfaceBuilder = false
 	private var currentPreviewImage:UIImage?
-	private lazy var previewLayer = CALayer()
+	private var previewLayer: CALayer?
 
 
 	//MARK: UIView
@@ -69,9 +62,9 @@ import QuartzCore
 
 		onPreCreate()
 
-		clipsToBounds = true;
+		clipsToBounds = true
 
-		screenletView = loadScreenletView();
+		screenletView = loadScreenletView()
 
 		onCreated()
 	}
@@ -82,10 +75,10 @@ import QuartzCore
 
 	override public func didMoveToWindow() {
 		if (window != nil) {
-			onShow();
+			onShow()
 		}
 		else {
-			onHide();
+			onHide()
 		}
 	}
 
@@ -95,36 +88,15 @@ import QuartzCore
 	override public func prepareForInterfaceBuilder() {
 		runningOnInterfaceBuilder = true
 
+		previewLayer = CALayer()
+
 		updateCurrentPreviewImage()
-
-		if currentPreviewImage == nil {
-			if let previewImage = previewImageForTheme("default") {
-				currentPreviewImage = previewImage
-			}
-		}
 	}
-
-	override public func layoutSubviews() {
-		super.layoutSubviews()
-
-		if runningOnInterfaceBuilder {
-			if let currentPreviewImageValue = currentPreviewImage {
-				previewLayer.frame = centeredRectInScreenlet(size: currentPreviewImageValue.size)
-				previewLayer.contents = currentPreviewImageValue.CGImage
-
-				if previewLayer.superlayer != layer {
-					// add to the hierarchy the first time
-					layer.addSublayer(previewLayer)
-				}
-			}
-		}
-	}
-
 
 	//MARK: Internal methods
 
 	internal func loadScreenletView() -> BaseScreenletView? {
-		let view = createScreenletViewFromNib();
+		let view = createScreenletViewFromNib()
 
 		if let viewValue = view {
 			//FIXME: full-autoresize value. Extract from UIViewAutoresizing
@@ -134,10 +106,10 @@ import QuartzCore
 				viewValue.frame = self.bounds
 			}
 			else {
-				viewValue.frame = centeredRectInScreenlet(size: viewValue.frame.size)
+				viewValue.frame = centeredRectInView(self, size: viewValue.frame.size)
 			}
 
-			viewValue.onUserAction = onUserAction;
+			viewValue.onUserAction = onUserAction
 
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)
@@ -145,40 +117,20 @@ import QuartzCore
 			return viewValue
 		}
 
-		return nil;
+		return nil
 	}
 
 	internal func previewImageForTheme(themeName:String) -> UIImage? {
-		var result: UIImage?
+		let bundle = NSBundle(forClass:self.dynamicType)
+		let imageName = "\(themeName)-preview-\(screenletName.lowercaseString)@2x"
 
-		if let previewImagePath = previewImagePathForTheme(themeName) {
-			result = UIImage(contentsOfFile: previewImagePath)
+		if let imagePath = bundle.pathForResource(imageName, ofType: "png") {
+			if let imageData = NSData(contentsOfFile: imagePath) {
+				return UIImage(data: imageData, scale: 2.0)
+			}
 		}
-		else if let screenletView = createScreenletViewFromNib() {
-			result = previewImageFromView(screenletView)
-		}
 
-		return result
-	}
-
-	internal func previewImagePathForTheme(themeName:String) -> String? {
-		let imageName = "\(themeName)-preview-\(screenletName.lowercaseString)"
-
-		return NSBundle(forClass:self.dynamicType).pathForResource(imageName, ofType: "png")
-	}
-
-	internal func previewImageFromView(view: UIView) -> UIImage {
-		let previewWidth = min(view.frame.size.width, self.frame.size.width)
-		let previewHeight = min(view.frame.size.height, self.frame.size.height)
-
-		UIGraphicsBeginImageContextWithOptions(CGSizeMake(previewWidth, previewHeight), false, 0.0)
-
-		view.layer.renderInContext(UIGraphicsGetCurrentContext())
-		let previewImage = UIGraphicsGetImageFromCurrentImageContext()
-
-		UIGraphicsEndImageContext()
-
-		return previewImage
+		return nil
 	}
 
 
@@ -242,33 +194,56 @@ import QuartzCore
 		var nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
 		if nibPath == nil {
-			nibName = viewName
+			nibName = "\(viewName)_default"
 			nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
-			if nibPath == nil {
+			if nibPath != nil {
+				_themeName = "default"
+			}
+			else {
 				println("ERROR: Xib file '\(nibName)' was not found for theme '\(_themeName)'")
 				return nil
 			}
 		}
 
 		let views = bundle.loadNibNamed(nibName, owner:self, options:nil)
-		assert(views.count > 0, "Xib seems to be malformed. There're no views inside it");
+		assert(views.count > 0, "Xib seems to be malformed. There're no views inside it")
 
 		let foundView = (views[0] as BaseScreenletView)
 
 		return foundView
 	}
 
-	private func updateCurrentPreviewImage() {
-		currentPreviewImage = previewImageForTheme(_themeName)
-	}
+	private func updateCurrentPreviewImage() -> String {
+		var appliedTheme = _themeName
 
-	private func centeredRectInScreenlet(#size: CGSize) -> CGRect {
-		return CGRectMake(
-				(self.frame.size.width - size.width) / 2,
-				(self.frame.size.height - size.height) / 2,
-				size.width,
-				size.height)
+		currentPreviewImage = previewImageForTheme(_themeName)
+		if currentPreviewImage == nil {
+			if let previewImage = previewImageForTheme("default") {
+				currentPreviewImage = previewImage
+				appliedTheme = "default"
+			}
+		}
+
+		if let screenletViewValue = screenletView {
+			screenletViewValue.removeFromSuperview()
+		}
+
+		if let currentPreviewImageValue = currentPreviewImage {
+			previewLayer!.frame = centeredRectInView(self, size: currentPreviewImageValue.size)
+			previewLayer!.contents = currentPreviewImageValue.CGImage
+
+			if previewLayer!.superlayer != layer {
+				layer.addSublayer(previewLayer!)
+			}
+		}
+		else {
+			screenletView = loadScreenletView()
+		}
+
+		setNeedsLayout()
+
+		return appliedTheme
 	}
 
 }

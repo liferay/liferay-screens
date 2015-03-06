@@ -18,15 +18,20 @@ let Flat7ThemeBasicGreen = UIColor(red: 39.0/255, green: 174.0/255, blue: 97.0/2
 
 
 func setFlat7ButtonBackground(button: UIButton?) {
-	var stretchableImage = UIImage(named: "flat7-button")!
+	let stretchableImage = UIImage(
+			named: "flat7-button",
+			inBundle: NSBundle(forClass: BaseScreenlet.self),
+			compatibleWithTraitCollection: nil)
 
-	stretchableImage = stretchableImage.resizableImageWithCapInsets(
-			UIEdgeInsetsMake(19, 19, 19, 19),
-			resizingMode: UIImageResizingMode.Stretch)
+	if let stretchableImageValue = stretchableImage {
+		let backgroundImage = stretchableImageValue.resizableImageWithCapInsets(
+				UIEdgeInsetsMake(19, 19, 19, 19),
+				resizingMode: UIImageResizingMode.Stretch)
 
-	button?.setBackgroundImage(stretchableImage, forState: UIControlState.Normal)
+		button?.setBackgroundImage(backgroundImage, forState: UIControlState.Normal)
 
-	button?.backgroundColor = UIColor.clearColor()
+		button?.backgroundColor = UIColor.clearColor()
+	}
 }
 
 

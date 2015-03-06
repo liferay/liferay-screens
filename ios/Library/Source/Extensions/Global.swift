@@ -115,3 +115,11 @@ func adjustRectForCurrentOrientation(rect: CGRect) -> CGRect {
 
 	return adjustedRect
 }
+
+func centeredRectInView(view: UIView, #size: CGSize) -> CGRect {
+	return CGRectMake(
+			(view.frame.size.width - size.width) / 2,
+			(view.frame.size.height - size.height) / 2,
+			size.width,
+			size.height)
+}

@@ -112,8 +112,6 @@
 		88CB48C019F1C8D8000A8255 /* default-form-gradient-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48B319F1C8D8000A8255 /* default-form-gradient-top.png */; };
 		88CB48C119F1C8D8000A8255 /* default-form-gradient-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48B419F1C8D8000A8255 /* default-form-gradient-top@2x.png */; };
 		88CB48C219F1C8D8000A8255 /* default-form-gradient-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48B419F1C8D8000A8255 /* default-form-gradient-top@2x.png */; };
-		88CB48C319F1C8D8000A8255 /* default-preview-webcontentdisplay.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48B519F1C8D8000A8255 /* default-preview-webcontentdisplay.png */; };
-		88CB48C419F1C8D8000A8255 /* default-preview-webcontentdisplay.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48B519F1C8D8000A8255 /* default-preview-webcontentdisplay.png */; };
 		88CB48C519F1C8D8000A8255 /* default-preview-webcontentdisplay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48B619F1C8D8000A8255 /* default-preview-webcontentdisplay@2x.png */; };
 		88CB48C619F1C8D8000A8255 /* default-preview-webcontentdisplay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48B619F1C8D8000A8255 /* default-preview-webcontentdisplay@2x.png */; };
 		88CB48C919F1C8F1000A8255 /* flat7-gradient-form.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CB48C719F1C8F1000A8255 /* flat7-gradient-form.png */; };
@@ -168,8 +166,6 @@
 		88F9F1C319E3480D006268ED /* ServerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0F319E3480D006268ED /* ServerOperation.swift */; };
 		88F9F1C419E3480D006268ED /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0F419E3480D006268ED /* SessionContext.swift */; };
 		88F9F1C519E3480D006268ED /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0F419E3480D006268ED /* SessionContext.swift */; };
-		88F9F1C619E3480D006268ED /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0F519E3480D006268ED /* ThemeManager.swift */; };
-		88F9F1C719E3480D006268ED /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0F519E3480D006268ED /* ThemeManager.swift */; };
 		88F9F1C819E3480D006268ED /* DDLValuesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0F719E3480D006268ED /* DDLValuesParser.swift */; };
 		88F9F1C919E3480D006268ED /* DDLValuesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0F719E3480D006268ED /* DDLValuesParser.swift */; };
 		88F9F1CA19E3480D006268ED /* DDLXSDParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0F819E3480D006268ED /* DDLXSDParser.swift */; };
@@ -327,12 +323,8 @@
 		88F9F27B19E3480D006268ED /* default-multiline-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F16919E3480D006268ED /* default-multiline-field.png */; };
 		88F9F27C19E3480D006268ED /* default-multiline-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F16A19E3480D006268ED /* default-multiline-field@2x.png */; };
 		88F9F27D19E3480D006268ED /* default-multiline-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F16A19E3480D006268ED /* default-multiline-field@2x.png */; };
-		88F9F27E19E3480D006268ED /* default-preview-assetlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F16B19E3480D006268ED /* default-preview-assetlist.png */; };
-		88F9F27F19E3480D006268ED /* default-preview-assetlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F16B19E3480D006268ED /* default-preview-assetlist.png */; };
 		88F9F28019E3480D006268ED /* default-preview-assetlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F16C19E3480D006268ED /* default-preview-assetlist@2x.png */; };
 		88F9F28119E3480D006268ED /* default-preview-assetlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F16C19E3480D006268ED /* default-preview-assetlist@2x.png */; };
-		88F9F28219E3480D006268ED /* default-preview-ddlform.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F16D19E3480D006268ED /* default-preview-ddlform.png */; };
-		88F9F28319E3480D006268ED /* default-preview-ddlform.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F16D19E3480D006268ED /* default-preview-ddlform.png */; };
 		88F9F28419E3480D006268ED /* default-preview-ddlform@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F16E19E3480D006268ED /* default-preview-ddlform@2x.png */; };
 		88F9F28519E3480D006268ED /* default-preview-ddlform@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F16E19E3480D006268ED /* default-preview-ddlform@2x.png */; };
 		88F9F28A19E3480D006268ED /* default-user-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F17119E3480D006268ED /* default-user-icon.png */; };
@@ -383,7 +375,6 @@
 		88F9F2DA19E3484B006268ED /* LoginView_xyz.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F2C119E3484B006268ED /* LoginView_xyz.xib */; };
 		88F9F2DB19E3484B006268ED /* xyz-preview-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F2C319E3484B006268ED /* xyz-preview-login.png */; };
 		88F9F2DC19E3484B006268ED /* xyz-preview-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F9F2C419E3484B006268ED /* xyz-preview-login@2x.png */; };
-		88F9F2DD19E3484B006268ED /* ThemeManager_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F2C519E3484B006268ED /* ThemeManager_Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -484,7 +475,6 @@
 		88CB48B219F1C8D8000A8255 /* default-form-gradient-bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-form-gradient-bottom@2x.png"; sourceTree = "<group>"; };
 		88CB48B319F1C8D8000A8255 /* default-form-gradient-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-form-gradient-top.png"; sourceTree = "<group>"; };
 		88CB48B419F1C8D8000A8255 /* default-form-gradient-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-form-gradient-top@2x.png"; sourceTree = "<group>"; };
-		88CB48B519F1C8D8000A8255 /* default-preview-webcontentdisplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-webcontentdisplay.png"; sourceTree = "<group>"; };
 		88CB48B619F1C8D8000A8255 /* default-preview-webcontentdisplay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-webcontentdisplay@2x.png"; sourceTree = "<group>"; };
 		88CB48C719F1C8F1000A8255 /* flat7-gradient-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form.png"; sourceTree = "<group>"; };
 		88CB48C819F1C8F1000A8255 /* flat7-gradient-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form@2x.png"; sourceTree = "<group>"; };
@@ -513,7 +503,6 @@
 		88F9F0F219E3480D006268ED /* LiferayServerContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayServerContext.swift; sourceTree = "<group>"; };
 		88F9F0F319E3480D006268ED /* ServerOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerOperation.swift; sourceTree = "<group>"; };
 		88F9F0F419E3480D006268ED /* SessionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext.swift; sourceTree = "<group>"; };
-		88F9F0F519E3480D006268ED /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		88F9F0F719E3480D006268ED /* DDLValuesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLValuesParser.swift; sourceTree = "<group>"; };
 		88F9F0F819E3480D006268ED /* DDLXSDParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLXSDParser.swift; sourceTree = "<group>"; };
 		88F9F0FA19E3480D006268ED /* DDLFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormData.swift; sourceTree = "<group>"; };
@@ -604,9 +593,7 @@
 		88F9F16819E3480D006268ED /* default-mail-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-mail-icon@2x.png"; sourceTree = "<group>"; };
 		88F9F16919E3480D006268ED /* default-multiline-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-multiline-field.png"; sourceTree = "<group>"; };
 		88F9F16A19E3480D006268ED /* default-multiline-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-multiline-field@2x.png"; sourceTree = "<group>"; };
-		88F9F16B19E3480D006268ED /* default-preview-assetlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-assetlist.png"; sourceTree = "<group>"; };
 		88F9F16C19E3480D006268ED /* default-preview-assetlist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-assetlist@2x.png"; sourceTree = "<group>"; };
-		88F9F16D19E3480D006268ED /* default-preview-ddlform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-ddlform.png"; sourceTree = "<group>"; };
 		88F9F16E19E3480D006268ED /* default-preview-ddlform@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-ddlform@2x.png"; sourceTree = "<group>"; };
 		88F9F17119E3480D006268ED /* default-user-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-user-icon.png"; sourceTree = "<group>"; };
 		88F9F17219E3480D006268ED /* default-user-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-user-icon@2x.png"; sourceTree = "<group>"; };
@@ -648,7 +635,6 @@
 		88F9F2C119E3484B006268ED /* LoginView_xyz.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_xyz.xib; sourceTree = "<group>"; };
 		88F9F2C319E3484B006268ED /* xyz-preview-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xyz-preview-login.png"; sourceTree = "<group>"; };
 		88F9F2C419E3484B006268ED /* xyz-preview-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xyz-preview-login@2x.png"; sourceTree = "<group>"; };
-		88F9F2C519E3484B006268ED /* ThemeManager_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager_Tests.swift; sourceTree = "<group>"; };
 		88FE74D419655E1B003A7CE5 /* Liferay-iOS-Screens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liferay-iOS-Screens.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B76C752ABEE8449EAC6C5FF0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FEA555EA8DC0458CA74C4ACE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -867,7 +853,6 @@
 				88F9F0F219E3480D006268ED /* LiferayServerContext.swift */,
 				88F9F0F319E3480D006268ED /* ServerOperation.swift */,
 				88F9F0F419E3480D006268ED /* SessionContext.swift */,
-				88F9F0F519E3480D006268ED /* ThemeManager.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1167,11 +1152,8 @@
 				88F9F16A19E3480D006268ED /* default-multiline-field@2x.png */,
 				753B7CCD1A4262B900664282 /* default-portrait-placeholder.png */,
 				753B7CCE1A4262B900664282 /* default-portrait-placeholder@2x.png */,
-				88F9F16B19E3480D006268ED /* default-preview-assetlist.png */,
 				88F9F16C19E3480D006268ED /* default-preview-assetlist@2x.png */,
-				88F9F16D19E3480D006268ED /* default-preview-ddlform.png */,
 				88F9F16E19E3480D006268ED /* default-preview-ddlform@2x.png */,
-				88CB48B519F1C8D8000A8255 /* default-preview-webcontentdisplay.png */,
 				88CB48B619F1C8D8000A8255 /* default-preview-webcontentdisplay@2x.png */,
 				88F9F17119E3480D006268ED /* default-user-icon.png */,
 				88F9F17219E3480D006268ED /* default-user-icon@2x.png */,
@@ -1276,7 +1258,6 @@
 				88F9F2BC19E3484B006268ED /* SessionContext_Storage_Tests.swift */,
 				88F9F2BD19E3484B006268ED /* TestsInfo.plist */,
 				88F9F2BE19E3484B006268ED /* theme-xyz */,
-				88F9F2C519E3484B006268ED /* ThemeManager_Tests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1468,10 +1449,8 @@
 				88A365871AA8879F00AC5AF1 /* UserPortraitView_default.xib in Resources */,
 				8868385C19F32A560053E502 /* signup-screenlet.strings in Resources */,
 				88F9F26119E3480D006268ED /* default-field-focused@2x.png in Resources */,
-				88F9F28319E3480D006268ED /* default-preview-ddlform.png in Resources */,
 				88F9F23D19E3480D006268ED /* DDLFieldSelectTableCell_default.xib in Resources */,
 				88F9F25319E3480D006268ED /* DDLListView_default.xib in Resources */,
-				88F9F27F19E3480D006268ED /* default-preview-assetlist.png in Resources */,
 				8868386119F32A6A0053E502 /* base.strings in Resources */,
 				88F9F26919E3480D006268ED /* default-hourglass@2x.png in Resources */,
 				88F9F24519E3480D006268ED /* DDLFieldTextTableCell_default.xib in Resources */,
@@ -1490,7 +1469,6 @@
 				88F9F21B19E3480D006268ED /* LoginView_default.xib in Resources */,
 				88F9F22D19E3480D006268ED /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */,
 				88F9F28119E3480D006268ED /* default-preview-assetlist@2x.png in Resources */,
-				88CB48C419F1C8D8000A8255 /* default-preview-webcontentdisplay.png in Resources */,
 				88F9F27519E3480D006268ED /* default-lock-icon@2x.png in Resources */,
 				88F9F23919E3480D006268ED /* DDLFieldRadioTableCell_default.xib in Resources */,
 				88F9F25919E3480D006268ED /* default-calendar@2x.png in Resources */,
@@ -1525,7 +1503,6 @@
 				88F9F2A019E3480D006268ED /* flat7.strings in Resources */,
 				8868385119F32A380053E502 /* forgotpassword-screenlet.strings in Resources */,
 				753B7CCF1A4262B900664282 /* default-portrait-placeholder.png in Resources */,
-				88F9F27E19E3480D006268ED /* default-preview-assetlist.png in Resources */,
 				88F9F26619E3480D006268ED /* default-hourglass.png in Resources */,
 				8868385619F32A470053E502 /* login-screenlet.strings in Resources */,
 				88F9F2A619E3480D006268ED /* flat7-field.png in Resources */,
@@ -1538,7 +1515,6 @@
 				88F9F28A19E3480D006268ED /* default-user-icon.png in Resources */,
 				753B7CD01A4262B900664282 /* default-portrait-placeholder@2x.png in Resources */,
 				88F9F26819E3480D006268ED /* default-hourglass@2x.png in Resources */,
-				88F9F28219E3480D006268ED /* default-preview-ddlform.png in Resources */,
 				88F9F24E19E3480D006268ED /* DDLSubmitButtonTableCell_default.xib in Resources */,
 				88F9F21619E3480D006268ED /* ForgotPasswordView_default.xib in Resources */,
 				88A365861AA8879F00AC5AF1 /* UserPortraitView_default.xib in Resources */,
@@ -1564,7 +1540,6 @@
 				88F9F24019E3480D006268ED /* DDLFieldTextareaTableCell_default.xib in Resources */,
 				8868385B19F32A560053E502 /* signup-screenlet.strings in Resources */,
 				88F9F29819E3480D006268ED /* LoginView_flat7.xib in Resources */,
-				88CB48C319F1C8D8000A8255 /* default-preview-webcontentdisplay.png in Resources */,
 				88F9F28C19E3480D006268ED /* default-user-icon@2x.png in Resources */,
 				88F9F24A19E3480D006268ED /* DDLFormView_default.xib in Resources */,
 				88F9F28419E3480D006268ED /* default-preview-ddlform@2x.png in Resources */,
@@ -1682,7 +1657,6 @@
 				88F9F1B319E3480D006268ED /* BaseListScreenlet.swift in Sources */,
 				88F9F18D19E3480D006268ED /* LiferayAssetListPageOperation.swift in Sources */,
 				88F9F19919E3480D006268ED /* LiferayForgotPasswordEmailOperation.swift in Sources */,
-				88F9F1C719E3480D006268ED /* ThemeManager.swift in Sources */,
 				88F9F2CB19E3484B006268ED /* BaseScreenlet_Theme_Tests.swift in Sources */,
 				88F9F1CB19E3480D006268ED /* DDLXSDParser.swift in Sources */,
 				88F9F1FB19E3480D006268ED /* Bool+Conversion.swift in Sources */,
@@ -1730,7 +1704,6 @@
 				88F9F1D919E3480D006268ED /* LiferayDDLFormUploadOperation.swift in Sources */,
 				88F9F1CD19E3480D006268ED /* DDLFormData.swift in Sources */,
 				88F9F1E519E3480D006268ED /* DDLField+DataType.swift in Sources */,
-				88F9F2DD19E3484B006268ED /* ThemeManager_Tests.swift in Sources */,
 				88F9F2D319E3484B006268ED /* DDLParser_Basic_Tests.swift in Sources */,
 				88F9F1BF19E3480D006268ED /* BaseScreenletView.swift in Sources */,
 				88F9F2CC19E3484B006268ED /* DDLField_validation_Tests.swift in Sources */,
@@ -1835,7 +1808,6 @@
 				88F9F1CC19E3480D006268ED /* DDLFormData.swift in Sources */,
 				88F9F28E19E3480D006268ED /* WebContentDisplayView_default.swift in Sources */,
 				88F9F23219E3480D006268ED /* DDLFieldNumberTableCell_default.swift in Sources */,
-				88F9F1C619E3480D006268ED /* ThemeManager.swift in Sources */,
 				88F9F19A19E3480D006268ED /* LiferayForgotPasswordScreenNameOperation.swift in Sources */,
 				88F9F1E419E3480D006268ED /* DDLField+DataType.swift in Sources */,
 				88F9F1F419E3480D006268ED /* DDLFieldStringWithOptions.swift in Sources */,

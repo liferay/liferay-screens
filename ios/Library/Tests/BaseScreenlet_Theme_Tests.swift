@@ -42,6 +42,7 @@ class BaseScreenlet_Theme_Tests: XCTestCase {
 
 	func test_themeName_ShouldReturnDefaultTheme_WhenThemeDoesNotExist() {
 		loginScreenlet!.themeName = "not-exists"
+		loginScreenlet!.loadScreenletView();
 
 		XCTAssertEqual("default", loginScreenlet!.themeName!)
 	}
@@ -70,15 +71,6 @@ class BaseScreenlet_Theme_Tests: XCTestCase {
 		XCTAssertEqual(1, loginScreenlet!.subviews.count)
 		XCTAssertTrue(loginScreenlet!.subviews[0] is LoginView_xyz)
 		XCTAssertEqual(view!, loginScreenlet!.subviews[0] as BaseScreenletView)
-	}
-
-	func test_PreviewImagePathForTheme_ShouldReturnThewImagePath_WhenExists() {
-		XCTAssertTrue(
-				loginScreenlet!.previewImagePathForTheme("xyz")!.hasSuffix("xyz-preview-login.png"))
-	}
-
-	func test_PreviewImagePathForTheme_ShouldReturnNil_WhenNotExists() {
-		XCTAssertNil(loginScreenlet!.previewImagePathForTheme("not-exists"))
 	}
 
 }

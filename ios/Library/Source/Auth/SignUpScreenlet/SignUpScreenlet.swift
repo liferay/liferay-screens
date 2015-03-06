@@ -29,7 +29,7 @@ import UIKit
 	@IBInspectable public var anonymousApiUserName: String? = "test@liferay.com"
 	@IBInspectable public var anonymousApiPassword: String? = "test"
 
-	@IBInspectable public var autologin: Bool = true
+	@IBInspectable public var autoLogin: Bool = true
 
 	@IBInspectable public var saveCredentials: Bool = true
 
@@ -75,7 +75,7 @@ import UIKit
 	private func onSignUpSuccess(#userAttributes: [String:AnyObject]) {
 		delegate?.onSignUpResponse?(userAttributes)
 
-		if autologin {
+		if autoLogin {
 			SessionContext.removeStoredSession()
 
 			SessionContext.createSession(
