@@ -59,7 +59,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		init(getContext());
+		init();
 	}
 
 	public void onItemClick(int position) {
@@ -71,11 +71,11 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 		}
 	}
 
-	protected void init(Context context) {
+	protected void init() {
 		DefaultTheme.initIfThemeNotPresent(getContext());
 
-		int itemLayoutId = R.layout.list_item_material;
-		int itemProgressLayoutId = R.layout.list_item_progress_material;
+		int itemLayoutId = R.layout.list_item_default;
+		int itemProgressLayoutId = R.layout.list_item_progress_default;
 
 		_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 		_progressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -87,7 +87,6 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 
 		_recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R
 				.drawable.pixel_grey)));
-
 	}
 
 	protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
@@ -192,8 +191,8 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 
     protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
 
-	private ProgressBar _progressBar;
-	private RecyclerView _recyclerView;
+	protected ProgressBar _progressBar;
+	protected RecyclerView _recyclerView;
 
 	private static final String _STATE_ENTRIES = "entries";
 	private static final String _STATE_ROW_COUNT = "rowCount";
