@@ -65,7 +65,8 @@ public abstract class BaseListScreenletView<
 
 	public void onItemClick(int position) {
 		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
-		List<E> entries = ((A) getAdapter()).getEntries();
+		List<E> entries = getAdapter().getEntries();
+
 		// we do not want to crash if the user manages to do a phantom click
 		if (!entries.isEmpty() && entries.size() > position && screenlet.getListener() != null) {
 			screenlet.getListener().onListItemSelected(entries.get(position));
@@ -86,8 +87,8 @@ public abstract class BaseListScreenletView<
 		_recyclerView.setHasFixedSize(true);
 		_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-		_recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R
-				.drawable.pixel_grey)));
+		_recyclerView.addItemDecoration(
+			new DividerItemDecoration(getResources().getDrawable(R.drawable.pixel_grey)));
 	}
 
 	protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
@@ -183,7 +184,7 @@ public abstract class BaseListScreenletView<
 	protected Parcelable onSaveInstanceState() {
 		Parcelable superState = super.onSaveInstanceState();
 
-		A adapter = (A) getAdapter();
+		A adapter = getAdapter();
 		ArrayList<E> entries = (ArrayList<E>) adapter.getEntries();
 
 		Bundle state = new Bundle();

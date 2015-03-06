@@ -49,9 +49,8 @@ public class DDLListMaterialView
 	@Override
 	public void showFinishOperation(int page, List<DDLEntry> entries, int rowCount) {
 		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
-		DDLListAdapter adapter = (DDLListAdapter) getAdapter();
 
-		adapter.setLabelFields(screenlet.getLabelFields());
+		getAdapter().setLabelFields(screenlet.getLabelFields());
 
 		super.showFinishOperation(page, entries, rowCount);
 	}
