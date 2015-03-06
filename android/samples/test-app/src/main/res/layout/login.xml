@@ -7,7 +7,14 @@
 			  android:orientation="vertical">
 
 	<com.liferay.mobile.screens.auth.login.LoginScreenlet
-		android:id="@+id/login_screenlet"
+		android:id="@+id/login_screenlet_default"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		liferay:authMethod="email"
+		liferay:layoutId="@layout/login_default"/>
+
+	<com.liferay.mobile.screens.auth.login.LoginScreenlet
+		android:id="@+id/login_screenlet_material"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		liferay:authMethod="email"

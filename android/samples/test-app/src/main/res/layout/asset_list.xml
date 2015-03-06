@@ -7,7 +7,14 @@
 			  android:orientation="vertical">
 
 	<com.liferay.mobile.screens.assetlist.AssetListScreenlet
-		android:id="@+id/asset"
+		android:id="@+id/asset_list_default"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		liferay:classNameId="10011"
+		liferay:layoutId="@layout/asset_list_default"/>
+
+	<com.liferay.mobile.screens.assetlist.AssetListScreenlet
+		android:id="@+id/asset_list_material"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		liferay:classNameId="10011"
