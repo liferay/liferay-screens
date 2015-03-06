@@ -50,19 +50,18 @@ public class ModalProgressBar extends ProgressBar {
 	}
 
 	public void finishProgress() {
-		setVisibility(INVISIBLE);
+		setVisibility(GONE);
 	}
 
 	@Override
 	public void setVisibility(int v) {
+		super.setVisibility(v);
 		View actionView = findActionView((View) getParent(), _actionViewId);
 
 		if (actionView != null) {
 			setVisibility(v, actionView);
 		}
-		else {
-			super.setVisibility(v);
-		}
+
 	}
 
 	private View findActionView(View parent, int actionViewId) {
@@ -93,7 +92,7 @@ public class ModalProgressBar extends ProgressBar {
 			System.out.println(attributes.getAttributeName(i) + " - " + attributes.getAttributeValue(i));
 		}
 		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.ModalProgressBar, 0, 0);
+				context.getTheme().obtainStyledAttributes(attributes, R.styleable.ModalProgressBar, 0, 0);
 
 		_actionViewId = typedArray.getResourceId(R.styleable.ModalProgressBar_actionViewId, 0);
 
