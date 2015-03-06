@@ -50,13 +50,28 @@
 	</style>
 
 	<style name="material_list_item">
-		<item name="android:minHeight">72dp</item>
-		<item name="android:paddingLeft">16dp</item>
-		<item name="android:paddingRight">16dp</item>
+		<item name="android:minHeight">52dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginRight">16dp</item>
 		<item name="android:layout_gravity">center_vertical</item>
-		<item name="android:drawablePadding">72dp</item>
+	</style>
+
+	<style name="material_list_item_icon">
+		<item name="android:src">@drawable/material_tinted_list_icon</item>
+	</style>
+
+	<style name="material_list_item_title">
+		<item name="android:padding">0dp</item>
 		<item name="android:textSize">16sp</item>
-		<item name="android:drawableLeft">@drawable/material_tinted_list_icon</item>
+		<item name="android:paddingLeft">10dp</item>
+		<item name="android:gravity">bottom</item>
+	</style>
+
+	<style name="material_list_item_subtitle">
+		<item name="android:padding">0dp</item>
+		<item name="android:textSize">12sp</item>
+		<item name="android:paddingLeft">10dp</item>
+		<item name="android:gravity">top</item>
 	</style>
 
 	<style name="material_row">

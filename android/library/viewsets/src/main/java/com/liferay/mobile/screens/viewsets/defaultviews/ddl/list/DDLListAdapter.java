@@ -24,7 +24,7 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListAdapter extends BaseListAdapter<DDLEntry> {
+public class DDLListAdapter extends BaseListAdapter<DDLEntry, BaseListAdapter.ViewHolder> {
 
     public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
         super(layoutId, progressLayoutId, listener);
@@ -35,7 +35,7 @@ public class DDLListAdapter extends BaseListAdapter<DDLEntry> {
     }
 
     @Override
-    protected void fillHolder(DDLEntry entry, BaseListAdapter.ViewHolder holder) {
+    protected void fillHolder(DDLEntry entry, ViewHolder holder) {
         StringBuilder builder = new StringBuilder();
 
 		for (String field : _labelFields) {

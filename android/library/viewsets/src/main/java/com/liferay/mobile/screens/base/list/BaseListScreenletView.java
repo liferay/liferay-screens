@@ -39,7 +39,8 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public abstract class BaseListScreenletView<E extends Parcelable, A extends BaseListAdapter<E>>
+public abstract class BaseListScreenletView<
+		E extends Parcelable, H extends BaseListAdapter.ViewHolder, A extends BaseListAdapter<E,H>>
 	extends FrameLayout
 	implements BaseListViewModel<E>, BaseListAdapterListener {
 
@@ -74,7 +75,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 	protected void init() {
 		DefaultTheme.initIfThemeNotPresent(getContext());
 
-		int itemLayoutId = R.layout.list_item_default;
+		int itemLayoutId = getItemLayoutId();
 		int itemProgressLayoutId = R.layout.list_item_progress_default;
 
 		_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -107,6 +108,10 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
         }
         return allEntries;
     }
+
+	protected int getItemLayoutId() {
+		return R.layout.list_item_default;
+	}
 
 	@Override
 	public void showStartOperation(String actionName) {

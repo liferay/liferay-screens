@@ -15,19 +15,13 @@
 package com.liferay.mobile.screens.viewsets.material.ddl.list;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
 import com.liferay.mobile.screens.viewsets.R;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DDLListAdapter;
-import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 
 import java.util.List;
 
@@ -35,8 +29,10 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListMaterialView extends BaseListScreenletView<DDLEntry, DDLListAdapter>
-        implements DDLListViewModel {
+public class DDLListMaterialView
+	extends BaseListScreenletView<DDLEntry, DDLListMaterialAdapter.TwoTextsViewHolder,
+		DDLListMaterialAdapter>
+	implements DDLListViewModel {
 
     public DDLListMaterialView(Context context) {
         super(context);
@@ -61,24 +57,13 @@ public class DDLListMaterialView extends BaseListScreenletView<DDLEntry, DDLList
 	}
 
     @Override
-    protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-        return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
+    protected DDLListMaterialAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+        return new DDLListMaterialAdapter(itemLayoutId, itemProgressLayoutId, this);
     }
 
-	protected void init() {
-		DefaultTheme.initIfThemeNotPresent(getContext());
-
-		int itemLayoutId = R.layout.list_item_material;
-		int itemProgressLayoutId = R.layout.list_item_progress_material;
-
-		_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-		_progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-
-		DDLListAdapter adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
-		_recyclerView.setAdapter(adapter);
-		_recyclerView.setHasFixedSize(true);
-		_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
+	@Override
+	protected int getItemLayoutId() {
+		return R.layout.ddl_list_item_material;
 	}
 
 }

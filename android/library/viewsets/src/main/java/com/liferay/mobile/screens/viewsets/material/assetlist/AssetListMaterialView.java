@@ -32,7 +32,8 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDeco
 /**
  * @author Silvio Santos
  */
-public class AssetListMaterialView extends BaseListScreenletView<AssetEntry, AssetListAdapter>
+public class AssetListMaterialView
+	extends BaseListScreenletView<AssetEntry, AssetListAdapter.ViewHolder, AssetListAdapter>
 	implements AssetListViewModel {
 
 	public AssetListMaterialView(Context context) {
@@ -65,6 +66,9 @@ public class AssetListMaterialView extends BaseListScreenletView<AssetEntry, Ass
 		_recyclerView.setAdapter(adapter);
 		_recyclerView.setHasFixedSize(true);
 		_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+		_recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R
+			.drawable.pixel_grey)));
 
 	}
 

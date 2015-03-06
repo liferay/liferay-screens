@@ -17,10 +17,11 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.list;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import com.liferay.mobile.screens.base.list.BaseListAdapter;
+import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
-import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 
 import java.util.List;
 
@@ -28,8 +29,9 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListDefaultView extends BaseListScreenletView<DDLEntry, DDLListAdapter>
-        implements DDLListViewModel {
+public class DDLListDefaultView
+	extends BaseListScreenletView<DDLEntry, BaseListAdapter.ViewHolder, DDLListAdapter>
+	implements DDLListViewModel {
 
     public DDLListDefaultView(Context context) {
         super(context);
