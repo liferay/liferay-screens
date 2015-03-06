@@ -17,15 +17,33 @@ package com.liferay.mobile.screens.testapp;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.liferay.mobile.screens.auth.login.LoginListener;
+import com.liferay.mobile.screens.auth.login.LoginScreenlet;
+import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
+import com.liferay.mobile.screens.viewsets.material.MaterialCrouton;
+
 /**
  * @author Javier Gamarra
  */
-public class LoginActivity extends Activity {
+public class LoginActivity extends Activity implements LoginListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.login);
+
+		((LoginScreenlet) findViewById(R.id.login_screenlet)).setListener(this);
+	}
+
+	@Override
+	public void onLoginSuccess(User user) {
+		MaterialCrouton.info(this, "Login!");
+	}
+
+	@Override
+	public void onLoginFailure(Exception e) {
+		MaterialCrouton.error(this, "Error!", e);
 	}
 }
