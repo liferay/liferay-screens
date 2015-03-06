@@ -10,12 +10,13 @@
 		android:id="@+id/label"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_marginBottom="5dp"
 		android:visibility="gone"/>
 
-	<EditText
-		android:id="@+id/text"
+	<EditText android:id="@+id/text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:inputType="number"/>
+		android:inputType="number"
+		/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldNumberView>
