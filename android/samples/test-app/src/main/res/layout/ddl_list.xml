@@ -10,7 +10,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		liferay:labelFields="Text1540"
-		liferay:layoutId="@layout/ddl_list_default"
+		liferay:layoutId="@layout/ddl_list_material"
 		liferay:recordSetId="15442"/>
 
 </LinearLayout>
