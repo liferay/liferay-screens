@@ -14,14 +14,17 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form;
 
+import android.animation.Animator;
 import android.content.Context;
 
+import android.os.Build;
 import android.util.AttributeSet;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -35,6 +38,7 @@ import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 
@@ -187,6 +191,7 @@ public class DDLFormDefaultView
 	@Override
 	public void showFormFields(Record record) {
 		_fieldsContainerView.removeAllViews();
+		_fieldsContainerView.setVisibility(INVISIBLE);
 
 		for (int i = 0; i < record.getFieldCount(); ++i) {
 			addFieldView(record.getField(i), i);
@@ -196,13 +201,17 @@ public class DDLFormDefaultView
 			_submitButton.setVisibility(VISIBLE);
 		}
 		else {
-			_submitButton.setVisibility(GONE);
+			_submitButton.setVisibility(INVISIBLE);
 		}
+
+		DefaultAnimation.showViewWithReveal(_fieldsContainerView);
 	}
+
+
 
 	protected void clearFormFields() {
 		_fieldsContainerView.removeAllViews();
-		_submitButton.setVisibility(GONE);
+		_submitButton.setVisibility(INVISIBLE);
 	}
 
 	protected void showProgressBar() {
