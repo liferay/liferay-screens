@@ -8,7 +8,7 @@
 
 	<application
 		android:allowBackup="true"
-		android:icon="@drawable/ic_launcher"
+		android:icon="@drawable/material_tinted_liferay_glyph"
 		android:label="@string/app_name"
 		android:theme="@style/material_theme">
 
