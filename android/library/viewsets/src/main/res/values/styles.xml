@@ -4,6 +4,8 @@
 	<style name="default_theme" parent="Theme.AppCompat.Light">
 		<item name="colorPrimary">@color/liferay_primary_blue</item>
 		<item name="colorAccent">@color/liferay_light_blue</item>
+		<item name="android:textColorPrimary">@color/liferay_dark_gray</item>
+		<item name="android:textColorSecondary">@color/liferay_light_gray</item>
 		<item name="android:textViewStyle">@style/default_text_view</item>
 		<item name="android:editTextStyle">@style/default_edit_text</item>
 		<item name="android:buttonStyle">@style/default_button</item>
@@ -59,12 +61,9 @@
 	<style name="default_checkbox" parent="base_default_checkbox"/>
 
 	<style name="base_default_checkbox">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:paddingBottom">@dimen/default_edit_text_padding</item>
-		<item name="android:textColor">@color/liferay_dark_gray</item>
-		<item name="android:paddingTop">@dimen/default_edit_text_padding</item>
-		<item name="android:theme">@style/default_theme</item>
+		<item name="android:padding">@dimen/default_edit_text_padding</item>
+		<item name="android:textColor">?android:attr/textColorPrimary</item>
+		<item name="android:theme">?attr/theme</item>
 		<item name="android:textSize">14sp</item>
 	</style>
 
@@ -83,6 +82,8 @@
 		<item name="android:gravity">center</item>
 		<item name="android:textColor">?attr/colorPrimary</item>
 		<item name="android:textSize">15sp</item>
+		<item name="android:minHeight">48dp</item>
+		<item name="android:background">?android:attr/selectableItemBackground</item>
 	</style>
 
 	<style name="default_font">
