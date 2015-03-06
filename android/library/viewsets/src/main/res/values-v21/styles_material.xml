@@ -28,7 +28,7 @@
 		<item name="android:windowSharedElementEnterTransition">@android:transition/explode</item>
 		<item name="android:windowSharedElementExitTransition">@android:transition/explode</item>
 
-	</style>∫
+	</style>
 
 	<style name="material_button" parent="android:Widget.Material.Light.Button">
 		<item name="android:textColor">@android:color/white</item>
