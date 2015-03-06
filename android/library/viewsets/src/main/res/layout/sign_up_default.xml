@@ -41,7 +41,7 @@
 		<Button
 			android:id="@+id/sign_up_button"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
 			android:text="@string/sign_up"/>
 
 		<com.liferay.mobile.screens.base.ModalProgressBar

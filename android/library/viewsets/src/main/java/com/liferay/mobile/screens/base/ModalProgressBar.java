@@ -50,7 +50,7 @@ public class ModalProgressBar extends ProgressBar {
 	}
 
 	public void finishProgress() {
-		setVisibility(GONE);
+		setVisibility(INVISIBLE);
 	}
 
 	@Override
