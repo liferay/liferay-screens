@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-	android:paddingTop="10dp">
+	android:theme="@style/default_theme">
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/default_switch"
-		android:text="switch"
-		style="@style/default_checkbox"/>
+		style="@style/default_checkbox"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="switch"/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldCheckboxView>
