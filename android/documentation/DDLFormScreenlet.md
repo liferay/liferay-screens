@@ -48,8 +48,7 @@ There are also a few limitations that you should be aware of when using `DDLForm
 
 The Default view uses a standard vertical `ScrollView` to show a scrollable list of fields. Other views may use different components, such as `ViewPager` or others, to show the fields. You can find a sample of this implementation in the `DDLFormScreenletPagerView` class.
 
-<!-- TODO image
-![The `DDLForm` screenlet using Default theme.](Images/ddlform.png) -->
+![The `DDLForm` screenlet Default and Material viewsets](images/ddlform.png)
 
 ### Editor Types
 

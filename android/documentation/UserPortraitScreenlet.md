@@ -28,7 +28,7 @@ The `UserPortraitScreenlet` shows the user's profile picture from their Liferay 
 - Default
 - Material
 
-<!-- PICTURE ![The `PortraitScreenlet` using the Default and Flat7 themes.](Images/portrait.png) -->
+![The `UserPortraitScreenlet` using the Default and Material viewsets](images/userportrait.png)
 
 ## Portal Configuration
 

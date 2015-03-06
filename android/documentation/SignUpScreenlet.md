@@ -26,8 +26,7 @@ The main function of the `SignUpScreenlet` is to create a new user in your Lifer
 
 - Default
 
-<!-- Picture
-![The `SignUpScreenlet` with the Default and Flat7 themes.](Images/signup.png) -->
+![The `SignUpScreenlet` with the Default and Material viewsets.](Images/signup.png)
 
 ## Portal Configuration
 

@@ -30,8 +30,7 @@ The `ForgotPasswordScreenlet` can send an email to a registered user with their 
 
 - Default
 
-<!-- TODO picture
-![The `ForgotPasswordScreenlet` with the Default and Flat7 themes.](Images/forgotpwd.png) -->
+![The `ForgotPasswordScreenlet` with the Default and Material viewsets.](Images/forgotpwd.png)
 
 ## Portal Configuration
 

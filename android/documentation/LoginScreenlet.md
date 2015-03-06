@@ -32,8 +32,7 @@ When a user successfully authenticates, their attributes are retrieved for use i
 
 - Default
 
-<!-- TODO picture
-![The `LoginScreenlet` using the Default and Flat7 themes.](Images/login.png) -->
+![The `LoginScreenlet` using the Default and Material viewsets.](Images/login.png)
 
 ## Portal Configuration
 
