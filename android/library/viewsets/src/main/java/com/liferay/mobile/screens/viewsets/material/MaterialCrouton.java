@@ -14,9 +14,12 @@
 
 package com.liferay.mobile.screens.viewsets.material;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.ContextThemeWrapper;
 
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
@@ -24,7 +27,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 /**
  * @author Javier Gamarra
  */
-public class MaterialCrouton {
+public class MaterialCrouton extends DefaultCrouton{
 
 	public static final Style INFO;
 	public static final Style ALERT;
@@ -40,11 +43,13 @@ public class MaterialCrouton {
 			//TODO create validation exception
 			error = e.getMessage();
 		}
-		Crouton.makeText((android.app.Activity) context, error, MaterialCrouton.ALERT).show();
+		Activity activity = getContextFromActivity(context);
+		Crouton.showText(activity, error, MaterialCrouton.ALERT, android.R.id.content);
 	}
 
 	public static void info(Context context, String message) {
-		Crouton.makeText((android.app.Activity) context, message, MaterialCrouton.INFO).show();
+		Activity activity = getContextFromActivity(context);
+		Crouton.showText(activity, message, MaterialCrouton.INFO, android.R.id.content);
 	}
 
 }

@@ -1,6 +1,8 @@
 package com.liferay.mobile.screens.viewsets.defaultviews;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.ContextThemeWrapper;
 
 import com.liferay.mobile.screens.viewsets.R;
 
@@ -26,11 +28,21 @@ public class DefaultCrouton {
 			//TODO create validation exception
 			error = e.getMessage();
 		}
-		Crouton.makeText((android.app.Activity) context, error, DefaultCrouton.ALERT).show();
+		Crouton.showText((android.app.Activity) context, error, DefaultCrouton.ALERT);
 	}
 
 	public static void info(Context context, String message) {
-		Crouton.makeText((android.app.Activity) context, message, DefaultCrouton.INFO).show();
+		Crouton.showText((android.app.Activity) context, message, DefaultCrouton.INFO);
+	}
+
+	protected static Activity getContextFromActivity(Context context) {
+		if (context instanceof Activity) {
+			return (Activity) context;
+		}
+		else {
+			Context baseContext = ((ContextThemeWrapper) context).getBaseContext();
+			return (Activity) baseContext;
+		}
 	}
 
 }
