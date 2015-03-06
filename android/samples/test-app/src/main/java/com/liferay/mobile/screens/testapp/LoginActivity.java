@@ -16,34 +16,26 @@ package com.liferay.mobile.screens.testapp;
 
 import android.app.Activity;
 import android.os.Bundle;
-
-import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.auth.login.LoginScreenlet;
-import com.liferay.mobile.screens.context.User;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
-import com.liferay.mobile.screens.viewsets.material.MaterialCrouton;
+import android.view.View;
 
 /**
  * @author Javier Gamarra
  */
-public class LoginActivity extends Activity implements LoginListener {
+public class LoginActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		boolean defaultTheme = getIntent().getBooleanExtra("defaultTheme", true);
+		setTheme(defaultTheme ? R.style.default_theme : R.style.material_theme);
+
 		setContentView(R.layout.login);
 
-		((LoginScreenlet) findViewById(R.id.login_screenlet)).setListener(this);
+		findViewById(R.id.login_screenlet_default).setVisibility(defaultTheme ? View.VISIBLE : View.GONE);
+		findViewById(R.id.login_screenlet_material).setVisibility(defaultTheme ? View.GONE : View
+				.VISIBLE);
 	}
 
-	@Override
-	public void onLoginSuccess(User user) {
-		MaterialCrouton.info(this, "Login!");
-	}
 
-	@Override
-	public void onLoginFailure(Exception e) {
-		MaterialCrouton.error(this, "Error!", e);
-	}
 }

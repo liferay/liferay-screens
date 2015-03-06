@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.testapp;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 /**
  * @author Javier Gamarra
@@ -25,6 +26,9 @@ public class SignUpActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		boolean defaultTheme = getIntent().getBooleanExtra("defaultTheme", true);
+		setTheme(defaultTheme ? R.style.default_theme : R.style.material_theme);
 
 		setContentView(R.layout.signup);
 	}

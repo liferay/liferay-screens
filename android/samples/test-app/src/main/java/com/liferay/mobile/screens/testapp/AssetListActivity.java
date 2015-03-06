@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.testapp;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 /**
  * @author Javier Gamarra
@@ -26,6 +27,13 @@ public class AssetListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		boolean defaultTheme = getIntent().getBooleanExtra("defaultTheme", true);
+		setTheme(defaultTheme ? R.style.default_theme : R.style.material_theme);
+
 		setContentView(R.layout.asset_list);
+
+		findViewById(R.id.asset_list_default).setVisibility(defaultTheme ? View.VISIBLE : View.GONE);
+		findViewById(R.id.asset_list_material).setVisibility(defaultTheme ? View.GONE : View
+				.VISIBLE);
 	}
 }

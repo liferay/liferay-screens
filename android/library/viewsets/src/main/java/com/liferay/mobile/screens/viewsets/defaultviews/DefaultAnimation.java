@@ -84,8 +84,7 @@ public class DefaultAnimation {
 		view.setVisibility(View.INVISIBLE);
 	}
 
-	public static void startActivityWithAnimation(Activity activity, Class destination) {
-		Intent intent = new Intent(activity, destination);
+	public static void startActivityWithAnimation(Activity activity, Intent intent) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			activity.startActivity(intent,
 					ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());

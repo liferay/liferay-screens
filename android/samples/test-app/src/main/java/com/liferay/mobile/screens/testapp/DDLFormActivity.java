@@ -16,76 +16,27 @@ package com.liferay.mobile.screens.testapp;
 
 import android.app.Activity;
 import android.os.Bundle;
-
-import com.liferay.mobile.screens.ddl.form.DDLFormListener;
-import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
-import com.liferay.mobile.screens.ddl.model.DocumentField;
-import com.liferay.mobile.screens.ddl.model.Record;
-
-import org.json.JSONObject;
+import android.view.View;
 
 /**
  * @author Javier Gamarra
  */
-public class DDLFormActivity extends Activity implements DDLFormListener {
+public class DDLFormActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		boolean defaultTheme = getIntent().getBooleanExtra("defaultTheme", true);
+		setTheme(defaultTheme ? R.style.default_theme : R.style.material_theme);
+
 		setContentView(R.layout.ddl_form);
 
-		DDLFormScreenlet viewById = (DDLFormScreenlet) findViewById(R.id.ddl);
-		viewById.setListener(this);
-	}
-
-	@Override
-	public void onDDLFormLoaded(Record record) {
+		findViewById(R.id.ddl_form_default).setVisibility(defaultTheme ? View.VISIBLE : View.GONE);
+		findViewById(R.id.ddl_form_material).setVisibility(defaultTheme ? View.GONE : View
+				.VISIBLE);
 
 	}
 
-	@Override
-	public void onDDLFormRecordLoaded(Record record) {
 
-	}
-
-	@Override
-	public void onDDLFormRecordAdded(Record record) {
-
-	}
-
-	@Override
-	public void onDDLFormRecordUpdated(Record record) {
-
-	}
-
-	@Override
-	public void onDDLFormLoadFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormRecordLoadFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormRecordAddFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormUpdateRecordFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
-
-	}
-
-	@Override
-	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
-
-	}
 }
