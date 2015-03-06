@@ -26,7 +26,7 @@ import QuartzCore
 			_themeName = (newValue ?? "default").lowercaseString
 
 			if runningOnInterfaceBuilder {
-				updateCurrentPreviewImage()
+				_themeName = updateCurrentPreviewImage()
 			}
 		}
 		get {
@@ -194,28 +194,34 @@ import QuartzCore
 		var nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
 		if nibPath == nil {
-			nibName = viewName
+			nibName = "\(viewName)_default"
 			nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
-			if nibPath == nil {
+			if nibPath != nil {
+				_themeName = "default"
+			}
+			else {
 				println("ERROR: Xib file '\(nibName)' was not found for theme '\(_themeName)'")
 				return nil
 			}
 		}
 
 		let views = bundle.loadNibNamed(nibName, owner:self, options:nil)
-		assert(views.count > 0, "Xib seems to be malformed. There're no views inside it");
+		assert(views.count > 0, "Xib seems to be malformed. There're no views inside it")
 
 		let foundView = (views[0] as BaseScreenletView)
 
 		return foundView
 	}
 
-	private func updateCurrentPreviewImage() {
+	private func updateCurrentPreviewImage() -> String {
+		var appliedTheme = _themeName
+
 		currentPreviewImage = previewImageForTheme(_themeName)
 		if currentPreviewImage == nil {
 			if let previewImage = previewImageForTheme("default") {
 				currentPreviewImage = previewImage
+				appliedTheme = "default"
 			}
 		}
 
@@ -236,6 +242,8 @@ import QuartzCore
 		}
 
 		setNeedsLayout()
+
+		return appliedTheme
 	}
 
 }
