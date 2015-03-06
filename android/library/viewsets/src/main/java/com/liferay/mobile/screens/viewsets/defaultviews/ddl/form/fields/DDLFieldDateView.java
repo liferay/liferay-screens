@@ -28,6 +28,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.liferay.mobile.screens.ddl.model.DateField;
+import com.liferay.mobile.screens.viewsets.R;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -69,7 +70,7 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		int day = calendar.get(Calendar.DAY_OF_MONTH);
 
 		_pickerDialog = new DatePickerDialog(
-			getContext(), this, year, month, day);
+			getContext(), R.attr.theme, this, year, month, day);
 
 		_pickerDialog.show();
 	}
