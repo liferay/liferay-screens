@@ -1,9 +1,10 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
 /**
  * @author Silvio Santos
@@ -31,28 +32,30 @@ public class MainActivity extends Activity
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.ddl_form:
-				startActivity(new Intent(this, DDLFormActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, DDLFormActivity.class);
 				break;
 			case R.id.ddl_list:
-				startActivity(new Intent(this, DDLListActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, DDLListActivity.class);
 				break;
 			case R.id.asset_list:
-				startActivity(new Intent(this, AssetListActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, AssetListActivity.class);
 				break;
 			case R.id.sign_up:
-				startActivity(new Intent(this, SignUpActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, SignUpActivity.class);
 				break;
 			case R.id.forgot_password:
-				startActivity(new Intent(this, ForgotPasswordActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, ForgotPasswordActivity.class);
 				break;
 			case R.id.user_portrait:
-				startActivity(new Intent(this, UserPortraitActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, UserPortraitActivity.class);
 				break;
 			case R.id.web_view:
-				startActivity(new Intent(this, WebViewActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, WebViewActivity.class);
 				break;
 			default:
-				startActivity(new Intent(this, LoginActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, LoginActivity.class);
 		}
 	}
+
+
 }
