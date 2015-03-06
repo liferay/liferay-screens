@@ -3,7 +3,8 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	android:padding="10dp">
 
 	<TextView
 		android:id="@+id/label"
@@ -15,7 +16,6 @@
 		android:id="@+id/text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="5dp"
 		android:drawableRight="@drawable/default_blue"
 		android:inputType="date"
 		android:paddingBottom="5dp"

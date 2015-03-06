@@ -15,6 +15,8 @@
 package com.liferay.mobile.screens.viewsets.material.ddl.form.fields;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -42,16 +44,16 @@ public class DDLDocumentFieldMaterialView extends DDLDocumentFieldView {
 	public void refresh() {
 		getTextEditText().setText(getField().toFormattedString());
 		if (getField().isUploaded()) {
-			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_done, 0);
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.material_tinted_done, 0);
 			_progressBar.setVisibility(View.GONE);
 		} else if (getField().isUploadFailed()) {
-			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_highlight_remove, 0);
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.material_tinted_remove, 0);
 			_progressBar.setVisibility(View.GONE);
 		} else if (getField().isUploading()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 			_progressBar.setVisibility(View.VISIBLE);
 		} else {
-			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_perm_media, 0);
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.material_tinted_perm_media, 0);
 			_progressBar.setVisibility(View.GONE);
 		}
 	}
