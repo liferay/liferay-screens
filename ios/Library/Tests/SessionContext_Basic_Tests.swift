@@ -28,8 +28,12 @@ class SessionContext_Basic_Tests: XCTestCase {
 				password: "password",
 				userAttributes: [:])
 
-		XCTAssertEqual("username", session.username)
-		XCTAssertEqual("password", session.password)
+		XCTAssertTrue(session.authentication is LRBasicAuthentication)
+
+		if let auth = session.authentication as? LRBasicAuthentication {
+			XCTAssertEqual("username", auth.username)
+			XCTAssertEqual("password", auth.password)
+		}
 	}
 
 	func test_CreateSession_ShouldStoreUserAttributes() {
@@ -97,17 +101,9 @@ class SessionContext_Basic_Tests: XCTestCase {
 				userAttributes: [:])
 
 		let createdSession = SessionContext.createSessionFromCurrentSession()
+
 		XCTAssertNotNil(createdSession)
 		XCTAssertFalse(session == createdSession!)
-
-		createdSession!.username = "modified-username"
-		createdSession!.password = "modified-password"
-
-		XCTAssertEqual("modified-username", createdSession!.username)
-		XCTAssertEqual("modified-password", createdSession!.password)
-
-		XCTAssertEqual("username", SessionContext.currentUserName!)
-		XCTAssertEqual("password", SessionContext.currentPassword!)
 	}
 
 	func test_CreateBatchSessionFromCurrentSession_ShouldReturnNewSession_WhenSessionIsCreated() {
@@ -117,17 +113,9 @@ class SessionContext_Basic_Tests: XCTestCase {
 				userAttributes: [:])
 
 		let createdSession = SessionContext.createBatchSessionFromCurrentSession()
+
 		XCTAssertNotNil(createdSession)
 		XCTAssertFalse(session == createdSession!)
-
-		createdSession!.username = "modified-username"
-		createdSession!.password = "modified-password"
-
-		XCTAssertEqual("modified-username", createdSession!.username)
-		XCTAssertEqual("modified-password", createdSession!.password)
-
-		XCTAssertEqual("username", SessionContext.currentUserName!)
-		XCTAssertEqual("password", SessionContext.currentPassword!)
 	}
 
 	func test_CreateBatchSessionFromCurrentSession_ShouldReturnNil_WhenSessionIsNotCreated() {
