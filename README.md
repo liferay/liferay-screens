@@ -29,6 +29,7 @@ Once your project is ready, the following screenlets are available for use in yo
 - [`LoginScreenlet`](ios/Documentation/LoginScreenlet.md): Gives your app the ability to sign users in to a Liferay Portal.
 - [`SignUpScreenlet`](ios/Documentation/SignUpScreenlet.md): Gives your app the ability to sign new users in to a Liferay Portal.
 - [`ForgotPasswordScreenlet`](ios/Documentation/ForgotPasswordScreenlet.md): Gives your app the ability to send emails containing a new password or password reset link to users.
+- [`UserPortraitScreenlet`](ios/Documentation/UserPortraitScreenlet.md): Gives your app the ability to show the user's portrait picture.
 - [`DDLFormScreenlet`](ios/Documentation/DDLFormScreenlet.md): Gives your app the ability to present dynamic forms to be filled out by users and submitted back to the server.
 - [`DDLListScreenlet`](ios/Documentation/DDLListScreenlet.md): Gives your app the ability to show a list of records based on a pre-existing [Dynamic Data List](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-web-forms-and-dynamic-data-lists) in a Liferay instance.
 - [`AssetListScreenlet`](ios/Documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). Assets include web content, blog entries, documents and more.

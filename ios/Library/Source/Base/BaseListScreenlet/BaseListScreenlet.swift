@@ -47,8 +47,10 @@ import UIKit
 	}
 
 	override func onShow() {
-		if autoLoad {
-			loadList()
+		if !isRunningOnInterfaceBuilder {
+			if autoLoad {
+				loadList()
+			}
 		}
 	}
 

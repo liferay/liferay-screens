@@ -14,21 +14,13 @@
 import UIKit
 
 
-public class LiferayLoginEmailOperation: LiferayLoginBaseOperation {
+@objc public protocol UserPortraitData {
 
-	//MARK: LiferayLoginBaseOperation
+	var portraitURL: NSURL? {get set}
 
-	override internal func sendGetUserRequest(
-			#service: LRUserService_v62,
-			error: NSErrorPointer)
-			-> NSDictionary? {
+	var borderWidth: CGFloat {get set}
+	var borderColor: UIColor? {get set}
 
-		let companyId = loginData.companyId != 0
-				? loginData.companyId : LiferayServerContext.companyId
-
-		return service.getUserByEmailAddressWithCompanyId(companyId,
-				emailAddress: loginData.userName!,
-				error: error)
-	}
+	var portraitLoaded: ((UIImage?, NSError?) -> (UIImage?))? {get set}
 
 }

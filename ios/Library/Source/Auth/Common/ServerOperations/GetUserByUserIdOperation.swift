@@ -14,7 +14,26 @@
 import UIKit
 
 
-public class LiferayLoginScreenNameOperation: LiferayLoginBaseOperation {
+public class GetUserByUserIdOperation: GetUserBaseOperation {
+
+	private var userId: Int64
+
+	public init(screenlet: BaseScreenlet, userId: Int64) {
+		self.userId = userId
+
+		super.init(screenlet: screenlet)
+	}
+
+	override internal func validateData() -> Bool {
+		var valid = super.validateData()
+
+		if valid {
+			valid = (userId > 0)
+		}
+
+		return valid
+	}
+
 
 	//MARK: LiferayLoginBaseOperation
 
@@ -23,12 +42,7 @@ public class LiferayLoginScreenNameOperation: LiferayLoginBaseOperation {
 			error: NSErrorPointer)
 			-> NSDictionary? {
 
-		let companyId = loginData.companyId != 0
-				? loginData.companyId : LiferayServerContext.companyId
-
-		return service.getUserByScreenNameWithCompanyId(companyId,
-				screenName: loginData.userName!,
-				error: error)
+		return service.getUserByIdWithUserId(userId, error: error)
 	}
 
 }

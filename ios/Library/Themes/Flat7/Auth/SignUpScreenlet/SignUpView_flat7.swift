@@ -37,7 +37,7 @@ public class SignUpView_flat7: SignUpView_default {
 	override internal func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
-		titleLabel!.text = LocalizedString("flat7", "flat7-signup-title", self)
+		titleLabel!.text = LocalizedString("flat7", "signup-title", self)
 		subtitleLabel!.text = LocalizedString("flat7", "signup-subtitle", self)
 		firstNamePlaceholder!.text = LocalizedString("flat7", "signup-first-name", self)
 		lastNamePlaceholder!.text = LocalizedString("flat7", "signup-last-name", self)

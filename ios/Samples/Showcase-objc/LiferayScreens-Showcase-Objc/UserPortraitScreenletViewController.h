@@ -11,21 +11,8 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-import XCTest
+#import <UIKit/UIKit.h>
 
+@interface UserPortraitScreenletViewController : UIViewController<UserPortraitScreenletDelegate>
 
-class ThemeManager_Tests: XCTestCase {
-
-	func test_Exists_ShouldReturnTrue_WhenThemeNameIsDefault() {
-		XCTAssertTrue(ThemeManager.exists(themeName: "default"))
-	}
-
-	func test_Exists_ShouldReturnTrue_WhenThemeNameActuallyExists() {
-		XCTAssertTrue(ThemeManager.exists(themeName: "xyz"))
-	}
-
-	func test_Exists_ShouldReturnFalse_WhenThemeNameDoesNotExists() {
-		XCTAssertFalse(ThemeManager.exists(themeName: "this-theme-does-not-exist"))
-	}
-
-}
+@end
