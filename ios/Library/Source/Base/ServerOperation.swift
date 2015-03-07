@@ -74,10 +74,13 @@ public class ServerOperation: NSOperation {
 					return
 				}
 
-				session = LRSession(
-						server: LiferayServerContext.server,
+				let authentication = LRBasicAuthentication(
 						username: anonymousAuthValue.anonymousApiUserName!,
 						password: anonymousAuthValue.anonymousApiPassword!)
+
+				session = LRSession(
+						server: LiferayServerContext.server,
+						authentication: authentication)
 			}
 			else {
 				session = SessionContext.createSessionFromCurrentSession()

@@ -49,6 +49,7 @@ FOUNDATION_EXPORT const unsigned char liferay_screens_VersionString[];
 
 #import "LRCallback.h"
 #import "LRSession.h"
+#import "LRBasicAuthentication.h"
 #import "LRBatchSession.h"
 #import "LRError.h"
 #import "LRJSONObjectWrapper.h"

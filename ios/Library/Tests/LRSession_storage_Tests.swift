@@ -31,15 +31,19 @@ class LRSession_Storage_Tests: XCTestCase {
 	func test_SessionFromStoredCredential_ShouldHaveValidCredential_WhenCredentialWasStored() {
 		let session = LRSession(
 				server:LiferayServerContext.server,
-				username:"user",
-				password:"pass")
+				authentication: LRBasicAuthentication(username: "user", password: "pass"))
 
 		XCTAssertTrue(session.storeCredential(), "storeCredential() is not saving the credentials!")
 
-		if let session = LRSession.sessionFromStoredCredential() {
-			XCTAssertEqual(LiferayServerContext.server, session.server!)
-			XCTAssertEqual(session.username!, session.username!)
-			XCTAssertEqual(session.password!, session.password!)
+		if let storedSession = LRSession.sessionFromStoredCredential() {
+			XCTAssertEqual(LiferayServerContext.server, storedSession.server!)
+
+			XCTAssertTrue(storedSession.authentication is LRBasicAuthentication)
+
+			if let auth = storedSession.authentication as? LRBasicAuthentication {
+				XCTAssertEqual("user", auth.username!)
+				XCTAssertEqual("pass", auth.password!)
+			}
 		}
 		else {
 			XCTFail("sessionFromStoredCredential() should not return nil after storing the " +
@@ -47,29 +51,18 @@ class LRSession_Storage_Tests: XCTestCase {
 		}
 	}
 
-	func test_StoreCredential_ShouldReturnFalse_WhenUsernameIsNil() {
+	func test_StoreCredential_ShouldReturnFalse_WhenAuthenticationIsNil() {
 		let session = LRSession(
 				server:LiferayServerContext.server,
-				username:nil,
-				password:"pass")
+				authentication: nil)
 
-		XCTAssertFalse(session.storeCredential())
-	}
-
-	func test_StoreCredential_ShouldReturnFalse_WhenPasswordIsNil() {
-		let session = LRSession(
-				server:LiferayServerContext.server,
-				username:"user",
-				password:nil)
-		
 		XCTAssertFalse(session.storeCredential())
 	}
 
 	func test_RemoveStoredCredential_ShouldRemoveExistingCredential() {
 		let session = LRSession(
 				server:LiferayServerContext.server,
-				username:"user",
-				password:"pass")
+				authentication: LRBasicAuthentication(username: "user", password: "pass"))
 
 		session.storeCredential()
 
