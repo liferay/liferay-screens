@@ -32,7 +32,6 @@
 
 	<style name="material_button" parent="android:Widget.Material.Light.Button">
 		<item name="android:textColor">@android:color/white</item>
-		<item name="android:elevation">8dp</item>
 		<item name="android:background">@drawable/material_ripple</item>
 	</style>
 
