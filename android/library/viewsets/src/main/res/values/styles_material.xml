@@ -67,6 +67,8 @@
 		<item name="android:layout_height">48dp</item>
 		<item name="android:layout_marginBottom">8dp</item>
 		<item name="android:orientation">horizontal</item>
+		<item name="android:paddingLeft">10dp</item>
+		<item name="android:paddingRight">10dp</item>
 	</style>
 
 	<style name="material_icon">
