@@ -41,11 +41,10 @@
 	</LinearLayout>
 
 
-	<LinearLayout
+	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="32dp"
-		android:orientation="horizontal">
+		android:layout_marginTop="32dp">
 
 		<Button
 			android:id="@+id/login_button"
@@ -57,10 +56,10 @@
 			android:id="@+id/progress_bar"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
-			android:theme="@style/white_theme"
 			android:layout_gravity="center_vertical|left"
+			android:theme="@style/white_theme"
 			android:visibility="invisible"
 			liferay:actionViewId="@id/login_button"/>
 
-	</LinearLayout>
+	</FrameLayout>
 </com.liferay.mobile.screens.viewsets.material.auth.login.LoginMaterialView>
