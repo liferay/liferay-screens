@@ -95,11 +95,11 @@ extension BaseScreenlet {
 		internal func toProgressModeHUD() -> MBProgressHUDMode {
 			switch self {
 				case IndeterminateSpinner:
-					return MBProgressHUDModeIndeterminate
+					return .Indeterminate
 				case DeterminateSpinner:
-					return MBProgressHUDModeDeterminate
+					return .Determinate
 				case NoSpinner:
-					return MBProgressHUDModeText
+					return .Text
 			}
 		}
 
