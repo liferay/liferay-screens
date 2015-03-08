@@ -15,22 +15,32 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 /**
  * @author Javier Gamarra
  */
-public class AssetListActivity extends ThemeActivity {
+public class ThemeActivity extends Activity {
+
+	protected Integer currentTheme;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void onCreate(Bundle state) {
+		super.onCreate(state);
+		currentTheme = getIntent().getIntExtra("theme", DefaultTheme.DEFAULT_THEME);
+		setTheme(currentTheme);
+	}
 
-		setContentView(R.layout.asset_list);
+	protected Intent getIntentWithTheme(Class destinationClass) {
+		Intent intent = new Intent(this, destinationClass);
+		intent.putExtra("theme", currentTheme);
+		return intent;
+	}
 
-		findViewById(R.id.asset_list_default).setVisibility(isDefaultTheme() ? View.VISIBLE : View.GONE);
-		findViewById(R.id.asset_list_material).setVisibility(isDefaultTheme() ? View.GONE : View
-				.VISIBLE);
+	protected boolean isDefaultTheme() {
+		return currentTheme == R.style.default_theme;
 	}
 }

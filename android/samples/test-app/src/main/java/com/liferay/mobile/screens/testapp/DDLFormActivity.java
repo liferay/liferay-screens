@@ -21,19 +21,16 @@ import android.view.View;
 /**
  * @author Javier Gamarra
  */
-public class DDLFormActivity extends Activity {
+public class DDLFormActivity extends ThemeActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		boolean defaultTheme = getIntent().getBooleanExtra("defaultTheme", true);
-		setTheme(defaultTheme ? R.style.default_theme : R.style.material_theme);
-
 		setContentView(R.layout.ddl_form);
 
-		findViewById(R.id.ddl_form_default).setVisibility(defaultTheme ? View.VISIBLE : View.GONE);
-		findViewById(R.id.ddl_form_material).setVisibility(defaultTheme ? View.GONE : View
+		findViewById(R.id.ddl_form_default).setVisibility(isDefaultTheme() ? View.VISIBLE : View.GONE);
+		findViewById(R.id.ddl_form_material).setVisibility(isDefaultTheme() ? View.GONE : View
 				.VISIBLE);
 
 	}

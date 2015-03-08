@@ -21,19 +21,16 @@ import android.view.View;
 /**
  * @author Javier Gamarra
  */
-public class LoginActivity extends Activity {
+public class LoginActivity extends ThemeActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		boolean defaultTheme = getIntent().getBooleanExtra("defaultTheme", true);
-		setTheme(defaultTheme ? R.style.default_theme : R.style.material_theme);
-
 		setContentView(R.layout.login);
 
-		findViewById(R.id.login_screenlet_default).setVisibility(defaultTheme ? View.VISIBLE : View.GONE);
-		findViewById(R.id.login_screenlet_material).setVisibility(defaultTheme ? View.GONE : View
+		findViewById(R.id.login_screenlet_default).setVisibility(isDefaultTheme() ? View.VISIBLE : View.GONE);
+		findViewById(R.id.login_screenlet_material).setVisibility(isDefaultTheme() ? View.GONE : View
 				.VISIBLE);
 	}
 

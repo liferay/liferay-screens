@@ -20,14 +20,11 @@ import android.os.Bundle;
 /**
  * @author Javier Gamarra
  */
-public class WebViewActivity extends Activity {
+public class WebViewActivity extends ThemeActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		boolean defaultTheme = getIntent().getBooleanExtra("defaultTheme", true);
-		setTheme(defaultTheme ? R.style.default_theme : R.style.material_theme);
 
 		setContentView(R.layout.web_view);
 

@@ -1,26 +1,19 @@
 package com.liferay.mobile.screens.testapp;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 /**
  * @author Silvio Santos
  */
-public class MainActivity extends Activity
+public class MainActivity extends ThemeActivity
 		implements View.OnClickListener {
-
-	private Integer currentTheme;
 
 	@Override
 	protected void onCreate(Bundle state) {
 		super.onCreate(state);
-		currentTheme = getIntent().getIntExtra("theme", DefaultTheme.DEFAULT_THEME);
-		setTheme(currentTheme);
 		setContentView(R.layout.activity_main);
 
 		findViewById(R.id.login).setOnClickListener(this);
@@ -38,47 +31,36 @@ public class MainActivity extends Activity
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.ddl_form:
-				DefaultAnimation.startActivityWithAnimation(this, getIntent(DDLFormActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(DDLFormActivity.class));
 				break;
 			case R.id.ddl_list:
-				DefaultAnimation.startActivityWithAnimation(this, getIntent(DDLListActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(DDLListActivity.class));
 				break;
 			case R.id.asset_list:
-				DefaultAnimation.startActivityWithAnimation(this, getIntent(AssetListActivity
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(AssetListActivity
 						.class));
 				break;
 			case R.id.sign_up:
-				DefaultAnimation.startActivityWithAnimation(this, getIntent(SignUpActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SignUpActivity.class));
 				break;
 			case R.id.forgot_password:
 				DefaultAnimation.startActivityWithAnimation(this,
-						getIntent(ForgotPasswordActivity.class));
+						getIntentWithTheme(ForgotPasswordActivity.class));
 				break;
 			case R.id.user_portrait:
-				DefaultAnimation.startActivityWithAnimation(this, getIntent(UserPortraitActivity
-						.class));
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(UserPortraitActivity.class));
 				break;
 			case R.id.web_view:
-				DefaultAnimation.startActivityWithAnimation(this, getIntent(WebViewActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebViewActivity.class));
 				break;
 			case R.id.change_theme:
-				Integer theme = currentTheme == R.style.default_theme ? R.style.material_theme
-						: R.style.default_theme;
 				finish();
-				Intent intent = new Intent(this, MainActivity.class);
-				intent.putExtra("theme", theme);
-				startActivity(intent);
+				currentTheme = isDefaultTheme() ? R.style.material_theme : R.style.default_theme;
+				startActivity(getIntentWithTheme(MainActivity.class));
 				break;
 			default:
-				DefaultAnimation.startActivityWithAnimation(this, getIntent(LoginActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));
 		}
 	}
-
-	private Intent getIntent(Class destinationClass) {
-		Intent intent = new Intent(this, destinationClass);
-		intent.putExtra("defaultTheme", currentTheme == R.style.default_theme);
-		return intent;
-	}
-
 
 }
