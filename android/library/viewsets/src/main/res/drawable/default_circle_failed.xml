@@ -6,6 +6,7 @@
 		android:width="2dip"
 		android:color="@color/liferay_pure_red"/>
 	<solid android:color="@color/liferay_clear_red"/>
-	<size android:width="31dp"
-		  android:height="31dp"/>
+	<size
+		android:width="31dp"
+		android:height="31dp"/>
 </shape>

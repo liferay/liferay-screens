@@ -14,17 +14,13 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form;
 
-import android.animation.Animator;
 import android.content.Context;
 
-import android.os.Build;
 import android.util.AttributeSet;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;

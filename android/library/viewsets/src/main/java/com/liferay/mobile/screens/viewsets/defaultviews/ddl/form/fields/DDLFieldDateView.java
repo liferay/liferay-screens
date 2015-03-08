@@ -15,15 +15,10 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 
 import android.app.DatePickerDialog;
-
 import android.content.Context;
-
 import android.text.InputType;
-
 import android.util.AttributeSet;
-
 import android.view.View;
-
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -114,10 +109,6 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		//not doing anything at the moment, because field is being set
 		//using the DatePickerDialog
 	}
-
-	private static final String _STATE_DIALOG = "dialog";
-
-	private static final String _STATE_SUPER = "super";
 
 	private DatePickerDialog _pickerDialog;
 
