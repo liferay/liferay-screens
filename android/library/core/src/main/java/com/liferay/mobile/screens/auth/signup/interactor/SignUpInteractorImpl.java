@@ -103,7 +103,7 @@ public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
 		boolean autoScreenName = screenName.isEmpty();
 		long facebookId = 0;
 		String openId = "";
-		int preffixId = 0;
+		int prefixId = 0;
 		int suffixId = 0;
 		boolean male = true;
 		int birthdayMonth = 1;
@@ -120,7 +120,7 @@ public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
 		service.addUser(
 			companyId, autoPassword, password, password, autoScreenName,
 			screenName, emailAddress, facebookId, openId, locale.toString(),
-			firstName, middleName, lastName, preffixId, suffixId, male,
+			firstName, middleName, lastName, prefixId, suffixId, male,
 			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
 			organizationIds, roleIds, userGroupIds, sendEmail, null);
 	}

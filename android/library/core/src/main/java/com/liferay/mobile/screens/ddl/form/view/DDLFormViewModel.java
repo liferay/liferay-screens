@@ -68,7 +68,7 @@ public interface DDLFormViewModel extends BaseViewModel {
 
 	/**
 	 * Sets the default layout corresponding to fieldName's editor
-	 * You should use this method if you want to use the default/standard layour
+	 * You should use this method if you want to use the default/standard layout
 	 *
 	 * @param fieldName the name of the field to change its layout
 	 */
