@@ -276,6 +276,7 @@ public class DDLFormScreenlet
 
 	public void setStructureId(long value) {
 		_structureId = value;
+		_record.setStructureId(value);
 	}
 
 	public long getRecordSetId() {
@@ -284,6 +285,7 @@ public class DDLFormScreenlet
 
 	public void setRecordSetId(long value) {
 		_recordSetId = value;
+		_record.setRecordSetId(value);
 	}
 
 	public long getRecordId() {
@@ -292,6 +294,7 @@ public class DDLFormScreenlet
 
 	public void setRecordId(long value) {
 		_recordId = value;
+		_record.setRecordId(value);
 	}
 
 	public long getUserId() {

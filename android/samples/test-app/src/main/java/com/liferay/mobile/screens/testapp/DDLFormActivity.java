@@ -43,7 +43,11 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 		_screenlet.setVisibility(View.VISIBLE);
 		_screenlet.setListener(this);
 
+		initScreenletFromIntent(getIntent());
+
 		hideInactiveScreenlet(R.id.ddl_form_default, R.id.ddl_form_material);
+
+		_screenlet.load();
 
 	}
 
@@ -102,6 +106,14 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	@Override
 	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
 		error("Document could not be uploaded", e);
+	}
+
+	private void initScreenletFromIntent(Intent intent) {
+		if (intent.hasExtra("recordId")) {
+			_screenlet.setRecordId(intent.getIntExtra("recordId", 0));
+			_screenlet.setRecordSetId(intent.getIntExtra("recordSetId", 0));
+			_screenlet.setStructureId(intent.getIntExtra("structureId", 0));
+		}
 	}
 
 	private DDLFormScreenlet _screenlet;
