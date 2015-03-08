@@ -83,7 +83,6 @@ public class ForgotPasswordDefaultView extends LinearLayout
 		String msg = getResources().getString(operationMsg) + " " +
 			getResources().getString(R.string.check_your_inbox);
 
-		DefaultCrouton.info(getContext(), msg);
 		LiferayLogger.i(msg);
 	}
 
