@@ -19,7 +19,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.text.InputType;
 import android.util.AttributeSet;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -84,10 +83,9 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 	protected void createAlertDialog() {
 		List<String> labels = getOptionsLabels();
 
-		Context context = new ContextThemeWrapper(getContext(), R.style.default_dialog_button);
-		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-		LayoutInflater factory = LayoutInflater.from(context);
+		LayoutInflater factory = LayoutInflater.from(getContext());
 		final View customDialogView = factory.inflate(
 				R.layout.ddlfield_select_dialog_default, null);
 		TextView title = (TextView) customDialogView.findViewById(R.id.dialog_title);
