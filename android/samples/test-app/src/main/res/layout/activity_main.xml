@@ -5,7 +5,7 @@
 
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:layout_height="wrap_content"
 		android:orientation="vertical">
 
 		<Button
@@ -13,64 +13,63 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="10dp"
-			android:elevation="4dp"
-			android:text="Login"/>
+			android:text="@string/login"/>
 
 		<Button
 			android:id="@+id/sign_up"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="10dp"
-			android:text="Sign Up"/>
+			android:text="@string/signup"/>
 
 		<Button
 			android:id="@+id/forgot_password"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="10dp"
-			android:text="Forgot Password"/>
+			android:text="@string/forgot_password"/>
 
 		<Button
 			android:id="@+id/user_portrait"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="10dp"
-			android:text="User Portrait"/>
+			android:text="@string/user_portrait"/>
 
 		<Button
 			android:id="@+id/web_view"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="10dp"
-			android:text="Web View"/>
+			android:text="@string/webview"/>
 
 		<Button
 			android:id="@+id/asset_list"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="10dp"
-			android:text="Asset List"/>
+			android:text="@string/asset_list"/>
 
 		<Button
 			android:id="@+id/ddl_form"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="10dp"
-			android:text="DDL Form"/>
+			android:text="@string/ddl_form"/>
 
 		<Button
 			android:id="@+id/ddl_list"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="10dp"
-			android:text="DDL List"/>
+			android:text="@string/ddl_list"/>
 
 		<Button
 			android:id="@+id/change_theme"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="10dp"
-			android:text="Change Theme"/>
+			android:text="@string/change_theme"/>
 
 	</LinearLayout>
 </ScrollView>

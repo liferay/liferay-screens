@@ -11,6 +11,6 @@
 		style="@style/default_checkbox"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="switch"/>
+		/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldCheckboxView>

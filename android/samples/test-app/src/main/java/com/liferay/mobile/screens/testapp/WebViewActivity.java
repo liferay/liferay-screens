@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.testapp;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 
 /**
  * @author Javier Gamarra

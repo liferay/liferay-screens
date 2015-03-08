@@ -15,8 +15,6 @@
 package com.liferay.mobile.screens.viewsets.material.ddl.form.fields;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 

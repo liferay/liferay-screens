@@ -36,8 +36,6 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormDefaultV
 import java.io.File;
 import java.io.IOException;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-
 /**
  * @author Javier Gamarra
  */

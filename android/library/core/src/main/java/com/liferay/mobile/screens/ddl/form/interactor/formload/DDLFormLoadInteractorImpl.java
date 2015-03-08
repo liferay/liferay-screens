@@ -22,7 +22,6 @@ import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Record;
 
 import org.json.JSONException;
-import org.xml.sax.SAXException;
 
 /**
  * @author Jose Manuel Navarro

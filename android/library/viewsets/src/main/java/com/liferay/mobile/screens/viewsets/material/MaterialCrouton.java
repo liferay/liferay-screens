@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.viewsets.material;
 
 import android.app.Activity;
 import android.content.Context;
-import android.view.ContextThemeWrapper;
 
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
