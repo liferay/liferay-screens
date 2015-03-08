@@ -84,7 +84,7 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 	protected void createAlertDialog() {
 		List<String> labels = getOptionsLabels();
 
-		Context context = new ContextThemeWrapper(getContext(), R.style.custom_dialog_theme);
+		Context context = new ContextThemeWrapper(getContext(), R.style.default_dialog_button);
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
 		LayoutInflater factory = LayoutInflater.from(context);
