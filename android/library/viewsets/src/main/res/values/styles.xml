@@ -15,6 +15,10 @@
 		<item name="colorAccent">@android:color/white</item>
 	</style>
 
+	<style name="default_date_picker" parent="Theme.AppCompat.Light">
+		<item name="colorAccent">@color/liferay_primary_blue</item>
+	</style>
+
 	<style name="default_screenlet">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>

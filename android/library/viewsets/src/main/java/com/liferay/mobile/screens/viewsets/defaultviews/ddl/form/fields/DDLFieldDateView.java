@@ -65,7 +65,7 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		int day = calendar.get(Calendar.DAY_OF_MONTH);
 
 		_pickerDialog = new DatePickerDialog(
-			getContext(), R.attr.theme, this, year, month, day);
+				getContext(), getDatePickerStyle(), this, year, month, day);
 
 		_pickerDialog.show();
 	}
@@ -80,6 +80,10 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		getField().setCurrentValue(calendar.getTime());
 
 		refresh();
+	}
+
+	protected int getDatePickerStyle() {
+		return R.style.default_date_picker;
 	}
 
 	@Override
