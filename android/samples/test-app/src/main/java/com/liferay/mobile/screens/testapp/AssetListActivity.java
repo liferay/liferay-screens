@@ -14,14 +14,20 @@
 
 package com.liferay.mobile.screens.testapp;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.assetlist.AssetListScreenlet;
+import com.liferay.mobile.screens.base.list.BaseListListener;
+import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+
+import java.util.List;
 
 /**
  * @author Javier Gamarra
  */
-public class AssetListActivity extends ThemeActivity {
+public class AssetListActivity extends ThemeActivity implements BaseListListener<AssetEntry> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +35,27 @@ public class AssetListActivity extends ThemeActivity {
 
 		setContentView(R.layout.asset_list);
 
-		findViewById(R.id.asset_list_default).setVisibility(isDefaultTheme() ? View.VISIBLE : View.GONE);
-		findViewById(R.id.asset_list_material).setVisibility(isDefaultTheme() ? View.GONE : View
-				.VISIBLE);
+		AssetListScreenlet screenlet = (AssetListScreenlet) getActiveScreenlet(R.id.asset_list_default,
+				R.id.asset_list_material);
+
+		screenlet.setVisibility(View.VISIBLE);
+		screenlet.setListener(this);
+
+		hideInactiveScreenlet(R.id.asset_list_default, R.id.asset_list_material);
+	}
+
+	@Override
+	public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
+
+	}
+
+	@Override
+	public void onListPageReceived(BaseListScreenlet source, int page, List<AssetEntry> entries, int rowCount) {
+
+	}
+
+	@Override
+	public void onListItemSelected(AssetEntry element) {
+
 	}
 }

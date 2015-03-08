@@ -14,14 +14,17 @@
 
 package com.liferay.mobile.screens.testapp;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.liferay.mobile.screens.auth.login.LoginListener;
+import com.liferay.mobile.screens.auth.login.LoginScreenlet;
+import com.liferay.mobile.screens.context.User;
 
 /**
  * @author Javier Gamarra
  */
-public class LoginActivity extends ThemeActivity {
+public class LoginActivity extends ThemeActivity implements LoginListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +32,22 @@ public class LoginActivity extends ThemeActivity {
 
 		setContentView(R.layout.login);
 
-		findViewById(R.id.login_screenlet_default).setVisibility(isDefaultTheme() ? View.VISIBLE : View.GONE);
-		findViewById(R.id.login_screenlet_material).setVisibility(isDefaultTheme() ? View.GONE : View
-				.VISIBLE);
+		LoginScreenlet loginScreenlet = (LoginScreenlet) getActiveScreenlet(R.id.login_default, R.id.login_material);
+
+		loginScreenlet.setVisibility(View.VISIBLE);
+		loginScreenlet.setListener(this);
+
+		hideInactiveScreenlet(R.id.login_default, R.id.login_material);
 	}
 
 
+	@Override
+	public void onLoginSuccess(User user) {
+
+	}
+
+	@Override
+	public void onLoginFailure(Exception e) {
+
+	}
 }

@@ -14,14 +14,17 @@
 
 package com.liferay.mobile.screens.testapp;
 
-import android.app.Activity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+
+import com.liferay.mobile.screens.userportrait.UserPortraitListener;
+import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 
 /**
  * @author Javier Gamarra
  */
-public class UserPortraitActivity extends ThemeActivity {
+public class UserPortraitActivity extends ThemeActivity implements UserPortraitListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +32,22 @@ public class UserPortraitActivity extends ThemeActivity {
 
 		setContentView(R.layout.user_portrait);
 
-		findViewById(R.id.user_portrait_default).setVisibility(isDefaultTheme() ? View.VISIBLE : View.GONE);
-		findViewById(R.id.user_portrait_material).setVisibility(isDefaultTheme() ? View.GONE : View
-				.VISIBLE);
+		UserPortraitScreenlet screenlet = (UserPortraitScreenlet) getActiveScreenlet(R.id.user_portrait_default,
+				R.id.user_portrait_material);
+
+		screenlet.setVisibility(View.VISIBLE);
+		screenlet.setListener(this);
+
+		hideInactiveScreenlet(R.id.user_portrait_default, R.id.user_portrait_material);
+	}
+
+	@Override
+	public Bitmap onUserPortraitReceived(UserPortraitScreenlet source, Bitmap bitmap) {
+		return null;
+	}
+
+	@Override
+	public void onUserPortraitFailure(UserPortraitScreenlet source, Exception e) {
+
 	}
 }

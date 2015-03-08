@@ -14,14 +14,20 @@
 
 package com.liferay.mobile.screens.testapp;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.liferay.mobile.screens.ddl.form.DDLFormListener;
+import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
+import com.liferay.mobile.screens.ddl.model.DocumentField;
+import com.liferay.mobile.screens.ddl.model.Record;
+
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  */
-public class DDLFormActivity extends ThemeActivity {
+public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +35,64 @@ public class DDLFormActivity extends ThemeActivity {
 
 		setContentView(R.layout.ddl_form);
 
-		findViewById(R.id.ddl_form_default).setVisibility(isDefaultTheme() ? View.VISIBLE : View.GONE);
-		findViewById(R.id.ddl_form_material).setVisibility(isDefaultTheme() ? View.GONE : View
-				.VISIBLE);
+		DDLFormScreenlet screenlet = (DDLFormScreenlet) getActiveScreenlet(R.id.ddl_form_default,
+				R.id.ddl_form_material);
+
+		screenlet.setVisibility(View.VISIBLE);
+		screenlet.setListener(this);
+
+		hideInactiveScreenlet(R.id.ddl_form_default, R.id.ddl_form_material);
 
 	}
 
 
+	@Override
+	public void onDDLFormLoaded(Record record) {
+
+	}
+
+	@Override
+	public void onDDLFormRecordLoaded(Record record) {
+
+	}
+
+	@Override
+	public void onDDLFormRecordAdded(Record record) {
+
+	}
+
+	@Override
+	public void onDDLFormRecordUpdated(Record record) {
+
+	}
+
+	@Override
+	public void onDDLFormLoadFailed(Exception e) {
+
+	}
+
+	@Override
+	public void onDDLFormRecordLoadFailed(Exception e) {
+
+	}
+
+	@Override
+	public void onDDLFormRecordAddFailed(Exception e) {
+
+	}
+
+	@Override
+	public void onDDLFormUpdateRecordFailed(Exception e) {
+
+	}
+
+	@Override
+	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
+
+	}
+
+	@Override
+	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
+
+	}
 }

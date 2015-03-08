@@ -17,13 +17,14 @@ package com.liferay.mobile.screens.testapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 /**
  * @author Javier Gamarra
  */
-public class ThemeActivity extends Activity {
+public abstract class ThemeActivity extends Activity {
 
 	protected Integer currentTheme;
 
@@ -38,6 +39,15 @@ public class ThemeActivity extends Activity {
 		Intent intent = new Intent(this, destinationClass);
 		intent.putExtra("theme", currentTheme);
 		return intent;
+	}
+
+	protected View getActiveScreenlet(int defaultId, int materialId) {
+		return isDefaultTheme() ? findViewById(defaultId) : findViewById(materialId);
+	}
+
+	protected void hideInactiveScreenlet(int defaultId, int materialId) {
+		View view = isDefaultTheme() ? findViewById(materialId) : findViewById(defaultId);
+		view.setVisibility(View.GONE);
 	}
 
 	protected boolean isDefaultTheme() {

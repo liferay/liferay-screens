@@ -14,14 +14,16 @@
 
 package com.liferay.mobile.screens.testapp;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
+import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 
 /**
  * @author Javier Gamarra
  */
-public class ForgotPasswordActivity extends ThemeActivity {
+public class ForgotPasswordActivity extends ThemeActivity implements ForgotPasswordListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +31,22 @@ public class ForgotPasswordActivity extends ThemeActivity {
 
 		setContentView(R.layout.forgot_password);
 
-		findViewById(R.id.forgot_password_default).setVisibility(isDefaultTheme() ? View.VISIBLE : View.GONE);
-		findViewById(R.id.forgot_password_material).setVisibility(isDefaultTheme() ? View.GONE : View
-				.VISIBLE);
+		ForgotPasswordScreenlet screenlet = (ForgotPasswordScreenlet) getActiveScreenlet(R.id.forgot_password_default,
+				R.id.forgot_password_material);
+
+		screenlet.setListener(this);
+		screenlet.setVisibility(View.VISIBLE);
+
+		hideInactiveScreenlet(R.id.forgot_password_default, R.id.forgot_password_material);
+	}
+
+	@Override
+	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
+
+	}
+
+	@Override
+	public void onForgotPasswordRequestFailure(Exception e) {
+
 	}
 }

@@ -14,14 +14,17 @@
 
 package com.liferay.mobile.screens.testapp;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.liferay.mobile.screens.auth.signup.SignUpListener;
+import com.liferay.mobile.screens.auth.signup.SignUpScreenlet;
+import com.liferay.mobile.screens.context.User;
 
 /**
  * @author Javier Gamarra
  */
-public class SignUpActivity extends ThemeActivity {
+public class SignUpActivity extends ThemeActivity implements SignUpListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +32,21 @@ public class SignUpActivity extends ThemeActivity {
 
 		setContentView(R.layout.signup);
 
-		findViewById(R.id.signup_default).setVisibility(isDefaultTheme() ? View.VISIBLE : View.GONE);
-		findViewById(R.id.signup_material).setVisibility(isDefaultTheme() ? View.GONE : View
-				.VISIBLE);
+		SignUpScreenlet screenlet = (SignUpScreenlet) getActiveScreenlet(R.id.signup_default, R.id.signup_material);
+
+		screenlet.setVisibility(View.VISIBLE);
+		screenlet.setListener(this);
+
+		hideInactiveScreenlet(R.id.signup_default, R.id.signup_material);
+	}
+
+	@Override
+	public void onSignUpFailure(Exception e) {
+
+	}
+
+	@Override
+	public void onSignUpSuccess(User user) {
+
 	}
 }

@@ -14,14 +14,20 @@
 
 package com.liferay.mobile.screens.testapp;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.liferay.mobile.screens.base.list.BaseListListener;
+import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.ddl.list.DDLEntry;
+import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
+
+import java.util.List;
 
 /**
  * @author Javier Gamarra
  */
-public class DDLListActivity extends ThemeActivity {
+public class DDLListActivity extends ThemeActivity implements BaseListListener<DDLEntry> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +35,26 @@ public class DDLListActivity extends ThemeActivity {
 
 		setContentView(R.layout.ddl_list);
 
-		findViewById(R.id.ddl_list_default).setVisibility(isDefaultTheme() ? View.VISIBLE : View.GONE);
-		findViewById(R.id.ddl_list_material).setVisibility(isDefaultTheme() ? View.GONE : View
-				.VISIBLE);
+		DDLListScreenlet screenlet = (DDLListScreenlet) getActiveScreenlet(R.id.ddl_list_default, R.id.ddl_list_material);
+
+		screenlet.setVisibility(View.VISIBLE);
+		screenlet.setListener(this);
+
+		hideInactiveScreenlet(R.id.ddl_list_default, R.id.ddl_list_material);
+	}
+
+	@Override
+	public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
+
+	}
+
+	@Override
+	public void onListPageReceived(BaseListScreenlet source, int page, List<DDLEntry> entries, int rowCount) {
+
+	}
+
+	@Override
+	public void onListItemSelected(DDLEntry element) {
+
 	}
 }
