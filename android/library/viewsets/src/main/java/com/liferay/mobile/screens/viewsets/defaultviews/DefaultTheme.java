@@ -18,6 +18,7 @@ import android.content.Context;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 
 /**
@@ -29,6 +30,7 @@ public class DefaultTheme {
 		TypedValue outValue = new TypedValue();
 		context.getTheme().resolveAttribute(ATTRIBUTE_TO_SEARCH_FOR, outValue, true);
 		if (outValue.coerceToString() == null) {
+			LiferayLogger.i("Applying default theme, colorPrimary not defined");
 			ContextThemeWrapper w = new ContextThemeWrapper(context, DefaultTheme.DEFAULT_THEME);
 			context.getTheme().setTo(w.getTheme());
 		}
