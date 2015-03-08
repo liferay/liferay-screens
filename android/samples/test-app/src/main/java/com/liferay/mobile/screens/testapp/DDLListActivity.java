@@ -45,16 +45,16 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<D
 
 	@Override
 	public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
-
+		error("Page request failed", e);
 	}
 
 	@Override
 	public void onListPageReceived(BaseListScreenlet source, int page, List<DDLEntry> entries, int rowCount) {
-
+		info("Page " + page + " received!");
 	}
 
 	@Override
 	public void onListItemSelected(DDLEntry element) {
-
+		info("Item selected: " + element);
 	}
 }

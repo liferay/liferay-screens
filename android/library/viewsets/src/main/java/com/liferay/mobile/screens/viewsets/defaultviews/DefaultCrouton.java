@@ -28,11 +28,13 @@ public class DefaultCrouton {
 			//TODO create validation exception
 			error = e.getMessage();
 		}
-		Crouton.showText((android.app.Activity) context, error, DefaultCrouton.ALERT);
+		Activity activity = getContextFromActivity(context);
+		Crouton.showText(activity, error, DefaultCrouton.ALERT);
 	}
 
 	public static void info(Context context, String message) {
-		Crouton.showText((android.app.Activity) context, message, DefaultCrouton.INFO);
+		Activity activity = getContextFromActivity(context);
+		Crouton.showText(activity, message, DefaultCrouton.INFO);
 	}
 
 	protected static Activity getContextFromActivity(Context context) {

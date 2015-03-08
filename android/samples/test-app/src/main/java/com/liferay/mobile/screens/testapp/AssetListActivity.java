@@ -21,6 +21,7 @@ import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.assetlist.AssetListScreenlet;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.ddl.list.DDLEntry;
 
 import java.util.List;
 
@@ -46,16 +47,16 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 
 	@Override
 	public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
-
+		error("Page request failed", e);
 	}
 
 	@Override
 	public void onListPageReceived(BaseListScreenlet source, int page, List<AssetEntry> entries, int rowCount) {
-
+		info("Page " + page + " received!");
 	}
 
 	@Override
 	public void onListItemSelected(AssetEntry element) {
-
+		info("Item selected: " + element);
 	}
 }

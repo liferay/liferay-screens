@@ -19,7 +19,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
+import com.liferay.mobile.screens.viewsets.material.MaterialCrouton;
+
+import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 /**
  * @author Javier Gamarra
@@ -33,6 +37,22 @@ public abstract class ThemeActivity extends Activity {
 		super.onCreate(state);
 		currentTheme = getIntent().getIntExtra("theme", DefaultTheme.DEFAULT_THEME);
 		setTheme(currentTheme);
+	}
+
+	protected void info(String message) {
+		if (isDefaultTheme()) {
+			DefaultCrouton.info(this, message);
+		} else {
+			MaterialCrouton.info(this, message);
+		}
+	}
+
+	protected void error(String message, Exception e) {
+		if (isDefaultTheme()) {
+			DefaultCrouton.error(this, message, e);
+		} else {
+			MaterialCrouton.error(this, message, e);
+		}
 	}
 
 	protected Intent getIntentWithTheme(Class destinationClass) {
@@ -52,5 +72,11 @@ public abstract class ThemeActivity extends Activity {
 
 	protected boolean isDefaultTheme() {
 		return currentTheme == R.style.default_theme;
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		Crouton.clearCroutonsForActivity(this);
 	}
 }

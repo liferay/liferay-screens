@@ -16,10 +16,13 @@ package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
 
+import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
+import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
+
 /**
  * @author Javier Gamarra
  */
-public class WebViewActivity extends ThemeActivity {
+public class WebViewActivity extends ThemeActivity implements WebContentDisplayListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,5 +30,19 @@ public class WebViewActivity extends ThemeActivity {
 
 		setContentView(R.layout.web_view);
 
+		WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) findViewById(R.id.web_view);
+		screenlet.setListener(this);
+
+	}
+
+	@Override
+	public String onWebContentReceived(WebContentDisplayScreenlet source, String html) {
+		info("Web Content received!");
+		return null;
+	}
+
+	@Override
+	public void onWebContentFailure(WebContentDisplayScreenlet source, Exception e) {
+		error("Could not receive web content information", e);
 	}
 }

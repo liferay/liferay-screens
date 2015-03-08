@@ -26,7 +26,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 /**
  * @author Javier Gamarra
  */
-public class MaterialCrouton extends DefaultCrouton{
+public class MaterialCrouton extends DefaultCrouton {
 
 	public static final Style INFO;
 	public static final Style ALERT;

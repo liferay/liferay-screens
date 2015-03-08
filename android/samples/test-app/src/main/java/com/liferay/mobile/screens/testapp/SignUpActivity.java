@@ -42,11 +42,11 @@ public class SignUpActivity extends ThemeActivity implements SignUpListener {
 
 	@Override
 	public void onSignUpFailure(Exception e) {
-
+		error("Could not signup", e);
 	}
 
 	@Override
 	public void onSignUpSuccess(User user) {
-
+		info("Signup successful, userId: " + user.getId());
 	}
 }

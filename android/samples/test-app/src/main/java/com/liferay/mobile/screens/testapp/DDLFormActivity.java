@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.testapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -48,51 +49,51 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
 	@Override
 	public void onDDLFormLoaded(Record record) {
-
+		info("Form loaded!");
 	}
 
 	@Override
 	public void onDDLFormRecordLoaded(Record record) {
-
+		info("Record loaded!");
 	}
 
 	@Override
 	public void onDDLFormRecordAdded(Record record) {
-
+		info("Record added!");
 	}
 
 	@Override
 	public void onDDLFormRecordUpdated(Record record) {
-
+		info("Record updated!");
 	}
 
 	@Override
 	public void onDDLFormLoadFailed(Exception e) {
-
+		error("Form load failed", e);
 	}
 
 	@Override
 	public void onDDLFormRecordLoadFailed(Exception e) {
-
+		error("Record load failed", e);
 	}
 
 	@Override
 	public void onDDLFormRecordAddFailed(Exception e) {
-
+		error("Add failed", e);
 	}
 
 	@Override
 	public void onDDLFormUpdateRecordFailed(Exception e) {
-
+		error("Update failed", e);
 	}
 
 	@Override
 	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
-
+		info("Document uploaded!");
 	}
 
 	@Override
 	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
-
+		error("Document could not be uploaded", e);
 	}
 }
