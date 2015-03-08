@@ -20,12 +20,15 @@
 		<EditText
 			android:id="@+id/text"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
 			android:clickable="true"
 			android:drawableRight="@drawable/default_blue"
 			android:editable="false"
 			android:focusable="false"
-			android:inputType="none"/>
+			android:inputType="none"
+			android:paddingBottom="5dp"
+			android:paddingRight="5dp"
+			android:paddingTop="5dp"/>
 
 		<ProgressBar
 			android:id="@+id/fileProgress"

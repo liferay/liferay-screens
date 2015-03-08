@@ -8,21 +8,21 @@
 		android:id="@+id/first_name"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="10dp"
+		android:layout_marginBottom="15dp"
 		android:hint="@string/first_name"/>
 
 	<EditText
 		android:id="@+id/last_name"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="10dp"
+		android:layout_marginBottom="15dp"
 		android:hint="@string/last_name"/>
 
 	<EditText
 		android:id="@+id/email_address"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="10dp"
+		android:layout_marginBottom="15dp"
 		android:hint="@string/email_address"
 		android:inputType="textEmailAddress"/>
 
@@ -30,13 +30,14 @@
 		android:id="@+id/password"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="10dp"
+		android:layout_marginBottom="15dp"
 		android:hint="@string/password"
 		android:inputType="textPassword"/>
 
 	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:layout_marginTop="30dp">
 
 		<Button
 			android:id="@+id/sign_up_button"

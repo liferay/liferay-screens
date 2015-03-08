@@ -19,6 +19,7 @@
 		android:drawableRight="@drawable/default_blue"
 		android:inputType="date"
 		android:paddingBottom="5dp"
+		android:paddingRight="5dp"
 		android:paddingTop="5dp"/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView>
