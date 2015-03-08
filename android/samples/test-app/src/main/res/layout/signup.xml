@@ -3,19 +3,18 @@
 			  xmlns:liferay="http://schemas.android.com/apk/res-auto"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
-			  android:background="@android:color/white"
 			  android:orientation="vertical">
 
 	<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
 		android:id="@+id/signup_default"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="match_parent"
 		liferay:layoutId="@layout/sign_up_default"/>
 
 	<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
 		android:id="@+id/signup_material"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="match_parent"
 		liferay:layoutId="@layout/sign_up_material"/>
 
 </LinearLayout>

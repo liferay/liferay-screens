@@ -9,14 +9,18 @@
 		<item name="android:textViewStyle">@style/default_text_view</item>
 		<item name="android:editTextStyle">@style/default_edit_text</item>
 		<item name="android:buttonStyle">@style/default_button</item>
+
+		<item name="android:background">@android:color/white</item>
 	</style>
 
 	<style name="white_theme" parent="Theme.AppCompat.Light">
 		<item name="colorAccent">@android:color/white</item>
+		<item name="android:background">@android:color/transparent</item>
 	</style>
 
 	<style name="default_date_picker" parent="Theme.AppCompat.Light">
-		<item name="colorAccent">@color/default_primary_blue</item>
+		<item name="colorAccent">@color/default_light_blue</item>
+		<item name="android:background">@android:color/transparent</item>
 	</style>
 
 	<style name="default_screenlet">
@@ -82,7 +86,9 @@
 		<item name="android:drawableRight">@drawable/default_arrow</item>
 	</style>
 
-	<style name="default_dialog_button" parent="default_text_view">
+	<style name="default_dialog_button" parent="base_default_dialog_button"/>
+
+	<style name="base_default_dialog_button" parent="default_text_view">
 		<item name="android:layout_weight">1</item>
 		<item name="android:gravity">center</item>
 		<item name="android:textColor">?attr/colorPrimary</item>

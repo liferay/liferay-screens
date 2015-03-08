@@ -3,20 +3,19 @@
 			  xmlns:liferay="http://schemas.android.com/apk/res-auto"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
-			  android:background="@android:color/white"
 			  android:orientation="vertical">
 
 	<com.liferay.mobile.screens.auth.login.LoginScreenlet
-		android:id="@+id/login_screenlet_default"
+		android:id="@+id/login_default"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="match_parent"
 		liferay:authMethod="email"
 		liferay:layoutId="@layout/login_default"/>
 
 	<com.liferay.mobile.screens.auth.login.LoginScreenlet
-		android:id="@+id/login_screenlet_material"
+		android:id="@+id/login_material"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="match_parent"
 		liferay:authMethod="email"
 		liferay:layoutId="@layout/login_material"/>
 
