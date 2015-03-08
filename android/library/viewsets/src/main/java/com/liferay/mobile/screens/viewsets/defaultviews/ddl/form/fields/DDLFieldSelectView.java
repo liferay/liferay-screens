@@ -102,7 +102,7 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 			};
 
 		builder.setCustomTitle(customDialogView);
-		builder.setItems(labels.toArray(new String[0]), selectOptionHandler);
+		builder.setItems(labels.toArray(new String[labels.size()]), selectOptionHandler);
 
 		_alertDialog = builder.create();
 	}

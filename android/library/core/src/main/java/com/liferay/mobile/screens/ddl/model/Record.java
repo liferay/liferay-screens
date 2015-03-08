@@ -173,7 +173,7 @@ public class Record implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
-		destination.writeParcelableArray(_fields.toArray(new Field[0]), flags);
+		destination.writeParcelableArray(_fields.toArray(new Field[_fields.size()]), flags);
 		destination.writeLong(_creatorUserId);
 		destination.writeLong(_structureId);
 		destination.writeLong(_recordSetId);

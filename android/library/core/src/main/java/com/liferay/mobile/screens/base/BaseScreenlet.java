@@ -191,7 +191,8 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		Bundle state = new Bundle();
 		state.putParcelable(_STATE_SUPER, superState);
 		state.putInt(_STATE_SCREENLET_ID, _screenletId);
-		state.putStringArray(_STATE_INTERACTORS, _interactors.keySet().toArray(new String[0]));
+		state.putStringArray(_STATE_INTERACTORS,
+				_interactors.keySet().toArray(new String[_interactors.keySet().size()]));
 
 		return state;
 	}
