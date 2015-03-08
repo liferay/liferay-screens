@@ -30,22 +30,29 @@ import org.json.JSONObject;
  */
 public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.ddl_form);
 
-		DDLFormScreenlet screenlet = (DDLFormScreenlet) getActiveScreenlet(R.id.ddl_form_default,
+		_screenlet = (DDLFormScreenlet) getActiveScreenlet(R.id.ddl_form_default,
 				R.id.ddl_form_material);
 
-		screenlet.setVisibility(View.VISIBLE);
-		screenlet.setListener(this);
+		_screenlet.setVisibility(View.VISIBLE);
+		_screenlet.setListener(this);
 
 		hideInactiveScreenlet(R.id.ddl_form_default, R.id.ddl_form_material);
 
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		_screenlet.startUploadByPosition(requestCode);
+	}
 
 	@Override
 	public void onDDLFormLoaded(Record record) {
@@ -96,4 +103,6 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
 		error("Document could not be uploaded", e);
 	}
+
+	private DDLFormScreenlet _screenlet;
 }
