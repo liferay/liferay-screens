@@ -7,6 +7,13 @@
 			  android:orientation="vertical">
 
 	<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
+		android:id="@+id/signup_default"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		liferay:layoutId="@layout/sign_up_default"/>
+
+	<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
+		android:id="@+id/signup_material"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		liferay:layoutId="@layout/sign_up_material"/>

@@ -31,5 +31,9 @@ public class SignUpActivity extends Activity {
 		setTheme(defaultTheme ? R.style.default_theme : R.style.material_theme);
 
 		setContentView(R.layout.signup);
+
+		findViewById(R.id.signup_default).setVisibility(defaultTheme ? View.VISIBLE : View.GONE);
+		findViewById(R.id.signup_material).setVisibility(defaultTheme ? View.GONE : View
+				.VISIBLE);
 	}
 }
