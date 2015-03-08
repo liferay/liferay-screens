@@ -133,7 +133,7 @@ public abstract class BaseListScreenletView<
 		_progressBar.setVisibility(View.GONE);
 		_recyclerView.setVisibility(View.VISIBLE);
 
-		A adapter = (A) getAdapter();
+		A adapter = getAdapter();
 		List<E> allEntries = createAllEntries(page, entries, rowCount, adapter);
 
 		adapter.setRowCount(rowCount);
@@ -174,7 +174,7 @@ public abstract class BaseListScreenletView<
 
 		List<E> entries = state.getParcelableArrayList(_STATE_ENTRIES);
 
-		A adapter = (A) getAdapter();
+		A adapter = getAdapter();
 		adapter.setRowCount(state.getInt(_STATE_ROW_COUNT));
 		adapter.setEntries(entries);
 		adapter.notifyDataSetChanged();
