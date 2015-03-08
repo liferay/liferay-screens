@@ -2,10 +2,10 @@
 <resources>
 
 	<style name="default_theme" parent="Theme.AppCompat.Light">
-		<item name="colorPrimary">@color/liferay_primary_blue</item>
-		<item name="colorAccent">@color/liferay_light_blue</item>
-		<item name="android:textColorPrimary">@color/liferay_dark_gray</item>
-		<item name="android:textColorSecondary">@color/liferay_light_gray</item>
+		<item name="colorPrimary">@color/default_primary_blue</item>
+		<item name="colorAccent">@color/default_light_blue</item>
+		<item name="android:textColorPrimary">@color/default_dark_gray</item>
+		<item name="android:textColorSecondary">@color/default_light_gray</item>
 		<item name="android:textViewStyle">@style/default_text_view</item>
 		<item name="android:editTextStyle">@style/default_edit_text</item>
 		<item name="android:buttonStyle">@style/default_button</item>
@@ -16,7 +16,7 @@
 	</style>
 
 	<style name="default_date_picker" parent="Theme.AppCompat.Light">
-		<item name="colorAccent">@color/liferay_primary_blue</item>
+		<item name="colorAccent">@color/default_primary_blue</item>
 	</style>
 
 	<style name="default_screenlet">
@@ -39,7 +39,7 @@
 		<item name="android:background">@drawable/default_edit_text_selector</item>
 		<item name="android:drawablePadding">@dimen/default_edit_text_drawable_padding</item>
 		<item name="android:singleLine">true</item>
-		<item name="android:textColorHint">@color/liferay_light_gray</item>
+		<item name="android:textColorHint">@color/default_light_gray</item>
 	</style>
 
 	<style name="default_text_view" parent="base_default_text_view"/>

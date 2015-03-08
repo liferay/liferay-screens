@@ -33,7 +33,7 @@ public class MaterialCrouton extends DefaultCrouton{
 
 	static {
 		INFO = new Style.Builder().setBackgroundColor(R.color.material_primary).build();
-		ALERT = new Style.Builder().setBackgroundColor(R.color.liferay_red).build();
+		ALERT = new Style.Builder().setBackgroundColor(R.color.default_red).build();
 	}
 
 	public static void error(Context context, String message, Exception e) {

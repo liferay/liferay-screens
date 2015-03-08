@@ -111,7 +111,7 @@ public class UserPortraitDefaultView extends FrameLayout implements UserPortrait
         Canvas canvas = new Canvas(finalBitmap);
 
         canvas.drawRoundRect(rect, borderRadius, borderRadius, getPaint(bitmap));
-        canvas.drawRoundRect(rect, borderRadius, borderRadius, getBorderPaint(borderWidth, R.color.liferay_dark_gray));
+        canvas.drawRoundRect(rect, borderRadius, borderRadius, getBorderPaint(borderWidth, R.color.default_dark_gray));
 
         return finalBitmap;
     }

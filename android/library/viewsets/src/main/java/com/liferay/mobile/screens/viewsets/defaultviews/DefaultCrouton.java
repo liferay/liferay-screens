@@ -18,8 +18,8 @@ public class DefaultCrouton {
 	public static final Style ALERT;
 
 	static {
-		INFO = new Style.Builder().setBackgroundColor(R.color.liferay_light_blue).build();
-		ALERT = new Style.Builder().setBackgroundColor(R.color.liferay_red).build();
+		INFO = new Style.Builder().setBackgroundColor(R.color.default_light_blue).build();
+		ALERT = new Style.Builder().setBackgroundColor(R.color.default_red).build();
 	}
 
 	public static void error(Context context, String message, Exception e) {
