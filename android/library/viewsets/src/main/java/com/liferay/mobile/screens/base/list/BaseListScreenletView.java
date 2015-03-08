@@ -77,7 +77,7 @@ public abstract class BaseListScreenletView<
 		DefaultTheme.initIfThemeNotPresent(getContext());
 
 		int itemLayoutId = getItemLayoutId();
-		int itemProgressLayoutId = R.layout.list_item_progress_default;
+		int itemProgressLayoutId = getItemProgressLayoutId();
 
 		_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 		_progressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -112,6 +112,10 @@ public abstract class BaseListScreenletView<
 
 	protected int getItemLayoutId() {
 		return R.layout.list_item_default;
+	}
+
+	protected int getItemProgressLayoutId() {
+		return R.layout.list_item_progress_default;
 	}
 
 	@Override

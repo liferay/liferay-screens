@@ -91,7 +91,9 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     }
 
     public void loadPage(int page) {
-		getViewModel().showStartOperation(null);
+		if (page == 0) {
+			getViewModel().showStartOperation(null);
+		}
 
         Locale locale = getResources().getConfiguration().locale;
 

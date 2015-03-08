@@ -65,4 +65,8 @@ public class DDLListMaterialView
 		return R.layout.ddl_list_item_material;
 	}
 
+	@Override
+	protected int getItemProgressLayoutId() {
+		return R.layout.list_item_progress_material;
+	}
 }

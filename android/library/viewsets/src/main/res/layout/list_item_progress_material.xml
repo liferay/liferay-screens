@@ -2,7 +2,7 @@
 <TextView
 	android:id="@+id/title"
 	style="@style/material_list_item"
+	android:gravity="center_vertical"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:drawableRight="@drawable/ic_query_builder"
-	android:paddingRight="20dp"
 	android:text="@string/default_empty_value"/>
