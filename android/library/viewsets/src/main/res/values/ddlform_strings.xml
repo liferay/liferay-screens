@@ -11,4 +11,5 @@
 	<string name="loading_form_error">Error loading DDLForm</string>
 	<string name="uploading_document_error">Error uploading document</string>
 	<string name="creating_file_error">Error creating file</string>
+	<string name="hint_select">Select an option</string>
 </resources>
