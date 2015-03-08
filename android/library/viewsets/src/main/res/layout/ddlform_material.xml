@@ -6,10 +6,11 @@
 	android:layout_height="match_parent"
 	android:padding="0dp">
 
-	<LinearLayout android:padding="10dp"
+	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical">
+		android:orientation="vertical"
+		android:padding="10dp">
 
 		<LinearLayout
 			android:id="@+id/ddlfields_container"
@@ -22,7 +23,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:visibility="gone"/>
+			android:visibility="invisible"/>
 
 		<Button
 			android:id="@+id/submit"
@@ -30,6 +31,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="30dp"
 			android:layout_marginRight="30dp"
+			android:layout_marginTop="10dp"
 			android:text="@string/submit"
 			android:visibility="gone"/>
 	</LinearLayout>

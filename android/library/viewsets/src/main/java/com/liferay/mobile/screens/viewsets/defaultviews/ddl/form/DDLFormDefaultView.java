@@ -215,7 +215,7 @@ public class DDLFormDefaultView
 	}
 
 	protected void hideProgressBar() {
-		_progressBar.setVisibility(GONE);
+		_progressBar.setVisibility(INVISIBLE);
 	}
 
 	protected void showRecordValues() {

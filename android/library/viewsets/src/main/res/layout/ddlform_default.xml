@@ -28,13 +28,13 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:visibility="gone"/>
+			android:visibility="invisible"/>
 
 		<Button
 			android:id="@+id/submit"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="30dp"
+			android:layout_margin="10dp"
 			android:text="@string/submit"
 			android:visibility="gone"/>
 	</LinearLayout>
