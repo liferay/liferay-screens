@@ -100,3 +100,15 @@ There are several different view types:
 - **Child views**: Inherits another view's behavior, without including any code. Child views only contain a new layout file. This layout file can contain different colors, component positions, or any other visual changes. Because the changes in Child views are only visual, the UI components and their identifiers must be identical to those of the parent view. In the diagram, a Child view inherits from the Default view. As an example of implementing a Child view, you can create a view inherited from Default for `LoginScreenlet` and then configure the new layout file to change the position and size of the standard text boxes. Child views present a good alternative to implementing a completely different UI for one specific scenario.
 
 - **Extended**: Inherits another view's behavior and code. This lets you implement new behavior in the view, such as displaying new components in the UI or otherwise introducing new functionality. In the diagram, the Extended view extends the Full one, but provides a specific view class for the screenlet (extending from the corresponding parent's view class). For more information, see the guide [How to Create Your Own Theme](theme_creation.md).
+
+### Android Lifecycle and Screenlets
+
+LiferayScreens automatically stores and restores the state of the screenlets by using the Android SDK methods `onSaveInstanceState` and `onRestoreInstanceState`. Each screenlet uses a unique generated identifier (`screenletId`) that is also restored. This id is used, among other things, to know the destination of the executed actions and assign them to their screenlet.
+
+The state is restored after the `onStart` method call, as specified by the Android SDK. Before the state is restored we recommend against doing any operation with an interactor, because we can not assure that the action executed would find his right destination.
+
+To avoid this behaviour, screenlet method calls should be executed after the `onRestoreInstanceState`, for example inside `onResume`. This will ensure that the state is restored and any new executing task will be able to deliver the result to their right interactor.
+
+
+
+
