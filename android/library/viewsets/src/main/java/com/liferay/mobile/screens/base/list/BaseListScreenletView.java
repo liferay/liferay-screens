@@ -199,13 +199,29 @@ public abstract class BaseListScreenletView<
 		return state;
 	}
 
-    protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
+	protected ProgressBar getProgressBar() {
+		return _progressBar;
+	}
 
-	protected ProgressBar _progressBar;
-	protected RecyclerView _recyclerView;
+	protected RecyclerView getRecyclerView() {
+		return _recyclerView;
+	}
+
+	protected void setProgressBar(ProgressBar value) {
+		_progressBar = value;
+	}
+
+	protected void setRecyclerView(RecyclerView value) {
+		_recyclerView = value;
+	}
+
+    protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
 
 	private static final String _STATE_ENTRIES = "entries";
 	private static final String _STATE_ROW_COUNT = "rowCount";
 	private static final String _STATE_SUPER = "super";
+
+	private ProgressBar _progressBar;
+	private RecyclerView _recyclerView;
 
 }

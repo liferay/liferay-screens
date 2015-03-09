@@ -59,17 +59,19 @@ public class AssetListMaterialView
 		int itemLayoutId = R.layout.list_item_material;
 		int itemProgressLayoutId = R.layout.list_item_progress_material;
 
-		_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-		_progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+		RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+		setRecyclerView(recyclerView);
+
+		ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+		setProgressBar(progressBar);
 
 		AssetListAdapter adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
-		_recyclerView.setAdapter(adapter);
-		_recyclerView.setHasFixedSize(true);
-		_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+		recyclerView.setAdapter(adapter);
+		recyclerView.setHasFixedSize(true);
+		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-		_recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R
+		recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R
 			.drawable.pixel_grey)));
-
 	}
 
 }
