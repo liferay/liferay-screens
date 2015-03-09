@@ -56,13 +56,6 @@ public abstract class BaseListScreenletView<
         super(context, attributes, defaultStyle);
     }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-
-		init();
-	}
-
 	public void onItemClick(int position) {
 		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
 		List<E> entries = getAdapter().getEntries();
@@ -71,51 +64,6 @@ public abstract class BaseListScreenletView<
 		if (!entries.isEmpty() && entries.size() > position && screenlet.getListener() != null) {
 			screenlet.getListener().onListItemSelected(entries.get(position));
 		}
-	}
-
-	protected void init() {
-		DefaultTheme.initIfThemeNotPresent(getContext());
-
-		int itemLayoutId = getItemLayoutId();
-		int itemProgressLayoutId = getItemProgressLayoutId();
-
-		_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-		_progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-
-		A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
-		_recyclerView.setAdapter(adapter);
-		_recyclerView.setHasFixedSize(true);
-		_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-		_recyclerView.addItemDecoration(
-			new DividerItemDecoration(getResources().getDrawable(R.drawable.pixel_grey)));
-	}
-
-	protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
-        List<E> entries = adapter.getEntries();
-        List<E> allEntries = new ArrayList<>(
-            Collections.<E>nCopies(rowCount, null));
-
-        for (int i = 0; i < entries.size(); i++) {
-            allEntries.set(i, entries.get(i));
-        }
-
-        BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
-
-        int firstRowForPage = screenlet.getFirstRowForPage(page);
-
-        for (int i = 0; i < serverEntries.size(); i++) {
-            allEntries.set(i + firstRowForPage, serverEntries.get(i));
-        }
-        return allEntries;
-    }
-
-	protected int getItemLayoutId() {
-		return R.layout.list_item_default;
-	}
-
-	protected int getItemProgressLayoutId() {
-		return R.layout.list_item_progress_default;
 	}
 
 	@Override
@@ -198,6 +146,59 @@ public abstract class BaseListScreenletView<
 
 		return state;
 	}
+
+	protected void init() {
+		DefaultTheme.initIfThemeNotPresent(getContext());
+
+		int itemLayoutId = getItemLayoutId();
+		int itemProgressLayoutId = getItemProgressLayoutId();
+
+		_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+		_progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+
+		A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
+		_recyclerView.setAdapter(adapter);
+		_recyclerView.setHasFixedSize(true);
+		_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+		_recyclerView.addItemDecoration(
+			new DividerItemDecoration(getResources().getDrawable(R.drawable.pixel_grey)));
+	}
+
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		init();
+	}
+
+	protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
+		List<E> entries = adapter.getEntries();
+		List<E> allEntries = new ArrayList<>(
+			Collections.<E>nCopies(rowCount, null));
+
+		for (int i = 0; i < entries.size(); i++) {
+			allEntries.set(i, entries.get(i));
+		}
+
+		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
+
+		int firstRowForPage = screenlet.getFirstRowForPage(page);
+
+		for (int i = 0; i < serverEntries.size(); i++) {
+			allEntries.set(i + firstRowForPage, serverEntries.get(i));
+		}
+		return allEntries;
+	}
+
+	protected int getItemLayoutId() {
+		return R.layout.list_item_default;
+	}
+
+	protected int getItemProgressLayoutId() {
+		return R.layout.list_item_progress_default;
+	}
+
 
 	protected ProgressBar getProgressBar() {
 		return _progressBar;
