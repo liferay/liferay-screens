@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol UserPortraitData {
+@objc public protocol UserPortraitViewModel {
 
 	var portraitURL: NSURL? {get set}
 
