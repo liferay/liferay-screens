@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayData {
+public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayViewModel {
 
 	@IBOutlet internal var webView: UIWebView?
 
@@ -26,7 +26,7 @@ public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplay
 		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
 
 
-	//MARK: WebContentDisplayData
+	//MARK: WebContentDisplayViewModel
 
 	override func onCreated() {
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)

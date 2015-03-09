@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol WebContentDisplayData {
+@objc public protocol WebContentDisplayViewModel {
 
 	var htmlContent: String { get set }
 
