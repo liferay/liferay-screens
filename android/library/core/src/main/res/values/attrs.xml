@@ -1,73 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<attr name="anonymousApiUserName" format="string" />
-	<attr name="anonymousApiPassword" format="string" />
-	<attr name="autoLoad" format="boolean" />
+	<attr name="anonymousApiUserName" format="string"/>
+	<attr name="anonymousApiPassword" format="string"/>
+	<attr name="autoLoad" format="boolean"/>
 	<attr name="authMethod" format="enum">
-		<enum name="email" value="0" />
-		<enum name="screen_name" value="1" />
-		<enum name="user_id" value="2" />
+		<enum name="email" value="0"/>
+		<enum name="screen_name" value="1"/>
+		<enum name="user_id" value="2"/>
 	</attr>
-	<attr name="companyId" format="integer" />
-	<attr name="groupId" format="integer" />
-	<attr name="layoutId" format="reference" />
-	<attr name="userId" format="integer" />
-
+	<attr name="credentialsStore" format="enum">
+		<enum name="none" value="0" />
+		<enum name="auto" value="1" />
+		<enum name="shared_preferences" value="2" />
+	</attr>
+	<attr name="companyId" format="integer"/>
+	<attr name="groupId" format="integer"/>
+	<attr name="layoutId" format="reference"/>
+	<attr name="recordSetId" format="integer"/>
+	<attr name="userId" format="integer"/>
+	<attr name="firstPageSize" format="integer"/>
+	<attr name="pageSize" format="integer"/>
 
 	<declare-styleable name="AssetListScreenlet">
-		<attr name="layoutId" />
-		<attr name="autoLoad" />
-		<attr name="groupId" />
-		<attr name="classNameId" format="integer" />
-		<attr name="firstPageSize" format="integer" />
-		<attr name="pageSize" format="integer" />
+		<attr name="layoutId"/>
+		<attr name="autoLoad"/>
+		<attr name="groupId"/>
+		<attr name="classNameId" format="integer"/>
+		<attr name="firstPageSize" />
+		<attr name="pageSize" />
 	</declare-styleable>
 
-    <declare-styleable name="DDLListScreenlet">
-        <attr name="layoutId" />
-        <attr name="autoLoad" />
-        <attr name="recordSetId" format="integer"/>
-        <attr name="firstPageSize" />
-        <attr name="pageSize" />
-        <attr name="userId" />
-        <attr name="labelFields" format="string"/>
-    </declare-styleable>
+	<declare-styleable name="DDLFormScreenlet">
+		<attr name="layoutId"/>
+		<attr name="groupId"/>
+		<attr name="autoScrollOnValidation" format="boolean"/>
+		<attr name="structureId" format="integer"/>
+		<attr name="recordId" format="integer"/>
+		<attr name="recordSetId"/>
+		<attr name="userId"/>
+		<attr name="autoLoad"/>
+		<attr name="filePrefix" format="string"/>
+		<attr name="repositoryId" format="integer"/>
+		<attr name="folderId" format="integer"/>
+		<attr name="showSubmitButton" format="boolean"/>
+		<attr name="checkboxFieldLayoutId" format="reference"/>
+		<attr name="dateFieldLayoutId" format="reference"/>
+		<attr name="numberFieldLayoutId" format="reference"/>
+		<attr name="radioFieldLayoutId" format="reference"/>
+		<attr name="selectFieldLayoutId" format="reference"/>
+		<attr name="textFieldLayoutId" format="reference"/>
+		<attr name="textAreaFieldLayoutId" format="reference"/>
+		<attr name="documentFieldLayoutId" format="reference"/>
+	</declare-styleable>
+
+	<declare-styleable name="DDLListScreenlet">
+		<attr name="layoutId"/>
+		<attr name="autoLoad"/>
+		<attr name="recordSetId"/>
+		<attr name="userId"/>
+		<attr name="labelFields" format="string"/>
+		<attr name="firstPageSize"/>
+		<attr name="pageSize"/>
+	</declare-styleable>
 
 	<declare-styleable name="ForgotPasswordScreenlet">
-		<attr name="layoutId" />
-		<attr name="anonymousApiUserName" />
-		<attr name="anonymousApiPassword" />
-		<attr name="authMethod" />
-		<attr name="companyId" />
+		<attr name="layoutId"/>
+		<attr name="anonymousApiUserName"/>
+		<attr name="anonymousApiPassword"/>
+		<attr name="authMethod"/>
+		<attr name="companyId"/>
 	</declare-styleable>
 
 	<declare-styleable name="LoginScreenlet">
-		<attr name="layoutId" />
-		<attr name="authMethod" />
-		<attr name="companyId" />
+		<attr name="layoutId"/>
+		<attr name="authMethod"/>
+		<attr name="companyId"/>
+		<attr name="credentialsStore" />
 	</declare-styleable>
 
 	<declare-styleable name="SignUpScreenlet">
-		<attr name="layoutId" />
-		<attr name="companyId" />
-		<attr name="anonymousApiUserName" />
-		<attr name="anonymousApiPassword" />
-		<attr name="autoLogin" format="boolean" />
+		<attr name="layoutId"/>
+		<attr name="companyId"/>
+		<attr name="anonymousApiUserName"/>
+		<attr name="anonymousApiPassword"/>
+		<attr name="autoLogin" format="boolean"/>
+		<attr name="credentialsStore" />
 	</declare-styleable>
 
 	<declare-styleable name="WebContentDisplayScreenlet">
-		<attr name="layoutId" />
-		<attr name="autoLoad" />
-		<attr name="groupId" />
-		<attr name="articleId" format="string" />
+		<attr name="layoutId"/>
+		<attr name="autoLoad"/>
+		<attr name="groupId"/>
+		<attr name="articleId" format="string"/>
 	</declare-styleable>
 
 	<declare-styleable name="UserPortraitScreenlet">
-		<attr name="layoutId" />
-		<attr name="autoLoad" />
-		<attr name="male" format="boolean" />
-		<attr name="portraitId" format="integer" />
-		<attr name="uuid" format="string" />
-		<attr name="userId" />
+		<attr name="layoutId"/>
+		<attr name="autoLoad"/>
+		<attr name="male" format="boolean"/>
+		<attr name="portraitId" format="integer"/>
+		<attr name="uuid" format="string"/>
+		<attr name="userId"/>
+	</declare-styleable>
+
+	<declare-styleable name="ModalProgressBar">
+		<attr name="actionViewId" format="reference"/>
 	</declare-styleable>
 </resources>

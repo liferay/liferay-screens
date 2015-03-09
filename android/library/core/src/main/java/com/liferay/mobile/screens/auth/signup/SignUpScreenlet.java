@@ -30,10 +30,10 @@ import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.*;
 
 import java.util.Locale;
-
-import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
@@ -42,40 +42,21 @@ public class SignUpScreenlet
 	extends BaseScreenlet<SignUpViewModel, SignUpInteractor>
 	implements SignUpListener {
 
-	public static final String SIGN_UP_ACTION = "signUp";
-
 	public SignUpScreenlet(Context context) {
-		this(context, null);
+		super(context);
 	}
 
 	public SignUpScreenlet(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes);
 	}
 
-	public SignUpScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public SignUpScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 
 	@Override
-	public SignUpInteractor getInteractor() {
-		SignUpInteractor interactor = super.getInteractor();
-
-		if (interactor == null) {
-			interactor = new SignUpInteractorImpl(getScreenletId());
-
-			setInteractor(interactor);
-		}
-
-		return interactor;
-	}
-
-	@Override
 	public void onSignUpFailure(Exception e) {
-		SignUpListener listener = (SignUpListener)getScreenletView();
-
-		listener.onSignUpFailure(e);
+		getViewModel().showFailedOperation(null, e);
 
 		if (_listener != null) {
 			_listener.onSignUpFailure(e);
@@ -83,12 +64,11 @@ public class SignUpScreenlet
 	}
 
 	@Override
-	public void onSignUpSuccess(JSONObject userAttributes) {
-		SignUpListener listenerView = (SignUpListener)getScreenletView();
-		listenerView.onSignUpSuccess(userAttributes);
+	public void onSignUpSuccess(User user) {
+		getViewModel().showFinishOperation(user);
 
 		if (_listener != null) {
-			_listener.onSignUpSuccess(userAttributes);
+			_listener.onSignUpSuccess(user);
 		}
 
 		if (_autoLogin) {
@@ -97,17 +77,19 @@ public class SignUpScreenlet
 			String password = signUpViewModel.getPassword();
 
 			SessionContext.createSession(emailAddress, password);
-			SessionContext.setUserAttributes(userAttributes);
+			SessionContext.setLoggedUser(user);
 
 			if (_autoLoginListener != null) {
-				_autoLoginListener.onLoginSuccess(userAttributes);
+				_autoLoginListener.onLoginSuccess(user);
 			}
+
+			SessionContext.storeSession(_credentialsStore);
 		}
 	}
 
-	@Override
 	public void onUserAction(String userActionName) {
 		SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
+		signUpViewModel.showStartOperation(userActionName);
 
 		String firstName = signUpViewModel.getFirstName();
 		String middleName = signUpViewModel.getMiddleName();
@@ -177,12 +159,18 @@ public class SignUpScreenlet
 		_autoLoginListener = value;
 	}
 
+	public StorageType getCredentialsStore() {
+		return _credentialsStore;
+	}
+
+	public void setCredentialsStore(StorageType value) {
+		_credentialsStore = value;
+	}
+
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.SignUpScreenlet, 0, 0);
-
-		int layoutId = typedArray.getResourceId(R.styleable.SignUpScreenlet_layoutId, 0);
 
 		_companyId = typedArray.getInt(
 			R.styleable.SignUpScreenlet_companyId,
@@ -196,17 +184,53 @@ public class SignUpScreenlet
 
 		_autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
 
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
+		int storeValue = typedArray.getInt(R.styleable.SignUpScreenlet_credentialsStore,
+			StorageType.NONE.toInt());
+
+		_credentialsStore = StorageType.valueOf(storeValue);
+
+		int layoutId = typedArray.getResourceId(
+			R.styleable.SignUpScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
-		return view;
+		return LayoutInflater.from(context).inflate(layoutId, null);
+	}
+
+	@Override
+	protected SignUpInteractor createInteractor(String actionName) {
+		return new SignUpInteractorImpl(getScreenletId());
+	}
+
+	@Override
+	protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
+		SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
+
+		String firstName = signUpViewModel.getFirstName();
+		String middleName = signUpViewModel.getMiddleName();
+		String lastName = signUpViewModel.getLastName();
+		String emailAddress = signUpViewModel.getEmailAddress();
+		String password = signUpViewModel.getPassword();
+		String screenName = signUpViewModel.getScreenName();
+		String jobTitle = signUpViewModel.getJobTitle();
+		Locale locale = getResources().getConfiguration().locale;
+
+		try {
+			interactor.signUp(
+				_companyId, firstName, middleName, lastName, emailAddress,
+				screenName, password, jobTitle, locale, _anonymousApiUserName,
+				_anonymousApiPassword);
+		}
+		catch (Exception e) {
+			onSignUpFailure(e);
+		}
 	}
 
 	private String _anonymousApiPassword;
 	private String _anonymousApiUserName;
 	private boolean _autoLogin;
 	private long _companyId;
+	private StorageType _credentialsStore;
 
 	private SignUpListener _listener;
 	private LoginListener _autoLoginListener;

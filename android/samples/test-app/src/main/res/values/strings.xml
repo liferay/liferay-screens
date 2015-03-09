@@ -1,3 +1,12 @@
 <resources>
 	<string name="app_name">Liferay Screens</string>
+	<string name="login">Login</string>
+	<string name="signup">Sign Up</string>
+	<string name="forgot_password">Forgot Password</string>
+	<string name="user_portrait">User Portrait</string>
+	<string name="webview">Web View</string>
+	<string name="asset_list">Asset List</string>
+	<string name="ddl_form">DDL Form</string>
+	<string name="ddl_list">DDL List</string>
+	<string name="change_theme">Change Theme</string>
 </resources>

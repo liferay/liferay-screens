@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
+	style="@style/default_screenlet"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:liferay="http://schemas.android.com/apk/res-auto">
+
+	<EditText
+		android:id="@+id/login"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="15dp"
+		android:drawableLeft="@drawable/default_mail_icon"
+		android:hint="@string/email_address"
+		android:inputType="text"
+		android:text="test@liferay.com"/>
+
+	<EditText
+		android:id="@+id/password"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="15dp"
+		android:drawableLeft="@drawable/default_lock_icon"
+		android:drawablePadding="17dp"
+		android:hint="@string/password"
+		android:inputType="textPassword"
+		android:paddingLeft="18dp"
+		android:text="test"/>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="30dp">
+
+		<Button
+			android:id="@+id/login_button"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:text="@string/sign_in"/>
+
+		<com.liferay.mobile.screens.base.ModalProgressBar
+			android:id="@+id/progress_bar"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_gravity="center_vertical|left"
+			android:theme="@style/white_theme"
+			android:visibility="invisible"
+			liferay:actionViewId="@id/login_button"/>
+	</FrameLayout>
+</com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView>

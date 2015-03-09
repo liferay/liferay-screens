@@ -26,7 +26,9 @@ public class EventBusUtil {
 	}
 
 	public static void register(Object object) {
-		getInstance().register(object);
+		if (!getInstance().isRegistered(object)) {
+			getInstance().register(object);
+		}
 	}
 
 	public static void unregister(Object object) {

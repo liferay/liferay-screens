@@ -99,15 +99,30 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 		}
 	}
 
-	private func createLoginOperation(#authMethod: AuthMethod) -> LiferayLoginBaseOperation {
+	private func createLoginOperation(#authMethod: AuthMethod) -> GetUserBaseOperation {
+		var operation: GetUserBaseOperation?
+
 		switch authMethod {
 			case .ScreenName:
-				return LiferayLoginScreenNameOperation(screenlet: self)
+				operation = LiferayLoginByScreenNameOperation(
+						screenlet: self,
+						companyId: companyId,
+						screenName: loginData.userName!)
 			case .UserId:
-				return LiferayLoginUserIdOperation(screenlet: self)
+				operation = LiferayLoginByUserIdOperation(
+						screenlet: self,
+						userId: Int64(loginData.userName!.toInt()!))
 			default:
-				return LiferayLoginEmailOperation(screenlet: self)
+				operation = LiferayLoginByEmailOperation(
+						screenlet: self,
+						companyId: companyId,
+						emailAddress: loginData.userName!)
 		}
+
+		operation?.userName = loginData.userName
+		operation?.password = loginData.password
+
+		return operation!
 	}
 
 }

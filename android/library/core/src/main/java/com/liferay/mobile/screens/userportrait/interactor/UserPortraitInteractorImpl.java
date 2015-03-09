@@ -51,7 +51,7 @@ public class UserPortraitInteractorImpl
 	}
 
 	@Override
-	public void load(boolean male, long portraitId, String uuid) throws Exception {
+	public void load(boolean male, long portraitId, String uuid) {
 		validate(portraitId, uuid);
 
 		Uri uri = getUserPortraitURL(male, portraitId, uuid);
@@ -67,10 +67,10 @@ public class UserPortraitInteractorImpl
 	public void load(long userId) throws Exception {
 		validate(userId);
 
-		if (SessionContext.getUser().getId() == userId) {
+		if (SessionContext.hasSession() && SessionContext.getLoggedUser().getId() == userId) {
 			boolean male = true;
-			long portraitId = SessionContext.getUser().getPortraitId();
-			String uuid = SessionContext.getUser().getUuid();
+			long portraitId = SessionContext.getLoggedUser().getPortraitId();
+			String uuid = SessionContext.getLoggedUser().getUuid();
 
 			load(male, portraitId, uuid);
 		}
@@ -169,8 +169,8 @@ public class UserPortraitInteractorImpl
 
 			return URLEncoder.encode(token, "UTF8");
 
-		} catch (NoSuchAlgorithmException e) {
-		} catch (UnsupportedEncodingException e) {
+		}
+		catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
 		}
 
 		return null;

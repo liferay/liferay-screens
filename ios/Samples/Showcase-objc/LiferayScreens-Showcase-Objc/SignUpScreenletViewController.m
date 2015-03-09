@@ -23,7 +23,7 @@
 @implementation SignUpScreenletViewController
 
 - (IBAction)loginValueChangedAction:(UISwitch *)sender {
-	self.screenlet.autologin = sender.on;
+	self.screenlet.autoLogin = sender.on;
 }
 
 - (IBAction)credentialsValueChangedAction:(UISwitch *)sender {

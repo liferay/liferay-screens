@@ -24,7 +24,7 @@ import java.util.List;
 public class BaseListEvent<E> extends BasicEvent {
 
 	public BaseListEvent(int targetScreenletId, Exception e) {
-		super(targetScreenletId);
+		super(targetScreenletId, e);
 	}
 
 	public BaseListEvent(

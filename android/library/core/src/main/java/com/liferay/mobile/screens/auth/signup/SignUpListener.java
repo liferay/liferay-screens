@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.auth.signup;
 
-import org.json.JSONObject;
+import com.liferay.mobile.screens.context.User;
 
 /**
  * @author Silvio Santos
@@ -23,6 +23,6 @@ public interface SignUpListener {
 
 	public void onSignUpFailure(Exception e);
 
-	public void onSignUpSuccess(JSONObject userAttributes);
+	public void onSignUpSuccess(User user);
 
 }

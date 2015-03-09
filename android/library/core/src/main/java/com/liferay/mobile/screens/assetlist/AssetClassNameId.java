@@ -64,6 +64,10 @@ public enum AssetClassNameId {
 	WIKI_PAGE_RESOURCE(10153),
 	WIKI_NODE(10152);
 
+	public int getValue() {
+		return _value;
+	}
+
 	private AssetClassNameId(int value) {
 		_value = value;
 	}

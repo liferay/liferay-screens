@@ -1,1 +1,1 @@
-include ':core', ':themes'
+include ':core', ':viewsets'

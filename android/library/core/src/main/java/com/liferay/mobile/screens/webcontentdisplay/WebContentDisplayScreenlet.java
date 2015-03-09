@@ -24,11 +24,11 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractor;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractorImpl;
+import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewModel;
 
 import java.util.Locale;
 
@@ -36,61 +36,32 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayScreenlet
-		extends BaseScreenlet<BaseViewModel, WebContentDisplayInteractor>
+		extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayInteractor>
 		implements WebContentDisplayListener {
 
 	public WebContentDisplayScreenlet(Context context) {
-		this(context, null);
+		super(context);
 	}
 
-	public WebContentDisplayScreenlet(
-		Context context, AttributeSet attributes) {
-
-		this(context, attributes, 0);
+	public WebContentDisplayScreenlet(Context context, AttributeSet attributes) {
+		super(context, attributes);
 	}
 
-	public WebContentDisplayScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public WebContentDisplayScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 
-	@Override
-	public WebContentDisplayInteractor getInteractor() {
-		WebContentDisplayInteractor interactor = super.getInteractor();
-
-		if (interactor == null) {
-			interactor = new WebContentDisplayInteractorImpl(getScreenletId());
-
-			setInteractor(interactor);
-		}
-
-		return interactor;
-	}
-
-	public void load() throws Exception {
-		if (_articleId == null) {
-			throw new IllegalArgumentException("articleId cannot be null");
-		}
-
-		Locale locale = getResources().getConfiguration().locale;
-
-		getInteractor().load(_groupId, _articleId, locale);
-	}
-
-	@Override
-	public void onUserAction(String userActionName) {
+	public void load() {
+		performUserAction();
 	}
 
 	@Override
 	public void onWebContentFailure(WebContentDisplayScreenlet source, Exception e) {
+		getViewModel().showFailedOperation(null, e);
+
 		if (_listener != null) {
 			_listener.onWebContentFailure(this, e);
 		}
-
-		WebContentDisplayListener listenerView = (WebContentDisplayListener)getScreenletView();
-
-		listenerView.onWebContentFailure(this, e);
 	}
 
 	@Override
@@ -105,13 +76,7 @@ public class WebContentDisplayScreenlet
 			}
 		}
 
-		WebContentDisplayListener listenerView = (WebContentDisplayListener)getScreenletView();
-
-		String viewHtml = listenerView.onWebContentReceived(this, modifiedHtml);
-
-		if (viewHtml != null) {
-			modifiedHtml = viewHtml;
-		}
+		getViewModel().showFinishOperation(modifiedHtml);
 
 		return modifiedHtml;
 	}
@@ -126,6 +91,7 @@ public class WebContentDisplayScreenlet
 				load();
 			}
 			catch (Exception e) {
+				onWebContentFailure(this, e);
 			}
 		}
 	}
@@ -137,24 +103,39 @@ public class WebContentDisplayScreenlet
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
 
-		_autoLoad = typedArray.getBoolean(
-			R.styleable.WebContentDisplayScreenlet_autoLoad, true);
+		_autoLoad = typedArray.getBoolean(R.styleable.WebContentDisplayScreenlet_autoLoad, true);
 
-		_articleId = typedArray.getString(
-			R.styleable.WebContentDisplayScreenlet_articleId);
+		_articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
 
 		_groupId = typedArray.getInt(
-			R.styleable.WebContentDisplayScreenlet_groupId,
-			(int)LiferayServerContext.getGroupId());
+			R.styleable.WebContentDisplayScreenlet_groupId, (int)LiferayServerContext.getGroupId());
 
 		int layoutId = typedArray.getResourceId(
-			R.styleable.WebContentDisplayScreenlet_layoutId, 0);
-
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
+			R.styleable.WebContentDisplayScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
-		return view;
+		return LayoutInflater.from(context).inflate(layoutId, null);
+	}
+
+	@Override
+	protected WebContentDisplayInteractor createInteractor(String actionName) {
+		return new WebContentDisplayInteractorImpl(getScreenletId());
+	}
+
+	@Override
+	protected void onUserAction(
+		String userActionName, WebContentDisplayInteractor interactor, Object... args) {
+
+		Locale locale = getResources().getConfiguration().locale;
+		getViewModel().showStartOperation(userActionName);
+
+		try {
+			getInteractor().load(_groupId, _articleId, locale);
+		}
+		catch (Exception e) {
+			onWebContentFailure(this, e);
+		}
 	}
 
 	@Override

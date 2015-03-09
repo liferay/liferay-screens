@@ -73,7 +73,7 @@ public abstract class BaseListCallback<E>
 
     @Override
     protected BasicEvent createEvent(int targetScreenletId, BaseListResult<E> result) {
-        return new BaseListEvent<E>(
+        return new BaseListEvent<>(
                 targetScreenletId, _rowsRange.first, _rowsRange.second, result.getEntries(), result.getRowCount());
     }
 

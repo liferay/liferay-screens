@@ -28,8 +28,10 @@ import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.context.User;
 
-import org.json.JSONObject;
+import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.*;
 
 /**
  * @author Silvio Santos
@@ -38,39 +40,21 @@ public class LoginScreenlet
 	extends BaseScreenlet<LoginViewModel, LoginInteractor>
 	implements LoginListener {
 
-	public static final String LOGIN_ACTION = "login";
-
 	public LoginScreenlet(Context context) {
-		this(context, null);
+		super(context);
 	}
 
 	public LoginScreenlet(Context context, AttributeSet attributes) {
-		this(context, attributes, 0);
+		super(context, attributes);
 	}
 
-	public LoginScreenlet(
-		Context context, AttributeSet attributes, int defaultStyle) {
-
+	public LoginScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 
 	@Override
-	public LoginInteractor getInteractor() {
-		LoginInteractor interactor = super.getInteractor();
-
-		if (interactor == null) {
-			interactor = new LoginInteractorImpl(getScreenletId());
-
-			setInteractor(interactor);
-		}
-
-		return interactor;
-	}
-
-	@Override
 	public void onLoginFailure(Exception e) {
-		LoginListener listenerView = (LoginListener)getScreenletView();
-		listenerView.onLoginFailure(e);
+		getViewModel().showFailedOperation(null, e);
 
 		if (_listener != null) {
 			_listener.onLoginFailure(e);
@@ -78,28 +62,14 @@ public class LoginScreenlet
 	}
 
 	@Override
-	public void onLoginSuccess(JSONObject userAttributes) {
-		LoginListener listenerView = (LoginListener)getScreenletView();
-		listenerView.onLoginSuccess(userAttributes);
+	public void onLoginSuccess(User user) {
+		getViewModel().showFinishOperation(user);
 
 		if (_listener != null) {
-			_listener.onLoginSuccess(userAttributes);
+			_listener.onLoginSuccess(user);
 		}
-	}
 
-	@Override
-	public void onUserAction(String userActionName) {
-		LoginViewModel loginViewModel = (LoginViewModel)getScreenletView();
-		String login = loginViewModel.getLogin();
-		String password = loginViewModel.getPassword();
-		AuthMethod method = loginViewModel.getAuthMethod();
-
-		try {
-			getInteractor().login(login, password, method);
-		}
-		catch (Exception e) {
-			onLoginFailure(e);
-		}
+		SessionContext.storeSession(_credentialsStore);
 	}
 
 	public void setListener(LoginListener listener) {
@@ -112,33 +82,67 @@ public class LoginScreenlet
 
 	public void setAuthMethod(AuthMethod authMethod) {
 		_authMethod = authMethod;
+
+		getViewModel().setAuthMethod(_authMethod);
+	}
+
+	public StorageType getCredentialsStore() {
+		return _credentialsStore;
+	}
+
+	public void setCredentialsStore(StorageType value) {
+		_credentialsStore = value;
 	}
 
 	@Override
-	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
-
+	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.LoginScreenlet, 0, 0);
 
+		int storeValue = typedArray.getInt(R.styleable.LoginScreenlet_credentialsStore,
+			StorageType.NONE.toInt());
+
+		_credentialsStore = StorageType.valueOf(storeValue);
+
 		int layoutId = typedArray.getResourceId(
-			R.styleable.LoginScreenlet_layoutId, 0);
+			R.styleable.LoginScreenlet_layoutId, getDefaultLayoutId());
 
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, null);
+		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
-		int authMethodId = typedArray.getInt(
-			R.styleable.LoginScreenlet_authMethod, 0);
+		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
 
-		LoginViewModel viewModel = (LoginViewModel) view;
 		_authMethod = AuthMethod.getValue(authMethodId);
-		viewModel.setAuthMethod(_authMethod);
+		((LoginViewModel) view).setAuthMethod(_authMethod);
 
 		typedArray.recycle();
 
 		return view;
 	}
 
+	@Override
+	protected LoginInteractor createInteractor(String actionName) {
+		return new LoginInteractorImpl(getScreenletId());
+	}
+
+	@Override
+	protected void onUserAction(String userActionName, LoginInteractor interactor, Object... args) {
+		LoginViewModel loginViewModel = (LoginViewModel)getScreenletView();
+		loginViewModel.showStartOperation(userActionName);
+
+		String login = loginViewModel.getLogin();
+		String password = loginViewModel.getPassword();
+		AuthMethod method = loginViewModel.getAuthMethod();
+
+		try {
+			interactor.login(login, password, method);
+		}
+		catch (Exception e) {
+			onLoginFailure(e);
+		}
+	}
+
 	private LoginListener _listener;
 	private AuthMethod _authMethod;
+	private StorageType _credentialsStore;
 
 }
