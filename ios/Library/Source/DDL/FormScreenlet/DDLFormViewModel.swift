@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol DDLFormData {
+@objc public protocol DDLFormViewModel {
 
 	var showSubmitButton: Bool { get set }
 

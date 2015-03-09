@@ -39,8 +39,8 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 		return (LocalizedString("ddlform-screenlet", "submitting-error", self), details: nil)
 	}
 
-	internal var formData: DDLFormData {
-		return screenlet.screenletView as DDLFormData
+	internal var viewModel: DDLFormViewModel {
+		return screenlet.screenletView as DDLFormViewModel
 	}
 
 
@@ -59,11 +59,11 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 			return false
 		}
 
-		if formData.values.isEmpty {
+		if viewModel.values.isEmpty {
 			return false
 		}
 
-		if !formData.validateForm(autoscroll: autoscrollOnValidation) {
+		if !viewModel.validateForm(autoscroll: autoscrollOnValidation) {
 			showHUD(message: LocalizedString("ddlform-screenlet", "validation", self),
 					details: LocalizedString("ddlform-screenlet", "validation-details", self),
 					closeMode: .AutocloseDelayed(3.0, true),
@@ -92,14 +92,14 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 			recordDictionary = service.addRecordWithGroupId(groupId!,
 					recordSetId: recordSetId!,
 					displayIndex: 0,
-					fieldsMap: formData.values,
+					fieldsMap: viewModel.values,
 					serviceContext: serviceContextWrapper,
 					error: &lastError)
 		}
 		else {
 			recordDictionary = service.updateRecordWithRecordId(recordId!,
 					displayIndex: 0,
-					fieldsMap: formData.values,
+					fieldsMap: viewModel.values,
 					mergeFields: true,
 					serviceContext: serviceContextWrapper,
 					error: &lastError)
