@@ -45,7 +45,7 @@ public class SelectAssetActivity extends ThemeActivity implements AdapterView.On
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Intent intent = new Intent(this, AssetListActivity.class);
+		Intent intent = getIntentWithTheme(AssetListActivity.class);
 		intent.putExtra("classNameId", AssetClassNameId.values()[position].getValue());
 		DefaultAnimation.startActivityWithAnimation(this, intent);
 	}
