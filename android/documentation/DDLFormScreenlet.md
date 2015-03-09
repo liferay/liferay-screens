@@ -69,6 +69,28 @@ If you don't define the editor type's layout in the attributes of `DDLFormScreen
 
 What if you want to have a unique appearance for one specific field? No problem! You can customize your field's editor view by calling the screenlet's `setCustomFieldLayoutId(fieldName, layoutId)` method, where the first parameter is the name of the field customize and the second parameter is the layout to use. You can also easily create custom editor views. For examples of this, see the files `ddlfield_custom_rating_number.xml` and `CustomRatingNumberView.java`.
 
+## Activity Configuration
+
+The `DDLForm Screenlet` needs the following user permissions:
+
+```xml
+<uses-permission android:name="android.permission.CAMERA"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+```
+
+Both are used by the Document & Media fields in order to take a picture/video and store it locally before uploading it to the portal.
+
+The Document & Media field also needs to override the `onActivityResult` method to receive the photo information. Here's an example implementation:
+
+```java
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		_screenlet.startUploadByPosition(requestCode);
+	}
+```
+
 ## Portal Configuration
 
 Before using `DDLFormScreenlet`, you should make sure that Dynamic Data Lists and Data Types are configured properly in the portal. Refer to the [Defining Data Types](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/building-a-list-platform-in-liferay-and-defining-data-) and [Creating Data Lists](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/creating-data-lists) sections of the User Guide for more details. If Workflow is required, it must also be configured. See the [Using Workflow](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-workflow) section of the User Guide for details.
