@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LoginView_default: BaseScreenletView, LoginData {
+public class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	@IBOutlet internal var userNameIcon: UIImageView?
 	@IBOutlet internal var userNameField: UITextField?
