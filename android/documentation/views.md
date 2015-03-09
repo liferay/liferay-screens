@@ -12,11 +12,10 @@ This document explains the basics of how views are used in Liferay Screens for A
 - *Layout*: The XML file that defines the UI components in the view. The root element is usually the same view type as the previous screenlet view.
 - *View set*: The group of views for several screenlets together with their layouts. A view set usually has a name that is easy to refer to, such as *Default* or *Material*. Anyone can create their own view set and releasing it to the community.
 
-<!--
 ## Installing View Sets
 
-TODO Explain how to install theme-projects using gradle
--->
+By default, when you setup your project it includes to viewsets: Default and Material one.
+However, anyone could create a new viewset and publish it in a public repository like Maven Central o JCenter. In such case, just include as usual the artifact containing the viewset, using the standard steps for Gradle or Maven described in the ["Prepare Your Project for Liferay Screens"](https://github.com/liferay/liferay-screens/tree/master/android/README.md#preparing-your-project-for-liferay-screens) section.
 
 ## Using View Sets
 
@@ -27,7 +26,7 @@ To use a view set, set the `liferay:layoutId` property in your layout XML. This 
 ## Available View Sets
 
 - **Default**: Standard views used when you insert any screenlet and don't set the `liferay:layoutId` attribute.
-- **Material**: Sample views intended to demonstrate how to develop your own view sets from scratch.
+- **Material**: Sample views intended to demonstrate how to develop your own view sets from scratch. It follows the [Material Design](https://developer.android.com/design/material/index.html) guidelines published by Google.
 
 ## Creating Your Own Views
 

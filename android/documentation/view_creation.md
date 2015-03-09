@@ -126,12 +126,8 @@ The example Extended view here presents the same components as the Default view,
 
 3. Insert the `LoginScreenlet` in any of your activities or fragments and use `@layout/login_password` as the `liferay:layoutId` attribute's value.
 
-<!-- 
 ## Packaging Your Views
 
 Views are created typically as source code inside your app's project. However, if you want to distribute your views or reuse them from different projects, you need to package your views inside a project and add this project as your app's project dependency.
 
-For that, just follow next steps:
-
-TODO
--->
+For that, use [viewsets](https://github.com/liferay/liferay-screens/tree/master/android/library/viewsets) subproject as a template using a similar [build.gradle](https://github.com/liferay/liferay-screens/blob/master/android/library/viewsets/build.gradle) file.
