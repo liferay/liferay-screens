@@ -10,7 +10,7 @@ Liferay Screens for Android includes the component (*screenlets*) library and a 
 
 Each screenlet is tied to one or more of [Liferay's remote services](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/accessing-services-remotely-liferay-portal-6-2-dev-guide-05-en). When the screenlet needs to show information to the user, it relies on a *view*. View sets can be contributed by third parties and are fully pluggable, so you aren't limited to one specific look and feel. The Screens library provides the standard *Default* view set and the sample *Material* view set.
 
-<!-- ![The SignUp screenlet using the Default and Flat7 themes.](Documentation/Images/screens-phone2.png) -->
+![The SignUp screenlet using the Default and Flat7 themes.](Documentation/Images/screens-phone2.png)
 
 To learn about the architecture of Screens for Android, see the [library documentation page.](library/README.md).
 
@@ -26,18 +26,109 @@ Development of Android apps using Liferay Screens requires the following:
 
 ## Compatibility
 
-Liferay Screens for Android is compatible with Android 4.0 (API Level 14) and higher. 
+Liferay Screens for Android is compatible with Android 4.0 (API Level 14) and higher.
 
-[](TODO: Mention compat library)
+The SDK uses [AppCompat library](https://developer.android.com/tools/support-library/features.html#v7-appcompat) (v7:21.0.3) to offer a material look that gracefully degrades in older devices and the new [recycler view](https://developer.android.com/tools/support-library/features.html#v7-recyclerview) implementation.
+
+Other internal dependencies are [EventBus](https://github.com/greenrobot/EventBus) and [Picasso](http://square.github.io/picasso/).
 
 ## Preparing Your Project for Liferay Screens
 
-Liferay Screens is released as an [AAR file](http://tools.android.com/tech-docs/new-build-system/aar-format) in the Maven Central repository. You therefore need to use Maven or Gradle to set and download your dependencies. Use the following steps to configure your project with Gradle:
+Liferay Screens is released as an [AAR file](http://tools.android.com/tech-docs/new-build-system/aar-format), currently self-hosted in github and, in the future, in the Maven Central repository.
 
-TODO
-1. XXX
-2. XXX
-3. XXX
+It is strongly recommended to use Maven or Gradle to set and download your dependencies.
+
+#### Gradle
+
+Use the following steps to configure your project with Gradle:
+
+1. Add a new repository url:
+
+	```groovy
+	repositories {
+		maven {
+			url "https://raw.github.com/liferay/liferay-screens/master/android/dist/"
+		}
+	}
+	```
+
+2. Include the SDK as a dependency
+
+	```groovy
+	dependencies {
+		compile 'com.liferay.mobile:liferay-screens-viewsets:0.3.0'
+	}
+	```
+
+3. Gradle will download all the necessary dependencies before building your project.
+
+If you get errors such as `Duplicate files copied in APK META-INF/NOTICE` when building with Gradle, add this to your `build.gradle` file:
+
+```groovy
+android {
+	...
+	packagingOptions {	
+		exclude 'META-INF/LICENSE'
+		exclude 'META-INF/NOTICE'
+	}
+	...
+}
+```
+
+#### Maven
+
+You can do the same as the Gradle configuration:
+
+1. Add to your pom.xml the new dependency:
+
+	```xml
+	<dependency>
+	    <groupId>com.liferay.mobile</groupId>
+	    <artifactId>liferay-screens-viewsets</artifactId>
+	    <version>LATEST</version>
+	</dependency>
+	```
+
+2. You will have to add the new repository in your maven settings (.m2/settings.xml)
+
+
+	```xml
+	<repositories>
+	        <repository>
+	          <id>LiferayScreens</id>
+	          <name>LiferayScreens</name>
+	          <url>https://raw.github.com/liferay/liferay-screens/master/android/dist/</url>
+	        </repository>
+	```
+
+3. Force a Maven update to download all the dependencies.
+
+#### Manually
+
+You can also manually use the SDK sources if you are using gradle:
+
+1. [Download](https://github.com/liferay/liferay-screens/releases) the
+latest version of `Liferay Screens for Android`.
+
+2. Copy the contents of `Android/library` in a folder next to your project.
+
+3. Configure a settings.gradle in your project with the paths to the library folders:
+
+	```groovy
+	include ':core'
+	include ':themes'
+	project(':core').projectDir = new File(settingsDir, '../../library/core')
+	project(':themes').projectDir = new File(settingsDir, '../../library/themes')
+	```
+
+4. Include the required dependencies in your build.gradle:
+
+	```groovy
+	compile project (':core')
+	compile project (':themes')
+	```
+	
+* You can also configure the .aar binary files (in `Android/dist`) as local .aar dependencies.
 
 Great! Your project should now be ready for Liferay Screens. Next, you'll learn how to use screenlets in your app.
 
