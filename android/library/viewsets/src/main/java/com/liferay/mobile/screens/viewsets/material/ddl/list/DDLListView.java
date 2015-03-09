@@ -29,20 +29,19 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListMaterialView
-	extends BaseListScreenletView<DDLEntry, DDLListMaterialAdapter.TwoTextsViewHolder,
-		DDLListMaterialAdapter>
+public class DDLListView
+	extends BaseListScreenletView<DDLEntry, DDLListAdapter.TwoTextsViewHolder, DDLListAdapter>
 	implements DDLListViewModel {
 
-	public DDLListMaterialView(Context context) {
+	public DDLListView(Context context) {
 		super(context);
 	}
 
-	public DDLListMaterialView(Context context, AttributeSet attributes) {
+	public DDLListView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
 
-	public DDLListMaterialView(Context context, AttributeSet attributes, int defaultStyle) {
+	public DDLListView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 
@@ -56,8 +55,8 @@ public class DDLListMaterialView
 	}
 
 	@Override
-	protected DDLListMaterialAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-		return new DDLListMaterialAdapter(itemLayoutId, itemProgressLayoutId, this);
+	protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+		return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
 	}
 
 	@Override

@@ -36,22 +36,22 @@ import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public class UserPortraitDefaultView extends FrameLayout implements UserPortraitViewModel {
+public class UserPortraitView extends FrameLayout implements UserPortraitViewModel {
 
-    public UserPortraitDefaultView(Context context) {
+    public UserPortraitView(Context context) {
         super(context);
 
 		DefaultTheme.initIfThemeNotPresent(context);
     }
 
-    public UserPortraitDefaultView(
+    public UserPortraitView(
 		Context context, AttributeSet attributes) {
         super(context, attributes);
 
 		DefaultTheme.initIfThemeNotPresent(context);
     }
 
-    public UserPortraitDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
+    public UserPortraitView(Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
 
 		DefaultTheme.initIfThemeNotPresent(context);

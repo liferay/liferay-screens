@@ -31,23 +31,23 @@ import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewMo
 /**
  * @author Silvio Santos
  */
-public class WebContentDisplayDefaultView extends FrameLayout
+public class WebContentDisplayView extends FrameLayout
 	implements WebContentDisplayViewModel {
 
-	public WebContentDisplayDefaultView(Context context) {
+	public WebContentDisplayView(Context context) {
 		super(context);
 
 		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public WebContentDisplayDefaultView(Context context, AttributeSet attributes) {
+	public WebContentDisplayView(Context context, AttributeSet attributes) {
 
 		super(context, attributes);
 
 		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public WebContentDisplayDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
+	public WebContentDisplayView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 
 		DefaultTheme.initIfThemeNotPresent(context);

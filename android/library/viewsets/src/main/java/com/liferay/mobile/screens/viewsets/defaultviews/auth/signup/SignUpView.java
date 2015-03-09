@@ -33,22 +33,22 @@ import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 /**
  * @author Silvio Santos
  */
-public class SignUpDefaultView extends LinearLayout
+public class SignUpView extends LinearLayout
 		implements SignUpViewModel, View.OnClickListener {
 
-	public SignUpDefaultView(Context context) {
+	public SignUpView(Context context) {
 		super(context);
 
 		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public SignUpDefaultView(Context context, AttributeSet attributes) {
+	public SignUpView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 
 		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public SignUpDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
+	public SignUpView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 
 		DefaultTheme.initIfThemeNotPresent(context);

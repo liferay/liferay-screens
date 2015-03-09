@@ -30,8 +30,8 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListMaterialAdapter
-	extends BaseListAdapter<DDLEntry, DDLListMaterialAdapter.TwoTextsViewHolder> {
+public class DDLListAdapter
+	extends BaseListAdapter<DDLEntry, DDLListAdapter.TwoTextsViewHolder> {
 
 	public static class TwoTextsViewHolder extends BaseListAdapter.ViewHolder {
 
@@ -45,7 +45,7 @@ public class DDLListMaterialAdapter
 	}
 
 
-    public DDLListMaterialAdapter(
+    public DDLListAdapter(
 		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 
         super(layoutId, progressLayoutId, listener);

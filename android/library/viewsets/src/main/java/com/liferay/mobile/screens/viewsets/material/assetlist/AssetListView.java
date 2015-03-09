@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -12,39 +12,50 @@
  * details.
  */
 
-package com.liferay.mobile.screens.viewsets.defaultviews.assetlist;
+package com.liferay.mobile.screens.viewsets.material.assetlist;
 
 import android.content.Context;
 import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.assetlist.view.AssetListViewModel;
-import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
+import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.assetlist.AssetListAdapter;
 
 
 /**
  * @author Silvio Santos
  */
-public class AssetListDefaultView
-	extends BaseListScreenletView<AssetEntry, BaseListAdapter.ViewHolder, AssetListAdapter>
+public class AssetListView
+	extends BaseListScreenletView<AssetEntry, AssetListAdapter.ViewHolder, AssetListAdapter>
 	implements AssetListViewModel {
 
-	public AssetListDefaultView(Context context) {
+	public AssetListView(Context context) {
 		super(context);
 	}
 
-	public AssetListDefaultView(Context context, AttributeSet attributes) {
+	public AssetListView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
 
-	public AssetListDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
+	public AssetListView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 
-    @Override
-    protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-        return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
-    }
+	@Override
+	protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+		return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
+	}
+
+	@Override
+	protected int getItemLayoutId() {
+		return R.layout.list_item_material;
+	}
+
+	@Override
+	protected int getItemProgressLayoutId() {
+		return R.layout.list_item_progress_material;
+	}
 
 }

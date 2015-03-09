@@ -33,22 +33,22 @@ import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 /**
  * @author Jose Manuel Navarro
  */
-public class ForgotPasswordDefaultView extends LinearLayout
+public class ForgotPasswordView extends LinearLayout
 		implements ForgotPasswordViewModel, View.OnClickListener {
 
-	public ForgotPasswordDefaultView(Context context) {
+	public ForgotPasswordView(Context context) {
 		super(context);
 
 		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public ForgotPasswordDefaultView(Context context, AttributeSet attributes) {
+	public ForgotPasswordView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 
 		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public ForgotPasswordDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
+	public ForgotPasswordView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 
 		DefaultTheme.initIfThemeNotPresent(context);

@@ -18,22 +18,22 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.viewsets.R;
-import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldDateView;
 
 /**
  * @author Silvio Santos
  */
-public class DDLFieldDateMaterialView extends DDLFieldDateView {
+public class DDLFieldDateView
+	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldDateView {
 
-	public DDLFieldDateMaterialView(Context context) {
+	public DDLFieldDateView(Context context) {
 		super(context);
 	}
 
-	public DDLFieldDateMaterialView(Context context, AttributeSet attributes) {
+	public DDLFieldDateView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
 
-	public DDLFieldDateMaterialView(Context context, AttributeSet attributes, int defaultStyle) {
+	public DDLFieldDateView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

@@ -44,22 +44,22 @@ import java.util.Map;
 /**
  * @author Silvio Santos
  */
-public class DDLFormDefaultView
+public class DDLFormView
 	extends ScrollView implements DDLFormViewModel, View.OnClickListener {
 
-	public DDLFormDefaultView(Context context) {
+	public DDLFormView(Context context) {
 		super(context);
 
 		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public DDLFormDefaultView(Context context, AttributeSet attributes) {
+	public DDLFormView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 
 		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public DDLFormDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
+	public DDLFormView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 
 		DefaultTheme.initIfThemeNotPresent(context);

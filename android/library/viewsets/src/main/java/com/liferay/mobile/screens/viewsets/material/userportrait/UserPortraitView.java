@@ -25,19 +25,19 @@ import com.liferay.mobile.screens.viewsets.R;
 /**
  * @author Javier Gamarra
  */
-public class UserPortraitMaterialView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.userportrait.UserPortraitDefaultView {
+public class UserPortraitView
+	extends com.liferay.mobile.screens.viewsets.defaultviews.userportrait.UserPortraitView {
 
 
-    public UserPortraitMaterialView(Context context) {
+    public UserPortraitView(Context context) {
         super(context);
     }
 
-    public UserPortraitMaterialView(Context context, AttributeSet attributes) {
+    public UserPortraitView(Context context, AttributeSet attributes) {
         super(context, attributes);
     }
 
-    public UserPortraitMaterialView(Context context, AttributeSet attributes, int defaultStyle) {
+    public UserPortraitView(Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
     }
 

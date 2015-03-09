@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpDefaultView
+<com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpView
 	style="@style/default_screenlet"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:liferay="http://schemas.android.com/apk/res-auto"
@@ -64,4 +64,4 @@
 			android:visibility="invisible"
 			liferay:actionViewId="@id/sign_up_button"/>
 	</FrameLayout>
-</com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpDefaultView>
+</com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpView>

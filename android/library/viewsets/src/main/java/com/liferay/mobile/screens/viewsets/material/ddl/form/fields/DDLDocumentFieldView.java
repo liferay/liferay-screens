@@ -19,22 +19,22 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.liferay.mobile.screens.viewsets.R;
-import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView;
 
 /**
  * @author Javier Gamarra
  */
-public class DDLDocumentFieldMaterialView extends DDLDocumentFieldView {
+public class DDLDocumentFieldView
+	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView {
 
-	public DDLDocumentFieldMaterialView(Context context) {
+	public DDLDocumentFieldView(Context context) {
 		super(context);
 	}
 
-	public DDLDocumentFieldMaterialView(Context context, AttributeSet attributes) {
+	public DDLDocumentFieldView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
 
-	public DDLDocumentFieldMaterialView(Context context, AttributeSet attributes, int defaultStyle) {
+	public DDLDocumentFieldView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 

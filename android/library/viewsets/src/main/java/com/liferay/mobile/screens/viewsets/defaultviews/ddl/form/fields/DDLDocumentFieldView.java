@@ -31,7 +31,7 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
-import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormDefaultView;
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView;
 
 import java.io.File;
 import java.io.IOException;
@@ -169,7 +169,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 						field.createLocalFile(path);
 						field.moveToUploadInProgressState();
 						view.setTag(field);
-						((DDLFormDefaultView) getParentView()).onClick(view);
+						((DDLFormView) getParentView()).onClick(view);
 					}
 
 				});

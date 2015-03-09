@@ -37,22 +37,22 @@ import de.keyboardsurfer.android.widget.crouton.Crouton;
 /**
  * @author Silvio Santos
  */
-public class LoginDefaultView extends LinearLayout
+public class LoginView extends LinearLayout
 	implements LoginViewModel, View.OnClickListener {
 
-	public LoginDefaultView(Context context) {
+	public LoginView(Context context) {
 		super(context);
 
 		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public LoginDefaultView(Context context, AttributeSet attributes) {
+	public LoginView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 
 		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public LoginDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
+	public LoginView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 
 		DefaultTheme.initIfThemeNotPresent(context);

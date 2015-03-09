@@ -12,32 +12,60 @@
  * details.
  */
 
-package com.liferay.mobile.screens.viewsets.material.auth.forgotpassword;
+package com.liferay.mobile.screens.viewsets.material.auth.login;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.auth.forgotpassword.ForgotPasswordDefaultView;
 
 /**
  * @author Silvio Santos
  */
-public class ForgotPasswordMaterialView extends ForgotPasswordDefaultView {
+public class LoginView
+	extends com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
+	implements View.OnTouchListener {
 
-	public ForgotPasswordMaterialView(Context context) {
+	public LoginView(Context context) {
 		super(context);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public ForgotPasswordMaterialView(Context context, AttributeSet attributes) {
+	public LoginView(Context context, AttributeSet attributes) {
 		super(context, attributes);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public ForgotPasswordMaterialView(Context context, AttributeSet attributes, int defaultStyle) {
+	public LoginView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
+
+		DefaultTheme.initIfThemeNotPresent(context);
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		ImageView primary = (v.getId() == R.id.login) ? _drawableLogin : _drawablePassword;
+		ImageView secondary = (v.getId() == R.id.login) ? _drawablePassword : _drawableLogin;
+
+		changeColorOfImageView(primary, secondary);
+
+		return super.onTouchEvent(event);
+	}
+
+	@Override
+	protected void onAttachedToWindow() {
+		super.onAttachedToWindow();
+
+		getLoginEditText().setOnTouchListener(this);
+		getPasswordEditText().setOnTouchListener(this);
 	}
 
 	@Override
@@ -45,7 +73,9 @@ public class ForgotPasswordMaterialView extends ForgotPasswordDefaultView {
 		super.onFinishInflate();
 
 		_drawableLogin = (ImageView) findViewById(R.id.drawable_login);
-		_drawableLogin.setColorFilter(getResources().getColor(R.color.material_primary));
+		_drawablePassword = (ImageView) findViewById(R.id.drawable_password);
+
+		changeColorOfImageView(_drawableLogin, _drawablePassword);
 	}
 
 	@Override
@@ -66,6 +96,16 @@ public class ForgotPasswordMaterialView extends ForgotPasswordDefaultView {
 		return R.drawable.ic_account_box;
 	}
 
+	private void changeColorOfImageView(
+		ImageView viewToPrimaryColor, ImageView viewToSecondaryText) {
+
+		Resources res = getResources();
+
+		viewToPrimaryColor.setColorFilter(res.getColor(R.color.material_primary));
+		viewToSecondaryText.setColorFilter(res.getColor(R.color.material_secondary_text));
+	}
+
 	private ImageView _drawableLogin;
+	private ImageView _drawablePassword;
 
 }
