@@ -91,7 +91,8 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<D
 			@Override
 			public void onSuccess(JSONObject result) {
 				try {
-					Intent intent = new Intent(DDLListActivity.this, DDLFormActivity.class);
+
+					Intent intent = getIntentWithTheme(DDLFormActivity.class);
 					intent.putExtra("recordId", recordId);
 					intent.putExtra("recordSetId", recordSetId);
 					intent.putExtra("structureId", result.getInt("DDMStructureId"));
