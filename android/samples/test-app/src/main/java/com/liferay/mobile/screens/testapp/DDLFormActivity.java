@@ -30,7 +30,6 @@ import org.json.JSONObject;
  */
 public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

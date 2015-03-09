@@ -6,7 +6,6 @@
 	android:paddingLeft="40dp"
 	android:paddingRight="40dp">
 
-
 	<LinearLayout style="@style/material_row">
 
 		<ImageView
@@ -44,7 +43,6 @@
 
 	</LinearLayout>
 
-
 	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -66,6 +64,5 @@
 			android:theme="@style/white_theme"
 			android:visibility="invisible"
 			liferay:actionViewId="@id/login_button"/>
-
 	</FrameLayout>
 </com.liferay.mobile.screens.viewsets.material.auth.login.LoginMaterialView>

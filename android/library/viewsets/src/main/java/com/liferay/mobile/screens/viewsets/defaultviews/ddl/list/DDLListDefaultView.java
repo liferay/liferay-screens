@@ -33,17 +33,17 @@ public class DDLListDefaultView
 	extends BaseListScreenletView<DDLEntry, BaseListAdapter.ViewHolder, DDLListAdapter>
 	implements DDLListViewModel {
 
-    public DDLListDefaultView(Context context) {
-        super(context);
-    }
+	public DDLListDefaultView(Context context) {
+		super(context);
+	}
 
-    public DDLListDefaultView(Context context, AttributeSet attributes) {
-        super(context, attributes);
-    }
+	public DDLListDefaultView(Context context, AttributeSet attributes) {
+		super(context, attributes);
+	}
 
-    public DDLListDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
-        super(context, attributes, defaultStyle);
-    }
+	public DDLListDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
+		super(context, attributes, defaultStyle);
+	}
 
 	@Override
 	public void showFinishOperation(int page, List<DDLEntry> entries, int rowCount) {
@@ -54,9 +54,9 @@ public class DDLListDefaultView
 		super.showFinishOperation(page, entries, rowCount);
 	}
 
-    @Override
-    protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-        return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
-    }
+	@Override
+	protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+		return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
+	}
 
 }

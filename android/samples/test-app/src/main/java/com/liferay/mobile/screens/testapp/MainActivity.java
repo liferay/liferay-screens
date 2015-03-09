@@ -8,8 +8,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 /**
  * @author Silvio Santos
  */
-public class MainActivity extends ThemeActivity
-		implements View.OnClickListener {
+public class MainActivity extends ThemeActivity implements View.OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle state) {

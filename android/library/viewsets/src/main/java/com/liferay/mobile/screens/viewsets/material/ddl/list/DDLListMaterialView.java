@@ -34,17 +34,17 @@ public class DDLListMaterialView
 		DDLListMaterialAdapter>
 	implements DDLListViewModel {
 
-    public DDLListMaterialView(Context context) {
-        super(context);
-    }
+	public DDLListMaterialView(Context context) {
+		super(context);
+	}
 
-    public DDLListMaterialView(Context context, AttributeSet attributes) {
-        super(context, attributes);
-    }
+	public DDLListMaterialView(Context context, AttributeSet attributes) {
+		super(context, attributes);
+	}
 
-    public DDLListMaterialView(Context context, AttributeSet attributes, int defaultStyle) {
-        super(context, attributes, defaultStyle);
-    }
+	public DDLListMaterialView(Context context, AttributeSet attributes, int defaultStyle) {
+		super(context, attributes, defaultStyle);
+	}
 
 	@Override
 	public void showFinishOperation(int page, List<DDLEntry> entries, int rowCount) {
@@ -55,10 +55,10 @@ public class DDLListMaterialView
 		super.showFinishOperation(page, entries, rowCount);
 	}
 
-    @Override
-    protected DDLListMaterialAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-        return new DDLListMaterialAdapter(itemLayoutId, itemProgressLayoutId, this);
-    }
+	@Override
+	protected DDLListMaterialAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+		return new DDLListMaterialAdapter(itemLayoutId, itemProgressLayoutId, this);
+	}
 
 	@Override
 	protected int getItemLayoutId() {
@@ -69,4 +69,5 @@ public class DDLListMaterialView
 	protected int getItemProgressLayoutId() {
 		return R.layout.list_item_progress_material;
 	}
+
 }

@@ -88,10 +88,10 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<D
 
 	private JSONObjectAsyncTaskCallback getCallback(final Integer recordId, final Integer recordSetId) {
 		return new JSONObjectAsyncTaskCallback() {
+
 			@Override
 			public void onSuccess(JSONObject result) {
 				try {
-
 					Intent intent = getIntentWithTheme(DDLFormActivity.class);
 					intent.putExtra("recordId", recordId);
 					intent.putExtra("recordSetId", recordSetId);

@@ -40,7 +40,6 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 		hideInactiveScreenlet(R.id.login_default, R.id.login_material);
 	}
 
-
 	@Override
 	public void onLoginSuccess(User user) {
 		info("Login successful!");
