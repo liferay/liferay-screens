@@ -44,6 +44,7 @@ public class DDLListMaterialAdapter
 		}
 	}
 
+
     public DDLListMaterialAdapter(
 		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 

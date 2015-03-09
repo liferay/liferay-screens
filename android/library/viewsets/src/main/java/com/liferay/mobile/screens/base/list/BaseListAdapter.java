@@ -32,6 +32,27 @@ import java.util.List;
 public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 	extends RecyclerView.Adapter<H> {
 
+	public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+		public TextView textView;
+
+		public ViewHolder(View view, BaseListAdapterListener listener) {
+			super(view);
+
+			this.textView = (TextView)view.findViewById(R.id.title);
+			_listener = listener;
+			view.setOnClickListener(this);
+		}
+
+		@Override
+		public void onClick(View v) {
+			_listener.onItemClick(getPosition());
+		}
+
+		private BaseListAdapterListener _listener;
+	}
+
+
 	public BaseListAdapter(
 		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 
@@ -81,8 +102,6 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 		}
 	}
 
-    protected abstract void fillHolder(E entry, H holder);
-
     @Override
 	public H onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -107,25 +126,7 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 		_rowCount = rowCount;
 	}
 
-	public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-		public TextView textView;
-
-		public ViewHolder(View view, BaseListAdapterListener listener) {
-			super(view);
-
-			this.textView = (TextView)view.findViewById(R.id.title);
-			_listener = listener;
-			view.setOnClickListener(this);
-		}
-
-		@Override
-		public void onClick(View v) {
-			_listener.onItemClick(getPosition());
-		}
-
-		private BaseListAdapterListener _listener;
-	}
+	protected abstract void fillHolder(E entry, H holder);
 
 	protected static final int LAYOUT_TYPE_DEFAULT = 0;
 	protected static final int LAYOUT_TYPE_PROGRESS = 1;
