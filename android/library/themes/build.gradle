@@ -27,6 +27,8 @@ repositories {
 		url 'https://repository.liferay.com/nexus/content/groups/liferay-ce'
 	}
 
+//    maven { url "https://raw.github.com/liferay/liferay-screens/master/android/dist/" }
+
 	jcenter()
 	mavenCentral()
 }
@@ -39,6 +41,7 @@ dependencies {
         exclude group: 'com.google.android', module: 'support-v4'
     }
 	compile project(':core')
+//    compile 'com.liferay.mobile:liferay-screens-core:0.3.0'
 }
 
 uploadArchives {
