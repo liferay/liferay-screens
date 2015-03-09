@@ -22,8 +22,8 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 		return self.screenlet as DDLListScreenlet
 	}
 
-	internal var ddlListData: DDLListData {
-		return screenlet.screenletView as DDLListData
+	internal var viewModel: DDLListViewModel {
+		return screenlet.screenletView as DDLListViewModel
 	}
 
 	override func validateData() -> Bool {
@@ -31,7 +31,7 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 			return false
 		}
 
-		if ddlListData.labelFields.count == 0 {
+		if viewModel.labelFields.count == 0 {
 			return false
 		}
 
@@ -62,13 +62,10 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 		let service = LRMobilewidgetsddlrecordService_v62(session: session)
 
 		if userId == nil {
-			service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!,
-					error: nil)
+			service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!, error: nil)
 		}
 		else {
-			service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!,
-					userId: userId!,
-					error: nil)
+			service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!, userId: userId!, error: nil)
 		}
 	}
 

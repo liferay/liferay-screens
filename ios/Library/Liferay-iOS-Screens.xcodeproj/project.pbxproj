@@ -188,8 +188,8 @@
 		88F9F1DB19E3480D006268ED /* DDLFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F10319E3480D006268ED /* DDLFieldTableCell.swift */; };
 		88F9F1DC19E3480D006268ED /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F10419E3480D006268ED /* DDLFormTableView.swift */; };
 		88F9F1DD19E3480D006268ED /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F10419E3480D006268ED /* DDLFormTableView.swift */; };
-		88F9F1DE19E3480D006268ED /* DDLListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F10619E3480D006268ED /* DDLListData.swift */; };
-		88F9F1DF19E3480D006268ED /* DDLListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F10619E3480D006268ED /* DDLListData.swift */; };
+		88F9F1DE19E3480D006268ED /* DDLListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F10619E3480D006268ED /* DDLListViewModel.swift */; };
+		88F9F1DF19E3480D006268ED /* DDLListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F10619E3480D006268ED /* DDLListViewModel.swift */; };
 		88F9F1E019E3480D006268ED /* DDLListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F10719E3480D006268ED /* DDLListScreenlet.swift */; };
 		88F9F1E119E3480D006268ED /* DDLListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F10719E3480D006268ED /* DDLListScreenlet.swift */; };
 		88F9F1E219E3480D006268ED /* LiferayDDLListPageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F10919E3480D006268ED /* LiferayDDLListPageOperation.swift */; };
@@ -514,7 +514,7 @@
 		88F9F10119E3480D006268ED /* LiferayDDLFormUploadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayDDLFormUploadOperation.swift; sourceTree = "<group>"; };
 		88F9F10319E3480D006268ED /* DDLFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldTableCell.swift; sourceTree = "<group>"; };
 		88F9F10419E3480D006268ED /* DDLFormTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormTableView.swift; sourceTree = "<group>"; };
-		88F9F10619E3480D006268ED /* DDLListData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListData.swift; sourceTree = "<group>"; };
+		88F9F10619E3480D006268ED /* DDLListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListViewModel.swift; sourceTree = "<group>"; };
 		88F9F10719E3480D006268ED /* DDLListScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListScreenlet.swift; sourceTree = "<group>"; };
 		88F9F10919E3480D006268ED /* LiferayDDLListPageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayDDLListPageOperation.swift; sourceTree = "<group>"; };
 		88F9F10B19E3480D006268ED /* DDLField+DataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDLField+DataType.swift"; sourceTree = "<group>"; };
@@ -932,8 +932,8 @@
 		88F9F10519E3480D006268ED /* ListScreenlet */ = {
 			isa = PBXGroup;
 			children = (
-				88F9F10619E3480D006268ED /* DDLListData.swift */,
 				88F9F10719E3480D006268ED /* DDLListScreenlet.swift */,
+				88F9F10619E3480D006268ED /* DDLListViewModel.swift */,
 				88F9F10819E3480D006268ED /* ServerOperations */,
 			);
 			path = ListScreenlet;
@@ -1673,7 +1673,7 @@
 				88F9F19F19E3480D006268ED /* LoginViewModel.swift in Sources */,
 				88F9F19319E3480D006268ED /* ForgotPasswordViewModel.swift in Sources */,
 				88F9F2D019E3484B006268ED /* DDLFieldNumber_Tests.swift in Sources */,
-				88F9F1DF19E3480D006268ED /* DDLListData.swift in Sources */,
+				88F9F1DF19E3480D006268ED /* DDLListViewModel.swift in Sources */,
 				88F9F1DD19E3480D006268ED /* DDLFormTableView.swift in Sources */,
 				88F9F1EF19E3480D006268ED /* DDLFieldDocument.swift in Sources */,
 				88F9F1B119E3480D006268ED /* SignUpScreenlet.swift in Sources */,
@@ -1774,7 +1774,7 @@
 				888FAFA8196AE8C200057B26 /* AppDelegate.swift in Sources */,
 				88F9F20A19E3480D006268ED /* LiferayWebContentLoadOperation.swift in Sources */,
 				88F9F21019E3480D006268ED /* AssetListView_default.swift in Sources */,
-				88F9F1DE19E3480D006268ED /* DDLListData.swift in Sources */,
+				88F9F1DE19E3480D006268ED /* DDLListViewModel.swift in Sources */,
 				881A0FD51A66CAC3005D0EB0 /* GetUserBaseOperation.swift in Sources */,
 				88F9F22619E3480D006268ED /* DDLFieldDateTableCell_default.swift in Sources */,
 				88F9F1A019E3480D006268ED /* LoginScreenlet.swift in Sources */,

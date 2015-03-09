@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol DDLListData {
+@objc public protocol DDLListViewModel {
 
 	var labelFields: [String] { get set }
 

@@ -31,14 +31,14 @@ import UIKit
 
 	@IBInspectable public var labelFields: String? {
 		didSet {
-			(screenletView as? DDLListData)?.labelFields = parseFields(labelFields)
+			(screenletView as? DDLListViewModel)?.labelFields = parseFields(labelFields)
 		}
 	}
 
 	@IBOutlet public var delegate: DDLListScreenletDelegate?
 
-	internal var ddlListData: DDLListData {
-		return screenletView as DDLListData
+	internal var viewModel: DDLListViewModel {
+		return screenletView as DDLListViewModel
 	}
 
 
@@ -47,7 +47,7 @@ import UIKit
 	override public func onCreated() {
 		super.onCreated()
 
-		ddlListData.labelFields = parseFields(self.labelFields)
+		viewModel.labelFields = parseFields(self.labelFields)
 	}
 
 	override internal func createPaginationOperation(
