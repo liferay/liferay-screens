@@ -72,7 +72,8 @@ public class Record implements Parcelable {
 
 		try {
 			_fields = parser.parse(xsd, _locale);
-		} catch (SAXException e) {
+		}
+		catch (SAXException e) {
 			_fields = new ArrayList<>();
 		}
 	}

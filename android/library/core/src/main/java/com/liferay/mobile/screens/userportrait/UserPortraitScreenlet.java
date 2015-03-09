@@ -56,7 +56,8 @@ public class UserPortraitScreenlet
 			else {
 				getInteractor().load(_male, _portraitId, _uuid);
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			onUserPortraitFailure(e);
 		}
 

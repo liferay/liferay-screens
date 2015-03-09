@@ -175,7 +175,8 @@ public class CredentialsStoreSharedPreferencesTest {
 		JSONObject userAttributes = null;
 		try {
 			userAttributes = new JSONObject().put("userId", 123);
-		} catch (JSONException e) {
+		}
+		catch (JSONException e) {
 		}
 		store.setUser(new User(userAttributes));
 

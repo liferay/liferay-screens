@@ -100,7 +100,8 @@ public class CredentialsStoreSharedPreferences implements CredentialsStore {
 
 		try {
 			_user = new User(new JSONObject(userAttributes));
-		} catch (JSONException e) {
+		}
+		catch (JSONException e) {
 			throw new IllegalStateException("Stored user attributes are corrupted");
 		}
 

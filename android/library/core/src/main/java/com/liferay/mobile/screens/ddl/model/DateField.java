@@ -84,7 +84,8 @@ public class DateField extends Field<Date> {
 
 		try {
 			result = formatter.parse(stringValue);
-		} catch (ParseException e) {
+		}
+		catch (ParseException e) {
 			result = null;
 		}
 

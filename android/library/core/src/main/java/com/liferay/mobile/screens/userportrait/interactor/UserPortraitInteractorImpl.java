@@ -169,7 +169,8 @@ public class UserPortraitInteractorImpl
 
 			return URLEncoder.encode(token, "UTF8");
 
-		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+		}
+		catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
 		}
 
 		return null;

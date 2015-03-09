@@ -42,7 +42,8 @@ public abstract class ThemeActivity extends Activity {
 	protected void info(String message) {
 		if (isDefaultTheme()) {
 			DefaultCrouton.info(this, message);
-		} else {
+		}
+		else {
 			MaterialCrouton.info(this, message);
 		}
 	}
@@ -50,7 +51,8 @@ public abstract class ThemeActivity extends Activity {
 	protected void error(String message, Exception e) {
 		if (isDefaultTheme()) {
 			DefaultCrouton.error(this, message, e);
-		} else {
+		}
+		else {
 			MaterialCrouton.error(this, message, e);
 		}
 	}

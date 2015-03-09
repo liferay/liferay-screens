@@ -37,7 +37,8 @@ public class User {
 
 			try {
 				_attributes.put(key, jsonObject.get(key));
-			} catch (JSONException e) {
+			}
+			catch (JSONException e) {
 			}
 		}
 	}

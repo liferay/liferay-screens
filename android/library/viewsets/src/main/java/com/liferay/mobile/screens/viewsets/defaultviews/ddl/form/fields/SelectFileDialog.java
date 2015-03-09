@@ -116,7 +116,8 @@ public class SelectFileDialog {
 		try {
 			File file = new File(directory);
 			return file.exists() && file.isDirectory() ? file.getCanonicalPath() : null;
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			return null;
 		}
 	}

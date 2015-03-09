@@ -81,13 +81,16 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		if (getField().isUploaded()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_success, 0);
 			_progressBar.setVisibility(View.GONE);
-		} else if (getField().isUploadFailed()) {
+		}
+		else if (getField().isUploadFailed()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_failed, 0);
 			_progressBar.setVisibility(View.GONE);
-		} else if (getField().isUploading()) {
+		}
+		else if (getField().isUploading()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 			_progressBar.setVisibility(View.VISIBLE);
-		} else {
+		}
+		else {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_blue, 0);
 			_progressBar.setVisibility(View.GONE);
 		}

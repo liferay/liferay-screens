@@ -128,7 +128,8 @@ public class DDLFormDefaultView
 			DocumentField documentField = (DocumentField) argument;
 
 			findFieldView(documentField).refresh();
-		} else {
+		}
+		else {
 			LiferayLogger.i("loading DDLForm");
 			showProgressBar();
 		}
@@ -231,7 +232,8 @@ public class DDLFormDefaultView
 			if (getDDLFormScreenlet().validateForm()) {
 				getDDLFormScreenlet().submitForm();
 			}
-		} else {
+		}
+		else {
 			getDDLFormScreenlet().startUpload((DocumentField) view.getTag());
 		}
 	}
