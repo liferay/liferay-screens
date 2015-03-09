@@ -39,8 +39,11 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 		AssetListScreenlet screenlet = (AssetListScreenlet) getActiveScreenlet(R.id.asset_list_default,
 				R.id.asset_list_material);
 
+		screenlet.setClassNameId(getIntent().getIntExtra("classNameId", 10011));
+
 		screenlet.setVisibility(View.VISIBLE);
 		screenlet.setListener(this);
+		screenlet.loadPage(0);
 
 		hideInactiveScreenlet(R.id.asset_list_default, R.id.asset_list_material);
 	}

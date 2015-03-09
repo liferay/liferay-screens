@@ -19,6 +19,7 @@
 			</intent-filter>
 		</activity>
 
+		<activity android:name=".SelectAssetActivity"/>
 		<activity android:name=".AssetListActivity"/>
 		<activity android:name=".DDLFormActivity"/>
 		<activity android:name=".DDLListActivity"/>

@@ -10,6 +10,7 @@
 		android:id="@+id/asset_list_default"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		liferay:autoLoad="false"
 		liferay:classNameId="10011"
 		liferay:layoutId="@layout/asset_list_default"/>
 
@@ -17,6 +18,7 @@
 		android:id="@+id/asset_list_material"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		liferay:autoLoad="false"
 		liferay:classNameId="10011"
 		liferay:layoutId="@layout/asset_list_material"/>
 

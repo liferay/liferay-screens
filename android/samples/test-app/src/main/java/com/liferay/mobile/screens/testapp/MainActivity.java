@@ -37,8 +37,7 @@ public class MainActivity extends ThemeActivity
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(DDLListActivity.class));
 				break;
 			case R.id.asset_list:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(AssetListActivity
-						.class));
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SelectAssetActivity.class));
 				break;
 			case R.id.sign_up:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SignUpActivity.class));
