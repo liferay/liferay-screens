@@ -50,7 +50,7 @@ uploadArchives {
         repository(url: "file://${deployPath.absolutePath}")
         pom.project {
             groupId 'com.liferay.mobile'
-            artifactId 'liferay-screens-viewsets'
+            artifactId 'liferay-screens'
             version "0.3.0"
         }
     }
