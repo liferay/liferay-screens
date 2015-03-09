@@ -43,19 +43,19 @@ public class DDLDocumentFieldMaterialView extends DDLDocumentFieldView {
 		getTextEditText().setText(getField().toFormattedString());
 		if (getField().isUploaded()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.material_tinted_done, 0);
-			_progressBar.setVisibility(View.GONE);
+			getProgressBar().setVisibility(View.GONE);
 		}
 		else if (getField().isUploadFailed()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.material_tinted_remove, 0);
-			_progressBar.setVisibility(View.GONE);
+			getProgressBar().setVisibility(View.GONE);
 		}
 		else if (getField().isUploading()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-			_progressBar.setVisibility(View.VISIBLE);
+			getProgressBar().setVisibility(View.VISIBLE);
 		}
 		else {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.material_tinted_perm_media, 0);
-			_progressBar.setVisibility(View.GONE);
+			getProgressBar().setVisibility(View.GONE);
 		}
 	}
 

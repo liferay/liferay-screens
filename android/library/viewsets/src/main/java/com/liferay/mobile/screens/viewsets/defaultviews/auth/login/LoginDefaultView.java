@@ -39,7 +39,7 @@ import de.keyboardsurfer.android.widget.crouton.Crouton;
  * @author Silvio Santos
  */
 public class LoginDefaultView extends LinearLayout
-		implements LoginViewModel, View.OnClickListener {
+	implements LoginViewModel, View.OnClickListener {
 
 	public LoginDefaultView(Context context) {
 		super(context);
@@ -143,9 +143,21 @@ public class LoginDefaultView extends LinearLayout
 		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(drawableId), null, null, null);
 	}
 
-	protected EditText _loginEditText;
-	protected EditText _passwordEditText;
-	protected Button _submitButton;
+	protected EditText getLoginEditText() {
+		return _loginEditText;
+	}
+
+	protected EditText getPasswordEditText() {
+		return _passwordEditText;
+	}
+
+	protected Button getSubmitButton() {
+		return _submitButton;
+	}
+
+	private EditText _loginEditText;
+	private EditText _passwordEditText;
+	private Button _submitButton;
 	private AuthMethod _authMethod;
 	private ModalProgressBar _progressBar;
 

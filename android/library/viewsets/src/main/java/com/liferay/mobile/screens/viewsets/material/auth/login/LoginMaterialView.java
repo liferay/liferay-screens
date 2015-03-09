@@ -63,19 +63,19 @@ public class LoginMaterialView extends LoginDefaultView implements View.OnTouchL
 	@Override
 	protected void onAttachedToWindow() {
 		if (AuthMethod.USER_ID.equals(getAuthMethod())) {
-			_loginEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+			getLoginEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
 			_drawableLogin.setImageResource(R.drawable.ic_account_box);
 		}
 		else if (AuthMethod.EMAIL.equals(getAuthMethod())) {
-			_loginEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+			getLoginEditText().setInputType(InputType.TYPE_CLASS_TEXT);
 			_drawableLogin.setImageResource(R.drawable.ic_email);
 		}
 		else {
-			_loginEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+			getLoginEditText().setInputType(InputType.TYPE_CLASS_TEXT);
 			_drawableLogin.setImageResource(R.drawable.ic_account_box);
 		}
-		_loginEditText.setOnTouchListener(this);
-		_passwordEditText.setOnTouchListener(this);
+		getLoginEditText().setOnTouchListener(this);
+		getPasswordEditText().setOnTouchListener(this);
 
 	}
 

@@ -130,7 +130,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 
 	}
 
-	private AlertDialog createOriginDialog() {
+	protected AlertDialog createOriginDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
 		LayoutInflater factory = LayoutInflater.from(getContext());
@@ -146,7 +146,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		return builder.create();
 	}
 
-	private void launchCameraIntent(String intent, File file) {
+	protected void launchCameraIntent(String intent, File file) {
 		Intent cameraIntent = new Intent(intent);
 
 		if (file != null) {
@@ -156,7 +156,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		}
 	}
 
-	private void showSelectFileDialog(final View view) {
+	protected void showSelectFileDialog(final View view) {
 		_fileDialog = new SelectFileDialog().createDialog(getContext(),
 				new SelectFileDialog.SimpleFileDialogListener() {
 
@@ -177,18 +177,17 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		_fileDialog.show();
 	}
 
-	private File createImageFile() {
+	protected File createImageFile() {
 		return createFile("PHOTO", Environment.DIRECTORY_PICTURES, ".jpg");
 	}
 
-	private File createVideoFile() {
+	protected File createVideoFile() {
 		return createFile("VIDEO", Environment.DIRECTORY_MOVIES, ".mp4");
 	}
 
-	private File createFile(String name, String directory, String extension) {
+	protected File createFile(String name, String directory, String extension) {
 		try {
-			File storageDir = Environment.getExternalStoragePublicDirectory(
-					directory);
+			File storageDir = Environment.getExternalStoragePublicDirectory(directory);
 			return File.createTempFile(name, extension, storageDir);
 		}
 		catch (IOException e) {
@@ -198,8 +197,12 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		return null;
 	}
 
+	protected ProgressBar getProgressBar() {
+		return _progressBar;
+	}
+
 	private int _positionInForm;
-	protected ProgressBar _progressBar;
+	private ProgressBar _progressBar;
 	private AlertDialog _choseOriginDialog;
 	private AlertDialog _fileDialog;
 
