@@ -22,7 +22,7 @@ import UIKit
 }
 
 
-@IBDesignable public class SignUpScreenlet: BaseScreenlet, AnonymousAuthData {
+@IBDesignable public class SignUpScreenlet: BaseScreenlet, AnonymousAuthType {
 
 	//MARK: Inspectables
 
