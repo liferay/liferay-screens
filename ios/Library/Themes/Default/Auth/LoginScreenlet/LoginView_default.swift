@@ -53,7 +53,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	}
 
 
-	//MARK: LoginData
+	//MARK: LoginViewModel
 
 	public var userName: String? {
 		get {

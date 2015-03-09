@@ -21,7 +21,7 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 	@IBOutlet internal var requestPasswordButton: UIButton?
 
 
-	//MARK: ForgotPasswordData
+	//MARK: ForgotPasswordViewModel
 
 	public var userName: String? {
 		get {

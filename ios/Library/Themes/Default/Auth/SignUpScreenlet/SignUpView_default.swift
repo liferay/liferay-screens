@@ -63,7 +63,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 				forState: .Normal)
 	}
 
-	//MARK: SignUpData
+	//MARK: SignUpViewModel
 
 	public var emailAddress: String? {
 		get {
