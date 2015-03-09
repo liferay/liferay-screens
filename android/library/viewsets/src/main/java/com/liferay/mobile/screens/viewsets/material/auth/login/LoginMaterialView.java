@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.viewsets.material.auth.login;
 
 import android.content.Context;
-import android.text.InputType;
+import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -51,49 +51,60 @@ public class LoginMaterialView extends LoginDefaultView implements View.OnTouchL
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		if (v.getId() == R.id.login) {
-			changeColorOfImageView(_drawableLogin, _drawablePassword);
-		}
-		else {
-			changeColorOfImageView(_drawablePassword, _drawableLogin);
-		}
+		ImageView primary = (v.getId() == R.id.login) ? _drawableLogin : _drawablePassword;
+		ImageView secondary = (v.getId() == R.id.login) ? _drawablePassword : _drawableLogin;
+
+		changeColorOfImageView(primary, secondary);
+
 		return super.onTouchEvent(event);
 	}
 
 	@Override
 	protected void onAttachedToWindow() {
-		if (AuthMethod.USER_ID.equals(getAuthMethod())) {
-			getLoginEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
-			_drawableLogin.setImageResource(R.drawable.ic_account_box);
-		}
-		else if (AuthMethod.EMAIL.equals(getAuthMethod())) {
-			getLoginEditText().setInputType(InputType.TYPE_CLASS_TEXT);
-			_drawableLogin.setImageResource(R.drawable.ic_email);
-		}
-		else {
-			getLoginEditText().setInputType(InputType.TYPE_CLASS_TEXT);
-			_drawableLogin.setImageResource(R.drawable.ic_account_box);
-		}
+		super.onAttachedToWindow();
+
 		getLoginEditText().setOnTouchListener(this);
 		getPasswordEditText().setOnTouchListener(this);
-
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
+
 		_drawableLogin = (ImageView) findViewById(R.id.drawable_login);
 		_drawablePassword = (ImageView) findViewById(R.id.drawable_password);
+
 		changeColorOfImageView(_drawableLogin, _drawablePassword);
 	}
 
-	private void changeColorOfImageView(ImageView viewToPrimaryColor, ImageView viewToSecondaryText) {
-		viewToPrimaryColor.setColorFilter(getResources().getColor(R.color.material_primary));
-		viewToSecondaryText.setColorFilter(getResources().getColor(R.color.material_secondary_text));
+	@Override
+	protected void refreshLoginEditTextStyle() {
+		getLoginEditText().setInputType(getAuthMethod().getInputType());
+		_drawableLogin.setImageResource(getLoginEditTextDrawableId());
+	}
+
+	@Override
+	protected int getLoginEditTextDrawableId() {
+		if (AuthMethod.USER_ID.equals(getAuthMethod())) {
+			return R.drawable.ic_account_box;
+		}
+		else if (AuthMethod.EMAIL.equals(getAuthMethod())) {
+			return R.drawable.ic_email;
+		}
+
+		return R.drawable.ic_account_box;
+	}
+
+	private void changeColorOfImageView(
+		ImageView viewToPrimaryColor, ImageView viewToSecondaryText) {
+
+		Resources res = getResources();
+
+		viewToPrimaryColor.setColorFilter(res.getColor(R.color.material_primary));
+		viewToSecondaryText.setColorFilter(res.getColor(R.color.material_secondary_text));
 	}
 
 	private ImageView _drawableLogin;
 	private ImageView _drawablePassword;
-
 
 }

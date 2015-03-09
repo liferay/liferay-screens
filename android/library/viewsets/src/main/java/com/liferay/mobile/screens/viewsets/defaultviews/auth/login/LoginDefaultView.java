@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.auth.login;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -26,12 +25,12 @@ import android.widget.LinearLayout;
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
+import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 
@@ -97,8 +96,8 @@ public class LoginDefaultView extends LinearLayout
 
 		LiferayLogger.e("Could not login", e);
 
-		Crouton.makeText((Activity) getContext(), getContext().getString(R.string
-				.login_error), DefaultCrouton.ALERT).show();
+		Crouton.makeText((Activity) getContext(),
+			getContext().getString(R.string.login_error), DefaultCrouton.ALERT).show();
 	}
 
 	@Override
@@ -110,6 +109,8 @@ public class LoginDefaultView extends LinearLayout
 
 	public void setAuthMethod(AuthMethod authMethod) {
 		_authMethod = authMethod;
+
+		refreshLoginEditTextStyle();
 	}
 
 	@Override
@@ -126,21 +127,26 @@ public class LoginDefaultView extends LinearLayout
 
 	@Override
 	protected void onAttachedToWindow() {
-		int drawableId;
+		super.onAttachedToWindow();
+
+		refreshLoginEditTextStyle();
+	}
+
+	protected void refreshLoginEditTextStyle() {
+		_loginEditText.setInputType(_authMethod.getInputType());
+		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(
+			getResources().getDrawable(getLoginEditTextDrawableId()), null, null, null);
+	}
+
+	protected int getLoginEditTextDrawableId() {
 		if (AuthMethod.USER_ID.equals(_authMethod)) {
-			_loginEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
-			drawableId = R.drawable.default_user_icon;
+			return R.drawable.default_user_icon;
 		}
 		else if (AuthMethod.EMAIL.equals(_authMethod)) {
-			_loginEditText.setInputType(InputType.TYPE_CLASS_TEXT);
-			drawableId = R.drawable.default_mail_icon;
-		}
-		else {
-			_loginEditText.setInputType(InputType.TYPE_CLASS_TEXT);
-			drawableId = R.drawable.default_user_icon;
+			return R.drawable.default_mail_icon;
 		}
 
-		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(drawableId), null, null, null);
+		return R.drawable.default_user_icon;
 	}
 
 	protected EditText getLoginEditText() {
