@@ -103,6 +103,8 @@ public class ForgotPasswordDefaultView extends LinearLayout
 
 	public void setAuthMethod(AuthMethod authMethod) {
 		_authMethod = authMethod;
+
+		refreshLoginEditTextStyle();
 	}
 
 	@Override
@@ -114,6 +116,34 @@ public class ForgotPasswordDefaultView extends LinearLayout
 
 		Button requestButton = (Button) findViewById(R.id.request_button);
 		requestButton.setOnClickListener(this);
+	}
+
+	@Override
+	protected void onAttachedToWindow() {
+		super.onAttachedToWindow();
+
+		refreshLoginEditTextStyle();
+	}
+
+	protected void refreshLoginEditTextStyle() {
+		_loginEditText.setInputType(_authMethod.getInputType());
+		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(
+			getResources().getDrawable(getLoginEditTextDrawableId()), null, null, null);
+	}
+
+	protected int getLoginEditTextDrawableId() {
+		if (AuthMethod.USER_ID.equals(_authMethod)) {
+			return R.drawable.default_user_icon;
+		}
+		else if (AuthMethod.EMAIL.equals(_authMethod)) {
+			return R.drawable.default_mail_icon;
+		}
+
+		return R.drawable.default_user_icon;
+	}
+
+	protected EditText getLoginEditText() {
+		return _loginEditText;
 	}
 
 	private AuthMethod _authMethod;
