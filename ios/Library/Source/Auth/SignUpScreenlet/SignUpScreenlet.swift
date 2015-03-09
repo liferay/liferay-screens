@@ -35,7 +35,7 @@ import UIKit
 
 	@IBInspectable public var companyId: Int64 = 0 {
 		didSet {
-			(screenletView as? SignUpData)?.companyId = self.companyId
+			(screenletView as? SignUpViewModel)?.companyId = self.companyId
 		}
 	}
 
@@ -43,8 +43,8 @@ import UIKit
 	@IBOutlet public var autoLoginDelegate: LoginScreenletDelegate?
 
 
-	internal var signUpData: SignUpData {
-		return screenletView as SignUpData
+	internal var viewModel: SignUpViewModel {
+		return screenletView as SignUpViewModel
 	}
 
 
@@ -53,7 +53,7 @@ import UIKit
 	override func onCreated() {
 		super.onCreated()
 
-		signUpData.companyId = self.companyId
+		viewModel.companyId = self.companyId
 	}
 
 	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
@@ -79,8 +79,8 @@ import UIKit
 			SessionContext.removeStoredSession()
 
 			SessionContext.createSession(
-					username: signUpData.emailAddress!,
-					password: signUpData.password!,
+					username: viewModel.emailAddress!,
+					password: viewModel.password!,
 					userAttributes: userAttributes)
 
 			autoLoginDelegate?.onLoginResponse?(userAttributes)

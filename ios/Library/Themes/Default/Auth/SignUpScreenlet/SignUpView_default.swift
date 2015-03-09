@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class SignUpView_default: BaseScreenletView, SignUpData {
+public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 	@IBOutlet internal var emailAddressField: UITextField?
 	@IBOutlet internal var passwordField: UITextField?
