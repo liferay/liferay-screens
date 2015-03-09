@@ -55,13 +55,14 @@ public class ModalProgressBar extends ProgressBar {
 
 	@Override
 	public void setVisibility(int v) {
-		super.setVisibility(v);
 		View actionView = findActionView((View) getParent(), _actionViewId);
 
 		if (actionView != null) {
 			setVisibility(v, actionView);
 		}
-
+		else {
+			super.setVisibility(v);
+		}
 	}
 
 	private View findActionView(View parent, int actionViewId) {
