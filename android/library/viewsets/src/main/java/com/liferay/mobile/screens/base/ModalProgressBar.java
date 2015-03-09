@@ -93,7 +93,7 @@ public class ModalProgressBar extends ProgressBar {
 			System.out.println(attributes.getAttributeName(i) + " - " + attributes.getAttributeValue(i));
 		}
 		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.ModalProgressBar, 0, 0);
+				context.getTheme().obtainStyledAttributes(attributes, R.styleable.ModalProgressBar, 0, 0);
 
 		_actionViewId = typedArray.getResourceId(R.styleable.ModalProgressBar_actionViewId, 0);
 

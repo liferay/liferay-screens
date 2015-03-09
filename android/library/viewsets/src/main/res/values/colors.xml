@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<item name="liferay_light_blue" type="color">#DD00B8E0</item>
-	<item name="liferay_primary_blue" type="color">#FF00B8E0</item>
-	<item name="liferay_light_gray" type="color">#FFD5D5D7</item>
-	<item name="liferay_dark_gray" type="color">#FF919394</item>
-	<item name="liferay_red" type="color">#FFE00000</item>
-	<item name="liferay_green" type="color">#FF5AD427</item>
-	<item name="liferay_clear_blue" type="color">#FFF0FFFF</item>
-	<item name="liferay_pure_red" type="color">#FFFF0000</item>
-	<item name="liferay_clear_red" type="color">#FFFFDCC8</item>
+	<color name="default_light_blue" >#DD00B8E0</color>
+	<color name="default_primary_blue" >#FF00B8E0</color>
+	<color name="default_light_gray" >#FFD5D5D7</color>
+	<color name="default_dark_gray" >#FF919394</color>
+	<color name="default_red" >#FFE00000</color>
+	<color name="default_green" >#FF5AD427</color>
+	<color name="default_clear_blue" >#FFF0FFFF</color>
+	<color name="default_pure_red" >#FFFF0000</color>
+	<color name="default_clear_red" >#FFFFDCC8</color>
+
+	<color name="material_primary">#8BC34A</color>
+	<color name="material_primary_dark">#689F38</color>
+	<color name="material_primary_light">#DCEDC8</color>
+	<color name="material_accent">#CDDC39</color>
+	<color name="material_primary_text">#212121</color>
+	<color name="material_secondary_text">#727272</color>
+
 </resources>

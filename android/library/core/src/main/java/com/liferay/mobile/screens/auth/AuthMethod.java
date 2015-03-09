@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.auth;
 
+import android.text.InputType;
+
 /**
  * @author Silvio Santos
  */
@@ -29,6 +31,18 @@ public enum AuthMethod {
 		}
 
 		return EMAIL;
+	}
+
+	public int getInputType() {
+		switch (this) {
+			case EMAIL:
+			case SCREEN_NAME:
+				return InputType.TYPE_CLASS_TEXT;
+			case USER_ID:
+				return InputType.TYPE_CLASS_NUMBER;
+		}
+
+		return InputType.TYPE_NULL;
 	}
 
 	private AuthMethod(int value) {

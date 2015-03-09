@@ -103,7 +103,7 @@ public class DDLListScreenlet
 			throw new IllegalArgumentException("DDLListScreenlet must define 'labelFields' parameter");
 		}
 
-        List<String> parsedFields = new ArrayList<String>();
+        List<String> parsedFields = new ArrayList<>();
         for (String text : labelFields.split(",")) {
             parsedFields.add(text.trim());
         }

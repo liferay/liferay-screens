@@ -124,7 +124,8 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 		if (_labelTextView == null) {
 			_textEditText.setError(errorText);
-		} else {
+		}
+		else {
 			_labelTextView.setError(errorText);
 		}
 	}

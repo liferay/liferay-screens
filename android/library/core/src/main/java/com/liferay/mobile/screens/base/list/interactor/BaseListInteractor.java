@@ -53,8 +53,9 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		if (event.isFailed()) {
 			getListener().onListRowsFailure(
 				event.getStartRow(), event.getEndRow(), event.getException());
-		} else {
-			List<E> entries = event.getEntries();
+		}
+		else {
+			List entries = event.getEntries();
 			int rowCount = event.getRowCount();
 
 			getListener().onListRowsReceived(

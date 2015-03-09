@@ -18,7 +18,6 @@ import android.content.Context;
 
 import android.util.AttributeSet;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -35,6 +34,8 @@ import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 
 import java.util.HashMap;
@@ -48,14 +49,20 @@ public class DDLFormDefaultView
 
 	public DDLFormDefaultView(Context context) {
 		super(context);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public DDLFormDefaultView(Context context, AttributeSet attributes) {
 		super(context, attributes);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public DDLFormDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override
@@ -121,7 +128,8 @@ public class DDLFormDefaultView
 			DocumentField documentField = (DocumentField) argument;
 
 			findFieldView(documentField).refresh();
-		} else {
+		}
+		else {
 			LiferayLogger.i("loading DDLForm");
 			showProgressBar();
 		}
@@ -180,6 +188,7 @@ public class DDLFormDefaultView
 	@Override
 	public void showFormFields(Record record) {
 		_fieldsContainerView.removeAllViews();
+		_fieldsContainerView.setVisibility(INVISIBLE);
 
 		for (int i = 0; i < record.getFieldCount(); ++i) {
 			addFieldView(record.getField(i), i);
@@ -189,13 +198,17 @@ public class DDLFormDefaultView
 			_submitButton.setVisibility(VISIBLE);
 		}
 		else {
-			_submitButton.setVisibility(GONE);
+			_submitButton.setVisibility(INVISIBLE);
 		}
+
+		DefaultAnimation.showViewWithReveal(_fieldsContainerView);
 	}
+
+
 
 	protected void clearFormFields() {
 		_fieldsContainerView.removeAllViews();
-		_submitButton.setVisibility(GONE);
+		_submitButton.setVisibility(INVISIBLE);
 	}
 
 	protected void showProgressBar() {
@@ -203,7 +216,7 @@ public class DDLFormDefaultView
 	}
 
 	protected void hideProgressBar() {
-		_progressBar.setVisibility(GONE);
+		_progressBar.setVisibility(INVISIBLE);
 	}
 
 	protected void showRecordValues() {
@@ -219,7 +232,8 @@ public class DDLFormDefaultView
 			if (getDDLFormScreenlet().validateForm()) {
 				getDDLFormScreenlet().submitForm();
 			}
-		} else {
+		}
+		else {
 			getDDLFormScreenlet().startUpload((DocumentField) view.getTag());
 		}
 	}

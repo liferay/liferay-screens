@@ -19,7 +19,6 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -84,7 +83,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			_availableOptions = new ArrayList<>();
 		}
 		else {
-			_availableOptions = new ArrayList<Option>(availableOptions.size());
+			_availableOptions = new ArrayList<>(availableOptions.size());
 
 			for (Map<String,String> optionMap : availableOptions) {
 				_availableOptions.add(new Option(optionMap));
@@ -180,7 +179,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			return null;
 		}
 		if (stringValue.isEmpty()) {
-			return new ArrayList<Option>();
+			return new ArrayList<>();
 		}
 
 		if (stringValue.startsWith("[")) {
@@ -200,7 +199,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			foundOption = findOptionByValue(fistOptionString);
 		}
 
-		ArrayList<Option> result = new ArrayList<Option>(1);
+		ArrayList<Option> result = new ArrayList<>(1);
 
 		if (foundOption != null) {
 			result.add(foundOption);

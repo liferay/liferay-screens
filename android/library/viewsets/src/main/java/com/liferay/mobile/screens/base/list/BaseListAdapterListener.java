@@ -20,6 +20,8 @@ package com.liferay.mobile.screens.base.list;
  */
 public interface BaseListAdapterListener {
 
-	public void onPageNotFound(int row);
+	void onPageNotFound(int row);
+
+	void onItemClick(int position);
 
 }

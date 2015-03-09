@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.webcontentdisplay;
 
 import android.content.Context;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.webkit.WebView;
@@ -26,6 +25,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewModel;
 
 /**
@@ -36,14 +36,21 @@ public class WebContentDisplayDefaultView extends FrameLayout
 
 	public WebContentDisplayDefaultView(Context context) {
 		super(context);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public WebContentDisplayDefaultView(Context context, AttributeSet attributes) {
+
 		super(context, attributes);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public WebContentDisplayDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override

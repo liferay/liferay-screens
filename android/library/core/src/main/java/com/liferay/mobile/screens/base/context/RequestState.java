@@ -16,8 +16,6 @@ package com.liferay.mobile.screens.base.context;
 
 import android.util.SparseArray;
 
-import com.liferay.mobile.screens.util.EventBusUtil;
-
 import java.util.HashSet;
 
 /**

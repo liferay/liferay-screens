@@ -56,10 +56,7 @@ public class XSDParser {
 
 			result = processDocument(document, locale);
 		}
-		catch (ParserConfigurationException e) {
-			//TODO this shouldn't happen
-		}
-		catch (IOException e) {
+		catch (ParserConfigurationException | IOException e) {
 			//TODO this shouldn't happen
 		}
 
@@ -67,7 +64,7 @@ public class XSDParser {
 	}
 
 	protected List<Field> processDocument(Document document, Locale locale) {
-		List<Field> result = new ArrayList<Field>();
+		List<Field> result = new ArrayList<>();
 
 		Element root = document.getDocumentElement();
 
@@ -112,7 +109,7 @@ public class XSDParser {
 		Map<String, Object> localizedMetadata =
 			processLocalizedMetadata(dynamicElement, locale, defaultLocale);
 
-		Map<String, Object> mergedMap = new HashMap<String, Object>();
+		Map<String, Object> mergedMap = new HashMap<>();
 
 		mergedMap.putAll(attributes);
 		mergedMap.putAll(localizedMetadata);
@@ -123,7 +120,7 @@ public class XSDParser {
 	protected Map<String,Object> processLocalizedMetadata(
 		Element dynamicElement, Locale locale, Locale defaultLocale) {
 
-		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<>();
 
 		Element localizedMetadata = findMetadataElement(dynamicElement, locale, defaultLocale);
 		if (localizedMetadata != null) {
@@ -145,10 +142,10 @@ public class XSDParser {
 
 		List<Element> options = getChildren(dynamicElement, "dynamic-element", "type", "option");
 
-		List<Map<String,String>> result = new ArrayList<Map<String,String>>(options.size());
+		List<Map<String,String>> result = new ArrayList<>(options.size());
 
 		for (Element optionDynamicElement : options) {
-			Map<String,String> optionMap = new HashMap<String,String>();
+			Map<String,String> optionMap = new HashMap<>();
 
 			optionMap.put("name", optionDynamicElement.getAttribute("name"));
 			optionMap.put("value", optionDynamicElement.getAttribute("value"));
@@ -253,7 +250,7 @@ public class XSDParser {
 		NamedNodeMap nodeMap = element.getAttributes();
 		int len = (nodeMap == null) ? 0 : nodeMap.getLength();
 
-		Map<String, Object> result = new HashMap<String, Object>(len);
+		Map<String, Object> result = new HashMap<>(len);
 
 		for (int i = 0; i < len; ++i) {
 			Attr n = (Attr) nodeMap.item(i);
@@ -272,7 +269,7 @@ public class XSDParser {
 		NodeList childList = element.getElementsByTagName(tagName);
 		int len = (childList == null) ? 0 : childList.getLength();
 
-		List<Element> result = new ArrayList<Element>(len);
+		List<Element> result = new ArrayList<>(len);
 
 		for (int i = 0; i < len; ++i) {
 			Element childElement = (Element) childList.item(i);

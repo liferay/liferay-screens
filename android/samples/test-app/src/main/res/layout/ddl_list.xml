@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:liferay="http://schemas.android.com/apk/res-auto"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="@android:color/white"
+			  android:orientation="vertical">
+
+	<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
+		android:id="@+id/ddl_list_default"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		liferay:labelFields="Text1540"
+		liferay:layoutId="@layout/ddl_list_default"
+		liferay:recordSetId="15442"/>
+
+	<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
+		android:id="@+id/ddl_list_material"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		liferay:labelFields="Text1540"
+		liferay:layoutId="@layout/ddl_list_material"
+		liferay:recordSetId="15442"/>
+
+</LinearLayout>

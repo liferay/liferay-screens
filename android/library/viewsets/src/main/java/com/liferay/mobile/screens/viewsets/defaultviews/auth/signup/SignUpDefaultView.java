@@ -27,6 +27,7 @@ import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 
 /**
@@ -37,14 +38,20 @@ public class SignUpDefaultView extends LinearLayout
 
 	public SignUpDefaultView(Context context) {
 		super(context);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public SignUpDefaultView(Context context, AttributeSet attributes) {
 		super(context, attributes);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public SignUpDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override

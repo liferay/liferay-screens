@@ -27,6 +27,7 @@ import android.widget.ProgressBar;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 
@@ -38,7 +39,8 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public abstract class BaseListScreenletView<E extends Parcelable, A extends BaseListAdapter<E>>
+public abstract class BaseListScreenletView<
+		E extends Parcelable, H extends BaseListAdapter.ViewHolder, A extends BaseListAdapter<E,H>>
 	extends FrameLayout
 	implements BaseListViewModel<E>, BaseListAdapterListener {
 
@@ -54,43 +56,15 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
         super(context, attributes, defaultStyle);
     }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+	public void onItemClick(int position) {
+		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
+		List<E> entries = getAdapter().getEntries();
 
-		int itemLayoutId = R.layout.list_item_default;
-		int itemProgressLayoutId = R.layout.list_item_progress_default;
-
-		_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-		_progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-
-		A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
-		_recyclerView.setAdapter(adapter);
-		_recyclerView.setHasFixedSize(true);
-		_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-		_recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R
-				.drawable.pixel_grey)));
+		// we do not want to crash if the user manages to do a phantom click
+		if (!entries.isEmpty() && entries.size() > position && screenlet.getListener() != null) {
+			screenlet.getListener().onListItemSelected(entries.get(position));
+		}
 	}
-
-	protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
-        List<E> entries = adapter.getEntries();
-        List<E> allEntries = new ArrayList<>(
-            Collections.<E>nCopies(rowCount, null));
-
-        for (int i = 0; i < entries.size(); i++) {
-            allEntries.set(i, entries.get(i));
-        }
-
-        BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
-
-        int firstRowForPage = screenlet.getFirstRowForPage(page);
-
-        for (int i = 0; i < serverEntries.size(); i++) {
-            allEntries.set(i + firstRowForPage, serverEntries.get(i));
-        }
-        return allEntries;
-    }
 
 	@Override
 	public void showStartOperation(String actionName) {
@@ -111,7 +85,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 		_progressBar.setVisibility(View.GONE);
 		_recyclerView.setVisibility(View.VISIBLE);
 
-		A adapter = (A) getAdapter();
+		A adapter = getAdapter();
 		List<E> allEntries = createAllEntries(page, entries, rowCount, adapter);
 
 		adapter.setRowCount(rowCount);
@@ -152,7 +126,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 
 		List<E> entries = state.getParcelableArrayList(_STATE_ENTRIES);
 
-		A adapter = (A) getAdapter();
+		A adapter = getAdapter();
 		adapter.setRowCount(state.getInt(_STATE_ROW_COUNT));
 		adapter.setEntries(entries);
 		adapter.notifyDataSetChanged();
@@ -162,7 +136,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 	protected Parcelable onSaveInstanceState() {
 		Parcelable superState = super.onSaveInstanceState();
 
-		A adapter = (A) getAdapter();
+		A adapter = getAdapter();
 		ArrayList<E> entries = (ArrayList<E>) adapter.getEntries();
 
 		Bundle state = new Bundle();
@@ -173,13 +147,78 @@ public abstract class BaseListScreenletView<E extends Parcelable, A extends Base
 		return state;
 	}
 
-    protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
 
-	private ProgressBar _progressBar;
-	private RecyclerView _recyclerView;
+		DefaultTheme.initIfThemeNotPresent(getContext());
+
+		int itemLayoutId = getItemLayoutId();
+		int itemProgressLayoutId = getItemProgressLayoutId();
+
+		_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+		_progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+
+		A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
+		_recyclerView.setAdapter(adapter);
+		_recyclerView.setHasFixedSize(true);
+		_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+		_recyclerView.addItemDecoration(
+			new DividerItemDecoration(getResources().getDrawable(R.drawable.pixel_grey)));
+	}
+
+	protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
+		List<E> entries = adapter.getEntries();
+		List<E> allEntries = new ArrayList<>(
+			Collections.<E>nCopies(rowCount, null));
+
+		for (int i = 0; i < entries.size(); i++) {
+			allEntries.set(i, entries.get(i));
+		}
+
+		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
+
+		int firstRowForPage = screenlet.getFirstRowForPage(page);
+
+		for (int i = 0; i < serverEntries.size(); i++) {
+			allEntries.set(i + firstRowForPage, serverEntries.get(i));
+		}
+		return allEntries;
+	}
+
+	protected int getItemLayoutId() {
+		return R.layout.list_item_default;
+	}
+
+	protected int getItemProgressLayoutId() {
+		return R.layout.list_item_progress_default;
+	}
+
+
+	protected ProgressBar getProgressBar() {
+		return _progressBar;
+	}
+
+	protected RecyclerView getRecyclerView() {
+		return _recyclerView;
+	}
+
+	protected void setProgressBar(ProgressBar value) {
+		_progressBar = value;
+	}
+
+	protected void setRecyclerView(RecyclerView value) {
+		_recyclerView = value;
+	}
+
+    protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
 
 	private static final String _STATE_ENTRIES = "entries";
 	private static final String _STATE_ROW_COUNT = "rowCount";
 	private static final String _STATE_SUPER = "super";
+
+	private ProgressBar _progressBar;
+	private RecyclerView _recyclerView;
 
 }

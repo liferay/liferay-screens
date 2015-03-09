@@ -276,6 +276,7 @@ public class DDLFormScreenlet
 
 	public void setStructureId(long value) {
 		_structureId = value;
+		_record.setStructureId(value);
 	}
 
 	public long getRecordSetId() {
@@ -284,6 +285,7 @@ public class DDLFormScreenlet
 
 	public void setRecordSetId(long value) {
 		_recordSetId = value;
+		_record.setRecordSetId(value);
 	}
 
 	public long getRecordId() {
@@ -292,6 +294,7 @@ public class DDLFormScreenlet
 
 	public void setRecordId(long value) {
 		_recordId = value;
+		_record.setRecordId(value);
 	}
 
 	public long getUserId() {
@@ -388,7 +391,7 @@ public class DDLFormScreenlet
 		_repositoryId = typedArray.getInteger(R.styleable.DDLFormScreenlet_repositoryId, 0);
 		_folderId = typedArray.getInteger(R.styleable.DDLFormScreenlet_folderId, 0);
 
-		int defaultCreatorUserId = SessionContext.hasSession() ?
+		int defaultCreatorUserId = SessionContext.getLoggedUser() != null ?
 			(int) SessionContext.getLoggedUser().getId() : 0;
 
 		_userId = typedArray.getInteger(R.styleable.DDLFormScreenlet_userId, defaultCreatorUserId);

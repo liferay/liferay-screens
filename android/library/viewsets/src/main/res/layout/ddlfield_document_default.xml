@@ -3,31 +3,30 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	android:padding="10dp">
 
 	<TextView
 		android:id="@+id/label"
-		style="@style/default_text_view"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
 		android:visibility="gone"/>
-
 
 	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="5dp">
+		android:layout_height="wrap_content">
 
 		<EditText
 			android:id="@+id/text"
-			style="@style/default_edit_text"
+			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_marginBottom="0dp"
 			android:clickable="true"
 			android:drawableRight="@drawable/default_blue"
 			android:editable="false"
 			android:focusable="false"
 			android:inputType="none"
 			android:paddingBottom="5dp"
-			android:paddingRight="9dp"
+			android:paddingRight="5dp"
 			android:paddingTop="5dp"/>
 
 		<ProgressBar
@@ -35,8 +34,6 @@
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_gravity="right|center_vertical"
-			android:paddingBottom="0dp"
-			android:paddingTop="0dp"
 			android:visibility="invisible"/>
 	</FrameLayout>
 

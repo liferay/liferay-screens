@@ -27,6 +27,7 @@ import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewMod
 import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 
 /**
@@ -37,14 +38,20 @@ public class ForgotPasswordDefaultView extends LinearLayout
 
 	public ForgotPasswordDefaultView(Context context) {
 		super(context);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public ForgotPasswordDefaultView(Context context, AttributeSet attributes) {
 		super(context, attributes);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public ForgotPasswordDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
+
+		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override
@@ -76,7 +83,6 @@ public class ForgotPasswordDefaultView extends LinearLayout
 		String msg = getResources().getString(operationMsg) + " " +
 			getResources().getString(R.string.check_your_inbox);
 
-		DefaultCrouton.info(getContext(), msg);
 		LiferayLogger.i(msg);
 	}
 
@@ -97,6 +103,8 @@ public class ForgotPasswordDefaultView extends LinearLayout
 
 	public void setAuthMethod(AuthMethod authMethod) {
 		_authMethod = authMethod;
+
+		refreshLoginEditTextStyle();
 	}
 
 	@Override
@@ -108,6 +116,34 @@ public class ForgotPasswordDefaultView extends LinearLayout
 
 		Button requestButton = (Button) findViewById(R.id.request_button);
 		requestButton.setOnClickListener(this);
+	}
+
+	@Override
+	protected void onAttachedToWindow() {
+		super.onAttachedToWindow();
+
+		refreshLoginEditTextStyle();
+	}
+
+	protected void refreshLoginEditTextStyle() {
+		_loginEditText.setInputType(_authMethod.getInputType());
+		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(
+			getResources().getDrawable(getLoginEditTextDrawableId()), null, null, null);
+	}
+
+	protected int getLoginEditTextDrawableId() {
+		if (AuthMethod.USER_ID.equals(_authMethod)) {
+			return R.drawable.default_user_icon;
+		}
+		else if (AuthMethod.EMAIL.equals(_authMethod)) {
+			return R.drawable.default_mail_icon;
+		}
+
+		return R.drawable.default_user_icon;
+	}
+
+	protected EditText getLoginEditText() {
+		return _loginEditText;
 	}
 
 	private AuthMethod _authMethod;

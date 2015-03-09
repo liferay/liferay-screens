@@ -21,7 +21,7 @@ import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 /**
  * @author Silvio Santos
  */
-public class AssetListAdapter extends BaseListAdapter<AssetEntry> {
+public class AssetListAdapter extends BaseListAdapter<AssetEntry, BaseListAdapter.ViewHolder> {
 
     public AssetListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
         super(layoutId, progressLayoutId, listener);

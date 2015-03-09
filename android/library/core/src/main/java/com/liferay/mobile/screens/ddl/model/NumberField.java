@@ -66,7 +66,8 @@ public class NumberField extends Field<Number> {
 		try {
 			if (stringValue.indexOf('.') == -1) {
 				result = Long.valueOf(stringValue);
-			} else {
+			}
+			else {
 				result = Double.valueOf(stringValue);
 			}
 		}

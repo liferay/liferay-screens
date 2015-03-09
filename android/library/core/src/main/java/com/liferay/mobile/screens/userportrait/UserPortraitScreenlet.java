@@ -49,6 +49,18 @@ public class UserPortraitScreenlet
 	}
 
 	public void load() {
+		try {
+			if (_userId != 0) {
+				getInteractor().load(_userId);
+			}
+			else {
+				getInteractor().load(_male, _portraitId, _uuid);
+			}
+		}
+		catch (Exception e) {
+			onUserPortraitFailure(e);
+		}
+
 		performUserAction();
 	}
 

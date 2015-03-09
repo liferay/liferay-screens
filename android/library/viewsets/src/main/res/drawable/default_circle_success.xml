@@ -4,8 +4,9 @@
 	<corners android:radius="10dip"/>
 	<stroke
 		android:width="2dip"
-		android:color="@color/liferay_green"/>
-	<solid android:color="@color/liferay_clear_blue"/>
-	<size android:width="31dp"
-		  android:height="31dp"/>
+		android:color="@color/default_green"/>
+	<solid android:color="@color/default_clear_blue"/>
+	<size
+		android:width="31dp"
+		android:height="31dp"/>
 </shape>

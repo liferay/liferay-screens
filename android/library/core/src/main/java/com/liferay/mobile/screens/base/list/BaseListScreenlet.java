@@ -91,7 +91,9 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     }
 
     public void loadPage(int page) {
-		getViewModel().showStartOperation(null);
+		if (page == 0) {
+			getViewModel().showStartOperation(null);
+		}
 
         Locale locale = getResources().getConfiguration().locale;
 
@@ -105,9 +107,6 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
             onListRowsFailure(startRow, endRow, e);
         }
     }
-
-    protected abstract void loadRows(N interactor, int startRow, int endRow, Locale locale)
-		throws Exception;
 
     public boolean isAutoLoad() {
         return _autoLoad;
@@ -140,6 +139,9 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
     public void setPageSize(int pageSize) {
         _pageSize = pageSize;
     }
+
+	protected abstract void loadRows(N interactor, int startRow, int endRow, Locale locale)
+			throws Exception;
 
     @Override
     protected View createScreenletView(

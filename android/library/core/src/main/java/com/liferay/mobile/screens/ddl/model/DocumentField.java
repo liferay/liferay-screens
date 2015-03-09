@@ -84,7 +84,8 @@ public class DocumentField extends Field<DocumentFile> {
 
 		try {
 			result = new DocumentRemoteFile(string);
-		} catch (JSONException e) {
+		}
+		catch (JSONException e) {
 			Log.e("liferay-screens", "Can't parse the document JSON", e);
 		}
 
@@ -142,7 +143,7 @@ public class DocumentField extends Field<DocumentFile> {
 		IDLE,
 		UPLOADING,
 		UPLOADED,
-		FAILED;
+		FAILED
 	}
 
 	private State _state = State.IDLE;

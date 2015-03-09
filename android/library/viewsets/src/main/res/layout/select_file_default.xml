@@ -4,29 +4,26 @@
 			  android:layout_height="match_parent"
 			  android:orientation="vertical">
 
-
 	<TextView
-		style="@style/default_text_view"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="@color/liferay_light_blue"
+		android:background="?attr/colorPrimary"
 		android:gravity="center_vertical"
-		android:paddingLeft="10dp"
+		android:padding="10dp"
 		android:text="@string/open"
 		android:textColor="@android:color/white"
 		android:textSize="18sp"/>
 
 	<EditText
 		android:id="@+id/default_dialog_edit_text"
-		style="@style/default_edit_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_margin="10dp"/>
+		android:layout_margin="10dp"
+		android:hint=""/>
 
 	<ListView
 		android:id="@+id/default_list"
 		android:layout_width="match_parent"
 		android:layout_height="0dip"
 		android:layout_weight="1"/>
-
 </LinearLayout>

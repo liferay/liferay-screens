@@ -1,42 +1,64 @@
 package com.liferay.mobile.screens.testapp;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
 
-import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.auth.login.LoginScreenlet;
-
-import org.json.JSONObject;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
 /**
  * @author Silvio Santos
  */
-public class MainActivity extends Activity
-	implements LoginListener {
+public class MainActivity extends ThemeActivity implements View.OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle state) {
 		super.onCreate(state);
-
 		setContentView(R.layout.activity_main);
 
-		LoginScreenlet loginScreenlet = (LoginScreenlet)findViewById(
-			R.id.login_screenlet);
-
-		loginScreenlet.setListener(this);
+		findViewById(R.id.login).setOnClickListener(this);
+		findViewById(R.id.asset_list).setOnClickListener(this);
+		findViewById(R.id.ddl_form).setOnClickListener(this);
+		findViewById(R.id.ddl_list).setOnClickListener(this);
+		findViewById(R.id.sign_up).setOnClickListener(this);
+		findViewById(R.id.forgot_password).setOnClickListener(this);
+		findViewById(R.id.user_portrait).setOnClickListener(this);
+		findViewById(R.id.web_view).setOnClickListener(this);
+		findViewById(R.id.change_theme).setOnClickListener(this);
 	}
 
 	@Override
-	public void onLoginFailure(Exception e) {
-		String message = "Failed to login: " + e.getMessage();
-
-		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void onLoginSuccess(JSONObject userAttributes) {
-		Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show();
+	public void onClick(View v) {
+		switch (v.getId()) {
+			case R.id.ddl_form:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(DDLFormActivity.class));
+				break;
+			case R.id.ddl_list:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(DDLListActivity.class));
+				break;
+			case R.id.asset_list:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SelectAssetActivity.class));
+				break;
+			case R.id.sign_up:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SignUpActivity.class));
+				break;
+			case R.id.forgot_password:
+				DefaultAnimation.startActivityWithAnimation(this,
+						getIntentWithTheme(ForgotPasswordActivity.class));
+				break;
+			case R.id.user_portrait:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(UserPortraitActivity.class));
+				break;
+			case R.id.web_view:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebViewActivity.class));
+				break;
+			case R.id.change_theme:
+				finish();
+				currentTheme = isDefaultTheme() ? R.style.material_theme : R.style.default_theme;
+				startActivity(getIntentWithTheme(MainActivity.class));
+				break;
+			default:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));
+		}
 	}
 
 }

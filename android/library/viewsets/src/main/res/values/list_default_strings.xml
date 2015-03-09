@@ -2,4 +2,5 @@
 <resources>
     <string name="default_empty_value">...</string>
 	<string name="loading_list_error">Error loading list</string>
+	<string name="list_icon">list icon</string>
 </resources>

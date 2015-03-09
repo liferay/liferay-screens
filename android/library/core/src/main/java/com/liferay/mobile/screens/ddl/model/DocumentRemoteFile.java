@@ -3,8 +3,6 @@ package com.liferay.mobile.screens.ddl.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
-
 /**
  * @author Javier Gamarra
  */

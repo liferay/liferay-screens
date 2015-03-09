@@ -19,13 +19,15 @@ import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.assetlist.view.AssetListViewModel;
+import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 
 
 /**
  * @author Silvio Santos
  */
-public class AssetListDefaultView extends BaseListScreenletView<AssetEntry, AssetListAdapter>
+public class AssetListDefaultView
+	extends BaseListScreenletView<AssetEntry, BaseListAdapter.ViewHolder, AssetListAdapter>
 	implements AssetListViewModel {
 
 	public AssetListDefaultView(Context context) {

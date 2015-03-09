@@ -116,13 +116,14 @@ public class SelectFileDialog {
 		try {
 			File file = new File(directory);
 			return file.exists() && file.isDirectory() ? file.getCanonicalPath() : null;
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			return null;
 		}
 	}
 
 	private List<String> getFileEntries(String directory) {
-		List<String> entries = new ArrayList<String>();
+		List<String> entries = new ArrayList<>();
 
 		if (!currentDir.equals(SD_DIRECTORY)) {
 			entries.add("..");

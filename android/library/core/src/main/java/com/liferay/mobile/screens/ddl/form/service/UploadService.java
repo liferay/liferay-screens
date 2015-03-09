@@ -80,9 +80,11 @@ public class UploadService extends IntentService {
 					getMimeType(path), fileName, "", "", inputStreamBody, serviceContextWrapper);
 
 			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, jsonObject, file));
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, e, file));
-		} finally {
+		}
+		finally {
 			tryToCloseInputStream(is);
 		}
 	}

@@ -30,6 +30,7 @@ import android.widget.ProgressBar;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 /**
  * @author Javier Gamarra
@@ -39,14 +40,21 @@ public class UserPortraitDefaultView extends FrameLayout implements UserPortrait
 
     public UserPortraitDefaultView(Context context) {
         super(context);
+
+		DefaultTheme.initIfThemeNotPresent(context);
     }
 
-    public UserPortraitDefaultView(Context context, AttributeSet attributes) {
+    public UserPortraitDefaultView(
+		Context context, AttributeSet attributes) {
         super(context, attributes);
+
+		DefaultTheme.initIfThemeNotPresent(context);
     }
 
     public UserPortraitDefaultView(Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
+
+		DefaultTheme.initIfThemeNotPresent(context);
     }
 
 	@Override
@@ -103,7 +111,7 @@ public class UserPortraitDefaultView extends FrameLayout implements UserPortrait
         Canvas canvas = new Canvas(finalBitmap);
 
         canvas.drawRoundRect(rect, borderRadius, borderRadius, getPaint(bitmap));
-        canvas.drawRoundRect(rect, borderRadius, borderRadius, getBorderPaint(borderWidth));
+        canvas.drawRoundRect(rect, borderRadius, borderRadius, getBorderPaint(borderWidth, R.color.default_dark_gray));
 
         return finalBitmap;
     }
@@ -114,10 +122,10 @@ public class UserPortraitDefaultView extends FrameLayout implements UserPortrait
         return rect;
     }
 
-    protected Paint getBorderPaint(float borderWidth) {
+    protected Paint getBorderPaint(float borderWidth, int color) {
         Paint borderPaint = new Paint();
         borderPaint.setAntiAlias(true);
-        borderPaint.setColor(getResources().getColor(R.color.liferay_dark_gray));
+        borderPaint.setColor(getResources().getColor(color));
         borderPaint.setStyle(Paint.Style.STROKE);
         borderPaint.setStrokeWidth(borderWidth);
         return borderPaint;

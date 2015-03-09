@@ -67,12 +67,13 @@ public class Record implements Parcelable {
 		_locale = (Locale) in.readSerializable();
 	}
 
-	public void parseXsd(String xsd) throws SAXException {
+	public void parseXsd(String xsd) {
 		XSDParser parser = new XSDParser();
 
 		try {
 			_fields = parser.parse(xsd, _locale);
-		} catch (SAXException e) {
+		}
+		catch (SAXException e) {
 			_fields = new ArrayList<>();
 		}
 	}
@@ -173,7 +174,7 @@ public class Record implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
-		destination.writeParcelableArray(_fields.toArray(new Field[0]), flags);
+		destination.writeParcelableArray(_fields.toArray(new Field[_fields.size()]), flags);
 		destination.writeLong(_creatorUserId);
 		destination.writeLong(_structureId);
 		destination.writeLong(_recordSetId);
