@@ -25,7 +25,7 @@ public class LoginView_default: BaseScreenletView, LoginData {
 	@IBOutlet internal var passwordBackground: UIImageView?
 
 
-	//MARK: AuthBasedData
+	//MARK: AuthBasedViewModel
 
 	public var saveCredentials: Bool {
 		get {

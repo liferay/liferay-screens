@@ -23,11 +23,11 @@ public class LiferayForgotPasswordScreenNameOperation: LiferayForgotPasswordBase
 			error: NSErrorPointer)
 			-> Bool? {
 
-		let companyId = (forgotPasswordData.companyId != 0)
-				? forgotPasswordData.companyId : LiferayServerContext.companyId
+		let companyId = (viewModel.companyId != 0)
+				? viewModel.companyId : LiferayServerContext.companyId
 
 		return service.sendPasswordByScreenNameWithCompanyId(companyId,
-				screenName: forgotPasswordData.userName!,
+				screenName: viewModel.userName!,
 				error: error)
 	}
 

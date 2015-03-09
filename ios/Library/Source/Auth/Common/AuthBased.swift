@@ -22,7 +22,7 @@ import UIKit
 }
 
 
-@objc public protocol AuthBasedData {
+@objc public protocol AuthBasedViewModel {
 
 	var authMethod: String? { get set }
 	var saveCredentials: Bool { get set }
@@ -30,8 +30,8 @@ import UIKit
 }
 
 
-public func copyAuth(#source: AuthBasedData, #target: AnyObject?) {
-	if let authBasedTarget = target as? AuthBasedData {
+public func copyAuth(#source: AuthBasedViewModel, #target: AnyObject?) {
+	if let authBasedTarget = target as? AuthBasedViewModel {
 		authBasedTarget.authMethod = source.authMethod
 		authBasedTarget.saveCredentials = source.saveCredentials
 	}

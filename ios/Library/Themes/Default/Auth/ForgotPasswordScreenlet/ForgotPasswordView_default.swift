@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordData {
+public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewModel {
 
 	@IBOutlet internal var userNameIcon: UIImageView?
 	@IBOutlet internal var userNameField: UITextField?
@@ -35,7 +35,7 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordData {
 	public var companyId: Int64 = 0
 
 
-	//MARK: AuthBasedData
+	//MARK: AuthBasedViewModel
 
 	public var authMethod: AuthMethodType? = AuthMethod.Email.rawValue {
 		didSet {

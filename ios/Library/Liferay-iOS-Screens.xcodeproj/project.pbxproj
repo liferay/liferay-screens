@@ -124,8 +124,8 @@
 		88F9F18D19E3480D006268ED /* LiferayAssetListPageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0CC19E3480D006268ED /* LiferayAssetListPageOperation.swift */; };
 		88F9F18E19E3480D006268ED /* AssetListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0CE19E3480D006268ED /* AssetListTableView.swift */; };
 		88F9F18F19E3480D006268ED /* AssetListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0CE19E3480D006268ED /* AssetListTableView.swift */; };
-		88F9F19219E3480D006268ED /* ForgotPasswordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0D219E3480D006268ED /* ForgotPasswordData.swift */; };
-		88F9F19319E3480D006268ED /* ForgotPasswordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0D219E3480D006268ED /* ForgotPasswordData.swift */; };
+		88F9F19219E3480D006268ED /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0D219E3480D006268ED /* ForgotPasswordViewModel.swift */; };
+		88F9F19319E3480D006268ED /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0D219E3480D006268ED /* ForgotPasswordViewModel.swift */; };
 		88F9F19419E3480D006268ED /* ForgotPasswordScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0D319E3480D006268ED /* ForgotPasswordScreenlet.swift */; };
 		88F9F19519E3480D006268ED /* ForgotPasswordScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0D319E3480D006268ED /* ForgotPasswordScreenlet.swift */; };
 		88F9F19619E3480D006268ED /* LiferayForgotPasswordBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F0D519E3480D006268ED /* LiferayForgotPasswordBaseOperation.swift */; };
@@ -482,7 +482,7 @@
 		88F9F0CA19E3480D006268ED /* AssetListScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListScreenlet.swift; sourceTree = "<group>"; };
 		88F9F0CC19E3480D006268ED /* LiferayAssetListPageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayAssetListPageOperation.swift; sourceTree = "<group>"; };
 		88F9F0CE19E3480D006268ED /* AssetListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListTableView.swift; sourceTree = "<group>"; };
-		88F9F0D219E3480D006268ED /* ForgotPasswordData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordData.swift; sourceTree = "<group>"; };
+		88F9F0D219E3480D006268ED /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		88F9F0D319E3480D006268ED /* ForgotPasswordScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordScreenlet.swift; sourceTree = "<group>"; };
 		88F9F0D519E3480D006268ED /* LiferayForgotPasswordBaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayForgotPasswordBaseOperation.swift; sourceTree = "<group>"; };
 		88F9F0D619E3480D006268ED /* LiferayForgotPasswordEmailOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayForgotPasswordEmailOperation.swift; sourceTree = "<group>"; };
@@ -793,7 +793,7 @@
 			isa = PBXGroup;
 			children = (
 				8868384E19F32A380053E502 /* forgotpassword-screenlet.strings */,
-				88F9F0D219E3480D006268ED /* ForgotPasswordData.swift */,
+				88F9F0D219E3480D006268ED /* ForgotPasswordViewModel.swift */,
 				88F9F0D319E3480D006268ED /* ForgotPasswordScreenlet.swift */,
 				88F9F0D419E3480D006268ED /* ServerOperations */,
 			);
@@ -1671,7 +1671,7 @@
 				88F9F18B19E3480D006268ED /* AssetListScreenlet.swift in Sources */,
 				88F9F1FF19E3480D006268ED /* NSLocale+CurrentLocale.swift in Sources */,
 				88F9F19F19E3480D006268ED /* LoginData.swift in Sources */,
-				88F9F19319E3480D006268ED /* ForgotPasswordData.swift in Sources */,
+				88F9F19319E3480D006268ED /* ForgotPasswordViewModel.swift in Sources */,
 				88F9F2D019E3484B006268ED /* DDLFieldNumber_Tests.swift in Sources */,
 				88F9F1DF19E3480D006268ED /* DDLListData.swift in Sources */,
 				88F9F1DD19E3480D006268ED /* DDLFormTableView.swift in Sources */,
@@ -1793,7 +1793,7 @@
 				88F9F1EC19E3480D006268ED /* DDLFieldDate.swift in Sources */,
 				88F9F1B619E3480D006268ED /* LiferayPaginationOperation.swift in Sources */,
 				88F9F1E619E3480D006268ED /* DDLField+Editor.swift in Sources */,
-				88F9F19219E3480D006268ED /* ForgotPasswordData.swift in Sources */,
+				88F9F19219E3480D006268ED /* ForgotPasswordViewModel.swift in Sources */,
 				88F9F29E19E3480D006268ED /* Flat7ThemeConstants.swift in Sources */,
 				88F9F1AC19E3480D006268ED /* LiferaySignUpOperation.swift in Sources */,
 				88F9F1C419E3480D006268ED /* SessionContext.swift in Sources */,

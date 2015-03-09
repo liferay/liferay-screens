@@ -25,7 +25,7 @@ import UIKit
 }
 
 
-public class LoginScreenlet: BaseScreenlet, AuthBasedData {
+public class LoginScreenlet: BaseScreenlet, AuthBasedViewModel {
 
 	//MARK: Inspectables
 
@@ -37,7 +37,7 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 
 	@IBInspectable public var saveCredentials: Bool = false {
 		didSet {
-			(screenletView as? AuthBasedData)?.saveCredentials = self.saveCredentials
+			(screenletView as? AuthBasedViewModel)?.saveCredentials = self.saveCredentials
 		}
 	}
 
