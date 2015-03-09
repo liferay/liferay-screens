@@ -56,7 +56,7 @@ Use the following steps to configure your project with Gradle:
 
 	```groovy
 	dependencies {
-		compile 'com.liferay.mobile:liferay-screens-viewsets:0.3.0'
+		compile 'com.liferay.mobile:liferay-screens:0.3.0'
 	}
 	```
 
@@ -84,12 +84,14 @@ You can do the same as the Gradle configuration:
 	```xml
 	<dependency>
 	    <groupId>com.liferay.mobile</groupId>
-	    <artifactId>liferay-screens-viewsets</artifactId>
+	    <artifactId>liferay-screens</artifactId>
 	    <version>LATEST</version>
 	</dependency>
 	```
 
-2. You will have to add the new repository in your maven settings (.m2/settings.xml)
+2. Force a Maven update to download all the dependencies.
+
+* If maven can't locate the artifact in maven central we have also uploaded it to github. You will have to add the new repository in your maven settings (.m2/settings.xml)
 
 
 	```xml
@@ -100,8 +102,6 @@ You can do the same as the Gradle configuration:
 	          <url>https://raw.github.com/liferay/liferay-screens/master/android/dist/</url>
 	        </repository>
 	```
-
-3. Force a Maven update to download all the dependencies.
 
 #### Manually
 
