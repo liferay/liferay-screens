@@ -15,18 +15,13 @@
 package com.liferay.mobile.screens.viewsets.material.assetlist;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.assetlist.view.AssetListViewModel;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.viewsets.R;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.viewsets.defaultviews.assetlist.AssetListAdapter;
-import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 
 
 /**
@@ -48,30 +43,19 @@ public class AssetListMaterialView
 		super(context, attributes, defaultStyle);
 	}
 
-    @Override
-    protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-        return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
-    }
+	@Override
+	protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+		return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
+	}
 
-	protected void init() {
-		DefaultTheme.initIfThemeNotPresent(getContext());
+	@Override
+	protected int getItemLayoutId() {
+		return R.layout.list_item_material;
+	}
 
-		int itemLayoutId = R.layout.list_item_material;
-		int itemProgressLayoutId = R.layout.list_item_progress_material;
-
-		RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-		setRecyclerView(recyclerView);
-
-		ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-		setProgressBar(progressBar);
-
-		AssetListAdapter adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
-		recyclerView.setAdapter(adapter);
-		recyclerView.setHasFixedSize(true);
-		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-		recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R
-			.drawable.pixel_grey)));
+	@Override
+	protected int getItemProgressLayoutId() {
+		return R.layout.list_item_progress_material;
 	}
 
 }

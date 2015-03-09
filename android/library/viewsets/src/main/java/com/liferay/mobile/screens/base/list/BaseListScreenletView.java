@@ -147,7 +147,10 @@ public abstract class BaseListScreenletView<
 		return state;
 	}
 
-	protected void init() {
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
 		DefaultTheme.initIfThemeNotPresent(getContext());
 
 		int itemLayoutId = getItemLayoutId();
@@ -163,13 +166,6 @@ public abstract class BaseListScreenletView<
 
 		_recyclerView.addItemDecoration(
 			new DividerItemDecoration(getResources().getDrawable(R.drawable.pixel_grey)));
-	}
-
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-
-		init();
 	}
 
 	protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
