@@ -48,8 +48,9 @@
 		<com.liferay.mobile.screens.base.ModalProgressBar
 			android:id="@+id/progress_bar"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
 			android:layout_gravity="center_vertical|left"
+			android:theme="@style/white_theme"
 			android:visibility="invisible"
 			liferay:actionViewId="@id/sign_up_button"/>
 	</FrameLayout>
