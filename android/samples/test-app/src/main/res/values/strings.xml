@@ -9,14 +9,14 @@
 	<string name="ddl_form">DDL Form</string>
 	<string name="ddl_list">DDL List</string>
 	<string name="change_theme">Change Theme</string>
-	<string name="webview_label">Webview of an articleId</string>
-	<string name="user_portrait_label">User portrait from a userId or the logged user. Also supports loading from a portraitId.</string>
-	<string name="signup_label">Signup form to register a new user in Liferay Portal</string>
-	<string name="select_asset_label">List of assets to choose an asset and show all the entries</string>
-	<string name="login_label">Login form, supporting email/username/userId authentication</string>
-	<string name="forgot_password_label">Form to reset password from an email/username</string>
-	<string name="ddl_list_label">List of DDL records of an specific recordSetId</string>
-	<string name="ddl_form_label">Form loaded from a DDLRecord. Allows file uploading and all the main DDL fields.</string>
-	<string name="asset_list_label">List of assets of a specific className</string>
-	<string name="main_activity_label">List of all the screenlets supported on 0.3.0</string>
+	<string name="webview_label">Web Content Display Screenlet: Shows the HTML of a web content given its articleId.</string>
+	<string name="user_portrait_label">User Portrait Screenlet: Shows the user's portrait picture. Can fetch the user portrait from the userId or the portraitId.</string>
+	<string name="signup_label">Signup Screenlet: Signup form to register a new user in Liferay Portal</string>
+	<string name="select_asset_label">Asset List Screenlet: Shows a list of assets. Please choose an asset type to show all its entries</string>
+	<string name="login_label">Login Screenlet: Shows a login form. Supports email, username and userId authentication</string>
+	<string name="forgot_password_label">Forgot Password Screenlet: Shows a form to ask for a new password, using an email address or the username</string>
+	<string name="ddl_list_label">DDL List Screenlet: Shows a list of DDL records of a specific recordSetId</string>
+	<string name="ddl_form_label">DDL Form Screenlet: Shows a DDLRecord form. Allows file uploading and all DDL fields.</string>
+	<string name="asset_list_label">Asset List Screenlet: Shows a list of assets of a specific className</string>
+	<string name="main_activity_label">List of all the screenlets supported on version 0.3.0 of Liferay Screens</string>
 </resources>
