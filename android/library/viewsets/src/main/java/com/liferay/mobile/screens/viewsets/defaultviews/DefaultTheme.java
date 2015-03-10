@@ -40,7 +40,7 @@ public class DefaultTheme {
 	}
 
 
-	{
+	static {
 		ATTRIBUTE_TO_SEARCH_FOR = R.attr.colorPrimary;
 		DEFAULT_THEME = R.style.default_theme;
 	}
