@@ -26,23 +26,21 @@ Development of Android apps using Liferay Screens requires the following:
 
 ## Compatibility
 
-Liferay Screens for Android is compatible with Android 4.0 (API Level 14) and higher.
+Liferay Screens for Android is compatible with Android 4.0 (API Level 14) and higher. The SDK uses the [AppCompat library](https://developer.android.com/tools/support-library/features.html#v7-appcompat) (v7:21.0.3) to offer a material look on older devices and the new [recycler view](https://developer.android.com/tools/support-library/features.html#v7-recyclerview) implementation.
 
-The SDK uses [AppCompat library](https://developer.android.com/tools/support-library/features.html#v7-appcompat) (v7:21.0.3) to offer a material look that gracefully degrades in older devices and the new [recycler view](https://developer.android.com/tools/support-library/features.html#v7-recyclerview) implementation.
-
-Other internal dependencies are [EventBus](https://github.com/greenrobot/EventBus) and [Picasso](http://square.github.io/picasso/).
+Other internal dependencies are:  
+- [EventBus](https://github.com/greenrobot/EventBus) 
+- [Picasso](http://square.github.io/picasso/)
 
 ## Preparing Your Project for Liferay Screens
 
-Liferay Screens is released as an [AAR file](http://tools.android.com/tech-docs/new-build-system/aar-format), currently self-hosted in github and, in the future, in the Maven Central repository.
+Liferay Screens is released as an [AAR file](http://tools.android.com/tech-docs/new-build-system/aar-format) that is currently self-hosted in GitHub. In the future it will also be available from the Maven Central repository. The following sections describe how to set up Screens with Gradle and Maven. While instructions are also provided for manual setup, it's strongly recommended that you use Maven or Gradle to set and download your dependencies. 
 
-It is strongly recommended to use Maven or Gradle to set and download your dependencies.
-
-#### Gradle
+### Gradle
 
 Use the following steps to configure your project with Gradle:
 
-1. Add jcenter to your repositories:
+1. Add jCenter to your repositories:
 
 	```groovy
 	repositories {
@@ -50,7 +48,7 @@ Use the following steps to configure your project with Gradle:
 	}
 	```
 
-2. Include the SDK as a dependency
+2. Include the SDK as a dependency:
 
 	```groovy
 	dependencies {
@@ -58,26 +56,24 @@ Use the following steps to configure your project with Gradle:
 	}
 	```
 
-3. Gradle will download all the necessary dependencies before building your project.
+Gradle downloads all the necessary dependencies before building your project. If you get errors such as `Duplicate files copied in APK META-INF/NOTICE` when building with Gradle, add this to your `build.gradle` file:
 
-If you get errors such as `Duplicate files copied in APK META-INF/NOTICE` when building with Gradle, add this to your `build.gradle` file:
-
-```groovy
-android {
-	...
-	packagingOptions {	
-		exclude 'META-INF/LICENSE'
-		exclude 'META-INF/NOTICE'
+	```groovy
+	android {
+		...
+		packagingOptions {	
+			exclude 'META-INF/LICENSE'
+			exclude 'META-INF/NOTICE'
+		}
+		...
 	}
-	...
-}
-```
+	```
 
-#### Maven
+### Maven
 
-You can do the same as the Gradle configuration:
+Use the following steps to configure your project with Maven:
 
-1. Add to your pom.xml the new dependency:
+1. Add the following dependency to your `pom.xml`:
 
 	```xml
 	<dependency>
@@ -89,8 +85,7 @@ You can do the same as the Gradle configuration:
 
 2. Force a Maven update to download all the dependencies.
 
-* If maven can't locate the artifact you will have to add jcenter as a new repository in your maven settings (.m2/settings.xml)
-
+Note that if Maven can't locate the artifact, you need to add jCenter as a new repository in your maven settings (`.m2/settings.xml`):
 
 	```xml
 	<profiles>
@@ -117,16 +112,16 @@ You can do the same as the Gradle configuration:
 	</activeProfiles>
 	```
 
-#### Manually
+### Manually
 
-You can also manually use the SDK sources if you are using gradle:
+If you're using Gradle, you can also use the SDK sources manually:
 
 1. [Download](https://github.com/liferay/liferay-screens/releases) the
-latest version of `Liferay Screens for Android`.
+latest version of Liferay Screens for Android.
 
 2. Copy the contents of `Android/library` in a folder next to your project.
 
-3. Configure a settings.gradle in your project with the paths to the library folders:
+3. Configure a `settings.gradle` file in your project with the paths to the library folders:
 
 	```groovy
 	include ':core'
@@ -135,14 +130,14 @@ latest version of `Liferay Screens for Android`.
 	project(':themes').projectDir = new File(settingsDir, '../../library/themes')
 	```
 
-4. Include the required dependencies in your build.gradle:
+4. Include the required dependencies in your `build.gradle` file:
 
 	```groovy
 	compile project (':core')
 	compile project (':themes')
 	```
 	
-* You can also configure the .aar binary files (in `Android/dist`) as local .aar dependencies.
+You can also configure the `.aar` binary files (in `Android/dist`) as local `.aar` dependencies.
 
 Great! Your project should now be ready for Liferay Screens. Next, you'll learn how to use screenlets in your app.
 

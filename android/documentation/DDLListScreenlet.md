@@ -31,7 +31,7 @@ The `DDLListScreenlet` enables the following features:
 
 - The Default view uses a standard `RecyclerView` to show the scrollable list. Other views may use a different component, such as `ViewPager` or others, to show the items.
 
-![The DDLList screenlet using the Default and Material viewsets](images/ddllist.png)
+![The DDLList screenlet using the Default and Material viewsets.](images/ddllist.png)
 
 ## Portal Configuration
 

@@ -71,20 +71,20 @@ The screenlet layer contains the screenlets available in Liferay Screens for And
 
 - **myscreenlet_default.xml**: The layout file with the definitions of the components used to render the screenlet's view. Typically, the XML appears as follows:
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<com.your.package.MyScreenletView 
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	```xml
+	<?xml version="1.0" encoding="utf-8"?>
+	<com.your.package.MyScreenletView 
+		xmlns:android="http://schemas.android.com/apk/res/android">
+	
+		<!-- 
+			put your regular components here: EditText, Button...
+		-->
+	
+	</com.your.package.MyScreenletView>
+	```
 
-	<!-- 
-		put your regular components here: EditText, Button...
-	-->
+For more details, refer the guide on [How to Create Your Own Screenlet](screenlet_creation.md).
 
-</com.your.package.MyScreenletView>
-```
-
-For more details, refer the [How to Create Your Own Screenlet Guide](screenlet_creation.md).
- 
 ### The View Layer
 
 The view layer lets developers use more than one look and feel for any screenlet. Screenlets have the `liferay:layoutId` attribute, which is used to determine the view responsible for rendering the UI.
@@ -103,12 +103,8 @@ There are several different view types:
 
 ### Android Lifecycle and Screenlets
 
-Liferay Screens automatically saves and restores the state of the screenlets by using the Android SDK methods `onSaveInstanceState` and `onRestoreInstanceState`. Each screenlet uses a unique generated identifier (`screenletId`) that is also restored. This id is used, among other things, to know the source of the executed actions and assign the results to them.
+Liferay Screens automatically saves and restores the screenlets' state by using the Android SDK methods `onSaveInstanceState` and `onRestoreInstanceState`. Each screenlet uses a unique generated identifier (`screenletId`) that is also restored. This id is used, among other things, to identify the source of the executed actions and assign the results to them.
 
-The state is restored after `onCreated` and `onStart` methods, as specified by the [standard Android lifecycle](http://developer.android.com/training/basics/activity-lifecycle/recreating.html). Before the state is restored we recommend against doing any operation with an interactor, because we can not assure that the action executed would find its right destination.
+The screenlets' state is restored after the `onCreated` and `onStart` methods, as specified by the [standard Android lifecycle](http://developer.android.com/training/basics/activity-lifecycle/recreating.html). Before the state is restored, we recommend avoiding any operation with an interactor. This is because it can't be assured that the executed action would find its intended destination.
 
-To avoid this behaviour, screenlet method calls should be executed inside activity's `onResume` method. This will ensure that the state is restored before your code and any executing task will be able to deliver the result to their source interactor and screenlet.
-
-
-
-
+To avoid this behavior, screenlet method calls should be executed inside the activity's `onResume` method. This ensures that the state is restored before your code and any executing task is able to deliver the result to their source interactor and screenlet.
