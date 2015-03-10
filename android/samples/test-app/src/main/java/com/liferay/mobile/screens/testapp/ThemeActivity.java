@@ -36,7 +36,7 @@ public abstract class ThemeActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle state) {
 		super.onCreate(state);
-		currentTheme = getIntent().getIntExtra("theme", DefaultTheme.DEFAULT_THEME);
+		currentTheme = getIntent().getIntExtra("theme", DefaultTheme.getDefaultTheme());
 		setTheme(currentTheme);
 	}
 

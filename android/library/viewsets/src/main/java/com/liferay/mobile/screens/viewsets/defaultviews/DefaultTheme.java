@@ -26,23 +26,23 @@ import com.liferay.mobile.screens.viewsets.R;
  */
 public class DefaultTheme {
 
-	public static int ATTRIBUTE_TO_SEARCH_FOR;
-	public static Integer DEFAULT_THEME;
 
 	public static void initIfThemeNotPresent(Context context) {
 		TypedValue outValue = new TypedValue();
-		context.getTheme().resolveAttribute(ATTRIBUTE_TO_SEARCH_FOR, outValue, true);
+		context.getTheme().resolveAttribute(getAttributeToSearchFor(), outValue, true);
 		if (outValue.coerceToString() == null) {
 			LiferayLogger.i("Applying default theme, colorPrimary not defined");
-			ContextThemeWrapper w = new ContextThemeWrapper(context, DefaultTheme.DEFAULT_THEME);
+			ContextThemeWrapper w = new ContextThemeWrapper(context, getDefaultTheme());
 			context.getTheme().setTo(w.getTheme());
 		}
 	}
 
+	public static int getAttributeToSearchFor() {
+		return R.attr.colorPrimary;
+	}
 
-	static {
-		ATTRIBUTE_TO_SEARCH_FOR = R.attr.colorPrimary;
-		DEFAULT_THEME = R.style.default_theme;
+	public static int getDefaultTheme() {
+		return R.style.default_theme;
 	}
 
 }
