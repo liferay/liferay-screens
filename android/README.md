@@ -10,7 +10,7 @@ Liferay Screens for Android includes the component (*screenlets*) library and a 
 
 Each screenlet is tied to one or more of [Liferay's remote services](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/accessing-services-remotely-liferay-portal-6-2-dev-guide-05-en). When the screenlet needs to show information to the user, it relies on a *view*. View sets can be contributed by third parties and are fully pluggable, so you aren't limited to one specific look and feel. The Screens library provides the standard *Default* view set and the sample *Material* view set.
 
-![The SignUp screenlet using the Default and Flat7 themes.](Documentation/Images/screens-phone2.png)
+![The SignUp screenlet using the Default and Flat7 themes.](documentation/images/screens-phone2.png)
 
 To learn about the architecture of Screens for Android, see the [library documentation page.](library/README.md).
 

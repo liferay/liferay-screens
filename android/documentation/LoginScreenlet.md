@@ -32,7 +32,7 @@ When a user successfully authenticates, their attributes are retrieved for use i
 
 - Default
 
-![The `LoginScreenlet` using the Default and Material viewsets.](Images/login.png)
+![The `LoginScreenlet` using the Default and Material viewsets.](images/login.png)
 
 ## Portal Configuration
 

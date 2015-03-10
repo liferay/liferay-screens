@@ -30,7 +30,7 @@ The `ForgotPasswordScreenlet` can send an email to a registered user with their 
 
 - Default
 
-![The `ForgotPasswordScreenlet` with the Default and Material viewsets.](Images/forgotpwd.png)
+![The `ForgotPasswordScreenlet` with the Default and Material viewsets.](images/forgotpwd.png)
 
 ## Portal Configuration
 
