@@ -26,6 +26,9 @@ import com.liferay.mobile.screens.viewsets.R;
  */
 public class DefaultTheme {
 
+	public static int ATTRIBUTE_TO_SEARCH_FOR;
+	public static Integer DEFAULT_THEME;
+
 	public static void initIfThemeNotPresent(Context context) {
 		TypedValue outValue = new TypedValue();
 		context.getTheme().resolveAttribute(ATTRIBUTE_TO_SEARCH_FOR, outValue, true);
@@ -36,6 +39,10 @@ public class DefaultTheme {
 		}
 	}
 
-	public static final int ATTRIBUTE_TO_SEARCH_FOR = R.attr.colorPrimary;
-	public static final Integer DEFAULT_THEME = R.style.default_theme;
+
+	{
+		ATTRIBUTE_TO_SEARCH_FOR = R.attr.colorPrimary;
+		DEFAULT_THEME = R.style.default_theme;
+	}
+
 }
