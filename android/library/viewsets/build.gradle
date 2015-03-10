@@ -27,8 +27,6 @@ repositories {
 		url 'https://repository.liferay.com/nexus/content/groups/liferay-ce'
 	}
 
-//    maven { url "https://raw.github.com/liferay/liferay-screens/master/android/dist/" }
-
 	jcenter()
 	mavenCentral()
 }
@@ -41,7 +39,27 @@ dependencies {
         exclude group: 'com.google.android', module: 'support-v4'
     }
 	compile project(':core')
-//    compile 'com.liferay.mobile:liferay-screens-core:0.3.0'
+
+}
+
+task androidJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    classifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives androidSourcesJar
+    archives androidJavadocsJar
 }
 
 uploadArchives {

@@ -42,13 +42,11 @@ It is strongly recommended to use Maven or Gradle to set and download your depen
 
 Use the following steps to configure your project with Gradle:
 
-1. Add a new repository url:
+1. Add jcenter to your repositories:
 
 	```groovy
 	repositories {
-		maven {
-			url "https://raw.github.com/liferay/liferay-screens/master/android/dist/"
-		}
+		jcenter()
 	}
 	```
 
