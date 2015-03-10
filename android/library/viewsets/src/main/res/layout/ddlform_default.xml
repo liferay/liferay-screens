@@ -17,25 +17,41 @@
 			android:id="@+id/ddlfields_container"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:layout_marginBottom="10dp"
 			android:divider="@drawable/default_divider"
 			android:dividerPadding="10dp"
 			android:orientation="vertical"
-			android:layout_marginBottom="10dp"
 			android:showDividers="middle|end"/>
 
 		<ProgressBar
-			android:id="@+id/ddlform_progress_bar"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:id="@+id/ddlform_loading_screen_progress_bar"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
 			android:layout_gravity="center"
 			android:visibility="invisible"/>
 
-		<Button
-			android:id="@+id/submit"
+		<FrameLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="10dp"
-			android:text="@string/submit"
-			android:visibility="gone"/>
+			android:layout_marginLeft="30dp"
+			android:layout_marginRight="30dp"
+			android:layout_marginBottom="30dp"
+			android:layout_marginTop="10dp">
+
+			<Button
+				android:id="@+id/submit"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:text="@string/sign_in"
+				android:visibility="gone"/>
+
+			<ProgressBar
+				android:id="@+id/ddlform_progress_bar"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_gravity="center_vertical|left"
+				android:theme="@style/white_theme"
+				android:visibility="invisible"/>
+		</FrameLayout>
 	</LinearLayout>
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView>

@@ -131,7 +131,7 @@ public class DDLFormView
 		}
 		else {
 			LiferayLogger.i("loading DDLForm");
-			showProgressBar();
+			showProgressBar(actionName);
 		}
 	}
 
@@ -142,7 +142,7 @@ public class DDLFormView
 
 	@Override
 	public void showFinishOperation(String actionName, Object argument) {
-		hideProgressBar();
+		hideProgressBar(actionName);
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
 			LiferayLogger.i("loaded form");
 			Record record = (Record) argument;
@@ -168,7 +168,7 @@ public class DDLFormView
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e, Object argument) {
-		hideProgressBar();
+		hideProgressBar(actionName);
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
 			LiferayLogger.e("error loading DDLForm", e);
 			DefaultCrouton.error(getContext(), getContext().getString(R.string.loading_form_error), e);
@@ -211,12 +211,22 @@ public class DDLFormView
 		_submitButton.setVisibility(INVISIBLE);
 	}
 
-	protected void showProgressBar() {
-		_progressBar.setVisibility(VISIBLE);
+	protected void showProgressBar(String actionName) {
+		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
+			_loadingFormProgressBar.setVisibility(VISIBLE);
+		}
+		else {
+			_progressBar.setVisibility(VISIBLE);
+		}
 	}
 
-	protected void hideProgressBar() {
-		_progressBar.setVisibility(INVISIBLE);
+	protected void hideProgressBar(String actionName) {
+		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
+			_loadingFormProgressBar.setVisibility(INVISIBLE);
+		}
+		else {
+			_progressBar.setVisibility(INVISIBLE);
+		}
 	}
 
 	protected void showRecordValues() {
@@ -272,6 +282,7 @@ public class DDLFormView
 		_submitButton.setOnClickListener(this);
 
 		_progressBar = (ProgressBar) findViewById(R.id.ddlform_progress_bar);
+		_loadingFormProgressBar = (ProgressBar) findViewById(R.id.ddlform_loading_screen_progress_bar);
 	}
 
 	private DDLFieldViewModel findFieldView(Field field) {
@@ -300,6 +311,7 @@ public class DDLFormView
 	}
 
 	private ProgressBar _progressBar;
+	private ProgressBar _loadingFormProgressBar;
 	private ViewGroup _fieldsContainerView;
 	private Button _submitButton;
 	private Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
