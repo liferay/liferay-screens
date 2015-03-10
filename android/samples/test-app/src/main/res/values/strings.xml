@@ -10,7 +10,7 @@
 	<string name="ddl_list">DDL List</string>
 	<string name="change_theme">Change Theme</string>
 	<string name="webview_label">Web Content Display Screenlet: Shows the HTML of a web content given its articleId.</string>
-	<string name="user_portrait_label">User Portrait Screenlet: Shows the user's portrait picture. Can fetch the user portrait from the userId or the portraitId.</string>
+	<string name="user_portrait_label">User Portrait Screenlet: Shows the user\'s portrait picture. Can fetch the user portrait from the userId or the portraitId.</string>
 	<string name="signup_label">Signup Screenlet: Signup form to register a new user in Liferay Portal</string>
 	<string name="select_asset_label">Asset List Screenlet: Shows a list of assets. Please choose an asset type to show all its entries</string>
 	<string name="login_label">Login Screenlet: Shows a login form. Supports email, username and userId authentication</string>
