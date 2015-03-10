@@ -72,9 +72,10 @@ public class SignUpScreenlet
 		}
 
 		if (_autoLogin) {
-			SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
-			String emailAddress = signUpViewModel.getEmailAddress();
-			String password = signUpViewModel.getPassword();
+			SignUpViewModel viewModel = getViewModel();
+
+			String emailAddress = viewModel.getEmailAddress();
+			String password = viewModel.getPassword();
 
 			SessionContext.createSession(emailAddress, password);
 			SessionContext.setLoggedUser(user);
@@ -180,17 +181,17 @@ public class SignUpScreenlet
 
 	@Override
 	protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
-		getViewModel().showStartOperation(userActionName);
+		SignUpViewModel viewModel = getViewModel();
 
-		SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
+		viewModel.showStartOperation(userActionName);
 
-		String firstName = signUpViewModel.getFirstName();
-		String middleName = signUpViewModel.getMiddleName();
-		String lastName = signUpViewModel.getLastName();
-		String emailAddress = signUpViewModel.getEmailAddress();
-		String password = signUpViewModel.getPassword();
-		String screenName = signUpViewModel.getScreenName();
-		String jobTitle = signUpViewModel.getJobTitle();
+		String firstName = viewModel.getFirstName();
+		String middleName = viewModel.getMiddleName();
+		String lastName = viewModel.getLastName();
+		String emailAddress = viewModel.getEmailAddress();
+		String password = viewModel.getPassword();
+		String screenName = viewModel.getScreenName();
+		String jobTitle = viewModel.getJobTitle();
 		Locale locale = getResources().getConfiguration().locale;
 
 		try {
