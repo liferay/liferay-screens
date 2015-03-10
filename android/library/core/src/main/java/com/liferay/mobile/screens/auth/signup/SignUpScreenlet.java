@@ -87,30 +87,6 @@ public class SignUpScreenlet
 		}
 	}
 
-	public void onUserAction(String userActionName) {
-		SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
-		signUpViewModel.showStartOperation(userActionName);
-
-		String firstName = signUpViewModel.getFirstName();
-		String middleName = signUpViewModel.getMiddleName();
-		String lastName = signUpViewModel.getLastName();
-		String emailAddress = signUpViewModel.getEmailAddress();
-		String password = signUpViewModel.getPassword();
-		String screenName = signUpViewModel.getScreenName();
-		String jobTitle = signUpViewModel.getJobTitle();
-		Locale locale = getResources().getConfiguration().locale;
-
-		try {
-			getInteractor().signUp(
-				_companyId, firstName, middleName, lastName, emailAddress,
-				screenName, password, jobTitle, locale, _anonymousApiUserName,
-				_anonymousApiPassword);
-		}
-		catch (Exception e) {
-			onSignUpFailure(e);
-		}
-	}
-
 	public String getAnonymousApiPassword() {
 		return _anonymousApiPassword;
 	}
