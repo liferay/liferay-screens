@@ -14,17 +14,10 @@
 import UIKit
 
 
-@objc public protocol DDLFormData {
+@objc public protocol ForgotPasswordViewModel: AuthBasedType {
 
-	var showSubmitButton: Bool { get set }
+	var userName: String? { get set }
 
-	var record: DDLRecord?  { get set }
-
-	var isRecordEmpty: Bool { get }
-
-	var values: [String:AnyObject] { get }
-
-
-	func validateForm(#autoscroll: Bool) -> Bool
+	var companyId: Int64 { get set }
 
 }

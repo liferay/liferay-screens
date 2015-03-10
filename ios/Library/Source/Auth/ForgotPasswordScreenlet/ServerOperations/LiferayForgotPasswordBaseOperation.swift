@@ -30,8 +30,8 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 				details: LocalizedString("forgotpassword-screenlet", "loaded-details", self))
 	}
 
-	internal var forgotPasswordData: ForgotPasswordData {
-		return screenlet.screenletView as ForgotPasswordData
+	internal var viewModel: ForgotPasswordViewModel {
+		return screenlet.screenletView as ForgotPasswordViewModel
 	}
 
 	private var successMessageKey = ""
@@ -40,7 +40,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 	//MARK ServerOperation
 
 	override func validateData() -> Bool {
-		if forgotPasswordData.userName == nil {
+		if viewModel.userName == nil {
 			showValidationHUD(
 					message: LocalizedString("forgotpassword-screenlet", "validation", self))
 

@@ -30,11 +30,6 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 		return (LocalizedString("ddlform-screenlet", "loading-error", self), details: nil)
 	}
 
-	internal var formData: DDLFormData {
-		return screenlet.screenletView as DDLFormData
-	}
-
-
 	//MARK: ServerOperation
 
 	override func validateData() -> Bool {

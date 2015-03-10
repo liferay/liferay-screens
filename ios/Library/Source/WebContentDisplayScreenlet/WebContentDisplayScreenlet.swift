@@ -31,8 +31,8 @@ import UIKit
 
 	@IBOutlet public var delegate: WebContentDisplayScreenletDelegate?
 
-	internal var webContentDisplayData: WebContentDisplayData {
-		return screenletView as WebContentDisplayData
+	internal var viewModel: WebContentDisplayViewModel {
+		return screenletView as WebContentDisplayViewModel
 	}
 
 
@@ -48,8 +48,7 @@ import UIKit
 		let webContentOperation = LiferayWebContentLoadOperation(screenlet: self)
 
 		webContentOperation.groupId =
-				(self.groupId != 0) ?
-						self.groupId : LiferayServerContext.groupId
+				(self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
 
 		webContentOperation.articleId = self.articleId
 
@@ -61,9 +60,8 @@ import UIKit
 				let modifiedHtml =
 						self.delegate?.onWebContentResponse?(webContentOperation.resultHTML!)
 
-				self.webContentDisplayData.htmlContent =
-						(modifiedHtml != nil) ?
-							modifiedHtml! : webContentOperation.resultHTML!
+				self.viewModel.htmlContent =
+						(modifiedHtml != nil) ? modifiedHtml! : webContentOperation.resultHTML!
 			}
 		}
 	}

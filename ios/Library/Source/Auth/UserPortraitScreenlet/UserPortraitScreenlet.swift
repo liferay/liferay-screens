@@ -26,20 +26,20 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 	@IBInspectable public var borderWidth: CGFloat = 1.0 {
 		didSet {
-			(screenletView as? UserPortraitData)?.borderWidth = self.borderWidth
+			(screenletView as? UserPortraitViewModel)?.borderWidth = self.borderWidth
 		}
 	}
 	@IBInspectable public var borderColor: UIColor? {
 		didSet {
-			(screenletView as? UserPortraitData)?.borderColor = self.borderColor
+			(screenletView as? UserPortraitViewModel)?.borderColor = self.borderColor
 		}
 	}
 
 	@IBOutlet public var delegate: UserPortraitScreenletDelegate?
 
 
-	private var portraitView: UserPortraitData {
-		return screenletView as UserPortraitData
+	private var viewModel: UserPortraitViewModel {
+		return screenletView as UserPortraitViewModel
 	}
 
 
@@ -48,10 +48,9 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	override internal func onCreated() {
 		super.onCreated()
 
-		portraitView.borderWidth = self.borderWidth
-		portraitView.borderColor = self.borderColor
-
-		portraitView.portraitLoaded = onPortraitLoaded
+		viewModel.borderWidth = self.borderWidth
+		viewModel.borderColor = self.borderColor
+		viewModel.portraitLoaded = onPortraitLoaded
 	}
 
 	public func loadLoggedUserPortrait() -> Bool {
@@ -144,7 +143,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	private func setPortraitURL(url: NSURL?) {
-		portraitView.portraitURL = url
+		viewModel.portraitURL = url
 
 		if url == nil {
 			screenletView?.onFinishOperation()

@@ -25,16 +25,15 @@ public class LiferaySignUpOperation: ServerOperation {
 		return (LocalizedString("signup-screenlet", "loading-error", self), details: nil)
 	}
 
-	private var signUpData: SignUpData {
-		return screenlet.screenletView as SignUpData
+	private var viewModel: SignUpViewModel {
+		return screenlet.screenletView as SignUpViewModel
 	}
 
 	//MARK: ServerOperation
 
 	override func validateData() -> Bool {
-		if signUpData.emailAddress == nil {
-			showValidationHUD(
-					message: LocalizedString("signup-screenlet", "validation", self))
+		if viewModel.emailAddress == nil {
+			showValidationHUD(message: LocalizedString("signup-screenlet", "validation", self))
 
 			return false
 		}
@@ -49,10 +48,10 @@ public class LiferaySignUpOperation: ServerOperation {
 
 		let emptyDict = []
 
-		let password = emptyIfNull(signUpData.password)
+		let password = emptyIfNull(viewModel.password)
 
-		let companyId = (signUpData.companyId != 0)
-				? signUpData.companyId : LiferayServerContext.companyId
+		let companyId = (viewModel.companyId != 0)
+				? viewModel.companyId : LiferayServerContext.companyId
 
 		let result = service.addUserWithCompanyId(companyId,
 				autoPassword: (password == ""),
@@ -60,20 +59,20 @@ public class LiferaySignUpOperation: ServerOperation {
 				password2: password,
 				autoScreenName: true,
 				screenName: "",
-				emailAddress: signUpData.emailAddress,
+				emailAddress: viewModel.emailAddress,
 				facebookId: 0,
 				openId: "",
 				locale: NSLocale.currentLocaleString,
-				firstName: emptyIfNull(signUpData.firstName),
-				middleName: emptyIfNull(signUpData.middleName),
-				lastName: emptyIfNull(signUpData.lastName),
+				firstName: emptyIfNull(viewModel.firstName),
+				middleName: emptyIfNull(viewModel.middleName),
+				lastName: emptyIfNull(viewModel.lastName),
 				prefixId: 0,
 				suffixId: 0,
 				male: true,
 				birthdayMonth: 1,
 				birthdayDay: 1,
 				birthdayYear: 1970,
-				jobTitle: emptyIfNull(signUpData.jobTitle),
+				jobTitle: emptyIfNull(viewModel.jobTitle),
 				groupIds: [NSNumber(longLong: LiferayServerContext.groupId)],
 				organizationIds: emptyDict,
 				roleIds: emptyDict,

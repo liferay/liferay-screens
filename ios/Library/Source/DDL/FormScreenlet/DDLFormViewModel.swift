@@ -14,8 +14,17 @@
 import UIKit
 
 
-@objc public protocol WebContentDisplayData {
+@objc public protocol DDLFormViewModel {
 
-	var htmlContent: String { get set }
+	var showSubmitButton: Bool { get set }
+
+	var record: DDLRecord?  { get set }
+
+	var isRecordEmpty: Bool { get }
+
+	var values: [String:AnyObject] { get }
+
+
+	func validateForm(#autoscroll: Bool) -> Bool
 
 }

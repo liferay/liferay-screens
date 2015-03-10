@@ -25,7 +25,7 @@ import UIKit
 }
 
 
-public class LoginScreenlet: BaseScreenlet, AuthBasedData {
+public class LoginScreenlet: BaseScreenlet, AuthBasedType {
 
 	//MARK: Inspectables
 
@@ -37,13 +37,13 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 
 	@IBInspectable public var saveCredentials: Bool = false {
 		didSet {
-			(screenletView as? AuthBasedData)?.saveCredentials = self.saveCredentials
+			(screenletView as? AuthBasedType)?.saveCredentials = self.saveCredentials
 		}
 	}
 
 	@IBInspectable public var companyId: Int64 = 0 {
 		didSet {
-			(screenletView as? LoginData)?.companyId = self.companyId
+			(screenletView as? LoginViewModel)?.companyId = self.companyId
 		}
 	}
 
@@ -51,8 +51,8 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 	@IBOutlet public var delegate: LoginScreenletDelegate?
 
 
-	internal var loginData: LoginData {
-		return screenletView as LoginData
+	internal var viewModel: LoginViewModel {
+		return screenletView as LoginViewModel
 	}
 
 
@@ -63,11 +63,11 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 		
 		copyAuth(source: self, target: screenletView)
 
-		loginData.companyId = companyId
+		viewModel.companyId = companyId
 
 		if SessionContext.loadSessionFromStore() {
-			loginData.userName = SessionContext.currentUserName!
-			loginData.password = SessionContext.currentPassword!
+			viewModel.userName = SessionContext.currentUserName!
+			viewModel.password = SessionContext.currentPassword!
 
 			delegate?.onCredentialsLoaded?()
 		}
@@ -107,20 +107,20 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedData {
 				operation = LiferayLoginByScreenNameOperation(
 						screenlet: self,
 						companyId: companyId,
-						screenName: loginData.userName!)
+						screenName: viewModel.userName!)
 			case .UserId:
 				operation = LiferayLoginByUserIdOperation(
 						screenlet: self,
-						userId: Int64(loginData.userName!.toInt()!))
+						userId: Int64(viewModel.userName!.toInt()!))
 			default:
 				operation = LiferayLoginByEmailOperation(
 						screenlet: self,
 						companyId: companyId,
-						emailAddress: loginData.userName!)
+						emailAddress: viewModel.userName!)
 		}
 
-		operation?.userName = loginData.userName
-		operation?.password = loginData.password
+		operation?.userName = viewModel.userName
+		operation?.password = viewModel.password
 
 		return operation!
 	}

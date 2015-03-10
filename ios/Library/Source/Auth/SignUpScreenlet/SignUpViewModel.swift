@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol SignUpData {
+@objc public protocol SignUpViewModel {
 
 	var emailAddress: String? { get set }
 	var screenName: String? { get set }

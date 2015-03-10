@@ -14,9 +14,9 @@
 import UIKit
 
 
-public class DDLListView_default: BaseListTableView, DDLListData {
+public class DDLListView_default: BaseListTableView, DDLListViewModel {
 
-	// DDLListData
+	// DDLListViewModel
 
 	public var labelFields: [String] = []
 

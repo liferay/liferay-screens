@@ -14,10 +14,13 @@
 import UIKit
 
 
-@objc public protocol ForgotPasswordData: AuthBasedData {
+@objc public protocol UserPortraitViewModel {
 
-	var userName: String? { get set }
+	var portraitURL: NSURL? {get set}
 
-	var companyId: Int64 { get set }
+	var borderWidth: CGFloat {get set}
+	var borderColor: UIColor? {get set}
+
+	var portraitLoaded: ((UIImage?, NSError?) -> (UIImage?))? {get set}
 
 }

@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class SignUpView_default: BaseScreenletView, SignUpData {
+public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 	@IBOutlet internal var emailAddressField: UITextField?
 	@IBOutlet internal var passwordField: UITextField?
@@ -63,7 +63,7 @@ public class SignUpView_default: BaseScreenletView, SignUpData {
 				forState: .Normal)
 	}
 
-	//MARK: SignUpData
+	//MARK: SignUpViewModel
 
 	public var emailAddress: String? {
 		get {

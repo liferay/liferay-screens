@@ -40,8 +40,8 @@ public class ServerOperation: NSOperation {
 
 	internal var onComplete: (ServerOperation -> Void)?
 
-	internal var anonymousAuth: AnonymousAuthData? {
-		return screenlet as? AnonymousAuthData
+	internal var anonymousAuth: AnonymousAuthType? {
+		return screenlet as? AnonymousAuthType
 	}
 
 	internal var hudLoadingMessage: HUDMessage? { return nil }

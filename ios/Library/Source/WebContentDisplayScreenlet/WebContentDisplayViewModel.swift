@@ -14,8 +14,8 @@
 import UIKit
 
 
-@objc public protocol DDLListData {
+@objc public protocol WebContentDisplayViewModel {
 
-	var labelFields: [String] { get set }
+	var htmlContent: String { get set }
 
 }

@@ -14,13 +14,8 @@
 import UIKit
 
 
-@objc public protocol UserPortraitData {
+@objc public protocol DDLListViewModel {
 
-	var portraitURL: NSURL? {get set}
-
-	var borderWidth: CGFloat {get set}
-	var borderColor: UIColor? {get set}
-
-	var portraitLoaded: ((UIImage?, NSError?) -> (UIImage?))? {get set}
+	var labelFields: [String] { get set }
 
 }

@@ -30,10 +30,6 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 		return (LocalizedString("ddlform-screenlet", "uploading-error", self), details: nil)
 	}
 
-	internal var formData: DDLFormData {
-		return screenlet.screenletView as DDLFormData
-	}
-
 	private var requestSemaphore: dispatch_semaphore_t?
 
 

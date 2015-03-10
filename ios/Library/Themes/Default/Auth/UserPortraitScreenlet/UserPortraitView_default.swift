@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class UserPortraitView_default: BaseScreenletView, UserPortraitData {
+public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel {
 
 	@IBOutlet var activityIndicator: UIActivityIndicatorView?
 	@IBOutlet var portraitImage: UIImageView?

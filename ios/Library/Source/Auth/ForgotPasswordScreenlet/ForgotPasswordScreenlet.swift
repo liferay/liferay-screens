@@ -22,7 +22,8 @@ import UIKit
 }
 
 
-@IBDesignable public class ForgotPasswordScreenlet: BaseScreenlet, AuthBasedData, AnonymousAuthData {
+@IBDesignable public class ForgotPasswordScreenlet: BaseScreenlet,
+		AuthBasedType, AnonymousAuthType {
 
 	//MARK: Inspectables
 
@@ -37,7 +38,7 @@ import UIKit
 
 	@IBInspectable var companyId: Int64 = 0 {
 		didSet {
-			(screenletView as? ForgotPasswordData)?.companyId = self.companyId
+			(screenletView as? ForgotPasswordViewModel)?.companyId = self.companyId
 		}
 	}
 
@@ -50,8 +51,8 @@ import UIKit
 		set {}
 	}
 
-	internal var forgotPasswordData: ForgotPasswordData {
-		return screenletView as ForgotPasswordData
+	internal var viewModel: ForgotPasswordViewModel {
+		return screenletView as ForgotPasswordViewModel
 	}
 
 
@@ -62,10 +63,10 @@ import UIKit
 
 		copyAuth(source: self, target: screenletView)
 
-		forgotPasswordData.companyId = companyId
+		viewModel.companyId = companyId
 
 		if let userName = SessionContext.currentUserName {
-			forgotPasswordData.userName = userName
+			viewModel.userName = userName
 		}
 	}
 

@@ -23,7 +23,7 @@ public class LiferayForgotPasswordUserIdOperation: LiferayForgotPasswordBaseOper
 			error: NSErrorPointer)
 			-> Bool? {
 
-		let userId = Int64(forgotPasswordData.userName!.toInt()!)
+		let userId = Int64(viewModel.userName!.toInt()!)
 
 		return service.sendPasswordByUserIdWithUserId(userId, error: error)
 	}
