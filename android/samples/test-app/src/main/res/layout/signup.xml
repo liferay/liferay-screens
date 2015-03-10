@@ -7,7 +7,7 @@
 
 	<TextView
 		style="@style/label"
-		android:text="Signup form to register a new user in Liferay Portal"/>
+		android:text="@string/signup_label"/>
 
 	<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
 		android:id="@+id/signup_default"

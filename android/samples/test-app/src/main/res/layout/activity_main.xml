@@ -6,7 +6,7 @@
 
 	<TextView
 		style="@style/label"
-		android:text="List of all the screenlets supported on 0.3.0"/>
+		android:text="@string/main_activity_label"/>
 
 	<ScrollView
 		android:layout_width="match_parent"

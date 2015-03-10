@@ -7,7 +7,7 @@
 
 	<TextView
 		style="@style/label"
-		android:text="Login form, supporting email/username/userId authentication"/>
+		android:text="@string/login_label"/>
 
 	<com.liferay.mobile.screens.auth.login.LoginScreenlet
 		android:id="@+id/login_default"

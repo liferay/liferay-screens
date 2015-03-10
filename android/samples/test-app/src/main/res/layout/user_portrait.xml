@@ -8,7 +8,7 @@
 
 	<TextView
 		style="@style/label"
-		android:text="User portrait from a userId or the logged user. Also supports loading from a portraitId."/>
+		android:text="@string/user_portrait_label"/>
 
 	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
 		android:id="@+id/user_portrait_default"

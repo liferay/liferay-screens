@@ -6,7 +6,7 @@
 
 	<TextView
 		style="@style/label"
-		android:text="List of assets to choose an asset and show all the entries"/>
+		android:text="@string/select_asset_label"/>
 
 	<ListView
 		android:id="@+id/select_asset_list"

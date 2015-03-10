@@ -7,7 +7,7 @@
 
 	<TextView
 		style="@style/label"
-		android:text="Webview of an articleId"/>
+		android:text="@string/webview_label"/>
 
 	<com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet
 		android:id="@+id/web_view"
