@@ -44,4 +44,5 @@ public class WebViewActivity extends ThemeActivity implements WebContentDisplayL
 	public void onWebContentFailure(WebContentDisplayScreenlet source, Exception e) {
 		error("Could not receive web content information", e);
 	}
+
 }

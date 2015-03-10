@@ -72,9 +72,10 @@ public class SignUpScreenlet
 		}
 
 		if (_autoLogin) {
-			SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
-			String emailAddress = signUpViewModel.getEmailAddress();
-			String password = signUpViewModel.getPassword();
+			SignUpViewModel viewModel = getViewModel();
+
+			String emailAddress = viewModel.getEmailAddress();
+			String password = viewModel.getPassword();
 
 			SessionContext.createSession(emailAddress, password);
 			SessionContext.setLoggedUser(user);
@@ -84,30 +85,6 @@ public class SignUpScreenlet
 			}
 
 			SessionContext.storeSession(_credentialsStore);
-		}
-	}
-
-	public void onUserAction(String userActionName) {
-		SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
-		signUpViewModel.showStartOperation(userActionName);
-
-		String firstName = signUpViewModel.getFirstName();
-		String middleName = signUpViewModel.getMiddleName();
-		String lastName = signUpViewModel.getLastName();
-		String emailAddress = signUpViewModel.getEmailAddress();
-		String password = signUpViewModel.getPassword();
-		String screenName = signUpViewModel.getScreenName();
-		String jobTitle = signUpViewModel.getJobTitle();
-		Locale locale = getResources().getConfiguration().locale;
-
-		try {
-			getInteractor().signUp(
-				_companyId, firstName, middleName, lastName, emailAddress,
-				screenName, password, jobTitle, locale, _anonymousApiUserName,
-				_anonymousApiPassword);
-		}
-		catch (Exception e) {
-			onSignUpFailure(e);
 		}
 	}
 
@@ -204,15 +181,17 @@ public class SignUpScreenlet
 
 	@Override
 	protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
-		SignUpViewModel signUpViewModel = (SignUpViewModel)getScreenletView();
+		SignUpViewModel viewModel = getViewModel();
 
-		String firstName = signUpViewModel.getFirstName();
-		String middleName = signUpViewModel.getMiddleName();
-		String lastName = signUpViewModel.getLastName();
-		String emailAddress = signUpViewModel.getEmailAddress();
-		String password = signUpViewModel.getPassword();
-		String screenName = signUpViewModel.getScreenName();
-		String jobTitle = signUpViewModel.getJobTitle();
+		viewModel.showStartOperation(userActionName);
+
+		String firstName = viewModel.getFirstName();
+		String middleName = viewModel.getMiddleName();
+		String lastName = viewModel.getLastName();
+		String emailAddress = viewModel.getEmailAddress();
+		String password = viewModel.getPassword();
+		String screenName = viewModel.getScreenName();
+		String jobTitle = viewModel.getJobTitle();
 		Locale locale = getResources().getConfiguration().locale;
 
 		try {

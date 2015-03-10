@@ -36,8 +36,8 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
 		setContentView(R.layout.ddl_form);
 
-		_screenlet = (DDLFormScreenlet) getActiveScreenlet(R.id.ddl_form_default,
-				R.id.ddl_form_material);
+		_screenlet = (DDLFormScreenlet) getActiveScreenlet(
+			R.id.ddl_form_default, R.id.ddl_form_material);
 
 		_screenlet.setVisibility(View.VISIBLE);
 		_screenlet.setListener(this);
@@ -45,9 +45,13 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 		initScreenletFromIntent(getIntent());
 
 		hideInactiveScreenlet(R.id.ddl_form_default, R.id.ddl_form_material);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 
 		_screenlet.load();
-
 	}
 
 	@Override

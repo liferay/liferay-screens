@@ -112,8 +112,7 @@ public class DDLFormScreenlet
 			result &= isFieldValid;
 		}
 
-		DDLFormViewModel viewModel = (DDLFormViewModel) getScreenletView();
-		viewModel.showValidationResults(fieldResults, _autoScrollOnValidation);
+		getViewModel().showValidationResults(fieldResults, _autoScrollOnValidation);
 
 		return result;
 	}

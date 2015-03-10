@@ -6,6 +6,10 @@
 			  android:background="@android:color/white"
 			  android:orientation="vertical">
 
+	<TextView
+		style="@style/label"
+		android:text="@string/ddl_list_label"/>
+
 	<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
 		android:id="@+id/ddl_list_default"
 		android:layout_width="match_parent"

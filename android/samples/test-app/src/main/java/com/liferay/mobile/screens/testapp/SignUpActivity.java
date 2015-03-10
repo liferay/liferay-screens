@@ -42,7 +42,7 @@ public class SignUpActivity extends ThemeActivity implements SignUpListener {
 
 	@Override
 	public void onSignUpFailure(Exception e) {
-		error("Could not signup", e);
+		error("Sorry, could not signup!", null);
 	}
 
 	@Override

@@ -33,14 +33,14 @@
 			style="@style/default_dialog_button"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/take_a_video"/>
+			android:text="@string/record_a_video"/>
 
 		<TextView
 			android:id="@+id/default_dialog_take_photo"
 			style="@style/default_dialog_button"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/make_a_photo"/>
+			android:text="@string/take_a_photo"/>
 
 	</LinearLayout>
 

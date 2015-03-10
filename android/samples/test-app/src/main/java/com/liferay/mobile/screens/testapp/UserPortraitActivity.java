@@ -32,13 +32,20 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 
 		setContentView(R.layout.user_portrait);
 
-		UserPortraitScreenlet screenlet = (UserPortraitScreenlet) getActiveScreenlet(R.id.user_portrait_default,
-				R.id.user_portrait_material);
+		_screenlet = (UserPortraitScreenlet) getActiveScreenlet(
+			R.id.user_portrait_default, R.id.user_portrait_material);
 
-		screenlet.setVisibility(View.VISIBLE);
-		screenlet.setListener(this);
+		_screenlet.setVisibility(View.VISIBLE);
+		_screenlet.setListener(this);
 
 		hideInactiveScreenlet(R.id.user_portrait_default, R.id.user_portrait_material);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		_screenlet.load();
 	}
 
 	@Override
@@ -52,4 +59,6 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 	public void onUserPortraitFailure(UserPortraitScreenlet source, Exception e) {
 		error("Could not load user portrait", e);
 	}
+
+	private UserPortraitScreenlet _screenlet;
 }

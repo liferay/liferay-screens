@@ -36,16 +36,22 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 
 		setContentView(R.layout.asset_list);
 
-		AssetListScreenlet screenlet = (AssetListScreenlet) getActiveScreenlet(R.id.asset_list_default,
-				R.id.asset_list_material);
+		_screenlet = (AssetListScreenlet) getActiveScreenlet(
+			R.id.asset_list_default, R.id.asset_list_material);
 
-		screenlet.setClassNameId(getIntent().getIntExtra("classNameId", 10011));
+		_screenlet.setClassNameId(getIntent().getIntExtra("classNameId", 10011));
 
-		screenlet.setVisibility(View.VISIBLE);
-		screenlet.setListener(this);
-		screenlet.loadPage(0);
+		_screenlet.setVisibility(View.VISIBLE);
+		_screenlet.setListener(this);
 
 		hideInactiveScreenlet(R.id.asset_list_default, R.id.asset_list_material);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		_screenlet.loadPage(0);
 	}
 
 	@Override
@@ -62,4 +68,7 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 	public void onListItemSelected(AssetEntry element) {
 		info("Item selected: " + element);
 	}
+
+	private AssetListScreenlet _screenlet;
+
 }
