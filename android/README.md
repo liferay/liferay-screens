@@ -34,7 +34,7 @@ Other internal dependencies are:
 
 ## Preparing Your Project for Liferay Screens
 
-Liferay Screens is released as an [AAR file](http://tools.android.com/tech-docs/new-build-system/aar-format) that is currently self-hosted in GitHub. In the future it will also be available from the Maven Central repository. The following sections describe how to set up Screens with Gradle and Maven. While instructions are also provided for manual setup, it's strongly recommended that you use Maven or Gradle to set and download your dependencies. 
+Liferay Screens is released as an [AAR file](http://tools.android.com/tech-docs/new-build-system/aar-format) that is currently hosted in jCenter. The following sections describe how to set up Screens with Gradle and Maven. While instructions are also provided for manual setup, it's strongly recommended that you use Maven or Gradle to set and download your dependencies. 
 
 ### Gradle
 
