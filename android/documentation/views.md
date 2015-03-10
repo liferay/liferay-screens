@@ -14,8 +14,7 @@ This document explains the basics of how views are used in Liferay Screens for A
 
 ## Installing View Sets
 
-By default, when you setup your project it includes to viewsets: Default and Material.
-However, anyone could create a new viewset and publish it in a public repository like Maven Central o JCenter. In such case, just include the artifact containing the viewset, using the standard steps for Gradle or Maven described in the ["Prepare Your Project for Liferay Screens"](https://github.com/liferay/liferay-screens/tree/master/android/README.md#preparing-your-project-for-liferay-screens) section.
+When you set up your project it includes two viewsets by default: Default and Material. However, anyone can create a new viewset and publish it in a public repository like Maven Central or jCenter. In that event, include the artifact containing the viewset by using the standard steps for Gradle or Maven described in the section [Prepare Your Project for Liferay Screens](https://github.com/liferay/liferay-screens/tree/master/android/README.md#preparing-your-project-for-liferay-screens).
 
 ## Using View Sets
 
@@ -26,7 +25,7 @@ To use a view set, set the `liferay:layoutId` property in your layout XML. This 
 ## Available View Sets
 
 - **Default**: Standard views used when you insert any screenlet and don't set the `liferay:layoutId` attribute.
-- **Material**: Sample views intended to demonstrate how to develop your own view sets from scratch. It follows the [Material Design](https://developer.android.com/design/material/index.html) guidelines published by Google.
+- **Material**: Sample views intended to demonstrate how to develop your own viewsets from scratch. It follows the [Material Design](https://developer.android.com/design/material/index.html) guidelines published by Google.
 
 ## Creating Your Own Views
 

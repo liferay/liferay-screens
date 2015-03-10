@@ -56,7 +56,7 @@ The `AssetListScreenlet` also supports i18n in asset values.
 
 The Default views use a standard `RecyclerView` to show the scrollable list. Other views may use a different component, such as `ViewPager` or others, to show the items.
 
-![`AssetListScreenlet` using the Default and Material viewset](images/assetlist.png)
+![`AssetListScreenlet` using the Default and Material viewsets.](images/assetlist.png)
 
 ## Portal Configuration
 
