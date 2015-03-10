@@ -171,7 +171,7 @@ Screenlets are grouped in modules based on internal dependencies. Each module is
 	- [`LoginScreenlet`](documentation/LoginScreenlet.md): Gives your app the ability to sign users into a Liferay instance.
 	- [`SignUpScreenlet`](documentation/SignUpScreenlet.md): Gives your app the ability to sign new users into a Liferay instance.
 	- [`ForgotPasswordScreenlet`](documentation/ForgotPasswordScreenlet.md): Gives your app the ability to send emails containing a new password or password reset link to users.
-	- [`UserPortraitScreenlet`](documentation/UserPortraitScreenlet.md): Shows the user's portrait picture.
+	- [`UserPortraitScreenlet`](documentation/UserPortraitScreenlet.md): Gives your app the ability to show the user's portrait picture.
 
 - **Dynamic Data Lists (DDL)**: Module for interacting with [Dynamic Data Lists](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-web-forms-and-dynamic-data-lists) in a Liferay instance. It includes the following screenlets:
 

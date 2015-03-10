@@ -14,8 +14,8 @@ This document explains the basics of how views are used in Liferay Screens for A
 
 ## Installing View Sets
 
-By default, when you setup your project it includes to viewsets: Default and Material one.
-However, anyone could create a new viewset and publish it in a public repository like Maven Central o JCenter. In such case, just include as usual the artifact containing the viewset, using the standard steps for Gradle or Maven described in the ["Prepare Your Project for Liferay Screens"](https://github.com/liferay/liferay-screens/tree/master/android/README.md#preparing-your-project-for-liferay-screens) section.
+By default, when you setup your project it includes to viewsets: Default and Material.
+However, anyone could create a new viewset and publish it in a public repository like Maven Central o JCenter. In such case, just include the artifact containing the viewset, using the standard steps for Gradle or Maven described in the ["Prepare Your Project for Liferay Screens"](https://github.com/liferay/liferay-screens/tree/master/android/README.md#preparing-your-project-for-liferay-screens) section.
 
 ## Using View Sets
 
