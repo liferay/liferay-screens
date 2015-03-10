@@ -14,13 +14,13 @@ Before Screens, you could leverage those features by developing mobile apps usin
 
 ![App based on Liferay Screens](ios/Documentation/Images/screens-phone.png)
 
-The goal of Screens is to speed up mobile app development by hiding the additional complexity of calling Liferay's remote services. Screens gives you a set of screenlets that make all the server calls under the hood, so you don't have to deal with remote services, JSON responses, or any other seemingly strange parameters. With Screens you're able to customize the UI, hide or extend screenlet's features, or even override the default behavior to implement specific features in your project.
+The goal of Screens is to speed up mobile app development by hiding the additional complexity of calling Liferay's remote services. Screens gives you a set of screenlets that make all the server calls under the hood, so you don't have to deal with remote services, JSON responses, or any other seemingly strange parameters. With Screens you're able to customize the UI, hide or extend screenlets' features, or even override the default behavior to implement specific features in your project. What's more, Screens can be seamlessly integrated into any of your existing projects.
 
-## iOS
+## Using Liferay Screens for iOS
 
-The implementation of Screens for iOS devices uses standard development tools for iOS, such as Xcode, iOS SDK, iOS Simulator, and others. What's more, Screens can be seamlessly integrated into any of your existing projects. It's developed using the new Swift language and modern development techniques, such as functional Swift code and the [Model View Presenter architecture](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter). This makes Screens a great way to construct your app in a modular way.
+The implementation of Screens for iOS devices uses standard development tools for iOS, such as Xcode, iOS SDK, iOS Simulator, and others. Screens is developed using the new Swift language and modern development techniques, such as functional Swift code and the [Model View Presenter architecture](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter). This makes Screens a great way to construct your app in a modular way.
 
-### iOS Quick Start
+### Getting Started on iOS
 
 If you want to add Liferay Screens to your project right away, just jump to the section [Preparing Your Project for Liferay Screens](ios#preparing-your-project-for-liferay-screens).
 
@@ -42,9 +42,29 @@ Liferay Screens for iOS also contains a set of *themes* that you can use to chan
 - **Default**: The standard theme that is used when you insert any screenlet in your app's UI. The Default theme can be used as the parent theme for any of your custom themes. Please refer to the [Architecture Guide](ios/Documentation/architecture.md#theme-layer) for more details on this.
 - **Flat7**: A sample theme intended to demonstrate how to develop your own full theme from scratch. Please refer to the [Theme Guide](ios/Documentation/themes.md) for instructions on creating your own theme.
 
-## Android
+## Using Liferay Screens for Android
 
-The implementation of Screens for Android is still in its early stages. Stay tuned!
+Screens for Android uses Android's standard set of development tools, including the Android SDK (starting from Android 4.0, API Level 14) and Android Studio. Since [Screens' architecture](android/documentation/architecture.md) is designed to isolate the screenlets, using Screens is a great way to construct your app in a modular fashion.
+
+### Getting Started on Android
+
+To quickly add Liferay Screens to your project, see the section [Preparing Your Project for Liferay Screens](android#preparing-your-project-for-liferay-screens).
+
+Once your project is ready, you can use the following screenlets in your app:
+
+- [`LoginScreenlet`](android/documentation/LoginScreenlet.md): Gives your app the ability to sign users in to a Liferay Portal.
+- [`SignUpScreenlet`](android/documentation/SignUpScreenlet.md): Gives your app the ability to sign new users in to a Liferay Portal.
+- [`ForgotPasswordScreenlet`](android/documentation/ForgotPasswordScreenlet.md): Gives your app the ability to send emails containing a new password or password reset link to users.
+- [`UserPortraitScreenlet`](android/documentation/UserPortraitScreenlet.md): Gives your app the ability to show the user's portrait picture.
+- [`DDLFormScreenlet`](android/documentation/DDLFormScreenlet.md): Gives your app the ability to present dynamic forms to be filled out by users and submitted back to the server.
+- [`DDLListScreenlet`](android/documentation/DDLListScreenlet.md): Gives your app the ability to show a list of records based on a pre-existing [Dynamic Data List](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-web-forms-and-dynamic-data-lists) in a Liferay instance.
+- [`AssetListScreenlet`](android/documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). Assets include web content, blog entries, documents, users and more.
+- [`WebContentDisplayScreenlet`](android/documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This screenlet uses the features available in [Web Content Management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/web-content-management).
+
+Liferay Screens for Android also contains a set of *views* that you can use to change the UI and UX of the screenlets:
+
+- **Default views**: The standard views used when you add a screenlet in your app's activities or fragments and don't set the `liferay:layoutId` attribute. The Default views can be used as parent views for any of your custom views. Refer to the [Architecture Guide](android/documentation/architecture.md#view-layer) for more details.
+- **Material views**: The sample views intended to demonstrate how to develop your own full view set from scratch. Refer to the [Views Guide](android/documentation/views.md) for instructions on creating your own view set.
 
 ## Contributing
 
