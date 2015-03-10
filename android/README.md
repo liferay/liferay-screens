@@ -89,16 +89,32 @@ You can do the same as the Gradle configuration:
 
 2. Force a Maven update to download all the dependencies.
 
-* If maven can't locate the artifact in maven central we have also uploaded it to github. You will have to add the new repository in your maven settings (.m2/settings.xml)
+* If maven can't locate the artifact you will have to add jcenter as a new repository in your maven settings (.m2/settings.xml)
 
 
 	```xml
-	<repositories>
-	        <repository>
-	          <id>LiferayScreens</id>
-	          <name>LiferayScreens</name>
-	          <url>https://raw.github.com/liferay/liferay-screens/master/android/dist/</url>
-	        </repository>
+	<profiles>
+		<profile>
+			<repositories>
+				<repository>
+					<id>bintray-liferay-liferay-mobile</id>
+					<name>bintray</name>
+					<url>http://dl.bintray.com/liferay/liferay-mobile</url>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>bintray-liferay-liferay-mobile</id>
+					<name>bintray-plugins</name>
+					<url>http://dl.bintray.com/liferay/liferay-mobile</url>
+				</pluginRepository>
+			</pluginRepositories>
+			<id>bintray</id>
+		</profile>
+	</profiles>
+	<activeProfiles>
+		<activeProfile>bintray</activeProfile>
+	</activeProfiles>
 	```
 
 #### Manually
