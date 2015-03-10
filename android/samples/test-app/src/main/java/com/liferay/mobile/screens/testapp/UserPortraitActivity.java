@@ -37,6 +37,7 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 
 		screenlet.setVisibility(View.VISIBLE);
 		screenlet.setListener(this);
+		screenlet.load();
 
 		hideInactiveScreenlet(R.id.user_portrait_default, R.id.user_portrait_material);
 	}

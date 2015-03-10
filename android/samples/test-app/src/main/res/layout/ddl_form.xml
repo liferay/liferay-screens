@@ -5,6 +5,10 @@
 			  android:layout_height="match_parent"
 			  android:orientation="vertical">
 
+	<TextView
+		style="@style/label"
+		android:text="Form loaded from a DDLRecord. Allows file uploading and all the main DDL fields."/>
+
 	<com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
 		android:id="@+id/ddl_form_default"
 		android:layout_width="match_parent"

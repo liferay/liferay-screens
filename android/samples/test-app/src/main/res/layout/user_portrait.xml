@@ -6,11 +6,16 @@
 			  android:background="@android:color/white"
 			  android:orientation="vertical">
 
+	<TextView
+		style="@style/label"
+		android:text="User portrait from a userId or the logged user. Also supports loading from a portraitId."/>
+
 	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
 		android:id="@+id/user_portrait_default"
 		android:layout_width="100dp"
 		android:layout_height="100dp"
-		liferay:autoLoad="true"
+		android:visibility="gone"
+		liferay:autoLoad="false"
 		liferay:layoutId="@layout/userportrait_default"
 		liferay:userId="10199"/>
 
@@ -18,6 +23,8 @@
 		android:id="@+id/user_portrait_material"
 		android:layout_width="100dp"
 		android:layout_height="100dp"
+		android:visibility="gone"
+		liferay:autoLoad="false"
 		liferay:layoutId="@layout/userportrait_material"
 		liferay:userId="10199"/>
 

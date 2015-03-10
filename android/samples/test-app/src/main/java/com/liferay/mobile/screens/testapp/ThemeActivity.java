@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.testapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
@@ -28,7 +29,7 @@ import de.keyboardsurfer.android.widget.crouton.Crouton;
 /**
  * @author Javier Gamarra
  */
-public abstract class ThemeActivity extends Activity {
+public abstract class ThemeActivity extends ActionBarActivity {
 
 	protected Integer currentTheme;
 

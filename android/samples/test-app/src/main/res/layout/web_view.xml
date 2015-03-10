@@ -5,6 +5,10 @@
 			  android:layout_height="match_parent"
 			  android:orientation="vertical">
 
+	<TextView
+		style="@style/label"
+		android:text="Webview of an articleId"/>
+
 	<com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet
 		android:id="@+id/web_view"
 		android:layout_width="match_parent"

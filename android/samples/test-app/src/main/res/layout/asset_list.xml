@@ -6,6 +6,10 @@
 			  android:background="@android:color/white"
 			  android:orientation="vertical">
 
+	<TextView
+		android:text="List of assets of a specific className"
+		style="@style/label"/>
+
 	<com.liferay.mobile.screens.assetlist.AssetListScreenlet
 		android:id="@+id/asset_list_default"
 		android:layout_width="match_parent"

@@ -4,6 +4,10 @@
 			  android:layout_height="match_parent"
 			  android:orientation="vertical">
 
+	<TextView
+		style="@style/label"
+		android:text="List of assets to choose an asset and show all the entries"/>
+
 	<ListView
 		android:id="@+id/select_asset_list"
 		android:layout_width="match_parent"

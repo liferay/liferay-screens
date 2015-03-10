@@ -5,6 +5,10 @@
 			  android:layout_height="match_parent"
 			  android:orientation="vertical">
 
+	<TextView
+		style="@style/label"
+		android:text="Login form, supporting email/username/userId authentication"/>
+
 	<com.liferay.mobile.screens.auth.login.LoginScreenlet
 		android:id="@+id/login_default"
 		android:layout_width="match_parent"
