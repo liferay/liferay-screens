@@ -56,4 +56,6 @@ dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 	compile 'com.android.support:appcompat-v7:21.0.3'
 	compile project (':viewsets')
+
+    compile group: 'com.liferay.mobile', name: 'liferay-android-oauth', version: '1.+'
 }

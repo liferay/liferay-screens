@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.context;
 
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
+import com.liferay.mobile.android.oauth.OAuth;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.context.storage.CredentialsStore;
@@ -39,14 +40,20 @@ public class SessionContext {
 		return _session;
 	}
 
+	public static Session createOAuthSession(String token, String tokenSecret) {
+		OAuth oAuth = new OAuth(LiferayServerContext.getConsumerKey(), LiferayServerContext.getConsumerSecret(), token, tokenSecret);
+
+		_session = new SessionImpl(LiferayServerContext.getServer(), oAuth);
+
+		return _session;
+	}
+
 	public static Session createSessionFromCurrentSession() {
 		if (_session == null) {
 			throw new IllegalStateException("You need to be logged in to get a session");
 		}
 
-		BasicAuthentication basicAuth = (BasicAuthentication) _session.getAuthentication();
-
-		return createSession(basicAuth.getUsername(), basicAuth.getPassword());
+		return new SessionImpl(LiferayServerContext.getServer(), _session.getAuthentication());
 	}
 
 	public static boolean hasSession() {
