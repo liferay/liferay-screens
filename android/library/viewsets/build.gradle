@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22"
+	compileSdkVersion 22
+	buildToolsVersion "22"
 
 	defaultConfig {
 		minSdkVersion 14
@@ -34,42 +34,42 @@ repositories {
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 	compile 'com.android.support:appcompat-v7:21.0.3'
-    compile 'com.android.support:recyclerview-v7:21.0.3'
-    compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
-        exclude group: 'com.google.android', module: 'support-v4'
-    }
+	compile 'com.android.support:recyclerview-v7:21.0.3'
+	compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
+		exclude group: 'com.google.android', module: 'support-v4'
+	}
 	compile project(':core')
 
 }
 
 task androidJavadocs(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+	source = android.sourceSets.main.java.srcDirs
+	classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 
 task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
-    classifier = 'javadoc'
-    from androidJavadocs.destinationDir
+	classifier = 'javadoc'
+	from androidJavadocs.destinationDir
 }
 
 task androidSourcesJar(type: Jar) {
-    classifier = 'sources'
-    from android.sourceSets.main.java.srcDirs
+	classifier = 'sources'
+	from android.sourceSets.main.java.srcDirs
 }
 
 artifacts {
-    archives androidSourcesJar
-    archives androidJavadocsJar
+	archives androidSourcesJar
+	archives androidJavadocsJar
 }
 
 uploadArchives {
-    repositories.mavenDeployer {
-        def deployPath = file(getProperty('aar.deployPath'))
-        repository(url: "file://${deployPath.absolutePath}")
-        pom.project {
-            groupId 'com.liferay.mobile'
-            artifactId 'liferay-screens'
-            version "0.3.0"
-        }
-    }
+	repositories.mavenDeployer {
+		def deployPath = file(getProperty('aar.deployPath'))
+		repository(url: "file://${deployPath.absolutePath}")
+		pom.project {
+			groupId 'com.liferay.mobile'
+			artifactId 'liferay-screens'
+			version "0.3.0"
+		}
+	}
 }

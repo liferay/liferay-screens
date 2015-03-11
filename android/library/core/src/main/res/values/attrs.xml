@@ -9,9 +9,9 @@
 		<enum name="user_id" value="2"/>
 	</attr>
 	<attr name="credentialsStore" format="enum">
-		<enum name="none" value="0" />
-		<enum name="auto" value="1" />
-		<enum name="shared_preferences" value="2" />
+		<enum name="none" value="0"/>
+		<enum name="auto" value="1"/>
+		<enum name="shared_preferences" value="2"/>
 	</attr>
 	<attr name="companyId" format="integer"/>
 	<attr name="groupId" format="integer"/>
@@ -26,8 +26,8 @@
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
 		<attr name="classNameId" format="integer"/>
-		<attr name="firstPageSize" />
-		<attr name="pageSize" />
+		<attr name="firstPageSize"/>
+		<attr name="pageSize"/>
 	</declare-styleable>
 
 	<declare-styleable name="DDLFormScreenlet">
@@ -75,7 +75,7 @@
 		<attr name="layoutId"/>
 		<attr name="authMethod"/>
 		<attr name="companyId"/>
-		<attr name="credentialsStore" />
+		<attr name="credentialsStore"/>
 	</declare-styleable>
 
 	<declare-styleable name="SignUpScreenlet">
@@ -84,7 +84,7 @@
 		<attr name="anonymousApiUserName"/>
 		<attr name="anonymousApiPassword"/>
 		<attr name="autoLogin" format="boolean"/>
-		<attr name="credentialsStore" />
+		<attr name="credentialsStore"/>
 	</declare-styleable>
 
 	<declare-styleable name="WebContentDisplayScreenlet">
