@@ -2,8 +2,8 @@
 <resources>
 	<string name="submit">SUBMIT</string>
 	<string name="required_value">Required value</string>
-    <string name="invalid">Invalid value</string>
-    <string name="open">Open:</string>
+	<string name="invalid">Invalid value</string>
+	<string name="open">Open:</string>
 	<string name="take_a_photo">Take a photo</string>
 	<string name="select_a_file">Select a file</string>
 	<string name="origin_of_file">Choose origin of file</string>
