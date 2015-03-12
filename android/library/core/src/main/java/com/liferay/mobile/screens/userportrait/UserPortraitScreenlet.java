@@ -138,6 +138,7 @@ public class UserPortraitScreenlet
 		_male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
 		_portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
+		//TODO use logged user
 		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, 0);
 
 		int layoutId = typedArray.getResourceId(
