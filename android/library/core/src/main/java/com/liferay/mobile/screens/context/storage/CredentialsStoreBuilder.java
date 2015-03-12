@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.context.storage;
 
 import android.content.Context;
 
-import com.liferay.mobile.android.auth.basic.BasicAuthentication;
+import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.screens.context.User;
 
 /**
@@ -51,7 +51,7 @@ public class CredentialsStoreBuilder {
 		private int _value;
 	}
 
-	public CredentialsStoreBuilder setAuthentication(BasicAuthentication auth) {
+	public CredentialsStoreBuilder setAuthentication(Authentication auth) {
 		if (auth == null) {
 			throw new IllegalStateException("Authentication cannot be null. Make sure you have a session created");
 		}
@@ -122,7 +122,7 @@ public class CredentialsStoreBuilder {
 		return credentialsStore;
 	}
 
-	private BasicAuthentication _auth;
+	private Authentication _auth;
 	private User _user;
 	private StorageType _storageType = StorageType.AUTO;
 	private Context _context;

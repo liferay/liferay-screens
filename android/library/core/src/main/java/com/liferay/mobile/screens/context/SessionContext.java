@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.context;
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.oauth.OAuth;
+import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.context.storage.CredentialsStore;
@@ -40,8 +41,8 @@ public class SessionContext {
 		return _session;
 	}
 
-	public static Session createOAuthSession(String token, String tokenSecret) {
-		OAuth oAuth = new OAuth(LiferayServerContext.getConsumerKey(), LiferayServerContext.getConsumerSecret(), token, tokenSecret);
+	public static Session createOAuthSession(OAuthConfig config) {
+		OAuth oAuth = new OAuthAuthentication(config);
 
 		_session = new SessionImpl(LiferayServerContext.getServer(), oAuth);
 
@@ -60,8 +61,8 @@ public class SessionContext {
 		return _session != null;
 	}
 
-	public static BasicAuthentication getAuthentication() {
-		return (_session == null) ? null : (BasicAuthentication) _session.getAuthentication();
+	public static Authentication getAuthentication() {
+		return (_session == null) ? null : _session.getAuthentication();
 	}
 
 	public static User getLoggedUser() {
@@ -79,7 +80,7 @@ public class SessionContext {
 
 		CredentialsStore storage = new CredentialsStoreBuilder()
 			.setContext(LiferayScreensContext.getContext())
-			.setAuthentication((BasicAuthentication) _session.getAuthentication())
+			.setAuthentication(_session.getAuthentication())
 			.setUser(getLoggedUser())
 			.setStorageType(storageType)
 			.build();
@@ -111,8 +112,7 @@ public class SessionContext {
 		checkIfStorageTypeIsSupported(storageType, storage);
 
 		if (storage.loadStoredCredentials()) {
-			_session = new SessionImpl(
-				LiferayServerContext.getServer(), storage.getAuthentication());
+			_session = new SessionImpl(LiferayServerContext.getServer(), storage.getAuthentication());
 			_loggedUser = storage.getUser();
 		}
 	}
