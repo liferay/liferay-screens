@@ -734,7 +734,7 @@
 			path = UserPortraitScreenlet;
 			sourceTree = "<group>";
 		};
-		88F9F0C819E3480D006268ED /* Source */ = {
+		88F9F0C819E3480D006268ED /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				88F9F0C919E3480D006268ED /* AssetListScreenlet */,
@@ -747,7 +747,7 @@
 				88F9F11D19E3480D006268ED /* Services */,
 				88F9F12419E3480D006268ED /* WebContentDisplayScreenlet */,
 			);
-			path = Source;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		88F9F0C919E3480D006268ED /* AssetListScreenlet */ = {
@@ -1292,7 +1292,7 @@
 		88FE74CB19655E1B003A7CE5 = {
 			isa = PBXGroup;
 			children = (
-				88F9F0C819E3480D006268ED /* Source */,
+				88F9F0C819E3480D006268ED /* Core */,
 				88F9F12919E3480D006268ED /* Themes */,
 				88F9F2AA19E3484B006268ED /* Tests */,
 				88FE74D719655E1B003A7CE5 /* Supporting Files */,
@@ -2032,7 +2032,7 @@
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Source/liferay-screens-bridge.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Core/liferay-screens-bridge.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -2068,7 +2068,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Source/liferay-screens-bridge.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Core/liferay-screens-bridge.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
