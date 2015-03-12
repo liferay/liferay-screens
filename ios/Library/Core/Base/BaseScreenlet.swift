@@ -25,7 +25,7 @@ import QuartzCore
 		set {
 			_themeName = (newValue ?? "default").lowercaseString
 
-			if runningOnInterfaceBuilder {
+			if _runningOnInterfaceBuilder {
 				_themeName = updateCurrentPreviewImage()
 			}
 		}
@@ -46,13 +46,13 @@ import QuartzCore
 	}
 
 	internal var isRunningOnInterfaceBuilder: Bool {
-		return runningOnInterfaceBuilder
+		return _runningOnInterfaceBuilder
 	}
 
 	private var _themeName = "default"
-	private var runningOnInterfaceBuilder = false
-	private var currentPreviewImage:UIImage?
-	private var previewLayer: CALayer?
+	private var _runningOnInterfaceBuilder = false
+	private var _currentPreviewImage: UIImage?
+	private var _previewLayer: CALayer?
 
 
 	//MARK: UIView
@@ -86,9 +86,9 @@ import QuartzCore
 	//MARK: Interface Builder management methods
 
 	override public func prepareForInterfaceBuilder() {
-		runningOnInterfaceBuilder = true
+		_runningOnInterfaceBuilder = true
 
-		previewLayer = CALayer()
+		_previewLayer = CALayer()
 
 		updateCurrentPreviewImage()
 	}
@@ -217,10 +217,10 @@ import QuartzCore
 	private func updateCurrentPreviewImage() -> String {
 		var appliedTheme = _themeName
 
-		currentPreviewImage = previewImageForTheme(_themeName)
-		if currentPreviewImage == nil {
+		_currentPreviewImage = previewImageForTheme(_themeName)
+		if _currentPreviewImage == nil {
 			if let previewImage = previewImageForTheme("default") {
-				currentPreviewImage = previewImage
+				_currentPreviewImage = previewImage
 				appliedTheme = "default"
 			}
 		}
@@ -229,12 +229,12 @@ import QuartzCore
 			screenletViewValue.removeFromSuperview()
 		}
 
-		if let currentPreviewImageValue = currentPreviewImage {
-			previewLayer!.frame = centeredRectInView(self, size: currentPreviewImageValue.size)
-			previewLayer!.contents = currentPreviewImageValue.CGImage
+		if let currentPreviewImageValue = _currentPreviewImage {
+			_previewLayer!.frame = centeredRectInView(self, size: currentPreviewImageValue.size)
+			_previewLayer!.contents = currentPreviewImageValue.CGImage
 
-			if previewLayer!.superlayer != layer {
-				layer.addSublayer(previewLayer!)
+			if _previewLayer!.superlayer != layer {
+				layer.addSublayer(_previewLayer!)
 			}
 		}
 		else {
