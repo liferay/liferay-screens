@@ -70,7 +70,7 @@ import UIKit
 		}
 	}
 
-	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
+	override internal func onUserAction(#name: String?, sender: AnyObject?) {
 		let forgotPasswordOperation = createForgotPasswordOperation(
 				authMethod: AuthMethod.create(authMethod))
 

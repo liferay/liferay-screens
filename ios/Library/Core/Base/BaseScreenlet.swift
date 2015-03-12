@@ -109,7 +109,7 @@ import QuartzCore
 				viewValue.frame = centeredRectInView(self, size: viewValue.frame.size)
 			}
 
-			viewValue.onUserAction = onUserAction
+			viewValue.onPerformUserAction = performUserAction
 
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)
@@ -165,9 +165,16 @@ import QuartzCore
 	}
 
 	/*
-	 * onUserAction is invoked when a TouchUpInside even is fired from the UI.
+	 * performUserAction is invoked when a TouchUpInside even is fired from the UI.
 	 */
-	internal func onUserAction(actionName:String?, sender:AnyObject?) {
+	internal func performUserAction(#name: String?, sender: AnyObject?) {
+
+	/*
+	 * onUserAction is invoked when an interaction should be started
+	 */
+	internal func onUserAction(#name: String?, sender: AnyObject?) {
+
+	}
 	}
 
 	/**

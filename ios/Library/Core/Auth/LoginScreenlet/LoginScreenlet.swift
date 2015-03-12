@@ -73,7 +73,7 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedType {
 		}
 	}
 
-	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
+	override internal func onUserAction(#name: String?, sender: AnyObject?) {
 		let loginOperation = createLoginOperation(authMethod: AuthMethod.create(authMethod))
 
 		loginOperation.validateAndEnqueue() {

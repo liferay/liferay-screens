@@ -90,8 +90,8 @@ import UIKit
 		}
 	}
 
-	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
-		switch actionName! {
+	override internal func onUserAction(#name: String?, sender: AnyObject?) {
+		switch name! {
 			case "submit-form":
 				submitForm()
 			case "upload-document":

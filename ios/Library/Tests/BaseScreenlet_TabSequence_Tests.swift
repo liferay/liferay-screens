@@ -39,7 +39,7 @@ class BaseScreenlet_TabSequence_Tests: XCTestCase {
 	func test_TabSequence_ShouldFireCustomAction_WhenTabSequenceGoesToButton() {
 		let expectation = expectationWithDescription("onUserAction must be called")
 
-		view!.onUserAction = { (actionName, control) -> Void in
+		view!.onPerformUserAction = { (name, control) -> Void in
 			expectation.fulfill()
 		}
 

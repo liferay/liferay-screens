@@ -56,7 +56,7 @@ import UIKit
 		viewModel.companyId = self.companyId
 	}
 
-	override internal func onUserAction(actionName: String?, sender: AnyObject?) {
+	override internal func onUserAction(#name: String?, sender: AnyObject?) {
 		let signUpOperation = LiferaySignUpOperation(screenlet: self)
 
 		signUpOperation.validateAndEnqueue() {

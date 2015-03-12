@@ -19,7 +19,7 @@ import UIKit
  */
 public class BaseScreenletView: UIView, UITextFieldDelegate {
 
-	internal var onUserAction: ((String?, AnyObject?) -> Void)?
+	internal var onPerformUserAction: ((String?, AnyObject?) -> Void)?
 
 	internal var themeName: String? {
 		var className = NSStringFromClass(self.dynamicType)
@@ -149,7 +149,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * onPreUserAction is invoked just before any user action is invoked.
 	 * Override this method to decide whether or not the user action should be fired.
 	 */
-	internal func onPreUserAction(actionName: String?, sender: AnyObject?) -> Bool {
+	internal func onPreUserAction(#name: String?, sender: AnyObject?) -> Bool {
 		return true
 	}
 
@@ -168,22 +168,22 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	internal func userActionWithSender(sender: AnyObject?) {
 		if let controlSender = sender as? UIControl {
-			userActionWithName(actionName: controlSender.restorationIdentifier, sender: sender)
+			userAction(name: controlSender.restorationIdentifier, sender: sender)
 		}
 		else {
-			userActionWithName(actionName: nil, sender: sender)
+			userAction(name: nil, sender: sender)
 		}
 	}
 
-	internal func userActionWithName(actionName: String?) {
-		userActionWithName(actionName: actionName, sender: nil)
+	internal func userAction(#name: String?) {
+		userAction(name: name, sender: nil)
 	}
 	
-	internal func userActionWithName(#actionName: String?, sender: AnyObject?) {
-		if onPreUserAction(actionName, sender: sender) {
+	internal func userAction(#name: String?, sender: AnyObject?) {
+		if onPreUserAction(name: name, sender: sender) {
 			endEditing(true)
 		
-			onUserAction?(actionName, sender)
+			onPerformUserAction?(name, sender)
 		}
 	}
 
