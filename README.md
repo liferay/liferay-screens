@@ -11,14 +11,14 @@
 [What is Liferay Screens?](#introduction)
 
 Liferay Screens for iOS
-- [Overview](#using-liferay-screens-for-ios)
-- [Using Liferay Screens for iOS](ios/README.md)
+- [Overview](#overview-of-liferay-screens-for-ios)
+- [Use](ios/README.md)
 - [Creating Themes](ios/Documentation/theme_creation.md)
 - [Creating Screenlets](ios/Documentation/screenlet_creation.md)
 
 Liferay Screens for Android
-- [Overview](#using-liferay-screens-for-android)
-- [Using Liferay Screens for Android](android/README.md)
+- [Overview](#overview-of-liferay-screens-for-android)
+- [Use](android/README.md)
 - [Creating Views](android/documentation/view_creation.md)
 - [Creating Screenlets](android/documentation/screenlet_creation.md)
 
@@ -34,7 +34,7 @@ Before Screens, you could leverage those features by developing mobile apps usin
 
 The goal of Screens is to speed up mobile app development by hiding the additional complexity of calling Liferay's remote services. Screens gives you a set of screenlets that make all the server calls under the hood, so you don't have to deal with remote services, JSON responses, or any other seemingly strange parameters. With Screens you're able to customize the UI, hide or extend screenlets' features, or even override the default behavior to implement specific features in your project. What's more, Screens can be seamlessly integrated into any of your existing projects.
 
-## Using Liferay Screens for iOS
+## Overview of Liferay Screens for iOS
 
 The implementation of Screens for iOS devices uses standard development tools for iOS, such as Xcode, iOS SDK, iOS Simulator, and others. Screens is developed using the new Swift language and modern development techniques, such as functional Swift code and the [Model View Presenter architecture](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter). This makes Screens a great way to construct your app in a modular way.
 
@@ -60,7 +60,7 @@ Liferay Screens for iOS also contains a set of *themes* that you can use to chan
 - **Default**: The standard theme that is used when you insert any screenlet in your app's UI. The Default theme can be used as the parent theme for any of your custom themes. Please refer to the [Architecture Guide](ios/Documentation/architecture.md#theme-layer) for more details on this.
 - **Flat7**: A sample theme intended to demonstrate how to develop your own full theme from scratch. Please refer to the [Theme Guide](ios/Documentation/themes.md) for instructions on creating your own theme.
 
-## Using Liferay Screens for Android
+## Overview of Liferay Screens for Android
 
 Screens for Android uses Android's standard set of development tools, including the Android SDK (starting from Android 4.0, API Level 14) and Android Studio. Since [Screens' architecture](android/documentation/architecture.md) is designed to isolate the screenlets, using Screens is a great way to construct your app in a modular fashion.
 
