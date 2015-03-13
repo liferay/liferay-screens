@@ -20,6 +20,7 @@ import android.content.SharedPreferences;
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.oauth.OAuthConfig;
+import com.liferay.mobile.screens.context.AuthenticationType;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.OAuthAuthentication;
 import com.liferay.mobile.screens.context.User;
@@ -53,8 +54,6 @@ public class CredentialsStoreSharedPreferences implements CredentialsStore {
 			.putString("server", LiferayServerContext.getServer())
 			.putLong("groupId", LiferayServerContext.getGroupId())
 			.putLong("companyId", LiferayServerContext.getCompanyId())
-			.putString("consumerKey", LiferayServerContext.getConsumerKey())
-			.putString("consumerSecret", LiferayServerContext.getConsumerSecret())
 			.apply();
 
 		storeAuthentication();
@@ -109,7 +108,7 @@ public class CredentialsStoreSharedPreferences implements CredentialsStore {
 			throw new IllegalStateException("Stored credential values are not consistent with current ones");
 		}
 
-		if (_auth instanceof OAuthAuthentication) {
+		if (AuthenticationType.BASIC.equals(LiferayServerContext.getAuthenticationType())) {
 			_auth = new OAuthAuthentication(new OAuthConfig(server, consumerKey, consumerSecret));
 		}
 		else {
@@ -167,7 +166,7 @@ public class CredentialsStoreSharedPreferences implements CredentialsStore {
 	}
 
 	private void storeAuthentication() {
-		if (_auth instanceof BasicAuthentication) {
+		if (AuthenticationType.BASIC.equals(LiferayServerContext.getAuthenticationType())) {
 			BasicAuthentication basicAuthentication = (BasicAuthentication) _auth;
 			_sharedPref
 				.edit()
@@ -181,6 +180,8 @@ public class CredentialsStoreSharedPreferences implements CredentialsStore {
 				.edit()
 				.putString("token", oAuth.getToken())
 				.putString("tokenSecret", oAuth.getTokenSecret())
+				.putString("consumerKey", LiferayServerContext.getConsumerKey())
+				.putString("consumerSecret", LiferayServerContext.getConsumerSecret())
 				.apply();
 		}
 	}

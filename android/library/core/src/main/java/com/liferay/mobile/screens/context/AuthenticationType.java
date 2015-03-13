@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -12,22 +12,12 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.login.view;
-
-import com.liferay.mobile.screens.auth.AuthBasedViewModel;
-import com.liferay.mobile.screens.context.AuthenticationType;
-import com.liferay.mobile.screens.context.User;
+package com.liferay.mobile.screens.context;
 
 /**
- * @author Silvio Santos
+ * @author Javier Gamarra
  */
-public interface LoginViewModel extends AuthBasedViewModel {
+public enum AuthenticationType {
 
-	String getLogin();
-
-	String getPassword();
-
-	void setAuthenticationType(AuthenticationType authenticationType);
-
-	void showFinishOperation(User user);
+	BASIC, OAUTH
 }

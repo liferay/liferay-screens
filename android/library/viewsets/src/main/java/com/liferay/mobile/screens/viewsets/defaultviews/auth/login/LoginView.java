@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.ModalProgressBar;
+import com.liferay.mobile.screens.context.AuthenticationType;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
@@ -74,6 +75,11 @@ public class LoginView extends LinearLayout
 	}
 
 	@Override
+	public void setAuthenticationType(AuthenticationType authenticationType) {
+		_authenticationType = authenticationType;
+	}
+
+	@Override
 	public void showStartOperation(String actionName) {
 		_progressBar.startProgress();
 	}
@@ -103,8 +109,11 @@ public class LoginView extends LinearLayout
 	@Override
 	public void onClick(View view) {
 		LoginScreenlet loginScreenlet = (LoginScreenlet) getParent();
-
-		loginScreenlet.performUserAction();
+		if (view.getId() == R.id.login_button) {
+			loginScreenlet.performUserAction(LoginScreenlet.BASIC_AUTH);
+		} else {
+			loginScreenlet.performUserAction(LoginScreenlet.OAUTH);
+		}
 	}
 
 	public void setAuthMethod(AuthMethod authMethod) {
@@ -121,13 +130,21 @@ public class LoginView extends LinearLayout
 		_passwordEditText = (EditText) findViewById(R.id.password);
 		_progressBar = (ModalProgressBar) findViewById(R.id.progress_bar);
 
-		Button submitButton = (Button) findViewById(R.id.login_button);
-		submitButton.setOnClickListener(this);
+		_basicAuthenticationLayout = (LinearLayout) findViewById(R.id.basic_authentication_login);
+
+		_oAuthButton = (Button) findViewById(R.id.oauth_authentication_login);
+		_oAuthButton.setOnClickListener(this);
+
+		_submitButton = (Button) findViewById(R.id.login_button);
+		_submitButton.setOnClickListener(this);
 	}
 
 	@Override
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
+
+		_basicAuthenticationLayout.setVisibility(AuthenticationType.BASIC.equals(_authenticationType) ? VISIBLE : GONE);
+		_oAuthButton.setVisibility(AuthenticationType.OAUTH.equals(_authenticationType) ? VISIBLE : GONE);
 
 		refreshLoginEditTextStyle();
 	}
@@ -164,6 +181,9 @@ public class LoginView extends LinearLayout
 	private EditText _loginEditText;
 	private EditText _passwordEditText;
 	private Button _submitButton;
+	private LinearLayout _basicAuthenticationLayout;
+	private Button _oAuthButton;
+	private AuthenticationType _authenticationType;
 	private AuthMethod _authMethod;
 	private ModalProgressBar _progressBar;
 
