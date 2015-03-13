@@ -6,6 +6,22 @@
 
 [![Android Platform](http://img.shields.io/badge/platform-Android_4.0-green.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tree/master/android) [![Build Status](http://img.shields.io/travis/liferay/liferay-screens.svg?style=flat-square)](https://travis-ci.org/liferay/liferay-screens/)
 
+## Table of Contents
+
+[What is Liferay Screens?](#introduction)
+
+Liferay Screens for iOS
+- [Using Liferay Screens for iOS](ios/README.md)
+- [Creating Themes](ios/Documentation/theme_creation.md)
+- [Creating Screenlets](ios/Documentation/screenlet_creation.md)
+
+Liferay Screens for Android
+- [Using Liferay Screens for Android](android/README.md)
+- [Creating Views](android/documentation/view_creation.md)
+- [Creating Screenlets](android/documentation/screenlet_creation.md)
+
+[Contributing to the Project](CONTRIBUTING.md)
+
 ## Introduction
 
 Screens is Liferay's effort to speed up and simplify the development of native apps for mobile devices. This may grow to include apps for any of the new categories of smart devices that are currently emerging. Liferay Screens provides a common infrastructure and a family of components called *screenlets* that are connected to the Liferay platform. This allows your mobile applications to leverage the wide variety of server-side features that Liferay already provides.
