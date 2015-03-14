@@ -6,7 +6,7 @@ Before contributing to Liferay Screens, make sure that you have done the followi
 
 2. Read the [Code Style Guide](https://github.com/liferay/liferay-screens/tree/master/ios/Documentation/style_guide.md).
 
-3. Sign up for [our issue tracker](https://issues.liferay.com/browse/LMW/?selectedTab=com.atlasn.jira.jira-projects-plugin:summary-panel).
+3. Sign up for [our issue tracker](https://issues.liferay.com/secure/Signup!default.jspa) and go to the [Liferay Screens page](https://issues.liferay.com/browse/LMW/?selectedTab=com.atlassian.jira.jira-projects-plugin:summary-panel).
 
 4. Fork [this repository](https://github.com/liferay/liferay-screens/).
 
