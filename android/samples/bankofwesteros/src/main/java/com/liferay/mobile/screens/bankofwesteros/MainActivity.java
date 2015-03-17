@@ -17,12 +17,15 @@ package com.liferay.mobile.screens.bankofwesteros;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class TourActivity extends Activity {
+public class MainActivity extends Activity {
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_tour);
+		setContentView(R.layout.main);
+
 	}
+
 
 }
