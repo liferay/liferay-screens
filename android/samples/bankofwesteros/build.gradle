@@ -11,7 +11,7 @@ android {
 
 	defaultConfig {
 		applicationId "com.example.aelian.bankofwesteros"
-		minSdkVersion 14
+		minSdkVersion 21
 		targetSdkVersion 22
 		versionCode 1
 		versionName "1.0"
@@ -21,6 +21,17 @@ android {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
+	}
+}
+
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath 'com.android.tools.build:gradle:1.0.1'
+		classpath 'com.github.jcandksolutions.gradle:android-unit-test:2.1.1'
 	}
 }
 
