@@ -17,19 +17,13 @@ package com.liferay.mobile.screens.bankofwesteros;
 import android.app.Activity;
 import android.os.Bundle;
 import android.transition.TransitionManager;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-public class MainActivity extends Activity implements View.OnClickListener, View.OnTouchListener {
+public class MainActivity extends Activity implements View.OnClickListener {
 
-
-	private static final float SWIPE_VELOCITY_THRESHOLD = 1f;
-	private GestureDetector mDetector;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +35,6 @@ public class MainActivity extends Activity implements View.OnClickListener, View
 		findViewById(R.id.sign_up_button).setOnClickListener(this);
 		findViewById(R.id.background).setOnClickListener(this);
 
-		findViewById(R.id.sign_in_button).setOnTouchListener(this);
-		findViewById(R.id.sign_up_button).setOnTouchListener(this);
-		findViewById(R.id.background).setOnTouchListener(this);
-
-		mDetector = new GestureDetector(this, new MyGestureListener());
 	}
 
 	@Override
@@ -62,11 +51,6 @@ public class MainActivity extends Activity implements View.OnClickListener, View
 			View signUpScreenlet = findViewById(R.id.signup_screenlet);
 			signUpScreenlet.setVisibility(View.GONE);
 			TransitionManager.beginDelayedTransition((android.view.ViewGroup) signUpView);
-
-//
-//			LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) signUpScreenlet.getLayoutParams();
-//			layoutParams2.height = 50;
-//			signUpScreenlet.setLayoutParams(layoutParams2);
 
 		}
 		else if (view.getId() == R.id.sign_up_button) {
@@ -85,11 +69,7 @@ public class MainActivity extends Activity implements View.OnClickListener, View
 			RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) signInView.getLayoutParams();
 			layoutParams.setMargins(20, 20, 20, 0);
 			signInView.setLayoutParams(layoutParams);
-//			changeHeight(signInView, 100);
 			TransitionManager.beginDelayedTransition((android.view.ViewGroup) signInView);
-
-
-//			signInView.animate().y(0);
 
 		}
 		else {
@@ -103,43 +83,10 @@ public class MainActivity extends Activity implements View.OnClickListener, View
 		}
 	}
 
-	private void changeHeight(View view, Integer height) {
-		RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
-		layoutParams.height = height;
-		view.setLayoutParams(layoutParams);
-	}
-
 	private void changeMargin(View view) {
 		RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
 		layoutParams.setMargins(0, 0, 0, 0);
 		view.setLayoutParams(layoutParams);
 	}
 
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		mDetector.onTouchEvent(event);
-		return true;
-	}
-
-
-	private class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
-
-		@Override
-		public boolean onDown(MotionEvent e) {
-			return true;
-		}
-
-		@Override
-		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-
-			//TODO movement
-			if (e2.getY() - e1.getY() > 0 && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
-				Toast.makeText(MainActivity.this, "SUb", Toast.LENGTH_LONG).show();
-			}
-			else {
-				Toast.makeText(MainActivity.this, "Baj", Toast.LENGTH_LONG).show();
-			}
-			return true;
-		}
-	}
 }
