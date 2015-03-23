@@ -70,36 +70,20 @@ import UIKit
 		}
 	}
 
-	override internal func onUserAction(#name: String?, sender: AnyObject?) {
-		let forgotPasswordOperation = createForgotPasswordOperation(
-				authMethod: AuthMethod.create(authMethod))
+	override internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+		let interactor = ForgotPasswordInteractor(screenlet: self)
 
-		forgotPasswordOperation.validateAndEnqueue() {
-			if let error = $0.lastError {
-				self.delegate?.onForgotPasswordError?(error)
-			}
-			else {
-				self.delegate?.onForgotPasswordResponse?(
-						forgotPasswordOperation.resultPasswordSent!)
-			}
+		interactor.onSuccess = {
+			self.delegate?.onForgotPasswordResponse?(interactor.resultPasswordSent!)
+			return
 		}
-	}
 
-
-	//MARK: Private methods
-
-	private func createForgotPasswordOperation(
-			#authMethod: AuthMethod)
-			-> LiferayForgotPasswordBaseOperation {
-
-		switch authMethod {
-			case .ScreenName:
-				return LiferayForgotPasswordScreenNameOperation(screenlet: self)
-			case .UserId:
-				return LiferayForgotPasswordUserIdOperation(screenlet: self)
-			default:
-				return LiferayForgotPasswordEmailOperation(screenlet: self)
+		interactor.onFailure = {
+			self.delegate?.onForgotPasswordError?($0)
+			return
 		}
+
+		return interactor
 	}
 
 }
