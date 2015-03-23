@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -35,43 +36,74 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		findViewById(R.id.sign_up_view).setOnClickListener(this);
 		findViewById(R.id.background).setOnClickListener(this);
 
+		findViewById(R.id.forgot_change).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				LinearLayout signInSubView = (LinearLayout) findViewById(R.id.sign_in_subview);
+				LinearLayout forgotPasswordSubView = (LinearLayout) findViewById(R.id.forgot_password_subview);
+				forgotPasswordSubView.setX(1000);
+
+//				TransitionManager.beginDelayedTransition(signInSubView);
+				FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) signInSubView.getLayoutParams();
+				signInSubView.animate().x(-1000);
+				forgotPasswordSubView.animate().x(0);
+				signInSubView.setLayoutParams(layoutParams);
+				forgotPasswordSubView.setVisibility(View.VISIBLE);
+			}
+		});
+
 	}
 
 	@Override
 	public void onClick(final View view) {
 		if (view.getId() == R.id.sign_in_view) {
-			LinearLayout signInView = (LinearLayout) view;
-
-			TransitionManager.beginDelayedTransition(signInView);
-			changeMarginAndHeight(signInView, 0, -1150, 0, 0, 1050);
-
-			LinearLayout signUpView = (LinearLayout) findViewById(R.id.sign_up_view);
-			View signUpScreenlet = findViewById(R.id.signup_screenlet);
-			signUpScreenlet.setVisibility(View.GONE);
-
-			TransitionManager.beginDelayedTransition(signUpView);
+			toSignInView(view);
 		}
 		else if (view.getId() == R.id.sign_up_view) {
-
-			LinearLayout signUpView = (LinearLayout) view;
-			View signUpScreenlet = findViewById(R.id.signup_screenlet);
-			signUpScreenlet.setVisibility(View.VISIBLE);
-
-			TransitionManager.beginDelayedTransition(signUpView);
-			changeMargin(signUpView, 0, 0, 0, 0);
-
-			LinearLayout signInView = (LinearLayout) findViewById(R.id.sign_in_view);
-			changeMargin(signInView, 20, 20, 20, 0);
-
-			TransitionManager.beginDelayedTransition(signInView);
+			toSignUpView(view);
 		}
 		else {
-			LinearLayout signin = (LinearLayout) findViewById(R.id.sign_in_view);
-
-			TransitionManager.beginDelayedTransition(signin);
-			changeMarginAndHeight(signin, 0, 0, 0, 0, 200);
+			toBackgroundView();
 		}
 	}
+
+	private void toBackgroundView() {
+		FrameLayout signin = (FrameLayout) findViewById(R.id.sign_in_view);
+
+		TransitionManager.beginDelayedTransition(signin);
+		changeMarginAndHeight(signin, 0, 0, 0, 0, 200);
+	}
+
+	private void toSignInView(View view) {
+		FrameLayout signInView = (FrameLayout) view;
+
+		TransitionManager.beginDelayedTransition(signInView);
+		changeMarginAndHeight(signInView, 0, -1150, 0, 0, 1050);
+
+		LinearLayout signUpView = (LinearLayout) findViewById(R.id.sign_up_view);
+		View signUpScreenlet = findViewById(R.id.signup_screenlet);
+		signUpScreenlet.setVisibility(View.GONE);
+
+		TransitionManager.beginDelayedTransition(signUpView);
+	}
+
+	private void toSignUpView(View view) {
+		LinearLayout signUpView = (LinearLayout) view;
+		View signUpScreenlet = findViewById(R.id.signup_screenlet);
+		signUpScreenlet.setVisibility(View.VISIBLE);
+
+		TransitionManager.beginDelayedTransition(signUpView);
+		changeMargin(signUpView, 0, 0, 0, 0);
+
+		FrameLayout signInView = (FrameLayout) findViewById(R.id.sign_in_view);
+		RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) signInView.getLayoutParams();
+		layoutParams.setMargins(20, 20, 20, 0);
+		signInView.setLayoutParams(layoutParams);
+
+		TransitionManager.beginDelayedTransition(signInView);
+	}
+
 
 	private void changeMargin(View view, int marginLeft, int marginTop, int marginRight, int marginBottom) {
 		changeMarginAndHeight(view, marginLeft, marginTop, marginRight, marginBottom, null);
