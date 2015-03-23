@@ -54,92 +54,56 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	public func loadLoggedUserPortrait() -> Bool {
-		setPortraitURL(getLoggedUserPortraitURL())
+		let interactor = UserPortraitLoadLoggedUserInteractor(screenlet: self)
 
-		return SessionContext.hasSession
+		return startInteractor(interactor)
 	}
 
-	public func load(#portraitId: Int64, uuid: String, male: Bool = true) {
-		if portraitId == 0 {
-			setPortraitURL(nil)
-		}
-		else {
-			setPortraitURL(getUserPortraitURL(
-					male: male,
-					portraitId: portraitId,
-					uuid: uuid))
-		}
+	public func load(#portraitId: Int64, uuid: String, male: Bool = true) -> Bool {
+		let interactor = UserPortraitAttributesLoadInteractor(
+				screenlet: self,
+				portraitId: portraitId,
+				uuid: uuid,
+				male: male)
+
+		return startInteractor(interactor)
 	}
 
-	public func load(#userId: Int64) {
-		let operation = GetUserByUserIdOperation(
+	public func load(#userId: Int64) -> Bool {
+		let interactor = UserPortraitLoadByUserIdInteractor(
 				screenlet: self,
 				userId: userId)
 
-		loadUserOrGetFromSession(
-				userAttribute: "userId",
-				value: NSNumber(longLong: userId),
-				operation: operation)
+		return startInteractor(interactor)
 	}
 
-	public func load(#companyId: Int64, emailAddress: String) {
-		let operation = GetUserByEmailOperation(
+	public func load(#companyId: Int64, emailAddress: String) -> Bool {
+		let interactor = UserPortraitLoadByEmailAddressInteractor(
 				screenlet: self,
 				companyId: companyId,
 				emailAddress: emailAddress)
 
-		loadUserOrGetFromSession(
-				userAttribute: "emailAddress",
-				value: emailAddress,
-				operation: operation)
+		return startInteractor(interactor)
 	}
 
-	public func load(#companyId: Int64, screenName: String) {
-		let operation = GetUserByScreenNameOperation(
+	public func load(#companyId: Int64, screenName: String) -> Bool {
+		let interactor = UserPortraitLoadByScreenNameInteractor(
 				screenlet: self,
 				companyId: companyId,
 				screenName: screenName)
 
-		loadUserOrGetFromSession(
-				userAttribute: "screenName",
-				value: screenName,
-				operation: operation)
+		return startInteractor(interactor)
 	}
 
 
 	//MARK: Private methods
 
-	private func loadUserOrGetFromSession(
-			#userAttribute: String,
-			value: AnyObject,
-			operation: GetUserBaseOperation) {
-
-		func onUserLoaded(operation: ServerOperation) {
-			let userOperation = operation as GetUserBaseOperation
-
-			if let userAttributes = userOperation.resultUserAttributes {
-				load(
-					portraitId:(userAttributes["portraitId"] as NSNumber).longLongValue,
-					uuid: userAttributes["uuid"] as String)
-			}
-			else {
-				setPortraitURL(nil)
-			}
+	private func startInteractor(interactor: UserPortraitBaseInteractor) -> Bool {
+		interactor.onSuccess = {
+			self.setPortraitURL(interactor.resultURL)
 		}
 
-		if let url = getLoggedUserPortraitURLByAttribute(
-				key: userAttribute,
-				value: value) {
-			setPortraitURL(url)
-		}
-		else {
-			if operation.validateAndEnqueue(onUserLoaded) {
-				screenletView?.onStartOperation()
-			}
-			else {
-				setPortraitURL(nil)
-			}
-		}
+		return interactor.start()
 	}
 
 	private func setPortraitURL(url: NSURL?) {
@@ -149,53 +113,6 @@ public class UserPortraitScreenlet: BaseScreenlet {
 			screenletView?.onFinishOperation()
 			delegate?.onUserPortraitError?(createError(cause: .AbortedDueToPreconditions))
 		}
-	}
-
-	private func getLoggedUserPortraitURLByAttribute(
-			#key: String,
-			value: AnyObject) -> NSURL? {
-
-		if let loggedUserAttributeValue:AnyObject = SessionContext.userAttribute(key) {
-			if loggedUserAttributeValue.isEqual(value) {
-				return getLoggedUserPortraitURL()
-			}
-		}
-
-		return nil
-	}
-
-	private func getLoggedUserPortraitURL() -> NSURL? {
-		if let portraitId = SessionContext.userAttribute("portraitId") as? NSNumber {
-			if let uuid = SessionContext.userAttribute("uuid") as? String {
-				let portraitIdLong = portraitId.longLongValue
-
-				return getUserPortraitURL(male: true, portraitId: portraitIdLong, uuid: uuid)
-			}
-		}
-
-		return nil
-	}
-
-	private func getUserPortraitURL(#male: Bool, portraitId: Int64, uuid: String) -> NSURL {
-		let maleString = male ? "male" : "female"
-
-		let URL = "\(LiferayServerContext.server)/image/user_\(maleString)/_portrait" +
-				"?img_id=\(portraitId)" +
-				"&img_id_token=\(encodedSHA1(uuid))"
-
-		return NSURL(string: URL)!
-	}
-
-	private func encodedSHA1(input: String) -> String {
-		var result = [Byte](count: Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
-
-		CC_SHA1(input, CC_LONG(countElements(input)), &result)
-
-		let data = NSData(bytes: result, length: result.count)
-
-		let encodedString = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
-
-		return LRHttpUtil.encodeURL(encodedString)
 	}
 
 	private func onPortraitLoaded(image: UIImage?, error: NSError?) -> UIImage? {
@@ -212,4 +129,5 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 		return finalImage
 	}
+
 }
