@@ -34,4 +34,10 @@ public class LiferayLoginByUserIdOperation: GetUserByUserIdOperation {
 		return valid
 	}
 
+	override internal func postRun() {
+		if lastError == nil {
+			setResultAsSessionContext()
+		}
+	}
+
 }

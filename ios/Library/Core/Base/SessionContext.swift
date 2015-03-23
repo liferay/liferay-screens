@@ -143,13 +143,13 @@ import Foundation
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
-		StaticInstance.currentSession = LRSession(
-				server: LiferayServerContext.server,
-				authentication: authentication)
+		let session = LRSession(server: LiferayServerContext.server, authentication: authentication)
+
+		StaticInstance.currentSession = session
 
 		StaticInstance.userAttributes = userAttributes
 
-		return StaticInstance.currentSession!
+		return session
 	}
 
 }

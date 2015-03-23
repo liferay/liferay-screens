@@ -34,4 +34,10 @@ public class LiferayLoginByScreenNameOperation: GetUserByScreenNameOperation {
 		return valid
 	}
 
+	override internal func postRun() {
+		if lastError == nil {
+			setResultAsSessionContext()
+		}
+	}
+
 }

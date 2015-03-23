@@ -23,12 +23,14 @@ public class GetUserBaseOperation: ServerOperation {
 	//MARK: ServerOperation
 
 	override internal func validateData() -> Bool {
-		if userName == nil {
-			return false
-		}
+		if !SessionContext.hasSession {
+			if userName == nil {
+				return false
+			}
 
-		if password == nil {
-			return false
+			if password == nil {
+				return false
+			}
 		}
 
 		return true
@@ -67,6 +69,19 @@ public class GetUserBaseOperation: ServerOperation {
 			lastError = nil
 			resultUserAttributes = result as? [String:AnyObject]
 		}
+	}
+
+	internal func setResultAsSessionContext() -> Bool {
+		if let userAttributesValue = resultUserAttributes {
+			SessionContext.createSession(
+					username: self.userName!,
+					password: self.password!,
+					userAttributes: userAttributesValue)
+
+			return true
+		}
+
+		return false
 	}
 
 
