@@ -60,51 +60,18 @@ public class ServerOperation: NSOperation {
 
 	public override func main() {
 		if preRun() {
-			var session: LRSession?
-
-			if let anonymousAuthValue = anonymousAuth {
-				if anonymousAuthValue.anonymousApiUserName == nil ||
-						anonymousAuthValue.anonymousApiPassword == nil {
-
-					lastError = createError(
-							cause: .AbortedDueToPreconditions,
-							message: "User name and password are required for anonymous API calls")
-					callOnComplete()
-
-					return
-				}
-
-				let authentication = LRBasicAuthentication(
-						username: anonymousAuthValue.anonymousApiUserName!,
-						password: anonymousAuthValue.anonymousApiPassword!)
-
-				session = LRSession(
-						server: LiferayServerContext.server,
-						authentication: authentication)
+			if let session = createSession() {
+				prepareRun()
+				doRun(session: session)
+				postRun()
+				finishRun()
 			}
-			else {
-				session = SessionContext.createSessionFromCurrentSession()
-				if session == nil {
-					lastError = createError(
-							cause: .AbortedDueToPreconditions,
-							message: "Login required to use this screenlet")
-					callOnComplete()
-
-					return
-				}
-			}
-
-			prepareRun()
-			doRun(session: session!)
-			postRun()
-			finishRun()
-			callOnComplete()
 		}
 		else {
 			lastError = createError(cause: .AbortedDueToPreconditions, userInfo: nil)
-			callOnComplete()
 		}
 
+		callOnComplete()
 	}
 
 
@@ -147,6 +114,34 @@ public class ServerOperation: NSOperation {
 		// Do not add any code here. Children classes may not call super
 	}
 
+	internal func createSession() -> LRSession? {
+		if let anonymousAuthValue = anonymousAuth {
+			if anonymousAuthValue.anonymousApiUserName == nil ||
+					anonymousAuthValue.anonymousApiPassword == nil {
+
+				lastError = createError(
+						cause: .AbortedDueToPreconditions,
+						message: "User name and password are required for anonymous API calls")
+
+				return nil
+			}
+
+			return LRSession(
+					server: LiferayServerContext.server,
+					authentication: LRBasicAuthentication(
+							username: anonymousAuthValue.anonymousApiUserName!,
+							password: anonymousAuthValue.anonymousApiPassword!))
+		}
+		else if !SessionContext.hasSession {
+			lastError = createError(
+					cause: .AbortedDueToPreconditions,
+					message: "Login required to use this screenlet")
+
+			return nil
+		}
+
+		return SessionContext.createSessionFromCurrentSession()
+	}
 
 	//MARK: HUD methods
 
