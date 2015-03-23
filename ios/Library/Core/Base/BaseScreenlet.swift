@@ -54,6 +54,8 @@ import QuartzCore
 	private var _currentPreviewImage: UIImage?
 	private var _previewLayer: CALayer?
 
+	private var _runningInteractors = [Interactor]()
+
 
 	//MARK: UIView
 
@@ -168,13 +170,33 @@ import QuartzCore
 	 * performUserAction is invoked when a TouchUpInside even is fired from the UI.
 	 */
 	internal func performUserAction(#name: String?, sender: AnyObject?) {
+		if let interactor = createInteractor(name: name, sender: sender) {
+			_runningInteractors.append(interactor)
+
+			onUserAction(name: name, interactor: interactor, sender: sender)
+		}
+		else {
+			println("WARN: No interactor created for action \(name)")
+		}
+	}
 
 	/*
 	 * onUserAction is invoked when an interaction should be started
 	 */
-	internal func onUserAction(#name: String?, sender: AnyObject?) {
-
+	internal func onUserAction(#name: String?, interactor: Interactor, sender: AnyObject?) {
+		interactor.start()
 	}
+
+	internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+		return nil
+	}
+
+	internal func endInteractor(interactor: Interactor) {
+		synchronized(_runningInteractors) {
+			if let foundIndex = find(self._runningInteractors, interactor) {
+				self._runningInteractors.removeAtIndex(foundIndex)
+			}
+		}
 	}
 
 	/**
