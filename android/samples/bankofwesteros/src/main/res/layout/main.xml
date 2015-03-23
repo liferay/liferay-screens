@@ -33,10 +33,10 @@
 	</LinearLayout>
 
 	<LinearLayout android:elevation="8dp"
-		android:id="@+id/sign_in_button"
+		android:id="@+id/sign_in_view"
 		android:layout_width="match_parent"
 		android:layout_height="80dp"
-		android:layout_above="@+id/sign_up_button"
+		android:layout_above="@+id/sign_up_view"
 		android:background="@android:color/white"
 		android:orientation="vertical">
 
@@ -58,7 +58,7 @@
 	</LinearLayout>
 
 	<LinearLayout android:elevation="16dp"
-		android:id="@+id/sign_up_button"
+		android:id="@+id/sign_up_view"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true"
