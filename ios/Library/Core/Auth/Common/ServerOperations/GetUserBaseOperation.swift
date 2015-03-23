@@ -23,38 +23,27 @@ public class GetUserBaseOperation: ServerOperation {
 	//MARK: ServerOperation
 
 	override internal func validateData() -> Bool {
-		if userName == nil || password == nil {
-			userName = SessionContext.currentUserName
-			password = SessionContext.currentPassword
+		if userName == nil {
+			return false
 		}
 
-		return (userName != nil && password != nil)
-	}
-
-	override internal func preRun() -> Bool {
-		if !SessionContext.hasSession {
-			SessionContext.createSession(
-					username: userName!,
-					password: password!,
-					userAttributes: [:])
+		if password == nil {
+			return false
 		}
 
 		return true
 	}
 
-	override internal func postRun() {
-		if SessionContext.userAttribute("userId") == nil {
-			// the session was created ad-hoc for self.userName
-			if lastError == nil {
-				SessionContext.createSession(
-						username: userName!,
-						password: password!,
-						userAttributes: resultUserAttributes!)
-			}
-			else {
-				SessionContext.clearSession()
-			}
+	override func createSession() -> LRSession? {
+		if SessionContext.hasSession {
+			return SessionContext.createSessionFromCurrentSession()
 		}
+
+		return LRSession(
+				server: LiferayServerContext.server,
+				authentication: LRBasicAuthentication(
+						username: userName!,
+						password: password!))
 	}
 
 	override internal func doRun(#session: LRSession) {
