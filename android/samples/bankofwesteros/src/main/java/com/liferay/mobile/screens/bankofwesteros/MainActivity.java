@@ -41,13 +41,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		_topPosition = convertPxToDp(30);
 
 		_signInView = (FrameLayout) findViewById(R.id.sign_in_view);
-		_signInView.setOnClickListener(this);
+		_signInView.setOnTouchListener(new FlingTouchListener(this, createSignInListener()));
 
 		_signUpView = (LinearLayout) findViewById(R.id.sign_up_view);
-		_signUpView.setOnClickListener(this);
+		_signUpView.setOnTouchListener(new FlingTouchListener(this, createSignUpListener()));
 
 		_forgotPasswordSubView = findViewById(R.id.forgot_password_subview);
-		_loginSubView = findViewById(R.id.sign_in_subview);
+		_signInSubView = findViewById(R.id.sign_in_subview);
+
 		findViewById(R.id.background).setOnClickListener(this);
 
 		final View mainView = findViewById(R.id.main_view);
@@ -58,14 +59,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 				_signUpView.setY(_signUpPosition);
 				_forgotPasswordSubView.setX(WIDTH);
 				mainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-			}
-		});
-
-		findViewById(R.id.forgot_change).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				_loginSubView.animate().x(-WIDTH);
-				_forgotPasswordSubView.animate().x(0);
 			}
 		});
 
@@ -83,6 +76,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		else {
 			toBackgroundView();
 		}
+	}
+
+	private void toSignInSubView() {
+		_signInSubView.animate().x(0);
+		_forgotPasswordSubView.animate().x(WIDTH);
+	}
+
+	private void toForgotPasswordSubView() {
+		_signInSubView.animate().x(-WIDTH);
+		_forgotPasswordSubView.animate().x(0);
 	}
 
 	private void toBackgroundView() {
@@ -108,6 +111,62 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		_signInView.animate().y(margin);
 	}
 
+	private FlingListener createSignInListener() {
+		return new FlingListener() {
+			@Override
+			public void onFlingLeft() {
+				toForgotPasswordSubView();
+			}
+
+			@Override
+			public void onFlingRight() {
+				toSignInSubView();
+			}
+
+			@Override
+			public void onFlingUp() {
+				toSignInView();
+			}
+
+			@Override
+			public void onFlingDown() {
+				toBackgroundView();
+			}
+
+			@Override
+			public void onTouch() {
+				toSignInView();
+			}
+		};
+	}
+
+	private FlingListener createSignUpListener() {
+		return new FlingListener() {
+			@Override
+			public void onFlingLeft() {
+			}
+
+			@Override
+			public void onFlingRight() {
+			}
+
+			@Override
+			public void onFlingUp() {
+				toSignUpView();
+			}
+
+			@Override
+			public void onFlingDown() {
+				toSignInView();
+			}
+
+			@Override
+			public void onTouch() {
+				toSignUpView();
+			}
+		};
+	}
+
 	private void setMargins(View view, int marginLeft, int marginTop, int marginRight, int marginBottom) {
 		FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
 		layoutParams.setMargins(marginLeft, marginTop, marginRight, marginBottom);
@@ -127,5 +186,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	private FrameLayout _signInView;
 	private LinearLayout _signUpView;
 	private View _forgotPasswordSubView;
-	private View _loginSubView;
+	private View _signInSubView;
+
 }

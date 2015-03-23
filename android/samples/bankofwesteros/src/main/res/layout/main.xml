@@ -58,12 +58,6 @@
 				android:textColor="@color/westeros_red"
 				android:textSize="25dp"/>
 
-			<Button
-				android:id="@+id/forgot_change"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="change"/>
-
 			<com.liferay.mobile.screens.auth.login.LoginScreenlet
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"

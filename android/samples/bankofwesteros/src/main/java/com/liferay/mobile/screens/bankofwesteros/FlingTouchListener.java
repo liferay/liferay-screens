@@ -5,14 +5,16 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.liferay.mobile.screens.util.LiferayLogger;
+
 /**
  * @author Javier Gamarra
  */
-public class FlingTouchListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener {
+public class FlingTouchListener implements View.OnTouchListener {
 
-	public FlingTouchListener(Context context, FlingListener listener) {
-		_gestureDetector = new GestureDetector(context, new FlingDetector());
-		_listener = listener;
+	public FlingTouchListener(Context context, FlingListener flingListener) {
+		_gestureDetector = new GestureDetector(context, new GestureDetectorListener());
+		_flingListener = flingListener;
 	}
 
 
@@ -22,7 +24,14 @@ public class FlingTouchListener extends GestureDetector.SimpleOnGestureListener 
 		return true;
 	}
 
-	private class FlingDetector extends GestureDetector.SimpleOnGestureListener {
+	private class GestureDetectorListener extends GestureDetector.SimpleOnGestureListener {
+
+		@Override
+		public boolean onSingleTapConfirmed(MotionEvent e) {
+			_flingListener.onTouch();
+			return true;
+		}
+
 		@Override
 		public boolean onDown(MotionEvent e) {
 			return true;
@@ -30,19 +39,31 @@ public class FlingTouchListener extends GestureDetector.SimpleOnGestureListener 
 
 		@Override
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-			if (e2.getY() - e1.getY() > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
-				_listener.onFlingDown();
+			float swipeY = e2.getY() - e1.getY();
+			float swipeX = e2.getX() - e1.getX();
+			if (Math.abs(swipeY) > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
+				if (swipeY > 0) {
+					_flingListener.onFlingDown();
+				}
+				else {
+					_flingListener.onFlingUp();
+				}
+			} else if (Math.abs(e2.getX() - e1.getX()) > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+				if (swipeX > 0) {
+					_flingListener.onFlingRight();
+				}
+				else {
+					_flingListener.onFlingLeft();
+				}
 			}
-			else {
-				_listener.onFlingUp();
-			}
+
 			return true;
 		}
 	}
 
 	private GestureDetector _gestureDetector;
-	private FlingListener _listener;
+	private FlingListener _flingListener;
 
-	private static final float SWIPE_VELOCITY_THRESHOLD = 1f;
-	private static final float SWIPE_MOVEMENT_THRESHOLD = 10f;
+	private static final float SWIPE_VELOCITY_THRESHOLD = 10f;
+	private static final float SWIPE_MOVEMENT_THRESHOLD = 100f;
 }
