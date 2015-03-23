@@ -15,41 +15,57 @@
 package com.liferay.mobile.screens.bankofwesteros;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.transition.TransitionManager;
+import android.util.TypedValue;
 import android.view.View;
-import android.view.Window;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
+	//TODO change for device width
+	public static final int WIDTH = 1200;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
 		setContentView(R.layout.main);
 
-		findViewById(R.id.sign_in_view).setOnClickListener(this);
-		findViewById(R.id.sign_up_view).setOnClickListener(this);
+		//TODO check in other devices, maybe dimen.xml with mdpi resource needed
+		_signInPosition = convertPxToDp(370);
+		_signUpPosition = convertPxToDp(440);
+		_middlePosition = convertPxToDp(100);
+		_topPosition = convertPxToDp(30);
+
+		_signInView = (FrameLayout) findViewById(R.id.sign_in_view);
+		_signInView.setOnClickListener(this);
+
+		_signUpView = (LinearLayout) findViewById(R.id.sign_up_view);
+		_signUpView.setOnClickListener(this);
+
+		_forgotPasswordSubView = findViewById(R.id.forgot_password_subview);
+		_loginSubView = findViewById(R.id.sign_in_subview);
 		findViewById(R.id.background).setOnClickListener(this);
+
+		final View mainView = findViewById(R.id.main_view);
+		mainView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+			@Override
+			public void onGlobalLayout() {
+				_signInView.setY(_signInPosition);
+				_signUpView.setY(_signUpPosition);
+				_forgotPasswordSubView.setX(WIDTH);
+				mainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+			}
+		});
 
 		findViewById(R.id.forgot_change).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
-				LinearLayout signInSubView = (LinearLayout) findViewById(R.id.sign_in_subview);
-				LinearLayout forgotPasswordSubView = (LinearLayout) findViewById(R.id.forgot_password_subview);
-				forgotPasswordSubView.setX(1000);
-
-//				TransitionManager.beginDelayedTransition(signInSubView);
-				FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) signInSubView.getLayoutParams();
-				signInSubView.animate().x(-1000);
-				forgotPasswordSubView.animate().x(0);
-				signInSubView.setLayoutParams(layoutParams);
-				forgotPasswordSubView.setVisibility(View.VISIBLE);
+				_loginSubView.animate().x(-WIDTH);
+				_forgotPasswordSubView.animate().x(0);
 			}
 		});
 
@@ -57,11 +73,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 	@Override
 	public void onClick(final View view) {
+		//TODO move to another class
 		if (view.getId() == R.id.sign_in_view) {
-			toSignInView(view);
+			toSignInView();
 		}
 		else if (view.getId() == R.id.sign_up_view) {
-			toSignUpView(view);
+			toSignUpView();
 		}
 		else {
 			toBackgroundView();
@@ -69,53 +86,46 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	}
 
 	private void toBackgroundView() {
-		FrameLayout signin = (FrameLayout) findViewById(R.id.sign_in_view);
-
-		TransitionManager.beginDelayedTransition(signin);
-		changeMarginAndHeight(signin, 0, 0, 0, 0, 200);
-	}
-
-	private void toSignInView(View view) {
-		FrameLayout signInView = (FrameLayout) view;
-
-		TransitionManager.beginDelayedTransition(signInView);
-		changeMarginAndHeight(signInView, 0, -1150, 0, 0, 1050);
-
-		LinearLayout signUpView = (LinearLayout) findViewById(R.id.sign_up_view);
-		View signUpScreenlet = findViewById(R.id.signup_screenlet);
-		signUpScreenlet.setVisibility(View.GONE);
-
-		TransitionManager.beginDelayedTransition(signUpView);
-	}
-
-	private void toSignUpView(View view) {
-		LinearLayout signUpView = (LinearLayout) view;
-		View signUpScreenlet = findViewById(R.id.signup_screenlet);
-		signUpScreenlet.setVisibility(View.VISIBLE);
-
-		TransitionManager.beginDelayedTransition(signUpView);
-		changeMargin(signUpView, 0, 0, 0, 0);
-
-		FrameLayout signInView = (FrameLayout) findViewById(R.id.sign_in_view);
-		RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) signInView.getLayoutParams();
-		layoutParams.setMargins(20, 20, 20, 0);
-		signInView.setLayoutParams(layoutParams);
-
-		TransitionManager.beginDelayedTransition(signInView);
+		_signInView.animate().y(_signInPosition);
 	}
 
 
-	private void changeMargin(View view, int marginLeft, int marginTop, int marginRight, int marginBottom) {
-		changeMarginAndHeight(view, marginLeft, marginTop, marginRight, marginBottom, null);
+	private void toSignInView() {
+		TransitionManager.beginDelayedTransition(_signInView);
+		setMargins(_signInView, 0, 0, 0, 0);
+		_signInView.animate().y(_middlePosition);
+
+		_signUpView.animate().y(_signUpPosition);
 	}
 
-	private void changeMarginAndHeight(View view, int marginLeft, int marginTop, int marginRight, int marginBottom, Integer height) {
-		RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
-		if (height != null) {
-			layoutParams.height = height;
-		}
+	private void toSignUpView() {
+		TransitionManager.beginDelayedTransition(_signInView);
+
+		_signUpView.animate().y(_topPosition);
+
+		int margin = _topPosition / 2;
+		setMargins(_signInView, margin, 0, margin, 0);
+		_signInView.animate().y(margin);
+	}
+
+	private void setMargins(View view, int marginLeft, int marginTop, int marginRight, int marginBottom) {
+		FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
 		layoutParams.setMargins(marginLeft, marginTop, marginRight, marginBottom);
 		view.setLayoutParams(layoutParams);
 	}
 
+	private int convertPxToDp(int dp) {
+		Resources resources = getResources();
+		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
+	}
+
+	private int _signInPosition;
+	private int _signUpPosition;
+	private int _middlePosition;
+	private int _topPosition;
+
+	private FrameLayout _signInView;
+	private LinearLayout _signUpView;
+	private View _forgotPasswordSubView;
+	private View _loginSubView;
 }

@@ -1,5 +1,5 @@
-<RelativeLayout
-	android:id="@+id/view"
+<FrameLayout
+	android:id="@+id/main_view"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:liferay="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
@@ -37,18 +37,45 @@
 	<FrameLayout
 		android:id="@+id/sign_in_view"
 		android:layout_width="match_parent"
-		android:layout_height="80dp"
-		android:layout_above="@+id/sign_up_view"
+		android:layout_height="wrap_content"
 		android:background="@android:color/white"
 		android:elevation="8dp"
 		android:orientation="horizontal">
 
 		<LinearLayout
+			android:id="@+id/sign_in_subview"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+			<TextView
+				android:id="@+id/sign_in_text"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:padding="20dp"
+				android:text="SIGN IN"
+				android:textColor="@color/westeros_red"
+				android:textSize="25dp"/>
+
+			<Button
+				android:id="@+id/forgot_change"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="change"/>
+
+			<com.liferay.mobile.screens.auth.login.LoginScreenlet
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				liferay:layoutId="@layout/login_material"/>
+
+		</LinearLayout>
+
+		<LinearLayout
 			android:id="@+id/forgot_password_subview"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			android:visibility="gone">
+			android:layout_height="match_parent"
+			android:orientation="vertical">
 
 			<TextView
 				android:id="@+id/sign_in_text2"
@@ -65,36 +92,6 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				liferay:layoutId="@layout/login_default"/>
-
-		</LinearLayout>
-
-		<LinearLayout
-			android:id="@+id/sign_in_subview"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical">
-
-			<TextView
-				android:id="@+id/sign_in_text"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center"
-				android:padding="20dp"
-				android:text="SIGN IN"
-				android:textColor="@color/westeros_red"
-				android:textSize="25dp"/>
-
-			<com.liferay.mobile.screens.auth.login.LoginScreenlet
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				liferay:layoutId="@layout/login_material"/>
-
-			<Button
-				android:id="@+id/forgot_change"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="change"/>
-
 		</LinearLayout>
 
 	</FrameLayout>
@@ -122,10 +119,8 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:paddingBottom="40dp"
-			android:visibility="gone"
 			liferay:layout="@layout/sign_up_material"/>
-
 	</LinearLayout>
 
 
-</RelativeLayout>
+</FrameLayout>
