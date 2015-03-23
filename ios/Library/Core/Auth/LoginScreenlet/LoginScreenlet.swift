@@ -73,56 +73,25 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedType {
 		}
 	}
 
-	override internal func onUserAction(#name: String?, sender: AnyObject?) {
-		let loginOperation = createLoginOperation(authMethod: AuthMethod.create(authMethod))
+	override internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+		let interactor = LoginInteractor(screenlet: self)
 
-		loginOperation.validateAndEnqueue() {
-			if let error = $0.lastError {
-				self.delegate?.onLoginError?(error)
-			}
-			else {
-				self.onLoginSuccess(loginOperation.resultUserAttributes!)
-			}
-		}
-	}
+		interactor.onSuccess = {
+			self.delegate?.onLoginResponse?(interactor.resultUserAttributes!)
 
-
-	//MARK: Private methods
-
-	private func onLoginSuccess(userAttributes: [String:AnyObject]) {
-		delegate?.onLoginResponse?(userAttributes)
-
-		if saveCredentials {
-			if SessionContext.storeSession() {
-				delegate?.onCredentialsSaved?()
+			if self.saveCredentials {
+				if SessionContext.storeSession() {
+					self.delegate?.onCredentialsSaved?()
+				}
 			}
 		}
-	}
 
-	private func createLoginOperation(#authMethod: AuthMethod) -> GetUserBaseOperation {
-		var operation: GetUserBaseOperation?
-
-		switch authMethod {
-			case .ScreenName:
-				operation = LiferayLoginByScreenNameOperation(
-						screenlet: self,
-						companyId: companyId,
-						screenName: viewModel.userName!)
-			case .UserId:
-				operation = LiferayLoginByUserIdOperation(
-						screenlet: self,
-						userId: Int64(viewModel.userName!.toInt()!))
-			default:
-				operation = LiferayLoginByEmailOperation(
-						screenlet: self,
-						companyId: companyId,
-						emailAddress: viewModel.userName!)
+		interactor.onFailure = {
+			self.delegate?.onLoginError?($0)
+			return
 		}
 
-		operation?.userName = viewModel.userName
-		operation?.password = viewModel.password
-
-		return operation!
+		return interactor
 	}
 
 }
