@@ -60,7 +60,7 @@ public class LiferaySignUpOperation: ServerOperation {
 				password1: password,
 				password2: password,
 				autoScreenName: true,
-				screenName: "",
+				screenName: viewModel.screenName ?? "",
 				emailAddress: viewModel.emailAddress,
 				facebookId: 0,
 				openId: "",
