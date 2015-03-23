@@ -18,6 +18,4 @@ import UIKit
 
 	var userName: String? { get set }
 
-	var companyId: Int64 { get set }
-
 }

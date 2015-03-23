@@ -21,15 +21,20 @@ class ForgotPasswordInteractor: ServerOperationInteractor {
 	override func createOperation() -> LiferayForgotPasswordBaseOperation {
 		let screenlet = self.screenlet as ForgotPasswordScreenlet
 
+		var operation: LiferayForgotPasswordBaseOperation?
+
 		switch AuthMethod.create(screenlet.authMethod) {
 			case .ScreenName:
-				return LiferayForgotPasswordScreenNameOperation(screenlet: screenlet)
+				operation = LiferayForgotPasswordScreenNameOperation(screenlet: screenlet)
 			case .UserId:
-				return LiferayForgotPasswordUserIdOperation(screenlet: screenlet)
-			default: ()
+				operation = LiferayForgotPasswordUserIdOperation(screenlet: screenlet)
+			case .Email:
+				operation = LiferayForgotPasswordEmailOperation(screenlet: screenlet)
 		}
 
-		return LiferayForgotPasswordEmailOperation(screenlet: screenlet)
+		operation!.companyId = screenlet.companyId
+
+		return operation!
 	}
 
 	override func completedOperation(op: ServerOperation) {

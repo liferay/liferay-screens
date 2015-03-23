@@ -33,11 +33,7 @@ import UIKit
 
 	@IBInspectable public var saveCredentials: Bool = true
 
-	@IBInspectable public var companyId: Int64 = 0 {
-		didSet {
-			(screenletView as? SignUpViewModel)?.companyId = self.companyId
-		}
-	}
+	@IBInspectable public var companyId: Int64 = 0
 
 	@IBOutlet public var delegate: SignUpScreenletDelegate?
 	@IBOutlet public var autoLoginDelegate: LoginScreenletDelegate?
@@ -49,12 +45,6 @@ import UIKit
 
 
 	//MARK: BaseScreenlet
-
-	override func onCreated() {
-		super.onCreated()
-
-		viewModel.companyId = self.companyId
-	}
 
 	override internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
 		let interactor = SignUpInteractor(screenlet: self)

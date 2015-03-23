@@ -20,13 +20,16 @@ class LoginInteractor: ServerOperationInteractor {
 
 	override func createOperation() -> GetUserBaseOperation {
 		let screenlet = self.screenlet as LoginScreenlet
+		let companyId = (screenlet.companyId != 0)
+				? screenlet.companyId : LiferayServerContext.companyId
+
 		var operation: GetUserBaseOperation?
 
 		switch AuthMethod.create(screenlet.authMethod) {
 			case .ScreenName:
 				operation = LiferayLoginByScreenNameOperation(
 						screenlet: screenlet,
-						companyId: screenlet.companyId,
+						companyId: companyId,
 						screenName: screenlet.viewModel.userName!)
 			case .UserId:
 				operation = LiferayLoginByUserIdOperation(
@@ -35,7 +38,7 @@ class LoginInteractor: ServerOperationInteractor {
 			default:
 				operation = LiferayLoginByEmailOperation(
 						screenlet: screenlet,
-						companyId: screenlet.companyId,
+						companyId: companyId,
 						emailAddress: screenlet.viewModel.userName!)
 		}
 

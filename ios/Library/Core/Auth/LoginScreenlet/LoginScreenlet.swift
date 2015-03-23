@@ -41,11 +41,7 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedType {
 		}
 	}
 
-	@IBInspectable public var companyId: Int64 = 0 {
-		didSet {
-			(screenletView as? LoginViewModel)?.companyId = self.companyId
-		}
-	}
+	@IBInspectable public var companyId: Int64 = 0
 
 
 	@IBOutlet public var delegate: LoginScreenletDelegate?
@@ -62,8 +58,6 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedType {
 		super.onCreated()
 		
 		copyAuth(source: self, target: screenletView)
-
-		viewModel.companyId = companyId
 
 		if SessionContext.loadSessionFromStore() {
 			viewModel.userName = SessionContext.currentUserName!

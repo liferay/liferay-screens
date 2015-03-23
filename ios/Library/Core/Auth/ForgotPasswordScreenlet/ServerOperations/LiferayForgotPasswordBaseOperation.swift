@@ -16,6 +16,8 @@ import UIKit
 
 public class LiferayForgotPasswordBaseOperation: ServerOperation {
 
+	public var companyId: Int64 = 0
+
 	public var resultPasswordSent: Bool?
 
 	internal override var hudLoadingMessage: HUDMessage? {

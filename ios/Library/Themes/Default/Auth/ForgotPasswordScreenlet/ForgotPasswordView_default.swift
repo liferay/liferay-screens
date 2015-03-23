@@ -32,8 +32,6 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 		}
 	}
 
-	public var companyId: Int64 = 0
-
 
 	//MARK: AuthBasedViewModel
 

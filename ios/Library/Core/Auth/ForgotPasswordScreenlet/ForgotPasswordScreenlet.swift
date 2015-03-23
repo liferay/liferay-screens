@@ -36,11 +36,7 @@ import UIKit
 		}
 	}
 
-	@IBInspectable var companyId: Int64 = 0 {
-		didSet {
-			(screenletView as? ForgotPasswordViewModel)?.companyId = self.companyId
-		}
-	}
+	@IBInspectable var companyId: Int64 = 0
 
 
 	@IBOutlet public var delegate: ForgotPasswordScreenletDelegate?
@@ -62,8 +58,6 @@ import UIKit
 		super.onCreated()
 
 		copyAuth(source: self, target: screenletView)
-
-		viewModel.companyId = companyId
 
 		if let userName = SessionContext.currentUserName {
 			viewModel.userName = userName

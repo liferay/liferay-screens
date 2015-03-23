@@ -15,6 +15,8 @@ import UIKit
 
 public class LiferaySignUpOperation: ServerOperation {
 
+	public var companyId: Int64 = 0
+
 	public var resultUserAttributes: [String:AnyObject]?
 
 	internal override var hudLoadingMessage: HUDMessage? {
@@ -50,8 +52,8 @@ public class LiferaySignUpOperation: ServerOperation {
 
 		let password = emptyIfNull(viewModel.password)
 
-		let companyId = (viewModel.companyId != 0)
-				? viewModel.companyId : LiferayServerContext.companyId
+		let companyId = (self.companyId != 0)
+				? self.companyId : LiferayServerContext.companyId
 
 		let result = service.addUserWithCompanyId(companyId,
 				autoPassword: (password == ""),
