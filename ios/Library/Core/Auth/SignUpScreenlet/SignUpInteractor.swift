@@ -14,26 +14,16 @@
 import UIKit
 
 
-class ForgotPasswordInteractor: ServerOperationInteractor {
+class SignUpInteractor: ServerOperationInteractor {
 
-	var resultPasswordSent: Bool?
+	var resultUserAttributes: [String:AnyObject]?
 
-	override func createOperation() -> LiferayForgotPasswordBaseOperation {
-		let screenlet = self.screenlet as ForgotPasswordScreenlet
-
-		switch AuthMethod.create(screenlet.authMethod) {
-			case .ScreenName:
-				return LiferayForgotPasswordScreenNameOperation(screenlet: screenlet)
-			case .UserId:
-				return LiferayForgotPasswordUserIdOperation(screenlet: screenlet)
-			default: ()
-		}
-
-		return LiferayForgotPasswordEmailOperation(screenlet: screenlet)
+	override func createOperation() -> LiferaySignUpOperation {
+		return LiferaySignUpOperation(screenlet: self.screenlet as SignUpScreenlet)
 	}
 
 	override func completedOperation(op: ServerOperation) {
-		self.resultPasswordSent = (op as LiferayForgotPasswordBaseOperation).resultPasswordSent
+		self.resultUserAttributes = (op as LiferaySignUpOperation).resultUserAttributes
 	}
 
 }

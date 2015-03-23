@@ -56,41 +56,36 @@ import UIKit
 		viewModel.companyId = self.companyId
 	}
 
-	override internal func onUserAction(#name: String?, sender: AnyObject?) {
-		let signUpOperation = LiferaySignUpOperation(screenlet: self)
+	override internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+		let interactor = SignUpInteractor(screenlet: self)
 
-		signUpOperation.validateAndEnqueue() {
-			if $0.lastError != nil {
-				self.delegate?.onSignUpError?($0.lastError!)
-			}
-			else {
-				self.onSignUpSuccess(userAttributes: signUpOperation.resultUserAttributes!)
-			}
-		}
-	}
+		interactor.onSuccess = {
+			self.delegate?.onSignUpResponse?(interactor.resultUserAttributes!)
 
+			if self.autoLogin {
+				SessionContext.removeStoredSession()
 
-	//MARK: Private methods
+				SessionContext.createSession(
+						username: self.viewModel.emailAddress!,
+						password: self.viewModel.password!,
+						userAttributes: interactor.resultUserAttributes!)
 
-	private func onSignUpSuccess(#userAttributes: [String:AnyObject]) {
-		delegate?.onSignUpResponse?(userAttributes)
+				self.autoLoginDelegate?.onLoginResponse?(interactor.resultUserAttributes!)
 
-		if autoLogin {
-			SessionContext.removeStoredSession()
-
-			SessionContext.createSession(
-					username: viewModel.emailAddress!,
-					password: viewModel.password!,
-					userAttributes: userAttributes)
-
-			autoLoginDelegate?.onLoginResponse?(userAttributes)
-
-			if saveCredentials {
-				if SessionContext.storeSession() {
-					autoLoginDelegate?.onCredentialsSaved?()
+				if self.saveCredentials {
+					if SessionContext.storeSession() {
+						self.autoLoginDelegate?.onCredentialsSaved?()
+					}
 				}
 			}
 		}
+
+		interactor.onFailure = {
+			self.delegate?.onSignUpError?($0)
+			return
+		}
+
+		return interactor
 	}
 
 }
