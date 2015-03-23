@@ -50,7 +50,7 @@ public class LiferaySignUpOperation: ServerOperation {
 
 		let emptyDict = []
 
-		let password = emptyIfNull(viewModel.password)
+		let password = viewModel.password ?? ""
 
 		let companyId = (self.companyId != 0)
 				? self.companyId : LiferayServerContext.companyId
@@ -65,16 +65,16 @@ public class LiferaySignUpOperation: ServerOperation {
 				facebookId: 0,
 				openId: "",
 				locale: NSLocale.currentLocaleString,
-				firstName: emptyIfNull(viewModel.firstName),
-				middleName: emptyIfNull(viewModel.middleName),
-				lastName: emptyIfNull(viewModel.lastName),
+				firstName: viewModel.firstName ?? "",
+				middleName: viewModel.middleName ?? "",
+				lastName: viewModel.lastName ?? "",
 				prefixId: 0,
 				suffixId: 0,
 				male: true,
 				birthdayMonth: 1,
 				birthdayDay: 1,
 				birthdayYear: 1970,
-				jobTitle: emptyIfNull(viewModel.jobTitle),
+				jobTitle: viewModel.jobTitle ?? "",
 				groupIds: [NSNumber(longLong: LiferayServerContext.groupId)],
 				organizationIds: emptyDict,
 				roleIds: emptyDict,
