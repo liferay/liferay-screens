@@ -7,8 +7,18 @@
 		<item name="android:layout_height">@dimen/icon_height</item>
 		<item name="android:gravity">center</item>
 		<item name="android:textColor">@color/westeros_red</item>
-		<item name="android:textSize">25dp</item>
+		<item name="android:textSize">25sp</item>
 		<item name="android:textAllCaps">true</item>
+	</style>
+
+	<style name="menu_entry">
+		<item name="android:textSize">18sp</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:height">60dp</item>
+		<item name="android:paddingLeft">@dimen/edit_left_margin</item>
+		<item name="android:textColor">@color/westeros_black</item>
 	</style>
 
 </resources>

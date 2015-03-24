@@ -9,28 +9,25 @@
 	<LinearLayout
 		android:id="@+id/background"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="@color/westeros_dark_gray"
+		android:layout_height="match_parent"
 		android:orientation="vertical">
 
 		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			style="@style/menu_entry"
+			android:background="@color/westeros_light_gray"
 			android:text="Account Settings"/>
 
 		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			style="@style/menu_entry"
 			android:text="Call"/>
 
 		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			style="@style/menu_entry"
+			android:background="@color/westeros_light_gray"
 			android:text="Send a message"/>
 
 		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			style="@style/menu_entry"
 			android:text="Sign Out"/>
 
 	</LinearLayout>

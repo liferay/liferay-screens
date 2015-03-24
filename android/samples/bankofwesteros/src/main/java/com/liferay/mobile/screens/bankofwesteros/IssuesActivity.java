@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.bankofwesteros;
 
 import android.animation.Animator;
 import android.os.Bundle;
+import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -33,16 +34,9 @@ public class IssuesActivity extends CardActivity {
 		_card1.setY(_maxHeight);
 		_card2.setY(_maxHeight);
 
-		findViewById(R.id.issues).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				toMenu();
-			}
-		});
-
 		_card1.animate().y(0);
-		int iconHeightInDp = getResources().getDimensionPixelSize(R.dimen.icon_height);
-		_card2.animate().y(_maxHeight - iconHeightInDp).setListener(new Animator.AnimatorListener() {
+		_card2Position = _maxHeight - getResources().getDimensionPixelSize(R.dimen.icon_height);
+		_card2.animate().y(_card2Position).setListener(new Animator.AnimatorListener() {
 			@Override
 			public void onAnimationStart(Animator animation) {
 
@@ -66,16 +60,19 @@ public class IssuesActivity extends CardActivity {
 	}
 
 	private void toMenu() {
-		_card1.animate().y(600);
+		int restPosition = _maxHeight - 2 * getResources().getDimensionPixelSize(R.dimen.icon_height);
+		_card1.animate().y(restPosition);
 	}
 
 	private void toIssues() {
+		TransitionManager.beginDelayedTransition(_card1);
+		setFrameLayoutMargins(_card1, 0, 0, 0, 0);
 		_card1.animate().y(0);
-		_card2.animate().y(1500);
+		_card2.animate().y(_card2Position);
 	}
 
 	private void toNewIssue() {
-		_card2.animate().y(100);
+		moveCardToTop(_card2, _card1);
 	}
 
 	private FlingListener getCard1Listener() {
@@ -132,6 +129,7 @@ public class IssuesActivity extends CardActivity {
 		};
 	}
 
+	private int _card2Position;
 
 	private View _background;
 	private LinearLayout _card1;
