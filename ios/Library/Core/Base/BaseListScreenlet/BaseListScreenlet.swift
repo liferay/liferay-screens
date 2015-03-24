@@ -57,7 +57,13 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadList() -> Bool {
-		return startLoadPageInteractor(page: 0, computeRowCount: true)
+		let result = startLoadPageInteractor(page: 0, computeRowCount: true)
+
+		if result {
+			self.baseListView.setRows([], rowCount:0)
+		}
+
+		return result
 	}
 
 

@@ -39,6 +39,16 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			}
 			tableView!.insertRowsAtIndexPaths(indexPaths, withRowAnimation:UITableViewRowAnimation.Top)
 		}
+		else if self.rows.isEmpty {
+			tableView!.beginUpdates()
+
+			for (index,row) in enumerate(oldRows) {
+				let indexPath = NSIndexPath(forRow:index, inSection:0)
+				tableView!.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+			}
+
+			tableView!.endUpdates()
+		}
 		else if let visibleRows = tableView!.indexPathsForVisibleRows() {
 			if visibleRows.count > 0 {
 				tableView!.reloadRowsAtIndexPaths(visibleRows, withRowAnimation:UITableViewRowAnimation.None)
