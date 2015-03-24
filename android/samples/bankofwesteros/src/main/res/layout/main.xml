@@ -4,9 +4,7 @@
 	xmlns:liferay="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:animateLayoutChanges="true"
-	android:background="@color/westeros_background_gray"
-	android:orientation="vertical">
+	android:background="@color/westeros_background_gray">
 
 
 	<LinearLayout
@@ -20,7 +18,7 @@
 			android:layout_width="200dp"
 			android:layout_height="200dp"
 			android:layout_marginBottom="20dp"
-			android:layout_marginTop="20dp"
+			android:layout_marginTop="100dp"
 			android:background="@color/westeros_dark_gray"/>
 
 		<TextView
@@ -94,8 +92,8 @@
 		android:id="@+id/sign_up_view"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="@android:color/white"
-		android:elevation="8dp"
+		android:background="@color/westeros_red"
+		android:elevation="16dp"
 		android:orientation="horizontal">
 
 
@@ -103,9 +101,6 @@
 			android:id="@+id/sign_up_subview"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_alignParentBottom="true"
-			android:background="@color/westeros_red"
-			android:elevation="16dp"
 			android:orientation="vertical">
 
 			<TextView
@@ -121,7 +116,8 @@
 				android:id="@+id/signup_screenlet"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:paddingBottom="40dp"
+				android:layout_marginBottom="10dp"
+				android:paddingBottom="50dp"
 				liferay:layout="@layout/sign_up_material"/>
 		</LinearLayout>
 
