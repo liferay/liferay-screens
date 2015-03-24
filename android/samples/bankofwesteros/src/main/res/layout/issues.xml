@@ -1,0 +1,81 @@
+<FrameLayout
+	android:id="@+id/main_view"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/westeros_background_gray">
+
+	<LinearLayout
+		android:id="@+id/background"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/westeros_dark_gray"
+		android:orientation="vertical">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Account Settings"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Call"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Send a message"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Sign Out"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/card1"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@android:color/white"
+		android:elevation="8dp"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="My Issues"/>
+
+		<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			liferay:labelFields="adasd"
+			liferay:layoutId="@layout/ddl_list_material"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/card2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/westeros_red"
+		android:elevation="16dp"
+		android:orientation="vertical">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="New Issue Report"/>
+
+		<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
+			android:id="@+id/signup_screenlet"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="10dp"
+			android:paddingBottom="50dp"
+			liferay:layout="@layout/sign_up_material"/>
+	</LinearLayout>
+
+</FrameLayout>
