@@ -25,6 +25,10 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 
+import com.liferay.mobile.screens.auth.login.LoginListener;
+import com.liferay.mobile.screens.auth.login.LoginScreenlet;
+import com.liferay.mobile.screens.context.User;
+
 public class MainActivity extends Activity implements View.OnClickListener {
 
 	//TODO change for device width and height
@@ -54,24 +58,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		_signUpSubView = findViewById(R.id.sign_up_subview);
 		_termsSubView = findViewById(R.id.terms_subview);
 
-		findViewById(R.id.background).setOnClickListener(this);
-
-		final View mainView = findViewById(R.id.main_view);
-		mainView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
+		loginScreenlet.setListener(new LoginListener() {
 			@Override
-			public void onGlobalLayout() {
-				_signInView.setY(_signInPosition);
-				_signUpView.setY(_signUpPosition);
-				_forgotPasswordSubView.setX(WIDTH);
-				_termsSubView.setX(WIDTH);
-				mainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-			}
-		});
-
-		findViewById(R.id.enter).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
+			public void onLoginSuccess(User user) {
 				_signUpView.animate().y(convertPxToDp(MAX_HEIGHT));
 				_signInView.animate().y(convertPxToDp(MAX_HEIGHT))
 					.setListener(new Animator.AnimatorListener() {
@@ -97,8 +87,26 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 						}
 					});
+			}
+
+			@Override
+			public void onLoginFailure(Exception e) {
+
+			}
+		});
 
 
+		findViewById(R.id.background).setOnClickListener(this);
+
+		final View mainView = findViewById(R.id.main_view);
+		mainView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+			@Override
+			public void onGlobalLayout() {
+				_signInView.setY(_signInPosition);
+				_signUpView.setY(_signUpPosition);
+				_forgotPasswordSubView.setX(WIDTH);
+				_termsSubView.setX(WIDTH);
+				mainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 			}
 		});
 
