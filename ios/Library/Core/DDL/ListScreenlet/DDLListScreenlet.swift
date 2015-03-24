@@ -50,24 +50,17 @@ import UIKit
 		viewModel.labelFields = parseFields(self.labelFields)
 	}
 
-	override internal func createPaginationOperation(
+	override internal func createPageLoadInteractor(
 			#page: Int,
 			computeRowCount: Bool)
-			-> LiferayPaginationOperation {
+			-> BaseListPageLoadInteractor {
 
-		let operation = LiferayDDLListPageOperation(
+		return DDLListPageLoadInteractor(
 				screenlet: self,
 				page: page,
-				computeRowCount: computeRowCount)
-
-		operation.userId = (self.userId != 0) ? self.userId : nil
-		operation.recordSetId = self.recordSetId
-
-		return operation
-	}
-
-	override internal func convert(#serverResult:[String:AnyObject]) -> AnyObject {
-		return DDLRecord(recordData: serverResult)
+				computeRowCount: computeRowCount,
+				userId: self.userId,
+				recordSetId: self.recordSetId)
 	}
 
 	override internal func onLoadPageError(#page: Int, error: NSError) {
@@ -76,18 +69,12 @@ import UIKit
 		delegate?.onDDLListError?(error)
 	}
 
-	override internal func onLoadPageResult(#page: Int,
-			serverRows: [[String:AnyObject]],
-			rowCount: Int)
-			-> [AnyObject] {
+	override internal func onLoadPageResult(#page: Int, rows: [AnyObject], rowCount: Int) {
+		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
-		let rowObjects = super.onLoadPageResult(page: page, serverRows: serverRows, rowCount: rowCount)
-
-		let records = rowObjects.map() { $0 as DDLRecord }
+		let records = rows as [DDLRecord]
 
 		delegate?.onDDLListResponse?(records)
-
-		return records
 	}
 
 	override internal func onSelectedRow(row: AnyObject) {
