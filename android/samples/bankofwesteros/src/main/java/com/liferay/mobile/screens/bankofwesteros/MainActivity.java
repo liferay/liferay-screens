@@ -24,6 +24,8 @@ import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
+import com.liferay.mobile.screens.bankofwesteros.gestures.FlingListener;
+import com.liferay.mobile.screens.bankofwesteros.gestures.FlingTouchListener;
 import com.liferay.mobile.screens.context.User;
 
 public class MainActivity extends CardActivity implements View.OnClickListener {

@@ -1,11 +1,9 @@
-package com.liferay.mobile.screens.bankofwesteros;
+package com.liferay.mobile.screens.bankofwesteros.gestures;
 
 import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-
-import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Javier Gamarra
@@ -48,7 +46,8 @@ public class FlingTouchListener implements View.OnTouchListener {
 				else {
 					_flingListener.onFlingUp();
 				}
-			} else if (Math.abs(e2.getX() - e1.getX()) > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+			}
+			else if (Math.abs(e2.getX() - e1.getX()) > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
 				if (swipeX > 0) {
 					_flingListener.onFlingRight();
 				}

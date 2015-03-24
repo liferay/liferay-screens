@@ -6,11 +6,14 @@ import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.daimajia.swipe.SwipeLayout;
+import com.liferay.mobile.screens.bankofwesteros.gestures.FlingListener;
+import com.liferay.mobile.screens.bankofwesteros.gestures.FlingTouchListener;
+
 /**
  * @author Javier Gamarra
  */
 public class IssuesActivity extends CardActivity {
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
