@@ -41,7 +41,7 @@
 		android:layout_height="match_parent"
 		android:background="@android:color/white"
 		android:elevation="8dp"
-		android:orientation="horizontal">
+		android:orientation="vertical">
 
 		<TextView
 			android:layout_width="match_parent"
@@ -51,8 +51,9 @@
 		<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			liferay:labelFields="adasd"
-			liferay:layoutId="@layout/ddl_list_material"/>
+			liferay:labelFields="Title,Severity"
+			liferay:layoutId="@layout/ddl_list_material"
+			liferay:recordSetId="20935"/>
 
 	</LinearLayout>
 
