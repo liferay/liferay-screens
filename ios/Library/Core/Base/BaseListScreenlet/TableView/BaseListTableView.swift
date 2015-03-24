@@ -29,33 +29,17 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 
 	// MARK: BaseListView
 
-	override internal func onChangedRows(oldRows:[AnyObject?]) {
+	override internal func onChangedRows(oldRows: [AnyObject?]) {
 		super.onChangedRows(oldRows)
 
 		if oldRows.isEmpty {
-			var indexPaths: [NSIndexPath] = []
-			for (index,row) in enumerate(self.rows) {
-				indexPaths.append(NSIndexPath(forRow:index, inSection:0))
-			}
-			tableView!.insertRowsAtIndexPaths(indexPaths, withRowAnimation:UITableViewRowAnimation.Top)
+			insertFreshRows()
 		}
 		else if self.rows.isEmpty {
-			tableView!.beginUpdates()
-
-			for (index,row) in enumerate(oldRows) {
-				let indexPath = NSIndexPath(forRow:index, inSection:0)
-				tableView!.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
-			}
-
-			tableView!.endUpdates()
+			clearAllRows(oldRows)
 		}
 		else if let visibleRows = tableView!.indexPathsForVisibleRows() {
-			if visibleRows.count > 0 {
-				tableView!.reloadRowsAtIndexPaths(visibleRows, withRowAnimation:UITableViewRowAnimation.None)
-			}
-			else {
-				tableView!.reloadData()
-			}
+			updateVisibleRows(visibleRows)
 		}
 		else {
 			tableView!.reloadData()
@@ -103,6 +87,8 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			onSelectedRowClosure?(row)
 		}
 	}
+
+
 	//MARK: Internal methods
 
 	internal func doDequeueReusableCell(#row: Int) -> UITableViewCell {
@@ -144,5 +130,34 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 
+	internal func insertFreshRows() {
+		var indexPaths: [NSIndexPath] = []
+
+		for (index,_) in enumerate(self.rows) {
+			indexPaths.append(NSIndexPath(forRow:index, inSection:0))
+		}
+
+		tableView!.insertRowsAtIndexPaths(indexPaths, withRowAnimation:UITableViewRowAnimation.Top)
+	}
+
+	internal func clearAllRows(currentRows: [AnyObject?]) {
+		tableView!.beginUpdates()
+
+		for (index,_) in enumerate(currentRows) {
+			let indexPath = NSIndexPath(forRow:index, inSection:0)
+			tableView!.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+		}
+
+		tableView!.endUpdates()
+	}
+
+	internal func updateVisibleRows(visibleRows: [AnyObject]) {
+		if visibleRows.count > 0 {
+			tableView!.reloadRowsAtIndexPaths(visibleRows, withRowAnimation:UITableViewRowAnimation.None)
+		}
+		else {
+			tableView!.reloadData()
+		}
+	}
 
 }
