@@ -16,7 +16,7 @@ import UIKit
 public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	public var groupId: Int64?
-	public var classNameId: Int64?
+	public var classNameId: Int?
 
 	internal var assetListScreenlet: AssetListScreenlet {
 		return self.screenlet as AssetListScreenlet
@@ -69,7 +69,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	private func configureEntryQueryAttributes() -> [NSString : AnyObject] {
 		var entryQueryAttributes: [NSString : AnyObject] = [:]
 
-		entryQueryAttributes["classNameIds"] = NSNumber(longLong: classNameId!)
+		entryQueryAttributes["classNameIds"] = NSNumber(long: classNameId!)
 		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId!)
 		entryQueryAttributes["visible"] = "true"
 

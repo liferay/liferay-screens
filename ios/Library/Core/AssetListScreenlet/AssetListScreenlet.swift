@@ -73,28 +73,20 @@ import UIKit
 
 	@IBOutlet public var delegate: AssetListScreenletDelegate?
 
+
 	//MARK: BaseListScreenlet
 
-	override internal func createPaginationOperation(
+	override internal func createPageLoadInteractor(
 			#page: Int,
 			computeRowCount: Bool)
-			-> LiferayPaginationOperation {
+			-> BaseListPageLoadInteractor {
 
-		let operation = LiferayAssetListPageOperation(
+		return AssetListPageLoadInteractor(
 				screenlet: self,
 				page: page,
-				computeRowCount: computeRowCount)
-
-		operation.groupId = (self.groupId != 0)
-				? self.groupId : LiferayServerContext.groupId
-
-		operation.classNameId = Int64(self.classNameId)
-
-		return operation
-	}
-
-	override internal func convert(#serverResult:[String:AnyObject]) -> AnyObject {
-		return AssetListScreenletEntry(attributes: serverResult)
+				computeRowCount: computeRowCount,
+				groupId: self.groupId,
+				classNameId: self.classNameId)
 	}
 
 	override internal func onLoadPageError(#page: Int, error: NSError) {
@@ -103,22 +95,12 @@ import UIKit
 		delegate?.onAssetListError?(error)
 	}
 
-	override internal func onLoadPageResult(
-			#page: Int,
-			serverRows: [[String:AnyObject]],
-			rowCount: Int)
-			-> [AnyObject] {
+	override internal func onLoadPageResult(#page: Int, rows: [AnyObject], rowCount: Int) {
+		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
-		let rowObjects = super.onLoadPageResult(
-				page: page,
-				serverRows: serverRows,
-				rowCount: rowCount)
-
-		let assetEntries = rowObjects.map() { $0 as AssetListScreenletEntry }
+		let assetEntries = rows as [AssetListScreenletEntry]
 
 		delegate?.onAssetListResponse?(assetEntries)
-
-		return rowObjects
 	}
 
 	override internal func onSelectedRow(row: AnyObject) {
