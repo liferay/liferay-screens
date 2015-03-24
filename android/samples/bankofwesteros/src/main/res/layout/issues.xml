@@ -44,8 +44,8 @@
 		android:orientation="vertical">
 
 		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:id="@+id/issues"
+			style="@style/card_icon"
 			android:text="My Issues"/>
 
 		<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
@@ -66,17 +66,16 @@
 		android:orientation="vertical">
 
 		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="New Issue Report"/>
+			style="@style/card_icon"
+			android:text="ADD NEW ISSUE"
+			android:textColor="@android:color/white"/>
 
-		<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
-			android:id="@+id/signup_screenlet"
+		<com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="10dp"
-			android:paddingBottom="50dp"
-			liferay:layout="@layout/sign_up_material"/>
+			android:layout_height="match_parent"
+			liferay:layoutId="@layout/ddlform_material"
+			liferay:recordSetId="20935"
+			liferay:structureId="20933"/>
 	</LinearLayout>
 
 </FrameLayout>

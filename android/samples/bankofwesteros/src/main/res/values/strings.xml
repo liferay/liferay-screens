@@ -1,4 +1,5 @@
 <resources>
 	<string name="title">Westeros Bank</string>
+	<string name="terms"><![CDATA[TERMS & CONDITIONS]]></string>
 
 </resources>

@@ -1,6 +1,14 @@
 <resources>
 
-	<style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar">
+	<style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar"></style>
+
+	<style name="card_icon">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/icon_height</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textColor">@color/westeros_red</item>
+		<item name="android:textSize">25dp</item>
+		<item name="android:textAllCaps">true</item>
 	</style>
 
 </resources>
