@@ -15,16 +15,23 @@ import UIKit
 
 class DDLListScreenletViewController: UIViewController, DDLListScreenletDelegate {
 
-	@IBOutlet var screenlet: DDLListScreenlet?
+	@IBOutlet weak var screenlet: DDLListScreenlet?
+	@IBOutlet weak var recordSetIdTextField: UITextField?
+	@IBOutlet weak var labelFieldsTextField: UITextField?
+
+	@IBAction func loadList(sender: AnyObject) {
+		if let recordSetId = recordSetIdTextField!.text.toInt() {
+			screenlet!.recordSetId = Int64(recordSetId)
+			screenlet!.labelFields = labelFieldsTextField!.text
+
+			screenlet!.loadList()
+		}
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		self.screenlet?.delegate = self
-
-		if let userId = SessionContext.userAttribute("userId") as? Int {
-			self.screenlet?.userId = Int64(userId)
-		}
 	}
 
 	func onDDLListResponse(records: [DDLRecord]) {
