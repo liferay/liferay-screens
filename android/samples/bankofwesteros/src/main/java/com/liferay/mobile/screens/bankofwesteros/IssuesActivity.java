@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.bankofwesteros;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,12 +24,40 @@ public class IssuesActivity extends Activity {
 		_card1.setOnTouchListener(new FlingTouchListener(this, getCard1Listener()));
 		_card2 = (LinearLayout) findViewById(R.id.card2);
 		_card2.setOnTouchListener(new FlingTouchListener(this, getCard2Listener()));
-
+		_background.setY(2000);
 		_card1.setY(2000);
 		_card2.setY(2000);
 
+		findViewById(R.id.issues).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				toMenu();
+			}
+		});
+
 		_card1.animate().y(0);
-		_card2.animate().y(1500);
+		_card2.animate().y(1500).setListener(new Animator.AnimatorListener() {
+			@Override
+			public void onAnimationStart(Animator animation) {
+
+			}
+
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				_background.setY(0);
+			}
+
+			@Override
+			public void onAnimationCancel(Animator animation) {
+
+			}
+
+			@Override
+			public void onAnimationRepeat(Animator animation) {
+
+			}
+		});
+
 	}
 
 	private void toMenu() {
