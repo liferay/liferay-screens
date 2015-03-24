@@ -47,7 +47,6 @@
 			android:orientation="vertical">
 
 			<TextView
-				android:id="@+id/sign_in_text"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center"
@@ -57,8 +56,10 @@
 				android:textSize="25dp"/>
 
 			<com.liferay.mobile.screens.auth.login.LoginScreenlet
+				android:id="@+id/login_screenlet"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				liferay:authMethod="email"
 				liferay:layoutId="@layout/login_material"/>
 
 		</LinearLayout>
@@ -70,7 +71,6 @@
 			android:orientation="vertical">
 
 			<TextView
-				android:id="@+id/sign_in_text2"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center"
@@ -80,10 +80,12 @@
 				android:textSize="25dp"/>
 
 
-			<com.liferay.mobile.screens.auth.login.LoginScreenlet
+			<com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				liferay:layoutId="@layout/login_default"/>
+				liferay:anonymousApiPassword="test"
+				liferay:anonymousApiUserName="test@liferay.com"
+				liferay:layoutId="@layout/forgotpassword_material"/>
 		</LinearLayout>
 
 	</FrameLayout>
@@ -112,18 +114,14 @@
 				android:textColor="@android:color/white"
 				android:textSize="25dp"/>
 
-			<Button
-				android:id="@+id/enter"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="Enter"/>
-
 			<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
 				android:id="@+id/signup_screenlet"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="10dp"
 				android:paddingBottom="50dp"
+				liferay:anonymousApiPassword="test"
+				liferay:anonymousApiUserName="test"
 				liferay:layout="@layout/sign_up_material"/>
 		</LinearLayout>
 
