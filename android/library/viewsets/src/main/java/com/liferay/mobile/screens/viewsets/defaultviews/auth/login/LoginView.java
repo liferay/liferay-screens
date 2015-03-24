@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.auth.login;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -31,8 +30,6 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-
-import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 /**
  * @author Silvio Santos
@@ -96,8 +93,7 @@ public class LoginView extends LinearLayout
 
 		LiferayLogger.e("Could not login", e);
 
-		Crouton.makeText((Activity) getContext(),
-			getContext().getString(R.string.login_error), DefaultCrouton.ALERT).show();
+		DefaultCrouton.error(getContext(), getContext().getString(R.string.login_error), e);
 	}
 
 	@Override
