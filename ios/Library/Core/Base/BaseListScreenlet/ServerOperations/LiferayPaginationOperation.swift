@@ -18,7 +18,8 @@ public class LiferayPaginationOperation: ServerOperation {
 
 	public let page: Int
 
-	public var result: (pageContent: [[String:AnyObject]], rowCount: Int?)?
+	public var resultPageContent: [[String:AnyObject]]?
+	public var resultRowCount: Int?
 
 	internal override var hudLoadingMessage: HUDMessage? {
 		return (page == 0)
@@ -49,6 +50,10 @@ public class LiferayPaginationOperation: ServerOperation {
 	override internal func doRun(#session: LRSession) {
 		let batchSession = LRBatchSession(session: session)
 
+		resultPageContent = nil
+		resultRowCount = nil
+		lastError = nil
+
 		doGetPageRowsOperation(session: batchSession, page: page)
 
 		if batchSession.commands.count < 1 {
@@ -60,9 +65,6 @@ public class LiferayPaginationOperation: ServerOperation {
 		if computeRowCount {
 			doGetRowCountOperation(session: batchSession)
 		}
-
-		result = nil
-		lastError = nil
 
 		let responses = batchSession.invoke(&lastError)
 
@@ -77,7 +79,8 @@ public class LiferayPaginationOperation: ServerOperation {
 					}
 				}
 
-				result = (serverPageContent, serverRowCount)
+				resultPageContent = serverPageContent
+				resultRowCount = serverRowCount
 			}
 			else {
 				lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
