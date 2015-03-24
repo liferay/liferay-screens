@@ -69,7 +69,7 @@ public class DDLRecord: NSObject {
 
 	public func fieldBy(#name: String) -> DDLField? {
 		for field in fields {
-			if field.name == name {
+			if field.name.lowercaseString == name.lowercaseString {
 				return field
 			}
 		}
