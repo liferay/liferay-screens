@@ -14,7 +14,9 @@
 
 package com.liferay.mobile.screens.bankofwesteros;
 
+import android.animation.Animator;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.transition.TransitionManager;
@@ -25,8 +27,9 @@ import android.widget.FrameLayout;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-	//TODO change for device width
+	//TODO change for device width and height
 	public static final int WIDTH = 1200;
+	public static final int MAX_HEIGHT = 2000;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,40 @@ public class MainActivity extends Activity implements View.OnClickListener {
 				_forgotPasswordSubView.setX(WIDTH);
 				_termsSubView.setX(WIDTH);
 				mainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+			}
+		});
+
+		findViewById(R.id.enter).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				_signUpView.animate().y(convertPxToDp(MAX_HEIGHT));
+				_signInView.animate().y(convertPxToDp(MAX_HEIGHT))
+					.setListener(new Animator.AnimatorListener() {
+						@Override
+						public void onAnimationStart(Animator animation) {
+
+						}
+
+						@Override
+						public void onAnimationEnd(Animator animation) {
+							Intent intent = new Intent(MainActivity.this, IssuesActivity.class);
+							intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+							startActivity(intent);
+						}
+
+						@Override
+						public void onAnimationCancel(Animator animation) {
+
+						}
+
+						@Override
+						public void onAnimationRepeat(Animator animation) {
+
+						}
+					});
+
+
 			}
 		});
 
