@@ -32,8 +32,7 @@ import UIKit
 		return screenletView as BaseListView
 	}
 
-	private var paginationOperations: [Int:LiferayPaginationOperation] = [:]
-	private var rowCount: Int = 0
+	private var paginationInteractors: [Int:BaseListPageLoadInteractor] = [:]
 
 
 	//MARK: BaseScreenlet
@@ -58,59 +57,11 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadList() -> Bool {
-		return loadPage(0, computeRowCount: true)
+		return startLoadPageInteractor(page: 0, computeRowCount: true)
 	}
 
 
 	//MARK: Internal methods
-
-	internal func loadPage(page: Int, computeRowCount: Bool = false) -> Bool {
-		let operation = createPaginationOperation(
-				page: page,
-				computeRowCount: computeRowCount)
-
-		paginationOperations[page] = operation
-
-		return operation.validateAndEnqueue() {
-			if $0.lastError == nil {
-				self.onLoadPageResult(
-						page: operation.page,
-						serverRows: operation.result!.pageContent,
-						rowCount: operation.result!.rowCount ?? self.rowCount)
-			}
-			else {
-				self.onLoadPageError(page: operation.page, error: $0.lastError!)
-			}
-
-			self.paginationOperations.removeValueForKey(operation.page)
-		}
-	}
-
-	internal func createPaginationOperation(
-			#page: Int,
-			computeRowCount: Bool)
-			-> LiferayPaginationOperation {
-
-		assertionFailure("createPaginationOperation must be overriden")
-
-		return LiferayPaginationOperation(
-				screenlet: self,
-				page: page,
-				computeRowCount: computeRowCount)
-	}
-
-	internal func convert(#serverResult:[String:AnyObject]) -> AnyObject {
-		assertionFailure("convert(serverResult) must be overriden")
-		return 0
-	}
-
-	internal func loadPageForRow(row: Int) {
-		let page = pageFromRow(row)
-
-		if paginationOperations.indexForKey(page) == nil {
-			loadPage(page)
-		}
-	}
 
 	internal func pageFromRow(row: Int) -> Int {
 		if row < firstPageSize {
@@ -128,39 +79,63 @@ import UIKit
 		return firstPageSize + (page - 1) * pageSize
 	}
 
+	internal func startLoadPageInteractor(#page: Int, computeRowCount: Bool = false) -> Bool {
+		let interactor = createPageLoadInteractor(
+				page: page,
+				computeRowCount: computeRowCount)
+
+		paginationInteractors[page] = interactor
+
+		interactor.onSuccess = {
+			self.baseListView.setRows(interactor.resultAllPagesContent!,
+					rowCount: interactor.resultRowCount ?? self.baseListView.rowCount)
+
+			self.onLoadPageResult(
+					page: interactor.page,
+					rows: interactor.resultPageContent ?? [],
+					rowCount: self.baseListView.rowCount)
+
+			self.paginationInteractors.removeValueForKey(interactor.page)
+		}
+
+		interactor.onFailure = {
+			self.onLoadPageError(page: interactor.page, error: $0)
+
+			self.paginationInteractors.removeValueForKey(interactor.page)
+		}
+
+		return interactor.start()
+	}
+
+	internal func createPageLoadInteractor(
+			#page: Int,
+			computeRowCount: Bool)
+			-> BaseListPageLoadInteractor {
+
+		assertionFailure("createPageLoadInteractor must be overriden")
+
+		return BaseListPageLoadInteractor(
+				screenlet: self,
+				page: page,
+				computeRowCount: computeRowCount)
+	}
+
+	internal func loadPageForRow(row: Int) {
+		let page = pageFromRow(row)
+
+		// make sure we don't create two interactors for the same page
+		synchronized(paginationInteractors) {
+			if self.paginationInteractors.indexForKey(page) == nil {
+				self.startLoadPageInteractor(page: page)
+			}
+		}
+	}
+
 	internal func onLoadPageError(#page: Int, error: NSError) {
 		println("ERROR: Load page error \(page) -> \(error)")
 	}
 
-	internal func onLoadPageResult(#page: Int,
-			serverRows: [[String:AnyObject]],
-			rowCount: Int)
-			-> [AnyObject] {
-
-		let convertedRows = serverRows.map() { self.convert(serverResult: $0) }
-
-		var allRows = Array<AnyObject?>(count: rowCount, repeatedValue: nil)
-
-		for (index, row) in enumerate(baseListView.rows) {
-			allRows[index] = row
-		}
-
-		var offset = firstRowForPage(page)
-
-		// last page could be incomplete
-		if offset >= rowCount {
-			offset = rowCount - 1
-		}
-
-		for (index, row) in enumerate(convertedRows) {
-			allRows[offset + index] = row
-		}
-
-		self.rowCount = rowCount
-		baseListView.rowCount = rowCount
-		baseListView.rows = allRows
-
-		return convertedRows
+	internal func onLoadPageResult(#page: Int, rows: [AnyObject], rowCount: Int) {
 	}
 
 	internal func onSelectedRow(row:AnyObject) {

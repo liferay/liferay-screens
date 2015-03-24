@@ -58,7 +58,6 @@ public class LiferayPaginationOperation: ServerOperation {
 
 		if batchSession.commands.count < 1 {
 			lastError = createError(cause: .AbortedDueToPreconditions, userInfo: nil)
-
 			return
 		}
 

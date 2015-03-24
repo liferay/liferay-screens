@@ -16,23 +16,27 @@ import UIKit
 
 public class BaseListView: BaseScreenletView {
 
-	public var rowCount:Int = 0
+	public var rowCount: Int {
+		return _rowCount
+	}
 
-	public var rows:[AnyObject?] {
-		set {
-			let oldRows = _rows
-			_rows = newValue
-			onChangedRows(oldRows)
-		}
-		get {
-			return _rows
-		}
+	public var rows: [AnyObject?] {
+		return _rows
 	}
 
 	internal var onSelectedRowClosure: (AnyObject -> Void)?
 	internal var fetchPageForRow: (Int -> Void)?
 
-	private var _rows:[AnyObject?] = []
+	private var _rows = [AnyObject?]()
+	private var _rowCount = 0
+
+	public func setRows(newRows: [AnyObject?], rowCount: Int) {
+		_rowCount = rowCount
+
+		let oldRows = _rows
+		_rows = newRows
+		onChangedRows(oldRows)
+	}
 
 	internal func onChangedRows(oldRows:[AnyObject?]) {
 	}
