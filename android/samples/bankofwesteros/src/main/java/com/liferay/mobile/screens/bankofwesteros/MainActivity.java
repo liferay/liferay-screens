@@ -35,7 +35,6 @@ public class MainActivity extends CardActivity implements View.OnClickListener {
 
 
 		_middlePosition = convertDpToPx(100);
-		_topPosition = convertDpToPx(30);
 
 		_signInView = (FrameLayout) findViewById(R.id.sign_in_view);
 		_signInView.setOnTouchListener(new FlingTouchListener(this, createSignInListener()));
@@ -139,14 +138,9 @@ public class MainActivity extends CardActivity implements View.OnClickListener {
 	}
 
 	private void toSignUpView() {
-		TransitionManager.beginDelayedTransition(_signInView);
-
-		_signUpView.animate().y(_topPosition);
-
-		int margin = _topPosition / 2;
-		setFrameLayoutMargins(_signInView, margin, 0, margin, 0);
-		_signInView.animate().y(margin);
+		moveCardToTop(_signUpView, _signInView);
 	}
+
 
 	private FlingListener createSignInListener() {
 		return new FlingListener() {
@@ -210,7 +204,6 @@ public class MainActivity extends CardActivity implements View.OnClickListener {
 	private int _signInPosition;
 	private int _signUpPosition;
 	private int _middlePosition;
-	private int _topPosition;
 
 	private LinearLayout _background;
 	private FrameLayout _signInView;
