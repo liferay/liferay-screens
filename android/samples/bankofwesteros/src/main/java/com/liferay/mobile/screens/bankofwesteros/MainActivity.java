@@ -15,18 +15,10 @@
 package com.liferay.mobile.screens.bankofwesteros;
 
 import android.animation.Animator;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.transition.TransitionManager;
-import android.util.TypedValue;
-import android.view.Display;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -34,22 +26,13 @@ import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.context.User;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends CardActivity implements View.OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		Window window = getWindow();
-		window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-		window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		window.setStatusBarColor(getResources().getColor(R.color.westeros_background_gray));
-
-
-		Point size = getSize();
-		_maxWidth = size.x;
-		_maxHeight = size.y;
 
 		_middlePosition = convertDpToPx(100);
 		_topPosition = convertDpToPx(30);
@@ -108,30 +91,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
 			}
 		});
 
-
-		final View mainView = findViewById(R.id.main_view);
-		mainView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-			@Override
-			public void onGlobalLayout() {
-				int iconHeightInDp = getResources().getDimensionPixelSize(R.dimen.icon_height);
-				_maxHeight = findViewById(R.id.main_view).getHeight();
-				_signInPosition = _maxHeight - 2 * iconHeightInDp;
-				_signUpPosition = _maxHeight - iconHeightInDp;
-				_signInView.setY(_signInPosition);
-				_signUpView.setY(_signUpPosition);
-				_forgotPasswordSubView.setX(_maxWidth);
-				_termsSubView.setX(_maxWidth);
-				mainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-			}
-		});
-
 	}
 
-	private Point getSize() {
-		Display display = getWindowManager().getDefaultDisplay();
-		Point size = new Point();
-		display.getSize(size);
-		return size;
+	@Override
+	protected void heightAndWidthReady() {
+		int iconHeightInDp = getResources().getDimensionPixelSize(R.dimen.icon_height);
+		_signInPosition = _maxHeight - 2 * iconHeightInDp;
+		_signUpPosition = _maxHeight - iconHeightInDp;
+		_signInView.setY(_signInPosition);
+		_signUpView.setY(_signUpPosition);
+		_forgotPasswordSubView.setX(_maxWidth);
+		_termsSubView.setX(_maxWidth);
 	}
 
 	@Override
@@ -148,14 +118,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		}
 	}
 
-	private void toSignInSubView() {
-		goLeft(_signInSubView, _forgotPasswordSubView);
-	}
-
-	private void toForgotPasswordSubView() {
-		goRight(_signInSubView, _forgotPasswordSubView);
-	}
-
 	private void toSignUpSubView() {
 		goLeft(_signUpSubView, _termsSubView);
 	}
@@ -164,23 +126,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		goRight(_signUpSubView, _termsSubView);
 	}
 
-	private void goLeft(View leftView, View rightView) {
-		leftView.animate().x(0);
-		rightView.animate().x(_maxWidth);
-	}
-
-	private void goRight(View leftView, View rightView) {
-		leftView.animate().x(-_maxWidth);
-		rightView.animate().x(0);
-	}
-
 	private void toBackgroundView() {
 		_signInView.animate().y(_signInPosition);
 	}
 
 	private void toSignInView() {
 		TransitionManager.beginDelayedTransition(_signInView);
-		setMargins(_signInView, 0, 0, 0, 0);
+		setFrameLayoutMargins(_signInView, 0, 0, 0, 0);
 		_signInView.animate().y(_middlePosition);
 
 		_signUpView.animate().y(_signUpPosition);
@@ -192,7 +144,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		_signUpView.animate().y(_topPosition);
 
 		int margin = _topPosition / 2;
-		setMargins(_signInView, margin, 0, margin, 0);
+		setFrameLayoutMargins(_signInView, margin, 0, margin, 0);
 		_signInView.animate().y(margin);
 	}
 
@@ -200,12 +152,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		return new FlingListener() {
 			@Override
 			public void onFlingLeft() {
-				toForgotPasswordSubView();
+				goRight(_signInSubView, _forgotPasswordSubView);
 			}
 
 			@Override
 			public void onFlingRight() {
-				toSignInSubView();
+				goLeft(_signInSubView, _forgotPasswordSubView);
 			}
 
 			@Override
@@ -254,23 +206,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		};
 	}
 
-	private void setMargins(View view, int marginLeft, int marginTop, int marginRight, int marginBottom) {
-		FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
-		layoutParams.setMargins(marginLeft, marginTop, marginRight, marginBottom);
-		view.setLayoutParams(layoutParams);
-	}
-
-	private int convertDpToPx(int dp) {
-		Resources resources = getResources();
-		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
-	}
 
 	private int _signInPosition;
 	private int _signUpPosition;
 	private int _middlePosition;
 	private int _topPosition;
-	private int _maxWidth;
-	private int _maxHeight;
 
 	private LinearLayout _background;
 	private FrameLayout _signInView;

@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.bankofwesteros;
 
 import android.animation.Animator;
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -9,7 +8,7 @@ import android.widget.LinearLayout;
 /**
  * @author Javier Gamarra
  */
-public class IssuesActivity extends Activity {
+public class IssuesActivity extends CardActivity {
 
 
 	@Override
@@ -24,9 +23,15 @@ public class IssuesActivity extends Activity {
 		_card1.setOnTouchListener(new FlingTouchListener(this, getCard1Listener()));
 		_card2 = (LinearLayout) findViewById(R.id.card2);
 		_card2.setOnTouchListener(new FlingTouchListener(this, getCard2Listener()));
-		_background.setY(2000);
-		_card1.setY(2000);
-		_card2.setY(2000);
+
+
+	}
+
+	@Override
+	protected void heightAndWidthReady() {
+		_background.setY(_maxHeight);
+		_card1.setY(_maxHeight);
+		_card2.setY(_maxHeight);
 
 		findViewById(R.id.issues).setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -36,7 +41,8 @@ public class IssuesActivity extends Activity {
 		});
 
 		_card1.animate().y(0);
-		_card2.animate().y(1500).setListener(new Animator.AnimatorListener() {
+		int iconHeightInDp = getResources().getDimensionPixelSize(R.dimen.icon_height);
+		_card2.animate().y(_maxHeight - iconHeightInDp).setListener(new Animator.AnimatorListener() {
 			@Override
 			public void onAnimationStart(Animator animation) {
 
@@ -57,7 +63,6 @@ public class IssuesActivity extends Activity {
 
 			}
 		});
-
 	}
 
 	private void toMenu() {
