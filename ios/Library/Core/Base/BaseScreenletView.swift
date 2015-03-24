@@ -19,7 +19,7 @@ import UIKit
  */
 public class BaseScreenletView: UIView, UITextFieldDelegate {
 
-	internal var onPerformUserAction: ((String?, AnyObject?) -> Bool)?
+	internal var onPerformAction: ((String?, AnyObject?) -> Bool)?
 
 	internal var themeName: String? {
 		var className = NSStringFromClass(self.dynamicType)
@@ -149,7 +149,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * onPreUserAction is invoked just before any user action is invoked.
 	 * Override this method to decide whether or not the user action should be fired.
 	 */
-	internal func onPreUserAction(#name: String?, sender: AnyObject?) -> Bool {
+	internal func onPreAction(#name: String?, sender: AnyObject?) -> Bool {
 		return true
 	}
 
@@ -180,10 +180,10 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	}
 	
 	internal func userAction(#name: String?, sender: AnyObject?) {
-		if onPreUserAction(name: name, sender: sender) {
+		if onPreAction(name: name, sender: sender) {
 			endEditing(true)
 		
-			onPerformUserAction?(name, sender)
+			onPerformAction?(name, sender)
 		}
 	}
 

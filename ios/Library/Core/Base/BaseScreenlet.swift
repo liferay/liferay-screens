@@ -111,7 +111,7 @@ import QuartzCore
 				viewValue.frame = centeredRectInView(self, size: viewValue.frame.size)
 			}
 
-			viewValue.onPerformUserAction = performUserAction
+			viewValue.onPerformAction = performAction
 
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)
@@ -167,13 +167,15 @@ import QuartzCore
 	}
 
 	/*
-	 * performUserAction is invoked when a TouchUpInside even is fired from the UI.
+	 * performAction is invoked when a we want to start an interaction (use case)
+	 * Typically, it's called from TouchUpInside UI event or when the programmer wants to
+	 * start the interaction programatically.
 	 */
-	internal func performUserAction(#name: String?, sender: AnyObject? = nil) -> Bool {
+	internal func performAction(#name: String?, sender: AnyObject? = nil) -> Bool {
 		if let interactor = createInteractor(name: name, sender: sender) {
 			_runningInteractors.append(interactor)
 
-			return onUserAction(name: name, interactor: interactor, sender: sender)
+			return onAction(name: name, interactor: interactor, sender: sender)
 		}
 
 		println("WARN: No interactor created for action \(name)")
@@ -181,14 +183,14 @@ import QuartzCore
 		return false
 	}
 
-	internal func performDefaultUserAction() -> Bool {
-		return performUserAction(name: nil, sender: nil)
+	internal func performDefaultAction() -> Bool {
+		return performAction(name: nil, sender: nil)
 	}
 
 	/*
-	 * onUserAction is invoked when an interaction should be started
+	 * onAction is invoked when an interaction should be started
 	 */
-	internal func onUserAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
+	internal func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
 		return interactor.start()
 	}
 

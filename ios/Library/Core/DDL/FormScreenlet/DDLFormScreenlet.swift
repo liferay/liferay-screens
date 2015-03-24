@@ -90,7 +90,7 @@ import UIKit
 		}
 	}
 
-	override internal func onUserAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
+	override internal func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
 		switch name! {
 			case "submit-form":
 				return submitForm()
