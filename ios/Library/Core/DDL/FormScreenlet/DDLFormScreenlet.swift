@@ -90,16 +90,20 @@ import UIKit
 		}
 	}
 
-	override internal func onUserAction(#name: String?, sender: AnyObject?) {
+	override internal func onUserAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
 		switch name! {
 			case "submit-form":
-				submitForm()
+				return submitForm()
+
 			case "upload-document":
 				if let document = sender as? DDLFieldDocument {
-					uploadDocument(document)
+					return uploadDocument(document)
 				}
+
 			default: ()
 		}
+
+		return false
 	}
 
 

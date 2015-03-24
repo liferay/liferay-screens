@@ -19,7 +19,7 @@ import UIKit
  */
 public class BaseScreenletView: UIView, UITextFieldDelegate {
 
-	internal var onPerformUserAction: ((String?, AnyObject?) -> Void)?
+	internal var onPerformUserAction: ((String?, AnyObject?) -> Bool)?
 
 	internal var themeName: String? {
 		var className = NSStringFromClass(self.dynamicType)

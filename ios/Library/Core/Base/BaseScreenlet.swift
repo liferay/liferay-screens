@@ -169,22 +169,27 @@ import QuartzCore
 	/*
 	 * performUserAction is invoked when a TouchUpInside even is fired from the UI.
 	 */
-	internal func performUserAction(#name: String?, sender: AnyObject?) {
+	internal func performUserAction(#name: String?, sender: AnyObject? = nil) -> Bool {
 		if let interactor = createInteractor(name: name, sender: sender) {
 			_runningInteractors.append(interactor)
 
-			onUserAction(name: name, interactor: interactor, sender: sender)
+			return onUserAction(name: name, interactor: interactor, sender: sender)
 		}
-		else {
-			println("WARN: No interactor created for action \(name)")
-		}
+
+		println("WARN: No interactor created for action \(name)")
+
+		return false
+	}
+
+	internal func performDefaultUserAction() -> Bool {
+		return performUserAction(name: nil, sender: nil)
 	}
 
 	/*
 	 * onUserAction is invoked when an interaction should be started
 	 */
-	internal func onUserAction(#name: String?, interactor: Interactor, sender: AnyObject?) {
-		interactor.start()
+	internal func onUserAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
+		return interactor.start()
 	}
 
 	internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
