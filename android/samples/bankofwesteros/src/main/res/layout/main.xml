@@ -112,6 +112,12 @@
 				android:textColor="@android:color/white"
 				android:textSize="25dp"/>
 
+			<Button
+				android:id="@+id/enter"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Enter"/>
+
 			<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
 				android:id="@+id/signup_screenlet"
 				android:layout_width="match_parent"
