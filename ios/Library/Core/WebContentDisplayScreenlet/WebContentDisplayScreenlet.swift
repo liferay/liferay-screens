@@ -26,14 +26,9 @@ import UIKit
 
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var articleId: String = ""
-
 	@IBInspectable public var autoLoad: Bool = true
 
 	@IBOutlet public var delegate: WebContentDisplayScreenletDelegate?
-
-	internal var viewModel: WebContentDisplayViewModel {
-		return screenletView as WebContentDisplayViewModel
-	}
 
 
 	//MARK: Public methods
@@ -44,26 +39,26 @@ import UIKit
 		}
 	}
 
-	public func loadWebContent() -> Bool {
-		let webContentOperation = LiferayWebContentLoadOperation(screenlet: self)
+	override internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+		let interactor = WebContentDisplayLoadInteractor(screenlet: self)
 
-		webContentOperation.groupId =
-				(self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
+		interactor.onSuccess = {
+			let modifiedHtml = self.delegate?.onWebContentResponse?(interactor.resultHTML!)
 
-		webContentOperation.articleId = self.articleId
-
-		return webContentOperation.validateAndEnqueue() {
-			if let error = $0.lastError {
-				self.delegate?.onWebContentError?(error)
-			}
-			else {
-				let modifiedHtml =
-						self.delegate?.onWebContentResponse?(webContentOperation.resultHTML!)
-
-				self.viewModel.htmlContent =
-						(modifiedHtml != nil) ? modifiedHtml! : webContentOperation.resultHTML!
-			}
+			(self.screenletView as WebContentDisplayViewModel).htmlContent =
+					(modifiedHtml != nil) ? modifiedHtml! : interactor.resultHTML!
 		}
+
+		interactor.onFailure = {
+			self.delegate?.onWebContentError?($0)
+			return
+		}
+
+		return interactor
+	}
+
+	public func loadWebContent() -> Bool {
+		return self.performDefaultAction()
 	}
 
 }
