@@ -11,7 +11,7 @@
 		android:allowBackup="true"
 		android:icon="@drawable/liferay_icon"
 		android:label="@string/title"
-		android:theme="@android:style/Theme.Material.Light">
+		android:theme="@style/AppTheme">
 		<activity
 			android:name=".MainActivity"
 			android:label="@string/title">
@@ -21,6 +21,8 @@
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
+
+		<activity android:name=".IssuesActivity"/>
 
 	</application>
 
