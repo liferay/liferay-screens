@@ -12,18 +12,22 @@
 		android:icon="@drawable/liferay_icon"
 		android:label="@string/title"
 		android:theme="@style/AppTheme">
+
 		<activity
 			android:name=".MainActivity"
-			android:label="@string/title">
+			android:label="@string/title"/>
+
+		<activity android:name=".IssuesActivity"/>
+		<activity android:name=".AccountSettings"/>
+		<activity
+			android:name=".SplashActivity"
+			android:noHistory="true">
 			<intent-filter>
 
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-
-		<activity android:name=".IssuesActivity"/>
-		<activity android:name=".AccountSettings"/>
 
 	</application>
 
