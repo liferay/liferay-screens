@@ -279,7 +279,6 @@ public class DDLFormTableView: DDLFormView,
 				cellId: field.name)
 
 		if cellView != nil {
-			println("Found custom \(field.name) -> \(cellView!.bounds.size.height)" )
 			setCellHeight(cellView!.bounds.size.height, forField: field)
 		}
 

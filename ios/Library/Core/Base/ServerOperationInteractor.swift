@@ -30,6 +30,9 @@ class ServerOperationInteractor: Interactor {
 				}
 			}
 		}
+		else {
+			self.callOnFailure(createError(cause: .AbortedDueToPreconditions))
+		}
 
 		return result
 	}
