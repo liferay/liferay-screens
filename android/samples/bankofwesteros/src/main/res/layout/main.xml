@@ -7,29 +7,13 @@
 	android:background="@color/westeros_background_gray">
 
 
-	<LinearLayout
+	<ImageView
 		android:id="@+id/background"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:gravity="center"
-		android:orientation="vertical">
-
-		<ImageView
-			android:layout_width="200dp"
-			android:layout_height="200dp"
-			android:layout_marginBottom="20dp"
-			android:layout_marginTop="100dp"
-			android:background="@color/westeros_dark_gray"/>
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:text="FINAL TOUR TITLE"
-			android:textColor="@color/westeros_black"
-			android:textSize="20sp"/>
-
-	</LinearLayout>
+		android:layout_width="wrap_content"
+		android:layout_height="300dp"
+		android:layout_margin="30dp"
+		android:background="@drawable/logo_gray"
+		android:scaleType="center"/>
 
 	<FrameLayout
 		android:id="@+id/sign_in_view"
