@@ -330,16 +330,22 @@ import UIKit
 		}
 
 		if let failedUploads = failedDocumentFields {
-			showHUDWithMessage(
-				LocalizedString("ddlform-screenlet", "uploading-retry", self),
-				details: LocalizedString("ddlform-screenlet", "uploading-retry-details", self))
+			if failedUploads.count > 0 {
+				showHUDWithMessage(
+					LocalizedString("ddlform-screenlet", "uploading-retry", self),
+					details: LocalizedString("ddlform-screenlet", "uploading-retry-details", self))
 
-			for failedDocumentField in failedUploads {
-				uploadDocument(failedDocumentField as DDLFieldDocument)
+				for failedDocumentField in failedUploads {
+					performAction(name: UploadDocumentAction, sender: failedDocumentField)
+				}
+
+				uploadStatus = .Uploading(failedUploads.count, true)
+
+				return
 			}
-
-			uploadStatus = .Uploading(failedUploads.count, true)
 		}
+
+		assertionFailure("[ERROR] Inconsistency: No failedUploads but uploadState is failed")
 	}
 
 	private func onUploadedBytes(document: DDLFieldDocument, bytes: UInt, sent: Int64, total: Int64) {
