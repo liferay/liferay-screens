@@ -69,6 +69,7 @@ import UIKit
 	private var uploadStatus = UploadStatus.Idle
 
 	private let LoadFormAction = "load-form"
+	private let SubmitFormAction = "submit-form"
 
 	//MARK: BaseScreenlet
 
@@ -101,6 +102,7 @@ import UIKit
 				return createLoadFormInteractor()
 			case LoadRecordAction: ()
 			case SubmitFormAction: ()
+				return createSubmitFormInteractor()
 			case UploadDocumentAction: ()
 			default: ()
 		}
@@ -128,21 +130,38 @@ import UIKit
 		return interactor
 	}
 
-	override internal func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
-		switch name! {
-			case "submit-form":
-				return submitForm()
-
-			case "upload-document":
-				if let document = sender as? DDLFieldDocument {
-					return uploadDocument(document)
-				}
-
-			default:
-				return super.onAction(name: name, interactor: interactor, sender: sender)
+	internal func createSubmitFormInteractor() -> DDLFormSubmitFormInteractor? {
+		if waitForInProgressUpload() {
+			return nil
 		}
 
-		return false
+		let interactor = DDLFormSubmitFormInteractor(screenlet: self)
+
+		interactor.onSuccess = {
+			if let resultRecordIdValue = interactor.resultRecordId {
+				self.recordId = resultRecordIdValue
+				self.formView.record!.recordId = resultRecordIdValue
+
+				self.delegate?.onFormSubmitted?(self.formView.record!)
+			}
+		}
+
+		interactor.onFailure = {
+			self.delegate?.onFormSubmitError?($0)
+			return
+		}
+
+		return interactor
+	}
+
+	override internal func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
+		if name!  == "upload-document" {
+			if let document = sender as? DDLFieldDocument {
+				return uploadDocument(document)
+			}
+		}
+
+		return super.onAction(name: name, interactor: interactor, sender: sender)
 	}
 
 
@@ -186,34 +205,7 @@ import UIKit
 	}
 
 	public func submitForm() -> Bool {
-		if waitForInProgressUpload() {
-			return true
-		}
-
-	 	let submitOperation = LiferayDDLFormSubmitOperation(screenlet: self)
-
-		submitOperation.groupId = (self.groupId != 0)
-				? self.groupId : LiferayServerContext.groupId
-
-		submitOperation.userId = (self.userId != 0)
-				? self.userId : Int64((SessionContext.userAttribute("userId") ?? 0) as Int)
-
-		submitOperation.recordId = (self.recordId != 0) ? self.recordId : nil
-		submitOperation.recordSetId = self.recordSetId
-
-		submitOperation.autoscrollOnValidation = self.autoscrollOnValidation
-
-		return submitOperation.validateAndEnqueue() {
-			if let error = $0.lastError {
-				self.delegate?.onFormSubmitError?(error)
-			}
-			else {
-				self.recordId = submitOperation.resultRecordId!
-				self.formView.record!.recordId = submitOperation.resultRecordId!
-
-				self.delegate?.onFormSubmitted?(self.formView.record!)
-			}
-		}
+		return performAction(name: SubmitFormAction)
 	}
 
 
