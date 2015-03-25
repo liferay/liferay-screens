@@ -113,6 +113,16 @@ import UIKit
 		return nil
 	}
 
+	override internal func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
+		if name! == "upload-document" {
+			if let document = sender as? DDLFieldDocument {
+				return uploadDocument(document)
+			}
+		}
+
+		return super.onAction(name: name, interactor: interactor, sender: sender)
+	}
+
 	internal func createLoadFormInteractor() -> DDLFormLoadFormInteractor {
 		let interactor = DDLFormLoadFormInteractor(screenlet: self)
 
@@ -189,14 +199,9 @@ import UIKit
 		return interactor
 	}
 
-	override internal func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
-		if name!  == "upload-document" {
-			if let document = sender as? DDLFieldDocument {
-				return uploadDocument(document)
 			}
 		}
 
-		return super.onAction(name: name, interactor: interactor, sender: sender)
 	}
 
 
