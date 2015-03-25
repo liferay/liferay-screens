@@ -30,23 +30,11 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 		return (LocalizedString("ddlform-screenlet", "loading-record-error", self), details: nil)
 	}
 
-	internal var viewModel: DDLFormViewModel {
-		return screenlet.screenletView as DDLFormViewModel
-	}
-
 
 	//MARK: ServerOperation
 
 	override func validateData() -> Bool {
 		if recordId == nil {
-			return false
-		}
-
-		return true
-	}
-
-	override func preRun() -> Bool {
-		if viewModel.isRecordEmpty {
 			return false
 		}
 
@@ -65,7 +53,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
 		if lastError == nil {
 			if recordDictionary is [String:AnyObject] {
-				resultRecord = recordDictionary as [String:AnyObject]
+				resultRecord = recordDictionary as? [String:AnyObject]
 				resultRecordId = self.recordId!
 			}
 			else {

@@ -69,6 +69,7 @@ import UIKit
 	private var uploadStatus = UploadStatus.Idle
 
 	private let LoadFormAction = "load-form"
+	private let LoadRecordAction = "load-record"
 	private let SubmitFormAction = "submit-form"
 
 	//MARK: BaseScreenlet
@@ -101,6 +102,7 @@ import UIKit
 			case LoadFormAction:
 				return createLoadFormInteractor()
 			case LoadRecordAction: ()
+				return createLoadRecordInteractor()
 			case SubmitFormAction: ()
 				return createSubmitFormInteractor()
 			case UploadDocumentAction: ()
@@ -154,6 +156,38 @@ import UIKit
 		return interactor
 	}
 
+	internal func createLoadRecordInteractor() -> DDLFormLoadRecordInteractor {
+		let interactor = DDLFormLoadRecordInteractor(screenlet: self)
+
+		interactor.onSuccess = {
+			// first set structure if loaded
+			if let resultFormRecordValue = interactor.resultFormRecord {
+				self.userId = interactor.resultFormUserId ?? self.userId
+				self.formView.record = resultFormRecordValue
+
+				self.delegate?.onFormLoaded?(resultFormRecordValue)
+			}
+
+			// then set data
+			if let recordValue = self.formView.record {
+				recordValue.updateCurrentValues(interactor.resultRecordData!)
+				recordValue.recordId = interactor.resultRecordId!
+
+				// Force didSet event
+				self.formView.record = recordValue
+
+				self.delegate?.onRecordLoaded?(recordValue)
+			}
+		}
+
+		interactor.onFailure = {
+			self.delegate?.onRecordLoadError?($0)
+			return
+		}
+
+		return interactor
+	}
+
 	override internal func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
 		if name!  == "upload-document" {
 			if let document = sender as? DDLFieldDocument {
@@ -172,36 +206,7 @@ import UIKit
 	}
 
 	public func loadRecord() -> Bool {
-		let loadRecordOperation = LiferayDDLFormRecordLoadOperation(screenlet: self)
-
-		loadRecordOperation.recordId = self.recordId
-
-		if formView.isRecordEmpty {
-			let loadFormOperation = createLoadFormOperation()
-
-			if !loadFormOperation.validateAndEnqueue() {
-				return false
-			}
-
-			loadRecordOperation.addDependency(loadFormOperation)
-		}
-
-		return loadRecordOperation.validateAndEnqueue() {
-			if let error = $0.lastError {
-				self.delegate?.onRecordLoadError?(error)
-			}
-			else {
-				if let recordValue = self.formView.record {
-					recordValue.updateCurrentValues(loadRecordOperation.resultRecord!)
-					recordValue.recordId = loadRecordOperation.resultRecordId!
-
-					// Force didSet event
-					self.formView.record = recordValue
-
-					self.delegate?.onRecordLoaded?(recordValue)
-				}
-			}
-		}
+		return performAction(name: LoadRecordAction)
 	}
 
 	public func submitForm() -> Bool {
@@ -210,27 +215,6 @@ import UIKit
 
 
 	//MARK: Private methods
-
-	private func createLoadFormOperation() -> LiferayDDLFormLoadOperation {
-		let loadFormOperation = LiferayDDLFormLoadOperation(screenlet: self)
-
-		loadFormOperation.structureId = self.structureId
-		loadFormOperation.userId = self.userId
-
-		loadFormOperation.onComplete = {
-			if let error = $0.lastError {
-				self.delegate?.onFormLoadError?(error)
-			}
-			else {
-				self.userId = loadFormOperation.resultUserId ?? self.userId
-				self.formView.record = loadFormOperation.resultRecord
-
-				self.delegate?.onFormLoaded?(self.formView.record!)
-			}
-		}
-
-		return loadFormOperation
-	}
 
 	private func uploadDocument(document: DDLFieldDocument) -> Bool {
 		let groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
