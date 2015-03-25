@@ -23,7 +23,8 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 
 	public var autoscrollOnValidation = true
 
-	public var result: (recordId: Int64, attributes: NSDictionary)?
+	public var resultRecordId: Int64?
+	public var resultAttributes: NSDictionary?
 
 
 	internal override var hudLoadingMessage: HUDMessage? {
@@ -84,9 +85,10 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
 
-		var recordDictionary: NSDictionary
+		resultRecordId = nil
+		resultAttributes = nil
 
-		result = nil
+		var recordDictionary: NSDictionary
 
 		if recordId == nil {
 			recordDictionary = service.addRecordWithGroupId(groupId!,
@@ -107,11 +109,11 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 
 		if lastError == nil {
 			if let recordIdValue = recordDictionary["recordId"]! as? Int {
-				result = (Int64(recordIdValue), recordDictionary)
+				resultRecordId = Int64(recordIdValue)
+				resultAttributes = recordDictionary
 			}
 			else {
 				lastError = createError(cause: .InvalidServerResponse)
-				result = nil
 			}
 		}
 	}

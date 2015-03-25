@@ -136,8 +136,8 @@ import UIKit
 			}
 			else {
 				if let recordValue = self.formView.record {
-					recordValue.updateCurrentValues(loadRecordOperation.result!.record)
-					recordValue.recordId = loadRecordOperation.result!.recordId
+					recordValue.updateCurrentValues(loadRecordOperation.resultRecord!)
+					recordValue.recordId = loadRecordOperation.resultRecordId!
 
 					// Force didSet event
 					self.formView.record = recordValue
@@ -171,8 +171,8 @@ import UIKit
 				self.delegate?.onFormSubmitError?(error)
 			}
 			else {
-				self.recordId = submitOperation.result!.recordId
-				self.formView.record!.recordId = submitOperation.result!.recordId
+				self.recordId = submitOperation.resultRecordId!
+				self.formView.record!.recordId = submitOperation.resultRecordId!
 
 				self.delegate?.onFormSubmitted?(self.formView.record!)
 			}
@@ -193,8 +193,8 @@ import UIKit
 				self.delegate?.onFormLoadError?(error)
 			}
 			else {
-				self.userId = loadFormOperation.result!.userId ?? self.userId
-				self.formView.record = loadFormOperation.result!.record
+				self.userId = loadFormOperation.resultUserId ?? self.userId
+				self.formView.record = loadFormOperation.resultRecord
 
 				self.delegate?.onFormLoaded?(self.formView.record!)
 			}

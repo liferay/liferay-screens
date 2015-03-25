@@ -18,7 +18,8 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
 	public var recordId: Int64?
 
-	public var result: (record: [String:AnyObject], recordId: Int64)?
+	public var resultRecord: [String:AnyObject]?
+	public var resultRecordId: Int64?
 
 
 	internal override var hudLoadingMessage: HUDMessage? {
@@ -55,7 +56,8 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 	override internal func doRun(#session: LRSession) {
 		let service = LRMobilewidgetsddlrecordService_v62(session: session)
 
-		result = nil
+		resultRecord = nil
+		resultRecordId = nil
 
 		let recordDictionary = service.getDdlRecordWithDdlRecordId(recordId!,
 				locale: NSLocale.currentLocaleString,
@@ -63,7 +65,8 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
 		if lastError == nil {
 			if recordDictionary is [String:AnyObject] {
-				result = (recordDictionary as [String:AnyObject], self.recordId!)
+				resultRecord = recordDictionary as [String:AnyObject]
+				resultRecordId = self.recordId!
 			}
 			else {
 				lastError = createError(cause: .InvalidServerResponse)

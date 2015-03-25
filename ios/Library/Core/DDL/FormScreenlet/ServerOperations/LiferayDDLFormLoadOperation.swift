@@ -19,7 +19,8 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 	public var structureId: Int64?
 	public var userId: Int64?
 
-	public var result: (record: DDLRecord, userId: Int64?)?
+	public var resultRecord: DDLRecord?
+	public var resultUserId: Int64?
 
 
 	internal override var hudLoadingMessage: HUDMessage? {
@@ -43,21 +44,21 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 	override internal func doRun(#session: LRSession) {
 		let service = LRDDMStructureService_v62(session: session)
 
-		result = nil
+		resultRecord = nil
+		resultUserId = nil
 
-		let structureDataDictionary = service.getStructureWithStructureId(structureId!, error: &lastError)
+		let structureDataDictionary = service.getStructureWithStructureId(structureId!,
+				error: &lastError)
 
 		if lastError == nil {
 			if let xsd = structureDataDictionary["xsd"]! as? String {
-				var userId: Int64?
-
 				if let userIdValue = structureDataDictionary["userId"]! as? Int {
-					userId = Int64(userIdValue)
+					resultUserId = Int64(userIdValue)
 				}
 
-				let record = DDLRecord(xsd: xsd, locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString))
-
-				result = (record, userId)
+				resultRecord = DDLRecord(
+						xsd: xsd,
+						locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString))
 			}
 			else {
 				lastError = createError(cause: .InvalidServerResponse)
