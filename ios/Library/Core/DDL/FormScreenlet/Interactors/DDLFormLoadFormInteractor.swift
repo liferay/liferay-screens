@@ -25,7 +25,6 @@ class DDLFormLoadFormInteractor: ServerOperationInteractor {
 		let operation = LiferayDDLFormLoadOperation(screenlet: screenlet)
 
 		operation.structureId = screenlet.structureId
-		operation.userId = screenlet.userId
 
 		return operation
 	}

@@ -17,7 +17,6 @@ import UIKit
 public class LiferayDDLFormLoadOperation: ServerOperation {
 
 	public var structureId: Int64?
-	public var userId: Int64?
 
 	public var resultRecord: DDLRecord?
 	public var resultUserId: Int64?
