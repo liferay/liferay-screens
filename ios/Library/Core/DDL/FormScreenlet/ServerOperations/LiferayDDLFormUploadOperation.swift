@@ -14,7 +14,10 @@
 import UIKit
 
 
+
 public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgressDelegate {
+
+	public typealias OnProgress = (DDLFieldDocument, UInt, Int64, Int64) -> Void
 
 	var document: DDLFieldDocument?
 	var filePrefix: String?
@@ -22,7 +25,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 	var repositoryId: Int64?
 	var folderId: Int64?
 
-	var onUploadedBytes: ((DDLFieldDocument, UInt, Int64, Int64) -> Void)?
+	var onUploadedBytes: OnProgress?
 
 	var uploadResult: [String:AnyObject]?
 

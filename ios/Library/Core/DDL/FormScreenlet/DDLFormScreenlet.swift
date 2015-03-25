@@ -75,6 +75,7 @@ import UIKit
 	private let LoadFormAction = "load-form"
 	private let LoadRecordAction = "load-record"
 	private let SubmitFormAction = "submit-form"
+	private let UploadDocumentAction = "upload-document"
 
 
 	//MARK: BaseScreenlet
@@ -106,7 +107,10 @@ import UIKit
 				return createLoadRecordInteractor()
 			case SubmitFormAction: ()
 				return createSubmitFormInteractor()
-			case UploadDocumentAction: ()
+			case UploadDocumentAction:
+				if sender is DDLFieldDocument {
+					return createUploadDocumentInteractor(sender as DDLFieldDocument)
+				}
 			default: ()
 		}
 
@@ -114,13 +118,24 @@ import UIKit
 	}
 
 	override internal func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
-		if name! == "upload-document" {
-			if let document = sender as? DDLFieldDocument {
-				return uploadDocument(document)
+		let result = super.onAction(name: name, interactor: interactor, sender: sender)
+
+		if name! == UploadDocumentAction && result {
+			let uploadInteractor = interactor as DDLFormUploadDocumentInteractor
+
+			delegate?.onDocumentUploadStarted?(uploadInteractor.document)
+
+			switch uploadStatus {
+				case .Uploading(let uploadCount, let submitRequested):
+					uploadStatus = .Uploading(uploadCount + 1, submitRequested)
+
+				default:
+					uploadStatus = .Uploading(1, false)
 			}
+
 		}
 
-		return super.onAction(name: name, interactor: interactor, sender: sender)
+		return result
 	}
 
 	internal func createLoadFormInteractor() -> DDLFormLoadFormInteractor {
@@ -199,9 +214,55 @@ import UIKit
 		return interactor
 	}
 
+	internal func createUploadDocumentInteractor(
+			document: DDLFieldDocument)
+			-> DDLFormUploadDocumentInteractor {
+
+		let interactor = DDLFormUploadDocumentInteractor(
+				screenlet: self,
+				document: document,
+				onProgressClosure: self.onUploadedBytes)
+
+		interactor.onSuccess = {
+			self.formView.changeDocumentUploadStatus(interactor.document)
+
+			self.delegate?.onDocumentUploadCompleted?(interactor.document,
+					result: interactor.resultResponse!)
+
+			// set new status
+			switch self.uploadStatus {
+				case .Uploading(let uploadCount, let submitRequest)
+				where uploadCount > 1:
+					// more than one upload in progress
+					self.uploadStatus = .Uploading(uploadCount - 1, submitRequest)
+
+				case .Uploading(let uploadCount, let submitRequested)
+				where uploadCount == 1 && submitRequested:
+					// waiting for upload completion to submit the form
+					self.uploadStatus = .Idle
+					self.submitForm()
+
+				case .Uploading(let uploadCount, let submitRequested)
+				where uploadCount == 1 && !submitRequested:
+					self.uploadStatus = .Idle
+
+				default: ()
 			}
 		}
 
+		interactor.onFailure = {
+			self.formView.changeDocumentUploadStatus(interactor.document)
+
+			if !document.validate() {
+				self.formView.showField(interactor.document)
+			}
+
+			self.delegate?.onDocumentUploadError?(interactor.document, error: $0)
+
+			self.uploadStatus = .Failed($0)
+		}
+
+		return interactor
 	}
 
 
@@ -221,76 +282,6 @@ import UIKit
 
 
 	//MARK: Private methods
-
-	private func uploadDocument(document: DDLFieldDocument) -> Bool {
-		let groupId = (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId
-		let repositoryId = (self.repositoryId != 0) ? self.repositoryId : groupId
-
-		let uploadOperation = LiferayDDLFormUploadOperation(screenlet: self)
-
-		uploadOperation.document = document
-		uploadOperation.filePrefix = filePrefix
-		uploadOperation.repositoryId = repositoryId
-		uploadOperation.folderId = folderId
-		uploadOperation.onUploadedBytes = onUploadedBytes
-
-		let result = uploadOperation.validateAndEnqueue() {
-			let document = uploadOperation.document!
-
-			if let error = $0.lastError {
-				document.uploadStatus = .Failed(error)
-
-				self.formView.changeDocumentUploadStatus(document)
-
-				if !document.validate() {
-					self.formView.showField(document)
-				}
-
-				self.delegate?.onDocumentUploadError?(document, error: error)
-
-				self.uploadStatus = .Failed(error)
-			}
-			else {
-				document.uploadStatus = .Uploaded(uploadOperation.uploadResult!)
-
-				self.formView.changeDocumentUploadStatus(document)
-
-				self.delegate?.onDocumentUploadCompleted?(document,
-						result: uploadOperation.uploadResult!)
-
-				switch self.uploadStatus {
-					case .Uploading(let uploadCount, let submitRequest)
-					where uploadCount > 1:
-						self.uploadStatus = .Uploading(uploadCount - 1, submitRequest)
-
-					case .Uploading(let uploadCount, let submitRequested)
-					where uploadCount == 1 && submitRequested:
-						self.uploadStatus = .Idle
-						self.submitForm()
-
-					case .Uploading(let uploadCount, let submitRequested)
-					where uploadCount == 1 && !submitRequested:
-						self.uploadStatus = .Idle
-
-					default: ()
-				}
-			}
-		}
-
-		if result {
-			delegate?.onDocumentUploadStarted?(document)
-
-			switch uploadStatus {
-				case .Uploading(let uploadCount, let submitRequested):
-					uploadStatus = .Uploading(uploadCount + 1, submitRequested)
-
-				default:
-					uploadStatus = .Uploading(1, false)
-			}
-		}
-
-		return result
-	}
 
 	private func waitForInProgressUpload() -> Bool {
 		switch uploadStatus {
