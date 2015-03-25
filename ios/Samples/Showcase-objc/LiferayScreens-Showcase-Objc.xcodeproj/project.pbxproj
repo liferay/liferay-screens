@@ -187,6 +187,26 @@
 		88A3659D1AA8881800AC5AF1 /* UserPortraitView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A3659B1AA8881800AC5AF1 /* UserPortraitView_flat7.xib */; };
 		88BF016D1A6FBACE000868A9 /* UIImage+Grayscale.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BF016C1A6FBACE000868A9 /* UIImage+Grayscale.m */; };
 		88CB07451A2644FC00964F33 /* AssetListScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */; };
+		88F09C111AC2F95D00BA224F /* AssetListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C101AC2F95D00BA224F /* AssetListPageLoadInteractor.swift */; };
+		88F09C131AC2F96E00BA224F /* ForgotPasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C121AC2F96E00BA224F /* ForgotPasswordInteractor.swift */; };
+		88F09C151AC2F97C00BA224F /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C141AC2F97C00BA224F /* LoginInteractor.swift */; };
+		88F09C171AC2F98900BA224F /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C161AC2F98900BA224F /* SignUpInteractor.swift */; };
+		88F09C201AC2F9A800BA224F /* UserPortraitAttributesLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C191AC2F9A800BA224F /* UserPortraitAttributesLoadInteractor.swift */; };
+		88F09C211AC2F9A800BA224F /* UserPortraitBaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C1A1AC2F9A800BA224F /* UserPortraitBaseInteractor.swift */; };
+		88F09C221AC2F9A800BA224F /* UserPortraitBaseLoadUserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C1B1AC2F9A800BA224F /* UserPortraitBaseLoadUserInteractor.swift */; };
+		88F09C231AC2F9A800BA224F /* UserPortraitLoadByEmailAddressInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C1C1AC2F9A800BA224F /* UserPortraitLoadByEmailAddressInteractor.swift */; };
+		88F09C241AC2F9A800BA224F /* UserPortraitLoadByScreenNameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C1D1AC2F9A800BA224F /* UserPortraitLoadByScreenNameInteractor.swift */; };
+		88F09C251AC2F9A800BA224F /* UserPortraitLoadByUserIdInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C1E1AC2F9A800BA224F /* UserPortraitLoadByUserIdInteractor.swift */; };
+		88F09C261AC2F9A800BA224F /* UserPortraitLoadLoggedUserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C1F1AC2F9A800BA224F /* UserPortraitLoadLoggedUserInteractor.swift */; };
+		88F09C281AC2F9B800BA224F /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C271AC2F9B800BA224F /* BaseListPageLoadInteractor.swift */; };
+		88F09C2B1AC2F9CE00BA224F /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C291AC2F9CE00BA224F /* Interactor.swift */; };
+		88F09C2C1AC2F9CE00BA224F /* ServerOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C2A1AC2F9CE00BA224F /* ServerOperationInteractor.swift */; };
+		88F09C321AC2F9E600BA224F /* DDLFormLoadFormInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C2E1AC2F9E600BA224F /* DDLFormLoadFormInteractor.swift */; };
+		88F09C331AC2F9E600BA224F /* DDLFormLoadRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C2F1AC2F9E600BA224F /* DDLFormLoadRecordInteractor.swift */; };
+		88F09C341AC2F9E600BA224F /* DDLFormSubmitFormInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C301AC2F9E600BA224F /* DDLFormSubmitFormInteractor.swift */; };
+		88F09C351AC2F9E600BA224F /* DDLFormUploadDocumentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C311AC2F9E600BA224F /* DDLFormUploadDocumentInteractor.swift */; };
+		88F09C371AC2F9F200BA224F /* DDLListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C361AC2F9F200BA224F /* DDLListPageLoadInteractor.swift */; };
+		88F09C391AC2FA0200BA224F /* WebContentDisplayLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F09C381AC2FA0200BA224F /* WebContentDisplayLoadInteractor.swift */; };
 		B6BD414BAE42F1C83DFC21DF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D62D52D84D90CDB834C3F0C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -403,6 +423,26 @@
 		88CB07431A2644FC00964F33 /* AssetListScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletViewController.h; sourceTree = "<group>"; };
 		88CB07441A2644FC00964F33 /* AssetListScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListScreenletViewController.m; sourceTree = "<group>"; };
 		88CB07461A264A5D00964F33 /* AssetListScreenletInterop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletInterop.h; sourceTree = "<group>"; };
+		88F09C101AC2F95D00BA224F /* AssetListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListPageLoadInteractor.swift; sourceTree = "<group>"; };
+		88F09C121AC2F96E00BA224F /* ForgotPasswordInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordInteractor.swift; sourceTree = "<group>"; };
+		88F09C141AC2F97C00BA224F /* LoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		88F09C161AC2F98900BA224F /* SignUpInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpInteractor.swift; sourceTree = "<group>"; };
+		88F09C191AC2F9A800BA224F /* UserPortraitAttributesLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitAttributesLoadInteractor.swift; sourceTree = "<group>"; };
+		88F09C1A1AC2F9A800BA224F /* UserPortraitBaseInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitBaseInteractor.swift; sourceTree = "<group>"; };
+		88F09C1B1AC2F9A800BA224F /* UserPortraitBaseLoadUserInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitBaseLoadUserInteractor.swift; sourceTree = "<group>"; };
+		88F09C1C1AC2F9A800BA224F /* UserPortraitLoadByEmailAddressInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitLoadByEmailAddressInteractor.swift; sourceTree = "<group>"; };
+		88F09C1D1AC2F9A800BA224F /* UserPortraitLoadByScreenNameInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitLoadByScreenNameInteractor.swift; sourceTree = "<group>"; };
+		88F09C1E1AC2F9A800BA224F /* UserPortraitLoadByUserIdInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitLoadByUserIdInteractor.swift; sourceTree = "<group>"; };
+		88F09C1F1AC2F9A800BA224F /* UserPortraitLoadLoggedUserInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitLoadLoggedUserInteractor.swift; sourceTree = "<group>"; };
+		88F09C271AC2F9B800BA224F /* BaseListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListPageLoadInteractor.swift; sourceTree = "<group>"; };
+		88F09C291AC2F9CE00BA224F /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		88F09C2A1AC2F9CE00BA224F /* ServerOperationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerOperationInteractor.swift; sourceTree = "<group>"; };
+		88F09C2E1AC2F9E600BA224F /* DDLFormLoadFormInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormLoadFormInteractor.swift; sourceTree = "<group>"; };
+		88F09C2F1AC2F9E600BA224F /* DDLFormLoadRecordInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormLoadRecordInteractor.swift; sourceTree = "<group>"; };
+		88F09C301AC2F9E600BA224F /* DDLFormSubmitFormInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormSubmitFormInteractor.swift; sourceTree = "<group>"; };
+		88F09C311AC2F9E600BA224F /* DDLFormUploadDocumentInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormUploadDocumentInteractor.swift; sourceTree = "<group>"; };
+		88F09C361AC2F9F200BA224F /* DDLListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListPageLoadInteractor.swift; sourceTree = "<group>"; };
+		88F09C381AC2FA0200BA224F /* WebContentDisplayLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayLoadInteractor.swift; sourceTree = "<group>"; };
 		E182772292D6B64D53CBF633 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -519,6 +559,7 @@
 		88274E7C1A24904100FE31C6 /* AssetListScreenlet */ = {
 			isa = PBXGroup;
 			children = (
+				88F09C101AC2F95D00BA224F /* AssetListPageLoadInteractor.swift */,
 				88274E7D1A24904100FE31C6 /* AssetListScreenlet.swift */,
 				88CB07461A264A5D00964F33 /* AssetListScreenletInterop.h */,
 				88274E7E1A24904100FE31C6 /* ServerOperations */,
@@ -559,6 +600,7 @@
 			isa = PBXGroup;
 			children = (
 				88274E851A24904100FE31C6 /* forgotpassword-screenlet.strings */,
+				88F09C121AC2F96E00BA224F /* ForgotPasswordInteractor.swift */,
 				88274E891A24904100FE31C6 /* ForgotPasswordScreenlet.swift */,
 				88673B321AAE06FA001664E9 /* ForgotPasswordViewModel.swift */,
 				88274E8A1A24904100FE31C6 /* ServerOperations */,
@@ -581,6 +623,7 @@
 			isa = PBXGroup;
 			children = (
 				88274E901A24904100FE31C6 /* login-screenlet.strings */,
+				88F09C141AC2F97C00BA224F /* LoginInteractor.swift */,
 				88274E941A24904100FE31C6 /* LoginScreenlet.swift */,
 				88673B341AAE076D001664E9 /* LoginViewModel.swift */,
 				8843AE701A66B7B5002AB625 /* ServerOperations */,
@@ -593,6 +636,7 @@
 			children = (
 				88274EA01A24904100FE31C6 /* ServerOperations */,
 				88274E9C1A24904100FE31C6 /* signup-screenlet.strings */,
+				88F09C161AC2F98900BA224F /* SignUpInteractor.swift */,
 				88274EA31A24904100FE31C6 /* SignUpScreenlet.swift */,
 				88673B361AAE077F001664E9 /* SignUpViewModel.swift */,
 			);
@@ -610,14 +654,16 @@
 		88274EA41A24904100FE31C6 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				88274EA51A24904100FE31C6 /* BaseListScreenlet */,
-				88274EAC1A24904100FE31C6 /* BaseScreenlet+progress.swift */,
-				88274EAD1A24904100FE31C6 /* BaseScreenlet.swift */,
-				88274EAE1A24904100FE31C6 /* BaseScreenletView.swift */,
 				88274EAF1A24904100FE31C6 /* base.strings */,
+				88274EA51A24904100FE31C6 /* BaseListScreenlet */,
+				88274EAD1A24904100FE31C6 /* BaseScreenlet.swift */,
+				88274EAC1A24904100FE31C6 /* BaseScreenlet+progress.swift */,
+				88274EAE1A24904100FE31C6 /* BaseScreenletView.swift */,
+				88F09C291AC2F9CE00BA224F /* Interactor.swift */,
 				88274EB21A24904100FE31C6 /* KeyboardManager.swift */,
 				88274EB31A24904100FE31C6 /* LiferayServerContext.swift */,
 				88274EB41A24904100FE31C6 /* ServerOperation.swift */,
+				88F09C2A1AC2F9CE00BA224F /* ServerOperationInteractor.swift */,
 				88274EB51A24904100FE31C6 /* SessionContext.swift */,
 			);
 			path = Base;
@@ -626,6 +672,7 @@
 		88274EA51A24904100FE31C6 /* BaseListScreenlet */ = {
 			isa = PBXGroup;
 			children = (
+				88F09C271AC2F9B800BA224F /* BaseListPageLoadInteractor.swift */,
 				88274EA61A24904100FE31C6 /* BaseListScreenlet.swift */,
 				88274EA71A24904100FE31C6 /* BaseListView.swift */,
 				88274EA81A24904100FE31C6 /* ServerOperations */,
@@ -669,6 +716,7 @@
 				88274EBC1A24904100FE31C6 /* DDLFormScreenlet.swift */,
 				88274EBD1A24904100FE31C6 /* DDLFormView.swift */,
 				88673B3E1AAE07D3001664E9 /* DDLFormViewModel.swift */,
+				88F09C2D1AC2F9E600BA224F /* Interactors */,
 				88274EC21A24904100FE31C6 /* ServerOperations */,
 				88274EC71A24904100FE31C6 /* TableView */,
 			);
@@ -698,6 +746,7 @@
 		88274ECA1A24904100FE31C6 /* ListScreenlet */ = {
 			isa = PBXGroup;
 			children = (
+				88F09C361AC2F9F200BA224F /* DDLListPageLoadInteractor.swift */,
 				88274ECC1A24904100FE31C6 /* DDLListScreenlet.swift */,
 				88673B3C1AAE07B5001664E9 /* DDLListViewModel.swift */,
 				88274ECD1A24904100FE31C6 /* ServerOperations */,
@@ -759,8 +808,9 @@
 		88274EEA1A24904100FE31C6 /* WebContentDisplayScreenlet */ = {
 			isa = PBXGroup;
 			children = (
-				88274EEB1A24904100FE31C6 /* webcontentdisplay-screenlet.strings */,
 				88274EEE1A24904100FE31C6 /* ServerOperations */,
+				88274EEB1A24904100FE31C6 /* webcontentdisplay-screenlet.strings */,
+				88F09C381AC2FA0200BA224F /* WebContentDisplayLoadInteractor.swift */,
 				88274EF11A24904100FE31C6 /* WebContentDisplayScreenlet.swift */,
 				88673B3A1AAE07A3001664E9 /* WebContentDisplayViewModel.swift */,
 			);
@@ -1036,6 +1086,7 @@
 		88A3658F1AA887EA00AC5AF1 /* UserPortraitScreenlet */ = {
 			isa = PBXGroup;
 			children = (
+				88F09C181AC2F9A800BA224F /* Interactors */,
 				88A365911AA887EA00AC5AF1 /* UserPortraitScreenlet.swift */,
 				88673B381AAE0790001664E9 /* UserPortraitViewModel.swift */,
 			);
@@ -1058,6 +1109,31 @@
 				88A3659B1AA8881800AC5AF1 /* UserPortraitView_flat7.xib */,
 			);
 			path = UserPortraitScreenlet;
+			sourceTree = "<group>";
+		};
+		88F09C181AC2F9A800BA224F /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				88F09C191AC2F9A800BA224F /* UserPortraitAttributesLoadInteractor.swift */,
+				88F09C1A1AC2F9A800BA224F /* UserPortraitBaseInteractor.swift */,
+				88F09C1B1AC2F9A800BA224F /* UserPortraitBaseLoadUserInteractor.swift */,
+				88F09C1C1AC2F9A800BA224F /* UserPortraitLoadByEmailAddressInteractor.swift */,
+				88F09C1D1AC2F9A800BA224F /* UserPortraitLoadByScreenNameInteractor.swift */,
+				88F09C1E1AC2F9A800BA224F /* UserPortraitLoadByUserIdInteractor.swift */,
+				88F09C1F1AC2F9A800BA224F /* UserPortraitLoadLoggedUserInteractor.swift */,
+			);
+			path = Interactors;
+			sourceTree = "<group>";
+		};
+		88F09C2D1AC2F9E600BA224F /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				88F09C2E1AC2F9E600BA224F /* DDLFormLoadFormInteractor.swift */,
+				88F09C2F1AC2F9E600BA224F /* DDLFormLoadRecordInteractor.swift */,
+				88F09C301AC2F9E600BA224F /* DDLFormSubmitFormInteractor.swift */,
+				88F09C311AC2F9E600BA224F /* DDLFormUploadDocumentInteractor.swift */,
+			);
+			path = Interactors;
 			sourceTree = "<group>";
 		};
 		A7333D8FF5F4A5881490A86A /* Pods */ = {
@@ -1244,11 +1320,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				88274F7C1A24904100FE31C6 /* ServerOperation.swift in Sources */,
+				88F09C201AC2F9A800BA224F /* UserPortraitAttributesLoadInteractor.swift in Sources */,
 				88274F721A24904100FE31C6 /* BaseListScreenlet.swift in Sources */,
 				88274F771A24904100FE31C6 /* BaseScreenlet.swift in Sources */,
 				882750021A24DC5900FE31C6 /* ForgotPasswordScreenletViewController.m in Sources */,
 				8843AE5C1A66B753002AB625 /* AuthBased.swift in Sources */,
+				88F09C281AC2F9B800BA224F /* BaseListPageLoadInteractor.swift in Sources */,
+				88F09C351AC2F9E600BA224F /* DDLFormUploadDocumentInteractor.swift in Sources */,
 				88274F9F1A24904100FE31C6 /* LRMobilewidgetsassetentryService_v62.m in Sources */,
+				88F09C331AC2F9E600BA224F /* DDLFormLoadRecordInteractor.swift in Sources */,
 				88274F9B1A24904100FE31C6 /* NSLocale+CurrentLocale.swift in Sources */,
 				88274FBF1A24904100FE31C6 /* DDLFieldTextTableCell_default.swift in Sources */,
 				88274F961A24904100FE31C6 /* DDLFieldStringWithOptions.swift in Sources */,
@@ -1264,11 +1344,16 @@
 				88274F951A24904100FE31C6 /* DDLFieldString.swift in Sources */,
 				8843AE5F1A66B753002AB625 /* GetUserByEmailOperation.swift in Sources */,
 				88274F761A24904100FE31C6 /* BaseScreenlet+progress.swift in Sources */,
+				88F09C371AC2F9F200BA224F /* DDLListPageLoadInteractor.swift in Sources */,
 				8843AE611A66B753002AB625 /* GetUserByUserIdOperation.swift in Sources */,
 				88274FC81A24904100FE31C6 /* DefaultThemeConstants.swift in Sources */,
 				88274F7D1A24904100FE31C6 /* SessionContext.swift in Sources */,
+				88F09C131AC2F96E00BA224F /* ForgotPasswordInteractor.swift in Sources */,
 				8843AE531A66B677002AB625 /* UserPortraitScreenletViewController.m in Sources */,
+				88F09C231AC2F9A800BA224F /* UserPortraitLoadByEmailAddressInteractor.swift in Sources */,
 				88274F901A24904100FE31C6 /* DDLField.swift in Sources */,
+				88F09C151AC2F97C00BA224F /* LoginInteractor.swift in Sources */,
+				88F09C391AC2FA0200BA224F /* WebContentDisplayLoadInteractor.swift in Sources */,
 				8843AE741A66B7B5002AB625 /* LiferayLoginByEmailOperation.swift in Sources */,
 				88274F971A24904100FE31C6 /* DDLFieldUntyped.swift in Sources */,
 				88274FFD1A24CD1A00FE31C6 /* SignUpScreenletViewController.m in Sources */,
@@ -1283,6 +1368,7 @@
 				88673B3B1AAE07A3001664E9 /* WebContentDisplayViewModel.swift in Sources */,
 				88274FBD1A24904100FE31C6 /* DDLFieldTextareaTableCell_default.swift in Sources */,
 				88274FA01A24904100FE31C6 /* LRMobilewidgetsddlrecordService_v62.m in Sources */,
+				88F09C2C1AC2F9CE00BA224F /* ServerOperationInteractor.swift in Sources */,
 				88673B371AAE077F001664E9 /* SignUpViewModel.swift in Sources */,
 				8843AE5D1A66B753002AB625 /* LRSession+CredentialStore.swift in Sources */,
 				88274F631A24904100FE31C6 /* LiferayForgotPasswordEmailOperation.swift in Sources */,
@@ -1291,6 +1377,7 @@
 				88274F751A24904100FE31C6 /* BaseListTableView.swift in Sources */,
 				88274F931A24904100FE31C6 /* DDLFieldDocument.swift in Sources */,
 				88274F8F1A24904100FE31C6 /* DDLField+Editor.swift in Sources */,
+				88F09C341AC2F9E600BA224F /* DDLFormSubmitFormInteractor.swift in Sources */,
 				88274F8E1A24904100FE31C6 /* DDLField+DataType.swift in Sources */,
 				8843AE751A66B7B5002AB625 /* LiferayLoginByScreenNameOperation.swift in Sources */,
 				88274F861A24904100FE31C6 /* LiferayDDLFormRecordLoadOperation.swift in Sources */,
@@ -1309,14 +1396,17 @@
 				88274FA11A24904100FE31C6 /* LRMobilewidgetsuserService_v62.m in Sources */,
 				8843AE761A66B7B5002AB625 /* LiferayLoginByUserIdOperation.swift in Sources */,
 				88274F781A24904100FE31C6 /* BaseScreenletView.swift in Sources */,
+				88F09C261AC2F9A800BA224F /* UserPortraitLoadLoggedUserInteractor.swift in Sources */,
 				88673B351AAE076D001664E9 /* LoginViewModel.swift in Sources */,
 				88274F8D1A24904100FE31C6 /* LiferayDDLListPageOperation.swift in Sources */,
 				88274F7F1A24904100FE31C6 /* DDLValuesParser.swift in Sources */,
 				88274F5B1A24904100FE31C6 /* AssetListScreenlet.swift in Sources */,
 				88274FA81A24904100FE31C6 /* ForgotPasswordView_default.swift in Sources */,
 				88274FF01A24904100FE31C6 /* Flat7ThemeConstants.swift in Sources */,
+				88F09C221AC2F9A800BA224F /* UserPortraitBaseLoadUserInteractor.swift in Sources */,
 				8843AE5E1A66B753002AB625 /* GetUserBaseOperation.swift in Sources */,
 				88274FB51A24904100FE31C6 /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */,
+				88F09C171AC2F98900BA224F /* SignUpInteractor.swift in Sources */,
 				88274FEC1A24904100FE31C6 /* LoginView_flat7.swift in Sources */,
 				88274F8A1A24904100FE31C6 /* DDLFormTableView.swift in Sources */,
 				88274FA51A24904100FE31C6 /* WebContentDisplayScreenlet.swift in Sources */,
@@ -1325,6 +1415,7 @@
 				88274FC11A24904100FE31C6 /* DDLFormDefaultThemeConstants.swift in Sources */,
 				88BF016D1A6FBACE000868A9 /* UIImage+Grayscale.m in Sources */,
 				88274F9C1A24904100FE31C6 /* UIButton+Title.swift in Sources */,
+				88F09C211AC2F9A800BA224F /* UserPortraitBaseInteractor.swift in Sources */,
 				8833E9621A28A541006C4413 /* DDLListScreenletViewController.m in Sources */,
 				88107F981A2C90E8009583C2 /* WebContentDisplayScreenletViewController.m in Sources */,
 				88274F711A24904100FE31C6 /* SignUpScreenlet.swift in Sources */,
@@ -1333,10 +1424,12 @@
 				88673B3F1AAE07D3001664E9 /* DDLFormViewModel.swift in Sources */,
 				88274E541A248DC100FE31C6 /* main.m in Sources */,
 				88274FC21A24904100FE31C6 /* DDLFormView_default.swift in Sources */,
+				88F09C241AC2F9A800BA224F /* UserPortraitLoadByScreenNameInteractor.swift in Sources */,
 				88274FEE1A24904100FE31C6 /* SignUpView_flat7.swift in Sources */,
 				88274F7A1A24904100FE31C6 /* KeyboardManager.swift in Sources */,
 				88274FB71A24904100FE31C6 /* DDLFieldNumberTableCell_default.swift in Sources */,
 				88274F731A24904100FE31C6 /* BaseListView.swift in Sources */,
+				88F09C111AC2F95D00BA224F /* AssetListPageLoadInteractor.swift in Sources */,
 				88673B331AAE06FA001664E9 /* ForgotPasswordViewModel.swift in Sources */,
 				88274F621A24904100FE31C6 /* LiferayForgotPasswordBaseOperation.swift in Sources */,
 				88673B3D1AAE07B5001664E9 /* DDLListViewModel.swift in Sources */,
@@ -1346,13 +1439,16 @@
 				88274FC61A24904100FE31C6 /* DDLListView_default.swift in Sources */,
 				88A3659C1AA8881800AC5AF1 /* UserPortraitView_flat7.swift in Sources */,
 				88274F831A24904100FE31C6 /* DDLFormView.swift in Sources */,
+				88F09C2B1AC2F9CE00BA224F /* Interactor.swift in Sources */,
 				88274FEA1A24904100FE31C6 /* ForgotPasswordView_flat7.swift in Sources */,
+				88F09C251AC2F9A800BA224F /* UserPortraitLoadByUserIdInteractor.swift in Sources */,
 				88673B391AAE0790001664E9 /* UserPortraitViewModel.swift in Sources */,
 				88A365931AA887EA00AC5AF1 /* UserPortraitScreenlet.swift in Sources */,
 				88274F881A24904100FE31C6 /* LiferayDDLFormUploadOperation.swift in Sources */,
 				88274FA31A24904100FE31C6 /* LiferayWebContentLoadOperation.swift in Sources */,
 				88274F9A1A24904100FE31C6 /* Global.swift in Sources */,
 				88274F9D1A24904100FE31C6 /* UIView+Animations.swift in Sources */,
+				88F09C321AC2F9E600BA224F /* DDLFormLoadFormInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
