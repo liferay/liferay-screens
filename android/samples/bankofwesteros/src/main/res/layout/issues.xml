@@ -12,7 +12,7 @@
 		android:layout_height="match_parent"
 		android:orientation="vertical">
 
-		<TextView
+		<TextView android:id="@+id/account_settings_menu"
 			style="@style/menu_entry"
 			android:background="@color/westeros_light_gray"
 			android:text="Account Settings"/>
@@ -44,6 +44,47 @@
 			android:id="@+id/issues"
 			style="@style/card_icon"
 			android:text="My Issues"/>
+
+		<com.daimajia.swipe.SwipeLayout
+			android:id="@+id/sample"
+			android:layout_width="match_parent"
+			android:layout_height="80dp">
+
+			<LinearLayout
+				android:id="@+id/bottom_wrapper"
+				android:layout_width="160dp"
+				android:layout_height="match_parent"
+				android:background="#66ddff00"
+				android:orientation="horizontal"
+				android:weightSum="1">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="My Issues 3"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="My Issues 4"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="#ffffff"
+				android:orientation="horizontal"
+				android:padding="10dp">
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="My Issues 2"/>
+
+			</LinearLayout>
+
+
+		</com.daimajia.swipe.SwipeLayout>
 
 		<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
 			android:layout_width="match_parent"
