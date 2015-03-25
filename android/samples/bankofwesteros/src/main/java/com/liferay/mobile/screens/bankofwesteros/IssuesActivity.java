@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.bankofwesteros;
 
 import android.animation.Animator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.TransitionManager;
 import android.view.View;
@@ -13,7 +14,7 @@ import com.liferay.mobile.screens.bankofwesteros.gestures.FlingTouchListener;
 /**
  * @author Javier Gamarra
  */
-public class IssuesActivity extends CardActivity {
+public class IssuesActivity extends CardActivity implements View.OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,21 @@ public class IssuesActivity extends CardActivity {
 		_card2 = (LinearLayout) findViewById(R.id.card2);
 		_card2.setOnTouchListener(new FlingTouchListener(this, getCard2Listener()));
 
+		findViewById(R.id.account_settings_menu).setOnClickListener(this);
 
+
+		SwipeLayout swipe = (SwipeLayout) findViewById(R.id.sample);
+		swipe.setShowMode(SwipeLayout.ShowMode.LayDown);
+		swipe.setDragEdge(SwipeLayout.DragEdge.Right);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+			case R.id.account_settings_menu:
+				startActivity(new Intent(this, AccountSettings.class));
+				break;
+		}
 	}
 
 	@Override
@@ -137,4 +152,6 @@ public class IssuesActivity extends CardActivity {
 	private View _background;
 	private LinearLayout _card1;
 	private LinearLayout _card2;
+
+
 }

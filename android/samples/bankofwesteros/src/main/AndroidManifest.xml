@@ -23,6 +23,7 @@
 		</activity>
 
 		<activity android:name=".IssuesActivity"/>
+		<activity android:name=".AccountSettings"/>
 
 	</application>
 
