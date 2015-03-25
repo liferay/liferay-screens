@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.auth.login.LoginListener;
@@ -50,7 +51,7 @@ public class MainActivity extends CardActivity implements View.OnClickListener {
 		_signUpSubView = findViewById(R.id.sign_up_subview);
 		_termsSubView = findViewById(R.id.terms_subview);
 
-		_background = (LinearLayout) findViewById(R.id.background);
+		_background = (ImageView) findViewById(R.id.background);
 		_background.setOnClickListener(this);
 
 		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
@@ -207,7 +208,7 @@ public class MainActivity extends CardActivity implements View.OnClickListener {
 	private int _signUpPosition;
 	private int _middlePosition;
 
-	private LinearLayout _background;
+	private ImageView _background;
 	private FrameLayout _signInView;
 	private FrameLayout _signUpView;
 	private View _forgotPasswordSubView;
