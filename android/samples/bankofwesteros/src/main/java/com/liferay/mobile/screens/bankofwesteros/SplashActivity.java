@@ -19,9 +19,10 @@ public class SplashActivity extends Activity {
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				startActivity(new Intent(SplashActivity.this, MainActivity.class));
+				startActivity(new Intent(SplashActivity.this, TourActivity.class));
 			}
 		}, DELAY_MILLIS);
+
 	}
 
 	private static final int DELAY_MILLIS = 2000;
