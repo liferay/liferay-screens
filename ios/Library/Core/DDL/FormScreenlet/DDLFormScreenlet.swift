@@ -218,10 +218,21 @@ import UIKit
 			document: DDLFieldDocument)
 			-> DDLFormUploadDocumentInteractor {
 
+		func onUploadedBytes(document: DDLFieldDocument, bytes: UInt, sent: Int64, total: Int64) {
+			switch uploadStatus {
+				case .Uploading(_, _):
+					formView.changeDocumentUploadStatus(document)
+
+					delegate?.onDocumentUploadedBytes?(document, bytes: bytes, sent: sent, total: total)
+
+				default: ()
+			}
+		}
+
 		let interactor = DDLFormUploadDocumentInteractor(
 				screenlet: self,
 				document: document,
-				onProgressClosure: self.onUploadedBytes)
+				onProgressClosure: onUploadedBytes)
 
 		interactor.onSuccess = {
 			self.formView.changeDocumentUploadStatus(interactor.document)
@@ -342,17 +353,6 @@ import UIKit
 		}
 
 		assertionFailure("[ERROR] Inconsistency: No failedUploads but uploadState is failed")
-	}
-
-	private func onUploadedBytes(document: DDLFieldDocument, bytes: UInt, sent: Int64, total: Int64) {
-		switch uploadStatus {
-			case .Uploading(_, _):
-				formView.changeDocumentUploadStatus(document)
-
-				delegate?.onDocumentUploadedBytes?(document, bytes: bytes, sent: sent, total: total)
-
-			default: ()
-		}
 	}
 
 }
