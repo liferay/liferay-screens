@@ -58,7 +58,11 @@ import UIKit
 
 	@IBInspectable public var autoLoad: Bool = true
 	@IBInspectable public var autoscrollOnValidation: Bool = true
-	@IBInspectable public var showSubmitButton: Bool = true
+	@IBInspectable public var showSubmitButton: Bool = true {
+		didSet {
+			(screenletView as? DDLFormView)?.showSubmitButton = showSubmitButton
+		}
+	}
 
 	@IBOutlet public var delegate: DDLFormScreenletDelegate?
 
@@ -72,11 +76,8 @@ import UIKit
 	private let LoadRecordAction = "load-record"
 	private let SubmitFormAction = "submit-form"
 
-	//MARK: BaseScreenlet
 
-	override public func becomeFirstResponder() -> Bool {
-		return formView.becomeFirstResponder()
-	}
+	//MARK: BaseScreenlet
 
 	override internal func onCreated() {
 		formView.showSubmitButton = showSubmitButton
