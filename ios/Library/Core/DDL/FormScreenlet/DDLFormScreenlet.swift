@@ -68,6 +68,7 @@ import UIKit
 
 	private var uploadStatus = UploadStatus.Idle
 
+	private let LoadFormAction = "load-form"
 
 	//MARK: BaseScreenlet
 
@@ -90,6 +91,43 @@ import UIKit
 		}
 	}
 
+	override internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+		if name == nil {
+			return nil
+		}
+
+		switch name! {
+			case LoadFormAction:
+				return createLoadFormInteractor()
+			case LoadRecordAction: ()
+			case SubmitFormAction: ()
+			case UploadDocumentAction: ()
+			default: ()
+		}
+
+		return nil
+	}
+
+	internal func createLoadFormInteractor() -> DDLFormLoadFormInteractor {
+		let interactor = DDLFormLoadFormInteractor(screenlet: self)
+
+		interactor.onSuccess = {
+			if let resultRecordValue = interactor.resultRecord {
+				self.userId = interactor.resultUserId ?? self.userId
+				self.formView.record = resultRecordValue
+
+				self.delegate?.onFormLoaded?(resultRecordValue)
+			}
+		}
+
+		interactor.onFailure = {
+			self.delegate?.onFormLoadError?($0)
+			return
+		}
+
+		return interactor
+	}
+
 	override internal func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
 		switch name! {
 			case "submit-form":
@@ -100,7 +138,8 @@ import UIKit
 					return uploadDocument(document)
 				}
 
-			default: ()
+			default:
+				return super.onAction(name: name, interactor: interactor, sender: sender)
 		}
 
 		return false
@@ -110,9 +149,7 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadForm() -> Bool {
-		let loadFormOperation = createLoadFormOperation()
-
-		return loadFormOperation.validateAndEnqueue()
+		return performAction(name: LoadFormAction)
 	}
 
 	public func loadRecord() -> Bool {
