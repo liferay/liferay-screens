@@ -131,10 +131,8 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	}
 
 	internal func insertFreshRows() {
-		var indexPaths: [NSIndexPath] = []
-
-		for (index,_) in enumerate(self.rows) {
-			indexPaths.append(NSIndexPath(forRow:index, inSection:0))
+		let indexPaths = (0..<self.rows.count).map {
+			NSIndexPath(forRow: $0, inSection: 0)
 		}
 
 		tableView!.insertRowsAtIndexPaths(indexPaths, withRowAnimation:UITableViewRowAnimation.Top)
