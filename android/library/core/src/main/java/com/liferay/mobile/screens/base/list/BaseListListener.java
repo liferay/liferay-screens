@@ -1,5 +1,7 @@
 package com.liferay.mobile.screens.base.list;
 
+import android.view.View;
+
 import java.util.List;
 
 /**
@@ -11,5 +13,5 @@ public interface BaseListListener<E> {
 
 	void onListPageReceived(BaseListScreenlet source, int page, List<E> entries, int rowCount);
 
-	void onListItemSelected(E element);
+	void onListItemSelected(E element, View view);
 }

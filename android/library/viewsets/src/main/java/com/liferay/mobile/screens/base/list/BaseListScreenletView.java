@@ -56,13 +56,14 @@ public abstract class BaseListScreenletView<
         super(context, attributes, defaultStyle);
     }
 
-	public void onItemClick(int position) {
+	@Override
+	public void onItemClick(int position, View view) {
 		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
 		List<E> entries = getAdapter().getEntries();
 
 		// we do not want to crash if the user manages to do a phantom click
 		if (!entries.isEmpty() && entries.size() > position && screenlet.getListener() != null) {
-			screenlet.getListener().onListItemSelected(entries.get(position));
+			screenlet.getListener().onListItemSelected(entries.get(position), view);
 		}
 	}
 
