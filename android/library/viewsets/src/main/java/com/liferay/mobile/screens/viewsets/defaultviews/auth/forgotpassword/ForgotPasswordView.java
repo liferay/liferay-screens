@@ -111,7 +111,7 @@ public class ForgotPasswordView extends LinearLayout
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_loginEditText = (EditText) findViewById(R.id.login);
+		_loginEditText = (EditText) findViewById(R.id.forgot_password_email);
 		_progressBar = (ModalProgressBar) findViewById(R.id.progress_bar);
 
 		Button requestButton = (Button) findViewById(R.id.request_button);
