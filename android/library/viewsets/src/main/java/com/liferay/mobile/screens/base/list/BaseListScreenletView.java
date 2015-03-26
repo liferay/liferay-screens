@@ -165,8 +165,12 @@ public abstract class BaseListScreenletView<
 		_recyclerView.setHasFixedSize(true);
 		_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-		_recyclerView.addItemDecoration(
-			new DividerItemDecoration(getResources().getDrawable(R.drawable.pixel_grey)));
+		DividerItemDecoration dividerItemDecoration = getDividerDecoration();
+		if (dividerItemDecoration != null) {
+			_recyclerView.addItemDecoration(
+				getDividerDecoration());
+		}
+
 	}
 
 	protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
@@ -186,6 +190,10 @@ public abstract class BaseListScreenletView<
 			allEntries.set(i + firstRowForPage, serverEntries.get(i));
 		}
 		return allEntries;
+	}
+
+	protected DividerItemDecoration getDividerDecoration() {
+		return new DividerItemDecoration(getResources().getDrawable(R.drawable.pixel_grey));
 	}
 
 	protected int getItemLayoutId() {
