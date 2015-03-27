@@ -91,18 +91,21 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 		TextView title = (TextView) customDialogView.findViewById(R.id.dialog_title);
 		title.setText(getField().getLabel());
 
-		DialogInterface.OnClickListener selectOptionHandler =
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					getField().selectOption(getField().getAvailableOptions().get(which));
-					refresh();
-				}
-			};
+		DialogInterface.OnClickListener selectOptionHandler = getAlertDialogListener();
 
 		builder.setCustomTitle(customDialogView);
 		builder.setItems(labels.toArray(new String[labels.size()]), selectOptionHandler);
 
 		_alertDialog = builder.create();
+	}
+
+	protected DialogInterface.OnClickListener getAlertDialogListener() {
+		return new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				getField().selectOption(getField().getAvailableOptions().get(which));
+				refresh();
+			}
+		};
 	}
 
 	protected List<String> getOptionsLabels() {
