@@ -97,6 +97,7 @@
 		88325FBB1AC964EF00F4CCA8 /* LoginScreenlet_ByScreenName_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325FB81AC964EF00F4CCA8 /* LoginScreenlet_ByScreenName_Tests.swift */; };
 		88325FBC1AC964EF00F4CCA8 /* LoginScreenlet_ByUserId_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325FB91AC964EF00F4CCA8 /* LoginScreenlet_ByUserId_Tests.swift */; };
 		88325FBE1AC9652000F4CCA8 /* BaseLoginScreenletTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325FBD1AC9652000F4CCA8 /* BaseLoginScreenletTestCase.swift */; };
+		88325FC21AC97B3500F4CCA8 /* MockHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325FC11AC97B3500F4CCA8 /* MockHelper.swift */; };
 		883C16C31AC19356004E8560 /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883C16C21AC19356004E8560 /* BaseListPageLoadInteractor.swift */; };
 		883C16C41AC19356004E8560 /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883C16C21AC19356004E8560 /* BaseListPageLoadInteractor.swift */; };
 		883C16C61AC19363004E8560 /* DDLListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883C16C51AC19363004E8560 /* DDLListPageLoadInteractor.swift */; };
@@ -520,6 +521,7 @@
 		88325FB81AC964EF00F4CCA8 /* LoginScreenlet_ByScreenName_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenlet_ByScreenName_Tests.swift; sourceTree = "<group>"; };
 		88325FB91AC964EF00F4CCA8 /* LoginScreenlet_ByUserId_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenlet_ByUserId_Tests.swift; sourceTree = "<group>"; };
 		88325FBD1AC9652000F4CCA8 /* BaseLoginScreenletTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLoginScreenletTestCase.swift; sourceTree = "<group>"; };
+		88325FC11AC97B3500F4CCA8 /* MockHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockHelper.swift; sourceTree = "<group>"; };
 		883C16C21AC19356004E8560 /* BaseListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListPageLoadInteractor.swift; sourceTree = "<group>"; };
 		883C16C51AC19363004E8560 /* DDLListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListPageLoadInteractor.swift; sourceTree = "<group>"; };
 		883C16C91AC19383004E8560 /* UserPortraitAttributesLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitAttributesLoadInteractor.swift; sourceTree = "<group>"; };
@@ -1474,6 +1476,7 @@
 				88325FB01AC9643A00F4CCA8 /* Integration */,
 				88325FB51AC9646800F4CCA8 /* IntegrationTestCase.swift */,
 				88325F7D1AC95AD200F4CCA8 /* liferay-screens-tests-bridge.h */,
+				88325FC11AC97B3500F4CCA8 /* MockHelper.swift */,
 				88325F7E1AC95AD200F4CCA8 /* SwiftTryCatch.h */,
 				88325F7F1AC95AD200F4CCA8 /* SwiftTryCatch.m */,
 				88325F7B1AC9590D00F4CCA8 /* TestHelper.swift */,
@@ -1848,6 +1851,7 @@
 				88311BA21A1B38B400A91249 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
 				88311BA31A1B38B400A91249 /* DDLFieldCheckboxTableCell_default.swift in Sources */,
 				883C16D71AC19383004E8560 /* UserPortraitLoadByEmailAddressInteractor.swift in Sources */,
+				88325FC21AC97B3500F4CCA8 /* MockHelper.swift in Sources */,
 				88325FA51AC963C900F4CCA8 /* DDLField_validation_Tests.swift in Sources */,
 				883C16E31AC193CD004E8560 /* WebContentDisplayLoadInteractor.swift in Sources */,
 				88311BA41A1B38B400A91249 /* DDLFieldCheckboxTableCell_default.xib in Sources */,

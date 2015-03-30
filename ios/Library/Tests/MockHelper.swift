@@ -15,28 +15,9 @@ import Foundation
 import XCTest
 
 
-func XCTAssertOptional(expression: @autoclosure () -> AnyObject?, _ message: String? = nil) {
-	let evaluatedExpression:AnyObject? = expression()
-
-	if evaluatedExpression == nil {
-		if let messageValue = message {
-			XCTFail(messageValue)
-		}
-		else {
-			XCTFail("Optional asertion failed: \(evaluatedExpression)")
-		}
-	}
-}
-
-
-func testResourcePath(name: String, ext: String) -> String {
-	let bundle = NSBundle(forClass:BaseScreenlet_Basic_Tests.self)
-	let path = bundle.pathForResource(name, ofType:ext)
-
-	if let pathValue = path {
-		return pathValue
-	}
-
-	println("TEST ERROR: Resource \(name).\(ext) can't be found")
-	return ""
+func stubService(service: NSString, withResult jsonResult: String) {
+	stubRequest("POST", "http://localhost:8080/api/jsonws/invoke")
+			.withBody(service.regex())
+			.andReturn(200)
+			.withBody(jsonResult)
 }
