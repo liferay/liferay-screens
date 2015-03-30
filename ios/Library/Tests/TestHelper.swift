@@ -41,3 +41,10 @@ func testResourcePath(name: String, ext: String) -> String {
 	return ""
 }
 
+
+func stubService(service: NSString, withResult jsonResult: String) {
+	stubRequest("POST", "http://localhost:8080/api/jsonws/invoke")
+			.withBody(service.regex())
+			.andReturn(200)
+			.withBody(jsonResult)
+}
