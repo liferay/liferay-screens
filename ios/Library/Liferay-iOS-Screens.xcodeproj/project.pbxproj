@@ -92,6 +92,7 @@
 		88325FAD1AC963C900F4CCA8 /* DDLParser_basic_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325F9C1AC963C900F4CCA8 /* DDLParser_basic_Tests.swift */; };
 		88325FAE1AC963C900F4CCA8 /* DDLParser_i18n_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325F9D1AC963C900F4CCA8 /* DDLParser_i18n_Tests.swift */; };
 		88325FAF1AC963C900F4CCA8 /* DDLRecord_FieldValues_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325F9E1AC963C900F4CCA8 /* DDLRecord_FieldValues_Tests.swift */; };
+		88325FB61AC9646800F4CCA8 /* IntegrationTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325FB51AC9646800F4CCA8 /* IntegrationTestCase.swift */; };
 		883C16C31AC19356004E8560 /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883C16C21AC19356004E8560 /* BaseListPageLoadInteractor.swift */; };
 		883C16C41AC19356004E8560 /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883C16C21AC19356004E8560 /* BaseListPageLoadInteractor.swift */; };
 		883C16C61AC19363004E8560 /* DDLListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883C16C51AC19363004E8560 /* DDLListPageLoadInteractor.swift */; };
@@ -510,6 +511,7 @@
 		88325F9C1AC963C900F4CCA8 /* DDLParser_basic_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser_basic_Tests.swift; sourceTree = "<group>"; };
 		88325F9D1AC963C900F4CCA8 /* DDLParser_i18n_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser_i18n_Tests.swift; sourceTree = "<group>"; };
 		88325F9E1AC963C900F4CCA8 /* DDLRecord_FieldValues_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLRecord_FieldValues_Tests.swift; sourceTree = "<group>"; };
+		88325FB51AC9646800F4CCA8 /* IntegrationTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrationTestCase.swift; sourceTree = "<group>"; };
 		883C16C21AC19356004E8560 /* BaseListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListPageLoadInteractor.swift; sourceTree = "<group>"; };
 		883C16C51AC19363004E8560 /* DDLListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListPageLoadInteractor.swift; sourceTree = "<group>"; };
 		883C16C91AC19383004E8560 /* UserPortraitAttributesLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitAttributesLoadInteractor.swift; sourceTree = "<group>"; };
@@ -1435,6 +1437,7 @@
 				88325F851AC963C900F4CCA8 /* Unit */,
 				88F9F2AB19E3484B006268ED /* AppDelegate.swift */,
 				88F9F2AC19E3484B006268ED /* AppInfo.plist */,
+				88325FB51AC9646800F4CCA8 /* IntegrationTestCase.swift */,
 				88325F7D1AC95AD200F4CCA8 /* liferay-screens-tests-bridge.h */,
 				88325F7E1AC95AD200F4CCA8 /* SwiftTryCatch.h */,
 				88325F7F1AC95AD200F4CCA8 /* SwiftTryCatch.m */,
@@ -1923,6 +1926,7 @@
 				881A0FE81A66CAEC005D0EB0 /* GetUserByUserIdOperation.swift in Sources */,
 				88F9F1D119E3480D006268ED /* DDLFormView.swift in Sources */,
 				883C16C71AC19363004E8560 /* DDLListPageLoadInteractor.swift in Sources */,
+				88325FB61AC9646800F4CCA8 /* IntegrationTestCase.swift in Sources */,
 				88F9F1ED19E3480D006268ED /* DDLFieldDate.swift in Sources */,
 				88F9F2D919E3484B006268ED /* LoginView_xyz.swift in Sources */,
 				88325FA31AC963C900F4CCA8 /* SessionContext_Basic_Tests.swift in Sources */,
