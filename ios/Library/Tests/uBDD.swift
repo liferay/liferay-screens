@@ -194,41 +194,41 @@ private func indentation(level:Int) -> String {
 
 
 public typealias Icons =
-	(passed: Character,
-	failed: Character,
-	given: Character,
-	when: Character,
-	then: Character,
-	eventually: Character,
-	timeout: Character,
-	skipped: Character,
-	pending: Character,
-	scenario: Character,
-	with: Character,
-	that: Character,
-	and: Character,
-	assertPassed: Character,
-	assertFailed: Character)
+	(passed: String,
+	failed: String,
+	given: String,
+	when: String,
+	then: String,
+	eventually: String,
+	timeout: String,
+	skipped: String,
+	pending: String,
+	scenario: String,
+	with: String,
+	that: String,
+	and: String,
+	assertPassed: String,
+	assertFailed: String)
 
-public var currentIcons = simpleIcons
+public var currentIcons = asciiIcons
 
-func simpleIcons() -> Icons {
+func asciiIcons() -> Icons {
 	return (
-		passed: "✓",
-		failed: "✘",
+		passed: "[OK]",
+		failed: "[KO]",
 		given: "-",
 		when: "-",
 		then: "-",
 		eventually: "-",
-		timeout: "✘",
+		timeout: "[KO]",
 		skipped: "!",
 		pending: "?",
 		scenario: "*",
-		with: "·",
-		that: "·",
-		and: "·",
-		assertPassed: "✓",
-		assertFailed: "✘")
+		with: "~",
+		that: "~",
+		and: "~",
+		assertPassed: "[ok]",
+		assertFailed: "[ko]")
 }
 
 func emojiIcons() -> Icons {
