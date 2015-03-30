@@ -11,6 +11,17 @@
 		88AB94071AC9AA940009E049 /* LiferayScreens.h in Headers */ = {isa = PBXBuildFile; fileRef = 88AB94061AC9AA940009E049 /* LiferayScreens.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88AB940D1AC9AA940009E049 /* LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AB94011AC9AA940009E049 /* LiferayScreens.framework */; };
 		88AB94141AC9AA940009E049 /* LiferayScreensTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB94131AC9AA940009E049 /* LiferayScreensTests.swift */; };
+		88AB942B1AC9AE420009E049 /* Bool+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB941F1AC9AE420009E049 /* Bool+Conversion.swift */; };
+		88AB942C1AC9AE420009E049 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB94201AC9AE420009E049 /* Global.swift */; };
+		88AB942D1AC9AE420009E049 /* NSLocale+CurrentLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB94211AC9AE420009E049 /* NSLocale+CurrentLocale.swift */; };
+		88AB942E1AC9AE420009E049 /* UIButton+Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB94221AC9AE420009E049 /* UIButton+Title.swift */; };
+		88AB942F1AC9AE420009E049 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AB94231AC9AE420009E049 /* UIView+Animations.swift */; };
+		88AB94301AC9AE420009E049 /* LRMobilewidgetsassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 88AB94251AC9AE420009E049 /* LRMobilewidgetsassetentryService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		88AB94311AC9AE420009E049 /* LRMobilewidgetsassetentryService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB94261AC9AE420009E049 /* LRMobilewidgetsassetentryService_v62.m */; };
+		88AB94321AC9AE420009E049 /* LRMobilewidgetsddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 88AB94271AC9AE420009E049 /* LRMobilewidgetsddlrecordService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		88AB94331AC9AE420009E049 /* LRMobilewidgetsddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB94281AC9AE420009E049 /* LRMobilewidgetsddlrecordService_v62.m */; };
+		88AB94341AC9AE420009E049 /* LRMobilewidgetsuserService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 88AB94291AC9AE420009E049 /* LRMobilewidgetsuserService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		88AB94351AC9AE420009E049 /* LRMobilewidgetsuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AB942A1AC9AE420009E049 /* LRMobilewidgetsuserService_v62.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,11 +39,22 @@
 		324FE35EF98296901362804E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		49EBF39170BFF1E1FB82A92D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		88AB94011AC9AA940009E049 /* LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		88AB94051AC9AA940009E049 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		88AB94051AC9AA940009E049 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		88AB94061AC9AA940009E049 /* LiferayScreens.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreens.h; sourceTree = SOURCE_ROOT; };
 		88AB940C1AC9AA940009E049 /* LiferayScreensTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiferayScreensTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88AB94121AC9AA940009E049 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88AB94131AC9AA940009E049 /* LiferayScreensTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiferayScreensTests.swift; sourceTree = "<group>"; };
+		88AB941F1AC9AE420009E049 /* Bool+Conversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Conversion.swift"; sourceTree = "<group>"; };
+		88AB94201AC9AE420009E049 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		88AB94211AC9AE420009E049 /* NSLocale+CurrentLocale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLocale+CurrentLocale.swift"; sourceTree = "<group>"; };
+		88AB94221AC9AE420009E049 /* UIButton+Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Title.swift"; sourceTree = "<group>"; };
+		88AB94231AC9AE420009E049 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
+		88AB94251AC9AE420009E049 /* LRMobilewidgetsassetentryService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsassetentryService_v62.h; sourceTree = "<group>"; };
+		88AB94261AC9AE420009E049 /* LRMobilewidgetsassetentryService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsassetentryService_v62.m; sourceTree = "<group>"; };
+		88AB94271AC9AE420009E049 /* LRMobilewidgetsddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsddlrecordService_v62.h; sourceTree = "<group>"; };
+		88AB94281AC9AE420009E049 /* LRMobilewidgetsddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsddlrecordService_v62.m; sourceTree = "<group>"; };
+		88AB94291AC9AE420009E049 /* LRMobilewidgetsuserService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsuserService_v62.h; sourceTree = "<group>"; };
+		88AB942A1AC9AE420009E049 /* LRMobilewidgetsuserService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsuserService_v62.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +89,7 @@
 		88AB93F71AC9AA940009E049 = {
 			isa = PBXGroup;
 			children = (
-				88AB94031AC9AA940009E049 /* LiferayScreens */,
+				88AB94031AC9AA940009E049 /* Framework */,
 				88AB94101AC9AA940009E049 /* Tests */,
 				88AB94021AC9AA940009E049 /* Products */,
 				38492142DE310B49E197DB90 /* Pods */,
@@ -84,11 +106,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		88AB94031AC9AA940009E049 /* LiferayScreens */ = {
+		88AB94031AC9AA940009E049 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				88AB941D1AC9AE420009E049 /* Core */,
 				88AB94041AC9AA940009E049 /* Supporting Files */,
 			);
+			name = Framework;
 			path = LiferayScreens;
 			sourceTree = "<group>";
 		};
@@ -118,6 +142,40 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		88AB941D1AC9AE420009E049 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				88AB941E1AC9AE420009E049 /* Extensions */,
+				88AB94241AC9AE420009E049 /* Services */,
+			);
+			path = Core;
+			sourceTree = SOURCE_ROOT;
+		};
+		88AB941E1AC9AE420009E049 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				88AB941F1AC9AE420009E049 /* Bool+Conversion.swift */,
+				88AB94201AC9AE420009E049 /* Global.swift */,
+				88AB94211AC9AE420009E049 /* NSLocale+CurrentLocale.swift */,
+				88AB94221AC9AE420009E049 /* UIButton+Title.swift */,
+				88AB94231AC9AE420009E049 /* UIView+Animations.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		88AB94241AC9AE420009E049 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				88AB94251AC9AE420009E049 /* LRMobilewidgetsassetentryService_v62.h */,
+				88AB94261AC9AE420009E049 /* LRMobilewidgetsassetentryService_v62.m */,
+				88AB94271AC9AE420009E049 /* LRMobilewidgetsddlrecordService_v62.h */,
+				88AB94281AC9AE420009E049 /* LRMobilewidgetsddlrecordService_v62.m */,
+				88AB94291AC9AE420009E049 /* LRMobilewidgetsuserService_v62.h */,
+				88AB942A1AC9AE420009E049 /* LRMobilewidgetsuserService_v62.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		FB142B1665BCC32BC77AD75B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,7 +191,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88AB94341AC9AE420009E049 /* LRMobilewidgetsuserService_v62.h in Headers */,
 				88AB94071AC9AA940009E049 /* LiferayScreens.h in Headers */,
+				88AB94301AC9AE420009E049 /* LRMobilewidgetsassetentryService_v62.h in Headers */,
+				88AB94321AC9AE420009E049 /* LRMobilewidgetsddlrecordService_v62.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +345,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88AB94311AC9AE420009E049 /* LRMobilewidgetsassetentryService_v62.m in Sources */,
+				88AB942C1AC9AE420009E049 /* Global.swift in Sources */,
+				88AB94351AC9AE420009E049 /* LRMobilewidgetsuserService_v62.m in Sources */,
+				88AB942B1AC9AE420009E049 /* Bool+Conversion.swift in Sources */,
+				88AB942F1AC9AE420009E049 /* UIView+Animations.swift in Sources */,
+				88AB942E1AC9AE420009E049 /* UIButton+Title.swift in Sources */,
+				88AB942D1AC9AE420009E049 /* NSLocale+CurrentLocale.swift in Sources */,
+				88AB94331AC9AE420009E049 /* LRMobilewidgetsddlrecordService_v62.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

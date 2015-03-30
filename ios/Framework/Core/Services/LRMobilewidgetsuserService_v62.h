@@ -12,7 +12,7 @@
  * details.
  */
 
-#import "LRBaseService.h"
+#import <Liferay_iOS_SDK/LRBaseService.h>
 
 /**
  * @author Bruno Farache
