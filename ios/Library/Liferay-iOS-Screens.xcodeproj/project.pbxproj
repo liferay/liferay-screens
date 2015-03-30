@@ -74,6 +74,8 @@
 		88311BC81A1B38D800A91249 /* Flat7ThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F18119E3480D006268ED /* Flat7ThemeConstants.swift */; };
 		88311BC91A1B38D800A91249 /* LoginView_xyz.xib in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F2C119E3484B006268ED /* LoginView_xyz.xib */; };
 		88325F7C1AC9590D00F4CCA8 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325F7B1AC9590D00F4CCA8 /* TestHelper.swift */; };
+		88325F811AC95AD200F4CCA8 /* SwiftTryCatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 88325F7F1AC95AD200F4CCA8 /* SwiftTryCatch.m */; };
+		88325F821AC95AD200F4CCA8 /* uBDD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325F801AC95AD200F4CCA8 /* uBDD.swift */; };
 		883C16C11AC19344004E8560 /* DDLListScreenlet_ParseFields_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883C16BF1AC19344004E8560 /* DDLListScreenlet_ParseFields_Tests.swift */; };
 		883C16C31AC19356004E8560 /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883C16C21AC19356004E8560 /* BaseListPageLoadInteractor.swift */; };
 		883C16C41AC19356004E8560 /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883C16C21AC19356004E8560 /* BaseListPageLoadInteractor.swift */; };
@@ -488,6 +490,10 @@
 		881A10071A66D0CF005D0EB0 /* flat7-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
 		88238A671AC1B28000CD2EBE /* DDLRecord_FieldValues_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLRecord_FieldValues_Tests.swift; sourceTree = "<group>"; };
 		88325F7B1AC9590D00F4CCA8 /* TestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
+		88325F7D1AC95AD200F4CCA8 /* liferay-screens-tests-bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "liferay-screens-tests-bridge.h"; sourceTree = "<group>"; };
+		88325F7E1AC95AD200F4CCA8 /* SwiftTryCatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftTryCatch.h; sourceTree = "<group>"; };
+		88325F7F1AC95AD200F4CCA8 /* SwiftTryCatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwiftTryCatch.m; sourceTree = "<group>"; };
+		88325F801AC95AD200F4CCA8 /* uBDD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = uBDD.swift; sourceTree = "<group>"; };
 		883C16BF1AC19344004E8560 /* DDLListScreenlet_ParseFields_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListScreenlet_ParseFields_Tests.swift; sourceTree = "<group>"; };
 		883C16C21AC19356004E8560 /* BaseListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListPageLoadInteractor.swift; sourceTree = "<group>"; };
 		883C16C51AC19363004E8560 /* DDLListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListPageLoadInteractor.swift; sourceTree = "<group>"; };
@@ -1354,12 +1360,16 @@
 				88F9F2B819E3484B006268ED /* DDLParser_Basic_Tests.swift */,
 				88F9F2B919E3484B006268ED /* DDLParser_i18n_Tests.swift */,
 				88238A671AC1B28000CD2EBE /* DDLRecord_FieldValues_Tests.swift */,
+				88325F7D1AC95AD200F4CCA8 /* liferay-screens-tests-bridge.h */,
 				88F9F2BA19E3484B006268ED /* LRSession_storage_Tests.swift */,
 				88F9F2BB19E3484B006268ED /* SessionContext_Basic_Tests.swift */,
 				88F9F2BC19E3484B006268ED /* SessionContext_Storage_Tests.swift */,
+				88325F7E1AC95AD200F4CCA8 /* SwiftTryCatch.h */,
+				88325F7F1AC95AD200F4CCA8 /* SwiftTryCatch.m */,
 				88325F7B1AC9590D00F4CCA8 /* TestHelper.swift */,
 				88F9F2BD19E3484B006268ED /* TestsInfo.plist */,
 				88F9F2BE19E3484B006268ED /* theme-xyz */,
+				88325F801AC95AD200F4CCA8 /* uBDD.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1698,6 +1708,7 @@
 				88311BBA1A1B38D800A91249 /* AssetListView_default.xib in Sources */,
 				88311BBB1A1B38D800A91249 /* ForgotPasswordView_default.swift in Sources */,
 				88A3657E1AA8878200AC5AF1 /* UserPortraitViewModel.swift in Sources */,
+				88325F821AC95AD200F4CCA8 /* uBDD.swift in Sources */,
 				88311BBC1A1B38D800A91249 /* ForgotPasswordView_default.xib in Sources */,
 				88311BBD1A1B38D800A91249 /* SignUpView_default.xib in Sources */,
 				88311BBE1A1B38D800A91249 /* DDLListView_default.swift in Sources */,
@@ -1734,6 +1745,7 @@
 				88311BAB1A1B38B400A91249 /* DDLFieldNumberTableCell_default.swift in Sources */,
 				88311BAC1A1B38B400A91249 /* DDLFieldNumberTableCell_default.xib in Sources */,
 				88A365851AA8879F00AC5AF1 /* UserPortraitView_default.swift in Sources */,
+				88325F811AC95AD200F4CCA8 /* SwiftTryCatch.m in Sources */,
 				88311BAD1A1B38B400A91249 /* DDLFieldRadioTableCell_default.swift in Sources */,
 				88311BAE1A1B38B400A91249 /* DDLFieldRadioTableCell_default.xib in Sources */,
 				88311BAF1A1B38B400A91249 /* DDLFieldSelectTableCell_default.swift in Sources */,
@@ -2115,6 +2127,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Tests/liferay-screens-tests-bridge.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -2134,6 +2147,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Tests/liferay-screens-tests-bridge.h";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
