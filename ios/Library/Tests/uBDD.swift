@@ -38,7 +38,8 @@ public enum Action {
 public func given(givenStr: String, givenCode: Void -> Void,
 	when whenStr: String, whenCode: Void -> Void,
 	eventually eventuallyStr: String, eventuallyCode: AnyObject? -> Void,
-	action: Action) {
+	action: Action,
+	timeoutSeconds: NSTimeInterval = 5) {
 
 	let icons = currentIcons()
 	let indentation = currentIndentation()
@@ -69,7 +70,7 @@ public func given(givenStr: String, givenCode: Void -> Void,
 
 			print("\(indentation)\(icons.eventually) Eventually \(eventuallyStr)\n")
 
-			testCase.waitForExpectationsWithTimeout(5, handler: nil)
+			testCase.waitForExpectationsWithTimeout(timeoutSeconds, handler: nil)
 
 			if signaled {
 				SwiftTryCatch.try({
