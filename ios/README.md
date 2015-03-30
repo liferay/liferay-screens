@@ -39,16 +39,16 @@ This implementation of Liferay Screens uses the Swift programming language. Howe
 
 Liferay Screens is released as a plain source code library. As soon as CocoaPods supports Swift libraries ([1](https://github.com/CocoaPods/CocoaPods/pull/2222), [2](https://github.com/CocoaPods/CocoaPods/issues/2272)), you'll be able to set up your project by simply adding a single line to your `Podfile`. 
 
-Meanwhile, there are a few things you need to manually setup in your app to prepare it for Liferay Screens. First, you need to download the [Liferay Screens source code](https://github.com/liferay/liferay-screens/releases) and include it to your project. The steps for doing this are shown here:
+Meanwhile, there are a few things you need to manually setup in your app to prepare it for Liferay Screens. First, you need to download the [Liferay Screens source code](https://github.com/liferay/liferay-screens/releases) and include it in your project. The steps for doing this are shown here:
 
-1. Create a folder at the root of the project called `Liferay-Screens`.
+1. Create a folder at the root of your project called `Liferay-Screens`.
 2. Copy the folders `Library/Core` and `Library/Themes` from the downloaded 
-   source code into this new folder. So inside `Liferay-Screens` folder you'll have two subfolders: `Core` and `Themes`.
+   source code into this new folder. After this, you'll have two subdirectories inside of your project's `Liferay-Screens` directory: `Core` and `Themes`.
 3. Drag `Liferay-Screens` from the Finder and drop it into your Xcode project.
 
-![This Xcode project has Liferay Screens included.](Documentation/Images/project-setup.png)
+![This Xcode project includes Liferay Screens.](Documentation/Images/project-setup.png)
 
-Next, set up [CocoaPods](http://cocoapods.org) for your project if you haven't done so already. Add the dependencies to your `Podfile` and then execute `pod install`. Use this [Podfile](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile) as a template. You should consider using the [CocoaPods for Xcode plugin](https://github.com/kattrali/cocoapods-xcode-plugin). You can install it through the [Alcatraz package manager](http://alcatraz.io/)) for Xcode. This way, you can perform these tasks from Xcode.
+Next, set up [CocoaPods](http://cocoapods.org) for your project if you haven't done so already. Add the dependencies to your `Podfile` and then execute `pod install`. Use this [Podfile](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile) as a template. You should consider using the [CocoaPods for Xcode plugin](https://github.com/kattrali/cocoapods-xcode-plugin). You can install it through the [Alcatraz package manager](http://alcatraz.io/)) for Xcode. This way, you can perform these tasks from Xcode. 
 
 ![The CocoaPods for Xcode plugin.](Documentation/Images/xcode-cocoapods.png)
 
