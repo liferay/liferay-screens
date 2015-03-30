@@ -34,6 +34,7 @@ public enum Action {
 	case TestAndWaitFor(String, XCTestCase)
 }
 
+
 public func given(givenStr: String, givenCode: Void -> Void,
 	when whenStr: String, whenCode: Void -> Void,
 	eventually eventuallyStr: String, eventuallyCode: AnyObject? -> Void,
@@ -47,21 +48,16 @@ public func given(givenStr: String, givenCode: Void -> Void,
 			let expectation = testCase.expectationWithDescription("")
 
 			var signaled = false
+			var resultObject: AnyObject?
 
 			let observer = NSNotificationCenter.defaultCenter().addObserverForName(notificationName,
 					object: nil,
-					// why is this working using main queue?
-					queue: NSOperationQueue.mainQueue(),
+					queue: NSOperationQueue.mainQueue(),  // why is this working using main queue?
 					usingBlock: { notif in
 
-				SwiftTryCatch.try({
-					eventuallyCode(notif.object)
-					print("\(indentation)\(icons.passed) PASSED\n")
-				}, catch: { error in
-					print("\(indentation)\(icons.failed) FAILED\n")
-				}, finally: nil)
-
 				signaled = true
+				resultObject = notif.object
+
 				expectation.fulfill()
 			})
 
@@ -75,7 +71,15 @@ public func given(givenStr: String, givenCode: Void -> Void,
 
 			testCase.waitForExpectationsWithTimeout(5, handler: nil)
 
-			if !signaled {
+			if signaled {
+				SwiftTryCatch.try({
+					eventuallyCode(resultObject)
+					print("\(indentation)\(icons.passed) PASSED\n")
+				}, catch: { error in
+					print("\(indentation)\(icons.failed) FAILED\n")
+				}, finally: nil)
+			}
+			else {
 				print("\(indentation)\(icons.failed) FAILED (timeout)\n")
 			}
 
