@@ -27,6 +27,7 @@ import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractor
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorImpl;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Javier Gamarra
@@ -125,6 +126,7 @@ public class UserPortraitScreenlet
 				load();
 			}
 			catch (Exception e) {
+				LiferayLogger.e("Error loading portrait", e);
 			}
 		}
 	}
