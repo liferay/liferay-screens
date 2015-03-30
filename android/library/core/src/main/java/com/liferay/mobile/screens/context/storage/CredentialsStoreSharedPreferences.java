@@ -20,6 +20,7 @@ import android.content.SharedPreferences;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -115,6 +116,7 @@ public class CredentialsStoreSharedPreferences implements CredentialsStore {
 			return "liferay-screens-" + url.getHost() + "-" + url.getPort();
 		}
 		catch (MalformedURLException e) {
+			LiferayLogger.e("Error parsing url", e);
 		}
 
 		return "liferay-screens";
