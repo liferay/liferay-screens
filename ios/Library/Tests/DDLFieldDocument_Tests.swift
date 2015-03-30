@@ -66,7 +66,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
-		docField.currentValue = UIImage(named:"default-field")
+		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", "png"))
 		docField.uploadStatus = .Failed(NSError(domain: "", code: 0, userInfo:nil))
 
 		XCTAssertFalse(docField.validate())
@@ -86,7 +86,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
-		docField.currentValue = UIImage(named:"default-field")
+		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", "png"))
 
 		XCTAssertEqual("image/png", docField.mimeType ?? "nil mimeType")
 	}
@@ -117,7 +117,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
-		let image = UIImage(named:"default-field")
+		let image = UIImage(contentsOfFile: testResourcePath("default-field", "png"))
 		let imageBytes = UIImagePNGRepresentation(image)
 		let imageLength = Int64(imageBytes.length)
 
@@ -161,7 +161,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as DDLFieldDocument
 
-		docField.currentValue = UIImage(named:"default-field")
+		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", "png"))
 
 		XCTAssertEqual("An image has been selected", docField.currentValueAsLabel!)
 	}

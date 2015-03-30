@@ -64,8 +64,10 @@ public class LiferayServerContext {
 			return
 		}
 
+		let bundle = NSBundle(forClass: LiferayServerContext.self)
+
 		if let propertiesPath =
-				NSBundle.mainBundle().pathForResource("liferay-server-context", ofType:"plist") {
+				bundle.pathForResource("liferay-server-context", ofType:"plist") {
 
 			StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: propertiesPath)
 		}
@@ -73,10 +75,8 @@ public class LiferayServerContext {
 			println("WARNING: liferay-server-context.plist file is not found. Falling back to template " +
 				"liferay-server-context-sample.list")
 
-			if let templatePath = NSBundle.mainBundle().pathForResource("liferay-server-context-sample",
-					ofType:"plist") {
-
-				StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: templatePath)
+			if let path = bundle.pathForResource("liferay-server-context-sample", ofType:"plist") {
+				StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
 			}
 			else {
 				println("WARNING: liferay-server-context-sample.plist file is not found. " +

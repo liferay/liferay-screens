@@ -28,3 +28,16 @@ func XCTAssertOptional(expression: @autoclosure () -> AnyObject?, _ message: Str
 	}
 }
 
+
+func testResourcePath(name: String, ext: String) -> String {
+	let bundle = NSBundle(forClass:BaseScreenlet_Basic_Tests.self)
+	let path = bundle.pathForResource(name, ofType:ext)
+
+	if let pathValue = path {
+		return pathValue
+	}
+
+	println("TEST ERROR: Resource \(name).\(ext) can't be found")
+	return ""
+}
+
