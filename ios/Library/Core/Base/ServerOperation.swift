@@ -206,7 +206,7 @@ public class ServerOperation: NSOperation {
 
 	private func callOnComplete() {
 		if self.onComplete != nil {
-			dispatch_sync(dispatch_get_main_queue()) {
+			dispatch_async(dispatch_get_main_queue()) {
 				self.onComplete!(self)
 			}
 		}
