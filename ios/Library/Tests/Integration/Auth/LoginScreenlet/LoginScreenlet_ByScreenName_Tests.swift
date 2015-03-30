@@ -16,7 +16,7 @@ import XCTest
 
 class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 
-	func test_LoginByScreenName_Successful() {
+	func test_Successful() {
 		scenario("LoginScreenlet by screenName should work") {
 			given("a configured login screenlet", {
 				with("auth method set to screenName") {
@@ -28,7 +28,7 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 				}
 			},
 			when: "the screenlet sends the request to the server and the response is received", {
-				stubService("get-user-by-screen-name", withResult:self.loginOKJSON)
+				mockServer.stubService("get-user-by-screen-name", withResult:mockServer.loginOK())
 
 				self.screenlet!.delegate = Delegate() { result in
 					completed("login response received", withResult: result)
@@ -46,8 +46,8 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 					let attrs = result as [String:AnyObject]
 
 					XCTAssertTrue(attrs.count > 0)
-					XCTAssertNotNil(attrs["emailAddress"])
-					XCTAssertEqual("test@liferay.com", attrs["emailAddress"] as String)
+					XCTAssertNotNil(attrs["screenName"])
+					XCTAssertEqual("test", attrs["screenName"] as String)
 				}
 				assertThat("the session should be established") {
 					XCTAssertTrue(SessionContext.hasSession)

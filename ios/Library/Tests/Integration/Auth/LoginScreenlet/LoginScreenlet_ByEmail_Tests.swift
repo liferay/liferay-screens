@@ -28,7 +28,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				}
 			},
 			when: "the screenlet sends the request to the server and the response is received", {
-				stubService("get-user-by-email-address", withResult:self.loginOKJSON)
+				mockServer.stubService("get-user-by-email-address", withResult:mockServer.loginOK())
 
 				self.screenlet!.delegate = Delegate() { result in
 					completed("login response received", withResult: result)
@@ -80,7 +80,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				}
 			},
 			when: "the screenlet sends the request to the server and the response is received", {
-				stubService("get-user-by-email-address", withResult:self.loginOKJSON)
+				mockServer.stubService("get-user-by-email-address", withResult:mockServer.loginOK())
 
 				self.screenlet!.delegate = Delegate() {
 					completed("login response received", withResult: $0)
@@ -101,7 +101,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 	}
 
 	func test_Failed_WrongCredentials() {
-		scenario("LoginScreenlet by email should fail") {
+		scenario("LoginScreenlet by email should fail when credentials are wrong") {
 			given("a configured login screenlet", {
 				with("auth method set to email") {
 					self.screenlet!.authMethod = AuthMethod.Email.rawValue
@@ -112,7 +112,8 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				}
 			},
 			when: "the screenlet sends the request to the server and the response is received", {
-				stubService("get-user-by-email-address", withResult:self.loginFailedAuthentication)
+				mockServer.stubService("get-user-by-email-address",
+						withResult:mockServer.loginFailedAuthentication())
 
 				self.screenlet!.delegate = Delegate() { result in
 					completed("login response received", withResult: result)
