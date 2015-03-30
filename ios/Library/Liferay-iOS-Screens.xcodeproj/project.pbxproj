@@ -93,6 +93,10 @@
 		88325FAE1AC963C900F4CCA8 /* DDLParser_i18n_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325F9D1AC963C900F4CCA8 /* DDLParser_i18n_Tests.swift */; };
 		88325FAF1AC963C900F4CCA8 /* DDLRecord_FieldValues_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325F9E1AC963C900F4CCA8 /* DDLRecord_FieldValues_Tests.swift */; };
 		88325FB61AC9646800F4CCA8 /* IntegrationTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325FB51AC9646800F4CCA8 /* IntegrationTestCase.swift */; };
+		88325FBA1AC964EF00F4CCA8 /* LoginScreenlet_ByEmail_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325FB71AC964EF00F4CCA8 /* LoginScreenlet_ByEmail_Tests.swift */; };
+		88325FBB1AC964EF00F4CCA8 /* LoginScreenlet_ByScreenName_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325FB81AC964EF00F4CCA8 /* LoginScreenlet_ByScreenName_Tests.swift */; };
+		88325FBC1AC964EF00F4CCA8 /* LoginScreenlet_ByUserId_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325FB91AC964EF00F4CCA8 /* LoginScreenlet_ByUserId_Tests.swift */; };
+		88325FBE1AC9652000F4CCA8 /* BaseLoginScreenletTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88325FBD1AC9652000F4CCA8 /* BaseLoginScreenletTestCase.swift */; };
 		883C16C31AC19356004E8560 /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883C16C21AC19356004E8560 /* BaseListPageLoadInteractor.swift */; };
 		883C16C41AC19356004E8560 /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883C16C21AC19356004E8560 /* BaseListPageLoadInteractor.swift */; };
 		883C16C61AC19363004E8560 /* DDLListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883C16C51AC19363004E8560 /* DDLListPageLoadInteractor.swift */; };
@@ -512,6 +516,10 @@
 		88325F9D1AC963C900F4CCA8 /* DDLParser_i18n_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser_i18n_Tests.swift; sourceTree = "<group>"; };
 		88325F9E1AC963C900F4CCA8 /* DDLRecord_FieldValues_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLRecord_FieldValues_Tests.swift; sourceTree = "<group>"; };
 		88325FB51AC9646800F4CCA8 /* IntegrationTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrationTestCase.swift; sourceTree = "<group>"; };
+		88325FB71AC964EF00F4CCA8 /* LoginScreenlet_ByEmail_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenlet_ByEmail_Tests.swift; sourceTree = "<group>"; };
+		88325FB81AC964EF00F4CCA8 /* LoginScreenlet_ByScreenName_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenlet_ByScreenName_Tests.swift; sourceTree = "<group>"; };
+		88325FB91AC964EF00F4CCA8 /* LoginScreenlet_ByUserId_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenlet_ByUserId_Tests.swift; sourceTree = "<group>"; };
+		88325FBD1AC9652000F4CCA8 /* BaseLoginScreenletTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLoginScreenletTestCase.swift; sourceTree = "<group>"; };
 		883C16C21AC19356004E8560 /* BaseListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListPageLoadInteractor.swift; sourceTree = "<group>"; };
 		883C16C51AC19363004E8560 /* DDLListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListPageLoadInteractor.swift; sourceTree = "<group>"; };
 		883C16C91AC19383004E8560 /* UserPortraitAttributesLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitAttributesLoadInteractor.swift; sourceTree = "<group>"; };
@@ -865,6 +873,33 @@
 				88325F9E1AC963C900F4CCA8 /* DDLRecord_FieldValues_Tests.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		88325FB01AC9643A00F4CCA8 /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				88325FB11AC9643A00F4CCA8 /* Auth */,
+			);
+			path = Integration;
+			sourceTree = "<group>";
+		};
+		88325FB11AC9643A00F4CCA8 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				88325FB21AC9643A00F4CCA8 /* LoginScreenlet */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		88325FB21AC9643A00F4CCA8 /* LoginScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				88325FBD1AC9652000F4CCA8 /* BaseLoginScreenletTestCase.swift */,
+				88325FB71AC964EF00F4CCA8 /* LoginScreenlet_ByEmail_Tests.swift */,
+				88325FB81AC964EF00F4CCA8 /* LoginScreenlet_ByScreenName_Tests.swift */,
+				88325FB91AC964EF00F4CCA8 /* LoginScreenlet_ByUserId_Tests.swift */,
+			);
+			path = LoginScreenlet;
 			sourceTree = "<group>";
 		};
 		883C16C81AC19383004E8560 /* Interactors */ = {
@@ -1434,9 +1469,9 @@
 		88F9F2AA19E3484B006268ED /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				88325F851AC963C900F4CCA8 /* Unit */,
 				88F9F2AB19E3484B006268ED /* AppDelegate.swift */,
 				88F9F2AC19E3484B006268ED /* AppInfo.plist */,
+				88325FB01AC9643A00F4CCA8 /* Integration */,
 				88325FB51AC9646800F4CCA8 /* IntegrationTestCase.swift */,
 				88325F7D1AC95AD200F4CCA8 /* liferay-screens-tests-bridge.h */,
 				88325F7E1AC95AD200F4CCA8 /* SwiftTryCatch.h */,
@@ -1445,6 +1480,7 @@
 				88F9F2BD19E3484B006268ED /* TestsInfo.plist */,
 				88F9F2BE19E3484B006268ED /* theme-xyz */,
 				88325F801AC95AD200F4CCA8 /* uBDD.swift */,
+				88325F851AC963C900F4CCA8 /* Unit */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1863,6 +1899,7 @@
 				8877199D1AB1B36B00FE0ED9 /* SignUpInteractor.swift in Sources */,
 				88F9F18D19E3480D006268ED /* LiferayAssetListPageOperation.swift in Sources */,
 				88F09C0B1AC2F91A00BA224F /* DDLFormLoadRecordInteractor.swift in Sources */,
+				88325FBC1AC964EF00F4CCA8 /* LoginScreenlet_ByUserId_Tests.swift in Sources */,
 				88F9F19919E3480D006268ED /* LiferayForgotPasswordEmailOperation.swift in Sources */,
 				88F9F1CB19E3480D006268ED /* DDLXSDParser.swift in Sources */,
 				88F9F1FB19E3480D006268ED /* Bool+Conversion.swift in Sources */,
@@ -1878,10 +1915,13 @@
 				88F9F1FF19E3480D006268ED /* NSLocale+CurrentLocale.swift in Sources */,
 				888115501AC02FA300BF0E00 /* ServerOperationInteractor.swift in Sources */,
 				88F9F19F19E3480D006268ED /* LoginViewModel.swift in Sources */,
+				88325FBA1AC964EF00F4CCA8 /* LoginScreenlet_ByEmail_Tests.swift in Sources */,
 				88F9F19319E3480D006268ED /* ForgotPasswordViewModel.swift in Sources */,
+				88325FBE1AC9652000F4CCA8 /* BaseLoginScreenletTestCase.swift in Sources */,
 				88F9F1DF19E3480D006268ED /* DDLListViewModel.swift in Sources */,
 				88F9F1DD19E3480D006268ED /* DDLFormTableView.swift in Sources */,
 				88F9F1EF19E3480D006268ED /* DDLFieldDocument.swift in Sources */,
+				88325FBB1AC964EF00F4CCA8 /* LoginScreenlet_ByScreenName_Tests.swift in Sources */,
 				88F9F1B119E3480D006268ED /* SignUpScreenlet.swift in Sources */,
 				883C16E01AC19394004E8560 /* AssetListPageLoadInteractor.swift in Sources */,
 				88325FA71AC963C900F4CCA8 /* DDLFieldDate_Tests.swift in Sources */,
