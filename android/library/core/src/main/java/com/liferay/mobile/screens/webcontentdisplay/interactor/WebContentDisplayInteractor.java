@@ -25,7 +25,7 @@ import java.util.Locale;
 public interface WebContentDisplayInteractor
 	extends Interactor<WebContentDisplayListener> {
 
-	public void load(long groupId, String articleId, Locale locale)
+	void load(long groupId, String articleId, Locale locale)
 		throws Exception;
 
 }

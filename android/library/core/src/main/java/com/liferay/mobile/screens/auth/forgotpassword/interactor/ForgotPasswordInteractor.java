@@ -24,9 +24,9 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
 public interface ForgotPasswordInteractor
 	extends Interactor<ForgotPasswordListener> {
 
-	public void requestPassword(
-			long companyId, String login, AuthMethod authMethod,
-			String anonymousApiUserName, String anonymousApiPassword)
+	void requestPassword(
+		long companyId, String login, AuthMethod authMethod,
+		String anonymousApiUserName, String anonymousApiPassword)
 		throws Exception;
 
 }
