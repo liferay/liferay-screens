@@ -70,11 +70,11 @@ public class WebContentDisplayInteractorImpl
 		}
 
 		if (articleId == null || articleId.isEmpty()) {
-			throw new IllegalArgumentException("ArticleId cannot be null or empty");
+			throw new IllegalArgumentException("ArticleId cannot be empty");
 		}
 
 		if (locale == null) {
-			throw new IllegalArgumentException("Locale cannot be null");
+			throw new IllegalArgumentException("Locale cannot be empty");
 		}
 	}
 
