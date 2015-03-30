@@ -22,6 +22,6 @@ import com.liferay.mobile.screens.ddl.model.Record;
  */
 public interface DDLFormLoadRecordInteractor extends DDLFormBaseInteractor {
 
-	public void loadRecord(Record record) throws Exception;
+	void loadRecord(Record record) throws Exception;
 
 }

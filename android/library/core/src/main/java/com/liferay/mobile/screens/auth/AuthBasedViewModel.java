@@ -21,8 +21,8 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  */
 public interface AuthBasedViewModel extends BaseViewModel {
 
-	public AuthMethod getAuthMethod();
+	AuthMethod getAuthMethod();
 
-	public void setAuthMethod(AuthMethod authMethod);
+	void setAuthMethod(AuthMethod authMethod);
 
 }

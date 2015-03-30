@@ -24,8 +24,8 @@ import java.util.Locale;
  */
 public interface DDLListInteractor extends Interactor<DDLListInteractorListener> {
 
-	public void loadRows(
-            long recordSetId, long userId, int startRow, int endRow, Locale locale)
+	void loadRows(
+		long recordSetId, long userId, int startRow, int endRow, Locale locale)
 		throws Exception;
 
 }

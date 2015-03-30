@@ -28,7 +28,7 @@ public class SelectFileDialog {
 	private static final String SD_DIRECTORY = Environment.getExternalStorageDirectory().getAbsolutePath();
 
 	public interface SimpleFileDialogListener {
-		public void onFileChosen(String path);
+		void onFileChosen(String path);
 	}
 
 	public AlertDialog createDialog(final Context context, final SimpleFileDialogListener listener) {
