@@ -68,7 +68,7 @@ public enum AssetClassNameId {
 		return _value;
 	}
 
-	private AssetClassNameId(int value) {
+	AssetClassNameId(int value) {
 		_value = value;
 	}
 

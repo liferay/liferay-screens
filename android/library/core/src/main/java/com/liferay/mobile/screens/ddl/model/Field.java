@@ -31,7 +31,7 @@ import java.util.Map;
  */
 public abstract class Field<T extends Serializable> implements Parcelable {
 
-	public static enum DataType {
+	public enum DataType {
 		BOOLEAN("boolean"),
 		STRING("string"),
 		DATE("date"),
@@ -39,7 +39,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		DOCUMENT("document-library"),
 		UNSUPPORTED(null);
 
-		private DataType(String value) {
+		DataType(String value) {
 			_value = value;
 		}
 
@@ -108,7 +108,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	}
 
 
-	public static enum EditorType {
+	public enum EditorType {
 		CHECKBOX("checkbox"),
 		TEXT("text"),
 		TEXT_AREA("textarea"),
@@ -121,7 +121,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		DOCUMENT("ddm-documentlibrary"),
 		UNSUPPORTED(null);
 
-		private EditorType(String value) {
+		EditorType(String value) {
 			_value = value;
 		}
 

@@ -45,7 +45,7 @@ public enum AuthMethod {
 		return InputType.TYPE_NULL;
 	}
 
-	private AuthMethod(int value) {
+	AuthMethod(int value) {
 		_value = value;
 	}
 
