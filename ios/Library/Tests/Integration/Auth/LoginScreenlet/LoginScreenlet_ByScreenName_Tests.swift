@@ -31,7 +31,7 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 				mockServer.stubService("get-user-by-screen-name", withResult:mockServer.loginOK())
 
 				self.screenlet!.delegate = Delegate() { result in
-					completed("login response received", withResult: result)
+					done("login response received", withResult: result)
 				}
 				self.screenlet!.performDefaultAction()
 

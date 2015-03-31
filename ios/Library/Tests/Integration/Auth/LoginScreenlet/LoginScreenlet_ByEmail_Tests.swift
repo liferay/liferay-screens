@@ -31,7 +31,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				mockServer.stubService("get-user-by-email-address", withResult:mockServer.loginOK())
 
 				self.screenlet!.delegate = Delegate() { result in
-					completed("login response received", withResult: result)
+					done("login response received", withResult: result)
 				}
 				self.screenlet!.performDefaultAction()
 
@@ -83,7 +83,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				mockServer.stubService("get-user-by-email-address", withResult:mockServer.loginOK())
 
 				self.screenlet!.delegate = Delegate() {
-					completed("login response received", withResult: $0)
+					done("login response received", withResult: $0)
 				}
 				self.screenlet!.performDefaultAction()
 
@@ -116,7 +116,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 						withResult:mockServer.loginFailedAuthentication())
 
 				self.screenlet!.delegate = Delegate() { result in
-					completed("login response received", withResult: result)
+					done("login response received", withResult: result)
 				}
 				self.screenlet!.performDefaultAction()
 

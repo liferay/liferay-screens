@@ -136,7 +136,7 @@ public func given(givenStr: String, givenCode: Void -> Void,
 	}
 }
 
-public func completed(notificationName: String, withResult result: AnyObject?) {
+public func done(notificationName: String, withResult result: AnyObject?) {
 	NSNotificationCenter.defaultCenter().postNotificationName(notificationName, object: result)
 }
 
