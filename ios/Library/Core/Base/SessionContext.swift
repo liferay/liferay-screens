@@ -86,30 +86,31 @@ import Foundation
 	}
 
 	public class func storeSession() -> Bool {
-		if !hasSession {
-			return false
+		let server = StaticInstance.currentSession?.server
+
+		if let auth = StaticInstance.currentSession?.authentication as? LRBasicAuthentication {
+			let credential = LRCredentialStorage.storeCredentialForServer(server,
+					username: auth.username,
+					password: auth.password)
+
+			if credential != nil {
+				return storeUserAttributes()
+			}
 		}
 
-		let success = StaticInstance.currentSession!.storeCredential()
-
-		if !success {
-			return false
-		}
-
-		return storeUserAttributes()
+		return false
 	}
 
 	public class func removeStoredSession() {
-		LRSession.removeStoredCredential()
+		LRCredentialStorage.removeCredential()
 		UICKeyChainStore.removeItemForKey("userAttributes")
 	}
 
 	public class func loadSessionFromStore() -> Bool {
-		if let storedSession = LRSession.sessionFromStoredCredential() {
-			if let userAttributes = loadUserAttributesFromStore() {
-				createSession(
-						authentication:storedSession.authentication,
-						userAttributes: userAttributes)
+		if let loadedSession = LRCredentialStorage.getSession() {
+			if let loadedUserAttributes = loadUserAttributesFromStore() {
+				StaticInstance.currentSession = loadedSession
+				StaticInstance.userAttributes = loadedUserAttributes
 
 				return true
 			}
@@ -146,7 +147,6 @@ import Foundation
 		let session = LRSession(server: LiferayServerContext.server, authentication: authentication)
 
 		StaticInstance.currentSession = session
-
 		StaticInstance.userAttributes = userAttributes
 
 		return session
