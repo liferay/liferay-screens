@@ -300,6 +300,8 @@
 		8892C6B01ACBD89400192232 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6AA1ACBD89400192232 /* UIView+Animations.swift */; };
 		8892C6B41ACBD95400192232 /* LiferayServerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B21ACBD95400192232 /* LiferayServerContext.swift */; };
 		8892C6B51ACBD95400192232 /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B31ACBD95400192232 /* SessionContext.swift */; };
+		88DC31E21ACC18F10078C961 /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E11ACC18F10078C961 /* SessionStorage.swift */; };
+		88DC31E31ACC18F10078C961 /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E11ACC18F10078C961 /* SessionStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -552,6 +554,7 @@
 		8892C6AA1ACBD89400192232 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		8892C6B21ACBD95400192232 /* LiferayServerContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayServerContext.swift; sourceTree = "<group>"; };
 		8892C6B31ACBD95400192232 /* SessionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext.swift; sourceTree = "<group>"; };
+		88DC31E11ACC18F10078C961 /* SessionStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
 		9136B139BF9449FC75DBECA6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC17F525218297794482A65 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
 		D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1372,6 +1375,7 @@
 			children = (
 				8892C6B21ACBD95400192232 /* LiferayServerContext.swift */,
 				8892C6B31ACBD95400192232 /* SessionContext.swift */,
+				88DC31E11ACC18F10078C961 /* SessionStorage.swift */,
 			);
 			name = Context;
 			path = Core/Context;
@@ -1692,6 +1696,7 @@
 				881E61791ACBEE0B00862B9E /* DDLFormView.swift in Sources */,
 				881E62301ACBFC3400862B9E /* UserPortraitView_default.swift in Sources */,
 				881E62741ACBFC3400862B9E /* Flat7ThemeConstants.swift in Sources */,
+				88DC31E21ACC18F10078C961 /* SessionStorage.swift in Sources */,
 				8892C6AB1ACBD89400192232 /* Bool+Conversion.swift in Sources */,
 				881E612E1ACBE65000862B9E /* GetUserByScreenNameOperation.swift in Sources */,
 				881E61191ACBE5F000862B9E /* LiferayLoginByScreenNameOperation.swift in Sources */,
@@ -1852,6 +1857,7 @@
 				881E62901ACBFE8D00862B9E /* BaseScreenletView.swift in Sources */,
 				881E62EE1ACC04A500862B9E /* DDLFieldDocument.swift in Sources */,
 				881E62C11ACC00F300862B9E /* LiferayLoginByScreenNameOperation.swift in Sources */,
+				88DC31E31ACC18F10078C961 /* SessionStorage.swift in Sources */,
 				881E62BB1ACC004800862B9E /* LoginViewModel.swift in Sources */,
 				881E62E51ACC049200862B9E /* DDLListScreenlet_ParseFields_Tests.swift in Sources */,
 				881E62E31ACC049200862B9E /* DDLFieldString_Tests.swift in Sources */,

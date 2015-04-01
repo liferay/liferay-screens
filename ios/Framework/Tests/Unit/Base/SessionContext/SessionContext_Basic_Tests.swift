@@ -12,7 +12,6 @@
 * details.
 */
 import XCTest
-import LiferayScreens
 
 
 class SessionContext_Basic_Tests: XCTestCase {

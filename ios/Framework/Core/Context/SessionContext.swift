@@ -15,6 +15,7 @@ import Foundation
 import LRMobileSDK
 import UICKeyChainStore
 
+
 @objc public class SessionContext {
 
 	//MARK: Singleton type
@@ -22,6 +23,8 @@ import UICKeyChainStore
 	private struct StaticInstance {
 		static var currentSession:LRSession?
 		static var userAttributes: [String:AnyObject] = [:]
+
+		static var sessionStorage: SessionStorage = SessionStorageImpl()
 	}
 
 	//MARK: Public properties
@@ -87,57 +90,24 @@ import UICKeyChainStore
 	}
 
 	public class func storeSession() -> Bool {
-		let server = StaticInstance.currentSession?.server
-
-		if let auth = StaticInstance.currentSession?.authentication as? LRBasicAuthentication {
-			let credential = LRCredentialStorage.storeCredentialForServer(server,
-					username: auth.username,
-					password: auth.password)
-
-			if credential != nil {
-				return storeUserAttributes()
-			}
-		}
-
-		return false
+		return StaticInstance.sessionStorage.store(
+				session: StaticInstance.currentSession,
+				userAttributes: StaticInstance.userAttributes)
 	}
 
-	public class func removeStoredSession() {
-		LRCredentialStorage.removeCredential()
-		UICKeyChainStore.removeItemForKey("userAttributes")
+	public class func removeStoredSession() -> Bool {
+		return StaticInstance.sessionStorage.remove()
 	}
 
 	public class func loadSessionFromStore() -> Bool {
-		if let loadedSession = LRCredentialStorage.getSession() {
-			if let loadedUserAttributes = loadUserAttributesFromStore() {
-				StaticInstance.currentSession = loadedSession
-				StaticInstance.userAttributes = loadedUserAttributes
+		if let result = StaticInstance.sessionStorage.load() {
+			StaticInstance.currentSession = result.session
+			StaticInstance.userAttributes = result.userAttributes
 
-				return true
-			}
+			return true
 		}
 
 		return false
-	}
-
-	private class func storeUserAttributes() -> Bool {
-		if StaticInstance.userAttributes.isEmpty {
-			return false
-		}
-
-		let encodedData = NSKeyedArchiver.archivedDataWithRootObject(StaticInstance.userAttributes)
-
-		return UICKeyChainStore.setData(encodedData, forKey: "userAttributes")
-	}
-
-	private class func loadUserAttributesFromStore() -> [String:AnyObject]? {
-		if let encodedData = UICKeyChainStore.dataForKey("userAttributes") {
-			let dictionary:AnyObject? = NSKeyedUnarchiver.unarchiveObjectWithData(encodedData)
-
-			return dictionary as? [String:AnyObject]
-		}
-
-		return nil
 	}
 
 	private class func createSession(
@@ -145,7 +115,7 @@ import UICKeyChainStore
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
-		let session = LRSession(server: LiferayServerContext.server, authentication: authentication)
+		let session = LRSession(server: server, authentication: authentication)
 
 		StaticInstance.currentSession = session
 		StaticInstance.userAttributes = userAttributes
