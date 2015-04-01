@@ -13,6 +13,7 @@
  */
 import Foundation
 import XCTest
+import Nocilla
 
 
 let mockServer = Liferay62MockServer(host: "localhost:8080")

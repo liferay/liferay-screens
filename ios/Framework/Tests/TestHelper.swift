@@ -30,7 +30,7 @@ func XCTAssertOptional(expression: @autoclosure () -> AnyObject?, _ message: Str
 
 
 func testResourcePath(name: String, ext: String) -> String {
-	let bundle = NSBundle(forClass:BaseScreenlet_Basic_Tests.self)
+	let bundle = NSBundle(forClass:IntegrationTestCase.self)
 	let path = bundle.pathForResource(name, ofType:ext)
 
 	if let pathValue = path {

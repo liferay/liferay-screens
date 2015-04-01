@@ -11,6 +11,9 @@ pod 'ODRefreshControl'
 pod 'Liferay-iOS-SDK', '6.2.0.12'
 pod 'CryptoSwift'
 
-pod "Nocilla"
+target :LiferayScreensTests do
+	pod 'Nocilla'
+	pod 'SwiftTryCatch'
+end
 
 use_frameworks!

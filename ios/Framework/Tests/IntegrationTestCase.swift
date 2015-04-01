@@ -13,6 +13,7 @@
  */
 import Foundation
 import XCTest
+import Nocilla
 
 
 class IntegrationTestCase: XCTestCase {
