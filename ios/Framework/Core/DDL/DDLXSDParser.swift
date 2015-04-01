@@ -12,16 +12,10 @@
 * details.
 */
 import Foundation
+import SMXMLDocument
 
 
 public class DDLXSDParser {
-
-
-	//MARK: Constructors
-
-	public init() {
-	}
-
 
 	//MARK: Public methods
 	

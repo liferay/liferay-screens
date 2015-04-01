@@ -65,6 +65,37 @@
 		881E61491ACBEDC600862B9E /* AssetListScreenletInterop.h in Headers */ = {isa = PBXBuildFile; fileRef = 881E61421ACBEDC600862B9E /* AssetListScreenletInterop.h */; };
 		881E614A1ACBEDC600862B9E /* LiferayAssetListPageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61441ACBEDC600862B9E /* LiferayAssetListPageOperation.swift */; };
 		881E614B1ACBEDC600862B9E /* AssetListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61461ACBEDC600862B9E /* AssetListTableView.swift */; };
+		881E61761ACBEE0B00862B9E /* DDLValuesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E614D1ACBEE0B00862B9E /* DDLValuesParser.swift */; };
+		881E61771ACBEE0B00862B9E /* DDLXSDParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E614E1ACBEE0B00862B9E /* DDLXSDParser.swift */; };
+		881E61781ACBEE0B00862B9E /* DDLFormScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61501ACBEE0B00862B9E /* DDLFormScreenlet.swift */; };
+		881E61791ACBEE0B00862B9E /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61511ACBEE0B00862B9E /* DDLFormView.swift */; };
+		881E617A1ACBEE0B00862B9E /* DDLFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61521ACBEE0B00862B9E /* DDLFormViewModel.swift */; };
+		881E617B1ACBEE0B00862B9E /* ddlform-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881E61531ACBEE0B00862B9E /* ddlform-screenlet.strings */; };
+		881E617C1ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61581ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift */; };
+		881E617D1ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61591ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift */; };
+		881E617E1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E615A1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift */; };
+		881E617F1ACBEE0B00862B9E /* DDLFormUploadDocumentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E615B1ACBEE0B00862B9E /* DDLFormUploadDocumentInteractor.swift */; };
+		881E61801ACBEE0B00862B9E /* LiferayDDLFormLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E615D1ACBEE0B00862B9E /* LiferayDDLFormLoadOperation.swift */; };
+		881E61811ACBEE0B00862B9E /* LiferayDDLFormRecordLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E615E1ACBEE0B00862B9E /* LiferayDDLFormRecordLoadOperation.swift */; };
+		881E61821ACBEE0B00862B9E /* LiferayDDLFormSubmitOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E615F1ACBEE0B00862B9E /* LiferayDDLFormSubmitOperation.swift */; };
+		881E61831ACBEE0B00862B9E /* LiferayDDLFormUploadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61601ACBEE0B00862B9E /* LiferayDDLFormUploadOperation.swift */; };
+		881E61841ACBEE0B00862B9E /* DDLFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61621ACBEE0B00862B9E /* DDLFieldTableCell.swift */; };
+		881E61851ACBEE0B00862B9E /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61631ACBEE0B00862B9E /* DDLFormTableView.swift */; };
+		881E61861ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61651ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift */; };
+		881E61871ACBEE0B00862B9E /* DDLListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61661ACBEE0B00862B9E /* DDLListScreenlet.swift */; };
+		881E61881ACBEE0B00862B9E /* DDLListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61671ACBEE0B00862B9E /* DDLListViewModel.swift */; };
+		881E61891ACBEE0B00862B9E /* LiferayDDLListPageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61691ACBEE0B00862B9E /* LiferayDDLListPageOperation.swift */; };
+		881E618A1ACBEE0B00862B9E /* DDLField+DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E616B1ACBEE0B00862B9E /* DDLField+DataType.swift */; };
+		881E618B1ACBEE0B00862B9E /* DDLField+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E616C1ACBEE0B00862B9E /* DDLField+Editor.swift */; };
+		881E618C1ACBEE0B00862B9E /* DDLField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E616D1ACBEE0B00862B9E /* DDLField.swift */; };
+		881E618D1ACBEE0B00862B9E /* DDLFieldBoolean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E616E1ACBEE0B00862B9E /* DDLFieldBoolean.swift */; };
+		881E618E1ACBEE0B00862B9E /* DDLFieldDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E616F1ACBEE0B00862B9E /* DDLFieldDate.swift */; };
+		881E618F1ACBEE0B00862B9E /* DDLFieldDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61701ACBEE0B00862B9E /* DDLFieldDocument.swift */; };
+		881E61901ACBEE0B00862B9E /* DDLFieldNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61711ACBEE0B00862B9E /* DDLFieldNumber.swift */; };
+		881E61911ACBEE0B00862B9E /* DDLFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61721ACBEE0B00862B9E /* DDLFieldString.swift */; };
+		881E61921ACBEE0B00862B9E /* DDLFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61731ACBEE0B00862B9E /* DDLFieldStringWithOptions.swift */; };
+		881E61931ACBEE0B00862B9E /* DDLFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61741ACBEE0B00862B9E /* DDLFieldUntyped.swift */; };
+		881E61941ACBEE0B00862B9E /* DDLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61751ACBEE0B00862B9E /* DDLRecord.swift */; };
 		8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */ = {isa = PBXBuildFile; fileRef = 8892C67D1ACB2E3300192232 /* LiferayScreens.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8892C6841ACB2E3300192232 /* LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8892C6781ACB2E3300192232 /* LiferayScreens.framework */; };
 		8892C68B1ACB2E3300192232 /* LiferayScreensTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C68A1ACB2E3300192232 /* LiferayScreensTests.swift */; };
@@ -159,6 +190,39 @@
 		881E61421ACBEDC600862B9E /* AssetListScreenletInterop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletInterop.h; sourceTree = "<group>"; };
 		881E61441ACBEDC600862B9E /* LiferayAssetListPageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayAssetListPageOperation.swift; sourceTree = "<group>"; };
 		881E61461ACBEDC600862B9E /* AssetListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListTableView.swift; sourceTree = "<group>"; };
+		881E614D1ACBEE0B00862B9E /* DDLValuesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLValuesParser.swift; sourceTree = "<group>"; };
+		881E614E1ACBEE0B00862B9E /* DDLXSDParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLXSDParser.swift; sourceTree = "<group>"; };
+		881E61501ACBEE0B00862B9E /* DDLFormScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormScreenlet.swift; sourceTree = "<group>"; };
+		881E61511ACBEE0B00862B9E /* DDLFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormView.swift; sourceTree = "<group>"; };
+		881E61521ACBEE0B00862B9E /* DDLFormViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormViewModel.swift; sourceTree = "<group>"; };
+		881E61541ACBEE0B00862B9E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/ddlform-screenlet.strings"; sourceTree = "<group>"; };
+		881E61551ACBEE0B00862B9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/ddlform-screenlet.strings"; sourceTree = "<group>"; };
+		881E61561ACBEE0B00862B9E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/ddlform-screenlet.strings"; sourceTree = "<group>"; };
+		881E61581ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormLoadFormInteractor.swift; sourceTree = "<group>"; };
+		881E61591ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormLoadRecordInteractor.swift; sourceTree = "<group>"; };
+		881E615A1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormSubmitFormInteractor.swift; sourceTree = "<group>"; };
+		881E615B1ACBEE0B00862B9E /* DDLFormUploadDocumentInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormUploadDocumentInteractor.swift; sourceTree = "<group>"; };
+		881E615D1ACBEE0B00862B9E /* LiferayDDLFormLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayDDLFormLoadOperation.swift; sourceTree = "<group>"; };
+		881E615E1ACBEE0B00862B9E /* LiferayDDLFormRecordLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayDDLFormRecordLoadOperation.swift; sourceTree = "<group>"; };
+		881E615F1ACBEE0B00862B9E /* LiferayDDLFormSubmitOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayDDLFormSubmitOperation.swift; sourceTree = "<group>"; };
+		881E61601ACBEE0B00862B9E /* LiferayDDLFormUploadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayDDLFormUploadOperation.swift; sourceTree = "<group>"; };
+		881E61621ACBEE0B00862B9E /* DDLFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldTableCell.swift; sourceTree = "<group>"; };
+		881E61631ACBEE0B00862B9E /* DDLFormTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormTableView.swift; sourceTree = "<group>"; };
+		881E61651ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListPageLoadInteractor.swift; sourceTree = "<group>"; };
+		881E61661ACBEE0B00862B9E /* DDLListScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListScreenlet.swift; sourceTree = "<group>"; };
+		881E61671ACBEE0B00862B9E /* DDLListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListViewModel.swift; sourceTree = "<group>"; };
+		881E61691ACBEE0B00862B9E /* LiferayDDLListPageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayDDLListPageOperation.swift; sourceTree = "<group>"; };
+		881E616B1ACBEE0B00862B9E /* DDLField+DataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDLField+DataType.swift"; sourceTree = "<group>"; };
+		881E616C1ACBEE0B00862B9E /* DDLField+Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDLField+Editor.swift"; sourceTree = "<group>"; };
+		881E616D1ACBEE0B00862B9E /* DDLField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLField.swift; sourceTree = "<group>"; };
+		881E616E1ACBEE0B00862B9E /* DDLFieldBoolean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldBoolean.swift; sourceTree = "<group>"; };
+		881E616F1ACBEE0B00862B9E /* DDLFieldDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDate.swift; sourceTree = "<group>"; };
+		881E61701ACBEE0B00862B9E /* DDLFieldDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDocument.swift; sourceTree = "<group>"; };
+		881E61711ACBEE0B00862B9E /* DDLFieldNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldNumber.swift; sourceTree = "<group>"; };
+		881E61721ACBEE0B00862B9E /* DDLFieldString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldString.swift; sourceTree = "<group>"; };
+		881E61731ACBEE0B00862B9E /* DDLFieldStringWithOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldStringWithOptions.swift; sourceTree = "<group>"; };
+		881E61741ACBEE0B00862B9E /* DDLFieldUntyped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldUntyped.swift; sourceTree = "<group>"; };
+		881E61751ACBEE0B00862B9E /* DDLRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLRecord.swift; sourceTree = "<group>"; };
 		8892C6781ACB2E3300192232 /* LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8892C67C1ACB2E3300192232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8892C67D1ACB2E3300192232 /* LiferayScreens.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreens.h; sourceTree = SOURCE_ROOT; };
@@ -426,6 +490,100 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
+		881E614C1ACBEE0B00862B9E /* DDL */ = {
+			isa = PBXGroup;
+			children = (
+				881E614D1ACBEE0B00862B9E /* DDLValuesParser.swift */,
+				881E614E1ACBEE0B00862B9E /* DDLXSDParser.swift */,
+				881E614F1ACBEE0B00862B9E /* FormScreenlet */,
+				881E61641ACBEE0B00862B9E /* ListScreenlet */,
+				881E616A1ACBEE0B00862B9E /* Model */,
+			);
+			path = DDL;
+			sourceTree = "<group>";
+		};
+		881E614F1ACBEE0B00862B9E /* FormScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				881E61501ACBEE0B00862B9E /* DDLFormScreenlet.swift */,
+				881E61511ACBEE0B00862B9E /* DDLFormView.swift */,
+				881E61521ACBEE0B00862B9E /* DDLFormViewModel.swift */,
+				881E61531ACBEE0B00862B9E /* ddlform-screenlet.strings */,
+				881E61571ACBEE0B00862B9E /* Interactors */,
+				881E615C1ACBEE0B00862B9E /* ServerOperations */,
+				881E61611ACBEE0B00862B9E /* TableView */,
+			);
+			path = FormScreenlet;
+			sourceTree = "<group>";
+		};
+		881E61571ACBEE0B00862B9E /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				881E61581ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift */,
+				881E61591ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift */,
+				881E615A1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift */,
+				881E615B1ACBEE0B00862B9E /* DDLFormUploadDocumentInteractor.swift */,
+			);
+			path = Interactors;
+			sourceTree = "<group>";
+		};
+		881E615C1ACBEE0B00862B9E /* ServerOperations */ = {
+			isa = PBXGroup;
+			children = (
+				881E615D1ACBEE0B00862B9E /* LiferayDDLFormLoadOperation.swift */,
+				881E615E1ACBEE0B00862B9E /* LiferayDDLFormRecordLoadOperation.swift */,
+				881E615F1ACBEE0B00862B9E /* LiferayDDLFormSubmitOperation.swift */,
+				881E61601ACBEE0B00862B9E /* LiferayDDLFormUploadOperation.swift */,
+			);
+			path = ServerOperations;
+			sourceTree = "<group>";
+		};
+		881E61611ACBEE0B00862B9E /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				881E61621ACBEE0B00862B9E /* DDLFieldTableCell.swift */,
+				881E61631ACBEE0B00862B9E /* DDLFormTableView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		881E61641ACBEE0B00862B9E /* ListScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				881E61651ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift */,
+				881E61661ACBEE0B00862B9E /* DDLListScreenlet.swift */,
+				881E61671ACBEE0B00862B9E /* DDLListViewModel.swift */,
+				881E61681ACBEE0B00862B9E /* ServerOperations */,
+			);
+			path = ListScreenlet;
+			sourceTree = "<group>";
+		};
+		881E61681ACBEE0B00862B9E /* ServerOperations */ = {
+			isa = PBXGroup;
+			children = (
+				881E61691ACBEE0B00862B9E /* LiferayDDLListPageOperation.swift */,
+			);
+			path = ServerOperations;
+			sourceTree = "<group>";
+		};
+		881E616A1ACBEE0B00862B9E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				881E616B1ACBEE0B00862B9E /* DDLField+DataType.swift */,
+				881E616C1ACBEE0B00862B9E /* DDLField+Editor.swift */,
+				881E616D1ACBEE0B00862B9E /* DDLField.swift */,
+				881E616E1ACBEE0B00862B9E /* DDLFieldBoolean.swift */,
+				881E616F1ACBEE0B00862B9E /* DDLFieldDate.swift */,
+				881E61701ACBEE0B00862B9E /* DDLFieldDocument.swift */,
+				881E61711ACBEE0B00862B9E /* DDLFieldNumber.swift */,
+				881E61721ACBEE0B00862B9E /* DDLFieldString.swift */,
+				881E61731ACBEE0B00862B9E /* DDLFieldStringWithOptions.swift */,
+				881E61741ACBEE0B00862B9E /* DDLFieldUntyped.swift */,
+				881E61751ACBEE0B00862B9E /* DDLRecord.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8892C66E1ACB2E3300192232 = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +646,7 @@
 				881E60DE1ACBE5F000862B9E /* Auth */,
 				881E60B41ACBE3FF00862B9E /* Base */,
 				8892C6B11ACBD95400192232 /* Context */,
+				881E614C1ACBEE0B00862B9E /* DDL */,
 				8892C6A41ACBD89400192232 /* Extensions */,
 				8892C6951ACB2FDC00192232 /* Services */,
 				881E61311ACBED7500862B9E /* WebContentDisplayScreenlet */,
@@ -635,6 +794,7 @@
 				881E61141ACBE5F000862B9E /* login-screenlet.strings in Resources */,
 				881E610C1ACBE5F000862B9E /* forgotpassword-screenlet.strings in Resources */,
 				881E60DC1ACBE5BA00862B9E /* base.strings in Resources */,
+				881E617B1ACBEE0B00862B9E /* ddlform-screenlet.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,37 +864,53 @@
 				881E61251ACBE5F000862B9E /* UserPortraitLoadByUserIdInteractor.swift in Sources */,
 				881E611E1ACBE5F000862B9E /* SignUpScreenlet.swift in Sources */,
 				881E61281ACBE5F000862B9E /* UserPortraitViewModel.swift in Sources */,
+				881E61871ACBEE0B00862B9E /* DDLListScreenlet.swift in Sources */,
 				881E611F1ACBE5F000862B9E /* SignUpViewModel.swift in Sources */,
 				881E61181ACBE5F000862B9E /* LiferayLoginByEmailOperation.swift in Sources */,
 				881E611C1ACBE5F000862B9E /* LiferaySignUpOperation.swift in Sources */,
+				881E617E1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift in Sources */,
 				881E61241ACBE5F000862B9E /* UserPortraitLoadByScreenNameInteractor.swift in Sources */,
+				881E61791ACBEE0B00862B9E /* DDLFormView.swift in Sources */,
 				8892C6AB1ACBD89400192232 /* Bool+Conversion.swift in Sources */,
 				881E612E1ACBE65000862B9E /* GetUserByScreenNameOperation.swift in Sources */,
 				881E61191ACBE5F000862B9E /* LiferayLoginByScreenNameOperation.swift in Sources */,
+				881E618B1ACBEE0B00862B9E /* DDLField+Editor.swift in Sources */,
 				881E612C1ACBE65000862B9E /* GetUserBaseOperation.swift in Sources */,
 				881E61121ACBE5F000862B9E /* LiferayForgotPasswordScreenNameOperation.swift in Sources */,
+				881E61931ACBEE0B00862B9E /* DDLFieldUntyped.swift in Sources */,
 				881E613E1ACBED7500862B9E /* WebContentDisplayViewModel.swift in Sources */,
 				881E61171ACBE5F000862B9E /* LoginViewModel.swift in Sources */,
 				881E61481ACBEDC600862B9E /* AssetListScreenlet.swift in Sources */,
+				881E618C1ACBEE0B00862B9E /* DDLField.swift in Sources */,
 				8892C6AC1ACBD89400192232 /* Global.swift in Sources */,
 				881E61221ACBE5F000862B9E /* UserPortraitBaseLoadUserInteractor.swift in Sources */,
 				881E60D01ACBE56700862B9E /* LiferayPaginationOperation.swift in Sources */,
 				881E60C01ACBE43200862B9E /* KeyboardManager.swift in Sources */,
+				881E618E1ACBEE0B00862B9E /* DDLFieldDate.swift in Sources */,
+				881E61811ACBEE0B00862B9E /* LiferayDDLFormRecordLoadOperation.swift in Sources */,
 				881E61271ACBE5F000862B9E /* UserPortraitScreenlet.swift in Sources */,
 				881E60B91ACBE3FF00862B9E /* BaseScreenlet.swift in Sources */,
 				8892C6B51ACBD95400192232 /* SessionContext.swift in Sources */,
+				881E61831ACBEE0B00862B9E /* LiferayDDLFormUploadOperation.swift in Sources */,
 				881E613B1ACBED7500862B9E /* LiferayWebContentLoadOperation.swift in Sources */,
 				881E610F1ACBE5F000862B9E /* ForgotPasswordViewModel.swift in Sources */,
+				881E618D1ACBEE0B00862B9E /* DDLFieldBoolean.swift in Sources */,
 				8892C6A11ACB2FDC00192232 /* LRMobilewidgetsuserService_v62.m in Sources */,
 				881E613C1ACBED7500862B9E /* WebContentDisplayLoadInteractor.swift in Sources */,
+				881E61921ACBEE0B00862B9E /* DDLFieldStringWithOptions.swift in Sources */,
 				8892C6AF1ACBD89400192232 /* UIButton+Title.swift in Sources */,
 				881E61201ACBE5F000862B9E /* UserPortraitAttributesLoadInteractor.swift in Sources */,
+				881E61891ACBEE0B00862B9E /* LiferayDDLListPageOperation.swift in Sources */,
 				881E61471ACBEDC600862B9E /* AssetListPageLoadInteractor.swift in Sources */,
+				881E618F1ACBEE0B00862B9E /* DDLFieldDocument.swift in Sources */,
 				8892C69F1ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.m in Sources */,
 				881E60C11ACBE43200862B9E /* ServerOperation.swift in Sources */,
 				881E611A1ACBE5F000862B9E /* LiferayLoginByUserIdOperation.swift in Sources */,
 				881E613D1ACBED7500862B9E /* WebContentDisplayScreenlet.swift in Sources */,
+				881E61841ACBEE0B00862B9E /* DDLFieldTableCell.swift in Sources */,
 				881E61301ACBE6A700862B9E /* GetUserByUserIdOperation.swift in Sources */,
+				881E61821ACBEE0B00862B9E /* LiferayDDLFormSubmitOperation.swift in Sources */,
+				881E61771ACBEE0B00862B9E /* DDLXSDParser.swift in Sources */,
 				881E612D1ACBE65000862B9E /* GetUserByEmailOperation.swift in Sources */,
 				881E61101ACBE5F000862B9E /* LiferayForgotPasswordBaseOperation.swift in Sources */,
 				881E61161ACBE5F000862B9E /* LoginScreenlet.swift in Sources */,
@@ -745,22 +921,36 @@
 				8892C6B41ACBD95400192232 /* LiferayServerContext.swift in Sources */,
 				881E614B1ACBEDC600862B9E /* AssetListTableView.swift in Sources */,
 				881E61211ACBE5F000862B9E /* UserPortraitBaseInteractor.swift in Sources */,
+				881E61851ACBEE0B00862B9E /* DDLFormTableView.swift in Sources */,
+				881E618A1ACBEE0B00862B9E /* DDLField+DataType.swift in Sources */,
 				881E614A1ACBEDC600862B9E /* LiferayAssetListPageOperation.swift in Sources */,
+				881E61901ACBEE0B00862B9E /* DDLFieldNumber.swift in Sources */,
+				881E617F1ACBEE0B00862B9E /* DDLFormUploadDocumentInteractor.swift in Sources */,
 				881E60BA1ACBE3FF00862B9E /* BaseScreenletView.swift in Sources */,
 				8892C6AE1ACBD89400192232 /* NSLocale+CurrentLocale.swift in Sources */,
 				881E61131ACBE5F000862B9E /* LiferayForgotPasswordUserIdOperation.swift in Sources */,
 				881E61231ACBE5F000862B9E /* UserPortraitLoadByEmailAddressInteractor.swift in Sources */,
 				881E610D1ACBE5F000862B9E /* ForgotPasswordInteractor.swift in Sources */,
+				881E61761ACBEE0B00862B9E /* DDLValuesParser.swift in Sources */,
+				881E61911ACBEE0B00862B9E /* DDLFieldString.swift in Sources */,
 				881E60CF1ACBE56700862B9E /* BaseListView.swift in Sources */,
 				881E61261ACBE5F000862B9E /* UserPortraitLoadLoggedUserInteractor.swift in Sources */,
 				881E61111ACBE5F000862B9E /* LiferayForgotPasswordEmailOperation.swift in Sources */,
 				881E60C41ACBE46B00862B9E /* AuthBased.swift in Sources */,
+				881E617D1ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift in Sources */,
+				881E61941ACBEE0B00862B9E /* DDLRecord.swift in Sources */,
+				881E61861ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift in Sources */,
 				881E60B81ACBE3FF00862B9E /* BaseScreenlet+progress.swift in Sources */,
+				881E61801ACBEE0B00862B9E /* LiferayDDLFormLoadOperation.swift in Sources */,
+				881E61881ACBEE0B00862B9E /* DDLListViewModel.swift in Sources */,
 				881E60CD1ACBE56700862B9E /* BaseListPageLoadInteractor.swift in Sources */,
 				881E60BF1ACBE43200862B9E /* Interactor.swift in Sources */,
 				881E61151ACBE5F000862B9E /* LoginInteractor.swift in Sources */,
 				8892C69D1ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.m in Sources */,
+				881E61781ACBEE0B00862B9E /* DDLFormScreenlet.swift in Sources */,
 				881E60C21ACBE43200862B9E /* ServerOperationInteractor.swift in Sources */,
+				881E617C1ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift in Sources */,
+				881E617A1ACBEE0B00862B9E /* DDLFormViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -827,6 +1017,16 @@
 				881E61341ACBED7500862B9E /* es */,
 			);
 			name = "webcontentdisplay-screenlet.strings";
+			sourceTree = "<group>";
+		};
+		881E61531ACBEE0B00862B9E /* ddlform-screenlet.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				881E61541ACBEE0B00862B9E /* de */,
+				881E61551ACBEE0B00862B9E /* en */,
+				881E61561ACBEE0B00862B9E /* es */,
+			);
+			name = "ddlform-screenlet.strings";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

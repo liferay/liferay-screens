@@ -12,6 +12,7 @@
 * details.
 */
 import Foundation
+import SMXMLDocument
 
 
 extension DDLField {
