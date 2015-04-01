@@ -302,6 +302,10 @@
 		8892C6B51ACBD95400192232 /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B31ACBD95400192232 /* SessionContext.swift */; };
 		88DC31E21ACC18F10078C961 /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E11ACC18F10078C961 /* SessionStorage.swift */; };
 		88DC31E31ACC18F10078C961 /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E11ACC18F10078C961 /* SessionStorage.swift */; };
+		88DC31E51ACC36F40078C961 /* CredentialStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E41ACC36F40078C961 /* CredentialStorage.swift */; };
+		88DC31E71ACC37DA0078C961 /* KeyChainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E61ACC37DA0078C961 /* KeyChainStorage.swift */; };
+		88DC31E81ACC38860078C961 /* KeyChainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E61ACC37DA0078C961 /* KeyChainStorage.swift */; };
+		88DC31E91ACC38860078C961 /* CredentialStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E41ACC36F40078C961 /* CredentialStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -555,6 +559,8 @@
 		8892C6B21ACBD95400192232 /* LiferayServerContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayServerContext.swift; sourceTree = "<group>"; };
 		8892C6B31ACBD95400192232 /* SessionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext.swift; sourceTree = "<group>"; };
 		88DC31E11ACC18F10078C961 /* SessionStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
+		88DC31E41ACC36F40078C961 /* CredentialStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialStorage.swift; sourceTree = "<group>"; };
+		88DC31E61ACC37DA0078C961 /* KeyChainStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainStorage.swift; sourceTree = "<group>"; };
 		9136B139BF9449FC75DBECA6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC17F525218297794482A65 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
 		D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1373,9 +1379,11 @@
 		8892C6B11ACBD95400192232 /* Context */ = {
 			isa = PBXGroup;
 			children = (
+				88DC31E61ACC37DA0078C961 /* KeyChainStorage.swift */,
 				8892C6B21ACBD95400192232 /* LiferayServerContext.swift */,
 				8892C6B31ACBD95400192232 /* SessionContext.swift */,
 				88DC31E11ACC18F10078C961 /* SessionStorage.swift */,
+				88DC31E41ACC36F40078C961 /* CredentialStorage.swift */,
 			);
 			name = Context;
 			path = Core/Context;
@@ -1698,6 +1706,7 @@
 				881E62741ACBFC3400862B9E /* Flat7ThemeConstants.swift in Sources */,
 				88DC31E21ACC18F10078C961 /* SessionStorage.swift in Sources */,
 				8892C6AB1ACBD89400192232 /* Bool+Conversion.swift in Sources */,
+				88DC31E51ACC36F40078C961 /* CredentialStorage.swift in Sources */,
 				881E612E1ACBE65000862B9E /* GetUserByScreenNameOperation.swift in Sources */,
 				881E61191ACBE5F000862B9E /* LiferayLoginByScreenNameOperation.swift in Sources */,
 				881E618B1ACBEE0B00862B9E /* DDLField+Editor.swift in Sources */,
@@ -1744,6 +1753,7 @@
 				881E62721ACBFC3400862B9E /* UserPortraitView_flat7.swift in Sources */,
 				881E623C1ACBFC3400862B9E /* DDLFieldNumberTableCell_default.swift in Sources */,
 				881E61301ACBE6A700862B9E /* GetUserByUserIdOperation.swift in Sources */,
+				88DC31E71ACC37DA0078C961 /* KeyChainStorage.swift in Sources */,
 				881E61821ACBEE0B00862B9E /* LiferayDDLFormSubmitOperation.swift in Sources */,
 				881E61771ACBEE0B00862B9E /* DDLXSDParser.swift in Sources */,
 				881E612D1ACBE65000862B9E /* GetUserByEmailOperation.swift in Sources */,
@@ -1808,6 +1818,7 @@
 				881E62E81ACC049200862B9E /* DDLRecord_FieldValues_Tests.swift in Sources */,
 				881E62E11ACC049200862B9E /* DDLFieldDocument_Tests.swift in Sources */,
 				881E62B01ACBFFC500862B9E /* LoginView_xyz.swift in Sources */,
+				88DC31E81ACC38860078C961 /* KeyChainStorage.swift in Sources */,
 				881E62921ACBFEC300862B9E /* AuthBased.swift in Sources */,
 				881E62991ACBFF1800862B9E /* BaseScreenlet+progress.swift in Sources */,
 				881E62BD1ACC00D700862B9E /* GetUserByEmailOperation.swift in Sources */,
@@ -1851,6 +1862,7 @@
 				881E62C21ACC00F300862B9E /* LiferayLoginByUserIdOperation.swift in Sources */,
 				881E62951ACBFEFC00862B9E /* BaseListScreenlet.swift in Sources */,
 				881E62981ACBFF0800862B9E /* BaseListTableView.swift in Sources */,
+				88DC31E91ACC38860078C961 /* CredentialStorage.swift in Sources */,
 				881E61AA1ACBFAAC00862B9E /* MockHelper.swift in Sources */,
 				881E62A31ACBFF4500862B9E /* Global.swift in Sources */,
 				881E62DE1ACC049200862B9E /* DDLField_validation_Tests.swift in Sources */,

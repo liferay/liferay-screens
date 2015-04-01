@@ -12,39 +12,33 @@
 * details.
 */
 import UIKit
-import LRMobileSDK
-import UICKeyChainStore
 
 
-typealias LoadResult = (session: LRSession, userAttributes: [String:AnyObject])
+class SessionStorage {
 
-protocol SessionStorage {
+	typealias LoadResult = (session: LRSession, userAttributes: [String:AnyObject])
 
-	func store(#session: LRSession?, userAttributes: [String:AnyObject]) -> Bool
+	private let credentialStorage: CredentialStorage
+	private let keyChainStorage: KeyChainStorage
 
-	func remove() -> Bool
-
-	func load() -> LoadResult?
-
-}
-
-class SessionStorageImpl : SessionStorage {
+	init(credentialStorage: CredentialStorage, keyChainStorage: KeyChainStorage) {
+		self.credentialStorage = credentialStorage
+		self.keyChainStorage = keyChainStorage
+	}
 
 	func store(#session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
 		func storeUserAttributes(userAttributes: [String:AnyObject]) -> Bool {
-			if userAttributes.isEmpty {
-				return false
-			}
-
 			let encodedData = NSKeyedArchiver.archivedDataWithRootObject(userAttributes)
 
-			return UICKeyChainStore.setData(encodedData, forKey: "userAttributes")
+			return keyChainStorage.setData(encodedData, forKey: "userAttributes")
 		}
 
-		let server = session?.server
+		if userAttributes.isEmpty {
+			return false
+		}
 
 		if let auth = session?.authentication as? LRBasicAuthentication {
-			let credential = LRCredentialStorage.storeCredentialForServer(server,
+			let credential = credentialStorage.storeCredentialForServer(session?.server,
 					username: auth.username,
 					password: auth.password)
 
@@ -57,13 +51,13 @@ class SessionStorageImpl : SessionStorage {
 	}
 
 	func remove() -> Bool {
-		LRCredentialStorage.removeCredential()
-		return UICKeyChainStore.removeItemForKey("userAttributes")
+		credentialStorage.removeCredential()
+		return keyChainStorage.removeItemForKey("userAttributes")
 	}
 
 	func load() -> LoadResult? {
 		func loadUserAttributesFromStore() -> [String:AnyObject]? {
-			if let encodedData = UICKeyChainStore.dataForKey("userAttributes") {
+			if let encodedData = keyChainStorage.dataForKey("userAttributes") {
 				let dictionary:AnyObject? = NSKeyedUnarchiver.unarchiveObjectWithData(encodedData)
 
 				return dictionary as? [String:AnyObject]
@@ -72,7 +66,7 @@ class SessionStorageImpl : SessionStorage {
 			return nil
 		}
 
-		if let loadedSession = LRCredentialStorage.getSession() {
+		if let loadedSession = credentialStorage.getSession() {
 			if let loadedUserAttributes = loadUserAttributesFromStore() {
 				return (loadedSession, loadedUserAttributes)
 			}
@@ -80,7 +74,5 @@ class SessionStorageImpl : SessionStorage {
 
 		return nil
 	}
-
-
 
 }

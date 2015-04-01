@@ -12,8 +12,6 @@
 * details.
 */
 import Foundation
-import LRMobileSDK
-import UICKeyChainStore
 
 
 @objc public class SessionContext {
@@ -24,8 +22,11 @@ import UICKeyChainStore
 		static var currentSession:LRSession?
 		static var userAttributes: [String:AnyObject] = [:]
 
-		static var sessionStorage: SessionStorage = SessionStorageImpl()
+		static var sessionStorage = SessionStorage(
+			credentialStorage: CredentialStorageMobileSDK(),
+			keyChainStorage: KeyChainStorageImpl())
 	}
+
 
 	//MARK: Public properties
 
@@ -38,6 +39,15 @@ import UICKeyChainStore
 			as LRBasicAuthentication?
 
 		return authentication?.username
+	}
+
+	internal class var sessionStorage: SessionStorage {
+		get {
+			return StaticInstance.sessionStorage
+		}
+		set {
+			StaticInstance.sessionStorage = newValue
+		}
 	}
 
 	public class var currentPassword: String? {
@@ -91,25 +101,31 @@ import UICKeyChainStore
 	}
 
 	public class func storeSession() -> Bool {
-		return StaticInstance.sessionStorage.store(
+		return sessionStorage.store(
 				session: StaticInstance.currentSession,
 				userAttributes: StaticInstance.userAttributes)
 	}
 
 	public class func removeStoredSession() -> Bool {
-		return StaticInstance.sessionStorage.remove()
+		return sessionStorage.remove()
 	}
 
 	public class func loadSessionFromStore() -> Bool {
-		if let result = StaticInstance.sessionStorage.load() {
+		if let result = sessionStorage.load() {
 			StaticInstance.currentSession = result.session
 			StaticInstance.userAttributes = result.userAttributes
 
 			return true
 		}
+		else {
+			clearSession()
+		}
 
 		return false
 	}
+
+
+	//MARK Private methods
 
 	private class func createSession(
 			#server: String,
