@@ -222,30 +222,46 @@ import QuartzCore
 	//MARK: Private
 
 	private func createScreenletViewFromNib() -> BaseScreenletView? {
-		let viewName = screenletName + "View"
+		func nibNameInBundle(bundle: NSBundle) -> String? {
+			let viewName = self.screenletName + "View"
+			var nibName = "\(viewName)_\(self._themeName)"
+			var nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
-		let bundle = NSBundle(forClass:self.dynamicType)
-
-		var nibName = "\(viewName)_\(_themeName)"
-		var nibPath = bundle.pathForResource(nibName, ofType:"nib")
-
-		if nibPath == nil {
-			nibName = "\(viewName)_default"
-			nibPath = bundle.pathForResource(nibName, ofType:"nib")
-
-			if nibPath != nil {
-				_themeName = "default"
+			if nibPath == nil {
+				nibName = "\(viewName)_default"
+				nibPath = bundle.pathForResource(nibName, ofType:"nib")
 			}
-			else {
-				println("ERROR: Xib file '\(nibName)' was not found for theme '\(_themeName)'")
-				return nil
+
+			return (nibPath == nil) ? nil : nibName
+		}
+
+		var nibPath: String?
+
+		let frameworkBundle = NSBundle(forClass: self.dynamicType)
+		let themeBundlePath = frameworkBundle.pathForResource("LiferayScreens-\(_themeName)", ofType: "bundle")
+
+		let bundles = [
+				themeBundlePath == nil ? nil : NSBundle(path: themeBundlePath!),
+				frameworkBundle,
+				NSBundle.mainBundle()]
+
+		for bundle in bundles {
+			if let bundleValue = bundle {
+				if let nibName = nibNameInBundle(bundleValue) {
+					let views = bundleValue.loadNibNamed(nibName,
+							owner:self,
+							options:nil)
+
+					assert(views.count > 0, "Malformed xib \(nibName). Without views")
+
+					return (views[0] as? BaseScreenletView)
+				}
 			}
 		}
 
-		let views = bundle.loadNibNamed(nibName, owner:self, options:nil)
-		assert(views.count > 0, "Xib seems to be malformed. There're no views inside it")
+		println("ERROR: Xib file doesn't found for screenlet '\(self.screenletName)' and theme '\(_themeName)'")
 
-		return (views[0] as? BaseScreenletView)
+		return nil
 	}
 
 	private func updateCurrentPreviewImage() -> String {
