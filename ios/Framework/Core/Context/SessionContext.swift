@@ -64,6 +64,7 @@ import UICKeyChainStore
 				password: password)
 
 		return createSession(
+				server: LiferayServerContext.server,
 				authentication: authentication,
 				userAttributes: userAttributes)
 	}
@@ -111,7 +112,8 @@ import UICKeyChainStore
 	}
 
 	private class func createSession(
-			#authentication: LRAuthentication,
+			#server: String,
+			authentication: LRAuthentication,
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
