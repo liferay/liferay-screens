@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import AFNetworking
 
 
 public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel {

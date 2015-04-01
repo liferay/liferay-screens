@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import TNRadioButtonGroup
 
 
 public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
