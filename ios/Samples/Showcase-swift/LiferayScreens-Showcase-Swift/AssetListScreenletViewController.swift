@@ -12,6 +12,8 @@
  * details.
  */
 import UIKit
+import LiferayScreens
+
 
 class AssetListScreenletViewController: UIViewController, AssetListScreenletDelegate,
 	UIPickerViewDelegate, UIPickerViewDataSource {

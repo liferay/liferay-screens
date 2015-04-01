@@ -12,6 +12,8 @@
  * details.
  */
 import UIKit
+import LiferayScreens
+
 
 class ForgotPasswordScreenletViewController: UIViewController, ForgotPasswordScreenletDelegate {
 

@@ -12,6 +12,8 @@
  * details.
  */
 import UIKit
+import LiferayScreens
+
 
 class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, LoginScreenletDelegate {
 
