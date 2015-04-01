@@ -12,6 +12,8 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
+
 
 public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 

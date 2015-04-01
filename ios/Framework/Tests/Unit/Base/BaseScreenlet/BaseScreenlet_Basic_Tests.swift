@@ -12,6 +12,7 @@
  * details.
  */
 import XCTest
+import UIKit
 
 
 class BaseScreenlet_Basic_Tests: XCTestCase {

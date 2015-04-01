@@ -12,6 +12,7 @@
  * details.
  */
 import XCTest
+import UIKit
 
 
 class DDLListScreenlet_ParseFields_Tests: XCTestCase {

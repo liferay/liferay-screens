@@ -12,6 +12,7 @@
  * details.
  */
 import XCTest
+import UIKit
 
 
 class DDLFieldDocument_Tests: XCTestCase {
