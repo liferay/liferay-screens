@@ -1,3 +1,3 @@
 #!/bin/sh
 
-xctool clean test -workspace Liferay-iOS-Screens.xcworkspace -scheme Liferay-iOS-Screens -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+xctool clean test -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
