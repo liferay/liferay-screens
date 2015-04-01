@@ -12,34 +12,40 @@
 * details.
 */
 import UIKit
+import CryptoSwift
 
 
 class UserPortraitBaseInteractor: Interactor {
 
 	var resultURL: NSURL?
 
-	func URLForAttributes(#portraitId: Int64, uuid: String, male: Bool) -> NSURL {
+	func URLForAttributes(#portraitId: Int64, uuid: String, male: Bool) -> NSURL? {
 
-		func encodedSHA1(input: String) -> String {
-		/*
-			var result = [Byte](count: Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
+		func encodedSHA1(input: String) -> String? {
+			if let inputData = input.dataUsingEncoding(NSUTF8StringEncoding,
+					allowLossyConversion: false) {
 
-			CC_SHA1(input, CC_LONG(countElements(input)), &result)
-			let data = NSData(bytes: result, length: result.count)
-			let encodedString = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
+				if let resultData = CryptoSwift.Hash.sha1(inputData).calculate() {
+					return LRHttpUtil.encodeURL(
+							resultData.base64EncodedStringWithOptions(
+								NSDataBase64EncodingOptions(0)))
+				}
+			}
 
-			return LRHttpUtil.encodeURL(encodedString)
-			*/
-			return ""
+			return nil
 		}
 
-		let maleString = male ? "male" : "female"
+		if let hashedUUID = encodedSHA1(uuid) {
+			let maleString = male ? "male" : "female"
 
-		let URL = "\(LiferayServerContext.server)/image/user_\(maleString)/_portrait" +
-				"?img_id=\(portraitId)" +
-				"&img_id_token=\(encodedSHA1(uuid))"
+			let url = "\(LiferayServerContext.server)/image/user_\(maleString)/_portrait" +
+					"?img_id=\(portraitId)" +
+					"&img_id_token=\(hashedUUID)"
 
-		return NSURL(string: URL)!
+			return NSURL(string: url)
+		}
+
+		return nil
 	}
 
 }
