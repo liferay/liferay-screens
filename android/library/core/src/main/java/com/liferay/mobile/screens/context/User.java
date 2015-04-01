@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.context;
 
+import com.liferay.mobile.screens.util.LiferayLogger;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,6 +41,7 @@ public class User {
 				_attributes.put(key, jsonObject.get(key));
 			}
 			catch (JSONException e) {
+				LiferayLogger.e("Error parsing json", e);
 			}
 		}
 	}
