@@ -19,41 +19,7 @@ FOUNDATION_EXPORT double LiferayScreensVersionNumber;
 //! Project version string for LiferayScreens.
 FOUNDATION_EXPORT const unsigned char LiferayScreensVersionString[];
 
-// CONFLICTS
-//#import <CommonCrypto/CommonDigest.h>
-//#import <SMXMLDocument/SMXMLDocument.h">
-
-
-#import <MBProgressHUD/MBProgressHUD.h>
-
-#import <UICKeyChainStore/UICKeyChainStore.h>
-#import <ODRefreshControl/ODRefreshControl.h>
-
-//#import "AssetListScreenletInterop.h"
-
-// Default theme dependencies
-#import <DTPickerPresenter/DTPickerPresenter.h>
-#import <DTPickerPresenter/DTDatePickerPresenter.h>
-#import <TNRadioButtonGroup/TNRadioButtonGroup.h>
-#import <MDRadialProgress/MDRadialProgressView.h>
-#import <MDRadialProgress/MDRadialProgressTheme.h>
-//#import <AFNetworking/UIImageView+AFNetworking.h>
-
-// Liferay services
-#import <Liferay_iOS_SDK/LRCallback.h>
-#import <Liferay_iOS_SDK/LRSession.h>
-#import <Liferay_iOS_SDK/LRBasicAuthentication.h>
-#import <Liferay_iOS_SDK/LRBatchSession.h>
-#import <Liferay_iOS_SDK/LRError.h>
-#import <Liferay_iOS_SDK/LRJSONObjectWrapper.h>
-#import <Liferay_iOS_SDK/LRHttpUtil.h>
-
-#import <Liferay_iOS_SDK/LRUserService_v62.h>
-#import <Liferay_iOS_SDK/LRDDMStructureService_v62.h>
-#import <Liferay_iOS_SDK/LRDDLRecordService_v62.h>
-#import <Liferay_iOS_SDK/LRDLAppService_v62.h>
-#import <Liferay_iOS_SDK/LRAssetEntryService_v62.h>
-#import <Liferay_iOS_SDK/LRJournalArticleService_v62.h>
+// In this header, you should import all the public headers of your framework using statements like #import <LiferayScreens/PublicHeader.h>
 
 #import <LiferayScreens/LRMobilewidgetsassetentryService_v62.h>
 #import <LiferayScreens/LRMobilewidgetsddlrecordService_v62.h>

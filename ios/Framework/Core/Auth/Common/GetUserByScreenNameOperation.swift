@@ -12,16 +12,17 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
-public class GetUserByEmailOperation: GetUserBaseOperation {
+public class GetUserByScreenNameOperation: GetUserBaseOperation {
 
 	private var companyId: Int64
-	private var emailAddress: String?
+	private var screenName: String?
 
-	public init(screenlet: BaseScreenlet, companyId: Int64, emailAddress:String?) {
+	public init(screenlet: BaseScreenlet, companyId: Int64, screenName: String?) {
 		self.companyId = companyId
-		self.emailAddress = emailAddress
+		self.screenName = screenName
 
 		super.init(screenlet: screenlet)
 	}
@@ -30,8 +31,8 @@ public class GetUserByEmailOperation: GetUserBaseOperation {
 		var valid = super.validateData()
 
 		if valid {
-			if let emailAddressValue = emailAddress {
-				valid = (emailAddressValue != "")
+			if let screenNameValue = screenName {
+				valid = (screenNameValue != "")
 			}
 			else {
 				valid = false
@@ -40,7 +41,6 @@ public class GetUserByEmailOperation: GetUserBaseOperation {
 
 		return valid
 	}
-
 
 	//MARK: LiferayLoginBaseOperation
 
@@ -52,8 +52,8 @@ public class GetUserByEmailOperation: GetUserBaseOperation {
 		let companyId = (self.companyId != 0)
 				? self.companyId : LiferayServerContext.companyId
 
-		return service.getUserByEmailAddressWithCompanyId(companyId,
-				emailAddress: emailAddress,
+		return service.getUserByScreenNameWithCompanyId(companyId,
+				screenName: screenName,
 				error: error)
 	}
 

@@ -21,6 +21,7 @@ class UserPortraitBaseInteractor: Interactor {
 	func URLForAttributes(#portraitId: Int64, uuid: String, male: Bool) -> NSURL {
 
 		func encodedSHA1(input: String) -> String {
+		/*
 			var result = [Byte](count: Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
 
 			CC_SHA1(input, CC_LONG(countElements(input)), &result)
@@ -28,6 +29,8 @@ class UserPortraitBaseInteractor: Interactor {
 			let encodedString = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
 
 			return LRHttpUtil.encodeURL(encodedString)
+			*/
+			return ""
 		}
 
 		let maleString = male ? "male" : "female"

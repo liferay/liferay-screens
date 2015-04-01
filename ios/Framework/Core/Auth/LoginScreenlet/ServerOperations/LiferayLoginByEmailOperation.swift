@@ -12,37 +12,33 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
-public class GetUserByUserIdOperation: GetUserBaseOperation {
+public class LiferayLoginByEmailOperation: GetUserByEmailOperation {
 
-	private var userId: Int64
-
-	public init(screenlet: BaseScreenlet, userId: Int64) {
-		self.userId = userId
-
-		super.init(screenlet: screenlet)
+	internal override var hudLoadingMessage: HUDMessage? {
+		return (LocalizedString("login-screenlet", "loading-message", self),
+				details: LocalizedString("login-screenlet", "loading-details", self))
+	}
+	internal override var hudFailureMessage: HUDMessage? {
+		return (LocalizedString("login-screenlet", "loading-error", self), details: nil)
 	}
 
 	override internal func validateData() -> Bool {
-		var valid = super.validateData()
+		let valid = super.validateData()
 
-		if valid {
-			valid = (userId > 0)
+		if !valid {
+			showValidationHUD(message: LocalizedString("login-screenlet", "validation", self))
 		}
 
 		return valid
 	}
 
-
-	//MARK: LiferayLoginBaseOperation
-
-	override internal func sendGetUserRequest(
-			#service: LRUserService_v62,
-			error: NSErrorPointer)
-			-> NSDictionary? {
-
-		return service.getUserByIdWithUserId(userId, error: error)
+	override internal func postRun() {
+		if lastError == nil {
+			setResultAsSessionContext()
+		}
 	}
 
 }

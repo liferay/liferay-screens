@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 public class GetUserBaseOperation: ServerOperation {
 
