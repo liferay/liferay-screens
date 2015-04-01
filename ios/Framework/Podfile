@@ -8,7 +8,7 @@ pod 'DTPickerPresenter'
 pod 'TNRadioButtonGroup'
 pod 'MDRadialProgress'
 pod 'ODRefreshControl'
-pod 'Liferay-iOS-SDK', '6.2.0.12'
+pod 'Liferay-iOS-SDK', '6.2.0.17'
 pod 'CryptoSwift'
 
 target :LiferayScreensTests do
