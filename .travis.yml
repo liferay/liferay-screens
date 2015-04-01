@@ -6,6 +6,9 @@ before_install:
     - env
     - locale
     - pod --version
+    - brew update
+    - brew outdated xctool || brew upgrade xctool
+
 
 script:
     - cd ios/Library
