@@ -86,8 +86,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 				case _
 				where nextResponder is UIControl:
-					(nextResponder as UIControl).sendActionsForControlEvents(
-							UIControlEvents.TouchUpInside)
+					userActionWithSender(nextResponder)
 
 				default: ()
 			}
