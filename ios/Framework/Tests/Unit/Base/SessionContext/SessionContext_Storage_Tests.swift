@@ -16,23 +16,37 @@ import XCTest
 
 class SessionContext_Storage_Tests: XCTestCase {
 
+	var credentialStorage = CredentialStorageMock()
+	var keyChainStorage = KeyChainStorageMock()
+
 	override func setUp() {
 		super.setUp()
 
 		self.continueAfterFailure = false
+		self.credentialStorage = CredentialStorageMock()
+		self.keyChainStorage = KeyChainStorageMock()
+
+		SessionContext.sessionStorage = SessionStorage(
+				credentialStorage: self.credentialStorage,
+				keyChainStorage: self.keyChainStorage)
 
 		SessionContext.clearSession()
 	}
 
 	override func tearDown() {
-		SessionContext.removeStoredSession()
 		SessionContext.clearSession()
+		SessionContext.sessionStorage = SessionStorage(
+			credentialStorage: CredentialStorageMobileSDK(),
+			keyChainStorage: KeyChainStorageImpl())
 
 		super.tearDown()
 	}
 
 	func test_StoreSession_ShouldReturnFalse_WhenSessionIsNotCreated() {
 		XCTAssertFalse(SessionContext.storeSession())
+
+		XCTAssertFalse(credentialStorage.calledStoreCredentialForServer)
+		XCTAssertFalse(keyChainStorage.calledSetData)
 	}
 
 	func test_StoreSession_ShouldReturnFalse_WhenUserAttributesAreEmpty() {
@@ -42,6 +56,9 @@ class SessionContext_Storage_Tests: XCTestCase {
 				userAttributes: [:])
 
 		XCTAssertFalse(SessionContext.storeSession())
+
+		XCTAssertFalse(credentialStorage.calledStoreCredentialForServer)
+		XCTAssertFalse(keyChainStorage.calledSetData)
 	}
 
 	func test_StoreSession_ShouldReturnTrue_WhenSessionIsCreated() {
@@ -51,11 +68,26 @@ class SessionContext_Storage_Tests: XCTestCase {
 				userAttributes: ["k":"v"])
 
 		XCTAssertTrue(SessionContext.storeSession())
+
+		XCTAssertTrue(credentialStorage.calledStoreCredentialForServer)
+		XCTAssertTrue(keyChainStorage.calledSetData)
 	}
 
 	func test_LoadSessionFromStore_ShouldReturnFalse_WhenSessionIsNotStored() {
-		SessionContext.removeStoredSession()
+		let session = SessionContext.createSession(
+				username: "username",
+				password: "password",
+				userAttributes: ["k":"v"])
+
+		credentialStorage.hasData = false
+
 		XCTAssertFalse(SessionContext.loadSessionFromStore())
+
+		XCTAssertTrue(credentialStorage.calledGetSession)
+		XCTAssertFalse(keyChainStorage.calledDataForKey)
+
+		XCTAssertTrue(SessionContext.currentUserName == nil)
+		XCTAssertTrue(SessionContext.currentPassword == nil)
 	}
 
 	func test_LoadSessionFromStore_ShouldReturnTrue_WhenSessionIsStored() {
@@ -64,54 +96,34 @@ class SessionContext_Storage_Tests: XCTestCase {
 				password: "password",
 				userAttributes: ["k":"v"])
 
-		SessionContext.storeSession()
-
 		XCTAssertTrue(SessionContext.loadSessionFromStore())
+
+		XCTAssertTrue(credentialStorage.calledGetSession)
+		XCTAssertTrue(keyChainStorage.calledDataForKey)
 	}
 
-	func test_LoadSessionFromStore_ShouldSetCurrentSession_WhenSessionIsStored() {
+	func test_LoadSessionFromStore_ShouldRetrieveData_WhenSessionIsStored() {
 		let session = SessionContext.createSession(
 				username: "username",
 				password: "password",
 				userAttributes: ["k":"v"])
-		SessionContext.storeSession()
-		SessionContext.clearSession()
+
 		SessionContext.loadSessionFromStore()
 
-		XCTAssertTrue(SessionContext.hasSession)
-
-		XCTAssertOptional(SessionContext.currentUserName)
-		XCTAssertOptional(SessionContext.currentPassword)
+		XCTAssertTrue(SessionContext.currentUserName != nil)
+		XCTAssertTrue(SessionContext.currentPassword != nil)
+		XCTAssertTrue(SessionContext.userAttribute("k") != nil)
 
 		XCTAssertEqual("username", SessionContext.currentUserName!)
 		XCTAssertEqual("password", SessionContext.currentPassword!)
-	}
-
-	func test_LoadSessionFromStore_ShouldSetUserAttributes_WhenSessionIsStored() {
-		let session = SessionContext.createSession(
-				username: "username",
-				password: "password",
-				userAttributes: ["k1": "v1", "k2": "v2"])
-		SessionContext.storeSession()
-		SessionContext.clearSession()
-		SessionContext.loadSessionFromStore()
-
-		XCTAssertEqual("v1", (SessionContext.userAttribute("k1") ?? "") as String)
-		XCTAssertEqual("v2", (SessionContext.userAttribute("k2") ?? "") as String)
+		XCTAssertEqual("v", SessionContext.userAttribute("k") as String)
 	}
 
 	func test_RemoveStoredSession_ShouldEmptyTheStoredSession() {
-		let session = SessionContext.createSession(
-				username: "username",
-				password: "password",
-				userAttributes: ["k1": "v1", "k2": "v2"])
-		SessionContext.storeSession()
-		SessionContext.clearSession()
-
 		SessionContext.removeStoredSession()
-		XCTAssertFalse(SessionContext.loadSessionFromStore())
+
+		XCTAssertTrue(credentialStorage.calledRemoveCredential)
+		XCTAssertTrue(keyChainStorage.calledRemoveItemForKey)
 	}
-
-
 
 }

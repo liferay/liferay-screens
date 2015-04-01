@@ -16,6 +16,22 @@ import XCTest
 
 class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
+	override func setUp() {
+		SessionContext.sessionStorage = SessionStorage(
+				credentialStorage: CredentialStorageMock(),
+				keyChainStorage: KeyChainStorageMock())
+
+		super.setUp()
+	}
+
+	override func tearDown() {
+		super.tearDown()
+
+		SessionContext.sessionStorage = SessionStorage(
+			credentialStorage: CredentialStorageMobileSDK(),
+			keyChainStorage: KeyChainStorageImpl())
+	}
+
 	func test_Successful() {
 		scenario("LoginScreenlet by email should work") {
 			given("a configured login screenlet", {
@@ -34,7 +50,6 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					done("login response received", withResult: result)
 				}
 				self.screenlet!.performDefaultAction()
-
 			},
 			eventually: "the state of the screenlet should be consistent", {result in
 				assertThat("the error should be nil") {

@@ -54,7 +54,6 @@ class BaseLoginScreenletTestCase: IntegrationTestCase {
 		screenlet!.screenletView = screenlet!.loadScreenletView()
 
 		SessionContext.clearSession()
-		SessionContext.removeStoredSession()
 	}
 
 }
