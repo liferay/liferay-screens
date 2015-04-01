@@ -12,6 +12,7 @@
 * details.
 */
 import Foundation
+import MBProgressHUD
 
 
 internal let BaseScreenletHudLock = "hud-lock"

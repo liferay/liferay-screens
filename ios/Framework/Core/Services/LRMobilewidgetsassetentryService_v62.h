@@ -12,7 +12,7 @@
  * details.
  */
 
-#import <Liferay_iOS_SDK/LRBaseService.h>
+@import LRMobileSDK;
 
 /**
  * @author Bruno Farache

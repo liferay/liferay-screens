@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		85599C36EE9CF9E9E88D5A7C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9136B139BF9449FC75DBECA6 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		881E60B81ACBE3FF00862B9E /* BaseScreenlet+progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B51ACBE3FF00862B9E /* BaseScreenlet+progress.swift */; };
+		881E60B91ACBE3FF00862B9E /* BaseScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */; };
+		881E60BA1ACBE3FF00862B9E /* BaseScreenletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B71ACBE3FF00862B9E /* BaseScreenletView.swift */; };
+		881E60BF1ACBE43200862B9E /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BB1ACBE43200862B9E /* Interactor.swift */; };
+		881E60C01ACBE43200862B9E /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BC1ACBE43200862B9E /* KeyboardManager.swift */; };
+		881E60C11ACBE43200862B9E /* ServerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BD1ACBE43200862B9E /* ServerOperation.swift */; };
+		881E60C21ACBE43200862B9E /* ServerOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BE1ACBE43200862B9E /* ServerOperationInteractor.swift */; };
+		881E60C41ACBE46B00862B9E /* AuthBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C31ACBE46B00862B9E /* AuthBased.swift */; };
+		881E60CD1ACBE56700862B9E /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C61ACBE56700862B9E /* BaseListPageLoadInteractor.swift */; };
+		881E60CE1ACBE56700862B9E /* BaseListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C71ACBE56700862B9E /* BaseListScreenlet.swift */; };
+		881E60CF1ACBE56700862B9E /* BaseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C81ACBE56700862B9E /* BaseListView.swift */; };
+		881E60D01ACBE56700862B9E /* LiferayPaginationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60CA1ACBE56700862B9E /* LiferayPaginationOperation.swift */; };
+		881E60D11ACBE56700862B9E /* BaseListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60CC1ACBE56700862B9E /* BaseListTableView.swift */; };
+		881E60DC1ACBE5BA00862B9E /* base.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881E60DA1ACBE5BA00862B9E /* base.strings */; };
 		8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */ = {isa = PBXBuildFile; fileRef = 8892C67D1ACB2E3300192232 /* LiferayScreens.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8892C6841ACB2E3300192232 /* LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8892C6781ACB2E3300192232 /* LiferayScreens.framework */; };
 		8892C68B1ACB2E3300192232 /* LiferayScreensTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C68A1ACB2E3300192232 /* LiferayScreensTests.swift */; };
@@ -39,6 +53,21 @@
 /* Begin PBXFileReference section */
 		0B440B87DE9DF08FCB1AA970 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		70A86EF9E7113685C27BD9CA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		881E60B51ACBE3FF00862B9E /* BaseScreenlet+progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseScreenlet+progress.swift"; sourceTree = "<group>"; };
+		881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreenlet.swift; sourceTree = "<group>"; };
+		881E60B71ACBE3FF00862B9E /* BaseScreenletView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreenletView.swift; sourceTree = "<group>"; };
+		881E60BB1ACBE43200862B9E /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		881E60BC1ACBE43200862B9E /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
+		881E60BD1ACBE43200862B9E /* ServerOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerOperation.swift; sourceTree = "<group>"; };
+		881E60BE1ACBE43200862B9E /* ServerOperationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerOperationInteractor.swift; sourceTree = "<group>"; };
+		881E60C31ACBE46B00862B9E /* AuthBased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthBased.swift; sourceTree = "<group>"; };
+		881E60C61ACBE56700862B9E /* BaseListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListPageLoadInteractor.swift; sourceTree = "<group>"; };
+		881E60C71ACBE56700862B9E /* BaseListScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListScreenlet.swift; sourceTree = "<group>"; };
+		881E60C81ACBE56700862B9E /* BaseListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListView.swift; sourceTree = "<group>"; };
+		881E60CA1ACBE56700862B9E /* LiferayPaginationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayPaginationOperation.swift; sourceTree = "<group>"; };
+		881E60CC1ACBE56700862B9E /* BaseListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListTableView.swift; sourceTree = "<group>"; };
+		881E60DB1ACBE5BA00862B9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/base.strings; sourceTree = "<group>"; };
+		881E60DD1ACBE5C100862B9E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/base.strings; sourceTree = "<group>"; };
 		8892C6781ACB2E3300192232 /* LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8892C67C1ACB2E3300192232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		8892C67D1ACB2E3300192232 /* LiferayScreens.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreens.h; sourceTree = SOURCE_ROOT; };
@@ -98,6 +127,52 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		881E60B41ACBE3FF00862B9E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				881E60DA1ACBE5BA00862B9E /* base.strings */,
+				881E60C51ACBE56700862B9E /* BaseListScreenlet */,
+				881E60C31ACBE46B00862B9E /* AuthBased.swift */,
+				881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */,
+				881E60B51ACBE3FF00862B9E /* BaseScreenlet+progress.swift */,
+				881E60B71ACBE3FF00862B9E /* BaseScreenletView.swift */,
+				881E60BB1ACBE43200862B9E /* Interactor.swift */,
+				881E60BC1ACBE43200862B9E /* KeyboardManager.swift */,
+				881E60BD1ACBE43200862B9E /* ServerOperation.swift */,
+				881E60BE1ACBE43200862B9E /* ServerOperationInteractor.swift */,
+			);
+			name = Base;
+			path = Core/Base;
+			sourceTree = SOURCE_ROOT;
+		};
+		881E60C51ACBE56700862B9E /* BaseListScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				881E60C61ACBE56700862B9E /* BaseListPageLoadInteractor.swift */,
+				881E60C71ACBE56700862B9E /* BaseListScreenlet.swift */,
+				881E60C81ACBE56700862B9E /* BaseListView.swift */,
+				881E60C91ACBE56700862B9E /* ServerOperations */,
+				881E60CB1ACBE56700862B9E /* TableView */,
+			);
+			path = BaseListScreenlet;
+			sourceTree = "<group>";
+		};
+		881E60C91ACBE56700862B9E /* ServerOperations */ = {
+			isa = PBXGroup;
+			children = (
+				881E60CA1ACBE56700862B9E /* LiferayPaginationOperation.swift */,
+			);
+			path = ServerOperations;
+			sourceTree = "<group>";
+		};
+		881E60CB1ACBE56700862B9E /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				881E60CC1ACBE56700862B9E /* BaseListTableView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		8892C66E1ACB2E3300192232 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +196,7 @@
 		8892C67A1ACB2E3300192232 /* LiferayScreens */ = {
 			isa = PBXGroup;
 			children = (
+				881E60B41ACBE3FF00862B9E /* Base */,
 				8892C6B11ACBD95400192232 /* Context */,
 				8892C6A41ACBD89400192232 /* Extensions */,
 				8892C6941ACB2FDC00192232 /* Core */,
@@ -278,6 +354,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
 			);
 			mainGroup = 8892C66E1ACB2E3300192232;
 			productRefGroup = 8892C6791ACB2E3300192232 /* Products */;
@@ -295,6 +372,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				881E60DC1ACBE5BA00862B9E /* base.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,14 +440,27 @@
 			files = (
 				8892C6AB1ACBD89400192232 /* Bool+Conversion.swift in Sources */,
 				8892C6AC1ACBD89400192232 /* Global.swift in Sources */,
+				881E60D01ACBE56700862B9E /* LiferayPaginationOperation.swift in Sources */,
+				881E60C01ACBE43200862B9E /* KeyboardManager.swift in Sources */,
+				881E60B91ACBE3FF00862B9E /* BaseScreenlet.swift in Sources */,
 				8892C6B51ACBD95400192232 /* SessionContext.swift in Sources */,
 				8892C6A11ACB2FDC00192232 /* LRMobilewidgetsuserService_v62.m in Sources */,
 				8892C6AF1ACBD89400192232 /* UIButton+Title.swift in Sources */,
 				8892C69F1ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.m in Sources */,
+				881E60C11ACBE43200862B9E /* ServerOperation.swift in Sources */,
 				8892C6B01ACBD89400192232 /* UIView+Animations.swift in Sources */,
+				881E60CE1ACBE56700862B9E /* BaseListScreenlet.swift in Sources */,
+				881E60D11ACBE56700862B9E /* BaseListTableView.swift in Sources */,
 				8892C6B41ACBD95400192232 /* LiferayServerContext.swift in Sources */,
+				881E60BA1ACBE3FF00862B9E /* BaseScreenletView.swift in Sources */,
 				8892C6AE1ACBD89400192232 /* NSLocale+CurrentLocale.swift in Sources */,
+				881E60CF1ACBE56700862B9E /* BaseListView.swift in Sources */,
+				881E60C41ACBE46B00862B9E /* AuthBased.swift in Sources */,
+				881E60B81ACBE3FF00862B9E /* BaseScreenlet+progress.swift in Sources */,
+				881E60CD1ACBE56700862B9E /* BaseListPageLoadInteractor.swift in Sources */,
+				881E60BF1ACBE43200862B9E /* Interactor.swift in Sources */,
 				8892C69D1ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.m in Sources */,
+				881E60C21ACBE43200862B9E /* ServerOperationInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +481,18 @@
 			targetProxy = 8892C6851ACB2E3300192232 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		881E60DA1ACBE5BA00862B9E /* base.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				881E60DB1ACBE5BA00862B9E /* en */,
+				881E60DD1ACBE5C100862B9E /* es */,
+			);
+			name = base.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8892C68C1ACB2E3300192232 /* Debug */ = {

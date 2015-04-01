@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import ODRefreshControl
 
 
 public class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDelegate {
