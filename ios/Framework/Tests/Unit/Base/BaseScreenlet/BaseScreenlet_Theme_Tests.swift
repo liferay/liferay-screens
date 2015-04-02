@@ -41,26 +41,10 @@ class BaseScreenlet_Theme_Tests: XCTestCase {
 		XCTAssertEqual("xyz", loginScreenlet!.themeName!)
 	}
 
-	func test_themeName_ShouldReturnDefaultTheme_WhenThemeDoesNotExist() {
-		loginScreenlet!.themeName = "not-exists"
-		loginScreenlet!.loadScreenletView();
-
-		XCTAssertEqual("default", loginScreenlet!.themeName!)
-	}
-
 	func test_themeName_ShouldReturnDefaultTheme_WhenThemeIsNil() {
 		loginScreenlet!.themeName = nil
 
 		XCTAssertEqual("default", loginScreenlet!.themeName!)
-	}
-
-	func test_LoadScreenletView_ShouldReturnDefaultView_WhenNoThemeIsSelected() {
-		let view = loginScreenlet!.loadScreenletView()
-
-		XCTAssertNotNil(view)
-		XCTAssertEqual(1, loginScreenlet!.subviews.count)
-		XCTAssertTrue(loginScreenlet!.subviews[0] is LoginView_default)
-		XCTAssertEqual(view!, loginScreenlet!.subviews[0] as BaseScreenletView)
 	}
 
 	func test_LoadScreenletView_ShouldReturnCustomizedView_WhenThemeIsSelected() {

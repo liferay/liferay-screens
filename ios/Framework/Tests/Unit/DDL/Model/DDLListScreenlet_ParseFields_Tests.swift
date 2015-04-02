@@ -22,7 +22,8 @@ class DDLListScreenlet_ParseFields_Tests: XCTestCase {
 	override func setUp() {
 		super.setUp()
 
-		screenlet = DDLListScreenlet(frame: CGRectMake(0, 0, 100, 100))
+		screenlet = DDLListScreenlet(frame: CGRectZero)
+		screenlet!.themeName = "test"
 		screenlet!.screenletView = screenlet!.loadScreenletView()
 	}
 
