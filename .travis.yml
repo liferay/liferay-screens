@@ -6,12 +6,12 @@ before_install:
     - env
     - locale
     - pod --version
-    - brew update
+    - brew update > /dev/null
     - brew outdated xctool || brew upgrade xctool
 
 
 script:
-    - cd ios/Library
+    - cd ios/Framework
     - pod install
     - ./run-tests.sh
     - cd ../..
