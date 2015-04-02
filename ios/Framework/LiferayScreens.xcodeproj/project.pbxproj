@@ -211,10 +211,6 @@
 		881E62A41ACBFF4500862B9E /* NSLocale+CurrentLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A81ACBD89400192232 /* NSLocale+CurrentLocale.swift */; };
 		881E62A51ACBFF4500862B9E /* UIButton+Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A91ACBD89400192232 /* UIButton+Title.swift */; };
 		881E62A61ACBFF4500862B9E /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6AA1ACBD89400192232 /* UIView+Animations.swift */; };
-		881E62B01ACBFFC500862B9E /* LoginView_xyz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E62AB1ACBFFC500862B9E /* LoginView_xyz.swift */; };
-		881E62B11ACBFFC500862B9E /* LoginView_xyz.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E62AC1ACBFFC500862B9E /* LoginView_xyz.xib */; };
-		881E62B21ACBFFC500862B9E /* xyz-preview-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 881E62AE1ACBFFC500862B9E /* xyz-preview-login.png */; };
-		881E62B31ACBFFC500862B9E /* xyz-preview-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 881E62AF1ACBFFC500862B9E /* xyz-preview-login@2x.png */; };
 		881E62B51ACBFFD900862B9E /* DefaultThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61E91ACBFC3400862B9E /* DefaultThemeConstants.swift */; };
 		881E62B61ACBFFFA00862B9E /* LiferayServerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B21ACBD95400192232 /* LiferayServerContext.swift */; };
 		881E62B71ACBFFFA00862B9E /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B31ACBD95400192232 /* SessionContext.swift */; };
@@ -520,10 +516,6 @@
 		881E62851ACBFE2100862B9E /* liferay-server-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context-sample.plist"; sourceTree = "<group>"; };
 		881E62891ACBFE6800862B9E /* BaseScreenlet_Basic_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreenlet_Basic_Tests.swift; sourceTree = "<group>"; };
 		881E628B1ACBFE6800862B9E /* BaseScreenlet_Theme_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreenlet_Theme_Tests.swift; sourceTree = "<group>"; };
-		881E62AB1ACBFFC500862B9E /* LoginView_xyz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_xyz.swift; sourceTree = "<group>"; };
-		881E62AC1ACBFFC500862B9E /* LoginView_xyz.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_xyz.xib; sourceTree = "<group>"; };
-		881E62AE1ACBFFC500862B9E /* xyz-preview-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xyz-preview-login.png"; sourceTree = "<group>"; };
-		881E62AF1ACBFFC500862B9E /* xyz-preview-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xyz-preview-login@2x.png"; sourceTree = "<group>"; };
 		881E62D31ACC049200862B9E /* DDLField_validation_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLField_validation_Tests.swift; sourceTree = "<group>"; };
 		881E62D41ACC049200862B9E /* DDLFieldBoolean_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldBoolean_Tests.swift; sourceTree = "<group>"; };
 		881E62D51ACC049200862B9E /* DDLFieldDate_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFieldDate_Tests.swift; sourceTree = "<group>"; };
@@ -1193,33 +1185,6 @@
 			path = BaseScreenlet;
 			sourceTree = "<group>";
 		};
-		881E62A91ACBFFC500862B9E /* theme-xyz */ = {
-			isa = PBXGroup;
-			children = (
-				881E62AA1ACBFFC500862B9E /* Login */,
-				881E62AD1ACBFFC500862B9E /* Resources */,
-			);
-			path = "theme-xyz";
-			sourceTree = "<group>";
-		};
-		881E62AA1ACBFFC500862B9E /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				881E62AB1ACBFFC500862B9E /* LoginView_xyz.swift */,
-				881E62AC1ACBFFC500862B9E /* LoginView_xyz.xib */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		881E62AD1ACBFFC500862B9E /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				881E62AE1ACBFFC500862B9E /* xyz-preview-login.png */,
-				881E62AF1ACBFFC500862B9E /* xyz-preview-login@2x.png */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		881E62D11ACC049200862B9E /* DDL */ = {
 			isa = PBXGroup;
 			children = (
@@ -1321,7 +1286,6 @@
 				8892C6881ACB2E3300192232 /* Supporting Files */,
 				881E61AD1ACBFB0400862B9E /* TestHelper.swift */,
 				88A2B7111ACDEBB1000C2065 /* theme-test */,
-				881E62A91ACBFFC500862B9E /* theme-xyz */,
 				881E61A71ACBF97000862B9E /* uBDD.swift */,
 				881E627E1ACBFD6900862B9E /* Unit */,
 			);
@@ -1580,7 +1544,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				881E62C91ACC019800862B9E /* default-field-focused@2x.png in Resources */,
-				881E62B11ACBFFC500862B9E /* LoginView_xyz.xib in Resources */,
 				881E62CF1ACC01E700862B9E /* default-form-gradient-top.png in Resources */,
 				881E62D01ACC01E700862B9E /* default-form-gradient-top@2x.png in Resources */,
 				881E62C41ACC016800862B9E /* default-lock-icon.png in Resources */,
@@ -1592,10 +1555,8 @@
 				881E62CA1ACC01A500862B9E /* default-field.png in Resources */,
 				881E62C71ACC016F00862B9E /* default-mail-icon@2x.png in Resources */,
 				881E62931ACBFEF500862B9E /* base.strings in Resources */,
-				881E62B21ACBFFC500862B9E /* xyz-preview-login.png in Resources */,
 				881E62C51ACC016F00862B9E /* default-lock-icon@2x.png in Resources */,
 				881E62CD1ACC01E700862B9E /* default-form-gradient-bottom.png in Resources */,
-				881E62B31ACBFFC500862B9E /* xyz-preview-login@2x.png in Resources */,
 				881E62CE1ACC01E700862B9E /* default-form-gradient-bottom@2x.png in Resources */,
 				881E62C61ACC016F00862B9E /* default-mail-icon.png in Resources */,
 				881E62CB1ACC01A500862B9E /* default-field@2x.png in Resources */,
@@ -1831,7 +1792,6 @@
 			files = (
 				881E62E81ACC049200862B9E /* DDLRecord_FieldValues_Tests.swift in Sources */,
 				881E62E11ACC049200862B9E /* DDLFieldDocument_Tests.swift in Sources */,
-				881E62B01ACBFFC500862B9E /* LoginView_xyz.swift in Sources */,
 				88DC31E81ACC38860078C961 /* KeyChainStorage.swift in Sources */,
 				881E62921ACBFEC300862B9E /* AuthBased.swift in Sources */,
 				881E62991ACBFF1800862B9E /* BaseScreenlet+progress.swift in Sources */,
