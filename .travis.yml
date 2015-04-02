@@ -3,12 +3,12 @@ osx_image: xcode611
 
 before_install:
     - export LANG=en_US.UTF-8
+    - gem install cocoapods
+    - brew update > /dev/null
+    - brew outdated xctool || brew upgrade xctool
     - env
     - locale
     - pod --version
-    - brew update > /dev/null
-    - brew outdated xctool || brew upgrade xctool
-
 
 script:
     - cd ios/Framework
