@@ -12,7 +12,6 @@
 * details.
 */
 import UIKit
-import LRMobileSDK
 
 
 public class LiferaySignUpOperation: ServerOperation {
