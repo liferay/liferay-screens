@@ -12,7 +12,11 @@
  * details.
  */
 
-@import LRMobileSDK;
+#if COCOAPODS
+	@import LRMobileSDK;
+#else
+	#import "LRBaseService.h"
+#endif
 
 /**
  * @author Bruno Farache
