@@ -1,3 +1,9 @@
 #!/bin/sh
 
-xctool clean test -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -sdk iphonesimulator8.1 ONLY_ACTIVE_ARCH=NO
+if [ -n "$1" ]; then
+    sdk=${1}
+else
+    sdk=iphonesimulator8.1
+fi
+
+xctool clean test -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -sdk ${sdk} ONLY_ACTIVE_ARCH=NO
