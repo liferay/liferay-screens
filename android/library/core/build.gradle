@@ -45,7 +45,7 @@ dependencies {
 	compile 'com.android.support:recyclerview-v7:21.0.3'
 	compile 'com.liferay.mobile:liferay-android-sdk:6.2.0.13'
 	compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'com.squareup.picasso:picasso:2.4.0'
+    compile 'com.squareup.picasso:picasso:2.5.0'
 
 	testCompile "junit:junit:4.10"
 	testCompile "org.robolectric:robolectric:2.4"
