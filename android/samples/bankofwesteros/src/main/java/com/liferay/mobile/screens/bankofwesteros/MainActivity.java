@@ -17,202 +17,141 @@ package com.liferay.mobile.screens.bankofwesteros;
 import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.transition.TransitionManager;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.ViewPropertyAnimator;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
+import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
+import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
-import com.liferay.mobile.screens.bankofwesteros.gestures.FlingListener;
-import com.liferay.mobile.screens.bankofwesteros.gestures.FlingTouchListener;
+import com.liferay.mobile.screens.bankofwesteros.views.SignUpListener;
+import com.liferay.mobile.screens.bankofwesteros.views.SignUpScreenlet;
+import com.liferay.mobile.screens.bankofwesteros.views.WesterosCrouton;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 
-public class MainActivity extends CardActivity implements View.OnClickListener {
+
+public class MainActivity extends CardActivity implements View.OnClickListener, LoginListener, ForgotPasswordListener, SignUpListener {
+
+	public static final int CARD1_REST_POSITION = 100;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-
-		_middlePosition = convertDpToPx(100);
-
-		_signInView = (FrameLayout) findViewById(R.id.sign_in_view);
-		_signInView.setOnTouchListener(new FlingTouchListener(this, createSignInListener()));
-
-		_signUpView = (FrameLayout) findViewById(R.id.sign_up_view);
-		_signUpView.setOnTouchListener(new FlingTouchListener(this, createSignUpListener()));
-
-		_forgotPasswordSubView = findViewById(R.id.forgot_password_subview);
-		_signInSubView = findViewById(R.id.sign_in_subview);
-
-		_signUpSubView = findViewById(R.id.sign_up_subview);
-		_termsSubView = findViewById(R.id.terms_subview);
-
 		_background = (ImageView) findViewById(R.id.background);
 		_background.setOnClickListener(this);
 
-		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
-		loginScreenlet.setListener(new LoginListener() {
-			@Override
-			public void onLoginSuccess(User user) {
-				_background.animate().alpha(0);
-				int maxHeightInDp = convertDpToPx(_maxHeight);
-				_signUpView.animate().y(maxHeightInDp);
-				_signInView.animate().y(maxHeightInDp)
-					.setListener(new Animator.AnimatorListener() {
-						@Override
-						public void onAnimationStart(Animator animation) {
+		//TODO move to the screenlet?
+		_forgotPasswordText = findViewById(R.id.forgot_password_text);
+		_forgotPasswordText.setOnClickListener(this);
+		_forgotPasswordField = (EditText) findViewById(R.id.forgot_password_email);
 
-						}
+		_loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
+		_loginScreenlet.setListener(this);
 
-						@Override
-						public void onAnimationEnd(Animator animation) {
-							Intent intent = new Intent(MainActivity.this, IssuesActivity.class);
-							intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-							startActivity(intent);
-						}
+		_forgotPasswordScreenlet = (ForgotPasswordScreenlet) findViewById(R.id.forgot_password_screenlet);
+		_forgotPasswordScreenlet.setListener(this);
 
-						@Override
-						public void onAnimationCancel(Animator animation) {
+		_signUpScreenlet = (SignUpScreenlet) findViewById(R.id.signup_screenlet);
+		_signUpScreenlet.setListener(this);
 
-						}
-
-						@Override
-						public void onAnimationRepeat(Animator animation) {
-
-						}
-					});
-			}
-
-			@Override
-			public void onLoginFailure(Exception e) {
-
-			}
-		});
-
-	}
-
-	@Override
-	protected void heightAndWidthReady() {
-		int iconHeightInDp = getResources().getDimensionPixelSize(R.dimen.icon_height);
-		_signInPosition = _maxHeight - 2 * iconHeightInDp;
-		_signUpPosition = _maxHeight - iconHeightInDp;
-		_signInView.setY(_signInPosition);
-		_signUpView.setY(_signUpPosition);
-		_forgotPasswordSubView.setX(_maxWidth);
-		_termsSubView.setX(_maxWidth);
+		DefaultCrouton.initDefaultCroutonStyles(WesterosCrouton.INFO, WesterosCrouton.ALERT, WesterosCrouton.POSITION);
 	}
 
 	@Override
 	public void onClick(final View view) {
-		//TODO move to another class
-		if (view.getId() == R.id.sign_in_view) {
-			toSignInView();
-		}
-		else if (view.getId() == R.id.sign_up_view) {
-			toSignUpView();
+		if (view.getId() == R.id.forgot_password_text) {
+			goRightCard1();
 		}
 		else {
-			toBackgroundView();
+			super.onClick(view);
 		}
 	}
 
-	private void toSignUpSubView() {
-		goLeft(_signUpSubView, _termsSubView);
+	@Override
+	public void onLoginSuccess(User user) {
+		toIssues();
 	}
 
-	private void toTermsSubView() {
-		goRight(_signUpSubView, _termsSubView);
+	@Override
+	public void onLoginFailure(Exception e) {
 	}
 
-	private void toBackgroundView() {
-		_signInView.animate().y(_signInPosition);
+	@Override
+	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
+		_forgotPasswordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.circle_email, 0);
 	}
 
-	private void toSignInView() {
-		TransitionManager.beginDelayedTransition(_signInView);
-		setFrameLayoutMargins(_signInView, 0, 0, 0, 0);
-		_signInView.animate().y(_middlePosition);
+	@Override
+	public void onForgotPasswordRequestFailure(Exception e) {
 
-		_signUpView.animate().y(_signUpPosition);
 	}
 
-	private void toSignUpView() {
-		moveCardToTop(_signUpView, _signInView);
+	@Override
+	public void onSignUpSuccess(User user) {
+		toIssues();
 	}
 
-
-	private FlingListener createSignInListener() {
-		return new FlingListener() {
-			@Override
-			public void onFlingLeft() {
-				goRight(_signInSubView, _forgotPasswordSubView);
-			}
-
-			@Override
-			public void onFlingRight() {
-				goLeft(_signInSubView, _forgotPasswordSubView);
-			}
-
-			@Override
-			public void onFlingUp() {
-				toSignInView();
-			}
-
-			@Override
-			public void onFlingDown() {
-				toBackgroundView();
-			}
-
-			@Override
-			public void onTouch() {
-				toSignInView();
-			}
-		};
+	@Override
+	public void onSignUpFailure(Exception e) {
+		EditText viewById = (EditText) _signUpScreenlet.findViewById(R.id.first_name);
+		viewById.setBackground(getDrawable(R.drawable.westeros_warning_edit_text_drawable));
+		viewById.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.icon_warning_white, 0);
+		_signUpScreenlet.findViewById(R.id.first_name_validation).setVisibility(View.VISIBLE);
 	}
 
-	private FlingListener createSignUpListener() {
-		return new FlingListener() {
-			@Override
-			public void onFlingLeft() {
-				toTermsSubView();
-			}
-
-			@Override
-			public void onFlingRight() {
-				toSignUpSubView();
-			}
-
-			@Override
-			public void onFlingUp() {
-				toSignUpView();
-			}
-
-			@Override
-			public void onFlingDown() {
-				toSignInView();
-			}
-
-			@Override
-			public void onTouch() {
-				toSignUpView();
-			}
-		};
+	@Override
+	public void onClickOnTermsAndConditions() {
+		goRightCard2();
 	}
 
+	@Override
+	protected void animateScreenAfterLoad() {
+		_card1.setY(_card1FoldedPosition);
+		_card2.setY(_card2FoldedPosition);
+		_card1RestPosition = convertDpToPx(CARD1_REST_POSITION);
 
-	private int _signInPosition;
-	private int _signUpPosition;
-	private int _middlePosition;
+		_background.animate().alpha(1);
+
+		toBackground();
+	}
+
+	@Override
+	protected void goRightCard1() {
+		_forgotPasswordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+		super.goRightCard1();
+	}
+
+	private void toIssues() {
+		_background.animate().alpha(0);
+
+		int maxHeightInDp = convertDpToPx(_maxHeight);
+		_card2.animate().y(maxHeightInDp);
+
+		final ViewPropertyAnimator animate = _card1.animate();
+		animate.y(maxHeightInDp)
+			.setListener(new EndAnimationListener() {
+				@Override
+				public void onAnimationEnd(Animator animator) {
+					animate.setListener(null);
+					Intent intent = new Intent(MainActivity.this, IssuesActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+					startActivity(intent);
+				}
+			});
+	}
+
 
 	private ImageView _background;
-	private FrameLayout _signInView;
-	private FrameLayout _signUpView;
-	private View _forgotPasswordSubView;
-	private View _signInSubView;
-	private View _signUpSubView;
-	private View _termsSubView;
+	private View _forgotPasswordText;
+	private EditText _forgotPasswordField;
+
+	private LoginScreenlet _loginScreenlet;
+	private ForgotPasswordScreenlet _forgotPasswordScreenlet;
+	private SignUpScreenlet _signUpScreenlet;
+
 }

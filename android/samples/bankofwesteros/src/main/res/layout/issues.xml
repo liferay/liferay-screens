@@ -12,108 +12,178 @@
 		android:layout_height="match_parent"
 		android:orientation="vertical">
 
-		<TextView android:id="@+id/account_settings_menu"
-			style="@style/menu_entry"
+		<TextView
+			android:id="@+id/account_settings_menu_entry"
+			style="@style/westeros_menu_entry"
+			android:text="@string/account_settings"/>
+
+		<TextView
+			android:id="@+id/call_menu_entry"
+			style="@style/westeros_menu_entry"
+			android:background="@color/westeros_light_gray"/>
+
+		<TextView
+			android:id="@+id/send_message_menu_entry"
+			style="@style/westeros_menu_entry"
+			android:text="@string/send_a_message"/>
+
+		<TextView
+			android:id="@+id/sign_out_menu_entry"
+			style="@style/westeros_menu_entry"
 			android:background="@color/westeros_light_gray"
-			android:text="Account Settings"/>
-
-		<TextView
-			style="@style/menu_entry"
-			android:text="Call"/>
-
-		<TextView
-			style="@style/menu_entry"
-			android:background="@color/westeros_light_gray"
-			android:text="Send a message"/>
-
-		<TextView
-			style="@style/menu_entry"
-			android:text="Sign Out"/>
+			android:text="@string/sign_out"/>
 
 	</LinearLayout>
 
-	<LinearLayout
+	<FrameLayout
 		android:id="@+id/card1"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="@android:color/white"
-		android:elevation="8dp"
-		android:orientation="vertical">
+		android:layout_marginBottom="@dimen/westeros_card_title_height"
+		android:background="@drawable/westeros_white_shape_ripple"
+		android:elevation="8dp">
 
-		<TextView
-			android:id="@+id/issues"
-			style="@style/card_icon"
-			android:text="My Issues"/>
-
-		<com.daimajia.swipe.SwipeLayout
-			android:id="@+id/sample"
-			android:layout_width="match_parent"
-			android:layout_height="80dp">
-
-			<LinearLayout
-				android:id="@+id/bottom_wrapper"
-				android:layout_width="160dp"
-				android:layout_height="match_parent"
-				android:background="#66ddff00"
-				android:orientation="horizontal"
-				android:weightSum="1">
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="My Issues 3"/>
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="My Issues 4"/>
-			</LinearLayout>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:background="#ffffff"
-				android:orientation="horizontal"
-				android:padding="10dp">
-
-				<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:text="My Issues 2"/>
-
-			</LinearLayout>
-
-
-		</com.daimajia.swipe.SwipeLayout>
-
-		<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
+		<RelativeLayout
+			android:id="@+id/card1_subview1"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			liferay:labelFields="Title,Severity"
-			liferay:layoutId="@layout/ddl_list_material"
-			liferay:recordSetId="20935"/>
+			android:orientation="vertical">
 
-	</LinearLayout>
+			<ImageView
+				style="@style/westeros_arrow"
+				android:id="@+id/card1_to_background_menu"
+				android:layout_alignParentLeft="true"
+				android:layout_alignParentStart="true"
+				android:src="@drawable/icon_options_red"/>
 
-	<LinearLayout
+			<TextView
+				android:id="@+id/title_issues"
+				style="@style/westeros_card_title"
+				android:text="@string/my_issues"/>
+
+			<ImageView
+				style="@style/westeros_arrow"
+				android:id="@+id/card1_to_background"
+				android:layout_alignParentRight="true"
+				android:layout_alignParentEnd="true"
+				android:src="@drawable/icon_down"/>
+
+			<View
+				android:layout_below="@id/title_issues"
+				android:id="@+id/divider_issues"
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:background="@color/westeros_background_gray"/>
+
+			<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
+				android:id="@+id/ddllist"
+				android:layout_below="@id/divider_issues"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				liferay:labelFields="Title"
+				liferay:layoutId="@layout/ddl_list_westeros"
+				liferay:recordSetId="20935"/>
+
+		</RelativeLayout>
+
+
+		<RelativeLayout
+			android:id="@+id/card1_subview2"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+			<ImageView
+				android:tag="card1_to_front_view"
+				style="@style/westeros_arrow"
+				android:id="@+id/card1_to_front_view"
+				android:layout_alignParentLeft="true"
+				android:src="@drawable/icon_left"/>
+
+			<TextView
+				android:id="@+id/title_detail_issue"
+				style="@style/westeros_card_title"
+				android:text="@string/issue_detail"/>
+
+			<TextView
+				android:layout_below="@id/title_detail_issue"
+				android:id="@+id/issue_title"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:paddingBottom="10dp"
+				android:textAllCaps="true"
+				android:textColor="@color/westeros_black"
+				android:textSize="18sp"
+				android:textStyle="bold"/>
+
+			<TextView
+				android:layout_below="@id/issue_title"
+				android:id="@+id/createdAt"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"/>
+
+			<TextView
+				android:layout_below="@id/createdAt"
+				android:id="@+id/description"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:paddingBottom="30dp"
+				android:paddingTop="30dp"
+				android:textColor="@color/westeros_black"/>
+
+			<TextView
+				android:layout_below="@id/description"
+				android:id="@+id/severity"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textColor="@color/westeros_red"/>
+
+		</RelativeLayout>
+	</FrameLayout>
+
+	<RelativeLayout
 		android:id="@+id/card2"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="@color/westeros_red"
+		android:layout_height="match_parent"
+		android:background="@drawable/westeros_button_ripple"
 		android:elevation="16dp"
 		android:orientation="vertical">
 
+
 		<TextView
-			style="@style/card_icon"
-			android:text="ADD NEW ISSUE"
+			style="@style/westeros_card_title"
+			android:id="@+id/report_issue_title"
+			android:text="@string/report_issue"
 			android:textColor="@android:color/white"/>
 
+		<ImageView
+			android:tag="card2_to_card1"
+			style="@style/westeros_arrow"
+			android:id="@+id/card2_to_card1"
+			android:layout_alignParentRight="true"
+			android:src="@drawable/icon_down_white"
+			android:visibility="invisible"/>
+
 		<com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
+			android:layout_below="@id/report_issue_title"
+			android:id="@+id/ddlform"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			liferay:layoutId="@layout/ddlform_material"
+			liferay:layoutId="@layout/ddlform_westeros"
 			liferay:recordSetId="20935"
-			liferay:structureId="20933"/>
-	</LinearLayout>
+			liferay:selectFieldLayoutId="@layout/ddlfield_select_westeros"
+			liferay:structureId="20933"
+			liferay:textAreaFieldLayoutId="@layout/ddlfield_text_area_westeros"
+			liferay:textFieldLayoutId="@layout/ddlfield_text_westeros"/>
+	</RelativeLayout>
+
+	<FrameLayout
+		android:elevation="24dp"
+		android:id="@+id/crouton_view_anchor"
+		android:orientation="vertical"
+		android:layout_gravity="bottom"
+		android:visibility="visible"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/westeros_card_title_height"/>
 
 </FrameLayout>

@@ -15,7 +15,6 @@ public class FlingTouchListener implements View.OnTouchListener {
 		_flingListener = flingListener;
 	}
 
-
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		_gestureDetector.onTouchEvent(event);
@@ -26,7 +25,7 @@ public class FlingTouchListener implements View.OnTouchListener {
 
 		@Override
 		public boolean onSingleTapConfirmed(MotionEvent e) {
-			_flingListener.onTouch();
+			_flingListener.onFling(FlingListener.Movement.TOUCH);
 			return true;
 		}
 
@@ -41,18 +40,18 @@ public class FlingTouchListener implements View.OnTouchListener {
 			float swipeX = e2.getX() - e1.getX();
 			if (Math.abs(swipeY) > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
 				if (swipeY > 0) {
-					_flingListener.onFlingDown();
+					_flingListener.onFling(FlingListener.Movement.DOWN);
 				}
 				else {
-					_flingListener.onFlingUp();
+					_flingListener.onFling(FlingListener.Movement.UP);
 				}
 			}
 			else if (Math.abs(e2.getX() - e1.getX()) > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
 				if (swipeX > 0) {
-					_flingListener.onFlingRight();
+					_flingListener.onFling(FlingListener.Movement.LEFT);
 				}
 				else {
-					_flingListener.onFlingLeft();
+					_flingListener.onFling(FlingListener.Movement.RIGHT);
 				}
 			}
 
