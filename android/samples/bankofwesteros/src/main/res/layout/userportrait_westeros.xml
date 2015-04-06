@@ -13,7 +13,9 @@
 		android:scaleType="fitXY"
 		android:src="@drawable/default_portrait_placeholder"/>
 
-	<ImageView
+	<ImageButton
+		android:visibility="invisible"
+		android:background="@android:color/transparent"
 		android:id="@+id/replace_portrait_image"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
