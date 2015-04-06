@@ -6,6 +6,8 @@
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.CAMERA"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+	<uses-permission android:name="com.liferay.mobile.screens.bankofwesteros.permission.C2D_MESSAGE"/>
 
 	<application
 		android:allowBackup="true"
@@ -20,6 +22,7 @@
 		<activity android:name=".IssuesActivity"/>
 		<activity android:name=".AccountSettings"/>
 		<activity
+		<activity android:name=".PushActivity"/>
 			android:name=".SplashActivity"
 			android:noHistory="true">
 			<intent-filter>
@@ -30,6 +33,13 @@
 		<activity
 			android:name=".TourActivity"
 			android:noHistory="true"/>
+
+		<receiver android:name=".GCMBroadcastReceiver">
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+				<category android:name="com.liferay.mobile.screens.bankofwesteros"/>
+			</intent-filter>
+		</receiver>
 
 	</application>
 
