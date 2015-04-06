@@ -14,13 +14,14 @@
 
 package com.liferay.mobile.screens.userportrait;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -61,39 +62,22 @@ public class UserPortraitScreenlet
 	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
 	public static final String LOAD_PORTRAIT = "LOAD_PORTRAIT";
 
+	public static final int SELECT_IMAGE = 0;
+	public static final int TAKE_PICTURE = 1;
+
 	public void load() {
 		performUserAction(LOAD_PORTRAIT);
 	}
 
-	public void updatePortraitImage() {
-
-		//FIXME dialog?
-		//FIXME progress?
-
-		Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-			android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-		((Activity) getContext()).startActivityForResult(galleryIntent, 1);
-	}
-
-	public void upload(Intent data) {
-		String picturePath = getPath(data);
-
+	public void upload(int requestCode, Intent data) {
+		String picturePath = "";
+		if (requestCode == SELECT_IMAGE) {
+			picturePath = getGalleryPath(data);
+		}
+		else if (requestCode == TAKE_PICTURE) {
+			picturePath = _filePath;
+		}
 		performUserAction(UPLOAD_PORTRAIT, picturePath);
-	}
-
-	private String getPath(Intent data) {
-		Uri selectedImage = data.getData();
-
-		String[] filePathColumn = {MediaStore.Images.Media.DATA,};
-
-		Cursor cursor = getContext().getContentResolver().query(selectedImage,
-			filePathColumn, null, null, null);
-		cursor.moveToFirst();
-
-		int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-		String picturePath = cursor.getString(columnIndex);
-		cursor.close();
-		return picturePath;
 	}
 
 	@Override
@@ -132,6 +116,8 @@ public class UserPortraitScreenlet
 		if (_listener != null) {
 			_listener.onUserPortraitUploaded(this);
 		}
+		getViewModel().showFinishOperation(UPLOAD_PORTRAIT);
+		((UserPortraitLoadInteractor) getInteractor(LOAD_PORTRAIT)).load(male, portraitId, uuid);
 	}
 
 	@Override
@@ -139,6 +125,8 @@ public class UserPortraitScreenlet
 		if (_listener != null) {
 			_listener.onUserPortraitLoadFailure(this, e);
 		}
+
+		getViewModel().showFailedOperation(null, e);
 	}
 
 	public void setListener(UserPortraitListener listener) {
@@ -177,6 +165,22 @@ public class UserPortraitScreenlet
 		_userId = userId;
 	}
 
+	public boolean getEditable() {
+		return _editable;
+	}
+
+	public void setEditable(boolean editable) {
+		_editable = editable;
+	}
+
+	public String getFilePath() {
+		return _filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		_filePath = filePath;
+	}
+
 	protected void autoLoad() {
 		if (((_portraitId != 0) && (_uuid != null)) || (_userId != 0)) {
 			try {
@@ -198,6 +202,7 @@ public class UserPortraitScreenlet
 		_portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, (int) SessionContext.getLoggedUser().getId());
+		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
@@ -249,12 +254,47 @@ public class UserPortraitScreenlet
 		}
 	}
 
+	@Override
+	protected void onRestoreInstanceState(Parcelable inState) {
+		Bundle bundle = (Bundle) inState;
+		super.onRestoreInstanceState(bundle.getParcelable(_STATE_SUPER));
+		_filePath = bundle.getString(_STATE_FILE_PATH);
+	}
+
+	@Override
+	protected Parcelable onSaveInstanceState() {
+		Bundle bundle = new Bundle();
+		bundle.putParcelable(_STATE_SUPER, super.onSaveInstanceState());
+		bundle.putString(_STATE_FILE_PATH, _filePath);
+		return bundle;
+	}
+
+	private String getGalleryPath(Intent data) {
+		Uri selectedImage = data.getData();
+
+		String[] filePathColumn = {MediaStore.Images.Media.DATA,};
+
+		Cursor cursor = getContext().getContentResolver().query(selectedImage,
+			filePathColumn, null, null, null);
+		cursor.moveToFirst();
+
+		int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+		String picturePath = cursor.getString(columnIndex);
+		cursor.close();
+		return picturePath;
+	}
+
+	private static final String _STATE_SUPER = "userportrait-super";
+	private static final String _STATE_FILE_PATH = "userportrait-filePath";
+
+	private String _filePath;
 	private boolean _autoLoad;
 	private UserPortraitListener _listener;
 	private boolean _male;
 	private long _portraitId;
 	private String _uuid;
 	private long _userId;
+	private boolean _editable;
 
 
 }
