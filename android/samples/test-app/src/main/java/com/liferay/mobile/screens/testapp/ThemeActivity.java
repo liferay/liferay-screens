@@ -14,15 +14,13 @@
 
 package com.liferay.mobile.screens.testapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.material.MaterialCrouton;
+import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 
@@ -37,25 +35,20 @@ public abstract class ThemeActivity extends ActionBarActivity {
 	protected void onCreate(Bundle state) {
 		super.onCreate(state);
 		currentTheme = getIntent().getIntExtra("theme", DefaultTheme.getDefaultTheme());
+
+		int color = isDefaultTheme() ? R.color.default_primary_blue : R.color.material_primary;
+
+		new LiferayCrouton.Builder().withInfoColor(color).build();
+
 		setTheme(currentTheme);
 	}
 
-	protected void info(String message) {
-		if (isDefaultTheme()) {
-			DefaultCrouton.info(this, message);
-		}
-		else {
-			MaterialCrouton.info(this, message);
-		}
+	protected void error(String message, Exception e) {
+		LiferayCrouton.error(this, message, e);
 	}
 
-	protected void error(String message, Exception e) {
-		if (isDefaultTheme()) {
-			DefaultCrouton.error(this, message, e);
-		}
-		else {
-			MaterialCrouton.error(this, message, e);
-		}
+	protected void info(String message) {
+		LiferayCrouton.info(this, message);
 	}
 
 	protected Intent getIntentWithTheme(Class destinationClass) {

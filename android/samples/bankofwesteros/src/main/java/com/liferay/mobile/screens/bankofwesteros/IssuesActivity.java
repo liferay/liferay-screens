@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.liferay.mobile.screens.bankofwesteros.views.WesterosCrouton;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -23,6 +22,7 @@ import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 import org.json.JSONObject;
 
@@ -33,8 +33,6 @@ import java.util.List;
  * @author Javier Gamarra
  */
 public class IssuesActivity extends CardActivity implements View.OnClickListener, DDLFormListener, BaseListListener<DDLEntry> {
-
-	//FIXME this is wrong
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -196,7 +194,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		toCard1(new EndAnimationListener() {
 			@Override
 			public void onAnimationEnd(Animator animator) {
-				WesterosCrouton.info(IssuesActivity.this, message.toUpperCase());
+				LiferayCrouton.info(IssuesActivity.this, message.toUpperCase());
 			}
 		});
 	}

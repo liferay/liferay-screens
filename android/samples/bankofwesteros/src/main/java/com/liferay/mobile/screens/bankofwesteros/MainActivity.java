@@ -28,9 +28,10 @@ import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.bankofwesteros.views.SignUpListener;
 import com.liferay.mobile.screens.bankofwesteros.views.SignUpScreenlet;
-import com.liferay.mobile.screens.bankofwesteros.views.WesterosCrouton;
 import com.liferay.mobile.screens.context.User;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
+import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
+
+import de.keyboardsurfer.android.widget.crouton.Configuration;
 
 
 public class MainActivity extends CardActivity implements View.OnClickListener, LoginListener, ForgotPasswordListener, SignUpListener {
@@ -59,7 +60,13 @@ public class MainActivity extends CardActivity implements View.OnClickListener, 
 		_signUpScreenlet = (SignUpScreenlet) findViewById(R.id.signup_screenlet);
 		_signUpScreenlet.setListener(this);
 
-		DefaultCrouton.initDefaultCroutonStyles(WesterosCrouton.INFO, WesterosCrouton.ALERT, WesterosCrouton.POSITION);
+		new LiferayCrouton.Builder()
+			.withInfoColor(R.color.material_primary_dark)
+			.withAlertColor(R.color.westeros_yellow)
+			.locatedIn(R.id.crouton_view_anchor)
+			.withHeight(250)
+			.withConfiguration(new Configuration.Builder().setInAnimation(R.anim.slide_up).setOutAnimation(R.anim.slide_down).build())
+			.build();
 	}
 
 	@Override
@@ -88,7 +95,6 @@ public class MainActivity extends CardActivity implements View.OnClickListener, 
 
 	@Override
 	public void onForgotPasswordRequestFailure(Exception e) {
-
 	}
 
 	@Override
