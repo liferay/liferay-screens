@@ -2,11 +2,8 @@ package com.liferay.mobile.screens.bankofwesteros;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 
@@ -26,9 +23,7 @@ import org.json.JSONObject;
 /**
  * @author Javier Gamarra
  */
-public class AccountSettings extends Activity implements View.OnClickListener {
-
-	//FIXME this is wrong
+public class AccountSettings extends Activity implements View.OnClickListener, UserPortraitListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +43,9 @@ public class AccountSettings extends Activity implements View.OnClickListener {
 		_emailAddress.setText(user.getEmail());
 		_password = (EditText) findViewById(R.id.password);
 		_password.setText(SessionContext.getAuthentication().getPassword());
+
+		_userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.userportrait);
+		_userPortraitScreenlet.setListener(this);
 	}
 
 	@Override
@@ -60,51 +58,16 @@ public class AccountSettings extends Activity implements View.OnClickListener {
 				finish();
 				break;
 			case R.id.replace_portrait_image:
-				Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-					android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-				startActivityForResult(galleryIntent, 1);
+				_userPortraitScreenlet.updatePortraitImage();
+
 				break;
 		}
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
 		if (resultCode == Activity.RESULT_OK) {
-
-			String picturePath = getPathOfSelectedImage(data);
-
-			UploadUserPortraitInteractor interactor = new UploadUserPortraitInteractor();
-			interactor.uploadImage(picturePath,
-				new JSONObjectAsyncTaskCallback() {
-					@Override
-					public void onSuccess(JSONObject result) {
-
-						UserPortraitScreenlet userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.userportrait);
-//					userPortraitScreenlet.performUserAction("RELOAD");
-						//FIXME demo code
-
-						userPortraitScreenlet.setListener(new UserPortraitListener() {
-							@Override
-							public Bitmap onUserPortraitReceived(UserPortraitScreenlet source, Bitmap bitmap) {
-								WesterosCrouton.info(AccountSettings.this, "Portrait updated");
-								return null;
-							}
-
-							@Override
-							public void onUserPortraitFailure(UserPortraitScreenlet source, Exception e) {
-							}
-						});
-						userPortraitScreenlet.load();
-					}
-
-					@Override
-					public void onFailure(Exception exception) {
-						WesterosCrouton.error(AccountSettings.this, "Error updating portrait", exception);
-					}
-				}
-			);
-
+			_userPortraitScreenlet.upload(data);
 		}
 	}
 
@@ -172,21 +135,6 @@ public class AccountSettings extends Activity implements View.OnClickListener {
 		}
 	}
 
-	private String getPathOfSelectedImage(Intent data) {
-		Uri selectedImage = data.getData();
-
-		String[] filePathColumn = {MediaStore.Images.Media.DATA,};
-
-		Cursor cursor = getContentResolver().query(selectedImage,
-			filePathColumn, null, null, null);
-		cursor.moveToFirst();
-
-		int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-		String picturePath = cursor.getString(columnIndex);
-		cursor.close();
-
-		return picturePath;
-	}
 
 	private void setError(EditText editText) {
 		editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.icon_warning, 0);
@@ -202,5 +150,27 @@ public class AccountSettings extends Activity implements View.OnClickListener {
 	private EditText _lastName;
 	private EditText _emailAddress;
 	private EditText _password;
+
+	private UserPortraitScreenlet _userPortraitScreenlet;
+
+	@Override
+	public Bitmap onUserPortraitLoadReceived(UserPortraitScreenlet source, Bitmap bitmap) {
+		return null;
+	}
+
+	@Override
+	public void onUserPortraitLoadFailure(UserPortraitScreenlet source, Exception e) {
+
+	}
+
+	@Override
+	public void onUserPortraitUploaded(UserPortraitScreenlet source) {
+		WesterosCrouton.info(AccountSettings.this, "Portrait updated");
+	}
+
+	@Override
+	public void onUserPortraitUploadFailure(UserPortraitScreenlet source, Exception e) {
+		WesterosCrouton.error(AccountSettings.this, "Error updating portrait", e);
+	}
 
 }

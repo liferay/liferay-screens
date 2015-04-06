@@ -49,16 +49,26 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 	}
 
 	@Override
-	public Bitmap onUserPortraitReceived(UserPortraitScreenlet source, Bitmap bitmap) {
+	public Bitmap onUserPortraitLoadReceived(UserPortraitScreenlet source, Bitmap bitmap) {
 		info("User portrait received!");
 
 		return null;
 	}
 
 	@Override
-	public void onUserPortraitFailure(UserPortraitScreenlet source, Exception e) {
+	public void onUserPortraitLoadFailure(UserPortraitScreenlet source, Exception e) {
 		error("Could not load user portrait", e);
 	}
 
 	private UserPortraitScreenlet _screenlet;
+
+	@Override
+	public void onUserPortraitUploaded(UserPortraitScreenlet source) {
+
+	}
+
+	@Override
+	public void onUserPortraitUploadFailure(UserPortraitScreenlet source, Exception e) {
+
+	}
 }
