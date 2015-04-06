@@ -238,16 +238,14 @@ import QuartzCore
 		let bundles = allBundles(currentClass: self.dynamicType, currentTheme: _themeName);
 
 		for bundle in bundles {
-			if let bundleValue = bundle {
-				if let nibName = nibNameInBundle(bundleValue) {
-					let views = bundleValue.loadNibNamed(nibName,
-							owner:self,
-							options:nil)
+			if let nibName = nibNameInBundle(bundle) {
+				let views = bundle.loadNibNamed(nibName,
+						owner:self,
+						options:nil)
 
-					assert(views.count > 0, "Malformed xib \(nibName). Without views")
+				assert(views.count > 0, "Malformed xib \(nibName). Without views")
 
-					return (views[0] as? BaseScreenletView)
-				}
+				return (views[0] as? BaseScreenletView)
 			}
 		}
 

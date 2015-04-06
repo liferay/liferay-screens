@@ -57,7 +57,7 @@ func delayed(delay: NSTimeInterval, block: dispatch_block_t) {
 }
 
 
-func allBundles(#currentClass: AnyClass, #currentTheme: String?) -> [NSBundle?] {
+func allBundles(#currentClass: AnyClass, #currentTheme: String?) -> [NSBundle] {
 	let frameworkBundle = NSBundle(forClass: currentClass)
 
 	let themeBundlePath = (currentTheme == nil)
@@ -66,11 +66,17 @@ func allBundles(#currentClass: AnyClass, #currentTheme: String?) -> [NSBundle?] 
 
 	let coreBundlePath = frameworkBundle.pathForResource("LiferayScreens-core", ofType: "bundle")
 
-	return [
+	let result = [
 		(themeBundlePath == nil) ? nil : NSBundle(path: themeBundlePath!),
 		(coreBundlePath == nil) ? nil : NSBundle(path: coreBundlePath!),
 		frameworkBundle,
 		NSBundle.mainBundle()]
+
+	return result.filter { bundle in
+		bundle != nil
+	}.map { bundle in
+		bundle!
+	}
 }
 
 
@@ -78,7 +84,7 @@ func imageInAnyBundle(#name: String, #currentClass: AnyClass, #currentTheme: Str
 	let bundles = allBundles(currentClass: currentClass, currentTheme: currentTheme)
 
 	for bundle in bundles {
-		if let path = bundle?.pathForResource(name, ofType: "png") {
+		if let path = bundle.pathForResource(name, ofType: "png") {
 			return UIImage(contentsOfFile: path)
 		}
 	}
@@ -93,16 +99,14 @@ func LocalizedString(tableName: String, var key: String, obj: AnyObject) -> Stri
 	let bundles = allBundles(currentClass: obj.dynamicType, currentTheme: tableName)
 
 	for bundle in bundles {
-		if let bundleValue = bundle {
-			let res = NSLocalizedString(key,
-						tableName: tableName,
-						bundle: bundleValue,
-						value: key,
-						comment: "");
+		let res = NSLocalizedString(key,
+					tableName: tableName,
+					bundle: bundle,
+					value: key,
+					comment: "");
 
-			if res.lowercaseString != key {
-				return res
-			}
+		if res.lowercaseString != key {
+			return res
 		}
 	}
 

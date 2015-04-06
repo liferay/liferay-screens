@@ -66,28 +66,32 @@ public class LiferayServerContext {
 		let bundles = allBundles(currentClass: self, currentTheme: nil)
 
 		for bundle in bundles {
-			if let bundleValue = bundle {
-				if let propertiesPath = bundleValue.pathForResource("liferay-server-context", ofType:"plist") {
-					StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: propertiesPath)
-					return
+			if let path = bundle.pathForResource(PlistFile, ofType:"plist") {
+				StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
+				return
+			}
+			else {
+				println("WARNING: \(PlistFile).plist file is not found. " +
+						"Falling back to template \(PlistFileSample).list")
+
+				if let path = bundle.pathForResource(PlistFileSample, ofType:"plist") {
+					StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
 				}
 				else {
-					println("WARNING: liferay-server-context.plist file is not found. Falling back to template " +
-							"liferay-server-context-sample.list")
+					StaticInstance.serverProperties = [
+							"companyId": 10157,
+							"groupId": 10184,
+							"server": "http://localhost:8080"]
 
-					if let path = bundleValue.pathForResource("liferay-server-context-sample", ofType:"plist") {
-						StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
-					}
-					else {
-						StaticInstance.serverProperties = ["companyId": 10157, "groupId": 10184, "server": "http://localhost:8080"]
-
-						println("ERROR: liferay-server-context-sample.plist file is not found. " +
-							"Using default values which will work in a default Liferay bundle running " +
-							"on localhost:8080")
-					}
+					println("ERROR: \(PlistFileSample).plist file is not found. " +
+						"Using default values which will work in a default Liferay bundle running " +
+						"on localhost:8080")
 				}
 			}
 		}
 	}
 
 }
+
+private let PlistFile = "liferay-server-context"
+private let PlistFileSample = "liferay-server-context-sample"
