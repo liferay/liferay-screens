@@ -28,13 +28,9 @@ import de.keyboardsurfer.android.widget.crouton.Style;
  */
 public class MaterialCrouton extends DefaultCrouton {
 
-	public static final Style INFO;
-	public static final Style ALERT;
+	public static Style INFO = new Style.Builder().setBackgroundColor(R.color.material_primary).build();
 
-	static {
-		INFO = new Style.Builder().setBackgroundColor(R.color.material_primary).build();
-		ALERT = new Style.Builder().setBackgroundColor(R.color.default_red).build();
-	}
+	public static Style ALERT = new Style.Builder().setBackgroundColor(R.color.default_red).build();
 
 	public static void error(Context context, String message, Exception e) {
 		String error = message;
@@ -43,12 +39,13 @@ public class MaterialCrouton extends DefaultCrouton {
 			error = e.getMessage();
 		}
 		Activity activity = getContextFromActivity(context);
-		Crouton.showText(activity, error, MaterialCrouton.ALERT, android.R.id.content);
+		Crouton.showText(activity, error, ALERT, POSITION);
 	}
 
 	public static void info(Context context, String message) {
 		Activity activity = getContextFromActivity(context);
-		Crouton.showText(activity, message, MaterialCrouton.INFO, android.R.id.content);
+		Crouton.showText(activity, message, INFO, POSITION);
 	}
+
 
 }
