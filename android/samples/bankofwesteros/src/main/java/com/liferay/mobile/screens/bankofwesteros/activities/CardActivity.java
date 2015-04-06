@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.bankofwesteros;
+package com.liferay.mobile.screens.bankofwesteros.activities;
 
 import android.animation.Animator;
 import android.app.Activity;
@@ -13,6 +13,8 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.liferay.mobile.screens.bankofwesteros.utils.Card;
+import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.bankofwesteros.gestures.FlingListener;
 import com.liferay.mobile.screens.bankofwesteros.gestures.FlingTouchListener;
 

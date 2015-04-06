@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.bankofwesteros;
+package com.liferay.mobile.screens.bankofwesteros.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.liferay.mobile.android.task.callback.typed.JSONObjectAsyncTaskCallback;
+import com.liferay.mobile.screens.bankofwesteros.R;
+import com.liferay.mobile.screens.bankofwesteros.views.UpdateUserInteractorImpl;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.UserPortraitListener;
@@ -20,7 +22,7 @@ import org.json.JSONObject;
 /**
  * @author Javier Gamarra
  */
-public class AccountSettings extends Activity implements View.OnClickListener, UserPortraitListener {
+public class AccountSettingsActivity extends Activity implements View.OnClickListener, UserPortraitListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +77,12 @@ public class AccountSettings extends Activity implements View.OnClickListener, U
 
 	@Override
 	public void onUserPortraitUploaded(UserPortraitScreenlet source) {
-		LiferayCrouton.info(AccountSettings.this, "Portrait updated");
+		LiferayCrouton.info(AccountSettingsActivity.this, "Portrait updated");
 	}
 
 	@Override
 	public void onUserPortraitUploadFailure(UserPortraitScreenlet source, Exception e) {
-		LiferayCrouton.error(AccountSettings.this, "Error updating portrait", e);
+		LiferayCrouton.error(AccountSettingsActivity.this, "Error updating portrait", e);
 	}
 
 
@@ -109,13 +111,13 @@ public class AccountSettings extends Activity implements View.OnClickListener, U
 				SessionContext.createSession(emailAddress, newPassword);
 
 				clearError(_password);
-				LiferayCrouton.info(AccountSettings.this, "User updated");
+				LiferayCrouton.info(AccountSettingsActivity.this, "User updated");
 			}
 
 			@Override
 			public void onFailure(Exception exception) {
 				LiferayLogger.e("error", exception);
-				LiferayCrouton.error(AccountSettings.this, "Error updating user", exception);
+				LiferayCrouton.error(AccountSettingsActivity.this, "Error updating user", exception);
 			}
 		});
 	}

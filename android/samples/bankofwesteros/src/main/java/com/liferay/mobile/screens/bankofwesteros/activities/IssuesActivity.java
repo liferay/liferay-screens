@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.bankofwesteros;
+package com.liferay.mobile.screens.bankofwesteros.activities;
 
 import android.animation.Animator;
 import android.content.Intent;
@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.liferay.mobile.screens.bankofwesteros.utils.Card;
+import com.liferay.mobile.screens.bankofwesteros.utils.EndAnimationListener;
+import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -95,7 +98,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 				break;
 			case R.id.account_settings_menu_entry:
 				v.setBackgroundColor(getResources().getColor(android.R.color.white));
-				startActivity(new Intent(this, AccountSettings.class));
+				startActivity(new Intent(this, AccountSettingsActivity.class));
 				overridePendingTransition(0, 0);
 				break;
 			case R.id.call_menu_entry:

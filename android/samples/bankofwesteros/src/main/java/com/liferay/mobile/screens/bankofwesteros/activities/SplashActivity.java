@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.bankofwesteros;
+package com.liferay.mobile.screens.bankofwesteros.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,8 +6,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
-import static com.liferay.mobile.screens.bankofwesteros.TourActivity.TOUR_VISITED;
-import static com.liferay.mobile.screens.bankofwesteros.TourActivity.WESTEROS_PREFERENCES;
+import com.liferay.mobile.screens.bankofwesteros.R;
+
+import static com.liferay.mobile.screens.bankofwesteros.activities.TourActivity.TOUR_VISITED;
+import static com.liferay.mobile.screens.bankofwesteros.activities.TourActivity.WESTEROS_PREFERENCES;
 
 /**
  * @author Javier Gamarra
