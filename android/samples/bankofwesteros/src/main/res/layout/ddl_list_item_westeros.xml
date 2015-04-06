@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="wrap_content"
+			  android:orientation="vertical">
+
+	<com.daimajia.swipe.SwipeLayout
+		android:id="@+id/sample"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/westeros_card_title_height">
+
+		<LinearLayout
+			android:id="@+id/bottom_wrapper"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:background="@color/westeros_dark_gray"
+			android:orientation="horizontal"
+			android:weightSum="1">
+
+			<TextView
+				android:gravity="center"
+				android:id="@+id/list_view"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:text="@string/view"
+				android:textAllCaps="true"
+				android:textColor="@android:color/white"/>
+
+			<TextView
+				android:gravity="center"
+				android:id="@+id/list_edit"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:text="@string/edit"
+				android:textAllCaps="true"
+				android:textColor="@android:color/white"/>
+		</LinearLayout>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@android:color/white">
+
+			<ImageView
+				android:layout_alignParentStart="true"
+				android:layout_alignParentLeft="true"
+				android:id="@+id/state_list_icon"
+				style="@style/westeros_arrow"
+				android:layout_gravity="center_vertical"
+				android:contentDescription="@string/list_icon"
+				android:src="@drawable/issue_open"/>
+
+			<LinearLayout
+				android:layout_toRightOf="@id/state_list_icon"
+				android:orientation="vertical"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent">
+
+				<TextView
+					android:id="@+id/title"
+					style="@style/material_list_item_title"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textAllCaps="true"
+					android:textColor="@color/westeros_black"
+					android:textStyle="bold"/>
+
+				<TextView
+					android:id="@+id/subtitle"
+					style="@style/material_list_item_subtitle"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textColor="@color/westeros_dark_gray"
+					android:textSize="14sp"/>
+			</LinearLayout>
+
+			<ImageView
+				android:layout_alignParentEnd="true"
+				android:layout_alignParentRight="true"
+				android:id="@+id/more_options"
+				style="@style/westeros_arrow"
+				android:layout_gravity="center_vertical"
+				android:contentDescription="@string/list_icon"
+				android:src="@drawable/icon_more_options"/>
+
+		</RelativeLayout>
+
+
+	</com.daimajia.swipe.SwipeLayout>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="@color/westeros_background_gray"/>
+</LinearLayout>
