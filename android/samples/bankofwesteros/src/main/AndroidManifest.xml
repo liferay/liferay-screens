@@ -12,14 +12,13 @@
 
 	<application
 		android:allowBackup="true"
-		android:icon="@drawable/liferay_icon"
+		android:icon="@drawable/icon_westeros"
 		android:label="@string/title"
-		android:theme="@style/AppTheme">
+		android:theme="@style/WesterosTheme">
 
 		<activity
 			android:name=".MainActivity"
-			android:label="@string/title"/>
-
+			android:windowSoftInputMode="stateHidden"/>
 		<activity android:name=".IssuesActivity"/>
 		<activity android:name=".AccountSettings"/>
 		<activity
