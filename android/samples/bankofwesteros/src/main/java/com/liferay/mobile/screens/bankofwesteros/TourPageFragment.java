@@ -11,12 +11,23 @@ import android.view.ViewGroup;
  */
 public class TourPageFragment extends Fragment {
 
+	public static TourPageFragment newInstance(int layout) {
+
+		TourPageFragment tourPageFragment = new TourPageFragment();
+		Bundle bundle = new Bundle();
+		bundle.putInt(LAYOUT_ID, layout);
+		tourPageFragment.setArguments(bundle);
+		
+		return tourPageFragment;
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 
-		int layoutId = getArguments().getInt(TourActivity.LAYOUT_ID);
-
+		int layoutId = getArguments().getInt(LAYOUT_ID);
 		return inflater.inflate(layoutId, container, false);
 	}
+
+	private static final String LAYOUT_ID = "layoutId";
 }
