@@ -21,7 +21,7 @@
 			android:layout_height="match_parent"
 			android:layout_marginTop="8dp"
 			android:hint="@string/email_address"
-			android:text="test@liferay.com"/>
+			android:text="@string/default_email"/>
 
 	</LinearLayout>
 
@@ -40,7 +40,7 @@
 			android:layout_marginTop="8dp"
 			android:hint="@string/password"
 			android:inputType="textPassword"
-			android:text="test"/>
+			android:text="@string/default_password"/>
 
 	</LinearLayout>
 
