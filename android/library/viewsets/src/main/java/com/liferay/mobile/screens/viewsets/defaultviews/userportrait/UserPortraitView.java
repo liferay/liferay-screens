@@ -14,7 +14,10 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.userportrait;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
@@ -22,21 +25,30 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
+import com.liferay.mobile.screens.util.FileUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
+
+import java.io.File;
 
 /**
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public class UserPortraitView extends FrameLayout implements UserPortraitViewModel {
+public class UserPortraitView extends FrameLayout implements UserPortraitViewModel, View.OnClickListener {
 
 	public UserPortraitView(Context context) {
 		super(context);
@@ -64,7 +76,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		throw new AssertionError("Use showFinishOperation(bitmap) instead");
+		_portraitProgress.setVisibility(INVISIBLE);
 	}
 
 	@Override
@@ -76,9 +88,50 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		LiferayLogger.e("portrait failed to load", e);
+		if (UserPortraitScreenlet.LOAD_PORTRAIT.equals(actionName)) {
+			LiferayLogger.e("portrait failed to load", e);
+			setDefaultImagePlaceholder();
+		} else {
+			LiferayLogger.e("portrait failed to upload", e);
+		}
 		_portraitProgress.setVisibility(INVISIBLE);
-		setDefaultImagePlaceholder();
+	}
+
+	@Override
+	public void onClick(View v) {
+		if (v.getId() == R.id.replace_portrait_image) {
+			_choseOriginDialog = createOriginDialog();
+			_choseOriginDialog.show();
+		}
+		else if (v.getId() == R.id.default_dialog_select_file) {
+			Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+				android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+			((Activity) getContext()).startActivityForResult(galleryIntent, UserPortraitScreenlet.SELECT_IMAGE);
+			_choseOriginDialog.dismiss();
+		}
+		else {
+			Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+			File imageFile = FileUtil.createImageFile();
+			((UserPortraitScreenlet) getParent()).setFilePath(imageFile.getPath());
+			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
+			((Activity) getContext()).startActivityForResult(cameraIntent, UserPortraitScreenlet.TAKE_PICTURE);
+			_choseOriginDialog.dismiss();
+		}
+	}
+
+	protected AlertDialog createOriginDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+		LayoutInflater factory = LayoutInflater.from(getContext());
+		final View customDialogView = factory.inflate(
+			R.layout.user_portrait_chose_origin_default, null);
+
+		customDialogView.findViewById(R.id.default_dialog_select_file).setOnClickListener(this);
+		customDialogView.findViewById(R.id.default_dialog_take_photo).setOnClickListener(this);
+
+		builder.setView(customDialogView);
+
+		return builder.create();
 	}
 
 	@Override
@@ -87,8 +140,30 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 
 		_portraitImage = (ImageView) findViewById(R.id.portrait_image);
 		_portraitProgress = (ProgressBar) findViewById(R.id.portrait_progress);
+		_portraitAddButton = (ImageButton) findViewById(R.id.replace_portrait_image);
 
 		setDefaultImagePlaceholder();
+	}
+
+	@Override
+	protected void onAttachedToWindow() {
+		super.onAttachedToWindow();
+
+		if (((UserPortraitScreenlet) getParent()).getEditable()) {
+			_portraitAddButton.setOnClickListener(this);
+			_portraitAddButton.setVisibility(View.VISIBLE);
+		}
+	}
+
+	@Override
+	protected void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+
+		// Avoid WindowLeak error on orientation changes
+		if (_choseOriginDialog != null) {
+			_choseOriginDialog.dismiss();
+			_choseOriginDialog = null;
+		}
 	}
 
 	protected float getBorderRadius() {
@@ -151,6 +226,9 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	}
 
 	private ImageView _portraitImage;
+	private ImageButton _portraitAddButton;
 	private ProgressBar _portraitProgress;
+	private AlertDialog _choseOriginDialog;
+
 
 }
