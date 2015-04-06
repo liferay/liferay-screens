@@ -235,15 +235,7 @@ import QuartzCore
 			return (nibPath == nil) ? nil : nibName
 		}
 
-		var nibPath: String?
-
-		let frameworkBundle = NSBundle(forClass: self.dynamicType)
-		let themeBundlePath = frameworkBundle.pathForResource("LiferayScreens-\(_themeName)", ofType: "bundle")
-
-		let bundles = [
-				themeBundlePath == nil ? nil : NSBundle(path: themeBundlePath!),
-				frameworkBundle,
-				NSBundle.mainBundle()]
+		let bundles = allBundles(currentClass: self.dynamicType, currentTheme: _themeName);
 
 		for bundle in bundles {
 			if let bundleValue = bundle {

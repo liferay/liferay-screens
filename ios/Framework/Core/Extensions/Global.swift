@@ -56,6 +56,22 @@ func delayed(delay: NSTimeInterval, block: dispatch_block_t) {
     dispatch_after(time, dispatch_get_main_queue(), block)
 }
 
+func allBundles(#currentClass: AnyClass, #currentTheme: String?) -> [NSBundle?] {
+	let frameworkBundle = NSBundle(forClass: currentClass)
+
+	let themeBundlePath = (currentTheme == nil)
+			? nil
+			: frameworkBundle.pathForResource("LiferayScreens-\(currentTheme!)", ofType: "bundle")
+
+	let coreBundlePath = frameworkBundle.pathForResource("LiferayScreens-core", ofType: "bundle")
+
+	return [
+		(themeBundlePath == nil) ? nil : NSBundle(path: themeBundlePath!),
+		(coreBundlePath == nil) ? nil : NSBundle(path: coreBundlePath!),
+		frameworkBundle,
+		NSBundle.mainBundle()]
+}
+
 
 func LocalizedString(tableName: String, key: String, obj: AnyObject) -> String {
 	let bundle = NSBundle(forClass:obj.dynamicType)
