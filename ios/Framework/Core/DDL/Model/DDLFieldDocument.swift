@@ -113,11 +113,11 @@ public class DDLFieldDocument : DDLField {
 	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
 		switch currentValue {
 			case is UIImage:
-				return LocalizedString("base", "an-image-has-been-selected", self)
+				return LocalizedString("core", "an-image-has-been-selected", self)
 			case is NSURL:
-				return LocalizedString("base", "a-video-has-been-selected", self)
+				return LocalizedString("core", "a-video-has-been-selected", self)
 			case is [String:AnyObject]:
-				return LocalizedString("base", "a-file-is-already-uploaded", self)
+				return LocalizedString("core", "a-file-is-already-uploaded", self)
 			default: ()
 		}
 

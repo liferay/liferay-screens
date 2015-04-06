@@ -24,14 +24,17 @@ Pod::Spec.new do |s|
 
 	s.ios.frameworks = "CoreGraphics", "Foundation", "MobileCoreServices", "QuartzCore", "Security", "SystemConfiguration", "UIKit"
 	s.source_files = "ios/Framework/Core/**/*.{h,m,swift}", "ios/Framework/Themes/**/*.{h,m,swift}"
-	s.exclude_files = "iosFramework/Tests/**/*.*", "ios/Framework/Pods/**/*.*"
-	
-	s.resource_bundle = {
-		'LiferayScreens-core' => 'ios/Framework/Core/**/*.{plist,strings}',
-		'LiferayScreens-default' => 'ios/Framework/Themes/Default/**/*.{xib,png,plist,strings}',
-		'LiferayScreens-flat7' => 'ios/Framework/Themes/Flat7/**/*.{xib,png,plist,strings}'
-	}
+	s.exclude_files = [
+		'iosFramework/Tests/**/*.*',
+		'ios/Framework/Pods/**/*.*'
+	]
 
+	s.resource_bundle = {
+		'LiferayScreens-core' => 'ios/Framework/Core/**/*.{plist,lproj}',
+		'LiferayScreens-default' => 'ios/Framework/Themes/Default/**/*.{xib,png,plist,lproj}',
+		'LiferayScreens-flat7' => 'ios/Framework/Themes/Flat7/**/*.{xib,png,plist,lproj}'
+	}
+	
 	s.dependency 'MBProgressHUD', '~> 0.9.1'
 	s.dependency 'SMXMLDocument'
 	s.dependency 'UICKeyChainStore'

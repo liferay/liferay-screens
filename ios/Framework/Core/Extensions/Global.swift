@@ -87,15 +87,26 @@ func imageInAnyBundle(#name: String, #currentClass: AnyClass, #currentTheme: Str
 }
 
 
-func LocalizedString(tableName: String, key: String, obj: AnyObject) -> String {
-	let bundle = NSBundle(forClass:obj.dynamicType)
+func LocalizedString(tableName: String, var key: String, obj: AnyObject) -> String {
+	key = "\(tableName)-\(key)"
 
-	return NSLocalizedString(
-				"\(tableName)-\(key)",
-				tableName: tableName,
-				bundle: bundle,
-				value: "",
-				comment: "")
+	let bundles = allBundles(currentClass: obj.dynamicType, currentTheme: tableName)
+
+	for bundle in bundles {
+		if let bundleValue = bundle {
+			let res = NSLocalizedString(key,
+						tableName: tableName,
+						bundle: bundleValue,
+						value: key,
+						comment: "");
+
+			if res.lowercaseString != key {
+				return res
+			}
+		}
+	}
+
+	return key
 }
 
 

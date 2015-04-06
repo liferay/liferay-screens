@@ -23,13 +23,13 @@ public class LiferayPaginationOperation: ServerOperation {
 
 	internal override var hudLoadingMessage: HUDMessage? {
 		return (page == 0)
-				? (LocalizedString("base", "base-list-loading-message", self),
-						details: LocalizedString("base", "base-list-loading-details", self))
+				? (LocalizedString("core", "base-list-loading-message", self),
+						details: LocalizedString("core", "base-list-loading-details", self))
 				: nil
 	}
 	internal override var hudFailureMessage: HUDMessage? {
 		return (page == 0) 
-				? (LocalizedString("base", "base-list-loading-error", self), details: nil)
+				? (LocalizedString("core", "base-list-loading-error", self), details: nil)
 				: nil
 	}
 

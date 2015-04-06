@@ -22,8 +22,6 @@
 		881E60CF1ACBE56700862B9E /* BaseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C81ACBE56700862B9E /* BaseListView.swift */; };
 		881E60D01ACBE56700862B9E /* LiferayPaginationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60CA1ACBE56700862B9E /* LiferayPaginationOperation.swift */; };
 		881E60D11ACBE56700862B9E /* BaseListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60CC1ACBE56700862B9E /* BaseListTableView.swift */; };
-		881E60DC1ACBE5BA00862B9E /* base.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881E60DA1ACBE5BA00862B9E /* base.strings */; };
-		881E610C1ACBE5F000862B9E /* forgotpassword-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881E60E11ACBE5F000862B9E /* forgotpassword-screenlet.strings */; };
 		881E610D1ACBE5F000862B9E /* ForgotPasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60E41ACBE5F000862B9E /* ForgotPasswordInteractor.swift */; };
 		881E610E1ACBE5F000862B9E /* ForgotPasswordScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60E51ACBE5F000862B9E /* ForgotPasswordScreenlet.swift */; };
 		881E610F1ACBE5F000862B9E /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60E61ACBE5F000862B9E /* ForgotPasswordViewModel.swift */; };
@@ -31,11 +29,9 @@
 		881E61111ACBE5F000862B9E /* LiferayForgotPasswordEmailOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60E91ACBE5F000862B9E /* LiferayForgotPasswordEmailOperation.swift */; };
 		881E61121ACBE5F000862B9E /* LiferayForgotPasswordScreenNameOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60EA1ACBE5F000862B9E /* LiferayForgotPasswordScreenNameOperation.swift */; };
 		881E61131ACBE5F000862B9E /* LiferayForgotPasswordUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60EB1ACBE5F000862B9E /* LiferayForgotPasswordUserIdOperation.swift */; };
-		881E61141ACBE5F000862B9E /* login-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881E60ED1ACBE5F000862B9E /* login-screenlet.strings */; };
 		881E61181ACBE5F000862B9E /* LiferayLoginByEmailOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F41ACBE5F000862B9E /* LiferayLoginByEmailOperation.swift */; };
 		881E61191ACBE5F000862B9E /* LiferayLoginByScreenNameOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F51ACBE5F000862B9E /* LiferayLoginByScreenNameOperation.swift */; };
 		881E611A1ACBE5F000862B9E /* LiferayLoginByUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F61ACBE5F000862B9E /* LiferayLoginByUserIdOperation.swift */; };
-		881E611B1ACBE5F000862B9E /* signup-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881E60F81ACBE5F000862B9E /* signup-screenlet.strings */; };
 		881E611C1ACBE5F000862B9E /* LiferaySignUpOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60FD1ACBE5F000862B9E /* LiferaySignUpOperation.swift */; };
 		881E611D1ACBE5F000862B9E /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60FE1ACBE5F000862B9E /* SignUpInteractor.swift */; };
 		881E611E1ACBE5F000862B9E /* SignUpScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60FF1ACBE5F000862B9E /* SignUpScreenlet.swift */; };
@@ -53,7 +49,6 @@
 		881E612D1ACBE65000862B9E /* GetUserByEmailOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E612A1ACBE65000862B9E /* GetUserByEmailOperation.swift */; };
 		881E612E1ACBE65000862B9E /* GetUserByScreenNameOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E612B1ACBE65000862B9E /* GetUserByScreenNameOperation.swift */; };
 		881E61301ACBE6A700862B9E /* GetUserByUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E612F1ACBE6A700862B9E /* GetUserByUserIdOperation.swift */; };
-		881E613A1ACBED7500862B9E /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881E61321ACBED7500862B9E /* webcontentdisplay-screenlet.strings */; };
 		881E613B1ACBED7500862B9E /* LiferayWebContentLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61361ACBED7500862B9E /* LiferayWebContentLoadOperation.swift */; };
 		881E613C1ACBED7500862B9E /* WebContentDisplayLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61371ACBED7500862B9E /* WebContentDisplayLoadInteractor.swift */; };
 		881E613D1ACBED7500862B9E /* WebContentDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61381ACBED7500862B9E /* WebContentDisplayScreenlet.swift */; };
@@ -68,7 +63,6 @@
 		881E61781ACBEE0B00862B9E /* DDLFormScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61501ACBEE0B00862B9E /* DDLFormScreenlet.swift */; };
 		881E61791ACBEE0B00862B9E /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61511ACBEE0B00862B9E /* DDLFormView.swift */; };
 		881E617A1ACBEE0B00862B9E /* DDLFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61521ACBEE0B00862B9E /* DDLFormViewModel.swift */; };
-		881E617B1ACBEE0B00862B9E /* ddlform-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881E61531ACBEE0B00862B9E /* ddlform-screenlet.strings */; };
 		881E617C1ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61581ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift */; };
 		881E617D1ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61591ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift */; };
 		881E617E1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E615A1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift */; };
@@ -192,7 +186,6 @@
 		881E62901ACBFE8D00862B9E /* BaseScreenletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B71ACBE3FF00862B9E /* BaseScreenletView.swift */; };
 		881E62911ACBFEA200862B9E /* SignUpScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60FF1ACBE5F000862B9E /* SignUpScreenlet.swift */; };
 		881E62921ACBFEC300862B9E /* AuthBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C31ACBE46B00862B9E /* AuthBased.swift */; };
-		881E62931ACBFEF500862B9E /* base.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881E60DA1ACBE5BA00862B9E /* base.strings */; };
 		881E62941ACBFEFC00862B9E /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C61ACBE56700862B9E /* BaseListPageLoadInteractor.swift */; };
 		881E62951ACBFEFC00862B9E /* BaseListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C71ACBE56700862B9E /* BaseListScreenlet.swift */; };
 		881E62961ACBFEFC00862B9E /* BaseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C81ACBE56700862B9E /* BaseListView.swift */; };
@@ -302,6 +295,18 @@
 		88DC31E71ACC37DA0078C961 /* KeyChainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E61ACC37DA0078C961 /* KeyChainStorage.swift */; };
 		88DC31E81ACC38860078C961 /* KeyChainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E61ACC37DA0078C961 /* KeyChainStorage.swift */; };
 		88DC31E91ACC38860078C961 /* CredentialStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E41ACC36F40078C961 /* CredentialStorage.swift */; };
+		88DE24E81AD2A6BB00714701 /* ddlform-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24D31AD2A6BB00714701 /* ddlform-screenlet.strings */; };
+		88DE24E91AD2A6BB00714701 /* ddlform-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24D31AD2A6BB00714701 /* ddlform-screenlet.strings */; };
+		88DE24EA1AD2A6BB00714701 /* signup-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24D51AD2A6BB00714701 /* signup-screenlet.strings */; };
+		88DE24EB1AD2A6BB00714701 /* signup-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24D51AD2A6BB00714701 /* signup-screenlet.strings */; };
+		88DE24EC1AD2A6BB00714701 /* core.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24D71AD2A6BB00714701 /* core.strings */; };
+		88DE24ED1AD2A6BB00714701 /* core.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24D71AD2A6BB00714701 /* core.strings */; };
+		88DE24EE1AD2A6BB00714701 /* forgotpassword-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24DA1AD2A6BB00714701 /* forgotpassword-screenlet.strings */; };
+		88DE24EF1AD2A6BB00714701 /* forgotpassword-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24DA1AD2A6BB00714701 /* forgotpassword-screenlet.strings */; };
+		88DE24F01AD2A6BB00714701 /* login-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24DC1AD2A6BB00714701 /* login-screenlet.strings */; };
+		88DE24F11AD2A6BB00714701 /* login-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24DC1AD2A6BB00714701 /* login-screenlet.strings */; };
+		88DE24F21AD2A6BB00714701 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24DF1AD2A6BB00714701 /* webcontentdisplay-screenlet.strings */; };
+		88DE24F31AD2A6BB00714701 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24DF1AD2A6BB00714701 /* webcontentdisplay-screenlet.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -334,10 +339,6 @@
 		881E60C81ACBE56700862B9E /* BaseListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListView.swift; sourceTree = "<group>"; };
 		881E60CA1ACBE56700862B9E /* LiferayPaginationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayPaginationOperation.swift; sourceTree = "<group>"; };
 		881E60CC1ACBE56700862B9E /* BaseListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListTableView.swift; sourceTree = "<group>"; };
-		881E60DB1ACBE5BA00862B9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/base.strings; sourceTree = "<group>"; };
-		881E60DD1ACBE5C100862B9E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/base.strings; sourceTree = "<group>"; };
-		881E60E21ACBE5F000862B9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/forgotpassword-screenlet.strings"; sourceTree = "<group>"; };
-		881E60E31ACBE5F000862B9E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/forgotpassword-screenlet.strings"; sourceTree = "<group>"; };
 		881E60E41ACBE5F000862B9E /* ForgotPasswordInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordInteractor.swift; sourceTree = "<group>"; };
 		881E60E51ACBE5F000862B9E /* ForgotPasswordScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordScreenlet.swift; sourceTree = "<group>"; };
 		881E60E61ACBE5F000862B9E /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
@@ -345,17 +346,12 @@
 		881E60E91ACBE5F000862B9E /* LiferayForgotPasswordEmailOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayForgotPasswordEmailOperation.swift; sourceTree = "<group>"; };
 		881E60EA1ACBE5F000862B9E /* LiferayForgotPasswordScreenNameOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayForgotPasswordScreenNameOperation.swift; sourceTree = "<group>"; };
 		881E60EB1ACBE5F000862B9E /* LiferayForgotPasswordUserIdOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayForgotPasswordUserIdOperation.swift; sourceTree = "<group>"; };
-		881E60EE1ACBE5F000862B9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/login-screenlet.strings"; sourceTree = "<group>"; };
-		881E60EF1ACBE5F000862B9E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/login-screenlet.strings"; sourceTree = "<group>"; };
 		881E60F01ACBE5F000862B9E /* LoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		881E60F11ACBE5F000862B9E /* LoginScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenlet.swift; sourceTree = "<group>"; };
 		881E60F21ACBE5F000862B9E /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		881E60F41ACBE5F000862B9E /* LiferayLoginByEmailOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginByEmailOperation.swift; sourceTree = "<group>"; };
 		881E60F51ACBE5F000862B9E /* LiferayLoginByScreenNameOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginByScreenNameOperation.swift; sourceTree = "<group>"; };
 		881E60F61ACBE5F000862B9E /* LiferayLoginByUserIdOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLoginByUserIdOperation.swift; sourceTree = "<group>"; };
-		881E60F91ACBE5F000862B9E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/signup-screenlet.strings"; sourceTree = "<group>"; };
-		881E60FA1ACBE5F000862B9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/signup-screenlet.strings"; sourceTree = "<group>"; };
-		881E60FB1ACBE5F000862B9E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/signup-screenlet.strings"; sourceTree = "<group>"; };
 		881E60FD1ACBE5F000862B9E /* LiferaySignUpOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferaySignUpOperation.swift; sourceTree = "<group>"; };
 		881E60FE1ACBE5F000862B9E /* SignUpInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpInteractor.swift; sourceTree = "<group>"; };
 		881E60FF1ACBE5F000862B9E /* SignUpScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreenlet.swift; sourceTree = "<group>"; };
@@ -373,8 +369,6 @@
 		881E612A1ACBE65000862B9E /* GetUserByEmailOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByEmailOperation.swift; sourceTree = "<group>"; };
 		881E612B1ACBE65000862B9E /* GetUserByScreenNameOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByScreenNameOperation.swift; sourceTree = "<group>"; };
 		881E612F1ACBE6A700862B9E /* GetUserByUserIdOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByUserIdOperation.swift; sourceTree = "<group>"; };
-		881E61331ACBED7500862B9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
-		881E61341ACBED7500862B9E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		881E61361ACBED7500862B9E /* LiferayWebContentLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayWebContentLoadOperation.swift; sourceTree = "<group>"; };
 		881E61371ACBED7500862B9E /* WebContentDisplayLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayLoadInteractor.swift; sourceTree = "<group>"; };
 		881E61381ACBED7500862B9E /* WebContentDisplayScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayScreenlet.swift; sourceTree = "<group>"; };
@@ -389,9 +383,6 @@
 		881E61501ACBEE0B00862B9E /* DDLFormScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormScreenlet.swift; sourceTree = "<group>"; };
 		881E61511ACBEE0B00862B9E /* DDLFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormView.swift; sourceTree = "<group>"; };
 		881E61521ACBEE0B00862B9E /* DDLFormViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormViewModel.swift; sourceTree = "<group>"; };
-		881E61541ACBEE0B00862B9E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/ddlform-screenlet.strings"; sourceTree = "<group>"; };
-		881E61551ACBEE0B00862B9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/ddlform-screenlet.strings"; sourceTree = "<group>"; };
-		881E61561ACBEE0B00862B9E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/ddlform-screenlet.strings"; sourceTree = "<group>"; };
 		881E61581ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormLoadFormInteractor.swift; sourceTree = "<group>"; };
 		881E61591ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormLoadRecordInteractor.swift; sourceTree = "<group>"; };
 		881E615A1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormSubmitFormInteractor.swift; sourceTree = "<group>"; };
@@ -556,6 +547,20 @@
 		88DC31E11ACC18F10078C961 /* SessionStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
 		88DC31E41ACC36F40078C961 /* CredentialStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialStorage.swift; sourceTree = "<group>"; };
 		88DC31E61ACC37DA0078C961 /* KeyChainStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainStorage.swift; sourceTree = "<group>"; };
+		88DE24D41AD2A6BB00714701 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/ddlform-screenlet.strings"; sourceTree = "<group>"; };
+		88DE24D61AD2A6BB00714701 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/signup-screenlet.strings"; sourceTree = "<group>"; };
+		88DE24D81AD2A6BB00714701 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/core.strings; sourceTree = "<group>"; };
+		88DE24D91AD2A6BB00714701 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/ddlform-screenlet.strings"; sourceTree = "<group>"; };
+		88DE24DB1AD2A6BB00714701 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/forgotpassword-screenlet.strings"; sourceTree = "<group>"; };
+		88DE24DD1AD2A6BB00714701 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/login-screenlet.strings"; sourceTree = "<group>"; };
+		88DE24DE1AD2A6BB00714701 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/signup-screenlet.strings"; sourceTree = "<group>"; };
+		88DE24E01AD2A6BB00714701 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
+		88DE24E11AD2A6BB00714701 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/core.strings; sourceTree = "<group>"; };
+		88DE24E21AD2A6BB00714701 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/ddlform-screenlet.strings"; sourceTree = "<group>"; };
+		88DE24E31AD2A6BB00714701 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/forgotpassword-screenlet.strings"; sourceTree = "<group>"; };
+		88DE24E41AD2A6BB00714701 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/login-screenlet.strings"; sourceTree = "<group>"; };
+		88DE24E51AD2A6BB00714701 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/signup-screenlet.strings"; sourceTree = "<group>"; };
+		88DE24E61AD2A6BB00714701 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		9136B139BF9449FC75DBECA6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC17F525218297794482A65 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
 		D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -605,7 +610,6 @@
 		881E60B41ACBE3FF00862B9E /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				881E60DA1ACBE5BA00862B9E /* base.strings */,
 				881E60C51ACBE56700862B9E /* BaseListScreenlet */,
 				881E60C31ACBE46B00862B9E /* AuthBased.swift */,
 				881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */,
@@ -675,7 +679,6 @@
 		881E60E01ACBE5F000862B9E /* ForgotPasswordScreenlet */ = {
 			isa = PBXGroup;
 			children = (
-				881E60E11ACBE5F000862B9E /* forgotpassword-screenlet.strings */,
 				881E60E41ACBE5F000862B9E /* ForgotPasswordInteractor.swift */,
 				881E60E51ACBE5F000862B9E /* ForgotPasswordScreenlet.swift */,
 				881E60E61ACBE5F000862B9E /* ForgotPasswordViewModel.swift */,
@@ -698,7 +701,6 @@
 		881E60EC1ACBE5F000862B9E /* LoginScreenlet */ = {
 			isa = PBXGroup;
 			children = (
-				881E60ED1ACBE5F000862B9E /* login-screenlet.strings */,
 				881E60F01ACBE5F000862B9E /* LoginInteractor.swift */,
 				881E60F11ACBE5F000862B9E /* LoginScreenlet.swift */,
 				881E60F21ACBE5F000862B9E /* LoginViewModel.swift */,
@@ -720,7 +722,6 @@
 		881E60F71ACBE5F000862B9E /* SignUpScreenlet */ = {
 			isa = PBXGroup;
 			children = (
-				881E60F81ACBE5F000862B9E /* signup-screenlet.strings */,
 				881E60FC1ACBE5F000862B9E /* ServerOperations */,
 				881E60FE1ACBE5F000862B9E /* SignUpInteractor.swift */,
 				881E60FF1ACBE5F000862B9E /* SignUpScreenlet.swift */,
@@ -764,7 +765,6 @@
 		881E61311ACBED7500862B9E /* WebContentDisplayScreenlet */ = {
 			isa = PBXGroup;
 			children = (
-				881E61321ACBED7500862B9E /* webcontentdisplay-screenlet.strings */,
 				881E61351ACBED7500862B9E /* ServerOperations */,
 				881E61371ACBED7500862B9E /* WebContentDisplayLoadInteractor.swift */,
 				881E61381ACBED7500862B9E /* WebContentDisplayScreenlet.swift */,
@@ -828,7 +828,6 @@
 				881E61501ACBEE0B00862B9E /* DDLFormScreenlet.swift */,
 				881E61511ACBEE0B00862B9E /* DDLFormView.swift */,
 				881E61521ACBEE0B00862B9E /* DDLFormViewModel.swift */,
-				881E61531ACBEE0B00862B9E /* ddlform-screenlet.strings */,
 				881E61571ACBEE0B00862B9E /* Interactors */,
 				881E615C1ACBEE0B00862B9E /* ServerOperations */,
 				881E61611ACBEE0B00862B9E /* TableView */,
@@ -1311,6 +1310,7 @@
 				881E614C1ACBEE0B00862B9E /* DDL */,
 				8892C6A41ACBD89400192232 /* Extensions */,
 				881E62851ACBFE2100862B9E /* liferay-server-context-sample.plist */,
+				88DE24D21AD2A6BB00714701 /* Resources */,
 				8892C6951ACB2FDC00192232 /* Services */,
 				881E61311ACBED7500862B9E /* WebContentDisplayScreenlet */,
 			);
@@ -1365,6 +1365,19 @@
 				88A2B7131ACDEBB1000C2065 /* LoginView_test.xib */,
 			);
 			path = "theme-test";
+			sourceTree = "<group>";
+		};
+		88DE24D21AD2A6BB00714701 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88DE24D31AD2A6BB00714701 /* ddlform-screenlet.strings */,
+				88DE24D51AD2A6BB00714701 /* signup-screenlet.strings */,
+				88DE24D71AD2A6BB00714701 /* core.strings */,
+				88DE24DA1AD2A6BB00714701 /* forgotpassword-screenlet.strings */,
+				88DE24DC1AD2A6BB00714701 /* login-screenlet.strings */,
+				88DE24DF1AD2A6BB00714701 /* webcontentdisplay-screenlet.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1472,7 +1485,6 @@
 				881E622F1ACBFC3400862B9E /* SignUpView_default.xib in Resources */,
 				881E625D1ACBFC3400862B9E /* default-lock-icon.png in Resources */,
 				881E62661ACBFC3400862B9E /* default-preview-ddlform@2x.png in Resources */,
-				881E613A1ACBED7500862B9E /* webcontentdisplay-screenlet.strings in Resources */,
 				881E62651ACBFC3400862B9E /* default-preview-assetlist@2x.png in Resources */,
 				881E626F1ACBFC3400862B9E /* LoginView_flat7.xib in Resources */,
 				881E625C1ACBFC3400862B9E /* default-hourglass@2x.png in Resources */,
@@ -1498,7 +1510,9 @@
 				881E62531ACBFC3400862B9E /* default-field-focused.png in Resources */,
 				881E627C1ACBFC3400862B9E /* flat7-portrait-placeholder.png in Resources */,
 				881E62411ACBFC3400862B9E /* DDLFieldSelectTableCell_default.xib in Resources */,
+				88DE24EE1AD2A6BB00714701 /* forgotpassword-screenlet.strings in Resources */,
 				881E62581ACBFC3400862B9E /* default-form-gradient-bottom@2x.png in Resources */,
+				88DE24F01AD2A6BB00714701 /* login-screenlet.strings in Resources */,
 				881E62541ACBFC3400862B9E /* default-field-focused@2x.png in Resources */,
 				881E623D1ACBFC3400862B9E /* DDLFieldNumberTableCell_default.xib in Resources */,
 				881E62641ACBFC3400862B9E /* default-portrait-placeholder@2x.png in Resources */,
@@ -1506,7 +1520,7 @@
 				881E62791ACBFC3400862B9E /* flat7-field@2x.png in Resources */,
 				881E622B1ACBFC3400862B9E /* ForgotPasswordView_default.xib in Resources */,
 				881E62331ACBFC3400862B9E /* DDLCustomFieldCompanyTableCell_default.xib in Resources */,
-				881E611B1ACBE5F000862B9E /* signup-screenlet.strings in Resources */,
+				88DE24E81AD2A6BB00714701 /* ddlform-screenlet.strings in Resources */,
 				881E62671ACBFC3400862B9E /* default-preview-webcontentdisplay@2x.png in Resources */,
 				881E626B1ACBFC3400862B9E /* WebContentDisplayView_default.xib in Resources */,
 				881E62761ACBFC3400862B9E /* flat7-button.png in Resources */,
@@ -1517,23 +1531,22 @@
 				888DF5B51ACC9FF100EB7DA1 /* LoginView_default.xib in Resources */,
 				881E62591ACBFC3400862B9E /* default-form-gradient-top.png in Resources */,
 				881E62561ACBFC3400862B9E /* default-field@2x.png in Resources */,
+				88DE24EC1AD2A6BB00714701 /* core.strings in Resources */,
 				881E62621ACBFC3400862B9E /* default-multiline-field@2x.png in Resources */,
 				881E62311ACBFC3400862B9E /* UserPortraitView_default.xib in Resources */,
-				881E61141ACBE5F000862B9E /* login-screenlet.strings in Resources */,
 				881E627B1ACBFC3400862B9E /* flat7-gradient-form@2x.png in Resources */,
 				881E62391ACBFC3400862B9E /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */,
 				881E626D1ACBFC3400862B9E /* ForgotPasswordView_flat7.xib in Resources */,
+				88DE24EA1AD2A6BB00714701 /* signup-screenlet.strings in Resources */,
+				88DE24F21AD2A6BB00714701 /* webcontentdisplay-screenlet.strings in Resources */,
 				881E62371ACBFC3400862B9E /* DDLFieldDateTableCell_default.xib in Resources */,
-				881E610C1ACBE5F000862B9E /* forgotpassword-screenlet.strings in Resources */,
 				881E62771ACBFC3400862B9E /* flat7-button@2x.png in Resources */,
 				881E62571ACBFC3400862B9E /* default-form-gradient-bottom.png in Resources */,
-				881E60DC1ACBE5BA00862B9E /* base.strings in Resources */,
 				881E62551ACBFC3400862B9E /* default-field.png in Resources */,
 				881E623F1ACBFC3400862B9E /* DDLFieldRadioTableCell_default.xib in Resources */,
 				881E62501ACBFC3400862B9E /* default-calendar@2x.png in Resources */,
 				881E624A1ACBFC3400862B9E /* DDLSubmitButtonTableCell_default.xib in Resources */,
 				881E62861ACBFE2100862B9E /* liferay-server-context-sample.plist in Resources */,
-				881E617B1ACBEE0B00862B9E /* ddlform-screenlet.strings in Resources */,
 				881E624C1ACBFC3400862B9E /* DDLListView_default.xib in Resources */,
 				881E627A1ACBFC3400862B9E /* flat7-gradient-form.png in Resources */,
 			);
@@ -1543,6 +1556,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88DE24EF1AD2A6BB00714701 /* forgotpassword-screenlet.strings in Resources */,
 				881E62C91ACC019800862B9E /* default-field-focused@2x.png in Resources */,
 				881E62CF1ACC01E700862B9E /* default-form-gradient-top.png in Resources */,
 				881E62D01ACC01E700862B9E /* default-form-gradient-top@2x.png in Resources */,
@@ -1553,10 +1567,14 @@
 				88A2B7191ACDEC29000C2065 /* DDLListView_test.xib in Resources */,
 				881E62C81ACC019800862B9E /* default-field-focused.png in Resources */,
 				881E62CA1ACC01A500862B9E /* default-field.png in Resources */,
+				88DE24F11AD2A6BB00714701 /* login-screenlet.strings in Resources */,
 				881E62C71ACC016F00862B9E /* default-mail-icon@2x.png in Resources */,
-				881E62931ACBFEF500862B9E /* base.strings in Resources */,
 				881E62C51ACC016F00862B9E /* default-lock-icon@2x.png in Resources */,
+				88DE24ED1AD2A6BB00714701 /* core.strings in Resources */,
+				88DE24E91AD2A6BB00714701 /* ddlform-screenlet.strings in Resources */,
 				881E62CD1ACC01E700862B9E /* default-form-gradient-bottom.png in Resources */,
+				88DE24EB1AD2A6BB00714701 /* signup-screenlet.strings in Resources */,
+				88DE24F31AD2A6BB00714701 /* webcontentdisplay-screenlet.strings in Resources */,
 				881E62CE1ACC01E700862B9E /* default-form-gradient-bottom@2x.png in Resources */,
 				881E62C61ACC016F00862B9E /* default-mail-icon.png in Resources */,
 				881E62CB1ACC01A500862B9E /* default-field@2x.png in Resources */,
@@ -1878,62 +1896,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		881E60DA1ACBE5BA00862B9E /* base.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				881E60DB1ACBE5BA00862B9E /* en */,
-				881E60DD1ACBE5C100862B9E /* es */,
-			);
-			name = base.strings;
-			sourceTree = "<group>";
-		};
-		881E60E11ACBE5F000862B9E /* forgotpassword-screenlet.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				881E60E21ACBE5F000862B9E /* en */,
-				881E60E31ACBE5F000862B9E /* es */,
-			);
-			name = "forgotpassword-screenlet.strings";
-			sourceTree = "<group>";
-		};
-		881E60ED1ACBE5F000862B9E /* login-screenlet.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				881E60EE1ACBE5F000862B9E /* en */,
-				881E60EF1ACBE5F000862B9E /* es */,
-			);
-			name = "login-screenlet.strings";
-			sourceTree = "<group>";
-		};
-		881E60F81ACBE5F000862B9E /* signup-screenlet.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				881E60F91ACBE5F000862B9E /* de */,
-				881E60FA1ACBE5F000862B9E /* en */,
-				881E60FB1ACBE5F000862B9E /* es */,
-			);
-			name = "signup-screenlet.strings";
-			sourceTree = "<group>";
-		};
-		881E61321ACBED7500862B9E /* webcontentdisplay-screenlet.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				881E61331ACBED7500862B9E /* en */,
-				881E61341ACBED7500862B9E /* es */,
-			);
-			name = "webcontentdisplay-screenlet.strings";
-			sourceTree = "<group>";
-		};
-		881E61531ACBEE0B00862B9E /* ddlform-screenlet.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				881E61541ACBEE0B00862B9E /* de */,
-				881E61551ACBEE0B00862B9E /* en */,
-				881E61561ACBEE0B00862B9E /* es */,
-			);
-			name = "ddlform-screenlet.strings";
-			sourceTree = "<group>";
-		};
 		881E61EB1ACBFC3400862B9E /* default.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1951,6 +1913,62 @@
 				881E621F1ACBFC3400862B9E /* es */,
 			);
 			name = flat7.strings;
+			sourceTree = "<group>";
+		};
+		88DE24D31AD2A6BB00714701 /* ddlform-screenlet.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88DE24D41AD2A6BB00714701 /* de */,
+				88DE24D91AD2A6BB00714701 /* en */,
+				88DE24E21AD2A6BB00714701 /* es */,
+			);
+			name = "ddlform-screenlet.strings";
+			sourceTree = "<group>";
+		};
+		88DE24D51AD2A6BB00714701 /* signup-screenlet.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88DE24D61AD2A6BB00714701 /* de */,
+				88DE24DE1AD2A6BB00714701 /* en */,
+				88DE24E51AD2A6BB00714701 /* es */,
+			);
+			name = "signup-screenlet.strings";
+			sourceTree = "<group>";
+		};
+		88DE24D71AD2A6BB00714701 /* core.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88DE24D81AD2A6BB00714701 /* en */,
+				88DE24E11AD2A6BB00714701 /* es */,
+			);
+			name = core.strings;
+			sourceTree = "<group>";
+		};
+		88DE24DA1AD2A6BB00714701 /* forgotpassword-screenlet.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88DE24DB1AD2A6BB00714701 /* en */,
+				88DE24E31AD2A6BB00714701 /* es */,
+			);
+			name = "forgotpassword-screenlet.strings";
+			sourceTree = "<group>";
+		};
+		88DE24DC1AD2A6BB00714701 /* login-screenlet.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88DE24DD1AD2A6BB00714701 /* en */,
+				88DE24E41AD2A6BB00714701 /* es */,
+			);
+			name = "login-screenlet.strings";
+			sourceTree = "<group>";
+		};
+		88DE24DF1AD2A6BB00714701 /* webcontentdisplay-screenlet.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88DE24E01AD2A6BB00714701 /* en */,
+				88DE24E61AD2A6BB00714701 /* es */,
+			);
+			name = "webcontentdisplay-screenlet.strings";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
