@@ -39,27 +39,14 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 	//MARK: ServerOperation
 
 	override func validateData() -> Bool {
-		if document == nil {
-			return false
-		}
+		var valid = super.validateData()
 
-		if document!.currentValue == nil {
-			return false
-		}
+		valid &= (document != nil && document!.currentValue == nil)
+		valid &= (filePrefix != nil)
+		valid &= (repositoryId != nil)
+		valid &= (folderId != nil)
 
-		if filePrefix == nil {
-			return false
-		}
-
-		if repositoryId == nil {
-			return false
-		}
-
-		if folderId == nil {
-			return false
-		}
-
-		return true
+		return valid
 	}
 
 	override internal func doRun(#session: LRSession) {

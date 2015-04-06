@@ -42,14 +42,16 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 	//MARK ServerOperation
 
 	override func validateData() -> Bool {
-		if viewModel.userName == nil {
+		var valid = super.validateData()
+
+		if valid && viewModel.userName == nil {
 			showValidationHUD(
 					message: LocalizedString("forgotpassword-screenlet", "validation", self))
 
-			return false
+			valid = false
 		}
 
-		return true
+		return valid
 	}
 
 	override func postRun() {

@@ -32,16 +32,19 @@ public class LiferaySignUpOperation: ServerOperation {
 		return screenlet.screenletView as SignUpViewModel
 	}
 
+
 	//MARK: ServerOperation
 
 	override func validateData() -> Bool {
-		if viewModel.emailAddress == nil {
+		var valid = super.validateData()
+
+		if valid && viewModel.emailAddress == nil {
 			showValidationHUD(message: LocalizedString("signup-screenlet", "validation", self))
 
-			return false
+			valid = false
 		}
 
-		return true
+		return valid
 	}
 
 	override func doRun(#session: LRSession) {

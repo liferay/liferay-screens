@@ -48,32 +48,23 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	//MARK: ServerOperation
 
 	override func validateData() -> Bool {
-		if userId == nil {
-			return false
-		}
+		var valid = super.validateData()
 
-		if groupId == nil {
-			return false
-		}
+		valid &= (userId != nil)
+		valid &= (groupId != nil)
+		valid &= !(recordId != nil && recordSetId == nil)
+		valid &= !viewModel.values.isEmpty
 
-		if recordId != nil && recordSetId == nil {
-			return false
-		}
-
-		if viewModel.values.isEmpty {
-			return false
-		}
-
-		if !viewModel.validateForm(autoscroll: autoscrollOnValidation) {
+		if valid && !viewModel.validateForm(autoscroll: autoscrollOnValidation) {
 			showHUD(message: LocalizedString("ddlform-screenlet", "validation", self),
 					details: LocalizedString("ddlform-screenlet", "validation-details", self),
 					closeMode: .AutocloseDelayed(3.0, true),
 					spinnerMode: .NoSpinner)
 
-			return false
+			valid = false
 		}
 
-		return true
+		return valid
 	}
 
 	override internal func doRun(#session: LRSession) {

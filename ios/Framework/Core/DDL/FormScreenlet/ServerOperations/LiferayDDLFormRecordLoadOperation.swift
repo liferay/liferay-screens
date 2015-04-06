@@ -34,11 +34,11 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 	//MARK: ServerOperation
 
 	override func validateData() -> Bool {
-		if recordId == nil {
-			return false
-		}
+		var valid = super.validateData()
 
-		return true
+		valid &= (recordId != nil)
+
+		return valid
 	}
 
 	override internal func doRun(#session: LRSession) {

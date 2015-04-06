@@ -28,15 +28,12 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 	}
 
 	override func validateData() -> Bool {
-		if recordSetId == nil {
-			return false
-		}
+		var valid = super.validateData()
 
-		if viewModel.labelFields.count == 0 {
-			return false
-		}
+		valid &= (recordSetId != nil)
+		valid &= (viewModel.labelFields.count > 0)
 
-		return true
+		return valid
 	}
 
 	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {

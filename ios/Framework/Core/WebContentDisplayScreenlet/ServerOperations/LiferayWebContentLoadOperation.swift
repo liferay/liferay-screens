@@ -34,15 +34,12 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 	//MARK: ServerOperation
 
 	override func validateData() -> Bool {
-		if groupId == nil {
-			return false
-		}
+		var valid = super.validateData()
 
-		if articleId == nil || articleId! == "" {
-			return false
-		}
+		valid &= (groupId != nil)
+		valid &= (articleId != nil && articleId! != "")
 
-		return true
+		return valid
 	}
 
 	override internal func doRun(#session: LRSession) {

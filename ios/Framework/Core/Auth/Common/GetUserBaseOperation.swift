@@ -23,17 +23,14 @@ public class GetUserBaseOperation: ServerOperation {
 	//MARK: ServerOperation
 
 	override internal func validateData() -> Bool {
+		var valid = super.validateData()
+		
 		if !SessionContext.hasSession {
-			if userName == nil {
-				return false
-			}
-
-			if password == nil {
-				return false
-			}
+			valid &= (userName != nil)
+			valid &= (password != nil)
 		}
 
-		return true
+		return valid
 	}
 
 	override func createSession() -> LRSession? {

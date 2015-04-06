@@ -26,15 +26,12 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	//MARK: ServerOperation
 
 	override func validateData() -> Bool {
-		if groupId == nil {
-			return false
-		}
+		var valid = super.validateData()
 
-		if classNameId == nil {
-			return false
-		}
+		valid &= (groupId != nil)
+		valid &= (classNameId != nil)
 
-		return true
+		return valid
 	}
 
 
