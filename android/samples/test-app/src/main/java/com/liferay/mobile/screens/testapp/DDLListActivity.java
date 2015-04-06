@@ -66,7 +66,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<D
 	}
 
 	@Override
-	public void onListItemSelected(DDLEntry element) {
+	public void onListItemSelected(DDLEntry element, View view) {
 		info("Item selected: " + element);
 		loadDDLForm(element);
 	}
