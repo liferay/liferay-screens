@@ -57,7 +57,7 @@
                     <rect key="frame" x="16" y="70" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="default-mail-icon.png" id="cQm-Dk-rcd">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cQm-Dk-rcd">
                     <rect key="frame" x="16" y="14" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -79,7 +79,6 @@
         <image name="default-field-focused.png" width="228" height="44"/>
         <image name="default-field.png" width="228" height="44"/>
         <image name="default-lock-icon.png" width="12" height="16"/>
-        <image name="default-mail-icon.png" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

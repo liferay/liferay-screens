@@ -56,6 +56,7 @@ func delayed(delay: NSTimeInterval, block: dispatch_block_t) {
     dispatch_after(time, dispatch_get_main_queue(), block)
 }
 
+
 func allBundles(#currentClass: AnyClass, #currentTheme: String?) -> [NSBundle?] {
 	let frameworkBundle = NSBundle(forClass: currentClass)
 
@@ -70,6 +71,19 @@ func allBundles(#currentClass: AnyClass, #currentTheme: String?) -> [NSBundle?] 
 		(coreBundlePath == nil) ? nil : NSBundle(path: coreBundlePath!),
 		frameworkBundle,
 		NSBundle.mainBundle()]
+}
+
+
+func imageInAnyBundle(#name: String, #currentClass: AnyClass, #currentTheme: String?) -> UIImage? {
+	let bundles = allBundles(currentClass: currentClass, currentTheme: currentTheme)
+
+	for bundle in bundles {
+		if let path = bundle?.pathForResource(name, ofType: "png") {
+			return UIImage(contentsOfFile: path)
+		}
+	}
+
+	return nil
 }
 
 

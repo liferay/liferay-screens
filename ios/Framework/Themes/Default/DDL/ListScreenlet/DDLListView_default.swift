@@ -31,9 +31,14 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 	override internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
 		cell.textLabel?.text = "..."
 		cell.accessoryType = .None
-		let image = UIImage(named: "default-hourglass")!
-		cell.accessoryView = UIImageView(image: image)
-		cell.accessoryView!.frame = CGRectMake(0, 0, image.size.width, image.size.height)
+
+		if let image = imageInAnyBundle(
+				name: "default-hourglass",
+				currentClass: self.dynamicType,
+				currentTheme: "default") {
+			cell.accessoryView = UIImageView(image: image)
+			cell.accessoryView!.frame = CGRectMake(0, 0, image.size.width, image.size.height)
+		}
 	}
 
 

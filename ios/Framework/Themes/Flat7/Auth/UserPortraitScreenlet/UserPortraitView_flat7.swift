@@ -25,7 +25,10 @@ public class UserPortraitView_flat7: UserPortraitView_default {
 	}
 
 	override internal func loadPlaceholder() {
-		self.portraitImage?.image = UIImage(named: "flat7-portrait-placeholder")
+		self.portraitImage?.image = imageInAnyBundle(
+				name: "flat7-portrait-placeholder",
+				currentClass: self.dynamicType,
+				currentTheme: "default")
 	}
 
 }

@@ -54,12 +54,27 @@ public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFiel
 
 	override internal func onPostValidation(valid: Bool) {
 		super.onPostValidation(valid)
-		
-		let imgName = valid ? "default-field" : "default-field-failed"
-		let imgNameHighlighted = valid ? "default-field-focused" : "default-field-failed"
 
-		textFieldBackground?.image = UIImage(named: imgName)
-		textFieldBackground?.highlightedImage = UIImage(named: imgNameHighlighted)
+		if valid {
+			textFieldBackground?.image = imageInAnyBundle(
+					name: "default-field",
+					currentClass: self.dynamicType,
+					currentTheme: "default")
+
+			textFieldBackground?.highlightedImage = imageInAnyBundle(
+					name: "default-field-focused",
+					currentClass: self.dynamicType,
+					currentTheme: "default")
+		}
+		else {
+			let image = imageInAnyBundle(
+					name: "default-field-failed",
+					currentClass: self.dynamicType,
+					currentTheme: "default")
+
+			textFieldBackground?.image = image
+			textFieldBackground?.highlightedImage = image
+		}
 	}
 
 	override public func canBecomeFirstResponder() -> Bool {
