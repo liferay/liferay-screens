@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView
+	style="@style/westeros_screenlet"
+	android:fillViewport="true"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<RelativeLayout
+		android:paddingBottom="@dimen/westeros_button_bottom_margin"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<LinearLayout
+			android:id="@+id/ddlfields_container"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical"/>
+
+		<ProgressBar
+			android:layout_below="@+id/ddlfields_container"
+			android:id="@+id/ddlform_loading_screen_progress_bar"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_gravity="center"
+			android:visibility="invisible"/>
+
+		<Button
+			android:layout_alignParentBottom="true"
+			android:id="@+id/submit"
+			style="@style/westeros_dark_button"
+			android:text="@string/send_issue"/>
+
+		<ProgressBar
+			android:layout_alignTop="@id/submit"
+			android:layout_alignLeft="@id/submit"
+			style="@style/westeros_progress_bar"
+			android:id="@+id/ddlform_progress_bar"/>
+
+	</RelativeLayout>
+
+</com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView>
