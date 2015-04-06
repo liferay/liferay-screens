@@ -29,14 +29,7 @@ public class GetUserByEmailOperation: GetUserBaseOperation {
 	override internal func validateData() -> Bool {
 		var valid = super.validateData()
 
-		if valid {
-			if let emailAddressValue = emailAddress {
-				valid = (emailAddressValue != "")
-			}
-			else {
-				valid = false
-			}
-		}
+		valid &= ((emailAddress ?? "") != "")
 
 		return valid
 	}

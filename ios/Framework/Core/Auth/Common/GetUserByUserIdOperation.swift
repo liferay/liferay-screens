@@ -16,9 +16,9 @@ import UIKit
 
 public class GetUserByUserIdOperation: GetUserBaseOperation {
 
-	private var userId: Int64
+	private var userId: Int64?
 
-	public init(screenlet: BaseScreenlet, userId: Int64) {
+	public init(screenlet: BaseScreenlet, userId: Int64?) {
 		self.userId = userId
 
 		super.init(screenlet: screenlet)
@@ -27,9 +27,7 @@ public class GetUserByUserIdOperation: GetUserBaseOperation {
 	override internal func validateData() -> Bool {
 		var valid = super.validateData()
 
-		if valid {
-			valid = (userId > 0)
-		}
+		valid &= ((userId ?? 0) > 0)
 
 		return valid
 	}
@@ -42,7 +40,7 @@ public class GetUserByUserIdOperation: GetUserBaseOperation {
 			error: NSErrorPointer)
 			-> NSDictionary? {
 
-		return service.getUserByIdWithUserId(userId, error: error)
+		return service.getUserByIdWithUserId(userId!, error: error)
 	}
 
 }
