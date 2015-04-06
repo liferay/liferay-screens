@@ -22,8 +22,12 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
  */
 public interface UserPortraitInteractor extends Interactor<UserPortraitInteractorListener> {
 
-	public void load(boolean male, long portraitId, String uuid);
+	void reload(boolean male, long portraitId, String uuid);
 
-	public void load(long userId) throws Exception;
+	void load(boolean male, long portraitId, String uuid);
+
+	void load(long userId) throws Exception;
+
+	void reload(long userId) throws Exception;
 
 }

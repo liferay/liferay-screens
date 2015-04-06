@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -38,24 +38,24 @@ import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
  */
 public class UserPortraitView extends FrameLayout implements UserPortraitViewModel {
 
-    public UserPortraitView(Context context) {
-        super(context);
+	public UserPortraitView(Context context) {
+		super(context);
 
 		DefaultTheme.initIfThemeNotPresent(context);
-    }
+	}
 
-    public UserPortraitView(
+	public UserPortraitView(
 		Context context, AttributeSet attributes) {
-        super(context, attributes);
+		super(context, attributes);
 
 		DefaultTheme.initIfThemeNotPresent(context);
-    }
+	}
 
-    public UserPortraitView(Context context, AttributeSet attributes, int defaultStyle) {
-        super(context, attributes, defaultStyle);
+	public UserPortraitView(Context context, AttributeSet attributes, int defaultStyle) {
+		super(context, attributes, defaultStyle);
 
 		DefaultTheme.initIfThemeNotPresent(context);
-    }
+	}
 
 	@Override
 	public void showStartOperation(String actionName) {
@@ -99,45 +99,50 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		return (float) getResources().getInteger(R.integer.userportrait_default_border_width);
 	}
 
-    protected Bitmap transformBitmap(Bitmap bitmap) {
+	protected Bitmap transformBitmap(Bitmap bitmap) {
 		float borderRadius = getBorderRadius();
 		float borderWidth = getBorderWidth();
 
 		RectF rect = getRectF(bitmap, borderWidth);
 
-        Bitmap finalBitmap = Bitmap.createBitmap(
+		Bitmap finalBitmap = Bitmap.createBitmap(
 			bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 
-        Canvas canvas = new Canvas(finalBitmap);
+		Canvas canvas = new Canvas(finalBitmap);
 
-        canvas.drawRoundRect(rect, borderRadius, borderRadius, getPaint(bitmap));
-        canvas.drawRoundRect(rect, borderRadius, borderRadius, getBorderPaint(borderWidth, R.color.default_dark_gray));
+		canvas.drawRoundRect(rect, borderRadius, borderRadius, getPaint(bitmap));
+		canvas.drawRoundRect(rect, borderRadius, borderRadius, getBorderPaint(borderWidth, getDefaultBorderColor()));
 
-        return finalBitmap;
-    }
+		return finalBitmap;
+	}
 
-    protected RectF getRectF(Bitmap bitmap, float borderWidth) {
-        RectF rect = new RectF(0.0f, 0.0f, bitmap.getWidth(), bitmap.getHeight());
-        rect.inset(borderWidth, borderWidth);
-        return rect;
-    }
 
-    protected Paint getBorderPaint(float borderWidth, int color) {
-        Paint borderPaint = new Paint();
-        borderPaint.setAntiAlias(true);
-        borderPaint.setColor(getResources().getColor(color));
-        borderPaint.setStyle(Paint.Style.STROKE);
-        borderPaint.setStrokeWidth(borderWidth);
-        return borderPaint;
-    }
+	protected RectF getRectF(Bitmap bitmap, float borderWidth) {
+		RectF rect = new RectF(0.0f, 0.0f, bitmap.getWidth(), bitmap.getHeight());
+		rect.inset(borderWidth, borderWidth);
+		return rect;
+	}
 
-    protected Paint getPaint(Bitmap bitmap) {
-        BitmapShader shader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
-        Paint paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setShader(shader);
-        return paint;
-    }
+	protected Paint getBorderPaint(float borderWidth, int color) {
+		Paint borderPaint = new Paint();
+		borderPaint.setAntiAlias(true);
+		borderPaint.setColor(getResources().getColor(color));
+		borderPaint.setStyle(Paint.Style.STROKE);
+		borderPaint.setStrokeWidth(borderWidth);
+		return borderPaint;
+	}
+
+	protected int getDefaultBorderColor() {
+		return R.color.default_dark_gray;
+	}
+
+	protected Paint getPaint(Bitmap bitmap) {
+		BitmapShader shader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+		Paint paint = new Paint();
+		paint.setAntiAlias(true);
+		paint.setShader(shader);
+		return paint;
+	}
 
 	private void setDefaultImagePlaceholder() {
 		Bitmap defaultBitmap = BitmapFactory.decodeResource(
@@ -145,7 +150,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		_portraitImage.setImageBitmap(transformBitmap(defaultBitmap));
 	}
 
-    private ImageView _portraitImage;
-    private ProgressBar _portraitProgress;
+	private ImageView _portraitImage;
+	private ProgressBar _portraitProgress;
 
 }

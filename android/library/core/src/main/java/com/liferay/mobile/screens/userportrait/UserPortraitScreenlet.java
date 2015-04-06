@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -23,6 +23,7 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorImpl;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
@@ -140,7 +141,7 @@ public class UserPortraitScreenlet
 		_male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
 		_portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
-		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, 0);
+		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, (int) SessionContext.getLoggedUser().getId());
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
@@ -160,6 +161,11 @@ public class UserPortraitScreenlet
 		String userActionName, UserPortraitInteractor interactor, Object... args) {
 
 		try {
+			//FIXME this is wrong
+			if ("RELOAD".equals(userActionName)) {
+				getInteractor().reload(_userId);
+				getInteractor().load(_userId);
+			}
 			if (_userId != 0) {
 				getInteractor().load(_userId);
 			}

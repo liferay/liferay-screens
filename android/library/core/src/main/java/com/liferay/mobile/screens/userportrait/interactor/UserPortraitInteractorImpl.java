@@ -27,6 +27,7 @@ import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -51,6 +52,31 @@ public class UserPortraitInteractorImpl
 	}
 
 	@Override
+	public void reload(boolean male, long portraitId, String uuid) {
+		Picasso.with(LiferayScreensContext.getContext()).invalidate(getUserPortraitURL(male, portraitId, uuid));
+	}
+
+	@Override
+	public void reload(long userId) throws Exception{
+		validate(userId);
+
+		if (SessionContext.hasSession() && SessionContext.getLoggedUser().getId() == userId) {
+			boolean male = true;
+			long portraitId = SessionContext.getLoggedUser().getPortraitId();
+			String uuid = SessionContext.getLoggedUser().getUuid();
+
+			reload(male, portraitId, uuid);
+		}
+		else {
+			if (getListener() != null) {
+				getListener().onStartUserPortraitRequest();
+			}
+
+			getUserService().getUserById(userId);
+		}
+	}
+
+	@Override
 	public void load(boolean male, long portraitId, String uuid) {
 		validate(portraitId, uuid);
 
@@ -67,7 +93,8 @@ public class UserPortraitInteractorImpl
 	public void load(long userId) throws Exception {
 		validate(userId);
 
-		if (SessionContext.hasSession() && SessionContext.getLoggedUser().getId() == userId) {
+		if (SessionContext.hasSession() && SessionContext.getLoggedUser().getId() == userId && 0 == 1) {
+			//FIXME this is wrong
 			boolean male = true;
 			long portraitId = SessionContext.getLoggedUser().getPortraitId();
 			String uuid = SessionContext.getLoggedUser().getUuid();
@@ -128,19 +155,19 @@ public class UserPortraitInteractorImpl
 
 	private void validate(long portraitId, String uuid) {
 		if (getListener() == null) {
-			throw new IllegalArgumentException("Listener cannot be null");
+			throw new IllegalArgumentException("Listener cannot be empty");
 		}
 		if (portraitId == 0) {
-			throw new IllegalArgumentException("portraitId cannot be null");
+			throw new IllegalArgumentException("portraitId cannot be empty");
 		}
 		if (uuid == null || uuid.isEmpty()) {
-			throw new IllegalArgumentException("userId cannot be null or empty");
+			throw new IllegalArgumentException("userId cannot be empty");
 		}
 	}
 
 	private void validate(long userId) {
 		if (userId == 0) {
-			throw new IllegalArgumentException("userId cannot be null");
+			throw new IllegalArgumentException("userId cannot be empty");
 		}
 	}
 
@@ -171,6 +198,7 @@ public class UserPortraitInteractorImpl
 
 		}
 		catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			LiferayLogger.e("Algorithm not found!", e);
 		}
 
 		return null;
