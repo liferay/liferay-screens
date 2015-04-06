@@ -5,14 +5,9 @@ package com.liferay.mobile.screens.bankofwesteros.gestures;
  */
 public interface FlingListener {
 
-	//TODO refactor to a method with movement parameter
-	void onFlingLeft();
+	void onFling(Movement movement);
 
-	void onFlingRight();
-
-	void onFlingUp();
-
-	void onFlingDown();
-
-	void onTouch();
+	enum Movement {
+		UP, LEFT, RIGHT, DOWN, TOUCH
+	}
 }
