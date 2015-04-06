@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.bankofwesteros;
+package com.liferay.mobile.screens.bankofwesteros.views;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.task.callback.typed.JSONObjectAsyncTaskCallback;

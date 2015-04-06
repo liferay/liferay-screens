@@ -17,16 +17,16 @@
 		android:theme="@style/WesterosTheme">
 
 		<activity
-			android:name=".MainActivity"
+			android:name=".activities.MainActivity"
 			android:windowSoftInputMode="stateHidden"/>
-		<activity android:name=".IssuesActivity"/>
-		<activity android:name=".AccountSettings"/>
+		<activity android:name=".activities.IssuesActivity"/>
+		<activity android:name=".activities.AccountSettingsActivity"/>
 		<activity
-			android:name=".TourActivity"
+			android:name=".activities.TourActivity"
 			android:noHistory="true"/>
-		<activity android:name=".PushActivity"/>
+		<activity android:name=".activities.PushActivity"/>
 		<activity
-			android:name=".SplashActivity"
+			android:name=".activities.SplashActivity"
 			android:noHistory="true">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
@@ -34,7 +34,7 @@
 			</intent-filter>
 		</activity>
 
-		<receiver android:name=".GCMBroadcastReceiver">
+		<receiver android:name=".push.GCMBroadcastReceiver">
 			<intent-filter>
 				<action android:name="com.google.android.c2dm.intent.RECEIVE"/>
 				<category android:name="com.liferay.mobile.screens.bankofwesteros"/>
