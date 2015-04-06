@@ -32,7 +32,7 @@ import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
+import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 import java.util.HashMap;
@@ -170,13 +170,13 @@ public class DDLFormView
 		hideProgressBar(actionName);
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
 			LiferayLogger.e("error loading DDLForm", e);
-			DefaultCrouton.error(getContext(), getContext().getString(R.string.loading_form_error), e);
+			LiferayCrouton.error(getContext(), getContext().getString(R.string.loading_form_error), e);
 
 			clearFormFields();
 		}
 		else if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
 			LiferayLogger.e("error uploading", e);
-			DefaultCrouton.error(getContext(), getContext().getString(R.string.uploading_document_error), e);
+			LiferayCrouton.error(getContext(), getContext().getString(R.string.uploading_document_error), e);
 
 			DocumentField documentField = (DocumentField) argument;
 

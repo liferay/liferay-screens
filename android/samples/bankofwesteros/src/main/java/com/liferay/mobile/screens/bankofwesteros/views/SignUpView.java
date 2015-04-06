@@ -27,6 +27,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.liferay.mobile.screens.bankofwesteros.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 /**
  * @author Silvio Santos
@@ -61,7 +62,7 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		}
 		else {
 			//TODO move to view model and interactor
-			WesterosCrouton.error(getContext(), "You must accept the terms & conditions", null);
+			LiferayCrouton.error(getContext(), "You must accept the terms & conditions", null);
 		}
 	}
 

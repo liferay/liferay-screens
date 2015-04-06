@@ -27,7 +27,6 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 
 import org.json.JSONException;
 import org.json.JSONObject;

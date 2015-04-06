@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.liferay.mobile.android.task.callback.typed.JSONObjectAsyncTaskCallback;
-import com.liferay.mobile.screens.bankofwesteros.views.WesterosCrouton;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.UserPortraitListener;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 import org.json.JSONObject;
 
@@ -75,12 +75,12 @@ public class AccountSettings extends Activity implements View.OnClickListener, U
 
 	@Override
 	public void onUserPortraitUploaded(UserPortraitScreenlet source) {
-		WesterosCrouton.info(AccountSettings.this, "Portrait updated");
+		LiferayCrouton.info(AccountSettings.this, "Portrait updated");
 	}
 
 	@Override
 	public void onUserPortraitUploadFailure(UserPortraitScreenlet source, Exception e) {
-		WesterosCrouton.error(AccountSettings.this, "Error updating portrait", e);
+		LiferayCrouton.error(AccountSettings.this, "Error updating portrait", e);
 	}
 
 
@@ -97,7 +97,7 @@ public class AccountSettings extends Activity implements View.OnClickListener, U
 
 		if (SessionContext.getAuthentication().getPassword().equals(_password.getText().toString())) {
 			setError(_password);
-			WesterosCrouton.error(this, "Password should be different", null);
+			LiferayCrouton.error(this, "Password should be different", null);
 			return;
 		}
 
@@ -109,13 +109,13 @@ public class AccountSettings extends Activity implements View.OnClickListener, U
 				SessionContext.createSession(emailAddress, newPassword);
 
 				clearError(_password);
-				WesterosCrouton.info(AccountSettings.this, "User updated");
+				LiferayCrouton.info(AccountSettings.this, "User updated");
 			}
 
 			@Override
 			public void onFailure(Exception exception) {
 				LiferayLogger.e("error", exception);
-				WesterosCrouton.error(AccountSettings.this, "Error updating user", exception);
+				LiferayCrouton.error(AccountSettings.this, "Error updating user", exception);
 			}
 		});
 	}

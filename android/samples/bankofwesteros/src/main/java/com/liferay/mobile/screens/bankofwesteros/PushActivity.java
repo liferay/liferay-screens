@@ -6,10 +6,10 @@ import android.os.Bundle;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.liferay.mobile.push.Push;
-import com.liferay.mobile.screens.bankofwesteros.views.WesterosCrouton;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 import java.io.IOException;
 
@@ -17,8 +17,6 @@ import java.io.IOException;
  * @author Javier Gamarra
  */
 public class PushActivity extends Activity {
-
-	//FIXME this is wrong
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -31,7 +29,7 @@ public class PushActivity extends Activity {
 	}
 
 	public void onEvent(IssueEvent event) {
-		WesterosCrouton.info(this, "New Issue received, reloading...");
+		LiferayCrouton.info(this, "New Issue received, reloading...");
 		LiferayLogger.i("Push received: " + event.getMessage());
 	}
 
