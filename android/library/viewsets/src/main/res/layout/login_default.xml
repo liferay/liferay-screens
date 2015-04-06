@@ -10,6 +10,7 @@
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="15dp"
 		android:drawableLeft="@drawable/default_mail_icon"
+		android:drawableStart="@drawable/default_mail_icon"
 		android:hint="@string/email_address"
 		android:inputType="text"
 		android:text="test@liferay.com"/>
