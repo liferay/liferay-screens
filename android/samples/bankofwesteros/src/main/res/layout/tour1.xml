@@ -10,28 +10,21 @@
 		android:layout_centerHorizontal="true"
 		android:layout_gravity="center"
 		android:layout_marginTop="50dp"
-		android:src="@drawable/tour_laptop"/>
+		android:src="@drawable/tour_window"/>
 
 	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		style="@style/westeros_tour_text"
 		android:layout_above="@+id/tour_description"
 		android:gravity="center"
-		android:padding="20dp"
-		android:text="Tour Title 1"
+		android:text="@string/issues_at_the_office"
 		android:textAllCaps="true"
-		android:textColor="@color/westeros_black"
-		android:textSize="18sp"/>
+		android:textStyle="bold"/>
 
 	<TextView
 		android:id="@+id/tour_description"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		style="@style/westeros_tour_text"
 		android:layout_alignParentBottom="true"
-		android:gravity="center"
-		android:padding="20dp"
-		android:text="Image description, sentence, long text 1"
-		android:textColor="@color/westeros_dark_gray"
-		android:textSize="16sp"/>
+		android:text="@string/we_are_here_to_help"
+		android:textColor="@color/westeros_dark_gray"/>
 
 </RelativeLayout>
