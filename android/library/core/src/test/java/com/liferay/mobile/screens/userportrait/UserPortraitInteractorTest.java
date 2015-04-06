@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.userportrait;
 
 import com.liferay.mobile.screens.context.LiferayScreensContext;
-import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorImpl;
+import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractorImpl;
 import com.liferay.mobile.screens.util.MockFactory;
 
 import junit.framework.Assert;
@@ -46,7 +46,7 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenListenerIsNull() throws Exception {
-			UserPortraitInteractorImpl interactor = new UserPortraitInteractorImpl(0);
+			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl(0);
 
 			try {
 				interactor.load(true, 123, "xxx");
@@ -58,7 +58,7 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenPortraitIdIsZero() throws Exception {
-			UserPortraitInteractorImpl interactor = new UserPortraitInteractorImpl(0);
+			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl(0);
 			interactor.onScreenletAttachted(MockFactory.mockUserPortraitInteractorListener());
 
 			try {
@@ -71,7 +71,7 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenUUIDIsNull() throws Exception {
-			UserPortraitInteractorImpl interactor = new UserPortraitInteractorImpl(0);
+			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl(0);
 			interactor.onScreenletAttachted(MockFactory.mockUserPortraitInteractorListener());
 
 			try {
@@ -84,7 +84,7 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenUUIDIsEmpty() throws Exception {
-			UserPortraitInteractorImpl interactor = new UserPortraitInteractorImpl(0);
+			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl(0);
 			interactor.onScreenletAttachted(MockFactory.mockUserPortraitInteractorListener());
 
 			try {
