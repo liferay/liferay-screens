@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	
+
 	<color name="westeros_red">#E44740</color>
+	<color name="westeros_dark_red">#C03D3A</color>
 	<color name="westeros_yellow">#FBB351</color>
 	<color name="westeros_black">#303030</color>
 	<color name="westeros_light_gray">#E5E5E5</color>
