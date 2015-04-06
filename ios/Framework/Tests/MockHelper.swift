@@ -16,7 +16,7 @@ import XCTest
 import Nocilla
 
 
-let mockServer = Liferay62MockServer(host: "localhost:8080")
+let mockServer = Liferay62MockServer(host: "test-host:9090")
 
 
 protocol StubResponses {

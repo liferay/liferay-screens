@@ -56,7 +56,6 @@ public class LiferayServerContext {
 	}
 
 
-
 	//MARK: Public methods
 
 	private class func loadContextFile() {
@@ -64,27 +63,31 @@ public class LiferayServerContext {
 			return
 		}
 
-		let bundle = NSBundle(forClass: LiferayServerContext.self)
+		let bundles = allBundles(currentClass: self, currentTheme: nil)
 
-		if let propertiesPath =
-				bundle.pathForResource("liferay-server-context", ofType:"plist") {
+		for bundle in bundles {
+			if let bundleValue = bundle {
+				if let propertiesPath = bundleValue.pathForResource("liferay-server-context", ofType:"plist") {
+					StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: propertiesPath)
+					return
+				}
+				else {
+					println("WARNING: liferay-server-context.plist file is not found. Falling back to template " +
+							"liferay-server-context-sample.list")
 
-			StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: propertiesPath)
-		}
-		else {
-			println("WARNING: liferay-server-context.plist file is not found. Falling back to template " +
-				"liferay-server-context-sample.list")
+					if let path = bundleValue.pathForResource("liferay-server-context-sample", ofType:"plist") {
+						StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
+					}
+					else {
+						StaticInstance.serverProperties = ["companyId": 10157, "groupId": 10184, "server": "http://localhost:8080"]
 
-			if let path = bundle.pathForResource("liferay-server-context-sample", ofType:"plist") {
-				StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
+						println("ERROR: liferay-server-context-sample.plist file is not found. " +
+							"Using default values which will work in a default Liferay bundle running " +
+							"on localhost:8080")
+					}
+				}
 			}
-			else {
-				println("WARNING: liferay-server-context-sample.plist file is not found. " +
-					"Using default values which will work in a default Liferay bundle running " +
-					"on localhost:8080")
-			}
 		}
-
 	}
 
 }
