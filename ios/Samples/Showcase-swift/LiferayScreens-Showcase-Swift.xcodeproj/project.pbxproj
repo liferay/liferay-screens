@@ -24,6 +24,7 @@
 		886451201AC2BFEC0048E732 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8864511F1AC2BFEC0048E732 /* Default-568h@2x.png */; };
 		88B000BF1AA8A6F3004FC778 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B000BD1AA8A6F3004FC778 /* UIImageExtension.swift */; };
 		88B000C01AA8A6F3004FC778 /* UserPortraitScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B000BE1AA8A6F3004FC778 /* UserPortraitScreenletViewController.swift */; };
+		88DE24A81AD29AFA00714701 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24AA1AD29AFA00714701 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +35,6 @@
 		88215F381A234184009B96C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88215F3A1A234184009B96C7 /* HomeLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLoginViewController.swift; sourceTree = "<group>"; };
 		88215F3C1A234184009B96C7 /* HomeScreenletsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenletsViewController.swift; sourceTree = "<group>"; };
-		88215F3F1A234184009B96C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88215F411A234185009B96C7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		88260FBC1A2487A400D7A832 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		88274FF91A24C7CB00FE31C6 /* SignUpScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreenletViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +46,10 @@
 		8864511F1AC2BFEC0048E732 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		88B000BD1AA8A6F3004FC778 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		88B000BE1AA8A6F3004FC778 /* UserPortraitScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitScreenletViewController.swift; sourceTree = "<group>"; };
+		88DE24A91AD29AFA00714701 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DE24AB1AD29AFC00714701 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DE24AC1AD29AFC00714701 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88DE24AD1AD29B0C00714701 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D599D7796E7BE84936DB1C44 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F861EDACC516A79256EDE1BB /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -113,6 +117,7 @@
 		88215F361A234184009B96C7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				88DE24AA1AD29AFA00714701 /* Localizable.strings */,
 				8864511F1AC2BFEC0048E732 /* Default-568h@2x.png */,
 				88215F411A234185009B96C7 /* Images.xcassets */,
 				88260FBC1A2487A400D7A832 /* LaunchScreen.xib */,
@@ -173,7 +178,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				es,
 				de,
 			);
@@ -193,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				886451201AC2BFEC0048E732 /* Default-568h@2x.png in Resources */,
+				88DE24A81AD29AFA00714701 /* Localizable.strings in Resources */,
 				8847A7E51A64193F0098B92E /* liferay-server-context.plist in Resources */,
 				88260FBD1A2487A400D7A832 /* LaunchScreen.xib in Resources */,
 				88215F401A234184009B96C7 /* Main.storyboard in Resources */,
@@ -275,9 +280,19 @@
 		88215F3E1A234184009B96C7 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				88215F3F1A234184009B96C7 /* Base */,
+				88DE24AD1AD29B0C00714701 /* en */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		88DE24AA1AD29AFA00714701 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88DE24A91AD29AFA00714701 /* en */,
+				88DE24AB1AD29AFC00714701 /* es */,
+				88DE24AC1AD29AFC00714701 /* de */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
