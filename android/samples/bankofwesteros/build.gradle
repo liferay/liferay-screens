@@ -52,4 +52,6 @@ dependencies {
 	compile "com.daimajia.swipelayout:library:1.1.9@aar"
 
 	compile project (':viewsets')
+	compile "com.google.android.gms:play-services:7.0.+"
+	compile group: 'com.liferay.mobile', name: 'liferay-push-notifications-portlet-android-sdk', version: '6.2.0.+'
 }
