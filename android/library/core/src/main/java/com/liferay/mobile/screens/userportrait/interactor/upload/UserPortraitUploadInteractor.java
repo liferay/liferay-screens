@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.userportrait.interactor.upload;
 
-import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.userportrait.interactor.BaseUserPortraitInteractor;
 
 /**
