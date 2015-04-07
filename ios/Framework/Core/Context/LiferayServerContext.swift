@@ -63,19 +63,25 @@ public class LiferayServerContext {
 			return
 		}
 
-		let bundles = allBundles(currentClass: self, currentTheme: nil)
+		let bundles = allBundles(currentClass: self, currentTheme: nil).reverse()
 
-		for bundle in bundles {
+		var found = false
+		var foundFallback = false
+
+		var i = 0
+		let length = countElements(bundles)
+
+		while !found && i < length {
+			let bundle = bundles[i++]
+
 			if let path = bundle.pathForResource(PlistFile, ofType:"plist") {
 				StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
-				return
+				found = true
 			}
 			else {
-				println("WARNING: \(PlistFile).plist file is not found. " +
-						"Falling back to template \(PlistFileSample).list")
-
 				if let path = bundle.pathForResource(PlistFileSample, ofType:"plist") {
 					StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
+					foundFallback = true
 				}
 				else {
 					StaticInstance.serverProperties = [
@@ -83,10 +89,22 @@ public class LiferayServerContext {
 							"groupId": 10184,
 							"server": "http://localhost:8080"]
 
-					println("ERROR: \(PlistFileSample).plist file is not found. " +
-						"Using default values which will work in a default Liferay bundle running " +
-						"on localhost:8080")
 				}
+			}
+		}
+
+		if found {
+			// everything is ok
+		}
+		else {
+			if foundFallback {
+				println("WARNING: \(PlistFile).plist file is not found. " +
+						"Falling back to template \(PlistFileSample).list")
+			}
+			else {
+				println("ERROR: \(PlistFileSample).plist file is not found. " +
+						"Using default values which will work in a default Liferay bundle " +
+						"running on localhost:8080")
 			}
 		}
 	}
