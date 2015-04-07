@@ -13,10 +13,14 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.liferay.mobile.screens.bankofwesteros.utils.Card;
 import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.bankofwesteros.gestures.FlingListener;
 import com.liferay.mobile.screens.bankofwesteros.gestures.FlingTouchListener;
+import com.liferay.mobile.screens.bankofwesteros.utils.Card;
+
+import java.util.ArrayDeque;
+import java.util.Collections;
+import java.util.Queue;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
@@ -53,6 +57,16 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		}
 		else {
 			toBackground();
+		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (_cardHistory.isEmpty() || _cardHistory.size() == 1) {
+			super.onBackPressed();
+		}
+		else {
+			toPreviousCard();
 		}
 	}
 
@@ -123,7 +137,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		hideArrowIcon(_card1ToFrontView);
 		hideArrowIcon(_card1ToBackground);
 
-		_currentCard = Card.BACKGROUND;
+		_cardHistory.add(Card.BACKGROUND);
 
 		_card1.animate().y(_card1FoldedPosition);
 	}
@@ -141,7 +155,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		hideArrowIcon(_card2SubViewToCard1);
 		hideArrowIcon(_card2ToFrontView);
 
-		_currentCard = Card.CARD1;
+		_cardHistory.add(Card.CARD1);
 
 		TransitionManager.beginDelayedTransition(_card1);
 		setFrameLayoutMargins(_card1, 0, 0, 0, 0);
@@ -154,7 +168,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		showArrowIcon(_card2SubViewToCard1);
 		showArrowIcon(_card2ToFrontView);
 
-		_currentCard = Card.CARD2;
+		_cardHistory.add(Card.CARD2);
 
 		_card2.animate().setListener(null);
 		int topPosition = convertDpToPx(TOP_POSITION);
@@ -271,10 +285,30 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		return view;
 	}
 
-	private void setFrameLayoutMargins(View view, int marginLeft, int marginTop, int marginRight, int marginBottom) {
+	private void setFrameLayoutMargins(View view, int marginLeft, int marginTop,
+									   int marginRight, int marginBottom) {
 		FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
 		layoutParams.setMargins(marginLeft, marginTop, marginRight, marginBottom);
 		view.setLayoutParams(layoutParams);
+	}
+
+	private void toPreviousCard() {
+		_cardHistory.poll();
+
+		//INFO this should be generic and calculated via current card
+		Card previousCard = _cardHistory.peek();
+		if (previousCard == Card.CARD2) {
+			toCard2();
+		}
+		else if (previousCard == Card.CARD1) {
+			toCard1();
+		}
+		else {
+			toBackground();
+		}
+
+		//we have to remove from the queue the last back movement
+		_cardHistory.poll();
 	}
 
 	protected int _maxWidth;
@@ -282,10 +316,11 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 	protected int _card1RestPosition;
 	protected int _card1FoldedPosition;
 	protected int _card2FoldedPosition;
-	protected Card _currentCard;
 
 	protected ViewGroup _card1;
 	protected ViewGroup _card2;
+
+	protected Queue<Card> _cardHistory = Collections.asLifoQueue(new ArrayDeque<Card>());
 
 	private ViewGroup _card1Subview1;
 	private ViewGroup _card1Subview2;
