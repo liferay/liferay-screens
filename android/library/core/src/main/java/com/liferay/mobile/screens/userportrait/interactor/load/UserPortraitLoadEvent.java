@@ -1,6 +1,5 @@
 package com.liferay.mobile.screens.userportrait.interactor.load;
 
-import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 
 import org.json.JSONObject;
