@@ -7,8 +7,7 @@
 	<EditText
 		android:id="@+id/login"
 		style="@style/westeros_edit_text"
-		android:hint="@string/email_address"
-		android:text="@string/default_email"/>
+		android:hint="@string/email_address"/>
 
 	<FrameLayout
 		android:layout_width="match_parent"
@@ -18,8 +17,7 @@
 			android:id="@+id/password"
 			style="@style/westeros_edit_text"
 			android:hint="@string/password"
-			android:inputType="textPassword"
-			android:text="@string/default_password"/>
+			android:inputType="textPassword"/>
 
 		<ImageView
 			android:layout_gravity="right"
