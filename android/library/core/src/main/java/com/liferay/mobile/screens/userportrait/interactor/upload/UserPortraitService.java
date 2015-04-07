@@ -46,11 +46,12 @@ public class UserPortraitService extends IntentService {
 	}
 
 	private void uploadFromIntent(Intent intent) {
-
 		int targetScreenletId = intent.getIntExtra("screenletId", 0);
 		String picturePath = intent.getStringExtra("picturePath");
 
 		try {
+			// TODO scale photo
+
 			Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
 			UserService userService = new UserService(sessionFromCurrentSession);
 			JSONObject jsonObject = userService.updatePortrait(
