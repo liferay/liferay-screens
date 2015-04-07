@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -35,7 +36,7 @@ import java.util.List;
 /**
  * @author Javier Gamarra
  */
-public class IssuesActivity extends CardActivity implements View.OnClickListener, DDLFormListener, BaseListListener<DDLEntry> {
+public class IssuesActivity extends CardActivity implements View.OnClickListener, DDLFormListener, BaseListListener<DDLEntry>, View.OnTouchListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,12 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 
 		_sendButton = (Button) findViewById(R.id.submit);
 
-		configureMenuEntries();
+		TextView callMenuEntry = (TextView) findViewById(R.id.call_menu_entry);
+		callMenuEntry.setText(getCallSpannableString(), TextView.BufferType.SPANNABLE);
+		callMenuEntry.setOnTouchListener(this);
+		findViewById(R.id.account_settings_menu_entry).setOnTouchListener(this);
+		findViewById(R.id.send_message_menu_entry).setOnTouchListener(this);
+		findViewById(R.id.sign_out_menu_entry).setOnTouchListener(this);
 	}
 
 	@Override
@@ -77,26 +83,6 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 					toBackground();
 				}
 				break;
-			case R.id.account_settings_menu_entry:
-				v.setBackgroundColor(getResources().getColor(android.R.color.white));
-				startActivity(new Intent(this, AccountSettingsActivity.class));
-				overridePendingTransition(0, 0);
-				break;
-			case R.id.call_menu_entry:
-				v.setBackgroundColor(getResources().getColor(android.R.color.white));
-				startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
-				break;
-			case R.id.send_message_menu_entry:
-				v.setBackgroundColor(getResources().getColor(android.R.color.white));
-				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.default_sms_uri))));
-				break;
-			case R.id.sign_out_menu_entry:
-				v.setBackgroundColor(getResources().getColor(android.R.color.white));
-				SessionContext.clearSession();
-				Intent intent = new Intent(this, MainActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-				startActivity(intent);
-				break;
 			default:
 				super.onClick(v);
 		}
@@ -114,51 +100,15 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	}
 
 	@Override
-	protected void animateScreenAfterLoad() {
-		_cardHistory.offer(Card.CARD1);
-
-		//TODO extract this animation
-		_backgroundCard.setY(_maxHeight);
-		_card1.setY(_maxHeight);
-		_card2.setY(_maxHeight);
-
-		_card1.animate().y(_card1RestPosition);
-		_card2.animate().y(_card2FoldedPosition).setListener(new EndAnimationListener() {
-			@Override
-			public void onAnimationEnd(Animator animator) {
-				_backgroundCard.setY(0);
-			}
-		});
-	}
-
-	@Override
-	protected void toBackground() {
-		super.toBackground();
-		_card1ToBackground.setImageResource(R.drawable.icon_up);
-		_card1ToBackground.setVisibility(View.VISIBLE);
-	}
-
-	@Override
-	protected void toCard1(Animator.AnimatorListener listener) {
-		super.toCard1(listener);
-		_ddlFormScreenlet.loadForm();
-
-		clearDDLEntrySelected();
-
-		_card1ToBackground.setImageResource(R.drawable.icon_down);
-	}
-
-	@Override
-	protected void toCard2() {
-		super.toCard2();
-		if (_entry != null) {
-			_ddlFormScreenlet.setRecordId((Integer) _entry.getAttributes("recordId"));
-			_ddlFormScreenlet.loadRecord();
-			goLeftCard1();
+	public boolean onTouch(View v, MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			v.setBackgroundColor(getResources().getColor(android.R.color.white));
+			return true;
 		}
-		else {
-			clearDDLEntrySelected();
+		else if (event.getAction() == MotionEvent.ACTION_UP) {
+			launchMenu(v);
 		}
+		return false;
 	}
 
 	@Override
@@ -212,13 +162,52 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 								   int rowCount) {
 	}
 
-	private void configureMenuEntries() {
-		TextView callMenuEntry = (TextView) findViewById(R.id.call_menu_entry);
-		callMenuEntry.setText(getCallSpannableString(), TextView.BufferType.SPANNABLE);
-		callMenuEntry.setOnClickListener(this);
-		findViewById(R.id.account_settings_menu_entry).setOnClickListener(this);
-		findViewById(R.id.send_message_menu_entry).setOnClickListener(this);
-		findViewById(R.id.sign_out_menu_entry).setOnClickListener(this);
+	@Override
+	protected void animateScreenAfterLoad() {
+		_cardHistory.offer(Card.CARD1);
+
+		//TODO extract this animation
+		_backgroundCard.setY(_maxHeight);
+		_card1.setY(_maxHeight);
+		_card2.setY(_maxHeight);
+
+		_card1.animate().y(_card1RestPosition);
+		_card2.animate().y(_card2FoldedPosition).setListener(new EndAnimationListener() {
+			@Override
+			public void onAnimationEnd(Animator animator) {
+				_backgroundCard.setY(0);
+			}
+		});
+	}
+
+	@Override
+	protected void toBackground() {
+		super.toBackground();
+		_card1ToBackground.setImageResource(R.drawable.icon_up);
+		_card1ToBackground.setVisibility(View.VISIBLE);
+	}
+
+	@Override
+	protected void toCard1(Animator.AnimatorListener listener) {
+		super.toCard1(listener);
+		_ddlFormScreenlet.loadForm();
+
+		clearDDLEntrySelected();
+
+		_card1ToBackground.setImageResource(R.drawable.icon_down);
+	}
+
+	@Override
+	protected void toCard2() {
+		super.toCard2();
+		if (_entry != null) {
+			_ddlFormScreenlet.setRecordId((Integer) _entry.getAttributes("recordId"));
+			_ddlFormScreenlet.loadRecord();
+			goLeftCard1();
+		}
+		else {
+			clearDDLEntrySelected();
+		}
 	}
 
 	private SpannableStringBuilder getCallSpannableString() {
@@ -273,6 +262,33 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		goRightCard1();
 	}
 
+	private void launchMenu(View v) {
+		int color = android.R.color.transparent;
+		switch (v.getId()) {
+			case R.id.account_settings_menu_entry:
+				startActivity(new Intent(this, AccountSettingsActivity.class));
+				overridePendingTransition(0, 0);
+				break;
+			case R.id.call_menu_entry:
+				color = R.color.westeros_light_gray;
+
+				startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
+				break;
+			case R.id.send_message_menu_entry:
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.default_sms_uri))));
+				break;
+			case R.id.sign_out_menu_entry:
+				color = R.color.westeros_light_gray;
+
+				SessionContext.clearSession();
+				Intent intent = new Intent(this, MainActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivity(intent);
+				break;
+		}
+		v.setBackgroundColor(getResources().getColor(color));
+	}
+
 	private DDLFormScreenlet _ddlFormScreenlet;
 	private DDLListScreenlet _ddlListScreenlet;
 
@@ -283,4 +299,5 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	private ImageView _card1ToBackgroundMenu;
 	private TextView _reportIssueTitle;
 	private Button _sendButton;
+
 }
