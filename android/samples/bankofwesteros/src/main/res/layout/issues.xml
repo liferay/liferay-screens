@@ -80,9 +80,9 @@
 				android:layout_below="@id/divider_issues"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				liferay:labelFields="Title"
+				liferay:labelFields="@string/liferay_recordset_fields"
 				liferay:layoutId="@layout/ddl_list_westeros"
-				liferay:recordSetId="20935"/>
+				liferay:recordSetId="@integer/liferay_recordset_id"/>
 
 		</RelativeLayout>
 
@@ -170,9 +170,9 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			liferay:layoutId="@layout/ddlform_westeros"
-			liferay:recordSetId="20935"
+			liferay:recordSetId="@integer/liferay_recordset_id"
 			liferay:selectFieldLayoutId="@layout/ddlfield_select_westeros"
-			liferay:structureId="20933"
+			liferay:structureId="@integer/liferay_structure_id"
 			liferay:textAreaFieldLayoutId="@layout/ddlfield_text_area_westeros"
 			liferay:textFieldLayoutId="@layout/ddlfield_text_westeros"/>
 	</RelativeLayout>

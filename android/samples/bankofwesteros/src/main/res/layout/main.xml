@@ -83,8 +83,8 @@
 				android:layout_below="@+id/title_forgot_password_subview"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				liferay:anonymousApiPassword="test"
-				liferay:anonymousApiUserName="test@liferay.com"
+				liferay:anonymousApiPassword="@string/liferay_anonymousApiPassword"
+				liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName"
 				liferay:layoutId="@layout/forgotpassword_westeros"/>
 
 		</RelativeLayout>
@@ -127,8 +127,8 @@
 				android:id="@+id/signup_screenlet"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				liferay:anonymousApiPassword="admin"
-				liferay:anonymousApiUserName="admin@admin.com"
+				liferay:anonymousApiPassword="@string/liferay_anonymousApiPassword"
+				liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName"
 				liferay:layoutId="@layout/sign_up_westeros"/>
 		</RelativeLayout>
 
