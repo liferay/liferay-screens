@@ -20,8 +20,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_marginTop="8dp"
-			android:hint="@string/email_address"
-			android:text="@string/default_email"/>
+			android:hint="@string/email_address" />
 
 	</LinearLayout>
 
@@ -39,8 +38,7 @@
 			android:layout_height="match_parent"
 			android:layout_marginTop="8dp"
 			android:hint="@string/password"
-			android:inputType="textPassword"
-			android:text="@string/default_password"/>
+			android:inputType="textPassword"/>
 
 	</LinearLayout>
 
