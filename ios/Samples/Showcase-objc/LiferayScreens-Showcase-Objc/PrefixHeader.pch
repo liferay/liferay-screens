@@ -14,7 +14,6 @@
 #ifndef LiferayScreens_Showcase_Objc_PrefixHeader_pch
 #define LiferayScreens_Showcase_Objc_PrefixHeader_pch
 
-
-#import "LiferayScreens_Showcase_Objc-Swift.h"
+#import "LiferayScreens-Swift.h"
 
 #endif
