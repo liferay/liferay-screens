@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 import org.json.JSONObject;
@@ -65,6 +66,16 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		findViewById(R.id.account_settings_menu_entry).setOnTouchListener(this);
 		findViewById(R.id.send_message_menu_entry).setOnTouchListener(this);
 		findViewById(R.id.sign_out_menu_entry).setOnTouchListener(this);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		//we don't want to crash if activity gets restored without session
+		if (!SessionContext.hasSession()) {
+			finish();
+		}
 	}
 
 	@Override
