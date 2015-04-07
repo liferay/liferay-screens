@@ -69,10 +69,10 @@ public class UserPortraitScreenlet
 		performUserAction(LOAD_PORTRAIT);
 	}
 
-	public void upload(int requestCode, Intent data) {
+	public void upload(int requestCode, Intent onActivityResultData) {
 		String picturePath = "";
 		if (requestCode == SELECT_IMAGE) {
-			picturePath = getGalleryPath(data);
+			picturePath = getGalleryPath(onActivityResultData);
 		}
 		else if (requestCode == TAKE_PICTURE) {
 			picturePath = _filePath;
@@ -227,7 +227,6 @@ public class UserPortraitScreenlet
 		String userActionName, BaseUserPortraitInteractor interactor, Object... args) {
 
 		try {
-
 			if (UPLOAD_PORTRAIT.equals(userActionName)) {
 				UserPortraitUploadInteractor userPortraitInteractor = (UserPortraitUploadInteractor) getInteractor(userActionName);
 				userPortraitInteractor.upload((String) args[0]);
@@ -269,8 +268,8 @@ public class UserPortraitScreenlet
 		return bundle;
 	}
 
-	private String getGalleryPath(Intent data) {
-		Uri selectedImage = data.getData();
+	private String getGalleryPath(Intent onActivityResultData) {
+		Uri selectedImage = onActivityResultData.getData();
 
 		String[] filePathColumn = {MediaStore.Images.Media.DATA,};
 
@@ -295,6 +294,5 @@ public class UserPortraitScreenlet
 	private String _uuid;
 	private long _userId;
 	private boolean _editable;
-
 
 }
