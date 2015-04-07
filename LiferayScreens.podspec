@@ -1,31 +1,31 @@
 Pod::Spec.new do |s|
-	s.name         = "LiferayScreens"
-	s.module_name  = "LiferayScreens"
-	s.version      = "0.3"
-	s.summary      = "A family of visual components called screenlets that are connected to the Liferay Platform used as a backend"
-	s.homepage     = "https://www.liferay.com/liferay-screens"
-	s.documentation_url = "https://github.com/liferay/liferay-screens"
+	s.name         = 'LiferayScreens'
+	s.module_name  = 'LiferayScreens'
+	s.version      = '0.3'
+	s.summary      = 'A family of visual components called screenlets that are connected to the Liferay Platform used as a backend'
+	s.homepage     = 'https://www.liferay.com/liferay-screens'
+	s.documentation_url = 'https://github.com/liferay/liferay-screens'
 	s.license = { 
-		:type => "LGPL 2.1", 
-		:file => "LICENSE.md"
+		:type => 'LGPL 2.1', 
+		:file => 'LICENSE.md'
 	}
 	s.source = {
-		:git => "https://github.com/liferay/liferay-screens.git",
-		:tag => "v1.0-beta-3"
+		:git => 'https://github.com/liferay/liferay-screens.git',
+		:tag => 'v1.0-beta-3'
 	}
 	s.authors = {
-		"Jose Manuel Navarro" => "jose.navarro@liferay.com"
+		'Jose Manuel Navarro' => 'jose.navarro@liferay.com'
 	}
-	s.social_media_url = "http://twitter.com/jmnavarro"
+	s.social_media_url = 'http://twitter.com/jmnavarro'
 	
 	s.platform = :ios
 	s.ios.deployment_target = '8.0'
 	s.requires_arc = true
 
-	s.ios.frameworks = "CoreGraphics", "Foundation", "MobileCoreServices", "QuartzCore", "Security", "SystemConfiguration", "UIKit"
-	s.source_files = "ios/Framework/Core/**/*.{h,m,swift}", "ios/Framework/Themes/**/*.{h,m,swift}"
+	s.ios.frameworks = 'CoreGraphics', 'Foundation', 'MobileCoreServices', 'QuartzCore', 'Security', 'SystemConfiguration', 'UIKit'
+	s.source_files = 'ios/Framework/Core/**/*.{h,m,swift}', 'ios/Framework/Themes/**/*.{h,m,swift}'
 	s.exclude_files = [
-		'iosFramework/Tests/**/*.*',
+		'ios/Framework/Tests/**/*.*',
 		'ios/Framework/Pods/**/*.*'
 	]
 
