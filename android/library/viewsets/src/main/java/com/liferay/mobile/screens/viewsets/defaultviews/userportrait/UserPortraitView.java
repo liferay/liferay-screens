@@ -104,17 +104,11 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 			_choseOriginDialog.show();
 		}
 		else if (v.getId() == R.id.default_dialog_select_file) {
-			Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-				android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-			((Activity) getContext()).startActivityForResult(galleryIntent, UserPortraitScreenlet.SELECT_IMAGE);
+			((UserPortraitScreenlet) getParent()).openGallery();
 			_choseOriginDialog.dismiss();
 		}
 		else {
-			Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-			File imageFile = FileUtil.createImageFile();
-			((UserPortraitScreenlet) getParent()).setFilePath(imageFile.getPath());
-			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
-			((Activity) getContext()).startActivityForResult(cameraIntent, UserPortraitScreenlet.TAKE_PICTURE);
+			((UserPortraitScreenlet) getParent()).openCamera();
 			_choseOriginDialog.dismiss();
 		}
 	}
