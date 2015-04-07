@@ -25,9 +25,11 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * @author Javier Gamarra
@@ -44,14 +46,17 @@ public class UserPortraitService extends IntentService {
 	}
 
 	private void uploadFromIntent(Intent intent) {
-
 		int targetScreenletId = intent.getIntExtra("screenletId", 0);
 		String picturePath = intent.getStringExtra("picturePath");
 
 		try {
+			// TODO scale photo
+
 			Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
 			UserService userService = new UserService(sessionFromCurrentSession);
-			JSONObject jsonObject = userService.updatePortrait(SessionContext.getLoggedUser().getId(), readContentIntoByteArray(new File(picturePath)));
+			JSONObject jsonObject = userService.updatePortrait(
+				SessionContext.getLoggedUser().getId(),
+				readContentIntoByteArray(new File(picturePath)));
 
 			EventBusUtil.post(new UserPortraitUploadEvent(targetScreenletId, jsonObject));
 		}
@@ -62,20 +67,19 @@ public class UserPortraitService extends IntentService {
 
 
 	private static byte[] readContentIntoByteArray(File file) {
-		FileInputStream fileInputStream = null;
+		InputStream inputStream = null;
 		byte[] bFile = new byte[(int) file.length()];
 		try {
-			fileInputStream = new FileInputStream(file);
-			fileInputStream.read(bFile);
-			fileInputStream.close();
+			inputStream = new BufferedInputStream(new FileInputStream(file));
+			inputStream.read(bFile);
 		}
 		catch (Exception e) {
 			LiferayLogger.e("Error reading image bytes", e);
 		}
 		finally {
 			try {
-				if (fileInputStream != null) {
-					fileInputStream.close();
+				if (inputStream != null) {
+					inputStream.close();
 				}
 			}
 			catch (IOException e) {
@@ -84,6 +88,5 @@ public class UserPortraitService extends IntentService {
 		}
 		return bFile;
 	}
-
 
 }

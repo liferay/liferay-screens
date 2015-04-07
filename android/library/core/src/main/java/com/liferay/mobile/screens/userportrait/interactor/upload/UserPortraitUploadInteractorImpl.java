@@ -28,7 +28,6 @@ public class UserPortraitUploadInteractorImpl extends BaseRemoteInteractor<UserP
 		service.putExtra("screenletId", getTargetScreenletId());
 
 		LiferayScreensContext.getContext().startService(service);
-
 	}
 
 	public void onEventMainThread(UserPortraitUploadEvent event) {
