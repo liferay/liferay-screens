@@ -57,5 +57,9 @@
 	<string name="problem_solvers">We are the problem solvers</string>
 	<string name="a_team_of_proffessionals">A team of professionals committed to help you have the best work experience</string>
 	<string name="start">Start</string>
+	<string name="edit_issue">Edit Issue</string>
+	<string name="call_menu_entry">Call (Monday - Friday, 06:00 - 22:00)</string>
+	<string name="default_telephone_uri">tel:900000000</string>
+	<string name="default_sms_uri">sms:900000000</string>
 
 </resources>

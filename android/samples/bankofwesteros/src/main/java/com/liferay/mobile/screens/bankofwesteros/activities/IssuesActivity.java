@@ -13,9 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.bankofwesteros.utils.Card;
 import com.liferay.mobile.screens.bankofwesteros.utils.EndAnimationListener;
-import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -61,25 +61,6 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		configureMenuEntries();
 	}
 
-	private void configureMenuEntries() {
-		TextView callMenuEntry = (TextView) findViewById(R.id.call_menu_entry);
-		callMenuEntry.setText(getCallSpannableString(), TextView.BufferType.SPANNABLE);
-		callMenuEntry.setOnClickListener(this);
-		findViewById(R.id.account_settings_menu_entry).setOnClickListener(this);
-		findViewById(R.id.send_message_menu_entry).setOnClickListener(this);
-		findViewById(R.id.sign_out_menu_entry).setOnClickListener(this);
-	}
-
-	private SpannableStringBuilder getCallSpannableString() {
-		int darkGrayColor = getResources().getColor(R.color.westeros_dark_gray);
-		int subTitleStart = 4;
-
-		SpannableStringBuilder ssb = new SpannableStringBuilder("Call (Monday - Friday, 06:00 - 22:00)");
-		ssb.setSpan(new StyleSpan(Typeface.NORMAL), subTitleStart, ssb.length(), 0);
-		ssb.setSpan(new ForegroundColorSpan(darkGrayColor), subTitleStart, ssb.length(), 0);
-		return ssb;
-	}
-
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -103,11 +84,11 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 				break;
 			case R.id.call_menu_entry:
 				v.setBackgroundColor(getResources().getColor(android.R.color.white));
-				startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:900000000")));
+				startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
 				break;
 			case R.id.send_message_menu_entry:
 				v.setBackgroundColor(getResources().getColor(android.R.color.white));
-				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("sms:900000000")));
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.default_sms_uri))));
 				break;
 			case R.id.sign_out_menu_entry:
 				v.setBackgroundColor(getResources().getColor(android.R.color.white));
@@ -122,8 +103,19 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	}
 
 	@Override
-	protected void animateScreenAfterLoad() {
+	public void onListItemSelected(DDLEntry element, View view) {
+		selectDDLEntry(element);
+		if (view.getId() == R.id.list_edit) {
+			toCard2();
+		}
+		else if (view.getId() == R.id.list_view) {
+			goRightCard1(element);
+		}
+	}
 
+	@Override
+	protected void animateScreenAfterLoad() {
+		//TODO extract this animation
 		_backgroundCard.setY(_maxHeight);
 		_card1.setY(_maxHeight);
 		_card2.setY(_maxHeight);
@@ -149,50 +141,108 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		super.toCard1(listener);
 		_ddlFormScreenlet.loadForm();
 
-		textToNew();
+		clearDDLEntrySelected();
 
 		_card1ToBackground.setImageResource(R.drawable.icon_down);
-	}
-
-	private void textToNew() {
-		_element = null;
-		_ddlFormScreenlet.setRecordId(0);
-		_reportIssueTitle.setText(getString(R.string.report_issue));
-		_sendButton.setText("Send Issue".toUpperCase());
 	}
 
 	@Override
 	protected void toCard2() {
 		super.toCard2();
-		if (_element != null) {
-			_reportIssueTitle.setText("Edit Issue");
-			_sendButton.setText("Save".toUpperCase());
-			_ddlFormScreenlet.setRecordId((Integer) _element.getAttributes("recordId"));
+		if (_entry != null) {
+			_ddlFormScreenlet.setRecordId((Integer) _entry.getAttributes("recordId"));
 			_ddlFormScreenlet.loadRecord();
-
 			goLeftCard1();
 		}
 		else {
-			textToNew();
+			clearDDLEntrySelected();
 		}
-	}
-
-	@Override
-	public void onDDLFormLoaded(Record record) {
-
-	}
-
-	@Override
-	public void onDDLFormRecordLoaded(Record record) {
-
 	}
 
 	@Override
 	public void onDDLFormRecordAdded(Record record) {
-		refreshList("Issue Created");
+		reloadListAndShowResult("Issue Created");
 	}
 
-	private void refreshList(final String message) {
+	@Override
+	public void onDDLFormRecordUpdated(Record record) {
+		reloadListAndShowResult("Issue Updated");
+	}
+
+	@Override
+	public void onDDLFormLoadFailed(Exception e) {
+	}
+
+	@Override
+	public void onDDLFormLoaded(Record record) {
+	}
+
+	@Override
+	public void onDDLFormRecordLoaded(Record record) {
+	}
+
+	@Override
+	public void onDDLFormRecordLoadFailed(Exception e) {
+	}
+
+	@Override
+	public void onDDLFormRecordAddFailed(Exception e) {
+	}
+
+	@Override
+	public void onDDLFormUpdateRecordFailed(Exception e) {
+	}
+
+	@Override
+	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
+	}
+
+	@Override
+	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
+	}
+
+	@Override
+	public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
+	}
+
+	@Override
+	public void onListPageReceived(BaseListScreenlet source, int page, List<DDLEntry> entries,
+								   int rowCount) {
+	}
+
+	private void configureMenuEntries() {
+		TextView callMenuEntry = (TextView) findViewById(R.id.call_menu_entry);
+		callMenuEntry.setText(getCallSpannableString(), TextView.BufferType.SPANNABLE);
+		callMenuEntry.setOnClickListener(this);
+		findViewById(R.id.account_settings_menu_entry).setOnClickListener(this);
+		findViewById(R.id.send_message_menu_entry).setOnClickListener(this);
+		findViewById(R.id.sign_out_menu_entry).setOnClickListener(this);
+	}
+
+	private SpannableStringBuilder getCallSpannableString() {
+		int darkGrayColor = getResources().getColor(R.color.westeros_dark_gray);
+		int subTitleStart = 4;
+
+		SpannableStringBuilder ssb = new SpannableStringBuilder(getString(R.string.call_menu_entry));
+		ssb.setSpan(new StyleSpan(Typeface.NORMAL), subTitleStart, ssb.length(), 0);
+		ssb.setSpan(new ForegroundColorSpan(darkGrayColor), subTitleStart, ssb.length(), 0);
+		return ssb;
+	}
+
+	private void selectDDLEntry(DDLEntry entry) {
+		_entry = entry;
+		_reportIssueTitle.setText(getString(R.string.edit_issue));
+		_sendButton.setText(getString(R.string.save).toUpperCase());
+	}
+
+	private void clearDDLEntrySelected() {
+		_entry = null;
+		_reportIssueTitle.setText(getString(R.string.report_issue));
+		_sendButton.setText(getString(R.string.send_issue).toUpperCase());
+		_ddlFormScreenlet.setRecordId(0);
+	}
+
+	private void reloadListAndShowResult(final String message) {
 		_ddlListScreenlet.loadPage(0);
 		toCard1(new EndAnimationListener() {
 			@Override
@@ -202,86 +252,31 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		});
 	}
 
-	@Override
-	public void onDDLFormRecordUpdated(Record record) {
-		refreshList("Issue Updated");
+	private void goRightCard1(DDLEntry element) {
+		TextView issueTitle = (TextView) findViewById(R.id.issue_title);
+		issueTitle.setText(element.getValue("Title"));
+
+		String date = new SimpleDateFormat("dd/MM/yyyy").format(element.getAttributes("createDate"));
+		((TextView) findViewById(R.id.createdAt)).setText("Created " + date);
+
+		TextView description = (TextView) findViewById(R.id.description);
+		description.setText(element.getValue("Description"));
+
+		String severity = element.getValue("Severity");
+		severity = severity.replace("[\"", "");
+		severity = severity.replace("\"]", "");
+		TextView severityField = (TextView) findViewById(R.id.severity);
+		severityField.setText("Severity: " + severity);
+
+		goRightCard1();
 	}
-
-
-	@Override
-	public void onDDLFormLoadFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormRecordLoadFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormRecordAddFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormUpdateRecordFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
-
-	}
-
-	@Override
-	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
-
-	}
-
-	@Override
-	public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
-
-	}
-
-	@Override
-	public void onListPageReceived(BaseListScreenlet source, int page, List<DDLEntry> entries,
-								   int rowCount) {
-
-	}
-
-	@Override
-	public void onListItemSelected(DDLEntry element, View view) {
-		_element = element;
-		if (view.getId() == R.id.list_edit) {
-			toCard2();
-		}
-		else if (view.getId() == R.id.list_view) {
-			goRightCard1();
-			_reportIssueTitle.setText("Edit Issue");
-
-			TextView issueTitle = (TextView) findViewById(R.id.issue_title);
-			issueTitle.setText(element.getValue("Title"));
-			String date = new SimpleDateFormat("dd/MM/yyyy").format(element.getAttributes("createDate"));
-			TextView createdAt = (TextView) findViewById(R.id.createdAt);
-			createdAt.setText("Created " + date);
-			TextView description = (TextView) findViewById(R.id.description);
-			description.setText(element.getValue("Description"));
-			String severity = element.getValue("Severity");
-			severity = severity.replace("[\"", "");
-			severity = severity.replace("\"]", "");
-			TextView severityField = (TextView) findViewById(R.id.severity);
-			severityField.setText("Severity: " + severity);
-		}
-	}
-
 
 	private DDLFormScreenlet _ddlFormScreenlet;
 	private DDLListScreenlet _ddlListScreenlet;
 
+	private DDLEntry _entry;
+
 	private View _backgroundCard;
-
-	private DDLEntry _element;
-
 	private ImageView _card1ToBackground;
 	private ImageView _card1ToBackgroundMenu;
 	private TextView _reportIssueTitle;
