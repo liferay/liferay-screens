@@ -25,6 +25,7 @@ Pod::Spec.new do |s|
 	s.ios.frameworks = 'CoreGraphics', 'Foundation', 'MobileCoreServices', 'QuartzCore', 'Security', 'SystemConfiguration', 'UIKit'
 	s.source_files = 'ios/Framework/Core/**/*.{h,m,swift}', 'ios/Framework/Themes/**/*.{h,m,swift}'
 	s.exclude_files = [
+		'ios/Framework/Core/liferay-screens-bridge.h',
 		'ios/Framework/Tests/**/*.*',
 		'ios/Framework/Pods/**/*.*'
 	]
@@ -35,6 +36,11 @@ Pod::Spec.new do |s|
 		'LiferayScreens-flat7' => 'ios/Framework/Themes/Flat7/**/*.{xib,png,plist,lproj}'
 	}
 	
+	s.xcconfig = {
+		'GCC_PREPROCESSOR_DEFINITIONS' => 'LIFERAY_SCREENS_FRAMEWORK=1',
+		'OTHER_SWIFT_FLAGS' => '"-D" "LIFERAY_SCREENS_FRAMEWORK"'
+	}
+
 	s.dependency 'MBProgressHUD', '~> 0.9.1'
 	s.dependency 'SMXMLDocument'
 	s.dependency 'UICKeyChainStore'

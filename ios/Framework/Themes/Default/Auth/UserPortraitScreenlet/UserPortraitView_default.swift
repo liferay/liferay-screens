@@ -12,7 +12,10 @@
 * details.
 */
 import UIKit
-import AFNetworking
+
+#if LIFERAY_SCREENS_FRAMEWORK
+	import AFNetworking
+#endif
 
 
 public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel {

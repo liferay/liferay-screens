@@ -12,7 +12,10 @@
 * details.
 */
 import UIKit
-import UICKeyChainStore
+
+#if LIFERAY_SCREENS_FRAMEWORK
+	import UICKeyChainStore
+#endif
 
 
 protocol KeyChainStorage {

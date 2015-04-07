@@ -13,13 +13,10 @@
 */
 #import <UIKit/UIKit.h>
 
-//! Project version number for LiferayScreens.
 FOUNDATION_EXPORT double LiferayScreensVersionNumber;
-
-//! Project version string for LiferayScreens.
 FOUNDATION_EXPORT const unsigned char LiferayScreensVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <LiferayScreens/PublicHeader.h>
+#import <LiferayScreens/LiferayScreensFrameworkConfig.h>
 
 #import <LiferayScreens/LRMobilewidgetsassetentryService_v62.h>
 #import <LiferayScreens/LRMobilewidgetsddlrecordService_v62.h>

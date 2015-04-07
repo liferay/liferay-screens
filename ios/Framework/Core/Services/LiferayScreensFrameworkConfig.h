@@ -12,19 +12,11 @@
  * details.
  */
 
-#ifdef LIFERAY_SCREENS_FRAMEWORK
-	@import LRMobileSDK;
-#else
-	#import "LRBaseService.h"
+#ifndef LiferayScreens_LiferayScreensFrameworkConfig_h
+#define LiferayScreens_LiferayScreensFrameworkConfig_h
+
+#ifndef LIFERAY_SCREENS_FRAMEWORK
+	#define LIFERAY_SCREENS_FRAMEWORK
 #endif
 
-/**
- * @author Bruno Farache
- */
-@interface LRMobilewidgetsuserService_v62 : LRBaseService
-
-- (BOOL)sendPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress error:(NSError **)error;
-- (BOOL)sendPasswordByScreenNameWithCompanyId:(long long)companyId screenName:(NSString *)screenName error:(NSError **)error;
-- (BOOL)sendPasswordByUserIdWithUserId:(long long)userId error:(NSError **)error;
-
-@end
+#endif

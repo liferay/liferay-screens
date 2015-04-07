@@ -12,7 +12,7 @@
  * details.
  */
 
-#if COCOAPODS
+#ifdef LIFERAY_SCREENS_FRAMEWORK
 	@import LRMobileSDK;
 #else
 	#import "LRBaseService.h"

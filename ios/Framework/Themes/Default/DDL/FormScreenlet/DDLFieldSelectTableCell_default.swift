@@ -12,7 +12,10 @@
 * details.
 */
 import UIKit
-import DTPickerPresenter
+
+#if LIFERAY_SCREENS_FRAMEWORK
+	import DTPickerPresenter
+#endif
 
 
 public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default {

@@ -12,7 +12,10 @@
 * details.
 */
 import UIKit
-import TNRadioButtonGroup
+
+#if LIFERAY_SCREENS_FRAMEWORK
+	import TNRadioButtonGroup
+#endif
 
 
 public class DDLFieldRadioTableCell_default: DDLFieldTableCell {

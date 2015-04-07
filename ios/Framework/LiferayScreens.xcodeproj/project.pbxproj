@@ -309,6 +309,7 @@
 		88DE251A1AD2AB0A00714701 /* DDLParser_basic_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE250A1AD2AB0A00714701 /* DDLParser_basic_Tests.swift */; };
 		88DE251B1AD2AB0A00714701 /* DDLParser_i18n_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE250B1AD2AB0A00714701 /* DDLParser_i18n_Tests.swift */; };
 		88DE251C1AD2AB0A00714701 /* DDLRecord_FieldValues_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE250C1AD2AB0A00714701 /* DDLRecord_FieldValues_Tests.swift */; };
+		88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -565,6 +566,7 @@
 		88DE250A1AD2AB0A00714701 /* DDLParser_basic_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser_basic_Tests.swift; sourceTree = "<group>"; };
 		88DE250B1AD2AB0A00714701 /* DDLParser_i18n_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLParser_i18n_Tests.swift; sourceTree = "<group>"; };
 		88DE250C1AD2AB0A00714701 /* DDLRecord_FieldValues_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLRecord_FieldValues_Tests.swift; sourceTree = "<group>"; };
+		88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreensFrameworkConfig.h; sourceTree = "<group>"; };
 		9136B139BF9449FC75DBECA6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC17F525218297794482A65 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
 		D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1262,6 +1264,7 @@
 		8892C6951ACB2FDC00192232 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */,
 				8892C6961ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.h */,
 				8892C6971ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.m */,
 				8892C6981ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.h */,
@@ -1389,6 +1392,7 @@
 				8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */,
 				8892C69C1ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.h in Headers */,
 				881E61491ACBEDC600862B9E /* AssetListScreenletInterop.h in Headers */,
+				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
 				8892C69E1ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2001,6 +2005,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					"LIFERAY_SCREENS_FRAMEWORK=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2012,6 +2017,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"LIFERAY_SCREENS_FRAMEWORK\"";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2051,6 +2057,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"LIFERAY_SCREENS_FRAMEWORK\"";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

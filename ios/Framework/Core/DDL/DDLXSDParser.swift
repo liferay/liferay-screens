@@ -12,7 +12,10 @@
 * details.
 */
 import Foundation
-import SMXMLDocument
+
+#if LIFERAY_SCREENS_FRAMEWORK
+	import SMXMLDocument
+#endif
 
 
 public class DDLXSDParser {

@@ -12,7 +12,10 @@
 * details.
 */
 import UIKit
-import CryptoSwift
+
+#if LIFERAY_SCREENS_FRAMEWORK
+	import CryptoSwift
+#endif
 
 
 class UserPortraitBaseInteractor: Interactor {
@@ -22,17 +25,27 @@ class UserPortraitBaseInteractor: Interactor {
 	func URLForAttributes(#portraitId: Int64, uuid: String, male: Bool) -> NSURL? {
 
 		func encodedSHA1(input: String) -> String? {
+			var result: String?
+#if LIFERAY_SCREENS_FRAMEWORK
 			if let inputData = input.dataUsingEncoding(NSUTF8StringEncoding,
 					allowLossyConversion: false) {
 
 				if let resultData = CryptoSwift.Hash.sha1(inputData).calculate() {
-					return LRHttpUtil.encodeURL(
+					result = LRHttpUtil.encodeURL(
 							resultData.base64EncodedStringWithOptions(
 								NSDataBase64EncodingOptions(0)))
 				}
 			}
+#else
+			var buffer = [Byte](count: Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
 
-			return nil
+			CC_SHA1(input, CC_LONG(countElements(input)), &buffer)
+			let data = NSData(bytes: buffer, length: buffer.count)
+			let encodedString = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
+
+			result = LRHttpUtil.encodeURL(encodedString)
+#endif
+			return result
 		}
 
 		if let hashedUUID = encodedSHA1(uuid) {

@@ -12,7 +12,10 @@
 * details.
 */
 import UIKit
-import ODRefreshControl
+
+#if LIFERAY_SCREENS_FRAMEWORK
+	import ODRefreshControl
+#endif
 
 
 public class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDelegate {
