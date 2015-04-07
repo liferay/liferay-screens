@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.userportrait;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -22,7 +23,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +37,12 @@ import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadI
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractorImpl;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
+import com.liferay.mobile.screens.util.FileUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
+
+import java.io.File;
+
+import static android.provider.MediaStore.*;
 
 /**
  * @author Javier Gamarra
@@ -78,6 +83,21 @@ public class UserPortraitScreenlet
 			picturePath = _filePath;
 		}
 		performUserAction(UPLOAD_PORTRAIT, picturePath);
+	}
+
+	public void openCamera() {
+		Intent cameraIntent = new Intent(ACTION_IMAGE_CAPTURE);
+		File imageFile = FileUtil.createImageFile();
+		setFilePath(imageFile.getPath());
+		cameraIntent.putExtra(EXTRA_OUTPUT, Uri.fromFile(imageFile));
+		((Activity) getContext()).startActivityForResult(cameraIntent, UserPortraitScreenlet.TAKE_PICTURE);
+	}
+
+	public void openGallery() {
+		Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+			Images.Media.EXTERNAL_CONTENT_URI);
+		((Activity) getContext()).startActivityForResult(
+			galleryIntent, UserPortraitScreenlet.SELECT_IMAGE);
 	}
 
 	@Override
@@ -271,7 +291,7 @@ public class UserPortraitScreenlet
 	private String getGalleryPath(Intent onActivityResultData) {
 		Uri selectedImage = onActivityResultData.getData();
 
-		String[] filePathColumn = {MediaStore.Images.Media.DATA,};
+		String[] filePathColumn = {Images.Media.DATA,};
 
 		Cursor cursor = getContext().getContentResolver().query(selectedImage,
 			filePathColumn, null, null, null);
