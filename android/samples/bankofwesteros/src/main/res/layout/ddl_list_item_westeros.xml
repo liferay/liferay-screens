@@ -5,7 +5,7 @@
 			  android:orientation="vertical">
 
 	<com.daimajia.swipe.SwipeLayout
-		android:id="@+id/sample"
+		android:id="@+id/swipe_layout"
 		android:layout_width="match_parent"
 		android:layout_height="@dimen/westeros_card_title_height">
 
@@ -51,6 +51,7 @@
 				android:src="@drawable/issue_open"/>
 
 			<LinearLayout
+				android:focusable="false"
 				android:layout_toRightOf="@id/state_list_icon"
 				android:orientation="vertical"
 				android:layout_width="wrap_content"
@@ -77,7 +78,7 @@
 			<ImageView
 				android:layout_alignParentEnd="true"
 				android:layout_alignParentRight="true"
-				android:id="@+id/more_options"
+				android:id="@+id/list_handle"
 				style="@style/westeros_arrow"
 				android:layout_gravity="center_vertical"
 				android:contentDescription="@string/list_icon"

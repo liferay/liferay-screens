@@ -38,30 +38,38 @@ public class DDLListAdapter
 
 	public static class SwipeActionsViewHolder extends BaseListAdapter.ViewHolder implements View.OnClickListener {
 
-		private final BaseListAdapterListener _listener;
-		public TextView subtitleTextView;
-		public ImageView stateIconView;
-
 		public SwipeActionsViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			this.subtitleTextView = (TextView) view.findViewById(com.liferay.mobile.screens.viewsets.R.id.subtitle);
-			this.stateIconView = (ImageView) view.findViewById(R.id.state_list_icon);
+			this._subtitleTextView = (TextView) view.findViewById(com.liferay.mobile.screens.viewsets.R.id.subtitle);
+			this._stateIconView = (ImageView) view.findViewById(R.id.state_list_icon);
 
 			_listener = listener;
 
-			view.setOnClickListener(this);
+			view.findViewById(R.id.list_handle).setOnClickListener(this);
 			view.findViewById(R.id.list_edit).setOnClickListener(this);
 			view.findViewById(R.id.list_view).setOnClickListener(this);
+			_swipeLayout = (SwipeLayout) view.findViewById(R.id.swipe_layout);
+
 		}
 
 		@Override
 		public void onClick(View v) {
-			_listener.onItemClick(getPosition(), v);
+			if (v.getId() == R.id.list_handle) {
+				_swipeLayout.open(true);
+			}
+			else if (SwipeLayout.Status.Open.equals(_swipeLayout.getOpenStatus())) {
+				_listener.onItemClick(getPosition(), v);
+			}
 		}
 
+		private final BaseListAdapterListener _listener;
+		private final TextView _subtitleTextView;
+		private final ImageView _stateIconView;
+		private final SwipeLayout _swipeLayout;
+
 	}
-	
+
 	public DDLListAdapter(
 		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 
@@ -80,7 +88,7 @@ public class DDLListAdapter
 
 		if (viewType == LAYOUT_TYPE_DEFAULT) {
 			view = inflater.inflate(getLayoutId(), parent, false);
-			SwipeLayout swipe = (SwipeLayout) view.findViewById(R.id.sample);
+			SwipeLayout swipe = (SwipeLayout) view.findViewById(R.id.swipe_layout);
 			swipe.setShowMode(SwipeLayout.ShowMode.LayDown);
 			swipe.setDragEdge(SwipeLayout.DragEdge.Right);
 		}
@@ -113,11 +121,11 @@ public class DDLListAdapter
 		}
 
 		holder.textView.setText(titleField);
-		holder.subtitleTextView.setText(builder.toString());
+		holder._subtitleTextView.setText(builder.toString());
 
 		int drawableId = getDrawable(getEntries().indexOf(entry));
-		if (holder.stateIconView != null) {
-			holder.stateIconView.setImageResource(drawableId);
+		if (holder._stateIconView != null) {
+			holder._stateIconView.setImageResource(drawableId);
 		}
 	}
 
