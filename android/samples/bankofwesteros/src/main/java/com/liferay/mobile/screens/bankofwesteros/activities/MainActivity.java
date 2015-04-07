@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
+import com.liferay.mobile.screens.bankofwesteros.utils.Card;
 import com.liferay.mobile.screens.bankofwesteros.utils.EndAnimationListener;
 import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.bankofwesteros.views.SignUpListener;
@@ -119,6 +120,8 @@ public class MainActivity extends CardActivity implements View.OnClickListener, 
 
 	@Override
 	protected void animateScreenAfterLoad() {
+		_cardHistory.offer(Card.BACKGROUND);
+
 		_card1.setY(_card1FoldedPosition);
 		_card2.setY(_card2FoldedPosition);
 		_card1RestPosition = convertDpToPx(CARD1_REST_POSITION);

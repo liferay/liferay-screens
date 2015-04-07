@@ -70,7 +70,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 				break;
 			case R.id.card1_to_background:
 			case R.id.card1_to_background_menu:
-				if (_currentCard == Card.BACKGROUND) {
+				if (_cardHistory.peek() == Card.BACKGROUND) {
 					toCard1();
 				}
 				else {
@@ -115,6 +115,8 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 
 	@Override
 	protected void animateScreenAfterLoad() {
+		_cardHistory.offer(Card.CARD1);
+
 		//TODO extract this animation
 		_backgroundCard.setY(_maxHeight);
 		_card1.setY(_maxHeight);
