@@ -256,7 +256,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 
 	private void goRightCard1(DDLEntry element) {
 		TextView issueTitle = (TextView) findViewById(R.id.issue_title);
-		issueTitle.setText(element.getValue("Title"));
+		issueTitle.setText(element.getValue(getString(R.string.liferay_recordset_fields)));
 
 		String date = new SimpleDateFormat("dd/MM/yyyy").format(element.getAttributes("createDate"));
 		((TextView) findViewById(R.id.createdAt)).setText("Created " + date);
@@ -265,10 +265,12 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		description.setText(element.getValue("Description"));
 
 		String severity = element.getValue("Severity");
-		severity = severity.replace("[\"", "");
-		severity = severity.replace("\"]", "");
-		TextView severityField = (TextView) findViewById(R.id.severity);
-		severityField.setText("Severity: " + severity);
+		if (severity != null) {
+			severity = severity.replace("[\"", "");
+			severity = severity.replace("\"]", "");
+			TextView severityField = (TextView) findViewById(R.id.severity);
+			severityField.setText("Severity: " + severity);
+		}
 
 		goRightCard1();
 	}
