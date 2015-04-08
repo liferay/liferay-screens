@@ -58,15 +58,15 @@ public class DDLFieldSelectView extends com.liferay.mobile.screens.viewsets.defa
 		findViewById(R.id.label_select).setVisibility(View.VISIBLE);
 		getField().selectOption(getField().getAvailableOptions().get(which));
 		refresh();
-		getTextEditText().setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
-		getTextEditText().setBackground(getContext().getDrawable(R.drawable.westeros_dark_edit_text_drawable));
+		getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+		getTextEditText().setBackgroundResource(R.drawable.westeros_dark_edit_text_drawable);
 	}
 
 	@Override
 	public void onPostValidation(boolean valid) {
 		if (!valid) {
-			getTextEditText().setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.icon_warning_white, 0);
-			getTextEditText().setBackground(getContext().getDrawable(R.drawable.westeros_warning_edit_text_drawable));
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.icon_warning_white, 0);
+			getTextEditText().setBackgroundResource(R.drawable.westeros_warning_edit_text_drawable);
 		}
 	}
 }

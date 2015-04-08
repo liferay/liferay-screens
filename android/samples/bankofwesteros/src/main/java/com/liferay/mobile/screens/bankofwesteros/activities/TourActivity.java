@@ -100,7 +100,7 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 		public CharSequence getPageTitle(int position) {
 
 			int drawableId = _viewPager.getCurrentItem() == position ? R.drawable.pagination_on : R.drawable.pagination_off;
-			Drawable drawable = getDrawable(drawableId);
+			Drawable drawable = getResources().getDrawable(drawableId);
 			drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 			ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM);
 

@@ -89,10 +89,10 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 			case R.id.card1_to_background_menu:
 				if (_cardHistory.peek() == Card.BACKGROUND) {
 					toCard1();
-					_card1ToBackgroundMenu.setImageDrawable(getDrawable(R.drawable.icon_options_red));
+					_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_red));
 				}
 				else {
-					_card1ToBackgroundMenu.setImageDrawable(getDrawable(R.drawable.icon_options_close));
+					_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_close));
 					toBackground();
 				}
 				break;
