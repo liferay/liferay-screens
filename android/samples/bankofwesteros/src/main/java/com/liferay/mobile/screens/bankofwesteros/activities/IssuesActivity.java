@@ -178,6 +178,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	@Override
 	protected void animateScreenAfterLoad() {
 		_cardHistory.offer(Card.CARD1);
+		_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_close));
 
 		//TODO extract this animation
 		_backgroundCard.setY(_maxHeight);
