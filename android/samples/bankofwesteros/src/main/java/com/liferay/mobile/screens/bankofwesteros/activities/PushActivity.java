@@ -26,7 +26,7 @@ public class PushActivity extends Activity {
 		//TODO check for play services
 		//TODO check if registration id active
 
-		registerInBackground();
+		new AsyncPush().execute(null, null, null);
 	}
 
 	public void onEvent(IssueEvent event) {
@@ -44,30 +44,6 @@ public class PushActivity extends Activity {
 	protected void onPause() {
 		EventBusUtil.unregister(this);
 		super.onPause();
-	}
-
-	private void registerInBackground() {
-		final GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
-		new AsyncTask() {
-			@Override
-			protected Object doInBackground(Object[] params) {
-				try {
-
-					String registrationId = gcm.register(SENDER_ID);
-
-					LiferayLogger.i("RegistrationId: " + registrationId);
-
-					registerWithLiferayPortal(registrationId);
-
-					return registrationId;
-				}
-				catch (IOException ex) {
-					LiferayLogger.e("Error", ex);
-				}
-				return null;
-			}
-
-		}.execute(null, null, null);
 	}
 
 	private void registerWithLiferayPortal(String register) {
@@ -88,6 +64,26 @@ public class PushActivity extends Activity {
 		}).register(register);
 	}
 
-	private String SENDER_ID = "324849185389";
+	private class AsyncPush extends AsyncTask<Void, Void, String> {
 
+		@Override
+		protected String doInBackground(Void... voids) {
+			try {
+				final GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(PushActivity.this);
+				String registrationId = gcm.register(SENDER_ID);
+
+				LiferayLogger.i("RegistrationId: " + registrationId);
+
+				registerWithLiferayPortal(registrationId);
+
+				return registrationId;
+			}
+			catch (IOException ex) {
+				LiferayLogger.e("Error", ex);
+			}
+			return null;
+		}
+	}
+
+	private String SENDER_ID = "324849185389";
 }
