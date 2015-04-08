@@ -125,12 +125,12 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 
 	private void setError(EditText editText) {
 		editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.icon_warning, 0);
-		editText.setBackground(getDrawable(R.drawable.westeros_warning_edit_text_white_drawable));
+		editText.setBackgroundResource(R.drawable.westeros_warning_edit_text_white_drawable);
 	}
 
 	private void clearError(EditText editText) {
 		editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-		editText.setBackground(getDrawable(R.drawable.westeros_edit_text_selector));
+		editText.setBackgroundResource(R.drawable.westeros_edit_text_selector);
 	}
 
 	private EditText _firstName;
