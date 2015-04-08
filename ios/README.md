@@ -37,11 +37,11 @@ This implementation of Liferay Screens uses the Swift programming language. Howe
 
 ## Preparing Your Project for Liferay Screens
 
-Liferay Screens is released as a standard [CocoaPods](https://cocoapods.org/) dependency, so you just need to add a line `pod 'LiferayScreens'` in your project's `Podfile`.
+Liferay Screens is released as a standard [CocoaPods](https://cocoapods.org/) dependency, so you just need to add the line `pod 'LiferayScreens'` in your project's `Podfile`.
 
-However, since Liferay Screens is written in Swift, you need to use CocoaPods version 0.36 or above, and it will only work on iOS 8.0 or above (Refer to [this article](http://blog.cocoapods.org/CocoaPods-0.36/) for more details about how CocoaPods works with Swift dependencies).
+However, since Liferay Screens is written in Swift, you need to use CocoaPods version 0.36 or above. Also, this only works on iOS 8.0 or above. Refer to [this article](http://blog.cocoapods.org/CocoaPods-0.36/) for more details about how CocoaPods works with Swift dependencies.
 
-So, your final `Podfile` should be similar to this one:
+Your final `Podfile` should be similar to this one:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
@@ -56,11 +56,11 @@ pod 'LiferayScreens'
 
 You can use this [Podfile](https://github.com/liferay/liferay-screens/tree/master/ios/Samples/Showcase-swift/Podfile) as a template.
 
-If you want to support iOS 7, you need to install the library into your project in the old-fashion way following the [Manual Installation Guide](Documentation/ManualInstallation.md)
+If you want to support iOS 7, you need to [manually install the library into your project.](Documentation/ManualInstallation.md)
 
 There's just one last step to ensure that your project is ready for Liferay Screens. Create a new property list (`.plist`) file called `liferay-server-context.plist`. You'll use this file to configure the settings for your Liferay Portal instance. Use [`liferay-server-context-sample.plist`](https://github.com/liferay/liferay-screens/tree/master/ios/Framework/Core/Resources/liferay-server-context-sample.plist) as a template. This screenshot shows such a file being browsed:
 
-![liferay-context.plist file](Documentation/Images/liferay-context.png)
+![A `liferay-context.plist` file.](Documentation/Images/liferay-context.png)
 
 Great! Your project should now be ready for Liferay Screens. Next, you'll learn how to use screenlets in your project.
 
@@ -87,17 +87,13 @@ Now that the screenlet's delegate protocol is conformed in your `ViewController`
 Awesome! Now you know how to use screenlets in your projects. However, if you want to use screenlets from Objective-C code, there are a few more things that you need to take care of. These are presented in the next section. If you don't need to use screenlets from Objective-C, you can skip this section and proceed to the list of available screenlets below.
 
 
-### Screenlets localizations
+### Screenlet Localization
 
-Screenlets are ready to show their information in different languages. For that, is uses the [Apple's standard mechanism](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html).
+You can localize screenlets to show their information in different languages. This uses [Apple's standard mechanism](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html) for localization.
 
-Even though the screenlets support several languages, you have to support those languages in your app. In other words: if you app doesn't support language X, the screenlet never will be shown using that language.
+Even though the screenlets support several languages, you have to support those languages in your app. In other words, if you don't support a given language in your app, the screenlet doesn't support that language either. To support a language, make sure that your project's settings list the language, as in the following screenshot:
 
-In order to achieve that, just make sure your project's settings shown the languages listed, as you can see in the follownig picture:
-
-![Xcode localizations in project's settings](Documentation/Images/xcode-localizations.png "Xcode localizations in project's settings")
-
-
+![Xcode localizations in the project's settings.](Documentation/Images/xcode-localizations.png "Xcode localizations in project's settings")
 
 ### Using Screenlets from Objective-C Code
 
@@ -106,7 +102,7 @@ If you want to invoke screenlet classes from your Objective-C code, then there i
 ```Objective-C
 #import "LiferayScreens-Swift.h"
 ```
-If you get tired of adding the same imports over and over again, you can add a precompiler header file using the following steps:
+To avoid adding the same imports over and over again, you can add a precompiler header file by using the following steps:
 
 1. Create the file `PrefixHeader.pch` and add it to your project.
 

@@ -6,34 +6,18 @@
 
 ## Introduction
 
-This guide explains how to install Liferay Screens into your project without using [CocoaPods](http://cocoapods.org). 
-You have to use this procedure if you want your apps supports iOS 7, as [this CocoaPods article](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/) states:
-
-> Availability
-> CocoaPods only supports Swift on OS X 10.9 and newer, and iOS 8 and newer.
->
-> Here's why:
->
->   - Swift is supported on OS X 10.9 / iOS 7 and newer, as stated by Apple numerous times.
->   - There is no support for building static archives with Swift.
->   - Dynamic frameworks are supported on all versions of OS X.
->   - Dynamic frameworks are unsupported on iOS versions prior to 8:
->    `ld: warning: embedded dylibs/frameworks only run on iOS 8 or later.`
->
-> From this we can conclude that it is not possible to support Swift on any platforms earlier than OS > X 10.9 and iOS 8.
-> 
-> **To use Swift libraries on apps that support iOS 7, you must manually copy the files into your application project**.
+This guide explains how to install Liferay Screens into your project without using [CocoaPods](http://cocoapods.org). Also, you must use this procedure if you want your app to support iOS 7. The reasons for this are detailed in [this CocoaPods article](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/).
 
 ## Requirements
 
-In order to install Liferay Screens manually in your Xcode project, you need the following: 
+To install Liferay Screens manually in your Xcode project, you need the following: 
 
-  - Xcode 6.1 or above
-  - iOS 8 SDK
-  - [CocoaPods](http://cocoapods.org) installed
-  - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
-  - [Liferay Screens' compatiblity plugin](https://github.com/liferay/liferay-screens/tree/master/portal). 
-  - Liferay Screens source code
+- Xcode 6.1 or above
+- iOS 8 SDK
+- [CocoaPods](http://cocoapods.org) installed
+- [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
+- [Liferay Screens' compatiblity plugin](https://github.com/liferay/liferay-screens/tree/master/portal). 
+- Liferay Screens source code
 
 ## Preparing Your Project for Liferay Screens
 
@@ -62,6 +46,7 @@ pod 'MDRadialProgress'
 pod 'ODRefreshControl'
 pod 'Liferay-iOS-SDK'
 ```
+
 You should consider using the [CocoaPods for Xcode plugin](https://github.com/kattrali/cocoapods-xcode-plugin). You can install it through the [Alcatraz package manager](http://alcatraz.io/)) for Xcode. This way, you can perform these tasks from Xcode. 
 
 ![The CocoaPods for Xcode plugin.](Images/xcode-cocoapods.png)
@@ -97,29 +82,20 @@ In your project's build settings, you also need to edit the *Objective-C Bridgin
 
 There's just one more thing to take care of to ensure that your project is ready for Liferay Screens. Create a new property list (`.plist`) file called `liferay-server-context.plist`. You'll use this file to configure the settings for your Liferay Portal instance. Use [`liferay-server-context-sample.plist`](https://github.com/liferay/liferay-screens/tree/master/ios/Framework/Core/Resources/liferay-server-context-sample.plist) as a template. This screenshot shows such a file being browsed:
 
-![liferay-context.plist file](Images/liferay-context.png)
+![A `liferay-context.plist` file.](Images/liferay-context.png)
 
 Great! Your project should now be ready for Liferay Screens.
 
 ## Troubleshooting
 
-Since the preferred way to install Liferay Screens is using CocoaPods, you need to now that there's some problems associated to the manual installation procedure.
-
-### Unknown class X in Interface Builder file
+Since the preferred way to install Liferay Screens is using CocoaPods, you should be aware that there are some problems associated with the manual installation procedure. One such problem is the 'Unknown Class in Interface Builder' file error. This is shown in the following screenshot:
 
 ![Unknown class X in Interface Builder file exception](Images/xcode-unknown-class.png)
 
-You'll get this error when you use an screenlet with Liferay Screens installed manually. It's because the screenlets views are binded to `LiferayScreens` Module, which is only created if you're using CocoaPods to install Liferay Screens.
-To solve this situation you have to open the failed `xib` described in the error trace (in the picture above it's `LoginView_default`) select the root view, and re-set the Custom class.
-Note the Module value should change from `LiferayScreens` to `Current - your app name` (grayed)
+This error occurs when you use a screenlet with Liferay Screens installed manually. It exists because the screenlet views are bound to the `LiferayScreens` Module, which only exists if you installed Screens with CocoaPods. To solve this problem you must open the failed `xib` file listed in the error trace (in the above screenshot this is `LoginView_default`), select the root view, and then re-set the Custom class. Note the Module value should change from `LiferayScreens` to the grayed out text `Current - your app name`.
 
-This is how it should looks like before the fix
+Before and after screenshots of the cutom class assignment are shown here:
 
 ![Unknown class X in Interface Builder file exception](Images/xcode-custom-class-before.png)
 
-And this is how it should looks like after the fix:
-
 ![Unknown class X in Interface Builder file exception](Images/xcode-custom-class-after.png)
-
-
-
