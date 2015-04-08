@@ -1,8 +1,10 @@
 package com.liferay.mobile.screens.bankofwesteros.activities;
 
 import android.animation.Animator;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.transition.TransitionManager;
 import android.util.TypedValue;
@@ -36,9 +38,15 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		getWindow().setStatusBarColor(getResources().getColor(R.color.westeros_background_gray));
+		setTransparentMenuBar();
+	}
+
+	private void setTransparentMenuBar() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+			getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+			getWindow().setStatusBarColor(getResources().getColor(R.color.westeros_background_gray));
+		}
 	}
 
 	@Override
@@ -84,7 +92,11 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 			content.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 				@Override
 				public void onGlobalLayout() {
-					content.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+						content.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+					} else {
+						content.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+					}
 
 					_maxWidth = content.getWidth();
 					_maxHeight = content.getHeight();
@@ -146,6 +158,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		toCard1(null);
 	}
 
+
 	protected void toCard1(Animator.AnimatorListener listener) {
 		showArrowIcon(_card1ToBackground);
 		showArrowIcon(_card1SubViewToBackground);
@@ -157,10 +170,22 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 
 		_cardHistory.add(Card.CARD1);
 
-		TransitionManager.beginDelayedTransition(_card1);
+		animate(_card1);
+
 		setFrameLayoutMargins(_card1, 0, 0, 0, 0);
 		_card1.animate().y(_card1RestPosition);
 		_card2.animate().y(_card2FoldedPosition).setListener(listener);
+	}
+
+	public void animate(ViewGroup view) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			startTransition(view);
+		}
+	}
+
+	@TargetApi(Build.VERSION_CODES.KITKAT)
+	private void startTransition(ViewGroup view) {
+		TransitionManager.beginDelayedTransition(view);
 	}
 
 	protected void toCard2() {
@@ -175,7 +200,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		int margin = topPosition / 2;
 		_card2.animate().y(topPosition);
 
-		TransitionManager.beginDelayedTransition(_card1);
+		animate(_card1);
 		setFrameLayoutMargins(_card1, margin, 0, margin, 0);
 		_card1.animate().y(0);
 	}
