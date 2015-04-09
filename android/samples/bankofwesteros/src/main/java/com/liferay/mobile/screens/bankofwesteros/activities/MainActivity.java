@@ -120,7 +120,6 @@ public class MainActivity extends CardActivity implements View.OnClickListener, 
 
 	@Override
 	protected void animateScreenAfterLoad() {
-		_cardHistory.offer(Card.BACKGROUND);
 
 		_card1.setY(_card1FoldedPosition);
 		_card2.setY(_card2FoldedPosition);
