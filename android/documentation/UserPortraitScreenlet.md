@@ -17,9 +17,7 @@
 
 ## Features
 
-The `UserPortraitScreenlet` shows the user's profile picture from their Liferay Portal. If the user doesn't have a profile picture, a placeholder image is shown.
-
-It allows editing the profile picture via the `editable` property.
+The `UserPortraitScreenlet` shows the user's profile picture from their Liferay Portal. If the user doesn't have a profile picture, a placeholder image is shown. The screenlet allows the profile picture to be edited via the `editable` property.
 
 ## Module
 
@@ -38,14 +36,14 @@ No additional steps required.
 
 ## Activity Configuration
 
-The `UserPortrait Screenlet` needs the following user permissions:
+The `UserPortraitScreenlet` needs the following user permissions:
 
 ```xml
 <uses-permission android:name="android.permission.CAMERA"/>
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 ```
 
-Both are used by the `editable` property to take a picture with the phone's camera and store it locally before uploading it to the portal. The activity using the UserPortrait Screenlet also needs to override the `onActivityResult` method to send the picture information to the screenlet. Here's an example implementation:
+Both are used by the `editable` property to take a picture with the phone's camera and store it locally before uploading it to the portal. The activity using `UserPortraitScreenlet` also needs to override the `onActivityResult` method to send the picture information to the screenlet. Here's an example implementation:
 
 ```java
 @Override
@@ -58,7 +56,6 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 ```
 
-
 ## Attributes
 
 | Attribute | Data type | Explanation |
@@ -69,15 +66,14 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 | `male` | `boolean` | Whether the default portrait placeholder shows a male or female outline. This attribute is used if `userId` isn't specified. |
 | `portraitId` | `number` | The ID of the portrait to load. This attribute is used if `userId` isn't specified. |
 | `uuid` | `string` | The `uuid` of the user whose portrait is being requested. This attribute is used if `userId` isn't specified. |
-| `editable` | `boolean` | Allows the user to change the portrait image selecting a gallery picture or taking a photo. |
+| `editable` | `boolean` | Lets the user change the portrait image by taking a photo or selecting a gallery picture. |
 
 ## Methods
 
 | Method | Return | Explanation |
 |-----------|-----------|-------------| 
 | `load()` | `void` | Starts the request to load the user specified in the `userId` property, or the portrait specified in the `portraitId`and `uuid` properties. |
-| `upload(int requestCode,`<br/>`Intent onActivityResultData)` | `void` | Starts the request to upload a profile picture from the source specified in the `requestCode` property (gallery or camera) and with path stored in `onActivityResultData` variable. |
-
+| `upload(int requestCode,`<br/>`Intent onActivityResultData)` | `void` | Starts the request to upload a profile picture from the source specified in the `requestCode` property (gallery or camera), and with the path stored in the `onActivityResultData` variable. |
 
 ## Listener
 
