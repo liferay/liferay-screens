@@ -60,6 +60,8 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
 		if (resultCode == Activity.RESULT_OK) {
 			_userPortraitScreenlet.upload(requestCode, data);
 		}

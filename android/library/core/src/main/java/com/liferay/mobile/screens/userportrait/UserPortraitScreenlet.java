@@ -18,7 +18,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -66,8 +65,8 @@ public class UserPortraitScreenlet
 	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
 	public static final String LOAD_PORTRAIT = "LOAD_PORTRAIT";
 
-	public static final int SELECT_IMAGE = 0;
-	public static final int TAKE_PICTURE = 1;
+	public static final int SELECT_IMAGE_FROM_GALLERY = 0;
+	public static final int TAKE_PICTURE_WITH_CAMERA = 1;
 
 	public void load() {
 		performUserAction(LOAD_PORTRAIT);
@@ -76,14 +75,15 @@ public class UserPortraitScreenlet
 	public void upload(int requestCode, Intent onActivityResultData) {
 		try {
 			String picturePath = "";
-			if (requestCode == SELECT_IMAGE) {
+			if (requestCode == SELECT_IMAGE_FROM_GALLERY) {
 				picturePath = FileUtil.getPath(getContext(), onActivityResultData.getData());
 			}
-			else if (requestCode == TAKE_PICTURE) {
+			else if (requestCode == TAKE_PICTURE_WITH_CAMERA) {
 				picturePath = _filePath;
 			}
 			performUserAction(UPLOAD_PORTRAIT, picturePath);
-		} catch (IllegalArgumentException e) {
+		}
+		catch (IllegalArgumentException e) {
 			onUserPortraitUploadFailure(e);
 		}
 	}
@@ -93,14 +93,14 @@ public class UserPortraitScreenlet
 		File imageFile = FileUtil.createImageFile();
 		setFilePath(imageFile.getPath());
 		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
-		((Activity) getContext()).startActivityForResult(cameraIntent, UserPortraitScreenlet.TAKE_PICTURE);
+		((Activity) getContext()).startActivityForResult(cameraIntent, UserPortraitScreenlet.TAKE_PICTURE_WITH_CAMERA);
 	}
 
 	public void openGallery() {
 		Intent galleryIntent = new Intent(Intent.ACTION_PICK,
 			MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 		((Activity) getContext()).startActivityForResult(
-			galleryIntent, UserPortraitScreenlet.SELECT_IMAGE);
+			galleryIntent, UserPortraitScreenlet.SELECT_IMAGE_FROM_GALLERY);
 	}
 
 	@Override
