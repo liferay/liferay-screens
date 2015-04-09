@@ -24,6 +24,7 @@ import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.liferay.mobile.screens.bankofwesteros.R;
@@ -33,6 +34,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
  * @author Silvio Santos
  */
 public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpView {
+
 
 	public SignUpView(Context context) {
 		super(context);
@@ -51,19 +53,57 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		super.onFinishInflate();
 
 		initClickableTermsAndConditions();
+
+		_firstNameValidation = (TextView) findViewById(R.id.first_name_validation);
+		_lastNameValidation = (TextView) findViewById(R.id.last_name_validation);
+		_lastNameValidation.setText("Last name can not be empty");
+		_emailAddressValidation = (TextView) findViewById(R.id.email_address_validation);
+		_emailAddressValidation.setText("Email address can not be empty");
+		_passwordValidation = (TextView) findViewById(R.id.password_validation);
+		_passwordValidation.setText("Password can not be empty");
 	}
 
 	@Override
 	public void onClick(View view) {
-		CheckBox acceptTerms = (CheckBox) findViewById(R.id.sign_up_checkbox);
-		if (acceptTerms.isChecked()) {
+		if (validFields()) {
 			SignUpScreenlet signUpScreenlet = (SignUpScreenlet) getParent();
 			signUpScreenlet.performUserAction();
 		}
-		else {
-			//TODO move to view model and interactor
+	}
+
+	private boolean validFields() {
+		//TODO move to view model and interactor
+
+		CheckBox acceptTerms = (CheckBox) findViewById(R.id.sign_up_checkbox);
+		if (!acceptTerms.isChecked()) {
 			LiferayCrouton.error(getContext(), "You must accept the terms & conditions", null);
+			return false;
 		}
+		else if (!checkField(getFirstNameField(), _firstNameValidation)) {
+			return false;
+		}
+		else if (!checkField(getLastNameField(), _lastNameValidation)) {
+			return false;
+		}
+		else if (!checkField(getEmailAddressField(), _emailAddressValidation)) {
+			return false;
+		}
+		else if (!checkField(getPasswordField(), _passwordValidation)) {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean checkField(EditText field, View validationView) {
+		boolean valid = !field.getText().toString().isEmpty();
+		changeBackgroundAndIcon(field, valid);
+		validationView.setVisibility(valid ? View.GONE : View.VISIBLE);
+		return valid;
+	}
+
+	private void changeBackgroundAndIcon(EditText editText, boolean valid) {
+		editText.setBackgroundResource(valid ? R.drawable.westeros_dark_edit_text_drawable : R.drawable.westeros_warning_edit_text_drawable);
+		editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, valid ? 0 : R.drawable.icon_warning_white, 0);
 	}
 
 	private void initClickableTermsAndConditions() {
@@ -86,4 +126,8 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		textView.setText(ssb, TextView.BufferType.SPANNABLE);
 	}
 
+	private TextView _firstNameValidation;
+	private TextView _lastNameValidation;
+	private TextView _emailAddressValidation;
+	private TextView _passwordValidation;
 }
