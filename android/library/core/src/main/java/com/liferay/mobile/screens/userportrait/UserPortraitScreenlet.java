@@ -23,6 +23,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,8 +42,6 @@ import com.liferay.mobile.screens.util.FileUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 import java.io.File;
-
-import static android.provider.MediaStore.*;
 
 /**
  * @author Javier Gamarra
@@ -75,27 +74,31 @@ public class UserPortraitScreenlet
 	}
 
 	public void upload(int requestCode, Intent onActivityResultData) {
-		String picturePath = "";
-		if (requestCode == SELECT_IMAGE) {
-			picturePath = getGalleryPath(onActivityResultData);
+		try {
+			String picturePath = "";
+			if (requestCode == SELECT_IMAGE) {
+				picturePath = FileUtil.getPath(getContext(), onActivityResultData.getData());
+			}
+			else if (requestCode == TAKE_PICTURE) {
+				picturePath = _filePath;
+			}
+			performUserAction(UPLOAD_PORTRAIT, picturePath);
+		} catch (IllegalArgumentException e) {
+			onUserPortraitUploadFailure(e);
 		}
-		else if (requestCode == TAKE_PICTURE) {
-			picturePath = _filePath;
-		}
-		performUserAction(UPLOAD_PORTRAIT, picturePath);
 	}
 
 	public void openCamera() {
-		Intent cameraIntent = new Intent(ACTION_IMAGE_CAPTURE);
+		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		File imageFile = FileUtil.createImageFile();
 		setFilePath(imageFile.getPath());
-		cameraIntent.putExtra(EXTRA_OUTPUT, Uri.fromFile(imageFile));
+		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
 		((Activity) getContext()).startActivityForResult(cameraIntent, UserPortraitScreenlet.TAKE_PICTURE);
 	}
 
 	public void openGallery() {
 		Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-			Images.Media.EXTERNAL_CONTENT_URI);
+			MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 		((Activity) getContext()).startActivityForResult(
 			galleryIntent, UserPortraitScreenlet.SELECT_IMAGE);
 	}
@@ -286,21 +289,6 @@ public class UserPortraitScreenlet
 		bundle.putParcelable(_STATE_SUPER, super.onSaveInstanceState());
 		bundle.putString(_STATE_FILE_PATH, _filePath);
 		return bundle;
-	}
-
-	private String getGalleryPath(Intent onActivityResultData) {
-		Uri selectedImage = onActivityResultData.getData();
-
-		String[] filePathColumn = {Images.Media.DATA,};
-
-		Cursor cursor = getContext().getContentResolver().query(selectedImage,
-			filePathColumn, null, null, null);
-		cursor.moveToFirst();
-
-		int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-		String picturePath = cursor.getString(columnIndex);
-		cursor.close();
-		return picturePath;
 	}
 
 	private static final String _STATE_SUPER = "userportrait-super";
