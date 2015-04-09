@@ -16,25 +16,24 @@ package com.liferay.mobile.screens.userportrait.interactor.upload;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
-import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
 
 /**
  * @author Javier Gamarra
  */
 public class UserPortraitService extends IntentService {
+
+	public static final int PORTRAIT_SIZE = 200;
 
 	public UserPortraitService() {
 		super(UserPortraitService.class.getCanonicalName());
@@ -50,13 +49,11 @@ public class UserPortraitService extends IntentService {
 		String picturePath = intent.getStringExtra("picturePath");
 
 		try {
-			// TODO scale photo
-
 			Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
 			UserService userService = new UserService(sessionFromCurrentSession);
 			JSONObject jsonObject = userService.updatePortrait(
 				SessionContext.getLoggedUser().getId(),
-				readContentIntoByteArray(new File(picturePath)));
+				decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE));
 
 			EventBusUtil.post(new UserPortraitUploadEvent(targetScreenletId, jsonObject));
 		}
@@ -66,27 +63,43 @@ public class UserPortraitService extends IntentService {
 	}
 
 
-	private static byte[] readContentIntoByteArray(File file) {
-		InputStream inputStream = null;
-		byte[] bFile = new byte[(int) file.length()];
-		try {
-			inputStream = new BufferedInputStream(new FileInputStream(file));
-			inputStream.read(bFile);
-		}
-		catch (Exception e) {
-			LiferayLogger.e("Error reading image bytes", e);
-		}
-		finally {
-			try {
-				if (inputStream != null) {
-					inputStream.close();
-				}
+	public static byte[] decodeSampledBitmapFromResource(String path,
+														 int reqWidth, int reqHeight) {
+
+		// First decode with inJustDecodeBounds=true to check dimensions
+		final BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		BitmapFactory.decodeFile(path, options);
+
+		options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+		options.inJustDecodeBounds = false;
+		Bitmap bitmap = BitmapFactory.decodeFile(path, options);
+
+		ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
+		bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayBitmapStream);
+		return byteArrayBitmapStream.toByteArray();
+	}
+
+	public static int calculateInSampleSize(
+		BitmapFactory.Options options, int reqWidth, int reqHeight) {
+		final int height = options.outHeight;
+		final int width = options.outWidth;
+		int inSampleSize = 1;
+
+		if (height > reqHeight || width > reqWidth) {
+
+			final int halfHeight = height / 2;
+			final int halfWidth = width / 2;
+
+			// Calculate the largest inSampleSize value that is a power of 2 and keeps both
+			// height and width larger than the requested height and width.
+			while ((halfHeight / inSampleSize) > reqHeight
+				&& (halfWidth / inSampleSize) > reqWidth) {
+				inSampleSize *= 2;
 			}
-			catch (IOException e) {
-				LiferayLogger.e("Error closing stream", e);
-			}
 		}
-		return bFile;
+
+		return inSampleSize;
 	}
 
 }
