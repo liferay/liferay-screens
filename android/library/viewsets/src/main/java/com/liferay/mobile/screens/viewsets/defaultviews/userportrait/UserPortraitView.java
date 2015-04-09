@@ -41,6 +41,7 @@ import com.liferay.mobile.screens.util.FileUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
+import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 import java.io.File;
 
@@ -92,6 +93,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 			LiferayLogger.e("portrait failed to load", e);
 			setDefaultImagePlaceholder();
 		} else {
+			LiferayCrouton.error(getContext(), "Portrait failed to upload", e);
 			LiferayLogger.e("portrait failed to upload", e);
 		}
 		_portraitProgress.setVisibility(INVISIBLE);
