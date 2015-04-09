@@ -28,7 +28,7 @@ import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
+import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 
 import java.util.ArrayList;
@@ -56,13 +56,14 @@ public abstract class BaseListScreenletView<
         super(context, attributes, defaultStyle);
     }
 
-	public void onItemClick(int position) {
+	@Override
+	public void onItemClick(int position, View view) {
 		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
 		List<E> entries = getAdapter().getEntries();
 
 		// we do not want to crash if the user manages to do a phantom click
 		if (!entries.isEmpty() && entries.size() > position && screenlet.getListener() != null) {
-			screenlet.getListener().onListItemSelected(entries.get(position));
+			screenlet.getListener().onListItemSelected(entries.get(position), view);
 		}
 	}
 
@@ -103,7 +104,7 @@ public abstract class BaseListScreenletView<
 		_progressBar.setVisibility(View.GONE);
 		_recyclerView.setVisibility(View.VISIBLE);
 		LiferayLogger.e(getContext().getString(R.string.loading_list_error), e);
-		DefaultCrouton.error(getContext(), getContext().getString(R.string.loading_list_error), e);
+		LiferayCrouton.error(getContext(), getContext().getString(R.string.loading_list_error), e);
 	}
 
     @Override
@@ -164,8 +165,12 @@ public abstract class BaseListScreenletView<
 		_recyclerView.setHasFixedSize(true);
 		_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-		_recyclerView.addItemDecoration(
-			new DividerItemDecoration(getResources().getDrawable(R.drawable.pixel_grey)));
+		DividerItemDecoration dividerItemDecoration = getDividerDecoration();
+		if (dividerItemDecoration != null) {
+			_recyclerView.addItemDecoration(
+				getDividerDecoration());
+		}
+
 	}
 
 	protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
@@ -185,6 +190,10 @@ public abstract class BaseListScreenletView<
 			allEntries.set(i + firstRowForPage, serverEntries.get(i));
 		}
 		return allEntries;
+	}
+
+	protected DividerItemDecoration getDividerDecoration() {
+		return new DividerItemDecoration(getResources().getDrawable(R.drawable.pixel_grey));
 	}
 
 	protected int getItemLayoutId() {

@@ -21,8 +21,8 @@ import com.liferay.mobile.screens.context.User;
  */
 public interface SignUpListener {
 
-	public void onSignUpFailure(Exception e);
+	void onSignUpFailure(Exception e);
 
-	public void onSignUpSuccess(User user);
+	void onSignUpSuccess(User user);
 
 }

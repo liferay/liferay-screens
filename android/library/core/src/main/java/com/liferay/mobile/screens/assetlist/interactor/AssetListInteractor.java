@@ -23,8 +23,8 @@ import java.util.Locale;
  */
 public interface AssetListInteractor extends Interactor<AssetListInteractorListener> {
 
-	public void loadRows(
-			long groupId, long classNameId, int startRow, int endRow, Locale locale)
+	void loadRows(
+		long groupId, long classNameId, int startRow, int endRow, Locale locale)
 		throws Exception;
 
 }

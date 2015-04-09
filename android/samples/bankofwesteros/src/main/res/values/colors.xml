@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<color name="westeros_red">#E44740</color>
+	<color name="westeros_dark_red">#BE211A</color>
+	<color name="westeros_yellow">#FBB351</color>
+	<color name="westeros_black">#303030</color>
+	<color name="westeros_light_gray">#E5E5E5</color>
+	<color name="westeros_dark_gray">#878787</color>
+	<color name="westeros_background_gray">#D6D6D6</color>
+	<color name="westeros_green">#88B275</color>
+
+</resources>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.bankofwesteros.views.SignUpView
+	style="@style/westeros_screenlet"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	android:theme="@style/WesterosTheme">
+
+	<EditText
+		android:id="@+id/first_name"
+		style="@style/westeros_dark_edit_text"
+		android:layout_height="@dimen/westeros_alternative_block_height"
+		android:hint="@string/first_name"/>
+
+	<include
+		layout="@layout/validation"
+		android:id="@+id/first_name_validation"/>
+
+	<EditText
+		android:id="@+id/last_name"
+		style="@style/westeros_dark_edit_text"
+		android:layout_height="@dimen/westeros_alternative_block_height"
+		android:hint="@string/last_name"/>
+
+	<include
+		layout="@layout/validation"
+		android:id="@+id/last_name_validation"/>
+
+	<EditText
+		android:id="@+id/email_address"
+		style="@style/westeros_dark_edit_text"
+		android:layout_height="@dimen/westeros_alternative_block_height"
+		android:hint="@string/email_address"
+		android:inputType="textEmailAddress"/>
+
+	<include
+		layout="@layout/validation"
+		android:id="@+id/email_address_validation"/>
+
+	<EditText
+		android:id="@+id/password"
+		style="@style/westeros_dark_edit_text"
+		android:layout_height="@dimen/westeros_alternative_block_height"
+		android:hint="@string/password"
+		android:inputType="textPassword"/>
+
+	<include
+		layout="@layout/validation"
+		android:id="@+id/password_validation"/>
+
+	<RelativeLayout
+		style="@style/westeros_card"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:gravity="center_vertical">
+
+		<CheckBox
+			android:id="@+id/sign_up_checkbox"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:button="@drawable/westeros_checkbox"/>
+
+		<TextView
+			android:layout_toRightOf="@id/sign_up_checkbox"
+			android:id="@+id/terms"
+			android:gravity="center_vertical"
+			android:layout_height="match_parent"
+			android:layout_width="wrap_content"
+			android:text="@string/accept_terms_and_conditions"
+			android:textColor="@android:color/white"/>
+	</RelativeLayout>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingBottom="@dimen/westeros_button_bottom_margin">
+
+		<Button
+			android:id="@+id/sign_up_button"
+			style="@style/westeros_dark_button"
+			android:text="@string/sign_up"/>
+
+		<com.liferay.mobile.screens.base.ModalProgressBar
+			android:layout_alignTop="@id/sign_up_button"
+			android:layout_alignLeft="@id/sign_up_button"
+			style="@style/westeros_progress_bar"
+			android:id="@+id/progress_bar"
+			liferay:actionViewId="@id/sign_up_button"/>
+	</RelativeLayout>
+</com.liferay.mobile.screens.bankofwesteros.views.SignUpView>

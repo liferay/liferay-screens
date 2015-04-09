@@ -1,0 +1,65 @@
+<resources>
+	<string name="title">Westeros Bank</string>
+	<string name="terms"><![CDATA[TERMS & CONDITIONS]]></string>
+	<string name="terms_text"><![CDATA[Liferay, Inc. ("Liferay") respects the intellectual property rights of others. It is Liferay\'s policy, when appropriate, to (i) block access to or remove content that is deemed, in good faith, to be infringing on another\'s intellectual property rights; and (ii) terminate the accounts of users who violate others\' intellectual property rights.
+\r\n
+\r\n
+\r\nINFRINGEMENT NOTIFICATIONS
+\r\n
+\r\n
+\r\nIf you believe that your, or another party\'s, intellectual property has been copied in such a way that constitutes infringement, please provide our designated agent (address provided below), in writing, with the following information:
+\r\nInformation reasonably sufficient to permit Liferay to contact you, including a full name, mailing address, daytime telephone number, and, e-mail address.
+\r\nIdentification and description of the copyrighted work you claim to have been infringed (or, if multiple copyrighted works are claimed to have been infringed, a representative list of such works).
+\r\nIdentification, description and location (in sufficient detail for Liferay to locate the material) of the content or material you claim infringes the copyrighted work(s) or is the subject of infringing activity.
+\r\nYour statement that you have a good faith belief that use of the material in the manner complained of is not authorized by you, the copyright owner, its agent, and/or the law, as applicable.
+\r\nYour statement, under penalty of perjury, that the information in the notification is accurate, and either (i) you are the copyright owner or (ii) you are authorized to act on behalf of the owner of the copyright.
+\r\nYour electronic or physical signature
+\r\nOnce our designated agent receives a bona fide infringement notification, Liferay will respond to you and remove or disable access to the material referenced in your claim until your claim is fully resolved.  Liferay will also send notice to any applicable third party content provider or user that their material has been removed or disabled and will provide them with the information provided in your infringement notice, which includes your contact information.  By submitting an infringement notice, you consent to having your contact information revealed in this way.
+\r\n
+\r\nCOUNTER NOTIFICATION PROCEDURES
+\r\n
+\r\nIf you believe any material subject to an infringement notice was removed in error, you may send a counter notification to our designated agent (address provided below). A counter notification shall include the following:
+\r\nInformation reasonably sufficient to permit Liferay to contact you, including a full name, mailing address, daytime telephone number, and, e-mail address.
+\r\nIdentification and description of the content or material that was removed and the location at which the content appeared.
+\r\nThe following statement: "I declare, under penalty of perjury, that I have a good faith belief that the identified material was removed or disabled as a result of a mistake or misidentification of the material to be removed or disabled."  
+\r\nA statement that you consent to the jurisdiction of Federal District Court for the judicial district in which your address is located (or Los Angeles, CA if your address is outside of the United States) and that you will accept service of process from the person who the provided notification of claimed infringement to which your notice relates or an agent of such person.  
+\r\nYour electronic or physical signature.
+\r\nUpon receipt of a counter notification, please be advised that Liferay will forward a copy of it to the party who submitted the original infringement notice. Your contact information is included on this counter notification. By submitting a counter notification, you consent to having your contact information revealed in this way.  Liferay will not forward the counter notification to any party other than the original claimant.
+\r\n
+\r\nThe original claimant may elect to file a lawsuit against you for copyright infringement.  If Liferay does not receive notice that a lawsuit has been filed within ten (10) business days after notice of your counter notification, Liferay will restore the removed material. However, until such time, any removed material will remain removed.]]></string>
+	<string name="report_issue">Report Issue</string>
+	<string name="account_settings">Account Settings</string>
+	<string name="first_name">First Name</string>
+	<string name="last_name">Last Name</string>
+	<string name="email_address">Email Address</string>
+	<string name="password">Password</string>
+	<string name="save">Save</string>
+	<string name="view">View</string>
+	<string name="edit">edit</string>
+	<string name="severity">Severity</string>
+	<string name="send_issue">Send Issue</string>
+	<string name="reset_password_text">We will send you a link to reset your password.\r\n\r\nThe link will be valid 24 hours</string>
+	<string name="send_password">Send Password</string>
+	<string name="send_a_message">Send a message</string>
+	<string name="sign_out">Sign Out</string>
+	<string name="my_issues">My Issues</string>
+	<string name="issue_detail">Issue Detail</string>
+	<string name="forgot_password">Forgot password?</string>
+	<string name="sign_in">Sign In</string>
+	<string name="forgot_password_title">Forgot Password</string>
+	<string name="sign_u">Sign Up</string>
+	<string name="all_fields_required">All fields are required</string>
+	<string name="accept_terms_and_conditions">I accept the terms and conditions</string>
+	<string name="next">Next</string>
+	<string name="problems_with_laptop">Problems with your laptop?</string>
+	<string name="we_are_here_to_help">Tell us, we are here to help</string>
+	<string name="issues_at_the_office">Any issues at the office?</string>
+	<string name="problem_solvers">We are the problem solvers</string>
+	<string name="a_team_of_proffessionals">A team of professionals committed to help you have the best work experience</string>
+	<string name="start">Start</string>
+	<string name="edit_issue">Edit Issue</string>
+	<string name="call_menu_entry">Call (Monday - Friday, 06:00 - 22:00)</string>
+	<string name="default_telephone_uri">tel:900000000</string>
+	<string name="default_sms_uri">sms:900000000</string>
+
+</resources>

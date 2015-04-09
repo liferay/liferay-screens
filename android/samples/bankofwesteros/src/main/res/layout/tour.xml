@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:background="@color/westeros_background_gray"
+			  android:orientation="vertical">
+
+	<android.support.v4.view.ViewPager
+		android:layout_marginLeft="@dimen/westeros_side_margin"
+		android:layout_marginRight="@dimen/westeros_side_margin"
+		android:id="@+id/pager"
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:padding="@dimen/westeros_side_margin">
+
+		<android.support.v4.view.PagerTabStrip
+			android:id="@+id/pager_tab_strip"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom"
+			android:textColor="@color/westeros_background_gray"/>
+	</android.support.v4.view.ViewPager>
+
+	<Button
+		android:id="@+id/tour_button"
+		style="@style/westeros_button"
+		android:text="@string/next"/>
+
+</LinearLayout>

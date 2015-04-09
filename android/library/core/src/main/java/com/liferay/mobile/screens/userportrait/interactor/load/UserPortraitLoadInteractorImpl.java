@@ -1,18 +1,18 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
 
-package com.liferay.mobile.screens.userportrait.interactor;
+package com.liferay.mobile.screens.userportrait.interactor.load;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -23,10 +23,13 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
+import com.liferay.mobile.screens.util.LiferayLogger;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -42,11 +45,11 @@ import java.security.NoSuchAlgorithmException;
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public class UserPortraitInteractorImpl
+public class UserPortraitLoadInteractorImpl
 	extends BaseRemoteInteractor<UserPortraitInteractorListener>
-	implements UserPortraitInteractor, Target {
+	implements UserPortraitLoadInteractor, Target {
 
-	public UserPortraitInteractorImpl(int targetScreenletId) {
+	public UserPortraitLoadInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 
@@ -57,10 +60,14 @@ public class UserPortraitInteractorImpl
 		Uri uri = getUserPortraitURL(male, portraitId, uuid);
 
 		if (getListener() != null) {
-			getListener().onStartUserPortraitRequest();
+			getListener().onStartUserPortraitLoadRequest();
 		}
 
-		Picasso.with(LiferayScreensContext.getContext()).load(uri).into(this);
+		Picasso.with(LiferayScreensContext.getContext())
+			.load(uri)
+			.memoryPolicy(MemoryPolicy.NO_CACHE)
+			.networkPolicy(NetworkPolicy.NO_CACHE)
+			.into(this);
 	}
 
 	@Override
@@ -76,20 +83,20 @@ public class UserPortraitInteractorImpl
 		}
 		else {
 			if (getListener() != null) {
-				getListener().onStartUserPortraitRequest();
+				getListener().onStartUserPortraitLoadRequest();
 			}
 
 			getUserService().getUserById(userId);
 		}
 	}
 
-	public void onEvent(JSONObjectEvent event) {
+	public void onEvent(UserPortraitLoadEvent event) {
 		if (!isValidEvent(event)) {
 			return;
 		}
 
 		if (event.isFailed()) {
-			getListener().onUserPortraitFailure(event.getException());
+			getListener().onUserPortraitLoadFailure(event.getException());
 		}
 		else {
 			JSONObject userAttributes = event.getJSONObject();
@@ -102,7 +109,7 @@ public class UserPortraitInteractorImpl
 				load(male, portraitId, uuid);
 			}
 			catch (Exception e) {
-				getListener().onUserPortraitFailure(e);
+				getListener().onUserPortraitLoadFailure(e);
 			}
 		}
 	}
@@ -110,14 +117,14 @@ public class UserPortraitInteractorImpl
 	@Override
 	public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
 		if (getListener() != null) {
-			getListener().onEndUserPortraitRequest(bitmap);
+			getListener().onEndUserPortraitLoadRequest(bitmap);
 		}
 	}
 
 	@Override
 	public void onBitmapFailed(Drawable errorDrawable) {
 		if (getListener() != null) {
-			getListener().onUserPortraitFailure(new IOException("Portrait cannot be loaded"));
+			getListener().onUserPortraitLoadFailure(new IOException("Portrait cannot be loaded"));
 		}
 	}
 
@@ -128,19 +135,19 @@ public class UserPortraitInteractorImpl
 
 	private void validate(long portraitId, String uuid) {
 		if (getListener() == null) {
-			throw new IllegalArgumentException("Listener cannot be null");
+			throw new IllegalArgumentException("Listener cannot be empty");
 		}
 		if (portraitId == 0) {
-			throw new IllegalArgumentException("portraitId cannot be null");
+			throw new IllegalArgumentException("portraitId cannot be empty");
 		}
 		if (uuid == null || uuid.isEmpty()) {
-			throw new IllegalArgumentException("userId cannot be null or empty");
+			throw new IllegalArgumentException("userId cannot be empty");
 		}
 	}
 
 	private void validate(long userId) {
 		if (userId == 0) {
-			throw new IllegalArgumentException("userId cannot be null");
+			throw new IllegalArgumentException("userId cannot be empty");
 		}
 	}
 
@@ -158,7 +165,7 @@ public class UserPortraitInteractorImpl
 		return Uri.parse(url);
 	}
 
-	private String getSHA1String(String uuid)  {
+	private String getSHA1String(String uuid) {
 		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-1");
 
@@ -171,6 +178,7 @@ public class UserPortraitInteractorImpl
 
 		}
 		catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			LiferayLogger.e("Algorithm not found!", e);
 		}
 
 		return null;

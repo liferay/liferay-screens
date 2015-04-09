@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.base.list;
 
+import android.view.View;
+
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
@@ -22,6 +24,6 @@ public interface BaseListAdapterListener {
 
 	void onPageNotFound(int row);
 
-	void onItemClick(int position);
+	void onItemClick(int position, View view);
 
 }

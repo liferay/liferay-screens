@@ -9,5 +9,6 @@
 	android:clickable="true"
 	android:drawablePadding="16dp"
 	android:drawableLeft="@drawable/material_tinted_list_icon"
+	android:drawableStart="@drawable/material_tinted_list_icon"
 	android:focusable="true"
 	android:gravity="center_vertical"/>

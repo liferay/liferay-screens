@@ -10,9 +10,9 @@
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="15dp"
 		android:drawableLeft="@drawable/default_mail_icon"
+		android:drawableStart="@drawable/default_mail_icon"
 		android:hint="@string/email_address"
-		android:inputType="text"
-		android:text="test@liferay.com"/>
+		android:inputType="text" />
 
 	<EditText
 		android:id="@+id/password"
@@ -23,8 +23,7 @@
 		android:drawablePadding="17dp"
 		android:hint="@string/password"
 		android:inputType="textPassword"
-		android:paddingLeft="18dp"
-		android:text="test"/>
+		android:paddingLeft="18dp" />
 
 	<FrameLayout
 		android:layout_width="match_parent"

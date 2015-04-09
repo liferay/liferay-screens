@@ -24,7 +24,7 @@ import com.liferay.mobile.screens.context.User;
  */
 public class CredentialsStoreBuilder {
 
-	public static enum StorageType {
+	public enum StorageType {
 
 		// These values are synced with 'credentialStore' attr
 		NONE(0),

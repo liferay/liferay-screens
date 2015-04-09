@@ -106,15 +106,15 @@ public class LoginInteractorImpl
 		String login, String password, AuthMethod authMethod) {
 
 		if (login == null) {
-			throw new IllegalArgumentException("Login cannot be null");
+			throw new IllegalArgumentException("Login cannot be empty");
 		}
 
 		if (password == null) {
-			throw new IllegalArgumentException("Password cannot be null");
+			throw new IllegalArgumentException("Password cannot be empty");
 		}
 
 		if (authMethod == null) {
-			throw new IllegalArgumentException("AuthMethod cannot be null");
+			throw new IllegalArgumentException("AuthMethod cannot be empty");
 		}
 	}
 
