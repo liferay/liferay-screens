@@ -89,6 +89,22 @@ public class SignUpView extends LinearLayout
 		return null;
 	}
 
+	public EditText getFirstNameField() {
+		return _firstName;
+	}
+
+	public EditText getLastNameField() {
+		return _lastName;
+	}
+
+	public EditText getEmailAddressField() {
+		return _emailAddress;
+	}
+
+	public EditText getPasswordField() {
+		return _password;
+	}
+
 	@Override
 	public void showStartOperation(String actionName) {
 		_progressBar.startProgress();

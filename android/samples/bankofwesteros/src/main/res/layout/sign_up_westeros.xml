@@ -11,25 +11,19 @@
 		android:layout_height="@dimen/westeros_alternative_block_height"
 		android:hint="@string/first_name"/>
 
-	<TextView
-		android:id="@+id/first_name_validation"
-		android:layout_marginLeft="@dimen/westeros_side_margin"
-		android:layout_marginRight="@dimen/westeros_side_margin"
-		android:layout_height="@dimen/westeros_alternative_block_height"
-		android:layout_marginTop="-10dp"
-		android:layout_width="match_parent"
-		android:background="@drawable/westeros_warning_text_view_drawable"
-		android:gravity="center_vertical"
-		android:text="@string/all_fields_required"
-		android:textColor="@color/westeros_red"
-		android:textSize="16sp"
-		android:visibility="gone"/>
+	<include
+		layout="@layout/validation"
+		android:id="@+id/first_name_validation"/>
 
 	<EditText
 		android:id="@+id/last_name"
 		style="@style/westeros_dark_edit_text"
 		android:layout_height="@dimen/westeros_alternative_block_height"
 		android:hint="@string/last_name"/>
+
+	<include
+		layout="@layout/validation"
+		android:id="@+id/last_name_validation"/>
 
 	<EditText
 		android:id="@+id/email_address"
@@ -38,12 +32,20 @@
 		android:hint="@string/email_address"
 		android:inputType="textEmailAddress"/>
 
+	<include
+		layout="@layout/validation"
+		android:id="@+id/email_address_validation"/>
+
 	<EditText
 		android:id="@+id/password"
 		style="@style/westeros_dark_edit_text"
 		android:layout_height="@dimen/westeros_alternative_block_height"
 		android:hint="@string/password"
 		android:inputType="textPassword"/>
+
+	<include
+		layout="@layout/validation"
+		android:id="@+id/password_validation"/>
 
 	<RelativeLayout
 		style="@style/westeros_card"

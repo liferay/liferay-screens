@@ -107,10 +107,6 @@ public class MainActivity extends CardActivity implements View.OnClickListener, 
 
 	@Override
 	public void onSignUpFailure(Exception e) {
-		EditText viewById = (EditText) _signUpScreenlet.findViewById(R.id.first_name);
-		viewById.setBackgroundResource(R.drawable.westeros_warning_edit_text_drawable);
-		viewById.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.icon_warning_white, 0);
-		_signUpScreenlet.findViewById(R.id.first_name_validation).setVisibility(View.VISIBLE);
 	}
 
 	@Override
