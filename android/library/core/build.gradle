@@ -1,13 +1,12 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
 
 android {
-	compileSdkVersion 21
-	buildToolsVersion "21.1.2"
+	compileSdkVersion 22
+	buildToolsVersion "22.0.0"
 
 	defaultConfig {
 		minSdkVersion 14
-		targetSdkVersion 21
+		targetSdkVersion 22
 		versionCode 1
 		versionName "1.0"
 	}
@@ -32,56 +31,22 @@ repositories {
 	maven {
 		url 'https://repository.liferay.com/nexus/content/groups/liferay-ce'
 	}
+	maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 
 	jcenter()
 	mavenCentral()
 }
 
-apply plugin: "android-unit-test"
-
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile 'com.android.support:appcompat-v7:21.0.3'
-	compile 'com.android.support:recyclerview-v7:21.0.3'
+	compile 'com.android.support:appcompat-v7:22.0.0'
+	compile 'com.android.support:recyclerview-v7:22.0.0'
 	compile 'com.liferay.mobile:liferay-android-sdk:6.2.0.13'
 	compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'com.squareup.picasso:picasso:2.5.0'
+	compile 'com.squareup.picasso:picasso:2.5.0'
 
-	testCompile "junit:junit:4.10"
-	testCompile "org.robolectric:robolectric:2.4"
+	testCompile "junit:junit:4.12"
+	testCompile "org.robolectric:robolectric:3.0-rc2"
 	testCompile 'org.mockito:mockito-core:1.9.5'
 
-}
-
-task androidJavadocs(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
-    classifier = 'javadoc'
-    from androidJavadocs.destinationDir
-}
-
-task androidSourcesJar(type: Jar) {
-    classifier = 'sources'
-    from android.sourceSets.main.java.srcDirs
-}
-
-artifacts {
-    archives androidSourcesJar
-    archives androidJavadocsJar
-}
-
-
-uploadArchives {
-    repositories.mavenDeployer {
-        def deployPath = file(getProperty('aar.deployPath'))
-        repository(url: "file://${deployPath.absolutePath}")
-        pom.project {
-            groupId 'com.liferay.mobile'
-            artifactId 'liferay-screens-core'
-            version "0.3.0"
-        }
-    }
 }

@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.userportrait;
 
+import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractorImpl;
 import com.liferay.mobile.screens.util.MockFactory;
@@ -24,8 +25,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 /**
@@ -35,13 +37,15 @@ import org.robolectric.annotation.Config;
 @RunWith(Enclosed.class)
 public class UserPortraitInteractorTest {
 
-	@Config(emulateSdk = 18)
+	public static final String LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML = "src/main/AndroidManifest.xml";
+
 	@RunWith(RobolectricTestRunner.class)
+	@Config(constants = BuildConfig.class, emulateSdk = 21, manifest = LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
 	public static class WhenLoadingFromPortraitId {
 
 		@Before
 		public void setUp() {
-			LiferayScreensContext.init(Robolectric.application);
+			LiferayScreensContext.init(RuntimeEnvironment.application);
 		}
 
 		@Test
@@ -51,8 +55,8 @@ public class UserPortraitInteractorTest {
 			try {
 				interactor.load(true, 123, "xxx");
 			}
-			catch(IllegalArgumentException e) {
-				Assert.assertEquals("Listener cannot be null", e.getMessage());
+			catch (IllegalArgumentException e) {
+				Assert.assertEquals("Listener cannot be empty", e.getMessage());
 			}
 		}
 
@@ -64,8 +68,8 @@ public class UserPortraitInteractorTest {
 			try {
 				interactor.load(true, 0, "xxx");
 			}
-			catch(IllegalArgumentException e) {
-				Assert.assertEquals("portraitId cannot be null", e.getMessage());
+			catch (IllegalArgumentException e) {
+				Assert.assertEquals("portraitId cannot be empty", e.getMessage());
 			}
 		}
 
@@ -77,8 +81,8 @@ public class UserPortraitInteractorTest {
 			try {
 				interactor.load(true, 123, null);
 			}
-			catch(IllegalArgumentException e) {
-				Assert.assertEquals("userId cannot be null or empty", e.getMessage());
+			catch (IllegalArgumentException e) {
+				Assert.assertEquals("userId cannot be empty", e.getMessage());
 			}
 		}
 
@@ -90,8 +94,8 @@ public class UserPortraitInteractorTest {
 			try {
 				interactor.load(true, 123, "");
 			}
-			catch(IllegalArgumentException e) {
-				Assert.assertEquals("userId cannot be null or empty", e.getMessage());
+			catch (IllegalArgumentException e) {
+				Assert.assertEquals("userId cannot be empty", e.getMessage());
 			}
 		}
 
