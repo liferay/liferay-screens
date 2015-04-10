@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -19,19 +19,19 @@ import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.MockFactory;
 
 import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
-
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -170,7 +170,7 @@ public class LoginInteractorTest {
 
 			_loginWithResponseEvent(event, listener);
 
-			verify(listener).onLoginSuccess(event.getJSONObject());
+			verify(listener).onLoginSuccess(any(User.class));
 		}
 
 		@Test
@@ -188,7 +188,7 @@ public class LoginInteractorTest {
 		}
 
 		private void _loginWithResponseEvent(
-				final JSONObjectEvent event, LoginListener listener)
+			final JSONObjectEvent event, LoginListener listener)
 			throws Exception {
 
 			final LoginInteractorImpl interactorSpy =
@@ -228,7 +228,7 @@ public class LoginInteractorTest {
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenValidateMethodIsCalled {
 
-		@Test (expected = IllegalArgumentException.class)
+		@Test(expected = IllegalArgumentException.class)
 		public void shouldRaiseExceptionOnNullLogin() {
 			LoginInteractorImpl interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
@@ -236,7 +236,7 @@ public class LoginInteractorTest {
 			interactorSpy.validate(null, _LOGIN_PASSWORD, AuthMethod.EMAIL);
 		}
 
-		@Test (expected = IllegalArgumentException.class)
+		@Test(expected = IllegalArgumentException.class)
 		public void shouldRaiseExceptionOnNullPassword() {
 			LoginInteractorImpl interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
@@ -244,7 +244,7 @@ public class LoginInteractorTest {
 			interactorSpy.validate(_LOGIN_EMAIL, null, AuthMethod.EMAIL);
 		}
 
-		@Test (expected = IllegalArgumentException.class)
+		@Test(expected = IllegalArgumentException.class)
 		public void shouldRaiseExceptionOnNullAuthMethod() {
 			LoginInteractorImpl interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
