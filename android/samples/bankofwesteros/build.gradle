@@ -10,7 +10,7 @@ android {
 	}
 
 	defaultConfig {
-		applicationId "com.example.aelian.bankofwesteros"
+		applicationId "com.liferay.mobile.screens.bankofwesteros"
 		minSdkVersion 14
 		targetSdkVersion 22
 		versionCode 1
