@@ -55,5 +55,4 @@ dependencies {
 	compile project (':addbookmarkscreenlet')
 	compile 'com.android.support:appcompat-v7:22.0.0'
 
-    compile group: 'com.liferay.mobile', name: 'liferay-android-oauth', version: '1.+'
 }
