@@ -22,4 +22,8 @@
 	<!-- WebContentDisplayScreenlet values -->
 	<integer name="article_id">20602</integer>
 
+	<!-- OAuth values -->
+	<string name="liferay_oauth_consumer_key">5d782f70-a8d0-4fa8-b26b-a91246bc9dad</string>
+	<string name="liferay_oauth_consumer_secret">49b3fba8bf211b9dde948701f3a62e2a</string>
+
 </resources>
