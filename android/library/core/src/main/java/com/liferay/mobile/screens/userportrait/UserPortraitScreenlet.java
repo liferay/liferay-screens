@@ -139,6 +139,9 @@ public class UserPortraitScreenlet
 		if (_listener != null) {
 			_listener.onUserPortraitUploaded(this);
 		}
+
+		SessionContext.getLoggedUser().setPortraitId((int) portraitId);
+
 		getViewModel().showFinishOperation(UPLOAD_PORTRAIT);
 		((UserPortraitLoadInteractor) getInteractor(LOAD_PORTRAIT)).load(male, portraitId, uuid);
 	}
