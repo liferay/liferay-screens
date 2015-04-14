@@ -94,7 +94,8 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 				public void onGlobalLayout() {
 					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 						content.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-					} else {
+					}
+					else {
 						content.getViewTreeObserver().removeGlobalOnLayoutListener(this);
 					}
 
@@ -129,9 +130,9 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 	}
 
 	protected void calculateHeightAndWidth() {
-		int cardHeight = getResources().getDimensionPixelSize(R.dimen.westeros_card_title_height);
-		_card1FoldedPosition = _maxHeight - 2 * cardHeight;
-		_card2FoldedPosition = _maxHeight - cardHeight;
+		_cardHeight = getResources().getDimensionPixelSize(R.dimen.westeros_card_title_height);
+		_card1FoldedPosition = _maxHeight - 2 * _cardHeight;
+		_card2FoldedPosition = _maxHeight - _cardHeight;
 		_card1RestPosition = 0;
 
 		if (_card1Subview2 != null) {
@@ -152,6 +153,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		_cardHistory.add(Card.BACKGROUND);
 
 		_card1.animate().y(_card1FoldedPosition);
+		setFrameLayoutMargins(_card1, 0, 0, 0, _cardHeight);
 	}
 
 	protected void toCard1() {
@@ -172,7 +174,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 
 		animate(_card1);
 
-		setFrameLayoutMargins(_card1, 0, 0, 0, 0);
+		setFrameLayoutMargins(_card1, 0, 0, 0, _cardHeight);
 		_card1.animate().y(_card1RestPosition);
 		_card2.animate().y(_card2FoldedPosition).setListener(listener);
 	}
@@ -201,7 +203,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		_card2.animate().y(topPosition);
 
 		animate(_card1);
-		setFrameLayoutMargins(_card1, margin, 0, margin, 0);
+		setFrameLayoutMargins(_card1, margin, 0, margin, _cardHeight);
 		_card1.animate().y(0);
 	}
 
@@ -347,6 +349,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 
 	protected Queue<Card> _cardHistory = Collections.asLifoQueue(new ArrayDeque<Card>());
 
+	private int _cardHeight;
 	private ViewGroup _card1Subview1;
 	private ViewGroup _card1Subview2;
 	private ViewGroup _card2Subview1;
