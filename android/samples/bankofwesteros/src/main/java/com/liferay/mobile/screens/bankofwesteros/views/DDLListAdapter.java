@@ -104,28 +104,31 @@ public class DDLListAdapter
 
 		StringBuilder builder = new StringBuilder();
 
-		String titleField = entry.getValue(_labelFields.get(0));
+		if (entry != null && _labelFields != null && !_labelFields.isEmpty()) {
 
-		for (int i = 1; i < _labelFields.size(); ++i) {
-			String field = _labelFields.get(i);
-			String value = entry.getValue(field);
-			if (value != null && !value.isEmpty()) {
-				builder.append(value);
-				builder.append(" ");
+			String titleField = entry.getValue(_labelFields.get(0));
+
+			for (int i = 1; i < _labelFields.size(); ++i) {
+				String field = _labelFields.get(i);
+				String value = entry.getValue(field);
+				if (value != null && !value.isEmpty()) {
+					builder.append(value);
+					builder.append(" ");
+				}
 			}
-		}
-		if (builder.length() == 0) {
-			String date = new SimpleDateFormat("dd/MM/yyyy").format(entry.getAttributes("createDate"));
-			builder.append("Created ");
-			builder.append(date);
-		}
+			if (builder.length() == 0) {
+				String date = new SimpleDateFormat("dd/MM/yyyy").format(entry.getAttributes("createDate"));
+				builder.append("Created ");
+				builder.append(date);
+			}
 
-		holder.textView.setText(titleField);
-		holder._subtitleTextView.setText(builder.toString());
+			holder.textView.setText(titleField);
+			holder._subtitleTextView.setText(builder.toString());
 
-		int drawableId = getDrawable(getEntries().indexOf(entry));
-		if (holder._stateIconView != null) {
-			holder._stateIconView.setImageResource(drawableId);
+			int drawableId = getDrawable(getEntries().indexOf(entry));
+			if (holder._stateIconView != null) {
+				holder._stateIconView.setImageResource(drawableId);
+			}
 		}
 	}
 

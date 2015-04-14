@@ -12,10 +12,16 @@
 		android:layout_gravity="center"
 		android:visibility="gone"/>
 
-	<android.support.v7.widget.RecyclerView
-		android:id="@+id/recycler_view"
+	<android.support.v4.widget.SwipeRefreshLayout
+		android:id="@+id/swipeRefreshLayout"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layoutAnimation="@anim/layout_animation"
-		android:visibility="gone"/>
+		android:layout_height="match_parent">
+
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/recycler_view"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layoutAnimation="@anim/layout_animation"
+			android:visibility="gone"/>
+	</android.support.v4.widget.SwipeRefreshLayout>
 </com.liferay.mobile.screens.bankofwesteros.views.DDLListView>
