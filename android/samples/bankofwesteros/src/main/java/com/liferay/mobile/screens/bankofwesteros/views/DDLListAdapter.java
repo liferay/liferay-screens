@@ -46,7 +46,7 @@ public class DDLListAdapter
 
 			_listener = listener;
 
-			view.findViewById(R.id.list_handle).setOnClickListener(this);
+			view.setOnClickListener(this);
 			view.findViewById(R.id.list_edit).setOnClickListener(this);
 			view.findViewById(R.id.list_view).setOnClickListener(this);
 			_swipeLayout = (SwipeLayout) view.findViewById(R.id.swipe_layout);
@@ -55,11 +55,14 @@ public class DDLListAdapter
 
 		@Override
 		public void onClick(View v) {
-			if (v.getId() == R.id.list_handle) {
-				_swipeLayout.open(true);
-			}
-			else if (SwipeLayout.Status.Open.equals(_swipeLayout.getOpenStatus())) {
+			boolean opened = SwipeLayout.Status.Open.equals(_swipeLayout.getOpenStatus());
+			if (opened && v.getId() == R.id.list_edit || v.getId() == R.id.list_view) {
 				_listener.onItemClick(getPosition(), v);
+			}
+			else if (!opened){
+				_swipeLayout.open(true);
+			} else {
+				_swipeLayout.close(true);
 			}
 		}
 
