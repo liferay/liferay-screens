@@ -3,17 +3,16 @@
 
 	<!-- Change these values for your Liferay Portal installation -->
 
-	<string name="liferay_server">http://192.168.56.1:8080</string>
+	<string name="liferay_server">http://5.101.101.128:8080</string>
 
-	<string name="liferay_anonymousApiUserName">test@liferay.com</string>
-	<string name="liferay_anonymousApiPassword">test</string>
+	<string name="liferay_anonymousApiUserName">anonymous@liferay.com</string>
+	<string name="liferay_anonymousApiPassword">anonymous1</string>
 
 	<integer name="liferay_company_id">20155</integer>
-	<integer name="liferay_group_id">20195</integer>
+	<integer name="liferay_group_id">20182</integer>
 
-	<integer name="liferay_recordset_id">20935</integer>
+	<integer name="liferay_recordset_id">20472</integer>
+	<integer name="liferay_structure_id">20470</integer>
 	<string name="liferay_recordset_fields">Title</string>
-
-	<integer name="liferay_structure_id">20933</integer>
 
 </resources>
