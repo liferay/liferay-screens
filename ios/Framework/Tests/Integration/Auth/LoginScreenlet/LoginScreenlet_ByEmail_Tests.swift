@@ -58,11 +58,11 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				assertThat("the attributes should be populated") {
 					XCTAssertTrue(result is [String:AnyObject])
 
-					let attrs = result as [String:AnyObject]
+					let attrs = result as! [String:AnyObject]
 
 					XCTAssertTrue(attrs.count > 0)
 					XCTAssertNotNil(attrs["emailAddress"])
-					XCTAssertEqual("test@liferay.com", attrs["emailAddress"] as String)
+					XCTAssertEqual("test@liferay.com", attrs["emailAddress"] as! String)
 				}
 				assertThat("the session should be established") {
 					XCTAssertTrue(SessionContext.hasSession)
@@ -140,7 +140,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				assertThat("the error should be nil") {
 					XCTAssertTrue(result is NSError)
 
-					let error = result as NSError
+					let error = result as! NSError
 
 					XCTAssertEqual("Authenticated access required", error.localizedDescription)
 

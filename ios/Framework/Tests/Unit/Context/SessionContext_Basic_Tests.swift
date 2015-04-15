@@ -42,7 +42,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 				password: "password",
 				userAttributes: ["key":"value"])
 
-		XCTAssertEqual("value", (SessionContext.userAttribute("key") ?? "") as String)
+		XCTAssertEqual("value", (SessionContext.userAttribute("key") ?? "") as! String)
 	}
 
 	func test_CurrentUserName_ShouldReturnTheUserName_WhenSessionIsCreated() {

@@ -50,8 +50,8 @@ class BaseListPageLoadInteractor: ServerOperationInteractor {
 	}
 
 	func processLoadPageResult(serverRows: [[String:AnyObject]], rowCount: Int?) {
-		let screenlet = self.screenlet as BaseListScreenlet
-		let baseListView = screenlet.screenletView as BaseListView
+		let screenlet = self.screenlet as! BaseListScreenlet
+		let baseListView = screenlet.screenletView as! BaseListView
 
 		let actualRowCount = rowCount ?? baseListView.rowCount
 

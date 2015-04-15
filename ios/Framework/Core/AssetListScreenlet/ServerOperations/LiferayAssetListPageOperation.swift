@@ -19,7 +19,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	public var classNameId: Int?
 
 	internal var assetListScreenlet: AssetListScreenlet {
-		return self.screenlet as AssetListScreenlet
+		return self.screenlet as! AssetListScreenlet
 	}
 
 

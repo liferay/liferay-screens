@@ -36,7 +36,7 @@ import Foundation
 
 	public class var currentUserName: String? {
 		var authentication = StaticInstance.currentSession?.authentication
-			as LRBasicAuthentication?
+			as! LRBasicAuthentication?
 
 		return authentication?.username
 	}
@@ -52,7 +52,7 @@ import Foundation
 
 	public class var currentPassword: String? {
 		var authentication = StaticInstance.currentSession?.authentication
-			as LRBasicAuthentication?
+			as! LRBasicAuthentication?
 
 		return authentication?.password
 	}

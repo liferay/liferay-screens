@@ -79,7 +79,7 @@ public class DDLFieldNumber : DDLField {
 
 	override internal func onChangedCurrentValue() {
 		if !isDecimal && currentValue is NSDecimalNumber {
-			let decimal = (currentValue as NSDecimalNumber).doubleValue
+			let decimal = (currentValue as! NSDecimalNumber).doubleValue
 			currentValue = NSNumber(double: decimal + 0.5).integerValue
 		}
 	}

@@ -40,7 +40,7 @@ public class DDLFieldCheckboxTableCell_default: DDLFieldTableCell {
 
 	override internal func onChangedField() {
 		if let boolField = field as? DDLFieldBoolean {
-			switchView?.on = boolField.currentValue as Bool
+			switchView?.on = boolField.currentValue as! Bool
 			label?.text = boolField.label
 
 			if boolField.lastValidationResult != nil {

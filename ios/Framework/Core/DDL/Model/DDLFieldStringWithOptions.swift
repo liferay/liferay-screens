@@ -41,9 +41,9 @@ public class DDLFieldStringWithOptions : DDLField {
 
 		if let optionsArray = (attributes["options"] ?? nil) as? [[String:AnyObject]] {
 			for optionDict in optionsArray {
-				let label = (optionDict["label"] ?? "") as String
-				let name = (optionDict["name"] ?? "") as String
-				let value = (optionDict["value"] ?? "") as String
+				let label = (optionDict["label"] ?? "") as! String
+				let name = (optionDict["name"] ?? "") as! String
+				let value = (optionDict["value"] ?? "") as! String
 
 				let option = Option(label:label, name:name, value:value)
 
@@ -170,7 +170,7 @@ public class DDLFieldStringWithOptions : DDLField {
 	}
 
 	override internal func doValidate() -> Bool {
-		let current = (currentValue as [Option]?) ?? []
+		let current = (currentValue as! [Option]?) ?? []
 
 		return !(required && current.count == 0)
 	}

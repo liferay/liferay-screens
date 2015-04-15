@@ -41,7 +41,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	}
 
 	internal var viewModel: DDLFormViewModel {
-		return screenlet.screenletView as DDLFormViewModel
+		return screenlet.screenletView as! DDLFormViewModel
 	}
 
 

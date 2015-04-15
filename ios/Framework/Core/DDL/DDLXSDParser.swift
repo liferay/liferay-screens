@@ -52,7 +52,7 @@ public class DDLXSDParser {
 
 			result = []
 
-			for element in elements as [SMXMLElement] {
+			for element in elements as! [SMXMLElement] {
 				if let formField = createFormField(element,
 						locale: locale,
 						defaultLocale: defaultLocale) {
@@ -79,7 +79,7 @@ public class DDLXSDParser {
 				defaultLocale: defaultLocale)
 
 		let mergedAttributes = mergeDictionaries(
-				dict1: xmlElement.attributes as [String:AnyObject],
+				dict1: xmlElement.attributes as! [String:AnyObject],
 				dict2: localizedMetadata)
 
 		return dataType.createField(attributes: mergedAttributes, locale: locale)
@@ -197,7 +197,7 @@ public class DDLXSDParser {
 			return nil
 		}
 
-		let currentLanguageCode = locale.objectForKey(NSLocaleLanguageCode) as String
+		let currentLanguageCode = locale.objectForKey(NSLocaleLanguageCode) as! String
 		let currentCountryCode = locale.objectForKey(NSLocaleCountryCode) as? String
 
 		var resultElement:SMXMLElement?
@@ -251,7 +251,7 @@ public class DDLXSDParser {
 		var result:[SMXMLElement] = []
 
 		for element in parent.children {
-			let child = element as SMXMLElement
+			let child = element as! SMXMLElement
 			let attrValue = child.attributeNamed(attribute)
 			if attrValue != nil && attrValue == value {
 				result.append(child)

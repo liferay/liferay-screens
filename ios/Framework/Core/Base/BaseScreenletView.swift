@@ -221,7 +221,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 		addDefaultDelegatesForView(view)
 
-		for subview:UIView in view.subviews as [UIView] {
+		for subview:UIView in view.subviews as! [UIView] {
 			setUpView(subview)
 		}
 	}
