@@ -68,7 +68,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	//MARK: UITextFieldDelegate
 
-	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
+	public func textFieldShouldReturn(textField: UITextField) -> Bool {
 		let nextResponder = nextResponderForView(textField)
 
 		if nextResponder != textField {

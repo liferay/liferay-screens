@@ -74,16 +74,16 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 		let onChangeClosure = {
 			(selectedComponents:[AnyObject]!, selectedIndexPath:NSIndexPath!) -> Void in
 
-			let text = selectedComponents.first?.description as NSString?
+			if let text = selectedComponents.first?.description {
+				self.textField!.text = text
+				field.currentValue = text
 
-			self.textField?.text = text
-			field.currentValue = text
+				let fullRange = NSMakeRange(0, count(text))
 
-			let fullRange = NSMakeRange(0, text!.length)
-
-			self.textField(self.textField,
-					shouldChangeCharactersInRange:fullRange,
-					replacementString: text)
+				self.textField(self.textField!,
+						shouldChangeCharactersInRange:fullRange,
+						replacementString: text)
+			}
 		}
 
 		let optionsPresenter = DTPickerViewPresenter(
