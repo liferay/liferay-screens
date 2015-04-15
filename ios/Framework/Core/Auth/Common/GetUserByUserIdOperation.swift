@@ -27,7 +27,7 @@ public class GetUserByUserIdOperation: GetUserBaseOperation {
 	override internal func validateData() -> Bool {
 		var valid = super.validateData()
 
-		valid &= ((userId ?? 0) > 0)
+		valid = valid && ((userId ?? 0) > 0)
 
 		return valid
 	}

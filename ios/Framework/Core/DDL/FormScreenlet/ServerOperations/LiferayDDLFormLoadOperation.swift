@@ -35,7 +35,7 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 	override func validateData() -> Bool {
 		var valid = super.validateData()
 
-		valid &= (structureId != nil)
+		valid = valid && (structureId != nil)
 
 		return valid
 	}
