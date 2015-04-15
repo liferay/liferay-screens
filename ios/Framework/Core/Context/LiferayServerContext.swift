@@ -69,7 +69,7 @@ public class LiferayServerContext {
 		var foundFallback = false
 
 		var i = 0
-		let length = countElements(bundles)
+		let length = count(bundles)
 
 		while !found && i < length {
 			let bundle = bundles[i++]

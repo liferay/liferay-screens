@@ -93,7 +93,7 @@ public class DDLFieldStringWithOptions : DDLField {
 			func removeFirstAndLastChars(value:String) -> String {
 				var result: String = value
 
-				if countElements(value) >= 2 {
+				if count(value) >= 2 {
 					let range = Range<String.Index>(
 									start: value.startIndex.successor(),
 									end: value.endIndex.predecessor())
