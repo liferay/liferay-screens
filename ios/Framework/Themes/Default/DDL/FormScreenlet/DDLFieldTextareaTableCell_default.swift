@@ -109,7 +109,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 		return true
 	}
 
-	public func textViewDidEndEditing(textView: UITextView!) {
+	public func textViewDidEndEditing(textView: UITextView) {
 		separator!.frame.origin.y = originalSeparatorY
 
 		textView.frame = originalTextViewRect
@@ -127,9 +127,9 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 		textViewBackground?.highlighted = false
 	}
 
-	public func textView(textView: UITextView!,
+	public func textView(textView: UITextView,
 			shouldChangeTextInRange range: NSRange,
-			replacementText text: String!) -> Bool {
+			replacementText text: String) -> Bool {
 
 		var result = false
 
@@ -140,7 +140,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 		} else {
 			result = true
 
-			let newText = (textView!.text as NSString).stringByReplacingCharactersInRange(range,
+			let newText = (textView.text as NSString).stringByReplacingCharactersInRange(range,
 					withString:text)
 
 			placeholder!.changeVisibility(visible: newText != "")

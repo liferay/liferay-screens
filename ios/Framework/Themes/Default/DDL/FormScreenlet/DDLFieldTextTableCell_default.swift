@@ -18,9 +18,9 @@ public class DDLFieldTextTableCell_default: DDLBaseFieldTextboxTableCell_default
 
 	//MARK: DDLBaseFieldTextboxTableCell
 
-	override public func textField(textField: UITextField!,
+	override public func textField(textField: UITextField,
 			shouldChangeCharactersInRange range: NSRange,
-			replacementString string: String!)
+			replacementString string: String)
 			-> Bool {
 
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range,
@@ -35,7 +35,7 @@ public class DDLFieldTextTableCell_default: DDLBaseFieldTextboxTableCell_default
 
 	//MARK: UITextFieldDelegate
 
-	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
+	public func textFieldShouldReturn(textField: UITextField) -> Bool {
 		return nextCellResponder(textField)
 	}
 

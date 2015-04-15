@@ -96,13 +96,13 @@ public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFiel
 		return true
 	}
 
-	public func textFieldDidEndEditing(textField: UITextField!) {
+	public func textFieldDidEndEditing(textField: UITextField) {
 		textFieldBackground?.highlighted = false
 	}
 
-	public func textField(textField: UITextField!,
+	public func textField(textField: UITextField,
 			shouldChangeCharactersInRange range: NSRange,
-			replacementString string: String!) -> Bool {
+			replacementString string: String) -> Bool {
 
 		if field!.lastValidationResult != nil && !field!.lastValidationResult! {
 			field!.lastValidationResult = true

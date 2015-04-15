@@ -90,8 +90,8 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 	//MARK: UIImagePickerControllerDelegate
 
     public func imagePickerController(
-			picker: UIImagePickerController!,
-			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
+			picker: UIImagePickerController,
+			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
 
 		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
 		let selectedURL = info[UIImagePickerControllerMediaURL] as? NSURL
@@ -101,7 +101,7 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 		imagePicker.dismissViewControllerAnimated(true) {}
 	}
 
-    public func imagePickerControllerDidCancel(picker: UIImagePickerController!) {
+    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
 		imagePicker.dismissViewControllerAnimated(true) {}
 	}
 
