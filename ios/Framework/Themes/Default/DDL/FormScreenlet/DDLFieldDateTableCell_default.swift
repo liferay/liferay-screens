@@ -57,7 +57,7 @@ public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default
 			field.currentValue = selectedDate
 			textField?.text = field.currentValueAsLabel
 
-			let fullRange = NSMakeRange(0, countElements(textField!.text!))
+			let fullRange = NSMakeRange(0, count(textField!.text!))
 
 			textField(textField,
 				shouldChangeCharactersInRange: fullRange,

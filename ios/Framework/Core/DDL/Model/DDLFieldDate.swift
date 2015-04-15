@@ -52,7 +52,7 @@ public class DDLFieldDate : DDLField {
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		if let stringValue = value {
 			// minimum date length in mm/dd/yy is 6 characters
-			if countElements(stringValue) >= 6 {
+			if count(stringValue) >= 6 {
 				let formatter = stringValue[stringValue.endIndex.predecessor().predecessor()] == "/"
 					? serverYYDateFormatter : serverYYDateFormatter
 				return formatter.dateFromString(stringValue)
