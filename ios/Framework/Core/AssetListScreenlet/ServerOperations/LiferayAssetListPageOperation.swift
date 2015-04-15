@@ -28,8 +28,8 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	override func validateData() -> Bool {
 		var valid = super.validateData()
 
-		valid &= (groupId != nil)
-		valid &= (classNameId != nil)
+		valid = valid && (groupId != nil)
+		valid = valid && (classNameId != nil)
 
 		return valid
 	}

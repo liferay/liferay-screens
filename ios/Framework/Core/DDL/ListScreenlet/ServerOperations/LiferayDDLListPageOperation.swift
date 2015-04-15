@@ -30,8 +30,8 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 	override func validateData() -> Bool {
 		var valid = super.validateData()
 
-		valid &= (recordSetId != nil)
-		valid &= (viewModel.labelFields.count > 0)
+		valid = valid && (recordSetId != nil)
+		valid = valid && (viewModel.labelFields.count > 0)
 
 		return valid
 	}
