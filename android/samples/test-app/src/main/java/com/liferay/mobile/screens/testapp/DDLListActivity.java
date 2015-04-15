@@ -27,7 +27,6 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -66,7 +65,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<D
 	}
 
 	@Override
-	public void onListItemSelected(DDLEntry element) {
+	public void onListItemSelected(DDLEntry element, View view) {
 		info("Item selected: " + element);
 		loadDDLForm(element);
 	}

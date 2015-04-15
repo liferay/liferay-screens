@@ -24,11 +24,11 @@ import java.util.Locale;
  */
 public interface SignUpInteractor extends Interactor<SignUpListener> {
 
-	public void signUp(
-			long companyId, String firstName, String middleName,
-			String lastName, String emailAddress, String screenName,
-			String password, String jobTitle, Locale locale,
-			String anonymousApiUserName, String anonymousApiPassword)
+	void signUp(
+		long companyId, String firstName, String middleName,
+		String lastName, String emailAddress, String screenName,
+		String password, String jobTitle, Locale locale,
+		String anonymousApiUserName, String anonymousApiPassword)
 		throws Exception;
 
 }

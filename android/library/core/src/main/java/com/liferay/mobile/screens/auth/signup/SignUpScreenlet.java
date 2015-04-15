@@ -58,8 +58,8 @@ public class SignUpScreenlet
 	public void onSignUpFailure(Exception e) {
 		getViewModel().showFailedOperation(null, e);
 
-		if (_listener != null) {
-			_listener.onSignUpFailure(e);
+		if (getListener() != null) {
+			getListener().onSignUpFailure(e);
 		}
 	}
 
@@ -67,8 +67,8 @@ public class SignUpScreenlet
 	public void onSignUpSuccess(User user) {
 		getViewModel().showFinishOperation(user);
 
-		if (_listener != null) {
-			_listener.onSignUpSuccess(user);
+		if (getListener() != null) {
+			getListener().onSignUpSuccess(user);
 		}
 
 		if (_autoLogin) {

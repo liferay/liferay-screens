@@ -23,7 +23,7 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
  */
 public interface LoginInteractor extends Interactor<LoginListener> {
 
-	public void login(String login, String password, AuthMethod authMethod)
+	void login(String login, String password, AuthMethod authMethod)
 		throws Exception;
 
 }

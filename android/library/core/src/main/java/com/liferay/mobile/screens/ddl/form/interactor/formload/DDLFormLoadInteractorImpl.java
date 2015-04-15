@@ -79,7 +79,7 @@ public class DDLFormLoadInteractorImpl
 
 	protected void validate(Record record) {
 		if (record == null) {
-			throw new IllegalArgumentException("record cannot be null");
+			throw new IllegalArgumentException("record cannot be empty");
 		}
 
 		if (record.getStructureId() <= 0) {
@@ -87,7 +87,7 @@ public class DDLFormLoadInteractorImpl
 		}
 
 		if (record.getLocale() == null) {
-			throw new IllegalArgumentException("Record's Locale cannot be null");
+			throw new IllegalArgumentException("Record's Locale cannot be empty");
 		}
 	}
 

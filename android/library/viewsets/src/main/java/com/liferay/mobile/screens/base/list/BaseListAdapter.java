@@ -46,7 +46,7 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 
 		@Override
 		public void onClick(View v) {
-			_listener.onItemClick(getPosition());
+			_listener.onItemClick(getPosition(), v);
 		}
 
 		private BaseListAdapterListener _listener;

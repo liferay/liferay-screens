@@ -23,19 +23,19 @@ import com.liferay.mobile.screens.ddl.model.Field;
  */
 public interface DDLFieldViewModel<T extends Field> {
 
-	public T getField();
+	T getField();
 
-	public void setField(T field);
+	void setField(T field);
 
-	public void refresh();
+	void refresh();
 
-	public void onPostValidation(boolean valid);
+	void onPostValidation(boolean valid);
 
-	public View getParentView();
+	View getParentView();
 
-	public void setParentView(View view);
+	void setParentView(View view);
 
-	public void setPositionInParent(int position);
+	void setPositionInParent(int position);
 
 
 }

@@ -4,7 +4,8 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:liferay="http://schemas.android.com/apk/res-auto"
 	android:paddingLeft="40dp"
-	android:paddingRight="40dp">
+	android:paddingRight="40dp"
+	android:theme="@style/material_theme">
 
 	<LinearLayout style="@style/material_row">
 
@@ -19,8 +20,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_marginTop="8dp"
-			android:hint="@string/email_address"
-			android:text="test@liferay.com"/>
+			android:hint="@string/email_address" />
 
 	</LinearLayout>
 
@@ -38,8 +38,7 @@
 			android:layout_height="match_parent"
 			android:layout_marginTop="8dp"
 			android:hint="@string/password"
-			android:inputType="textPassword"
-			android:text="test"/>
+			android:inputType="textPassword"/>
 
 	</LinearLayout>
 

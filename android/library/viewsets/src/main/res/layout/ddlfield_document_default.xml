@@ -22,6 +22,7 @@
 			android:layout_height="match_parent"
 			android:clickable="true"
 			android:drawableRight="@drawable/default_blue"
+			android:drawableEnd="@drawable/default_blue"
 			android:editable="false"
 			android:focusable="false"
 			android:inputType="none"

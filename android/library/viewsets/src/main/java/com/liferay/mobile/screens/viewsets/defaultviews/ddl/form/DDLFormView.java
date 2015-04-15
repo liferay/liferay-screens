@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -15,28 +15,25 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form;
 
 import android.content.Context;
-
 import android.util.AttributeSet;
-
 import android.view.LayoutInflater;
 import android.view.View;
-
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
+import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
+import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
-import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
+import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -143,21 +140,23 @@ public class DDLFormView
 	@Override
 	public void showFinishOperation(String actionName, Object argument) {
 		hideProgressBar(actionName);
-		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
-			LiferayLogger.i("loaded form");
-			Record record = (Record) argument;
+		switch (actionName) {
+			case DDLFormScreenlet.LOAD_FORM_ACTION:
+				LiferayLogger.i("loaded form");
+				Record record = (Record) argument;
 
-			showFormFields(record);
-		}
-		else if (actionName.equals(DDLFormScreenlet.LOAD_RECORD_ACTION)) {
-			LiferayLogger.i("loaded record");
-			showRecordValues();
-		}
-		else if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
-			LiferayLogger.i("uploaded document");
-			DocumentField documentField = (DocumentField) argument;
+				showFormFields(record);
+				break;
+			case DDLFormScreenlet.LOAD_RECORD_ACTION:
+				LiferayLogger.i("loaded record");
+				showRecordValues();
+				break;
+			case DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION:
+				LiferayLogger.i("uploaded document");
+				DocumentField documentField = (DocumentField) argument;
 
-			findFieldView(documentField).refresh();
+				findFieldView(documentField).refresh();
+				break;
 		}
 	}
 
@@ -171,13 +170,13 @@ public class DDLFormView
 		hideProgressBar(actionName);
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
 			LiferayLogger.e("error loading DDLForm", e);
-			DefaultCrouton.error(getContext(), getContext().getString(R.string.loading_form_error), e);
+			LiferayCrouton.error(getContext(), getContext().getString(R.string.loading_form_error), e);
 
 			clearFormFields();
 		}
 		else if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
 			LiferayLogger.e("error uploading", e);
-			DefaultCrouton.error(getContext(), getContext().getString(R.string.uploading_document_error), e);
+			LiferayCrouton.error(getContext(), getContext().getString(R.string.uploading_document_error), e);
 
 			DocumentField documentField = (DocumentField) argument;
 
@@ -203,7 +202,6 @@ public class DDLFormView
 
 		DefaultAnimation.showViewWithReveal(_fieldsContainerView);
 	}
-
 
 
 	protected void clearFormFields() {

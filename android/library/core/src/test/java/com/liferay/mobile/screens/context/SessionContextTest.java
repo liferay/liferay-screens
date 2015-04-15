@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -19,7 +19,9 @@ import android.content.SharedPreferences;
 
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.context.storage.CredentialsStoreSharedPreferences;
+import com.liferay.mobile.screens.userportrait.UserPortraitInteractorTest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,8 +29,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.StorageType.SHARED_PREFERENCES;
@@ -46,7 +48,7 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(Enclosed.class)
 public class SessionContextTest {
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenCreateSession {
 
@@ -97,7 +99,7 @@ public class SessionContextTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenClearSession {
 
@@ -119,35 +121,35 @@ public class SessionContextTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenSettingUserAttributes {
 
 		@Before
 		public void setUp() throws JSONException {
 			SessionContext.createSession("username", "password");
-			SessionContext.setUserAttributes(new JSONObject().put("userId", 123));
+			SessionContext.setLoggedUser(new User(new JSONObject().put("userId", 123)));
 		}
 
 		@Test
 		public void shouldReturnTheUserObject() throws Exception {
-			assertNotNull(SessionContext.getUser());
+			assertNotNull(SessionContext.getLoggedUser());
 		}
 
 		@Test
 		public void userObjectShouldContainTheUserAttributes() throws Exception {
-			assertEquals(123, SessionContext.getUser().getId());
+			assertEquals(123, SessionContext.getLoggedUser().getId());
 		}
 
 		@Test
 		public void shouldClearUserWhenSessionIsCleared() throws Exception {
 			SessionContext.clearSession();
-			assertNull(SessionContext.getUser());
+			assertNull(SessionContext.getLoggedUser());
 		}
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenStoreSessionInSharedPreferences {
 
@@ -157,26 +159,26 @@ public class SessionContextTest {
 
 			SessionContext.createSession("user123", "pass123");
 
-			SessionContext.setUserAttributes(new JSONObject().put("userId", 123));
+			SessionContext.setLoggedUser(new User(new JSONObject().put("userId", 123)));
 
 			SessionContext.storeSession(SHARED_PREFERENCES);
 		}
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenSessionIsNotPresent() throws Exception {
-			Context ctx = Robolectric.getShadowApplication().getApplicationContext();
+			Context ctx = RuntimeEnvironment.application.getApplicationContext();
 			LiferayScreensContext.init(ctx);
 
 			SessionContext.clearSession();
 
-			SessionContext.setUserAttributes(new JSONObject().put("userId", 123));
+			SessionContext.setLoggedUser(new User(new JSONObject().put("userId", 123)));
 
 			SessionContext.storeSession(SHARED_PREFERENCES);
 		}
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
-			Context ctx = Robolectric.getShadowApplication().getApplicationContext();
+			Context ctx = RuntimeEnvironment.application.getApplicationContext();
 			LiferayScreensContext.init(ctx);
 
 			SessionContext.clearSession(); // to clean user
@@ -189,11 +191,11 @@ public class SessionContextTest {
 		public void shouldStoreTheCredentialsInSharedPreferences() throws Exception {
 			SessionContext.createSession("user123", "pass123");
 
-			Context ctx = Robolectric.getShadowApplication().getApplicationContext();
+			Context ctx = RuntimeEnvironment.application.getApplicationContext();
 			LiferayScreensContext.init(ctx);
 
 			JSONObject userAttributes = new JSONObject().put("userId", 123);
-			SessionContext.setUserAttributes(userAttributes);
+			SessionContext.setLoggedUser(new User(userAttributes));
 
 			SessionContext.storeSession(SHARED_PREFERENCES);
 

@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -19,7 +19,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -28,19 +27,17 @@ import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
-import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.util.FileUtil;
 import com.liferay.mobile.screens.viewsets.R;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  * @author Javier Gamarra
  */
 public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
-		implements DDLFieldViewModel<DocumentField>, View.OnClickListener {
+	implements DDLFieldViewModel<DocumentField>, View.OnClickListener {
 
 	public DDLDocumentFieldView(Context context) {
 		super(context);
@@ -61,11 +58,11 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 			_choseOriginDialog.show();
 		}
 		else if (view.getId() == R.id.default_dialog_take_video) {
-			launchCameraIntent(MediaStore.ACTION_VIDEO_CAPTURE, createVideoFile());
+			launchCameraIntent(MediaStore.ACTION_VIDEO_CAPTURE, FileUtil.createVideoFile());
 			_choseOriginDialog.dismiss();
 		}
 		else if (view.getId() == R.id.default_dialog_take_photo) {
-			launchCameraIntent(MediaStore.ACTION_IMAGE_CAPTURE, createImageFile());
+			launchCameraIntent(MediaStore.ACTION_IMAGE_CAPTURE, FileUtil.createImageFile());
 			_choseOriginDialog.dismiss();
 		}
 		else if (view.getId() == R.id.default_dialog_select_file) {
@@ -73,7 +70,6 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 			_choseOriginDialog.dismiss();
 		}
 	}
-
 
 	@Override
 	public void refresh() {
@@ -135,7 +131,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 
 		LayoutInflater factory = LayoutInflater.from(getContext());
 		final View customDialogView = factory.inflate(
-				R.layout.ddlfield_document_chose_option_default, null);
+			R.layout.ddlfield_document_chose_option_default, null);
 
 		customDialogView.findViewById(R.id.default_dialog_select_file).setOnClickListener(this);
 		customDialogView.findViewById(R.id.default_dialog_take_photo).setOnClickListener(this);
@@ -158,43 +154,23 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 
 	protected void showSelectFileDialog(final View view) {
 		_fileDialog = new SelectFileDialog().createDialog(getContext(),
-				new SelectFileDialog.SimpleFileDialogListener() {
+			new SelectFileDialog.SimpleFileDialogListener() {
 
-					@Override
-					public void onFileChosen(String path) {
-						_progressBar.setVisibility(View.VISIBLE);
-						getTextEditText().setText(path);
+				@Override
+				public void onFileChosen(String path) {
+					_progressBar.setVisibility(View.VISIBLE);
+					getTextEditText().setText(path);
 
-						DocumentField field = getField();
-						field.createLocalFile(path);
-						field.moveToUploadInProgressState();
-						view.setTag(field);
-						((DDLFormView) getParentView()).onClick(view);
-					}
+					DocumentField field = getField();
+					field.createLocalFile(path);
+					field.moveToUploadInProgressState();
+					view.setTag(field);
+					((DDLFormView) getParentView()).onClick(view);
+				}
 
-				});
+			});
 
 		_fileDialog.show();
-	}
-
-	protected File createImageFile() {
-		return createFile("PHOTO", Environment.DIRECTORY_PICTURES, ".jpg");
-	}
-
-	protected File createVideoFile() {
-		return createFile("VIDEO", Environment.DIRECTORY_MOVIES, ".mp4");
-	}
-
-	protected File createFile(String name, String directory, String extension) {
-		try {
-			File storageDir = Environment.getExternalStoragePublicDirectory(directory);
-			return File.createTempFile(name, extension, storageDir);
-		}
-		catch (IOException e) {
-			LiferayLogger.e("error creating temporal file at uploading", e);
-			DefaultCrouton.error(getContext(), getContext().getString(R.string.creating_file_error), e);
-		}
-		return null;
 	}
 
 	protected ProgressBar getProgressBar() {

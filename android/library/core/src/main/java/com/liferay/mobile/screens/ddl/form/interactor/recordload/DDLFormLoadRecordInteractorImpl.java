@@ -72,7 +72,7 @@ public class DDLFormLoadRecordInteractorImpl
 
 	protected void validate(Record record) {
 		if (record == null) {
-			throw new IllegalArgumentException("record cannot be null");
+			throw new IllegalArgumentException("record cannot be empty");
 		}
 
 		if (record.getRecordId() <= 0) {

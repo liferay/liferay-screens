@@ -16,6 +16,7 @@
 		android:id="@+id/text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:drawableEnd="@drawable/default_calendar_blue"
 		android:drawableRight="@drawable/default_calendar_blue"
 		android:inputType="date"
 		android:paddingBottom="5dp"
