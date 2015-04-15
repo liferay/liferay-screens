@@ -59,7 +59,12 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 			}
 		}
 
-		result.removeAtIndex(result.endIndex.predecessor())
+		if result.endIndex == result.startIndex {
+			println("[ERROR] Can't compose the label for record. It seems the fields specified are not valid")
+		}
+		else {
+			result.removeAtIndex(result.endIndex.predecessor())
+		}
 
 		return result
 	}

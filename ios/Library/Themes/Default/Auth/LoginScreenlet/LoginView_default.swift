@@ -73,8 +73,6 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 		}
 	}
 
-	public var companyId: Int64 = 0
-
 
 	//MARK: BaseScreenletView
 

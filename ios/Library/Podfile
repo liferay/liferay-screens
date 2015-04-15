@@ -8,3 +8,5 @@ pod 'TNRadioButtonGroup'
 pod 'MDRadialProgress'
 pod 'ODRefreshControl'
 pod 'Liferay-iOS-SDK', '6.2.0.12'
+
+pod "Nocilla"
