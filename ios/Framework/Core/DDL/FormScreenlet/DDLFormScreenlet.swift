@@ -67,7 +67,7 @@ import UIKit
 	@IBOutlet public var delegate: DDLFormScreenletDelegate?
 
 	internal var formView: DDLFormView {
-		return screenletView as DDLFormView
+		return screenletView as! DDLFormView
 	}
 
 	private var uploadStatus = UploadStatus.Idle
@@ -109,7 +109,7 @@ import UIKit
 				return createSubmitFormInteractor()
 			case UploadDocumentAction:
 				if sender is DDLFieldDocument {
-					return createUploadDocumentInteractor(sender as DDLFieldDocument)
+					return createUploadDocumentInteractor(sender as! DDLFieldDocument)
 				}
 			default: ()
 		}
@@ -121,7 +121,7 @@ import UIKit
 		let result = super.onAction(name: name, interactor: interactor, sender: sender)
 
 		if name! == UploadDocumentAction && result {
-			let uploadInteractor = interactor as DDLFormUploadDocumentInteractor
+			let uploadInteractor = interactor as! DDLFormUploadDocumentInteractor
 
 			delegate?.onDocumentUploadStarted?(uploadInteractor.document)
 

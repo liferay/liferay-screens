@@ -19,7 +19,7 @@ class WebContentDisplayLoadInteractor: ServerOperationInteractor {
 	var resultHTML: String?
 
 	override func createOperation() -> LiferayWebContentLoadOperation {
-		let screenlet = self.screenlet as WebContentDisplayScreenlet
+		let screenlet = self.screenlet as! WebContentDisplayScreenlet
 		let operation = LiferayWebContentLoadOperation(screenlet: self.screenlet)
 
 		operation.groupId = (screenlet.groupId != 0)
@@ -31,7 +31,7 @@ class WebContentDisplayLoadInteractor: ServerOperationInteractor {
 	}
 
 	override func completedOperation(op: ServerOperation) {
-		self.resultHTML = (op as LiferayWebContentLoadOperation).resultHTML
+		self.resultHTML = (op as! LiferayWebContentLoadOperation).resultHTML
 	}
 
 }

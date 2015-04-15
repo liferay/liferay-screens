@@ -40,7 +40,7 @@ import UIKit
 
 
 	internal var viewModel: SignUpViewModel {
-		return screenletView as SignUpViewModel
+		return screenletView as! SignUpViewModel
 	}
 
 

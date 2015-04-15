@@ -19,15 +19,15 @@ class SignUpInteractor: ServerOperationInteractor {
 	var resultUserAttributes: [String:AnyObject]?
 
 	override func createOperation() -> LiferaySignUpOperation {
-		let operation = LiferaySignUpOperation(screenlet: self.screenlet as SignUpScreenlet)
+		let operation = LiferaySignUpOperation(screenlet: self.screenlet as! SignUpScreenlet)
 
-		operation.companyId = (self.screenlet as SignUpScreenlet).companyId
+		operation.companyId = (self.screenlet as! SignUpScreenlet).companyId
 
 		return operation
 	}
 
 	override func completedOperation(op: ServerOperation) {
-		self.resultUserAttributes = (op as LiferaySignUpOperation).resultUserAttributes
+		self.resultUserAttributes = (op as! LiferaySignUpOperation).resultUserAttributes
 	}
 
 }

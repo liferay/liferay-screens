@@ -116,7 +116,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 
 		XCTAssertEqual("username", SessionContext.currentUserName!)
 		XCTAssertEqual("password", SessionContext.currentPassword!)
-		XCTAssertEqual("v", SessionContext.userAttribute("k") as String)
+		XCTAssertEqual("v", SessionContext.userAttribute("k") as! String)
 	}
 
 	func test_RemoveStoredSession_ShouldEmptyTheStoredSession() {

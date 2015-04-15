@@ -48,7 +48,7 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedType {
 
 
 	internal var viewModel: LoginViewModel {
-		return screenletView as LoginViewModel
+		return screenletView as! LoginViewModel
 	}
 
 

@@ -39,7 +39,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 
 	private var viewModel: UserPortraitViewModel {
-		return screenletView as UserPortraitViewModel
+		return screenletView as! UserPortraitViewModel
 	}
 
 

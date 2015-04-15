@@ -88,16 +88,16 @@ public class KeyboardManager {
 	//MARK: Private methods
 
 	private dynamic func keyboardShown(notification: NSNotification?) {
-		let value = notification!.userInfo![UIKeyboardFrameEndUserInfoKey] as NSValue
+		let value = notification!.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
 		let frame = adjustRectForCurrentOrientation(value.CGRectValue())
 
 		StaticData.currentHeight = frame.size.height
 		StaticData.visible = true
 
 		let animationDuration =
-				notification!.userInfo![UIKeyboardAnimationDurationUserInfoKey] as NSNumber
+				notification!.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
 		let animationCurve =
-				notification!.userInfo![UIKeyboardAnimationCurveUserInfoKey] as NSNumber
+				notification!.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
 
 		layoutable?.layoutWhenKeyboardShown(frame.size.height,
 				animation: (time: animationDuration, curve: animationCurve))

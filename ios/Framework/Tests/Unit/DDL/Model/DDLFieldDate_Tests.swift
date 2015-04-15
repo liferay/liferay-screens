@@ -44,7 +44,7 @@ class DDLFieldDate_Tests: XCTestCase {
 		XCTAssertEqual(1, fields!.count)
 		XCTAssertTrue(fields![0] is DDLFieldDate)
 
-		let dateField = fields![0] as DDLFieldDate
+		let dateField = fields![0] as! DDLFieldDate
 
 		XCTAssertEqual(DDLField.DataType.DDLDate, dateField.dataType)
 		XCTAssertEqual(DDLField.Editor.Date, dateField.editorType)
@@ -63,15 +63,15 @@ class DDLFieldDate_Tests: XCTestCase {
 		XCTAssertTrue(dateField.predefinedValue is NSDate)
 		XCTAssertEqual(
 				"31/12/2001",
-				dateFormatter.stringFromDate(dateField.predefinedValue as NSDate))
+				dateFormatter.stringFromDate(dateField.predefinedValue as! NSDate))
 		XCTAssertEqual(
-				dateField.currentValue as NSDate,
-				dateField.predefinedValue as NSDate)
+				dateField.currentValue as! NSDate,
+				dateField.predefinedValue as! NSDate)
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
 		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
-		let dateField = fields![0] as DDLFieldDate
+		let dateField = fields![0] as! DDLFieldDate
 
 		XCTAssertTrue(dateField.currentValue == nil)
 
@@ -80,7 +80,7 @@ class DDLFieldDate_Tests: XCTestCase {
 
 	func test_currentValueAsString_ShouldReturnEpochTimeInMilliseconds() {
 		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
-		let dateField = fields![0] as DDLFieldDate
+		let dateField = fields![0] as! DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -94,7 +94,7 @@ class DDLFieldDate_Tests: XCTestCase {
 
 	func test_currentValueAsString_ShouldSupportOneDigitMonth_WhenSettingTheStringValue() {
 		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
-		let dateField = fields![0] as DDLFieldDate
+		let dateField = fields![0] as! DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -103,12 +103,12 @@ class DDLFieldDate_Tests: XCTestCase {
 
 		XCTAssertEqual(
 				"19/06/2004",
-				dateFormatter.stringFromDate(dateField.currentValue as NSDate))
+				dateFormatter.stringFromDate(dateField.currentValue as! NSDate))
 	}
 
 	func test_currentValueAsString_ShouldSupportFourDigitsYear_WhenSettingTheStringValue() {
 		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
-		let dateField = fields![0] as DDLFieldDate
+		let dateField = fields![0] as! DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -117,7 +117,7 @@ class DDLFieldDate_Tests: XCTestCase {
 
 		XCTAssertEqual(
 				"19/06/2004",
-				dateFormatter.stringFromDate(dateField.currentValue as NSDate))
+				dateFormatter.stringFromDate(dateField.currentValue as! NSDate))
 	}
 
 
@@ -125,7 +125,7 @@ class DDLFieldDate_Tests: XCTestCase {
 
 	func test_currentValueAsLabel_ShouldReturnLocalizedValue_WhenEnglishLocaleIsUsed() {
 		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
-		let dateField = fields![0] as DDLFieldDate
+		let dateField = fields![0] as! DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -138,7 +138,7 @@ class DDLFieldDate_Tests: XCTestCase {
 
 	func test_currentValueAsLabel_ShouldReturnLocalizedValue_WhenSpanishLocaleIsUsed() {
 		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
-		let dateField = fields![0] as DDLFieldDate
+		let dateField = fields![0] as! DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -150,11 +150,11 @@ class DDLFieldDate_Tests: XCTestCase {
 
 	func test_currentValueAsLabel_ShouldBeTheValidDate_WhenSetTheLabelDate() {
 		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
-		let dateField = fields![0] as DDLFieldDate
+		let dateField = fields![0] as! DDLFieldDate
 
 		dateField.currentValueAsLabel = "19 de junio de 2004"
 
-		let date = dateField.currentValue as NSDate
+		let date = dateField.currentValue as! NSDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"

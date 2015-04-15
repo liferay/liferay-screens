@@ -35,7 +35,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertTrue(convertedValue is Bool)
-		XCTAssertTrue(convertedValue as Bool)
+		XCTAssertTrue(convertedValue as! Bool)
 	}
 
 	func test_ConvertFromString_ShouldReturnBool_WhenFalseStringIsSupplied() {
@@ -45,7 +45,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertTrue(convertedValue is Bool)
-		XCTAssertFalse(convertedValue as Bool)
+		XCTAssertFalse(convertedValue as! Bool)
 	}
 
 
@@ -145,7 +145,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 		boolField.currentValueAsLabel = "Yes"
 
 		XCTAssertNotNil(boolField.currentValue)
-		XCTAssertTrue(boolField.currentValue as Bool)
+		XCTAssertTrue(boolField.currentValue as! Bool)
 	}
 
 	func test_CurrentValueAsLabel_ShouldBeFalse_WhenSetNoLabel() {
@@ -154,7 +154,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 		boolField.currentValueAsLabel = "No"
 
 		XCTAssertNotNil(boolField.currentValue)
-		XCTAssertFalse(boolField.currentValue as Bool)
+		XCTAssertFalse(boolField.currentValue as! Bool)
 	}
 
 	func test_CurrentValueAsLabel_ShouldBeTrue_WhenSetYesLabelWithCase() {
@@ -163,7 +163,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 		boolField.currentValueAsLabel = "yEs"
 
 		XCTAssertNotNil(boolField.currentValue)
-		XCTAssertTrue(boolField.currentValue as Bool)
+		XCTAssertTrue(boolField.currentValue as! Bool)
 	}
 
 
@@ -194,7 +194,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 		XCTAssertEqual(1, fields!.count)
 		XCTAssertTrue(fields![0] is DDLFieldBoolean)
 
-		let booleanField = fields![0] as DDLFieldBoolean
+		let booleanField = fields![0] as! DDLFieldBoolean
 
 		XCTAssertEqual(DDLField.DataType.DDLBoolean, booleanField.dataType)
 		XCTAssertEqual(DDLField.Editor.Checkbox, booleanField.editorType)
@@ -203,7 +203,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 		XCTAssertEqual("The tip", booleanField.tip)
 		XCTAssertNotNil(booleanField.predefinedValue)
 		XCTAssertTrue(booleanField.predefinedValue is Bool)
-		XCTAssertTrue(booleanField.predefinedValue as Bool)
+		XCTAssertTrue(booleanField.predefinedValue as! Bool)
 		XCTAssertFalse(booleanField.readOnly)
 		XCTAssertTrue(booleanField.repeatable)
 		XCTAssertFalse(booleanField.required)
@@ -230,7 +230,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 
 		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
 
-		let booleanField = fields![0] as DDLFieldBoolean
+		let booleanField = fields![0] as! DDLFieldBoolean
 
 		XCTAssertTrue(booleanField.currentValue == nil)
 

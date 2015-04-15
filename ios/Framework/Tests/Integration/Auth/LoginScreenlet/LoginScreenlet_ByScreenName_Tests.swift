@@ -43,11 +43,11 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 				assertThat("the attributes should be populated") {
 					XCTAssertTrue(result is [String:AnyObject])
 
-					let attrs = result as [String:AnyObject]
+					let attrs = result as! [String:AnyObject]
 
 					XCTAssertTrue(attrs.count > 0)
 					XCTAssertNotNil(attrs["screenName"])
-					XCTAssertEqual("test", attrs["screenName"] as String)
+					XCTAssertEqual("test", attrs["screenName"] as! String)
 				}
 				assertThat("the session should be established") {
 					XCTAssertTrue(SessionContext.hasSession)
