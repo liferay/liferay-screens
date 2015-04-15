@@ -52,7 +52,7 @@ public class LiferaySignUpOperation: ServerOperation {
 
 		var outError: NSError?
 
-		let emptyDict = []
+		let emptyDict = [AnyObject]()
 
 		let password = viewModel.password ?? ""
 
