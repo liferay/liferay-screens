@@ -33,32 +33,34 @@ Your iOS app can we written in Swift or Objective-C.
 
 ## Compatibility
 
-This implementation of Liferay Screens uses the Swift programming language. However, it doesn't use the new iOS 8 APIs, so it can be run only on devices with iOS 7 and above.
+This implementation of Liferay Screens uses the Swift programming language. However, it doesn't use the new iOS 8 APIs, so it can be run on any device with iOS 7 and above.
 
 ## Preparing Your Project for Liferay Screens
 
-Liferay Screens is released as a plain source code library. As soon as CocoaPods supports Swift libraries ([1](https://github.com/CocoaPods/CocoaPods/pull/2222), [2](https://github.com/CocoaPods/CocoaPods/issues/2272)), you'll be able to set up your project by simply adding a single line to your `Podfile`. 
+Liferay Screens is released as a standard [CocoaPods](https://cocoapods.org/) dependency, so you just need to add the line `pod 'LiferayScreens'` in your project's `Podfile`.
 
-Meanwhile, there are a few things you need to manually setup in your app to prepare it for Liferay Screens. First, you need to download the [Liferay Screens source code](https://github.com/liferay/liferay-screens/releases) and include it in your project. The steps for doing this are shown here:
+However, since Liferay Screens is written in Swift, you need to use CocoaPods version 0.36 or above. Also, this only works on iOS 8.0 or above. Refer to [this article](http://blog.cocoapods.org/CocoaPods-0.36/) for more details about how CocoaPods works with Swift dependencies.
 
-1. Create a folder at the root of your project called `Liferay-Screens`.
-2. Copy the folders `Library/Core` and `Library/Themes` from the downloaded 
-   source code into this new folder. After this, you'll have two subdirectories inside of your project's `Liferay-Screens` directory: `Core` and `Themes`.
-3. Drag `Liferay-Screens` from the Finder and drop it into your Xcode project.
+Your final `Podfile` should be similar to this one:
 
-![This Xcode project includes Liferay Screens.](Documentation/Images/project-setup.png)
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
 
-Next, set up [CocoaPods](http://cocoapods.org) for your project if you haven't done so already. Add the dependencies to your `Podfile` and then execute `pod install`. Use this [Podfile](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Podfile) as a template. You should consider using the [CocoaPods for Xcode plugin](https://github.com/kattrali/cocoapods-xcode-plugin). You can install it through the [Alcatraz package manager](http://alcatraz.io/)) for Xcode. This way, you can perform these tasks from Xcode. 
+platform :ios, '8.0'
+use_frameworks!
 
-![The CocoaPods for Xcode plugin.](Documentation/Images/xcode-cocoapods.png)
+pod 'LiferayScreens'
 
-In your project's build settings, you also need to edit the *Objective-C Bridging* Header to include `${SRCROOT}/Liferay-Screens/Core/liferay-screens-bridge.h`. This is shown in the following screenshot:
+# the rest of your Podfile
+```
 
-![Objective-C Bridging Header](Documentation/Images/project-header.png)
+You can use this [Podfile](https://github.com/liferay/liferay-screens/tree/master/ios/Samples/Showcase-swift/Podfile) as a template.
 
-There's just one more thing to take care of to ensure that your project is ready for Liferay Screens. Create a new property list file called `liferay-server-context.plist`. You'll use this file to configure the settings for your Liferay Portal instance. Use [`liferay-server-context-sample.plist`](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Core/liferay-server-context-sample.plist) as a template. This screenshot shows such a file being browsed:
+If you want to support iOS 7, you need to [manually install the library into your project.](Documentation/ManualInstallation.md)
 
-![liferay-context.plist file](Documentation/Images/liferay-context.png)
+There's just one last step to ensure that your project is ready for Liferay Screens. Create a new property list (`.plist`) file called `liferay-server-context.plist`. You'll use this file to configure the settings for your Liferay Portal instance. Use [`liferay-server-context-sample.plist`](https://github.com/liferay/liferay-screens/tree/master/ios/Framework/Core/Resources/liferay-server-context-sample.plist) as a template. This screenshot shows such a file being browsed:
+
+![A `liferay-context.plist` file.](Documentation/Images/liferay-context.png)
 
 Great! Your project should now be ready for Liferay Screens. Next, you'll learn how to use screenlets in your project.
 
@@ -84,26 +86,37 @@ Now that the screenlet's delegate protocol is conformed in your `ViewController`
 
 Awesome! Now you know how to use screenlets in your projects. However, if you want to use screenlets from Objective-C code, there are a few more things that you need to take care of. These are presented in the next section. If you don't need to use screenlets from Objective-C, you can skip this section and proceed to the list of available screenlets below.
 
+
+### Screenlet Localization
+
+You can localize screenlets to show their information in different languages. This uses [Apple's standard mechanism](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html) for localization.
+
+Even though the screenlets support several languages, you have to support those languages in your app. In other words, if you don't support a given language in your app, the screenlet doesn't support that language either. To support a language, make sure that your project's settings list the language, as in the following screenshot:
+
+![Xcode localizations in the project's settings.](Documentation/Images/xcode-localizations.png "Xcode localizations in project's settings")
+
 ### Using Screenlets from Objective-C Code
 
-If you want to invoke screenlet classes from your Objective-C code, then there are a couple of additional header files that you need to import. Their import statements are shown here:
+If you want to invoke screenlet classes from your Objective-C code, then there is an additional header file that you need to import in every Objective-C file:
 
-    #import "liferay-screens-bridge.h"
-    #import "[name_of_your_project]-Swift.h"
-    
-Simply replace `name_of_your_project` with your project's name. If your project's name uses non-alphanumeric characters, replace them with `_`. If you get tired of adding the same imports over and over again, you can add a precompiler header file using the following steps:
+```Objective-C
+#import "LiferayScreens-Swift.h"
+```
+To avoid adding the same imports over and over again, you can add a precompiler header file by using the following steps:
 
-1. Create the file `Prefix.pch` and add it to your project.
+1. Create the file `PrefixHeader.pch` and add it to your project.
 
-2. Add the previous imports to that file.
+2. Add the previous import to that file.
 
-3. Edit the following build settings of your target, using the indicated settings. Remember to replace `path/to/your/file/` with the path to your `Prefix.pch` file:
+3. Edit the following build settings of your target, using the indicated settings. Remember to replace `path/to/your/file/` with the path to your `PrefixHeader.pch` file:
 
     - Precompile Prefix Header: `Yes`
-    - Prefix Header: `path/to/your/file/Prefix.pch`
+    - Prefix Header: `path/to/your/file/PrefixHeader.pch`
 
-    ![The `Prefix.pch` configuration in Xcode settings.](Documentation/Images/xcode-prefix.png)
+    ![The `PrefixHeader.pch` configuration in Xcode settings.](Documentation/Images/xcode-prefix.png)
 
+You can use this [`PrefixHeader.pch`](https://github.com/liferay/liferay-screens/tree/master/ios/Samples/Showcase-objc/LiferayScreens-Showcase-Objc/PrefixHeader.pch) as a template.
+ 
 Super! Now you know how to call screenlets from the Objective-C code in your project. Next, a list of the screenlets available in Liferay Screens is presented.
 
 ## Listing of Available Screenlets
