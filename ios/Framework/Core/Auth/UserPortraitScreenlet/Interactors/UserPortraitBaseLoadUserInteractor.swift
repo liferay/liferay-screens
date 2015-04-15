@@ -52,7 +52,7 @@ class UserPortraitBaseLoadUserInteractor: UserPortraitBaseInteractor {
 		var result = false
 
 		if let operation = createLoadUserOperation() {
-			result = operation.validateAndEnqueue(onUserLoaded)
+			result = operation.validateAndEnqueue(onComplete: onUserLoaded)
 
 			if result {
 				self.screenlet.screenletView?.onStartOperation()

@@ -27,8 +27,12 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 
 	private let imagePicker = UIImagePickerController()
 
-	override public init() {
-		super.init(
+	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+	}
+
+	public convenience init() {
+		self.init(
 			nibName: "DDLFieldDocumentlibraryPresenterViewController_default",
 			bundle: nil)
 
