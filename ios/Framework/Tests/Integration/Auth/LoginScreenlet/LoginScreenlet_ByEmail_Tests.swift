@@ -34,7 +34,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 	func test_Successful() {
 		scenario("LoginScreenlet by email should work") {
-			given("a configured login screenlet", {
+			given("a configured login screenlet") {
 				with("auth method set to email") {
 					self.screenlet!.authMethod = AuthMethod.Email.rawValue
 				}
@@ -42,16 +42,18 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					self.screenlet!.viewModel.userName = "test@liferay.com"
 					self.screenlet!.viewModel.password = "test"
 				}
-			},
-			when: "the screenlet sends the request to the server and the response is received", {
-				mockServer.stubService("get-user-by-email-address", withResult:mockServer.loginOK())
-
-				self.screenlet!.delegate = Delegate() { result in
+				and("server returns ok") {
+					mockServer.stubService("get-user-by-email-address",
+							withResult:mockServer.loginOK())
+				}
+			}
+			when("the request is sent and the response is received") {
+				self.screenlet!.delegate = TestLoginScreenletDelegate() { result in
 					done("login response received", withResult: result)
 				}
 				self.screenlet!.performDefaultAction()
-			},
-			eventually: "the state of the screenlet should be consistent", {result in
+			}
+			eventually("the state of the screenlet should be consistent", {result in
 				assertThat("the error should be nil") {
 					XCTAssertFalse(result is NSError)
 				}
@@ -82,7 +84,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 	func test_StoreCredentials() {
 		scenario("LoginScreenlet by email store credentials") {
-			given("a configured login screenlet", {
+			given("a configured login screenlet") {
 				with("auth method set to email") {
 					self.screenlet!.authMethod = AuthMethod.Email.rawValue
 				}
@@ -93,22 +95,29 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				and("store credentials flag enabled") {
 					self.screenlet!.saveCredentials = true
 				}
-			},
-			when: "the screenlet sends the request to the server and the response is received", {
-				mockServer.stubService("get-user-by-email-address", withResult:mockServer.loginOK())
-
-				self.screenlet!.delegate = Delegate() {
-					done("login response received", withResult: $0)
+				and("server returns ok") {
+					mockServer.stubService("get-user-by-email-address",
+							withResult:mockServer.loginOK())
 				}
+			}
+			when("the request is sent and the response is received") {
+				// we need to complete the test when the credentials are saved.
+				// This happens *after* the loginResponse is received
+				let loginDelegate = TestLoginScreenletDelegate()
+				loginDelegate.onCredentialsStored = {
+					done("login response received", withResult: nil)
+				}
+				self.screenlet!.delegate = loginDelegate
+
 				self.screenlet!.performDefaultAction()
 
-			},
-			eventually: "the credentials should be stored", {result in
+			}
+			eventually("the credentials should be stored", {result in
 				assertThat("the session context can load the credentials") {
 					XCTAssertTrue(SessionContext.loadSessionFromStore())
 				}
 				assertThat("onCredentialsSaved delegate is called") {
-					XCTAssertTrue((self.screenlet!.delegate as Delegate).credentialsSavedCalled)
+					XCTAssertTrue((self.screenlet!.delegate as! TestLoginScreenletDelegate).credentialsSavedCalled)
 				}
 			},
 			.TestAndWaitFor("login response received", self))
@@ -117,7 +126,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 	func test_Failed_WrongCredentials() {
 		scenario("LoginScreenlet by email should fail when credentials are wrong") {
-			given("a configured login screenlet", {
+			given("a configured login screenlet") {
 				with("auth method set to email") {
 					self.screenlet!.authMethod = AuthMethod.Email.rawValue
 				}
@@ -125,18 +134,18 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					self.screenlet!.viewModel.userName = "test@liferay.com"
 					self.screenlet!.viewModel.password = "test"
 				}
-			},
-			when: "the screenlet sends the request to the server and the response is received", {
-				mockServer.stubService("get-user-by-email-address",
-						withResult:mockServer.loginFailedAuthentication())
-
-				self.screenlet!.delegate = Delegate() { result in
+				and("server returns failure") {
+					mockServer.stubService("get-user-by-email-address",
+							withResult:mockServer.loginFailedAuthentication())
+				}
+			}
+			when("the request is sent and the response is received") {
+				self.screenlet!.delegate = TestLoginScreenletDelegate() { result in
 					done("login response received", withResult: result)
 				}
 				self.screenlet!.performDefaultAction()
-
-			},
-			eventually: "the state of the screenlet should be consistent", {result in
+			}
+			eventually("the state of the screenlet should be consistent", {result in
 				assertThat("the error should be nil") {
 					XCTAssertTrue(result is NSError)
 
