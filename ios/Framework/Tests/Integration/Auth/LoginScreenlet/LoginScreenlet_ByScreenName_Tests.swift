@@ -18,7 +18,7 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 
 	func test_Successful() {
 		scenario("LoginScreenlet by screenName should work") {
-			given("a configured login screenlet", {
+			given("a configured login screenlet") {
 				with("auth method set to screenName") {
 					self.screenlet!.authMethod = AuthMethod.ScreenName.rawValue
 				}
@@ -26,17 +26,18 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 					self.screenlet!.viewModel.userName = "test"
 					self.screenlet!.viewModel.password = "test"
 				}
-			},
-			when: "the screenlet sends the request to the server and the response is received", {
-				mockServer.stubService("get-user-by-screen-name", withResult:mockServer.loginOK())
-
-				self.screenlet!.delegate = Delegate() { result in
+				and("server returns ok") {
+					mockServer.stubService("get-user-by-screen-name",
+							withResult:mockServer.loginOK())
+				}
+			}
+			when("the request is sent and the response is received") {
+				self.screenlet!.delegate = TestLoginScreenletDelegate() { result in
 					done("login response received", withResult: result)
 				}
 				self.screenlet!.performDefaultAction()
-
-			},
-			eventually: "the state of the screenlet should be consistent", {result in
+			}
+			eventually("the state of the screenlet should be consistent", {result in
 				assertThat("the error should be nil") {
 					XCTAssertFalse(result is NSError)
 				}

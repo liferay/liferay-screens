@@ -14,38 +14,39 @@
 import XCTest
 
 
+@objc class TestLoginScreenletDelegate : LoginScreenletDelegate {
+	let onCompleted: (AnyObject -> Void)?
+	var onCredentialsStored: (Void -> Void)?
+
+	var credentialsSavedCalled = false
+	var credentialsLoadedCalled = false
+
+	init(completed: (AnyObject -> Void)? = nil) {
+		self.onCompleted = completed
+	}
+
+	func onLoginResponse(attributes: [String:AnyObject]) {
+		onCompleted?(attributes)
+	}
+
+	func onLoginError(error: NSError) {
+		onCompleted?(error)
+	}
+
+	func onCredentialsSaved() {
+		credentialsSavedCalled = true
+		onCredentialsStored?()
+	}
+
+	func onCredentialsLoaded() {
+		credentialsLoadedCalled = true
+	}
+
+}
+
 class BaseLoginScreenletTestCase: IntegrationTestCase {
 
 	var screenlet: LoginScreenlet?
-
-	internal class Delegate : LoginScreenletDelegate {
-		let completed: AnyObject -> Void
-
-		var credentialsSavedCalled = false
-		var credentialsLoadedCalled = false
-
-		init(completed: AnyObject -> Void) {
-			self.completed = completed
-		}
-
-		func onLoginResponse(attributes: [String:AnyObject]) {
-			completed(attributes)
-		}
-
-		func onLoginError(error: NSError) {
-			completed(error)
-		}
-
-		func onCredentialsSaved() {
-			credentialsSavedCalled = true
-		}
-
-		func onCredentialsLoaded() {
-			credentialsLoadedCalled = true
-		}
-
-	}
-
 
 	override func setUp() {
 		super.setUp()
