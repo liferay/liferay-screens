@@ -208,6 +208,9 @@ public class ServerOperation: NSOperation {
 		if self.onComplete != nil {
 			dispatch_async(dispatch_get_main_queue()) {
 				self.onComplete!(self)
+
+				// this breaks the retain cycle between the op and 'onComplete'
+				self.onComplete = nil
 			}
 		}
 	}
