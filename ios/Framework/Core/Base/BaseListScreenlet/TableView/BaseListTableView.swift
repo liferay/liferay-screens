@@ -139,7 +139,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			NSIndexPath(forRow: $0, inSection: 0)
 		}
 
-		tableView!.insertRowsAtIndexPaths(indexPaths, withRowAnimation:UITableViewRowAnimation.Top)
+		tableView!.insertRowsAtIndexPaths(indexPaths, withRowAnimation:.Top)
 	}
 
 	internal func clearAllRows(currentRows: [AnyObject?]) {
@@ -147,8 +147,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 
 		for (index,_) in enumerate(currentRows) {
 			let indexPath = NSIndexPath(forRow:index, inSection:0)
-			tableView!.deleteRowsAtIndexPaths([indexPath],
-					withRowAnimation: UITableViewRowAnimation.Fade)
+			tableView!.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
 		}
 
 		tableView!.endUpdates()
@@ -156,8 +155,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 
 	internal func updateVisibleRows(visibleRows: [AnyObject]) {
 		if visibleRows.count > 0 {
-			tableView!.reloadRowsAtIndexPaths(visibleRows,
-					withRowAnimation:UITableViewRowAnimation.None)
+			tableView!.reloadRowsAtIndexPaths(visibleRows, withRowAnimation:.None)
 		}
 		else {
 			tableView!.reloadData()

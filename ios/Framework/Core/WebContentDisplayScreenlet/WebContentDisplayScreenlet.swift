@@ -46,7 +46,7 @@ import UIKit
 			let modifiedHtml = self.delegate?.onWebContentResponse?(interactor.resultHTML!)
 
 			(self.screenletView as! WebContentDisplayViewModel).htmlContent =
-					(modifiedHtml != nil) ? modifiedHtml! : interactor.resultHTML!
+					modifiedHtml ?? interactor.resultHTML!
 		}
 
 		interactor.onFailure = {
