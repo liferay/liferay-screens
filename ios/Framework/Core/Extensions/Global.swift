@@ -22,7 +22,11 @@ public enum ScreenletsErrorCause: Int {
 }
 
 
-internal func createError(#cause: ScreenletsErrorCause, userInfo: [NSObject : AnyObject]? = nil) -> NSError {
+internal func createError(
+		#cause: ScreenletsErrorCause,
+		userInfo: [NSObject : AnyObject]? = nil)
+		-> NSError {
+
 	return NSError(domain: "LiferayScreenlets", code: cause.rawValue, userInfo: userInfo)
 }
 
@@ -44,7 +48,7 @@ public func nullIfEmpty(string: String?) -> String? {
 	return string
 }
 
-func synchronized(lock:AnyObject, closure: Void -> Void) {
+func synchronized(lock: AnyObject, closure: Void -> Void) {
 	objc_sync_enter(lock)
 	closure()
 	objc_sync_exit(lock)

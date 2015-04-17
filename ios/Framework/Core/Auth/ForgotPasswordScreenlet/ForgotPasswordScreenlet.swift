@@ -22,8 +22,8 @@ import UIKit
 }
 
 
-@IBDesignable public class ForgotPasswordScreenlet: BaseScreenlet,
-		AuthBasedType, AnonymousAuthType {
+@IBDesignable public class ForgotPasswordScreenlet: BaseScreenlet, AuthBasedType,
+		AnonymousAuthType {
 
 	//MARK: Inspectables
 
