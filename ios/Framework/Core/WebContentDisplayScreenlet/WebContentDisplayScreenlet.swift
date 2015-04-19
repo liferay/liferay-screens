@@ -28,7 +28,7 @@ import UIKit
 	@IBInspectable public var articleId: String = ""
 	@IBInspectable public var autoLoad: Bool = true
 
-	@IBOutlet public var delegate: WebContentDisplayScreenletDelegate?
+	@IBOutlet public weak var delegate: WebContentDisplayScreenletDelegate?
 
 
 	//MARK: Public methods

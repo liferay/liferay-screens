@@ -35,7 +35,7 @@ import UIKit
 		}
 	}
 
-	@IBOutlet public var delegate: DDLListScreenletDelegate?
+	@IBOutlet public weak var delegate: DDLListScreenletDelegate?
 
 	internal var viewModel: DDLListViewModel {
 		return screenletView as! DDLListViewModel
