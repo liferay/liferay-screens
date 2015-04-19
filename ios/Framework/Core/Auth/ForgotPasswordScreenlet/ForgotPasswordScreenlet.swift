@@ -39,7 +39,7 @@ import UIKit
 	@IBInspectable var companyId: Int64 = 0
 
 
-	@IBOutlet public var delegate: ForgotPasswordScreenletDelegate?
+	@IBOutlet public weak var delegate: ForgotPasswordScreenletDelegate?
 
 
 	public var saveCredentials: Bool {

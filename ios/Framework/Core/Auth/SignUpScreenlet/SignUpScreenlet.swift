@@ -35,8 +35,8 @@ import UIKit
 
 	@IBInspectable public var companyId: Int64 = 0
 
-	@IBOutlet public var delegate: SignUpScreenletDelegate?
-	@IBOutlet public var autoLoginDelegate: LoginScreenletDelegate?
+	@IBOutlet public weak var delegate: SignUpScreenletDelegate?
+	@IBOutlet public weak var autoLoginDelegate: LoginScreenletDelegate?
 
 
 	internal var viewModel: SignUpViewModel {

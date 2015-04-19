@@ -44,7 +44,7 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedType {
 	@IBInspectable public var companyId: Int64 = 0
 
 
-	@IBOutlet public var delegate: LoginScreenletDelegate?
+	@IBOutlet public weak var delegate: LoginScreenletDelegate?
 
 
 	internal var viewModel: LoginViewModel {

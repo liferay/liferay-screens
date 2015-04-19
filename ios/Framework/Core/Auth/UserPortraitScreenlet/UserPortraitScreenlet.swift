@@ -35,7 +35,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		}
 	}
 
-	@IBOutlet public var delegate: UserPortraitScreenletDelegate?
+	@IBOutlet public weak var delegate: UserPortraitScreenletDelegate?
 
 
 	private var viewModel: UserPortraitViewModel {

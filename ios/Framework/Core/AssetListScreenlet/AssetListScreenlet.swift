@@ -71,7 +71,7 @@ import UIKit
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var classNameId: Int = 0
 
-	@IBOutlet public var delegate: AssetListScreenletDelegate?
+	@IBOutlet public weak var delegate: AssetListScreenletDelegate?
 
 
 	//MARK: BaseListScreenlet
