@@ -4,22 +4,20 @@ Pod::Spec.new do |s|
 	s.version      = '0.3'
 	s.summary      = 'A family of visual components called screenlets that are connected to the Liferay Platform used as a backend'
 	s.homepage     = 'https://www.liferay.com/liferay-screens'
-	s.documentation_url = 'https://github.com/liferay/liferay-screens'
 	s.license = { 
 		:type => 'LGPL 2.1', 
 		:file => 'LICENSE.md'
 	}
 	s.source = {
 		:git => 'https://github.com/liferay/liferay-screens.git',
-		:tag => 'v1.0-beta-3'
+		:commit => '4aa8ed0deb87eac5d553dddac7adc54076e962c2',
+		:tag => '0.3'
 	}
 	s.authors = {
 		'Jose Manuel Navarro' => 'jose.navarro@liferay.com'
 	}
-	s.social_media_url = 'http://twitter.com/jmnavarro'
 	
-	s.platform = :ios
-	s.ios.deployment_target = '8.0'
+	s.platform = :ios, '8.0'
 	s.requires_arc = true
 
 	s.ios.frameworks = 'CoreGraphics', 'Foundation', 'MobileCoreServices', 'QuartzCore', 'Security', 'SystemConfiguration', 'UIKit'
