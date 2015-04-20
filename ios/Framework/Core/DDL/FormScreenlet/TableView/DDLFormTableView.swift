@@ -22,7 +22,7 @@ public class DDLFormTableView: DDLFormView,
 	override public var record: DDLRecord? {
 		didSet {
 			forEachField() {
-				self.registerFieldCustomEditor($0)
+				self.registerCustomEditor($0)
 				self.resetCellHeightForField($0)
 				return
 			}
@@ -252,59 +252,77 @@ public class DDLFormTableView: DDLFormView,
 	//MARK: Internal methods
 
 	internal func registerFieldCells() {
-		let currentBundle = NSBundle(forClass: self.dynamicType)
+		let bundles = allBundles(currentClass: self.dynamicType, currentTheme: themeName);
 
 		for fieldEditor in DDLField.Editor.all() {
-			if let cellView = registerFieldEditorCell(
-					nibName: "DDLField\(fieldEditor.toCapitalizedName())TableCell",
-					cellId: fieldEditor.toCapitalizedName()) {
+			for bundle in bundles {
+				let cellId = fieldEditor.toCapitalizedName()
 
-				cellHeights[fieldEditor.toCapitalizedName()] =
-						(cellView.bounds.size.height, cellView.bounds.size.height)
+				if let cellView = registerEditorCellInBundle(bundle,
+						nibName: "DDLField\(cellId)TableCell",
+						cellId: cellId) {
+					cellHeights[cellId] = (cellView.bounds.size.height, cellView.bounds.size.height)
+
+					break
+				}
 			}
 		}
 
 		if showSubmitButton {
-			if let cellView = registerFieldEditorCell(
-					nibName: "DDLSubmitButtonTableCell",
-					cellId: "SubmitButton") {
-				submitButtonHeight = cellView.bounds.size.height
+			for bundle in bundles {
+				if let cellView = registerEditorCellInBundle(bundle,
+						nibName: "DDLSubmitButtonTableCell",
+						cellId: "SubmitButton") {
+					submitButtonHeight = cellView.bounds.size.height
+
+					break
+				}
 			}
 		}
 	}
 
-	internal func registerFieldCustomEditor(field: DDLField) -> Bool {
-		let cellView = registerFieldEditorCell(
-				nibName: "DDLCustomField\(field.name)TableCell",
-				cellId: field.name)
+	internal func registerCustomEditor(field: DDLField) -> Bool {
+		let bundles = allBundles(currentClass: self.dynamicType, currentTheme: themeName);
 
-		if cellView != nil {
-			setCellHeight(cellView!.bounds.size.height, forField: field)
+		for bundle in bundles {
+			if let cellView = registerEditorCellInBundle(bundle,
+					nibName: "DDLCustomField\(field.name)TableCell",
+					cellId: field.name) {
+
+				setCellHeight(cellView.bounds.size.height, forField: field)
+
+				return true
+			}
 		}
 
-		return cellView != nil
+		return false
 	}
 
-	internal func registerFieldEditorCell(#nibName: String, cellId: String) -> UITableViewCell? {
-		var themedNibName = nibName
-		if let themeNameValue = themeName {
-			themedNibName += "_" + themeNameValue
-		}
+	internal func registerEditorCellInBundle(bundle: NSBundle,
+			nibName: String,
+			cellId: String)
+			-> UITableViewCell? {
 
-		var cell: UITableViewCell?
-		let currentBundle = NSBundle(forClass: self.dynamicType)
-		if currentBundle.pathForResource(themedNibName, ofType: "nib") != nil {
-			let nib = UINib(nibName: themedNibName, bundle: currentBundle)
+		let themedNibName = (themeName != nil)
+				? "\(nibName)_\(themeName!)"
+				: nibName
+
+		if bundle.pathForResource(themedNibName, ofType: "nib") != nil {
+			let nib = UINib(nibName: themedNibName, bundle: bundle)
+
 			tableView?.registerNib(nib, forCellReuseIdentifier: cellId)
 
 			let views = nib.instantiateWithOwner(nil, options: nil)
-			cell = views.first as? UITableViewCell
-			if cell == nil {
-				println("ERROR: Root view in cell for \(nibName) didn't found")
+
+			if let cell = views.first as? UITableViewCell {
+				return cell
+			}
+			else {
+				println("ERROR: Cell XIB \(themedNibName) couldn't be registered (no root view?)")
 			}
 		}
 
-		return cell
+		return nil
 	}
 
 	internal func cellHeightForField(field: DDLField) -> CGFloat {
