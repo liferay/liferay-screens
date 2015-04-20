@@ -15,6 +15,9 @@ import UIKit
 import MobileCoreServices
 
 
+private let xibName = "DDLFieldDocumentlibraryPresenterViewController_default"
+
+
 public class DDLFieldDocumentlibraryPresenterViewController_default:
 		UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -27,14 +30,29 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 
 	private let imagePicker = UIImagePickerController()
 
+
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
 
 	public convenience init() {
+		func bundleForXib() -> NSBundle? {
+			let bundles = allBundles(
+					currentClass: DDLFieldDocumentlibraryPresenterViewController_default.self,
+					currentTheme: "default");
+
+			for bundle in bundles {
+				if bundle.pathForResource(xibName, ofType:"nib") != nil {
+					return bundle
+				}
+			}
+
+			return nil
+		}
+
 		self.init(
-			nibName: "DDLFieldDocumentlibraryPresenterViewController_default",
-			bundle: nil)
+			nibName: xibName,
+			bundle: bundleForXib())
 
 		imagePicker.delegate = self
 		imagePicker.allowsEditing = false
