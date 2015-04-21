@@ -19,8 +19,19 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		cardDeck.addCard(signInCard, withController: SignInViewController())
-		cardDeck.addCard(signUpCard, withController: SignUpViewController())
+		let signInController = SignInViewController()
+		signInController.onDone = {
+			self.dismissViewControllerAnimated(true, completion: nil)
+		}
+
+		cardDeck.addCard(signInCard, withController: signInController)
+
+		let signUpController = SignUpViewController()
+		signUpController.onDone = {
+			self.dismissViewControllerAnimated(true, completion: nil)
+		}
+
+		cardDeck.addCard(signUpCard, withController: signUpController)
 
 		signUpCard.normalHeight = cardDeck.frame.size.height - 50
 	}

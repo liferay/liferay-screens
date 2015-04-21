@@ -10,6 +10,8 @@ import UIKit
 
 class SignInViewController: UIViewController {
 
+	var onDone: (Void -> Void)?
+
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}

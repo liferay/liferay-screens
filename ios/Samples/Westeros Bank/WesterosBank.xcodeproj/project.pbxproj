@@ -19,6 +19,7 @@
 		88855A601AE65F2900D352D5 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88855A5E1AE65F2900D352D5 /* SignInViewController.xib */; };
 		88855A671AE6A5B700D352D5 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A661AE6A5B700D352D5 /* CardView.swift */; };
 		88855A691AE6A5E100D352D5 /* CardDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A681AE6A5E100D352D5 /* CardDeckView.swift */; };
+		88855A6C1AE6BD3E00D352D5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A6A1AE6BD3E00D352D5 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		88855A5E1AE65F2900D352D5 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		88855A661AE6A5B700D352D5 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		88855A681AE6A5E100D352D5 /* CardDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDeckView.swift; sourceTree = "<group>"; };
+		88855A6A1AE6BD3E00D352D5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8B041B2636CB91FFB7773179 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F2F4F265F639A9CBBACD5765 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 				88855A581AE659B700D352D5 /* SignUpViewController.xib */,
 				88855A5D1AE65F2900D352D5 /* SignInViewController.swift */,
 				88855A5E1AE65F2900D352D5 /* SignInViewController.xib */,
+				88855A6A1AE6BD3E00D352D5 /* HomeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			files = (
 				88855A5F1AE65F2900D352D5 /* SignInViewController.swift in Sources */,
 				88855A5C1AE659C400D352D5 /* ViewController.swift in Sources */,
+				88855A6C1AE6BD3E00D352D5 /* HomeViewController.swift in Sources */,
 				88855A591AE659B700D352D5 /* SignUpViewController.swift in Sources */,
 				88855A331AE6537000D352D5 /* AppDelegate.swift in Sources */,
 				88855A671AE6A5B700D352D5 /* CardView.swift in Sources */,

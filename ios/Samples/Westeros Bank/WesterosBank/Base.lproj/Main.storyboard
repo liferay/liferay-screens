@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PPh-lo-iNo">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -13,65 +13,98 @@
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" customClass="CardDeckView" customModule="WesterosBank" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" userLabel="On Boarding">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VhY-B2-AcX" userLabel="SignIn Card" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="458" width="320" height="554"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2b-zl-Zf5" customClass="CardDeckView" customModule="WesterosBank" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VhY-B2-AcX" userLabel="SignIn Card" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="438" width="320" height="554"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="554" id="H67-hE-duA"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimizedHeight">
+                                                <real key="value" value="55"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="normalHeight">
+                                                <real key="value" value="350"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="SIGN IN"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ach-hl-dTX" userLabel="SignUp Card" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="493" width="320" height="548"/>
+                                        <color key="backgroundColor" red="0.13333334029999999" green="0.75294125079999996" blue="0.392156899" alpha="1" colorSpace="deviceRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="548" id="nCX-ik-wyx"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimizedHeight">
+                                                <real key="value" value="55"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="SIGN UP"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="554" id="mvb-uT-Zx7"/>
+                                    <constraint firstItem="Ach-hl-dTX" firstAttribute="leading" secondItem="V2b-zl-Zf5" secondAttribute="leading" id="Bl0-vY-mY0"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ach-hl-dTX" secondAttribute="trailing" id="Enx-kC-dOE"/>
+                                    <constraint firstItem="VhY-B2-AcX" firstAttribute="leading" secondItem="V2b-zl-Zf5" secondAttribute="leading" id="XIS-ZG-atZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="VhY-B2-AcX" secondAttribute="bottom" constant="-444" id="c6f-gt-ZRl"/>
+                                    <constraint firstAttribute="trailing" secondItem="VhY-B2-AcX" secondAttribute="trailing" id="nh5-ly-RLC"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ach-hl-dTX" secondAttribute="bottom" constant="-493" id="wtS-LW-qyw"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="minimizedHeight">
-                                        <real key="value" value="55"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="normalHeight">
-                                        <real key="value" value="350"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="SIGN IN"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ach-hl-dTX" userLabel="SignUp Card" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="513" width="320" height="548"/>
-                                <color key="backgroundColor" red="0.13333334029999999" green="0.75294125079999996" blue="0.392156899" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="548" id="3NU-pc-wmV"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="minimizedHeight">
-                                        <real key="value" value="55"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="SIGN UP"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="VhY-B2-AcX" secondAttribute="bottom" constant="-444" id="1Gh-GC-ZIq"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="VhY-B2-AcX" secondAttribute="trailing" constant="-16" id="ErT-bg-Ogo"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ach-hl-dTX" secondAttribute="trailing" constant="-16" id="ZA9-a3-4t8"/>
-                            <constraint firstItem="Ach-hl-dTX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="bKd-rk-Qc3"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Ach-hl-dTX" secondAttribute="bottom" constant="-493" id="tg7-ko-XOh"/>
-                            <constraint firstItem="VhY-B2-AcX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="wx7-dc-lgD"/>
+                            <constraint firstItem="V2b-zl-Zf5" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="T2C-Ia-UTr"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="V2b-zl-Zf5" secondAttribute="bottom" id="YIU-KD-aQr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="V2b-zl-Zf5" secondAttribute="trailing" constant="-16" id="ZKk-eh-ukS"/>
+                            <constraint firstItem="V2b-zl-Zf5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="dCf-ky-b06"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cardDeck" destination="kh9-bI-dsS" id="Hrk-Ya-4je"/>
+                        <outlet property="cardDeck" destination="V2b-zl-Zf5" id="gIT-pV-ZhZ"/>
                         <outlet property="signInCard" destination="VhY-B2-AcX" id="OAT-7C-E0b"/>
                         <outlet property="signUpCard" destination="Ach-hl-dTX" id="wkU-17-orN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="301" y="510"/>
+            <point key="canvasLocation" x="715" y="515"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="aRR-dG-OOh">
+            <objects>
+                <viewController id="PPh-lo-iNo" customClass="HomeViewController" customModule="WesterosBank" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CX5-CM-qpo"/>
+                        <viewControllerLayoutGuide type="bottom" id="6ZO-sY-HaW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mMg-oB-ONJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.89047558060109289" green="0.89047558060109289" blue="0.89047558060109289" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="modal" identifier="onboarding" id="pXg-YE-7Bz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BEO-bD-8V4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="293" y="520"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

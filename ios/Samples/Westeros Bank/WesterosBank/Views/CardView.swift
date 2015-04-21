@@ -42,18 +42,7 @@ class CardView: UIView {
 
 
 	func changeToNextState() {
-		let nextPosition: CGFloat
-
-		switch nextState {
-		case .Hidden:
-			nextPosition = 0
-		case .Minimized:
-			nextPosition = self.superview!.frame.size.height - minimizedHeight
-		case .Normal:
-			nextPosition = self.superview!.frame.size.height - normalHeight
-		case .Maximized:
-			nextPosition = maximizedMargin
-		}
+		let nextPosition = positionForState(nextState)
 
 		UIView.animateWithDuration(0.7,
 				delay: 0.0,
@@ -65,6 +54,23 @@ class CardView: UIView {
 				}, completion: { Bool -> Void in
 					self.currentState = self.nextState
 				})
+	}
+
+	private func positionForState(state: ShowState) -> CGFloat {
+		let result: CGFloat
+
+		switch state {
+		case .Hidden:
+			result = 0
+		case .Minimized:
+			result = self.superview!.frame.size.height - minimizedHeight
+		case .Normal:
+			result = self.superview!.frame.size.height - normalHeight
+		case .Maximized:
+			result = maximizedMargin
+		}
+
+		return result
 	}
 
 }
