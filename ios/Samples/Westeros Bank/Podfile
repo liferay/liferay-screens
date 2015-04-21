@@ -1,0 +1,8 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'LiferayScreens', :git => 'https://github.com/liferay/liferay-screens', :branch => 'LMW-226-fix-delayed-ddlform-loading'
+
+pod 'KNSemiModalViewController'
