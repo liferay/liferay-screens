@@ -12,7 +12,11 @@
 		88855A381AE6537000D352D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88855A361AE6537000D352D5 /* Main.storyboard */; };
 		88855A3A1AE6537000D352D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88855A391AE6537000D352D5 /* Images.xcassets */; };
 		88855A3D1AE6537000D352D5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88855A3B1AE6537000D352D5 /* LaunchScreen.xib */; };
+		88855A591AE659B700D352D5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A571AE659B700D352D5 /* SignUpViewController.swift */; };
+		88855A5A1AE659B700D352D5 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88855A581AE659B700D352D5 /* SignUpViewController.xib */; };
 		88855A5C1AE659C400D352D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A5B1AE659C400D352D5 /* ViewController.swift */; };
+		88855A5F1AE65F2900D352D5 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A5D1AE65F2900D352D5 /* SignInViewController.swift */; };
+		88855A601AE65F2900D352D5 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88855A5E1AE65F2900D352D5 /* SignInViewController.xib */; };
 		88855A671AE6A5B700D352D5 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A661AE6A5B700D352D5 /* CardView.swift */; };
 		88855A691AE6A5E100D352D5 /* CardDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A681AE6A5E100D352D5 /* CardDeckView.swift */; };
 /* End PBXBuildFile section */
@@ -25,7 +29,11 @@
 		88855A371AE6537000D352D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88855A391AE6537000D352D5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		88855A3C1AE6537000D352D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		88855A571AE659B700D352D5 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		88855A581AE659B700D352D5 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		88855A5B1AE659C400D352D5 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		88855A5D1AE65F2900D352D5 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		88855A5E1AE65F2900D352D5 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		88855A661AE6A5B700D352D5 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		88855A681AE6A5E100D352D5 /* CardDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDeckView.swift; sourceTree = "<group>"; };
 		8B041B2636CB91FFB7773179 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +104,10 @@
 			isa = PBXGroup;
 			children = (
 				88855A5B1AE659C400D352D5 /* ViewController.swift */,
+				88855A571AE659B700D352D5 /* SignUpViewController.swift */,
+				88855A581AE659B700D352D5 /* SignUpViewController.xib */,
+				88855A5D1AE65F2900D352D5 /* SignInViewController.swift */,
+				88855A5E1AE65F2900D352D5 /* SignInViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -178,8 +190,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88855A601AE65F2900D352D5 /* SignInViewController.xib in Resources */,
 				88855A381AE6537000D352D5 /* Main.storyboard in Resources */,
 				88855A3D1AE6537000D352D5 /* LaunchScreen.xib in Resources */,
+				88855A5A1AE659B700D352D5 /* SignUpViewController.xib in Resources */,
 				88855A3A1AE6537000D352D5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,7 +253,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88855A5F1AE65F2900D352D5 /* SignInViewController.swift in Sources */,
 				88855A5C1AE659C400D352D5 /* ViewController.swift in Sources */,
+				88855A591AE659B700D352D5 /* SignUpViewController.swift in Sources */,
 				88855A331AE6537000D352D5 /* AppDelegate.swift in Sources */,
 				88855A671AE6A5B700D352D5 /* CardView.swift in Sources */,
 				88855A691AE6A5E100D352D5 /* CardDeckView.swift in Sources */,
