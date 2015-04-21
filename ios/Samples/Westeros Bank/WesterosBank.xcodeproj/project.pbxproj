@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		0D3BD6FCCD95D4FE972F06AC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6370C6082E034E1BCF5D2D54 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		88855A331AE6537000D352D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A321AE6537000D352D5 /* AppDelegate.swift */; };
-		88855A351AE6537000D352D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A341AE6537000D352D5 /* ViewController.swift */; };
 		88855A381AE6537000D352D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88855A361AE6537000D352D5 /* Main.storyboard */; };
 		88855A3A1AE6537000D352D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88855A391AE6537000D352D5 /* Images.xcassets */; };
 		88855A3D1AE6537000D352D5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88855A3B1AE6537000D352D5 /* LaunchScreen.xib */; };
+		88855A5C1AE659C400D352D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A5B1AE659C400D352D5 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +20,10 @@
 		88855A2D1AE6537000D352D5 /* WesterosBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WesterosBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88855A311AE6537000D352D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88855A321AE6537000D352D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		88855A341AE6537000D352D5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		88855A371AE6537000D352D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88855A391AE6537000D352D5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		88855A3C1AE6537000D352D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		88855A5B1AE659C400D352D5 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8B041B2636CB91FFB7773179 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F2F4F265F639A9CBBACD5765 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,8 +69,8 @@
 		88855A2F1AE6537000D352D5 /* WesterosBank */ = {
 			isa = PBXGroup;
 			children = (
+				88855A561AE659B700D352D5 /* ViewControllers */,
 				88855A321AE6537000D352D5 /* AppDelegate.swift */,
-				88855A341AE6537000D352D5 /* ViewController.swift */,
 				88855A361AE6537000D352D5 /* Main.storyboard */,
 				88855A391AE6537000D352D5 /* Images.xcassets */,
 				88855A3B1AE6537000D352D5 /* LaunchScreen.xib */,
@@ -85,6 +85,14 @@
 				88855A311AE6537000D352D5 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88855A561AE659B700D352D5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				88855A5B1AE659C400D352D5 /* ViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		9C0B8E5D9A18E3D4A366A294 /* Pods */ = {
@@ -217,7 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88855A351AE6537000D352D5 /* ViewController.swift in Sources */,
+				88855A5C1AE659C400D352D5 /* ViewController.swift in Sources */,
 				88855A331AE6537000D352D5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
