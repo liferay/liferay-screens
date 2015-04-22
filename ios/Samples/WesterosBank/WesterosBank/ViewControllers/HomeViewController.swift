@@ -1,11 +1,16 @@
-//
-//  SettingsViewController.swift
-//  WesterosBank
-//
-//  Created by jmWork on 21/04/15.
-//  Copyright (c) 2015 Liferay. All rights reserved.
-//
-
+/**
+* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+*
+* This library is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Lesser General Public License as published by the Free
+* Software Foundation; either version 2.1 of the License, or (at your option)
+* any later version.
+*
+* This library is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+* details.
+*/
 import UIKit
 import LiferayScreens
 
@@ -48,7 +53,7 @@ class HomeViewController: UIViewController {
 			issuesCard.resetToCurrentState()
 			reportIssueCard.resetToCurrentState()
 
-			UIView.animateWithDuration(0.7) {
+			UIView.animateWithDuration(1.5) {
 				self.settingsView.alpha = 1.0
 			}
 
@@ -62,21 +67,5 @@ class HomeViewController: UIViewController {
 			self.performSegueWithIdentifier("onboarding", sender: nil)
 		}
 	}
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
