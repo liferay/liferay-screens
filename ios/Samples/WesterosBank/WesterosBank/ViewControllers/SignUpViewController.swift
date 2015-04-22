@@ -8,19 +8,18 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
-
-	var onDone: (Void -> Void)?
+class SignUpViewController: CardViewController {
 
 	@IBAction func close(sender: AnyObject) {
 		onDone?()
 	}
-	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+
+	override init(card: CardView, nibName: String) {
+		super.init(card: card, nibName: nibName)
 	}
 
-	convenience init() {
-		self.init(nibName:"SignUpViewController", bundle:nil)
+	convenience init(card: CardView) {
+		self.init(card: card, nibName:"SignUpViewController")
 	}
 
 	required init(coder aDecoder: NSCoder) {

@@ -20,15 +20,15 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		let issuesController = IssuesViewController()
+		let issuesController = IssuesViewController(card: issuesCard)
 
-		issuesDeck.addCard(issuesCard, withController: issuesController)
+		issuesDeck.addCard(issuesCard)
 
-		let reportIssueController = ReportIssueViewController()
+		let reportIssueController = ReportIssueViewController(card: reportIssueCard)
 		reportIssueController.onDone = {
 		}
 
-		issuesDeck.addCard(reportIssueCard, withController: reportIssueController)
+		issuesDeck.addCard(reportIssueCard)
 
 		reportIssueCard.normalHeight = issuesDeck.frame.size.height - 50
     }

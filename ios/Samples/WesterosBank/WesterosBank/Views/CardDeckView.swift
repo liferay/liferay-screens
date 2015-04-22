@@ -12,7 +12,7 @@ class CardDeckView: UIView {
 
 	internal var cards = [CardView]()
 
-	func addCard(card: CardView, withController controller: UIViewController) {
+	func addCard(card: CardView) {
 		func addButton() {
 			let button = UIButton(frame: CGRectMake(0, 0, card.frame.width, card.minimizedHeight))
 			button.setTitle(card.title, forState: UIControlState.Normal)
@@ -29,12 +29,6 @@ class CardDeckView: UIView {
 
 		card.currentState = .Minimized
 		card.nextState = .Normal
-
-		controller.view.frame = CGRectMake(
-				0, card.minimizedHeight,
-				card.frame.width, controller.view.frame.height)
-
-		card.controller = controller
 
 		cards.map {
 			$0.minimizedHeight += card.minimizedHeight

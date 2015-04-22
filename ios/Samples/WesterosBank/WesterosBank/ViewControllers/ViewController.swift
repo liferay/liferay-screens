@@ -24,15 +24,15 @@ class ViewController: UIViewController {
 			self.dismissViewControllerAnimated(true, completion: nil)
 		}
 
-		let signInController = SignInViewController()
+		let signInController = SignInViewController(card: signInCard)
 		signInController.onDone = onDone
 
-		cardDeck.addCard(signInCard, withController: signInController)
+		cardDeck.addCard(signInCard)
 
-		let signUpController = SignUpViewController()
+		let signUpController = SignUpViewController(card: signUpCard)
 		signUpController.onDone = onDone
 
-		cardDeck.addCard(signUpCard, withController: signUpController)
+		cardDeck.addCard(signUpCard)
 
 		signUpCard.normalHeight = cardDeck.frame.size.height - 50
 	}

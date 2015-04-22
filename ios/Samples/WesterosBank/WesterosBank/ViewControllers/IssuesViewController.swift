@@ -8,14 +8,14 @@
 
 import UIKit
 
-class IssuesViewController: UIViewController {
+class IssuesViewController: CardViewController {
 
-	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+	override init(card: CardView, nibName: String) {
+		super.init(card: card, nibName: nibName)
 	}
 
-	convenience init() {
-		self.init(nibName:"IssuesViewController", bundle:nil)
+	convenience init(card: CardView) {
+		self.init(card: card, nibName:"IssuesViewController")
 	}
 
 	required init(coder aDecoder: NSCoder) {

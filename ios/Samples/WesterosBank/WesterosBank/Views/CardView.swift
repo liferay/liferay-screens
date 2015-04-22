@@ -29,13 +29,6 @@ class CardView: UIView {
 	@IBInspectable var maximizedMargin: CGFloat = 20
 	@IBInspectable var title: String = "CARD"
 
-	var controller: UIViewController? {
-		didSet {
-			if let controllerValue = controller {
-				self.addSubview(controllerValue.view)
-			}
-		}
-	}
 
 	var currentState: ShowState = .Hidden
 	var nextState: ShowState = .Normal

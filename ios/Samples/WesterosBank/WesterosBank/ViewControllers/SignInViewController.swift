@@ -8,16 +8,14 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+class SignInViewController: CardViewController {
 
-	var onDone: (Void -> Void)?
-
-	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+	override init(card: CardView, nibName: String) {
+		super.init(card: card, nibName: nibName)
 	}
 
-	convenience init() {
-		self.init(nibName:"SignInViewController", bundle:nil)
+	convenience init(card: CardView) {
+		self.init(card: card, nibName:"SignInViewController")
 	}
 
 	required init(coder aDecoder: NSCoder) {
