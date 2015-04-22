@@ -10,51 +10,48 @@ import UIKit
 
 class CardDeckView: UIView {
 
-	internal var cards = [CardView]()
+	var topCard: CardView? {
+		didSet {
+			if let cardValue = topCard {
+				cardValue.currentState = .Minimized
+				cardValue.nextState = .Normal
 
-	func addCard(card: CardView) {
-		func addButton() {
-			let button = UIButton(frame: CGRectMake(0, 0, card.frame.width, card.minimizedHeight))
-			button.setTitle(card.title, forState: UIControlState.Normal)
-
-			let actionName = cards.isEmpty
-					? "topCardTouchUpInside:" : "cardTouchUpInside:"
-			button.addTarget(self,
-					action: Selector(actionName),
-					forControlEvents: UIControlEvents.TouchUpInside)
-
-			button.tag = cards.count
-			card.addSubview(button)
+				addButton(cardValue)
+			}
 		}
-
-		card.currentState = .Minimized
-		card.nextState = .Normal
-
-		cards.map {
-			$0.minimizedHeight += card.minimizedHeight
-		}
-
-		addButton()
-
-		cards.append(card)
 	}
+
+	var bottomCard: CardView? {
+		didSet {
+			if let cardValue = bottomCard {
+				cardValue.currentState = .Minimized
+				cardValue.nextState = .Normal
+
+				topCard?.minimizedHeight += cardValue.minimizedHeight
+
+				addButton(cardValue)
+			}
+		}
+	}
+
+	func addButton(card: CardView) {
+		let button = UIButton(frame: CGRectMake(0, 0, card.frame.width, card.minimizedHeight))
+		button.setTitle(card.title, forState: UIControlState.Normal)
+
+		let actionName = card === topCard
+				? "topCardTouchUpInside:" : "bottomCardTouchUpInside:"
+		button.addTarget(self,
+				action: Selector(actionName),
+				forControlEvents: UIControlEvents.TouchUpInside)
+
+		card.addSubview(button)
+	}
+
 
 	func topCardTouchUpInside(sender: UIButton) {
-		let touchedCard = cards[sender.tag]
-
-		topCardAction(touchedCard)
 	}
 
-	func cardTouchUpInside(sender: UIButton) {
-		let touchedCard = cards[sender.tag]
-
-		cardAction(touchedCard)
-	}
-
-	func topCardAction(touchedCard: CardView) {
-	}
-
-	func cardAction(touchedCard: CardView) {
+	func bottomCardTouchUpInside(sender: UIButton) {
 	}
 
 }

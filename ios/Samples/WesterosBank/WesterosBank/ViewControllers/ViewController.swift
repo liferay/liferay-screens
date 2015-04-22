@@ -16,6 +16,10 @@ class ViewController: UIViewController {
 	@IBOutlet weak var signInCard: CardView!
 	@IBOutlet weak var signUpCard: CardView!
 
+	var signInController: SignInViewController?
+	var signUpController: SignUpViewController?
+
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -24,15 +28,15 @@ class ViewController: UIViewController {
 			self.dismissViewControllerAnimated(true, completion: nil)
 		}
 
-		let signInController = SignInViewController(card: signInCard)
-		signInController.onDone = onDone
+		signInController = SignInViewController(card: signInCard)
+		signInController!.onDone = onDone
 
-		cardDeck.addCard(signInCard)
+		cardDeck.topCard = signInCard
 
-		let signUpController = SignUpViewController(card: signUpCard)
-		signUpController.onDone = onDone
+		signUpController = SignUpViewController(card: signUpCard)
+		signUpController!.onDone = onDone
 
-		cardDeck.addCard(signUpCard)
+		cardDeck.bottomCard = signUpCard
 
 		signUpCard.normalHeight = cardDeck.frame.size.height - 50
 	}

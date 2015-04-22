@@ -17,18 +17,22 @@ class HomeViewController: UIViewController {
 	@IBOutlet weak var reportIssueCard: CardView!
 	@IBOutlet weak var settingsView: UIView!
 
+	var issuesController: IssuesViewController?
+	var reportIssueController: ReportIssueViewController?
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		let issuesController = IssuesViewController(card: issuesCard)
+		issuesController = IssuesViewController(card: issuesCard)
 
-		issuesDeck.addCard(issuesCard)
+		issuesDeck.topCard = issuesCard
 
-		let reportIssueController = ReportIssueViewController(card: reportIssueCard)
-		reportIssueController.onDone = {
+		reportIssueController = ReportIssueViewController(card: reportIssueCard)
+		reportIssueController!.onDone = {
 		}
 
-		issuesDeck.addCard(reportIssueCard)
+		issuesDeck.bottomCard = reportIssueCard
 
 		reportIssueCard.normalHeight = issuesDeck.frame.size.height - 50
     }

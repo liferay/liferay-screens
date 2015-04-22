@@ -10,52 +10,37 @@ import UIKit
 
 class IssuesCardDeck: CardDeckView {
 
-	override func topCardAction(touchedCard: CardView) {
-		switch touchedCard.currentState {
+	override func topCardTouchUpInside(sender: UIButton) {
+		switch topCard!.currentState {
 		case .Minimized:
-			touchedCard.nextState = .Maximized
+			topCard!.nextState = .Maximized
 
 		case .Maximized:
-			if cards.last?.currentState == .Normal {
-				touchedCard.nextState = .Maximized
+			topCard!.nextState = (bottomCard!.currentState == .Normal)
+					? .Maximized : .Minimized
 
-				cards.map { card -> Void in
-					if card !== touchedCard {
-						card.nextState = .Minimized
-						card.changeToNextState()
-					}
-				}
-			}
-			else {
-				touchedCard.nextState = .Minimized
-
-				cards.map { card -> Void in
-					if card !== touchedCard {
-						card.nextState = .Minimized
-						card.changeToNextState()
-					}
-				}
-			}
+			bottomCard!.nextState = .Minimized
+			bottomCard!.changeToNextState()
 
 		default:
-			touchedCard.nextState = .Minimized
+			topCard!.nextState = .Minimized
 		}
 
-		touchedCard.changeToNextState()
+		topCard!.changeToNextState()
 	}
 
-	override func cardAction(touchedCard: CardView) {
-		cards.map { card -> Void in
-			switch card.currentState {
-				case .Minimized:
-					card.nextState = (card === touchedCard) ? .Normal : .Maximized
-				case .Normal:
-					card.nextState = (card === touchedCard) ? .Minimized : .Maximized
-				default:
-					card.nextState = (card === touchedCard) ? .Minimized : .Maximized
-			}
-			card.changeToNextState()
+	override func bottomCardTouchUpInside(sender: UIButton) {
+		if bottomCard!.currentState == .Minimized {
+			bottomCard!.nextState = .Normal
+			topCard!.nextState = .Maximized
 		}
+		else {
+			bottomCard!.nextState = .Minimized
+			topCard!.nextState = .Maximized
+		}
+
+		bottomCard!.changeToNextState()
+		topCard!.changeToNextState()
 	}
 
 }
