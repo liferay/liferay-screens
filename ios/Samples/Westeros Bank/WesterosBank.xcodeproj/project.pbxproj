@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0D3BD6FCCD95D4FE972F06AC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6370C6082E034E1BCF5D2D54 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8820EEF61AE79C2D00FA79A6 /* IssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEF41AE79C2D00FA79A6 /* IssuesViewController.swift */; };
+		8820EEF71AE79C2D00FA79A6 /* IssuesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8820EEF51AE79C2D00FA79A6 /* IssuesViewController.xib */; };
+		8820EEFA1AE79C9000FA79A6 /* ReportIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEF81AE79C9000FA79A6 /* ReportIssueViewController.swift */; };
+		8820EEFB1AE79C9000FA79A6 /* ReportIssueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8820EEF91AE79C9000FA79A6 /* ReportIssueViewController.xib */; };
+		8820EEFD1AE7A03200FA79A6 /* OnBoardingCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEFC1AE7A03200FA79A6 /* OnBoardingCardDeck.swift */; };
+		8820EEFF1AE7A10800FA79A6 /* IssuesCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEFE1AE7A10800FA79A6 /* IssuesCardDeck.swift */; };
 		88855A331AE6537000D352D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A321AE6537000D352D5 /* AppDelegate.swift */; };
 		88855A381AE6537000D352D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88855A361AE6537000D352D5 /* Main.storyboard */; };
 		88855A3A1AE6537000D352D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88855A391AE6537000D352D5 /* Images.xcassets */; };
@@ -24,6 +30,12 @@
 
 /* Begin PBXFileReference section */
 		6370C6082E034E1BCF5D2D54 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8820EEF41AE79C2D00FA79A6 /* IssuesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesViewController.swift; sourceTree = "<group>"; };
+		8820EEF51AE79C2D00FA79A6 /* IssuesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IssuesViewController.xib; sourceTree = "<group>"; };
+		8820EEF81AE79C9000FA79A6 /* ReportIssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportIssueViewController.swift; sourceTree = "<group>"; };
+		8820EEF91AE79C9000FA79A6 /* ReportIssueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportIssueViewController.xib; sourceTree = "<group>"; };
+		8820EEFC1AE7A03200FA79A6 /* OnBoardingCardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCardDeck.swift; sourceTree = "<group>"; };
+		8820EEFE1AE7A10800FA79A6 /* IssuesCardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesCardDeck.swift; sourceTree = "<group>"; };
 		88855A2D1AE6537000D352D5 /* WesterosBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WesterosBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88855A311AE6537000D352D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88855A321AE6537000D352D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +123,10 @@
 				88855A5D1AE65F2900D352D5 /* SignInViewController.swift */,
 				88855A5E1AE65F2900D352D5 /* SignInViewController.xib */,
 				88855A6A1AE6BD3E00D352D5 /* HomeViewController.swift */,
+				8820EEF41AE79C2D00FA79A6 /* IssuesViewController.swift */,
+				8820EEF51AE79C2D00FA79A6 /* IssuesViewController.xib */,
+				8820EEF81AE79C9000FA79A6 /* ReportIssueViewController.swift */,
+				8820EEF91AE79C9000FA79A6 /* ReportIssueViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -120,6 +136,8 @@
 			children = (
 				88855A661AE6A5B700D352D5 /* CardView.swift */,
 				88855A681AE6A5E100D352D5 /* CardDeckView.swift */,
+				8820EEFC1AE7A03200FA79A6 /* OnBoardingCardDeck.swift */,
+				8820EEFE1AE7A10800FA79A6 /* IssuesCardDeck.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,7 +214,9 @@
 				88855A601AE65F2900D352D5 /* SignInViewController.xib in Resources */,
 				88855A381AE6537000D352D5 /* Main.storyboard in Resources */,
 				88855A3D1AE6537000D352D5 /* LaunchScreen.xib in Resources */,
+				8820EEFB1AE79C9000FA79A6 /* ReportIssueViewController.xib in Resources */,
 				88855A5A1AE659B700D352D5 /* SignUpViewController.xib in Resources */,
+				8820EEF71AE79C2D00FA79A6 /* IssuesViewController.xib in Resources */,
 				88855A3A1AE6537000D352D5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +276,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8820EEF61AE79C2D00FA79A6 /* IssuesViewController.swift in Sources */,
+				8820EEFA1AE79C9000FA79A6 /* ReportIssueViewController.swift in Sources */,
 				88855A5F1AE65F2900D352D5 /* SignInViewController.swift in Sources */,
 				88855A5C1AE659C400D352D5 /* ViewController.swift in Sources */,
 				88855A6C1AE6BD3E00D352D5 /* HomeViewController.swift in Sources */,
@@ -263,6 +285,8 @@
 				88855A331AE6537000D352D5 /* AppDelegate.swift in Sources */,
 				88855A671AE6A5B700D352D5 /* CardView.swift in Sources */,
 				88855A691AE6A5E100D352D5 /* CardDeckView.swift in Sources */,
+				8820EEFF1AE7A10800FA79A6 /* IssuesCardDeck.swift in Sources */,
+				8820EEFD1AE7A03200FA79A6 /* OnBoardingCardDeck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

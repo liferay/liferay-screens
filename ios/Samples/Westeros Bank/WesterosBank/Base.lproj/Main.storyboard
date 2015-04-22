@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2b-zl-Zf5" customClass="CardDeckView" customModule="WesterosBank" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2b-zl-Zf5" customClass="OnBoardingCardDeck" customModule="WesterosBank" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VhY-B2-AcX" userLabel="SignIn Card" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
@@ -96,15 +96,88 @@
                     <view key="view" contentMode="scaleToFill" id="mMg-oB-ONJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="me9-UW-jo7" userLabel="Settings">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eo-k7-DIj">
+                                        <rect key="frame" x="125" y="98" width="85" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VF1-5B-MWt" userLabel="Issues Deck" customClass="IssuesCardDeck" customModule="WesterosBank" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wM-tY-d9P" userLabel="Issues" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="438" width="320" height="540"/>
+                                        <color key="backgroundColor" red="0.81967987590000002" green="0.096279448670000004" blue="0.84832382200000001" alpha="0.87" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="540" id="ufV-R4-trY"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="ISSUES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimizedHeight">
+                                                <real key="value" value="55"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="normalHeight">
+                                                <real key="value" value="350"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ea-3w-JV0" userLabel="Report issue" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="493" width="320" height="548"/>
+                                        <color key="backgroundColor" red="0.83137254900000002" green="0.20392156859999999" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="548" id="hQx-zd-NAu"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="REPORT ISSUE"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimizedHeight">
+                                                <real key="value" value="55"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="1wM-tY-d9P" secondAttribute="trailing" id="94i-wf-suQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="0ea-3w-JV0" secondAttribute="bottom" constant="-493" id="bvQ-wy-p5W"/>
+                                    <constraint firstItem="0ea-3w-JV0" firstAttribute="leading" secondItem="VF1-5B-MWt" secondAttribute="leading" id="dwJ-kR-ACS"/>
+                                    <constraint firstAttribute="trailing" secondItem="0ea-3w-JV0" secondAttribute="trailing" id="g7e-bt-u7M"/>
+                                    <constraint firstAttribute="bottom" secondItem="1wM-tY-d9P" secondAttribute="bottom" constant="-430" id="iEd-hH-Mrr"/>
+                                    <constraint firstItem="1wM-tY-d9P" firstAttribute="leading" secondItem="VF1-5B-MWt" secondAttribute="leading" id="wYh-q5-XBh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="0.89047558060109289" green="0.89047558060109289" blue="0.89047558060109289" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="6ZO-sY-HaW" firstAttribute="top" secondItem="VF1-5B-MWt" secondAttribute="bottom" id="4nt-PL-VDN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VF1-5B-MWt" secondAttribute="trailing" constant="-16" id="a2F-9A-UEX"/>
+                            <constraint firstItem="VF1-5B-MWt" firstAttribute="leading" secondItem="mMg-oB-ONJ" secondAttribute="leadingMargin" constant="-16" id="kg4-IG-KMg"/>
+                            <constraint firstItem="VF1-5B-MWt" firstAttribute="top" secondItem="CX5-CM-qpo" secondAttribute="bottom" id="rqf-eS-9GX"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="issuesCard" destination="1wM-tY-d9P" id="Fl6-Dm-OoJ"/>
+                        <outlet property="issuesDeck" destination="VF1-5B-MWt" id="IGz-CT-C7a"/>
+                        <outlet property="reportIssueCard" destination="0ea-3w-JV0" id="sBm-WV-CgA"/>
+                        <outlet property="settingsView" destination="me9-UW-jo7" id="B1T-qJ-hah"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="onboarding" id="pXg-YE-7Bz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEO-bD-8V4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="293" y="520"/>
+            <point key="canvasLocation" x="295" y="515"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

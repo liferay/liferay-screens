@@ -7,17 +7,56 @@
 //
 
 import UIKit
+import LiferayScreens
+
 
 class HomeViewController: UIViewController {
+
+	@IBOutlet weak var issuesDeck: CardDeckView!
+	@IBOutlet weak var issuesCard: CardView!
+	@IBOutlet weak var reportIssueCard: CardView!
+	@IBOutlet weak var settingsView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+		let issuesController = IssuesViewController()
+
+		issuesDeck.addCard(issuesCard, withController: issuesController)
+
+		let reportIssueController = ReportIssueViewController()
+		reportIssueController.onDone = {
+		}
+
+		issuesDeck.addCard(reportIssueCard, withController: reportIssueController)
+
+		reportIssueCard.normalHeight = issuesDeck.frame.size.height - 50
     }
 
+	override func viewWillAppear(animated: Bool) {
+		if SessionContext.hasSession {
+			issuesCard.currentState = .Hidden
+			issuesCard.nextState = .Maximized
+
+			reportIssueCard.currentState = .Hidden
+			reportIssueCard.nextState = .Minimized
+
+			issuesCard.resetToCurrentState()
+			reportIssueCard.resetToCurrentState()
+
+			UIView.animateWithDuration(0.7) {
+				self.settingsView.alpha = 1.0
+			}
+
+			issuesCard.changeToNextState()
+			reportIssueCard.changeToNextState()
+		}
+	}
+
 	override func viewDidAppear(animated: Bool) {
-		self.performSegueWithIdentifier("onboarding", sender: nil)
+		if !SessionContext.hasSession {
+			self.performSegueWithIdentifier("onboarding", sender: nil)
+		}
 	}
 
     override func didReceiveMemoryWarning() {

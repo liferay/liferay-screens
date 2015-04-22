@@ -40,8 +40,17 @@ class CardView: UIView {
 	var currentState: ShowState = .Hidden
 	var nextState: ShowState = .Normal
 
+	func resetToCurrentState() {
+		let pos = positionForState(currentState)
+
+		self.frame = CGRectMake(0, pos, self.frame.size)
+	}
 
 	func changeToNextState() {
+		if nextState == currentState {
+			return
+		}
+
 		let nextPosition = positionForState(nextState)
 
 		UIView.animateWithDuration(0.7,
@@ -61,7 +70,7 @@ class CardView: UIView {
 
 		switch state {
 		case .Hidden:
-			result = 0
+			result = self.superview!.frame.size.height
 		case .Minimized:
 			result = self.superview!.frame.size.height - minimizedHeight
 		case .Normal:

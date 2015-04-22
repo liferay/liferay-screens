@@ -10,7 +10,7 @@ import UIKit
 
 class CardDeckView: UIView {
 
-	private var cards = [CardView]()
+	internal var cards = [CardView]()
 
 	func addCard(card: CardView, withController controller: UIViewController) {
 		func addButton() {
@@ -46,41 +46,21 @@ class CardDeckView: UIView {
 	}
 
 	func topCardTouchUpInside(sender: UIButton) {
-		let card = cards[sender.tag]
+		let touchedCard = cards[sender.tag]
 
-		switch card.currentState {
-		case .Minimized:
-			card.nextState = .Normal
-		case .Maximized:
-			card.nextState = .Normal
-
-			for i in sender.tag + 1..<cards.count {
-				let c = cards[i]
-				c.nextState = .Minimized
-				c.changeToNextState()
-			}
-
-		default:
-			card.nextState = .Minimized
-		}
-
-		card.changeToNextState()
+		topCardAction(touchedCard)
 	}
 
 	func cardTouchUpInside(sender: UIButton) {
 		let touchedCard = cards[sender.tag]
 
-		cards.map { card -> Void in
-			switch card.currentState {
-				case .Minimized:
-					card.nextState = (card === touchedCard) ? .Normal : .Maximized
-				case .Normal:
-					card.nextState = (card === touchedCard) ? .Minimized : .Maximized
-				default:
-					card.nextState = (card === touchedCard) ? .Minimized : .Normal
-			}
-			card.changeToNextState()
-		}
+		cardAction(touchedCard)
+	}
+
+	func topCardAction(touchedCard: CardView) {
+	}
+
+	func cardAction(touchedCard: CardView) {
 	}
 
 }

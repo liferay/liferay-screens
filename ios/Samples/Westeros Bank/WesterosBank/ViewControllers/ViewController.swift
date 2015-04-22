@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import KNSemiModalViewController
+import LiferayScreens
 
 
 class ViewController: UIViewController {
@@ -19,17 +19,18 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let signInController = SignInViewController()
-		signInController.onDone = {
+		let onDone: () -> () = {
+			SessionContext.createSession(username: "test@liferay.com", password: "test", userAttributes: ["userId":1])
 			self.dismissViewControllerAnimated(true, completion: nil)
 		}
+
+		let signInController = SignInViewController()
+		signInController.onDone = onDone
 
 		cardDeck.addCard(signInCard, withController: signInController)
 
 		let signUpController = SignUpViewController()
-		signUpController.onDone = {
-			self.dismissViewControllerAnimated(true, completion: nil)
-		}
+		signUpController.onDone = onDone
 
 		cardDeck.addCard(signUpCard, withController: signUpController)
 
