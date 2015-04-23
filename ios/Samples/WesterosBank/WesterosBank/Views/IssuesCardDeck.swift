@@ -18,9 +18,20 @@ class IssuesCardDeck: CardDeckView {
 	override func topCardTouchUpInside(sender: UIButton) {
 		switch topCard!.currentState {
 		case .Minimized:
+			topCard!.minimizedHeight *= 2
 			topCard!.nextState = .Maximized
 
+			bottomCard!.nextState = .Minimized
+			bottomCard!.changeToNextState()
+
 		case .Maximized:
+			topCard!.minimizedHeight /= 2
+			topCard!.nextState = .Minimized
+
+			bottomCard!.nextState = .Hidden
+			bottomCard!.changeToNextState()
+
+		case .Background:
 			topCard!.nextState = (bottomCard!.currentState == .Normal)
 					? .Maximized : .Minimized
 
@@ -37,7 +48,7 @@ class IssuesCardDeck: CardDeckView {
 	override func bottomCardTouchUpInside(sender: UIButton) {
 		if bottomCard!.currentState == .Minimized {
 			bottomCard!.nextState = .Normal
-			topCard!.nextState = .Maximized
+			topCard!.nextState = .Background//.Maximized
 		}
 		else {
 			bottomCard!.nextState = .Minimized

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PPh-lo-iNo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PPh-lo-iNo">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -97,21 +97,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="me9-UW-jo7" userLabel="Settings">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eo-k7-DIj">
-                                        <rect key="frame" x="125" y="98" width="85" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VF1-5B-MWt" userLabel="Issues Deck" customClass="IssuesCardDeck" customModule="WesterosBank" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
+                                    <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="me9-UW-jo7" userLabel="Settings">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eo-k7-DIj">
+                                                <rect key="frame" x="125" y="98" width="85" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wM-tY-d9P" userLabel="Issues" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="438" width="320" height="540"/>
                                         <color key="backgroundColor" red="0.81967987590000002" green="0.096279448670000004" blue="0.84832382200000001" alpha="0.87" colorSpace="calibratedRGB"/>
@@ -127,7 +127,7 @@
                                                 <real key="value" value="350"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
-                                                <real key="value" value="20"/>
+                                                <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
@@ -148,7 +148,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.89047558059999998" green="0.89047558059999998" blue="0.89047558059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="1wM-tY-d9P" secondAttribute="trailing" id="94i-wf-suQ"/>
                                     <constraint firstAttribute="bottom" secondItem="0ea-3w-JV0" secondAttribute="bottom" constant="-493" id="bvQ-wy-p5W"/>
@@ -171,7 +171,7 @@
                         <outlet property="issuesCard" destination="1wM-tY-d9P" id="Fl6-Dm-OoJ"/>
                         <outlet property="issuesDeck" destination="VF1-5B-MWt" id="IGz-CT-C7a"/>
                         <outlet property="reportIssueCard" destination="0ea-3w-JV0" id="sBm-WV-CgA"/>
-                        <outlet property="settingsView" destination="me9-UW-jo7" id="B1T-qJ-hah"/>
+                        <outlet property="settingsView" destination="me9-UW-jo7" id="pI0-T8-ig2"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="onboarding" id="pXg-YE-7Bz"/>
                     </connections>
                 </viewController>

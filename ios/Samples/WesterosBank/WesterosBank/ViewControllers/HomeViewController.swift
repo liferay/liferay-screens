@@ -39,6 +39,11 @@ class HomeViewController: UIViewController {
 
 		issuesDeck.bottomCard = reportIssueCard
 
+		self.settingsView.layer.zPosition = -1000
+		self.issuesDeck.layer.zPosition = 0
+		self.reportIssueCard.layer.zPosition = 1000
+
+
 		reportIssueCard.normalHeight = issuesDeck.frame.size.height - 50
     }
 
@@ -53,12 +58,12 @@ class HomeViewController: UIViewController {
 			issuesCard.resetToCurrentState()
 			reportIssueCard.resetToCurrentState()
 
+			issuesCard.changeToNextState()
+			reportIssueCard.changeToNextState()
+
 			UIView.animateWithDuration(1.5) {
 				self.settingsView.alpha = 1.0
 			}
-
-			issuesCard.changeToNextState()
-			reportIssueCard.changeToNextState()
 		}
 	}
 

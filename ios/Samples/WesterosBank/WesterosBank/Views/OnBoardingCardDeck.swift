@@ -36,7 +36,7 @@ class OnBoardingCardDeck: CardDeckView {
 	override func bottomCardTouchUpInside(sender: UIButton) {
 		if bottomCard!.currentState == .Minimized {
 			bottomCard!.nextState = .Normal
-			topCard!.nextState = .Maximized
+			topCard!.nextState = .Background
 		}
 		else {
 			bottomCard!.nextState = .Minimized

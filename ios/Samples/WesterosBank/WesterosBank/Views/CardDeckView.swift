@@ -22,6 +22,8 @@ class CardDeckView: UIView {
 				cardValue.nextState = .Normal
 
 				addButton(cardValue)
+
+				cardValue.layer.zPosition = -layer.bounds.size.width
 			}
 		}
 	}
