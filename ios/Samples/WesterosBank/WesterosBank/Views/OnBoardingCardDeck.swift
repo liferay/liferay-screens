@@ -40,7 +40,7 @@ class OnBoardingCardDeck: CardDeckView {
 		}
 		else {
 			bottomCard!.nextState = .Minimized
-			topCard!.nextState = .Normal
+			topCard!.nextState = .Minimized
 		}
 
 		bottomCard!.changeToNextState()

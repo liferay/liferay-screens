@@ -58,6 +58,8 @@ class CardDeckView: UIView {
 				forControlEvents: UIControlEvents.TouchUpInside)
 
 		card.addSubview(button)
+
+		card.createArrow(fontColor)
 	}
 
 

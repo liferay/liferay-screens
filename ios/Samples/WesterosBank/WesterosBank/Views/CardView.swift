@@ -35,12 +35,29 @@ class CardView: UIView {
 	@IBInspectable var maximizedMargin: CGFloat = 20
 	@IBInspectable var title: String = "CARD"
 
+	var arrow: UIImageView?
+
 	let animationTime = 0.5
 
 	var currentState: ShowState = .Hidden
 	var nextState: ShowState = .Normal
 
 	var onChangeCompleted: (Bool -> Void)?
+
+	func createArrow(color: UIColor) {
+		let arrowName = (color == UIColor.whiteColor()) ? "icon_DOWN_W" : "icon_DOWN"
+		let arrowImage = UIImage(named: arrowName)!
+
+		self.arrow = UIImageView(image: arrowImage)
+
+		let x = self.frame.size.width - arrowImage.size.width - 25
+		let y = (self.minimizedHeight/2) - arrowImage.size.height
+
+		self.arrow!.frame = CGRectMake(x, y, arrowImage.size)
+		self.arrow!.alpha = 0.0
+
+		self.addSubview(self.arrow!)
+	}
 
 	func resetToCurrentState() {
 		let pos = positionForState(currentState)
@@ -49,6 +66,20 @@ class CardView: UIView {
 	}
 
 	func changeToNextState(time: Double? = nil, onComplete: (Bool -> Void)? = nil) {
+		func showArrow() {
+			UIView.animateWithDuration(time ?? animationTime) {
+				if self.nextState == .Normal || self.nextState == .Maximized {
+					println("-> \(self.title) is shown")
+					self.arrow!.alpha = 1.0
+				}
+				else {
+					println("-> \(self.title) is hidden")
+					self.arrow!.alpha = 0.0
+				}
+			}
+		}
+
+
 		if nextState == currentState {
 			return
 		}
@@ -64,6 +95,7 @@ class CardView: UIView {
 			self.layer.addAnimation(resetBackgroundAnimation(time ?? animationTime), forKey: "popBackAnimation")
 		}
 		else {
+			onChangeCompleted = nil
 			UIView.animateWithDuration((time ?? animationTime)*1.30,
 					delay: 0.0,
 					usingSpringWithDamping: 1.0,
@@ -73,6 +105,9 @@ class CardView: UIView {
 						self.frame = CGRectMake(0, nextPosition, self.frame.size)
 					}, completion: onComplete)
 		}
+
+		showArrow()
+
 		self.currentState = self.nextState
 	}
 
