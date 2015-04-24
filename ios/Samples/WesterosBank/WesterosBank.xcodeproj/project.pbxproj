@@ -14,6 +14,16 @@
 		8820EEFB1AE79C9000FA79A6 /* ReportIssueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8820EEF91AE79C9000FA79A6 /* ReportIssueViewController.xib */; };
 		8820EEFD1AE7A03200FA79A6 /* OnBoardingCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEFC1AE7A03200FA79A6 /* OnBoardingCardDeck.swift */; };
 		8820EEFF1AE7A10800FA79A6 /* IssuesCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEFE1AE7A10800FA79A6 /* IssuesCardDeck.swift */; };
+		88735F801AEA3E75000D35F9 /* TourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88735F7F1AEA3E75000D35F9 /* TourViewController.swift */; };
+		88735F8B1AEA4077000D35F9 /* tour-step1.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F821AEA4077000D35F9 /* tour-step1.png */; };
+		88735F8C1AEA4077000D35F9 /* tour-step1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F831AEA4077000D35F9 /* tour-step1@2x.png */; };
+		88735F8D1AEA4077000D35F9 /* tour-step1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F841AEA4077000D35F9 /* tour-step1@3x.png */; };
+		88735F8E1AEA4077000D35F9 /* tour-step2.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F851AEA4077000D35F9 /* tour-step2.png */; };
+		88735F8F1AEA4077000D35F9 /* tour-step2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F861AEA4077000D35F9 /* tour-step2@2x.png */; };
+		88735F901AEA4077000D35F9 /* tour-step2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F871AEA4077000D35F9 /* tour-step2@3x.png */; };
+		88735F911AEA4077000D35F9 /* tour-step3.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F881AEA4077000D35F9 /* tour-step3.png */; };
+		88735F921AEA4077000D35F9 /* tour-step3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F891AEA4077000D35F9 /* tour-step3@2x.png */; };
+		88735F931AEA4077000D35F9 /* tour-step3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F8A1AEA4077000D35F9 /* tour-step3@3x.png */; };
 		88855A331AE6537000D352D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A321AE6537000D352D5 /* AppDelegate.swift */; };
 		88855A381AE6537000D352D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88855A361AE6537000D352D5 /* Main.storyboard */; };
 		88855A3A1AE6537000D352D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88855A391AE6537000D352D5 /* Images.xcassets */; };
@@ -38,6 +48,16 @@
 		8820EEF91AE79C9000FA79A6 /* ReportIssueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportIssueViewController.xib; sourceTree = "<group>"; };
 		8820EEFC1AE7A03200FA79A6 /* OnBoardingCardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCardDeck.swift; sourceTree = "<group>"; };
 		8820EEFE1AE7A10800FA79A6 /* IssuesCardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesCardDeck.swift; sourceTree = "<group>"; };
+		88735F7F1AEA3E75000D35F9 /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourViewController.swift; sourceTree = "<group>"; };
+		88735F821AEA4077000D35F9 /* tour-step1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step1.png"; sourceTree = "<group>"; };
+		88735F831AEA4077000D35F9 /* tour-step1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step1@2x.png"; sourceTree = "<group>"; };
+		88735F841AEA4077000D35F9 /* tour-step1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step1@3x.png"; sourceTree = "<group>"; };
+		88735F851AEA4077000D35F9 /* tour-step2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step2.png"; sourceTree = "<group>"; };
+		88735F861AEA4077000D35F9 /* tour-step2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step2@2x.png"; sourceTree = "<group>"; };
+		88735F871AEA4077000D35F9 /* tour-step2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step2@3x.png"; sourceTree = "<group>"; };
+		88735F881AEA4077000D35F9 /* tour-step3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step3.png"; sourceTree = "<group>"; };
+		88735F891AEA4077000D35F9 /* tour-step3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step3@2x.png"; sourceTree = "<group>"; };
+		88735F8A1AEA4077000D35F9 /* tour-step3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step3@3x.png"; sourceTree = "<group>"; };
 		88855A2D1AE6537000D352D5 /* WesterosBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WesterosBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88855A311AE6537000D352D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88855A321AE6537000D352D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +98,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		88735F811AEA4077000D35F9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88735F821AEA4077000D35F9 /* tour-step1.png */,
+				88735F831AEA4077000D35F9 /* tour-step1@2x.png */,
+				88735F841AEA4077000D35F9 /* tour-step1@3x.png */,
+				88735F851AEA4077000D35F9 /* tour-step2.png */,
+				88735F861AEA4077000D35F9 /* tour-step2@2x.png */,
+				88735F871AEA4077000D35F9 /* tour-step2@3x.png */,
+				88735F881AEA4077000D35F9 /* tour-step3.png */,
+				88735F891AEA4077000D35F9 /* tour-step3@2x.png */,
+				88735F8A1AEA4077000D35F9 /* tour-step3@3x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		88855A241AE6537000D352D5 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +141,7 @@
 				88855A361AE6537000D352D5 /* Main.storyboard */,
 				88855A391AE6537000D352D5 /* Images.xcassets */,
 				88855A3B1AE6537000D352D5 /* LaunchScreen.xib */,
+				88735F811AEA4077000D35F9 /* Resources */,
 				88855A301AE6537000D352D5 /* Supporting Files */,
 			);
 			path = WesterosBank;
@@ -123,15 +160,16 @@
 			children = (
 				88FB9B1A1AE7A42500C427AA /* CardViewController.swift */,
 				88855A5B1AE659C400D352D5 /* ViewController.swift */,
-				88855A571AE659B700D352D5 /* SignUpViewController.swift */,
-				88855A581AE659B700D352D5 /* SignUpViewController.xib */,
 				88855A5D1AE65F2900D352D5 /* SignInViewController.swift */,
 				88855A5E1AE65F2900D352D5 /* SignInViewController.xib */,
+				88855A571AE659B700D352D5 /* SignUpViewController.swift */,
+				88855A581AE659B700D352D5 /* SignUpViewController.xib */,
 				88855A6A1AE6BD3E00D352D5 /* HomeViewController.swift */,
 				8820EEF41AE79C2D00FA79A6 /* IssuesViewController.swift */,
 				8820EEF51AE79C2D00FA79A6 /* IssuesViewController.xib */,
 				8820EEF81AE79C9000FA79A6 /* ReportIssueViewController.swift */,
 				8820EEF91AE79C9000FA79A6 /* ReportIssueViewController.xib */,
+				88735F7F1AEA3E75000D35F9 /* TourViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -218,10 +256,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				88855A601AE65F2900D352D5 /* SignInViewController.xib in Resources */,
+				88735F921AEA4077000D35F9 /* tour-step3@2x.png in Resources */,
 				88855A381AE6537000D352D5 /* Main.storyboard in Resources */,
+				88735F901AEA4077000D35F9 /* tour-step2@3x.png in Resources */,
+				88735F8C1AEA4077000D35F9 /* tour-step1@2x.png in Resources */,
+				88735F931AEA4077000D35F9 /* tour-step3@3x.png in Resources */,
+				88735F8F1AEA4077000D35F9 /* tour-step2@2x.png in Resources */,
+				88735F8E1AEA4077000D35F9 /* tour-step2.png in Resources */,
 				88855A3D1AE6537000D352D5 /* LaunchScreen.xib in Resources */,
 				8820EEFB1AE79C9000FA79A6 /* ReportIssueViewController.xib in Resources */,
 				88855A5A1AE659B700D352D5 /* SignUpViewController.xib in Resources */,
+				88735F8B1AEA4077000D35F9 /* tour-step1.png in Resources */,
+				88735F8D1AEA4077000D35F9 /* tour-step1@3x.png in Resources */,
+				88735F911AEA4077000D35F9 /* tour-step3.png in Resources */,
 				8820EEF71AE79C2D00FA79A6 /* IssuesViewController.xib in Resources */,
 				88855A3A1AE6537000D352D5 /* Images.xcassets in Resources */,
 			);
@@ -288,6 +335,7 @@
 				88855A5C1AE659C400D352D5 /* ViewController.swift in Sources */,
 				88855A6C1AE6BD3E00D352D5 /* HomeViewController.swift in Sources */,
 				88855A591AE659B700D352D5 /* SignUpViewController.swift in Sources */,
+				88735F801AEA3E75000D35F9 /* TourViewController.swift in Sources */,
 				88855A331AE6537000D352D5 /* AppDelegate.swift in Sources */,
 				88855A671AE6A5B700D352D5 /* CardView.swift in Sources */,
 				88E657C91AE96AF700FF744A /* Colors.swift in Sources */,

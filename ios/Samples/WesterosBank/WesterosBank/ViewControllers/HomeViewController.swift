@@ -14,6 +14,8 @@
 import UIKit
 import LiferayScreens
 
+var tourCompleted = false
+
 
 class HomeViewController: UIViewController {
 
@@ -77,7 +79,12 @@ class HomeViewController: UIViewController {
 
 	override func viewDidAppear(animated: Bool) {
 		if !SessionContext.hasSession {
-			self.performSegueWithIdentifier("onboarding", sender: nil)
+			if tourCompleted {
+				self.performSegueWithIdentifier("onboarding", sender: nil)
+			}
+			else {
+				self.performSegueWithIdentifier("tour", sender: nil)
+			}
 		}
 	}
 

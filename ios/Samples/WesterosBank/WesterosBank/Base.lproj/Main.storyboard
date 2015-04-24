@@ -5,6 +5,125 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Tour View Controller-->
+        <scene sceneID="HPI-5U-fuo">
+            <objects>
+                <viewController id="hFo-Oh-TBv" customClass="TourViewController" customModule="WesterosBank" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FYd-gf-zUw"/>
+                        <viewControllerLayoutGuide type="bottom" id="UD9-uX-fig"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="45K-Oi-oz0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujI-RY-dYB">
+                                <rect key="frame" x="0.0" y="20" width="320" height="490"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GAb-Ow-gdM" userLabel="contentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="960" height="490"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FdI-hs-a47" userLabel="page1">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="490"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tour-step1.png" translatesAutoresizingMaskIntoConstraints="NO" id="RqE-vF-cO3">
+                                                        <rect key="frame" x="0.0" y="50" width="320" height="256"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5d-8v-Goi">
+                                                        <rect key="frame" x="119" y="336" width="83" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subtitle, Subtitle, Subtitle, Subtitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1Y-3q-srS">
+                                                        <rect key="frame" x="55" y="362" width="211" height="54"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" red="0.52941176470588236" green="0.52941176470588236" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YQ1-us-kvG" userLabel="page2">
+                                                <rect key="frame" x="320" y="0.0" width="320" height="490"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tour-step2.png" translatesAutoresizingMaskIntoConstraints="NO" id="rWT-8q-uc2">
+                                                        <rect key="frame" x="0.0" y="50" width="320" height="256"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xC-y1-ePF">
+                                                        <rect key="frame" x="119" y="336" width="83" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subtitle, Subtitle, Subtitle, Subtitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erN-D5-crR">
+                                                        <rect key="frame" x="55" y="362" width="211" height="54"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" red="0.52941176469999995" green="0.52941176469999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cFg-5E-dgU" userLabel="page3">
+                                                <rect key="frame" x="640" y="0.0" width="320" height="490"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tour-step3.png" translatesAutoresizingMaskIntoConstraints="NO" id="BZq-Vy-HRP">
+                                                        <rect key="frame" x="0.0" y="50" width="320" height="256"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMW-px-rJt">
+                                                        <rect key="frame" x="119" y="336" width="83" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subtitle, Subtitle, Subtitle, Subtitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4S-s1-ySe">
+                                                        <rect key="frame" x="55" y="362" width="211" height="54"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" red="0.52941176469999995" green="0.52941176469999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hFo-Oh-TBv" id="TNo-h7-Lv3"/>
+                                </connections>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37g-Oc-E3Z">
+                                <rect key="frame" x="10" y="498" width="300" height="60"/>
+                                <color key="backgroundColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="NEXT">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="nextAction:" destination="hFo-Oh-TBv" eventType="touchUpInside" id="MLl-Qa-Exd"/>
+                                </connections>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="AIY-ZX-5Nt">
+                                <rect key="frame" x="141" y="466" width="39" height="37"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" red="0.89047558059999998" green="0.89047558059999998" blue="0.89047558059999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="GAb-Ow-gdM" id="fes-7Q-OBF"/>
+                        <outlet property="pageControl" destination="AIY-ZX-5Nt" id="sC6-oB-0HI"/>
+                        <outlet property="scrollView" destination="ujI-RY-dYB" id="Je9-9G-hmM"/>
+                        <segue destination="vXZ-lx-hvc" kind="modal" identifier="login" id="Xug-ji-iGt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iET-LI-ZxH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="866" y="201"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -21,17 +140,17 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VhY-B2-AcX" userLabel="SignIn Card" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="438" width="320" height="554"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="0.0" y="388" width="320" height="554"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="554" id="H67-hE-duA"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
-                                                <real key="value" value="20"/>
+                                                <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimizedHeight">
-                                                <real key="value" value="55"/>
+                                                <real key="value" value="80"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="normalHeight">
                                                 <real key="value" value="350"/>
@@ -40,34 +159,34 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ach-hl-dTX" userLabel="SignUp Card" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="493" width="320" height="548"/>
-                                        <color key="backgroundColor" red="0.13333334029999999" green="0.75294125079999996" blue="0.392156899" alpha="1" colorSpace="deviceRGB"/>
+                                        <rect key="frame" x="0.0" y="468" width="320" height="548"/>
+                                        <color key="backgroundColor" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="548" id="nCX-ik-wyx"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
-                                                <real key="value" value="20"/>
+                                                <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimizedHeight">
-                                                <real key="value" value="55"/>
+                                                <real key="value" value="80"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="SIGN UP"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Ach-hl-dTX" firstAttribute="leading" secondItem="V2b-zl-Zf5" secondAttribute="leading" id="Bl0-vY-mY0"/>
                                     <constraint firstAttribute="trailing" secondItem="Ach-hl-dTX" secondAttribute="trailing" id="Enx-kC-dOE"/>
                                     <constraint firstItem="VhY-B2-AcX" firstAttribute="leading" secondItem="V2b-zl-Zf5" secondAttribute="leading" id="XIS-ZG-atZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="VhY-B2-AcX" secondAttribute="bottom" constant="-444" id="c6f-gt-ZRl"/>
+                                    <constraint firstAttribute="bottom" secondItem="VhY-B2-AcX" secondAttribute="bottom" constant="-394" id="c6f-gt-ZRl"/>
                                     <constraint firstAttribute="trailing" secondItem="VhY-B2-AcX" secondAttribute="trailing" id="nh5-ly-RLC"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ach-hl-dTX" secondAttribute="bottom" constant="-493" id="wtS-LW-qyw"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ach-hl-dTX" secondAttribute="bottom" constant="-468" id="wtS-LW-qyw"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="V2b-zl-Zf5" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="T2C-Ia-UTr"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="V2b-zl-Zf5" secondAttribute="bottom" id="YIU-KD-aQr"/>
@@ -83,7 +202,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="715" y="515"/>
+            <point key="canvasLocation" x="866" y="832"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="aRR-dG-OOh">
@@ -113,37 +232,37 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wM-tY-d9P" userLabel="Issues" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="438" width="320" height="540"/>
-                                        <color key="backgroundColor" red="0.81967987590000002" green="0.096279448670000004" blue="0.84832382200000001" alpha="0.87" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="0.0" y="388" width="320" height="540"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="540" id="ufV-R4-trY"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="ISSUES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimizedHeight">
-                                                <real key="value" value="55"/>
+                                                <real key="value" value="80"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="normalHeight">
                                                 <real key="value" value="350"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
-                                                <real key="value" value="0.0"/>
+                                                <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ea-3w-JV0" userLabel="Report issue" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="493" width="320" height="548"/>
-                                        <color key="backgroundColor" red="0.83137254900000002" green="0.20392156859999999" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="468" width="320" height="548"/>
+                                        <color key="backgroundColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="548" id="hQx-zd-NAu"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="REPORT ISSUE"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimizedHeight">
-                                                <real key="value" value="55"/>
+                                                <real key="value" value="80"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
-                                                <real key="value" value="20"/>
+                                                <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
@@ -151,10 +270,10 @@
                                 <color key="backgroundColor" red="0.89047558059999998" green="0.89047558059999998" blue="0.89047558059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="1wM-tY-d9P" secondAttribute="trailing" id="94i-wf-suQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="0ea-3w-JV0" secondAttribute="bottom" constant="-493" id="bvQ-wy-p5W"/>
+                                    <constraint firstAttribute="bottom" secondItem="0ea-3w-JV0" secondAttribute="bottom" constant="-468" id="bvQ-wy-p5W"/>
                                     <constraint firstItem="0ea-3w-JV0" firstAttribute="leading" secondItem="VF1-5B-MWt" secondAttribute="leading" id="dwJ-kR-ACS"/>
                                     <constraint firstAttribute="trailing" secondItem="0ea-3w-JV0" secondAttribute="trailing" id="g7e-bt-u7M"/>
-                                    <constraint firstAttribute="bottom" secondItem="1wM-tY-d9P" secondAttribute="bottom" constant="-430" id="iEd-hH-Mrr"/>
+                                    <constraint firstAttribute="bottom" secondItem="1wM-tY-d9P" secondAttribute="bottom" constant="-380" id="iEd-hH-Mrr"/>
                                     <constraint firstItem="1wM-tY-d9P" firstAttribute="leading" secondItem="VF1-5B-MWt" secondAttribute="leading" id="wYh-q5-XBh"/>
                                 </constraints>
                             </view>
@@ -173,6 +292,7 @@
                         <outlet property="reportIssueCard" destination="0ea-3w-JV0" id="sBm-WV-CgA"/>
                         <outlet property="settingsView" destination="me9-UW-jo7" id="pI0-T8-ig2"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="onboarding" id="pXg-YE-7Bz"/>
+                        <segue destination="hFo-Oh-TBv" kind="modal" identifier="tour" id="Wgj-ER-4U6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEO-bD-8V4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,9 +300,17 @@
             <point key="canvasLocation" x="295" y="515"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tour-step1.png" width="231" height="256"/>
+        <image name="tour-step2.png" width="303" height="282"/>
+        <image name="tour-step3.png" width="114" height="234"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="pXg-YE-7Bz"/>
+    </inferredMetricsTieBreakers>
 </document>
