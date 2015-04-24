@@ -18,10 +18,9 @@ class CardDeckView: UIView {
 	var topCard: CardView? {
 		didSet {
 			if let cardValue = topCard {
-				cardValue.currentState = .Minimized
-				cardValue.nextState = .Normal
+				setUpCard(cardValue)
 
-				addButton(cardValue)
+				addButton(cardValue, fontColor: Colors.mainRed)
 
 				cardValue.layer.zPosition = -layer.bounds.size.width
 			}
@@ -31,19 +30,26 @@ class CardDeckView: UIView {
 	var bottomCard: CardView? {
 		didSet {
 			if let cardValue = bottomCard {
-				cardValue.currentState = .Minimized
-				cardValue.nextState = .Normal
+				setUpCard(cardValue)
 
 				topCard?.minimizedHeight += cardValue.minimizedHeight
 
-				addButton(cardValue)
+				addButton(cardValue, fontColor: UIColor.whiteColor())
 			}
 		}
 	}
 
-	func addButton(card: CardView) {
+	func setUpCard(card: CardView) {
+		card.currentState = .Minimized
+		card.nextState = .Normal
+
+		card.layer.cornerRadius = 4.0
+	}
+
+	func addButton(card: CardView, fontColor: UIColor) {
 		let button = UIButton(frame: CGRectMake(0, 0, card.frame.width, card.minimizedHeight))
-		button.setTitle(card.title, forState: UIControlState.Normal)
+		button.setTitle(card.title, forState: .Normal)
+		button.setTitleColor(fontColor, forState: .Normal)
 
 		let actionName = card === topCard
 				? "topCardTouchUpInside:" : "bottomCardTouchUpInside:"
