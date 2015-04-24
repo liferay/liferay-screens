@@ -51,7 +51,7 @@ class CardView: UIView {
 		self.arrow = UIImageView(image: arrowImage)
 
 		let x = self.frame.size.width - arrowImage.size.width - 25
-		let y = (self.minimizedHeight/2) - arrowImage.size.height
+		let y = (self.minimizedHeight/2) - arrowImage.size.height + 6
 
 		self.arrow!.frame = CGRectMake(x, y, arrowImage.size)
 		self.arrow!.alpha = 0.0
@@ -69,15 +69,15 @@ class CardView: UIView {
 		func showArrow() {
 			UIView.animateWithDuration(time ?? animationTime) {
 				if self.nextState == .Normal || self.nextState == .Maximized {
-					println("-> \(self.title) is shown")
 					self.arrow!.alpha = 1.0
 				}
 				else {
-					println("-> \(self.title) is hidden")
 					self.arrow!.alpha = 0.0
 				}
 			}
 		}
+
+
 
 
 		if nextState == currentState {
