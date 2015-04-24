@@ -35,10 +35,12 @@ class CardView: UIView {
 	@IBInspectable var maximizedMargin: CGFloat = 20
 	@IBInspectable var title: String = "CARD"
 
-	let animationTime = 1.0
+	let animationTime = 0.5
 
 	var currentState: ShowState = .Hidden
 	var nextState: ShowState = .Normal
+
+	var onChangeCompleted: (Bool -> Void)?
 
 	func resetToCurrentState() {
 		let pos = positionForState(currentState)
@@ -46,7 +48,7 @@ class CardView: UIView {
 		self.frame = CGRectMake(0, pos, self.frame.size)
 	}
 
-	func changeToNextState() {
+	func changeToNextState(time: Double? = nil, onComplete: (Bool -> Void)? = nil) {
 		if nextState == currentState {
 			return
 		}
@@ -54,25 +56,27 @@ class CardView: UIView {
 		let nextPosition = positionForState(nextState)
 
 		if nextState == .Background {
-			self.layer.addAnimation(backgroundAnimation(), forKey: "pushBackAnimation")
+			onChangeCompleted = onComplete
+			self.layer.addAnimation(backgroundAnimation(time ?? animationTime), forKey: "pushBackAnimation")
 		}
 		else if currentState == .Background {
-			self.layer.addAnimation(resetBackgroundAnimation(), forKey: "popBackAnimation")
+			onChangeCompleted = onComplete
+			self.layer.addAnimation(resetBackgroundAnimation(time ?? animationTime), forKey: "popBackAnimation")
 		}
 		else {
-			UIView.animateWithDuration(animationTime*1.30,
+			UIView.animateWithDuration((time ?? animationTime)*1.30,
 					delay: 0.0,
 					usingSpringWithDamping: 1.0,
 					initialSpringVelocity: 0.0,
 					options: .BeginFromCurrentState | .CurveEaseIn,
 					animations: {
 						self.frame = CGRectMake(0, nextPosition, self.frame.size)
-					}, completion: nil)
+					}, completion: onComplete)
 		}
 		self.currentState = self.nextState
 	}
 
-	private func resetBackgroundAnimation() -> CAAnimation {
+	private func resetBackgroundAnimation(animationTime: Double) -> CAAnimation {
 		var animation = CABasicAnimation(keyPath: "transform")
 		animation.toValue = NSValue(CATransform3D: CATransform3DIdentity)
 		animation.duration = animationTime
@@ -83,7 +87,7 @@ class CardView: UIView {
 		return animation;
 	}
 
-	private func backgroundAnimation() -> CAAnimation {
+	private func backgroundAnimation(animationTime: Double) -> CAAnimation {
 		var t0 = CATransform3DIdentity
 		var animation0 = CABasicAnimation(keyPath: "transform")
 
@@ -129,7 +133,14 @@ class CardView: UIView {
 
 		group.animations = [animation0, animation1, animation2]
 
+		group.delegate = self
+
 		return group;
+	}
+
+	override func animationDidStop(theAnimation: CAAnimation!, finished flag: Bool) {
+		onChangeCompleted?(flag)
+		onChangeCompleted = nil
 	}
 
 	private func positionForState(state: ShowState) -> CGFloat {

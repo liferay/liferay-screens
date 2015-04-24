@@ -43,23 +43,31 @@ class HomeViewController: UIViewController {
 		self.issuesDeck.layer.zPosition = 0
 		self.reportIssueCard.layer.zPosition = 1000
 
-
 		reportIssueCard.normalHeight = issuesDeck.frame.size.height - 50
+
+		issuesCard.currentState = .Hidden
+		reportIssueCard.currentState = .Hidden
+
+		issuesCard.resetToCurrentState()
+		reportIssueCard.resetToCurrentState()
+
+		issuesCard.hidden = true
+		reportIssueCard.hidden = true
     }
 
 	override func viewWillAppear(animated: Bool) {
 		if SessionContext.hasSession {
-			issuesCard.currentState = .Hidden
 			issuesCard.nextState = .Maximized
-
-			reportIssueCard.currentState = .Hidden
 			reportIssueCard.nextState = .Minimized
 
-			issuesCard.resetToCurrentState()
-			reportIssueCard.resetToCurrentState()
+			issuesCard.hidden = false
 
-			issuesCard.changeToNextState()
-			reportIssueCard.changeToNextState()
+			issuesCard.changeToNextState() { Bool -> Void in
+				self.reportIssueCard.currentState = .Hidden
+				self.reportIssueCard.resetToCurrentState()
+				self.reportIssueCard.hidden = false
+				self.reportIssueCard.changeToNextState()
+			}
 
 			UIView.animateWithDuration(1.5) {
 				self.settingsView.alpha = 1.0
