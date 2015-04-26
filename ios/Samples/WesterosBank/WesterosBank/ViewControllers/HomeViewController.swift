@@ -27,7 +27,6 @@ class HomeViewController: UIViewController {
 	var issuesController: IssuesViewController?
 	var reportIssueController: ReportIssueViewController?
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -87,5 +86,21 @@ class HomeViewController: UIViewController {
 			}
 		}
 	}
+
+	@IBAction func accountSettingsAction(sender: AnyObject) {
+	}
+
+	@IBAction func callAction(sender: AnyObject) {
+	}
+
+	@IBAction func sendMessageAction(sender: AnyObject) {
+
+	}
+
+	@IBAction func signOutAction(sender: AnyObject) {
+		SessionContext.clearSession()
+		self.performSegueWithIdentifier("onboarding", sender: nil)
+	}
+
 
 }
