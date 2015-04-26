@@ -42,6 +42,8 @@
 		88855A671AE6A5B700D352D5 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A661AE6A5B700D352D5 /* CardView.swift */; };
 		88855A691AE6A5E100D352D5 /* CardDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A681AE6A5E100D352D5 /* CardDeckView.swift */; };
 		88855A6C1AE6BD3E00D352D5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A6A1AE6BD3E00D352D5 /* HomeViewController.swift */; };
+		88AE4E5F1AED570A0012125D /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE4E5E1AED570A0012125D /* AccountSettingsViewController.swift */; };
+		88AE4E611AED5B200012125D /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE4E601AED5B200012125D /* BorderedTextField.swift */; };
 		88E657C91AE96AF700FF744A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E657C81AE96AF700FF744A /* Colors.swift */; };
 		88FB9B1B1AE7A42500C427AA /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB9B1A1AE7A42500C427AA /* CardViewController.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +86,8 @@
 		88855A661AE6A5B700D352D5 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		88855A681AE6A5E100D352D5 /* CardDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDeckView.swift; sourceTree = "<group>"; };
 		88855A6A1AE6BD3E00D352D5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		88AE4E5E1AED570A0012125D /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
+		88AE4E601AED5B200012125D /* BorderedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
 		88E657C81AE96AF700FF744A /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		88FB9B1A1AE7A42500C427AA /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		8B041B2636CB91FFB7773179 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 				8820EEF81AE79C9000FA79A6 /* ReportIssueViewController.swift */,
 				8820EEF91AE79C9000FA79A6 /* ReportIssueViewController.xib */,
 				88735F7F1AEA3E75000D35F9 /* TourViewController.swift */,
+				88AE4E5E1AED570A0012125D /* AccountSettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 				8820EEFC1AE7A03200FA79A6 /* OnBoardingCardDeck.swift */,
 				8820EEFE1AE7A10800FA79A6 /* IssuesCardDeck.swift */,
 				88E657C81AE96AF700FF744A /* Colors.swift */,
+				88AE4E601AED5B200012125D /* BorderedTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -355,6 +361,8 @@
 			files = (
 				8820EEF61AE79C2D00FA79A6 /* IssuesViewController.swift in Sources */,
 				8820EEFA1AE79C9000FA79A6 /* ReportIssueViewController.swift in Sources */,
+				88AE4E611AED5B200012125D /* BorderedTextField.swift in Sources */,
+				88AE4E5F1AED570A0012125D /* AccountSettingsViewController.swift in Sources */,
 				88855A5F1AE65F2900D352D5 /* SignInViewController.swift in Sources */,
 				88855A5C1AE659C400D352D5 /* ViewController.swift in Sources */,
 				88855A6C1AE6BD3E00D352D5 /* HomeViewController.swift in Sources */,

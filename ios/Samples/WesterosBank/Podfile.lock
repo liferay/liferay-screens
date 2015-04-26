@@ -22,7 +22,6 @@ PODS:
     - AFNetworking/NSURLSession
   - CryptoSwift (0.0.10)
   - DTPickerPresenter (0.2.0)
-  - KNSemiModalViewController (0.3)
   - Liferay-iOS-SDK (6.2.0.17):
     - AFNetworking (~> 2.5.0)
   - LiferayScreens (0.3):
@@ -40,11 +39,12 @@ PODS:
   - ODRefreshControl (1.1.0)
   - SMXMLDocument (1.0.1)
   - TNRadioButtonGroup (0.4)
+  - TPKeyboardAvoiding (1.2.6)
   - UICKeyChainStore (2.0.4)
 
 DEPENDENCIES:
-  - KNSemiModalViewController
   - LiferayScreens (from `https://github.com/liferay/liferay-screens`, branch `LMW-226-fix-delayed-ddlform-loading`)
+  - TPKeyboardAvoiding
 
 EXTERNAL SOURCES:
   LiferayScreens:
@@ -60,7 +60,6 @@ SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   CryptoSwift: 3b886d001f50deb65623a8967d68f6b8bf8d9ba1
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
-  KNSemiModalViewController: 8c0056377714b5170c52c65977d540200405411f
   Liferay-iOS-SDK: 00b511b88592d07faade2bed8252c04193df565d
   LiferayScreens: 92d649c1b8a3fc0e4e61935a5332230e189a803a
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
@@ -68,6 +67,7 @@ SPEC CHECKSUMS:
   ODRefreshControl: 4c4c413bf70d2ea0c02a28ac0a0b3b4bf4dbfdea
   SMXMLDocument: 4ff79d0d7586239e93758c8610698b57cc0acd82
   TNRadioButtonGroup: f5fb9b545d8913bbabe6a72ea1fa6fba4d833bb6
+  TPKeyboardAvoiding: ee4dd35e3bb7bb64bfbda47e7cc9ba872ff10f77
   UICKeyChainStore: 69eb0c3a6f669bccf16ba88de3b9069b71501361
 
 COCOAPODS: 0.36.4

@@ -88,6 +88,7 @@ class HomeViewController: UIViewController {
 	}
 
 	@IBAction func accountSettingsAction(sender: AnyObject) {
+		self.performSegueWithIdentifier("account", sender: nil)
 	}
 
 	@IBAction func callAction(sender: AnyObject) {

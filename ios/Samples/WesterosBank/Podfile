@@ -5,4 +5,4 @@ use_frameworks!
 
 pod 'LiferayScreens', :git => 'https://github.com/liferay/liferay-screens', :branch => 'LMW-226-fix-delayed-ddlform-loading'
 
-pod 'KNSemiModalViewController'
+pod 'TPKeyboardAvoiding'
