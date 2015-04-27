@@ -12,8 +12,11 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
-class IssuesViewController: CardViewController {
+class IssuesViewController: CardViewController, DDLListScreenletDelegate {
+
+	@IBOutlet weak var screenlet: DDLListScreenlet!
 
 	override init(card: CardView, nibName: String) {
 		super.init(card: card, nibName: nibName)
@@ -25,6 +28,14 @@ class IssuesViewController: CardViewController {
 
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+	}
+
+	override func viewDidLoad() {
+		screenlet.delegate = self
+	}
+
+	override func viewWillAppear(animated: Bool) {
+		screenlet.loadList()
 	}
 
 }

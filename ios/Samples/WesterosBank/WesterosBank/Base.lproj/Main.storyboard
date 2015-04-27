@@ -331,10 +331,10 @@
             </objects>
             <point key="canvasLocation" x="301" y="1249"/>
         </scene>
-        <!--View Controller-->
+        <!--OnBoarding-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="WesterosBank" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="OnBoarding" id="vXZ-lx-hvc" customClass="ViewController" customModule="WesterosBank" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -360,7 +360,7 @@
                                                 <real key="value" value="80"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="normalHeight">
-                                                <real key="value" value="350"/>
+                                                <real key="value" value="400"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="SIGN IN"/>
                                         </userDefinedRuntimeAttributes>
