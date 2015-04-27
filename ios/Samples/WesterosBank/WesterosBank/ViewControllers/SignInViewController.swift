@@ -73,4 +73,38 @@ class SignInViewController: CardViewController {
 		scroll.scrollRectToVisible(newRect, animated: true)
 	}
 
+	override func cardWillAppear() {
+		NSNotificationCenter.defaultCenter().addObserver(self,
+				selector: "showKeyboard:",
+				name: UIKeyboardWillChangeFrameNotification,
+				object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self,
+				selector: "hideKeyboard:",
+				name: UIKeyboardWillHideNotification,
+				object: nil)
+	}
+
+	override func cardWillDisappear() {
+		NSNotificationCenter.defaultCenter().removeObserver(self,
+				name: UIKeyboardWillHideNotification,
+				object: nil)
+		NSNotificationCenter.defaultCenter().removeObserver(self,
+				name: UIKeyboardWillChangeFrameNotification,
+				object: nil)
+	}
+
+	func showKeyboard(notif: NSNotification) {
+		if cardView?.currentState == .Normal {
+			cardView?.nextState = .Maximized
+			cardView?.changeToNextState()
+		}
+	}
+
+	func hideKeyboard(notif: NSNotification) {
+		if cardView?.currentState == .Maximized {
+			cardView?.nextState = .Normal
+			cardView?.changeToNextState()
+		}
+	}
+
 }
