@@ -31,6 +31,7 @@ public class LiferayServerContext {
 			return StaticInstance.serverProperties!["server"] as! String
 		}
 		set {
+			loadContextFile ()
 			StaticInstance.serverProperties!["server"] = newValue
 		}
 	}
@@ -41,6 +42,7 @@ public class LiferayServerContext {
 			return (StaticInstance.serverProperties!["companyId"] as! NSNumber).longLongValue
 		}
 		set {
+			loadContextFile ()
 			StaticInstance.serverProperties!["companyId"] = NSNumber(longLong: newValue)
 		}
 	}
@@ -51,6 +53,7 @@ public class LiferayServerContext {
 			return (StaticInstance.serverProperties!["groupId"] as! NSNumber).longLongValue
 		}
 		set {
+			loadContextFile ()
 			StaticInstance.serverProperties!["groupId"] = NSNumber(longLong: newValue)
 		}
 	}
