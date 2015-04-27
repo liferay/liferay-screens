@@ -61,6 +61,19 @@ public class LiferayServerContext {
 
 	//MARK: Public methods
 
+	public class func valueForKey(key: String) -> AnyObject? {
+		loadContextFile()
+		return StaticInstance.serverProperties![key]
+	}
+
+	public class func setValue(value: AnyObject, forKey key: String) {
+		loadContextFile()
+		return StaticInstance.serverProperties![key] = value
+	}
+
+
+	//MARK: Private methods
+
 	private class func loadContextFile() {
 		if StaticInstance.serverProperties != nil {
 			return
