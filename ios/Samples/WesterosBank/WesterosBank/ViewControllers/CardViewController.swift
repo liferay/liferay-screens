@@ -17,9 +17,13 @@ class CardViewController: UIViewController {
 
 	var onDone: (Void -> Void)?
 
+	let cardView: CardView?
+
 	init(card: CardView, nibName: String) {
+		self.cardView = card
+
 		super.init(nibName: nibName, bundle: nil)
-		
+
 		self.view.frame = CGRectMake(
 				0, card.minimizedHeight,
 				card.frame.width, self.view.frame.height)
@@ -28,6 +32,8 @@ class CardViewController: UIViewController {
 	}
 
 	required init(coder aDecoder: NSCoder) {
+		self.cardView = nil
+
 		super.init(coder: aDecoder)
 	}
 
