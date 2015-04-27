@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="WesterosBank" customModuleProvider="target">
             <connections>
+                <outlet property="screenlet" destination="BeX-T6-333" id="ff8-e8-B86"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,15 +19,6 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="373"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0Q-sM-o5S">
-                    <rect key="frame" x="126" y="265" width="46" height="30"/>
-                    <state key="normal" title="X">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="close:" destination="-1" eventType="touchUpInside" id="i2A-mS-3eA"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedStatusBarMetrics"/>

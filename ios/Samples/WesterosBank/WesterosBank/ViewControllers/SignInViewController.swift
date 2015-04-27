@@ -12,13 +12,18 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
 
-class SignInViewController: CardViewController {
+class SignInViewController: CardViewController, LoginScreenletDelegate, ForgotPasswordScreenletDelegate {
 
 	@IBOutlet weak var scroll: UIScrollView!
 	@IBOutlet weak var forgotTitle: UIButton!
 	@IBOutlet weak var backArrow: UIImageView!
+
+	@IBOutlet weak var loginScreenlet: LoginScreenlet!
+	@IBOutlet weak var forgotPasswordScreenlet: ForgotPasswordScreenlet!
+
 
 	override init(card: CardView, nibName: String) {
 		let save = card.minimizedHeight
@@ -37,6 +42,14 @@ class SignInViewController: CardViewController {
 
 	override func viewDidLoad() {
 		scroll.contentSize = CGSizeMake(scroll.frame.size.width * 2, scroll.frame.size.height)
+
+		self.loginScreenlet.delegate = self
+		self.forgotPasswordScreenlet.delegate = self
+
+		self.forgotPasswordScreenlet.anonymousApiUserName =
+				LiferayServerContext.valueForKey("anonymousUsername") as? String
+		self.forgotPasswordScreenlet.anonymousApiPassword =
+				LiferayServerContext.valueForKey("anonymousPassword") as? String
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -71,6 +84,20 @@ class SignInViewController: CardViewController {
 
 		let newRect = CGRectMake(scroll.frame.size.width, 0, scroll.frame.size)
 		scroll.scrollRectToVisible(newRect, animated: true)
+	}
+
+	func onLoginResponse(attributes: [String:AnyObject]) {
+		onDone?()
+	}
+
+	func onLoginError(error: NSError) {
+	}
+
+	func onForgotPasswordResponse(newPasswordSent:Bool) {
+		backAction(self)
+	}
+
+	func onForgotPasswordError(error: NSError) {
 	}
 
 	override func cardWillAppear() {

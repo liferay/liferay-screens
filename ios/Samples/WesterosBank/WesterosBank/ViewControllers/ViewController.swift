@@ -29,7 +29,6 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 
 		let onDone: () -> () = {
-			SessionContext.createSession(username: "test@liferay.com", password: "test", userAttributes: ["userId":1])
 			self.dismissViewControllerAnimated(true, completion: nil)
 		}
 

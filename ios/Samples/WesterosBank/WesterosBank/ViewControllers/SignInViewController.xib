@@ -7,7 +7,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController" customModule="WesterosBank" customModuleProvider="target">
             <connections>
                 <outlet property="backArrow" destination="G2O-c8-giH" id="QuQ-N2-Hen"/>
+                <outlet property="forgotPasswordScreenlet" destination="agF-4y-83g" id="zbG-qx-QcW"/>
                 <outlet property="forgotTitle" destination="Eug-pP-wux" id="S8T-jh-hsu"/>
+                <outlet property="loginScreenlet" destination="hZ1-eE-IBY" id="DIT-bf-bai"/>
                 <outlet property="scroll" destination="aYu-ha-uGh" id="uPz-5G-jdJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

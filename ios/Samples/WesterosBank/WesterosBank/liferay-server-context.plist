@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>companyId</key>
+	<integer>20155</integer>
+	<key>server</key>
+	<string>http://5.101.101.128:8080</string>
+	<key>groupId</key>
+	<integer>20182</integer>
+	<key>anonymousUsername</key>
+	<string>anonymous@liferay.com</string>
+	<key>anonymousPassword</key>
+	<string>anonymous1</string>
+</dict>
+</plist>
