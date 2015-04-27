@@ -32,6 +32,8 @@ class HomeViewController: UIViewController {
 
 		issuesController = IssuesViewController(card: issuesCard)
 
+		issuesController?.onEditIssue = onEditIssue
+
 		issuesDeck.topCard = issuesCard
 
 		reportIssueController = ReportIssueViewController(card: reportIssueCard)
@@ -103,5 +105,14 @@ class HomeViewController: UIViewController {
 		self.performSegueWithIdentifier("onboarding", sender: nil)
 	}
 
+	private func onEditIssue(record: DDLRecord) {
+		issuesCard.nextState = .Background
+		reportIssueCard.nextState = .Normal // .Maximized
+
+		reportIssueController!.issueRecord = record
+
+		issuesCard.changeToNextState()
+		reportIssueCard.changeToNextState()
+	}
 
 }

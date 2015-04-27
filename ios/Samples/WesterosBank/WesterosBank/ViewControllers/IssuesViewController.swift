@@ -18,6 +18,8 @@ class IssuesViewController: CardViewController, DDLListScreenletDelegate {
 
 	@IBOutlet weak var screenlet: DDLListScreenlet!
 
+	var onEditIssue: (DDLRecord -> Void)?
+
 	override init(card: CardView, nibName: String) {
 		super.init(card: card, nibName: nibName)
 	}
@@ -36,6 +38,10 @@ class IssuesViewController: CardViewController, DDLListScreenletDelegate {
 
 	override func viewWillAppear(animated: Bool) {
 		screenlet.loadList()
+	}
+
+	func onDDLRecordSelected(record: DDLRecord) {
+		onEditIssue?(record)
 	}
 
 }

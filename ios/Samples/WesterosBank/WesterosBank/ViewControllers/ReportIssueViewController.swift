@@ -12,8 +12,13 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
-class ReportIssueViewController: CardViewController {
+class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
+
+	@IBOutlet weak var screenlet: DDLFormScreenlet!
+
+	var issueRecord : DDLRecord?
 
 	override init(card: CardView, nibName: String) {
 		super.init(card: card, nibName: nibName)
@@ -25,6 +30,21 @@ class ReportIssueViewController: CardViewController {
 
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+	}
+
+	override func viewDidLoad() {
+		screenlet.delegate = self
+	}
+
+	override func cardWillAppear() {
+		if let recordValue = issueRecord {
+			screenlet.recordId = recordValue.recordId
+			screenlet.loadRecord()
+		}
+	}
+
+	func onFormSubmitted(record: DDLRecord) {
+		onDone?()
 	}
 
 }

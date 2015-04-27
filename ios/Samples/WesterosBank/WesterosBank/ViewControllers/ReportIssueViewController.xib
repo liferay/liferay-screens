@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReportIssueViewController" customModule="WesterosBank" customModuleProvider="target">
             <connections>
+                <outlet property="screenlet" destination="hDf-4F-Pb4" id="wMU-2x-uEl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,6 +18,15 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-4F-Pb4" customClass="DDLFormScreenlet" customModule="LiferayScreens">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="recordSetId">
+                            <integer key="value" value="20472"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="structureId">
+                            <integer key="value" value="20470"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
