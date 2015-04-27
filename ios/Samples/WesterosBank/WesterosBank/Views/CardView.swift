@@ -36,6 +36,7 @@ class CardView: UIView {
 	@IBInspectable var title: String = "CARD"
 
 	var arrow: UIImageView?
+	var button: UIButton?
 
 	let animationTime = 0.5
 
@@ -57,6 +58,15 @@ class CardView: UIView {
 		self.arrow!.alpha = 0.0
 
 		self.addSubview(self.arrow!)
+	}
+
+	func createButton(fontColor: UIColor) -> UIButton {
+		button = UIButton(frame: CGRectMake(0, 0, self.frame.width, self.minimizedHeight))
+		button!.setTitle(self.title, forState: .Normal)
+		button!.setTitleColor(fontColor, forState: .Normal)
+		self.addSubview(button!)
+
+		return button!
 	}
 
 	func resetToCurrentState() {

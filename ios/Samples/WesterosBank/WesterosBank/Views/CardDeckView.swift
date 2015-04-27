@@ -47,17 +47,13 @@ class CardDeckView: UIView {
 	}
 
 	func addButton(card: CardView, fontColor: UIColor) {
-		let button = UIButton(frame: CGRectMake(0, 0, card.frame.width, card.minimizedHeight))
-		button.setTitle(card.title, forState: .Normal)
-		button.setTitleColor(fontColor, forState: .Normal)
-
 		let actionName = card === topCard
 				? "topCardTouchUpInside:" : "bottomCardTouchUpInside:"
-		button.addTarget(self,
-				action: Selector(actionName),
-				forControlEvents: UIControlEvents.TouchUpInside)
 
-		card.addSubview(button)
+		card.createButton(fontColor)
+				.addTarget(self,
+					action: Selector(actionName),
+					forControlEvents: UIControlEvents.TouchUpInside)
 
 		card.createArrow(fontColor)
 	}
