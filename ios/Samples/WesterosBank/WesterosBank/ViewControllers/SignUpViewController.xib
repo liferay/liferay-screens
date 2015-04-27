@@ -14,8 +14,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BeX-T6-333" customClass="SignUpScreenlet" customModule="LiferayScreens">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="373"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0Q-sM-o5S">
-                    <rect key="frame" x="266" y="0.0" width="46" height="30"/>
+                    <rect key="frame" x="126" y="265" width="46" height="30"/>
                     <state key="normal" title="X">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

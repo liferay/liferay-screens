@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7702"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IssuesViewController" customModule="WesterosBank" customModuleProvider="target">
@@ -13,7 +13,19 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q2Z-Hh-9uP" customClass="DDLListScreenlet" customModule="LiferayScreens">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Q2Z-Hh-9uP" secondAttribute="trailing" id="4Ay-MR-FTz"/>
+                <constraint firstItem="Q2Z-Hh-9uP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6ev-x4-9lT"/>
+                <constraint firstAttribute="bottom" secondItem="Q2Z-Hh-9uP" secondAttribute="bottom" id="BdV-Et-17H"/>
+                <constraint firstItem="Q2Z-Hh-9uP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="P9X-LG-1zf"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="302" y="303"/>
         </view>
