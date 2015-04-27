@@ -27,6 +27,10 @@ class CardView: UIView {
 		case Normal
 		case Maximized
 		case Background
+
+		var isVisible: Bool {
+			return (self == .Normal || self == .Maximized)
+		}
 	}
 
 
@@ -42,6 +46,9 @@ class CardView: UIView {
 
 	var currentState: ShowState = .Hidden
 	var nextState: ShowState = .Normal
+	var beforeBackgroundState: ShowState = .Normal
+
+	weak var presentingController: CardViewController?
 
 	var onChangeCompleted: (Bool -> Void)?
 
@@ -87,16 +94,28 @@ class CardView: UIView {
 			}
 		}
 
-
-
-
 		if nextState == currentState {
 			return
+		}
+
+		if currentState == .Background {
+			// go to previous
+			nextState = beforeBackgroundState
+		}
+
+		if nextState.isVisible != currentState.isVisible {
+			if nextState.isVisible {
+				presentingController?.cardWillAppear()
+			}
+			else {
+				presentingController?.cardWillDisappear()
+			}
 		}
 
 		let nextPosition = positionForState(nextState)
 
 		if nextState == .Background {
+			beforeBackgroundState = currentState
 			onChangeCompleted = onComplete
 			self.layer.addAnimation(backgroundAnimation(time ?? animationTime), forKey: "pushBackAnimation")
 		}

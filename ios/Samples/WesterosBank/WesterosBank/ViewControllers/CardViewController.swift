@@ -29,12 +29,20 @@ class CardViewController: UIViewController {
 				card.frame.width, self.view.frame.height)
 
 		card.addSubview(self.view)
+
+		card.presentingController = self
 	}
 
 	required init(coder aDecoder: NSCoder) {
 		self.cardView = nil
 
 		super.init(coder: aDecoder)
+	}
+
+	func cardWillAppear() {
+	}
+
+	func cardWillDisappear() {
 	}
 
 }
