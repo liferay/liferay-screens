@@ -21,7 +21,7 @@ func CGRectMake(x: CGFloat, y: CGFloat, size: CGSize) -> CGRect {
 
 class CardView: UIView {
 
-	enum ShowState {
+	enum ShowState: DebugPrintable {
 		case Hidden
 		case Minimized
 		case Normal
@@ -31,6 +31,22 @@ class CardView: UIView {
 		var isVisible: Bool {
 			return (self == .Normal || self == .Maximized)
 		}
+
+	    var debugDescription: String {
+			switch self {
+			case Hidden:
+				return "Hidden"
+			case Minimized:
+				return "Minimized"
+			case Normal:
+				return "Normal"
+			case Maximized:
+				return "Maximized"
+			case Background:
+				return "Background"
+			}
+		}
+
 	}
 
 
@@ -72,6 +88,7 @@ class CardView: UIView {
 		button!.setTitle(self.title, forState: .Normal)
 		button!.setTitleColor(fontColor, forState: .Normal)
 		button!.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
+
 		self.addSubview(button!)
 
 		return button!
@@ -83,16 +100,19 @@ class CardView: UIView {
 		self.frame = CGRectMake(0, pos, self.frame.size)
 	}
 
-	func changeToNextState(time: Double? = nil, onComplete: (Bool -> Void)? = nil) {
+	func changeToNextState(time: Double? = nil, delay: Double = 0.0, onComplete: (Bool -> Void)? = nil) {
 		func showArrow() {
-			UIView.animateWithDuration(time ?? animationTime) {
-				if self.nextState == .Normal || self.nextState == .Maximized {
-					self.arrow!.alpha = 1.0
-				}
-				else {
-					self.arrow!.alpha = 0.0
-				}
-			}
+			UIView.animateWithDuration(time ?? animationTime,
+				delay: delay,
+				options: UIViewAnimationOptions.CurveEaseIn,
+				animations: {
+					if self.nextState == .Normal || self.nextState == .Maximized {
+						self.arrow!.alpha = 1.0
+					}
+					else {
+						self.arrow!.alpha = 0.0
+					}
+				}, completion: nil)
 		}
 
 		if nextState == currentState {
@@ -127,13 +147,13 @@ class CardView: UIView {
 		else {
 			onChangeCompleted = nil
 			UIView.animateWithDuration((time ?? animationTime)*1.30,
-					delay: 0.0,
-					usingSpringWithDamping: 1.0,
-					initialSpringVelocity: 0.0,
-					options: .BeginFromCurrentState | .CurveEaseIn,
-					animations: {
-						self.frame = CGRectMake(0, nextPosition, self.frame.size)
-					}, completion: onComplete)
+				delay: delay,
+				usingSpringWithDamping: 1.0,
+				initialSpringVelocity: 0.0,
+				options: .BeginFromCurrentState | .CurveEaseIn,
+				animations: {
+					self.frame = CGRectMake(0, nextPosition, self.frame.size)
+				}, completion: onComplete)
 		}
 
 		showArrow()

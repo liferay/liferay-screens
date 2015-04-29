@@ -69,7 +69,7 @@ class HomeViewController: UIViewController {
 				self.reportIssueCard.currentState = .Hidden
 				self.reportIssueCard.resetToCurrentState()
 				self.reportIssueCard.hidden = false
-				self.reportIssueCard.changeToNextState()
+				self.reportIssueCard.changeToNextState(time: nil, delay: 0.5)
 			}
 
 			UIView.animateWithDuration(1.5) {

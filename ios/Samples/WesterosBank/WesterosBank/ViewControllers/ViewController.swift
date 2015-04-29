@@ -43,6 +43,16 @@ class ViewController: UIViewController {
 		cardDeck.bottomCard = signUpCard
 
 		signUpCard.normalHeight = cardDeck.frame.size.height - 50
+
+		signUpCard.currentState = .Minimized
+
+		signInCard.currentState = .Hidden
+		signInCard.resetToCurrentState()
+	}
+
+	override func viewWillAppear(animated: Bool) {
+		self.signInCard.nextState = .Minimized
+		self.signInCard.changeToNextState(time: nil, delay: 0.5)
 	}
 
 }
