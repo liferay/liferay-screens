@@ -49,6 +49,9 @@
 		88AE4E5F1AED570A0012125D /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE4E5E1AED570A0012125D /* AccountSettingsViewController.swift */; };
 		88AE4E611AED5B200012125D /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE4E601AED5B200012125D /* BorderedTextField.swift */; };
 		88E657C91AE96AF700FF744A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E657C81AE96AF700FF744A /* Colors.swift */; };
+		88EDE3CA1AEF859C00D61C91 /* Avenir-Next-Condensed.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 88EDE3C81AEF859C00D61C91 /* Avenir-Next-Condensed.ttc */; };
+		88EDE3CB1AEF859C00D61C91 /* Avenir-Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 88EDE3C91AEF859C00D61C91 /* Avenir-Next.ttc */; };
+		88EDE3CD1AEF85AB00D61C91 /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 88EDE3CC1AEF85AB00D61C91 /* Avenir.ttc */; };
 		88FB9B1B1AE7A42500C427AA /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB9B1A1AE7A42500C427AA /* CardViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +100,9 @@
 		88AE4E5E1AED570A0012125D /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		88AE4E601AED5B200012125D /* BorderedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
 		88E657C81AE96AF700FF744A /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		88EDE3C81AEF859C00D61C91 /* Avenir-Next-Condensed.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Next-Condensed.ttc"; sourceTree = "<group>"; };
+		88EDE3C91AEF859C00D61C91 /* Avenir-Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Next.ttc"; sourceTree = "<group>"; };
+		88EDE3CC1AEF85AB00D61C91 /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
 		88FB9B1A1AE7A42500C427AA /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		8B041B2636CB91FFB7773179 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F2F4F265F639A9CBBACD5765 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +131,7 @@
 		88735F811AEA4077000D35F9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				88EDE3C11AEF82EF00D61C91 /* fonts */,
 				889CD5681AEE456200FAC48E /* icon_LEFT.png */,
 				889CD5691AEE456200FAC48E /* icon_LEFT@2x.png */,
 				889CD56A1AEE456200FAC48E /* icon_LEFT@3x.png */,
@@ -222,6 +229,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		88EDE3C11AEF82EF00D61C91 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				88EDE3C81AEF859C00D61C91 /* Avenir-Next-Condensed.ttc */,
+				88EDE3C91AEF859C00D61C91 /* Avenir-Next.ttc */,
+				88EDE3CC1AEF85AB00D61C91 /* Avenir.ttc */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		9C0B8E5D9A18E3D4A366A294 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,7 +317,9 @@
 				88735F931AEA4077000D35F9 /* tour-step3@3x.png in Resources */,
 				88735F8F1AEA4077000D35F9 /* tour-step2@2x.png in Resources */,
 				889CD56C1AEE456200FAC48E /* icon_LEFT@2x.png in Resources */,
+				88EDE3CB1AEF859C00D61C91 /* Avenir-Next.ttc in Resources */,
 				889CD56D1AEE456200FAC48E /* icon_LEFT@3x.png in Resources */,
+				88EDE3CA1AEF859C00D61C91 /* Avenir-Next-Condensed.ttc in Resources */,
 				88735F9D1AEA6451000D35F9 /* icon_DOWN_W@2x.png in Resources */,
 				88735F8E1AEA4077000D35F9 /* tour-step2.png in Resources */,
 				889CD56F1AEE82F900FAC48E /* liferay-server-context.plist in Resources */,
@@ -308,6 +327,7 @@
 				8820EEFB1AE79C9000FA79A6 /* ReportIssueViewController.xib in Resources */,
 				88855A5A1AE659B700D352D5 /* SignUpViewController.xib in Resources */,
 				88735F8B1AEA4077000D35F9 /* tour-step1.png in Resources */,
+				88EDE3CD1AEF85AB00D61C91 /* Avenir.ttc in Resources */,
 				88735F8D1AEA4077000D35F9 /* tour-step1@3x.png in Resources */,
 				88735F911AEA4077000D35F9 /* tour-step3.png in Resources */,
 				88735F9F1AEA6451000D35F9 /* icon_DOWN.png in Resources */,

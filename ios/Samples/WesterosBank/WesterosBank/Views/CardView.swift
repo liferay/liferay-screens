@@ -71,6 +71,7 @@ class CardView: UIView {
 		button = UIButton(frame: CGRectMake(0, 0, self.frame.width, self.minimizedHeight))
 		button!.setTitle(self.title, forState: .Normal)
 		button!.setTitleColor(fontColor, forState: .Normal)
+		button!.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
 		self.addSubview(button!)
 
 		return button!

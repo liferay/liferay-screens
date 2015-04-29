@@ -34,5 +34,11 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Avenir.ttc</string>
+		<string>Avenir-Next.ttc</string>
+		<string>Avenir-Next-Condensed.ttc</string>
+	</array>
 </dict>
 </plist>
