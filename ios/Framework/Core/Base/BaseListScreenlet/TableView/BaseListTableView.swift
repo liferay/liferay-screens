@@ -50,7 +50,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 
-	override func onFinishOperation() {
+	override public func onFinishOperation() {
 		if let currentRefreshControl = refreshControlView {
 			delayed(0.3) {
 				currentRefreshControl.endRefreshing()

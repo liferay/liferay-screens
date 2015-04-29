@@ -24,7 +24,7 @@ public class LoginView_flat7: LoginView_default {
 
 	//MARK: LoginView
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 
 		setFlat7ButtonBackground(loginButton)
@@ -38,7 +38,7 @@ public class LoginView_flat7: LoginView_default {
 		}
 	}
 
-	override internal func onSetTranslations() {
+	override public func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
 		titleLabel!.text = LocalizedString("flat7", "login-title", self)

@@ -45,7 +45,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 	//MARK: BaseScreenlet
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 
 		viewModel.borderWidth = self.borderWidth

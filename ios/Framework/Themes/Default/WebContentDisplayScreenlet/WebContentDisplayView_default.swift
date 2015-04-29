@@ -28,7 +28,7 @@ public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplay
 
 	//MARK: WebContentDisplayViewModel
 
-	override func onCreated() {
+	override public func onCreated() {
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 

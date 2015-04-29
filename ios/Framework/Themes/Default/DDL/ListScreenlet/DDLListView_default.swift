@@ -44,7 +44,7 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 
 	//MARK: DDLFormTableView 
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)

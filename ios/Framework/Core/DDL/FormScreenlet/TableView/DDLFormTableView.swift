@@ -79,17 +79,17 @@ public class DDLFormTableView: DDLFormView,
 		return result
 	}
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 
 		registerFieldCells()
 	}
 
-	override internal func onShow() {
+	override public func onShow() {
 		keyboardManager.registerObserver(self)
 	}
 
-	override internal func onHide() {
+	override public func onHide() {
 		keyboardManager.unregisterObserver()
 	}
 

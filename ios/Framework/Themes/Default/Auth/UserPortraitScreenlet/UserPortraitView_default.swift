@@ -20,8 +20,8 @@ import UIKit
 
 public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel {
 
-	@IBOutlet var activityIndicator: UIActivityIndicatorView?
-	@IBOutlet var portraitImage: UIImageView?
+	@IBOutlet public var activityIndicator: UIActivityIndicatorView?
+	@IBOutlet public var portraitImage: UIImageView?
 
 	public var borderWidth: CGFloat = 1.0 {
 		didSet {
@@ -56,7 +56,7 @@ public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel 
 
 	//MARK: BaseScreenletView
 
-	override func onStartOperation() {
+	override public func onStartOperation() {
 		objc_sync_enter(self)
 
 		// use tag to track the start count
@@ -69,7 +69,7 @@ public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel 
 		objc_sync_exit(self)
 	}
 
-	override func onFinishOperation() {
+	override public func onFinishOperation() {
 		if activityIndicator?.tag > 0 {
 			objc_sync_enter(self)
 
@@ -83,10 +83,17 @@ public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel 
 		}
 	}
 
-	override func onShow() {
+	override public func onShow() {
 		portraitImage?.layer.borderWidth = borderWidth
 		portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
 		portraitImage?.layer.cornerRadius = DefaultThemeButtonCornerRadius
+	}
+
+	public func loadPlaceholder() {
+		self.portraitImage?.image = imageInAnyBundle(
+				name: "default-portrait-placeholder",
+				currentClass: self.dynamicType,
+				currentTheme: "default")
 	}
 
 
@@ -128,13 +135,6 @@ public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel 
 					self.portraitLoaded?(nil, error)
 					self.onFinishOperation()
 			})
-	}
-
-	internal func loadPlaceholder() {
-		self.portraitImage?.image = imageInAnyBundle(
-				name: "default-portrait-placeholder",
-				currentClass: self.dynamicType,
-				currentTheme: "default")
 	}
 
 }

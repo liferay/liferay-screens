@@ -80,7 +80,7 @@ import UIKit
 
 	//MARK: BaseScreenlet
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		formView.showSubmitButton = showSubmitButton
 	}
 
