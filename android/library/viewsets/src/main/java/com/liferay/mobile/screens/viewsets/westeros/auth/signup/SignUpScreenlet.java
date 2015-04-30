@@ -12,14 +12,12 @@
  * details.
  */
 
-package com.liferay.mobile.screens.bankofwesteros.views;
+package com.liferay.mobile.screens.viewsets.westeros.auth.signup;
 
 import android.content.Context;
 import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractor;
-import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 
 /**
@@ -27,7 +25,7 @@ import com.liferay.mobile.screens.context.User;
  */
 public class SignUpScreenlet
 	extends com.liferay.mobile.screens.auth.signup.SignUpScreenlet
-	implements com.liferay.mobile.screens.bankofwesteros.views.SignUpListener {
+	implements com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpListener {
 
 	public static final String TERMS_AND_CONDITIONS = "TERMS_AND_CONDITIONS";
 

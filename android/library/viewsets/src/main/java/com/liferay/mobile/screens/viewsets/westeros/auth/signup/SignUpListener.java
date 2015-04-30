@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.bankofwesteros.views;
+package com.liferay.mobile.screens.viewsets.westeros.auth.signup;
 
 /**
  * @author Silvio Santos

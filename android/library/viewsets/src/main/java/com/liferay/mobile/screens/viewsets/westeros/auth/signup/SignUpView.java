@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.bankofwesteros.views;
+package com.liferay.mobile.screens.viewsets.westeros.auth.signup;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -27,14 +27,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.liferay.mobile.screens.bankofwesteros.R;
+import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 /**
  * @author Silvio Santos
  */
 public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpView {
-
 
 	public SignUpView(Context context) {
 		super(context);

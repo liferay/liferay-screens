@@ -1,49 +1,49 @@
-/*
+/**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
 
-package com.liferay.mobile.screens.bankofwesteros.views;
+package com.liferay.mobile.screens.viewsets.westeros.userportrait;
 
 import android.content.Context;
-import android.text.InputType;
-import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.TextView;
 
-import com.liferay.mobile.screens.bankofwesteros.R;
+import com.liferay.mobile.screens.viewsets.R;
 
 /**
- * @author Silvio Santos
+ * @author Javier Gamarra
  */
-public class ForgotPasswordView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.auth.forgotpassword.ForgotPasswordView {
+public class UserPortraitView extends com.liferay.mobile.screens.viewsets.defaultviews.userportrait.UserPortraitView {
 
-	public ForgotPasswordView(Context context) {
+	public UserPortraitView(Context context) {
 		super(context);
 	}
 
-	public ForgotPasswordView(Context context, AttributeSet attributes) {
+	public UserPortraitView(
+		Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
 
-	public ForgotPasswordView(Context context, AttributeSet attributes, int defaultStyle) {
+	public UserPortraitView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
 
 	@Override
-	protected void refreshLoginEditTextStyle() {
-		getLoginEditText().setInputType(getAuthMethod().getInputType());
+	protected int getDefaultBorderColor() {
+		return R.color.westeros_red;
+	}
+
+	@Override
+	protected float getBorderWidth() {
+		return 1f;
 	}
 }

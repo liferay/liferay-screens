@@ -12,14 +12,14 @@
  * details.
  */
 
-package com.liferay.mobile.screens.bankofwesteros.views;
+package com.liferay.mobile.screens.viewsets.westeros.ddl.form.fields;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.liferay.mobile.screens.bankofwesteros.R;
+import com.liferay.mobile.screens.viewsets.R;
 
 /**
  * @author Jose Manuel Navarro
