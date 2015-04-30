@@ -45,7 +45,7 @@ public enum AssetClassNameId {
 	DLFILE_VERSION(10095),
 
 	// DDL
-	DDLRECORD(10097),
+	DDLRECORD(20097),
 	DDLRECORD_SET(10098),
 
 	// Journal
