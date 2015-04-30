@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/westeros_screenlet"
+    android:fillViewport="true"
+    android:theme="@style/WesterosTheme">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/westeros_button_bottom_margin">
+
+        <LinearLayout
+            android:id="@+id/ddlfields_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical" />
+
+        <ProgressBar
+            android:id="@+id/ddlform_loading_screen_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ddlfields_container"
+            android:layout_gravity="center"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/submit"
+            style="@style/westeros_dark_button"
+            android:layout_alignParentBottom="true"
+            android:text="@string/send" />
+
+        <ProgressBar
+            android:id="@+id/ddlform_progress_bar"
+            style="@style/westeros_progress_bar"
+            android:layout_alignLeft="@id/submit"
+            android:layout_alignStart="@id/submit"
+            android:layout_alignTop="@id/submit" />
+
+    </RelativeLayout>
+
+</com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView>

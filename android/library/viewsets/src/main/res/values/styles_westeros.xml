@@ -1,22 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="WesterosTheme" parent="android:Theme.Material.Light.NoActionBar">
+	<style name="WesterosTheme" parent="Base.Theme.AppCompat.Light">
 		<item name="colorPrimary">@color/westeros_red</item>
 		<item name="colorAccent">@color/westeros_dark_red</item>
 		<item name="colorPrimaryDark">@color/westeros_dark_red</item>
-		<item name="android:colorPrimary">@color/westeros_red</item>
-		<item name="android:colorAccent">@color/westeros_dark_red</item>
-		<item name="android:colorPrimaryDark">@color/westeros_dark_red</item>
 		<item name="android:textColorPrimary">@color/westeros_black</item>
 		<item name="android:textColorSecondary">@color/westeros_light_gray</item>
 		<item name="android:textViewStyle">@style/westeros_text_view</item>
 		<item name="android:editTextStyle">@style/westeros_edit_text</item>
 		<item name="android:buttonStyle">@style/westeros_button</item>
 		<item name="android:typeface">serif</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="windowActionBar">false</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowContentOverlay">@null</item>
 	</style>
 
-	<style name="westeros_edit_text" parent="android:Widget.Material.EditText">
+	<style name="westeros_screenlet">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:orientation">vertical</item>
+	</style>
+
+	<style name="westeros_edit_text" parent="Base.Widget.AppCompat.EditText">
 		<item name="android:background">@drawable/westeros_edit_text_selector</item>
 		<item name="android:singleLine">true</item>
 		<item name="android:layout_height">@dimen/westeros_block_height</item>
@@ -32,7 +38,13 @@
 		<item name="android:layout_marginRight">@dimen/westeros_side_margin</item>
 	</style>
 
-	<style name="westeros_text_view" parent="android:Widget.Material.TextView">
+	<style name="westeros_dark_edit_text" parent="westeros_edit_text">
+		<item name="android:background">@drawable/westeros_dark_edit_text_selector</item>
+		<item name="android:textColorHint">@android:color/white</item>
+		<item name="android:textColor">@android:color/white</item>
+	</style>
+
+	<style name="westeros_text_view">
 		<item name="android:layout_height">@dimen/westeros_block_height</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_marginTop">@dimen/westeros_edit_text_top_margin</item>
@@ -41,7 +53,7 @@
 		<item name="android:paddingRight">@dimen/westeros_side_margin</item>
 	</style>
 
-	<style name="westeros_button" parent="android:Widget.Material.Button">
+	<style name="westeros_button" parent="Base.Widget.AppCompat.Button">
 		<item name="android:textAllCaps">true</item>
 		<item name="android:background">@drawable/westeros_button_ripple</item>
 		<item name="android:textColor">@android:color/white</item>
@@ -53,10 +65,26 @@
 		<item name="android:layout_marginRight">@dimen/westeros_side_margin</item>
 	</style>
 
+	<style name="westeros_dark_button" parent="westeros_button">
+		<item name="android:background">@drawable/westeros_dark_button_ripple</item>
+		<item name="android:textColor">@color/westeros_red</item>
+	</style>
+
 	<style name="westeros_progress_bar">
 		<item name="android:layout_height">@dimen/westeros_block_height</item>
-		<item name="android:elevation">24dp</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:visibility">invisible</item>
 	</style>
+
+	<style name="westeros_arrow">
+		<item name="android:padding">@dimen/westeros_side_margin</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">@dimen/westeros_card_title_height</item>
+	</style>
+
+	<style name="westeros_card">
+		<item name="android:paddingLeft">@dimen/westeros_side_margin</item>
+		<item name="android:paddingRight">@dimen/westeros_side_margin</item>
+	</style>
+
 </resources>

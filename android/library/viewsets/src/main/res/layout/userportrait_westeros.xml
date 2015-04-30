@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.bankofwesteros.views.UserPortraitView xmlns:android="http://schemas.android.com/apk/res/android"
-																  android:layout_width="match_parent"
-																  android:layout_height="match_parent"
-																  android:padding="10dp">
+<com.liferay.mobile.screens.viewsets.westeros.userportrait.UserPortraitView xmlns:android="http://schemas.android.com/apk/res/android"
+																			android:layout_width="match_parent"
+																			android:layout_height="match_parent"
+																			android:padding="10dp"
+																			android:theme="@style/WesterosTheme">
 
 	<ImageView
 		android:id="@+id/portrait_image"
@@ -14,13 +15,13 @@
 		android:src="@drawable/default_portrait_placeholder"/>
 
 	<ImageButton
-		android:visibility="invisible"
-		android:background="@android:color/transparent"
 		android:id="@+id/replace_portrait_image"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="bottom|right"
-		android:src="@drawable/circle_add"/>
+		android:background="@android:color/transparent"
+		android:src="@drawable/circle_add"
+		android:visibility="invisible"/>
 
 	<ProgressBar
 		android:id="@+id/portrait_progress"
@@ -29,5 +30,4 @@
 		android:layout_gravity="center"
 		android:visibility="invisible"/>
 
-
-</com.liferay.mobile.screens.bankofwesteros.views.UserPortraitView>
+</com.liferay.mobile.screens.viewsets.westeros.userportrait.UserPortraitView>

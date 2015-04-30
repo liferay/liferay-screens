@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.westeros.ddl.form.fields.DDLFieldSelectView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/text"
+            style="@style/westeros_dark_edit_text"
+            android:hint="@string/severity" />
+
+        <TextView
+            android:id="@+id/label_select"
+            style="@style/westeros_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/westeros_side_margin"
+            android:layout_marginRight="@dimen/westeros_side_margin"
+            android:gravity="end|center_vertical"
+            android:text="@string/severity"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+
+</com.liferay.mobile.screens.viewsets.westeros.ddl.form.fields.DDLFieldSelectView>
