@@ -26,7 +26,6 @@ import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 import org.json.JSONObject;
@@ -243,7 +242,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	private void clearDDLEntrySelected() {
 		_entry = null;
 		_reportIssueTitle.setText(getString(R.string.report_issue));
-		_sendButton.setText(getString(R.string.send_issue).toUpperCase());
+		_sendButton.setText(getString(R.string.send).toUpperCase());
 		_ddlFormScreenlet.setRecordId(0);
 	}
 

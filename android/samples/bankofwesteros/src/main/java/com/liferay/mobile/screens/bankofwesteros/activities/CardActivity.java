@@ -43,10 +43,15 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 
 	private void setTransparentMenuBar() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-			getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-			getWindow().setStatusBarColor(getResources().getColor(R.color.westeros_background_gray));
+			setStatusBar();
 		}
+	}
+
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	private void setStatusBar() {
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+		getWindow().setStatusBarColor(getResources().getColor(R.color.westeros_background_gray));
 	}
 
 	@Override
@@ -93,7 +98,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 				@Override
 				public void onGlobalLayout() {
 					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-						content.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+						removeObserver();
 					}
 					else {
 						content.getViewTreeObserver().removeGlobalOnLayoutListener(this);
@@ -104,6 +109,11 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 
 					calculateHeightAndWidth();
 					animateScreenAfterLoad();
+				}
+
+				@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+				private void removeObserver() {
+					content.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 				}
 			});
 		}
