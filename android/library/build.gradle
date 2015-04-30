@@ -6,7 +6,9 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:1.2.0-beta1'
+		classpath 'com.android.tools.build:gradle:1.2.0'
+		classpath 'com.github.dcendents:android-maven-plugin:1.2'
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
 
 		// NOTE: Do not place your application dependencies here; they belong
 		// in the individual module build.gradle files
@@ -37,33 +39,33 @@ subprojects {
 		formatter group: 'org.apache.ant', name: 'ant', version: '1.8.2'
 	}
 
-	task format(type: JavaExec) {
-		main = 'com.liferay.portal.tools.sourceformatter.SourceFormatter'
-		classpath = configurations.formatter
-		workingDir = 'src'
-	}
-
-	task formatResources(type: JavaExec) {
-		main = format.main
-		classpath = format.classpath
-		workingDir = 'res'
-	}
-
-	task wrapper(type: Wrapper) {
-		gradleVersion = '2.2.1'
-	}
-
-    uploadArchives {
-        repositories.mavenDeployer {
-            def deployPath = file(getProperty('aar.deployPath'))
-            repository(url: "file://${deployPath.absolutePath}")
-            pom.project {
-                groupId 'com.liferay.mobile'
-                artifactId 'liferay-screens'
-                version "0.3.0"
-            }
-        }
-    }
+//	task format(type: JavaExec) {
+//		main = 'com.liferay.portal.tools.sourceformatter.SourceFormatter'
+//		classpath = configurations.formatter
+//		workingDir = 'src'
+//	}
+//
+//	task formatResources(type: JavaExec) {
+//		main = format.main
+//		classpath = format.classpath
+//		workingDir = 'res'
+//	}
+//
+//	task wrapper(type: Wrapper) {
+//		gradleVersion = '2.2.1'
+//	}
+//
+//    uploadArchives {
+//        repositories.mavenDeployer {
+//            def deployPath = file(getProperty('aar.deployPath'))
+//            repository(url: "file://${deployPath.absolutePath}")
+//            pom.project {
+//                groupId 'com.liferay.mobile'
+//                artifactId 'liferay-screens'
+//                version "0.3.2"
+//            }
+//        }
+//    }
 
 }
 allprojects {

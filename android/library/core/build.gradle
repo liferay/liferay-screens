@@ -1,8 +1,10 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
 	compileSdkVersion 22
-	buildToolsVersion "22.0.0"
+	buildToolsVersion "22.0.1"
 
 	defaultConfig {
 		minSdkVersion 14
@@ -23,6 +25,49 @@ android {
 		exclude 'META-INF/NOTICE'
 	}
 
+}
+
+def siteUrl = 'https://github.com/liferay/liferay-screens'
+def gitUrl = 'https://github.com/liferay/liferay-screens.git'
+version = '0.3.2'
+group = 'com.liferay.mobile'
+
+project.archivesBaseName = 'core'
+
+install {
+	repositories.mavenInstaller {
+		// This generates POM.xml with proper parameters
+		pom {
+			project {
+				packaging 'aar'
+
+				// Add your description here
+				name 'Liferay Screens for Android includes the component (screenlets) library and a sample project.'
+				url siteUrl
+
+				// Set your license
+				licenses {
+					license {
+						name 'The Apache Software License, Version 2.0'
+						url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+					}
+				}
+				developers {
+					developer {
+						id '1'
+						name 'Javier Gamarra'
+						email 'nhpatt@gmail.com'
+					}
+				}
+				scm {
+					connection gitUrl
+					developerConnection gitUrl
+					url siteUrl
+
+				}
+			}
+		}
+	}
 }
 
 repositories {
@@ -49,4 +94,41 @@ dependencies {
 	testCompile "org.robolectric:robolectric:3.0-rc2"
 	testCompile 'org.mockito:mockito-core:1.9.5'
 
+}
+
+task sourcesJar(type: Jar) {
+	from android.sourceSets.main.java.srcDirs
+	classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+	source = android.sourceSets.main.java.srcDirs
+//	classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	classifier = 'javadoc'
+	from javadoc.destinationDir
+}
+artifacts {
+	archives javadocJar
+	archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+	user = properties.getProperty("bintray.user")
+	key = properties.getProperty("bintray.apikey")
+
+	configurations = ['archives']
+	pkg {
+		repo = "maven"
+		name = "liferay-screens"
+		websiteUrl = siteUrl
+		vcsUrl = gitUrl
+		licenses = ["LGPL-2.1"]
+		publish = true
+	}
 }

@@ -1,1 +1,2 @@
 include ':core', ':viewsets'
+project(":viewsets").name = "liferay-screens"
