@@ -20,6 +20,7 @@ import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.userportrait.UserPortraitInteractorTest;
 import com.liferay.mobile.screens.util.MockFactory;
 
 import org.json.JSONObject;
@@ -28,7 +29,7 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import static org.mockito.Matchers.any;
@@ -42,8 +43,8 @@ import static org.mockito.Mockito.when;
 @RunWith(Enclosed.class)
 public class LoginInteractorTest {
 
-	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
+	@Config(emulateSdk = 18, manifest="./app/src/main/AndroidManifest.xml")
+	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenAuthMethodIsEmail {
 
 		@Test
@@ -72,8 +73,8 @@ public class LoginInteractorTest {
 		}
 	}
 
-	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
+	@Config(emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
+	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenAuthMethodIsId {
 
 		@Test
@@ -104,7 +105,7 @@ public class LoginInteractorTest {
 	}
 
 	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
+	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenAuthMethodIsScreenName {
 
 		@Test
@@ -134,7 +135,7 @@ public class LoginInteractorTest {
 	}
 
 	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
+	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenLoginMethodIsCalled {
 
 		@Test
@@ -158,7 +159,7 @@ public class LoginInteractorTest {
 	}
 
 	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
+	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenLoginRequestCompletes {
 
 		@Test
@@ -225,7 +226,7 @@ public class LoginInteractorTest {
 	}
 
 	@Config(emulateSdk = 18)
-	@RunWith(RobolectricTestRunner.class)
+	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenValidateMethodIsCalled {
 
 		@Test(expected = IllegalArgumentException.class)

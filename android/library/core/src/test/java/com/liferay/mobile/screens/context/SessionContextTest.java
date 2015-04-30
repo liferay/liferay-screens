@@ -29,7 +29,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
@@ -49,7 +49,7 @@ import static org.junit.Assert.assertNotNull;
 public class SessionContextTest {
 
 	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
-	@RunWith(RobolectricTestRunner.class)
+	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenCreateSession {
 
 		@Before
@@ -100,7 +100,7 @@ public class SessionContextTest {
 	}
 
 	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
-	@RunWith(RobolectricTestRunner.class)
+	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenClearSession {
 
 		@Before
@@ -122,7 +122,7 @@ public class SessionContextTest {
 	}
 
 	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
-	@RunWith(RobolectricTestRunner.class)
+	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenSettingUserAttributes {
 
 		@Before
@@ -150,7 +150,7 @@ public class SessionContextTest {
 	}
 
 	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
-	@RunWith(RobolectricTestRunner.class)
+	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenStoreSessionInSharedPreferences {
 
 		@Test(expected = IllegalStateException.class)

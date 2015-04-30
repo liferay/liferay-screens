@@ -26,7 +26,6 @@ import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
@@ -37,9 +36,9 @@ import org.robolectric.annotation.Config;
 @RunWith(Enclosed.class)
 public class UserPortraitInteractorTest {
 
-	public static final String LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML = "src/main/AndroidManifest.xml";
+	public static final String LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML = "../src/main/AndroidManifest.xml";
 
-	@RunWith(RobolectricTestRunner.class)
+	@RunWith(RobolectricGradleTestRunner.class)
 	@Config(constants = BuildConfig.class, emulateSdk = 21, manifest = LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
 	public static class WhenLoadingFromPortraitId {
 
