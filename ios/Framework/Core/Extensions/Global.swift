@@ -62,8 +62,8 @@ public func delayed(delay: NSTimeInterval, block: dispatch_block_t) {
 
 
 public func allBundles(#currentClass: AnyClass, #currentTheme: String?) -> [NSBundle] {
-	return [bundleForTheme(currentTheme, fromClass: currentClass),
-			bundleForCore(fromClass: currentClass),
+	return [bundleForTheme(currentTheme),
+			bundleForCore(),
 			NSBundle(forClass: currentClass),
 			NSBundle.mainBundle()
 		].filter { bundle in
@@ -73,8 +73,8 @@ public func allBundles(#currentClass: AnyClass, #currentTheme: String?) -> [NSBu
 		}
 }
 
-public func bundleForTheme(themeName: String?, #fromClass: AnyClass) -> NSBundle? {
-	let frameworkBundle = NSBundle(forClass: fromClass)
+public func bundleForTheme(themeName: String?) -> NSBundle? {
+	let frameworkBundle = NSBundle(forClass: BaseScreenlet.self)
 
 	let themeBundlePath = (themeName == nil)
 			? nil
@@ -83,8 +83,8 @@ public func bundleForTheme(themeName: String?, #fromClass: AnyClass) -> NSBundle
 	return (themeBundlePath == nil) ? nil : NSBundle(path: themeBundlePath!)
 }
 
-public func bundleForCore(#fromClass: AnyClass) -> NSBundle? {
-	let frameworkBundle = NSBundle(forClass: fromClass)
+public func bundleForCore() -> NSBundle? {
+	let frameworkBundle = NSBundle(forClass: BaseScreenlet.self)
 
 	let coreBundlePath = frameworkBundle.pathForResource("LiferayScreens-core", ofType: "bundle")
 
