@@ -21,11 +21,13 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 	}
 
 	func textFieldDidBeginEditing(textField: UITextField) {
+		superview?.layer.borderWidth = 1.0
 		superview?.layer.borderColor = self.borderColor?.CGColor
 		superview?.backgroundColor = self.focusedColor!
 	}
 
 	func textFieldDidEndEditing(textField: UITextField) {
+		superview?.layer.borderWidth = 0.0
 		superview?.layer.borderColor = UIColor.clearColor().CGColor
 		superview?.backgroundColor = self.unfocusedColor!
 	}
