@@ -64,6 +64,7 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, ForgotPa
 				animations: {
 					self.forgotTitle.alpha = 0.0
 					self.backArrow.alpha = 0.0
+					self.cardView?.arrow?.alpha = 1.0
 				},
 				completion: nil)
 
@@ -75,10 +76,11 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, ForgotPa
 		self.forgotTitle.alpha = 0.0
 		self.backArrow.alpha = 0.0
 
-		UIView.animateWithDuration(1.0,
+		UIView.animateWithDuration(0.5,
 				animations: {
 					self.forgotTitle.alpha = 1.0
 					self.backArrow.alpha = 1.0
+					self.cardView?.arrow?.alpha = 0.0
 				},
 				completion: nil)
 
