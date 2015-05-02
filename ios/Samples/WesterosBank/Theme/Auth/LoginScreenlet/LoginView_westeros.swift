@@ -17,56 +17,35 @@ import LiferayScreens
 
 public class LoginView_westeros: LoginView_default {
 
-	@IBOutlet private var titleLabel: UILabel?
-	@IBOutlet private var subtitleLabel: UILabel?
-	@IBOutlet private var userNamePlaceholder: UILabel?
-	@IBOutlet private var passwordPlaceholder: UILabel?
-
-
-	//MARK: LoginView
+	@IBAction func showPassword(sender: AnyObject) {
+		passwordField!.secureTextEntry = !passwordField!.secureTextEntry
+	}
 
 	override public func onCreated() {
 		super.onCreated()
 
 		BaseScreenlet.setHUDCustomColor(WesterosThemeBasicRed)
+
+/* TODO is placeholder gray?
+
+		let attr = [NSForegroundColorAttributeName : UIColor.blackColor()]
+
+		userNameField?.attributedPlaceholder = NSAttributedString(
+				string: userNameField!.placeholder!,
+				attributes: attr)
+
+		passwordField?.attributedPlaceholder = NSAttributedString(
+				string: passwordField!.placeholder!,
+				attributes: attr)
+*/
 	}
 
-	override public var userName: String? {
-		didSet {
-			userNamePlaceholder!.changeVisibility(visible: userName != "")
-		}
+	override public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
+		return false
 	}
 
-	override public func onSetTranslations() {
-		let bundle = NSBundle(forClass: self.dynamicType)
-
-		titleLabel!.text = LocalizedString("flat7", "login-title", self)
-		subtitleLabel!.text = LocalizedString("flat7", "login-subtitle", self)
-		userNamePlaceholder!.text = LocalizedString("flat7" ,"login-email", self)
-		passwordPlaceholder!.text = LocalizedString("flat7", "login-password", self)
-
-		loginButton!.replaceAttributedTitle(LocalizedString("flat7", "login-login", self),
-				forState: .Normal)
-
-		userNameField!.placeholder = "";
-		passwordField!.placeholder = "";
-	}
-
-
-	//MARK: UITextFieldDelegate
-
-	internal func textField(textField: UITextField!,
-			shouldChangeCharactersInRange range: NSRange,
-			replacementString string: String!)
-			-> Bool {
-
-		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
-
-		let placeHolder = textField == userNameField ? userNamePlaceholder : passwordPlaceholder
-
-		placeHolder!.changeVisibility(visible: newText != "")
-
-		return true
+	override public func onSetUserActionForControl(control: UIControl) -> Bool {
+		return control == self.loginButton
 	}
 
 }

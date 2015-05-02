@@ -26,16 +26,21 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
                             <subviews>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hZ1-eE-IBY" customClass="LoginScreenlet" customModule="LiferayScreens">
-                                    <rect key="frame" x="0.0" y="80" width="320" height="238"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <rect key="frame" x="0.0" y="80" width="320" height="210"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
+                                    </userDefinedRuntimeAttributes>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8t-zF-NbI">
-                                    <rect key="frame" x="95" y="187" width="131" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cg4-y9-Lxr">
+                                    <rect key="frame" x="83" y="309" width="153" height="30"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
                                     <state key="normal" title="Forgot password?">
+                                        <color key="titleColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="forgotPasswordAction:" destination="-1" eventType="touchUpInside" id="zTY-78-ozO"/>
+                                        <action selector="forgotPasswordAction:" destination="-1" eventType="touchUpInside" id="wdU-tN-p6w"/>
                                     </connections>
                                 </button>
                             </subviews>

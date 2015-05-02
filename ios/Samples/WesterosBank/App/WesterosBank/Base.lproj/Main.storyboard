@@ -213,7 +213,7 @@
                                                 <real key="value" value="80"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="normalHeight">
-                                                <real key="value" value="400"/>
+                                                <real key="value" value="440"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="SIGN IN"/>
                                         </userDefinedRuntimeAttributes>
@@ -411,6 +411,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pXg-YE-7Bz"/>
+        <segue reference="Xug-ji-iGt"/>
     </inferredMetricsTieBreakers>
 </document>
