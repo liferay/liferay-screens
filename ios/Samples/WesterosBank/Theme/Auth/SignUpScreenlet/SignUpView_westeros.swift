@@ -17,69 +17,32 @@ import LiferayScreens
 
 public class SignUpView_westeros: SignUpView_default {
 
-	@IBOutlet private var titleLabel: UILabel?
-	@IBOutlet private var subtitleLabel: UILabel?
-
-	@IBOutlet private var firstNamePlaceholder: UILabel?
-	@IBOutlet private var lastNamePlaceholder: UILabel?
-	@IBOutlet private var emailAddressPlaceholder: UILabel?
-	@IBOutlet private var passwordPlaceholder: UILabel?
-
-	//MARK: SignUpView
-
 	override public func onCreated() {
 		super.onCreated()
 
 		BaseScreenlet.setHUDCustomColor(WesterosThemeBasicRed)
+
+		let attr = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+
+		firstNameField?.attributedPlaceholder = NSAttributedString(
+				string: firstNameField!.placeholder!,
+				attributes: attr)
+
+		lastNameField?.attributedPlaceholder = NSAttributedString(
+				string: lastNameField!.placeholder!,
+				attributes: attr)
+
+		emailAddressField?.attributedPlaceholder = NSAttributedString(
+				string: emailAddressField!.placeholder!,
+				attributes: attr)
+
+		passwordField?.attributedPlaceholder = NSAttributedString(
+				string: passwordField!.placeholder!,
+				attributes: attr)
 	}
 
-	override public func onSetTranslations() {
-		let bundle = NSBundle(forClass: self.dynamicType)
-
-		titleLabel!.text = LocalizedString("flat7", "signup-title", self)
-		subtitleLabel!.text = LocalizedString("flat7", "signup-subtitle", self)
-		firstNamePlaceholder!.text = LocalizedString("flat7", "signup-first-name", self)
-		lastNamePlaceholder!.text = LocalizedString("flat7", "signup-last-name", self)
-		emailAddressPlaceholder!.text = LocalizedString("flat7", "signup-email", self)
-		passwordPlaceholder!.text = LocalizedString("flat7", "signup-password", self)
-
-		signUpButton!.replaceAttributedTitle(LocalizedString("flat7", "signup-button", self),
-				forState: .Normal)
-
-		firstNameField!.placeholder = "";
-		lastNameField!.placeholder = "";
-		emailAddressField!.placeholder = "";
-		passwordField!.placeholder = "";
-	}
-
-
-	//MARK: UITextFieldDelegate
-
-
-	internal func textField(textField: UITextField!,
-			shouldChangeCharactersInRange range: NSRange,
-			replacementString string: String!)
-			-> Bool {
-
-		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString:string)
-
-		var placeholder = firstNamePlaceholder!
-
-		switch textField {
-			case firstNameField!:
-				placeholder = firstNamePlaceholder!
-			case lastNameField!:
-				placeholder = lastNamePlaceholder!
-			case emailAddressField!:
-				placeholder = emailAddressPlaceholder!
-			case passwordField!:
-				placeholder = passwordPlaceholder!
-			default: ()
-		}
-
-		placeholder.changeVisibility(visible: newText != "")
-
-		return true
+	override public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
+		return false
 	}
 
 }

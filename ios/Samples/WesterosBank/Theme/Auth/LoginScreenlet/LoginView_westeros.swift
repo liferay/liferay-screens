@@ -25,19 +25,16 @@ public class LoginView_westeros: LoginView_default {
 		super.onCreated()
 
 		BaseScreenlet.setHUDCustomColor(WesterosThemeBasicRed)
+	}
 
-/* TODO is placeholder gray?
-
-		let attr = [NSForegroundColorAttributeName : UIColor.blackColor()]
-
-		userNameField?.attributedPlaceholder = NSAttributedString(
+	public override func onShow() {
+		userNameField!.attributedPlaceholder = NSAttributedString(
 				string: userNameField!.placeholder!,
-				attributes: attr)
+				attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
 
-		passwordField?.attributedPlaceholder = NSAttributedString(
+		passwordField!.attributedPlaceholder = NSAttributedString(
 				string: passwordField!.placeholder!,
-				attributes: attr)
-*/
+				attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
 	}
 
 	override public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {

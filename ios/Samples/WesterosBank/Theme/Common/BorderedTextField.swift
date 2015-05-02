@@ -24,12 +24,20 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 		superview?.layer.borderWidth = 1.0
 		superview?.layer.borderColor = self.borderColor?.CGColor
 		superview?.backgroundColor = self.focusedColor!
+
+		self.attributedPlaceholder = NSAttributedString(
+				string: self.placeholder!,
+				attributes: [NSForegroundColorAttributeName : self.unfocusedColor!])
 	}
 
 	func textFieldDidEndEditing(textField: UITextField) {
 		superview?.layer.borderWidth = 0.0
 		superview?.layer.borderColor = UIColor.clearColor().CGColor
 		superview?.backgroundColor = self.unfocusedColor!
+
+		self.attributedPlaceholder = NSAttributedString(
+				string: self.placeholder!,
+				attributes: [NSForegroundColorAttributeName : self.focusedColor!])
 	}
 
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
