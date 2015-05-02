@@ -45,6 +45,8 @@
 		88897D891AF549D50051DEF2 /* circle_see pasword_ON.png in Resources */ = {isa = PBXBuildFile; fileRef = 88897D861AF549D50051DEF2 /* circle_see pasword_ON.png */; };
 		88897D8A1AF549D50051DEF2 /* circle_see pasword_ON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88897D871AF549D50051DEF2 /* circle_see pasword_ON@2x.png */; };
 		88897D8B1AF549D50051DEF2 /* circle_see pasword_ON@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88897D881AF549D50051DEF2 /* circle_see pasword_ON@3x.png */; };
+		88897D8D1AF57BA70051DEF2 /* SignUpView_westeros_edit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88897D8C1AF57BA70051DEF2 /* SignUpView_westeros_edit.xib */; };
+		88897D8F1AF57D330051DEF2 /* SignUpView_westeros_edit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88897D8E1AF57D330051DEF2 /* SignUpView_westeros_edit.swift */; };
 		889CD56B1AEE456200FAC48E /* icon_LEFT.png in Resources */ = {isa = PBXBuildFile; fileRef = 889CD5681AEE456200FAC48E /* icon_LEFT.png */; };
 		889CD56C1AEE456200FAC48E /* icon_LEFT@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 889CD5691AEE456200FAC48E /* icon_LEFT@2x.png */; };
 		889CD56D1AEE456200FAC48E /* icon_LEFT@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 889CD56A1AEE456200FAC48E /* icon_LEFT@3x.png */; };
@@ -115,6 +117,8 @@
 		88897D861AF549D50051DEF2 /* circle_see pasword_ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle_see pasword_ON.png"; sourceTree = "<group>"; };
 		88897D871AF549D50051DEF2 /* circle_see pasword_ON@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle_see pasword_ON@2x.png"; sourceTree = "<group>"; };
 		88897D881AF549D50051DEF2 /* circle_see pasword_ON@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle_see pasword_ON@3x.png"; sourceTree = "<group>"; };
+		88897D8C1AF57BA70051DEF2 /* SignUpView_westeros_edit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView_westeros_edit.xib; sourceTree = "<group>"; };
+		88897D8E1AF57D330051DEF2 /* SignUpView_westeros_edit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_westeros_edit.swift; sourceTree = "<group>"; };
 		889CD5681AEE456200FAC48E /* icon_LEFT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_LEFT.png; sourceTree = "<group>"; };
 		889CD5691AEE456200FAC48E /* icon_LEFT@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_LEFT@2x.png"; sourceTree = "<group>"; };
 		889CD56A1AEE456200FAC48E /* icon_LEFT@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_LEFT@3x.png"; sourceTree = "<group>"; };
@@ -313,6 +317,8 @@
 			children = (
 				889F4D811AF26846002E233D /* SignUpView_westeros.swift */,
 				889F4D821AF26846002E233D /* SignUpView_westeros.xib */,
+				88897D8E1AF57D330051DEF2 /* SignUpView_westeros_edit.swift */,
+				88897D8C1AF57BA70051DEF2 /* SignUpView_westeros_edit.xib */,
 			);
 			path = SignUpScreenlet;
 			sourceTree = "<group>";
@@ -462,6 +468,7 @@
 				889F4D9A1AF26846002E233D /* westeros.strings in Resources */,
 				889F4DA01AF26846002E233D /* flat7-portrait-placeholder@2x.png in Resources */,
 				88735F8D1AEA4077000D35F9 /* tour-step1@3x.png in Resources */,
+				88897D8D1AF57BA70051DEF2 /* SignUpView_westeros_edit.xib in Resources */,
 				88735F911AEA4077000D35F9 /* tour-step3.png in Resources */,
 				889F4D931AF26846002E233D /* ForgotPasswordView_westeros.xib in Resources */,
 				88735F9F1AEA6451000D35F9 /* icon_DOWN.png in Resources */,
@@ -545,6 +552,7 @@
 				88855A591AE659B700D352D5 /* SignUpViewController.swift in Sources */,
 				88735F801AEA3E75000D35F9 /* TourViewController.swift in Sources */,
 				88855A331AE6537000D352D5 /* AppDelegate.swift in Sources */,
+				88897D8F1AF57D330051DEF2 /* SignUpView_westeros_edit.swift in Sources */,
 				88855A671AE6A5B700D352D5 /* CardView.swift in Sources */,
 				889F4D921AF26846002E233D /* ForgotPasswordView_westeros.swift in Sources */,
 				88E657C91AE96AF700FF744A /* Colors.swift in Sources */,

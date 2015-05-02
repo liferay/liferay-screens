@@ -22,23 +22,23 @@ public class SignUpView_westeros: SignUpView_default {
 
 		BaseScreenlet.setHUDCustomColor(WesterosThemeBasicRed)
 
-		let attr = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+		let color = (firstNameField as! BorderedTextField).focusedColor!
 
 		firstNameField?.attributedPlaceholder = NSAttributedString(
 				string: firstNameField!.placeholder!,
-				attributes: attr)
+				attributes: [NSForegroundColorAttributeName : color])
 
 		lastNameField?.attributedPlaceholder = NSAttributedString(
 				string: lastNameField!.placeholder!,
-				attributes: attr)
+				attributes: [NSForegroundColorAttributeName : color])
 
 		emailAddressField?.attributedPlaceholder = NSAttributedString(
 				string: emailAddressField!.placeholder!,
-				attributes: attr)
+				attributes: [NSForegroundColorAttributeName : color])
 
 		passwordField?.attributedPlaceholder = NSAttributedString(
 				string: passwordField!.placeholder!,
-				attributes: attr)
+				attributes: [NSForegroundColorAttributeName : color])
 	}
 
 	override public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
