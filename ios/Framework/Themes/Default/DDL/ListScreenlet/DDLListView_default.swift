@@ -20,7 +20,7 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 
 	public var labelFields: [String] = []
 
-	override internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
+	override public func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let record = object as? DDLRecord {
 			cell.textLabel?.text = composeLabel(record)
 			cell.accessoryType = .DisclosureIndicator
@@ -28,7 +28,7 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 		}
 	}
 
-	override internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
+	override public func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
 		cell.textLabel?.text = "..."
 		cell.accessoryType = .None
 
@@ -41,16 +41,7 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 		}
 	}
 
-
-	//MARK: DDLFormTableView 
-
-	override public func onCreated() {
-		super.onCreated()
-
-		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
-	}
-
-	internal func composeLabel(record: DDLRecord) -> String {
+	public func composeLabel(record: DDLRecord) -> String {
 		var result: String = ""
 
 		for labelField in labelFields {
@@ -74,5 +65,13 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 		return result
 	}
 
+
+	//MARK: DDLFormTableView
+
+	override public func onCreated() {
+		super.onCreated()
+
+		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
+	}
 
 }

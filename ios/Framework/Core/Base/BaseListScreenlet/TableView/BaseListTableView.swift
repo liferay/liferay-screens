@@ -20,7 +20,7 @@ import UIKit
 
 public class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDelegate {
 
-	@IBOutlet internal var tableView: UITableView?
+	@IBOutlet public var tableView: UITableView?
 
 	internal var refreshControlView: ODRefreshControl?
 
@@ -33,7 +33,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 
 	// MARK: BaseListView
 
-	override internal func onChangedRows(oldRows: [AnyObject?]) {
+	override public func onChangedRows(oldRows: [AnyObject?]) {
 		super.onChangedRows(oldRows)
 
 		if oldRows.isEmpty {
@@ -92,10 +92,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 
-
-	//MARK: Internal methods
-
-	internal func doDequeueReusableCell(#row: Int) -> UITableViewCell {
+	public func doDequeueReusableCell(#row: Int) -> UITableViewCell {
 		var result = tableView!.dequeueReusableCellWithIdentifier("listCell") as? UITableViewCell
 
 		if result == nil {
@@ -105,11 +102,14 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		return result!
 	}
 
-	internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
+	public func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
 	}
 
-	internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
+	public func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
 	}
+
+
+	//MARK: Internal methods
 
 	internal func updateRefreshControl() {
 		if let closureValue = refreshClosure {

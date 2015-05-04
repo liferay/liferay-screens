@@ -38,7 +38,7 @@ public class BaseListView: BaseScreenletView {
 		onChangedRows(oldRows)
 	}
 
-	internal func onChangedRows(oldRows:[AnyObject?]) {
+	public func onChangedRows(oldRows:[AnyObject?]) {
 	}
 
 }
