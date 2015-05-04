@@ -72,7 +72,7 @@ public class UploadService extends IntentService {
 			String fileName = (filePrefix == null ? "" : filePrefix) + date + "_" + name;
 
 			JSONObject jsonObject = service.addFileEntry(repositoryId, folderId, name,
-					getMimeType(path), fileName, "", "", getByes(new File(path)), serviceContextWrapper);
+					getMimeType(path), fileName, "", "", getBytes(new File(path)), serviceContextWrapper);
 
 			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, jsonObject, file));
 		}
@@ -106,7 +106,7 @@ public class UploadService extends IntentService {
 		}
 	}
 
-	public byte[] getByes(File file) throws IOException {
+	public byte[] getBytes(File file) throws IOException {
 		byte[] buffer = new byte[(int) file.length()];
 		InputStream ios = null;
 		try {
