@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.auth.login.interactor;
 
+import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.AuthMethod;
@@ -24,6 +25,7 @@ import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.service.v62.OauthuserfromsessionService;
 
 /**
  * @author Silvio Santos
@@ -58,6 +60,11 @@ public class LoginInteractorImpl
 		}
 	}
 
+	public void loginWithOAuth(OAuthConfig oAuthConfig) throws Exception {
+		OauthuserfromsessionService service = getOAuthUserFromSessionService(oAuthConfig);
+		service.getUserFromOAuthToken();
+	}
+
 	public void onEvent(JSONObjectEvent event) {
 		if (!isValidEvent(event)) {
 			return;
@@ -79,6 +86,12 @@ public class LoginInteractorImpl
 		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
 
 		return new UserService(session);
+	}
+
+	protected OauthuserfromsessionService getOAuthUserFromSessionService(OAuthConfig oAuthConfig) {
+		final Session session = SessionContext.createOAuthSession(oAuthConfig);
+		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
+		return new OauthuserfromsessionService(session);
 	}
 
 	protected void sendGetUserByEmailRequest(UserService service, String email)
@@ -117,5 +130,6 @@ public class LoginInteractorImpl
 			throw new IllegalArgumentException("AuthMethod cannot be empty");
 		}
 	}
+
 
 }
