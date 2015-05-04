@@ -72,7 +72,8 @@ public class LiferayServerContext {
 	}
 
 	public static AuthenticationType getAuthenticationType() {
-		return _consumerKey.isEmpty() || _consumerSecret.isEmpty() ? AuthenticationType.BASIC : AuthenticationType.OAUTH;
+		boolean hasOAuthParameters = _consumerKey.isEmpty() || _consumerSecret.isEmpty();
+		return hasOAuthParameters ? AuthenticationType.BASIC : AuthenticationType.OAUTH;
 	}
 
 	private static long _companyId;
