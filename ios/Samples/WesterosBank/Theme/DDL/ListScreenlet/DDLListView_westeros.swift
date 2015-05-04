@@ -17,14 +17,12 @@ import LiferayScreens
 
 public class DDLListView_westeros: DDLListView_default {
 
-	public override func onCreated() {
-		super.onCreated()
-
+	override public func doRegisterCellNib(#id: String) {
 		let nib = UINib(
 				nibName: "DDLListViewCell_westeros",
 				bundle: NSBundle(forClass: self.dynamicType))
 
-		self.tableView!.registerNib(nib, forCellReuseIdentifier: "listCell")
+		self.tableView!.registerNib(nib, forCellReuseIdentifier: id)
 	}
 
 	override public func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
@@ -34,6 +32,5 @@ public class DDLListView_westeros: DDLListView_default {
 			issueCell.record = record
 		}
 	}
-
 
 }

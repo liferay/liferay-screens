@@ -30,8 +30,16 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 
+	private let cellId = "listCell"
+
 
 	// MARK: BaseListView
+
+	public override func onCreated() {
+		super.onCreated()
+
+		doRegisterCellNib(id: cellId)
+	}
 
 	override public func onChangedRows(oldRows: [AnyObject?]) {
 		super.onChangedRows(oldRows)
@@ -106,6 +114,9 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	}
 
 	public func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
+	}
+
+	public func doRegisterCellNib(#id: String) {
 	}
 
 
