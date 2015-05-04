@@ -43,6 +43,8 @@ public class LoginScreenlet
 	extends BaseScreenlet<LoginViewModel, LoginInteractor>
 	implements LoginListener {
 
+	public static final int REQUEST_OAUTH_CODE = 1;
+
 	public LoginScreenlet(Context context) {
 		super(context);
 	}
@@ -80,10 +82,13 @@ public class LoginScreenlet
 
 	public void sendResult(int result, Intent intent) {
 		if (result == Activity.RESULT_OK) {
-			SessionContext.createOAuthSession((OAuthConfig) intent.getSerializableExtra(
-				OAuthActivity.EXTRA_OAUTH_CONFIG));
-			//TODO retrieve the user in OAuthInteractor
-			//onLoginSuccess(null);
+			try {
+				OAuthConfig oAuthConfig = (OAuthConfig) intent.getSerializableExtra(OAuthActivity.EXTRA_OAUTH_CONFIG);
+				getInteractor().loginWithOAuth(oAuthConfig);
+			}
+			catch (Exception e) {
+				onLoginFailure(e);
+			}
 		}
 		else if (result == Activity.RESULT_CANCELED) {
 			Exception exception = (Exception) intent.getSerializableExtra(
@@ -125,8 +130,6 @@ public class LoginScreenlet
 		_credentialsStore = StorageType.valueOf(storeValue);
 
 
-
-
 		int layoutId = typedArray.getResourceId(
 			R.styleable.LoginScreenlet_layoutId, getDefaultLayoutId());
 
@@ -140,8 +143,6 @@ public class LoginScreenlet
 		loginViewModel.setAuthenticationType(LiferayServerContext.getAuthenticationType());
 
 		typedArray.recycle();
-
-
 
 		return view;
 	}
@@ -170,10 +171,14 @@ public class LoginScreenlet
 			}
 		}
 		else {
-			OAuthConfig config = new OAuthConfig(LiferayServerContext.getServer(), LiferayServerContext.getConsumerKey(), LiferayServerContext.getConsumerSecret());
+			String server = LiferayServerContext.getServer();
+			String consumerKey = LiferayServerContext.getConsumerKey();
+			String consumerSecret = LiferayServerContext.getConsumerSecret();
+			OAuthConfig config = new OAuthConfig(server, consumerKey, consumerSecret);
+
 			Intent intent = new Intent(getContext(), OAuthActivity.class);
 			intent.putExtra(OAuthActivity.EXTRA_OAUTH_CONFIG, config);
-			((Activity) getContext()).startActivityForResult(intent, 1);
+			((Activity) getContext()).startActivityForResult(intent, REQUEST_OAUTH_CODE);
 		}
 	}
 
