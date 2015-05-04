@@ -228,31 +228,35 @@ import QuartzCore
 	//MARK: Private
 
 	private func createScreenletViewFromNib() -> BaseScreenletView? {
-		func nibNameInBundle(bundle: NSBundle) -> String? {
-			let viewName = self.screenletName + "View"
-			var nibName = "\(viewName)_\(self._themeName)"
-			var nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
-			if nibPath == nil {
-				nibName = "\(viewName)_default"
-				nibPath = bundle.pathForResource(nibName, ofType:"nib")
+		func tryLoadForTheme(themeName: String, inBundles bundles: [NSBundle]) -> BaseScreenletView? {
+			for bundle in bundles {
+				let viewName = self.screenletName + "View"
+				var nibName = "\(viewName)_\(themeName)"
+				var nibPath = bundle.pathForResource(nibName, ofType:"nib")
+
+				if nibPath != nil {
+					let views = bundle.loadNibNamed(nibName,
+							owner:self,
+							options:nil)
+
+					assert(views.count > 0, "Malformed xib \(nibName). Without views")
+
+					return (views[0] as? BaseScreenletView)
+				}
 			}
 
-			return (nibPath == nil) ? nil : nibName
+			return nil;
 		}
 
 		let bundles = allBundles(currentClass: self.dynamicType, currentTheme: _themeName);
 
-		for bundle in bundles {
-			if let nibName = nibNameInBundle(bundle) {
-				let views = bundle.loadNibNamed(nibName,
-						owner:self,
-						options:nil)
+		if let foundView = tryLoadForTheme(_themeName, inBundles: bundles) {
+			return foundView
+		}
 
-				assert(views.count > 0, "Malformed xib \(nibName). Without views")
-
-				return (views[0] as? BaseScreenletView)
-			}
+		if let foundView = tryLoadForTheme("default", inBundles: bundles) {
+			return foundView
 		}
 
 		println("ERROR: Xib file doesn't found for screenlet '\(self.screenletName)' and theme '\(_themeName)'")

@@ -63,6 +63,7 @@ public func delayed(delay: NSTimeInterval, block: dispatch_block_t) {
 
 public func allBundles(#currentClass: AnyClass, #currentTheme: String?) -> [NSBundle] {
 	return [bundleForTheme(currentTheme),
+			(currentTheme == "default") ? nil : bundleForTheme("default"),
 			bundleForCore(),
 			NSBundle(forClass: currentClass),
 			NSBundle.mainBundle()
