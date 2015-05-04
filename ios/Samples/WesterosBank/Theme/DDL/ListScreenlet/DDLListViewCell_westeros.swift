@@ -8,9 +8,10 @@
 
 import UIKit
 import LiferayScreens
+import MGSwipeTableCell
 
 
-public class DDLListViewCell_westeros: UITableViewCell {
+public class DDLListViewCell_westeros: MGSwipeTableCell {
 
 	@IBOutlet weak var statusIcon: UIImageView!
 	@IBOutlet weak var issueLabel: UILabel!
@@ -36,7 +37,6 @@ public class DDLListViewCell_westeros: UITableViewCell {
 					name: "status_\(currentIcon)",
 					currentClass: self.dynamicType,
 					currentTheme: "westeros")
-
 		}
 	}
 

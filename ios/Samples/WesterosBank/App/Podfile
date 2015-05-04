@@ -7,3 +7,4 @@ pod 'LiferayScreens', :git => 'https://github.com/liferay/liferay-screens', :bra
 pod 'LiferayScreens-WesterosTheme', :git => 'https://github.com/jmnavarro/liferay-screens', :branch => 'LMW-232-ios-westeros-bank-app'
 
 pod 'TPKeyboardAvoiding'
+pod 'MGSwipeTableCell'

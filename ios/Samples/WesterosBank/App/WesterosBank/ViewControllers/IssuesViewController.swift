@@ -18,7 +18,14 @@ class IssuesViewController: CardViewController, DDLListScreenletDelegate {
 
 	@IBOutlet weak var screenlet: DDLListScreenlet!
 
-	var onEditIssue: (DDLRecord -> Void)?
+	var onEditIssue: (DDLRecord -> Void)? {
+		didSet {
+			let view = screenlet.viewModel as! DDLListView_westeros
+
+			view.onViewAction = onEditIssue
+			view.onEditAction = onEditIssue
+		}
+	}
 
 	override init(card: CardView, nibName: String) {
 		super.init(card: card, nibName: nibName)

@@ -13,9 +13,13 @@
 */
 import UIKit
 import LiferayScreens
+import MGSwipeTableCell
 
 
-public class DDLListView_westeros: DDLListView_default {
+public class DDLListView_westeros: DDLListView_default, MGSwipeTableCellDelegate {
+
+	var onViewAction: (DDLRecord -> Void)?
+	var onEditAction: (DDLRecord -> Void)?
 
 	override public func doRegisterCellNib(#id: String) {
 		let nib = UINib(
@@ -30,7 +34,48 @@ public class DDLListView_westeros: DDLListView_default {
 			issueCell = cell as? DDLListViewCell_westeros {
 
 			issueCell.record = record
+
+			let viewButton = MGSwipeButton(
+					title: "View",
+					backgroundColor: UIColor(
+							red: 251.0/255.0,
+							green: 179.0/255.0,
+							blue: 81.0/255.0,
+							alpha: 1.0))
+
+			let editButton = MGSwipeButton(
+					title: "Edit",
+					backgroundColor: UIColor(
+							red: 79.0/255.0,
+							green: 146.0/255.0,
+							blue: 184.0/255.0,
+							alpha: 1.0))
+
+			issueCell.rightButtons = [viewButton, editButton]
+			issueCell.rightSwipeSettings.transition = MGSwipeTransition.Rotate3D
+
+			issueCell.delegate = self
 		}
 	}
+
+	public func swipeTableCell(
+			cell: MGSwipeTableCell!,
+			tappedButtonAtIndex index: Int,
+			direction: MGSwipeDirection,
+			fromExpansion: Bool)
+			-> Bool {
+
+		if let issueCell = cell as? DDLListViewCell_westeros {
+			if index == 0 {
+				onViewAction?(issueCell.record!)
+			}
+			else {
+				onEditAction?(issueCell.record!)
+			}
+		}
+
+		return true
+	}
+
 
 }
