@@ -21,7 +21,8 @@
 			android:layout_height="match_parent"
 			android:gravity="center_vertical"
 			android:orientation="vertical"
-			android:paddingLeft="15dp">
+			android:paddingLeft="15dp"
+			android:paddingStart="15dp">
 
 			<TextView
 				android:id="@+id/title"

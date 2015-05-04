@@ -136,26 +136,26 @@ public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
 
 		if ((firstName == null) || firstName.isEmpty()) {
 			throw new IllegalArgumentException(
-				"First name cannot be null or empty");
+				"First name cannot be empty");
 		}
 
 		if ((emailAddress == null) || emailAddress.isEmpty()) {
 			throw new IllegalArgumentException(
-				"Email address cannot be null or empty");
+				"Email address cannot be empty");
 		}
 
 		if (locale == null) {
-			throw new IllegalArgumentException("Locale cannot be null");
+			throw new IllegalArgumentException("Locale cannot be empty");
 		}
 
 		if ((anonymousApiUserName == null) || anonymousApiUserName.isEmpty()) {
 			throw new IllegalArgumentException(
-				"Anonymous api user name cannot be null");
+				"Anonymous api user name cannot be empty");
 		}
 
 		if ((anonymousApiPassword == null) || anonymousApiPassword.isEmpty()) {
 			throw new IllegalArgumentException(
-				"Anonymous api password cannot be null");
+				"Anonymous api password cannot be empty");
 		}
 	}
 

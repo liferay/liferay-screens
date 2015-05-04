@@ -28,7 +28,7 @@ import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
+import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 /**
  * @author Jose Manuel Navarro
@@ -90,7 +90,7 @@ public class ForgotPasswordView extends LinearLayout
 	public void showFailedOperation(String actionName, Exception e) {
 		_progressBar.finishProgress();
 
-		DefaultCrouton.error(getContext(), getContext().getString(R.string.password_request_error), e);
+		LiferayCrouton.error(getContext(), getContext().getString(R.string.password_request_error), e);
 		LiferayLogger.e("Could not send password", e);
 	}
 
@@ -111,7 +111,7 @@ public class ForgotPasswordView extends LinearLayout
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_loginEditText = (EditText) findViewById(R.id.login);
+		_loginEditText = (EditText) findViewById(R.id.forgot_password_email);
 		_progressBar = (ModalProgressBar) findViewById(R.id.progress_bar);
 
 		Button requestButton = (Button) findViewById(R.id.request_button);

@@ -87,7 +87,7 @@ public class DDLFormAddRecordInteractorImpl
 		}
 
 		if (record == null) {
-			throw new IllegalArgumentException("record cannot be null");
+			throw new IllegalArgumentException("record cannot be empty");
 		}
 
 		if (record.getFieldCount() == 0) {

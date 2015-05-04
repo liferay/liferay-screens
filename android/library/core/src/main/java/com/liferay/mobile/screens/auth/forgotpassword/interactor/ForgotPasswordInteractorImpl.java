@@ -126,21 +126,21 @@ public class ForgotPasswordInteractorImpl
 		}
 
 		if (login == null) {
-			throw new IllegalArgumentException("Login cannot be null");
+			throw new IllegalArgumentException("Login cannot be empty");
 		}
 
 		if (authMethod == null) {
-			throw new IllegalArgumentException("AuthMethod cannot be null");
+			throw new IllegalArgumentException("AuthMethod cannot be empty");
 		}
 
 		if (anonymousApiUserName == null) {
 			throw new IllegalArgumentException(
-				"Anonymous api user name cannot be null");
+				"Anonymous api user name cannot be empty");
 		}
 
 		if (anonymousApiPassword == null) {
 			throw new IllegalArgumentException(
-				"Anonymous api password cannot be null");
+				"Anonymous api password cannot be empty");
 		}
 	}
 

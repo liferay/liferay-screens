@@ -19,7 +19,6 @@ DerivedData
 *.xcuserstate
 
 Pods/
-Podfile.lock
 
 .idea
 *.iml

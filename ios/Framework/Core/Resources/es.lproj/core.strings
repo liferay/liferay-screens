@@ -1,0 +1,10 @@
+"core-base-list-loading-message"="Cargando lista...";
+"core-base-list-loading-details"="Espere unos segundos...";
+"core-base-list-loading-error"="Error cargando lista";
+
+"core-yes"="Sí";
+"core-no"="No";
+
+"core-an-image-has-been-selected"="Una imagen ha sido seleccionada";
+"core-a-video-has-been-selected"="Un vídeo ha sido seleccionado";
+"core-a-file-is-already-uploaded"="Un fichero ha sido subido previamente";

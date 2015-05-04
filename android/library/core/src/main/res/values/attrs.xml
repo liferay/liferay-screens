@@ -101,6 +101,7 @@
 		<attr name="portraitId" format="integer"/>
 		<attr name="uuid" format="string"/>
 		<attr name="userId"/>
+		<attr name="editable" format="boolean"/>
 	</declare-styleable>
 
 	<declare-styleable name="ModalProgressBar">

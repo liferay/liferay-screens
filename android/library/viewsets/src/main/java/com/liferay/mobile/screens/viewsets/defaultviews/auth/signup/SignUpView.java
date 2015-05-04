@@ -28,7 +28,7 @@ import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultCrouton;
+import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 /**
  * @author Silvio Santos
@@ -89,6 +89,22 @@ public class SignUpView extends LinearLayout
 		return null;
 	}
 
+	public EditText getFirstNameField() {
+		return _firstName;
+	}
+
+	public EditText getLastNameField() {
+		return _lastName;
+	}
+
+	public EditText getEmailAddressField() {
+		return _emailAddress;
+	}
+
+	public EditText getPasswordField() {
+		return _password;
+	}
+
 	@Override
 	public void showStartOperation(String actionName) {
 		_progressBar.startProgress();
@@ -111,7 +127,7 @@ public class SignUpView extends LinearLayout
 		_progressBar.finishProgress();
 
 		LiferayLogger.e("Could not sign up", e);
-		DefaultCrouton.error(getContext(), getContext().getString(R.string.sign_up_error), e);
+		LiferayCrouton.error(getContext(), getContext().getString(R.string.sign_up_error), e);
 	}
 
 	@Override

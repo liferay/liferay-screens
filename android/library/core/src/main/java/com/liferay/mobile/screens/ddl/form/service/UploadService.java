@@ -25,6 +25,7 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.EventBusUtil;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -102,6 +103,7 @@ public class UploadService extends IntentService {
 				is.close();
 			}
 			catch (IOException e) {
+				LiferayLogger.e("Error closing is", e);
 			}
 		}
 	}

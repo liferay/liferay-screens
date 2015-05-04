@@ -44,7 +44,7 @@ public class XSDParser {
 
 	public List<Field> parse(String xml, Locale locale) throws SAXException {
 		if (xml == null || xml.isEmpty()) {
-			throw new IllegalArgumentException("Xml cannot be null or empty");
+			throw new IllegalArgumentException("Xml cannot be empty");
 		}
 
 		List<Field> result = null;

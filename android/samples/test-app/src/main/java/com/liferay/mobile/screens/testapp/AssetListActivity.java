@@ -64,7 +64,7 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 	}
 
 	@Override
-	public void onListItemSelected(AssetEntry element) {
+	public void onListItemSelected(AssetEntry element, View view) {
 		info("Item selected: " + element);
 	}
 

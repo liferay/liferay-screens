@@ -89,7 +89,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		}
 
 		if (locale == null) {
-			throw new IllegalArgumentException("Locale cannot be null");
+			throw new IllegalArgumentException("Locale cannot be empty");
 		}
 	}
 

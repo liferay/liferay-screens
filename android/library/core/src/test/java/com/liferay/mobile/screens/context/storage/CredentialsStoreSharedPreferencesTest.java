@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -18,17 +18,21 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
+import com.liferay.mobile.screens.BuildConfig;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.userportrait.UserPortraitInteractorTest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import static junit.framework.Assert.assertEquals;
@@ -43,9 +47,14 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class CredentialsStoreSharedPreferencesTest {
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenStoreCredentials {
+
+		@Before
+		public void setUp() {
+			LiferayScreensContext.init(RuntimeEnvironment.application);
+		}
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
@@ -84,7 +93,7 @@ public class CredentialsStoreSharedPreferencesTest {
 			store.storeCredentials();
 
 			SharedPreferences sharedPref =
-				Robolectric.getShadowApplication().getApplicationContext().getSharedPreferences(
+				RuntimeEnvironment.application.getApplicationContext().getSharedPreferences(
 					store.getStoreName(), Context.MODE_PRIVATE);
 
 			assertEquals("user123", sharedPref.getString("username", "not-present"));
@@ -97,9 +106,14 @@ public class CredentialsStoreSharedPreferencesTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenRemoveStoredCredentials {
+
+		@Before
+		public void setUp() {
+			LiferayScreensContext.init(RuntimeEnvironment.application);
+		}
 
 		@Test
 		public void shouldRemoveTheStoredCredentials() throws Exception {
@@ -110,7 +124,7 @@ public class CredentialsStoreSharedPreferencesTest {
 			store.removeStoredCredentials();
 
 			SharedPreferences sharedPref =
-				Robolectric.getShadowApplication().getApplicationContext().getSharedPreferences(
+				RuntimeEnvironment.application.getApplicationContext().getSharedPreferences(
 					store.getStoreName(), Context.MODE_PRIVATE);
 
 			assertFalse(sharedPref.contains("username"));
@@ -118,14 +132,19 @@ public class CredentialsStoreSharedPreferencesTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenLoadingStoredCredentials {
+
+		@Before
+		public void setUp() {
+			LiferayScreensContext.init(RuntimeEnvironment.application);
+		}
 
 		@Test
 		public void shouldNotLoadWhenCredentialsAreNotStored() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			store.setContext(Robolectric.getShadowApplication().getApplicationContext());
+			store.setContext(RuntimeEnvironment.application.getApplicationContext());
 			store.removeStoredCredentials();
 
 			assertFalse(store.loadStoredCredentials());
@@ -170,7 +189,7 @@ public class CredentialsStoreSharedPreferencesTest {
 	}
 
 	private static void setTestData(CredentialsStore store) {
-		store.setContext(Robolectric.getShadowApplication().getApplicationContext());
+		store.setContext(RuntimeEnvironment.application.getApplicationContext());
 
 		JSONObject userAttributes = null;
 		try {

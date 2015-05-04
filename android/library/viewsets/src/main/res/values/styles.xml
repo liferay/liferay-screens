@@ -82,6 +82,7 @@
 		<item name="android:paddingRight">@dimen/default_list_padding</item>
 		<item name="android:paddingTop">10dp</item>
 		<item name="android:drawableRight">@drawable/default_arrow</item>
+		<item name="android:drawableEnd">@drawable/default_arrow</item>
 	</style>
 
 	<style name="default_dialog_button" parent="base_default_dialog_button"/>

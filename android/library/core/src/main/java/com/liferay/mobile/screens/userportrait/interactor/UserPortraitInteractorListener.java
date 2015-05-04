@@ -22,10 +22,14 @@ import android.graphics.Bitmap;
  */
 public interface UserPortraitInteractorListener {
 
-	void onStartUserPortraitRequest();
+	void onStartUserPortraitLoadRequest();
 
-	Bitmap onEndUserPortraitRequest(Bitmap bitmap);
+	Bitmap onEndUserPortraitLoadRequest(Bitmap bitmap);
 
-	void onUserPortraitFailure(Exception e);
+	void onUserPortraitLoadFailure(Exception e);
+
+	void onUserPortraitUploaded(boolean male, long portraitId, String uuid);
+
+	void onUserPortraitUploadFailure(Exception e);
 
 }
