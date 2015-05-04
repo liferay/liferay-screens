@@ -24,6 +24,7 @@
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="labelFields" value="Title"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
