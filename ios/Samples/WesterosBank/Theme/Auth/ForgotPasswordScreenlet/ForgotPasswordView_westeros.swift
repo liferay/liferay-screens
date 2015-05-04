@@ -23,6 +23,12 @@ public class ForgotPasswordView_westeros: ForgotPasswordView_default {
 		BaseScreenlet.setHUDCustomColor(WesterosThemeBasicRed)
 	}
 
+	override public func onShow() {
+		userNameField!.attributedPlaceholder = NSAttributedString(
+				string: userNameField!.placeholder!,
+				attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+	}
+
 	override public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
 		return false
 	}

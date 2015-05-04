@@ -27,7 +27,7 @@ public class LoginView_westeros: LoginView_default {
 		BaseScreenlet.setHUDCustomColor(WesterosThemeBasicRed)
 	}
 
-	public override func onShow() {
+	override public func onShow() {
 		userNameField!.attributedPlaceholder = NSAttributedString(
 				string: userNameField!.placeholder!,
 				attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
