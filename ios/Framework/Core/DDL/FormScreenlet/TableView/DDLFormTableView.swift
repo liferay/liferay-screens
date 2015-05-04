@@ -303,11 +303,27 @@ public class DDLFormTableView: DDLFormView,
 			cellId: String)
 			-> UITableViewCell? {
 
-		let themedNibName = (themeName != nil)
-				? "\(nibName)_\(themeName!)"
-				: nibName
+		func existingNibName() -> String? {
+			var themedNibName = ""
 
-		if bundle.pathForResource(themedNibName, ofType: "nib") != nil {
+			if let themeNameValue = self.themeName {
+				themedNibName = "\(nibName)_\(themeNameValue)"
+
+				if bundle.pathForResource(themedNibName, ofType: "nib") != nil {
+					return themedNibName
+				}
+
+				themedNibName = "\(nibName)_default"
+			}
+			else {
+				themedNibName = nibName
+			}
+
+			return bundle.pathForResource(themedNibName, ofType: "nib") != nil ? themedNibName : nil
+		}
+
+
+		if let themedNibName = existingNibName() {
 			let nib = UINib(nibName: themedNibName, bundle: bundle)
 
 			tableView?.registerNib(nib, forCellReuseIdentifier: cellId)
