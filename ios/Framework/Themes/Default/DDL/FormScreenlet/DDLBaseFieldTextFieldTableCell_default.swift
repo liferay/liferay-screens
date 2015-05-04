@@ -23,7 +23,7 @@ public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFiel
 
 	//MARK: DDLFieldTableCell
 
-	override internal func onChangedField() {
+	override public func onChangedField() {
 		if field!.showLabel {
 			textField?.placeholder = ""
 			label?.text = field!.label
@@ -52,7 +52,7 @@ public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFiel
 		}
 	}
 
-	override internal func onPostValidation(valid: Bool) {
+	override public func onPostValidation(valid: Bool) {
 		super.onPostValidation(valid)
 
 		if valid {

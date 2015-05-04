@@ -32,7 +32,7 @@ public class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_defau
 		stepper?.maximumValue = Double(UInt16.max)
 	}
 
-	override internal func onChangedField() {
+	override public func onChangedField() {
 		super.onChangedField()
 
 		if let numberField = field as? DDLFieldNumber {

@@ -36,7 +36,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 
 	//MARK: DDLBaseFieldTextboxTableCell
 
-	override internal func onChangedField() {
+	override public func onChangedField() {
 		super.onChangedField()
 
 		if let stringField = field as? DDLFieldStringWithOptions {

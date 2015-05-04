@@ -33,7 +33,7 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 		return false
 	}
 
-	override internal func onChangedField() {
+	override public func onChangedField() {
 		if let stringField = field as? DDLFieldStringWithOptions {
 			label!.text = stringField.label
 
@@ -54,7 +54,7 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 		}
 	}
 
-	override internal func onPostValidation(valid: Bool) {
+	override public func onPostValidation(valid: Bool) {
 		super.onPostValidation(valid)
 
 		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()

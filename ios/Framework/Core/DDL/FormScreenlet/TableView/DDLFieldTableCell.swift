@@ -71,13 +71,13 @@ public class DDLFieldTableCell: UITableViewCell {
 
 	//MARK: Internal methods
 
-	internal func onChangedField() {
+	public func onChangedField() {
 	}
 
-	internal func onPostValidation(valid: Bool) {
+	public func onPostValidation(valid: Bool) {
 	}
 
-	internal func setCellHeight(height: CGFloat) {
+	public func setCellHeight(height: CGFloat) {
 		formView!.setCellHeight(height, forField: field!)
 		
 		//FIXME Hack to fire the repaint of the cells
@@ -85,7 +85,7 @@ public class DDLFieldTableCell: UITableViewCell {
 		tableView!.endUpdates()
 	}
 
-	internal func resetCellHeight() -> CGFloat {
+	public func resetCellHeight() -> CGFloat {
 		let height = formView!.resetCellHeightForField(field!)
 
 		//FIXME Hack to fire the repaint of the cells
