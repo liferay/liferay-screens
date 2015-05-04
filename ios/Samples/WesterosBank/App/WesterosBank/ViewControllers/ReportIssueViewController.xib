@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReportIssueViewController" customModule="WesterosBank" customModuleProvider="target">
@@ -16,8 +16,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-4F-Pb4" customClass="DDLFormScreenlet" customModule="LiferayScreens">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="25" y="0.0" width="270" height="318"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="recordSetId">
@@ -26,14 +26,42 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="structureId">
                             <integer key="value" value="20470"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="showSubmitButton" value="NO"/>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="signup-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eba-eL-Lys">
+                    <rect key="frame" x="25" y="333" width="270" height="60"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal">
+                        <attributedString key="attributedTitle">
+                            <fragment content="SAVE ISSUE">
+                                <attributes>
+                                    <color key="NSColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <font key="NSFont" size="18" name="AvenirNext-DemiBold"/>
+                                    <real key="NSKern" value="0.0"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36"/>
+                                    <color key="NSStrokeColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="hDf-4F-Pb4" secondAttribute="bottom" id="SKe-UU-kpJ"/>
-                <constraint firstAttribute="trailing" secondItem="hDf-4F-Pb4" secondAttribute="trailing" id="fp0-Wp-JjI"/>
-                <constraint firstItem="hDf-4F-Pb4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mZI-br-EVe"/>
+                <constraint firstItem="eba-eL-Lys" firstAttribute="top" secondItem="hDf-4F-Pb4" secondAttribute="bottom" constant="15" id="8TL-yn-O66"/>
+                <constraint firstItem="eba-eL-Lys" firstAttribute="trailing" secondItem="hDf-4F-Pb4" secondAttribute="trailing" id="OHs-mG-24w"/>
+                <constraint firstAttribute="bottom" secondItem="hDf-4F-Pb4" secondAttribute="bottom" constant="150" id="SKe-UU-kpJ"/>
+                <constraint firstItem="eba-eL-Lys" firstAttribute="leading" secondItem="hDf-4F-Pb4" secondAttribute="leading" id="TK2-KA-ltT"/>
+                <constraint firstAttribute="bottom" secondItem="eba-eL-Lys" secondAttribute="bottom" constant="75" id="f99-wZ-nsx"/>
+                <constraint firstAttribute="trailing" secondItem="hDf-4F-Pb4" secondAttribute="trailing" constant="25" id="fp0-Wp-JjI"/>
+                <constraint firstItem="hDf-4F-Pb4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="mZI-br-EVe"/>
                 <constraint firstItem="hDf-4F-Pb4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vZA-wF-WwI"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

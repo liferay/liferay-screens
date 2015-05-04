@@ -20,6 +20,10 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 		self.delegate = self
 	}
 
+	override func awakeFromNib() {
+		textFieldDidEndEditing(self)
+	}
+
 	func textFieldDidBeginEditing(textField: UITextField) {
 		superview?.layer.borderWidth = 1.0
 		superview?.layer.borderColor = self.borderColor?.CGColor
