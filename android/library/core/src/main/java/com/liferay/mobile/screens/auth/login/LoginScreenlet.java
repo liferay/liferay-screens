@@ -14,24 +14,27 @@
 
 package com.liferay.mobile.screens.auth.login;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
-
 import android.util.AttributeSet;
-
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.liferay.mobile.android.oauth.OAuthConfig;
+import com.liferay.mobile.android.oauth.activity.OAuthActivity;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 
-import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.*;
+import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.StorageType;
 
 /**
  * @author Silvio Santos
@@ -39,6 +42,8 @@ import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder
 public class LoginScreenlet
 	extends BaseScreenlet<LoginViewModel, LoginInteractor>
 	implements LoginListener {
+
+	public static final int REQUEST_OAUTH_CODE = 1;
 
 	public LoginScreenlet(Context context) {
 		super(context);
@@ -51,6 +56,9 @@ public class LoginScreenlet
 	public LoginScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
+
+	public static final String OAUTH = "OAUTH";
+	public static final String BASIC_AUTH = "BASIC_AUTH";
 
 	@Override
 	public void onLoginFailure(Exception e) {
@@ -70,6 +78,23 @@ public class LoginScreenlet
 		}
 
 		SessionContext.storeSession(_credentialsStore);
+	}
+
+	public void sendResult(int result, Intent intent) {
+		if (result == Activity.RESULT_OK) {
+			try {
+				OAuthConfig oAuthConfig = (OAuthConfig) intent.getSerializableExtra(OAuthActivity.EXTRA_OAUTH_CONFIG);
+				getInteractor().loginWithOAuth(oAuthConfig);
+			}
+			catch (Exception e) {
+				onLoginFailure(e);
+			}
+		}
+		else if (result == Activity.RESULT_CANCELED) {
+			Exception exception = (Exception) intent.getSerializableExtra(
+				OAuthActivity.EXTRA_EXCEPTION);
+			onLoginFailure(exception);
+		}
 	}
 
 	public void setListener(LoginListener listener) {
@@ -104,6 +129,7 @@ public class LoginScreenlet
 
 		_credentialsStore = StorageType.valueOf(storeValue);
 
+
 		int layoutId = typedArray.getResourceId(
 			R.styleable.LoginScreenlet_layoutId, getDefaultLayoutId());
 
@@ -112,7 +138,9 @@ public class LoginScreenlet
 		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
 
 		_authMethod = AuthMethod.getValue(authMethodId);
-		((LoginViewModel) view).setAuthMethod(_authMethod);
+		LoginViewModel loginViewModel = (LoginViewModel) view;
+		loginViewModel.setAuthMethod(_authMethod);
+		loginViewModel.setAuthenticationType(LiferayServerContext.getAuthenticationType());
 
 		typedArray.recycle();
 
@@ -126,19 +154,31 @@ public class LoginScreenlet
 
 	@Override
 	protected void onUserAction(String userActionName, LoginInteractor interactor, Object... args) {
-		LoginViewModel viewModel = getViewModel();
+		if (BASIC_AUTH.equals(userActionName)) {
+			LoginViewModel viewModel = getViewModel();
 
-		viewModel.showStartOperation(userActionName);
+			viewModel.showStartOperation(userActionName);
 
-		String login = viewModel.getLogin();
-		String password = viewModel.getPassword();
-		AuthMethod method = viewModel.getAuthMethod();
+			String login = viewModel.getLogin();
+			String password = viewModel.getPassword();
+			AuthMethod method = viewModel.getAuthMethod();
 
-		try {
-			interactor.login(login, password, method);
+			try {
+				interactor.login(login, password, method);
+			}
+			catch (Exception e) {
+				onLoginFailure(e);
+			}
 		}
-		catch (Exception e) {
-			onLoginFailure(e);
+		else {
+			String server = LiferayServerContext.getServer();
+			String consumerKey = LiferayServerContext.getConsumerKey();
+			String consumerSecret = LiferayServerContext.getConsumerSecret();
+			OAuthConfig config = new OAuthConfig(server, consumerKey, consumerSecret);
+
+			Intent intent = new Intent(getContext(), OAuthActivity.class);
+			intent.putExtra(OAuthActivity.EXTRA_OAUTH_CONFIG, config);
+			((Activity) getContext()).startActivityForResult(intent, REQUEST_OAUTH_CODE);
 		}
 	}
 

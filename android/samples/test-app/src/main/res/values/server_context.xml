@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Default id values for a fresh portal installation without checking "Add Sample Data"-->
+	<integer name="liferay_company_id">20155</integer>
+	<integer name="liferay_group_id">20182</integer>
+	<!-- Default host IP using Genymotion emulator -->
+	<string name="liferay_server">http://192.168.140.144:8080</string>
+	<!--<string name="liferay_oauth_consumer_key">14a728c9-a39e-4a03-aa88-0a2c149d7545</string>-->
+	<!--<string name="liferay_oauth_consumer_secret">437cc660383e99a4b1ed8f5d4243a72a</string>-->
+
+</resources>

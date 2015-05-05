@@ -30,6 +30,7 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.interactor.BaseUserPortraitInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractor;
@@ -224,7 +225,10 @@ public class UserPortraitScreenlet
 		_male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
 		_portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
-		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, (int) SessionContext.getLoggedUser().getId());
+
+		User loggedUser = SessionContext.getLoggedUser();
+		int defaultUserId = loggedUser == null ? 0 : (int) loggedUser.getId();
+		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, defaultUserId);
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
 		int layoutId = typedArray.getResourceId(

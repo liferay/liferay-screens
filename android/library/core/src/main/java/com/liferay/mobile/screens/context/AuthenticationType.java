@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -12,34 +12,12 @@
  * details.
  */
 
-package com.liferay.mobile.screens.context.storage;
-
-import android.content.Context;
-
-import com.liferay.mobile.android.auth.Authentication;
-import com.liferay.mobile.screens.context.User;
+package com.liferay.mobile.screens.context;
 
 /**
- * @author Jose Manuel Navarro
+ * @author Javier Gamarra
  */
-public interface CredentialsStore {
+public enum AuthenticationType {
 
-	void storeCredentials();
-
-	void removeStoredCredentials();
-
-	boolean loadStoredCredentials() throws IllegalStateException;
-
-	String getStoreName();
-
-	Authentication getAuthentication();
-
-	void setAuthentication(Authentication auth);
-
-	User getUser();
-
-	void setUser(User user);
-
-	void setContext(Context ctx);
-
+	BASIC, OAUTH
 }

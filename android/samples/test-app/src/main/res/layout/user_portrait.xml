@@ -16,8 +16,7 @@
 		android:layout_height="100dp"
 		android:visibility="gone"
 		liferay:autoLoad="false"
-		liferay:layoutId="@layout/userportrait_default"
-		liferay:userId="10199"/>
+		liferay:layoutId="@layout/userportrait_default"/>
 
 	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
 		android:id="@+id/user_portrait_material"
@@ -25,7 +24,6 @@
 		android:layout_height="100dp"
 		android:visibility="gone"
 		liferay:autoLoad="false"
-		liferay:layoutId="@layout/userportrait_material"
-		liferay:userId="10199"/>
+		liferay:layoutId="@layout/userportrait_material"/>
 
 </LinearLayout>

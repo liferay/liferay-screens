@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.auth.login.view;
 
 import com.liferay.mobile.screens.auth.AuthBasedViewModel;
+import com.liferay.mobile.screens.context.AuthenticationType;
 import com.liferay.mobile.screens.context.User;
 
 /**
@@ -25,6 +26,8 @@ public interface LoginViewModel extends AuthBasedViewModel {
 	String getLogin();
 
 	String getPassword();
+
+	void setAuthenticationType(AuthenticationType authenticationType);
 
 	void showFinishOperation(User user);
 }

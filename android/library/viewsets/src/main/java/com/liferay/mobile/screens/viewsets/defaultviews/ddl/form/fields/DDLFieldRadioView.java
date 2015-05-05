@@ -17,11 +17,11 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
-import android.support.v7.internal.widget.TintRadioButton;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -69,7 +69,7 @@ public class DDLFieldRadioView extends RadioGroup
 		for (int i = 0; i < availableOptions.size(); ++i) {
 			StringWithOptionsField.Option opt = availableOptions.get(i);
 
-			TintRadioButton radioButton = new TintRadioButton(getContext());
+			RadioButton radioButton = new RadioButton(getContext());
 			radioButton.setLayoutParams(layoutParams);
 			radioButton.setText(opt.label);
 			radioButton.setTag(opt);
@@ -88,7 +88,7 @@ public class DDLFieldRadioView extends RadioGroup
 
 		if (selectedOptions != null) {
 			for (StringWithOptionsField.Option opt : selectedOptions) {
-				TintRadioButton radioButton = (TintRadioButton) findViewWithTag(opt);
+				RadioButton radioButton = (RadioButton) findViewWithTag(opt);
 
 				if (radioButton != null) {
 					radioButton.setChecked(true);
@@ -108,7 +108,7 @@ public class DDLFieldRadioView extends RadioGroup
 		else {
 			List<StringWithOptionsField.Option> availableOptions = _field.getAvailableOptions();
 			StringWithOptionsField.Option opt = availableOptions.get(0);
-			TintRadioButton radioButton = (TintRadioButton) findViewWithTag(opt);
+			RadioButton radioButton = (RadioButton) findViewWithTag(opt);
 			if (radioButton != null) {
 				radioButton.setError(errorText);
 			}
@@ -139,7 +139,7 @@ public class DDLFieldRadioView extends RadioGroup
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		TintRadioButton radioButton = (TintRadioButton) buttonView;
+		RadioButton radioButton = (RadioButton) buttonView;
 
 		StringWithOptionsField.Option opt = (StringWithOptionsField.Option) radioButton.getTag();
 		if (isChecked) {

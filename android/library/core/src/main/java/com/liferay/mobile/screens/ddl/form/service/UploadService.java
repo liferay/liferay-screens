@@ -27,7 +27,6 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
-import org.apache.http.entity.mime.content.InputStreamBody;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -61,14 +60,10 @@ public class UploadService extends IntentService {
 		String filePrefix = intent.getStringExtra("filePrefix");
 		int targetScreenletId = intent.getIntExtra("screenletId", 0);
 
-		InputStream is = null;
 		try {
 			String path = file.getCurrentValue().toString();
 			String name = path.substring(path.lastIndexOf("/") + 1);
 			String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-
-			is = new FileInputStream(new File(path));
-			InputStreamBody inputStreamBody = new InputStreamBody(is, name);
 
 			Session session = SessionContext.createSessionFromCurrentSession();
 			DLAppService service = new DLAppService(session);
@@ -78,15 +73,12 @@ public class UploadService extends IntentService {
 			String fileName = (filePrefix == null ? "" : filePrefix) + date + "_" + name;
 
 			JSONObject jsonObject = service.addFileEntry(repositoryId, folderId, name,
-					getMimeType(path), fileName, "", "", inputStreamBody, serviceContextWrapper);
+					getMimeType(path), fileName, "", "", getBytes(new File(path)), serviceContextWrapper);
 
 			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, jsonObject, file));
 		}
 		catch (Exception e) {
 			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, e, file));
-		}
-		finally {
-			tryToCloseInputStream(is);
 		}
 	}
 
@@ -115,4 +107,27 @@ public class UploadService extends IntentService {
 			}
 		}
 	}
+
+	public byte[] getBytes(File file) throws IOException {
+		byte[] buffer = new byte[(int) file.length()];
+		InputStream ios = null;
+		try {
+			ios = new FileInputStream(file);
+			if (ios.read(buffer) == -1) {
+				throw new IOException("EOF reached while trying to read the whole file");
+			}
+		}
+		finally {
+			try {
+				if (ios != null) {
+					ios.close();
+				}
+			}
+			catch (IOException e) {
+			}
+		}
+
+		return buffer;
+	}
+
 }
