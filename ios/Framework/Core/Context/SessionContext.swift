@@ -41,6 +41,17 @@ import Foundation
 		return authentication?.username
 	}
 
+	public class var currentPassword: String? {
+		var authentication = StaticInstance.currentSession?.authentication
+			as! LRBasicAuthentication?
+
+		return authentication?.password
+	}
+
+	public class var currentAuthMethod: AuthMethod? {
+		return hasSession ? AuthMethod.fromUserName(currentUserName!) : nil
+	}
+
 	internal class var sessionStorage: SessionStorage {
 		get {
 			return StaticInstance.sessionStorage
@@ -48,13 +59,6 @@ import Foundation
 		set {
 			StaticInstance.sessionStorage = newValue
 		}
-	}
-
-	public class var currentPassword: String? {
-		var authentication = StaticInstance.currentSession?.authentication
-			as! LRBasicAuthentication?
-
-		return authentication?.password
 	}
 
 	//MARK Public methods
