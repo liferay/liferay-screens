@@ -46,20 +46,26 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 
 			if stringField.showLabel {
 				placeholder?.text = ""
-				label?.text = stringField.label
-				label?.hidden = false
 
-				moveSubviewsVertically(0.0)
+				if let labelValue = label {
+					labelValue.text = stringField.label
+					labelValue.hidden = false
+
+					moveSubviewsVertically(0.0)
+				}
 			}
 			else {
 				placeholder?.text = stringField.label
 				placeholder?.alpha = (textView?.text == "") ? 1.0 : 0.0
-				label?.hidden = true
 
-				moveSubviewsVertically(
-					-(DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel))
+				if let labelValue = label {
+					labelValue.hidden = true
 
-				setCellHeight(DDLFieldTextFieldHeightWithoutLabel)
+					moveSubviewsVertically(
+						-(DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel))
+
+					setCellHeight(DDLFieldTextFieldHeightWithoutLabel)
+				}
 			}
 
 			textView?.returnKeyType = isLastCell ? .Send : .Next
