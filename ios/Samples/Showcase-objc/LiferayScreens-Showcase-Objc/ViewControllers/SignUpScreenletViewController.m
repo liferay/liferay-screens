@@ -37,6 +37,10 @@
 	self.screenlet.autoLoginDelegate = self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[self.screenlet loadCurrentUser];
+}
+
 - (void)onSignUpResponse:(NSDictionary *)attributes {
 	NSLog(@"DELEGATE onSignUpResponse -> %@", attributes);
 }

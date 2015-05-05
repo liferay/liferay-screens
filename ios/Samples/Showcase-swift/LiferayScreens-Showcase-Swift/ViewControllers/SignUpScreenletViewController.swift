@@ -34,6 +34,10 @@ class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, 
 		self.screenlet?.autoLoginDelegate = self;
 	}
 
+	override func viewWillAppear(animated: Bool) {
+		self.screenlet?.loadCurrentUser()
+	}
+
 	func onSignUpResponse(attributes: [String : AnyObject]) {
 		println("DELEGATE: onSignUpResponse called -> \(attributes)");
 	}
