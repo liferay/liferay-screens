@@ -101,6 +101,37 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		}
 	}
 
+	public var editCurrentUser: Bool = false {
+		didSet {
+			let key: String
+			let actionName: String
+
+			if editCurrentUser {
+				key = "save-button"
+				actionName = "save-action"
+
+				self.firstName = SessionContext.userAttribute("firstName") as? String
+				self.middleName = SessionContext.userAttribute("middleName") as? String
+				self.lastName = SessionContext.userAttribute("lastName") as? String
+				self.emailAddress = SessionContext.userAttribute("emailAddress") as? String
+				self.password = SessionContext.currentPassword
+				self.screenName = SessionContext.userAttribute("screenName") as? String
+				self.jobTitle = SessionContext.userAttribute("jobTitle") as? String
+			}
+			else {
+				key = "sign-up-button"
+				actionName = "signup-action"
+			}
+
+			self.signUpButton?.replaceAttributedTitle(
+					LocalizedString("default", key, self),
+					forState: .Normal)
+
+			self.signUpButton?.restorationIdentifier = actionName
+		}
+	}
+
+
 	// The following properties are not supported in this theme but
 	// may be supported in a child theme
 

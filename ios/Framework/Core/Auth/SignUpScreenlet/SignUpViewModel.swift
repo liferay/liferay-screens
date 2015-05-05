@@ -24,4 +24,6 @@ import UIKit
 	var lastName: String? { get set }
 	var jobTitle: String? { get set }
 
+	var editCurrentUser: Bool { get set }
+
 }

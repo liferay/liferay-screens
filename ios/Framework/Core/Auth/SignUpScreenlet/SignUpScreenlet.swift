@@ -43,6 +43,16 @@ import UIKit
 		return screenletView as! SignUpViewModel
 	}
 
+	public func loadCurrentUser() -> Bool {
+		if SessionContext.hasSession {
+			self.viewModel.editCurrentUser = true
+
+			return true
+		}
+
+		return false
+	}
+
 
 	//MARK: BaseScreenlet
 
