@@ -1,4 +1,8 @@
 "signup-screenlet-loading-message"="Anmelden...";
+"signup-screenlet-saving-message"="Sending...";
 "signup-screenlet-loading-details"="Warte ein paar Sekunden...";
+"signup-screenlet-saving-details"="Warte ein paar Sekunden...";
 "signup-screenlet-loading-error"="Anmeldefehler.";
+"signup-screenlet-saving-error"="Error sending data.";
 "signup-screenlet-validation"="Bitte geben Sie Ihre E-Mail Adresse ein";
+"signup-screenlet-validation-password"="Please, change the password";
