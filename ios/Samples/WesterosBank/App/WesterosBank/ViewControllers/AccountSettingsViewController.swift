@@ -29,6 +29,8 @@ class AccountSettingsViewController: UIViewController, UserPortraitScreenletDele
 	}
 
 	override func viewWillAppear(animated: Bool) {
+		signUpScreenlet.loadCurrentUser()
+
 		NSNotificationCenter.defaultCenter().addObserver(self,
 				selector: "showKeyboard:",
 				name: UIKeyboardWillChangeFrameNotification,
