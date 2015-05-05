@@ -59,7 +59,7 @@ public class GetUserBaseOperation: ServerOperation {
 			resultUserAttributes = nil
 		}
 		else if result?["userId"] == nil {
-			lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
+			lastError = createError(cause: .InvalidServerResponse)
 			resultUserAttributes = nil
 		}
 		else {
