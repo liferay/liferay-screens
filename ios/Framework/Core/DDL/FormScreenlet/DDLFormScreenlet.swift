@@ -63,6 +63,11 @@ import UIKit
 			(screenletView as? DDLFormView)?.showSubmitButton = showSubmitButton
 		}
 	}
+	@IBInspectable public var editable: Bool = true {
+		didSet {
+			screenletView?.editable = editable
+		}
+	}
 
 	@IBOutlet public weak var delegate: DDLFormScreenletDelegate?
 

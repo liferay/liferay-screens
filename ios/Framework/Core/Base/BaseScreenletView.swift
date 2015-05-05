@@ -19,6 +19,12 @@ import UIKit
  */
 public class BaseScreenletView: UIView, UITextFieldDelegate {
 
+	public var editable: Bool = true {
+		didSet {
+			changeEditable(editable, fromView:self)
+		}
+	}
+
 	internal var onPerformAction: ((String?, AnyObject?) -> Bool)?
 
 	internal var themeName: String? {
@@ -223,6 +229,13 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 		for subview:UIView in view.subviews as! [UIView] {
 			setUpView(subview)
+		}
+	}
+
+	private func changeEditable(editable: Bool, fromView view: UIView) {
+		view.userInteractionEnabled = editable
+		for v in view.subviews as! [UIView] {
+			changeEditable(editable, fromView: v)
 		}
 	}
 
