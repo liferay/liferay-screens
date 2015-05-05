@@ -17,8 +17,10 @@ import LiferayScreens
 class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 
 	@IBOutlet weak var screenlet: DDLFormScreenlet!
+	@IBOutlet weak var saveButton: UIButton!
 
 	var issueRecord : DDLRecord?
+	var editable: Bool = true
 
 	override init(card: CardView, nibName: String) {
 		super.init(card: card, nibName: nibName)
@@ -37,6 +39,9 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 	}
 
 	override func cardWillAppear() {
+		screenlet.editable = editable
+		saveButton.hidden = !editable
+
 		if let recordValue = issueRecord {
 			screenlet.recordId = recordValue.recordId
 			screenlet.loadRecord()

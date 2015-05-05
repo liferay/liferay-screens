@@ -33,6 +33,7 @@ class HomeViewController: UIViewController {
 		issuesController = IssuesViewController(card: issuesCard)
 
 		issuesController?.onEditIssue = onEditIssue
+		issuesController?.onViewIssue = onViewIssue
 
 		issuesDeck.topCard = issuesCard
 
@@ -97,7 +98,6 @@ class HomeViewController: UIViewController {
 	}
 
 	@IBAction func sendMessageAction(sender: AnyObject) {
-
 	}
 
 	@IBAction func signOutAction(sender: AnyObject) {
@@ -106,10 +106,19 @@ class HomeViewController: UIViewController {
 	}
 
 	private func onEditIssue(record: DDLRecord) {
+		openIssueWithRecord(record, editable: true)
+	}
+
+	private func onViewIssue(record: DDLRecord) {
+		openIssueWithRecord(record, editable: false)
+	}
+
+	private func openIssueWithRecord(record: DDLRecord, editable: Bool) {
 		issuesCard.nextState = .Background
 		reportIssueCard.nextState = .Normal // .Maximized
 
 		reportIssueController!.issueRecord = record
+		reportIssueController!.editable = editable
 
 		issuesCard.changeToNextState()
 		reportIssueCard.changeToNextState()
