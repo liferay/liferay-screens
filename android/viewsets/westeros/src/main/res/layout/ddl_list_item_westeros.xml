@@ -81,7 +81,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@string/list_icon"
-                android:src="@drawable/icon_more_options" />
+                android:src="@drawable/westeros_icon_more_options" />
 
         </RelativeLayout>
 

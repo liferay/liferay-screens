@@ -20,7 +20,7 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="bottom|right"
 		android:background="@android:color/transparent"
-		android:src="@drawable/circle_add"
+		android:src="@drawable/westeros_circle_add"
 		android:visibility="invisible"/>
 
 	<ProgressBar
