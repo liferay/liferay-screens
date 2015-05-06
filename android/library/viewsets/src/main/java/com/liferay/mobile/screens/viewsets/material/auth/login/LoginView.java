@@ -87,13 +87,13 @@ public class LoginView
 	@Override
 	protected int getLoginEditTextDrawableId() {
 		if (AuthMethod.USER_ID.equals(getAuthMethod())) {
-			return R.drawable.ic_account_box;
+			return R.drawable.material_account_box;
 		}
 		else if (AuthMethod.EMAIL.equals(getAuthMethod())) {
-			return R.drawable.ic_email;
+			return R.drawable.material_email;
 		}
 
-		return R.drawable.ic_account_box;
+		return R.drawable.material_account_box;
 	}
 
 	private void changeColorOfImageView(
