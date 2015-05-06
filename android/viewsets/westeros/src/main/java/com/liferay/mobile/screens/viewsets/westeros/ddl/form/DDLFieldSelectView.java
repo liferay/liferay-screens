@@ -12,14 +12,14 @@
  * details.
  */
 
-package com.liferay.mobile.screens.viewsets.westeros.ddl.form.fields;
+package com.liferay.mobile.screens.viewsets.westeros.ddl.form;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.liferay.mobile.screens.viewsets.R;
+import com.liferay.mobile.screens.viewsets.westeros.R;
 
 /**
  * @author Jose Manuel Navarro
@@ -65,7 +65,7 @@ public class DDLFieldSelectView extends com.liferay.mobile.screens.viewsets.defa
 	@Override
 	public void onPostValidation(boolean valid) {
 		if (!valid) {
-			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.icon_warning_white, 0);
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_icon_warning_white, 0);
 			getTextEditText().setBackgroundResource(R.drawable.westeros_warning_edit_text_drawable);
 		}
 	}

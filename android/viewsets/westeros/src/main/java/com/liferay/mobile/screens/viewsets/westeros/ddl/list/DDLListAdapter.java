@@ -19,10 +19,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
+import com.liferay.mobile.screens.viewsets.westeros.*;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
-import com.liferay.mobile.screens.viewsets.R;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -39,7 +39,7 @@ public class DDLListAdapter
         public SwipeActionsViewHolder(View view, BaseListAdapterListener listener) {
             super(view, listener);
 
-            this._subtitleTextView = (TextView) view.findViewById(com.liferay.mobile.screens.viewsets.R.id.subtitle);
+            this._subtitleTextView = (TextView) view.findViewById(R.id.subtitle);
             this._stateIconView = (ImageView) view.findViewById(R.id.state_list_icon);
 
             _listener = listener;

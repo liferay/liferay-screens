@@ -26,8 +26,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.liferay.mobile.screens.viewsets.westeros.*;
 
-import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 /**
@@ -77,17 +77,13 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		if (!acceptTerms.isChecked()) {
 			LiferayCrouton.error(getContext(), "You must accept the terms & conditions", null);
 			return false;
-		}
-		else if (!checkField(getFirstNameField(), _firstNameValidation)) {
+		} else if (!checkField(getFirstNameField(), _firstNameValidation)) {
 			return false;
-		}
-		else if (!checkField(getLastNameField(), _lastNameValidation)) {
+		} else if (!checkField(getLastNameField(), _lastNameValidation)) {
 			return false;
-		}
-		else if (!checkField(getEmailAddressField(), _emailAddressValidation)) {
+		} else if (!checkField(getEmailAddressField(), _emailAddressValidation)) {
 			return false;
-		}
-		else if (!checkField(getPasswordField(), _passwordValidation)) {
+		} else if (!checkField(getPasswordField(), _passwordValidation)) {
 			return false;
 		}
 		return true;
@@ -102,7 +98,7 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 
 	private void changeBackgroundAndIcon(EditText editText, boolean valid) {
 		editText.setBackgroundResource(valid ? R.drawable.westeros_dark_edit_text_drawable : R.drawable.westeros_warning_edit_text_drawable);
-		editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, valid ? 0 : R.drawable.icon_warning_white, 0);
+		editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, valid ? 0 : R.drawable.westeros_icon_warning_white, 0);
 	}
 
 	private void initClickableTermsAndConditions() {
