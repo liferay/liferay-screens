@@ -1,4 +1,15 @@
 apply plugin: 'com.android.library'
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'com.github.dcendents:android-maven-plugin:1.2'
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
+	}
+}
+
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
@@ -29,10 +40,10 @@ android {
 
 def siteUrl = 'https://github.com/liferay/liferay-screens'
 def gitUrl = 'https://github.com/liferay/liferay-screens.git'
-version = '0.3.2'
+version = '0.3.3'
 group = 'com.liferay.mobile'
 
-project.archivesBaseName = 'core'
+project.archivesBaseName = 'liferay-screens-core'
 
 install {
 	repositories.mavenInstaller {
@@ -84,8 +95,8 @@ repositories {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile 'com.android.support:appcompat-v7:22.0.0'
-	compile 'com.android.support:recyclerview-v7:22.0.0'
+	compile 'com.android.support:appcompat-v7:22.1.1'
+	compile 'com.android.support:recyclerview-v7:22.1.1'
 	compile 'com.liferay.mobile:liferay-android-sdk:6.2.0.13'
 	compile 'de.greenrobot:eventbus:2.4.0'
 	compile 'com.squareup.picasso:picasso:2.5.0'

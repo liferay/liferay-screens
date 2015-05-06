@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
 
 android {
 	compileSdkVersion 22
@@ -21,9 +19,42 @@ android {
 	}
 }
 
+repositories {
+	maven {
+		url 'https://repository.liferay.com/nexus/content/groups/liferay-ce'
+	}
+
+	jcenter()
+	mavenCentral()
+}
+
+dependencies {
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+	compile 'com.android.support:appcompat-v7:22.1.1'
+	compile 'com.android.support:recyclerview-v7:22.1.1'
+	compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
+		exclude group: 'com.google.android', module: 'support-v4'
+	}
+	compile project(':liferay-screens-core')
+}
+
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'com.github.dcendents:android-maven-plugin:1.2'
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
+	}
+}
+
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
 def siteUrl = 'https://github.com/liferay/liferay-screens'
 def gitUrl = 'https://github.com/liferay/liferay-screens.git'
-version = '0.3.2'
+version = '0.3.3'
 group = 'com.liferay.mobile'
 
 project.archivesBaseName = 'liferay-screens'
@@ -65,27 +96,7 @@ install {
 	}
 }
 
-repositories {
-	mavenLocal()
 
-	maven {
-		url 'https://repository.liferay.com/nexus/content/groups/liferay-ce'
-	}
-
-	jcenter()
-	mavenCentral()
-}
-
-dependencies {
-	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile 'com.android.support:appcompat-v7:22'
-	compile 'com.android.support:recyclerview-v7:22'
-	compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
-		exclude group: 'com.google.android', module: 'support-v4'
-	}
-	compile "com.daimajia.swipelayout:library:1.1.9@aar"
-	compile project(':core')
-}
 
 task sourcesJar(type: Jar) {
 	from android.sourceSets.main.java.srcDirs

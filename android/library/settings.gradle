@@ -1,2 +1,6 @@
-include ':core', ':viewsets'
-project(":viewsets").name = "liferay-screens"
+include 'core', 'viewsets'
+
+project(':viewsets').name = "liferay-screens"
+project(':core').name = 'liferay-screens-core'
+
+rootProject.name = 'liferay-screens-library'
