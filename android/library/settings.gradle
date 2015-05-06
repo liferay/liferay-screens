@@ -1,6 +1,11 @@
 include 'core', 'viewsets'
 
-project(':viewsets').name = "liferay-screens"
-project(':core').name = 'liferay-screens-core'
+project(':core').name = 'liferay-screens'
+project(':viewsets').name = "liferay-material-viewset"
+
+
+include 'liferay-westeros-viewset'
+project(':liferay-westeros-viewset').projectDir = new File(settingsDir, '../viewsets/westeros')
+project(':liferay-westeros-viewset').name = 'liferay-westeros-viewset'
 
 rootProject.name = 'liferay-screens-library'

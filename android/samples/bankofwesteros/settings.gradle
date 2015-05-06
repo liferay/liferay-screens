@@ -1,7 +1,9 @@
-include 'core', 'viewsets', 'liferay-westeros-viewset'
+include 'core'
+//		,'viewsets',
+include 'liferay-westeros-viewset'
 project(':core').projectDir = new File(settingsDir, '../../library/core')
-project(':core').name = 'liferay-screens-core'
-project(':viewsets').projectDir = new File(settingsDir, '../../library/viewsets')
-project(':viewsets').name = 'liferay-screens'
+project(':core').name = 'liferay-screens'
+//project(':viewsets').projectDir = new File(settingsDir, '../../library/viewsets')
+//project(':viewsets').name = 'liferay-screens'
 project(':liferay-westeros-viewset').projectDir = new File(settingsDir, '../../viewsets/westeros')
 project(':liferay-westeros-viewset').name = 'liferay-westeros-viewset'

@@ -51,6 +51,6 @@ repositories {
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 	compile 'com.android.support:appcompat-v7:22.1.1'
-	compile project (':liferay-screens-core')
 	compile project (':liferay-screens')
+	compile project (':liferay-screens-material')
 }

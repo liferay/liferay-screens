@@ -40,10 +40,10 @@ android {
 
 def siteUrl = 'https://github.com/liferay/liferay-screens'
 def gitUrl = 'https://github.com/liferay/liferay-screens.git'
-version = '0.3.3'
+version = '0.4'
 group = 'com.liferay.mobile'
 
-project.archivesBaseName = 'liferay-screens-core'
+project.archivesBaseName = 'liferay-screens'
 
 install {
 	repositories.mavenInstaller {
@@ -100,6 +100,9 @@ dependencies {
 	compile 'com.liferay.mobile:liferay-android-sdk:6.2.0.13'
 	compile 'de.greenrobot:eventbus:2.4.0'
 	compile 'com.squareup.picasso:picasso:2.5.0'
+	compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
+		exclude group: 'com.google.android', module: 'support-v4'
+	}
 
 	testCompile "junit:junit:4.12"
 	testCompile "org.robolectric:robolectric:3.0-rc2"
