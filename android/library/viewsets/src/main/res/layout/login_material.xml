@@ -16,7 +16,7 @@
 			android:src="@drawable/material_email"/>
 
 		<EditText
-			android:id="@+id/login"
+			android:id="@+id/liferay_login"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_marginTop="8dp"
@@ -33,7 +33,7 @@
 			android:src="@drawable/material_https"/>
 
 		<EditText
-			android:id="@+id/password"
+			android:id="@+id/liferay_password"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_marginTop="8dp"
@@ -48,20 +48,20 @@
 		android:layout_marginTop="32dp">
 
 		<Button
-			android:id="@+id/login_button"
+			android:id="@+id/liferay_login_button"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_margin="10dp"
 			android:text="@string/sign_in"/>
 
 		<com.liferay.mobile.screens.base.ModalProgressBar
-			android:id="@+id/progress_bar"
+			android:id="@+id/liferay_progress"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_gravity="center_vertical|left"
 			android:layout_margin="10dp"
 			android:theme="@style/white_theme"
 			android:visibility="invisible"
-			liferay:actionViewId="@id/login_button"/>
+			liferay:actionViewId="@id/liferay_login_button"/>
 	</FrameLayout>
 </com.liferay.mobile.screens.viewsets.material.auth.login.LoginView>

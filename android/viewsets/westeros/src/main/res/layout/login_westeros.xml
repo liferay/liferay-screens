@@ -6,7 +6,7 @@
     android:theme="@style/WesterosTheme">
 
     <EditText
-        android:id="@+id/login"
+        android:id="@+id/liferay_login"
         style="@style/westeros_edit_text"
         android:hint="@string/email_address" />
 
@@ -15,13 +15,13 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/liferay_password"
             style="@style/westeros_edit_text"
             android:hint="@string/password"
             android:inputType="textPassword" />
 
         <ImageView
-            android:id="@+id/seePassword"
+            android:id="@+id/liferay_see_password"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_gravity="end"
@@ -33,7 +33,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/forgot_password_text"
+        android:id="@+id/liferay_forgot_link"
         style="@style/westeros_text_view"
         android:layout_width="wrap_content"
         android:layout_gravity="center"
@@ -48,18 +48,18 @@
         android:layout_marginBottom="25dp">
 
         <Button
-            android:id="@+id/login_button"
+            android:id="@+id/liferay_login_button"
             style="@style/westeros_button"
             android:text="@string/sign_in" />
 
         <com.liferay.mobile.screens.base.ModalProgressBar
-            android:id="@+id/progress_bar"
+            android:id="@+id/liferay_progress"
             style="@style/westeros_progress_bar"
-            android:layout_alignLeft="@id/login_button"
-            android:layout_alignStart="@id/login_button"
-            android:layout_alignTop="@id/login_button"
+            android:layout_alignLeft="@id/liferay_login_button"
+            android:layout_alignStart="@id/liferay_login_button"
+            android:layout_alignTop="@id/liferay_login_button"
             android:theme="@style/white_theme"
-            liferay:actionViewId="@id/login_button" />
+            liferay:actionViewId="@id/liferay_login_button" />
     </RelativeLayout>
 
 
