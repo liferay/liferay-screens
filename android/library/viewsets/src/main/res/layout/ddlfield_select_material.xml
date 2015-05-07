@@ -13,7 +13,7 @@
 		android:visibility="gone"/>
 
 	<EditText
-		android:id="@+id/liferay_edit_text"
+		android:id="@+id/liferay_ddl_edit_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:drawableEnd="@drawable/material_tinted_launch"

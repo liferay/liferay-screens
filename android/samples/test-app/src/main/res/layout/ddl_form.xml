@@ -18,7 +18,7 @@
 		liferay:autoLoad="false"
 		liferay:filePrefix="jre"
 		liferay:folderId="@integer/folder_id"
-		liferay:layoutId="@layout/ddlform_default"
+		liferay:layoutId="@layout/ddl_form_default"
 		liferay:recordSetId="@integer/liferay_recordset_id"
 		liferay:repositoryId="@integer/repository_id"
 		liferay:structureId="@integer/liferay_structure_id"/>
@@ -35,7 +35,7 @@
 		liferay:documentFieldLayoutId="@layout/ddlfield_document_material"
 		liferay:filePrefix="jre"
 		liferay:folderId="@integer/folder_id"
-		liferay:layoutId="@layout/ddlform_material"
+		liferay:layoutId="@layout/ddl_form_material"
 		liferay:recordSetId="@integer/liferay_recordset_id"
 		liferay:repositoryId="@integer/repository_id"
 		liferay:selectFieldLayoutId="@layout/ddlfield_select_material"
