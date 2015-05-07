@@ -5,10 +5,9 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:1.2.2'
+		classpath 'com.android.tools.build:gradle:1.2.3'
 		classpath 'com.github.dcendents:android-maven-plugin:1.2'
 		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
-
 	}
 }
 
@@ -35,6 +34,7 @@ subprojects {
 		formatter group: 'dom4j', name: 'dom4j', version: '1.6.1'
 		formatter group: 'org.apache.ant', name: 'ant', version: '1.8.2'
 	}
+
 
 //	task format(type: JavaExec) {
 //		main = 'com.liferay.portal.tools.sourceformatter.SourceFormatter'

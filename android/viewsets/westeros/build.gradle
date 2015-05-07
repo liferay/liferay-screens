@@ -34,20 +34,27 @@ dependencies {
 	}
 	compile "com.daimajia.swipelayout:library:1.1.9@aar"
 	compile project(':liferay-screens')
-//	compile 'com.liferay.mobile:liferay-screens:0.3.3'
 }
 
-
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-
-def siteUrl = 'https://github.com/liferay/liferay-screens'
-def gitUrl = 'https://github.com/liferay/liferay-screens.git'
-version = '0.4.1'
+version = '0.4.2'
 group = 'com.liferay.mobile'
 
 project.archivesBaseName = 'liferay-westeros-viewset'
 
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'com.github.dcendents:android-maven-plugin:1.2'
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
+	}
+}
+
+apply plugin: 'com.github.dcendents.android-maven'
+
+def siteUrl = 'https://github.com/liferay/liferay-screens'
+def gitUrl = 'https://github.com/liferay/liferay-screens.git'
 
 install {
 	repositories.mavenInstaller {
@@ -85,8 +92,6 @@ install {
 	}
 }
 
-
-
 task sourcesJar(type: Jar) {
 	from android.sourceSets.main.java.srcDirs
 	classifier = 'sources'
@@ -105,6 +110,8 @@ artifacts {
 	archives javadocJar
 	archives sourcesJar
 }
+
+apply plugin: 'com.jfrog.bintray'
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())

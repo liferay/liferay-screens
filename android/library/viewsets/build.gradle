@@ -38,6 +38,10 @@ dependencies {
 	compile project(':liferay-screens')
 }
 
+version = '0.4.2'
+group = 'com.liferay.mobile'
+
+project.archivesBaseName = 'liferay-material-viewset'
 
 buildscript {
 	repositories {
@@ -50,15 +54,9 @@ buildscript {
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
 
 def siteUrl = 'https://github.com/liferay/liferay-screens'
 def gitUrl = 'https://github.com/liferay/liferay-screens.git'
-version = '0.4.1'
-group = 'com.liferay.mobile'
-
-project.archivesBaseName = 'liferay-material-viewset'
-
 
 install {
 	repositories.mavenInstaller {
@@ -96,8 +94,6 @@ install {
 	}
 }
 
-
-
 task sourcesJar(type: Jar) {
 	from android.sourceSets.main.java.srcDirs
 	classifier = 'sources'
@@ -116,6 +112,8 @@ artifacts {
 	archives javadocJar
 	archives sourcesJar
 }
+
+apply plugin: 'com.jfrog.bintray'
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
