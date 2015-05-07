@@ -48,9 +48,9 @@ public class MainActivity extends CardActivity implements View.OnClickListener, 
 		_background.setOnClickListener(this);
 
 		//TODO move to the screenlet?
-		View forgotPasswordText = findViewById(R.id.forgot_password_text);
+		View forgotPasswordText = findViewById(R.id.liferay_forgot_link);
 		forgotPasswordText.setOnClickListener(this);
-		_forgotPasswordField = (EditText) findViewById(R.id.forgot_password_email);
+		_forgotPasswordField = (EditText) findViewById(R.id.liferay_forgot_email);
 
 		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);
@@ -72,7 +72,7 @@ public class MainActivity extends CardActivity implements View.OnClickListener, 
 
 	@Override
 	public void onClick(final View view) {
-		if (view.getId() == R.id.forgot_password_text) {
+		if (view.getId() == R.id.liferay_forgot_link) {
 			goRightCard1();
 		}
 		else {
