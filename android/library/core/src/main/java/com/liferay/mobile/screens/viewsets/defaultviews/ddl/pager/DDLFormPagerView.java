@@ -62,7 +62,7 @@ public class DDLFormPagerView extends DDLFormView {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_pager = (ViewPager)findViewById(R.id.pager);
+		_pager = (ViewPager)findViewById(R.id.liferay_pager);
 	}
 
 	private ViewPager _pager;

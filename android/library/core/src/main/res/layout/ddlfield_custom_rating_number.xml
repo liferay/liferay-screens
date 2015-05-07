@@ -6,13 +6,13 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/liferay_ddl_label"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
         android:visibility="gone" />
 
 	<RatingBar
-		android:id="@+id/rating"
+		android:id="@+id/liferay_ddl_custom_rating"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:numStars="5"

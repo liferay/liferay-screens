@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldCheckboxView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
 	android:theme="@style/default_theme">
 
-    <android.support.v7.widget.SwitchCompat
-        android:id="@+id/default_switch"
+	<android.support.v7.widget.SwitchCompat
+		android:id="@+id/liferay_ddl_switch"
 		style="@style/default_checkbox"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		/>
+		android:layout_height="wrap_content"/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldCheckboxView>

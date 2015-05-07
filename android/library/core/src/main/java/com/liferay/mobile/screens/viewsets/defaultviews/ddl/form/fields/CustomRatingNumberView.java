@@ -52,7 +52,7 @@ public class CustomRatingNumberView extends LinearLayout implements DDLFieldView
 	public void setField(NumberField field) {
 		_field = field;
 
-		TextView label = (TextView) findViewById(R.id.label);
+		TextView label = (TextView) findViewById(R.id.liferay_ddl_label);
 
 		if (_field.isShowLabel()) {
 			label.setText(_field.getLabel());
@@ -117,7 +117,7 @@ public class CustomRatingNumberView extends LinearLayout implements DDLFieldView
 
 		setSaveEnabled(false);
 
-		_ratingBar = (RatingBar) findViewById(R.id.rating);
+		_ratingBar = (RatingBar) findViewById(R.id.liferay_ddl_custom_rating);
 
 		_ratingBar.setOnRatingBarChangeListener(this);
 	}

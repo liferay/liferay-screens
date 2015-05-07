@@ -55,7 +55,7 @@ public class DDLFieldRadioView extends RadioGroup
 		_field = field;
 
 		if (_field.isShowLabel()) {
-			TextView label = (TextView) findViewById(R.id.label);
+			TextView label = (TextView) findViewById(R.id.liferay_ddl_label);
 
 			label.setText(field.getLabel());
 			label.setVisibility(VISIBLE);
@@ -102,7 +102,7 @@ public class DDLFieldRadioView extends RadioGroup
 		String errorText = valid ? null : getContext().getString(R.string.required_value);
 
 		if (_field.isShowLabel()) {
-			TextView label = (TextView) findViewById(R.id.label);
+			TextView label = (TextView) findViewById(R.id.liferay_ddl_label);
 			label.setError(errorText);
 		}
 		else {
