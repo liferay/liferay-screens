@@ -40,20 +40,20 @@ public class DDLListAdapter
 		public TwoTextsViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			this.subtitleTextView = (TextView) view.findViewById(R.id.subtitle);
+			this.subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
 		}
 	}
 
 
-    public DDLListAdapter(
+	public DDLListAdapter(
 		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 
-        super(layoutId, progressLayoutId, listener);
-    }
+		super(layoutId, progressLayoutId, listener);
+	}
 
-    public void setLabelFields(List<String> labelFields) {
-        _labelFields = labelFields;
-    }
+	public void setLabelFields(List<String> labelFields) {
+		_labelFields = labelFields;
+	}
 
 	@Override
 	public TwoTextsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -71,25 +71,25 @@ public class DDLListAdapter
 		return new TwoTextsViewHolder(view, getListener());
 	}
 
-    @Override
-    protected void fillHolder(DDLEntry entry, TwoTextsViewHolder holder) {
-        StringBuilder builder = new StringBuilder();
+	@Override
+	protected void fillHolder(DDLEntry entry, TwoTextsViewHolder holder) {
+		StringBuilder builder = new StringBuilder();
 
 		String titleField = entry.getValue(_labelFields.get(0));
 
 		for (int i = 1; i < _labelFields.size(); ++i) {
 			String field = _labelFields.get(i);
 			String value = entry.getValue(field);
-			if (value!= null && !value.isEmpty()) {
+			if (value != null && !value.isEmpty()) {
 				builder.append(value);
 				builder.append(" ");
 			}
 		}
 
-        holder.textView.setText(titleField);
+		holder.textView.setText(titleField);
 		holder.subtitleTextView.setText(builder.toString());
-    }
+	}
 
-    private List<String> _labelFields;
+	private List<String> _labelFields;
 
 }

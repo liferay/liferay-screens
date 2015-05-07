@@ -81,7 +81,7 @@ public class DDLListView
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+		_swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.liferay_swipe_refresh);
 		_swipeRefreshLayout.setOnRefreshListener(this);
 	}
 

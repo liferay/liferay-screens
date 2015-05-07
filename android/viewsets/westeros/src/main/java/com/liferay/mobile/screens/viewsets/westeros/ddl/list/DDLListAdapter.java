@@ -39,22 +39,22 @@ public class DDLListAdapter
         public SwipeActionsViewHolder(View view, BaseListAdapterListener listener) {
             super(view, listener);
 
-            this._subtitleTextView = (TextView) view.findViewById(R.id.subtitle);
-            this._stateIconView = (ImageView) view.findViewById(R.id.state_list_icon);
+            this._subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
+            this._stateIconView = (ImageView) view.findViewById(R.id.liferay_state_list_icon);
 
             _listener = listener;
 
             view.setOnClickListener(this);
-            view.findViewById(R.id.list_edit).setOnClickListener(this);
-            view.findViewById(R.id.list_view).setOnClickListener(this);
-            _swipeLayout = (SwipeLayout) view.findViewById(R.id.swipe_layout);
+            view.findViewById(R.id.liferay_list_edit).setOnClickListener(this);
+            view.findViewById(R.id.liferay_list_view).setOnClickListener(this);
+            _swipeLayout = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
 
         }
 
         @Override
         public void onClick(View v) {
             boolean opened = SwipeLayout.Status.Open.equals(_swipeLayout.getOpenStatus());
-            if (opened && v.getId() == R.id.list_edit || v.getId() == R.id.list_view) {
+            if (opened && v.getId() == R.id.liferay_list_edit || v.getId() == R.id.liferay_list_view) {
                 _listener.onItemClick(getPosition(), v);
             } else if (!opened) {
                 _swipeLayout.open(true);
@@ -88,7 +88,7 @@ public class DDLListAdapter
 
         if (viewType == LAYOUT_TYPE_DEFAULT) {
             view = inflater.inflate(getLayoutId(), parent, false);
-            SwipeLayout swipe = (SwipeLayout) view.findViewById(R.id.swipe_layout);
+            SwipeLayout swipe = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
             swipe.setShowMode(SwipeLayout.ShowMode.LayDown);
             swipe.setDragEdge(SwipeLayout.DragEdge.Right);
         } else {

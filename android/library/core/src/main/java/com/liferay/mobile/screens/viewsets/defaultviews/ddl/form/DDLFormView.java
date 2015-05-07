@@ -236,7 +236,7 @@ public class DDLFormView
 
 	@Override
 	public void onClick(View view) {
-		if (view.getId() == R.id.submit) {
+		if (view.getId() == R.id.liferay_form_submit) {
 			if (getDDLFormScreenlet().validateForm()) {
 				getDDLFormScreenlet().submitForm();
 			}
@@ -276,7 +276,7 @@ public class DDLFormView
 
 		_fieldsContainerView = (ViewGroup) findViewById(R.id.ddlfields_container);
 
-		_submitButton = (Button) findViewById(R.id.submit);
+		_submitButton = (Button) findViewById(R.id.liferay_form_submit);
 		_submitButton.setOnClickListener(this);
 
 		_progressBar = (ProgressBar) findViewById(R.id.ddlform_progress_bar);

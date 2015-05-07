@@ -57,7 +57,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		_ddlListScreenlet = (DDLListScreenlet) findViewById(R.id.ddllist);
 		_ddlListScreenlet.setListener(this);
 
-		_sendButton = (Button) findViewById(R.id.submit);
+		_sendButton = (Button) findViewById(R.id.liferay_form_submit);
 
 		TextView callMenuEntry = (TextView) findViewById(R.id.call_menu_entry);
 		callMenuEntry.setText(getCallSpannableString(), TextView.BufferType.SPANNABLE);
@@ -103,10 +103,10 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	@Override
 	public void onListItemSelected(DDLEntry element, View view) {
 		selectDDLEntry(element);
-		if (view.getId() == R.id.list_edit) {
+		if (view.getId() == R.id.liferay_list_edit) {
 			toCard2();
 		}
-		else if (view.getId() == R.id.list_view) {
+		else if (view.getId() == R.id.liferay_list_view) {
 			goRightCard1(element);
 		}
 	}

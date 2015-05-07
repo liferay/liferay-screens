@@ -24,9 +24,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
@@ -157,8 +157,8 @@ public abstract class BaseListScreenletView<
 		int itemLayoutId = getItemLayoutId();
 		int itemProgressLayoutId = getItemProgressLayoutId();
 
-		_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-		_progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+		_recyclerView = (RecyclerView) findViewById(R.id.liferay_recycler_list);
+		_progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 
 		A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
 		_recyclerView.setAdapter(adapter);

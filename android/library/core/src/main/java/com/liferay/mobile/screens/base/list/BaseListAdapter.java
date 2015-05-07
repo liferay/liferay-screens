@@ -39,7 +39,7 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 		public ViewHolder(View view, BaseListAdapterListener listener) {
 			super(view);
 
-			this.textView = (TextView)view.findViewById(R.id.title);
+			this.textView = (TextView)view.findViewById(R.id.liferay_list_title);
 			_listener = listener;
 			view.setOnClickListener(this);
 		}

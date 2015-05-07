@@ -26,7 +26,7 @@
             android:visibility="invisible" />
 
         <Button
-            android:id="@+id/submit"
+            android:id="@+id/liferay_form_submit"
             style="@style/westeros_dark_button"
             android:layout_alignParentBottom="true"
             android:text="@string/send" />
@@ -34,9 +34,9 @@
         <ProgressBar
             android:id="@+id/ddlform_progress_bar"
             style="@style/westeros_progress_bar"
-            android:layout_alignLeft="@id/submit"
-            android:layout_alignStart="@id/submit"
-            android:layout_alignTop="@id/submit" />
+            android:layout_alignLeft="@id/liferay_form_submit"
+            android:layout_alignStart="@id/liferay_form_submit"
+            android:layout_alignTop="@id/liferay_form_submit" />
 
     </RelativeLayout>
 
