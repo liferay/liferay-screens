@@ -7,12 +7,12 @@
 	android:padding="10dp">
 
 	<TextView
-		android:id="@+id/label"
+		android:id="@+id/liferay_ddl_label"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:visibility="gone"/>
 
-	<EditText android:id="@+id/text"
+	<EditText android:id="@+id/liferay_ddl_edit_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:inputType="text"/>

@@ -7,7 +7,7 @@
 	android:padding="10dp">
 
 	<TextView
-		android:id="@+id/label"
+		android:id="@+id/liferay_ddl_label"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:visibility="gone"/>
@@ -17,24 +17,25 @@
 		android:layout_height="wrap_content">
 
 		<EditText
-			android:id="@+id/text"
+			android:id="@+id/liferay_ddl_edit_text"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:clickable="true"
-			android:drawableRight="@drawable/default_blue"
 			android:drawableEnd="@drawable/default_blue"
+			android:drawableRight="@drawable/default_blue"
 			android:editable="false"
 			android:focusable="false"
 			android:inputType="none"
 			android:paddingBottom="5dp"
+			android:paddingLeft="5dp"
 			android:paddingRight="5dp"
 			android:paddingTop="5dp"/>
 
 		<ProgressBar
-			android:id="@+id/fileProgress"
+			android:id="@+id/liferay_document_progress"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
-			android:layout_gravity="right|center_vertical"
+			android:layout_gravity="end|center_vertical"
 			android:visibility="invisible"/>
 	</FrameLayout>
 

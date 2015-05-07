@@ -46,7 +46,7 @@ public class DDLFieldSelectView extends com.liferay.mobile.screens.viewsets.defa
 	@Override
 	public void refresh() {
 		if (!getField().toFormattedString().isEmpty()) {
-			findViewById(R.id.label_select).setVisibility(View.VISIBLE);
+			findViewById(R.id.liferay_ddl_label).setVisibility(View.VISIBLE);
 		}
 		getTextEditText().setText(getField().toFormattedString());
 	}
@@ -55,7 +55,7 @@ public class DDLFieldSelectView extends com.liferay.mobile.screens.viewsets.defa
 	public void onClick(DialogInterface dialog, int which) {
 
 		getTextEditText().setHint("");
-		findViewById(R.id.label_select).setVisibility(View.VISIBLE);
+		findViewById(R.id.liferay_ddl_label).setVisibility(View.VISIBLE);
 		getField().selectOption(getField().getAvailableOptions().get(which));
 		refresh();
 		getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);

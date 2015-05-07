@@ -88,7 +88,7 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 		LayoutInflater factory = LayoutInflater.from(getContext());
 		final View customDialogView = factory.inflate(
 				R.layout.ddlfield_select_dialog_default, null);
-		TextView title = (TextView) customDialogView.findViewById(R.id.dialog_title);
+		TextView title = (TextView) customDialogView.findViewById(R.id.liferay_dialog_title);
 		title.setText(getField().getLabel());
 
 		DialogInterface.OnClickListener selectOptionHandler = getAlertDialogListener();

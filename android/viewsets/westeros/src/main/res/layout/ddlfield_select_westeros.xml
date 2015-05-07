@@ -9,12 +9,12 @@
 		android:layout_height="wrap_content">
 
 		<EditText
-			android:id="@+id/text"
+			android:id="@+id/liferay_ddl_edit_text"
 			style="@style/westeros_dark_edit_text"
 			android:hint="@string/severity"/>
 
 		<TextView
-			android:id="@+id/label_select"
+			android:id="@+id/liferay_ddl_label"
 			style="@style/westeros_text_view"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
