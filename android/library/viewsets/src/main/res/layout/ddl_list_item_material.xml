@@ -25,13 +25,13 @@
 			android:paddingStart="15dp">
 
 			<TextView
-				android:id="@+id/title"
+				android:id="@+id/liferay_list_title"
 				style="@style/material_list_item_title"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"/>
 
 			<TextView
-				android:id="@+id/subtitle"
+				android:id="@+id/liferay_list_subtitle"
 				style="@style/material_list_item_subtitle"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"/>

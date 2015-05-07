@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView
-	android:id="@+id/title"
+	android:id="@+id/liferay_list_title"
 	style="@style/material_list_item"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
