@@ -4,7 +4,7 @@
 				android:layout_height="match_parent">
 
 	<TextView
-		android:id="@+id/dialog_title"
+		android:id="@+id/liferay_dialog_title"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:background="?attr/colorPrimary"
@@ -16,20 +16,20 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_below="@id/dialog_title"
+		android:layout_below="@id/liferay_dialog_title"
 		android:divider="?android:attr/textColorSecondary"
 		android:orientation="vertical"
 		android:showDividers="middle">
 
 		<TextView
-			android:id="@+id/default_dialog_select_file"
+			android:id="@+id/liferay_dialog_select_file"
 			style="@style/default_dialog_button"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/select_a_file"/>
 
 		<TextView
-			android:id="@+id/default_dialog_take_photo"
+			android:id="@+id/liferay_dialog_take_photo"
 			style="@style/default_dialog_button"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"

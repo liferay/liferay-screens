@@ -53,19 +53,19 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 
 	@Override
 	public void onClick(final View view) {
-		if (view.getId() == R.id.text) {
+		if (view.getId() == R.id.liferay_ddl_edit_text) {
 			_choseOriginDialog = createOriginDialog();
 			_choseOriginDialog.show();
 		}
-		else if (view.getId() == R.id.default_dialog_take_video) {
+		else if (view.getId() == R.id.liferay_dialog_take_video) {
 			launchCameraIntent(MediaStore.ACTION_VIDEO_CAPTURE, FileUtil.createVideoFile());
 			_choseOriginDialog.dismiss();
 		}
-		else if (view.getId() == R.id.default_dialog_take_photo) {
+		else if (view.getId() == R.id.liferay_dialog_take_photo) {
 			launchCameraIntent(MediaStore.ACTION_IMAGE_CAPTURE, FileUtil.createImageFile());
 			_choseOriginDialog.dismiss();
 		}
-		else if (view.getId() == R.id.default_dialog_select_file) {
+		else if (view.getId() == R.id.liferay_dialog_select_file) {
 			showSelectFileDialog(view);
 			_choseOriginDialog.dismiss();
 		}
@@ -117,7 +117,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		_progressBar = (ProgressBar) findViewById(R.id.fileProgress);
+		_progressBar = (ProgressBar) findViewById(R.id.liferay_document_progress);
 		getTextEditText().setOnClickListener(this);
 	}
 
@@ -133,9 +133,9 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		final View customDialogView = factory.inflate(
 			R.layout.ddlfield_document_chose_option_default, null);
 
-		customDialogView.findViewById(R.id.default_dialog_select_file).setOnClickListener(this);
-		customDialogView.findViewById(R.id.default_dialog_take_photo).setOnClickListener(this);
-		customDialogView.findViewById(R.id.default_dialog_take_video).setOnClickListener(this);
+		customDialogView.findViewById(R.id.liferay_dialog_select_file).setOnClickListener(this);
+		customDialogView.findViewById(R.id.liferay_dialog_take_photo).setOnClickListener(this);
+		customDialogView.findViewById(R.id.liferay_dialog_take_video).setOnClickListener(this);
 
 		builder.setView(customDialogView);
 

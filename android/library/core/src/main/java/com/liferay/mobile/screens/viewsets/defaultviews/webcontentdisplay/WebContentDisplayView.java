@@ -87,8 +87,8 @@ public class WebContentDisplayView extends FrameLayout
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_webView = (WebView) findViewById(R.id.webview);
-		_progressBar = (ProgressBar) findViewById(R.id.webview_progress_bar);
+		_webView = (WebView) findViewById(R.id.liferay_webview);
+		_progressBar = (ProgressBar) findViewById(R.id.liferay_webview_progress);
 	}
 
 	private static final String STYLES =
