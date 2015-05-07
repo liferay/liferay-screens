@@ -113,11 +113,11 @@ public class LoginView extends LinearLayout
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_loginEditText = (EditText) findViewById(R.id.login);
-		_passwordEditText = (EditText) findViewById(R.id.password);
-		_progressBar = (ModalProgressBar) findViewById(R.id.progress_bar);
+		_loginEditText = (EditText) findViewById(R.id.liferay_login);
+		_passwordEditText = (EditText) findViewById(R.id.liferay_password);
+		_progressBar = (ModalProgressBar) findViewById(R.id.liferay_progress);
 
-		Button submitButton = (Button) findViewById(R.id.login_button);
+		Button submitButton = (Button) findViewById(R.id.liferay_login_button);
 		submitButton.setOnClickListener(this);
 	}
 

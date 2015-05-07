@@ -94,11 +94,11 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 
 	@Override
 	public void onClick(View v) {
-		if (v.getId() == R.id.replace_portrait_image) {
+		if (v.getId() == R.id.liferay_replace_image) {
 			_choseOriginDialog = createOriginDialog();
 			_choseOriginDialog.show();
 		}
-		else if (v.getId() == R.id.default_dialog_select_file) {
+		else if (v.getId() == R.id.liferay_dialog_select_file) {
 			((UserPortraitScreenlet) getParent()).openGallery();
 			_choseOriginDialog.dismiss();
 		}
@@ -115,8 +115,8 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		final View customDialogView = factory.inflate(
 			R.layout.user_portrait_chose_origin_default, null);
 
-		customDialogView.findViewById(R.id.default_dialog_select_file).setOnClickListener(this);
-		customDialogView.findViewById(R.id.default_dialog_take_photo).setOnClickListener(this);
+		customDialogView.findViewById(R.id.liferay_dialog_select_file).setOnClickListener(this);
+		customDialogView.findViewById(R.id.liferay_dialog_take_photo).setOnClickListener(this);
 
 		builder.setView(customDialogView);
 
@@ -127,9 +127,9 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_portraitImage = (ImageView) findViewById(R.id.portrait_image);
-		_portraitProgress = (ProgressBar) findViewById(R.id.portrait_progress);
-		_portraitAddButton = (ImageButton) findViewById(R.id.replace_portrait_image);
+		_portraitImage = (ImageView) findViewById(R.id.liferay_portrait);
+		_portraitProgress = (ProgressBar) findViewById(R.id.liferay_portrait_progress);
+		_portraitAddButton = (ImageButton) findViewById(R.id.liferay_replace_image);
 
 		setDefaultImagePlaceholder();
 	}

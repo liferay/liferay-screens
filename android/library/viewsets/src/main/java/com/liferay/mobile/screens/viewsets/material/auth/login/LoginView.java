@@ -52,8 +52,8 @@ public class LoginView
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		ImageView primary = (v.getId() == R.id.login) ? _drawableLogin : _drawablePassword;
-		ImageView secondary = (v.getId() == R.id.login) ? _drawablePassword : _drawableLogin;
+		ImageView primary = (v.getId() == R.id.liferay_login) ? _drawableLogin : _drawablePassword;
+		ImageView secondary = (v.getId() == R.id.liferay_login) ? _drawablePassword : _drawableLogin;
 
 		changeColorOfImageView(primary, secondary);
 

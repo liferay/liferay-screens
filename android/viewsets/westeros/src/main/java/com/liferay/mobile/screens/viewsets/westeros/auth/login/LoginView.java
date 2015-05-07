@@ -48,7 +48,7 @@ public class LoginView
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        final View seePassword = findViewById(R.id.seePassword);
+        final View seePassword = findViewById(R.id.liferay_see_password);
         seePassword.setOnTouchListener(this);
     }
 
