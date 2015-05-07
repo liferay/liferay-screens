@@ -44,6 +44,11 @@
 		<item name="android:textColor">@android:color/white</item>
 	</style>
 
+	<style name="westeros_label" parent="westeros_text_view">
+		<item name="android:textSize">18sp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+
 	<style name="westeros_text_view">
 		<item name="android:layout_height">@dimen/westeros_block_height</item>
 		<item name="android:layout_width">match_parent</item>
