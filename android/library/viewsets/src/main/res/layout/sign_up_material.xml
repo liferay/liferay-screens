@@ -8,7 +8,7 @@
 	android:theme="@style/material_theme">
 
 	<EditText
-		android:id="@+id/first_name"
+		android:id="@+id/liferay_first_name"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="8dp"
@@ -17,7 +17,7 @@
 		android:hint="@string/first_name"/>
 
 	<EditText
-		android:id="@+id/last_name"
+		android:id="@+id/liferay_last_name"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="8dp"
@@ -26,7 +26,7 @@
 		android:hint="@string/last_name"/>
 
 	<EditText
-		android:id="@+id/email_address"
+		android:id="@+id/liferay_email_address"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="8dp"
@@ -36,7 +36,7 @@
 		android:inputType="textEmailAddress"/>
 
 	<EditText
-		android:id="@+id/password"
+		android:id="@+id/liferay_password"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="8dp"
@@ -51,20 +51,20 @@
 		android:layout_marginTop="32dp">
 
 		<Button
-			android:id="@+id/sign_up_button"
+			android:id="@+id/liferay_sign_up_button"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_margin="10dp"
 			android:text="@string/sign_up"/>
 
 		<com.liferay.mobile.screens.base.ModalProgressBar
-			android:id="@+id/progress_bar"
+			android:id="@+id/liferay_progress"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_gravity="center_vertical|left"
 			android:layout_margin="10dp"
 			android:theme="@style/white_theme"
 			android:visibility="invisible"
-			liferay:actionViewId="@id/sign_up_button"/>
+			liferay:actionViewId="@id/liferay_sign_up_button"/>
 	</FrameLayout>
 </com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpView>
