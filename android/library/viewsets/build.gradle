@@ -54,7 +54,7 @@ apply plugin: 'com.jfrog.bintray'
 
 def siteUrl = 'https://github.com/liferay/liferay-screens'
 def gitUrl = 'https://github.com/liferay/liferay-screens.git'
-version = '0.4'
+version = '0.4.1'
 group = 'com.liferay.mobile'
 
 project.archivesBaseName = 'liferay-material-viewset'
