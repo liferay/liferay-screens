@@ -50,7 +50,7 @@ The example theme here presents the same components as the Default theme, but is
 
 The example theme here presents the same components as the Default theme, but sets new translated strings and contains a few new animations. A new UI component is also introduces to configure whether or not the password is shown when typed by the user.
 
-For an example of this kind of theme, refer to the [Flat7 theme source code](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Themes/Flat7).
+For an example of this kind of theme, refer to the [Flat7 theme source code](https://github.com/liferay/liferay-screens/tree/master/ios/Framework/Themes/Flat7).
 
 1. Create a new `xib` called `LoginScreenlet_ext.xib`. You'll build your new UI here as usual with Interface Builder. A good place to start is to duplicate `LoginScreenlet_default.xib` and use it as a template for your new `xib`. Add a new `UISwitch` component to configure the password presentation.
 
