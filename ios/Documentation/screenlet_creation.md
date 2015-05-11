@@ -16,7 +16,9 @@ The steps below walk you through creating an example screenlet for bookmarks tha
 - Allows the user to modify the title.
 - Upon user confirmation, the URL and title is sent back to the Liferay instance's Bookmark services to be saved.
 
-Steps:
+You can perform this steps in your own app's Xcode project, but it you want to distribute your screenlet as a library, in order to allow other apps to use your screenlet, follow the same steps described in the chapter "Publish your themes using CocoaPods" in the [Creating a Theme in Liferay Screens for iOS guide](theme_creation.md#publish-your-themes-using-cocoapods).
+
+## Steps
 
 * Create a new `xib` called `BookmarkView_default.xib`. You'll build your UI here using Interface Builder. Put in two text box fields (`UITextField`) for the URL and title. Also, add a couple of buttons to let the user retrieve the title and save the bookmark. To differentiate between these two user actions, assign a value for the `restorationIdentifier` property in each button.
 
