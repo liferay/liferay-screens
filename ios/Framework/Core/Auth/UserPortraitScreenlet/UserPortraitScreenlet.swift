@@ -102,6 +102,32 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return startInteractor(interactor)
 	}
 
+	override internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+
+		println("interactor -> \(name)")
+
+	/*
+		let interactor = LoginInteractor(screenlet: self)
+
+		interactor.onSuccess = {
+			self.delegate?.onLoginResponse?(interactor.resultUserAttributes!)
+
+			if self.saveCredentials {
+				if SessionContext.storeSession() {
+					self.delegate?.onCredentialsSaved?()
+				}
+			}
+		}
+
+		interactor.onFailure = {
+			self.delegate?.onLoginError?($0)
+			return
+		}
+
+		return interactor
+		*/
+		return nil
+	}
 
 	//MARK: Private methods
 
