@@ -18,11 +18,9 @@ The first step in creating a new theme is deciding what kind of theme to create:
 
 For more details on these theme types, refer the [themes section in the Architecture Guide](architecture.md#theme-layer).
 
-You can create you theme's classes and resources directly in your app project.
-If you want to use the theme in more than one app, follow the instructions below to [publish your theme as a library](#publish-your-themes-using-cocoapods).
+You can create your theme's classes and resources directly inside your app project. If you want to use the theme in more than one app, follow the instructions below to [publish your theme as a library](#publish-your-themes-using-cocoapods).
 
 The following steps illustrate theme creation by creating a new theme for the `LoginScreenlet`.
-
 
 ## Full Theme
 
@@ -66,32 +64,31 @@ For an example of this kind of theme, refer to the [Flat7 theme source code](htt
 
 4. Install the new theme (drag & drop the classes and resources), insert `LoginScreenlet` in any of your view controllers, and use `ext` as the value for the screenlet's `themeName` property. Your new look and feel is shown in Interface Builder.
 
-## Publish your themes using CocoaPods 
+## Publish Your Themes Using CocoaPods
 
-You can package your themes using CocoaPods, just as it's a library of code (in fact, it is!).
-If you do this, other developers will be able to install and use your theme just adding the following line in their `Podfile`:
+Since your theme is a code library, you can package it using CocoaPods. Doing so means that other developers are able to install and use your theme by simply adding the following line in their `Podfile`: 
 
-	pod 'LiferayScreens-YourThemeName'
+    pod 'LiferayScreens-YourThemeName'
 	
-To allow this, just follow the next steps (__it is important you use the same names and identifiers described in the following steps__):
+Use the following steps to package your theme for use with CocoaPods. *It's important that you use the same names and identifiers described in these steps*:
 
-* Create an empty project choosing "Cocoa Touch Framework".
+* Create an empty Xcode project choosing *Cocoa Touch Framework*.
 
-    ![Choose "Cocoa Touch Framework"](Images/xcode-cocoa-touch-framework.png)
+    ![Choose *Cocoa Touch Framework* when creating a project for your theme.](Images/xcode-cocoa-touch-framework.png)
     
-* Call your project `LiferayScreensThemeName` (changing `Name` by your theme's name)
+* Call your project `LiferayScreensThemeName` (change `Name` to your theme's name).
 
-* Configure LiferayScreens using CocoaPods following the steps described in [Prepare Your Project for Liferay Screens](../README.md#preparing-your-project-for-liferay-screens).
+* Configure Liferay Screens for CocoaPods. To do this, follow the steps described in [Preparing Your Project for Liferay Screens](../README.md#preparing-your-project-for-liferay-screens).
 
-* Create your theme classes and resources following the above instructions. Your classes must compile successfully in Xcode. Be carefull if you create Xib files. The custom class must use your theme's module name:
+* Create your theme's classes and resources according to the instructions in the above sections. Your classes must compile successfully in Xcode. Use caution if you create your own `xib` files. The custom class must use your theme's module name. For example, the Custom Class setting in this screenshot is incorrect. This is because the `xib` file is bound to the custom class name without specifying the module:
 
-__Wrong__
-    ![Xib file binded to custom class name without specifying the module](Images/xcode-theme-custom-module-wrong.png)
+![The `xib` file is bound to the custom class name without specifying the module.](Images/xcode-theme-custom-module-wrong.png)
 
-__Right__
-    ![Xib file binded to custom class name specifying the module](Images/xcode-theme-custom-module-right.png)
+In the following screenshot, the setting for the custom class is correct:
 
-* In your project's root folder, add a file called `LiferayScreensTheme-Name.podspec` (changing `Name` by your theme's name) with the following content:
+![Xib file binded to custom class name specifying the module.](Images/xcode-theme-custom-module-right.png)
+
+* In your project's root folder, add a file called `LiferayScreensTheme-Name.podspec` (change `Name` to your theme's name) with the following content:
 
 ```ruby
 	Pod::Spec.new do |s|
@@ -118,17 +115,17 @@ __Right__
 	end
 ```
 
-_Remember to change the occurences of `Name` to your theme's name in the following lines_
+Remember to change the occurences of `Name` and `name` to your theme's name in the following lines.
 
-- _s.name         = 'LiferayScreensTheme-___Name___'_
-- _s.module\_name  = 'LiferayScreensTheme___Name___'_
-- _'LiferayScreens-___name___' => 'Your/Folder/**/*._
+- `s.name = LiferayScreensTheme-Name`
+- `s.module_name = LiferayScreensThemeName`
+- `LiferayScreens-name => Your/Folder/**/*`
 
-* You can commit and push your project to your Git repository and use the theme just adding the following line in app's `Podfile`:
+* You can commit and push your project to your Git repository and then use the theme by adding the following line in your app's `Podfile`:
 
 ```ruby
 	pod 'LiferayScreens-YourThemeName', :git => 'https://your_repository_url.git'
 ```
 
-* If you want to simplify the process even more, you can publish your theme as a public Pod. For that, follow the chapter "Deploying a library" in the [official guide](https://guides.cocoapods.org/making/getting-setup-with-trunk.html#deploying-a-library).
+* If you want to simplify the process even more, you can publish your theme as a public Pod. For instructions on this, see the chapter *Deploying a library* in the [official CocoaPods guide](https://guides.cocoapods.org/making/getting-setup-with-trunk.html#deploying-a-library).
 

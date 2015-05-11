@@ -16,7 +16,7 @@ The steps below walk you through creating an example screenlet for bookmarks tha
 - Allows the user to modify the title.
 - Upon user confirmation, the URL and title is sent back to the Liferay instance's Bookmark services to be saved.
 
-You can perform this steps in your own app's Xcode project, but it you want to distribute your screenlet as a library, in order to allow other apps to use your screenlet, follow the same steps described in the chapter "Publish your themes using CocoaPods" in the [Creating a Theme in Liferay Screens for iOS guide](theme_creation.md#publish-your-themes-using-cocoapods).
+You can perform these steps in your app's Xcode project. However, if you want to distribute your screenlet as a library so that other apps can use it, follow the steps described in the section *Publish Your Themes Using CocoaPods* in [Creating a Theme in Liferay Screens for iOS](theme_creation.md#publish-your-themes-using-cocoapods).
 
 ## Steps
 
