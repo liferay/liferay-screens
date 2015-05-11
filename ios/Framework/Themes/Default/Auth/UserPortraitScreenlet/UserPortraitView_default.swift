@@ -18,7 +18,10 @@ import UIKit
 #endif
 
 
-public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel {
+public class UserPortraitView_default: BaseScreenletView,
+		UserPortraitViewModel,
+		UIActionSheetDelegate,
+		UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView?
 	@IBOutlet weak var portraitImage: UIImageView?
@@ -62,8 +65,18 @@ public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel 
 
 	private(set) var loadedURL: NSURL?
 
+	private let imagePicker = UIImagePickerController()
+
 
 	//MARK: BaseScreenletView
+
+	override func onCreated() {
+		super.onCreated()
+
+		imagePicker.delegate = self
+		imagePicker.allowsEditing = false
+		imagePicker.modalPresentationStyle = .CurrentContext
+	}
 
 	override func onStartOperation() {
 		objc_sync_enter(self)
@@ -96,6 +109,45 @@ public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel 
 		portraitImage?.layer.borderWidth = borderWidth
 		portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
 		portraitImage?.layer.cornerRadius = DefaultThemeButtonCornerRadius
+	}
+
+	override func onPreAction(#name: String?, sender: AnyObject?) -> Bool {
+		if name == "edit-portrait" {
+			let sheet = UIActionSheet(
+					title: "Change portrait",
+					delegate: self,
+					cancelButtonTitle: "Cancel",
+					destructiveButtonTitle: nil, otherButtonTitles: "Take new picture", "Choose existing")
+			sheet.showInView(self)
+
+			return false
+		}
+
+		return true
+	}
+
+	public func actionSheet(
+			actionSheet: UIActionSheet,
+			clickedButtonAtIndex buttonIndex: Int) {
+		switch buttonIndex {
+		case 1:
+			// Take new picture
+			imagePicker.sourceType = .Camera
+
+		case 2:
+			// Choose existing
+			imagePicker.sourceType = .SavedPhotosAlbum
+
+		default:
+			return
+		}
+
+		if let vc = self.presentingViewController {
+			vc.presentViewController(imagePicker, animated: true, completion: {})
+		}
+		else {
+			println("ERROR: You neet to set the presentingViewController before using UIActionSheet")
+		}
 	}
 
 
