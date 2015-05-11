@@ -18,7 +18,11 @@ The first step in creating a new theme is deciding what kind of theme to create:
 
 For more details on these theme types, refer the [themes section in the Architecture Guide](architecture.md#theme-layer).
 
+You can create you theme's classes and resources directly in your app project.
+If you want to use the theme in more than one app, follow the instructions below to [publish your theme as a library](#publish-your-themes-using-cocoapods).
+
 The following steps illustrate theme creation by creating a new theme for the `LoginScreenlet`.
+
 
 ## Full Theme
 
