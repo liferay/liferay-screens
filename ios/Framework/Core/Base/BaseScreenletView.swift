@@ -151,7 +151,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	}
 
 	/*
-	 * onPreUserAction is invoked just before any user action is invoked.
+	 * onPreAction is invoked just before any user action is invoked.
 	 * Override this method to decide whether or not the user action should be fired.
 	 */
 	public func onPreAction(#name: String?, sender: AnyObject?) -> Bool {

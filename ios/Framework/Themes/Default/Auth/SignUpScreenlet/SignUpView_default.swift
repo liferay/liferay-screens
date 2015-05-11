@@ -26,7 +26,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 	@IBOutlet public var firstNameBackground: UIImageView?
 	@IBOutlet public var lastNameBackground: UIImageView?
 
-	@IBOutlet internal var scrollView: UIScrollView?
+	@IBOutlet public var scrollView: UIScrollView?
 
 
 	//MARK: BaseScreenletView
@@ -153,7 +153,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 	//MARK: UITextFieldDelegate
 
-	internal func textFieldDidBeginEditing(textField: UITextField!) {
+	public func textFieldDidBeginEditing(textField: UITextField!) {
 		emailAddressBackground?.highlighted = (textField == emailAddressField)
 		passwordBackground?.highlighted = (textField == passwordField)
 		firstNameBackground?.highlighted = (textField == firstNameField)

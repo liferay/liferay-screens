@@ -14,7 +14,7 @@
 import UIKit
 
 
-internal protocol KeyboardLayoutable {
+public protocol KeyboardLayoutable {
 
 	func layoutWhenKeyboardShown(keyboardHeight: CGFloat, animation:(time: NSNumber, curve: NSNumber))
 
@@ -44,21 +44,21 @@ public class KeyboardManager {
 	}
 
 	//FIXME
-	internal class var defaultHeight: CGFloat { return 253 }
-	internal class var defaultAutocorrectionBarHeight: CGFloat { return 38 }
+	public class var defaultHeight: CGFloat { return 253 }
+	public class var defaultAutocorrectionBarHeight: CGFloat { return 38 }
 
 
 	private var layoutable: KeyboardLayoutable?
 
 
-	internal init() {
+	public init() {
 	}
 
 	deinit {
 		unregisterObserver()
 	}
 
-	internal func registerObserver(layoutable: KeyboardLayoutable) {
+	public func registerObserver(layoutable: KeyboardLayoutable) {
 		self.layoutable = layoutable
 
 		NSNotificationCenter.defaultCenter().addObserver(self,
@@ -72,7 +72,7 @@ public class KeyboardManager {
 				object: nil)
 	}
 
-	internal func unregisterObserver() {
+	public func unregisterObserver() {
 		self.layoutable = nil
 
 		NSNotificationCenter.defaultCenter().removeObserver(self,

@@ -113,7 +113,7 @@ public class DDLFormTableView: DDLFormView,
 
 	//MARK: KeyboardLayoutable
 
-	internal func layoutWhenKeyboardShown(var keyboardHeight: CGFloat,
+	public func layoutWhenKeyboardShown(var keyboardHeight: CGFloat,
 			animation:(time: NSNumber, curve: NSNumber)) {
 
 		let cell = DDLFieldTableCell.viewAsFieldCell(firstCellResponder as? UIView)
@@ -184,7 +184,7 @@ public class DDLFormTableView: DDLFormView,
 		}
 	}
 
-	internal func layoutWhenKeyboardHidden() {
+	public func layoutWhenKeyboardHidden() {
 		if let originalFrameValue = originalFrame {
 			self.frame = originalFrameValue
 			originalFrame = nil
