@@ -35,6 +35,12 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		}
 	}
 
+	@IBInspectable public var editable: Bool = false {
+		didSet {
+			(screenletView as? UserPortraitViewModel)?.editable = self.editable
+		}
+	}
+
 	@IBOutlet public weak var delegate: UserPortraitScreenletDelegate?
 
 
@@ -50,6 +56,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 		viewModel.borderWidth = self.borderWidth
 		viewModel.borderColor = self.borderColor
+		viewModel.editable = self.editable
 		viewModel.portraitLoaded = onPortraitLoaded
 	}
 

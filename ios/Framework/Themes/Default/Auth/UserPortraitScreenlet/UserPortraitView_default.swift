@@ -22,6 +22,7 @@ public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel 
 
 	@IBOutlet public var activityIndicator: UIActivityIndicatorView?
 	@IBOutlet public var portraitImage: UIImageView?
+	@IBOutlet weak var editButton: UIButton!
 
 	public var borderWidth: CGFloat = 1.0 {
 		didSet {
@@ -31,6 +32,14 @@ public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel 
 	public var borderColor: UIColor? {
 		didSet {
 			portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
+		}
+	}
+	public var editable: Bool = false {
+		didSet {
+			self.editButton.hidden = !editable
+			if editable {
+				self.superview?.clipsToBounds = false
+			}
 		}
 	}
 
