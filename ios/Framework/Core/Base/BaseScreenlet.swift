@@ -36,6 +36,12 @@ import QuartzCore
 
 	internal weak var screenletView: BaseScreenletView?
 
+	public weak var presentingViewController: UIViewController? {
+		didSet {
+			screenletView?.presentingViewController = self.presentingViewController
+		}
+	}
+
 	internal var screenletName: String {
 		var className = NSStringFromClass(self.dynamicType)
 
@@ -122,6 +128,8 @@ import QuartzCore
 
 				return false
 			}
+
+			viewValue.presentingViewController = self.presentingViewController
 
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)

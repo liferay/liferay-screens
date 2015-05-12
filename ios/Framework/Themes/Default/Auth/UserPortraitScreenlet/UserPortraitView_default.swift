@@ -198,4 +198,22 @@ public class UserPortraitView_default: BaseScreenletView,
 			})
 	}
 
+
+	//MARK: UIImagePickerControllerDelegate
+
+    public func imagePickerController(
+			picker: UIImagePickerController,
+			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+
+		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+
+		imagePicker.dismissViewControllerAnimated(true) {}
+
+		userAction(name: "upload-portrait", sender: selectedImage)
+	}
+
+    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+		imagePicker.dismissViewControllerAnimated(true) {}
+	}
+
 }
