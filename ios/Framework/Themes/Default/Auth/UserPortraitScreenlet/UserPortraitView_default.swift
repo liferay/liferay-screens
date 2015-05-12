@@ -74,7 +74,7 @@ public class UserPortraitView_default: BaseScreenletView,
 		super.onCreated()
 
 		imagePicker.delegate = self
-		imagePicker.allowsEditing = false
+		imagePicker.allowsEditing = true
 		imagePicker.modalPresentationStyle = .FullScreen
 	}
 
@@ -205,11 +205,11 @@ public class UserPortraitView_default: BaseScreenletView,
 			picker: UIImagePickerController,
 			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
 
-		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+		let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage
 
 		imagePicker.dismissViewControllerAnimated(true) {}
 
-		userAction(name: "upload-portrait", sender: selectedImage)
+		userAction(name: "upload-portrait", sender: editedImage)
 	}
 
     public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
