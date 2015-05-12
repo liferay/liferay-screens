@@ -17,18 +17,21 @@ class AccountSettingsViewController: UIViewController, UserPortraitScreenletDele
 
 	private var initialSignUpPosition: CGFloat?
 
-	@IBAction func saveAction(sender: AnyObject) {
+	@IBAction func closeAction(sender: AnyObject) {
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
 	override func viewDidLoad() {
+		portraitScreenlet.presentingViewController = self
 		portraitScreenlet.delegate = self
+
 		signUpScreenlet.delegate = self
 
 		initialSignUpPosition = signUpScreenlet.frame.origin.y
 	}
 
 	override func viewWillAppear(animated: Bool) {
+		portraitScreenlet.loadLoggedUserPortrait()
 		signUpScreenlet.loadCurrentUser()
 
 		NSNotificationCenter.defaultCenter().addObserver(self,

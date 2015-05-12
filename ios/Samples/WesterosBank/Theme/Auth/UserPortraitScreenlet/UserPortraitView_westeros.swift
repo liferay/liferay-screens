@@ -29,7 +29,7 @@ public class UserPortraitView_westeros: UserPortraitView_default {
 		self.portraitImage?.image = imageInAnyBundle(
 				name: "flat7-portrait-placeholder",
 				currentClass: self.dynamicType,
-				currentTheme: "default")
+				currentTheme: "westeros")
 	}
 
 }
