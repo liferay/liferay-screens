@@ -63,7 +63,7 @@ Each field defines an editor type. You must define each editor type's layout by 
   - `textAreaFieldLayoutId`: The layout to use for Text Box fields.
   - `textDocumentFieldLayoutId`: The layout to use for Documents & Media fields.
 
-If you don't define the editor type's layout in the attributes of `DDLFormScreent`, the default layout `ddlfield_xxx_default` is used, where `xxx` is the name of the editor type. It's important to note that you can change the layout used with any editor type at any point.
+If you don't define the editor type's layout in the attributes of `DDLFormScreenlet`, the default layout `ddlfield_xxx_default` is used, where `xxx` is the name of the editor type. It's important to note that you can change the layout used with any editor type at any point.
 
 ### Custom Editors
 

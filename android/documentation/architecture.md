@@ -18,7 +18,7 @@ Liferay Screens separates presentation and business-logic code, following the id
 
 - **Screenlets**: The library that contains all the available screenlets. Each screenlet is a Java View class that can be inserted in any activity or fragment view hierarchy. Screenlets render the selected layout both in the runtime and Android Studio's visual editor. They also react to user interface events, sending server requests if necessary. Screenlets also define a set of configurable properties that can be set from the layout XML and your Java code.
 
-- **Interactors**: A collection of classes that implement one specific user interaction or use case. These classses can interact with both remote and local data sources. Most of the interactors need to send/receive data to/from Liferay Portal. In this case, interactors use the [Mobile SDK](https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/invoking-liferay-services-in-your-ios-app).
+- **Interactors**: A collection of classes that implement one specific user interaction or use case. These classes can interact with both remote and local data sources. Most of the interactors need to send/receive data to/from Liferay Portal. In this case, interactors use the [Mobile SDK](https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/invoking-liferay-services-in-your-ios-app).
 
 - **Views**: A set of layout and accompanying custom view classes that present screenlets to the user.
 
@@ -30,7 +30,7 @@ The core layer is the micro-framework that lets developers write their own scree
 
 - **Interactor**: The base class for all interactions and use cases supported by the screenlet. These actions can range in complexity from simple algorithms to asynchronous data requests from a server or database. A screenlet can have more than one interactor, typically one for each kind of supported operation. An interactor can call Liferay Mobile SDK services and receive the responses asynchronously through the EventBus, eventually changing the state of the view classes.
 
-- **BaseScreenlet**: The base class for all screenlet classes. The main task of a screenlet class is to receive user action events from the screenlet's view, instantiate and call interactors, and then update any view data with the result. This class contains a set of [templated methods](http://www.oodesign.com/template-method-pattern.html) that are intended to be overriden by children classes. These methods are listed here:
+- **BaseScreenlet**: The base class for all screenlet classes. The main task of a screenlet class is to receive user action events from the screenlet's view, instantiate and call interactors, and then update any view data with the result. This class contains a set of [template methods](http://www.oodesign.com/template-method-pattern.html) that are intended to be overridden by children classes. These methods are listed here:
 
 	- *createScreenletView*: Typically inflates the screenlet's view and gets the attribute values from the XML definition.
 	- *createInteractor*: Instantiates an interactor of a specific type, depending on the action name supplied. The action name specifies the interactor type. If a screenlet only supports one interactor type, then the action name may be ignored.

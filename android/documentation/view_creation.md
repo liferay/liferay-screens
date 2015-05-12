@@ -147,6 +147,6 @@ Views are typically created as source code inside your app's project. If you wan
 
 To do this, use the [viewsets](https://github.com/liferay/liferay-screens/tree/master/android/viewsets) subproject as a template to your new [`build.gradle`](https://github.com/liferay/liferay-screens/blob/master/android/viewsets/material/build.gradle) file.
 
-You will have to import the new module into your project by especifying its location in the [settings.gradle](https://github.com/liferay/liferay-screens/tree/master/android/samples/settings.gradle). The Westeros and test-app both uses a custom theme (westeros and material respectively) and are good examples on how to use an independient theme in your project.
+You will have to import the new module into your project by specifying its location in the [settings.gradle](https://github.com/liferay/liferay-screens/tree/master/android/samples/settings.gradle). The Westeros and test-app both uses a custom theme (westeros and material respectively) and are good examples on how to use an independent theme in your project.
 
 If you want to redistribute your theme and let other people use it you can upload it to jcenter or mavenCentral. In the example build.gradle file, after entering your bintray api key, you can execute *gradlew bintrayupload* to upload your project to jcenter. When finished you will be able to use as every other Android dependency, adding the repository, artifact, groupId and version to your gradle file.

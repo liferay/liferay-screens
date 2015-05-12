@@ -53,7 +53,7 @@ android {
 
 Liferay Screens (and the underlying Mobile SDK) can't connect to the Liferay Portal instance. 
 
-Check the IP address of the server or if you have overriden the default IP in the server_context.xml file ([override server_context](https://github.com/liferay/liferay-screens/tree/master/android/README.md#override-server-context))
+Check the IP address of the server or if you have overridden the default IP in the server_context.xml file ([override server_context](https://github.com/liferay/liferay-screens/tree/master/android/README.md#override-server-context))
 
 Remember that in Genymotion you have to use 192.168.56.1 instead of localhost.
 
@@ -61,7 +61,7 @@ Remember that in Genymotion you have to use 192.168.56.1 instead of localhost.
 
 Some Screenlets use temporal files to store information, like the user portrait screenlet to upload a new portrait or the DDL Form to upload new files to the portal.
 
-You have to add the necessary permissions to your app if you use that specific funcionality. To do so, you have to add this line to your AndroidManifest.xml
+You have to add the necessary permissions to your app if you use that specific functionality. To do so, you have to add this line to your AndroidManifest.xml
 
 ```xml
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -77,7 +77,7 @@ If you are using the camera, you will also have to add another permission:
 
 ### Do I have to use Android Studio?
 
-No, Liferay Screens works with Eclipse ADT or compiling manually (with Gradle or not). Just use the compilled aar in your lib folder.
+No, Liferay Screens works with Eclipse ADT or compiling manually (with Gradle or not). Just use the compiled aar in your lib folder.
 
 ### Support for iOS Apps?
 
@@ -89,7 +89,7 @@ We are using an event bus (specifically, the EventBus library) to notify the act
 
 ### How can I use a Liferay feature not available in Liferay Screens?
 
-There are several ways you can use new features, for example, using [Liferay Mobile SDK](https://github.com/liferay/liferay-mobile-sdk) directly that gives you acces to all remote APIs or creating a custom screenlet.
+There are several ways you can use new features, for example, using [Liferay Mobile SDK](https://github.com/liferay/liferay-mobile-sdk) directly that gives you access to all remote APIs or creating a custom screenlet.
 
 ### How can I create a new Screenlet?
 

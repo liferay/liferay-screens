@@ -8,7 +8,7 @@
 
 This document explains the basics of how views are used in Liferay Screens for Android. Liferay provides a limited set of views, but new views can easily be created. Before starting, you should understand the different components in the view layer:
 
-- *View*: Sometimes refered to as the *Custom View* or *Screenlet View*. This is the Java class that implements the UI's behavior. This class is usually the listener for the UI component's events.
+- *View*: Sometimes referred to as the *Custom View* or *Screenlet View*. This is the Java class that implements the UI's behavior. This class is usually the listener for the UI component's events.
 - *Layout*: The XML file that defines the UI components in the view. The root element is usually the same view type as the previous screenlet view.
 - *View set*: The group of views for several screenlets together with their layouts. A view set usually has a name that is easy to refer to, such as *Default* or *Material*. Anyone can create their own view set and releasing it to the community.
 
