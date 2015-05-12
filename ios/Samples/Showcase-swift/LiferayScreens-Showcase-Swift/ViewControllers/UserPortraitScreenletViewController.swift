@@ -20,11 +20,13 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 	@IBOutlet weak var screenlet: UserPortraitScreenlet!
 	@IBOutlet weak var screenletWithDelegate: UserPortraitScreenlet!
 	@IBOutlet weak var userIdField: UITextField!
+	@IBOutlet weak var editableScreenlet: UserPortraitScreenlet!
 
 	@IBAction func loadPortrait(sender: AnyObject) {
 		if let userId = userIdField.text.toInt() {
 			screenlet.load(userId: Int64(userId))
 			screenletWithDelegate.load(userId: Int64(userId))
+			editableScreenlet.load(userId: Int64(userId))
 		}
 	}
 
@@ -36,6 +38,8 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 		}
 
 		screenletWithDelegate?.delegate = self
+
+		editableScreenlet.presentingViewController = self
     }
 
 	func onUserPortraitResponse(image: UIImage) -> UIImage {
@@ -46,6 +50,10 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 
 	func onUserPortraitError(error: NSError) {
 		println("DELEGATE: onUserPortraitError -> \(error)")
+	}
+
+	func onUserPortraitUploaded(result: [String:AnyObject]) {
+		println("DELEGATE: onUserPortraitUploaded -> \(result)")
 	}
 
 }

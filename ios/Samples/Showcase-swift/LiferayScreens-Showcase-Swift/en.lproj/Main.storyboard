@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -731,20 +731,20 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User's portrait:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EO-gK-6EG">
-                                <rect key="frame" x="16" y="154" width="103" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User's portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EO-gK-6EG">
+                                <rect key="frame" x="16" y="154" width="98" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default portrait:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxD-R4-XEe">
-                                <rect key="frame" x="16" y="270" width="107" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Default portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxD-R4-XEe">
+                                <rect key="frame" x="186" y="154" width="107" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="dUK-mV-I2G" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="85" y="190" width="60" height="60"/>
+                                <rect key="frame" x="16" y="190" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Mvx-Ec-JnR"/>
@@ -757,11 +757,11 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="ELj-YS-lCR" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="85" y="306" width="60" height="60"/>
+                                <rect key="frame" x="186" y="190" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Vky-bN-g7s"/>
-                                    <constraint firstAttribute="width" constant="60" id="taI-hh-JYj"/>
+                                    <constraint firstAttribute="height" constant="60" id="YrF-FX-dTL"/>
+                                    <constraint firstAttribute="width" constant="60" id="md5-WT-QhW"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -769,14 +769,34 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modified portrait:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAy-4I-6tH">
-                                <rect key="frame" x="16" y="386" width="118" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modified portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAy-4I-6tH">
+                                <rect key="frame" x="16" y="303" width="114" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Editable portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNP-XS-QZT">
+                                <rect key="frame" x="186" y="303" width="118" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="6Q4-t8-cpv" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="186" y="342" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="AJP-YN-JbN"/>
+                                    <constraint firstAttribute="height" constant="60" id="xnQ-SQ-t7X"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="OfG-dw-9hx" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="85" y="422" width="60" height="60"/>
+                                <rect key="frame" x="16" y="342" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="SFn-bl-PtN"/>
@@ -791,29 +811,36 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ELj-YS-lCR" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" constant="69" id="78b-3A-INM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BxD-R4-XEe" secondAttribute="trailing" constant="11" id="2UI-Zo-0xe"/>
                             <constraint firstItem="g8B-1u-S4d" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" constant="63" id="8eW-x3-2u9"/>
                             <constraint firstItem="2EO-gK-6EG" firstAttribute="top" secondItem="g8B-1u-S4d" secondAttribute="bottom" constant="28" id="I5l-uC-2fb"/>
                             <constraint firstItem="Wf5-FK-eyq" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="PUW-Rf-CFB"/>
                             <constraint firstItem="2EO-gK-6EG" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="Q4l-zi-tLJ"/>
+                            <constraint firstItem="ELj-YS-lCR" firstAttribute="leading" secondItem="dUK-mV-I2G" secondAttribute="trailing" constant="110" id="Qc0-Te-I3p"/>
+                            <constraint firstItem="6Q4-t8-cpv" firstAttribute="top" secondItem="dNP-XS-QZT" secondAttribute="bottom" constant="18" id="RFp-7C-PND"/>
                             <constraint firstItem="g8B-1u-S4d" firstAttribute="top" secondItem="9ha-iK-R4n" secondAttribute="bottom" constant="32" id="Rpz-ja-05Y"/>
-                            <constraint firstItem="dUK-mV-I2G" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" constant="69" id="a6A-0m-3ah"/>
+                            <constraint firstItem="BxD-R4-XEe" firstAttribute="leading" secondItem="2EO-gK-6EG" secondAttribute="trailing" constant="72" id="VD8-ib-ZOO"/>
+                            <constraint firstItem="dNP-XS-QZT" firstAttribute="top" secondItem="ELj-YS-lCR" secondAttribute="bottom" constant="53" id="Xs1-fu-fk5"/>
+                            <constraint firstItem="dUK-mV-I2G" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="a6A-0m-3ah"/>
+                            <constraint firstItem="dNP-XS-QZT" firstAttribute="trailing" secondItem="EqH-kn-vAc" secondAttribute="trailingMargin" id="afM-Iy-al2"/>
+                            <constraint firstItem="ELj-YS-lCR" firstAttribute="top" secondItem="BxD-R4-XEe" secondAttribute="bottom" constant="15" id="ajC-5d-XW5"/>
                             <constraint firstItem="7UY-Og-Tpf" firstAttribute="top" secondItem="9ha-iK-R4n" secondAttribute="bottom" constant="24" id="by5-Jk-ddt"/>
-                            <constraint firstItem="OfG-dw-9hx" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" constant="69" id="fEQ-ql-adK"/>
+                            <constraint firstItem="rAy-4I-6tH" firstAttribute="top" secondItem="dUK-mV-I2G" secondAttribute="bottom" constant="53" id="dKM-Lj-SjT"/>
+                            <constraint firstItem="OfG-dw-9hx" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="fEQ-ql-adK"/>
                             <constraint firstItem="Wf5-FK-eyq" firstAttribute="top" secondItem="9ha-iK-R4n" secondAttribute="bottom" constant="35" id="gR0-Hj-afg"/>
                             <constraint firstItem="7UY-Og-Tpf" firstAttribute="leading" secondItem="g8B-1u-S4d" secondAttribute="trailing" constant="8" id="gWl-uW-h65"/>
-                            <constraint firstItem="ELj-YS-lCR" firstAttribute="top" secondItem="BxD-R4-XEe" secondAttribute="bottom" constant="15" id="iHs-ik-TF8"/>
-                            <constraint firstItem="rAy-4I-6tH" firstAttribute="top" secondItem="ELj-YS-lCR" secondAttribute="bottom" constant="20" id="kKt-wK-TGL"/>
+                            <constraint firstItem="dNP-XS-QZT" firstAttribute="leading" secondItem="rAy-4I-6tH" secondAttribute="trailing" constant="56" id="kVb-BV-xqa"/>
                             <constraint firstItem="7UY-Og-Tpf" firstAttribute="trailing" secondItem="EqH-kn-vAc" secondAttribute="trailingMargin" id="lQB-v4-zBI"/>
                             <constraint firstItem="dUK-mV-I2G" firstAttribute="top" secondItem="2EO-gK-6EG" secondAttribute="bottom" constant="15" id="mcF-rw-kxF"/>
+                            <constraint firstItem="6Q4-t8-cpv" firstAttribute="leading" secondItem="OfG-dw-9hx" secondAttribute="trailing" constant="110" id="p82-e9-QXS"/>
+                            <constraint firstItem="BxD-R4-XEe" firstAttribute="top" secondItem="7UY-Og-Tpf" secondAttribute="bottom" constant="22" id="s5k-bV-OJx"/>
                             <constraint firstItem="rAy-4I-6tH" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="sEi-oT-56w"/>
-                            <constraint firstItem="BxD-R4-XEe" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="tEy-63-t9x"/>
-                            <constraint firstItem="OfG-dw-9hx" firstAttribute="top" secondItem="rAy-4I-6tH" secondAttribute="bottom" constant="15" id="vKO-Uk-bv7"/>
-                            <constraint firstItem="BxD-R4-XEe" firstAttribute="top" secondItem="dUK-mV-I2G" secondAttribute="bottom" constant="20" id="ybl-DP-NqZ"/>
+                            <constraint firstItem="OfG-dw-9hx" firstAttribute="top" secondItem="rAy-4I-6tH" secondAttribute="bottom" constant="18" id="vKO-Uk-bv7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Xgo-At-ulf"/>
                     <connections>
+                        <outlet property="editableScreenlet" destination="6Q4-t8-cpv" id="Flh-8N-GZt"/>
                         <outlet property="screenlet" destination="dUK-mV-I2G" id="DZF-FN-NDC"/>
                         <outlet property="screenletWithDelegate" destination="OfG-dw-9hx" id="OGJ-bb-XTI"/>
                         <outlet property="userIdField" destination="g8B-1u-S4d" id="6Nc-it-meo"/>
