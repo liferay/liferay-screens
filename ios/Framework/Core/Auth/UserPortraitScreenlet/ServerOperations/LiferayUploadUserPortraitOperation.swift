@@ -22,7 +22,7 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 	var uploadResult: [String:AnyObject]?
 
 	internal override var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "uploading-error", self), details: nil)
+		return (LocalizedString("userportrait-screenlet", "uploading-error", self), details: nil)
 	}
 
 
