@@ -19,6 +19,8 @@ import UIKit
  */
 public class BaseScreenletView: UIView, UITextFieldDelegate {
 
+	public weak var presentingViewController: UIViewController?
+
 	internal var onPerformAction: ((String?, AnyObject?) -> Bool)?
 
 	internal var themeName: String? {
