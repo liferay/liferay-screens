@@ -17,6 +17,7 @@ import UIKit
 @objc public protocol UserPortraitScreenletDelegate {
 
 	optional func onUserPortraitResponse(image: UIImage) -> UIImage
+	optional func onUserPortraitUploaded(result: [String:AnyObject])
 	optional func onUserPortraitError(error: NSError)
 
 }
@@ -48,6 +49,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return screenletView as! UserPortraitViewModel
 	}
 
+	private var loadedUserId: Int64?
+
 
 	//MARK: BaseScreenlet
 
@@ -63,6 +66,9 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	public func loadLoggedUserPortrait() -> Bool {
 		let interactor = UserPortraitLoadLoggedUserInteractor(screenlet: self)
 
+		let currentUserId = SessionContext.userAttribute("userId") as? Int
+		loadedUserId =  currentUserId.map { Int64($0) }
+
 		return startInteractor(interactor)
 	}
 
@@ -73,6 +79,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 				uuid: uuid,
 				male: male)
 
+		loadedUserId = nil
+
 		return startInteractor(interactor)
 	}
 
@@ -80,6 +88,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		let interactor = UserPortraitLoadByUserIdInteractor(
 				screenlet: self,
 				userId: userId)
+
+		loadedUserId = userId
 
 		return startInteractor(interactor)
 	}
@@ -90,6 +100,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 				companyId: companyId,
 				emailAddress: emailAddress)
 
+		loadedUserId = nil
+
 		return startInteractor(interactor)
 	}
 
@@ -99,34 +111,53 @@ public class UserPortraitScreenlet: BaseScreenlet {
 				companyId: companyId,
 				screenName: screenName)
 
+		loadedUserId = nil
+
 		return startInteractor(interactor)
 	}
 
 	override internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
 
-		println("interactor -> \(name)")
+		let interactor: UploadUserPortraitInteractor?
 
-	/*
-		let interactor = LoginInteractor(screenlet: self)
+		switch name! {
+		case "upload-portrait":
+			let image = sender as! UIImage
+			let userId: Int64?
 
-		interactor.onSuccess = {
-			self.delegate?.onLoginResponse?(interactor.resultUserAttributes!)
-
-			if self.saveCredentials {
-				if SessionContext.storeSession() {
-					self.delegate?.onCredentialsSaved?()
-				}
+			if let loadedUserIdValue = loadedUserId {
+				userId = loadedUserIdValue
 			}
-		}
+			else {
+				let currentUserId = SessionContext.userAttribute("userId") as? Int
+				userId =  currentUserId.map { Int64($0) }
+			}
 
-		interactor.onFailure = {
-			self.delegate?.onLoginError?($0)
-			return
+			if userId == nil {
+				println("ERROR: Can't change the portrait without an userId")
+				return nil
+			}
+
+			interactor = UploadUserPortraitInteractor(
+					screenlet: self,
+					userId: userId!,
+					image: image)
+
+			interactor!.onSuccess = { [weak interactor] in
+				self.delegate?.onUserPortraitUploaded?(interactor!.uploadResult!)
+				self.load(userId: userId!)
+			}
+
+			interactor!.onFailure = {
+				self.delegate?.onUserPortraitError?($0)
+				return
+			}
+
+		default:
+			interactor = nil
 		}
 
 		return interactor
-		*/
-		return nil
 	}
 
 	//MARK: Private methods
