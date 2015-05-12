@@ -37,6 +37,12 @@ The `DDLListScreenlet` enables the following features:
 
 DDLs and Data Types should be properly configured in the portal before using `DDLListScreenlet`. For more details, see the Liferay User Guide sections [Defining Data Types](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/building-a-list-platform-in-liferay-and-defining-data-) and [Creating Data Lists](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/creating-data-lists).
 
+## Compulsory Attributes
+
+- layoutId
+- recordSetId
+- labelFields
+
 ## Attributes
 
 | Attribute | Data type | Explanation |

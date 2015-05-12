@@ -109,6 +109,12 @@ Also, if your form includes at least one Documents and Media field, you must gra
 
 For more details, see the User Guide sections [Defining Data Types](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/building-a-list-platform-in-liferay-and-defining-data-), [Creating Data Lists](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/creating-data-lists), and [Using Workflow](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-workflow).
 
+## Compulsory Attributes
+
+- layoutId
+- structureId
+- recordSetId
+
 ## Attributes
 
 | Attribute | Data Type | Explanation |

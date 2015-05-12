@@ -54,6 +54,12 @@ For more details on authentication in Liferay Portal, please refer to the [Confi
 
 An anonymous request can be made without the user being logged in. However, authentication is needed to call the API. To allow this operation, it's recommended that the portal administrator create a specific user with minimal permissions.
 
+## Compulsory Attributes
+
+- layoutId
+- anonymousApiUserName
+- anonymousApiPassword
+
 ## Attributes
 
 | Attribute | Data type | Explanation |
