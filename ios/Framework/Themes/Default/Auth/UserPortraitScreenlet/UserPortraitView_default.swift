@@ -163,6 +163,7 @@ public class UserPortraitView_default: BaseScreenletView,
 				currentTheme: "default")
 	}
 
+
 	public func loadPortrait(URL url: NSURL) {
 		// ignore AFNetworking's cache by now
 		// TODO contribute to UIImageView+AFNetworking to support "If-Modified-Since" header
