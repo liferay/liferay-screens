@@ -89,17 +89,19 @@ For more details, refer the guide on [How to Create Your Own Screenlet](screenle
 
 The view layer lets developers use more than one look and feel for any screenlet. Screenlets have the `liferay:layoutId` attribute, which is used to determine the view responsible for rendering the UI.
 
-![The view layer of Liferay Screens for Android.](http://liferay.github.io/liferay-screens/android/library/svg/architecture-views.svg)
+<!--![The view layer of Liferay Screens for Android.](http://liferay.github.io/liferay-screens/android/library/svg/architecture-views.svg)-->
 
 There are several different view types:
 
 - **Default views**: A mandatory view set that is supplied by Liferay. It's used by default when the screenlet's `layoutId` is invalid or isn't specified. The Default view set uses a neutral, flat white and blue design with standard UI components. For example, in `LoginScreenlet` it uses standard but styled text boxes for the user name and password. At any point you can change the styles associated with this view set to customize the colors, positions, and sizes. To do this, see the `styles.xml` file.
 
-- **Full views**: Can be used to show a different set of components and attributes. Using the `LoginScreenlet` as an example, the Full view can be used to present different components for the user name and password fields. For example, you it's possible to show only the password field and infer the user name from elsewhere. The Default views are a kind of Full view.
+- **Child views**: Inherits another view's behavior, without including any code. Child views only contain a new layout file. This layout file can contain different colors, component positions, or any other visual changes. Because the changes in Child views are only visual, the UI components and their identifiers must be identical to those of the parent view. Child views present a good alternative to implementing a completely different UI for one specific scenario.
 
-- **Child views**: Inherits another view's behavior, without including any code. Child views only contain a new layout file. This layout file can contain different colors, component positions, or any other visual changes. Because the changes in Child views are only visual, the UI components and their identifiers must be identical to those of the parent view. In the diagram, a Child view inherits from the Default view. As an example of implementing a Child view, you can create a view inherited from Default for `LoginScreenlet` and then configure the new layout file to change the position and size of the standard text boxes. Child views present a good alternative to implementing a completely different UI for one specific scenario.
+- **Extended**: Inherits another view's behavior and code. This lets you implement new behavior in the view, such as displaying new components in the UI or otherwise introducing new functionality. An extended view provides a specific view class for the screenlet (extending from the corresponding parent's view class). Using the `LoginScreenlet` as an example, the extended view can be used to present different components for the user name and password fields. 
 
-- **Extended**: Inherits another view's behavior and code. This lets you implement new behavior in the view, such as displaying new components in the UI or otherwise introducing new functionality. In the diagram, the Extended view extends the Full one, but provides a specific view class for the screenlet (extending from the corresponding parent's view class). For more information, see the guide [How to Create Your Own Viewsets](view_creation.md).
+	As an example of implementing a Child view, you can create a view inherited from Default for `LoginScreenlet` and then configure the new layout file to change the position and size of the standard text boxes. For more information, see the guide [How to Create Your Own Viewsets](view_creation.md).
+
+- **Full views**: Can be used to customize the screenlet listeners and calling custom intereractors. Using the `LoginScreenlet` as an example, the Full view can be used to add a new interactor that calls to another instance of Liferay Portal. The Default views are a kind of Full view.
 
 ### Android Lifecycle and Screenlets
 
