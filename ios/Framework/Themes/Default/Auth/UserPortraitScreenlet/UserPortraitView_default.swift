@@ -75,7 +75,7 @@ public class UserPortraitView_default: BaseScreenletView,
 
 		imagePicker.delegate = self
 		imagePicker.allowsEditing = false
-		imagePicker.modalPresentationStyle = .CurrentContext
+		imagePicker.modalPresentationStyle = .FullScreen
 	}
 
 	override public func onStartOperation() {
