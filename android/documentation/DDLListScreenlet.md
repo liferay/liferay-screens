@@ -39,9 +39,9 @@ DDLs and Data Types should be properly configured in the portal before using `DD
 
 ## Compulsory Attributes
 
-- layoutId
-- recordSetId
-- labelFields
+- `layoutId`
+- `recordSetId`
+- `labelFields`
 
 ## Attributes
 

@@ -14,27 +14,18 @@ This document explains the basics of how views are used in Liferay Screens for A
 
 ## Installing View Sets
 
-When you set up your project it includes one viewset by default: Default. Other two viewsets are available as dependencies in jCenter. To add them you will only have to include this code for material:
- 
-```groovy
-dependencies {
-	compile 'com.liferay.mobile:liferay-material-viewset:1.0.+'	
-	...
-}
-
-```
-
-And the next one for Westeros viewset:
+When you set up your project it includes only the Default view set. Two additional view sets, Material and Westeros, are available as dependencies in jCenter. To add them, include the following code in your `build.gradle` file. Note that you don't have to use both; you can omit the `compile` statement for the view set you don't want to include. 
 
 ```groovy
 dependencies {
-	compile 'com.liferay.mobile:liferay-westeros-viewset:1.0.+'	
-	...
+    ...
+    compile 'com.liferay.mobile:liferay-material-viewset:1.0.+'
+    compile 'com.liferay.mobile:liferay-westeros-viewset:1.0.+'	
+    ...
 }
-
 ```
 
-Anyone can create a new viewset and publish it in a public repository like Maven Central or jCenter. In that event, include the artifact containing the viewset by using the standard steps for Gradle or Maven described in the section [Prepare Your Project for Liferay Screens](https://github.com/liferay/liferay-screens/tree/master/android/README.md#preparing-your-project-for-liferay-screens).
+Anyone can create a new view set and publish it in a public repository like Maven Central or jCenter. To use such a view set, include the artifact containing the view set by using the standard steps for Gradle or Maven. These steps are described in the section [Preparing Your Project for Liferay  Screens](https://github.com/liferay/liferay-screens/tree/master/android/README.md#preparing-your-project-for-liferay-screens).
 
 ## Using View Sets
 

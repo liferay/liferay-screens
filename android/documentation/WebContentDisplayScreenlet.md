@@ -35,8 +35,8 @@ For the `WebContentDisplayScreenlet` to function properly, there should be web c
 
 ## Compulsory Attributes
 
-- layoutId
-- articleId
+- `layoutId`
+- `articleId`
 
 ## Attributes
 

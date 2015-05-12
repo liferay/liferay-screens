@@ -44,7 +44,7 @@ For more details, see the [Configuring Portal Settings](https://dev.liferay.com/
 
 ## Compulsory Attributes
 
-- layoutId
+- `layoutId`
 
 ## Attributes
 

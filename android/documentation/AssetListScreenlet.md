@@ -64,8 +64,8 @@ Dynamic Data Lists (DDL) and Data Types should be configured properly in the por
 
 ## Compulsory Attributes
 
-- layoutId
-- classNameId
+- `layoutId`
+- `classNameId`
 
 ## Attributes
 

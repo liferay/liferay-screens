@@ -111,9 +111,9 @@ For more details, see the User Guide sections [Defining Data Types](https://dev.
 
 ## Compulsory Attributes
 
-- layoutId
-- structureId
-- recordSetId
+- `layoutId`
+- `structureId`
+- `recordSetId`
 
 ## Attributes
 

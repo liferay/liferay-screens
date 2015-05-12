@@ -97,11 +97,11 @@ There are several different view types:
 
 - **Child views**: Inherits another view's behavior, without including any code. Child views only contain a new layout file. This layout file can contain different colors, component positions, or any other visual changes. Because the changes in Child views are only visual, the UI components and their identifiers must be identical to those of the parent view. Child views present a good alternative to implementing a completely different UI for one specific scenario.
 
+    As an example of implementing a Child view, you can create a view inherited from Default for `LoginScreenlet` and then configure the new layout file to change the position and size of the standard text boxes. For more information, see the guide [How to Create Your Own Viewsets](view_creation.md).
+
 - **Extended**: Inherits another view's behavior and code. This lets you implement new behavior in the view, such as displaying new components in the UI or otherwise introducing new functionality. An extended view provides a specific view class for the screenlet (extending from the corresponding parent's view class). Using the `LoginScreenlet` as an example, the extended view can be used to present different components for the user name and password fields. 
 
-	As an example of implementing a Child view, you can create a view inherited from Default for `LoginScreenlet` and then configure the new layout file to change the position and size of the standard text boxes. For more information, see the guide [How to Create Your Own Viewsets](view_creation.md).
-
-- **Full views**: Can be used to customize the screenlet listeners and calling custom intereractors. Using the `LoginScreenlet` as an example, the Full view can be used to add a new interactor that calls to another instance of Liferay Portal. The Default views are a kind of Full view.
+- **Full views**: Can be used to customize the screenlet listeners and call custom intereractors. Using the `LoginScreenlet` as an example, the Full view can be used to add a new interactor that calls to another Liferay Portal instance. The Default views are a kind of Full view.
 
 ### Android Lifecycle and Screenlets
 

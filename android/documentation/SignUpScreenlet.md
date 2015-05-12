@@ -38,15 +38,13 @@ For more details, refer to the [Configuring Portal Settings](https://dev.liferay
 
 ## Anonymous Requests
 
-Anonymous requests can be done without the user being logged in. However, authentication is still required to call the API. To allow this operation, it's recommended that the portal administrator create a specific user with minimal permissions.
-
-To use the `SignUpScreenlet` you will have to use that user in your layout (we recommend adding the credentials to the server_context.xml).
+Anonymous requests can be done without the user being logged in. However, authentication is still required to call the API. To allow this operation, it's recommended that the portal administrator create a specific user with minimal permissions. To use `SignUpScreenlet`, you need to use that user in your layout (we recommend adding the credentials to `server_context.xml`).
 
 ## Compulsory Attributes
 
-- layoutId
-- anonymousApiUserName
-- anonymousApiPassword
+- `layoutId`
+- `anonymousApiUserName`
+- `anonymousApiPassword`
 
 ## Attributes
 

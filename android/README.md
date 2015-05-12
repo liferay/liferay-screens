@@ -39,10 +39,10 @@ Liferay Screens is released as an [AAR file](http://tools.android.com/tech-docs/
 To include your first screenlet, you only need to follow 3 steps:
 
 * Download and include Liferay Screens in your project.
-* Configure the IP Adress of your server and the company id.
-* Add your first screenlet to your view.
+* Configure your server's IP address and Company ID.
+* Add a screenlet to your view.
 
-Let's see how we can download and include Liferay Screens:
+The following sections show you how to download and include Liferay Screens in your project.
 
 ### Gradle
 
@@ -66,16 +66,16 @@ Use the following steps to configure your project with Gradle:
 
 Gradle downloads all the necessary dependencies before building your project. If you get errors such as `Duplicate files copied in APK META-INF/NOTICE` when building with Gradle, add this to your `build.gradle` file:
 
-	```groovy
-	android {
-		...
-		packagingOptions {	
-			exclude 'META-INF/LICENSE'
-			exclude 'META-INF/NOTICE'
-		}
-		...
+```groovy
+android {
+	...
+	packagingOptions {	
+		exclude 'META-INF/LICENSE'
+		exclude 'META-INF/NOTICE'
 	}
-	```
+	...
+}
+```
 
 ### Maven
 
@@ -95,30 +95,30 @@ Use the following steps to configure your project with Maven:
 
 Note that if Maven can't locate the artifact, you need to add jCenter as a new repository in your maven settings (`.m2/settings.xml`):
 
-	```xml
-	<profiles>
-		<profile>
-			<repositories>
-				<repository>
-					<id>bintray-liferay-liferay-mobile</id>
-					<name>bintray</name>
-					<url>http://dl.bintray.com/liferay/liferay-mobile</url>
-				</repository>
-			</repositories>
-			<pluginRepositories>
-				<pluginRepository>
-					<id>bintray-liferay-liferay-mobile</id>
-					<name>bintray-plugins</name>
-					<url>http://dl.bintray.com/liferay/liferay-mobile</url>
-				</pluginRepository>
-			</pluginRepositories>
-			<id>bintray</id>
-		</profile>
-	</profiles>
-	<activeProfiles>
-		<activeProfile>bintray</activeProfile>
-	</activeProfiles>
-	```
+```xml
+<profiles>
+	<profile>
+		<repositories>
+			<repository>
+				<id>bintray-liferay-liferay-mobile</id>
+				<name>bintray</name>
+				<url>http://dl.bintray.com/liferay/liferay-mobile</url>
+			</repository>
+		</repositories>
+		<pluginRepositories>
+			<pluginRepository>
+				<id>bintray-liferay-liferay-mobile</id>
+				<name>bintray-plugins</name>
+				<url>http://dl.bintray.com/liferay/liferay-mobile</url>
+			</pluginRepository>
+		</pluginRepositories>
+		<id>bintray</id>
+	</profile>
+</profiles>
+<activeProfiles>
+	<activeProfile>bintray</activeProfile>
+</activeProfiles>
+```
 
 ### Manually
 
@@ -145,13 +145,11 @@ latest version of Liferay Screens for Android.
 	compile project (':themes')
 	```
 	
-You can also configure the `.aar` binary files (in `Android/dist`) as local `.aar` dependencies. You can download all the necessary files from [jcenter](https://bintray.com/liferay/liferay-mobile/liferay-screens/view).
+You can also configure the `.aar` binary files (in `Android/dist`) as local `.aar` dependencies. You can download all the necessary files from [jCenter](https://bintray.com/liferay/liferay-mobile/liferay-screens/view).
 
----
+Great! Your project should now be ready for Liferay Screens. You can do a quick check by compiling and executing a blank activity and importing a Liferay Screens class (like `LoginScreenlet`).
 
-Great! Your project should now be ready for Liferay Screens. You can do a quick check compiling and executing a blank activity and importing a Liferay Screens class (like *LoginScreenlet*).
-
-Next, you'll learn how to configure the Ip Address and other required parameters.
+Next, you'll learn how to configure the IP address and other required parameters.
 
 ## Configuring Your Project to Communicate with Your Liferay Installation
 
@@ -170,7 +168,6 @@ Add the following code to the new file:
 	<integer name="liferay_group_id">10182</integer>
 
 	</resources>
-
 ```
 
 As the comment indicates, make sure to change these values to match those in your Liferay installation. The server address `http://10.0.2.2:8080` is suitable for testing with Android Studio's emulator, because it corresponds to `localhost:8080` through the emulator.

@@ -56,9 +56,9 @@ An anonymous request can be made without the user being logged in. However, auth
 
 ## Compulsory Attributes
 
-- layoutId
-- anonymousApiUserName
-- anonymousApiPassword
+- `layoutId`
+- `anonymousApiUserName`
+- `anonymousApiPassword`
 
 ## Attributes
 
