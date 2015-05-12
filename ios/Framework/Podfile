@@ -3,15 +3,23 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
+
+# Core
+pod 'Liferay-iOS-SDK', '6.2.0.17'
 pod 'MBProgressHUD', '~> 0.9.1'
-pod 'SMXMLDocument'
 pod 'UICKeyChainStore'
+pod 'SMXMLDocument'
+pod 'ODRefreshControl'
+
+# UserPortrait
+pod 'CryptoSwift'
+pod 'UIImage-Resize'
+
+# DDLForm
 pod 'DTPickerPresenter'
 pod 'TNRadioButtonGroup'
 pod 'MDRadialProgress'
-pod 'ODRefreshControl'
-pod 'Liferay-iOS-SDK', '6.2.0.17'
-pod 'CryptoSwift'
+
 
 target :LiferayScreensTests do
 	pod 'Nocilla'
