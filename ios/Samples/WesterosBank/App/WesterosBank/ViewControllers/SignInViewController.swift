@@ -15,7 +15,10 @@ import UIKit
 import LiferayScreens
 
 
-class SignInViewController: CardViewController, LoginScreenletDelegate, ForgotPasswordScreenletDelegate {
+class SignInViewController: CardViewController,
+		LoginScreenletDelegate,
+		ForgotPasswordScreenletDelegate,
+		KeyboardListener {
 
 	@IBOutlet weak var scroll: UIScrollView!
 	@IBOutlet weak var forgotTitle: UIButton!
@@ -103,23 +106,11 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, ForgotPa
 	}
 
 	override func cardWillAppear() {
-		NSNotificationCenter.defaultCenter().addObserver(self,
-				selector: "showKeyboard:",
-				name: UIKeyboardWillChangeFrameNotification,
-				object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self,
-				selector: "hideKeyboard:",
-				name: UIKeyboardWillHideNotification,
-				object: nil)
+		registerKeyboardListener(self)
 	}
 
 	override func cardWillDisappear() {
-		NSNotificationCenter.defaultCenter().removeObserver(self,
-				name: UIKeyboardWillHideNotification,
-				object: nil)
-		NSNotificationCenter.defaultCenter().removeObserver(self,
-				name: UIKeyboardWillChangeFrameNotification,
-				object: nil)
+		unregisterKeyboardListener(self)
 	}
 
 	func showKeyboard(notif: NSNotification) {

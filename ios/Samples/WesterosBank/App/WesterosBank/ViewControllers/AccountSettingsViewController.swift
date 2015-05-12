@@ -10,7 +10,10 @@ import UIKit
 import LiferayScreens
 
 
-class AccountSettingsViewController: UIViewController, UserPortraitScreenletDelegate, SignUpScreenletDelegate {
+class AccountSettingsViewController: UIViewController,
+		UserPortraitScreenletDelegate,
+		SignUpScreenletDelegate,
+		KeyboardListener {
 
 	@IBOutlet weak var portraitScreenlet: UserPortraitScreenlet!
 	@IBOutlet weak var signUpScreenlet: SignUpScreenlet!
@@ -34,23 +37,11 @@ class AccountSettingsViewController: UIViewController, UserPortraitScreenletDele
 		portraitScreenlet.loadLoggedUserPortrait()
 		signUpScreenlet.loadCurrentUser()
 
-		NSNotificationCenter.defaultCenter().addObserver(self,
-				selector: "showKeyboard:",
-				name: UIKeyboardWillChangeFrameNotification,
-				object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self,
-				selector: "hideKeyboard:",
-				name: UIKeyboardWillHideNotification,
-				object: nil)
+		registerKeyboardListener(self)
 	}
 
 	override func viewWillDisappear(animated: Bool) {
-		NSNotificationCenter.defaultCenter().removeObserver(self,
-				name: UIKeyboardWillHideNotification,
-				object: nil)
-		NSNotificationCenter.defaultCenter().removeObserver(self,
-				name: UIKeyboardWillChangeFrameNotification,
-				object: nil)
+		unregisterKeyboardListener(self)
 	}
 
 	func showKeyboard(notif: NSNotification) {

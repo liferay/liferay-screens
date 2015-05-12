@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D3BD6FCCD95D4FE972F06AC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6370C6082E034E1BCF5D2D54 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		880139CA1B029BE000566424 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880139C91B029BE000566424 /* KeyboardListener.swift */; };
 		8820EEF61AE79C2D00FA79A6 /* IssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEF41AE79C2D00FA79A6 /* IssuesViewController.swift */; };
 		8820EEF71AE79C2D00FA79A6 /* IssuesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8820EEF51AE79C2D00FA79A6 /* IssuesViewController.xib */; };
 		8820EEFA1AE79C9000FA79A6 /* ReportIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEF81AE79C9000FA79A6 /* ReportIssueViewController.swift */; };
@@ -108,6 +109,7 @@
 
 /* Begin PBXFileReference section */
 		6370C6082E034E1BCF5D2D54 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		880139C91B029BE000566424 /* KeyboardListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
 		8820EEF41AE79C2D00FA79A6 /* IssuesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesViewController.swift; sourceTree = "<group>"; };
 		8820EEF51AE79C2D00FA79A6 /* IssuesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IssuesViewController.xib; sourceTree = "<group>"; };
 		8820EEF81AE79C9000FA79A6 /* ReportIssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportIssueViewController.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				8820EEFC1AE7A03200FA79A6 /* OnBoardingCardDeck.swift */,
 				8820EEFE1AE7A10800FA79A6 /* IssuesCardDeck.swift */,
 				88E657C81AE96AF700FF744A /* Colors.swift */,
+				880139C91B029BE000566424 /* KeyboardListener.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				889F4DA61AF26C9A002E233D /* BorderedTextField.swift in Sources */,
 				88855A691AE6A5E100D352D5 /* CardDeckView.swift in Sources */,
 				8820EEFF1AE7A10800FA79A6 /* IssuesCardDeck.swift in Sources */,
+				880139CA1B029BE000566424 /* KeyboardListener.swift in Sources */,
 				8820EEFD1AE7A03200FA79A6 /* OnBoardingCardDeck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
