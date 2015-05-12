@@ -21,6 +21,8 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 
 	var uploadResult: [String:AnyObject]?
 
+	private let maxSize = 300 * 1024
+
 	internal override var hudFailureMessage: HUDMessage? {
 		return (LocalizedString("userportrait-screenlet", "uploading-error", self), details: nil)
 	}
@@ -45,28 +47,30 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 	}
 
 	override internal func doRun(#session: LRSession) {
-		let resizedImage = resizeImage(self.image)
+		let imageBytes = reduceImage(self.image!, factor: 0.95)
 
 		self.image = nil
 
-		startUpload(session, image: resizedImage)
+		uploadBytes(imageBytes, withSession: session)
 	}
 
 
-	private func resizeImage(src: UIImage?) -> UIImage {
-		return src!
+	//MARK: Private methods
+
+	private func reduceImage(src: UIImage, factor: Double) -> NSData {
+		var imageBytes = UIImageJPEGRepresentation(src, CGFloat(factor))
+
+		return (imageBytes.length < maxSize)
+				? imageBytes
+				: reduceImage(src, factor: factor - 0.1)
 	}
 
-	private func startUpload(session: LRSession, var image: UIImage) {
+	private func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
 		let service = LRUserService_v62(session: session)
 
 		lastError = nil
 
-		var imageBytes = UIImageJPEGRepresentation(image, 0.9)
-
 		let result = service.updatePortraitWithUserId(self.userId, bytes: imageBytes, error: &lastError)
-
-		imageBytes = nil
 
 		if lastError == nil {
 			if result is [String:AnyObject] {
