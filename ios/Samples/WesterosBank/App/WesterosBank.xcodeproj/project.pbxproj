@@ -94,6 +94,9 @@
 		88ADE1951AF78D9C0073E889 /* DDLFormView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ADE1931AF78D9C0073E889 /* DDLFormView_westeros.swift */; };
 		88ADE1961AF78D9C0073E889 /* DDLFormView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1941AF78D9C0073E889 /* DDLFormView_westeros.xib */; };
 		88AE4E5F1AED570A0012125D /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE4E5E1AED570A0012125D /* AccountSettingsViewController.swift */; };
+		88BF87021AFA4D9E00373A32 /* logo_BG_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BF86FF1AFA4D9E00373A32 /* logo_BG_grey.png */; };
+		88BF87031AFA4D9E00373A32 /* logo_BG_grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BF87001AFA4D9E00373A32 /* logo_BG_grey@2x.png */; };
+		88BF87041AFA4D9E00373A32 /* logo_BG_grey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BF87011AFA4D9E00373A32 /* logo_BG_grey@3x.png */; };
 		88D058AF1AF7C92400858DEA /* DDLCustomFieldDescriptionTableCell_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D058AE1AF7C92400858DEA /* DDLCustomFieldDescriptionTableCell_westeros.xib */; };
 		88D058B11AF7CB0700858DEA /* DDLCustomFieldSeverityTableCell_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D058B01AF7CB0700858DEA /* DDLCustomFieldSeverityTableCell_westeros.xib */; };
 		88E657C91AE96AF700FF744A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E657C81AE96AF700FF744A /* Colors.swift */; };
@@ -194,6 +197,9 @@
 		88ADE1931AF78D9C0073E889 /* DDLFormView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormView_westeros.swift; sourceTree = "<group>"; };
 		88ADE1941AF78D9C0073E889 /* DDLFormView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFormView_westeros.xib; sourceTree = "<group>"; };
 		88AE4E5E1AED570A0012125D /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
+		88BF86FF1AFA4D9E00373A32 /* logo_BG_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_BG_grey.png; sourceTree = "<group>"; };
+		88BF87001AFA4D9E00373A32 /* logo_BG_grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_BG_grey@2x.png"; sourceTree = "<group>"; };
+		88BF87011AFA4D9E00373A32 /* logo_BG_grey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_BG_grey@3x.png"; sourceTree = "<group>"; };
 		88D058AE1AF7C92400858DEA /* DDLCustomFieldDescriptionTableCell_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldDescriptionTableCell_westeros.xib; sourceTree = "<group>"; };
 		88D058B01AF7CB0700858DEA /* DDLCustomFieldSeverityTableCell_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldSeverityTableCell_westeros.xib; sourceTree = "<group>"; };
 		88E657C81AE96AF700FF744A /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -228,6 +234,9 @@
 		88735F811AEA4077000D35F9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				88BF86FF1AFA4D9E00373A32 /* logo_BG_grey.png */,
+				88BF87001AFA4D9E00373A32 /* logo_BG_grey@2x.png */,
+				88BF87011AFA4D9E00373A32 /* logo_BG_grey@3x.png */,
 				88EDE3C11AEF82EF00D61C91 /* fonts */,
 				889CD5681AEE456200FAC48E /* icon_LEFT.png */,
 				889CD5691AEE456200FAC48E /* icon_LEFT@2x.png */,
@@ -576,12 +585,14 @@
 				88D058B11AF7CB0700858DEA /* DDLCustomFieldSeverityTableCell_westeros.xib in Resources */,
 				88855A5A1AE659B700D352D5 /* SignUpViewController.xib in Resources */,
 				88ADE1771AF76B190073E889 /* status_DONE.png in Resources */,
+				88BF87031AFA4D9E00373A32 /* logo_BG_grey@2x.png in Resources */,
 				88735F8B1AEA4077000D35F9 /* tour-step1.png in Resources */,
 				88897D971AF582330051DEF2 /* DDLListViewCell_westeros.xib in Resources */,
 				88ADE17B1AF76B190073E889 /* status_FREEZE@2x.png in Resources */,
 				889F4D951AF26846002E233D /* LoginView_westeros.xib in Resources */,
 				88ADE18B1AF77DFF0073E889 /* icon_more_options.png in Resources */,
 				889F4D971AF26846002E233D /* SignUpView_westeros.xib in Resources */,
+				88BF87041AFA4D9E00373A32 /* logo_BG_grey@3x.png in Resources */,
 				88EDE3CD1AEF85AB00D61C91 /* Avenir.ttc in Resources */,
 				88ADE1811AF76B190073E889 /* status_REJECT@2x.png in Resources */,
 				88897D8B1AF549D50051DEF2 /* circle_see pasword_ON@3x.png in Resources */,
@@ -600,6 +611,7 @@
 				8820EEF71AE79C2D00FA79A6 /* IssuesViewController.xib in Resources */,
 				88ADE1921AF781FD0073E889 /* DDLCustomFieldTitleTableCell_westeros.xib in Resources */,
 				889F4D9C1AF26846002E233D /* flat7-field@2x.png in Resources */,
+				88BF87021AFA4D9E00373A32 /* logo_BG_grey.png in Resources */,
 				88ADE1831AF76B190073E889 /* status_WAITING.png in Resources */,
 				889F4D991AF26846002E233D /* UserPortraitView_westeros.xib in Resources */,
 				88855A3A1AE6537000D352D5 /* Images.xcassets in Resources */,

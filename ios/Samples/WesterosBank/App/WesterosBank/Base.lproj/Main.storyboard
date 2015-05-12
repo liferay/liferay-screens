@@ -202,6 +202,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_BG_grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="pdj-ye-ilv">
+                                <rect key="frame" x="56" y="78" width="209" height="289"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2b-zl-Zf5" customClass="OnBoardingCardDeck" customModule="WesterosBank" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
@@ -404,6 +407,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="logo_BG_grey.png" width="209" height="289"/>
         <image name="tour-step1.png" width="231" height="256"/>
         <image name="tour-step2.png" width="303" height="282"/>
         <image name="tour-step3.png" width="114" height="234"/>
@@ -414,6 +418,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Xug-ji-iGt"/>
+        <segue reference="pXg-YE-7Bz"/>
     </inferredMetricsTieBreakers>
 </document>
