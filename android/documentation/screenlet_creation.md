@@ -15,6 +15,16 @@ The steps below walk you through creating an example screenlet for bookmarks tha
 
 Now that you know the basic ideas behind Screenlets and have a goal for the screenlet you'll create here, it's time to get started!
 
+## Where to create your new screenlet?
+
+If you are not going to reuse it in another application or if you don't want to redistribute it, the easiest place is inside your project, in a new package.
+
+This way you can reference and access all the viewsets you have imported and the core of Liferay Screens.
+
+If you want to reuse your screenlet in another application, you will need to create a new Android module of type application (steps are referenced at the end of this document).
+
+That module will have to include liferay screens as a dependency and all the viewsets you are using.
+
 ## Creating Your Screenlet
 
 1. Create a new interface called `AddBookmarkViewModel`. This is for adding the attributes to show in the view. In this case, the attributes are `url` and `title`. Any screenlet view must implement this interface.
@@ -277,3 +287,35 @@ Now that you know the basic ideas behind Screenlets and have a goal for the scre
 	```
 
 Congratulations! Now you know how to create your own screenlets.
+
+## Packaging Your Screenlets
+
+If you want to distribute your screenlets to reuse them in different projects you should package them in a module (android library) that is then added as an app's project dependency.
+
+To do this, you have to do several steps:
+
+- Create a new Android module and configure the build.gradle file.
+- Use your new module from your application
+- [Optional] Upload the module to jcenter or mavenCentral
+
+Let's see the steps in practice
+
+### Create a new Android module
+
+Luckily Android Studio has a menu option that automatically creates an Android Module and adds it to your settings.gradle automatically.
+
+If you want to do it by hand, you will have to create a new Android Library. It is basically an Android Application with the gradle import set to *apply plugin: 'com.android.library'*. Use the gradle file of the material viewset or Westeros as an example.
+
+### Use your need module from your application
+
+After creation, you need to import the new module into your project by specifying its location in the [settings.gradle](https://github.com/liferay/liferay-screens/tree/master/android/samples/settings.gradle).
+
+The new will have to include liferay screens as a dependency and all the viewsets you are using.
+
+### Upload the module to jcenter or mavenCentral
+
+If you want to redistribute your theme and let other people use it you can upload it to jcenter or mavenCentral. 
+
+Use the build.gradle file of the material or Westeros viewset as an example.
+
+After entering your bintray api key, you can execute *gradlew bintrayupload* to upload your project to jcenter. When finished you will be able to use as every other Android dependency, adding the repository, artifact, groupId and version to your gradle file.
