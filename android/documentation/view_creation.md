@@ -141,10 +141,8 @@ A good example of this approach is the `SignUpScreenlet` found in the [Bank of W
 
 Views are typically created as source code inside your app's project. However, if you want to distribute your views or reuse them in different projects, you should package them in a module that is then added as an app's project dependency. 
 
-To do this, use the [viewsets](https://github.com/liferay/liferay-screens/tree/master/android/library/viewsets) subproject as a template to your new [`build.gradle`](https://github.com/liferay/liferay-screens/blob/master/android/viewsets/material/build.gradle) file.
-<!-- This link is broken -->
+To do this, use the [viewsets](https://github.com/liferay/liferay-screens/tree/master/android/library/viewsets) subproject as a template to your new [`build.gradle`](https://github.com/liferay/liferay-screens/blob/master/android/library/viewsets/build.gradle) file.
 
-To use a packaged view, you need to import the new module into your project by specifying its location in the [settings.gradle](https://github.com/liferay/liferay-screens/tree/master/android/samples/settings.gradle). The Bank of Westeros and test-app projects each use a custom theme (`westeros` and `material`, respectively). These projects are good examples of how to use an independent theme in your project. 
-<!-- This link is broken -->
+To use a packaged view, you need to import the new module into your project by specifying its location in the [settings.gradle](https://github.com/liferay/liferay-screens/blob/master/android/samples/bankofwesteros/settings.gradle). The Bank of Westeros and test-app projects each use a custom theme (`westeros` and `material`, respectively). These projects are good examples of how to use an independent theme in your project. 
 
 If you want to redistribute your theme and let others use it, you can upload it to jCenter or Maven Central. In the example `build.gradle` file, after entering your bintray api key you can execute `gradlew bintrayupload` to upload your project to jCenter. When finished, you and others are able to use your theme as any other Android dependency: simply add the repository, artifact, groupId, and version to your gradle file. 
