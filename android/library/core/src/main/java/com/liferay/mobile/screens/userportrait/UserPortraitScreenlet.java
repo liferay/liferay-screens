@@ -228,10 +228,11 @@ public class UserPortraitScreenlet
 		_male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
 		_portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
-		User loggedUser = SessionContext.getLoggedUser();
-		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, (loggedUser == null ? 0:
-		(int) loggedUser.getId()));
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
+
+		int defaultUserId = SessionContext.hasSession()
+				? (int) SessionContext.getLoggedUser().getId() : 0;
+		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, defaultUserId);
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
