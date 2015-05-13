@@ -120,15 +120,7 @@ import QuartzCore
 			}
 
 			viewValue.onPerformAction = { [weak self] name, sender in
-				if let interactor = self!.createInteractor(name: name, sender: sender) {
-					self!._runningInteractors.append(interactor)
-
-					return self!.onAction(name: name, interactor: interactor, sender: sender)
-				}
-
-				println("WARN: No interactor created for action \(name)")
-
-				return false
+				return self!.performAction(name: name, sender: sender)
 			}
 
 			viewValue.presentingViewController = self.presentingViewController
@@ -192,15 +184,19 @@ import QuartzCore
 	 * Typically, it's called from TouchUpInside UI event or when the programmer wants to
 	 * start the interaction programatically.
 	 */
-	internal func performAction(#name: String?, sender: AnyObject? = nil) -> Bool {
-		if let screenletViewValue = screenletView {
-			return screenletViewValue.onPerformAction!(name, sender)
+	public func performAction(#name: String?, sender: AnyObject? = nil) -> Bool {
+		if let interactor = createInteractor(name: name, sender: sender) {
+			_runningInteractors.append(interactor)
+
+			return onAction(name: name, interactor: interactor, sender: sender)
 		}
+
+		println("WARN: No interactor created for action \(name)")
 
 		return false
 	}
 
-	internal func performDefaultAction() -> Bool {
+	public func performDefaultAction() -> Bool {
 		return performAction(name: nil, sender: nil)
 	}
 
