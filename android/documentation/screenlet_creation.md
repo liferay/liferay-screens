@@ -298,22 +298,20 @@ The next sections detail these steps.
 
 ### Create a New Android Module
 
-Fortunately, Android Studio has a menu option that automatically creates an Android module and adds it to your `settings.gradle` file. Just go to *File*, *New*, *New Module*, *Android Library* (in *More Modules*) and enter a module name. We don't need a new activity for the new module, so just use *Blank Activity*. 
+Fortunately, Android Studio has a menu option that automatically creates an Android module and adds it to your `settings.gradle` file. Go to *File* &rarr; *New* &rarr; *New Module* &rarr; *Android Library* (in *More Modules*) and enter a name for your new module. You don't need a new activity for the new module, so just use *Blank Activity*. Android Studio automatically creates a new `build.gradle` file (with an Android Library configuration) and adds the new module to the `settings.gradle` file. 
 
-Android Studio automatically creates a new build.gradle file (with an Android Library configuration) and adds the new module to the settings.gradle file.
+If you prefer to do this manually, you need to create a new Android Library. This is essentially an Android app project with the gradle import set to `apply plugin: 'com.android.library'`. Use the [gradle file](https://github.com/liferay/liferay-screens/blob/master/android/library/viewsets/build.gradle) from the material viewset or Westeros app as an example. 
 
-If you prefer to do this manually, you need to create a new Android Library. This is essentially an Android application project with the gradle import set to `apply plugin: 'com.android.library'`. Use the [gradle file](https://github.com/liferay/liferay-screens/blob/master/android/library/viewsets/build.gradle) from the material viewset or Westeros app as an example.
-
-After creating the module manually, you need to import it into your project by specifying its location in [`settings.gradle`](https://github.com/liferay/liferay-screens/blob/master/android/samples/bankofwesteros/settings.gradle). An example of the required configuration is the following:
+After creating the module manually, you need to import it into your project by specifying its location in [`settings.gradle`](https://github.com/liferay/liferay-screens/tree/master/android/samples/settings.gradle). Here's an example of this configuration:
 
 ```groovy
 include ':YOUR_MODULE_NAME'
 project(':YOUR_MODULE_NAME').projectDir = new File(settingsDir, 'RELATIVE_ROUTE_TO_YOUR_MODULE')
 ```
 
-### Configure dependencies between each module
+### Configure Dependencies Between Each Module
 
-You have to configure your application to use the new created module, just adding to your build.gradle the next line:
+Next, you need to configure your app to use the new module. To do so, add the following `compile` statement to the `dependencies` in your `build.gradle` file:
 
 ```groovy
 dependencies {
@@ -323,7 +321,7 @@ dependencies {
 }
 ```
 
-Your new module will also have to add all the dependencies to its build.gradle file needed to override the existing screenlets or creating new ones. This usually means that it needs to add liferay-screens and the viewsets you are currently using, like this:
+Your module also needs the dependencies required to override the existing screenlets or create new ones. This usually means that you need to add Liferay Screens and the view sets you currently use as dependencies. To do so, add the following `compile` statement to the `dependencies` in your `build.gradle` file: 
 
 ```groovy
 dependencies {
