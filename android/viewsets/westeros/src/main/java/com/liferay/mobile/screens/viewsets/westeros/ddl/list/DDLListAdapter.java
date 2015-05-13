@@ -55,7 +55,10 @@ public class DDLListAdapter
         @Override
         public void onClick(View v) {
             boolean opened = SwipeLayout.Status.Open.equals(_swipeLayout.getOpenStatus());
-            if (opened && v.getId() == R.id.liferay_list_edit || v.getId() == R.id.liferay_list_view) {
+            if (opened &&
+                (v.getId() == R.id.liferay_list_edit
+                    || v.getId() == R.id.liferay_list_view)) {
+
                 _listener.onItemClick(getPosition(), v);
             }
             else if (!opened) {
