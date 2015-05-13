@@ -89,7 +89,7 @@ The example Extended view here presents the same components as the Default view,
 
 	```java
 
-		<com.your.package.LoginFullView
+		<com.your.package.LoginCheckPasswordView
 			xmlns:android="http://schemas.android.com/apk/res/android"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
