@@ -63,7 +63,7 @@ Each field defines an editor type. You must define each editor type's layout by 
   - `textAreaFieldLayoutId`: The layout to use for Text Box fields.
   - `textDocumentFieldLayoutId`: The layout to use for Documents & Media fields.
 
-If you don't define the editor type's layout in the attributes of `DDLFormScreent`, the default layout `ddlfield_xxx_default` is used, where `xxx` is the name of the editor type. It's important to note that you can change the layout used with any editor type at any point.
+If you don't define the editor type's layout in the attributes of `DDLFormScreenlet`, the default layout `ddlfield_xxx_default` is used, where `xxx` is the name of the editor type. It's important to note that you can change the layout used with any editor type at any point.
 
 ### Custom Editors
 
@@ -108,6 +108,12 @@ Also, if your form includes at least one Documents and Media field, you must gra
 ![The permission for adding a folder.](../../ios/Documentation/Images/portal-permission-folder-add.png)
 
 For more details, see the User Guide sections [Defining Data Types](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/building-a-list-platform-in-liferay-and-defining-data-), [Creating Data Lists](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/creating-data-lists), and [Using Workflow](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-workflow).
+
+## Compulsory Attributes
+
+- `layoutId`
+- `structureId`
+- `recordSetId`
 
 ## Attributes
 

@@ -56,6 +56,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 ```
 
+## Compulsory Attributes
+
+- `layoutId`
+
 ## Attributes
 
 | Attribute | Data type | Explanation |
