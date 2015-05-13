@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
 	@IBOutlet weak var issuesDeck: CardDeckView!
 	@IBOutlet weak var issuesCard: CardView!
 	@IBOutlet weak var reportIssueCard: CardView!
+	@IBOutlet weak var goBackCard: CardView!
 	@IBOutlet weak var settingsView: UIView!
 
 	var issuesController: IssuesViewController?
@@ -57,6 +58,12 @@ class HomeViewController: UIViewController {
 
 		issuesCard.hidden = true
 		reportIssueCard.hidden = true
+
+		goBackCard.createButton(UIColor.whiteColor())
+				.addTarget(self,
+					action: Selector("goBackAction:"),
+					forControlEvents: UIControlEvents.TouchUpInside)
+
     }
 
 	override func viewWillAppear(animated: Bool) {
@@ -106,22 +113,41 @@ class HomeViewController: UIViewController {
 	}
 
 	private func onEditIssue(record: DDLRecord) {
-		openIssueWithRecord(record, editable: true)
-	}
-
-	private func onViewIssue(record: DDLRecord) {
-		openIssueWithRecord(record, editable: false)
-	}
-
-	private func openIssueWithRecord(record: DDLRecord, editable: Bool) {
 		issuesCard.nextState = .Background
 		reportIssueCard.nextState = .Normal // .Maximized
 
 		reportIssueController!.issueRecord = record
-		reportIssueController!.editable = editable
+		reportIssueController!.editable = true
 
 		issuesCard.changeToNextState()
 		reportIssueCard.changeToNextState()
+	}
+
+	private func onViewIssue(record: DDLRecord) {
+		issuesController?.scrollToShowRecord(record)
+
+		reportIssueCard.nextState = .Hidden
+
+		reportIssueCard.changeToNextState() { Bool -> Void in
+			self.goBackCard.currentState = .Hidden
+			self.goBackCard.resetToCurrentState()
+			self.goBackCard.nextState = .Minimized
+			self.goBackCard.changeToNextState(time: nil, delay: 0.3)
+		}
+
+		issuesCard.enabledButton(false)
+	}
+
+	func goBackAction(sender: AnyObject?) {
+		issuesController?.scrollToShowList()
+
+		goBackCard.nextState = .Hidden
+		reportIssueCard.nextState = .Minimized
+
+		goBackCard.changeToNextState()
+		reportIssueCard.changeToNextState()
+
+		issuesCard.enabledButton(true)
 	}
 
 }

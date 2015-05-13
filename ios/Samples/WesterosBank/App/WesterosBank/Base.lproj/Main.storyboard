@@ -404,6 +404,22 @@
                                     <constraint firstItem="1wM-tY-d9P" firstAttribute="leading" secondItem="VF1-5B-MWt" secondAttribute="leading" id="wYh-q5-XBh"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dR3-nv-LDn" userLabel="Go back" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="569" width="320" height="90"/>
+                                <color key="backgroundColor" red="0.98431372549019602" green="0.70196078431372544" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="GO BACK"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimizedHeight">
+                                        <real key="value" value="80"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -414,6 +430,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="goBackCard" destination="dR3-nv-LDn" id="7h4-VW-QaX"/>
                         <outlet property="issuesCard" destination="1wM-tY-d9P" id="Fl6-Dm-OoJ"/>
                         <outlet property="issuesDeck" destination="VF1-5B-MWt" id="IGz-CT-C7a"/>
                         <outlet property="reportIssueCard" destination="0ea-3w-JV0" id="sBm-WV-CgA"/>

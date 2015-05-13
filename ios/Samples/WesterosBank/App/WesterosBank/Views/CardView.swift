@@ -107,10 +107,10 @@ class CardView: UIView {
 				options: UIViewAnimationOptions.CurveEaseIn,
 				animations: {
 					if self.nextState == .Normal || self.nextState == .Maximized {
-						self.arrow!.alpha = 1.0
+						self.arrow?.alpha = 1.0
 					}
 					else {
-						self.arrow!.alpha = 0.0
+						self.arrow?.alpha = 0.0
 					}
 				}, completion: nil)
 		}
@@ -159,6 +159,23 @@ class CardView: UIView {
 		showArrow()
 
 		self.currentState = self.nextState
+	}
+
+	func enabledButton(enable: Bool) {
+		button?.enabled = enable
+
+		UIView.animateWithDuration(animationTime,
+				delay: 0,
+				options: UIViewAnimationOptions.CurveEaseIn,
+				animations: {
+					if enable {
+						self.arrow?.alpha = 1.0
+					}
+					else {
+						self.arrow?.alpha = 0.0
+					}
+				}, completion: nil)
+
 	}
 
 	private func resetBackgroundAnimation(animationTime: Double) -> CAAnimation {

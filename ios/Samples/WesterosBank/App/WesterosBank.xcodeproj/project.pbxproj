@@ -31,6 +31,10 @@
 		88735F9F1AEA6451000D35F9 /* icon_DOWN.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F991AEA6451000D35F9 /* icon_DOWN.png */; };
 		88735FA01AEA6451000D35F9 /* icon_DOWN@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F9A1AEA6451000D35F9 /* icon_DOWN@2x.png */; };
 		88735FA11AEA6451000D35F9 /* icon_DOWN@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F9B1AEA6451000D35F9 /* icon_DOWN@3x.png */; };
+		888540C01B0368AD00B8D193 /* DDLCustomFieldDescriptionTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888540BC1B0368AD00B8D193 /* DDLCustomFieldDescriptionTableCell_westeros_view.xib */; };
+		888540C11B0368AD00B8D193 /* DDLCustomFieldSeverityTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888540BD1B0368AD00B8D193 /* DDLCustomFieldSeverityTableCell_westeros_view.xib */; };
+		888540C21B0368AD00B8D193 /* DDLCustomFieldTitleTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888540BE1B0368AD00B8D193 /* DDLCustomFieldTitleTableCell_westeros_view.xib */; };
+		888540C31B0368AD00B8D193 /* DDLFormView_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888540BF1B0368AD00B8D193 /* DDLFormView_westeros_view.xib */; };
 		88855A331AE6537000D352D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A321AE6537000D352D5 /* AppDelegate.swift */; };
 		88855A381AE6537000D352D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88855A361AE6537000D352D5 /* Main.storyboard */; };
 		88855A3A1AE6537000D352D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88855A391AE6537000D352D5 /* Images.xcassets */; };
@@ -132,6 +136,10 @@
 		88735F991AEA6451000D35F9 /* icon_DOWN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_DOWN.png; sourceTree = "<group>"; };
 		88735F9A1AEA6451000D35F9 /* icon_DOWN@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_DOWN@2x.png"; sourceTree = "<group>"; };
 		88735F9B1AEA6451000D35F9 /* icon_DOWN@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_DOWN@3x.png"; sourceTree = "<group>"; };
+		888540BC1B0368AD00B8D193 /* DDLCustomFieldDescriptionTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldDescriptionTableCell_westeros_view.xib; sourceTree = "<group>"; };
+		888540BD1B0368AD00B8D193 /* DDLCustomFieldSeverityTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldSeverityTableCell_westeros_view.xib; sourceTree = "<group>"; };
+		888540BE1B0368AD00B8D193 /* DDLCustomFieldTitleTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldTitleTableCell_westeros_view.xib; sourceTree = "<group>"; };
+		888540BF1B0368AD00B8D193 /* DDLFormView_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFormView_westeros_view.xib; sourceTree = "<group>"; };
 		88855A2D1AE6537000D352D5 /* WesterosBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WesterosBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88855A311AE6537000D352D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88855A321AE6537000D352D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -314,12 +322,12 @@
 				88855A5E1AE65F2900D352D5 /* SignInViewController.xib */,
 				88855A571AE659B700D352D5 /* SignUpViewController.swift */,
 				88855A581AE659B700D352D5 /* SignUpViewController.xib */,
-				88855A6A1AE6BD3E00D352D5 /* HomeViewController.swift */,
 				8820EEF41AE79C2D00FA79A6 /* IssuesViewController.swift */,
 				8820EEF51AE79C2D00FA79A6 /* IssuesViewController.xib */,
 				8820EEF81AE79C9000FA79A6 /* ReportIssueViewController.swift */,
 				8820EEF91AE79C9000FA79A6 /* ReportIssueViewController.xib */,
 				88735F7F1AEA3E75000D35F9 /* TourViewController.swift */,
+				88855A6A1AE6BD3E00D352D5 /* HomeViewController.swift */,
 				88AE4E5E1AED570A0012125D /* AccountSettingsViewController.swift */,
 			);
 			path = ViewControllers;
@@ -471,6 +479,10 @@
 				88ADE1911AF781FD0073E889 /* DDLCustomFieldTitleTableCell_westeros.xib */,
 				88D058AE1AF7C92400858DEA /* DDLCustomFieldDescriptionTableCell_westeros.xib */,
 				88D058B01AF7CB0700858DEA /* DDLCustomFieldSeverityTableCell_westeros.xib */,
+				888540BC1B0368AD00B8D193 /* DDLCustomFieldDescriptionTableCell_westeros_view.xib */,
+				888540BD1B0368AD00B8D193 /* DDLCustomFieldSeverityTableCell_westeros_view.xib */,
+				888540BE1B0368AD00B8D193 /* DDLCustomFieldTitleTableCell_westeros_view.xib */,
+				888540BF1B0368AD00B8D193 /* DDLFormView_westeros_view.xib */,
 			);
 			path = FormScreenlet;
 			sourceTree = "<group>";
@@ -591,8 +603,10 @@
 				88BF87031AFA4D9E00373A32 /* logo_BG_grey@2x.png in Resources */,
 				88735F8B1AEA4077000D35F9 /* tour-step1.png in Resources */,
 				88897D971AF582330051DEF2 /* DDLListViewCell_westeros.xib in Resources */,
+				888540C31B0368AD00B8D193 /* DDLFormView_westeros_view.xib in Resources */,
 				88ADE17B1AF76B190073E889 /* status_FREEZE@2x.png in Resources */,
 				889F4D951AF26846002E233D /* LoginView_westeros.xib in Resources */,
+				888540C11B0368AD00B8D193 /* DDLCustomFieldSeverityTableCell_westeros_view.xib in Resources */,
 				88ADE18B1AF77DFF0073E889 /* icon_more_options.png in Resources */,
 				889F4D971AF26846002E233D /* SignUpView_westeros.xib in Resources */,
 				88BF87041AFA4D9E00373A32 /* logo_BG_grey@3x.png in Resources */,
@@ -603,6 +617,7 @@
 				889F4DA01AF26846002E233D /* flat7-portrait-placeholder@2x.png in Resources */,
 				88ADE1841AF76B190073E889 /* status_WAITING@2x.png in Resources */,
 				88ADE1801AF76B190073E889 /* status_REJECT.png in Resources */,
+				888540C21B0368AD00B8D193 /* DDLCustomFieldTitleTableCell_westeros_view.xib in Resources */,
 				88ADE18C1AF77DFF0073E889 /* icon_more_options@2x.png in Resources */,
 				88735F8D1AEA4077000D35F9 /* tour-step1@3x.png in Resources */,
 				88897D8D1AF57BA70051DEF2 /* SignUpView_westeros_edit.xib in Resources */,
@@ -620,6 +635,7 @@
 				88855A3A1AE6537000D352D5 /* Images.xcassets in Resources */,
 				88735FA11AEA6451000D35F9 /* icon_DOWN@3x.png in Resources */,
 				88ADE17F1AF76B190073E889 /* status_OPEN@3x.png in Resources */,
+				888540C01B0368AD00B8D193 /* DDLCustomFieldDescriptionTableCell_westeros_view.xib in Resources */,
 				889F4D9E1AF26846002E233D /* flat7-gradient-form@2x.png in Resources */,
 				88897D8A1AF549D50051DEF2 /* circle_see pasword_ON@2x.png in Resources */,
 				88ADE1821AF76B190073E889 /* status_REJECT@3x.png in Resources */,
