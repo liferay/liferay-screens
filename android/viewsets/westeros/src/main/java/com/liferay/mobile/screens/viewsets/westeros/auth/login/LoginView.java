@@ -26,7 +26,8 @@ import com.liferay.mobile.screens.viewsets.westeros.R;
  * @author Silvio Santos
  */
 public class LoginView
-        extends com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView implements View.OnTouchListener {
+        extends com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
+        implements View.OnTouchListener {
 
     public LoginView(Context context) {
         super(context);
@@ -48,6 +49,7 @@ public class LoginView
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+
         final View seePassword = findViewById(R.id.liferay_see_password);
         seePassword.setOnTouchListener(this);
     }
@@ -57,10 +59,14 @@ public class LoginView
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             getPasswordEditText().setTransformationMethod(null);
             getPasswordEditText().setInputType(InputType.TYPE_CLASS_TEXT);
+
             return true;
-        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+        }
+
+        if (event.getAction() == MotionEvent.ACTION_UP) {
             getPasswordEditText().setTransformationMethod(PasswordTransformationMethod.getInstance());
         }
+
         return false;
     }
 }

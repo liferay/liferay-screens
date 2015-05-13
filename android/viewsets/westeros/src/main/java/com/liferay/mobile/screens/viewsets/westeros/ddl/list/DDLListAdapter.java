@@ -34,7 +34,8 @@ import java.util.List;
 public class DDLListAdapter
         extends BaseListAdapter<DDLEntry, DDLListAdapter.SwipeActionsViewHolder> {
 
-    public static class SwipeActionsViewHolder extends BaseListAdapter.ViewHolder implements View.OnClickListener {
+    public static class SwipeActionsViewHolder
+            extends BaseListAdapter.ViewHolder implements View.OnClickListener {
 
         public SwipeActionsViewHolder(View view, BaseListAdapterListener listener) {
             super(view, listener);
@@ -56,9 +57,11 @@ public class DDLListAdapter
             boolean opened = SwipeLayout.Status.Open.equals(_swipeLayout.getOpenStatus());
             if (opened && v.getId() == R.id.liferay_list_edit || v.getId() == R.id.liferay_list_view) {
                 _listener.onItemClick(getPosition(), v);
-            } else if (!opened) {
+            }
+            else if (!opened) {
                 _swipeLayout.open(true);
-            } else {
+            }
+            else {
                 _swipeLayout.close(true);
             }
         }
@@ -91,7 +94,8 @@ public class DDLListAdapter
             SwipeLayout swipe = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
             swipe.setShowMode(SwipeLayout.ShowMode.LayDown);
             swipe.setDragEdge(SwipeLayout.DragEdge.Right);
-        } else {
+        }
+        else {
             view = inflater.inflate(getProgressLayoutId(), parent, false);
         }
 

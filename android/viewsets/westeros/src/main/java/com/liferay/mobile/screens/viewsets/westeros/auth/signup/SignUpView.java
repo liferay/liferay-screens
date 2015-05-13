@@ -77,15 +77,24 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		if (!acceptTerms.isChecked()) {
 			LiferayCrouton.error(getContext(), "You must accept the terms & conditions", null);
 			return false;
-		} else if (!checkField(getFirstNameField(), _firstNameValidation)) {
-			return false;
-		} else if (!checkField(getLastNameField(), _lastNameValidation)) {
-			return false;
-		} else if (!checkField(getEmailAddressField(), _emailAddressValidation)) {
-			return false;
-		} else if (!checkField(getPasswordField(), _passwordValidation)) {
+		}
+
+		if (!checkField(getFirstNameField(), _firstNameValidation)) {
 			return false;
 		}
+
+		if (!checkField(getLastNameField(), _lastNameValidation)) {
+			return false;
+		}
+
+		if (!checkField(getEmailAddressField(), _emailAddressValidation)) {
+			return false;
+		}
+
+		if (!checkField(getPasswordField(), _passwordValidation)) {
+			return false;
+		}
+
 		return true;
 	}
 

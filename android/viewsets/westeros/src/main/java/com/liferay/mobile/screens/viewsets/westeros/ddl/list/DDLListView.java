@@ -73,8 +73,6 @@ public class DDLListView
 		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
 
 		getAdapter().setLabelFields(screenlet.getLabelFields());
-
-
 	}
 
 	@Override
@@ -94,7 +92,6 @@ public class DDLListView
 		List labelFields = state.getStringArrayList(_STATE_LABEL_FIELDS);
 
 		getAdapter().setLabelFields(labelFields);
-
 	}
 
 	@Override

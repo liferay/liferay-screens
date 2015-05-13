@@ -85,7 +85,8 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		if (UserPortraitScreenlet.LOAD_PORTRAIT.equals(actionName)) {
 			LiferayLogger.e("portrait failed to load", e);
 			setDefaultImagePlaceholder();
-		} else {
+		}
+		else {
 			LiferayCrouton.error(getContext(), "Portrait failed to upload", e);
 			LiferayLogger.e("portrait failed to upload", e);
 		}
