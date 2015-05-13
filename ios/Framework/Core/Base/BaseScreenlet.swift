@@ -28,6 +28,8 @@ import QuartzCore
 			if _runningOnInterfaceBuilder {
 				_themeName = updateCurrentPreviewImage()
 			}
+
+			screenletView?.themeName = _themeName
 		}
 		get {
 			return _themeName
@@ -130,6 +132,7 @@ import QuartzCore
 			}
 
 			viewValue.presentingViewController = self.presentingViewController
+			viewValue.themeName = _themeName
 
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)

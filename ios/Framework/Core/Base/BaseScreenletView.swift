@@ -29,13 +29,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	internal var onPerformAction: ((String?, AnyObject?) -> Bool)?
 
-	internal var themeName: String? {
-		var className = NSStringFromClass(self.dynamicType)
-
-		let components = className.componentsSeparatedByString("_")
-
-		return (components.count > 1) ? components.last : nil
-	}
+	internal var themeName: String?
 
 	deinit {
 		onDestroy()
