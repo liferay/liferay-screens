@@ -15,6 +15,12 @@ The steps below walk you through creating an example screenlet for bookmarks tha
 
 Now that you know the basic ideas behind Screenlets and have a goal for the screenlet you'll create here, it's time to get started!
 
+## Where Should You Create Your New Screenlet?
+
+If you don't plan to reuse your screenlet in another app, or if you don't want to redistribute it, the best place to create it is in a new package inside your project. This way you can reference and access all the viewsets you've imported and the core of Liferay Screens. 
+
+If you want to reuse your screenlet in another app, you need to create it in a new Android application module. The steps for creating such a module are referenced at the end of this document. This module needs to include Liferay Screens as a dependency, as well as the viewsets you're using. 
+
 ## Creating Your Screenlet
 
 1. Create a new interface called `AddBookmarkViewModel`. This is for adding the attributes to show in the view. In this case, the attributes are `url` and `title`. Any screenlet view must implement this interface.
@@ -166,7 +172,7 @@ Now that you know the basic ideas behind Screenlets and have a goal for the scre
 
     Pay special attention to the second step in the `addBookmark` method. When the request ends, make sure you post an event into the bus using `EventBusUtil.post(event)`, where `event` is a `BasicEvent` object containing the `targetScreenletId` together with either the result or the exception. Every interactor should also implement the `onEvent` method. This method is invoked by the `EventBus` and calls the registered listener.
 
-6. Once your interactor is ready, you need to create the screenlet class. This is the cornerstone and entry point that your app developer sees and interacts with. In this example, this class is called `AddBookmarkScreenlet` and extends from `BaseScreenlet`. Again, this class needs to be parameterized with the interactor class. Since the screenlet is notified by the interactor when the asynchronous operation ends, you must implement the listener interface used by the interactor (`AddBookmarkListener`, in this case). Also, to notify the app, this class usually has another listener. This listener can be the same one you used in the interactor or a different one altogether (if you want different methods or signatures). You could even notify the app using a different mechanism such as the Event Bus, Android's `BroadcastReceiver`, or others.  Note that the implemented interface methods call the view to modify the UI and the app's listener to allow the app to perform any action:
+6. Once your interactor is ready, you need to create the screenlet class. This is the cornerstone and entry point that your app developer sees and interacts with. In this example, this class is called `AddBookmarkScreenlet` and extends from `BaseScreenlet`. Again, this class needs to be parameterised with the interactor class. Since the screenlet is notified by the interactor when the asynchronous operation ends, you must implement the listener interface used by the interactor (`AddBookmarkListener`, in this case). Also, to notify the app, this class usually has another listener. This listener can be the same one you used in the interactor or a different one altogether (if you want different methods or signatures). You could even notify the app using a different mechanism such as the Event Bus, Android's `BroadcastReceiver`, or others.  Note that the implemented interface methods call the view to modify the UI and the app's listener to allow the app to perform any action:
 
 	```java
 	public class AddBookmarkScreenlet
@@ -277,3 +283,56 @@ Now that you know the basic ideas behind Screenlets and have a goal for the scre
 	```
 
 Congratulations! Now you know how to create your own screenlets.
+
+## Packaging Your Screenlets
+
+If you want to distribute your screenlets for use in different projects, you should package them in a module (Android library). To use the screenlet, developers then add that module as a project dependency in their app. 
+
+Use the following steps to package your screenlets in a module: 
+
+1. Create a new Android module and configure the `build.gradle` file.
+2. Configure dependencies between each module
+3. Optionally, you can distribute the module by uploading it to jCenter or Maven Central.
+
+The next sections detail these steps.
+
+### Create a New Android Module
+
+Fortunately, Android Studio has a menu option that automatically creates an Android module and adds it to your `settings.gradle` file. Go to *File* &rarr; *New* &rarr; *New Module* &rarr; *Android Library* (in *More Modules*) and enter a name for your new module. You don't need a new activity for the new module, so just use *Blank Activity*. Android Studio automatically creates a new `build.gradle` file (with an Android Library configuration) and adds the new module to the `settings.gradle` file. 
+
+If you prefer to do this manually, you need to create a new Android Library. This is essentially an Android app project with the gradle import set to `apply plugin: 'com.android.library'`. Use the [gradle file](https://github.com/liferay/liferay-screens/blob/master/android/library/viewsets/build.gradle) from the material viewset or Westeros app as an example. 
+
+After creating the module manually, you need to import it into your project by specifying its location in [`settings.gradle`](https://github.com/liferay/liferay-screens/tree/master/android/samples/settings.gradle). Here's an example of this configuration:
+
+```groovy
+include ':YOUR_MODULE_NAME'
+project(':YOUR_MODULE_NAME').projectDir = new File(settingsDir, 'RELATIVE_ROUTE_TO_YOUR_MODULE')
+```
+
+### Configure Dependencies Between Each Module
+
+Next, you need to configure your app to use the new module. To do so, add the following `compile` statement to the `dependencies` in your `build.gradle` file:
+
+```groovy
+dependencies {
+	compile project (':YOUR_MODULE_NAME')
+	
+	...
+}
+```
+
+Your module also needs the dependencies required to override the existing screenlets or create new ones. This usually means that you need to add Liferay Screens and the view sets you currently use as dependencies. To do so, add the following `compile` statement to the `dependencies` in your `build.gradle` file: 
+
+```groovy
+dependencies {
+	compile 'com.liferay.mobile:liferay-screens:0.3.+'
+	
+	...
+}
+```
+
+### Upload the Module to jCenter or Maven Central
+
+If you want to distribute your screenlet so that others can use it, you can upload it to jCenter or Maven Central. Use the [`build.gradle`](https://github.com/liferay/liferay-screens/blob/LMW-230-Changes-In-Westeros-App/android/viewsets/westeros/build.gradle) file of the material or Westeros viewset as an example. 
+
+After entering your bintray api key, you can execute `gradlew bintrayupload` to upload your project to jCenter. When finished, your screenlet can be used as any other Android dependency. Developers just need to add the repository, artifact, groupId, and version to their gradle file.
