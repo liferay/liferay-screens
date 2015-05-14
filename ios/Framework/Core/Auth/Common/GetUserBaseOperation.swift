@@ -26,8 +26,8 @@ public class GetUserBaseOperation: ServerOperation {
 		var valid = super.validateData()
 		
 		if !SessionContext.hasSession {
-			valid &= (userName != nil)
-			valid &= (password != nil)
+			valid = valid && (userName != nil)
+			valid = valid && (password != nil)
 		}
 
 		return valid

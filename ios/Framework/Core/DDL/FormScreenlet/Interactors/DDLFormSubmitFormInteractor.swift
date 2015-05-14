@@ -20,7 +20,7 @@ class DDLFormSubmitFormInteractor: ServerOperationInteractor {
 	var resultAttributes: NSDictionary?
 
 	override func createOperation() -> LiferayDDLFormSubmitOperation {
-		let screenlet = self.screenlet as DDLFormScreenlet
+		let screenlet = self.screenlet as! DDLFormScreenlet
 
 		let operation = LiferayDDLFormSubmitOperation(screenlet: screenlet)
 
@@ -28,7 +28,7 @@ class DDLFormSubmitFormInteractor: ServerOperationInteractor {
 				? screenlet.groupId : LiferayServerContext.groupId
 
 		operation.userId = (screenlet.userId != 0)
-				? screenlet.userId : Int64((SessionContext.userAttribute("userId") ?? 0) as Int)
+				? screenlet.userId : Int64((SessionContext.userAttribute("userId") ?? 0) as! Int)
 
 		operation.recordId = (screenlet.recordId != 0) ? screenlet.recordId : nil
 		operation.recordSetId = screenlet.recordSetId

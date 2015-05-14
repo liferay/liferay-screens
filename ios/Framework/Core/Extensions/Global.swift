@@ -22,7 +22,7 @@ public enum ScreenletsErrorCause: Int {
 }
 
 
-internal func createError(#cause: ScreenletsErrorCause, userInfo: NSDictionary? = nil) -> NSError {
+internal func createError(#cause: ScreenletsErrorCause, userInfo: [NSObject : AnyObject]? = nil) -> NSError {
 	return NSError(domain: "LiferayScreenlets", code: cause.rawValue, userInfo: userInfo)
 }
 

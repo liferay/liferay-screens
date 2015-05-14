@@ -21,7 +21,7 @@ class DDLField_Validation_Tests: XCTestCase {
 	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationFails() {
 		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
-		let booleanField = fields![0] as DDLFieldBoolean
+		let booleanField = fields![0] as! DDLFieldBoolean
 
 		let expectation = expectationWithDescription("OnPostValidation must be called")
 
@@ -37,7 +37,7 @@ class DDLField_Validation_Tests: XCTestCase {
 	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationSucceeds() {
 		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
-		let booleanField = fields![0] as DDLFieldBoolean
+		let booleanField = fields![0] as! DDLFieldBoolean
 
 		booleanField.currentValue = true
 
@@ -55,7 +55,7 @@ class DDLField_Validation_Tests: XCTestCase {
 	func test_ValidateOnBooleanField_ShouldFail_WhenRequiredValueIsNil() {
 		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
-		let booleanField = fields![0] as DDLFieldBoolean
+		let booleanField = fields![0] as! DDLFieldBoolean
 
 		XCTAssertTrue(booleanField.currentValue == nil)
 
@@ -73,7 +73,7 @@ class DDLField_Validation_Tests: XCTestCase {
 	private func validateOnStringField_ShouldFail_WhenRequiredValueIs(value: String) {
 		let fields = DDLXSDParser().parse(requiredTextFormDefinitionXSD, locale: spanishLocale)
 
-		let stringField = fields![0] as DDLFieldString
+		let stringField = fields![0] as! DDLFieldString
 
 		stringField.currentValue = value
 

@@ -29,7 +29,7 @@ public class GetUserByScreenNameOperation: GetUserBaseOperation {
 	override internal func validateData() -> Bool {
 		var valid = super.validateData()
 
-		valid &= ((screenName ?? "") != "")
+		valid = valid && ((screenName ?? "") != "")
 
 		return valid
 	}

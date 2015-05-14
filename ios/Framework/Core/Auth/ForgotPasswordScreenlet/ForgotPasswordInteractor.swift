@@ -19,7 +19,7 @@ class ForgotPasswordInteractor: ServerOperationInteractor {
 	var resultPasswordSent: Bool?
 
 	override func createOperation() -> LiferayForgotPasswordBaseOperation {
-		let screenlet = self.screenlet as ForgotPasswordScreenlet
+		let screenlet = self.screenlet as! ForgotPasswordScreenlet
 
 		var operation: LiferayForgotPasswordBaseOperation?
 
@@ -38,7 +38,7 @@ class ForgotPasswordInteractor: ServerOperationInteractor {
 	}
 
 	override func completedOperation(op: ServerOperation) {
-		self.resultPasswordSent = (op as LiferayForgotPasswordBaseOperation).resultPasswordSent
+		self.resultPasswordSent = (op as! LiferayForgotPasswordBaseOperation).resultPasswordSent
 	}
 
 }

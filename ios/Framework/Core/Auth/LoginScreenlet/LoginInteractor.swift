@@ -19,7 +19,7 @@ class LoginInteractor: ServerOperationInteractor {
 	var resultUserAttributes: [String:AnyObject]?
 
 	override func createOperation() -> GetUserBaseOperation {
-		let screenlet = self.screenlet as LoginScreenlet
+		let screenlet = self.screenlet as! LoginScreenlet
 		let companyId = (screenlet.companyId != 0)
 				? screenlet.companyId : LiferayServerContext.companyId
 
@@ -49,7 +49,7 @@ class LoginInteractor: ServerOperationInteractor {
 	}
 
 	override func completedOperation(op: ServerOperation) {
-		self.resultUserAttributes = (op as GetUserBaseOperation).resultUserAttributes
+		self.resultUserAttributes = (op as! GetUserBaseOperation).resultUserAttributes
 	}
 
 }

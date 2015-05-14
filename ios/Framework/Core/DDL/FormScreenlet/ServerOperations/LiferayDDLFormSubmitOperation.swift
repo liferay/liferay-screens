@@ -41,7 +41,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	}
 
 	internal var viewModel: DDLFormViewModel {
-		return screenlet.screenletView as DDLFormViewModel
+		return screenlet.screenletView as! DDLFormViewModel
 	}
 
 
@@ -50,10 +50,10 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	override func validateData() -> Bool {
 		var valid = super.validateData()
 
-		valid &= (userId != nil)
-		valid &= (groupId != nil)
-		valid &= !(recordId != nil && recordSetId == nil)
-		valid &= !viewModel.values.isEmpty
+		valid = valid && (userId != nil)
+		valid = valid && (groupId != nil)
+		valid = valid && !(recordId != nil && recordSetId == nil)
+		valid = valid && !viewModel.values.isEmpty
 
 		if valid && !viewModel.validateForm(autoscroll: autoscrollOnValidation) {
 			showHUD(message: LocalizedString("ddlform-screenlet", "validation", self),

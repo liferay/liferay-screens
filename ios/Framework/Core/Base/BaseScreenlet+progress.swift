@@ -169,8 +169,8 @@ extension BaseScreenlet {
 				if delay == Double.infinity {
 					// compute autodelay based on text's length
 					let len: Int =
-    	                countElements(MBProgressHUDInstance.instance!.labelText) +
-						countElements(MBProgressHUDInstance.instance!.detailsLabelText)
+    	                count(MBProgressHUDInstance.instance!.labelText) +
+						count(MBProgressHUDInstance.instance!.detailsLabelText)
 					delay = 1.5 + (Double(len) * 0.01)
 				}
 

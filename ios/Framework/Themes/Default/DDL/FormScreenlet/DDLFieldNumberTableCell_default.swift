@@ -43,9 +43,9 @@ public class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_defau
 		}
 	}
 
-	override public func textField(textField: UITextField!,
+	override public func textField(textField: UITextField,
 			shouldChangeCharactersInRange range: NSRange,
-			replacementString string: String!) -> Bool {
+			replacementString string: String) -> Bool {
 
 		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range,
 				withString:string)
@@ -57,7 +57,7 @@ public class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_defau
 			field!.currentValue = NSDecimalNumber(double: 0)
 		}
 
-		stepper?.value = Double(field!.currentValue as NSNumber)
+		stepper?.value = Double(field!.currentValue as! NSNumber)
 
 		return super.textField(textField,
 				shouldChangeCharactersInRange: range,
@@ -67,7 +67,7 @@ public class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_defau
 
 	//MARK: UITextFieldDelegate
 
-	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
+	public func textFieldShouldReturn(textField: UITextField) -> Bool {
 		return nextCellResponder(textField)
 	}
 

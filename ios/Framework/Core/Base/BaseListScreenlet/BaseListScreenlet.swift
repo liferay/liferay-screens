@@ -29,7 +29,7 @@ import UIKit
 	@IBInspectable public var pageSize: Int = 25
 
 	internal var baseListView: BaseListView {
-		return screenletView as BaseListView
+		return screenletView as! BaseListView
 	}
 
 	private var paginationInteractors: [Int:BaseListPageLoadInteractor] = [:]

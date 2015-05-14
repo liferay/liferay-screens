@@ -48,7 +48,7 @@ import UIKit
 	}
 
 	internal var viewModel: ForgotPasswordViewModel {
-		return screenletView as ForgotPasswordViewModel
+		return screenletView as! ForgotPasswordViewModel
 	}
 
 

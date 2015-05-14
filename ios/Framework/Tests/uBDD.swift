@@ -27,6 +27,8 @@ import SwiftTryCatch
 
 private var currentIndentationLevel = 1
 
+private var lastDoneEvent: (name: String, result: AnyObject?)?
+
 
 public enum Action {
 	case TestNow
@@ -35,114 +37,106 @@ public enum Action {
 	case TestAndWaitFor(String, XCTestCase)
 }
 
+public func given(str: String, code: Void -> Void) {
+	doPrint("\(currentIndentation())\(currentIcons().given) Given \(str)\n")
+	code()
+}
 
-public func given(givenStr: String, givenCode: Void -> Void,
-	when whenStr: String, whenCode: Void -> Void,
-	eventually eventuallyStr: String, eventuallyCode: AnyObject? -> Void,
-	action: Action,
-	timeoutSeconds: NSTimeInterval = 5) {
+public func when(str: String, code: Void -> Void) {
+	doPrint("\(currentIndentation())\(currentIcons().when) When \(str)\n")
+	code()
+}
 
+public func then(str: String, code: Void -> Void) {
+	then(str, code, .TestNow)
+}
+
+public func then(str: String, code: Void -> Void, action: Action) {
+	let icons = currentIcons()
+	let indentation = currentIndentation()
+
+	doPrint("\(indentation)\(icons.then) Then \(str)\n")
+
+	switch action {
+		case .TestAndWaitFor:
+			doPrint("ERROR: TestAndWaitFor is not supported with given.when.then. Use given.when.eventually instead\n")
+		case .Skip:
+			doPrint("\(indentation)\(icons.skipped) SKIPPED\n")
+		case .Pending:
+			doPrint("\(indentation)\(icons.pending) PENDING\n")
+		case .TestNow:
+			SwiftTryCatch.try({
+				code()
+				doPrint("\(indentation)\(icons.passed) PASSED\n")
+			}, catch: { error in
+				doPrint("\(indentation)\(icons.failed) FAILED\n")
+			}, finally: nil)
+	}
+}
+
+public func eventually(str: String, code: AnyObject? -> Void, action: Action) {
 	let icons = currentIcons()
 	let indentation = currentIndentation()
 
 	switch action {
 		case .TestAndWaitFor(let notificationName, let testCase):
-			let expectation = testCase.expectationWithDescription("")
-
-			var signaled = false
-			var resultObject: AnyObject?
-
-			let observer = NSNotificationCenter.defaultCenter().addObserverForName(notificationName,
-					object: nil,
-					queue: NSOperationQueue.mainQueue(),  // why is this working using main queue?
-					usingBlock: { notif in
-
-				signaled = true
-				resultObject = notif.object
-
-				expectation.fulfill()
-			})
-
-			print("\(indentation)\(icons.given) Given \(givenStr)\n")
-			givenCode()
-
-			print("\(indentation)\(icons.when) When \(whenStr)\n")
-			whenCode()
-
-			print("\(indentation)\(icons.eventually) Eventually \(eventuallyStr)\n")
-
-			testCase.waitForExpectationsWithTimeout(timeoutSeconds, handler: nil)
-
-			if signaled {
+			if lastDoneEvent?.name == notificationName {
+				// already called "done"
 				SwiftTryCatch.try({
-					eventuallyCode(resultObject)
-					print("\(indentation)\(icons.passed) PASSED\n")
+					code(lastDoneEvent?.result)
+					doPrint("\(indentation)\(icons.passed) PASSED\n")
 				}, catch: { error in
-					print("\(indentation)\(icons.failed) FAILED\n")
+					doPrint("\(indentation)\(icons.failed) FAILED\n")
 				}, finally: nil)
 			}
 			else {
-				print("\(indentation)\(icons.failed) FAILED (timeout)\n")
+				let expectation = testCase.expectationWithDescription("")
+
+				var signaled = false
+
+				let observer = NSNotificationCenter.defaultCenter().addObserverForName(notificationName,
+						object: nil,
+						// why is this working using main queue?
+						queue: NSOperationQueue.mainQueue(),
+						usingBlock: { notif in
+
+					SwiftTryCatch.try({
+						code(notif.object)
+						doPrint("\(indentation)\(icons.passed) PASSED\n")
+					}, catch: { error in
+						doPrint("\(indentation)\(icons.failed) FAILED\n")
+					}, finally: nil)
+
+					signaled = true
+					expectation.fulfill()
+				})
+
+				doPrint("\(indentation)\(icons.eventually) Eventually \(str)\n")
+
+				testCase.waitForExpectationsWithTimeout(500, handler: nil)
+
+				if !signaled {
+					doPrint("\(indentation)\(icons.failed) FAILED (timeout)\n")
+				}
+
+				NSNotificationCenter.defaultCenter().removeObserver(observer)
 			}
 
-			NSNotificationCenter.defaultCenter().removeObserver(observer)
-
+			lastDoneEvent = nil
 		default:
-			given(givenStr, givenCode,
-				when:whenStr, whenCode,
-				then:eventuallyStr, {
-					eventuallyCode(nil)
-				}, action)
-	}
-}
-
-public func given(givenStr: String, givenCode: Void -> Void,
-	when whenStr: String, whenCode: Void -> Void,
-	then thenStr: String, thenCode: Void -> Void,
-	_ action: Action = .TestNow) {
-
-	let icons = currentIcons()
-	let indentation = currentIndentation()
-
-	func fullHeader() {
-		print("\(indentation)\(icons.given) Given \(givenStr)\n")
-		print("\(indentation)\(icons.when) When \(whenStr)\n")
-		print("\(indentation)\(icons.then) Then \(thenStr)\n")
-	}
-
-	switch action {
-		case .TestAndWaitFor:
-			println("ERROR: TestAndWaitFor is not supported with given.when.then. Use given.when.eventually instead")
-		case .Skip:
-			fullHeader()
-			print("\(indentation)\(icons.skipped) SKIPPED\n")
-		case .Pending:
-			fullHeader()
-			print("\(indentation)\(icons.pending) PENDING\n")
-		case .TestNow:
-			print("\(indentation)\(icons.given) Given \(givenStr)\n")
-			givenCode()
-
-			print("\(indentation)\(icons.when) When \(whenStr)\n")
-			whenCode()
-
-			print("\(indentation)\(icons.then) Then \(thenStr)\n")
-
-			SwiftTryCatch.try({
-				thenCode()
-				print("\(indentation)\(icons.passed) PASSED\n")
-			}, catch: { error in
-				print("\(indentation)\(icons.failed) FAILED\n")
-			}, finally: nil)
+			then(str, {
+				code(nil)
+			}, action)
 	}
 }
 
 public func done(notificationName: String, withResult result: AnyObject?) {
+	lastDoneEvent = (notificationName, result)
 	NSNotificationCenter.defaultCenter().postNotificationName(notificationName, object: result)
 }
 
 public func scenario(scenario: String, code:Void->Void) {
-	print("\(currentIndentation())\(currentIcons().scenario) \(scenario)\n")
+	doPrint("\(currentIndentation())\(currentIcons().scenario) \(scenario)\n")
 
 	currentIndentationLevel++
 	code()
@@ -150,37 +144,46 @@ public func scenario(scenario: String, code:Void->Void) {
 }
 
 public func with(text: String, code: Void -> Void) {
-	println("\(indentation(currentIndentationLevel + 1))\(currentIcons().with) with \(text)")
-	code()
+	withSugar("with", text, level: 1, code)
 }
 
 public func that(text: String, code: Void -> Void) {
-	println("\(indentation(currentIndentationLevel + 1))\(currentIcons().that) that \(text)")
-	code()
+	withSugar("that", text, level: 1, code)
 }
 
 public func and(text: String, code: Void -> Void) {
-	println("\(indentation(currentIndentationLevel + 1))\(currentIcons().and) and \(text)")
-	code()
+	withSugar("and", text, level: 1, code)
+}
+
+public func but(text: String, code: Void -> Void) {
+	withSugar("but", text, level: 1, code)
 }
 
 public func it(text: String, code: Void -> Void) {
-	println("\(indentation(currentIndentationLevel + 1))\(currentIcons().and) it \(text)")
-	code()
+	withSugar("it", text, level: 1, code)
 }
 
 public func perform(text: String, code: Void -> Void) {
-	println("\(indentation(currentIndentationLevel + 1))\(currentIcons().and) perform \(text)")
+	withSugar("perform", text, level: 1, code)
+}
+
+private func withSugar(sugar: String, text: String, #level: Int, code: Void -> Void) {
+	doPrint("\(indentation(currentIndentationLevel + level))\(currentIcons().secondLevel) \(sugar) \(text)")
 	code()
 }
 
+private func doPrint(str: String) {
+	// Xcode 6.3 (6D570) hang using Swift's print.
+	// Use NSLog as workaround
+	NSLog("%@", str)
+}
 
 public func assertThat(text: String, code: Void -> Void) {
 	SwiftTryCatch.try({
 		code()
-		println("\(indentation(currentIndentationLevel + 1))\(currentIcons().assertPassed) assert that \(text)")
+		doPrint("\(indentation(currentIndentationLevel + 1))\(currentIcons().assertPassed) assert that \(text)\n")
 	}, catch: { error in
-		println("\(indentation(currentIndentationLevel + 1))\(currentIcons().assertFailed) assert that \(text)")
+		doPrint("\(indentation(currentIndentationLevel + 1))\(currentIcons().assertFailed) assert that \(text)\n")
 		SwiftTryCatch.throwException(error)
 	}, finally: nil)
 }
@@ -193,43 +196,56 @@ private func indentation(level:Int) -> String {
 	return String(count: level, repeatedValue:Character("\t"))
 }
 
+public var currentIcons = simpleIcons
 
 public typealias Icons =
-	(passed: String,
-	failed: String,
-	given: String,
-	when: String,
-	then: String,
-	eventually: String,
-	timeout: String,
-	skipped: String,
-	pending: String,
-	scenario: String,
-	with: String,
-	that: String,
-	and: String,
-	assertPassed: String,
-	assertFailed: String)
+	(passed: Character,
+	failed: Character,
+	given: Character,
+	when: Character,
+	then: Character,
+	eventually: Character,
+	timeout: Character,
+	skipped: Character,
+	pending: Character,
+	scenario: Character,
+	secondLevel: Character,
+	assertPassed: Character,
+	assertFailed: Character)
 
-public var currentIcons = asciiIcons
 
 func asciiIcons() -> Icons {
 	return (
-		passed: "[OK]",
-		failed: "[KO]",
+		passed: "v",
+		failed: "x",
 		given: "-",
 		when: "-",
 		then: "-",
 		eventually: "-",
-		timeout: "[KO]",
+		timeout: "x",
 		skipped: "!",
 		pending: "?",
 		scenario: "*",
-		with: "~",
-		that: "~",
-		and: "~",
-		assertPassed: "[ok]",
-		assertFailed: "[ko]")
+		secondLevel: "·",
+		assertPassed: "v",
+		assertFailed: "x")
+}
+
+func simpleIcons() -> Icons {
+	return (
+		passed: "✓",
+		failed: "✘",
+		given: "-",
+		when: "-",
+		then: "-",
+		eventually: "-",
+		timeout: "✘",
+		skipped: "!",
+		pending: "?",
+		scenario: "*",
+		secondLevel: "·",
+		assertPassed: "✓",
+		assertFailed: "✘")
 }
 
 func emojiIcons() -> Icons {
@@ -244,9 +260,7 @@ func emojiIcons() -> Icons {
 		skipped: "☔️",
 		pending: "⚠️",
 		scenario: "➜",
-		with: "✓",
-		that: "✓",
-		and: "✓",
+		secondLevel: "✓",
 		assertPassed: "✓",
 		assertFailed: "✘")
 }
@@ -263,9 +277,7 @@ func funnyEmojiIcons() -> Icons {
 		skipped: "🔕",
 		pending: "🔜",
 		scenario: "👉",
-		with: "📍",
-		that: "📍",
-		and: "📍",
+		secondLevel: "📍",
 		assertPassed: "😄",
 		assertFailed: "😱")
 }

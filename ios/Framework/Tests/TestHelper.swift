@@ -15,7 +15,7 @@ import Foundation
 import XCTest
 
 
-func XCTAssertOptional(expression: @autoclosure () -> AnyObject?, _ message: String? = nil) {
+func XCTAssertOptional(@autoclosure expression:  () -> AnyObject?, _ message: String? = nil) {
 	let evaluatedExpression:AnyObject? = expression()
 
 	if evaluatedExpression == nil {

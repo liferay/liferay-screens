@@ -45,7 +45,7 @@ import UIKit
 		interactor.onSuccess = {
 			let modifiedHtml = self.delegate?.onWebContentResponse?(interactor.resultHTML!)
 
-			(self.screenletView as WebContentDisplayViewModel).htmlContent =
+			(self.screenletView as! WebContentDisplayViewModel).htmlContent =
 					(modifiedHtml != nil) ? modifiedHtml! : interactor.resultHTML!
 		}
 

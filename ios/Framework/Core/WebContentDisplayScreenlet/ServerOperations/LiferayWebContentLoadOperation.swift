@@ -36,8 +36,8 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 	override func validateData() -> Bool {
 		var valid = super.validateData()
 
-		valid &= (groupId != nil)
-		valid &= (articleId != nil && articleId! != "")
+		valid = valid && (groupId != nil)
+		valid = valid && (articleId != nil && articleId! != "")
 
 		return valid
 	}

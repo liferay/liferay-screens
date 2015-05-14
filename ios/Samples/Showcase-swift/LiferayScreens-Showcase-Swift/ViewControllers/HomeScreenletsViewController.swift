@@ -21,12 +21,12 @@ class HomeScreenletsViewController: UITableViewController {
 			2 : ["Others", "AssetListScreenlet", "UserPortraitScreenlet", "WebContentDisplayScreenlet"]]
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return countElements(data)
+		return count(data)
 	}
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		let count = countElements(data[section] ?? [])
-		return count == 0 ? count : count - 1
+		let length = count(data[section] ?? [])
+		return length == 0 ? length : length - 1
 	}
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

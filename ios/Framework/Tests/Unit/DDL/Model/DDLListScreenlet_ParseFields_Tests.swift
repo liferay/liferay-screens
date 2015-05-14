@@ -30,7 +30,7 @@ class DDLListScreenlet_ParseFields_Tests: XCTestCase {
 	func test_LabelFields_ShouldParse_SingleField() {
 		screenlet!.labelFields = "A"
 
-		let parsedFields = (screenlet!.screenletView as DDLListViewModel).labelFields
+		let parsedFields = (screenlet!.screenletView as! DDLListViewModel).labelFields
 
 		XCTAssertEqual(1, parsedFields.count)
 		XCTAssertEqual("A", parsedFields[0])
@@ -39,7 +39,7 @@ class DDLListScreenlet_ParseFields_Tests: XCTestCase {
 	func test_LabelFields_ShouldParse_SingleFieldWithTrailingSpaces() {
 		screenlet!.labelFields = " A "
 
-		let parsedFields = (screenlet!.screenletView as DDLListViewModel).labelFields
+		let parsedFields = (screenlet!.screenletView as! DDLListViewModel).labelFields
 
 		XCTAssertEqual(1, parsedFields.count)
 		XCTAssertEqual("A", parsedFields[0])
@@ -48,7 +48,7 @@ class DDLListScreenlet_ParseFields_Tests: XCTestCase {
 	func test_LabelFields_ShouldParse_SeveralFields() {
 		screenlet!.labelFields = "A,B,C"
 
-		let parsedFields = (screenlet!.screenletView as DDLListViewModel).labelFields
+		let parsedFields = (screenlet!.screenletView as! DDLListViewModel).labelFields
 
 		XCTAssertEqual(3, parsedFields.count)
 		XCTAssertEqual("A", parsedFields[0])
@@ -59,7 +59,7 @@ class DDLListScreenlet_ParseFields_Tests: XCTestCase {
 	func test_LabelFields_ShouldParse_SeveralFieldsWithTrailingSpaces() {
 		screenlet!.labelFields = " A, B ,C "
 
-		let parsedFields = (screenlet!.screenletView as DDLListViewModel).labelFields
+		let parsedFields = (screenlet!.screenletView as! DDLListViewModel).labelFields
 
 		XCTAssertEqual(3, parsedFields.count)
 		XCTAssertEqual("A", parsedFields[0])

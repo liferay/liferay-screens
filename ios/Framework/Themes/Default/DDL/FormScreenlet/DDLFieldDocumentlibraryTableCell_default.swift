@@ -171,7 +171,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 
 			formView?.userAction(
 				name: "upload-document",
-				sender: field! as DDLFieldDocument)
+				sender: field! as! DDLFieldDocument)
 		}
 	}
 

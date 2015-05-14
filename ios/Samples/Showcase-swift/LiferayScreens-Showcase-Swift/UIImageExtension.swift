@@ -27,14 +27,14 @@ private extension UIImage {
         
         // Allocate memory for image data. This is the destination in memory
         // where any drawing to the bitmap context will be rendered.
-        let bitmapData = malloc(CUnsignedLong(bitmapByteCount))
+        let bitmapData = malloc(bitmapByteCount)
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue)
         
         // Create the bitmap context. We want pre-multiplied ARGB, 8-bits
         // per component. Regardless of what the source image format is
         // (CMYK, Grayscale, and so on) it will be converted over to the format
         // specified here by CGBitmapContextCreate.
-        let context = CGBitmapContextCreate(bitmapData, pixelsWide, pixelsHigh, CUnsignedLong(8), CUnsignedLong(bitmapBytesPerRow), colorSpace, bitmapInfo)
+        let context = CGBitmapContextCreate(bitmapData, pixelsWide, pixelsHigh, 8, bitmapBytesPerRow, colorSpace, bitmapInfo)
         
         return context
     }
@@ -93,7 +93,7 @@ extension  UIImage {
         let bitmapBytesPerRow = Int(pixelsWide) * 4
         let bitmapByteCount = bitmapBytesPerRow * Int(pixelsHigh)
         
-        let finalcontext = CGBitmapContextCreate(data, pixelsWide, pixelsHigh, CUnsignedLong(8),  CUnsignedLong(bitmapBytesPerRow), colorSpace, bitmapInfo)
+        let finalcontext = CGBitmapContextCreate(data, pixelsWide, pixelsHigh, 8,  bitmapBytesPerRow, colorSpace, bitmapInfo)
         
         let imageRef = CGBitmapContextCreateImage(finalcontext)
         return UIImage(CGImage: imageRef)
@@ -192,7 +192,7 @@ extension  UIImage {
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue)
         
-        let finalcontext = CGBitmapContextCreate(data, pixelsWide, pixelsHigh, CUnsignedLong(8),  CUnsignedLong(bitmapBytesPerRow), colorSpace, bitmapInfo)
+        let finalcontext = CGBitmapContextCreate(data, pixelsWide, pixelsHigh, 8,  bitmapBytesPerRow, colorSpace, bitmapInfo)
         
         let imageRef = CGBitmapContextCreateImage(finalcontext)
         return UIImage(CGImage: imageRef)
@@ -250,7 +250,7 @@ extension  UIImage {
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue)
         
-        let finalcontext = CGBitmapContextCreate(data, pixelsWide, pixelsHigh, CUnsignedLong(8),  CUnsignedLong(bitmapBytesPerRow), colorSpace, bitmapInfo)
+        let finalcontext = CGBitmapContextCreate(data, pixelsWide, pixelsHigh, 8,  bitmapBytesPerRow, colorSpace, bitmapInfo)
         
         let imageRef = CGBitmapContextCreateImage(finalcontext)
         return UIImage(CGImage: imageRef)

@@ -21,7 +21,7 @@ public class DDLFieldTableCell: UITableViewCell {
 			return nil
 		}
 		else if view is DDLFieldTableCell {
-			return (view as DDLFieldTableCell)
+			return (view as! DDLFieldTableCell)
 		}
 
 		return viewAsFieldCell(view!.superview)
@@ -153,7 +153,7 @@ public class DDLFieldTableCell: UITableViewCell {
 	}
 
 	internal func moveSubviewsVertically(offsetY:CGFloat) {
-		for subview in contentView.subviews as [UIView] {
+		for subview in contentView.subviews as! [UIView] {
 			if offsetY == 0.0 {
 				subview.transform = CGAffineTransformIdentity
 			}

@@ -52,7 +52,7 @@ class UserPortraitBaseLoadUserInteractor: UserPortraitBaseInteractor {
 		var result = false
 
 		if let operation = createLoadUserOperation() {
-			result = operation.validateAndEnqueue(onUserLoaded)
+			result = operation.validateAndEnqueue(onComplete: onUserLoaded)
 
 			if result {
 				self.screenlet.screenletView?.onStartOperation()
@@ -66,13 +66,13 @@ class UserPortraitBaseLoadUserInteractor: UserPortraitBaseInteractor {
 	}
 
 	private func onUserLoaded(operation: ServerOperation) {
-		let userOperation = operation as GetUserBaseOperation
+		let userOperation = operation as! GetUserBaseOperation
 
 		if let userAttributes = userOperation.resultUserAttributes {
 			let attributesInteractor = UserPortraitAttributesLoadInteractor(
 					screenlet: screenlet,
-					portraitId: (userAttributes["portraitId"] as NSNumber).longLongValue,
-					uuid: userAttributes["uuid"] as String,
+					portraitId: (userAttributes["portraitId"] as! NSNumber).longLongValue,
+					uuid: userAttributes["uuid"] as! String,
 					male: true)
 
 			attributesInteractor.onSuccess = {

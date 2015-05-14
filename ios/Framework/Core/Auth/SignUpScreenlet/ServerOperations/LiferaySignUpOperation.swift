@@ -29,7 +29,7 @@ public class LiferaySignUpOperation: ServerOperation {
 	}
 
 	private var viewModel: SignUpViewModel {
-		return screenlet.screenletView as SignUpViewModel
+		return screenlet.screenletView as! SignUpViewModel
 	}
 
 
@@ -52,7 +52,7 @@ public class LiferaySignUpOperation: ServerOperation {
 
 		var outError: NSError?
 
-		let emptyDict = []
+		let emptyDict = [AnyObject]()
 
 		let password = viewModel.password ?? ""
 

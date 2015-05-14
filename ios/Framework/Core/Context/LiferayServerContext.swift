@@ -28,7 +28,7 @@ public class LiferayServerContext {
 	public class var server: String {
 		get {
 			loadContextFile()
-			return StaticInstance.serverProperties!["server"] as String
+			return StaticInstance.serverProperties!["server"] as! String
 		}
 		set {
 			StaticInstance.serverProperties!["server"] = newValue
@@ -38,7 +38,7 @@ public class LiferayServerContext {
 	public class var companyId: Int64 {
 		get {
 			loadContextFile()
-			return (StaticInstance.serverProperties!["companyId"] as NSNumber).longLongValue
+			return (StaticInstance.serverProperties!["companyId"] as! NSNumber).longLongValue
 		}
 		set {
 			StaticInstance.serverProperties!["companyId"] = NSNumber(longLong: newValue)
@@ -48,7 +48,7 @@ public class LiferayServerContext {
 	public class var groupId: Int64 {
 		get {
 			loadContextFile()
-			return (StaticInstance.serverProperties!["groupId"] as NSNumber).longLongValue
+			return (StaticInstance.serverProperties!["groupId"] as! NSNumber).longLongValue
 		}
 		set {
 			StaticInstance.serverProperties!["groupId"] = NSNumber(longLong: newValue)
@@ -69,7 +69,7 @@ public class LiferayServerContext {
 		var foundFallback = false
 
 		var i = 0
-		let length = countElements(bundles)
+		let length = count(bundles)
 
 		while !found && i < length {
 			let bundle = bundles[i++]

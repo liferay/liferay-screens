@@ -20,18 +20,18 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 	public var recordSetId: Int64?
 
 	internal var ddlListScreenlet: DDLListScreenlet {
-		return self.screenlet as DDLListScreenlet
+		return self.screenlet as! DDLListScreenlet
 	}
 
 	internal var viewModel: DDLListViewModel {
-		return screenlet.screenletView as DDLListViewModel
+		return screenlet.screenletView as! DDLListViewModel
 	}
 
 	override func validateData() -> Bool {
 		var valid = super.validateData()
 
-		valid &= (recordSetId != nil)
-		valid &= (viewModel.labelFields.count > 0)
+		valid = valid && (recordSetId != nil)
+		valid = valid && (viewModel.labelFields.count > 0)
 
 		return valid
 	}

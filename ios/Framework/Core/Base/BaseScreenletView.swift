@@ -68,7 +68,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	//MARK: UITextFieldDelegate
 
-	public func textFieldShouldReturn(textField: UITextField!) -> Bool {
+	public func textFieldShouldReturn(textField: UITextField) -> Bool {
 		let nextResponder = nextResponderForView(textField)
 
 		if nextResponder != textField {
@@ -221,7 +221,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 		addDefaultDelegatesForView(view)
 
-		for subview:UIView in view.subviews as [UIView] {
+		for subview:UIView in view.subviews as! [UIView] {
 			setUpView(subview)
 		}
 	}

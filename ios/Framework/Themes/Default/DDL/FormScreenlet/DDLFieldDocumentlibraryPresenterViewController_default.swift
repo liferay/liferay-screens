@@ -27,8 +27,12 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 
 	private let imagePicker = UIImagePickerController()
 
-	override public init() {
-		super.init(
+	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+	}
+
+	public convenience init() {
+		self.init(
 			nibName: "DDLFieldDocumentlibraryPresenterViewController_default",
 			bundle: nil)
 
@@ -90,8 +94,8 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 	//MARK: UIImagePickerControllerDelegate
 
     public func imagePickerController(
-			picker: UIImagePickerController!,
-			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
+			picker: UIImagePickerController,
+			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
 
 		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
 		let selectedURL = info[UIImagePickerControllerMediaURL] as? NSURL
@@ -101,7 +105,7 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 		imagePicker.dismissViewControllerAnimated(true) {}
 	}
 
-    public func imagePickerControllerDidCancel(picker: UIImagePickerController!) {
+    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
 		imagePicker.dismissViewControllerAnimated(true) {}
 	}
 
