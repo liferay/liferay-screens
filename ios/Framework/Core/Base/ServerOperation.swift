@@ -244,8 +244,10 @@ public class ServerOperation: NSOperation {
 			}
 		}
 
-		self.screenlet.onFinishOperation()
-		self.screenlet.screenletView?.onFinishOperation()
+		dispatch_async(dispatch_get_main_queue()) {
+			self.screenlet.onFinishOperation()
+			self.screenlet.screenletView?.onFinishOperation()
+		}
 	}
 
 }

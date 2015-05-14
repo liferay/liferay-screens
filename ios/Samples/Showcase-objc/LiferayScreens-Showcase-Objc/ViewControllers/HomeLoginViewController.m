@@ -33,6 +33,9 @@
 
 	self.screenlet.delegate = self;
 
+	self.screenlet.viewModel.userName = @"test@liferay.com";
+	self.screenlet.viewModel.password = @"test";
+
 	[self showLoggedWithAnimation:NO];
 }
 

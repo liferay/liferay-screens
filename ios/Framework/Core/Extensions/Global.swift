@@ -62,25 +62,33 @@ func delayed(delay: NSTimeInterval, block: dispatch_block_t) {
 
 
 func allBundles(#currentClass: AnyClass, #currentTheme: String?) -> [NSBundle] {
-	let frameworkBundle = NSBundle(forClass: currentClass)
+	return [bundleForTheme(currentTheme, fromClass: currentClass),
+			bundleForCore(fromClass: currentClass),
+			NSBundle(forClass: currentClass),
+			NSBundle.mainBundle()
+		].filter { bundle in
+			bundle != nil
+		}.map { bundle in
+			bundle!
+		}
+}
 
-	let themeBundlePath = (currentTheme == nil)
+func bundleForTheme(themeName: String?, #fromClass: AnyClass) -> NSBundle? {
+	let frameworkBundle = NSBundle(forClass: fromClass)
+
+	let themeBundlePath = (themeName == nil)
 			? nil
-			: frameworkBundle.pathForResource("LiferayScreens-\(currentTheme!)", ofType: "bundle")
+			: frameworkBundle.pathForResource("LiferayScreens-\(themeName!)", ofType: "bundle")
+
+	return (themeBundlePath == nil) ? nil : NSBundle(path: themeBundlePath!)
+}
+
+func bundleForCore(#fromClass: AnyClass) -> NSBundle? {
+	let frameworkBundle = NSBundle(forClass: fromClass)
 
 	let coreBundlePath = frameworkBundle.pathForResource("LiferayScreens-core", ofType: "bundle")
 
-	let result = [
-		(themeBundlePath == nil) ? nil : NSBundle(path: themeBundlePath!),
-		(coreBundlePath == nil) ? nil : NSBundle(path: coreBundlePath!),
-		frameworkBundle,
-		NSBundle.mainBundle()]
-
-	return result.filter { bundle in
-		bundle != nil
-	}.map { bundle in
-		bundle!
-	}
+	return (coreBundlePath == nil) ? nil : NSBundle(path: coreBundlePath!)
 }
 
 

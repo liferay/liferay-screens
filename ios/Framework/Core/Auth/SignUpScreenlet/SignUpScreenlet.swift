@@ -39,7 +39,7 @@ import UIKit
 	@IBOutlet public weak var autoLoginDelegate: LoginScreenletDelegate?
 
 
-	internal var viewModel: SignUpViewModel {
+	public var viewModel: SignUpViewModel {
 		return screenletView as! SignUpViewModel
 	}
 

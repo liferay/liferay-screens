@@ -37,6 +37,9 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 
 		self.loginScreenlet?.delegate = self
 
+		self.loginScreenlet?.viewModel.userName = "test@liferay.com"
+		self.loginScreenlet?.viewModel.password = "test"
+
 		showLogged(animated: false);
 	}
 

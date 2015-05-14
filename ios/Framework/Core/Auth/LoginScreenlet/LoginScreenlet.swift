@@ -47,7 +47,7 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedType {
 	@IBOutlet public weak var delegate: LoginScreenletDelegate?
 
 
-	internal var viewModel: LoginViewModel {
+	public var viewModel: LoginViewModel {
 		return screenletView as! LoginViewModel
 	}
 
