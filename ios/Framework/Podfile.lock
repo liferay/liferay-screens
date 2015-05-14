@@ -32,6 +32,7 @@ PODS:
   - SwiftTryCatch (0.0.1)
   - TNRadioButtonGroup (0.4)
   - UICKeyChainStore (2.0.4)
+  - UIImage-Resize (1.0.1)
 
 DEPENDENCIES:
   - CryptoSwift
@@ -45,6 +46,7 @@ DEPENDENCIES:
   - SwiftTryCatch
   - TNRadioButtonGroup
   - UICKeyChainStore
+  - UIImage-Resize
 
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
@@ -59,5 +61,6 @@ SPEC CHECKSUMS:
   SwiftTryCatch: fb6d2b34abe48efd69578dac919293a44f95b481
   TNRadioButtonGroup: f5fb9b545d8913bbabe6a72ea1fa6fba4d833bb6
   UICKeyChainStore: 69eb0c3a6f669bccf16ba88de3b9069b71501361
+  UIImage-Resize: fa776860f10e6900bbaf53a73e494bdceaaccc77
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.37.1
