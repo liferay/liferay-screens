@@ -67,8 +67,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	public func loadLoggedUserPortrait() -> Bool {
 		let interactor = UserPortraitLoadLoggedUserInteractor(screenlet: self)
 
-		let currentUserId = SessionContext.userAttribute("userId") as? Int
-		loadedUserId =  currentUserId.map { Int64($0) }
+		loadedUserId =  SessionContext.currentUserId
 
 		return startInteractor(interactor)
 	}

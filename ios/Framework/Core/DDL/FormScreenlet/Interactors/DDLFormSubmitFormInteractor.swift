@@ -28,7 +28,8 @@ class DDLFormSubmitFormInteractor: ServerOperationInteractor {
 				? screenlet.groupId : LiferayServerContext.groupId
 
 		operation.userId = (screenlet.userId != 0)
-				? screenlet.userId : Int64((SessionContext.userAttribute("userId") ?? 0) as! Int)
+				? screenlet.userId
+				: SessionContext.currentUserId
 
 		operation.recordId = (screenlet.recordId != 0) ? screenlet.recordId : nil
 		operation.recordSetId = screenlet.recordSetId

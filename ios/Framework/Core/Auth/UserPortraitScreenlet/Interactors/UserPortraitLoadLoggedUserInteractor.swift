@@ -25,9 +25,7 @@ class UserPortraitLoadLoggedUserInteractor: UserPortraitBaseInteractor {
 						portraitId: portraitId.longLongValue,
 						uuid: uuid,
 						male: true)
-				if let userIdValue = SessionContext.userAttribute("userId") as? Int {
-					resultUserId = Int64(userIdValue)
-				}
+				resultUserId = SessionContext.currentUserId
 			}
 		}
 
