@@ -13,7 +13,6 @@ pod 'ODRefreshControl'
 
 # UserPortrait
 pod 'CryptoSwift'
-pod 'UIImage-Resize'
 
 # DDLForm
 pod 'DTPickerPresenter'
