@@ -18,6 +18,8 @@ The first step in creating a new theme is deciding what kind of theme to create:
 
 For more details on these theme types, refer the [themes section in the Architecture Guide](architecture.md#theme-layer).
 
+You can create your theme's classes and resources directly inside your app project. If you want to use the theme in more than one app, follow the instructions below to [publish your theme as a library](#publish-your-themes-using-cocoapods).
+
 The following steps illustrate theme creation by creating a new theme for the `LoginScreenlet`.
 
 ## Full Theme
@@ -50,7 +52,7 @@ The example theme here presents the same components as the Default theme, but is
 
 The example theme here presents the same components as the Default theme, but sets new translated strings and contains a few new animations. A new UI component is also introduces to configure whether or not the password is shown when typed by the user.
 
-For an example of this kind of theme, refer to the [Flat7 theme source code](https://github.com/liferay/liferay-screens/tree/master/ios/Library/Themes/Flat7).
+For an example of this kind of theme, refer to the [Flat7 theme source code](https://github.com/liferay/liferay-screens/tree/master/ios/Framework/Themes/Flat7).
 
 1. Create a new `xib` called `LoginScreenlet_ext.xib`. You'll build your new UI here as usual with Interface Builder. A good place to start is to duplicate `LoginScreenlet_default.xib` and use it as a template for your new `xib`. Add a new `UISwitch` component to configure the password presentation.
 
@@ -60,4 +62,70 @@ For an example of this kind of theme, refer to the [Flat7 theme source code](htt
 
 3. Set `LoginScreenletView_full` as the custom class of your `LoginScreenlet_ext.xib ` file and bind your new `@IBOutlet` and `@IBAction` to your class.
 
-4. Install the new theme, insert `LoginScreenlet` in any of your view controllers, and use `ext` as the value for the screenlet's `themeName` property. Your new look and feel is shown in Interface Builder.
+4. Install the new theme (drag & drop the classes and resources), insert `LoginScreenlet` in any of your view controllers, and use `ext` as the value for the screenlet's `themeName` property. Your new look and feel is shown in Interface Builder.
+
+## Publish Your Themes Using CocoaPods
+
+Since your theme is a code library, you can package it using CocoaPods. Doing so means that other developers are able to install and use your theme by simply adding the following line in their `Podfile`: 
+
+    pod 'LiferayScreens-YourThemeName'
+	
+Use the following steps to package your theme for use with CocoaPods. *It's important that you use the same names and identifiers described in these steps*:
+
+* Create an empty Xcode project choosing *Cocoa Touch Framework*.
+
+    ![Choose *Cocoa Touch Framework* when creating a project for your theme.](Images/xcode-cocoa-touch-framework.png)
+    
+* Call your project `LiferayScreensThemeName` (change `Name` to your theme's name).
+
+* Configure Liferay Screens for CocoaPods. To do this, follow the steps described in [Preparing Your Project for Liferay Screens](../README.md#preparing-your-project-for-liferay-screens).
+
+* Create your theme's classes and resources according to the instructions in the above sections. Your classes must compile successfully in Xcode. Use caution if you create your own `xib` files. The custom class must use your theme's module name. For example, the Custom Class setting in this screenshot is incorrect. This is because the `xib` file is bound to the custom class name without specifying the module:
+
+![The `xib` file is bound to the custom class name without specifying the module.](Images/xcode-theme-custom-module-wrong.png)
+
+In the following screenshot, the setting for the custom class is correct:
+
+![Xib file binded to custom class name specifying the module.](Images/xcode-theme-custom-module-right.png)
+
+* In your project's root folder, add a file called `LiferayScreensTheme-Name.podspec` (change `Name` to your theme's name) with the following content:
+
+```ruby
+	Pod::Spec.new do |s|
+		s.name         = 'LiferayScreensTheme-Name'
+		s.module_name  = 'LiferayScreensThemeName'
+		s.version      = '1.0'
+		s.summary      = 'Your theme description'
+		s.source = {
+			:git => 'https://your_repository_url.git',
+			:tag => 'v1.0'
+		}
+	
+		s.platform = :ios
+		s.ios.deployment_target = '8.0'
+		s.requires_arc = true
+
+		s.source_files = 'Your/Relative/Folder/**/*.{h,m,swift}'
+
+		s.resource_bundle = {
+			'LiferayScreens-name' => 'Your/Relative/Folder/**/*.{xib,png,plist,lproj}'
+		}
+	
+		s.dependency 'LiferayScreens'
+	end
+```
+
+Remember to change the occurences of `Name` and `name` to your theme's name in the following lines.
+
+- `s.name = LiferayScreensTheme-Name`
+- `s.module_name = LiferayScreensThemeName`
+- `LiferayScreens-name => Your/Folder/**/*`
+
+* You can commit and push your project to your Git repository and then use the theme by adding the following line in your app's `Podfile`:
+
+```ruby
+	pod 'LiferayScreens-YourThemeName', :git => 'https://your_repository_url.git'
+```
+
+* If you want to simplify the process even more, you can publish your theme as a public Pod. For instructions on this, see the chapter *Deploying a library* in the [official CocoaPods guide](https://guides.cocoapods.org/making/getting-setup-with-trunk.html#deploying-a-library).
+

@@ -16,7 +16,7 @@ Each screenlet is tied to one or more services exposed by [Liferay's remote serv
 
 Please note that themes provided in early versions support only vertical screen orientation and the iPhone 5, 5s, and 5c screen size. Support for the full range of screen orientations and sizes will be added in the future.
 
-To learn more detail about the architecture of Screens, please see the [library documentation page](https://github.com/liferay/liferay-screens/tree/master/ios/Library/README.md).
+To learn more detail about the architecture of Screens, please see the [library documentation page](https://github.com/liferay/liferay-screens/tree/master/ios/Framework/README.md).
 
 ## Requirements
 
