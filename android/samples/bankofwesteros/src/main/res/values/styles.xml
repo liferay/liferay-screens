@@ -16,10 +16,6 @@
 		<item name="android:windowContentOverlay">@null</item>
 	</style>
 
-	<style name="DefaultStyle">
-		<item name="colorPrimary">@color/westeros_yellow</item>
-	</style>
-
 	<style name="westeros_card">
 		<item name="android:paddingLeft">@dimen/westeros_side_margin</item>
 		<item name="android:paddingRight">@dimen/westeros_side_margin</item>

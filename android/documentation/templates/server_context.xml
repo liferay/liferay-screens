@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Change these values for your Liferay Portal installation -->
+	<string name="liferay_server">http://WRITE_HERE_YOUR_HOST:8080</string>
+	<integer name="liferay_company_id">WRITE_HERE_YOUR_COMPANY_ID</integer>
+	<integer name="liferay_group_id">WRITE_HERE_YOUR_GROUP_ID</integer>
+</resources>
