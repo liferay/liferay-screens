@@ -17,9 +17,10 @@ import UIKit
 @objc public protocol UserPortraitScreenletDelegate {
 
 	optional func onUserPortraitResponse(image: UIImage) -> UIImage
-	optional func onUserPortraitUploaded(result: [String:AnyObject])
 	optional func onUserPortraitError(error: NSError)
 
+	optional func onUserPortraitUploaded(result: [String:AnyObject])
+	optional func onUserPortraitUploadError(error: NSError)
 }
 
 
@@ -149,7 +150,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 			}
 
 			interactor!.onFailure = {
-				self.delegate?.onUserPortraitError?($0)
+				self.delegate?.onUserPortraitUploadError?($0)
 				return
 			}
 
