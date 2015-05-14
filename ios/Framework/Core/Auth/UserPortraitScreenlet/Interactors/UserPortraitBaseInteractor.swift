@@ -21,6 +21,7 @@ import UIKit
 class UserPortraitBaseInteractor: Interactor {
 
 	var resultURL: NSURL?
+	var resultUserId: Int64?
 
 	func URLForAttributes(#portraitId: Int64, uuid: String, male: Bool) -> NSURL? {
 

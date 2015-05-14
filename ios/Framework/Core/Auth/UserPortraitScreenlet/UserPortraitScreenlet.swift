@@ -124,29 +124,25 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		switch name! {
 		case "upload-portrait":
 			let image = sender as! UIImage
-			let userId: Int64?
+			let userId: Int64
 
 			if let loadedUserIdValue = loadedUserId {
 				userId = loadedUserIdValue
 			}
 			else {
-				let currentUserId = SessionContext.userAttribute("userId") as? Int
-				userId =  currentUserId.map { Int64($0) }
-			}
-
-			if userId == nil {
 				println("ERROR: Can't change the portrait without an userId")
+
 				return nil
 			}
 
 			interactor = UploadUserPortraitInteractor(
 					screenlet: self,
-					userId: userId!,
+					userId: userId,
 					image: image)
 
 			interactor!.onSuccess = { [weak interactor] in
 				self.delegate?.onUserPortraitUploaded?(interactor!.uploadResult!)
-				self.load(userId: userId!)
+				self.load(userId: userId)
 			}
 
 			interactor!.onFailure = {
@@ -166,6 +162,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	private func startInteractor(interactor: UserPortraitBaseInteractor) -> Bool {
 		interactor.onSuccess = {
 			self.setPortraitURL(interactor.resultURL)
+			self.loadedUserId = interactor.resultUserId
 		}
 
 		return interactor.start()
