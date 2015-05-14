@@ -65,10 +65,6 @@ public class User {
 		return (int) _attributes.get(PORTRAIT_ID);
 	}
 
-	public void setPortraitId(int portraitId) {
-		_attributes.put(PORTRAIT_ID, portraitId);
-	}
-
 	public String getFirstName() {
 		return getString(FIRST_NAME);
 	}

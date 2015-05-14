@@ -40,6 +40,10 @@ public class UserPortraitUploadInteractorImpl extends BaseRemoteInteractor<UserP
 		}
 		else {
 			JSONObject userAttributes = event.getJSONObject();
+			User user = new User(event.getJSONObject());
+			if (user.getId() == SessionContext.getLoggedUser().getId()) {
+				SessionContext.setLoggedUser(user);
+			}
 
 			try {
 				long portraitId = userAttributes.getLong("portraitId");
