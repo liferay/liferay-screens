@@ -28,7 +28,7 @@ import UIKit
 	@IBInspectable public var articleId: String = ""
 	@IBInspectable public var autoLoad: Bool = true
 
-	@IBOutlet public var delegate: WebContentDisplayScreenletDelegate?
+	@IBOutlet public weak var delegate: WebContentDisplayScreenletDelegate?
 
 
 	//MARK: Public methods
@@ -46,7 +46,7 @@ import UIKit
 			let modifiedHtml = self.delegate?.onWebContentResponse?(interactor.resultHTML!)
 
 			(self.screenletView as! WebContentDisplayViewModel).htmlContent =
-					(modifiedHtml != nil) ? modifiedHtml! : interactor.resultHTML!
+					modifiedHtml ?? interactor.resultHTML!
 		}
 
 		interactor.onFailure = {

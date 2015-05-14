@@ -117,9 +117,8 @@ import Foundation
 
 			return true
 		}
-		else {
-			clearSession()
-		}
+
+		clearSession()
 
 		return false
 	}

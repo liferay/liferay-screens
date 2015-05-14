@@ -64,7 +64,7 @@ import UIKit
 		}
 	}
 
-	@IBOutlet public var delegate: DDLFormScreenletDelegate?
+	@IBOutlet public weak var delegate: DDLFormScreenletDelegate?
 
 	internal var formView: DDLFormView {
 		return screenletView as! DDLFormView

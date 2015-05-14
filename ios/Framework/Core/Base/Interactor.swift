@@ -27,16 +27,24 @@ import UIKit
 
 	func callOnSuccess() {
 		onSuccess?()
-		screenlet.endInteractor(self)
+		finish()
 	}
 
 	func callOnFailure(error: NSError) {
 		onFailure?(error)
-		screenlet.endInteractor(self)
+		finish()
 	}
 
 	func start() -> Bool {
 		return false
+	}
+
+	private func finish() {
+		screenlet.endInteractor(self)
+
+		// break retain cycle
+		onSuccess = nil
+		onFailure = nil
 	}
 
 }

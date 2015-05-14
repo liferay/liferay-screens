@@ -22,8 +22,8 @@ import UIKit
 }
 
 
-@IBDesignable public class ForgotPasswordScreenlet: BaseScreenlet,
-		AuthBasedType, AnonymousAuthType {
+@IBDesignable public class ForgotPasswordScreenlet: BaseScreenlet, AuthBasedType,
+		AnonymousAuthType {
 
 	//MARK: Inspectables
 
@@ -39,7 +39,7 @@ import UIKit
 	@IBInspectable var companyId: Int64 = 0
 
 
-	@IBOutlet public var delegate: ForgotPasswordScreenletDelegate?
+	@IBOutlet public weak var delegate: ForgotPasswordScreenletDelegate?
 
 
 	public var saveCredentials: Bool {

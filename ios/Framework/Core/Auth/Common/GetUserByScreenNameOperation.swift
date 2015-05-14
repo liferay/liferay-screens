@@ -41,8 +41,7 @@ public class GetUserByScreenNameOperation: GetUserBaseOperation {
 			error: NSErrorPointer)
 			-> NSDictionary? {
 
-		let companyId = (self.companyId != 0)
-				? self.companyId : LiferayServerContext.companyId
+		let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
 
 		return service.getUserByScreenNameWithCompanyId(companyId,
 				screenName: screenName,
