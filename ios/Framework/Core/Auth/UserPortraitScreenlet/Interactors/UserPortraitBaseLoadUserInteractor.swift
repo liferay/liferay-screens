@@ -89,7 +89,7 @@ class UserPortraitBaseLoadUserInteractor: UserPortraitBaseInteractor {
 		}
 		else {
 			resultURL = nil
-			callOnSuccess()
+			callOnFailure(createError(cause: .InvalidServerResponse))
 		}
 	}
 
