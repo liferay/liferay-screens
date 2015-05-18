@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2014 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.service.v62;
 
 import com.liferay.mobile.android.service.BaseService;
+import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 
 import org.json.JSONArray;
@@ -24,9 +25,9 @@ import org.json.JSONObject;
 /**
  * @author Bruno Farache
  */
-public class MobilewidgetsddlrecordService extends BaseService {
+public class ScreensddlrecordService extends BaseService {
 
-	public MobilewidgetsddlrecordService(Session session) {
+	public ScreensddlrecordService(Session session) {
 		super(session);
 	}
 
@@ -37,9 +38,9 @@ public class MobilewidgetsddlrecordService extends BaseService {
 			JSONObject _params = new JSONObject();
 
 			_params.put("ddlRecordId", ddlRecordId);
-			_params.put("locale", locale);
+			_params.put("locale", checkNull(locale));
 
-			_command.put("/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-record", _params);
+			_command.put("/screens-web.screensddlrecord/get-ddl-record", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -61,11 +62,11 @@ public class MobilewidgetsddlrecordService extends BaseService {
 			JSONObject _params = new JSONObject();
 
 			_params.put("ddlRecordSetId", ddlRecordSetId);
-			_params.put("locale", locale);
+			_params.put("locale", checkNull(locale));
 			_params.put("start", start);
 			_params.put("end", end);
 
-			_command.put("/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-records", _params);
+			_command.put("/screens-web.screensddlrecord/get-ddl-records", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -88,11 +89,11 @@ public class MobilewidgetsddlrecordService extends BaseService {
 
 			_params.put("ddlRecordSetId", ddlRecordSetId);
 			_params.put("userId", userId);
-			_params.put("locale", locale);
+			_params.put("locale", checkNull(locale));
 			_params.put("start", start);
 			_params.put("end", end);
 
-			_command.put("/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-records", _params);
+			_command.put("/screens-web.screensddlrecord/get-ddl-records", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -115,7 +116,7 @@ public class MobilewidgetsddlrecordService extends BaseService {
 
 			_params.put("ddlRecordSetId", ddlRecordSetId);
 
-			_command.put("/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-records-count", _params);
+			_command.put("/screens-web.screensddlrecord/get-ddl-records-count", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -139,7 +140,7 @@ public class MobilewidgetsddlrecordService extends BaseService {
 			_params.put("ddlRecordSetId", ddlRecordSetId);
 			_params.put("userId", userId);
 
-			_command.put("/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-records-count", _params);
+			_command.put("/screens-web.screensddlrecord/get-ddl-records-count", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
