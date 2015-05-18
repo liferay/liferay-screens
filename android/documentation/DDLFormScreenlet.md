@@ -8,6 +8,7 @@
 
 - Android SDK 4.0 (API Level 14) and above
 - Liferay Portal 6.2 CE or EE
+- [Liferay Screens' Compatibility Plugin](https://github.com/liferay/liferay-screens/tree/master/portal)
 
 ## Compatibility
 
@@ -91,6 +92,8 @@ Both are used by the Documents and Media fields to take a picture/video and stor
 ## Portal Configuration
 
 Before using `DDLFormScreenlet`, you should make sure that Dynamic Data Lists and Data Types are configured properly in the portal. Refer to the [Defining Data Types](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/building-a-list-platform-in-liferay-and-defining-data-) and [Creating Data Lists](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/creating-data-lists) sections of the User Guide for more details. If Workflow is required, it must also be configured. See the [Using Workflow](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-workflow) section of the User Guide for details.
+
+Remember that [Liferay Screens' Compatibility Plugin](https://github.com/liferay/liferay-screens/tree/master/portal) has to be installed to allow remote calls without the userId.
 
 ### Permissions
 
