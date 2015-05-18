@@ -37,8 +37,8 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 
 	public convenience init() {
 		func bundleForXib() -> NSBundle? {
-			let bundles = allBundles(
-					currentClass: DDLFieldDocumentlibraryPresenterViewController_default.self);
+			let bundles = NSBundle.allBundles(
+					DDLFieldDocumentlibraryPresenterViewController_default.self);
 
 			for bundle in bundles {
 				if bundle.pathForResource(xibName, ofType:"nib") != nil {

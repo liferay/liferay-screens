@@ -38,61 +38,10 @@ public func delayed(delay: NSTimeInterval, block: dispatch_block_t) {
 }
 
 
-public func allBundles(#currentClass: AnyClass) -> [NSBundle] {
-	return [discoverBundles(),
-			[bundleForDefaultTheme(),
-				bundleForCore(),
-				NSBundle(forClass: currentClass),
-				NSBundle.mainBundle()]]
-			.flatMap { $0 }
-}
-
-public func discoverBundles() -> [NSBundle] {
-	let allBundles = NSBundle.allFrameworks() as! [NSBundle]
-
-	return allBundles.filter {
-		let screensPrefix = "LiferayScreens"
-		let bundleName = $0.bundleIdentifier?.pathExtension ?? ""
-
-		return count(bundleName) > count(screensPrefix)
-				&& bundleName.hasPrefix(screensPrefix)
-	}
-}
-
-public func bundleForDefaultTheme() -> NSBundle {
-	let frameworkBundle = NSBundle(forClass: BaseScreenlet.self)
-
-	let defaultBundlePath = frameworkBundle.pathForResource("LiferayScreens-default", ofType: "bundle")!
-
-	return NSBundle(path: defaultBundlePath)!
-}
-
-public func bundleForCore() -> NSBundle {
-	let frameworkBundle = NSBundle(forClass: BaseScreenlet.self)
-
-	let coreBundlePath = frameworkBundle.pathForResource("LiferayScreens-core", ofType: "bundle")!
-
-	return NSBundle(path: coreBundlePath)!
-}
-
-
-public func imageInAnyBundle(#name: String, #currentClass: AnyClass) -> UIImage? {
-	let bundles = allBundles(currentClass: currentClass)
-
-	for bundle in bundles {
-		if let path = bundle.pathForResource(name, ofType: "png") {
-			return UIImage(contentsOfFile: path)
-		}
-	}
-
-	return nil
-}
-
-
 public func LocalizedString(tableName: String, var key: String, obj: AnyObject) -> String {
 	key = "\(tableName)-\(key)"
 
-	let bundles = allBundles(currentClass: obj.dynamicType)
+	let bundles = NSBundle.allBundles(obj.dynamicType)
 
 	for bundle in bundles {
 		let res = NSLocalizedString(key,

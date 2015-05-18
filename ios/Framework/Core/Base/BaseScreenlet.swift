@@ -258,7 +258,7 @@ import QuartzCore
 			return nil;
 		}
 
-		let bundles = allBundles(currentClass: self.dynamicType);
+		let bundles = NSBundle.allBundles(self.dynamicType);
 
 		if let foundView = tryLoadForTheme(_themeName, inBundles: bundles) {
 			return foundView
