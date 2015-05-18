@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2014 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -12,12 +12,12 @@
  * details.
  */
 
-#import "LRMobilewidgetsuserService_v62.h"
+#import "LRScreensuserService_v62.h"
 
 /**
  * @author Bruno Farache
  */
-@implementation LRMobilewidgetsuserService_v62
+@implementation LRScreensuserService_v62
 
 - (BOOL)sendPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
@@ -25,7 +25,7 @@
 		@"emailAddress": emailAddress
 	}];
 
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsuser/send-password-by-email-address": _params};
+	NSDictionary *_command = @{@"/screens-web.screensuser/send-password-by-email-address": _params};
 
 	return [self boolValue:(NSNumber *)[self.session invoke:_command error:error]];
 }
@@ -36,7 +36,7 @@
 		@"screenName": screenName
 	}];
 
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsuser/send-password-by-screen-name": _params};
+	NSDictionary *_command = @{@"/screens-web.screensuser/send-password-by-screen-name": _params};
 
 	return [self boolValue:(NSNumber *)[self.session invoke:_command error:error]];
 }
@@ -46,7 +46,7 @@
 		@"userId": @(userId)
 	}];
 
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsuser/send-password-by-user-id": _params};
+	NSDictionary *_command = @{@"/screens-web.screensuser/send-password-by-user-id": _params};
 
 	return [self boolValue:(NSNumber *)[self.session invoke:_command error:error]];
 }
