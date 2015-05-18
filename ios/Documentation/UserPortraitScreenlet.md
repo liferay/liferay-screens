@@ -39,6 +39,7 @@ None
 |-----------|-----------|-------------| 
 | `borderWidth` | `number` | The size in pixels for the portrait's border. The default value is 1. Set this to 0 if you want to hide the border.|
 |  `borderColor` | `UIColor` | The border's color. Use the system's transparent color to hide the border. |
+|  `editable` | `boolean` | Lets the user change the portrait image by taking a photo or selecting a gallery picture. Default value is `false`. Portraits loaded with method `load(portraitId, uuid, male)` won't be able to be editable.|
 
 ## Methods
 
@@ -53,5 +54,7 @@ None
 The `UserPortraitScreenlet` delegates some events to an object that conforms to the `UserPortraitScreenletDelegate ` protocol. This protocol lets you implement the following methods:
 
 - `onUserPortraitResponse(image)`: Called when an image is received from the server. You can then apply image filters (grayscale, for example) and return the new image. You can return the original image supplied as the argument if you don't want to modify it.
-- `onUserPortraitError(error)`: Called when an error occurs in the process. The `NSError` object describes the error.
+- `onUserPortraitError(error)`: Called when an error occurs in the load process. The `NSError` object describes the error.
+- `onUserPortraitUploaded(userAttributes)`: Called when a new portrait is uploaded to the server. You receive the user attributes as a parameter.
+- `onUserPortraitUploadError(error)`: Called when an error occurs in the upload process. The `NSError` object describes the error.
 
