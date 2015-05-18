@@ -72,7 +72,9 @@ public class LoginView extends LinearLayout
 
 	@Override
 	public void showStartOperation(String actionName) {
-		_progressBar.startProgress();
+		if (_progressBar != null) {
+			_progressBar.startProgress();
+		}
 	}
 
 	@Override
@@ -82,14 +84,18 @@ public class LoginView extends LinearLayout
 
 	@Override
 	public void showFinishOperation(User user) {
-		_progressBar.finishProgress();
+		if (_progressBar != null) {
+			_progressBar.finishProgress();
+		}
 
 		LiferayLogger.i("Login successful: " + user.getId());
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		_progressBar.finishProgress();
+		if (_progressBar != null) {
+			_progressBar.finishProgress();
+		}
 
 		LiferayLogger.e("Could not login", e);
 
@@ -117,8 +123,8 @@ public class LoginView extends LinearLayout
 		_passwordEditText = (EditText) findViewById(R.id.password);
 		_progressBar = (ModalProgressBar) findViewById(R.id.progress_bar);
 
-		Button submitButton = (Button) findViewById(R.id.login_button);
-		submitButton.setOnClickListener(this);
+		_submitButton = (Button) findViewById(R.id.login_button);
+		_submitButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -141,7 +147,6 @@ public class LoginView extends LinearLayout
 		else if (AuthMethod.EMAIL.equals(_authMethod)) {
 			return R.drawable.default_mail_icon;
 		}
-
 		return R.drawable.default_user_icon;
 	}
 
