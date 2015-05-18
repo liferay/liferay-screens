@@ -22,7 +22,7 @@ import com.liferay.mobile.android.v62.assetentry.AssetEntryService;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
-import com.liferay.mobile.screens.service.v62.MobilewidgetsassetentryService;
+import com.liferay.mobile.screens.service.v62.ScreensassetentryService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,7 +60,7 @@ public class AssetListInteractorImpl
 
 		JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryAttributes);
 
-		MobilewidgetsassetentryService service = new MobilewidgetsassetentryService(session);
+		ScreensassetentryService service = new ScreensassetentryService(session);
 		service.getAssetEntries(entryQuery, locale.toString());
 	}
 
