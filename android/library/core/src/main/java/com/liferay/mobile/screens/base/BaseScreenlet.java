@@ -119,18 +119,25 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	}
 
 	protected int getDefaultLayoutId() {
-		Context ctx = getContext().getApplicationContext();
-		String packageName = ctx.getPackageName();
+		try {
+			Context ctx = getContext().getApplicationContext();
+			String packageName = ctx.getPackageName();
 
-		// first, get the identifier of the string key
-		String layoutNameKeyName = getClass().getSimpleName() + "_defaultLayout";
-		int layoutNameKeyId = ctx.getResources().getIdentifier(
-			layoutNameKeyName, "string", packageName);
+			// first, get the identifier of the string key
+			String layoutNameKeyName = getClass().getSimpleName() + "_defaultLayout";
+			int layoutNameKeyId = ctx.getResources().getIdentifier(
+				layoutNameKeyName, "string", packageName);
 
-		// second, get the identifier of the layout specified in key layoutNameKeyId
-		String layoutName = ctx.getString(layoutNameKeyId);
+			// second, get the identifier of the layout specified in key layoutNameKeyId
 
-		return ctx.getResources().getIdentifier(layoutName, "layout", packageName);
+			String layoutName = ctx.getString(layoutNameKeyId);
+			return ctx.getResources().getIdentifier(layoutName, "layout", packageName);
+		}
+		catch (Exception e) {
+			//We don't want to crash if the user creates a custom screenlet without adding a
+			// default layout to it
+			return 0;
+		}
 	}
 
 	@Override
@@ -221,7 +228,9 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		while (true) {
 			final int result = sNextId.get();
 			int newValue = result + 1;
-			if (newValue > 0x00FFFFFF) newValue = 1;
+			if (newValue > 0x00FFFFFF) {
+				newValue = 1;
+			}
 			if (sNextId.compareAndSet(result, newValue)) {
 				return result;
 			}
@@ -230,7 +239,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	private static final AtomicInteger sNextId = new AtomicInteger(1);
 
-	private Map<String,I> _interactors = new HashMap<>();
+	private Map<String, I> _interactors = new HashMap<>();
 	private int _screenletId;
 	private View _screenletView;
 
