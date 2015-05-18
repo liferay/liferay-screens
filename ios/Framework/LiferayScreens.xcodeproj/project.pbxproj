@@ -304,11 +304,11 @@
 		88DE251B1AD2AB0A00714701 /* DDLParser_i18n_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE250B1AD2AB0A00714701 /* DDLParser_i18n_Tests.swift */; };
 		88DE251C1AD2AB0A00714701 /* DDLRecord_FieldValues_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE250C1AD2AB0A00714701 /* DDLRecord_FieldValues_Tests.swift */; };
 		88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B2F3F34F1B0A1923002CEF60 /* LRScreensassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F3F3491B0A1923002CEF60 /* LRScreensassetentryService_v62.h */; };
+		B2F3F34F1B0A1923002CEF60 /* LRScreensassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F3F3491B0A1923002CEF60 /* LRScreensassetentryService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2F3F3501B0A1923002CEF60 /* LRScreensassetentryService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F34A1B0A1923002CEF60 /* LRScreensassetentryService_v62.m */; };
-		B2F3F3511B0A1923002CEF60 /* LRScreensddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F3F34B1B0A1923002CEF60 /* LRScreensddlrecordService_v62.h */; };
+		B2F3F3511B0A1923002CEF60 /* LRScreensddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F3F34B1B0A1923002CEF60 /* LRScreensddlrecordService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2F3F3521B0A1923002CEF60 /* LRScreensddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F34C1B0A1923002CEF60 /* LRScreensddlrecordService_v62.m */; };
-		B2F3F3531B0A1923002CEF60 /* LRScreensuserService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F3F34D1B0A1923002CEF60 /* LRScreensuserService_v62.h */; };
+		B2F3F3531B0A1923002CEF60 /* LRScreensuserService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F3F34D1B0A1923002CEF60 /* LRScreensuserService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2F3F3541B0A1923002CEF60 /* LRScreensuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F34E1B0A1923002CEF60 /* LRScreensuserService_v62.m */; };
 /* End PBXBuildFile section */
 
