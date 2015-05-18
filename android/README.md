@@ -21,7 +21,7 @@ Development of Android apps using Liferay Screens requires the following:
 - Android Studio 1.0.2 or above
 - Android SDK 4.0 (API Level 14) or above
 - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
-- [Liferay Screens' compatibility plugin](https://github.com/liferay/liferay-screens/tree/master/portal).
+- [Liferay Screens' compatibility plugin](https://github.com/liferay/liferay-screens/tree/master/portal)
 
 ## Compatibility
 
