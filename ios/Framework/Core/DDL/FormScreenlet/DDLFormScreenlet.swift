@@ -111,7 +111,7 @@ import UIKit
 		formView.showSubmitButton = showSubmitButton
 	}
 
-	override internal func onShow() {
+	override public func onShow() {
 		if autoLoad {
 			if recordId != 0 {
 				loadRecord()
@@ -122,7 +122,7 @@ import UIKit
 		}
 	}
 
-	override internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
 		if name == nil {
 			return nil
 		}
@@ -144,7 +144,7 @@ import UIKit
 		return nil
 	}
 
-	override internal func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
+	override public func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
 		let result = super.onAction(name: name, interactor: interactor, sender: sender)
 
 		if name! == UploadDocumentAction && result {

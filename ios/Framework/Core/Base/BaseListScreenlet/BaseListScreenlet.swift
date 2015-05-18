@@ -45,7 +45,7 @@ import UIKit
 				refreshControl ? self.loadList : nil
 	}
 
-	override func onShow() {
+	override public func onShow() {
 		if !isRunningOnInterfaceBuilder {
 			if autoLoad {
 				loadList()

@@ -36,7 +36,7 @@ import QuartzCore
 		}
 	}
 
-	internal weak var screenletView: BaseScreenletView?
+	public weak var screenletView: BaseScreenletView?
 
 	public weak var presentingViewController: UIViewController? {
 		didSet {
@@ -157,7 +157,7 @@ import QuartzCore
 	 * onCreated is invoked after the screenlet is created. 
 	 * Override this method to set custom values for the screenlet properties.
 	 */
-	internal func onCreated() {
+	public func onCreated() {
 	}
 
 	/*
@@ -165,20 +165,20 @@ import QuartzCore
 	 * Override this method to set create new UI components programatically.
 	 *
 	 */
-	internal func onPreCreate() {
+	public func onPreCreate() {
 	}
 
 	/*
 	 * onHide is invoked when the screenlet is hidden from the app window.
 	 */
-	internal func onHide() {
+	public func onHide() {
 	}
 
 	/*
 	 * onShow is invoked when the screenlet is displayed on the app window. 
 	 * Override this method for example to reset values when the screenlet is shown.
 	 */
-	internal func onShow() {
+	public func onShow() {
 	}
 
 	/*
@@ -205,15 +205,15 @@ import QuartzCore
 	/*
 	 * onAction is invoked when an interaction should be started
 	 */
-	internal func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
+	public func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
 		return interactor.start()
 	}
 
-	internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+	public func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
 		return nil
 	}
 
-	internal func endInteractor(interactor: Interactor) {
+	public func endInteractor(interactor: Interactor) {
 		synchronized(_runningInteractors) {
 			if let foundIndex = find(self._runningInteractors, interactor) {
 				self._runningInteractors.removeAtIndex(foundIndex)
@@ -224,13 +224,13 @@ import QuartzCore
 	/**
 	 * onStartOperation is called just before a screenlet request is sent to server
 	 */
-	internal func onStartOperation() {
+	public func onStartOperation() {
 	}
 
 	/**
 	 * onFinishOperation is called when the server response arrives
 	 */
-	internal func onFinishOperation() {
+	public func onFinishOperation() {
 	}
 
 

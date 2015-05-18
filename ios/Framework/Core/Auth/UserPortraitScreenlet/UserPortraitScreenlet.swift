@@ -123,7 +123,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return startInteractor(interactor)
 	}
 
-	override internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
 
 		let interactor: UploadUserPortraitInteractor?
 
