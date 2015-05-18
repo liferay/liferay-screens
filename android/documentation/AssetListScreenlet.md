@@ -8,7 +8,7 @@
 
 - Android SDK 4.0 (API Level 14) and above
 - Liferay Portal 6.2 CE or EE
-- [Mobile Widgets plugin](https://github.com/liferay/liferay-screens/tree/master/portal)
+- [Liferay Screens' Compatibility Plugin](https://github.com/liferay/liferay-screens/tree/master/portal)
 
 ## Compatibility
 
@@ -62,7 +62,7 @@ The Default views use a standard `RecyclerView` to show the scrollable list. Oth
 
 Dynamic Data Lists (DDL) and Data Types should be configured properly in the portal. Refer to the [Defining Data Types](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/building-a-list-platform-in-liferay-and-defining-data-) and [Creating Data Lists](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/creating-data-lists) sections of the User Guide for more details.
 
-Remember that [Mobile Widgets plugin](https://github.com/liferay/liferay-screens/tree/master/portal) has to be installed to allow remote calls without the userId.
+Remember that [Liferay Screens' Compatibility Plugin](https://github.com/liferay/liferay-screens/tree/master/portal) has to be installed to allow remote calls without the userId.
 
 ## Compulsory Attributes
 
