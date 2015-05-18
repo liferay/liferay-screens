@@ -4,6 +4,7 @@ import android.content.Context;
 import android.provider.Settings;
 import android.util.AttributeSet;
 
+import com.liferay.mobile.screens.testapp.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView;
 
 /**
@@ -23,7 +24,7 @@ public class LoginFullView extends LoginView {
 	}
 
 	protected int getLoginEditTextDrawableId() {
-		return com.liferay.mobile.screens.R.drawable.ic_account_box;
+		return R.drawable.ic_account_box;
 	}
 
 	@Override
