@@ -22,7 +22,7 @@ import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.service.v62.MobilewidgetsuserService;
+import com.liferay.mobile.screens.service.v62.ScreensuserService;
 
 /**
  * @author Jose Manuel Navarro
@@ -59,7 +59,7 @@ public class ForgotPasswordInteractorImpl
 			companyId, login, authMethod, anonymousApiUserName,
 			anonymousApiPassword);
 
-		MobilewidgetsuserService service = getScreensUserService(
+		ScreensuserService service = getScreensUserService(
 				anonymousApiUserName, anonymousApiPassword);
 
 		switch (authMethod) {
@@ -79,7 +79,7 @@ public class ForgotPasswordInteractorImpl
 		}
 	}
 
-	protected MobilewidgetsuserService getScreensUserService(
+	protected ScreensuserService getScreensUserService(
 		String anonymousApiUserName, String anonymousApiPassword) {
 
 		Authentication authentication = new BasicAuthentication(
@@ -91,11 +91,11 @@ public class ForgotPasswordInteractorImpl
 		anonymousSession.setCallback(
 			new ForgotPasswordCallback(getTargetScreenletId()));
 
-		return new MobilewidgetsuserService(anonymousSession);
+		return new ScreensuserService(anonymousSession);
 	}
 
 	protected void sendForgotPasswordByEmailRequest(
-			MobilewidgetsuserService service, long companyId,
+		ScreensuserService service, long companyId,
 			String emailAddress)
 		throws Exception {
 
@@ -103,14 +103,14 @@ public class ForgotPasswordInteractorImpl
 	}
 
 	protected void sendForgotPasswordByIdRequest(
-			MobilewidgetsuserService service, long userId)
+		ScreensuserService service, long userId)
 		throws Exception {
 
 		service.sendPasswordByUserId(userId);
 	}
 
 	protected void sendForgotPasswordByScreenNameRequest(
-			MobilewidgetsuserService service, long companyId, String screenName)
+		ScreensuserService service, long companyId, String screenName)
 		throws Exception {
 
 		service.sendPasswordByScreenName(companyId, screenName);
