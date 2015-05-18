@@ -255,7 +255,7 @@ public class DDLFormTableView: DDLFormView,
 	//MARK: Internal methods
 
 	internal func registerFieldCells() {
-		let bundles = allBundles(currentClass: self.dynamicType, currentTheme: themeName);
+		let bundles = allBundles(currentClass: self.dynamicType);
 
 		for fieldEditor in DDLField.Editor.all() {
 			for bundle in bundles {
@@ -285,7 +285,7 @@ public class DDLFormTableView: DDLFormView,
 	}
 
 	internal func registerCustomEditor(field: DDLField) -> Bool {
-		let bundles = allBundles(currentClass: self.dynamicType, currentTheme: themeName);
+		let bundles = allBundles(currentClass: self.dynamicType);
 
 		for bundle in bundles {
 			if let cellView = registerEditorCellInBundle(bundle,

@@ -85,8 +85,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 
 		textViewBackground?.image = imageInAnyBundle(
 					name: valid ? "default-field" : "default-field-failed",
-					currentClass: self.dynamicType,
-					currentTheme: "default")
+					currentClass: self.dynamicType)
 	}
 
 

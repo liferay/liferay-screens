@@ -35,7 +35,6 @@ public func setAuthMethodStyles(
 
 	userNameIcon?.image = imageInAnyBundle(
 			name: "default-\(authMethod.iconType)-icon",
-			currentClass: view.dynamicType,
-			currentTheme: "default")
+			currentClass: view.dynamicType)
 }
 

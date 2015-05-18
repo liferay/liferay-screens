@@ -38,7 +38,7 @@ public func delayed(delay: NSTimeInterval, block: dispatch_block_t) {
 }
 
 
-public func allBundles(#currentClass: AnyClass, #currentTheme: String) -> [NSBundle] {
+public func allBundles(#currentClass: AnyClass) -> [NSBundle] {
 	return [discoverBundles(),
 			[bundleForDefaultTheme(),
 				bundleForCore(),
@@ -76,8 +76,8 @@ public func bundleForCore() -> NSBundle {
 }
 
 
-public func imageInAnyBundle(#name: String, #currentClass: AnyClass, #currentTheme: String) -> UIImage? {
-	let bundles = allBundles(currentClass: currentClass, currentTheme: currentTheme)
+public func imageInAnyBundle(#name: String, #currentClass: AnyClass) -> UIImage? {
+	let bundles = allBundles(currentClass: currentClass)
 
 	for bundle in bundles {
 		if let path = bundle.pathForResource(name, ofType: "png") {
@@ -92,7 +92,7 @@ public func imageInAnyBundle(#name: String, #currentClass: AnyClass, #currentThe
 public func LocalizedString(tableName: String, var key: String, obj: AnyObject) -> String {
 	key = "\(tableName)-\(key)"
 
-	let bundles = allBundles(currentClass: obj.dynamicType, currentTheme: tableName)
+	let bundles = allBundles(currentClass: obj.dynamicType)
 
 	for bundle in bundles {
 		let res = NSLocalizedString(key,
