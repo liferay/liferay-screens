@@ -12,6 +12,6 @@
  * details.
  */
 
-#import "LRMobilewidgetsassetentryService_v62.h"
-#import "LRMobilewidgetsddlrecordService_v62.h"
-#import "LRMobilewidgetsuserService_v62.h"
+#import "LRScreensassetentryService_v62.h"
+#import "LRScreensddlrecordService_v62.h"
+#import "LRScreensuserService_v62.h"

@@ -19,7 +19,7 @@ public class LiferayForgotPasswordEmailOperation: LiferayForgotPasswordBaseOpera
 	//MARK: LiferayForgotPasswordBaseOperation
 
 	override internal func sendForgotPasswordRequest(
-			#service: LRMobilewidgetsuserService_v62,
+			#service: LRScreensuserService_v62,
 			error: NSErrorPointer)
 			-> Bool? {
 
