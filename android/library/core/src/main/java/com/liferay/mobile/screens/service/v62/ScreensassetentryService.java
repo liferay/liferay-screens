@@ -25,9 +25,9 @@ import org.json.JSONObject;
 /**
  * @author Bruno Farache
  */
-public class MobilewidgetsassetentryService extends BaseService {
+public class ScreensassetentryService extends BaseService {
 
-	public MobilewidgetsassetentryService(Session session) {
+	public ScreensassetentryService(Session session) {
 		super(session);
 	}
 
@@ -38,9 +38,9 @@ public class MobilewidgetsassetentryService extends BaseService {
 			JSONObject _params = new JSONObject();
 
 			mangleWrapper(_params, "assetEntryQuery", "com.liferay.portlet.asset.service.persistence.AssetEntryQuery", assetEntryQuery);
-			_params.put("locale", locale);
+			_params.put("locale", checkNull(locale));
 
-			_command.put("/mobile-widgets-web/mobilewidgetsassetentry/get-asset-entries", _params);
+			_command.put("/screens-web.screensassetentry/get-asset-entries", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
