@@ -6,7 +6,7 @@ This plugin is a portlet that exposes additional methods that are not present in
 
 ## Installation
 
-This is a normal Liferay portlet plugin, so please follow the normal installation process. 
+This is a normal Liferay portlet plugin, so please follow the normal installation process.
 
 ## Source code
 
