@@ -65,7 +65,7 @@ If you're using the device's camera, you also need to add the following permissi
 
 ### No JSON web service action with path ...
 
-Check that you have installed the [Mobile Widgets plugin](https://github.com/liferay/liferay-screens/tree/master/portal). The plugin adds new API calls to Liferay Portal.
+Check that you have installed the [Liferay Screens' Compatibility Plugin](https://github.com/liferay/liferay-screens/tree/master/portal). The plugin adds new API calls to Liferay Portal.
 
 ## FAQs
 

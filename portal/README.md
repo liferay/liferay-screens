@@ -12,6 +12,6 @@ This is a normal Liferay portlet plugin, so please follow the normal installatio
 
 This plugin is open source and the sources are available in the following Github repository:
 
-https://github.com/liferay/liferay-plugins/tree/6.2.x/webs/mobile-widgets-web
+https://github.com/liferay/liferay-plugins/tree/6.2.x/webs/screens-web
 
 The Liferay Screens' Compatibility Plugin will be eventually released as a marketplace plugin.
