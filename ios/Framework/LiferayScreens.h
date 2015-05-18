@@ -18,6 +18,6 @@ FOUNDATION_EXPORT const unsigned char LiferayScreensVersionString[];
 
 #import <LiferayScreens/LiferayScreensFrameworkConfig.h>
 
-#import <LiferayScreens/LRMobilewidgetsassetentryService_v62.h>
-#import <LiferayScreens/LRMobilewidgetsddlrecordService_v62.h>
-#import <LiferayScreens/LRMobilewidgetsuserService_v62.h>
+#import <LiferayScreens/LRScreensassetentryService_v62.h>
+#import <LiferayScreens/LRScreensddlrecordService_v62.h>
+#import <LiferayScreens/LRScreensuserService_v62.h>
