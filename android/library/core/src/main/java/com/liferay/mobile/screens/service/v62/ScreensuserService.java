@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.service.v62;
 
 import com.liferay.mobile.android.service.BaseService;
+import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 
 import org.json.JSONArray;
@@ -24,9 +25,9 @@ import org.json.JSONObject;
 /**
  * @author Bruno Farache
  */
-public class MobilewidgetsuserService extends BaseService {
+public class ScreensuserService extends BaseService {
 
-	public MobilewidgetsuserService(Session session) {
+	public ScreensuserService(Session session) {
 		super(session);
 	}
 
@@ -37,9 +38,9 @@ public class MobilewidgetsuserService extends BaseService {
 			JSONObject _params = new JSONObject();
 
 			_params.put("companyId", companyId);
-			_params.put("emailAddress", emailAddress);
+			_params.put("emailAddress", checkNull(emailAddress));
 
-			_command.put("/mobile-widgets-web/mobilewidgetsuser/send-password-by-email-address", _params);
+			_command.put("/screens-web.screensuser/send-password-by-email-address", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -61,9 +62,9 @@ public class MobilewidgetsuserService extends BaseService {
 			JSONObject _params = new JSONObject();
 
 			_params.put("companyId", companyId);
-			_params.put("screenName", screenName);
+			_params.put("screenName", checkNull(screenName));
 
-			_command.put("/mobile-widgets-web/mobilewidgetsuser/send-password-by-screen-name", _params);
+			_command.put("/screens-web.screensuser/send-password-by-screen-name", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -86,7 +87,7 @@ public class MobilewidgetsuserService extends BaseService {
 
 			_params.put("userId", userId);
 
-			_command.put("/mobile-widgets-web/mobilewidgetsuser/send-password-by-user-id", _params);
+			_command.put("/screens-web.screensuser/send-password-by-user-id", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);

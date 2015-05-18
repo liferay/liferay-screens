@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2014 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -21,8 +21,10 @@
 /**
  * @author Bruno Farache
  */
-@interface LRMobilewidgetsassetentryService_v62 : LRBaseService
+@interface LRScreensuserService_v62 : LRBaseService
 
-- (NSArray *)getAssetEntriesWithAssetEntryQuery:(LRJSONObjectWrapper *)assetEntryQuery locale:(NSString *)locale error:(NSError **)error;
+- (BOOL)sendPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress error:(NSError **)error;
+- (BOOL)sendPasswordByScreenNameWithCompanyId:(long long)companyId screenName:(NSString *)screenName error:(NSError **)error;
+- (BOOL)sendPasswordByUserIdWithUserId:(long long)userId error:(NSError **)error;
 
 @end

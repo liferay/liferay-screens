@@ -254,12 +254,6 @@
 		888DF5BA1ACCA3FD00EB7DA1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F21ACBE5F000862B9E /* LoginViewModel.swift */; };
 		8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */ = {isa = PBXBuildFile; fileRef = 8892C67D1ACB2E3300192232 /* LiferayScreens.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8892C6841ACB2E3300192232 /* LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8892C6781ACB2E3300192232 /* LiferayScreens.framework */; };
-		8892C69C1ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 8892C6961ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8892C69D1ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6971ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.m */; };
-		8892C69E1ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 8892C6981ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8892C69F1ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6991ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.m */; };
-		8892C6A01ACB2FDC00192232 /* LRMobilewidgetsuserService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 8892C69A1ACB2FDC00192232 /* LRMobilewidgetsuserService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8892C6A11ACB2FDC00192232 /* LRMobilewidgetsuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 8892C69B1ACB2FDC00192232 /* LRMobilewidgetsuserService_v62.m */; };
 		8892C6AB1ACBD89400192232 /* Bool+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A51ACBD89400192232 /* Bool+Conversion.swift */; };
 		8892C6AC1ACBD89400192232 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A61ACBD89400192232 /* Global.swift */; };
 		8892C6AE1ACBD89400192232 /* NSLocale+CurrentLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A81ACBD89400192232 /* NSLocale+CurrentLocale.swift */; };
@@ -310,6 +304,12 @@
 		88DE251B1AD2AB0A00714701 /* DDLParser_i18n_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE250B1AD2AB0A00714701 /* DDLParser_i18n_Tests.swift */; };
 		88DE251C1AD2AB0A00714701 /* DDLRecord_FieldValues_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE250C1AD2AB0A00714701 /* DDLRecord_FieldValues_Tests.swift */; };
 		88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2F3F34F1B0A1923002CEF60 /* LRScreensassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F3F3491B0A1923002CEF60 /* LRScreensassetentryService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2F3F3501B0A1923002CEF60 /* LRScreensassetentryService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F34A1B0A1923002CEF60 /* LRScreensassetentryService_v62.m */; };
+		B2F3F3511B0A1923002CEF60 /* LRScreensddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F3F34B1B0A1923002CEF60 /* LRScreensddlrecordService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2F3F3521B0A1923002CEF60 /* LRScreensddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F34C1B0A1923002CEF60 /* LRScreensddlrecordService_v62.m */; };
+		B2F3F3531B0A1923002CEF60 /* LRScreensuserService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F3F34D1B0A1923002CEF60 /* LRScreensuserService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2F3F3541B0A1923002CEF60 /* LRScreensuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F34E1B0A1923002CEF60 /* LRScreensuserService_v62.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -514,12 +514,6 @@
 		8892C67D1ACB2E3300192232 /* LiferayScreens.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreens.h; sourceTree = SOURCE_ROOT; };
 		8892C6831ACB2E3300192232 /* LiferayScreensTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiferayScreensTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8892C6891ACB2E3300192232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8892C6961ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsassetentryService_v62.h; sourceTree = "<group>"; };
-		8892C6971ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsassetentryService_v62.m; sourceTree = "<group>"; };
-		8892C6981ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsddlrecordService_v62.h; sourceTree = "<group>"; };
-		8892C6991ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsddlrecordService_v62.m; sourceTree = "<group>"; };
-		8892C69A1ACB2FDC00192232 /* LRMobilewidgetsuserService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMobilewidgetsuserService_v62.h; sourceTree = "<group>"; };
-		8892C69B1ACB2FDC00192232 /* LRMobilewidgetsuserService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRMobilewidgetsuserService_v62.m; sourceTree = "<group>"; };
 		8892C6A51ACBD89400192232 /* Bool+Conversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Conversion.swift"; sourceTree = "<group>"; };
 		8892C6A61ACBD89400192232 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		8892C6A81ACBD89400192232 /* NSLocale+CurrentLocale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLocale+CurrentLocale.swift"; sourceTree = "<group>"; };
@@ -569,6 +563,12 @@
 		88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreensFrameworkConfig.h; sourceTree = "<group>"; };
 		9136B139BF9449FC75DBECA6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC17F525218297794482A65 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
+		B2F3F3491B0A1923002CEF60 /* LRScreensassetentryService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensassetentryService_v62.h; sourceTree = "<group>"; };
+		B2F3F34A1B0A1923002CEF60 /* LRScreensassetentryService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensassetentryService_v62.m; sourceTree = "<group>"; };
+		B2F3F34B1B0A1923002CEF60 /* LRScreensddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensddlrecordService_v62.h; sourceTree = "<group>"; };
+		B2F3F34C1B0A1923002CEF60 /* LRScreensddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensddlrecordService_v62.m; sourceTree = "<group>"; };
+		B2F3F34D1B0A1923002CEF60 /* LRScreensuserService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensuserService_v62.h; sourceTree = "<group>"; };
+		B2F3F34E1B0A1923002CEF60 /* LRScreensuserService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensuserService_v62.m; sourceTree = "<group>"; };
 		D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1264,13 +1264,13 @@
 		8892C6951ACB2FDC00192232 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B2F3F3491B0A1923002CEF60 /* LRScreensassetentryService_v62.h */,
+				B2F3F34A1B0A1923002CEF60 /* LRScreensassetentryService_v62.m */,
+				B2F3F34B1B0A1923002CEF60 /* LRScreensddlrecordService_v62.h */,
+				B2F3F34C1B0A1923002CEF60 /* LRScreensddlrecordService_v62.m */,
+				B2F3F34D1B0A1923002CEF60 /* LRScreensuserService_v62.h */,
+				B2F3F34E1B0A1923002CEF60 /* LRScreensuserService_v62.m */,
 				88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */,
-				8892C6961ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.h */,
-				8892C6971ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.m */,
-				8892C6981ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.h */,
-				8892C6991ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.m */,
-				8892C69A1ACB2FDC00192232 /* LRMobilewidgetsuserService_v62.h */,
-				8892C69B1ACB2FDC00192232 /* LRMobilewidgetsuserService_v62.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1388,12 +1388,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8892C6A01ACB2FDC00192232 /* LRMobilewidgetsuserService_v62.h in Headers */,
+				B2F3F3531B0A1923002CEF60 /* LRScreensuserService_v62.h in Headers */,
 				8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */,
-				8892C69C1ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.h in Headers */,
+				B2F3F3511B0A1923002CEF60 /* LRScreensddlrecordService_v62.h in Headers */,
 				881E61491ACBEDC600862B9E /* AssetListScreenletInterop.h in Headers */,
+				B2F3F34F1B0A1923002CEF60 /* LRScreensassetentryService_v62.h in Headers */,
 				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
-				8892C69E1ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1696,6 +1696,7 @@
 				881E611C1ACBE5F000862B9E /* LiferaySignUpOperation.swift in Sources */,
 				881E617E1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift in Sources */,
 				881E61241ACBE5F000862B9E /* UserPortraitLoadByScreenNameInteractor.swift in Sources */,
+				B2F3F3501B0A1923002CEF60 /* LRScreensassetentryService_v62.m in Sources */,
 				881E622E1ACBFC3400862B9E /* SignUpView_default.swift in Sources */,
 				881E61791ACBEE0B00862B9E /* DDLFormView.swift in Sources */,
 				881E62301ACBFC3400862B9E /* UserPortraitView_default.swift in Sources */,
@@ -1713,6 +1714,7 @@
 				888DF5B41ACC9FF100EB7DA1 /* LoginView_default.swift in Sources */,
 				881E613E1ACBED7500862B9E /* WebContentDisplayViewModel.swift in Sources */,
 				881E62361ACBFC3400862B9E /* DDLFieldDateTableCell_default.swift in Sources */,
+				B2F3F3521B0A1923002CEF60 /* LRScreensddlrecordService_v62.m in Sources */,
 				881E61481ACBEDC600862B9E /* AssetListScreenlet.swift in Sources */,
 				881E618C1ACBEE0B00862B9E /* DDLField.swift in Sources */,
 				888DF5B11ACC9FC200EB7DA1 /* LoginScreenlet.swift in Sources */,
@@ -1734,7 +1736,6 @@
 				881E610F1ACBE5F000862B9E /* ForgotPasswordViewModel.swift in Sources */,
 				881E626C1ACBFC3400862B9E /* ForgotPasswordView_flat7.swift in Sources */,
 				881E618D1ACBEE0B00862B9E /* DDLFieldBoolean.swift in Sources */,
-				8892C6A11ACB2FDC00192232 /* LRMobilewidgetsuserService_v62.m in Sources */,
 				881E613C1ACBED7500862B9E /* WebContentDisplayLoadInteractor.swift in Sources */,
 				888DF5B31ACC9FC200EB7DA1 /* LoginInteractor.swift in Sources */,
 				881E61921ACBEE0B00862B9E /* DDLFieldStringWithOptions.swift in Sources */,
@@ -1743,7 +1744,6 @@
 				881E61891ACBEE0B00862B9E /* LiferayDDLListPageOperation.swift in Sources */,
 				881E61471ACBEDC600862B9E /* AssetListPageLoadInteractor.swift in Sources */,
 				881E618F1ACBEE0B00862B9E /* DDLFieldDocument.swift in Sources */,
-				8892C69F1ACB2FDC00192232 /* LRMobilewidgetsddlrecordService_v62.m in Sources */,
 				881E60C11ACBE43200862B9E /* ServerOperation.swift in Sources */,
 				881E611A1ACBE5F000862B9E /* LiferayLoginByUserIdOperation.swift in Sources */,
 				881E613D1ACBED7500862B9E /* WebContentDisplayScreenlet.swift in Sources */,
@@ -1775,6 +1775,7 @@
 				881E62401ACBFC3400862B9E /* DDLFieldSelectTableCell_default.swift in Sources */,
 				881E62381ACBFC3400862B9E /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */,
 				881E61131ACBE5F000862B9E /* LiferayForgotPasswordUserIdOperation.swift in Sources */,
+				B2F3F3541B0A1923002CEF60 /* LRScreensuserService_v62.m in Sources */,
 				881E61231ACBE5F000862B9E /* UserPortraitLoadByEmailAddressInteractor.swift in Sources */,
 				881E610D1ACBE5F000862B9E /* ForgotPasswordInteractor.swift in Sources */,
 				881E62461ACBFC3400862B9E /* DDLFormDefaultThemeConstants.swift in Sources */,
@@ -1797,7 +1798,6 @@
 				881E60CD1ACBE56700862B9E /* BaseListPageLoadInteractor.swift in Sources */,
 				881E60BF1ACBE43200862B9E /* Interactor.swift in Sources */,
 				881E624D1ACBFC3400862B9E /* DefaultThemeConstants.swift in Sources */,
-				8892C69D1ACB2FDC00192232 /* LRMobilewidgetsassetentryService_v62.m in Sources */,
 				881E62471ACBFC3400862B9E /* DDLFormView_default.swift in Sources */,
 				881E61781ACBEE0B00862B9E /* DDLFormScreenlet.swift in Sources */,
 				881E626A1ACBFC3400862B9E /* WebContentDisplayView_default.swift in Sources */,

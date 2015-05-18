@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2014 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -12,12 +12,12 @@
  * details.
  */
 
-#import "LRMobilewidgetsddlrecordService_v62.h"
+#import "LRScreensddlrecordService_v62.h"
 
 /**
  * @author Bruno Farache
  */
-@implementation LRMobilewidgetsddlrecordService_v62
+@implementation LRScreensddlrecordService_v62
 
 - (NSDictionary *)getDdlRecordWithDdlRecordId:(long long)ddlRecordId locale:(NSString *)locale error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
@@ -25,7 +25,7 @@
 		@"locale": locale
 	}];
 
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-record": _params};
+	NSDictionary *_command = @{@"/screens-web.screensddlrecord/get-ddl-record": _params};
 
 	return (NSDictionary *)[self.session invoke:_command error:error];
 }
@@ -38,7 +38,7 @@
 		@"end": @(end)
 	}];
 
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-records": _params};
+	NSDictionary *_command = @{@"/screens-web.screensddlrecord/get-ddl-records": _params};
 
 	return (NSArray *)[self.session invoke:_command error:error];
 }
@@ -52,7 +52,7 @@
 		@"end": @(end)
 	}];
 
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-records": _params};
+	NSDictionary *_command = @{@"/screens-web.screensddlrecord/get-ddl-records": _params};
 
 	return (NSArray *)[self.session invoke:_command error:error];
 }
@@ -62,7 +62,7 @@
 		@"ddlRecordSetId": @(ddlRecordSetId)
 	}];
 
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-records-count": _params};
+	NSDictionary *_command = @{@"/screens-web.screensddlrecord/get-ddl-records-count": _params};
 
 	return (NSNumber *)[self.session invoke:_command error:error];
 }
@@ -73,7 +73,7 @@
 		@"userId": @(userId)
 	}];
 
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsddlrecord/get-ddl-records-count": _params};
+	NSDictionary *_command = @{@"/screens-web.screensddlrecord/get-ddl-records-count": _params};
 
 	return (NSNumber *)[self.session invoke:_command error:error];
 }

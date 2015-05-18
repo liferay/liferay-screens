@@ -21,7 +21,7 @@ Development of Android apps using Liferay Screens requires the following:
 - Android Studio 1.0.2 or above
 - Android SDK 4.0 (API Level 14) or above
 - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
-- [Liferay Screens' compatiblity plugin](https://github.com/liferay/liferay-screens/tree/master/portal). 
+- [Liferay Screens' compatibility plugin](https://github.com/liferay/liferay-screens/tree/master/portal)
 
 ## Compatibility
 
@@ -218,7 +218,7 @@ Screenlets are grouped in modules based on internal dependencies. Each module is
 Also, some screenlets can be used individually without the need to import an entire module. These include:
 
 - [`AssetListScreenlet`](documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). This includes web content, blog entries, documents, users and more.
-- [`WebContentDisplayScreenlet`](Documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This screenlet uses the features avaiable in [Web Content Management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/web-content-management).
+- [`WebContentDisplayScreenlet`](Documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This screenlet uses the features available in [Web Content Management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/web-content-management).
 
 ## Listing of Available Views
 

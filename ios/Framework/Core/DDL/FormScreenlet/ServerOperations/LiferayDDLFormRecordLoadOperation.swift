@@ -42,7 +42,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 	}
 
 	override internal func doRun(#session: LRSession) {
-		let service = LRMobilewidgetsddlrecordService_v62(session: session)
+		let service = LRScreensddlrecordService_v62(session: session)
 
 		resultRecord = nil
 		resultRecordId = nil

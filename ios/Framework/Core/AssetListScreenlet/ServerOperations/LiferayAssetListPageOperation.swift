@@ -38,7 +38,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	//MARK: LiferayPaginationOperation
 
 	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
-		let screenletsService = LRMobilewidgetsassetentryService_v62(session: session)
+		let screenletsService = LRScreensassetentryService_v62(session: session)
 
 		var entryQueryAttributes = configureEntryQueryAttributes()
 
