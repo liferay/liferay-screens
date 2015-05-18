@@ -79,7 +79,7 @@ public class LiferayServerContext {
 			return
 		}
 
-		let bundles = allBundles(currentClass: self, currentTheme: nil).reverse()
+		let bundles = allBundles(currentClass: self, currentTheme: "default").reverse()
 
 		var found = false
 		var foundFallback = false
