@@ -8,7 +8,7 @@
 
 - Android SDK 4.0 (API Level 14) and above
 - Liferay Portal 6.2 CE or EE
-- Mobile Widgets plugin
+- [Mobile Widgets plugin](https://github.com/liferay/liferay-screens/tree/master/portal)
 
 ## Compatibility
 
@@ -34,7 +34,9 @@ The `ForgotPasswordScreenlet` can send an email to a registered user with their 
 
 ## Portal Configuration
 
-To use `ForgotPasswordScreenlet`, the portal must be configured to allow users to request new passwords. The next sections show you how to do this.
+To use `ForgotPasswordScreenlet`, the portal must be configured to allow users to request new passwords and [Mobile Widgets plugin](https://github.com/liferay/liferay-screens/tree/master/portal) has to be installed.
+
+The next sections show you how to do this.
 
 ### Authentication Method
 
