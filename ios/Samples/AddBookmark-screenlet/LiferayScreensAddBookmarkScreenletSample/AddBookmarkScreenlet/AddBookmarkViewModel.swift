@@ -6,4 +6,12 @@
 //  Copyright (c) 2015 Liferay. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+@objc protocol AddBookmarkViewModel {
+
+	var URL: String? {get set}
+
+	var title: String? {get set}
+
+}

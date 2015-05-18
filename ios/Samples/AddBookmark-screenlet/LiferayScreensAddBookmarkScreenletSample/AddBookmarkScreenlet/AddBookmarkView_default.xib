@@ -7,29 +7,113 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AddBookmarkView_default" customModule="LiferayScreensAddBookmarkScreenletSample">
-            <rect key="frame" x="0.0" y="0.0" width="309" height="209"/>
+            <rect key="frame" x="0.0" y="0.0" width="228" height="167"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kqf-0r-ets">
-                    <rect key="frame" x="92" y="80" width="123" height="29"/>
-                    <segments>
-                        <segment title="First"/>
-                        <segment title="Second"/>
-                    </segments>
-                </segmentedControl>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="action" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zwK-eT-pOm">
-                    <rect key="frame" x="124" y="136" width="46" height="30"/>
-                    <state key="normal" title="Button">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uWf-Cv-RnQ" userLabel="bg-url.png">
+                    <rect key="frame" x="0.0" y="0.0" width="228" height="44"/>
+                    <rect key="contentStretch" x="0.5" y="0.5" width="0.013157894999999999" height="0.068181818000000005"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="5gO-Bm-KQD"/>
+                    </constraints>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmN-X8-cQq" userLabel="bg-title.png">
+                    <rect key="frame" x="0.0" y="53" width="228" height="44"/>
+                    <rect key="contentStretch" x="0.5" y="0.5" width="0.013157894999999999" height="0.068181818000000005"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="o5N-6m-2ZD"/>
+                    </constraints>
+                </imageView>
+                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Site URL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Hl-Ka-SFN">
+                    <rect key="frame" x="6" y="0.0" width="219" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="0Mq-Kc-j5x"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L4i-Mb-cve">
+                    <rect key="frame" x="6" y="53" width="173" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="CtU-EY-LdU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
+                </textField>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="add-bookmark" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nJe-Po-XPY">
+                    <rect key="frame" x="0.0" y="123" width="228" height="44"/>
+                    <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="7LL-mR-vPK"/>
+                    </constraints>
+                    <state key="normal">
+                        <attributedString key="attributedTitle">
+                            <fragment content="ADD BOOKMARK">
+                                <attributes>
+                                    <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="get-title" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aOR-xb-ZbV" userLabel="GET TITLE">
+                    <rect key="frame" x="186" y="56" width="38" height="38"/>
+                    <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="38" id="HKl-SL-EuM"/>
+                        <constraint firstAttribute="height" constant="38" id="SnJ-lw-fKO"/>
+                    </constraints>
+                    <state key="normal" image="default-retrieve.png">
+                        <attributedString key="attributedTitle"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="rmN-X8-cQq" firstAttribute="top" secondItem="0Hl-Ka-SFN" secondAttribute="bottom" constant="9" id="2rj-oh-SxH"/>
+                <constraint firstItem="uWf-Cv-RnQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5Yc-Qu-qKs"/>
+                <constraint firstAttribute="trailing" secondItem="rmN-X8-cQq" secondAttribute="trailing" id="7pl-0o-p1x"/>
+                <constraint firstItem="rmN-X8-cQq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Icz-2H-Kvd"/>
+                <constraint firstAttribute="trailing" secondItem="0Hl-Ka-SFN" secondAttribute="trailing" constant="3" id="JIX-ab-zvD"/>
+                <constraint firstItem="nJe-Po-XPY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MNY-16-mKr"/>
+                <constraint firstItem="L4i-Mb-cve" firstAttribute="top" secondItem="0Hl-Ka-SFN" secondAttribute="bottom" constant="9" id="QJG-O6-CSO"/>
+                <constraint firstAttribute="trailing" secondItem="aOR-xb-ZbV" secondAttribute="trailing" constant="4" id="RCB-n1-YDf"/>
+                <constraint firstAttribute="trailing" secondItem="uWf-Cv-RnQ" secondAttribute="trailing" id="Rm8-xd-i4O"/>
+                <constraint firstItem="0Hl-Ka-SFN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SsS-qG-x7k"/>
+                <constraint firstItem="aOR-xb-ZbV" firstAttribute="top" secondItem="0Hl-Ka-SFN" secondAttribute="bottom" constant="12" id="T2m-xc-Uyo"/>
+                <constraint firstItem="L4i-Mb-cve" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="6" id="TfD-IR-vr1"/>
+                <constraint firstItem="0Hl-Ka-SFN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="6" id="U3o-zF-JYV"/>
+                <constraint firstAttribute="trailing" secondItem="nJe-Po-XPY" secondAttribute="trailing" id="YbC-XH-dFY"/>
+                <constraint firstAttribute="bottom" secondItem="nJe-Po-XPY" secondAttribute="bottom" id="bPv-uk-9YT"/>
+                <constraint firstAttribute="trailing" secondItem="L4i-Mb-cve" secondAttribute="trailing" constant="49" id="t18-2v-Z1Y"/>
+                <constraint firstItem="uWf-Cv-RnQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tcx-We-Ubd"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="323.5" y="227.5"/>
+            <connections>
+                <outlet property="URLBackground" destination="uWf-Cv-RnQ" id="wDh-PO-QPD"/>
+                <outlet property="URLTextField" destination="0Hl-Ka-SFN" id="zwT-kH-2Ty"/>
+                <outlet property="titleBackground" destination="rmN-X8-cQq" id="nr5-ko-PTd"/>
+                <outlet property="titleTextField" destination="L4i-Mb-cve" id="Pzl-Mb-mcN"/>
+            </connections>
+            <point key="canvasLocation" x="283" y="206.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="default-retrieve.png" width="38" height="38"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
