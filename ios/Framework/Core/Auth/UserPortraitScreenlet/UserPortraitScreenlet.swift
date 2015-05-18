@@ -31,6 +31,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 			(screenletView as? UserPortraitViewModel)?.borderWidth = self.borderWidth
 		}
 	}
+
 	@IBInspectable public var borderColor: UIColor? {
 		didSet {
 			(screenletView as? UserPortraitViewModel)?.borderColor = self.borderColor
