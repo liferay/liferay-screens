@@ -16,9 +16,7 @@ package com.liferay.mobile.screens.webcontentdisplay;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-
 import android.util.AttributeSet;
-
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -85,6 +83,15 @@ public class WebContentDisplayScreenlet
 		_listener = listener;
 	}
 
+
+	public boolean isJavascriptEnabled() {
+		return _javascriptEnabled;
+	}
+
+	public void setJavascriptEnabled(boolean javascriptEnabled) {
+		_javascriptEnabled = javascriptEnabled;
+	}
+
 	protected void autoLoad() {
 		if ((_articleId != null) && SessionContext.hasSession()) {
 			try {
@@ -108,7 +115,10 @@ public class WebContentDisplayScreenlet
 		_articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
 
 		_groupId = typedArray.getInt(
-			R.styleable.WebContentDisplayScreenlet_groupId, (int)LiferayServerContext.getGroupId());
+			R.styleable.WebContentDisplayScreenlet_groupId, (int) LiferayServerContext.getGroupId());
+
+		_javascriptEnabled = typedArray.getBoolean(
+			R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.WebContentDisplayScreenlet_layoutId, getDefaultLayoutId());
@@ -148,6 +158,7 @@ public class WebContentDisplayScreenlet
 	private String _articleId;
 	private boolean _autoLoad;
 	private long _groupId;
+	private boolean _javascriptEnabled;
 	private WebContentDisplayListener _listener;
 
 }
