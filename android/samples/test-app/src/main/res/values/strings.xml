@@ -19,4 +19,5 @@
 	<string name="ddl_form_label">DDL Form Screenlet: Shows a DDLRecord form. Allows file uploading and all DDL fields.</string>
 	<string name="asset_list_label">Asset List Screenlet: Shows a list of assets of a specific className</string>
 	<string name="main_activity_label">List of all the screenlets supported on version 0.3.0 of Liferay Screens</string>
+	<string name="customizing_a_screenlet">Customizing an screenlet</string>
 </resources>
