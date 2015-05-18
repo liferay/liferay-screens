@@ -1,0 +1,70 @@
+PODS:
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - CryptoSwift (0.0.10)
+  - DTPickerPresenter (0.2.0)
+  - Liferay-iOS-SDK (6.2.0.17):
+    - AFNetworking (~> 2.5.0)
+  - LiferayScreens (0.3):
+    - CryptoSwift
+    - DTPickerPresenter
+    - Liferay-iOS-SDK (= 6.2.0.17)
+    - MBProgressHUD (~> 0.9.1)
+    - MDRadialProgress
+    - ODRefreshControl
+    - SMXMLDocument
+    - TNRadioButtonGroup
+    - UICKeyChainStore
+  - MBProgressHUD (0.9.1)
+  - MDRadialProgress (1.3.1)
+  - ODRefreshControl (1.1.0)
+  - SMXMLDocument (1.0.1)
+  - TNRadioButtonGroup (0.4)
+  - UICKeyChainStore (2.0.4)
+
+DEPENDENCIES:
+  - LiferayScreens (from `https://github.com/liferay/liferay-screens`, branch `LMW-232-ios-westeros-bank-app`)
+
+EXTERNAL SOURCES:
+  LiferayScreens:
+    :branch: LMW-232-ios-westeros-bank-app
+    :git: https://github.com/liferay/liferay-screens
+
+CHECKOUT OPTIONS:
+  LiferayScreens:
+    :commit: 97096a5e8e1f75e2ddace4a5207978f1262ee8b2
+    :git: https://github.com/liferay/liferay-screens
+
+SPEC CHECKSUMS:
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  CryptoSwift: 3b886d001f50deb65623a8967d68f6b8bf8d9ba1
+  DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
+  Liferay-iOS-SDK: 00b511b88592d07faade2bed8252c04193df565d
+  LiferayScreens: df6214dd1bd595fba6a63df6d2653313cd4d7f5b
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MDRadialProgress: 6af31db0315f1b687df825a73481a2a443182402
+  ODRefreshControl: 4c4c413bf70d2ea0c02a28ac0a0b3b4bf4dbfdea
+  SMXMLDocument: 4ff79d0d7586239e93758c8610698b57cc0acd82
+  TNRadioButtonGroup: f5fb9b545d8913bbabe6a72ea1fa6fba4d833bb6
+  UICKeyChainStore: 69eb0c3a6f669bccf16ba88de3b9069b71501361
+
+COCOAPODS: 0.37.1

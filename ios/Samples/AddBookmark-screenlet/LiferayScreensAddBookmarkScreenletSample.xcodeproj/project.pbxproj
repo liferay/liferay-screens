@@ -1,0 +1,375 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4116D25CE4BB5A342B9BE4B4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E63A2C51549D408A84A2C8 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		88C22FC61B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C22FC51B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		88C22FE11B09F38E00EE4CAE /* AddBookmarkScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C22FDD1B09F38E00EE4CAE /* AddBookmarkScreenlet.swift */; };
+		88C22FE21B09F38E00EE4CAE /* AddBookmarkView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C22FDE1B09F38E00EE4CAE /* AddBookmarkView_default.swift */; };
+		88C22FE31B09F38E00EE4CAE /* AddBookmarkView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C22FDF1B09F38E00EE4CAE /* AddBookmarkView_default.xib */; };
+		88C22FE41B09F38E00EE4CAE /* AddBookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C22FE01B09F38E00EE4CAE /* AddBookmarkViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		88C22FC01B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LiferayScreensAddBookmarkScreenletSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88C22FC41B09F2F500EE4CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88C22FC51B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreensAddBookmarkScreenletSample.h; sourceTree = "<group>"; };
+		88C22FDD1B09F38E00EE4CAE /* AddBookmarkScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkScreenlet.swift; sourceTree = "<group>"; };
+		88C22FDE1B09F38E00EE4CAE /* AddBookmarkView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkView_default.swift; sourceTree = "<group>"; };
+		88C22FDF1B09F38E00EE4CAE /* AddBookmarkView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddBookmarkView_default.xib; sourceTree = "<group>"; };
+		88C22FE01B09F38E00EE4CAE /* AddBookmarkViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkViewModel.swift; sourceTree = "<group>"; };
+		A8E63A2C51549D408A84A2C8 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B488A06AB70A31ADFF120327 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E2223822D09989E2598C4DB7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		88C22FBC1B09F2F500EE4CAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4116D25CE4BB5A342B9BE4B4 /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E8DD6DC6DA4A52A472A06A7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B488A06AB70A31ADFF120327 /* Pods.debug.xcconfig */,
+				E2223822D09989E2598C4DB7 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		43B8D3AB6EB4A8F985985A69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A8E63A2C51549D408A84A2C8 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		88C22FB61B09F2F500EE4CAE = {
+			isa = PBXGroup;
+			children = (
+				88C22FC21B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample */,
+				88C22FC11B09F2F500EE4CAE /* Products */,
+				2E8DD6DC6DA4A52A472A06A7 /* Pods */,
+				43B8D3AB6EB4A8F985985A69 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		88C22FC11B09F2F500EE4CAE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88C22FC01B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88C22FC21B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample */ = {
+			isa = PBXGroup;
+			children = (
+				88C22FDC1B09F38E00EE4CAE /* AddBookmarkScreenlet */,
+				88C22FC51B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample.h */,
+				88C22FC31B09F2F500EE4CAE /* Supporting Files */,
+			);
+			path = LiferayScreensAddBookmarkScreenletSample;
+			sourceTree = "<group>";
+		};
+		88C22FC31B09F2F500EE4CAE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88C22FC41B09F2F500EE4CAE /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88C22FDC1B09F38E00EE4CAE /* AddBookmarkScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				88C22FDD1B09F38E00EE4CAE /* AddBookmarkScreenlet.swift */,
+				88C22FDE1B09F38E00EE4CAE /* AddBookmarkView_default.swift */,
+				88C22FDF1B09F38E00EE4CAE /* AddBookmarkView_default.xib */,
+				88C22FE01B09F38E00EE4CAE /* AddBookmarkViewModel.swift */,
+			);
+			path = AddBookmarkScreenlet;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		88C22FBD1B09F2F500EE4CAE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88C22FC61B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		88C22FBF1B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88C22FD61B09F2F500EE4CAE /* Build configuration list for PBXNativeTarget "LiferayScreensAddBookmarkScreenletSample" */;
+			buildPhases = (
+				C15385BD9E411CC5511659D0 /* Check Pods Manifest.lock */,
+				88C22FBB1B09F2F500EE4CAE /* Sources */,
+				88C22FBC1B09F2F500EE4CAE /* Frameworks */,
+				88C22FBD1B09F2F500EE4CAE /* Headers */,
+				88C22FBE1B09F2F500EE4CAE /* Resources */,
+				D96CE3DE2AD01BFFEA3C7095 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LiferayScreensAddBookmarkScreenletSample;
+			productName = LiferayScreensAddBookmarkScreenletSample;
+			productReference = 88C22FC01B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		88C22FB71B09F2F500EE4CAE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = Liferay;
+				TargetAttributes = {
+					88C22FBF1B09F2F500EE4CAE = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = 88C22FBA1B09F2F500EE4CAE /* Build configuration list for PBXProject "LiferayScreensAddBookmarkScreenletSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 88C22FB61B09F2F500EE4CAE;
+			productRefGroup = 88C22FC11B09F2F500EE4CAE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				88C22FBF1B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88C22FBE1B09F2F500EE4CAE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88C22FE31B09F38E00EE4CAE /* AddBookmarkView_default.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C15385BD9E411CC5511659D0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D96CE3DE2AD01BFFEA3C7095 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88C22FBB1B09F2F500EE4CAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88C22FE41B09F38E00EE4CAE /* AddBookmarkViewModel.swift in Sources */,
+				88C22FE21B09F38E00EE4CAE /* AddBookmarkView_default.swift in Sources */,
+				88C22FE11B09F38E00EE4CAE /* AddBookmarkScreenlet.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		88C22FD41B09F2F500EE4CAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		88C22FD51B09F2F500EE4CAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		88C22FD71B09F2F500EE4CAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B488A06AB70A31ADFF120327 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = LiferayScreensAddBookmarkScreenletSample/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		88C22FD81B09F2F500EE4CAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2223822D09989E2598C4DB7 /* Pods.release.xcconfig */;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = LiferayScreensAddBookmarkScreenletSample/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		88C22FBA1B09F2F500EE4CAE /* Build configuration list for PBXProject "LiferayScreensAddBookmarkScreenletSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88C22FD41B09F2F500EE4CAE /* Debug */,
+				88C22FD51B09F2F500EE4CAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88C22FD61B09F2F500EE4CAE /* Build configuration list for PBXNativeTarget "LiferayScreensAddBookmarkScreenletSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88C22FD71B09F2F500EE4CAE /* Debug */,
+				88C22FD81B09F2F500EE4CAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 88C22FB71B09F2F500EE4CAE /* Project object */;
+}
