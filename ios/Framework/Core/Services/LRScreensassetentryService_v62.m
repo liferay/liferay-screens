@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2014 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -12,12 +12,12 @@
  * details.
  */
 
-#import "LRMobilewidgetsassetentryService_v62.h"
+#import "LRScreensassetentryService_v62.h"
 
 /**
  * @author Bruno Farache
  */
-@implementation LRMobilewidgetsassetentryService_v62
+@implementation LRScreensassetentryService_v62
 
 - (NSArray *)getAssetEntriesWithAssetEntryQuery:(LRJSONObjectWrapper *)assetEntryQuery locale:(NSString *)locale error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
@@ -25,7 +25,7 @@
 	}];
 
 	[self mangleWrapperWithParams:_params name:@"assetEntryQuery" className:@"com.liferay.portlet.asset.service.persistence.AssetEntryQuery" wrapper:assetEntryQuery];
-	NSDictionary *_command = @{@"/mobile-widgets-web/mobilewidgetsassetentry/get-asset-entries": _params};
+	NSDictionary *_command = @{@"/screens-web.screensassetentry/get-asset-entries": _params};
 
 	return (NSArray *)[self.session invoke:_command error:error];
 }
