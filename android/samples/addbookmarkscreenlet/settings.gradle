@@ -1,0 +1,4 @@
+include ':core'
+project(':core').projectDir = new File(settingsDir, '../../library/core')
+include ':viewsets'
+project(':viewsets').projectDir = new File(settingsDir, '../../library/viewsets')

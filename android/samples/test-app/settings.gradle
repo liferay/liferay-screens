@@ -1,4 +1,6 @@
 include ':core'
 include ':viewsets'
+include ':addbookmarkscreenlet'
 project(':core').projectDir = new File(settingsDir, '../../library/core')
 project(':viewsets').projectDir = new File(settingsDir, '../../library/viewsets')
+project(':addbookmarkscreenlet').projectDir = new File(settingsDir, '../addbookmarkscreenlet')
