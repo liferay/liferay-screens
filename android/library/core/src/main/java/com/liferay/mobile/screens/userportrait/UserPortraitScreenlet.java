@@ -30,7 +30,6 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.interactor.BaseUserPortraitInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractor;
@@ -136,15 +135,19 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	public void onUserPortraitUploaded(boolean male, long portraitId, String uuid) {
+	public void onUserPortraitUploaded(Long uuid) {
 		if (_listener != null) {
 			_listener.onUserPortraitUploaded(this);
 		}
 
-		SessionContext.getLoggedUser().setPortraitId((int) portraitId);
-
 		getViewModel().showFinishOperation(UPLOAD_PORTRAIT);
-		((UserPortraitLoadInteractor) getInteractor(LOAD_PORTRAIT)).load(male, portraitId, uuid);
+
+		try {
+			((UserPortraitLoadInteractor) getInteractor(LOAD_PORTRAIT)).load(uuid);
+		}
+		catch (Exception e) {
+			LiferayLogger.e("Error reloading user portrait", e);
+		}
 	}
 
 	@Override
@@ -230,8 +233,9 @@ public class UserPortraitScreenlet
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
-		int defaultUserId = SessionContext.hasSession()
-				? (int) SessionContext.getLoggedUser().getId() : 0;
+		boolean otherParametersAreEmpty = _portraitId == 0 && _uuid == null;
+		int defaultUserId = SessionContext.hasSession() && otherParametersAreEmpty
+			? (int) SessionContext.getLoggedUser().getId() : 0;
 		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, defaultUserId);
 
 		int layoutId = typedArray.getResourceId(
@@ -259,7 +263,10 @@ public class UserPortraitScreenlet
 		try {
 			if (UPLOAD_PORTRAIT.equals(userActionName)) {
 				UserPortraitUploadInteractor userPortraitInteractor = (UserPortraitUploadInteractor) getInteractor(userActionName);
-				userPortraitInteractor.upload((String) args[0]);
+				String path = (String) args[0];
+				if (_userId != 0) {
+					userPortraitInteractor.upload(_userId, path);
+				}
 			}
 			else {
 				UserPortraitLoadInteractor userPortraitLoadInteractor = (UserPortraitLoadInteractor) getInteractor(userActionName);
