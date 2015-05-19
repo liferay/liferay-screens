@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
+import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.XSDParser;
 
 import org.junit.Test;
@@ -29,8 +30,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import static junit.framework.Assert.*;
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * @author Jose Manuel Navarro
@@ -38,7 +41,7 @@ import static junit.framework.Assert.assertEquals;
 @RunWith(Enclosed.class)
 public class DateFieldTest {
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingFromString {
 
@@ -128,7 +131,7 @@ public class DateFieldTest {
 		}
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToString {
 
@@ -150,7 +153,7 @@ public class DateFieldTest {
 		}
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToFormattedString {
 
@@ -182,7 +185,7 @@ public class DateFieldTest {
 		}
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 		@Test

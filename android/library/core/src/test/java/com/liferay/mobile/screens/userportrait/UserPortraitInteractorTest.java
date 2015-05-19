@@ -36,10 +36,8 @@ import org.robolectric.annotation.Config;
 @RunWith(Enclosed.class)
 public class UserPortraitInteractorTest {
 
-	public static final String LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML = "../src/main/AndroidManifest.xml";
-
 	@RunWith(RobolectricGradleTestRunner.class)
-	@Config(constants = BuildConfig.class, emulateSdk = 21, manifest = LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
+	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	public static class WhenLoadingFromPortraitId {
 
 		@Before

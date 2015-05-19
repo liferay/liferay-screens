@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
+import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.XSDParser;
 
 import org.junit.Test;
@@ -27,7 +28,6 @@ import java.util.List;
 import java.util.Locale;
 
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertSame;
@@ -39,7 +39,7 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class NumberFieldTest {
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingFromString {
 
@@ -87,7 +87,7 @@ public class NumberFieldTest {
 		}
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToString {
 
@@ -115,7 +115,7 @@ public class NumberFieldTest {
 		}
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToFormattedString {
 
@@ -152,7 +152,7 @@ public class NumberFieldTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 

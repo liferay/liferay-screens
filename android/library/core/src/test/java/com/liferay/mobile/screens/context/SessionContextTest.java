@@ -21,7 +21,6 @@ import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.context.storage.CredentialsStoreSharedPreferences;
-import com.liferay.mobile.screens.userportrait.UserPortraitInteractorTest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,7 +47,7 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(Enclosed.class)
 public class SessionContextTest {
 
-	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
+	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenCreateSession {
 
@@ -99,7 +98,7 @@ public class SessionContextTest {
 
 	}
 
-	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
+	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenClearSession {
 
@@ -121,7 +120,7 @@ public class SessionContextTest {
 
 	}
 
-	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
+	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenSettingUserAttributes {
 
@@ -149,7 +148,7 @@ public class SessionContextTest {
 
 	}
 
-	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
+	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	@RunWith(RobolectricGradleTestRunner.class)
 	public static class WhenStoreSessionInSharedPreferences {
 

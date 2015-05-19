@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.ddl;
 
+import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.model.Field;
 
 import org.junit.Test;
@@ -33,7 +34,7 @@ import static junit.framework.Assert.assertEquals;
 @RunWith(Enclosed.class)
 public class XSDParserLocalizationTest {
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenExistingCompleteLocaleIsProvided {
 		@Test
@@ -45,7 +46,7 @@ public class XSDParserLocalizationTest {
 		}
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenNoExistingCompleteLocaleIsProvided {
 		@Test
@@ -73,7 +74,7 @@ public class XSDParserLocalizationTest {
 		}
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenExistingNeutralLanguageIsProvided {
 		@Test
@@ -85,7 +86,7 @@ public class XSDParserLocalizationTest {
 		}
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenNoExistingNeutralLanguageIsProvided {
 		@Test

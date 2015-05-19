@@ -23,7 +23,6 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
-import com.liferay.mobile.screens.userportrait.UserPortraitInteractorTest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,8 +46,8 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class CredentialsStoreSharedPreferencesTest {
 
-	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
 	@RunWith(RobolectricGradleTestRunner.class)
+	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	public static class WhenStoreCredentials {
 
 		@Before
@@ -106,8 +105,8 @@ public class CredentialsStoreSharedPreferencesTest {
 
 	}
 
-	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
 	@RunWith(RobolectricGradleTestRunner.class)
+	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	public static class WhenRemoveStoredCredentials {
 
 		@Before
@@ -132,8 +131,8 @@ public class CredentialsStoreSharedPreferencesTest {
 
 	}
 
-	@Config(constants = BuildConfig.class, emulateSdk = 18, manifest = UserPortraitInteractorTest.LIBRARY_CORE_SRC_MAIN_ANDROID_MANIFEST_XML)
 	@RunWith(RobolectricGradleTestRunner.class)
+	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	public static class WhenLoadingStoredCredentials {
 
 		@Before

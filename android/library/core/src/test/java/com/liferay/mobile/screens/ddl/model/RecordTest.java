@@ -15,7 +15,8 @@
 package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
-import android.os.Parcelable;
+
+import com.liferay.mobile.screens.BuildConfig;
 
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -28,7 +29,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
@@ -39,7 +39,7 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class RecordTest {
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class AfterCreatingFromXSD {
 
@@ -69,7 +69,7 @@ public class RecordTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenGettingValues {
 
@@ -142,7 +142,7 @@ public class RecordTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenSettingValues {
 
@@ -175,7 +175,7 @@ public class RecordTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenSerialize {
 

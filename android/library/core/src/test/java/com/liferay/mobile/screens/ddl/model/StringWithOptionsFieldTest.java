@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
+import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.XSDParser;
 
 import org.junit.Test;
@@ -40,7 +41,7 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class StringWithOptionsFieldTest {
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenClearingOptions {
 
@@ -93,7 +94,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenCreating {
 
@@ -129,7 +130,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToString {
 
@@ -196,7 +197,7 @@ public class StringWithOptionsFieldTest {
 	@RunWith(Enclosed.class)
 	public static class WhenConvertingFromString {
 
-		@Config(emulateSdk = 18)
+		@Config(constants = BuildConfig.class)
 		@RunWith(RobolectricTestRunner.class)
 		public static class ShouldReturnNull {
 			@Test
@@ -207,7 +208,7 @@ public class StringWithOptionsFieldTest {
 			}
 		}
 
-		@Config(emulateSdk = 18)
+		@Config(constants = BuildConfig.class)
 		@RunWith(RobolectricTestRunner.class)
 		public static class ShouldReturnEmptyList {
 			@Test
@@ -231,7 +232,7 @@ public class StringWithOptionsFieldTest {
 			}
 		}
 
-		@Config(emulateSdk = 18)
+		@Config(constants = BuildConfig.class)
 		@RunWith(RobolectricTestRunner.class)
 		public static class ShouldReturnSingleItemList {
 
@@ -318,7 +319,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToFormattedString {
 
@@ -349,7 +350,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 		@Test
@@ -436,7 +437,7 @@ public class StringWithOptionsFieldTest {
 		}
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenSelectingOption {
 
@@ -483,7 +484,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenValidating {
 
