@@ -2,8 +2,8 @@ package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
 
-import com.liferay.mobile.screens.bookmark.AddBookmarkListener;
 import com.liferay.mobile.screens.bookmark.AddBookmarkScreenlet;
+import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkListener;
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 /**
