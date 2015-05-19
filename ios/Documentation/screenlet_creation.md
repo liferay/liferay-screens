@@ -68,17 +68,17 @@ class AddBookmarkView_default: BaseScreenletView, AddBookmarkViewModel {
 }
 ```
 
-* Set `AddBookmarkView_default` as your `AddBookmarkView_default.xib` file's custom class. If you're using CocoaPods, be careful to set the appropiate module (don't use the grayed value "Current"). For example, the Custom Class setting in this screenshot is incorrect. This is because the `xib` file is bound to the custom class name without specifying the module:
+* Set `AddBookmarkView_default` as your `AddBookmarkView_default.xib` file's custom class. If you're using CocoaPods, be careful to set the appropiate module (don't use the grayed out value "Current"). For example, the Custom Class setting in this screenshot is incorrect. This is because the `xib` file is bound to the custom class name without specifying the module:
 
 ![The `xib` file is bound to the custom class name without specifying the module.](Images/xcode-theme-custom-module-wrong.png)
 
 In the following screenshot, the setting for the custom class is correct:
 
-![Xib file binded to custom class name specifying the module.](Images/xcode-theme-custom-module-right.png)
+![The `xib` file is bound to the custom class name, with the module specified.](Images/xcode-theme-custom-module-right.png)
 
 * Create a class called `GetSiteTitleInteractor` that extends from the `Interactor` class. This new class is the place where you need to write the code that gets the web site's title. It's important to understand how an interactor works:
 
-	* It works asynchronously. This means that the underlaying operation (to retrieve the HTML page) runs in the background. When it completes, a closure is called: `onSuccess` or `onFailure` depending on the operation's result. You must use the `callOnSuccess()` and `callOnFailure(error)` methods, respectively, to invoke those closures. 
+	* It works asynchronously. This means that the underlying operation (to retrieve the HTML page) runs in the background. When it completes, a closure is called: `onSuccess` or `onFailure` depending on the operation's result. You must use the `callOnSuccess()` and `callOnFailure(error)` methods, respectively, to invoke those closures. 
 	* You must override the `start()` method and place your code there.
 	* Since the interactor receives the source screenlet in the init method, you can use that reference to read the input data.
 
