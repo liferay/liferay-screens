@@ -18,10 +18,14 @@ import UIKit
 #endif
 
 
-public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel {
+public class UserPortraitView_default: BaseScreenletView,
+		UserPortraitViewModel,
+		UIActionSheetDelegate,
+		UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-	@IBOutlet var activityIndicator: UIActivityIndicatorView?
-	@IBOutlet var portraitImage: UIImageView?
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+	@IBOutlet weak var portraitImage: UIImageView?
+	@IBOutlet weak var editButton: UIButton!
 
 	public var borderWidth: CGFloat = 1.0 {
 		didSet {
@@ -31,6 +35,14 @@ public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel 
 	public var borderColor: UIColor? {
 		didSet {
 			portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
+		}
+	}
+	public var editable: Bool = false {
+		didSet {
+			self.editButton.hidden = !editable
+			if editable {
+				self.superview?.clipsToBounds = false
+			}
 		}
 	}
 
@@ -53,8 +65,18 @@ public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel 
 
 	private(set) var loadedURL: NSURL?
 
+	private let imagePicker = UIImagePickerController()
+
 
 	//MARK: BaseScreenletView
+
+	override func onCreated() {
+		super.onCreated()
+
+		imagePicker.delegate = self
+		imagePicker.allowsEditing = true
+		imagePicker.modalPresentationStyle = .FullScreen
+	}
 
 	override func onStartOperation() {
 		objc_sync_enter(self)
@@ -87,6 +109,51 @@ public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel 
 		portraitImage?.layer.borderWidth = borderWidth
 		portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
 		portraitImage?.layer.cornerRadius = DefaultThemeButtonCornerRadius
+	}
+
+	override func onPreAction(#name: String?, sender: AnyObject?) -> Bool {
+		if name == "edit-portrait" {
+
+			let takeNewPicture = LocalizedString("default", "userportrait-take-new-picture", self)
+			let chooseExisting = LocalizedString("default", "userportrait-choose-existing-picture", self)
+
+			let sheet = UIActionSheet(
+					title: "Change portrait",
+					delegate: self,
+					cancelButtonTitle: "Cancel",
+					destructiveButtonTitle: nil, otherButtonTitles: takeNewPicture, chooseExisting)
+			sheet.showInView(self)
+
+			return false
+		}
+
+		return true
+	}
+
+	public func actionSheet(
+			actionSheet: UIActionSheet,
+			clickedButtonAtIndex buttonIndex: Int) {
+
+		let newPicture = 1
+		let chooseExisting = 2
+
+		switch buttonIndex {
+		case newPicture:
+			imagePicker.sourceType = .Camera
+
+		case chooseExisting:
+			imagePicker.sourceType = .SavedPhotosAlbum
+
+		default:
+			return
+		}
+
+		if let vc = self.presentingViewController {
+			vc.presentViewController(imagePicker, animated: true, completion: {})
+		}
+		else {
+			println("ERROR: You neet to set the presentingViewController before using UIActionSheet")
+		}
 	}
 
 
@@ -135,6 +202,24 @@ public class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel 
 				name: "default-portrait-placeholder",
 				currentClass: self.dynamicType,
 				currentTheme: "default")
+	}
+
+
+	//MARK: UIImagePickerControllerDelegate
+
+    public func imagePickerController(
+			picker: UIImagePickerController,
+			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+
+		let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage
+
+		imagePicker.dismissViewControllerAnimated(true) {}
+
+		userAction(name: "upload-portrait", sender: editedImage)
+	}
+
+    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+		imagePicker.dismissViewControllerAnimated(true) {}
 	}
 
 }

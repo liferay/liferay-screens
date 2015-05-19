@@ -41,6 +41,19 @@ import Foundation
 		return authentication?.username
 	}
 
+	public class var currentPassword: String? {
+		var authentication = StaticInstance.currentSession?.authentication
+			as! LRBasicAuthentication?
+
+		return authentication?.password
+	}
+
+	public class var currentUserId: Int64? {
+		return StaticInstance.userAttributes["userId"]
+				.map { $0 as! Int }
+				.map { Int64($0) }
+	}
+
 	internal class var sessionStorage: SessionStorage {
 		get {
 			return StaticInstance.sessionStorage
@@ -50,12 +63,6 @@ import Foundation
 		}
 	}
 
-	public class var currentPassword: String? {
-		var authentication = StaticInstance.currentSession?.authentication
-			as! LRBasicAuthentication?
-
-		return authentication?.password
-	}
 
 	//MARK Public methods
 

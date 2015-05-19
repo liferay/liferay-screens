@@ -39,14 +39,19 @@ Pod::Spec.new do |s|
 		'OTHER_SWIFT_FLAGS' => '"-D" "LIFERAY_SCREENS_FRAMEWORK"'
 	}
 
+	# Core
+	s.dependency 'Liferay-iOS-SDK', '6.2.0.17'
 	s.dependency 'MBProgressHUD', '~> 0.9.1'
-	s.dependency 'SMXMLDocument'
 	s.dependency 'UICKeyChainStore'
+	s.dependency 'SMXMLDocument'
+	s.dependency 'ODRefreshControl'
+
+	# UserPortrait
+	s.dependency 'CryptoSwift'
+
+	# DDLForm
 	s.dependency 'DTPickerPresenter'
 	s.dependency 'TNRadioButtonGroup'
 	s.dependency 'MDRadialProgress'
-	s.dependency 'ODRefreshControl'
-	s.dependency 'Liferay-iOS-SDK', '6.2.0.17'
-	s.dependency 'CryptoSwift'
 
 end

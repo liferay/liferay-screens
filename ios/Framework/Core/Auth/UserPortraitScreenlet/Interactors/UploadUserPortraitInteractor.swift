@@ -14,22 +14,30 @@
 import UIKit
 
 
-class UserPortraitLoadByUserIdInteractor: UserPortraitBaseLoadUserInteractor {
+class UploadUserPortraitInteractor: ServerOperationInteractor {
+
+	var uploadResult: [String:AnyObject]?
 
 	let userId: Int64
+	let image: UIImage
 
-	init(screenlet: BaseScreenlet, userId: Int64) {
+	init(screenlet: BaseScreenlet, userId: Int64, image: UIImage) {
 		self.userId = userId
+		self.image = image
 
 		super.init(screenlet: screenlet)
 	}
 
-	override func createLoadUserOperation() -> GetUserBaseOperation? {
-		return GetUserByUserIdOperation(screenlet: screenlet, userId: userId)
+
+	override func createOperation() -> LiferayUploadUserPortraitOperation {
+		return LiferayUploadUserPortraitOperation(
+				screenlet: self.screenlet,
+				userId: self.userId,
+				image: self.image)
 	}
 
-	override func isUserLogged() -> Bool {
-		return (userId == SessionContext.currentUserId)
+	override func completedOperation(op: ServerOperation) {
+		self.uploadResult = (op as! LiferayUploadUserPortraitOperation).uploadResult
 	}
 
 }
