@@ -16,13 +16,11 @@ import UIKit
 
 @objc public protocol ForgotPasswordScreenletDelegate {
 
-	optional func onForgotPasswordResponse(
-			screenlet: ForgotPasswordScreenlet,
-			newPasswordSent:Bool)
+	optional func screenlet(screenlet: ForgotPasswordScreenlet,
+			onForgotPasswordSent passwordSent: Bool)
 
-	optional func onForgotPasswordError(
-			screenlet: ForgotPasswordScreenlet,
-			error: NSError)
+	optional func screenlet(screenlet: ForgotPasswordScreenlet,
+			onForgotPasswordError error: NSError)
 
 }
 
@@ -73,13 +71,13 @@ import UIKit
 		let interactor = ForgotPasswordInteractor(screenlet: self)
 
 		interactor.onSuccess = {
-			self.delegate?.onForgotPasswordResponse?(self,
-					newPasswordSent: interactor.resultPasswordSent!)
+			self.delegate?.screenlet?(self,
+					onForgotPasswordSent: interactor.resultPasswordSent!)
 			return
 		}
 
 		interactor.onFailure = {
-			self.delegate?.onForgotPasswordError?(self, error: $0)
+			self.delegate?.screenlet?(self, onForgotPasswordError: $0)
 			return
 		}
 

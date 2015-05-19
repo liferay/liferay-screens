@@ -16,17 +16,14 @@ import UIKit
 
 @objc public protocol DDLListScreenletDelegate {
 
-	optional func onDDLListResponse(
-			screenlet: DDLListScreenlet,
-			records: [DDLRecord])
+	optional func screenlet(screenlet: DDLListScreenlet,
+			onDDLListResponseRecords records: [DDLRecord])
 
-	optional func onDDLListError(
-			screenlet: DDLListScreenlet,
-			error: NSError)
+	optional func screenlet(screenlet: DDLListScreenlet,
+			onDDLListError error: NSError)
 
-	optional func onDDLRecordSelected(
-			screenlet: DDLListScreenlet,
-			record: DDLRecord)
+	optional func screenlet(screenlet: DDLListScreenlet,
+			onDDLSelectedRecord record: DDLRecord)
 
 }
 
@@ -73,19 +70,19 @@ import UIKit
 	override internal func onLoadPageError(#page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
 
-		delegate?.onDDLListError?(self, error: error)
+		delegate?.screenlet?(self, onDDLListError: error)
 	}
 
 	override internal func onLoadPageResult(#page: Int, rows: [AnyObject], rowCount: Int) {
 		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
-		let records = rows as! [DDLRecord]
-
-		delegate?.onDDLListResponse?(self, records: records)
+		delegate?.screenlet?(self,
+				onDDLListResponseRecords: rows as! [DDLRecord])
 	}
 
 	override internal func onSelectedRow(row: AnyObject) {
-		delegate?.onDDLRecordSelected?(self, record: row as! DDLRecord)
+		delegate?.screenlet?(self,
+				onDDLSelectedRecord: row as! DDLRecord)
 	}
 
 

@@ -16,17 +16,14 @@ import UIKit
 
 @objc public protocol AssetListScreenletDelegate {
 
-	optional func onAssetListResponse(
-			screenlet: AssetListScreenlet,
-			entries: [AssetListScreenletEntry])
+	optional func screenlet(screenlet: AssetListScreenlet,
+			onAssetListResponseEntries entries: [AssetListScreenletEntry])
 
-	optional func onAssetListError(
-			screenlet: AssetListScreenlet,
-			error: NSError)
+	optional func screenlet(screenlet: AssetListScreenlet,
+			onAssetListError error: NSError)
 
-	optional func onAssetSelected(
-			screenlet: AssetListScreenlet,
-			entry: AssetListScreenletEntry)
+	optional func screenlet(screenlet: AssetListScreenlet,
+			onAssetSelectedEntry entry: AssetListScreenletEntry)
 
 }
 
@@ -99,7 +96,7 @@ import UIKit
 	override internal func onLoadPageError(#page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
 
-		delegate?.onAssetListError?(self, error: error)
+		delegate?.screenlet?(self, onAssetListError: error)
 	}
 
 	override internal func onLoadPageResult(#page: Int, rows: [AnyObject], rowCount: Int) {
@@ -107,11 +104,11 @@ import UIKit
 
 		let assetEntries = rows as! [AssetListScreenletEntry]
 
-		delegate?.onAssetListResponse?(self, entries: assetEntries)
+		delegate?.screenlet?(self, onAssetListResponseEntries: assetEntries)
 	}
 
 	override internal func onSelectedRow(row: AnyObject) {
-		delegate?.onAssetSelected?(self, entry: row as! AssetListScreenletEntry)
+		delegate?.screenlet?(self, onAssetSelectedEntry: row as! AssetListScreenletEntry)
 	}
 
 }
