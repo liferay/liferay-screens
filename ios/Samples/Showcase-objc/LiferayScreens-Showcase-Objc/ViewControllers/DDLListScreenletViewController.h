@@ -15,6 +15,4 @@
 
 @interface DDLListScreenletViewController : UIViewController<DDLListScreenletDelegate>
 
-
 @end
-

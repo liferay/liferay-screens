@@ -15,6 +15,4 @@
 
 @interface ForgotPasswordScreenletViewController : UIViewController<ForgotPasswordScreenletDelegate>
 
-
 @end
-

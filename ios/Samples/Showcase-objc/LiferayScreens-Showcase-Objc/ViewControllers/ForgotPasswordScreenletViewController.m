@@ -28,11 +28,13 @@
 	self.screenlet.delegate = self;
 }
 
-- (void)onForgotPasswordResponse:(BOOL)newPasswordSent {
-	NSLog(@"DELEGATE onForgotPasswordResponse -> %@", newPasswordSent ? @"yes" : @"no");
+- (void)screenlet:(ForgotPasswordScreenlet *)screenlet
+		onForgotPasswordSent:(BOOL)passwordSent {
+	NSLog(@"DELEGATE onForgotPasswordResponse -> %@", passwordSent ? @"yes" : @"no");
 }
 
-- (void)onForgotPasswordError:(NSError *)error {
+- (void)screenlet:(ForgotPasswordScreenlet *)screenlet
+		onForgotPasswordError:(NSError *)error {
 	NSLog(@"DELEGATE onForgotPasswordError -> %@", error);
 }
 

@@ -28,12 +28,14 @@
 	self.screenlet.delegate = self;
 }
 
-- (NSString *)onWebContentResponse:(NSString *)html {
+- (NSString *)screenlet:(WebContentDisplayScreenlet *)screenlet
+		onWebContentResponse:(NSString *)html {
 	NSLog(@"DELEGATE onWebContentResponse -> %@", html);
 	return nil;
 }
 
-- (void)onWebContentError:(NSError *)error {
+- (void)screenlet:(WebContentDisplayScreenlet *)screenlet
+		onWebContentError:(NSError *)error {
 	NSLog(@"DELEGATE onWebContentError -> %@", error);
 }
 
