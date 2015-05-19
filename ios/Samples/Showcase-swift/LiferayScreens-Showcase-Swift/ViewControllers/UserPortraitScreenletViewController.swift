@@ -38,13 +38,14 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 		screenletWithDelegate?.delegate = self
     }
 
-	func onUserPortraitResponse(image: UIImage) -> UIImage {
+	func screenlet(screenlet: UserPortraitScreenlet, onUserPortraitResponseImage image: UIImage) -> UIImage {
 		println("DELEGATE: onUserPortraitResponse -> \(image.size)")
 
 		return image.getGrayScale() ?? image
 	}
 
-	func onUserPortraitError(error: NSError) {
+	func screenlet(screenlet: UserPortraitScreenlet,
+		onUserPortraitError error: NSError) {
 		println("DELEGATE: onUserPortraitError -> \(error)")
 	}
 

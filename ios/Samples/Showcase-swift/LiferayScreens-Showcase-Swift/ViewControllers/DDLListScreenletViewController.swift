@@ -36,15 +36,18 @@ class DDLListScreenletViewController: UIViewController, DDLListScreenletDelegate
 		self.screenlet?.delegate = self
 	}
 
-	func onDDLListResponse(records: [DDLRecord]) {
+	func screenlet(screenlet: DDLListScreenlet,
+			onDDLListResponseRecords records: [DDLRecord]) {
 		println("DELEGATE: onDDLListResponse called -> \(records)");
 	}
 
-	func onDDLListError(error: NSError) {
+	func screenlet(screenlet: DDLListScreenlet,
+			onDDLListError error: NSError) {
 		println("DELEGATE: onDDLListError called -> \(error)");
 	}
 
-	func onDDLRecordSelected(record: DDLRecord) {
+	func screenlet(screenlet: DDLListScreenlet,
+			onDDLSelectedRecord record: DDLRecord) {
 		println("DELEGATE: onDDLRecordSelected called -> \(record)");
 	}
 
