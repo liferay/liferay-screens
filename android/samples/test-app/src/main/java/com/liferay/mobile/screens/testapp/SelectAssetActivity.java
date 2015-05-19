@@ -21,7 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.liferay.mobile.screens.assetlist.AssetClassNameId;
+import com.liferay.mobile.screens.assetlist.AssetClassNameIdEE;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
 /**
@@ -36,8 +36,8 @@ public class SelectAssetActivity extends ThemeActivity implements AdapterView.On
 		setContentView(R.layout.select_asset);
 
 		ListView assetList = (ListView) findViewById(R.id.select_asset_list);
-		ArrayAdapter<AssetClassNameId> adapter = new ArrayAdapter<>(this,
-				android.R.layout.simple_list_item_1, AssetClassNameId.values());
+		ArrayAdapter<AssetClassNameIdEE> adapter = new ArrayAdapter<>(this,
+				android.R.layout.simple_list_item_1, AssetClassNameIdEE.values());
 		assetList.setAdapter(adapter);
 		assetList.setOnItemClickListener(this);
 	}
@@ -45,7 +45,7 @@ public class SelectAssetActivity extends ThemeActivity implements AdapterView.On
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Intent intent = getIntentWithTheme(AssetListActivity.class);
-		intent.putExtra("classNameId", AssetClassNameId.values()[position].getValue());
+		intent.putExtra("classNameId", AssetClassNameIdEE.values()[position].getValue());
 		DefaultAnimation.startActivityWithAnimation(this, intent);
 	}
 }
