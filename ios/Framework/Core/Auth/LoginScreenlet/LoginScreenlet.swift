@@ -16,11 +16,16 @@ import UIKit
 
 @objc public protocol LoginScreenletDelegate {
 
-	optional func onLoginResponse(attributes: [String:AnyObject])
-	optional func onLoginError(error: NSError)
+	optional func onLoginResponse(
+			screenlet: BaseScreenlet,
+			attributes: [String:AnyObject])
 
-	optional func onCredentialsSaved()
-	optional func onCredentialsLoaded()
+	optional func onLoginError(
+			screenlet: BaseScreenlet,
+			error: NSError)
+
+	optional func onCredentialsSaved(screenlet: BaseScreenlet)
+	optional func onCredentialsLoaded(screenlet: BaseScreenlet)
 
 }
 
@@ -63,7 +68,7 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedType {
 			viewModel.userName = SessionContext.currentUserName!
 			viewModel.password = SessionContext.currentPassword!
 
-			delegate?.onCredentialsLoaded?()
+			delegate?.onCredentialsLoaded?(self)
 		}
 	}
 
@@ -71,17 +76,17 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedType {
 		let interactor = LoginInteractor(screenlet: self)
 
 		interactor.onSuccess = {
-			self.delegate?.onLoginResponse?(interactor.resultUserAttributes!)
+			self.delegate?.onLoginResponse?(self, attributes: interactor.resultUserAttributes!)
 
 			if self.saveCredentials {
 				if SessionContext.storeSession() {
-					self.delegate?.onCredentialsSaved?()
+					self.delegate?.onCredentialsSaved?(self)
 				}
 			}
 		}
 
 		interactor.onFailure = {
-			self.delegate?.onLoginError?($0)
+			self.delegate?.onLoginError?(self, error: $0)
 			return
 		}
 

@@ -16,8 +16,13 @@ import UIKit
 
 @objc public protocol UserPortraitScreenletDelegate {
 
-	optional func onUserPortraitResponse(image: UIImage) -> UIImage
-	optional func onUserPortraitError(error: NSError)
+	optional func onUserPortraitResponse(
+			screenlet: UserPortraitScreenlet,
+			image: UIImage) -> UIImage
+
+	optional func onUserPortraitError(
+			UserPortraitScreenlet,
+			error: NSError)
 
 }
 
@@ -111,7 +116,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 		if url == nil {
 			screenletView?.onFinishOperation()
-			delegate?.onUserPortraitError?(createError(cause: .AbortedDueToPreconditions))
+			delegate?.onUserPortraitError?(self,
+					error: createError(cause: .AbortedDueToPreconditions))
 		}
 	}
 
@@ -119,10 +125,10 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		var finalImage = image
 
 		if let errorValue = error {
-			delegate?.onUserPortraitError?(errorValue)
+			delegate?.onUserPortraitError?(self, error: errorValue)
 		}
 		else if let imageValue = image {
-			finalImage = delegate?.onUserPortraitResponse?(imageValue)
+			finalImage = delegate?.onUserPortraitResponse?(self, image: imageValue)
 		}
 
 		screenletView?.onFinishOperation()

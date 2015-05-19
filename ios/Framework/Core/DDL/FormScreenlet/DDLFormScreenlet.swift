@@ -16,22 +16,50 @@ import UIKit
 
 @objc public protocol DDLFormScreenletDelegate {
 
-	optional func onFormLoaded(record: DDLRecord)
-	optional func onFormLoadError(error: NSError)
+	optional func onFormLoaded(
+			screenlet: DDLFormScreenlet,
+			record: DDLRecord)
 
-	optional func onRecordLoaded(record: DDLRecord)
-	optional func onRecordLoadError(error: NSError)
+	optional func onFormLoadError(
+			screenlet: DDLFormScreenlet,
+			error: NSError)
 
-	optional func onFormSubmitted(record: DDLRecord)
-	optional func onFormSubmitError(error: NSError)
+	optional func onRecordLoaded(
+			screenlet: DDLFormScreenlet,
+			record: DDLRecord)
 
-	optional func onDocumentUploadStarted(field:DDLFieldDocument)
-	optional func onDocumentUploadedBytes(field:DDLFieldDocument,
+	optional func onRecordLoadError(
+			screenlet: DDLFormScreenlet,
+			error: NSError)
+
+	optional func onFormSubmitted(
+			screenlet: DDLFormScreenlet,
+			record: DDLRecord)
+
+	optional func onFormSubmitError(
+			screenlet: DDLFormScreenlet,
+			error: NSError)
+
+	optional func onDocumentUploadStarted(
+			screenlet: DDLFormScreenlet,
+			field:DDLFieldDocument)
+
+	optional func onDocumentUploadedBytes(
+			screenlet: DDLFormScreenlet,
+			field:DDLFieldDocument,
 			bytes: UInt,
 			sent: Int64,
 			total: Int64)
-	optional func onDocumentUploadCompleted(field:DDLFieldDocument, result:[String:AnyObject])
-	optional func onDocumentUploadError(field:DDLFieldDocument, error: NSError)
+
+	optional func onDocumentUploadCompleted(
+			screenlet: DDLFormScreenlet,
+			field:DDLFieldDocument,
+			result:[String:AnyObject])
+
+	optional func onDocumentUploadError(
+			screenlet: DDLFormScreenlet,
+			field:DDLFieldDocument,
+			error: NSError)
 
 }
 
@@ -123,7 +151,7 @@ import UIKit
 		if name! == UploadDocumentAction && result {
 			let uploadInteractor = interactor as! DDLFormUploadDocumentInteractor
 
-			delegate?.onDocumentUploadStarted?(uploadInteractor.document)
+			delegate?.onDocumentUploadStarted?(self, field: uploadInteractor.document)
 
 			switch uploadStatus {
 				case .Uploading(let uploadCount, let submitRequested):
@@ -146,12 +174,12 @@ import UIKit
 				self.userId = interactor.resultUserId ?? self.userId
 				self.formView.record = resultRecordValue
 
-				self.delegate?.onFormLoaded?(resultRecordValue)
+				self.delegate?.onFormLoaded?(self, record: resultRecordValue)
 			}
 		}
 
 		interactor.onFailure = {
-			self.delegate?.onFormLoadError?($0)
+			self.delegate?.onFormLoadError?(self, error: $0)
 			return
 		}
 
@@ -170,12 +198,12 @@ import UIKit
 				self.recordId = resultRecordIdValue
 				self.formView.record!.recordId = resultRecordIdValue
 
-				self.delegate?.onFormSubmitted?(self.formView.record!)
+				self.delegate?.onFormSubmitted?(self, record: self.formView.record!)
 			}
 		}
 
 		interactor.onFailure = {
-			self.delegate?.onFormSubmitError?($0)
+			self.delegate?.onFormSubmitError?(self, error: $0)
 			return
 		}
 
@@ -191,7 +219,7 @@ import UIKit
 				self.userId = interactor.resultFormUserId ?? self.userId
 				self.formView.record = resultFormRecordValue
 
-				self.delegate?.onFormLoaded?(resultFormRecordValue)
+				self.delegate?.onFormLoaded?(self, record: resultFormRecordValue)
 			}
 
 			// then set data
@@ -202,12 +230,12 @@ import UIKit
 				// Force didSet event
 				self.formView.record = recordValue
 
-				self.delegate?.onRecordLoaded?(recordValue)
+				self.delegate?.onRecordLoaded?(self, record: recordValue)
 			}
 		}
 
 		interactor.onFailure = {
-			self.delegate?.onRecordLoadError?($0)
+			self.delegate?.onRecordLoadError?(self, error: $0)
 			return
 		}
 
@@ -223,7 +251,11 @@ import UIKit
 				case .Uploading(_, _):
 					formView.changeDocumentUploadStatus(document)
 
-					delegate?.onDocumentUploadedBytes?(document, bytes: bytes, sent: sent, total: total)
+					delegate?.onDocumentUploadedBytes?(self,
+							field: document,
+							bytes: bytes,
+							sent: sent,
+							total: total)
 
 				default: ()
 			}
@@ -237,7 +269,8 @@ import UIKit
 		interactor.onSuccess = {
 			self.formView.changeDocumentUploadStatus(interactor.document)
 
-			self.delegate?.onDocumentUploadCompleted?(interactor.document,
+			self.delegate?.onDocumentUploadCompleted?(self,
+					field: interactor.document,
 					result: interactor.resultResponse!)
 
 			// set new status
@@ -268,7 +301,9 @@ import UIKit
 				self.formView.showField(interactor.document)
 			}
 
-			self.delegate?.onDocumentUploadError?(interactor.document, error: $0)
+			self.delegate?.onDocumentUploadError?(self,
+					field: interactor.document,
+					error: $0)
 
 			self.uploadStatus = .Failed($0)
 		}
