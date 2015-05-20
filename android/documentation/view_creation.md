@@ -128,4 +128,4 @@ The example Extended view here presents the same components as the Default view,
 
 ## Packaging Your Views
 
-Views are typically created as source code inside your app's project. If you want to distribute your views or reuse them in different projects, however, you should package them in a project that is then added as an app's project dependency. To do this, use the [viewsets](https://github.com/liferay/liferay-screens/tree/master/android/library/viewsets) subproject as a template using a similar [`build.gradle`](https://github.com/liferay/liferay-screens/blob/master/android/library/viewsets/build.gradle) file.
+Views are typically created as source code inside your app's project. If you want to distribute your views or reuse them in different projects, however, you should package them in a project that is then added as an app's project dependency. To do this, use the [material](https://github.com/liferay/liferay-screens/tree/master/android/viewsets/material) subproject as a template using a similar [`build.gradle`](https://github.com/liferay/liferay-screens/blob/master/android/viewsets/material/build.gradle) file.
