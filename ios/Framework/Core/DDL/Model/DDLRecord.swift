@@ -91,5 +91,10 @@ public class DDLRecord: NSObject {
 		}
 	}
 
+	public func clearValues() {
+		for field in fields {
+			field.currentValue = field.predefinedValue
+		}
+	}
 
 }

@@ -71,6 +71,10 @@ import UIKit
 
 	@IBOutlet public weak var delegate: DDLFormScreenletDelegate?
 
+	public var isFormLoaded: Bool {
+		return !((screenletView as? DDLFormView)?.isRecordEmpty ?? true)
+	}
+
 	internal var formView: DDLFormView {
 		return screenletView as! DDLFormView
 	}
@@ -285,6 +289,11 @@ import UIKit
 
 	public func loadForm() -> Bool {
 		return performAction(name: LoadFormAction)
+	}
+
+	public func clearForm() {
+		formView.record?.clearValues()
+		formView.refresh()
 	}
 
 	public func loadRecord() -> Bool {
