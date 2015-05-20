@@ -62,7 +62,8 @@ class IssuesViewController: CardViewController,
 		}
 	}
 
-	func onDDLRecordSelected(record: DDLRecord) {
+	func screenlet(screenlet: DDLListScreenlet,
+			onDDLSelectedRecord record: DDLRecord) {
 		onEditIssue?(record)
 	}
 
@@ -78,6 +79,5 @@ class IssuesViewController: CardViewController,
 		let newRect = CGRectMake(scroll.frame.size.width, 0, scroll.frame.size)
 		scroll.scrollRectToVisible(newRect, animated: true)
 	}
-
 
 }

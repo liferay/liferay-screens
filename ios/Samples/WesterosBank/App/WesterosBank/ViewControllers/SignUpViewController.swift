@@ -39,11 +39,9 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 				LiferayServerContext.valueForKey("anonymousPassword") as? String
 	}
 
-	func onSignUpResponse(attributes: [String:AnyObject]) {
+	func screenlet(screenlet: SignUpScreenlet,
+			onSignUpResponseUserAttributes attributes: [String:AnyObject]) {
 		onDone?()
-	}
-
-	func onSignUpError(error: NSError) {
 	}
 
 }

@@ -91,18 +91,14 @@ class SignInViewController: CardViewController,
 		scroll.scrollRectToVisible(newRect, animated: true)
 	}
 
-	func onLoginResponse(attributes: [String:AnyObject]) {
+	func screenlet(screenlet: BaseScreenlet,
+			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
 		onDone?()
 	}
 
-	func onLoginError(error: NSError) {
-	}
-
-	func onForgotPasswordResponse(newPasswordSent:Bool) {
+	func screenlet(screenlet: ForgotPasswordScreenlet,
+			onForgotPasswordSent passwordSent: Bool) {
 		backAction(self)
-	}
-
-	func onForgotPasswordError(error: NSError) {
 	}
 
 	override func cardWillAppear() {

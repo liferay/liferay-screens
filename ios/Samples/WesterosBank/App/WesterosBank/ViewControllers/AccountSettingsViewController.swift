@@ -60,4 +60,10 @@ class AccountSettingsViewController: UIViewController,
 		}
 	}
 
+	func screenlet(screenlet: SignUpScreenlet,
+			onSignUpResponseUserAttributes attributes: [String:AnyObject]) {
+		closeAction(screenlet)
+	}
+
+
 }

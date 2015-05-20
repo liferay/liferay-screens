@@ -58,7 +58,8 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 		}
 	}
 
-	func onFormSubmitted(record: DDLRecord) {
+	func screenlet(screenlet: DDLFormScreenlet,
+			onFormSubmitted record: DDLRecord) {
 		onDone?()
 	}
 
