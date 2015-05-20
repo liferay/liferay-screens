@@ -97,18 +97,6 @@
 	return self.pickerData[row][0];
 }
 
-- (void)onAssetListResponse:(NSArray *)entries {
-	NSLog(@"DELEGATE onAssetListResponse -> %@", entries);
-}
-
-- (void)onAssetListError:(NSError *)error {
-	NSLog(@"DELEGATE onAssetListError -> %@", error);
-}
-
-- (void)onAssetSelected:(AssetListScreenletEntry *)entry {
-	NSLog(@"DELEGATE onAssetSelected -> %@", entry);
-}
-
 - (void)showPicker:(BOOL)show animated:(BOOL)animated {
 	[UIView animateWithDuration:animated ? 0.5 : 0 animations:^{
 		self.picker.superview.frame = CGRectMake(
@@ -118,5 +106,21 @@
 				self.picker.superview.frame.size.height);
 	}];
 }
+
+- (void)screenlet:(AssetListScreenlet *)screenlet
+		onAssetListResponseEntries:(NSArray *)entries {
+	NSLog(@"DELEGATE onAssetListResponse -> %@", entries);
+}
+
+- (void)screenlet:(AssetListScreenlet *)screenlet
+		onAssetListError:(NSError *)error {
+	NSLog(@"DELEGATE onAssetListError -> %@", error);
+}
+
+- (void)screenlet:(AssetListScreenlet *)screenlet
+		onAssetSelectedEntry:(AssetListScreenletEntry *)entry {
+	NSLog(@"DELEGATE onAssetSelected -> %@", entry);
+}
+
 
 @end

@@ -40,16 +40,6 @@
 }
 
 
-- (void)onLoginResponse:(NSDictionary *)attributes {
-	NSLog(@"DELEGATE onLoginResponse -> %@", attributes);
-
-	[self showLoggedWithAnimation:YES];
-}
-
-- (void)onLoginError:(NSError *)error {
-	NSLog(@"DELEGATE onLoginError -> %@", error);
-}
-
 - (void)showLoggedWithAnimation:(BOOL)animated {
 	if ([SessionContext hasSession]) {
 		self.loggedLabel.text = [SessionContext currentUserName];
@@ -67,5 +57,24 @@
 	[self showLoggedWithAnimation:YES];
 }
 
+- (void)screenlet:(BaseScreenlet *)screenlet
+		onLoginResponseUserAttributes:(NSDictionary *)attributes {
+	NSLog(@"DELEGATE onLoginResponse -> %@", attributes);
+
+	[self showLoggedWithAnimation:YES];
+}
+
+- (void)screenlet:(BaseScreenlet *)screenlet
+		onLoginError:(NSError *)error {
+	NSLog(@"DELEGATE onLoginError -> %@", error);
+}
+
+- (void)onScreenletCredentialsSaved:(BaseScreenlet *)screenlet {
+	NSLog(@"DELEGATE onCredentialsSaved");
+}
+
+- (void)onScreenletCredentialsLoaded:(BaseScreenlet *)screenlet {
+	NSLog(@"DELEGATE onCredentialsLoaded");
+}
 
 @end

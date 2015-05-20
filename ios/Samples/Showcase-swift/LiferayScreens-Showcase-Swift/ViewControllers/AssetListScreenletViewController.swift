@@ -90,15 +90,18 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 		self.screenlet?.delegate = self
 	}
 
-	func onAssetListResponse(entries:[AssetListScreenletEntry]) {
+	func screenlet(screenlet: AssetListScreenlet,
+			onAssetListResponseEntries entries: [AssetListScreenletEntry]) {
 		println("DELEGATE: onAssetListResponse called -> \(entries)");
 	}
 
-	func onAssetListError(error: NSError) {
+	func screenlet(screenlet: AssetListScreenlet,
+			onAssetListError error: NSError) {
 		println("DELEGATE: onAssetListError called -> \(error)");
 	}
 
-	func onAssetSelected(entry: AssetListScreenletEntry) {
+	func screenlet(screenlet: AssetListScreenlet,
+			onAssetSelectedEntry entry: AssetListScreenletEntry) {
 		println("DELEGATE: onAssetSelected called -> \(entry)");
 	}
 

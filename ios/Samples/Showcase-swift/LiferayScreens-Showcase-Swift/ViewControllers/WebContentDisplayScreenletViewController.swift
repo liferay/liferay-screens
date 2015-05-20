@@ -26,12 +26,14 @@ class WebContentDisplayScreenletViewController: UIViewController, WebContentDisp
 		self.screenlet?.delegate = self
 	}
 
-	func onWebContentResponse(html: String) -> String? {
+	func screenlet(screenlet: WebContentDisplayScreenlet,
+			onWebContentResponse html: String ) -> String? {
 		println("DELEGATE: onWebContentResponse -> \(html)");
 		return nil
 	}
 
-	func onWebContentError(error: NSError) {
+	func screenlet(screenlet: WebContentDisplayScreenlet,
+			onWebContentError error: NSError) {
 		println("DELEGATE: onWebContentError -> \(error)");
 	}
 

@@ -16,8 +16,11 @@ import UIKit
 
 @objc public protocol SignUpScreenletDelegate {
 
-	optional func onSignUpResponse(attributes: [String:AnyObject])
-	optional func onSignUpError(error: NSError)
+	optional func screenlet(screenlet: SignUpScreenlet,
+			onSignUpResponseUserAttributes attributes: [String:AnyObject])
+
+	optional func screenlet(screenlet: SignUpScreenlet,
+			onSignUpError error: NSError)
 
 }
 
@@ -50,7 +53,8 @@ import UIKit
 		let interactor = SignUpInteractor(screenlet: self)
 
 		interactor.onSuccess = {
-			self.delegate?.onSignUpResponse?(interactor.resultUserAttributes!)
+			self.delegate?.screenlet?(self,
+					onSignUpResponseUserAttributes: interactor.resultUserAttributes!)
 
 			if self.autoLogin {
 				SessionContext.removeStoredSession()
@@ -60,18 +64,19 @@ import UIKit
 						password: self.viewModel.password!,
 						userAttributes: interactor.resultUserAttributes!)
 
-				self.autoLoginDelegate?.onLoginResponse?(interactor.resultUserAttributes!)
+				self.autoLoginDelegate?.screenlet?(self,
+						onLoginResponseUserAttributes: interactor.resultUserAttributes!)
 
 				if self.saveCredentials {
 					if SessionContext.storeSession() {
-						self.autoLoginDelegate?.onCredentialsSaved?()
+						self.autoLoginDelegate?.onScreenletCredentialsSaved?(self)
 					}
 				}
 			}
 		}
 
 		interactor.onFailure = {
-			self.delegate?.onSignUpError?($0)
+			self.delegate?.screenlet?(self, onSignUpError: $0)
 			return
 		}
 

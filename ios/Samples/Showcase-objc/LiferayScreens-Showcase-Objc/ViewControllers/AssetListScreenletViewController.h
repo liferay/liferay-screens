@@ -17,6 +17,4 @@
 		UIViewController<AssetListScreenletDelegate,
 				UIPickerViewDelegate, UIPickerViewDataSource>
 
-
 @end
-

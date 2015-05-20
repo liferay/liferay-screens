@@ -16,8 +16,11 @@ import UIKit
 
 @objc public protocol WebContentDisplayScreenletDelegate {
 
-	optional func onWebContentResponse(html:String) -> String?
-	optional func onWebContentError(error: NSError)
+	optional func screenlet(screenlet: WebContentDisplayScreenlet,
+			onWebContentResponse html: String ) -> String?
+
+	optional func screenlet(screenlet: WebContentDisplayScreenlet,
+			onWebContentError error: NSError)
 
 }
 
@@ -43,14 +46,15 @@ import UIKit
 		let interactor = WebContentDisplayLoadInteractor(screenlet: self)
 
 		interactor.onSuccess = {
-			let modifiedHtml = self.delegate?.onWebContentResponse?(interactor.resultHTML!)
+			let modifiedHtml = self.delegate?.screenlet?(self,
+					onWebContentResponse: interactor.resultHTML!)
 
 			(self.screenletView as! WebContentDisplayViewModel).htmlContent =
 					modifiedHtml ?? interactor.resultHTML!
 		}
 
 		interactor.onFailure = {
-			self.delegate?.onWebContentError?($0)
+			self.delegate?.screenlet?(self, onWebContentError: $0)
 			return
 		}
 

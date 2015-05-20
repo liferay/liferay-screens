@@ -15,6 +15,4 @@
 
 @interface WebContentDisplayScreenletViewController : UIViewController<WebContentDisplayScreenletDelegate>
 
-
 @end
-

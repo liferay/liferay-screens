@@ -15,6 +15,4 @@
 
 @interface DDLFormScreenletViewController : UIViewController<DDLFormScreenletDelegate>
 
-
 @end
-
