@@ -42,19 +42,21 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 		editableScreenlet.presentingViewController = self
     }
 
-	func screenlet(screenlet: UserPortraitScreenlet, onUserPortraitResponseImage image: UIImage) -> UIImage {
+	func screenlet(screenlet: UserPortraitScreenlet,
+			onUserPortraitResponseImage image: UIImage) -> UIImage {
 		println("DELEGATE: onUserPortraitResponse -> \(image.size)")
 
 		return image.getGrayScale() ?? image
 	}
 
 	func screenlet(screenlet: UserPortraitScreenlet,
-		onUserPortraitError error: NSError) {
+			onUserPortraitError error: NSError) {
 		println("DELEGATE: onUserPortraitError -> \(error)")
 	}
 
-	func onUserPortraitUploaded(result: [String:AnyObject]) {
-		println("DELEGATE: onUserPortraitUploaded -> \(result)")
+	func screenlet(screenlet: UserPortraitScreenlet,
+			onUserPortraitUploaded attributes: [String:AnyObject]) {
+		println("DELEGATE: onUserPortraitUploaded -> \(attributes)")
 	}
 
 }

@@ -16,13 +16,17 @@ import UIKit
 
 @objc public protocol UserPortraitScreenletDelegate {
 
-	optional func screenlet(screenlet: UserPortraitScreenlet, onUserPortraitResponseImage image: UIImage) -> UIImage
+	optional func screenlet(screenlet: UserPortraitScreenlet,
+			onUserPortraitResponseImage image: UIImage) -> UIImage
 
 	optional func screenlet(screenlet: UserPortraitScreenlet,
-		onUserPortraitError error: NSError)
+			onUserPortraitError error: NSError)
 
-	optional func onUserPortraitUploaded(result: [String:AnyObject])
-	optional func onUserPortraitUploadError(error: NSError)
+	optional func screenlet(screenlet: UserPortraitScreenlet,
+			onUserPortraitUploaded attributes: [String:AnyObject])
+
+	optional func screenlet(screenlet: UserPortraitScreenlet,
+			onUserPortraitUploadError error: NSError)
 }
 
 
@@ -143,12 +147,12 @@ public class UserPortraitScreenlet: BaseScreenlet {
 					image: image)
 
 			interactor!.onSuccess = { [weak interactor] in
-				self.delegate?.onUserPortraitUploaded?(interactor!.uploadResult!)
+				self.delegate?.screenlet?(self, onUserPortraitUploaded: interactor!.uploadResult!)
 				self.load(userId: userId)
 			}
 
 			interactor!.onFailure = {
-				self.delegate?.onUserPortraitUploadError?($0)
+				self.delegate?.screenlet?(self, onUserPortraitUploadError: $0)
 				return
 			}
 
