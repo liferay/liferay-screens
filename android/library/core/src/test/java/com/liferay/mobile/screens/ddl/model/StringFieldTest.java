@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
+import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.XSDParser;
 
 import org.junit.Test;
@@ -26,7 +27,10 @@ import org.xml.sax.SAXException;
 import java.util.List;
 import java.util.Locale;
 
-import static junit.framework.Assert.*;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * @author Jose Manuel Navarro
@@ -34,7 +38,7 @@ import static junit.framework.Assert.*;
 @RunWith(Enclosed.class)
 public class StringFieldTest {
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 		@Test
@@ -68,7 +72,7 @@ public class StringFieldTest {
 		}
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenValidatingAndRequired {
 
@@ -111,7 +115,7 @@ public class StringFieldTest {
 
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenValidatingAndNotRequired {
 

@@ -28,7 +28,7 @@ public interface UserPortraitInteractorListener {
 
 	void onUserPortraitLoadFailure(Exception e);
 
-	void onUserPortraitUploaded(boolean male, long portraitId, String uuid);
+	void onUserPortraitUploaded(Long userId);
 
 	void onUserPortraitUploadFailure(Exception e);
 

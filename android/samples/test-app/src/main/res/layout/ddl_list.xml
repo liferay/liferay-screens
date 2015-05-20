@@ -14,16 +14,16 @@
 		android:id="@+id/ddl_list_default"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		liferay:labelFields="Text1540"
+		liferay:labelFields="@string/liferay_recordset_fields"
 		liferay:layoutId="@layout/ddl_list_default"
-		liferay:recordSetId="15442"/>
+		liferay:recordSetId="@integer/liferay_recordset_id"/>
 
 	<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
 		android:id="@+id/ddl_list_material"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		liferay:labelFields="Text1540"
+		liferay:labelFields="@string/liferay_recordset_fields"
 		liferay:layoutId="@layout/ddl_list_material"
-		liferay:recordSetId="15442"/>
+		liferay:recordSetId="@integer/liferay_recordset_id"/>
 
 </LinearLayout>

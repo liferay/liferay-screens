@@ -36,7 +36,19 @@ To use a view set, set the `liferay:layoutId` property in your layout XML. This 
 ## Available View Sets
 
 - **Default**: Standard views used when you insert any screenlet and don't set the `liferay:layoutId` attribute.
-- **Material**: Sample views intended to demonstrate how to develop your own viewsets from scratch. It follows the [Material Design](https://developer.android.com/design/material/index.html) guidelines published by Google.
+- **Material**: Sample views intended to demonstrate how to develop your own view sets from scratch. It follows the [Material Design](https://developer.android.com/design/material/index.html) guidelines published by Google.
+- **Westeros**: A custom view set created to customize the behaviour and appearance of a demo application called "Westeros Bank".
+
+If you want to use `Material` or `Westeros` you will have to add them as a new dependency in your gradle file:
+
+```xml
+dependencies {
+	compile 'com.liferay.mobile:liferay-material-viewset:1.0.+'
+	compile 'com.liferay.mobile:liferay-westeros-viewset:1.0.+'
+
+	...
+}
+```
 
 ## Creating Your Own Views
 
