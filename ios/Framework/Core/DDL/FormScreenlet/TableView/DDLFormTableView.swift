@@ -24,10 +24,9 @@ public class DDLFormTableView: DDLFormView,
 			forEachField() {
 				self.registerCustomEditor($0)
 				self.resetCellHeightForField($0)
-				return
 			}
 
-			tableView!.reloadData()
+			refresh()
 		}
 	}
 
@@ -44,6 +43,10 @@ public class DDLFormTableView: DDLFormView,
 
 
 	//MARK: DDLFormView
+
+	override public func refresh() {
+		tableView!.reloadData()
+	}
 
 	override public func resignFirstResponder() -> Bool {
 		var result = false

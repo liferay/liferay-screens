@@ -204,8 +204,7 @@ import UIKit
 				recordValue.updateCurrentValues(interactor.resultRecordData!)
 				recordValue.recordId = interactor.resultRecordId!
 
-				// Force didSet event
-				self.formView.record = recordValue
+				self.formView.refresh()
 
 				self.delegate?.onRecordLoaded?(recordValue)
 			}
