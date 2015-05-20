@@ -25,6 +25,7 @@ class UserPortraitLoadLoggedUserInteractor: UserPortraitBaseInteractor {
 						portraitId: portraitId.longLongValue,
 						uuid: uuid,
 						male: true)
+				resultUserId = SessionContext.currentUserId
 			}
 		}
 

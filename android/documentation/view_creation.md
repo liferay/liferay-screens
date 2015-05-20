@@ -144,9 +144,7 @@ A complete example of implementing a full view is the `LoginFullScreenlet` used 
 
 ## Packaging Your Views
 
-Views are typically created as source code inside your app's project. However, if you want to distribute your views or reuse them in different projects, you should package them in a module that is then added as an app's project dependency. 
-
-To do this, use the [viewsets](https://github.com/liferay/liferay-screens/tree/master/android/library/viewsets) subproject as a template to your new [`build.gradle`](https://github.com/liferay/liferay-screens/blob/master/android/library/viewsets/build.gradle) file.
+Views are typically created as source code inside your app's project. If you want to distribute your views or reuse them in different projects, however, you should package them in a project that is then added as an app's project dependency. To do this, use the [material](https://github.com/liferay/liferay-screens/tree/master/android/viewsets/material) subproject as a template using a similar [`build.gradle`](https://github.com/liferay/liferay-screens/blob/master/android/viewsets/material/build.gradle) file.
 
 To use a packaged view, you need to import the new module into your project by specifying its location in the [settings.gradle](https://github.com/liferay/liferay-screens/blob/master/android/samples/bankofwesteros/settings.gradle). The Bank of Westeros and test-app projects each use a custom theme (`westeros` and `material`, respectively). These projects are good examples of how to use an independent theme in your project. 
 

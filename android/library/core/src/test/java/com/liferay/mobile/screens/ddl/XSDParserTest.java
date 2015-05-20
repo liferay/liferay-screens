@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.ddl;
 
+import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.StringField;
 
@@ -38,7 +39,7 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class XSDParserTest {
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class ShouldRaiseException {
 
@@ -70,7 +71,7 @@ public class XSDParserTest {
 		}
 	}
 
-	@Config(emulateSdk = 18)
+	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 

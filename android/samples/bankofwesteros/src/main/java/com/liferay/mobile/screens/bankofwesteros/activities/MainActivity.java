@@ -26,16 +26,14 @@ import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
-import com.liferay.mobile.screens.bankofwesteros.utils.Card;
-import com.liferay.mobile.screens.bankofwesteros.utils.EndAnimationListener;
 import com.liferay.mobile.screens.bankofwesteros.R;
-import com.liferay.mobile.screens.bankofwesteros.views.SignUpListener;
-import com.liferay.mobile.screens.bankofwesteros.views.SignUpScreenlet;
+import com.liferay.mobile.screens.bankofwesteros.utils.EndAnimationListener;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
+import com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpListener;
+import com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpScreenlet;
 
 import de.keyboardsurfer.android.widget.crouton.Configuration;
-
 
 public class MainActivity extends CardActivity implements View.OnClickListener, LoginListener, ForgotPasswordListener, SignUpListener {
 
@@ -50,18 +48,18 @@ public class MainActivity extends CardActivity implements View.OnClickListener, 
 		_background.setOnClickListener(this);
 
 		//TODO move to the screenlet?
-		_forgotPasswordText = findViewById(R.id.forgot_password_text);
-		_forgotPasswordText.setOnClickListener(this);
-		_forgotPasswordField = (EditText) findViewById(R.id.forgot_password_email);
+		View forgotPasswordText = findViewById(R.id.liferay_forgot_link);
+		forgotPasswordText.setOnClickListener(this);
+		_forgotPasswordField = (EditText) findViewById(R.id.liferay_forgot_email);
 
-		_loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
-		_loginScreenlet.setListener(this);
+		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
+		loginScreenlet.setListener(this);
 
-		_forgotPasswordScreenlet = (ForgotPasswordScreenlet) findViewById(R.id.forgot_password_screenlet);
-		_forgotPasswordScreenlet.setListener(this);
+		ForgotPasswordScreenlet forgotPasswordScreenlet = (ForgotPasswordScreenlet) findViewById(R.id.forgot_password_screenlet);
+		forgotPasswordScreenlet.setListener(this);
 
-		_signUpScreenlet = (SignUpScreenlet) findViewById(R.id.signup_screenlet);
-		_signUpScreenlet.setListener(this);
+		SignUpScreenlet signUpScreenlet = (SignUpScreenlet) findViewById(R.id.signup_screenlet);
+		signUpScreenlet.setListener(this);
 
 		new LiferayCrouton.Builder()
 			.withInfoColor(R.color.westeros_green)
@@ -74,7 +72,7 @@ public class MainActivity extends CardActivity implements View.OnClickListener, 
 
 	@Override
 	public void onClick(final View view) {
-		if (view.getId() == R.id.forgot_password_text) {
+		if (view.getId() == R.id.liferay_forgot_link) {
 			goRightCard1();
 		}
 		else {
@@ -153,11 +151,6 @@ public class MainActivity extends CardActivity implements View.OnClickListener, 
 
 
 	private ImageView _background;
-	private View _forgotPasswordText;
 	private EditText _forgotPasswordField;
-
-	private LoginScreenlet _loginScreenlet;
-	private ForgotPasswordScreenlet _forgotPasswordScreenlet;
-	private SignUpScreenlet _signUpScreenlet;
 
 }

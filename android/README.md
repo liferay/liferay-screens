@@ -228,6 +228,7 @@ The view sets currently released with Liferay Screens for Android are:
 
 - **Default**: The standard view set used when you include any screenlet in your activity or fragment and don't change the value of the `liferay:layoutId` attribute. This view can be used as the parent view for any custom views (refer to the [Architecture Guide](documentation/architecture.md#view-layer) for more details on this).
 - **Material**: A sample view set intended to demonstrate how to develop your own view sets from scratch. For information on creating your own view sets, refer to the [Views Guide](documentation/views.md).
+- **Westeros**: A custom view set created to customize the behaviour and appearance of a demo application called "Westeros Bank".
 
 ## Contributing New Screenlets and Views
 

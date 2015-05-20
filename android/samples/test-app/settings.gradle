@@ -1,6 +1,10 @@
-include ':core'
-include ':viewsets'
+include 'liferay-screens'
+project(':liferay-screens').projectDir = new File(settingsDir, '../../library/core')
+project(':liferay-screens').name = 'liferay-screens'
+
+include 'liferay-material-viewset'
+project(':liferay-material-viewset').projectDir = new File(settingsDir, '../../viewsets/material')
+project(':liferay-material-viewset').name = 'liferay-material-viewset'
+
 include ':addbookmarkscreenlet'
-project(':core').projectDir = new File(settingsDir, '../../library/core')
-project(':viewsets').projectDir = new File(settingsDir, '../../library/viewsets')
-project(':addbookmarkscreenlet').projectDir = new File(settingsDir, '../addbookmarkscreenlet')
+project(':addbookmarkscreenlet').projectDir = new File(settingsDir, '../../samples/addbookmarkscreenlet')

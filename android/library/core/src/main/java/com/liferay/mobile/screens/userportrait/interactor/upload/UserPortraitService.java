@@ -46,13 +46,13 @@ public class UserPortraitService extends IntentService {
 
 	private void uploadFromIntent(Intent intent) {
 		int targetScreenletId = intent.getIntExtra("screenletId", 0);
+		long userId = intent.getLongExtra("userId", 0L);
 		String picturePath = intent.getStringExtra("picturePath");
 
 		try {
 			Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
 			UserService userService = new UserService(sessionFromCurrentSession);
-			JSONObject jsonObject = userService.updatePortrait(
-				SessionContext.getLoggedUser().getId(),
+			JSONObject jsonObject = userService.updatePortrait(userId,
 				decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE));
 
 			EventBusUtil.post(new UserPortraitUploadEvent(targetScreenletId, jsonObject));
