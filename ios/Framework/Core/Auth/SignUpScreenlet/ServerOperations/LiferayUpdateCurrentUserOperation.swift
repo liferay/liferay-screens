@@ -18,11 +18,11 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 
 	public var resultUserAttributes: [String:AnyObject]?
 
-	internal override var hudLoadingMessage: HUDMessage? {
+	public override var hudLoadingMessage: HUDMessage? {
 		return (LocalizedString("signup-screenlet", "saving-message", self),
 				details: LocalizedString("signup-screenlet", "saving-details", self))
 	}
-	internal override var hudFailureMessage: HUDMessage? {
+	override public var hudFailureMessage: HUDMessage? {
 		return (LocalizedString("signup-screenlet", "saving-error", self), details: nil)
 	}
 

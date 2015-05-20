@@ -23,7 +23,7 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 
 	private let maxSize = 300 * 1024
 
-	internal override var hudFailureMessage: HUDMessage? {
+	override public var hudFailureMessage: HUDMessage? {
 		return (LocalizedString("userportrait-screenlet", "uploading-error", self), details: nil)
 	}
 

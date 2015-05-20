@@ -37,7 +37,7 @@ public class UserPortraitView_default: BaseScreenletView,
 			portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
 		}
 	}
-	public var editable: Bool = false {
+	override public var editable: Bool {
 		didSet {
 			self.editButton.hidden = !editable
 			if editable {

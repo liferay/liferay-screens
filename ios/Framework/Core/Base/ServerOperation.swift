@@ -32,24 +32,24 @@ public class ServerOperation: NSOperation {
 	}
 
 
-	internal typealias HUDMessage = (String, details: String?)
+	public typealias HUDMessage = (String, details: String?)
 
 
-	internal var lastError: NSError?
+	public var lastError: NSError?
+
+	public var hudLoadingMessage: HUDMessage? { return nil }
+	public var hudFailureMessage: HUDMessage? { return nil }
+	public var hudSuccessMessage: HUDMessage? { return nil }
+
 	internal var screenlet: BaseScreenlet
-
 	internal var onComplete: (ServerOperation -> Void)?
 
 	internal var anonymousAuth: AnonymousAuthType? {
 		return screenlet as? AnonymousAuthType
 	}
 
-	internal var hudLoadingMessage: HUDMessage? { return nil }
-	internal var hudFailureMessage: HUDMessage? { return nil }
-	internal var hudSuccessMessage: HUDMessage? { return nil }
 
-
-	internal init(screenlet: BaseScreenlet) {
+	public init(screenlet: BaseScreenlet) {
 		self.screenlet = screenlet
 
 		super.init()
