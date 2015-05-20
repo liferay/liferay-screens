@@ -66,7 +66,7 @@ class CardView: UIView {
 
 	weak var presentingController: CardViewController?
 
-	var onChangeCompleted: (Bool -> Void)?
+	private var onChangeCompleted: (Bool -> Void)?
 
 	func createArrow(color: UIColor) {
 		let arrowName = (color == UIColor.whiteColor()) ? "icon_DOWN_W" : "icon_DOWN"

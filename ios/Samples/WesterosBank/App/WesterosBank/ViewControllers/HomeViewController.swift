@@ -64,6 +64,12 @@ class HomeViewController: UIViewController {
 					action: Selector("goBackAction:"),
 					forControlEvents: UIControlEvents.TouchUpInside)
 
+		issuesDeck.onButtonTouched = { card in
+			if card === self.reportIssueCard && !card.currentState.isVisible {
+				self.reportIssueController?.issueRecord = nil
+				self.reportIssueController?.editable = true
+			}
+		}
     }
 
 	override func viewWillAppear(animated: Bool) {
@@ -116,8 +122,8 @@ class HomeViewController: UIViewController {
 		issuesCard.nextState = .Background
 		reportIssueCard.nextState = .Normal // .Maximized
 
-		reportIssueController!.issueRecord = record
-		reportIssueController!.editable = true
+		reportIssueController?.issueRecord = record
+		reportIssueController?.editable = true
 
 		issuesCard.changeToNextState()
 		reportIssueCard.changeToNextState()

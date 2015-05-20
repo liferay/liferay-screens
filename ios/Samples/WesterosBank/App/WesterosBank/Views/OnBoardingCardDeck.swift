@@ -16,6 +16,8 @@ import UIKit
 class OnBoardingCardDeck: CardDeckView {
 
 	override func topCardTouchUpInside(sender: UIButton) {
+		super.topCardTouchUpInside(sender)
+
 		switch topCard!.currentState {
 		case .Minimized:
 			topCard!.nextState = .Normal
@@ -34,6 +36,8 @@ class OnBoardingCardDeck: CardDeckView {
 	}
 
 	override func bottomCardTouchUpInside(sender: UIButton) {
+		super.bottomCardTouchUpInside(sender)
+
 		if bottomCard!.currentState == .Minimized {
 			bottomCard!.nextState = .Normal
 			topCard!.nextState = .Background

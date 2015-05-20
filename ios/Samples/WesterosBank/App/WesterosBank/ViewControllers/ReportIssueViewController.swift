@@ -46,6 +46,16 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 			screenlet.recordId = recordValue.recordId
 			screenlet.loadRecord()
 		}
+		else {
+			screenlet.recordId = 0
+
+			if screenlet.isFormLoaded {
+				screenlet.clearForm()
+			}
+			else {
+				screenlet.loadForm()
+			}
+		}
 	}
 
 	func onFormSubmitted(record: DDLRecord) {

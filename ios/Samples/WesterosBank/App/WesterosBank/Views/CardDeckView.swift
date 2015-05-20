@@ -39,6 +39,9 @@ class CardDeckView: UIView {
 		}
 	}
 
+	var onButtonTouched: (CardView -> Void)?
+
+
 	func setUpCard(card: CardView) {
 		card.currentState = .Minimized
 		card.nextState = .Normal
@@ -60,9 +63,11 @@ class CardDeckView: UIView {
 
 
 	func topCardTouchUpInside(sender: UIButton) {
+		onButtonTouched?(topCard!)
 	}
 
 	func bottomCardTouchUpInside(sender: UIButton) {
+		onButtonTouched?(bottomCard!)
 	}
 
 }
