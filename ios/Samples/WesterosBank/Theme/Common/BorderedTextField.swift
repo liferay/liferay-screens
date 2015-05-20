@@ -14,6 +14,9 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 	@IBInspectable var focusedColor: UIColor? = UIColor.clearColor()
 	@IBInspectable var unfocusedColor: UIColor? = UIColor.clearColor()
 
+	private var revertTextColor = false
+
+
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
@@ -32,6 +35,11 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 		self.attributedPlaceholder = NSAttributedString(
 				string: self.placeholder!,
 				attributes: [NSForegroundColorAttributeName : self.unfocusedColor!])
+
+		if self.textColor == self.focusedColor! {
+			self.textColor = UIColor.blackColor()
+			revertTextColor = true
+		}
 	}
 
 	func textFieldDidEndEditing(textField: UITextField) {
@@ -42,6 +50,11 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 		self.attributedPlaceholder = NSAttributedString(
 				string: self.placeholder!,
 				attributes: [NSForegroundColorAttributeName : self.focusedColor!])
+
+		if revertTextColor {
+			self.textColor = self.focusedColor!
+			revertTextColor = false
+		}
 	}
 
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
