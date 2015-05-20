@@ -74,6 +74,20 @@
 				android:text="@string/ddl_list"/>
 
 			<Button
+				android:id="@+id/add_bookmark"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="10dp"
+				android:text="@string/add_a_bookmark"/>
+
+			<Button
+				android:id="@+id/login_full_screenlet"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="10dp"
+				android:text="@string/customizing_a_screenlet"/>
+
+			<Button
 				android:id="@+id/change_theme"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"

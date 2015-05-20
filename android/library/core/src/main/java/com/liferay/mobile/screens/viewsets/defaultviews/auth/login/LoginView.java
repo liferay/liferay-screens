@@ -21,13 +21,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
@@ -72,7 +72,9 @@ public class LoginView extends LinearLayout
 
 	@Override
 	public void showStartOperation(String actionName) {
-		_progressBar.startProgress();
+		if (_progressBar != null) {
+			_progressBar.startProgress();
+		}
 	}
 
 	@Override
@@ -82,14 +84,18 @@ public class LoginView extends LinearLayout
 
 	@Override
 	public void showFinishOperation(User user) {
-		_progressBar.finishProgress();
+		if (_progressBar != null) {
+			_progressBar.finishProgress();
+		}
 
 		LiferayLogger.i("Login successful: " + user.getId());
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		_progressBar.finishProgress();
+		if (_progressBar != null) {
+			_progressBar.finishProgress();
+		}
 
 		LiferayLogger.e("Could not login", e);
 
@@ -117,8 +123,8 @@ public class LoginView extends LinearLayout
 		_passwordEditText = (EditText) findViewById(R.id.liferay_password);
 		_progressBar = (ModalProgressBar) findViewById(R.id.liferay_progress);
 
-		Button submitButton = (Button) findViewById(R.id.liferay_login_button);
-		submitButton.setOnClickListener(this);
+		_submitButton = (Button) findViewById(R.id.liferay_login_button);
+		_submitButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -141,7 +147,6 @@ public class LoginView extends LinearLayout
 		else if (AuthMethod.EMAIL.equals(_authMethod)) {
 			return R.drawable.default_mail_icon;
 		}
-
 		return R.drawable.default_user_icon;
 	}
 

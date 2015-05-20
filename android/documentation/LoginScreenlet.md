@@ -8,7 +8,6 @@
 
 - Android SDK 4.0 (API Level 14) and above
 - Liferay Portal 6.2 CE or EE
-- Mobile Widgets plugin
 
 ## Compatibility
 
@@ -41,6 +40,10 @@ Before using `LoginScreenlet`, you should make sure your portal is configured wi
 ![Setting the authentication method in Liferay Portal.](../../ios/Documentation/Images/portal-auth.png "Liferay portal authentication methods")
 
 For more details, see the [Configuring Portal Settings](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/configuring-portal-settings) section of the User Guide. 
+
+## Compulsory Attributes
+
+- `layoutId`
 
 ## Attributes
 

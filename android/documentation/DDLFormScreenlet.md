@@ -8,7 +8,7 @@
 
 - Android SDK 4.0 (API Level 14) and above
 - Liferay Portal 6.2 CE or EE
-- Mobile Widgets plugin
+- [Liferay Screens' Compatibility Plugin](https://github.com/liferay/liferay-screens/tree/master/portal)
 
 ## Compatibility
 
@@ -63,7 +63,7 @@ Each field defines an editor type. You must define each editor type's layout by 
   - `textAreaFieldLayoutId`: The layout to use for Text Box fields.
   - `textDocumentFieldLayoutId`: The layout to use for Documents & Media fields.
 
-If you don't define the editor type's layout in the attributes of `DDLFormScreent`, the default layout `ddlfield_xxx_default` is used, where `xxx` is the name of the editor type. It's important to note that you can change the layout used with any editor type at any point.
+If you don't define the editor type's layout in the attributes of `DDLFormScreenlet`, the default layout `ddlfield_xxx_default` is used, where `xxx` is the name of the editor type. It's important to note that you can change the layout used with any editor type at any point.
 
 ### Custom Editors
 
@@ -93,6 +93,8 @@ Both are used by the Documents and Media fields to take a picture/video and stor
 
 Before using `DDLFormScreenlet`, you should make sure that Dynamic Data Lists and Data Types are configured properly in the portal. Refer to the [Defining Data Types](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/building-a-list-platform-in-liferay-and-defining-data-) and [Creating Data Lists](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/creating-data-lists) sections of the User Guide for more details. If Workflow is required, it must also be configured. See the [Using Workflow](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-workflow) section of the User Guide for details.
 
+Remember that [Liferay Screens' Compatibility Plugin](https://github.com/liferay/liferay-screens/tree/master/portal) has to be installed to allow remote calls without the userId.
+
 ### Permissions
 
 To use `DDLFormScreenlet` to add new records, you must grant the Add Record permission in the Dynamic Data List:
@@ -108,6 +110,12 @@ Also, if your form includes at least one Documents and Media field, you must gra
 ![The permission for adding a folder.](../../ios/Documentation/Images/portal-permission-folder-add.png)
 
 For more details, see the User Guide sections [Defining Data Types](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/building-a-list-platform-in-liferay-and-defining-data-), [Creating Data Lists](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/creating-data-lists), and [Using Workflow](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/using-workflow).
+
+## Compulsory Attributes
+
+- `layoutId`
+- `structureId`
+- `recordSetId`
 
 ## Attributes
 

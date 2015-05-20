@@ -9,7 +9,7 @@ _This product is under heavy development and its features aren't ready for use i
 - XCode 6.0 or above
 - iOS 8 SDK
 - Liferay Portal 6.2 CE or EE
-- Mobile Widgets plugin installed
+- Liferay Screens' Compatibility Plugin installed
 
 ## Compatibility
 

@@ -20,7 +20,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
-import com.liferay.mobile.screens.service.v62.MobilewidgetsddlrecordService;
+import com.liferay.mobile.screens.service.v62.ScreensddlrecordService;
 
 import java.util.Locale;
 
@@ -52,7 +52,7 @@ public class DDLListInteractorImpl
 
 	@Override
 	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
-		MobilewidgetsddlrecordService ddlRecordService = new MobilewidgetsddlrecordService(session);
+		ScreensddlrecordService ddlRecordService = new ScreensddlrecordService(session);
 		if (_userId != 0) {
 			ddlRecordService.getDdlRecords(_recordSetId, _userId, locale.toString(), startRow, endRow);
 		}
@@ -63,7 +63,7 @@ public class DDLListInteractorImpl
 
 	@Override
 	protected void getPageRowCountRequest(Session session) throws Exception {
-		MobilewidgetsddlrecordService ddlRecordService = new MobilewidgetsddlrecordService(session);
+		ScreensddlrecordService ddlRecordService = new ScreensddlrecordService(session);
 		if (_userId != 0) {
 			ddlRecordService.getDdlRecordsCount(_recordSetId, _userId);
 		}

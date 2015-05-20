@@ -15,4 +15,5 @@
 	<integer name="classname_id">20116</integer>
 	<integer name="article_id">20807</integer>
 	<string name="liferay_recordset_fields">Title</string>
+	<integer name="bookmark_folder">21310</integer>
 </resources>

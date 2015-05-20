@@ -29,6 +29,8 @@
 		<activity android:name=".SignUpActivity"/>
 		<activity android:name=".UserPortraitActivity"/>
 		<activity android:name=".WebViewActivity"/>
+		<activity android:name=".AddBookmarkActivity"/>
+		<activity android:name=".fullview.LoginFullActivity"/>
 
 	</application>
 </manifest>

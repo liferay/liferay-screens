@@ -17,15 +17,17 @@ package com.liferay.mobile.screens.viewsets.defaultviews.webcontentdisplay;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
+import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
 import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewModel;
 
 /**
@@ -89,6 +91,17 @@ public class WebContentDisplayView extends FrameLayout
 
 		_webView = (WebView) findViewById(R.id.liferay_webview);
 		_progressBar = (ProgressBar) findViewById(R.id.liferay_webview_progress);
+	}
+
+	@Override
+	protected void onAttachedToWindow() {
+		super.onAttachedToWindow();
+
+		WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) getParent();
+		if (screenlet.isJavascriptEnabled()) {
+			_webView.getSettings().setJavaScriptEnabled(true);
+			_webView.setWebChromeClient(new WebChromeClient());
+		}
 	}
 
 	private static final String STYLES =

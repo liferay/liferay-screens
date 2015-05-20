@@ -8,7 +8,7 @@
 
 - Android SDK 4.0 (API Level 14) and above
 - Liferay Portal 6.2 CE or EE
-- Mobile Widgets plugin
+- [Liferay Screens' Compatibility Plugin](https://github.com/liferay/liferay-screens/tree/master/portal)
 
 ## Compatibility
 
@@ -34,7 +34,9 @@ The `ForgotPasswordScreenlet` can send an email to a registered user with their 
 
 ## Portal Configuration
 
-To use `ForgotPasswordScreenlet`, the portal must be configured to allow users to request new passwords. The next sections show you how to do this.
+To use `ForgotPasswordScreenlet`, the portal must be configured to allow users to request new passwords and [Liferay Screens' Compatibility Plugin](https://github.com/liferay/liferay-screens/tree/master/portal) has to be installed.
+
+The next sections show you how to do this.
 
 ### Authentication Method
 
@@ -53,6 +55,12 @@ For more details on authentication in Liferay Portal, please refer to the [Confi
 ### Anonymous Request
 
 An anonymous request can be made without the user being logged in. However, authentication is needed to call the API. To allow this operation, it's recommended that the portal administrator create a specific user with minimal permissions.
+
+## Compulsory Attributes
+
+- `layoutId`
+- `anonymousApiUserName`
+- `anonymousApiPassword`
 
 ## Attributes
 

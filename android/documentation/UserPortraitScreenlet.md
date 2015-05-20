@@ -8,7 +8,6 @@
 
 - Android SDK 4.0 (API Level 14) and above
 - Liferay Portal 6.2 CE or EE
-- Mobile Widgets plugin
 - Picasso library
 
 ## Compatibility
@@ -55,6 +54,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	}
 }
 ```
+
+## Compulsory Attributes
+
+- `layoutId`
 
 ## Attributes
 

@@ -8,7 +8,6 @@
 
 - Android SDK 4.0 (API Level 14) and above
 - Liferay Portal 6.2 CE or EE
-- Mobile Widgets plugin
 
 ## Compatibility
 
@@ -33,6 +32,11 @@ The Default view uses a standard `WebView` to render the HTML.
 
 For the `WebContentDisplayScreenlet` to function properly, there should be web content in the Liferay instance your app connects to. For more details on web content, see the [Web Content Management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/web-content-management) section of the Liferay User Guide.
 
+## Compulsory Attributes
+
+- `layoutId`
+- `articleId`
+
 ## Attributes
 
 | Attribute | Data type | Explanation |
@@ -40,6 +44,7 @@ For the `WebContentDisplayScreenlet` to function properly, there should be web c
 | `layoutId` | `@layout` | The layout used to show the view. |
 | `groupId` | `number` | The ID of the site (group) where the asset is stored. If this value is `0`, the `groupId` specified in `LiferayServerContext` is used. |
 | `articleId` | `string` | The ID of the web content to display. You can find this ID by clicking *Edit* on the web content in the portal. |
+| `javascriptEnabled` | `boolean` | Enables support for javascript. Disabled by default. |
 
 ## Methods
 

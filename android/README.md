@@ -21,20 +21,28 @@ Development of Android apps using Liferay Screens requires the following:
 - Android Studio 1.0.2 or above
 - Android SDK 4.0 (API Level 14) or above
 - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
-- [Liferay Screens' compatibility plugin](https://github.com/liferay/liferay-screens/tree/master/portal). 
-- Liferay Screens' source code
+- [Liferay Screens' compatibility plugin](https://github.com/liferay/liferay-screens/tree/master/portal)
 
 ## Compatibility
 
 Liferay Screens for Android is compatible with Android 4.0 (API Level 14) and higher. The SDK uses the [AppCompat library](https://developer.android.com/tools/support-library/features.html#v7-appcompat) (v7:21.0.3) to offer a material look on older devices and the new [recycler view](https://developer.android.com/tools/support-library/features.html#v7-recyclerview) implementation.
 
-Other internal dependencies are:  
+Other internal dependencies are:
+
 - [EventBus](https://github.com/greenrobot/EventBus) 
 - [Picasso](http://square.github.io/picasso/)
 
 ## Preparing Your Project for Liferay Screens
 
-Liferay Screens is released as an [AAR file](http://tools.android.com/tech-docs/new-build-system/aar-format) that is currently hosted in jCenter. The following sections describe how to set up Screens with Gradle and Maven. While instructions are also provided for manual setup, it's strongly recommended that you use Maven or Gradle to set and download your dependencies. 
+Liferay Screens is released as an [AAR file](http://tools.android.com/tech-docs/new-build-system/aar-format) that is currently hosted in jCenter. The following sections describe how to set up Screens with Gradle and Maven. While instructions are also provided for manual setup, it's strongly recommended that you use Maven or Gradle to set and download your dependencies.
+
+To include your first screenlet, you only need to follow 3 steps:
+
+* Download and include Liferay Screens in your project.
+* Configure your server's IP address and Company ID.
+* Add a screenlet to your view.
+
+The following sections show you how to download and include Liferay Screens in your project.
 
 ### Gradle
 
@@ -58,16 +66,16 @@ Use the following steps to configure your project with Gradle:
 
 Gradle downloads all the necessary dependencies before building your project. If you get errors such as `Duplicate files copied in APK META-INF/NOTICE` when building with Gradle, add this to your `build.gradle` file:
 
-	```groovy
-	android {
-		...
-		packagingOptions {	
-			exclude 'META-INF/LICENSE'
-			exclude 'META-INF/NOTICE'
-		}
-		...
+```groovy
+android {
+	...
+	packagingOptions {	
+		exclude 'META-INF/LICENSE'
+		exclude 'META-INF/NOTICE'
 	}
-	```
+	...
+}
+```
 
 ### Maven
 
@@ -87,30 +95,30 @@ Use the following steps to configure your project with Maven:
 
 Note that if Maven can't locate the artifact, you need to add jCenter as a new repository in your maven settings (`.m2/settings.xml`):
 
-	```xml
-	<profiles>
-		<profile>
-			<repositories>
-				<repository>
-					<id>bintray-liferay-liferay-mobile</id>
-					<name>bintray</name>
-					<url>http://dl.bintray.com/liferay/liferay-mobile</url>
-				</repository>
-			</repositories>
-			<pluginRepositories>
-				<pluginRepository>
-					<id>bintray-liferay-liferay-mobile</id>
-					<name>bintray-plugins</name>
-					<url>http://dl.bintray.com/liferay/liferay-mobile</url>
-				</pluginRepository>
-			</pluginRepositories>
-			<id>bintray</id>
-		</profile>
-	</profiles>
-	<activeProfiles>
-		<activeProfile>bintray</activeProfile>
-	</activeProfiles>
-	```
+```xml
+<profiles>
+	<profile>
+		<repositories>
+			<repository>
+				<id>bintray-liferay-liferay-mobile</id>
+				<name>bintray</name>
+				<url>http://dl.bintray.com/liferay/liferay-mobile</url>
+			</repository>
+		</repositories>
+		<pluginRepositories>
+			<pluginRepository>
+				<id>bintray-liferay-liferay-mobile</id>
+				<name>bintray-plugins</name>
+				<url>http://dl.bintray.com/liferay/liferay-mobile</url>
+			</pluginRepository>
+		</pluginRepositories>
+		<id>bintray</id>
+	</profile>
+</profiles>
+<activeProfiles>
+	<activeProfile>bintray</activeProfile>
+</activeProfiles>
+```
 
 ### Manually
 
@@ -137,9 +145,43 @@ latest version of Liferay Screens for Android.
 	compile project (':themes')
 	```
 	
-You can also configure the `.aar` binary files (in `Android/dist`) as local `.aar` dependencies.
+You can also configure the `.aar` binary files (in `Android/dist`) as local `.aar` dependencies. You can download all the necessary files from [jCenter](https://bintray.com/liferay/liferay-mobile/liferay-screens/view).
 
-Great! Your project should now be ready for Liferay Screens. Next, you'll learn how to use screenlets in your app.
+Great! Your project should now be ready for Liferay Screens. You can do a quick check by compiling and executing a blank activity and importing a Liferay Screens class (like `LoginScreenlet`).
+
+Next, you'll learn how to configure the IP address and other required parameters.
+
+## Configuring Your Project to Communicate with Your Liferay Installation
+
+Regardless of how you install Screens in your project, you need to configure it to communicate with your Liferay installation. You could have the greatest app in existence, but if it can't communicate with your Liferay installation then it's all for naught. Fortunately, setting this up is a simple task. In your project's `res/values` directory, create a new file called `server_context.xml`.
+
+Add the following code to the new file:
+
+```xml
+	<?xml version="1.0" encoding="utf-8"?>
+	<resources>
+	<!-- Change these values for your Liferay Portal installation -->
+
+	<string name="liferay_server">http://10.0.2.2:8080</string>
+
+	<integer name="liferay_company_id">10155</integer>
+	<integer name="liferay_group_id">10182</integer>
+
+	</resources>
+```
+
+As the comment indicates, make sure to change these values to match those in your Liferay installation. The server address `http://10.0.2.2:8080` is suitable for testing with Android Studio's emulator, because it corresponds to `localhost:8080` through the emulator.
+
+You should note that there are additional properties you can configure in `server_context.xml`, depending on the screenlets in your project. For example, you can add the following two properties if you're using `DDLFormScreenlet` and `DDLListScreenlet` to interact with DDLs in your app. You can see an additional example `server_context.xml` file [here](https://github.com/liferay/liferay-screens/blob/master/android/samples/bankofwesteros/src/main/res/values/server_context.xml).
+
+```xml
+	<!-- Change these values for your Liferay Portal installation -->
+
+	<integer name="liferay_recordset_id">20935</integer>
+	<string name="liferay_recordset_fields">Title</string>
+```
+
+Super! Your Android project should now be ready for Liferay Screens.
 
 ## Using Screenlets
 
