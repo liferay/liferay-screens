@@ -3,7 +3,9 @@ package com.liferay.mobile.screens;
 import org.junit.runners.model.InitializationError;
 import org.robolectric.annotation.Config;
 import org.robolectric.manifest.AndroidManifest;
+import org.robolectric.res.FileFsFile;
 import org.robolectric.res.Fs;
+import org.robolectric.res.FsFile;
 
 public class RobolectricManifestTestRunner extends org.robolectric.RobolectricGradleTestRunner {
 
@@ -11,19 +13,23 @@ public class RobolectricManifestTestRunner extends org.robolectric.RobolectricGr
 		super(aClass);
 	}
 
-	@Override
 	protected AndroidManifest getAppManifest(Config config) {
-		String appRoot = "./core/src/main/";
-		String manifestPath = appRoot + "AndroidManifest.xml";
-		String resDir = appRoot + "res";
-		String assetsDir = appRoot + "assets";
-		AndroidManifest manifest = createAppManifest(Fs.fileFromPath(manifestPath),
-			Fs.fileFromPath(resDir),
-			Fs.fileFromPath(assetsDir));
+		AndroidManifest appManifest = super.getAppManifest(config);
+		FsFile androidManifestFile = appManifest.getAndroidManifestFile();
 
-		manifest.setPackageName("com.my.package.name");
-		// Robolectric is already going to look in the  'app' dir ...
-		// so no need to add to package name
-		return manifest;
+		if (androidManifestFile.exists()) {
+			return appManifest;
+		} else {
+			String moduleRoot = getModuleRootPath(config);
+			androidManifestFile = FileFsFile.from(moduleRoot, appManifest.getAndroidManifestFile().getPath().replace("full", "androidTest"));
+			FsFile resDirectory = FileFsFile.from(moduleRoot, appManifest.getResDirectory().getPath());
+			FsFile assetsDirectory = FileFsFile.from(moduleRoot, appManifest.getAssetsDirectory().getPath());
+			return new AndroidManifest(androidManifestFile, resDirectory, assetsDirectory);
+		}
+	}
+
+	private String getModuleRootPath(Config config) {
+		String moduleRoot = config.constants().getResource("").toString().replace("file:", "");
+		return moduleRoot.substring(0, moduleRoot.indexOf("/build"));
 	}
 }
