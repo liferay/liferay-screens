@@ -116,7 +116,7 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 			resultUserAttributes = nil
 		}
 		else if result?["userId"] == nil {
-			lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
+			lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
 			resultUserAttributes = nil
 		}
 		else {

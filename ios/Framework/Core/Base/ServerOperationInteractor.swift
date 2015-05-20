@@ -31,7 +31,7 @@ public class ServerOperationInteractor: Interactor {
 			}
 		}
 		else {
-			self.callOnFailure(createError(cause: .AbortedDueToPreconditions))
+			self.callOnFailure(NSError.errorWithCause(.AbortedDueToPreconditions))
 		}
 
 		return result

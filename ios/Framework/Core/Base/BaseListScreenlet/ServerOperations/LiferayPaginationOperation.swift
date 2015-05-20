@@ -57,7 +57,7 @@ public class LiferayPaginationOperation: ServerOperation {
 		doGetPageRowsOperation(session: batchSession, page: page)
 
 		if batchSession.commands.count < 1 {
-			lastError = createError(cause: .AbortedDueToPreconditions, userInfo: nil)
+			lastError = NSError.errorWithCause(.AbortedDueToPreconditions, userInfo: nil)
 			return
 		}
 
@@ -82,7 +82,7 @@ public class LiferayPaginationOperation: ServerOperation {
 				resultRowCount = serverRowCount
 			}
 			else {
-				lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
+				lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
 			}
 		}
 	}

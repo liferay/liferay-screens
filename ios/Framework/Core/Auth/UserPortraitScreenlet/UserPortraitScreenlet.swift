@@ -160,6 +160,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return interactor
 	}
 
+
 	//MARK: Private methods
 
 	private func startInteractor(interactor: UserPortraitBaseInteractor) -> Bool {
@@ -175,7 +176,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 		if url == nil {
 			screenletView?.onFinishOperation()
-			delegate?.onUserPortraitError?(createError(cause: .AbortedDueToPreconditions))
+			delegate?.onUserPortraitError?(NSError.errorWithCause(.AbortedDueToPreconditions))
 		}
 	}
 

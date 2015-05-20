@@ -14,29 +14,6 @@
 import UIKit
 
 
-public enum ScreenletsErrorCause: Int {
-
-	case AbortedDueToPreconditions = -2
-	case InvalidServerResponse = -3
-
-}
-
-
-public func createError(
-		#cause: ScreenletsErrorCause,
-		userInfo: [NSObject : AnyObject]? = nil)
-		-> NSError {
-
-	return NSError(domain: "LiferayScreenlets", code: cause.rawValue, userInfo: userInfo)
-}
-
-public func createError(#cause: ScreenletsErrorCause, #message: String) -> NSError {
-	let userInfo = [NSLocalizedDescriptionKey: message]
-
-	return NSError(domain: "LiferayScreenlets", code: cause.rawValue, userInfo: userInfo)
-}
-
-
 public func nullIfEmpty(string: String?) -> String? {
 	if string == nil {
 		return nil

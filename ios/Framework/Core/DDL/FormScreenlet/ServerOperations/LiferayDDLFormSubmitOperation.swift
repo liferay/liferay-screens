@@ -104,7 +104,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 				resultAttributes = recordDictionary
 			}
 			else {
-				lastError = createError(cause: .InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
 			}
 		}
 	}

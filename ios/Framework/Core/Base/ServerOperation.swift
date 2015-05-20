@@ -68,7 +68,7 @@ public class ServerOperation: NSOperation {
 			}
 		}
 		else {
-			lastError = createError(cause: .AbortedDueToPreconditions, userInfo: nil)
+			lastError = NSError.errorWithCause(.AbortedDueToPreconditions, userInfo: nil)
 		}
 
 		callOnComplete()
@@ -119,8 +119,7 @@ public class ServerOperation: NSOperation {
 			if anonymousAuthValue.anonymousApiUserName == nil ||
 					anonymousAuthValue.anonymousApiPassword == nil {
 
-				lastError = createError(
-						cause: .AbortedDueToPreconditions,
+				lastError = NSError.errorWithCause(.AbortedDueToPreconditions,
 						message: "User name and password are required for anonymous API calls")
 
 				return nil
@@ -133,8 +132,7 @@ public class ServerOperation: NSOperation {
 							password: anonymousAuthValue.anonymousApiPassword!))
 		}
 		else if !SessionContext.hasSession {
-			lastError = createError(
-					cause: .AbortedDueToPreconditions,
+			lastError = NSError.errorWithCause(.AbortedDueToPreconditions,
 					message: "Login required to use this screenlet")
 
 			return nil

@@ -60,7 +60,7 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 						locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString))
 			}
 			else {
-				lastError = createError(cause: .InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
 			}
 		}
 	}

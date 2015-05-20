@@ -57,7 +57,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 				resultRecordId = self.recordId!
 			}
 			else {
-				lastError = createError(cause: .InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
 			}
 		}
 	}

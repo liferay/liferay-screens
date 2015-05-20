@@ -77,7 +77,7 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 				uploadResult = result as? [String:AnyObject]
 			}
 			else {
-				lastError = createError(cause: .InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
 			}
 		}
 

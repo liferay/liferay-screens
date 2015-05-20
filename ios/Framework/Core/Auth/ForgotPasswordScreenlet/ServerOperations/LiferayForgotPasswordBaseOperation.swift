@@ -76,7 +76,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 			resultPasswordSent = result
 		}
 		else {
-			lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
+			lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
 			resultPasswordSent = nil
 		}
 	}
