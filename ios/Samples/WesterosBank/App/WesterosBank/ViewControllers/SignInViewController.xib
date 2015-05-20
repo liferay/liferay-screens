@@ -16,25 +16,25 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="368"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYu-ha-uGh">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="368"/>
                     <subviews>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mro-th-HxE" userLabel="signIn">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="368"/>
                             <subviews>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hZ1-eE-IBY" customClass="LoginScreenlet" customModule="LiferayScreens">
-                                    <rect key="frame" x="0.0" y="80" width="320" height="210"/>
+                                    <rect key="frame" x="0.0" y="80" width="375" height="225"/>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cg4-y9-Lxr">
-                                    <rect key="frame" x="83" y="309" width="153" height="30"/>
-                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
+                                    <rect key="frame" x="111" y="324" width="153" height="30"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                     <state key="normal" title="Forgot password?">
                                         <color key="titleColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,10 +47,10 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BSq-Mj-WPg" userLabel="forgot">
-                            <rect key="frame" x="320" y="0.0" width="320" height="368"/>
+                            <rect key="frame" x="375" y="0.0" width="375" height="368"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eug-pP-wux">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                     <state key="normal" title="FORGOT PASSWORD">
                                         <color key="titleColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -64,7 +64,7 @@
                                     <rect key="frame" x="17" y="30" width="12" height="20"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="agF-4y-83g" customClass="ForgotPasswordScreenlet" customModule="LiferayScreens">
-                                    <rect key="frame" x="30" y="100" width="260" height="210"/>
+                                    <rect key="frame" x="25" y="100" width="325" height="240"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
@@ -90,7 +90,7 @@
                     <integer key="value" value="4"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="570" y="554"/>
+            <point key="canvasLocation" x="569.5" y="554"/>
         </view>
     </objects>
     <resources>
