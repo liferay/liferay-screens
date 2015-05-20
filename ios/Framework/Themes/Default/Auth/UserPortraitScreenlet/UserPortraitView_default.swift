@@ -23,8 +23,8 @@ public class UserPortraitView_default: BaseScreenletView,
 		UIActionSheetDelegate,
 		UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-	@IBOutlet public var activityIndicator: UIActivityIndicatorView?
-	@IBOutlet public var portraitImage: UIImageView?
+	@IBOutlet weak public var activityIndicator: UIActivityIndicatorView?
+	@IBOutlet weak public var portraitImage: UIImageView?
 	@IBOutlet weak var editButton: UIButton!
 
 	public var borderWidth: CGFloat = 1.0 {
@@ -113,11 +113,15 @@ public class UserPortraitView_default: BaseScreenletView,
 
 	override public func onPreAction(#name: String?, sender: AnyObject?) -> Bool {
 		if name == "edit-portrait" {
+
+			let takeNewPicture = LocalizedString("default", "userportrait-take-new-picture", self)
+			let chooseExisting = LocalizedString("default", "userportrait-choose-existing-picture", self)
+
 			let sheet = UIActionSheet(
 					title: "Change portrait",
 					delegate: self,
 					cancelButtonTitle: "Cancel",
-					destructiveButtonTitle: nil, otherButtonTitles: "Take new picture", "Choose existing")
+					destructiveButtonTitle: nil, otherButtonTitles: takeNewPicture, chooseExisting)
 			sheet.showInView(self)
 
 			return false
@@ -129,13 +133,15 @@ public class UserPortraitView_default: BaseScreenletView,
 	public func actionSheet(
 			actionSheet: UIActionSheet,
 			clickedButtonAtIndex buttonIndex: Int) {
+
+		let newPicture = 1
+		let chooseExisting = 2
+
 		switch buttonIndex {
-		case 1:
-			// Take new picture
+		case newPicture:
 			imagePicker.sourceType = .Camera
 
-		case 2:
-			// Choose existing
+		case chooseExisting:
 			imagePicker.sourceType = .SavedPhotosAlbum
 
 		default:
@@ -157,10 +163,7 @@ public class UserPortraitView_default: BaseScreenletView,
 				currentTheme: "default")
 	}
 
-
-	//MARK: Internal methods
-
-	internal func loadPortrait(URL url: NSURL) {
+	public func loadPortrait(URL url: NSURL) {
 		// ignore AFNetworking's cache by now
 		// TODO contribute to UIImageView+AFNetworking to support "If-Modified-Since" header
 		let request = NSURLRequest(
@@ -211,6 +214,7 @@ public class UserPortraitView_default: BaseScreenletView,
 
 		userAction(name: "upload-portrait", sender: editedImage)
 	}
+
 
     public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
 		imagePicker.dismissViewControllerAnimated(true) {}

@@ -46,7 +46,7 @@
 		<RelativeLayout
 			android:id="@+id/card1_subview1"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
 			android:orientation="vertical">
 
 			<ImageView
@@ -149,7 +149,6 @@
 		android:elevation="16dp"
 		android:orientation="vertical">
 
-
 		<TextView
 			style="@style/westeros_card_title"
 			android:id="@+id/report_issue_title"
@@ -169,7 +168,7 @@
 			android:id="@+id/ddlform"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			liferay:layoutId="@layout/ddlform_westeros"
+			liferay:layoutId="@layout/ddl_form_westeros"
 			liferay:recordSetId="@integer/liferay_recordset_id"
 			liferay:selectFieldLayoutId="@layout/ddlfield_select_westeros"
 			liferay:structureId="@integer/liferay_structure_id"

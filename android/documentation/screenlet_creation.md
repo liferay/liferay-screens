@@ -345,7 +345,7 @@ The next sections detail these steps.
 
 Fortunately, Android Studio has a menu option that automatically creates an Android module and adds it to your `settings.gradle` file. Go to *File* &rarr; *New* &rarr; *New Module* &rarr; *Android Library* (in *More Modules*) and enter a name for your new module. You don't need a new activity for the new module, so just use *Blank Activity*. Android Studio automatically creates a new `build.gradle` file (with an Android Library configuration) and adds the new module to the `settings.gradle` file. 
 
-If you prefer to do this manually, you need to create a new Android Library. This is essentially an Android app project with the gradle import set to `apply plugin: 'com.android.library'`. Use the [gradle file](https://github.com/liferay/liferay-screens/blob/master/android/library/viewsets/build.gradle) from the material viewset or Westeros app as an example. 
+If you prefer to do this manually, you need to create a new Android Library. This is essentially an Android app project with the gradle import set to `apply plugin: 'com.android.library'`. Use the [gradle file](https://github.com/liferay/liferay-screens/blob/master/android/viewsets/material/build.gradle) from the material viewset or Westeros app as an example. 
 
 After creating the module manually, you need to import it into your project by specifying its location in [`settings.gradle`](https://github.com/liferay/liferay-screens/tree/master/android/samples/settings.gradle). Here's an example of this configuration:
 
@@ -378,6 +378,6 @@ dependencies {
 
 ### Upload the Module to jCenter or Maven Central
 
-If you want to distribute your screenlet so that others can use it, you can upload it to jCenter or Maven Central. Use the [`build.gradle`](https://github.com/liferay/liferay-screens/blob/LMW-230-Changes-In-Westeros-App/android/viewsets/westeros/build.gradle) file of the material or Westeros viewset as an example. 
+If you want to distribute your screenlet so that others can use it, you can upload it to jCenter or Maven Central. Use the [`build.gradle`](https://github.com/liferay/liferay-screens/blob/master/android/viewsets/westeros/build.gradle) file of the material or Westeros viewset as an example. 
 
 After entering your bintray api key, you can execute `gradlew bintrayupload` to upload your project to jCenter. When finished, your screenlet can be used as any other Android dependency. Developers just need to add the repository, artifact, groupId, and version to their gradle file.

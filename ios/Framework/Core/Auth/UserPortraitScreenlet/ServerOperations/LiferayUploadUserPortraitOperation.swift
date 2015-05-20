@@ -22,9 +22,22 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 	var uploadResult: [String:AnyObject]?
 
 	private let maxSize = 300 * 1024
+	private var fileTooLarge = false
 
 	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("userportrait-screenlet", "uploading-error", self), details: nil)
+		let key: String
+		let details: String?
+
+		if fileTooLarge {
+			key = "too-large-file"
+			details = LocalizedString("userportrait-screenlet", "too-large-file-details", self)
+		}
+		else {
+			key = "uploading-error"
+			details = nil
+		}
+
+		return (LocalizedString("userportrait-screenlet", key, self), details: details)
 	}
 
 
@@ -47,22 +60,30 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 	}
 
 	override internal func doRun(#session: LRSession) {
-		let imageBytes = reduceImage(self.image!, factor: 0.95)
-
-		self.image = nil
-
-		uploadBytes(imageBytes, withSession: session)
+		if let imageBytes = reduceImage(self.image!, factor: 0.95) {
+			self.image = nil
+			uploadBytes(imageBytes, withSession: session)
+		}
+		else {
+			fileTooLarge = true
+			uploadResult = nil
+			lastError = NSError.errorWithCause(.AbortedDueToPreconditions)
+		}
 	}
 
 
 	//MARK: Private methods
 
-	private func reduceImage(src: UIImage, factor: Double) -> NSData {
+	private func reduceImage(src: UIImage, factor: Double) -> NSData? {
+		if factor < 0.8 {
+			return nil
+		}
+
 		var imageBytes = UIImageJPEGRepresentation(src, CGFloat(factor))
 
 		return (imageBytes.length < maxSize)
 				? imageBytes
-				: reduceImage(src, factor: factor - 0.1)
+				: reduceImage(src, factor: factor - 0.05)
 	}
 
 	private func uploadBytes(imageBytes: NSData, withSession session: LRSession) {

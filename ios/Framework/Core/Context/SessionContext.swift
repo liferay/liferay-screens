@@ -34,22 +34,32 @@ import Foundation
 		return StaticInstance.currentSession != nil
 	}
 
+	public class var currentAuthMethod: AuthMethod? {
+		if let userName = currentUserName {
+			return AuthMethod.fromUserName(userName)
+		}
+
+		return nil
+	}
+
 	public class var currentUserName: String? {
 		var authentication = StaticInstance.currentSession?.authentication
-			as! LRBasicAuthentication?
+			as? LRBasicAuthentication
 
 		return authentication?.username
 	}
 
 	public class var currentPassword: String? {
 		var authentication = StaticInstance.currentSession?.authentication
-			as! LRBasicAuthentication?
+			as? LRBasicAuthentication
 
 		return authentication?.password
 	}
 
-	public class var currentAuthMethod: AuthMethod? {
-		return hasSession ? AuthMethod.fromUserName(currentUserName!) : nil
+	public class var currentUserId: Int64? {
+		return StaticInstance.userAttributes["userId"]
+				.map { $0 as! Int }
+				.map { Int64($0) }
 	}
 
 	internal class var sessionStorage: SessionStorage {

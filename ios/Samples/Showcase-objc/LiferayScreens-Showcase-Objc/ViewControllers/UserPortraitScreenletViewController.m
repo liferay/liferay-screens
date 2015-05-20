@@ -40,16 +40,17 @@
 	[self.screenletWithDelegate loadWithUserId:[self.userIdField.text longLongValue]];
 }
 
-- (UIImage *)onUserPortraitResponse:(UIImage *)image {
+- (UIImage *)screenlet:(UserPortraitScreenlet *)screenlet
+		onUserPortraitResponseImage:(UIImage *)image {
 	NSLog(@"DELEGATE onUserPortraitResponse -> (%d x %d)", (int)image.size.width, (int)image.size.height);
 
 	UIImage *converted = [image convertToGrayscale];
 	return converted ? converted : image;
 }
 
-- (void)onUserPortraitError:(NSError *)error {
+- (void)screenlet:(UserPortraitScreenlet *)screenlet
+		onUserPortraitError:(NSError *)error {
 	NSLog(@"DELEGATE onUserPortraitError -> %@", error);
 }
-
 
 @end

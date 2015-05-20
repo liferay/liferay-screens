@@ -135,12 +135,19 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	public void onUserPortraitUploaded(boolean male, long portraitId, String uuid) {
+	public void onUserPortraitUploaded(Long uuid) {
 		if (_listener != null) {
 			_listener.onUserPortraitUploaded(this);
 		}
+
 		getViewModel().showFinishOperation(UPLOAD_PORTRAIT);
-		((UserPortraitLoadInteractor) getInteractor(LOAD_PORTRAIT)).load(male, portraitId, uuid);
+
+		try {
+			((UserPortraitLoadInteractor) getInteractor(LOAD_PORTRAIT)).load(uuid);
+		}
+		catch (Exception e) {
+			LiferayLogger.e("Error reloading user portrait", e);
+		}
 	}
 
 	@Override
@@ -224,8 +231,12 @@ public class UserPortraitScreenlet
 		_male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
 		_portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
-		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, (int) SessionContext.getLoggedUser().getId());
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
+
+		boolean otherParametersAreEmpty = _portraitId == 0 && _uuid == null;
+		int defaultUserId = SessionContext.hasSession() && otherParametersAreEmpty
+			? (int) SessionContext.getLoggedUser().getId() : 0;
+		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, defaultUserId);
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
@@ -252,7 +263,10 @@ public class UserPortraitScreenlet
 		try {
 			if (UPLOAD_PORTRAIT.equals(userActionName)) {
 				UserPortraitUploadInteractor userPortraitInteractor = (UserPortraitUploadInteractor) getInteractor(userActionName);
-				userPortraitInteractor.upload((String) args[0]);
+				String path = (String) args[0];
+				if (_userId != 0) {
+					userPortraitInteractor.upload(_userId, path);
+				}
 			}
 			else {
 				UserPortraitLoadInteractor userPortraitLoadInteractor = (UserPortraitLoadInteractor) getInteractor(userActionName);

@@ -126,6 +126,8 @@ import QuartzCore
 			viewValue.presentingViewController = self.presentingViewController
 			viewValue.themeName = _themeName
 
+			viewValue.presentingViewController = self.presentingViewController
+
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)
 

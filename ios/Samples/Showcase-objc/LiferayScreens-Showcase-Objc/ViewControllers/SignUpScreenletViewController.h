@@ -15,6 +15,4 @@
 
 @interface SignUpScreenletViewController : UIViewController<SignUpScreenletDelegate, LoginScreenletDelegate>
 
-
 @end
-

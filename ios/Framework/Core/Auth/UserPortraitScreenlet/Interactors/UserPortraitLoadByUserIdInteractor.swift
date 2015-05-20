@@ -29,11 +29,7 @@ class UserPortraitLoadByUserIdInteractor: UserPortraitBaseLoadUserInteractor {
 	}
 
 	override func isUserLogged() -> Bool {
-		if let userIdValue = SessionContext.userAttribute("userId") as? Int {
-			return (userId == Int64(userIdValue))
-		}
-
-		return false
+		return (userId == SessionContext.currentUserId)
 	}
 
 }

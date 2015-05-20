@@ -49,6 +49,6 @@ For the `WebContentDisplayScreenlet` to function properly, there should be web c
 
 The `WebContentDisplayScreenlet` delegates some events to an object that conforms to the `WebContentDisplayScreenletDelegate` protocol. This protocol lets you implement the following methods:
 
-- `onWebContentDisplayResponse(html)`: Called when the web content's HTML is received.
-- `onWebContentDisplayError(error)`: Called when an error occurs in the process. The `NSError` object describes the error.
+- `- screenlet:onWebContentResponse:`: Called when the web content's HTML is received.
+- `- screenlet:onWebContentDisplayError:`: Called when an error occurs in the process. The `NSError` object describes the error.
 

@@ -4,6 +4,8 @@ import android.content.Intent;
 
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 
 import org.json.JSONObject;
@@ -18,7 +20,7 @@ public class UserPortraitUploadInteractorImpl extends BaseRemoteInteractor<UserP
 		super(targetScreenletId);
 	}
 
-	public void upload(String picturePath) {
+	public void upload(Long userId, String picturePath) {
 		if (getListener() != null) {
 			getListener().onStartUserPortraitLoadRequest();
 		}
@@ -26,6 +28,7 @@ public class UserPortraitUploadInteractorImpl extends BaseRemoteInteractor<UserP
 		Intent service = new Intent(LiferayScreensContext.getContext(), UserPortraitService.class);
 		service.putExtra("picturePath", picturePath);
 		service.putExtra("screenletId", getTargetScreenletId());
+		service.putExtra("userId", userId);
 
 		LiferayScreensContext.getContext().startService(service);
 	}
@@ -39,13 +42,13 @@ public class UserPortraitUploadInteractorImpl extends BaseRemoteInteractor<UserP
 			getListener().onUserPortraitUploadFailure(event.getException());
 		}
 		else {
-			JSONObject userAttributes = event.getJSONObject();
+			User user = new User(event.getJSONObject());
+			if (user.getId() == SessionContext.getLoggedUser().getId()) {
+				SessionContext.setLoggedUser(user);
+			}
 
 			try {
-				long portraitId = userAttributes.getLong("portraitId");
-				String uuid = userAttributes.getString("uuid");
-
-				getListener().onUserPortraitUploaded(true, portraitId, uuid);
+				getListener().onUserPortraitUploaded(user.getId());
 			}
 			catch (Exception e) {
 				getListener().onUserPortraitUploadFailure(e);

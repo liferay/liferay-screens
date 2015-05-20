@@ -25,13 +25,16 @@ class ForgotPasswordScreenletViewController: UIViewController, ForgotPasswordScr
 		self.screenlet?.delegate = self
 	}
 
-	func onForgotPasswordResponse(newPasswordSent: Bool) {
-		println("DELEGATE: onForgotPasswordResponse called -> \(newPasswordSent)");
+	func screenlet(screenlet: ForgotPasswordScreenlet,
+			onForgotPasswordSent passwordSent: Bool) {
+		println("DELEGATE: onForgotPasswordResponse called -> \(passwordSent)");
 	}
 
-	func onForgotPasswordError(error: NSError) {
+	func screenlet(screenlet: ForgotPasswordScreenlet,
+			onForgotPasswordError error: NSError) {
 		println("DELEGATE: onForgotPasswordError called -> \(error)");
 	}
+
 
 }
 

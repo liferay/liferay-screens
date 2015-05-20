@@ -24,7 +24,7 @@ public class LoginFullView extends LoginView {
 	}
 
 	protected int getLoginEditTextDrawableId() {
-		return R.drawable.ic_account_box;
+		return R.drawable.material_account_box;
 	}
 
 	@Override

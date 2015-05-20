@@ -13,16 +13,16 @@
 		android:id="@+id/signup_default"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		liferay:anonymousApiPassword="test"
-		liferay:anonymousApiUserName="test@liferay.com"
+		liferay:anonymousApiPassword="@string/liferay_anonymousApiPassword"
+		liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName"
 		liferay:layoutId="@layout/sign_up_default"/>
 
 	<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
 		android:id="@+id/signup_material"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		liferay:anonymousApiPassword="test"
-		liferay:anonymousApiUserName="test@liferay.com"
+		liferay:anonymousApiPassword="@string/liferay_anonymousApiPassword"
+		liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName"
 		liferay:layoutId="@layout/sign_up_material"/>
 
 </LinearLayout>

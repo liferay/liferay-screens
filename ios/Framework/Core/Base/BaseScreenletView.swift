@@ -21,6 +21,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	public weak var presentingViewController: UIViewController?
 
+
 	public var editable: Bool = true {
 		didSet {
 			changeEditable(editable, fromView:self)

@@ -41,43 +41,58 @@
 	self.screenlet.delegate = self;
 }
 
-- (void)onFormLoaded:(DDLRecord *)record {
+- (void)screenlet:(DDLFormScreenlet *)screenlet
+		onFormLoaded:(DDLRecord *)record {
 	NSLog(@"DELEGATE onFormLoaded -> %@", record);
 }
 
-- (void)onFormLoadError:(NSError *)error {
+- (void)screenlet:(DDLFormScreenlet *)screenlet
+		onFormLoadError:(NSError *)error {
 	NSLog(@"DELEGATE onFormLoadError -> %@", error);
 }
 
-- (void)onRecordLoaded:(DDLRecord *)record {
+- (void)screenlet:(DDLFormScreenlet *)screenlet
+		onRecordLoaded:(DDLRecord *)record {
 	NSLog(@"DELEGATE onRecordLoaded -> %@", record);
 }
 
-- (void)onRecordLoadError:(NSError *)error {
+- (void)screenlet:(DDLFormScreenlet *)screenlet
+		onRecordLoadError:(NSError *)error {
 	NSLog(@"DELEGATE onRecordLoadError -> %@", error);
 }
 
-- (void)onFormSubmitted:(DDLRecord *)record {
+- (void)screenlet:(DDLFormScreenlet *)screenlet
+		onFormSubmitted:(DDLRecord *)record {
 	NSLog(@"DELEGATE onFormSubmitted -> %@", record);
 }
 
-- (void)onFormSubmitError:(NSError *)error {
+- (void)screenlet:(DDLFormScreenlet *)screenlet
+		onFormSubmitError:(NSError *)error {
 	NSLog(@"DELEGATE onFormSubmitError -> %@", error);
 }
 
-- (void)onDocumentUploadStarted:(DDLFieldDocument *)field {
+- (void)screenlet:(DDLFormScreenlet *)screenlet
+		onDocumentFieldUploadStarted:(DDLFieldDocument *)field {
 	NSLog(@"DELEGATE onDocumentUploadStarted -> %@", field);
 }
 
-- (void)onDocumentUploadedBytes:(DDLFieldDocument *)field bytes:(NSUInteger)bytes sent:(int64_t)sent total:(int64_t)total {
+- (void)screenlet:(DDLFormScreenlet *)screenlet
+		onDocumentField:(DDLFieldDocument *)field
+		uploadedBytes:(NSUInteger)bytes
+		sentBytes:(int64_t)sent
+		totalBytes:(int64_t)total {
 	NSLog(@"DELEGATE onDocumentUploadedBytes -> field=%@ %lu/%lld/%lld", field, (unsigned long)bytes, sent, total);
 }
 
-- (void)onDocumentUploadCompleted:(DDLFieldDocument *)field result:(NSDictionary *)result {
+- (void)screenlet:(DDLFormScreenlet *)screenlet
+		onDocumentField:(DDLFieldDocument *)field
+		uploadResult:(NSDictionary *)result {
 	NSLog(@"DELEGATE onDocumentUploadCompleted -> field=%@ result=%@", field, result);
 }
 
-- (void)onDocumentUploadError:(DDLFieldDocument *)field error:(NSError *)error {
+- (void)screenlet:(DDLFormScreenlet *)screenlet
+		onDocumentField:(DDLFieldDocument *)field
+		uploadError:(NSError *)error {
 	NSLog(@"DELEGATE onDocumentUploadError -> field=%@ error=%@", field, error);
 }
 

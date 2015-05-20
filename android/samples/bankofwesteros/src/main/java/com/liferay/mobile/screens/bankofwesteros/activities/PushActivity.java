@@ -85,5 +85,5 @@ public class PushActivity extends Activity {
 		}
 	}
 
-	private String SENDER_ID = "324849185389";
+	private static final String SENDER_ID = "324849185389";
 }

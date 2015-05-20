@@ -13,3 +13,6 @@
 "default-ddlform-upload-picker-select-video"="Seleccionar un video existente...";
 "default-ddlform-upload-picker-cancel"="Cancelar";
 "default-ddlform-submit-button"="ENVIAR";
+"default-userportrait-take-new-picture"="Hacer una foto";
+"default-userportrait-choose-existing-picture"="Usar foto existente";
+

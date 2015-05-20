@@ -153,7 +153,7 @@ public class UserPortraitLoadInteractorImpl
 
 	protected UserService getUserService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
+		session.setCallback(new UserPortraitLoadCallback(getTargetScreenletId()));
 
 		return new UserService(session);
 	}

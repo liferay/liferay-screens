@@ -138,6 +138,8 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 		numberField.currentValueAsString = "99.98"
 
+		// If this asset fails, check the simulator language settings
+		// It must be in en_US locale
 		XCTAssertEqual("99.98", numberField.currentValueAsString!)
 		XCTAssertTrue(numberField.currentValue is NSDecimalNumber)
 		XCTAssertEqualWithAccuracy(Float(99.98),

@@ -37,33 +37,30 @@
 	self.screenlet.autoLoginDelegate = self;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-	[self.screenlet loadCurrentUser];
-}
-
-- (void)onSignUpResponse:(NSDictionary *)attributes {
+- (void)screenlet:(SignUpScreenlet *)screenlet
+		onSignUpResponseUserAttributes:(NSDictionary *)attributes {
 	NSLog(@"DELEGATE onSignUpResponse -> %@", attributes);
 }
 
-- (void)onSignUpError:(NSError *)error {
+- (void)screenlet:(SignUpScreenlet *)screenlet
+		onSignUpError:(NSError *)error {
 	NSLog(@"DELEGATE onSignUpError -> %@", error);
 }
 
-- (void)onLoginResponse:(NSDictionary *)attributes {
+- (void)screenlet:(BaseScreenlet *)screenlet onLoginResponseUserAttributes:(NSDictionary *)attributes {
 	NSLog(@"DELEGATE onLoginResponse (autologin delegate) -> %@", attributes);
 }
 
-- (void)onLoginError:(NSError *)error {
+- (void)screenlet:(BaseScreenlet *)screenlet onLoginError:(NSError *)error {
 	NSLog(@"DELEGATE onLoginError (autologin delegate) -> %@", error);
 }
 
-- (void)onCredentialsSaved {
+- (void)onScreenletCredentialsSaved:(BaseScreenlet *)screenlet {
 	NSLog(@"DELEGATE onCredentialsSaved (autologin delegate)");
 }
 
-- (void)onCredentialsLoaded {
+- (void)onScreenletCredentialsLoaded:(BaseScreenlet *)screenlet {
 	NSLog(@"DELEGATE onCredentialsLoaded (autologin delegate)");
 }
-
 
 @end

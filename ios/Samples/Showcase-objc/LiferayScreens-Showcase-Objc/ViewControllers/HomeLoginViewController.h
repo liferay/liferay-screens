@@ -16,6 +16,4 @@
 
 @interface HomeLoginViewController : UIViewController<LoginScreenletDelegate>
 
-
 @end
-

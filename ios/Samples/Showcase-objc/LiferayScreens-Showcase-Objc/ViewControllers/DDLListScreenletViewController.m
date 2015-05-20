@@ -29,15 +29,15 @@
 	self.screenlet.userId = [[SessionContext userAttribute:@"userId"] longLongValue];
 }
 
-- (void)onDDLListResponse:(NSArray *)records {
+- (void)screenlet:(DDLListScreenlet *)screenlet onDDLListResponseRecords:(NSArray *)records {
 	NSLog(@"DELEGATE onDDLListResponse -> %@", records);
 }
 
-- (void)onDDLListError:(NSError *)error {
+- (void)screenlet:(DDLListScreenlet *)screenlet onDDLListError:(NSError *)error {
 	NSLog(@"DELEGATE onDDLListError -> %@", error);
 }
 
-- (void)onDDLRecordSelected:(DDLRecord *)record {
+- (void)screenlet:(DDLListScreenlet *)screenlet onDDLSelectedRecord:(DDLRecord *)record {
 	NSLog(@"DELEGATE onDDLRecordSelected -> %@", record);
 }
 
