@@ -39,7 +39,7 @@ DDLs and Data Types should be properly configured in the portal before using `DD
 
 Remember that [Liferay Screens' Compatibility Plugin](https://github.com/liferay/liferay-screens/tree/master/portal) has to be installed to allow remote calls without the userId.
 
-## Compulsory Attributes
+## Required Attributes
 
 - `layoutId`
 - `recordSetId`

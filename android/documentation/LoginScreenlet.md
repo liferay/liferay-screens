@@ -41,7 +41,7 @@ Before using `LoginScreenlet`, you should make sure your portal is configured wi
 
 For more details, see the [Configuring Portal Settings](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/configuring-portal-settings) section of the User Guide. 
 
-## Compulsory Attributes
+## Required Attributes
 
 - `layoutId`
 
