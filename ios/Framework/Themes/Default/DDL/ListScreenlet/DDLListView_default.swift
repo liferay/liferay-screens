@@ -32,10 +32,9 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 		cell.textLabel?.text = "..."
 		cell.accessoryType = .None
 
-		if let image = imageInAnyBundle(
+		if let image = NSBundle.imageInBundles(
 				name: "default-hourglass",
-				currentClass: self.dynamicType,
-				currentTheme: "default") {
+				currentClass: self.dynamicType) {
 			cell.accessoryView = UIImageView(image: image)
 			cell.accessoryView!.frame = CGRectMake(0, 0, image.size.width, image.size.height)
 		}

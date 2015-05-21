@@ -62,21 +62,18 @@ public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFiel
 		super.onPostValidation(valid)
 
 		if valid {
-			textFieldBackground?.image = imageInAnyBundle(
+			textFieldBackground?.image = NSBundle.imageInBundles(
 					name: "default-field",
-					currentClass: self.dynamicType,
-					currentTheme: "default")
+					currentClass: self.dynamicType)
 
-			textFieldBackground?.highlightedImage = imageInAnyBundle(
+			textFieldBackground?.highlightedImage = NSBundle.imageInBundles(
 					name: "default-field-focused",
-					currentClass: self.dynamicType,
-					currentTheme: "default")
+					currentClass: self.dynamicType)
 		}
 		else {
-			let image = imageInAnyBundle(
+			let image = NSBundle.imageInBundles(
 					name: "default-field-failed",
-					currentClass: self.dynamicType,
-					currentTheme: "default")
+					currentClass: self.dynamicType)
 
 			textFieldBackground?.image = image
 			textFieldBackground?.highlightedImage = image

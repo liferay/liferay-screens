@@ -83,10 +83,9 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 	override public func onPostValidation(valid: Bool) {
 		super.onPostValidation(valid)
 
-		textViewBackground?.image = imageInAnyBundle(
+		textViewBackground?.image = NSBundle.imageInBundles(
 					name: valid ? "default-field" : "default-field-failed",
-					currentClass: self.dynamicType,
-					currentTheme: "default")
+					currentClass: self.dynamicType)
 	}
 
 

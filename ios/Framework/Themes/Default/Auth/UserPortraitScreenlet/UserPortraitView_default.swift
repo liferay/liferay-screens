@@ -157,11 +157,11 @@ public class UserPortraitView_default: BaseScreenletView,
 	}
 
 	public func loadPlaceholder() {
-		self.portraitImage?.image = imageInAnyBundle(
+		self.portraitImage?.image = NSBundle.imageInBundles(
 				name: "default-portrait-placeholder",
-				currentClass: self.dynamicType,
-				currentTheme: "default")
+				currentClass: self.dynamicType)
 	}
+
 
 	public func loadPortrait(URL url: NSURL) {
 		// ignore AFNetworking's cache by now

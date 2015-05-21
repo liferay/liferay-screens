@@ -36,13 +36,13 @@ import UIKit
 
 	//MARK: Public methods
 
-	override func onShow() {
+	override public func onShow() {
 		if autoLoad && articleId != "" {
 			loadWebContent()
 		}
 	}
 
-	override internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
 		let interactor = WebContentDisplayLoadInteractor(screenlet: self)
 
 		interactor.onSuccess = {

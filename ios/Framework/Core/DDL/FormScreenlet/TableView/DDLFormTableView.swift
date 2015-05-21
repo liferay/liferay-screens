@@ -255,7 +255,7 @@ public class DDLFormTableView: DDLFormView,
 	//MARK: Internal methods
 
 	internal func registerFieldCells() {
-		let bundles = allBundles(currentClass: self.dynamicType, currentTheme: themeName);
+		let bundles = NSBundle.allBundles(self.dynamicType);
 
 		for fieldEditor in DDLField.Editor.all() {
 			for bundle in bundles {
@@ -285,7 +285,7 @@ public class DDLFormTableView: DDLFormView,
 	}
 
 	internal func registerCustomEditor(field: DDLField) -> Bool {
-		let bundles = allBundles(currentClass: self.dynamicType, currentTheme: themeName);
+		let bundles = NSBundle.allBundles(self.dynamicType);
 
 		for bundle in bundles {
 			if let cellView = registerEditorCellInBundle(bundle,
@@ -306,28 +306,19 @@ public class DDLFormTableView: DDLFormView,
 			cellId: String)
 			-> UITableViewCell? {
 
-		func existingNibName() -> String? {
-			var themedNibName = ""
+		let existingNibName = { (themeName: String) -> String? in
+			let themedNibName = "\(nibName)_\(themeName)"
 
-			if let themeNameValue = self.themeName {
-				themedNibName = "\(nibName)_\(themeNameValue)"
-
-				if bundle.pathForResource(themedNibName, ofType: "nib") != nil {
-					return themedNibName
-				}
-
-				themedNibName = "\(nibName)_default"
-			}
-			else {
-				themedNibName = nibName
-			}
-
-			return bundle.pathForResource(themedNibName, ofType: "nib") != nil ? themedNibName : nil
+			return bundle.pathForResource(themedNibName, ofType: "nib") != nil
+						? themedNibName
+						: nil
 		}
 
+		let themedNibName = existingNibName(self.themeName)
+				?? existingNibName("default")
 
-		if let themedNibName = existingNibName() {
-			let nib = UINib(nibName: themedNibName, bundle: bundle)
+		if let themedNibNameValue = themedNibName {
+			let nib = UINib(nibName: themedNibNameValue, bundle: bundle)
 
 			tableView?.registerNib(nib, forCellReuseIdentifier: cellId)
 

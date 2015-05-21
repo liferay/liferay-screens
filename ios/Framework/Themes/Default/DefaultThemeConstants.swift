@@ -33,9 +33,8 @@ public func setAuthMethodStyles(
 	userNameField!.placeholder = LocalizedString("default", authMethod.description, view)
 	userNameField!.keyboardType = authMethod.keyboardType
 
-	userNameIcon?.image = imageInAnyBundle(
+	userNameIcon?.image = NSBundle.imageInBundles(
 			name: "default-\(authMethod.iconType)-icon",
-			currentClass: view.dynamicType,
-			currentTheme: "default")
+			currentClass: view.dynamicType)
 }
 
