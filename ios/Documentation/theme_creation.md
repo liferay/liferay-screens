@@ -88,12 +88,11 @@ In the following screenshot, the setting for the custom class is correct:
 
 ![Xib file binded to custom class name specifying the module.](Images/xcode-theme-custom-module-right.png)
 
-* In your project's root folder, add a file called `LiferayScreensTheme-Name.podspec` (change `Name` to your theme's name) with the following content:
+* In your project's root folder, add a file called `LiferayScreensTheme-Name.podspec` (change `Name` to your theme's name). It's very important the name of your project starts with `LiferayScreens`. Use the following content:
 
 ```ruby
 	Pod::Spec.new do |s|
-		s.name         = 'LiferayScreensTheme-Name'
-		s.module_name  = 'LiferayScreensThemeName'
+		s.name         = 'LiferayScreensThemeName'
 		s.version      = '1.0'
 		s.summary      = 'Your theme description'
 		s.source = {
@@ -101,15 +100,11 @@ In the following screenshot, the setting for the custom class is correct:
 			:tag => 'v1.0'
 		}
 	
-		s.platform = :ios
-		s.ios.deployment_target = '8.0'
+		s.platform = :ios, '8.0'
 		s.requires_arc = true
 
 		s.source_files = 'Your/Relative/Folder/**/*.{h,m,swift}'
-
-		s.resource_bundle = {
-			'LiferayScreens-name' => 'Your/Relative/Folder/**/*.{xib,png,plist,lproj}'
-		}
+		s.resources = 'Your/Relative/Folder/**/*.{xib,png,plist,lproj}'
 	
 		s.dependency 'LiferayScreens'
 	end
@@ -117,14 +112,13 @@ In the following screenshot, the setting for the custom class is correct:
 
 Remember to change the occurences of `Name` and `name` to your theme's name in the following lines.
 
-- `s.name = LiferayScreensTheme-Name`
-- `s.module_name = LiferayScreensThemeName`
+- `s.name = LiferayScreensThemeName`
 - `LiferayScreens-name => Your/Folder/**/*`
 
 * You can commit and push your project to your Git repository and then use the theme by adding the following line in your app's `Podfile`:
 
 ```ruby
-	pod 'LiferayScreens-YourThemeName', :git => 'https://your_repository_url.git'
+	pod 'LiferayScreensThemeName', :git => 'https://your_repository_url.git'
 ```
 
 * If you want to simplify the process even more, you can publish your theme as a public Pod. For instructions on this, see the chapter *Deploying a library* in the [official CocoaPods guide](https://guides.cocoapods.org/making/getting-setup-with-trunk.html#deploying-a-library).

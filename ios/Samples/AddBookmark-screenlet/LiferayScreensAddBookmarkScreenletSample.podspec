@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name         = 'LiferayScreensAddBookmarkScreenletSample'
 	s.version      = '1.0'
-	s.summary      = 'Your theme description'
+	s.summary      = 'Your screenlet description'
 	s.source = {
 		:git => 'https://your_repository_url.git',
 		:tag => 'v1.0'
