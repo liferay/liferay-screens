@@ -226,14 +226,14 @@ The view sets currently released with Liferay Screens for Android are:
 
 - **Default**: The standard view set used when you include any screenlet in your activity or fragment and don't change the value of the `liferay:layoutId` attribute. This view can be used as the parent view for any custom views (refer to the [Architecture Guide](documentation/architecture.md#view-layer) for more details on this).
 - **Material**: A sample view set intended to demonstrate how to develop your own view sets from scratch. For information on creating your own view sets, refer to the [Views Guide](documentation/views.md).
-- **Westeros**: A custom view set created to customize the behaviour and appearance of a demo application called ["Westeros Bank"](https://play.google.com/store/apps/details?id=com.liferay.mobile.screens.bankofwesteros).
+- **Westeros**: A custom view set created to customize the behavior and appearance of the [Westeros Bank](https://play.google.com/store/apps/details?id=com.liferay.mobile.screens.bankofwesteros) demo application.
 
-## Examples using Liferay Screens
+## Examples Using Liferay Screens
 
 There are two demo applications already using Liferay Screens:
 
 - [test-app](https://github.com/liferay/liferay-screens/tree/master/android/samples/test-app): a showcase of all the currently available screenlets.
-- [Westeros Bank](https://github.com/liferay/liferay-screens/tree/master/android/samples/bankofwesteros): a real example using some screenlets to manage technical issues for the *Westeros bank*. It is also available in [Google Play](https://play.google.com/store/apps/details?id=com.liferay.mobile.screens.bankofwesteros).
+- [Westeros Bank](https://github.com/liferay/liferay-screens/tree/master/android/samples/bankofwesteros): a real example using some screenlets to manage technical issues for the *Westeros Bank*. It's also available in [Google Play](https://play.google.com/store/apps/details?id=com.liferay.mobile.screens.bankofwesteros).
 
 ## Contributing New Screenlets and Views
 
