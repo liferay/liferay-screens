@@ -77,56 +77,10 @@ public class DDLFieldStringWithOptions : DDLField {
 		return result + "]"
 	}
 
-	override internal func convert(fromString value:String?) -> AnyObject? {
-		var result:[Option] = []
+	override internal func convert(fromString value: String?) -> AnyObject? {
+		var result = [Option]()
 
-		func findOptionByValue(value:String) -> Option? {
-			return options.filter { $0.value == value }.first
-		}
-
-		func findOptionByLabel(label:String) -> Option? {
-			return options.filter { $0.label == label }.first
-		}
-
-		func extractFirstOption(options:String) -> String? {
-
-			func removeFirstAndLastChars(value:String) -> String {
-				var result: String = value
-
-				if count(value) >= 2 {
-					let range = Range<String.Index>(
-									start: value.startIndex.successor(),
-									end: value.endIndex.predecessor())
-					result = value.substringWithRange(range)
-				}
-
-				return result
-			}
-
-			let optionsArray = removeFirstAndLastChars(options).componentsSeparatedByString(",")
-
-			var result:String?
-
-			if let firstOptionValue = optionsArray.first {
-				result = firstOptionValue.hasPrefix("\"")
-						? removeFirstAndLastChars(firstOptionValue) : firstOptionValue
-			}
-
-			return result
-		}
-
-		var firstOption:String?
-
-		if let valueString = value {
-			if valueString.hasPrefix("[") {
-				firstOption = extractFirstOption(valueString)
-			}
-			else {
-				firstOption = valueString
-			}
-		}
-
-		if let firstOptionValue = firstOption {
+		if let firstOptionValue = extractOption(value) {
 			if let foundOption = findOptionByLabel(firstOptionValue) {
 				result = [foundOption]
 			}
@@ -138,35 +92,25 @@ public class DDLFieldStringWithOptions : DDLField {
 		return result
 	}
 
-	override func convert(fromLabel label: String?) -> AnyObject? {
-
-		func findOptionByLabel(label:String) -> Option? {
-			return options.filter { $0.label == label }.first
-		}
-
-		var result: [Option] = []
-
-		if label != nil {
-			let foundOption = findOptionByLabel(label!)
-			if let foundOptionValue = foundOption {
-				result.append(foundOptionValue)
+	override func convert(fromLabel labels: String?) -> AnyObject? {
+		if let label = extractOption(labels) {
+			if let foundOption = findOptionByLabel(label) {
+				return [foundOption]
 			}
 		}
 
-		return result
+		return [Option]()
 	}
 
 
 	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
-		var result = ""
-
 		if let currentOptions = currentValue as? [Option] {
 			if let firstOption = currentOptions.first {
-				result = firstOption.label
+				return firstOption.label
 			}
 		}
 
-		return result
+		return ""
 	}
 
 	override internal func doValidate() -> Bool {
@@ -181,6 +125,53 @@ public class DDLFieldStringWithOptions : DDLField {
 				currentValue = convert(fromString: currentValueAsString)
 			}
 		}
+	}
+
+
+	//MARK: Private methods
+
+	private func extractOption(options: String?) -> String? {
+		if let optionsValue = options {
+			if optionsValue.hasPrefix("[") {
+				return extractFirstOption(optionsValue)
+			}
+
+			return optionsValue
+		}
+
+		return nil
+	}
+
+	private func extractFirstOption(options: String) -> String? {
+
+		func removeFirstAndLastChars(value: String) -> String {
+			if count(value) >= 2 {
+				let range = Range<String.Index>(
+						start: value.startIndex.successor(),
+						end: value.endIndex.predecessor())
+				return value.substringWithRange(range)
+			}
+
+			return value
+		}
+
+		let optionsArray = removeFirstAndLastChars(options).componentsSeparatedByString(",")
+
+		if let firstOption = optionsArray.first {
+			return firstOption.hasPrefix("\"")
+					? removeFirstAndLastChars(firstOption)
+					: firstOption
+		}
+
+		return nil
+	}
+
+	private func findOptionByValue(value: String) -> Option? {
+		return options.filter { $0.value == value }.first
+	}
+
+	private func findOptionByLabel(label: String) -> Option? {
+		return options.filter { $0.label == label }.first
 	}
 
 }

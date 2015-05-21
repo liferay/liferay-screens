@@ -21,13 +21,13 @@ public class LiferayPaginationOperation: ServerOperation {
 	public var resultPageContent: [[String:AnyObject]]?
 	public var resultRowCount: Int?
 
-	internal override var hudLoadingMessage: HUDMessage? {
+	override public var hudLoadingMessage: HUDMessage? {
 		return (page == 0)
 				? (LocalizedString("core", "base-list-loading-message", self),
 						details: LocalizedString("core", "base-list-loading-details", self))
 				: nil
 	}
-	internal override var hudFailureMessage: HUDMessage? {
+	override public var hudFailureMessage: HUDMessage? {
 		return (page == 0) 
 				? (LocalizedString("core", "base-list-loading-error", self), details: nil)
 				: nil
@@ -57,7 +57,7 @@ public class LiferayPaginationOperation: ServerOperation {
 		doGetPageRowsOperation(session: batchSession, page: page)
 
 		if batchSession.commands.count < 1 {
-			lastError = createError(cause: .AbortedDueToPreconditions, userInfo: nil)
+			lastError = NSError.errorWithCause(.AbortedDueToPreconditions, userInfo: nil)
 			return
 		}
 
@@ -82,7 +82,7 @@ public class LiferayPaginationOperation: ServerOperation {
 				resultRowCount = serverRowCount
 			}
 			else {
-				lastError = createError(cause: .InvalidServerResponse, userInfo: nil)
+				lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
 			}
 		}
 	}

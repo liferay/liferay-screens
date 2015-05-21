@@ -79,7 +79,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 
 	//MARK: DDLBaseFieldTextboxTableCell
 
-	override internal func onChangedField() {
+	override public func onChangedField() {
 		super.onChangedField()
 
 		if let docField = field as? DDLFieldDocument {

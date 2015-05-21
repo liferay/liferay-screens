@@ -81,8 +81,17 @@ import UIKit
 			(screenletView as? DDLFormView)?.showSubmitButton = showSubmitButton
 		}
 	}
+	@IBInspectable public var editable: Bool = true {
+		didSet {
+			screenletView?.editable = editable
+		}
+	}
 
 	@IBOutlet public weak var delegate: DDLFormScreenletDelegate?
+
+	public var isFormLoaded: Bool {
+		return !((screenletView as? DDLFormView)?.isRecordEmpty ?? true)
+	}
 
 	internal var formView: DDLFormView {
 		return screenletView as! DDLFormView
@@ -98,7 +107,7 @@ import UIKit
 
 	//MARK: BaseScreenlet
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		formView.showSubmitButton = showSubmitButton
 	}
 
@@ -221,8 +230,7 @@ import UIKit
 				recordValue.updateCurrentValues(interactor.resultRecordData!)
 				recordValue.recordId = interactor.resultRecordId!
 
-				// Force didSet event
-				self.formView.record = recordValue
+				self.formView.refresh()
 
 				self.delegate?.screenlet?(self, onRecordLoaded: recordValue)
 			}
@@ -310,6 +318,11 @@ import UIKit
 
 	public func loadForm() -> Bool {
 		return performAction(name: LoadFormAction)
+	}
+
+	public func clearForm() {
+		formView.record?.clearValues()
+		formView.refresh()
 	}
 
 	public func loadRecord() -> Bool {

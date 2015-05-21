@@ -16,9 +16,9 @@ import UIKit
 
 public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewModel {
 
-	@IBOutlet internal var userNameIcon: UIImageView?
-	@IBOutlet internal var userNameField: UITextField?
-	@IBOutlet internal var requestPasswordButton: UIButton?
+	@IBOutlet public var userNameIcon: UIImageView?
+	@IBOutlet public var userNameField: UITextField?
+	@IBOutlet public var requestPasswordButton: UIButton?
 
 
 	//MARK: ForgotPasswordViewModel
@@ -55,7 +55,7 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 
 	//MARK: BaseScreenletView
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 
 		setButtonDefaultStyle(requestPasswordButton)
@@ -63,18 +63,18 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
-	override func onSetTranslations() {
+	override public func onSetTranslations() {
 		requestPasswordButton?.replaceAttributedTitle(
 				LocalizedString("default", "forgot-password-button", self),
 				forState: .Normal)
 
 	}
 
-	override internal func onStartOperation() {
+	override public func onStartOperation() {
 		requestPasswordButton!.enabled = false
 	}
 
-	override internal func onFinishOperation() {
+	override public func onFinishOperation() {
 		requestPasswordButton!.enabled = true
 	}
 

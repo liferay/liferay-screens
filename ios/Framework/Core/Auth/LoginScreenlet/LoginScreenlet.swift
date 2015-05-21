@@ -57,7 +57,7 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedType {
 
 	//MARK: BaseScreenlet
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 		
 		copyAuth(source: self, target: screenletView)

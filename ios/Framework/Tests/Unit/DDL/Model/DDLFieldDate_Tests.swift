@@ -113,7 +113,7 @@ class DDLFieldDate_Tests: XCTestCase {
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		dateField.currentValueAsString = "6/19/04"
+		dateField.currentValueAsString = "6/19/2004"
 
 		XCTAssertEqual(
 				"19/06/2004",

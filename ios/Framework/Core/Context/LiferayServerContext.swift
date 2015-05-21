@@ -31,6 +31,7 @@ public class LiferayServerContext {
 			return StaticInstance.serverProperties!["server"] as! String
 		}
 		set {
+			loadContextFile ()
 			StaticInstance.serverProperties!["server"] = newValue
 		}
 	}
@@ -41,6 +42,7 @@ public class LiferayServerContext {
 			return (StaticInstance.serverProperties!["companyId"] as! NSNumber).longLongValue
 		}
 		set {
+			loadContextFile ()
 			StaticInstance.serverProperties!["companyId"] = NSNumber(longLong: newValue)
 		}
 	}
@@ -51,12 +53,26 @@ public class LiferayServerContext {
 			return (StaticInstance.serverProperties!["groupId"] as! NSNumber).longLongValue
 		}
 		set {
+			loadContextFile ()
 			StaticInstance.serverProperties!["groupId"] = NSNumber(longLong: newValue)
 		}
 	}
 
 
 	//MARK: Public methods
+
+	public class func valueForKey(key: String) -> AnyObject? {
+		loadContextFile()
+		return StaticInstance.serverProperties![key]
+	}
+
+	public class func setValue(value: AnyObject, forKey key: String) {
+		loadContextFile()
+		return StaticInstance.serverProperties![key] = value
+	}
+
+
+	//MARK: Private methods
 
 	private class func loadContextFile() {
 		if StaticInstance.serverProperties != nil {

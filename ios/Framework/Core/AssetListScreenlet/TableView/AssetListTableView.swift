@@ -16,11 +16,11 @@ import UIKit
 
 public class AssetListTableView: BaseListTableView {
 
-	override internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
+	override public func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
 		// Apply cell style in the theme
 	}
 
-	override internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
+	override public func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
 		// Apply cell style in the theme
 	}
 

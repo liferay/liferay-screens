@@ -3,6 +3,7 @@
 "default-auth-method-userid"="Nutzer ID";
 "default-sign-in-button"="Anmelden";
 "default-sign-up-button"="Konto erstellen";
+"default-save-button"="Sparen";
 "default-forgot-password-button"="Passwort vergessen";
 "default-password-placeholder"="Passwort";
 "default-first-name-placeholder"="Vorname";

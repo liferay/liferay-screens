@@ -14,28 +14,28 @@
 import UIKit
 
 
-@objc internal class Interactor: NSObject {
+@objc public class Interactor: NSObject {
 
-	var onSuccess: (Void -> Void)?
-	var onFailure: (NSError -> Void)?
+	public var onSuccess: (Void -> Void)?
+	public var onFailure: (NSError -> Void)?
 
-	let screenlet: BaseScreenlet
+	public let screenlet: BaseScreenlet
 
-	init(screenlet: BaseScreenlet) {
+	public init(screenlet: BaseScreenlet) {
 		self.screenlet = screenlet
 	}
 
-	func callOnSuccess() {
+	public func callOnSuccess() {
 		onSuccess?()
 		finish()
 	}
 
-	func callOnFailure(error: NSError) {
+	public func callOnFailure(error: NSError) {
 		onFailure?(error)
 		finish()
 	}
 
-	func start() -> Bool {
+	public func start() -> Bool {
 		return false
 	}
 

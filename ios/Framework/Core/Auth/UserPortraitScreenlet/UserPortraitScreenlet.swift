@@ -62,7 +62,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 	//MARK: BaseScreenlet
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 
 		viewModel.borderWidth = self.borderWidth
@@ -180,7 +180,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		if url == nil {
 			screenletView?.onFinishOperation()
 			delegate?.screenlet?(self,
-					onUserPortraitError: createError(cause: .AbortedDueToPreconditions))
+					onUserPortraitError: NSError.errorWithCause(.AbortedDueToPreconditions))
 		}
 	}
 

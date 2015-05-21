@@ -34,16 +34,24 @@ import Foundation
 		return StaticInstance.currentSession != nil
 	}
 
+	public class var currentAuthMethod: AuthMethod? {
+		if let userName = currentUserName {
+			return AuthMethod.fromUserName(userName)
+		}
+
+		return nil
+	}
+
 	public class var currentUserName: String? {
 		var authentication = StaticInstance.currentSession?.authentication
-			as! LRBasicAuthentication?
+			as? LRBasicAuthentication
 
 		return authentication?.username
 	}
 
 	public class var currentPassword: String? {
 		var authentication = StaticInstance.currentSession?.authentication
-			as! LRBasicAuthentication?
+			as? LRBasicAuthentication
 
 		return authentication?.password
 	}
@@ -62,7 +70,6 @@ import Foundation
 			StaticInstance.sessionStorage = newValue
 		}
 	}
-
 
 	//MARK Public methods
 

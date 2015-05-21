@@ -13,9 +13,9 @@
 */
 import UIKit
 
-class ServerOperationInteractor: Interactor {
+public class ServerOperationInteractor: Interactor {
 
-	override internal func start() -> Bool {
+	override public func start() -> Bool {
 		var result = false
 
 		if let operation = createOperation() {
@@ -31,18 +31,18 @@ class ServerOperationInteractor: Interactor {
 			}
 		}
 		else {
-			self.callOnFailure(createError(cause: .AbortedDueToPreconditions))
+			self.callOnFailure(NSError.errorWithCause(.AbortedDueToPreconditions))
 		}
 
 		return result
 	}
 
 
-	func createOperation() -> ServerOperation? {
+	public func createOperation() -> ServerOperation? {
 		return nil
 	}
 
-	func completedOperation(op: ServerOperation) {
+	public func completedOperation(op: ServerOperation) {
 	}
 
 }

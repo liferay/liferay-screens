@@ -16,13 +16,13 @@ import UIKit
 
 public class LoginView_default: BaseScreenletView, LoginViewModel {
 
-	@IBOutlet internal var userNameIcon: UIImageView?
-	@IBOutlet internal var userNameField: UITextField?
-	@IBOutlet internal var passwordField: UITextField?
-	@IBOutlet internal var rememberSwitch: UISwitch?
-	@IBOutlet internal var loginButton: UIButton?
-	@IBOutlet internal var userNameBackground: UIImageView?
-	@IBOutlet internal var passwordBackground: UIImageView?
+	@IBOutlet public var userNameIcon: UIImageView?
+	@IBOutlet public var userNameField: UITextField?
+	@IBOutlet public var passwordField: UITextField?
+	@IBOutlet public var rememberSwitch: UISwitch?
+	@IBOutlet public var loginButton: UIButton?
+	@IBOutlet public var userNameBackground: UIImageView?
+	@IBOutlet public var passwordBackground: UIImageView?
 
 
 	//MARK: AuthBasedViewModel
@@ -76,7 +76,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	//MARK: BaseScreenletView
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 
 		setButtonDefaultStyle(loginButton)
@@ -84,18 +84,18 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
-	override internal func onSetTranslations() {
+	override public func onSetTranslations() {
 		passwordField?.placeholder = LocalizedString("default", "password-placeholder", self)
 
 		loginButton?.replaceAttributedTitle(LocalizedString("default", "sign-in-button", self),
 				forState: .Normal)
 	}
 
-	override internal func onStartOperation() {
+	override public func onStartOperation() {
 		loginButton!.enabled = false
 	}
 
-	override internal func onFinishOperation() {
+	override public func onFinishOperation() {
 		loginButton!.enabled = true
 	}
 
