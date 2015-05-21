@@ -42,16 +42,15 @@ PODS:
   - UICKeyChainStore (2.0.4)
 
 DEPENDENCIES:
-  - LiferayScreens (from `https://github.com/liferay/liferay-screens`, branch `LMW-232-ios-westeros-bank-app`)
+  - LiferayScreens (from `https://github.com/liferay/liferay-screens`)
 
 EXTERNAL SOURCES:
   LiferayScreens:
-    :branch: LMW-232-ios-westeros-bank-app
     :git: https://github.com/liferay/liferay-screens
 
 CHECKOUT OPTIONS:
   LiferayScreens:
-    :commit: 97096a5e8e1f75e2ddace4a5207978f1262ee8b2
+    :commit: 177347d882eb2e5089462eff3eb448d1a8d4d15a
     :git: https://github.com/liferay/liferay-screens
 
 SPEC CHECKSUMS:

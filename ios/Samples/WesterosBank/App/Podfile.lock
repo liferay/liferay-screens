@@ -44,18 +44,17 @@ PODS:
   - UICKeyChainStore (2.0.4)
 
 DEPENDENCIES:
-  - LiferayScreens (from `https://github.com/liferay/liferay-screens`, branch `LMW-232-ios-westeros-bank-app`)
+  - LiferayScreens (from `https://github.com/liferay/liferay-screens`)
   - MGSwipeTableCell
   - TPKeyboardAvoiding
 
 EXTERNAL SOURCES:
   LiferayScreens:
-    :branch: LMW-232-ios-westeros-bank-app
     :git: https://github.com/liferay/liferay-screens
 
 CHECKOUT OPTIONS:
   LiferayScreens:
-    :commit: 0408ebc7f31138e0d5ead57e889cc547f9eb659e
+    :commit: 177347d882eb2e5089462eff3eb448d1a8d4d15a
     :git: https://github.com/liferay/liferay-screens
 
 SPEC CHECKSUMS:
