@@ -10,7 +10,7 @@ This document explains the basics of how views are used in Liferay Screens for A
 
 - *View*: Sometimes referred to as the *Custom View* or *Screenlet View*. This is the Java class that implements the UI's behavior. This class is usually the listener for the UI component's events.
 - *Layout*: The XML file that defines the UI components in the view. The root element is usually the same view type as the previous screenlet view.
-- *View set*: The group of views for several screenlets together with their layouts. A view set usually has a name that is easy to refer to, such as *Default* or *Material*. Anyone can create their own view set and releasing it to the community.
+- *View set*: The group of views for several screenlets together with their layouts. A view set usually has a name that is easy to refer to, such as *Default*, *Material* or *Westeros*. Anyone can create their own view set and release it to the community.
 
 ## Installing View Sets
 
@@ -38,17 +38,6 @@ To use a view set, set the `liferay:layoutId` property in your layout XML. This 
 - **Default**: Standard views used when you insert any screenlet and don't set the `liferay:layoutId` attribute.
 - **Material**: Sample views intended to demonstrate how to develop your own view sets from scratch. It follows the [Material Design](https://developer.android.com/design/material/index.html) guidelines published by Google.
 - **Westeros**: A custom view set created to customize the behaviour and appearance of a demo application called "Westeros Bank".
-
-If you want to use `Material` or `Westeros` you will have to add them as a new dependency in your gradle file:
-
-```xml
-dependencies {
-	compile 'com.liferay.mobile:liferay-material-viewset:1.0.+'
-	compile 'com.liferay.mobile:liferay-westeros-viewset:1.0.+'
-
-	...
-}
-```
 
 ## Creating Your Own Views
 

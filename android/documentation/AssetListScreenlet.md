@@ -64,7 +64,7 @@ Dynamic Data Lists (DDL) and Data Types should be configured properly in the por
 
 Remember that [Liferay Screens' Compatibility Plugin](https://github.com/liferay/liferay-screens/tree/master/portal) has to be installed to allow remote calls without the userId.
 
-## Compulsory Attributes
+## Required Attributes
 
 - `layoutId`
 - `classNameId`
