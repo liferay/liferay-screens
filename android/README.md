@@ -25,7 +25,7 @@ Development of Android apps using Liferay Screens requires the following:
 
 ## Compatibility
 
-Liferay Screens for Android is compatible with Android 4.0 (API Level 14) and higher. The SDK uses the [AppCompat library](https://developer.android.com/tools/support-library/features.html#v7-appcompat) (v7:21.0.3) to offer a material look on older devices and the new [recycler view](https://developer.android.com/tools/support-library/features.html#v7-recyclerview) implementation.
+Liferay Screens for Android is compatible with Android 4.0 (API Level 14) and higher. The SDK uses the [AppCompat library](https://developer.android.com/tools/support-library/features.html#v7-appcompat) (v7:22.1.1) to offer a material look on older devices and the new [recycler view](https://developer.android.com/tools/support-library/features.html#v7-recyclerview) implementation.
 
 Other internal dependencies are:
 
@@ -133,16 +133,14 @@ latest version of Liferay Screens for Android.
 
 	```groovy
 	include ':core'
-	include ':themes'
 	project(':core').projectDir = new File(settingsDir, '../../library/core')
-	project(':themes').projectDir = new File(settingsDir, '../../library/themes')
+	project(':core').name = 'liferay-screens'
 	```
 
 4. Include the required dependencies in your `build.gradle` file:
 
 	```groovy
-	compile project (':core')
-	compile project (':themes')
+	compile project(':liferay-screens')
 	```
 	
 You can also configure the `.aar` binary files (in `Android/dist`) as local `.aar` dependencies. You can download all the necessary files from [jCenter](https://bintray.com/liferay/liferay-mobile/liferay-screens/view).
@@ -201,7 +199,7 @@ Awesome! Now you know how to use screenlets in your app. Next, the screenlets av
 
 ## Listing of Available Screenlets
 
-Screenlets are grouped in modules based on internal dependencies. Each module is isolated, so you can use only the modules that are necessary for your project. However, it's important to note that you can't use a screenlet from a single module without using the entire module. The modules are listed here with their screenlets.
+Screenlets are grouped in modules based on internal dependencies. Each module is isolated, so you can use only the modules that are necessary for your project. The modules are listed here with their screenlets.
 
 - **Auth**: Module for user authentication. It uses the [user management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/user-management) features of Liferay Portal. It includes the following screenlets:
 
@@ -215,7 +213,7 @@ Screenlets are grouped in modules based on internal dependencies. Each module is
 	- [`DDLFormScreenlet`](documentation/DDLFormScreenlet.md): Gives your app the ability to present dynamic forms to be filled out by users and submitted back to the server.
 	- [`DDLListScreenlet`](documentation/DDLListScreenlet.md): Gives your app the ability to show a list of records based on a pre-existing DDL in a Liferay instance.
 
-Also, some screenlets can be used individually without the need to import an entire module. These include:
+Also, some screenlets are not part of a specific package:
 
 - [`AssetListScreenlet`](documentation/AssetListScreenlet.md): Shows a list of assets managed by [Liferay's Asset Framework](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/asset-framework-liferay-portal-6-2-dev-guide-06-en). This includes web content, blog entries, documents, users and more.
 - [`WebContentDisplayScreenlet`](Documentation/WebContentDisplayScreenlet.md): Shows the HTML of web content. This screenlet uses the features available in [Web Content Management](https://dev.liferay.com/discover/portal/-/knowledge_base/6-2/web-content-management).
