@@ -5,9 +5,9 @@
 	<key>companyId</key>
 	<integer>20155</integer>
 	<key>server</key>
-	<string>http://5.101.101.128:8080</string>
+	<string>http://screensdemo.liferay.com/</string>
 	<key>groupId</key>
-	<integer>20182</integer>
+	<integer>20195</integer>
 	<key>anonymousUsername</key>
 	<string>anonymous@liferay.com</string>
 	<key>anonymousPassword</key>

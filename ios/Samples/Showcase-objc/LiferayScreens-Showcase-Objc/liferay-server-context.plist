@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>companyId</key>
-	<real>10157</real>
+	<integer>20155</integer>
 	<key>server</key>
-	<string>http://localhost:8080</string>
+	<string>http://screensdemo.liferay.com</string>
 	<key>groupId</key>
-	<real>10184</real>
+	<integer>20195</integer>
 </dict>
 </plist>

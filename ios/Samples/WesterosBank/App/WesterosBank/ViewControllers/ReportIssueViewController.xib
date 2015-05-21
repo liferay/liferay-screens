@@ -25,10 +25,10 @@
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
                                 <userDefinedRuntimeAttribute type="number" keyPath="recordSetId">
-                                    <integer key="value" value="20472"/>
+                                    <integer key="value" value="20611"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="structureId">
-                                    <integer key="value" value="20470"/>
+                                    <integer key="value" value="20609"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="showSubmitButton" value="NO"/>
