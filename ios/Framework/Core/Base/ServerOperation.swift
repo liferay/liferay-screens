@@ -32,24 +32,24 @@ public class ServerOperation: NSOperation {
 	}
 
 
-	internal typealias HUDMessage = (String, details: String?)
+	public typealias HUDMessage = (String, details: String?)
 
 
-	internal var lastError: NSError?
+	public var lastError: NSError?
+
+	public var hudLoadingMessage: HUDMessage? { return nil }
+	public var hudFailureMessage: HUDMessage? { return nil }
+	public var hudSuccessMessage: HUDMessage? { return nil }
+
 	internal var screenlet: BaseScreenlet
-
 	internal var onComplete: (ServerOperation -> Void)?
 
 	internal var anonymousAuth: AnonymousAuthType? {
 		return screenlet as? AnonymousAuthType
 	}
 
-	internal var hudLoadingMessage: HUDMessage? { return nil }
-	internal var hudFailureMessage: HUDMessage? { return nil }
-	internal var hudSuccessMessage: HUDMessage? { return nil }
 
-
-	internal init(screenlet: BaseScreenlet) {
+	public init(screenlet: BaseScreenlet) {
 		self.screenlet = screenlet
 
 		super.init()
@@ -68,7 +68,7 @@ public class ServerOperation: NSOperation {
 			}
 		}
 		else {
-			lastError = createError(cause: .AbortedDueToPreconditions, userInfo: nil)
+			lastError = NSError.errorWithCause(.AbortedDueToPreconditions, userInfo: nil)
 		}
 
 		callOnComplete()
@@ -119,8 +119,7 @@ public class ServerOperation: NSOperation {
 			if anonymousAuthValue.anonymousApiUserName == nil ||
 					anonymousAuthValue.anonymousApiPassword == nil {
 
-				lastError = createError(
-						cause: .AbortedDueToPreconditions,
+				lastError = NSError.errorWithCause(.AbortedDueToPreconditions,
 						message: "User name and password are required for anonymous API calls")
 
 				return nil
@@ -133,8 +132,7 @@ public class ServerOperation: NSOperation {
 							password: anonymousAuthValue.anonymousApiPassword!))
 		}
 		else if !SessionContext.hasSession {
-			lastError = createError(
-					cause: .AbortedDueToPreconditions,
+			lastError = NSError.errorWithCause(.AbortedDueToPreconditions,
 					message: "Login required to use this screenlet")
 
 			return nil

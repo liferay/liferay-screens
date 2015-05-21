@@ -36,7 +36,7 @@ public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default
 
 	//MARK: DDLBaseFieldTextboxTableCell
 
-	override internal func onChangedField() {
+	override public func onChangedField() {
 		super.onChangedField()
 
 		if let fieldValue = field {

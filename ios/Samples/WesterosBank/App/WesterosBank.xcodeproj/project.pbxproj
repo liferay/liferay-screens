@@ -1,0 +1,890 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D3BD6FCCD95D4FE972F06AC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6370C6082E034E1BCF5D2D54 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		880139CA1B029BE000566424 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880139C91B029BE000566424 /* KeyboardListener.swift */; };
+		8820EEF61AE79C2D00FA79A6 /* IssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEF41AE79C2D00FA79A6 /* IssuesViewController.swift */; };
+		8820EEF71AE79C2D00FA79A6 /* IssuesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8820EEF51AE79C2D00FA79A6 /* IssuesViewController.xib */; };
+		8820EEFA1AE79C9000FA79A6 /* ReportIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEF81AE79C9000FA79A6 /* ReportIssueViewController.swift */; };
+		8820EEFB1AE79C9000FA79A6 /* ReportIssueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8820EEF91AE79C9000FA79A6 /* ReportIssueViewController.xib */; };
+		8820EEFD1AE7A03200FA79A6 /* OnBoardingCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEFC1AE7A03200FA79A6 /* OnBoardingCardDeck.swift */; };
+		8820EEFF1AE7A10800FA79A6 /* IssuesCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEFE1AE7A10800FA79A6 /* IssuesCardDeck.swift */; };
+		88735F801AEA3E75000D35F9 /* TourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88735F7F1AEA3E75000D35F9 /* TourViewController.swift */; };
+		88735F8B1AEA4077000D35F9 /* tour-step1.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F821AEA4077000D35F9 /* tour-step1.png */; };
+		88735F8C1AEA4077000D35F9 /* tour-step1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F831AEA4077000D35F9 /* tour-step1@2x.png */; };
+		88735F8D1AEA4077000D35F9 /* tour-step1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F841AEA4077000D35F9 /* tour-step1@3x.png */; };
+		88735F8E1AEA4077000D35F9 /* tour-step2.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F851AEA4077000D35F9 /* tour-step2.png */; };
+		88735F8F1AEA4077000D35F9 /* tour-step2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F861AEA4077000D35F9 /* tour-step2@2x.png */; };
+		88735F901AEA4077000D35F9 /* tour-step2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F871AEA4077000D35F9 /* tour-step2@3x.png */; };
+		88735F911AEA4077000D35F9 /* tour-step3.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F881AEA4077000D35F9 /* tour-step3.png */; };
+		88735F921AEA4077000D35F9 /* tour-step3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F891AEA4077000D35F9 /* tour-step3@2x.png */; };
+		88735F931AEA4077000D35F9 /* tour-step3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F8A1AEA4077000D35F9 /* tour-step3@3x.png */; };
+		88735F9C1AEA6451000D35F9 /* icon_DOWN_W.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F961AEA6451000D35F9 /* icon_DOWN_W.png */; };
+		88735F9D1AEA6451000D35F9 /* icon_DOWN_W@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F971AEA6451000D35F9 /* icon_DOWN_W@2x.png */; };
+		88735F9E1AEA6451000D35F9 /* icon_DOWN_W@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F981AEA6451000D35F9 /* icon_DOWN_W@3x.png */; };
+		88735F9F1AEA6451000D35F9 /* icon_DOWN.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F991AEA6451000D35F9 /* icon_DOWN.png */; };
+		88735FA01AEA6451000D35F9 /* icon_DOWN@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F9A1AEA6451000D35F9 /* icon_DOWN@2x.png */; };
+		88735FA11AEA6451000D35F9 /* icon_DOWN@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F9B1AEA6451000D35F9 /* icon_DOWN@3x.png */; };
+		888540C01B0368AD00B8D193 /* DDLCustomFieldDescriptionTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888540BC1B0368AD00B8D193 /* DDLCustomFieldDescriptionTableCell_westeros_view.xib */; };
+		888540C11B0368AD00B8D193 /* DDLCustomFieldSeverityTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888540BD1B0368AD00B8D193 /* DDLCustomFieldSeverityTableCell_westeros_view.xib */; };
+		888540C21B0368AD00B8D193 /* DDLCustomFieldTitleTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888540BE1B0368AD00B8D193 /* DDLCustomFieldTitleTableCell_westeros_view.xib */; };
+		888540C31B0368AD00B8D193 /* DDLFormView_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888540BF1B0368AD00B8D193 /* DDLFormView_westeros_view.xib */; };
+		88855A331AE6537000D352D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A321AE6537000D352D5 /* AppDelegate.swift */; };
+		88855A381AE6537000D352D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88855A361AE6537000D352D5 /* Main.storyboard */; };
+		88855A3A1AE6537000D352D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88855A391AE6537000D352D5 /* Images.xcassets */; };
+		88855A3D1AE6537000D352D5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88855A3B1AE6537000D352D5 /* LaunchScreen.xib */; };
+		88855A591AE659B700D352D5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A571AE659B700D352D5 /* SignUpViewController.swift */; };
+		88855A5A1AE659B700D352D5 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88855A581AE659B700D352D5 /* SignUpViewController.xib */; };
+		88855A5C1AE659C400D352D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A5B1AE659C400D352D5 /* ViewController.swift */; };
+		88855A5F1AE65F2900D352D5 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A5D1AE65F2900D352D5 /* SignInViewController.swift */; };
+		88855A601AE65F2900D352D5 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88855A5E1AE65F2900D352D5 /* SignInViewController.xib */; };
+		88855A671AE6A5B700D352D5 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A661AE6A5B700D352D5 /* CardView.swift */; };
+		88855A691AE6A5E100D352D5 /* CardDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A681AE6A5E100D352D5 /* CardDeckView.swift */; };
+		88855A6C1AE6BD3E00D352D5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855A6A1AE6BD3E00D352D5 /* HomeViewController.swift */; };
+		88897D891AF549D50051DEF2 /* circle_see pasword_ON.png in Resources */ = {isa = PBXBuildFile; fileRef = 88897D861AF549D50051DEF2 /* circle_see pasword_ON.png */; };
+		88897D8A1AF549D50051DEF2 /* circle_see pasword_ON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88897D871AF549D50051DEF2 /* circle_see pasword_ON@2x.png */; };
+		88897D8B1AF549D50051DEF2 /* circle_see pasword_ON@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88897D881AF549D50051DEF2 /* circle_see pasword_ON@3x.png */; };
+		88897D8D1AF57BA70051DEF2 /* SignUpView_westeros_edit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88897D8C1AF57BA70051DEF2 /* SignUpView_westeros_edit.xib */; };
+		88897D8F1AF57D330051DEF2 /* SignUpView_westeros_edit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88897D8E1AF57D330051DEF2 /* SignUpView_westeros_edit.swift */; };
+		88897D941AF57FCE0051DEF2 /* DDLListView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88897D921AF57FCE0051DEF2 /* DDLListView_westeros.swift */; };
+		88897D951AF57FCE0051DEF2 /* DDLListView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88897D931AF57FCE0051DEF2 /* DDLListView_westeros.xib */; };
+		88897D971AF582330051DEF2 /* DDLListViewCell_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88897D961AF582330051DEF2 /* DDLListViewCell_westeros.xib */; };
+		889CD56B1AEE456200FAC48E /* icon_LEFT.png in Resources */ = {isa = PBXBuildFile; fileRef = 889CD5681AEE456200FAC48E /* icon_LEFT.png */; };
+		889CD56C1AEE456200FAC48E /* icon_LEFT@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 889CD5691AEE456200FAC48E /* icon_LEFT@2x.png */; };
+		889CD56D1AEE456200FAC48E /* icon_LEFT@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 889CD56A1AEE456200FAC48E /* icon_LEFT@3x.png */; };
+		889CD56F1AEE82F900FAC48E /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 889CD56E1AEE82F900FAC48E /* liferay-server-context.plist */; };
+		889F4D921AF26846002E233D /* ForgotPasswordView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889F4D7B1AF26846002E233D /* ForgotPasswordView_westeros.swift */; };
+		889F4D931AF26846002E233D /* ForgotPasswordView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889F4D7C1AF26846002E233D /* ForgotPasswordView_westeros.xib */; };
+		889F4D941AF26846002E233D /* LoginView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889F4D7E1AF26846002E233D /* LoginView_westeros.swift */; };
+		889F4D951AF26846002E233D /* LoginView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889F4D7F1AF26846002E233D /* LoginView_westeros.xib */; };
+		889F4D961AF26846002E233D /* SignUpView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889F4D811AF26846002E233D /* SignUpView_westeros.swift */; };
+		889F4D971AF26846002E233D /* SignUpView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889F4D821AF26846002E233D /* SignUpView_westeros.xib */; };
+		889F4D981AF26846002E233D /* UserPortraitView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889F4D841AF26846002E233D /* UserPortraitView_westeros.swift */; };
+		889F4D991AF26846002E233D /* UserPortraitView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889F4D851AF26846002E233D /* UserPortraitView_westeros.xib */; };
+		889F4D9A1AF26846002E233D /* westeros.strings in Resources */ = {isa = PBXBuildFile; fileRef = 889F4D871AF26846002E233D /* westeros.strings */; };
+		889F4D9B1AF26846002E233D /* flat7-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 889F4D8A1AF26846002E233D /* flat7-field.png */; };
+		889F4D9C1AF26846002E233D /* flat7-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 889F4D8B1AF26846002E233D /* flat7-field@2x.png */; };
+		889F4D9D1AF26846002E233D /* flat7-gradient-form.png in Resources */ = {isa = PBXBuildFile; fileRef = 889F4D8C1AF26846002E233D /* flat7-gradient-form.png */; };
+		889F4D9E1AF26846002E233D /* flat7-gradient-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 889F4D8D1AF26846002E233D /* flat7-gradient-form@2x.png */; };
+		889F4D9F1AF26846002E233D /* flat7-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 889F4D8E1AF26846002E233D /* flat7-portrait-placeholder.png */; };
+		889F4DA01AF26846002E233D /* flat7-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 889F4D8F1AF26846002E233D /* flat7-portrait-placeholder@2x.png */; };
+		889F4DA61AF26C9A002E233D /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889F4DA41AF26C9A002E233D /* BorderedTextField.swift */; };
+		889F4DA71AF26C9A002E233D /* WesterosThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889F4DA51AF26C9A002E233D /* WesterosThemeConstants.swift */; };
+		88ADE1771AF76B190073E889 /* status_DONE.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1681AF76B190073E889 /* status_DONE.png */; };
+		88ADE1781AF76B190073E889 /* status_DONE@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1691AF76B190073E889 /* status_DONE@2x.png */; };
+		88ADE1791AF76B190073E889 /* status_DONE@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE16A1AF76B190073E889 /* status_DONE@3x.png */; };
+		88ADE17A1AF76B190073E889 /* status_FREEZE.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE16B1AF76B190073E889 /* status_FREEZE.png */; };
+		88ADE17B1AF76B190073E889 /* status_FREEZE@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE16C1AF76B190073E889 /* status_FREEZE@2x.png */; };
+		88ADE17C1AF76B190073E889 /* status_FREEZE@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE16D1AF76B190073E889 /* status_FREEZE@3x.png */; };
+		88ADE17D1AF76B190073E889 /* status_OPEN.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE16E1AF76B190073E889 /* status_OPEN.png */; };
+		88ADE17E1AF76B190073E889 /* status_OPEN@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE16F1AF76B190073E889 /* status_OPEN@2x.png */; };
+		88ADE17F1AF76B190073E889 /* status_OPEN@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1701AF76B190073E889 /* status_OPEN@3x.png */; };
+		88ADE1801AF76B190073E889 /* status_REJECT.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1711AF76B190073E889 /* status_REJECT.png */; };
+		88ADE1811AF76B190073E889 /* status_REJECT@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1721AF76B190073E889 /* status_REJECT@2x.png */; };
+		88ADE1821AF76B190073E889 /* status_REJECT@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1731AF76B190073E889 /* status_REJECT@3x.png */; };
+		88ADE1831AF76B190073E889 /* status_WAITING.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1741AF76B190073E889 /* status_WAITING.png */; };
+		88ADE1841AF76B190073E889 /* status_WAITING@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1751AF76B190073E889 /* status_WAITING@2x.png */; };
+		88ADE1851AF76B190073E889 /* status_WAITING@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1761AF76B190073E889 /* status_WAITING@3x.png */; };
+		88ADE1871AF76B720073E889 /* DDLListViewCell_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ADE1861AF76B720073E889 /* DDLListViewCell_westeros.swift */; };
+		88ADE18B1AF77DFF0073E889 /* icon_more_options.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1881AF77DFF0073E889 /* icon_more_options.png */; };
+		88ADE18C1AF77DFF0073E889 /* icon_more_options@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1891AF77DFF0073E889 /* icon_more_options@2x.png */; };
+		88ADE18D1AF77DFF0073E889 /* icon_more_options@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE18A1AF77DFF0073E889 /* icon_more_options@3x.png */; };
+		88ADE1921AF781FD0073E889 /* DDLCustomFieldTitleTableCell_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1911AF781FD0073E889 /* DDLCustomFieldTitleTableCell_westeros.xib */; };
+		88ADE1951AF78D9C0073E889 /* DDLFormView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ADE1931AF78D9C0073E889 /* DDLFormView_westeros.swift */; };
+		88ADE1961AF78D9C0073E889 /* DDLFormView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88ADE1941AF78D9C0073E889 /* DDLFormView_westeros.xib */; };
+		88AE4E5F1AED570A0012125D /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE4E5E1AED570A0012125D /* AccountSettingsViewController.swift */; };
+		88BF87021AFA4D9E00373A32 /* logo_BG_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BF86FF1AFA4D9E00373A32 /* logo_BG_grey.png */; };
+		88BF87031AFA4D9E00373A32 /* logo_BG_grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BF87001AFA4D9E00373A32 /* logo_BG_grey@2x.png */; };
+		88BF87041AFA4D9E00373A32 /* logo_BG_grey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BF87011AFA4D9E00373A32 /* logo_BG_grey@3x.png */; };
+		88D058AF1AF7C92400858DEA /* DDLCustomFieldDescriptionTableCell_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D058AE1AF7C92400858DEA /* DDLCustomFieldDescriptionTableCell_westeros.xib */; };
+		88D058B11AF7CB0700858DEA /* DDLCustomFieldSeverityTableCell_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D058B01AF7CB0700858DEA /* DDLCustomFieldSeverityTableCell_westeros.xib */; };
+		88E657C91AE96AF700FF744A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E657C81AE96AF700FF744A /* Colors.swift */; };
+		88EDE3CA1AEF859C00D61C91 /* Avenir-Next-Condensed.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 88EDE3C81AEF859C00D61C91 /* Avenir-Next-Condensed.ttc */; };
+		88EDE3CB1AEF859C00D61C91 /* Avenir-Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 88EDE3C91AEF859C00D61C91 /* Avenir-Next.ttc */; };
+		88EDE3CD1AEF85AB00D61C91 /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 88EDE3CC1AEF85AB00D61C91 /* Avenir.ttc */; };
+		88FB9B1B1AE7A42500C427AA /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB9B1A1AE7A42500C427AA /* CardViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6370C6082E034E1BCF5D2D54 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		880139C91B029BE000566424 /* KeyboardListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
+		8820EEF41AE79C2D00FA79A6 /* IssuesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesViewController.swift; sourceTree = "<group>"; };
+		8820EEF51AE79C2D00FA79A6 /* IssuesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IssuesViewController.xib; sourceTree = "<group>"; };
+		8820EEF81AE79C9000FA79A6 /* ReportIssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportIssueViewController.swift; sourceTree = "<group>"; };
+		8820EEF91AE79C9000FA79A6 /* ReportIssueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportIssueViewController.xib; sourceTree = "<group>"; };
+		8820EEFC1AE7A03200FA79A6 /* OnBoardingCardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCardDeck.swift; sourceTree = "<group>"; };
+		8820EEFE1AE7A10800FA79A6 /* IssuesCardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesCardDeck.swift; sourceTree = "<group>"; };
+		88735F7F1AEA3E75000D35F9 /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourViewController.swift; sourceTree = "<group>"; };
+		88735F821AEA4077000D35F9 /* tour-step1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step1.png"; sourceTree = "<group>"; };
+		88735F831AEA4077000D35F9 /* tour-step1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step1@2x.png"; sourceTree = "<group>"; };
+		88735F841AEA4077000D35F9 /* tour-step1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step1@3x.png"; sourceTree = "<group>"; };
+		88735F851AEA4077000D35F9 /* tour-step2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step2.png"; sourceTree = "<group>"; };
+		88735F861AEA4077000D35F9 /* tour-step2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step2@2x.png"; sourceTree = "<group>"; };
+		88735F871AEA4077000D35F9 /* tour-step2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step2@3x.png"; sourceTree = "<group>"; };
+		88735F881AEA4077000D35F9 /* tour-step3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step3.png"; sourceTree = "<group>"; };
+		88735F891AEA4077000D35F9 /* tour-step3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step3@2x.png"; sourceTree = "<group>"; };
+		88735F8A1AEA4077000D35F9 /* tour-step3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step3@3x.png"; sourceTree = "<group>"; };
+		88735F961AEA6451000D35F9 /* icon_DOWN_W.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_DOWN_W.png; sourceTree = "<group>"; };
+		88735F971AEA6451000D35F9 /* icon_DOWN_W@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_DOWN_W@2x.png"; sourceTree = "<group>"; };
+		88735F981AEA6451000D35F9 /* icon_DOWN_W@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_DOWN_W@3x.png"; sourceTree = "<group>"; };
+		88735F991AEA6451000D35F9 /* icon_DOWN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_DOWN.png; sourceTree = "<group>"; };
+		88735F9A1AEA6451000D35F9 /* icon_DOWN@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_DOWN@2x.png"; sourceTree = "<group>"; };
+		88735F9B1AEA6451000D35F9 /* icon_DOWN@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_DOWN@3x.png"; sourceTree = "<group>"; };
+		888540BC1B0368AD00B8D193 /* DDLCustomFieldDescriptionTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldDescriptionTableCell_westeros_view.xib; sourceTree = "<group>"; };
+		888540BD1B0368AD00B8D193 /* DDLCustomFieldSeverityTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldSeverityTableCell_westeros_view.xib; sourceTree = "<group>"; };
+		888540BE1B0368AD00B8D193 /* DDLCustomFieldTitleTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldTitleTableCell_westeros_view.xib; sourceTree = "<group>"; };
+		888540BF1B0368AD00B8D193 /* DDLFormView_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFormView_westeros_view.xib; sourceTree = "<group>"; };
+		88855A2D1AE6537000D352D5 /* WesterosBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WesterosBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88855A311AE6537000D352D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88855A321AE6537000D352D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		88855A371AE6537000D352D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		88855A391AE6537000D352D5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		88855A3C1AE6537000D352D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		88855A571AE659B700D352D5 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		88855A581AE659B700D352D5 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		88855A5B1AE659C400D352D5 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		88855A5D1AE65F2900D352D5 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		88855A5E1AE65F2900D352D5 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
+		88855A661AE6A5B700D352D5 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		88855A681AE6A5E100D352D5 /* CardDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDeckView.swift; sourceTree = "<group>"; };
+		88855A6A1AE6BD3E00D352D5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		88897D861AF549D50051DEF2 /* circle_see pasword_ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle_see pasword_ON.png"; sourceTree = "<group>"; };
+		88897D871AF549D50051DEF2 /* circle_see pasword_ON@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle_see pasword_ON@2x.png"; sourceTree = "<group>"; };
+		88897D881AF549D50051DEF2 /* circle_see pasword_ON@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle_see pasword_ON@3x.png"; sourceTree = "<group>"; };
+		88897D8C1AF57BA70051DEF2 /* SignUpView_westeros_edit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView_westeros_edit.xib; sourceTree = "<group>"; };
+		88897D8E1AF57D330051DEF2 /* SignUpView_westeros_edit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_westeros_edit.swift; sourceTree = "<group>"; };
+		88897D921AF57FCE0051DEF2 /* DDLListView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListView_westeros.swift; sourceTree = "<group>"; };
+		88897D931AF57FCE0051DEF2 /* DDLListView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLListView_westeros.xib; sourceTree = "<group>"; };
+		88897D961AF582330051DEF2 /* DDLListViewCell_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLListViewCell_westeros.xib; sourceTree = "<group>"; };
+		889CD5681AEE456200FAC48E /* icon_LEFT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_LEFT.png; sourceTree = "<group>"; };
+		889CD5691AEE456200FAC48E /* icon_LEFT@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_LEFT@2x.png"; sourceTree = "<group>"; };
+		889CD56A1AEE456200FAC48E /* icon_LEFT@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_LEFT@3x.png"; sourceTree = "<group>"; };
+		889CD56E1AEE82F900FAC48E /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = "<group>"; };
+		889F4D7B1AF26846002E233D /* ForgotPasswordView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView_westeros.swift; sourceTree = "<group>"; };
+		889F4D7C1AF26846002E233D /* ForgotPasswordView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordView_westeros.xib; sourceTree = "<group>"; };
+		889F4D7E1AF26846002E233D /* LoginView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_westeros.swift; sourceTree = "<group>"; };
+		889F4D7F1AF26846002E233D /* LoginView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_westeros.xib; sourceTree = "<group>"; };
+		889F4D811AF26846002E233D /* SignUpView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_westeros.swift; sourceTree = "<group>"; };
+		889F4D821AF26846002E233D /* SignUpView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView_westeros.xib; sourceTree = "<group>"; };
+		889F4D841AF26846002E233D /* UserPortraitView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitView_westeros.swift; sourceTree = "<group>"; };
+		889F4D851AF26846002E233D /* UserPortraitView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPortraitView_westeros.xib; sourceTree = "<group>"; };
+		889F4D881AF26846002E233D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/westeros.strings; sourceTree = "<group>"; };
+		889F4D891AF26846002E233D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/westeros.strings; sourceTree = "<group>"; };
+		889F4D8A1AF26846002E233D /* flat7-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field.png"; sourceTree = "<group>"; };
+		889F4D8B1AF26846002E233D /* flat7-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field@2x.png"; sourceTree = "<group>"; };
+		889F4D8C1AF26846002E233D /* flat7-gradient-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form.png"; sourceTree = "<group>"; };
+		889F4D8D1AF26846002E233D /* flat7-gradient-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form@2x.png"; sourceTree = "<group>"; };
+		889F4D8E1AF26846002E233D /* flat7-portrait-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder.png"; sourceTree = "<group>"; };
+		889F4D8F1AF26846002E233D /* flat7-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
+		889F4DA41AF26C9A002E233D /* BorderedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
+		889F4DA51AF26C9A002E233D /* WesterosThemeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WesterosThemeConstants.swift; sourceTree = "<group>"; };
+		88ADE1681AF76B190073E889 /* status_DONE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_DONE.png; sourceTree = "<group>"; };
+		88ADE1691AF76B190073E889 /* status_DONE@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status_DONE@2x.png"; sourceTree = "<group>"; };
+		88ADE16A1AF76B190073E889 /* status_DONE@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status_DONE@3x.png"; sourceTree = "<group>"; };
+		88ADE16B1AF76B190073E889 /* status_FREEZE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_FREEZE.png; sourceTree = "<group>"; };
+		88ADE16C1AF76B190073E889 /* status_FREEZE@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status_FREEZE@2x.png"; sourceTree = "<group>"; };
+		88ADE16D1AF76B190073E889 /* status_FREEZE@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status_FREEZE@3x.png"; sourceTree = "<group>"; };
+		88ADE16E1AF76B190073E889 /* status_OPEN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_OPEN.png; sourceTree = "<group>"; };
+		88ADE16F1AF76B190073E889 /* status_OPEN@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status_OPEN@2x.png"; sourceTree = "<group>"; };
+		88ADE1701AF76B190073E889 /* status_OPEN@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status_OPEN@3x.png"; sourceTree = "<group>"; };
+		88ADE1711AF76B190073E889 /* status_REJECT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_REJECT.png; sourceTree = "<group>"; };
+		88ADE1721AF76B190073E889 /* status_REJECT@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status_REJECT@2x.png"; sourceTree = "<group>"; };
+		88ADE1731AF76B190073E889 /* status_REJECT@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status_REJECT@3x.png"; sourceTree = "<group>"; };
+		88ADE1741AF76B190073E889 /* status_WAITING.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_WAITING.png; sourceTree = "<group>"; };
+		88ADE1751AF76B190073E889 /* status_WAITING@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status_WAITING@2x.png"; sourceTree = "<group>"; };
+		88ADE1761AF76B190073E889 /* status_WAITING@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status_WAITING@3x.png"; sourceTree = "<group>"; };
+		88ADE1861AF76B720073E889 /* DDLListViewCell_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListViewCell_westeros.swift; sourceTree = "<group>"; };
+		88ADE1881AF77DFF0073E889 /* icon_more_options.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_more_options.png; sourceTree = "<group>"; };
+		88ADE1891AF77DFF0073E889 /* icon_more_options@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_more_options@2x.png"; sourceTree = "<group>"; };
+		88ADE18A1AF77DFF0073E889 /* icon_more_options@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_more_options@3x.png"; sourceTree = "<group>"; };
+		88ADE1911AF781FD0073E889 /* DDLCustomFieldTitleTableCell_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldTitleTableCell_westeros.xib; sourceTree = "<group>"; };
+		88ADE1931AF78D9C0073E889 /* DDLFormView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormView_westeros.swift; sourceTree = "<group>"; };
+		88ADE1941AF78D9C0073E889 /* DDLFormView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFormView_westeros.xib; sourceTree = "<group>"; };
+		88AE4E5E1AED570A0012125D /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
+		88BF86FF1AFA4D9E00373A32 /* logo_BG_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_BG_grey.png; sourceTree = "<group>"; };
+		88BF87001AFA4D9E00373A32 /* logo_BG_grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_BG_grey@2x.png"; sourceTree = "<group>"; };
+		88BF87011AFA4D9E00373A32 /* logo_BG_grey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_BG_grey@3x.png"; sourceTree = "<group>"; };
+		88D058AE1AF7C92400858DEA /* DDLCustomFieldDescriptionTableCell_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldDescriptionTableCell_westeros.xib; sourceTree = "<group>"; };
+		88D058B01AF7CB0700858DEA /* DDLCustomFieldSeverityTableCell_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldSeverityTableCell_westeros.xib; sourceTree = "<group>"; };
+		88E657C81AE96AF700FF744A /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		88EDE3C81AEF859C00D61C91 /* Avenir-Next-Condensed.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Next-Condensed.ttc"; sourceTree = "<group>"; };
+		88EDE3C91AEF859C00D61C91 /* Avenir-Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Next.ttc"; sourceTree = "<group>"; };
+		88EDE3CC1AEF85AB00D61C91 /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
+		88FB9B1A1AE7A42500C427AA /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		8B041B2636CB91FFB7773179 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F2F4F265F639A9CBBACD5765 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		88855A2A1AE6537000D352D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D3BD6FCCD95D4FE972F06AC /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A736749DB9828BEC5C1A95A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6370C6082E034E1BCF5D2D54 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		88735F811AEA4077000D35F9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88BF86FF1AFA4D9E00373A32 /* logo_BG_grey.png */,
+				88BF87001AFA4D9E00373A32 /* logo_BG_grey@2x.png */,
+				88BF87011AFA4D9E00373A32 /* logo_BG_grey@3x.png */,
+				88EDE3C11AEF82EF00D61C91 /* fonts */,
+				889CD5681AEE456200FAC48E /* icon_LEFT.png */,
+				889CD5691AEE456200FAC48E /* icon_LEFT@2x.png */,
+				889CD56A1AEE456200FAC48E /* icon_LEFT@3x.png */,
+				88735F961AEA6451000D35F9 /* icon_DOWN_W.png */,
+				88735F971AEA6451000D35F9 /* icon_DOWN_W@2x.png */,
+				88735F981AEA6451000D35F9 /* icon_DOWN_W@3x.png */,
+				88735F991AEA6451000D35F9 /* icon_DOWN.png */,
+				88735F9A1AEA6451000D35F9 /* icon_DOWN@2x.png */,
+				88735F9B1AEA6451000D35F9 /* icon_DOWN@3x.png */,
+				88735F821AEA4077000D35F9 /* tour-step1.png */,
+				88735F831AEA4077000D35F9 /* tour-step1@2x.png */,
+				88735F841AEA4077000D35F9 /* tour-step1@3x.png */,
+				88735F851AEA4077000D35F9 /* tour-step2.png */,
+				88735F861AEA4077000D35F9 /* tour-step2@2x.png */,
+				88735F871AEA4077000D35F9 /* tour-step2@3x.png */,
+				88735F881AEA4077000D35F9 /* tour-step3.png */,
+				88735F891AEA4077000D35F9 /* tour-step3@2x.png */,
+				88735F8A1AEA4077000D35F9 /* tour-step3@3x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		88855A241AE6537000D352D5 = {
+			isa = PBXGroup;
+			children = (
+				889F4D781AF26846002E233D /* WesterosTheme */,
+				88855A2F1AE6537000D352D5 /* WesterosBank */,
+				88855A2E1AE6537000D352D5 /* Products */,
+				9C0B8E5D9A18E3D4A366A294 /* Pods */,
+				1A736749DB9828BEC5C1A95A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		88855A2E1AE6537000D352D5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88855A2D1AE6537000D352D5 /* WesterosBank.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88855A2F1AE6537000D352D5 /* WesterosBank */ = {
+			isa = PBXGroup;
+			children = (
+				88855A651AE6A5B700D352D5 /* Views */,
+				88855A561AE659B700D352D5 /* ViewControllers */,
+				88855A321AE6537000D352D5 /* AppDelegate.swift */,
+				88855A361AE6537000D352D5 /* Main.storyboard */,
+				88855A391AE6537000D352D5 /* Images.xcassets */,
+				88855A3B1AE6537000D352D5 /* LaunchScreen.xib */,
+				88735F811AEA4077000D35F9 /* Resources */,
+				88855A301AE6537000D352D5 /* Supporting Files */,
+			);
+			path = WesterosBank;
+			sourceTree = "<group>";
+		};
+		88855A301AE6537000D352D5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				889CD56E1AEE82F900FAC48E /* liferay-server-context.plist */,
+				88855A311AE6537000D352D5 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88855A561AE659B700D352D5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				88FB9B1A1AE7A42500C427AA /* CardViewController.swift */,
+				88855A5B1AE659C400D352D5 /* ViewController.swift */,
+				88855A5D1AE65F2900D352D5 /* SignInViewController.swift */,
+				88855A5E1AE65F2900D352D5 /* SignInViewController.xib */,
+				88855A571AE659B700D352D5 /* SignUpViewController.swift */,
+				88855A581AE659B700D352D5 /* SignUpViewController.xib */,
+				8820EEF41AE79C2D00FA79A6 /* IssuesViewController.swift */,
+				8820EEF51AE79C2D00FA79A6 /* IssuesViewController.xib */,
+				8820EEF81AE79C9000FA79A6 /* ReportIssueViewController.swift */,
+				8820EEF91AE79C9000FA79A6 /* ReportIssueViewController.xib */,
+				88735F7F1AEA3E75000D35F9 /* TourViewController.swift */,
+				88855A6A1AE6BD3E00D352D5 /* HomeViewController.swift */,
+				88AE4E5E1AED570A0012125D /* AccountSettingsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		88855A651AE6A5B700D352D5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				88855A661AE6A5B700D352D5 /* CardView.swift */,
+				88855A681AE6A5E100D352D5 /* CardDeckView.swift */,
+				8820EEFC1AE7A03200FA79A6 /* OnBoardingCardDeck.swift */,
+				8820EEFE1AE7A10800FA79A6 /* IssuesCardDeck.swift */,
+				88E657C81AE96AF700FF744A /* Colors.swift */,
+				880139C91B029BE000566424 /* KeyboardListener.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		88897D901AF57FCE0051DEF2 /* DDL */ = {
+			isa = PBXGroup;
+			children = (
+				88ADE18E1AF781CB0073E889 /* FormScreenlet */,
+				88897D911AF57FCE0051DEF2 /* ListScreenlet */,
+			);
+			path = DDL;
+			sourceTree = "<group>";
+		};
+		88897D911AF57FCE0051DEF2 /* ListScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				88897D921AF57FCE0051DEF2 /* DDLListView_westeros.swift */,
+				88897D931AF57FCE0051DEF2 /* DDLListView_westeros.xib */,
+				88897D961AF582330051DEF2 /* DDLListViewCell_westeros.xib */,
+				88ADE1861AF76B720073E889 /* DDLListViewCell_westeros.swift */,
+			);
+			path = ListScreenlet;
+			sourceTree = "<group>";
+		};
+		889F4D781AF26846002E233D /* WesterosTheme */ = {
+			isa = PBXGroup;
+			children = (
+				889F4D791AF26846002E233D /* Auth */,
+				88897D901AF57FCE0051DEF2 /* DDL */,
+				889F4DA31AF26C9A002E233D /* Common */,
+				889F4D861AF26846002E233D /* Resources */,
+			);
+			name = WesterosTheme;
+			path = ../Theme;
+			sourceTree = "<group>";
+		};
+		889F4D791AF26846002E233D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				889F4D7A1AF26846002E233D /* ForgotPasswordScreenlet */,
+				889F4D7D1AF26846002E233D /* LoginScreenlet */,
+				889F4D801AF26846002E233D /* SignUpScreenlet */,
+				889F4D831AF26846002E233D /* UserPortraitScreenlet */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		889F4D7A1AF26846002E233D /* ForgotPasswordScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				889F4D7B1AF26846002E233D /* ForgotPasswordView_westeros.swift */,
+				889F4D7C1AF26846002E233D /* ForgotPasswordView_westeros.xib */,
+			);
+			path = ForgotPasswordScreenlet;
+			sourceTree = "<group>";
+		};
+		889F4D7D1AF26846002E233D /* LoginScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				889F4D7E1AF26846002E233D /* LoginView_westeros.swift */,
+				889F4D7F1AF26846002E233D /* LoginView_westeros.xib */,
+			);
+			path = LoginScreenlet;
+			sourceTree = "<group>";
+		};
+		889F4D801AF26846002E233D /* SignUpScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				889F4D811AF26846002E233D /* SignUpView_westeros.swift */,
+				889F4D821AF26846002E233D /* SignUpView_westeros.xib */,
+				88897D8E1AF57D330051DEF2 /* SignUpView_westeros_edit.swift */,
+				88897D8C1AF57BA70051DEF2 /* SignUpView_westeros_edit.xib */,
+			);
+			path = SignUpScreenlet;
+			sourceTree = "<group>";
+		};
+		889F4D831AF26846002E233D /* UserPortraitScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				889F4D841AF26846002E233D /* UserPortraitView_westeros.swift */,
+				889F4D851AF26846002E233D /* UserPortraitView_westeros.xib */,
+			);
+			path = UserPortraitScreenlet;
+			sourceTree = "<group>";
+		};
+		889F4D861AF26846002E233D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88ADE1881AF77DFF0073E889 /* icon_more_options.png */,
+				88ADE1891AF77DFF0073E889 /* icon_more_options@2x.png */,
+				88ADE18A1AF77DFF0073E889 /* icon_more_options@3x.png */,
+				88ADE1681AF76B190073E889 /* status_DONE.png */,
+				88ADE1691AF76B190073E889 /* status_DONE@2x.png */,
+				88ADE16A1AF76B190073E889 /* status_DONE@3x.png */,
+				88ADE16B1AF76B190073E889 /* status_FREEZE.png */,
+				88ADE16C1AF76B190073E889 /* status_FREEZE@2x.png */,
+				88ADE16D1AF76B190073E889 /* status_FREEZE@3x.png */,
+				88ADE16E1AF76B190073E889 /* status_OPEN.png */,
+				88ADE16F1AF76B190073E889 /* status_OPEN@2x.png */,
+				88ADE1701AF76B190073E889 /* status_OPEN@3x.png */,
+				88ADE1711AF76B190073E889 /* status_REJECT.png */,
+				88ADE1721AF76B190073E889 /* status_REJECT@2x.png */,
+				88ADE1731AF76B190073E889 /* status_REJECT@3x.png */,
+				88ADE1741AF76B190073E889 /* status_WAITING.png */,
+				88ADE1751AF76B190073E889 /* status_WAITING@2x.png */,
+				88ADE1761AF76B190073E889 /* status_WAITING@3x.png */,
+				88897D861AF549D50051DEF2 /* circle_see pasword_ON.png */,
+				88897D871AF549D50051DEF2 /* circle_see pasword_ON@2x.png */,
+				88897D881AF549D50051DEF2 /* circle_see pasword_ON@3x.png */,
+				889F4D871AF26846002E233D /* westeros.strings */,
+				889F4D8A1AF26846002E233D /* flat7-field.png */,
+				889F4D8B1AF26846002E233D /* flat7-field@2x.png */,
+				889F4D8C1AF26846002E233D /* flat7-gradient-form.png */,
+				889F4D8D1AF26846002E233D /* flat7-gradient-form@2x.png */,
+				889F4D8E1AF26846002E233D /* flat7-portrait-placeholder.png */,
+				889F4D8F1AF26846002E233D /* flat7-portrait-placeholder@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		889F4DA31AF26C9A002E233D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				889F4DA41AF26C9A002E233D /* BorderedTextField.swift */,
+				889F4DA51AF26C9A002E233D /* WesterosThemeConstants.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		88ADE18E1AF781CB0073E889 /* FormScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				88ADE1931AF78D9C0073E889 /* DDLFormView_westeros.swift */,
+				88ADE1941AF78D9C0073E889 /* DDLFormView_westeros.xib */,
+				88ADE1911AF781FD0073E889 /* DDLCustomFieldTitleTableCell_westeros.xib */,
+				88D058AE1AF7C92400858DEA /* DDLCustomFieldDescriptionTableCell_westeros.xib */,
+				88D058B01AF7CB0700858DEA /* DDLCustomFieldSeverityTableCell_westeros.xib */,
+				888540BC1B0368AD00B8D193 /* DDLCustomFieldDescriptionTableCell_westeros_view.xib */,
+				888540BD1B0368AD00B8D193 /* DDLCustomFieldSeverityTableCell_westeros_view.xib */,
+				888540BE1B0368AD00B8D193 /* DDLCustomFieldTitleTableCell_westeros_view.xib */,
+				888540BF1B0368AD00B8D193 /* DDLFormView_westeros_view.xib */,
+			);
+			path = FormScreenlet;
+			sourceTree = "<group>";
+		};
+		88EDE3C11AEF82EF00D61C91 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				88EDE3C81AEF859C00D61C91 /* Avenir-Next-Condensed.ttc */,
+				88EDE3C91AEF859C00D61C91 /* Avenir-Next.ttc */,
+				88EDE3CC1AEF85AB00D61C91 /* Avenir.ttc */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		9C0B8E5D9A18E3D4A366A294 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F2F4F265F639A9CBBACD5765 /* Pods.debug.xcconfig */,
+				8B041B2636CB91FFB7773179 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		88855A2C1AE6537000D352D5 /* WesterosBank */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88855A4C1AE6537000D352D5 /* Build configuration list for PBXNativeTarget "WesterosBank" */;
+			buildPhases = (
+				22DC74DD78ED6C521B13501E /* Check Pods Manifest.lock */,
+				88855A291AE6537000D352D5 /* Sources */,
+				88855A2A1AE6537000D352D5 /* Frameworks */,
+				88855A2B1AE6537000D352D5 /* Resources */,
+				ACE20F7F57004C7F7177E7A5 /* Embed Pods Frameworks */,
+				C108D2787FE54FFE83D9001D /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WesterosBank;
+			productName = WesterosBank;
+			productReference = 88855A2D1AE6537000D352D5 /* WesterosBank.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		88855A251AE6537000D352D5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Liferay;
+				TargetAttributes = {
+					88855A2C1AE6537000D352D5 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+				};
+			};
+			buildConfigurationList = 88855A281AE6537000D352D5 /* Build configuration list for PBXProject "WesterosBank" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				es,
+			);
+			mainGroup = 88855A241AE6537000D352D5;
+			productRefGroup = 88855A2E1AE6537000D352D5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				88855A2C1AE6537000D352D5 /* WesterosBank */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88855A2B1AE6537000D352D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88855A601AE65F2900D352D5 /* SignInViewController.xib in Resources */,
+				88735F921AEA4077000D35F9 /* tour-step3@2x.png in Resources */,
+				88855A381AE6537000D352D5 /* Main.storyboard in Resources */,
+				88735F901AEA4077000D35F9 /* tour-step2@3x.png in Resources */,
+				88735F8C1AEA4077000D35F9 /* tour-step1@2x.png in Resources */,
+				88735F9E1AEA6451000D35F9 /* icon_DOWN_W@3x.png in Resources */,
+				88735F931AEA4077000D35F9 /* tour-step3@3x.png in Resources */,
+				88ADE17D1AF76B190073E889 /* status_OPEN.png in Resources */,
+				88ADE1781AF76B190073E889 /* status_DONE@2x.png in Resources */,
+				88ADE1851AF76B190073E889 /* status_WAITING@3x.png in Resources */,
+				88735F8F1AEA4077000D35F9 /* tour-step2@2x.png in Resources */,
+				889CD56C1AEE456200FAC48E /* icon_LEFT@2x.png in Resources */,
+				88ADE17A1AF76B190073E889 /* status_FREEZE.png in Resources */,
+				88897D951AF57FCE0051DEF2 /* DDLListView_westeros.xib in Resources */,
+				889F4D9B1AF26846002E233D /* flat7-field.png in Resources */,
+				88EDE3CB1AEF859C00D61C91 /* Avenir-Next.ttc in Resources */,
+				889CD56D1AEE456200FAC48E /* icon_LEFT@3x.png in Resources */,
+				88ADE17E1AF76B190073E889 /* status_OPEN@2x.png in Resources */,
+				88EDE3CA1AEF859C00D61C91 /* Avenir-Next-Condensed.ttc in Resources */,
+				88735F9D1AEA6451000D35F9 /* icon_DOWN_W@2x.png in Resources */,
+				88ADE1791AF76B190073E889 /* status_DONE@3x.png in Resources */,
+				88735F8E1AEA4077000D35F9 /* tour-step2.png in Resources */,
+				889F4D9F1AF26846002E233D /* flat7-portrait-placeholder.png in Resources */,
+				889F4D9D1AF26846002E233D /* flat7-gradient-form.png in Resources */,
+				889CD56F1AEE82F900FAC48E /* liferay-server-context.plist in Resources */,
+				88897D891AF549D50051DEF2 /* circle_see pasword_ON.png in Resources */,
+				88855A3D1AE6537000D352D5 /* LaunchScreen.xib in Resources */,
+				88D058AF1AF7C92400858DEA /* DDLCustomFieldDescriptionTableCell_westeros.xib in Resources */,
+				8820EEFB1AE79C9000FA79A6 /* ReportIssueViewController.xib in Resources */,
+				88ADE18D1AF77DFF0073E889 /* icon_more_options@3x.png in Resources */,
+				88D058B11AF7CB0700858DEA /* DDLCustomFieldSeverityTableCell_westeros.xib in Resources */,
+				88855A5A1AE659B700D352D5 /* SignUpViewController.xib in Resources */,
+				88ADE1771AF76B190073E889 /* status_DONE.png in Resources */,
+				88BF87031AFA4D9E00373A32 /* logo_BG_grey@2x.png in Resources */,
+				88735F8B1AEA4077000D35F9 /* tour-step1.png in Resources */,
+				88897D971AF582330051DEF2 /* DDLListViewCell_westeros.xib in Resources */,
+				888540C31B0368AD00B8D193 /* DDLFormView_westeros_view.xib in Resources */,
+				88ADE17B1AF76B190073E889 /* status_FREEZE@2x.png in Resources */,
+				889F4D951AF26846002E233D /* LoginView_westeros.xib in Resources */,
+				888540C11B0368AD00B8D193 /* DDLCustomFieldSeverityTableCell_westeros_view.xib in Resources */,
+				88ADE18B1AF77DFF0073E889 /* icon_more_options.png in Resources */,
+				889F4D971AF26846002E233D /* SignUpView_westeros.xib in Resources */,
+				88BF87041AFA4D9E00373A32 /* logo_BG_grey@3x.png in Resources */,
+				88EDE3CD1AEF85AB00D61C91 /* Avenir.ttc in Resources */,
+				88ADE1811AF76B190073E889 /* status_REJECT@2x.png in Resources */,
+				88897D8B1AF549D50051DEF2 /* circle_see pasword_ON@3x.png in Resources */,
+				889F4D9A1AF26846002E233D /* westeros.strings in Resources */,
+				889F4DA01AF26846002E233D /* flat7-portrait-placeholder@2x.png in Resources */,
+				88ADE1841AF76B190073E889 /* status_WAITING@2x.png in Resources */,
+				88ADE1801AF76B190073E889 /* status_REJECT.png in Resources */,
+				888540C21B0368AD00B8D193 /* DDLCustomFieldTitleTableCell_westeros_view.xib in Resources */,
+				88ADE18C1AF77DFF0073E889 /* icon_more_options@2x.png in Resources */,
+				88735F8D1AEA4077000D35F9 /* tour-step1@3x.png in Resources */,
+				88897D8D1AF57BA70051DEF2 /* SignUpView_westeros_edit.xib in Resources */,
+				88735F911AEA4077000D35F9 /* tour-step3.png in Resources */,
+				88ADE17C1AF76B190073E889 /* status_FREEZE@3x.png in Resources */,
+				889F4D931AF26846002E233D /* ForgotPasswordView_westeros.xib in Resources */,
+				88735F9F1AEA6451000D35F9 /* icon_DOWN.png in Resources */,
+				88735F9C1AEA6451000D35F9 /* icon_DOWN_W.png in Resources */,
+				8820EEF71AE79C2D00FA79A6 /* IssuesViewController.xib in Resources */,
+				88ADE1921AF781FD0073E889 /* DDLCustomFieldTitleTableCell_westeros.xib in Resources */,
+				889F4D9C1AF26846002E233D /* flat7-field@2x.png in Resources */,
+				88BF87021AFA4D9E00373A32 /* logo_BG_grey.png in Resources */,
+				88ADE1831AF76B190073E889 /* status_WAITING.png in Resources */,
+				889F4D991AF26846002E233D /* UserPortraitView_westeros.xib in Resources */,
+				88855A3A1AE6537000D352D5 /* Images.xcassets in Resources */,
+				88735FA11AEA6451000D35F9 /* icon_DOWN@3x.png in Resources */,
+				88ADE17F1AF76B190073E889 /* status_OPEN@3x.png in Resources */,
+				888540C01B0368AD00B8D193 /* DDLCustomFieldDescriptionTableCell_westeros_view.xib in Resources */,
+				889F4D9E1AF26846002E233D /* flat7-gradient-form@2x.png in Resources */,
+				88897D8A1AF549D50051DEF2 /* circle_see pasword_ON@2x.png in Resources */,
+				88ADE1821AF76B190073E889 /* status_REJECT@3x.png in Resources */,
+				88ADE1961AF78D9C0073E889 /* DDLFormView_westeros.xib in Resources */,
+				88735FA01AEA6451000D35F9 /* icon_DOWN@2x.png in Resources */,
+				889CD56B1AEE456200FAC48E /* icon_LEFT.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		22DC74DD78ED6C521B13501E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ACE20F7F57004C7F7177E7A5 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C108D2787FE54FFE83D9001D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88855A291AE6537000D352D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8820EEF61AE79C2D00FA79A6 /* IssuesViewController.swift in Sources */,
+				8820EEFA1AE79C9000FA79A6 /* ReportIssueViewController.swift in Sources */,
+				88ADE1871AF76B720073E889 /* DDLListViewCell_westeros.swift in Sources */,
+				889F4DA71AF26C9A002E233D /* WesterosThemeConstants.swift in Sources */,
+				88AE4E5F1AED570A0012125D /* AccountSettingsViewController.swift in Sources */,
+				889F4D981AF26846002E233D /* UserPortraitView_westeros.swift in Sources */,
+				88855A5F1AE65F2900D352D5 /* SignInViewController.swift in Sources */,
+				88855A5C1AE659C400D352D5 /* ViewController.swift in Sources */,
+				889F4D941AF26846002E233D /* LoginView_westeros.swift in Sources */,
+				88855A6C1AE6BD3E00D352D5 /* HomeViewController.swift in Sources */,
+				88855A591AE659B700D352D5 /* SignUpViewController.swift in Sources */,
+				88735F801AEA3E75000D35F9 /* TourViewController.swift in Sources */,
+				88855A331AE6537000D352D5 /* AppDelegate.swift in Sources */,
+				88897D8F1AF57D330051DEF2 /* SignUpView_westeros_edit.swift in Sources */,
+				88897D941AF57FCE0051DEF2 /* DDLListView_westeros.swift in Sources */,
+				88855A671AE6A5B700D352D5 /* CardView.swift in Sources */,
+				889F4D921AF26846002E233D /* ForgotPasswordView_westeros.swift in Sources */,
+				88E657C91AE96AF700FF744A /* Colors.swift in Sources */,
+				889F4D961AF26846002E233D /* SignUpView_westeros.swift in Sources */,
+				88FB9B1B1AE7A42500C427AA /* CardViewController.swift in Sources */,
+				88ADE1951AF78D9C0073E889 /* DDLFormView_westeros.swift in Sources */,
+				889F4DA61AF26C9A002E233D /* BorderedTextField.swift in Sources */,
+				88855A691AE6A5E100D352D5 /* CardDeckView.swift in Sources */,
+				8820EEFF1AE7A10800FA79A6 /* IssuesCardDeck.swift in Sources */,
+				880139CA1B029BE000566424 /* KeyboardListener.swift in Sources */,
+				8820EEFD1AE7A03200FA79A6 /* OnBoardingCardDeck.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		88855A361AE6537000D352D5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88855A371AE6537000D352D5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		88855A3B1AE6537000D352D5 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88855A3C1AE6537000D352D5 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		889F4D871AF26846002E233D /* westeros.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				889F4D881AF26846002E233D /* en */,
+				889F4D891AF26846002E233D /* es */,
+			);
+			name = westeros.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		88855A4A1AE6537000D352D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		88855A4B1AE6537000D352D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88855A4D1AE6537000D352D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2F4F265F639A9CBBACD5765 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WesterosBank/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		88855A4E1AE6537000D352D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B041B2636CB91FFB7773179 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WesterosBank/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		88855A281AE6537000D352D5 /* Build configuration list for PBXProject "WesterosBank" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88855A4A1AE6537000D352D5 /* Debug */,
+				88855A4B1AE6537000D352D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88855A4C1AE6537000D352D5 /* Build configuration list for PBXNativeTarget "WesterosBank" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88855A4D1AE6537000D352D5 /* Debug */,
+				88855A4E1AE6537000D352D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 88855A251AE6537000D352D5 /* Project object */;
+}

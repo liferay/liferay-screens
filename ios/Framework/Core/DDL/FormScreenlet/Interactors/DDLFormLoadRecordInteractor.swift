@@ -56,6 +56,10 @@ class DDLFormLoadRecordInteractor: ServerOperationInteractor {
 		if let recordOp = op as? LiferayDDLFormRecordLoadOperation {
 			self.resultRecordData = recordOp.resultRecord
 			self.resultRecordId = recordOp.resultRecordId
+
+			if let resultRecordValue = recordOp.resultRecord {
+				self.resultFormRecord?.updateCurrentValues(resultRecordValue)
+			}
 		}
 	}
 

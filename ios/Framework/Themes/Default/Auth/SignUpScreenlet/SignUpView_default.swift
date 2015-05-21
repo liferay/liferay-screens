@@ -16,33 +16,33 @@ import UIKit
 
 public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
-	@IBOutlet internal var emailAddressField: UITextField?
-	@IBOutlet internal var passwordField: UITextField?
-	@IBOutlet internal var firstNameField: UITextField?
-	@IBOutlet internal var lastNameField: UITextField?
-	@IBOutlet internal var signUpButton: UIButton?
-	@IBOutlet internal var emailAddressBackground: UIImageView?
-	@IBOutlet internal var passwordBackground: UIImageView?
-	@IBOutlet internal var firstNameBackground: UIImageView?
-	@IBOutlet internal var lastNameBackground: UIImageView?
+	@IBOutlet public var emailAddressField: UITextField?
+	@IBOutlet public var passwordField: UITextField?
+	@IBOutlet public var firstNameField: UITextField?
+	@IBOutlet public var lastNameField: UITextField?
+	@IBOutlet public var signUpButton: UIButton?
+	@IBOutlet public var emailAddressBackground: UIImageView?
+	@IBOutlet public var passwordBackground: UIImageView?
+	@IBOutlet public var firstNameBackground: UIImageView?
+	@IBOutlet public var lastNameBackground: UIImageView?
 
-	@IBOutlet internal var scrollView: UIScrollView?
+	@IBOutlet public var scrollView: UIScrollView?
 
 
 	//MARK: BaseScreenletView
 
-	override internal func onStartOperation() {
+	override public func onStartOperation() {
 		signUpButton!.enabled = false
 	}
 
-	override internal func onFinishOperation() {
+	override public func onFinishOperation() {
 		signUpButton!.enabled = true
 	}
 
 
 	//MARK: BaseScreenletView
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 
 		setButtonDefaultStyle(signUpButton)
@@ -52,7 +52,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
-	override func onSetTranslations() {
+	override public func onSetTranslations() {
 		firstNameField?.placeholder = LocalizedString("default", "first-name-placeholder", self)
 		lastNameField?.placeholder = LocalizedString("default", "last-name-placeholder", self)
 		emailAddressField?.placeholder = LocalizedString("default", "auth-method-email", self)
@@ -101,6 +101,37 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		}
 	}
 
+	public var editCurrentUser: Bool = false {
+		didSet {
+			let key: String
+			let actionName: String
+
+			if editCurrentUser {
+				key = "save-button"
+				actionName = "save-action"
+
+				self.firstName = SessionContext.userAttribute("firstName") as? String
+				self.middleName = SessionContext.userAttribute("middleName") as? String
+				self.lastName = SessionContext.userAttribute("lastName") as? String
+				self.emailAddress = SessionContext.userAttribute("emailAddress") as? String
+				self.password = SessionContext.currentPassword
+				self.screenName = SessionContext.userAttribute("screenName") as? String
+				self.jobTitle = SessionContext.userAttribute("jobTitle") as? String
+			}
+			else {
+				key = "sign-up-button"
+				actionName = "signup-action"
+			}
+
+			self.signUpButton?.replaceAttributedTitle(
+					LocalizedString("default", key, self),
+					forState: .Normal)
+
+			self.signUpButton?.restorationIdentifier = actionName
+		}
+	}
+
+
 	// The following properties are not supported in this theme but
 	// may be supported in a child theme
 
@@ -122,7 +153,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 	//MARK: UITextFieldDelegate
 
-	internal func textFieldDidBeginEditing(textField: UITextField!) {
+	public func textFieldDidBeginEditing(textField: UITextField!) {
 		emailAddressBackground?.highlighted = (textField == emailAddressField)
 		passwordBackground?.highlighted = (textField == passwordField)
 		firstNameBackground?.highlighted = (textField == firstNameField)

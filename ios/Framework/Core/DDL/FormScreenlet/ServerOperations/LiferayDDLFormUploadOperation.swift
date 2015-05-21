@@ -29,7 +29,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 
 	var uploadResult: [String:AnyObject]?
 
-	internal override var hudFailureMessage: HUDMessage? {
+	override public var hudFailureMessage: HUDMessage? {
 		return (LocalizedString("ddlform-screenlet", "uploading-error", self), details: nil)
 	}
 

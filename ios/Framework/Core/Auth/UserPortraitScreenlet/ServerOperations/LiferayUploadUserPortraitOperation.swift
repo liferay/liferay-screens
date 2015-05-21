@@ -24,7 +24,7 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 	private let maxSize = 300 * 1024
 	private var fileTooLarge = false
 
-	internal override var hudFailureMessage: HUDMessage? {
+	override public var hudFailureMessage: HUDMessage? {
 		let key: String
 		let details: String?
 
@@ -67,7 +67,7 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 		else {
 			fileTooLarge = true
 			uploadResult = nil
-			lastError = createError(cause: .AbortedDueToPreconditions)
+			lastError = NSError.errorWithCause(.AbortedDueToPreconditions)
 		}
 	}
 
@@ -98,7 +98,7 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 				uploadResult = result as? [String:AnyObject]
 			}
 			else {
-				lastError = createError(cause: .InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
 			}
 		}
 

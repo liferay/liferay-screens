@@ -20,7 +20,7 @@ import UIKit
 
 public class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDelegate {
 
-	@IBOutlet internal var tableView: UITableView?
+	@IBOutlet public var tableView: UITableView?
 
 	internal var refreshControlView: ODRefreshControl?
 
@@ -30,10 +30,18 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 
+	private let cellId = "listCell"
+
 
 	// MARK: BaseListView
 
-	override internal func onChangedRows(oldRows: [AnyObject?]) {
+	public override func onCreated() {
+		super.onCreated()
+
+		doRegisterCellNib(id: cellId)
+	}
+
+	override public func onChangedRows(oldRows: [AnyObject?]) {
 		super.onChangedRows(oldRows)
 
 		if oldRows.isEmpty {
@@ -50,7 +58,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 
-	override func onFinishOperation() {
+	override public func onFinishOperation() {
 		if let currentRefreshControl = refreshControlView {
 			delayed(0.3) {
 				currentRefreshControl.endRefreshing()
@@ -92,10 +100,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 
-
-	//MARK: Internal methods
-
-	internal func doDequeueReusableCell(#row: Int) -> UITableViewCell {
+	public func doDequeueReusableCell(#row: Int) -> UITableViewCell {
 		var result = tableView!.dequeueReusableCellWithIdentifier("listCell") as? UITableViewCell
 
 		if result == nil {
@@ -105,11 +110,17 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		return result!
 	}
 
-	internal func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
+	public func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
 	}
 
-	internal func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
+	public func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
 	}
+
+	public func doRegisterCellNib(#id: String) {
+	}
+
+
+	//MARK: Internal methods
 
 	internal func updateRefreshControl() {
 		if let closureValue = refreshClosure {

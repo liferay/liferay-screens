@@ -37,7 +37,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 		return textView!.becomeFirstResponder()
 	}
 
-	override internal func onChangedField() {
+	override public func onChangedField() {
 		if let stringField = field as? DDLFieldString {
 
 			if stringField.currentValue != nil {
@@ -46,20 +46,26 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 
 			if stringField.showLabel {
 				placeholder?.text = ""
-				label?.text = stringField.label
-				label?.hidden = false
 
-				moveSubviewsVertically(0.0)
+				if let labelValue = label {
+					labelValue.text = stringField.label
+					labelValue.hidden = false
+
+					moveSubviewsVertically(0.0)
+				}
 			}
 			else {
 				placeholder?.text = stringField.label
 				placeholder?.alpha = (textView?.text == "") ? 1.0 : 0.0
-				label?.hidden = true
 
-				moveSubviewsVertically(
-					-(DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel))
+				if let labelValue = label {
+					labelValue.hidden = true
 
-				setCellHeight(DDLFieldTextFieldHeightWithoutLabel)
+					moveSubviewsVertically(
+						-(DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel))
+
+					setCellHeight(DDLFieldTextFieldHeightWithoutLabel)
+				}
 			}
 
 			textView?.returnKeyType = isLastCell ? .Send : .Next
@@ -74,7 +80,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 		}
 	}
 
-	override internal func onPostValidation(valid: Bool) {
+	override public func onPostValidation(valid: Bool) {
 		super.onPostValidation(valid)
 
 		textViewBackground?.image = imageInAnyBundle(

@@ -26,7 +26,7 @@ public class SignUpView_flat7: SignUpView_default {
 
 	//MARK: SignUpView
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 
 		setFlat7ButtonBackground(signUpButton)
@@ -34,7 +34,7 @@ public class SignUpView_flat7: SignUpView_default {
 		BaseScreenlet.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}
 
-	override internal func onSetTranslations() {
+	override public func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
 		titleLabel!.text = LocalizedString("flat7", "signup-title", self)

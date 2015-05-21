@@ -54,7 +54,7 @@ public class DDLFieldDate : DDLField {
 			// minimum date length in mm/dd/yy is 6 characters
 			if count(stringValue) >= 6 {
 				let formatter = stringValue[stringValue.endIndex.predecessor().predecessor()] == "/"
-					? serverYYDateFormatter : serverYYDateFormatter
+					? serverYYDateFormatter : serverYYYYDateFormatter
 				return formatter.dateFromString(stringValue)
 			}
 		}

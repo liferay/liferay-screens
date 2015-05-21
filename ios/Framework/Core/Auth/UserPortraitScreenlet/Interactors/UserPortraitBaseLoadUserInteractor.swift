@@ -92,7 +92,7 @@ class UserPortraitBaseLoadUserInteractor: UserPortraitBaseInteractor {
 		}
 		else {
 			resultURL = nil
-			callOnFailure(createError(cause: .InvalidServerResponse))
+			callOnFailure(NSError.errorWithCause(.InvalidServerResponse))
 		}
 	}
 

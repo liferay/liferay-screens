@@ -38,7 +38,7 @@ public class DDLFieldCheckboxTableCell_default: DDLFieldTableCell {
 		return false
 	}
 
-	override internal func onChangedField() {
+	override public func onChangedField() {
 		if let boolField = field as? DDLFieldBoolean {
 			switchView?.on = boolField.currentValue as! Bool
 			label?.text = boolField.label
@@ -49,7 +49,7 @@ public class DDLFieldCheckboxTableCell_default: DDLFieldTableCell {
 		}
 	}
 
-	override internal func onPostValidation(valid: Bool) {
+	override public func onPostValidation(valid: Bool) {
 		super.onPostValidation(valid)
 
 		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()
