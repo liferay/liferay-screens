@@ -113,7 +113,7 @@ public func eventually(str: String, code: AnyObject? -> Void, action: Action) {
 
 				doPrint("\(indentation)\(icons.eventually) Eventually \(str)\n")
 
-				testCase.waitForExpectationsWithTimeout(500, handler: nil)
+				testCase.waitForExpectationsWithTimeout(5, handler: nil)
 
 				if !signaled {
 					doPrint("\(indentation)\(icons.failed) FAILED (timeout)\n")

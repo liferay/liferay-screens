@@ -22,11 +22,11 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 	public var resultRecordId: Int64?
 
 
-	internal override var hudLoadingMessage: HUDMessage? {
+	override public var hudLoadingMessage: HUDMessage? {
 		return (LocalizedString("ddlform-screenlet", "loading-record-message", self),
 				details: LocalizedString("ddlform-screenlet", "loading-record-details", self))
 	}
-	internal override var hudFailureMessage: HUDMessage? {
+	override public var hudFailureMessage: HUDMessage? {
 		return (LocalizedString("ddlform-screenlet", "loading-record-error", self), details: nil)
 	}
 
@@ -57,7 +57,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 				resultRecordId = self.recordId!
 			}
 			else {
-				lastError = createError(cause: .InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
 			}
 		}
 	}

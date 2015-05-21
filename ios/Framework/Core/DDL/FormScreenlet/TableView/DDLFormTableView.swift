@@ -24,10 +24,9 @@ public class DDLFormTableView: DDLFormView,
 			forEachField() {
 				self.registerCustomEditor($0)
 				self.resetCellHeightForField($0)
-				return
 			}
 
-			tableView!.reloadData()
+			refresh()
 		}
 	}
 
@@ -44,6 +43,10 @@ public class DDLFormTableView: DDLFormView,
 
 
 	//MARK: DDLFormView
+
+	override public func refresh() {
+		tableView!.reloadData()
+	}
 
 	override public func resignFirstResponder() -> Bool {
 		var result = false
@@ -79,17 +82,17 @@ public class DDLFormTableView: DDLFormView,
 		return result
 	}
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 
 		registerFieldCells()
 	}
 
-	override internal func onShow() {
+	override public func onShow() {
 		keyboardManager.registerObserver(self)
 	}
 
-	override internal func onHide() {
+	override public func onHide() {
 		keyboardManager.unregisterObserver()
 	}
 
@@ -113,7 +116,7 @@ public class DDLFormTableView: DDLFormView,
 
 	//MARK: KeyboardLayoutable
 
-	internal func layoutWhenKeyboardShown(var keyboardHeight: CGFloat,
+	public func layoutWhenKeyboardShown(var keyboardHeight: CGFloat,
 			animation:(time: NSNumber, curve: NSNumber)) {
 
 		let cell = DDLFieldTableCell.viewAsFieldCell(firstCellResponder as? UIView)
@@ -184,7 +187,7 @@ public class DDLFormTableView: DDLFormView,
 		}
 	}
 
-	internal func layoutWhenKeyboardHidden() {
+	public func layoutWhenKeyboardHidden() {
 		if let originalFrameValue = originalFrame {
 			self.frame = originalFrameValue
 			originalFrame = nil
@@ -303,11 +306,27 @@ public class DDLFormTableView: DDLFormView,
 			cellId: String)
 			-> UITableViewCell? {
 
-		let themedNibName = (themeName != nil)
-				? "\(nibName)_\(themeName!)"
-				: nibName
+		func existingNibName() -> String? {
+			var themedNibName = ""
 
-		if bundle.pathForResource(themedNibName, ofType: "nib") != nil {
+			if let themeNameValue = self.themeName {
+				themedNibName = "\(nibName)_\(themeNameValue)"
+
+				if bundle.pathForResource(themedNibName, ofType: "nib") != nil {
+					return themedNibName
+				}
+
+				themedNibName = "\(nibName)_default"
+			}
+			else {
+				themedNibName = nibName
+			}
+
+			return bundle.pathForResource(themedNibName, ofType: "nib") != nil ? themedNibName : nil
+		}
+
+
+		if let themedNibName = existingNibName() {
 			let nib = UINib(nibName: themedNibName, bundle: bundle)
 
 			tableView?.registerNib(nib, forCellReuseIdentifier: cellId)

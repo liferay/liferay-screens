@@ -16,29 +16,35 @@ import UIKit
 
 public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFieldDelegate {
 
-	@IBOutlet internal var textField: UITextField?
-	@IBOutlet internal var textFieldBackground: UIImageView?
-	@IBOutlet internal var label: UILabel?
+	@IBOutlet public var textField: UITextField?
+	@IBOutlet public var textFieldBackground: UIImageView?
+	@IBOutlet public var label: UILabel?
 
 
 	//MARK: DDLFieldTableCell
 
-	override internal func onChangedField() {
+	override public func onChangedField() {
 		if field!.showLabel {
 			textField?.placeholder = ""
-			label?.text = field!.label
-			label?.hidden = false
 
-			moveSubviewsVertically(0.0)
+			if let labelValue = label {
+				labelValue.text = field!.label
+				labelValue.hidden = false
+
+				moveSubviewsVertically(0.0)
+			}
 		}
 		else {
 			textField?.placeholder = field!.label
-			label?.hidden = true
 
-			moveSubviewsVertically(
-				-(DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel))
+			if let labelValue = label {
+				labelValue.hidden = true
 
-			setCellHeight(DDLFieldTextFieldHeightWithoutLabel)
+				moveSubviewsVertically(
+					-(DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel))
+
+				setCellHeight(DDLFieldTextFieldHeightWithoutLabel)
+			}
 		}
 
 		textField?.returnKeyType = isLastCell ? .Send : .Next
@@ -52,7 +58,7 @@ public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFiel
 		}
 	}
 
-	override internal func onPostValidation(valid: Bool) {
+	override public func onPostValidation(valid: Bool) {
 		super.onPostValidation(valid)
 
 		if valid {

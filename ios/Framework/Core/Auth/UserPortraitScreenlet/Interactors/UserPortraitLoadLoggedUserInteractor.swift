@@ -30,7 +30,7 @@ class UserPortraitLoadLoggedUserInteractor: UserPortraitBaseInteractor {
 		}
 
 		if resultURL == nil {
-			callOnFailure(createError(cause: .AbortedDueToPreconditions))
+			callOnFailure(NSError.errorWithCause(.AbortedDueToPreconditions))
 		}
 		else {
 			callOnSuccess()

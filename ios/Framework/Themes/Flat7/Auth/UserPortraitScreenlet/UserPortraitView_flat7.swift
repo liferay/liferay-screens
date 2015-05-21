@@ -16,7 +16,7 @@ import UIKit
 
 public class UserPortraitView_flat7: UserPortraitView_default {
 
-	override internal func onShow() {
+	override public func onShow() {
 		super.onShow()
 
 		self.borderColor = Flat7ThemeBasicGreen
@@ -24,7 +24,7 @@ public class UserPortraitView_flat7: UserPortraitView_default {
 		portraitImage?.layer.cornerRadius = min(frame.size.width, frame.size.height) / 2
 	}
 
-	override internal func loadPlaceholder() {
+	override public func loadPlaceholder() {
 		self.portraitImage?.image = imageInAnyBundle(
 				name: "flat7-portrait-placeholder",
 				currentClass: self.dynamicType,

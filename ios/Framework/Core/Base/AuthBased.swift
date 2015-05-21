@@ -61,6 +61,18 @@ public enum AuthMethod: String {
 		return .Email
 	}
 
+	public static func fromUserName(userName: String) -> AuthMethod {
+		if find(userName, "@") != nil {
+			return .Email
+		}
+
+		if userName.toInt() != nil {
+			return .UserId
+		}
+
+		return .ScreenName
+	}
+
 	public var iconType: String {
 		let iconTypes = [
 				AuthMethod.Email: "mail",

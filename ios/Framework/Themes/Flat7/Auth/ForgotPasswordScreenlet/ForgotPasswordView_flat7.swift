@@ -23,7 +23,7 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 
 	//MARK: ForgotPasswordView
 
-	override internal func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 
 		setFlat7ButtonBackground(requestPasswordButton)
@@ -31,7 +31,7 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 		BaseScreenlet.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}
 
-	override internal func onSetTranslations() {
+	override public func onSetTranslations() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 
 		titleLabel!.text = LocalizedString("flat7", "forgotpassword-title", self)

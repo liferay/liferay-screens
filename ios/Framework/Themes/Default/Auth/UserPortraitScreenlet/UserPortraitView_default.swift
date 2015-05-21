@@ -23,8 +23,8 @@ public class UserPortraitView_default: BaseScreenletView,
 		UIActionSheetDelegate,
 		UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-	@IBOutlet weak var activityIndicator: UIActivityIndicatorView?
-	@IBOutlet weak var portraitImage: UIImageView?
+	@IBOutlet weak public var activityIndicator: UIActivityIndicatorView?
+	@IBOutlet weak public var portraitImage: UIImageView?
 	@IBOutlet weak var editButton: UIButton!
 
 	public var borderWidth: CGFloat = 1.0 {
@@ -37,7 +37,7 @@ public class UserPortraitView_default: BaseScreenletView,
 			portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
 		}
 	}
-	public var editable: Bool = false {
+	override public var editable: Bool {
 		didSet {
 			self.editButton.hidden = !editable
 			if editable {
@@ -70,7 +70,7 @@ public class UserPortraitView_default: BaseScreenletView,
 
 	//MARK: BaseScreenletView
 
-	override func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 
 		imagePicker.delegate = self
@@ -78,7 +78,7 @@ public class UserPortraitView_default: BaseScreenletView,
 		imagePicker.modalPresentationStyle = .FullScreen
 	}
 
-	override func onStartOperation() {
+	override public func onStartOperation() {
 		objc_sync_enter(self)
 
 		// use tag to track the start count
@@ -91,7 +91,7 @@ public class UserPortraitView_default: BaseScreenletView,
 		objc_sync_exit(self)
 	}
 
-	override func onFinishOperation() {
+	override public func onFinishOperation() {
 		if activityIndicator?.tag > 0 {
 			objc_sync_enter(self)
 
@@ -105,13 +105,13 @@ public class UserPortraitView_default: BaseScreenletView,
 		}
 	}
 
-	override func onShow() {
+	override public func onShow() {
 		portraitImage?.layer.borderWidth = borderWidth
 		portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
 		portraitImage?.layer.cornerRadius = DefaultThemeButtonCornerRadius
 	}
 
-	override func onPreAction(#name: String?, sender: AnyObject?) -> Bool {
+	override public func onPreAction(#name: String?, sender: AnyObject?) -> Bool {
 		if name == "edit-portrait" {
 
 			let takeNewPicture = LocalizedString("default", "userportrait-take-new-picture", self)
@@ -156,10 +156,14 @@ public class UserPortraitView_default: BaseScreenletView,
 		}
 	}
 
+	public func loadPlaceholder() {
+		self.portraitImage?.image = imageInAnyBundle(
+				name: "default-portrait-placeholder",
+				currentClass: self.dynamicType,
+				currentTheme: "default")
+	}
 
-	//MARK: Internal methods
-
-	internal func loadPortrait(URL url: NSURL) {
+	public func loadPortrait(URL url: NSURL) {
 		// ignore AFNetworking's cache by now
 		// TODO contribute to UIImageView+AFNetworking to support "If-Modified-Since" header
 		let request = NSURLRequest(
@@ -197,13 +201,6 @@ public class UserPortraitView_default: BaseScreenletView,
 			})
 	}
 
-	internal func loadPlaceholder() {
-		self.portraitImage?.image = imageInAnyBundle(
-				name: "default-portrait-placeholder",
-				currentClass: self.dynamicType,
-				currentTheme: "default")
-	}
-
 
 	//MARK: UIImagePickerControllerDelegate
 
@@ -217,6 +214,7 @@ public class UserPortraitView_default: BaseScreenletView,
 
 		userAction(name: "upload-portrait", sender: editedImage)
 	}
+
 
     public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
 		imagePicker.dismissViewControllerAnimated(true) {}

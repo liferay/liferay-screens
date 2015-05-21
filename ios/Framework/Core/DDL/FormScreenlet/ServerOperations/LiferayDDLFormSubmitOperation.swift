@@ -27,16 +27,16 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	public var resultAttributes: NSDictionary?
 
 
-	internal override var hudLoadingMessage: HUDMessage? {
+	override public var hudLoadingMessage: HUDMessage? {
 		return (LocalizedString("ddlform-screenlet", "submitting-message", self),
 				details: LocalizedString("ddlform-screenlet", "submitting-details", self))
 	}
 
-	internal override var hudSuccessMessage: HUDMessage? {
+	override public var hudSuccessMessage: HUDMessage? {
 		return (LocalizedString("ddlform-screenlet", "submitted", self), details: nil)
 	}
 
-	internal override var hudFailureMessage: HUDMessage? {
+	override public var hudFailureMessage: HUDMessage? {
 		return (LocalizedString("ddlform-screenlet", "submitting-error", self), details: nil)
 	}
 
@@ -104,7 +104,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 				resultAttributes = recordDictionary
 			}
 			else {
-				lastError = createError(cause: .InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
 			}
 		}
 	}

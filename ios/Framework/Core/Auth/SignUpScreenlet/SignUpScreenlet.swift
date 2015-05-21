@@ -46,10 +46,32 @@ import UIKit
 		return screenletView as! SignUpViewModel
 	}
 
+	public func loadCurrentUser() -> Bool {
+		if SessionContext.hasSession {
+			self.viewModel.editCurrentUser = true
+
+			return true
+		}
+
+		return false
+	}
+
 
 	//MARK: BaseScreenlet
 
 	override internal func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+
+		switch name! {
+		case "signup-action":
+			return createSignUpInteractor()
+		case "save-action":
+			return createSaveInteractor()
+		default:
+			return nil
+		}
+	}
+
+	private func createSignUpInteractor() -> SignUpInteractor {
 		let interactor = SignUpInteractor(screenlet: self)
 
 		interactor.onSuccess = {
@@ -57,17 +79,11 @@ import UIKit
 					onSignUpResponseUserAttributes: interactor.resultUserAttributes!)
 
 			if self.autoLogin {
-				SessionContext.removeStoredSession()
-
-				SessionContext.createSession(
-						username: self.viewModel.emailAddress!,
-						password: self.viewModel.password!,
-						userAttributes: interactor.resultUserAttributes!)
-
-				self.autoLoginDelegate?.screenlet?(self,
-						onLoginResponseUserAttributes: interactor.resultUserAttributes!)
+				self.doAutoLogin(interactor.resultUserAttributes!)
 
 				if self.saveCredentials {
+					SessionContext.removeStoredSession()
+
 					if SessionContext.storeSession() {
 						self.autoLoginDelegate?.onScreenletCredentialsSaved?(self)
 					}
@@ -81,6 +97,53 @@ import UIKit
 		}
 
 		return interactor
+	}
+
+	private func createSaveInteractor() -> SaveUserInteractor {
+		let interactor = SaveUserInteractor(screenlet: self)
+
+		interactor.onSuccess = {
+			if SessionContext.hasSession {
+				// refresh current session
+				self.doAutoLogin(interactor.resultUserAttributes!)
+			}
+
+			self.delegate?.screenlet?(self,
+					onSignUpResponseUserAttributes: interactor.resultUserAttributes!)
+		}
+
+		interactor.onFailure = {
+			self.delegate?.screenlet?(self, onSignUpError: $0)
+			return
+		}
+
+		return interactor
+	}
+
+	private func doAutoLogin(userAttributes: [String:AnyObject]) {
+		func userNameForAuth(auth: AuthMethod) -> String {
+			switch auth {
+			case .ScreenName:
+				return self.viewModel.screenName!
+			case .UserId:
+				return userAttributes["userId"] as! String
+			case .Email:
+				return self.viewModel.emailAddress!
+			}
+		}
+
+		let userName = userNameForAuth(
+				SessionContext.hasSession
+					? SessionContext.currentAuthMethod!
+					: AuthMethod.fromUserName(anonymousApiUserName!))
+
+		SessionContext.createSession(
+				username: userName,
+				password: self.viewModel.password!,
+				userAttributes: userAttributes)
+
+		self.autoLoginDelegate?.screenlet?(self,
+				onLoginResponseUserAttributes: userAttributes)
 	}
 
 }

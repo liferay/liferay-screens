@@ -1,0 +1,18 @@
+"westeros-login-title"="Welcome";
+"westeros-login-subtitle"="Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nDonec auctor neque sed pretium luctus.";
+"westeros-login-email"="Email Address";
+"westeros-login-password"="Password";
+"westeros-login-login"="Login";
+
+"westeros-signup-title"="Welcome";
+"westeros-signup-subtitle"="Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nDonec auctor neque sed pretium luctus.";
+"westeros-signup-first-name"="First Name";
+"westeros-signup-last-name"="Last Name";
+"westeros-signup-email"="Email Address";
+"westeros-signup-password"="Password";
+"westeros-signup-button"="Sign Up";
+
+"westeros-forgotpassword-title"="Forgot Password";
+"westeros-forgotpassword-subtitle"="Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nDonec auctor neque sed pretium luctus.";
+"westeros-forgotpassword-email"="Email Address";
+"westeros-forgotpassword-request"="Request";

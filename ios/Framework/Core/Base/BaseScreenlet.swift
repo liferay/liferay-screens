@@ -28,6 +28,8 @@ import QuartzCore
 			if _runningOnInterfaceBuilder {
 				_themeName = updateCurrentPreviewImage()
 			}
+
+			screenletView?.themeName = _themeName
 		}
 		get {
 			return _themeName
@@ -118,16 +120,11 @@ import QuartzCore
 			}
 
 			viewValue.onPerformAction = { [weak self] name, sender in
-				if let interactor = self!.createInteractor(name: name, sender: sender) {
-					self!._runningInteractors.append(interactor)
-
-					return self!.onAction(name: name, interactor: interactor, sender: sender)
-				}
-
-				println("WARN: No interactor created for action \(name)")
-
-				return false
+				return self!.performAction(name: name, sender: sender)
 			}
+
+			viewValue.presentingViewController = self.presentingViewController
+			viewValue.themeName = _themeName
 
 			viewValue.presentingViewController = self.presentingViewController
 
@@ -189,15 +186,19 @@ import QuartzCore
 	 * Typically, it's called from TouchUpInside UI event or when the programmer wants to
 	 * start the interaction programatically.
 	 */
-	internal func performAction(#name: String?, sender: AnyObject? = nil) -> Bool {
-		if let screenletViewValue = screenletView {
-			return screenletViewValue.onPerformAction!(name, sender)
+	public func performAction(#name: String?, sender: AnyObject? = nil) -> Bool {
+		if let interactor = createInteractor(name: name, sender: sender) {
+			_runningInteractors.append(interactor)
+
+			return onAction(name: name, interactor: interactor, sender: sender)
 		}
+
+		println("WARN: No interactor created for action \(name)")
 
 		return false
 	}
 
-	internal func performDefaultAction() -> Bool {
+	public func performDefaultAction() -> Bool {
 		return performAction(name: nil, sender: nil)
 	}
 
@@ -236,31 +237,35 @@ import QuartzCore
 	//MARK: Private
 
 	private func createScreenletViewFromNib() -> BaseScreenletView? {
-		func nibNameInBundle(bundle: NSBundle) -> String? {
-			let viewName = self.screenletName + "View"
-			var nibName = "\(viewName)_\(self._themeName)"
-			var nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
-			if nibPath == nil {
-				nibName = "\(viewName)_default"
-				nibPath = bundle.pathForResource(nibName, ofType:"nib")
+		func tryLoadForTheme(themeName: String, inBundles bundles: [NSBundle]) -> BaseScreenletView? {
+			for bundle in bundles {
+				let viewName = self.screenletName + "View"
+				var nibName = "\(viewName)_\(themeName)"
+				var nibPath = bundle.pathForResource(nibName, ofType:"nib")
+
+				if nibPath != nil {
+					let views = bundle.loadNibNamed(nibName,
+							owner:self,
+							options:nil)
+
+					assert(views.count > 0, "Malformed xib \(nibName). Without views")
+
+					return (views[0] as? BaseScreenletView)
+				}
 			}
 
-			return (nibPath == nil) ? nil : nibName
+			return nil;
 		}
 
 		let bundles = allBundles(currentClass: self.dynamicType, currentTheme: _themeName);
 
-		for bundle in bundles {
-			if let nibName = nibNameInBundle(bundle) {
-				let views = bundle.loadNibNamed(nibName,
-						owner:self,
-						options:nil)
+		if let foundView = tryLoadForTheme(_themeName, inBundles: bundles) {
+			return foundView
+		}
 
-				assert(views.count > 0, "Malformed xib \(nibName). Without views")
-
-				return (views[0] as? BaseScreenletView)
-			}
+		if let foundView = tryLoadForTheme("default", inBundles: bundles) {
+			return foundView
 		}
 
 		println("ERROR: Xib file doesn't found for screenlet '\(self.screenletName)' and theme '\(_themeName)'")

@@ -21,15 +21,16 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	public weak var presentingViewController: UIViewController?
 
+
+	public var editable: Bool = true {
+		didSet {
+			changeEditable(editable, fromView:self)
+		}
+	}
+
 	internal var onPerformAction: ((String?, AnyObject?) -> Bool)?
 
-	internal var themeName: String? {
-		var className = NSStringFromClass(self.dynamicType)
-
-		let components = className.componentsSeparatedByString("_")
-
-		return (components.count > 1) ? components.last : nil
-	}
+	internal var themeName: String?
 
 	deinit {
 		onDestroy()
@@ -105,27 +106,27 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * Override this method to perform actions such as setting colors, sizes, 
 	 * positioning, etc to the component's subviews.
 	*/
-	internal func onCreated() {
+	public func onCreated() {
 	}
 
 	/*
 	 * onDestroy is fired before the destruction of the screenlet view.
 	 * Override this method to perform cleanup actions.
 	*/
-	internal func onDestroy() {
+	public func onDestroy() {
 	}
 
 	/*
 	 * onPreCreate is fired before the initialization of the screenlet view. 
 	 * Override this method to create UI components programatically.
 	*/
-	internal func onPreCreate() {
+	public func onPreCreate() {
 	}
 
 	/*
 	 * onHide is invoked when the screenlet's view is hidden
 	 */
-	internal func onHide() {
+	public func onHide() {
 	}
 
 	/*
@@ -133,7 +134,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * Override this method for example to reset values when the screenlet's 
 	 * view is shown.
 	 */
-	internal func onShow() {
+	public func onShow() {
 	}
 
 	/*
@@ -142,32 +143,32 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * Override this method to decide whether or not the handler should be 
 	 * associated to the control.
 	 */
-	internal func onSetUserActionForControl(control: UIControl) -> Bool {
+	public func onSetUserActionForControl(control: UIControl) -> Bool {
 		return true
 	}
 
 	/*
-	 * onPreUserAction is invoked just before any user action is invoked.
+	 * onPreAction is invoked just before any user action is invoked.
 	 * Override this method to decide whether or not the user action should be fired.
 	 */
-	internal func onPreAction(#name: String?, sender: AnyObject?) -> Bool {
+	public func onPreAction(#name: String?, sender: AnyObject?) -> Bool {
 		return true
 	}
 
-	internal func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
+	public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
 		return true
 	}
 
-	internal func onSetTranslations() {
+	public func onSetTranslations() {
 	}
 
-	internal func onStartOperation() {
+	public func onStartOperation() {
 	}
 
-	internal func onFinishOperation() {
+	public func onFinishOperation() {
 	}
 
-	internal func userActionWithSender(sender: AnyObject?) {
+	public func userActionWithSender(sender: AnyObject?) {
 		if let controlSender = sender as? UIControl {
 			userAction(name: controlSender.restorationIdentifier, sender: sender)
 		}
@@ -176,11 +177,11 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		}
 	}
 
-	internal func userAction(#name: String?) {
+	public func userAction(#name: String?) {
 		userAction(name: name, sender: nil)
 	}
 	
-	internal func userAction(#name: String?, sender: AnyObject?) {
+	public func userAction(#name: String?, sender: AnyObject?) {
 		if onPreAction(name: name, sender: sender) {
 			endEditing(true)
 		
@@ -188,7 +189,10 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		}
 	}
 
-	internal func nextResponderForView(view:UIView) -> UIResponder {
+
+	//MARK: Private methods
+
+	private func nextResponderForView(view:UIView) -> UIResponder {
 		if view.tag > 0 {
 			if let nextView = viewWithTag(view.tag + 1) {
 				return nextView
@@ -196,9 +200,6 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		}
 		return view
 	}
-
-
-	//MARK: Private methods
 
 	private func addUserActionForControl(control: UIControl) {
 		if onSetUserActionForControl(control) {
@@ -225,6 +226,13 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 		for subview:UIView in view.subviews as! [UIView] {
 			setUpView(subview)
+		}
+	}
+
+	private func changeEditable(editable: Bool, fromView view: UIView) {
+		view.userInteractionEnabled = editable
+		for v in view.subviews as! [UIView] {
+			changeEditable(editable, fromView: v)
 		}
 	}
 
