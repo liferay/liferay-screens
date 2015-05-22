@@ -12,7 +12,7 @@ This guide explains how to install Liferay Screens into your project without usi
 
 To install Liferay Screens manually in your Xcode project, you need the following: 
 
-- Xcode 6.1 or above
+- Xcode 6.3 or above
 - iOS 8 SDK
 - [CocoaPods](http://cocoapods.org) installed
 - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)

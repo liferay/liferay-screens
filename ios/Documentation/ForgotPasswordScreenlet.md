@@ -6,7 +6,7 @@
 
 ## Requirements
 
-- XCode 6.0 or above
+- XCode 6.3 or above
 - iOS 8 SDK
 - Liferay Portal 6.2 CE or EE
 - Liferay Screens' Compatibility Plugin installed

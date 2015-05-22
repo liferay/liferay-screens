@@ -11,7 +11,7 @@ technology.
 This is the library that contains all available screenlets for 
 iOS. It also includes the infrastructure classes required to develop and 
 contribute new screenlets. Note that this library is developed using iOS 8, so 
-you'll need XCode6 in order to develop your own screenlets.
+you'll need XCode 6 and Swift in order to develop your own screenlets.
 
 ## Internal Architecture
 
