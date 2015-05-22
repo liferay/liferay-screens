@@ -60,7 +60,7 @@ Use the following steps to configure your project with Gradle:
 
 	```groovy
 	dependencies {
-		compile 'com.liferay.mobile:liferay-screens:0.3.0'
+		compile 'com.liferay.mobile:liferay-screens:1.0.+'
 	}
 	```
 
