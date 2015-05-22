@@ -59,6 +59,8 @@ Liferay Screens for iOS also contains a set of *themes* that you can use to chan
 
 - **Default**: The standard theme that is used when you insert any screenlet in your app's UI. The Default theme can be used as the parent theme for any of your custom themes. Please refer to the [Architecture Guide](ios/Documentation/architecture.md#theme-layer) for more details on this.
 - **Flat7**: A sample theme intended to demonstrate how to develop your own full theme from scratch. Please refer to the [Theme Guide](ios/Documentation/themes.md) for instructions on creating your own theme.
+- **Westeros**: A custom theme created to customize the behaviour and appearance of the [Westeros Bank](ios/Samples/WesterosBank/README.md) demo app.
+
 
 ## Overview of Liferay Screens for Android
 
@@ -83,7 +85,7 @@ Liferay Screens for Android also contains a set of *views* that you can use to c
 
 - **Default views**: The standard views used when you add a screenlet in your app's activities or fragments and don't set the `liferay:layoutId` attribute. The Default views can be used as parent views for any of your custom views. Refer to the [Architecture Guide](android/documentation/architecture.md#view-layer) for more details.
 - **Material views**: The sample views intended to demonstrate how to develop your own full view set from scratch. Refer to the [Views Guide](android/documentation/views.md) for instructions on creating your own view set.
-- **Westeros**: A custom view set created to customize the behaviour and appearance of the [Westeros Bank](https://play.google.com/store/apps/details?id=com.liferay.mobile.screens.bankofwesteros) demo app.
+- **Westeros**: A custom view set created to customize the behaviour and appearance of the [Westeros Bank](android/samples/bankofwesteros/README.md) demo app.
 
 ## Contributing
 
