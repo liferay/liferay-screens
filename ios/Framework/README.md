@@ -1,11 +1,5 @@
 # Liferay Screens for iOS Library
 
-## Important Note
-
-This product is under heavy development and its features aren't ready for use in 
-production. It's being made public only to allow developers to preview the 
-technology.
-
 ## Introduction
 
 This is the library that contains all available screenlets for 

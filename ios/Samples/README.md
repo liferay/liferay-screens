@@ -1,9 +1,5 @@
 # Liferay Screens Samples for iOS
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology*.
-
 ## Introduction
 
 This directory contains sample apps to show you how to use Liferay Screens in your projects. Most examples are provided in both Objective-C and Swift.

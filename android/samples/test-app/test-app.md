@@ -1,9 +1,5 @@
 # test-app
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology.*
-
 ## Introduction
 
 The *test-app* app is a showcase of all the main screenlets distributed with Liferay Screens. The app's entry point is `MainActivity`, which presents buttons that direct the user to other activities containing each screenlet. All screenlets are presented the *default* and *material* view sets. Before running the app, remember to change `server_context.xml` to point to your Liferay Portal instance. Note that the user may need to be logged in for some screenlets to work. 

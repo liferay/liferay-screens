@@ -1,9 +1,5 @@
 # Views in Liferay Screens for Android
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology*.
-
 ## Introduction
 
 This document explains the basics of how views are used in Liferay Screens for Android. Liferay provides a limited set of views, but new views can easily be created. Before starting, you should understand the different components in the view layer:

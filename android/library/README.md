@@ -1,9 +1,5 @@
 # Liferay Screens for Android Library
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology*.
-
 ## Introduction
 
 This is the library that contains all available screenlets for Android. It also includes the infrastructure classes required to develop and contribute new screenlets. 

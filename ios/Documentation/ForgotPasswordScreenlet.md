@@ -1,9 +1,5 @@
 # ForgotPasswordScreenlet for iOS
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology.*
-
 ## Requirements
 
 - XCode 6.3 or above

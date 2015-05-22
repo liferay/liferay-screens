@@ -1,9 +1,5 @@
 # WebContentDisplayScreenlet for iOS
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology.*
-
 ## Requirements
 
 - Android SDK 4.0 (API Level 14) and above

@@ -1,9 +1,5 @@
 # Creating a View in Liferay Screens for Android
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology*.
-
 ## Introduction
 
 You can create your own views to give your screenlets a different look, feel, and behavior. This document explains the steps required to create your own views in Liferay Screens for Android.

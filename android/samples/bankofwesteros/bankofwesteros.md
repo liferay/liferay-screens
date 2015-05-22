@@ -1,9 +1,5 @@
 # Bank of Westeros
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology.*
-
 ## Introduction
 
 The *Bank of Westeros* application is an example application built with Liferay Screens to manage technical issues in a bank. It allows new user registration with Liferay Portal, editing of existing user details, and editing of other portal content. A video demonstrating all the features is available in [YouTube](https://www.youtube.com/watch?v=AroTd6zI794).

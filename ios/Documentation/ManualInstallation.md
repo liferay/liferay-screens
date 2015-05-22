@@ -1,9 +1,5 @@
 # Liferay Screens for iOS Manual Installation Guide
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology*.
-
 ## Introduction
 
 This guide explains how to install Liferay Screens into your project without using [CocoaPods](http://cocoapods.org). Also, you must use this procedure if you want your app to support iOS 7. The reasons for this are detailed in [this CocoaPods article](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/).

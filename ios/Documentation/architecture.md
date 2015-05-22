@@ -1,9 +1,5 @@
 # Architecture of Liferay Screens for iOS
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology*.
-
 ## Introduction
 
 This document explains the internal architecture of Liferay Screens for iOS. It begins with an overview of the high level components that make up the system, such as the core, screenlets, and themes. A description of these components is then presented in the sections that follow.
