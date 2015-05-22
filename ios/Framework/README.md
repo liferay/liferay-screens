@@ -16,15 +16,15 @@ you'll need XCode 6 and Swift in order to develop your own screenlets.
 ## Internal Architecture
 
 For details regarding the internal architecture of the Liferay Screens for iOS 
-library, please see the [Architecture Guide](https://github.com/liferay/liferay-screens/tree/master/ios/Documentation/architecture.md).
+library, please see the [Architecture Guide](../Documentation/architecture.md).
 
 ## Code Style Guide
 
 For details on Liferay's coding style for this project, please see the 
-[Style Guide](https://github.com/liferay/liferay-screens/tree/master/ios/Documentation/style_guide.md).
+[Style Guide](../Documentation/style_guide.md).
 
 ## Contribute
 
 For information on contributing to the Liferay Screens for iOS library, please 
-see the [Contributing Guide](https://github.com/liferay/liferay-screens/tree/master/CONTRIBUTING.md).
+see the [Contributing Guide](../CONTRIBUTING.md).
 
