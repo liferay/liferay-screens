@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="liferay_server">http://screensdemo.liferay.com/</string>
+	<string name="liferay_server">https://screensdemo.liferay.com</string>
 	<integer name="liferay_company_id">20155</integer>
-	<integer name="liferay_group_id">20195</integer>
-
-	<!-- DDLFormScreenlet values -->
-	<integer name="liferay_recordset_id">20475</integer>
-	<integer name="liferay_structure_id">20473</integer>
-	<string name="liferay_recordset_fields">Title</string>
+	<integer name="liferay_group_id">20182</integer>
 
 	<!-- SignupScreenlet values -->
-	<string name="liferay_anonymousApiUserName">anonymous@liferay.com</string>
+	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
 	<string name="liferay_anonymousApiPassword">anonymous1</string>
+
+	<!-- DDLFormScreenlet values -->
+	<integer name="liferay_recordset_id">20593</integer>
+	<integer name="liferay_structure_id">20589</integer>
+	<string name="liferay_recordset_fields">Title</string>
 
 </resources>

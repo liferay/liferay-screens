@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="liferay_server">http://screensdemo.liferay.com/</string>
+
+	<string name="liferay_server">https://screensdemo.liferay.com</string>
 	<integer name="liferay_company_id">20155</integer>
-	<integer name="liferay_group_id">20195</integer>
-
-	<!-- DDLFormScreenlet values -->
-	<integer name="liferay_recordset_id">20611</integer>
-	<integer name="liferay_structure_id">20609</integer>
-	<integer name="folder_id">20545</integer>
-	<integer name="repository_id">20195</integer>
-	<string name="liferay_recordset_fields">Title</string>
-
-	<!-- WebContentDisplayScreenlet values -->
-	<integer name="article_id">20519</integer>
+	<integer name="liferay_group_id">20525</integer>
 
 	<!-- SignupScreenlet values -->
-	<string name="liferay_anonymousApiUserName">anonymous@liferay.com</string>
+	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
 	<string name="liferay_anonymousApiPassword">anonymous1</string>
 
+	<!-- DDLFormScreenlet values -->
+	<integer name="liferay_recordset_id">20596</integer>
+	<integer name="liferay_structure_id">20591</integer>
+	<string name="liferay_recordset_fields">Title</string>
+	<integer name="folder_id">20617</integer>
+	<integer name="repository_id">20525</integer>
+
 	<!-- AddBookmarkScreenlet values -->
-	<integer name="bookmark_folder">20531</integer>
+	<integer name="bookmark_folder">20622</integer>
+
+	<!-- WebContentDisplayScreenlet values -->
+	<integer name="article_id">20602</integer>
 
 </resources>
