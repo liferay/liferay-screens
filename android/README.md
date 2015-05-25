@@ -1,9 +1,5 @@
 # Liferay Screens for Android
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology*.
-
 ## Introduction
 
 Liferay Screens for Android includes the component (*screenlets*) library and a sample project. In Liferay Screens, a screenlet is a visual component that is connected to Liferay Portal's functionality. Screenlets use a specific UI to handle input from the user and present information from the portal. This enables the app to receive user input, handle communication with the server, and present the user with the results.

@@ -1,9 +1,5 @@
 # Themes in Liferay Screens for iOS
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology*.
-
 ## Introduction
 
 This document explains the basics of how themes are designed in Liferay Screens for iOS. Liferay provides a limited set of themes, but additional ones can be created and contributed to the community.

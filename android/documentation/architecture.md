@@ -1,9 +1,5 @@
 # Architecture of Liferay Screens for Android
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology*.
-
 ## Introduction
 
 This document explains the internal architecture of Liferay Screens for Android. It begins with an overview of the high level components that make up the system, such as the core, screenlets, and views. A description of these components is then presented in the sections that follow.

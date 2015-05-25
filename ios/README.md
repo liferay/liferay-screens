@@ -1,9 +1,5 @@
 # Liferay Screens for iOS
 
-## Important Note
-
-*This product is under heavy development and its features aren't ready for use in production. It's being made public only to allow developers to preview the technology*.
-
 ## Introduction
 
 The iOS implementation for Liferay Screens includes the components (*screenlets*) library and two sample projects. One sample project uses Screens from Objective-C, while the other uses Screens from Swift.
@@ -22,7 +18,7 @@ To learn more detail about the architecture of Screens, please see the [library 
 
 Development of iOS apps using Liferay Screens requires the following: 
 
-  - Xcode 6.1 or above
+  - Xcode 6.3 or above
   - iOS 8 SDK
   - [CocoaPods](http://cocoapods.org) installed
   - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
