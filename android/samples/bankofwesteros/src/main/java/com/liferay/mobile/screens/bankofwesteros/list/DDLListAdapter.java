@@ -27,6 +27,7 @@ public class DDLListAdapter
 	}
 
 	protected int getDrawable(int position) {
+		//FIXME add an easier way to do this
 		int drawable = R.drawable.issue_open;
 		if (position < 1) {
 			drawable = R.drawable.issue_reject;
