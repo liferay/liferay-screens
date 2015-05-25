@@ -14,7 +14,9 @@
 
 package com.liferay.mobile.screens.context;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.ContextThemeWrapper;
 
 /**
  * @author Jose Manuel Navarro
@@ -36,6 +38,16 @@ public class LiferayScreensContext {
 
 	public static Context getContext() {
 		return _context;
+	}
+
+	public static Activity getContextFromActivity(Context context) {
+		if (context instanceof Activity) {
+			return (Activity) context;
+		}
+		else {
+			Context baseContext = ((ContextThemeWrapper) context).getBaseContext();
+			return (Activity) baseContext;
+		}
 	}
 
 	private LiferayScreensContext() {

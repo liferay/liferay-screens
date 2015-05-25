@@ -16,9 +16,9 @@ package com.liferay.mobile.screens.viewsets.defaultviews;
 
 import android.app.Activity;
 import android.content.Context;
-import android.view.ContextThemeWrapper;
 
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 
 import de.keyboardsurfer.android.widget.crouton.Configuration;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
@@ -38,7 +38,7 @@ public class LiferayCrouton {
 			//TODO create validation exception
 			error = e.getMessage();
 		}
-		Activity activity = getContextFromActivity(context);
+		Activity activity = LiferayScreensContext.getContextFromActivity(context);
 
 		Crouton.showText(activity, error, _alert, _position);
 	}
@@ -47,19 +47,11 @@ public class LiferayCrouton {
 		if (_info == null) {
 			new Builder().withInfoColor(R.color.default_primary_blue).build();
 		}
-		Activity activity = getContextFromActivity(context);
+		Activity activity = LiferayScreensContext.getContextFromActivity(context);
 		Crouton.showText(activity, message, _info, _position);
 	}
 
-	protected static Activity getContextFromActivity(Context context) {
-		if (context instanceof Activity) {
-			return (Activity) context;
-		}
-		else {
-			Context baseContext = ((ContextThemeWrapper) context).getBaseContext();
-			return (Activity) baseContext;
-		}
-	}
+
 
 	private static int _position = android.R.id.content;
 	private static Style _info = null;

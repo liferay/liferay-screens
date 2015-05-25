@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -25,10 +24,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.FileUtil;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView;
 
 import java.io.File;
@@ -148,7 +148,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		if (file != null) {
 			getField().createLocalFile(file.getAbsolutePath());
 			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-			((Activity) getContext()).startActivityForResult(cameraIntent, _positionInForm);
+			LiferayScreensContext.getContextFromActivity(getContext()).startActivityForResult(cameraIntent, _positionInForm);
 		}
 	}
 
