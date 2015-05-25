@@ -138,19 +138,7 @@ public class DDLListAdapter
         }
     }
 
-    private int getDrawable(int position) {
-        //FIXME demo code
-//		int drawable = R.drawable.issue_open;
-//		if (position < 1) {
-//			drawable = R.drawable.issue_reject;
-//		}
-//		else if (position < 2) {
-//			drawable = R.drawable.done;
-//		}
-//		else if (position < 3) {
-//			drawable = R.drawable.issue_waiting;
-//		}
-//		return drawable;
+    protected int getDrawable(int position) {
         return 0;
     }
 
