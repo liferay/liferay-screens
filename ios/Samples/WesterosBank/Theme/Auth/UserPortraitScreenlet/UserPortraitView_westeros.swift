@@ -26,10 +26,9 @@ public class UserPortraitView_westeros: UserPortraitView_default {
 	}
 
 	override public func loadPlaceholder() {
-		self.portraitImage?.image = imageInAnyBundle(
+		self.portraitImage?.image = NSBundle.imageInBundles(
 				name: "flat7-portrait-placeholder",
-				currentClass: self.dynamicType,
-				currentTheme: "westeros")
+				currentClass: self.dynamicType)
 	}
 
 }
