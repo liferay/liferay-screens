@@ -38,7 +38,7 @@ public class LiferayCrouton {
 			//TODO create validation exception
 			error = e.getMessage();
 		}
-		Activity activity = LiferayScreensContext.getContextFromActivity(context);
+		Activity activity = LiferayScreensContext.getActivityFromContext(context);
 
 		Crouton.showText(activity, error, _alert, _position);
 	}
@@ -47,7 +47,7 @@ public class LiferayCrouton {
 		if (_info == null) {
 			new Builder().withInfoColor(R.color.default_primary_blue).build();
 		}
-		Activity activity = LiferayScreensContext.getContextFromActivity(context);
+		Activity activity = LiferayScreensContext.getActivityFromContext(context);
 		Crouton.showText(activity, message, _info, _position);
 	}
 

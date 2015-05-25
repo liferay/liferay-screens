@@ -40,7 +40,7 @@ public class LiferayScreensContext {
 		return _context;
 	}
 
-	public static Activity getContextFromActivity(Context context) {
+	public static Activity getActivityFromContext(Context context) {
 		if (context instanceof Activity) {
 			return (Activity) context;
 		}
