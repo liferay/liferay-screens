@@ -3,7 +3,7 @@
 
 	<string name="liferay_server">https://screensdemo.liferay.com</string>
 	<integer name="liferay_company_id">20155</integer>
-	<integer name="liferay_group_id">20182</integer>
+	<integer name="liferay_group_id">20525</integer>
 
 	<!-- SignupScreenlet values -->
 	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>

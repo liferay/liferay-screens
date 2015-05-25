@@ -503,7 +503,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="recordSetId">
-                                        <integer key="value" value="20611"/>
+                                        <integer key="value" value="20596"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="labelFields" value="Title"/>
                                 </userDefinedRuntimeAttributes>
@@ -543,7 +543,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="structureId">
-                                        <integer key="value" value="20609"/>
+                                        <integer key="value" value="20591"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -622,7 +622,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="articleId" value="20519"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="articleId" value="20602"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
