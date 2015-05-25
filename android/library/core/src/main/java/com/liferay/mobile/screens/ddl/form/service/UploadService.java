@@ -114,6 +114,7 @@ public class UploadService extends IntentService {
 				}
 			}
 			catch (IOException e) {
+				LiferayLogger.e("Error closing stream", e);
 			}
 		}
 
