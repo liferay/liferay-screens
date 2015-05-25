@@ -8,8 +8,6 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 
-import org.json.JSONObject;
-
 /**
  * @author Javier Gamarra
  */

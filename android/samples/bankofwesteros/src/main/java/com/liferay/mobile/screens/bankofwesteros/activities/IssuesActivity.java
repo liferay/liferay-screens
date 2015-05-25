@@ -207,6 +207,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 
 		clearDDLEntrySelected();
 
+		_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_red));
 		_card1ToBackground.setImageResource(R.drawable.icon_down);
 	}
 

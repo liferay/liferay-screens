@@ -27,7 +27,6 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
-import org.apache.http.entity.mime.content.InputStreamBody;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -115,6 +114,7 @@ public class UploadService extends IntentService {
 				}
 			}
 			catch (IOException e) {
+				LiferayLogger.e("Error closing stream", e);
 			}
 		}
 
