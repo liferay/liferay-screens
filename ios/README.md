@@ -2,11 +2,11 @@
 
 ## Introduction
 
-The iOS implementation for Liferay Screens includes the components (*screenlets*) library and two sample projects. One sample project uses Screens from Objective-C, while the other uses Screens from Swift.
+The iOS implementation for Liferay Screens includes the components (*screenlets*) library and three sample projects. One sample project uses Screens from Objective-C, while the other two use Screens from Swift.
 
-In Liferay Screens, a screenlet is a visual component that is connected to Liferay Portal's functionality. The screenlet is responsible for handling communication between the server and the UI. screenlets also implement all typical [human interface guidelines described by Apple](https://developer.apple.com/library/ios/documentation/userexperience/conceptual/mobilehig/).
+In Liferay Screens, a screenlet is a visual component that is connected to Liferay Portal's functionality. The screenlet is responsible for handling communication between the server and the UI. Screenlets also implement all typical [human interface guidelines described by Apple](https://developer.apple.com/library/ios/documentation/userexperience/conceptual/mobilehig/).
 
-Each screenlet is tied to one or more services exposed by [Liferay's remote services](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/accessing-services-remotely-liferay-portal-6-2-dev-guide-05-en). The screenlet then renders information using a theme. Themes can be contributed by third parties and are fully pluggable, so you're not limited to one specific look and feel. The Screens library provides a standard theme called *Default*  and another sample theme called *Flat7*.
+Each screenlet is tied to one or more services exposed by [Liferay's remote services](https://www.liferay.com/documentation/liferay-portal/6.2/development/-/ai/accessing-services-remotely-liferay-portal-6-2-dev-guide-05-en). The screenlet then renders information using a theme. Themes can be contributed by third parties and are fully pluggable, so you're not limited to one specific look and feel. The Screens library provides a standard theme called *Default*  and two other sample themes called *Flat7* and *Westeros*.
 
 ![The SignUp screenlet using Default and Flat7 themes](Documentation/Images/screens-phone2.png)
 
@@ -144,6 +144,7 @@ The themes currently released with Liferay Screens are:
 
 - **Default**: The standard theme that is used when you insert any screenlet on your screen. It can be used as the parent theme for any of your custom themes (refer to the [Architecture Guide](Documentation/architecture.md#theme-layer) for more details on this).
 - **Flat7**: A sample theme intended to demonstrate how to develop your own full theme from scratch. For information on creating your own theme, refer to the [Theme Guide](Documentation/themes.md).
+- **Westeros**: A sample theme intended to demonstrate how to develop your own full theme from scratch. For information on creating your own theme, refer to the [Theme Guide](Documentation/themes.md).
 
 ## Sample Apps
 
