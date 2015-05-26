@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 	}
 	s.source = {
 		:git => 'https://github.com/liferay/liferay-screens.git',
-		:tag => '1.0.0'
+		:tag => s.version.to_s
 	}
 	s.authors = {
 		'Jose Manuel Navarro' => 'jose.navarro@liferay.com',
@@ -20,8 +20,19 @@ Pod::Spec.new do |s|
 	s.platform = :ios, '8.0'
 	s.requires_arc = true
 
-	s.ios.frameworks = 'CoreGraphics', 'Foundation', 'MobileCoreServices', 'QuartzCore', 'Security', 'SystemConfiguration', 'UIKit'
-	s.source_files = 'ios/Framework/Core/**/*.{h,m,swift}', 'ios/Framework/Themes/**/*.{h,m,swift}'
+	s.ios.frameworks = [
+		'CoreGraphics',
+		'Foundation',
+		'MobileCoreServices',
+		'QuartzCore',
+		'Security',
+		'SystemConfiguration',
+		'UIKit'
+	]
+	s.source_files = [
+		'ios/Framework/Core/**/*.{h,m,swift}',
+		'ios/Framework/Themes/**/*.{h,m,swift}'
+	]
 	s.exclude_files = [
 		'ios/Framework/Core/liferay-screens-bridge.h',
 		'ios/Framework/Tests/**/*.*',
