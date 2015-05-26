@@ -80,6 +80,6 @@ Dynamic Data Lists and Data Types should be configured properly in the portal. R
 
 The `AssetListScreenlet` delegates some events to an object that conforms to the `AssetListScreenletDelegate` protocol. This protocol lets you implement the following methods:
 
-- `- screenlet:onAssetListResponse:`: Called when a page of assets is received. Note that this method may be called more than once; one call for each page received.
+- `- screenlet:onAssetListResponseEntries:`: Called when a page of assets is received. Note that this method may be called more than once; one call for each page received.
 - `- screenlet:onAssetListError:`: Called when an error occurs in the process. The `NSError` object describes the error.
-- `- screenlet:onAssetSelected:`: Called when an item in the list is selected.
+- `- screenlet:onAssetSelectedEntry:`: Called when an item in the list is selected.
