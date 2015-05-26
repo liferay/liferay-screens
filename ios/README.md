@@ -74,6 +74,10 @@ Now you need to conform the screenlet's delegate protocol in your `ViewControlle
 
 ![Conform delegate](Documentation/Images/conform-delegate.png "Conform delegate")
 
+If you are using CocoaPods you will have to add the import for Liferay Screens to your view controller:
+
+	import LiferayScreens
+
 Now that the screenlet's delegate protocol is conformed in your `ViewController` class, go back to Interface Builder and connect the screenlet's delegate to your view controller. If the screenlet you're using has more outlets, you can assign them as well.
 
 ![Connect delegate in Interface Builder](Documentation/Images/xcode-delegate.png "Connect delegate in Interface Builder")
