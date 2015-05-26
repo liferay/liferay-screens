@@ -21,7 +21,7 @@ dependencies {
 }
 ```
 
-You will have to add a custom repository, adding this lines to your `build.gradle` file:
+If Gradle can't find the dependency in jCenter you will have to add a custom repository, adding this lines to your `build.gradle` file:
 
 ```groovy
 repositories {
