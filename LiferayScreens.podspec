@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name         = 'LiferayScreens'
 	s.module_name  = 'LiferayScreens'
-	s.version      = '0.3'
+	s.version      = '1.0.0'
 	s.summary      = 'A family of visual components called screenlets that are connected to the Liferay Platform used as a backend'
 	s.homepage     = 'https://www.liferay.com/liferay-screens'
 	s.license = { 
@@ -10,11 +10,11 @@ Pod::Spec.new do |s|
 	}
 	s.source = {
 		:git => 'https://github.com/liferay/liferay-screens.git',
-		:commit => 'd94ddb98be3ef5e676396d82494449c0eb75f0b5',
-		:tag => '0.3'
+		:tag => '1.0.0'
 	}
 	s.authors = {
-		'Jose Manuel Navarro' => 'jose.navarro@liferay.com'
+		'Jose Manuel Navarro' => 'jose.navarro@liferay.com',
+		'Javier Gamarra' => 'javier.gamarra@liferay.com'
 	}
 	
 	s.platform = :ios, '8.0'
