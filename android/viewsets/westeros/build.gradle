@@ -27,8 +27,8 @@ repositories {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile 'com.android.support:appcompat-v7:22.1.1'
-	compile 'com.android.support:recyclerview-v7:22.1.1'
+	compile 'com.android.support:appcompat-v7:22.0.0'
+	compile 'com.android.support:recyclerview-v7:22.0.0'
 	compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
 		exclude group: 'com.google.android', module: 'support-v4'
 	}
@@ -36,7 +36,7 @@ dependencies {
 	compile project(':liferay-screens')
 }
 
-version = '0.4.2'
+version = '1.0.2'
 group = 'com.liferay.mobile'
 
 project.archivesBaseName = 'liferay-westeros-viewset'
@@ -122,8 +122,9 @@ bintray {
 
 	configurations = ['archives']
 	pkg {
-		repo = "maven"
-		name = "liferay-screens"
+//		userOrg = 'liferay'
+		repo = "liferay-mobile"
+		name = "liferay-westeros-viewset"
 		websiteUrl = siteUrl
 		vcsUrl = gitUrl
 		licenses = ["LGPL-2.1"]

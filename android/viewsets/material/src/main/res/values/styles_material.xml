@@ -29,6 +29,7 @@
 	<style name="material_button" parent="android:Widget.Button">
 		<item name="android:textColor">@android:color/white</item>
 		<item name="android:background">@drawable/material_ripple</item>
+		<item name="android:padding">10dp</item>
 	</style>
 
 	<style name="material_edit_text" parent="android:Widget.EditText">

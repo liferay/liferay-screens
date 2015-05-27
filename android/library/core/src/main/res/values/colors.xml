@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="default_light_blue" >#DD00B8E0</color>
-	<color name="default_primary_blue" >#FF00B8E0</color>
-	<color name="default_light_gray" >#FFD5D5D7</color>
-	<color name="default_dark_gray" >#FF919394</color>
-	<color name="default_red" >#FFE00000</color>
-	<color name="default_green" >#FF5AD427</color>
-	<color name="default_clear_blue" >#FFF0FFFF</color>
-	<color name="default_pure_red" >#FFFF0000</color>
-	<color name="default_clear_red" >#FFFFDCC8</color>
+	<color name="default_light_blue">#DD00B8E0</color>
+	<color name="default_primary_blue">#FF00B8E0</color>
+	<color name="default_light_gray">#FFD5D5D7</color>
+	<color name="default_dark_gray">#FF919394</color>
+	<color name="default_red">#FFE00000</color>
+	<color name="default_green">#FF5AD427</color>
+	<color name="default_clear_blue">#FFF0FFFF</color>
+	<color name="default_pure_red">#FFFF0000</color>
+	<color name="default_clear_red">#FFFFDCC8</color>
 
 </resources>
