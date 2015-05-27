@@ -21,6 +21,16 @@ dependencies {
 }
 ```
 
+If Gradle can't find the dependency in jCenter you will have to add a custom repository, adding this lines to your `build.gradle` file:
+
+```groovy
+repositories {
+    maven {
+        url  "http://dl.bintray.com/liferay/liferay-mobile" 
+    }
+}
+```
+
 Anyone can create a new view set and publish it in a public repository like Maven Central or jCenter. To use such a view set, include the artifact containing the view set by using the standard steps for Gradle or Maven. These steps are described in the section [Preparing Your Project for Liferay  Screens](https://github.com/liferay/liferay-screens/tree/master/android/README.md#preparing-your-project-for-liferay-screens).
 
 ## Using View Sets

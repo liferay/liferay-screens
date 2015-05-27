@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name         = 'LiferayScreens'
 	s.module_name  = 'LiferayScreens'
-	s.version      = '0.3'
+	s.version      = '1.0.0'
 	s.summary      = 'A family of visual components called screenlets that are connected to the Liferay Platform used as a backend'
 	s.homepage     = 'https://www.liferay.com/liferay-screens'
 	s.license = { 
@@ -10,18 +10,29 @@ Pod::Spec.new do |s|
 	}
 	s.source = {
 		:git => 'https://github.com/liferay/liferay-screens.git',
-		:commit => 'd94ddb98be3ef5e676396d82494449c0eb75f0b5',
-		:tag => '0.3'
+		:tag => s.version.to_s
 	}
 	s.authors = {
-		'Jose Manuel Navarro' => 'jose.navarro@liferay.com'
+		'Jose Manuel Navarro' => 'jose.navarro@liferay.com',
+		'Javier Gamarra' => 'javier.gamarra@liferay.com'
 	}
 	
 	s.platform = :ios, '8.0'
 	s.requires_arc = true
 
-	s.ios.frameworks = 'CoreGraphics', 'Foundation', 'MobileCoreServices', 'QuartzCore', 'Security', 'SystemConfiguration', 'UIKit'
-	s.source_files = 'ios/Framework/Core/**/*.{h,m,swift}', 'ios/Framework/Themes/**/*.{h,m,swift}'
+	s.ios.frameworks = [
+		'CoreGraphics',
+		'Foundation',
+		'MobileCoreServices',
+		'QuartzCore',
+		'Security',
+		'SystemConfiguration',
+		'UIKit'
+	]
+	s.source_files = [
+		'ios/Framework/Core/**/*.{h,m,swift}',
+		'ios/Framework/Themes/**/*.{h,m,swift}'
+	]
 	s.exclude_files = [
 		'ios/Framework/Core/liferay-screens-bridge.h',
 		'ios/Framework/Tests/**/*.*',

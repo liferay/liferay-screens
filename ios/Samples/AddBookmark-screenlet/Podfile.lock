@@ -24,7 +24,7 @@ PODS:
   - DTPickerPresenter (0.2.0)
   - Liferay-iOS-SDK (6.2.0.17):
     - AFNetworking (~> 2.5.0)
-  - LiferayScreens (0.3):
+  - LiferayScreens (1.0.0):
     - CryptoSwift
     - DTPickerPresenter
     - Liferay-iOS-SDK (= 6.2.0.17)
@@ -50,7 +50,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   LiferayScreens:
-    :commit: 177347d882eb2e5089462eff3eb448d1a8d4d15a
+    :commit: a19cf6350ca101efae892687511edc247878b903
     :git: https://github.com/liferay/liferay-screens
 
 SPEC CHECKSUMS:
@@ -58,7 +58,7 @@ SPEC CHECKSUMS:
   CryptoSwift: 3b886d001f50deb65623a8967d68f6b8bf8d9ba1
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
   Liferay-iOS-SDK: 00b511b88592d07faade2bed8252c04193df565d
-  LiferayScreens: df6214dd1bd595fba6a63df6d2653313cd4d7f5b
+  LiferayScreens: c4cc7f0476b2de0d14bea44edcb3b96f42eebf73
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MDRadialProgress: 6af31db0315f1b687df825a73481a2a443182402
   ODRefreshControl: 4c4c413bf70d2ea0c02a28ac0a0b3b4bf4dbfdea
