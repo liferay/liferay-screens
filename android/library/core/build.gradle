@@ -52,7 +52,7 @@ dependencies {
 
 }
 
-version = '0.4.2'
+version = '1.0.2'
 group = 'com.liferay.mobile'
 
 project.archivesBaseName = 'liferay-screens'
