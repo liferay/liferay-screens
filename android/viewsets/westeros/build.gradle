@@ -122,8 +122,9 @@ bintray {
 
 	configurations = ['archives']
 	pkg {
-		repo = "maven"
-		name = "liferay-screens"
+//		userOrg = 'liferay'
+		repo = "liferay-mobile"
+		name = "liferay-westeros-viewset"
 		websiteUrl = siteUrl
 		vcsUrl = gitUrl
 		licenses = ["LGPL-2.1"]

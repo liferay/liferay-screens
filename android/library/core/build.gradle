@@ -138,7 +138,8 @@ bintray {
 
 	configurations = ['archives']
 	pkg {
-		repo = "maven"
+//		userOrg = 'liferay'
+		repo = "liferay-mobile"
 		name = "liferay-screens"
 		websiteUrl = siteUrl
 		vcsUrl = gitUrl
