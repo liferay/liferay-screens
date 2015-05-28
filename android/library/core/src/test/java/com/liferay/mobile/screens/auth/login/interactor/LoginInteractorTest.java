@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.BuildConfig;
+import com.liferay.mobile.screens.RobolectricManifestTestRunner;
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
@@ -45,7 +46,7 @@ import static org.mockito.Mockito.when;
 public class LoginInteractorTest {
 
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
-	@RunWith(RobolectricGradleTestRunner.class)
+	@RunWith(RobolectricManifestTestRunner.class)
 	public static class WhenAuthMethodIsEmail {
 
 		@Test
