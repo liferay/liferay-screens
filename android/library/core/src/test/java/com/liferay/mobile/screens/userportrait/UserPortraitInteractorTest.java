@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.userportrait;
 
 import com.liferay.mobile.screens.BuildConfig;
+import com.liferay.mobile.screens.RobolectricManifestTestRunner;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractorImpl;
 import com.liferay.mobile.screens.util.MockFactory;
@@ -36,7 +37,7 @@ import org.robolectric.annotation.Config;
 @RunWith(Enclosed.class)
 public class UserPortraitInteractorTest {
 
-	@RunWith(RobolectricGradleTestRunner.class)
+	@RunWith(RobolectricManifestTestRunner.class)
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	public static class WhenLoadingFromPortraitId {
 
