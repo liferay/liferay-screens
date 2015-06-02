@@ -47,6 +47,12 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 		return 8
 	}
 
+	deinit {
+		if radioGroup != nil {
+			clearObserver()
+		}
+	}
+
 
 	//MARK: DDLFieldTableCell
 
@@ -100,9 +106,7 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 		}
 
 		if radioGroup != nil {
-			NSNotificationCenter.defaultCenter().removeObserver(self,
-					name: SELECTED_RADIO_BUTTON_CHANGED,
-					object: radioGroup!)
+			clearObserver()
 			radioGroup!.removeFromSuperview()
 		}
 
@@ -149,6 +153,14 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 				stringField.lastValidationResult = true
 				onPostValidation(true)
 			}
+		}
+	}
+
+	public func clearObserver() {
+		if radioGroup != nil {
+			NSNotificationCenter.defaultCenter().removeObserver(self,
+					name: SELECTED_RADIO_BUTTON_CHANGED,
+					object: radioGroup!)
 		}
 	}
 
