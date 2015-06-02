@@ -71,7 +71,7 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 					(DDLFieldRadioButtonHeight + DDLFieldRadioButtonMargin))
 
 			formView!.setCellHeight(height, forField:stringField)
-			separator!.frame.origin.y = height
+			separator?.frame.origin.y = height
 
 			createRadioButtons(stringField)
 
