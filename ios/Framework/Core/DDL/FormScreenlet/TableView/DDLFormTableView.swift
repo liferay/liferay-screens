@@ -21,6 +21,10 @@ public class DDLFormTableView: DDLFormView,
 
 	override public var record: DDLRecord? {
 		didSet {
+			if cellHeights.isEmpty {
+				registerFieldCells()
+			}
+
 			forEachField() {
 				self.registerCustomEditor($0)
 				self.resetCellHeightForField($0)
@@ -30,15 +34,18 @@ public class DDLFormTableView: DDLFormView,
 		}
 	}
 
+	override public var themeName: String {
+		didSet {
+			registerFieldCells()
+		}
+	}
 
 	internal var firstCellResponder: UIResponder?
 
 	internal var cellHeights: [String : (registered:CGFloat, current:CGFloat)] = [:]
-
 	internal var submitButtonHeight: CGFloat = 0.0
 
 	internal var originalFrame: CGRect?
-
 	internal var keyboardManager = KeyboardManager()
 
 
@@ -80,12 +87,6 @@ public class DDLFormTableView: DDLFormView,
 		}
 
 		return result
-	}
-
-	override public func onCreated() {
-		super.onCreated()
-
-		registerFieldCells()
 	}
 
 	override public func onShow() {
