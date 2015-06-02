@@ -16,11 +16,11 @@ import UIKit
 
 public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDelegate {
 
-	@IBOutlet internal var textView: UITextView?
-	@IBOutlet internal var placeholder: UILabel?
-	@IBOutlet internal var textViewBackground: UIImageView?
-	@IBOutlet internal var label: UILabel?
-	@IBOutlet internal var separator: UIView?
+	@IBOutlet public var textView: UITextView?
+	@IBOutlet public var placeholder: UILabel?
+	@IBOutlet public var textViewBackground: UIImageView?
+	@IBOutlet public var label: UILabel?
+	@IBOutlet public var separator: UIView?
 
 	private var originalTextViewRect = CGRectZero
 	private var originalBackgroundRect: CGRect?

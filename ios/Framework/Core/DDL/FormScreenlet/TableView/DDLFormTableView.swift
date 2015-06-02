@@ -17,7 +17,7 @@ import UIKit
 public class DDLFormTableView: DDLFormView,
 		UITableViewDataSource, UITableViewDelegate, KeyboardLayoutable {
 
-	@IBOutlet internal var tableView: UITableView?
+	@IBOutlet public var tableView: UITableView?
 
 	override public var record: DDLRecord? {
 		didSet {

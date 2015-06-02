@@ -20,7 +20,7 @@ import UIKit
 
 public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
-	@IBOutlet internal var chooseButton: UIButton? {
+	@IBOutlet public var chooseButton: UIButton? {
 		didSet {
 			setButtonDefaultStyle(chooseButton)
 		}
