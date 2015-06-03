@@ -16,15 +16,16 @@ import UIKit
 
 public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDelegate {
 
-	@IBOutlet internal var textView: UITextView?
-	@IBOutlet internal var placeholder: UILabel?
-	@IBOutlet internal var textViewBackground: UIImageView?
-	@IBOutlet internal var label: UILabel?
-	@IBOutlet internal var separator: UIView?
+	@IBOutlet public var textView: UITextView?
+	@IBOutlet public var placeholder: UILabel?
+	@IBOutlet public var textViewBackground: UIImageView?
+	@IBOutlet public var label: UILabel?
+	@IBOutlet public var separator: UIView?
 
 	private var originalTextViewRect = CGRectZero
-	private var originalBackgroundRect = CGRectZero
-	private var originalSeparatorY: CGFloat = 0.0
+	private var originalBackgroundRect: CGRect?
+	private var originalSeparatorY: CGFloat?
+	private var originalSeparatorDistance: CGFloat?
 
 
 	//MARK: DDLFieldTableCell
@@ -43,6 +44,8 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 			if stringField.currentValue != nil {
 				textView?.text = stringField.currentValueAsString
 			}
+
+			var currentHeight = self.frame.size.height
 
 			if stringField.showLabel {
 				placeholder?.text = ""
@@ -65,14 +68,19 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 						-(DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel))
 
 					setCellHeight(DDLFieldTextFieldHeightWithoutLabel)
+
+					currentHeight = DDLFieldTextFieldHeightWithoutLabel
 				}
 			}
 
 			textView?.returnKeyType = isLastCell ? .Send : .Next
 
 			originalTextViewRect = textView!.frame
-			originalBackgroundRect = textViewBackground!.frame
-			originalSeparatorY = separator!.frame.origin.y
+			originalBackgroundRect = textViewBackground?.frame
+			if separator != nil {
+				originalSeparatorY = separator!.frame.origin.y
+				originalSeparatorDistance = currentHeight - originalSeparatorY!
+			}
 
 			if stringField.lastValidationResult != nil {
 				onPostValidation(stringField.lastValidationResult!)
@@ -94,18 +102,23 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 	public func textViewShouldBeginEditing(textView: UITextView) -> Bool {
 		var heightLabelOffset:CGFloat =
 				DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel
-		setCellHeight(DDLFieldTextareaExpandedCellHeight +
-				(field!.showLabel ? heightLabelOffset : 0.0))
 
-		separator!.frame.origin.y +=
-				DDLFieldTextareaExpandedBackgroundHeight - originalBackgroundRect.size.height
+		let newCellHeight = DDLFieldTextareaExpandedCellHeight +
+				(field!.showLabel ? heightLabelOffset : 0.0)
+
+		setCellHeight(newCellHeight)
+
+		if let value = originalSeparatorDistance {
+			separator?.frame.origin.y = newCellHeight - value
+		}
 
 		textView.frame = CGRectMake(
 			originalTextViewRect.origin.x,
 			originalTextViewRect.origin.y,
 			originalTextViewRect.size.width,
 			DDLFieldTextareaExpandedTextViewHeight)
-		textViewBackground!.frame.size.height = DDLFieldTextareaExpandedBackgroundHeight
+
+		textViewBackground?.frame.size.height = DDLFieldTextareaExpandedBackgroundHeight
 
 		textViewBackground?.highlighted = true
 
@@ -115,17 +128,22 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 	}
 
 	public func textViewDidEndEditing(textView: UITextView) {
-		separator!.frame.origin.y = originalSeparatorY
+		if let originalSeparatorY = originalSeparatorY {
+			separator?.frame.origin.y = originalSeparatorY
+		}
 
 		textView.frame = originalTextViewRect
-		textViewBackground!.frame = originalBackgroundRect
+
+		if let originalBackgroundRect = originalBackgroundRect {
+			textViewBackground?.frame = originalBackgroundRect
+		}
 
 		var heightLabelOffset:CGFloat =
 				DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel
 
 		let height = resetCellHeight()
 
-		if (!field!.showLabel) {
+		if !field!.showLabel {
 			setCellHeight(height - heightLabelOffset)
 		}
 

@@ -19,6 +19,7 @@ import android.content.SharedPreferences;
 
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.BuildConfig;
+import com.liferay.mobile.screens.RobolectricManifestTestRunner;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -46,7 +47,7 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class CredentialsStoreSharedPreferencesTest {
 
-	@RunWith(RobolectricGradleTestRunner.class)
+	@RunWith(RobolectricManifestTestRunner.class)
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	public static class WhenStoreCredentials {
 
@@ -105,7 +106,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 	}
 
-	@RunWith(RobolectricGradleTestRunner.class)
+	@RunWith(RobolectricManifestTestRunner.class)
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	public static class WhenRemoveStoredCredentials {
 
@@ -131,7 +132,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 	}
 
-	@RunWith(RobolectricGradleTestRunner.class)
+	@RunWith(RobolectricManifestTestRunner.class)
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	public static class WhenLoadingStoredCredentials {
 

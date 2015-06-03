@@ -20,6 +20,7 @@ import android.content.SharedPreferences;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.BuildConfig;
+import com.liferay.mobile.screens.RobolectricManifestTestRunner;
 import com.liferay.mobile.screens.context.storage.CredentialsStoreSharedPreferences;
 
 import org.json.JSONException;
@@ -48,7 +49,7 @@ import static org.junit.Assert.assertNotNull;
 public class SessionContextTest {
 
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
-	@RunWith(RobolectricGradleTestRunner.class)
+	@RunWith(RobolectricManifestTestRunner.class)
 	public static class WhenCreateSession {
 
 		@Before
@@ -99,7 +100,7 @@ public class SessionContextTest {
 	}
 
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
-	@RunWith(RobolectricGradleTestRunner.class)
+	@RunWith(RobolectricManifestTestRunner.class)
 	public static class WhenClearSession {
 
 		@Before
@@ -121,7 +122,7 @@ public class SessionContextTest {
 	}
 
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
-	@RunWith(RobolectricGradleTestRunner.class)
+	@RunWith(RobolectricManifestTestRunner.class)
 	public static class WhenSettingUserAttributes {
 
 		@Before
@@ -149,7 +150,7 @@ public class SessionContextTest {
 	}
 
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
-	@RunWith(RobolectricGradleTestRunner.class)
+	@RunWith(RobolectricManifestTestRunner.class)
 	public static class WhenStoreSessionInSharedPreferences {
 
 		@Test(expected = IllegalStateException.class)

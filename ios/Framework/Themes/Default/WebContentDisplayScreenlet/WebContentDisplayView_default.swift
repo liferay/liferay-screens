@@ -16,7 +16,7 @@ import UIKit
 
 public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayViewModel {
 
-	@IBOutlet internal var webView: UIWebView?
+	@IBOutlet public var webView: UIWebView?
 
 	private let styles =
 		".MobileCSS {padding: 4%; width: 92%;} " +
