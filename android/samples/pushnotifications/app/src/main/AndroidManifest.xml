@@ -10,7 +10,7 @@
 		android:allowBackup="true"
 		android:icon="@drawable/liferay_glyph"
 		android:label="@string/app"
-		android:theme="@style/material_theme">
+		android:theme="@style/Theme.AppCompat.Light">
 		<activity
 			android:name=".activities.LoginActivity"
 			android:label="@string/push_example">
