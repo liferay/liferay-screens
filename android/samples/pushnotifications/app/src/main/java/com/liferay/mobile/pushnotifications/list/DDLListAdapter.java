@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.android.task.callback.typed.JSONObjectAsyncTaskCallback;
+import com.liferay.mobile.android.v62.dlfileentry.DLFileEntryService;
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.pushnotifications.download.DownloadPicture;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
@@ -122,7 +124,7 @@ public class DDLListAdapter
 				final String uuid = jsonObject.getString("uuid");
 				final Long groupId = jsonObject.getLong("groupId");
 
-				downloadPictureInBackground(session, uuid, groupId, imageView);
+				downloadPicture(session, uuid, groupId, imageView);
 			}
 		}
 		catch (Exception e) {
@@ -130,20 +132,33 @@ public class DDLListAdapter
 		}
 	}
 
-	private void downloadPictureInBackground(final Session session, final String uuid, final Long groupId, final ImageView imageView) {
-		new Thread(new Runnable() {
+	private void downloadPicture(final Session session, final String uuid,
+								 final Long groupId, final ImageView imageView)
+		throws Exception {
+
+		final Context context = LiferayScreensContext.getContext();
+		final String server = LiferayServerContext.getServer();
+
+		session.setCallback(new JSONObjectAsyncTaskCallback() {
 			@Override
-			public void run() {
+			public void onSuccess(JSONObject result) {
 				try {
-					Context context = LiferayScreensContext.getContext();
-					String server = LiferayServerContext.getServer();
-					imageView.setImageBitmap(new DownloadPicture().downloadPicture(context, session, server, uuid, groupId, 200));
+					new DownloadPicture().
+						createRequest(context, result, server, 200).into(imageView);
 				}
 				catch (Exception e) {
 					LiferayLogger.e("Error downloading picture", e);
 				}
 			}
-		}).start();
+
+			@Override
+			public void onFailure(Exception e) {
+				LiferayLogger.e("Error downloading picture", e);
+			}
+		});
+
+		DLFileEntryService entryService = new DLFileEntryService(session);
+		entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
 	}
 
 	private List<String> _labelFields;

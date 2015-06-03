@@ -1,12 +1,12 @@
 package com.liferay.mobile.pushnotifications.download;
 
 import android.content.Context;
-import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 
-import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.dlfileentry.DLFileEntryService;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -14,16 +14,24 @@ import org.json.JSONObject;
  */
 public class DownloadPicture {
 
-	public Bitmap downloadPicture(Context context, Session session, String server,
-								  String uuid, Long groupId, int targetWidth) throws Exception {
-		DLFileEntryService entryService = new DLFileEntryService(session);
-		JSONObject result = entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
+	public RequestCreator createRequest(Context context, JSONObject result, String server, int targetWidth)
+		throws JSONException {
 
+		String url = constructUrl(result, server);
+		return createPicassoRequest(context, targetWidth, url);
+	}
+
+	@NonNull
+	private String constructUrl(JSONObject result, String server) throws JSONException {
+		Integer groupId = result.getInt("groupId");
 		Integer folderId = result.getInt("folderId");
 		String name = result.getString("name");
+		String uuid = result.getString("uuid");
 
-		String url = server + "documents/" + groupId + "/" + folderId + "/" + name + "/" + uuid;
+		return server + "documents/" + groupId + "/" + folderId + "/" + name + "/" + uuid;
+	}
 
-		return Picasso.with(context).load(url).resize(targetWidth, targetWidth).get();
+	private RequestCreator createPicassoRequest(Context context, int targetWidth, String url) {
+		return Picasso.with(context).load(url).resize(targetWidth, targetWidth);
 	}
 }

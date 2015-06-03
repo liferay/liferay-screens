@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
 import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.android.v62.dlfileentry.DLFileEntryService;
 import com.liferay.mobile.push.bus.BusUtil;
 import com.liferay.mobile.push.exception.PushNotificationReceiverException;
 import com.liferay.mobile.push.util.GoogleServices;
@@ -101,8 +102,11 @@ public class PushService extends IntentService {
 				String password = getString(R.string.anonymous_password);
 				Session session = SessionContext.createSession(username, password);
 
-				return new DownloadPicture().downloadPicture(this, session,
-					LiferayServerContext.getServer(), uuid, groupId, 100);
+				DLFileEntryService entryService = new DLFileEntryService(session);
+				JSONObject result = entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
+
+				return new DownloadPicture().createRequest(this, result,
+					LiferayServerContext.getServer(), 100).get();
 			}
 			catch (Exception e) {
 				LiferayLogger.e("Error loading picture", e);
@@ -110,7 +114,6 @@ public class PushService extends IntentService {
 		}
 		return null;
 	}
-
 
 }
 
