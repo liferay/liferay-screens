@@ -5,7 +5,7 @@
 - XCode 6.3 or above
 - iOS 8 SDK
 - Liferay Portal 6.2 CE or EE
-- Liferay Screens' Compatibility Plugin installed
+- [Liferay Screens' Compatibility Plugin](http://www.liferay.com/es/marketplace/-/mp/application/54365664)
 
 ## Compatibility
 
