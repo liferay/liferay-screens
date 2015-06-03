@@ -13,6 +13,7 @@
 		android:layout_alignParentStart="true"
 		android:layout_centerVertical="true"
 		android:layout_marginLeft="10dp"
+		android:layout_marginStart="10dp"
 		android:src="@drawable/liferay_icon"/>
 
 	<LinearLayout
@@ -23,7 +24,9 @@
 		android:focusable="false"
 		android:orientation="vertical"
 		android:padding="15dp"
-		android:paddingLeft="50dp">
+		android:paddingStart="50dp"
+		android:paddingLeft="50dp"
+		android:paddingRight="50dp">
 
 		<TextView
 			android:id="@+id/notification_title"

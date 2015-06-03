@@ -35,7 +35,7 @@ public abstract class PushActivity extends AppCompatActivity {
 		super.onStop();
 		BusUtil.unsubscribe(this);
 	}
-	
+
 	private void registerWithPush() {
 		try {
 			SharedPreferences preferences = getSharedPreferences();

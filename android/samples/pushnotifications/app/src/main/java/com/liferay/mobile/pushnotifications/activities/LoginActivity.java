@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
 		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);
 	}
-	
+
 	@Override
 	public void onLoginSuccess(User user) {
 		startActivity(new Intent(this, NotificationsActivity.class));
