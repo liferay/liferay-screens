@@ -27,8 +27,6 @@ public class LiferayServerContext {
 		LiferayServerContext.setCompanyId(resources.getInteger(R.integer.liferay_company_id));
 		LiferayServerContext.setGroupId(resources.getInteger(R.integer.liferay_group_id));
 		LiferayServerContext.setServer(resources.getString(R.string.liferay_server));
-		LiferayServerContext.setConsumerKey(resources.getString(R.string.liferay_oauth_consumer_key));
-		LiferayServerContext.setConsumerSecret(resources.getString(R.string.liferay_oauth_consumer_secret));
 	}
 
 	public static long getCompanyId() {
@@ -55,31 +53,8 @@ public class LiferayServerContext {
 		_server = server;
 	}
 
-	public static String getConsumerKey() {
-		return _consumerKey;
-	}
-
-	public static void setConsumerKey(String consumerKey) {
-		_consumerKey = consumerKey;
-	}
-
-	public static String getConsumerSecret() {
-		return _consumerSecret;
-	}
-
-	public static void setConsumerSecret(String consumerSecret) {
-		_consumerSecret = consumerSecret;
-	}
-
-	public static AuthenticationType getAuthenticationType() {
-		boolean hasOAuthParameters = _consumerKey.isEmpty() || _consumerSecret.isEmpty();
-		return hasOAuthParameters ? AuthenticationType.BASIC : AuthenticationType.OAUTH;
-	}
-
 	private static long _companyId;
 	private static long _groupId;
 	private static String _server;
-	private static String _consumerKey;
-	private static String _consumerSecret;
 
 }

@@ -76,6 +76,8 @@
 		<attr name="authMethod"/>
 		<attr name="companyId"/>
 		<attr name="credentialsStore"/>
+		<attr name="oauthConsumerKey" format="string"/>
+		<attr name="oauthConsumerSecret" format="string"/>
 	</declare-styleable>
 
 	<declare-styleable name="SignUpScreenlet">

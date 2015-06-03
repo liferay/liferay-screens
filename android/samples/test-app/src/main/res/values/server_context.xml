@@ -2,6 +2,7 @@
 <resources>
 
 	<string name="liferay_server">https://screensdemo.liferay.com</string>
+
 	<integer name="liferay_company_id">20155</integer>
 	<integer name="liferay_group_id">20525</integer>
 
@@ -23,7 +24,7 @@
 	<integer name="article_id">20602</integer>
 
 	<!-- OAuth values -->
-	<string name="liferay_oauth_consumer_key">5d782f70-a8d0-4fa8-b26b-a91246bc9dad</string>
-	<string name="liferay_oauth_consumer_secret">49b3fba8bf211b9dde948701f3a62e2a</string>
+	<string name="liferay_oauth_consumer_key">f4adeb99-9ddf-4c9c-a408-347ce8be340a</string>
+	<string name="liferay_oauth_consumer_secret">0176690f0fd46a4a3a839ca9bf4edd0c</string>
 
 </resources>

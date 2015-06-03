@@ -30,6 +30,7 @@ import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.context.AuthenticationType;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
@@ -119,6 +120,22 @@ public class LoginScreenlet
 		_credentialsStore = value;
 	}
 
+	public String getOAuthConsumerSecret() {
+		return _oauthConsumerSecret;
+	}
+
+	public void setOAuthConsumerSecret(String value) {
+		_oauthConsumerSecret = value;
+	}
+
+	public String getOAuthConsumerKey() {
+		return _oauthConsumerKey;
+	}
+
+	public void setOAuthConsumerKey(String value) {
+		_oauthConsumerKey = value;
+	}
+
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
@@ -129,18 +146,29 @@ public class LoginScreenlet
 
 		_credentialsStore = StorageType.valueOf(storeValue);
 
+		_oauthConsumerKey =
+			typedArray.getString(R.styleable.LoginScreenlet_oauthConsumerKey);
+		_oauthConsumerSecret =
+			typedArray.getString(R.styleable.LoginScreenlet_oauthConsumerSecret);
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.LoginScreenlet_layoutId, getDefaultLayoutId());
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
-		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
-
-		_authMethod = AuthMethod.getValue(authMethodId);
 		LoginViewModel loginViewModel = (LoginViewModel) view;
-		loginViewModel.setAuthMethod(_authMethod);
-		loginViewModel.setAuthenticationType(LiferayServerContext.getAuthenticationType());
+
+		if (_oauthConsumerKey != null && _oauthConsumerSecret != null) {
+			loginViewModel.setAuthenticationType(AuthenticationType.OAUTH);
+		}
+		else {
+			int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
+
+			_authMethod = AuthMethod.getValue(authMethodId);
+			loginViewModel.setAuthMethod(_authMethod);
+
+			loginViewModel.setAuthenticationType(AuthenticationType.BASIC);
+		}
 
 		typedArray.recycle();
 
@@ -171,10 +199,10 @@ public class LoginScreenlet
 			}
 		}
 		else {
-			String server = LiferayServerContext.getServer();
-			String consumerKey = LiferayServerContext.getConsumerKey();
-			String consumerSecret = LiferayServerContext.getConsumerSecret();
-			OAuthConfig config = new OAuthConfig(server, consumerKey, consumerSecret);
+			OAuthConfig config = new OAuthConfig(
+					LiferayServerContext.getServer(),
+					_oauthConsumerKey,
+					_oauthConsumerSecret);
 
 			Intent intent = new Intent(getContext(), OAuthActivity.class);
 			intent.putExtra(OAuthActivity.EXTRA_OAUTH_CONFIG, config);
@@ -185,5 +213,8 @@ public class LoginScreenlet
 	private LoginListener _listener;
 	private AuthMethod _authMethod;
 	private StorageType _credentialsStore;
+
+	private String _oauthConsumerKey;
+	private String _oauthConsumerSecret;
 
 }
