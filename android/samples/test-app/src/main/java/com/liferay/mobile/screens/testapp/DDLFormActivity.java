@@ -51,18 +51,23 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	protected void onResume() {
 		super.onResume();
 
-		_screenlet.load();
+		if (!_loaded) {
+			_screenlet.load();
+		}
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
-		_screenlet.startUploadByPosition(requestCode);
+		if (resultCode == RESULT_OK) {
+			_screenlet.startUploadByPosition(requestCode);
+		}
 	}
 
 	@Override
 	public void onDDLFormLoaded(Record record) {
+		_loaded = true;
 		info("Form loaded!");
 	}
 
@@ -111,6 +116,18 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 		error("Document could not be uploaded", e);
 	}
 
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putBoolean(STATE_LOADED, _loaded);
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		_loaded = savedInstanceState.getBoolean(STATE_LOADED);
+	}
+
 	private void initScreenletFromIntent(Intent intent) {
 		if (intent.hasExtra("recordId")) {
 			_screenlet.setRecordId(intent.getIntExtra("recordId", 0));
@@ -120,4 +137,7 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	}
 
 	private DDLFormScreenlet _screenlet;
+	private boolean _loaded;
+
+	private static final String STATE_LOADED = "STATE_LOADED";
 }
