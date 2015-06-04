@@ -18,6 +18,8 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
@@ -27,6 +29,7 @@ import com.liferay.mobile.screens.util.EventBusUtil;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /**
  * @author Javier Gamarra
@@ -64,7 +67,7 @@ public class UserPortraitService extends IntentService {
 
 
 	public static byte[] decodeSampledBitmapFromResource(String path,
-														 int reqWidth, int reqHeight) {
+														 int reqWidth, int reqHeight) throws IOException {
 
 		// First decode with inJustDecodeBounds=true to check dimensions
 		final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -73,11 +76,32 @@ public class UserPortraitService extends IntentService {
 
 		options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
 		options.inJustDecodeBounds = false;
-		Bitmap bitmap = BitmapFactory.decodeFile(path, options);
+
+		Bitmap bitmap = checkOrientationAndRotate(path, BitmapFactory.decodeFile(path, options));
 
 		ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayBitmapStream);
 		return byteArrayBitmapStream.toByteArray();
+	}
+
+	private static Bitmap checkOrientationAndRotate(String filePath, Bitmap bitmap) throws IOException {
+		ExifInterface ei = new ExifInterface(filePath);
+		int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+
+		switch (orientation) {
+			case ExifInterface.ORIENTATION_ROTATE_90:
+				return rotateImage(bitmap, 90);
+			case ExifInterface.ORIENTATION_ROTATE_180:
+				return rotateImage(bitmap, 180);
+			default:
+				return bitmap;
+		}
+	}
+
+	public static Bitmap rotateImage(Bitmap source, float angle) {
+		Matrix matrix = new Matrix();
+		matrix.postRotate(angle);
+		return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
 	}
 
 	public static int calculateInSampleSize(
