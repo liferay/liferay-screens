@@ -131,7 +131,7 @@ public class UserPortraitScreenlet
 			_listener.onUserPortraitLoadFailure(this, e);
 		}
 
-		getViewModel().showFailedOperation(null, e);
+		getViewModel().showFailedOperation(LOAD_PORTRAIT, e);
 	}
 
 	@Override
@@ -156,7 +156,7 @@ public class UserPortraitScreenlet
 			_listener.onUserPortraitLoadFailure(this, e);
 		}
 
-		getViewModel().showFailedOperation(null, e);
+		getViewModel().showFailedOperation(UPLOAD_PORTRAIT, e);
 	}
 
 	public void setListener(UserPortraitListener listener) {
