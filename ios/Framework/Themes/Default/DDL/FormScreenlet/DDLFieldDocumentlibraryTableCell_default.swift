@@ -23,13 +23,13 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 
 	//MARK: Outlets
 
-	@IBOutlet internal var chooseButton: UIButton? {
+	@IBOutlet public var chooseButton: UIButton? {
 		didSet {
 			setButtonDefaultStyle(chooseButton)
 		}
 	}
 
-	@IBOutlet internal var progress: MDRadialProgressView?
+	@IBOutlet public var progress: MDRadialProgressView?
 
 
 	//MARK: Constants

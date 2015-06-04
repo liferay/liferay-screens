@@ -21,10 +21,10 @@ private let xibName = "DDLFieldDocumentlibraryPresenterViewController_default"
 public class DDLFieldDocumentlibraryPresenterViewController_default:
 		UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-	@IBOutlet internal var takeNewButton: UIButton?
-	@IBOutlet internal var selectPhotoButton: UIButton?
-	@IBOutlet internal var selectVideoButton: UIButton?
-	@IBOutlet internal var cancelButton: UIButton?
+	@IBOutlet public var takeNewButton: UIButton?
+	@IBOutlet public var selectPhotoButton: UIButton?
+	@IBOutlet public var selectVideoButton: UIButton?
+	@IBOutlet public var cancelButton: UIButton?
 
 	public var selectedDocumentClosure: ((UIImage?, NSURL?) -> Void)?
 

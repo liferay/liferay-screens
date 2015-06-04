@@ -16,8 +16,8 @@ import UIKit
 
 public class DDLFieldCheckboxTableCell_default: DDLFieldTableCell {
 
-	@IBOutlet internal var switchView: UISwitch?
-	@IBOutlet internal var label: UILabel?
+	@IBOutlet public var switchView: UISwitch?
+	@IBOutlet public var label: UILabel?
 
 
 	//MARK: Actions
