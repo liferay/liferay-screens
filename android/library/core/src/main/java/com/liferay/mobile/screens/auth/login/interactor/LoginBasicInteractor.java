@@ -18,7 +18,7 @@ import android.text.TextUtils;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
-import com.liferay.mobile.screens.auth.AuthMethod;
+import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -36,7 +36,7 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 
 		UserService service = getUserService();
 
-		switch (_authMethod) {
+		switch (_basicAuthMethod) {
 			case EMAIL:
 				service.getUserByEmailAddress(LiferayServerContext.getCompanyId(), _login);
 				break;
@@ -59,8 +59,8 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 		_password = value;
 	}
 
-	public void setAuthMethod(AuthMethod value) {
-		_authMethod = value;
+	public void setBasicAuthMethod(BasicAuthMethod value) {
+		_basicAuthMethod = value;
 	}
 
 	protected UserService getUserService() {
@@ -79,11 +79,11 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 			throw new IllegalArgumentException("Password cannot be empty");
 		}
 
-		if (_authMethod == null) {
-			throw new IllegalArgumentException("AuthMethod cannot be empty");
+		if (_basicAuthMethod == null) {
+			throw new IllegalArgumentException("BasicAuthMethod cannot be empty");
 		}
 
-		if (_authMethod == AuthMethod.USER_ID && !TextUtils.isDigitsOnly(_login)) {
+		if (_basicAuthMethod == BasicAuthMethod.USER_ID && !TextUtils.isDigitsOnly(_login)) {
 			throw new IllegalArgumentException("UserId has to be numeric");
 		}
 	}
@@ -92,6 +92,6 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 	// aren't used after the request is fired.
 	private String _login;
 	private String _password;
-	private AuthMethod _authMethod;
+	private BasicAuthMethod _basicAuthMethod;
 
 }

@@ -37,6 +37,6 @@ public class ForgotPasswordView
 
 	@Override
 	protected void refreshLoginEditTextStyle() {
-		getLoginEditText().setInputType(getAuthMethod().getInputType());
+		getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
 	}
 }

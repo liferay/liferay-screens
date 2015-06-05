@@ -14,14 +14,14 @@
 
 package com.liferay.mobile.screens.auth.login.view;
 
-import com.liferay.mobile.screens.auth.AuthBasedViewModel;
+import com.liferay.mobile.screens.auth.BasicAuthViewModel;
 import com.liferay.mobile.screens.context.AuthenticationType;
 import com.liferay.mobile.screens.context.User;
 
 /**
  * @author Silvio Santos
  */
-public interface LoginViewModel extends AuthBasedViewModel {
+public interface LoginViewModel extends BasicAuthViewModel {
 
 	String getLogin();
 

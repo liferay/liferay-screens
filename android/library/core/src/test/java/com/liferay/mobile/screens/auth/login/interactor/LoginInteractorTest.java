@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.auth.login.interactor;
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.RobolectricManifestTestRunner;
-import com.liferay.mobile.screens.auth.AuthMethod;
+import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -47,7 +47,7 @@ public class LoginInteractorTest {
 
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	@RunWith(RobolectricManifestTestRunner.class)
-	public static class WhenAuthMethodIsEmail {
+	public static class WhenBasicAuthMethodIsEmail {
 
 		@Test
 		public void shouldCallGetUserByEmailService() throws Exception {
@@ -63,7 +63,7 @@ public class LoginInteractorTest {
 			).getUserService(_LOGIN_EMAIL, _LOGIN_PASSWORD);
 
 			interactorSpy.login(
-				_LOGIN_EMAIL, _LOGIN_PASSWORD, AuthMethod.EMAIL);
+				_LOGIN_EMAIL, _LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
 
 			verify(
 				interactorSpy
@@ -77,7 +77,7 @@ public class LoginInteractorTest {
 
 	@RunWith(RobolectricTestRunner.class)
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
-	public static class WhenAuthMethodIsId {
+	public static class WhenBasicAuthMethodIsId {
 
 		@Test
 		public void shouldCallGetUserByIdService() throws Exception {
@@ -94,7 +94,7 @@ public class LoginInteractorTest {
 				interactorSpy
 			).getUserService(userId, _LOGIN_PASSWORD);
 
-			interactorSpy.login(userId, _LOGIN_PASSWORD, AuthMethod.USER_ID);
+			interactorSpy.login(userId, _LOGIN_PASSWORD, BasicAuthMethod.USER_ID);
 
 			verify(
 				interactorSpy
@@ -108,7 +108,7 @@ public class LoginInteractorTest {
 
 	@RunWith(RobolectricTestRunner.class)
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
-	public static class WhenAuthMethodIsScreenName {
+	public static class WhenBasicAuthMethodIsScreenName {
 
 		@Test
 		public void shouldCallGetUserByScreenNameService() throws Exception {
@@ -124,7 +124,7 @@ public class LoginInteractorTest {
 			).getUserService(_LOGIN_SCREEN_NAME, _LOGIN_PASSWORD);
 
 			interactorSpy.login(
-				_LOGIN_SCREEN_NAME, _LOGIN_PASSWORD, AuthMethod.SCREEN_NAME);
+				_LOGIN_SCREEN_NAME, _LOGIN_PASSWORD, BasicAuthMethod.SCREEN_NAME);
 
 			verify(
 				interactorSpy
@@ -152,11 +152,11 @@ public class LoginInteractorTest {
 			).getUserService(_LOGIN_EMAIL, _LOGIN_PASSWORD);
 
 			interactorSpy.login(
-				_LOGIN_EMAIL, _LOGIN_PASSWORD, AuthMethod.EMAIL);
+				_LOGIN_EMAIL, _LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
 
 			verify(
 				interactorSpy
-			).validate(_LOGIN_EMAIL, _LOGIN_PASSWORD, AuthMethod.EMAIL);
+			).validate(_LOGIN_EMAIL, _LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
 		}
 	}
 
@@ -223,7 +223,7 @@ public class LoginInteractorTest {
 				});
 
 			interactorSpy.login(
-				_LOGIN_EMAIL, _LOGIN_PASSWORD, AuthMethod.EMAIL);
+				_LOGIN_EMAIL, _LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
 		}
 	}
 
@@ -236,7 +236,7 @@ public class LoginInteractorTest {
 			LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
-			interactorSpy.validate(null, _LOGIN_PASSWORD, AuthMethod.EMAIL);
+			interactorSpy.validate(null, _LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
 		}
 
 		@Test(expected = IllegalArgumentException.class)
@@ -244,11 +244,11 @@ public class LoginInteractorTest {
 			LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
-			interactorSpy.validate(_LOGIN_EMAIL, null, AuthMethod.EMAIL);
+			interactorSpy.validate(_LOGIN_EMAIL, null, BasicAuthMethod.EMAIL);
 		}
 
 		@Test(expected = IllegalArgumentException.class)
-		public void shouldRaiseExceptionOnNullAuthMethod() {
+		public void shouldRaiseExceptionOnNullBasicAuthMethod() {
 			LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 

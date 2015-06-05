@@ -25,7 +25,7 @@ import android.view.View;
 import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.oauth.activity.OAuthActivity;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.auth.AuthMethod;
+import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginOAuthInteractor;
@@ -107,14 +107,14 @@ public class LoginScreenlet
 		_listener = listener;
 	}
 
-	public AuthMethod getAuthMethod() {
-		return _authMethod;
+	public BasicAuthMethod getAuthMethod() {
+		return _basicAuthMethod;
 	}
 
-	public void setAuthMethod(AuthMethod authMethod) {
-		_authMethod = authMethod;
+	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
+		_basicAuthMethod = basicAuthMethod;
 
-		getViewModel().setAuthMethod(_authMethod);
+		getViewModel().setBasicAuthMethod(_basicAuthMethod);
 	}
 
 	public StorageType getCredentialsStore() {
@@ -167,10 +167,10 @@ public class LoginScreenlet
 			loginViewModel.setAuthenticationType(AuthenticationType.OAUTH);
 		}
 		else {
-			int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_authMethod, 0);
+			int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_basicAuthMethod, 0);
 
-			_authMethod = AuthMethod.getValue(authMethodId);
-			loginViewModel.setAuthMethod(_authMethod);
+			_basicAuthMethod = BasicAuthMethod.getValue(authMethodId);
+			loginViewModel.setBasicAuthMethod(_basicAuthMethod);
 
 			loginViewModel.setAuthenticationType(AuthenticationType.BASIC);
 		}
@@ -208,7 +208,7 @@ public class LoginScreenlet
 
 			loginBasicInteractor.setLogin(viewModel.getLogin());
 			loginBasicInteractor.setPassword(viewModel.getPassword());
-			loginBasicInteractor.setAuthMethod(viewModel.getAuthMethod());
+			loginBasicInteractor.setBasicAuthMethod(viewModel.getBasicAuthMethod());
 
 			try {
 				interactor.login();
@@ -227,7 +227,7 @@ public class LoginScreenlet
 	}
 
 	private LoginListener _listener;
-	private AuthMethod _authMethod;
+	private BasicAuthMethod _basicAuthMethod;
 	private StorageType _credentialsStore;
 
 	private String _oauthConsumerKey;
