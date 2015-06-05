@@ -81,11 +81,15 @@ public class LoginScreenlet
 		SessionContext.storeSession(_credentialsStore);
 	}
 
-	public void sendResult(int result, Intent intent) {
+	public void sendOAuthResult(int result, Intent intent) {
 		if (result == Activity.RESULT_OK) {
 			try {
-				OAuthConfig oAuthConfig = (OAuthConfig) intent.getSerializableExtra(OAuthActivity.EXTRA_OAUTH_CONFIG);
-				getInteractor().loginWithOAuth(oAuthConfig);
+				OAuthConfig oauthConfig = (OAuthConfig) intent.getSerializableExtra(
+						OAuthActivity.EXTRA_OAUTH_CONFIG);
+
+				LoginOAuthInteractor oauthInteractor = (LoginOAuthInteractor) getInteractor(OAUTH);
+				oauthInteractor.setOAuthConfig(oauthConfig);
+				oauthInteractor.login();
 			}
 			catch (Exception e) {
 				onLoginFailure(e);
