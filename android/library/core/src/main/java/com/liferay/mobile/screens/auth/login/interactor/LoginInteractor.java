@@ -14,8 +14,6 @@
 
 package com.liferay.mobile.screens.auth.login.interactor;
 
-import com.liferay.mobile.android.oauth.OAuthConfig;
-import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 
@@ -24,8 +22,6 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
  */
 public interface LoginInteractor extends Interactor<LoginListener> {
 
-	void login(String login, String password, AuthMethod authMethod) throws Exception;
-
-	void loginWithOAuth(OAuthConfig oAuthConfig) throws Exception;
+	void login() throws Exception;
 
 }

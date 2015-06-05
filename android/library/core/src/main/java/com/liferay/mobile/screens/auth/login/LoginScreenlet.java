@@ -27,7 +27,8 @@ import com.liferay.mobile.android.oauth.activity.OAuthActivity;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.AuthMethod;
 import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
-import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
+import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
+import com.liferay.mobile.screens.auth.login.interactor.LoginOAuthInteractor;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.AuthenticationType;
@@ -181,35 +182,46 @@ public class LoginScreenlet
 
 	@Override
 	protected LoginInteractor createInteractor(String actionName) {
-		return new LoginInteractorImpl(getScreenletId());
+		if (BASIC_AUTH.equals(actionName)) {
+			return new LoginBasicInteractor(getScreenletId());
+		}
+		else {
+			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor(getScreenletId());
+
+			OAuthConfig config = new OAuthConfig(
+				LiferayServerContext.getServer(),
+				_oauthConsumerKey, _oauthConsumerSecret);
+
+			oauthInteractor.setOAuthConfig(config);
+
+			return oauthInteractor;
+		}
 	}
 
 	@Override
 	protected void onUserAction(String userActionName, LoginInteractor interactor, Object... args) {
 		if (BASIC_AUTH.equals(userActionName)) {
 			LoginViewModel viewModel = getViewModel();
+			LoginBasicInteractor loginBasicInteractor = (LoginBasicInteractor) interactor;
 
 			viewModel.showStartOperation(userActionName);
 
-			String login = viewModel.getLogin();
-			String password = viewModel.getPassword();
-			AuthMethod method = viewModel.getAuthMethod();
+			loginBasicInteractor.setLogin(viewModel.getLogin());
+			loginBasicInteractor.setPassword(viewModel.getPassword());
+			loginBasicInteractor.setAuthMethod(viewModel.getAuthMethod());
 
 			try {
-				interactor.login(login, password, method);
+				interactor.login();
 			}
 			catch (Exception e) {
 				onLoginFailure(e);
 			}
 		}
 		else {
-			OAuthConfig config = new OAuthConfig(
-					LiferayServerContext.getServer(),
-					_oauthConsumerKey,
-					_oauthConsumerSecret);
+			LoginOAuthInteractor oauthInteractor = (LoginOAuthInteractor) interactor;
 
 			Intent intent = new Intent(getContext(), OAuthActivity.class);
-			intent.putExtra(OAuthActivity.EXTRA_OAUTH_CONFIG, config);
+			intent.putExtra(OAuthActivity.EXTRA_OAUTH_CONFIG, oauthInteractor.getOAuthConfig());
 			((Activity) getContext()).startActivityForResult(intent, REQUEST_OAUTH_CODE);
 		}
 	}
