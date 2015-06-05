@@ -62,8 +62,11 @@ public class LoginInteractorTest {
 				interactorSpy
 			).getUserService(_LOGIN_EMAIL, _LOGIN_PASSWORD);
 
-			interactorSpy.login(
-				_LOGIN_EMAIL, _LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
+			interactorSpy.setLogin(_LOGIN_EMAIL);
+			interactorSpy.setPassword(_LOGIN_PASSWORD);
+			interactorSpy.setBasicAuthMethod(BasicAuthMethod.EMAIL);
+
+			interactorSpy.login();
 
 			verify(
 				interactorSpy
@@ -94,7 +97,11 @@ public class LoginInteractorTest {
 				interactorSpy
 			).getUserService(userId, _LOGIN_PASSWORD);
 
-			interactorSpy.login(userId, _LOGIN_PASSWORD, BasicAuthMethod.USER_ID);
+			interactorSpy.setLogin(userId);
+			interactorSpy.setPassword(_LOGIN_PASSWORD);
+			interactorSpy.setBasicAuthMethod(BasicAuthMethod.USER_ID);
+
+			interactorSpy.login();
 
 			verify(
 				interactorSpy
@@ -123,8 +130,11 @@ public class LoginInteractorTest {
 				interactorSpy
 			).getUserService(_LOGIN_SCREEN_NAME, _LOGIN_PASSWORD);
 
-			interactorSpy.login(
-				_LOGIN_SCREEN_NAME, _LOGIN_PASSWORD, BasicAuthMethod.SCREEN_NAME);
+			interactorSpy.setLogin(_LOGIN_SCREEN_NAME);
+			interactorSpy.setPassword(_LOGIN_PASSWORD);
+			interactorSpy.setBasicAuthMethod(BasicAuthMethod.SCREEN_NAME);
+
+			interactorSpy.login();
 
 			verify(
 				interactorSpy
@@ -151,8 +161,11 @@ public class LoginInteractorTest {
 				interactorSpy
 			).getUserService(_LOGIN_EMAIL, _LOGIN_PASSWORD);
 
-			interactorSpy.login(
-				_LOGIN_EMAIL, _LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
+			interactorSpy.setLogin(_LOGIN_EMAIL);
+			interactorSpy.setPassword(_LOGIN_PASSWORD);
+			interactorSpy.setBasicAuthMethod(BasicAuthMethod.EMAIL);
+
+			interactorSpy.login();
 
 			verify(
 				interactorSpy
@@ -222,8 +235,11 @@ public class LoginInteractorTest {
 					}
 				});
 
-			interactorSpy.login(
-				_LOGIN_EMAIL, _LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
+			interactorSpy.setLogin(_LOGIN_EMAIL);
+			interactorSpy.setPassword(_LOGIN_PASSWORD);
+			interactorSpy.setBasicAuthMethod(BasicAuthMethod.EMAIL);
+
+			interactorSpy.login();
 		}
 	}
 

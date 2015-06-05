@@ -32,21 +32,21 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 
 	@Override
 	public void login() throws Exception {
-		validate();
+		validate(_login, _password, _basicAuthMethod);
 
-		UserService service = getUserService();
+		UserService service = getUserService(_login, _password);
 
 		switch (_basicAuthMethod) {
 			case EMAIL:
-				service.getUserByEmailAddress(LiferayServerContext.getCompanyId(), _login);
+				sendGetUserByEmailRequest(service, _login);
 				break;
 
 			case USER_ID:
-				service.getUserById(Long.parseLong(_login));
+				sendGetUserByIdRequest(service, Long.parseLong(_login));
 				break;
 
 			case SCREEN_NAME:
-				service.getUserByScreenName(LiferayServerContext.getCompanyId(), _login);
+				sendGetUserByScreenNameRequest(service, _login);
 				break;
 		}
 	}
@@ -63,27 +63,40 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 		_basicAuthMethod = value;
 	}
 
-	protected UserService getUserService() {
-		Session session = SessionContext.createSession(_login, _password);
+	protected UserService getUserService(String login, String password) {
+		Session session = SessionContext.createSession(login, password);
 		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
 
 		return new UserService(session);
 	}
 
-	protected void validate() {
-		if (_login == null) {
+	protected void sendGetUserByEmailRequest(UserService service, String email) throws Exception {
+		service.getUserByEmailAddress(LiferayServerContext.getCompanyId(), email);
+	}
+
+	protected void sendGetUserByScreenNameRequest(UserService service, String screenName)
+			throws Exception {
+		service.getUserByScreenName(LiferayServerContext.getCompanyId(), screenName);
+	}
+
+	protected void sendGetUserByIdRequest(UserService service, long userId) throws Exception {
+		service.getUserById(userId);
+	}
+
+	protected void validate(String login, String password, BasicAuthMethod basicAuthMethod) {
+		if (login == null) {
 			throw new IllegalArgumentException("Login cannot be empty");
 		}
 
-		if (_password == null) {
+		if (password == null) {
 			throw new IllegalArgumentException("Password cannot be empty");
 		}
 
-		if (_basicAuthMethod == null) {
+		if (basicAuthMethod == null) {
 			throw new IllegalArgumentException("BasicAuthMethod cannot be empty");
 		}
 
-		if (_basicAuthMethod == BasicAuthMethod.USER_ID && !TextUtils.isDigitsOnly(_login)) {
+		if (basicAuthMethod == BasicAuthMethod.USER_ID && !TextUtils.isDigitsOnly(login)) {
 			throw new IllegalArgumentException("UserId has to be numeric");
 		}
 	}
