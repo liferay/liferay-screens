@@ -24,6 +24,7 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.context.storage.sharedPreferences.CredentialsStoreSharedPreferences;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +32,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
@@ -181,8 +181,10 @@ public class CredentialsStoreSharedPreferencesTest {
 			assertNotSame(savedAuth, store.getAuthentication());
 			assertNotSame(savedUser, store.getUser());
 
-			assertEquals("user123", store.getAuthentication().getUsername());
-			assertEquals("pass123", store.getAuthentication().getPassword());
+			BasicAuthentication auth = (BasicAuthentication) store.getAuthentication();
+
+			assertEquals("user123", auth.getUsername());
+			assertEquals("pass123", auth.getPassword());
 			assertEquals(123, store.getUser().getId());
 		}
 

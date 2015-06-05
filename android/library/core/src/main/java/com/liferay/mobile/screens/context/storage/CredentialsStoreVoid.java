@@ -39,11 +39,6 @@ public class CredentialsStoreVoid implements CredentialsStore {
 	}
 
 	@Override
-	public String getStoreName() {
-		return null;
-	}
-
-	@Override
 	public BasicAuthentication getAuthentication() {
 		return null;
 	}

@@ -30,8 +30,6 @@ public interface CredentialsStore {
 
 	boolean loadStoredCredentials() throws IllegalStateException;
 
-	String getStoreName();
-
 	Authentication getAuthentication();
 
 	void setAuthentication(Authentication auth);
