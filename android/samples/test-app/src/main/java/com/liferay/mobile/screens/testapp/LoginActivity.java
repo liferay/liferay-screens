@@ -14,16 +14,12 @@
 
 package com.liferay.mobile.screens.testapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.liferay.mobile.android.oauth.OAuthConfig;
-import com.liferay.mobile.android.oauth.activity.OAuthActivity;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 
 /**
