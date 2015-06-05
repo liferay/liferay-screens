@@ -59,7 +59,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 
 			store.setContext(null);
 
@@ -69,7 +69,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenSessionIsNotPresent() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 
 			store.setAuthentication(null);
 
@@ -79,7 +79,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 
 			store.setUser(null);
 
@@ -89,7 +89,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test
 		public void shouldStoreTheCredentialsInSharedPreferences() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 			store.storeCredentials();
 
 			SharedPreferences sharedPref =
@@ -118,7 +118,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test
 		public void shouldRemoveTheStoredCredentials() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 			store.storeCredentials();
 
 			store.removeStoredCredentials();
@@ -153,7 +153,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionIfStoredCredentialsAreNotConsistent() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 			store.storeCredentials();
 
 			// Don't recreate the store object because SharedPreferences are mocked by
@@ -167,10 +167,10 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test
 		public void shouldLoadTheStoredValues() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 			store.storeCredentials();
 
-			BasicAuthentication savedAuth = store.getAuthentication();
+			BasicAuthentication savedAuth = (BasicAuthentication) store.getAuthentication();
 			User savedUser = store.getUser();
 
 			assertTrue(store.loadStoredCredentials());
@@ -188,7 +188,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 	}
 
-	private static void setTestData(CredentialsStore store) {
+	private static void setBasicTestDataInStore(CredentialsStore store) {
 		store.setContext(RuntimeEnvironment.application.getApplicationContext());
 
 		JSONObject userAttributes = null;

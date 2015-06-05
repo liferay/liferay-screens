@@ -188,7 +188,7 @@ public class SessionContextTest {
 		}
 
 		@Test
-		public void shouldStoreTheCredentialsInSharedPreferences() throws Exception {
+		public void shouldStoreBasicCredentialsInSharedPreferences() throws Exception {
 			SessionContext.createSession("user123", "pass123");
 
 			Context ctx = RuntimeEnvironment.application.getApplicationContext();
