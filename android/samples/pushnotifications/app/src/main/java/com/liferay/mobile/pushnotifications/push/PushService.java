@@ -41,15 +41,15 @@ public class PushService extends IntentService {
 
 	public void onHandleIntent(Intent intent) {
 		try {
-			JSONObject jsonObject = this._googleService.getPushNotification(this, intent);
+			JSONObject json = this._googleService.getPushNotification(this, intent);
 
-			//BusUtil.post(jsonObject);
+			//BusUtil.post(json);
 
-			boolean creation = jsonObject.getBoolean("newNotification");
+			boolean creation = json.has("newNotification") && json.getBoolean("newNotification");
 			String titleHeader = (creation ? "New" : "Updated") + " notification: ";
-			String title = titleHeader + jsonObject.getString("title");
-			String description = jsonObject.getString("description");
-			String photo = jsonObject.getString("photo");
+			String title = titleHeader + getString(json, "title");
+			String description = getString(json, "description");
+			String photo = getString(json, "photo");
 
 			createGlobalNotification(title, description, tryToLoadPhoto(photo));
 
@@ -58,6 +58,10 @@ public class PushService extends IntentService {
 		catch (PushNotificationReceiverException | JSONException exception) {
 			BusUtil.post(exception);
 		}
+	}
+
+	private String getString(final JSONObject json, final String element) throws JSONException {
+		return json.has(element) ? json.getString(element) : "";
 	}
 
 	private void createGlobalNotification(String title, String description, Bitmap bitmap) {
@@ -95,7 +99,7 @@ public class PushService extends IntentService {
 		if (photo != null && !photo.isEmpty()) {
 			try {
 				JSONObject jsonObject = new JSONObject(photo);
-				final String uuid = jsonObject.getString("uuid");
+				final String uuid = getString(jsonObject, "uuid");
 				final Long groupId = jsonObject.getLong("groupId");
 
 				String username = getString(R.string.anonymous_user);
