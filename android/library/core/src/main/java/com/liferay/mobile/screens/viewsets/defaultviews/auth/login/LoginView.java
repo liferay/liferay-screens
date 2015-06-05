@@ -152,9 +152,11 @@ public class LoginView extends LinearLayout
 	}
 
 	protected void refreshLoginEditTextStyle() {
-		_loginEditText.setInputType(_authMethod.getInputType());
-		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(
-			getResources().getDrawable(getLoginEditTextDrawableId()), null, null, null);
+		if (_authMethod != null) {
+			_loginEditText.setInputType(_authMethod.getInputType());
+			_loginEditText.setCompoundDrawablesWithIntrinsicBounds(
+				getResources().getDrawable(getLoginEditTextDrawableId()), null, null, null);
+		}
 	}
 
 	protected int getLoginEditTextDrawableId() {
