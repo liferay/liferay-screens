@@ -4,6 +4,7 @@
 "default-sign-in-button"="ENTRAR";
 "default-sign-up-button"="REGISTRAR";
 "default-save-button"="GUARDAR";
+"default-authorize-button"="AUTORIZAR";
 "default-forgot-password-button"="SOLICITAR";
 "default-password-placeholder"="Contraseña";
 "default-first-name-placeholder"="Nombre";
@@ -15,4 +16,3 @@
 "default-ddlform-submit-button"="ENVIAR";
 "default-userportrait-take-new-picture"="Hacer una foto";
 "default-userportrait-choose-existing-picture"="Usar foto existente";
-

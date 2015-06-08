@@ -35,6 +35,7 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		self.loginScreenlet?.presentingViewController = self
 		self.loginScreenlet?.delegate = self
 
 		self.loginScreenlet?.viewModel.userName = "test@liferay.com"

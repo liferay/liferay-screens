@@ -100,14 +100,19 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 
 		loginButton?.replaceAttributedTitle(LocalizedString("default", "sign-in-button", self),
 				forState: .Normal)
+
+		authorizeButton?.replaceAttributedTitle(LocalizedString("default", "authorize-button", self),
+				forState: .Normal)
 	}
 
 	override public func onStartOperation() {
 		loginButton.enabled = false
+		authorizeButton.enabled = false
 	}
 
 	override public func onFinishOperation() {
 		loginButton.enabled = true
+		authorizeButton.enabled = true
 	}
 
 
