@@ -20,7 +20,7 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 		scenario("LoginScreenlet by screenName should work") {
 			given("a configured login screenlet") {
 				with("auth method set to screenName") {
-					self.screenlet!.authMethod = AuthMethod.ScreenName.rawValue
+					self.screenlet!.basicAuthMethod = BasicAuthMethod.ScreenName.rawValue
 				}
 				and("screenName and password entered by the user") {
 					self.screenlet!.viewModel.userName = "test"

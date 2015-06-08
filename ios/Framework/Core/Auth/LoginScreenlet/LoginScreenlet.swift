@@ -28,19 +28,19 @@ import UIKit
 }
 
 
-public class LoginScreenlet: BaseScreenlet, AuthBasedType {
+public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	//MARK: Inspectables
 
-	@IBInspectable public var authMethod: String? = AuthMethod.Email.rawValue {
+	@IBInspectable public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
 		didSet {
-			copyAuth(source: self, target: screenletView)
+			copyBasicAuth(source: self, target: screenletView)
 		}
 	}
 
 	@IBInspectable public var saveCredentials: Bool = false {
 		didSet {
-			(screenletView as? AuthBasedType)?.saveCredentials = self.saveCredentials
+			(screenletView as? BasicAuthBasedType)?.saveCredentials = self.saveCredentials
 		}
 	}
 
@@ -60,7 +60,7 @@ public class LoginScreenlet: BaseScreenlet, AuthBasedType {
 	override public func onCreated() {
 		super.onCreated()
 		
-		copyAuth(source: self, target: screenletView)
+		copyBasicAuth(source: self, target: screenletView)
 
 		if SessionContext.loadSessionFromStore() {
 			viewModel.userName = SessionContext.currentUserName!

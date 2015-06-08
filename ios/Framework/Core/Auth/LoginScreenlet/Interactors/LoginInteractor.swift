@@ -25,7 +25,7 @@ class LoginInteractor: ServerOperationInteractor {
 
 		var operation: GetUserBaseOperation?
 
-		switch AuthMethod.create(screenlet.authMethod) {
+		switch BasicAuthMethod.create(screenlet.basicAuthMethod) {
 			case .ScreenName:
 				operation = LiferayLoginByScreenNameOperation(
 						screenlet: screenlet,

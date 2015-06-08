@@ -20,7 +20,7 @@ class LoginScreenlet_ByUserId_Tests: BaseLoginScreenletTestCase {
 		scenario("LoginScreenlet by userId should work") {
 			given("a configured login screenlet") {
 				with("auth method set to userId") {
-					self.screenlet!.authMethod = AuthMethod.UserId.rawValue
+					self.screenlet!.basicAuthMethod = BasicAuthMethod.UserId.rawValue
 				}
 				and("screenName and password entered by the user") {
 					self.screenlet!.viewModel.userName = "123456"

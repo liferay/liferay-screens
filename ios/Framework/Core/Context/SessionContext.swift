@@ -34,9 +34,9 @@ import Foundation
 		return StaticInstance.currentSession != nil
 	}
 
-	public class var currentAuthMethod: AuthMethod? {
+	public class var currentBasicAuthMethod: BasicAuthMethod? {
 		if let userName = currentUserName {
-			return AuthMethod.fromUserName(userName)
+			return BasicAuthMethod.fromUserName(userName)
 		}
 
 		return nil

@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol AnonymousAuthType {
+@objc public protocol AnonymousBasicAuthType {
 
 	var anonymousApiUserName: String? { get set }
 	var anonymousApiPassword: String? { get set }
@@ -22,46 +22,40 @@ import UIKit
 }
 
 
-@objc public protocol AuthBasedType {
+@objc public protocol BasicAuthBasedType {
 
-	var authMethod: String? { get set }
+	var basicAuthMethod: String? { get set }
 	var saveCredentials: Bool { get set }
 
 }
 
 
-public func copyAuth(#source: AuthBasedType, #target: AnyObject?) {
-	if let authBasedTarget = target as? AuthBasedType {
-		authBasedTarget.authMethod = source.authMethod
+public func copyBasicAuth(#source: BasicAuthBasedType, #target: AnyObject?) {
+	if let authBasedTarget = target as? BasicAuthBasedType {
+		authBasedTarget.basicAuthMethod = source.basicAuthMethod
 		authBasedTarget.saveCredentials = source.saveCredentials
 	}
 }
 
 
-public let AuthMethodTypeEmail = AuthMethod.Email.rawValue
-public let AuthMethodTypeScreenName = AuthMethod.ScreenName.rawValue
-public let AuthMethodTypeUserId = AuthMethod.UserId.rawValue
 
-public typealias AuthMethodType = String
-
-
-public enum AuthMethod: String {
+public enum BasicAuthMethod: String {
 
 	case Email = "email"
 	case ScreenName = "screenName"
 	case UserId = "userId"
 
-	public static func all() -> [AuthMethod] {
+	public static func all() -> [BasicAuthMethod] {
 		return [.Email, .ScreenName, .UserId]
 	}
 
-	public static func create(text: String?) -> AuthMethod {
+	public static func create(text: String?) -> BasicAuthMethod {
 		return all().filter {
 				$0.rawValue == text?.lowercaseString
 			}.first ?? .Email
 	}
 
-	public static func fromUserName(userName: String) -> AuthMethod {
+	public static func fromUserName(userName: String) -> BasicAuthMethod {
 		if find(userName, "@") != nil {
 			return .Email
 		}
@@ -74,28 +68,28 @@ public enum AuthMethod: String {
 	}
 
 	public var iconType: String {
-		let iconTypes = [
-				AuthMethod.Email: "mail",
-				AuthMethod.ScreenName: "user",
-				AuthMethod.UserId: "user"]
+		let iconTypes: [BasicAuthMethod:String] = [
+				.Email: "mail",
+				.ScreenName: "user",
+				.UserId: "user"]
 
 		return iconTypes[self] ?? ""
 	}
 
 	public var keyboardType: UIKeyboardType {
-		let keyboardTypes = [
-				AuthMethod.Email: UIKeyboardType.EmailAddress,
-				AuthMethod.ScreenName: UIKeyboardType.ASCIICapable,
-				AuthMethod.UserId: UIKeyboardType.NumberPad]
+		let keyboardTypes: [BasicAuthMethod:UIKeyboardType] = [
+				.Email: UIKeyboardType.EmailAddress,
+				.ScreenName: UIKeyboardType.ASCIICapable,
+				.UserId: UIKeyboardType.NumberPad]
 
 		return keyboardTypes[self] ?? .Default
 	}
 
 	public var description: String {
-		let descriptions = [
-			AuthMethod.Email: "auth-method-email",
-			AuthMethod.ScreenName: "auth-method-screenname",
-			AuthMethod.UserId: "auth-method-userid"]
+		let descriptions: [BasicAuthMethod:String] = [
+			.Email: "auth-method-email",
+			.ScreenName: "auth-method-screenname",
+			.UserId: "auth-method-userid"]
 
 		return descriptions[self] ?? ""
 	}

@@ -42,11 +42,11 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 		}
 	}
 
-	public var authMethod: AuthMethodType? = AuthMethod.Email.rawValue {
+	public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
 		didSet {
-			setAuthMethodStyles(
+			setBasicAuthMethodStyles(
 					view: self,
-					authMethod: AuthMethod.create(authMethod),
+					basicAuthMethod: BasicAuthMethod.create(basicAuthMethod),
 					userNameField: userNameField,
 					userNameIcon: userNameIcon)
 		}

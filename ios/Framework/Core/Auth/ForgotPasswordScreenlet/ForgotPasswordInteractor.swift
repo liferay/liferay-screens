@@ -23,7 +23,7 @@ class ForgotPasswordInteractor: ServerOperationInteractor {
 
 		var operation: LiferayForgotPasswordBaseOperation?
 
-		switch AuthMethod.create(screenlet.authMethod) {
+		switch BasicAuthMethod.create(screenlet.basicAuthMethod) {
 			case .ScreenName:
 				operation = LiferayForgotPasswordScreenNameOperation(screenlet: screenlet)
 			case .UserId:
