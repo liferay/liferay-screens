@@ -88,6 +88,16 @@ import Foundation
 				password: password)
 
 		return createSession(
+				authentication: authentication,
+				userAttributes: userAttributes)
+	}
+
+	public class func createSession(
+			#authentication: LRAuthentication,
+			userAttributes: [String:AnyObject])
+			-> LRSession {
+
+		return createSession(
 				server: LiferayServerContext.server,
 				authentication: authentication,
 				userAttributes: userAttributes)
