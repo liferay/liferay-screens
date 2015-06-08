@@ -51,14 +51,14 @@ public enum AuthMethod: String {
 	case ScreenName = "screenName"
 	case UserId = "userId"
 
-	public static func create(text: String?) -> AuthMethod {
-		if text?.lowercaseString == AuthMethod.ScreenName.rawValue.lowercaseString {
-			return .ScreenName
-		} else if text?.lowercaseString == AuthMethod.UserId.rawValue.lowercaseString {
-			return .UserId
-		}
+	public static func all() -> [AuthMethod] {
+		return [.Email, .ScreenName, .UserId]
+	}
 
-		return .Email
+	public static func create(text: String?) -> AuthMethod {
+		return all().filter {
+				$0.rawValue == text?.lowercaseString
+			}.first ?? .Email
 	}
 
 	public static func fromUserName(userName: String) -> AuthMethod {
