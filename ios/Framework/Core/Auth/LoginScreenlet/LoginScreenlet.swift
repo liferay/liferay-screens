@@ -46,6 +46,18 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	@IBInspectable public var companyId: Int64 = 0
 
+	@IBInspectable public var OAuthConsumerKey: String = "" {
+		didSet {
+			copyAuthType()
+		}
+	}
+
+	@IBInspectable public var OAuthConsumerSecret: String = "" {
+		didSet {
+			copyAuthType()
+		}
+	}
+
 
 	@IBOutlet public weak var delegate: LoginScreenletDelegate?
 
@@ -61,6 +73,7 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		super.onCreated()
 		
 		copyBasicAuth(source: self, target: screenletView)
+		copyAuthType()
 
 		if SessionContext.loadSessionFromStore() {
 			viewModel.userName = SessionContext.currentUserName!
@@ -90,6 +103,15 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		}
 
 		return interactor
+	}
+
+	private func copyAuthType() {
+		if OAuthConsumerKey != "" && OAuthConsumerSecret != "" {
+			(screenletView as? LoginViewModel)?.authType = AuthType.OAuth.rawValue
+		}
+		else {
+			(screenletView as? LoginViewModel)?.authType = AuthType.Basic.rawValue
+		}
 	}
 
 }
