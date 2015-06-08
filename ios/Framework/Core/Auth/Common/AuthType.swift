@@ -14,11 +14,20 @@
 import UIKit
 
 
-@objc public protocol LoginViewModel: BasicAuthBasedType {
+public enum AuthType: String {
 
-	var userName: String? { get set }
-	var password: String? { get set }
+	case Basic = "basic"
+	case OAuth = "oauth"
 
-	var authType: String? { get set }
+	public static func all() -> [AuthType] {
+		return [.Basic, .OAuth]
+	}
+
+	public static func create(text: String?) -> AuthType {
+		return all().filter {
+				$0.rawValue == text?.lowercaseString
+			}.first ?? .Basic
+	}
+
 
 }

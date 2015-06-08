@@ -23,6 +23,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	@IBOutlet public weak var loginButton: UIButton!
 	@IBOutlet public weak var userNameBackground: UIImageView!
 	@IBOutlet public weak var passwordBackground: UIImageView!
+	@IBOutlet public weak var authorizeButton: UIButton!
 
 
 	//MARK: AuthBasedViewModel
@@ -52,6 +53,13 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 		}
 	}
 
+	public var authType: String? = AuthType.Basic.rawValue {
+		didSet {
+			configureAuthType()
+		}
+	}
+
+
 
 	//MARK: LoginViewModel
 
@@ -80,8 +88,11 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 		super.onCreated()
 
 		setButtonDefaultStyle(loginButton)
+		setButtonDefaultStyle(authorizeButton)
 
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
+
+		configureAuthType()
 	}
 
 	override public func onSetTranslations() {
@@ -112,6 +123,13 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 		}
 
 		return true
+	}
+
+	public func configureAuthType() {
+		let auth = AuthType.create(authType)
+
+		authorizeButton.hidden = (auth != .OAuth)
+		loginButton.superview?.hidden = (auth != .Basic)
 	}
 
 }
