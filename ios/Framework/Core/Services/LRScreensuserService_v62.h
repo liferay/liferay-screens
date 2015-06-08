@@ -23,6 +23,7 @@
  */
 @interface LRScreensuserService_v62 : LRBaseService
 
+- (NSDictionary *)getCurrentUser:(NSError **)error;
 - (BOOL)sendPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress error:(NSError **)error;
 - (BOOL)sendPasswordByScreenNameWithCompanyId:(long long)companyId screenName:(NSString *)screenName error:(NSError **)error;
 - (BOOL)sendPasswordByUserIdWithUserId:(long long)userId error:(NSError **)error;

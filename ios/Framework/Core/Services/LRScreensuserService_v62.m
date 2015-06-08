@@ -19,6 +19,15 @@
  */
 @implementation LRScreensuserService_v62
 
+- (NSDictionary *)getCurrentUser:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+	}];
+
+	NSDictionary *_command = @{@"/screens-web.screensuser/get-current-user": _params};
+
+	return (NSDictionary *)[self.session invoke:_command error:error];
+}
+
 - (BOOL)sendPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"companyId": @(companyId),
