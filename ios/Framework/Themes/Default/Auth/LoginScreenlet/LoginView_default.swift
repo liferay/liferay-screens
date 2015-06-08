@@ -16,13 +16,13 @@ import UIKit
 
 public class LoginView_default: BaseScreenletView, LoginViewModel {
 
-	@IBOutlet public var userNameIcon: UIImageView?
-	@IBOutlet public var userNameField: UITextField?
-	@IBOutlet public var passwordField: UITextField?
-	@IBOutlet public var rememberSwitch: UISwitch?
-	@IBOutlet public var loginButton: UIButton?
-	@IBOutlet public var userNameBackground: UIImageView?
-	@IBOutlet public var passwordBackground: UIImageView?
+	@IBOutlet public weak var userNameIcon: UIImageView!
+	@IBOutlet public weak var userNameField: UITextField!
+	@IBOutlet public weak var passwordField: UITextField!
+	@IBOutlet public weak var rememberSwitch: UISwitch!
+	@IBOutlet public weak var loginButton: UIButton!
+	@IBOutlet public weak var userNameBackground: UIImageView!
+	@IBOutlet public weak var passwordBackground: UIImageView!
 
 
 	//MARK: AuthBasedViewModel
@@ -57,19 +57,19 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	public var userName: String? {
 		get {
-			return nullIfEmpty(userNameField!.text)
+			return nullIfEmpty(userNameField.text)
 		}
 		set {
-			userNameField!.text = newValue
+			userNameField.text = newValue
 		}
 	}
 
 	public var password: String? {
 		get {
-			return nullIfEmpty(passwordField!.text)
+			return nullIfEmpty(passwordField.text)
 		}
 		set {
-			passwordField!.text = newValue
+			passwordField.text = newValue
 		}
 	}
 
@@ -92,11 +92,11 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	}
 
 	override public func onStartOperation() {
-		loginButton!.enabled = false
+		loginButton.enabled = false
 	}
 
 	override public func onFinishOperation() {
-		loginButton!.enabled = true
+		loginButton.enabled = true
 	}
 
 
@@ -104,11 +104,11 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	internal func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
 		if userNameBackground != nil {
-			userNameBackground!.highlighted = (textField == userNameField);
+			userNameBackground.highlighted = (textField == userNameField);
 		}
 
 		if passwordBackground != nil {
-			passwordBackground!.highlighted = (textField == passwordField);
+			passwordBackground.highlighted = (textField == passwordField);
 		}
 
 		return true
