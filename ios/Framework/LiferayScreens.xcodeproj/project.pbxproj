@@ -36,7 +36,6 @@
 		881E60C01ACBE43200862B9E /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BC1ACBE43200862B9E /* KeyboardManager.swift */; };
 		881E60C11ACBE43200862B9E /* ServerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BD1ACBE43200862B9E /* ServerOperation.swift */; };
 		881E60C21ACBE43200862B9E /* ServerOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BE1ACBE43200862B9E /* ServerOperationInteractor.swift */; };
-		881E60C41ACBE46B00862B9E /* BasicAuthBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C31ACBE46B00862B9E /* BasicAuthBased.swift */; };
 		881E60CD1ACBE56700862B9E /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C61ACBE56700862B9E /* BaseListPageLoadInteractor.swift */; };
 		881E60CE1ACBE56700862B9E /* BaseListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C71ACBE56700862B9E /* BaseListScreenlet.swift */; };
 		881E60CF1ACBE56700862B9E /* BaseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C81ACBE56700862B9E /* BaseListView.swift */; };
@@ -194,7 +193,6 @@
 		881E628F1ACBFE8300862B9E /* BaseScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */; };
 		881E62901ACBFE8D00862B9E /* BaseScreenletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B71ACBE3FF00862B9E /* BaseScreenletView.swift */; };
 		881E62911ACBFEA200862B9E /* SignUpScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60FF1ACBE5F000862B9E /* SignUpScreenlet.swift */; };
-		881E62921ACBFEC300862B9E /* BasicAuthBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C31ACBE46B00862B9E /* BasicAuthBased.swift */; };
 		881E62941ACBFEFC00862B9E /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C61ACBE56700862B9E /* BaseListPageLoadInteractor.swift */; };
 		881E62951ACBFEFC00862B9E /* BaseListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C71ACBE56700862B9E /* BaseListScreenlet.swift */; };
 		881E62961ACBFEFC00862B9E /* BaseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C81ACBE56700862B9E /* BaseListView.swift */; };
@@ -293,6 +291,8 @@
 		88A2B71E1ACDEF5D000C2065 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C31ACBFC3400862B9E /* LoginView_default.swift */; };
 		88CA805B1B25AF48004C1D59 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80581B25AF48004C1D59 /* LoginInteractor.swift */; };
 		88CA805C1B25AF48004C1D59 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80581B25AF48004C1D59 /* LoginInteractor.swift */; };
+		88CA80631B25D6EA004C1D59 /* BasicAuthBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80621B25D6EA004C1D59 /* BasicAuthBased.swift */; };
+		88CA80641B25D6EA004C1D59 /* BasicAuthBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80621B25D6EA004C1D59 /* BasicAuthBased.swift */; };
 		88DC31E21ACC18F10078C961 /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E11ACC18F10078C961 /* SessionStorage.swift */; };
 		88DC31E31ACC18F10078C961 /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E11ACC18F10078C961 /* SessionStorage.swift */; };
 		88DC31E51ACC36F40078C961 /* CredentialStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E41ACC36F40078C961 /* CredentialStorage.swift */; };
@@ -368,7 +368,6 @@
 		881E60BC1ACBE43200862B9E /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		881E60BD1ACBE43200862B9E /* ServerOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerOperation.swift; sourceTree = "<group>"; };
 		881E60BE1ACBE43200862B9E /* ServerOperationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerOperationInteractor.swift; sourceTree = "<group>"; };
-		881E60C31ACBE46B00862B9E /* BasicAuthBased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAuthBased.swift; sourceTree = "<group>"; };
 		881E60C61ACBE56700862B9E /* BaseListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListPageLoadInteractor.swift; sourceTree = "<group>"; };
 		881E60C71ACBE56700862B9E /* BaseListScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListScreenlet.swift; sourceTree = "<group>"; };
 		881E60C81ACBE56700862B9E /* BaseListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListView.swift; sourceTree = "<group>"; };
@@ -561,6 +560,7 @@
 		88A2B7161ACDEC29000C2065 /* DDLListView_test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListView_test.swift; sourceTree = "<group>"; };
 		88A2B7171ACDEC29000C2065 /* DDLListView_test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLListView_test.xib; sourceTree = "<group>"; };
 		88CA80581B25AF48004C1D59 /* LoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		88CA80621B25D6EA004C1D59 /* BasicAuthBased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAuthBased.swift; sourceTree = "<group>"; };
 		88DC31E11ACC18F10078C961 /* SessionStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
 		88DC31E41ACC36F40078C961 /* CredentialStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialStorage.swift; sourceTree = "<group>"; };
 		88DC31E61ACC37DA0078C961 /* KeyChainStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainStorage.swift; sourceTree = "<group>"; };
@@ -662,7 +662,6 @@
 			isa = PBXGroup;
 			children = (
 				881E60C51ACBE56700862B9E /* BaseListScreenlet */,
-				881E60C31ACBE46B00862B9E /* BasicAuthBased.swift */,
 				881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */,
 				881E60B51ACBE3FF00862B9E /* BaseScreenlet+progress.swift */,
 				881E60B71ACBE3FF00862B9E /* BaseScreenletView.swift */,
@@ -719,6 +718,7 @@
 		881E60DF1ACBE5F000862B9E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				88CA80621B25D6EA004C1D59 /* BasicAuthBased.swift */,
 				8839B8851B0CD5C4006C18F1 /* ServerOperations */,
 			);
 			path = Common;
@@ -1852,13 +1852,13 @@
 				881E60CF1ACBE56700862B9E /* BaseListView.swift in Sources */,
 				881E61261ACBE5F000862B9E /* UserPortraitLoadLoggedUserInteractor.swift in Sources */,
 				881E61111ACBE5F000862B9E /* LiferayForgotPasswordEmailOperation.swift in Sources */,
-				881E60C41ACBE46B00862B9E /* BasicAuthBased.swift in Sources */,
 				881E617D1ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift in Sources */,
 				881E622A1ACBFC3400862B9E /* ForgotPasswordView_default.swift in Sources */,
 				881E61941ACBEE0B00862B9E /* DDLRecord.swift in Sources */,
 				8839B8801B0CD546006C18F1 /* LiferayUpdateCurrentUserOperation.swift in Sources */,
 				881E61861ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift in Sources */,
 				881E60B81ACBE3FF00862B9E /* BaseScreenlet+progress.swift in Sources */,
+				88CA80631B25D6EA004C1D59 /* BasicAuthBased.swift in Sources */,
 				8839B88A1B0CD5C4006C18F1 /* GetUserBaseOperation.swift in Sources */,
 				888DF5B21ACC9FC200EB7DA1 /* LoginViewModel.swift in Sources */,
 				881E62321ACBFC3400862B9E /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
@@ -1884,7 +1884,6 @@
 				88A28EBB1B0DD1300040D7F6 /* NSBundle+discovery.swift in Sources */,
 				88DE25151AD2AB0A00714701 /* DDLFieldDocument_Tests.swift in Sources */,
 				88DC31E81ACC38860078C961 /* KeyChainStorage.swift in Sources */,
-				881E62921ACBFEC300862B9E /* BasicAuthBased.swift in Sources */,
 				881E62991ACBFF1800862B9E /* BaseScreenlet+progress.swift in Sources */,
 				88DE25101AD2AB0A00714701 /* SessionContext_Basic_Tests.swift in Sources */,
 				88DE251C1AD2AB0A00714701 /* DDLRecord_FieldValues_Tests.swift in Sources */,
@@ -1906,6 +1905,7 @@
 				88A2B7141ACDEBB1000C2065 /* LoginView_test.swift in Sources */,
 				88DE251B1AD2AB0A00714701 /* DDLParser_i18n_Tests.swift in Sources */,
 				881E62F41ACC04BA00862B9E /* DDLValuesParser.swift in Sources */,
+				88CA80641B25D6EA004C1D59 /* BasicAuthBased.swift in Sources */,
 				880ACA631B0200D5007AD007 /* LiferayUploadUserPortraitOperation.swift in Sources */,
 				881E62EA1ACC04A500862B9E /* DDLField+Editor.swift in Sources */,
 				881E63081ACC06B900862B9E /* LoginScreenlet_ByUserId_Tests.swift in Sources */,

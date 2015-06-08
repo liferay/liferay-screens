@@ -19,7 +19,7 @@ import Foundation
 	//MARK: Singleton type
 
 	private struct StaticInstance {
-		static var currentSession:LRSession?
+		static var currentSession: LRSession?
 		static var userAttributes: [String:AnyObject] = [:]
 
 		static var sessionStorage = SessionStorage(
@@ -32,14 +32,6 @@ import Foundation
 
 	public class var hasSession: Bool {
 		return StaticInstance.currentSession != nil
-	}
-
-	public class var currentBasicAuthMethod: BasicAuthMethod? {
-		if let userName = currentUserName {
-			return BasicAuthMethod.fromUserName(userName)
-		}
-
-		return nil
 	}
 
 	public class var currentUserName: String? {

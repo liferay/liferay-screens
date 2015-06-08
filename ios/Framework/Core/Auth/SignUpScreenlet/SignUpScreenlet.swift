@@ -132,8 +132,7 @@ import UIKit
 			}
 		}
 
-
-		let currentAuth = SessionContext.currentBasicAuthMethod ??
+		let currentAuth = currentBasicAuthMethod() ??
 					BasicAuthMethod.fromUserName(anonymousApiUserName!)
 
 		SessionContext.createSession(
@@ -143,6 +142,14 @@ import UIKit
 
 		self.autoLoginDelegate?.screenlet?(self,
 				onLoginResponseUserAttributes: userAttributes)
+	}
+
+	private func currentBasicAuthMethod() -> BasicAuthMethod? {
+		if let userName = SessionContext.currentUserName {
+			return BasicAuthMethod.fromUserName(userName)
+		}
+
+		return nil
 	}
 
 }
