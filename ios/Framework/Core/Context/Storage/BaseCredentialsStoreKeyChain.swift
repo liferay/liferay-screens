@@ -94,9 +94,9 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 			userAttributes = nil
 		}
 
-		loadAuth(keychain: keychain)
+		authentication = loadAuth(keychain: keychain)
 
-		return (userAttributes != nil)
+		return (authentication != nil && userAttributes != nil)
 	}
 
 	public func storeAuth(#keychain: Keychain, auth: LRAuthentication) {

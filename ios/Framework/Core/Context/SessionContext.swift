@@ -149,14 +149,16 @@ import Foundation
 	}
 
 	public class func loadSessionFromStore() -> Bool {
-		if let result = sessionStorage.load() {
-			StaticInstance.currentSession = result.session
-			StaticInstance.userAttributes = result.userAttributes
+		if let sessionStorage = SessionStorage() {
+			if let result = sessionStorage.load() {
+				StaticInstance.currentSession = result.session
+				StaticInstance.userAttributes = result.userAttributes
 
-			return true
+				return true
+			}
+
+			clearSession()
 		}
-
-		clearSession()
 
 		return false
 	}

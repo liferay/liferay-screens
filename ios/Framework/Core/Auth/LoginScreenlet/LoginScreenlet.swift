@@ -127,13 +127,11 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 			self.delegate?.screenlet?(self,
 					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
 
-/*TODO is it possible to store oauth tokens?
 			if self.saveCredentials {
 				if SessionContext.storeSession() {
 					self.delegate?.onScreenletCredentialsSaved?(self)
 				}
 			}
-*/
 		}
 
 		interactor.onFailure = {

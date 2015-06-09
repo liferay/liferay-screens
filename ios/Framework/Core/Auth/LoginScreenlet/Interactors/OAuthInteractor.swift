@@ -62,7 +62,8 @@ class OAuthInteractor: Interactor, LRCallback {
 					}
 					else {
 						println("ERROR: OAuth's authorizeTokenURL is not valid: \($0.authorizeTokenURL)")
-//						self.onFailure?(NSError.c)
+						let err = NSError.errorWithCause(.InvalidServerResponse)
+						self.onFailure?(err)
 					}
 				},
 				onFailure: { err in
@@ -75,7 +76,9 @@ class OAuthInteractor: Interactor, LRCallback {
 	}
 
 	private func showWebView(URL: NSURL) {
-		webViewController = OAuthWebViewController(URL: URL, themeName: screenlet.themeName ?? "default")
+		webViewController = OAuthWebViewController(
+				URL: URL,
+				themeName: screenlet.themeName ?? "default")
 
 		webViewController!.onAuthorized = { [weak webViewController] OAuthVerifier in
 			webViewController?.dismissViewControllerAnimated(true, completion: nil)
