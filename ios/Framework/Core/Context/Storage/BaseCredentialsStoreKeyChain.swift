@@ -22,7 +22,6 @@ import UIKit
 public class BaseCredentialsStoreKeyChain : CredentialsStore {
 
 	public var authentication: LRAuthentication?
-
 	public var userAttributes: [String:AnyObject]?
 
 	public func storeCredentials(
@@ -34,49 +33,45 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 		if userAttributes == nil { return false }
 		if userAttributes!.isEmpty { return false }
 
-		let url = NSURL(string: LiferayServerContext.server)!
-		let serverKeychain = Keychain(server: url, protocolType: .HTTPS)
+		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
-		serverKeychain.set(String(LiferayServerContext.companyId),
+		keychain.set(String(LiferayServerContext.companyId),
 				key: "companyId")
-		serverKeychain.set(String(LiferayServerContext.groupId),
+		keychain.set(String(LiferayServerContext.groupId),
 				key: "groupId")
-
-		let userKeychain = Keychain(service: NSBundle.mainBundle().bundleIdentifier!)
 
 		var outError: NSError?
 		let userData = NSJSONSerialization.dataWithJSONObject(userAttributes!,
 				options: NSJSONWritingOptions.allZeros,
 				error: &outError)
 
-		userKeychain.set(userData!, key: "\(NSBundle.mainBundle().bundleIdentifier!)-user")
+		let bundleId = NSBundle.mainBundle().bundleIdentifier ?? "liferay-screens"
+		keychain.set(userData!, key: "\(bundleId)-user")
 
-		storeAuth(keychain: serverKeychain, auth: authentication!)
+		storeAuth(keychain: keychain, auth: session!.authentication!)
 
 		return true
 	}
 
 	public func removeStoredCredentials() -> Bool {
-		let url = NSURL(string: LiferayServerContext.server)!
-		let serverKeychain = Keychain(server: url, protocolType: .HTTPS)
+		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
-		let error1 = serverKeychain.removeAll()
+		let error1 = keychain.removeAll()
 
 		let userKeychain = Keychain(service: NSBundle.mainBundle().bundleIdentifier!)
 
-		let error2 = userKeychain.removeAll()
+		let error2 = keychain.removeAll()
 
 		return (error1 == nil && error2 == nil)
 	}
 
 	public func loadStoredCredentials() -> Bool {
-		let url = NSURL(string: LiferayServerContext.server)!
-		let serverKeychain = Keychain(server: url, protocolType: .HTTPS)
+		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
-		let companyId = serverKeychain.get("companyId")
+		let companyId = keychain.get("companyId")
 					.map { $0.toInt() }
 					.map { Int64($0!) }
-		let groupId = serverKeychain.get("groupId")
+		let groupId = keychain.get("groupId")
 					.map { $0.toInt() }
 					.map { Int64($0!) }
 
@@ -85,18 +80,21 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 			return false
 		}
 
-		let userKeychain = Keychain(service: NSBundle.mainBundle().bundleIdentifier!)
+		let bundleId = NSBundle.mainBundle().bundleIdentifier ?? "liferay-screens"
+		if let userData = keychain.getData("\(bundleId)-user") {
+			var outError: NSError?
+			let json: AnyObject? =
+					NSJSONSerialization.JSONObjectWithData(userData,
+						options: NSJSONReadingOptions.allZeros,
+						error: &outError)
 
-		let userData = userKeychain.getData("\(NSBundle.mainBundle().bundleIdentifier!)-user")
+			userAttributes = json as? [String:AnyObject]
+		}
+		else {
+			userAttributes = nil
+		}
 
-		var outError: NSError?
-		let json: AnyObject? = NSJSONSerialization.JSONObjectWithData(userData!,
-				options: NSJSONReadingOptions.allZeros,
-				error: &outError)
-
-		userAttributes = json as? [String:AnyObject]
-
-		loadAuth(keychain: serverKeychain)
+		loadAuth(keychain: keychain)
 
 		return (userAttributes != nil)
 	}
@@ -111,14 +109,16 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 	}
 
 	public class func storedAuthType() -> AuthType? {
-		let url = NSURL(string: LiferayServerContext.server)!
-		let serverKeychain = Keychain(server: url, protocolType: .HTTPS)
-
-		if let value = serverKeychain.get("auth_type") {
+		if let value = keychain().get("auth_type") {
 			return AuthType(rawValue: value)
 		}
 
 		return nil
+	}
+
+	public class func keychain() -> Keychain {
+		let url = NSURL(string: LiferayServerContext.server)!
+		return Keychain(server: url, protocolType: .HTTPS)
 	}
 
 }
