@@ -14,31 +14,17 @@
 import UIKit
 
 #if LIFERAY_SCREENS_FRAMEWORK
-	import UICKeyChainStore
+	import LRMobileSDK
 #endif
 
 
-protocol KeyChainStorage {
+public protocol CredentialsStore {
 
-	func setData(data: NSData, forKey: String) -> Bool
-	func dataForKey(key: String) -> NSData!
-	func removeItemForKey(key: String) -> Bool
+	var authentication: LRAuthentication? { get }
+	var userAttributes: [String:AnyObject]? { get }
 
-}
-
-
-class KeyChainStorageImpl : KeyChainStorage {
-
-	func setData(data: NSData, forKey key: String) -> Bool {
-		return UICKeyChainStore.setData(data, forKey:key)
-	}
-
-	func dataForKey(key: String) -> NSData! {
-		return UICKeyChainStore.dataForKey(key)
-	}
-
-	func removeItemForKey(key: String) -> Bool {
-		return UICKeyChainStore.removeItemForKey(key)
-	}
+	func storeCredentials(session: LRSession?, userAttributes: [String:AnyObject]?) -> Bool
+	func removeStoredCredentials() -> Bool
+	func loadStoredCredentials() -> Bool
 
 }

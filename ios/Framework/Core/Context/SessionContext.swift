@@ -23,8 +23,7 @@ import Foundation
 		static var userAttributes: [String:AnyObject] = [:]
 
 		static var sessionStorage = SessionStorage(
-			credentialStorage: CredentialStorageMobileSDK(),
-			keyChainStorage: KeyChainStorageImpl())
+			credentialStore: BasicCredentialsStoreKeyChain())
 	}
 
 
