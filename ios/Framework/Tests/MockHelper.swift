@@ -67,84 +67,33 @@ class Liferay62MockServer : MockServer, StubResponses {
 }
 
 
-class KeyChainStorageMock : KeyChainStorage {
+class CredentialStoreMock : CredentialsStore {
 
-	var calledSetData = false
-	var calledRemoveItemForKey = false
-	var calledDataForKey = false
-
-	var hasData: Bool = true
-
-	func setData(data: NSData, forKey key: String) -> Bool {
-		calledSetData = true
-		return true
-	}
-
-	func dataForKey(key: String) -> NSData! {
-		calledDataForKey = true
-
-		let encodedData = NSKeyedArchiver.archivedDataWithRootObject(["k":"v"])
-		return hasData ? encodedData : nil
-	}
-
-	func removeItemForKey(key: String) -> Bool {
-		calledRemoveItemForKey = true
-		return true
-	}
-
-}
-
-
-class CredentialStorageMock : CredentialStorage {
-
-	var calledGetCredential = false
-	var calledGetServer = false
-	var calledGetSession = false
+	var calledLoadCredential = false
 	var calledRemoveCredential = false
-	var calledStoreCredentialForServer = false
+	var calledStoreCredential = false
+
+	var authentication: LRAuthentication?
+	var userAttributes: [String:AnyObject]?
 
 	var hasData: Bool = true
 
-	let credential = NSURLCredential(
-			user: "username",
-			password: "password",
-			persistence: NSURLCredentialPersistence.None)
+	func storeCredentials(session: LRSession?, userAttributes: [String:AnyObject]?) -> Bool {
+		calledStoreCredential = true
 
-	func getCredential() -> NSURLCredential! {
-		calledGetCredential = true
-		return hasData ? self.credential : nil
+		return hasData
 	}
 
-	func getServer() -> String! {
-		calledGetServer = true
-		return hasData ? LiferayServerContext.server : nil
-	}
-
-	func getSession() -> LRSession! {
-		calledGetSession = true
-
-		if hasData {
-			return LRSession(
-					server: LiferayServerContext.server,
-					authentication: LRBasicAuthentication(
-						username: credential.user,
-						password: credential.password))
-		}
-
-		return nil
-	}
-
-	func removeCredential() {
+	func removeStoredCredentials() -> Bool {
 		calledRemoveCredential = true
+
+		return hasData
 	}
 
-	func storeCredentialForServer(server: String!,
-			username: String!,
-			password: String!)
-			-> NSURLCredential! {
+	func loadStoredCredentials() -> Bool {
+		calledLoadCredential = true
 
-		calledStoreCredentialForServer = true
-		return hasData ? self.credential : nil
+		return hasData
 	}
 
 }

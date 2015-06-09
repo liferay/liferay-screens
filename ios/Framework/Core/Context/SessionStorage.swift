@@ -45,6 +45,9 @@ class SessionStorage {
 	}
 
 	func store(#session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
+		if session == nil || userAttributes.isEmpty {
+			return false
+		}
 
 		return credentialStore.storeCredentials(session,
 				userAttributes: userAttributes)
