@@ -54,9 +54,11 @@ Pod::Spec.new do |s|
 	s.dependency 'Liferay-iOS-SDK', '6.2.0.17'
 	s.dependency 'Liferay-OAuth'
 	s.dependency 'MBProgressHUD', '~> 0.9.1'
-	s.dependency 'UICKeyChainStore'
 	s.dependency 'SMXMLDocument'
 	s.dependency 'ODRefreshControl'
+
+	# Login & signup: save credentials
+	s.dependency 'KeychainAccess'
 
 	# UserPortrait
 	s.dependency 'CryptoSwift'
