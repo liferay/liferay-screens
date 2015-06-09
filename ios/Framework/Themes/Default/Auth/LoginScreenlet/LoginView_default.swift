@@ -68,7 +68,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 			return nullIfEmpty(userNameField.text)
 		}
 		set {
-			userNameField.text = newValue
+			userNameField?.text = newValue
 		}
 	}
 
@@ -77,7 +77,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 			return nullIfEmpty(passwordField.text)
 		}
 		set {
-			passwordField.text = newValue
+			passwordField?.text = newValue
 		}
 	}
 
@@ -106,26 +106,21 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	}
 
 	override public func onStartOperation() {
-		loginButton.enabled = false
-		authorizeButton.enabled = false
+		loginButton?.enabled = false
+		authorizeButton?.enabled = false
 	}
 
 	override public func onFinishOperation() {
-		loginButton.enabled = true
-		authorizeButton.enabled = true
+		loginButton?.enabled = true
+		authorizeButton?.enabled = true
 	}
 
 
 	//MARK: UITextFieldDelegate
 
 	internal func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
-		if userNameBackground != nil {
-			userNameBackground.highlighted = (textField == userNameField);
-		}
-
-		if passwordBackground != nil {
-			passwordBackground.highlighted = (textField == passwordField);
-		}
+		userNameBackground?.highlighted = (textField == userNameField);
+		passwordBackground?.highlighted = (textField == passwordField);
 
 		return true
 	}
@@ -133,8 +128,8 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	public func configureAuthType() {
 		let auth = AuthType(rawValue: authType!) ?? .Basic
 
-		authorizeButton.hidden = (auth != .OAuth)
-		loginButton.superview?.hidden = (auth != .Basic)
+		authorizeButton?.hidden = (auth != .OAuth)
+		loginButton?.superview?.hidden = (auth != .Basic)
 	}
 
 }
