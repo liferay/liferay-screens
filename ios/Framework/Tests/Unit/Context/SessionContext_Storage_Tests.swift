@@ -84,8 +84,8 @@ class SessionContext_Storage_Tests: XCTestCase {
 
 		XCTAssertTrue(credentialStore.calledLoadCredential)
 
-		XCTAssertTrue(SessionContext.currentUserName == nil)
-		XCTAssertTrue(SessionContext.currentPassword == nil)
+		XCTAssertTrue(SessionContext.currentBasicUserName == nil)
+		XCTAssertTrue(SessionContext.currentBasicPassword == nil)
 	}
 
 	func test_RemoveStoredSession_ShouldEmptyTheStoredSession() {

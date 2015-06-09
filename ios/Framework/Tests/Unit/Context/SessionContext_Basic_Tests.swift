@@ -51,8 +51,8 @@ class SessionContext_Basic_Tests: XCTestCase {
 				password: "password",
 				userAttributes: [:])
 
-		XCTAssertNotNil(SessionContext.currentUserName)
-		XCTAssertEqual("username", SessionContext.currentUserName!)
+		XCTAssertNotNil(SessionContext.currentBasicUserName)
+		XCTAssertEqual("username", SessionContext.currentBasicUserName!)
 	}
 
 	func test_CurrentPassword_ShouldReturnThePassword_WhenSessionIsCreated() {
@@ -61,18 +61,18 @@ class SessionContext_Basic_Tests: XCTestCase {
 				password: "password",
 				userAttributes: [:])
 
-		XCTAssertNotNil(SessionContext.currentPassword)
-		XCTAssertEqual("password", SessionContext.currentPassword!)
+		XCTAssertNotNil(SessionContext.currentBasicPassword)
+		XCTAssertEqual("password", SessionContext.currentBasicPassword!)
 	}
 
 	func test_CurrentUserName_ShouldReturnNil_WhenSessionIsNotCreated() {
 		SessionContext.clearSession()
-		XCTAssertNil(SessionContext.currentUserName)
+		XCTAssertNil(SessionContext.currentBasicUserName)
 	}
 
 	func test_CurrentPassword_ShouldReturnNil_WhenSessionIsNotCreated() {
 		SessionContext.clearSession()
-		XCTAssertNil(SessionContext.currentPassword)
+		XCTAssertNil(SessionContext.currentBasicPassword)
 	}
 
 	func test_HasSession_ShouldReturnTrue_WhenSessionIsCreated() {
@@ -131,8 +131,8 @@ class SessionContext_Basic_Tests: XCTestCase {
 
 		SessionContext.clearSession()
 
-		XCTAssertNil(SessionContext.currentUserName)
-		XCTAssertNil(SessionContext.currentPassword)
+		XCTAssertNil(SessionContext.currentBasicUserName)
+		XCTAssertNil(SessionContext.currentBasicPassword)
 		XCTAssertNil(SessionContext.userAttribute("k"))
 		XCTAssertFalse(SessionContext.hasSession)
 	}

@@ -65,7 +65,7 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 
 	private func showLogged(#animated:Bool) {
 		if SessionContext.hasSession {
-			loggedUsername?.text = SessionContext.currentUserName;
+			loggedUsername?.text = SessionContext.currentBasicUserName;
 		}
 
 		UIView.animateWithDuration(animated ? 0.5 : 0.0) { () -> Void in

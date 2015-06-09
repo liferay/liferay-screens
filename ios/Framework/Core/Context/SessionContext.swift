@@ -38,14 +38,14 @@ import Foundation
 		return StaticInstance.currentSession != nil
 	}
 
-	public class var currentUserName: String? {
+	public class var currentBasicUserName: String? {
 		var authentication = StaticInstance.currentSession?.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.username
 	}
 
-	public class var currentPassword: String? {
+	public class var currentBasicPassword: String? {
 		var authentication = StaticInstance.currentSession?.authentication
 			as? LRBasicAuthentication
 

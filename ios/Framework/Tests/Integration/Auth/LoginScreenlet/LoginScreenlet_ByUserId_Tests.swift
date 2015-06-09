@@ -55,12 +55,12 @@ class LoginScreenlet_ByUserId_Tests: BaseLoginScreenletTestCase {
 					XCTAssertTrue(SessionContext.hasSession)
 				}
 				assertThat("the current user name should be the userId") {
-					XCTAssertNotNil(SessionContext.currentUserName)
-					XCTAssertEqual("123456", SessionContext.currentUserName!)
+					XCTAssertNotNil(SessionContext.currentBasicUserName)
+					XCTAssertEqual("123456", SessionContext.currentBasicUserName!)
 				}
 				assertThat("the current password should be available") {
-					XCTAssertNotNil(SessionContext.currentPassword)
-					XCTAssertEqual("test", SessionContext.currentPassword!)
+					XCTAssertNotNil(SessionContext.currentBasicPassword)
+					XCTAssertEqual("test", SessionContext.currentBasicPassword!)
 				}
 			},
 			.TestAndWaitFor("login response received", self))

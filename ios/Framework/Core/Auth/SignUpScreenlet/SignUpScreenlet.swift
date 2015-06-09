@@ -145,7 +145,7 @@ import UIKit
 	}
 
 	private func currentBasicAuthMethod() -> BasicAuthMethod? {
-		if let userName = SessionContext.currentUserName {
+		if let userName = SessionContext.currentBasicUserName {
 			return BasicAuthMethod.fromUserName(userName)
 		}
 

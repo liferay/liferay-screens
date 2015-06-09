@@ -62,7 +62,7 @@ import UIKit
 
 		copyBasicAuth(source: self, target: screenletView)
 
-		if let userName = SessionContext.currentUserName {
+		if let userName = SessionContext.currentBasicUserName {
 			viewModel.userName = userName
 		}
 	}

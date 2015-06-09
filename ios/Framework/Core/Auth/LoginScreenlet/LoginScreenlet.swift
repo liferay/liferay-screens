@@ -76,8 +76,8 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		copyAuthType()
 
 		if SessionContext.loadSessionFromStore() {
-			viewModel.userName = SessionContext.currentUserName!
-			viewModel.password = SessionContext.currentPassword!
+			viewModel.userName = SessionContext.currentBasicUserName
+			viewModel.password = SessionContext.currentBasicPassword
 
 			delegate?.onScreenletCredentialsLoaded?(self)
 		}
