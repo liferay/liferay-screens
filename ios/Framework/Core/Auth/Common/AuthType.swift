@@ -19,15 +19,4 @@ public enum AuthType: String {
 	case Basic = "basic"
 	case OAuth = "oauth"
 
-	public static func all() -> [AuthType] {
-		return [.Basic, .OAuth]
-	}
-
-	public static func create(text: String?) -> AuthType {
-		return all().filter {
-				$0.rawValue == text?.lowercaseString
-			}.first ?? .Basic
-	}
-
-
 }
