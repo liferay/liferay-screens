@@ -70,7 +70,7 @@ public class GetUserBaseOperation: ServerOperation {
 
 	internal func setResultAsSessionContext() -> Bool {
 		if let userAttributesValue = resultUserAttributes {
-			SessionContext.createSession(
+			SessionContext.createBasicSession(
 					username: self.userName!,
 					password: self.password!,
 					userAttributes: userAttributesValue)

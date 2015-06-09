@@ -13,6 +13,11 @@
 */
 import Foundation
 
+#if LIFERAY_SCREENS_FRAMEWORK
+	import LRMobileSDK
+	import LROAuth
+#endif
+
 
 @objc public class SessionContext {
 
@@ -68,11 +73,14 @@ import Foundation
 		return StaticInstance.userAttributes[key]
 	}
 
-	public class func createSession(
+	public class func createBasicSession(
 			#username: String,
 			password: String,
 			userAttributes: [String:AnyObject])
 			-> LRSession {
+
+		sessionStorage = SessionStorage(
+			credentialStore: BasicCredentialsStoreKeyChain())
 
 		let authentication = LRBasicAuthentication(
 				username: username,
@@ -83,7 +91,22 @@ import Foundation
 				userAttributes: userAttributes)
 	}
 
-	public class func createSession(
+	public class func createOAuthSession(
+			#authentication: LROAuth,
+			userAttributes: [String:AnyObject])
+			-> LRSession {
+
+		sessionStorage = SessionStorage(
+			credentialStore: OAuthCredentialsStoreKeyChain())
+
+		return createSession(
+				server: LiferayServerContext.server,
+				authentication: authentication,
+				userAttributes: userAttributes)
+	}
+
+
+	private class func createSession(
 			#authentication: LRAuthentication,
 			userAttributes: [String:AnyObject])
 			-> LRSession {

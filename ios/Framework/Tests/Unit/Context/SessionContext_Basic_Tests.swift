@@ -23,7 +23,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CreateSession_ShouldReturnTheSession() {
-		let session = SessionContext.createSession(
+		let session = SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
@@ -37,7 +37,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CreateSession_ShouldStoreUserAttributes() {
-		let session = SessionContext.createSession(
+		let session = SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: ["key":"value"])
@@ -46,7 +46,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CurrentUserName_ShouldReturnTheUserName_WhenSessionIsCreated() {
-		let session = SessionContext.createSession(
+		let session = SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
@@ -56,7 +56,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CurrentPassword_ShouldReturnThePassword_WhenSessionIsCreated() {
-		let session = SessionContext.createSession(
+		let session = SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
@@ -76,7 +76,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_HasSession_ShouldReturnTrue_WhenSessionIsCreated() {
-		let session = SessionContext.createSession(
+		let session = SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
@@ -95,7 +95,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CreateSessionFromCurrentSession_ShouldReturnNewSession_WhenSessionIsCreated() {
-		let session = SessionContext.createSession(
+		let session = SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
@@ -107,7 +107,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CreateBatchSessionFromCurrentSession_ShouldReturnNewSession_WhenSessionIsCreated() {
-		let session = SessionContext.createSession(
+		let session = SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
@@ -124,7 +124,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_ClearSession_ShouldEmptyTheSession() {
-		let session = SessionContext.createSession(
+		let session = SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: ["k":"v"])

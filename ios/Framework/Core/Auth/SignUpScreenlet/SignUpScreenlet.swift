@@ -135,7 +135,7 @@ import UIKit
 		let currentAuth = currentBasicAuthMethod() ??
 					BasicAuthMethod.fromUserName(anonymousApiUserName!)
 
-		SessionContext.createSession(
+		SessionContext.createBasicSession(
 				username: userNameForAuth(currentAuth),
 				password: self.viewModel.password!,
 				userAttributes: userAttributes)

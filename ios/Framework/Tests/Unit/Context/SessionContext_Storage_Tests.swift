@@ -62,7 +62,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 	}
 
 	func test_StoreSession_ShouldReturnTrue_WhenSessionIsCreated() {
-		let session = SessionContext.createSession(
+		let session = SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: ["k":"v"])
@@ -74,7 +74,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 	}
 
 	func test_LoadSessionFromStore_ShouldReturnFalse_WhenSessionIsNotStored() {
-		let session = SessionContext.createSession(
+		let session = SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: ["k":"v"])
@@ -91,7 +91,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 	}
 
 	func test_LoadSessionFromStore_ShouldReturnTrue_WhenSessionIsStored() {
-		let session = SessionContext.createSession(
+		let session = SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: ["k":"v"])
@@ -103,7 +103,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 	}
 
 	func test_LoadSessionFromStore_ShouldRetrieveData_WhenSessionIsStored() {
-		let session = SessionContext.createSession(
+		let session = SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: ["k":"v"])
