@@ -64,7 +64,7 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 	}
 
 	protected UserService getUserService(String login, String password) {
-		Session session = SessionContext.createSession(login, password);
+		Session session = SessionContext.createBasicSession(login, password);
 		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
 
 		return new UserService(session);

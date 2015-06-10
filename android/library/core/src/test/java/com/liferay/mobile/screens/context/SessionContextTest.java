@@ -55,7 +55,7 @@ public class SessionContextTest {
 
 		@Before
 		public void setUp() {
-			_session = SessionContext.createSession("username", "password");
+			_session = SessionContext.createBasicSession("username", "password");
 			assertNotNull(_session);
 		}
 
@@ -106,7 +106,7 @@ public class SessionContextTest {
 
 		@Before
 		public void setUp() {
-			SessionContext.createSession("username", "password");
+			SessionContext.createBasicSession("username", "password");
 			SessionContext.clearSession();
 		}
 
@@ -128,7 +128,7 @@ public class SessionContextTest {
 
 		@Before
 		public void setUp() throws JSONException {
-			SessionContext.createSession("username", "password");
+			SessionContext.createBasicSession("username", "password");
 			SessionContext.setLoggedUser(new User(new JSONObject().put("userId", 123)));
 		}
 
@@ -158,7 +158,7 @@ public class SessionContextTest {
 		public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
 			LiferayScreensContext.deinit();
 
-			SessionContext.createSession("user123", "pass123");
+			SessionContext.createBasicSession("user123", "pass123");
 			SessionContext.setLoggedUser(new User(new JSONObject().put("userId", 123)));
 
 			SessionContext.storeSession(SHARED_PREFERENCES);
@@ -181,14 +181,14 @@ public class SessionContextTest {
 			LiferayScreensContext.init(ctx);
 
 			SessionContext.clearSession(); // to clean user
-			SessionContext.createSession("user123", "pass123");
+			SessionContext.createBasicSession("user123", "pass123");
 
 			SessionContext.storeSession(SHARED_PREFERENCES);
 		}
 
 		@Test
 		public void shouldStoreBasicCredentialsInSharedPreferences() throws Exception {
-			SessionContext.createSession("user123", "pass123");
+			SessionContext.createBasicSession("user123", "pass123");
 
 			Context ctx = RuntimeEnvironment.application.getApplicationContext();
 			LiferayScreensContext.init(ctx);
@@ -244,7 +244,7 @@ public class SessionContextTest {
 
 		@Test
 		public void shouldLoadBasicCredentials() throws Exception {
-			SessionContext.createSession("user123", "pass123");
+			SessionContext.createBasicSession("user123", "pass123");
 
 			Context ctx = RuntimeEnvironment.application.getApplicationContext();
 			LiferayScreensContext.init(ctx);

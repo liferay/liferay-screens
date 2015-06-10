@@ -113,7 +113,7 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 			@Override
 			public void onSuccess(JSONObject result) {
 
-				SessionContext.createSession(emailAddress, newPassword);
+				SessionContext.createBasicSession(emailAddress, newPassword);
 
 				clearError(_password);
 				LiferayCrouton.info(AccountSettingsActivity.this, "User updated");

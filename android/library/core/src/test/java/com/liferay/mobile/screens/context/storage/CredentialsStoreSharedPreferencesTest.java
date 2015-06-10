@@ -201,7 +201,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		}
 		store.setUser(new User(userAttributes));
 
-		SessionContext.createSession("user123", "pass123");
+		SessionContext.createBasicSession("user123", "pass123");
 		store.setAuthentication(SessionContext.getAuthentication());
 	}
 

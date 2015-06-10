@@ -33,7 +33,7 @@ public class SessionContext {
 		_loggedUser = null;
 	}
 
-	public static Session createSession(String username, String password) {
+	public static Session createBasicSession(String username, String password) {
 		Authentication authentication = new BasicAuthentication(username, password);
 
 		_session = new SessionImpl(LiferayServerContext.getServer(), authentication);
