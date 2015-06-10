@@ -140,7 +140,7 @@
 		888540BD1B0368AD00B8D193 /* DDLCustomFieldSeverityTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldSeverityTableCell_westeros_view.xib; sourceTree = "<group>"; };
 		888540BE1B0368AD00B8D193 /* DDLCustomFieldTitleTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldTitleTableCell_westeros_view.xib; sourceTree = "<group>"; };
 		888540BF1B0368AD00B8D193 /* DDLFormView_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFormView_westeros_view.xib; sourceTree = "<group>"; };
-		88855A2D1AE6537000D352D5 /* WesterosBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WesterosBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88855A2D1AE6537000D352D5 /* westerosbank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = westerosbank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88855A311AE6537000D352D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88855A321AE6537000D352D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88855A371AE6537000D352D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -284,7 +284,7 @@
 		88855A2E1AE6537000D352D5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				88855A2D1AE6537000D352D5 /* WesterosBank.app */,
+				88855A2D1AE6537000D352D5 /* westerosbank.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -526,7 +526,7 @@
 			);
 			name = WesterosBank;
 			productName = WesterosBank;
-			productReference = 88855A2D1AE6537000D352D5 /* WesterosBank.app */;
+			productReference = 88855A2D1AE6537000D352D5 /* westerosbank.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -540,6 +540,7 @@
 				TargetAttributes = {
 					88855A2C1AE6537000D352D5 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 7H3SPU5TB9;
 					};
 				};
 			};
@@ -777,7 +778,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jose Navarro (K5634N34CA)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -796,7 +797,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -821,7 +822,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jose Navarro (K5634N34CA)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -834,7 +835,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -846,9 +847,12 @@
 			baseConfigurationReference = F2F4F265F639A9CBBACD5765 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = WesterosBank/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = westerosbank;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -857,9 +861,12 @@
 			baseConfigurationReference = 8B041B2636CB91FFB7773179 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = WesterosBank/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = westerosbank;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
