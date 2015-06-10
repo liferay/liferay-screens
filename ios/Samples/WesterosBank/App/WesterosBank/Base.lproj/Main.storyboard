@@ -361,10 +361,10 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wM-tY-d9P" userLabel="Issues" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="487" width="375" height="650"/>
+                                        <rect key="frame" x="0.0" y="567" width="375" height="570"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="650" id="ufV-R4-trY"/>
+                                            <constraint firstAttribute="height" constant="570" id="ufV-R4-trY"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="ISSUES"/>
