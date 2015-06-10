@@ -7,7 +7,7 @@
 	<key>server</key>
 	<string>https://screensdemo.liferay.com/</string>
 	<key>groupId</key>
-	<integer>20525</integer>
+	<real>20525</real>
 	<key>anonymousUsername</key>
 	<string>anonymous@liferay.com</string>
 	<key>anonymousPassword</key>
