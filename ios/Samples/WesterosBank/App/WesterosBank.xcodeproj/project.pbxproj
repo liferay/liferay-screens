@@ -15,6 +15,9 @@
 		8820EEFB1AE79C9000FA79A6 /* ReportIssueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8820EEF91AE79C9000FA79A6 /* ReportIssueViewController.xib */; };
 		8820EEFD1AE7A03200FA79A6 /* OnBoardingCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEFC1AE7A03200FA79A6 /* OnBoardingCardDeck.swift */; };
 		8820EEFF1AE7A10800FA79A6 /* IssuesCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEFE1AE7A10800FA79A6 /* IssuesCardDeck.swift */; };
+		887186831B2A0597007C6640 /* Logo_BG_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 887186801B2A0597007C6640 /* Logo_BG_red.png */; };
+		887186841B2A0597007C6640 /* Logo_BG_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 887186811B2A0597007C6640 /* Logo_BG_red@2x.png */; };
+		887186851B2A0597007C6640 /* Logo_BG_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 887186821B2A0597007C6640 /* Logo_BG_red@3x.png */; };
 		88735F801AEA3E75000D35F9 /* TourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88735F7F1AEA3E75000D35F9 /* TourViewController.swift */; };
 		88735F8B1AEA4077000D35F9 /* tour-step1.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F821AEA4077000D35F9 /* tour-step1.png */; };
 		88735F8C1AEA4077000D35F9 /* tour-step1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88735F831AEA4077000D35F9 /* tour-step1@2x.png */; };
@@ -120,6 +123,9 @@
 		8820EEF91AE79C9000FA79A6 /* ReportIssueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportIssueViewController.xib; sourceTree = "<group>"; };
 		8820EEFC1AE7A03200FA79A6 /* OnBoardingCardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCardDeck.swift; sourceTree = "<group>"; };
 		8820EEFE1AE7A10800FA79A6 /* IssuesCardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesCardDeck.swift; sourceTree = "<group>"; };
+		887186801B2A0597007C6640 /* Logo_BG_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_BG_red.png; sourceTree = "<group>"; };
+		887186811B2A0597007C6640 /* Logo_BG_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo_BG_red@2x.png"; sourceTree = "<group>"; };
+		887186821B2A0597007C6640 /* Logo_BG_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo_BG_red@3x.png"; sourceTree = "<group>"; };
 		88735F7F1AEA3E75000D35F9 /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourViewController.swift; sourceTree = "<group>"; };
 		88735F821AEA4077000D35F9 /* tour-step1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step1.png"; sourceTree = "<group>"; };
 		88735F831AEA4077000D35F9 /* tour-step1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step1@2x.png"; sourceTree = "<group>"; };
@@ -244,6 +250,9 @@
 		88735F811AEA4077000D35F9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				887186801B2A0597007C6640 /* Logo_BG_red.png */,
+				887186811B2A0597007C6640 /* Logo_BG_red@2x.png */,
+				887186821B2A0597007C6640 /* Logo_BG_red@3x.png */,
 				88BF86FF1AFA4D9E00373A32 /* logo_BG_grey.png */,
 				88BF87001AFA4D9E00373A32 /* logo_BG_grey@2x.png */,
 				88BF87011AFA4D9E00373A32 /* logo_BG_grey@3x.png */,
@@ -571,8 +580,10 @@
 				88855A601AE65F2900D352D5 /* SignInViewController.xib in Resources */,
 				88735F921AEA4077000D35F9 /* tour-step3@2x.png in Resources */,
 				88855A381AE6537000D352D5 /* Main.storyboard in Resources */,
+				887186841B2A0597007C6640 /* Logo_BG_red@2x.png in Resources */,
 				88735F901AEA4077000D35F9 /* tour-step2@3x.png in Resources */,
 				88735F8C1AEA4077000D35F9 /* tour-step1@2x.png in Resources */,
+				887186831B2A0597007C6640 /* Logo_BG_red.png in Resources */,
 				88735F9E1AEA6451000D35F9 /* icon_DOWN_W@3x.png in Resources */,
 				88735F931AEA4077000D35F9 /* tour-step3@3x.png in Resources */,
 				88ADE17D1AF76B190073E889 /* status_OPEN.png in Resources */,
@@ -608,6 +619,7 @@
 				88ADE17B1AF76B190073E889 /* status_FREEZE@2x.png in Resources */,
 				889F4D951AF26846002E233D /* LoginView_westeros.xib in Resources */,
 				888540C11B0368AD00B8D193 /* DDLCustomFieldSeverityTableCell_westeros_view.xib in Resources */,
+				887186851B2A0597007C6640 /* Logo_BG_red@3x.png in Resources */,
 				88ADE18B1AF77DFF0073E889 /* icon_more_options.png in Resources */,
 				889F4D971AF26846002E233D /* SignUpView_westeros.xib in Resources */,
 				88BF87041AFA4D9E00373A32 /* logo_BG_grey@3x.png in Resources */,
