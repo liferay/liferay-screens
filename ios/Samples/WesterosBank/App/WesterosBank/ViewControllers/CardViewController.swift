@@ -25,8 +25,14 @@ class CardViewController: UIViewController {
 		super.init(nibName: nibName, bundle: nil)
 
 		self.view.frame = CGRectMake(
-				0, card.minimizedHeight,
-				card.frame.width, self.view.frame.height)
+				0,
+				card.minimizedHeight,
+				card.frame.width,
+				card.frame.height)
+
+		card.autoresizesSubviews = true
+		self.view.autoresizesSubviews = true
+		self.view.autoresizingMask =  UIViewAutoresizing.FlexibleWidth |  UIViewAutoresizing.FlexibleHeight
 
 		card.addSubview(self.view)
 

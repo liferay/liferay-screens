@@ -32,17 +32,21 @@ class ViewController: UIViewController {
 			self.dismissViewControllerAnimated(true, completion: nil)
 		}
 
+		signInCard.frame.size.height = signInCard.normalHeight - signInCard.minimizedHeight
+
 		signInController = SignInViewController(card: signInCard)
 		signInController!.onDone = onDone
 
 		cardDeck.topCard = signInCard
 
+		signUpCard.normalHeight = cardDeck.frame.size.height - 50
+
+		signUpCard.frame.size.height = signUpCard.normalHeight - signUpCard.minimizedHeight
+
 		signUpController = SignUpViewController(card: signUpCard)
 		signUpController!.onDone = onDone
 
 		cardDeck.bottomCard = signUpCard
-
-		signUpCard.normalHeight = cardDeck.frame.size.height - 50
 
 		signUpCard.currentState = .Minimized
 
