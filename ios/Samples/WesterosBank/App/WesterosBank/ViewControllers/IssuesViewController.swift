@@ -54,6 +54,11 @@ class IssuesViewController: CardViewController,
 		formScreenlet.delegate = self
 
 		scroll.contentSize = CGSizeMake(scroll.frame.size.width * 2, scroll.frame.size.height)
+
+		scroll.contentSize = CGSizeMake(scroll.frame.size.width * 2, scroll.frame.size.height)
+
+		listScreenlet.frame = scroll.frame
+		formScreenlet.frame = CGRectMake(scroll.frame.size.width, scroll.frame.origin.y, scroll.frame.size)
 	}
 
 	override func viewWillAppear(animated: Bool) {

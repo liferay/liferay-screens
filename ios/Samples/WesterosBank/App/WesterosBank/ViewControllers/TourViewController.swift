@@ -14,10 +14,18 @@ class TourViewController: UIViewController, UIScrollViewDelegate {
 	@IBOutlet weak var contentView: UIView!
 	@IBOutlet weak var pageControl: UIPageControl!
 
+	@IBOutlet weak var page1: UIView!
+	@IBOutlet weak var page2: UIView!
+	@IBOutlet weak var page3: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
 		scrollView.contentSize = contentView.frame.size
+
+		page1.frame = scrollView.frame
+		page2.frame = CGRectMake(scrollView.frame.size.width * 1, scrollView.frame.origin.y, scrollView.frame.size)
+		page3.frame = CGRectMake(scrollView.frame.size.width * 2, scrollView.frame.origin.y, scrollView.frame.size)
     }
 
 	@IBAction func nextAction(sender: AnyObject) {

@@ -24,6 +24,9 @@ class SignInViewController: CardViewController,
 	@IBOutlet weak var forgotTitle: UIButton!
 	@IBOutlet weak var backArrow: UIImageView!
 
+	@IBOutlet weak var signInPage: UIView!
+	@IBOutlet weak var forgotPage: UIView!
+
 	@IBOutlet weak var loginScreenlet: LoginScreenlet!
 	@IBOutlet weak var forgotPasswordScreenlet: ForgotPasswordScreenlet!
 
@@ -45,6 +48,9 @@ class SignInViewController: CardViewController,
 
 	override func viewDidLoad() {
 		scroll.contentSize = CGSizeMake(scroll.frame.size.width * 2, scroll.frame.size.height)
+
+		signInPage.frame = scroll.frame
+		forgotPage.frame = CGRectMake(scroll.frame.size.width, scroll.frame.origin.y, scroll.frame.size)
 
 		self.loginScreenlet.delegate = self
 		self.forgotPasswordScreenlet.delegate = self

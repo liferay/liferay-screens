@@ -38,6 +38,10 @@ class HomeViewController: UIViewController {
 
 		issuesDeck.topCard = issuesCard
 
+		reportIssueCard.normalHeight = issuesDeck.frame.size.height - 50
+
+		reportIssueCard.frame.size.height = reportIssueCard.normalHeight - reportIssueCard.minimizedHeight
+
 		reportIssueController = ReportIssueViewController(card: reportIssueCard)
 		reportIssueController!.onDone = {
 		}
@@ -47,8 +51,6 @@ class HomeViewController: UIViewController {
 		self.settingsView.layer.zPosition = -1000
 		self.issuesDeck.layer.zPosition = 0
 		self.reportIssueCard.layer.zPosition = 1000
-
-		reportIssueCard.normalHeight = issuesDeck.frame.size.height - 50
 
 		issuesCard.currentState = .Hidden
 		reportIssueCard.currentState = .Hidden
