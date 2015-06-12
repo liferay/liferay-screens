@@ -8,4 +8,4 @@ For details regarding the internal architecture of the Liferay Screens for Andro
 
 ## Contribute
 
-For information on contributing to the Liferay Screens for Android library, see the [contribution Guide](../../CONTRIBUTING.md).
+For information on contributing to the Liferay Screens for Android library, see the [contribution guide](../../CONTRIBUTING.md).
