@@ -1,6 +1,6 @@
 # Liferay Screens for Android Library
 
-This is the library that contains all available screenlets for Android. It also includes the infrastructure classes required to develop and contribute new screenlets. 
+This is the library that contains all available Screenlets for Android. It also includes the infrastructure classes required to develop and contribute new Screenlets. 
 
 ## Internal Architecture
 
