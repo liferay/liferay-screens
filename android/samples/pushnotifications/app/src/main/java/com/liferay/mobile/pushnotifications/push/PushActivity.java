@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.liferay.mobile.android.auth.basic.BasicAuthentication;
+import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.push.Push;
 import com.liferay.mobile.push.bus.BusUtil;
 import com.liferay.mobile.pushnotifications.R;
@@ -55,7 +58,7 @@ public abstract class PushActivity extends AppCompatActivity {
 	public void recoverRegistrationId(String registrationId) {
 		try {
 			SharedPreferences preferences = getSharedPreferences();
-			preferences.edit().putString("REGISTRATION_ID", registrationId).apply();
+			preferences.edit().putString(REGISTRATION_ID, registrationId).apply();
 
 			Push.with(SessionContext.createSessionFromCurrentSession()).register(registrationId);
 		}
