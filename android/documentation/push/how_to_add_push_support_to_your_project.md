@@ -1,4 +1,4 @@
-# How to add Android Push support to your project
+# How to add Push Notifications support to your Android project
 
 To support Push Notifications ([GCM](https://developers.google.com/cloud-messaging/)) in your Android project there are several steps you will have to follow.
 
@@ -17,7 +17,7 @@ First we will have to create a Google project, generate a `SENDER ID` and an `AP
 
 Copy those two keys because we are going to use them on later steps.
 
-## Install and configure Push Plugin in Liferay Portal
+## Install and configure Liferay Push in Liferay Portal
 
 Luckily for us there is a [plugin](http://www.liferay.com/es/marketplace/-/mp/application/48439053) that streamlines all the server configuration.
 
