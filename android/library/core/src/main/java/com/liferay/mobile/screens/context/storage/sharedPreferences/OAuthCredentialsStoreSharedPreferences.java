@@ -31,10 +31,10 @@ public class OAuthCredentialsStoreSharedPreferences extends BaseCredentialsStore
 		getSharedPref()
 			.edit()
 			.putString("auth", AuthenticationType.OAUTH.name())
-			.putString("oauth_consumerKey", oauth.getConsumerKey())
-			.putString("oauth_consumerSecret", oauth.getConsumerSecret())
-			.putString("oauth_token", oauth.getToken())
-			.putString("oauth_tokenSecret", oauth.getTokenSecret())
+			.putString("oauth_consumerKey", oauth.getConfig().getConsumerKey())
+			.putString("oauth_consumerSecret", oauth.getConfig().getConsumerSecret())
+			.putString("oauth_token", oauth.getConfig().getToken())
+			.putString("oauth_tokenSecret", oauth.getConfig().getTokenSecret())
 			.apply();
 	}
 
