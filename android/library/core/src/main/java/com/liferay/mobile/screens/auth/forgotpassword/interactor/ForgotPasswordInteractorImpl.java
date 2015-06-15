@@ -18,7 +18,7 @@ import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
-import com.liferay.mobile.screens.auth.AuthMethod;
+import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -51,18 +51,18 @@ public class ForgotPasswordInteractorImpl
 
 	@Override
 	public void requestPassword(
-			long companyId, String login, AuthMethod authMethod,
+			long companyId, String login, BasicAuthMethod basicAuthMethod,
 			String anonymousApiUserName, String anonymousApiPassword)
 		throws Exception {
 
 		validate(
-			companyId, login, authMethod, anonymousApiUserName,
+			companyId, login, basicAuthMethod, anonymousApiUserName,
 			anonymousApiPassword);
 
 		ScreensuserService service = getScreensUserService(
 				anonymousApiUserName, anonymousApiPassword);
 
-		switch (authMethod) {
+		switch (basicAuthMethod) {
 			case EMAIL:
 				sendForgotPasswordByEmailRequest(service, companyId, login);
 				break;
@@ -117,10 +117,10 @@ public class ForgotPasswordInteractorImpl
 	}
 
 	protected void validate(
-		long companyId, String login, AuthMethod authMethod,
+		long companyId, String login, BasicAuthMethod basicAuthMethod,
 		String anonymousApiUserName, String anonymousApiPassword) {
 
-		if ((companyId <= 0) && (authMethod != AuthMethod.USER_ID)) {
+		if ((companyId <= 0) && (basicAuthMethod != BasicAuthMethod.USER_ID)) {
 			throw new IllegalArgumentException(
 				"CompanyId cannot be 0 or negative");
 		}
@@ -129,8 +129,8 @@ public class ForgotPasswordInteractorImpl
 			throw new IllegalArgumentException("Login cannot be empty");
 		}
 
-		if (authMethod == null) {
-			throw new IllegalArgumentException("AuthMethod cannot be empty");
+		if (basicAuthMethod == null) {
+			throw new IllegalArgumentException("BasicAuthMethod cannot be empty");
 		}
 
 		if (anonymousApiUserName == null) {

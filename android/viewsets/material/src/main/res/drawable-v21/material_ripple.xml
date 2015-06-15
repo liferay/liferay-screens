@@ -4,8 +4,8 @@
 		android:color="?attr/colorPrimaryDark">
 	<item>
 		<shape xmlns:android="http://schemas.android.com/apk/res/android">
-			<corners android:radius="1dp" />
-			<solid android:color="?attr/colorPrimary" />
+			<corners android:radius="1dp"/>
+			<solid android:color="?attr/colorPrimary"/>
 		</shape>
 	</item>
 </ripple>

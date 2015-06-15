@@ -6,11 +6,17 @@ This document explains the basics of how themes are designed in Liferay Screens 
 
 ## Installing Themes
 
-Right now, to install a theme in your app you just need to drag and drop the theme's folder into your project. Liferay Screens detects the new classes and then applies the new look and feel, in both the Interface Builder and runtime.
+Right now, to install a theme in your app you have two options, depending on how the theme has been published:
+
+* If the theme has been packaged as a pod dependency you can install and use your theme by simply adding the following line in your Podfile:
+
+```ruby
+	pod 'LiferayScreens-YourThemeName'
+```
+
+* Or you can drag and drop the theme's folder into your project. Liferay Screens detects the new classes and then applies the new look and feel, in both the Interface Builder and runtime.
 
 ![Installing the Flat7 theme in an XCode project.](Images/xcode-install-theme.png)
-
-As soon as CocoaPods is ready to work with Swift, it will be possible to simply publish a new recipe for your theme. Users will then be able to install new themes by just adding a new line in their `Podfile`.
 
 ## Using Themes
 
@@ -22,6 +28,7 @@ To use themes, it's as simple as setting the `themeName` property in your Interf
 
 - **Default**: The standard theme that is used when you insert any screenlet on your screen.
 - **Flat7**: A sample theme intended to demonstrate how to develop your own theme from scratch.
+- **Westeros**: A theme used in the demo Westeros Bank App.
 
 ## Creating Your Own Theme
 

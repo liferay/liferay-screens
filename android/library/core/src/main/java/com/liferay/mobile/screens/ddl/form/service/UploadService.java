@@ -60,7 +60,6 @@ public class UploadService extends IntentService {
 		String filePrefix = intent.getStringExtra("filePrefix");
 		int targetScreenletId = intent.getIntExtra("screenletId", 0);
 
-		InputStream is = null;
 		try {
 			String path = file.getCurrentValue().toString();
 			String name = path.substring(path.lastIndexOf("/") + 1);

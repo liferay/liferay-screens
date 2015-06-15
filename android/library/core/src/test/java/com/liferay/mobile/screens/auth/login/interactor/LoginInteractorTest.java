@@ -16,7 +16,8 @@ package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.BuildConfig;
-import com.liferay.mobile.screens.auth.AuthMethod;
+import com.liferay.mobile.screens.RobolectricManifestTestRunner;
+import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -45,12 +46,12 @@ import static org.mockito.Mockito.when;
 public class LoginInteractorTest {
 
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
-	@RunWith(RobolectricGradleTestRunner.class)
-	public static class WhenAuthMethodIsEmail {
+	@RunWith(RobolectricManifestTestRunner.class)
+	public static class WhenBasicAuthMethodIsEmail {
 
 		@Test
 		public void shouldCallGetUserByEmailService() throws Exception {
-			LoginInteractorImpl interactorSpy =
+			LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			UserService serviceMock = MockFactory.mockUserService();
@@ -61,8 +62,11 @@ public class LoginInteractorTest {
 				interactorSpy
 			).getUserService(_LOGIN_EMAIL, _LOGIN_PASSWORD);
 
-			interactorSpy.login(
-				_LOGIN_EMAIL, _LOGIN_PASSWORD, AuthMethod.EMAIL);
+			interactorSpy.setLogin(_LOGIN_EMAIL);
+			interactorSpy.setPassword(_LOGIN_PASSWORD);
+			interactorSpy.setBasicAuthMethod(BasicAuthMethod.EMAIL);
+
+			interactorSpy.login();
 
 			verify(
 				interactorSpy
@@ -76,11 +80,11 @@ public class LoginInteractorTest {
 
 	@RunWith(RobolectricTestRunner.class)
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
-	public static class WhenAuthMethodIsId {
+	public static class WhenBasicAuthMethodIsId {
 
 		@Test
 		public void shouldCallGetUserByIdService() throws Exception {
-			LoginInteractorImpl interactorSpy =
+			LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			UserService serviceMock = MockFactory.mockUserService();
@@ -93,7 +97,11 @@ public class LoginInteractorTest {
 				interactorSpy
 			).getUserService(userId, _LOGIN_PASSWORD);
 
-			interactorSpy.login(userId, _LOGIN_PASSWORD, AuthMethod.USER_ID);
+			interactorSpy.setLogin(userId);
+			interactorSpy.setPassword(_LOGIN_PASSWORD);
+			interactorSpy.setBasicAuthMethod(BasicAuthMethod.USER_ID);
+
+			interactorSpy.login();
 
 			verify(
 				interactorSpy
@@ -107,11 +115,11 @@ public class LoginInteractorTest {
 
 	@RunWith(RobolectricTestRunner.class)
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
-	public static class WhenAuthMethodIsScreenName {
+	public static class WhenBasicAuthMethodIsScreenName {
 
 		@Test
 		public void shouldCallGetUserByScreenNameService() throws Exception {
-			LoginInteractorImpl interactorSpy =
+			LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			UserService serviceMock = MockFactory.mockUserService();
@@ -122,8 +130,11 @@ public class LoginInteractorTest {
 				interactorSpy
 			).getUserService(_LOGIN_SCREEN_NAME, _LOGIN_PASSWORD);
 
-			interactorSpy.login(
-				_LOGIN_SCREEN_NAME, _LOGIN_PASSWORD, AuthMethod.SCREEN_NAME);
+			interactorSpy.setLogin(_LOGIN_SCREEN_NAME);
+			interactorSpy.setPassword(_LOGIN_PASSWORD);
+			interactorSpy.setBasicAuthMethod(BasicAuthMethod.SCREEN_NAME);
+
+			interactorSpy.login();
 
 			verify(
 				interactorSpy
@@ -141,7 +152,7 @@ public class LoginInteractorTest {
 
 		@Test
 		public void shouldCallValidate() throws Exception {
-			LoginInteractorImpl interactorSpy =
+			LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			doReturn(
@@ -150,12 +161,15 @@ public class LoginInteractorTest {
 				interactorSpy
 			).getUserService(_LOGIN_EMAIL, _LOGIN_PASSWORD);
 
-			interactorSpy.login(
-				_LOGIN_EMAIL, _LOGIN_PASSWORD, AuthMethod.EMAIL);
+			interactorSpy.setLogin(_LOGIN_EMAIL);
+			interactorSpy.setPassword(_LOGIN_PASSWORD);
+			interactorSpy.setBasicAuthMethod(BasicAuthMethod.EMAIL);
+
+			interactorSpy.login();
 
 			verify(
 				interactorSpy
-			).validate(_LOGIN_EMAIL, _LOGIN_PASSWORD, AuthMethod.EMAIL);
+			).validate(_LOGIN_EMAIL, _LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
 		}
 	}
 
@@ -193,7 +207,7 @@ public class LoginInteractorTest {
 			final JSONObjectEvent event, LoginListener listener)
 			throws Exception {
 
-			final LoginInteractorImpl interactorSpy =
+			final LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			UserService serviceMock = MockFactory.mockUserService();
@@ -221,8 +235,11 @@ public class LoginInteractorTest {
 					}
 				});
 
-			interactorSpy.login(
-				_LOGIN_EMAIL, _LOGIN_PASSWORD, AuthMethod.EMAIL);
+			interactorSpy.setLogin(_LOGIN_EMAIL);
+			interactorSpy.setPassword(_LOGIN_PASSWORD);
+			interactorSpy.setBasicAuthMethod(BasicAuthMethod.EMAIL);
+
+			interactorSpy.login();
 		}
 	}
 
@@ -232,23 +249,23 @@ public class LoginInteractorTest {
 
 		@Test(expected = IllegalArgumentException.class)
 		public void shouldRaiseExceptionOnNullLogin() {
-			LoginInteractorImpl interactorSpy =
+			LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
-			interactorSpy.validate(null, _LOGIN_PASSWORD, AuthMethod.EMAIL);
+			interactorSpy.validate(null, _LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
 		}
 
 		@Test(expected = IllegalArgumentException.class)
 		public void shouldRaiseExceptionOnNullPassword() {
-			LoginInteractorImpl interactorSpy =
+			LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
-			interactorSpy.validate(_LOGIN_EMAIL, null, AuthMethod.EMAIL);
+			interactorSpy.validate(_LOGIN_EMAIL, null, BasicAuthMethod.EMAIL);
 		}
 
 		@Test(expected = IllegalArgumentException.class)
-		public void shouldRaiseExceptionOnNullAuthMethod() {
-			LoginInteractorImpl interactorSpy =
+		public void shouldRaiseExceptionOnNullBasicAuthMethod() {
+			LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			interactorSpy.validate(_LOGIN_EMAIL, _LOGIN_PASSWORD, null);

@@ -13,14 +13,16 @@
 		android:id="@+id/login_default"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		liferay:authMethod="email"
-		liferay:layoutId="@layout/login_default"/>
+		liferay:basicAuthMethod="email"
+		liferay:layoutId="@layout/login_default"
+		liferay:oauthConsumerKey="@string/liferay_oauth_consumer_key"
+		liferay:oauthConsumerSecret="@string/liferay_oauth_consumer_secret"/>
 
 	<com.liferay.mobile.screens.auth.login.LoginScreenlet
 		android:id="@+id/login_material"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		liferay:authMethod="email"
+		liferay:basicAuthMethod="email"
 		liferay:layoutId="@layout/login_material"/>
 
 </LinearLayout>

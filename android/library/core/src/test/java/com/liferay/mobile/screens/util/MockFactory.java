@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.util;
 
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.auth.login.interactor.LoginInteractorImpl;
+import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 
 import static org.mockito.Mockito.mock;
@@ -39,10 +39,10 @@ public class MockFactory {
 		return mock(UserService.class);
 	}
 
-	public static LoginInteractorImpl spyLoginInteractor(
+	public static LoginBasicInteractor spyLoginInteractor(
 		int targetScreenletId) {
 
-		return spy(new LoginInteractorImpl(targetScreenletId));
+		return spy(new LoginBasicInteractor(targetScreenletId));
 	}
 
 }

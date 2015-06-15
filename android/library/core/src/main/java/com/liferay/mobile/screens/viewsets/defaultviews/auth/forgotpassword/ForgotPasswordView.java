@@ -21,7 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.liferay.mobile.screens.auth.AuthMethod;
+import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewModel;
 import com.liferay.mobile.screens.base.ModalProgressBar;
@@ -55,8 +55,8 @@ public class ForgotPasswordView extends LinearLayout
 	}
 
 	@Override
-	public AuthMethod getAuthMethod() {
-		return _authMethod;
+	public BasicAuthMethod getBasicAuthMethod() {
+		return _basicAuthMethod;
 	}
 
 	@Override
@@ -101,8 +101,8 @@ public class ForgotPasswordView extends LinearLayout
 		screenlet.performUserAction();
 	}
 
-	public void setAuthMethod(AuthMethod authMethod) {
-		_authMethod = authMethod;
+	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
+		_basicAuthMethod = basicAuthMethod;
 
 		refreshLoginEditTextStyle();
 	}
@@ -126,16 +126,16 @@ public class ForgotPasswordView extends LinearLayout
 	}
 
 	protected void refreshLoginEditTextStyle() {
-		_loginEditText.setInputType(_authMethod.getInputType());
+		_loginEditText.setInputType(_basicAuthMethod.getInputType());
 		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(
 			getResources().getDrawable(getLoginEditTextDrawableId()), null, null, null);
 	}
 
 	protected int getLoginEditTextDrawableId() {
-		if (AuthMethod.USER_ID.equals(_authMethod)) {
+		if (BasicAuthMethod.USER_ID.equals(_basicAuthMethod)) {
 			return R.drawable.default_user_icon;
 		}
-		else if (AuthMethod.EMAIL.equals(_authMethod)) {
+		else if (BasicAuthMethod.EMAIL.equals(_basicAuthMethod)) {
 			return R.drawable.default_mail_icon;
 		}
 
@@ -146,7 +146,7 @@ public class ForgotPasswordView extends LinearLayout
 		return _loginEditText;
 	}
 
-	private AuthMethod _authMethod;
+	private BasicAuthMethod _basicAuthMethod;
 	private EditText _loginEditText;
 	private ModalProgressBar _progressBar;
 

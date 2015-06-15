@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -12,17 +12,12 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.forgotpassword.view;
-
-import com.liferay.mobile.screens.auth.BasicAuthViewModel;
+package com.liferay.mobile.screens.context;
 
 /**
- * @author Jose Manuel Navarro
+ * @author Javier Gamarra
  */
-public interface ForgotPasswordViewModel extends BasicAuthViewModel {
+public enum AuthenticationType {
 
-	String getLogin();
-
-	void showFinishOperation(boolean passwordSent);
-
+	BASIC, OAUTH
 }

@@ -43,7 +43,7 @@ public class LoginView
 
     @Override
     protected void refreshLoginEditTextStyle() {
-        getLoginEditText().setInputType(getAuthMethod().getInputType());
+        getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
     }
 
     @Override

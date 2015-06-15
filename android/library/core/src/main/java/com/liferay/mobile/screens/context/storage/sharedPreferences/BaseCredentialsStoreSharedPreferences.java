@@ -12,14 +12,16 @@
  * details.
  */
 
-package com.liferay.mobile.screens.context.storage;
+package com.liferay.mobile.screens.context.storage.sharedPreferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.liferay.mobile.android.auth.basic.BasicAuthentication;
+import com.liferay.mobile.android.auth.Authentication;
+import com.liferay.mobile.screens.context.AuthenticationType;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.context.storage.CredentialsStore;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONException;
@@ -28,10 +30,11 @@ import org.json.JSONObject;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
 /**
  * @author Jose Manuel Navarro
  */
-public class CredentialsStoreSharedPreferences implements CredentialsStore {
+public abstract class BaseCredentialsStoreSharedPreferences implements CredentialsStore {
 
 	@Override
 	public void storeCredentials() {
@@ -47,13 +50,13 @@ public class CredentialsStoreSharedPreferences implements CredentialsStore {
 
 		_sharedPref
 			.edit()
-			.putString("username", _auth.getUsername())
-			.putString("password", _auth.getPassword())
 			.putString("attributes", _user.toString())
 			.putString("server", LiferayServerContext.getServer())
 			.putLong("groupId", LiferayServerContext.getGroupId())
 			.putLong("companyId", LiferayServerContext.getCompanyId())
 			.apply();
+
+		storeAuth(_auth);
 	}
 
 	@Override
@@ -77,27 +80,28 @@ public class CredentialsStoreSharedPreferences implements CredentialsStore {
 			throw new IllegalStateException("You need to set the context");
 		}
 
-		String server = _sharedPref.getString("server", null);
-		String userName = _sharedPref.getString("username", null);
-		String password = _sharedPref.getString("password", null);
 		String userAttributes = _sharedPref.getString("attributes", null);
+		String server = _sharedPref.getString("server", null);
+		long groupId = _sharedPref.getLong("groupId", 0);
+		long companyId = _sharedPref.getLong("companyId", 0);
 
-		if (server == null || userName == null || password == null || userAttributes == null) {
+		_auth = loadAuth();
+
+		if (_auth == null || server == null || userAttributes == null
+				|| groupId == 0 || companyId == 0) {
 			// nothing saved
 			return false;
 		}
-
-		long groupId = _sharedPref.getLong("groupId", 0);
-		long companyId = _sharedPref.getLong("companyId", 0);
 
 		if (!server.equals(LiferayServerContext.getServer()) ||
 			groupId != LiferayServerContext.getGroupId() ||
 			companyId != LiferayServerContext.getCompanyId()) {
 
+			_auth = null;
+			_user = null;
+
 			throw new IllegalStateException("Stored credential values are not consistent with current ones");
 		}
-
-		_auth = new BasicAuthentication(userName, password);
 
 		try {
 			_user = new User(new JSONObject(userAttributes));
@@ -109,8 +113,7 @@ public class CredentialsStoreSharedPreferences implements CredentialsStore {
 		return true;
 	}
 
-	@Override
-	public String getStoreName() {
+	public static String getStoreName() {
 		try {
 			URL url = new URL(LiferayServerContext.getServer());
 			return "liferay-screens-" + url.getHost() + "-" + url.getPort();
@@ -122,13 +125,19 @@ public class CredentialsStoreSharedPreferences implements CredentialsStore {
 		return "liferay-screens";
 	}
 
+	public static AuthenticationType getStoredAuthenticationType(Context context) {
+		SharedPreferences sharedPref = context.getSharedPreferences(
+				getStoreName(), Context.MODE_PRIVATE);
+		return AuthenticationType.valueOf(sharedPref.getString("auth", null));
+	}
+
 	@Override
-	public BasicAuthentication getAuthentication() {
+	public Authentication getAuthentication() {
 		return _auth;
 	}
 
 	@Override
-	public void setAuthentication(BasicAuthentication auth) {
+	public void setAuthentication(Authentication auth) {
 		_auth = auth;
 	}
 
@@ -150,8 +159,18 @@ public class CredentialsStoreSharedPreferences implements CredentialsStore {
 		_sharedPref = context.getSharedPreferences(getStoreName(), Context.MODE_PRIVATE);
 	}
 
+	protected SharedPreferences getSharedPref() {
+		return _sharedPref;
+	}
+
+
+	protected abstract void storeAuth(Authentication auth);
+
+	protected abstract Authentication loadAuth();
+
+
 	private SharedPreferences _sharedPref;
-	private BasicAuthentication _auth;
+	private Authentication _auth;
 	private User _user;
 
 }
