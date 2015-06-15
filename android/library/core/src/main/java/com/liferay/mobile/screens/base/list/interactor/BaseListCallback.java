@@ -18,7 +18,7 @@ import android.util.Pair;
 
 import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.InteractorBatchAsyncTaskCallback;
+import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
 import com.liferay.mobile.screens.util.JSONUtil;
 
 import org.json.JSONArray;
@@ -32,7 +32,7 @@ import java.util.Map;
  * @author Silvio Santos
  */
 public abstract class BaseListCallback<E>
-        extends InteractorBatchAsyncTaskCallback<BaseListResult<E>> {
+        extends InteractorAsyncTaskCallback<BaseListResult<E>> {
 
     public BaseListResult transform(Object obj) throws Exception {
         BaseListResult result = new BaseListResult();
