@@ -269,6 +269,9 @@
 		8839B88F1B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8881B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift */; };
 		8839B8901B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */; };
 		8839B8911B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */; };
+		887A3D6E1B32E189009A7881 /* LRScreensmobileService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887A3D6C1B32E189009A7881 /* LRScreensmobileService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		887A3D6F1B32E189009A7881 /* LRScreensmobileService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 887A3D6D1B32E189009A7881 /* LRScreensmobileService_v62.m */; };
+		887A3D701B32E189009A7881 /* LRScreensmobileService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 887A3D6D1B32E189009A7881 /* LRScreensmobileService_v62.m */; };
 		888DF5B11ACC9FC200EB7DA1 /* LoginScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F11ACBE5F000862B9E /* LoginScreenlet.swift */; };
 		888DF5B21ACC9FC200EB7DA1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F21ACBE5F000862B9E /* LoginViewModel.swift */; };
 		888DF5B31ACC9FC200EB7DA1 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F01ACBE5F000862B9E /* LoginInteractor.swift */; };
@@ -544,6 +547,8 @@
 		8839B8871B0CD5C4006C18F1 /* GetUserByEmailOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByEmailOperation.swift; sourceTree = "<group>"; };
 		8839B8881B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByScreenNameOperation.swift; sourceTree = "<group>"; };
 		8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByUserIdOperation.swift; sourceTree = "<group>"; };
+		887A3D6C1B32E189009A7881 /* LRScreensmobileService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensmobileService_v62.h; sourceTree = "<group>"; };
+		887A3D6D1B32E189009A7881 /* LRScreensmobileService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensmobileService_v62.m; sourceTree = "<group>"; };
 		8892C6781ACB2E3300192232 /* LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8892C67C1ACB2E3300192232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8892C67D1ACB2E3300192232 /* LiferayScreens.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreens.h; sourceTree = SOURCE_ROOT; };
@@ -1329,13 +1334,15 @@
 		8892C6951ACB2FDC00192232 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */,
 				B2F3F3491B0A1923002CEF60 /* LRScreensassetentryService_v62.h */,
 				B2F3F34A1B0A1923002CEF60 /* LRScreensassetentryService_v62.m */,
 				B2F3F34B1B0A1923002CEF60 /* LRScreensddlrecordService_v62.h */,
 				B2F3F34C1B0A1923002CEF60 /* LRScreensddlrecordService_v62.m */,
+				887A3D6C1B32E189009A7881 /* LRScreensmobileService_v62.h */,
+				887A3D6D1B32E189009A7881 /* LRScreensmobileService_v62.m */,
 				B2F3F34D1B0A1923002CEF60 /* LRScreensuserService_v62.h */,
 				B2F3F34E1B0A1923002CEF60 /* LRScreensuserService_v62.m */,
-				88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1442,6 +1449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2F3F3531B0A1923002CEF60 /* LRScreensuserService_v62.h in Headers */,
+				887A3D6E1B32E189009A7881 /* LRScreensmobileService_v62.h in Headers */,
 				8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */,
 				B2F3F3511B0A1923002CEF60 /* LRScreensddlrecordService_v62.h in Headers */,
 				881E61491ACBEDC600862B9E /* AssetListScreenletInterop.h in Headers */,
@@ -1818,6 +1826,7 @@
 				8892C6B01ACBD89400192232 /* UIView+Animations.swift in Sources */,
 				881E60CE1ACBE56700862B9E /* BaseListScreenlet.swift in Sources */,
 				881E60D11ACBE56700862B9E /* BaseListTableView.swift in Sources */,
+				887A3D6F1B32E189009A7881 /* LRScreensmobileService_v62.m in Sources */,
 				8892C6B41ACBD95400192232 /* LiferayServerContext.swift in Sources */,
 				8839B87D1B0CD539006C18F1 /* SignUpInteractor.swift in Sources */,
 				881E614B1ACBEDC600862B9E /* AssetListTableView.swift in Sources */,
@@ -1926,6 +1935,7 @@
 				881E62F51ACC04BA00862B9E /* DDLXSDParser.swift in Sources */,
 				881E62B61ACBFFFA00862B9E /* LiferayServerContext.swift in Sources */,
 				881E62911ACBFEA200862B9E /* SignUpScreenlet.swift in Sources */,
+				887A3D701B32E189009A7881 /* LRScreensmobileService_v62.m in Sources */,
 				881E62C21ACC00F300862B9E /* LiferayLoginByUserIdOperation.swift in Sources */,
 				88DE250D1AD2AB0A00714701 /* BaseScreenlet_Basic_Tests.swift in Sources */,
 				881E62951ACBFEFC00862B9E /* BaseListScreenlet.swift in Sources */,
