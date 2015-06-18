@@ -269,9 +269,23 @@
 		8839B88F1B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8881B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift */; };
 		8839B8901B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */; };
 		8839B8911B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */; };
+		8853E79B1B300C380039C38C /* AudienceTargetingDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8853E7991B300C380039C38C /* AudienceTargetingDisplayView_default.swift */; };
+		8853E79C1B300C380039C38C /* AudienceTargetingDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8853E7991B300C380039C38C /* AudienceTargetingDisplayView_default.swift */; };
+		8853E79D1B300C380039C38C /* AudienceTargetingDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8853E79A1B300C380039C38C /* AudienceTargetingDisplayView_default.xib */; };
+		8853E79E1B300C380039C38C /* AudienceTargetingDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8853E79A1B300C380039C38C /* AudienceTargetingDisplayView_default.xib */; };
+		8853E7A61B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8853E7A41B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings */; };
+		8853E7A71B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8853E7A41B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings */; };
 		887A3D6E1B32E189009A7881 /* LRScreensmobileService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887A3D6C1B32E189009A7881 /* LRScreensmobileService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		887A3D6F1B32E189009A7881 /* LRScreensmobileService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 887A3D6D1B32E189009A7881 /* LRScreensmobileService_v62.m */; };
 		887A3D701B32E189009A7881 /* LRScreensmobileService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 887A3D6D1B32E189009A7881 /* LRScreensmobileService_v62.m */; };
+		888B86C11B2F150800D9E9F1 /* AudienceTargetingDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B86BB1B2F150800D9E9F1 /* AudienceTargetingDisplayScreenlet.swift */; };
+		888B86C21B2F150800D9E9F1 /* AudienceTargetingDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B86BB1B2F150800D9E9F1 /* AudienceTargetingDisplayScreenlet.swift */; };
+		888B86C31B2F150800D9E9F1 /* AudienceTargetingDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B86BC1B2F150800D9E9F1 /* AudienceTargetingDisplayViewModel.swift */; };
+		888B86C41B2F150800D9E9F1 /* AudienceTargetingDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B86BC1B2F150800D9E9F1 /* AudienceTargetingDisplayViewModel.swift */; };
+		888B86C51B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B86BE1B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderInteractor.swift */; };
+		888B86C61B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B86BE1B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderInteractor.swift */; };
+		888B86C71B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B86C01B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderOperation.swift */; };
+		888B86C81B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B86C01B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderOperation.swift */; };
 		888DF5B11ACC9FC200EB7DA1 /* LoginScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F11ACBE5F000862B9E /* LoginScreenlet.swift */; };
 		888DF5B21ACC9FC200EB7DA1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F21ACBE5F000862B9E /* LoginViewModel.swift */; };
 		888DF5B31ACC9FC200EB7DA1 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F01ACBE5F000862B9E /* LoginInteractor.swift */; };
@@ -547,8 +561,16 @@
 		8839B8871B0CD5C4006C18F1 /* GetUserByEmailOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByEmailOperation.swift; sourceTree = "<group>"; };
 		8839B8881B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByScreenNameOperation.swift; sourceTree = "<group>"; };
 		8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByUserIdOperation.swift; sourceTree = "<group>"; };
+		8853E7991B300C380039C38C /* AudienceTargetingDisplayView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudienceTargetingDisplayView_default.swift; sourceTree = "<group>"; };
+		8853E79A1B300C380039C38C /* AudienceTargetingDisplayView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudienceTargetingDisplayView_default.xib; sourceTree = "<group>"; };
+		8853E7A51B3019CE0039C38C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/audiencetargetingdisplay-screenlet.strings"; sourceTree = "<group>"; };
+		8853E7A81B3019D50039C38C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/audiencetargetingdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		887A3D6C1B32E189009A7881 /* LRScreensmobileService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensmobileService_v62.h; sourceTree = "<group>"; };
 		887A3D6D1B32E189009A7881 /* LRScreensmobileService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensmobileService_v62.m; sourceTree = "<group>"; };
+		888B86BB1B2F150800D9E9F1 /* AudienceTargetingDisplayScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudienceTargetingDisplayScreenlet.swift; sourceTree = "<group>"; };
+		888B86BC1B2F150800D9E9F1 /* AudienceTargetingDisplayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudienceTargetingDisplayViewModel.swift; sourceTree = "<group>"; };
+		888B86BE1B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudienceTargetingLoadPlaceholderInteractor.swift; sourceTree = "<group>"; };
+		888B86C01B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudienceTargetingLoadPlaceholderOperation.swift; sourceTree = "<group>"; };
 		8892C6781ACB2E3300192232 /* LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8892C67C1ACB2E3300192232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8892C67D1ACB2E3300192232 /* LiferayScreens.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreens.h; sourceTree = SOURCE_ROOT; };
@@ -650,6 +672,7 @@
 		880ACA641B0224A0007AD007 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8853E7A41B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings */,
 				880ACA651B0224A0007AD007 /* ddlform-screenlet.strings */,
 				880ACA671B0224A0007AD007 /* signup-screenlet.strings */,
 				880ACA691B0224A0007AD007 /* core.strings */,
@@ -972,6 +995,7 @@
 			isa = PBXGroup;
 			children = (
 				881E61BB1ACBFC3400862B9E /* AssetListScreenlet */,
+				8853E7981B300C380039C38C /* AudienceTargeting */,
 				881E61BE1ACBFC3400862B9E /* Auth */,
 				881E61CB1ACBFC3400862B9E /* DDL */,
 				881E61E91ACBFC3400862B9E /* DefaultThemeConstants.swift */,
@@ -1251,6 +1275,42 @@
 			path = ServerOperations;
 			sourceTree = "<group>";
 		};
+		8853E7981B300C380039C38C /* AudienceTargeting */ = {
+			isa = PBXGroup;
+			children = (
+				8853E7991B300C380039C38C /* AudienceTargetingDisplayView_default.swift */,
+				8853E79A1B300C380039C38C /* AudienceTargetingDisplayView_default.xib */,
+			);
+			path = AudienceTargeting;
+			sourceTree = "<group>";
+		};
+		888B86BA1B2F150800D9E9F1 /* AudienceTargeting */ = {
+			isa = PBXGroup;
+			children = (
+				888B86BB1B2F150800D9E9F1 /* AudienceTargetingDisplayScreenlet.swift */,
+				888B86BC1B2F150800D9E9F1 /* AudienceTargetingDisplayViewModel.swift */,
+				888B86BD1B2F150800D9E9F1 /* Interactors */,
+				888B86BF1B2F150800D9E9F1 /* ServerOperations */,
+			);
+			path = AudienceTargeting;
+			sourceTree = "<group>";
+		};
+		888B86BD1B2F150800D9E9F1 /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				888B86BE1B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderInteractor.swift */,
+			);
+			path = Interactors;
+			sourceTree = "<group>";
+		};
+		888B86BF1B2F150800D9E9F1 /* ServerOperations */ = {
+			isa = PBXGroup;
+			children = (
+				888B86C01B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderOperation.swift */,
+			);
+			path = ServerOperations;
+			sourceTree = "<group>";
+		};
 		8892C66E1ACB2E3300192232 = {
 			isa = PBXGroup;
 			children = (
@@ -1319,6 +1379,7 @@
 			isa = PBXGroup;
 			children = (
 				881E613F1ACBEDC600862B9E /* AssetListScreenlet */,
+				888B86BA1B2F150800D9E9F1 /* AudienceTargeting */,
 				881E60DE1ACBE5F000862B9E /* Auth */,
 				881E60B41ACBE3FF00862B9E /* Base */,
 				8892C6B11ACBD95400192232 /* Context */,
@@ -1566,12 +1627,14 @@
 				881E62711ACBFC3400862B9E /* SignUpView_flat7.xib in Resources */,
 				881E623B1ACBFC3400862B9E /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
 				881E62781ACBFC3400862B9E /* flat7-field.png in Resources */,
+				8853E7A61B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings in Resources */,
 				881E624E1ACBFC3400862B9E /* default.strings in Resources */,
 				881E62631ACBFC3400862B9E /* default-portrait-placeholder.png in Resources */,
 				881E62481ACBFC3400862B9E /* DDLFormView_default.xib in Resources */,
 				881E624F1ACBFC3400862B9E /* default-calendar.png in Resources */,
 				881E62751ACBFC3400862B9E /* flat7.strings in Resources */,
 				881E62531ACBFC3400862B9E /* default-field-focused.png in Resources */,
+				8853E79D1B300C380039C38C /* AudienceTargetingDisplayView_default.xib in Resources */,
 				881E627C1ACBFC3400862B9E /* flat7-portrait-placeholder.png in Resources */,
 				881E62411ACBFC3400862B9E /* DDLFieldSelectTableCell_default.xib in Resources */,
 				880ACA831B0224A0007AD007 /* forgotpassword-screenlet.strings in Resources */,
@@ -1623,6 +1686,7 @@
 				880ACA8A1B0224A0007AD007 /* webcontentdisplay-screenlet.strings in Resources */,
 				880ACA861B0224A0007AD007 /* login-screenlet.strings in Resources */,
 				881E62C91ACC019800862B9E /* default-field-focused@2x.png in Resources */,
+				8853E7A71B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings in Resources */,
 				881E62CF1ACC01E700862B9E /* default-form-gradient-top.png in Resources */,
 				881E62D01ACC01E700862B9E /* default-form-gradient-top@2x.png in Resources */,
 				881E62C41ACC016800862B9E /* default-lock-icon.png in Resources */,
@@ -1632,6 +1696,7 @@
 				881E62FD1ACC066E00862B9E /* DDLListView_default.xib in Resources */,
 				880ACA821B0224A0007AD007 /* core.strings in Resources */,
 				88DE24F71AD2AA6400714701 /* liferay-server-context.plist in Resources */,
+				8853E79E1B300C380039C38C /* AudienceTargetingDisplayView_default.xib in Resources */,
 				88A2B7191ACDEC29000C2065 /* DDLListView_test.xib in Resources */,
 				881E62C81ACC019800862B9E /* default-field-focused.png in Resources */,
 				880ACA881B0224A0007AD007 /* userportrait-screenlet.strings in Resources */,
@@ -1764,6 +1829,7 @@
 				881E62301ACBFC3400862B9E /* UserPortraitView_default.swift in Sources */,
 				8839B8831B0CD55E006C18F1 /* NSError+Screens.swift in Sources */,
 				881E62741ACBFC3400862B9E /* Flat7ThemeConstants.swift in Sources */,
+				888B86C11B2F150800D9E9F1 /* AudienceTargetingDisplayScreenlet.swift in Sources */,
 				88DC31E21ACC18F10078C961 /* SessionStorage.swift in Sources */,
 				8892C6AB1ACBD89400192232 /* Bool+Conversion.swift in Sources */,
 				88DC31E51ACC36F40078C961 /* CredentialStorage.swift in Sources */,
@@ -1785,6 +1851,7 @@
 				880ACA5B1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift in Sources */,
 				881E60D01ACBE56700862B9E /* LiferayPaginationOperation.swift in Sources */,
 				881E62281ACBFC3400862B9E /* AssetListView_default.swift in Sources */,
+				888B86C31B2F150800D9E9F1 /* AudienceTargetingDisplayViewModel.swift in Sources */,
 				881E62421ACBFC3400862B9E /* DDLFieldTextareaTableCell_default.swift in Sources */,
 				881E62491ACBFC3400862B9E /* DDLSubmitButtonTableCell_default.swift in Sources */,
 				881E60C01ACBE43200862B9E /* KeyboardManager.swift in Sources */,
@@ -1826,11 +1893,13 @@
 				8892C6B01ACBD89400192232 /* UIView+Animations.swift in Sources */,
 				881E60CE1ACBE56700862B9E /* BaseListScreenlet.swift in Sources */,
 				881E60D11ACBE56700862B9E /* BaseListTableView.swift in Sources */,
+				888B86C71B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderOperation.swift in Sources */,
 				887A3D6F1B32E189009A7881 /* LRScreensmobileService_v62.m in Sources */,
 				8892C6B41ACBD95400192232 /* LiferayServerContext.swift in Sources */,
 				8839B87D1B0CD539006C18F1 /* SignUpInteractor.swift in Sources */,
 				881E614B1ACBEDC600862B9E /* AssetListTableView.swift in Sources */,
 				880ACA621B0200D5007AD007 /* LiferayUploadUserPortraitOperation.swift in Sources */,
+				888B86C51B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderInteractor.swift in Sources */,
 				881E61211ACBE5F000862B9E /* UserPortraitBaseInteractor.swift in Sources */,
 				881E61851ACBEE0B00862B9E /* DDLFormTableView.swift in Sources */,
 				881E618A1ACBEE0B00862B9E /* DDLField+DataType.swift in Sources */,
@@ -1870,6 +1939,7 @@
 				881E624D1ACBFC3400862B9E /* DefaultThemeConstants.swift in Sources */,
 				881E62471ACBFC3400862B9E /* DDLFormView_default.swift in Sources */,
 				881E61781ACBEE0B00862B9E /* DDLFormScreenlet.swift in Sources */,
+				8853E79B1B300C380039C38C /* AudienceTargetingDisplayView_default.swift in Sources */,
 				881E626A1ACBFC3400862B9E /* WebContentDisplayView_default.swift in Sources */,
 				881E60C21ACBE43200862B9E /* ServerOperationInteractor.swift in Sources */,
 				881E617C1ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift in Sources */,
@@ -1885,7 +1955,9 @@
 				88A28EBB1B0DD1300040D7F6 /* NSBundle+discovery.swift in Sources */,
 				88DE25151AD2AB0A00714701 /* DDLFieldDocument_Tests.swift in Sources */,
 				88DC31E81ACC38860078C961 /* KeyChainStorage.swift in Sources */,
+				8853E79C1B300C380039C38C /* AudienceTargetingDisplayView_default.swift in Sources */,
 				881E62921ACBFEC300862B9E /* AuthBased.swift in Sources */,
+				888B86C61B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderInteractor.swift in Sources */,
 				881E62991ACBFF1800862B9E /* BaseScreenlet+progress.swift in Sources */,
 				88DE25101AD2AB0A00714701 /* SessionContext_Basic_Tests.swift in Sources */,
 				88DE251C1AD2AB0A00714701 /* DDLRecord_FieldValues_Tests.swift in Sources */,
@@ -1906,6 +1978,7 @@
 				88A2B7141ACDEBB1000C2065 /* LoginView_test.swift in Sources */,
 				88DE251B1AD2AB0A00714701 /* DDLParser_i18n_Tests.swift in Sources */,
 				881E62F41ACC04BA00862B9E /* DDLValuesParser.swift in Sources */,
+				888B86C21B2F150800D9E9F1 /* AudienceTargetingDisplayScreenlet.swift in Sources */,
 				880ACA631B0200D5007AD007 /* LiferayUploadUserPortraitOperation.swift in Sources */,
 				881E62EA1ACC04A500862B9E /* DDLField+Editor.swift in Sources */,
 				881E63081ACC06B900862B9E /* LoginScreenlet_ByUserId_Tests.swift in Sources */,
@@ -1931,6 +2004,7 @@
 				881E62971ACBFF0400862B9E /* LiferayPaginationOperation.swift in Sources */,
 				881E62F21ACC04A500862B9E /* DDLFieldUntyped.swift in Sources */,
 				88DE25121AD2AB0A00714701 /* DDLField_validation_Tests.swift in Sources */,
+				888B86C41B2F150800D9E9F1 /* AudienceTargetingDisplayViewModel.swift in Sources */,
 				88DE251A1AD2AB0A00714701 /* DDLParser_basic_Tests.swift in Sources */,
 				881E62F51ACC04BA00862B9E /* DDLXSDParser.swift in Sources */,
 				881E62B61ACBFFFA00862B9E /* LiferayServerContext.swift in Sources */,
@@ -1944,6 +2018,7 @@
 				8839B8811B0CD546006C18F1 /* LiferayUpdateCurrentUserOperation.swift in Sources */,
 				881E61AA1ACBFAAC00862B9E /* MockHelper.swift in Sources */,
 				881E62A31ACBFF4500862B9E /* Global.swift in Sources */,
+				888B86C81B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderOperation.swift in Sources */,
 				881E62901ACBFE8D00862B9E /* BaseScreenletView.swift in Sources */,
 				881E62EE1ACC04A500862B9E /* DDLFieldDocument.swift in Sources */,
 				881E62C11ACC00F300862B9E /* LiferayLoginByScreenNameOperation.swift in Sources */,
@@ -2058,6 +2133,15 @@
 				881E621F1ACBFC3400862B9E /* es */,
 			);
 			name = flat7.strings;
+			sourceTree = "<group>";
+		};
+		8853E7A41B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8853E7A51B3019CE0039C38C /* en */,
+				8853E7A81B3019D50039C38C /* es */,
+			);
+			name = "audiencetargetingdisplay-screenlet.strings";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
