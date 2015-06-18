@@ -19,6 +19,9 @@ pod 'DTPickerPresenter'
 pod 'TNRadioButtonGroup'
 pod 'MDRadialProgress'
 
+# Audience Targeting
+pod 'DeviceGuru'
+
 
 target :LiferayScreensTests do
 	pod 'Nocilla'
