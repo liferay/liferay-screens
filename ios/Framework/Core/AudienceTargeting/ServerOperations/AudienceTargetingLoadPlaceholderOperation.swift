@@ -17,8 +17,21 @@ public struct PlaceholderMapping {
 	var className: String?
 	var classPK: Int64?
 	var customContent: String?
-	var campaignId: Int64
 	var priority: Int
+
+	init?(className: String?, classPK: Int64?, customContent: String?, priority: Int?) {
+		if customContent != nil && (className == nil || classPK == nil) {
+			return nil
+		}
+		if priority == nil {
+			return nil
+		}
+
+		self.className = className
+		self.classPK = classPK
+		self.customContent = (customContent ?? "") == "" ? nil : customContent
+		self.priority = priority!
+	}
 }
 
 
@@ -71,14 +84,16 @@ public class AudienceTargetingLoadPlaceholderOperation: ServerOperation {
 
 			let resultList = result as! [[String:AnyObject]]
 			for content in resultList {
-				let placeholderMap = PlaceholderMapping(
+				if let placeholderMap = PlaceholderMapping(
 						className: content["className"] as? String,
 						classPK: content["classPK"].map { $0 as! Int }.map { Int64($0) },
 						customContent: content["customContent"] as? String,
-						campaignId: Int64(content["campaignId"] as! Int),
-						priority: content["campaignId"] as! Int)
-
-				results?.append(placeholderMap)
+						priority: content["campaignId"] as? Int) {
+					results?.append(placeholderMap)
+				}
+				else {
+					println("Wrong audience targeting mapping: \(content)")
+				}
 			}
 
 			if results?.count > 1 {

@@ -16,6 +16,6 @@ import UIKit
 
 @objc public protocol AudienceTargetingDisplayViewModel {
 
-	func setContent(content: String, forClassName className: String)
+	func setContent(content: AnyObject, mimeType: String?)
 
 }

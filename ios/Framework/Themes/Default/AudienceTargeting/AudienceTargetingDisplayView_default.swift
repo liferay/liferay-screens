@@ -13,8 +13,14 @@
 */
 import UIKit
 
+#if LIFERAY_SCREENS_FRAMEWORK
+	import AFNetworking
+#endif
+
 
 public class AudienceTargetingDisplayView_default: BaseScreenletView, AudienceTargetingDisplayViewModel {
+
+	@IBOutlet weak var imageView: UIImageView?
 
 	override public func onCreated() {
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
@@ -23,8 +29,43 @@ public class AudienceTargetingDisplayView_default: BaseScreenletView, AudienceTa
 
 	//MARK: AudienceTargetingDisplayViewModel
 
-	public func setContent(content: String, forClassName className: String) {
-		println("content \(content) for class \(className)")
+	public func setContent(content: AnyObject, mimeType: String?) {
+		if let mimeType = mimeType {
+			if mimeType.hasPrefix("image/") {
+				if let image = content as? UIImage {
+					imageView?.image = image
+					imageView?.hidden = false
+				}
+				else if content is String && (content as! String).hasPrefix("http") {
+					loadImage(content as! String)
+				}
+			}
+			else {
+				println("Unknown MimeType: \(mimeType)")
+			}
+		}
+		else {
+			println("Can't render Audience Targeting content without MimeType: \(content)")
+		}
 	}
+
+	func loadImage(url: String) {
+		let request = NSURLRequest(
+				URL: NSURL(string: url)!,
+				cachePolicy: .ReloadIgnoringLocalCacheData,
+				timeoutInterval: 30.0)
+
+		imageView?.setImageWithURLRequest(request,
+				placeholderImage: nil,
+				success: { (request, response, image) -> Void in
+					self.imageView?.image = image
+					self.imageView?.hidden = false
+				},
+				failure: { (request, response, error) -> Void in
+					println("Can't load image from URL \(url)")
+				})
+	}
+
+
 
 }

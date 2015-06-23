@@ -15,12 +15,47 @@ import UIKit
 import DeviceGuru
 
 
-class AudienceTargetingLoadPlaceholderInteractor: ServerOperationInteractor {
+class AudienceTargetingLoadPlaceholderInteractor: Interactor {
 
-	var resultContent: String?
+	var resultClassPK: String?
 	var resultClassName: String?
+	var resultCustomContent: String?
 
-	override func createOperation() -> AudienceTargetingLoadPlaceholderOperation {
+	var resultContent: AnyObject?
+	var resultMimeType: String?
+
+
+	override func start() -> Bool {
+		let result = createAudienceTargetingOperation().validateAndEnqueue()
+
+		if !result {
+			self.callOnFailure(NSError.errorWithCause(.AbortedDueToPreconditions))
+		}
+
+		return result
+	}
+
+
+	func createAudienceTargetingOperation() -> AudienceTargetingLoadPlaceholderOperation {
+		func computeUserContext() -> [String:String] {
+			var result = [String:String]()
+
+			if SessionContext.hasSession {
+				result["userId"] = (SessionContext.userAttribute("userId") as! Int).description
+			}
+
+			// device
+			result["os-name"] = "ios"
+			result["os-version"] = NSProcessInfo.processInfo().operatingSystemVersionString
+			result["device"] = hardwareDescription()
+
+			result["locale"] = NSLocale.currentLocaleString
+
+			// more...
+
+			return result
+		}
+
 		let screenlet = self.screenlet as! AudienceTargetingDisplayScreenlet
 		let operation = AudienceTargetingLoadPlaceholderOperation(screenlet: self.screenlet)
 
@@ -32,35 +67,90 @@ class AudienceTargetingLoadPlaceholderInteractor: ServerOperationInteractor {
 
 		operation.userContext = computeUserContext()
 
+		// TODO retain-cycle on operation?
+		operation.onComplete = {
+			if let error = $0.lastError {
+				self.callOnFailure(error)
+			}
+			else if let loadOp = ($0 as? AudienceTargetingLoadPlaceholderOperation),
+					result = loadOp.results?.first {
+
+				if let customContent = result.customContent {
+					self.resultCustomContent = customContent
+					self.resultClassName = nil
+					self.resultClassPK = nil
+
+					self.callOnSuccess()
+				}
+				else {
+					if let className = result.className,
+							classPK = result.classPK?.description {
+						self.resultClassName = className
+						self.resultClassPK = classPK
+
+						self.startContentOperation(
+								className: className,
+								classPK: classPK);
+					}
+					else {
+						self.callOnFailure(NSError.errorWithCause(.InvalidServerResponse))
+					}
+				}
+			}
+		}
+
 		return operation
 	}
 
-	override func completedOperation(op: ServerOperation) {
-		let loadOp = (op as! AudienceTargetingLoadPlaceholderOperation)
-
-		if let result = loadOp.results?.first {
-			self.resultContent = result.classPK?.description ?? result.customContent
-			self.resultClassName = result.className
+	func startContentOperation(#className: String, classPK: String) {
+		if let op = createContentOperation(className: className, classPK: classPK) {
+			if !op.validateAndEnqueue() {
+				self.callOnFailure(NSError.errorWithCause(.InvalidServerResponse))
+			}
+		}
+		else {
+			self.callOnFailure(NSError.errorWithCause(.InvalidServerResponse))
 		}
 	}
 
-	func computeUserContext() -> [String:String] {
-		var result = [String:String]()
+	func createContentOperation(#className: String, classPK: String) -> ServerOperation? {
+		var operation: ServerOperation? = nil
 
-		if SessionContext.hasSession {
-			result["userId"] = (SessionContext.userAttribute("userId") as! Int).description
+		if className == "com.liferay.portlet.documentlibrary.model.DLFileEntry" {
+			let op = LoadDLEntryOperation(screenlet: self.screenlet)
+
+			if let fileEntryId = classPK.toInt() {
+				op.fileEntryId = Int64(fileEntryId)
+
+				// TODO retain-cycle on operation?
+				op.onComplete = {
+					if let error = $0.lastError {
+						self.callOnFailure(error)
+					}
+					else if let loadOp = ($0 as? LoadDLEntryOperation),
+							resultGroupId = loadOp.resultGroupId,
+							resultFolderId = loadOp.resultFolderId,
+							resultName = loadOp.resultName,
+							resultUUID = loadOp.resultUUID,
+							resultMimeType = loadOp.resultMimeType {
+
+						self.resultContent = "\(LiferayServerContext.server)/documents/" +
+								"\(resultGroupId)/\(resultFolderId)/" +
+								"\(resultName)/\(resultUUID)"
+						self.resultMimeType = resultMimeType
+
+						self.callOnSuccess()
+					}
+					else {
+						self.callOnFailure(NSError.errorWithCause(.InvalidServerResponse))
+					}
+				}
+
+				operation = op
+			}
 		}
 
-		// device
-		result["os-name"] = "ios"
-		result["os-version"] = NSProcessInfo.processInfo().operatingSystemVersionString
-		result["device"] = hardwareDescription()
-
-		result["locale"] = NSLocale.currentLocaleString
-
-		// more...
-
-		return result
+		return operation
 	}
 
 }

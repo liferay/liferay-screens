@@ -17,8 +17,8 @@ import UIKit
 @objc public protocol AudienceTargetingDisplayScreenletDelegate {
 
 	optional func screenlet(screenlet: AudienceTargetingDisplayScreenlet,
-			onAudienceTargetingResponse value: String,
-			forClassName: String)
+			onAudienceTargetingResponse value: AnyObject,
+			mimeType: String?)
 
 	optional func screenlet(screenlet: AudienceTargetingDisplayScreenlet,
 			onAudienceTargetingError error: NSError)
@@ -49,14 +49,15 @@ import UIKit
 		let interactor = AudienceTargetingLoadPlaceholderInteractor(screenlet: self)
 
 		interactor.onSuccess = {
+			let content: AnyObject = interactor.resultCustomContent ?? (interactor.resultContent!)
+
 			self.delegate?.screenlet?(self,
-					onAudienceTargetingResponse: interactor.resultContent!,
-					forClassName: interactor.resultClassName!)
+					onAudienceTargetingResponse: content,
+					mimeType: interactor.resultMimeType)
 
 			let viewModel = (self.screenletView as! AudienceTargetingDisplayViewModel)
 
-			viewModel.setContent(interactor.resultContent!,
-					forClassName: interactor.resultClassName!)
+			viewModel.setContent(content, mimeType: interactor.resultMimeType)
 		}
 
 		interactor.onFailure = {

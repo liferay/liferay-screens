@@ -9,11 +9,20 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AudienceTargetingDisplayView_default" customModule="LiferayScreens">
             <rect key="frame" x="0.0" y="0.0" width="272" height="225"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="idC-Ea-yfo">
+                    <rect key="frame" x="0.0" y="0.0" width="272" height="225"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+            </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageView" destination="idC-Ea-yfo" id="sBu-Zd-XDC"/>
+            </connections>
             <point key="canvasLocation" x="334" y="179.5"/>
         </view>
     </objects>
