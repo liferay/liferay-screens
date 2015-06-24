@@ -65,7 +65,4 @@ Pod::Spec.new do |s|
 	s.dependency 'TNRadioButtonGroup'
 	s.dependency 'MDRadialProgress'
 
-	# Audience Targeting
-	s.dependency 'DeviceGuru'
-
 end

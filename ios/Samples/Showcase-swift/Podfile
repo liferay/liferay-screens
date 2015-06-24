@@ -16,6 +16,3 @@ pod 'ODRefreshControl'
 pod 'DTPickerPresenter'
 pod 'TNRadioButtonGroup'
 pod 'MDRadialProgress'
-
-# Audience Targeting
-#pod 'DeviceGuru'

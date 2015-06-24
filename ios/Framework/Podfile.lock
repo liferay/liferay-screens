@@ -21,7 +21,6 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - CryptoSwift (0.0.10)
-  - DeviceGuru (1.2.0)
   - DTPickerPresenter (0.2.0)
   - Liferay-iOS-SDK (6.2.0.17):
     - AFNetworking (~> 2.5.0)
@@ -36,7 +35,6 @@ PODS:
 
 DEPENDENCIES:
   - CryptoSwift
-  - DeviceGuru
   - DTPickerPresenter
   - Liferay-iOS-SDK (= 6.2.0.17)
   - MBProgressHUD (~> 0.9.1)
@@ -51,7 +49,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
   CryptoSwift: 3b886d001f50deb65623a8967d68f6b8bf8d9ba1
-  DeviceGuru: 34cf5b30fd99e7e3a4cee4c77c03bc94a4362be4
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
   Liferay-iOS-SDK: 00b511b88592d07faade2bed8252c04193df565d
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad

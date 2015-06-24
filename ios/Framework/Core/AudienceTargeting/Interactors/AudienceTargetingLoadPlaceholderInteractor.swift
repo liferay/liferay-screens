@@ -12,7 +12,6 @@
 * details.
 */
 import UIKit
-import DeviceGuru
 
 
 class AudienceTargetingLoadPlaceholderInteractor: Interactor {
@@ -47,7 +46,6 @@ class AudienceTargetingLoadPlaceholderInteractor: Interactor {
 			// device
 			result["os-name"] = "ios"
 			result["os-version"] = NSProcessInfo.processInfo().operatingSystemVersionString
-			result["device"] = hardwareDescription()
 
 			result["locale"] = NSLocale.currentLocaleString
 
