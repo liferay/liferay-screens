@@ -35,11 +35,13 @@
 #import "LRScreensassetentryService_v62.h"
 #import "LRScreensddlrecordService_v62.h"
 #import "LRScreensuserService_v62.h"
+#import "LRScreensmobileService_v62.h"
 #import "LRDDMStructureService_v62.h"
 #import "LRDDLRecordService_v62.h"
 #import "LRDLAppService_v62.h"
 #import "LRAssetEntryService_v62.h"
 #import "LRJournalArticleService_v62.h"
+#import "LRDLFileEntryService_v62.h"
 
 #import "LRCallback.h"
 #import "LRSession.h"

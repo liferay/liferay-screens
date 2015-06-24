@@ -31,7 +31,7 @@ extension DDLField {
 		case DDLDocument = "document-library"
 		case Unsupported = ""
 
-		public static func from(#xmlElement:SMXMLElement) -> DataType {
+		public static func from(#xmlElement: SMXMLElement) -> DataType {
 			return DataType(rawValue: xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 		}
 

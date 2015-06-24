@@ -13,6 +13,10 @@
 */
 import UIKit
 
+#if LIFERAY_SCREENS_FRAMEWORK
+	import LRMobileSDK
+#endif
+
 
 public class LiferayDDLFormLoadOperation: ServerOperation {
 

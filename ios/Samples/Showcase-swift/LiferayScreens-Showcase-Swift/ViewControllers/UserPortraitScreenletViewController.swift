@@ -12,7 +12,10 @@
  * details.
  */
 import UIKit
-import LiferayScreens
+
+#if LIFERAY_SCREENS_FRAMEWORK
+	import LiferayScreens
+#endif
 
 
 class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenletDelegate {

@@ -13,6 +13,11 @@
 */
 import UIKit
 
+#if LIFERAY_SCREENS_FRAMEWORK
+	import LRMobileSDK
+#endif
+
+
 public struct PlaceholderMapping {
 	var className: String?
 	var classPK: Int64?
