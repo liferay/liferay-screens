@@ -27,7 +27,7 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 	}
 
 	private var viewModel: SignUpViewModel {
-		return screenlet.screenletView as! SignUpViewModel
+		return screenlet!.screenletView as! SignUpViewModel
 	}
 
 

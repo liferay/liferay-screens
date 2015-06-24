@@ -33,7 +33,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 	}
 
 	internal var viewModel: ForgotPasswordViewModel {
-		return screenlet.screenletView as! ForgotPasswordViewModel
+		return screenlet!.screenletView as! ForgotPasswordViewModel
 	}
 
 	private var successMessageKey = ""

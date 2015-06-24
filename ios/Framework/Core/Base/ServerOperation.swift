@@ -41,13 +41,17 @@ public class ServerOperation: NSOperation {
 	public var hudFailureMessage: HUDMessage? { return nil }
 	public var hudSuccessMessage: HUDMessage? { return nil }
 
-	internal var screenlet: BaseScreenlet
+	internal var screenlet: BaseScreenlet?
 	internal var onComplete: (ServerOperation -> Void)?
 
 	internal var anonymousAuth: AnonymousAuthType? {
 		return screenlet as? AnonymousAuthType
 	}
 
+
+	public override init() {
+		super.init()
+	}
 
 	public init(screenlet: BaseScreenlet) {
 		self.screenlet = screenlet
@@ -144,8 +148,10 @@ public class ServerOperation: NSOperation {
 	//MARK: HUD methods
 
 	internal func showHUD(#message: String, details: String? = nil) {
-		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.showHUDWithMessage(message, details: details)
+		if let screenlet = self.screenlet {
+			dispatch_async(dispatch_get_main_queue()) {
+				screenlet.showHUDWithMessage(message, details: details)
+			}
 		}
 	}
 
@@ -155,47 +161,59 @@ public class ServerOperation: NSOperation {
 			closeMode: BaseScreenlet.CloseMode,
 			spinnerMode: BaseScreenlet.SpinnerMode) {
 
-		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.showHUDWithMessage(message,
-					details: details,
-					closeMode: closeMode,
-					spinnerMode: spinnerMode)
+		if let screenlet = self.screenlet {
+			dispatch_async(dispatch_get_main_queue()) {
+				screenlet.showHUDWithMessage(message,
+						details: details,
+						closeMode: closeMode,
+						spinnerMode: spinnerMode)
+			}
 		}
 	}
 
 	internal func showValidationHUD(#message: String, details: String? = nil) {
-		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.showHUDAlert(message: message, details: details)
+		if let screenlet = self.screenlet {
+			dispatch_async(dispatch_get_main_queue()) {
+				screenlet.showHUDAlert(message: message, details: details)
+			}
 		}
 	}
 
 	internal func hideHUD() {
-		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.hideHUD()
+		if let screenlet = self.screenlet {
+			dispatch_async(dispatch_get_main_queue()) {
+				screenlet.hideHUD()
+			}
 		}
 	}
 
 	internal func hideHUD(#message: String, details: String? = nil) {
-		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.hideHUDWithMessage(message, details: details)
+		if let screenlet = self.screenlet {
+			dispatch_async(dispatch_get_main_queue()) {
+				screenlet.hideHUDWithMessage(message, details: details)
+			}
 		}
 	}
 
 	internal func hideHUD(#errorMessage: String, details: String? = nil) {
-		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.showHUDWithMessage(errorMessage,
-					details: details,
-					closeMode: .ManualClose(true),
-					spinnerMode:.NoSpinner)
+		if let screenlet = self.screenlet {
+			dispatch_async(dispatch_get_main_queue()) {
+				screenlet.showHUDWithMessage(errorMessage,
+						details: details,
+						closeMode: .ManualClose(true),
+						spinnerMode:.NoSpinner)
+			}
 		}
 	}
 
 	internal func hideHUD(#error: NSError, message: String, details: String? = nil) {
-		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.showHUDWithMessage(message,
-				details: details,
-				closeMode:.ManualClose(true),
-				spinnerMode:.NoSpinner)
+		if let screenlet = self.screenlet {
+			dispatch_async(dispatch_get_main_queue()) {
+				screenlet.showHUDWithMessage(message,
+					details: details,
+					closeMode:.ManualClose(true),
+					spinnerMode:.NoSpinner)
+			}
 		}
 	}
 
@@ -214,8 +232,8 @@ public class ServerOperation: NSOperation {
 	}
 
 	private func prepareRun() {
-		self.screenlet.onStartOperation()
-		self.screenlet.screenletView?.onStartOperation()
+		self.screenlet?.onStartOperation()
+		self.screenlet?.screenletView?.onStartOperation()
 
 		if let messageValue = hudLoadingMessage {
 			showHUD(message: messageValue.0, details: messageValue.details)
@@ -242,9 +260,11 @@ public class ServerOperation: NSOperation {
 			}
 		}
 
-		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.onFinishOperation()
-			self.screenlet.screenletView?.onFinishOperation()
+		if let screenlet = self.screenlet {
+			dispatch_async(dispatch_get_main_queue()) {
+				screenlet.onFinishOperation()
+				screenlet.screenletView?.onFinishOperation()
+			}
 		}
 	}
 

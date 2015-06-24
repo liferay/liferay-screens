@@ -24,7 +24,7 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 	}
 
 	internal var viewModel: DDLListViewModel {
-		return screenlet.screenletView as! DDLListViewModel
+		return screenlet!.screenletView as! DDLListViewModel
 	}
 
 	override func validateData() -> Bool {
