@@ -361,8 +361,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="31S-uI-rD1" customClass="AudienceTargetingDisplayScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="413"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="31S-uI-rD1" customClass="AudienceTargetingDisplayScreenlet" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="appId" value="com.liferay.events"/>
@@ -375,6 +375,12 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="31S-uI-rD1" firstAttribute="top" secondItem="lRG-fy-MW2" secondAttribute="bottom" id="8qX-73-acT"/>
+                            <constraint firstItem="31S-uI-rD1" firstAttribute="leading" secondItem="gYS-RF-dNc" secondAttribute="leadingMargin" constant="-16" id="V66-Wv-wWY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="31S-uI-rD1" secondAttribute="trailing" constant="-16" id="Y3w-2m-QhQ"/>
+                            <constraint firstItem="yJc-P3-qjS" firstAttribute="top" secondItem="31S-uI-rD1" secondAttribute="bottom" id="caQ-5k-8BI"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qss-kg-guN"/>
                     <connections>

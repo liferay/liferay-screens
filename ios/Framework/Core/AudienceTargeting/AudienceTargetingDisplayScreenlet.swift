@@ -48,6 +48,9 @@ import UIKit
 		// what if we pass data to be used in rules evaluation in this request?
 		let interactor = AudienceTargetingLoadPlaceholderInteractor(screenlet: self)
 
+		// force start here to avoid start-stop-start effects
+		screenletView?.onStartOperation()
+
 		interactor.onSuccess = {
 			let content: AnyObject = interactor.resultCustomContent ?? (interactor.resultContent!)
 
@@ -58,10 +61,13 @@ import UIKit
 			let viewModel = (self.screenletView as! AudienceTargetingDisplayViewModel)
 
 			viewModel.setContent(content, mimeType: interactor.resultMimeType)
+
+			self.screenletView?.onFinishOperation()
 		}
 
 		interactor.onFailure = {
 			self.delegate?.screenlet?(self, onAudienceTargetingError: $0)
+			self.screenletView?.onFinishOperation()
 			return
 		}
 

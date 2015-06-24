@@ -14,6 +14,11 @@
                     <rect key="frame" x="0.0" y="0.0" width="272" height="225"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="aBM-K8-iTr">
+                    <rect key="frame" x="118" y="94" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
@@ -21,6 +26,7 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="activityView" destination="aBM-K8-iTr" id="pD8-xq-efX"/>
                 <outlet property="imageView" destination="idC-Ea-yfo" id="sBu-Zd-XDC"/>
             </connections>
             <point key="canvasLocation" x="334" y="179.5"/>

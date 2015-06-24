@@ -50,15 +50,6 @@ public class AudienceTargetingLoadPlaceholderOperation: ServerOperation {
 	public var results: [PlaceholderMapping]?
 
 
-	override public var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("audiencetargetingdisplay-screenlet", "loading-message", self),
-				details: LocalizedString("audiencetargetingdisplay-screenlet", "loading-details", self))
-	}
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("audiencetargetingdisplay-screenlet", "loading-error", self), details: nil)
-	}
-
-
 	//MARK: ServerOperation
 
 	override func validateData() -> Bool {

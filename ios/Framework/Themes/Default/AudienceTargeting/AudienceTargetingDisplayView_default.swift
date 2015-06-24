@@ -21,9 +21,18 @@ import UIKit
 public class AudienceTargetingDisplayView_default: BaseScreenletView, AudienceTargetingDisplayViewModel {
 
 	@IBOutlet weak var imageView: UIImageView?
+	@IBOutlet weak var activityView: UIActivityIndicatorView!
 
 	override public func onCreated() {
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
+	}
+
+	override public func onStartOperation() {
+		activityView?.startAnimatingConcurrent()
+	}
+
+	override public func onFinishOperation() {
+		activityView?.stopAnimatingConcurrent()
 	}
 
 

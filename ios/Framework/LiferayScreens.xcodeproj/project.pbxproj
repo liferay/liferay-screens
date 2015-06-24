@@ -273,8 +273,6 @@
 		8853E79C1B300C380039C38C /* AudienceTargetingDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8853E7991B300C380039C38C /* AudienceTargetingDisplayView_default.swift */; };
 		8853E79D1B300C380039C38C /* AudienceTargetingDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8853E79A1B300C380039C38C /* AudienceTargetingDisplayView_default.xib */; };
 		8853E79E1B300C380039C38C /* AudienceTargetingDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8853E79A1B300C380039C38C /* AudienceTargetingDisplayView_default.xib */; };
-		8853E7A61B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8853E7A41B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings */; };
-		8853E7A71B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8853E7A41B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings */; };
 		887A3D6E1B32E189009A7881 /* LRScreensmobileService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887A3D6C1B32E189009A7881 /* LRScreensmobileService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		887A3D6F1B32E189009A7881 /* LRScreensmobileService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 887A3D6D1B32E189009A7881 /* LRScreensmobileService_v62.m */; };
 		887A3D701B32E189009A7881 /* LRScreensmobileService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 887A3D6D1B32E189009A7881 /* LRScreensmobileService_v62.m */; };
@@ -567,8 +565,6 @@
 		8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByUserIdOperation.swift; sourceTree = "<group>"; };
 		8853E7991B300C380039C38C /* AudienceTargetingDisplayView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudienceTargetingDisplayView_default.swift; sourceTree = "<group>"; };
 		8853E79A1B300C380039C38C /* AudienceTargetingDisplayView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudienceTargetingDisplayView_default.xib; sourceTree = "<group>"; };
-		8853E7A51B3019CE0039C38C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/audiencetargetingdisplay-screenlet.strings"; sourceTree = "<group>"; };
-		8853E7A81B3019D50039C38C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/audiencetargetingdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		887A3D6C1B32E189009A7881 /* LRScreensmobileService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensmobileService_v62.h; sourceTree = "<group>"; };
 		887A3D6D1B32E189009A7881 /* LRScreensmobileService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensmobileService_v62.m; sourceTree = "<group>"; };
 		888B86BB1B2F150800D9E9F1 /* AudienceTargetingDisplayScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudienceTargetingDisplayScreenlet.swift; sourceTree = "<group>"; };
@@ -587,6 +583,7 @@
 		8892C6AA1ACBD89400192232 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		8892C6B21ACBD95400192232 /* LiferayServerContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayServerContext.swift; sourceTree = "<group>"; };
 		8892C6B31ACBD95400192232 /* SessionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext.swift; sourceTree = "<group>"; };
+		88A283CC1B3AAA0A00BEF482 /* UIActivityIndicatorView+Concurrent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Concurrent.swift"; sourceTree = "<group>"; };
 		88A28EB91B0DD1300040D7F6 /* NSBundle+discovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+discovery.swift"; sourceTree = "<group>"; };
 		88A2B7121ACDEBB1000C2065 /* LoginView_test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_test.swift; sourceTree = "<group>"; };
 		88A2B7131ACDEBB1000C2065 /* LoginView_test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_test.xib; sourceTree = "<group>"; };
@@ -677,7 +674,6 @@
 		880ACA641B0224A0007AD007 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8853E7A41B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings */,
 				880ACA651B0224A0007AD007 /* ddlform-screenlet.strings */,
 				880ACA671B0224A0007AD007 /* signup-screenlet.strings */,
 				880ACA691B0224A0007AD007 /* core.strings */,
@@ -1422,6 +1418,7 @@
 				88A28EB91B0DD1300040D7F6 /* NSBundle+discovery.swift */,
 				8839B8821B0CD55E006C18F1 /* NSError+Screens.swift */,
 				8892C6A81ACBD89400192232 /* NSLocale+CurrentLocale.swift */,
+				88A283CC1B3AAA0A00BEF482 /* UIActivityIndicatorView+Concurrent.swift */,
 				8892C6A91ACBD89400192232 /* UIButton+Title.swift */,
 				8892C6AA1ACBD89400192232 /* UIView+Animations.swift */,
 			);
@@ -1633,7 +1630,6 @@
 				881E62711ACBFC3400862B9E /* SignUpView_flat7.xib in Resources */,
 				881E623B1ACBFC3400862B9E /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
 				881E62781ACBFC3400862B9E /* flat7-field.png in Resources */,
-				8853E7A61B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings in Resources */,
 				881E624E1ACBFC3400862B9E /* default.strings in Resources */,
 				881E62631ACBFC3400862B9E /* default-portrait-placeholder.png in Resources */,
 				881E62481ACBFC3400862B9E /* DDLFormView_default.xib in Resources */,
@@ -1692,7 +1688,6 @@
 				880ACA8A1B0224A0007AD007 /* webcontentdisplay-screenlet.strings in Resources */,
 				880ACA861B0224A0007AD007 /* login-screenlet.strings in Resources */,
 				881E62C91ACC019800862B9E /* default-field-focused@2x.png in Resources */,
-				8853E7A71B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings in Resources */,
 				881E62CF1ACC01E700862B9E /* default-form-gradient-top.png in Resources */,
 				881E62D01ACC01E700862B9E /* default-form-gradient-top@2x.png in Resources */,
 				881E62C41ACC016800862B9E /* default-lock-icon.png in Resources */,
@@ -1900,6 +1895,7 @@
 				881E60CE1ACBE56700862B9E /* BaseListScreenlet.swift in Sources */,
 				881E60D11ACBE56700862B9E /* BaseListTableView.swift in Sources */,
 				888B86C71B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderOperation.swift in Sources */,
+				88A283CD1B3AAA0A00BEF482 /* UIActivityIndicatorView+Concurrent.swift in Sources */,
 				887A3D6F1B32E189009A7881 /* LRScreensmobileService_v62.m in Sources */,
 				8892C6B41ACBD95400192232 /* LiferayServerContext.swift in Sources */,
 				8839B87D1B0CD539006C18F1 /* SignUpInteractor.swift in Sources */,
@@ -1966,6 +1962,7 @@
 				881E62921ACBFEC300862B9E /* AuthBased.swift in Sources */,
 				888B86C61B2F150800D9E9F1 /* AudienceTargetingLoadPlaceholderInteractor.swift in Sources */,
 				881E62991ACBFF1800862B9E /* BaseScreenlet+progress.swift in Sources */,
+				88A283CE1B3AAA1000BEF482 /* UIActivityIndicatorView+Concurrent.swift in Sources */,
 				88DE25101AD2AB0A00714701 /* SessionContext_Basic_Tests.swift in Sources */,
 				88DE251C1AD2AB0A00714701 /* DDLRecord_FieldValues_Tests.swift in Sources */,
 				88DE250F1AD2AB0A00714701 /* LiferayServerContext_Load_Tests.swift in Sources */,
@@ -2141,15 +2138,6 @@
 				881E621F1ACBFC3400862B9E /* es */,
 			);
 			name = flat7.strings;
-			sourceTree = "<group>";
-		};
-		8853E7A41B3019CE0039C38C /* audiencetargetingdisplay-screenlet.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8853E7A51B3019CE0039C38C /* en */,
-				8853E7A81B3019D50039C38C /* es */,
-			);
-			name = "audiencetargetingdisplay-screenlet.strings";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
