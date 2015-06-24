@@ -149,7 +149,7 @@ public class ServerOperation: NSOperation {
 
 	internal func showHUD(#message: String, details: String? = nil) {
 		if let screenlet = self.screenlet {
-			dispatch_async(dispatch_get_main_queue()) {
+			dispatch_main {
 				screenlet.showHUDWithMessage(message, details: details)
 			}
 		}
@@ -162,7 +162,7 @@ public class ServerOperation: NSOperation {
 			spinnerMode: BaseScreenlet.SpinnerMode) {
 
 		if let screenlet = self.screenlet {
-			dispatch_async(dispatch_get_main_queue()) {
+			dispatch_main {
 				screenlet.showHUDWithMessage(message,
 						details: details,
 						closeMode: closeMode,
@@ -173,7 +173,7 @@ public class ServerOperation: NSOperation {
 
 	internal func showValidationHUD(#message: String, details: String? = nil) {
 		if let screenlet = self.screenlet {
-			dispatch_async(dispatch_get_main_queue()) {
+			dispatch_main {
 				screenlet.showHUDAlert(message: message, details: details)
 			}
 		}
@@ -181,7 +181,7 @@ public class ServerOperation: NSOperation {
 
 	internal func hideHUD() {
 		if let screenlet = self.screenlet {
-			dispatch_async(dispatch_get_main_queue()) {
+			dispatch_main {
 				screenlet.hideHUD()
 			}
 		}
@@ -189,7 +189,7 @@ public class ServerOperation: NSOperation {
 
 	internal func hideHUD(#message: String, details: String? = nil) {
 		if let screenlet = self.screenlet {
-			dispatch_async(dispatch_get_main_queue()) {
+			dispatch_main {
 				screenlet.hideHUDWithMessage(message, details: details)
 			}
 		}
@@ -197,7 +197,7 @@ public class ServerOperation: NSOperation {
 
 	internal func hideHUD(#errorMessage: String, details: String? = nil) {
 		if let screenlet = self.screenlet {
-			dispatch_async(dispatch_get_main_queue()) {
+			dispatch_main {
 				screenlet.showHUDWithMessage(errorMessage,
 						details: details,
 						closeMode: .ManualClose(true),
@@ -208,7 +208,7 @@ public class ServerOperation: NSOperation {
 
 	internal func hideHUD(#error: NSError, message: String, details: String? = nil) {
 		if let screenlet = self.screenlet {
-			dispatch_async(dispatch_get_main_queue()) {
+			dispatch_main {
 				screenlet.showHUDWithMessage(message,
 					details: details,
 					closeMode:.ManualClose(true),
@@ -222,7 +222,7 @@ public class ServerOperation: NSOperation {
 
 	private func callOnComplete() {
 		if self.onComplete != nil {
-			dispatch_async(dispatch_get_main_queue()) {
+			dispatch_main {
 				self.onComplete!(self)
 
 				// this breaks the retain cycle between the op and 'onComplete'
@@ -261,7 +261,7 @@ public class ServerOperation: NSOperation {
 		}
 
 		if let screenlet = self.screenlet {
-			dispatch_async(dispatch_get_main_queue()) {
+			dispatch_main {
 				screenlet.onFinishOperation()
 				screenlet.screenletView?.onFinishOperation()
 			}

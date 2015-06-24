@@ -123,7 +123,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 			default: ()
 		}
 
-		dispatch_async(dispatch_get_main_queue()) {
+		dispatch_main {
 			self.progress!.setNeedsDisplay()
 	    }
 	}

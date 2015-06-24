@@ -26,28 +26,16 @@ import UIKit
 	}
 
 	public func callOnSuccess() {
-		if NSThread.isMainThread() {
-			onSuccess?()
-			finish()
-		}
-		else {
-			dispatch_async(dispatch_get_main_queue()) {
-				self.onSuccess?()
-				self.finish()
-			}
+		dispatch_main {
+			self.onSuccess?()
+			self.finish()
 		}
 	}
 
 	public func callOnFailure(error: NSError) {
-		if NSThread.isMainThread() {
-			onFailure?(error)
-			finish()
-		}
-		else {
-			dispatch_async(dispatch_get_main_queue()) {
-				self.onFailure?(error)
-				self.finish()
-			}
+		dispatch_main {
+			self.onFailure?(error)
+			self.finish()
 		}
 	}
 
