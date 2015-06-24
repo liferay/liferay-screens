@@ -79,30 +79,11 @@ public class UserPortraitView_default: BaseScreenletView,
 	}
 
 	override public func onStartOperation() {
-		objc_sync_enter(self)
-
-		// use tag to track the start count
-		if activityIndicator?.tag == 0 {
-			activityIndicator?.startAnimating()
-		}
-
-		activityIndicator?.tag++
-
-		objc_sync_exit(self)
+		activityIndicator?.startAnimatingConcurrent()
 	}
 
 	override public func onFinishOperation() {
-		if activityIndicator?.tag > 0 {
-			objc_sync_enter(self)
-
-			activityIndicator?.tag--
-
-			if activityIndicator?.tag == 0 {
-				activityIndicator?.stopAnimating()
-			}
-
-			objc_sync_exit(self)
-		}
+		activityIndicator?.stopAnimatingConcurrent()
 	}
 
 	override public func onShow() {

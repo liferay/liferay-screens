@@ -213,6 +213,7 @@
 		88A283C71B3AA31C00BEF482 /* default-user-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A2837E1B3AA31C00BEF482 /* default-user-icon@2x.png */; };
 		88A283C81B3AA31C00BEF482 /* WebContentDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A283821B3AA31C00BEF482 /* WebContentDisplayView_default.swift */; };
 		88A283C91B3AA31C00BEF482 /* WebContentDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A283831B3AA31C00BEF482 /* WebContentDisplayView_default.xib */; };
+		88A283CB1B3AA9EF00BEF482 /* UIActivityIndicatorView+Concurrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A283CA1B3AA9EF00BEF482 /* UIActivityIndicatorView+Concurrent.swift */; };
 		88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2A711AD3DDE600714701 /* AppDelegate.swift */; };
 		88DE2A771AD3DDE600714701 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A751AD3DDE600714701 /* Main.storyboard */; };
 		88DE2A791AD3DDE600714701 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A781AD3DDE600714701 /* Images.xcassets */; };
@@ -458,6 +459,7 @@
 		88A283801B3AA31C00BEF482 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/default.strings; sourceTree = "<group>"; };
 		88A283821B3AA31C00BEF482 /* WebContentDisplayView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayView_default.swift; sourceTree = "<group>"; };
 		88A283831B3AA31C00BEF482 /* WebContentDisplayView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentDisplayView_default.xib; sourceTree = "<group>"; };
+		88A283CA1B3AA9EF00BEF482 /* UIActivityIndicatorView+Concurrent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Concurrent.swift"; sourceTree = "<group>"; };
 		88DE2A6C1AD3DDE600714701 /* LiferayScreens-Showcase-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiferayScreens-Showcase-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88DE2A701AD3DDE600714701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88DE2A711AD3DDE600714701 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -897,6 +899,7 @@
 				88A281531B3A9A1200BEF482 /* NSBundle+discovery.swift */,
 				88A281541B3A9A1200BEF482 /* NSError+Screens.swift */,
 				88A281551B3A9A1200BEF482 /* NSLocale+CurrentLocale.swift */,
+				88A283CA1B3AA9EF00BEF482 /* UIActivityIndicatorView+Concurrent.swift */,
 				88A281561B3A9A1200BEF482 /* UIButton+Title.swift */,
 				88A281571B3A9A1200BEF482 /* UIView+Animations.swift */,
 			);
@@ -1527,6 +1530,7 @@
 				88A282141B3A9A1200BEF482 /* UploadUserPortraitInteractor.swift in Sources */,
 				88A281FF1B3A9A1200BEF482 /* GetUserByScreenNameOperation.swift in Sources */,
 				88A281F71B3A9A1200BEF482 /* AssetListTableView.swift in Sources */,
+				88A283CB1B3AA9EF00BEF482 /* UIActivityIndicatorView+Concurrent.swift in Sources */,
 				88A282631B3A9A1200BEF482 /* WebContentDisplayLoadInteractor.swift in Sources */,
 				88A282211B3A9A1200BEF482 /* BaseListScreenlet.swift in Sources */,
 				88A282171B3A9A1200BEF482 /* UserPortraitBaseLoadUserInteractor.swift in Sources */,

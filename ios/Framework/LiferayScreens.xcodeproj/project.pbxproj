@@ -303,6 +303,8 @@
 		8892C6B01ACBD89400192232 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6AA1ACBD89400192232 /* UIView+Animations.swift */; };
 		8892C6B41ACBD95400192232 /* LiferayServerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B21ACBD95400192232 /* LiferayServerContext.swift */; };
 		8892C6B51ACBD95400192232 /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B31ACBD95400192232 /* SessionContext.swift */; };
+		88A283CD1B3AAA0A00BEF482 /* UIActivityIndicatorView+Concurrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A283CC1B3AAA0A00BEF482 /* UIActivityIndicatorView+Concurrent.swift */; };
+		88A283CE1B3AAA1000BEF482 /* UIActivityIndicatorView+Concurrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A283CC1B3AAA0A00BEF482 /* UIActivityIndicatorView+Concurrent.swift */; };
 		88A28EBA1B0DD1300040D7F6 /* NSBundle+discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A28EB91B0DD1300040D7F6 /* NSBundle+discovery.swift */; };
 		88A28EBB1B0DD1300040D7F6 /* NSBundle+discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A28EB91B0DD1300040D7F6 /* NSBundle+discovery.swift */; };
 		88A2B7141ACDEBB1000C2065 /* LoginView_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A2B7121ACDEBB1000C2065 /* LoginView_test.swift */; };
