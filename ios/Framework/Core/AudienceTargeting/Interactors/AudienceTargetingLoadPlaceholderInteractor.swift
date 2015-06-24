@@ -34,26 +34,7 @@ class AudienceTargetingLoadPlaceholderInteractor: Interactor {
 		return result
 	}
 
-
 	func createAudienceTargetingOperation() -> AudienceTargetingLoadPlaceholderOperation {
-		func computeUserContext() -> [String:String] {
-			var result = [String:String]()
-
-			if SessionContext.hasSession {
-				result["userId"] = (SessionContext.userAttribute("userId") as! Int).description
-			}
-
-			// device
-			result["os-name"] = "ios"
-			result["os-version"] = NSProcessInfo.processInfo().operatingSystemVersionString
-
-			result["locale"] = NSLocale.currentLocaleString
-
-			// more...
-
-			return result
-		}
-
 		let screenlet = self.screenlet as! AudienceTargetingDisplayScreenlet
 		let operation = AudienceTargetingLoadPlaceholderOperation(screenlet: self.screenlet)
 
@@ -63,7 +44,7 @@ class AudienceTargetingLoadPlaceholderInteractor: Interactor {
 		operation.appId = screenlet.appId
 		operation.placeholderId = screenlet.placeholderId
 
-		operation.userContext = computeUserContext()
+		operation.userContext = AudienceTargetingLoader.computeUserContext()
 
 		// TODO retain-cycle on operation?
 		operation.onComplete = {

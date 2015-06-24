@@ -303,6 +303,8 @@
 		8892C6B51ACBD95400192232 /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B31ACBD95400192232 /* SessionContext.swift */; };
 		88A283CD1B3AAA0A00BEF482 /* UIActivityIndicatorView+Concurrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A283CC1B3AAA0A00BEF482 /* UIActivityIndicatorView+Concurrent.swift */; };
 		88A283CE1B3AAA1000BEF482 /* UIActivityIndicatorView+Concurrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A283CC1B3AAA0A00BEF482 /* UIActivityIndicatorView+Concurrent.swift */; };
+		88A283D21B3AD39300BEF482 /* AudienceTargetingLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A283D11B3AD39300BEF482 /* AudienceTargetingLoader.swift */; };
+		88A283D31B3AD39300BEF482 /* AudienceTargetingLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A283D11B3AD39300BEF482 /* AudienceTargetingLoader.swift */; };
 		88A28EBA1B0DD1300040D7F6 /* NSBundle+discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A28EB91B0DD1300040D7F6 /* NSBundle+discovery.swift */; };
 		88A28EBB1B0DD1300040D7F6 /* NSBundle+discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A28EB91B0DD1300040D7F6 /* NSBundle+discovery.swift */; };
 		88A2B7141ACDEBB1000C2065 /* LoginView_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A2B7121ACDEBB1000C2065 /* LoginView_test.swift */; };
@@ -584,6 +586,7 @@
 		8892C6B21ACBD95400192232 /* LiferayServerContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayServerContext.swift; sourceTree = "<group>"; };
 		8892C6B31ACBD95400192232 /* SessionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext.swift; sourceTree = "<group>"; };
 		88A283CC1B3AAA0A00BEF482 /* UIActivityIndicatorView+Concurrent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Concurrent.swift"; sourceTree = "<group>"; };
+		88A283D11B3AD39300BEF482 /* AudienceTargetingLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudienceTargetingLoader.swift; sourceTree = "<group>"; };
 		88A28EB91B0DD1300040D7F6 /* NSBundle+discovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+discovery.swift"; sourceTree = "<group>"; };
 		88A2B7121ACDEBB1000C2065 /* LoginView_test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_test.swift; sourceTree = "<group>"; };
 		88A2B7131ACDEBB1000C2065 /* LoginView_test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_test.xib; sourceTree = "<group>"; };
@@ -1288,6 +1291,7 @@
 		888B86BA1B2F150800D9E9F1 /* AudienceTargeting */ = {
 			isa = PBXGroup;
 			children = (
+				88A283D11B3AD39300BEF482 /* AudienceTargetingLoader.swift */,
 				888B86BB1B2F150800D9E9F1 /* AudienceTargetingDisplayScreenlet.swift */,
 				888B86BC1B2F150800D9E9F1 /* AudienceTargetingDisplayViewModel.swift */,
 				888B86BD1B2F150800D9E9F1 /* Interactors */,
@@ -1821,6 +1825,7 @@
 				881E61871ACBEE0B00862B9E /* DDLListScreenlet.swift in Sources */,
 				881E611F1ACBE5F000862B9E /* SignUpViewModel.swift in Sources */,
 				881E61181ACBE5F000862B9E /* LiferayLoginByEmailOperation.swift in Sources */,
+				88A283D21B3AD39300BEF482 /* AudienceTargetingLoader.swift in Sources */,
 				881E611C1ACBE5F000862B9E /* LiferaySignUpOperation.swift in Sources */,
 				881E617E1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift in Sources */,
 				881E61241ACBE5F000862B9E /* UserPortraitLoadByScreenNameInteractor.swift in Sources */,
@@ -2033,6 +2038,7 @@
 				881E62FC1ACC066A00862B9E /* DDLListView_default.swift in Sources */,
 				88DE25171AD2AB0A00714701 /* DDLFieldString_Tests.swift in Sources */,
 				881E62FB1ACC05BA00862B9E /* LiferayDDLListPageOperation.swift in Sources */,
+				88A283D31B3AD39300BEF482 /* AudienceTargetingLoader.swift in Sources */,
 				888DF5B91ACCA3FD00EB7DA1 /* LoginScreenlet.swift in Sources */,
 				881E62F11ACC04A500862B9E /* DDLFieldStringWithOptions.swift in Sources */,
 				881E61AE1ACBFB0400862B9E /* TestHelper.swift in Sources */,
