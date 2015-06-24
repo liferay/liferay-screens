@@ -144,6 +144,7 @@
                         <segue destination="oOo-3A-Uui" kind="push" identifier="DDLFormScreenlet" id="WbH-nt-XHO"/>
                         <segue destination="kiQ-mD-UG4" kind="push" identifier="WebContentDisplayScreenlet" id="yAA-vv-JOl"/>
                         <segue destination="TY4-Ql-4pF" kind="push" identifier="UserPortraitScreenlet" id="jtf-rk-w86"/>
+                        <segue destination="36L-6d-WVg" kind="push" identifier="AudienceTargetingDisplayScreenlet" id="gO7-7i-6ce"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -339,6 +340,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A6g-L6-eDf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="536" y="1793"/>
+        </scene>
+        <!--Audience Targeting Display Screenlet View Controller-->
+        <scene sceneID="ZBv-o9-wOW">
+            <objects>
+                <viewController id="36L-6d-WVg" customClass="AudienceTargetingDisplayScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lRG-fy-MW2"/>
+                        <viewControllerLayoutGuide type="bottom" id="yJc-P3-qjS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gYS-RF-dNc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="31S-uI-rD1" customClass="AudienceTargetingDisplayScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="0.0" y="92" width="320" height="413"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="appId" value="com.liferay.events"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="groupId">
+                                        <integer key="value" value="20181"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholderId" value="com.liferay.events.banner"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qss-kg-guN"/>
+                    <connections>
+                        <outlet property="screenlet" destination="31S-uI-rD1" id="tgp-Jx-ehK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uxM-Gu-VAm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="308" y="2445"/>
         </scene>
         <!--AssetListScreenlet-->
         <scene sceneID="Gof-EM-hXa">
