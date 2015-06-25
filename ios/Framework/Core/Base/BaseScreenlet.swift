@@ -26,7 +26,7 @@ import QuartzCore
 			_themeName = (newValue ?? "default").lowercaseString
 
 			if _runningOnInterfaceBuilder {
-				_themeName = updateCurrentPreviewImage()
+				updateCurrentPreviewImage()
 			}
 
 			screenletView?.themeName = _themeName
@@ -273,14 +273,11 @@ import QuartzCore
 		return nil
 	}
 
-	private func updateCurrentPreviewImage() -> String {
-		var appliedTheme = _themeName
-
+	private func updateCurrentPreviewImage() {
 		_currentPreviewImage = previewImageForTheme(_themeName)
 		if _currentPreviewImage == nil {
 			if let previewImage = previewImageForTheme("default") {
 				_currentPreviewImage = previewImage
-				appliedTheme = "default"
 			}
 		}
 
@@ -301,8 +298,6 @@ import QuartzCore
 		}
 
 		setNeedsLayout()
-
-		return appliedTheme
 	}
 
 }
