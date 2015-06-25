@@ -79,15 +79,16 @@ import UIKit
 			if let error = $0.lastError {
 				result(nil, error)
 			}
-			else if let loadOp = ($0 as? AudienceTargetingLoadPlaceholderOperation),
-					firstContent = loadOp.results?.first {
+			else {
+				let loadOp = $0 as! AudienceTargetingLoadPlaceholderOperation
 
-				if let customContent = firstContent.customContent {
+				if let customContent = loadOp.results?.first?.customContent {
 					self.customContentCache[loadOp.placeholderId!] = customContent
 					result(customContent, nil)
 				}
 				else {
-					result(nil, NSError.errorWithCause(.InvalidServerResponse))
+					// no error, no content
+					result(nil, nil)
 				}
 			}
 		}
