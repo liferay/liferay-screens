@@ -19,7 +19,7 @@ import UIKit
 	private var groupId: Int64
 	private var appId: String
 
-	private var customContentCache: [String: String] = [:]
+	private var contentCache: [String: String] = [:]
 
 	public init(groupId: Int64, appId: String) {
 		self.groupId = groupId
@@ -47,21 +47,25 @@ import UIKit
 	}
 
 	public func clearCache() {
-		customContentCache.removeAll(keepCapacity: true)
+		contentCache.removeAll(keepCapacity: true)
 	}
 
-	public func customContent(#placeholderId: String,
+	public func hasContentCached(#placeholderId: String) -> Bool {
+		return contentCache[placeholderId] != nil
+	}
+
+	public func content(#placeholderId: String,
 			result: (String?, NSError?) -> Void) {
 
-		if let cachedValue = customContentCache[placeholderId] {
+		if let cachedValue = contentCache[placeholderId] {
 			result(cachedValue, nil)
 		}
 		else {
-			loadCustomContent(placeholderId: placeholderId, result: result)
+			loadContent(placeholderId: placeholderId, result: result)
 		}
 	}
 
-	public func loadCustomContent(
+	public func loadContent(
 			#placeholderId: String,
 			result: (String?, NSError?) -> Void) {
 
@@ -83,7 +87,7 @@ import UIKit
 				let loadOp = $0 as! AudienceTargetingLoadPlaceholderOperation
 
 				if let customContent = loadOp.results?.first?.customContent {
-					self.customContentCache[loadOp.placeholderId!] = customContent
+					self.contentCache[loadOp.placeholderId!] = customContent
 					result(customContent, nil)
 				}
 				else {
