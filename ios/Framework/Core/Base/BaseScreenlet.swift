@@ -49,7 +49,7 @@ import QuartzCore
 		}
 	}
 
-	public weak var baseDelegate: BaseScreenletDelegate?
+	@IBOutlet public weak var baseDelegate: BaseScreenletDelegate?
 
 	public weak var screenletView: BaseScreenletView?
 
