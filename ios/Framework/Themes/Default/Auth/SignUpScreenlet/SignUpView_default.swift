@@ -32,11 +32,11 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 	//MARK: BaseScreenletView
 
 	override public func onStartOperation() {
-		signUpButton!.enabled = false
+		signUpButton?.enabled = false
 	}
 
 	override public func onFinishOperation() {
-		signUpButton!.enabled = true
+		signUpButton?.enabled = true
 	}
 
 
@@ -47,7 +47,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 		setButtonDefaultStyle(signUpButton)
 
-		scrollView?.contentSize = scrollView!.frame.size
+		scrollView?.contentSize = scrollView?.frame.size ?? CGSizeZero
 
 		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
@@ -67,37 +67,37 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 	public var emailAddress: String? {
 		get {
-			return nullIfEmpty(emailAddressField!.text)
+			return nullIfEmpty(emailAddressField?.text)
 		}
 		set {
-			emailAddressField!.text = newValue
+			emailAddressField?.text = newValue
 		}
 	}
 
 	public var password: String? {
 		get {
-			return nullIfEmpty(passwordField!.text)
+			return nullIfEmpty(passwordField?.text)
 		}
 		set {
-			passwordField!.text = newValue
+			passwordField?.text = newValue
 		}
 	}
 
 	public var firstName: String? {
 		get {
-			return nullIfEmpty(firstNameField!.text)
+			return nullIfEmpty(firstNameField?.text)
 		}
 		set {
-			firstNameField!.text = newValue
+			firstNameField?.text = newValue
 		}
 	}
 
 	public var lastName: String? {
 		get {
-			return nullIfEmpty(lastNameField!.text)
+			return nullIfEmpty(lastNameField?.text)
 		}
 		set {
-			lastNameField!.text = newValue
+			lastNameField?.text = newValue
 		}
 	}
 
