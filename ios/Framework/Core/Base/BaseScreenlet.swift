@@ -80,7 +80,7 @@ import QuartzCore
 	}
 
 	override public func becomeFirstResponder() -> Bool {
-		return screenletView!.becomeFirstResponder()
+		return screenletView?.becomeFirstResponder() ?? false
 	}
 
 	override public func didMoveToWindow() {
