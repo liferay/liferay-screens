@@ -15,6 +15,19 @@ import UIKit
 import QuartzCore
 
 
+@objc public protocol BaseScreenletDelegate {
+
+	optional func screenlet(screenlet: BaseScreenlet,
+			willLoadViewForTheme theme: String) -> String
+
+	optional func screenletWillShow(screenlet: BaseScreenlet)
+	optional func screenletDidShow(screenlet: BaseScreenlet)
+
+	optional func screenletWillHide(screenlet: BaseScreenlet)
+	optional func screenletDidHide(screenlet: BaseScreenlet)
+
+}
+
 /*!
  * BaseScreenlet is the base class from which all Screenlet classes must inherit.
  * A screenlet is the container for a screenlet view.
@@ -35,6 +48,8 @@ import QuartzCore
 			return _themeName
 		}
 	}
+
+	public weak var baseDelegate: BaseScreenletDelegate?
 
 	public weak var screenletView: BaseScreenletView?
 
@@ -74,7 +89,9 @@ import QuartzCore
 
 		clipsToBounds = true
 
-		screenletView = loadScreenletView()
+		if let newTheme = baseDelegate?.screenlet?(self, willLoadViewForTheme: _themeName) {
+			screenletView = loadScreenletView(newTheme)
+		}
 
 		onCreated()
 	}
@@ -83,12 +100,24 @@ import QuartzCore
 		return screenletView?.becomeFirstResponder() ?? false
 	}
 
+	override public func willMoveToWindow(newWindow: UIWindow?) {
+		if (window != nil) {
+			baseDelegate?.screenletWillShow?(self)
+		}
+		else {
+			baseDelegate?.screenletWillHide?(self)
+		}
+	}
+
 	override public func didMoveToWindow() {
 		if (window != nil) {
 			onShow()
+			baseDelegate?.screenletDidShow?(self)
 		}
 		else {
+			baseDelegate?.screenletDidHide?(self)
 			onHide()
+			baseDelegate?.screenletDidHide?(self)
 		}
 	}
 
@@ -105,8 +134,8 @@ import QuartzCore
 
 	//MARK: Internal methods
 
-	internal func loadScreenletView() -> BaseScreenletView? {
-		let view = createScreenletViewFromNib()
+	internal func loadScreenletView(themeName: String) -> BaseScreenletView? {
+		let view = createScreenletViewFromNib(themeName)
 
 		if let viewValue = view {
 			//FIXME: full-autoresize value. Extract from UIViewAutoresizing
@@ -236,7 +265,7 @@ import QuartzCore
 
 	//MARK: Private
 
-	private func createScreenletViewFromNib() -> BaseScreenletView? {
+	private func createScreenletViewFromNib(themeName: String) -> BaseScreenletView? {
 
 		func tryLoadForTheme(themeName: String, inBundles bundles: [NSBundle]) -> BaseScreenletView? {
 			for bundle in bundles {
@@ -260,7 +289,7 @@ import QuartzCore
 
 		let bundles = NSBundle.allBundles(self.dynamicType);
 
-		if let foundView = tryLoadForTheme(_themeName, inBundles: bundles) {
+		if let foundView = tryLoadForTheme(themeName, inBundles: bundles) {
 			return foundView
 		}
 
@@ -294,7 +323,7 @@ import QuartzCore
 			}
 		}
 		else {
-			screenletView = loadScreenletView()
+			screenletView = loadScreenletView(_themeName)
 		}
 
 		setNeedsLayout()

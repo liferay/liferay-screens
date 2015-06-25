@@ -48,9 +48,7 @@ class BaseScreenlet_Theme_Tests: XCTestCase {
 	}
 
 	func test_LoadScreenletView_ShouldReturnCustomizedView_WhenThemeIsSelected() {
-		loginScreenlet!.themeName = "test"
-
-		let view = loginScreenlet!.loadScreenletView()
+		let view = loginScreenlet!.loadScreenletView("test")
 
 		XCTAssertNotNil(view)
 		XCTAssertEqual(1, loginScreenlet!.subviews.count)

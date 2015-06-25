@@ -52,8 +52,7 @@ class BaseLoginScreenletTestCase: IntegrationTestCase {
 		super.setUp()
 
 		screenlet = LoginScreenlet(frame: CGRectZero)
-		screenlet!.themeName = "test"
-		screenlet!.screenletView = screenlet!.loadScreenletView()
+		screenlet!.screenletView = screenlet!.loadScreenletView("test")
 
 		SessionContext.clearSession()
 	}
