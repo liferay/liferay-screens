@@ -89,9 +89,8 @@ import QuartzCore
 
 		clipsToBounds = true
 
-		if let newTheme = baseDelegate?.screenlet?(self, willLoadViewForTheme: _themeName) {
-			screenletView = loadScreenletView(newTheme)
-		}
+		let newTheme = baseDelegate?.screenlet?(self, willLoadViewForTheme: _themeName)
+		screenletView = loadScreenletView(newTheme ?? _themeName)
 
 		onCreated()
 	}
