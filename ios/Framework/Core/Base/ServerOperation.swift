@@ -49,7 +49,7 @@ public class ServerOperation: NSOperation {
 	}
 
 
-	public override init() {
+	override public init() {
 		super.init()
 	}
 
@@ -62,7 +62,7 @@ public class ServerOperation: NSOperation {
 
 	//MARK: NSOperation
 
-	public override func main() {
+	override public func main() {
 		if preRun() {
 			if let session = createSession() {
 				prepareRun()

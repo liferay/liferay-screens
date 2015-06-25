@@ -43,7 +43,7 @@ public class DDLField: NSObject, Equatable, Printable {
 		}
 	}
 
-	public override var description: String {
+	override public var description: String {
 		let currentValue = self.currentValueAsString
 		var str = "DDLField[" +
 				" name=\( self.name )" +
