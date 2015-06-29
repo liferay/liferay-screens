@@ -23,8 +23,9 @@ public struct PlaceholderMapping {
 	var classPK: Int64?
 	var customContent: String?
 	var priority: Int
+	var segmentIds: [Int64]?
 
-	init?(className: String?, classPK: Int64?, customContent: String?, priority: Int?) {
+	init?(className: String?, classPK: Int64?, customContent: String?, priority: Int?, segments: [AnyObject]?) {
 		if customContent != nil && (className == nil || classPK == nil) {
 			return nil
 		}
@@ -36,6 +37,8 @@ public struct PlaceholderMapping {
 		self.classPK = classPK
 		self.customContent = (customContent ?? "") == "" ? nil : customContent
 		self.priority = priority!
+
+		segmentIds = (segments ?? []).map { $0 as? Int}.filter { $0 != nil }.map { Int64($0!) }
 	}
 }
 
@@ -84,7 +87,8 @@ public class AudienceTargetingLoadPlaceholderOperation: ServerOperation {
 						className: content["className"] as? String,
 						classPK: content["classPK"].map { $0 as! Int }.map { Int64($0) },
 						customContent: content["customContent"] as? String,
-						priority: content["campaignId"] as? Int) {
+						priority: content["campaignId"] as? Int,
+						segments: content["userSegmentIds"] as? [AnyObject]) {
 					results?.append(placeholderMap)
 				}
 				else {

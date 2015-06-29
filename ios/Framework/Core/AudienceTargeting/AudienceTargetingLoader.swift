@@ -21,6 +21,8 @@ import UIKit
 
 	private var contentCache: [String: String] = [:]
 
+	private var lastUserSegmentIds = [Int64]()
+
 	public init(groupId: Int64, appId: String) {
 		self.groupId = groupId
 		self.appId = appId
@@ -54,6 +56,10 @@ import UIKit
 		return contentCache[placeholderId] != nil
 	}
 
+	public func belongsToSegment(segmentId: Int64) -> Bool {
+		return contains(lastUserSegmentIds, segmentId)
+	}
+
 	public func content(#placeholderId: String,
 			result: (String?, NSError?) -> Void) {
 
@@ -85,6 +91,8 @@ import UIKit
 			}
 			else {
 				let loadOp = $0 as! AudienceTargetingLoadPlaceholderOperation
+
+				self.lastUserSegmentIds = loadOp.results?.first?.segmentIds ?? self.lastUserSegmentIds
 
 				if let customContent = loadOp.results?.first?.customContent {
 					self.contentCache[loadOp.placeholderId!] = customContent
