@@ -52,6 +52,10 @@ import UIKit
 		contentCache.removeAll(keepCapacity: true)
 	}
 
+	public func clearCache(#key: String) {
+		contentCache.removeValueForKey(key)
+	}
+
 	public func hasContentCached(#placeholderId: String) -> Bool {
 		return contentCache[placeholderId] != nil
 	}
