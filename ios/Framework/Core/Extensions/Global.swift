@@ -115,3 +115,17 @@ public func centeredRectInView(view: UIView, #size: CGSize) -> CGRect {
 			size.width,
 			size.height)
 }
+
+public func +(left: [String:AnyObject], right: [String:AnyObject]) -> [String:AnyObject] {
+	var result = [String:AnyObject](minimumCapacity: left.count + right.count)
+
+	for (k,v) in left {
+		result[k] = v
+	}
+
+	for (k,v) in right {
+		result[k] = v
+	}
+
+	return result
+}

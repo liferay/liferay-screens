@@ -63,16 +63,30 @@ import UIKit
 	public func content(#placeholderId: String,
 			result: (String?, NSError?) -> Void) {
 
+		content(placeholderId: placeholderId, context: [:], result: result)
+	}
+
+	public func content(#placeholderId: String,
+			context: [String:String],
+			result: (String?, NSError?) -> Void) {
+
 		if let cachedValue = contentCache[placeholderId] {
 			result(cachedValue, nil)
 		}
 		else {
-			loadContent(placeholderId: placeholderId, result: result)
+			loadContent(placeholderId: placeholderId, context: context, result: result)
 		}
 	}
 
 	public func loadContent(
 			#placeholderId: String,
+			result: (String?, NSError?) -> Void) {
+		loadContent(placeholderId: placeholderId, context: [:], result: result)
+	}
+
+	public func loadContent(
+			#placeholderId: String,
+			context: [String:String],
 			result: (String?, NSError?) -> Void) {
 
 		let operation = AudienceTargetingLoadPlaceholderOperation()
@@ -82,7 +96,7 @@ import UIKit
 		operation.appId = appId
 		operation.placeholderId = placeholderId
 
-		operation.userContext = AudienceTargetingLoader.computeUserContext()
+		operation.userContext = ((AudienceTargetingLoader.computeUserContext() + context) as! [String:String])
 
 		// TODO retain-cycle on operation?
 		operation.onComplete = {
