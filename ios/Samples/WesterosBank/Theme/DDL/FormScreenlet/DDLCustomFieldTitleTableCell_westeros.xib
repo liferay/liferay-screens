@@ -34,6 +34,9 @@
                                         <color key="value" red="0.76078431369999999" green="0.23529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="chainedDelegate" destination="WWD-jz-pJ6" id="dY3-4a-FHB"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.76078431369999999" green="0.23529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

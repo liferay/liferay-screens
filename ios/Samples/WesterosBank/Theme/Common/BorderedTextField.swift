@@ -39,7 +39,7 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 	}
 
 	func textFieldDidBeginEditing(textField: UITextField) {
-		superview?.layer.borderWidth = 1.0
+		superview?.layer.borderWidth = borderWidth
 		superview?.layer.borderColor = self.borderColor?.CGColor
 		superview?.backgroundColor = self.focusedColor!
 
@@ -51,11 +51,13 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 			self.textColor = UIColor.blackColor()
 			revertTextColor = true
 		}
+
+		chainedDelegate?.textFieldDidBeginEditing?(textField)
 	}
 
 	func textFieldDidEndEditing(textField: UITextField) {
-		superview?.layer.borderWidth = 0.0
-		superview?.layer.borderColor = UIColor.clearColor().CGColor
+		superview?.layer.borderWidth = unfocusedBorderWidth
+		superview?.layer.borderColor = self.unfocusedBorderColor!.CGColor
 		superview?.backgroundColor = self.unfocusedColor!
 
 		self.attributedPlaceholder = NSAttributedString(
@@ -66,10 +68,33 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 			self.textColor = self.focusedColor!
 			revertTextColor = false
 		}
+
+		chainedDelegate?.textFieldDidEndEditing?(textField)
 	}
 
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
-		return parentDelegate(self.superview)?.textFieldShouldReturn?(self) ?? true
+		if chainedDelegate != nil {
+			return chainedDelegate!.textFieldShouldReturn!(textField)
+		}
+		else {
+			return parentDelegate(self.superview)?.textFieldShouldReturn?(self) ?? true
+		}
+	}
+
+	func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+		return chainedDelegate?.textFieldShouldBeginEditing?(textField) ?? true
+	}
+
+	func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+		return chainedDelegate?.textFieldShouldEndEditing?(textField) ?? true
+	}
+
+	func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+		return chainedDelegate?.textField?(textField, shouldChangeCharactersInRange: range, replacementString: string) ?? true
+	}
+    
+	func textFieldShouldClear(textField: UITextField) -> Bool {
+		return chainedDelegate?.textFieldShouldClear?(textField) ?? true
 	}
 
 	private func parentDelegate(view:UIView?) -> UITextFieldDelegate? {

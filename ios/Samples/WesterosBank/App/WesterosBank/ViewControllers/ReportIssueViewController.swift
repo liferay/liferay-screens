@@ -34,6 +34,10 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 		super.init(coder: aDecoder)
 	}
 
+	@IBAction func saveAction(sender: AnyObject) {
+		screenlet.submitForm()
+	}
+
 	override func viewDidLoad() {
 		screenlet.delegate = self
 
