@@ -66,22 +66,21 @@ public class DDLField: NSObject, Equatable, Printable {
 
 	public var currentLocale: NSLocale
 
+	internal(set) public var dataType: DataType
+	internal(set) public var editorType: Editor
 
-	internal(set) var dataType: DataType
-	internal(set) var editorType: Editor
+	internal(set) public var name: String
 
-	internal(set) var name: String
+	internal(set) public var label: String
+	internal(set) public var tip: String
 
-	internal(set) var label: String
-	internal(set) var tip: String
+	internal(set) public var predefinedValue: AnyObject?
 
-	internal(set) var predefinedValue: AnyObject?
+	internal(set) public var readOnly: Bool
+	internal(set) public var repeatable: Bool
+	internal(set) public var required: Bool
 
-	internal(set) var readOnly: Bool
-	internal(set) var repeatable: Bool
-	internal(set) var required: Bool
-
-	internal(set) var showLabel: Bool
+	internal(set) public var showLabel: Bool
 
 
 	public init(attributes: [String:AnyObject], locale: NSLocale) {
