@@ -16,6 +16,8 @@ import UIKit
 
 class AudienceTargetingLoadPlaceholderInteractor: Interactor {
 
+	let context: [String:String]
+
 	var resultClassPK: String?
 	var resultClassName: String?
 	var resultCustomContent: String?
@@ -23,6 +25,12 @@ class AudienceTargetingLoadPlaceholderInteractor: Interactor {
 	var resultContent: AnyObject?
 	var resultMimeType: String?
 
+
+	init(screenlet: BaseScreenlet, context: [String:String]) {
+		self.context = context
+
+		super.init(screenlet: screenlet)
+	}
 
 	override func start() -> Bool {
 		let result = createAudienceTargetingOperation().validateAndEnqueue()
@@ -44,16 +52,15 @@ class AudienceTargetingLoadPlaceholderInteractor: Interactor {
 		operation.appId = screenlet.appId
 		operation.placeholderId = screenlet.placeholderId
 
-		operation.userContext = AudienceTargetingLoader.computeUserContext()
+		operation.userContext = ((AudienceTargetingLoader.computeUserContext() + context) as! [String:String])
+
 
 		// TODO retain-cycle on operation?
 		operation.onComplete = {
 			if let error = $0.lastError {
 				self.callOnFailure(error)
 			}
-			else if let loadOp = ($0 as? AudienceTargetingLoadPlaceholderOperation),
-					result = loadOp.results?.first {
-
+			else if let result = ($0 as! AudienceTargetingLoadPlaceholderOperation).results?.first {
 				if let customContent = result.customContent {
 					self.resultCustomContent = customContent
 					self.resultClassName = nil

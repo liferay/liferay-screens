@@ -35,6 +35,8 @@ import UIKit
 
 	@IBOutlet public weak var delegate: AudienceTargetingDisplayScreenletDelegate?
 
+	var context: [String:String]?
+
 
 	//MARK: Public methods
 
@@ -46,7 +48,9 @@ import UIKit
 
 	override public func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
 		// what if we pass data to be used in rules evaluation in this request?
-		let interactor = AudienceTargetingLoadPlaceholderInteractor(screenlet: self)
+		let interactor = AudienceTargetingLoadPlaceholderInteractor(
+				screenlet: self,
+				context: context ?? [:])
 
 		// force start here to avoid start-stop-start effects
 		screenletView?.onStartOperation()
@@ -75,6 +79,11 @@ import UIKit
 	}
 
 	public func loadContent() -> Bool {
+		return self.performDefaultAction()
+	}
+
+	public func loadContent(#context: [String:String]) -> Bool {
+		self.context = context
 		return self.performDefaultAction()
 	}
 
