@@ -3,7 +3,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
 
 # Core
-pod 'Liferay-iOS-SDK', '6.2.0.17'
+pod 'Liferay-iOS-SDK', '6.2.0.18'
 pod 'MBProgressHUD', '~> 0.9.1'
 pod 'UICKeyChainStore'
 pod 'SMXMLDocument'

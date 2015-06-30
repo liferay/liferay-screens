@@ -51,7 +51,7 @@ Pod::Spec.new do |s|
 	}
 
 	# Core
-	s.dependency 'Liferay-iOS-SDK', '6.2.0.17'
+	s.dependency 'Liferay-iOS-SDK', '6.2.0.18'
 	s.dependency 'MBProgressHUD', '~> 0.9.1'
 	s.dependency 'UICKeyChainStore'
 	s.dependency 'SMXMLDocument'
