@@ -27,10 +27,10 @@
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
                                 <userDefinedRuntimeAttribute type="number" keyPath="recordSetId">
-                                    <integer key="value" value="20593"/>
+                                    <integer key="value" value="20936"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="structureId">
-                                    <integer key="value" value="20589"/>
+                                    <integer key="value" value="20934"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="showSubmitButton" value="NO"/>
@@ -58,6 +58,9 @@
                                     <integer key="value" value="4"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="saveAction:" destination="-1" eventType="touchUpInside" id="drE-ck-7kN"/>
+                            </connections>
                         </button>
                     </subviews>
                 </scrollView>

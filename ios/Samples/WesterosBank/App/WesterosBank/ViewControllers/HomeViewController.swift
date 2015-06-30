@@ -44,6 +44,8 @@ class HomeViewController: UIViewController {
 
 		reportIssueController = ReportIssueViewController(card: reportIssueCard)
 		reportIssueController!.onDone = {
+			self.issuesDeck.bottomCardTouchUpInside(self.issuesDeck.bottomCard!.button!)
+			self.issuesController?.listScreenlet.loadList()
 		}
 
 		issuesDeck.bottomCard = reportIssueCard
