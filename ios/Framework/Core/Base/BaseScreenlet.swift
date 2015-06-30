@@ -266,13 +266,13 @@ import QuartzCore
 
 	private func createScreenletViewFromNib(themeName: String) -> BaseScreenletView? {
 
-		func tryLoadForTheme(themeName: String, inBundles bundles: [NSBundle]) -> BaseScreenletView? {
-			for bundle in bundles {
-				let viewName = self.screenletName + "View"
-				var nibName = "\(viewName)_\(themeName)"
-				var nibPath = bundle.pathForResource(nibName, ofType:"nib")
+		let viewName = self.screenletName + "View"
 
-				if nibPath != nil {
+		func tryLoadForTheme(themeName: String, inBundles bundles: [NSBundle]) -> BaseScreenletView? {
+			var nibName = "\(viewName)_\(themeName)"
+
+			for bundle in bundles {
+				if bundle.pathForResource(nibName, ofType:"nib") != nil {
 					let views = bundle.loadNibNamed(nibName,
 							owner:self,
 							options:nil)

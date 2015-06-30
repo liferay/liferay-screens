@@ -259,9 +259,9 @@ public class DDLFormTableView: DDLFormView,
 		let bundles = NSBundle.allBundles(self.dynamicType);
 
 		for fieldEditor in DDLField.Editor.all() {
-			for bundle in bundles {
-				let cellId = fieldEditor.toCapitalizedName()
+			let cellId = fieldEditor.toCapitalizedName()
 
+			for bundle in bundles {
 				if let cellView = registerEditorCellInBundle(bundle,
 						nibName: "DDLField\(cellId)TableCell",
 						cellId: cellId) {
