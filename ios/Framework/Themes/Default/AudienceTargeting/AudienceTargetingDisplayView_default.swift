@@ -38,6 +38,11 @@ public class AudienceTargetingDisplayView_default: BaseScreenletView, AudienceTa
 
 	//MARK: AudienceTargetingDisplayViewModel
 
+	public func setEmptyContent() {
+		//TODO
+		imageView?.hidden = true
+	}
+
 	public func setContent(content: AnyObject, mimeType: String?) {
 		if let mimeType = mimeType {
 			if mimeType.hasPrefix("image/") {

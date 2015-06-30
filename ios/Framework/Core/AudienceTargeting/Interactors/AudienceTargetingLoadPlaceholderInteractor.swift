@@ -83,6 +83,14 @@ class AudienceTargetingLoadPlaceholderInteractor: Interactor {
 					}
 				}
 			}
+			else {
+				// no content
+				self.resultCustomContent = nil
+				self.resultClassName = nil
+				self.resultClassPK = nil
+
+				self.callOnSuccess()
+			}
 		}
 
 		return operation

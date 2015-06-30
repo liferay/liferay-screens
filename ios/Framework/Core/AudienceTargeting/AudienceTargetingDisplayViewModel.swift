@@ -18,4 +18,6 @@ import UIKit
 
 	func setContent(content: AnyObject, mimeType: String?)
 
+	func setEmptyContent()
+
 }

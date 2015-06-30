@@ -20,6 +20,9 @@ import UIKit
 			onAudienceTargetingResponse value: AnyObject,
 			mimeType: String?)
 
+	optional func screenletOnAudienceTargetingEmptyResponse(
+			screenlet: AudienceTargetingDisplayScreenlet)
+
 	optional func screenlet(screenlet: AudienceTargetingDisplayScreenlet,
 			onAudienceTargetingError error: NSError)
 
@@ -56,15 +59,22 @@ import UIKit
 		screenletView?.onStartOperation()
 
 		interactor.onSuccess = {
-			let content: AnyObject = interactor.resultCustomContent ?? (interactor.resultContent!)
-
-			self.delegate?.screenlet?(self,
-					onAudienceTargetingResponse: content,
-					mimeType: interactor.resultMimeType)
-
 			let viewModel = (self.screenletView as! AudienceTargetingDisplayViewModel)
 
-			viewModel.setContent(content, mimeType: interactor.resultMimeType)
+			if interactor.resultCustomContent != nil || interactor.resultContent != nil {
+				let content: AnyObject = interactor.resultCustomContent ?? interactor.resultContent!
+
+				self.delegate?.screenlet?(self,
+						onAudienceTargetingResponse: content,
+						mimeType: interactor.resultMimeType)
+
+				viewModel.setContent(content, mimeType: interactor.resultMimeType)
+			}
+			else {
+				self.delegate?.screenletOnAudienceTargetingEmptyResponse?(self)
+
+				viewModel.setEmptyContent()
+			}
 
 			self.screenletView?.onFinishOperation()
 		}
