@@ -40,7 +40,6 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 
 	override func viewDidLoad() {
 		screenlet.delegate = self
-
 	}
 
 	override func cardWillAppear() {
@@ -63,7 +62,18 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 				screenlet.loadForm()
 			}
 		}
+
+		UIView.animateWithDuration(0.5) {
+			self.screenlet.alpha = 1.0
+		}
 	}
+
+	override func cardWillDisappear() {
+		UIView.animateWithDuration(0.5) {
+			self.screenlet.alpha = 0.0
+		}
+	}
+
 
 	func screenlet(screenlet: DDLFormScreenlet,
 			onFormSubmitted record: DDLRecord) {
