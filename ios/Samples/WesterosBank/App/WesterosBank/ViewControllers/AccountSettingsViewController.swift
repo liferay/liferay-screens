@@ -71,5 +71,21 @@ class AccountSettingsViewController: UIViewController,
 		closeAction(screenlet)
 	}
 
+	func screenlet(screenlet: BaseScreenlet,
+			willLoadViewForTheme theme: String) -> String {
+
+		var result = theme
+
+		if audienceTargeting().hasContentCached(placeholderId: "portrait-theme") {
+			// when the content is cached, the method is sync
+			audienceTargeting().content(
+					placeholderId: "portrait-theme",
+					result: { (themeName, error) -> Void in
+						result = themeName!
+					})
+		}
+
+		return result
+	}
 
 }

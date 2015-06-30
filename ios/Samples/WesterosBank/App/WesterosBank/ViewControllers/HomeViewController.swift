@@ -17,7 +17,7 @@ import LiferayScreens
 var tourCompleted = false
 
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, AudienceTargetingDisplayScreenletDelegate {
 
 	@IBOutlet weak var issuesDeck: CardDeckView!
 	@IBOutlet weak var issuesCard: CardView!
@@ -25,11 +25,58 @@ class HomeViewController: UIViewController {
 	@IBOutlet weak var goBackCard: CardView!
 	@IBOutlet weak var settingsView: UIView!
 
+	@IBOutlet weak var accountButton: UIButton!
+	@IBOutlet weak var restButtons: UIView!
+
+	@IBOutlet weak var bannerScreenlet: AudienceTargetingDisplayScreenlet!
+
+
+	var goToAccountSegueName: String = "view-account"
+	var surveyResponse: String? {
+		get {
+			return NSUserDefaults.standardUserDefaults().stringForKey("survey")
+		}
+		set {
+			NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "survey")
+		}
+	}
+	var surveyId: Int64?
+	var personaName: String?
+
+	let marketerSegment = Int64(20806)
+	let businessMenSegment = Int64(20810)
+	let businessWomenSegment = Int64(21180)
+
 	var issuesController: IssuesViewController?
 	var reportIssueController: ReportIssueViewController?
 
+	var canReportIssue: Bool? {
+		didSet {
+			if reportIssueCard.hidden && (canReportIssue ?? false) {
+				dispatch_main {
+					if self.issuesCardAnimationCompleted {
+						self.animateReportButton(delay: 0.5)
+					}
+				}
+			}
+		}
+	}
+	var issuesCardAnimationCompleted: Bool = false {
+		didSet {
+			if reportIssueCard.hidden {
+				dispatch_main {
+					if let canReport = self.canReportIssue where canReport {
+						self.animateReportButton(delay: 0.5)
+					}
+				}
+			}
+		}
+	}
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+		bannerScreenlet.delegate = self
 
 		issuesController = IssuesViewController(card: issuesCard)
 
@@ -78,22 +125,123 @@ class HomeViewController: UIViewController {
 
 	override func viewWillAppear(animated: Bool) {
 		if SessionContext.hasSession {
-			issuesCard.nextState = .Maximized
-			reportIssueCard.nextState = .Minimized
+			//
+			// audience targeting
+			//
+			bannerScreenlet.loadContent(
+					context: ["survey":surveyResponse ?? "empty"])
+
+			audienceTargeting().content(
+				placeholderId: "go-to-account",
+				result: { (segueName, error) -> Void in
+					if let segueName = segueName {
+						self.goToAccountSegueName = segueName
+					}
+					else {
+						// can't reach AT: use default value?
+					}
+				})
+
+			audienceTargeting().content(
+				placeholderId: "persona",
+				context: ["survey":surveyResponse ?? "empty"],
+				result: { (personaName, error) -> Void in
+					if error != nil || personaName == nil {
+						return
+					}
+
+					let isTargetedSegment =
+						audienceTargeting().belongsToSegment(self.marketerSegment)
+							|| audienceTargeting().belongsToSegment(self.businessMenSegment)
+							|| audienceTargeting().belongsToSegment(self.businessWomenSegment)
+
+					if isTargetedSegment && self.surveyResponse == nil {
+						self.personaName = personaName!
+						delayed(1) {
+							self.confirmSurvey();
+						}
+					}
+				})
+
+			audienceTargeting().loadContent(
+				placeholderId: "portrait-theme",
+				result: { (value, error) -> Void in
+					// don't do anything, just for caching
+				})
 
 			issuesCard.hidden = false
+			issuesCard.nextState = .Maximized
+
+			reportIssueCard.nextState = .Minimized
+			reportIssueCard.currentState = .Hidden
+			reportIssueCard.resetToCurrentState()
 
 			issuesCard.changeToNextState() { Bool -> Void in
-				self.reportIssueCard.currentState = .Hidden
-				self.reportIssueCard.resetToCurrentState()
-				self.reportIssueCard.hidden = false
-				self.reportIssueCard.changeToNextState(time: nil, delay: 0.5)
+				self.issuesCardAnimationCompleted = true
 			}
+
+			requestForCanReport()
 
 			UIView.animateWithDuration(1.5) {
 				self.settingsView.alpha = 1.0
 			}
 		}
+	}
+
+	func requestForCanReport() {
+		audienceTargeting().content(
+			placeholderId: "can-report",
+			context: ["survey":surveyResponse ?? "empty"],
+			result: { (canReportValue, error) -> Void in
+				if let canReportValue = canReportValue {
+					if self.surveyResponse != nil {
+						self.canReportIssue = Bool.from(string: canReportValue)
+					}
+				}
+				else {
+					// error
+					self.canReportIssue = true
+				}
+			})
+	}
+
+	func confirmSurvey() {
+		audienceTargeting().content(
+			placeholderId: "survey-id",
+			context: ["survey":surveyResponse ?? "empty"],
+			result: { (surveyId, error) -> Void in
+				if let surveyId = surveyId {
+					self.surveyId = surveyId.toInt().map { Int64($0) }
+
+					dispatch_main {
+						let alert = UIAlertController(
+								title: "Quick survey",
+								message: "It seems you're a \(self.personaName!), so we need you to answer a short survey to know more about you.\n\nDo you want to do it right now?",
+								preferredStyle: .Alert)
+
+						let actionYes = UIAlertAction(
+								title: "Sure thing",
+								style: .Default) { action in
+									self.performSegueWithIdentifier("survey", sender: nil)
+								}
+
+						let actionNo = UIAlertAction(
+								title: "Later",
+								style: .Cancel) { action in
+								}
+
+						alert.addAction(actionYes)
+						alert.addAction(actionNo)
+
+						self.presentViewController(alert, animated: true, completion: nil)
+					}
+				}
+			})
+	}
+
+	func animateReportButton(#delay: Double) {
+		reportIssueCard.hidden = false
+		reportIssueCard.changeToNextState(time: nil, delay: delay)
 	}
 
 	override func viewDidAppear(animated: Bool) {
@@ -107,8 +255,23 @@ class HomeViewController: UIViewController {
 		}
 	}
 
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "survey" {
+			let survey = segue.destinationViewController as! SurveyViewController
+			survey.onFinish = onSurveyCompleted
+			survey.recordSetId = surveyId!
+			survey.structureId = surveyId! - 2 // portal hack!
+		}
+	}
+
+	func onSurveyCompleted(responses: String) {
+		self.surveyResponse = responses
+		audienceTargeting().clearCache(key: "can-report")
+		requestForCanReport()
+	}
+
 	@IBAction func accountSettingsAction(sender: AnyObject) {
-		self.performSegueWithIdentifier("account", sender: nil)
+		self.performSegueWithIdentifier(goToAccountSegueName, sender: nil)
 	}
 
 	@IBAction func callAction(sender: AnyObject) {
@@ -159,5 +322,22 @@ class HomeViewController: UIViewController {
 
 		issuesCard.enabledButton(true)
 	}
+
+	func screenlet(screenlet: AudienceTargetingDisplayScreenlet,
+			onAudienceTargetingResponse value: AnyObject,
+			mimeType: String?) {
+		screenlet.hidden = false
+	}
+
+	func screenletOnAudienceTargetingEmptyResponse(
+			screenlet: AudienceTargetingDisplayScreenlet) {
+		screenlet.hidden = true
+	}
+
+	func screenlet(screenlet: AudienceTargetingDisplayScreenlet,
+			onAudienceTargetingError error: NSError) {
+		screenlet.hidden = true
+	}
+
 
 }

@@ -29,6 +29,8 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 
 		let onDone: () -> () = {
+			audienceTargeting().clearCache()
+
 			self.dismissViewControllerAnimated(true, completion: nil)
 		}
 

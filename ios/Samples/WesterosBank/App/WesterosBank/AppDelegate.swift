@@ -12,15 +12,27 @@
 * details.
 */
 import UIKit
+import LiferayScreens
+
+
+public func audienceTargeting() -> AudienceTargetingLoader {
+	return (UIApplication.sharedApplication().delegate as! AppDelegate).audienceTargetingLoader!
+}
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
+	var audienceTargetingLoader: AudienceTargetingLoader?
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		// Override point for customization after application launch.
+
+		audienceTargetingLoader = AudienceTargetingLoader(
+				groupId: LiferayServerContext.groupId,
+				appId: NSBundle.mainBundle().bundleIdentifier!)
+
 		return true
 	}
 
