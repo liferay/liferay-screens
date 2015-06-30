@@ -260,54 +260,73 @@ public class DDLFormTableView: DDLFormView,
 
 		for fieldEditor in DDLField.Editor.all() {
 			let cellId = fieldEditor.toCapitalizedName()
+			let nibName = "DDLField\(cellId)TableCell"
 
-			for bundle in bundles {
-				if let cellView = registerEditorCellInBundle(bundle,
-						nibName: "DDLField\(cellId)TableCell",
-						cellId: cellId) {
+			if let cellView = registerEditorCell(
+					nibName: nibName,
+					cellId: cellId,
+					inBundles: bundles) {
+
 					cellHeights[cellId] = (cellView.bounds.size.height, cellView.bounds.size.height)
-
-					break
-				}
+			}
+			else {
+				println("ERROR: Cell XIB \(nibName) couldn't be registered")
 			}
 		}
 
 		if showSubmitButton {
-			for bundle in bundles {
-				if let cellView = registerEditorCellInBundle(bundle,
-						nibName: "DDLSubmitButtonTableCell",
-						cellId: "SubmitButton") {
-					submitButtonHeight = cellView.bounds.size.height
+			if let cellView = registerEditorCell(
+					nibName: "DDLSubmitButtonTableCell",
+					cellId: "SubmitButton",
+					inBundles: bundles) {
 
-					break
-				}
+					submitButtonHeight = cellView.bounds.size.height
+			}
+			else {
+				println("ERROR: Cell XIB DDLSubmitButtonTableCell couldn't be registered")
 			}
 		}
 	}
 
 	internal func registerCustomEditor(field: DDLField) -> Bool {
-		let bundles = NSBundle.allBundles(self.dynamicType);
+		if let cellView = registerEditorCell(
+				nibName: "DDLCustomField\(field.name)TableCell",
+				cellId: field.name,
+				inBundles: NSBundle.allBundles(self.dynamicType)) {
 
-		for bundle in bundles {
-			if let cellView = registerEditorCellInBundle(bundle,
-					nibName: "DDLCustomField\(field.name)TableCell",
-					cellId: field.name) {
+			setCellHeight(cellView.bounds.size.height, forField: field)
 
-				setCellHeight(cellView.bounds.size.height, forField: field)
-
-				return true
-			}
+			return true
 		}
 
 		return false
 	}
 
-	internal func registerEditorCellInBundle(bundle: NSBundle,
+	internal func registerEditorCell(
+			#nibName: String,
+			cellId: String,
+			inBundles bundles: [NSBundle])
+			-> UITableViewCell? {
+		return
+				registerEditorCellForTheme(self.themeName,
+						nibName: nibName,
+						cellId: cellId,
+						inBundles: bundles)
+				??
+				registerEditorCellForTheme("default",
+						nibName: nibName,
+						cellId: cellId,
+						inBundles: bundles)
+	}
+
+
+	internal func registerEditorCellForTheme(themeName: String,
 			nibName: String,
-			cellId: String)
+			cellId: String,
+			inBundles bundles: [NSBundle])
 			-> UITableViewCell? {
 
-		let existingNibName = { (themeName: String) -> String? in
+		func themedNibName(bundle: NSBundle) -> String? {
 			let themedNibName = "\(nibName)_\(themeName)"
 
 			return bundle.pathForResource(themedNibName, ofType: "nib") != nil
@@ -315,21 +334,15 @@ public class DDLFormTableView: DDLFormView,
 						: nil
 		}
 
-		let themedNibName = existingNibName(self.themeName)
-				?? existingNibName("default")
+		for bundle in bundles {
+			if let themedNibName = themedNibName(bundle) {
+				let nib = UINib(nibName: themedNibName, bundle: bundle)
 
-		if let themedNibNameValue = themedNibName {
-			let nib = UINib(nibName: themedNibNameValue, bundle: bundle)
+				tableView?.registerNib(nib, forCellReuseIdentifier: cellId)
 
-			tableView?.registerNib(nib, forCellReuseIdentifier: cellId)
+				let views = nib.instantiateWithOwner(nil, options: nil)
 
-			let views = nib.instantiateWithOwner(nil, options: nil)
-
-			if let cell = views.first as? UITableViewCell {
-				return cell
-			}
-			else {
-				println("ERROR: Cell XIB \(themedNibName) couldn't be registered (no root view?)")
+				return views.first as? UITableViewCell
 			}
 		}
 
