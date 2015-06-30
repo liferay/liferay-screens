@@ -254,6 +254,9 @@
 		881E63071ACC06B900862B9E /* LoginScreenlet_ByScreenName_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E63031ACC06B900862B9E /* LoginScreenlet_ByScreenName_Tests.swift */; };
 		881E63081ACC06B900862B9E /* LoginScreenlet_ByUserId_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E63041ACC06B900862B9E /* LoginScreenlet_ByUserId_Tests.swift */; };
 		881E630A1ACC0CF700862B9E /* LiferayScreens.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8892C6781ACB2E3300192232 /* LiferayScreens.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		88244E131B42EC8B00353473 /* LRScreensjournalarticleService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 88244E111B42EC8B00353473 /* LRScreensjournalarticleService_v62.h */; };
+		88244E141B42EC8B00353473 /* LRScreensjournalarticleService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 88244E121B42EC8B00353473 /* LRScreensjournalarticleService_v62.m */; };
+		88244E151B42EC8B00353473 /* LRScreensjournalarticleService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 88244E121B42EC8B00353473 /* LRScreensjournalarticleService_v62.m */; };
 		8839B87B1B0CD539006C18F1 /* SaveUserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8791B0CD539006C18F1 /* SaveUserInteractor.swift */; };
 		8839B87C1B0CD539006C18F1 /* SaveUserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8791B0CD539006C18F1 /* SaveUserInteractor.swift */; };
 		8839B87D1B0CD539006C18F1 /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B87A1B0CD539006C18F1 /* SignUpInteractor.swift */; };
@@ -557,6 +560,8 @@
 		881E63021ACC06B900862B9E /* LoginScreenlet_ByEmail_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenlet_ByEmail_Tests.swift; sourceTree = "<group>"; };
 		881E63031ACC06B900862B9E /* LoginScreenlet_ByScreenName_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenlet_ByScreenName_Tests.swift; sourceTree = "<group>"; };
 		881E63041ACC06B900862B9E /* LoginScreenlet_ByUserId_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenlet_ByUserId_Tests.swift; sourceTree = "<group>"; };
+		88244E111B42EC8B00353473 /* LRScreensjournalarticleService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensjournalarticleService_v62.h; sourceTree = "<group>"; };
+		88244E121B42EC8B00353473 /* LRScreensjournalarticleService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensjournalarticleService_v62.m; sourceTree = "<group>"; };
 		8839B8791B0CD539006C18F1 /* SaveUserInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveUserInteractor.swift; sourceTree = "<group>"; };
 		8839B87A1B0CD539006C18F1 /* SignUpInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpInteractor.swift; sourceTree = "<group>"; };
 		8839B87F1B0CD546006C18F1 /* LiferayUpdateCurrentUserOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayUpdateCurrentUserOperation.swift; sourceTree = "<group>"; };
@@ -1406,6 +1411,8 @@
 				B2F3F34A1B0A1923002CEF60 /* LRScreensassetentryService_v62.m */,
 				B2F3F34B1B0A1923002CEF60 /* LRScreensddlrecordService_v62.h */,
 				B2F3F34C1B0A1923002CEF60 /* LRScreensddlrecordService_v62.m */,
+				88244E111B42EC8B00353473 /* LRScreensjournalarticleService_v62.h */,
+				88244E121B42EC8B00353473 /* LRScreensjournalarticleService_v62.m */,
 				887A3D6C1B32E189009A7881 /* LRScreensmobileService_v62.h */,
 				887A3D6D1B32E189009A7881 /* LRScreensmobileService_v62.m */,
 				B2F3F34D1B0A1923002CEF60 /* LRScreensuserService_v62.h */,
@@ -1516,6 +1523,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88244E131B42EC8B00353473 /* LRScreensjournalarticleService_v62.h in Headers */,
 				B2F3F3531B0A1923002CEF60 /* LRScreensuserService_v62.h in Headers */,
 				887A3D6E1B32E189009A7881 /* LRScreensmobileService_v62.h in Headers */,
 				8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */,
@@ -1878,6 +1886,7 @@
 				8892C6AF1ACBD89400192232 /* UIButton+Title.swift in Sources */,
 				881E61201ACBE5F000862B9E /* UserPortraitAttributesLoadInteractor.swift in Sources */,
 				881E61891ACBEE0B00862B9E /* LiferayDDLListPageOperation.swift in Sources */,
+				88244E141B42EC8B00353473 /* LRScreensjournalarticleService_v62.m in Sources */,
 				881E61471ACBEDC600862B9E /* AssetListPageLoadInteractor.swift in Sources */,
 				88A28EBA1B0DD1300040D7F6 /* NSBundle+discovery.swift in Sources */,
 				881E618F1ACBEE0B00862B9E /* DDLFieldDocument.swift in Sources */,
@@ -2004,6 +2013,7 @@
 				881E62E91ACC04A500862B9E /* DDLField+DataType.swift in Sources */,
 				881E629D1ACBFF1800862B9E /* ServerOperationInteractor.swift in Sources */,
 				881E61AC1ACBFAE100862B9E /* IntegrationTestCase.swift in Sources */,
+				88244E151B42EC8B00353473 /* LRScreensjournalarticleService_v62.m in Sources */,
 				88DE25111AD2AB0A00714701 /* SessionContext_Storage_Tests.swift in Sources */,
 				888DF5BA1ACCA3FD00EB7DA1 /* LoginViewModel.swift in Sources */,
 				8839B87C1B0CD539006C18F1 /* SaveUserInteractor.swift in Sources */,

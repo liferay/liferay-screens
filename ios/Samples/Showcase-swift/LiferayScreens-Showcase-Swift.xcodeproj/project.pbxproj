@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		223C2F095C3A02C3853AF22B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8055AB54D6653FBCFA243EA3 /* libPods.a */; };
+		88244E181B42EFA300353473 /* LRScreensjournalarticleService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 88244E171B42EFA300353473 /* LRScreensjournalarticleService_v62.m */; };
 		887A3D721B32E888009A7881 /* AudienceTargetingDisplayScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887A3D711B32E888009A7881 /* AudienceTargetingDisplayScreenletViewController.swift */; };
 		88A281F41B3A9A1200BEF482 /* AssetListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A280D41B3A9A1200BEF482 /* AssetListPageLoadInteractor.swift */; };
 		88A281F51B3A9A1200BEF482 /* AssetListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A280D51B3A9A1200BEF482 /* AssetListScreenlet.swift */; };
@@ -237,6 +238,8 @@
 /* Begin PBXFileReference section */
 		1F7AD30F6279ED703F034F12 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8055AB54D6653FBCFA243EA3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		88244E161B42EFA300353473 /* LRScreensjournalarticleService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensjournalarticleService_v62.h; sourceTree = "<group>"; };
+		88244E171B42EFA300353473 /* LRScreensjournalarticleService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensjournalarticleService_v62.m; sourceTree = "<group>"; };
 		887A3D711B32E888009A7881 /* AudienceTargetingDisplayScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudienceTargetingDisplayScreenletViewController.swift; sourceTree = "<group>"; };
 		88A280D41B3A9A1200BEF482 /* AssetListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListPageLoadInteractor.swift; sourceTree = "<group>"; };
 		88A280D51B3A9A1200BEF482 /* AssetListScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListScreenlet.swift; sourceTree = "<group>"; };
@@ -932,6 +935,8 @@
 				88A281751B3A9A1200BEF482 /* LRScreensassetentryService_v62.m */,
 				88A281761B3A9A1200BEF482 /* LRScreensddlrecordService_v62.h */,
 				88A281771B3A9A1200BEF482 /* LRScreensddlrecordService_v62.m */,
+				88244E161B42EFA300353473 /* LRScreensjournalarticleService_v62.h */,
+				88244E171B42EFA300353473 /* LRScreensjournalarticleService_v62.m */,
 				88A281781B3A9A1200BEF482 /* LRScreensmobileService_v62.h */,
 				88A281791B3A9A1200BEF482 /* LRScreensmobileService_v62.m */,
 				88A2817A1B3A9A1200BEF482 /* LRScreensuserService_v62.h */,
@@ -1543,6 +1548,7 @@
 				88A282391B3A9A1200BEF482 /* DDLFormUploadDocumentInteractor.swift in Sources */,
 				88A2824D1B3A9A1200BEF482 /* DDLFieldUntyped.swift in Sources */,
 				88DE2AAE1AD3EFEF00714701 /* ForgotPasswordScreenletViewController.swift in Sources */,
+				88244E181B42EFA300353473 /* LRScreensjournalarticleService_v62.m in Sources */,
 				88A282091B3A9A1200BEF482 /* LoginScreenlet.swift in Sources */,
 				88A283861B3AA31C00BEF482 /* AudienceTargetingDisplayView_default.swift in Sources */,
 				88A2822E1B3A9A1200BEF482 /* LiferayServerContext.swift in Sources */,
