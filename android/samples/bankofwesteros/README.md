@@ -4,7 +4,7 @@
 
 The *Bank of Westeros* application is an example application built with Liferay Screens to manage technical issues in a bank. It allows new user registration with Liferay Portal, editing of existing user details, and editing of other portal content.
 
-[![The Westeros Bank app](../../documentation/Images/westeros-youtube.png)](https://www.youtube.com/watch?v=AroTd6zI794 "The Westeros Bank app - Click to Watch!")
+[![The Westeros Bank app](../../documentation/images/westeros-youtube.png)](https://www.youtube.com/watch?v=AroTd6zI794 "The Westeros Bank app - Click to Watch!")
 
 You can also download it using [Google Play](https://play.google.com/store/apps/details?id=com.liferay.mobile.screens.bankofwesteros).
 
