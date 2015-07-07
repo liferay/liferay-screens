@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.ddl;
 
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.util.LiferayLocale;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -117,7 +118,7 @@ public class XSDParser {
 		return dataType.createField(mergedMap, locale);
 	}
 
-	protected Map<String,Object> processLocalizedMetadata(
+	protected Map<String, Object> processLocalizedMetadata(
 		Element dynamicElement, Locale locale, Locale defaultLocale) {
 
 		Map<String, Object> result = new HashMap<>();
@@ -129,7 +130,7 @@ public class XSDParser {
 			addLocalizedElement(localizedMetadata, "tip", result);
 		}
 
-		List<Map<String,String>> options = findOptions(dynamicElement, locale, defaultLocale);
+		List<Map<String, String>> options = findOptions(dynamicElement, locale, defaultLocale);
 		if (!options.isEmpty()) {
 			result.put("options", options);
 		}
@@ -137,15 +138,15 @@ public class XSDParser {
 		return result;
 	}
 
-	protected List<Map<String,String>> findOptions(
+	protected List<Map<String, String>> findOptions(
 		Element dynamicElement, Locale locale, Locale defaultLocale) {
 
 		List<Element> options = getChildren(dynamicElement, "dynamic-element", "type", "option");
 
-		List<Map<String,String>> result = new ArrayList<>(options.size());
+		List<Map<String, String>> result = new ArrayList<>(options.size());
 
 		for (Element optionDynamicElement : options) {
-			Map<String,String> optionMap = new HashMap<>();
+			Map<String, String> optionMap = new HashMap<>();
 
 			optionMap.put("name", optionDynamicElement.getAttribute("name"));
 			optionMap.put("value", optionDynamicElement.getAttribute("value"));
@@ -214,24 +215,17 @@ public class XSDParser {
 			// cases 'a1' and 'b1'
 			resultElement = metadataElement;
 		}
-		else {
-			if (locale.getCountry() != null) {
-				metadataElement = getChild(
-					dynamicElement, "meta-data", "locale", locale.getLanguage());
 
-				if (metadataElement != null) {
-					// case 'a2'
-					resultElement = metadataElement;
-				}
-			}
-		}
 
 		if (resultElement == null) {
-			// Pre-final fallback (a3, b2): find any metadata starting with language
+
+			String supportedLocale = LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
+			// Pre-final fallback (a2, a3, b2): find any metadata with the portal supported languages
 			for (int i = 0; resultElement == null && i < metadataLen; ++i) {
 				Element childElement = (Element) metadataList.item(i);
 				String childLocale = childElement.getAttribute("locale");
-				if (childLocale != null && childLocale.startsWith(locale.getLanguage() + "_")) {
+				if (childLocale != null && supportedLocale.equals(childLocale)
+					&& dynamicElement.equals(childElement.getParentNode())) {
 					resultElement = childElement;
 				}
 			}
