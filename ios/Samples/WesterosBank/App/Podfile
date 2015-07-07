@@ -3,7 +3,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'LiferayScreens'
+pod 'LiferayScreens', :git => 'https://github.com/jmnavarro/liferay-screens', :branch => 'feature/LSR-279'
 
 pod 'TPKeyboardAvoiding'
 pod 'MGSwipeTableCell'

@@ -40,22 +40,23 @@ PODS:
   - ODRefreshControl (1.1.0)
   - SMXMLDocument (1.0.1)
   - TNRadioButtonGroup (0.4)
-  - TPKeyboardAvoiding (1.2.6)
-  - UICKeyChainStore (2.0.5)
+  - TPKeyboardAvoiding (1.2.8)
+  - UICKeyChainStore (2.0.6)
 
 DEPENDENCIES:
-  - LiferayScreens (from `https://github.com/liferay/liferay-screens`)
+  - LiferayScreens (from `https://github.com/jmnavarro/liferay-screens`, branch `feature/LSR-279`)
   - MGSwipeTableCell
   - TPKeyboardAvoiding
 
 EXTERNAL SOURCES:
   LiferayScreens:
-    :git: https://github.com/liferay/liferay-screens
+    :branch: feature/LSR-279
+    :git: https://github.com/jmnavarro/liferay-screens
 
 CHECKOUT OPTIONS:
   LiferayScreens:
-    :commit: 552eae7897412cf456f6e6d54c4c133e3608d4bb
-    :git: https://github.com/liferay/liferay-screens
+    :commit: d698c4ba174140ee8daa06ec4e938a58460b035b
+    :git: https://github.com/jmnavarro/liferay-screens
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
@@ -69,7 +70,7 @@ SPEC CHECKSUMS:
   ODRefreshControl: 4c4c413bf70d2ea0c02a28ac0a0b3b4bf4dbfdea
   SMXMLDocument: 4ff79d0d7586239e93758c8610698b57cc0acd82
   TNRadioButtonGroup: f5fb9b545d8913bbabe6a72ea1fa6fba4d833bb6
-  TPKeyboardAvoiding: ee4dd35e3bb7bb64bfbda47e7cc9ba872ff10f77
-  UICKeyChainStore: a389515ca090d4d49780fd563fec961571caa92b
+  TPKeyboardAvoiding: f1ef0028fe9ba98ef2871cf55b4bbc39cae0267b
+  UICKeyChainStore: c5719c814e8bd69e74e4a0fc09daf8f4d6257a59
 
 COCOAPODS: 0.37.2
