@@ -28,7 +28,7 @@
 		</activity>
 
 		<receiver
-			android:name=".push.PushReceiver"
+			android:name=".notification.PushReceiver"
 			android:permission="com.google.android.c2dm.permission.SEND">
 			<intent-filter>
 				<action android:name="com.google.android.c2dm.intent.RECEIVE"/>
@@ -37,7 +37,7 @@
 			</intent-filter>
 		</receiver>
 
-		<service android:name=".push.PushService"/>
+		<service android:name=".notification.PushService"/>
 
 
 	</application>

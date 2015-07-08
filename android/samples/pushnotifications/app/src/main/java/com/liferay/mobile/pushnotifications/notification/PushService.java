@@ -1,6 +1,5 @@
-package com.liferay.mobile.pushnotifications.push;
+package com.liferay.mobile.pushnotifications.notification;
 
-import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -14,12 +13,10 @@ import android.support.v4.app.NotificationCompat;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.dlfileentry.DLFileEntryService;
-import com.liferay.mobile.push.bus.BusUtil;
-import com.liferay.mobile.push.exception.PushNotificationReceiverException;
-import com.liferay.mobile.push.util.GoogleServices;
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.pushnotifications.activities.NotificationsActivity;
 import com.liferay.mobile.pushnotifications.download.DownloadPicture;
+import com.liferay.mobile.pushnotifications.push.AbstractPushService;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -30,38 +27,19 @@ import org.json.JSONObject;
 /**
  * @author Javier Gamarra
  */
-public class PushService extends IntentService {
+public class PushService extends AbstractPushService {
 
 	public static final int NOTIFICATION_ID = 2;
-	private GoogleServices _googleService = new GoogleServices();
 
-	public PushService() {
-		super(PushService.class.getSimpleName());
-	}
+	@Override
+	protected void processJSONNotification(final JSONObject json) throws Exception {
+		boolean creation = json.has("newNotification") && json.getBoolean("newNotification");
+		String titleHeader = (creation ? "New" : "Updated") + " notification: ";
+		String title = titleHeader + getString(json, "title");
+		String description = getString(json, "description");
+		String photo = getString(json, "photo");
 
-	public void onHandleIntent(Intent intent) {
-		try {
-			JSONObject json = this._googleService.getPushNotification(this, intent);
-
-			//BusUtil.post(json);
-
-			boolean creation = json.has("newNotification") && json.getBoolean("newNotification");
-			String titleHeader = (creation ? "New" : "Updated") + " notification: ";
-			String title = titleHeader + getString(json, "title");
-			String description = getString(json, "description");
-			String photo = getString(json, "photo");
-
-			createGlobalNotification(title, description, tryToLoadPhoto(photo));
-
-			PushReceiver.completeWakefulIntent(intent);
-		}
-		catch (PushNotificationReceiverException | JSONException exception) {
-			BusUtil.post(exception);
-		}
-	}
-
-	private String getString(final JSONObject json, final String element) throws JSONException {
-		return json.has(element) ? json.getString(element) : "";
+		createGlobalNotification(title, description, tryToLoadPhoto(photo));
 	}
 
 	private void createGlobalNotification(String title, String description, Bitmap bitmap) {
@@ -119,6 +97,7 @@ public class PushService extends IntentService {
 		return null;
 	}
 
+	private String getString(final JSONObject json, final String element) throws JSONException {
+		return json.has(element) ? json.getString(element) : "";
+	}
 }
-
-
