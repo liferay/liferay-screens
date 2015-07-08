@@ -17,10 +17,10 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		setDefaultValuesForUserAndPassword();
-
 		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);
+
+		setDefaultValuesForUserAndPassword();
 	}
 
 	@Override
