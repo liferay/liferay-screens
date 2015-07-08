@@ -8,7 +8,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.task.callback.typed.JSONObjectAsyncTaskCallback;
 import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
 import com.liferay.mobile.pushnotifications.R;
-import com.liferay.mobile.pushnotifications.push.PushActivity;
+import com.liferay.mobile.pushnotifications.push.AbstractPushActivity;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -24,7 +24,7 @@ import java.util.List;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 
-public class NotificationsActivity extends PushActivity implements BaseListListener<DDLEntry> {
+public class NotificationsActivity extends AbstractPushActivity implements BaseListListener<DDLEntry> {
 
 	private DDLListScreenlet ddlList;
 
@@ -101,7 +101,7 @@ public class NotificationsActivity extends PushActivity implements BaseListListe
 	}
 
 	@Override
-	protected void processPushNotification(JSONObject jsonObject) {
+	protected void onPushNotificationReceived(final JSONObject jsonObject) {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -110,5 +110,15 @@ public class NotificationsActivity extends PushActivity implements BaseListListe
 				ddlList.loadPage(0);
 			}
 		});
+	}
+
+	@Override
+	protected void onErrorRegisteringPush(final String message, final Exception e) {
+
+	}
+
+	@Override
+	protected String getSenderId() {
+		return getString(R.string.sender_id);
 	}
 }
