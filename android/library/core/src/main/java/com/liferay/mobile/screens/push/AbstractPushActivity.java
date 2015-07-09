@@ -1,4 +1,4 @@
-package com.liferay.mobile.pushnotifications.push;
+package com.liferay.mobile.screens.push;
 
 import android.content.Context;
 import android.content.SharedPreferences;

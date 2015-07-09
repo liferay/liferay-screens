@@ -16,9 +16,9 @@ import com.liferay.mobile.android.v62.dlfileentry.DLFileEntryService;
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.pushnotifications.activities.NotificationsActivity;
 import com.liferay.mobile.pushnotifications.download.DownloadPicture;
-import com.liferay.mobile.pushnotifications.push.AbstractPushService;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.push.AbstractPushService;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONException;

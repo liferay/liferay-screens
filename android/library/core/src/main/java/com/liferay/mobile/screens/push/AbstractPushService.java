@@ -1,4 +1,4 @@
-package com.liferay.mobile.pushnotifications.push;
+package com.liferay.mobile.screens.push;
 
 import android.app.IntentService;
 import android.content.Intent;
