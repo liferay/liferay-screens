@@ -27,7 +27,7 @@ dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 	compile 'com.android.support:appcompat-v7:22.2.0'
 
-	compile 'com.liferay.mobile:liferay-screens:1.0.2'
+	compile 'com.liferay.mobile:liferay-screens:1.1.0'
 	compile 'com.liferay.mobile:liferay-material-viewset:1.0.2'
 	compile 'com.liferay.mobile:liferay-push:1.0.2'
 
