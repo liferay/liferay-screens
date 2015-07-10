@@ -19,6 +19,7 @@ import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 
 public abstract class BaseLoginInteractor
@@ -30,7 +31,9 @@ public abstract class BaseLoginInteractor
 	}
 
 	public void onEvent(JSONObjectEvent event) {
-		System.out.println("event = [" + event + "]");
+
+		LiferayLogger.i("event = [" + event + "]");
+
 		if (!isValidEvent(event)) {
 			return;
 		}

@@ -97,7 +97,7 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 		}
 
 		if (basicAuthMethod == BasicAuthMethod.USER_ID && !TextUtils.isDigitsOnly(login)) {
-			throw new IllegalArgumentException("UserId has to be numeric");
+			throw new IllegalArgumentException("UserId has to be a number");
 		}
 	}
 

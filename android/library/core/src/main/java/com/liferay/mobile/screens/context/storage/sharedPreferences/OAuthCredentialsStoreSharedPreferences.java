@@ -24,26 +24,32 @@ import com.liferay.mobile.screens.context.AuthenticationType;
  */
 public class OAuthCredentialsStoreSharedPreferences extends BaseCredentialsStoreSharedPreferences {
 
+	public static final String AUTH = "auth";
+	public static final String OAUTH_CONSUMER_KEY = "oauth_consumerKey";
+	public static final String OAUTH_CONSUMER_SECRET = "oauth_consumerSecret";
+	public static final String OAUTH_TOKEN = "oauth_token";
+	public static final String OAUTH_TOKEN_SECRET = "oauth_tokenSecret";
+
 	@Override
 	protected void storeAuth(Authentication auth) {
 		OAuth oauth = (OAuth) auth;
 
 		getSharedPref()
 			.edit()
-			.putString("auth", AuthenticationType.OAUTH.name())
-			.putString("oauth_consumerKey", oauth.getConfig().getConsumerKey())
-			.putString("oauth_consumerSecret", oauth.getConfig().getConsumerSecret())
-			.putString("oauth_token", oauth.getConfig().getToken())
-			.putString("oauth_tokenSecret", oauth.getConfig().getTokenSecret())
+			.putString(AUTH, AuthenticationType.OAUTH.name())
+			.putString(OAUTH_CONSUMER_KEY, oauth.getConfig().getConsumerKey())
+			.putString(OAUTH_CONSUMER_SECRET, oauth.getConfig().getConsumerSecret())
+			.putString(OAUTH_TOKEN, oauth.getConfig().getToken())
+			.putString(OAUTH_TOKEN_SECRET, oauth.getConfig().getTokenSecret())
 			.apply();
 	}
 
 	@Override
 	protected Authentication loadAuth() {
-		String consumerKey = getSharedPref().getString("oauth_consumerKey", null);
-		String consumerSecret = getSharedPref().getString("oauth_consumerSecret", null);
-		String token = getSharedPref().getString("oauth_token", null);
-		String tokenSecret = getSharedPref().getString("oauth_tokenSecret", null);
+		String consumerKey = getSharedPref().getString(OAUTH_CONSUMER_KEY, null);
+		String consumerSecret = getSharedPref().getString(OAUTH_CONSUMER_SECRET, null);
+		String token = getSharedPref().getString(OAUTH_TOKEN, null);
+		String tokenSecret = getSharedPref().getString(OAUTH_TOKEN_SECRET, null);
 
 		if (consumerKey == null || consumerSecret == null || token == null || tokenSecret == null) {
 			return null;

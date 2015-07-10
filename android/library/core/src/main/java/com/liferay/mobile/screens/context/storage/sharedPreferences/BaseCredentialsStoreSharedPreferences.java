@@ -88,7 +88,7 @@ public abstract class BaseCredentialsStoreSharedPreferences implements Credentia
 		_auth = loadAuth();
 
 		if (_auth == null || server == null || userAttributes == null
-				|| groupId == 0 || companyId == 0) {
+			|| groupId == 0 || companyId == 0) {
 			// nothing saved
 			return false;
 		}
@@ -127,7 +127,7 @@ public abstract class BaseCredentialsStoreSharedPreferences implements Credentia
 
 	public static AuthenticationType getStoredAuthenticationType(Context context) {
 		SharedPreferences sharedPref = context.getSharedPreferences(
-				getStoreName(), Context.MODE_PRIVATE);
+			getStoreName(), Context.MODE_PRIVATE);
 		return AuthenticationType.valueOf(sharedPref.getString("auth", null));
 	}
 
@@ -163,11 +163,9 @@ public abstract class BaseCredentialsStoreSharedPreferences implements Credentia
 		return _sharedPref;
 	}
 
-
 	protected abstract void storeAuth(Authentication auth);
 
 	protected abstract Authentication loadAuth();
-
 
 	private SharedPreferences _sharedPref;
 	private Authentication _auth;

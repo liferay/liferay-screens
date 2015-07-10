@@ -26,8 +26,8 @@ import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.oauth.activity.OAuthActivity;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
-import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
+import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginOAuthInteractor;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -44,7 +44,9 @@ import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder
 public class LoginScreenlet
 	extends BaseScreenlet<LoginViewModel, LoginInteractor>
 	implements LoginListener {
-
+	
+	public static final String OAUTH = "OAUTH";
+	public static final String BASIC_AUTH = "BASIC_AUTH";
 	public static final int REQUEST_OAUTH_CODE = 1;
 
 	public LoginScreenlet(Context context) {
@@ -58,9 +60,6 @@ public class LoginScreenlet
 	public LoginScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
-
-	public static final String OAUTH = "OAUTH";
-	public static final String BASIC_AUTH = "BASIC_AUTH";
 
 	@Override
 	public void onLoginFailure(Exception e) {
@@ -86,7 +85,7 @@ public class LoginScreenlet
 		if (result == Activity.RESULT_OK) {
 			try {
 				OAuthConfig oauthConfig = (OAuthConfig) intent.getSerializableExtra(
-						OAuthActivity.EXTRA_OAUTH_CONFIG);
+					OAuthActivity.EXTRA_OAUTH_CONFIG);
 
 				LoginOAuthInteractor oauthInteractor = (LoginOAuthInteractor) getInteractor(OAUTH);
 				oauthInteractor.setOAuthConfig(oauthConfig);
@@ -98,7 +97,7 @@ public class LoginScreenlet
 		}
 		else if (result == Activity.RESULT_CANCELED) {
 			Exception exception = (Exception) intent.getSerializableExtra(
-					OAuthActivity.EXTRA_EXCEPTION);
+				OAuthActivity.EXTRA_EXCEPTION);
 			onLoginFailure(exception);
 		}
 	}

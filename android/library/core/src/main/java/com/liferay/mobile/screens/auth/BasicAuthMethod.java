@@ -40,9 +40,9 @@ public enum BasicAuthMethod {
 				return InputType.TYPE_CLASS_TEXT;
 			case USER_ID:
 				return InputType.TYPE_CLASS_NUMBER;
+			default:
+				return InputType.TYPE_NULL;
 		}
-
-		return InputType.TYPE_NULL;
 	}
 
 	BasicAuthMethod(int value) {

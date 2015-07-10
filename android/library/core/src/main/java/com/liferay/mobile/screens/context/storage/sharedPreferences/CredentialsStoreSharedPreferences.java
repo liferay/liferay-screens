@@ -23,21 +23,25 @@ import com.liferay.mobile.screens.context.AuthenticationType;
  */
 public class CredentialsStoreSharedPreferences extends BaseCredentialsStoreSharedPreferences {
 
+	public static final String AUTH = "auth";
+	public static final String USERNAME = "username";
+	public static final String PASSWORD = "password";
+
 	@Override
 	protected void storeAuth(Authentication auth) {
 		BasicAuthentication basicAuth = (BasicAuthentication) auth;
 		getSharedPref()
 			.edit()
-			.putString("auth", AuthenticationType.BASIC.name())
-			.putString("username", basicAuth.getUsername())
-			.putString("password", basicAuth.getPassword())
+			.putString(AUTH, AuthenticationType.BASIC.name())
+			.putString(USERNAME, basicAuth.getUsername())
+			.putString(PASSWORD, basicAuth.getPassword())
 			.apply();
 	}
 
 	@Override
 	protected Authentication loadAuth() {
-		String userName = getSharedPref().getString("username", null);
-		String password = getSharedPref().getString("password", null);
+		String userName = getSharedPref().getString(USERNAME, null);
+		String password = getSharedPref().getString(PASSWORD, null);
 
 		if (userName == null || password == null) {
 			return null;
