@@ -5,7 +5,7 @@ android {
 	buildToolsVersion "22.0.1"
 
 	defaultConfig {
-		minSdkVersion 14
+		minSdkVersion 15
 		targetSdkVersion 22
 		versionCode 1
 		versionName "1.0"
@@ -38,7 +38,7 @@ dependencies {
 	compile project(':liferay-screens')
 }
 
-version = '1.0.2'
+version = '1.1.0'
 group = 'com.liferay.mobile'
 
 project.archivesBaseName = 'liferay-material-viewset'
