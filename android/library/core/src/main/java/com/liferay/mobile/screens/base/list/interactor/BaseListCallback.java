@@ -49,12 +49,9 @@ public abstract class BaseListCallback<E>
         return result;
     }
 
-    public abstract E createEntity(Map<String, Object> stringObjectMap);
-
-    public BaseListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
-        super(targetScreenletId);
-
-        _rowsRange = rowsRange;
+    @Override
+    public void onSuccess(final ArrayList<BaseListResult<E>> results) {
+        onSuccess(results.get(0));
     }
 
     @Override
@@ -69,6 +66,14 @@ public abstract class BaseListCallback<E>
         cleanRequestState();
 
         super.onFailure(e);
+    }
+
+    public abstract E createEntity(Map<String, Object> stringObjectMap);
+
+    public BaseListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
+        super(targetScreenletId);
+
+        _rowsRange = rowsRange;
     }
 
     @Override
@@ -87,6 +92,5 @@ public abstract class BaseListCallback<E>
     }
 
     private final Pair<Integer, Integer> _rowsRange;
-
 
 }
