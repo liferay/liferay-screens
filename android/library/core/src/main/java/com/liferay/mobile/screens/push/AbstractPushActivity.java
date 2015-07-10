@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.push.Push;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -40,7 +41,10 @@ public abstract class AbstractPushActivity extends AppCompatActivity
 
 	protected void registerWithPush() {
 		try {
-			_push = Push.with(SessionContext.createSessionFromCurrentSession());
+
+			Session session = SessionContext.hasSession() ?
+				SessionContext.createSessionFromCurrentSession() : getDefaultSession();
+			_push = Push.with(session);
 
 			SharedPreferences preferences = getSharedPreferences();
 
@@ -49,7 +53,8 @@ public abstract class AbstractPushActivity extends AppCompatActivity
 
 			if (!alreadyRegistered || appUpdated) {
 				_push.onSuccess(this).onFailure(this).register(this, getSenderId());
-			} else {
+			}
+			else {
 				_push.onPushNotification(this);
 			}
 		}
@@ -59,6 +64,8 @@ public abstract class AbstractPushActivity extends AppCompatActivity
 			onErrorRegisteringPush(message, e);
 		}
 	}
+
+	protected abstract Session getDefaultSession();
 
 	private int getVersionCode() throws PackageManager.NameNotFoundException {
 		PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
