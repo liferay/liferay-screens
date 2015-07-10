@@ -24,17 +24,17 @@ func setButtonDefaultStyle(button: UIButton?) {
 	button?.layer.cornerRadius = DefaultThemeButtonCornerRadius
 }
 
-public func setAuthMethodStyles(
+public func setBasicAuthMethodStyles(
 		#view: UIView,
-		#authMethod: AuthMethod,
+		#basicAuthMethod: BasicAuthMethod,
 		#userNameField: UITextField!,
 		#userNameIcon: UIImageView!) {
 
-	userNameField!.placeholder = LocalizedString("default", authMethod.description, view)
-	userNameField!.keyboardType = authMethod.keyboardType
+	userNameField!.placeholder = LocalizedString("default", basicAuthMethod.description, view)
+	userNameField!.keyboardType = basicAuthMethod.keyboardType
 
 	userNameIcon?.image = NSBundle.imageInBundles(
-			name: "default-\(authMethod.iconType)-icon",
+			name: "default-\(basicAuthMethod.iconType)-icon",
 			currentClass: view.dynamicType)
 }
 

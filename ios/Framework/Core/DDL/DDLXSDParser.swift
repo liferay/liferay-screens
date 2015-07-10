@@ -46,9 +46,9 @@ public class DDLXSDParser {
 	private func processDocument(document:SMXMLDocument, locale: NSLocale) -> [DDLField]? {
 		var result:[DDLField]?
 
-		if let elements = document.root?.childrenNamed("dynamic-element") {
+		if let elements = document.childrenNamed("dynamic-element") {
 			let defaultLocale = NSLocale(
-				localeIdentifier:document.root?.attributeNamed("default-locale") ?? "en_US")
+				localeIdentifier:document.attributeNamed("default-locale") ?? "en_US")
 
 			result = []
 

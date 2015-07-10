@@ -13,18 +13,22 @@
 */
 import Foundation
 
+#if LIFERAY_SCREENS_FRAMEWORK
+	import LRMobileSDK
+	import LROAuth
+#endif
+
 
 @objc public class SessionContext {
 
 	//MARK: Singleton type
 
 	private struct StaticInstance {
-		static var currentSession:LRSession?
+		static var currentSession: LRSession?
 		static var userAttributes: [String:AnyObject] = [:]
 
 		static var sessionStorage = SessionStorage(
-			credentialStorage: CredentialStorageMobileSDK(),
-			keyChainStorage: KeyChainStorageImpl())
+			credentialStore: BasicCredentialsStoreKeyChain())
 	}
 
 
@@ -34,22 +38,14 @@ import Foundation
 		return StaticInstance.currentSession != nil
 	}
 
-	public class var currentAuthMethod: AuthMethod? {
-		if let userName = currentUserName {
-			return AuthMethod.fromUserName(userName)
-		}
-
-		return nil
-	}
-
-	public class var currentUserName: String? {
+	public class var currentBasicUserName: String? {
 		var authentication = StaticInstance.currentSession?.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.username
 	}
 
-	public class var currentPassword: String? {
+	public class var currentBasicPassword: String? {
 		var authentication = StaticInstance.currentSession?.authentication
 			as? LRBasicAuthentication
 
@@ -77,15 +73,43 @@ import Foundation
 		return StaticInstance.userAttributes[key]
 	}
 
-	public class func createSession(
+	public class func createBasicSession(
 			#username: String,
 			password: String,
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
+		sessionStorage = SessionStorage(
+			credentialStore: BasicCredentialsStoreKeyChain())
+
 		let authentication = LRBasicAuthentication(
 				username: username,
 				password: password)
+
+		return createSession(
+				authentication: authentication,
+				userAttributes: userAttributes)
+	}
+
+	public class func createOAuthSession(
+			#authentication: LROAuth,
+			userAttributes: [String:AnyObject])
+			-> LRSession {
+
+		sessionStorage = SessionStorage(
+			credentialStore: OAuthCredentialsStoreKeyChain())
+
+		return createSession(
+				server: LiferayServerContext.server,
+				authentication: authentication,
+				userAttributes: userAttributes)
+	}
+
+
+	private class func createSession(
+			#authentication: LRAuthentication,
+			userAttributes: [String:AnyObject])
+			-> LRSession {
 
 		return createSession(
 				server: LiferayServerContext.server,
@@ -125,14 +149,16 @@ import Foundation
 	}
 
 	public class func loadSessionFromStore() -> Bool {
-		if let result = sessionStorage.load() {
-			StaticInstance.currentSession = result.session
-			StaticInstance.userAttributes = result.userAttributes
+		if let sessionStorage = SessionStorage() {
+			if let result = sessionStorage.load() {
+				StaticInstance.currentSession = result.session
+				StaticInstance.userAttributes = result.userAttributes
 
-			return true
+				return true
+			}
+
+			clearSession()
 		}
-
-		clearSession()
 
 		return false
 	}

@@ -17,12 +17,16 @@ import Foundation
 extension NSBundle {
 
 	public class func allBundles(currentClass: AnyClass) -> [NSBundle] {
-		return [discoverBundles(),
+		let bundles =
+			[discoverBundles(),
 				[bundleForDefaultTheme(),
 					bundleForCore(),
-					NSBundle(forClass: currentClass),
-					NSBundle.mainBundle()]]
+					NSBundle(forClass: currentClass), NSBundle(forClass: currentClass), NSBundle(forClass: currentClass)],
+				bundlesForApp()]
 				.flatMap { $0 }
+		return reduce(bundles, []) { ac, x in
+			contains(ac, x) ? ac : ac + [x]
+		}
 	}
 
 	public class func discoverBundles() -> [NSBundle] {
@@ -53,6 +57,31 @@ extension NSBundle {
 				ofType: "bundle")!
 
 		return NSBundle(path: coreBundlePath)!
+	}
+
+	public class func bundlesForApp() -> [NSBundle] {
+
+		func appFile(path: String) -> String? {
+			var outError: NSError? = nil
+			let files = NSFileManager.defaultManager().contentsOfDirectoryAtPath(path, error: &outError)
+			return (files as? [String] ?? []).filter { $0.pathExtension == "app" }.first
+		}
+
+		let components = NSBundle.mainBundle().resourcePath?.pathComponents ?? []
+
+		if components.last == "Overlays" {
+			// running into IB
+			let coreBundle = bundleForCore()
+
+			if let range = coreBundle.resourcePath?.rangeOfString("Debug-iphonesimulator"),
+					path = coreBundle.resourcePath?.substringToIndex(range.endIndex),
+					appName = appFile(path),
+					appBundle = NSBundle(path: path.stringByAppendingPathComponent(appName)) {
+				return [NSBundle.mainBundle(), appBundle]
+			}
+		}
+
+		return [NSBundle.mainBundle()]
 	}
 
 

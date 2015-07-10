@@ -14,9 +14,11 @@
 import UIKit
 
 
-@objc public protocol LoginViewModel: AuthBasedType {
+@objc public protocol LoginViewModel: BasicAuthBasedType {
 
 	var userName: String? { get set }
 	var password: String? { get set }
+
+	var authType: String? { get set }
 
 }

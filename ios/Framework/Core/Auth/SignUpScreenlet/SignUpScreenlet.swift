@@ -25,7 +25,7 @@ import UIKit
 }
 
 
-@IBDesignable public class SignUpScreenlet: BaseScreenlet, AnonymousAuthType {
+@IBDesignable public class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 
 	//MARK: Inspectables
 
@@ -121,7 +121,7 @@ import UIKit
 	}
 
 	private func doAutoLogin(userAttributes: [String:AnyObject]) {
-		func userNameForAuth(auth: AuthMethod) -> String {
+		func userNameForAuth(auth: BasicAuthMethod) -> String {
 			switch auth {
 			case .ScreenName:
 				return self.viewModel.screenName!
@@ -132,18 +132,24 @@ import UIKit
 			}
 		}
 
-		let userName = userNameForAuth(
-				SessionContext.hasSession
-					? SessionContext.currentAuthMethod!
-					: AuthMethod.fromUserName(anonymousApiUserName!))
+		let currentAuth = currentBasicAuthMethod() ??
+					BasicAuthMethod.fromUserName(anonymousApiUserName!)
 
-		SessionContext.createSession(
-				username: userName,
+		SessionContext.createBasicSession(
+				username: userNameForAuth(currentAuth),
 				password: self.viewModel.password!,
 				userAttributes: userAttributes)
 
 		self.autoLoginDelegate?.screenlet?(self,
 				onLoginResponseUserAttributes: userAttributes)
+	}
+
+	private func currentBasicAuthMethod() -> BasicAuthMethod? {
+		if let userName = SessionContext.currentBasicUserName {
+			return BasicAuthMethod.fromUserName(userName)
+		}
+
+		return nil
 	}
 
 }

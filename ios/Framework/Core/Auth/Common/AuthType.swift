@@ -14,8 +14,9 @@
 import UIKit
 
 
-@objc public protocol ForgotPasswordViewModel: BasicAuthBasedType {
+public enum AuthType: String {
 
-	var userName: String? { get set }
+	case Basic = "basic"
+	case OAuth = "oauth"
 
 }
