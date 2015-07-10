@@ -21,7 +21,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.liferay.mobile.screens.auth.AuthMethod;
+import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.viewsets.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
@@ -80,16 +80,16 @@ public class LoginView
 
 	@Override
 	protected void refreshLoginEditTextStyle() {
-		getLoginEditText().setInputType(getAuthMethod().getInputType());
+		getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
 		_drawableLogin.setImageResource(getLoginEditTextDrawableId());
 	}
 
 	@Override
 	protected int getLoginEditTextDrawableId() {
-		if (AuthMethod.USER_ID.equals(getAuthMethod())) {
+		if (BasicAuthMethod.USER_ID.equals(getBasicAuthMethod())) {
 			return R.drawable.material_account_box;
 		}
-		else if (AuthMethod.EMAIL.equals(getAuthMethod())) {
+		else if (BasicAuthMethod.EMAIL.equals(getBasicAuthMethod())) {
 			return R.drawable.material_email;
 		}
 

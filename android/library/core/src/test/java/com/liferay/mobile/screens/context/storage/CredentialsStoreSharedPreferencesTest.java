@@ -24,6 +24,7 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.context.storage.sharedPreferences.CredentialsStoreSharedPreferences;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +32,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
@@ -59,7 +59,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 
 			store.setContext(null);
 
@@ -69,7 +69,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenSessionIsNotPresent() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 
 			store.setAuthentication(null);
 
@@ -79,7 +79,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 
 			store.setUser(null);
 
@@ -89,7 +89,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test
 		public void shouldStoreTheCredentialsInSharedPreferences() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 			store.storeCredentials();
 
 			SharedPreferences sharedPref =
@@ -118,7 +118,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test
 		public void shouldRemoveTheStoredCredentials() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 			store.storeCredentials();
 
 			store.removeStoredCredentials();
@@ -153,7 +153,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionIfStoredCredentialsAreNotConsistent() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 			store.storeCredentials();
 
 			// Don't recreate the store object because SharedPreferences are mocked by
@@ -167,10 +167,10 @@ public class CredentialsStoreSharedPreferencesTest {
 		@Test
 		public void shouldLoadTheStoredValues() throws Exception {
 			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
-			setTestData(store);
+			setBasicTestDataInStore(store);
 			store.storeCredentials();
 
-			BasicAuthentication savedAuth = store.getAuthentication();
+			BasicAuthentication savedAuth = (BasicAuthentication) store.getAuthentication();
 			User savedUser = store.getUser();
 
 			assertTrue(store.loadStoredCredentials());
@@ -181,14 +181,16 @@ public class CredentialsStoreSharedPreferencesTest {
 			assertNotSame(savedAuth, store.getAuthentication());
 			assertNotSame(savedUser, store.getUser());
 
-			assertEquals("user123", store.getAuthentication().getUsername());
-			assertEquals("pass123", store.getAuthentication().getPassword());
+			BasicAuthentication auth = (BasicAuthentication) store.getAuthentication();
+
+			assertEquals("user123", auth.getUsername());
+			assertEquals("pass123", auth.getPassword());
 			assertEquals(123, store.getUser().getId());
 		}
 
 	}
 
-	private static void setTestData(CredentialsStore store) {
+	private static void setBasicTestDataInStore(CredentialsStore store) {
 		store.setContext(RuntimeEnvironment.application.getApplicationContext());
 
 		JSONObject userAttributes = null;
@@ -199,7 +201,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		}
 		store.setUser(new User(userAttributes));
 
-		SessionContext.createSession("user123", "pass123");
+		SessionContext.createBasicSession("user123", "pass123");
 		store.setAuthentication(SessionContext.getAuthentication());
 	}
 

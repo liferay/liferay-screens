@@ -14,15 +14,41 @@
 
 package com.liferay.mobile.screens.auth;
 
-import com.liferay.mobile.screens.base.view.BaseViewModel;
+import android.text.InputType;
 
 /**
- * @author Jose Manuel Navarro
+ * @author Silvio Santos
  */
-public interface AuthBasedViewModel extends BaseViewModel {
+public enum BasicAuthMethod {
 
-	AuthMethod getAuthMethod();
+	EMAIL(0), SCREEN_NAME(1), USER_ID(2);
 
-	void setAuthMethod(AuthMethod authMethod);
+	public static BasicAuthMethod getValue(int value) {
+		for (BasicAuthMethod method : BasicAuthMethod.values()) {
+			if (method._value == value) {
+				return method;
+			}
+		}
+
+		return EMAIL;
+	}
+
+	public int getInputType() {
+		switch (this) {
+			case EMAIL:
+			case SCREEN_NAME:
+				return InputType.TYPE_CLASS_TEXT;
+			case USER_ID:
+				return InputType.TYPE_CLASS_NUMBER;
+			default:
+				return InputType.TYPE_NULL;
+		}
+	}
+
+	BasicAuthMethod(int value) {
+		_value = value;
+	}
+
+	private int _value;
 
 }

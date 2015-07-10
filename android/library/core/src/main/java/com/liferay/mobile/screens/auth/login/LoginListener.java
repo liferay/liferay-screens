@@ -15,6 +15,8 @@
 package com.liferay.mobile.screens.auth.login;
 
 import com.liferay.mobile.screens.context.User;
+
+
 public interface LoginListener {
 
 	void onLoginSuccess(User user);

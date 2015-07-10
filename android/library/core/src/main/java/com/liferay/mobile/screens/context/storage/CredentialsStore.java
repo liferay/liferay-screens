@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.context.storage;
 
 import android.content.Context;
 
-import com.liferay.mobile.android.auth.basic.BasicAuthentication;
+import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.screens.context.User;
 
 /**
@@ -30,11 +30,9 @@ public interface CredentialsStore {
 
 	boolean loadStoredCredentials() throws IllegalStateException;
 
-	String getStoreName();
+	Authentication getAuthentication();
 
-	BasicAuthentication getAuthentication();
-
-	void setAuthentication(BasicAuthentication auth);
+	void setAuthentication(Authentication auth);
 
 	User getUser();
 

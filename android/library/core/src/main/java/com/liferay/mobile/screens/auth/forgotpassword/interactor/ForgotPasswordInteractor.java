@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.auth.forgotpassword.interactor;
 
-import com.liferay.mobile.screens.auth.AuthMethod;
+import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 
@@ -25,7 +25,7 @@ public interface ForgotPasswordInteractor
 	extends Interactor<ForgotPasswordListener> {
 
 	void requestPassword(
-		long companyId, String login, AuthMethod authMethod,
+		long companyId, String login, BasicAuthMethod basicAuthMethod,
 		String anonymousApiUserName, String anonymousApiPassword)
 		throws Exception;
 

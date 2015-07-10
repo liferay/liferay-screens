@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -12,17 +12,31 @@
  * details.
  */
 
-package com.liferay.mobile.screens.auth.forgotpassword.view;
+package com.liferay.mobile.screens.context;
 
-import com.liferay.mobile.screens.auth.BasicAuthViewModel;
+import com.liferay.mobile.android.oauth.OAuth;
+import com.liferay.mobile.android.oauth.OAuthConfig;
 
 /**
- * @author Jose Manuel Navarro
+ * @author Javier Gamarra
  */
-public interface ForgotPasswordViewModel extends BasicAuthViewModel {
+public class OAuthAuthentication extends OAuth {
 
-	String getLogin();
+	public OAuthAuthentication(OAuthConfig config) {
+		super(config);
+		_token = config.getToken();
+		_tokenSecret = config.getTokenSecret();
+	}
 
-	void showFinishOperation(boolean passwordSent);
+	public String getToken() {
+		return _token;
+	}
+
+	public String getTokenSecret() {
+		return _tokenSecret;
+	}
+
+	private String _token;
+	private String _tokenSecret;
 
 }

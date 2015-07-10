@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.task.callback.typed.JSONObjectAsyncTaskCallback;
 import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.bankofwesteros.views.UpdateUserInteractorImpl;
@@ -40,7 +41,8 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 		_emailAddress = (EditText) findViewById(R.id.email_address);
 		_emailAddress.setText(user.getEmail());
 		_password = (EditText) findViewById(R.id.password);
-		_password.setText(SessionContext.getAuthentication().getPassword());
+		BasicAuthentication basicAuth = (BasicAuthentication) SessionContext.getAuthentication();
+		_password.setText(basicAuth.getPassword());
 
 		_userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.userportrait);
 		_userPortraitScreenlet.setListener(this);
@@ -99,7 +101,8 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 			return;
 		}
 
-		if (SessionContext.getAuthentication().getPassword().equals(_password.getText().toString())) {
+		BasicAuthentication basicAuth = (BasicAuthentication) SessionContext.getAuthentication();
+		if (basicAuth.getPassword().equals(_password.getText().toString())) {
 			setError(_password);
 			LiferayCrouton.error(this, "Password should be different", null);
 			return;
@@ -110,7 +113,7 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 			@Override
 			public void onSuccess(JSONObject result) {
 
-				SessionContext.createSession(emailAddress, newPassword);
+				SessionContext.createBasicSession(emailAddress, newPassword);
 
 				clearError(_password);
 				LiferayCrouton.info(AccountSettingsActivity.this, "User updated");

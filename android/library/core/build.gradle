@@ -1,8 +1,9 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
 
 android {
 	compileSdkVersion 22
-	buildToolsVersion "22.0.1"
+	buildToolsVersion "22"
 
 	defaultConfig {
 		minSdkVersion 14
@@ -25,14 +26,15 @@ android {
 
 }
 
-
 repositories {
+	mavenLocal()
+
 	maven {
 		url 'https://repository.liferay.com/nexus/content/groups/liferay-ce'
 	}
-	maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 
 	jcenter()
+	mavenCentral()
 }
 
 dependencies {
@@ -42,6 +44,7 @@ dependencies {
 	compile 'com.liferay.mobile:liferay-android-sdk:6.2.0.18'
 	compile 'de.greenrobot:eventbus:2.4.0'
 	compile 'com.squareup.picasso:picasso:2.5.0'
+	compile group: 'com.liferay.mobile', name: 'liferay-android-oauth', version: '1.+'
 	compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
 		exclude group: 'com.google.android', module: 'support-v4'
 	}
