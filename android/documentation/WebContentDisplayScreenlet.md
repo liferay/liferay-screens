@@ -1,4 +1,4 @@
-# WebContentDisplayScreenlet for iOS
+# WebContentDisplayScreenlet for Android
 
 ## Requirements
 
