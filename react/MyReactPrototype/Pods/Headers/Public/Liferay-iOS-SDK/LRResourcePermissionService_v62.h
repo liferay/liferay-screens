@@ -1,0 +1,1 @@
+../../../Liferay-iOS-SDK/ios/Source/Service/v62/resourcepermission/LRResourcePermissionService_v62.h

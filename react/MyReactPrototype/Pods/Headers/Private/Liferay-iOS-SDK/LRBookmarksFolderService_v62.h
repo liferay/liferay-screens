@@ -1,0 +1,1 @@
+../../../Liferay-iOS-SDK/ios/Source/Service/v62/bookmarksfolder/LRBookmarksFolderService_v62.h

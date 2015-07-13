@@ -1,0 +1,1 @@
+../../../Liferay-iOS-SDK/ios/Source/Service/v62/scproductentry/LRSCProductEntryService_v62.h

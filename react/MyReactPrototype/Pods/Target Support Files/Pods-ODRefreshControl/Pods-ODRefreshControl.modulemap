@@ -1,0 +1,6 @@
+framework module ODRefreshControl {
+  umbrella header "Pods-ODRefreshControl-umbrella.h"
+
+  export *
+  module * { export * }
+}

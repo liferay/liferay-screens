@@ -1,0 +1,49 @@
+PODS:
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - KeychainAccess (1.2.1)
+  - Liferay-iOS-SDK (6.2.0.17):
+    - AFNetworking (~> 2.5.0)
+  - Liferay-OAuth (0.1.0):
+    - Liferay-iOS-SDK (= 6.2.0.17)
+  - MBProgressHUD (0.9.1)
+  - ODRefreshControl (1.1.0)
+  - SMXMLDocument (1.1)
+
+DEPENDENCIES:
+  - KeychainAccess
+  - Liferay-iOS-SDK (= 6.2.0.17)
+  - Liferay-OAuth
+  - MBProgressHUD (~> 0.9.1)
+  - ODRefreshControl
+  - SMXMLDocument
+
+SPEC CHECKSUMS:
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  KeychainAccess: 3d7922baf90762a976adb7f6030d74c1a4110a1d
+  Liferay-iOS-SDK: 00b511b88592d07faade2bed8252c04193df565d
+  Liferay-OAuth: 4e217d2e2483788324b16dce65c30884ec8eb1db
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  ODRefreshControl: 4c4c413bf70d2ea0c02a28ac0a0b3b4bf4dbfdea
+  SMXMLDocument: e0d9fbf726a2a0921871b492966458acb3ad9689
+
+COCOAPODS: 0.37.2

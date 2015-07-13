@@ -1,0 +1,1 @@
+../../../Liferay-iOS-SDK/ios/Source/Service/v62/assetcategory/LRAssetCategoryService_v62.h

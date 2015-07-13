@@ -1,0 +1,9 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_FRAMEWORK_BUILD_PATH"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_FRAMEWORK_BUILD_PATH/AFNetworking.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/KeychainAccess.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/LRMobileSDK.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/LROAuth.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/MBProgressHUD.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/ODRefreshControl.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/SMXMLDocument.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -ObjC -framework "AFNetworking" -framework "KeychainAccess" -framework "LRMobileSDK" -framework "LROAuth" -framework "MBProgressHUD" -framework "ODRefreshControl" -framework "SMXMLDocument"
+OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
+PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods
+PODS_ROOT = ${SRCROOT}/Pods

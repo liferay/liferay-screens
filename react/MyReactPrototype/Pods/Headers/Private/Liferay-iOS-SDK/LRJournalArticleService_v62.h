@@ -1,0 +1,1 @@
+../../../Liferay-iOS-SDK/ios/Source/Service/v62/journalarticle/LRJournalArticleService_v62.h
