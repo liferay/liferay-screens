@@ -13,6 +13,7 @@
 */
 import UIKit
 import LROAuth
+import LRMobileSDK
 
 
 class OAuthInteractor: Interactor, LRCallback {

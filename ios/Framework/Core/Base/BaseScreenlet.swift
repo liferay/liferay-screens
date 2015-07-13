@@ -67,16 +67,16 @@ import QuartzCore
 
 	//MARK: UIView
 
-	override public func awakeFromNib() {
-		super.awakeFromNib()
+	required public init(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
 
-		onPreCreate()
+		create()
+	}
 
-		clipsToBounds = true
+	override init(frame: CGRect) {
+		super.init(frame: frame)
 
-		screenletView = loadScreenletView()
-
-		onCreated()
+		create()
 	}
 
 	override public func becomeFirstResponder() -> Bool {
@@ -103,7 +103,18 @@ import QuartzCore
 		updateCurrentPreviewImage()
 	}
 
+
 	//MARK: Internal methods
+
+	internal func create() {
+		onPreCreate()
+
+		clipsToBounds = true
+
+		screenletView = loadScreenletView()
+
+		onCreated()
+	}
 
 	internal func loadScreenletView() -> BaseScreenletView? {
 		let view = createScreenletViewFromNib()

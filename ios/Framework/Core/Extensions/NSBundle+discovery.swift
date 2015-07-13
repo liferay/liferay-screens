@@ -11,7 +11,7 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import Foundation
+import UIKit
 
 
 extension NSBundle {
@@ -45,18 +45,18 @@ extension NSBundle {
 		let frameworkBundle = NSBundle(forClass: BaseScreenlet.self)
 
 		let defaultBundlePath = frameworkBundle.pathForResource("LiferayScreens-default",
-				ofType: "bundle")!
+				ofType: "bundle")
 
-		return NSBundle(path: defaultBundlePath)!
+		return defaultBundlePath == nil ? frameworkBundle : NSBundle(path: defaultBundlePath!)!
 	}
 
 	public class func bundleForCore() -> NSBundle {
 		let frameworkBundle = NSBundle(forClass: BaseScreenlet.self)
 
 		let coreBundlePath = frameworkBundle.pathForResource("LiferayScreens-core",
-				ofType: "bundle")!
+				ofType: "bundle")
 
-		return NSBundle(path: coreBundlePath)!
+		return coreBundlePath == nil ? frameworkBundle : NSBundle(path: coreBundlePath!)!
 	}
 
 	public class func bundlesForApp() -> [NSBundle] {
