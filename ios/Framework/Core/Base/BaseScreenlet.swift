@@ -138,12 +138,15 @@ import QuartzCore
 	}
 
 	internal func previewImageForTheme(themeName:String) -> UIImage? {
-		let bundle = NSBundle(forClass:self.dynamicType)
-		let imageName = "\(themeName)-preview-\(screenletName.lowercaseString)@2x"
+		let bundles = NSBundle.allBundles(self.dynamicType)
 
-		if let imagePath = bundle.pathForResource(imageName, ofType: "png") {
-			if let imageData = NSData(contentsOfFile: imagePath) {
-				return UIImage(data: imageData, scale: 2.0)
+		for b in bundles {
+			let imageName = "\(themeName)-preview-\(screenletName.lowercaseString)@2x"
+
+			if let imagePath = b.pathForResource(imageName, ofType: "png") {
+				if let imageData = NSData(contentsOfFile: imagePath) {
+					return UIImage(data: imageData, scale: 2.0)
+				}
 			}
 		}
 
