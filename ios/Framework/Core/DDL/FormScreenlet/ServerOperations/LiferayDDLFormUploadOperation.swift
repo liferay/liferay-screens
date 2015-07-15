@@ -41,7 +41,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 	override func validateData() -> Bool {
 		var valid = super.validateData()
 
-		valid = valid && (document != nil && document!.currentValue == nil)
+		valid = valid && (document != nil && document?.currentValue != nil)
 		valid = valid && (filePrefix != nil)
 		valid = valid && (repositoryId != nil)
 		valid = valid && (folderId != nil)

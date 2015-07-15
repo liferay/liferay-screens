@@ -130,9 +130,9 @@ import UIKit
 		switch name! {
 			case LoadFormAction:
 				return createLoadFormInteractor()
-			case LoadRecordAction: ()
+			case LoadRecordAction:
 				return createLoadRecordInteractor()
-			case SubmitFormAction: ()
+			case SubmitFormAction:
 				return createSubmitFormInteractor()
 			case UploadDocumentAction:
 				if sender is DDLFieldDocument {
