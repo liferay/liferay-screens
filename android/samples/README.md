@@ -18,8 +18,8 @@ The [Westeros Bank app](https://github.com/liferay/liferay-screens/tree/master/a
 
 ## The Push Notifications App
 
-[![The Push Notifications app](../documentation/Images/pushnotifications_list.png)](https://www.youtube.com/watch?v=4LjutX0dcRw&index=10&list=PL60RdBc4OGLTcPXSHzBDEG6OFQQoBSfXL "How to create an Android App with Liferay Screens and Push Notifications - Click to Watch!")
-[![The Push Notifications app](../documentation/Images/pushnotifications_detail.png)](https://www.youtube.com/watch?v=4LjutX0dcRw&index=10&list=PL60RdBc4OGLTcPXSHzBDEG6OFQQoBSfXL "How to create an Android App with Liferay Screens and Push Notifications - Click to Watch!")
+[![The Push Notifications app](../documentation/images/pushnotifications_list.png)](https://www.youtube.com/watch?v=4LjutX0dcRw&index=10&list=PL60RdBc4OGLTcPXSHzBDEG6OFQQoBSfXL "How to create an Android App with Liferay Screens and Push Notifications - Click to Watch!")
+[![The Push Notifications app](../documentation/images/pushnotifications_detail.png)](https://www.youtube.com/watch?v=4LjutX0dcRw&index=10&list=PL60RdBc4OGLTcPXSHzBDEG6OFQQoBSfXL "How to create an Android App with Liferay Screens and Push Notifications - Click to Watch!")
 
 The Push Notifications app uses the [push portlet](https://www.liferay.com/marketplace/-/mp/application/48439053) and Liferay Portal to show global notifications and refresh the list each time a DDL record is added in the portal.
 
