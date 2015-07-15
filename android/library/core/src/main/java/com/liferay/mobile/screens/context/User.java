@@ -54,7 +54,7 @@ public class User {
 	}
 
 	public long getId() {
-		return (int) _attributes.get(USER_ID);
+		return (long) _attributes.get(USER_ID);
 	}
 
 	public String getUuid() {
@@ -62,7 +62,7 @@ public class User {
 	}
 
 	public long getPortraitId() {
-		return (int) _attributes.get(PORTRAIT_ID);
+		return (long) _attributes.get(PORTRAIT_ID);
 	}
 
 	public String getFirstName() {
