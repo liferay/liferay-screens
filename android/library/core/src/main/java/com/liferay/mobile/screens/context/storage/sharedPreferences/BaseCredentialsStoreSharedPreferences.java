@@ -128,7 +128,7 @@ public abstract class BaseCredentialsStoreSharedPreferences implements Credentia
 	public static AuthenticationType getStoredAuthenticationType(Context context) {
 		SharedPreferences sharedPref = context.getSharedPreferences(
 			getStoreName(), Context.MODE_PRIVATE);
-		return AuthenticationType.valueOf(sharedPref.getString("auth", null));
+		return AuthenticationType.valueOf(sharedPref.getString("auth", AuthenticationType.VOID.name()));
 	}
 
 	@Override

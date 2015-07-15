@@ -21,7 +21,7 @@ import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.oauth.OAuth;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStoreSharedPreferences;
-import com.liferay.mobile.screens.context.storage.sharedPreferences.CredentialsStoreSharedPreferences;
+import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStoreSharedPreferences;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.OAuthCredentialsStoreSharedPreferences;
 
 /**
@@ -124,18 +124,18 @@ public class CredentialsStoreBuilder {
 			// figure out the type from stored value
 			switch (BaseCredentialsStoreSharedPreferences.getStoredAuthenticationType(_context)) {
 				case BASIC:
-					credentialStoreClass = CredentialsStoreSharedPreferences.class;
+					credentialStoreClass = BasicCredentialsStoreSharedPreferences.class;
 					break;
 				case OAUTH:
 					credentialStoreClass = OAuthCredentialsStoreSharedPreferences.class;
 					break;
 				default:
-					throw new IllegalStateException("Stored authentication type is unknown");
+					credentialStoreClass = CredentialsStoreVoid.class;
 			}
 		}
 		else {
 			if (_auth instanceof BasicAuthentication) {
-				credentialStoreClass = CredentialsStoreSharedPreferences.class;
+				credentialStoreClass = BasicCredentialsStoreSharedPreferences.class;
 			}
 			else if (_auth instanceof OAuth) {
 				credentialStoreClass = OAuthCredentialsStoreSharedPreferences.class;
