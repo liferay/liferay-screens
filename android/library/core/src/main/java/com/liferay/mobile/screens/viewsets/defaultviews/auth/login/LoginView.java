@@ -113,7 +113,8 @@ public class LoginView extends LinearLayout
 		LoginScreenlet loginScreenlet = (LoginScreenlet) getParent();
 		if (view.getId() == R.id.liferay_login_button) {
 			loginScreenlet.performUserAction(LoginScreenlet.BASIC_AUTH);
-		} else {
+		}
+		else {
 			loginScreenlet.performUserAction(LoginScreenlet.OAUTH);
 		}
 	}
@@ -135,7 +136,9 @@ public class LoginView extends LinearLayout
 		_basicAuthenticationLayout = (LinearLayout) findViewById(R.id.basic_authentication_login);
 
 		_oAuthButton = (Button) findViewById(R.id.oauth_authentication_login);
-		_oAuthButton.setOnClickListener(this);
+		if (_oAuthButton != null) {
+			_oAuthButton.setOnClickListener(this);
+		}
 
 		_submitButton = (Button) findViewById(R.id.liferay_login_button);
 		_submitButton.setOnClickListener(this);
@@ -145,8 +148,13 @@ public class LoginView extends LinearLayout
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
 
-		_basicAuthenticationLayout.setVisibility(AuthenticationType.BASIC.equals(_authenticationType) ? VISIBLE : GONE);
-		_oAuthButton.setVisibility(AuthenticationType.OAUTH.equals(_authenticationType) ? VISIBLE : GONE);
+		if (_basicAuthenticationLayout != null) {
+			_basicAuthenticationLayout.setVisibility(AuthenticationType.BASIC.equals(_authenticationType) ? VISIBLE : GONE);
+		}
+
+		if (_oAuthButton != null) {
+			_oAuthButton.setVisibility(AuthenticationType.OAUTH.equals(_authenticationType) ? VISIBLE : GONE);
+		}
 
 		refreshLoginEditTextStyle();
 	}
