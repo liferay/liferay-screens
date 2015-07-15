@@ -95,7 +95,7 @@ public class LoginScreenlet
 				onLoginFailure(e);
 			}
 		}
-		else if (result == Activity.RESULT_CANCELED) {
+		else if (result == Activity.RESULT_CANCELED && intent != null) {
 			Exception exception = (Exception) intent.getSerializableExtra(
 				OAuthActivity.EXTRA_EXCEPTION);
 			onLoginFailure(exception);
