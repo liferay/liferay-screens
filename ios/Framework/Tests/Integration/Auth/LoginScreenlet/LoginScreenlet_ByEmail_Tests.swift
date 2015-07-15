@@ -18,8 +18,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 	override func setUp() {
 		SessionContext.sessionStorage = SessionStorage(
-				credentialStorage: CredentialStorageMock(),
-				keyChainStorage: KeyChainStorageMock())
+				credentialStore: CredentialStoreMock())
 
 		super.setUp()
 	}
@@ -28,15 +27,14 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 		super.tearDown()
 
 		SessionContext.sessionStorage = SessionStorage(
-			credentialStorage: CredentialStorageMobileSDK(),
-			keyChainStorage: KeyChainStorageImpl())
+			credentialStore: CredentialStoreMock())
 	}
 
 	func test_Successful() {
 		scenario("LoginScreenlet by email should work") {
 			given("a configured login screenlet") {
 				with("auth method set to email") {
-					self.screenlet!.authMethod = AuthMethod.Email.rawValue
+					self.screenlet!.basicAuthMethod = BasicAuthMethod.Email.rawValue
 				}
 				and("email and password entered by the user") {
 					self.screenlet!.viewModel.userName = "test@liferay.com"
@@ -70,12 +68,12 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					XCTAssertTrue(SessionContext.hasSession)
 				}
 				assertThat("the current user name should be the email address") {
-					XCTAssertNotNil(SessionContext.currentUserName)
-					XCTAssertEqual("test@liferay.com", SessionContext.currentUserName!)
+					XCTAssertNotNil(SessionContext.currentBasicUserName)
+					XCTAssertEqual("test@liferay.com", SessionContext.currentBasicUserName!)
 				}
 				assertThat("the current password should be available") {
-					XCTAssertNotNil(SessionContext.currentPassword)
-					XCTAssertEqual("test", SessionContext.currentPassword!)
+					XCTAssertNotNil(SessionContext.currentBasicPassword)
+					XCTAssertEqual("test", SessionContext.currentBasicPassword!)
 				}
 			},
 			.TestAndWaitFor("login response received", self))
@@ -86,7 +84,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 		scenario("LoginScreenlet by email store credentials") {
 			given("a configured login screenlet") {
 				with("auth method set to email") {
-					self.screenlet!.authMethod = AuthMethod.Email.rawValue
+					self.screenlet!.basicAuthMethod = BasicAuthMethod.Email.rawValue
 				}
 				and("email and password entered by the user") {
 					self.screenlet!.viewModel.userName = "test@liferay.com"
@@ -128,7 +126,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 		scenario("LoginScreenlet by email should fail when credentials are wrong") {
 			given("a configured login screenlet") {
 				with("auth method set to email") {
-					self.screenlet!.authMethod = AuthMethod.Email.rawValue
+					self.screenlet!.basicAuthMethod = BasicAuthMethod.Email.rawValue
 				}
 				and("email and password entered by the user") {
 					self.screenlet!.viewModel.userName = "test@liferay.com"
@@ -158,15 +156,14 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					XCTAssertFalse(SessionContext.hasSession)
 				}
 				assertThat("the current user name should be empty") {
-					XCTAssertNil(SessionContext.currentUserName)
+					XCTAssertNil(SessionContext.currentBasicUserName)
 				}
 				assertThat("the current password should be empty") {
-					XCTAssertNil(SessionContext.currentPassword)
+					XCTAssertNil(SessionContext.currentBasicPassword)
 				}
 			},
 			.TestAndWaitFor("login response received", self))
 		}
 	}
-
 
 }

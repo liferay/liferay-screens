@@ -16,6 +16,8 @@ package com.liferay.mobile.screens.context;
 
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
+import com.liferay.mobile.android.oauth.OAuth;
+import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.context.storage.CredentialsStore;
@@ -31,10 +33,18 @@ public class SessionContext {
 		_loggedUser = null;
 	}
 
-	public static Session createSession(String username, String password) {
+	public static Session createBasicSession(String username, String password) {
 		Authentication authentication = new BasicAuthentication(username, password);
 
 		_session = new SessionImpl(LiferayServerContext.getServer(), authentication);
+
+		return _session;
+	}
+
+	public static Session createOAuthSession(OAuthConfig config) {
+		OAuth oAuth = new OAuthAuthentication(config);
+
+		_session = new SessionImpl(LiferayServerContext.getServer(), oAuth);
 
 		return _session;
 	}
@@ -44,17 +54,15 @@ public class SessionContext {
 			throw new IllegalStateException("You need to be logged in to get a session");
 		}
 
-		BasicAuthentication basicAuth = (BasicAuthentication) _session.getAuthentication();
-
-		return createSession(basicAuth.getUsername(), basicAuth.getPassword());
+		return new SessionImpl(LiferayServerContext.getServer(), _session.getAuthentication());
 	}
 
 	public static boolean hasSession() {
 		return _session != null;
 	}
 
-	public static BasicAuthentication getAuthentication() {
-		return (_session == null) ? null : (BasicAuthentication) _session.getAuthentication();
+	public static Authentication getAuthentication() {
+		return (_session == null) ? null : _session.getAuthentication();
 	}
 
 	public static User getLoggedUser() {
@@ -72,7 +80,7 @@ public class SessionContext {
 
 		CredentialsStore storage = new CredentialsStoreBuilder()
 			.setContext(LiferayScreensContext.getContext())
-			.setAuthentication((BasicAuthentication) _session.getAuthentication())
+			.setAuthentication(_session.getAuthentication())
 			.setUser(getLoggedUser())
 			.setStorageType(storageType)
 			.build();
@@ -104,8 +112,7 @@ public class SessionContext {
 		checkIfStorageTypeIsSupported(storageType, storage);
 
 		if (storage.loadStoredCredentials()) {
-			_session = new SessionImpl(
-				LiferayServerContext.getServer(), storage.getAuthentication());
+			_session = new SessionImpl(LiferayServerContext.getServer(), storage.getAuthentication());
 			_loggedUser = storage.getUser();
 		}
 	}

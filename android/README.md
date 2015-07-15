@@ -15,13 +15,13 @@ To learn about the architecture of Screens for Android, see the [library documen
 Development of Android apps using Liferay Screens requires the following: 
 
 - Android Studio 1.0.2 or above
-- Android SDK 4.0 (API Level 14) or above
+- Android SDK 4.0 (API Level 15) or above
 - [Liferay Portal 6.2 CE or EE](http://www.liferay.com/downloads/liferay-portal/available-releases)
-- [Liferay Screens' compatibility plugin](https://github.com/liferay/liferay-screens/tree/master/portal)
+- [Liferay Screens' compatibility plugin](http://www.liferay.com/es/marketplace/-/mp/application/54365664) (or [EE](http://www.liferay.com/es/marketplace/-/mp/application/54369726) version)
 
 ## Compatibility
 
-Liferay Screens for Android is compatible with Android 4.0 (API Level 14) and higher. The SDK uses the [AppCompat library](https://developer.android.com/tools/support-library/features.html#v7-appcompat) (v7:22.1.1) to offer a material look on older devices and the new [recycler view](https://developer.android.com/tools/support-library/features.html#v7-recyclerview) implementation.
+Liferay Screens for Android is compatible with Android 4.0 (API Level 15) and higher. The SDK uses the [AppCompat library](https://developer.android.com/tools/support-library/features.html#v7-appcompat) (v7:22.2.0) to offer a material look on older devices and the new [recycler view](https://developer.android.com/tools/support-library/features.html#v7-recyclerview) implementation.
 
 Other internal dependencies are:
 
@@ -56,7 +56,7 @@ Use the following steps to configure your project with Gradle:
 
 	```groovy
 	dependencies {
-		compile 'com.liferay.mobile:liferay-screens:1.0.+'
+		compile 'com.liferay.mobile:liferay-screens:1.1.+'
 	}
 	```
 

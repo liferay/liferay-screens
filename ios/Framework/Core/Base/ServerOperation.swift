@@ -44,8 +44,8 @@ public class ServerOperation: NSOperation {
 	internal var screenlet: BaseScreenlet
 	internal var onComplete: (ServerOperation -> Void)?
 
-	internal var anonymousAuth: AnonymousAuthType? {
-		return screenlet as? AnonymousAuthType
+	internal var anonymousAuth: AnonymousBasicAuthType? {
+		return screenlet as? AnonymousBasicAuthType
 	}
 
 

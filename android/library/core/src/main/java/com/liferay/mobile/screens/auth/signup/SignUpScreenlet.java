@@ -77,7 +77,7 @@ public class SignUpScreenlet
 			String emailAddress = viewModel.getEmailAddress();
 			String password = viewModel.getPassword();
 
-			SessionContext.createSession(emailAddress, password);
+			SessionContext.createBasicSession(emailAddress, password);
 			SessionContext.setLoggedUser(user);
 
 			if (_autoLoginListener != null) {

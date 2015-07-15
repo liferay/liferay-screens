@@ -16,7 +16,7 @@ import UIKit
 
 public class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
-	@IBOutlet internal var stepper:UIStepper?
+	@IBOutlet public var stepper: UIStepper?
 
 	@IBAction private func stepperChanged(sender: AnyObject) {
 		field!.currentValue = NSDecimalNumber(double: stepper!.value)

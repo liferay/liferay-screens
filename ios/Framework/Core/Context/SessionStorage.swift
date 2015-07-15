@@ -18,56 +18,54 @@ class SessionStorage {
 
 	typealias LoadResult = (session: LRSession, userAttributes: [String:AnyObject])
 
-	private let credentialStorage: CredentialStorage
-	private let keyChainStorage: KeyChainStorage
+	private let credentialStore: CredentialsStore
 
-	init(credentialStorage: CredentialStorage, keyChainStorage: KeyChainStorage) {
-		self.credentialStorage = credentialStorage
-		self.keyChainStorage = keyChainStorage
+	init(credentialStore: CredentialsStore) {
+		self.credentialStore = credentialStore
 	}
 
-	func store(#session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
-		func storeUserAttributes(userAttributes: [String:AnyObject]) -> Bool {
-			let encodedData = NSKeyedArchiver.archivedDataWithRootObject(userAttributes)
+	init?() {
+		let authType = BaseCredentialsStoreKeyChain.storedAuthType()
 
-			return keyChainStorage.setData(encodedData, forKey: "userAttributes")
-		}
-
-		if userAttributes.isEmpty {
-			return false
-		}
-
-		if let auth = session?.authentication as? LRBasicAuthentication {
-			let credential = credentialStorage.storeCredentialForServer(session?.server,
-					username: auth.username,
-					password: auth.password)
-
-			if credential != nil {
-				return storeUserAttributes(userAttributes)
+		if let authType = authType {
+			switch authType {
+			case .Basic:
+				credentialStore = BasicCredentialsStoreKeyChain()
+			case .OAuth:
+				credentialStore = OAuthCredentialsStoreKeyChain()
 			}
 		}
-
-		return false
-	}
-
-	func remove() -> Bool {
-		credentialStorage.removeCredential()
-		return keyChainStorage.removeItemForKey("userAttributes")
-	}
-
-	func load() -> LoadResult? {
-		func loadUserAttributesFromStore() -> [String:AnyObject]? {
-			if let encodedData = keyChainStorage.dataForKey("userAttributes") {
-				let dictionary:AnyObject? = NSKeyedUnarchiver.unarchiveObjectWithData(encodedData)
-
-				return dictionary as? [String:AnyObject]
-			}
+		else {
+			// Workaround for "All stored properties of a class instance
+			// must be initialized before returning nil from an initializer
+			credentialStore = BasicCredentialsStoreKeyChain()
 
 			return nil
 		}
+	}
 
-		if let loadedSession = credentialStorage.getSession() {
-			if let loadedUserAttributes = loadUserAttributesFromStore() {
+	func store(#session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
+		if session == nil || userAttributes.isEmpty {
+			return false
+		}
+
+		return credentialStore.storeCredentials(session,
+				userAttributes: userAttributes)
+	}
+
+	func remove() -> Bool {
+		return credentialStore.removeStoredCredentials()
+	}
+
+	func load() -> LoadResult? {
+		if credentialStore.loadStoredCredentials() {
+			if let loadedAuth = credentialStore.authentication,
+					loadedUserAttributes = credentialStore.userAttributes {
+
+				let loadedSession = LRSession(
+						server: LiferayServerContext.server,
+						authentication: loadedAuth)
+
 				return (loadedSession, loadedUserAttributes)
 			}
 		}

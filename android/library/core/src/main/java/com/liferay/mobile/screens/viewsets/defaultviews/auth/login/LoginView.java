@@ -22,10 +22,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.auth.AuthMethod;
+import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.ModalProgressBar;
+import com.liferay.mobile.screens.context.AuthenticationType;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
@@ -56,8 +57,8 @@ public class LoginView extends LinearLayout
 	}
 
 	@Override
-	public AuthMethod getAuthMethod() {
-		return _authMethod;
+	public BasicAuthMethod getBasicAuthMethod() {
+		return _basicAuthMethod;
 	}
 
 	@Override
@@ -68,6 +69,11 @@ public class LoginView extends LinearLayout
 	@Override
 	public String getPassword() {
 		return _passwordEditText.getText().toString();
+	}
+
+	@Override
+	public void setAuthenticationType(AuthenticationType authenticationType) {
+		_authenticationType = authenticationType;
 	}
 
 	@Override
@@ -105,12 +111,16 @@ public class LoginView extends LinearLayout
 	@Override
 	public void onClick(View view) {
 		LoginScreenlet loginScreenlet = (LoginScreenlet) getParent();
-
-		loginScreenlet.performUserAction();
+		if (view.getId() == R.id.liferay_login_button) {
+			loginScreenlet.performUserAction(LoginScreenlet.BASIC_AUTH);
+		}
+		else {
+			loginScreenlet.performUserAction(LoginScreenlet.OAUTH);
+		}
 	}
 
-	public void setAuthMethod(AuthMethod authMethod) {
-		_authMethod = authMethod;
+	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
+		_basicAuthMethod = basicAuthMethod;
 
 		refreshLoginEditTextStyle();
 	}
@@ -123,6 +133,13 @@ public class LoginView extends LinearLayout
 		_passwordEditText = (EditText) findViewById(R.id.liferay_password);
 		_progressBar = (ModalProgressBar) findViewById(R.id.liferay_progress);
 
+		_basicAuthenticationLayout = (LinearLayout) findViewById(R.id.basic_authentication_login);
+
+		_oAuthButton = (Button) findViewById(R.id.oauth_authentication_login);
+		if (_oAuthButton != null) {
+			_oAuthButton.setOnClickListener(this);
+		}
+
 		_submitButton = (Button) findViewById(R.id.liferay_login_button);
 		_submitButton.setOnClickListener(this);
 	}
@@ -131,20 +148,30 @@ public class LoginView extends LinearLayout
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
 
+		if (_basicAuthenticationLayout != null) {
+			_basicAuthenticationLayout.setVisibility(AuthenticationType.BASIC.equals(_authenticationType) ? VISIBLE : GONE);
+		}
+
+		if (_oAuthButton != null) {
+			_oAuthButton.setVisibility(AuthenticationType.OAUTH.equals(_authenticationType) ? VISIBLE : GONE);
+		}
+
 		refreshLoginEditTextStyle();
 	}
 
 	protected void refreshLoginEditTextStyle() {
-		_loginEditText.setInputType(_authMethod.getInputType());
-		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(
-			getResources().getDrawable(getLoginEditTextDrawableId()), null, null, null);
+		if (_basicAuthMethod != null) {
+			_loginEditText.setInputType(_basicAuthMethod.getInputType());
+			_loginEditText.setCompoundDrawablesWithIntrinsicBounds(
+				getResources().getDrawable(getLoginEditTextDrawableId()), null, null, null);
+		}
 	}
 
 	protected int getLoginEditTextDrawableId() {
-		if (AuthMethod.USER_ID.equals(_authMethod)) {
+		if (BasicAuthMethod.USER_ID.equals(_basicAuthMethod)) {
 			return R.drawable.default_user_icon;
 		}
-		else if (AuthMethod.EMAIL.equals(_authMethod)) {
+		else if (BasicAuthMethod.EMAIL.equals(_basicAuthMethod)) {
 			return R.drawable.default_mail_icon;
 		}
 		return R.drawable.default_user_icon;
@@ -165,7 +192,10 @@ public class LoginView extends LinearLayout
 	private EditText _loginEditText;
 	private EditText _passwordEditText;
 	private Button _submitButton;
-	private AuthMethod _authMethod;
+	private LinearLayout _basicAuthenticationLayout;
+	private Button _oAuthButton;
+	private AuthenticationType _authenticationType;
+	private BasicAuthMethod _basicAuthMethod;
 	private ModalProgressBar _progressBar;
 
 }

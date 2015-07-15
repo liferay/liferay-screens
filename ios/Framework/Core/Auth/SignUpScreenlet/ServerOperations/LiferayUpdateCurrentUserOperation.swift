@@ -42,7 +42,7 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 			return false
 		}
 
-		if viewModel.password == SessionContext.currentPassword {
+		if viewModel.password == SessionContext.currentBasicPassword {
 			showValidationHUD(message: LocalizedString("signup-screenlet", "validation-password", self))
 
 			return false
@@ -69,7 +69,7 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 		// Values marked with (!!) will be overwritten in the server
 		// The JSON WS API isn't able to handle this scenario correctly
 		let result = service.updateUserWithUserId(attributeAsId("userId"),
-				oldPassword: SessionContext.currentPassword,
+				oldPassword: SessionContext.currentBasicPassword,
 				newPassword1: viewModel.password ?? "",
 				newPassword2: viewModel.password ?? "",
 				passwordReset: false,

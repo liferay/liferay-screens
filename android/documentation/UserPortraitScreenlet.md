@@ -2,13 +2,13 @@
 
 ## Requirements
 
-- Android SDK 4.0 (API Level 14) and above
+- Android SDK 4.0 (API Level 15) and above
 - Liferay Portal 6.2 CE or EE
 - Picasso library
 
 ## Compatibility
 
-- Android SDK 4.0 (API Level 14) and above
+- Android SDK 4.0 (API Level 15) and above
 
 ## Features
 

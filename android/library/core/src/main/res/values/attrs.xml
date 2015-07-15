@@ -3,7 +3,7 @@
 	<attr name="anonymousApiUserName" format="string"/>
 	<attr name="anonymousApiPassword" format="string"/>
 	<attr name="autoLoad" format="boolean"/>
-	<attr name="authMethod" format="enum">
+	<attr name="basicAuthMethod" format="enum">
 		<enum name="email" value="0"/>
 		<enum name="screen_name" value="1"/>
 		<enum name="user_id" value="2"/>
@@ -67,15 +67,17 @@
 		<attr name="layoutId"/>
 		<attr name="anonymousApiUserName"/>
 		<attr name="anonymousApiPassword"/>
-		<attr name="authMethod"/>
+		<attr name="basicAuthMethod"/>
 		<attr name="companyId"/>
 	</declare-styleable>
 
 	<declare-styleable name="LoginScreenlet">
 		<attr name="layoutId"/>
-		<attr name="authMethod"/>
+		<attr name="basicAuthMethod"/>
 		<attr name="companyId"/>
 		<attr name="credentialsStore"/>
+		<attr name="oauthConsumerKey" format="string"/>
+		<attr name="oauthConsumerSecret" format="string"/>
 	</declare-styleable>
 
 	<declare-styleable name="SignUpScreenlet">

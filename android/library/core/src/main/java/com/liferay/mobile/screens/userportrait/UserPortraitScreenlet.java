@@ -131,7 +131,7 @@ public class UserPortraitScreenlet
 			_listener.onUserPortraitLoadFailure(this, e);
 		}
 
-		getViewModel().showFailedOperation(null, e);
+		getViewModel().showFailedOperation(LOAD_PORTRAIT, e);
 	}
 
 	@Override
@@ -156,7 +156,7 @@ public class UserPortraitScreenlet
 			_listener.onUserPortraitLoadFailure(this, e);
 		}
 
-		getViewModel().showFailedOperation(null, e);
+		getViewModel().showFailedOperation(UPLOAD_PORTRAIT, e);
 	}
 
 	public void setListener(UserPortraitListener listener) {
@@ -233,9 +233,10 @@ public class UserPortraitScreenlet
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
-		boolean otherParametersAreEmpty = _portraitId == 0 && _uuid == null;
-		int defaultUserId = SessionContext.hasSession() && otherParametersAreEmpty
-			? (int) SessionContext.getLoggedUser().getId() : 0;
+		int defaultUserId = 0;
+		if (SessionContext.hasSession() && _portraitId == 0 && _uuid == null) {
+			defaultUserId = (int) SessionContext.getLoggedUser().getId();
+		}
 		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, defaultUserId);
 
 		int layoutId = typedArray.getResourceId(

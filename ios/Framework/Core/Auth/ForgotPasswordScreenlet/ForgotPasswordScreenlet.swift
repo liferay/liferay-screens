@@ -25,17 +25,17 @@ import UIKit
 }
 
 
-@IBDesignable public class ForgotPasswordScreenlet: BaseScreenlet, AuthBasedType,
-		AnonymousAuthType {
+@IBDesignable public class ForgotPasswordScreenlet: BaseScreenlet, BasicAuthBasedType,
+		AnonymousBasicAuthType {
 
 	//MARK: Inspectables
 
 	@IBInspectable public var anonymousApiUserName: String? = "test@liferay.com"
 	@IBInspectable public var anonymousApiPassword: String? = "test"
 
-	@IBInspectable public var authMethod: String? = AuthMethod.Email.rawValue {
+	@IBInspectable public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
 		didSet {
-			copyAuth(source: self, target: screenletView)
+			copyBasicAuth(source: self, target: screenletView)
 		}
 	}
 
@@ -60,9 +60,9 @@ import UIKit
 	override public func onCreated() {
 		super.onCreated()
 
-		copyAuth(source: self, target: screenletView)
+		copyBasicAuth(source: self, target: screenletView)
 
-		if let userName = SessionContext.currentUserName {
+		if let userName = SessionContext.currentBasicUserName {
 			viewModel.userName = userName
 		}
 	}

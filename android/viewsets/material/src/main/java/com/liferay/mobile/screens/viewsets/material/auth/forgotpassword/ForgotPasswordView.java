@@ -18,7 +18,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.liferay.mobile.screens.auth.AuthMethod;
+import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.viewsets.R;
 
 /**
@@ -49,16 +49,16 @@ public class ForgotPasswordView
 
 	@Override
 	protected void refreshLoginEditTextStyle() {
-		getLoginEditText().setInputType(getAuthMethod().getInputType());
+		getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
 		_drawableLogin.setImageResource(getLoginEditTextDrawableId());
 	}
 
 	@Override
 	protected int getLoginEditTextDrawableId() {
-		if (AuthMethod.USER_ID.equals(getAuthMethod())) {
+		if (BasicAuthMethod.USER_ID.equals(getBasicAuthMethod())) {
 			return R.drawable.material_account_box;
 		}
-		else if (AuthMethod.EMAIL.equals(getAuthMethod())) {
+		else if (BasicAuthMethod.EMAIL.equals(getBasicAuthMethod())) {
 			return R.drawable.material_email;
 		}
 

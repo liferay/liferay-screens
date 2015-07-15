@@ -4,6 +4,7 @@
 "default-sign-in-button"="SIGN IN";
 "default-sign-up-button"="SIGN UP";
 "default-save-button"="SAVE";
+"default-authorize-button"="AUTHORIZE";
 "default-forgot-password-button"="REQUEST";
 "default-password-placeholder"="Password";
 "default-first-name-placeholder"="First Name";

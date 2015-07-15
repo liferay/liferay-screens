@@ -36,11 +36,14 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 
 	override func viewDidLoad() {
 		screenlet.delegate = self
+
 	}
 
 	override func cardWillAppear() {
 		screenlet.editable = editable
 		saveButton.hidden = !editable
+
+		saveButton.frame.origin.y = saveButton.superview!.frame.size.height - saveButton.frame.size.height - 25
 
 		if let recordValue = issueRecord {
 			screenlet.recordId = recordValue.recordId

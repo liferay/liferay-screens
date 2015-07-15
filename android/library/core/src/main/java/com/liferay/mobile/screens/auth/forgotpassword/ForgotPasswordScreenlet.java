@@ -23,7 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.auth.AuthMethod;
+import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.interactor.ForgotPasswordInteractor;
 import com.liferay.mobile.screens.auth.forgotpassword.interactor.ForgotPasswordInteractorImpl;
 import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewModel;
@@ -91,13 +91,13 @@ public class ForgotPasswordScreenlet
 		_companyId = value;
 	}
 
-	public AuthMethod getAuthMethod() {
-		return _authMethod;
+	public BasicAuthMethod getAuthMethod() {
+		return _basicAuthMethod;
 	}
 
-	public void setAuthMethod(AuthMethod value) {
-		_authMethod = value;
-		getViewModel().setAuthMethod(value);
+	public void setAuthMethod(BasicAuthMethod value) {
+		_basicAuthMethod = value;
+		getViewModel().setBasicAuthMethod(value);
 	}
 
 	public ForgotPasswordListener getListener() {
@@ -128,9 +128,9 @@ public class ForgotPasswordScreenlet
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
-		int authMethod = typedArray.getInt(R.styleable.ForgotPasswordScreenlet_authMethod, 0);
-		_authMethod = AuthMethod.getValue(authMethod);
-		((ForgotPasswordViewModel) view).setAuthMethod(_authMethod);
+		int authMethod = typedArray.getInt(R.styleable.ForgotPasswordScreenlet_basicAuthMethod, 0);
+		_basicAuthMethod = BasicAuthMethod.getValue(authMethod);
+		((ForgotPasswordViewModel) view).setBasicAuthMethod(_basicAuthMethod);
 
 		typedArray.recycle();
 
@@ -149,7 +149,7 @@ public class ForgotPasswordScreenlet
 		viewModel.showStartOperation(userActionName);
 
 		String login = viewModel.getLogin();
-		AuthMethod method = viewModel.getAuthMethod();
+		BasicAuthMethod method = viewModel.getBasicAuthMethod();
 
 		try {
 			interactor.requestPassword(
@@ -163,7 +163,7 @@ public class ForgotPasswordScreenlet
 	private String _anonymousApiPassword;
 	private String _anonymousApiUserName;
 	private long _companyId;
-	private AuthMethod _authMethod;
+	private BasicAuthMethod _basicAuthMethod;
 	private ForgotPasswordListener _listener;
 
 }

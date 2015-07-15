@@ -11,7 +11,7 @@ android {
 
 	defaultConfig {
 		applicationId "com.liferay.mobile.screens.bankofwesteros"
-		minSdkVersion 14
+		minSdkVersion 15
 		targetSdkVersion 22
 		versionCode 3
 		versionName "1.0"
@@ -47,11 +47,9 @@ repositories {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile 'com.android.support:appcompat-v7:22.1.0'
 	compile "com.daimajia.swipelayout:library:1.1.9@aar"
 
 //	compile project ('liferay-screens')
 	compile project ('liferay-westeros-viewset')
 	compile "com.google.android.gms:play-services:7.3.0"
-	compile group: 'com.liferay.mobile', name: 'liferay-push-notifications-portlet-android-sdk', version: '6.2.0.+'
 }

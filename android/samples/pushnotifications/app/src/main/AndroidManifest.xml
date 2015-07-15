@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+	package="com.liferay.mobile.pushnotifications"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<uses-permission android:name="android.permission.CAMERA"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+	<application
+		android:allowBackup="true"
+		android:icon="@drawable/liferay_glyph"
+		android:label="@string/app"
+		android:theme="@style/Theme.AppCompat.Light">
+		<activity
+			android:name=".activities.LoginActivity"
+			android:label="@string/push_example">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".activities.NotificationsActivity"
+			android:label="@string/notifications_activity"/>
+		<activity
+			android:name=".activities.NotificationDetailActivity"
+			android:label="@string/notification_detail">
+		</activity>
+
+		<receiver
+			android:name=".notification.PushReceiver"
+			android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+
+				<category android:name="com.liferay.mobile.push"/>
+			</intent-filter>
+		</receiver>
+
+		<service android:name=".notification.PushService"/>
+
+
+	</application>
+
+</manifest>

@@ -14,20 +14,38 @@
 
 package com.liferay.mobile.screens.base.interactor;
 
-import org.json.JSONArray;
+import com.liferay.mobile.screens.base.list.interactor.GenericBatchAsyncTaskCallback;
+import com.liferay.mobile.screens.util.EventBusUtil;
 
 /**
  * @author Silvio Santos
  */
 public abstract class InteractorBatchAsyncTaskCallback<T>
-	extends InteractorAsyncTaskCallback<T> {
+	extends GenericBatchAsyncTaskCallback<T> {
 
 	public InteractorBatchAsyncTaskCallback(int targetScreenletId) {
-		super(targetScreenletId);
+		_targetScreenletId = targetScreenletId;
 	}
 
-	public void onPostExecute(JSONArray jsonArray) throws Exception {
-		onSuccess(transform(jsonArray));
+	@Override
+	public void onFailure(Exception e) {
+		EventBusUtil.post(createEvent(_targetScreenletId, e));
 	}
+
+	@Override
+	public void onSuccess(T result) {
+		EventBusUtil.post(createEvent(_targetScreenletId, result));
+	}
+
+	public int getTargetScreenletId() {
+		return _targetScreenletId;
+	}
+
+	protected abstract BasicEvent createEvent(
+		int targetScreenletId, Exception e);
+
+	protected abstract BasicEvent createEvent(int targetScreenletId, T result);
+
+	private int _targetScreenletId;
 
 }

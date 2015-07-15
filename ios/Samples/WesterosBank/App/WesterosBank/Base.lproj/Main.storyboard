@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PPh-lo-iNo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PPh-lo-iNo">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Tour View Controller-->
         <scene sceneID="HPI-5U-fuo">
             <objects>
-                <viewController id="hFo-Oh-TBv" customClass="TourViewController" customModule="WesterosBank" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FYd-gf-zUw"/>
-                        <viewControllerLayoutGuide type="bottom" id="UD9-uX-fig"/>
-                    </layoutGuides>
+                <viewController id="hFo-Oh-TBv" customClass="TourViewController" customModule="westerosbank" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="45K-Oi-oz0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujI-RY-dYB">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" bouncesZoom="NO" id="ujI-RY-dYB">
                                 <rect key="frame" x="0.0" y="20" width="375" height="525"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GAb-Ow-gdM" userLabel="contentView">
+                                    <view contentMode="scaleToFill" id="GAb-Ow-gdM" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="1125" height="490"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FdI-hs-a47" userLabel="page1">
+                                            <view contentMode="scaleToFill" id="FdI-hs-a47" userLabel="page1">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="490"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tour-step1.png" translatesAutoresizingMaskIntoConstraints="NO" id="RqE-vF-cO3">
-                                                        <rect key="frame" x="27" y="85" width="320" height="256"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tour-step1.png" id="RqE-vF-cO3">
+                                                        <rect key="frame" x="27" y="50" width="320" height="256"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PROBLEMS WITH YOUR LAPTOP?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5d-8v-Goi">
-                                                        <rect key="frame" x="35" y="381" width="304" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROBLEMS WITH YOUR LAPTOP?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="y5d-8v-Goi">
+                                                        <rect key="frame" x="35" y="350" width="304" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="19"/>
                                                         <color key="textColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tell us, we are here to help you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1Y-3q-srS">
-                                                        <rect key="frame" x="35" y="407" width="304" height="54"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell us, we are here to help you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G1Y-3q-srS">
+                                                        <rect key="frame" x="35" y="387" width="304" height="54"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                         <color key="textColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -44,20 +45,24 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YQ1-us-kvG" userLabel="page2">
+                                            <view contentMode="scaleToFill" id="YQ1-us-kvG" userLabel="page2">
                                                 <rect key="frame" x="375" y="0.0" width="375" height="490"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tour-step2.png" translatesAutoresizingMaskIntoConstraints="NO" id="rWT-8q-uc2">
-                                                        <rect key="frame" x="27" y="95" width="320" height="256"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tour-step2.png" id="rWT-8q-uc2">
+                                                        <rect key="frame" x="27" y="50" width="320" height="256"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ANY ISSUES AT THE OFFICE?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xC-y1-ePF">
-                                                        <rect key="frame" x="35" y="381" width="304" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ANY ISSUES AT THE OFFICE?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2xC-y1-ePF">
+                                                        <rect key="frame" x="35" y="350" width="304" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="19"/>
                                                         <color key="textColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tell us, we are here to help you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erN-D5-crR">
-                                                        <rect key="frame" x="35" y="407" width="304" height="54"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell us, we are here to help you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="erN-D5-crR">
+                                                        <rect key="frame" x="35" y="387" width="304" height="54"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                         <color key="textColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -65,20 +70,24 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cFg-5E-dgU" userLabel="page3">
+                                            <view contentMode="scaleToFill" id="cFg-5E-dgU" userLabel="page3">
                                                 <rect key="frame" x="750" y="0.0" width="375" height="490"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tour-step3.png" translatesAutoresizingMaskIntoConstraints="NO" id="BZq-Vy-HRP">
-                                                        <rect key="frame" x="27" y="100" width="320" height="256"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tour-step3.png" id="BZq-Vy-HRP">
+                                                        <rect key="frame" x="27" y="50" width="320" height="256"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WE ARE THE PROBLEM SOLVERS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMW-px-rJt">
-                                                        <rect key="frame" x="13" y="381" width="344" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WE ARE THE PROBLEM SOLVERS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yMW-px-rJt">
+                                                        <rect key="frame" x="13" y="350" width="344" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="19"/>
                                                         <color key="textColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A team of professionals committed to help you have the best work experience" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4S-s1-ySe">
-                                                        <rect key="frame" x="27" y="407" width="320" height="64"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A team of professionals committed to help you have the best work experience" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L4S-s1-ySe">
+                                                        <rect key="frame" x="27" y="387" width="320" height="64"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                         <color key="textColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -95,11 +104,13 @@
                                     <outlet property="delegate" destination="hFo-Oh-TBv" id="TNo-h7-Lv3"/>
                                 </connections>
                             </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="AIY-ZX-5Nt">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="AIY-ZX-5Nt">
                                 <rect key="frame" x="168" y="548" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </pageControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37g-Oc-E3Z">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="37g-Oc-E3Z">
                                 <rect key="frame" x="16" y="591" width="343" height="60"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" title="NEXT">
@@ -120,6 +131,9 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="contentView" destination="GAb-Ow-gdM" id="fes-7Q-OBF"/>
+                        <outlet property="page1" destination="FdI-hs-a47" id="yBX-56-S2H"/>
+                        <outlet property="page2" destination="YQ1-us-kvG" id="QNC-VO-hs5"/>
+                        <outlet property="page3" destination="cFg-5E-dgU" id="bnK-al-mIo"/>
                         <outlet property="pageControl" destination="AIY-ZX-5Nt" id="sC6-oB-0HI"/>
                         <outlet property="scrollView" destination="ujI-RY-dYB" id="Je9-9G-hmM"/>
                         <segue destination="vXZ-lx-hvc" kind="modal" identifier="login" id="Xug-ji-iGt"/>
@@ -132,27 +146,26 @@
         <!--Account Settings View Controller-->
         <scene sceneID="OX5-W6-ywM">
             <objects>
-                <viewController id="naF-65-E2r" customClass="AccountSettingsViewController" customModule="WesterosBank" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="OqR-BZ-iEQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="R0f-GB-Zqx"/>
-                    </layoutGuides>
+                <viewController id="naF-65-E2r" customClass="AccountSettingsViewController" customModule="westerosbank" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bBZ-tl-rJk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kb4-aG-bMM" userLabel="Settings" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="kb4-aG-bMM" userLabel="Settings" customClass="CardView" customModule="westerosbank" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="652"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ACCOUNT SETTINGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psz-Ul-p0e">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT SETTINGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Psz-Ul-p0e">
                                         <rect key="frame" x="71" y="4" width="232" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                         <color key="textColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8lR-vt-Vko" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
+                                    <view contentMode="scaleToFill" id="8lR-vt-Vko" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
                                         <rect key="frame" x="150" y="92" width="75" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
@@ -165,15 +178,17 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jwh-qv-Zuh" customClass="SignUpScreenlet" customModule="LiferayScreens">
-                                        <rect key="frame" x="25" y="203" width="325" height="393"/>
+                                    <view contentMode="scaleToFill" id="Jwh-qv-Zuh" customClass="SignUpScreenlet" customModule="LiferayScreens">
+                                        <rect key="frame" x="25" y="213" width="325" height="393"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros_edit"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lee-EH-LFT">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lee-EH-LFT">
                                         <rect key="frame" x="295" y="5" width="80" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                         <state key="normal" image="icon_DOWN.png">
                                             <color key="titleColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -216,23 +231,22 @@
         <!--OnBoarding-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController title="OnBoarding" id="vXZ-lx-hvc" customClass="ViewController" customModule="WesterosBank" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
+                <viewController title="OnBoarding" id="vXZ-lx-hvc" customClass="ViewController" customModule="westerosbank" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" userLabel="On Boarding">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_BG_grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="pdj-ye-ilv">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_BG_grey.png" id="pdj-ye-ilv">
                                 <rect key="frame" x="83" y="88" width="209" height="289"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2b-zl-Zf5" customClass="OnBoardingCardDeck" customModule="WesterosBank" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="V2b-zl-Zf5" customClass="OnBoardingCardDeck" customModule="westerosbank" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VhY-B2-AcX" userLabel="SignIn Card" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" id="VhY-B2-AcX" userLabel="SignIn Card" customClass="CardView" customModule="westerosbank" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="487" width="375" height="554"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
@@ -247,12 +261,10 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="SIGN IN"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ach-hl-dTX" userLabel="SignUp Card" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" id="Ach-hl-dTX" userLabel="SignUp Card" customClass="CardView" customModule="westerosbank" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="567" width="375" height="600"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="600" id="nCX-ik-wyx"/>
-                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="maximizedMargin">
                                                 <real key="value" value="10"/>
@@ -265,20 +277,9 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="Ach-hl-dTX" firstAttribute="leading" secondItem="V2b-zl-Zf5" secondAttribute="leading" id="Bl0-vY-mY0"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ach-hl-dTX" secondAttribute="trailing" id="Enx-kC-dOE"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ach-hl-dTX" secondAttribute="bottom" constant="-520" id="wtS-LW-qyw"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="V2b-zl-Zf5" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="T2C-Ia-UTr"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="V2b-zl-Zf5" secondAttribute="bottom" id="YIU-KD-aQr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="V2b-zl-Zf5" secondAttribute="trailing" constant="-16" id="ZKk-eh-ukS"/>
-                            <constraint firstItem="V2b-zl-Zf5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="dCf-ky-b06"/>
-                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -294,23 +295,22 @@
         <!--Home View Controller-->
         <scene sceneID="aRR-dG-OOh">
             <objects>
-                <viewController id="PPh-lo-iNo" customClass="HomeViewController" customModule="WesterosBank" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CX5-CM-qpo"/>
-                        <viewControllerLayoutGuide type="bottom" id="6ZO-sY-HaW"/>
-                    </layoutGuides>
+                <viewController id="PPh-lo-iNo" customClass="HomeViewController" customModule="westerosbank" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mMg-oB-ONJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VF1-5B-MWt" userLabel="Issues Deck" customClass="IssuesCardDeck" customModule="WesterosBank" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="VF1-5B-MWt" userLabel="Issues Deck" customClass="IssuesCardDeck" customModule="westerosbank" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="me9-UW-jo7" userLabel="Settings">
+                                    <view alpha="0.0" contentMode="scaleToFill" id="me9-UW-jo7" userLabel="Settings">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="548"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKV-Tc-xVI">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vKV-Tc-xVI">
                                                 <rect key="frame" x="0.0" y="56" width="375" height="60"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                                 <state key="normal" title="      Account Settings">
@@ -321,8 +321,9 @@
                                                     <action selector="accountSettingsAction:" destination="PPh-lo-iNo" eventType="touchUpInside" id="6oo-Ea-KzP"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5WA-ha-M1s">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5WA-ha-M1s">
                                                 <rect key="frame" x="0.0" y="116" width="375" height="60"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                                 <state key="normal" title="      Call">
@@ -333,8 +334,9 @@
                                                     <action selector="callAction:" destination="PPh-lo-iNo" eventType="touchUpInside" id="rC2-sW-GJF"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ir-iq-L9e">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9Ir-iq-L9e">
                                                 <rect key="frame" x="0.0" y="176" width="375" height="60"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                                 <state key="normal" title="      Send message">
@@ -345,8 +347,9 @@
                                                     <action selector="sendMessageAction:" destination="PPh-lo-iNo" eventType="touchUpInside" id="tFr-nl-lQd"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWZ-7t-mH4">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wWZ-7t-mH4">
                                                 <rect key="frame" x="0.0" y="236" width="375" height="60"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                                 <state key="normal" title="      Sign Out">
@@ -360,12 +363,10 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wM-tY-d9P" userLabel="Issues" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" id="1wM-tY-d9P" userLabel="Issues" customClass="CardView" customModule="westerosbank" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="567" width="375" height="570"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="570" id="ufV-R4-trY"/>
-                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="ISSUES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimizedHeight">
@@ -379,12 +380,10 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ea-3w-JV0" userLabel="Report issue" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" id="0ea-3w-JV0" userLabel="Report issue" customClass="CardView" customModule="westerosbank" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="567" width="375" height="600"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="600" id="hQx-zd-NAu"/>
-                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="REPORT ISSUE"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimizedHeight">
@@ -397,17 +396,10 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="1wM-tY-d9P" secondAttribute="trailing" id="94i-wf-suQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="0ea-3w-JV0" secondAttribute="bottom" constant="-520" id="bvQ-wy-p5W"/>
-                                    <constraint firstItem="0ea-3w-JV0" firstAttribute="leading" secondItem="VF1-5B-MWt" secondAttribute="leading" id="dwJ-kR-ACS"/>
-                                    <constraint firstAttribute="trailing" secondItem="0ea-3w-JV0" secondAttribute="trailing" id="g7e-bt-u7M"/>
-                                    <constraint firstAttribute="bottom" secondItem="1wM-tY-d9P" secondAttribute="bottom" constant="-490" id="iEd-hH-Mrr"/>
-                                    <constraint firstItem="1wM-tY-d9P" firstAttribute="leading" secondItem="VF1-5B-MWt" secondAttribute="leading" id="wYh-q5-XBh"/>
-                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dR3-nv-LDn" userLabel="Go back" customClass="CardView" customModule="WesterosBank" customModuleProvider="target">
+                            <view contentMode="scaleToFill" id="dR3-nv-LDn" userLabel="Go back" customClass="CardView" customModule="westerosbank" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="667" width="375" height="90"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.98431372549019602" green="0.70196078431372544" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="title" value="GO BACK"/>
@@ -424,12 +416,6 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="6ZO-sY-HaW" firstAttribute="top" secondItem="VF1-5B-MWt" secondAttribute="bottom" id="4nt-PL-VDN"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="VF1-5B-MWt" secondAttribute="trailing" constant="-16" id="a2F-9A-UEX"/>
-                            <constraint firstItem="VF1-5B-MWt" firstAttribute="leading" secondItem="mMg-oB-ONJ" secondAttribute="leadingMargin" constant="-16" id="kg4-IG-KMg"/>
-                            <constraint firstItem="VF1-5B-MWt" firstAttribute="top" secondItem="CX5-CM-qpo" secondAttribute="bottom" id="rqf-eS-9GX"/>
-                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>

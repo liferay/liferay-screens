@@ -1,0 +1,8 @@
+<resources>
+	<string name="hello_world">Hello world!</string>
+	<string name="action_settings">Settings</string>
+	<string name="push_example">Liferay Push Example</string>
+	<string name="notifications_activity">List of Notifications</string>
+	<string name="notification_detail">Detail of a notification</string>
+	<string name="app">Liferay Push Example</string>
+</resources>

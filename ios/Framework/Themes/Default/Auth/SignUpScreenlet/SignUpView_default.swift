@@ -114,7 +114,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 				self.middleName = SessionContext.userAttribute("middleName") as? String
 				self.lastName = SessionContext.userAttribute("lastName") as? String
 				self.emailAddress = SessionContext.userAttribute("emailAddress") as? String
-				self.password = SessionContext.currentPassword
+				self.password = SessionContext.currentBasicPassword
 				self.screenName = SessionContext.userAttribute("screenName") as? String
 				self.jobTitle = SessionContext.userAttribute("jobTitle") as? String
 			}

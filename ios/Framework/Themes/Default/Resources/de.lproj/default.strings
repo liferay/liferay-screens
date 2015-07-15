@@ -4,6 +4,7 @@
 "default-sign-in-button"="Anmelden";
 "default-sign-up-button"="Konto erstellen";
 "default-save-button"="Sparen";
+"default-authorize-button"="Ermächtigen";
 "default-forgot-password-button"="Passwort vergessen";
 "default-password-placeholder"="Passwort";
 "default-first-name-placeholder"="Vorname";

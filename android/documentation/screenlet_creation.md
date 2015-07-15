@@ -366,7 +366,7 @@ Your module also needs the dependencies required to override the existing screen
 
 ```groovy
 dependencies {
-	compile 'com.liferay.mobile:liferay-screens:0.3.+'
+	compile 'com.liferay.mobile:liferay-screens:1.1.+'
 	
 	...
 }

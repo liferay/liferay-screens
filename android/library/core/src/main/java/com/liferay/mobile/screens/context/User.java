@@ -54,7 +54,7 @@ public class User {
 	}
 
 	public long getId() {
-		return (int) _attributes.get(USER_ID);
+		return safeCastToLong(_attributes.get(USER_ID));
 	}
 
 	public String getUuid() {
@@ -62,7 +62,15 @@ public class User {
 	}
 
 	public long getPortraitId() {
-		return (int) _attributes.get(PORTRAIT_ID);
+		return safeCastToLong(_attributes.get(PORTRAIT_ID));
+	}
+
+	private long safeCastToLong(final Object o) {
+		if (o instanceof Integer) {
+			return (int) o;
+		} else {
+			return (long) o;
+		}
 	}
 
 	public String getFirstName() {
