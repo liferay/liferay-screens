@@ -82,7 +82,7 @@ public class PushService extends AbstractPushService {
 
 				String username = getString(R.string.anonymous_user);
 				String password = getString(R.string.anonymous_password);
-				Session session = SessionContext.createSession(username, password);
+				Session session = SessionContext.createBasicSession(username, password);
 
 				DLFileEntryService entryService = new DLFileEntryService(session);
 				JSONObject result = entryService.getFileEntryByUuidAndGroupId(uuid, groupId);

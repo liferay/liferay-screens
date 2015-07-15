@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
 	compileSdkVersion 22
-	buildToolsVersion "22"
+	buildToolsVersion "22.0.1"
 
 	packagingOptions {
 		exclude 'META-INF/LICENSE'
@@ -53,6 +53,6 @@ dependencies {
 	compile project (':liferay-screens')
 	compile project (':liferay-material-viewset')
 	compile project (':addbookmarkscreenlet')
-	compile 'com.android.support:appcompat-v7:22.0.0'
 
+	compile 'com.android.support:appcompat-v7:22.2.0'
 }
