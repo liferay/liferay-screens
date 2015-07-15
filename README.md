@@ -64,7 +64,7 @@ Liferay Screens for iOS also contains a set of *themes* that you can use to chan
 
 ## Overview of Liferay Screens for Android
 
-Screens for Android uses Android's standard set of development tools, including the Android SDK (starting from Android 4.0, API Level 14) and Android Studio. Since [Screens' architecture](android/documentation/architecture.md) is designed to isolate the screenlets, using Screens is a great way to construct your app in a modular fashion.
+Screens for Android uses Android's standard set of development tools, including the Android SDK (starting from Android 4.0, API Level 15) and Android Studio. Since [Screens' architecture](android/documentation/architecture.md) is designed to isolate the screenlets, using Screens is a great way to construct your app in a modular fashion.
 
 ### Getting Started on Android
 
