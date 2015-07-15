@@ -24,7 +24,7 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
-import com.liferay.mobile.screens.context.storage.sharedPreferences.CredentialsStoreSharedPreferences;
+import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStoreSharedPreferences;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,7 +58,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
-			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
+			BasicCredentialsStoreSharedPreferences store = new BasicCredentialsStoreSharedPreferences();
 			setBasicTestDataInStore(store);
 
 			store.setContext(null);
@@ -68,7 +68,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenSessionIsNotPresent() throws Exception {
-			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
+			BasicCredentialsStoreSharedPreferences store = new BasicCredentialsStoreSharedPreferences();
 			setBasicTestDataInStore(store);
 
 			store.setAuthentication(null);
@@ -78,7 +78,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
-			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
+			BasicCredentialsStoreSharedPreferences store = new BasicCredentialsStoreSharedPreferences();
 			setBasicTestDataInStore(store);
 
 			store.setUser(null);
@@ -88,7 +88,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 		@Test
 		public void shouldStoreTheCredentialsInSharedPreferences() throws Exception {
-			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
+			BasicCredentialsStoreSharedPreferences store = new BasicCredentialsStoreSharedPreferences();
 			setBasicTestDataInStore(store);
 			store.storeCredentials();
 
@@ -117,7 +117,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 		@Test
 		public void shouldRemoveTheStoredCredentials() throws Exception {
-			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
+			BasicCredentialsStoreSharedPreferences store = new BasicCredentialsStoreSharedPreferences();
 			setBasicTestDataInStore(store);
 			store.storeCredentials();
 
@@ -143,7 +143,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 		@Test
 		public void shouldNotLoadWhenCredentialsAreNotStored() throws Exception {
-			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
+			BasicCredentialsStoreSharedPreferences store = new BasicCredentialsStoreSharedPreferences();
 			store.setContext(RuntimeEnvironment.application.getApplicationContext());
 			store.removeStoredCredentials();
 
@@ -152,7 +152,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 		@Test(expected = IllegalStateException.class)
 		public void shouldRaiseExceptionIfStoredCredentialsAreNotConsistent() throws Exception {
-			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
+			BasicCredentialsStoreSharedPreferences store = new BasicCredentialsStoreSharedPreferences();
 			setBasicTestDataInStore(store);
 			store.storeCredentials();
 
@@ -166,7 +166,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 		@Test
 		public void shouldLoadTheStoredValues() throws Exception {
-			CredentialsStoreSharedPreferences store = new CredentialsStoreSharedPreferences();
+			BasicCredentialsStoreSharedPreferences store = new BasicCredentialsStoreSharedPreferences();
 			setBasicTestDataInStore(store);
 			store.storeCredentials();
 
