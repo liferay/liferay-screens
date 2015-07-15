@@ -3,7 +3,7 @@ apply plugin: 'maven'
 
 android {
 	compileSdkVersion 22
-	buildToolsVersion "22"
+	buildToolsVersion "22.0.1"
 
 	defaultConfig {
 		minSdkVersion 15
@@ -50,7 +50,6 @@ dependencies {
 	compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
 		exclude group: 'com.google.android', module: 'support-v4'
 	}
-
 	testCompile "junit:junit:4.12"
 	testCompile "org.robolectric:robolectric:3.0-rc2"
 	testCompile 'org.mockito:mockito-core:1.9.5'

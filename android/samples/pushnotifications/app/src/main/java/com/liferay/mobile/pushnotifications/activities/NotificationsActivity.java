@@ -44,6 +44,11 @@ public class NotificationsActivity extends AbstractPushActivity implements BaseL
 	}
 
 	@Override
+	protected Session getDefaultSession() {
+		return SessionContext.createSessionFromCurrentSession();
+	}
+
+	@Override
 	public void onListPageFailed(BaseListScreenlet baseListScreenlet, int i, Exception e) {
 
 	}
