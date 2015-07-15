@@ -24,7 +24,6 @@
 		<activity
 			android:name=".activities.TourActivity"
 			android:noHistory="true"/>
-		<activity android:name=".activities.PushActivity"/>
 		<activity
 			android:name=".activities.SplashActivity"
 			android:noHistory="true">
