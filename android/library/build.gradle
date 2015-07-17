@@ -1,26 +1,21 @@
-apply plugin: 'maven'
-
 buildscript {
 	repositories {
 		jcenter()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:1.2.3'
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
 		classpath 'com.github.dcendents:android-maven-plugin:1.2'
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
 	}
 }
 
 subprojects {
 	repositories {
-		mavenLocal()
 
 		maven {
 			url 'https://repository.liferay.com/nexus/content/groups/liferay-ce'
 		}
 
 		jcenter()
-		mavenCentral()
 	}
 
 	configurations {
@@ -35,39 +30,103 @@ subprojects {
 		formatter group: 'org.apache.ant', name: 'ant', version: '1.8.2'
 	}
 
-
-//	task format(type: JavaExec) {
-//		main = 'com.liferay.portal.tools.sourceformatter.SourceFormatter'
-//		classpath = configurations.formatter
-//		workingDir = 'src'
-//	}
-//
-//	task formatResources(type: JavaExec) {
-//		main = format.main
-//		classpath = format.classpath
-//		workingDir = 'res'
-//	}
-//
-//	task wrapper(type: Wrapper) {
-//		gradleVersion = '2.2.1'
-//	}
-//
-//    uploadArchives {
-//        repositories.mavenDeployer {
-//            def deployPath = file(getProperty('aar.deployPath'))
-//            repository(url: "file://${deployPath.absolutePath}")
-//            pom.project {
-//                groupId 'com.liferay.mobile'
-//                artifactId 'liferay-screens'
-//                version "0.3.2"
-//            }
-//        }
-//    }
-
-
 }
-allprojects {
-	repositories {
-		jcenter()
+
+subprojects {
+
+	version = '1.1.0.beta2'
+	group = 'com.liferay.mobile'
+
+	buildscript {
+		repositories {
+			jcenter()
+		}
+		dependencies {
+			classpath 'com.github.dcendents:android-maven-plugin:1.2'
+			classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
+		}
+	}
+
+	apply plugin: 'com.android.library'
+	apply plugin: 'maven'
+	apply plugin: 'com.jfrog.bintray'
+	apply plugin: 'com.github.dcendents.android-maven'
+
+	def siteUrl = 'https://github.com/liferay/liferay-screens'
+	def gitUrl = 'https://github.com/liferay/liferay-screens.git'
+
+	task sourcesJar(type: Jar) {
+		from android.sourceSets.main.java.srcDirs
+		classifier = 'sources'
+	}
+
+	task javadoc(type: Javadoc) {
+		source = android.sourceSets.main.java.srcDirs
+//	classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+	}
+
+	task javadocJar(type: Jar, dependsOn: javadoc) {
+		classifier = 'javadoc'
+		from javadoc.destinationDir
+	}
+
+	artifacts {
+		archives javadocJar
+		archives sourcesJar
+	}
+
+	install {
+		repositories.mavenInstaller {
+			// This generates POM.xml with proper parameters
+			pom {
+				project {
+					packaging 'aar'
+
+					// Add your description here
+					name 'Liferay Screens for Android includes the component (screenlets) library and a sample project.'
+					url siteUrl
+
+					// Set your license
+					licenses {
+						license {
+							name 'The Apache Software License, Version 2.0'
+							url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+						}
+					}
+					developers {
+						developer {
+							id '1'
+							name 'Javier Gamarra'
+							email 'nhpatt@gmail.com'
+						}
+					}
+					scm {
+						connection gitUrl
+						developerConnection gitUrl
+						url siteUrl
+
+					}
+				}
+			}
+		}
+	}
+
+	Properties properties = new Properties()
+	properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+	bintray {
+		user = properties.getProperty("bintray.user")
+		key = properties.getProperty("bintray.apikey")
+
+		configurations = ['archives']
+		pkg {
+//		userOrg = 'liferay'
+			repo = "liferay-mobile"
+			name = project.archivesBaseName
+			websiteUrl = siteUrl
+			vcsUrl = gitUrl
+			licenses = ["LGPL-2.1"]
+			publish = true
+		}
 	}
 }
