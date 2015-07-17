@@ -28,3 +28,7 @@ dependencies {
 	}
 	compile project(':liferay-screens')
 }
+
+repositories {
+	jcenter()
+}

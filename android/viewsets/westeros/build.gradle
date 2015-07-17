@@ -29,3 +29,7 @@ dependencies {
 	compile "com.daimajia.swipelayout:library:1.1.9@aar"
 	compile project(':liferay-screens')
 }
+
+repositories {
+	jcenter()
+}
