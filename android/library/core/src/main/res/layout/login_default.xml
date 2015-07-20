@@ -17,9 +17,11 @@
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="15dp"
 			android:drawableLeft="@drawable/default_mail_icon"
+			android:drawablePadding="17dp"
 			android:drawableStart="@drawable/default_mail_icon"
 			android:hint="@string/email_address"
-			android:inputType="text"/>
+			android:inputType="text"
+			android:paddingLeft="15dp"/>
 
 		<EditText
 			android:id="@+id/liferay_password"
@@ -55,9 +57,10 @@
 		</FrameLayout>
 	</LinearLayout>
 
-	<Button android:visibility="gone"
+	<Button
 		android:id="@+id/oauth_authentication_login"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/authorize_application"/>
+		android:text="@string/authorize_application"
+		android:visibility="gone"/>
 </com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView>
