@@ -34,8 +34,8 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayScreenlet
-		extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayInteractor>
-		implements WebContentDisplayListener {
+	extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayInteractor>
+	implements WebContentDisplayListener {
 
 	public WebContentDisplayScreenlet(Context context) {
 		super(context);
@@ -114,8 +114,8 @@ public class WebContentDisplayScreenlet
 
 		_articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
 
-		_groupId = typedArray.getInt(
-			R.styleable.WebContentDisplayScreenlet_groupId, (int) LiferayServerContext.getGroupId());
+		_groupId = getLongFromStringWithDefaultValue(typedArray.getString(
+			R.styleable.WebContentDisplayScreenlet_groupId), LiferayServerContext.getGroupId());
 
 		_javascriptEnabled = typedArray.getBoolean(
 			R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);

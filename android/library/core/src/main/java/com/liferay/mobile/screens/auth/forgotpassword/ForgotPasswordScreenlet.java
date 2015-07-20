@@ -16,9 +16,7 @@ package com.liferay.mobile.screens.auth.forgotpassword;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-
 import android.util.AttributeSet;
-
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -113,9 +111,9 @@ public class ForgotPasswordScreenlet
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.ForgotPasswordScreenlet, 0, 0);
 
-		_companyId = typedArray.getInt(
-			R.styleable.ForgotPasswordScreenlet_companyId,
-			(int)LiferayServerContext.getCompanyId());
+		_companyId = getLongFromStringWithDefaultValue(typedArray.getString(
+				R.styleable.ForgotPasswordScreenlet_companyId),
+			LiferayServerContext.getCompanyId());
 
 		_anonymousApiUserName = typedArray.getString(
 			R.styleable.ForgotPasswordScreenlet_anonymousApiUserName);

@@ -233,11 +233,11 @@ public class UserPortraitScreenlet
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
-		int defaultUserId = 0;
-		if (SessionContext.hasSession() && _portraitId == 0 && _uuid == null) {
-			defaultUserId = (int) SessionContext.getLoggedUser().getId();
+		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, 0);
+
+		if (SessionContext.hasSession() && _portraitId == 0 && _uuid == null && _userId == 0) {
+			_userId =  SessionContext.getLoggedUser().getId();
 		}
-		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, defaultUserId);
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
