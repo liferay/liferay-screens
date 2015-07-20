@@ -7,9 +7,8 @@
 //
 
 #import "RCTViewManager.h"
-#import "MyReactPrototype-Swift.h"
 
 
-@interface NativeLoginScreenletManager : RCTViewManager<LoginScreenletDelegate>
+@interface NativeLoginScreenletManager : RCTViewManager
 
 @end

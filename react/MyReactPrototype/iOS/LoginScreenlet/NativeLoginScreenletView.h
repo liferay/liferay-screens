@@ -7,10 +7,13 @@
 //
 
 #import "RCTView.h"
+#import "MyReactPrototype-Swift.h"
 
-@interface NativeLoginScreenletView : RCTView
 
-@property (nonatomic, copy) void (^onLoginSuccess)();
-@property (nonatomic, copy) void (^onLoginFailure)();
+@class RCTEventDispatcher;
+
+@interface NativeLoginScreenletView : RCTView<LoginScreenletDelegate>
+
+- (instancetype)initWithFrame:(CGRect)frame eventDispatcher:(RCTEventDispatcher *)eventDispatcher;
 
 @end
