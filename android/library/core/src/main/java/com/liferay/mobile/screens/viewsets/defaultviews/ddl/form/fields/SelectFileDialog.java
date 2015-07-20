@@ -36,12 +36,12 @@ public class SelectFileDialog {
 
 		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService
-				(Context.LAYOUT_INFLATER_SERVICE);
+			(Context.LAYOUT_INFLATER_SERVICE);
 
 		View view = inflater.inflate(R.layout.select_file_default, null);
 		dialogBuilder.setView(view);
 
-		dialogBuilder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+		dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface d, int arg1) {
 				d.cancel();
@@ -130,8 +130,17 @@ public class SelectFileDialog {
 		}
 
 		File dirFile = new File(directory);
-		if (!dirFile.exists() || !dirFile.isDirectory()) {
+		if (!dirFile.exists() || !dirFile.isDirectory()
+			|| dirFile.listFiles() == null || dirFile.listFiles().length == 0) {
+			if (currentDir.equals(SD_DIRECTORY)) {
+				throw new SecurityException("Are you sure that the read or write permission is set in the manifest.xml?");
+			}
 			return entries;
+		}
+
+		String storageState = Environment.getExternalStorageState();
+		if (!Environment.MEDIA_MOUNTED.equals(storageState) && !Environment.MEDIA_MOUNTED_READ_ONLY.equals(storageState)) {
+			throw new SecurityException("Storage media is unavailable.");
 		}
 
 		for (File file : dirFile.listFiles()) {
