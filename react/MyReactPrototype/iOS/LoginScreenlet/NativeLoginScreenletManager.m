@@ -27,6 +27,6 @@ RCT_EXPORT_MODULE();
 	return dispatch_get_main_queue();
 }
 
-//RCT_EXPORT_VIEW_PROPERTY(themeName, NSString);
+RCT_EXPORT_VIEW_PROPERTY(themeName, NSString);
 
 @end

@@ -21,7 +21,7 @@ class LoginScreenlet extends React.Component {
 }
 
 LoginScreenlet.propTypes = {
-//  themeName: React.PropTypes.string,
+  themeName: React.PropTypes.string,
   
   onLoginSuccess: React.PropTypes.func,  
 };

@@ -19,7 +19,7 @@ var MyReactPrototype = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
-      	<LoginScreenlet style={styles.login} onLoginSuccess={this.loginSucceeded} />
+      	<LoginScreenlet style={styles.login} themeName="flat7" onLoginSuccess={this.loginSucceeded} />
       </View>
     );
   }

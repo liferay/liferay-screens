@@ -69,14 +69,11 @@ import QuartzCore
 
 	required public init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-
-		create()
 	}
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 
-		create()
 	}
 
 	override public func becomeFirstResponder() -> Bool {
@@ -85,6 +82,9 @@ import QuartzCore
 
 	override public func didMoveToWindow() {
 		if (window != nil) {
+			if screenletView == nil {
+				create()
+			}
 			onShow()
 		}
 		else {

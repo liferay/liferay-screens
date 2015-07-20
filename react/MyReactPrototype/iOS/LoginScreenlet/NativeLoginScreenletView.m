@@ -13,7 +13,8 @@
 
 @interface NativeLoginScreenletView()
 
-@property (nonatomic, strong) RCTEventDispatcher *eventDispatcher;
+@property (nonatomic, weak) RCTEventDispatcher *eventDispatcher;
+@property (nonatomic, weak) LoginScreenlet *screenlet;
 
 @end
 
@@ -27,8 +28,19 @@
 		LoginScreenlet *screenlet = [[LoginScreenlet alloc] initWithFrame:frame];
 		screenlet.delegate = self;
 		[self addSubview:screenlet];
+		self.screenlet = screenlet;
 	}
 	return self;
+}
+
+- (void)setThemeName:(NSString *)themeName {
+	self.screenlet.themeName = themeName;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+//    self.screenlet.frame = self.bounds;
 }
 
 - (void)screenlet:(BaseScreenlet * __nonnull)screenlet onLoginResponseUserAttributes:(NSDictionary * __nonnull)attributes {
