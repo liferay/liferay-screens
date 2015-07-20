@@ -1,1 +1,0 @@
-../../../Liferay-iOS-SDK/ios/Source/Core/Auth/LRAuthentication.h

@@ -21,7 +21,7 @@ class LoginScreenlet extends React.Component {
 }
 
 LoginScreenlet.propTypes = {
-//  saveCredentials: React.PropTypes.boolean,
+//  themeName: React.PropTypes.string,
   
   onLoginSuccess: React.PropTypes.func,  
 };

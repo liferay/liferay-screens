@@ -1,1 +1,0 @@
-../../../Liferay-iOS-SDK/ios/Source/Service/v62/company/LRCompanyService_v62.h

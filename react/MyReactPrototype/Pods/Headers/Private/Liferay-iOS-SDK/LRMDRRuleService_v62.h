@@ -1,1 +1,0 @@
-../../../Liferay-iOS-SDK/ios/Source/Service/v62/mdrrule/LRMDRRuleService_v62.h

@@ -1,6 +1,0 @@
-framework module LROAuth {
-  umbrella header "Pods-Liferay-OAuth-umbrella.h"
-
-  export *
-  module * { export * }
-}

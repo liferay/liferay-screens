@@ -1,6 +1,0 @@
-framework module SMXMLDocument {
-  umbrella header "Pods-SMXMLDocument-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -1,1 +1,0 @@
-../../../Liferay-iOS-SDK/ios/Source/Service/v62/team/LRTeamService_v62.h

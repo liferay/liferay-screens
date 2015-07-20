@@ -1,1 +1,0 @@
-../../../Liferay-iOS-SDK/ios/Source/Service/v62/dlfileshortcut/LRDLFileShortcutService_v62.h

@@ -1,6 +1,0 @@
-framework module LRMobileSDK {
-  umbrella header "Pods-Liferay-iOS-SDK-umbrella.h"
-
-  export *
-  module * { export * }
-}

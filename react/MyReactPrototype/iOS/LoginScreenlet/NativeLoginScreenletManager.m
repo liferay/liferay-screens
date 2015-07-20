@@ -40,29 +40,12 @@ RCT_EXPORT_MODULE();
 	LoginScreenlet *screenlet = [[LoginScreenlet alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
 	screenlet.delegate = self;
 	return screenlet;
-/*
-	NSBundle *mainBundle = [NSBundle mainBundle];
-
-	NSArray *views = [mainBundle loadNibNamed:@"LoginView_default" owner:self options:nil];
-
-	NativeLoginScreenletView *view = (NativeLoginScreenletView *)views[0];
-	__weak NativeLoginScreenletView *weakView = view;
-
-	view.onLoginSuccess = ^void () {
-		NSDictionary *event = @{
-	    @"target": weakView.reactTag
-	  };
-		[self.bridge.eventDispatcher sendInputEventWithName:@"topSubmitEditing" body:event];
-	};
-
-	return view;
-*/
 }
 
 - (dispatch_queue_t)methodQueue {
 	return dispatch_get_main_queue();
 }
 
-//RCT_EXPORT_VIEW_PROPERTY(saveCredentials, BOOL);
+//RCT_EXPORT_VIEW_PROPERTY(themeName, NSString);
 
 @end

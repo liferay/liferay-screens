@@ -1,1 +1,0 @@
-../../../Liferay-iOS-SDK/ios/Source/Http/LRRedirectDelegate.h

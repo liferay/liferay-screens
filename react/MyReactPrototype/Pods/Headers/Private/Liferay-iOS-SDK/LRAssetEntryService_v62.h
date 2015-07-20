@@ -1,1 +1,0 @@
-../../../Liferay-iOS-SDK/ios/Source/Service/v62/assetentry/LRAssetEntryService_v62.h

@@ -22,6 +22,18 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		886EE7FE1B5D0D4500207D9A /* Flat7ThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886EE7F11B5D0D4500207D9A /* Flat7ThemeConstants.swift */; };
+		886EE7FF1B5D0D4500207D9A /* flat7.strings in Resources */ = {isa = PBXBuildFile; fileRef = 886EE7F31B5D0D4500207D9A /* flat7.strings */; };
+		886EE8001B5D0D4500207D9A /* flat7-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 886EE7F61B5D0D4500207D9A /* flat7-button.png */; };
+		886EE8011B5D0D4500207D9A /* flat7-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 886EE7F71B5D0D4500207D9A /* flat7-button@2x.png */; };
+		886EE8021B5D0D4500207D9A /* flat7-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 886EE7F81B5D0D4500207D9A /* flat7-field.png */; };
+		886EE8031B5D0D4500207D9A /* flat7-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 886EE7F91B5D0D4500207D9A /* flat7-field@2x.png */; };
+		886EE8041B5D0D4500207D9A /* flat7-gradient-form.png in Resources */ = {isa = PBXBuildFile; fileRef = 886EE7FA1B5D0D4500207D9A /* flat7-gradient-form.png */; };
+		886EE8051B5D0D4500207D9A /* flat7-gradient-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 886EE7FB1B5D0D4500207D9A /* flat7-gradient-form@2x.png */; };
+		886EE8061B5D0D4500207D9A /* flat7-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 886EE7FC1B5D0D4500207D9A /* flat7-portrait-placeholder.png */; };
+		886EE8071B5D0D4500207D9A /* flat7-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 886EE7FD1B5D0D4500207D9A /* flat7-portrait-placeholder@2x.png */; };
+		886EE80B1B5D0D7100207D9A /* LoginView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886EE8091B5D0D7100207D9A /* LoginView_flat7.swift */; };
+		886EE80C1B5D0D7100207D9A /* LoginView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886EE80A1B5D0D7100207D9A /* LoginView_flat7.xib */; };
 		88F1347E1B53A11900F31ABE /* NativeLoginScreenletManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F1346D1B53A11900F31ABE /* NativeLoginScreenletManager.m */; };
 		88F1347F1B53A11900F31ABE /* NativeLoginScreenletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F1346F1B53A11900F31ABE /* NativeLoginScreenletView.m */; };
 		88F134801B53A11900F31ABE /* default-field-failed.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F134711B53A11900F31ABE /* default-field-failed.png */; };
@@ -188,6 +200,19 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		886EE7F11B5D0D4500207D9A /* Flat7ThemeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Flat7ThemeConstants.swift; path = ../../ios/Framework/Themes/Flat7/Flat7ThemeConstants.swift; sourceTree = "<group>"; };
+		886EE7F41B5D0D4500207D9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/flat7.strings; sourceTree = "<group>"; };
+		886EE7F51B5D0D4500207D9A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/flat7.strings; sourceTree = "<group>"; };
+		886EE7F61B5D0D4500207D9A /* flat7-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-button.png"; sourceTree = "<group>"; };
+		886EE7F71B5D0D4500207D9A /* flat7-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-button@2x.png"; sourceTree = "<group>"; };
+		886EE7F81B5D0D4500207D9A /* flat7-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field.png"; sourceTree = "<group>"; };
+		886EE7F91B5D0D4500207D9A /* flat7-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field@2x.png"; sourceTree = "<group>"; };
+		886EE7FA1B5D0D4500207D9A /* flat7-gradient-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form.png"; sourceTree = "<group>"; };
+		886EE7FB1B5D0D4500207D9A /* flat7-gradient-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form@2x.png"; sourceTree = "<group>"; };
+		886EE7FC1B5D0D4500207D9A /* flat7-portrait-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder.png"; sourceTree = "<group>"; };
+		886EE7FD1B5D0D4500207D9A /* flat7-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
+		886EE8091B5D0D7100207D9A /* LoginView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_flat7.swift; sourceTree = "<group>"; };
+		886EE80A1B5D0D7100207D9A /* LoginView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_flat7.xib; sourceTree = "<group>"; };
 		88F1346C1B53A11900F31ABE /* NativeLoginScreenletManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeLoginScreenletManager.h; sourceTree = "<group>"; };
 		88F1346D1B53A11900F31ABE /* NativeLoginScreenletManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeLoginScreenletManager.m; sourceTree = "<group>"; };
 		88F1346E1B53A11900F31ABE /* NativeLoginScreenletView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeLoginScreenletView.h; sourceTree = "<group>"; };
@@ -448,6 +473,43 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		886EE7E61B5D0D2A00207D9A /* Flat7Theme */ = {
+			isa = PBXGroup;
+			children = (
+				886EE8081B5D0D7100207D9A /* LoginScreenlet */,
+				886EE7F11B5D0D4500207D9A /* Flat7ThemeConstants.swift */,
+				886EE7F21B5D0D4500207D9A /* Resources */,
+			);
+			name = Flat7Theme;
+			sourceTree = "<group>";
+		};
+		886EE7F21B5D0D4500207D9A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				886EE7F31B5D0D4500207D9A /* flat7.strings */,
+				886EE7F61B5D0D4500207D9A /* flat7-button.png */,
+				886EE7F71B5D0D4500207D9A /* flat7-button@2x.png */,
+				886EE7F81B5D0D4500207D9A /* flat7-field.png */,
+				886EE7F91B5D0D4500207D9A /* flat7-field@2x.png */,
+				886EE7FA1B5D0D4500207D9A /* flat7-gradient-form.png */,
+				886EE7FB1B5D0D4500207D9A /* flat7-gradient-form@2x.png */,
+				886EE7FC1B5D0D4500207D9A /* flat7-portrait-placeholder.png */,
+				886EE7FD1B5D0D4500207D9A /* flat7-portrait-placeholder@2x.png */,
+			);
+			name = Resources;
+			path = ../../ios/Framework/Themes/Flat7/Resources;
+			sourceTree = "<group>";
+		};
+		886EE8081B5D0D7100207D9A /* LoginScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				886EE8091B5D0D7100207D9A /* LoginView_flat7.swift */,
+				886EE80A1B5D0D7100207D9A /* LoginView_flat7.xib */,
+			);
+			name = LoginScreenlet;
+			path = ../../ios/Framework/Themes/Flat7/Auth/LoginScreenlet;
+			sourceTree = "<group>";
+		};
 		88F1346A1B53A11900F31ABE /* NativeLoginScreenlet */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +548,7 @@
 				88F134C51B53A2C100F31ABE /* Auth */,
 				88F1348D1B53A1E000F31ABE /* Core */,
 				88F1348E1B53A1E500F31ABE /* DefaultTheme */,
+				886EE7E61B5D0D2A00207D9A /* Flat7Theme */,
 			);
 			name = LiferayScreens;
 			sourceTree = "<group>";
@@ -855,9 +918,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				886EE8061B5D0D4500207D9A /* flat7-portrait-placeholder.png in Resources */,
 				88F134821B53A11900F31ABE /* default-field-focused.png in Resources */,
+				886EE8051B5D0D4500207D9A /* flat7-gradient-form@2x.png in Resources */,
 				88F135131B53A47700F31ABE /* default-lock-icon.png in Resources */,
 				88F135121B53A47700F31ABE /* default-field@2x.png in Resources */,
+				886EE8011B5D0D4500207D9A /* flat7-button@2x.png in Resources */,
+				886EE8001B5D0D4500207D9A /* flat7-button.png in Resources */,
 				88F134851B53A11900F31ABE /* default-field@2x.png in Resources */,
 				88F135361B53A49B00F31ABE /* login-screenlet.strings in Resources */,
 				88F134FE1B53A45200F31ABE /* default.strings in Resources */,
@@ -865,13 +932,16 @@
 				88F134861B53A11900F31ABE /* default-lock-icon.png in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				88F134881B53A11900F31ABE /* default-mail-icon.png in Resources */,
+				886EE8031B5D0D4500207D9A /* flat7-field@2x.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				88F135101B53A47700F31ABE /* default-field-focused@2x.png in Resources */,
 				88F135161B53A47700F31ABE /* default-mail-icon@2x.png in Resources */,
 				88F135141B53A47700F31ABE /* default-lock-icon@2x.png in Resources */,
+				886EE8041B5D0D4500207D9A /* flat7-gradient-form.png in Resources */,
 				88F135341B53A49B00F31ABE /* core.strings in Resources */,
 				88F134811B53A11900F31ABE /* default-field-failed@2x.png in Resources */,
 				88F134801B53A11900F31ABE /* default-field-failed.png in Resources */,
+				886EE7FF1B5D0D4500207D9A /* flat7.strings in Resources */,
 				88F135111B53A47700F31ABE /* default-field.png in Resources */,
 				88F1350E1B53A47700F31ABE /* default-field-failed@2x.png in Resources */,
 				88F1348A1B53A11900F31ABE /* default-user-icon.png in Resources */,
@@ -881,13 +951,16 @@
 				88F135391B53A49B00F31ABE /* liferay-server-context-sample.plist in Resources */,
 				88F134831B53A11900F31ABE /* default-field-focused@2x.png in Resources */,
 				88F134891B53A11900F31ABE /* default-mail-icon@2x.png in Resources */,
+				886EE8021B5D0D4500207D9A /* flat7-field.png in Resources */,
 				88F1353B1B53A7A300F31ABE /* liferay-server-context.plist in Resources */,
 				88F1348B1B53A11900F31ABE /* default-user-icon@2x.png in Resources */,
 				88F134871B53A11900F31ABE /* default-lock-icon@2x.png in Resources */,
 				88F1350D1B53A47700F31ABE /* default-field-failed.png in Resources */,
+				886EE8071B5D0D4500207D9A /* flat7-portrait-placeholder@2x.png in Resources */,
 				88F134F81B53A39300F31ABE /* LoginView_default.xib in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				88F135171B53A47700F31ABE /* default-user-icon.png in Resources */,
+				886EE80C1B5D0D7100207D9A /* LoginView_flat7.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,6 +1025,7 @@
 				88F1347E1B53A11900F31ABE /* NativeLoginScreenletManager.m in Sources */,
 				88F134F11B53A2FE00F31ABE /* LRScreensuserService_v62.m in Sources */,
 				88F134B61B53A22F00F31ABE /* NSBundle+discovery.swift in Sources */,
+				886EE7FE1B5D0D4500207D9A /* Flat7ThemeConstants.swift in Sources */,
 				88F134D11B53A2CF00F31ABE /* GetUserByEmailOperation.swift in Sources */,
 				88F1349B1B53A21800F31ABE /* ServerOperationInteractor.swift in Sources */,
 				88F134D31B53A2CF00F31ABE /* GetUserByUserIdOperation.swift in Sources */,
@@ -977,6 +1051,7 @@
 				88F134991B53A21800F31ABE /* Interactor.swift in Sources */,
 				88F134BA1B53A22F00F31ABE /* UIView+Animations.swift in Sources */,
 				88F134B41B53A22F00F31ABE /* Bool+Conversion.swift in Sources */,
+				886EE80B1B5D0D7100207D9A /* LoginView_flat7.swift in Sources */,
 				88F134CF1B53A2CF00F31ABE /* BasicAuthBased.swift in Sources */,
 				88F134B91B53A22F00F31ABE /* UIButton+Title.swift in Sources */,
 				88F134B71B53A22F00F31ABE /* NSError+Screens.swift in Sources */,
@@ -1002,6 +1077,15 @@
 			);
 			name = LaunchScreen.xib;
 			path = iOS;
+			sourceTree = "<group>";
+		};
+		886EE7F31B5D0D4500207D9A /* flat7.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				886EE7F41B5D0D4500207D9A /* en */,
+				886EE7F51B5D0D4500207D9A /* es */,
+			);
+			name = flat7.strings;
 			sourceTree = "<group>";
 		};
 		88F134FC1B53A45200F31ABE /* default.strings */ = {

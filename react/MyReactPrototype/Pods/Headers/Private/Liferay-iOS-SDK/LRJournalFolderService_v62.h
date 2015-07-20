@@ -1,1 +1,0 @@
-../../../Liferay-iOS-SDK/ios/Source/Service/v62/journalfolder/LRJournalFolderService_v62.h
