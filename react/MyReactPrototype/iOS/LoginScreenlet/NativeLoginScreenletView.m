@@ -50,9 +50,7 @@
 			@"attributes": attributes
 	  };
 
-		// events??
-		// https://github.com/facebook/react-native/blob/master/React/Modules/RCTUIManager.m#L1566
-		[self.eventDispatcher sendInputEventWithName:@"topSubmitEditing" body:event];
+		[self.eventDispatcher sendInputEventWithName:@"loginSuccess" body:event];
 }
 
 - (void)screenlet:(BaseScreenlet * __nonnull)screenlet onLoginError:(NSError * __nonnull)error {

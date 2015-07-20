@@ -35,7 +35,7 @@ var styles = StyleSheet.create({
   login: {
     flex: 1,
     width: 300,
-    height: 300,
+    height: 350,
     marginTop:50,
   },
 });

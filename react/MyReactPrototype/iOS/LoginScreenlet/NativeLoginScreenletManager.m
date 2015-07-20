@@ -27,6 +27,14 @@ RCT_EXPORT_MODULE();
 	return dispatch_get_main_queue();
 }
 
+- (NSDictionary *)customDirectEventTypes {
+	return @{
+		@"loginSuccess": @{
+			@"registrationName": @"onLoginSuccess"
+		}
+	};
+}
+
 RCT_EXPORT_VIEW_PROPERTY(themeName, NSString);
 
 @end

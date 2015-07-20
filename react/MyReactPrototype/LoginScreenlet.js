@@ -7,24 +7,23 @@ var NativeLoginScreenlet = requireNativeComponent('NativeLoginScreenlet', LoginS
 class LoginScreenlet extends React.Component {
   constructor() {
   	super();
-    this._onSubmitEditing = this._onSubmitEditing.bind(this);
+    this._onLoginSuccess = this._onLoginSuccess.bind(this);
   }
-  _onSubmitEditing(event: Event) {
+
+  _onLoginSuccess(event: Event) {
     if (!this.props.onLoginSuccess) {
       return;
     }
     this.props.onLoginSuccess(event.nativeEvent.attributes);
   }
+
   render() {
-    return <NativeLoginScreenlet {...this.props} onSubmitEditing={this._onSubmitEditing} />;
+    return <NativeLoginScreenlet {...this.props} onLoginSuccess={this._onLoginSuccess} />;
   }
 }
 
 LoginScreenlet.propTypes = {
   themeName: React.PropTypes.string,
-  
-  onLoginSuccess: React.PropTypes.func,  
 };
-
 
 module.exports = LoginScreenlet;
