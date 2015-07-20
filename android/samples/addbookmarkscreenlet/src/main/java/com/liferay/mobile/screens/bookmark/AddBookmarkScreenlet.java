@@ -57,7 +57,7 @@ public class AddBookmarkScreenlet
 
 		String defaultTitle = typedArray.getString(R.styleable.AddBookmarkScreenlet_defaultTitle);
 
-		_folderId = typedArray.getInteger(R.styleable.AddBookmarkScreenlet_folderId, 0);
+		_folderId = getLongFromString(typedArray.getString(R.styleable.AddBookmarkScreenlet_folderId));
 
 		typedArray.recycle();
 
@@ -86,11 +86,11 @@ public class AddBookmarkScreenlet
 		}
 	}
 
-	public Integer getFolderId() {
+	public long getFolderId() {
 		return _folderId;
 	}
 
-	public void setFolderId(Integer folderId) {
+	public void setFolderId(long folderId) {
 		_folderId = folderId;
 	}
 
@@ -102,7 +102,7 @@ public class AddBookmarkScreenlet
 		_listener = listener;
 	}
 
-	private Integer _folderId;
+	private long _folderId;
 	private AddBookmarkListener _listener;
 
 }
