@@ -17,6 +17,8 @@ package com.liferay.mobile.screens.ddl.list;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.liferay.mobile.screens.util.JSONUtil;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,6 +67,14 @@ public class DDLEntry implements Parcelable {
 	private DDLEntry(Parcel in) {
 		_values = new HashMap<>();
 		in.readMap(_values, ClassLoader.getSystemClassLoader());
+	}
+
+	public long getRecordId() {
+		return JSONUtil.safeCastToLong(getAttributes("recordId"));
+	}
+
+	public long getRecordSetId() {
+		return JSONUtil.safeCastToLong(getAttributes("recordSetId"));
 	}
 
 	private Map<String, Object> _values;
