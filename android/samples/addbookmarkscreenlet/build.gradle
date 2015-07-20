@@ -38,7 +38,7 @@ repositories {
 	jcenter()
 }
 
-version = '1.1.0'
+version = '1.1.2'
 group = 'com.liferay.mobile'
 
 project.archivesBaseName = 'addbookmarkscreenlet'
