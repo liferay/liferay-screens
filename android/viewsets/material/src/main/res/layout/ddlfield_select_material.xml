@@ -19,6 +19,7 @@
 		android:drawableEnd="@drawable/material_tinted_launch"
 		android:drawableRight="@drawable/material_tinted_launch"
 		android:hint="@string/hint_select"
+		android:inputType="date"
 		android:paddingBottom="5dp"
 		android:paddingTop="5dp"/>
 
