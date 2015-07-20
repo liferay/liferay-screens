@@ -24,6 +24,7 @@ import android.widget.FrameLayout;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -115,7 +116,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	}
 
 	protected V getViewModel() {
-		return (V)_screenletView;
+		return (V) _screenletView;
 	}
 
 	protected int getDefaultLayoutId() {
@@ -215,6 +216,23 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	protected abstract I createInteractor(String actionName);
 
 	protected abstract void onUserAction(String userActionName, I interactor, Object... args);
+
+	protected long getLongFromString(String value) {
+		return getLongFromStringWithDefaultValue(value, 0);
+	}
+
+	protected long getLongFromStringWithDefaultValue(String value, long defaultValue) {
+		if (value == null) {
+			return defaultValue;
+		}
+		try {
+			return Long.valueOf(value);
+		}
+		catch (NumberFormatException e) {
+			LiferayLogger.e("You have supplied a string and we expected a long number", e);
+			throw e;
+		}
+	}
 
 	private static final String _STATE_SCREENLET_ID = "basescreenlet-screenletId";
 	private static final String _STATE_SUPER = "basescreenlet-super";
