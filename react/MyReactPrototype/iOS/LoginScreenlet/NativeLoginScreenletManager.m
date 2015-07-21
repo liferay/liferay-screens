@@ -20,7 +20,12 @@ RCT_EXPORT_MODULE();
 - (UIView *)view
 {
 	CGRect r = CGRectMake(0, 0, 300, 300);
-	return [[NativeLoginScreenletView alloc] initWithFrame:r eventDispatcher:self.bridge.eventDispatcher];
+  
+  NativeLoginScreenletView *s = [[NativeLoginScreenletView alloc] initWithFrame:r eventDispatcher:self.bridge.eventDispatcher];
+  
+  s.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+
+	return s;
 }
 
 - (dispatch_queue_t)methodQueue {
@@ -29,9 +34,12 @@ RCT_EXPORT_MODULE();
 
 - (NSDictionary *)customDirectEventTypes {
 	return @{
-		@"loginSuccess": @{
-			@"registrationName": @"onLoginSuccess"
-		}
+		@"loginError": @{
+			@"registrationName": @"onLoginError"
+		},
+        @"loginSuccess": @{
+        	@"registrationName": @"onLoginSuccess"
+        }
 	};
 }
 

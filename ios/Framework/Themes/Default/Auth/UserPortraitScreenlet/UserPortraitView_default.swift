@@ -25,7 +25,7 @@ public class UserPortraitView_default: BaseScreenletView,
 
 	@IBOutlet weak public var activityIndicator: UIActivityIndicatorView?
 	@IBOutlet weak public var portraitImage: UIImageView?
-	@IBOutlet weak var editButton: UIButton!
+	@IBOutlet weak var editButton: UIButton?
 
 	public var borderWidth: CGFloat = 1.0 {
 		didSet {
@@ -39,7 +39,7 @@ public class UserPortraitView_default: BaseScreenletView,
 	}
 	override public var editable: Bool {
 		didSet {
-			self.editButton.hidden = !editable
+			self.editButton?.hidden = !editable
 			if editable {
 				self.superview?.clipsToBounds = false
 			}

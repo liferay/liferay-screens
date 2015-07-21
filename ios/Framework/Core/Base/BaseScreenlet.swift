@@ -73,7 +73,6 @@ import QuartzCore
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-
 	}
 
 	override public func becomeFirstResponder() -> Bool {
@@ -106,7 +105,7 @@ import QuartzCore
 
 	//MARK: Internal methods
 
-	internal func create() {
+	public func create() {
 		onPreCreate()
 
 		clipsToBounds = true
