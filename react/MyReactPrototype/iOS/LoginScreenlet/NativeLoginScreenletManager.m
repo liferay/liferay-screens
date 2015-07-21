@@ -29,9 +29,12 @@ RCT_EXPORT_MODULE();
 
 - (NSDictionary *)customDirectEventTypes {
 	return @{
-		@"loginSuccess": @{
-			@"registrationName": @"onLoginSuccess"
-		}
+		@"loginError": @{
+			@"registrationName": @"onLoginError"
+		},
+        @"loginSuccess": @{
+        	@"registrationName": @"onLoginSuccess"
+        }
 	};
 }
 

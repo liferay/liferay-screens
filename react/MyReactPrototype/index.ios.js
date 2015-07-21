@@ -2,42 +2,68 @@
 
 var React = require('react-native');
 var {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
+	AppRegistry,
+	StyleSheet,
+	Text,
+	View
 } = React;
 
 var LoginScreenlet = require('./LoginScreenlet');
 
+class MyReactPrototype extends React.Component {
+	constructor() {
+		super();
 
-var MyReactPrototype = React.createClass({
-  loginSucceeded(attributes) {
-    console.log("Login done! " + attributes);
-  },
+		this.state = {
+	    	logged: false
+		};
 
-  render: function() {
-    return (
-      <View style={styles.container}>
-      	<LoginScreenlet style={styles.login} themeName="flat7" onLoginSuccess={this.loginSucceeded} />
-      </View>
-    );
-  }
-});
+		this._loginFailed = this._loginFailed.bind(this);
+		this._loginSucceeded = this._loginSucceeded.bind(this);
+	}
+
+	render() {
+		if (this.state.logged) {
+			return (
+				<View style={styles.container}>
+					<Text>Logged successfully!</Text>
+				</View>
+			);
+		} else {
+			return (
+				<View style={styles.container}>
+					<LoginScreenlet onLoginError={this._loginFailed} onLoginSuccess={this._loginSucceeded} style={styles.login} themeName="flat7" />
+				</View>
+			);
+		}
+	}
+
+	_loginFailed(jose) {
+		console.log('Login failed!', jose);
+	}
+
+	_loginSucceeded(attributes) {
+		console.log('Login done!', attributes);
+
+		this.setState({
+			logged: true
+		});
+	}
+}
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  login: {
-    flex: 1,
-    width: 300,
-    height: 350,
-    marginTop:50,
-  },
+	container: {
+		alignItems: 'center',
+		backgroundColor: '#F5FCFF',
+		flex: 1,
+		justifyContent: 'center'
+	},
+	login: {
+		flex: 1,
+		height: 350,
+		marginTop:50,
+		width: 300
+	}
 });
 
 AppRegistry.registerComponent('MyReactPrototype', () => MyReactPrototype);

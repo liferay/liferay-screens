@@ -54,6 +54,13 @@
 }
 
 - (void)screenlet:(BaseScreenlet * __nonnull)screenlet onLoginError:(NSError * __nonnull)error {
+  
+		NSDictionary *event = @{
+      @"target": self.reactTag,
+      @"error_msg": [error localizedDescription]
+    };
+  
+		[self.eventDispatcher sendInputEventWithName:@"loginError" body:event];
 }
 
 
