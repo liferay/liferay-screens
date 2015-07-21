@@ -30,6 +30,14 @@
             </connections>
             <point key="canvasLocation" x="240" y="433"/>
         </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="71q-wF-ymW">
+            <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <state key="normal" title="Button">
+                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+            </state>
+            <point key="canvasLocation" x="951" y="714"/>
+        </button>
     </objects>
     <resources>
         <image name="flat7-portrait-placeholder.png" width="60" height="60"/>

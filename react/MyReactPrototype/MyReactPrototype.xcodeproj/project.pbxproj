@@ -21,6 +21,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		5F33D3711B5E4DC5006692C3 /* NativeUserPortraitScreenletManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F33D3701B5E4DC5006692C3 /* NativeUserPortraitScreenletManager.m */; };
+		5F33D3741B5E4DEA006692C3 /* NativeUserPortraitScreenletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F33D3731B5E4DEA006692C3 /* NativeUserPortraitScreenletView.m */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8854BD111B5E37F10004251F /* UploadUserPortraitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854BD051B5E37F10004251F /* UploadUserPortraitInteractor.swift */; };
 		8854BD121B5E37F10004251F /* UserPortraitAttributesLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854BD061B5E37F10004251F /* UserPortraitAttributesLoadInteractor.swift */; };
@@ -215,6 +217,10 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		5F33D36F1B5E4DC5006692C3 /* NativeUserPortraitScreenletManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NativeUserPortraitScreenletManager.h; path = iOS/UserPortraitScreenlet/NativeUserPortraitScreenletManager.h; sourceTree = "<group>"; };
+		5F33D3701B5E4DC5006692C3 /* NativeUserPortraitScreenletManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NativeUserPortraitScreenletManager.m; path = iOS/UserPortraitScreenlet/NativeUserPortraitScreenletManager.m; sourceTree = "<group>"; };
+		5F33D3721B5E4DEA006692C3 /* NativeUserPortraitScreenletView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NativeUserPortraitScreenletView.h; path = iOS/UserPortraitScreenlet/NativeUserPortraitScreenletView.h; sourceTree = "<group>"; };
+		5F33D3731B5E4DEA006692C3 /* NativeUserPortraitScreenletView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NativeUserPortraitScreenletView.m; path = iOS/UserPortraitScreenlet/NativeUserPortraitScreenletView.m; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8854BD051B5E37F10004251F /* UploadUserPortraitInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadUserPortraitInteractor.swift; sourceTree = "<group>"; };
@@ -443,6 +449,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		5F33D35E1B5E4283006692C3 /* NativeUserPortraitScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				5F33D36F1B5E4DC5006692C3 /* NativeUserPortraitScreenletManager.h */,
+				5F33D3701B5E4DC5006692C3 /* NativeUserPortraitScreenletManager.m */,
+				5F33D3721B5E4DEA006692C3 /* NativeUserPortraitScreenletView.h */,
+				5F33D3731B5E4DEA006692C3 /* NativeUserPortraitScreenletView.m */,
+			);
+			name = NativeUserPortraitScreenlet;
+			sourceTree = "<group>";
+		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -487,6 +504,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				5F33D35E1B5E4283006692C3 /* NativeUserPortraitScreenlet */,
 				88F1348C1B53A12900F31ABE /* LiferayScreens */,
 				88F1346A1B53A11900F31ABE /* NativeLoginScreenlet */,
 				13B07FAE1A68108700A75B9A /* MyReactPrototype */,
@@ -1117,6 +1135,7 @@
 				88F134E11B53A2F100F31ABE /* OAuthWebViewController.swift in Sources */,
 				88F1347E1B53A11900F31ABE /* NativeLoginScreenletManager.m in Sources */,
 				88F134F11B53A2FE00F31ABE /* LRScreensuserService_v62.m in Sources */,
+				5F33D3711B5E4DC5006692C3 /* NativeUserPortraitScreenletManager.m in Sources */,
 				88F134B61B53A22F00F31ABE /* NSBundle+discovery.swift in Sources */,
 				886EE7FE1B5D0D4500207D9A /* Flat7ThemeConstants.swift in Sources */,
 				88F134D11B53A2CF00F31ABE /* GetUserByEmailOperation.swift in Sources */,
@@ -1153,6 +1172,7 @@
 				88F134B41B53A22F00F31ABE /* Bool+Conversion.swift in Sources */,
 				886EE80B1B5D0D7100207D9A /* LoginView_flat7.swift in Sources */,
 				8854BD121B5E37F10004251F /* UserPortraitAttributesLoadInteractor.swift in Sources */,
+				5F33D3741B5E4DEA006692C3 /* NativeUserPortraitScreenletView.m in Sources */,
 				88F134CF1B53A2CF00F31ABE /* BasicAuthBased.swift in Sources */,
 				88F134B91B53A22F00F31ABE /* UIButton+Title.swift in Sources */,
 				88F134B71B53A22F00F31ABE /* NSError+Screens.swift in Sources */,

@@ -17,7 +17,6 @@ class LoginScreenlet extends React.Component {
 	}
 
 	_onLoginError(event: Event) {
-		console.log('INSIDE ON LOGIN ERROR');
 		if (!this.props.onLoginError) {
 			return;
 		}

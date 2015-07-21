@@ -1,8 +1,8 @@
 //
-//  MyCompoView.h
-//  MyReactCompo
+//  NativeUserPortraitScreenletView.h
+//  MyReactPrototype
 //
-//  Created by jmWork on 10/07/15.
+//  Created by Iliyan Peychev on 7/21/15.
 //  Copyright (c) 2015 Facebook. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 @class RCTEventDispatcher;
 
-@interface NativeLoginScreenletView : RCTView<LoginScreenletDelegate>
+@interface NativeUserPortraitScreenletView : RCTView<UserPortraitScreenletDelegate>
 
 - (instancetype)initWithFrame:(CGRect)frame eventDispatcher:(RCTEventDispatcher *)eventDispatcher;
 

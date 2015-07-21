@@ -8,7 +8,6 @@
 
 #import "RCTViewManager.h"
 
-
 @interface NativeLoginScreenletManager : RCTViewManager
 
 @end

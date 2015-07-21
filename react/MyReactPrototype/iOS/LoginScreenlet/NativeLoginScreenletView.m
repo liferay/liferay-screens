@@ -10,7 +10,6 @@
 #import "RCTEventDispatcher.h"
 #import "UIView+React.h"
 
-
 @interface NativeLoginScreenletView()
 
 @property (nonatomic, weak) RCTEventDispatcher *eventDispatcher;
@@ -40,7 +39,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-//    self.screenlet.frame = self.bounds;
+    self.screenlet.frame = self.bounds;
 }
 
 - (void)screenlet:(BaseScreenlet * __nonnull)screenlet onLoginResponseUserAttributes:(NSDictionary * __nonnull)attributes {
