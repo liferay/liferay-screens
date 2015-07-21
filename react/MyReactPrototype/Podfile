@@ -13,3 +13,7 @@ pod 'ODRefreshControl'
 
 # Login & signup: save credentials
 pod 'KeychainAccess'
+
+# User portrait
+pod 'CryptoSwift'
+
