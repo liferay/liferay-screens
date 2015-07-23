@@ -80,6 +80,11 @@ var styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center'
 	},
+	containerPortrait: {
+		alignItems: 'center',
+		justifyContent: 'center',
+		flex: 1
+	},
 	login: {
 		flex: 1,
 		height: 300,
@@ -87,19 +92,8 @@ var styles = StyleSheet.create({
 		width: 300
 	},
 	userPortrait: {
-		flex: 1,
 		height: 300,
-		width: 300
-	},
-	containerPortrait: {
-		borderWidth: 2,
-		borderColor: 'red',
-		flex: 1,
-		height: 300,
-		marginTop:50,
-		width: 300,
-		justifyContent: 'center',
-		alignItems: 'center'
+		width: 200
 	}
 });
 
