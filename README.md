@@ -14,7 +14,6 @@ Brief descriptions of this repository's contents are listed here:
 
 - `android`: the Liferay Screens for Android codebase, View Sets, and example projects.
 - `ios`: the Liferay Screens for iOS codebase, Themes, and example projects.
-- `portal`: the Liferay Screens compatibility plugin. This should be deployed to any Liferay instances that apps developed with Screens connect to.
 
 ## Contributing
 
