@@ -13,7 +13,7 @@ android {
 		applicationId "com.liferay.mobile.screens.bankofwesteros"
 		minSdkVersion 15
 		targetSdkVersion 22
-		versionCode 3
+		versionCode 4
 		versionName "1.0"
 	}
 	buildTypes {
