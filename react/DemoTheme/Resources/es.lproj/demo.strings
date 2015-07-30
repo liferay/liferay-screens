@@ -1,0 +1,21 @@
+"demo-signup-title"="REGISTRO";
+
+"demo-signup-first-name"="Nombre";
+"demo-signup-last-name"="Apellidos";
+"demo-signup-email"="Dirección de correo";
+"demo-signup-password"="Contraseña";
+"demo-signup-job"="Cargo";
+
+"demo-signup-name-title"="TU NOMBRE";
+"demo-signup-email-title"="DIRECCIÓN DE CORREO";
+"demo-signup-password-title"="CONTRASEÑA";
+"demo-signup-job-title"="CARGO";
+
+"demo-signup-name-error"="Introduce tu nombre completo";
+"demo-signup-email-error"="Introduce un correo válido";
+"demo-signup-job-error"="Introduce tu cargo";
+
+"demo-signup-password-error-1"="Contraseña insegura";
+"demo-signup-password-error-2"="Todavía insegura";
+"demo-signup-password-error-3"="Contraseña suficiente";
+"demo-signup-password-error-4"="¡Contraseña segura!";

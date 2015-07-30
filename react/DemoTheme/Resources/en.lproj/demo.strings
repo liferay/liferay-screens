@@ -1,0 +1,21 @@
+"demo-signup-title"="SIGN UP";
+
+"demo-signup-first-name"="First Name";
+"demo-signup-last-name"="Last Name";
+"demo-signup-email"="Email Address";
+"demo-signup-password"="Password";
+"demo-signup-job"="Job Title";
+
+"demo-signup-name-title"="YOUR NAME";
+"demo-signup-email-title"="EMAIL ADDRESS";
+"demo-signup-password-title"="PASSWORD";
+"demo-signup-job-title"="JOB TITLE";
+
+"demo-signup-name-error"="Please, fill both first and last name";
+"demo-signup-email-error"="Please, enter a valid address";
+"demo-signup-job-error"="Please, enter your job title";
+
+"demo-signup-password-error-1"="Too weak password";
+"demo-signup-password-error-2"="Too weak password, still";
+"demo-signup-password-error-3"="Valid enough password";
+"demo-signup-password-error-4"="You password is secure!";

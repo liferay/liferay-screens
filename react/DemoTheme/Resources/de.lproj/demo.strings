@@ -1,0 +1,21 @@
+"demo-signup-title"="ANMELDEN";
+
+"demo-signup-first-name"="Name";
+"demo-signup-last-name"="Nachname";
+"demo-signup-email"="E-Adresse";
+"demo-signup-password"="Kennwort";
+"demo-signup-job"="Jobtitel";
+
+"demo-signup-name-title"="IHR NAME";
+"demo-signup-email-title"="E-ADRESSE";
+"demo-signup-password-title"="KENNWORT";
+"demo-signup-job-title"="JOBTITEL";
+
+"demo-signup-name-error"="Bitte Vor- und Nachname eingeben";
+"demo-signup-email-error"="Bitte gültige E-Adresse eingeben";
+"demo-signup-job-error"="Bitte gültige Jobtitel eingeben";
+
+"demo-signup-password-error-1"="Zu schwach Kennwort";
+"demo-signup-password-error-2"="Zu schwach Kennwort, noch";
+"demo-signup-password-error-3"="Gültig genug Kennwort";
+"demo-signup-password-error-4"="Ihr Kennwort ist sicher!";
