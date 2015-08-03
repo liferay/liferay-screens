@@ -20,13 +20,13 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CocoaLumberjack (1.9.2):
+    - CocoaLumberjack/Extensions (= 1.9.2)
+  - CocoaLumberjack/Core (1.9.2)
+  - CocoaLumberjack/Extensions (1.9.2):
+    - CocoaLumberjack/Core
   - CryptoSwift (0.0.12)
   - DTPickerPresenter (0.2.0)
-  - FMDB (2.5):
-    - FMDB/standard (= 2.5)
-  - FMDB/common (2.5)
-  - FMDB/standard (2.5):
-    - FMDB/common
   - KeychainAccess (1.2.1)
   - Liferay-iOS-SDK (6.2.0.17):
     - AFNetworking (~> 2.5.0)
@@ -39,11 +39,14 @@ PODS:
   - SMXMLDocument (1.1)
   - SwiftTryCatch (0.0.1)
   - TNRadioButtonGroup (0.4)
+  - YapDatabase (2.6.5):
+    - YapDatabase/standard (= 2.6.5)
+  - YapDatabase/standard (2.6.5):
+    - CocoaLumberjack (~> 1)
 
 DEPENDENCIES:
   - CryptoSwift
   - DTPickerPresenter (= 0.2.0)
-  - FMDB (= 2.5)
   - KeychainAccess (= 1.2.1)
   - Liferay-iOS-SDK (= 6.2.0.17)
   - Liferay-OAuth (= 0.1.0)
@@ -54,12 +57,13 @@ DEPENDENCIES:
   - SMXMLDocument (= 1.1)
   - SwiftTryCatch
   - TNRadioButtonGroup (= 0.4)
+  - YapDatabase (= 2.6.5)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
   CryptoSwift: 16f1b5a768057636275b76d1c43231c2abba9e80
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
-  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   KeychainAccess: 3d7922baf90762a976adb7f6030d74c1a4110a1d
   Liferay-iOS-SDK: 00b511b88592d07faade2bed8252c04193df565d
   Liferay-OAuth: 4e217d2e2483788324b16dce65c30884ec8eb1db
@@ -70,5 +74,6 @@ SPEC CHECKSUMS:
   SMXMLDocument: e0d9fbf726a2a0921871b492966458acb3ad9689
   SwiftTryCatch: fb6d2b34abe48efd69578dac919293a44f95b481
   TNRadioButtonGroup: f5fb9b545d8913bbabe6a72ea1fa6fba4d833bb6
+  YapDatabase: 814f9ff862a95c1e581d93335a4020482b69155b
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.37.2
