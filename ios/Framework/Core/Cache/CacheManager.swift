@@ -14,9 +14,9 @@
 import Foundation
 
 
-@objc public class ReadCache: NSObject {
+@objc public class CacheManager: NSObject {
 
-	private let tableSchemaDatabase = "lr_read_cache_"
+	private let tableSchemaDatabase = "lr_cache_"
 
 	private var database: YapDatabase
 	private var readConnection: YapDatabaseConnection
