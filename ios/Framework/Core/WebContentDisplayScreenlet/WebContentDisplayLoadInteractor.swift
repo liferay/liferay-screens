@@ -31,7 +31,34 @@ class WebContentDisplayLoadInteractor: ServerOperationInteractor {
 	}
 
 	override func completedOperation(op: ServerOperation) {
-		self.resultHTML = (op as! LiferayWebContentLoadOperation).resultHTML
+		self.resultHTML = (op as? LiferayWebContentLoadOperation)?.resultHTML
+	}
+
+	override func readFromCache(op: ServerOperation, result: String? -> Void) {
+		if let loadOp = op as? LiferayWebContentLoadOperation,
+				groupId = loadOp.groupId,
+				articleId = loadOp.articleId {
+
+			CacheManager.sharedManager.get(
+				collection: "group-\(groupId)",
+				key: "webcontent-\(articleId)") {
+					loadOp.resultHTML = $0
+					result($0)
+			}
+		}
+	}
+
+	override func writeToCache(op: ServerOperation) {
+		if let loadOp = op as? LiferayWebContentLoadOperation,
+				html = loadOp.resultHTML,
+				groupId = loadOp.groupId,
+				articleId = loadOp.articleId {
+
+			CacheManager.sharedManager.set(
+				collection: "group-\(groupId)",
+				key: "webcontent-\(articleId)",
+				value: html)
+		}
 	}
 
 }
