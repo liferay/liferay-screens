@@ -23,9 +23,24 @@ public class ServerOperationInteractor: Interactor {
 				self.completedOperation(operation)
 
 				if let error = $0.lastError {
-					self.callOnFailure(error)
+					if error.domain == "NSURLErrorDomain" {
+						self.readFromCache(operation) {
+							self.completedOperation(operation)
+
+							if let value = $0 {
+								self.callOnSuccess()
+							}
+							else {
+								self.callOnFailure(error)
+							}
+						}
+					}
+					else {
+						self.callOnFailure(error)
+					}
 				}
 				else {
+					self.writeToCache(operation)
 					self.callOnSuccess()
 				}
 			}
@@ -43,6 +58,13 @@ public class ServerOperationInteractor: Interactor {
 	}
 
 	public func completedOperation(op: ServerOperation) {
+	}
+
+	public func readFromCache(op: ServerOperation, result: String? -> Void) {
+		result(nil)
+	}
+
+	public func writeToCache(op: ServerOperation) {
 	}
 
 }
