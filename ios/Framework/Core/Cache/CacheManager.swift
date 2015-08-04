@@ -12,6 +12,7 @@
 * details.
 */
 import Foundation
+import YapDatabase
 
 
 @objc public class CacheManager: NSObject {
@@ -22,6 +23,11 @@ import Foundation
 	private var readConnection: YapDatabaseConnection
 	private var writeConnection: YapDatabaseConnection
 
+	private static var _instance = CacheManager(name: "shared")
+
+	public class var sharedManager: CacheManager {
+		return _instance
+	}
 
 	public init(name: String) {
 		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] as! String
@@ -35,11 +41,10 @@ import Foundation
 		super.init()
 	}
 
-	public func get(#collection: String, key: String, result: String -> Void) {
+	public func get(#collection: String, key: String, result: String? -> Void) {
 		readConnection.readWithBlock { transaction -> Void in
-			if let value = transaction.objectForKey(key, inCollection: collection) as? NSObject {
-				result(value.description)
-			}
+			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)
+			result((value as? NSObject)?.description)
 		};
 	}
 
