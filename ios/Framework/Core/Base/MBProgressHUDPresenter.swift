@@ -21,7 +21,7 @@ import Foundation
 internal let MBProgressHUDLock = "hud-lock"
 
 
-@objc public class MBProgressHUDPresenter: ProgressPresenter {
+@objc public class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 
 	private var instance: MBProgressHUD?
 

@@ -60,7 +60,6 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	}
 
 
-
 	//MARK: LoginViewModel
 
 	public var userName: String? {
@@ -89,8 +88,6 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 
 		setButtonDefaultStyle(loginButton)
 		setButtonDefaultStyle(authorizeButton)
-
-		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 
 		configureAuthType()
 	}

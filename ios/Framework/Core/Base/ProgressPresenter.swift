@@ -47,3 +47,8 @@ import Foundation
 
 }
 
+@objc protocol ProgressPresenterCreator {
+
+	func createProgressPresenter() -> ProgressPresenter
+
+}

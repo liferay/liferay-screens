@@ -77,7 +77,13 @@ import QuartzCore
 		clipsToBounds = true
 
 		screenletView = loadScreenletView()
-		_progressPresenter = MBProgressHUDPresenter()
+
+		if let creator = screenletView as? ProgressPresenterCreator {
+			_progressPresenter = creator.createProgressPresenter()
+		}
+		else {
+			_progressPresenter = MBProgressHUDPresenter()
+		}
 
 		onCreated()
 	}
