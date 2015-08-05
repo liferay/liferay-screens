@@ -64,6 +64,8 @@ import QuartzCore
 
 	private var _runningInteractors = [Interactor]()
 
+	private var _progressPresenter: ProgressPresenter?
+
 
 	//MARK: UIView
 
@@ -75,6 +77,7 @@ import QuartzCore
 		clipsToBounds = true
 
 		screenletView = loadScreenletView()
+		_progressPresenter = MBProgressHUDPresenter()
 
 		onCreated()
 	}
@@ -307,5 +310,54 @@ import QuartzCore
 
 		return appliedTheme
 	}
+
+
+	// HUD 
+	//MARK: Class methods
+
+	public class func setHUDCustomView(newValue:UIView?) {
+	}
+
+	public class func setHUDCustomColor(newValue:UIColor?) {
+	}
+
+	public func showHUDWithMessage(message: String?,
+			details: String? = nil,
+			closeMode: ProgressCloseMode = .ManualClose,
+			spinnerMode: ProgressSpinnerMode = .IndeterminateSpinner) {
+
+		assert(self._progressPresenter != nil, "ProgressPresenter must exist")
+
+		_progressPresenter!.showHUDInView(self,
+			message: message,
+			details: details,
+			closeMode: closeMode,
+			spinnerMode: spinnerMode)
+
+	}
+
+	public func showHUDAlert(#message: String, details: String? = nil) {
+		assert(self._progressPresenter != nil, "ProgressPresenter must exist")
+
+		_progressPresenter!.showHUDInView(self,
+			message: message,
+			details: details,
+			closeMode: .ManualClose_TouchClosable,
+			spinnerMode: .NoSpinner)
+	}
+
+	public func hideHUDWithMessage(message:String, details:String? = nil) {
+		assert(self._progressPresenter != nil, "ProgressPresenter must exist")
+
+		_progressPresenter!.hideHUDWithMessage(message)
+	}
+
+	public func hideHUD() {
+		assert(self._progressPresenter != nil, "ProgressPresenter must exist")
+
+		_progressPresenter!.hideHUD()
+	}
+
+
 
 }

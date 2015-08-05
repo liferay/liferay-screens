@@ -58,7 +58,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 		if valid && !viewModel.validateForm(autoscroll: autoscrollOnValidation) {
 			showHUD(message: LocalizedString("ddlform-screenlet", "validation", self),
 					details: LocalizedString("ddlform-screenlet", "validation-details", self),
-					closeMode: .AutocloseDelayed(3.0, true),
+					closeMode: .Autoclose_TouchClosable,
 					spinnerMode: .NoSpinner)
 
 			valid = false

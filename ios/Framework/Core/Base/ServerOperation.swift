@@ -152,8 +152,8 @@ public class ServerOperation: NSOperation {
 	internal func showHUD(
 			#message: String,
 			details: String?,
-			closeMode: BaseScreenlet.CloseMode,
-			spinnerMode: BaseScreenlet.SpinnerMode) {
+			closeMode: ProgressCloseMode,
+			spinnerMode: ProgressSpinnerMode) {
 
 		dispatch_async(dispatch_get_main_queue()) {
 			self.screenlet.showHUDWithMessage(message,
@@ -170,33 +170,25 @@ public class ServerOperation: NSOperation {
 	}
 
 	internal func hideHUD() {
-		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.hideHUD()
-		}
+		self.screenlet.hideHUD()
 	}
 
 	internal func hideHUD(#message: String, details: String? = nil) {
-		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.hideHUDWithMessage(message, details: details)
-		}
+		self.screenlet.hideHUDWithMessage(message, details: details)
 	}
 
 	internal func hideHUD(#errorMessage: String, details: String? = nil) {
-		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.showHUDWithMessage(errorMessage,
-					details: details,
-					closeMode: .ManualClose(true),
-					spinnerMode:.NoSpinner)
-		}
+		self.screenlet.showHUDWithMessage(errorMessage,
+				details: details,
+				closeMode: .ManualClose_TouchClosable,
+				spinnerMode: .NoSpinner)
 	}
 
 	internal func hideHUD(#error: NSError, message: String, details: String? = nil) {
-		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.showHUDWithMessage(message,
-				details: details,
-				closeMode:.ManualClose(true),
-				spinnerMode:.NoSpinner)
-		}
+		self.screenlet.showHUDWithMessage(message,
+			details: details,
+			closeMode: .ManualClose_TouchClosable,
+			spinnerMode: .NoSpinner)
 	}
 
 
