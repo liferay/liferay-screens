@@ -25,23 +25,9 @@ internal let MBProgressHUDLock = "hud-lock"
 
 	private var instance: MBProgressHUD?
 
-	var customView: UIView? {
-		didSet {
-			instance!.customView = customView
-		}
-	}
-
-	var customColor: UIColor? {
-		didSet {
-			instance!.color = customColor
-		}
-	}
-
-	var customOpacity: Float = 0.8 {
-		didSet {
-			instance!.opacity = customOpacity
-		}
-	}
+	var customView: UIView?
+	var customColor: UIColor?
+	var customOpacity = Float(0.8)
 
 	internal dynamic func simpleTapDetected(recognizer: UIGestureRecognizer!) {
 		if let hud = recognizer.view as? MBProgressHUD {
@@ -123,8 +109,10 @@ internal let MBProgressHUDLock = "hud-lock"
 
 		let hud = self.instance!
 
-		hud.customView = self.customView
-		hud.color = self.customColor
+		hud.customView = customView
+		hud.color = customColor
+		hud.opacity = customOpacity
+
 		hud.mode = spinnerModeToProgressModeHUD(spinnerMode)
 		hud.minShowTime = 0.5
 

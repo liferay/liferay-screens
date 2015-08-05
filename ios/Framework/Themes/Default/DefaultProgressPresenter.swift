@@ -23,12 +23,3 @@ import Foundation
 	}
 
 }
-
-
-extension BaseScreenletView: ProgressPresenterCreator {
-
-	public func createProgressPresenter() -> ProgressPresenter {
-		return DefaultProgressPresenter()
-	}
-
-}

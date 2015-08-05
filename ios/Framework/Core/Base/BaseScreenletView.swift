@@ -169,6 +169,10 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	public func onFinishOperation() {
 	}
 
+	public func createProgressPresenter() -> ProgressPresenter {
+		return MBProgressHUDPresenter()
+	}
+
 	public func userActionWithSender(sender: AnyObject?) {
 		if let controlSender = sender as? UIControl {
 			userAction(name: controlSender.restorationIdentifier, sender: sender)

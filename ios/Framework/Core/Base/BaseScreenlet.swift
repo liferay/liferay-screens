@@ -78,12 +78,7 @@ import QuartzCore
 
 		screenletView = loadScreenletView()
 
-		if let creator = screenletView as? ProgressPresenterCreator {
-			_progressPresenter = creator.createProgressPresenter()
-		}
-		else {
-			_progressPresenter = MBProgressHUDPresenter()
-		}
+		_progressPresenter = screenletView?.createProgressPresenter()
 
 		onCreated()
 	}
@@ -320,12 +315,6 @@ import QuartzCore
 
 	// HUD 
 	//MARK: Class methods
-
-	public class func setHUDCustomView(newValue:UIView?) {
-	}
-
-	public class func setHUDCustomColor(newValue:UIColor?) {
-	}
 
 	public func showHUDWithMessage(message: String?,
 			details: String? = nil,
