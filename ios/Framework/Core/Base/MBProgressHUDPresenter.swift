@@ -56,7 +56,7 @@ internal let MBProgressHUDLock = "hud-lock"
 		assert(self.instance != nil, "MBProgressHUD must exist")
 
 		synchronized(MBProgressHUDLock) {
-			dispatch_in_main {
+			dispatch_main {
 				self.instance!.hide(true)
 				self.instance = nil
 			}
@@ -67,7 +67,7 @@ internal let MBProgressHUDLock = "hud-lock"
 		assert(self.instance != nil, "MBProgressHUD must exist")
 
 		synchronized(MBProgressHUDLock) {
-			dispatch_in_main {
+			dispatch_main {
 				self.configureAndShowHUD(self.instance!,
 					message: message,
 					details: nil,
@@ -84,7 +84,7 @@ internal let MBProgressHUDLock = "hud-lock"
 			spinnerMode: ProgressSpinnerMode) {
 
 		synchronized(MBProgressHUDLock) {
-			dispatch_in_main {
+			dispatch_main {
 				if self.instance == nil {
 					self.instance = MBProgressHUD.showHUDAddedTo(view, animated:true)
 				}

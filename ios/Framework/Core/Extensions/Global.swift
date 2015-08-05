@@ -37,7 +37,7 @@ public func delayed(delay: NSTimeInterval, block: dispatch_block_t) {
     dispatch_after(time, dispatch_get_main_queue(), block)
 }
 
-public func dispatch_in_main(block: dispatch_block_t) {
+public func dispatch_main(block: dispatch_block_t) {
 	if NSThread.isMainThread() {
 		block()
 	}
