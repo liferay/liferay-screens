@@ -29,6 +29,8 @@
 		880ACA8A1B0224A0007AD007 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA731B0224A0007AD007 /* webcontentdisplay-screenlet.strings */; };
 		880ACA8B1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */; };
 		880ACA8C1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */; };
+		881AFC4A1B7278B700A6A59A /* Flat7ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881AFC491B7278B700A6A59A /* Flat7ProgressPresenter.swift */; };
+		881AFC4B1B7278B700A6A59A /* Flat7ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881AFC491B7278B700A6A59A /* Flat7ProgressPresenter.swift */; };
 		881E60B91ACBE3FF00862B9E /* BaseScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */; };
 		881E60BA1ACBE3FF00862B9E /* BaseScreenletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B71ACBE3FF00862B9E /* BaseScreenletView.swift */; };
 		881E60BF1ACBE43200862B9E /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BB1ACBE43200862B9E /* Interactor.swift */; };
@@ -377,6 +379,7 @@
 		880ACA7A1B0224A0007AD007 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/userportrait-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA7B1B0224A0007AD007 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context-sample.plist"; sourceTree = "<group>"; };
+		881AFC491B7278B700A6A59A /* Flat7ProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flat7ProgressPresenter.swift; sourceTree = "<group>"; };
 		881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreenlet.swift; sourceTree = "<group>"; };
 		881E60B71ACBE3FF00862B9E /* BaseScreenletView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreenletView.swift; sourceTree = "<group>"; };
 		881E60BB1ACBE43200862B9E /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
@@ -1158,6 +1161,7 @@
 			isa = PBXGroup;
 			children = (
 				881E620E1ACBFC3400862B9E /* Auth */,
+				881AFC491B7278B700A6A59A /* Flat7ProgressPresenter.swift */,
 				881E621B1ACBFC3400862B9E /* Flat7ThemeConstants.swift */,
 				881E621C1ACBFC3400862B9E /* Resources */,
 			);
@@ -1905,6 +1909,7 @@
 				881E622A1ACBFC3400862B9E /* ForgotPasswordView_default.swift in Sources */,
 				881E61941ACBEE0B00862B9E /* DDLRecord.swift in Sources */,
 				8839B8801B0CD546006C18F1 /* LiferayUpdateCurrentUserOperation.swift in Sources */,
+				881AFC4A1B7278B700A6A59A /* Flat7ProgressPresenter.swift in Sources */,
 				881E61861ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift in Sources */,
 				88CA80631B25D6EA004C1D59 /* BasicAuthBased.swift in Sources */,
 				8839B88A1B0CD5C4006C18F1 /* GetUserBaseOperation.swift in Sources */,
@@ -1963,6 +1968,7 @@
 				881E629B1ACBFF1800862B9E /* KeyboardManager.swift in Sources */,
 				881E628F1ACBFE8300862B9E /* BaseScreenlet.swift in Sources */,
 				8839B88F1B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift in Sources */,
+				881AFC4B1B7278B700A6A59A /* Flat7ProgressPresenter.swift in Sources */,
 				881E62F81ACC050200862B9E /* DDLListViewModel.swift in Sources */,
 				88DE25191AD2AB0A00714701 /* DDLListScreenlet_ParseFields_Tests.swift in Sources */,
 				88CA80601B25AF48004C1D59 /* OAuthWebViewController.swift in Sources */,

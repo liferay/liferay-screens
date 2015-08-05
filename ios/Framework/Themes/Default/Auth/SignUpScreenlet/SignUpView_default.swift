@@ -48,8 +48,6 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		setButtonDefaultStyle(signUpButton)
 
 		scrollView?.contentSize = scrollView!.frame.size
-
-		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
 	override public func onSetTranslations() {
@@ -62,6 +60,11 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 				LocalizedString("default", "sign-up-button", self),
 				forState: .Normal)
 	}
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
+	}
+
 
 	//MARK: SignUpViewModel
 

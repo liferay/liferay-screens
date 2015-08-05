@@ -112,6 +112,10 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 		authorizeButton?.enabled = true
 	}
 
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
+	}
+
 
 	//MARK: UITextFieldDelegate
 

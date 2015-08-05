@@ -59,8 +59,6 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 		super.onCreated()
 
 		setButtonDefaultStyle(requestPasswordButton)
-
-		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
 	override public func onSetTranslations() {
@@ -76,6 +74,10 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 
 	override public func onFinishOperation() {
 		requestPasswordButton!.enabled = true
+	}
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
 	}
 
 

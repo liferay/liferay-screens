@@ -11,29 +11,16 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
+import Foundation
 
 
-public class DDLFormView_default: DDLFormTableView {
+@objc public class Flat7ProgressPresenter: MBProgressHUDPresenter {
 
-	//MARK: DDLFormTableView 
+	override public init() {
+		super.init()
 
-	override public func onCreated() {
-		super.onCreated()
-
-		self.tableView?.alpha = 0.0
-	}
-
-	override public func onFinishOperation() {
-		if self.tableView?.alpha == 0 {
-			UIView.animateWithDuration(0.3, animations: {
-				self.tableView!.alpha = 1.0
-			})
-		}
-	}
-
-	override public func createProgressPresenter() -> ProgressPresenter {
-		return DefaultProgressPresenter()
+		self.customColor = Flat7ThemeBasicGreen
 	}
 
 }
+
