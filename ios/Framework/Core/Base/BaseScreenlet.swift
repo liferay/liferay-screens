@@ -201,12 +201,19 @@ import QuartzCore
 		objc_sync_enter(_runningInteractors)
 
 		if let interactor = self.createInteractor(name: name, sender: sender) {
+			if let message = screenletView?.progressMessageForAction(name, messageType: .Loading) {
+				showHUDWithMessage(message,
+					closeMode: .ManualClose,
+					spinnerMode: .IndeterminateSpinner)
+			}
+
+			interactor.actionName = name
 			_runningInteractors.append(interactor)
 
-			result = self.onAction(name: name, interactor: interactor, sender: sender)
-
-			if !result {
+			if !onAction(name: name, interactor: interactor, sender: sender) {
 				_runningInteractors.removeLast()
+
+				// validation message?
 			}
 		}
 		else {
@@ -233,11 +240,22 @@ import QuartzCore
 		return nil
 	}
 
-	public func endInteractor(interactor: Interactor) {
+	public func endInteractor(interactor: Interactor, success: Bool) {
 		synchronized(_runningInteractors) {
 			if let foundIndex = find(self._runningInteractors, interactor) {
 				self._runningInteractors.removeAtIndex(foundIndex)
 			}
+		}
+
+		let messageType = success ? ProgressMessageType.Success : ProgressMessageType.Failure
+
+		if let msg = screenletView?.progressMessageForAction(interactor.actionName!, messageType: messageType) {
+			showHUDWithMessage(msg,
+				closeMode: success ? .Autoclose_TouchClosable : .ManualClose_TouchClosable,
+				spinnerMode: .NoSpinner)
+		}
+		else {
+			hideHUD()
 		}
 	}
 

@@ -16,10 +16,15 @@ import UIKit
 
 @objc public class Interactor: NSObject {
 
+	public var actionName: String?
+
 	public var onSuccess: (Void -> Void)?
 	public var onFailure: (NSError -> Void)?
 
+	public var lastError: NSError?
+
 	public let screenlet: BaseScreenlet
+
 
 	public init(screenlet: BaseScreenlet) {
 		self.screenlet = screenlet
@@ -28,14 +33,14 @@ import UIKit
 	public func callOnSuccess() {
 		dispatch_main {
 			self.onSuccess?()
-			self.finish()
+			self.finishWithSuccess(true)
 		}
 	}
 
 	public func callOnFailure(error: NSError) {
 		dispatch_main {
 			self.onFailure?(error)
-			self.finish()
+			self.finishWithSuccess(false)
 		}
 	}
 
@@ -43,8 +48,8 @@ import UIKit
 		return false
 	}
 
-	private func finish() {
-		screenlet.endInteractor(self)
+	private func finishWithSuccess(success: Bool) {
+		screenlet.endInteractor(self, success: success)
 
 		// break retain cycle
 		onSuccess = nil

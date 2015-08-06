@@ -42,8 +42,11 @@ import Foundation
 
 }
 
-@objc protocol ProgressPresenterCreator {
 
-	func createProgressPresenter() -> ProgressPresenter
-
+@objc public enum ProgressMessageType: Int {
+	case Loading
+	case Failure
+	case Success
 }
+
+public typealias ProgressMessages = [ProgressMessageType:String]

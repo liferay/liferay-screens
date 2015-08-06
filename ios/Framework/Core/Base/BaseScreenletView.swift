@@ -21,6 +21,8 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	public weak var presentingViewController: UIViewController?
 
+	public var progressMessages: [String:ProgressMessages] { return [:] }
+
 
 	public var editable: Bool = true {
 		didSet {
@@ -171,6 +173,20 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	public func createProgressPresenter() -> ProgressPresenter {
 		return MBProgressHUDPresenter()
+	}
+
+	public func progressMessageForAction(actionName: String,
+			messageType: ProgressMessageType) -> String? {
+
+		let messages = progressMessages[actionName] ?? progressMessages[BaseScreenlet.DefaultAction]
+
+		if let messages = messages {
+			if let message = messages[messageType] {
+				return message
+			}
+		}
+
+		return nil
 	}
 
 	public func userActionWithSender(sender: AnyObject?) {
