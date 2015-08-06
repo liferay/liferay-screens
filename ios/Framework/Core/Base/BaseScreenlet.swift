@@ -330,38 +330,35 @@ import QuartzCore
 	//MARK: Class methods
 
 	public func showHUDWithMessage(message: String?,
-			details: String? = nil,
 			closeMode: ProgressCloseMode = .ManualClose,
 			spinnerMode: ProgressSpinnerMode = .IndeterminateSpinner) {
 
-		assert(self._progressPresenter != nil, "ProgressPresenter must exist")
+		assert(_progressPresenter != nil, "ProgressPresenter must exist")
 
 		_progressPresenter!.showHUDInView(self,
 			message: message,
-			details: details,
 			closeMode: closeMode,
 			spinnerMode: spinnerMode)
 
 	}
 
-	public func showHUDAlert(#message: String, details: String? = nil) {
-		assert(self._progressPresenter != nil, "ProgressPresenter must exist")
+	public func showHUDAlert(#message: String) {
+		assert(_progressPresenter != nil, "ProgressPresenter must exist")
 
 		_progressPresenter!.showHUDInView(self,
 			message: message,
-			details: details,
 			closeMode: .ManualClose_TouchClosable,
 			spinnerMode: .NoSpinner)
 	}
 
-	public func hideHUDWithMessage(message:String, details:String? = nil) {
-		assert(self._progressPresenter != nil, "ProgressPresenter must exist")
+	public func hideHUDWithMessage(message:String) {
+		assert(_progressPresenter != nil, "ProgressPresenter must exist")
 
 		_progressPresenter!.hideHUDWithMessage(message)
 	}
 
 	public func hideHUD() {
-		assert(self._progressPresenter != nil, "ProgressPresenter must exist")
+		assert(_progressPresenter != nil, "ProgressPresenter must exist")
 
 		_progressPresenter!.hideHUD()
 	}

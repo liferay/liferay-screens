@@ -39,7 +39,6 @@ internal let MBProgressHUDLock = "hud-lock"
 	public func showHUDInView(view: UIView) {
 		showHUDInView(view,
 			message: nil,
-			details: nil,
 			closeMode: .ManualClose,
 			spinnerMode: .IndeterminateSpinner)
 	}
@@ -47,7 +46,6 @@ internal let MBProgressHUDLock = "hud-lock"
 	public func showHUDInView(view: UIView, message:String) {
 		showHUDInView(view,
 			message: message,
-			details: nil,
 			closeMode: .ManualClose,
 			spinnerMode: .IndeterminateSpinner)
 	}
@@ -70,7 +68,6 @@ internal let MBProgressHUDLock = "hud-lock"
 			dispatch_main {
 				self.configureAndShowHUD(self.instance!,
 					message: message,
-					details: nil,
 					closeMode: .Autoclose_TouchClosable,
 					spinnerMode: .NoSpinner)
 			}
@@ -79,7 +76,6 @@ internal let MBProgressHUDLock = "hud-lock"
 
 	public func showHUDInView(view: UIView,
 			message: String?,
-			details: String?,
 			closeMode: ProgressCloseMode,
 			spinnerMode: ProgressSpinnerMode) {
 
@@ -91,7 +87,6 @@ internal let MBProgressHUDLock = "hud-lock"
 
 				self.configureAndShowHUD(self.instance!,
 					message: message,
-					details: details,
 					closeMode: closeMode,
 					spinnerMode: spinnerMode)
 			}
@@ -103,7 +98,6 @@ internal let MBProgressHUDLock = "hud-lock"
 
 	private func configureAndShowHUD(hud: MBProgressHUD,
 			message: String?,
-			details: String?,
 			closeMode: ProgressCloseMode,
 			spinnerMode: ProgressSpinnerMode) {
 
@@ -128,7 +122,8 @@ internal let MBProgressHUDLock = "hud-lock"
 			hud.labelText = message
 		}
 
-		hud.detailsLabelText = (details ?? "") as String
+		//TODO details
+		hud.detailsLabelText = ("DETAILS" ?? "") as String
 
 		hud.show(true)
 

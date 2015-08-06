@@ -145,27 +145,25 @@ public class ServerOperation: NSOperation {
 
 	internal func showHUD(#message: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.showHUDWithMessage(message, details: details)
+			self.screenlet.showHUDWithMessage(message)
 		}
 	}
 
 	internal func showHUD(
 			#message: String,
-			details: String?,
 			closeMode: ProgressCloseMode,
 			spinnerMode: ProgressSpinnerMode) {
 
-		dispatch_async(dispatch_get_main_queue()) {
+		dispatch_main {
 			self.screenlet.showHUDWithMessage(message,
-					details: details,
 					closeMode: closeMode,
 					spinnerMode: spinnerMode)
 		}
 	}
 
 	internal func showValidationHUD(#message: String, details: String? = nil) {
-		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.showHUDAlert(message: message, details: details)
+		dispatch_main {
+			self.screenlet.showHUDAlert(message: message)
 		}
 	}
 
@@ -173,20 +171,18 @@ public class ServerOperation: NSOperation {
 		self.screenlet.hideHUD()
 	}
 
-	internal func hideHUD(#message: String, details: String? = nil) {
-		self.screenlet.hideHUDWithMessage(message, details: details)
+	internal func hideHUD(#message: String) {
+		self.screenlet.hideHUDWithMessage(message)
 	}
 
-	internal func hideHUD(#errorMessage: String, details: String? = nil) {
+	internal func hideHUD(#errorMessage: String) {
 		self.screenlet.showHUDWithMessage(errorMessage,
-				details: details,
 				closeMode: .ManualClose_TouchClosable,
 				spinnerMode: .NoSpinner)
 	}
 
-	internal func hideHUD(#error: NSError, message: String, details: String? = nil) {
+	internal func hideHUD(#error: NSError, message: String) {
 		self.screenlet.showHUDWithMessage(message,
-			details: details,
 			closeMode: .ManualClose_TouchClosable,
 			spinnerMode: .NoSpinner)
 	}
@@ -196,7 +192,7 @@ public class ServerOperation: NSOperation {
 
 	private func callOnComplete() {
 		if self.onComplete != nil {
-			dispatch_async(dispatch_get_main_queue()) {
+			dispatch_main {
 				self.onComplete!(self)
 
 				// this breaks the retain cycle between the op and 'onComplete'
