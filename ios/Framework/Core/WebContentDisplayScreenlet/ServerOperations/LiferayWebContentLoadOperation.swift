@@ -22,15 +22,6 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 	public var resultHTML: String?
 
 
-	override public var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("webcontentdisplay-screenlet", "loading-message", self),
-				details: LocalizedString("webcontentdisplay-screenlet", "loading-details", self))
-	}
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("webcontentdisplay-screenlet", "loading-error", self), details: nil)
-	}
-
-
 	//MARK: ServerOperation
 
 	override func validateData() -> Bool {

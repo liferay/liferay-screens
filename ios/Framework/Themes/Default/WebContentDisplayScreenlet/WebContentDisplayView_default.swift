@@ -18,6 +18,14 @@ public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplay
 
 	@IBOutlet public var webView: UIWebView?
 
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			BaseScreenlet.DefaultAction :
+				[.Loading : LocalizedString("webcontentdisplay-screenlet", "loading-message", self),
+				.Failure : LocalizedString("webcontentdisplay-screenlet", "loading-error", self)]]
+	}
+
+
 	private let styles =
 		".MobileCSS {padding: 4%; width: 92%;} " +
 		".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
