@@ -123,11 +123,11 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return startInteractor(interactor)
 	}
 
-	override public func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
 
 		let interactor: UploadUserPortraitInteractor?
 
-		switch name! {
+		switch name {
 		case "upload-portrait":
 			let image = sender as! UIImage
 			let userId: Int64

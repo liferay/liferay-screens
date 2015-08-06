@@ -111,9 +111,8 @@ public class UserPortraitView_default: BaseScreenletView,
 		portraitImage?.layer.cornerRadius = DefaultThemeButtonCornerRadius
 	}
 
-	override public func onPreAction(#name: String?, sender: AnyObject?) -> Bool {
+	override public func onPreAction(#name: String, sender: AnyObject?) -> Bool {
 		if name == "edit-portrait" {
-
 			let takeNewPicture = LocalizedString("default", "userportrait-take-new-picture", self)
 			let chooseExisting = LocalizedString("default", "userportrait-choose-existing-picture", self)
 

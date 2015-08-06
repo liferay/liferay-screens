@@ -122,12 +122,8 @@ import UIKit
 		}
 	}
 
-	override public func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
-		if name == nil {
-			return nil
-		}
-
-		switch name! {
+	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+		switch name {
 			case LoadFormAction:
 				return createLoadFormInteractor()
 			case LoadRecordAction:

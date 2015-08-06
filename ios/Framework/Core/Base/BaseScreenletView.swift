@@ -30,7 +30,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	public var themeName = "default"
 
-	internal var onPerformAction: ((String?, AnyObject?) -> Bool)?
+	internal var onPerformAction: ((String, AnyObject?) -> Bool)?
 
 
 	deinit {
@@ -152,11 +152,11 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * onPreAction is invoked just before any user action is invoked.
 	 * Override this method to decide whether or not the user action should be fired.
 	 */
-	public func onPreAction(#name: String?, sender: AnyObject?) -> Bool {
+	public func onPreAction(#name: String, sender: AnyObject?) -> Bool {
 		return true
 	}
 
-	public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
+	public func onSetDefaultDelegate(delegate: AnyObject, view: UIView) -> Bool {
 		return true
 	}
 
@@ -187,10 +187,12 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	}
 	
 	public func userAction(#name: String?, sender: AnyObject?) {
-		if onPreAction(name: name, sender: sender) {
+		let actionName = name ?? BaseScreenlet.DefaultAction
+
+		if onPreAction(name: actionName, sender: sender) {
 			endEditing(true)
 		
-			onPerformAction?(name, sender)
+			onPerformAction?(actionName, sender)
 		}
 	}
 

@@ -21,6 +21,8 @@ import QuartzCore
  */
 @IBDesignable public class BaseScreenlet: UIView {
 
+	public static let DefaultAction = "defaultAction"
+
 	@IBInspectable public var themeName: String? {
 		set {
 			_themeName = (newValue ?? "default").lowercaseString
@@ -193,7 +195,7 @@ import QuartzCore
 	 * Typically, it's called from TouchUpInside UI event or when the programmer wants to
 	 * start the interaction programatically.
 	 */
-	public func performAction(#name: String?, sender: AnyObject? = nil) -> Bool {
+	public func performAction(#name: String, sender: AnyObject? = nil) -> Bool {
 		if let interactor = createInteractor(name: name, sender: sender) {
 			_runningInteractors.append(interactor)
 
@@ -206,7 +208,7 @@ import QuartzCore
 	}
 
 	public func performDefaultAction() -> Bool {
-		return performAction(name: nil, sender: nil)
+		return performAction(name: BaseScreenlet.DefaultAction, sender: nil)
 	}
 
 	/*
@@ -216,7 +218,7 @@ import QuartzCore
 		return interactor.start()
 	}
 
-	public func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+	public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
 		return nil
 	}
 
