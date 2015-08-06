@@ -36,20 +36,6 @@ internal let MBProgressHUDLock = "hud-lock"
 		}
 	}
 
-	public func showHUDInView(view: UIView) {
-		showHUDInView(view,
-			message: nil,
-			closeMode: .ManualClose,
-			spinnerMode: .IndeterminateSpinner)
-	}
-
-	public func showHUDInView(view: UIView, message:String) {
-		showHUDInView(view,
-			message: message,
-			closeMode: .ManualClose,
-			spinnerMode: .IndeterminateSpinner)
-	}
-
 	public func hideHUD() {
 		assert(self.instance != nil, "MBProgressHUD must exist")
 
@@ -57,19 +43,6 @@ internal let MBProgressHUDLock = "hud-lock"
 			dispatch_main {
 				self.instance!.hide(true)
 				self.instance = nil
-			}
-		}
-	}
-
-	public func hideHUDWithMessage(message: String) {
-		assert(self.instance != nil, "MBProgressHUD must exist")
-
-		synchronized(MBProgressHUDLock) {
-			dispatch_main {
-				self.configureAndShowHUD(self.instance!,
-					message: message,
-					closeMode: .Autoclose_TouchClosable,
-					spinnerMode: .NoSpinner)
 			}
 		}
 	}
@@ -159,4 +132,3 @@ internal let MBProgressHUDLock = "hud-lock"
 	}
 
 }
-

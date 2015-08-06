@@ -30,15 +30,12 @@ import Foundation
 
 @objc public protocol ProgressPresenter {
 
-	func showHUDInView(view: UIView)
-	func showHUDInView(view: UIView, message: String)
 	func showHUDInView(view: UIView,
 		message: String?,
 		closeMode: ProgressCloseMode,
 		spinnerMode: ProgressSpinnerMode)
 
 	func hideHUD()
-	func hideHUDWithMessage(message: String)
 
 }
 

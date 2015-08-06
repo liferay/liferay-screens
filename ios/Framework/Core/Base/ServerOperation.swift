@@ -174,7 +174,9 @@ public class ServerOperation: NSOperation {
 	}
 
 	internal func hideHUD(#message: String) {
-		self.screenlet.hideHUDWithMessage(message)
+		self.screenlet.showHUDWithMessage(message,
+			closeMode: .ManualClose_TouchClosable,
+			spinnerMode: .NoSpinner)
 	}
 
 	internal func hideHUD(#errorMessage: String) {

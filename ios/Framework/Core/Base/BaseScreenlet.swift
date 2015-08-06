@@ -369,12 +369,6 @@ import QuartzCore
 			spinnerMode: .NoSpinner)
 	}
 
-	public func hideHUDWithMessage(message: String) {
-		assert(_progressPresenter != nil, "ProgressPresenter must exist")
-
-		_progressPresenter!.hideHUDWithMessage(message)
-	}
-
 	public func hideHUD() {
 		assert(_progressPresenter != nil, "ProgressPresenter must exist")
 
