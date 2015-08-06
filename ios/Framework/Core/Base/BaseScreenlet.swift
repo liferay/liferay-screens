@@ -196,15 +196,26 @@ import QuartzCore
 	 * start the interaction programatically.
 	 */
 	public func performAction(#name: String, sender: AnyObject? = nil) -> Bool {
-		if let interactor = createInteractor(name: name, sender: sender) {
+		var result = false
+
+		objc_sync_enter(_runningInteractors)
+
+		if let interactor = self.createInteractor(name: name, sender: sender) {
 			_runningInteractors.append(interactor)
 
-			return onAction(name: name, interactor: interactor, sender: sender)
+			result = self.onAction(name: name, interactor: interactor, sender: sender)
+
+			if !result {
+				_runningInteractors.removeLast()
+			}
+		}
+		else {
+			println("WARN: No interactor created for action \(name)")
 		}
 
-		println("WARN: No interactor created for action \(name)")
+		objc_sync_exit(_runningInteractors)
 
-		return false
+		return result
 	}
 
 	public func performDefaultAction() -> Bool {
