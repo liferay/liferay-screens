@@ -25,6 +25,13 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	@IBOutlet public weak var passwordBackground: UIImageView!
 	@IBOutlet public weak var authorizeButton: UIButton!
 
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			BaseScreenlet.DefaultAction :
+				[.Loading : LocalizedString("login-screenlet", "loading-message", self),
+				.Failure : LocalizedString("login-screenlet", "loading-error", self)]]
+	}
+
 
 	//MARK: AuthBasedViewModel
 

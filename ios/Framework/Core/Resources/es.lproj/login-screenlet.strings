@@ -1,4 +1,3 @@
-"login-screenlet-loading-message"="Enviando petición...";
-"login-screenlet-loading-details"="Espere unos segundos...";
+"login-screenlet-loading-message"="Enviando petición...\nEspere unos segundos...";
 "login-screenlet-loading-error"="Error intentando entrar.";
 "login-screenlet-validation"="Introduzca usuario y contraseña";

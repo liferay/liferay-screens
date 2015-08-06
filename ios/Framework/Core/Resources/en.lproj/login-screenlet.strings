@@ -1,4 +1,3 @@
-"login-screenlet-loading-message"="Signing in...";
-"login-screenlet-loading-details"="Wait few seconds...";
+"login-screenlet-loading-message"="Signing in...\nWait few seconds...";
 "login-screenlet-loading-error"="Error signing in.";
 "login-screenlet-validation"="Enter the user name and password";
