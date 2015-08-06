@@ -348,8 +348,8 @@ import QuartzCore
 	//MARK: Class methods
 
 	public func showHUDWithMessage(message: String?,
-			closeMode: ProgressCloseMode = .ManualClose,
-			spinnerMode: ProgressSpinnerMode = .IndeterminateSpinner) {
+			closeMode: ProgressCloseMode,
+			spinnerMode: ProgressSpinnerMode) {
 
 		assert(_progressPresenter != nil, "ProgressPresenter must exist")
 
@@ -369,7 +369,7 @@ import QuartzCore
 			spinnerMode: .NoSpinner)
 	}
 
-	public func hideHUDWithMessage(message:String) {
+	public func hideHUDWithMessage(message: String) {
 		assert(_progressPresenter != nil, "ProgressPresenter must exist")
 
 		_progressPresenter!.hideHUDWithMessage(message)

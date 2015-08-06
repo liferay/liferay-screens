@@ -145,7 +145,9 @@ public class ServerOperation: NSOperation {
 
 	internal func showHUD(#message: String, details: String? = nil) {
 		dispatch_async(dispatch_get_main_queue()) {
-			self.screenlet.showHUDWithMessage(message)
+			self.screenlet.showHUDWithMessage(message,
+				closeMode: .ManualClose,
+				spinnerMode: .IndeterminateSpinner)
 		}
 	}
 
