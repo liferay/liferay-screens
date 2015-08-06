@@ -118,12 +118,12 @@ internal let MBProgressHUDLock = "hud-lock"
 					action: "simpleTapDetected:"))
 		}
 
-		if message != nil {
-			hud.labelText = message
-		}
+		let components = message?.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
 
-		//TODO details
-		hud.detailsLabelText = ("DETAILS" ?? "") as String
+		if let components = components {
+			hud.labelText = components[0]
+			hud.detailsLabelText = components.count > 1 ? components[1] : nil
+		}
 
 		hud.show(true)
 
