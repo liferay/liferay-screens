@@ -20,14 +20,6 @@ public class LiferaySignUpOperation: ServerOperation {
 
 	public var resultUserAttributes: [String:AnyObject]?
 
-	override public var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("signup-screenlet", "loading-message", self),
-				details: LocalizedString("signup-screenlet", "loading-details", self))
-	}
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("signup-screenlet", "loading-error", self), details: nil)
-	}
-
 	private var viewModel: SignUpViewModel {
 		return screenlet.screenletView as! SignUpViewModel
 	}

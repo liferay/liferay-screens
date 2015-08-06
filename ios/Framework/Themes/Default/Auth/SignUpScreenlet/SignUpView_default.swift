@@ -31,6 +31,17 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 	//MARK: BaseScreenletView
 
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			"signup-action" :
+				[.Loading : LocalizedString("signup-screenlet", "loading-message", self),
+				.Failure : LocalizedString("signup-screenlet", "loading-error", self)],
+			"save-action" :
+				[.Loading : LocalizedString("signup-screenlet", "saving-message", self),
+				.Failure : LocalizedString("signup-screenlet", "saving-error", self)],
+		]
+	}
+
 	override public func onStartOperation() {
 		signUpButton!.enabled = false
 	}
