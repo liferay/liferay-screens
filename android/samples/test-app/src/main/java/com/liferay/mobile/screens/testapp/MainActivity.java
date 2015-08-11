@@ -25,6 +25,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.user_portrait).setOnClickListener(this);
 		findViewById(R.id.web_view).setOnClickListener(this);
 		findViewById(R.id.add_bookmark).setOnClickListener(this);
+		findViewById(R.id.filtered_asset).setOnClickListener(this);
 		findViewById(R.id.login_full_screenlet).setOnClickListener(this);
 		findViewById(R.id.change_theme).setOnClickListener(this);
 	}
@@ -57,6 +58,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 			case R.id.add_bookmark:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(AddBookmarkActivity.class));
 				break;
+			case R.id.filtered_asset:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(FilteredAssetActivity.class));
+				break;
 			case R.id.login_full_screenlet:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginFullActivity.class));
 				break;
@@ -69,5 +73,4 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));
 		}
 	}
-
 }
