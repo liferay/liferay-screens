@@ -93,6 +93,7 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
+		<attr name="templateId" format="string"/>
 		<attr name="javascriptEnabled" format="boolean"/>
 		<attr name="articleId" format="string"/>
 	</declare-styleable>
