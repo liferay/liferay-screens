@@ -46,9 +46,7 @@ public class LiferayCacheSQL<E extends CachedContent> implements LiferayCache<E>
 
 				if (object.getCachedType() == CachedType.DDL_LIST) {
 
-					DDLEntry entry = (DDLEntry) object;
 
-					_storIOSQLite.put().contentValues(entry.getContentValues()).withPutResolver(new DDLFormPutResolver()).prepare().executeAsBlocking();
 				} else {
 					PutResult result = _storIOSQLite.put().object(object).prepare().executeAsBlocking();
 				}
