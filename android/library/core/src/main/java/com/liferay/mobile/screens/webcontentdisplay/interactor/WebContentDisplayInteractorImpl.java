@@ -17,6 +17,10 @@ package com.liferay.mobile.screens.webcontentdisplay.interactor;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.cache.CachedResult;
+import com.liferay.mobile.screens.cache.CachedType;
+import com.liferay.mobile.screens.cache.LiferayCache;
+import com.liferay.mobile.screens.cache.LiferayCacheSingleton;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 
@@ -26,21 +30,29 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayInteractorImpl
-	extends BaseRemoteInteractor<WebContentDisplayListener>
-	implements WebContentDisplayInteractor {
+		extends BaseRemoteInteractor<WebContentDisplayListener>
+		implements WebContentDisplayInteractor {
 
 	public WebContentDisplayInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 
 	public void load(long groupId, String articleId, Locale locale)
-		throws Exception {
+			throws Exception {
 
-		validate(groupId, articleId, locale);
+		LiferayCache cache = LiferayCacheSingleton.getInstance();
+		CachedResult webContent = (CachedResult) cache.recover(CachedType.WEB_CONTENT, articleId);
 
-		JournalArticleService service = getJournalArticleService();
+		if (webContent != null) {
+			getListener().onWebContentReceived(null, webContent.getContent());
+		}
+		else {
+			validate(groupId, articleId, locale);
 
-		service.getArticleContent(groupId, articleId, locale.toString(), null);
+			JournalArticleService service = getJournalArticleService();
+
+			service.getArticleContent(groupId, articleId, locale.toString(), null);
+		}
 	}
 
 	public void onEvent(WebContentDisplayEvent event) {
@@ -52,6 +64,7 @@ public class WebContentDisplayInteractorImpl
 			getListener().onWebContentFailure(null, event.getException());
 		}
 		else {
+
 			getListener().onWebContentReceived(null, event.getHtml());
 		}
 	}
@@ -59,7 +72,7 @@ public class WebContentDisplayInteractorImpl
 	protected JournalArticleService getJournalArticleService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(
-			new WebContentDisplayCallback(getTargetScreenletId()));
+				new WebContentDisplayCallback(getTargetScreenletId()));
 
 		return new JournalArticleService(session);
 	}

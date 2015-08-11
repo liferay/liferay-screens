@@ -6,6 +6,7 @@ import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.cache.LiferayCacheSingleton;
 import com.liferay.mobile.screens.context.SessionContext;
 
 import java.util.List;
@@ -57,6 +58,8 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		else {
 			List entries = event.getEntries();
 			int rowCount = event.getRowCount();
+
+			LiferayCacheSingleton.getInstance().store(event.getEntries());
 
 			getListener().onListRowsReceived(
 				event.getStartRow(), event.getEndRow(), entries, rowCount);

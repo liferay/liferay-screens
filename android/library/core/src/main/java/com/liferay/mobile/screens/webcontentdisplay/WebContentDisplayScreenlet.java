@@ -22,6 +22,10 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.cache.CachedResult;
+import com.liferay.mobile.screens.cache.CachedType;
+import com.liferay.mobile.screens.cache.LiferayCache;
+import com.liferay.mobile.screens.cache.LiferayCacheSingleton;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractor;
@@ -74,6 +78,11 @@ public class WebContentDisplayScreenlet
 			}
 		}
 
+		if (_articleId != null) {
+			LiferayCache cache = LiferayCacheSingleton.getInstance();
+			cache.store(new CachedResult(_articleId, CachedType.WEB_CONTENT, modifiedHtml));
+		}
+
 		getViewModel().showFinishOperation(modifiedHtml);
 
 		return modifiedHtml;
@@ -105,23 +114,23 @@ public class WebContentDisplayScreenlet
 
 	@Override
 	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
+			Context context, AttributeSet attributes) {
 
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
+				attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
 
 		_autoLoad = typedArray.getBoolean(R.styleable.WebContentDisplayScreenlet_autoLoad, true);
 
 		_articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
 
 		_groupId = typedArray.getInt(
-			R.styleable.WebContentDisplayScreenlet_groupId, (int) LiferayServerContext.getGroupId());
+				R.styleable.WebContentDisplayScreenlet_groupId, (int) LiferayServerContext.getGroupId());
 
 		_javascriptEnabled = typedArray.getBoolean(
-			R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
+				R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
 
 		int layoutId = typedArray.getResourceId(
-			R.styleable.WebContentDisplayScreenlet_layoutId, getDefaultLayoutId());
+				R.styleable.WebContentDisplayScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
@@ -135,7 +144,7 @@ public class WebContentDisplayScreenlet
 
 	@Override
 	protected void onUserAction(
-		String userActionName, WebContentDisplayInteractor interactor, Object... args) {
+			String userActionName, WebContentDisplayInteractor interactor, Object... args) {
 
 		Locale locale = getResources().getConfiguration().locale;
 		getViewModel().showStartOperation(userActionName);
