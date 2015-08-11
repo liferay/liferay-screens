@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest
 	package="com.liferay.mobile.screens.testapp"
 	xmlns:android="http://schemas.android.com/apk/res/android">
@@ -11,15 +12,12 @@
 		android:icon="@drawable/liferay_icon"
 		android:label="@string/app_name"
 		android:theme="@style/Theme.AppCompat.Light">
-
 		<activity android:name=".MainActivity">
-
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-
 		<activity android:name=".SelectAssetActivity"/>
 		<activity android:name=".AssetListActivity"/>
 		<activity android:name=".DDLFormActivity"/>
@@ -31,7 +29,8 @@
 		<activity android:name=".WebContentDisplayActivity"/>
 		<activity android:name=".AddBookmarkActivity"/>
 		<activity android:name=".fullview.LoginFullActivity"/>
-
 		<activity android:name=".JournalArticleWithTemplateActivity"/>
+		<activity android:name=".FilteredAssetActivity"/>
 	</application>
+
 </manifest>
