@@ -81,6 +81,13 @@
 				android:text="@string/add_a_bookmark"/>
 
 			<Button
+				android:id="@+id/journal_article_with_template"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="10dp"
+				android:text="@string/journal_article_with_template"/>
+
+			<Button
 				android:id="@+id/login_full_screenlet"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"

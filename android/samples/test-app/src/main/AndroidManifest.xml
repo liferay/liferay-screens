@@ -32,5 +32,6 @@
 		<activity android:name=".AddBookmarkActivity"/>
 		<activity android:name=".fullview.LoginFullActivity"/>
 
+		<activity android:name=".JournalArticleWithTemplateActivity"/>
 	</application>
 </manifest>

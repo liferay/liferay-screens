@@ -24,6 +24,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.user_portrait).setOnClickListener(this);
 		findViewById(R.id.web_content_display).setOnClickListener(this);
 		findViewById(R.id.add_bookmark).setOnClickListener(this);
+		findViewById(R.id.journal_article_with_template).setOnClickListener(this);
 		findViewById(R.id.login_full_screenlet).setOnClickListener(this);
 		findViewById(R.id.change_theme).setOnClickListener(this);
 		findViewById(R.id.login).setOnClickListener(this);
@@ -56,6 +57,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.add_bookmark:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(AddBookmarkActivity.class));
+				break;
+			case R.id.journal_article_with_template:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(JournalArticleWithTemplateActivity.class));
 				break;
 			case R.id.login_full_screenlet:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginFullActivity.class));
