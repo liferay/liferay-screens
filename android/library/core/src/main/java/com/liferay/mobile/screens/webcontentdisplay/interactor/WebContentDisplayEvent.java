@@ -16,6 +16,8 @@ package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 
+import java.util.Locale;
+
 /**
  * @author Jose Manuel Navarro
  */
@@ -25,16 +27,33 @@ public class WebContentDisplayEvent extends BasicEvent {
 		super(targetScreenletId, e);
 	}
 
-	public WebContentDisplayEvent(int targetScreenletId, String html) {
+	public WebContentDisplayEvent(int targetScreenletId, String html, String articleId, long groupId, Locale locale) {
 		super(targetScreenletId);
-
 		_html = html;
+
+		_articleId = articleId;
+		_groupId = groupId;
+		_locale = locale;
+	}
+
+	public Long getGroupId() {
+		return _groupId;
+	}
+
+	public Locale getLocale() {
+		return _locale;
 	}
 
 	public String getHtml() {
 		return _html;
 	}
 
-	private String _html;
+	public String getArticleId() {
+		return _articleId;
+	}
 
+	private String _html;
+	private String _articleId;
+	private long _groupId;
+	private Locale _locale;
 }

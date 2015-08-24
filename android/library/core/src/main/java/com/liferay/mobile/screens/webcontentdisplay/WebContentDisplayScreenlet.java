@@ -22,10 +22,7 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.cache.CachedResult;
-import com.liferay.mobile.screens.cache.CachedType;
-import com.liferay.mobile.screens.cache.LiferayCache;
-import com.liferay.mobile.screens.cache.LiferayCacheSingleton;
+import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractor;
@@ -38,8 +35,8 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayScreenlet
-		extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayInteractor>
-		implements WebContentDisplayListener {
+	extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayInteractor>
+	implements WebContentDisplayListener {
 
 	public WebContentDisplayScreenlet(Context context) {
 		super(context);
@@ -78,11 +75,6 @@ public class WebContentDisplayScreenlet
 			}
 		}
 
-		if (_articleId != null) {
-			LiferayCache cache = LiferayCacheSingleton.getInstance();
-			cache.store(new CachedResult(_articleId, CachedType.WEB_CONTENT, modifiedHtml));
-		}
-
 		getViewModel().showFinishOperation(modifiedHtml);
 
 		return modifiedHtml;
@@ -114,23 +106,28 @@ public class WebContentDisplayScreenlet
 
 	@Override
 	protected View createScreenletView(
-			Context context, AttributeSet attributes) {
+		Context context, AttributeSet attributes) {
 
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-				attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
+			attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
 
 		_autoLoad = typedArray.getBoolean(R.styleable.WebContentDisplayScreenlet_autoLoad, true);
 
 		_articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
 
 		_groupId = typedArray.getInt(
-				R.styleable.WebContentDisplayScreenlet_groupId, (int) LiferayServerContext.getGroupId());
+			R.styleable.WebContentDisplayScreenlet_groupId, (int) LiferayServerContext.getGroupId());
 
 		_javascriptEnabled = typedArray.getBoolean(
-				R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
+			R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
+
+		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
+			CachePolicy.NO_CACHE.ordinal());
+
+		_cachePolicy = CachePolicy.values()[cachePolicy];
 
 		int layoutId = typedArray.getResourceId(
-				R.styleable.WebContentDisplayScreenlet_layoutId, getDefaultLayoutId());
+			R.styleable.WebContentDisplayScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
@@ -139,12 +136,12 @@ public class WebContentDisplayScreenlet
 
 	@Override
 	protected WebContentDisplayInteractor createInteractor(String actionName) {
-		return new WebContentDisplayInteractorImpl(getScreenletId());
+		return new WebContentDisplayInteractorImpl(getScreenletId(), _cachePolicy);
 	}
 
 	@Override
 	protected void onUserAction(
-			String userActionName, WebContentDisplayInteractor interactor, Object... args) {
+		String userActionName, WebContentDisplayInteractor interactor, Object... args) {
 
 		Locale locale = getResources().getConfiguration().locale;
 		getViewModel().showStartOperation(userActionName);
@@ -164,6 +161,7 @@ public class WebContentDisplayScreenlet
 		}
 	}
 
+	private CachePolicy _cachePolicy;
 	private String _articleId;
 	private boolean _autoLoad;
 	private long _groupId;
