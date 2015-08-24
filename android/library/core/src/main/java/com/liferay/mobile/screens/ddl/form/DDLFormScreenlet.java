@@ -24,6 +24,8 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractor;
@@ -352,15 +354,15 @@ public class DDLFormScreenlet
 	protected DDLFormBaseInteractor createInteractor(String actionName) {
 		switch (actionName) {
 			case LOAD_FORM_ACTION:
-				return new DDLFormLoadInteractorImpl(getScreenletId());
+				return new DDLFormLoadInteractorImpl(getScreenletId(), _cachePolicy);
 			case LOAD_RECORD_ACTION:
-				return new DDLFormLoadRecordInteractorImpl(getScreenletId());
+				return new DDLFormLoadRecordInteractorImpl(getScreenletId(), _cachePolicy);
 			case ADD_RECORD_ACTION:
-				return new DDLFormAddRecordInteractorImpl(getScreenletId());
+				return new DDLFormAddRecordInteractorImpl(getScreenletId(), _cachePolicy, _offlinePolicy);
 			case UPDATE_RECORD_ACTION:
-				return new DDLFormUpdateRecordInteractorImpl(getScreenletId());
+				return new DDLFormUpdateRecordInteractorImpl(getScreenletId(), _cachePolicy, _offlinePolicy);
 			case UPLOAD_DOCUMENT_ACTION:
-				return new DDLFormDocumentUploadInteractorImpl(getScreenletId());
+				return new DDLFormDocumentUploadInteractorImpl(getScreenletId(), _cachePolicy, _offlinePolicy);
 			default:
 				return null;
 		}
@@ -400,6 +402,11 @@ public class DDLFormScreenlet
 		_record.setRecordSetId(_recordSetId);
 		_record.setRecordId(_recordId);
 		_record.setCreatorUserId(_userId);
+
+		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
+				CachePolicy.NO_CACHE.ordinal());
+
+		_cachePolicy = CachePolicy.values()[cachePolicy];
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.DDLFormScreenlet_layoutId, getDefaultLayoutId());
@@ -641,5 +648,7 @@ public class DDLFormScreenlet
 	private DDLFormListener _listener;
 
 	private boolean _loadRecordAfterForm;
+	private CachePolicy _cachePolicy;
+	private OfflinePolicy _offlinePolicy;
 
 }
