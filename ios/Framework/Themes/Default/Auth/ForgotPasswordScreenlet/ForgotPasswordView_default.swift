@@ -21,6 +21,17 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 	@IBOutlet public var requestPasswordButton: UIButton?
 
 
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			BaseScreenlet.DefaultAction :
+				[.Loading : LocalizedString("forgotpassword-screenlet", "loading-message", self),
+				.Failure : LocalizedString("forgotpassword-screenlet", "loading-error", self),
+				.Success : LocalizedString("forgotpassword-screenlet", successMessageKey, self)]
+		]
+	}
+
+	private var successMessageKey = "password-sent"
+
 	//MARK: ForgotPasswordViewModel
 
 	public var userName: String? {
