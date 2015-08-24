@@ -213,6 +213,10 @@ import QuartzCore
 			if !onAction(name: name, interactor: interactor, sender: sender) {
 				_runningInteractors.removeLast()
 
+				let result: AnyObject? = interactor.interactionResult()
+				onFinishInteraction(result, error: nil)
+				screenletView?.onFinishInteraction(result, error: nil)
+
 				// validation message?
 			}
 		}
@@ -233,6 +237,9 @@ import QuartzCore
 	 * onAction is invoked when an interaction should be started
 	 */
 	public func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
+		onStartInteraction()
+		screenletView?.onStartInteraction()
+
 		return interactor.start()
 	}
 
@@ -246,6 +253,10 @@ import QuartzCore
 				self._runningInteractors.removeAtIndex(foundIndex)
 			}
 		}
+
+		let result: AnyObject? = interactor.interactionResult()
+		onFinishInteraction(result, error: error)
+		screenletView?.onFinishInteraction(result, error: error)
 
 		let messageType = (error == nil) ? ProgressMessageType.Success : ProgressMessageType.Failure
 

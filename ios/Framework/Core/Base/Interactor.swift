@@ -48,6 +48,10 @@ import UIKit
 		return false
 	}
 
+	public func interactionResult() -> AnyObject? {
+		return nil
+	}
+
 	private func finishWithError(error: NSError?) {
 		screenlet.endInteractor(self, error: error)
 

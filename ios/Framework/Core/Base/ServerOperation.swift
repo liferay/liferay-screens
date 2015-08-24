@@ -59,10 +59,8 @@ public class ServerOperation: NSOperation {
 	public override func main() {
 		if preRun() {
 			if let session = createSession() {
-				prepareRun()
 				doRun(session: session)
 				postRun()
-				finishRun(operationResult(), error:lastError)
 			}
 		}
 		else {
@@ -139,10 +137,6 @@ public class ServerOperation: NSOperation {
 		return SessionContext.createSessionFromCurrentSession()
 	}
 
-	internal func operationResult() -> AnyObject? {
-		return nil
-	}
-
 	//MARK: Private methods
 
 	private func callOnComplete() {
@@ -153,20 +147,6 @@ public class ServerOperation: NSOperation {
 				// this breaks the retain cycle between the op and 'onComplete'
 				self.onComplete = nil
 			}
-		}
-	}
-
-	private func prepareRun() {
-		dispatch_main {
-			self.screenlet.onStartInteraction()
-			self.screenlet.screenletView?.onStartInteraction()
-		}
-	}
-
-	private func finishRun(result: AnyObject?, error: NSError?) {
-		dispatch_main {
-			self.screenlet.onFinishInteraction(result, error:error)
-			self.screenlet.screenletView?.onFinishInteraction(result, error:error)
 		}
 	}
 

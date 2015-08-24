@@ -41,4 +41,8 @@ class ForgotPasswordInteractor: ServerOperationInteractor {
 		self.resultPasswordSent = (op as! LiferayForgotPasswordBaseOperation).resultPasswordSent
 	}
 
+	override func interactionResult() -> AnyObject? {
+		return resultPasswordSent
+	}
+
 }
