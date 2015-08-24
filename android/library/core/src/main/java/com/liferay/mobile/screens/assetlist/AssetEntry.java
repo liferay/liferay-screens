@@ -47,12 +47,16 @@ public class AssetEntry implements Parcelable {
 	}
 
 	public String getTitle() {
-		return (String)_values.get("title");
+		return (String) _values.get("title");
 	}
 
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
 		destination.writeMap(_values);
+	}
+
+	public Map<String, Object> getValues() {
+		return _values;
 	}
 
 	private AssetEntry(Parcel in) {

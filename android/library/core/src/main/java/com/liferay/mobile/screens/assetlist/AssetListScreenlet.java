@@ -24,6 +24,7 @@ import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractor;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorImpl;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 
 import java.util.Locale;
@@ -47,13 +48,6 @@ public class AssetListScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
-    @Override
-    protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale)
-		throws Exception {
-
-		interactor.loadRows(_groupId, _classNameId, startRow, endRow, locale);
-    }
-
 	public int getClassNameId() {
 		return _classNameId;
 	}
@@ -71,6 +65,13 @@ public class AssetListScreenlet
 	}
 
 	@Override
+	protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale)
+		throws Exception {
+
+		interactor.loadRows(_groupId, _classNameId, startRow, endRow, locale);
+	}
+
+	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.AssetListScreenlet, 0, 0);
@@ -79,6 +80,11 @@ public class AssetListScreenlet
 		_groupId = typedArray.getInteger(
 			R.styleable.AssetListScreenlet_groupId,
 			(int) LiferayServerContext.getGroupId());
+
+		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
+			CachePolicy.NO_CACHE.ordinal());
+
+		_cachePolicy = CachePolicy.values()[cachePolicy];
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
@@ -86,10 +92,11 @@ public class AssetListScreenlet
 
 	@Override
 	protected AssetListInteractor createInteractor(String actionName) {
-		return new AssetListInteractorImpl(getScreenletId());
+		return new AssetListInteractorImpl(getScreenletId(), _cachePolicy);
 	}
 
 	private int _classNameId;
 	private int _groupId;
+	private CachePolicy _cachePolicy;
 
 }
