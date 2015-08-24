@@ -57,16 +57,6 @@ public class Record implements Parcelable {
 		_locale = locale;
 	}
 
-	private Record(Parcel in, ClassLoader loader) {
-		Parcelable[] array = in.readParcelableArray(loader);
-		_fields = new ArrayList(Arrays.asList(array));
-		_creatorUserId = in.readLong();
-		_structureId = in.readLong();
-		_recordSetId = in.readLong();
-		_recordId = in.readLong();
-		_locale = (Locale) in.readSerializable();
-	}
-
 	public void parseXsd(String xsd) {
 		XSDParser parser = new XSDParser();
 
@@ -104,16 +94,32 @@ public class Record implements Parcelable {
 		return _recordSetId;
 	}
 
+	public void setRecordSetId(long recordSetId) {
+		_recordSetId = recordSetId;
+	}
+
 	public long getRecordId() {
 		return _recordId;
+	}
+
+	public void setRecordId(long recordId) {
+		_recordId = recordId;
 	}
 
 	public long getStructureId() {
 		return _structureId;
 	}
 
+	public void setStructureId(long structureId) {
+		_structureId = structureId;
+	}
+
 	public long getCreatorUserId() {
 		return _creatorUserId;
+	}
+
+	public void setCreatorUserId(long value) {
+		_creatorUserId = value;
 	}
 
 	public Map<String, String> getData() {
@@ -138,23 +144,7 @@ public class Record implements Parcelable {
 		return _locale;
 	}
 
-	public void setRecordId(long recordId) {
-		_recordId = recordId;
-	}
-
-	public void setRecordSetId(long recordSetId) {
-		_recordSetId = recordSetId;
-	}
-
-	public void setStructureId(long structureId) {
-		_structureId = structureId;
-	}
-
-	public void setCreatorUserId(long value) {
-		_creatorUserId = value;
-	}
-
-	public void setValues(Map<String,Object> values) {
+	public void setValues(Map<String, Object> values) {
 		for (Field f : _fields) {
 			Object fieldValue = values.get(f.getName());
 			if (fieldValue != null) {
@@ -180,6 +170,16 @@ public class Record implements Parcelable {
 		destination.writeLong(_recordSetId);
 		destination.writeLong(_recordId);
 		destination.writeSerializable(_locale);
+	}
+
+	private Record(Parcel in, ClassLoader loader) {
+		Parcelable[] array = in.readParcelableArray(loader);
+		_fields = new ArrayList(Arrays.asList(array));
+		_creatorUserId = in.readLong();
+		_structureId = in.readLong();
+		_recordSetId = in.readLong();
+		_recordId = in.readLong();
+		_locale = (Locale) in.readSerializable();
 	}
 
 	private List<Field> _fields = new ArrayList<>();
