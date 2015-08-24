@@ -5,8 +5,9 @@ import android.util.Pair;
 import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
-import com.liferay.mobile.screens.cache.LiferayCacheSingleton;
+import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
+import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.SessionContext;
 
 import java.util.List;
@@ -15,10 +16,11 @@ import java.util.Locale;
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseListInteractor<E, L extends BaseListInteractorListener> extends BaseRemoteInteractor<L> {
+public abstract class BaseListInteractor<E, L extends BaseListInteractorListener>
+	extends BaseCachedRemoteInteractor<L, BaseListEvent> {
 
-	public BaseListInteractor(int targetScreenletId) {
-		super(targetScreenletId);
+	public BaseListInteractor(int targetScreenletId, CachePolicy cachePolicy) {
+		super(targetScreenletId, cachePolicy, OfflinePolicy.NO_OFFLINE);
 	}
 
 	public void loadRows(
@@ -46,7 +48,11 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		requestState.put(getTargetScreenletId(), rowsRange);
 	}
 
-	public void onEvent(BaseListEvent event) {
+	public String createId(String recordSetId, Integer row) {
+		return String.format("%s_%05d", recordSetId, row);
+	}
+
+	public void onEventMainThread(BaseListEvent event) {
 		if (!isValidEvent(event)) {
 			return;
 		}
@@ -58,8 +64,6 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		else {
 			List entries = event.getEntries();
 			int rowCount = event.getRowCount();
-
-			LiferayCacheSingleton.getInstance().store(event.getEntries());
 
 			getListener().onListRowsReceived(
 				event.getStartRow(), event.getEndRow(), entries, rowCount);

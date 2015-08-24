@@ -21,9 +21,10 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
+import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
+import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,53 +50,58 @@ public class DDLListScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
+	public int getRecordSetId() {
+		return _recordSetId;
+	}
+
+	public void setRecordSetId(int recordSetId) {
+		_recordSetId = recordSetId;
+	}
+
+	public int getUserId() {
+		return _userId;
+	}
+
+	public void setUserId(int userId) {
+		_userId = userId;
+	}
+
+	public List<String> getLabelFields() {
+		return _labelFields;
+	}
+
+	public void setLabelFields(List<String> labelFields) {
+		_labelFields = labelFields;
+	}
+
 	@Override
 	protected void loadRows(DDLListInteractor interactor, int startRow, int endRow, Locale locale) throws Exception {
 		interactor.loadRows(_recordSetId, _userId, startRow, endRow, locale);
 	}
 
-    public int getRecordSetId() {
-        return _recordSetId;
-    }
-
-    public void setRecordSetId(int recordSetId) {
-        _recordSetId = recordSetId;
-    }
-
-    public int getUserId() {
-        return _userId;
-    }
-
-    public void setUserId(int userId) {
-        _userId = userId;
-    }
-
-    public List<String> getLabelFields() {
-        return _labelFields;
-    }
-
-    public void setLabelFields(List<String> labelFields) {
-        _labelFields = labelFields;
-    }
-
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-        TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-                attributes, R.styleable.DDLListScreenlet, 0, 0);
-        _recordSetId = typedArray.getInteger(
-                R.styleable.DDLListScreenlet_recordSetId, 0);
-        _userId = typedArray.getInteger(
-                R.styleable.DDLListScreenlet_userId, 0);
-        _labelFields = parse(typedArray.getString(
-                R.styleable.DDLListScreenlet_labelFields));
-        typedArray.recycle();
+		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
+			attributes, R.styleable.DDLListScreenlet, 0, 0);
+		_recordSetId = typedArray.getInteger(
+			R.styleable.DDLListScreenlet_recordSetId, 0);
+		_userId = typedArray.getInteger(
+			R.styleable.DDLListScreenlet_userId, 0);
+		_labelFields = parse(typedArray.getString(
+			R.styleable.DDLListScreenlet_labelFields));
 
-        return super.createScreenletView(context, attributes);
+		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
+			CachePolicy.NO_CACHE.ordinal());
+
+		_cachePolicy = CachePolicy.values()[cachePolicy];
+		typedArray.recycle();
+
+		return super.createScreenletView(context, attributes);
 	}
 
 	@Override
 	protected DDLListInteractor createInteractor(String actionName) {
-		return new DDLListInteractorImpl(getScreenletId());
+		return new DDLListInteractorImpl(getScreenletId(), _cachePolicy);
 	}
 
 	private List<String> parse(String labelFields) {
@@ -103,16 +109,16 @@ public class DDLListScreenlet
 			throw new IllegalArgumentException("DDLListScreenlet must define 'labelFields' parameter");
 		}
 
-        List<String> parsedFields = new ArrayList<>();
-        for (String text : labelFields.split(",")) {
-            parsedFields.add(text.trim());
-        }
+		List<String> parsedFields = new ArrayList<>();
+		for (String text : labelFields.split(",")) {
+			parsedFields.add(text.trim());
+		}
 
-        return parsedFields;
-    }
+		return parsedFields;
+	}
 
-    private int _recordSetId;
-    private int _userId;
-    private List<String> _labelFields;
-
+	private int _recordSetId;
+	private int _userId;
+	private List<String> _labelFields;
+	private CachePolicy _cachePolicy;
 }
