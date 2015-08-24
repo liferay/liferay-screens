@@ -62,7 +62,7 @@ public class ServerOperation: NSOperation {
 				prepareRun()
 				doRun(session: session)
 				postRun()
-				finishRun()
+				finishRun(operationResult(), error:lastError)
 			}
 		}
 		else {
@@ -139,6 +139,10 @@ public class ServerOperation: NSOperation {
 		return SessionContext.createSessionFromCurrentSession()
 	}
 
+	internal func operationResult() -> AnyObject? {
+		return nil
+	}
+
 	//MARK: HUD methods
 
 	internal func showValidationHUD(#message: String, details: String? = nil) {
@@ -167,10 +171,10 @@ public class ServerOperation: NSOperation {
 		}
 	}
 
-	private func finishRun() {
+	private func finishRun(result: AnyObject?, error: NSError?) {
 		dispatch_main {
-			self.screenlet.onFinishOperation()
-			self.screenlet.screenletView?.onFinishOperation()
+			self.screenlet.onFinishOperation(result, error:error)
+			self.screenlet.screenletView?.onFinishOperation(result, error:error)
 		}
 	}
 

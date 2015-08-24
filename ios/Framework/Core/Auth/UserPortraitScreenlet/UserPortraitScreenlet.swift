@@ -178,9 +178,9 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		viewModel.portraitURL = url
 
 		if url == nil {
-			screenletView?.onFinishOperation()
-			delegate?.screenlet?(self,
-					onUserPortraitError: NSError.errorWithCause(.AbortedDueToPreconditions))
+			let error = NSError.errorWithCause(.AbortedDueToPreconditions)
+			screenletView?.onFinishOperation(nil, error: error)
+			delegate?.screenlet?(self, onUserPortraitError: error)
 		}
 	}
 
@@ -194,7 +194,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 			finalImage = delegate?.screenlet?(self, onUserPortraitResponseImage: imageValue)
 		}
 
-		screenletView?.onFinishOperation()
+		screenletView?.onFinishOperation(finalImage, error: error)
 
 		return finalImage
 	}

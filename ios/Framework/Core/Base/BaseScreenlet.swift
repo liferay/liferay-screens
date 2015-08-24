@@ -268,7 +268,7 @@ import QuartzCore
 	/**
 	 * onFinishOperation is called when the server response arrives
 	 */
-	public func onFinishOperation() {
+	public func onFinishOperation(result: AnyObject?, error: NSError?) {
 	}
 
 

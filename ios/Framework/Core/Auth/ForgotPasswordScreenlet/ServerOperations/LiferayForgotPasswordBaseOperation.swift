@@ -81,6 +81,10 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 		}
 	}
 
+	override func operationResult() -> AnyObject? {
+		return resultPasswordSent
+	}
+
 
 	//MARK: Template Methods
 	

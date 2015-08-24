@@ -46,7 +46,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		signUpButton!.enabled = false
 	}
 
-	override public func onFinishOperation() {
+	override public func onFinishOperation(result: AnyObject?, error: NSError?) {
 		signUpButton!.enabled = true
 	}
 

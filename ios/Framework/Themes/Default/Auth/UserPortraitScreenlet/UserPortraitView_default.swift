@@ -91,7 +91,7 @@ public class UserPortraitView_default: BaseScreenletView,
 		objc_sync_exit(self)
 	}
 
-	override public func onFinishOperation() {
+	override public func onFinishOperation(result: AnyObject?, error: NSError?) {
 		if activityIndicator?.tag > 0 {
 			objc_sync_enter(self)
 
@@ -188,7 +188,7 @@ public class UserPortraitView_default: BaseScreenletView,
 					}
 				}
 
-				self.onFinishOperation()
+				self.onFinishOperation(self.portraitImage?.image, error: nil)
 
 			},
 			failure: {
@@ -196,7 +196,7 @@ public class UserPortraitView_default: BaseScreenletView,
 					self.loadPlaceholder()
 					self.loadedURL = nil
 					self.portraitLoaded?(nil, error)
-					self.onFinishOperation()
+					self.onFinishOperation(nil, error: error)
 			})
 	}
 
