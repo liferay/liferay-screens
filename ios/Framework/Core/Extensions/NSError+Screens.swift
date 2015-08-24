@@ -13,7 +13,7 @@
 */
 import Foundation
 
-public enum ScreenletsErrorCause: Int {
+public enum ScreensErrorCause: Int {
 
 	case AbortedDueToPreconditions = -2
 	case InvalidServerResponse = -3
@@ -23,25 +23,25 @@ public enum ScreenletsErrorCause: Int {
 public extension NSError {
 
 	public class func errorWithCause(
-			cause: ScreenletsErrorCause,
+			cause: ScreensErrorCause,
 			userInfo: [NSObject : AnyObject]? = nil)
 			-> NSError {
 
 		return NSError(
-				domain: "LiferayScreenlets",
+				domain: "LiferayScreens",
 				code: cause.rawValue,
 				userInfo: userInfo)
 }
 
 	public class func errorWithCause(
-			cause: ScreenletsErrorCause,
+			cause: ScreensErrorCause,
 			message: String)
 			-> NSError {
 
 		let userInfo = [NSLocalizedDescriptionKey: message]
 
 		return NSError(
-				domain: "LiferayScreenlets",
+				domain: "LiferayScreens",
 				code: cause.rawValue,
 				userInfo: userInfo)
 	}
