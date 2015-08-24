@@ -12,7 +12,15 @@ public class UserPortraitUploadEvent extends JSONObjectEvent {
 		super(targetScreenletId, e);
 	}
 
-	public UserPortraitUploadEvent(int targetScreenletId, JSONObject jsonObject) {
+	public UserPortraitUploadEvent(int targetScreenletId, String picturePath, JSONObject jsonObject) {
 		super(targetScreenletId, jsonObject);
+
+		_picturePath = picturePath;
 	}
+
+	public String getPicturePath() {
+		return _picturePath;
+	}
+
+	private String _picturePath;
 }
