@@ -13,6 +13,16 @@
 		<enum name="auto" value="1"/>
 		<enum name="shared_preferences" value="2"/>
 	</attr>
+	<attr name="cachePolicy" format="enum">
+		<enum name="NO_CACHE" value="0"/>
+		<enum name="CACHE_ONLY" value="1"/>
+		<enum name="CACHE_FIRST" value="2"/>
+		<enum name="ONLINE_FIRST" value="3"/>
+	</attr>
+	<attr name="offlinePolicy" format="enum">
+		<enum name="NO_OFFLINE" value="0"/>
+		<enum name="STORE_ON_ERROR" value="1"/>
+	</attr>
 	<attr name="companyId" format="integer"/>
 	<attr name="groupId" format="integer"/>
 	<attr name="layoutId" format="reference"/>
@@ -25,6 +35,7 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
+		<attr name="cachePolicy"/>
 		<attr name="classNameId" format="integer"/>
 		<attr name="firstPageSize"/>
 		<attr name="pageSize"/>
@@ -39,6 +50,8 @@
 		<attr name="recordSetId"/>
 		<attr name="userId"/>
 		<attr name="autoLoad"/>
+		<attr name="cachePolicy"/>
+		<attr name="offlinePolicy"/>
 		<attr name="filePrefix" format="string"/>
 		<attr name="repositoryId" format="integer"/>
 		<attr name="folderId" format="integer"/>
@@ -58,6 +71,7 @@
 		<attr name="autoLoad"/>
 		<attr name="recordSetId"/>
 		<attr name="userId"/>
+		<attr name="cachePolicy"/>
 		<attr name="labelFields" format="string"/>
 		<attr name="firstPageSize"/>
 		<attr name="pageSize"/>
@@ -93,6 +107,7 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
+		<attr name="cachePolicy"/>
 		<attr name="javascriptEnabled" format="boolean"/>
 		<attr name="articleId" format="string"/>
 	</declare-styleable>
@@ -100,6 +115,8 @@
 	<declare-styleable name="UserPortraitScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
+		<attr name="cachePolicy"/>
+		<attr name="offlinePolicy"/>
 		<attr name="male" format="boolean"/>
 		<attr name="portraitId" format="integer"/>
 		<attr name="uuid" format="string"/>
