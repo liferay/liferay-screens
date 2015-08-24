@@ -260,15 +260,15 @@ import QuartzCore
 	}
 
 	/**
-	 * onStartOperation is called just before a screenlet request is sent to server
+	 * onStartInteraction is called just before a screenlet request is sent to server
 	 */
-	public func onStartOperation() {
+	public func onStartInteraction() {
 	}
 
 	/**
-	 * onFinishOperation is called when the server response arrives
+	 * onFinishInteraction is called when the server response arrives
 	 */
-	public func onFinishOperation(result: AnyObject?, error: NSError?) {
+	public func onFinishInteraction(result: AnyObject?, error: NSError?) {
 	}
 
 

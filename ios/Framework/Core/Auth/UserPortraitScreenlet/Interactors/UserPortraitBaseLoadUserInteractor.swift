@@ -56,7 +56,7 @@ class UserPortraitBaseLoadUserInteractor: UserPortraitBaseInteractor {
 			result = operation.validateAndEnqueue(onComplete: onUserLoaded)
 
 			if result {
-				self.screenlet.screenletView?.onStartOperation()
+				self.screenlet.screenletView?.onStartInteraction()
 			}
 			else {
 				resultURL = nil

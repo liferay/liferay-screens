@@ -78,7 +78,7 @@ public class UserPortraitView_default: BaseScreenletView,
 		imagePicker.modalPresentationStyle = .FullScreen
 	}
 
-	override public func onStartOperation() {
+	override public func onStartInteraction() {
 		objc_sync_enter(self)
 
 		// use tag to track the start count
@@ -91,7 +91,7 @@ public class UserPortraitView_default: BaseScreenletView,
 		objc_sync_exit(self)
 	}
 
-	override public func onFinishOperation(result: AnyObject?, error: NSError?) {
+	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
 		if activityIndicator?.tag > 0 {
 			objc_sync_enter(self)
 
@@ -170,7 +170,7 @@ public class UserPortraitView_default: BaseScreenletView,
 				cachePolicy: .ReloadIgnoringLocalCacheData,
 				timeoutInterval: 60.0)
 
-		onStartOperation()
+		onStartInteraction()
 
 		portraitImage?.setImageWithURLRequest(request, placeholderImage: nil, success: {
 			(request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) -> Void in
@@ -188,7 +188,7 @@ public class UserPortraitView_default: BaseScreenletView,
 					}
 				}
 
-				self.onFinishOperation(self.portraitImage?.image, error: nil)
+				self.onFinishInteraction(self.portraitImage?.image, error: nil)
 
 			},
 			failure: {
@@ -196,7 +196,7 @@ public class UserPortraitView_default: BaseScreenletView,
 					self.loadPlaceholder()
 					self.loadedURL = nil
 					self.portraitLoaded?(nil, error)
-					self.onFinishOperation(nil, error: error)
+					self.onFinishInteraction(nil, error: error)
 			})
 	}
 

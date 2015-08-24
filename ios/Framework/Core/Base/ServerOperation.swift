@@ -158,15 +158,15 @@ public class ServerOperation: NSOperation {
 
 	private func prepareRun() {
 		dispatch_main {
-			self.screenlet.onStartOperation()
-			self.screenlet.screenletView?.onStartOperation()
+			self.screenlet.onStartInteraction()
+			self.screenlet.screenletView?.onStartInteraction()
 		}
 	}
 
 	private func finishRun(result: AnyObject?, error: NSError?) {
 		dispatch_main {
-			self.screenlet.onFinishOperation(result, error:error)
-			self.screenlet.screenletView?.onFinishOperation(result, error:error)
+			self.screenlet.onFinishInteraction(result, error:error)
+			self.screenlet.screenletView?.onFinishInteraction(result, error:error)
 		}
 	}
 
