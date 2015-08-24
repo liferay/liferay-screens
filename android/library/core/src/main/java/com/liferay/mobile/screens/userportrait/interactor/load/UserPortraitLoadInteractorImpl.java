@@ -21,7 +21,14 @@ import android.util.Base64;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
-import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.CacheCallback;
+import com.liferay.mobile.screens.cache.Cache;
+import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.DefaultCachedType;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.cache.sql.CacheSQL;
+import com.liferay.mobile.screens.cache.userportrait.UserPortraitCache;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -30,6 +37,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 import com.squareup.picasso.Target;
 
 import org.json.JSONObject;
@@ -45,11 +53,11 @@ import java.security.NoSuchAlgorithmException;
  * @author Jose Manuel Navarro
  */
 public class UserPortraitLoadInteractorImpl
-	extends BaseRemoteInteractor<UserPortraitInteractorListener>
+	extends BaseCachedRemoteInteractor<UserPortraitInteractorListener, UserPortraitLoadEvent>
 	implements UserPortraitLoadInteractor, Target {
 
-	public UserPortraitLoadInteractorImpl(int targetScreenletId) {
-		super(targetScreenletId);
+	public UserPortraitLoadInteractorImpl(int screenletId, CachePolicy cachePolicy) {
+		super(screenletId, cachePolicy, OfflinePolicy.NO_OFFLINE);
 	}
 
 	@Override
@@ -62,31 +70,45 @@ public class UserPortraitLoadInteractorImpl
 			getListener().onStartUserPortraitLoadRequest();
 		}
 
-		Picasso.with(LiferayScreensContext.getContext())
-			.load(uri)
-			.memoryPolicy(MemoryPolicy.NO_CACHE)
-			.networkPolicy(NetworkPolicy.NO_CACHE)
-			.into(this);
+		RequestCreator requestCreator = Picasso.with(LiferayScreensContext.getContext())
+			.load(uri);
+
+		if (CachePolicy.NO_CACHE.equals(getCachePolicy())) {
+			requestCreator = requestCreator
+				.memoryPolicy(MemoryPolicy.NO_CACHE)
+				.networkPolicy(NetworkPolicy.NO_CACHE);
+		}
+
+		requestCreator.into(this);
 	}
 
 	@Override
-	public void load(long userId) throws Exception {
-		validate(userId);
+	public void load(final long userId) throws Exception {
+		loadWithCache(new CacheCallback() {
+			@Override
+			public void loadOnline() throws Exception {
+				validate(userId);
 
-		if (SessionContext.hasSession() && SessionContext.getLoggedUser().getId() == userId) {
-			boolean male = true;
-			long portraitId = SessionContext.getLoggedUser().getPortraitId();
-			String uuid = SessionContext.getLoggedUser().getUuid();
+				if (SessionContext.hasSession() && SessionContext.getLoggedUser().getId() == userId) {
+					long portraitId = SessionContext.getLoggedUser().getPortraitId();
+					String uuid = SessionContext.getLoggedUser().getUuid();
 
-			load(male, portraitId, uuid);
-		}
-		else {
-			if (getListener() != null) {
-				getListener().onStartUserPortraitLoadRequest();
+					load(true, portraitId, uuid);
+				}
+				else {
+					if (getListener() != null) {
+						getListener().onStartUserPortraitLoadRequest();
+					}
+
+					getUserService(userId).getUserById(userId);
+				}
 			}
 
-			getUserService().getUserById(userId);
-		}
+			@Override
+			public boolean retrieveFromCache() {
+				return loadFromCache(userId);
+			}
+		});
 	}
 
 	public void onEvent(UserPortraitLoadEvent event) {
@@ -98,19 +120,23 @@ public class UserPortraitLoadInteractorImpl
 			getListener().onUserPortraitLoadFailure(event.getException());
 		}
 		else {
-			JSONObject userAttributes = event.getJSONObject();
 
+			JSONObject userAttributes = event.getJSONObject();
 			try {
-				boolean male = true;
 				long portraitId = userAttributes.getLong("portraitId");
 				String uuid = userAttributes.getString("uuid");
+				Long userId = userAttributes.getLong("userId");
 
-				load(male, portraitId, uuid);
+				Cache cache = CacheSQL.getInstance();
+				cache.set(new UserPortraitCache(userId, true, portraitId, uuid));
+
+				load(true, portraitId, uuid);
 			}
 			catch (Exception e) {
 				getListener().onUserPortraitLoadFailure(e);
 			}
 		}
+
 	}
 
 	@Override
@@ -131,6 +157,24 @@ public class UserPortraitLoadInteractorImpl
 	public void onPrepareLoad(Drawable placeHolderDrawable) {
 	}
 
+	protected UserService getUserService(long userId) {
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setCallback(new UserPortraitLoadCallback(getTargetScreenletId(), userId));
+
+		return new UserService(session);
+	}
+
+	private boolean loadFromCache(long userId) {
+		Cache cache = CacheSQL.getInstance();
+		UserPortraitCache userPortraitCache = (UserPortraitCache) cache.getById(
+			DefaultCachedType.USER_PORTRAIT, String.valueOf(userId));
+
+		if (userPortraitCache != null) {
+			load(userPortraitCache.isMale(), userPortraitCache.getPortraitId(), userPortraitCache.getUuid());
+			return true;
+		}
+		return false;
+	}
 
 	private void validate(long portraitId, String uuid) {
 		if (getListener() == null) {
@@ -149,14 +193,6 @@ public class UserPortraitLoadInteractorImpl
 			throw new IllegalArgumentException("userId cannot be empty");
 		}
 	}
-
-	protected UserService getUserService() {
-		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new UserPortraitLoadCallback(getTargetScreenletId()));
-
-		return new UserService(session);
-	}
-
 
 	private Uri getUserPortraitURL(boolean male, long portraitId, String uuid) {
 		String maleString = male ? "male" : "female";
@@ -182,5 +218,4 @@ public class UserPortraitLoadInteractorImpl
 
 		return null;
 	}
-
 }

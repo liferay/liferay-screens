@@ -9,11 +9,21 @@ import org.json.JSONObject;
  */
 public class UserPortraitLoadEvent extends JSONObjectEvent {
 
-	public UserPortraitLoadEvent(int targetScreenletId, Exception e) {
+	public UserPortraitLoadEvent(int targetScreenletId, Exception e, long userId) {
 		super(targetScreenletId, e);
+
+		_userId = userId;
 	}
 
-	public UserPortraitLoadEvent(int targetScreenletId, JSONObject jsonObject) {
+	public UserPortraitLoadEvent(int targetScreenletId, JSONObject jsonObject, long userId) {
 		super(targetScreenletId, jsonObject);
+
+		_userId = userId;
 	}
+
+	public long getUserId() {
+		return _userId;
+	}
+
+	private final long _userId;
 }
