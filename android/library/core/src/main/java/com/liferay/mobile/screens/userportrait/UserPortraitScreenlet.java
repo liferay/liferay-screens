@@ -29,6 +29,8 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.interactor.BaseUserPortraitInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
@@ -233,6 +235,16 @@ public class UserPortraitScreenlet
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
+		int cachePolicy = typedArray.getInt(R.styleable.UserPortraitScreenlet_cachePolicy,
+				CachePolicy.NO_CACHE.ordinal());
+
+		_cachePolicy = CachePolicy.values()[cachePolicy];
+
+		int offlinePolicy = typedArray.getInt(R.styleable.UserPortraitScreenlet_offlinePolicy,
+				OfflinePolicy.NO_OFFLINE.ordinal());
+
+		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
+
 		int defaultUserId = 0;
 		if (SessionContext.hasSession() && _portraitId == 0 && _uuid == null) {
 			defaultUserId = (int) SessionContext.getLoggedUser().getId();
@@ -250,10 +262,10 @@ public class UserPortraitScreenlet
 	@Override
 	protected BaseUserPortraitInteractor createInteractor(String actionName) {
 		if (UPLOAD_PORTRAIT.equals(actionName)) {
-			return new UserPortraitUploadInteractorImpl(getScreenletId());
+			return new UserPortraitUploadInteractorImpl(getScreenletId(), _cachePolicy, _offlinePolicy);
 		}
 		else {
-			return new UserPortraitLoadInteractorImpl(getScreenletId());
+			return new UserPortraitLoadInteractorImpl(getScreenletId(), _cachePolicy);
 		}
 	}
 
@@ -317,5 +329,6 @@ public class UserPortraitScreenlet
 	private String _uuid;
 	private long _userId;
 	private boolean _editable;
-
+	private CachePolicy _cachePolicy;
+	private OfflinePolicy _offlinePolicy;
 }
