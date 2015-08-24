@@ -28,8 +28,8 @@ public class BaseListEvent<E> extends BasicEvent {
 	}
 
 	public BaseListEvent(
-            int targetScreenletId, int startRow, int endRow, List<E> entries,
-            int rowCount) {
+		int targetScreenletId, int startRow, int endRow, List<E> entries,
+		int rowCount) {
 
 		super(targetScreenletId);
 
