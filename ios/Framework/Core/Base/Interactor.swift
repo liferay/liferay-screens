@@ -33,14 +33,14 @@ import UIKit
 	public func callOnSuccess() {
 		dispatch_main {
 			self.onSuccess?()
-			self.finishWithSuccess(true)
+			self.finishWithError(nil)
 		}
 	}
 
 	public func callOnFailure(error: NSError) {
 		dispatch_main {
 			self.onFailure?(error)
-			self.finishWithSuccess(false)
+			self.finishWithError(error)
 		}
 	}
 
@@ -48,8 +48,8 @@ import UIKit
 		return false
 	}
 
-	private func finishWithSuccess(success: Bool) {
-		screenlet.endInteractor(self, success: success)
+	private func finishWithError(error: NSError?) {
+		screenlet.endInteractor(self, error: error)
 
 		// break retain cycle
 		onSuccess = nil

@@ -240,18 +240,18 @@ import QuartzCore
 		return nil
 	}
 
-	public func endInteractor(interactor: Interactor, success: Bool) {
+	public func endInteractor(interactor: Interactor, error: NSError?) {
 		synchronized(_runningInteractors) {
 			if let foundIndex = find(self._runningInteractors, interactor) {
 				self._runningInteractors.removeAtIndex(foundIndex)
 			}
 		}
 
-		let messageType = success ? ProgressMessageType.Success : ProgressMessageType.Failure
+		let messageType = (error == nil) ? ProgressMessageType.Success : ProgressMessageType.Failure
 
 		if let msg = screenletView?.progressMessageForAction(interactor.actionName!, messageType: messageType) {
 			showHUDWithMessage(msg,
-				closeMode: success ? .Autoclose_TouchClosable : .ManualClose_TouchClosable,
+				closeMode: (error == nil) ? .Autoclose_TouchClosable : .ManualClose_TouchClosable,
 				spinnerMode: .NoSpinner)
 		}
 		else {
