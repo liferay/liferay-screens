@@ -20,7 +20,7 @@ public class LiferayLoginByScreenNameOperation: GetUserByScreenNameOperation {
 		let valid = super.validateData()
 
 		if !valid {
-			showValidationHUD(message: LocalizedString("login-screenlet", "validation", self))
+			screenlet.showHUDAlert(message: LocalizedString("login-screenlet", "validation", self))
 		}
 
 		return valid

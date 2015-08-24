@@ -29,13 +29,13 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 		var valid = super.validateData()
 
 		if valid && viewModel.emailAddress == nil {
-			showValidationHUD(message: LocalizedString("signup-screenlet", "validation", self))
+			screenlet.showHUDAlert(message: LocalizedString("signup-screenlet", "validation", self))
 
 			return false
 		}
 
 		if viewModel.password == SessionContext.currentBasicPassword {
-			showValidationHUD(message: LocalizedString("signup-screenlet", "validation-password", self))
+			screenlet.showHUDAlert(message: LocalizedString("signup-screenlet", "validation-password", self))
 
 			return false
 		}

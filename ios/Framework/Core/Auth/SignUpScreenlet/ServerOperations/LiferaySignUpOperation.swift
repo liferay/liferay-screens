@@ -31,7 +31,7 @@ public class LiferaySignUpOperation: ServerOperation {
 		var valid = super.validateData()
 
 		if valid && viewModel.emailAddress == nil {
-			showValidationHUD(message: LocalizedString("signup-screenlet", "validation", self))
+			screenlet.showHUDAlert(message: LocalizedString("signup-screenlet", "validation", self))
 
 			valid = false
 		}

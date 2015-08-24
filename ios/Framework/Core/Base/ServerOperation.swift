@@ -143,14 +143,6 @@ public class ServerOperation: NSOperation {
 		return nil
 	}
 
-	//MARK: HUD methods
-
-	internal func showValidationHUD(#message: String, details: String? = nil) {
-		dispatch_main {
-			self.screenlet.showHUDAlert(message: message)
-		}
-	}
-
 	//MARK: Private methods
 
 	private func callOnComplete() {

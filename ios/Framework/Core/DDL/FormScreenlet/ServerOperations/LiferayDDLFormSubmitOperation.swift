@@ -56,7 +56,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 		valid = valid && !viewModel.values.isEmpty
 
 		if valid && !viewModel.validateForm(autoscroll: autoscrollOnValidation) {
-			showValidationHUD(message: LocalizedString("ddlform-screenlet", "validation", self))
+			screenlet.showHUDAlert(message: LocalizedString("ddlform-screenlet", "validation", self))
 
 			valid = false
 		}

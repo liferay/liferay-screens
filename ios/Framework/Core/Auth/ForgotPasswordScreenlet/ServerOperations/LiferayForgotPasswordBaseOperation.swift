@@ -30,8 +30,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 		var valid = super.validateData()
 
 		if valid && viewModel.userName == nil {
-			showValidationHUD(
-					message: LocalizedString("forgotpassword-screenlet", "validation", self))
+			screenlet.showHUDAlert(message: LocalizedString("forgotpassword-screenlet", "validation", self))
 
 			valid = false
 		}
