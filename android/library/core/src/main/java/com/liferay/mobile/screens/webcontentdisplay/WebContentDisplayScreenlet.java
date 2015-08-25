@@ -123,7 +123,6 @@ public class WebContentDisplayScreenlet
 
 		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
 			CachePolicy.NO_CACHE.ordinal());
-
 		_cachePolicy = CachePolicy.values()[cachePolicy];
 
 		int layoutId = typedArray.getResourceId(

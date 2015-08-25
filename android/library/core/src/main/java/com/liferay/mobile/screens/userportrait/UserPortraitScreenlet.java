@@ -237,12 +237,10 @@ public class UserPortraitScreenlet
 
 		int cachePolicy = typedArray.getInt(R.styleable.UserPortraitScreenlet_cachePolicy,
 				CachePolicy.NO_CACHE.ordinal());
-
 		_cachePolicy = CachePolicy.values()[cachePolicy];
 
 		int offlinePolicy = typedArray.getInt(R.styleable.UserPortraitScreenlet_offlinePolicy,
 				OfflinePolicy.NO_OFFLINE.ordinal());
-
 		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		int defaultUserId = 0;

@@ -92,8 +92,8 @@ public class DDLListScreenlet
 
 		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
 			CachePolicy.NO_CACHE.ordinal());
-
 		_cachePolicy = CachePolicy.values()[cachePolicy];
+
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
