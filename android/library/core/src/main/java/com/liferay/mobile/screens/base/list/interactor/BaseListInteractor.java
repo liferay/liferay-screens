@@ -5,9 +5,8 @@ import android.util.Pair;
 import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCachedReadRemoteInteractor;
 import com.liferay.mobile.screens.cache.CachePolicy;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.SessionContext;
 
 import java.util.List;
@@ -17,10 +16,10 @@ import java.util.Locale;
  * @author Javier Gamarra
  */
 public abstract class BaseListInteractor<E, L extends BaseListInteractorListener>
-	extends BaseCachedRemoteInteractor<L, BaseListEvent> {
+	extends BaseCachedReadRemoteInteractor<L, BaseListEvent> {
 
 	public BaseListInteractor(int targetScreenletId, CachePolicy cachePolicy) {
-		super(targetScreenletId, cachePolicy, OfflinePolicy.NO_OFFLINE);
+		super(targetScreenletId, cachePolicy);
 	}
 
 	public void loadRows(

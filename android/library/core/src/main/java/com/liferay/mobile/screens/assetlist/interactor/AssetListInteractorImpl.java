@@ -21,7 +21,6 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.assetentry.AssetEntryService;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.interactor.CacheCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
@@ -67,17 +66,7 @@ public class AssetListInteractorImpl
 			return;
 		}
 
-		loadWithCache(new CacheCallback() {
-			@Override
-			public void loadOnline() throws Exception {
-				loadRows(startRow, endRow, locale);
-			}
-
-			@Override
-			public boolean retrieveFromCache() throws JSONException {
-				return loadFromCache(classNameId, startRow, endRow, requestState, rowsRange);
-			}
-		});
+		loadWithCache(groupId, classNameId, startRow, endRow, locale, requestState, rowsRange);
 	}
 
 	@Override
@@ -86,19 +75,56 @@ public class AssetListInteractorImpl
 			return;
 		}
 
-		if (event.isFailed()) {
-			getListener().onListRowsFailure(
-				event.getStartRow(), event.getEndRow(), event.getException());
-		}
-		else {
+		onEventWithCache(event);
 
-			storeToCache(event);
+		List entries = event.getEntries();
+		int rowCount = event.getRowCount();
 
-			List entries = event.getEntries();
-			int rowCount = event.getRowCount();
+		getListener().onListRowsReceived(
+			event.getStartRow(), event.getEndRow(), entries, rowCount);
+	}
 
-			getListener().onListRowsReceived(
-				event.getStartRow(), event.getEndRow(), entries, rowCount);
+	@Override
+	protected void loadOnline(Object[] args) throws Exception {
+
+		final int startRow = (int) args[2];
+		final int endRow = (int) args[3];
+		final Locale locale = (Locale) args[4];
+
+		loadRows(startRow, endRow, locale);
+	}
+
+	@Override
+	protected void notifyError(BaseListEvent event) {
+		getListener().onListRowsFailure(
+			event.getStartRow(), event.getEndRow(), event.getException());
+	}
+
+	@Override
+	protected boolean getFromCache(Object[] args) throws Exception {
+		long groupId = (long) args[0];
+		final long classNameId = (long) args[1];
+		final int startRow = (int) args[2];
+		final int endRow = (int) args[3];
+		final Locale locale = (Locale) args[4];
+		final RequestState requestState = (RequestState) args[5];
+		final Pair rowsRange = (Pair) args[6];
+
+		return loadFromCache(groupId, classNameId, startRow, endRow, locale, requestState, rowsRange);
+	}
+
+	@Override
+	protected void storeToCache(BaseListEvent event, Object... args) {
+		Cache cache = CacheSQL.getInstance();
+		cache.set(new TableCache(String.valueOf(_classNameId), DefaultCachedType.DDL_LIST_COUNT, String.valueOf(event.getRowCount())));
+
+		for (int i = 0; i < event.getEntries().size(); i++) {
+			AssetEntry ddlEntry = (AssetEntry) event.getEntries().get(i);
+
+			int range = i + event.getStartRow();
+
+			Map<String, Object> values = ddlEntry.getValues();
+			cache.set(new TableCache(createId(String.valueOf(_classNameId), range), DefaultCachedType.DDL_LIST, new JSONObject(values).toString()));
 		}
 	}
 
@@ -154,7 +180,8 @@ public class AssetListInteractorImpl
 		super.validate(startRow, endRow, locale);
 	}
 
-	private boolean loadFromCache(long classNameId, int startRow, int endRow, RequestState requestState, Pair<Integer, Integer> rowsRange) throws JSONException {
+	private boolean loadFromCache(long groupId, long classNameId, int startRow, int endRow, Locale locale,
+								  RequestState requestState, Pair<Integer, Integer> rowsRange) throws JSONException {
 		Cache cache = CacheSQL.getInstance();
 		String query = " AND " + TableCache.ID + " >= ? AND " + TableCache.ID + " < ?";
 		List<TableCache> ddlEntryCache = (List<TableCache>) cache.get(DefaultCachedType.DDL_LIST,
@@ -181,20 +208,6 @@ public class AssetListInteractorImpl
 			return true;
 		}
 		return false;
-	}
-
-	private void storeToCache(BaseListEvent event) {
-		Cache cache = CacheSQL.getInstance();
-		cache.set(new TableCache(String.valueOf(_classNameId), DefaultCachedType.DDL_LIST_COUNT, String.valueOf(event.getRowCount())));
-
-		for (int i = 0; i < event.getEntries().size(); i++) {
-			AssetEntry ddlEntry = (AssetEntry) event.getEntries().get(i);
-
-			int range = i + event.getStartRow();
-
-			Map<String, Object> values = ddlEntry.getValues();
-			cache.set(new TableCache(createId(String.valueOf(_classNameId), range), DefaultCachedType.DDL_LIST, new JSONObject(values).toString()));
-		}
 	}
 
 	private long _groupId;

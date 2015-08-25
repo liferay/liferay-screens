@@ -2,10 +2,8 @@ package com.liferay.mobile.screens.userportrait.interactor.upload;
 
 import android.content.Intent;
 
-import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
-import com.liferay.mobile.screens.base.interactor.OfflineCallback;
+import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
-import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
@@ -19,34 +17,17 @@ import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractor
  * @author Javier Gamarra
  */
 public class UserPortraitUploadInteractorImpl
-	extends BaseCachedRemoteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent>
+	extends BaseCachedWriteRemoteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent>
 	implements UserPortraitUploadInteractor {
 
-	public UserPortraitUploadInteractorImpl(int targetScreenletId, CachePolicy cachePolicy, OfflinePolicy offlinePolicy) {
-		super(targetScreenletId, cachePolicy, offlinePolicy);
+	public UserPortraitUploadInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
+		super(targetScreenletId, offlinePolicy);
 	}
 
+
 	public void upload(final Long userId, final String picturePath) throws Exception {
-		storeOnError(new OfflineCallback() {
-			@Override
-			public void sendOnline() throws Exception {
-				if (getListener() != null) {
-					getListener().onStartUserPortraitLoadRequest();
-				}
 
-				Intent service = new Intent(LiferayScreensContext.getContext(), UserPortraitService.class);
-				service.putExtra("picturePath", picturePath);
-				service.putExtra("screenletId", getTargetScreenletId());
-				service.putExtra("userId", userId);
-
-				LiferayScreensContext.getContext().startService(service);
-			}
-
-			@Override
-			public void storeToCache() {
-				store(userId, picturePath);
-			}
-		});
+		storeOnError(userId, picturePath);
 	}
 
 	public void onEventMainThread(UserPortraitUploadEvent event) {
@@ -63,8 +44,6 @@ public class UserPortraitUploadInteractorImpl
 				SessionContext.setLoggedUser(user);
 			}
 
-			store(user.getId(), event.getPicturePath());
-
 			try {
 				getListener().onUserPortraitUploaded(user.getId());
 			}
@@ -72,6 +51,33 @@ public class UserPortraitUploadInteractorImpl
 				getListener().onUserPortraitUploadFailure(e);
 			}
 		}
+	}
+
+	@Override
+	protected void sendOnline(Object[] args) throws Exception {
+
+		long userId = (long) args[0];
+		String picturePath = (String) args[1];
+
+		if (getListener() != null) {
+			getListener().onStartUserPortraitLoadRequest();
+		}
+
+		Intent service = new Intent(LiferayScreensContext.getContext(), UserPortraitService.class);
+		service.putExtra("picturePath", picturePath);
+		service.putExtra("screenletId", getTargetScreenletId());
+		service.putExtra("userId", userId);
+
+		LiferayScreensContext.getContext().startService(service);
+	}
+
+	@Override
+	protected void storeToCache(Object[] args) {
+
+		long userId = (long) args[0];
+		String picturePath = (String) args[1];
+
+		store(userId, picturePath);
 	}
 
 	private void store(Long userId, String picturePath) {
