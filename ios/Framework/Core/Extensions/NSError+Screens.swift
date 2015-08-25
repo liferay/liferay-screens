@@ -26,11 +26,6 @@ public class ValidationError : NSError {
 		super.init(coder: aDecoder)
 	}
 
-	public var message: String? {
-		let key: NSString = NSLocalizedDescriptionKey
-		return userInfo?[key] as? String
-	}
-
 }
 
 

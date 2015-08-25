@@ -201,30 +201,23 @@ import QuartzCore
 		objc_sync_enter(_runningInteractors)
 
 		if let interactor = self.createInteractor(name: name, sender: sender) {
+			interactor.actionName = name
+			_runningInteractors.append(interactor)
+
+			objc_sync_exit(_runningInteractors)
+
 			if let message = screenletView?.progressMessageForAction(name, messageType: .Loading) {
 				showHUDWithMessage(message,
 					closeMode: .ManualClose,
 					spinnerMode: .IndeterminateSpinner)
 			}
 
-			interactor.actionName = name
-			_runningInteractors.append(interactor)
-
-			if !onAction(name: name, interactor: interactor, sender: sender) {
-				_runningInteractors.removeLast()
-
-				let result: AnyObject? = interactor.interactionResult()
-				onFinishInteraction(result, error: nil)
-				screenletView?.onFinishInteraction(result, error: nil)
-
-				// validation message?
-			}
+			result = onAction(name: name, interactor: interactor, sender: sender)
 		}
 		else {
+			objc_sync_exit(_runningInteractors)
 			println("WARN: No interactor created for action \(name)")
 		}
-
-		objc_sync_exit(_runningInteractors)
 
 		return result
 	}
@@ -248,6 +241,41 @@ import QuartzCore
 	}
 
 	public func endInteractor(interactor: Interactor, error: NSError?) {
+
+		func hideInteractorHUD(error: NSError?) {
+			let messageType: ProgressMessageType
+			let closeMode: ProgressCloseMode?
+			var msg: String?
+
+			if let error = error {
+				messageType = .Failure
+				closeMode = .ManualClose_TouchClosable
+
+				if error is ValidationError {
+					msg = error.localizedDescription
+				}
+			}
+			else {
+				messageType = .Success
+				closeMode = .Autoclose_TouchClosable
+			}
+
+			if msg == nil {
+				msg = screenletView?.progressMessageForAction(
+					interactor.actionName ?? BaseScreenlet.DefaultAction,
+					messageType: messageType)
+			}
+
+			if let msg = msg, closeMode = closeMode {
+				showHUDWithMessage(msg,
+					closeMode: closeMode,
+					spinnerMode: .NoSpinner)
+			}
+			else {
+				hideHUD()
+			}
+		}
+
 		synchronized(_runningInteractors) {
 			if let foundIndex = find(self._runningInteractors, interactor) {
 				self._runningInteractors.removeAtIndex(foundIndex)
@@ -258,16 +286,7 @@ import QuartzCore
 		onFinishInteraction(result, error: error)
 		screenletView?.onFinishInteraction(result, error: error)
 
-		let messageType = (error == nil) ? ProgressMessageType.Success : ProgressMessageType.Failure
-
-		if let msg = screenletView?.progressMessageForAction(interactor.actionName!, messageType: messageType) {
-			showHUDWithMessage(msg,
-				closeMode: (error == nil) ? .Autoclose_TouchClosable : .ManualClose_TouchClosable,
-				spinnerMode: .NoSpinner)
-		}
-		else {
-			hideHUD()
-		}
+		hideInteractorHUD(error)
 	}
 
 	/**
@@ -368,7 +387,6 @@ import QuartzCore
 			message: message,
 			closeMode: closeMode,
 			spinnerMode: spinnerMode)
-
 	}
 
 	public func showHUDAlert(#message: String) {
