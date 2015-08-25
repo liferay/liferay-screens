@@ -15,7 +15,7 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
  */
 public class ScreensSQLiteOpenHelper extends SQLiteOpenHelper {
 
-	public static final int DB_VERSION = 8;
+	public static final int DB_VERSION = 1;
 	public static final String SCREENS_CACHE_DB = "ScreensCacheDB";
 
 	public ScreensSQLiteOpenHelper() {
