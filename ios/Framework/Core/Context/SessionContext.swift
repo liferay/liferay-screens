@@ -73,6 +73,14 @@ import Foundation
 		return StaticInstance.userAttributes[key]
 	}
 
+	public class func createAnonymousBasicSession(userName: String, _ password: String) -> LRSession {
+		return LRSession(
+			server: LiferayServerContext.server,
+			authentication: LRBasicAuthentication(
+				username: userName,
+				password: password))
+	}
+
 	public class func createBasicSession(
 			#username: String,
 			password: String,

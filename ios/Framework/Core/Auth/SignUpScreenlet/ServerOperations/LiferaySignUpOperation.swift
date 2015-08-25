@@ -20,8 +20,17 @@ public class LiferaySignUpOperation: ServerOperation {
 
 	public var resultUserAttributes: [String:AnyObject]?
 
-	private var viewModel: SignUpViewModel {
-		return screenlet.screenletView as! SignUpViewModel
+	private let viewModel: SignUpViewModel
+	private let anonymousUsername: String
+	private let anonymousPassword: String
+
+
+	public init(viewModel: SignUpViewModel, anonymousUsername: String, anonymousPassword: String) {
+		self.viewModel = viewModel
+		self.anonymousUsername = anonymousUsername
+		self.anonymousPassword = anonymousPassword
+
+		super.init()
 	}
 
 
@@ -91,6 +100,10 @@ public class LiferaySignUpOperation: ServerOperation {
 			lastError = nil
 			resultUserAttributes = result as? [String:AnyObject]
 		}
+	}
+
+	override internal func createSession() -> LRSession? {
+		return SessionContext.createAnonymousBasicSession(anonymousUsername, anonymousPassword)
 	}
 
 }

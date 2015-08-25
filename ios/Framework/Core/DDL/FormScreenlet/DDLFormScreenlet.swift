@@ -97,6 +97,10 @@ import UIKit
 		return screenletView as! DDLFormView
 	}
 
+	internal var viewModel: DDLFormViewModel {
+		return screenletView as! DDLFormViewModel
+	}
+
 	private var uploadStatus = UploadStatus.Idle
 
 	private let LoadFormAction = "load-form"

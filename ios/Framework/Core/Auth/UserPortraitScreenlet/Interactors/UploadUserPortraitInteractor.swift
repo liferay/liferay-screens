@@ -31,7 +31,6 @@ class UploadUserPortraitInteractor: ServerOperationInteractor {
 
 	override func createOperation() -> LiferayUploadUserPortraitOperation {
 		return LiferayUploadUserPortraitOperation(
-				screenlet: self.screenlet,
 				userId: self.userId,
 				image: self.image)
 	}

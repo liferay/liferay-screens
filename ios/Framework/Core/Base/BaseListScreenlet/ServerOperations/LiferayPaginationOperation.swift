@@ -16,32 +16,34 @@ import UIKit
 
 public class LiferayPaginationOperation: ServerOperation {
 
-	public let page: Int
+	private let startRow: Int
+	private let endRow: Int
+	private let computeRowCount: Bool
 
 	public var resultPageContent: [[String:AnyObject]]?
 	public var resultRowCount: Int?
 
 	override public var hudLoadingMessage: HUDMessage? {
-		return (page == 0)
+		return (startRow == 0)
 				? (LocalizedString("core", "base-list-loading-message", self),
 						details: LocalizedString("core", "base-list-loading-details", self))
 				: nil
 	}
 	override public var hudFailureMessage: HUDMessage? {
-		return (page == 0) 
+		return (startRow == 0)
 				? (LocalizedString("core", "base-list-loading-error", self), details: nil)
 				: nil
 	}
 
 
-	private var computeRowCount: Bool
-	
 
-	internal init(screenlet: BaseScreenlet, page: Int, computeRowCount: Bool) {
-		self.page = page
+
+	internal init(startRow: Int, endRow: Int, computeRowCount: Bool) {
+		self.startRow = startRow
+		self.endRow = endRow
 		self.computeRowCount = computeRowCount
 
-		super.init(screenlet: screenlet)
+		super.init()
 	}
 
 
@@ -54,7 +56,7 @@ public class LiferayPaginationOperation: ServerOperation {
 		resultRowCount = nil
 		lastError = nil
 
-		doGetPageRowsOperation(session: batchSession, page: page)
+		doGetPageRowsOperation(session: batchSession, startRow: startRow, endRow: endRow)
 
 		if batchSession.commands.count < 1 {
 			lastError = NSError.errorWithCause(.AbortedDueToPreconditions, userInfo: nil)
@@ -87,7 +89,7 @@ public class LiferayPaginationOperation: ServerOperation {
 		}
 	}
 
-	internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
+	internal func doGetPageRowsOperation(#session: LRBatchSession, startRow: Int, endRow: Int) {
 		assertionFailure("doGetPageRowsOperation must be overriden")
 	}
 

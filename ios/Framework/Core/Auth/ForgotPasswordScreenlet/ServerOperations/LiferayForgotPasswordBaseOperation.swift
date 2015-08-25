@@ -20,9 +20,20 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 
 	public var resultPasswordSent: Bool?
 
-	internal var viewModel: ForgotPasswordViewModel {
-		return screenlet.screenletView as! ForgotPasswordViewModel
+	internal let viewModel: ForgotPasswordViewModel
+
+	private let anonymousUsername: String
+	private let anonymousPassword: String
+
+
+	public init(viewModel: ForgotPasswordViewModel, anonymousUsername: String, anonymousPassword: String) {
+		self.viewModel = viewModel
+		self.anonymousUsername = anonymousUsername
+		self.anonymousPassword = anonymousPassword
+
+		super.init()
 	}
+
 
 	//MARK ServerOperation
 
@@ -57,6 +68,10 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 			lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
 			resultPasswordSent = nil
 		}
+	}
+
+	override internal func createSession() -> LRSession? {
+		return SessionContext.createAnonymousBasicSession(anonymousUsername, anonymousPassword)
 	}
 
 	//MARK: Template Methods

@@ -32,9 +32,11 @@ class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 	}
 
 	override func createOperation() -> LiferayAssetListPageOperation {
+		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
+
 		let operation = LiferayAssetListPageOperation(
-				screenlet: self.screenlet,
-				page: self.page,
+				startRow: pager(self.page),
+				endRow: pager(self.page + 1),
 				computeRowCount: self.computeRowCount)
 
 		operation.groupId = (self.groupId != 0)

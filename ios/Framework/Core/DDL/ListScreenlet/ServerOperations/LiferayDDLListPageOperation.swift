@@ -19,13 +19,15 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 	public var userId: Int64?
 	public var recordSetId: Int64?
 
-	internal var ddlListScreenlet: DDLListScreenlet {
-		return self.screenlet as! DDLListScreenlet
+	internal let viewModel: DDLListViewModel
+
+
+	public init(viewModel: DDLListViewModel, startRow: Int, endRow: Int, computeRowCount: Bool) {
+		self.viewModel = viewModel
+
+		super.init(startRow: startRow, endRow: endRow, computeRowCount: computeRowCount)
 	}
 
-	internal var viewModel: DDLListViewModel {
-		return screenlet.screenletView as! DDLListViewModel
-	}
 
 	override func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -43,22 +45,22 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 		return error
 	}
 
-	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
+	override internal func doGetPageRowsOperation(#session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		if userId == nil {
 			service.getDdlRecordsWithDdlRecordSetId(recordSetId!,
 					locale: NSLocale.currentLocaleString,
-					start: Int32(ddlListScreenlet.firstRowForPage(page)),
-					end: Int32(ddlListScreenlet.firstRowForPage(page + 1)),
+					start: Int32(startRow),
+					end: Int32(endRow),
 					error: nil)
 		}
 		else {
 			service.getDdlRecordsWithDdlRecordSetId(recordSetId!,
 					userId: userId!,
 					locale: NSLocale.currentLocaleString,
-					start: Int32(ddlListScreenlet.firstRowForPage(page)),
-					end: Int32(ddlListScreenlet.firstRowForPage(page + 1)),
+					start: Int32(startRow),
+					end: Int32(endRow),
 					error: nil)
 		}
 	}

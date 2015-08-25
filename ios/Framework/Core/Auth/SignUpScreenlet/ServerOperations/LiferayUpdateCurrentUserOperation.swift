@@ -18,8 +18,13 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 
 	public var resultUserAttributes: [String:AnyObject]?
 
-	private var viewModel: SignUpViewModel {
-		return screenlet.screenletView as! SignUpViewModel
+	private let viewModel: SignUpViewModel
+
+
+	public init(viewModel: SignUpViewModel) {
+		self.viewModel = viewModel
+
+		super.init()
 	}
 
 

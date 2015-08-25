@@ -39,19 +39,7 @@ public class ServerOperation: NSOperation {
 
 	public var lastError: NSError?
 
-	internal var screenlet: BaseScreenlet
 	internal var onComplete: (ServerOperation -> Void)?
-
-	internal var anonymousAuth: AnonymousBasicAuthType? {
-		return screenlet as? AnonymousBasicAuthType
-	}
-
-
-	public init(screenlet: BaseScreenlet) {
-		self.screenlet = screenlet
-
-		super.init()
-	}
 
 
 	//MARK: NSOperation
@@ -111,31 +99,16 @@ public class ServerOperation: NSOperation {
 	}
 
 	internal func createSession() -> LRSession? {
-		if let anonymousAuthValue = anonymousAuth {
-			if anonymousAuthValue.anonymousApiUserName == nil ||
-					anonymousAuthValue.anonymousApiPassword == nil {
-
-				lastError = NSError.errorWithCause(.AbortedDueToPreconditions,
-						message: "User name and password are required for anonymous API calls")
-
-				return nil
-			}
-
-			return LRSession(
-					server: LiferayServerContext.server,
-					authentication: LRBasicAuthentication(
-							username: anonymousAuthValue.anonymousApiUserName!,
-							password: anonymousAuthValue.anonymousApiPassword!))
-		}
-		else if !SessionContext.hasSession {
+		if !SessionContext.hasSession {
 			lastError = NSError.errorWithCause(.AbortedDueToPreconditions,
-					message: "Login required to use this screenlet")
+					message: "Login required to use this operation")
 
 			return nil
 		}
 
 		return SessionContext.createSessionFromCurrentSession()
 	}
+
 
 	//MARK: Private methods
 

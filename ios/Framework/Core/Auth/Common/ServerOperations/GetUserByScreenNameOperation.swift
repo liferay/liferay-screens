@@ -19,11 +19,11 @@ public class GetUserByScreenNameOperation: GetUserBaseOperation {
 	private var companyId: Int64
 	private var screenName: String?
 
-	public init(screenlet: BaseScreenlet, companyId: Int64, screenName: String?) {
+	public init(companyId: Int64, screenName: String?) {
 		self.companyId = companyId
 		self.screenName = screenName
 
-		super.init(screenlet: screenlet)
+		super.init()
 	}
 
 	override internal func validateData() -> ValidationError? {

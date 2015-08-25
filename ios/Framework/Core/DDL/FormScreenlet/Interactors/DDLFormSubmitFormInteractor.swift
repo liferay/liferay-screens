@@ -22,7 +22,7 @@ class DDLFormSubmitFormInteractor: ServerOperationInteractor {
 	override func createOperation() -> LiferayDDLFormSubmitOperation {
 		let screenlet = self.screenlet as! DDLFormScreenlet
 
-		let operation = LiferayDDLFormSubmitOperation(screenlet: screenlet)
+		let operation = LiferayDDLFormSubmitOperation(viewModel: screenlet.viewModel)
 
 		operation.groupId = (screenlet.groupId != 0)
 				? screenlet.groupId : LiferayServerContext.groupId

@@ -34,8 +34,8 @@ class BaseListPageLoadInteractor: ServerOperationInteractor {
 		assertionFailure("createOperation must be overriden")
 
 		return LiferayPaginationOperation(
-				screenlet: self.screenlet,
-				page: self.page,
+				startRow: 0,
+				endRow: 0,
 				computeRowCount: self.computeRowCount)
 	}
 

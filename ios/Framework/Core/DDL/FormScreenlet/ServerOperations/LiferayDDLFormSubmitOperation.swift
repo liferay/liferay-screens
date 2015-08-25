@@ -40,8 +40,13 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 		return (LocalizedString("ddlform-screenlet", "submitting-error", self), details: nil)
 	}
 
-	internal var viewModel: DDLFormViewModel {
-		return screenlet.screenletView as! DDLFormViewModel
+	internal let viewModel: DDLFormViewModel
+
+
+	public init(viewModel: DDLFormViewModel) {
+		self.viewModel = viewModel
+
+		super.init()
 	}
 
 

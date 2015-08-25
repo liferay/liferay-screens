@@ -28,7 +28,6 @@ class UserPortraitLoadByScreenNameInteractor: UserPortraitBaseLoadUserInteractor
 
 	override func createLoadUserOperation() -> GetUserBaseOperation? {
 		return GetUserByScreenNameOperation(
-				screenlet: screenlet,
 				companyId: companyId,
 				screenName: screenName)
 	}

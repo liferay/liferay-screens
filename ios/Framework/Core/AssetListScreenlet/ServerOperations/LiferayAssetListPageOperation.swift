@@ -18,10 +18,6 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	public var groupId: Int64?
 	public var classNameId: Int?
 
-	internal var assetListScreenlet: AssetListScreenlet {
-		return self.screenlet as! AssetListScreenlet
-	}
-
 
 	//MARK: ServerOperation
 
@@ -44,13 +40,13 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	//MARK: LiferayPaginationOperation
 
-	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
+	override internal func doGetPageRowsOperation(#session: LRBatchSession, startRow: Int, endRow: Int) {
 		let screenletsService = LRScreensassetentryService_v62(session: session)
 
 		var entryQueryAttributes = configureEntryQueryAttributes()
 
-		entryQueryAttributes["start"] = assetListScreenlet.firstRowForPage(page)
-		entryQueryAttributes["end"] = assetListScreenlet.firstRowForPage(page + 1)
+		entryQueryAttributes["start"] = startRow
+		entryQueryAttributes["end"] = endRow
 
 		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 

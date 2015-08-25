@@ -26,12 +26,12 @@ class DDLFormLoadRecordInteractor: ServerOperationInteractor {
 	override func createOperation() -> LiferayDDLFormRecordLoadOperation? {
 		let screenlet = self.screenlet as! DDLFormScreenlet
 
-		let loadRecordOperation = LiferayDDLFormRecordLoadOperation(screenlet: screenlet)
+		let loadRecordOperation = LiferayDDLFormRecordLoadOperation()
 
 		loadRecordOperation.recordId = screenlet.recordId
 
 		if screenlet.formView.isRecordEmpty {
-			let loadFormOperation = LiferayDDLFormLoadOperation(screenlet: screenlet)
+			let loadFormOperation = LiferayDDLFormLoadOperation()
 
 			loadFormOperation.structureId = screenlet.structureId
 

@@ -41,11 +41,11 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 	}
 
 
-	public init(screenlet: BaseScreenlet, userId: Int64, image: UIImage) {
+	public init(userId: Int64, image: UIImage) {
 		self.userId = userId
 		self.image = image
 
-		super.init(screenlet: screenlet)
+		super.init()
 	}
 
 

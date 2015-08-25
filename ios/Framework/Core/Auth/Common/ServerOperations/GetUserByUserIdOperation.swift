@@ -16,12 +16,12 @@ import UIKit
 
 public class GetUserByUserIdOperation: GetUserBaseOperation {
 
-	private var userId: Int64?
+	private let userId: Int64?
 
-	public init(screenlet: BaseScreenlet, userId: Int64?) {
+	public init(userId: Int64?) {
 		self.userId = userId
 
-		super.init(screenlet: screenlet)
+		super.init()
 	}
 
 	override internal func validateData() -> ValidationError? {

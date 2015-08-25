@@ -20,7 +20,8 @@ class WebContentDisplayLoadInteractor: ServerOperationInteractor {
 
 	override func createOperation() -> LiferayWebContentLoadOperation {
 		let screenlet = self.screenlet as! WebContentDisplayScreenlet
-		let operation = LiferayWebContentLoadOperation(screenlet: self.screenlet)
+
+		let operation = LiferayWebContentLoadOperation()
 
 		operation.groupId = (screenlet.groupId != 0)
 				? screenlet.groupId : LiferayServerContext.groupId

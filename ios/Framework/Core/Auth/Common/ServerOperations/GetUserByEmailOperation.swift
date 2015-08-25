@@ -19,11 +19,11 @@ public class GetUserByEmailOperation: GetUserBaseOperation {
 	private var companyId: Int64
 	private var emailAddress: String?
 
-	public init(screenlet: BaseScreenlet, companyId: Int64, emailAddress:String?) {
+	public init(companyId: Int64, emailAddress:String?) {
 		self.companyId = companyId
 		self.emailAddress = emailAddress
 
-		super.init(screenlet: screenlet)
+		super.init()
 	}
 
 	override internal func validateData() -> ValidationError? {

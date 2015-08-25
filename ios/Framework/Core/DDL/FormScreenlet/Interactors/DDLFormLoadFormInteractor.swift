@@ -22,7 +22,7 @@ class DDLFormLoadFormInteractor: ServerOperationInteractor {
 	override func createOperation() -> LiferayDDLFormLoadOperation {
 		let screenlet = self.screenlet as! DDLFormScreenlet
 
-		let operation = LiferayDDLFormLoadOperation(screenlet: screenlet)
+		let operation = LiferayDDLFormLoadOperation()
 
 		operation.structureId = screenlet.structureId
 
