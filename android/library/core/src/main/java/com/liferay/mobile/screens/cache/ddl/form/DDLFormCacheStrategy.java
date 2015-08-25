@@ -13,22 +13,23 @@ import static com.liferay.mobile.screens.cache.sql.StorIOSQLite.queryDelete;
 /**
  * @author Javier Gamarra
  */
-public class DDLRecordSearch implements CacheStrategy {
+public class DDLFormCacheStrategy implements CacheStrategy {
 
 	@Override
-	public DDLRecordCache getById(String id) {
-		List query = queryGet(DDLRecordCache.class, DDLRecordCache.TABLE_NAME, WHERE_BY_ID, id);
-		return query.isEmpty() ? null : (DDLRecordCache) query.get(0);
+	public DDLFormCache getById(String id) {
+		List query = queryGet(DDLFormCache.class, DDLFormCache.TABLE_NAME, WHERE_BY_ID, id);
+		return query.isEmpty() ? null : (DDLFormCache) query.get(0);
 	}
 
 	@Override
-	public List<DDLRecordCache> get(String query, Object... args) {
-		return queryGet(DDLRecordCache.class, DDLRecordCache.TABLE_NAME, query, args);
+	public List<DDLFormCache> get(String query, Object... args) {
+		return queryGet(DDLFormCache.class, DDLFormCache.TABLE_NAME, query, args);
 	}
 
 	@Override
 	public Object set(CachedContent object) {
 		PutResult putResult = (PutResult) CacheSQL.querySet(object.getTableCache());
+
 		if (putResult.wasInserted() || putResult.wasUpdated()) {
 			return CacheSQL.querySet(object);
 		}
@@ -39,13 +40,13 @@ public class DDLRecordSearch implements CacheStrategy {
 
 	@Override
 	public void clear() {
-		queryDelete(DDLRecordCache.TABLE_NAME, null);
+		queryDelete(DDLFormCache.TABLE_NAME, null);
 	}
 
 	@Override
 	public void clear(String id) {
-		queryDelete(DDLRecordCache.TABLE_NAME, WHERE_BY_ID, id);
+		queryDelete(DDLFormCache.TABLE_NAME, WHERE_BY_ID, id);
 	}
 
-	private static final String WHERE_BY_ID = DDLRecordCache.RECORD_ID + " = ?";
+	private static final String WHERE_BY_ID = DDLFormCache.RECORD_SET_ID + " = ?";
 }

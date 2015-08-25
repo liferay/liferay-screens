@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.cache.ddl.form;
+package com.liferay.mobile.screens.cache.userportrait;
 
 import com.liferay.mobile.screens.cache.CachedContent;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
@@ -13,22 +13,23 @@ import static com.liferay.mobile.screens.cache.sql.StorIOSQLite.queryDelete;
 /**
  * @author Javier Gamarra
  */
-public class DDLFormSearch implements CacheStrategy {
+public class UserPortraitCacheStrategy implements CacheStrategy {
 
 	@Override
-	public DDLFormCache getById(String id) {
-		List query = queryGet(DDLFormCache.class, DDLFormCache.TABLE_NAME, WHERE_BY_ID, id);
-		return query.isEmpty() ? null : (DDLFormCache) query.get(0);
+	public UserPortraitCache getById(String id) {
+		List query = queryGet(UserPortraitCache.class, UserPortraitCache.TABLE_NAME, WHERE_BY_ID, id);
+		return query.isEmpty() ? null : (UserPortraitCache) query.get(0);
 	}
 
 	@Override
-	public List<DDLFormCache> get(String query, Object... args) {
-		return queryGet(DDLFormCache.class, DDLFormCache.TABLE_NAME, query, args);
+	public List<UserPortraitCacheStrategy> get(String query, Object... args) {
+		return queryGet(UserPortraitCache.class, UserPortraitCache.TABLE_NAME, query, args);
 	}
 
 	@Override
 	public Object set(CachedContent object) {
 		PutResult putResult = (PutResult) CacheSQL.querySet(object.getTableCache());
+
 		if (putResult.wasInserted() || putResult.wasUpdated()) {
 			return CacheSQL.querySet(object);
 		}
@@ -39,13 +40,13 @@ public class DDLFormSearch implements CacheStrategy {
 
 	@Override
 	public void clear() {
-		queryDelete(DDLFormCache.TABLE_NAME, null);
+		queryDelete(UserPortraitCache.TABLE_NAME, null);
 	}
 
 	@Override
 	public void clear(String id) {
-		queryDelete(DDLFormCache.TABLE_NAME, WHERE_BY_ID, id);
+		queryDelete(UserPortraitCache.TABLE_NAME, WHERE_BY_ID, id);
 	}
 
-	private static final String WHERE_BY_ID = DDLFormCache.RECORD_SET_ID + " = ?";
+	private static final String WHERE_BY_ID = UserPortraitCache.USER_ID + " = ?";
 }

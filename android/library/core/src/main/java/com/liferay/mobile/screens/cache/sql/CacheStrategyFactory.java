@@ -1,11 +1,11 @@
 package com.liferay.mobile.screens.cache.sql;
 
 import com.liferay.mobile.screens.cache.CachedType;
-import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadSearch;
-import com.liferay.mobile.screens.cache.ddl.form.DDLFormSearch;
-import com.liferay.mobile.screens.cache.ddl.form.DDLRecordSearch;
-import com.liferay.mobile.screens.cache.tablecache.TableCacheSearch;
-import com.liferay.mobile.screens.cache.userportrait.UserPortraitSearch;
+import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCacheStrategy;
+import com.liferay.mobile.screens.cache.ddl.form.DDLFormCacheStrategy;
+import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCacheStrategy;
+import com.liferay.mobile.screens.cache.tablecache.TableCacheStrategy;
+import com.liferay.mobile.screens.cache.userportrait.UserPortraitCacheStrategy;
 
 import static com.liferay.mobile.screens.cache.DefaultCachedType.DDL_FORM;
 import static com.liferay.mobile.screens.cache.DefaultCachedType.DDL_RECORD;
@@ -19,20 +19,19 @@ public class CacheStrategyFactory {
 
 	public CacheStrategy recoverStrategy(CachedType cachedType) {
 		if (DOCUMENT_UPLOAD.equals(cachedType)) {
-			return new DocumentUploadSearch();
+			return new DocumentUploadCacheStrategy();
 		}
 		else if (DDL_FORM.equals(cachedType)) {
-			return new DDLFormSearch();
+			return new DDLFormCacheStrategy();
 		}
 		else if (DDL_RECORD.equals(cachedType)) {
-			return new DDLRecordSearch();
+			return new DDLRecordCacheStrategy();
 		}
 		else if (USER_PORTRAIT.equals(cachedType)) {
-			return new UserPortraitSearch();
+			return new UserPortraitCacheStrategy();
 		}
 		else {
-			return new TableCacheSearch(cachedType);
+			return new TableCacheStrategy(cachedType);
 		}
 	}
-
 }

@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.cache.userportrait;
+package com.liferay.mobile.screens.cache.ddl.form;
 
 import com.liferay.mobile.screens.cache.CachedContent;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
@@ -13,22 +13,23 @@ import static com.liferay.mobile.screens.cache.sql.StorIOSQLite.queryDelete;
 /**
  * @author Javier Gamarra
  */
-public class UserPortraitSearch implements CacheStrategy {
+public class DDLRecordCacheStrategy implements CacheStrategy {
 
 	@Override
-	public UserPortraitCache getById(String id) {
-		List query = queryGet(UserPortraitCache.class, UserPortraitCache.TABLE_NAME, WHERE_BY_ID, id);
-		return query.isEmpty() ? null : (UserPortraitCache) query.get(0);
+	public DDLRecordCache getById(String id) {
+		List query = queryGet(DDLRecordCache.class, DDLRecordCache.TABLE_NAME, WHERE_BY_ID, id);
+		return query.isEmpty() ? null : (DDLRecordCache) query.get(0);
 	}
 
 	@Override
-	public List<UserPortraitSearch> get(String query, Object... args) {
-		return queryGet(UserPortraitCache.class, UserPortraitCache.TABLE_NAME, query, args);
+	public List<DDLRecordCache> get(String query, Object... args) {
+		return queryGet(DDLRecordCache.class, DDLRecordCache.TABLE_NAME, query, args);
 	}
 
 	@Override
 	public Object set(CachedContent object) {
 		PutResult putResult = (PutResult) CacheSQL.querySet(object.getTableCache());
+
 		if (putResult.wasInserted() || putResult.wasUpdated()) {
 			return CacheSQL.querySet(object);
 		}
@@ -39,13 +40,13 @@ public class UserPortraitSearch implements CacheStrategy {
 
 	@Override
 	public void clear() {
-		queryDelete(UserPortraitCache.TABLE_NAME, null);
+		queryDelete(DDLRecordCache.TABLE_NAME, null);
 	}
 
 	@Override
 	public void clear(String id) {
-		queryDelete(UserPortraitCache.TABLE_NAME, WHERE_BY_ID, id);
+		queryDelete(DDLRecordCache.TABLE_NAME, WHERE_BY_ID, id);
 	}
 
-	private static final String WHERE_BY_ID = UserPortraitCache.USER_ID + " = ?";
+	private static final String WHERE_BY_ID = DDLRecordCache.RECORD_ID + " = ?";
 }

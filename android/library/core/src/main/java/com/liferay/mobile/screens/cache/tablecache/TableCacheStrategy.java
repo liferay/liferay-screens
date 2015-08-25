@@ -15,12 +15,12 @@ import static com.liferay.mobile.screens.cache.sql.StorIOSQLite.queryDelete;
 /**
  * @author Javier Gamarra
  */
-public class TableCacheSearch implements CacheStrategy<TableCache> {
+public class TableCacheStrategy implements CacheStrategy<TableCache> {
 
-	public static final String TYPE_AND_GROUP_QUERY = TableCache.CACHED_TYPE + " = ? AND "
+	public static final String TYPE_AND_GROUP_QUERY = TableCache.TYPE + " = ? AND "
 		+ TableCache.GROUP_ID + " = ?";
 
-	public TableCacheSearch(CachedType cachedType) {
+	public TableCacheStrategy(CachedType cachedType) {
 		_cachedType = cachedType;
 	}
 
@@ -43,7 +43,7 @@ public class TableCacheSearch implements CacheStrategy<TableCache> {
 		arguments.add(0, _cachedType.name());
 
 		return queryGet(TableCache.class, TableCache.TABLE_NAME,
-			TableCache.CACHED_TYPE + " = ?" + query, arguments.toArray());
+			TableCache.TYPE + " = ?" + query, arguments.toArray());
 	}
 
 	@Override

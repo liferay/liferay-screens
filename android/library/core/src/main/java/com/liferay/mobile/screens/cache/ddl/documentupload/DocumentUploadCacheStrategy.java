@@ -13,7 +13,7 @@ import static com.liferay.mobile.screens.cache.sql.StorIOSQLite.queryDelete;
 /**
  * @author Javier Gamarra
  */
-public class DocumentUploadSearch implements CacheStrategy {
+public class DocumentUploadCacheStrategy implements CacheStrategy {
 
 	@Override
 	public DocumentUploadCache getById(String id) {
@@ -29,6 +29,7 @@ public class DocumentUploadSearch implements CacheStrategy {
 	@Override
 	public Object set(CachedContent object) {
 		PutResult putResult = (PutResult) CacheSQL.querySet(object.getTableCache());
+
 		if (putResult.wasInserted() || putResult.wasUpdated()) {
 			return CacheSQL.querySet(object);
 		}
