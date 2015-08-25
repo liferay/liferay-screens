@@ -18,7 +18,6 @@ public class UserPortraitCache implements CachedContent {
 	public static final String PORTRAIT_ID = "portraitId";
 	public static final String UUID = "uuid";
 	public static final String USER_ID = "userId";
-	public static final String GROUP_ID = "groupId";
 
 	public UserPortraitCache() {
 		super();

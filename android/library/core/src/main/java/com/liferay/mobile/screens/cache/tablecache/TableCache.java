@@ -9,7 +9,6 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
 import java.util.Date;
-import java.util.Locale;
 
 /**
  * @author Javier Gamarra
@@ -19,7 +18,7 @@ public class TableCache implements CachedContent {
 
 	public static final String TABLE_NAME = "cache";
 	public static final String ID = "id";
-	public static final String CACHED_TYPE = "type";
+	public static final String TYPE = "type";
 	public static final String DATE = "date";
 	public static final String USER_ID = "userId";
 	public static final String GROUP_ID = "groupId";
@@ -37,10 +36,10 @@ public class TableCache implements CachedContent {
 
 	public TableCache(String id, CachedType cachedType, String content) {
 		this(id, cachedType, content, SessionContext.getLoggedUser() == null ? 0 : SessionContext.getLoggedUser().getId(),
-			LiferayServerContext.getGroupId(), LiferayLocale.getDefaultLocale());
+			LiferayServerContext.getGroupId(), LiferayLocale.getDefaultLocale().getDisplayLanguage());
 	}
 
-	public TableCache(String id, CachedType cachedType, String content, long userId, long groupId, Locale locale) {
+	public TableCache(String id, CachedType cachedType, String content, long userId, long groupId, String locale) {
 		super();
 		_id = id;
 		_cachedType = cachedType;
@@ -49,7 +48,7 @@ public class TableCache implements CachedContent {
 		_date = new Date().getTime();
 		_userId = userId;
 		_groupId = groupId;
-		_locale = LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
+		_locale = LiferayLocale.getSupportedLocale(locale);
 		_sent = 0;
 	}
 
@@ -97,7 +96,7 @@ public class TableCache implements CachedContent {
 
 	@StorIOSQLiteColumn(name = ID, key = true)
 	String _id;
-	@StorIOSQLiteColumn(name = CACHED_TYPE, key = true)
+	@StorIOSQLiteColumn(name = TYPE, key = true)
 	String _cachedTypeString;
 	@StorIOSQLiteColumn(name = GROUP_ID, key = true)
 	long _groupId;
@@ -111,6 +110,6 @@ public class TableCache implements CachedContent {
 	int _sent;
 	@StorIOSQLiteColumn(name = LOCALE)
 	String _locale;
-	
+
 	private CachedType _cachedType;
 }

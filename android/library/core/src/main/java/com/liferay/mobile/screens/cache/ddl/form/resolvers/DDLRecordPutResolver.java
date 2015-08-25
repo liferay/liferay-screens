@@ -37,12 +37,11 @@ public class DDLRecordPutResolver extends DefaultPutResolver<DDLRecordCache> {
 	protected ContentValues mapToContentValues(@NonNull DDLRecordCache object) {
 		ContentValues contentValues = new ContentValues(6);
 
-		contentValues.put(DDLFormCache.STRUCTURE_ID, object.getStructureId());
-		contentValues.put(DDLFormCache.RECORD_ID, object.getRecordId());
-		contentValues.put(DDLFormCache.RECORD_SET_ID, object.getRecordSetId());
-		contentValues.put(DDLFormCache.CONTENT, object.getContent());
-		contentValues.put(DDLFormCache.LOCALE, object.getLocale());
-		contentValues.put(DDLFormCache.TYPE, object.getCachedType().name());
+		contentValues.put(DDLRecordCache.STRUCTURE_ID, object.getStructureId());
+		contentValues.put(DDLRecordCache.RECORD_ID, object.getRecordId());
+		contentValues.put(DDLRecordCache.RECORD_SET_ID, object.getRecordSetId());
+		contentValues.put(DDLRecordCache.CONTENT, object.getContent());
+		contentValues.put(DDLRecordCache.LOCALE, object.getLocale());
 		contentValues.put(DDLRecordCache.SENT, object.isSent());
 
 		return contentValues;

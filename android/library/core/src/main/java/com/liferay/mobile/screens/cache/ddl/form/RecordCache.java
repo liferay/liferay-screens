@@ -19,13 +19,13 @@ public abstract class RecordCache implements CachedContent {
 	public static final String RECORD_ID = "recordId";
 	public static final String LOCALE = "locale";
 	public static final String CONTENT = "content";
-	public static final String TYPE = "type";
 
 	public RecordCache() {
 		super();
 	}
 
-	public RecordCache(Record record, JSONObject jsonObject) {
+	public RecordCache(long groupId, Record record, JSONObject jsonObject) {
+		_groupId = groupId;
 		_recordId = record.getRecordId();
 		_recordSetId = record.getRecordSetId();
 		_structureId = record.getStructureId();
@@ -65,6 +65,14 @@ public abstract class RecordCache implements CachedContent {
 		_recordSetId = recordSetId;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public String getLocale() {
 		return _locale;
 	}
@@ -86,7 +94,7 @@ public abstract class RecordCache implements CachedContent {
 	}
 
 	public TableCache getTableCache() {
-		return new TableCache(String.valueOf(getId()), getCachedType(), _content);
+		return new TableCache(String.valueOf(getId()), getCachedType(), _content, 0, _groupId, _locale);
 	}
 
 	protected long _structureId;
@@ -94,4 +102,5 @@ public abstract class RecordCache implements CachedContent {
 	protected long _recordSetId;
 	protected String _locale;
 	protected String _content;
+	private long _groupId;
 }

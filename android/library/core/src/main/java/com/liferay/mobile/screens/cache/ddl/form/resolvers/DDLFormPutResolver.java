@@ -41,7 +41,6 @@ public class DDLFormPutResolver extends DefaultPutResolver<DDLFormCache> {
 		contentValues.put(DDLFormCache.RECORD_SET_ID, object.getRecordSetId());
 		contentValues.put(DDLFormCache.CONTENT, object.getContent());
 		contentValues.put(DDLFormCache.LOCALE, object.getLocale());
-		contentValues.put(DDLFormCache.TYPE, object.getCachedType().name());
 
 		return contentValues;
 	}
