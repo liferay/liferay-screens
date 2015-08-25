@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.liferay.mobile.screens.cache.Cache;
-import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
@@ -41,11 +40,11 @@ public class CacheSyncService extends IntentService {
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		ConnectivityManager cm =
-				(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+			(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
 		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 		boolean isConnected = activeNetwork != null &&
-				activeNetwork.isConnectedOrConnecting();
+			activeNetwork.isConnectedOrConnecting();
 
 		if (isConnected) {
 
@@ -65,7 +64,7 @@ public class CacheSyncService extends IntentService {
 	private void sendPortrait(Cache cache) {
 		List<TableCache> documents = cache.get(DefaultCachedType.USER_PORTRAIT_UPLOAD, TableCache.SENT + " = 0");
 
-		UserPortraitUploadInteractorImpl userPortraitUploadInteractor = new UserPortraitUploadInteractorImpl(0, CachePolicy.NO_CACHE, OfflinePolicy.STORE_ON_ERROR);
+		UserPortraitUploadInteractorImpl userPortraitUploadInteractor = new UserPortraitUploadInteractorImpl(0, OfflinePolicy.STORE_ON_ERROR);
 
 		for (TableCache documentUpload : documents) {
 
@@ -83,7 +82,7 @@ public class CacheSyncService extends IntentService {
 	private void sendDocuments(Cache cache) {
 		List<DocumentUploadCache> documents = cache.get(DefaultCachedType.DOCUMENT_UPLOAD, DocumentUploadCache.SENT + " = 0");
 
-		DDLFormDocumentUploadInteractorImpl ddlFormDocumentUploadInteractor = new DDLFormDocumentUploadInteractorImpl(0, CachePolicy.NO_CACHE, OfflinePolicy.STORE_ON_ERROR);
+		DDLFormDocumentUploadInteractorImpl ddlFormDocumentUploadInteractor = new DDLFormDocumentUploadInteractorImpl(0, OfflinePolicy.STORE_ON_ERROR);
 
 		for (DocumentUploadCache documentUpload : documents) {
 			Map<String, Object> objectObjectHashMap = new HashMap<>();
@@ -91,7 +90,7 @@ public class CacheSyncService extends IntentService {
 			documentField.createLocalFile(documentUpload.getPath());
 			try {
 				ddlFormDocumentUploadInteractor.upload(documentUpload.getGroupId(), documentUpload.getUserId(), documentUpload.getRepositoryId(),
-						documentUpload.getFolderId(), documentUpload.getFilePrefix(), documentField);
+					documentUpload.getFolderId(), documentUpload.getFilePrefix(), documentField);
 			}
 			catch (Exception e) {
 				LiferayLogger.e("Error sending documents", e);
@@ -102,12 +101,12 @@ public class CacheSyncService extends IntentService {
 	private void sendRecords(Cache cache) throws Exception {
 		List<RecordCache> caches = cache.get(DefaultCachedType.DDL_RECORD, DDLRecordCache.SENT + " = 0");
 
-		DDLFormAddRecordInteractorImpl ddlFormAddRecordInteractor = new DDLFormAddRecordInteractorImpl(0, CachePolicy.NO_CACHE, OfflinePolicy.STORE_ON_ERROR);
+		DDLFormAddRecordInteractorImpl ddlFormAddRecordInteractor = new DDLFormAddRecordInteractorImpl(0, OfflinePolicy.STORE_ON_ERROR);
 
 		for (RecordCache recordCache : caches) {
 			Record record = recordCache.getRecord();
 			record.setCreatorUserId(SessionContext.getLoggedUser().getId());
-			ddlFormAddRecordInteractor.addRecord(LiferayServerContext.getGroupId(), recordCache.getContent(), record);
+			ddlFormAddRecordInteractor.sendOnline(LiferayServerContext.getGroupId(), recordCache.getContent(), record);
 		}
 	}
 }
