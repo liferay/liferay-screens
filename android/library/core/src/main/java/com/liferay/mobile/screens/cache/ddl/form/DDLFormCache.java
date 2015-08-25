@@ -17,8 +17,8 @@ public class DDLFormCache extends RecordCache {
 		super();
 	}
 
-	public DDLFormCache(Record record, JSONObject jsonObject) {
-		super(record, jsonObject);
+	public DDLFormCache(long groupId, Record record, JSONObject jsonObject) {
+		super(groupId, record, jsonObject);
 	}
 
 	@Override

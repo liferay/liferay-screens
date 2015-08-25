@@ -16,12 +16,10 @@ package com.liferay.mobile.screens.ddl.form.interactor.formload;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.ddmstructure.DDMStructureService;
-import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
-import com.liferay.mobile.screens.base.interactor.CacheCallback;
+import com.liferay.mobile.screens.base.interactor.BaseCachedReadRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.ddl.form.DDLFormCache;
 import com.liferay.mobile.screens.cache.ddl.form.RecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
@@ -35,36 +33,19 @@ import org.json.JSONException;
  * @author Jose Manuel Navarro
  */
 public class DDLFormLoadInteractorImpl
-	extends BaseCachedRemoteInteractor<DDLFormListener, DDLFormLoadEvent>
+	extends BaseCachedReadRemoteInteractor<DDLFormListener, DDLFormLoadEvent>
 	implements DDLFormLoadInteractor {
 
 	public DDLFormLoadInteractorImpl(int targetScreenletId, CachePolicy cachePolicy) {
-		super(targetScreenletId, cachePolicy, OfflinePolicy.NO_OFFLINE);
+		super(targetScreenletId, cachePolicy);
 	}
 
 	@Override
 	public void load(final Record record) throws Exception {
-		loadWithCache(new CacheCallback() {
-			@Override
-			public void loadOnline() throws Exception {
-				validate(record);
 
-				getDDMStructureService(record).getStructure(record.getStructureId());
-			}
+		validate(record);
 
-			@Override
-			public boolean retrieveFromCache() throws JSONException {
-				Cache cache = CacheSQL.getInstance();
-				RecordCache recordCache = (RecordCache) cache.getById(
-					DefaultCachedType.DDL_FORM, String.valueOf(record.getRecordSetId()));
-
-				if (recordCache != null) {
-					onEvent(new DDLFormLoadEvent(getTargetScreenletId(), recordCache.getJSONContent(), record));
-					return true;
-				}
-				return false;
-			}
-		});
+		loadWithCache(record);
 	}
 
 	public void onEvent(DDLFormLoadEvent event) {
@@ -72,32 +53,61 @@ public class DDLFormLoadInteractorImpl
 			return;
 		}
 
-		if (event.isFailed()) {
-			getListener().onDDLFormLoadFailed(event.getException());
-		}
-		else {
+		onEventWithCache(event);
 
-			Cache cache = CacheSQL.getInstance();
-			cache.set(new DDLFormCache(event.getRecord(), event.getJSONObject()));
+		try {
+			String xsd = event.getJSONObject().getString("xsd");
+			long userId = event.getJSONObject().getLong("userId");
 
-			try {
-				String xsd = event.getJSONObject().getString("xsd");
-				long userId = event.getJSONObject().getLong("userId");
+			Record formRecord = event.getRecord();
 
-				Record formRecord = event.getRecord();
+			formRecord.parseXsd(xsd);
 
-				formRecord.parseXsd(xsd);
-
-				if (formRecord.getCreatorUserId() == 0) {
-					formRecord.setCreatorUserId(userId);
-				}
-
-				getListener().onDDLFormLoaded(formRecord);
+			if (formRecord.getCreatorUserId() == 0) {
+				formRecord.setCreatorUserId(userId);
 			}
-			catch (JSONException e) {
-				getListener().onDDLFormLoadFailed(e);
-			}
+
+			getListener().onDDLFormLoaded(formRecord);
 		}
+		catch (JSONException e) {
+			getListener().onDDLFormLoadFailed(e);
+		}
+	}
+
+	@Override
+	protected void loadOnline(Object[] args) throws Exception {
+
+		Record record = (Record) args[0];
+
+		getDDMStructureService(record).getStructure(record.getStructureId());
+	}
+
+	@Override
+	protected boolean getFromCache(Object[] args) throws Exception {
+
+		Record record = (Record) args[0];
+
+		Cache cache = CacheSQL.getInstance();
+		RecordCache recordCache = (RecordCache) cache.getById(
+			DefaultCachedType.DDL_FORM, String.valueOf(record.getRecordSetId()));
+
+		if (recordCache != null) {
+			onEvent(new DDLFormLoadEvent(getTargetScreenletId(), recordCache.getJSONContent(), record));
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	protected void notifyError(DDLFormLoadEvent event) {
+		getListener().onDDLFormLoadFailed(event.getException());
+	}
+
+	@Override
+	protected void storeToCache(DDLFormLoadEvent event, Object... args) {
+		Cache cache = CacheSQL.getInstance();
+		long groupId = 0;
+		cache.set(new DDLFormCache(groupId, event.getRecord(), event.getJSONObject()));
 	}
 
 	protected DDMStructureService getDDMStructureService(Record record) {
@@ -121,6 +131,5 @@ public class DDLFormLoadInteractorImpl
 			throw new IllegalArgumentException("Record's Locale cannot be empty");
 		}
 	}
-
 
 }

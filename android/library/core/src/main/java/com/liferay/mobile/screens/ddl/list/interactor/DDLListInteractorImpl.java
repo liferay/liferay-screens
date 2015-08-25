@@ -18,7 +18,6 @@ import android.util.Pair;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.interactor.CacheCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
@@ -32,7 +31,6 @@ import com.liferay.mobile.screens.service.v62.ScreensddlrecordService;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.JSONUtil;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -46,7 +44,6 @@ import java.util.Map;
  */
 public class DDLListInteractorImpl
 	extends BaseListInteractor<DDLEntry, DDLListInteractorListener> implements DDLListInteractor {
-
 
 	public DDLListInteractorImpl(int targetScreenletId, CachePolicy cachePolicy) {
 		super(targetScreenletId, cachePolicy);
@@ -66,17 +63,7 @@ public class DDLListInteractorImpl
 			return;
 		}
 
-		loadWithCache(new CacheCallback() {
-			@Override
-			public void loadOnline() throws Exception {
-				loadRows(startRow, endRow, locale);
-			}
-
-			@Override
-			public boolean retrieveFromCache() throws Exception {
-				return loadFromCache(recordSetId, startRow, endRow, requestState, rowsRange);
-			}
-		});
+		loadWithCache(recordSetId, userId, startRow, endRow, locale, requestState, rowsRange);
 	}
 
 	@Override
@@ -85,20 +72,80 @@ public class DDLListInteractorImpl
 			return;
 		}
 
-		if (event.isFailed()) {
-			getListener().onListRowsFailure(
-				event.getStartRow(), event.getEndRow(), event.getException());
+		onEventWithCache(event);
+
+		List entries = event.getEntries();
+		int rowCount = event.getRowCount();
+
+		getListener().onListRowsReceived(
+			event.getStartRow(), event.getEndRow(), entries, rowCount);
+	}
+
+	@Override
+	protected void loadOnline(Object[] args) throws Exception {
+
+		int startRow = (int) args[2];
+		int endRow = (int) args[3];
+		Locale locale = (Locale) args[4];
+
+		loadRows(startRow, endRow, locale);
+	}
+
+	@Override
+	protected void notifyError(BaseListEvent event) {
+		getListener().onListRowsFailure(event.getStartRow(), event.getEndRow(), event.getException());
+	}
+
+	@Override
+	protected boolean getFromCache(Object[] args) throws Exception {
+
+		long recordSetId = (long) args[0];
+		int startRow = (int) args[2];
+		int endRow = (int) args[3];
+		RequestState requestState = (RequestState) args[5];
+		Pair rowsRange = (Pair) args[6];
+
+		Cache cache = CacheSQL.getInstance();
+		String query = " AND " + TableCache.ID + " >= ? AND " + TableCache.ID + " < ?";
+		List<TableCache> ddlEntryCache = (List<TableCache>) cache.get(DefaultCachedType.DDL_LIST,
+			query, createId(String.valueOf(recordSetId), startRow), createId(String.valueOf(recordSetId), endRow));
+
+		if (ddlEntryCache != null && !ddlEntryCache.isEmpty()) {
+
+
+			requestState.put(getTargetScreenletId(), rowsRange);
+
+			List<DDLEntry> entries = new ArrayList<>();
+
+			for (TableCache tableCache : ddlEntryCache) {
+				entries.add(new DDLEntry(JSONUtil.toMap(new JSONObject(tableCache.getContent()))));
+			}
+
+			TableCache tableCache = (TableCache) cache.getById(DefaultCachedType.DDL_LIST_COUNT, String.valueOf(recordSetId));
+
+			RequestState.getInstance().remove(getTargetScreenletId(), rowsRange);
+
+			EventBusUtil.post(new BaseListEvent(
+				getTargetScreenletId(), startRow, endRow, entries, Integer.valueOf(tableCache.getContent())));
+
+			return true;
 		}
-		else {
+		return false;
+	}
 
-			storeToCache(event);
+	@Override
+	protected void storeToCache(BaseListEvent event, Object... args) {
+		Cache cache = CacheSQL.getInstance();
+		cache.set(new TableCache(String.valueOf(_recordSetId), DefaultCachedType.DDL_LIST_COUNT, String.valueOf(event.getRowCount())));
 
-			List entries = event.getEntries();
-			int rowCount = event.getRowCount();
+		for (int i = 0; i < event.getEntries().size(); i++) {
+			DDLEntry ddlEntry = (DDLEntry) event.getEntries().get(i);
 
+			int range = i + event.getStartRow();
 
-			getListener().onListRowsReceived(
-				event.getStartRow(), event.getEndRow(), entries, rowCount);
+			Map<String, Object> values = ddlEntry.getValues();
+			Object recordSetId = ddlEntry.getAttributes("recordSetId");
+			cache.set(new TableCache(createId(recordSetId.toString(), range), DefaultCachedType.DDL_LIST, new JSONObject(values).toString()));
 		}
 	}
 
@@ -137,50 +184,6 @@ public class DDLListInteractorImpl
 			throw new IllegalArgumentException(
 				"ddlRecordSetId cannot be 0 or negative");
 		}
-	}
-
-	private void storeToCache(BaseListEvent event) {
-		Cache cache = CacheSQL.getInstance();
-		cache.set(new TableCache(String.valueOf(_recordSetId), DefaultCachedType.DDL_LIST_COUNT, String.valueOf(event.getRowCount())));
-
-		for (int i = 0; i < event.getEntries().size(); i++) {
-			DDLEntry ddlEntry = (DDLEntry) event.getEntries().get(i);
-
-			int range = i + event.getStartRow();
-
-			Map<String, Object> values = ddlEntry.getValues();
-			Object recordSetId = ddlEntry.getAttributes("recordSetId");
-			cache.set(new TableCache(createId(recordSetId.toString(), range), DefaultCachedType.DDL_LIST, new JSONObject(values).toString()));
-		}
-	}
-
-	private boolean loadFromCache(long recordSetId, int startRow, int endRow, RequestState requestState, Pair<Integer, Integer> rowsRange) throws JSONException {
-		Cache cache = CacheSQL.getInstance();
-		String query = " AND " + TableCache.ID + " >= ? AND " + TableCache.ID + " < ?";
-		List<TableCache> ddlEntryCache = (List<TableCache>) cache.get(DefaultCachedType.DDL_LIST,
-			query, createId(String.valueOf(recordSetId), startRow), createId(String.valueOf(recordSetId), endRow));
-
-		if (ddlEntryCache != null && !ddlEntryCache.isEmpty()) {
-
-
-			requestState.put(getTargetScreenletId(), rowsRange);
-
-			List<DDLEntry> entries = new ArrayList<>();
-
-			for (TableCache tableCache : ddlEntryCache) {
-				entries.add(new DDLEntry(JSONUtil.toMap(new JSONObject(tableCache.getContent()))));
-			}
-
-			TableCache tableCache = (TableCache) cache.getById(DefaultCachedType.DDL_LIST_COUNT, String.valueOf(recordSetId));
-
-			RequestState.getInstance().remove(getTargetScreenletId(), rowsRange);
-
-			EventBusUtil.post(new BaseListEvent(
-				getTargetScreenletId(), startRow, endRow, entries, Integer.valueOf(tableCache.getContent())));
-
-			return true;
-		}
-		return false;
 	}
 
 	private long _recordSetId;

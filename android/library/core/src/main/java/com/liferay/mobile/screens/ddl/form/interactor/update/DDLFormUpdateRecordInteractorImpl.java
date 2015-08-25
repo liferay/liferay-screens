@@ -17,10 +17,8 @@ package com.liferay.mobile.screens.ddl.form.interactor.update;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.ddlrecord.DDLRecordService;
-import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
-import com.liferay.mobile.screens.base.interactor.OfflineCallback;
+import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
-import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
@@ -35,38 +33,21 @@ import org.json.JSONObject;
  * @author Jose Manuel Navarro
  */
 public class DDLFormUpdateRecordInteractorImpl
-	extends BaseCachedRemoteInteractor<DDLFormListener, DDLFormUpdateRecordEvent>
+	extends BaseCachedWriteRemoteInteractor<DDLFormListener, DDLFormUpdateRecordEvent>
 	implements DDLFormUpdateRecordInteractor {
 
 
-	public DDLFormUpdateRecordInteractorImpl(int targetScreenletId, CachePolicy cachePolicy, OfflinePolicy offlinePolicy) {
-		super(targetScreenletId, cachePolicy, offlinePolicy);
+	public DDLFormUpdateRecordInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
+		super(targetScreenletId, offlinePolicy);
 	}
 
 	@Override
 	public void updateRecord(long groupId, final Record record) throws Exception {
 		validate(groupId, record);
 
-		final JSONObject serviceContextAttributes = new JSONObject();
-		serviceContextAttributes.put("userId", record.getCreatorUserId());
-		serviceContextAttributes.put("scopeGroupId", groupId);
-
 		final JSONObject fieldsValues = new JSONObject(record.getData());
 
-		storeOnError(new OfflineCallback() {
-			@Override
-			public void sendOnline() throws Exception {
-				JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
-
-				getDDLRecordService(record).updateRecord(
-					record.getRecordId(), 0, fieldsValues, true, serviceContextWrapper);
-			}
-
-			@Override
-			public void storeToCache() {
-				saveToCache(record, fieldsValues, false);
-			}
-		});
+		storeOnError(groupId, record, fieldsValues);
 	}
 
 	public void onEvent(DDLFormUpdateRecordEvent event) {
@@ -78,11 +59,36 @@ public class DDLFormUpdateRecordInteractorImpl
 			getListener().onDDLFormUpdateRecordFailed(event.getException());
 		}
 		else {
-
-			saveToCache(event.getRecord(), event.getJSONObject(), true);
+			saveToCache(0, event.getRecord(), event.getJSONObject(), true);
 
 			getListener().onDDLFormRecordUpdated(event.getRecord());
 		}
+	}
+
+	@Override
+	protected void sendOnline(Object[] args) throws Exception {
+
+		long groupId = (long) args[0];
+		Record record = (Record) args[1];
+		JSONObject fieldsValues = (JSONObject) args[2];
+
+		final JSONObject serviceContextAttributes = new JSONObject();
+		serviceContextAttributes.put("userId", record.getCreatorUserId());
+		serviceContextAttributes.put("scopeGroupId", groupId);
+
+		JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
+
+		getDDLRecordService(record).updateRecord(
+			record.getRecordId(), 0, fieldsValues, true, serviceContextWrapper);
+	}
+	
+	@Override
+	protected void storeToCache(Object[] args) {
+		long groupId = (long) args[0];
+		Record record = (Record) args[1];
+		JSONObject fieldsValues = (JSONObject) args[2];
+
+		saveToCache(groupId, record, fieldsValues, false);
 	}
 
 	protected DDLRecordService getDDLRecordService(Record record) {
@@ -111,9 +117,9 @@ public class DDLFormUpdateRecordInteractorImpl
 		}
 	}
 
-	private void saveToCache(Record record, JSONObject fields, boolean sent) {
+	private void saveToCache(long groupId, Record record, JSONObject fields, boolean sent) {
 		Cache cache = CacheSQL.getInstance();
-		cache.set(new DDLRecordCache(record, fields, sent));
+		cache.set(new DDLRecordCache(groupId, record, fields, sent));
 	}
 
 }

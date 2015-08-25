@@ -18,8 +18,8 @@ public class DDLRecordCache extends RecordCache {
 		super();
 	}
 
-	public DDLRecordCache(Record record, JSONObject jsonObject, boolean sent) {
-		super(record, jsonObject);
+	public DDLRecordCache(long groupId, Record record, JSONObject jsonObject, boolean sent) {
+		super(groupId, record, jsonObject);
 		_sent = sent;
 	}
 
