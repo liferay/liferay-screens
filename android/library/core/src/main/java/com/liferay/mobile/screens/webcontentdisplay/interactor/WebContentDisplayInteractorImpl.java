@@ -16,12 +16,9 @@ package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
-import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
-import com.liferay.mobile.screens.base.interactor.CacheCallback;
-import com.liferay.mobile.screens.cache.Cache;
+import com.liferay.mobile.screens.base.interactor.BaseCachedReadRemoteInteractor;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -33,30 +30,19 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayInteractorImpl
-	extends BaseCachedRemoteInteractor<WebContentDisplayListener, WebContentDisplayEvent>
+	extends BaseCachedReadRemoteInteractor<WebContentDisplayListener, WebContentDisplayEvent>
 	implements WebContentDisplayInteractor {
 
 	public WebContentDisplayInteractorImpl(int targetScreenletId, CachePolicy cachePolicy) {
-		super(targetScreenletId, cachePolicy, OfflinePolicy.NO_OFFLINE);
+		super(targetScreenletId, cachePolicy);
 	}
 
 	public void load(final long groupId, final String articleId, final Locale locale)
 		throws Exception {
 
-		loadWithCache(new CacheCallback() {
-			@Override
-			public void loadOnline() throws Exception {
-				validate(groupId, articleId, locale);
+		validate(groupId, articleId, locale);
 
-				JournalArticleService service = getJournalArticleService(groupId, articleId, locale);
-				service.getArticleContent(groupId, articleId, locale.toString(), null);
-			}
-
-			@Override
-			public boolean retrieveFromCache() {
-				return loadFromCache(groupId, articleId, locale);
-			}
-		});
+		loadWithCache(groupId, articleId, locale);
 	}
 
 	public void onEvent(WebContentDisplayEvent event) {
@@ -64,34 +50,50 @@ public class WebContentDisplayInteractorImpl
 			return;
 		}
 
-		if (event.isFailed()) {
-			getListener().onWebContentFailure(null, event.getException());
-		}
-		else {
-			store(event);
+		onEventWithCache(event, event.getArticleId(), event.getGroupId(), event.getLocale());
 
-			getListener().onWebContentReceived(null, event.getHtml());
-		}
-
+		getListener().onWebContentReceived(null, event.getHtml());
 	}
 
-	protected boolean loadFromCache(long groupId, String articleId, Locale locale) {
-		Cache cache = CacheSQL.getInstance();
-		TableCache webContent = (TableCache) cache.getById(DefaultCachedType.WEB_CONTENT, articleId);
+	@Override
+	protected void loadOnline(Object[] args) throws Exception {
+
+		long groupId = (long) args[0];
+		String articleId = (String) args[1];
+		Locale locale = (Locale) args[2];
+
+		JournalArticleService service = getJournalArticleService(groupId, articleId, locale);
+		service.getArticleContent(groupId, articleId, locale.toString(), null);
+	}
+
+	@Override
+	protected void notifyError(WebContentDisplayEvent event) {
+		getListener().onWebContentFailure(null, event.getException());
+	}
+
+	@Override
+	protected boolean getFromCache(Object[] args) {
+
+		long groupId = (long) args[0];
+		String articleId = (String) args[1];
+		Locale locale = (Locale) args[2];
+
+		TableCache webContent = (TableCache) CacheSQL.getInstance().getById(DefaultCachedType.WEB_CONTENT, articleId);
 		if (webContent != null) {
-			onEvent(new WebContentDisplayEvent(getTargetScreenletId(), webContent.getContent(), articleId, groupId, locale));
+			onEvent(new WebContentDisplayEvent(getTargetScreenletId(), groupId, articleId, locale, webContent.getContent()));
 			return true;
 		}
 		return false;
 	}
 
-	protected void store(WebContentDisplayEvent event) {
+	@Override
+	protected void storeToCache(WebContentDisplayEvent event, Object... args) {
 		long userId = SessionContext.getLoggedUser().getId();
 
-		Cache cache = CacheSQL.getInstance();
-		cache.set(new TableCache(event.getArticleId(), DefaultCachedType.WEB_CONTENT,
-			event.getHtml(), userId, event.getGroupId(), event.getLocale()));
+		CacheSQL.getInstance().set(new TableCache(event.getArticleId(), DefaultCachedType.WEB_CONTENT,
+			event.getHtml(), userId, event.getGroupId(), event.getLocale().getDisplayLanguage()));
 	}
+
 
 	protected JournalArticleService getJournalArticleService(long groupId, String articleId, Locale locale) {
 		Session session = SessionContext.createSessionFromCurrentSession();
@@ -112,5 +114,4 @@ public class WebContentDisplayInteractorImpl
 			throw new IllegalArgumentException("Locale cannot be empty");
 		}
 	}
-
 }

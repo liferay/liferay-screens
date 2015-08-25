@@ -23,11 +23,15 @@ import java.util.Locale;
  */
 public class WebContentDisplayEvent extends BasicEvent {
 
-	public WebContentDisplayEvent(int targetScreenletId, Exception e) {
+	public WebContentDisplayEvent(int targetScreenletId, long groupId, String articleId, Locale locale, Exception e) {
 		super(targetScreenletId, e);
+
+		_articleId = articleId;
+		_groupId = groupId;
+		_locale = locale;
 	}
 
-	public WebContentDisplayEvent(int targetScreenletId, String html, String articleId, long groupId, Locale locale) {
+	public WebContentDisplayEvent(int targetScreenletId, long groupId, String articleId, Locale locale, String html) {
 		super(targetScreenletId);
 		_html = html;
 

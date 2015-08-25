@@ -40,12 +40,12 @@ public class WebContentDisplayCallback
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new WebContentDisplayEvent(targetScreenletId, e);
+		return new WebContentDisplayEvent(targetScreenletId, _groupId, _articleId, _locale, e);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, String result) {
-		return new WebContentDisplayEvent(targetScreenletId, result, _articleId, _groupId, _locale);
+		return new WebContentDisplayEvent(targetScreenletId, _groupId, _articleId, _locale, result);
 	}
 
 	private final String _articleId;
