@@ -14,6 +14,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		liferay:articleId="@integer/article_id"
+		liferay:cachePolicy="CACHE_ONLY"
 		liferay:layoutId="@layout/webcontentdisplay_default"/>
 
 </LinearLayout>

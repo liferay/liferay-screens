@@ -15,6 +15,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		liferay:labelFields="@string/liferay_recordset_fields"
+		liferay:cachePolicy="CACHE_FIRST"
 		liferay:layoutId="@layout/ddl_list_default"
 		liferay:recordSetId="@integer/liferay_recordset_id"/>
 

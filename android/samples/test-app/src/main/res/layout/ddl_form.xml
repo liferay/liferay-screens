@@ -16,6 +16,7 @@
 		android:layout_marginTop="0dp"
 		android:paddingTop="0dp"
 		liferay:autoLoad="false"
+		liferay:cachePolicy="CACHE_FIRST"
 		liferay:filePrefix="jre"
 		liferay:folderId="@integer/folder_id"
 		liferay:layoutId="@layout/ddl_form_default"
