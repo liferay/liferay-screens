@@ -1,2 +1,4 @@
 "webcontentdisplay-screenlet-loading-message"="Loading...\nWait few seconds...";
 "webcontentdisplay-screenlet-loading-error"="Error loading the content";
+"webcontentdisplay-screenlet-undefined-group"="The group is undefined";
+"webcontentdisplay-screenlet-undefined-article"="The article is undefined";

@@ -27,11 +27,11 @@ public class GetUserBaseOperation: ServerOperation {
 		
 		if !SessionContext.hasSession {
 			if userName == nil {
-				return ValidationError(message:"User name cannot be empty")
+				return ValidationError("login-screenlet", "undefined-username")
 			}
 
 			if password == nil {
-				return ValidationError(message:"Password cannot be empty")
+				return ValidationError("login-screenlet", "undefined-password")
 			}
 		}
 

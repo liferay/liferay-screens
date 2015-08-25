@@ -1,3 +1,9 @@
 "login-screenlet-loading-message"="Signing in...\nWait few seconds...";
 "login-screenlet-loading-error"="Error signing in.";
 "login-screenlet-validation"="Enter the user name and password";
+"login-screenlet-validation-email"="Enter the email address";
+"login-screenlet-undefined-user"="User is undefined";
+"login-screenlet-undefined-username"="User name is undefined";
+"login-screenlet-undefined-screenname"="Screen name is undefined";
+"login-screenlet-undefined-userid"="User id is undefined";
+"login-screenlet-undefined-password"="Password is undefined";

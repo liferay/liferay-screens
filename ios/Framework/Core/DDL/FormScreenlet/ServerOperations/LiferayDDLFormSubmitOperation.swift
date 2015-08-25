@@ -57,19 +57,19 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 
 		if error == nil {
 			if (userId ?? 0) == 0 {
-				return ValidationError(message: "User is undefined")
+				return ValidationError("ddlform-screenlet", "undefined-structure")
 			}
 
 			if groupId == nil {
-				return ValidationError(message: "Group is undefined")
+				return ValidationError("ddlform-screenlet", "undefined-group")
 			}
 
-			if recordId != nil && recordSetId == nil {
-				return ValidationError(message: "Record set is undefined")
+			if recordSetId == nil {
+				return ValidationError("ddlform-screenlet", "undefined-recordset")
 			}
 
 			if viewModel.values.isEmpty {
-				return ValidationError(message: "Values are empty")
+				return ValidationError("ddlform-screenlet", "undefined-values")
 			}
 
 			error = viewModel.validateForm(autoscroll: autoscrollOnValidation)

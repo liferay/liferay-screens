@@ -56,7 +56,7 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 
 		if error == nil {
 			if self.image == nil {
-				return ValidationError(message: "The image is empty")
+				return ValidationError("userportrait-screenlet", "undefined-image")
 			}
 		}
 

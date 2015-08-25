@@ -29,11 +29,11 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 
 		if error == nil {
 			if groupId == nil {
-				return ValidationError(message: "The group is empty")
+				return ValidationError("webcontentdisplay-screenlet", "undefined-group")
 			}
 
 			if (articleId ?? "") == "" {
-				return ValidationError(message: "The article is empty")
+				return ValidationError("webcontentdisplay-screenlet", "undefined-article")
 			}
 		}
 

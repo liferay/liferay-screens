@@ -41,7 +41,7 @@ public class LiferaySignUpOperation: ServerOperation {
 
 		if error == nil {
 			if viewModel.emailAddress == nil {
-				return ValidationError(message: LocalizedString("signup-screenlet", "validation", self))
+				return ValidationError("signup-screenlet", "validation-email")
 			}
 		}
 

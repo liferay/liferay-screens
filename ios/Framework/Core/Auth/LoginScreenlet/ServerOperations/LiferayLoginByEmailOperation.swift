@@ -21,7 +21,7 @@ public class LiferayLoginByEmailOperation: GetUserByEmailOperation {
 			return nil
 		}
 
-		return ValidationError(message: LocalizedString("login-screenlet", "validation", self))
+		return ValidationError("login-screenlet", "validation")
 	}
 
 	override internal func postRun() {

@@ -43,22 +43,21 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 
 		if error == nil {
 			if document?.currentValue == nil {
-				return ValidationError(message: "Form can't be empty")
+				return ValidationError("ddlform-screenlet", "undefined-current-value")
 			}
 
 			if (filePrefix ?? "") == "" {
-				return ValidationError(message: "File prefix is undefined")
+				return ValidationError("ddlform-screenlet", "undefined-fileprefix")
 			}
 
 			if repositoryId == nil {
-				return ValidationError(message: "Repository is undefined")
+				return ValidationError("ddlform-screenlet", "undefined-repository")
 			}
 
 			if folderId == nil {
-				return ValidationError(message: "Folder is undefined")
+				return ValidationError("ddlform-screenlet", "undefined-folder")
 			}
 		}
-
 
 		return error
 	}

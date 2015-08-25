@@ -37,7 +37,7 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 
 		if error == nil {
 			if structureId == nil {
-				return ValidationError(message: "Structure is undefined")
+				return ValidationError("ddlform-screenlet", "undefined-structure")
 			}
 		}
 

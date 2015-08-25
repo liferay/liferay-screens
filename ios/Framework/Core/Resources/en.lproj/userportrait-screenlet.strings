@@ -1,3 +1,4 @@
 "userportrait-screenlet-uploading-error"="Error uploading the picture";
 "userportrait-screenlet-too-large-file"="The picture is too large";
 "userportrait-screenlet-too-large-file-details"="Try again with a smaller picture";
+"userportrait-screenlet-undefined-image"="The image is undefined";

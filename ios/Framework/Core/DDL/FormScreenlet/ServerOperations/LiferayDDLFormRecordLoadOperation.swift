@@ -38,7 +38,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
 		if error == nil {
 			if recordId == nil {
-				return ValidationError(message: "Record is undefined")
+				return ValidationError("ddlform-screenlet", "undefined-record")
 			}
 		}
 

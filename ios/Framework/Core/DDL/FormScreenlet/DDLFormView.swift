@@ -58,7 +58,9 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel, UITextFieldDelega
 					firstFailedField = $0
 				}
 				if firstError == nil {
-					firstError = ValidationError(message: "Field \"\($0.label)\" is not valid")
+					let fmt = LocalizedString("ddlform-screenlet", "validation-field", self)
+					let msg = NSString(format: fmt, $0.label).description
+					firstError = ValidationError(msg)
 				}
 			}
 		}

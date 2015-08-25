@@ -29,7 +29,7 @@ public class GetUserByUserIdOperation: GetUserBaseOperation {
 
 		if error == nil {
 			if (userId ?? 0) == 0 {
-				return ValidationError(message:"User id cannot be empty")
+				return ValidationError("login-screenlet", "undefined-user")
 			}
 		}
 

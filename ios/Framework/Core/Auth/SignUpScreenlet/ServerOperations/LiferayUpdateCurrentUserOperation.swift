@@ -35,11 +35,11 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 
 		if error == nil {
 			if viewModel.emailAddress == nil {
-				return ValidationError(message:LocalizedString("signup-screenlet", "validation", self))
+				return ValidationError("signup-screenlet", "validation-email")
 			}
 
 			if viewModel.password == SessionContext.currentBasicPassword {
-				return ValidationError(message: LocalizedString("signup-screenlet", "validation-password", self))
+				return ValidationError("signup-screenlet", "validation-change-password")
 			}
 		}
 

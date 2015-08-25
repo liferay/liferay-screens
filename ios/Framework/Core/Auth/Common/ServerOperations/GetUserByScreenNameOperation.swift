@@ -31,7 +31,7 @@ public class GetUserByScreenNameOperation: GetUserBaseOperation {
 
 		if error == nil {
 			if (screenName ?? "") == "" {
-				return ValidationError(message:"Screen name cannot be empty")
+				return ValidationError("login-screenlet", "validation-screenname")
 			}
 		}
 

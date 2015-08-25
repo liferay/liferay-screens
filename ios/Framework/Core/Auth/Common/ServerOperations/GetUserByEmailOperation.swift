@@ -31,7 +31,7 @@ public class GetUserByEmailOperation: GetUserBaseOperation {
 
 		if error == nil {
 			if (emailAddress ?? "") == "" {
-				return ValidationError(message:"Email address cannot be empty")
+				return ValidationError("login-screenlet", "validation-email")
 			}
 		}
 

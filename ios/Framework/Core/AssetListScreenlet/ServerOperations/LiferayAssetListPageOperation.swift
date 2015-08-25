@@ -26,11 +26,11 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 		if error == nil {
 			if groupId == nil {
-				return ValidationError(message: "The group is empty")
+				return ValidationError("assetlist-screenlet", "undefined-group")
 			}
 
 			if classNameId == nil {
-				return ValidationError(message: "The class name is empty")
+				return ValidationError("assetlist-screenlet", "undefined-classname")
 			}
 		}
 

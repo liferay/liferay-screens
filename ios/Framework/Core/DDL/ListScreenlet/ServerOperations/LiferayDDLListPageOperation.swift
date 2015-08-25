@@ -34,11 +34,11 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 
 		if error == nil {
 			if recordSetId == nil {
-				return ValidationError(message: "Record set is undefined")
+				return ValidationError("ddllist-screenlet", "undefined-recordset")
 			}
 
 			if viewModel.labelFields.count == 0 {
-				return ValidationError(message: "Label fields is undefined")
+				return ValidationError("ddllist-screenlet", "undefined-fields")
 			}
 		}
 

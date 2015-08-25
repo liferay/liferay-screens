@@ -42,7 +42,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 
 		if error == nil {
 			if viewModel.userName == nil {
-				return ValidationError(message: LocalizedString("forgotpassword-screenlet", "validation", self))
+				return ValidationError("forgotpassword-screenlet", "validation")
 			}
 		}
 
