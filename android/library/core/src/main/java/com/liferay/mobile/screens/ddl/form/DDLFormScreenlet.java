@@ -403,10 +403,13 @@ public class DDLFormScreenlet
 		_record.setRecordId(_recordId);
 		_record.setCreatorUserId(_userId);
 
-		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
+		int cachePolicy = typedArray.getInt(R.styleable.DDLFormScreenlet_cachePolicy,
 				CachePolicy.NO_CACHE.ordinal());
-
 		_cachePolicy = CachePolicy.values()[cachePolicy];
+
+		int offlinePolicy = typedArray.getInt(R.styleable.DDLFormScreenlet_offlinePolicy,
+			CachePolicy.NO_CACHE.ordinal());
+		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.DDLFormScreenlet_layoutId, getDefaultLayoutId());
@@ -580,6 +583,8 @@ public class DDLFormScreenlet
 		_repositoryId = state.getLong(_STATE_REPOSITORY_ID);
 		_folderId = state.getLong(_STATE_FOLDER_ID);
 		_filePrefix = state.getString(_STATE_FILE_PREFIX);
+		_cachePolicy = CachePolicy.values()[state.getInt(_STATE_CACHE_POLICY)];
+		_offlinePolicy = OfflinePolicy.values()[state.getInt(_STATE_OFFLINE_POLICY)];
 
 		Parcelable superState = state.getParcelable(_STATE_SUPER);
 
@@ -606,6 +611,8 @@ public class DDLFormScreenlet
 		state.putLong(_STATE_REPOSITORY_ID, _repositoryId);
 		state.putLong(_STATE_FOLDER_ID, _folderId);
 		state.putString(_STATE_FILE_PREFIX, _filePrefix);
+		state.putLong(_STATE_CACHE_POLICY, _cachePolicy.ordinal());
+		state.putLong(_STATE_OFFLINE_POLICY, _offlinePolicy.ordinal());
 
 		return state;
 	}
@@ -630,6 +637,8 @@ public class DDLFormScreenlet
 	private static final String _STATE_REPOSITORY_ID = "ddlform-repositoryId";
 	private static final String _STATE_FOLDER_ID = "ddlform-folderId";
 	private static final String _STATE_FILE_PREFIX = "ddlform-filePrefixId";
+	private static final String _STATE_CACHE_POLICY = "ddlform-cachePolicy";
+	private static final String _STATE_OFFLINE_POLICY = "ddlform-offlinePolicy";
 
 	private boolean _autoLoad;
 	private boolean _autoScrollOnValidation;
@@ -650,5 +659,6 @@ public class DDLFormScreenlet
 	private boolean _loadRecordAfterForm;
 	private CachePolicy _cachePolicy;
 	private OfflinePolicy _offlinePolicy;
+
 
 }
