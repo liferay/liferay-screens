@@ -22,15 +22,20 @@ public class GetUserBaseOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override internal func validateData() -> Bool {
-		var valid = super.validateData()
+	override internal func validateData() -> ValidationError? {
+		let error = super.validateData()
 		
 		if !SessionContext.hasSession {
-			valid = valid && (userName != nil)
-			valid = valid && (password != nil)
+			if userName == nil {
+				return ValidationError(message:"User name cannot be empty")
+			}
+
+			if password == nil {
+				return ValidationError(message:"Password cannot be empty")
+			}
 		}
 
-		return valid
+		return error
 	}
 
 	override func createSession() -> LRSession? {

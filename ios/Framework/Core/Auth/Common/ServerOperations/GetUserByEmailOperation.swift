@@ -26,12 +26,16 @@ public class GetUserByEmailOperation: GetUserBaseOperation {
 		super.init(screenlet: screenlet)
 	}
 
-	override internal func validateData() -> Bool {
-		var valid = super.validateData()
+	override internal func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && ((emailAddress ?? "") != "")
+		if error == nil {
+			if (emailAddress ?? "") == "" {
+				return ValidationError(message:"Email address cannot be empty")
+			}
+		}
 
-		return valid
+		return error
 	}
 
 

@@ -25,22 +25,20 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		if valid && viewModel.emailAddress == nil {
-			screenlet.showHUDAlert(message: LocalizedString("signup-screenlet", "validation", self))
+		if error == nil {
+			if viewModel.emailAddress == nil {
+				return ValidationError(message:LocalizedString("signup-screenlet", "validation", self))
+			}
 
-			return false
+			if viewModel.password == SessionContext.currentBasicPassword {
+				return ValidationError(message: LocalizedString("signup-screenlet", "validation-password", self))
+			}
 		}
 
-		if viewModel.password == SessionContext.currentBasicPassword {
-			screenlet.showHUDAlert(message: LocalizedString("signup-screenlet", "validation-password", self))
-
-			return false
-		}
-
-		return true
+		return error
 	}
 
 	override func doRun(#session: LRSession) {

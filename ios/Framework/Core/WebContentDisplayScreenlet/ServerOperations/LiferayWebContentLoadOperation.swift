@@ -24,13 +24,20 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && (groupId != nil)
-		valid = valid && (articleId != nil && articleId! != "")
+		if error == nil {
+			if groupId == nil {
+				return ValidationError(message: "The group is empty")
+			}
 
-		return valid
+			if (articleId ?? "") == "" {
+				return ValidationError(message: "The article is empty")
+			}
+		}
+
+		return error
 	}
 
 	override internal func doRun(#session: LRSession) {

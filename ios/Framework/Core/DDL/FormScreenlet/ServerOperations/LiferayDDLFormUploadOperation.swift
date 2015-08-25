@@ -38,15 +38,29 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && (document != nil && document?.currentValue != nil)
-		valid = valid && (filePrefix != nil)
-		valid = valid && (repositoryId != nil)
-		valid = valid && (folderId != nil)
+		if error == nil {
+			if document?.currentValue == nil {
+				return ValidationError(message: "Form can't be empty")
+			}
 
-		return valid
+			if (filePrefix ?? "") == "" {
+				return ValidationError(message: "File prefix is undefined")
+			}
+
+			if repositoryId == nil {
+				return ValidationError(message: "Repository is undefined")
+			}
+
+			if folderId == nil {
+				return ValidationError(message: "Folder is undefined")
+			}
+		}
+
+
+		return error
 	}
 
 	override internal func doRun(#session: LRSession) {

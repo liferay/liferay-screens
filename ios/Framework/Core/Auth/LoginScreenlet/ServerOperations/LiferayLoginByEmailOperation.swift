@@ -16,14 +16,12 @@ import UIKit
 
 public class LiferayLoginByEmailOperation: GetUserByEmailOperation {
 
-	override internal func validateData() -> Bool {
-		let valid = super.validateData()
-
-		if !valid {
-			screenlet.showHUDAlert(message: LocalizedString("login-screenlet", "validation", self))
+	override internal func validateData() -> ValidationError? {
+		if super.validateData() == nil {
+			return nil
 		}
 
-		return valid
+		return ValidationError(message: LocalizedString("login-screenlet", "validation", self))
 	}
 
 	override internal func postRun() {

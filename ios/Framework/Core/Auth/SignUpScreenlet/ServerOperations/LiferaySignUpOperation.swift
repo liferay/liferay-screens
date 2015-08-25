@@ -27,16 +27,16 @@ public class LiferaySignUpOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		if valid && viewModel.emailAddress == nil {
-			screenlet.showHUDAlert(message: LocalizedString("signup-screenlet", "validation", self))
-
-			valid = false
+		if error == nil {
+			if viewModel.emailAddress == nil {
+				return ValidationError(message: LocalizedString("signup-screenlet", "validation", self))
+			}
 		}
 
-		return valid
+		return error
 	}
 
 	override func doRun(#session: LRSession) {

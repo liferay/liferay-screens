@@ -26,16 +26,16 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 
 	//MARK ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		if valid && viewModel.userName == nil {
-			screenlet.showHUDAlert(message: LocalizedString("forgotpassword-screenlet", "validation", self))
-
-			valid = false
+		if error == nil {
+			if viewModel.userName == nil {
+				return ValidationError(message: LocalizedString("forgotpassword-screenlet", "validation", self))
+			}
 		}
 
-		return valid
+		return error
 	}
 
 	override func doRun(#session: LRSession) {

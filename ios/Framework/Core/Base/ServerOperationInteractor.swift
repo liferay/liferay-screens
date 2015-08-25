@@ -19,7 +19,7 @@ public class ServerOperationInteractor: Interactor {
 		var result = false
 
 		if let operation = createOperation() {
-			result = operation.validateAndEnqueue() {
+			let validationError = operation.validateAndEnqueue() {
 				self.completedOperation(operation)
 
 				if let error = $0.lastError {
@@ -28,6 +28,14 @@ public class ServerOperationInteractor: Interactor {
 				else {
 					self.callOnSuccess()
 				}
+			}
+
+			if let validationError = validationError {
+				self.completedOperation(operation)
+				self.callOnFailure(validationError)
+			}
+			else {
+				result = true
 			}
 		}
 		else {

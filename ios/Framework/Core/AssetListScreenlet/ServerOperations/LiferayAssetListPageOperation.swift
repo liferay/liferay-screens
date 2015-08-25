@@ -25,13 +25,20 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && (groupId != nil)
-		valid = valid && (classNameId != nil)
+		if error == nil {
+			if groupId == nil {
+				return ValidationError(message: "The group is empty")
+			}
 
-		return valid
+			if classNameId == nil {
+				return ValidationError(message: "The class name is empty")
+			}
+		}
+
+		return error
 	}
 
 

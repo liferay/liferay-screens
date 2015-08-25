@@ -73,26 +73,26 @@ public class ServerOperation: NSOperation {
 
 	//MARK: Public methods
 
-	public func validateAndEnqueue(onComplete: (ServerOperation -> Void)? = nil) -> Bool {
+	public func validateAndEnqueue(onComplete: (ServerOperation -> Void)? = nil) -> ValidationError? {
 		if onComplete != nil {
 			self.onComplete = onComplete
 		}
 
-		let result = validateData()
+		let error = validateData()
 
-		if result {
+		if error == nil {
 			OperationsQueue.addOperation(self)
 		}
 
-		return result
+		return error
 	}
 
 
 	//MARK: Internal methods
 
-	internal func validateData() -> Bool {
+	internal func validateData() -> ValidationError? {
 		// Do not add any code here. Children classes may not call super
-		return true
+		return nil
 	}
 
 

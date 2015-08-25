@@ -24,12 +24,16 @@ public class GetUserByUserIdOperation: GetUserBaseOperation {
 		super.init(screenlet: screenlet)
 	}
 
-	override internal func validateData() -> Bool {
-		var valid = super.validateData()
+	override internal func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && ((userId ?? 0) > 0)
+		if error == nil {
+			if (userId ?? 0) == 0 {
+				return ValidationError(message:"User id cannot be empty")
+			}
+		}
 
-		return valid
+		return error
 	}
 
 

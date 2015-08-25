@@ -51,12 +51,16 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override internal func validateData() -> Bool {
-		var valid = super.validateData()
-		
-		valid = valid && (self.image != nil)
+	override internal func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		return valid
+		if error == nil {
+			if self.image == nil {
+				return ValidationError(message: "The image is empty")
+			}
+		}
+
+		return error
 	}
 
 	override internal func doRun(#session: LRSession) {

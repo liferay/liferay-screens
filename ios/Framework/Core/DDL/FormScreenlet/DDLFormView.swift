@@ -48,16 +48,18 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel, UITextFieldDelega
 	public func refresh() {
 	}
 
-	public func validateForm(#autoscroll: Bool) -> Bool {
-		var result = true
-		var firstFailedField:DDLField?
+	public func validateForm(#autoscroll: Bool) -> ValidationError? {
+		var firstError: ValidationError?
+		var firstFailedField: DDLField?
 
 		forEachField() {
 			if !$0.validate() {
 				if firstFailedField == nil {
 					firstFailedField = $0
 				}
-				result = false
+				if firstError == nil {
+					firstError = ValidationError(message: "Field \"\($0.label)\" is not valid")
+				}
 			}
 		}
 
@@ -65,7 +67,7 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel, UITextFieldDelega
 			showField(firstFailedField!)
 		}
 
-		return result
+		return firstError
 	}
 
 

@@ -47,21 +47,30 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override func validateData() -> ValidationError? {
+		var error = super.validateData()
 
-		valid = valid && (userId != nil)
-		valid = valid && (groupId != nil)
-		valid = valid && !(recordId != nil && recordSetId == nil)
-		valid = valid && !viewModel.values.isEmpty
+		if error == nil {
+			if (userId ?? 0) == 0 {
+				return ValidationError(message: "User is undefined")
+			}
 
-		if valid && !viewModel.validateForm(autoscroll: autoscrollOnValidation) {
-			screenlet.showHUDAlert(message: LocalizedString("ddlform-screenlet", "validation", self))
+			if groupId == nil {
+				return ValidationError(message: "Group is undefined")
+			}
 
-			valid = false
+			if recordId != nil && recordSetId == nil {
+				return ValidationError(message: "Record set is undefined")
+			}
+
+			if viewModel.values.isEmpty {
+				return ValidationError(message: "Values are empty")
+			}
+
+			error = viewModel.validateForm(autoscroll: autoscrollOnValidation)
 		}
 
-		return valid
+		return error
 	}
 
 	override internal func doRun(#session: LRSession) {

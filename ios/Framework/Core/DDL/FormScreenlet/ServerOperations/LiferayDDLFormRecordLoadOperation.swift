@@ -33,12 +33,16 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && (recordId != nil)
+		if error == nil {
+			if recordId == nil {
+				return ValidationError(message: "Record is undefined")
+			}
+		}
 
-		return valid
+		return error
 	}
 
 	override internal func doRun(#session: LRSession) {

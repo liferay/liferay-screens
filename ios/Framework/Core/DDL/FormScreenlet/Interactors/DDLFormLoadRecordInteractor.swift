@@ -44,7 +44,7 @@ class DDLFormLoadRecordInteractor: ServerOperationInteractor {
 				}
 			}
 
-			if !result {
+			if result != nil {
 				return nil
 			}
 		}

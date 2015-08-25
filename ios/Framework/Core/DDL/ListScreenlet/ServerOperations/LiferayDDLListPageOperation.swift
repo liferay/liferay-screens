@@ -27,13 +27,20 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 		return screenlet.screenletView as! DDLListViewModel
 	}
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && (recordSetId != nil)
-		valid = valid && (viewModel.labelFields.count > 0)
+		if error == nil {
+			if recordSetId == nil {
+				return ValidationError(message: "Record set is undefined")
+			}
 
-		return valid
+			if viewModel.labelFields.count == 0 {
+				return ValidationError(message: "Label fields is undefined")
+			}
+		}
+
+		return error
 	}
 
 	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {

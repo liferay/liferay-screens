@@ -13,10 +13,32 @@
 */
 import Foundation
 
+
+public class ValidationError : NSError {
+
+	public init(message: String) {
+		super.init(domain: "LiferayScreens",
+			code: ScreensErrorCause.ValidationFailed.rawValue,
+			userInfo: [NSLocalizedDescriptionKey: message])
+	}
+
+	required public init(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
+
+	public var message: String? {
+		let key: NSString = NSLocalizedDescriptionKey
+		return userInfo?[key] as? String
+	}
+
+}
+
+
 public enum ScreensErrorCause: Int {
 
 	case AbortedDueToPreconditions = -2
 	case InvalidServerResponse = -3
+	case ValidationFailed = -4
 
 }
 

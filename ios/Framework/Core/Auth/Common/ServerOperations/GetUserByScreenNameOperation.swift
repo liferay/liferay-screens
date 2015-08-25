@@ -26,12 +26,16 @@ public class GetUserByScreenNameOperation: GetUserBaseOperation {
 		super.init(screenlet: screenlet)
 	}
 
-	override internal func validateData() -> Bool {
-		var valid = super.validateData()
+	override internal func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && ((screenName ?? "") != "")
+		if error == nil {
+			if (screenName ?? "") == "" {
+				return ValidationError(message:"Screen name cannot be empty")
+			}
+		}
 
-		return valid
+		return error
 	}
 
 	//MARK: LiferayLoginBaseOperation
