@@ -39,4 +39,8 @@ public class LiferayLocale {
 	public static Locale getDefaultLocale() {
 		return LiferayScreensContext.getContext().getResources().getConfiguration().locale;
 	}
+
+	public static String getDefaultSupportedLocale() {
+		return getSupportedLocale(getDefaultLocale().getDisplayLanguage());
+	}
 }
