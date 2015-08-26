@@ -58,9 +58,7 @@ public class DDLFormAddRecordInteractorImpl
 		}
 		else {
 			try {
-				long groupId = 0;
-
-				saveToCache(groupId, event.getRecord(), event.getJSONObject(), true);
+				saveToCache(event.getGroupId(), event.getRecord(), event.getJSONObject(), true);
 
 				long recordId = event.getJSONObject().getLong("recordId");
 				event.getRecord().setRecordId(recordId);
@@ -83,7 +81,7 @@ public class DDLFormAddRecordInteractorImpl
 		serviceContextAttributes.put("userId", record.getCreatorUserId());
 		serviceContextAttributes.put("scopeGroupId", groupId);
 		JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
-		getDDLRecordService(record).addRecord(
+		getDDLRecordService(record, groupId).addRecord(
 			groupId, record.getRecordSetId(), 0, fieldsValues, serviceContextWrapper);
 	}
 
@@ -96,10 +94,10 @@ public class DDLFormAddRecordInteractorImpl
 		saveToCache(groupId, record, fieldsValues, false);
 	}
 
-	protected DDLRecordService getDDLRecordService(Record record) {
+	protected DDLRecordService getDDLRecordService(Record record, long groupId) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 
-		session.setCallback(new DDLFormAddRecordCallback(getTargetScreenletId(), record));
+		session.setCallback(new DDLFormAddRecordCallback(getTargetScreenletId(), record, groupId));
 
 		return new DDLRecordService(session);
 	}

@@ -97,10 +97,7 @@ public class DDLFormLoadRecordInteractorImpl
 
 	@Override
 	protected void storeToCache(DDLFormLoadRecordEvent event, Object... args) {
-
-		long groupId = 0;
-
-		CacheSQL.getInstance().set(new DDLRecordCache(groupId, event.getRecord(), event.getJSONObject(), true));
+		CacheSQL.getInstance().set(new DDLRecordCache(null, event.getRecord(), event.getJSONObject(), true));
 	}
 
 	protected ScreensddlrecordService getDDLRecordService(Record record) {

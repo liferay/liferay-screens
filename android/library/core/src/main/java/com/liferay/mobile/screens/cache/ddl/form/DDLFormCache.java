@@ -17,8 +17,8 @@ public class DDLFormCache extends RecordCache {
 		super();
 	}
 
-	public DDLFormCache(long groupId, Record record, JSONObject jsonObject) {
-		super(groupId, record, jsonObject);
+	public DDLFormCache(Record record, JSONObject jsonObject) {
+		super(record, jsonObject);
 	}
 
 	@Override
@@ -30,5 +30,7 @@ public class DDLFormCache extends RecordCache {
 	public String getId() {
 		return String.valueOf(_recordSetId);
 	}
+
+	protected long _groupId;
 
 }

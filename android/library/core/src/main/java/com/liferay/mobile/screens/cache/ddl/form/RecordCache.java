@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.cache.ddl.form;
 
 import com.liferay.mobile.screens.cache.CachedContent;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.ddl.model.Record;
 
 import org.json.JSONException;
@@ -20,12 +21,12 @@ public abstract class RecordCache implements CachedContent {
 	public static final String LOCALE = "locale";
 	public static final String CONTENT = "content";
 
+
 	public RecordCache() {
 		super();
 	}
 
-	public RecordCache(long groupId, Record record, JSONObject jsonObject) {
-		_groupId = groupId;
+	public RecordCache(Record record, JSONObject jsonObject) {
 		_recordId = record.getRecordId();
 		_recordSetId = record.getRecordSetId();
 		_structureId = record.getStructureId();
@@ -65,14 +66,6 @@ public abstract class RecordCache implements CachedContent {
 		_recordSetId = recordSetId;
 	}
 
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
-
 	public String getLocale() {
 		return _locale;
 	}
@@ -94,7 +87,8 @@ public abstract class RecordCache implements CachedContent {
 	}
 
 	public TableCache getTableCache() {
-		return new TableCache(String.valueOf(getId()), getCachedType(), _content, 0, _groupId, _locale);
+		long groupId = LiferayServerContext.getGroupId();
+		return new TableCache(String.valueOf(getId()), getCachedType(), _content, groupId, null, new Locale(_locale));
 	}
 
 	protected long _structureId;
@@ -102,5 +96,4 @@ public abstract class RecordCache implements CachedContent {
 	protected long _recordSetId;
 	protected String _locale;
 	protected String _content;
-	private long _groupId;
 }

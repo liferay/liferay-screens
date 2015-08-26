@@ -9,6 +9,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * @author Javier Gamarra
@@ -35,20 +36,19 @@ public class TableCache implements CachedContent {
 	}
 
 	public TableCache(String id, CachedType cachedType, String content) {
-		this(id, cachedType, content, SessionContext.getLoggedUser() == null ? 0 : SessionContext.getLoggedUser().getId(),
-			LiferayServerContext.getGroupId(), LiferayLocale.getDefaultLocale().getDisplayLanguage());
+		this(id, cachedType, content, null, null, null);
 	}
 
-	public TableCache(String id, CachedType cachedType, String content, long userId, long groupId, String locale) {
+	public TableCache(String id, CachedType cachedType, String content, Long groupId, Long userId, Locale locale) {
 		super();
 		_id = id;
 		_cachedType = cachedType;
 		_cachedTypeString = cachedType.name();
 		_content = content;
 		_date = new Date().getTime();
-		_userId = userId;
-		_groupId = groupId;
-		_locale = LiferayLocale.getSupportedLocale(locale);
+		_userId = userId == null ? SessionContext.getDefaultUserId() : userId;
+		_groupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
+		_locale = locale == null ? LiferayLocale.getDefaultSupportedLocale() : LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
 		_sent = 0;
 	}
 
@@ -94,18 +94,22 @@ public class TableCache implements CachedContent {
 		_content = content;
 	}
 
+	public void setSent(boolean sent) {
+		_sent = sent ? 1 : 0;
+	}
+
 	@StorIOSQLiteColumn(name = ID, key = true)
 	String _id;
 	@StorIOSQLiteColumn(name = TYPE, key = true)
 	String _cachedTypeString;
-	@StorIOSQLiteColumn(name = GROUP_ID, key = true)
-	long _groupId;
+	@StorIOSQLiteColumn(name = GROUP_ID)
+	Long _groupId;
 	@StorIOSQLiteColumn(name = DATE)
 	Long _date;
 	@StorIOSQLiteColumn(name = CONTENT)
 	String _content;
 	@StorIOSQLiteColumn(name = USER_ID)
-	long _userId;
+	Long _userId;
 	@StorIOSQLiteColumn(name = SENT)
 	int _sent;
 	@StorIOSQLiteColumn(name = LOCALE)

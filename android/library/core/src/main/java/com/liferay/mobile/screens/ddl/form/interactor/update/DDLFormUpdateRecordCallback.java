@@ -25,8 +25,10 @@ import org.json.JSONObject;
  */
 public class DDLFormUpdateRecordCallback extends DDLFormBaseCallback {
 
-	public DDLFormUpdateRecordCallback(int targetScreenletId, Record record) {
+	public DDLFormUpdateRecordCallback(int targetScreenletId, Record record, long groupId) {
 		super(targetScreenletId, record);
+
+		_groupId = groupId;
 	}
 
 	@Override
@@ -36,7 +38,8 @@ public class DDLFormUpdateRecordCallback extends DDLFormBaseCallback {
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new DDLFormUpdateRecordEvent(targetScreenletId, result, getRecord());
+		return new DDLFormUpdateRecordEvent(targetScreenletId, result, getRecord(), _groupId);
 	}
 
+	private final long _groupId;
 }

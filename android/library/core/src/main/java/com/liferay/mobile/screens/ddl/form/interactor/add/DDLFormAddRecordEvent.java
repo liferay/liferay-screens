@@ -28,8 +28,15 @@ public class DDLFormAddRecordEvent extends DDLFormBaseEvent {
 		super(targetScreenletId, e);
 	}
 
-	public DDLFormAddRecordEvent(int targetScreenletId, JSONObject jsonObject, Record record) {
+	public DDLFormAddRecordEvent(int targetScreenletId, JSONObject jsonObject, Record record, long groupId) {
 		super(targetScreenletId, jsonObject, record);
+
+		_groupId = groupId;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	private long _groupId;
 }

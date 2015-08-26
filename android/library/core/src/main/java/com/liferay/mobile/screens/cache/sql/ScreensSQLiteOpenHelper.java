@@ -69,6 +69,7 @@ public class ScreensSQLiteOpenHelper extends SQLiteOpenHelper {
 		+ DDLFormCache.RECORD_SET_ID + " LONG NOT NULL, "
 		+ DDLFormCache.RECORD_ID + " LONG NOT NULL, "
 		+ DDLFormCache.STRUCTURE_ID + " LONG NOT NULL, "
+		+ DDLFormCache.LOCALE + " TEXT NULL, "
 		+ DDLFormCache.CONTENT + " TEXT NOT NULL );";
 
 	private static final String CREATE_TABLE_DDL_RECORD = "CREATE TABLE "
@@ -77,6 +78,8 @@ public class ScreensSQLiteOpenHelper extends SQLiteOpenHelper {
 		+ DDLRecordCache.RECORD_SET_ID + " LONG NOT NULL, "
 		+ DDLRecordCache.STRUCTURE_ID + " LONG NOT NULL, "
 		+ DDLRecordCache.CONTENT + " TEXT NOT NULL, "
+		+ DDLRecordCache.GROUP_ID + " LONG NOT NULL, "
+		+ DDLRecordCache.LOCALE + " TEXT NULL, "
 		+ DDLRecordCache.SENT + " INTEGER NOT NULL );";
 
 	private static final String CREATE_TABLE_DOCUMENT_UPLOAD = "CREATE TABLE "

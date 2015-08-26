@@ -106,8 +106,7 @@ public class DDLFormLoadInteractorImpl
 	@Override
 	protected void storeToCache(DDLFormLoadEvent event, Object... args) {
 		Cache cache = CacheSQL.getInstance();
-		long groupId = 0;
-		cache.set(new DDLFormCache(groupId, event.getRecord(), event.getJSONObject()));
+		cache.set(new DDLFormCache(event.getRecord(), event.getJSONObject()));
 	}
 
 	protected DDMStructureService getDDMStructureService(Record record) {

@@ -22,6 +22,7 @@ public class DDLRecordGetResolver extends DefaultGetResolver<DDLRecordCache> {
 		object.setStructureId(cursor.getLong(cursor.getColumnIndex(DDLRecordCache.STRUCTURE_ID)));
 		object.setLocale(cursor.getString(cursor.getColumnIndex(DDLRecordCache.LOCALE)));
 		object.setSent(cursor.getInt(cursor.getColumnIndex(DDLRecordCache.SENT)) == 1);
+		object.setGroupId(cursor.getLong(cursor.getColumnIndex(DDLRecordCache.GROUP_ID)));
 
 		return object;
 	}

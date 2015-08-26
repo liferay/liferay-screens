@@ -59,7 +59,7 @@ public class DDLFormUpdateRecordInteractorImpl
 			getListener().onDDLFormUpdateRecordFailed(event.getException());
 		}
 		else {
-			saveToCache(0, event.getRecord(), event.getJSONObject(), true);
+			saveToCache(event.getGroupId(), event.getRecord(), event.getJSONObject(), true);
 
 			getListener().onDDLFormRecordUpdated(event.getRecord());
 		}
@@ -78,10 +78,10 @@ public class DDLFormUpdateRecordInteractorImpl
 
 		JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
 
-		getDDLRecordService(record).updateRecord(
+		getDDLRecordService(record, groupId).updateRecord(
 			record.getRecordId(), 0, fieldsValues, true, serviceContextWrapper);
 	}
-	
+
 	@Override
 	protected void storeToCache(Object[] args) {
 		long groupId = (long) args[0];
@@ -91,10 +91,10 @@ public class DDLFormUpdateRecordInteractorImpl
 		saveToCache(groupId, record, fieldsValues, false);
 	}
 
-	protected DDLRecordService getDDLRecordService(Record record) {
+	protected DDLRecordService getDDLRecordService(Record record, long groupId) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 
-		session.setCallback(new DDLFormUpdateRecordCallback(getTargetScreenletId(), record));
+		session.setCallback(new DDLFormUpdateRecordCallback(getTargetScreenletId(), record, groupId));
 
 		return new DDLRecordService(session);
 	}
