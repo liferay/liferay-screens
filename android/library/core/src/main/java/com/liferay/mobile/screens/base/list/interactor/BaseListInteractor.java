@@ -37,7 +37,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 			return;
 		}
 
-		BatchSessionImpl session = getSession(rowsRange);
+		BatchSessionImpl session = getSession(rowsRange, locale);
 
 		getPageRowsRequest(session, startRow, endRow, locale);
 		getPageRowCountRequest(session);
@@ -69,12 +69,12 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		}
 	}
 
-	protected BatchSessionImpl getSession(Pair<Integer, Integer> rowsRange) {
+	protected BatchSessionImpl getSession(Pair<Integer, Integer> rowsRange, Locale locale) {
 		Session currentSession = SessionContext.createSessionFromCurrentSession();
 
 		BatchSessionImpl batchSession = new BatchSessionImpl(currentSession);
 
-		batchSession.setCallback(getCallback(rowsRange));
+		batchSession.setCallback(getCallback(rowsRange, locale));
 
 		return batchSession;
 	}
@@ -99,7 +99,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		}
 	}
 
-	protected abstract BaseListCallback<E> getCallback(Pair<Integer, Integer> rowsRange);
+	protected abstract BaseListCallback<E> getCallback(Pair<Integer, Integer> rowsRange, Locale locale);
 
 	protected abstract void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception;
 

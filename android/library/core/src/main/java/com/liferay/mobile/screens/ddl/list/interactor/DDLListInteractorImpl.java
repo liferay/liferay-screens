@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.service.v62.ScreensddlrecordService;
 import com.liferay.mobile.screens.util.EventBusUtil;
@@ -100,15 +101,17 @@ public class DDLListInteractorImpl
 	protected boolean getFromCache(Object[] args) throws Exception {
 
 		long recordSetId = (long) args[0];
+		long userId = (long) args[1];
 		int startRow = (int) args[2];
 		int endRow = (int) args[3];
+		Locale locale = (Locale) args[4];
 		RequestState requestState = (RequestState) args[5];
 		Pair rowsRange = (Pair) args[6];
 
 		Cache cache = CacheSQL.getInstance();
-		String query = " AND " + TableCache.ID + " >= ? AND " + TableCache.ID + " < ?";
+		String query = " AND " + TableCache.ID + " >= ? AND " + TableCache.ID + " < ? AND " + TableCache.USER_ID + " = ? AND " + TableCache.LOCALE + " = ? ";
 		List<TableCache> ddlEntryCache = (List<TableCache>) cache.get(DefaultCachedType.DDL_LIST,
-			query, createId(String.valueOf(recordSetId), startRow), createId(String.valueOf(recordSetId), endRow));
+			query, createId(String.valueOf(recordSetId), startRow), createId(String.valueOf(recordSetId), endRow), userId, locale);
 
 		if (ddlEntryCache != null && !ddlEntryCache.isEmpty()) {
 
@@ -121,22 +124,25 @@ public class DDLListInteractorImpl
 				entries.add(new DDLEntry(JSONUtil.toMap(new JSONObject(tableCache.getContent()))));
 			}
 
-			TableCache tableCache = (TableCache) cache.getById(DefaultCachedType.DDL_LIST_COUNT, String.valueOf(recordSetId));
+			TableCache tableCache = (TableCache) cache.getById(DefaultCachedType.DDL_LIST_COUNT, String.valueOf(recordSetId), LiferayServerContext.getGroupId(), _userId, locale);
 
 			RequestState.getInstance().remove(getTargetScreenletId(), rowsRange);
 
 			EventBusUtil.post(new BaseListEvent(
-				getTargetScreenletId(), startRow, endRow, entries, Integer.valueOf(tableCache.getContent())));
+				getTargetScreenletId(), startRow, endRow, entries, Integer.valueOf(tableCache.getContent()), locale));
 
 			return true;
 		}
 		return false;
+
+
 	}
 
 	@Override
 	protected void storeToCache(BaseListEvent event, Object... args) {
 		Cache cache = CacheSQL.getInstance();
-		cache.set(new TableCache(String.valueOf(_recordSetId), DefaultCachedType.DDL_LIST_COUNT, String.valueOf(event.getRowCount())));
+		cache.set(new TableCache(String.valueOf(_recordSetId), DefaultCachedType.DDL_LIST_COUNT,
+			String.valueOf(event.getRowCount()), LiferayServerContext.getGroupId(), _userId, event.getLocale()));
 
 		for (int i = 0; i < event.getEntries().size(); i++) {
 			DDLEntry ddlEntry = (DDLEntry) event.getEntries().get(i);
@@ -145,13 +151,14 @@ public class DDLListInteractorImpl
 
 			Map<String, Object> values = ddlEntry.getValues();
 			Object recordSetId = ddlEntry.getAttributes("recordSetId");
-			cache.set(new TableCache(createId(recordSetId.toString(), range), DefaultCachedType.DDL_LIST, new JSONObject(values).toString()));
+			cache.set(new TableCache(createId(recordSetId.toString(), range), DefaultCachedType.DDL_LIST,
+				new JSONObject(values).toString(), LiferayServerContext.getGroupId(), _userId, event.getLocale()));
 		}
 	}
 
 	@Override
-	protected BaseListCallback<DDLEntry> getCallback(Pair<Integer, Integer> rowsRange) {
-		return new DDLListCallback(getTargetScreenletId(), rowsRange);
+	protected BaseListCallback<DDLEntry> getCallback(Pair<Integer, Integer> rowsRange, Locale locale) {
+		return new DDLListCallback(getTargetScreenletId(), rowsRange, locale);
 	}
 
 	@Override

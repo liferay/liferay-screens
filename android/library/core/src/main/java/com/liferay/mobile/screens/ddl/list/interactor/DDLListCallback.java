@@ -19,6 +19,7 @@ import android.util.Pair;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -28,8 +29,8 @@ import java.util.Map;
 public class DDLListCallback
         extends BaseListCallback<DDLEntry> {
 
-    public DDLListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
-        super(targetScreenletId, rowsRange);
+    public DDLListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange, Locale locale) {
+        super(targetScreenletId, rowsRange, locale);
     }
 
     @Override

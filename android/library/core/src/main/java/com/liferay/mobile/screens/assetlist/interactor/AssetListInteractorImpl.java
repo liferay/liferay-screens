@@ -32,6 +32,7 @@ import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.service.v62.ScreensassetentryService;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.JSONUtil;
+import com.liferay.mobile.screens.util.LiferayLocale;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,7 +47,6 @@ import java.util.Map;
  */
 public class AssetListInteractorImpl
 	extends BaseListInteractor<AssetEntry, AssetListInteractorListener> implements AssetListInteractor {
-
 
 	public AssetListInteractorImpl(int targetScreenletId, CachePolicy cachePolicy) {
 		super(targetScreenletId, cachePolicy);
@@ -110,13 +110,44 @@ public class AssetListInteractorImpl
 		final RequestState requestState = (RequestState) args[5];
 		final Pair rowsRange = (Pair) args[6];
 
-		return loadFromCache(groupId, classNameId, startRow, endRow, locale, requestState, rowsRange);
+		Cache cache = CacheSQL.getInstance();
+		String query = " AND " + TableCache.ID + " >= ? AND " + TableCache.ID + " < ? AND "
+			+ TableCache.GROUP_ID + " = ? AND " + TableCache.LOCALE + " = ? ";
+
+		List<TableCache> ddlEntryCache = (List<TableCache>) cache.get(DefaultCachedType.ASSET_LIST,
+			query, createId(String.valueOf(classNameId), startRow), createId(String.valueOf(classNameId), endRow),
+			groupId, LiferayLocale.getSupportedLocale(locale.getDisplayLanguage()));
+
+		if (ddlEntryCache != null && !ddlEntryCache.isEmpty()) {
+
+
+			requestState.put(getTargetScreenletId(), rowsRange);
+
+			List<AssetEntry> entries = new ArrayList<>();
+
+			for (TableCache tableCache : ddlEntryCache) {
+				entries.add(new AssetEntry(JSONUtil.toMap(new JSONObject(tableCache.getContent()))));
+			}
+
+			TableCache tableCache = (TableCache) cache.getById(DefaultCachedType.ASSET_LIST_COUNT,
+				String.valueOf(classNameId), _groupId, null, locale);
+
+			RequestState.getInstance().remove(getTargetScreenletId(), rowsRange);
+
+			EventBusUtil.post(new BaseListEvent(
+				getTargetScreenletId(), startRow, endRow, entries, Integer.valueOf(tableCache.getContent()), locale));
+
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	protected void storeToCache(BaseListEvent event, Object... args) {
 		Cache cache = CacheSQL.getInstance();
-		cache.set(new TableCache(String.valueOf(_classNameId), DefaultCachedType.DDL_LIST_COUNT, String.valueOf(event.getRowCount())));
+
+		cache.set(new TableCache(String.valueOf(_classNameId), DefaultCachedType.ASSET_LIST_COUNT, String.valueOf(event.getRowCount()),
+			_groupId, null, event.getLocale()));
 
 		for (int i = 0; i < event.getEntries().size(); i++) {
 			AssetEntry ddlEntry = (AssetEntry) event.getEntries().get(i);
@@ -124,13 +155,14 @@ public class AssetListInteractorImpl
 			int range = i + event.getStartRow();
 
 			Map<String, Object> values = ddlEntry.getValues();
-			cache.set(new TableCache(createId(String.valueOf(_classNameId), range), DefaultCachedType.DDL_LIST, new JSONObject(values).toString()));
+			cache.set(new TableCache(createId(String.valueOf(_classNameId), range), DefaultCachedType.ASSET_LIST, new JSONObject(values).toString(),
+				_groupId, null, event.getLocale()));
 		}
 	}
 
 	@Override
-	protected BaseListCallback<AssetEntry> getCallback(Pair<Integer, Integer> rowsRange) {
-		return new AssetListCallback(getTargetScreenletId(), rowsRange);
+	protected BaseListCallback<AssetEntry> getCallback(Pair<Integer, Integer> rowsRange, Locale locale) {
+		return new AssetListCallback(getTargetScreenletId(), rowsRange, locale);
 	}
 
 	@Override
@@ -178,36 +210,6 @@ public class AssetListInteractorImpl
 		}
 
 		super.validate(startRow, endRow, locale);
-	}
-
-	private boolean loadFromCache(long groupId, long classNameId, int startRow, int endRow, Locale locale,
-								  RequestState requestState, Pair<Integer, Integer> rowsRange) throws JSONException {
-		Cache cache = CacheSQL.getInstance();
-		String query = " AND " + TableCache.ID + " >= ? AND " + TableCache.ID + " < ?";
-		List<TableCache> ddlEntryCache = (List<TableCache>) cache.get(DefaultCachedType.DDL_LIST,
-			query, createId(String.valueOf(classNameId), startRow), createId(String.valueOf(classNameId), endRow));
-
-		if (ddlEntryCache != null && !ddlEntryCache.isEmpty()) {
-
-
-			requestState.put(getTargetScreenletId(), rowsRange);
-
-			List<AssetEntry> entries = new ArrayList<>();
-
-			for (TableCache tableCache : ddlEntryCache) {
-				entries.add(new AssetEntry(JSONUtil.toMap(new JSONObject(tableCache.getContent()))));
-			}
-
-			TableCache tableCache = (TableCache) cache.getById(DefaultCachedType.DDL_LIST_COUNT, String.valueOf(classNameId));
-
-			RequestState.getInstance().remove(getTargetScreenletId(), rowsRange);
-
-			EventBusUtil.post(new BaseListEvent(
-				getTargetScreenletId(), startRow, endRow, entries, Integer.valueOf(tableCache.getContent())));
-
-			return true;
-		}
-		return false;
 	}
 
 	private long _groupId;
