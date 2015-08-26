@@ -73,9 +73,9 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	public func loadLoggedUserPortrait() -> Bool {
 		let interactor = UserPortraitLoadLoggedUserInteractor(screenlet: self)
 
-		loadedUserId =  SessionContext.currentUserId
+		loadedUserId = SessionContext.currentUserId
 
-		return startInteractor(interactor)
+		return performAction(name: "load-portrait", sender: interactor)
 	}
 
 	public func load(#portraitId: Int64, uuid: String, male: Bool = true) -> Bool {
@@ -87,7 +87,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 		loadedUserId = nil
 
-		return startInteractor(interactor)
+		return performAction(name: "load-portrait", sender: interactor)
 	}
 
 	public func load(#userId: Int64) -> Bool {
@@ -97,7 +97,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 		loadedUserId = userId
 
-		return startInteractor(interactor)
+		return performAction(name: "load-portrait", sender: interactor)
 	}
 
 	public func load(#companyId: Int64, emailAddress: String) -> Bool {
@@ -108,7 +108,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 		loadedUserId = nil
 
-		return startInteractor(interactor)
+		return performAction(name: "load-portrait", sender: interactor)
 	}
 
 	public func load(#companyId: Int64, screenName: String) -> Bool {
@@ -119,14 +119,34 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 		loadedUserId = nil
 
-		return startInteractor(interactor)
+		return performAction(name: "load-portrait", sender: interactor)
 	}
 
 	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
-
-		let interactor: UploadUserPortraitInteractor?
+		let interactor: Interactor?
 
 		switch name {
+		case "load-portrait":
+			let loadInteractor = sender as! UserPortraitBaseInteractor
+			interactor = loadInteractor
+
+			loadInteractor.onSuccess = {
+				if let imageValue = loadInteractor.resultImage {
+					let finalImage = self.delegate?.screenlet?(self, onUserPortraitResponseImage: imageValue)
+
+					self.loadedUserId = loadInteractor.resultUserId
+					self.setPortraitImage(finalImage ?? imageValue)
+				}
+				else {
+					self.loadedUserId = nil
+					self.setPortraitImage(nil)
+				}
+			}
+
+			loadInteractor.onFailure = {
+				delegate?.screenlet?(self, onUserPortraitError: $0)
+			}
+
 		case "upload-portrait":
 			let image = sender as! UIImage
 			let userId: Int64
@@ -140,17 +160,18 @@ public class UserPortraitScreenlet: BaseScreenlet {
 				return nil
 			}
 
-			interactor = UploadUserPortraitInteractor(
+			let uploadInteractor = UploadUserPortraitInteractor(
 					screenlet: self,
 					userId: userId,
 					image: image)
+			interactor = uploadInteractor
 
-			interactor!.onSuccess = { [weak interactor] in
-				self.delegate?.screenlet?(self, onUserPortraitUploaded: interactor!.uploadResult!)
+			uploadInteractor.onSuccess = { [weak interactor] in
+				self.delegate?.screenlet?(self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
 				self.load(userId: userId)
 			}
 
-			interactor!.onFailure = {
+			uploadInteractor.onFailure = {
 				self.delegate?.screenlet?(self, onUserPortraitUploadError: $0)
 				return
 			}
@@ -162,28 +183,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return interactor
 	}
 
+
 	//MARK: Private methods
-
-	private func startInteractor(interactor: UserPortraitBaseInteractor) -> Bool {
-		interactor.onSuccess = {
-			if let imageValue = interactor.resultImage {
-				let finalImage = self.delegate?.screenlet?(self, onUserPortraitResponseImage: imageValue)
-
-				self.loadedUserId = interactor.resultUserId
-				self.setPortraitImage(finalImage ?? imageValue)
-			}
-			else {
-				self.loadedUserId = nil
-				self.setPortraitImage(nil)
-			}
-		}
-
-		interactor.onFailure = {
-			delegate?.screenlet?(self, onUserPortraitError: $0)
-		}
-
-		return interactor.start()
-	}
 
 	private func setPortraitImage(image: UIImage?) {
 		viewModel.image = image
