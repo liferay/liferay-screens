@@ -60,10 +60,21 @@ public class UserPortraitView_default: BaseScreenletView,
 		}
 	}
 
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			"load-portrait" : [.Loading : ""],
+			"upload-portrait" :
+				[.Failure : LocalizedString("userportrait-screenlet", "uploading-error", self)]]
+	}
+
 	private let imagePicker = UIImagePickerController()
 
 
 	//MARK: BaseScreenletView
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return UserPortraitDefaultProgressPresenter(spinner: activityIndicator!)
+	}
 
 	override public func onCreated() {
 		super.onCreated()
@@ -129,6 +140,7 @@ public class UserPortraitView_default: BaseScreenletView,
 				currentClass: self.dynamicType)
 	}
 
+
 	//MARK: UIImagePickerControllerDelegate
 
     public func imagePickerController(
@@ -141,7 +153,6 @@ public class UserPortraitView_default: BaseScreenletView,
 
 		userAction(name: "upload-portrait", sender: editedImage)
 	}
-
 
     public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
 		imagePicker.dismissViewControllerAnimated(true) {}
