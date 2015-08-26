@@ -18,16 +18,13 @@ import Foundation
 #endif
 
 
-internal let MBProgressHUDLock = "hud-lock"
-
-
 @objc public class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 
-	private var instance: MBProgressHUD?
+	public var instance: MBProgressHUD?
 
-	var customView: UIView?
-	var customColor: UIColor?
-	var customOpacity = Float(0.8)
+	public var customView: UIView?
+	public var customColor: UIColor?
+	public var customOpacity = Float(0.8)
 
 	internal dynamic func simpleTapDetected(recognizer: UIGestureRecognizer!) {
 		if let hud = recognizer.view as? MBProgressHUD {
@@ -37,13 +34,13 @@ internal let MBProgressHUDLock = "hud-lock"
 	}
 
 	public func hideHUD() {
-		assert(self.instance != nil, "MBProgressHUD must exist")
+		if self.instance == nil {
+			return
+		}
 
-		synchronized(MBProgressHUDLock) {
-			dispatch_main {
-				self.instance!.hide(true)
-				self.instance = nil
-			}
+		dispatch_main {
+			self.instance!.hide(true)
+			self.instance = nil
 		}
 	}
 
@@ -52,17 +49,15 @@ internal let MBProgressHUDLock = "hud-lock"
 			closeMode: ProgressCloseMode,
 			spinnerMode: ProgressSpinnerMode) {
 
-		synchronized(MBProgressHUDLock) {
-			dispatch_main {
-				if self.instance == nil {
-					self.instance = MBProgressHUD.showHUDAddedTo(view, animated:true)
-				}
-
-				self.configureAndShowHUD(self.instance!,
-					message: message,
-					closeMode: closeMode,
-					spinnerMode: spinnerMode)
+		dispatch_main {
+			if self.instance == nil {
+				self.instance = MBProgressHUD.showHUDAddedTo(view, animated:true)
 			}
+
+			self.configureAndShowHUD(self.instance!,
+				message: message,
+				closeMode: closeMode,
+				spinnerMode: spinnerMode)
 		}
 	}
 
