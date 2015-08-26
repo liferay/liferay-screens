@@ -1,12 +1,15 @@
 package com.liferay.mobile.screens.cache;
 
 import java.util.List;
+import java.util.Locale;
 
 public interface Cache<E> {
 
 	List<E> get(CachedType cachedType, String query, Object... args);
 
 	E getById(CachedType cachedType, String id);
+
+	E getById(CachedType cachedType, String id, Long groupId, Long userId, Locale locale);
 
 	void set(E object);
 

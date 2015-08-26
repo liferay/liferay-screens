@@ -10,6 +10,7 @@ import com.liferay.mobile.screens.util.EventBusUtil;
 import com.pushtorefresh.storio.sqlite.impl.DefaultStorIOSQLite;
 
 import java.util.List;
+import java.util.Locale;
 
 public class CacheSQL<E extends CachedContent> implements Cache<E> {
 
@@ -31,6 +32,14 @@ public class CacheSQL<E extends CachedContent> implements Cache<E> {
 	@Override
 	public E getById(CachedType cachedType, String id) {
 		return (E) _cacheStrategyFactory.recoverStrategy(cachedType).getById(id);
+	}
+
+	/**
+	 * Sync and blocking get by id with the other default params, userId, groupId and locale
+	 */
+	@Override
+	public E getById(CachedType cachedType, String id, Long groupId, Long userId, Locale locale) {
+		return (E) _cacheStrategyFactory.recoverStrategy(cachedType).getById(id, groupId, userId, locale);
 	}
 
 	/**
