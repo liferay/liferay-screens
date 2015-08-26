@@ -1,52 +1,32 @@
 package com.liferay.mobile.screens.cache.ddl.form;
 
-import com.liferay.mobile.screens.cache.CachedContent;
-import com.liferay.mobile.screens.cache.sql.CacheSQL;
+import com.liferay.mobile.screens.cache.sql.BaseCacheStrategy;
 import com.liferay.mobile.screens.cache.sql.CacheStrategy;
-import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
 
 import java.util.List;
-
-import static com.liferay.mobile.screens.cache.sql.CacheSQL.queryGet;
-import static com.liferay.mobile.screens.cache.sql.StorIOSQLite.queryDelete;
+import java.util.Locale;
 
 /**
  * @author Javier Gamarra
  */
-public class DDLRecordCacheStrategy implements CacheStrategy {
+public class DDLRecordCacheStrategy extends BaseCacheStrategy<DDLRecordCache> implements CacheStrategy<DDLRecordCache> {
 
 	@Override
-	public DDLRecordCache getById(String id) {
-		List query = queryGet(DDLRecordCache.class, DDLRecordCache.TABLE_NAME, WHERE_BY_ID, id);
-		return query.isEmpty() ? null : (DDLRecordCache) query.get(0);
+	public DDLRecordCache getById(String id, Long groupId, Long userId, Locale locale) {
+		List list = get(WHERE_BY_ID_AND_GROUP_ID, id, groupId);
+		return list.isEmpty() ? null : (DDLRecordCache) list.get(0);
 	}
 
 	@Override
-	public List<DDLRecordCache> get(String query, Object... args) {
-		return queryGet(DDLRecordCache.class, DDLRecordCache.TABLE_NAME, query, args);
+	protected String getQueryById() {
+		return WHERE_BY_ID;
 	}
 
 	@Override
-	public Object set(CachedContent object) {
-		PutResult putResult = (PutResult) CacheSQL.querySet(object.getTableCache());
-
-		if (putResult.wasInserted() || putResult.wasUpdated()) {
-			return CacheSQL.querySet(object);
-		}
-		else {
-			return putResult;
-		}
-	}
-
-	@Override
-	public void clear() {
-		queryDelete(DDLRecordCache.TABLE_NAME, null);
-	}
-
-	@Override
-	public void clear(String id) {
-		queryDelete(DDLRecordCache.TABLE_NAME, WHERE_BY_ID, id);
+	protected String getTableName() {
+		return DDLRecordCache.TABLE_NAME;
 	}
 
 	private static final String WHERE_BY_ID = DDLRecordCache.RECORD_ID + " = ?";
+	private static final String WHERE_BY_ID_AND_GROUP_ID = WHERE_BY_ID + " AND " + DDLRecordCache.GROUP_ID + " = ?";
 }
