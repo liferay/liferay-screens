@@ -46,24 +46,19 @@ public class UserPortraitView_default: BaseScreenletView,
 		}
 	}
 
-	public var portraitURL: NSURL? {
+	public var image: UIImage? {
 		get {
-			return loadedURL
+			return portraitImage?.image
 		}
 		set {
-			if let urlValue = newValue {
-				loadPortrait(URL: urlValue)
+			if let image = newValue {
+				portraitImage?.image = image
 			}
 			else {
 				loadPlaceholder()
 			}
 		}
 	}
-
-	public var portraitLoaded: ((UIImage?, NSError?) -> (UIImage?))?
-
-
-	private(set) var loadedURL: NSURL?
 
 	private let imagePicker = UIImagePickerController()
 
@@ -76,33 +71,6 @@ public class UserPortraitView_default: BaseScreenletView,
 		imagePicker.delegate = self
 		imagePicker.allowsEditing = true
 		imagePicker.modalPresentationStyle = .FullScreen
-	}
-
-	override public func onStartInteraction() {
-		objc_sync_enter(self)
-
-		// use tag to track the start count
-		if activityIndicator?.tag == 0 {
-			activityIndicator?.startAnimating()
-		}
-
-		activityIndicator?.tag++
-
-		objc_sync_exit(self)
-	}
-
-	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
-		if activityIndicator?.tag > 0 {
-			objc_sync_enter(self)
-
-			activityIndicator?.tag--
-
-			if activityIndicator?.tag == 0 {
-				activityIndicator?.stopAnimating()
-			}
-
-			objc_sync_exit(self)
-		}
 	}
 
 	override public func onShow() {
@@ -160,46 +128,6 @@ public class UserPortraitView_default: BaseScreenletView,
 				name: "default-portrait-placeholder",
 				currentClass: self.dynamicType)
 	}
-
-
-	public func loadPortrait(URL url: NSURL) {
-		// ignore AFNetworking's cache by now
-		// TODO contribute to UIImageView+AFNetworking to support "If-Modified-Since" header
-		let request = NSURLRequest(
-				URL: url,
-				cachePolicy: .ReloadIgnoringLocalCacheData,
-				timeoutInterval: 60.0)
-
-		onStartInteraction()
-
-		portraitImage?.setImageWithURLRequest(request, placeholderImage: nil, success: {
-			(request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) -> Void in
-				self.loadedURL = url
-
-				if self.portraitLoaded == nil {
-					self.portraitImage?.image = image
-				}
-				else {
-					if let finalImageValue = self.portraitLoaded!(image, nil) {
-						self.portraitImage?.image = finalImageValue
-					}
-					else {
-						self.portraitImage?.image = image
-					}
-				}
-
-				self.onFinishInteraction(self.portraitImage?.image, error: nil)
-
-			},
-			failure: {
-				(request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) -> Void in
-					self.loadPlaceholder()
-					self.loadedURL = nil
-					self.portraitLoaded?(nil, error)
-					self.onFinishInteraction(nil, error: error)
-			})
-	}
-
 
 	//MARK: UIImagePickerControllerDelegate
 

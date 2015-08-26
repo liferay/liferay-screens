@@ -16,12 +16,10 @@ import UIKit
 
 @objc public protocol UserPortraitViewModel {
 
-	var portraitURL: NSURL? {get set}
+	var image: UIImage? {get set}
 
 	var borderWidth: CGFloat {get set}
 	var borderColor: UIColor? {get set}
 	var editable: Bool {get set}
-
-	var portraitLoaded: ((UIImage?, NSError?) -> (UIImage?))? {get set}
 
 }
