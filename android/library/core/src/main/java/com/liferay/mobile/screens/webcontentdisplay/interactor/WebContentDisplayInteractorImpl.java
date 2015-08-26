@@ -78,7 +78,7 @@ public class WebContentDisplayInteractorImpl
 		String articleId = (String) args[1];
 		Locale locale = (Locale) args[2];
 
-		TableCache webContent = (TableCache) CacheSQL.getInstance().getById(DefaultCachedType.WEB_CONTENT, articleId);
+		TableCache webContent = (TableCache) CacheSQL.getInstance().getById(DefaultCachedType.WEB_CONTENT, articleId, groupId, null, locale);
 		if (webContent != null) {
 			onEvent(new WebContentDisplayEvent(getTargetScreenletId(), groupId, articleId, locale, webContent.getContent()));
 			return true;
@@ -91,7 +91,7 @@ public class WebContentDisplayInteractorImpl
 		long userId = SessionContext.getLoggedUser().getId();
 
 		CacheSQL.getInstance().set(new TableCache(event.getArticleId(), DefaultCachedType.WEB_CONTENT,
-			event.getHtml(), userId, event.getGroupId(), event.getLocale().getDisplayLanguage()));
+			event.getHtml(), event.getGroupId(), userId, event.getLocale()));
 	}
 
 

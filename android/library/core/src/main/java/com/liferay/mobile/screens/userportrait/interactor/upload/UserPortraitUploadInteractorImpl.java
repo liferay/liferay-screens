@@ -24,10 +24,8 @@ public class UserPortraitUploadInteractorImpl
 		super(targetScreenletId, offlinePolicy);
 	}
 
-
 	public void upload(final Long userId, final String picturePath) throws Exception {
-
-		storeOnError(userId, picturePath);
+		storeOnError(userId, picturePath, false);
 	}
 
 	public void onEventMainThread(UserPortraitUploadEvent event) {
@@ -45,6 +43,8 @@ public class UserPortraitUploadInteractorImpl
 			}
 
 			try {
+				storeToCache(user.getId(), event.getPicturePath(), false);
+
 				getListener().onUserPortraitUploaded(user.getId());
 			}
 			catch (Exception e) {
@@ -72,17 +72,16 @@ public class UserPortraitUploadInteractorImpl
 	}
 
 	@Override
-	protected void storeToCache(Object[] args) {
+	protected void storeToCache(Object... args) {
 
 		long userId = (long) args[0];
 		String picturePath = (String) args[1];
+		boolean sent = (boolean) args[2];
 
-		store(userId, picturePath);
-	}
-
-	private void store(Long userId, String picturePath) {
 		Cache cache = CacheSQL.getInstance();
-		cache.set(new TableCache(String.valueOf(userId), DefaultCachedType.USER_PORTRAIT_UPLOAD, picturePath));
+		TableCache file = new TableCache(String.valueOf(userId), DefaultCachedType.USER_PORTRAIT_UPLOAD, picturePath);
+		file.setSent(sent);
+		cache.set(file);
 	}
 
 }
