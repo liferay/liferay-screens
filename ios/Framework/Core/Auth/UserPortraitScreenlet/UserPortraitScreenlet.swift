@@ -68,7 +68,6 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		viewModel.borderWidth = self.borderWidth
 		viewModel.borderColor = self.borderColor
 		viewModel.editable = self.editable
-		viewModel.portraitLoaded = onPortraitLoaded
 	}
 
 	public func loadLoggedUserPortrait() -> Bool {
@@ -167,36 +166,32 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 	private func startInteractor(interactor: UserPortraitBaseInteractor) -> Bool {
 		interactor.onSuccess = {
-			self.setPortraitURL(interactor.resultURL)
-			self.loadedUserId = interactor.resultUserId
+			if let imageValue = interactor.resultImage {
+				let finalImage = self.delegate?.screenlet?(self, onUserPortraitResponseImage: imageValue)
+
+				self.loadedUserId = interactor.resultUserId
+				self.setPortraitImage(finalImage ?? imageValue)
+			}
+			else {
+				self.loadedUserId = nil
+				self.setPortraitImage(nil)
+			}
+		}
+
+		interactor.onFailure = {
+			delegate?.screenlet?(self, onUserPortraitError: $0)
 		}
 
 		return interactor.start()
 	}
 
-	private func setPortraitURL(url: NSURL?) {
-		viewModel.portraitURL = url
+	private func setPortraitImage(image: UIImage?) {
+		viewModel.image = image
 
-		if url == nil {
+		if image == nil {
 			let error = NSError.errorWithCause(.AbortedDueToPreconditions)
-			screenletView?.onFinishInteraction(nil, error: error)
 			delegate?.screenlet?(self, onUserPortraitError: error)
 		}
-	}
-
-	private func onPortraitLoaded(image: UIImage?, error: NSError?) -> UIImage? {
-		var finalImage = image
-
-		if let errorValue = error {
-			delegate?.screenlet?(self, onUserPortraitError: errorValue)
-		}
-		else if let imageValue = image {
-			finalImage = delegate?.screenlet?(self, onUserPortraitResponseImage: imageValue)
-		}
-
-		screenletView?.onFinishInteraction(finalImage, error: error)
-
-		return finalImage
 	}
 
 }

@@ -17,11 +17,7 @@ import UIKit
 class UserPortraitBaseLoadUserInteractor: UserPortraitBaseInteractor {
 
 	override internal func start() -> Bool {
-		if isUserLogged() {
-			return startLoggedUser()
-		}
-
-		return startLoadUserOperation()
+		return startWithLoggedUser() || startLoadUserOperation()
 	}
 
 	func createLoadUserOperation() -> GetUserBaseOperation? {
@@ -32,66 +28,49 @@ class UserPortraitBaseLoadUserInteractor: UserPortraitBaseInteractor {
 		return false
 	}
 
-	private func startLoggedUser() -> Bool {
-		let loggedUserInteractor = UserPortraitLoadLoggedUserInteractor(screenlet: screenlet)
-
-		loggedUserInteractor.onSuccess = {
-			self.resultURL = loggedUserInteractor.resultURL
-			self.resultUserId = loggedUserInteractor.resultUserId
-			self.callOnSuccess()
+	private func startWithLoggedUser() -> Bool {
+		if !isUserLogged() {
+			return false
 		}
 
-		loggedUserInteractor.onFailure = {
-			self.resultURL = nil
-			self.callOnFailure($0)
+		if let portraitId = SessionContext.userAttribute("portraitId") as? NSNumber,
+				uuid = SessionContext.userAttribute("uuid") as? String {
+
+			resultUserId = SessionContext.currentUserId
+
+			return startLoadImage(
+				portraitId: portraitId.longLongValue,
+				uuid: uuid,
+				male: true)
 		}
 
-		return loggedUserInteractor.start()
+		return false
 	}
 
 	private func startLoadUserOperation() -> Bool {
-		var result = false
-
 		if let operation = createLoadUserOperation() {
-			result = (operation.validateAndEnqueue(onComplete: onUserLoaded) == nil)
-
-			if result {
-				self.screenlet.screenletView?.onStartInteraction()
-			}
-			else {
-				resultURL = nil
-			}
+			return (operation.validateAndEnqueue(onComplete: onUserLoaded) == nil)
 		}
 
-		return result
+		return false
 	}
 
 	private func onUserLoaded(operation: ServerOperation) {
 		let userOperation = operation as! GetUserBaseOperation
 
-		if let userAttributes = userOperation.resultUserAttributes {
-			self.resultUserId = (userAttributes["userId"] as! NSNumber).longLongValue
+		if let userAttributes = userOperation.resultUserAttributes,
+				resultUserId = userAttributes["userId"] as? NSNumber,
+				portraitId = userAttributes["portraitId"] as? NSNumber,
+				uuid = userAttributes["uuid"] as? String {
 
-			let attributesInteractor = UserPortraitAttributesLoadInteractor(
-					screenlet: screenlet,
-					portraitId: (userAttributes["portraitId"] as! NSNumber).longLongValue,
-					uuid: userAttributes["uuid"] as! String,
-					male: true)
+			self.resultUserId = resultUserId.longLongValue
 
-			attributesInteractor.onSuccess = {
-				self.resultURL = attributesInteractor.resultURL
-				self.callOnSuccess()
-			}
-
-			attributesInteractor.onFailure = {
-				self.resultURL = nil
-				self.callOnFailure($0)
-			}
-
-			attributesInteractor.start()
+			startLoadImage(
+				portraitId: portraitId.longLongValue,
+				uuid: uuid,
+				male: true)
 		}
 		else {
-			resultURL = nil
 			callOnFailure(NSError.errorWithCause(.InvalidServerResponse))
 		}
 	}

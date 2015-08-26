@@ -29,12 +29,7 @@ class UserPortraitAttributesLoadInteractor: UserPortraitBaseInteractor {
 	}
 
 	override internal func start() -> Bool {
-		resultURL = (portraitId == 0)
-				? nil : URLForAttributes(portraitId: portraitId, uuid: uuid, male: male)
-
-		callOnSuccess()
-
-		return (resultURL != nil)
+		return startLoadImage(portraitId: portraitId, uuid: uuid, male: male)
 	}
 
 }

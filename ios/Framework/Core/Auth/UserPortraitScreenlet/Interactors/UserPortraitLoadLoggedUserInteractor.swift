@@ -17,26 +17,15 @@ import UIKit
 class UserPortraitLoadLoggedUserInteractor: UserPortraitBaseInteractor {
 
 	override internal func start() -> Bool {
-		resultURL = nil
-
-		if let portraitId = SessionContext.userAttribute("portraitId") as? NSNumber {
-			if let uuid = SessionContext.userAttribute("uuid") as? String {
-				resultURL = URLForAttributes(
-						portraitId: portraitId.longLongValue,
-						uuid: uuid,
-						male: true)
-				resultUserId = SessionContext.currentUserId
-			}
+		if let portraitId = SessionContext.userAttribute("portraitId") as? NSNumber,
+				uuid = SessionContext.userAttribute("uuid") as? String {
+			resultUserId = SessionContext.currentUserId
+			return startLoadImage(portraitId: portraitId.longLongValue,
+				uuid: uuid,
+				male: true)
 		}
 
-		if resultURL == nil {
-			callOnFailure(NSError.errorWithCause(.AbortedDueToPreconditions))
-		}
-		else {
-			callOnSuccess()
-		}
-
-		return (resultURL != nil)
+		return false
 	}
 
 }
