@@ -62,7 +62,8 @@ public class CacheSyncService extends IntentService {
 	}
 
 	private void sendPortrait(Cache cache) {
-		List<TableCache> documents = cache.get(DefaultCachedType.USER_PORTRAIT_UPLOAD, TableCache.SENT + " = 0");
+		long userId = SessionContext.getLoggedUser() == null ? 0 : SessionContext.getLoggedUser().getId();
+		List<TableCache> documents = cache.get(DefaultCachedType.USER_PORTRAIT_UPLOAD, TableCache.SENT + " = 0 AND " + TableCache.USER_ID + " = ? ", userId);
 
 		UserPortraitUploadInteractorImpl userPortraitUploadInteractor = new UserPortraitUploadInteractorImpl(0, OfflinePolicy.STORE_ON_ERROR);
 
@@ -80,7 +81,9 @@ public class CacheSyncService extends IntentService {
 
 
 	private void sendDocuments(Cache cache) {
-		List<DocumentUploadCache> documents = cache.get(DefaultCachedType.DOCUMENT_UPLOAD, DocumentUploadCache.SENT + " = 0");
+		long userId = SessionContext.getLoggedUser() == null ? 0 : SessionContext.getLoggedUser().getId();
+		long groupId = LiferayServerContext.getGroupId();
+		List<DocumentUploadCache> documents = cache.get(DefaultCachedType.DOCUMENT_UPLOAD, DocumentUploadCache.SENT + " = 0 AND " + TableCache.USER_ID + " = ? AND " + TableCache.GROUP_ID + " = ? ", userId, groupId);
 
 		DDLFormDocumentUploadInteractorImpl ddlFormDocumentUploadInteractor = new DDLFormDocumentUploadInteractorImpl(0, OfflinePolicy.STORE_ON_ERROR);
 
@@ -99,7 +102,8 @@ public class CacheSyncService extends IntentService {
 	}
 
 	private void sendRecords(Cache cache) throws Exception {
-		List<RecordCache> caches = cache.get(DefaultCachedType.DDL_RECORD, DDLRecordCache.SENT + " = 0");
+		long groupId = LiferayServerContext.getGroupId();
+		List<RecordCache> caches = cache.get(DefaultCachedType.DDL_RECORD, DDLRecordCache.SENT + " = 0 AND " + TableCache.GROUP_ID + " = ? ", groupId);
 
 		DDLFormAddRecordInteractorImpl ddlFormAddRecordInteractor = new DDLFormAddRecordInteractorImpl(0, OfflinePolicy.STORE_ON_ERROR);
 
