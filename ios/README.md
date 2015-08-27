@@ -1,6 +1,6 @@
 # Liferay Screens for iOS
 
-This folder contains the Liferay Screens for iOS codebase and example projects. To learn how to use Screens for iOS, see the [Screens documentation at the Liferay Developer Network (LDN)](https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/mobile-apps-with-liferay-screens). 
+This folder contains the Liferay Screens for iOS codebase and example projects. To learn how to use Screens for iOS, see the [Screens for iOS documentation at the Liferay Developer Network (LDN)](https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/ios-apps-with-liferay-screens). 
 
 This folder's contents are organized as follows: 
 
