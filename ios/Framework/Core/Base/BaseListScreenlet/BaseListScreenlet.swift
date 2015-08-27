@@ -25,7 +25,7 @@ import UIKit
 	@IBInspectable public var refreshControl: Bool = true {
 		didSet {
 			(screenletView as? BaseListTableView)?.refreshClosure =
-					refreshControl ? self.loadList : nil
+					refreshControl ? self.refreshList : nil
 		}
 	}
 
@@ -46,7 +46,7 @@ import UIKit
 		baseListView.fetchPageForRow = loadPageForRow
 
 		(screenletView as? BaseListTableView)?.refreshClosure =
-				refreshControl ? self.loadList : nil
+				refreshControl ? self.refreshList : nil
 	}
 
 	override public func onShow() {
@@ -103,6 +103,10 @@ import UIKit
 
 	public func loadList() -> Bool {
 		return performAction(name: BaseListScreenlet.LoadInitialPageAction, sender: nil)
+	}
+
+	public func refreshList() -> Bool {
+		return performAction(name: BaseListScreenlet.LoadPageAction, sender: 0)
 	}
 
 	public func loadPageForRow(row: Int) {
