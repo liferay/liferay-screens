@@ -143,10 +143,10 @@ import UIKit
 		return nil
 	}
 
-	override public func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
+	override public func onAction(#name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
 		let result = super.onAction(name: name, interactor: interactor, sender: sender)
 
-		if name! == DDLFormScreenlet.UploadDocumentAction && result {
+		if result && name == DDLFormScreenlet.UploadDocumentAction {
 			let uploadInteractor = interactor as! DDLFormUploadDocumentInteractor
 
 			delegate?.screenlet?(self,

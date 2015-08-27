@@ -229,7 +229,7 @@ import QuartzCore
 	/*
 	 * onAction is invoked when an interaction should be started
 	 */
-	public func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
+	public func onAction(#name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
 		onStartInteraction()
 		screenletView?.onStartInteraction()
 
