@@ -16,6 +16,15 @@ import UIKit
 
 public class DDLListView_default: BaseListTableView, DDLListViewModel {
 
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			BaseListScreenlet.LoadInitialPageAction : [
+				.Working : LocalizedString("core", "base-list-loading-message", self),
+				.Failure : LocalizedString("core", "base-list-loading-error", self)
+			]
+		]
+	}
+
 	// DDLListViewModel
 
 	public var labelFields: [String] = []

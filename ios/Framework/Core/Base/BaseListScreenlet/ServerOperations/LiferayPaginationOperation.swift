@@ -23,20 +23,6 @@ public class LiferayPaginationOperation: ServerOperation {
 	public var resultPageContent: [[String:AnyObject]]?
 	public var resultRowCount: Int?
 
-	override public var hudLoadingMessage: HUDMessage? {
-		return (startRow == 0)
-				? (LocalizedString("core", "base-list-loading-message", self),
-						details: LocalizedString("core", "base-list-loading-details", self))
-				: nil
-	}
-	override public var hudFailureMessage: HUDMessage? {
-		return (startRow == 0)
-				? (LocalizedString("core", "base-list-loading-error", self), details: nil)
-				: nil
-	}
-
-
-
 
 	internal init(startRow: Int, endRow: Int, computeRowCount: Bool) {
 		self.startRow = startRow
