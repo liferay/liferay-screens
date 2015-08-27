@@ -15,13 +15,13 @@ public abstract class BaseCacheStrategy<E extends CachedContent> implements Cach
 
 	@Override
 	public E getById(String id) {
-		List query = queryGet(getClass(), getTableName(), getQueryById(), id);
+		List query = queryGet(getDomainClass(), getTableName(), getQueryById(), id);
 		return query.isEmpty() ? null : (E) query.get(0);
 	}
 
 	@Override
 	public List get(String query, Object... args) {
-		return queryGet(getClass(), getTableName(), query, args);
+		return queryGet(getDomainClass(), getTableName(), query, args);
 	}
 
 	@Override
@@ -45,6 +45,8 @@ public abstract class BaseCacheStrategy<E extends CachedContent> implements Cach
 	public void clear(String id) {
 		queryDelete(getTableName(), getQueryById(), id);
 	}
+
+	protected abstract Class getDomainClass();
 
 	protected abstract String getQueryById();
 

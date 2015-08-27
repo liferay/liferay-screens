@@ -25,5 +25,10 @@ public class DDLFormCacheStrategy extends BaseCacheStrategy<DDLFormCache> implem
 		return DDLFormCache.TABLE_NAME;
 	}
 
+	@Override
+	protected Class getDomainClass() {
+		return DDLFormCache.class;
+	}
+
 	private static final String WHERE_BY_ID = DDLFormCache.RECORD_SET_ID + " = ?";
 }

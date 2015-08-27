@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.cache.ddl.form;
 
 import com.liferay.mobile.screens.cache.sql.BaseCacheStrategy;
 import com.liferay.mobile.screens.cache.sql.CacheStrategy;
+import com.liferay.mobile.screens.cache.userportrait.UserPortraitCache;
 
 import java.util.List;
 import java.util.Locale;
@@ -25,6 +26,11 @@ public class DDLRecordCacheStrategy extends BaseCacheStrategy<DDLRecordCache> im
 	@Override
 	protected String getTableName() {
 		return DDLRecordCache.TABLE_NAME;
+	}
+
+	@Override
+	protected Class getDomainClass() {
+		return DDLRecordCache.class;
 	}
 
 	private static final String WHERE_BY_ID = DDLRecordCache.RECORD_ID + " = ?";

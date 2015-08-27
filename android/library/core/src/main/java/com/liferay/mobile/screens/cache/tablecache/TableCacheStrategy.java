@@ -79,6 +79,11 @@ public class TableCacheStrategy extends BaseCacheStrategy<TableCache> implements
 		return TableCache.TABLE_NAME;
 	}
 
+	@Override
+	protected Class getDomainClass() {
+		return TableCache.class;
+	}
+
 	private long getDefaultUserId() {
 		return SessionContext.getLoggedUser() == null ? 0 : SessionContext.getLoggedUser().getId();
 	}

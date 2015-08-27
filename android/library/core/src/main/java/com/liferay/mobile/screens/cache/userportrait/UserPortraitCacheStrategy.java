@@ -25,5 +25,10 @@ public class UserPortraitCacheStrategy extends BaseCacheStrategy<UserPortraitCac
 		return UserPortraitCache.TABLE_NAME;
 	}
 
+	@Override
+	protected Class getDomainClass() {
+		return UserPortraitCache.class;
+	}
+
 	private static final String WHERE_BY_ID = UserPortraitCache.USER_ID + " = ?";
 }
