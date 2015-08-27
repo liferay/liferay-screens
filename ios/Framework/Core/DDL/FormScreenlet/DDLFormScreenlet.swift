@@ -57,12 +57,16 @@ import UIKit
 @IBDesignable public class DDLFormScreenlet: BaseScreenlet {
 
 	private enum UploadStatus {
-
 		case Idle
 		case Uploading(Int, Bool)
 		case Failed(NSError)
-
 	}
+
+	public class var LoadFormAction: String { return "load-form" }
+	public class var LoadRecordAction: String { return "load-record" }
+	public class var SubmitFormAction: String { return "submit-form" }
+	public class var UploadDocumentAction: String { return "upload-document" }
+
 
 	@IBInspectable public var structureId: Int64 = 0
 	@IBInspectable public var groupId: Int64 = 0
@@ -103,11 +107,6 @@ import UIKit
 
 	private var uploadStatus = UploadStatus.Idle
 
-	private let LoadFormAction = "load-form"
-	private let LoadRecordAction = "load-record"
-	private let SubmitFormAction = "submit-form"
-	private let UploadDocumentAction = "upload-document"
-
 
 	//MARK: BaseScreenlet
 
@@ -128,13 +127,13 @@ import UIKit
 
 	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
 		switch name {
-			case LoadFormAction:
+			case DDLFormScreenlet.LoadFormAction:
 				return createLoadFormInteractor()
-			case LoadRecordAction:
+			case DDLFormScreenlet.LoadRecordAction:
 				return createLoadRecordInteractor()
-			case SubmitFormAction:
+			case DDLFormScreenlet.SubmitFormAction:
 				return createSubmitFormInteractor()
-			case UploadDocumentAction:
+			case DDLFormScreenlet.UploadDocumentAction:
 				if sender is DDLFieldDocument {
 					return createUploadDocumentInteractor(sender as! DDLFieldDocument)
 				}
@@ -147,7 +146,7 @@ import UIKit
 	override public func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
 		let result = super.onAction(name: name, interactor: interactor, sender: sender)
 
-		if name! == UploadDocumentAction && result {
+		if name! == DDLFormScreenlet.UploadDocumentAction && result {
 			let uploadInteractor = interactor as! DDLFormUploadDocumentInteractor
 
 			delegate?.screenlet?(self,
@@ -317,7 +316,7 @@ import UIKit
 	//MARK: Public methods
 
 	public func loadForm() -> Bool {
-		return performAction(name: LoadFormAction)
+		return performAction(name: DDLFormScreenlet.LoadFormAction)
 	}
 
 	public func clearForm() {
@@ -326,11 +325,11 @@ import UIKit
 	}
 
 	public func loadRecord() -> Bool {
-		return performAction(name: LoadRecordAction)
+		return performAction(name: DDLFormScreenlet.LoadRecordAction)
 	}
 
 	public func submitForm() -> Bool {
-		return performAction(name: SubmitFormAction)
+		return performAction(name: DDLFormScreenlet.SubmitFormAction)
 	}
 
 
@@ -385,7 +384,9 @@ import UIKit
 					spinnerMode: .IndeterminateSpinner)
 
 				for failedDocumentField in failedUploads {
-					performAction(name: UploadDocumentAction, sender: failedDocumentField)
+					performAction(
+						name: DDLFormScreenlet.UploadDocumentAction,
+						sender: failedDocumentField)
 				}
 
 				uploadStatus = .Uploading(failedUploads.count, true)
