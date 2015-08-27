@@ -1,14 +1,24 @@
 package com.liferay.mobile.screens.base.list.interactor;
 
+import android.support.annotation.NonNull;
 import android.util.Pair;
 
 import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.interactor.BaseCachedReadRemoteInteractor;
+import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.CachedType;
+import com.liferay.mobile.screens.cache.sql.CacheSQL;
+import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.util.EventBusUtil;
+import com.liferay.mobile.screens.util.LiferayLocale;
 
+import org.json.JSONException;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -47,10 +57,6 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		requestState.put(getTargetScreenletId(), rowsRange);
 	}
 
-	public String createId(String recordSetId, Integer row) {
-		return String.format("%s_%05d", recordSetId, row);
-	}
-
 	public void onEventMainThread(BaseListEvent event) {
 		if (!isValidEvent(event)) {
 			return;
@@ -61,6 +67,9 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 				event.getStartRow(), event.getEndRow(), event.getException());
 		}
 		else {
+
+			onEventWithCache(event);
+
 			List entries = event.getEntries();
 			int rowCount = event.getRowCount();
 
@@ -68,6 +77,84 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 				event.getStartRow(), event.getEndRow(), entries, rowCount);
 		}
 	}
+
+	@Override
+	protected void loadOnline(Object[] args) throws Exception {
+
+		final int startRow = (int) args[0];
+		final int endRow = (int) args[1];
+		final Locale locale = (Locale) args[2];
+
+		loadRows(startRow, endRow, locale);
+	}
+
+	@Override
+	protected void notifyError(BaseListEvent event) {
+		getListener().onListRowsFailure(
+			event.getStartRow(), event.getEndRow(), event.getException());
+	}
+
+	protected boolean recoverRows(String id, CachedType type, CachedType typeCount, Long groupId, Long userId,
+								  Locale locale, int startRow, int endRow)
+		throws JSONException {
+
+		String query = " AND "
+			+ TableCache.ID + " >= ? AND "
+			+ TableCache.ID + " < ? AND "
+			+ TableCache.USER_ID + " = ? AND "
+			+ TableCache.GROUP_ID + " = ? AND "
+			+ TableCache.LOCALE + " = ? ";
+
+		String startId = createId(id, startRow);
+		String endId = createId(id, endRow);
+		String supportedLocale = LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
+
+		Cache cache = CacheSQL.getInstance();
+		List<TableCache> elements = (List<TableCache>) cache.get(type, query, startId, endId, userId, groupId, supportedLocale);
+
+		if (elements != null && !elements.isEmpty()) {
+
+			List<E> entries = new ArrayList<>();
+
+			for (TableCache tableCache : elements) {
+				entries.add(getElement(tableCache));
+			}
+
+			TableCache tableCache = (TableCache) cache.getById(typeCount, id, groupId, userId, locale);
+
+			Integer rowCount = Integer.valueOf(tableCache.getContent());
+
+			BaseListEvent event = new BaseListEvent(getTargetScreenletId(), startRow, endRow, entries, rowCount, locale);
+			EventBusUtil.post(event);
+
+			return true;
+		}
+		return false;
+	}
+
+	@NonNull
+	protected abstract E getElement(TableCache tableCache) throws JSONException;
+
+	protected String createId(String recordSetId, Integer row) {
+		return String.format("%s_%05d", recordSetId, row);
+	}
+
+	protected void storeRows(String id, CachedType cachedType, CachedType cachedTypeCount, Long groupId, Long userId, BaseListEvent event) {
+		Cache cache = CacheSQL.getInstance();
+
+		cache.set(new TableCache(id, cachedTypeCount, String.valueOf(event.getRowCount()), groupId, userId, event.getLocale()));
+
+		for (int i = 0; i < event.getEntries().size(); i++) {
+
+			int range = i + event.getStartRow();
+
+			String content = getContent((E) event.getEntries().get(i));
+
+			cache.set(new TableCache(createId(id, range), cachedType, content, groupId, userId, event.getLocale()));
+		}
+	}
+
+	protected abstract String getContent(E object);
 
 	protected BatchSessionImpl getSession(Pair<Integer, Integer> rowsRange, Locale locale) {
 		Session currentSession = SessionContext.createSessionFromCurrentSession();
