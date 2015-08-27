@@ -82,7 +82,8 @@ class UserPortraitBaseInteractor: Interactor {
 
 			let url = "\(LiferayServerContext.server)/image/user_\(maleString)/_portrait" +
 					"?img_id=\(portraitId)" +
-					"&img_id_token=\(hashedUUID)"
+					"&img_id_token=\(hashedUUID)" +
+					"&t=\(NSDate.timeIntervalSinceReferenceDate())"
 
 			return NSURL(string: url)
 		}
