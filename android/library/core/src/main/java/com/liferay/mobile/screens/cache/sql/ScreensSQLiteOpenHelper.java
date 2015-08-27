@@ -77,9 +77,9 @@ public class ScreensSQLiteOpenHelper extends SQLiteOpenHelper {
 		+ DDLRecordCache.RECORD_ID + " LONG NOT NULL, "
 		+ DDLRecordCache.RECORD_SET_ID + " LONG NOT NULL, "
 		+ DDLRecordCache.STRUCTURE_ID + " LONG NOT NULL, "
-		+ DDLRecordCache.CONTENT + " TEXT NOT NULL, "
-		+ DDLRecordCache.GROUP_ID + " LONG NOT NULL, "
 		+ DDLRecordCache.LOCALE + " TEXT NULL, "
+		+ DDLRecordCache.CONTENT + " TEXT NOT NULL, "
+		+ DDLRecordCache.GROUP_ID + " LONG NULL, "
 		+ DDLRecordCache.SENT + " INTEGER NOT NULL );";
 
 	private static final String CREATE_TABLE_DOCUMENT_UPLOAD = "CREATE TABLE "

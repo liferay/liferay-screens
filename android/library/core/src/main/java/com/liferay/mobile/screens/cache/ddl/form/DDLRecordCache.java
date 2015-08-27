@@ -60,5 +60,5 @@ public class DDLRecordCache extends RecordCache {
 	}
 
 	private boolean _sent;
-	private long _groupId;
+	private Long _groupId;
 }
