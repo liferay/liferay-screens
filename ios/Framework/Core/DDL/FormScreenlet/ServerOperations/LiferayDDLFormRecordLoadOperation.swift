@@ -22,15 +22,6 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 	public var resultRecordId: Int64?
 
 
-	override public var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "loading-record-message", self),
-				details: LocalizedString("ddlform-screenlet", "loading-record-details", self))
-	}
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "loading-record-error", self), details: nil)
-	}
-
-
 	//MARK: ServerOperation
 
 	override func validateData() -> ValidationError? {

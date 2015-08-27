@@ -27,19 +27,6 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	public var resultAttributes: NSDictionary?
 
 
-	override public var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "submitting-message", self),
-				details: LocalizedString("ddlform-screenlet", "submitting-details", self))
-	}
-
-	override public var hudSuccessMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "submitted", self), details: nil)
-	}
-
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "submitting-error", self), details: nil)
-	}
-
 	internal let viewModel: DDLFormViewModel
 
 
