@@ -24,22 +24,6 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 	private let maxSize = 300 * 1024
 	private var fileTooLarge = false
 
-	override public var hudFailureMessage: HUDMessage? {
-		let key: String
-		let details: String?
-
-		if fileTooLarge {
-			key = "too-large-file"
-			details = LocalizedString("userportrait-screenlet", "too-large-file-details", self)
-		}
-		else {
-			key = "uploading-error"
-			details = nil
-		}
-
-		return (LocalizedString("userportrait-screenlet", key, self), details: details)
-	}
-
 
 	public init(userId: Int64, image: UIImage) {
 		self.userId = userId
