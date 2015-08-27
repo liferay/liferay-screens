@@ -28,7 +28,7 @@ public abstract class BaseCachedReadRemoteInteractor<L, E extends BasicEvent> ex
 				}
 			}
 			catch (Exception e) {
-				LiferayLogger.i("Retrieve from cache first failed, trying online");
+				LiferayLogger.e("Retrieve from cache first failed, trying online", e);
 				loadOnline(args);
 			}
 		}
@@ -45,7 +45,7 @@ public abstract class BaseCachedReadRemoteInteractor<L, E extends BasicEvent> ex
 				loadOnline(args);
 			}
 			catch (Exception e) {
-				LiferayLogger.i("Retrieve online first failed, trying cached version");
+				LiferayLogger.e("Retrieve online first failed, trying cached version", e);
 
 				_retrievedFromCache = getFromCache(args);
 
