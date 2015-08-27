@@ -19,20 +19,20 @@ public class DDLFormView_default: DDLFormTableView {
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
 			DDLFormScreenlet.LoadFormAction : [
-				.Working : LocalizedString("ddlform-screenlet", "loading-message", self),
-				.Failure : LocalizedString("ddlform-screenlet", "loading-error", self)
+				.Working : LocalizedString("default-ddlform", "loading-message", self),
+				.Failure : LocalizedString("default-ddlform", "loading-error", self)
 			],
 			DDLFormScreenlet.LoadRecordAction : [
-				.Working : LocalizedString("ddlform-screenlet", "loading-record-message", self),
-				.Failure : LocalizedString("ddlform-screenlet", "loading-record-error", self)
+				.Working : LocalizedString("default-ddlform", "loading-record-message", self),
+				.Failure : LocalizedString("default-ddlform", "loading-record-error", self)
 			],
 			DDLFormScreenlet.SubmitFormAction : [
-				.Working : LocalizedString("ddlform-screenlet", "submitting-message", self),
-				.Failure : LocalizedString("ddlform-screenlet", "submitting-error", self),
-				.Success : LocalizedString("ddlform-screenlet", "submitted", self)
+				.Working : LocalizedString("default-ddlform", "submitting-message", self),
+				.Failure : LocalizedString("default-ddlform", "submitting-error", self),
+				.Success : LocalizedString("default-ddlform", "submitted", self)
 			],
 			DDLFormScreenlet.UploadDocumentAction : [
-				.Failure : LocalizedString("ddlform-screenlet", "uploading-error", self)
+				.Failure : LocalizedString("default-ddlform", "uploading-error", self)
 			]
 		]
 	}

@@ -24,9 +24,9 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction :
-				[.Working : LocalizedString("forgotpassword-screenlet", "loading-message", self),
-				.Failure : LocalizedString("forgotpassword-screenlet", "loading-error", self),
-				.Success : LocalizedString("forgotpassword-screenlet", successMessageKey, self)]
+				[.Working : LocalizedString("default-forgotpassword", "loading-message", self),
+				.Failure : LocalizedString("default-forgotpassword", "loading-error", self),
+				.Success : LocalizedString("default-forgotpassword", successMessageKey, self)]
 		]
 	}
 

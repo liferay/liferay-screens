@@ -34,11 +34,11 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
 			"signup-action" :
-				[.Working : LocalizedString("signup-screenlet", "loading-message", self),
-				.Failure : LocalizedString("signup-screenlet", "loading-error", self)],
+				[.Working : LocalizedString("default-signup", "loading-message", self),
+				.Failure : LocalizedString("default-signup", "loading-error", self)],
 			"save-action" :
-				[.Working : LocalizedString("signup-screenlet", "saving-message", self),
-				.Failure : LocalizedString("signup-screenlet", "saving-error", self)],
+				[.Working : LocalizedString("default-signup", "saving-message", self),
+				.Failure : LocalizedString("default-signup", "saving-error", self)],
 		]
 	}
 

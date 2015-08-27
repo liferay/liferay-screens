@@ -1,14 +1,7 @@
-"ddlform-screenlet-loading-message"="Cargando formulario...\nEspere unos segundos...";
-"ddlform-screenlet-loading-error"="Error cargando formulario";
-"ddlform-screenlet-loading-record-message"="Cargando datos...\nEspere unos segundos...";
-"ddlform-screenlet-loading-record-error"="Error cargando datos";
-"ddlform-screenlet-submitting-message"="Enviando formulario...\nEspere unos segundos...";
-"ddlform-screenlet-submitting-error"="Error enviando formulario";
-"ddlform-screenlet-submitted"="Formulario enviado";
-"ddlform-screenlet-validation"="Algunos valores no son válidos\nRevisa el formulario";
+"ddlform-screenlet-validation-field"="El campo \"%@\" no es válido";
+
 "ddlform-screenlet-uploading-message-singular"="Subiendo archivo...\nEspere unos segundos...";
 "ddlform-screenlet-uploading-message-plural"="Subiendo archivos...\nEspere unos segundos...";
 "ddlform-screenlet-uploading-retry"="Reintentando subida...\nEspere unos segundos...";
-"ddlform-screenlet-uploading-error"="Error subiendo datos";
 "ddlform-screenlet-upload-metadata-description"="";
 "ddlform-screenlet-upload-metadata-changelog"="Subido desde una app basada en Lifeary Screens";

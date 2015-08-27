@@ -65,7 +65,7 @@ public class UserPortraitView_default: BaseScreenletView,
 			"load-portrait" : [.Working : ""],
 			"upload-portrait" :
 				[.Working : "",
-				.Failure : LocalizedString("userportrait-screenlet", "uploading-error", self)]]
+				.Failure : LocalizedString("default-userportrait", "uploading-error", self)]]
 	}
 
 	private let imagePicker = UIImagePickerController()
