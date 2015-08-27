@@ -31,10 +31,6 @@ public class TableCache implements CachedContent {
 		super();
 	}
 
-	public TableCache(String id, CachedType cachedType) {
-		this(id, cachedType, null);
-	}
-
 	public TableCache(String id, CachedType cachedType, String content) {
 		this(id, cachedType, content, null, null, null);
 	}
@@ -48,7 +44,8 @@ public class TableCache implements CachedContent {
 		_date = new Date().getTime();
 		_userId = userId == null ? SessionContext.getDefaultUserId() : userId;
 		_groupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
-		_locale = locale == null ? LiferayLocale.getDefaultSupportedLocale() : LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
+		_locale = locale == null ? LiferayLocale.getDefaultSupportedLocale() :
+			LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
 		_sent = 0;
 	}
 

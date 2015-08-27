@@ -18,7 +18,6 @@ import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.ddlrecord.DDLRecordService;
 import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
-import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
@@ -35,7 +34,6 @@ import org.json.JSONObject;
 public class DDLFormUpdateRecordInteractorImpl
 	extends BaseCachedWriteRemoteInteractor<DDLFormListener, DDLFormUpdateRecordEvent>
 	implements DDLFormUpdateRecordInteractor {
-
 
 	public DDLFormUpdateRecordInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
 		super(targetScreenletId, offlinePolicy);
@@ -93,9 +91,7 @@ public class DDLFormUpdateRecordInteractorImpl
 
 	protected DDLRecordService getDDLRecordService(Record record, long groupId) {
 		Session session = SessionContext.createSessionFromCurrentSession();
-
 		session.setCallback(new DDLFormUpdateRecordCallback(getTargetScreenletId(), record, groupId));
-
 		return new DDLRecordService(session);
 	}
 
@@ -118,8 +114,7 @@ public class DDLFormUpdateRecordInteractorImpl
 	}
 
 	private void saveToCache(long groupId, Record record, JSONObject fields, boolean sent) {
-		Cache cache = CacheSQL.getInstance();
-		cache.set(new DDLRecordCache(groupId, record, fields, sent));
+		CacheSQL.getInstance().set(new DDLRecordCache(groupId, record, fields, sent));
 	}
 
 }

@@ -43,7 +43,7 @@ public class UserPortraitUploadInteractorImpl
 			}
 
 			try {
-				storeToCache(user.getId(), event.getPicturePath(), false);
+				storeToCache(user.getId(), event.getPicturePath(), true);
 
 				getListener().onUserPortraitUploaded(user.getId());
 			}
@@ -78,10 +78,9 @@ public class UserPortraitUploadInteractorImpl
 		String picturePath = (String) args[1];
 		boolean sent = (boolean) args[2];
 
-		Cache cache = CacheSQL.getInstance();
 		TableCache file = new TableCache(String.valueOf(userId), DefaultCachedType.USER_PORTRAIT_UPLOAD, picturePath);
 		file.setSent(sent);
-		cache.set(file);
+		CacheSQL.getInstance().set(file);
 	}
 
 }

@@ -72,7 +72,7 @@ public class DocumentUploadCache implements CachedContent {
 
 	@Override
 	public TableCache getTableCache() {
-		return new TableCache(_path, DefaultCachedType.DOCUMENT_UPLOAD);
+		return new TableCache(_path, DefaultCachedType.DOCUMENT_UPLOAD, _path);
 	}
 
 	@StorIOSQLiteColumn(name = PATH, key = true)

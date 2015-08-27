@@ -54,7 +54,8 @@ public class UserPortraitCache implements CachedContent {
 
 	@Override
 	public TableCache getTableCache() {
-		return new TableCache(String.valueOf(_portraitId), DefaultCachedType.USER_PORTRAIT);
+		String portrait = String.valueOf(_portraitId);
+		return new TableCache(portrait, DefaultCachedType.USER_PORTRAIT, portrait);
 	}
 
 	@StorIOSQLiteColumn(name = MALE)

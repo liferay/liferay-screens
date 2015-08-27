@@ -88,12 +88,9 @@ public class WebContentDisplayInteractorImpl
 
 	@Override
 	protected void storeToCache(WebContentDisplayEvent event, Object... args) {
-		long userId = SessionContext.getLoggedUser().getId();
-
 		CacheSQL.getInstance().set(new TableCache(event.getArticleId(), DefaultCachedType.WEB_CONTENT,
-			event.getHtml(), event.getGroupId(), userId, event.getLocale()));
+			event.getHtml(), event.getGroupId(), null, event.getLocale()));
 	}
-
 
 	protected JournalArticleService getJournalArticleService(long groupId, String articleId, Locale locale) {
 		Session session = SessionContext.createSessionFromCurrentSession();

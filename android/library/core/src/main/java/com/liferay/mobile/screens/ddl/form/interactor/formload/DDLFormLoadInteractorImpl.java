@@ -83,6 +83,11 @@ public class DDLFormLoadInteractorImpl
 	}
 
 	@Override
+	protected void notifyError(DDLFormLoadEvent event) {
+		getListener().onDDLFormLoadFailed(event.getException());
+	}
+
+	@Override
 	protected boolean getFromCache(Object[] args) throws Exception {
 
 		Record record = (Record) args[0];
@@ -99,21 +104,13 @@ public class DDLFormLoadInteractorImpl
 	}
 
 	@Override
-	protected void notifyError(DDLFormLoadEvent event) {
-		getListener().onDDLFormLoadFailed(event.getException());
-	}
-
-	@Override
 	protected void storeToCache(DDLFormLoadEvent event, Object... args) {
-		Cache cache = CacheSQL.getInstance();
-		cache.set(new DDLFormCache(event.getRecord(), event.getJSONObject()));
+		CacheSQL.getInstance().set(new DDLFormCache(event.getRecord(), event.getJSONObject()));
 	}
 
 	protected DDMStructureService getDDMStructureService(Record record) {
 		Session session = SessionContext.createSessionFromCurrentSession();
-
 		session.setCallback(new DDLFormLoadCallback(getTargetScreenletId(), record));
-
 		return new DDMStructureService(session);
 	}
 
