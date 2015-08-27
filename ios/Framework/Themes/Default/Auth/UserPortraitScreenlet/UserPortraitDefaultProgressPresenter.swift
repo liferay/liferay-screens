@@ -36,7 +36,11 @@ import Foundation
 
 		if closeMode == .ManualClose_TouchClosable {
 			showSpinner(false)
-			super.showHUDInView(view, message: message, closeMode: .ManualClose_TouchClosable, spinnerMode: .NoSpinner)
+
+			super.showHUDInView(view,
+				message: message,
+				closeMode: .ManualClose_TouchClosable,
+				spinnerMode: .NoSpinner)
 		}
 		else {
 			showSpinner(true)

@@ -302,6 +302,36 @@ import QuartzCore
 	}
 
 
+	//MARK: HUD methods
+
+	public func showHUDWithMessage(message: String?,
+		closeMode: ProgressCloseMode,
+		spinnerMode: ProgressSpinnerMode) {
+
+			assert(_progressPresenter != nil, "ProgressPresenter must exist")
+
+			_progressPresenter!.showHUDInView(rootView(self),
+				message: message,
+				closeMode: closeMode,
+				spinnerMode: spinnerMode)
+	}
+
+	public func showHUDAlert(#message: String) {
+		assert(_progressPresenter != nil, "ProgressPresenter must exist")
+
+		_progressPresenter!.showHUDInView(rootView(self),
+			message: message,
+			closeMode: .ManualClose_TouchClosable,
+			spinnerMode: .NoSpinner)
+	}
+
+	public func hideHUD() {
+		assert(_progressPresenter != nil, "ProgressPresenter must exist")
+
+		_progressPresenter!.hideHUD()
+	}
+
+
 	//MARK: Private
 
 	private func createScreenletViewFromNib() -> BaseScreenletView? {
@@ -373,37 +403,12 @@ import QuartzCore
 		return appliedTheme
 	}
 
+	private func rootView(currentView:UIView) -> UIView {
+		if currentView.superview == nil {
+			return currentView;
+		}
 
-	// HUD 
-	//MARK: Class methods
-
-	public func showHUDWithMessage(message: String?,
-			closeMode: ProgressCloseMode,
-			spinnerMode: ProgressSpinnerMode) {
-
-		assert(_progressPresenter != nil, "ProgressPresenter must exist")
-
-		_progressPresenter!.showHUDInView(self,
-			message: message,
-			closeMode: closeMode,
-			spinnerMode: spinnerMode)
+		return rootView(currentView.superview!)
 	}
-
-	public func showHUDAlert(#message: String) {
-		assert(_progressPresenter != nil, "ProgressPresenter must exist")
-
-		_progressPresenter!.showHUDInView(self,
-			message: message,
-			closeMode: .ManualClose_TouchClosable,
-			spinnerMode: .NoSpinner)
-	}
-
-	public func hideHUD() {
-		assert(_progressPresenter != nil, "ProgressPresenter must exist")
-
-		_progressPresenter!.hideHUD()
-	}
-
-
 
 }
