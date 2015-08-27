@@ -30,6 +30,15 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			BaseListScreenlet.LoadInitialPageAction : [
+				.Working : LocalizedString("core", "base-list-loading-message", self),
+				.Failure : LocalizedString("core", "base-list-loading-error", self)
+			]
+		]
+	}
+
 	private let cellId = "listCell"
 
 
