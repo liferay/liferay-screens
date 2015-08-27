@@ -62,9 +62,10 @@ public class UserPortraitView_default: BaseScreenletView,
 
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
-			"load-portrait" : [.Loading : ""],
+			"load-portrait" : [.Working : ""],
 			"upload-portrait" :
-				[.Failure : LocalizedString("userportrait-screenlet", "uploading-error", self)]]
+				[.Working : "",
+				.Failure : LocalizedString("userportrait-screenlet", "uploading-error", self)]]
 	}
 
 	private let imagePicker = UIImagePickerController()

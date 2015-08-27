@@ -206,7 +206,7 @@ import QuartzCore
 
 			objc_sync_exit(_runningInteractors)
 
-			if let message = screenletView?.progressMessageForAction(name, messageType: .Loading) {
+			if let message = screenletView?.progressMessageForAction(name, messageType: .Working) {
 				showHUDWithMessage(message,
 					closeMode: .ManualClose,
 					spinnerMode: .IndeterminateSpinner)

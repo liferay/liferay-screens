@@ -41,7 +41,7 @@ import Foundation
 
 
 @objc public enum ProgressMessageType: Int {
-	case Loading
+	case Working
 	case Failure
 	case Success
 }

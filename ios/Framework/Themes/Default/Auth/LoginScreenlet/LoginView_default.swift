@@ -28,7 +28,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction :
-				[.Loading : LocalizedString("login-screenlet", "loading-message", self),
+				[.Working : LocalizedString("login-screenlet", "loading-message", self),
 				.Failure : LocalizedString("login-screenlet", "loading-error", self)]]
 	}
 
