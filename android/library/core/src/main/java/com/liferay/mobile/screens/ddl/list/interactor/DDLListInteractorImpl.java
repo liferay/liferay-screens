@@ -21,11 +21,8 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
-import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CachePolicy;
-import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
-import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.service.v62.ScreensddlrecordService;
 import com.liferay.mobile.screens.util.JSONUtil;
@@ -34,7 +31,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Locale;
-import java.util.Map;
 
 import static com.liferay.mobile.screens.cache.DefaultCachedType.DDL_LIST;
 import static com.liferay.mobile.screens.cache.DefaultCachedType.DDL_LIST_COUNT;
@@ -57,15 +53,15 @@ public class DDLListInteractorImpl
 		_recordSetId = recordSetId;
 		_userId = userId;
 
-		loadWithCache(recordSetId, userId, startRow, endRow, locale);
+		loadWithCache(startRow, endRow, locale);
 	}
 
 	@Override
 	protected boolean getFromCache(Object[] args) throws Exception {
 
-		int startRow = (int) args[2];
-		int endRow = (int) args[3];
-		Locale locale = (Locale) args[4];
+		int startRow = (int) args[0];
+		int endRow = (int) args[1];
+		Locale locale = (Locale) args[2];
 
 		String id = String.valueOf(_recordSetId);
 

@@ -12,6 +12,7 @@ import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.CachedType;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLocale;
@@ -107,10 +108,14 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 
 		String startId = createId(id, startRow);
 		String endId = createId(id, endRow);
-		String supportedLocale = LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
+
+		Long defaultGroupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
+		Long defaultUserId = userId == null ? (long) SessionContext.getDefaultUserId() : userId;
+		String defaultLocale = locale == null ? LiferayLocale.getDefaultSupportedLocale() :
+			LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
 
 		Cache cache = CacheSQL.getInstance();
-		List<TableCache> elements = (List<TableCache>) cache.get(type, query, startId, endId, userId, groupId, supportedLocale);
+		List<TableCache> elements = (List<TableCache>) cache.get(type, query, startId, endId, defaultUserId, defaultGroupId, defaultLocale);
 
 		if (elements != null && !elements.isEmpty()) {
 
@@ -142,7 +147,8 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 	protected void storeRows(String id, CachedType cachedType, CachedType cachedTypeCount, Long groupId, Long userId, BaseListEvent event) {
 		Cache cache = CacheSQL.getInstance();
 
-		cache.set(new TableCache(id, cachedTypeCount, String.valueOf(event.getRowCount()), groupId, userId, event.getLocale()));
+		cache.set(new TableCache(id, cachedTypeCount, String.valueOf(event.getRowCount()),
+			groupId, userId, event.getLocale()));
 
 		for (int i = 0; i < event.getEntries().size(); i++) {
 

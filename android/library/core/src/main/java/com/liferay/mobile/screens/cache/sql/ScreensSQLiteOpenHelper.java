@@ -85,9 +85,11 @@ public class ScreensSQLiteOpenHelper extends SQLiteOpenHelper {
 	private static final String CREATE_TABLE_DOCUMENT_UPLOAD = "CREATE TABLE "
 		+ DocumentUploadCache.TABLE_NAME + "("
 		+ DocumentUploadCache.PATH + " TEXT NOT NULL, "
+		+ DocumentUploadCache.USER_ID + " LONG NOT NULL, "
 		+ DocumentUploadCache.GROUP_ID + " LONG NOT NULL, "
 		+ DocumentUploadCache.REPOSITORY_ID + " LONG NOT NULL, "
 		+ DocumentUploadCache.FOLDER_ID + " LONG NOT NULL, "
 		+ DocumentUploadCache.FILE_PREFIX + " TEXT NOT NULL, "
 		+ DocumentUploadCache.SENT + " INTEGER NOT NULL );";
+
 }

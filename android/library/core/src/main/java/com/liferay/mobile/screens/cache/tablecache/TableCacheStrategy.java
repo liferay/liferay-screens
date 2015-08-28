@@ -27,28 +27,23 @@ public class TableCacheStrategy extends BaseCacheStrategy<TableCache> implements
 	@Override
 	public TableCache getById(String id, Long groupId, Long userId, Locale locale) {
 
-		Long defaultGroupId = groupId == null ? getDefaultGroupId() : groupId;
-		Long defaultUserId = userId == null ? getDefaultUserId() : userId;
-		Locale defaultLocale = locale == null ? getDefaultLocale() : locale;
-		String defaultLocaleString = LiferayLocale.getSupportedLocale(defaultLocale.getDisplayLanguage());
+		Long defaultGroupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
+		Long defaultUserId = userId == null ? (long) SessionContext.getDefaultUserId() : userId;
+		String defaultLocale = locale == null ? LiferayLocale.getDefaultSupportedLocale() :
+			LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
 
 		List elements = queryGet(TableCache.class,
 			TableCache.TABLE_NAME,
 			TYPE_USER_LOCALE_AND_GROUP_CRITERIA
 				+ " AND " + TableCache.ID + " = ? ",
-			_cachedType, defaultGroupId, defaultUserId, defaultLocaleString, id);
+			_cachedType, defaultGroupId, defaultUserId, defaultLocale, id);
 
 		return elements.isEmpty() ? null : (TableCache) elements.get(0);
 	}
 
 	@Override
 	public TableCache getById(String id) {
-
-		long groupId = getDefaultGroupId();
-		long userId = getDefaultUserId();
-		Locale locale = getDefaultLocale();
-
-		return getById(id, groupId, userId, locale);
+		return getById(id, null, null, null);
 	}
 
 	@Override
@@ -65,10 +60,6 @@ public class TableCacheStrategy extends BaseCacheStrategy<TableCache> implements
 		return querySet(object);
 	}
 
-	public Locale getDefaultLocale() {
-		return LiferayLocale.getDefaultLocale();
-	}
-
 	@Override
 	protected String getQueryById() {
 		return WHERE_BY_ID;
@@ -82,14 +73,6 @@ public class TableCacheStrategy extends BaseCacheStrategy<TableCache> implements
 	@Override
 	protected Class getDomainClass() {
 		return TableCache.class;
-	}
-
-	private long getDefaultUserId() {
-		return SessionContext.getLoggedUser() == null ? 0 : SessionContext.getLoggedUser().getId();
-	}
-
-	private long getDefaultGroupId() {
-		return LiferayServerContext.getGroupId();
 	}
 
 	private static final String TYPE_USER_LOCALE_AND_GROUP_CRITERIA
