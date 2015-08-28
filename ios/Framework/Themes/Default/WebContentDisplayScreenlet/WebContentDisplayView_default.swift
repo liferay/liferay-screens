@@ -18,6 +18,14 @@ public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplay
 
 	@IBOutlet public var webView: UIWebView?
 
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			BaseScreenlet.DefaultAction :
+				[.Working : LocalizedString("default", "webcontentdisplay-loading-message", self),
+				.Failure : LocalizedString("default", "webcontentdisplay-loading-error", self)]]
+	}
+
+
 	private let styles =
 		".MobileCSS {padding: 4%; width: 92%;} " +
 		".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
@@ -26,11 +34,11 @@ public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplay
 		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
 
 
-	//MARK: WebContentDisplayViewModel
-
-	override public func onCreated() {
-		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
 	}
+
+	//MARK: WebContentDisplayViewModel
 
 	public var htmlContent: String {
 		get {

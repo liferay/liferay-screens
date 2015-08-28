@@ -21,6 +21,8 @@ import QuartzCore
  */
 @IBDesignable public class BaseScreenlet: UIView {
 
+	public static let DefaultAction = "defaultAction"
+
 	@IBInspectable public var themeName: String? {
 		set {
 			_themeName = (newValue ?? "default").lowercaseString
@@ -64,6 +66,8 @@ import QuartzCore
 
 	private var _runningInteractors = [Interactor]()
 
+	private var _progressPresenter: ProgressPresenter?
+
 
 	//MARK: UIView
 
@@ -75,6 +79,8 @@ import QuartzCore
 		clipsToBounds = true
 
 		screenletView = loadScreenletView()
+
+		_progressPresenter = screenletView?.createProgressPresenter()
 
 		onCreated()
 	}
@@ -189,51 +195,140 @@ import QuartzCore
 	 * Typically, it's called from TouchUpInside UI event or when the programmer wants to
 	 * start the interaction programatically.
 	 */
-	public func performAction(#name: String?, sender: AnyObject? = nil) -> Bool {
-		if let interactor = createInteractor(name: name, sender: sender) {
+	public func performAction(#name: String, sender: AnyObject? = nil) -> Bool {
+		var result = false
+
+		objc_sync_enter(_runningInteractors)
+
+		if let interactor = self.createInteractor(name: name, sender: sender) {
+			interactor.actionName = name
 			_runningInteractors.append(interactor)
 
-			return onAction(name: name, interactor: interactor, sender: sender)
+			objc_sync_exit(_runningInteractors)
+
+			if let message = screenletView?.progressMessageForAction(name, messageType: .Working) {
+				showHUDWithMessage(message,
+					closeMode: .ManualClose,
+					spinnerMode: .IndeterminateSpinner)
+			}
+
+			result = onAction(name: name, interactor: interactor, sender: sender)
+		}
+		else {
+			objc_sync_exit(_runningInteractors)
+			println("WARN: No interactor created for action \(name)")
 		}
 
-		println("WARN: No interactor created for action \(name)")
-
-		return false
+		return result
 	}
 
 	public func performDefaultAction() -> Bool {
-		return performAction(name: nil, sender: nil)
+		return performAction(name: BaseScreenlet.DefaultAction, sender: nil)
 	}
 
 	/*
 	 * onAction is invoked when an interaction should be started
 	 */
-	public func onAction(#name: String?, interactor: Interactor, sender: AnyObject?) -> Bool {
+	public func onAction(#name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+		onStartInteraction()
+		screenletView?.onStartInteraction()
+
 		return interactor.start()
 	}
 
-	public func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+	public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
 		return nil
 	}
 
-	public func endInteractor(interactor: Interactor) {
+	public func endInteractor(interactor: Interactor, error: NSError?) {
+
+		func hideInteractorHUD(error: NSError?) {
+			let messageType: ProgressMessageType
+			let closeMode: ProgressCloseMode?
+			var msg: String?
+
+			if let error = error {
+				messageType = .Failure
+				closeMode = .ManualClose_TouchClosable
+
+				if error is ValidationError {
+					msg = error.localizedDescription
+				}
+			}
+			else {
+				messageType = .Success
+				closeMode = .Autoclose_TouchClosable
+			}
+
+			if msg == nil {
+				msg = screenletView?.progressMessageForAction(
+					interactor.actionName ?? BaseScreenlet.DefaultAction,
+					messageType: messageType)
+			}
+
+			if let msg = msg, closeMode = closeMode {
+				showHUDWithMessage(msg,
+					closeMode: closeMode,
+					spinnerMode: .NoSpinner)
+			}
+			else {
+				hideHUD()
+			}
+		}
+
 		synchronized(_runningInteractors) {
 			if let foundIndex = find(self._runningInteractors, interactor) {
 				self._runningInteractors.removeAtIndex(foundIndex)
 			}
 		}
+
+		let result: AnyObject? = interactor.interactionResult()
+		onFinishInteraction(result, error: error)
+		screenletView?.onFinishInteraction(result, error: error)
+
+		hideInteractorHUD(error)
 	}
 
 	/**
-	 * onStartOperation is called just before a screenlet request is sent to server
+	 * onStartInteraction is called just before a screenlet request is sent to server
 	 */
-	public func onStartOperation() {
+	public func onStartInteraction() {
 	}
 
 	/**
-	 * onFinishOperation is called when the server response arrives
+	 * onFinishInteraction is called when the server response arrives
 	 */
-	public func onFinishOperation() {
+	public func onFinishInteraction(result: AnyObject?, error: NSError?) {
+	}
+
+
+	//MARK: HUD methods
+
+	public func showHUDWithMessage(message: String?,
+		closeMode: ProgressCloseMode,
+		spinnerMode: ProgressSpinnerMode) {
+
+			assert(_progressPresenter != nil, "ProgressPresenter must exist")
+
+			_progressPresenter!.showHUDInView(rootView(self),
+				message: message,
+				closeMode: closeMode,
+				spinnerMode: spinnerMode)
+	}
+
+	public func showHUDAlert(#message: String) {
+		assert(_progressPresenter != nil, "ProgressPresenter must exist")
+
+		_progressPresenter!.showHUDInView(rootView(self),
+			message: message,
+			closeMode: .ManualClose_TouchClosable,
+			spinnerMode: .NoSpinner)
+	}
+
+	public func hideHUD() {
+		assert(_progressPresenter != nil, "ProgressPresenter must exist")
+
+		_progressPresenter!.hideHUD()
 	}
 
 
@@ -306,6 +401,14 @@ import QuartzCore
 		setNeedsLayout()
 
 		return appliedTheme
+	}
+
+	private func rootView(currentView:UIView) -> UIView {
+		if currentView.superview == nil {
+			return currentView;
+		}
+
+		return rootView(currentView.superview!)
 	}
 
 }

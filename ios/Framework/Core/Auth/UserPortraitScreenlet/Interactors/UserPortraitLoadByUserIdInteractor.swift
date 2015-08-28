@@ -25,7 +25,7 @@ class UserPortraitLoadByUserIdInteractor: UserPortraitBaseLoadUserInteractor {
 	}
 
 	override func createLoadUserOperation() -> GetUserBaseOperation? {
-		return GetUserByUserIdOperation(screenlet: screenlet, userId: userId)
+		return GetUserByUserIdOperation(userId: userId)
 	}
 
 	override func isUserLogged() -> Bool {

@@ -16,20 +16,24 @@ import UIKit
 
 public class GetUserByUserIdOperation: GetUserBaseOperation {
 
-	private var userId: Int64?
+	private let userId: Int64?
 
-	public init(screenlet: BaseScreenlet, userId: Int64?) {
+	public init(userId: Int64?) {
 		self.userId = userId
 
-		super.init(screenlet: screenlet)
+		super.init()
 	}
 
-	override internal func validateData() -> Bool {
-		var valid = super.validateData()
+	override internal func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && ((userId ?? 0) > 0)
+		if error == nil {
+			if (userId ?? 0) == 0 {
+				return ValidationError("login-screenlet", "undefined-user")
+			}
+		}
 
-		return valid
+		return error
 	}
 
 

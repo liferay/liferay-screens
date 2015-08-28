@@ -18,32 +18,35 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	public var groupId: Int64?
 	public var classNameId: Int?
 
-	internal var assetListScreenlet: AssetListScreenlet {
-		return self.screenlet as! AssetListScreenlet
-	}
-
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && (groupId != nil)
-		valid = valid && (classNameId != nil)
+		if error == nil {
+			if groupId == nil {
+				return ValidationError("assetlist-screenlet", "undefined-group")
+			}
 
-		return valid
+			if classNameId == nil {
+				return ValidationError("assetlist-screenlet", "undefined-classname")
+			}
+		}
+
+		return error
 	}
 
 
 	//MARK: LiferayPaginationOperation
 
-	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
+	override internal func doGetPageRowsOperation(#session: LRBatchSession, startRow: Int, endRow: Int) {
 		let screenletsService = LRScreensassetentryService_v62(session: session)
 
 		var entryQueryAttributes = configureEntryQueryAttributes()
 
-		entryQueryAttributes["start"] = assetListScreenlet.firstRowForPage(page)
-		entryQueryAttributes["end"] = assetListScreenlet.firstRowForPage(page + 1)
+		entryQueryAttributes["start"] = startRow
+		entryQueryAttributes["end"] = endRow
 
 		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 

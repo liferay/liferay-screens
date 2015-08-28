@@ -22,24 +22,22 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 	public var resultHTML: String?
 
 
-	override public var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("webcontentdisplay-screenlet", "loading-message", self),
-				details: LocalizedString("webcontentdisplay-screenlet", "loading-details", self))
-	}
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("webcontentdisplay-screenlet", "loading-error", self), details: nil)
-	}
-
-
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && (groupId != nil)
-		valid = valid && (articleId != nil && articleId! != "")
+		if error == nil {
+			if groupId == nil {
+				return ValidationError("webcontentdisplay-screenlet", "undefined-group")
+			}
 
-		return valid
+			if (articleId ?? "") == "" {
+				return ValidationError("webcontentdisplay-screenlet", "undefined-article")
+			}
+		}
+
+		return error
 	}
 
 	override internal func doRun(#session: LRSession) {

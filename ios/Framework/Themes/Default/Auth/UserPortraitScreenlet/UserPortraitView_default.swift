@@ -46,13 +46,13 @@ public class UserPortraitView_default: BaseScreenletView,
 		}
 	}
 
-	public var portraitURL: NSURL? {
+	public var image: UIImage? {
 		get {
-			return loadedURL
+			return portraitImage?.image
 		}
 		set {
-			if let urlValue = newValue {
-				loadPortrait(URL: urlValue)
+			if let image = newValue {
+				portraitImage?.image = image
 			}
 			else {
 				loadPlaceholder()
@@ -60,15 +60,22 @@ public class UserPortraitView_default: BaseScreenletView,
 		}
 	}
 
-	public var portraitLoaded: ((UIImage?, NSError?) -> (UIImage?))?
-
-
-	private(set) var loadedURL: NSURL?
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			"load-portrait" : [.Working : ""],
+			"upload-portrait" :
+				[.Working : "",
+				.Failure : LocalizedString("default", "userportrait-uploading-error", self)]]
+	}
 
 	private let imagePicker = UIImagePickerController()
 
 
 	//MARK: BaseScreenletView
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return UserPortraitDefaultProgressPresenter(spinner: activityIndicator!)
+	}
 
 	override public func onCreated() {
 		super.onCreated()
@@ -78,42 +85,14 @@ public class UserPortraitView_default: BaseScreenletView,
 		imagePicker.modalPresentationStyle = .FullScreen
 	}
 
-	override public func onStartOperation() {
-		objc_sync_enter(self)
-
-		// use tag to track the start count
-		if activityIndicator?.tag == 0 {
-			activityIndicator?.startAnimating()
-		}
-
-		activityIndicator?.tag++
-
-		objc_sync_exit(self)
-	}
-
-	override public func onFinishOperation() {
-		if activityIndicator?.tag > 0 {
-			objc_sync_enter(self)
-
-			activityIndicator?.tag--
-
-			if activityIndicator?.tag == 0 {
-				activityIndicator?.stopAnimating()
-			}
-
-			objc_sync_exit(self)
-		}
-	}
-
 	override public func onShow() {
 		portraitImage?.layer.borderWidth = borderWidth
 		portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
 		portraitImage?.layer.cornerRadius = DefaultThemeButtonCornerRadius
 	}
 
-	override public func onPreAction(#name: String?, sender: AnyObject?) -> Bool {
+	override public func onPreAction(#name: String, sender: AnyObject?) -> Bool {
 		if name == "edit-portrait" {
-
 			let takeNewPicture = LocalizedString("default", "userportrait-take-new-picture", self)
 			let chooseExisting = LocalizedString("default", "userportrait-choose-existing-picture", self)
 
@@ -163,45 +142,6 @@ public class UserPortraitView_default: BaseScreenletView,
 	}
 
 
-	public func loadPortrait(URL url: NSURL) {
-		// ignore AFNetworking's cache by now
-		// TODO contribute to UIImageView+AFNetworking to support "If-Modified-Since" header
-		let request = NSURLRequest(
-				URL: url,
-				cachePolicy: .ReloadIgnoringLocalCacheData,
-				timeoutInterval: 60.0)
-
-		onStartOperation()
-
-		portraitImage?.setImageWithURLRequest(request, placeholderImage: nil, success: {
-			(request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) -> Void in
-				self.loadedURL = url
-
-				if self.portraitLoaded == nil {
-					self.portraitImage?.image = image
-				}
-				else {
-					if let finalImageValue = self.portraitLoaded!(image, nil) {
-						self.portraitImage?.image = finalImageValue
-					}
-					else {
-						self.portraitImage?.image = image
-					}
-				}
-
-				self.onFinishOperation()
-
-			},
-			failure: {
-				(request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) -> Void in
-					self.loadPlaceholder()
-					self.loadedURL = nil
-					self.portraitLoaded?(nil, error)
-					self.onFinishOperation()
-			})
-	}
-
-
 	//MARK: UIImagePickerControllerDelegate
 
     public func imagePickerController(
@@ -214,7 +154,6 @@ public class UserPortraitView_default: BaseScreenletView,
 
 		userAction(name: "upload-portrait", sender: editedImage)
 	}
-
 
     public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
 		imagePicker.dismissViewControllerAnimated(true) {}

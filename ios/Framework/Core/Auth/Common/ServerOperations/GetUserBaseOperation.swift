@@ -22,15 +22,20 @@ public class GetUserBaseOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override internal func validateData() -> Bool {
-		var valid = super.validateData()
+	override internal func validateData() -> ValidationError? {
+		let error = super.validateData()
 		
 		if !SessionContext.hasSession {
-			valid = valid && (userName != nil)
-			valid = valid && (password != nil)
+			if userName == nil {
+				return ValidationError("login-screenlet", "undefined-username")
+			}
+
+			if password == nil {
+				return ValidationError("login-screenlet", "undefined-password")
+			}
 		}
 
-		return valid
+		return error
 	}
 
 	override func createSession() -> LRSession? {

@@ -11,20 +11,16 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
+import Foundation
 
 
-@objc public protocol DDLFormViewModel {
+@objc public class Flat7ProgressPresenter: MBProgressHUDPresenter {
 
-	var showSubmitButton: Bool { get set }
+	override public init() {
+		super.init()
 
-	var record: DDLRecord?  { get set }
-
-	var isRecordEmpty: Bool { get }
-
-	var values: [String:AnyObject] { get }
-
-
-	func validateForm(#autoscroll: Bool) -> ValidationError?
+		self.customColor = Flat7ThemeBasicGreen
+	}
 
 }
+

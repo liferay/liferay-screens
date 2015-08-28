@@ -29,24 +29,33 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 
 	var uploadResult: [String:AnyObject]?
 
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "uploading-error", self), details: nil)
-	}
-
 	private var requestSemaphore: dispatch_semaphore_t?
 
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && (document != nil && document?.currentValue != nil)
-		valid = valid && (filePrefix != nil)
-		valid = valid && (repositoryId != nil)
-		valid = valid && (folderId != nil)
+		if error == nil {
+			if document?.currentValue == nil {
+				return ValidationError("ddlform-screenlet", "undefined-current-value")
+			}
 
-		return valid
+			if (filePrefix ?? "") == "" {
+				return ValidationError("ddlform-screenlet", "undefined-fileprefix")
+			}
+
+			if repositoryId == nil {
+				return ValidationError("ddlform-screenlet", "undefined-repository")
+			}
+
+			if folderId == nil {
+				return ValidationError("ddlform-screenlet", "undefined-folder")
+			}
+		}
+
+		return error
 	}
 
 	override internal func doRun(#session: LRSession) {

@@ -35,7 +35,7 @@ class DDLFormUploadDocumentInteractor: ServerOperationInteractor {
 	override func createOperation() -> LiferayDDLFormUploadOperation {
 		let screenlet = self.screenlet as! DDLFormScreenlet
 
-		let operation = LiferayDDLFormUploadOperation(screenlet: screenlet)
+		let operation = LiferayDDLFormUploadOperation()
 
 		operation.document = self.document
 		operation.onUploadedBytes = self.onProgressClosure

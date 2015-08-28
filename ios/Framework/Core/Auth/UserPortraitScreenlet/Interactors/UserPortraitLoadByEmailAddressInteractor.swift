@@ -28,7 +28,6 @@ class UserPortraitLoadByEmailAddressInteractor: UserPortraitBaseLoadUserInteract
 
 	override func createLoadUserOperation() -> GetUserBaseOperation? {
 		return GetUserByEmailOperation(
-				screenlet: screenlet,
 				companyId: companyId,
 				emailAddress: emailAddress)
 	}

@@ -24,39 +24,27 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 	private let maxSize = 300 * 1024
 	private var fileTooLarge = false
 
-	override public var hudFailureMessage: HUDMessage? {
-		let key: String
-		let details: String?
 
-		if fileTooLarge {
-			key = "too-large-file"
-			details = LocalizedString("userportrait-screenlet", "too-large-file-details", self)
-		}
-		else {
-			key = "uploading-error"
-			details = nil
-		}
-
-		return (LocalizedString("userportrait-screenlet", key, self), details: details)
-	}
-
-
-	public init(screenlet: BaseScreenlet, userId: Int64, image: UIImage) {
+	public init(userId: Int64, image: UIImage) {
 		self.userId = userId
 		self.image = image
 
-		super.init(screenlet: screenlet)
+		super.init()
 	}
 
 
 	//MARK: ServerOperation
 
-	override internal func validateData() -> Bool {
-		var valid = super.validateData()
-		
-		valid = valid && (self.image != nil)
+	override internal func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		return valid
+		if error == nil {
+			if self.image == nil {
+				return ValidationError("userportrait-screenlet", "undefined-image")
+			}
+		}
+
+		return error
 	}
 
 	override internal func doRun(#session: LRSession) {

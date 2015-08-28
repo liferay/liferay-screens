@@ -27,44 +27,42 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	public var resultAttributes: NSDictionary?
 
 
-	override public var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "submitting-message", self),
-				details: LocalizedString("ddlform-screenlet", "submitting-details", self))
-	}
+	internal let viewModel: DDLFormViewModel
 
-	override public var hudSuccessMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "submitted", self), details: nil)
-	}
 
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "submitting-error", self), details: nil)
-	}
+	public init(viewModel: DDLFormViewModel) {
+		self.viewModel = viewModel
 
-	internal var viewModel: DDLFormViewModel {
-		return screenlet.screenletView as! DDLFormViewModel
+		super.init()
 	}
 
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override func validateData() -> ValidationError? {
+		var error = super.validateData()
 
-		valid = valid && (userId != nil)
-		valid = valid && (groupId != nil)
-		valid = valid && !(recordId != nil && recordSetId == nil)
-		valid = valid && !viewModel.values.isEmpty
+		if error == nil {
+			if (userId ?? 0) == 0 {
+				return ValidationError("ddlform-screenlet", "undefined-structure")
+			}
 
-		if valid && !viewModel.validateForm(autoscroll: autoscrollOnValidation) {
-			showHUD(message: LocalizedString("ddlform-screenlet", "validation", self),
-					details: LocalizedString("ddlform-screenlet", "validation-details", self),
-					closeMode: .AutocloseDelayed(3.0, true),
-					spinnerMode: .NoSpinner)
+			if groupId == nil {
+				return ValidationError("ddlform-screenlet", "undefined-group")
+			}
 
-			valid = false
+			if recordSetId == nil {
+				return ValidationError("ddlform-screenlet", "undefined-recordset")
+			}
+
+			if viewModel.values.isEmpty {
+				return ValidationError("ddlform-screenlet", "undefined-values")
+			}
+
+			error = viewModel.validateForm(autoscroll: autoscrollOnValidation)
 		}
 
-		return valid
+		return error
 	}
 
 	override internal func doRun(#session: LRSession) {

@@ -59,9 +59,9 @@ import UIKit
 
 	//MARK: BaseScreenlet
 
-	override public func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
 
-		switch name! {
+		switch name {
 		case "signup-action":
 			return createSignUpInteractor()
 		case "save-action":

@@ -1,5 +1,4 @@
-"core-base-list-loading-message"="Loading list...";
-"core-base-list-loading-details"="Wait few seconds...";
+"core-base-list-loading-message"="Loading list...\nWait few seconds...";
 "core-base-list-loading-error"="Error getting list";
 
 "core-yes"="Yes";

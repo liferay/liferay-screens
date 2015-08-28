@@ -32,9 +32,13 @@ class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 	}
 
 	override func createOperation() -> LiferayDDLListPageOperation {
+		let viewModel = (self.screenlet as! DDLListScreenlet).screenletView as! DDLListViewModel
+		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
+
 		let operation = LiferayDDLListPageOperation(
-				screenlet: self.screenlet,
-				page: self.page,
+				viewModel: viewModel,
+				startRow: pager(self.page),
+				endRow: pager(self.page + 1),
 				computeRowCount: self.computeRowCount)
 
 		operation.userId = (self.userId != 0) ? self.userId : nil

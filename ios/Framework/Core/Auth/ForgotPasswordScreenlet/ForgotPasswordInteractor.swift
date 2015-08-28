@@ -18,18 +18,32 @@ class ForgotPasswordInteractor: ServerOperationInteractor {
 
 	var resultPasswordSent: Bool?
 
-	override func createOperation() -> LiferayForgotPasswordBaseOperation {
+	override func createOperation() -> LiferayForgotPasswordBaseOperation? {
 		let screenlet = self.screenlet as! ForgotPasswordScreenlet
 
-		var operation: LiferayForgotPasswordBaseOperation?
+		if screenlet.anonymousApiUserName == nil || screenlet.anonymousApiPassword == nil {
+			println("[ERROR] Anonymous credentials are required for this interaction")
+			return nil
+		}
+
+		let operation: LiferayForgotPasswordBaseOperation?
 
 		switch BasicAuthMethod.create(screenlet.basicAuthMethod) {
 			case .ScreenName:
-				operation = LiferayForgotPasswordScreenNameOperation(screenlet: screenlet)
+				operation = LiferayForgotPasswordScreenNameOperation(
+					viewModel: screenlet.viewModel,
+					anonymousUsername: screenlet.anonymousApiUserName!,
+					anonymousPassword: screenlet.anonymousApiPassword!)
 			case .UserId:
-				operation = LiferayForgotPasswordUserIdOperation(screenlet: screenlet)
+				operation = LiferayForgotPasswordUserIdOperation(
+					viewModel: screenlet.viewModel,
+					anonymousUsername: screenlet.anonymousApiUserName!,
+					anonymousPassword: screenlet.anonymousApiPassword!)
 			case .Email:
-				operation = LiferayForgotPasswordEmailOperation(screenlet: screenlet)
+				operation = LiferayForgotPasswordEmailOperation(
+					viewModel: screenlet.viewModel,
+					anonymousUsername: screenlet.anonymousApiUserName!,
+					anonymousPassword: screenlet.anonymousApiPassword!)
 		}
 
 		operation!.companyId = screenlet.companyId
@@ -39,6 +53,10 @@ class ForgotPasswordInteractor: ServerOperationInteractor {
 
 	override func completedOperation(op: ServerOperation) {
 		self.resultPasswordSent = (op as! LiferayForgotPasswordBaseOperation).resultPasswordSent
+	}
+
+	override func interactionResult() -> AnyObject? {
+		return resultPasswordSent
 	}
 
 }

@@ -20,10 +20,38 @@ import UIKit
 
 class UserPortraitBaseInteractor: Interactor {
 
-	var resultURL: NSURL?
+	var resultImage: UIImage?
 	var resultUserId: Int64?
 
-	func URLForAttributes(#portraitId: Int64, uuid: String, male: Bool) -> NSURL? {
+	func startLoadImage(#portraitId: Int64, uuid: String, male: Bool) -> Bool {
+
+		let url = URLForAttributes(portraitId: portraitId, uuid: uuid, male: male)
+
+		if let url = url {
+			let op = HttpOperation(url: url)
+
+			let error = op.validateAndEnqueue() { op -> Void in
+				if let httpOp = op as? HttpOperation, resultData = httpOp.resultData {
+					self.resultImage = UIImage(data: resultData)
+					if self.resultImage != nil {
+						self.callOnSuccess()
+						return
+					}
+				}
+
+				self.callOnFailure(op.lastError ?? NSError.errorWithCause(.InvalidServerResponse))
+			}
+
+			if let error = error {
+				self.callOnFailure(error)
+			}
+		}
+
+		return (url != nil)
+	}
+
+
+	private func URLForAttributes(#portraitId: Int64, uuid: String, male: Bool) -> NSURL? {
 
 		func encodedSHA1(input: String) -> String? {
 			var result: String?
@@ -54,7 +82,8 @@ class UserPortraitBaseInteractor: Interactor {
 
 			let url = "\(LiferayServerContext.server)/image/user_\(maleString)/_portrait" +
 					"?img_id=\(portraitId)" +
-					"&img_id_token=\(hashedUUID)"
+					"&img_id_token=\(hashedUUID)" +
+					"&t=\(NSDate.timeIntervalSinceReferenceDate())"
 
 			return NSURL(string: url)
 		}
