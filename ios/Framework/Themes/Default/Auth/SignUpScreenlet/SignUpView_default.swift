@@ -34,11 +34,11 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
 			"signup-action" :
-				[.Working : LocalizedString("default-signup", "loading-message", self),
-				.Failure : LocalizedString("default-signup", "loading-error", self)],
+				[.Working : LocalizedString("default", "signup-loading-message", self),
+				.Failure : LocalizedString("default", "signup-loading-error", self)],
 			"save-action" :
-				[.Working : LocalizedString("default-signup", "saving-message", self),
-				.Failure : LocalizedString("default-signup", "saving-error", self)],
+				[.Working : LocalizedString("default", "signup-saving-message", self),
+				.Failure : LocalizedString("default", "signup-saving-error", self)],
 		]
 	}
 
@@ -68,7 +68,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		passwordField?.placeholder = LocalizedString("default", "password-placeholder", self)
 
 		signUpButton?.replaceAttributedTitle(
-				LocalizedString("default", "sign-up-button", self),
+				LocalizedString("default", "signup-button", self),
 				forState: .Normal)
 	}
 
@@ -133,7 +133,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 				self.jobTitle = SessionContext.userAttribute("jobTitle") as? String
 			}
 			else {
-				key = "sign-up-button"
+				key = "signup-button"
 				actionName = "signup-action"
 			}
 

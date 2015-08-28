@@ -28,8 +28,8 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction :
-				[.Working : LocalizedString("default-login", "loading-message", self),
-				.Failure : LocalizedString("default-login", "loading-error", self)]]
+				[.Working : LocalizedString("default", "login-loading-message", self),
+				.Failure : LocalizedString("default", "login-loading-error", self)]]
 	}
 
 
@@ -102,7 +102,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	override public func onSetTranslations() {
 		passwordField?.placeholder = LocalizedString("default", "password-placeholder", self)
 
-		loginButton?.replaceAttributedTitle(LocalizedString("default", "sign-in-button", self),
+		loginButton?.replaceAttributedTitle(LocalizedString("default", "signin-button", self),
 				forState: .Normal)
 
 		authorizeButton?.replaceAttributedTitle(LocalizedString("default", "authorize-button", self),
