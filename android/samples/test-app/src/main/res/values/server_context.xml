@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="liferay_server">https://screensdemo.liferay.com</string>
+	<string name="liferay_server">https://demo.liferay.com/screens</string>
 
 	<integer name="liferay_company_id">20155</integer>
 	<integer name="liferay_group_id">20525</integer>
@@ -26,5 +26,8 @@
 	<!-- OAuth values -->
 	<string name="liferay_oauth_consumer_key">f4adeb99-9ddf-4c9c-a408-347ce8be340a</string>
 	<string name="liferay_oauth_consumer_secret">0176690f0fd46a4a3a839ca9bf4edd0c</string>
+
+	<string name="default_username">test@liferay.com</string>
+	<string name="default_password">test</string>
 
 </resources>
