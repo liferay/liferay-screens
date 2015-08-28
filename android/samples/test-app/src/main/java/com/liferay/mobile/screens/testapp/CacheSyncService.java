@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.liferay.mobile.screens.cache.Cache;
-import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
 import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
@@ -28,6 +27,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import static com.liferay.mobile.screens.cache.DefaultCachedType.DDL_RECORD;
+import static com.liferay.mobile.screens.cache.DefaultCachedType.DOCUMENT_UPLOAD;
+import static com.liferay.mobile.screens.cache.DefaultCachedType.USER_PORTRAIT_UPLOAD;
+
 /**
  * @author Javier Gamarra
  */
@@ -46,13 +49,12 @@ public class CacheSyncService extends IntentService {
 		boolean isConnected = activeNetwork != null &&
 			activeNetwork.isConnectedOrConnecting();
 
-		if (isConnected) {
-
+		if (isConnected && SessionContext.hasSession()) {
 			try {
 				Cache cache = CacheSQL.getInstance();
+				sendPortrait(cache);
 				sendDocuments(cache);
 				sendRecords(cache);
-				sendPortrait(cache);
 			}
 			catch (Exception e) {
 				LiferayLogger.e("Error syncing resources", e);
@@ -62,55 +64,70 @@ public class CacheSyncService extends IntentService {
 	}
 
 	private void sendPortrait(Cache cache) {
-		long userId = SessionContext.getLoggedUser() == null ? 0 : SessionContext.getLoggedUser().getId();
-		List<TableCache> documents = cache.get(DefaultCachedType.USER_PORTRAIT_UPLOAD, TableCache.SENT + " = 0 AND " + TableCache.USER_ID + " = ? ", userId);
+		long userId = SessionContext.getDefaultUserId();
+		List<TableCache> userPortraits = cache.get(USER_PORTRAIT_UPLOAD,
+			" AND " + TableCache.SENT + " = 0 " + " AND " + TableCache.USER_ID + " = ? ",
+			userId);
 
 		UserPortraitUploadInteractorImpl userPortraitUploadInteractor = new UserPortraitUploadInteractorImpl(0, OfflinePolicy.STORE_ON_ERROR);
 
-		for (TableCache documentUpload : documents) {
+		for (TableCache userPortrait : userPortraits) {
 
 			try {
-				userPortraitUploadInteractor.upload(Long.valueOf(documentUpload.getId()), documentUpload.getContent());
+				userPortraitUploadInteractor.upload(Long.valueOf(userPortrait.getId()), userPortrait.getContent());
 			}
 			catch (Exception e) {
 				LiferayLogger.e("Error sending portrait images", e);
 			}
-
 		}
 	}
 
 
 	private void sendDocuments(Cache cache) {
-		long userId = SessionContext.getLoggedUser() == null ? 0 : SessionContext.getLoggedUser().getId();
+		long userId = SessionContext.getDefaultUserId();
 		long groupId = LiferayServerContext.getGroupId();
-		List<DocumentUploadCache> documents = cache.get(DefaultCachedType.DOCUMENT_UPLOAD, DocumentUploadCache.SENT + " = 0 AND " + TableCache.USER_ID + " = ? AND " + TableCache.GROUP_ID + " = ? ", userId, groupId);
+
+		List<DocumentUploadCache> documentsToUpload = cache.get(DOCUMENT_UPLOAD,
+			DocumentUploadCache.SENT + " = 0 " +
+				"AND " + DocumentUploadCache.USER_ID + " = ? " +
+				"AND " + DocumentUploadCache.GROUP_ID + " = ? ",
+			userId,
+			groupId);
 
 		DDLFormDocumentUploadInteractorImpl ddlFormDocumentUploadInteractor = new DDLFormDocumentUploadInteractorImpl(0, OfflinePolicy.STORE_ON_ERROR);
 
-		for (DocumentUploadCache documentUpload : documents) {
+		for (DocumentUploadCache document : documentsToUpload) {
+
 			Map<String, Object> objectObjectHashMap = new HashMap<>();
 			DocumentField documentField = new DocumentField(objectObjectHashMap, new Locale("es"));
-			documentField.createLocalFile(documentUpload.getPath());
+			documentField.createLocalFile(document.getPath());
 			try {
-				ddlFormDocumentUploadInteractor.upload(documentUpload.getGroupId(), documentUpload.getUserId(), documentUpload.getRepositoryId(),
-					documentUpload.getFolderId(), documentUpload.getFilePrefix(), documentField);
+				ddlFormDocumentUploadInteractor.upload(document.getGroupId(), document.getUserId(), document.getRepositoryId(),
+					document.getFolderId(), document.getFilePrefix(), documentField);
 			}
 			catch (Exception e) {
-				LiferayLogger.e("Error sending documents", e);
+				LiferayLogger.e("Error sending documentsToUpload", e);
 			}
 		}
 	}
 
-	private void sendRecords(Cache cache) throws Exception {
+	private void sendRecords(Cache cache) {
+
 		long groupId = LiferayServerContext.getGroupId();
-		List<RecordCache> caches = cache.get(DefaultCachedType.DDL_RECORD, DDLRecordCache.SENT + " = 0 AND " + TableCache.GROUP_ID + " = ? ", groupId);
+		List<RecordCache> records = cache.get(DDL_RECORD, DDLRecordCache.SENT + " = 0 AND " + TableCache.GROUP_ID + " = ? ", groupId);
 
 		DDLFormAddRecordInteractorImpl ddlFormAddRecordInteractor = new DDLFormAddRecordInteractorImpl(0, OfflinePolicy.STORE_ON_ERROR);
 
-		for (RecordCache recordCache : caches) {
-			Record record = recordCache.getRecord();
+		for (RecordCache cachedRecord : records) {
+
+			Record record = cachedRecord.getRecord();
 			record.setCreatorUserId(SessionContext.getLoggedUser().getId());
-			ddlFormAddRecordInteractor.sendOnline(LiferayServerContext.getGroupId(), recordCache.getContent(), record);
+			try {
+				ddlFormAddRecordInteractor.sendOnline(LiferayServerContext.getGroupId(), cachedRecord.getContent(), record);
+			}
+			catch (Exception e) {
+				LiferayLogger.e("Error syncing a record", e);
+			}
 		}
 	}
 }
