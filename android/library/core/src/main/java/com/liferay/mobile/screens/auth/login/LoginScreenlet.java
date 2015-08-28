@@ -44,10 +44,11 @@ import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder
 public class LoginScreenlet
 	extends BaseScreenlet<LoginViewModel, LoginInteractor>
 	implements LoginListener {
-	
+
 	public static final String OAUTH = "OAUTH";
 	public static final String BASIC_AUTH = "BASIC_AUTH";
 	public static final int REQUEST_OAUTH_CODE = 1;
+	public static final String LOGIN_SUCCESSFUL = "com.liferay.mobile.screens.auth.login.success";
 
 	public LoginScreenlet(Context context) {
 		super(context);
@@ -77,6 +78,8 @@ public class LoginScreenlet
 		if (_listener != null) {
 			_listener.onLoginSuccess(user);
 		}
+
+		getContext().sendBroadcast(new Intent(LOGIN_SUCCESSFUL));
 
 		SessionContext.storeSession(_credentialsStore);
 	}
