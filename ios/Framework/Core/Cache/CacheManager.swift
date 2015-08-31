@@ -15,6 +15,14 @@ import Foundation
 import YapDatabase
 
 
+public enum CacheStrategyType: String {
+	case OnlineOnly = "online-only"
+	case OnlineFirst = "online-first"
+	case CacheOnly = "cache-only"
+	case CacheFirst = "cache-first"
+}
+
+
 @objc public class CacheManager: NSObject {
 
 	private let tableSchemaDatabase = "lr_cache_"
