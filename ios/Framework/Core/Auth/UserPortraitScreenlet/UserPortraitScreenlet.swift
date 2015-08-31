@@ -91,7 +91,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	public func load(#userId: Int64) -> Bool {
-		let interactor = UserPortraitLoadByUserIdInteractor(
+		let interactor = UserPortraitLoadUserByUserIdInteractor(
 				screenlet: self,
 				userId: userId)
 
@@ -101,7 +101,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	public func load(#companyId: Int64, emailAddress: String) -> Bool {
-		let interactor = UserPortraitLoadByEmailAddressInteractor(
+		let interactor = UserPortraitLoadUserByEmailAddressInteractor(
 				screenlet: self,
 				companyId: companyId,
 				emailAddress: emailAddress)
@@ -112,7 +112,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	public func load(#companyId: Int64, screenName: String) -> Bool {
-		let interactor = UserPortraitLoadByScreenNameInteractor(
+		let interactor = UserPortraitLoadUserByScreenNameInteractor(
 				screenlet: self,
 				companyId: companyId,
 				screenName: screenName)

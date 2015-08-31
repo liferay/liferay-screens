@@ -14,28 +14,28 @@
 import UIKit
 
 
-class UserPortraitLoadByScreenNameInteractor: UserPortraitBaseLoadUserInteractor {
+class UserPortraitLoadUserByEmailAddressInteractor: UserPortraitBaseLoadUserInteractor {
 
 	let companyId: Int64
-	let screenName: String
+	let emailAddress: String
 
-	init(screenlet: BaseScreenlet, companyId: Int64, screenName: String) {
+	init(screenlet: BaseScreenlet, companyId: Int64, emailAddress: String) {
 		self.companyId = companyId
-		self.screenName = screenName
+		self.emailAddress = emailAddress
 
 		super.init(screenlet: screenlet)
 	}
 
 	override func createLoadUserOperation() -> GetUserBaseOperation? {
-		return GetUserByScreenNameOperation(
+		return GetUserByEmailOperation(
 				companyId: companyId,
-				screenName: screenName)
+				emailAddress: emailAddress)
 	}
 
 	override func isUserLogged() -> Bool {
 		if let companyIdValue = SessionContext.userAttribute("companyId") as? Int {
-			if let screenNameValue = SessionContext.userAttribute("screenName") as? String {
-				return (companyId == Int64(companyIdValue) && screenName == screenNameValue)
+			if let emailAddressValue = SessionContext.userAttribute("emailAddress") as? String {
+				return (companyId == Int64(companyIdValue) && emailAddress == emailAddressValue)
 			}
 		}
 
