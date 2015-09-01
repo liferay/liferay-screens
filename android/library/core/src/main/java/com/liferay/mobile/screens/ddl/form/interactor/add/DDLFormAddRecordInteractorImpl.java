@@ -53,21 +53,8 @@ public class DDLFormAddRecordInteractorImpl
 			return;
 		}
 
-		if (event.isFailed()) {
-			getListener().onDDLFormRecordAddFailed(event.getException());
-		}
-		else {
-			try {
-				saveToCache(event.getGroupId(), event.getRecord(), event.getJSONObject(), true);
-
-				long recordId = event.getJSONObject().getLong("recordId");
-				event.getRecord().setRecordId(recordId);
-				getListener().onDDLFormRecordAdded(event.getRecord());
-			}
-			catch (JSONException e) {
-				getListener().onDDLFormRecordAddFailed(event.getException());
-			}
-		}
+		JSONObject jsonObject = new JSONObject(event.getRecord().getData());
+		onEventWithCache(event, event.getGroupId(), event.getRecord(), jsonObject);
 	}
 
 	@Override
@@ -80,9 +67,26 @@ public class DDLFormAddRecordInteractorImpl
 		final JSONObject serviceContextAttributes = new JSONObject();
 		serviceContextAttributes.put("userId", record.getCreatorUserId());
 		serviceContextAttributes.put("scopeGroupId", groupId);
+
 		JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
-		getDDLRecordService(record, groupId).addRecord(
-			groupId, record.getRecordSetId(), 0, fieldsValues, serviceContextWrapper);
+		getDDLRecordService(record, groupId).addRecord(groupId, record.getRecordSetId(), 0, fieldsValues, serviceContextWrapper);
+	}
+
+	@Override
+	protected void notifySuccess(DDLFormAddRecordEvent event) {
+		try {
+			long recordId = event.getJSONObject().getLong("recordId");
+			event.getRecord().setRecordId(recordId);
+			getListener().onDDLFormRecordAdded(event.getRecord());
+		}
+		catch (JSONException e) {
+			notifyError(event);
+		}
+	}
+
+	@Override
+	protected void notifyError(DDLFormAddRecordEvent event) {
+		getListener().onDDLFormRecordAddFailed(event.getException());
 	}
 
 	@Override
@@ -91,14 +95,12 @@ public class DDLFormAddRecordInteractorImpl
 		Record record = (Record) args[1];
 		JSONObject fieldsValues = (JSONObject) args[2];
 
-		saveToCache(groupId, record, fieldsValues, false);
+		CacheSQL.getInstance().set(new DDLRecordCache(groupId, record, fieldsValues));
 	}
 
 	protected DDLRecordService getDDLRecordService(Record record, long groupId) {
 		Session session = SessionContext.createSessionFromCurrentSession();
-
 		session.setCallback(new DDLFormAddRecordCallback(getTargetScreenletId(), record, groupId));
-
 		return new DDLRecordService(session);
 	}
 
@@ -122,10 +124,6 @@ public class DDLFormAddRecordInteractorImpl
 		if (record.getRecordSetId() <= 0) {
 			throw new IllegalArgumentException("Record's recordSetId cannot be 0 or negative");
 		}
-	}
-
-	private void saveToCache(long groupId, Record record, JSONObject fields, boolean sent) {
-		CacheSQL.getInstance().set(new DDLRecordCache(groupId, record, fields, sent));
 	}
 
 }

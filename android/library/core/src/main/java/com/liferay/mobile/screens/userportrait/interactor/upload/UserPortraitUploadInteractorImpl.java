@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.userportrait.interactor.upload;
 import android.content.Intent;
 
 import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
-import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
@@ -33,28 +32,11 @@ public class UserPortraitUploadInteractorImpl
 			return;
 		}
 
-		if (event.isFailed()) {
-			getListener().onUserPortraitUploadFailure(event.getException());
-		}
-		else {
-			User user = new User(event.getJSONObject());
-			if (user.getId() == SessionContext.getLoggedUser().getId()) {
-				SessionContext.setLoggedUser(user);
-			}
-
-			try {
-				storeToCache(user.getId(), event.getPicturePath(), true);
-
-				getListener().onUserPortraitUploaded(user.getId());
-			}
-			catch (Exception e) {
-				getListener().onUserPortraitUploadFailure(e);
-			}
-		}
+		onEventWithCache(event, event.getUserId(), event.getPicturePath());
 	}
 
 	@Override
-	protected void sendOnline(Object[] args) throws Exception {
+	public void online(Object[] args) throws Exception {
 
 		long userId = (long) args[0];
 		String picturePath = (String) args[1];
@@ -72,14 +54,38 @@ public class UserPortraitUploadInteractorImpl
 	}
 
 	@Override
+	protected void notifySuccess(UserPortraitUploadEvent event) {
+		User loggedUser = SessionContext.getLoggedUser();
+
+		if (event.getJSONObject() != null) {
+			User user = new User(event.getJSONObject());
+			loggedUser = user;
+			if (user.getId() == SessionContext.getLoggedUser().getId()) {
+				SessionContext.setLoggedUser(user);
+			}
+		}
+
+		try {
+			getListener().onUserPortraitUploaded(loggedUser.getId());
+		}
+		catch (Exception e) {
+			getListener().onUserPortraitUploadFailure(e);
+		}
+
+	}
+
+	@Override
+	protected void notifyError(UserPortraitUploadEvent event) {
+		getListener().onUserPortraitUploadFailure(event.getException());
+	}
+
+	@Override
 	protected void storeToCache(Object... args) {
 
 		long userId = (long) args[0];
 		String picturePath = (String) args[1];
-		boolean sent = (boolean) args[2];
 
 		TableCache file = new TableCache(String.valueOf(userId), DefaultCachedType.USER_PORTRAIT_UPLOAD, picturePath);
-		file.setSent(sent);
 		CacheSQL.getInstance().set(file);
 	}
 

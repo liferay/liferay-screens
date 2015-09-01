@@ -3,13 +3,11 @@ package com.liferay.mobile.screens.ddl.form.interactor.upload;
 import android.content.Intent;
 
 import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
-import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
-import com.liferay.mobile.screens.ddl.form.interactor.update.DDLFormUpdateRecordEvent;
 import com.liferay.mobile.screens.ddl.form.service.UploadService;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 
@@ -17,7 +15,7 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
  * @author Javier Gamarra
  */
 public class DDLFormDocumentUploadInteractorImpl
-	extends BaseCachedWriteRemoteInteractor<DDLFormListener, DDLFormUpdateRecordEvent>
+	extends BaseCachedWriteRemoteInteractor<DDLFormListener, DDLFormDocumentUploadEvent>
 	implements DDLFormDocumentUploadInteractor {
 
 	public DDLFormDocumentUploadInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
@@ -38,12 +36,8 @@ public class DDLFormDocumentUploadInteractorImpl
 			return;
 		}
 
-		if (event.isFailed()) {
-			getListener().onDDLFormDocumentUploadFailed(event.getDocumentField(), event.getException());
-		}
-		else {
-			getListener().onDDLFormDocumentUploaded(event.getDocumentField(), event.getJSONObject());
-		}
+		onEventWithCache(event, event.getDocumentField(), event.getUserId(), event.getGroupId(),
+			event.getRepositoryId(), event.getFolderId(), event.getFilePrefix());
 	}
 
 	@Override
@@ -58,6 +52,16 @@ public class DDLFormDocumentUploadInteractorImpl
 		service.putExtra("filePrefix", (String) args[5]);
 
 		LiferayScreensContext.getContext().startService(service);
+	}
+
+	@Override
+	protected void notifySuccess(DDLFormDocumentUploadEvent event) {
+		getListener().onDDLFormDocumentUploaded(event.getDocumentField(), event.getJSONObject());
+	}
+
+	@Override
+	protected void notifyError(DDLFormDocumentUploadEvent event) {
+		getListener().onDDLFormDocumentUploadFailed(event.getDocumentField(), event.getException());
 	}
 
 	@Override

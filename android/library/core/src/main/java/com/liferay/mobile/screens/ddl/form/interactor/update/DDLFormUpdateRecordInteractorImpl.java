@@ -51,14 +51,7 @@ public class DDLFormUpdateRecordInteractorImpl
 			return;
 		}
 
-		if (event.isFailed()) {
-			getListener().onDDLFormUpdateRecordFailed(event.getException());
-		}
-		else {
-			saveToCache(event.getGroupId(), event.getRecord(), event.getJSONObject(), true);
-
-			getListener().onDDLFormRecordUpdated(event.getRecord());
-		}
+		onEventWithCache(event, event.getGroupId(), event.getRecord(), event.getJSONObject());
 	}
 
 	@Override
@@ -66,7 +59,7 @@ public class DDLFormUpdateRecordInteractorImpl
 
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
-		JSONObject fieldsValues = (JSONObject) args[2];
+		JSONObject fieldsValues = new JSONObject(record.getData());
 
 		final JSONObject serviceContextAttributes = new JSONObject();
 		serviceContextAttributes.put("userId", record.getCreatorUserId());
@@ -74,8 +67,18 @@ public class DDLFormUpdateRecordInteractorImpl
 
 		JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
 
-		getDDLRecordService(record, groupId).updateRecord(
-			record.getRecordId(), 0, fieldsValues, true, serviceContextWrapper);
+		getDDLRecordService(record, groupId).updateRecord(record.getRecordId(),
+			0, fieldsValues, true, serviceContextWrapper);
+	}
+
+	@Override
+	protected void notifySuccess(DDLFormUpdateRecordEvent event) {
+		getListener().onDDLFormRecordUpdated(event.getRecord());
+	}
+
+	@Override
+	protected void notifyError(DDLFormUpdateRecordEvent event) {
+		getListener().onDDLFormUpdateRecordFailed(event.getException());
 	}
 
 	@Override
