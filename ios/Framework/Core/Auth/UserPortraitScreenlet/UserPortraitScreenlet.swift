@@ -71,7 +71,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	public func loadLoggedUserPortrait() -> Bool {
-		let interactor = UserPortraitLoadLoggedUserInteractor(screenlet: self)
+		let interactor = DownloadUserPortraitInteractor(screenlet: self)
 
 		loadedUserId = SessionContext.currentUserId
 
@@ -79,7 +79,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	public func load(#portraitId: Int64, uuid: String, male: Bool = true) -> Bool {
-		let interactor = UserPortraitAttributesLoadInteractor(
+		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				portraitId: portraitId,
 				uuid: uuid,
@@ -91,7 +91,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	public func load(#userId: Int64) -> Bool {
-		let interactor = UserPortraitLoadUserByUserIdInteractor(
+		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				userId: userId)
 
@@ -101,7 +101,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	public func load(#companyId: Int64, emailAddress: String) -> Bool {
-		let interactor = UserPortraitLoadUserByEmailAddressInteractor(
+		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				companyId: companyId,
 				emailAddress: emailAddress)
@@ -112,7 +112,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	public func load(#companyId: Int64, screenName: String) -> Bool {
-		let interactor = UserPortraitLoadUserByScreenNameInteractor(
+		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				companyId: companyId,
 				screenName: screenName)
@@ -127,7 +127,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 		switch name {
 		case "load-portrait":
-			let loadInteractor = sender as! UserPortraitBaseInteractor
+			let loadInteractor = sender as! DownloadUserPortraitInteractor
 			interactor = loadInteractor
 
 			loadInteractor.onSuccess = {
