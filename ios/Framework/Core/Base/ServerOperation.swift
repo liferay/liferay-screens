@@ -62,17 +62,21 @@ public class ServerOperation: NSOperation {
 	//MARK: Public methods
 
 	public func validateAndEnqueue(onComplete: (ServerOperation -> Void)? = nil) -> ValidationError? {
+		let error = validateData()
+
+		if error == nil {
+			enqueue(onComplete: onComplete)
+		}
+
+		return error
+	}
+
+	public func enqueue(onComplete: (ServerOperation -> Void)? = nil) {
 		if onComplete != nil {
 			self.onComplete = onComplete
 		}
 
-		let error = validateData()
-
-		if error == nil {
-			OperationsQueue.addOperation(self)
-		}
-
-		return error
+		OperationsQueue.addOperation(self)
 	}
 
 
