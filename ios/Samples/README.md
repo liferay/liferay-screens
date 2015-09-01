@@ -1,6 +1,6 @@
 # Liferay Screens Samples for iOS
 
-This directory contains sample apps that demonstrate Liferay Screens for iOS. Most examples are provided in both Objective-C and Swift. You can refer to these apps, along with the [Liferay Screens documentation](https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/mobile-apps-with-liferay-screens), to see how Screenlets and Themes are used. 
+This directory contains sample apps that demonstrate Liferay Screens for iOS. Most examples are provided in both Objective-C and Swift. You can refer to these apps, along with the [Liferay Screens for iOS documentation](https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/ios-apps-with-liferay-screens), to see how Screenlets and Themes are used. 
 
 ## The Showcase App
 
