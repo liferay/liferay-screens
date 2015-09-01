@@ -55,7 +55,14 @@ public class DDLEntry implements Parcelable {
 	}
 
     public String getValue(String field) {
-        return ((HashMap<String,String>) _values.get("modelValues")).get(field);
+	    String value = null;
+	    Object valueObject = _values.get("modelValues");
+	    HashMap valueHashmap = (HashMap) valueObject;
+	    Object fieldValueObject = valueHashmap.get(field);
+	    String fieldValueObjectString = fieldValueObject.toString();
+	    value = fieldValueObjectString;
+        //return ((HashMap<String,String>) _values.get("modelValues")).get(field).toString();
+	return value;
     }
 
 	public Object getAttributes(String field) {
