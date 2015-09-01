@@ -18,6 +18,14 @@ import UIKit
 
 	public var onCompleteStep: (ServerOperation -> Void)?
 
+	public subscript(i: Int) -> ServerOperation? {
+		return operations[i]
+	}
+
+	public var last: ServerOperation? {
+		return operations.last
+	}
+
 	internal var operations = [ServerOperation]()
 	internal var originalCallbacks: [ServerOperation : (ServerOperation) -> ()] = [:]
 
