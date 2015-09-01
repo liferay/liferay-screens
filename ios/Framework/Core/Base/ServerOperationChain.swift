@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public class ChainedServerOperation: ServerOperation {
+@objc public class ServerOperationChain: ServerOperation {
 
 	public var onCompleteStep: (ServerOperation -> Void)?
 
