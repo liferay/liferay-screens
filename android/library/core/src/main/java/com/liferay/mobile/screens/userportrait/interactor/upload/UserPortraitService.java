@@ -47,27 +47,58 @@ public class UserPortraitService extends IntentService {
 		uploadFromIntent(intent);
 	}
 
-	private void uploadFromIntent(Intent intent) {
+	public void uploadFromIntent(Intent intent) {
 		int targetScreenletId = intent.getIntExtra("screenletId", 0);
 		long userId = intent.getLongExtra("userId", 0L);
 		String picturePath = intent.getStringExtra("picturePath");
 
 		try {
-			Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
-			UserService userService = new UserService(sessionFromCurrentSession);
-			JSONObject jsonObject = userService.updatePortrait(userId,
-				decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE));
+			JSONObject jsonObject = uploadUserPortrait(userId, picturePath);
 
-			EventBusUtil.post(new UserPortraitUploadEvent(targetScreenletId, picturePath, jsonObject));
+			EventBusUtil.post(new UserPortraitUploadEvent(targetScreenletId, picturePath, userId, jsonObject));
 		}
 		catch (Exception e) {
-			EventBusUtil.post(new UserPortraitUploadEvent(targetScreenletId, e));
+			EventBusUtil.post(new UserPortraitUploadEvent(targetScreenletId, picturePath, userId, e));
 		}
 	}
 
+	public JSONObject uploadUserPortrait(long userId, String picturePath) throws Exception {
+		Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
+		UserService userService = new UserService(sessionFromCurrentSession);
+		return userService.updatePortrait(userId,
+			decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE));
+	}
 
-	public static byte[] decodeSampledBitmapFromResource(String path,
-														 int reqWidth, int reqHeight) throws IOException {
+	public static int calculateInSampleSize(
+		BitmapFactory.Options options, int reqWidth, int reqHeight) {
+		final int height = options.outHeight;
+		final int width = options.outWidth;
+		int inSampleSize = 1;
+
+		if (height > reqHeight || width > reqWidth) {
+
+			final int halfHeight = height / 2;
+			final int halfWidth = width / 2;
+
+			// Calculate the largest inSampleSize value that is a power of 2 and keeps both
+			// height and width larger than the requested height and width.
+			while ((halfHeight / inSampleSize) > reqHeight
+				&& (halfWidth / inSampleSize) > reqWidth) {
+				inSampleSize *= 2;
+			}
+		}
+
+		return inSampleSize;
+	}
+
+	private static Bitmap rotateImage(Bitmap source, float angle) {
+		Matrix matrix = new Matrix();
+		matrix.postRotate(angle);
+		return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+	}
+
+	private static byte[] decodeSampledBitmapFromResource(String path,
+														  int reqWidth, int reqHeight) throws IOException {
 
 		// First decode with inJustDecodeBounds=true to check dimensions
 		final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -96,34 +127,6 @@ public class UserPortraitService extends IntentService {
 			default:
 				return bitmap;
 		}
-	}
-
-	public static Bitmap rotateImage(Bitmap source, float angle) {
-		Matrix matrix = new Matrix();
-		matrix.postRotate(angle);
-		return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
-	}
-
-	public static int calculateInSampleSize(
-		BitmapFactory.Options options, int reqWidth, int reqHeight) {
-		final int height = options.outHeight;
-		final int width = options.outWidth;
-		int inSampleSize = 1;
-
-		if (height > reqHeight || width > reqWidth) {
-
-			final int halfHeight = height / 2;
-			final int halfWidth = width / 2;
-
-			// Calculate the largest inSampleSize value that is a power of 2 and keeps both
-			// height and width larger than the requested height and width.
-			while ((halfHeight / inSampleSize) > reqHeight
-				&& (halfWidth / inSampleSize) > reqWidth) {
-				inSampleSize *= 2;
-			}
-		}
-
-		return inSampleSize;
 	}
 
 }

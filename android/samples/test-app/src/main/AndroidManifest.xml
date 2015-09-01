@@ -37,6 +37,7 @@
 		<receiver android:name=".CacheReceiver">
 			<intent-filter>
 				<action android:name="com.liferay.mobile.screens.auth.login.success"/>
+				<action android:name="com.liferay.mobile.screens.cache.resync"/>
 				<action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
 			</intent-filter>
 		</receiver>
