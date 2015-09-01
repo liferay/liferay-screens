@@ -80,29 +80,27 @@ public class ServerOperation: NSOperation {
 	}
 
 
-	//MARK: Internal methods
+	//MARK: Template methods
 
-	internal func validateData() -> ValidationError? {
+	public func validateData() -> ValidationError? {
 		// Do not add any code here. Children classes may not call super
 		return nil
 	}
 
-
-
-	internal func preRun() -> Bool {
+	public func preRun() -> Bool {
 		// Do not add any code here. Children classes may not call super
 		return true
 	}
 
-	internal func doRun(#session: LRSession) {
+	public func doRun(#session: LRSession) {
 		// Do not add any code here. Children classes may not call super
 	}
 
-	internal func postRun() {
+	public func postRun() {
 		// Do not add any code here. Children classes may not call super
 	}
 
-	internal func createSession() -> LRSession? {
+	public func createSession() -> LRSession? {
 		if !SessionContext.hasSession {
 			lastError = NSError.errorWithCause(.AbortedDueToPreconditions,
 					message: "Login required to use this operation")
@@ -113,10 +111,7 @@ public class ServerOperation: NSOperation {
 		return SessionContext.createSessionFromCurrentSession()
 	}
 
-
-	//MARK: Private methods
-
-	private func callOnComplete() {
+	public func callOnComplete() {
 		if self.onComplete != nil {
 			dispatch_main {
 				self.onComplete!(self)
