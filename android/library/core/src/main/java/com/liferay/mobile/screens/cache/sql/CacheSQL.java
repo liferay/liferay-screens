@@ -1,11 +1,13 @@
 package com.liferay.mobile.screens.cache.sql;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CachedContent;
 import com.liferay.mobile.screens.cache.CachedType;
 import com.liferay.mobile.screens.cache.executor.Executor;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.pushtorefresh.storio.sqlite.impl.DefaultStorIOSQLite;
 
@@ -69,6 +71,11 @@ public class CacheSQL<E extends CachedContent> implements Cache<E> {
 	@Override
 	public void clear(CachedType cachedType, String id) {
 		_cacheStrategyFactory.recoverStrategy(cachedType).clear(id);
+	}
+
+	@Override
+	public void resync() {
+		LiferayScreensContext.getContext().sendBroadcast(new Intent("com.liferay.mobile.screens.cache.resync"));
 	}
 
 	public synchronized static Cache getInstance(DefaultStorIOSQLite customStorIOSQLite, CacheStrategyFactory cacheStrategyFactory) {

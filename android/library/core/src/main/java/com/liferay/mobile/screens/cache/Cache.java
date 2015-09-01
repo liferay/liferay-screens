@@ -19,4 +19,6 @@ public interface Cache<E> {
 
 	void clear(CachedType cachedType, String id);
 
+	void resync();
+
 }
