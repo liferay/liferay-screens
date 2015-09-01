@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.cache.ddl.form.resolvers;
 import android.content.ContentValues;
 import android.support.annotation.NonNull;
 
-import com.liferay.mobile.screens.cache.ddl.form.DDLFormCache;
 import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
 import com.pushtorefresh.storio.sqlite.operations.put.DefaultPutResolver;
 import com.pushtorefresh.storio.sqlite.queries.InsertQuery;
@@ -43,6 +42,8 @@ public class DDLRecordPutResolver extends DefaultPutResolver<DDLRecordCache> {
 		contentValues.put(DDLRecordCache.CONTENT, object.getContent());
 		contentValues.put(DDLRecordCache.LOCALE, object.getLocale());
 		contentValues.put(DDLRecordCache.SENT, object.isSent());
+		contentValues.put(DDLRecordCache.GROUP_ID, object.getGroupId());
+		contentValues.put(DDLRecordCache.DATE_ADDED, object.getDateAdded());
 
 		return contentValues;
 	}

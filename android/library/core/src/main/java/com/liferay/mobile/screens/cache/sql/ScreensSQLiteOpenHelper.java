@@ -55,14 +55,16 @@ public class ScreensSQLiteOpenHelper extends SQLiteOpenHelper {
 		+ TableCache.USER_ID + " LONG NOT NULL, "
 		+ TableCache.GROUP_ID + " LONG NOT NULL, "
 		+ TableCache.LOCALE + " TEXT NOT NULL, "
-		+ TableCache.SENT + " INTEGER NULL );";
+		+ TableCache.SENT + " INTEGER NULL, "
+		+ "PRIMARY KEY (" + TableCache.ID + "," + TableCache.TYPE + "));";
 
 	private static final String CREATE_TABLE_USER_PORTRAIT = "CREATE TABLE "
 		+ UserPortraitCache.TABLE_NAME + "("
 		+ UserPortraitCache.USER_ID + " LONG NOT NULL, "
 		+ UserPortraitCache.MALE + " INTEGER NOT NULL, "
 		+ UserPortraitCache.PORTRAIT_ID + " LONG NOT NULL, "
-		+ UserPortraitCache.UUID + " TEXT NOT NULL )";
+		+ UserPortraitCache.UUID + " TEXT NOT NULL, "
+		+ "PRIMARY KEY (" + UserPortraitCache.USER_ID + "));";
 
 	private static final String CREATE_TABLE_DDL_FORM = "CREATE TABLE "
 		+ DDLFormCache.TABLE_NAME + "("
@@ -70,7 +72,8 @@ public class ScreensSQLiteOpenHelper extends SQLiteOpenHelper {
 		+ DDLFormCache.RECORD_ID + " LONG NOT NULL, "
 		+ DDLFormCache.STRUCTURE_ID + " LONG NOT NULL, "
 		+ DDLFormCache.LOCALE + " TEXT NULL, "
-		+ DDLFormCache.CONTENT + " TEXT NOT NULL );";
+		+ DDLFormCache.CONTENT + " TEXT NOT NULL, "
+		+ "PRIMARY KEY (" + DDLFormCache.RECORD_SET_ID + "));";
 
 	private static final String CREATE_TABLE_DDL_RECORD = "CREATE TABLE "
 		+ DDLRecordCache.TABLE_NAME + "("
@@ -80,7 +83,9 @@ public class ScreensSQLiteOpenHelper extends SQLiteOpenHelper {
 		+ DDLRecordCache.LOCALE + " TEXT NULL, "
 		+ DDLRecordCache.CONTENT + " TEXT NOT NULL, "
 		+ DDLRecordCache.GROUP_ID + " LONG NULL, "
-		+ DDLRecordCache.SENT + " INTEGER NOT NULL );";
+		+ DDLRecordCache.DATE_ADDED + " LONG NOT NULL, "
+		+ DDLRecordCache.SENT + " INTEGER NOT NULL, "
+		+ "PRIMARY KEY (" + DDLRecordCache.RECORD_ID + "," + DDLRecordCache.DATE_ADDED + "));";
 
 	private static final String CREATE_TABLE_DOCUMENT_UPLOAD = "CREATE TABLE "
 		+ DocumentUploadCache.TABLE_NAME + "("
@@ -90,6 +95,7 @@ public class ScreensSQLiteOpenHelper extends SQLiteOpenHelper {
 		+ DocumentUploadCache.REPOSITORY_ID + " LONG NOT NULL, "
 		+ DocumentUploadCache.FOLDER_ID + " LONG NOT NULL, "
 		+ DocumentUploadCache.FILE_PREFIX + " TEXT NOT NULL, "
-		+ DocumentUploadCache.SENT + " INTEGER NOT NULL );";
+		+ DocumentUploadCache.SENT + " INTEGER NOT NULL, "
+		+ "PRIMARY KEY (" + DocumentUploadCache.PATH + "));";
 
 }

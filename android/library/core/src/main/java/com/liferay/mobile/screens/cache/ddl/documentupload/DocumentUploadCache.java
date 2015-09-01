@@ -36,6 +36,14 @@ public class DocumentUploadCache implements CachedContent {
 		_sent = 0;
 	}
 
+	public int getSent() {
+		return _sent;
+	}
+
+	public void setSent(boolean sent) {
+		_sent = (sent ? 1 : 0);
+	}
+
 	public String getPath() {
 		return _path;
 	}
