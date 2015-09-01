@@ -3,6 +3,8 @@ package com.liferay.mobile.screens.base.interactor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
+import org.json.JSONObject;
+
 /**
  * @author Javier Gamarra
  */
@@ -14,10 +16,10 @@ public abstract class BaseCachedWriteRemoteInteractor<L, E extends BasicEvent> e
 		_offlinePolicy = offlinePolicy;
 	}
 
-	protected void storeOnError(Object... args) throws Exception {
+	protected void loadWithCache(Object... args) throws Exception {
 		if (_offlinePolicy == OfflinePolicy.STORE_ON_ERROR) {
 			try {
-				sendOnline(args);
+				online(args);
 			}
 			catch (Exception e) {
 				LiferayLogger.i("Store online first failed, trying to store locally version");
@@ -25,11 +27,30 @@ public abstract class BaseCachedWriteRemoteInteractor<L, E extends BasicEvent> e
 			}
 		}
 		else {
-			sendOnline(args);
+			online(args);
 		}
 	}
 
-	protected abstract void sendOnline(Object... args) throws Exception;
+	protected void onEventWithCache(E event, Object... args) {
+		if (event.isFailed()) {
+			try {
+				storeToCache(args);
+				notifySuccess(event);
+			}
+			catch (Exception e) {
+				notifyError(event);
+			}
+		}
+		else {
+			notifySuccess(event);
+		}
+	}
+
+	protected abstract void online(Object... args) throws Exception;
+
+	protected abstract void notifySuccess(E event);
+
+	protected abstract void notifyError(E event);
 
 	protected abstract void storeToCache(Object... args);
 

@@ -21,7 +21,6 @@ public abstract class RecordCache implements CachedContent {
 	public static final String LOCALE = "locale";
 	public static final String CONTENT = "content";
 
-
 	public RecordCache() {
 		super();
 	}

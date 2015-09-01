@@ -33,17 +33,17 @@ public abstract class DDLFormBaseCallback extends InteractorAsyncTaskCallback<JS
 
 	@Override
 	public JSONObject transform(Object obj) throws Exception {
-		return (JSONObject)obj;
+		return (JSONObject) obj;
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new DDLFormBaseEvent(targetScreenletId, e);
+		return new DDLFormBaseEvent(targetScreenletId, _record, e);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new DDLFormBaseEvent(targetScreenletId, result, _record);
+		return new DDLFormBaseEvent(targetScreenletId, _record, result);
 	}
 
 	protected Record getRecord() {

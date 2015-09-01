@@ -30,7 +30,7 @@ public class DDLFormDocumentUploadInteractorImpl
 
 		long repository = (repositoryId != 0) ? repositoryId : groupId;
 
-		storeOnError(file, userId, groupId, repository, folderId, filePrefix);
+		loadWithCache(file, userId, groupId, repository, folderId, filePrefix);
 	}
 
 	public void onEventMainThread(DDLFormDocumentUploadEvent event) {
@@ -47,7 +47,7 @@ public class DDLFormDocumentUploadInteractorImpl
 	}
 
 	@Override
-	protected void sendOnline(Object[] args) throws Exception {
+	public void online(Object[] args) throws Exception {
 		Intent service = new Intent(LiferayScreensContext.getContext(), UploadService.class);
 		service.putExtra("file", (DocumentField) args[0]);
 		service.putExtra("userId", (long) args[1]);
@@ -71,8 +71,7 @@ public class DDLFormDocumentUploadInteractorImpl
 		String filePrefix = (String) args[5];
 
 		String path = file.getCurrentValue().toString();
-		Cache cache = CacheSQL.getInstance();
-		cache.set(new DocumentUploadCache(path, userId, groupId, repositoryId, folderId, filePrefix));
+		CacheSQL.getInstance().set(new DocumentUploadCache(path, userId, groupId, repositoryId, folderId, filePrefix));
 	}
 
 }

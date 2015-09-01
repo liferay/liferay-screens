@@ -53,11 +53,11 @@ public class DDLListInteractorImpl
 		_recordSetId = recordSetId;
 		_userId = userId;
 
-		loadWithCache(startRow, endRow, locale);
+		processWithCache(startRow, endRow, locale);
 	}
 
 	@Override
-	protected boolean getFromCache(Object[] args) throws Exception {
+	protected boolean cached(Object[] args) throws Exception {
 
 		int startRow = (int) args[0];
 		int endRow = (int) args[1];

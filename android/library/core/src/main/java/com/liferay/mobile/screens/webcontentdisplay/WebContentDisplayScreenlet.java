@@ -122,7 +122,7 @@ public class WebContentDisplayScreenlet
 			R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
 
 		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
-			CachePolicy.NO_CACHE.ordinal());
+			CachePolicy.ONLINE_ONLY.ordinal());
 		_cachePolicy = CachePolicy.values()[cachePolicy];
 
 		int layoutId = typedArray.getResourceId(

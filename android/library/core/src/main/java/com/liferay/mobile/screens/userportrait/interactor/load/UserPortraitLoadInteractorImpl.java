@@ -21,7 +21,7 @@ import android.util.Base64;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
-import com.liferay.mobile.screens.base.interactor.BaseCachedReadRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -51,7 +51,7 @@ import java.security.NoSuchAlgorithmException;
  * @author Jose Manuel Navarro
  */
 public class UserPortraitLoadInteractorImpl
-	extends BaseCachedReadRemoteInteractor<UserPortraitInteractorListener, UserPortraitLoadEvent>
+	extends BaseCachedRemoteInteractor<UserPortraitInteractorListener, UserPortraitLoadEvent>
 	implements UserPortraitLoadInteractor, Target {
 
 	public UserPortraitLoadInteractorImpl(int screenletId, CachePolicy cachePolicy) {
@@ -71,7 +71,7 @@ public class UserPortraitLoadInteractorImpl
 		RequestCreator requestCreator = Picasso.with(LiferayScreensContext.getContext())
 			.load(uri);
 
-		if (CachePolicy.NO_CACHE.equals(getCachePolicy())) {
+		if (CachePolicy.ONLINE_ONLY.equals(getCachePolicy())) {
 			requestCreator = requestCreator
 				.memoryPolicy(MemoryPolicy.NO_CACHE)
 				.networkPolicy(NetworkPolicy.NO_CACHE);
@@ -85,7 +85,7 @@ public class UserPortraitLoadInteractorImpl
 
 		validate(userId);
 
-		loadWithCache(userId);
+		processWithCache(userId);
 	}
 
 	public void onEvent(UserPortraitLoadEvent event) {
@@ -94,7 +94,7 @@ public class UserPortraitLoadInteractorImpl
 		}
 
 		if (event.isFailed()) {
-			onEventWithCache(event);
+			onEventWithCache(event, event.getUserId());
 		}
 		else {
 			JSONObject userAttributes = event.getJSONObject();
@@ -134,7 +134,7 @@ public class UserPortraitLoadInteractorImpl
 	}
 
 	@Override
-	protected void loadOnline(Object[] args) throws Exception {
+	protected void online(Object[] args) throws Exception {
 
 		long userId = (long) args[0];
 
@@ -159,7 +159,7 @@ public class UserPortraitLoadInteractorImpl
 	}
 
 	@Override
-	protected boolean getFromCache(Object[] args) {
+	protected boolean cached(Object[] args) {
 
 		long userId = (long) args[0];
 

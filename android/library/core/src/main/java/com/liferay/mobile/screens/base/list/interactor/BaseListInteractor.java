@@ -6,7 +6,7 @@ import android.util.Pair;
 import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.interactor.BaseCachedReadRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.CachedType;
@@ -27,7 +27,7 @@ import java.util.Locale;
  * @author Javier Gamarra
  */
 public abstract class BaseListInteractor<E, L extends BaseListInteractorListener>
-	extends BaseCachedReadRemoteInteractor<L, BaseListEvent> {
+	extends BaseCachedRemoteInteractor<L, BaseListEvent> {
 
 	public BaseListInteractor(int targetScreenletId, CachePolicy cachePolicy) {
 		super(targetScreenletId, cachePolicy);
@@ -63,14 +63,9 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 			return;
 		}
 
-		if (event.isFailed()) {
-			getListener().onListRowsFailure(
-				event.getStartRow(), event.getEndRow(), event.getException());
-		}
-		else {
+		onEventWithCache(event);
 
-			onEventWithCache(event);
-
+		if (!event.isFailed()) {
 			List entries = event.getEntries();
 			int rowCount = event.getRowCount();
 
@@ -80,7 +75,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 	}
 
 	@Override
-	protected void loadOnline(Object[] args) throws Exception {
+	protected void online(Object[] args) throws Exception {
 
 		final int startRow = (int) args[0];
 		final int endRow = (int) args[1];
@@ -129,7 +124,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 
 			Integer rowCount = Integer.valueOf(tableCache.getContent());
 
-			BaseListEvent event = new BaseListEvent(getTargetScreenletId(), startRow, endRow, entries, rowCount, locale);
+			BaseListEvent event = new BaseListEvent(getTargetScreenletId(), startRow, endRow, locale, entries, rowCount);
 			EventBusUtil.post(event);
 
 			return true;

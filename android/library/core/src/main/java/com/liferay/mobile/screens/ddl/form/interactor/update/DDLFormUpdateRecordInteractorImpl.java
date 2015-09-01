@@ -43,9 +43,7 @@ public class DDLFormUpdateRecordInteractorImpl
 	public void updateRecord(long groupId, final Record record) throws Exception {
 		validate(groupId, record);
 
-		final JSONObject fieldsValues = new JSONObject(record.getData());
-
-		storeOnError(groupId, record, fieldsValues);
+		loadWithCache(groupId, record);
 	}
 
 	public void onEvent(DDLFormUpdateRecordEvent event) {
@@ -64,7 +62,7 @@ public class DDLFormUpdateRecordInteractorImpl
 	}
 
 	@Override
-	protected void sendOnline(Object[] args) throws Exception {
+	protected void online(Object[] args) throws Exception {
 
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
@@ -84,9 +82,9 @@ public class DDLFormUpdateRecordInteractorImpl
 	protected void storeToCache(Object[] args) {
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
-		JSONObject fieldsValues = (JSONObject) args[2];
+		JSONObject fieldsValues = new JSONObject(record.getData());
 
-		saveToCache(groupId, record, fieldsValues, false);
+		CacheSQL.getInstance().set(new DDLRecordCache(groupId, record, fieldsValues));
 	}
 
 	protected DDLRecordService getDDLRecordService(Record record, long groupId) {
@@ -111,10 +109,6 @@ public class DDLFormUpdateRecordInteractorImpl
 		if (record.getRecordId() <= 0) {
 			throw new IllegalArgumentException("Record's recordId cannot be 0 or negative");
 		}
-	}
-
-	private void saveToCache(long groupId, Record record, JSONObject fields, boolean sent) {
-		CacheSQL.getInstance().set(new DDLRecordCache(groupId, record, fields, sent));
 	}
 
 }

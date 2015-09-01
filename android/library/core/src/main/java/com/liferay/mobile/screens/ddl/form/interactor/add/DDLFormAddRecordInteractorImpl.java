@@ -45,7 +45,7 @@ public class DDLFormAddRecordInteractorImpl
 
 		final JSONObject fieldsValues = new JSONObject(record.getData());
 
-		storeOnError(groupId, record, fieldsValues);
+		loadWithCache(groupId, record, fieldsValues);
 	}
 
 	public void onEvent(DDLFormAddRecordEvent event) {
@@ -71,7 +71,7 @@ public class DDLFormAddRecordInteractorImpl
 	}
 
 	@Override
-	public void sendOnline(Object... args) throws Exception {
+	public void online(Object... args) throws Exception {
 
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];

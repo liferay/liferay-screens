@@ -404,11 +404,11 @@ public class DDLFormScreenlet
 		_record.setCreatorUserId(_userId);
 
 		int cachePolicy = typedArray.getInt(R.styleable.DDLFormScreenlet_cachePolicy,
-			CachePolicy.NO_CACHE.ordinal());
+			CachePolicy.ONLINE_ONLY.ordinal());
 		_cachePolicy = CachePolicy.values()[cachePolicy];
 
 		int offlinePolicy = typedArray.getInt(R.styleable.DDLFormScreenlet_offlinePolicy,
-			CachePolicy.NO_CACHE.ordinal());
+			CachePolicy.ONLINE_ONLY.ordinal());
 		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		int layoutId = typedArray.getResourceId(

@@ -54,11 +54,11 @@ public class AssetListInteractorImpl
 		this._groupId = groupId;
 		this._classNameId = classNameId;
 
-		loadWithCache(startRow, endRow, locale);
+		processWithCache(startRow, endRow, locale);
 	}
 
 	@Override
-	protected boolean getFromCache(Object[] args) throws Exception {
+	protected boolean cached(Object[] args) throws Exception {
 
 		final int startRow = (int) args[0];
 		final int endRow = (int) args[1];

@@ -233,7 +233,7 @@ public class UserPortraitScreenlet
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
 		int cachePolicy = typedArray.getInt(R.styleable.UserPortraitScreenlet_cachePolicy,
-			CachePolicy.NO_CACHE.ordinal());
+			CachePolicy.ONLINE_ONLY.ordinal());
 		_cachePolicy = CachePolicy.values()[cachePolicy];
 
 		int offlinePolicy = typedArray.getInt(R.styleable.UserPortraitScreenlet_offlinePolicy,

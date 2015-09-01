@@ -82,7 +82,7 @@ public class AssetListScreenlet
 			(int) LiferayServerContext.getGroupId());
 
 		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
-			CachePolicy.NO_CACHE.ordinal());
+			CachePolicy.ONLINE_ONLY.ordinal());
 		_cachePolicy = CachePolicy.values()[cachePolicy];
 
 		typedArray.recycle();

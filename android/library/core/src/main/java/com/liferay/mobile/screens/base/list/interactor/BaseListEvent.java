@@ -24,13 +24,17 @@ import java.util.Locale;
  */
 public class BaseListEvent<E> extends BasicEvent {
 
-	public BaseListEvent(int targetScreenletId, Exception e) {
+	public BaseListEvent(int targetScreenletId, int startRow, int endRow, Locale locale, Exception e) {
 		super(targetScreenletId, e);
+
+		_startRow = startRow;
+		_endRow = endRow;
+		_locale = locale;
 	}
 
 	public BaseListEvent(
-		int targetScreenletId, int startRow, int endRow, List<E> entries,
-		int rowCount, Locale locale) {
+		int targetScreenletId, int startRow, int endRow, Locale locale, List<E> entries,
+		int rowCount) {
 
 		super(targetScreenletId);
 

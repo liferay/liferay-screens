@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
-import com.liferay.mobile.screens.base.interactor.BaseCachedReadRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
@@ -30,7 +30,7 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayInteractorImpl
-	extends BaseCachedReadRemoteInteractor<WebContentDisplayListener, WebContentDisplayEvent>
+	extends BaseCachedRemoteInteractor<WebContentDisplayListener, WebContentDisplayEvent>
 	implements WebContentDisplayInteractor {
 
 	public WebContentDisplayInteractorImpl(int targetScreenletId, CachePolicy cachePolicy) {
@@ -42,7 +42,7 @@ public class WebContentDisplayInteractorImpl
 
 		validate(groupId, articleId, locale);
 
-		loadWithCache(groupId, articleId, locale);
+		processWithCache(groupId, articleId, locale);
 	}
 
 	public void onEvent(WebContentDisplayEvent event) {
@@ -52,11 +52,13 @@ public class WebContentDisplayInteractorImpl
 
 		onEventWithCache(event, event.getArticleId(), event.getGroupId(), event.getLocale());
 
-		getListener().onWebContentReceived(null, event.getHtml());
+		if (!event.isFailed()) {
+			getListener().onWebContentReceived(null, event.getHtml());
+		}
 	}
 
 	@Override
-	protected void loadOnline(Object[] args) throws Exception {
+	protected void online(Object[] args) throws Exception {
 
 		long groupId = (long) args[0];
 		String articleId = (String) args[1];
@@ -72,7 +74,7 @@ public class WebContentDisplayInteractorImpl
 	}
 
 	@Override
-	protected boolean getFromCache(Object[] args) {
+	protected boolean cached(Object[] args) {
 
 		long groupId = (long) args[0];
 		String articleId = (String) args[1];

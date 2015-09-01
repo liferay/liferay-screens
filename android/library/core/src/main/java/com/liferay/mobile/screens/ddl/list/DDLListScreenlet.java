@@ -91,7 +91,7 @@ public class DDLListScreenlet
 			R.styleable.DDLListScreenlet_labelFields));
 
 		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
-			CachePolicy.NO_CACHE.ordinal());
+			CachePolicy.ONLINE_ONLY.ordinal());
 		_cachePolicy = CachePolicy.values()[cachePolicy];
 
 		typedArray.recycle();

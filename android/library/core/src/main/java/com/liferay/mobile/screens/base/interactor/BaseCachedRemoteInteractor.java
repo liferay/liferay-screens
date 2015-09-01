@@ -8,46 +8,46 @@ import java.util.NoSuchElementException;
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseCachedReadRemoteInteractor<L, E extends BasicEvent> extends BaseRemoteInteractor<L> {
+public abstract class BaseCachedRemoteInteractor<L, E extends BasicEvent> extends BaseRemoteInteractor<L> {
 
-	public BaseCachedReadRemoteInteractor(int targetScreenletId, CachePolicy cachePolicy) {
+	public BaseCachedRemoteInteractor(int targetScreenletId, CachePolicy cachePolicy) {
 		super(targetScreenletId);
 
 		_retrievedFromCache = false;
 		_cachePolicy = cachePolicy;
 	}
 
-	protected void loadWithCache(Object... args) throws Exception {
+	protected void processWithCache(Object... args) throws Exception {
 		if (_cachePolicy == CachePolicy.CACHE_FIRST) {
 			try {
-				_retrievedFromCache = getFromCache(args);
+				_retrievedFromCache = cached(args);
 
 				if (!_retrievedFromCache) {
 					LiferayLogger.i("Retrieve from cache first failed, trying online");
-					loadOnline(args);
+					online(args);
 				}
 			}
 			catch (Exception e) {
 				LiferayLogger.e("Retrieve from cache first failed, trying online", e);
-				loadOnline(args);
+				online(args);
 			}
 		}
 		else if (_cachePolicy == CachePolicy.CACHE_ONLY) {
 			LiferayLogger.i("Trying to retrieve object from cache");
 
-			_retrievedFromCache = getFromCache(args);
+			_retrievedFromCache = cached(args);
 			if (!_retrievedFromCache) {
 				throw new NoSuchElementException();
 			}
 		}
 		else if (_cachePolicy == CachePolicy.ONLINE_FIRST) {
 			try {
-				loadOnline(args);
+				online(args);
 			}
 			catch (Exception e) {
 				LiferayLogger.e("Retrieve online first failed, trying cached version", e);
 
-				_retrievedFromCache = getFromCache(args);
+				_retrievedFromCache = cached(args);
 
 				if (!_retrievedFromCache) {
 					throw new NoSuchElementException();
@@ -55,7 +55,7 @@ public abstract class BaseCachedReadRemoteInteractor<L, E extends BasicEvent> ex
 			}
 		}
 		else {
-			loadOnline(args);
+			online(args);
 		}
 	}
 
@@ -63,7 +63,7 @@ public abstract class BaseCachedReadRemoteInteractor<L, E extends BasicEvent> ex
 		if (event.isFailed()) {
 			if (CachePolicy.ONLINE_FIRST.equals(_cachePolicy)) {
 				try {
-					_retrievedFromCache = getFromCache(args);
+					_retrievedFromCache = cached(args);
 					if (!_retrievedFromCache) {
 						notifyError(event);
 					}
@@ -81,16 +81,16 @@ public abstract class BaseCachedReadRemoteInteractor<L, E extends BasicEvent> ex
 		}
 	}
 
-	protected abstract void loadOnline(Object... args) throws Exception;
+	protected abstract void online(Object... args) throws Exception;
 
 	protected abstract void notifyError(E event);
 
-	protected abstract boolean getFromCache(Object... args) throws Exception;
+	protected abstract boolean cached(Object... args) throws Exception;
 
 	protected abstract void storeToCache(E event, Object... args);
 
 	protected boolean hasToStoreToCache() {
-		return !_retrievedFromCache && !_cachePolicy.equals(CachePolicy.NO_CACHE);
+		return !_retrievedFromCache && !_cachePolicy.equals(CachePolicy.ONLINE_ONLY);
 	}
 
 	protected CachePolicy getCachePolicy() {

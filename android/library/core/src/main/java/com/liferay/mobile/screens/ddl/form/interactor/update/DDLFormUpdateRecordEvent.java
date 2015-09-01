@@ -24,12 +24,14 @@ import org.json.JSONObject;
  */
 public class DDLFormUpdateRecordEvent extends DDLFormBaseEvent {
 
-	public DDLFormUpdateRecordEvent(int targetScreenletId, Exception e) {
-		super(targetScreenletId, e);
+	public DDLFormUpdateRecordEvent(int targetScreenletId, Record record, long groupId, Exception e) {
+		super(targetScreenletId, record, e);
+
+		_groupId = groupId;
 	}
 
-	public DDLFormUpdateRecordEvent(int targetScreenletId, JSONObject jsonObject, Record record, long groupId) {
-		super(targetScreenletId, jsonObject, record);
+	public DDLFormUpdateRecordEvent(int targetScreenletId, Record record, long groupId, JSONObject jsonObject) {
+		super(targetScreenletId, record, jsonObject);
 
 		_groupId = groupId;
 	}
@@ -37,5 +39,6 @@ public class DDLFormUpdateRecordEvent extends DDLFormBaseEvent {
 	public long getGroupId() {
 		return _groupId;
 	}
-	private long _groupId;
+
+	private final long _groupId;
 }

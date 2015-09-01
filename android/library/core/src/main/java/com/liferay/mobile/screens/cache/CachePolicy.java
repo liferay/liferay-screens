@@ -5,5 +5,5 @@ package com.liferay.mobile.screens.cache;
  */
 public enum CachePolicy {
 
-	NO_CACHE, CACHE_ONLY, CACHE_FIRST, ONLINE_FIRST
+	ONLINE_ONLY, CACHE_ONLY, CACHE_FIRST, ONLINE_FIRST
 }

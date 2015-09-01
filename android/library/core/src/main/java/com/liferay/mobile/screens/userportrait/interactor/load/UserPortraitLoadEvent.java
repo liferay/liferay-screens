@@ -11,13 +11,11 @@ public class UserPortraitLoadEvent extends JSONObjectEvent {
 
 	public UserPortraitLoadEvent(int targetScreenletId, Exception e, long userId) {
 		super(targetScreenletId, e);
-
 		_userId = userId;
 	}
 
 	public UserPortraitLoadEvent(int targetScreenletId, JSONObject jsonObject, long userId) {
 		super(targetScreenletId, jsonObject);
-
 		_userId = userId;
 	}
 

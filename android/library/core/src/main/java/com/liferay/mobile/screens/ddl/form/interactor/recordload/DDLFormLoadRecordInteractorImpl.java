@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.ddl.form.interactor.recordload;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.interactor.BaseCachedReadRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -33,7 +33,7 @@ import org.json.JSONException;
  * @author Jose Manuel Navarro
  */
 public class DDLFormLoadRecordInteractorImpl
-	extends BaseCachedReadRemoteInteractor<DDLFormListener, DDLFormLoadRecordEvent>
+	extends BaseCachedRemoteInteractor<DDLFormListener, DDLFormLoadRecordEvent>
 	implements DDLFormLoadRecordInteractor {
 
 	public DDLFormLoadRecordInteractorImpl(int targetScreenletId, CachePolicy cachePolicy) {
@@ -45,7 +45,7 @@ public class DDLFormLoadRecordInteractorImpl
 
 		validate(record);
 
-		loadWithCache(record);
+		processWithCache(record);
 	}
 
 	public void onEvent(DDLFormLoadRecordEvent event) {
@@ -55,18 +55,20 @@ public class DDLFormLoadRecordInteractorImpl
 
 		onEventWithCache(event);
 
-		try {
-			event.getRecord().setValues(JSONUtil.toMap(event.getJSONObject()));
+		if (!event.isFailed()) {
+			try {
+				event.getRecord().setValues(JSONUtil.toMap(event.getJSONObject()));
 
-			getListener().onDDLFormRecordLoaded(event.getRecord());
-		}
-		catch (JSONException e) {
-			getListener().onDDLFormRecordLoadFailed(e);
+				getListener().onDDLFormRecordLoaded(event.getRecord());
+			}
+			catch (JSONException e) {
+				getListener().onDDLFormRecordLoadFailed(e);
+			}
 		}
 	}
 
 	@Override
-	protected void loadOnline(Object[] args) throws Exception {
+	protected void online(Object[] args) throws Exception {
 
 		Record record = (Record) args[0];
 
@@ -80,7 +82,7 @@ public class DDLFormLoadRecordInteractorImpl
 	}
 
 	@Override
-	protected boolean getFromCache(Object[] args) throws Exception {
+	protected boolean cached(Object[] args) throws Exception {
 
 		Record record = (Record) args[0];
 
@@ -89,7 +91,7 @@ public class DDLFormLoadRecordInteractorImpl
 			DefaultCachedType.DDL_RECORD, String.valueOf(record.getRecordId()));
 
 		if (recordCache != null) {
-			onEvent(new DDLFormLoadRecordEvent(getTargetScreenletId(), recordCache.getJSONContent(), record));
+			onEvent(new DDLFormLoadRecordEvent(getTargetScreenletId(), record, recordCache.getJSONContent()));
 			return true;
 		}
 		return false;
@@ -97,7 +99,7 @@ public class DDLFormLoadRecordInteractorImpl
 
 	@Override
 	protected void storeToCache(DDLFormLoadRecordEvent event, Object... args) {
-		CacheSQL.getInstance().set(new DDLRecordCache(null, event.getRecord(), event.getJSONObject(), true));
+		CacheSQL.getInstance().set(new DDLRecordCache(null, event.getRecord(), event.getJSONObject()));
 	}
 
 	protected ScreensddlrecordService getDDLRecordService(Record record) {

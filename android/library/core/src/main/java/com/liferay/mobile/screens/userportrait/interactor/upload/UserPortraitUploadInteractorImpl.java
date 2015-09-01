@@ -25,7 +25,7 @@ public class UserPortraitUploadInteractorImpl
 	}
 
 	public void upload(final Long userId, final String picturePath) throws Exception {
-		storeOnError(userId, picturePath, false);
+		loadWithCache(userId, picturePath, false);
 	}
 
 	public void onEventMainThread(UserPortraitUploadEvent event) {

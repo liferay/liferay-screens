@@ -31,12 +31,12 @@ public class DDLFormLoadRecordCallback extends DDLFormBaseCallback {
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new DDLFormLoadRecordEvent(targetScreenletId, e);
+		return new DDLFormLoadRecordEvent(targetScreenletId, getRecord(), e);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new DDLFormLoadRecordEvent(targetScreenletId, result, getRecord());
+		return new DDLFormLoadRecordEvent(targetScreenletId, getRecord(), result);
 	}
 
 }

@@ -8,19 +8,29 @@ import org.json.JSONObject;
  * @author Javier Gamarra
  */
 public class UserPortraitUploadEvent extends JSONObjectEvent {
-	public UserPortraitUploadEvent(int targetScreenletId, Exception e) {
+
+	public UserPortraitUploadEvent(int targetScreenletId, String picturePath, long userId, Exception e) {
 		super(targetScreenletId, e);
+
+		_picturePath = picturePath;
+		_userId = userId;
 	}
 
-	public UserPortraitUploadEvent(int targetScreenletId, String picturePath, JSONObject jsonObject) {
+	public UserPortraitUploadEvent(int targetScreenletId, String picturePath, long userId, JSONObject jsonObject) {
 		super(targetScreenletId, jsonObject);
 
 		_picturePath = picturePath;
+		_userId = userId;
 	}
 
 	public String getPicturePath() {
 		return _picturePath;
 	}
 
+	public long getUserId() {
+		return _userId;
+	}
+
 	private String _picturePath;
+	private long _userId;
 }

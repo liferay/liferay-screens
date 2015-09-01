@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.ddl.form.interactor.formload;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.ddmstructure.DDMStructureService;
-import com.liferay.mobile.screens.base.interactor.BaseCachedReadRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -33,7 +33,7 @@ import org.json.JSONException;
  * @author Jose Manuel Navarro
  */
 public class DDLFormLoadInteractorImpl
-	extends BaseCachedReadRemoteInteractor<DDLFormListener, DDLFormLoadEvent>
+	extends BaseCachedRemoteInteractor<DDLFormListener, DDLFormLoadEvent>
 	implements DDLFormLoadInteractor {
 
 	public DDLFormLoadInteractorImpl(int targetScreenletId, CachePolicy cachePolicy) {
@@ -45,7 +45,7 @@ public class DDLFormLoadInteractorImpl
 
 		validate(record);
 
-		loadWithCache(record);
+		processWithCache(record);
 	}
 
 	public void onEvent(DDLFormLoadEvent event) {
@@ -55,27 +55,30 @@ public class DDLFormLoadInteractorImpl
 
 		onEventWithCache(event);
 
-		try {
-			String xsd = event.getJSONObject().getString("xsd");
-			long userId = event.getJSONObject().getLong("userId");
+		if (!event.isFailed()) {
 
-			Record formRecord = event.getRecord();
+			try {
+				String xsd = event.getJSONObject().getString("xsd");
+				long userId = event.getJSONObject().getLong("userId");
 
-			formRecord.parseXsd(xsd);
+				Record formRecord = event.getRecord();
 
-			if (formRecord.getCreatorUserId() == 0) {
-				formRecord.setCreatorUserId(userId);
+				formRecord.parseXsd(xsd);
+
+				if (formRecord.getCreatorUserId() == 0) {
+					formRecord.setCreatorUserId(userId);
+				}
+
+				getListener().onDDLFormLoaded(formRecord);
 			}
-
-			getListener().onDDLFormLoaded(formRecord);
-		}
-		catch (JSONException e) {
-			getListener().onDDLFormLoadFailed(e);
+			catch (JSONException e) {
+				getListener().onDDLFormLoadFailed(e);
+			}
 		}
 	}
 
 	@Override
-	protected void loadOnline(Object[] args) throws Exception {
+	protected void online(Object[] args) throws Exception {
 
 		Record record = (Record) args[0];
 
@@ -88,7 +91,7 @@ public class DDLFormLoadInteractorImpl
 	}
 
 	@Override
-	protected boolean getFromCache(Object[] args) throws Exception {
+	protected boolean cached(Object[] args) throws Exception {
 
 		Record record = (Record) args[0];
 
@@ -97,7 +100,7 @@ public class DDLFormLoadInteractorImpl
 			DefaultCachedType.DDL_FORM, String.valueOf(record.getRecordSetId()));
 
 		if (recordCache != null) {
-			onEvent(new DDLFormLoadEvent(getTargetScreenletId(), recordCache.getJSONContent(), record));
+			onEvent(new DDLFormLoadEvent(getTargetScreenletId(), record, recordCache.getJSONContent()));
 			return true;
 		}
 		return false;

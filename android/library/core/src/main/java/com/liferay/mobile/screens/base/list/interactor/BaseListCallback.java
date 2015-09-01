@@ -80,13 +80,13 @@ public abstract class BaseListCallback<E>
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, BaseListResult<E> result) {
-		return new BaseListEvent<>(
-			targetScreenletId, _rowsRange.first, _rowsRange.second, result.getEntries(), result.getRowCount(), _locale);
+		return new BaseListEvent<>(targetScreenletId, _rowsRange.first, _rowsRange.second, _locale,
+			result.getEntries(), result.getRowCount());
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new BaseListEvent<E>(targetScreenletId, e);
+		return new BaseListEvent<E>(targetScreenletId, _rowsRange.first, _rowsRange.second, _locale, e);
 	}
 
 	protected void cleanRequestState() {

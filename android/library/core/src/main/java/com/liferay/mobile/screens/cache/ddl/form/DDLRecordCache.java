@@ -8,6 +8,7 @@ import com.liferay.mobile.screens.ddl.model.Record;
 
 import org.json.JSONObject;
 
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -18,15 +19,17 @@ public class DDLRecordCache extends RecordCache {
 	public static final String TABLE_NAME = "ddlRecord";
 	public static final String SENT = "sent";
 	public static final String GROUP_ID = "groupId";
+	public static final String DATE_ADDED = "dateAdded";
 
 	public DDLRecordCache() {
 		super();
+		_dateAdded = new Date().getTime();
 	}
 
-	public DDLRecordCache(Long groupId, Record record, JSONObject jsonObject, boolean sent) {
+	public DDLRecordCache(Long groupId, Record record, JSONObject jsonObject) {
 		super(record, jsonObject);
-		_sent = sent;
 		_groupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
+		_dateAdded = new Date().getTime();
 	}
 
 	public long getGroupId() {
@@ -59,6 +62,15 @@ public class DDLRecordCache extends RecordCache {
 		return String.valueOf(_recordId);
 	}
 
+	public long getDateAdded() {
+		return _dateAdded;
+	}
+
+	public void setDateAdded(long dateAdded) {
+		_dateAdded = dateAdded;
+	}
+
 	private boolean _sent;
-	private Long _groupId;
+	private long _groupId;
+	private long _dateAdded;
 }
