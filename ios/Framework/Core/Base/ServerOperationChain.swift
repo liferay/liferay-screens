@@ -72,20 +72,22 @@ import UIKit
 			op.onComplete = { operation in
 				self.lastError = operation.lastError ?? self.lastError
 
-				dispatch_group_leave(waitGroup)
-
 				dispatch_main {
 					self.finishStep(operation)
 
 					if op == self.operations.last {
-						self.finishChain()
+						dispatch_group_leave(waitGroup)
 					}
 				}
 			}
 
 			op.enqueue()
+		}
 
-			dispatch_group_wait(waitGroup, DISPATCH_TIME_FOREVER)
+		dispatch_group_wait(waitGroup, DISPATCH_TIME_FOREVER)
+
+		dispatch_main {
+			self.finishChain()
 		}
 	}
 
