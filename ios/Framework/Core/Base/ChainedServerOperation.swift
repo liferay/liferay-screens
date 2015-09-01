@@ -14,15 +14,12 @@
 import UIKit
 
 
-@objc public class ChainedServerOperations: NSObject {
+@objc public class ChainedServerOperation: ServerOperation {
 
-	public var onCompletedStep: (ServerOperation -> Void)?
-	public var onCompleted: (NSError? -> Void)?
+	public var onCompleteStep: (ServerOperation -> Void)?
 
 	internal var operations = [ServerOperation]()
 	internal var originalCallbacks: [ServerOperation : (ServerOperation) -> ()] = [:]
-
-	internal var lastError: NSError?
 
 
 	//MARK: Public methods
@@ -35,20 +32,29 @@ import UIKit
 		operations.append(op)
 	}
 
-	public func validateAndEnqueueAll() -> [ServerOperation : ValidationError]? {
-		let errors = operations.toDictionary {
-			(op) -> (op: ServerOperation, error: ValidationError)? in
 
-			if let validationError = op.validateData() {
-				return (op, validationError)
-			}
+	//MARK: ServerOperation methods
 
-			return nil
-		}
+	override func createSession() -> LRSession? {
+		// dummy session: won't be used
+		return LRSession(server: "")
+	}
 
-		if !errors.isEmpty {
-			return errors
-		}
+	override func validateData() -> ValidationError? {
+		return
+			operations.map {
+				$0.validateData()
+			}.filter {
+				$0 != nil
+			}.map {
+				return $0!
+			}.first
+	}
+
+	override func doRun(#session: LRSession) {
+		let waitGroup = dispatch_group_create()
+
+		dispatch_group_enter(waitGroup)
 
 		for op in operations {
 			if let originalCallback = op.onComplete {
@@ -57,6 +63,8 @@ import UIKit
 
 			op.onComplete = { operation in
 				self.lastError = operation.lastError ?? self.lastError
+
+				dispatch_group_leave(waitGroup)
 
 				dispatch_main {
 					self.finishStep(operation)
@@ -68,11 +76,10 @@ import UIKit
 			}
 
 			op.enqueue()
+
+			dispatch_group_wait(waitGroup, DISPATCH_TIME_FOREVER)
 		}
-
-		return [:]
 	}
-
 
 	//MARK: Private methods
 
@@ -80,14 +87,14 @@ import UIKit
 		originalCallbacks[op]?(op)
 		originalCallbacks.removeValueForKey(op)
 
-		onCompletedStep?(op)
+		onCompleteStep?(op)
 	}
 
 	private func finishChain() {
-		onCompleted?(self.lastError)
+		onComplete?(self)
 
-		onCompletedStep = nil
-		onCompleted = nil
+		onCompleteStep = nil
+		onComplete = nil
 
 		originalCallbacks.removeAll(keepCapacity: true)
 	}
