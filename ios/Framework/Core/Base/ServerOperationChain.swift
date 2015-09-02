@@ -16,29 +16,24 @@ import UIKit
 
 @objc public class ServerOperationChain: ServerOperation {
 
-	public var onCompleteStep: (ServerOperation -> Void)?
+	private struct StreamOperationsQueue {
 
-	public subscript(i: Int) -> ServerOperation? {
-		return operations[i]
-	}
+		static private var queue: NSOperationQueue?
 
-	public var last: ServerOperation? {
-		return operations.last
-	}
+		static func addOperation(operation: NSOperation) {
+			if queue == nil {
+				queue = NSOperationQueue()
+				queue!.maxConcurrentOperationCount = 1
+			}
 
-	internal var operations = [ServerOperation]()
-	internal var originalCallbacks: [ServerOperation : (ServerOperation) -> ()] = [:]
-
-
-	//MARK: Public methods
-
-	public func addChainedOperation(op: ServerOperation) {
-		if let lastOp = operations.last {
-			op.addDependency(lastOp)
+			queue!.addOperation(operation)
 		}
 
-		operations.append(op)
 	}
+
+	public var onNextStep: ((ServerOperation, Int) -> ServerOperation?)?
+
+	public var headOperation: ServerOperation?
 
 
 	//MARK: ServerOperation methods
@@ -49,14 +44,48 @@ import UIKit
 	}
 
 	override public func validateData() -> ValidationError? {
-		return
-			operations.map {
-				$0.validateData()
-			}.filter {
-				$0 != nil
-			}.map {
-				return $0!
-			}.first
+		if headOperation == nil {
+			return ValidationError("core", "undefined-operation")
+		}
+
+		return headOperation?.validateData()
+	}
+
+	override public func enqueue(#onComplete: (ServerOperation -> Void)?) {
+		if onComplete != nil {
+			self.onComplete = onComplete
+		}
+
+		StreamOperationsQueue.addOperation(self)
+	}
+
+	private func doStep(
+			number: Int,
+			_ op: ServerOperation,
+			_ waitGroup: dispatch_group_t) -> ValidationError? {
+
+		let originalCallback = op.onComplete
+
+		return op.validateAndEnqueue { operation in
+			self.lastError = operation.lastError ?? self.lastError
+
+			originalCallback?(operation)
+
+			if let nextOp = self.onNextStep?(operation, number) {
+				let validationError = self.doStep(number + 1, nextOp, waitGroup)
+
+				if let validationError = validationError {
+					self.lastError = validationError
+					dispatch_group_leave(waitGroup)
+				}
+				else {
+					self.headOperation = nextOp
+				}
+			}
+			else {
+				dispatch_group_leave(waitGroup)
+			}
+		}
 	}
 
 	override public func doRun(#session: LRSession) {
@@ -64,49 +93,19 @@ import UIKit
 
 		dispatch_group_enter(waitGroup)
 
-		for op in operations {
-			if let originalCallback = op.onComplete {
-				originalCallbacks[op] = originalCallback
+		if let headOperation = self.headOperation {
+			if let validationError = doStep(0, headOperation, waitGroup) {
+				self.lastError = validationError
 			}
-
-			op.onComplete = { operation in
-				self.lastError = operation.lastError ?? self.lastError
-
-				dispatch_main {
-					self.finishStep(operation)
-
-					if op == self.operations.last {
-						dispatch_group_leave(waitGroup)
-					}
-				}
-			}
-
-			op.enqueue()
 		}
 
 		dispatch_group_wait(waitGroup, DISPATCH_TIME_FOREVER)
-
-		dispatch_main {
-			self.finishChain()
-		}
 	}
 
-	//MARK: Private methods
+	override public func callOnComplete() {
+		super.callOnComplete()
 
-	private func finishStep(op: ServerOperation) {
-		originalCallbacks[op]?(op)
-		originalCallbacks.removeValueForKey(op)
-
-		onCompleteStep?(op)
-	}
-
-	private func finishChain() {
-		onComplete?(self)
-
-		onCompleteStep = nil
-		onComplete = nil
-
-		originalCallbacks.removeAll(keepCapacity: true)
+		self.onNextStep = nil
 	}
 
 }

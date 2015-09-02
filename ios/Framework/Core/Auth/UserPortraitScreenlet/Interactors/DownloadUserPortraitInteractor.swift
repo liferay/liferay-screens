@@ -131,11 +131,11 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 	}
 
 	private func createOperationFor(loadUserOp: GetUserBaseOperation) -> ServerOperation? {
-		let opStream = ServerOperationStream()
+		let chain = ServerOperationChain()
 
-		opStream.headOperation = loadUserOp
+		chain.headOperation = loadUserOp
 
-		opStream.onNextStep = { (op, seq) -> ServerOperation? in
+		chain.onNextStep = { (op, seq) -> ServerOperation? in
 			if let loadUserOp = op as? GetUserBaseOperation {
 				return self.createOperationFor(attributes: loadUserOp.resultUserAttributes)
 			}
@@ -143,7 +143,7 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 			return nil
 		}
 
-		return opStream
+		return chain
 	}
 
 	private func createOperationFor(#attributes: [String:AnyObject]?) -> ServerOperation? {
@@ -179,7 +179,7 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 			self.callOnFailure(error)
 		}
 		else {
-			let httpOp = ((op as? ServerOperationStream)?.headOperation as? HttpOperation)
+			let httpOp = ((op as? ServerOperationChain)?.headOperation as? HttpOperation)
 				?? (op as? HttpOperation)
 
 			if let httpOp = httpOp,
