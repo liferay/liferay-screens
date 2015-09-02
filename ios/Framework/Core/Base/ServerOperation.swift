@@ -31,12 +31,6 @@ public class ServerOperation: NSOperation {
 
 	}
 
-	//TODO remove
-	public typealias HUDMessage = (String, details: String?)
-	public var hudLoadingMessage: HUDMessage? { return nil }
-	public var hudFailureMessage: HUDMessage? { return nil }
-	public var hudSuccessMessage: HUDMessage? { return nil }
-
 	public var lastError: NSError?
 
 	internal var onComplete: (ServerOperation -> Void)?
