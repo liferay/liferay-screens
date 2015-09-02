@@ -16,10 +16,10 @@ import UIKit
 
 public class GetUserByScreenNameOperation: GetUserBaseOperation {
 
-	private var companyId: Int64
-	private var screenName: String?
+	public var companyId: Int64
+	public var screenName: String
 
-	public init(companyId: Int64, screenName: String?) {
+	public init(companyId: Int64, screenName: String) {
 		self.companyId = companyId
 		self.screenName = screenName
 
@@ -30,7 +30,7 @@ public class GetUserByScreenNameOperation: GetUserBaseOperation {
 		let error = super.validateData()
 
 		if error == nil {
-			if (screenName ?? "") == "" {
+			if screenName == "" {
 				return ValidationError("login-screenlet", "validation-screenname")
 			}
 		}

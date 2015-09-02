@@ -16,9 +16,9 @@ import UIKit
 
 public class GetUserByUserIdOperation: GetUserBaseOperation {
 
-	private let userId: Int64?
+	public let userId: Int64
 
-	public init(userId: Int64?) {
+	public init(userId: Int64) {
 		self.userId = userId
 
 		super.init()
@@ -28,7 +28,7 @@ public class GetUserByUserIdOperation: GetUserBaseOperation {
 		let error = super.validateData()
 
 		if error == nil {
-			if (userId ?? 0) == 0 {
+			if userId == 0 {
 				return ValidationError("login-screenlet", "undefined-user")
 			}
 		}
@@ -44,7 +44,7 @@ public class GetUserByUserIdOperation: GetUserBaseOperation {
 			error: NSErrorPointer)
 			-> NSDictionary? {
 
-		return service.getUserByIdWithUserId(userId!, error: error)
+		return service.getUserByIdWithUserId(userId, error: error)
 	}
 
 }

@@ -16,10 +16,10 @@ import UIKit
 
 public class GetUserByEmailOperation: GetUserBaseOperation {
 
-	private var companyId: Int64
-	private var emailAddress: String?
+	public var companyId: Int64
+	public var emailAddress: String
 
-	public init(companyId: Int64, emailAddress:String?) {
+	public init(companyId: Int64, emailAddress: String) {
 		self.companyId = companyId
 		self.emailAddress = emailAddress
 
@@ -30,7 +30,7 @@ public class GetUserByEmailOperation: GetUserBaseOperation {
 		let error = super.validateData()
 
 		if error == nil {
-			if (emailAddress ?? "") == "" {
+			if emailAddress == "" {
 				return ValidationError("login-screenlet", "validation-email")
 			}
 		}
