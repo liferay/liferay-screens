@@ -116,6 +116,30 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 		}
 	}
 
+	override func completedOperation(op: ServerOperation) {
+		if let error = op.lastError {
+			self.callOnFailure(error)
+		}
+		else {
+			let httpOp = ((op as? ServerOperationChain)?.headOperation as? HttpOperation)
+				?? (op as? HttpOperation)
+
+			if let httpOp = httpOp,
+					resultData = httpOp.resultData {
+					resultImage = UIImage(data: resultData)
+					resultUserId = nil
+
+				self.callOnSuccess()
+			}
+			else {
+				self.callOnFailure(NSError.errorWithCause(.InvalidServerResponse))
+			}
+		}
+	}
+
+
+	//MARK: Private methods
+
 	private func createOperationForLogged() -> ServerOperation? {
 		if let portraitId = SessionContext.userAttribute("portraitId") as? NSNumber,
 				uuid = SessionContext.userAttribute("uuid") as? String {
@@ -173,28 +197,6 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 
 		return nil
 	}
-
-	override func completedOperation(op: ServerOperation) {
-		if let error = op.lastError {
-			self.callOnFailure(error)
-		}
-		else {
-			let httpOp = ((op as? ServerOperationChain)?.headOperation as? HttpOperation)
-				?? (op as? HttpOperation)
-
-			if let httpOp = httpOp,
-					resultData = httpOp.resultData {
-				resultImage = UIImage(data: resultData)
-				resultUserId = nil
-
-				self.callOnSuccess()
-			}
-			else {
-				self.callOnFailure(NSError.errorWithCause(.InvalidServerResponse))
-			}
-		}
-	}
-
 
 	private func URLForAttributes(#portraitId: Int64, uuid: String, male: Bool) -> NSURL? {
 
