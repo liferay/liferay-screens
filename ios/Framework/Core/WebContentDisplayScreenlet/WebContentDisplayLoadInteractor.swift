@@ -40,7 +40,7 @@ class WebContentDisplayLoadInteractor: ServerOperationInteractor {
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			CacheManager.sharedManager.get(
+			CacheManager.sharedManager.getString(
 				collection: "group-\(groupId)",
 				key: "webcontent-\(articleId)") {
 					loadOp.resultHTML = $0

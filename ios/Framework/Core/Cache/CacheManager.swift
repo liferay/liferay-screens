@@ -49,11 +49,18 @@ public enum CacheStrategyType: String {
 		super.init()
 	}
 
-	public func get(#collection: String, key: String, result: String? -> Void) {
+	public func getString(#collection: String, key: String, result: String? -> Void) {
 		readConnection.readWithBlock { transaction -> Void in
 			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)
 			result((value as? NSObject)?.description)
-		};
+		}
+	}
+
+	public func getAny(#collection: String, key: String, result: AnyObject? -> Void) {
+		readConnection.readWithBlock { transaction -> Void in
+			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)
+			result(value)
+		}
 	}
 
 	public func set(#collection: String, key: String, string: String) {
