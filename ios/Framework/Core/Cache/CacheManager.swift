@@ -56,9 +56,9 @@ public enum CacheStrategyType: String {
 		};
 	}
 
-	public func set(#collection: String, key: String, value: String) {
+	public func set(#collection: String, key: String, string: String) {
 		writeConnection.readWriteWithBlock { transaction -> Void in
-			transaction.setObject(value, forKey: key, inCollection: collection)
+			transaction.setObject(string, forKey: key, inCollection: collection)
 		}
 	}
 

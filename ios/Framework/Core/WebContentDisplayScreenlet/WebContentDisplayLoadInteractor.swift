@@ -58,7 +58,7 @@ class WebContentDisplayLoadInteractor: ServerOperationInteractor {
 			CacheManager.sharedManager.set(
 				collection: "group-\(groupId)",
 				key: "webcontent-\(articleId)",
-				value: html)
+				string: html)
 		}
 	}
 
