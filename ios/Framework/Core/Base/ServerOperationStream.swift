@@ -38,12 +38,12 @@ import UIKit
 
 	//MARK: ServerOperation methods
 
-	override func createSession() -> LRSession? {
+	override public func createSession() -> LRSession? {
 		// dummy session: won't be used
 		return LRSession(server: "")
 	}
 
-	override func validateData() -> ValidationError? {
+	override public func validateData() -> ValidationError? {
 		if headOperation == nil {
 			return ValidationError("core", "undefined-operation")
 		}
@@ -88,7 +88,7 @@ import UIKit
 		}
 	}
 
-	override func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		let waitGroup = dispatch_group_create()
 
 		dispatch_group_enter(waitGroup)
@@ -102,7 +102,7 @@ import UIKit
 		dispatch_group_wait(waitGroup, DISPATCH_TIME_FOREVER)
 	}
 
-	override func callOnComplete() {
+	override public func callOnComplete() {
 		super.callOnComplete()
 
 		self.onNextStep = nil

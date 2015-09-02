@@ -22,7 +22,7 @@ public class GetUserBaseOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override internal func validateData() -> ValidationError? {
+	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
 		
 		if !SessionContext.hasSession {
@@ -38,7 +38,7 @@ public class GetUserBaseOperation: ServerOperation {
 		return error
 	}
 
-	override func createSession() -> LRSession? {
+	override public func createSession() -> LRSession? {
 		if SessionContext.hasSession {
 			return SessionContext.createSessionFromCurrentSession()
 		}
@@ -50,7 +50,7 @@ public class GetUserBaseOperation: ServerOperation {
 						password: password!))
 	}
 
-	override internal func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		var outError: NSError?
 
 		resultUserAttributes = nil

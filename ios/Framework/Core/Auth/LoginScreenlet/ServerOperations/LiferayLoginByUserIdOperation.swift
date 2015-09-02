@@ -16,7 +16,7 @@ import UIKit
 
 public class LiferayLoginByUserIdOperation: GetUserByUserIdOperation {
 
-	override internal func validateData() -> ValidationError? {
+	override public func validateData() -> ValidationError? {
 		if super.validateData() == nil {
 			return nil
 		}
@@ -24,7 +24,7 @@ public class LiferayLoginByUserIdOperation: GetUserByUserIdOperation {
 		return ValidationError("login-screenlet", "validation")
 	}
 
-	override internal func postRun() {
+	override public func postRun() {
 		if lastError == nil {
 			setResultAsSessionContext()
 		}

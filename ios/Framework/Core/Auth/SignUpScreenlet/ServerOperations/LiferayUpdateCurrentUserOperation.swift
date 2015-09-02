@@ -30,7 +30,7 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override func validateData() -> ValidationError? {
+	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -46,7 +46,7 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 		return error
 	}
 
-	override func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		func attributeAsString(key: String) -> String {
 			return SessionContext.userAttribute(key) as! String
 		}

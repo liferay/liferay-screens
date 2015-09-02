@@ -39,7 +39,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override func validateData() -> ValidationError? {
+	override public func validateData() -> ValidationError? {
 		var error = super.validateData()
 
 		if error == nil {
@@ -65,7 +65,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 		return error
 	}
 
-	override internal func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		let service = LRDDLRecordService_v62(session: session)
 
 		let serviceContextAttributes = [

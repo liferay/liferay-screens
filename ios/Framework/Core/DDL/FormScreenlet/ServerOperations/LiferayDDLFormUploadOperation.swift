@@ -34,7 +34,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 
 	//MARK: ServerOperation
 
-	override func validateData() -> ValidationError? {
+	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -58,7 +58,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 		return error
 	}
 
-	override internal func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		session.callback = self
 
 		let fileName = "\(filePrefix!)\(NSUUID().UUIDString)"

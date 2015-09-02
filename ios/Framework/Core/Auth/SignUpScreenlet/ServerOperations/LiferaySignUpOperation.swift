@@ -36,7 +36,7 @@ public class LiferaySignUpOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override func validateData() -> ValidationError? {
+	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -48,7 +48,7 @@ public class LiferaySignUpOperation: ServerOperation {
 		return error
 	}
 
-	override func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		let service = LRUserService_v62(session: session)
 
 		var outError: NSError?
@@ -102,7 +102,7 @@ public class LiferaySignUpOperation: ServerOperation {
 		}
 	}
 
-	override internal func createSession() -> LRSession? {
+	override public func createSession() -> LRSession? {
 		return SessionContext.createAnonymousBasicSession(anonymousUsername, anonymousPassword)
 	}
 

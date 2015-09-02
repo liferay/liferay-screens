@@ -37,7 +37,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 
 	//MARK ServerOperation
 
-	override func validateData() -> ValidationError? {
+	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -49,7 +49,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 		return error
 	}
 
-	override func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		var outError: NSError?
 
 		let result = sendForgotPasswordRequest(
@@ -70,7 +70,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 		}
 	}
 
-	override internal func createSession() -> LRSession? {
+	override public func createSession() -> LRSession? {
 		return SessionContext.createAnonymousBasicSession(anonymousUsername, anonymousPassword)
 	}
 

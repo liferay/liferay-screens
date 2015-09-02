@@ -30,7 +30,7 @@ public class HttpOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override internal func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
 
 		let requestSemaphore = dispatch_semaphore_create(0)
@@ -52,7 +52,7 @@ public class HttpOperation: ServerOperation {
 		dispatch_semaphore_wait(requestSemaphore, DISPATCH_TIME_FOREVER)
 	}
 
-	override func createSession() -> LRSession? {
+	override public func createSession() -> LRSession? {
 		// dummy session: won't be used
 		return LRSession(server: "")
 	}

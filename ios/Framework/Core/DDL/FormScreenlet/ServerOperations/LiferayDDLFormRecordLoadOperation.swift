@@ -24,7 +24,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override func validateData() -> ValidationError? {
+	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -36,7 +36,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 		return error
 	}
 
-	override internal func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		resultRecord = nil

@@ -35,7 +35,7 @@ public class LiferayPaginationOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override internal func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		let batchSession = LRBatchSession(session: session)
 
 		resultPageContent = nil

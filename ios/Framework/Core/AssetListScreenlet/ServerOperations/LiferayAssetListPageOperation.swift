@@ -21,7 +21,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	//MARK: ServerOperation
 
-	override func validateData() -> ValidationError? {
+	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {

@@ -26,7 +26,7 @@ public class GetUserByScreenNameOperation: GetUserBaseOperation {
 		super.init()
 	}
 
-	override internal func validateData() -> ValidationError? {
+	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {

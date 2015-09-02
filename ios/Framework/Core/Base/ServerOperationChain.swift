@@ -43,12 +43,12 @@ import UIKit
 
 	//MARK: ServerOperation methods
 
-	override func createSession() -> LRSession? {
+	override public func createSession() -> LRSession? {
 		// dummy session: won't be used
 		return LRSession(server: "")
 	}
 
-	override func validateData() -> ValidationError? {
+	override public func validateData() -> ValidationError? {
 		return
 			operations.map {
 				$0.validateData()
@@ -59,7 +59,7 @@ import UIKit
 			}.first
 	}
 
-	override func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		let waitGroup = dispatch_group_create()
 
 		dispatch_group_enter(waitGroup)

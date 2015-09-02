@@ -35,7 +35,7 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override internal func validateData() -> ValidationError? {
+	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -47,7 +47,7 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 		return error
 	}
 
-	override internal func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		if let imageBytes = reduceImage(self.image!, factor: 0.95) {
 			self.image = nil
 			uploadBytes(imageBytes, withSession: session)
