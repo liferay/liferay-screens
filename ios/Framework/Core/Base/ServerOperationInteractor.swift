@@ -52,7 +52,7 @@ public class ServerOperationInteractor: Interactor {
 	public func completedOperation(op: ServerOperation) {
 	}
 
-	public func readFromCache(op: ServerOperation, result: String? -> Void) {
+	public func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
 		result(nil)
 	}
 
@@ -108,7 +108,7 @@ public extension ServerOperationInteractor {
 			whenFailure: NSError -> ()) -> Bool {
 
 		self.readFromCache(operation) {
-			if let value = $0 {
+			if $0 != nil {
 				whenSuccess()
 			}
 			else {

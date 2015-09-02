@@ -35,16 +35,16 @@ class WebContentDisplayLoadInteractor: ServerOperationInteractor {
 		self.resultHTML = (op as? LiferayWebContentLoadOperation)?.resultHTML
 	}
 
-	override func readFromCache(op: ServerOperation, result: String? -> Void) {
+	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
 		if let loadOp = op as? LiferayWebContentLoadOperation,
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
 			CacheManager.sharedManager.getString(
-				collection: "group-\(groupId)",
-				key: "webcontent-\(articleId)") {
-					loadOp.resultHTML = $0
-					result($0)
+					collection: "group-\(groupId)",
+					key: "webcontent-\(articleId)") {
+				loadOp.resultHTML = $0
+				result($0)
 			}
 		}
 	}
