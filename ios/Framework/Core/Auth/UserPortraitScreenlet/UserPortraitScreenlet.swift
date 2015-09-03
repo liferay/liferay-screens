@@ -149,13 +149,18 @@ public class UserPortraitScreenlet: BaseScreenlet {
 					self.setPortraitImage(finalImage ?? imageValue)
 				}
 				else {
+					self.delegate?.screenlet?(self, onUserPortraitError: NSError.errorWithCause(.InvalidServerResponse))
+
 					self.loadedUserId = nil
 					self.setPortraitImage(nil)
 				}
 			}
 
 			loadInteractor.onFailure = {
-				delegate?.screenlet?(self, onUserPortraitError: $0)
+				self.delegate?.screenlet?(self, onUserPortraitError: $0)
+
+				self.loadedUserId = nil
+				self.setPortraitImage(nil)
 			}
 
 		case "upload-portrait":
