@@ -40,9 +40,8 @@ class WebContentDisplayLoadInteractor: ServerOperationInteractor {
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			CacheManager.sharedManager.getString(
-					collection: "group-\(groupId)",
-					key: "webcontent-\(articleId)") {
+			SessionCacheManager(session: op.usedSession).getString(
+					key: cacheKey(groupId, articleId)) {
 				loadOp.resultHTML = $0
 				result($0)
 			}
@@ -55,11 +54,14 @@ class WebContentDisplayLoadInteractor: ServerOperationInteractor {
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			CacheManager.sharedManager.set(
-				collection: "group-\(groupId)",
-				key: "webcontent-\(articleId)",
+			SessionCacheManager(session: op.usedSession).set(
+				key: cacheKey(groupId, articleId),
 				string: html)
 		}
+	}
+
+	private func cacheKey(groupId: Int64, _ articleId: String) -> String {
+		return "webcontent-\(groupId)-\(articleId)"
 	}
 
 }

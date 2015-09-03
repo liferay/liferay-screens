@@ -69,6 +69,12 @@ public enum CacheStrategyType: String {
 		}
 	}
 
+	public func set(#collection: String, key: String, value: NSCopying) {
+		writeConnection.readWriteWithBlock { transaction -> Void in
+			transaction.setObject(value, forKey: key, inCollection: collection)
+		}
+	}
+
 	public func remove(#collection: String, key: String) {
 		writeConnection.readWriteWithBlock { transaction -> Void in
 			transaction.removeObjectForKey(key, inCollection: collection)
