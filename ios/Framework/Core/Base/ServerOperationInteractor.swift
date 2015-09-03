@@ -67,13 +67,16 @@ public extension ServerOperationInteractor {
 	public func getCacheStrategyImpl(strategyType: CacheStrategyType) -> CacheStrategy {
 		switch strategyType {
 		case .OnlineOnly:
-			return self.onlineOnlyStrategy
+			return onlineOnlyStrategy
+
 		case .CacheOnly:
-			return self.cacheOnlyStrategy
+			return cacheOnlyStrategy
+
 		case .OnlineFirst:
-			return self.twoPhaseStrategyBuilder(self.onlineOnlyStrategy, self.cacheOnlyStrategy)
+			return createOnlineFirstStrategy()
+
 		case .CacheFirst:
-			return self.twoPhaseStrategyBuilder(self.cacheOnlyStrategy, self.onlineOnlyStrategy)
+			return createCacheFirstStrategy()
 		}
 	}
 
@@ -119,7 +122,19 @@ public extension ServerOperationInteractor {
 		return true
 	}
 
-	private func twoPhaseStrategyBuilder(
+	private func createOnlineFirstStrategy() -> CacheStrategy {
+		return createTwoPhaseStrategy(
+			onlineOnlyStrategy,
+			cacheOnlyStrategy)
+	}
+
+	private func createCacheFirstStrategy() -> CacheStrategy {
+		return createTwoPhaseStrategy(
+			cacheOnlyStrategy,
+			onlineOnlyStrategy)
+	}
+
+	private func createTwoPhaseStrategy(
 			mainStrategy: CacheStrategy,
 			_ backupStrategy: CacheStrategy) -> CacheStrategy {
 
