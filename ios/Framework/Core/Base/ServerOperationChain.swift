@@ -39,8 +39,7 @@ import UIKit
 	//MARK: ServerOperation methods
 
 	override public func createSession() -> LRSession? {
-		// dummy session: won't be used
-		return LRSession(server: "")
+		return headOperation?.createSession()
 	}
 
 	override public func validateData() -> ValidationError? {
