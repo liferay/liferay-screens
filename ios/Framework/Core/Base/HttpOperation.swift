@@ -17,9 +17,8 @@ import UIKit
 
 public class HttpOperation: ServerOperation {
 
-	var resultData: NSData?
-
-	private var url: NSURL
+	public var url: NSURL
+	public var resultData: NSData?
 
 	public init(url: NSURL) {
 		self.url = url
@@ -54,7 +53,8 @@ public class HttpOperation: ServerOperation {
 
 	override public func createSession() -> LRSession? {
 		// dummy session: won't be used
-		return LRSession(server: "")
+		let port = (url.port == nil) ? "" : ":\(url.port!)"
+		return LRSession(server: "http://\(url.host!)\(port)")
 	}
 
 }
