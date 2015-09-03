@@ -71,7 +71,13 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	public func loadLoggedUserPortrait() -> Bool {
-		let interactor = DownloadUserPortraitInteractor(screenlet: self)
+		if SessionContext.currentUserId == nil {
+			return false
+		}
+
+		let interactor = DownloadUserPortraitInteractor(
+			screenlet: self,
+			userId: SessionContext.currentUserId!)
 
 		loadedUserId = SessionContext.currentUserId
 

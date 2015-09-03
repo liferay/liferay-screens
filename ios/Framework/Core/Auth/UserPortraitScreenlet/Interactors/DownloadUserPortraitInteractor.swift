@@ -22,7 +22,6 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 
 	private enum DownloadMode {
 		case Attributes(portraitId: Int64, uuid: String, male: Bool)
-		case LoggedUser
 		case EmailAddress(companyId: Int64, emailAddress: String)
 		case ScreenName(companyId: Int64, screenName: String)
 		case UserId(userId: Int64)
@@ -32,12 +31,6 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 	var resultUserId: Int64?
 
 	private let mode: DownloadMode
-
-	override init(screenlet: BaseScreenlet) {
-		mode = DownloadMode.LoggedUser
-
-		super.init(screenlet: screenlet)
-	}
 
 	init(screenlet: BaseScreenlet, portraitId: Int64, uuid: String, male: Bool) {
 		mode = DownloadMode.Attributes(portraitId: portraitId, uuid: uuid, male: male)
@@ -70,9 +63,6 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 				portraitId: portraitId,
 				uuid: uuid,
 				male: male)
-
-		case .LoggedUser:
-			return createOperationForLogged()
 
 		case .UserId(let userId):
 			let currentUserId = SessionContext.userAttribute("userId") as? NSNumber
