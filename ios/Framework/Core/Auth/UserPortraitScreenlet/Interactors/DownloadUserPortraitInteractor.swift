@@ -124,7 +124,6 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 				resultData = httpOp.resultData
 				where httpOp.lastError == nil {
 			resultImage = UIImage(data: resultData)
-			resultUserId = nil
 		}
 	}
 
