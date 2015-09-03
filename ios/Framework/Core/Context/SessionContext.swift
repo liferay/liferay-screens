@@ -54,8 +54,8 @@ import Foundation
 
 	public class var currentUserId: Int64? {
 		return StaticInstance.userAttributes["userId"]
-				.map { $0 as! Int }
-				.map { Int64($0) }
+				.map { $0 as! NSNumber }
+				.map { $0.longLongValue }
 	}
 
 	internal class var sessionStorage: SessionStorage {
