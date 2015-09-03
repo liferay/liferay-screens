@@ -59,11 +59,6 @@ public class ServerOperationInteractor: Interactor {
 	public func writeToCache(op: ServerOperation) {
 	}
 
-}
-
-
-public extension ServerOperationInteractor {
-
 	public func getCacheStrategyImpl(strategyType: CacheStrategyType) -> CacheStrategy {
 		switch strategyType {
 		case .OnlineOnly:
