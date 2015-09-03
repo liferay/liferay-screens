@@ -51,6 +51,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	@IBInspectable public var loadCacheMode: String = CacheStrategyType.OnlineFirst.rawValue
+	@IBInspectable public var editCacheMode: String = CacheStrategyType.OnlineFirst.rawValue
 
 	@IBOutlet public weak var delegate: UserPortraitScreenletDelegate?
 
@@ -175,6 +176,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 					userId: userId,
 					image: image)
 			interactor = uploadInteractor
+
+			uploadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.editCacheMode) ?? .OnlineFirst
 
 			uploadInteractor.onSuccess = { [weak interactor] in
 				self.delegate?.screenlet?(self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
