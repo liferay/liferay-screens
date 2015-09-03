@@ -17,7 +17,7 @@ import UIKit
 public typealias CacheStrategy = (
 	ServerOperation,
 	whenSuccess: () -> (),
-	whenFailure: NSError -> ()) -> Bool
+	whenFailure: NSError -> ()) -> ()
 
 
 public class ServerOperationInteractor: Interactor {
@@ -27,19 +27,19 @@ public class ServerOperationInteractor: Interactor {
 
 	override public func start() -> Bool {
 		if let operation = createOperation() {
-			let strategyImpl = getCacheStrategyImpl(cacheStrategy)
-			return strategyImpl(operation,
-				whenSuccess: { () -> () in
+			getCacheStrategyImpl(cacheStrategy)(
+				operation,
+				whenSuccess: {
 					self.completedOperation(operation)
 					self.callOnSuccess()
 				},
-				whenFailure: { (err: NSError) -> () in
+				whenFailure: {
 					self.completedOperation(operation)
-					self.callOnFailure(err)
+					self.callOnFailure($0)
 				})
-		}
 
-		self.callOnFailure(NSError.errorWithCause(.AbortedDueToPreconditions))
+			return true
+		}
 
 		return false
 	}
@@ -60,35 +60,24 @@ public class ServerOperationInteractor: Interactor {
 	}
 
 	public func getCacheStrategyImpl(strategyType: CacheStrategyType) -> CacheStrategy {
-		switch strategyType {
-		case .OnlineOnly:
-			return onlineOnlyStrategy
-
-		case .CacheOnly:
-			return cacheOnlyStrategy
-
-		case .OnlineFirst:
-			return createOnlineFirstStrategy()
-
-		case .CacheFirst:
-			return createCacheFirstStrategy()
-		}
+		return defaultStrategyOnline
 	}
 
-	private func onlineOnlyStrategy(
+
+	//MARK: Default strategy implementations
+
+	public func defaultStrategyOnline(
 			operation: ServerOperation,
 			whenSuccess: () -> (),
-			whenFailure: NSError -> ()) -> Bool {
+			whenFailure: NSError -> ()) {
 
 		let validationError = operation.validateAndEnqueue() {
 			if let error = $0.lastError {
 				whenFailure(error.domain == "NSURLErrorDomain"
-					? NSError.errorWithCause(.NotAvailable,
-						message: error.localizedDescription)
+					? NSError.errorWithCause(.NotAvailable)
 					: error)
 			}
 			else {
-				self.writeToCache(operation)
 				whenSuccess()
 			}
 		}
@@ -96,15 +85,12 @@ public class ServerOperationInteractor: Interactor {
 		if let validationError = validationError {
 			whenFailure(validationError)
 		}
-
-		return (validationError == nil)
 	}
 
-	private func cacheOnlyStrategy(
+	public func defaultStrategyReadFromCache(
 			operation: ServerOperation,
 			whenSuccess: () -> (),
-			whenFailure: NSError -> ()) -> Bool {
-
+			whenFailure: NSError -> ()) {
 		self.readFromCache(operation) {
 			if $0 != nil {
 				whenSuccess()
@@ -113,34 +99,31 @@ public class ServerOperationInteractor: Interactor {
 				whenFailure(NSError.errorWithCause(.NotAvailable))
 			}
 		}
-
-		return true
 	}
 
-	private func createOnlineFirstStrategy() -> CacheStrategy {
-		return createTwoPhaseStrategy(
-			onlineOnlyStrategy,
-			cacheOnlyStrategy)
+	public func defaultStrategyWriteToCache(
+			operation: ServerOperation,
+			whenSuccess: () -> (),
+			whenFailure: NSError -> ()) {
+		self.writeToCache(operation)
+		whenSuccess()
 	}
 
-	private func createCacheFirstStrategy() -> CacheStrategy {
-		return createTwoPhaseStrategy(
-			cacheOnlyStrategy,
-			onlineOnlyStrategy)
-	}
 
-	private func createTwoPhaseStrategy(
-			mainStrategy: CacheStrategy,
-			_ backupStrategy: CacheStrategy) -> CacheStrategy {
+	//MARK: Strategy builders
+
+	public func createStrategy(
+			whenFails mainStrategy: CacheStrategy,
+			then onFailStrategy: CacheStrategy) -> CacheStrategy {
 
 		return { (operation: ServerOperation,
 				whenSuccess: () -> (),
-				whenFailure: NSError -> ()) -> Bool in
-			return mainStrategy(operation,
+				whenFailure: NSError -> ()) -> () in
+			mainStrategy(operation,
 				whenSuccess: whenSuccess,
 				whenFailure: { err -> () in
 					if err.code == ScreensErrorCause.NotAvailable.rawValue {
-						backupStrategy(operation,
+						onFailStrategy(operation,
 							whenSuccess: whenSuccess,
 							whenFailure: whenFailure)
 					}
@@ -148,6 +131,23 @@ public class ServerOperationInteractor: Interactor {
 						whenFailure(err)
 					}
 				})
+		}
+	}
+
+	public func createStrategy(
+			whenSucceeds mainStrategy: CacheStrategy,
+			then onSuccessStrategy: CacheStrategy) -> CacheStrategy {
+
+		return { (operation: ServerOperation,
+				whenSuccess: () -> (),
+				whenFailure: NSError -> ()) -> () in
+			mainStrategy(operation,
+				whenSuccess: {
+					onSuccessStrategy(operation,
+						whenSuccess: whenSuccess,
+						whenFailure: whenFailure)
+				},
+				whenFailure: whenFailure)
 		}
 	}
 

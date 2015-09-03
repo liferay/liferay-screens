@@ -14,7 +14,7 @@
 import UIKit
 
 
-class WebContentDisplayLoadInteractor: ServerOperationInteractor {
+class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 
 	var resultHTML: String?
 

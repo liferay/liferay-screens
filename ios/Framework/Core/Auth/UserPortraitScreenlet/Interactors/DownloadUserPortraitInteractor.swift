@@ -18,7 +18,7 @@ import UIKit
 #endif
 
 
-class DownloadUserPortraitInteractor: ServerOperationInteractor {
+class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 	private enum DownloadMode {
 		case Attributes(portraitId: Int64, uuid: String, male: Bool)
@@ -126,6 +126,9 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 			resultImage = UIImage(data: resultData)
 		}
 	}
+
+
+	//MARK: Cache methods
 
 	override func writeToCache(op: ServerOperation) {
 		if let httpOp = toHttpOperation(op),
