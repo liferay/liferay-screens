@@ -25,6 +25,19 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 		case EmailAddress(companyId: Int64, emailAddress: String)
 		case ScreenName(companyId: Int64, screenName: String)
 		case UserId(userId: Int64)
+
+		var cacheKey: String {
+			switch self {
+			case .Attributes(let portraitId, let uuid, let male):
+				return "portraitId-\(portraitId)"
+			case .UserId(let userId):
+				return "portraitUserId-\(userId)"
+			case .EmailAddress(let companyId, let emailAddress):
+				return "portraitEmailAddress-\(companyId)-\(emailAddress)"
+			case .ScreenName(let companyId, let screenName):
+				return "portraitScreenName-\(companyId)-\(screenName)"
+			}
+		}
 	}
 
 	var resultImage: UIImage?
@@ -115,6 +128,33 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 				where op.lastError == nil {
 			resultImage = UIImage(data: resultData)
 			resultUserId = nil
+		}
+	}
+
+	override func writeToCache(op: ServerOperation) {
+		let httpOp = ((op as? ServerOperationChain)?.headOperation as? HttpOperation)
+			?? (op as? HttpOperation)
+
+		if let resultData = httpOp?.resultData {
+			SessionCacheManager(session: op.usedSession).set(
+				key: mode.cacheKey,
+				value: httpOp!.resultData!)
+		}
+	}
+
+	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
+		let httpOp = ((op as? ServerOperationChain)?.headOperation as? HttpOperation)
+			?? (op as? HttpOperation)
+
+		if let httpOp = httpOp {
+			SessionCacheManager(session: op.usedSession).getAny(
+					key: mode.cacheKey) {
+				httpOp.resultData = $0 as? NSData
+				result($0)
+			}
+		}
+		else {
+			result(nil)
 		}
 	}
 

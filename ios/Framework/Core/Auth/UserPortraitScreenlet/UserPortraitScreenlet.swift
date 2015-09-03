@@ -50,6 +50,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		}
 	}
 
+	@IBInspectable public var loadCacheMode: String = CacheStrategyType.OnlineFirst.rawValue
+
 	@IBOutlet public weak var delegate: UserPortraitScreenletDelegate?
 
 
@@ -135,6 +137,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		case "load-portrait":
 			let loadInteractor = sender as! DownloadUserPortraitInteractor
 			interactor = loadInteractor
+
+			loadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.loadCacheMode) ?? .OnlineFirst
 
 			loadInteractor.onSuccess = {
 				if let imageValue = loadInteractor.resultImage {
