@@ -45,7 +45,7 @@ import Foundation
 			string: value)
 	}
 
-	public func set(#key: String, value: NSCopying) {
+	public func set(#key: String, value: NSCoding) {
 		CacheManager.sharedManager.set(
 			collection: collectionName,
 			key: key,

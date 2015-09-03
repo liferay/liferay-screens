@@ -69,7 +69,7 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	public func set(#collection: String, key: String, value: NSCopying) {
+	public func set(#collection: String, key: String, value: NSCoding) {
 		writeConnection.readWriteWithBlock { transaction -> Void in
 			transaction.setObject(value, forKey: key, inCollection: collection)
 		}
