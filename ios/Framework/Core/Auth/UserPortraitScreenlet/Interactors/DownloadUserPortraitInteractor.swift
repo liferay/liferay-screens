@@ -143,6 +143,7 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 			SessionCacheManager(session: httpOp.createSession()).getAny(
 					key: mode.cacheKey) {
 				httpOp.resultData = $0 as? NSData
+				httpOp.lastError = nil
 				result($0)
 			}
 		}
