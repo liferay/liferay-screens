@@ -120,34 +120,26 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 	}
 
 	override func completedOperation(op: ServerOperation) {
-		let httpOp = ((op as? ServerOperationChain)?.headOperation as? HttpOperation)
-			?? (op as? HttpOperation)
-
-		if let httpOp = httpOp,
+		if let httpOp = toHttpOperation(op),
 				resultData = httpOp.resultData
-				where op.lastError == nil {
+				where httpOp.lastError == nil {
 			resultImage = UIImage(data: resultData)
 			resultUserId = nil
 		}
 	}
 
 	override func writeToCache(op: ServerOperation) {
-		let httpOp = ((op as? ServerOperationChain)?.headOperation as? HttpOperation)
-			?? (op as? HttpOperation)
-
-		if let resultData = httpOp?.resultData {
-			SessionCacheManager(session: op.usedSession).set(
+		if let httpOp = toHttpOperation(op),
+				resultData = httpOp.resultData {
+			SessionCacheManager(session: httpOp.usedSession).set(
 				key: mode.cacheKey,
-				value: httpOp!.resultData!)
+				value: resultData)
 		}
 	}
 
 	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
-		let httpOp = ((op as? ServerOperationChain)?.headOperation as? HttpOperation)
-			?? (op as? HttpOperation)
-
-		if let httpOp = httpOp {
-			SessionCacheManager(session: op.usedSession).getAny(
+		if let httpOp = toHttpOperation(op) {
+			SessionCacheManager(session: httpOp.usedSession).getAny(
 					key: mode.cacheKey) {
 				httpOp.resultData = $0 as? NSData
 				result($0)
@@ -160,6 +152,11 @@ class DownloadUserPortraitInteractor: ServerOperationInteractor {
 
 
 	//MARK: Private methods
+
+	private func toHttpOperation(op: ServerOperation) -> HttpOperation? {
+		return ((op as? ServerOperationChain)?.headOperation as? HttpOperation)
+			?? (op as? HttpOperation)
+	}
 
 	private func createOperationForLogged() -> ServerOperation? {
 		if let portraitId = SessionContext.userAttribute("portraitId") as? NSNumber,
