@@ -40,7 +40,7 @@ public enum CacheStrategyType: String {
 	public init(name: String) {
 		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] as! String
 		let path = cacheFolderPath.stringByAppendingPathComponent(tableSchemaDatabase)
-		let dbPath = "\(path)_\(name))"
+		let dbPath = "\(path)_\(name.toSafeFilename()))"
 
 		database = YapDatabase(path: dbPath)
 		readConnection = database.newConnection()

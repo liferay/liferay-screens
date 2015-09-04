@@ -274,6 +274,8 @@
 		887F0D0D1B999CD90007AECE /* SessionCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D091B999CD90007AECE /* SessionCacheManager.swift */; };
 		887F0D121B99A79A0007AECE /* LRSession+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D111B99A79A0007AECE /* LRSession+Screens.swift */; };
 		887F0D131B99A79A0007AECE /* LRSession+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D111B99A79A0007AECE /* LRSession+Screens.swift */; };
+		887F0D151B99AABB0007AECE /* String+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D141B99AABA0007AECE /* String+Screens.swift */; };
+		887F0D161B99AABB0007AECE /* String+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D141B99AABA0007AECE /* String+Screens.swift */; };
 		888DF5B11ACC9FC200EB7DA1 /* LoginScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F11ACBE5F000862B9E /* LoginScreenlet.swift */; };
 		888DF5B21ACC9FC200EB7DA1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F21ACBE5F000862B9E /* LoginViewModel.swift */; };
 		888DF5B41ACC9FF100EB7DA1 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C31ACBFC3400862B9E /* LoginView_default.swift */; };
@@ -576,6 +578,7 @@
 		887F0D081B999CD90007AECE /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		887F0D091B999CD90007AECE /* SessionCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionCacheManager.swift; sourceTree = "<group>"; };
 		887F0D111B99A79A0007AECE /* LRSession+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+Screens.swift"; sourceTree = "<group>"; };
+		887F0D141B99AABA0007AECE /* String+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Screens.swift"; sourceTree = "<group>"; };
 		8892C6781ACB2E3300192232 /* LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8892C67C1ACB2E3300192232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8892C67D1ACB2E3300192232 /* LiferayScreens.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreens.h; sourceTree = SOURCE_ROOT; };
@@ -1413,6 +1416,7 @@
 				887F0D111B99A79A0007AECE /* LRSession+Screens.swift */,
 				8839B8821B0CD55E006C18F1 /* NSError+Screens.swift */,
 				8892C6A81ACBD89400192232 /* NSLocale+CurrentLocale.swift */,
+				887F0D141B99AABA0007AECE /* String+Screens.swift */,
 				8892C6A91ACBD89400192232 /* UIButton+Title.swift */,
 				8892C6AA1ACBD89400192232 /* UIView+Animations.swift */,
 			);
@@ -1940,6 +1944,7 @@
 				881E62461ACBFC3400862B9E /* DDLFormDefaultThemeConstants.swift in Sources */,
 				881E61761ACBEE0B00862B9E /* DDLValuesParser.swift in Sources */,
 				881E623E1ACBFC3400862B9E /* DDLFieldRadioTableCell_default.swift in Sources */,
+				887F0D151B99AABB0007AECE /* String+Screens.swift in Sources */,
 				881E61911ACBEE0B00862B9E /* DDLFieldString.swift in Sources */,
 				881E60CF1ACBE56700862B9E /* BaseListView.swift in Sources */,
 				881E61111ACBE5F000862B9E /* LiferayForgotPasswordEmailOperation.swift in Sources */,
@@ -2076,6 +2081,7 @@
 				881E63071ACC06B900862B9E /* LoginScreenlet_ByScreenName_Tests.swift in Sources */,
 				881E62EC1ACC04A500862B9E /* DDLFieldBoolean.swift in Sources */,
 				887F0D041B98973A0007AECE /* ServerReadOperationInteractor.swift in Sources */,
+				887F0D161B99AABB0007AECE /* String+Screens.swift in Sources */,
 				881E62C01ACC00F300862B9E /* LiferayLoginByEmailOperation.swift in Sources */,
 				880ACA5C1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift in Sources */,
 				881E62EB1ACC04A500862B9E /* DDLField.swift in Sources */,
