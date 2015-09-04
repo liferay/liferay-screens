@@ -27,6 +27,8 @@ import Foundation
 		static var currentSession: LRSession?
 		static var userAttributes: [String:AnyObject] = [:]
 
+		static var chacheManager: SessionCacheManager?
+
 		static var sessionStorage = SessionStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
 	}
@@ -56,6 +58,10 @@ import Foundation
 		return StaticInstance.userAttributes["userId"]
 				.map { $0 as! NSNumber }
 				.map { $0.longLongValue }
+	}
+
+	public class var currentCacheManager: SessionCacheManager? {
+		return StaticInstance.chacheManager
 	}
 
 	internal class var sessionStorage: SessionStorage {
@@ -144,6 +150,7 @@ import Foundation
 	public class func clearSession() {
 		StaticInstance.currentSession = nil
 		StaticInstance.userAttributes = [:]
+		StaticInstance.chacheManager = nil
 	}
 
 	public class func storeSession() -> Bool {
@@ -158,9 +165,15 @@ import Foundation
 
 	public class func loadSessionFromStore() -> Bool {
 		if let sessionStorage = SessionStorage() {
-			if let result = sessionStorage.load() {
+			if let result = sessionStorage.load()
+					where result.session.server != nil {
 				StaticInstance.currentSession = result.session
 				StaticInstance.userAttributes = result.userAttributes
+
+				StaticInstance.chacheManager = SessionCacheManager(
+					session: result.session,
+					cacheManager: CacheManager(
+						name: result.session.serverName!))
 
 				return true
 			}
@@ -184,6 +197,10 @@ import Foundation
 
 		StaticInstance.currentSession = session
 		StaticInstance.userAttributes = userAttributes
+
+		StaticInstance.chacheManager = SessionCacheManager(
+			session: session,
+			cacheManager: CacheManager(name: server))
 
 		return session
 	}

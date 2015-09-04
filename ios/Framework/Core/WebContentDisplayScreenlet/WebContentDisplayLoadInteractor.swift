@@ -40,7 +40,7 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			SessionCacheManager(session: op.usedSession).getString(
+			SessionContext.currentCacheManager!.getString(
 					key: cacheKey(groupId, articleId)) {
 				loadOp.resultHTML = $0
 				result($0)
@@ -54,7 +54,7 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			SessionCacheManager(session: op.usedSession).set(
+			SessionContext.currentCacheManager?.set(
 				key: cacheKey(groupId, articleId),
 				string: html)
 		}

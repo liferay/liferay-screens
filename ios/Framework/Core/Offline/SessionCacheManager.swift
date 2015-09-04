@@ -16,57 +16,59 @@ import Foundation
 
 @objc public class SessionCacheManager: NSObject {
 
-	private var session: LRSession?
+	private let session: LRSession?
+	private let cacheManager: CacheManager
 
-	public init(session: LRSession?) {
+	public init(session: LRSession?, cacheManager: CacheManager) {
 		self.session = session
+		self.cacheManager = cacheManager
 
 		super.init()
 	}
 
 	public func getString(#key: String, result: String? -> Void) {
-		CacheManager.sharedManager.getString(
+		cacheManager.getString(
 			collection: collectionName,
 			key: key,
 			result: result)
 	}
 
 	public func getAny(#key: String, result: AnyObject? -> Void) {
-		CacheManager.sharedManager.getAny(
+		cacheManager.getAny(
 			collection: collectionName,
 			key: key,
 			result: result)
 	}
 
 	public func getImage(#key: String, result: UIImage? -> Void) {
-		CacheManager.sharedManager.getImage(
+		cacheManager.getImage(
 			collection: collectionName,
 			key: key,
 			result: result)
 	}
 
 	public func set(#key: String, string value: String) {
-		CacheManager.sharedManager.set(
+		cacheManager.set(
 			collection: collectionName,
 			key: key,
 			string: value)
 	}
 
 	public func set(#key: String, value: NSCoding) {
-		CacheManager.sharedManager.set(
+		cacheManager.set(
 			collection: collectionName,
 			key: key,
 			value: value)
 	}
 
 	public func remove(#key: String) {
-		CacheManager.sharedManager.remove(
+		cacheManager.remove(
 			collection: collectionName,
 			key: key)
 	}
 
 	public func removeAll() {
-		CacheManager.sharedManager.remove(
+		cacheManager.remove(
 			collection: collectionName)
 	}
 

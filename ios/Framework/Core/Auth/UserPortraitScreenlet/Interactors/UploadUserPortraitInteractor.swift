@@ -43,9 +43,8 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 
 	override func writeToCache(op: ServerOperation) {
 		let uploadOp = op as! LiferayUploadUserPortraitOperation
-		let session = uploadOp.usedSession ?? uploadOp.createSession()
 
-		SessionCacheManager(session: session).set(
+		SessionContext.currentCacheManager?.set(
 			key: "portraitUserId-\(userId)",
 			value: image)
 	}

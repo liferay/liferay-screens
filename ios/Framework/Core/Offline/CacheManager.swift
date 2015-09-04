@@ -31,12 +31,6 @@ public enum CacheStrategyType: String {
 	private var readConnection: YapDatabaseConnection
 	private var writeConnection: YapDatabaseConnection
 
-	private static var _instance = CacheManager(name: "shared")
-
-	public class var sharedManager: CacheManager {
-		return _instance
-	}
-
 	public init(name: String) {
 		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] as! String
 		let path = cacheFolderPath.stringByAppendingPathComponent(tableSchemaDatabase)

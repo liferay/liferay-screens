@@ -32,7 +32,6 @@ public class ServerOperation: NSOperation {
 	}
 
 	public var lastError: NSError?
-	public var usedSession: LRSession?
 
 	internal var onComplete: (ServerOperation -> Void)?
 
@@ -42,7 +41,6 @@ public class ServerOperation: NSOperation {
 	public override func main() {
 		if preRun() {
 			if let session = createSession() {
-				usedSession = session
 				doRun(session: session)
 				postRun()
 			}

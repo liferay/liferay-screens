@@ -133,8 +133,8 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 	override func writeToCache(op: ServerOperation) {
 		if let httpOp = toHttpOperation(op),
 				resultData = httpOp.resultData {
-			// use "usedSession" to get the session used to retrieve the content
-			SessionCacheManager(session: httpOp.usedSession).set(
+
+			SessionContext.currentCacheManager?.set(
 				key: mode.cacheKey,
 				value: resultData)
 		}
@@ -142,8 +142,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
 		if let httpOp = toHttpOperation(op) {
-			// use "createSession" because this may happen before the request is done
-			let cacheManager = SessionCacheManager(session: httpOp.createSession())
+			let cacheManager = SessionContext.currentCacheManager!
 
 			cacheManager.getAny(key: mode.cacheKey) {
 				if let data = $0 as? NSData {
