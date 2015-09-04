@@ -38,6 +38,13 @@ import Foundation
 			result: result)
 	}
 
+	public func getImage(#key: String, result: UIImage? -> Void) {
+		CacheManager.sharedManager.getImage(
+			collection: collectionName,
+			key: key,
+			result: result)
+	}
+
 	public func set(#key: String, string value: String) {
 		CacheManager.sharedManager.set(
 			collection: collectionName,

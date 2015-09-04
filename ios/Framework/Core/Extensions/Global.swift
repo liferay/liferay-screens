@@ -37,6 +37,13 @@ public func delayed(delay: NSTimeInterval, block: dispatch_block_t) {
     dispatch_after(time, dispatch_get_main_queue(), block)
 }
 
+public func dispatch_async(block: dispatch_block_t) {
+	let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+	dispatch_async(queue) {
+		block()
+	}
+}
+
 public func dispatch_main(block: dispatch_block_t) {
 	if NSThread.isMainThread() {
 		block()

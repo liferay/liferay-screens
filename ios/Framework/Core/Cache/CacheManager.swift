@@ -56,6 +56,22 @@ public enum CacheStrategyType: String {
 		}
 	}
 
+	public func getImage(#collection: String, key: String, result: UIImage? -> Void) {
+		readConnection.readWithBlock { transaction -> Void in
+			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)
+
+			if let image = value as? UIImage {
+				result(image)
+			}
+			else if let data = value as? NSData {
+				result(UIImage(data: data))
+			}
+			else {
+				result(nil)
+			}
+		}
+	}
+
 	public func getAny(#collection: String, key: String, result: AnyObject? -> Void) {
 		readConnection.readWithBlock { transaction -> Void in
 			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)

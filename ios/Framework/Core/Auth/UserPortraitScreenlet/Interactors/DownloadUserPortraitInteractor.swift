@@ -143,11 +143,30 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
 		if let httpOp = toHttpOperation(op) {
 			// use "createSession" because this may happen before the request is done
-			SessionCacheManager(session: httpOp.createSession()).getAny(
-					key: mode.cacheKey) {
-				httpOp.resultData = $0 as? NSData
-				httpOp.lastError = nil
-				result($0)
+			let cacheManager = SessionCacheManager(session: httpOp.createSession())
+
+			cacheManager.getAny(key: mode.cacheKey) {
+				if let data = $0 as? NSData {
+					httpOp.resultData = data
+					httpOp.lastError = nil
+					result($0)
+				}
+				else {
+					dispatch_async {
+						cacheManager.getImage(key: self.mode.cacheKey) {
+							if let image = $0 {
+								httpOp.resultData = UIImagePNGRepresentation($0)
+								httpOp.lastError = nil
+								result($0)
+							}
+							else {
+								httpOp.resultData = nil
+								httpOp.lastError = NSError.errorWithCause(.NotAvailable)
+								result(nil)
+							}
+						}
+					}
+				}
 			}
 		}
 		else {
