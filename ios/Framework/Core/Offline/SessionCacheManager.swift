@@ -71,7 +71,11 @@ import Foundation
 	}
 
 	private var collectionName: String {
-		return session?.server ?? "default"
+		if let server = session?.server {
+			return server.hasSuffix("/") ? dropLast(server) : server
+		}
+
+		return "default"
 	}
 
 }
