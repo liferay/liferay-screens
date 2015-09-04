@@ -45,7 +45,8 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 		let uploadOp = op as! LiferayUploadUserPortraitOperation
 
 		SessionContext.currentCacheManager?.set(
-			key: "portraitUserId-\(userId)",
+			collection: screenlet.screenletName,
+			key: "userId-\(userId)",
 			value: image)
 	}
 

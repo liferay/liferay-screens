@@ -31,11 +31,11 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 			case .Attributes(let portraitId, let uuid, let male):
 				return "portraitId-\(portraitId)"
 			case .UserId(let userId):
-				return "portraitUserId-\(userId)"
+				return "userId-\(userId)"
 			case .EmailAddress(let companyId, let emailAddress):
-				return "portraitEmailAddress-\(companyId)-\(emailAddress)"
+				return "emailAddress-\(companyId)-\(emailAddress)"
 			case .ScreenName(let companyId, let screenName):
-				return "portraitScreenName-\(companyId)-\(screenName)"
+				return "screenName-\(companyId)-\(screenName)"
 			}
 		}
 	}
@@ -135,6 +135,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 				resultData = httpOp.resultData {
 
 			SessionContext.currentCacheManager?.set(
+				collection: screenlet.screenletName,
 				key: mode.cacheKey,
 				value: resultData)
 		}
@@ -144,7 +145,9 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		if let httpOp = toHttpOperation(op) {
 			let cacheManager = SessionContext.currentCacheManager!
 
-			cacheManager.getAny(key: mode.cacheKey) {
+			cacheManager.getAny(
+					collection: screenlet.screenletName,
+					key: mode.cacheKey) {
 				if let data = $0 as? NSData {
 					httpOp.resultData = data
 					httpOp.lastError = nil
@@ -152,7 +155,9 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 				}
 				else {
 					dispatch_async {
-						cacheManager.getImage(key: self.mode.cacheKey) {
+						cacheManager.getImage(
+								collection: self.screenlet.screenletName,
+								key: self.mode.cacheKey) {
 							if let image = $0 {
 								httpOp.resultData = UIImagePNGRepresentation($0)
 								httpOp.lastError = nil

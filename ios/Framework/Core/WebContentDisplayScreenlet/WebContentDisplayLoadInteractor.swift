@@ -41,6 +41,7 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 				articleId = loadOp.articleId {
 
 			SessionContext.currentCacheManager!.getString(
+					collection: screenlet.screenletName,
 					key: cacheKey(groupId, articleId)) {
 				loadOp.resultHTML = $0
 				result($0)
@@ -55,13 +56,14 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 				articleId = loadOp.articleId {
 
 			SessionContext.currentCacheManager?.set(
+				collection: screenlet.screenletName,
 				key: cacheKey(groupId, articleId),
 				string: html)
 		}
 	}
 
 	private func cacheKey(groupId: Int64, _ articleId: String) -> String {
-		return "webcontent-\(groupId)-\(articleId)"
+		return "\(groupId)-\(articleId)"
 	}
 
 }
