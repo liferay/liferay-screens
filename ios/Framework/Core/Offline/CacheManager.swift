@@ -31,6 +31,7 @@ public enum CacheStrategyType: String {
 	private var readConnection: YapDatabaseConnection
 	private var writeConnection: YapDatabaseConnection
 
+
 	public init(name: String) {
 		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] as! String
 		let path = cacheFolderPath.stringByAppendingPathComponent(tableSchemaDatabase)
@@ -42,6 +43,11 @@ public enum CacheStrategyType: String {
 
 		super.init()
 	}
+
+	public convenience init(session: LRSession) {
+		self.init(name: session.serverName!)
+	}
+
 
 	public func getString(#collection: String, key: String, result: String? -> Void) {
 		readConnection.readWithBlock { transaction -> Void in

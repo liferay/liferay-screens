@@ -27,7 +27,7 @@ import Foundation
 		static var currentSession: LRSession?
 		static var userAttributes: [String:AnyObject] = [:]
 
-		static var chacheManager: SessionCacheManager?
+		static var chacheManager: CacheManager?
 
 		static var sessionStorage = SessionStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
@@ -60,7 +60,7 @@ import Foundation
 				.map { $0.longLongValue }
 	}
 
-	public class var currentCacheManager: SessionCacheManager? {
+	public class var currentCacheManager: CacheManager? {
 		return StaticInstance.chacheManager
 	}
 
@@ -169,11 +169,7 @@ import Foundation
 					where result.session.server != nil {
 				StaticInstance.currentSession = result.session
 				StaticInstance.userAttributes = result.userAttributes
-
-				StaticInstance.chacheManager = SessionCacheManager(
-					session: result.session,
-					cacheManager: CacheManager(
-						name: result.session.serverName!))
+				StaticInstance.chacheManager = CacheManager(session: result.session)
 
 				return true
 			}
@@ -197,10 +193,7 @@ import Foundation
 
 		StaticInstance.currentSession = session
 		StaticInstance.userAttributes = userAttributes
-
-		StaticInstance.chacheManager = SessionCacheManager(
-			session: session,
-			cacheManager: CacheManager(name: server))
+		StaticInstance.chacheManager = CacheManager(session: session)
 
 		return session
 	}
