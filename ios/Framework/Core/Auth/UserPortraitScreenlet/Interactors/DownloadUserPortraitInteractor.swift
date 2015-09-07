@@ -137,7 +137,9 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 			SessionContext.currentCacheManager?.set(
 				collection: screenlet.screenletName,
 				key: mode.cacheKey,
-				value: resultData)
+				value: resultData,
+				dateReceived: NSDate(),
+				dateSent: nil)
 		}
 	}
 

@@ -76,18 +76,69 @@ public enum CacheStrategyType: String {
 		readConnection.readWithBlock { transaction in
 			result(transaction.objectForKey(key, inCollection: collection))
 		}
+	}
+
+	public func getMetadata(#collection: String, key: String, result: CacheMetadata? -> Void) {
+		readConnection.readWithBlock { transaction in
+			let value: AnyObject? = transaction.metadataForKey(key, inCollection: collection)
+
+			println("getMetadata \(collection):\(key) -> recevied: \((value as? CacheMetadata)?.received) sent: \((value as? CacheMetadata)?.sent)")
+
+			result(value as? CacheMetadata)
 		}
 	}
 
-	public func set(#collection: String, key: String, string: String) {
+	public func set(#collection: String, key: String, value: NSCoding, dateReceived: NSDate?, dateSent: NSDate?) {
 		writeConnection.readWriteWithBlock { transaction in
-			transaction.setObject(string, forKey: key, inCollection: collection)
+			if (dateReceived == nil || dateSent == nil) {
+				// update: get metadata & set
+				let currentMetadata = transaction.metadataForKey(key,
+					inCollection: collection) as? CacheMetadata
+
+				let newMetadata = CacheMetadata(
+					received: dateReceived ?? currentMetadata?.received,
+					sent: dateSent ?? currentMetadata?.sent)
+
+				transaction.setObject(value,
+					forKey: key,
+					inCollection: collection,
+					withMetadata: newMetadata)
+
+				println("set-update \(collection):\(key) -> recevied: \(newMetadata.received) sent: \(newMetadata.sent)")
+			}
+			else {
+				// add or overwrite
+				let metadata = CacheMetadata(received: dateReceived, sent: dateSent)
+				transaction.setObject(value,
+					forKey: key,
+					inCollection: collection,
+					withMetadata: metadata)
+
+				println("set-new \(collection):\(key) -> recevied: \(dateReceived) sent: \(dateSent)")
+			}
 		}
 	}
 
-	public func set(#collection: String, key: String, value: NSCoding) {
-		writeConnection.readWriteWithBlock { transaction -> Void in
-			transaction.setObject(value, forKey: key, inCollection: collection)
+	public func updateMetadata(
+			#collection: String,
+			key: String,
+			dateReceived: NSDate?,
+			dateSent: NSDate?) {
+
+		writeConnection.readWriteWithBlock { transaction in
+			if transaction.hasObjectForKey(key, inCollection: collection) {
+				// get old current metadata
+				let currentMetadata = transaction.metadataForKey(key,
+					inCollection: collection) as? CacheMetadata
+
+				let newMetadata = CacheMetadata(
+					received: dateReceived ?? currentMetadata?.received,
+					sent: dateSent ?? currentMetadata?.sent)
+
+				transaction.replaceMetadata(newMetadata, forKey: key, inCollection: collection)
+
+				println("updateMetadata \(collection):\(key) -> from: r=\(currentMetadata?.received)-s=\(currentMetadata?.sent) to r=\(newMetadata.received)-s=\(newMetadata.sent)")
+			}
 		}
 	}
 

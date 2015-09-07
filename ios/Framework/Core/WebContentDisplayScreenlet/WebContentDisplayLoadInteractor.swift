@@ -58,7 +58,9 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 			SessionContext.currentCacheManager?.set(
 				collection: screenlet.screenletName,
 				key: cacheKey(groupId, articleId),
-				string: html)
+				value: html,
+				dateReceived: NSDate(),
+				dateSent: nil)
 		}
 	}
 

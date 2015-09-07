@@ -47,7 +47,22 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 		SessionContext.currentCacheManager?.set(
 			collection: screenlet.screenletName,
 			key: "userId-\(userId)",
-			value: image)
+			value: image,
+			dateReceived: nil,
+			dateSent: nil)
+	}
+
+	override func callOnSuccess() {
+		if cacheStrategy == .CacheFirst {
+			// update cache with date sent
+			SessionContext.currentCacheManager?.updateMetadata(
+				collection: screenlet.screenletName,
+				key: "userId-\(userId)",
+				dateReceived: nil,
+				dateSent: NSDate())
+		}
+
+		super.callOnSuccess()
 	}
 
 }
