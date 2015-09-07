@@ -50,14 +50,14 @@ public enum CacheStrategyType: String {
 
 
 	public func getString(#collection: String, key: String, result: String? -> Void) {
-		readConnection.readWithBlock { transaction -> Void in
+		readConnection.readWithBlock { transaction in
 			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)
 			result((value as? NSObject)?.description)
 		}
 	}
 
 	public func getImage(#collection: String, key: String, result: UIImage? -> Void) {
-		readConnection.readWithBlock { transaction -> Void in
+		readConnection.readWithBlock { transaction in
 			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)
 
 			if let image = value as? UIImage {
@@ -73,14 +73,14 @@ public enum CacheStrategyType: String {
 	}
 
 	public func getAny(#collection: String, key: String, result: AnyObject? -> Void) {
-		readConnection.readWithBlock { transaction -> Void in
-			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)
-			result(value)
+		readConnection.readWithBlock { transaction in
+			result(transaction.objectForKey(key, inCollection: collection))
+		}
 		}
 	}
 
 	public func set(#collection: String, key: String, string: String) {
-		writeConnection.readWriteWithBlock { transaction -> Void in
+		writeConnection.readWriteWithBlock { transaction in
 			transaction.setObject(string, forKey: key, inCollection: collection)
 		}
 	}
@@ -92,19 +92,19 @@ public enum CacheStrategyType: String {
 	}
 
 	public func remove(#collection: String, key: String) {
-		writeConnection.readWriteWithBlock { transaction -> Void in
+		writeConnection.readWriteWithBlock { transaction in
 			transaction.removeObjectForKey(key, inCollection: collection)
 		}
 	}
 
 	public func remove(#collection: String) {
-		writeConnection.readWriteWithBlock { transaction -> Void in
+		writeConnection.readWriteWithBlock { transaction in
 			transaction.removeAllObjectsInCollection(collection)
 		}
 	}
 
 	public func removeAll() {
-		writeConnection.readWriteWithBlock { transaction -> Void in
+		writeConnection.readWriteWithBlock { transaction in
 			transaction.removeAllObjectsInAllCollections()
 		}
 	}
