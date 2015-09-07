@@ -49,14 +49,14 @@ public enum CacheStrategyType: String {
 	}
 
 
-	public func getString(#collection: String, key: String, result: String? -> Void) {
+	public func getString(#collection: String, key: String, result: String? -> ()) {
 		readConnection.readWithBlock { transaction in
 			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)
 			result((value as? NSObject)?.description)
 		}
 	}
 
-	public func getImage(#collection: String, key: String, result: UIImage? -> Void) {
+	public func getImage(#collection: String, key: String, result: UIImage? -> ()) {
 		readConnection.readWithBlock { transaction in
 			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)
 
@@ -72,13 +72,13 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	public func getAny(#collection: String, key: String, result: AnyObject? -> Void) {
+	public func getAny(#collection: String, key: String, result: AnyObject? -> ()) {
 		readConnection.readWithBlock { transaction in
 			result(transaction.objectForKey(key, inCollection: collection))
 		}
 	}
 
-	public func getMetadata(#collection: String, key: String, result: CacheMetadata? -> Void) {
+	public func getMetadata(#collection: String, key: String, result: CacheMetadata? -> ()) {
 		readConnection.readWithBlock { transaction in
 			let value: AnyObject? = transaction.metadataForKey(key, inCollection: collection)
 
@@ -88,7 +88,13 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	public func set(#collection: String, key: String, value: NSCoding, dateReceived: NSDate?, dateSent: NSDate?) {
+	public func set(
+			#collection: String,
+			key: String,
+			value: NSCoding,
+			dateReceived: NSDate?,
+			dateSent: NSDate?) {
+
 		writeConnection.readWriteWithBlock { transaction in
 			if (dateReceived == nil || dateSent == nil) {
 				// update: get metadata & set
