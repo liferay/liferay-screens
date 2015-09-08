@@ -44,6 +44,24 @@ public func dispatch_async(block: dispatch_block_t) {
 	}
 }
 
+
+public typealias Signal = () -> ()
+
+public func dispatch_sync(block: Signal -> ()) {
+	let waitGroup = dispatch_group_create()
+	dispatch_group_enter(waitGroup)
+	block {
+		dispatch_group_leave(waitGroup)
+	}
+	dispatch_group_wait(waitGroup, DISPATCH_TIME_FOREVER)
+}
+
+public func to_sync(function: Signal -> ()) -> () -> () {
+	return {
+		dispatch_sync(function)
+	}
+}
+
 public func dispatch_main(block: dispatch_block_t) {
 	if NSThread.isMainThread() {
 		block()
@@ -65,6 +83,7 @@ public func dispatch_main(forceAsync: Bool, block: dispatch_block_t) {
 		}
 	}
 }
+
 
 
 public func ScreenletName(klass: AnyClass) -> String {
