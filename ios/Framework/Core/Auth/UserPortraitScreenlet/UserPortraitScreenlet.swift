@@ -186,12 +186,13 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 			uploadInteractor.onSuccess = { [weak interactor] in
 				self.delegate?.screenlet?(self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
-				self.load(userId: userId)
+
+				self.loadedUserId = uploadInteractor.userId
+				self.setPortraitImage(uploadInteractor.image)
 			}
 
 			uploadInteractor.onFailure = {
 				self.delegate?.screenlet?(self, onUserPortraitUploadError: $0)
-				return
 			}
 
 		default:
