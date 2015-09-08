@@ -49,7 +49,9 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 			key: "userId-\(userId)",
 			value: image,
 			dateReceived: nil,
-			dateSent: nil)
+			dateSent: nil,
+			attributes: [
+				"userId": NSNumber(longLong: userId)])
 	}
 
 	override func callOnSuccess() {
@@ -59,7 +61,8 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 				collection: screenlet.screenletName,
 				key: "userId-\(userId)",
 				dateReceived: nil,
-				dateSent: NSDate())
+				dateSent: NSDate(),
+				attributes: nil)
 		}
 
 		super.callOnSuccess()

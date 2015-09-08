@@ -38,6 +38,23 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 				return "screenName-\(companyId)-\(screenName)"
 			}
 		}
+
+		var cacheAttributes: [String:AnyObject] {
+			switch self {
+			case .Attributes(let portraitId, let uuid, let male):
+				return ["portraitId": NSNumber(longLong: portraitId)]
+			case .UserId(let userId):
+				return ["userId": NSNumber(longLong: userId)]
+			case .EmailAddress(let companyId, let emailAddress):
+				return [
+					"companyId": NSNumber(longLong: companyId),
+					"emailAddress": emailAddress]
+			case .ScreenName(let companyId, let screenName):
+				return [
+					"companyId": NSNumber(longLong: companyId),
+					"screenName": screenName]
+			}
+		}
 	}
 
 	var resultImage: UIImage?
@@ -139,7 +156,8 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 				key: mode.cacheKey,
 				value: resultData,
 				dateReceived: NSDate(),
-				dateSent: nil)
+				dateSent: nil,
+				attributes: mode.cacheAttributes)
 		}
 	}
 

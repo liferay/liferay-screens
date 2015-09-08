@@ -60,7 +60,10 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 				key: cacheKey(groupId, articleId),
 				value: html,
 				dateReceived: NSDate(),
-				dateSent: nil)
+				dateSent: nil,
+				attributes: [
+					"groupId": NSNumber(longLong: groupId),
+					"articleId": articleId])
 		}
 	}
 

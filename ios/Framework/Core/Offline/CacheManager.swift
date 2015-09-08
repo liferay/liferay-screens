@@ -95,17 +95,19 @@ public enum CacheStrategyType: String {
 			key: String,
 			value: NSCoding,
 			dateReceived: NSDate?,
-			dateSent: NSDate?) {
+			dateSent: NSDate?,
+			attributes: [String:AnyObject]?) {
 
 		writeConnection.readWriteWithBlock { transaction in
 			if (dateReceived == nil || dateSent == nil) {
 				// update: get metadata & set
 				let currentMetadata = transaction.metadataForKey(key,
-					inCollection: collection) as? CacheMetadata
+					inCollection: collection) as! CacheMetadata
 
-				let newMetadata = CacheMetadata(
-					received: dateReceived ?? currentMetadata?.received,
-					sent: dateSent ?? currentMetadata?.sent)
+				let newMetadata = currentMetadata.mergedMetadata(
+					received: dateReceived,
+					sent: dateSent,
+					attributes: attributes)
 
 				transaction.setObject(value,
 					forKey: key,
@@ -116,7 +118,11 @@ public enum CacheStrategyType: String {
 			}
 			else {
 				// add or overwrite
-				let metadata = CacheMetadata(received: dateReceived, sent: dateSent)
+				let metadata = CacheMetadata(
+					received: dateReceived,
+					sent: dateSent,
+					attributes: attributes)
+
 				transaction.setObject(value,
 					forKey: key,
 					inCollection: collection,
@@ -131,21 +137,23 @@ public enum CacheStrategyType: String {
 			#collection: String,
 			key: String,
 			dateReceived: NSDate?,
-			dateSent: NSDate?) {
+			dateSent: NSDate?,
+			attributes: [String:AnyObject]?) {
 
 		writeConnection.readWriteWithBlock { transaction in
 			if transaction.hasObjectForKey(key, inCollection: collection) {
 				// get old current metadata
 				let currentMetadata = transaction.metadataForKey(key,
-					inCollection: collection) as? CacheMetadata
+					inCollection: collection) as! CacheMetadata
 
-				let newMetadata = CacheMetadata(
-					received: dateReceived ?? currentMetadata?.received,
-					sent: dateSent ?? currentMetadata?.sent)
+				let newMetadata = currentMetadata.mergedMetadata(
+					received: dateReceived,
+					sent: dateSent,
+					attributes: attributes)
 
 				transaction.replaceMetadata(newMetadata, forKey: key, inCollection: collection)
 
-				println("updateMetadata \(collection):\(key) -> from: r=\(currentMetadata?.received)-s=\(currentMetadata?.sent) to r=\(newMetadata.received)-s=\(newMetadata.sent)")
+				println("updateMetadata \(collection):\(key) -> from: r=\(currentMetadata.received)-s=\(currentMetadata.sent) to r=\(newMetadata.received)-s=\(newMetadata.sent)")
 			}
 		}
 	}
