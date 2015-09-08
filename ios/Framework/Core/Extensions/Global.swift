@@ -55,6 +55,17 @@ public func dispatch_main(block: dispatch_block_t) {
 	}
 }
 
+public func dispatch_main(forceAsync: Bool, block: dispatch_block_t) {
+	if !forceAsync && NSThread.isMainThread() {
+		block()
+	}
+	else {
+		dispatch_async(dispatch_get_main_queue()) {
+			block()
+		}
+	}
+}
+
 
 public func LocalizedString(tableName: String, var key: String, obj: AnyObject) -> String {
 	key = "\(tableName)-\(key)"

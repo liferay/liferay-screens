@@ -170,7 +170,9 @@ public enum CacheStrategyType: String {
 
 	public func countPendingToSync(result: UInt -> ()) {
 		pendingToSyncTransaction { transaction in
-			result(transaction?.numberOfItemsInAllGroups() ?? 0)
+			dispatch_main(true) {
+				result(transaction?.numberOfItemsInAllGroups() ?? 0)
+			}
 		}
 	}
 
@@ -180,11 +182,13 @@ public enum CacheStrategyType: String {
 			for group in groups {
 				transaction?.enumerateKeysAndObjectsInGroup(group) { (collection, key, object, index, stop) in
 
-					if result(collection, key, object) {
-						stop.memory = false
-					}
-					else {
-						stop.memory = true
+					dispatch_main(true) {
+						if result(collection, key, object) {
+							stop.memory = false
+						}
+						else {
+							stop.memory = true
+						}
 					}
 				}
 			}
