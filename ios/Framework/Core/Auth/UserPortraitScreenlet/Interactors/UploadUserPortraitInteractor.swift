@@ -45,7 +45,7 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 		let uploadOp = op as! LiferayUploadUserPortraitOperation
 
 		SessionContext.currentCacheManager?.set(
-			collection: screenlet.screenletName,
+			collection: ScreenletName(UserPortraitScreenlet),
 			key: "userId-\(userId)",
 			value: image,
 			dateReceived: nil,
@@ -58,7 +58,7 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 		if cacheStrategy == .CacheFirst {
 			// update cache with date sent
 			SessionContext.currentCacheManager?.updateMetadata(
-				collection: screenlet.screenletName,
+				collection: ScreenletName(UserPortraitScreenlet),
 				key: "userId-\(userId)",
 				dateReceived: nil,
 				dateSent: NSDate(),

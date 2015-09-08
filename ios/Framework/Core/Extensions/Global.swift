@@ -67,6 +67,16 @@ public func dispatch_main(forceAsync: Bool, block: dispatch_block_t) {
 }
 
 
+public func ScreenletName(klass: AnyClass) -> String {
+	var className = NSStringFromClass(klass)
+
+	if find(className, ".") != nil {
+		className = className.componentsSeparatedByString(".")[1]
+	}
+
+	return className.componentsSeparatedByString("Screenlet")[0]
+}
+
 public func LocalizedString(tableName: String, var key: String, obj: AnyObject) -> String {
 	key = "\(tableName)-\(key)"
 

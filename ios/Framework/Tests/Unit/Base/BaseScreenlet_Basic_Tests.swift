@@ -26,7 +26,7 @@ class BaseScreenlet_Basic_Tests: XCTestCase {
 	}
 
 	func test_ScreenletName_ShouldReturnTheCorrectName() {
-		XCTAssertEqual("SignUp", screenlet!.screenletName)
+		XCTAssertEqual("SignUp", ScreenletName(screenlet!.dynamicType))
 	}
 
 }

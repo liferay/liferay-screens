@@ -62,6 +62,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 	private let mode: DownloadMode
 
+
 	init(screenlet: BaseScreenlet, portraitId: Int64, uuid: String, male: Bool) {
 		mode = DownloadMode.Attributes(portraitId: portraitId, uuid: uuid, male: male)
 
@@ -152,7 +153,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 				resultData = httpOp.resultData {
 
 			SessionContext.currentCacheManager?.set(
-				collection: screenlet.screenletName,
+				collection: ScreenletName(UserPortraitScreenlet),
 				key: mode.cacheKey,
 				value: resultData,
 				dateReceived: NSDate(),
@@ -166,7 +167,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 			let cacheManager = SessionContext.currentCacheManager!
 
 			cacheManager.getAny(
-					collection: screenlet.screenletName,
+					collection: ScreenletName(UserPortraitScreenlet),
 					key: mode.cacheKey) {
 				if let data = $0 as? NSData {
 					httpOp.resultData = data
@@ -176,7 +177,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 				else {
 					dispatch_async {
 						cacheManager.getImage(
-								collection: self.screenlet.screenletName,
+								collection: ScreenletName(UserPortraitScreenlet),
 								key: self.mode.cacheKey) {
 							if let image = $0 {
 								httpOp.resultData = UIImagePNGRepresentation($0)

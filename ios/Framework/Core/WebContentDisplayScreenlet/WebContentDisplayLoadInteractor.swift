@@ -18,6 +18,7 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 
 	var resultHTML: String?
 
+
 	override func createOperation() -> LiferayWebContentLoadOperation {
 		let screenlet = self.screenlet as! WebContentDisplayScreenlet
 
@@ -41,7 +42,7 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 				articleId = loadOp.articleId {
 
 			SessionContext.currentCacheManager!.getString(
-					collection: screenlet.screenletName,
+					collection: ScreenletName(WebContentDisplayScreenlet),
 					key: cacheKey(groupId, articleId)) {
 				loadOp.resultHTML = $0
 				result($0)
@@ -56,7 +57,7 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 				articleId = loadOp.articleId {
 
 			SessionContext.currentCacheManager?.set(
-				collection: screenlet.screenletName,
+				collection: ScreenletName(WebContentDisplayScreenlet),
 				key: cacheKey(groupId, articleId),
 				value: html,
 				dateReceived: NSDate(),

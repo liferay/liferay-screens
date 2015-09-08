@@ -46,15 +46,6 @@ import QuartzCore
 		}
 	}
 
-	internal var screenletName: String {
-		var className = NSStringFromClass(self.dynamicType)
-
-		className = className.componentsSeparatedByString(".")[1]
-		className = className.componentsSeparatedByString("Screenlet")[0]
-
-		return className
-	}
-
 	internal var isRunningOnInterfaceBuilder: Bool {
 		return _runningOnInterfaceBuilder
 	}
@@ -147,7 +138,7 @@ import QuartzCore
 		let bundles = NSBundle.allBundles(self.dynamicType)
 
 		for b in bundles {
-			let imageName = "\(themeName)-preview-\(screenletName.lowercaseString)@2x"
+			let imageName = "\(themeName)-preview-\(ScreenletName(self.dynamicType).lowercaseString)@2x"
 
 			if let imagePath = b.pathForResource(imageName, ofType: "png") {
 				if let imageData = NSData(contentsOfFile: imagePath) {
@@ -338,7 +329,7 @@ import QuartzCore
 
 		func tryLoadForTheme(themeName: String, inBundles bundles: [NSBundle]) -> BaseScreenletView? {
 			for bundle in bundles {
-				let viewName = self.screenletName + "View"
+				let viewName = "\(ScreenletName(self.dynamicType))View"
 				var nibName = "\(viewName)_\(themeName)"
 				var nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
@@ -366,7 +357,7 @@ import QuartzCore
 			return foundView
 		}
 
-		println("ERROR: Xib file doesn't found for screenlet '\(self.screenletName)' and theme '\(_themeName)'")
+		println("ERROR: Xib file doesn't found for screenlet '\(ScreenletName(self.dynamicType))' and theme '\(_themeName)'")
 
 		return nil
 	}
