@@ -30,6 +30,8 @@
 		880ACA8B1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */; };
 		880ACA8C1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */; };
 		881AFC4A1B7278B700A6A59A /* Flat7ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881AFC491B7278B700A6A59A /* Flat7ProgressPresenter.swift */; };
+		881B743E1B9EE28D00EA64ED /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B743D1B9EE28D00EA64ED /* SyncManager.swift */; };
+		881B743F1B9EE28D00EA64ED /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B743D1B9EE28D00EA64ED /* SyncManager.swift */; };
 		881E49C61B95CE66007DBEC9 /* DownloadUserPortraitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49C51B95CE65007DBEC9 /* DownloadUserPortraitInteractor.swift */; };
 		881E49C71B95CE66007DBEC9 /* DownloadUserPortraitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49C51B95CE65007DBEC9 /* DownloadUserPortraitInteractor.swift */; };
 		881E49CC1B95D474007DBEC9 /* Array+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49CB1B95D474007DBEC9 /* Array+Screens.swift */; };
@@ -397,6 +399,7 @@
 		880ACA7A1B0224A0007AD007 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/userportrait-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context-sample.plist"; sourceTree = "<group>"; };
 		881AFC491B7278B700A6A59A /* Flat7ProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flat7ProgressPresenter.swift; sourceTree = "<group>"; };
+		881B743D1B9EE28D00EA64ED /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		881E49C51B95CE65007DBEC9 /* DownloadUserPortraitInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadUserPortraitInteractor.swift; sourceTree = "<group>"; };
 		881E49CB1B95D474007DBEC9 /* Array+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Screens.swift"; sourceTree = "<group>"; };
 		881E49CE1B95FD03007DBEC9 /* ServerOperationChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerOperationChain.swift; sourceTree = "<group>"; };
@@ -1307,6 +1310,7 @@
 			children = (
 				887F0D081B999CD90007AECE /* CacheManager.swift */,
 				887F0D171B99BD640007AECE /* CacheMetadata.swift */,
+				881B743D1B9EE28D00EA64ED /* SyncManager.swift */,
 			);
 			path = Offline;
 			sourceTree = "<group>";
@@ -1835,6 +1839,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				881E611E1ACBE5F000862B9E /* SignUpScreenlet.swift in Sources */,
+				881B743E1B9EE28D00EA64ED /* SyncManager.swift in Sources */,
 				88CA806E1B25EE04004C1D59 /* CredentialsStore.swift in Sources */,
 				881E62341ACBFC3400862B9E /* DDLFieldCheckboxTableCell_default.swift in Sources */,
 				881E61281ACBE5F000862B9E /* UserPortraitViewModel.swift in Sources */,
@@ -2083,6 +2088,7 @@
 				887F0D041B98973A0007AECE /* ServerReadOperationInteractor.swift in Sources */,
 				887F0D161B99AABB0007AECE /* String+Screens.swift in Sources */,
 				881E62C01ACC00F300862B9E /* LiferayLoginByEmailOperation.swift in Sources */,
+				881B743F1B9EE28D00EA64ED /* SyncManager.swift in Sources */,
 				880ACA5C1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift in Sources */,
 				881E62EB1ACC04A500862B9E /* DDLField.swift in Sources */,
 			);
