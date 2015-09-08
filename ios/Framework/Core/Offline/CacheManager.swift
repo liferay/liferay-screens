@@ -42,6 +42,8 @@ public enum CacheStrategyType: String {
 		writeConnection = database.newConnection()
 
 		super.init()
+
+		registerPendingToSyncView(nil)
 	}
 
 	public convenience init(session: LRSession) {
@@ -163,6 +165,88 @@ public enum CacheStrategyType: String {
 	public func removeAll() {
 		writeConnection.readWriteWithBlock { transaction in
 			transaction.removeAllObjectsInAllCollections()
+		}
+	}
+
+	public func countPendingToSync(result: UInt -> ()) {
+		pendingToSyncTransaction { transaction in
+			result(transaction?.numberOfItemsInAllGroups() ?? 0)
+		}
+	}
+
+	public func pendingToSync(result: (String, String, AnyObject) -> Bool) {
+		pendingToSyncTransaction { transaction in
+			let groups = (transaction?.allGroups() as? [String]) ?? [String]()
+			for group in groups {
+				transaction?.enumerateKeysAndObjectsInGroup(group) { (collection, key, object, index, stop) in
+
+					if result(collection, key, object) {
+						stop.memory = false
+					}
+					else {
+						stop.memory = true
+					}
+				}
+			}
+		}
+	}
+
+
+	//MARK: Private methods
+
+	private func pendingToSyncTransaction(result: YapDatabaseViewTransaction? -> ()) {
+		if database.registeredExtension("pendingToSync") != nil {
+			readConnection.readWithBlock { transaction in
+				result(transaction.ext("pendingToSync") as? YapDatabaseViewTransaction)
+			}
+		}
+		else {
+			registerPendingToSyncView { success in
+				if success {
+					self.readConnection.readWithBlock { transaction in
+						result(transaction.ext("pendingToSync") as? YapDatabaseViewTransaction)
+					}
+				}
+				else {
+					result(nil)
+				}
+			}
+		}
+	}
+
+	private func registerPendingToSyncView(result: (Bool -> ())?) {
+		let grouping = YapDatabaseViewGrouping.withKeyBlock { (collection, key) in
+			return collection
+		}
+
+		let sorting = YapDatabaseViewSorting.withKeyBlock { (_, _, key1, _, key2) in
+			return key1.compare(key2)
+		}
+
+		let filtering = YapDatabaseViewFiltering.withMetadataBlock({ (_,_,_, metadata: AnyObject!) in
+			let cacheMetadata = metadata as? CacheMetadata
+			return cacheMetadata?.sent == nil
+		})
+
+		let parentView = YapDatabaseView(grouping: grouping, sorting: sorting)
+
+		database.asyncRegisterExtension(parentView,
+			withName: "allEntries",
+			connection: writeConnection,
+			completionQueue: nil) { success in
+				if success {
+					let filterView = YapDatabaseFilteredView(parentViewName: "allEntries", filtering: filtering)
+
+					self.database.asyncRegisterExtension(filterView,
+						withName: "pendingToSync",
+						connection: self.writeConnection,
+						completionQueue: nil) { success in
+							result?(success)
+						}
+				}
+				else {
+					result?(false)
+				}
 		}
 	}
 
