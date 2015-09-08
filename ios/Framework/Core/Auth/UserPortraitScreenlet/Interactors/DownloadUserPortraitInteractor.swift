@@ -63,25 +63,25 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 	private let mode: DownloadMode
 
 
-	init(screenlet: BaseScreenlet, portraitId: Int64, uuid: String, male: Bool) {
+	init(screenlet: BaseScreenlet?, portraitId: Int64, uuid: String, male: Bool) {
 		mode = DownloadMode.Attributes(portraitId: portraitId, uuid: uuid, male: male)
 
 		super.init(screenlet: screenlet)
 	}
 
-	init(screenlet: BaseScreenlet, userId: Int64) {
+	init(screenlet: BaseScreenlet?, userId: Int64) {
 		mode = DownloadMode.UserId(userId: userId)
 
 		super.init(screenlet: screenlet)
 	}
 
-	init(screenlet: BaseScreenlet, companyId: Int64, emailAddress: String) {
+	init(screenlet: BaseScreenlet?, companyId: Int64, emailAddress: String) {
 		mode = DownloadMode.EmailAddress(companyId: companyId, emailAddress: emailAddress)
 
 		super.init(screenlet: screenlet)
 	}
 
-	init(screenlet: BaseScreenlet, companyId: Int64, screenName: String) {
+	init(screenlet: BaseScreenlet?, companyId: Int64, screenName: String) {
 		mode = DownloadMode.ScreenName(companyId: companyId, screenName: screenName)
 
 		super.init(screenlet: screenlet)

@@ -25,7 +25,7 @@ class DDLFormUploadDocumentInteractor: ServerOperationInteractor {
 	var resultResponse: [String:AnyObject]?
 
 
-	init(screenlet: BaseScreenlet, document: DDLFieldDocument, onProgressClosure: OnProgress) {
+	init(screenlet: BaseScreenlet?, document: DDLFieldDocument, onProgressClosure: OnProgress) {
 		self.document = document
 		self.onProgressClosure = onProgressClosure
 

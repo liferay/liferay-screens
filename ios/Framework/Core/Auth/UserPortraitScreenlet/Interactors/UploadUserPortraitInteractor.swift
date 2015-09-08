@@ -21,7 +21,7 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 	let userId: Int64
 	let image: UIImage
 
-	init(screenlet: BaseScreenlet, userId: Int64, image: UIImage) {
+	init(screenlet: BaseScreenlet?, userId: Int64, image: UIImage) {
 		self.userId = userId
 		self.image = image
 

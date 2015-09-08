@@ -23,11 +23,17 @@ import UIKit
 
 	public var lastError: NSError?
 
-	public let screenlet: BaseScreenlet
+	public let screenlet: BaseScreenlet?
 
 
-	public init(screenlet: BaseScreenlet) {
+	public init(screenlet: BaseScreenlet?) {
 		self.screenlet = screenlet
+
+		super.init()
+	}
+
+	override public convenience init() {
+		self.init(screenlet: nil)
 	}
 
 	public func callOnSuccess() {
@@ -53,7 +59,7 @@ import UIKit
 	}
 
 	private func finishWithError(error: NSError?) {
-		screenlet.endInteractor(self, error: error)
+		screenlet?.endInteractor(self, error: error)
 
 		// break retain cycle
 		onSuccess = nil
