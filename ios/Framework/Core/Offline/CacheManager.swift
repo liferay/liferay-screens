@@ -99,15 +99,9 @@ public enum CacheStrategyType: String {
 			attributes: [String:AnyObject]?) {
 
 		writeConnection.readWriteWithBlock { transaction in
-			if (dateReceived == nil || dateSent == nil) {
-				// update: get metadata & set
-				let currentMetadata = transaction.metadataForKey(key,
-					inCollection: collection) as! CacheMetadata
-
-				let newMetadata = currentMetadata.mergedMetadata(
-					received: dateReceived,
-					sent: dateSent,
-					attributes: attributes)
+			if (dateReceived == nil || dateSent == nil || attributes != nil) {
+				let newMetadata = self.createOrMergeMetadata(
+					transaction, collection, key, dateReceived, dateSent, attributes)
 
 				transaction.setObject(value,
 					forKey: key,
@@ -142,20 +136,43 @@ public enum CacheStrategyType: String {
 
 		writeConnection.readWriteWithBlock { transaction in
 			if transaction.hasObjectForKey(key, inCollection: collection) {
-				// get old current metadata
-				let currentMetadata = transaction.metadataForKey(key,
-					inCollection: collection) as! CacheMetadata
-
-				let newMetadata = currentMetadata.mergedMetadata(
-					received: dateReceived,
-					sent: dateSent,
-					attributes: attributes)
+				let newMetadata = self.createOrMergeMetadata(
+					transaction, collection, key, dateReceived, dateSent, attributes)
 
 				transaction.replaceMetadata(newMetadata, forKey: key, inCollection: collection)
 
-				println("updateMetadata \(collection):\(key) -> from: r=\(currentMetadata.received)-s=\(currentMetadata.sent) to r=\(newMetadata.received)-s=\(newMetadata.sent)")
+				println("updateMetadata \(collection):\(key) -> r=\(newMetadata.received)-s=\(newMetadata.sent)")
 			}
 		}
+	}
+
+	private func createOrMergeMetadata(
+			transaction: YapDatabaseReadTransaction,
+			_ collection: String,
+			_ key: String,
+			_ dateReceived: NSDate?,
+			_ dateSent: NSDate?,
+			_ attributes: [String:AnyObject]?) -> CacheMetadata {
+
+		let newMetadata: CacheMetadata
+		let existingMetadata: AnyObject = transaction.metadataForKey(key,
+			inCollection: collection)
+
+		if let currentMetadata = existingMetadata as? CacheMetadata {
+			newMetadata = currentMetadata.mergedMetadata(
+				received: dateReceived,
+				sent: dateSent,
+				attributes: attributes)
+		}
+		else {
+			newMetadata = CacheMetadata(
+				received: dateReceived,
+				sent: dateSent,
+				attributes: attributes)
+		}
+
+		return newMetadata
+
 	}
 
 	public func remove(#collection: String, key: String) {
@@ -184,14 +201,16 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	public func pendingToSync(result: (String, String, AnyObject) -> Bool) {
+	public func pendingToSync(result: (String, String, [String:AnyObject]) -> Bool) {
 		pendingToSyncTransaction { transaction in
 			let groups = (transaction?.allGroups() as? [String]) ?? [String]()
 			for group in groups {
-				transaction?.enumerateKeysAndObjectsInGroup(group) { (collection, key, object, index, stop) in
+				transaction?.enumerateKeysAndMetadataInGroup(group) {
+						(collection, key, metadata, index, stop) in
 
 					dispatch_main(true) {
-						if result(collection, key, object) {
+						let cacheMetadata = metadata as! CacheMetadata
+						if result(collection, key, cacheMetadata.attributes ?? [:]) {
 							stop.memory = false
 						}
 						else {
