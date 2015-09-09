@@ -18,21 +18,21 @@ public class ServerWriteOperationInteractor: ServerOperationInteractor {
 
 	override public func getCacheStrategyImpl(strategyType: CacheStrategyType) -> CacheStrategy {
 		switch strategyType {
-		case .OnlineOnly:
-			return defaultStrategyOnline
+		case .RemoteOnly:
+			return defaultStrategyRemote
 
 		case .CacheOnly:
 			return defaultStrategyWriteToCache
 
-		case .OnlineFirst:
+		case .RemoteFirst:
 			return createStrategy(
-				whenFails: defaultStrategyOnline,
+				whenFails: defaultStrategyRemote,
 				then: defaultStrategyWriteToCache)
 
 		case .CacheFirst:
 			return createStrategy(
 				whenSucceeds: defaultStrategyWriteToCache,
-				then: defaultStrategyOnline)
+				then: defaultStrategyRemote)
 		}
 	}
 

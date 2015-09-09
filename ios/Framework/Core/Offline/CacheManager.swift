@@ -16,8 +16,8 @@ import YapDatabase
 
 
 public enum CacheStrategyType: String {
-	case OnlineOnly = "online-only"
-	case OnlineFirst = "online-first"
+	case RemoteOnly = "remote-only"
+	case RemoteFirst = "remote-first"
 	case CacheOnly = "cache-only"
 	case CacheFirst = "cache-first"
 }

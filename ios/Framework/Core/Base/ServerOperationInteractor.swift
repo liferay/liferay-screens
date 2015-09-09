@@ -22,7 +22,7 @@ public typealias CacheStrategy = (
 
 public class ServerOperationInteractor: Interactor {
 
-	public var cacheStrategy = CacheStrategyType.OnlineFirst
+	public var cacheStrategy = CacheStrategyType.RemoteFirst
 
 
 	override public func start() -> Bool {
@@ -60,13 +60,13 @@ public class ServerOperationInteractor: Interactor {
 	}
 
 	public func getCacheStrategyImpl(strategyType: CacheStrategyType) -> CacheStrategy {
-		return defaultStrategyOnline
+		return defaultStrategyRemote
 	}
 
 
 	//MARK: Default strategy implementations
 
-	public func defaultStrategyOnline(
+	public func defaultStrategyRemote(
 			operation: ServerOperation,
 			whenSuccess: () -> (),
 			whenFailure: NSError -> ()) {
