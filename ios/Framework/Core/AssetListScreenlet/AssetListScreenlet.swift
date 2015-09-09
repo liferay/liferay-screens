@@ -74,7 +74,7 @@ import UIKit
 
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var classNameId: Int = 0
-	@IBInspectable public var cacheMode: String = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	@IBOutlet public weak var delegate: AssetListScreenletDelegate?
 
@@ -94,7 +94,7 @@ import UIKit
 			groupId: self.groupId,
 			classNameId: self.classNameId)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.cacheMode) ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		return interactor
 	}

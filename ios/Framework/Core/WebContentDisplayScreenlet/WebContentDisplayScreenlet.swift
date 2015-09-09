@@ -30,7 +30,7 @@ import UIKit
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var articleId: String = ""
 	@IBInspectable public var autoLoad: Bool = true
-	@IBInspectable public var cacheMode: String = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	@IBOutlet public weak var delegate: WebContentDisplayScreenletDelegate?
 
@@ -46,7 +46,7 @@ import UIKit
 	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
 		let interactor = WebContentDisplayLoadInteractor(screenlet: self)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.cacheMode) ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
 			let modifiedHtml = self.delegate?.screenlet?(self,
