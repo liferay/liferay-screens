@@ -17,13 +17,13 @@ import UIKit
 public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 
 	let groupId: Int64
-	let classNameId: Int
+	let classNameId: Int64
 
 	init(screenlet: BaseListScreenlet,
 			page: Int,
 			computeRowCount: Bool,
 			groupId: Int64,
-			classNameId: Int) {
+			classNameId: Int64) {
 
 		self.groupId = groupId
 		self.classNameId = classNameId

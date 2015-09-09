@@ -41,23 +41,23 @@ import UIKit
 	}
 
 	public var classNameId: Int64 {
-		return Int64(attributes["classNameId"] as! Int)
+		return (attributes["classNameId"] as! NSNumber).longLongValue
 	}
 
 	public var classPK: Int64 {
-		return Int64(attributes["classPK"] as! Int)
+		return (attributes["classPK"] as! NSNumber).longLongValue
 	}
 
 	public var groupId: Int64 {
-		return Int64(attributes["groupId"] as! Int)
+		return (attributes["groupId"] as! NSNumber).longLongValue
 	}
 
 	public var companyId: Int64 {
-		return Int64(attributes["companyId"] as! Int)
+		return (attributes["companyId"] as! NSNumber).longLongValue
 	}
 
 	public var entryId: Int64 {
-		return Int64(attributes["entryId"] as! Int)
+		return (attributes["entryId"] as! NSNumber).longLongValue
 	}
 
 
@@ -73,7 +73,7 @@ import UIKit
 @IBDesignable public class AssetListScreenlet: BaseListScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
-	@IBInspectable public var classNameId: Int = 0
+	@IBInspectable public var classNameId: Int64 = 0
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	@IBOutlet public weak var delegate: AssetListScreenletDelegate?

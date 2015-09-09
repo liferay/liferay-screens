@@ -27,7 +27,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 
 	@IBAction func changeAssetAction(sender: AnyObject) {
 		showPicker(false, animated:true)
-		screenlet?.classNameId = selectedAsset.rawValue
+		screenlet?.classNameId = Int64(selectedAsset.rawValue)
 		screenlet?.loadList()
 	}
 
