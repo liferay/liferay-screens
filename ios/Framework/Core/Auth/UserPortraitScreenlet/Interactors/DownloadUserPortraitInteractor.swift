@@ -152,12 +152,12 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		if let httpOp = toHttpOperation(op),
 				resultData = httpOp.resultData {
 
-			SessionContext.currentCacheManager?.set(
+			let now = NSDate()
+
+			SessionContext.currentCacheManager?.setClean(
 				collection: ScreenletName(UserPortraitScreenlet),
 				key: mode.cacheKey,
 				value: resultData,
-				dateReceived: NSDate(),
-				dateSent: nil,
 				attributes: mode.cacheAttributes)
 		}
 	}

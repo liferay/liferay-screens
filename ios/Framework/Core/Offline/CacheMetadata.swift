@@ -43,12 +43,4 @@ import YapDatabase
 		aCoder.encodeObject(attributes, forKey:"attributes")
 	}
 
-	public func mergedMetadata(#received: NSDate?, sent: NSDate?, attributes: [String:AnyObject]) -> CacheMetadata {
-
-		return CacheMetadata(
-			received: received ?? self.received,
-			sent: sent ?? self.sent,
-			attributes: attributes ?? self.attributes)
-	}
-
 }

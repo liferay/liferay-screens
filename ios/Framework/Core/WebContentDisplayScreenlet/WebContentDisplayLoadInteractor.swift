@@ -56,12 +56,10 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			SessionContext.currentCacheManager?.set(
+			SessionContext.currentCacheManager?.setClean(
 				collection: ScreenletName(WebContentDisplayScreenlet),
 				key: cacheKey(groupId, articleId),
 				value: html,
-				dateReceived: NSDate(),
-				dateSent: nil,
 				attributes: [
 					"groupId": NSNumber(longLong: groupId),
 					"articleId": articleId])

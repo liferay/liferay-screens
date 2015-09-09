@@ -44,12 +44,10 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 	override func writeToCache(op: ServerOperation) {
 		let uploadOp = op as! LiferayUploadUserPortraitOperation
 
-		SessionContext.currentCacheManager?.set(
+		SessionContext.currentCacheManager?.setDirty(
 			collection: ScreenletName(UserPortraitScreenlet),
 			key: "userId-\(userId)",
 			value: image,
-			dateReceived: nil,
-			dateSent: nil,
 			attributes: [
 				"userId": NSNumber(longLong: userId)])
 	}
@@ -57,11 +55,11 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 	override func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {
 			// update cache with date sent
-			SessionContext.currentCacheManager?.updateMetadata(
+			let now = NSDate()
+
+			SessionContext.currentCacheManager?.setClean(
 				collection: ScreenletName(UserPortraitScreenlet),
 				key: "userId-\(userId)",
-				dateReceived: nil,
-				dateSent: NSDate(),
 				attributes: [
 					"userId": NSNumber(longLong: userId)])
 		}

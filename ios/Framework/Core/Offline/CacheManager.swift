@@ -90,89 +90,104 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	public func set(
+	public func setClean(
 			#collection: String,
 			key: String,
 			value: NSCoding,
-			dateReceived: NSDate?,
-			dateSent: NSDate?,
+			attributes: [String:AnyObject]) {
+
+		// The item becomes clean (the opposite of dirty,
+		// that is: synchronized): updated 'sent' & 'received' dates
+
+		let now = NSDate()
+		println("==== set Clean: \(now)")
+
+		set(collection: collection,
+			key: key,
+			value: value,
+			received: now,
+			sent: now,
+			attributes: attributes)
+	}
+
+	public func setDirty(
+			#collection: String,
+			key: String,
+			value: NSCoding,
+			attributes: [String:AnyObject]) {
+
+		// The item becomes dirty: fresh received date but nil sent date
+
+		let now = NSDate()
+		println("==== set Dirty: \(now)")
+
+		set(collection: collection,
+			key: key,
+			value: value,
+			received: NSDate(),
+			sent: nil,
+			attributes: attributes)
+	}
+
+	private func set(
+			#collection: String,
+			key: String,
+			value: NSCoding,
+			received: NSDate?,
+			sent: NSDate?,
 			attributes: [String:AnyObject]) {
 
 		writeConnection.readWriteWithBlock { transaction in
-			if (dateReceived == nil || dateSent == nil) {
-				let newMetadata = self.createOrMergeMetadata(
-					transaction, collection, key, dateReceived, dateSent, attributes)
+			let metadata = CacheMetadata(
+				received: received,
+				sent: sent,
+				attributes: attributes)
 
-				transaction.setObject(value,
-					forKey: key,
-					inCollection: collection,
-					withMetadata: newMetadata)
+			transaction.setObject(value,
+				forKey: key,
+				inCollection: collection,
+				withMetadata: metadata)
 
-				println("set-update \(collection):\(key) -> recevied: \(newMetadata.received) sent: \(newMetadata.sent)")
-			}
-			else {
-				// add or overwrite
-				let metadata = CacheMetadata(
-					received: dateReceived,
-					sent: dateSent,
-					attributes: attributes)
-
-				transaction.setObject(value,
-					forKey: key,
-					inCollection: collection,
-					withMetadata: metadata)
-
-				println("set-new \(collection):\(key) -> recevied: \(dateReceived) sent: \(dateSent)")
-			}
+			println("set \(collection):\(key) -> recevied: \(received) sent: \(sent)")
 		}
 	}
 
-	public func updateMetadata(
+	public func setClean(
 			#collection: String,
 			key: String,
-			dateReceived: NSDate?,
-			dateSent: NSDate?,
+			attributes: [String:AnyObject]) {
+
+		let now = NSDate()
+		println("==== set Clean: \(now)")
+
+		setMetadata(collection: collection,
+			key: key,
+			received: now,
+			sent: now,
+			attributes: attributes)
+	}
+
+	private func setMetadata(
+			#collection: String,
+			key: String,
+			received: NSDate?,
+			sent: NSDate?,
 			attributes: [String:AnyObject]) {
 
 		writeConnection.readWriteWithBlock { transaction in
 			if transaction.hasObjectForKey(key, inCollection: collection) {
-				let newMetadata = self.createOrMergeMetadata(
-					transaction, collection, key, dateReceived, dateSent, attributes)
+				let newMetadata = CacheMetadata(
+					received: received,
+					sent: sent,
+					attributes: attributes)
 
-				transaction.replaceMetadata(newMetadata, forKey: key, inCollection: collection)
+				transaction.replaceMetadata(newMetadata,
+					forKey: key,
+					inCollection: collection)
 
-				println("updateMetadata \(collection):\(key) -> r=\(newMetadata.received)-s=\(newMetadata.sent)")
+				println("setMetadata \(collection):\(key) -> r=\(newMetadata.received)-s=\(newMetadata.sent)")
 			}
 		}
-	}
-
-	private func createOrMergeMetadata(
-			transaction: YapDatabaseReadTransaction,
-			_ collection: String,
-			_ key: String,
-			_ dateReceived: NSDate?,
-			_ dateSent: NSDate?,
-			_ attributes: [String:AnyObject]) -> CacheMetadata {
-
-		let newMetadata: CacheMetadata
-		let existingMetadata: AnyObject = transaction.metadataForKey(key,
-			inCollection: collection)
-
-		if let currentMetadata = existingMetadata as? CacheMetadata {
-			newMetadata = currentMetadata.mergedMetadata(
-				received: dateReceived,
-				sent: dateSent,
-				attributes: attributes)
-		}
-		else {
-			newMetadata = CacheMetadata(
-				received: dateReceived,
-				sent: dateSent,
-				attributes: attributes)
-		}
-
-		return newMetadata
-
 	}
 
 	public func remove(#collection: String, key: String) {
