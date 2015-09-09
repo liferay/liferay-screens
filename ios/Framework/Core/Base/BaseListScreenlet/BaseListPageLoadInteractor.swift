@@ -14,23 +14,24 @@
 import UIKit
 
 
-class BaseListPageLoadInteractor: ServerOperationInteractor {
+public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 
-	let page: Int
-	let computeRowCount: Bool
+	public let page: Int
+	public let computeRowCount: Bool
 
-	var resultAllPagesContent: [AnyObject?]?
-	var resultPageContent: [AnyObject]?
-	var resultRowCount: Int?
+	public var resultAllPagesContent: [AnyObject?]?
+	public var resultPageContent: [AnyObject]?
+	public var resultRowCount: Int?
 
-	init(screenlet: BaseListScreenlet, page: Int, computeRowCount: Bool) {
+
+	public init(screenlet: BaseListScreenlet, page: Int, computeRowCount: Bool) {
 		self.page = page
 		self.computeRowCount = computeRowCount
 
 		super.init(screenlet: screenlet)
 	}
 
-	override func createOperation() -> LiferayPaginationOperation {
+	override public func createOperation() -> LiferayPaginationOperation {
 		assertionFailure("createOperation must be overriden")
 
 		return LiferayPaginationOperation(
@@ -39,7 +40,7 @@ class BaseListPageLoadInteractor: ServerOperationInteractor {
 				computeRowCount: self.computeRowCount)
 	}
 
-	override func completedOperation(op: ServerOperation) {
+	override public func completedOperation(op: ServerOperation) {
 		if op.lastError != nil {
 			return
 		}
@@ -49,7 +50,7 @@ class BaseListPageLoadInteractor: ServerOperationInteractor {
 		}
 	}
 
-	func processLoadPageResult(serverRows: [[String:AnyObject]], rowCount: Int?) {
+	private func processLoadPageResult(serverRows: [[String:AnyObject]], rowCount: Int?) {
 		let screenlet = self.screenlet as! BaseListScreenlet
 		let baseListView = screenlet.screenletView as! BaseListView
 
@@ -79,7 +80,7 @@ class BaseListPageLoadInteractor: ServerOperationInteractor {
 		self.resultAllPagesContent = allRows
 	}
 
-	func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
+	public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
 		assertionFailure("convert(serverResult) must be overriden")
 		return 0
 	}

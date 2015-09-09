@@ -14,7 +14,7 @@
 import UIKit
 
 
-class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
+public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 
 	let groupId: Int64
 	let classNameId: Int
@@ -31,7 +31,7 @@ class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-	override func createOperation() -> LiferayAssetListPageOperation {
+	override public func createOperation() -> LiferayAssetListPageOperation {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
 		let operation = LiferayAssetListPageOperation(
@@ -46,7 +46,7 @@ class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		return operation;
 	}
 
-	override func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
+	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
 		return AssetListScreenletEntry(attributes: serverResult)
 	}
 
