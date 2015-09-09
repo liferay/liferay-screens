@@ -50,4 +50,8 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		return AssetListScreenletEntry(attributes: serverResult)
 	}
 
+	override public func cacheKey(op: LiferayPaginationOperation) -> String {
+		return "\(groupId)-\(classNameId)"
+	}
+
 }

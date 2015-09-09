@@ -74,8 +74,10 @@ import UIKit
 
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var classNameId: Int = 0
+	@IBInspectable public var cacheMode: String = CacheStrategyType.RemoteFirst.rawValue
 
 	@IBOutlet public weak var delegate: AssetListScreenletDelegate?
+
 
 
 	//MARK: BaseListScreenlet
@@ -85,12 +87,16 @@ import UIKit
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
 
-		return AssetListPageLoadInteractor(
-				screenlet: self,
-				page: page,
-				computeRowCount: computeRowCount,
-				groupId: self.groupId,
-				classNameId: self.classNameId)
+		let interactor = AssetListPageLoadInteractor(
+			screenlet: self,
+			page: page,
+			computeRowCount: computeRowCount,
+			groupId: self.groupId,
+			classNameId: self.classNameId)
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.cacheMode) ?? .RemoteFirst
+
+		return interactor
 	}
 
 	override internal func onLoadPageError(#page: Int, error: NSError) {

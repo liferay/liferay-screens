@@ -85,4 +85,52 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 		return 0
 	}
 
+
+	//MARK: Cache
+
+	override public func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
+		if let loadOp = op as? LiferayPaginationOperation {
+			let key = cacheKey(loadOp)
+			SessionContext.currentCacheManager!.getSome(
+					collection: ScreenletName(screenlet!.dynamicType),
+					keys: ["\(key)-\(page)", "\(key)-\(page)-count"]) {
+
+				loadOp.resultPageContent = $0.first as? [[String:AnyObject]]
+				if count($0) > 1 {
+					loadOp.resultRowCount = $0.last as? Int
+				}
+
+				result(loadOp.resultPageContent)
+			}
+		}
+	}
+
+	override public func writeToCache(op: ServerOperation) {
+		if let loadOp = op as? LiferayPaginationOperation,
+				pageContent = loadOp.resultPageContent
+				where !pageContent.isEmpty {
+
+			let key = cacheKey(loadOp)
+
+			SessionContext.currentCacheManager?.setClean(
+				collection: ScreenletName(screenlet!.dynamicType),
+				key: "\(key)-\(page)",
+				value: pageContent,
+				attributes: [:])
+
+			if let rowCount = loadOp.resultRowCount {
+				SessionContext.currentCacheManager?.setClean(
+					collection: ScreenletName(screenlet!.dynamicType),
+					key: "\(key)-\(page)-count",
+					value: rowCount,
+					attributes: [:])
+			}
+		}
+	}
+
+	public func cacheKey(op: LiferayPaginationOperation) -> String {
+		assertionFailure("cacheKey must be overriden")
+		return ""
+	}
+
 }

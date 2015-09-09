@@ -80,6 +80,20 @@ public enum CacheStrategyType: String {
 		}
 	}
 
+	public func getSome(#collection: String, keys: [String], result: [AnyObject?] -> ()) {
+		readConnection.readWithBlock { transaction in
+			var values = [AnyObject?]()
+
+			for k in keys {
+				values.append(transaction.objectForKey(k,
+					inCollection: collection))
+			}
+
+			result(values)
+		}
+	}
+
+
 	public func getMetadata(#collection: String, key: String, result: CacheMetadata? -> ()) {
 		readConnection.readWithBlock { transaction in
 			let value: AnyObject? = transaction.metadataForKey(key, inCollection: collection)
@@ -255,6 +269,7 @@ public enum CacheStrategyType: String {
 		}
 
 		let sorting = YapDatabaseViewSorting.withKeyBlock { (_, _, key1, _, key2) in
+			//TODO sort by added date
 			return key1.compare(key2)
 		}
 
