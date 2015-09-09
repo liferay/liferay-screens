@@ -62,7 +62,8 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 				key: "userId-\(userId)",
 				dateReceived: nil,
 				dateSent: NSDate(),
-				attributes: nil)
+				attributes: [
+					"userId": NSNumber(longLong: userId)])
 		}
 
 		super.callOnSuccess()

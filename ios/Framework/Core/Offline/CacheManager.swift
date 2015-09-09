@@ -96,10 +96,10 @@ public enum CacheStrategyType: String {
 			value: NSCoding,
 			dateReceived: NSDate?,
 			dateSent: NSDate?,
-			attributes: [String:AnyObject]?) {
+			attributes: [String:AnyObject]) {
 
 		writeConnection.readWriteWithBlock { transaction in
-			if (dateReceived == nil || dateSent == nil || attributes != nil) {
+			if (dateReceived == nil || dateSent == nil) {
 				let newMetadata = self.createOrMergeMetadata(
 					transaction, collection, key, dateReceived, dateSent, attributes)
 
@@ -132,7 +132,7 @@ public enum CacheStrategyType: String {
 			key: String,
 			dateReceived: NSDate?,
 			dateSent: NSDate?,
-			attributes: [String:AnyObject]?) {
+			attributes: [String:AnyObject]) {
 
 		writeConnection.readWriteWithBlock { transaction in
 			if transaction.hasObjectForKey(key, inCollection: collection) {
@@ -152,7 +152,7 @@ public enum CacheStrategyType: String {
 			_ key: String,
 			_ dateReceived: NSDate?,
 			_ dateSent: NSDate?,
-			_ attributes: [String:AnyObject]?) -> CacheMetadata {
+			_ attributes: [String:AnyObject]) -> CacheMetadata {
 
 		let newMetadata: CacheMetadata
 		let existingMetadata: AnyObject = transaction.metadataForKey(key,

@@ -19,9 +19,9 @@ import YapDatabase
 
 	public let received: NSDate?
 	public let sent: NSDate?
-	public let attributes: [String:AnyObject]?
+	public let attributes: [String:AnyObject]
 
-	public init(received: NSDate?, sent: NSDate?, attributes: [String:AnyObject]?) {
+	public init(received: NSDate?, sent: NSDate?, attributes: [String:AnyObject]) {
 		self.received = received
 		self.sent = sent
 		self.attributes = attributes
@@ -32,7 +32,7 @@ import YapDatabase
 	public required convenience init(coder aDecoder: NSCoder) {
 		let received = aDecoder.decodeObjectForKey("received_date") as? NSDate
 		let sent = aDecoder.decodeObjectForKey("sent_date") as? NSDate
-		let attributes = aDecoder.decodeObjectForKey("attributes") as? [String:AnyObject]
+		let attributes = (aDecoder.decodeObjectForKey("attributes") as? [String:AnyObject]) ?? [:]
 
 		self.init(received: received, sent: sent, attributes: attributes)
 	}
@@ -43,7 +43,7 @@ import YapDatabase
 		aCoder.encodeObject(attributes, forKey:"attributes")
 	}
 
-	public func mergedMetadata(#received: NSDate?, sent: NSDate?, attributes: [String:AnyObject]?) -> CacheMetadata {
+	public func mergedMetadata(#received: NSDate?, sent: NSDate?, attributes: [String:AnyObject]) -> CacheMetadata {
 
 		return CacheMetadata(
 			received: received ?? self.received,
