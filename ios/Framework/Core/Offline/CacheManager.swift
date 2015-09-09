@@ -84,7 +84,7 @@ public enum CacheStrategyType: String {
 		readConnection.readWithBlock { transaction in
 			let value: AnyObject? = transaction.metadataForKey(key, inCollection: collection)
 
-			println("getMetadata \(collection):\(key) -> recevied: \((value as? CacheMetadata)?.received) sent: \((value as? CacheMetadata)?.sent)")
+			println("getMetadata \(collection):\(key) -> synchronized: \((value as? CacheMetadata)?.synchronized)")
 
 			result(value as? CacheMetadata)
 		}
@@ -99,14 +99,12 @@ public enum CacheStrategyType: String {
 		// The item becomes clean (the opposite of dirty,
 		// that is: synchronized): updated 'sent' & 'received' dates
 
-		let now = NSDate()
-		println("==== set Clean: \(now)")
+		println("==== set Clean")
 
 		set(collection: collection,
 			key: key,
 			value: value,
-			received: now,
-			sent: now,
+			synchronized: NSDate(),
 			attributes: attributes)
 	}
 
@@ -117,15 +115,12 @@ public enum CacheStrategyType: String {
 			attributes: [String:AnyObject]) {
 
 		// The item becomes dirty: fresh received date but nil sent date
-
-		let now = NSDate()
-		println("==== set Dirty: \(now)")
+		println("==== set Dirty")
 
 		set(collection: collection,
 			key: key,
 			value: value,
-			received: NSDate(),
-			sent: nil,
+			synchronized: nil,
 			attributes: attributes)
 	}
 
@@ -133,14 +128,12 @@ public enum CacheStrategyType: String {
 			#collection: String,
 			key: String,
 			value: NSCoding,
-			received: NSDate?,
-			sent: NSDate?,
+			synchronized: NSDate?,
 			attributes: [String:AnyObject]) {
 
 		writeConnection.readWriteWithBlock { transaction in
 			let metadata = CacheMetadata(
-				received: received,
-				sent: sent,
+				synchronized: synchronized,
 				attributes: attributes)
 
 			transaction.setObject(value,
@@ -148,7 +141,7 @@ public enum CacheStrategyType: String {
 				inCollection: collection,
 				withMetadata: metadata)
 
-			println("set \(collection):\(key) -> recevied: \(received) sent: \(sent)")
+			println("set \(collection):\(key) -> synchronized: \(synchronized)")
 		}
 	}
 
@@ -157,35 +150,31 @@ public enum CacheStrategyType: String {
 			key: String,
 			attributes: [String:AnyObject]) {
 
-		let now = NSDate()
-		println("==== set Clean: \(now)")
+		println("==== set Clean")
 
 		setMetadata(collection: collection,
 			key: key,
-			received: now,
-			sent: now,
+			synchronized: NSDate(),
 			attributes: attributes)
 	}
 
 	private func setMetadata(
 			#collection: String,
 			key: String,
-			received: NSDate?,
-			sent: NSDate?,
+			synchronized: NSDate?,
 			attributes: [String:AnyObject]) {
 
 		writeConnection.readWriteWithBlock { transaction in
 			if transaction.hasObjectForKey(key, inCollection: collection) {
 				let newMetadata = CacheMetadata(
-					received: received,
-					sent: sent,
+					synchronized: synchronized,
 					attributes: attributes)
 
 				transaction.replaceMetadata(newMetadata,
 					forKey: key,
 					inCollection: collection)
 
-				println("setMetadata \(collection):\(key) -> r=\(newMetadata.received)-s=\(newMetadata.sent)")
+				println("setMetadata \(collection):\(key) -> synchronized=\(newMetadata.synchronized)")
 			}
 		}
 	}
@@ -271,7 +260,7 @@ public enum CacheStrategyType: String {
 
 		let filtering = YapDatabaseViewFiltering.withMetadataBlock({ (_,_,_, metadata: AnyObject!) in
 			let cacheMetadata = metadata as? CacheMetadata
-			return cacheMetadata?.sent == nil
+			return cacheMetadata?.synchronized == nil
 		})
 
 		let parentView = YapDatabaseView(grouping: grouping, sorting: sorting)

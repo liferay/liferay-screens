@@ -17,29 +17,25 @@ import YapDatabase
 
 @objc public class CacheMetadata : NSObject, NSCoding {
 
-	public let received: NSDate?
-	public let sent: NSDate?
+	public let synchronized: NSDate?
 	public let attributes: [String:AnyObject]
 
-	public init(received: NSDate?, sent: NSDate?, attributes: [String:AnyObject]) {
-		self.received = received
-		self.sent = sent
+	public init(synchronized: NSDate?, attributes: [String:AnyObject]) {
+		self.synchronized = synchronized
 		self.attributes = attributes
 
 		super.init()
 	}
 
 	public required convenience init(coder aDecoder: NSCoder) {
-		let received = aDecoder.decodeObjectForKey("received_date") as? NSDate
-		let sent = aDecoder.decodeObjectForKey("sent_date") as? NSDate
+		let synchronized = aDecoder.decodeObjectForKey("sync_date") as? NSDate
 		let attributes = (aDecoder.decodeObjectForKey("attributes") as? [String:AnyObject]) ?? [:]
 
-		self.init(received: received, sent: sent, attributes: attributes)
+		self.init(synchronized: synchronized, attributes: attributes)
 	}
 
 	public func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(received, forKey:"received_date")
-		aCoder.encodeObject(sent, forKey:"sent_date")
+		aCoder.encodeObject(synchronized, forKey:"sync_date")
 		aCoder.encodeObject(attributes, forKey:"attributes")
 	}
 
