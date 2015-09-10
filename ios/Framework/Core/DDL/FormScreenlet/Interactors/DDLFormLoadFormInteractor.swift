@@ -36,6 +36,7 @@ class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
 		}
 	}
 
+
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerOperation) {

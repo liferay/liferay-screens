@@ -16,6 +16,9 @@ import UIKit
 
 class DDLFormLoadRecordInteractor: ServerOperationInteractor {
 
+	let recordId: Int64
+	let structureId: Int64?
+
 	var resultRecordData: [String:AnyObject]?
 	var resultRecordId: Int64?
 
@@ -23,17 +26,22 @@ class DDLFormLoadRecordInteractor: ServerOperationInteractor {
 	var resultFormUserId: Int64?
 
 
-	override func createOperation() -> LiferayDDLFormRecordLoadOperation? {
-		let screenlet = self.screenlet as! DDLFormScreenlet
+	init(screenlet: BaseScreenlet?, recordId: Int64, structureId: Int64?) {
+		self.recordId = recordId
+		self.structureId = structureId
 
+		super.init(screenlet: screenlet)
+	}
+
+	override func createOperation() -> LiferayDDLFormRecordLoadOperation? {
 		let loadRecordOperation = LiferayDDLFormRecordLoadOperation()
 
-		loadRecordOperation.recordId = screenlet.recordId
+		loadRecordOperation.recordId = recordId
 
-		if screenlet.formView.isRecordEmpty {
+		if let structureId = structureId {
 			let loadFormOperation = LiferayDDLFormLoadOperation()
 
-			loadFormOperation.structureId = screenlet.structureId
+			loadFormOperation.structureId = structureId
 
 			loadRecordOperation.addDependency(loadFormOperation)
 
