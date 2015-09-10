@@ -116,11 +116,25 @@ public enum CacheStrategyType: String {
 		println("==== set Clean")
 
 		set(collection: collection,
-			key: key,
-			value: value,
+			keys: [key],
+			values: [value],
 			synchronized: NSDate(),
 			attributes: attributes)
 	}
+
+	public func setClean(
+			#collection: String,
+			keys: [String],
+			values: [NSCoding],
+			attributes: [String:AnyObject]) {
+
+		set(collection: collection,
+			keys: keys,
+			values: values,
+			synchronized: NSDate(),
+			attributes: attributes)
+	}
+
 
 	public func setDirty(
 			#collection: String,
@@ -132,30 +146,35 @@ public enum CacheStrategyType: String {
 		println("==== set Dirty")
 
 		set(collection: collection,
-			key: key,
-			value: value,
+			keys: [key],
+			values: [value],
 			synchronized: nil,
 			attributes: attributes)
 	}
 
 	private func set(
 			#collection: String,
-			key: String,
-			value: NSCoding,
+			keys: [String],
+			values: [NSCoding],
 			synchronized: NSDate?,
 			attributes: [String:AnyObject]) {
+
+		assert(count(keys) == count(values),
+			"Keys and values must have same number of elements")
 
 		writeConnection.readWriteWithBlock { transaction in
 			let metadata = CacheMetadata(
 				synchronized: synchronized,
 				attributes: attributes)
 
-			transaction.setObject(value,
-				forKey: key,
-				inCollection: collection,
-				withMetadata: metadata)
+			for (i,k) in enumerate(keys) {
+				transaction.setObject(values[i],
+					forKey: k,
+					inCollection: collection,
+					withMetadata: metadata)
 
-			println("set \(collection):\(key) -> synchronized: \(synchronized)")
+				println("set \(collection):\(k) -> synchronized: \(synchronized)")
+			}
 		}
 	}
 
