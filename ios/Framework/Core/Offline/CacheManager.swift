@@ -80,6 +80,19 @@ public enum CacheStrategyType: String {
 		}
 	}
 
+	public func getAnyWithMetadata(
+			#collection: String,
+			key: String,
+			result: (AnyObject?, [String:AnyObject]?) -> ()) {
+
+		readConnection.readWithBlock { transaction in
+			let object: AnyObject? = transaction.objectForKey(key, inCollection: collection)
+			let metadata = transaction.metadataForKey(key, inCollection: collection) as? CacheMetadata
+
+			result(object, metadata?.attributes)
+		}
+	}
+
 	public func getSome(#collection: String, keys: [String], result: [AnyObject?] -> ()) {
 		readConnection.readWithBlock { transaction in
 			var values = [AnyObject?]()
