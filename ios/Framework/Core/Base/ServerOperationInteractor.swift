@@ -30,6 +30,7 @@ public class ServerOperationInteractor: Interactor {
 			getCacheStrategyImpl(cacheStrategy)(
 				operation,
 				whenSuccess: {
+					operation.lastError = nil
 					self.completedOperation(operation)
 					self.callOnSuccess()
 				},
