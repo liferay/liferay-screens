@@ -94,9 +94,7 @@ public class GetUserBaseOperation: ServerOperation {
 			error: NSErrorPointer)
 			-> NSDictionary? {
 
-		assertionFailure("sendGetUserRequest must be overriden")
-
-		return nil
+		fatalError("sendGetUserRequest must be overriden")
 	}
 
    

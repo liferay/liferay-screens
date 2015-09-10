@@ -144,12 +144,7 @@ import UIKit
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
 
-		assertionFailure("createPageLoadInteractor must be overriden")
-
-		return BaseListPageLoadInteractor(
-				screenlet: self,
-				page: page,
-				computeRowCount: computeRowCount)
+		fatalError("createPageLoadInteractor must be overriden")
 	}
 
 	internal func onLoadPageError(#page: Int, error: NSError) {

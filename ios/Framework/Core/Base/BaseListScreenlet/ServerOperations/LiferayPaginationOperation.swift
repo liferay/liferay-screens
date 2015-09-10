@@ -76,11 +76,11 @@ public class LiferayPaginationOperation: ServerOperation {
 	}
 
 	internal func doGetPageRowsOperation(#session: LRBatchSession, startRow: Int, endRow: Int) {
-		assertionFailure("doGetPageRowsOperation must be overriden")
+		fatalError("doGetPageRowsOperation must be overriden")
 	}
 
 	internal func doGetRowCountOperation(#session: LRBatchSession) {
-		assertionFailure("doGetRowCountOperation must be overriden")
+		fatalError("doGetRowCountOperation must be overriden")
 	}
 
 }

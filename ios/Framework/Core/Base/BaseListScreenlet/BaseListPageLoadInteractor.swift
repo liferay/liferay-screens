@@ -32,12 +32,7 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 	}
 
 	override public func createOperation() -> LiferayPaginationOperation {
-		assertionFailure("createOperation must be overriden")
-
-		return LiferayPaginationOperation(
-				startRow: 0,
-				endRow: 0,
-				computeRowCount: self.computeRowCount)
+		fatalError("createOperation must be overriden")
 	}
 
 	override public func completedOperation(op: ServerOperation) {
@@ -81,8 +76,7 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 	}
 
 	public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
-		assertionFailure("convert(serverResult) must be overriden")
-		return 0
+		fatalError("convert(serverResult) must be overriden")
 	}
 
 
@@ -129,8 +123,7 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 	}
 
 	public func cacheKey(op: LiferayPaginationOperation) -> String {
-		assertionFailure("cacheKey must be overriden")
-		return ""
+		fatalError("cacheKey must be overriden")
 	}
 
 }

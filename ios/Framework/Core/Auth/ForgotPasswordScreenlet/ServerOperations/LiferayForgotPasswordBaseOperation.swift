@@ -81,9 +81,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 			error: NSErrorPointer)
 			-> Bool? {
 
-		assertionFailure("sendForgotPasswordRequest must be overriden")
-
-		return nil
+		fatalError("sendForgotPasswordRequest must be overriden")
 	}
 
 }

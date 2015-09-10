@@ -395,7 +395,7 @@ import UIKit
 			}
 		}
 
-		assertionFailure("[ERROR] Inconsistency: No failedUploads but uploadState is failed")
+		fatalError("[ERROR] Inconsistency: No failedUploads but uploadState is failed")
 	}
 
 }
