@@ -91,6 +91,9 @@ import UIKit
 		}
 	}
 
+	@IBInspectable public var offlineLoadPolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable public var offlineEditPolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+
 	@IBOutlet public weak var delegate: DDLFormScreenletDelegate?
 
 	public var isFormLoaded: Bool {
@@ -168,6 +171,8 @@ import UIKit
 	internal func createLoadFormInteractor() -> DDLFormLoadFormInteractor {
 		let interactor = DDLFormLoadFormInteractor(screenlet: self)
 
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlineLoadPolicy ?? "") ?? .RemoteFirst
+
 		interactor.onSuccess = {
 			if let resultRecordValue = interactor.resultRecord {
 				self.userId = interactor.resultUserId ?? self.userId
@@ -193,6 +198,8 @@ import UIKit
 
 		let interactor = DDLFormSubmitFormInteractor(screenlet: self)
 
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlineEditPolicy ?? "") ?? .RemoteFirst
+
 		interactor.onSuccess = {
 			if let resultRecordIdValue = interactor.resultRecordId {
 				self.recordId = resultRecordIdValue
@@ -213,6 +220,8 @@ import UIKit
 
 	internal func createLoadRecordInteractor() -> DDLFormLoadRecordInteractor {
 		let interactor = DDLFormLoadRecordInteractor(screenlet: self)
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlineLoadPolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
 			// first set structure if loaded
@@ -266,6 +275,8 @@ import UIKit
 				screenlet: self,
 				document: document,
 				onProgressClosure: onUploadedBytes)
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlineEditPolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
 			self.formView.changeDocumentUploadStatus(interactor.document)
