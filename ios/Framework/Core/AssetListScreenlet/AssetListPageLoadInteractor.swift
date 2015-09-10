@@ -51,7 +51,7 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 	}
 
 	override public func cacheKey(op: LiferayPaginationOperation) -> String {
-		return "\(groupId)-\(classNameId)"
+		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-\(classNameId)"
 	}
 
 }

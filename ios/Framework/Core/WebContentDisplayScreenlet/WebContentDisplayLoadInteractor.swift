@@ -67,7 +67,7 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 	}
 
 	private func cacheKey(groupId: Int64, _ articleId: String) -> String {
-		return "\(groupId)-\(articleId)"
+		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-\(articleId)"
 	}
 
 }
