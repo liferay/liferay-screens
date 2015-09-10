@@ -14,7 +14,7 @@
 import UIKit
 
 
-class DDLFormLoadRecordInteractor: ServerOperationInteractor {
+class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 
 	let recordId: Int64
 	let structureId: Int64?
@@ -69,6 +69,52 @@ class DDLFormLoadRecordInteractor: ServerOperationInteractor {
 				self.resultFormRecord?.updateCurrentValues(resultRecordValue)
 			}
 		}
+	}
+
+
+	//MARK: Cache methods
+
+	override func writeToCache(op: ServerOperation) {
+		if let loadOp = op as? LiferayDDLFormRecordLoadOperation,
+				recordData = loadOp.resultRecord,
+				recordId = loadOp.recordId {
+
+			if let resultFormRecord = self.resultFormRecord,
+					resultFormUserId = self.resultFormUserId
+					where self.structureId != nil {
+
+				SessionContext.currentCacheManager?.setClean(
+					collection: ScreenletName(DDLFormScreenlet),
+					key: "structureId-\(self.structureId)",
+					value: resultFormRecord,
+					attributes: [
+						"userId": NSNumber(longLong: resultFormUserId)])
+			}
+
+			SessionContext.currentCacheManager?.setClean(
+				collection: ScreenletName(DDLFormScreenlet),
+				key: "recordId-\(recordId)",
+				value: recordData,
+				attributes: [:])
+		}
+	}
+
+	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
+		if let loadOp = op as? LiferayDDLFormLoadOperation {
+			let cacheMgr = SessionContext.currentCacheManager!
+
+			cacheMgr.getAnyWithMetadata(
+				collection: ScreenletName(DDLFormScreenlet),
+				key: "structureId-\(loadOp.structureId)") {
+					record, metadata in
+
+					loadOp.resultRecord = record as? DDLRecord
+					loadOp.resultUserId = (metadata?["userId"] as? NSNumber)?.longLongValue
+
+					result(loadOp.resultRecord)
+			}
+		}
+		
 	}
 
 }

@@ -219,7 +219,10 @@ import UIKit
 	}
 
 	internal func createLoadRecordInteractor() -> DDLFormLoadRecordInteractor {
-		let interactor = DDLFormLoadRecordInteractor(screenlet: self)
+		let neededStructureId: Int64? =
+			formView.isRecordEmpty ? structureId : nil
+
+		let interactor = DDLFormLoadRecordInteractor(screenlet: self, recordId: self.recordId, structureId: neededStructureId)
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlineLoadPolicy ?? "") ?? .RemoteFirst
 
