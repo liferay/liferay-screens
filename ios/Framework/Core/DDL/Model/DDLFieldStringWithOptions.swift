@@ -16,25 +16,39 @@ import Foundation
 
 public class DDLFieldStringWithOptions : DDLField {
 
-	public class Option {
+	public class Option: NSObject, NSCoding {
 
-		public var label:String
-		public var name:String
-		public var value:String
+		public var label: String
+		public var name: String
+		public var value: String
 
-		public init(label:String, name:String, value:String) {
+		public init(label: String, name: String, value: String) {
 			self.label = label
 			self.name = name
 			self.value = value
+		}
+
+		public required convenience init(coder aDecoder: NSCoder) {
+			let label = aDecoder.decodeObjectForKey("label") as! String
+			let name = aDecoder.decodeObjectForKey("name") as! String
+			let value = aDecoder.decodeObjectForKey("value") as! String
+
+			self.init(label: label, name: name, value: value)
+		}
+
+		public func encodeWithCoder(aCoder: NSCoder) {
+			aCoder.encodeObject(label, forKey: "label")
+			aCoder.encodeObject(name, forKey: "name")
+			aCoder.encodeObject(value, forKey: "value")
 		}
 
 	}
 
 
 	//FIXME: Multiple selection not supported yet
-	private(set) var multiple:Bool
+	private(set) var multiple: Bool
 
-	private(set) var options:[Option] = []
+	private(set) var options: [Option] = []
 
 	override public init(attributes: [String:AnyObject], locale: NSLocale) {
 		multiple = Bool.from(any: attributes["multiple"] ?? "false")
@@ -45,13 +59,27 @@ public class DDLFieldStringWithOptions : DDLField {
 				let name = (optionDict["name"] ?? "") as! String
 				let value = (optionDict["value"] ?? "") as! String
 
-				let option = Option(label:label, name:name, value:value)
+				let option = Option(label: label, name: name, value: value)
 
 				self.options.append(option)
 			}
 		}
 
 		super.init(attributes: attributes, locale: locale)
+	}
+
+	public required init(coder aDecoder: NSCoder) {
+		multiple = aDecoder.decodeBoolForKey("multiple")
+		options = aDecoder.decodeObjectForKey("options") as! [Option]
+
+		super.init(coder: aDecoder)
+	}
+
+	public override func encodeWithCoder(aCoder: NSCoder) {
+		super.encodeWithCoder(aCoder)
+
+		aCoder.encodeBool(multiple, forKey: "multiple")
+		aCoder.encodeObject(options, forKey: "options")
 	}
 
 

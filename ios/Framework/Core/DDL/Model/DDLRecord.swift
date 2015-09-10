@@ -17,7 +17,7 @@ import Foundation
 //TODO: Unit test
 
 
-public class DDLRecord: NSObject {
+public class DDLRecord: NSObject, NSCoding {
 
 	public var fields: [DDLField] = []
 
@@ -63,6 +63,19 @@ public class DDLRecord: NSObject {
 			attributes = recordAttributes
 		}
 	}
+
+	public required init(coder aDecoder: NSCoder) {
+		fields = aDecoder.decodeObjectForKey("fields") as! [DDLField]
+		attributes = aDecoder.decodeObjectForKey("attributes") as! [String:AnyObject]
+
+		super.init()
+	}
+
+	public func encodeWithCoder(aCoder: NSCoder) {
+		aCoder.encodeObject(fields, forKey:"fields")
+		aCoder.encodeObject(attributes, forKey:"attributes")
+	}
+
 
 
 	//MARK: Public methods
