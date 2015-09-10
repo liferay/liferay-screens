@@ -50,8 +50,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		}
 	}
 
-	@IBInspectable public var loadOfflinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
-	@IBInspectable public var editOfflinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable public var offlineLoadPolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable public var offlineEditPolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	@IBOutlet public weak var delegate: UserPortraitScreenletDelegate?
 
@@ -139,7 +139,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 			let loadInteractor = sender as! DownloadUserPortraitInteractor
 			interactor = loadInteractor
 
-			loadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.loadOfflinePolicy ?? "") ?? .RemoteFirst
+			loadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlineLoadPolicy ?? "") ?? .RemoteFirst
 
 			loadInteractor.onSuccess = {
 				if let imageValue = loadInteractor.resultImage {
@@ -182,7 +182,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 					image: image)
 			interactor = uploadInteractor
 
-			uploadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.editOfflinePolicy ?? "") ?? .RemoteFirst
+			uploadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlineEditPolicy ?? "") ?? .RemoteFirst
 
 			uploadInteractor.onSuccess = { [weak interactor] in
 				self.delegate?.screenlet?(self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
