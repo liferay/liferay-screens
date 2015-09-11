@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				xmlns:app="http://schemas.android.com/apk/res-auto"
+				xmlns:tools="http://schemas.android.com/tools"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				tools:context="com.liferay.mobile.screens.testapp.JournalArticleWithTemplateActivity">
+
+	<com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet
+		android:id="@+id/journal_article_with_template"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:articleId="@integer/article_id"
+		app:templateId="36622"/>
+
+	<com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet
+		android:id="@+id/journal_article_with_template_alternative"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/journal_article_with_template"
+		app:articleId="@integer/article_id"
+		app:templateId="36629"/>
+
+</RelativeLayout>
