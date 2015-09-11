@@ -85,11 +85,32 @@ public enum CacheStrategyType: String {
 			key: String,
 			result: (AnyObject?, [String:AnyObject]?) -> ()) {
 
-		readConnection.readWithBlock { transaction in
-			let object: AnyObject? = transaction.objectForKey(key, inCollection: collection)
-			let metadata = transaction.metadataForKey(key, inCollection: collection) as? CacheMetadata
+		getSomeWithAttributes(
+				collection: collection,
+				keys: [key]) { objects, attributes in
 
-			result(object, metadata?.attributes)
+			result(objects[0], attributes[0])
+		}
+	}
+
+	public func getSomeWithAttributes(
+			#collection: String,
+			keys: [String],
+			result: ([AnyObject?], [[String:AnyObject]?]) -> ()) {
+
+		readConnection.readWithBlock { transaction in
+			let keyCount = count(keys)
+			var objects = [AnyObject?](count: keyCount, repeatedValue: nil)
+			var attributes = [[String:AnyObject]?](count: keyCount, repeatedValue: nil)
+
+			for (i,k) in enumerate(keys) {
+				objects[i] = transaction.objectForKey(k, inCollection: collection)
+
+				let metadata = transaction.metadataForKey(k, inCollection: collection) as? CacheMetadata
+				attributes[i] = metadata?.attributes
+			}
+
+			result(objects, attributes)
 		}
 	}
 
