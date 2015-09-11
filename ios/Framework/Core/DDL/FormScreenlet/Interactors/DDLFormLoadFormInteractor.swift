@@ -57,13 +57,13 @@ class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
 		if let loadOp = op as? LiferayDDLFormLoadOperation {
 			let cacheMgr = SessionContext.currentCacheManager!
 
-			cacheMgr.getAnyWithMetadata(
+			cacheMgr.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: "structureId-\(loadOp.structureId)") {
-				record, metadata in
+				record, attributes in
 
 				loadOp.resultRecord = record as? DDLRecord
-				loadOp.resultUserId = (metadata?["userId"] as? NSNumber)?.longLongValue
+				loadOp.resultUserId = (attributes?["userId"] as? NSNumber)?.longLongValue
 
 				result(loadOp.resultRecord)
 			}

@@ -80,7 +80,7 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	public func getAnyWithMetadata(
+	public func getAnyWithAttributes(
 			#collection: String,
 			key: String,
 			result: (AnyObject?, [String:AnyObject]?) -> ()) {
