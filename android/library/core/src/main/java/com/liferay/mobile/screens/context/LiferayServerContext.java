@@ -23,12 +23,6 @@ import com.liferay.mobile.screens.R;
  */
 public class LiferayServerContext {
 
-	public static void loadFromValues(long companyId, long groupId, String server) {
-		LiferayServerContext.setCompanyId(companyId);
-		LiferayServerContext.setGroupId(groupId);
-		LiferayServerContext.setServer(server);
-	}
-
 	public static void loadFromResources(Resources resources, final String packageName) {
 		int companyIdentifier = resources.getIdentifier("liferay_company_id", "integer", packageName);
 		int groupIdentifier = resources.getIdentifier("liferay_group_id", "integer", packageName);
@@ -38,11 +32,9 @@ public class LiferayServerContext {
 
 		String server = resources.getString(R.string.liferay_server);
 
-		loadFromValues(companyId, groupId, server);
-	}
-
-	private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
-		return integerId == 0 ? Long.valueOf(resources.getString(stringId)) : resources.getInteger(integerId);
+		LiferayServerContext.setCompanyId(companyId);
+		LiferayServerContext.setGroupId(groupId);
+		LiferayServerContext.setServer(server);
 	}
 
 	public static long getCompanyId() {
@@ -69,6 +61,9 @@ public class LiferayServerContext {
 		_server = server;
 	}
 
+	private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
+		return integerId == 0 ? Long.valueOf(resources.getString(stringId)) : resources.getInteger(integerId);
+	}
 	private static long _companyId;
 	private static long _groupId;
 	private static String _server;
