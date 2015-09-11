@@ -34,7 +34,7 @@
 "default-ddlform-loading-error"="Error cargando formulario";
 "default-ddlform-loading-record-message"="Cargando datos...\nEspere unos segundos...";
 "default-ddlform-loading-record-error"="Error cargando datos";
-"ddlform-screenlet-submitting-message"="Enviando formulario...\nEspere unos segundos...";
+"default-ddlform-submitting-message"="Enviando formulario...\nEspere unos segundos...";
 "default-ddlform-submitting-error"="Error enviando formulario";
 "default-ddlform-submitted"="Formulario enviado";
 "default-ddlform-uploading-error"="Error subiendo datos";
