@@ -33,39 +33,47 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-	override func createOperation() -> LiferayDDLFormRecordLoadOperation? {
-		let loadRecordOperation = LiferayDDLFormRecordLoadOperation()
+	override func createOperation() -> ServerOperation {
+		let operation: ServerOperation
 
-		loadRecordOperation.recordId = recordId
+		let loadRecordOp = LiferayDDLFormRecordLoadOperation()
+
+		loadRecordOp.recordId = recordId
 
 		if let structureId = structureId {
-			let loadFormOperation = LiferayDDLFormLoadOperation()
+			let loadFormOp = LiferayDDLFormLoadOperation()
+			loadFormOp.structureId = structureId
 
-			loadFormOperation.structureId = structureId
+			let operationChain = ServerOperationChain(head: loadFormOp)
 
-			loadRecordOperation.addDependency(loadFormOperation)
-
-			let result = loadFormOperation.validateAndEnqueue() {
-				if let loadFormOp = $0 as? LiferayDDLFormLoadOperation {
+			operationChain.onNextStep = { (op, seq) -> ServerOperation? in
+				if let loadFormOp = op as? LiferayDDLFormLoadOperation {
 					self.resultFormRecord = loadFormOp.resultRecord
 					self.resultFormUserId = loadFormOp.resultUserId
-				}
-			}
 
-			if result != nil {
+					return loadRecordOp
+				}
+
 				return nil
 			}
+
+			operation = operationChain
+		}
+		else {
+			operation = loadRecordOp
 		}
 
-		return loadRecordOperation
+		return operation
 	}
 
 	override func completedOperation(op: ServerOperation) {
-		if let recordOp = op as? LiferayDDLFormRecordLoadOperation {
-			self.resultRecordData = recordOp.resultRecord
-			self.resultRecordId = recordOp.resultRecordId
+		if let chain = op as? ServerOperationChain,
+				loadRecordOp = chain.currentOperation as? LiferayDDLFormRecordLoadOperation {
 
-			if let resultRecordValue = recordOp.resultRecord {
+			self.resultRecordData = loadRecordOp.resultRecord
+			self.resultRecordId = loadRecordOp.resultRecordId
+
+			if let resultRecordValue = loadRecordOp.resultRecord {
 				self.resultFormRecord?.updateCurrentValues(resultRecordValue)
 			}
 		}
@@ -75,9 +83,10 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerOperation) {
-		if let loadOp = op as? LiferayDDLFormRecordLoadOperation,
-				recordData = loadOp.resultRecord,
-				recordId = loadOp.recordId {
+		if let chain = op as? ServerOperationChain,
+				loadRecordOp = chain.currentOperation as? LiferayDDLFormRecordLoadOperation,
+				recordData = loadRecordOp.resultRecord,
+				recordId = loadRecordOp.recordId {
 
 			if let resultFormRecord = self.resultFormRecord,
 					resultFormUserId = self.resultFormUserId
@@ -100,19 +109,25 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 	}
 
 	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
-		if let loadOp = op as? LiferayDDLFormLoadOperation {
+		if let chain = op as? ServerOperationChain,
+				loadRecordOp = chain.currentOperation as? LiferayDDLFormRecordLoadOperation {
+/*
 			let cacheMgr = SessionContext.currentCacheManager!
 
-			cacheMgr.getAnyWithMetadata(
-				collection: ScreenletName(DDLFormScreenlet),
-				key: "structureId-\(loadOp.structureId)") {
-					record, metadata in
+			if let structureId = self.structureId {
+				cacheMgr.getAnyWithMetadata(
+					collection: ScreenletName(DDLFormScreenlet),
+					key: "structureId-\(structureId)") {
+						record, metadata in
 
-					loadOp.resultRecord = record as? DDLRecord
-					loadOp.resultUserId = (metadata?["userId"] as? NSNumber)?.longLongValue
+						loadOp.resultRecord = record as? DDLRecord
+						loadOp.resultUserId = (metadata?["userId"] as? NSNumber)?.longLongValue
 
-					result(loadOp.resultRecord)
+						result(loadOp.resultRecord)
+				}
+
 			}
+*/
 		}
 		
 	}
