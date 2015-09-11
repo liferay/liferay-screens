@@ -111,7 +111,7 @@ public class ForgotPasswordScreenlet
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.ForgotPasswordScreenlet, 0, 0);
 
-		_companyId = getLongFromStringWithDefaultValue(typedArray.getString(
+		_companyId = castToLongOrUseDefault(typedArray.getString(
 				R.styleable.ForgotPasswordScreenlet_companyId),
 			LiferayServerContext.getCompanyId());
 

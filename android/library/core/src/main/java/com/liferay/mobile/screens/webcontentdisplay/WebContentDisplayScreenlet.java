@@ -114,7 +114,7 @@ public class WebContentDisplayScreenlet
 
 		_articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
 
-		_groupId = getLongFromStringWithDefaultValue(typedArray.getString(
+		_groupId = castToLongOrUseDefault(typedArray.getString(
 			R.styleable.WebContentDisplayScreenlet_groupId), LiferayServerContext.getGroupId());
 
 		_javascriptEnabled = typedArray.getBoolean(

@@ -82,9 +82,9 @@ public class DDLListScreenlet
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.DDLListScreenlet, 0, 0);
-		_recordSetId = getLongFromString(typedArray.getString(
+		_recordSetId = castToLong(typedArray.getString(
 			R.styleable.DDLListScreenlet_recordSetId));
-		_userId = getLongFromString(typedArray.getString(
+		_userId = castToLong(typedArray.getString(
 			R.styleable.DDLListScreenlet_userId));
 		_labelFields = parse(typedArray.getString(
 			R.styleable.DDLListScreenlet_labelFields));

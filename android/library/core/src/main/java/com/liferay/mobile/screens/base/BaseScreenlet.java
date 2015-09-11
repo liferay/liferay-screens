@@ -217,11 +217,11 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	protected abstract void onUserAction(String userActionName, I interactor, Object... args);
 
-	protected long getLongFromString(String value) {
-		return getLongFromStringWithDefaultValue(value, 0);
+	protected long castToLong(String value) {
+		return castToLongOrUseDefault(value, 0);
 	}
 
-	protected long getLongFromStringWithDefaultValue(String value, long defaultValue) {
+	protected long castToLongOrUseDefault(String value, long defaultValue) {
 		if (value == null) {
 			return defaultValue;
 		}

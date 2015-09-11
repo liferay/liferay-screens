@@ -80,7 +80,7 @@ public class AssetListScreenlet
 
 		long groupId = LiferayServerContext.getGroupId();
 
-		_groupId = getLongFromStringWithDefaultValue(typedArray.getString(
+		_groupId = castToLongOrUseDefault(typedArray.getString(
 			R.styleable.AssetListScreenlet_groupId), groupId);
 
 		typedArray.recycle();
