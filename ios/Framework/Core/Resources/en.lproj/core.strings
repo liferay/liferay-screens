@@ -7,8 +7,6 @@
 "core-video"="Video";
 "core-uploaded-file"="Uploaded file";
 
-"core-undefined-operation"="Operation is undefined";
-
 "core-an-image-has-been-selected"="An image has been selected";
 "core-a-video-has-been-selected"="A video has been selected";
 "core-a-file-is-already-uploaded"="A file is already uploaded";

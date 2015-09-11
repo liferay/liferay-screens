@@ -33,21 +33,22 @@ import UIKit
 
 	public var onNextStep: ((ServerOperation, Int) -> ServerOperation?)?
 
-	public var headOperation: ServerOperation?
+	public let headOperation: ServerOperation
+	public var currentOperation: ServerOperation
+
+
+	public init(head: ServerOperation) {
+		headOperation = head
+		currentOperation = head
+
+		super.init()
+	}
 
 
 	//MARK: ServerOperation methods
 
 	override public func createSession() -> LRSession? {
-		return headOperation?.createSession()
-	}
-
-	override public func validateData() -> ValidationError? {
-		if headOperation == nil {
-			return ValidationError("core", "undefined-operation")
-		}
-
-		return headOperation?.validateData()
+		return headOperation.createSession()
 	}
 
 	override public func enqueue(#onComplete: (ServerOperation -> Void)?) {
@@ -78,7 +79,7 @@ import UIKit
 					dispatch_group_leave(waitGroup)
 				}
 				else {
-					self.headOperation = nextOp
+					self.currentOperation = nextOp
 				}
 			}
 			else {
@@ -92,10 +93,8 @@ import UIKit
 
 		dispatch_group_enter(waitGroup)
 
-		if let headOperation = self.headOperation {
-			if let validationError = doStep(0, headOperation, waitGroup) {
-				self.lastError = validationError
-			}
+		if let validationError = doStep(0, headOperation, waitGroup) {
+			self.lastError = validationError
 		}
 
 		dispatch_group_wait(waitGroup, DISPATCH_TIME_FOREVER)

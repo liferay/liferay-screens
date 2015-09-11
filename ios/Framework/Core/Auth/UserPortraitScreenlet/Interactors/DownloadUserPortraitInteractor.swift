@@ -201,7 +201,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 	//MARK: Private methods
 
 	private func toHttpOperation(op: ServerOperation) -> HttpOperation? {
-		return ((op as? ServerOperationChain)?.headOperation as? HttpOperation)
+		return ((op as? ServerOperationChain)?.currentOperation as? HttpOperation)
 			?? (op as? HttpOperation)
 	}
 
@@ -220,9 +220,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 	}
 
 	private func createOperationFor(loadUserOp: GetUserBaseOperation) -> ServerOperation? {
-		let chain = ServerOperationChain()
-
-		chain.headOperation = loadUserOp
+		let chain = ServerOperationChain(head: loadUserOp)
 
 		chain.onNextStep = { (op, seq) -> ServerOperation? in
 			if let loadUserOp = op as? GetUserBaseOperation {
