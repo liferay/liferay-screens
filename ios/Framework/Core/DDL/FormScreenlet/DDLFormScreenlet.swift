@@ -297,13 +297,12 @@ import UIKit
 
 				case .Uploading(let uploadCount, let submitRequested)
 				where uploadCount == 1 && submitRequested:
-					// waiting for upload completion to submit the form
 					self.uploadStatus = .Idle
-					self.submitForm()
 
-				case .Uploading(let uploadCount, let submitRequested)
-				where uploadCount == 1 && !submitRequested:
-					self.uploadStatus = .Idle
+					if submitRequested {
+						// waiting for upload completion to submit the form
+						self.submitForm()
+				}
 
 				default: ()
 			}

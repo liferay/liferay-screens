@@ -16,24 +16,43 @@ import UIKit
 
 class DDLFormSubmitFormInteractor: ServerOperationInteractor {
 
+	let groupId: Int64
+	let recordSetId: Int64
+	let recordId: Int64?
+	let userId: Int64?
+
 	var resultRecordId: Int64?
 	var resultAttributes: NSDictionary?
+
+	override init(screenlet: BaseScreenlet?) {
+		let formScreenlet = screenlet as! DDLFormScreenlet
+
+		groupId = (formScreenlet.groupId != 0)
+			? formScreenlet.groupId
+			: LiferayServerContext.groupId
+
+		userId = (formScreenlet.userId != 0)
+			? formScreenlet.userId
+			: SessionContext.currentUserId
+
+		recordId = (formScreenlet.recordId != 0)
+			? formScreenlet.recordId
+			: nil
+
+		recordSetId = formScreenlet.recordSetId
+
+		super.init(screenlet: formScreenlet)
+	}
 
 	override func createOperation() -> LiferayDDLFormSubmitOperation {
 		let screenlet = self.screenlet as! DDLFormScreenlet
 
 		let operation = LiferayDDLFormSubmitOperation(viewModel: screenlet.viewModel)
 
-		operation.groupId = (screenlet.groupId != 0)
-				? screenlet.groupId : LiferayServerContext.groupId
-
-		operation.userId = (screenlet.userId != 0)
-				? screenlet.userId
-				: SessionContext.currentUserId
-
-		operation.recordId = (screenlet.recordId != 0) ? screenlet.recordId : nil
-		operation.recordSetId = screenlet.recordSetId
-
+		operation.groupId = groupId
+		operation.userId = userId
+		operation.recordId = recordId
+		operation.recordSetId = recordSetId
 		operation.autoscrollOnValidation = screenlet.autoscrollOnValidation
 
 		return operation

@@ -73,8 +73,8 @@ public func dispatch_main(block: dispatch_block_t) {
 	}
 }
 
-public func dispatch_main(forceAsync: Bool, block: dispatch_block_t) {
-	if !forceAsync && NSThread.isMainThread() {
+public func dispatch_main(forceDispatch: Bool, block: dispatch_block_t) {
+	if !forceDispatch && NSThread.isMainThread() {
 		block()
 	}
 	else {

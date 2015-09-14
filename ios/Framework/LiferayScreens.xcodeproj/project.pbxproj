@@ -266,6 +266,8 @@
 		8839B88F1B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8881B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift */; };
 		8839B8901B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */; };
 		8839B8911B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */; };
+		886FCCB01BA6D59700494BB0 /* SyncManager+UserPortrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886FCCAF1BA6D59700494BB0 /* SyncManager+UserPortrait.swift */; };
+		886FCCB11BA6D59700494BB0 /* SyncManager+UserPortrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886FCCAF1BA6D59700494BB0 /* SyncManager+UserPortrait.swift */; };
 		887F0D031B98973A0007AECE /* ServerReadOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0CFC1B98833D0007AECE /* ServerReadOperationInteractor.swift */; };
 		887F0D041B98973A0007AECE /* ServerReadOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0CFC1B98833D0007AECE /* ServerReadOperationInteractor.swift */; };
 		887F0D051B9897600007AECE /* ServerWriteOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0CFF1B988EA60007AECE /* ServerWriteOperationInteractor.swift */; };
@@ -576,6 +578,7 @@
 		8839B8871B0CD5C4006C18F1 /* GetUserByEmailOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByEmailOperation.swift; sourceTree = "<group>"; };
 		8839B8881B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByScreenNameOperation.swift; sourceTree = "<group>"; };
 		8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByUserIdOperation.swift; sourceTree = "<group>"; };
+		886FCCAF1BA6D59700494BB0 /* SyncManager+UserPortrait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+UserPortrait.swift"; sourceTree = "<group>"; };
 		887F0CFC1B98833D0007AECE /* ServerReadOperationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerReadOperationInteractor.swift; sourceTree = "<group>"; };
 		887F0CFF1B988EA60007AECE /* ServerWriteOperationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerWriteOperationInteractor.swift; sourceTree = "<group>"; };
 		887F0D081B999CD90007AECE /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
@@ -864,6 +867,7 @@
 			children = (
 				881E49C51B95CE65007DBEC9 /* DownloadUserPortraitInteractor.swift */,
 				880ACA5A1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift */,
+				886FCCAF1BA6D59700494BB0 /* SyncManager+UserPortrait.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -1877,6 +1881,7 @@
 				8892C6AC1ACBD89400192232 /* Global.swift in Sources */,
 				880ACA5B1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift in Sources */,
 				881E60D01ACBE56700862B9E /* LiferayPaginationOperation.swift in Sources */,
+				886FCCB01BA6D59700494BB0 /* SyncManager+UserPortrait.swift in Sources */,
 				881E62281ACBFC3400862B9E /* AssetListView_default.swift in Sources */,
 				881E62421ACBFC3400862B9E /* DDLFieldTextareaTableCell_default.swift in Sources */,
 				881E62491ACBFC3400862B9E /* DDLSubmitButtonTableCell_default.swift in Sources */,
@@ -2027,6 +2032,7 @@
 				8839B8911B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift in Sources */,
 				881E63051ACC06B900862B9E /* BaseLoginScreenletTestCase.swift in Sources */,
 				881E61A81ACBF97000862B9E /* uBDD.swift in Sources */,
+				886FCCB11BA6D59700494BB0 /* SyncManager+UserPortrait.swift in Sources */,
 				88DE25181AD2AB0A00714701 /* DDLFieldStringWithOptions_Tests.swift in Sources */,
 				88B273161B7109E200477E5E /* MBProgressHUDPresenter.swift in Sources */,
 				88CA806F1B25EE04004C1D59 /* CredentialsStore.swift in Sources */,

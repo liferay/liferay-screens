@@ -42,7 +42,7 @@ import Foundation
 
 	public weak var delegate: SyncManagerDelegate?
 
-	private let cacheManager: CacheManager
+	public let cacheManager: CacheManager
 
 	private let syncQueue: NSOperationQueue
 
@@ -83,58 +83,9 @@ import Foundation
 			ScreenletName(UserPortraitScreenlet): userPortraitSynchronizer]
 
 		if let sychronizerBuilder = sychronizers[screenletName] {
-			let synchronizer = sychronizerBuilder(key, attributes)
+			let synchronizer = sychronizerBuilder(key, attributes: attributes)
 
 			syncQueue.addOperationWithBlock(to_sync(synchronizer))
-		}
-	}
-
-	private func userPortraitSynchronizer(key: String, _ attributes: [String:AnyObject]) -> Signal -> () {
-		return { signal in
-			let userId = attributes["userId"] as! NSNumber
-
-			self.cacheManager.getImage(
-					collection: ScreenletName(UserPortraitScreenlet),
-					key: key) {
-
-				if let image = $0 {
-					let interactor = UploadUserPortraitInteractor(
-						screenlet: nil,
-						userId: userId.longLongValue,
-						image: image)
-
-					// this strategy saves the send date after the operation
-					interactor.cacheStrategy = .CacheFirst
-
-					interactor.onSuccess = {
-						self.delegate?.syncManager?(self,
-							onItemSyncCompletedScreenlet: ScreenletName(UserPortraitScreenlet),
-							key: key,
-							attributes: attributes)
-
-						signal()
-					}
-
-					interactor.onFailure = { err in
-						self.delegate?.syncManager?(self,
-							onItemSyncFailedScreenlet: ScreenletName(UserPortraitScreenlet),
-							error: err,
-							key: key,
-							attributes: attributes)
-
-						// TODO retry?
-						signal()
-					}
-
-					if !interactor.start() {
-						signal()
-					}
-				}
-				else {
-					signal()
-					// TODO err?
-				}
-			}
 		}
 	}
 

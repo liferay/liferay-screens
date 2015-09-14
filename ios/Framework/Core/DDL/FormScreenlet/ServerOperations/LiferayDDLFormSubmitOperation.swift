@@ -44,7 +44,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 
 		if error == nil {
 			if (userId ?? 0) == 0 {
-				return ValidationError("ddlform-screenlet", "undefined-structure")
+				return ValidationError("ddlform-screenlet", "undefined-user")
 			}
 
 			if groupId == nil {

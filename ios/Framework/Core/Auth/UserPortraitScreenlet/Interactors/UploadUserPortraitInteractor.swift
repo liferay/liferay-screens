@@ -55,8 +55,6 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 	override func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {
 			// update cache with date sent
-			let now = NSDate()
-
 			SessionContext.currentCacheManager?.setClean(
 				collection: ScreenletName(UserPortraitScreenlet),
 				key: "userId-\(userId)",
