@@ -26,11 +26,20 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	public var resultRecordId: Int64?
 	public var resultAttributes: NSDictionary?
 
+	private let values: [String:AnyObject]
+	private let viewModel: DDLFormViewModel?
 
-	internal let viewModel: DDLFormViewModel
 
+	public convenience init(viewModel: DDLFormViewModel) {
+		self.init(values: viewModel.values, viewModel: viewModel)
+	}
 
-	public init(viewModel: DDLFormViewModel) {
+	public convenience init(values: [String:AnyObject]) {
+		self.init(values: values, viewModel: nil)
+	}
+
+	private init(values: [String:AnyObject], viewModel: DDLFormViewModel?) {
+		self.values = values
 		self.viewModel = viewModel
 
 		super.init()
@@ -55,11 +64,13 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 				return ValidationError("ddlform-screenlet", "undefined-recordset")
 			}
 
-			if viewModel.values.isEmpty {
+			if values.isEmpty {
 				return ValidationError("ddlform-screenlet", "undefined-values")
 			}
 
-			error = viewModel.validateForm(autoscroll: autoscrollOnValidation)
+			if let viewModel = viewModel {
+				error = viewModel.validateForm(autoscroll: autoscrollOnValidation)
+			}
 		}
 
 		return error
@@ -83,14 +94,14 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 			recordDictionary = service.addRecordWithGroupId(groupId!,
 					recordSetId: recordSetId!,
 					displayIndex: 0,
-					fieldsMap: viewModel.values,
+					fieldsMap: viewModel?.values,
 					serviceContext: serviceContextWrapper,
 					error: &lastError)
 		}
 		else {
 			recordDictionary = service.updateRecordWithRecordId(recordId!,
 					displayIndex: 0,
-					fieldsMap: viewModel.values,
+					fieldsMap: values,
 					mergeFields: true,
 					serviceContext: serviceContextWrapper,
 					error: &lastError)
