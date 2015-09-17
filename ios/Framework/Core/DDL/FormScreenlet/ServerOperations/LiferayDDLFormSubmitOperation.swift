@@ -80,35 +80,35 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 		let service = LRDDLRecordService_v62(session: session)
 
 		let serviceContextAttributes = [
-				"userId": NSNumber(longLong: userId!),
-				"scopeGroupId": NSNumber(longLong: groupId!)]
+			"userId": NSNumber(longLong: userId!),
+			"scopeGroupId": NSNumber(longLong: groupId!)]
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
 
 		resultRecordId = nil
 		resultAttributes = nil
 
-		var recordDictionary: NSDictionary
+		var recordDictionary: [NSObject : AnyObject]?
 
 		if recordId == nil {
 			recordDictionary = service.addRecordWithGroupId(groupId!,
-					recordSetId: recordSetId!,
-					displayIndex: 0,
-					fieldsMap: viewModel?.values,
-					serviceContext: serviceContextWrapper,
-					error: &lastError)
+				recordSetId: recordSetId!,
+				displayIndex: 0,
+				fieldsMap: viewModel?.values,
+				serviceContext: serviceContextWrapper,
+				error: &lastError)
 		}
 		else {
 			recordDictionary = service.updateRecordWithRecordId(recordId!,
-					displayIndex: 0,
-					fieldsMap: values,
-					mergeFields: true,
-					serviceContext: serviceContextWrapper,
-					error: &lastError)
+				displayIndex: 0,
+				fieldsMap: values,
+				mergeFields: true,
+				serviceContext: serviceContextWrapper,
+				error: &lastError)
 		}
 
 		if lastError == nil {
-			if let recordIdValue = recordDictionary["recordId"]! as? Int {
+			if let recordIdValue = recordDictionary?["recordId"] as? Int {
 				resultRecordId = Int64(recordIdValue)
 				resultAttributes = recordDictionary
 			}
