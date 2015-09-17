@@ -14,15 +14,19 @@
 import UIKit
 
 
-class DDLFormSubmitFormInteractor: ServerOperationInteractor {
+class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 	let groupId: Int64
 	let recordSetId: Int64
 	let recordId: Int64?
 	let userId: Int64?
+	let values: [String:AnyObject]?
 
 	var resultRecordId: Int64?
 	var resultAttributes: NSDictionary?
+
+	private var lastCacheKeyUsed: String?
+
 
 	override init(screenlet: BaseScreenlet?) {
 		let formScreenlet = screenlet as! DDLFormScreenlet
@@ -40,20 +44,54 @@ class DDLFormSubmitFormInteractor: ServerOperationInteractor {
 			: nil
 
 		recordSetId = formScreenlet.recordSetId
+		values = nil
 
 		super.init(screenlet: formScreenlet)
 	}
 
-	override func createOperation() -> LiferayDDLFormSubmitOperation {
-		let screenlet = self.screenlet as! DDLFormScreenlet
+	init(groupId: Int64,
+			recordSetId: Int64,
+			recordId: Int64?,
+			userId: Int64?,
+			values: [String:AnyObject]) {
 
-		let operation = LiferayDDLFormSubmitOperation(viewModel: screenlet.viewModel)
+		self.groupId = (groupId != 0)
+			? groupId
+			: LiferayServerContext.groupId
+
+		self.userId = (userId ?? 0 != 0)
+			? userId
+			: SessionContext.currentUserId
+
+		self.recordId = recordId
+		self.recordSetId = recordSetId
+		self.values = values
+
+		super.init(screenlet: nil)
+	}
+
+	override func createOperation() -> LiferayDDLFormSubmitOperation {
+
+		let operation: LiferayDDLFormSubmitOperation
+
+		if let screenlet = self.screenlet as? DDLFormScreenlet {
+			operation = LiferayDDLFormSubmitOperation(
+					viewModel: screenlet.viewModel)
+
+			operation.autoscrollOnValidation = screenlet.autoscrollOnValidation
+		}
+		else if let values = values {
+			operation = LiferayDDLFormSubmitOperation(
+				values: values)
+		}
+		else {
+			fatalError("You need either values or the screenlet to submit the DDLForm")
+		}
 
 		operation.groupId = groupId
 		operation.userId = userId
 		operation.recordId = recordId
 		operation.recordSetId = recordSetId
-		operation.autoscrollOnValidation = screenlet.autoscrollOnValidation
 
 		return operation
 	}
@@ -63,6 +101,73 @@ class DDLFormSubmitFormInteractor: ServerOperationInteractor {
 			self.resultRecordId = loadOp.resultRecordId
 			self.resultAttributes = loadOp.resultAttributes
 		}
+	}
+
+
+	//MARK: Cache methods
+
+	override func writeToCache(op: ServerOperation) {
+		let submitOp = op as! LiferayDDLFormSubmitOperation
+
+		let formData: [String:AnyObject]
+
+		if let screenlet = self.screenlet as? DDLFormScreenlet {
+			formData = screenlet.viewModel.values
+		}
+		else if let values = self.values {
+			formData = values
+		}
+		else {
+			return
+		}
+
+		lastCacheKeyUsed = cacheKey(submitOp)
+
+		SessionContext.currentCacheManager?.setDirty(
+			collection: ScreenletName(DDLFormScreenlet),
+			key: lastCacheKeyUsed!,
+			value: formData,
+			attributes: cacheAttributes())
+	}
+
+	override func callOnSuccess() {
+		if let cacheKey = lastCacheKeyUsed
+				where cacheStrategy == .CacheFirst {
+
+			// update cache with date sent
+			SessionContext.currentCacheManager?.setClean(
+				collection: ScreenletName(DDLFormScreenlet),
+				key: cacheKey,
+				attributes: cacheAttributes())
+		}
+
+		super.callOnSuccess()
+	}
+
+
+	private func cacheKey(op: LiferayDDLFormSubmitOperation) -> String {
+		if let recordId = op.recordId {
+			return "recordId-\(recordId)"
+		}
+		else {
+			//TODO
+			return ""
+		}
+	}
+
+	private func cacheAttributes() -> [String:AnyObject] {
+		var attributes = [
+			"groupId": NSNumber(longLong: groupId),
+			"recordSetId": NSNumber(longLong: recordSetId)]
+
+		if let userId = self.userId {
+			attributes["userId"] = NSNumber(longLong: userId)
+		}
+		if let recordId = self.recordId {
+			attributes["recordId"] = NSNumber(longLong: recordId)
+		}
+
+		return attributes
 	}
 
 }
