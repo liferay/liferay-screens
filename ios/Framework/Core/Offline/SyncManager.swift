@@ -80,7 +80,9 @@ import Foundation
 			_ attributes: [String:AnyObject]) {
 
 		let sychronizers = [
-			ScreenletName(UserPortraitScreenlet): userPortraitSynchronizer]
+				ScreenletName(UserPortraitScreenlet): userPortraitSynchronizer,
+				ScreenletName(DDLFormScreenlet): formSynchronizer,
+			]
 
 		if let sychronizerBuilder = sychronizers[screenletName] {
 			let synchronizer = sychronizerBuilder(key, attributes: attributes)
