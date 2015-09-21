@@ -47,13 +47,6 @@ public class AssetListScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
-	@Override
-	protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale)
-		throws Exception {
-
-		interactor.loadRows(_groupId, _classNameId, startRow, endRow, locale);
-	}
-
 	public long getClassNameId() {
 		return _classNameId;
 	}
@@ -71,18 +64,26 @@ public class AssetListScreenlet
 	}
 
 	@Override
+	protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale)
+		throws Exception {
+
+		interactor.loadRows(_groupId, _classNameId, _portletItemName, startRow, endRow, locale);
+	}
+
+	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.AssetListScreenlet, 0, 0);
 		_classNameId = typedArray.getInt(
 			R.styleable.AssetListScreenlet_classNameId, 0);
 
-
 		long groupId = LiferayServerContext.getGroupId();
 
 		_groupId = castToLongOrUseDefault(typedArray.getString(
 			R.styleable.AssetListScreenlet_groupId), groupId);
 
+		_portletItemName = typedArray.getString(R.styleable.AssetListScreenlet_portletItemName);
+		
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
@@ -95,5 +96,6 @@ public class AssetListScreenlet
 
 	private long _classNameId;
 	private long _groupId;
+	private String _portletItemName;
 
 }
