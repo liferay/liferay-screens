@@ -30,6 +30,17 @@
 	return (NSDictionary *)[self.session invoke:_command error:error];
 }
 
+- (NSDictionary *)getDdlRecordWithAttributesWithDdlRecordId:(long long)ddlRecordId locale:(NSString *)locale error:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+		@"ddlRecordId": @(ddlRecordId),
+		@"locale": locale
+	}];
+
+	NSDictionary *_command = @{@"/screens-web.screensddlrecord/get-ddl-record-with-attributes": _params};
+
+	return (NSDictionary *)[self.session invoke:_command error:error];
+}
+
 - (NSArray *)getDdlRecordsWithDdlRecordSetId:(long long)ddlRecordSetId locale:(NSString *)locale start:(int)start end:(int)end error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"ddlRecordSetId": @(ddlRecordSetId),
