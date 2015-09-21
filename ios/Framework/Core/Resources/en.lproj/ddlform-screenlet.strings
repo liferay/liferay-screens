@@ -8,7 +8,6 @@
 "ddlform-screenlet-undefined-user"="User is undefined";
 "ddlform-screenlet-undefined-group"="Group is undefined";
 "ddlform-screenlet-undefined-recordset"="Recordset is undefined";
-"ddlform-screenlet-undefined-record"="Record is undefined";
 "ddlform-screenlet-undefined-values"="Values are undefined";
 "ddlform-screenlet-undefined-current-value"="Values are empty";
 "ddlform-screenlet-undefined-fileprefix"="File prefix undefined";

@@ -16,25 +16,20 @@ import UIKit
 
 public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
-	public var recordId: Int64?
+	public var recordId: Int64
 
 	public var resultRecord: [String:AnyObject]?
 	public var resultRecordId: Int64?
 
 
-	//MARK: ServerOperation
+	public init(recordId: Int64) {
+		self.recordId = recordId
 
-	override public func validateData() -> ValidationError? {
-		let error = super.validateData()
-
-		if error == nil {
-			if recordId == nil {
-				return ValidationError("ddlform-screenlet", "undefined-record")
-			}
-		}
-
-		return error
+		super.init()
 	}
+
+
+	//MARK: ServerOperation
 
 	override public func doRun(#session: LRSession) {
 		let service = LRScreensddlrecordService_v62(session: session)
@@ -42,14 +37,14 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 		resultRecord = nil
 		resultRecordId = nil
 
-		let recordDictionary = service.getDdlRecordWithDdlRecordId(recordId!,
+		let recordDictionary = service.getDdlRecordWithDdlRecordId(recordId,
 				locale: NSLocale.currentLocaleString,
 				error: &lastError)
 
 		if lastError == nil {
 			if recordDictionary is [String:AnyObject] {
 				resultRecord = recordDictionary as? [String:AnyObject]
-				resultRecordId = self.recordId!
+				resultRecordId = recordId
 			}
 			else {
 				lastError = NSError.errorWithCause(.InvalidServerResponse)
