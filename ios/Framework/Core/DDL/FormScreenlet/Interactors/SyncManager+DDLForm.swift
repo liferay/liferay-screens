@@ -36,9 +36,10 @@ extension SyncManager {
 						recordSetId: recordSetId.longLongValue,
 						recordId: recordId?.longLongValue,
 						userId: userId?.longLongValue,
-						values: values)
+						values: values,
+						cacheKey: key)
 
-					// this strategy saves the send date after the operation
+					// this strategy saves the "send date" after the operation
 					interactor.cacheStrategy = .CacheFirst
 
 					interactor.onSuccess = {

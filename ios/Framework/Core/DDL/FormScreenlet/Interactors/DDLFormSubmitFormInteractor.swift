@@ -53,7 +53,8 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			recordSetId: Int64,
 			recordId: Int64?,
 			userId: Int64?,
-			values: [String:AnyObject]) {
+			values: [String:AnyObject],
+			cacheKey: String) {
 
 		self.groupId = (groupId != 0)
 			? groupId
@@ -66,6 +67,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 		self.recordId = recordId
 		self.recordSetId = recordSetId
 		self.values = values
+		self.lastCacheKeyUsed = cacheKey
 
 		super.init(screenlet: nil)
 	}
@@ -121,7 +123,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			return
 		}
 
-		lastCacheKeyUsed = cacheKey(submitOp)
+		lastCacheKeyUsed = lastCacheKeyUsed ?? cacheKey(submitOp.recordId)
 
 		SessionContext.currentCacheManager?.setDirty(
 			collection: ScreenletName(DDLFormScreenlet),
@@ -131,27 +133,42 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	}
 
 	override func callOnSuccess() {
-		if let cacheKey = lastCacheKeyUsed
+		if let lastCacheKey = lastCacheKeyUsed
 				where cacheStrategy == .CacheFirst {
 
-			// update cache with date sent
-			SessionContext.currentCacheManager?.setClean(
-				collection: ScreenletName(DDLFormScreenlet),
-				key: cacheKey,
-				attributes: cacheAttributes())
+			if let resultRecordId = resultRecordId {
+				// create new cache entry and delete the draft one
+				if recordId == nil && lastCacheKey.hasPrefix("draft-") {
+					SessionContext.currentCacheManager?.remove(
+						collection: ScreenletName(DDLFormScreenlet),
+						key: lastCacheKey)
+				}
+
+				SessionContext.currentCacheManager?.setClean(
+					collection: ScreenletName(DDLFormScreenlet),
+					key: cacheKey(resultRecordId),
+					attributes: cacheAttributes())
+			}
+			else {
+				// update current cache entry with date sent
+				SessionContext.currentCacheManager?.setClean(
+					collection: ScreenletName(DDLFormScreenlet),
+					key: lastCacheKey,
+					attributes: cacheAttributes())
+			}
+
 		}
 
 		super.callOnSuccess()
 	}
 
 
-	private func cacheKey(op: LiferayDDLFormSubmitOperation) -> String {
-		if let recordId = op.recordId {
+	private func cacheKey(recordId: Int64?) -> String {
+		if let recordId = recordId {
 			return "recordId-\(recordId)"
 		}
 		else {
-			//TODO
-			return ""
+			return "draft-\(NSDate().timeIntervalSince1970)"
 		}
 	}
 
@@ -164,6 +181,9 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			attributes["userId"] = NSNumber(longLong: userId)
 		}
 		if let recordId = self.recordId {
+			attributes["recordId"] = NSNumber(longLong: recordId)
+		}
+		if let recordId = self.resultRecordId {
 			attributes["recordId"] = NSNumber(longLong: recordId)
 		}
 
