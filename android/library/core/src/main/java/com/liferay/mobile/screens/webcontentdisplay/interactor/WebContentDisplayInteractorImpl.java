@@ -18,6 +18,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.service.v62.ScreensjournalarticleService;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 
 import java.util.Locale;
@@ -26,21 +27,25 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayInteractorImpl
-	extends BaseRemoteInteractor<WebContentDisplayListener>
-	implements WebContentDisplayInteractor {
+		extends BaseRemoteInteractor<WebContentDisplayListener>
+		implements WebContentDisplayInteractor {
 
 	public WebContentDisplayInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 
-	public void load(long groupId, String articleId, Locale locale)
-		throws Exception {
+	public void load(long groupId, String articleId, String templateId, Locale locale)
+			throws Exception {
 
 		validate(groupId, articleId, locale);
 
-		JournalArticleService service = getJournalArticleService();
-
-		service.getArticleContent(groupId, articleId, locale.toString(), null);
+		if (templateId == null) {
+			JournalArticleService service = getJournalArticleService();
+			service.getArticleContent(groupId, articleId, locale.toString(), null);
+		} else {
+			ScreensjournalarticleService screensjournalarticleService = getScreensJournalArticleService();
+			screensjournalarticleService.getJournalArticleByStructureId(groupId, articleId, Long.valueOf(templateId), locale.toString());
+		}
 	}
 
 	public void onEvent(WebContentDisplayEvent event) {
@@ -59,9 +64,17 @@ public class WebContentDisplayInteractorImpl
 	protected JournalArticleService getJournalArticleService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(
-			new WebContentDisplayCallback(getTargetScreenletId()));
+				new WebContentDisplayCallback(getTargetScreenletId()));
 
 		return new JournalArticleService(session);
+	}
+
+	protected ScreensjournalarticleService getScreensJournalArticleService() {
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setCallback(
+				new WebContentDisplayCallback(getTargetScreenletId()));
+
+		return new ScreensjournalarticleService(session);
 	}
 
 	protected void validate(long groupId, String articleId, Locale locale) {
