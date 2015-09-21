@@ -156,7 +156,6 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 					key: lastCacheKey,
 					attributes: cacheAttributes())
 			}
-
 		}
 
 		super.callOnSuccess()
@@ -185,6 +184,9 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 		}
 		if let recordId = self.resultRecordId {
 			attributes["recordId"] = NSNumber(longLong: recordId)
+		}
+		if let modifiedDate = self.resultAttributes?["modifiedDate"] as? NSNumber {
+			attributes["modifiedDate"] = modifiedDate
 		}
 
 		return attributes
