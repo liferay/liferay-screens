@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.testapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
@@ -40,6 +41,12 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 		_loginScreenlet.setListener(this);
 
 		hideInactiveScreenlet(R.id.login_default, R.id.login_material);
+
+		EditText userName = (EditText) _loginScreenlet.findViewById(R.id.liferay_login);
+		userName.setText(getString(R.string.default_user_name));
+
+		EditText password = (EditText) _loginScreenlet.findViewById(R.id.liferay_password);
+		password.setText(getString(R.string.default_password));
 	}
 
 	@Override

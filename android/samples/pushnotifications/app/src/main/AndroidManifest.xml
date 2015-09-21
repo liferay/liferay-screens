@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-	package="com.liferay.mobile.pushnotifications"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest package="com.liferay.mobile.pushnotifications"
+		  xmlns:android="http://schemas.android.com/apk/res/android">
 
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 	<uses-permission android:name="android.permission.CAMERA"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
 
 	<application
 		android:allowBackup="true"
@@ -24,8 +25,7 @@
 			android:label="@string/notifications_activity"/>
 		<activity
 			android:name=".activities.NotificationDetailActivity"
-			android:label="@string/notification_detail">
-		</activity>
+			android:label="@string/notification_detail"/>
 
 		<receiver
 			android:name=".notification.PushReceiver"
