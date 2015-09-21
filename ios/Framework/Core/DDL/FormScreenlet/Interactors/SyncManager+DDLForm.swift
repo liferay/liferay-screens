@@ -45,36 +45,45 @@ extension SyncManager {
 			attributes: [String:AnyObject],
 			signal: Signal) {
 
-		let cachedModifiedDate = attributes["modifiedDate"] as? NSNumber
+		if let cachedModifiedDate = attributes["modifiedDate"] as? NSNumber {
+			// updating record: check consistency first
+			loadRecordModifiedDate(recordId) { freshModifiedDate in
+				if freshModifiedDate != nil
+					&& freshModifiedDate > cachedModifiedDate.doubleValue {
+						self.sendOfflineRecord(
+							key: key,
+							attributes: attributes,
+							signal: signal)
+				}
+				else {
+					self.delegate?.syncManager?(self,
+						onItemSyncFailedScreenlet: ScreenletName(DDLFormScreenlet),
+						error: NSError.errorWithCause(.ConflictFound),
+						key: key,
+						attributes: attributes)
 
-		// updating record: check consistency first
-		loadRecordModifiedDate(recordId) { freshModifiedDate in
-			if freshModifiedDate != nil
-					&& freshModifiedDate < cachedModifiedDate?.longLongValue {
-				self.sendOfflineRecord(
-					key: key,
-					attributes: attributes,
-					signal: signal)
-			}
-			else {
-				self.delegate?.syncManager?(self,
-					onItemSyncFailedScreenlet: ScreenletName(DDLFormScreenlet),
-					error: NSError.errorWithCause(.ConflictFound),
-					key: key,
-					attributes: attributes)
-
-				signal()
+					signal()
+				}
 			}
 		}
+		else {
+			// no cached modified date: overwrite
+			self.sendOfflineRecord(
+				key: key,
+				attributes: attributes,
+				signal: signal)
+		}
+
+
 	}
 
-	private func loadRecordModifiedDate(recordId: Int64, result: Int64? -> ()) {
+	private func loadRecordModifiedDate(recordId: Int64, result: Double? -> ()) {
 		let op = LiferayDDLFormRecordLoadOperation(recordId: recordId)
 
 		op.validateAndEnqueue {
 			if let op = $0 as? LiferayDDLFormRecordLoadOperation,
 					modifiedDate = op.resultRecordData?["modifiedDate"] as? NSNumber {
-				result(modifiedDate.longLongValue)
+				result(modifiedDate.doubleValue / 1000.0)
 			}
 			else {
 				result(nil)

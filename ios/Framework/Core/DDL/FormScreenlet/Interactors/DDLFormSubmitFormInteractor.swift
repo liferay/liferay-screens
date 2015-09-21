@@ -22,6 +22,8 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	let userId: Int64?
 	let values: [String:AnyObject]?
 
+	var recordModifiedDate: NSDate?
+
 	var resultRecordId: Int64?
 	var resultAttributes: NSDictionary?
 
@@ -45,6 +47,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 		recordSetId = formScreenlet.recordSetId
 		values = nil
+		recordModifiedDate = nil
 
 		super.init(screenlet: formScreenlet)
 	}
@@ -102,6 +105,11 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 		if let loadOp = op as? LiferayDDLFormSubmitOperation {
 			self.resultRecordId = loadOp.resultRecordId
 			self.resultAttributes = loadOp.resultAttributes
+
+			if let modifiedDate = loadOp.resultAttributes?["modifiedDate"] as? NSNumber {
+				let epoch = modifiedDate.doubleValue / 1000
+				self.recordModifiedDate = NSDate(timeIntervalSince1970: epoch)
+			}
 		}
 	}
 
@@ -185,8 +193,8 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 		if let recordId = self.resultRecordId {
 			attributes["recordId"] = NSNumber(longLong: recordId)
 		}
-		if let modifiedDate = self.resultAttributes?["modifiedDate"] as? NSNumber {
-			attributes["modifiedDate"] = modifiedDate
+		if let recordModifiedDate = recordModifiedDate {
+			attributes["modifiedDate"] = NSNumber(double: recordModifiedDate.timeIntervalSince1970)
 		}
 
 		return attributes

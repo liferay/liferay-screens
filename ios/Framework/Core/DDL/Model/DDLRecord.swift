@@ -32,6 +32,14 @@ public class DDLRecord: NSObject, NSCoding {
 		}
 	}
 
+	public var modifiedDate: NSDate? {
+		if let javaEpoch = attributes["modifiedDate"] as? NSNumber {
+			return NSDate(timeIntervalSince1970: javaEpoch.doubleValue / 1000.0)
+		}
+
+		return nil
+	}
+
 	public subscript(fieldName: String) -> DDLField? {
 		return fieldBy(name: fieldName)
 	}
