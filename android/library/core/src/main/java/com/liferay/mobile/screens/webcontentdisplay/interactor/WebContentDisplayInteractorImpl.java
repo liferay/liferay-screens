@@ -44,7 +44,7 @@ public class WebContentDisplayInteractorImpl
 			service.getArticleContent(groupId, articleId, locale.toString(), null);
 		} else {
 			ScreensjournalarticleService screensjournalarticleService = getScreensJournalArticleService();
-			screensjournalarticleService.getJournalArticleByStructureId(groupId, articleId, Long.valueOf(templateId), locale.toString());
+			screensjournalarticleService.getJournalArticleByTemplateId(groupId, articleId, Long.valueOf(templateId), locale.toString());
 		}
 	}
 
