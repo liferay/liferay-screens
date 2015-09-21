@@ -73,7 +73,7 @@ extension SyncManager {
 
 		op.validateAndEnqueue {
 			if let op = $0 as? LiferayDDLFormRecordLoadOperation,
-					modifiedDate = op.resultRecord?["modifiedDate"] as? NSNumber {
+					modifiedDate = op.resultRecordData?["modifiedDate"] as? NSNumber {
 				result(modifiedDate.longLongValue)
 			}
 			else {

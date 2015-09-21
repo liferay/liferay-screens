@@ -74,14 +74,14 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				recordForm = loadFormOp.resultRecord,
 				formUserId = loadFormOp.resultUserId {
 
-			recordData = loadRecordOp.resultRecord
+			recordData = loadRecordOp.resultRecordData
 			recordId = loadRecordOp.resultRecordId
 
 			self.resultFormRecord = recordForm
 			self.resultFormUserId = formUserId
 		}
 		else if let loadRecordOp = op as? LiferayDDLFormRecordLoadOperation {
-			recordData = loadRecordOp.resultRecord
+			recordData = loadRecordOp.resultRecordData
 			recordId = loadRecordOp.resultRecordId
 		}
 		else {
@@ -106,7 +106,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				recordForm = loadFormOp.resultRecord,
 				formUserId = loadFormOp.resultUserId,
 				loadRecordOp = chain.currentOperation as? LiferayDDLFormRecordLoadOperation,
-				recordData = loadRecordOp.resultRecord {
+				recordData = loadRecordOp.resultRecordData {
 
 			SessionContext.currentCacheManager?.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
@@ -122,7 +122,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				attributes: [:])
 		}
 		else if let loadRecordOp = op as? LiferayDDLFormRecordLoadOperation,
-					recordData = loadRecordOp.resultRecord {
+					recordData = loadRecordOp.resultRecordData {
 
 			// save just record data
 			SessionContext.currentCacheManager?.setClean(
@@ -155,7 +155,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 					loadFormOp.resultUserId = (attributes[0]?["userId"] as? NSNumber)?.longLongValue
 
 					let loadRecordOp = LiferayDDLFormRecordLoadOperation(recordId: self.recordId)
-					loadRecordOp.resultRecord = recordData
+					loadRecordOp.resultRecordData = recordData
 					loadRecordOp.resultRecordId = self.recordId
 					chain.currentOperation = loadRecordOp
 
@@ -173,10 +173,10 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 					collection: ScreenletName(DDLFormScreenlet),
 					key: "recordId-\(loadRecordOp.recordId)") {
 
-				loadRecordOp.resultRecord = $0 as? [String:AnyObject]
+				loadRecordOp.resultRecordData = $0 as? [String:AnyObject]
 				loadRecordOp.resultRecordId = loadRecordOp.recordId
 
-				result(loadRecordOp.resultRecord)
+				result(loadRecordOp.resultRecordData)
 			}
 		}
 		

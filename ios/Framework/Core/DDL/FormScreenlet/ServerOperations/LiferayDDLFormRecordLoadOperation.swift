@@ -18,7 +18,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
 	public var recordId: Int64
 
-	public var resultRecord: [String:AnyObject]?
+	public var resultRecordData: [String:AnyObject]?
 	public var resultRecordId: Int64?
 
 
@@ -34,7 +34,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 	override public func doRun(#session: LRSession) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
-		resultRecord = nil
+		resultRecordData = nil
 		resultRecordId = nil
 
 		let recordDictionary = service.getDdlRecordWithDdlRecordId(recordId,
@@ -43,7 +43,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
 		if lastError == nil {
 			if recordDictionary is [String:AnyObject] {
-				resultRecord = recordDictionary as? [String:AnyObject]
+				resultRecordData = recordDictionary as? [String:AnyObject]
 				resultRecordId = recordId
 			}
 			else {
