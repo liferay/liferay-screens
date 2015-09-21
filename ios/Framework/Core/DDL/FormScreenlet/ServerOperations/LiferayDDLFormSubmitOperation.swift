@@ -94,7 +94,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 			recordDictionary = service.addRecordWithGroupId(groupId!,
 				recordSetId: recordSetId!,
 				displayIndex: 0,
-				fieldsMap: viewModel?.values,
+				fieldsMap: values,
 				serviceContext: serviceContextWrapper,
 				error: &lastError)
 		}
