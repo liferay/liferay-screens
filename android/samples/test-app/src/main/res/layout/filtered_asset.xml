@@ -1,0 +1,15 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				xmlns:liferay="http://schemas.android.com/apk/res-auto"
+				xmlns:tools="http://schemas.android.com/tools"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				tools:context="com.liferay.mobile.screens.testapp.FilteredAssetActivity">
+
+	<com.liferay.mobile.screens.assetlist.AssetListScreenlet
+		android:id="@+id/filtered_asset_list"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		liferay:layoutId="@layout/asset_list_default"
+		liferay:portletItemName="manual"/>
+
+</RelativeLayout>

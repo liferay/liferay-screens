@@ -21,7 +21,7 @@
 	<string name="bookmark_folder">20622</string>
 
 	<!-- WebContentDisplayScreenlet values -->
-	<string name="article_id">20602</string>
+	<string name="liferay_article_id">20602</string>
 
 	<!-- OAuth values -->
 	<string name="liferay_oauth_consumer_key">f4adeb99-9ddf-4c9c-a408-347ce8be340a</string>
