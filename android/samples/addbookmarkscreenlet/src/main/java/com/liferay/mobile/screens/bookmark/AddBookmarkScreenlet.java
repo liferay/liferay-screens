@@ -57,7 +57,7 @@ public class AddBookmarkScreenlet
 
 		String defaultTitle = typedArray.getString(R.styleable.AddBookmarkScreenlet_defaultTitle);
 
-		_folderId = getLongFromString(typedArray.getString(R.styleable.AddBookmarkScreenlet_folderId));
+		_folderId = castToLong(typedArray.getString(R.styleable.AddBookmarkScreenlet_folderId));
 
 		typedArray.recycle();
 

@@ -13,7 +13,7 @@
 		android:id="@+id/web_content_display"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		liferay:articleId="@string/article_id"
+		liferay:articleId="@string/liferay_article_id"
 		liferay:layoutId="@layout/webcontentdisplay_default"/>
 
 </LinearLayout>
