@@ -9,6 +9,6 @@
 		android:id="@+id/bookmark_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		liferay:folderId="@integer/bookmark_folder"
+		liferay:folderId="@string/bookmark_folder"
 		liferay:layoutId="@layout/bookmark_default"/>
 </LinearLayout>

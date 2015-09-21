@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.context;
 
+import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONException;
@@ -54,7 +55,7 @@ public class User {
 	}
 
 	public long getId() {
-		return safeCastToLong(_attributes.get(USER_ID));
+		return JSONUtil.safeCastToLong(_attributes.get(USER_ID));
 	}
 
 	public String getUuid() {
@@ -62,15 +63,7 @@ public class User {
 	}
 
 	public long getPortraitId() {
-		return safeCastToLong(_attributes.get(PORTRAIT_ID));
-	}
-
-	private long safeCastToLong(final Object o) {
-		if (o instanceof Integer) {
-			return (int) o;
-		} else {
-			return (long) o;
-		}
+		return JSONUtil.safeCastToLong(_attributes.get(PORTRAIT_ID));
 	}
 
 	public String getFirstName() {

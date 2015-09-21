@@ -17,11 +17,11 @@
 		android:paddingTop="0dp"
 		liferay:autoLoad="false"
 		liferay:filePrefix="jre"
-		liferay:folderId="@integer/folder_id"
+		liferay:folderId="@string/folder_id"
 		liferay:layoutId="@layout/ddl_form_default"
-		liferay:recordSetId="@integer/liferay_recordset_id"
-		liferay:repositoryId="@integer/repository_id"
-		liferay:structureId="@integer/liferay_structure_id"/>
+		liferay:recordSetId="@string/liferay_recordset_id"
+		liferay:repositoryId="@string/repository_id"
+		liferay:structureId="@string/liferay_structure_id"/>
 
 	<com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
 		android:id="@+id/ddl_form_material"
@@ -34,11 +34,11 @@
 		liferay:dateFieldLayoutId="@layout/ddlfield_date_material"
 		liferay:documentFieldLayoutId="@layout/ddlfield_document_material"
 		liferay:filePrefix="jre"
-		liferay:folderId="@integer/folder_id"
+		liferay:folderId="@string/folder_id"
 		liferay:layoutId="@layout/ddl_form_material"
-		liferay:recordSetId="@integer/liferay_recordset_id"
-		liferay:repositoryId="@integer/repository_id"
+		liferay:recordSetId="@string/liferay_recordset_id"
+		liferay:repositoryId="@string/repository_id"
 		liferay:selectFieldLayoutId="@layout/ddlfield_select_material"
-		liferay:structureId="@integer/liferay_structure_id"/>
+		liferay:structureId="@string/liferay_structure_id"/>
 
 </LinearLayout>

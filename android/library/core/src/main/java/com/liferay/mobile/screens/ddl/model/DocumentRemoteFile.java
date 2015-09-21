@@ -36,8 +36,8 @@ public class DocumentRemoteFile extends DocumentFile {
 		return _uuid != null;
 	}
 
-	private Integer _groupId;
+	private long _groupId;
 	private String _uuid;
-	private Integer _version;
+	private int _version;
 	private String _title;
 }

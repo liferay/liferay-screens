@@ -215,7 +215,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	protected void toCard2() {
 		super.toCard2();
 		if (_entry != null) {
-			_ddlFormScreenlet.setRecordId((Integer) _entry.getAttributes("recordId"));
+			_ddlFormScreenlet.setRecordId((Long) _entry.getAttributes("recordId"));
 			_ddlFormScreenlet.loadRecord();
 			goLeftCard1();
 		}

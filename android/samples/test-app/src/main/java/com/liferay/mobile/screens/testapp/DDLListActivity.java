@@ -71,8 +71,8 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<D
 	}
 
 	private void loadDDLForm(DDLEntry element) {
-		final Integer recordId = (Integer) (element.getAttributes("recordId"));
-		final Integer recordSetId = (Integer) (element.getAttributes("recordSetId"));
+		final long recordId = element.getRecordId();
+		final long recordSetId = element.getRecordSetId();
 
 		try {
 			Session session = SessionContext.createSessionFromCurrentSession();
@@ -85,7 +85,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<D
 		}
 	}
 
-	private JSONObjectAsyncTaskCallback getCallback(final Integer recordId, final Integer recordSetId) {
+	private JSONObjectAsyncTaskCallback getCallback(final long recordId, final long recordSetId) {
 		return new JSONObjectAsyncTaskCallback() {
 
 			@Override
@@ -94,7 +94,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<D
 					Intent intent = getIntentWithTheme(DDLFormActivity.class);
 					intent.putExtra("recordId", recordId);
 					intent.putExtra("recordSetId", recordSetId);
-					intent.putExtra("structureId", result.getInt("DDMStructureId"));
+					intent.putExtra("structureId", result.getLong("DDMStructureId"));
 
 					Crouton.clearCroutonsForActivity(DDLListActivity.this);
 
