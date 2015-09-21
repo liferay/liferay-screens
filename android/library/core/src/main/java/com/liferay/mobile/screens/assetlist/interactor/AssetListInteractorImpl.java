@@ -18,7 +18,6 @@ import android.util.Pair;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.task.callback.typed.JSONArrayAsyncTaskCallback;
 import com.liferay.mobile.android.v62.assetentry.AssetEntryService;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
@@ -27,7 +26,6 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v62.ScreensassetentryService;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,15 +35,15 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public class AssetListInteractorImpl
-		extends BaseListInteractor<AssetEntry, AssetListInteractorListener> implements AssetListInteractor {
+	extends BaseListInteractor<AssetEntry, AssetListInteractorListener> implements AssetListInteractor {
 
 	public AssetListInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 
 	public void loadRows(
-			long groupId, long classNameId, String portletItemName, int startRow, int endRow, Locale locale)
-			throws Exception {
+		long groupId, long classNameId, String portletItemName, int startRow, int endRow, Locale locale)
+		throws Exception {
 		this._groupId = groupId;
 		this._classNameId = classNameId;
 
@@ -101,12 +99,12 @@ public class AssetListInteractorImpl
 
 		if (_groupId <= 0) {
 			throw new IllegalArgumentException(
-					"GroupId cannot be 0 or negative");
+				"GroupId cannot be 0 or negative");
 		}
 
 		if (_classNameId <= 0) {
 			throw new IllegalArgumentException(
-					"ClassNameId cannot be 0 or negative");
+				"ClassNameId cannot be 0 or negative");
 		}
 
 		super.validate(startRow, endRow, locale);
