@@ -45,15 +45,34 @@ extension SyncManager {
 			attributes: [String:AnyObject],
 			signal: Signal) {
 
-		if let cachedModifiedDate = attributes["modifiedDate"] as? NSNumber {
+		if let localRecord = attributes["record"] as? DDLRecord {
 			// updating record: check consistency first
-			loadRecordModifiedDate(recordId) { freshModifiedDate in
-				if freshModifiedDate != nil
-					&& freshModifiedDate < cachedModifiedDate.longLongValue {
+			loadRecord(recordId) { remoteRecord in
+
+				if let remoteRecord = remoteRecord,
+						localModifiedDate = localRecord.attributes["modifiedDate"] as? NSNumber,
+						remoteModifiedDate = remoteRecord.attributes["modifiedDate"] as? NSNumber {
+
+					if remoteModifiedDate.longLongValue < localModifiedDate.longLongValue {
 						self.sendOfflineRecord(
 							key: key,
 							attributes: attributes,
 							signal: signal)
+					}
+					else {
+						let useLocal = self.delegate?.syncManager?(self,
+							onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+							conflictedKey: key,
+							remoteValue: remoteRecord,
+							localValue: localRecord) ?? false
+
+						if useLocal {
+							self.sendOfflineRecord(
+								key: key,
+								attributes: attributes,
+								signal: signal)
+						}
+					}
 				}
 				else {
 					self.delegate?.syncManager?(self,
@@ -66,7 +85,7 @@ extension SyncManager {
 			}
 		}
 		else {
-			// no cached modified date: overwrite
+			// adding record
 			self.sendOfflineRecord(
 				key: key,
 				attributes: attributes,
@@ -76,13 +95,19 @@ extension SyncManager {
 
 	}
 
-	private func loadRecordModifiedDate(recordId: Int64, result: Int64? -> ()) {
+	private func loadRecord(recordId: Int64, result: DDLRecord? -> ()) {
 		let op = LiferayDDLFormRecordLoadOperation(recordId: recordId)
 
 		op.validateAndEnqueue {
 			if let op = $0 as? LiferayDDLFormRecordLoadOperation,
-					modifiedDate = op.resultRecordAttributes?["modifiedDate"] as? NSNumber {
-				result(modifiedDate.longLongValue)
+					recordData = op.resultRecordData,
+					recordAttributes = op.resultRecordAttributes {
+
+				let remoteRecord = DDLRecord(
+					data: recordData,
+					attributes: recordAttributes)
+
+				result(remoteRecord)
 			}
 			else {
 				result(nil)

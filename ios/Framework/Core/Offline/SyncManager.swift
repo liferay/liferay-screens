@@ -35,6 +35,12 @@ import Foundation
 		attributes: [String:AnyObject],
 		error: NSError)
 
+	optional func syncManager(manager: SyncManager,
+		onItemSyncScreenlet screenlet: String,
+		conflictedKey: String,
+		remoteValue: AnyObject,
+		localValue: AnyObject) -> Bool
+
 }
 
 

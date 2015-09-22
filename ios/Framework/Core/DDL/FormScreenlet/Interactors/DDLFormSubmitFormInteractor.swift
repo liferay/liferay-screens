@@ -185,13 +185,17 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	}
 
 	private func cacheAttributes() -> [String:AnyObject] {
-		var attributes = record.attributes
-
-		attributes["groupId"] = NSNumber(longLong: groupId)
-		attributes["recordSetId"] = NSNumber(longLong: recordSetId)
+		var attributes = [
+			"groupId": NSNumber(longLong: groupId),
+			"recordSetId": NSNumber(longLong: recordSetId),
+			"record": record
+		]
 
 		if let userId = self.userId {
 			attributes["userId"] = NSNumber(longLong: userId)
+		}
+		if let recordId = self.record.recordId {
+			attributes["recordId"] = NSNumber(longLong: recordId)
 		}
 
 		return attributes
