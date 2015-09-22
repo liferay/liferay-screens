@@ -20,6 +20,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 	let structureId: Int64?
 
 	var resultRecordData: [String:AnyObject]?
+	var resultRecordAttributes: [String:AnyObject]?
 	var resultRecordId: Int64?
 
 	var resultFormRecord: DDLRecord?
@@ -66,6 +67,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 
 	override func completedOperation(op: ServerOperation) {
 		let recordData: [String:AnyObject]?
+		let recordAttributes: [String:AnyObject]?
 		let recordId: Int64?
 
 		if let chain = op as? ServerOperationChain,
@@ -75,6 +77,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				formUserId = loadFormOp.resultUserId {
 
 			recordData = loadRecordOp.resultRecordData
+			recordAttributes = loadRecordOp.resultRecordAttributes
 			recordId = loadRecordOp.resultRecordId
 
 			self.resultFormRecord = recordForm
@@ -82,18 +85,23 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 		}
 		else if let loadRecordOp = op as? LiferayDDLFormRecordLoadOperation {
 			recordData = loadRecordOp.resultRecordData
+			recordAttributes = loadRecordOp.resultRecordAttributes
 			recordId = loadRecordOp.resultRecordId
 		}
 		else {
 			recordData = nil
+			recordAttributes = nil
 			recordId = nil
 		}
 
 		self.resultRecordData = recordData
+		self.resultRecordAttributes = recordAttributes
 		self.resultRecordId = recordId
 
-		if let recordDataValue = recordData {
+		if let recordDataValue = recordData,
+				recordAttributesValue = recordAttributes {
 			self.resultFormRecord?.updateCurrentValues(recordDataValue)
+			self.resultFormRecord?.attributes = recordAttributesValue
 		}
 	}
 
