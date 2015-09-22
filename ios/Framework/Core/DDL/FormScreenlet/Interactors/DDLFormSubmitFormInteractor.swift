@@ -106,8 +106,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			self.resultAttributes = loadOp.resultAttributes
 
 			if let modifiedDate = loadOp.resultAttributes?["modifiedDate"] as? NSNumber {
-				let epoch = modifiedDate.doubleValue / 1000
-				record.modifiedDate = NSDate(timeIntervalSince1970: epoch)
+				record.attributes["modifiedDate"] = modifiedDate
 			}
 		}
 	}
@@ -179,21 +178,13 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	}
 
 	private func cacheAttributes() -> [String:AnyObject] {
-		var attributes = [
-			"groupId": NSNumber(longLong: groupId),
-			"recordSetId": NSNumber(longLong: recordSetId)]
+		var attributes = record.attributes
+
+		attributes["groupId"] = NSNumber(longLong: groupId)
+		attributes["recordSetId"] = NSNumber(longLong: recordSetId)
 
 		if let userId = self.userId {
 			attributes["userId"] = NSNumber(longLong: userId)
-		}
-		if let recordId = self.record.recordId {
-			attributes["recordId"] = NSNumber(longLong: recordId)
-		}
-		if let recordId = self.resultRecordId {
-			attributes["recordId"] = NSNumber(longLong: recordId)
-		}
-		if let recordModifiedDate = record.modifiedDate {
-			attributes["modifiedDate"] = NSNumber(double: recordModifiedDate.timeIntervalSince1970)
 		}
 
 		return attributes
