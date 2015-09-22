@@ -114,7 +114,8 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				recordForm = loadFormOp.resultRecord,
 				formUserId = loadFormOp.resultUserId,
 				loadRecordOp = chain.currentOperation as? LiferayDDLFormRecordLoadOperation,
-				recordData = loadRecordOp.resultRecordData {
+				recordData = loadRecordOp.resultRecordData,
+				recordAttributes = loadRecordOp.resultRecordAttributes {
 
 			SessionContext.currentCacheManager?.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
@@ -123,22 +124,30 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				attributes: [
 					"userId": NSNumber(longLong: formUserId)])
 
+			let record = DDLRecord(
+				data: recordData,
+				attributes: recordAttributes)
+
 			SessionContext.currentCacheManager?.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "recordId-\(loadRecordOp.recordId)",
 				value: recordData,
-				attributes: resultRecordAttributes ?? [:])
+				attributes: ["record": record])
 		}
 		else if let loadRecordOp = op as? LiferayDDLFormRecordLoadOperation,
-					recordData = loadRecordOp.resultRecordData {
+					recordData = loadRecordOp.resultRecordData,
+					recordAttributes = loadRecordOp.resultRecordAttributes {
+
+			let record = DDLRecord(
+				data: recordData,
+				attributes: recordAttributes)
 
 			// save just record data
 			SessionContext.currentCacheManager?.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "recordId-\(loadRecordOp.recordId)",
 				value: recordData,
-				attributes: resultRecordAttributes ?? [:])
-
+				attributes: ["record": record])
 		}
 	}
 
@@ -161,12 +170,17 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 						recordData = objects[1] as? [String:AnyObject],
 						recordAttributes = attributes[1] {
 
+					let record = recordAttributes["record"] as! DDLRecord
+
+					precondition(self.recordId == record.recordId, "RecordId is not consistent")
+
 					loadFormOp.resultRecord = recordForm
 					loadFormOp.resultUserId = recordUserId.longLongValue
 
 					let loadRecordOp = LiferayDDLFormRecordLoadOperation(recordId: self.recordId)
+
 					loadRecordOp.resultRecordData = recordData
-					loadRecordOp.resultRecordAttributes = recordAttributes
+					loadRecordOp.resultRecordAttributes = record.attributes
 					loadRecordOp.resultRecordId = self.recordId
 					chain.currentOperation = loadRecordOp
 
@@ -185,14 +199,17 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 					key: "recordId-\(loadRecordOp.recordId)") {
 				object, attributes in
 
+				let record = attributes?["record"] as! DDLRecord
+
+				precondition(self.recordId == record.recordId, "RecordId is not consistent")
+
 				loadRecordOp.resultRecordData = object as? [String:AnyObject]
-				loadRecordOp.resultRecordAttributes = attributes
+				loadRecordOp.resultRecordAttributes = record.attributes
 				loadRecordOp.resultRecordId = loadRecordOp.recordId
 
 				result(loadRecordOp.resultRecordData)
 			}
 		}
-		
 	}
 
 }
