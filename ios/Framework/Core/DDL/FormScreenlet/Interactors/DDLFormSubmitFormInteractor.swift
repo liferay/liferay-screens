@@ -129,9 +129,13 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			return
 		}
 
+		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
+			? SessionContext.currentCacheManager?.setDirty
+			: SessionContext.currentCacheManager?.setClean
+
 		lastCacheKeyUsed = lastCacheKeyUsed ?? cacheKey(submitOp.recordId)
 
-		SessionContext.currentCacheManager?.setDirty(
+		cacheFunction?(
 			collection: ScreenletName(DDLFormScreenlet),
 			key: lastCacheKeyUsed!,
 			value: formData,
@@ -139,10 +143,14 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	}
 
 	override func callOnSuccess() {
-		if cacheStrategy != .RemoteOnly {
+		if cacheStrategy == .CacheFirst {
+			precondition(
+				lastCacheKeyUsed != nil,
+				"CacheKey is expected on CacheFirst strategy")
+
 			if let resultRecordId = resultRecordId {
 				// create new cache entry and delete the draft one
-				if (lastCacheKeyUsed ?? "").hasPrefix("draft-")
+				if lastCacheKeyUsed!.hasPrefix("draft-")
 						&& record.recordId == nil {
 					SessionContext.currentCacheManager?.remove(
 						collection: ScreenletName(DDLFormScreenlet),

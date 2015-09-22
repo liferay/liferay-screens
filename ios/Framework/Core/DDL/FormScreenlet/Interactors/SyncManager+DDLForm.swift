@@ -49,7 +49,7 @@ extension SyncManager {
 			// updating record: check consistency first
 			loadRecordModifiedDate(recordId) { freshModifiedDate in
 				if freshModifiedDate != nil
-					&& freshModifiedDate > cachedModifiedDate.doubleValue {
+					&& freshModifiedDate < cachedModifiedDate.longLongValue {
 						self.sendOfflineRecord(
 							key: key,
 							attributes: attributes,
@@ -77,13 +77,13 @@ extension SyncManager {
 
 	}
 
-	private func loadRecordModifiedDate(recordId: Int64, result: Double? -> ()) {
+	private func loadRecordModifiedDate(recordId: Int64, result: Int64? -> ()) {
 		let op = LiferayDDLFormRecordLoadOperation(recordId: recordId)
 
 		op.validateAndEnqueue {
 			if let op = $0 as? LiferayDDLFormRecordLoadOperation,
-					modifiedDate = op.resultRecordData?["modifiedDate"] as? NSNumber {
-				result(modifiedDate.doubleValue / 1000.0)
+					modifiedDate = op.resultRecordAttributes?["modifiedDate"] as? NSNumber {
+				result(modifiedDate.longLongValue)
 			}
 			else {
 				result(nil)

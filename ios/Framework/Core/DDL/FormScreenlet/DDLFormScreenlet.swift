@@ -91,8 +91,7 @@ import UIKit
 		}
 	}
 
-	@IBInspectable public var offlineLoadPolicy: String? = CacheStrategyType.RemoteFirst.rawValue
-	@IBInspectable public var offlineEditPolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	@IBOutlet public weak var delegate: DDLFormScreenletDelegate?
 
@@ -171,7 +170,7 @@ import UIKit
 	internal func createLoadFormInteractor() -> DDLFormLoadFormInteractor {
 		let interactor = DDLFormLoadFormInteractor(screenlet: self)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlineLoadPolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
 			if let resultRecordValue = interactor.resultRecord {
@@ -201,7 +200,7 @@ import UIKit
 
 		let interactor = DDLFormSubmitFormInteractor(screenlet: self, record: self.formView.record!)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlineEditPolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
 			if let resultRecordIdValue = interactor.resultRecordId {
@@ -227,7 +226,7 @@ import UIKit
 
 		let interactor = DDLFormLoadRecordInteractor(screenlet: self, recordId: self.recordId, structureId: neededStructureId)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlineLoadPolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
 			// first set structure if loaded
@@ -282,7 +281,7 @@ import UIKit
 				document: document,
 				onProgressClosure: onUploadedBytes)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlineEditPolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
 			self.formView.changeDocumentUploadStatus(interactor.document)
