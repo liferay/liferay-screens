@@ -14,6 +14,16 @@
 import Foundation
 
 
+@objc public enum SyncConflictResolution: Int {
+
+	case UseRemote
+	case UseLocal
+	case Discard
+	case Ignore
+
+}
+
+
 @objc public protocol SyncManagerDelegate {
 
 	optional func syncManager(manager: SyncManager,
@@ -39,7 +49,7 @@ import Foundation
 		onItemSyncScreenlet screenlet: String,
 		conflictedKey: String,
 		remoteValue: AnyObject,
-		localValue: AnyObject) -> Bool
+		localValue: AnyObject) -> SyncConflictResolution
 
 }
 

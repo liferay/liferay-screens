@@ -21,17 +21,20 @@ extension SyncManager {
 			-> Signal -> () {
 
 		return { signal in
-			let recordId = attributes["recordId"] as? NSNumber
+			let record = attributes["record"] as! DDLRecord
 
-			if let recordId = recordId {
-				self.checkAndSendOfflineRecord(
-					recordId: recordId.longLongValue,
+			if record.recordId != nil {
+				// update
+				self.checkConflictAndSendLocalRecord(
+					record: record,
 					key: key,
 					attributes: attributes,
 					signal: signal)
 			}
 			else {
-				self.sendOfflineRecord(
+				// add
+				self.sendLocalRecord(
+					record: record,
 					key: key,
 					attributes: attributes,
 					signal: signal)
@@ -39,60 +42,96 @@ extension SyncManager {
 		}
 	}
 
-	private func checkAndSendOfflineRecord(
-			#recordId: Int64,
+	private func checkConflictAndSendLocalRecord(
+			record localRecord: DDLRecord,
 			key: String,
 			attributes: [String:AnyObject],
 			signal: Signal) {
 
-		if let localRecord = attributes["record"] as? DDLRecord {
-			// updating record: check consistency first
-			loadRecord(recordId) { remoteRecord in
+		precondition(localRecord.recordId != nil, "RecordId must be defined")
 
-				if let remoteRecord = remoteRecord,
-						localModifiedDate = localRecord.attributes["modifiedDate"] as? NSNumber,
-						remoteModifiedDate = remoteRecord.attributes["modifiedDate"] as? NSNumber {
+		// updating record: check consistency first
+		loadRecord(localRecord.recordId!) { remoteRecord in
 
-					if remoteModifiedDate.longLongValue < localModifiedDate.longLongValue {
-						self.sendOfflineRecord(
-							key: key,
-							attributes: attributes,
-							signal: signal)
-					}
-					else {
-						let useLocal = self.delegate?.syncManager?(self,
-							onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
-							conflictedKey: key,
-							remoteValue: remoteRecord,
-							localValue: localRecord) ?? false
+			if let remoteRecord = remoteRecord,
+					localModifiedDate = localRecord.attributes["modifiedDate"] as? NSNumber,
+					remoteModifiedDate = remoteRecord.attributes["modifiedDate"] as? NSNumber {
 
-						if useLocal {
-							self.sendOfflineRecord(
-								key: key,
-								attributes: attributes,
-								signal: signal)
-						}
-					}
+				if remoteModifiedDate.longLongValue < localModifiedDate.longLongValue {
+					self.sendLocalRecord(
+						record: localRecord,
+						key: key,
+						attributes: attributes,
+						signal: signal)
 				}
 				else {
-					self.delegate?.syncManager?(self,
-						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
-						failedKey: key,
+					self.resolveConflict(
+						remoteRecord: remoteRecord,
+						localRecord: localRecord,
+						key: key,
 						attributes: attributes,
-						error: NSError.errorWithCause(.InvalidServerResponse))
-					signal()
+						signal: signal)
 				}
 			}
+			else {
+				self.delegate?.syncManager?(self,
+					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+					failedKey: key,
+					attributes: attributes,
+					error: NSError.errorWithCause(.InvalidServerResponse))
+				signal()
+			}
 		}
-		else {
-			// adding record
-			self.sendOfflineRecord(
+	}
+
+	private func resolveConflict(
+			#remoteRecord: DDLRecord,
+			localRecord: DDLRecord,
+			key: String,
+			attributes: [String:AnyObject],
+			signal: Signal) {
+
+		let resolution = self.delegate?.syncManager?(self,
+			onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+			conflictedKey: key,
+			remoteValue: remoteRecord,
+			localValue: localRecord) ?? .Ignore
+
+		switch resolution {
+		case .UseLocal:
+			// send local to server
+			self.sendLocalRecord(
+				record: localRecord,
 				key: key,
 				attributes: attributes,
 				signal: signal)
+
+		case .UseRemote:
+			// overwrite cache with remote record
+			var newAttrs = attributes
+			newAttrs["record"] = remoteRecord
+
+			self.cacheManager.setClean(
+				collection: ScreenletName(DDLFormScreenlet),
+				key: DDLFormSubmitFormInteractor.cacheKey(localRecord.recordId),
+				value: remoteRecord.values,
+				attributes: newAttrs)
+
+		case .Discard:
+			// clear cache
+			self.cacheManager.remove(
+				collection: ScreenletName(DDLFormScreenlet),
+				key: key)
+
+		case .Ignore:
+			// notify but leave cache
+			self.delegate?.syncManager?(self,
+				onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+				failedKey: key,
+				attributes: attributes,
+				error: NSError.errorWithCause(.AbortedDueToPreconditions))
+			signal()
 		}
-
-
 	}
 
 	private func loadRecord(recordId: Int64, result: DDLRecord? -> ()) {
@@ -115,14 +154,14 @@ extension SyncManager {
 		}
 	}
 
-	private func sendOfflineRecord(
-			#key: String,
+	private func sendLocalRecord(
+			record localRecord: DDLRecord,
+			key: String,
 			attributes: [String:AnyObject],
 			signal: Signal) {
 
 		let groupId = attributes["groupId"] as! NSNumber
 		let recordSetId = attributes["recordSetId"] as! NSNumber
-		let recordId = attributes["recordId"] as? NSNumber
 		let userId = attributes["userId"] as? NSNumber
 
 		self.cacheManager.getAny(
@@ -133,10 +172,9 @@ extension SyncManager {
 				let interactor = DDLFormSubmitFormInteractor(
 					groupId: groupId.longLongValue,
 					recordSetId: recordSetId.longLongValue,
-					recordId: recordId?.longLongValue,
 					userId: userId?.longLongValue,
-					recordData: values,
-					cacheKey: key)
+					cacheKey: key,
+					record: localRecord)
 
 				// this strategy saves the "send date" after the operation
 				interactor.cacheStrategy = .CacheFirst
