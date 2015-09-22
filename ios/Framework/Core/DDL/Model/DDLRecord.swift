@@ -57,17 +57,17 @@ public class DDLRecord: NSObject, NSCoding {
 		}
 	}
 
-	public init(recordData: [String:AnyObject]) {
+	public init(dataAndAttributes: [String:AnyObject]) {
 		super.init()
 
-		if let recordFields = (recordData["modelValues"] ?? nil) as? [String:AnyObject] {
+		if let recordFields = (dataAndAttributes["modelValues"] ?? nil) as? [String:AnyObject] {
 			let parsedFields = DDLValuesParser().parse(recordFields)
 		 	if !parsedFields.isEmpty {
 				fields = parsedFields
 			}
 		}
 
-		if let recordAttributes = (recordData["modelAttributes"] ?? nil) as? [String:AnyObject] {
+		if let recordAttributes = (dataAndAttributes["modelAttributes"] ?? nil) as? [String:AnyObject] {
 			attributes = recordAttributes
 		}
 	}

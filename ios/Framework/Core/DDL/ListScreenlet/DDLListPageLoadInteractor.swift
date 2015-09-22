@@ -49,7 +49,7 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 	}
 
 	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
-		return DDLRecord(recordData: serverResult)
+		return DDLRecord(dataAndAttributes: serverResult)
 	}
 
 	override public func cacheKey(op: LiferayPaginationOperation) -> String {
