@@ -19,7 +19,6 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	let groupId: Int64
 	let recordSetId: Int64
 	let userId: Int64?
-	let values: [String:AnyObject]?
 
 	let record: DDLRecord
 
@@ -55,8 +54,6 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			: SessionContext.currentUserId
 
 		self.recordSetId = formScreenlet.recordSetId
-		self.values = nil
-
 		self.record = record
 
 		super.init(screenlet: formScreenlet)
@@ -64,10 +61,9 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 	init(groupId: Int64,
 			recordSetId: Int64,
-			recordId: Int64?,
 			userId: Int64?,
-			recordData: [String:AnyObject],
-			cacheKey: String) {
+			cacheKey: String,
+			record: DDLRecord) {
 
 		self.groupId = (groupId != 0)
 			? groupId
@@ -77,12 +73,8 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			? userId
 			: SessionContext.currentUserId
 
-		let recordAtts = (recordId != nil)
-			? ["recordId": NSNumber(longLong: recordId!)]
-			: [String:AnyObject]()
-		self.record = DDLRecord(data: recordData, attributes: recordAtts)
+		self.record = record
 		self.recordSetId = recordSetId
-		self.values = recordData
 		self.lastCacheKeyUsed = cacheKey
 
 		super.init(screenlet: nil)
@@ -94,16 +86,14 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 		if let screenlet = self.screenlet as? DDLFormScreenlet {
 			operation = LiferayDDLFormSubmitOperation(
+					values: record.values,
 					viewModel: screenlet.viewModel)
 
 			operation.autoscrollOnValidation = screenlet.autoscrollOnValidation
 		}
-		else if let values = values {
-			operation = LiferayDDLFormSubmitOperation(
-				values: values)
-		}
 		else {
-			fatalError("You need either values or the screenlet to submit the DDLForm")
+			operation = LiferayDDLFormSubmitOperation(
+				values: record.values)
 		}
 
 		operation.groupId = groupId

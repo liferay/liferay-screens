@@ -30,15 +30,11 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	private let viewModel: DDLFormViewModel?
 
 
-	public convenience init(viewModel: DDLFormViewModel) {
-		self.init(values: viewModel.values, viewModel: viewModel)
-	}
-
 	public convenience init(values: [String:AnyObject]) {
 		self.init(values: values, viewModel: nil)
 	}
 
-	private init(values: [String:AnyObject], viewModel: DDLFormViewModel?) {
+	public init(values: [String:AnyObject], viewModel: DDLFormViewModel?) {
 		self.values = values
 		self.viewModel = viewModel
 
