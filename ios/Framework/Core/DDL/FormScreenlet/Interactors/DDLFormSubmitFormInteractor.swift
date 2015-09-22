@@ -18,11 +18,10 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 	let groupId: Int64
 	let recordSetId: Int64
-	let recordId: Int64?
 	let userId: Int64?
 	let values: [String:AnyObject]?
 
-	var recordModifiedDate: NSDate?
+	let record: DDLRecord
 
 	var resultRecordId: Int64?
 	var resultAttributes: NSDictionary?
@@ -30,24 +29,21 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	private var lastCacheKeyUsed: String?
 
 
-	override init(screenlet: BaseScreenlet?) {
+	init(screenlet: BaseScreenlet?, record: DDLRecord) {
 		let formScreenlet = screenlet as! DDLFormScreenlet
 
-		groupId = (formScreenlet.groupId != 0)
+		self.groupId = (formScreenlet.groupId != 0)
 			? formScreenlet.groupId
 			: LiferayServerContext.groupId
 
-		userId = (formScreenlet.userId != 0)
+		self.userId = (formScreenlet.userId != 0)
 			? formScreenlet.userId
 			: SessionContext.currentUserId
 
-		recordId = (formScreenlet.recordId != 0)
-			? formScreenlet.recordId
-			: nil
+		self.recordSetId = formScreenlet.recordSetId
+		self.values = nil
 
-		recordSetId = formScreenlet.recordSetId
-		values = nil
-		recordModifiedDate = nil
+		self.record = record
 
 		super.init(screenlet: formScreenlet)
 	}
@@ -56,7 +52,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			recordSetId: Int64,
 			recordId: Int64?,
 			userId: Int64?,
-			values: [String:AnyObject],
+			recordData: [String:AnyObject],
 			cacheKey: String) {
 
 		self.groupId = (groupId != 0)
@@ -67,9 +63,12 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			? userId
 			: SessionContext.currentUserId
 
-		self.recordId = recordId
+		let recordAtts = (recordId != nil)
+			? ["recordId": NSNumber(longLong: recordId!)]
+			: [String:AnyObject]()
+		self.record = DDLRecord(data: recordData, attributes: recordAtts)
 		self.recordSetId = recordSetId
-		self.values = values
+		self.values = recordData
 		self.lastCacheKeyUsed = cacheKey
 
 		super.init(screenlet: nil)
@@ -95,7 +94,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 		operation.groupId = groupId
 		operation.userId = userId
-		operation.recordId = recordId
+		operation.recordId = record.recordId
 		operation.recordSetId = recordSetId
 
 		return operation
@@ -108,7 +107,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 			if let modifiedDate = loadOp.resultAttributes?["modifiedDate"] as? NSNumber {
 				let epoch = modifiedDate.doubleValue / 1000
-				self.recordModifiedDate = NSDate(timeIntervalSince1970: epoch)
+				record.modifiedDate = NSDate(timeIntervalSince1970: epoch)
 			}
 		}
 	}
@@ -146,7 +145,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 			if let resultRecordId = resultRecordId {
 				// create new cache entry and delete the draft one
-				if recordId == nil && lastCacheKey.hasPrefix("draft-") {
+				if record.recordId == nil && lastCacheKey.hasPrefix("draft-") {
 					SessionContext.currentCacheManager?.remove(
 						collection: ScreenletName(DDLFormScreenlet),
 						key: lastCacheKey)
@@ -187,13 +186,13 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 		if let userId = self.userId {
 			attributes["userId"] = NSNumber(longLong: userId)
 		}
-		if let recordId = self.recordId {
+		if let recordId = self.record.recordId {
 			attributes["recordId"] = NSNumber(longLong: recordId)
 		}
 		if let recordId = self.resultRecordId {
 			attributes["recordId"] = NSNumber(longLong: recordId)
 		}
-		if let recordModifiedDate = recordModifiedDate {
+		if let recordModifiedDate = record.modifiedDate {
 			attributes["modifiedDate"] = NSNumber(double: recordModifiedDate.timeIntervalSince1970)
 		}
 

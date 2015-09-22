@@ -195,10 +195,11 @@ import UIKit
 		if waitForInProgressUpload() {
 			return nil
 		}
+		if self.formView.record == nil {
+			return nil
+		}
 
-		let interactor = DDLFormSubmitFormInteractor(screenlet: self)
-
-		interactor.recordModifiedDate = self.formView.record?.modifiedDate
+		let interactor = DDLFormSubmitFormInteractor(screenlet: self, record: self.formView.record!)
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlineEditPolicy ?? "") ?? .RemoteFirst
 

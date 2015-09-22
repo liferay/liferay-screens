@@ -127,7 +127,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "recordId-\(loadRecordOp.recordId)",
 				value: recordData,
-				attributes: [:])
+				attributes: resultRecordAttributes ?? [:])
 		}
 		else if let loadRecordOp = op as? LiferayDDLFormRecordLoadOperation,
 					recordData = loadRecordOp.resultRecordData {
@@ -137,7 +137,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "recordId-\(loadRecordOp.recordId)",
 				value: recordData,
-				attributes: [:])
+				attributes: resultRecordAttributes ?? [:])
 
 		}
 	}
@@ -157,13 +157,16 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				objects, attributes in
 
 				if let recordForm = objects[0] as? DDLRecord,
-						recordData = objects[1] as? [String:AnyObject] {
+						recordUserId = attributes[0]?["userId"] as? NSNumber,
+						recordData = objects[1] as? [String:AnyObject],
+						recordAttributes = attributes[1] {
 
 					loadFormOp.resultRecord = recordForm
-					loadFormOp.resultUserId = (attributes[0]?["userId"] as? NSNumber)?.longLongValue
+					loadFormOp.resultUserId = recordUserId.longLongValue
 
 					let loadRecordOp = LiferayDDLFormRecordLoadOperation(recordId: self.recordId)
 					loadRecordOp.resultRecordData = recordData
+					loadRecordOp.resultRecordAttributes = recordAttributes
 					loadRecordOp.resultRecordId = self.recordId
 					chain.currentOperation = loadRecordOp
 
@@ -177,11 +180,13 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 		else if let loadRecordOp = op as? LiferayDDLFormRecordLoadOperation {
 
 			// load just record
-			cacheMgr.getAny(
+			cacheMgr.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: "recordId-\(loadRecordOp.recordId)") {
+				object, attributes in
 
-				loadRecordOp.resultRecordData = $0 as? [String:AnyObject]
+				loadRecordOp.resultRecordData = object as? [String:AnyObject]
+				loadRecordOp.resultRecordAttributes = attributes
 				loadRecordOp.resultRecordId = loadRecordOp.recordId
 
 				result(loadRecordOp.resultRecordData)

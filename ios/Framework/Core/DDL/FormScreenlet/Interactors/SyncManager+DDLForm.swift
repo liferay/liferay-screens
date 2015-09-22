@@ -111,7 +111,7 @@ extension SyncManager {
 					recordSetId: recordSetId.longLongValue,
 					recordId: recordId?.longLongValue,
 					userId: userId?.longLongValue,
-					values: values,
+					recordData: values,
 					cacheKey: key)
 
 				// this strategy saves the "send date" after the operation
