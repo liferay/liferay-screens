@@ -26,25 +26,6 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel, UITextFieldDelega
 		return (record == nil) ? true : record!.fields.isEmpty
 	}
 
-	public var values: [String:AnyObject] {
-		var result:[String:AnyObject] = [:]
-
-		forEachField() {
-			if let value = $0.currentValueAsString {
-				//FIXME - LPS-49460
-				// Server rejects the request if the value is empty string.
-				// This way we workaround the problem but a field can't be
-				// emptied when you're editing an existing row.
-				if value != "" {
-					result[$0.name] = value
-				}
-			}
-		}
-
-		return result
-	}
-
-
 	public func refresh() {
 	}
 

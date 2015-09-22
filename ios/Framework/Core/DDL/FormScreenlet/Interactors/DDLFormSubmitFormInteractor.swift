@@ -117,18 +117,6 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	override func writeToCache(op: ServerOperation) {
 		let submitOp = op as! LiferayDDLFormSubmitOperation
 
-		let formData: [String:AnyObject]
-
-		if let screenlet = self.screenlet as? DDLFormScreenlet {
-			formData = screenlet.viewModel.values
-		}
-		else if let values = self.values {
-			formData = values
-		}
-		else {
-			return
-		}
-
 		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
 			? SessionContext.currentCacheManager?.setDirty
 			: SessionContext.currentCacheManager?.setClean
@@ -138,7 +126,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 		cacheFunction?(
 			collection: ScreenletName(DDLFormScreenlet),
 			key: lastCacheKeyUsed!,
-			value: formData,
+			value: record.values,
 			attributes: cacheAttributes())
 	}
 
