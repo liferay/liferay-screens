@@ -53,11 +53,21 @@ extension SyncManager {
 		// updating record: check consistency first
 		loadRecord(localRecord.recordId!) { remoteRecord in
 
-			if let remoteRecord = remoteRecord,
-					localModifiedDate = localRecord.attributes["modifiedDate"] as? NSNumber,
-					remoteModifiedDate = remoteRecord.attributes["modifiedDate"] as? NSNumber {
+			if remoteRecord == nil {
+				self.delegate?.syncManager?(self,
+					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+					failedKey: key,
+					attributes: attributes,
+					error: NSError.errorWithCause(.NotAvailable))
+				signal()
 
-				if remoteModifiedDate.longLongValue < localModifiedDate.longLongValue {
+				return
+			}
+
+			if let localModifiedDate = localRecord.attributes["modifiedDate"] as? NSNumber,
+					remoteModifiedDate = remoteRecord!.attributes["modifiedDate"] as? NSNumber {
+
+				if remoteModifiedDate.longLongValue <= localModifiedDate.longLongValue {
 					self.sendLocalRecord(
 						record: localRecord,
 						key: key,
@@ -66,7 +76,7 @@ extension SyncManager {
 				}
 				else {
 					self.resolveConflict(
-						remoteRecord: remoteRecord,
+						remoteRecord: remoteRecord!,
 						localRecord: localRecord,
 						key: key,
 						attributes: attributes,
@@ -124,7 +134,7 @@ extension SyncManager {
 				key: key)
 
 		case .Ignore:
-			// notify but leave cache
+			// notify but keep cache
 			self.delegate?.syncManager?(self,
 				onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
 				failedKey: key,
