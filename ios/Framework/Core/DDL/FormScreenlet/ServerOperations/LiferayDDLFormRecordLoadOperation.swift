@@ -38,8 +38,9 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 		resultRecordData = nil
 		resultRecordAttributes = nil
 		resultRecordId = nil
+		lastError = nil
 
-		let recordDic = service.getDdlRecordWithAttributesWithDdlRecordId(recordId,
+		let recordDic = service.getDdlRecordWithDdlRecordId(recordId,
 				locale: NSLocale.currentLocaleString,
 				error: &lastError)
 
@@ -50,24 +51,10 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 				resultRecordAttributes = resultAttributes
 				resultRecordId = recordId
 			}
-			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
-			}
-		}
-		else {
-			// backwards compat: plugins v1.1.0 and previous (pre LPS-58800)
-			let recordDic = service.getDdlRecordWithDdlRecordId(recordId,
-				locale: NSLocale.currentLocaleString,
-				error: &lastError)
-
-			if lastError == nil {
-				if let recordDic = recordDic as? [String:AnyObject] {
-					resultRecordData = recordDic
-					resultRecordId = recordId
-				}
-				else {
-					lastError = NSError.errorWithCause(.InvalidServerResponse)
-				}
+			else if let resultData = recordDic as? [String:AnyObject] {
+				// backwards compat: plugins v1.1.0 and previous (pre LPS-58800)
+				resultRecordData = resultData
+				resultRecordId = recordId
 			}
 			else {
 				lastError = NSError.errorWithCause(.InvalidServerResponse)

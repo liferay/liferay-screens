@@ -199,6 +199,7 @@ import UIKit
 		let interactor = DDLFormSubmitFormInteractor(screenlet: self)
 
 		interactor.recordModifiedDate = self.formView.record?.modifiedDate
+
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlineEditPolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
