@@ -24,46 +24,51 @@ extension SyncManager {
 			let userId = attributes["userId"] as! NSNumber
 
 			self.cacheManager.getImage(
-				collection: ScreenletName(UserPortraitScreenlet),
-				key: key) {
+					collection: ScreenletName(UserPortraitScreenlet),
+					key: key) {
 
-					if let image = $0 {
-						let interactor = UploadUserPortraitInteractor(
-							screenlet: nil,
-							userId: userId.longLongValue,
-							image: image)
+				if let image = $0 {
+					let interactor = UploadUserPortraitInteractor(
+						screenlet: nil,
+						userId: userId.longLongValue,
+						image: image)
 
-						// this strategy saves the send date after the operation
-						interactor.cacheStrategy = .CacheFirst
+					// this strategy saves the send date after the operation
+					interactor.cacheStrategy = .CacheFirst
 
-						interactor.onSuccess = {
-							self.delegate?.syncManager?(self,
-								onItemSyncCompletedScreenlet: ScreenletName(UserPortraitScreenlet),
-								key: key,
-								attributes: attributes)
+					interactor.onSuccess = {
+						self.delegate?.syncManager?(self,
+							onItemSyncScreenlet: ScreenletName(UserPortraitScreenlet),
+							completedKey: key,
+							attributes: attributes)
 
-							signal()
-						}
-
-						interactor.onFailure = { err in
-							self.delegate?.syncManager?(self,
-								onItemSyncFailedScreenlet: ScreenletName(UserPortraitScreenlet),
-								error: err,
-								key: key,
-								attributes: attributes)
-
-							// TODO retry?
-							signal()
-						}
-
-						if !interactor.start() {
-							signal()
-						}
-					}
-					else {
 						signal()
-						// TODO err?
 					}
+
+					interactor.onFailure = { err in
+						self.delegate?.syncManager?(self,
+							onItemSyncScreenlet: ScreenletName(UserPortraitScreenlet),
+							failedKey: key,
+							attributes: attributes,
+							error: err)
+
+						// TODO retry?
+						signal()
+					}
+
+					if !interactor.start() {
+						signal()
+					}
+				}
+				else {
+					self.delegate?.syncManager?(self,
+						onItemSyncScreenlet: ScreenletName(UserPortraitScreenlet),
+						failedKey: key,
+						attributes: attributes,
+						error: NSError.errorWithCause(.NotAvailable))
+
+					signal()
+				}
 			}
 		}
 	}

@@ -20,20 +20,20 @@ import Foundation
 		itemsCount: UInt)
 
 	optional func syncManager(manager: SyncManager,
-		onItemSyncStartScreenlet screenlet: String,
-		key: String,
+		onItemSyncScreenlet screenlet: String,
+		startKey: String,
 		attributes: [String:AnyObject])
 
 	optional func syncManager(manager: SyncManager,
-		onItemSyncCompletedScreenlet screenlet: String,
-		key: String,
+		onItemSyncScreenlet screenlet: String,
+		completedKey: String,
 		attributes: [String:AnyObject])
 
 	optional func syncManager(manager: SyncManager,
-		onItemSyncFailedScreenlet screenlet: String,
-		error: NSError,
-		key: String,
-		attributes: [String:AnyObject])
+		onItemSyncScreenlet screenlet: String,
+		failedKey: String,
+		attributes: [String:AnyObject],
+		error: NSError)
 
 }
 
@@ -62,8 +62,8 @@ import Foundation
 			if count > 0 {
 				self.cacheManager.pendingToSync { (screenlet, key, attributes) -> Bool in
 					self.delegate?.syncManager?(self,
-						onItemSyncStartScreenlet: screenlet,
-						key: key,
+						onItemSyncScreenlet: screenlet,
+						startKey: key,
 						attributes: attributes)
 
 					self.enqueueSyncForScreenlet(screenlet, key, attributes)

@@ -57,11 +57,10 @@ extension SyncManager {
 				}
 				else {
 					self.delegate?.syncManager?(self,
-						onItemSyncFailedScreenlet: ScreenletName(DDLFormScreenlet),
-						error: NSError.errorWithCause(.ConflictFound),
-						key: key,
-						attributes: attributes)
-
+						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+						failedKey: key,
+						attributes: attributes,
+						error: NSError.errorWithCause(.InvalidServerResponse))
 					signal()
 				}
 			}
@@ -119,8 +118,8 @@ extension SyncManager {
 
 				interactor.onSuccess = {
 					self.delegate?.syncManager?(self,
-						onItemSyncCompletedScreenlet: ScreenletName(DDLFormScreenlet),
-						key: key,
+						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+						completedKey: key,
 						attributes: attributes)
 
 					signal()
@@ -128,10 +127,10 @@ extension SyncManager {
 
 				interactor.onFailure = { err in
 					self.delegate?.syncManager?(self,
-						onItemSyncFailedScreenlet: ScreenletName(DDLFormScreenlet),
-						error: err,
-						key: key,
-						attributes: attributes)
+						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+						failedKey: key,
+						attributes: attributes,
+						error: err)
 
 					// TODO retry?
 					signal()
@@ -143,11 +142,11 @@ extension SyncManager {
 			}
 			else {
 				self.delegate?.syncManager?(self,
-					onItemSyncFailedScreenlet: ScreenletName(DDLFormScreenlet),
-					error: NSError.errorWithCause(.NotAvailable),
-					key: key,
-					attributes: attributes)
-					
+					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+					failedKey: key,
+					attributes: attributes,
+					error: NSError.errorWithCause(.NotAvailable))
+
 				signal()
 			}
 		}
