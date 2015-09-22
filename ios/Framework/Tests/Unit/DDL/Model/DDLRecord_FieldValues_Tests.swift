@@ -68,7 +68,7 @@ class DDLRecord_FieldValues_Tests: XCTestCase {
 
 		let record = DDLRecord(dataAndAttributes: ["modelAttributes":attributes])
 
-		XCTAssertEqual(Int64(123), record.recordId)
+		XCTAssertEqual(Int64(123), record.recordId!)
 	}
 
 	func test_fieldByName_Should_FindTheField() {

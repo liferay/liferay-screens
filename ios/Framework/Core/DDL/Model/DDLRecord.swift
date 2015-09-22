@@ -23,21 +23,36 @@ public class DDLRecord: NSObject, NSCoding {
 
 	public var attributes: [String:AnyObject] = [:]
 
-	public var recordId: Int64 {
+	public var recordId: Int64? {
 		get {
 			return (attributes["recordId"] ?? 0).longLongValue
 		}
 		set {
-			attributes["recordId"] = Int(newValue)
+			if let newValue = newValue {
+				attributes["recordId"] = NSNumber(longLong: newValue)
+			}
+			else {
+				attributes.removeValueForKey("recordId")
+			}
 		}
 	}
 
 	public var modifiedDate: NSDate? {
-		if let javaEpoch = attributes["modifiedDate"] as? NSNumber {
-			return NSDate(timeIntervalSince1970: javaEpoch.doubleValue / 1000.0)
-		}
+		get {
+			if let javaEpoch = attributes["modifiedDate"] as? NSNumber {
+				return NSDate(timeIntervalSince1970: javaEpoch.doubleValue / 1000.0)
+			}
 
-		return nil
+			return nil
+		}
+		set {
+			if let newValue = newValue {
+				attributes["modifiedDate"] = NSNumber(double: newValue.timeIntervalSince1970 * 1000)
+			}
+			else {
+				attributes.removeValueForKey("modifiedDate")
+			}
+		}
 	}
 
 	public subscript(fieldName: String) -> DDLField? {
@@ -56,6 +71,18 @@ public class DDLRecord: NSObject, NSCoding {
 			}
 		}
 	}
+
+	public init(data: [String:AnyObject], attributes: [String:AnyObject]) {
+		super.init()
+
+		let parsedFields = DDLValuesParser().parse(data)
+		if !parsedFields.isEmpty {
+			fields = parsedFields
+		}
+
+		self.attributes = attributes
+	}
+
 
 	public init(dataAndAttributes: [String:AnyObject]) {
 		super.init()
