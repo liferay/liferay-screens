@@ -139,15 +139,14 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	}
 
 	override func callOnSuccess() {
-		if let lastCacheKey = lastCacheKeyUsed
-				where cacheStrategy == .CacheFirst {
-
+		if cacheStrategy != .RemoteOnly {
 			if let resultRecordId = resultRecordId {
 				// create new cache entry and delete the draft one
-				if record.recordId == nil && lastCacheKey.hasPrefix("draft-") {
+				if (lastCacheKeyUsed ?? "").hasPrefix("draft-")
+						&& record.recordId == nil {
 					SessionContext.currentCacheManager?.remove(
 						collection: ScreenletName(DDLFormScreenlet),
-						key: lastCacheKey)
+						key: lastCacheKeyUsed!)
 				}
 
 				SessionContext.currentCacheManager?.setClean(
@@ -159,7 +158,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 				// update current cache entry with date sent
 				SessionContext.currentCacheManager?.setClean(
 					collection: ScreenletName(DDLFormScreenlet),
-					key: lastCacheKey,
+					key: lastCacheKeyUsed ?? cacheKey(record.recordId),
 					attributes: cacheAttributes())
 			}
 		}
