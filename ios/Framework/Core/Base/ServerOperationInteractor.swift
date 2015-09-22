@@ -106,8 +106,12 @@ public class ServerOperationInteractor: Interactor {
 			operation: ServerOperation,
 			whenSuccess: () -> (),
 			whenFailure: NSError -> ()) {
-		self.writeToCache(operation)
+
+		// the closure is called before because it fires the 
+		// "completedOperation" method and it should be run
+		// before the write
 		whenSuccess()
+		self.writeToCache(operation)
 	}
 
 
