@@ -26,13 +26,13 @@ public class ServerWriteOperationInteractor: ServerOperationInteractor {
 
 		case .RemoteFirst:
 			return createStrategy(
-				whenFails: defaultStrategyRemote,
-				then: defaultStrategyWriteToCache)
+				defaultStrategyRemote,
+				andThen: defaultStrategyWriteToCache)
 
 		case .CacheFirst:
 			return createStrategy(
-				whenSucceeds: defaultStrategyWriteToCache,
-				then: defaultStrategyRemote)
+				defaultStrategyWriteToCache,
+				andThen: defaultStrategyRemote)
 		}
 	}
 

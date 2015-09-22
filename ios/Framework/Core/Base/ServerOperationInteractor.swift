@@ -156,4 +156,30 @@ public class ServerOperationInteractor: Interactor {
 		}
 	}
 
+	public func createStrategy(
+			firstStrategy: CacheStrategy,
+			andThen secondStrategy: CacheStrategy) -> CacheStrategy {
+
+		return { (operation: ServerOperation,
+				whenSuccess: () -> (),
+				whenFailure: NSError -> ()) -> () in
+			firstStrategy(operation,
+				whenSuccess: {
+					secondStrategy(operation,
+						whenSuccess: whenSuccess,
+						whenFailure: whenFailure)
+				},
+				whenFailure: { err -> () in
+					if err.code == ScreensErrorCause.NotAvailable.rawValue {
+						secondStrategy(operation,
+							whenSuccess: whenSuccess,
+							whenFailure: whenFailure)
+					}
+					else {
+						whenFailure(err)
+					}
+				})
+			}
+	}
+
 }

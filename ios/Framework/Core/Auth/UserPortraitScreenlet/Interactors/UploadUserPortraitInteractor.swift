@@ -42,14 +42,15 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerOperation) {
-		let uploadOp = op as! LiferayUploadUserPortraitOperation
+		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
+			? SessionContext.currentCacheManager?.setDirty
+			: SessionContext.currentCacheManager?.setClean
 
-		SessionContext.currentCacheManager?.setDirty(
+		cacheFunction?(
 			collection: ScreenletName(UserPortraitScreenlet),
 			key: "userId-\(userId)",
 			value: image,
-			attributes: [
-				"userId": NSNumber(longLong: userId)])
+			attributes: ["userId": NSNumber(longLong: userId)])
 	}
 
 	override func callOnSuccess() {
