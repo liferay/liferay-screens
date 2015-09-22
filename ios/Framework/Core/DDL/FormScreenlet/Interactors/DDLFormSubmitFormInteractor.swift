@@ -59,22 +59,15 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 		super.init(screenlet: formScreenlet)
 	}
 
-	init(groupId: Int64,
-			recordSetId: Int64,
-			userId: Int64?,
-			cacheKey: String,
-			record: DDLRecord) {
+	init(cacheKey: String, record: DDLRecord) {
+		self.groupId = record.attributes["groupId"]?.longLongValue
+			?? LiferayServerContext.groupId
 
-		self.groupId = (groupId != 0)
-			? groupId
-			: LiferayServerContext.groupId
+		self.userId = record.attributes["userId"]?.longLongValue
+			?? SessionContext.currentUserId
 
-		self.userId = (userId ?? 0 != 0)
-			? userId
-			: SessionContext.currentUserId
-
+		self.recordSetId = record.attributes["recordSetId"]!.longLongValue
 		self.record = record
-		self.recordSetId = recordSetId
 		self.lastCacheKeyUsed = cacheKey
 
 		super.init(screenlet: nil)
@@ -132,7 +125,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			collection: ScreenletName(DDLFormScreenlet),
 			key: lastCacheKeyUsed!,
 			value: record.values,
-			attributes: cacheAttributes())
+			attributes: ["record": record])
 	}
 
 	override func callOnSuccess() {
@@ -153,7 +146,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 				SessionContext.currentCacheManager?.setClean(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: DDLFormSubmitFormInteractor.cacheKey(resultRecordId),
-					attributes: cacheAttributes())
+					attributes: ["record": record])
 			}
 			else {
 				// update current cache entry with date sent
@@ -161,28 +154,11 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 					collection: ScreenletName(DDLFormScreenlet),
 					key: lastCacheKeyUsed
 						?? DDLFormSubmitFormInteractor.cacheKey(record.recordId),
-					attributes: cacheAttributes())
+					attributes: ["record": record])
 			}
 		}
 
 		super.callOnSuccess()
-	}
-
-	private func cacheAttributes() -> [String:AnyObject] {
-		var attributes = [
-			"groupId": NSNumber(longLong: groupId),
-			"recordSetId": NSNumber(longLong: recordSetId),
-			"record": record
-		]
-
-		if let userId = self.userId {
-			attributes["userId"] = NSNumber(longLong: userId)
-		}
-		if let recordId = self.record.recordId {
-			attributes["recordId"] = NSNumber(longLong: recordId)
-		}
-
-		return attributes
 	}
 
 }

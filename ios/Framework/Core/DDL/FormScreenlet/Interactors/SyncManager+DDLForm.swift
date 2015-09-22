@@ -160,19 +160,12 @@ extension SyncManager {
 			attributes: [String:AnyObject],
 			signal: Signal) {
 
-		let groupId = attributes["groupId"] as! NSNumber
-		let recordSetId = attributes["recordSetId"] as! NSNumber
-		let userId = attributes["userId"] as? NSNumber
-
 		self.cacheManager.getAny(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: key) {
 
 			if let values = $0 as? [String:AnyObject] {
 				let interactor = DDLFormSubmitFormInteractor(
-					groupId: groupId.longLongValue,
-					recordSetId: recordSetId.longLongValue,
-					userId: userId?.longLongValue,
 					cacheKey: key,
 					record: localRecord)
 
