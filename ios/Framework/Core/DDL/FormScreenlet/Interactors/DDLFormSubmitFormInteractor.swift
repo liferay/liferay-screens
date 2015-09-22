@@ -29,6 +29,20 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	private var lastCacheKeyUsed: String?
 
 
+	//MARK: Class functions
+
+	class func cacheKey(recordId: Int64?) -> String {
+		if let recordId = recordId {
+			return "recordId-\(recordId)"
+		}
+		else {
+			return "draft-\(NSDate().timeIntervalSince1970)"
+		}
+	}
+
+
+	//MARK: Inits
+
 	init(screenlet: BaseScreenlet?, record: DDLRecord) {
 		let formScreenlet = screenlet as! DDLFormScreenlet
 
@@ -121,7 +135,8 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			? SessionContext.currentCacheManager?.setDirty
 			: SessionContext.currentCacheManager?.setClean
 
-		lastCacheKeyUsed = lastCacheKeyUsed ?? cacheKey(submitOp.recordId)
+		lastCacheKeyUsed = lastCacheKeyUsed
+			?? DDLFormSubmitFormInteractor.cacheKey(submitOp.recordId)
 
 		cacheFunction?(
 			collection: ScreenletName(DDLFormScreenlet),
@@ -147,29 +162,20 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 				SessionContext.currentCacheManager?.setClean(
 					collection: ScreenletName(DDLFormScreenlet),
-					key: cacheKey(resultRecordId),
+					key: DDLFormSubmitFormInteractor.cacheKey(resultRecordId),
 					attributes: cacheAttributes())
 			}
 			else {
 				// update current cache entry with date sent
 				SessionContext.currentCacheManager?.setClean(
 					collection: ScreenletName(DDLFormScreenlet),
-					key: lastCacheKeyUsed ?? cacheKey(record.recordId),
+					key: lastCacheKeyUsed
+						?? DDLFormSubmitFormInteractor.cacheKey(record.recordId),
 					attributes: cacheAttributes())
 			}
 		}
 
 		super.callOnSuccess()
-	}
-
-
-	private func cacheKey(recordId: Int64?) -> String {
-		if let recordId = recordId {
-			return "recordId-\(recordId)"
-		}
-		else {
-			return "draft-\(NSDate().timeIntervalSince1970)"
-		}
 	}
 
 	private func cacheAttributes() -> [String:AnyObject] {
