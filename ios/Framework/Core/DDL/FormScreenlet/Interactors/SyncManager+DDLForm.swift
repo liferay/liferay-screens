@@ -101,46 +101,47 @@ extension SyncManager {
 			attributes: [String:AnyObject],
 			signal: Signal) {
 
-		let resolution = self.delegate?.syncManager?(self,
-			onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
-			conflictedKey: key,
-			remoteValue: remoteRecord,
-			localValue: localRecord) ?? .Ignore
-
-		switch resolution {
-		case .UseLocal:
-			// send local to server
-			self.sendLocalRecord(
-				record: localRecord,
-				key: key,
-				attributes: attributes,
-				signal: signal)
-
-		case .UseRemote:
-			// overwrite cache with remote record
-			var newAttrs = attributes
-			newAttrs["record"] = remoteRecord
-
-			self.cacheManager.setClean(
-				collection: ScreenletName(DDLFormScreenlet),
-				key: DDLFormSubmitFormInteractor.cacheKey(localRecord.recordId),
-				value: remoteRecord.values,
-				attributes: newAttrs)
-
-		case .Discard:
-			// clear cache
-			self.cacheManager.remove(
-				collection: ScreenletName(DDLFormScreenlet),
-				key: key)
-
-		case .Ignore:
-			// notify but keep cache
-			self.delegate?.syncManager?(self,
+		self.delegate?.syncManager?(self,
 				onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
-				failedKey: key,
-				attributes: attributes,
-				error: NSError.errorWithCause(.AbortedDueToPreconditions))
-			signal()
+				conflictedKey: key,
+				remoteValue: remoteRecord,
+				localValue: localRecord) { resolution in
+
+			switch resolution {
+			case .UseLocal:
+				// send local to server
+				self.sendLocalRecord(
+					record: localRecord,
+					key: key,
+					attributes: attributes,
+					signal: signal)
+
+			case .UseRemote:
+				// overwrite cache with remote record
+				var newAttrs = attributes
+				newAttrs["record"] = remoteRecord
+
+				self.cacheManager.setClean(
+					collection: ScreenletName(DDLFormScreenlet),
+					key: DDLFormSubmitFormInteractor.cacheKey(localRecord.recordId),
+					value: remoteRecord.values,
+					attributes: newAttrs)
+
+			case .Discard:
+				// clear cache
+				self.cacheManager.remove(
+					collection: ScreenletName(DDLFormScreenlet),
+					key: key)
+
+			case .Ignore:
+				// notify but keep cache
+				self.delegate?.syncManager?(self,
+					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+					failedKey: key,
+					attributes: attributes,
+					error: NSError.errorWithCause(.AbortedDueToPreconditions))
+				signal()
+			}
 		}
 	}
 

@@ -49,7 +49,8 @@ import Foundation
 		onItemSyncScreenlet screenlet: String,
 		conflictedKey: String,
 		remoteValue: AnyObject,
-		localValue: AnyObject) -> SyncConflictResolution
+		localValue: AnyObject,
+		resolve: SyncConflictResolution -> ())
 
 }
 
