@@ -94,14 +94,12 @@ public class DDLFieldDocument : DDLField {
 
 		switch uploadStatus {
 			case .Uploaded(let json):
-				let groupId = (json["groupId"] ?? nil) as? Int
-				let uuid = (json["uuid"] ?? nil) as? String
-				let version = (json["version"] ?? nil) as? String
-
-				if groupId != nil && uuid != nil && version != nil {
-					result = "{\"groupId\":\(groupId!)," +
-								"\"uuid\":\"\(uuid!)\"," +
-								"\"version\":\"\(version!)\"}"
+				if let groupId = (json["groupId"] ?? nil) as? NSNumber,
+						uuid = (json["uuid"] ?? nil) as? String,
+						version = (json["version"] ?? nil) as? String {
+					result = "{\"groupId\":\(groupId)," +
+						"\"uuid\":\"\(uuid)\"," +
+						"\"version\":\"\(version)\"}"
 				}
 
 			default: ()

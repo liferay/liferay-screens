@@ -25,7 +25,7 @@ public class DDLRecord: NSObject, NSCoding {
 
 	public var recordId: Int64? {
 		get {
-			return (attributes["recordId"] ?? 0).longLongValue
+			return attributes["recordId"]?.longLongValue
 		}
 		set {
 			if let newValue = newValue {

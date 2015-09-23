@@ -104,8 +104,8 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 		}
 
 		if lastError == nil {
-			if let recordIdValue = recordDictionary?["recordId"] as? Int {
-				resultRecordId = Int64(recordIdValue)
+			if let recordIdValue = recordDictionary?["recordId"]?.longLongValue {
+				resultRecordId = recordIdValue
 				resultAttributes = recordDictionary
 			}
 			else {

@@ -125,7 +125,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			collection: ScreenletName(DDLFormScreenlet),
 			key: lastCacheKeyUsed!,
 			value: record.values,
-			attributes: ["record": record])
+			attributes: cacheAttributes())
 	}
 
 	override func callOnSuccess() {
@@ -146,7 +146,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 				SessionContext.currentCacheManager?.setClean(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: DDLFormSubmitFormInteractor.cacheKey(resultRecordId),
-					attributes: ["record": record])
+					attributes: cacheAttributes())
 			}
 			else {
 				// update current cache entry with date sent
@@ -154,11 +154,25 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 					collection: ScreenletName(DDLFormScreenlet),
 					key: lastCacheKeyUsed
 						?? DDLFormSubmitFormInteractor.cacheKey(record.recordId),
-					attributes: ["record": record])
+					attributes: cacheAttributes())
 			}
 		}
 
 		super.callOnSuccess()
+	}
+
+	private func cacheAttributes() -> [String:AnyObject] {
+		let attrs = ["record": record]
+
+		if record.recordId == nil {
+			record.attributes["groupId"] = NSNumber(longLong: self.groupId)
+			record.attributes["recordSetId"] = NSNumber(longLong: self.recordSetId)
+			if let userId = self.userId {
+				record.attributes["userId"] = NSNumber(longLong: userId)
+			}
+		}
+
+		return attrs
 	}
 
 }

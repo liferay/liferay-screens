@@ -298,7 +298,7 @@ import UIKit
 					self.uploadStatus = .Uploading(uploadCount - 1, submitRequest)
 
 				case .Uploading(let uploadCount, let submitRequested)
-				where uploadCount == 1 && submitRequested:
+				where uploadCount == 1:
 					self.uploadStatus = .Idle
 
 					if submitRequested {
