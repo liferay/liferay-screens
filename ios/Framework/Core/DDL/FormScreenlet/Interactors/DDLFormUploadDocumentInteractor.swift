@@ -14,7 +14,7 @@
 import UIKit
 
 
-class DDLFormUploadDocumentInteractor: ServerOperationInteractor {
+class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 
 	typealias OnProgress = LiferayDDLFormUploadOperation.OnProgress
 
@@ -86,8 +86,39 @@ class DDLFormUploadDocumentInteractor: ServerOperationInteractor {
 		}
 		else if let uploadOp = op as? LiferayDDLFormUploadOperation {
 			self.resultResponse = uploadOp.uploadResult
-			document.uploadStatus = .Uploaded(uploadOp.uploadResult!)
+			document.uploadStatus = .Uploaded(uploadOp.uploadResult ?? [:])
 		}
+	}
+
+
+	//MARK: Cache methods
+
+	override func writeToCache(op: ServerOperation) {
+		// cache only supports images (right now)
+		if let image = document.currentValue as? UIImage {
+			let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
+				? SessionContext.currentCacheManager?.setDirty
+				: SessionContext.currentCacheManager?.setClean
+
+			if let cacheFunction = cacheFunction {
+				cacheFunction(
+					collection: ScreenletName(DDLFormScreenlet),
+					key: "document-\(NSDate().timeIntervalSince1970)",
+					value: image,
+					attributes: cacheAttributes())
+
+				// if cached, continue without errors
+				op.lastError = nil
+			}
+		}
+	}
+
+
+	private func cacheAttributes() -> [String:AnyObject] {
+		return ["document": self.document,
+			"filePrefix": self.filePrefix,
+			"folderId": NSNumber(longLong: self.folderId),
+			"repositoryId": NSNumber(longLong: self.repositoryId)]
 	}
 
 }
