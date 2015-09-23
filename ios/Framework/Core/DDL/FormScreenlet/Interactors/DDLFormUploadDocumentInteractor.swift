@@ -81,12 +81,13 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 	}
 
 	override func completedOperation(op: ServerOperation) {
-		if let lastErrorValue = op.lastError {
+		if let lastErrorValue = op.lastError
+				where lastErrorValue.code != ScreensErrorCause.NotAvailable.rawValue {
 			document.uploadStatus = .Failed(lastErrorValue)
 		}
 		else if let uploadOp = op as? LiferayDDLFormUploadOperation {
-			self.resultResponse = uploadOp.uploadResult
-			document.uploadStatus = .Uploaded(uploadOp.uploadResult ?? [:])
+			self.resultResponse = uploadOp.uploadResult ?? [:]
+			document.uploadStatus = .Uploaded(self.resultResponse!)
 		}
 	}
 
@@ -100,16 +101,11 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 				? SessionContext.currentCacheManager?.setDirty
 				: SessionContext.currentCacheManager?.setClean
 
-			if let cacheFunction = cacheFunction {
-				cacheFunction(
-					collection: ScreenletName(DDLFormScreenlet),
-					key: "document-\(NSDate().timeIntervalSince1970)",
-					value: image,
-					attributes: cacheAttributes())
-
-				// if cached, continue without errors
-				op.lastError = nil
-			}
+			cacheFunction?(
+				collection: ScreenletName(DDLFormScreenlet),
+				key: "document-\(NSDate().timeIntervalSince1970)",
+				value: image,
+				attributes: cacheAttributes())
 		}
 	}
 

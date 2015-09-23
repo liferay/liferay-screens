@@ -33,9 +33,10 @@ public class ServerOperationInteractor: Interactor {
 					self.completedOperation(operation)
 					self.callOnSuccess()
 				},
-				whenFailure: {
+				whenFailure: { err in
+					operation.lastError = err
 					self.completedOperation(operation)
-					self.callOnFailure($0)
+					self.callOnFailure(err)
 				})
 
 			return true
@@ -73,9 +74,10 @@ public class ServerOperationInteractor: Interactor {
 
 		let validationError = operation.validateAndEnqueue() {
 			if let error = $0.lastError {
-				whenFailure(error.domain == "NSURLErrorDomain"
-					? NSError.errorWithCause(.NotAvailable)
-					: error)
+				if error.domain == "NSURLErrorDomain" {
+					$0.lastError = NSError.errorWithCause(.NotAvailable)
+				}
+				whenFailure($0.lastError!)
 			}
 			else {
 				whenSuccess()
