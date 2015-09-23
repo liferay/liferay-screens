@@ -18,34 +18,64 @@ class DDLFormUploadDocumentInteractor: ServerOperationInteractor {
 
 	typealias OnProgress = LiferayDDLFormUploadOperation.OnProgress
 
-
+	let filePrefix: String
+	let repositoryId: Int64
+	let folderId: Int64
 	let document: DDLFieldDocument
-	let onProgressClosure: OnProgress
+
+	let onProgressClosure: OnProgress?
 
 	var resultResponse: [String:AnyObject]?
 
 
-	init(screenlet: BaseScreenlet?, document: DDLFieldDocument, onProgressClosure: OnProgress) {
+	init(screenlet: BaseScreenlet?,
+			document: DDLFieldDocument,
+			onProgressClosure: OnProgress) {
+
+		let formScreenlet = screenlet as! DDLFormScreenlet
+
+		self.filePrefix = formScreenlet.filePrefix
+		self.folderId = formScreenlet.folderId
+		self.repositoryId = (formScreenlet.repositoryId != 0)
+			? formScreenlet.repositoryId
+			: (formScreenlet.groupId != 0)
+				? formScreenlet.groupId
+				: LiferayServerContext.groupId
+
 		self.document = document
 		self.onProgressClosure = onProgressClosure
 
 		super.init(screenlet: screenlet)
 	}
 
-	override func createOperation() -> LiferayDDLFormUploadOperation {
-		let screenlet = self.screenlet as! DDLFormScreenlet
+	init(filePrefix: String,
+			repositoryId: Int64,
+			groupId: Int64,
+			folderId: Int64,
+			document: DDLFieldDocument) {
 
+		self.filePrefix = filePrefix
+		self.folderId = folderId
+		self.repositoryId = (repositoryId != 0)
+			? repositoryId
+			: (groupId != 0)
+				? groupId
+				: LiferayServerContext.groupId
+
+		self.document = document
+		self.onProgressClosure = nil
+
+		super.init(screenlet: nil)
+	}
+
+	override func createOperation() -> LiferayDDLFormUploadOperation {
 		let operation = LiferayDDLFormUploadOperation()
 
 		operation.document = self.document
+		operation.filePrefix = self.filePrefix
+		operation.folderId = self.folderId
+		operation.repositoryId = self.repositoryId
 		operation.onUploadedBytes = self.onProgressClosure
-
-		operation.filePrefix = screenlet.filePrefix
-		operation.folderId = screenlet.folderId
-
-		operation.repositoryId = (screenlet.repositoryId != 0)
-				? screenlet.repositoryId
-				: (screenlet.groupId != 0) ? screenlet.groupId : LiferayServerContext.groupId
 
 		return operation
 	}
