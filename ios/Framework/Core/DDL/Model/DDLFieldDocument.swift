@@ -162,12 +162,21 @@ public class DDLFieldDocument : DDLField {
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		switch uploadStatus {
 		case .Uploaded(let json):
-			let data = NSJSONSerialization.dataWithJSONObject(json,
-				options: .allZeros,
-				error: nil)
+			if let groupId = json["groupId"] as? NSNumber,
+					uuid = json["uuid"] as? String,
+					version = json["version"] as? String {
+				return "{\"groupId\":\(groupId)," +
+						"\"uuid\":\"\(uuid)\"," +
+						"\"version\":\"\(version)\"}"
+			}
+			else {
+				let data = NSJSONSerialization.dataWithJSONObject(json,
+					options: .allZeros,
+					error: nil)
 
-			if let data = data {
-				return NSString(data: data, encoding: NSUTF8StringEncoding) as? String
+				if let data = data {
+					return NSString(data: data, encoding: NSUTF8StringEncoding) as? String
+				}
 			}
 
 		default: ()

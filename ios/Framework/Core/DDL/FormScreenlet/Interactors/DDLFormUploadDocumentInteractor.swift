@@ -70,6 +70,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 			: self.groupId
 
 		self.document = document
+		self.lastCacheKey = document.cachedKey
 		self.onProgressClosure = nil
 
 		super.init(screenlet: nil)

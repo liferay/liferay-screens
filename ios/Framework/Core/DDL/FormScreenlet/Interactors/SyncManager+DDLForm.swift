@@ -198,51 +198,41 @@ extension SyncManager {
 			return
 		}
 
-		self.cacheManager.getAny(
-				collection: ScreenletName(DDLFormScreenlet),
-				key: key) {
+		let interactor = DDLFormSubmitFormInteractor(
+			cacheKey: key,
+			record: localRecord)
 
-			if let values = $0 as? [String:AnyObject] {
-				let interactor = DDLFormSubmitFormInteractor(
-					cacheKey: key,
-					record: localRecord)
+		interactor.cacheStrategy = .RemoteFirst
 
-				interactor.cacheStrategy = .RemoteFirst
+		interactor.onSuccess = {
+			self.delegate?.syncManager?(self,
+				onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+				completedKey: key,
+				attributes: attributes)
 
-				interactor.onSuccess = {
-					self.delegate?.syncManager?(self,
-						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
-						completedKey: key,
-						attributes: attributes)
+			signal()
+		}
 
-					signal()
-				}
+		interactor.onFailure = { err in
+			self.delegate?.syncManager?(self,
+				onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+				failedKey: key,
+				attributes: attributes,
+				error: err)
 
-				interactor.onFailure = { err in
-					self.delegate?.syncManager?(self,
-						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
-						failedKey: key,
-						attributes: attributes,
-						error: err)
+			// TODO retry?
+			signal()
+		}
 
-					// TODO retry?
-					signal()
-				}
+		if !interactor.start() {
+			dispatch_main() {
+				self.delegate?.syncManager?(self,
+					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+					failedKey: key,
+					attributes: attributes,
+					error: NSError.errorWithCause(.ValidationFailed))
 
-				if !interactor.start() {
-					signal()
-				}
-			}
-			else {
-				dispatch_main() {
-					self.delegate?.syncManager?(self,
-						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
-						failedKey: key,
-						attributes: attributes,
-						error: NSError.errorWithCause(.NotAvailable))
-
-					signal()
-				}
+				signal()
 			}
 		}
 	}
@@ -279,7 +269,6 @@ extension SyncManager {
 				interactor.cacheStrategy = .CacheFirst
 
 				interactor.onSuccess = {
-					document.currentValue = interactor.resultResponse!
 					document.uploadStatus = .Uploaded(interactor.resultResponse!)
 
 					// go on with record recursively
@@ -302,7 +291,14 @@ extension SyncManager {
 				}
 				
 				if !interactor.start() {
-					signal()
+					dispatch_main() {
+						self.delegate?.syncManager?(self,
+							onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+							failedKey: recordKey,
+							attributes: recordAttributes,
+							error: NSError.errorWithCause(.ValidationFailed))
+						signal()
+					}
 				}
 			}
 			else {
