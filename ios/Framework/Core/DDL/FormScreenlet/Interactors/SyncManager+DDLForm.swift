@@ -20,7 +20,7 @@ extension SyncManager {
 			attributes: [String:AnyObject])
 			-> Signal -> () {
 
-		return { signal in
+		let recordSynchronizer = { (signal: Signal) -> () in
 			let record = attributes["record"] as! DDLRecord
 
 			if record.recordId != nil {
@@ -40,6 +40,17 @@ extension SyncManager {
 					signal: signal)
 			}
 		}
+
+		let documentSynchronizer = { (signal: Signal) -> () in
+			// Do nothing. 
+			// When the record is sync-ed the documents will be sync-ed too
+			// Notify as this entry is finished
+			self.delegate?.syncManager?(self,
+				onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+				completedKey: key, attributes: attributes)
+		}
+
+		return key.hasPrefix("document-") ? documentSynchronizer : recordSynchronizer
 	}
 
 	private func checkConflictAndSendLocalRecord(
@@ -171,6 +182,22 @@ extension SyncManager {
 			attributes: [String:AnyObject],
 			signal: Signal) {
 
+		let cachedDocument = localRecord.fieldsBy(type: DDLFieldDocument.self)
+			.map {
+				$0 as! DDLFieldDocument
+			}.filter {
+				return $0.cachedKey != nil
+			}.first
+
+		if let cachedDocument = cachedDocument {
+			sendLocalDocument(cachedDocument,
+				record: localRecord,
+				recordKey: key,
+				recordAttributes: attributes,
+				signal: signal)
+			return
+		}
+
 		self.cacheManager.getAny(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: key) {
@@ -180,8 +207,7 @@ extension SyncManager {
 					cacheKey: key,
 					record: localRecord)
 
-				// this strategy saves the "send date" after the operation
-				interactor.cacheStrategy = .CacheFirst
+				interactor.cacheStrategy = .RemoteFirst
 
 				interactor.onSuccess = {
 					self.delegate?.syncManager?(self,
@@ -212,6 +238,76 @@ extension SyncManager {
 					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
 					failedKey: key,
 					attributes: attributes,
+					error: NSError.errorWithCause(.NotAvailable))
+
+				signal()
+			}
+		}
+	}
+
+	private func sendLocalDocument(
+			document: DDLFieldDocument,
+			record: DDLRecord,
+			recordKey: String,
+			recordAttributes: [String:AnyObject],
+			signal: Signal) {
+
+		precondition(
+			document.cachedKey != nil,
+			"Cached key is missing on local document")
+
+		self.cacheManager.getAnyWithAttributes(
+				collection: ScreenletName(DDLFormScreenlet),
+				key: document.cachedKey!) { object, attributes in
+
+			if let filePrefix = attributes?["filePrefix"] as? String,
+					folderId = attributes?["folderId"] as? NSNumber,
+					repositoryId = attributes?["repositoryId"] as? NSNumber,
+					groupId = attributes?["groupId"] as? NSNumber {
+
+				document.currentValue = object
+
+				let interactor = DDLFormUploadDocumentInteractor(
+					filePrefix: filePrefix,
+					repositoryId: repositoryId.longLongValue,
+					groupId: groupId.longLongValue,
+					folderId: folderId.longLongValue,
+					document: document)
+
+				interactor.cacheStrategy = .CacheFirst
+
+				interactor.onSuccess = {
+					document.currentValue = interactor.resultResponse!
+					document.uploadStatus = .Uploaded(interactor.resultResponse!)
+
+					// go on with record recursively
+					self.sendLocalRecord(
+						record: record,
+						key: recordKey,
+						attributes: recordAttributes,
+						signal: signal)
+				}
+
+				interactor.onFailure = { err in
+					self.delegate?.syncManager?(self,
+						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+						failedKey: recordKey,
+						attributes: recordAttributes,
+						error: err)
+
+					// TODO retry?
+					signal()
+				}
+				
+				if !interactor.start() {
+					signal()
+				}
+			}
+			else {
+				self.delegate?.syncManager?(self,
+					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+					failedKey: recordKey,
+					attributes: recordAttributes,
 					error: NSError.errorWithCause(.NotAvailable))
 
 				signal()

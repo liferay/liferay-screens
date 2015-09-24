@@ -22,6 +22,12 @@ public class DDLFieldDocument : DDLField {
 		case Uploading(UInt,UInt)
 		case Pending
 
+		public static func CachedStatusData(cacheKey: String) -> [String:AnyObject] {
+			return [
+				"cached": cacheKey,
+				"mimeType": "image/png"]
+		}
+
 		public var hashValue: Int {
 			return toInt()
 		}
@@ -45,6 +51,14 @@ public class DDLFieldDocument : DDLField {
 	public var uploadStatus = UploadStatus.Pending
 
 	public var mimeType: String? {
+		if cachedKey != nil {
+			switch uploadStatus {
+			case .Uploaded(let json):
+				return json["mimeType"] as? String
+			default: ()
+			}
+		}
+
 		switch currentValue {
 		case is UIImage:
 			return "image/png"
@@ -55,6 +69,16 @@ public class DDLFieldDocument : DDLField {
 		default:
 			return nil
 		}
+	}
+
+	public var cachedKey: String? {
+		switch uploadStatus {
+		case .Uploaded(let json):
+			return json["cached"] as? String
+		default: ()
+		}
+
+		return nil
 	}
 
 

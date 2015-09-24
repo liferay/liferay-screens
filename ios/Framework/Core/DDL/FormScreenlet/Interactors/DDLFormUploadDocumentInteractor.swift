@@ -20,6 +20,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 
 	let filePrefix: String
 	let repositoryId: Int64
+	let groupId: Int64
 	let folderId: Int64
 	let document: DDLFieldDocument
 
@@ -36,13 +37,15 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 
 		let formScreenlet = screenlet as! DDLFormScreenlet
 
+		self.groupId = (formScreenlet.groupId != 0)
+			? formScreenlet.groupId
+			: LiferayServerContext.groupId
+
 		self.filePrefix = formScreenlet.filePrefix
 		self.folderId = formScreenlet.folderId
 		self.repositoryId = (formScreenlet.repositoryId != 0)
 			? formScreenlet.repositoryId
-			: (formScreenlet.groupId != 0)
-				? formScreenlet.groupId
-				: LiferayServerContext.groupId
+			: self.groupId
 
 		self.document = document
 		self.onProgressClosure = onProgressClosure
@@ -56,13 +59,15 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 			folderId: Int64,
 			document: DDLFieldDocument) {
 
+		self.groupId = (groupId != 0)
+			? groupId
+			: LiferayServerContext.groupId
+
 		self.filePrefix = filePrefix
 		self.folderId = folderId
 		self.repositoryId = (repositoryId != 0)
 			? repositoryId
-			: (groupId != 0)
-				? groupId
-				: LiferayServerContext.groupId
+			: self.groupId
 
 		self.document = document
 		self.onProgressClosure = nil
@@ -83,15 +88,19 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 	}
 
 	override func completedOperation(op: ServerOperation) {
-		if let lastErrorValue = op.lastError
-				where lastErrorValue.code != ScreensErrorCause.NotAvailable.rawValue {
-			document.uploadStatus = .Failed(lastErrorValue)
+		if let lastErrorValue = op.lastError {
+			if lastErrorValue.code == ScreensErrorCause.NotAvailable.rawValue {
+				let cacheResult = DDLFieldDocument.UploadStatus.CachedStatusData(cacheKey())
+				self.resultResponse = cacheResult
+				document.uploadStatus = .Uploaded(cacheResult)
+			}
+			else {
+				document.uploadStatus = .Failed(lastErrorValue)
+			}
 		}
 		else if let uploadOp = op as? LiferayDDLFormUploadOperation {
-			let uploadResult = uploadOp.uploadResult ?? ["cached" : cacheKey()]
-
-			self.resultResponse = uploadResult
-			document.uploadStatus = .Uploaded(uploadResult)
+			self.resultResponse = uploadOp.uploadResult
+			document.uploadStatus = .Uploaded(uploadOp.uploadResult!)
 		}
 	}
 
@@ -113,6 +122,17 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 		}
 	}
 
+	override func callOnSuccess() {
+		if cacheStrategy == .CacheFirst {
+			SessionContext.currentCacheManager?.setClean(
+				collection: ScreenletName(DDLFormScreenlet),
+				key: cacheKey(),
+				attributes: cacheAttributes())
+		}
+
+		super.callOnSuccess()
+	}
+
 
 	//MARK: Private methods
 
@@ -126,6 +146,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 			"document": self.document,
 			"filePrefix": self.filePrefix,
 			"folderId": NSNumber(longLong: self.folderId),
+			"groupId": NSNumber(longLong: self.groupId),
 			"repositoryId": NSNumber(longLong: self.repositoryId)
 		]
 	}

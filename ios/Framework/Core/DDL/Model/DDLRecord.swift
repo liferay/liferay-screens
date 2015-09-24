@@ -125,6 +125,19 @@ public class DDLRecord: NSObject, NSCoding {
 		return nil
 	}
 
+	public func fieldsBy(#type: AnyClass) -> [DDLField] {
+		var result = [DDLField]()
+		let typeName = NSStringFromClass(type)
+
+		for field in fields {
+			if NSStringFromClass(field.dynamicType) == typeName {
+				result.append(field)
+			}
+		}
+
+		return result
+	}
+
 	public func updateCurrentValues(values: [String:AnyObject]) {
 		for (index,field) in enumerate(fields) {
 			let fieldValueLabel: AnyObject? = (values[field.name] ?? nil)

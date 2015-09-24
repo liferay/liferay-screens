@@ -96,14 +96,13 @@ import Foundation
 			_ key: String,
 			_ attributes: [String:AnyObject]) {
 
-		let sychronizers = [
+		let syncBuilders = [
 				ScreenletName(UserPortraitScreenlet): userPortraitSynchronizer,
 				ScreenletName(DDLFormScreenlet): formSynchronizer,
 			]
 
-		if let sychronizerBuilder = sychronizers[screenletName] {
-			let synchronizer = sychronizerBuilder(key, attributes: attributes)
-
+		if let syncBuilder = syncBuilders[screenletName] {
+			let synchronizer = syncBuilder(key, attributes: attributes)
 			syncQueue.addOperationWithBlock(to_sync(synchronizer))
 		}
 	}
