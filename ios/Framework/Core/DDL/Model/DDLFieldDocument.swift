@@ -23,19 +23,19 @@ public class DDLFieldDocument : DDLField {
 		case Pending
 
 		public var hashValue: Int {
-		    return toInt()
+			return toInt()
 		}
 
 		private func toInt() -> Int {
 			switch self {
-				case .Uploaded(_):
-    		        return Int.max
-        		case .Failed(_):
-					return Int.min
-				case .Uploading(_,_):
-					return 1
-				default:
-					return 0
+			case .Uploaded(_):
+				return 1
+			case .Failed(_):
+				return 3
+			case .Uploading(_,_):
+				return 4
+			case .Pending:
+				return 5
 			}
 		}
 
@@ -46,14 +46,14 @@ public class DDLFieldDocument : DDLField {
 
 	public var mimeType: String? {
 		switch currentValue {
-			case is UIImage:
-				return "image/png"
-			case is NSURL:
-				return "video/mpeg"
-			case is [String:AnyObject]:
-				return nil
-			default:
-				return nil
+		case is UIImage:
+			return "image/png"
+		case is NSURL:
+			return "video/mpeg"
+		case is [String:AnyObject]:
+			return nil
+		default:
+			return nil
 		}
 	}
 
@@ -65,17 +65,17 @@ public class DDLFieldDocument : DDLField {
 
 		if let valueString = value {
 			let data = valueString.dataUsingEncoding(NSUTF8StringEncoding,
-					allowLossyConversion: false)
+				allowLossyConversion: false)
 			if let jsonObject:AnyObject = NSJSONSerialization.JSONObjectWithData(data!,
-					options: NSJSONReadingOptions(0), error: nil) {
-				if let jsonDict = jsonObject as? NSDictionary {
-					let dict = ["groupId" : jsonDict["groupId"]!,
+				options: NSJSONReadingOptions(0), error: nil) {
+					if let jsonDict = jsonObject as? NSDictionary {
+						let dict = ["groupId" : jsonDict["groupId"]!,
 							"uuid" : jsonDict["uuid"]!,
 							"version" : jsonDict["version"]!]
 
-					uploadStatus = UploadStatus.Uploaded(dict)
-					result = dict
-				}
+						uploadStatus = UploadStatus.Uploaded(dict)
+						result = dict
+					}
 			}
 			else if valueString != "" {
 				result = valueString
@@ -93,16 +93,16 @@ public class DDLFieldDocument : DDLField {
 		var result: String?
 
 		switch uploadStatus {
-			case .Uploaded(let json):
-				if let groupId = (json["groupId"] ?? nil) as? NSNumber,
-						uuid = (json["uuid"] ?? nil) as? String,
-						version = (json["version"] ?? nil) as? String {
-					result = "{\"groupId\":\(groupId)," +
-						"\"uuid\":\"\(uuid)\"," +
-						"\"version\":\"\(version)\"}"
-				}
+		case .Uploaded(let json):
+			if let groupId = (json["groupId"] ?? nil) as? NSNumber,
+					uuid = (json["uuid"] ?? nil) as? String,
+					version = (json["version"] ?? nil) as? String {
+				result = "{\"groupId\":\(groupId)," +
+					"\"uuid\":\"\(uuid)\"," +
+					"\"version\":\"\(version)\"}"
+			}
 
-			default: ()
+		default: ()
 		}
 
 		return result
@@ -110,13 +110,13 @@ public class DDLFieldDocument : DDLField {
 
 	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
 		switch currentValue {
-			case is UIImage:
-				return LocalizedString("core", "an-image-has-been-selected", self)
-			case is NSURL:
-				return LocalizedString("core", "a-video-has-been-selected", self)
-			case is [String:AnyObject]:
-				return LocalizedString("core", "a-file-is-already-uploaded", self)
-			default: ()
+		case is UIImage:
+			return LocalizedString("core", "an-image-has-been-selected", self)
+		case is NSURL:
+			return LocalizedString("core", "a-video-has-been-selected", self)
+		case is [String:AnyObject]:
+			return LocalizedString("core", "a-file-is-already-uploaded", self)
+		default: ()
 		}
 
 		return nil
@@ -127,8 +127,10 @@ public class DDLFieldDocument : DDLField {
 
 		if result {
 			switch uploadStatus {
-				case .Failed(_): result = false
-				default: result = true
+			case .Failed(_):
+				result = false
+			default:
+				result = true
 			}
 		}
 
@@ -142,22 +144,22 @@ public class DDLFieldDocument : DDLField {
 		var result: NSInputStream?
 
 		switch currentValue {
-			case let image as UIImage:
-				let imageData = UIImagePNGRepresentation(image)
-				size = Int64(imageData.length)
-				result = NSInputStream(data: imageData)
+		case let image as UIImage:
+			let imageData = UIImagePNGRepresentation(image)
+			size = Int64(imageData.length)
+			result = NSInputStream(data: imageData)
 
-			case let videoURL as NSURL:
-				var outError:NSError?
-				if let attributes = NSFileManager.defaultManager().attributesOfItemAtPath(
-						videoURL.path!, error: &outError) {
-					if let sizeValue = attributes[NSFileSize] as? NSNumber {
-						size = sizeValue.longLongValue
-					}
+		case let videoURL as NSURL:
+			var outError:NSError?
+			if let attributes = NSFileManager.defaultManager().attributesOfItemAtPath(
+					videoURL.path!, error: &outError) {
+				if let sizeValue = attributes[NSFileSize] as? NSNumber {
+					size = sizeValue.longLongValue
 				}
-				result = NSInputStream(URL: videoURL)
+			}
+			result = NSInputStream(URL: videoURL)
 
-			default: ()
+		default: ()
 		}
 
 		return result
@@ -168,8 +170,9 @@ public class DDLFieldDocument : DDLField {
 
 //MARK: Equatable
 
-public func ==(left: DDLFieldDocument.UploadStatus, right: DDLFieldDocument.UploadStatus) ->
-		Bool {
-
+public func ==(
+		left: DDLFieldDocument.UploadStatus,
+		right: DDLFieldDocument.UploadStatus)
+		-> Bool {
 	return left.hashValue == right.hashValue
 }
