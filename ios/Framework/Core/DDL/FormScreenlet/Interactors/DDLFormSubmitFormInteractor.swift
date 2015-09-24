@@ -99,8 +99,8 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 	override func completedOperation(op: ServerOperation) {
 		if let loadOp = op as? LiferayDDLFormSubmitOperation {
-			self.resultRecordId = loadOp.resultRecordId
-			self.resultAttributes = loadOp.resultAttributes
+				self.resultRecordId = loadOp.resultRecordId
+				self.resultAttributes = loadOp.resultAttributes
 
 			if let modifiedDate = loadOp.resultAttributes?["modifiedDate"] as? NSNumber {
 				record.attributes["modifiedDate"] = modifiedDate

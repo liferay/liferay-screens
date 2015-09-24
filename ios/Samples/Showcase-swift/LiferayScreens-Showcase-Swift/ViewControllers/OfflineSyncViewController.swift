@@ -37,6 +37,11 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 		syncManager?.startSync()
 	}
 
+	@IBAction func clear(sender: AnyObject) {
+		syncManager?.clear()
+		log.text = log.text + "Cleared!\n\n"
+	}
+
 	func syncManager(manager: SyncManager, itemsCount: UInt) {
 		log.text = log.text + "Start sync...  \(itemsCount) items\n\n"
 	}
@@ -45,14 +50,14 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 			onItemSyncScreenlet screenlet: String,
 			startKey: String,
 			attributes: [String:AnyObject]) {
-		log.text = log.text + "Start item. screenlet=\(screenlet) key=\(startKey) attrs=\(attributes)\n\n"
+		log.text = log.text + "[o] Start item. screenlet=\(screenlet) key=\(startKey) attrs=\(attributes)\n\n"
 	}
 
 	func syncManager(manager: SyncManager,
 			onItemSyncScreenlet screenlet: String,
 			completedKey: String,
 			attributes: [String:AnyObject]) {
-		log.text = log.text + "Item completed. screenlet=\(screenlet) key=\(completedKey) attrs=\(attributes)\n\n"
+		log.text = log.text + "[o] Item completed. screenlet=\(screenlet) key=\(completedKey) attrs=\(attributes)\n\n"
 	}
 
 	func syncManager(manager: SyncManager,
@@ -60,7 +65,7 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 			failedKey: String,
 			attributes: [String:AnyObject],
 			error: NSError) {
-		log.text = log.text + "Item failed. screenlet=\(screenlet) key=\(failedKey) attrs=\(attributes) error=\(error)\n\n"
+		log.text = log.text + "[o] Item failed. screenlet=\(screenlet) key=\(failedKey) attrs=\(attributes) error=\(error)\n\n"
 	}
 
 	func syncManager(manager: SyncManager,
@@ -70,7 +75,7 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 		localValue: AnyObject,
 		resolve: SyncConflictResolution -> ()) {
 
-		log.text = log.text + "Item conflicted. screenlet=\(screenlet) key=\(conflictedKey) remote=\(remoteValue) local=\(localValue)\nProcessing... "
+		log.text = log.text + "[o] Item conflicted. screenlet=\(screenlet) key=\(conflictedKey) remote=\(remoteValue) local=\(localValue)\nProcessing... "
 
 		let alert = UIAlertController(title: "Conflicted", message: "Choose resolve action", preferredStyle: .ActionSheet)
 
