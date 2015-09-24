@@ -72,6 +72,10 @@ import Foundation
 		super.init()
 	}
 
+	public func clear() {
+		self.cacheManager.removeAll()
+	}
+
 	public func startSync() {
 		cacheManager.countPendingToSync { count in
 			self.delegate?.syncManager?(self, itemsCount: count)
