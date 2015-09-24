@@ -45,9 +45,12 @@ extension SyncManager {
 			// Do nothing. 
 			// When the record is sync-ed the documents will be sync-ed too
 			// Notify as this entry is finished
-			self.delegate?.syncManager?(self,
-				onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
-				completedKey: key, attributes: attributes)
+			dispatch_main() {
+				self.delegate?.syncManager?(self,
+					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+					completedKey: key, attributes: attributes)
+				signal()
+			}
 		}
 
 		return key.hasPrefix("document-") ? documentSynchronizer : recordSynchronizer
@@ -71,11 +74,8 @@ extension SyncManager {
 					attributes: attributes,
 					error: NSError.errorWithCause(.NotAvailable))
 				signal()
-
-				return
 			}
-
-			if let localModifiedDate = localRecord.attributes["modifiedDate"] as? NSNumber,
+			else if let localModifiedDate = localRecord.attributes["modifiedDate"] as? NSNumber,
 					remoteModifiedDate = remoteRecord!.attributes["modifiedDate"] as? NSNumber {
 
 				if remoteModifiedDate.longLongValue <= localModifiedDate.longLongValue {
@@ -234,13 +234,15 @@ extension SyncManager {
 				}
 			}
 			else {
-				self.delegate?.syncManager?(self,
-					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
-					failedKey: key,
-					attributes: attributes,
-					error: NSError.errorWithCause(.NotAvailable))
+				dispatch_main() {
+					self.delegate?.syncManager?(self,
+						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+						failedKey: key,
+						attributes: attributes,
+						error: NSError.errorWithCause(.NotAvailable))
 
-				signal()
+					signal()
+				}
 			}
 		}
 	}
@@ -304,13 +306,15 @@ extension SyncManager {
 				}
 			}
 			else {
-				self.delegate?.syncManager?(self,
-					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
-					failedKey: recordKey,
-					attributes: recordAttributes,
-					error: NSError.errorWithCause(.NotAvailable))
+				dispatch_main() {
+					self.delegate?.syncManager?(self,
+						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+						failedKey: recordKey,
+						attributes: recordAttributes,
+						error: NSError.errorWithCause(.NotAvailable))
 
-				signal()
+					signal()
+				}
 			}
 		}
 	}
