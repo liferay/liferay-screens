@@ -136,22 +136,20 @@ public class DDLFieldDocument : DDLField {
 	}
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
-		var result: String?
-
 		switch uploadStatus {
 		case .Uploaded(let json):
-			if let groupId = (json["groupId"] ?? nil) as? NSNumber,
-					uuid = (json["uuid"] ?? nil) as? String,
-					version = (json["version"] ?? nil) as? String {
-				result = "{\"groupId\":\(groupId)," +
-					"\"uuid\":\"\(uuid)\"," +
-					"\"version\":\"\(version)\"}"
+			let data = NSJSONSerialization.dataWithJSONObject(json,
+				options: .allZeros,
+				error: nil)
+
+			if let data = data {
+				return NSString(data: data, encoding: NSUTF8StringEncoding) as? String
 			}
 
 		default: ()
 		}
 
-		return result
+		return nil
 	}
 
 	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {

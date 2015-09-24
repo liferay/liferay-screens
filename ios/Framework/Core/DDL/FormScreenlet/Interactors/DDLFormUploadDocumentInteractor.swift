@@ -27,6 +27,8 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 
 	var resultResponse: [String:AnyObject]?
 
+	var lastCacheKey: String?
+
 
 	init(screenlet: BaseScreenlet?,
 			document: DDLFieldDocument,
@@ -86,8 +88,10 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 			document.uploadStatus = .Failed(lastErrorValue)
 		}
 		else if let uploadOp = op as? LiferayDDLFormUploadOperation {
-			self.resultResponse = uploadOp.uploadResult ?? [:]
-			document.uploadStatus = .Uploaded(self.resultResponse!)
+			let uploadResult = uploadOp.uploadResult ?? ["cached" : cacheKey()]
+
+			self.resultResponse = uploadResult
+			document.uploadStatus = .Uploaded(uploadResult)
 		}
 	}
 
@@ -103,18 +107,27 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 
 			cacheFunction?(
 				collection: ScreenletName(DDLFormScreenlet),
-				key: "document-\(NSDate().timeIntervalSince1970)",
+				key: cacheKey(),
 				value: image,
 				attributes: cacheAttributes())
 		}
 	}
 
 
+	//MARK: Private methods
+
+	private func cacheKey() -> String {
+		lastCacheKey = lastCacheKey ?? "document-\(NSDate().timeIntervalSince1970)"
+		return lastCacheKey!
+	}
+
 	private func cacheAttributes() -> [String:AnyObject] {
-		return ["document": self.document,
+		return [
+			"document": self.document,
 			"filePrefix": self.filePrefix,
 			"folderId": NSNumber(longLong: self.folderId),
-			"repositoryId": NSNumber(longLong: self.repositoryId)]
+			"repositoryId": NSNumber(longLong: self.repositoryId)
+		]
 	}
 
 }
