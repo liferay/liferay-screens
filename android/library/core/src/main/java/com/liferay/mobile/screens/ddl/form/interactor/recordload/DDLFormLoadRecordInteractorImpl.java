@@ -54,7 +54,7 @@ public class DDLFormLoadRecordInteractorImpl
 		else {
 			try {
 				JSONObject jsonObject = event.getJSONObject();
-				event.getRecord().setValues(JSONUtil.toMap(jsonObject));
+				event.getRecord().setValuesAndAttributes(JSONUtil.toMap(jsonObject));
 				event.getRecord().refresh();
 
 				getListener().onDDLFormRecordLoaded(event.getRecord());

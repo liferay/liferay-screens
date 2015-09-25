@@ -186,6 +186,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 
 		_card1.animate().y(_card1RestPosition);
 		_card2.animate().y(_card2FoldedPosition).setListener(new EndAnimationListener() {
+
 			@Override
 			public void onAnimationEnd(Animator animator) {
 				_backgroundCard.setY(0);
@@ -215,7 +216,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	protected void toCard2() {
 		super.toCard2();
 		if (_entry != null) {
-			_ddlFormScreenlet.setRecordId((Long) _entry.getAttribute("recordId"));
+			_ddlFormScreenlet.setRecordId(_entry.getRecordId());
 			_ddlFormScreenlet.loadRecord();
 			goLeftCard1();
 		}
@@ -250,6 +251,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	private void reloadListAndShowResult(final String message) {
 		_ddlListScreenlet.loadPage(0);
 		toCard1(new EndAnimationListener() {
+
 			@Override
 			public void onAnimationEnd(Animator animator) {
 				LiferayCrouton.info(IssuesActivity.this, message.toUpperCase());
@@ -259,15 +261,15 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 
 	private void goRightCard1(Record element) {
 		TextView issueTitle = (TextView) findViewById(R.id.issue_title);
-		issueTitle.setText(element.getValue(getString(R.string.liferay_recordset_fields)));
+		issueTitle.setText(element.getServerValue(getString(R.string.liferay_recordset_fields)));
 
-		String date = new SimpleDateFormat("dd/MM/yyyy").format(element.getAttribute("createDate"));
+		String date = new SimpleDateFormat("dd/MM/yyyy").format(element.getServerAttribute("createDate"));
 		((TextView) findViewById(R.id.createdAt)).setText("Created " + date);
 
 		TextView description = (TextView) findViewById(R.id.description);
-		description.setText(element.getValue("Description"));
+		description.setText(element.getServerValue("Description"));
 
-		String severity = element.getValue("Severity");
+		String severity = element.getServerValue("Severity");
 		if (severity != null) {
 			severity = severity.replace("[\"", "");
 			severity = severity.replace("\"]", "");

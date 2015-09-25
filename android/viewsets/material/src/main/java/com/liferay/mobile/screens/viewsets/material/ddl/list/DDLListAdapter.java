@@ -75,11 +75,11 @@ public class DDLListAdapter
 	protected void fillHolder(Record entry, TwoTextsViewHolder holder) {
 		StringBuilder builder = new StringBuilder();
 
-		String titleField = entry.getValue(_labelFields.get(0));
+		String titleField = entry.getServerValue(_labelFields.get(0));
 
 		for (int i = 1; i < _labelFields.size(); ++i) {
 			String field = _labelFields.get(i);
-			String value = entry.getValue(field);
+			String value = entry.getServerValue(field);
 			if (value != null && !value.isEmpty()) {
 				builder.append(value);
 				builder.append(" ");

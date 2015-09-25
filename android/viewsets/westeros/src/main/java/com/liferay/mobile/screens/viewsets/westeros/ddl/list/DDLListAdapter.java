@@ -112,18 +112,18 @@ public class DDLListAdapter
 
         if (entry != null && _labelFields != null && !_labelFields.isEmpty()) {
 
-            String titleField = entry.getValue(_labelFields.get(0));
+            String titleField = entry.getServerValue(_labelFields.get(0));
 
             for (int i = 1; i < _labelFields.size(); ++i) {
                 String field = _labelFields.get(i);
-                String value = entry.getValue(field);
+                String value = entry.getServerValue(field);
                 if (value != null && !value.isEmpty()) {
                     builder.append(value);
                     builder.append(" ");
                 }
             }
             if (builder.length() == 0) {
-                String date = new SimpleDateFormat("dd/MM/yyyy").format(entry.getAttribute("createDate"));
+                String date = new SimpleDateFormat("dd/MM/yyyy").format(entry.getServerAttribute("createDate"));
                 builder.append("Created ");
                 builder.append(date);
             }

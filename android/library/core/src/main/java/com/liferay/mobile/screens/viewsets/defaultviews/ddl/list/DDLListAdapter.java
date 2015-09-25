@@ -39,7 +39,7 @@ public class DDLListAdapter extends BaseListAdapter<Record, BaseListAdapter.View
 		StringBuilder builder = new StringBuilder();
 
 		for (String field : _labelFields) {
-			String value = entry.getValue(field);
+			String value = entry.getServerValue(field);
 			if (value != null && !value.isEmpty()) {
 				builder.append(value);
 				builder.append(" ");
