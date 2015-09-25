@@ -19,7 +19,7 @@ import android.util.Pair;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
+import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.service.v62.ScreensddlrecordService;
 
 import java.util.Locale;
@@ -29,26 +29,26 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public class DDLListInteractorImpl
-	extends BaseListInteractor<DDLEntry,DDLListInteractorListener> implements DDLListInteractor {
+	extends BaseListInteractor<Record, DDLListInteractorListener> implements DDLListInteractor {
 
-    public DDLListInteractorImpl(int targetScreenletId) {
+	public DDLListInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 
-    public void loadRows(
-			long recordSetId, long userId, int startRow, int endRow, Locale locale)
+	public void loadRows(
+		long recordSetId, long userId, int startRow, int endRow, Locale locale)
 		throws Exception {
 
-        _recordSetId = recordSetId;
-        _userId = userId;
+		_recordSetId = recordSetId;
+		_userId = userId;
 
-        loadRows(startRow, endRow, locale);
+		loadRows(startRow, endRow, locale);
 	}
 
-    @Override
-    protected BaseListCallback<DDLEntry> getCallback(Pair<Integer, Integer> rowsRange) {
-        return new DDLListCallback(getTargetScreenletId(), rowsRange);
-    }
+	@Override
+	protected BaseListCallback<Record> getCallback(Pair<Integer, Integer> rowsRange) {
+		return new DDLListCallback(getTargetScreenletId(), rowsRange);
+	}
 
 	@Override
 	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
@@ -74,7 +74,7 @@ public class DDLListInteractorImpl
 
 	protected void validate(
 		long recordSetId, int startRow, int endRow, Locale locale) {
-        super.validate(startRow, endRow, locale);
+		super.validate(startRow, endRow, locale);
 
 		if (recordSetId <= 0) {
 			throw new IllegalArgumentException(
@@ -82,8 +82,8 @@ public class DDLListInteractorImpl
 		}
 	}
 
-    private long _recordSetId;
-    private long _userId;
+	private long _recordSetId;
+	private long _userId;
 
 
 }

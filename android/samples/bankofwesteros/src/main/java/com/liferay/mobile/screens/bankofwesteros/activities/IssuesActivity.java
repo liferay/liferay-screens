@@ -22,7 +22,6 @@ import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
@@ -36,7 +35,8 @@ import java.util.List;
 /**
  * @author Javier Gamarra
  */
-public class IssuesActivity extends CardActivity implements View.OnClickListener, DDLFormListener, BaseListListener<DDLEntry>, View.OnTouchListener {
+public class IssuesActivity extends CardActivity implements View.OnClickListener,
+	DDLFormListener, BaseListListener<Record>, View.OnTouchListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +101,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	}
 
 	@Override
-	public void onListItemSelected(DDLEntry element, View view) {
+	public void onListItemSelected(Record element, View view) {
 		selectDDLEntry(element);
 		if (view.getId() == R.id.liferay_list_edit) {
 			toCard2();
@@ -170,7 +170,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int page, List<DDLEntry> entries,
+	public void onListPageReceived(BaseListScreenlet source, int page, List<Record> entries,
 								   int rowCount) {
 	}
 
@@ -215,7 +215,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	protected void toCard2() {
 		super.toCard2();
 		if (_entry != null) {
-			_ddlFormScreenlet.setRecordId((Long) _entry.getAttributes("recordId"));
+			_ddlFormScreenlet.setRecordId((Long) _entry.getAttribute("recordId"));
 			_ddlFormScreenlet.loadRecord();
 			goLeftCard1();
 		}
@@ -234,7 +234,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		return ssb;
 	}
 
-	private void selectDDLEntry(DDLEntry entry) {
+	private void selectDDLEntry(Record entry) {
 		_entry = entry;
 		_reportIssueTitle.setText(getString(R.string.edit_issue));
 		_sendButton.setText(getString(R.string.save).toUpperCase());
@@ -257,11 +257,11 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		});
 	}
 
-	private void goRightCard1(DDLEntry element) {
+	private void goRightCard1(Record element) {
 		TextView issueTitle = (TextView) findViewById(R.id.issue_title);
 		issueTitle.setText(element.getValue(getString(R.string.liferay_recordset_fields)));
 
-		String date = new SimpleDateFormat("dd/MM/yyyy").format(element.getAttributes("createDate"));
+		String date = new SimpleDateFormat("dd/MM/yyyy").format(element.getAttribute("createDate"));
 		((TextView) findViewById(R.id.createdAt)).setText("Created " + date);
 
 		TextView description = (TextView) findViewById(R.id.description);
@@ -308,7 +308,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	private DDLFormScreenlet _ddlFormScreenlet;
 	private DDLListScreenlet _ddlListScreenlet;
 
-	private DDLEntry _entry;
+	private Record _entry;
 
 	private View _backgroundCard;
 	private ImageView _card1ToBackground;
