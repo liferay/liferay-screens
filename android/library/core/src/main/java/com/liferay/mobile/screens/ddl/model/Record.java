@@ -207,10 +207,6 @@ public class Record implements Parcelable {
 		in.readMap(_valuesAndAttributes, loader);
 	}
 
-	private Map<String, Object> getValuesAndAttributes() {
-		return _valuesAndAttributes;
-	}
-
 	public void setValuesAndAttributes(Map<String, Object> valuesAndAttributes) {
 		_valuesAndAttributes = valuesAndAttributes;
 		parseServerValues();
