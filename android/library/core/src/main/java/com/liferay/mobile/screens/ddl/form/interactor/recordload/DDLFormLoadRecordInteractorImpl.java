@@ -23,6 +23,7 @@ import com.liferay.mobile.screens.service.v62.ScreensddlrecordService;
 import com.liferay.mobile.screens.util.JSONUtil;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Jose Manuel Navarro
@@ -52,7 +53,9 @@ public class DDLFormLoadRecordInteractorImpl
 		}
 		else {
 			try {
-				event.getRecord().setValues(JSONUtil.toMap(event.getJSONObject()));
+				JSONObject jsonObject = event.getJSONObject();
+				event.getRecord().setValues(JSONUtil.toMap(jsonObject));
+				event.getRecord().refresh();
 
 				getListener().onDDLFormRecordLoaded(event.getRecord());
 			}
