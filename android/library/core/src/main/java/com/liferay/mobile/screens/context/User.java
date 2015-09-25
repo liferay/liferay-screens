@@ -55,7 +55,7 @@ public class User {
 	}
 
 	public long getId() {
-		return JSONUtil.safeCastToLong(_attributes.get(USER_ID));
+		return JSONUtil.castToLong(_attributes.get(USER_ID));
 	}
 
 	public String getUuid() {
@@ -63,7 +63,7 @@ public class User {
 	}
 
 	public long getPortraitId() {
-		return JSONUtil.safeCastToLong(_attributes.get(PORTRAIT_ID));
+		return JSONUtil.castToLong(_attributes.get(PORTRAIT_ID));
 	}
 
 	public String getFirstName() {

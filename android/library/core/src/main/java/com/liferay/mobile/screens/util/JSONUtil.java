@@ -55,7 +55,7 @@ public class JSONUtil {
 		return map;
 	}
 
-	public static Long safeCastToLong(final Object o) {
+	public static Long castToLong(final Object o) {
 		if (o instanceof Integer) {
 			return ((Integer) o).longValue();
 		}
