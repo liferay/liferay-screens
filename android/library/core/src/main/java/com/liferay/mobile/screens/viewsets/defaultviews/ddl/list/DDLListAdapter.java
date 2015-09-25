@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.list;
 
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
+import com.liferay.mobile.screens.ddl.model.Record;
 
 import java.util.List;
 
@@ -24,31 +24,31 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListAdapter extends BaseListAdapter<DDLEntry, BaseListAdapter.ViewHolder> {
+public class DDLListAdapter extends BaseListAdapter<Record, BaseListAdapter.ViewHolder> {
 
-    public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
-        super(layoutId, progressLayoutId, listener);
-    }
+	public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
+		super(layoutId, progressLayoutId, listener);
+	}
 
-    public void setLabelFields(List<String> labelFields) {
-        _labelFields = labelFields;
-    }
+	public void setLabelFields(List<String> labelFields) {
+		_labelFields = labelFields;
+	}
 
-    @Override
-    protected void fillHolder(DDLEntry entry, ViewHolder holder) {
-        StringBuilder builder = new StringBuilder();
+	@Override
+	protected void fillHolder(Record entry, ViewHolder holder) {
+		StringBuilder builder = new StringBuilder();
 
 		for (String field : _labelFields) {
-			String value = entry.getValue(field);
-			if (value!= null && !value.isEmpty()) {
+			String value = entry.getServerValue(field);
+			if (value != null && !value.isEmpty()) {
 				builder.append(value);
 				builder.append(" ");
 			}
 		}
 
-        holder.textView.setText(builder.toString());
-    }
+		holder.textView.setText(builder.toString());
+	}
 
-    private List<String> _labelFields;
+	private List<String> _labelFields;
 
 }

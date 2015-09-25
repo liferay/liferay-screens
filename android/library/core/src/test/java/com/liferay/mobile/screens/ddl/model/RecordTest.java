@@ -48,14 +48,14 @@ public class RecordTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"boolean\" " +
-							"type=\"checkbox\" " +
-							"name=\"A_Bool\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"boolean\" " +
+					"type=\"checkbox\" " +
+					"name=\"A_Bool\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
 			record.parseXsd(xsd);
@@ -78,19 +78,19 @@ public class RecordTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"boolean\" " +
-							"type=\"checkbox\" " +
-							"name=\"A_Bool\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"boolean\" " +
+					"type=\"checkbox\" " +
+					"name=\"A_Bool\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
 			record.parseXsd(xsd);
 
-			BooleanField field = (BooleanField)record.getField(0);
+			BooleanField field = (BooleanField) record.getField(0);
 
 			field.setCurrentValue(true);
 
@@ -107,28 +107,28 @@ public class RecordTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"boolean\" " +
-							"type=\"checkbox\" " +
-							"name=\"A_Bool\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"boolean\" " +
+					"type=\"checkbox\" " +
+					"name=\"A_Bool\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
 					"<dynamic-element " +
-							"dataType=\"string\" " +
-							"type=\"text\" " +
-							"name=\"A_Text\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[abc]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"string\" " +
+					"type=\"text\" " +
+					"name=\"A_Text\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[abc]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
 			record.parseXsd(xsd);
 
-			assertTrue(record.getField(1) instanceof  StringField);
-			StringField field = (StringField)record.getField(1);
+			assertTrue(record.getField(1) instanceof StringField);
+			StringField field = (StringField) record.getField(1);
 
 			field.setCurrentValue("");
 
@@ -151,24 +151,27 @@ public class RecordTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"string\" " +
-							"type=\"text\" " +
-							"name=\"A_Text\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[abc]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"string\" " +
+					"type=\"text\" " +
+					"name=\"A_Text\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[abc]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
 			record.parseXsd(xsd);
 
-			StringField field = (StringField)record.getField(0);
+			StringField field = (StringField) record.getField(0);
+
+			Map<String, Object> newData = new HashMap<>();
+			newData.put("A_Text", "xyz");
 
 			Map<String, Object> newValues = new HashMap<>();
-			newValues.put("A_Text", "xyz");
+			newValues.put("modelValues", newData);
 
-			record.setValues(newValues);
+			record.setValuesAndAttributes(newValues);
 
 			assertEquals("xyz", field.getCurrentValue());
 		}
@@ -184,66 +187,66 @@ public class RecordTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"string\" " +
-							"type=\"text\" " +
-							"name=\"A_Text\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[abc]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"string\" " +
+					"type=\"text\" " +
+					"name=\"A_Text\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[abc]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
 					"<dynamic-element " +
-							"dataType=\"boolean\" " +
-							"type=\"checkbox\" " +
-							"name=\"A_Bool\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"boolean\" " +
+					"type=\"checkbox\" " +
+					"name=\"A_Bool\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
 					"<dynamic-element " +
-							"dataType=\"date\" " +
-							"fieldNamespace=\"ddm\" " +
-							"type=\"ddm-date\" " +
-							"name=\"A_Date\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[06/19/2004]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"date\" " +
+					"fieldNamespace=\"ddm\" " +
+					"type=\"ddm-date\" " +
+					"name=\"A_Date\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[06/19/2004]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
 					"<dynamic-element " +
-							"dataType=\"number\" " +
-							"fieldNamespace=\"ddm\" " +
-							"type=\"ddm-number\" " +
-							"name=\"A_Number\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[123]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"number\" " +
+					"fieldNamespace=\"ddm\" " +
+					"type=\"ddm-number\" " +
+					"name=\"A_Number\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[123]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
 					"<dynamic-element dataType=\"string\" " +
-							"multiple=\"true\" " +
-							"name=\"A_Select\" " +
-							"type=\"select\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"label\"><![CDATA[A Select]]></entry> " +
-							"<entry name=\"predefinedValue\">" +
-								"<![CDATA[[\"value 1\",\"value 2\"]]]>" +
-							"</entry>" +
-						"</meta-data> " +
-						"<dynamic-element name=\"option_1\" type=\"option\" value=\"value 1\"> " +
-							"<meta-data locale=\"en_US\"> " +
-								"<entry name=\"label\"><![CDATA[Option 1]]></entry> " +
-							"</meta-data> " +
-						"</dynamic-element> " +
-						"<dynamic-element name=\"option_2\" type=\"option\" value=\"value 2\"> " +
-							"<meta-data locale=\"en_US\"> " +
-								"<entry name=\"label\"><![CDATA[Option 2]]></entry> " +
-							"</meta-data>" +
-						"</dynamic-element> " +
-						"<dynamic-element name=\"option_3\" type=\"option\" value=\"value 3\"> " +
-							"<meta-data locale=\"en_US\"> " +
-								"<entry name=\"label\"><![CDATA[Option 3]]></entry> " +
-							"</meta-data>" +
-						"</dynamic-element> " +
+					"multiple=\"true\" " +
+					"name=\"A_Select\" " +
+					"type=\"select\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\"><![CDATA[A Select]]></entry> " +
+					"<entry name=\"predefinedValue\">" +
+					"<![CDATA[[\"value 1\",\"value 2\"]]]>" +
+					"</entry>" +
+					"</meta-data> " +
+					"<dynamic-element name=\"option_1\" type=\"option\" value=\"value 1\"> " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\"><![CDATA[Option 1]]></entry> " +
+					"</meta-data> " +
+					"</dynamic-element> " +
+					"<dynamic-element name=\"option_2\" type=\"option\" value=\"value 2\"> " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\"><![CDATA[Option 2]]></entry> " +
+					"</meta-data>" +
+					"</dynamic-element> " +
+					"<dynamic-element name=\"option_3\" type=\"option\" value=\"value 3\"> " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\"><![CDATA[Option 3]]></entry> " +
+					"</meta-data>" +
+					"</dynamic-element> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
 			record.parseXsd(xsd);
@@ -252,16 +255,19 @@ public class RecordTest {
 			record.setRecordSetId(56);
 			record.setStructureId(78);
 
-			Map<String,Object> values = new HashMap<>();
+			Map<String, Object> values = new HashMap<>();
 			values.put("A_Text", "xyz");
 			values.put("A_Bool", "true");
 			values.put("A_Date", "06/20/2004");
 			values.put("A_Number", "321");
 			values.put("A_Select", "[value 2]");
-			record.setValues(values);
+
+			Map<String, Object> modelValues = new HashMap<>();
+			modelValues.put("modelValues", values);
+			record.setValuesAndAttributes(modelValues);
 
 			StringWithOptionsField stringWithOptionsField =
-				(StringWithOptionsField)record.getField(record.getFieldCount() - 1);
+				(StringWithOptionsField) record.getField(record.getFieldCount() - 1);
 			stringWithOptionsField.selectOption(stringWithOptionsField.getAvailableOptions().get(0));
 
 			Parcel parcel = Parcel.obtain();

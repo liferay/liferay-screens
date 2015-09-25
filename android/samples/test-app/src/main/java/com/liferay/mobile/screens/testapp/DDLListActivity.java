@@ -24,8 +24,8 @@ import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
+import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
 import org.json.JSONException;
@@ -38,7 +38,7 @@ import de.keyboardsurfer.android.widget.crouton.Crouton;
 /**
  * @author Javier Gamarra
  */
-public class DDLListActivity extends ThemeActivity implements BaseListListener<DDLEntry> {
+public class DDLListActivity extends ThemeActivity implements BaseListListener<Record> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,17 +60,17 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<D
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int page, List<DDLEntry> entries, int rowCount) {
+	public void onListPageReceived(BaseListScreenlet source, int page, List<Record> entries, int rowCount) {
 		info("Page " + page + " received!");
 	}
 
 	@Override
-	public void onListItemSelected(DDLEntry element, View view) {
+	public void onListItemSelected(Record element, View view) {
 		info("Item selected: " + element);
 		loadDDLForm(element);
 	}
 
-	private void loadDDLForm(DDLEntry element) {
+	private void loadDDLForm(Record element) {
 		final long recordId = element.getRecordId();
 		final long recordSetId = element.getRecordSetId();
 

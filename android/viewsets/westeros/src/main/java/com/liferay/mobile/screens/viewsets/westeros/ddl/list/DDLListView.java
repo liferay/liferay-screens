@@ -19,10 +19,11 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
+
+import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.westeros.*;
 
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
@@ -35,7 +36,7 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class DDLListView
-	extends BaseListScreenletView<DDLEntry, DDLListAdapter.SwipeActionsViewHolder, DDLListAdapter>
+	extends BaseListScreenletView<Record, DDLListAdapter.SwipeActionsViewHolder, DDLListAdapter>
 	implements DDLListViewModel, SwipeRefreshLayout.OnRefreshListener {
 
 	public DDLListView(Context context) {
@@ -67,7 +68,7 @@ public class DDLListView
 	}
 
 	@Override
-	public void showFinishOperation(int page, List<DDLEntry> entries, int rowCount) {
+	public void showFinishOperation(int page, List<Record> entries, int rowCount) {
 		super.showFinishOperation(page, entries, rowCount);
 
 		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
