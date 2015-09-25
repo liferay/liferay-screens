@@ -55,15 +55,15 @@ public class JSONUtil {
 		return map;
 	}
 
-	public static long safeCastToLong(final Object o) {
+	public static Long safeCastToLong(final Object o) {
 		if (o instanceof Integer) {
-			return (int) o;
+			return ((Integer) o).longValue();
 		}
 		else if (o instanceof String) {
 			return Long.valueOf((String) o);
 		}
 		else  {
-			return (long) o;
+			return (Long) o;
 		}
 	}
 
