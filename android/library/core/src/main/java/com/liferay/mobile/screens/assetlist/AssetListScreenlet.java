@@ -83,7 +83,7 @@ public class AssetListScreenlet
 			R.styleable.AssetListScreenlet_groupId), groupId);
 
 		_portletItemName = typedArray.getString(R.styleable.AssetListScreenlet_portletItemName);
-		
+
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);

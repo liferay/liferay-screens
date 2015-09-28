@@ -38,6 +38,22 @@ public class DefaultAnimation {
 		}
 	}
 
+	public static void hideViewWithReveal(final View view) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			applyHideForLollipop(view);
+		}
+		view.setVisibility(View.INVISIBLE);
+	}
+
+	public static void startActivityWithAnimation(Activity activity, Intent intent) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			startActivityForLollipop(activity, intent);
+		}
+		else {
+			activity.startActivity(intent);
+		}
+	}
+
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private static void applyRevealForLollipop(View view) {
 		// get the center for the clipping circle
@@ -59,13 +75,6 @@ public class DefaultAnimation {
 		else {
 			view.setVisibility(View.VISIBLE);
 		}
-	}
-
-	public static void hideViewWithReveal(final View view) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			applyHideForLollipop(view);
-		}
-		view.setVisibility(View.INVISIBLE);
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -96,15 +105,6 @@ public class DefaultAnimation {
 		}
 		else {
 			view.setVisibility(View.INVISIBLE);
-		}
-	}
-
-	public static void startActivityWithAnimation(Activity activity, Intent intent) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			startActivityForLollipop(activity, intent);
-		}
-		else {
-			activity.startActivity(intent);
 		}
 	}
 

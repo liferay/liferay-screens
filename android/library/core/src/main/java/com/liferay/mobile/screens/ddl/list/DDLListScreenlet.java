@@ -50,11 +50,6 @@ public class DDLListScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
-	@Override
-	protected void loadRows(DDLListInteractor interactor, int startRow, int endRow, Locale locale) throws Exception {
-		interactor.loadRows(_recordSetId, _userId, startRow, endRow, locale);
-	}
-
 	public long getRecordSetId() {
 		return _recordSetId;
 	}
@@ -77,6 +72,11 @@ public class DDLListScreenlet
 
 	public void setLabelFields(List<String> labelFields) {
 		_labelFields = labelFields;
+	}
+
+	@Override
+	protected void loadRows(DDLListInteractor interactor, int startRow, int endRow, Locale locale) throws Exception {
+		interactor.loadRows(_recordSetId, _userId, startRow, endRow, locale);
 	}
 
 	@Override

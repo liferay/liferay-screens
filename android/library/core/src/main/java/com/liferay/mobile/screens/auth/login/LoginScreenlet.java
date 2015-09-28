@@ -44,7 +44,7 @@ import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder
 public class LoginScreenlet
 	extends BaseScreenlet<LoginViewModel, LoginInteractor>
 	implements LoginListener {
-	
+
 	public static final String OAUTH = "OAUTH";
 	public static final String BASIC_AUTH = "BASIC_AUTH";
 	public static final int REQUEST_OAUTH_CODE = 1;

@@ -22,8 +22,8 @@ public class DocumentRemoteFile extends DocumentFile {
 	@Override
 	public String toData() {
 		return "{\"groupId\":" + _groupId + ", " +
-				"\"uuid\":\"" + _uuid + "\", " +
-				"\"version\":" + _version + "}";
+			"\"uuid\":\"" + _uuid + "\", " +
+			"\"version\":" + _version + "}";
 	}
 
 	@Override

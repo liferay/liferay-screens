@@ -62,7 +62,7 @@ public class JSONUtil {
 		else if (o instanceof String) {
 			return Long.valueOf((String) o);
 		}
-		else  {
+		else {
 			return (Long) o;
 		}
 	}

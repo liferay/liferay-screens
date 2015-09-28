@@ -234,10 +234,6 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		}
 	}
 
-	private static final String _STATE_SCREENLET_ID = "basescreenlet-screenletId";
-	private static final String _STATE_SUPER = "basescreenlet-super";
-	private static final String _STATE_INTERACTORS = "basescreenlet-interactors";
-
 	private static int _generateScreenletId() {
 
 		// This implementation is copied from View.generateViewId() method We
@@ -254,7 +250,9 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			}
 		}
 	}
-
+	private static final String _STATE_SCREENLET_ID = "basescreenlet-screenletId";
+	private static final String _STATE_SUPER = "basescreenlet-super";
+	private static final String _STATE_INTERACTORS = "basescreenlet-interactors";
 	private static final AtomicInteger sNextId = new AtomicInteger(1);
 
 	private Map<String, I> _interactors = new HashMap<>();

@@ -4,7 +4,6 @@ import org.junit.runners.model.InitializationError;
 import org.robolectric.annotation.Config;
 import org.robolectric.manifest.AndroidManifest;
 import org.robolectric.res.FileFsFile;
-import org.robolectric.res.Fs;
 import org.robolectric.res.FsFile;
 
 public class RobolectricManifestTestRunner extends org.robolectric.RobolectricGradleTestRunner {
@@ -19,7 +18,8 @@ public class RobolectricManifestTestRunner extends org.robolectric.RobolectricGr
 
 		if (androidManifestFile.exists()) {
 			return appManifest;
-		} else {
+		}
+		else {
 			String moduleRoot = getModuleRootPath(config);
 			androidManifestFile = FileFsFile.from(moduleRoot, appManifest.getAndroidManifestFile().getPath().replace("full", "androidTest"));
 			FsFile resDirectory = FileFsFile.from(moduleRoot, appManifest.getResDirectory().getPath().replace("debug", "androidTest/debug"));

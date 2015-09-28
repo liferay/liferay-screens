@@ -47,7 +47,7 @@ public class StringField extends Field<String> {
 	}
 
 	@Override
-	protected  boolean doValidate() {
+	protected boolean doValidate() {
 		boolean valid = true;
 
 		String currentValue = getCurrentValue();

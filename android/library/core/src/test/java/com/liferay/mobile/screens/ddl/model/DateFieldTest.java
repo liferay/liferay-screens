@@ -41,6 +41,9 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class DateFieldTest {
 
+	private static final Locale SPANISH_LOCALE = new Locale("es", "ES");
+	private static final Locale US_LOCALE = new Locale("en", "US");
+
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingFromString {
@@ -193,15 +196,15 @@ public class DateFieldTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"date\" " +
-							"fieldNamespace=\"ddm\" " +
-							"type=\"ddm-date\" " +
-							"name=\"A_Date\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[06/19/2004]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"date\" " +
+					"fieldNamespace=\"ddm\" " +
+					"type=\"ddm-date\" " +
+					"name=\"A_Date\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[06/19/2004]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, US_LOCALE);
 
@@ -223,8 +226,5 @@ public class DateFieldTest {
 			assertEquals(dateField.getCurrentValue(), dateField.getPredefinedValue());
 		}
 	}
-
-	private static final Locale SPANISH_LOCALE = new Locale("es", "ES");
-	private static final Locale US_LOCALE = new Locale("en", "US");
 
 }
