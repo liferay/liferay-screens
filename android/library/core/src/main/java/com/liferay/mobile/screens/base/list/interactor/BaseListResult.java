@@ -4,22 +4,21 @@ import java.util.List;
 
 public class BaseListResult<E> {
 
-    public void setEntries(List<E> values) {
-        _entries = values;
-    }
+	public List<E> getEntries() {
+		return _entries;
+	}
 
-    public void setRowCount(int value) {
-        _rowCount = value;
-    }
+	public void setEntries(List<E> values) {
+		_entries = values;
+	}
 
-    public List<E> getEntries() {
-        return _entries;
-    }
+	public int getRowCount() {
+		return _rowCount;
+	}
 
-    public int getRowCount() {
-        return _rowCount;
-    }
-
+	public void setRowCount(int value) {
+		_rowCount = value;
+	}
 	private List<E> _entries;
 	private int _rowCount;
 

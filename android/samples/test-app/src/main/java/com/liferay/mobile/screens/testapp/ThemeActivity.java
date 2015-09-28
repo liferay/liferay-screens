@@ -29,8 +29,6 @@ import de.keyboardsurfer.android.widget.crouton.Crouton;
  */
 public abstract class ThemeActivity extends ActionBarActivity {
 
-	protected Integer currentTheme;
-
 	@Override
 	protected void onCreate(Bundle state) {
 		super.onCreate(state);
@@ -75,4 +73,6 @@ public abstract class ThemeActivity extends ActionBarActivity {
 		super.onDestroy();
 		Crouton.clearCroutonsForActivity(this);
 	}
+
+	protected Integer currentTheme;
 }

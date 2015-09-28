@@ -38,6 +38,26 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class StringFieldTest {
 
+	private static StringField _createStringField(Boolean required) throws SAXException {
+		String xsd =
+			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+				"<dynamic-element " +
+				"dataType=\"string\" " +
+				"type=\"text\" " +
+				"required=\"" + required.toString() + "\" " +
+				"name=\"A_Text\" > " +
+				"<meta-data locale=\"en_US\"> " +
+				"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
+				"</meta-data> " +
+				"</dynamic-element>" +
+				"</root>";
+
+		List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
+
+		return (StringField) resultList.get(0);
+
+	}
+
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
@@ -46,14 +66,14 @@ public class StringFieldTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"string\" " +
-							"type=\"text\" " +
-							"name=\"A_Text\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"string\" " +
+					"type=\"text\" " +
+					"name=\"A_Text\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
 
@@ -154,26 +174,6 @@ public class StringFieldTest {
 
 			assertTrue(field.isValid());
 		}
-
-	}
-
-	private static StringField _createStringField(Boolean required) throws SAXException {
-		String xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-				"<dynamic-element " +
-				"dataType=\"string\" " +
-				"type=\"text\" " +
-				"required=\"" + required.toString() +"\" " +
-				"name=\"A_Text\" > " +
-				"<meta-data locale=\"en_US\"> " +
-				"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
-				"</meta-data> " +
-				"</dynamic-element>" +
-				"</root>";
-
-		List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
-
-		return (StringField)resultList.get(0);
 
 	}
 

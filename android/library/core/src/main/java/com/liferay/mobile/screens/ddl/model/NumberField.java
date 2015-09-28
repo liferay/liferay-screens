@@ -51,10 +51,6 @@ public class NumberField extends Field<Number> {
 		init(getCurrentLocale());
 	}
 
-	private void init(Locale locale) {
-		_labelFormatter = NumberFormat.getNumberInstance(locale);
-	}
-
 	@Override
 	protected Number convertFromString(String stringValue) {
 		if (stringValue == null || stringValue.isEmpty()) {
@@ -86,6 +82,10 @@ public class NumberField extends Field<Number> {
 	@Override
 	protected String convertToFormattedString(Number value) {
 		return (value == null) ? "" : _labelFormatter.format(value);
+	}
+
+	private void init(Locale locale) {
+		_labelFormatter = NumberFormat.getNumberInstance(locale);
 	}
 
 	private NumberFormat _labelFormatter;

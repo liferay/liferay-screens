@@ -18,6 +18,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.liferay.mobile.screens.ddl.XSDParser;
+import com.liferay.mobile.screens.util.JSONUtil;
 
 import org.xml.sax.SAXException;
 
@@ -37,11 +38,11 @@ public class Record implements Parcelable {
 	public static final Parcelable.ClassLoaderCreator<Record> CREATOR =
 		new ClassLoaderCreator<Record>() {
 
-			public Record createFromParcel(Parcel in, ClassLoader loader) {
-				return new Record(in, loader);
+			@Override
+			public Record createFromParcel(Parcel parcel, ClassLoader classLoader) {
+				return new Record(parcel, classLoader);
 			}
 
-			@Override
 			public Record createFromParcel(Parcel in) {
 				throw new AssertionError();
 			}
@@ -49,12 +50,24 @@ public class Record implements Parcelable {
 			public Record[] newArray(int size) {
 				return new Record[size];
 			}
-
 		};
-
 
 	public Record(Locale locale) {
 		_locale = locale;
+	}
+
+	public Record(Map<String, Object> valuesAndAttributes) {
+		_valuesAndAttributes = valuesAndAttributes;
+		parseServerValues();
+	}
+
+	public void refresh() {
+		for (Field f : _fields) {
+			Object fieldValue = getServerValue(f.getName());
+			if (fieldValue != null) {
+				f.setCurrentValue(f.convertFromString(fieldValue.toString()));
+			}
+		}
 	}
 
 	public void parseXsd(String xsd) {
@@ -88,6 +101,22 @@ public class Record implements Parcelable {
 
 	public int getFieldCount() {
 		return _fields.size();
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel destination, int flags) {
+		destination.writeMap(_valuesAndAttributes);
+		destination.writeParcelableArray(_fields.toArray(new Field[_fields.size()]), flags);
+		destination.writeSerializable(_locale);
+		writeLong(destination, _creatorUserId);
+		writeLong(destination, _structureId);
+		writeLong(destination, _recordSetId);
+		writeLong(destination, _recordId);
 	}
 
 	public long getRecordSetId() {
@@ -157,19 +186,37 @@ public class Record implements Parcelable {
 		return (_fields.size() > 0);
 	}
 
-	@Override
-	public int describeContents() {
-		return 0;
+	/**
+	 * renamed from getValue()
+	 *
+	 * @param field
+	 * @return server value of that field
+	 */
+	public String getServerValue(String field) {
+		return getModelValues().get(field);
 	}
 
-	@Override
-	public void writeToParcel(Parcel destination, int flags) {
-		destination.writeParcelableArray(_fields.toArray(new Field[_fields.size()]), flags);
-		destination.writeLong(_creatorUserId);
-		destination.writeLong(_structureId);
-		destination.writeLong(_recordSetId);
-		destination.writeLong(_recordId);
-		destination.writeSerializable(_locale);
+	/**
+	 * renamed from getAttributes()
+	 *
+	 * @param field
+	 * @return server attribute of that field
+	 */
+	public Object getServerAttribute(String field) {
+		return getModelAttributes().get(field);
+	}
+
+	public void setValuesAndAttributes(Map<String, Object> valuesAndAttributes) {
+		_valuesAndAttributes = valuesAndAttributes;
+		parseServerValues();
+	}
+
+	public HashMap<String, String> getModelValues() {
+		return (HashMap<String, String>) _valuesAndAttributes.get("modelValues");
+	}
+
+	public HashMap<String, Object> getModelAttributes() {
+		return (HashMap<String, Object>) _valuesAndAttributes.get("modelAttributes");
 	}
 
 	private Record(Parcel in, ClassLoader loader) {
@@ -180,13 +227,28 @@ public class Record implements Parcelable {
 		_recordSetId = in.readLong();
 		_recordId = in.readLong();
 		_locale = (Locale) in.readSerializable();
+		_valuesAndAttributes = new HashMap<>();
+		in.readMap(_valuesAndAttributes, loader);
+	}
+
+	private void parseServerValues() {
+		_recordId = JSONUtil.castToLong(getServerAttribute("recordId"));
+		_recordSetId = JSONUtil.castToLong(getServerAttribute("recordSetId"));
+		_creatorUserId = JSONUtil.castToLong(getServerAttribute("creatorUserId"));
+		_structureId = JSONUtil.castToLong(getServerAttribute("structureId"));
+	}
+
+	private void writeLong(Parcel destination, Long field) {
+		if (field != null) {
+			destination.writeLong(field);
+		}
 	}
 
 	private List<Field> _fields = new ArrayList<>();
-	private long _creatorUserId;
-	private long _structureId;
-	private long _recordSetId;
-	private long _recordId;
+	private Long _creatorUserId;
+	private Long _structureId;
+	private Long _recordSetId;
+	private Long _recordId;
 	private Locale _locale;
-
+	private Map<String, Object> _valuesAndAttributes;
 }

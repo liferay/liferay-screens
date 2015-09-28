@@ -19,9 +19,9 @@ import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
+import com.liferay.mobile.screens.ddl.model.Record;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class DDLListView
-	extends BaseListScreenletView<DDLEntry, BaseListAdapter.ViewHolder, DDLListAdapter>
+	extends BaseListScreenletView<Record, BaseListAdapter.ViewHolder, DDLListAdapter>
 	implements DDLListViewModel {
 
 	public DDLListView(Context context) {
@@ -46,7 +46,7 @@ public class DDLListView
 	}
 
 	@Override
-	public void showFinishOperation(int page, List<DDLEntry> entries, int rowCount) {
+	public void showFinishOperation(int page, List<Record> entries, int rowCount) {
 		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
 
 		getAdapter().setLabelFields(screenlet.getLabelFields());

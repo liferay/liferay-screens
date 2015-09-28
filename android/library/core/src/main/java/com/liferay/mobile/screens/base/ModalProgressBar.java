@@ -65,19 +65,6 @@ public class ModalProgressBar extends ProgressBar {
 		}
 	}
 
-	private View findActionView(View parent, int actionViewId) {
-		if (parent instanceof BaseScreenlet) {
-			return null;
-		}
-
-		View result = parent.findViewById(actionViewId);
-		if (result != null) {
-			return result;
-		}
-
-		return findActionView((View) parent.getParent(), actionViewId);
-	}
-
 	public void setVisibility(int visibility, View... actionViews) {
 		super.setVisibility(visibility);
 
@@ -93,11 +80,24 @@ public class ModalProgressBar extends ProgressBar {
 			System.out.println(attributes.getAttributeName(i) + " - " + attributes.getAttributeValue(i));
 		}
 		TypedArray typedArray =
-				context.getTheme().obtainStyledAttributes(attributes, R.styleable.ModalProgressBar, 0, 0);
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.ModalProgressBar, 0, 0);
 
 		_actionViewId = typedArray.getResourceId(R.styleable.ModalProgressBar_actionViewId, 0);
 
 		typedArray.recycle();
+	}
+
+	private View findActionView(View parent, int actionViewId) {
+		if (parent instanceof BaseScreenlet) {
+			return null;
+		}
+
+		View result = parent.findViewById(actionViewId);
+		if (result != null) {
+			return result;
+		}
+
+		return findActionView((View) parent.getParent(), actionViewId);
 	}
 
 	private int _actionViewId;

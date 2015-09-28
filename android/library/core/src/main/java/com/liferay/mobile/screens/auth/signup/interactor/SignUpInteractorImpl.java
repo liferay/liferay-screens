@@ -54,10 +54,10 @@ public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
 	}
 
 	public void signUp(
-			long companyId, String firstName, String middleName,
-			String lastName, String emailAddress, String screenName,
-			String password, String jobTitle, Locale locale,
-			String anonymousApiUserName, String anonymousApiPassword)
+		long companyId, String firstName, String middleName,
+		String lastName, String emailAddress, String screenName,
+		String password, String jobTitle, Locale locale,
+		String anonymousApiUserName, String anonymousApiPassword)
 		throws Exception {
 
 		validate(
@@ -88,9 +88,9 @@ public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
 	}
 
 	protected void sendSignUpRequest(
-			UserService service, long companyId, String firstName,
-			String middleName, String lastName, String emailAddress,
-			String screenName, String password, String jobTitle, Locale locale)
+		UserService service, long companyId, String firstName,
+		String middleName, String lastName, String emailAddress,
+		String screenName, String password, String jobTitle, Locale locale)
 		throws Exception {
 
 		middleName = (middleName != null) ? middleName : "";

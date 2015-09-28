@@ -14,8 +14,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		liferay:basicAuthMethod="email"
-		liferay:layoutId="@layout/login_default"
-		/>
+		liferay:layoutId="@layout/login_default"/>
 
 	<com.liferay.mobile.screens.auth.login.LoginScreenlet
 		android:id="@+id/login_material"

@@ -39,11 +39,6 @@ public class DDLFieldSelectView extends com.liferay.mobile.screens.viewsets.defa
 	}
 
 	@Override
-	protected DialogInterface.OnClickListener getAlertDialogListener() {
-		return this;
-	}
-
-	@Override
 	public void refresh() {
 		if (!getField().toFormattedString().isEmpty()) {
 			findViewById(R.id.liferay_ddl_label).setVisibility(View.VISIBLE);
@@ -68,5 +63,10 @@ public class DDLFieldSelectView extends com.liferay.mobile.screens.viewsets.defa
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_icon_warning_white, 0);
 			getTextEditText().setBackgroundResource(R.drawable.westeros_warning_edit_text_drawable);
 		}
+	}
+
+	@Override
+	protected DialogInterface.OnClickListener getAlertDialogListener() {
+		return this;
 	}
 }

@@ -11,7 +11,6 @@ import com.liferay.mobile.android.v62.ddlrecord.DDLRecordService;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
 import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
-import com.liferay.mobile.screens.cache.ddl.form.RecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayServerContext;

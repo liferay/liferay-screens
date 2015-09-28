@@ -55,6 +55,18 @@ public class JSONUtil {
 		return map;
 	}
 
+	public static Long castToLong(final Object o) {
+		if (o instanceof Integer) {
+			return ((Integer) o).longValue();
+		}
+		else if (o instanceof String) {
+			return Long.valueOf((String) o);
+		}
+		else {
+			return (Long) o;
+		}
+	}
+
 	private static Object _fromJson(Object object) throws JSONException {
 		if (object == JSONObject.NULL) {
 			return null;

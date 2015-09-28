@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.service.v62.ScreensassetentryService;
 import com.liferay.mobile.screens.util.JSONUtil;
 
@@ -49,10 +50,11 @@ public class AssetListInteractorImpl
 	}
 
 	public void loadRows(
-		long groupId, final long classNameId, final int startRow, final int endRow, final Locale locale)
+		long groupId, long classNameId, String portletItemName, int startRow, int endRow, Locale locale)
 		throws Exception {
 		this._groupId = groupId;
 		this._classNameId = classNameId;
+		this._portletItemName = portletItemName;
 
 		processWithCache(startRow, endRow, locale);
 	}
@@ -95,14 +97,21 @@ public class AssetListInteractorImpl
 
 	@Override
 	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
-		JSONObject entryQueryAttributes = addQueryParams(_groupId, _classNameId);
-		entryQueryAttributes.put("start", startRow);
-		entryQueryAttributes.put("end", endRow);
+		if (_portletItemName == null) {
+			ScreensassetentryService service = new ScreensassetentryService(session);
+			JSONObject entryQueryAttributes = addQueryParams(_groupId, _classNameId);
+			entryQueryAttributes.put("start", startRow);
+			entryQueryAttributes.put("end", endRow);
 
-		JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryAttributes);
+			JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryAttributes);
 
-		ScreensassetentryService service = new ScreensassetentryService(session);
-		service.getAssetEntries(entryQuery, locale.toString());
+			service.getAssetEntries(entryQuery, locale.toString());
+		}
+		else {
+			session.setCallback(new FilteredAssetListCallback(getTargetScreenletId()));
+			ScreensassetentryService service = new ScreensassetentryService(session);
+			service.getFilteredAssetEntries(LiferayServerContext.getCompanyId(), _groupId, _portletItemName, locale.toString());
+		}
 	}
 
 	@Override
@@ -138,5 +147,5 @@ public class AssetListInteractorImpl
 
 	private long _groupId;
 	private long _classNameId;
-
+	private String _portletItemName;
 }

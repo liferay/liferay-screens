@@ -25,6 +25,7 @@ import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
+import com.liferay.mobile.screens.ddl.model.Record;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public class DDLListScreenlet
-	extends BaseListScreenlet<DDLEntry, DDLListInteractor>
+	extends BaseListScreenlet<Record, DDLListInteractor>
 	implements DDLListInteractorListener {
 
 	public DDLListScreenlet(Context context) {
@@ -50,15 +51,19 @@ public class DDLListScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
-	public int getRecordSetId() {
-		return _recordSetId;
-	}
-
 	public void setRecordSetId(int recordSetId) {
 		_recordSetId = recordSetId;
 	}
 
-	public int getUserId() {
+	public long getRecordSetId() {
+		return _recordSetId;
+	}
+
+	public void setRecordSetId(long recordSetId) {
+		_recordSetId = recordSetId;
+	}
+
+	public long getUserId() {
 		return _userId;
 	}
 
@@ -83,17 +88,16 @@ public class DDLListScreenlet
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.DDLListScreenlet, 0, 0);
-		_recordSetId = typedArray.getInteger(
-			R.styleable.DDLListScreenlet_recordSetId, 0);
-		_userId = typedArray.getInteger(
-			R.styleable.DDLListScreenlet_userId, 0);
-		_labelFields = parse(typedArray.getString(
-			R.styleable.DDLListScreenlet_labelFields));
 
 		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
 			CachePolicy.ONLINE_ONLY.ordinal());
 		_cachePolicy = CachePolicy.values()[cachePolicy];
-
+		_recordSetId = castToLong(typedArray.getString(
+			R.styleable.DDLListScreenlet_recordSetId));
+		_userId = castToLong(typedArray.getString(
+			R.styleable.DDLListScreenlet_userId));
+		_labelFields = parse(typedArray.getString(
+			R.styleable.DDLListScreenlet_labelFields));
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
@@ -113,12 +117,11 @@ public class DDLListScreenlet
 		for (String text : labelFields.split(",")) {
 			parsedFields.add(text.trim());
 		}
-
 		return parsedFields;
 	}
 
-	private int _recordSetId;
-	private int _userId;
+	private long _recordSetId;
+	private long _userId;
 	private List<String> _labelFields;
 	private CachePolicy _cachePolicy;
 }

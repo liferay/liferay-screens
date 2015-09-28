@@ -22,18 +22,19 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import java.util.Locale;
 import java.util.Map;
 
+
 /**
  * @author Silvio Santos
  */
 public class AssetListCallback extends BaseListCallback<AssetEntry> {
 
-    public AssetListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange, Locale locale) {
-        super(targetScreenletId, rowsRange, locale);
-    }
+	public AssetListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange, Locale locale) {
+		super(targetScreenletId, rowsRange, locale);
+	}
 
-    @Override
-    public AssetEntry createEntity(Map<String, Object> stringObjectMap) {
-        return new AssetEntry(stringObjectMap);
-    }
+	@Override
+	public AssetEntry createEntity(Map<String, Object> stringObjectMap) {
+		return new AssetEntry(stringObjectMap);
+	}
 
 }

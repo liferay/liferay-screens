@@ -41,6 +41,31 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class StringWithOptionsFieldTest {
 
+	private static Map<String, Object> _createParsedData() {
+		Map<String, String> optionData1 = new HashMap<String, String>();
+		optionData1.put("label", "Option 1");
+		optionData1.put("name", "option987");
+		optionData1.put("value", "option1");
+
+		Map<String, String> optionData2 = new HashMap<String, String>();
+		optionData2.put("label", "Option 2");
+		optionData2.put("name", "option989");
+		optionData2.put("value", "option2");
+
+		List<Map<String, String>> availableOptionsData = new ArrayList<Map<String, String>>(2);
+
+		availableOptionsData.add(optionData1);
+		availableOptionsData.add(optionData2);
+
+		Map<String, Object> parsedData = new HashMap<String, Object>();
+
+		parsedData.put("options", availableOptionsData);
+
+		return parsedData;
+	}
+	private static final Locale _spanishLocale = new Locale("es", "ES");
+	private static final Locale _usLocale = new Locale("en", "US");
+
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenClearingOptions {
@@ -358,32 +383,32 @@ public class StringWithOptionsFieldTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element dataType=\"string\" " +
-							"multiple=\"true\" " +
-							"name=\"A_Select\" " +
-							"type=\"select\" > " +
-						"<dynamic-element name=\"option_1\" type=\"option\" value=\"value 1\"> " +
-							"<meta-data locale=\"en_US\"> " +
-								"<entry name=\"label\"><![CDATA[Option 1]]></entry> " +
-							"</meta-data> " +
-						"</dynamic-element> " +
-						"<dynamic-element name=\"option_2\" type=\"option\" value=\"value 2\"> " +
-							"<meta-data locale=\"en_US\"> " +
-								"<entry name=\"label\"><![CDATA[Option 2]]></entry> " +
-							"</meta-data>" +
-						"</dynamic-element> " +
-						"<dynamic-element name=\"option_3\" type=\"option\" value=\"value 3\"> " +
-							"<meta-data locale=\"en_US\"> " +
-								"<entry name=\"label\"><![CDATA[Option 3]]></entry> " +
-							"</meta-data>" +
-						"</dynamic-element> " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"label\"><![CDATA[A Select]]></entry> " +
-							"<entry name=\"predefinedValue\">" +
-								"<![CDATA[[\"value 2\"]]]>" +
-							"</entry>" +
-						"</meta-data> " +
+					"multiple=\"true\" " +
+					"name=\"A_Select\" " +
+					"type=\"select\" > " +
+					"<dynamic-element name=\"option_1\" type=\"option\" value=\"value 1\"> " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\"><![CDATA[Option 1]]></entry> " +
+					"</meta-data> " +
+					"</dynamic-element> " +
+					"<dynamic-element name=\"option_2\" type=\"option\" value=\"value 2\"> " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\"><![CDATA[Option 2]]></entry> " +
+					"</meta-data>" +
+					"</dynamic-element> " +
+					"<dynamic-element name=\"option_3\" type=\"option\" value=\"value 3\"> " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\"><![CDATA[Option 3]]></entry> " +
+					"</meta-data>" +
+					"</dynamic-element> " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\"><![CDATA[A Select]]></entry> " +
+					"<entry name=\"predefinedValue\">" +
+					"<![CDATA[[\"value 2\"]]]>" +
+					"</entry>" +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
 
@@ -521,31 +546,5 @@ public class StringWithOptionsFieldTest {
 		}
 
 	}
-
-	private static Map<String, Object> _createParsedData() {
-		Map<String, String> optionData1 = new HashMap<String, String>();
-		optionData1.put("label", "Option 1");
-		optionData1.put("name", "option987");
-		optionData1.put("value", "option1");
-
-		Map<String, String> optionData2 = new HashMap<String, String>();
-		optionData2.put("label", "Option 2");
-		optionData2.put("name", "option989");
-		optionData2.put("value", "option2");
-
-		List<Map<String,String>> availableOptionsData = new ArrayList<Map<String,String>>(2);
-
-		availableOptionsData.add(optionData1);
-		availableOptionsData.add(optionData2);
-
-		Map<String, Object> parsedData = new HashMap<String, Object>();
-
-		parsedData.put("options", availableOptionsData);
-
-		return parsedData;
-	}
-
-	private static final Locale _spanishLocale = new Locale("es", "ES");
-	private static final Locale _usLocale = new Locale("en", "US");
 
 }

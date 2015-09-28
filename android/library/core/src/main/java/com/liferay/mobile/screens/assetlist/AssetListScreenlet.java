@@ -48,19 +48,19 @@ public class AssetListScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
-	public int getClassNameId() {
+	public long getClassNameId() {
 		return _classNameId;
 	}
 
-	public void setClassNameId(int classNameId) {
+	public void setClassNameId(long classNameId) {
 		_classNameId = classNameId;
 	}
 
-	public int getGroupId() {
+	public long getGroupId() {
 		return _groupId;
 	}
 
-	public void setGroupId(int groupId) {
+	public void setGroupId(long groupId) {
 		_groupId = groupId;
 	}
 
@@ -68,7 +68,7 @@ public class AssetListScreenlet
 	protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale)
 		throws Exception {
 
-		interactor.loadRows(_groupId, _classNameId, startRow, endRow, locale);
+		interactor.loadRows(_groupId, _classNameId, _portletItemName, startRow, endRow, locale);
 	}
 
 	@Override
@@ -77,13 +77,17 @@ public class AssetListScreenlet
 			attributes, R.styleable.AssetListScreenlet, 0, 0);
 		_classNameId = typedArray.getInt(
 			R.styleable.AssetListScreenlet_classNameId, 0);
-		_groupId = typedArray.getInteger(
-			R.styleable.AssetListScreenlet_groupId,
-			(int) LiferayServerContext.getGroupId());
 
 		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
 			CachePolicy.ONLINE_ONLY.ordinal());
 		_cachePolicy = CachePolicy.values()[cachePolicy];
+
+		long groupId = LiferayServerContext.getGroupId();
+
+		_groupId = castToLongOrUseDefault(typedArray.getString(
+			R.styleable.AssetListScreenlet_groupId), groupId);
+
+		_portletItemName = typedArray.getString(R.styleable.AssetListScreenlet_portletItemName);
 
 		typedArray.recycle();
 
@@ -95,8 +99,9 @@ public class AssetListScreenlet
 		return new AssetListInteractorImpl(getScreenletId(), _cachePolicy);
 	}
 
-	private int _classNameId;
-	private int _groupId;
 	private CachePolicy _cachePolicy;
+	private long _classNameId;
+	private long _groupId;
+	private String _portletItemName;
 
 }

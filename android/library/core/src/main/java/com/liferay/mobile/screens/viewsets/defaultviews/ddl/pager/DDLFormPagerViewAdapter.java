@@ -60,7 +60,7 @@ public class DDLFormPagerViewAdapter extends PagerAdapter {
 			LayoutInflater inflater = LayoutInflater.from(context);
 			View view = inflater.inflate(layoutId, layout, false);
 
-			DDLFieldViewModel viewModel = (DDLFieldViewModel)view;
+			DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
 			viewModel.setField(field);
 
 			layout.addView(view);

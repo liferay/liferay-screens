@@ -39,6 +39,9 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class XSDParserTest {
 
+	private static final Locale _spanishLocale = new Locale("es", "ES");
+	private static final Locale _usLocale = new Locale("en", "US");
+
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class ShouldRaiseException {
@@ -80,20 +83,20 @@ public class XSDParserTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"string\" " +
-							"type=\"text\" " +
-							"name=\"A_Text\" " +
-							"readOnly=\"false\" " +
-							"repeatable=\"true\" " +
-							"required=\"false\" " +
-							"showLabel=\"true\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
-							"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
-							"<entry name=\"tip\"><![CDATA[The tip]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"string\" " +
+					"type=\"text\" " +
+					"name=\"A_Text\" " +
+					"readOnly=\"false\" " +
+					"repeatable=\"true\" " +
+					"required=\"false\" " +
+					"showLabel=\"true\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
+					"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
+					"<entry name=\"tip\"><![CDATA[The tip]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
 
@@ -122,16 +125,16 @@ public class XSDParserTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"string\" " +
-							"type=\"text\" " +
-							"name=\"A_Text\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
-							"<entry name=\"predefinedValue\"><![CDATA[]]></entry> " +
-							"<entry name=\"tip\"><![CDATA[]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"string\" " +
+					"type=\"text\" " +
+					"name=\"A_Text\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
+					"<entry name=\"predefinedValue\"><![CDATA[]]></entry> " +
+					"<entry name=\"tip\"><![CDATA[]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
 			Field resultField = resultList.get(0);
@@ -144,16 +147,16 @@ public class XSDParserTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"string\" " +
-							"type=\"text\" " +
-							"name=\"A_Text\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
-							"<entry name=\"predefinedValue\"></entry> " +
-							"<entry name=\"tip\"></entry> " +
-						"</meta-data> " +
+					"dataType=\"string\" " +
+					"type=\"text\" " +
+					"name=\"A_Text\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
+					"<entry name=\"predefinedValue\"></entry> " +
+					"<entry name=\"tip\"></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
 			Field resultField = resultList.get(0);
@@ -166,14 +169,14 @@ public class XSDParserTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"string\" " +
-							"type=\"text\" " +
-							"name=\"A_Text\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"string\" " +
+					"type=\"text\" " +
+					"name=\"A_Text\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
 			Field resultField = resultList.get(0);
@@ -186,11 +189,11 @@ public class XSDParserTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"string\" " +
-							"type=\"text\" " +
-							"name=\"A_Text\" > " +
+					"dataType=\"string\" " +
+					"type=\"text\" " +
+					"name=\"A_Text\" > " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
 			Field resultField = resultList.get(0);
@@ -199,8 +202,5 @@ public class XSDParserTest {
 		}
 
 	}
-
-	private static final Locale _spanishLocale = new Locale("es", "ES");
-	private static final Locale _usLocale = new Locale("en", "US");
 
 }

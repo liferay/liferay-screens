@@ -17,7 +17,7 @@ public class TourPageFragment extends Fragment {
 		Bundle bundle = new Bundle();
 		bundle.putInt(LAYOUT_ID, layout);
 		tourPageFragment.setArguments(bundle);
-		
+
 		return tourPageFragment;
 	}
 

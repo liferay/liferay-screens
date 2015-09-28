@@ -14,14 +14,13 @@
 
 package com.liferay.mobile.screens.base.interactor;
 
-import com.liferay.mobile.android.task.callback.typed.GenericAsyncTaskCallback;
+import com.liferay.mobile.android.callback.typed.GenericCallback;
 import com.liferay.mobile.screens.util.EventBusUtil;
 
 /**
  * @author Jose Manuel Navarro
  */
-public abstract class InteractorAsyncTaskCallback<T>
-	extends GenericAsyncTaskCallback<T> {
+public abstract class InteractorAsyncTaskCallback<T> extends GenericCallback<T> {
 
 	public InteractorAsyncTaskCallback(int targetScreenletId) {
 		_targetScreenletId = targetScreenletId;

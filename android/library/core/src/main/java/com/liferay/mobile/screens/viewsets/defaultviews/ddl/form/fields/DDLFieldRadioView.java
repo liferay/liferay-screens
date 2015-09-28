@@ -25,9 +25,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
-import com.liferay.mobile.screens.R;
 
 import java.util.List;
 
@@ -131,13 +131,6 @@ public class DDLFieldRadioView extends RadioGroup
 	}
 
 	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-
-		setSaveEnabled(true);
-	}
-
-	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		RadioButton radioButton = (RadioButton) buttonView;
 
@@ -148,6 +141,13 @@ public class DDLFieldRadioView extends RadioGroup
 		else {
 			_field.clearOption(opt);
 		}
+	}
+
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		setSaveEnabled(true);
 	}
 
 	private Typeface _getTypeface() {

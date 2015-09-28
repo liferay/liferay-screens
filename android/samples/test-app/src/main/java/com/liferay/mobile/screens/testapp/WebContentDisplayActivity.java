@@ -22,15 +22,15 @@ import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
 /**
  * @author Javier Gamarra
  */
-public class WebViewActivity extends ThemeActivity implements WebContentDisplayListener {
+public class WebContentDisplayActivity extends ThemeActivity implements WebContentDisplayListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.web_view);
+		setContentView(R.layout.web_content_display);
 
-		WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) findViewById(R.id.web_view);
+		WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) findViewById(R.id.web_content_display);
 		screenlet.setListener(this);
 	}
 

@@ -30,21 +30,6 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 
 
 	@Override
-	public void onActivityResult(int request, int result, Intent intent) {
-		_loginScreenlet.sendOAuthResult(result, intent);
-	}
-
-	@Override
-	public void onLoginSuccess(User user) {
-		info("Login successful!");
-	}
-
-	@Override
-	public void onLoginFailure(Exception e) {
-		error("Login failed", e);
-	}
-
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -60,12 +45,28 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 		setDefaultValues();
 	}
 
+	@Override
+	public void onActivityResult(int request, int result, Intent intent) {
+		_loginScreenlet.sendOAuthResult(result, intent);
+	}
+
+	@Override
+	public void onLoginSuccess(User user) {
+		info("Login successful!");
+	}
+
+	@Override
+	public void onLoginFailure(Exception e) {
+		error("Login failed", e);
+	}
+
 	private void setDefaultValues() {
 		EditText login = (EditText) _loginScreenlet.findViewById(R.id.liferay_login);
-		login.setText(getString(R.string.default_username));
+		login.setText(getString(R.string.default_user_name));
 
 		EditText password = (EditText) _loginScreenlet.findViewById(R.id.liferay_password);
 		password.setText(getString(R.string.default_password));
 	}
+
 	private LoginScreenlet _loginScreenlet;
 }

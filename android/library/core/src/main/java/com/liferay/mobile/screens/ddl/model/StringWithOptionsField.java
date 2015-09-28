@@ -41,43 +41,11 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			}
 		};
 
-	public static class Option implements Serializable {
-
-		public Option(Map<String,String> optionMap) {
-			this(optionMap.get("label"), optionMap.get("name"), optionMap.get("value"));
-		}
-
-		public Option(String label, String name, String value) {
-			this.label = label;
-			this.name = name;
-			this.value = value;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (obj == null) {
-				return false;
-			}
-
-			if (obj instanceof Option) {
-				Option opt = (Option) obj;
-
-				return label.equals(opt.label) && name.equals(opt.name) && value.equals(opt.value);
-			}
-
-			return super.equals(obj);
-		}
-
-		public String label;
-		public String name;
-		public String value;
-	}
-
 	public StringWithOptionsField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
 
-		List<Map<String,String>> availableOptions =
-			(List<Map<String,String>>) attributes.get("options");
+		List<Map<String, String>> availableOptions =
+			(List<Map<String, String>>) attributes.get("options");
 
 		if (availableOptions == null) {
 			_availableOptions = new ArrayList<>();
@@ -85,7 +53,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		else {
 			_availableOptions = new ArrayList<>(availableOptions.size());
 
-			for (Map<String,String> optionMap : availableOptions) {
+			for (Map<String, String> optionMap : availableOptions) {
 				_availableOptions.add(new Option(optionMap));
 			}
 		}
@@ -277,5 +245,37 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 
 	private ArrayList<Option> _availableOptions;
 	private boolean _multiple;
+
+	public static class Option implements Serializable {
+
+		public String label;
+		public String name;
+		public String value;
+
+		public Option(Map<String, String> optionMap) {
+			this(optionMap.get("label"), optionMap.get("name"), optionMap.get("value"));
+		}
+
+		public Option(String label, String name, String value) {
+			this.label = label;
+			this.name = name;
+			this.value = value;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == null) {
+				return false;
+			}
+
+			if (obj instanceof Option) {
+				Option opt = (Option) obj;
+
+				return label.equals(opt.label) && name.equals(opt.name) && value.equals(opt.value);
+			}
+
+			return super.equals(obj);
+		}
+	}
 
 }

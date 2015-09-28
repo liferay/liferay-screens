@@ -55,11 +55,6 @@ public class DateField extends Field<Date> {
 		init(getCurrentLocale());
 	}
 
-	private void init(Locale locale) {
-		_clientFormat = DateFormat.getDateInstance(DateFormat.LONG, locale);
-		_clientFormat.setTimeZone(_GMT_TIMEZONE);
-	}
-
 	@Override
 	protected Date convertFromString(String stringValue) {
 		if (stringValue == null) {
@@ -102,16 +97,20 @@ public class DateField extends Field<Date> {
 		return (value == null) ? null : _clientFormat.format(value);
 	}
 
+	private void init(Locale locale) {
+		_clientFormat = DateFormat.getDateInstance(DateFormat.LONG, locale);
+		_clientFormat.setTimeZone(_GMT_TIMEZONE);
+	}
+
 	private static final DateFormat _SERVER_YYYY_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
 	private static final DateFormat _SERVER_YY_FORMAT = new SimpleDateFormat("MM/dd/yy");
 
 	private static final TimeZone _GMT_TIMEZONE = TimeZone.getTimeZone("GMT");
+	private DateFormat _clientFormat;
 
 	static {
 		_SERVER_YYYY_FORMAT.setTimeZone(_GMT_TIMEZONE);
 		_SERVER_YY_FORMAT.setTimeZone(_GMT_TIMEZONE);
 	}
-
-	private DateFormat _clientFormat;
 
 }

@@ -32,27 +32,6 @@ import java.util.List;
 public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 	extends RecyclerView.Adapter<H> {
 
-	public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-		public TextView textView;
-
-		public ViewHolder(View view, BaseListAdapterListener listener) {
-			super(view);
-
-			this.textView = (TextView)view.findViewById(R.id.liferay_list_title);
-			_listener = listener;
-			view.setOnClickListener(this);
-		}
-
-		@Override
-		public void onClick(View v) {
-			_listener.onItemClick(getPosition(), v);
-		}
-
-		private BaseListAdapterListener _listener;
-	}
-
-
 	public BaseListAdapter(
 		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 
@@ -64,6 +43,10 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 
 	public List<E> getEntries() {
 		return _entries;
+	}
+
+	public void setEntries(List<E> entries) {
+		_entries = entries;
 	}
 
 	@Override
@@ -102,7 +85,7 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 		}
 	}
 
-    @Override
+	@Override
 	public H onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
@@ -118,10 +101,6 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 		return (H) new ViewHolder(view, _listener);
 	}
 
-	public void setEntries(List<E> entries) {
-		_entries = entries;
-	}
-
 	public void setRowCount(int rowCount) {
 		_rowCount = rowCount;
 	}
@@ -130,12 +109,30 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 
 	protected static final int LAYOUT_TYPE_DEFAULT = 0;
 	protected static final int LAYOUT_TYPE_PROGRESS = 1;
-
 	private List<E> _entries;
-
 	private int _layoutId;
 	private BaseListAdapterListener _listener;
 	private int _progressLayoutId;
 	private int _rowCount;
+
+	public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+		public TextView textView;
+
+		public ViewHolder(View view, BaseListAdapterListener listener) {
+			super(view);
+
+			this.textView = (TextView) view.findViewById(R.id.liferay_list_title);
+			_listener = listener;
+			view.setOnClickListener(this);
+		}
+
+		@Override
+		public void onClick(View v) {
+			_listener.onItemClick(getPosition(), v);
+		}
+
+		private BaseListAdapterListener _listener;
+	}
 
 }

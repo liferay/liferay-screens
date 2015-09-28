@@ -19,10 +19,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
+import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.westeros.*;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -32,7 +32,7 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class DDLListAdapter
-        extends BaseListAdapter<DDLEntry, DDLListAdapter.SwipeActionsViewHolder> {
+        extends BaseListAdapter<Record, DDLListAdapter.SwipeActionsViewHolder> {
 
     public static class SwipeActionsViewHolder
             extends BaseListAdapter.ViewHolder implements View.OnClickListener {
@@ -106,24 +106,24 @@ public class DDLListAdapter
     }
 
     @Override
-    protected void fillHolder(DDLEntry entry, SwipeActionsViewHolder holder) {
+    protected void fillHolder(Record entry, SwipeActionsViewHolder holder) {
 
         StringBuilder builder = new StringBuilder();
 
         if (entry != null && _labelFields != null && !_labelFields.isEmpty()) {
 
-            String titleField = entry.getValue(_labelFields.get(0));
+            String titleField = entry.getServerValue(_labelFields.get(0));
 
             for (int i = 1; i < _labelFields.size(); ++i) {
                 String field = _labelFields.get(i);
-                String value = entry.getValue(field);
+                String value = entry.getServerValue(field);
                 if (value != null && !value.isEmpty()) {
                     builder.append(value);
                     builder.append(" ");
                 }
             }
             if (builder.length() == 0) {
-                String date = new SimpleDateFormat("dd/MM/yyyy").format(entry.getAttributes("createDate"));
+                String date = new SimpleDateFormat("dd/MM/yyyy").format(entry.getServerAttribute("createDate"));
                 builder.append("Created ");
                 builder.append(date);
             }

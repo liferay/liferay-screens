@@ -3,8 +3,6 @@ package com.liferay.mobile.screens.base.interactor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
-import org.json.JSONObject;
-
 /**
  * @author Javier Gamarra
  */

@@ -7,6 +7,6 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
  */
 public interface AddBookmarkInteractor extends Interactor<AddBookmarkListener> {
 
-	void addBookmark(String url, String title, Integer folderId) throws Exception;
+	void addBookmark(String url, String title, long folderId) throws Exception;
 
 }
