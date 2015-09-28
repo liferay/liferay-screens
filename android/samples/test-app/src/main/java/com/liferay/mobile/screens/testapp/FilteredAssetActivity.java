@@ -13,6 +13,15 @@ import java.util.List;
 public class FilteredAssetActivity extends ThemeActivity implements BaseListListener<AssetEntry> {
 
 	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.filtered_asset);
+
+		AssetListScreenlet assetListScreenlet = (AssetListScreenlet) findViewById(R.id.filtered_asset_list);
+		assetListScreenlet.setListener(this);
+	}
+
+	@Override
 	public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
 
 	}
@@ -25,15 +34,6 @@ public class FilteredAssetActivity extends ThemeActivity implements BaseListList
 	@Override
 	public void onListItemSelected(AssetEntry element, View view) {
 
-	}
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.filtered_asset);
-
-		AssetListScreenlet assetListScreenlet = (AssetListScreenlet) findViewById(R.id.filtered_asset_list);
-		assetListScreenlet.setListener(this);
 	}
 
 }

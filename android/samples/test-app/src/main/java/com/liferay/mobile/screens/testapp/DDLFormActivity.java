@@ -57,15 +57,6 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		if (resultCode == RESULT_OK) {
-			_screenlet.startUploadByPosition(requestCode);
-		}
-	}
-
-	@Override
 	public void onDDLFormLoaded(Record record) {
 		_loaded = true;
 		info("Form loaded!");
@@ -114,6 +105,15 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	@Override
 	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
 		error("Document could not be uploaded", e);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == RESULT_OK) {
+			_screenlet.startUploadByPosition(requestCode);
+		}
 	}
 
 	@Override

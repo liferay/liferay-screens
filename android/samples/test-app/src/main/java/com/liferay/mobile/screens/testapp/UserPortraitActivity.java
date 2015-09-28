@@ -60,8 +60,6 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 		error("Could not load user portrait", e);
 	}
 
-	private UserPortraitScreenlet _screenlet;
-
 	@Override
 	public void onUserPortraitUploaded(UserPortraitScreenlet source) {
 
@@ -71,4 +69,6 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 	public void onUserPortraitUploadFailure(UserPortraitScreenlet source, Exception e) {
 
 	}
+
+	private UserPortraitScreenlet _screenlet;
 }
