@@ -33,18 +33,6 @@ import java.util.List;
 public class DDLListAdapter
 	extends BaseListAdapter<Record, DDLListAdapter.TwoTextsViewHolder> {
 
-	public static class TwoTextsViewHolder extends BaseListAdapter.ViewHolder {
-
-		public TextView subtitleTextView;
-
-		public TwoTextsViewHolder(View view, BaseListAdapterListener listener) {
-			super(view, listener);
-
-			this.subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
-		}
-	}
-
-
 	public DDLListAdapter(
 		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 
@@ -89,7 +77,17 @@ public class DDLListAdapter
 		holder.textView.setText(titleField);
 		holder.subtitleTextView.setText(builder.toString());
 	}
-
 	private List<String> _labelFields;
+
+	public static class TwoTextsViewHolder extends BaseListAdapter.ViewHolder {
+
+		public TextView subtitleTextView;
+
+		public TwoTextsViewHolder(View view, BaseListAdapterListener listener) {
+			super(view, listener);
+
+			this.subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
+		}
+	}
 
 }
