@@ -47,7 +47,7 @@ public class AssetEntry implements Parcelable {
 	}
 
 	public String getTitle() {
-		return (String)_values.get("title");
+		return (String) _values.get("title");
 	}
 
 	@Override

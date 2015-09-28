@@ -58,6 +58,15 @@ public class DDLListView
 	}
 
 	@Override
+	public void showFinishOperation(int page, List<Record> entries, int rowCount) {
+		super.showFinishOperation(page, entries, rowCount);
+
+		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
+
+		getAdapter().setLabelFields(screenlet.getLabelFields());
+	}
+
+	@Override
 	protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
 		return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
 	}
@@ -65,15 +74,6 @@ public class DDLListView
 	@Override
 	protected int getItemLayoutId() {
 		return R.layout.ddl_list_item_westeros;
-	}
-
-	@Override
-	public void showFinishOperation(int page, List<Record> entries, int rowCount) {
-		super.showFinishOperation(page, entries, rowCount);
-
-		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
-
-		getAdapter().setLabelFields(screenlet.getLabelFields());
 	}
 
 	@Override

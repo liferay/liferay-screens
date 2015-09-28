@@ -52,7 +52,6 @@ public class LiferayCrouton {
 	}
 
 
-
 	private static int _position = android.R.id.content;
 	private static Style _info = null;
 	private static Style _alert = null;

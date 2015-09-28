@@ -27,22 +27,23 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayInteractorImpl
-		extends BaseRemoteInteractor<WebContentDisplayListener>
-		implements WebContentDisplayInteractor {
+	extends BaseRemoteInteractor<WebContentDisplayListener>
+	implements WebContentDisplayInteractor {
 
 	public WebContentDisplayInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 
 	public void load(long groupId, String articleId, String templateId, Locale locale)
-			throws Exception {
+		throws Exception {
 
 		validate(groupId, articleId, locale);
 
 		if (templateId == null) {
 			JournalArticleService service = getJournalArticleService();
 			service.getArticleContent(groupId, articleId, locale.toString(), null);
-		} else {
+		}
+		else {
 			ScreensjournalarticleService screensjournalarticleService = getScreensJournalArticleService();
 			screensjournalarticleService.getJournalArticleByTemplateId(groupId, articleId, Long.valueOf(templateId), locale.toString());
 		}
@@ -64,7 +65,7 @@ public class WebContentDisplayInteractorImpl
 	protected JournalArticleService getJournalArticleService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(
-				new WebContentDisplayCallback(getTargetScreenletId()));
+			new WebContentDisplayCallback(getTargetScreenletId()));
 
 		return new JournalArticleService(session);
 	}
@@ -72,7 +73,7 @@ public class WebContentDisplayInteractorImpl
 	protected ScreensjournalarticleService getScreensJournalArticleService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(
-				new WebContentDisplayCallback(getTargetScreenletId()));
+			new WebContentDisplayCallback(getTargetScreenletId()));
 
 		return new ScreensjournalarticleService(session);
 	}

@@ -34,6 +34,44 @@ import static junit.framework.Assert.assertEquals;
 @RunWith(Enclosed.class)
 public class XSDParserLocalizationTest {
 
+	private static final Locale _spanishLocale = new Locale("es", "ES");
+	private static final String booleanFieldWithTranslationsXSD =
+		"<root available-locales=\"es_ES, es_AR, es, en_US, en_AU\" default-locale=\"es_ES\"> " +
+			"<dynamic-element dataType=\"boolean\" " +
+			"name=\"Un_booleano\" " +
+			"readOnly=\"false\" " +
+			"repeatable=\"false\" " +
+			"required=\"false\" " +
+			"showLabel=\"true\" " +
+			"type=\"checkbox\" > " +
+			"<meta-data locale=\"en_US\"> " +
+			"<entry name=\"label\">" +
+			"<![CDATA[A Boolean for 'en_US']]>" +
+			"</entry> " +
+			"</meta-data> " +
+			"<meta-data locale=\"en_AU\"> " +
+			"<entry name=\"label\">" +
+			"<![CDATA[An austral Boolean for 'en_AU']]>" +
+			"</entry> " +
+			"</meta-data> " +
+			"<meta-data locale=\"es\"> " +
+			"<entry name=\"label\">" +
+			"<![CDATA[Un Booleano neutro para 'es']]>" +
+			"</entry> " +
+			"</meta-data> " +
+			"<meta-data locale=\"es_ES\"> " +
+			"<entry name=\"label\">" +
+			"<![CDATA[Un Booleano para 'es_ES']]>" +
+			"</entry> " +
+			"</meta-data> " +
+			"<meta-data locale=\"es_AR\"> " +
+			"<entry name=\"label\">" +
+			"<![CDATA[Un boludo Booleano para 'es_AR', ché]]>" +
+			"</entry> " +
+			"</meta-data> " +
+			"</dynamic-element>" +
+			"</root>";
+
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenExistingCompleteLocaleIsProvided {
@@ -105,45 +143,5 @@ public class XSDParserLocalizationTest {
 			assertEquals("A Boolean for 'en_US'", fields.get(0).getLabel());
 		}
 	}
-
-
-	private static final Locale _spanishLocale = new Locale("es", "ES");
-
-	private static final String booleanFieldWithTranslationsXSD =
-		"<root available-locales=\"es_ES, es_AR, es, en_US, en_AU\" default-locale=\"es_ES\"> " +
-			"<dynamic-element dataType=\"boolean\" " +
-					"name=\"Un_booleano\" " +
-					"readOnly=\"false\" " +
-					"repeatable=\"false\" " +
-					"required=\"false\" " +
-					"showLabel=\"true\" " +
-					"type=\"checkbox\" > " +
-				"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\">" +
-						"<![CDATA[A Boolean for 'en_US']]>" +
-					"</entry> " +
-				"</meta-data> " +
-				"<meta-data locale=\"en_AU\"> " +
-					"<entry name=\"label\">" +
-						"<![CDATA[An austral Boolean for 'en_AU']]>" +
-					"</entry> " +
-				"</meta-data> " +
-				"<meta-data locale=\"es\"> " +
-					"<entry name=\"label\">" +
-						"<![CDATA[Un Booleano neutro para 'es']]>" +
-					"</entry> " +
-				"</meta-data> " +
-				"<meta-data locale=\"es_ES\"> " +
-					"<entry name=\"label\">" +
-						"<![CDATA[Un Booleano para 'es_ES']]>" +
-					"</entry> " +
-				"</meta-data> " +
-				"<meta-data locale=\"es_AR\"> " +
-					"<entry name=\"label\">" +
-						"<![CDATA[Un boludo Booleano para 'es_AR', ché]]>" +
-					"</entry> " +
-				"</meta-data> " +
-			"</dynamic-element>" +
-		"</root>";
 
 }

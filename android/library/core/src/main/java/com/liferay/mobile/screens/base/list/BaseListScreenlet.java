@@ -33,158 +33,158 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public abstract class BaseListScreenlet<E, N extends Interactor>
-        extends BaseScreenlet<BaseListViewModel, N>
-        implements BaseListInteractorListener<E> {
+	extends BaseScreenlet<BaseListViewModel, N>
+	implements BaseListInteractorListener<E> {
 
-    public BaseListScreenlet(Context context) {
-        super(context);
-    }
+	public BaseListScreenlet(Context context) {
+		super(context);
+	}
 
-    public BaseListScreenlet(Context context, AttributeSet attributes) {
-        super(context, attributes);
-    }
+	public BaseListScreenlet(Context context, AttributeSet attributes) {
+		super(context, attributes);
+	}
 
-    public BaseListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-        super(context, attributes, defaultStyle);
-    }
+	public BaseListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
+		super(context, attributes, defaultStyle);
+	}
 
-    public void loadPageForRow(int row) {
-        loadPage(getPageFromRow(row));
-    }
+	public void loadPageForRow(int row) {
+		loadPage(getPageFromRow(row));
+	}
 
-    @Override
-    public void onListRowsFailure(int startRow, int endRow, Exception e) {
-        int page = getPageFromRow(startRow);
+	@Override
+	public void onListRowsFailure(int startRow, int endRow, Exception e) {
+		int page = getPageFromRow(startRow);
 
 		getViewModel().showFinishOperation(page, e);
 
-        if (_listener != null) {
-            _listener.onListPageFailed(this, page, e);
-        }
-    }
+		if (_listener != null) {
+			_listener.onListPageFailed(this, page, e);
+		}
+	}
 
-    @Override
-    public void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount) {
-        int page = getPageFromRow(startRow);
+	@Override
+	public void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount) {
+		int page = getPageFromRow(startRow);
 
 		getViewModel().showFinishOperation(page, entries, rowCount);
 
-        if (_listener != null) {
-            _listener.onListPageReceived(this, page, entries, rowCount);
-        }
-    }
+		if (_listener != null) {
+			_listener.onListPageReceived(this, page, entries, rowCount);
+		}
+	}
 
-    public int getFirstRowForPage(int page) {
-        if (page == 0) {
-            return 0;
-        }
+	public int getFirstRowForPage(int page) {
+		if (page == 0) {
+			return 0;
+		}
 
-        return (_firstPageSize + (page - 1) * _pageSize);
-    }
+		return (_firstPageSize + (page - 1) * _pageSize);
+	}
 
-    public int getPageFromRow(int row) {
-        if (row < _firstPageSize) {
-            return 0;
-        }
+	public int getPageFromRow(int row) {
+		if (row < _firstPageSize) {
+			return 0;
+		}
 
-        return ((row - _firstPageSize) / _pageSize) + 1;
-    }
+		return ((row - _firstPageSize) / _pageSize) + 1;
+	}
 
-    public void loadPage(int page) {
+	public void loadPage(int page) {
 		if (page == 0) {
 			getViewModel().showStartOperation(null);
 		}
 
-        Locale locale = getResources().getConfiguration().locale;
+		Locale locale = getResources().getConfiguration().locale;
 
-        int startRow = getFirstRowForPage(page);
-        int endRow = getFirstRowForPage(page + 1);
+		int startRow = getFirstRowForPage(page);
+		int endRow = getFirstRowForPage(page + 1);
 
-        try {
-            loadRows(getInteractor(), startRow, endRow, locale);
-        }
-        catch (Exception e) {
-            onListRowsFailure(startRow, endRow, e);
-        }
-    }
+		try {
+			loadRows(getInteractor(), startRow, endRow, locale);
+		}
+		catch (Exception e) {
+			onListRowsFailure(startRow, endRow, e);
+		}
+	}
 
-    public boolean isAutoLoad() {
-        return _autoLoad;
-    }
+	public boolean isAutoLoad() {
+		return _autoLoad;
+	}
 
-    public void setAutoLoad(boolean autoLoad) {
-        _autoLoad = autoLoad;
-    }
+	public void setAutoLoad(boolean autoLoad) {
+		_autoLoad = autoLoad;
+	}
 
-    public int getFirstPageSize() {
-        return _firstPageSize;
-    }
+	public int getFirstPageSize() {
+		return _firstPageSize;
+	}
 
-    public void setFirstPageSize(int firstPageSize) {
-        _firstPageSize = firstPageSize;
-    }
+	public void setFirstPageSize(int firstPageSize) {
+		_firstPageSize = firstPageSize;
+	}
 
-    public BaseListListener<E> getListener() {
-        return _listener;
-    }
+	public BaseListListener<E> getListener() {
+		return _listener;
+	}
 
-    public void setListener(BaseListListener<E> listener) {
-        _listener = listener;
-    }
+	public void setListener(BaseListListener<E> listener) {
+		_listener = listener;
+	}
 
-    public int getPageSize() {
-        return _pageSize;
-    }
+	public int getPageSize() {
+		return _pageSize;
+	}
 
-    public void setPageSize(int pageSize) {
-        _pageSize = pageSize;
-    }
+	public void setPageSize(int pageSize) {
+		_pageSize = pageSize;
+	}
 
 	protected abstract void loadRows(N interactor, int startRow, int endRow, Locale locale)
-			throws Exception;
+		throws Exception;
 
-    @Override
-    protected View createScreenletView(
-            Context context, AttributeSet attributes) {
+	@Override
+	protected View createScreenletView(
+		Context context, AttributeSet attributes) {
 
-        TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-                attributes, R.styleable.AssetListScreenlet, 0, 0);
+		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
+			attributes, R.styleable.AssetListScreenlet, 0, 0);
 
-        int layoutId = typedArray.getResourceId(
+		int layoutId = typedArray.getResourceId(
 			R.styleable.AssetListScreenlet_layoutId, getDefaultLayoutId());
 
-        _firstPageSize = typedArray.getInteger(
+		_firstPageSize = typedArray.getInteger(
 			R.styleable.AssetListScreenlet_firstPageSize, _FIRST_PAGE_SIZE);
 
-        _pageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_pageSize, _PAGE_SIZE);
+		_pageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_pageSize, _PAGE_SIZE);
 
-        _autoLoad = typedArray.getBoolean(R.styleable.AssetListScreenlet_autoLoad, true);
+		_autoLoad = typedArray.getBoolean(R.styleable.AssetListScreenlet_autoLoad, true);
 
-        typedArray.recycle();
+		typedArray.recycle();
 
-        return LayoutInflater.from(context).inflate(layoutId, null);
-    }
+		return LayoutInflater.from(context).inflate(layoutId, null);
+	}
 
-    @Override
-    protected void onScreenletAttached() {
-        super.onScreenletAttached();
+	@Override
+	protected void onScreenletAttached() {
+		super.onScreenletAttached();
 
-        if (_autoLoad) {
-            //LMW-176 TODO handle when first page is already loaded
-            loadPage(0);
-        }
-    }
+		if (_autoLoad) {
+			//LMW-176 TODO handle when first page is already loaded
+			loadPage(0);
+		}
+	}
 
-    @Override
-    protected void onUserAction(String userActionName, N interactor, Object... args) {
-    }
+	@Override
+	protected void onUserAction(String userActionName, N interactor, Object... args) {
+	}
 
-    protected static final int _FIRST_PAGE_SIZE = 50;
-    protected static final int _PAGE_SIZE = 25;
+	protected static final int _FIRST_PAGE_SIZE = 50;
+	protected static final int _PAGE_SIZE = 25;
 
-    protected boolean _autoLoad;
-    protected int _firstPageSize;
-    protected BaseListListener<E> _listener;
-    protected int _pageSize;
+	protected boolean _autoLoad;
+	protected int _firstPageSize;
+	protected BaseListListener<E> _listener;
+	protected int _pageSize;
 
 }

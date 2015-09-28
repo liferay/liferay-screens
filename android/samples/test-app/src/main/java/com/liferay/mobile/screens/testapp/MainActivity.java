@@ -48,7 +48,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.forgot_password:
 				DefaultAnimation.startActivityWithAnimation(this,
-						getIntentWithTheme(ForgotPasswordActivity.class));
+					getIntentWithTheme(ForgotPasswordActivity.class));
 				break;
 			case R.id.user_portrait:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(UserPortraitActivity.class));

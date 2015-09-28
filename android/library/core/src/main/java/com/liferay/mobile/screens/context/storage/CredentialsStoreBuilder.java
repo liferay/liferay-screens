@@ -157,7 +157,8 @@ public class CredentialsStoreBuilder {
 				credentialsStore = new CredentialsStoreVoid();
 			}
 
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new IllegalStateException("Store can't be instantiated");
 		}
 

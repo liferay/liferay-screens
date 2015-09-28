@@ -18,8 +18,8 @@ import android.content.Context;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 
-import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Javier Gamarra

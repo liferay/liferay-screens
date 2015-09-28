@@ -23,13 +23,13 @@ public class LoginFullView extends LoginView {
 		super(context, attributes, defaultStyle);
 	}
 
-	protected int getLoginEditTextDrawableId() {
-		return R.drawable.material_account_box;
-	}
-
 	@Override
 	public String getPassword() {
 		return Settings.Secure.getString(getContext().getContentResolver(),
 			Settings.Secure.ANDROID_ID);
+	}
+
+	protected int getLoginEditTextDrawableId() {
+		return R.drawable.material_account_box;
 	}
 }

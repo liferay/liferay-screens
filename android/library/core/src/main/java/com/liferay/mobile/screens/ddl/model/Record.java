@@ -179,6 +179,7 @@ public class Record implements Parcelable {
 
 	/**
 	 * renamed from getValue()
+	 *
 	 * @param field
 	 * @return server value of that field
 	 */
@@ -188,11 +189,17 @@ public class Record implements Parcelable {
 
 	/**
 	 * renamed from getAttributes()
+	 *
 	 * @param field
 	 * @return server attribute of that field
 	 */
 	public Object getServerAttribute(String field) {
 		return getModelAttributes().get(field);
+	}
+
+	public void setValuesAndAttributes(Map<String, Object> valuesAndAttributes) {
+		_valuesAndAttributes = valuesAndAttributes;
+		parseServerValues();
 	}
 
 	private Record(Parcel in, ClassLoader loader) {
@@ -205,11 +212,6 @@ public class Record implements Parcelable {
 		_locale = (Locale) in.readSerializable();
 		_valuesAndAttributes = new HashMap<>();
 		in.readMap(_valuesAndAttributes, loader);
-	}
-
-	public void setValuesAndAttributes(Map<String, Object> valuesAndAttributes) {
-		_valuesAndAttributes = valuesAndAttributes;
-		parseServerValues();
 	}
 
 	private void parseServerValues() {
