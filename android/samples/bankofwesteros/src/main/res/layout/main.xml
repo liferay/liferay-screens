@@ -1,6 +1,6 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout android:id="@+id/main_view"
+			 xmlns:android="http://schemas.android.com/apk/res/android"
 			 xmlns:liferay="http://schemas.android.com/apk/res-auto"
-			 android:id="@+id/main_view"
 			 android:layout_width="match_parent"
 			 android:layout_height="match_parent"
 			 android:background="@color/westeros_background_gray">

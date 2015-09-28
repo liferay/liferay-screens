@@ -61,15 +61,6 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		if (resultCode == Activity.RESULT_OK) {
-			_userPortraitScreenlet.upload(requestCode, data);
-		}
-	}
-
-	@Override
 	public Bitmap onUserPortraitLoadReceived(UserPortraitScreenlet source, Bitmap bitmap) {
 		return null;
 	}
@@ -89,6 +80,14 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 		LiferayCrouton.error(AccountSettingsActivity.this, "Error updating portrait", e);
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == Activity.RESULT_OK) {
+			_userPortraitScreenlet.upload(requestCode, data);
+		}
+	}
 
 	private void saveUser() {
 		final String firstName = _firstName.getText().toString();
