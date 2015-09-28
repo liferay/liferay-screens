@@ -47,6 +47,22 @@ public class AddBookmarkScreenlet
 		}
 	}
 
+	public long getFolderId() {
+		return _folderId;
+	}
+
+	public void setFolderId(long folderId) {
+		_folderId = folderId;
+	}
+
+	public AddBookmarkListener getListener() {
+		return _listener;
+	}
+
+	public void setListener(AddBookmarkListener listener) {
+		_listener = listener;
+	}
+
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(attributes, R.styleable.AddBookmarkScreenlet, 0, 0);
@@ -84,22 +100,6 @@ public class AddBookmarkScreenlet
 		catch (Exception e) {
 			onAddBookmarkFailure(e);
 		}
-	}
-
-	public long getFolderId() {
-		return _folderId;
-	}
-
-	public void setFolderId(long folderId) {
-		_folderId = folderId;
-	}
-
-	public AddBookmarkListener getListener() {
-		return _listener;
-	}
-
-	public void setListener(AddBookmarkListener listener) {
-		_listener = listener;
 	}
 
 	private long _folderId;
