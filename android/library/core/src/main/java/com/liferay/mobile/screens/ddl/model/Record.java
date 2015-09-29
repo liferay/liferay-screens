@@ -193,17 +193,7 @@ public class Record implements Parcelable {
 	 * @return server value of that field
 	 */
 	public String getServerValue(String field) {
-		return getModelValues().get(field);
-	}
-
-	/**
-	 * renamed from getAttributes()
-	 *
-	 * @param field
-	 * @return server attribute of that field
-	 */
-	public Object getServerAttribute(String field) {
-		return getModelAttributes().get(field);
+		return getModelValues() == null ? null : getModelValues().get(field);
 	}
 
 	public void setValuesAndAttributes(Map<String, Object> valuesAndAttributes) {
@@ -231,10 +221,20 @@ public class Record implements Parcelable {
 		in.readMap(_valuesAndAttributes, loader);
 	}
 
+	/**
+	 * renamed from getAttributes()
+	 *
+	 * @param field
+	 * @return server attribute of that field
+	 */
+	private Object getServerAttribute(String field) {
+		return getModelAttributes() == null ? null : getModelAttributes().get(field);
+	}
+
 	private void parseServerValues() {
 		_recordId = JSONUtil.castToLong(getServerAttribute("recordId"));
 		_recordSetId = JSONUtil.castToLong(getServerAttribute("recordSetId"));
-		_creatorUserId = JSONUtil.castToLong(getServerAttribute("creatorUserId"));
+		_creatorUserId = JSONUtil.castToLong(getServerAttribute("userId"));
 		_structureId = JSONUtil.castToLong(getServerAttribute("structureId"));
 	}
 
@@ -243,6 +243,7 @@ public class Record implements Parcelable {
 			destination.writeLong(field);
 		}
 	}
+
 	private List<Field> _fields = new ArrayList<>();
 	private Long _creatorUserId;
 	private Long _structureId;
