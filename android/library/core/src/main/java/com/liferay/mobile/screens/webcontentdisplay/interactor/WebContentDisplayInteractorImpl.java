@@ -38,7 +38,7 @@ public class WebContentDisplayInteractorImpl
 		super(targetScreenletId, cachePolicy);
 	}
 
-	public void load(long groupId, String articleId, String templateId, Locale locale)
+	public void load(long groupId, String articleId, Long templateId, Locale locale)
 		throws Exception {
 
 		validate(groupId, articleId, locale);
@@ -72,7 +72,7 @@ public class WebContentDisplayInteractorImpl
 		}
 		else {
 			ScreensjournalarticleService screensjournalarticleService = getScreensJournalArticleService(groupId, articleId, locale);
-			screensjournalarticleService.getJournalArticleByTemplateId(groupId, articleId, templateId, locale.toString());
+			screensjournalarticleService.getJournalArticleContent(groupId, articleId, templateId, locale.toString());
 		}
 	}
 

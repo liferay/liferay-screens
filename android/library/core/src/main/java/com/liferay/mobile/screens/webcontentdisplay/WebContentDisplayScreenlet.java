@@ -118,7 +118,7 @@ public class WebContentDisplayScreenlet
 		_groupId = castToLongOrUseDefault(typedArray.getString(
 			R.styleable.WebContentDisplayScreenlet_groupId), LiferayServerContext.getGroupId());
 
-		_templateId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_templateId);
+		_templateId = castToLong(typedArray.getString(R.styleable.WebContentDisplayScreenlet_templateId));
 
 		_javascriptEnabled = typedArray.getBoolean(
 			R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
@@ -163,7 +163,7 @@ public class WebContentDisplayScreenlet
 	}
 
 	private CachePolicy _cachePolicy;
-	private String _templateId;
+	private Long _templateId;
 	private String _articleId;
 	private boolean _autoLoad;
 	private long _groupId;
