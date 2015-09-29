@@ -16,9 +16,7 @@ package com.liferay.mobile.screens.auth.signup;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-
 import android.util.AttributeSet;
-
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -31,7 +29,7 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
-import com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.*;
+import com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.StorageType;
 
 import java.util.Locale;
 
@@ -149,9 +147,9 @@ public class SignUpScreenlet
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.SignUpScreenlet, 0, 0);
 
-		_companyId = typedArray.getInt(
-			R.styleable.SignUpScreenlet_companyId,
-			(int)LiferayServerContext.getCompanyId());
+		_companyId = castToLongOrUseDefault(typedArray.getString(
+				R.styleable.SignUpScreenlet_companyId),
+			LiferayServerContext.getCompanyId());
 
 		_anonymousApiUserName = typedArray.getString(
 			R.styleable.SignUpScreenlet_anonymousApiUserName);

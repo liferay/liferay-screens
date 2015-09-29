@@ -23,11 +23,11 @@
 		<enum name="NO_OFFLINE" value="0"/>
 		<enum name="STORE_ON_ERROR" value="1"/>
 	</attr>
-	<attr name="companyId" format="integer"/>
-	<attr name="groupId" format="integer"/>
+	<attr name="companyId" format="string"/>
+	<attr name="groupId" format="string"/>
 	<attr name="layoutId" format="reference"/>
-	<attr name="recordSetId" format="integer"/>
-	<attr name="userId" format="integer"/>
+	<attr name="recordSetId" format="string"/>
+	<attr name="userId" format="string"/>
 	<attr name="firstPageSize" format="integer"/>
 	<attr name="pageSize" format="integer"/>
 
@@ -36,7 +36,8 @@
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
 		<attr name="cachePolicy"/>
-		<attr name="classNameId" format="integer"/>
+		<attr name="portletItemName" format="string"/>
+		<attr name="classNameId" format="string"/>
 		<attr name="firstPageSize"/>
 		<attr name="pageSize"/>
 	</declare-styleable>
@@ -45,16 +46,16 @@
 		<attr name="layoutId"/>
 		<attr name="groupId"/>
 		<attr name="autoScrollOnValidation" format="boolean"/>
-		<attr name="structureId" format="integer"/>
-		<attr name="recordId" format="integer"/>
+		<attr name="structureId" format="string"/>
+		<attr name="recordId" format="string"/>
 		<attr name="recordSetId"/>
 		<attr name="userId"/>
 		<attr name="autoLoad"/>
 		<attr name="cachePolicy"/>
 		<attr name="offlinePolicy"/>
 		<attr name="filePrefix" format="string"/>
-		<attr name="repositoryId" format="integer"/>
-		<attr name="folderId" format="integer"/>
+		<attr name="repositoryId" format="string"/>
+		<attr name="folderId" format="string"/>
 		<attr name="showSubmitButton" format="boolean"/>
 		<attr name="checkboxFieldLayoutId" format="reference"/>
 		<attr name="dateFieldLayoutId" format="reference"/>
@@ -108,6 +109,7 @@
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
 		<attr name="cachePolicy"/>
+		<attr name="templateId" format="string"/>
 		<attr name="javascriptEnabled" format="boolean"/>
 		<attr name="articleId" format="string"/>
 	</declare-styleable>
@@ -118,7 +120,7 @@
 		<attr name="cachePolicy"/>
 		<attr name="offlinePolicy"/>
 		<attr name="male" format="boolean"/>
-		<attr name="portraitId" format="integer"/>
+		<attr name="portraitId" format="string"/>
 		<attr name="uuid" format="string"/>
 		<attr name="userId"/>
 		<attr name="editable" format="boolean"/>

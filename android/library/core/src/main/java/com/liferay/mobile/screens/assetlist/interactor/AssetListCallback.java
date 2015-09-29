@@ -31,9 +31,9 @@ public class AssetListCallback extends BaseListCallback<AssetEntry> {
         super(targetScreenletId, rowsRange, locale);
     }
 
-    @Override
-    public AssetEntry createEntity(Map<String, Object> stringObjectMap) {
-        return new AssetEntry(stringObjectMap);
-    }
+	@Override
+	public AssetEntry createEntity(Map<String, Object> stringObjectMap) {
+		return new AssetEntry(stringObjectMap);
+	}
 
 }

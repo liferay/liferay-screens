@@ -80,6 +80,9 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 	public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
 	}
+	private ViewPager _viewPager;
+	private Button _tourButton;
+	private static final int NUM_PAGES = 3;
 
 	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 		public ScreenSlidePagerAdapter(FragmentManager fm) {
@@ -121,10 +124,5 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 			}
 		}
 	}
-
-	private ViewPager _viewPager;
-	private Button _tourButton;
-
-	private static final int NUM_PAGES = 3;
 
 }

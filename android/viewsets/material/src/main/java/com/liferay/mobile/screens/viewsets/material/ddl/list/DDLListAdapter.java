@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
+import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.R;
 
 import java.util.List;
@@ -31,19 +31,7 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class DDLListAdapter
-	extends BaseListAdapter<DDLEntry, DDLListAdapter.TwoTextsViewHolder> {
-
-	public static class TwoTextsViewHolder extends BaseListAdapter.ViewHolder {
-
-		public TextView subtitleTextView;
-
-		public TwoTextsViewHolder(View view, BaseListAdapterListener listener) {
-			super(view, listener);
-
-			this.subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
-		}
-	}
-
+	extends BaseListAdapter<Record, DDLListAdapter.TwoTextsViewHolder> {
 
 	public DDLListAdapter(
 		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
@@ -72,14 +60,14 @@ public class DDLListAdapter
 	}
 
 	@Override
-	protected void fillHolder(DDLEntry entry, TwoTextsViewHolder holder) {
+	protected void fillHolder(Record entry, TwoTextsViewHolder holder) {
 		StringBuilder builder = new StringBuilder();
 
-		String titleField = entry.getValue(_labelFields.get(0));
+		String titleField = entry.getServerValue(_labelFields.get(0));
 
 		for (int i = 1; i < _labelFields.size(); ++i) {
 			String field = _labelFields.get(i);
-			String value = entry.getValue(field);
+			String value = entry.getServerValue(field);
 			if (value != null && !value.isEmpty()) {
 				builder.append(value);
 				builder.append(" ");
@@ -89,7 +77,17 @@ public class DDLListAdapter
 		holder.textView.setText(titleField);
 		holder.subtitleTextView.setText(builder.toString());
 	}
-
 	private List<String> _labelFields;
+
+	public static class TwoTextsViewHolder extends BaseListAdapter.ViewHolder {
+
+		public TextView subtitleTextView;
+
+		public TwoTextsViewHolder(View view, BaseListAdapterListener listener) {
+			super(view, listener);
+
+			this.subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
+		}
+	}
 
 }

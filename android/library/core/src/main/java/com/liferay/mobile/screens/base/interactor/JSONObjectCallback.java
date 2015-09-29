@@ -27,7 +27,7 @@ public class JSONObjectCallback extends InteractorAsyncTaskCallback<JSONObject> 
 
 	@Override
 	public JSONObject transform(Object obj) throws Exception {
-		return (JSONObject)obj;
+		return (JSONObject) obj;
 	}
 
 	@Override

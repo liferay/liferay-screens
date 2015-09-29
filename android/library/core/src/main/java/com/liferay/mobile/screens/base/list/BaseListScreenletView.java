@@ -32,6 +32,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -170,6 +171,25 @@ public abstract class BaseListScreenletView<
 				getDividerDecoration());
 		}
 
+	}
+
+	protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
+		List<E> entries = adapter.getEntries();
+		List<E> allEntries = new ArrayList<>(
+			Collections.<E>nCopies(rowCount, null));
+
+		for (int i = 0; i < entries.size(); i++) {
+			allEntries.set(i, entries.get(i));
+		}
+
+		BaseListScreenlet screenlet = ((BaseListScreenlet) getParent());
+
+		int firstRowForPage = screenlet.getFirstRowForPage(page);
+
+		for (int i = 0; i < serverEntries.size(); i++) {
+			allEntries.set(i + firstRowForPage, serverEntries.get(i));
+		}
+		return allEntries;
 	}
 
 	protected DividerItemDecoration getDividerDecoration() {

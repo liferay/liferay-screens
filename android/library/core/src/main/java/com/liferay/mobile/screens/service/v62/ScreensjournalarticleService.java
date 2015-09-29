@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.service.v62;
 
 import com.liferay.mobile.android.service.BaseService;
-import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 
 import org.json.JSONArray;
@@ -25,22 +24,23 @@ import org.json.JSONObject;
 /**
  * @author Bruno Farache
  */
-public class ScreensassetentryService extends BaseService {
+public class ScreensjournalarticleService extends BaseService {
 
-	public ScreensassetentryService(Session session) {
+	public ScreensjournalarticleService(Session session) {
 		super(session);
 	}
 
-	public JSONArray getAssetEntries(JSONObjectWrapper assetEntryQuery, String locale) throws Exception {
+	public String getJournalArticle(int groupId, int classPK, String locale) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			mangleWrapper(_params, "assetEntryQuery", "com.liferay.portlet.asset.service.persistence.AssetEntryQuery", assetEntryQuery);
+			_params.put("groupId", groupId);
+			_params.put("classPK", classPK);
 			_params.put("locale", checkNull(locale));
 
-			_command.put("/screens-web.screensassetentry/get-asset-entries", _params);
+			_command.put("/screens-web.screensjournalarticle/get-journal-article", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -52,21 +52,21 @@ public class ScreensassetentryService extends BaseService {
 			return null;
 		}
 
-		return _result.getJSONArray(0);
+		return _result.getString(0);
 	}
 
-	public JSONArray getFilteredAssetEntries(long companyId, long groupId, String portletItemName, String locale) throws Exception {
+	public String getJournalArticleByTemplateId(long groupId, String articleId, long templateId, String locale) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("companyId", companyId);
 			_params.put("groupId", groupId);
-			_params.put("portletItemName", checkNull(portletItemName));
+			_params.put("articleId", checkNull(articleId));
+			_params.put("templateId", templateId);
 			_params.put("locale", checkNull(locale));
 
-			_command.put("/screens-web.screensassetentry/get-filtered-asset-entries", _params);
+			_command.put("/screens-web.screensjournalarticle/get-journal-article-by-template-id", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -78,7 +78,7 @@ public class ScreensassetentryService extends BaseService {
 			return null;
 		}
 
-		return _result.getJSONArray(0);
+		return _result.getString(0);
 	}
 
 }

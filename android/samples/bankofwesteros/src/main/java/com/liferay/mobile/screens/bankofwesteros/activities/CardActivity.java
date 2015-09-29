@@ -41,48 +41,6 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		setTransparentMenuBar();
 	}
 
-	private void setTransparentMenuBar() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			setStatusBar();
-		}
-	}
-
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private void setStatusBar() {
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		getWindow().setStatusBarColor(getResources().getColor(R.color.westeros_background_gray));
-	}
-
-	@Override
-	public void onClick(View v) {
-		if (v == _card1 || v == _card2SubViewToCard1 || v == _card2ToCard1) {
-			toCard1(null);
-		}
-		else if (v == _card2) {
-			toCard2();
-		}
-		else if (v == _card1ToFrontView) {
-			goLeftCard1();
-		}
-		else if (v == _card2ToFrontView) {
-			goLeftCard2();
-		}
-		else {
-			toBackground();
-		}
-	}
-
-	@Override
-	public void onBackPressed() {
-		if (_cardHistory.isEmpty() || _cardHistory.size() == 1) {
-			super.onBackPressed();
-		}
-		else {
-			toPreviousCard();
-		}
-	}
-
 	@Override
 	protected void onStart() {
 		super.onStart();
@@ -116,6 +74,41 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 					content.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 				}
 			});
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		if (v == _card1 || v == _card2SubViewToCard1 || v == _card2ToCard1) {
+			toCard1(null);
+		}
+		else if (v == _card2) {
+			toCard2();
+		}
+		else if (v == _card1ToFrontView) {
+			goLeftCard1();
+		}
+		else if (v == _card2ToFrontView) {
+			goLeftCard2();
+		}
+		else {
+			toBackground();
+		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (_cardHistory.isEmpty() || _cardHistory.size() == 1) {
+			super.onBackPressed();
+		}
+		else {
+			toPreviousCard();
+		}
+	}
+
+	public void animate(ViewGroup view) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			startTransition(view);
 		}
 	}
 
@@ -170,7 +163,6 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		toCard1(null);
 	}
 
-
 	protected void toCard1(Animator.AnimatorListener listener) {
 		showArrowIcon(_card1ToBackground);
 		showArrowIcon(_card1SubViewToBackground);
@@ -187,17 +179,6 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		setFrameLayoutMargins(_card1, 0, 0, 0, _cardHeight);
 		_card1.animate().y(_card1RestPosition);
 		_card2.animate().y(_card2FoldedPosition).setListener(listener);
-	}
-
-	public void animate(ViewGroup view) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			startTransition(view);
-		}
-	}
-
-	@TargetApi(Build.VERSION_CODES.KITKAT)
-	private void startTransition(ViewGroup view) {
-		TransitionManager.beginDelayedTransition(view);
 	}
 
 	protected void toCard2() {
@@ -250,6 +231,24 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 	protected int convertDpToPx(int dp) {
 		Resources resources = getResources();
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
+	}
+
+	private void setTransparentMenuBar() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			setStatusBar();
+		}
+	}
+
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	private void setStatusBar() {
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+		getWindow().setStatusBarColor(getResources().getColor(R.color.westeros_background_gray));
+	}
+
+	@TargetApi(Build.VERSION_CODES.KITKAT)
+	private void startTransition(ViewGroup view) {
+		TransitionManager.beginDelayedTransition(view);
 	}
 
 	private FlingListener createCard1Listener() {

@@ -19,8 +19,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.task.callback.typed.JSONObjectAsyncTaskCallback;
 import com.liferay.mobile.android.v62.dlfileentry.DLFileEntryService;
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.pushnotifications.download.DownloadPicture;
@@ -139,7 +139,7 @@ public class DDLListAdapter
 		final Context context = LiferayScreensContext.getContext();
 		final String server = LiferayServerContext.getServer();
 
-		session.setCallback(new JSONObjectAsyncTaskCallback() {
+		session.setCallback(new JSONObjectCallback() {
 			@Override
 			public void onSuccess(JSONObject result) {
 				try {

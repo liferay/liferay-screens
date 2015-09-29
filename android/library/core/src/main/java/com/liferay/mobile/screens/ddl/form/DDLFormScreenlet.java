@@ -381,21 +381,22 @@ public class DDLFormScreenlet
 		_showSubmitButton = typedArray.getBoolean(
 			R.styleable.DDLFormScreenlet_showSubmitButton, true);
 
-		_groupId = typedArray.getInteger(
-			R.styleable.DDLFormScreenlet_groupId,
-			(int) LiferayServerContext.getGroupId());
+		_groupId = castToLongOrUseDefault(typedArray.getString(
+				R.styleable.DDLFormScreenlet_groupId),
+			LiferayServerContext.getGroupId());
 
-		_structureId = typedArray.getInteger(R.styleable.DDLFormScreenlet_structureId, 0);
-		_recordSetId = typedArray.getInteger(R.styleable.DDLFormScreenlet_recordSetId, 0);
-		_recordId = typedArray.getInteger(R.styleable.DDLFormScreenlet_recordId, 0);
+		_structureId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_structureId));
+		_recordSetId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_recordSetId));
+		_recordId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_recordId));
 		_filePrefix = typedArray.getString(R.styleable.DDLFormScreenlet_filePrefix);
-		_repositoryId = typedArray.getInteger(R.styleable.DDLFormScreenlet_repositoryId, 0);
-		_folderId = typedArray.getInteger(R.styleable.DDLFormScreenlet_folderId, 0);
+		_repositoryId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_repositoryId));
+		_folderId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_folderId));
 
-		int defaultCreatorUserId = SessionContext.getLoggedUser() != null ?
-			(int) SessionContext.getLoggedUser().getId() : 0;
+		long defaultCreatorUserId = SessionContext.getLoggedUser() != null ?
+			SessionContext.getLoggedUser().getId() : 0;
 
-		_userId = typedArray.getInteger(R.styleable.DDLFormScreenlet_userId, defaultCreatorUserId);
+		_userId = castToLongOrUseDefault(typedArray.getString(R.styleable.DDLFormScreenlet_userId)
+			, defaultCreatorUserId);
 
 		_record = new Record(getResources().getConfiguration().locale);
 		_record.setStructureId(_structureId);

@@ -10,24 +10,25 @@
 	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
 	<string name="liferay_anonymousApiPassword">anonymous1</string>
 
+	<!-- Default user & passwod -->
+	<string name="default_user_name">test@liferay.com</string>
+	<string name="default_password">test</string>
+
 	<!-- DDLFormScreenlet values -->
-	<integer name="liferay_recordset_id">20596</integer>
-	<integer name="liferay_structure_id">20591</integer>
+	<string name="liferay_recordset_id">20596</string>
+	<string name="liferay_structure_id">20591</string>
 	<string name="liferay_recordset_fields">Title</string>
-	<integer name="folder_id">20617</integer>
-	<integer name="repository_id">20525</integer>
+	<string name="folder_id">20617</string>
+	<string name="repository_id">20525</string>
 
 	<!-- AddBookmarkScreenlet values -->
-	<integer name="bookmark_folder">20622</integer>
+	<string name="bookmark_folder">20622</string>
 
 	<!-- WebContentDisplayScreenlet values -->
-	<integer name="article_id">20602</integer>
+	<string name="liferay_article_id">20602</string>
 
 	<!-- OAuth values -->
 	<string name="liferay_oauth_consumer_key">f4adeb99-9ddf-4c9c-a408-347ce8be340a</string>
 	<string name="liferay_oauth_consumer_secret">0176690f0fd46a4a3a839ca9bf4edd0c</string>
-
-	<string name="default_username">test@liferay.com</string>
-	<string name="default_password">test</string>
 
 </resources>

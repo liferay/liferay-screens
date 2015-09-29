@@ -17,7 +17,7 @@
 		liferay:labelFields="@string/liferay_recordset_fields"
 		liferay:cachePolicy="CACHE_FIRST"
 		liferay:layoutId="@layout/ddl_list_default"
-		liferay:recordSetId="@integer/liferay_recordset_id"/>
+		liferay:recordSetId="@string/liferay_recordset_id"/>
 
 	<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
 		android:id="@+id/ddl_list_material"
@@ -25,6 +25,6 @@
 		android:layout_height="match_parent"
 		liferay:labelFields="@string/liferay_recordset_fields"
 		liferay:layoutId="@layout/ddl_list_material"
-		liferay:recordSetId="@integer/liferay_recordset_id"/>
+		liferay:recordSetId="@string/liferay_recordset_id"/>
 
 </LinearLayout>

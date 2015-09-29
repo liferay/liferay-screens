@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.task.callback.typed.JSONObjectAsyncTaskCallback;
 import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.screens.base.list.BaseListListener;
@@ -78,8 +78,8 @@ public class NotificationsActivity extends AbstractPushActivity implements BaseL
 		}
 	}
 
-	private JSONObjectAsyncTaskCallback getCallback(final Integer recordId, final Integer recordSetId) {
-		return new JSONObjectAsyncTaskCallback() {
+	private JSONObjectCallback getCallback(final Integer recordId, final Integer recordSetId) {
+		return new JSONObjectCallback() {
 
 			@Override
 			public void onSuccess(JSONObject result) {

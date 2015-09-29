@@ -23,7 +23,7 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
+import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.service.v62.ScreensddlrecordService;
 import com.liferay.mobile.screens.util.JSONUtil;
 
@@ -40,7 +40,7 @@ import static com.liferay.mobile.screens.cache.DefaultCachedType.DDL_LIST_COUNT;
  * @author Silvio Santos
  */
 public class DDLListInteractorImpl
-	extends BaseListInteractor<DDLEntry, DDLListInteractorListener> implements DDLListInteractor {
+	extends BaseListInteractor<Record, DDLListInteractorListener> implements DDLListInteractor {
 
 	public DDLListInteractorImpl(int targetScreenletId, CachePolicy cachePolicy) {
 		super(targetScreenletId, cachePolicy);
@@ -70,8 +70,8 @@ public class DDLListInteractorImpl
 
 	@NonNull
 	@Override
-	protected DDLEntry getElement(TableCache tableCache) throws JSONException {
-		return new DDLEntry(JSONUtil.toMap(new JSONObject(tableCache.getContent())));
+	protected Record getElement(TableCache tableCache) throws JSONException {
+		return new Record(JSONUtil.toMap(new JSONObject(tableCache.getContent())));
 	}
 
 	@Override
@@ -83,12 +83,12 @@ public class DDLListInteractorImpl
 	}
 
 	@Override
-	protected String getContent(DDLEntry ddlEntry) {
-		return new JSONObject(ddlEntry.getValues()).toString();
+	protected String getContent(Record record) {
+		return new JSONObject(record.getModelValues()).toString();
 	}
 
 	@Override
-	protected BaseListCallback<DDLEntry> getCallback(Pair<Integer, Integer> rowsRange, Locale locale) {
+	protected BaseListCallback<Record> getCallback(Pair<Integer, Integer> rowsRange, Locale locale) {
 		return new DDLListCallback(getTargetScreenletId(), rowsRange, locale);
 	}
 

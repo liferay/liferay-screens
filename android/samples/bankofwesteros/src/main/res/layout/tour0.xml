@@ -16,8 +16,8 @@
 		style="@style/westeros_tour_text"
 		android:layout_above="@+id/tour_description"
 		android:text="@string/problems_with_laptop"
-		android:textStyle="bold"
-		android:textAllCaps="true"/>
+		android:textAllCaps="true"
+		android:textStyle="bold"/>
 
 	<TextView
 		android:id="@+id/tour_description"

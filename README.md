@@ -8,7 +8,7 @@
 
 ## Overview
 
-This repository contains the Liferay Screens source code, in addition to several example projects that illustrate how Screens is used. For detailed instructions on developing mobile apps with Screens, see the [Screens documentation on the Liferay Developer Network (LDN)](https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/mobile-apps-with-liferay-screens). 
+This repository contains the Liferay Screens source code, in addition to several example projects that illustrate how Screens is used. For detailed instructions on developing mobile apps with Screens, see the Screens documentation for [Android](https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/android-apps-with-liferay-screens) and [iOS](https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/ios-apps-with-liferay-screens) on the Liferay Developer Network (LDN). 
 
 Brief descriptions of this repository's contents are listed here:
 

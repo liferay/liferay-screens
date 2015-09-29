@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
-import com.liferay.mobile.android.task.callback.typed.JSONObjectAsyncTaskCallback;
+import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.bankofwesteros.views.UpdateUserInteractorImpl;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -61,15 +61,6 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		if (resultCode == Activity.RESULT_OK) {
-			_userPortraitScreenlet.upload(requestCode, data);
-		}
-	}
-
-	@Override
 	public Bitmap onUserPortraitLoadReceived(UserPortraitScreenlet source, Bitmap bitmap) {
 		return null;
 	}
@@ -89,6 +80,14 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 		LiferayCrouton.error(AccountSettingsActivity.this, "Error updating portrait", e);
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == Activity.RESULT_OK) {
+			_userPortraitScreenlet.upload(requestCode, data);
+		}
+	}
 
 	private void saveUser() {
 		final String firstName = _firstName.getText().toString();
@@ -109,7 +108,7 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 		}
 
 		UpdateUserInteractorImpl updateUserInteractor = new UpdateUserInteractorImpl();
-		updateUserInteractor.saveUser(firstName, lastName, emailAddress, newPassword, new JSONObjectAsyncTaskCallback() {
+		updateUserInteractor.saveUser(firstName, lastName, emailAddress, newPassword, new JSONObjectCallback() {
 			@Override
 			public void onSuccess(JSONObject result) {
 
