@@ -19,93 +19,72 @@
 
 			<Button
 				android:id="@+id/login"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
+				style="@style/test_app_button"
 				android:text="@string/login"/>
 
 			<Button
 				android:id="@+id/sign_up"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
+				style="@style/test_app_button"
 				android:text="@string/signup"/>
 
 			<Button
 				android:id="@+id/forgot_password"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
+				style="@style/test_app_button"
 				android:text="@string/forgot_password"/>
 
 			<Button
 				android:id="@+id/user_portrait"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
+				style="@style/test_app_button"
 				android:text="@string/user_portrait"/>
 
 			<Button
 				android:id="@+id/web_content_display"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
+				style="@style/test_app_button"
 				android:text="@string/webview"/>
 
 			<Button
 				android:id="@+id/asset_list"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
+				style="@style/test_app_button"
 				android:text="@string/asset_list"/>
 
 			<Button
 				android:id="@+id/ddl_form"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
+				style="@style/test_app_button"
 				android:text="@string/ddl_form"/>
 
 			<Button
 				android:id="@+id/ddl_list"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
+				style="@style/test_app_button"
 				android:text="@string/ddl_list"/>
 
 			<Button
 				android:id="@+id/add_bookmark"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
+				style="@style/test_app_button"
 				android:text="@string/add_a_bookmark"/>
 
 			<Button
 				android:id="@+id/journal_article_with_template"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
+				style="@style/test_app_button"
 				android:text="@string/journal_article_with_template"/>
 
 			<Button
 				android:id="@+id/filtered_asset"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
+				style="@style/test_app_button"
 				android:text="@string/filtered_asset"/>
 
 			<Button
 				android:id="@+id/login_full_screenlet"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
+				style="@style/test_app_button"
 				android:text="@string/customizing_a_screenlet"/>
 
 			<Button
+				android:id="@+id/clear_cache"
+				style="@style/test_app_button"
+				android:text="@string/clear_cache"/>
+
+			<Button
 				android:id="@+id/change_theme"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="10dp"
+				style="@style/test_app_button"
 				android:text="@string/change_theme"/>
 
 		</LinearLayout>
