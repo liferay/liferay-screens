@@ -20,7 +20,7 @@ public class DocumentUploadCache implements CachedContent {
 	public static final String REPOSITORY_ID = "repositoryId";
 	public static final String FOLDER_ID = "folderId";
 	public static final String FILE_PREFIX = "filePrefix";
-	public static final String SENT = "sent";
+	public static final String DIRTY = "dirty";
 
 	public DocumentUploadCache() {
 		super();
@@ -33,15 +33,15 @@ public class DocumentUploadCache implements CachedContent {
 		_repositoryId = repositoryId;
 		_folderId = folderId;
 		_filePrefix = filePrefix;
-		_sent = 0;
+		_dirty = 0;
 	}
 
-	public int getSent() {
-		return _sent;
+	public int getDirty() {
+		return _dirty;
 	}
 
-	public void setSent(boolean sent) {
-		_sent = (sent ? 1 : 0);
+	public void setDirty(boolean dirty) {
+		_dirty = (dirty ? 1 : 0);
 	}
 
 	public String getPath() {
@@ -95,6 +95,6 @@ public class DocumentUploadCache implements CachedContent {
 	long _folderId;
 	@StorIOSQLiteColumn(name = FILE_PREFIX)
 	String _filePrefix;
-	@StorIOSQLiteColumn(name = SENT)
-	int _sent;
+	@StorIOSQLiteColumn(name = DIRTY)
+	int _dirty;
 }

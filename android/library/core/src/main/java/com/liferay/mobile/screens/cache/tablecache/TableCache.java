@@ -24,7 +24,7 @@ public class TableCache implements CachedContent {
 	public static final String USER_ID = "userId";
 	public static final String GROUP_ID = "groupId";
 	public static final String CONTENT = "content";
-	public static final String SENT = "sent";
+	public static final String DIRTY = "dirty";
 	public static final String LOCALE = "locale";
 
 	public TableCache() {
@@ -46,7 +46,7 @@ public class TableCache implements CachedContent {
 		_groupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
 		_locale = locale == null ? LiferayLocale.getDefaultSupportedLocale() :
 			LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
-		_sent = 0;
+		_dirty = 0;
 	}
 
 	public void setDate(Date date) {
@@ -87,12 +87,20 @@ public class TableCache implements CachedContent {
 		return _content;
 	}
 
+	public int getDirty() {
+		return _dirty;
+	}
+
+	public void setDirty(int dirty) {
+		_dirty = dirty;
+	}
+
 	public void setContent(String content) {
 		_content = content;
 	}
 
-	public void setSent(boolean sent) {
-		_sent = sent ? 1 : 0;
+	public void setDirty(boolean dirty) {
+		_dirty = dirty ? 1 : 0;
 	}
 
 	@StorIOSQLiteColumn(name = ID, key = true)
@@ -107,8 +115,8 @@ public class TableCache implements CachedContent {
 	String _content;
 	@StorIOSQLiteColumn(name = USER_ID)
 	Long _userId;
-	@StorIOSQLiteColumn(name = SENT)
-	int _sent;
+	@StorIOSQLiteColumn(name = DIRTY)
+	int _dirty;
 	@StorIOSQLiteColumn(name = LOCALE)
 	String _locale;
 

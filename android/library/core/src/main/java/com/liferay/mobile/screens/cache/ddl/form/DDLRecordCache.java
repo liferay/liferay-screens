@@ -17,7 +17,7 @@ import java.util.Locale;
 public class DDLRecordCache extends RecordCache {
 
 	public static final String TABLE_NAME = "ddlRecord";
-	public static final String SENT = "sent";
+	public static final String DIRTY = "dirty";
 	public static final String GROUP_ID = "groupId";
 	public static final String DATE_ADDED = "dateAdded";
 
@@ -40,12 +40,12 @@ public class DDLRecordCache extends RecordCache {
 		_groupId = groupId;
 	}
 
-	public boolean isSent() {
-		return _sent;
+	public boolean isDirty() {
+		return _dirty;
 	}
 
-	public void setSent(boolean sent) {
-		_sent = sent;
+	public void setDirty(boolean dirty) {
+		_dirty = dirty;
 	}
 
 	public TableCache getTableCache() {
@@ -70,7 +70,7 @@ public class DDLRecordCache extends RecordCache {
 		_dateAdded = dateAdded;
 	}
 
-	private boolean _sent;
+	private boolean _dirty;
 	private long _groupId;
 	private long _dateAdded;
 }

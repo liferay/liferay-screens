@@ -41,7 +41,7 @@ public class DDLRecordPutResolver extends DefaultPutResolver<DDLRecordCache> {
 		contentValues.put(DDLRecordCache.RECORD_SET_ID, object.getRecordSetId());
 		contentValues.put(DDLRecordCache.CONTENT, object.getContent());
 		contentValues.put(DDLRecordCache.LOCALE, object.getLocale());
-		contentValues.put(DDLRecordCache.SENT, object.isSent());
+		contentValues.put(DDLRecordCache.DIRTY, object.isDirty());
 		contentValues.put(DDLRecordCache.GROUP_ID, object.getGroupId());
 		contentValues.put(DDLRecordCache.DATE_ADDED, object.getDateAdded());
 

@@ -11,7 +11,6 @@ import com.liferay.mobile.android.v62.ddlrecord.DDLRecordService;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
 import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
-import com.liferay.mobile.screens.cache.ddl.form.RecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -68,7 +67,7 @@ public class CacheSyncService extends IntentService {
 	private void sendPortrait(Cache cache) {
 		long userId = SessionContext.getDefaultUserId();
 		List<TableCache> userPortraits = cache.get(USER_PORTRAIT_UPLOAD,
-			" AND " + TableCache.SENT + " = 0 " + " AND " + TableCache.USER_ID + " = ? ",
+			" AND " + TableCache.DIRTY + " = 0 " + " AND " + TableCache.USER_ID + " = ? ",
 			userId);
 
 		for (TableCache userPortrait : userPortraits) {
@@ -76,7 +75,7 @@ public class CacheSyncService extends IntentService {
 				UserPortraitService userPortraitService = new UserPortraitService();
 				JSONObject jsonObject = userPortraitService.uploadUserPortrait(Long.valueOf(userPortrait.getId()), userPortrait.getContent());
 
-				userPortrait.setSent(true);
+				userPortrait.setDirty(true);
 				cache.set(userPortrait);
 			}
 			catch (Exception e) {
@@ -90,7 +89,7 @@ public class CacheSyncService extends IntentService {
 		long groupId = LiferayServerContext.getGroupId();
 
 		List<DocumentUploadCache> documentsToUpload = cache.get(DOCUMENT_UPLOAD,
-			DocumentUploadCache.SENT + " = 0 " +
+			DocumentUploadCache.DIRTY + " = 0 " +
 				"AND " + DocumentUploadCache.USER_ID + " = ? " +
 				"AND " + DocumentUploadCache.GROUP_ID + " = ? ",
 			userId,
@@ -106,7 +105,7 @@ public class CacheSyncService extends IntentService {
 				JSONObject jsonObject = uploadService.uploadFile(documentField, document.getUserId(), document.getGroupId(),
 					document.getRepositoryId(), document.getFolderId(), document.getFilePrefix());
 
-				document.setSent(true);
+				document.setDirty(true);
 				cache.set(document);
 			}
 			catch (Exception e) {
@@ -118,7 +117,7 @@ public class CacheSyncService extends IntentService {
 	private void sendRecords(Cache cache) {
 
 		long groupId = LiferayServerContext.getGroupId();
-		List<DDLRecordCache> records = cache.get(DDL_RECORD, DDLRecordCache.SENT + " = 0 AND " + TableCache.GROUP_ID + " = ? ", groupId);
+		List<DDLRecordCache> records = cache.get(DDL_RECORD, DDLRecordCache.DIRTY + " = 0 AND " + TableCache.GROUP_ID + " = ? ", groupId);
 
 		DDLRecordService recordService = new DDLRecordService(SessionContext.createSessionFromCurrentSession());
 
@@ -134,7 +133,7 @@ public class CacheSyncService extends IntentService {
 
 				JSONObject jsonObject = saveOrUpdate(recordService, record, groupId, serviceContextWrapper, jsonContent);
 
-				cachedRecord.setSent(true);
+				cachedRecord.setDirty(true);
 				cache.set(cachedRecord);
 			}
 			catch (Exception e) {

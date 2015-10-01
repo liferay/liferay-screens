@@ -55,7 +55,7 @@ public class ScreensSQLiteOpenHelper extends SQLiteOpenHelper {
 		+ TableCache.USER_ID + " LONG NOT NULL, "
 		+ TableCache.GROUP_ID + " LONG NOT NULL, "
 		+ TableCache.LOCALE + " TEXT NOT NULL, "
-		+ TableCache.SENT + " INTEGER NULL, "
+		+ TableCache.DIRTY + " INTEGER NULL, "
 		+ "PRIMARY KEY (" + TableCache.ID + "," + TableCache.TYPE + "));";
 
 	private static final String CREATE_TABLE_USER_PORTRAIT = "CREATE TABLE "
@@ -84,7 +84,7 @@ public class ScreensSQLiteOpenHelper extends SQLiteOpenHelper {
 		+ DDLRecordCache.CONTENT + " TEXT NOT NULL, "
 		+ DDLRecordCache.GROUP_ID + " LONG NULL, "
 		+ DDLRecordCache.DATE_ADDED + " LONG NOT NULL, "
-		+ DDLRecordCache.SENT + " INTEGER NOT NULL, "
+		+ DDLRecordCache.DIRTY + " INTEGER NOT NULL, "
 		+ "PRIMARY KEY (" + DDLRecordCache.RECORD_ID + "," + DDLRecordCache.DATE_ADDED + "));";
 
 	private static final String CREATE_TABLE_DOCUMENT_UPLOAD = "CREATE TABLE "
@@ -95,7 +95,7 @@ public class ScreensSQLiteOpenHelper extends SQLiteOpenHelper {
 		+ DocumentUploadCache.REPOSITORY_ID + " LONG NOT NULL, "
 		+ DocumentUploadCache.FOLDER_ID + " LONG NOT NULL, "
 		+ DocumentUploadCache.FILE_PREFIX + " TEXT NOT NULL, "
-		+ DocumentUploadCache.SENT + " INTEGER NOT NULL, "
+		+ DocumentUploadCache.DIRTY + " INTEGER NOT NULL, "
 		+ "PRIMARY KEY (" + DocumentUploadCache.PATH + "));";
 
 }
