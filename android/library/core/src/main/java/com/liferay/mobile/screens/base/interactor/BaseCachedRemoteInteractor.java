@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.base.interactor;
 
-import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 import java.util.NoSuchElementException;
@@ -10,15 +10,15 @@ import java.util.NoSuchElementException;
  */
 public abstract class BaseCachedRemoteInteractor<L, E extends BasicEvent> extends BaseRemoteInteractor<L> {
 
-	public BaseCachedRemoteInteractor(int targetScreenletId, CachePolicy cachePolicy) {
+	public BaseCachedRemoteInteractor(int targetScreenletId, OfflinePolicy offlinePolicy) {
 		super(targetScreenletId);
 
 		_retrievedFromCache = false;
-		_cachePolicy = cachePolicy;
+		_offlinePolicy = offlinePolicy;
 	}
 
 	protected void processWithCache(Object... args) throws Exception {
-		if (_cachePolicy == CachePolicy.CACHE_FIRST) {
+		if (_offlinePolicy == OfflinePolicy.CACHE_FIRST) {
 			try {
 				_retrievedFromCache = cached(args);
 
@@ -32,7 +32,7 @@ public abstract class BaseCachedRemoteInteractor<L, E extends BasicEvent> extend
 				online(args);
 			}
 		}
-		else if (_cachePolicy == CachePolicy.CACHE_ONLY) {
+		else if (_offlinePolicy == OfflinePolicy.CACHE_ONLY) {
 			LiferayLogger.i("Trying to retrieve object from cache");
 
 			_retrievedFromCache = cached(args);
@@ -40,7 +40,7 @@ public abstract class BaseCachedRemoteInteractor<L, E extends BasicEvent> extend
 				throw new NoSuchElementException();
 			}
 		}
-		else if (_cachePolicy == CachePolicy.ONLINE_FIRST) {
+		else if (_offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
 			try {
 				online(args);
 			}
@@ -61,7 +61,7 @@ public abstract class BaseCachedRemoteInteractor<L, E extends BasicEvent> extend
 
 	protected void onEventWithCache(E event, Object... args) {
 		if (event.isFailed()) {
-			if (CachePolicy.ONLINE_FIRST.equals(_cachePolicy)) {
+			if (OfflinePolicy.REMOTE_FIRST.equals(_offlinePolicy)) {
 				try {
 					_retrievedFromCache = cached(args);
 					if (!_retrievedFromCache) {
@@ -90,14 +90,14 @@ public abstract class BaseCachedRemoteInteractor<L, E extends BasicEvent> extend
 	protected abstract void storeToCache(E event, Object... args);
 
 	protected boolean hasToStoreToCache() {
-		return !_retrievedFromCache && !_cachePolicy.equals(CachePolicy.ONLINE_ONLY);
+		return !_retrievedFromCache && !_offlinePolicy.equals(OfflinePolicy.REMOTE_ONLY);
 	}
 
-	protected CachePolicy getCachePolicy() {
-		return _cachePolicy;
+	protected OfflinePolicy getOfflinePolicy() {
+		return _offlinePolicy;
 	}
 
 	private boolean _retrievedFromCache;
-	private final CachePolicy _cachePolicy;
+	private final OfflinePolicy _offlinePolicy;
 
 }

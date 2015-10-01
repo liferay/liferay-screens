@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.webcontentdisplay.interactor;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
-import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
@@ -34,8 +34,8 @@ public class WebContentDisplayInteractorImpl
 	extends BaseCachedRemoteInteractor<WebContentDisplayListener, WebContentDisplayEvent>
 	implements WebContentDisplayInteractor {
 
-	public WebContentDisplayInteractorImpl(int targetScreenletId, CachePolicy cachePolicy) {
-		super(targetScreenletId, cachePolicy);
+	public WebContentDisplayInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
+		super(targetScreenletId, offlinePolicy);
 	}
 
 	public void load(long groupId, String articleId, Long templateId, Locale locale)

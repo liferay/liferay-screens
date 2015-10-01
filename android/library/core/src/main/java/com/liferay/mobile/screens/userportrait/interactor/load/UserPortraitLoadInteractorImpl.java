@@ -23,7 +23,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
-import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.userportrait.UserPortraitCache;
@@ -54,8 +54,8 @@ public class UserPortraitLoadInteractorImpl
 	extends BaseCachedRemoteInteractor<UserPortraitInteractorListener, UserPortraitLoadEvent>
 	implements UserPortraitLoadInteractor, Target {
 
-	public UserPortraitLoadInteractorImpl(int screenletId, CachePolicy cachePolicy) {
-		super(screenletId, cachePolicy);
+	public UserPortraitLoadInteractorImpl(int screenletId, OfflinePolicy offlinePolicy) {
+		super(screenletId, offlinePolicy);
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class UserPortraitLoadInteractorImpl
 		RequestCreator requestCreator = Picasso.with(LiferayScreensContext.getContext())
 			.load(uri);
 
-		if (CachePolicy.ONLINE_ONLY.equals(getCachePolicy())) {
+		if (OfflinePolicy.REMOTE_ONLY.equals(getOfflinePolicy())) {
 			requestCreator = requestCreator
 				.memoryPolicy(MemoryPolicy.NO_CACHE)
 				.networkPolicy(NetworkPolicy.NO_CACHE);

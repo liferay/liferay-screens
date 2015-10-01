@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.ddl.form.interactor.recordload;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
-import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
@@ -37,8 +37,8 @@ public class DDLFormLoadRecordInteractorImpl
 	extends BaseCachedRemoteInteractor<DDLFormListener, DDLFormLoadRecordEvent>
 	implements DDLFormLoadRecordInteractor {
 
-	public DDLFormLoadRecordInteractorImpl(int targetScreenletId, CachePolicy cachePolicy) {
-		super(targetScreenletId, cachePolicy);
+	public DDLFormLoadRecordInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
+		super(targetScreenletId, offlinePolicy);
 	}
 
 	@Override

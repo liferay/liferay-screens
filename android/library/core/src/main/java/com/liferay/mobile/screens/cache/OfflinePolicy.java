@@ -5,5 +5,5 @@ package com.liferay.mobile.screens.cache;
  */
 public enum OfflinePolicy {
 
-	NO_OFFLINE, STORE_ON_ERROR
+	REMOTE_ONLY, CACHE_ONLY, CACHE_FIRST, REMOTE_FIRST
 }

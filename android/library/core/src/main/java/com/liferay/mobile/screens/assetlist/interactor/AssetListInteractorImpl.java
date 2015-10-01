@@ -24,7 +24,7 @@ import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
-import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.service.v62.ScreensassetentryService;
@@ -45,8 +45,8 @@ public class AssetListInteractorImpl
 	extends BaseListInteractor<AssetEntry, AssetListInteractorListener>
 	implements AssetListInteractor {
 
-	public AssetListInteractorImpl(int targetScreenletId, CachePolicy cachePolicy) {
-		super(targetScreenletId, cachePolicy);
+	public AssetListInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
+		super(targetScreenletId, offlinePolicy);
 	}
 
 	public void loadRows(

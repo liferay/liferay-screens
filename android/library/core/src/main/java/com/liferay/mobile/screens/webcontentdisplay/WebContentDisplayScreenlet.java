@@ -22,7 +22,7 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractor;
@@ -123,9 +123,9 @@ public class WebContentDisplayScreenlet
 		_javascriptEnabled = typedArray.getBoolean(
 			R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
 
-		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
-			CachePolicy.ONLINE_ONLY.ordinal());
-		_cachePolicy = CachePolicy.values()[cachePolicy];
+		int offlinePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_offlinePolicy,
+			OfflinePolicy.REMOTE_ONLY.ordinal());
+		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.WebContentDisplayScreenlet_layoutId, getDefaultLayoutId());
@@ -137,7 +137,7 @@ public class WebContentDisplayScreenlet
 
 	@Override
 	protected WebContentDisplayInteractor createInteractor(String actionName) {
-		return new WebContentDisplayInteractorImpl(getScreenletId(), _cachePolicy);
+		return new WebContentDisplayInteractorImpl(getScreenletId(), _offlinePolicy);
 	}
 
 	@Override
@@ -162,7 +162,7 @@ public class WebContentDisplayScreenlet
 		}
 	}
 
-	private CachePolicy _cachePolicy;
+	private OfflinePolicy _offlinePolicy;
 	private Long _templateId;
 	private String _articleId;
 	private boolean _autoLoad;

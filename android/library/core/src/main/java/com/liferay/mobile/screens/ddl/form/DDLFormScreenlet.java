@@ -24,7 +24,6 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -354,9 +353,9 @@ public class DDLFormScreenlet
 	protected DDLFormBaseInteractor createInteractor(String actionName) {
 		switch (actionName) {
 			case LOAD_FORM_ACTION:
-				return new DDLFormLoadInteractorImpl(getScreenletId(), _cachePolicy);
+				return new DDLFormLoadInteractorImpl(getScreenletId(), _offlinePolicy);
 			case LOAD_RECORD_ACTION:
-				return new DDLFormLoadRecordInteractorImpl(getScreenletId(), _cachePolicy);
+				return new DDLFormLoadRecordInteractorImpl(getScreenletId(), _offlinePolicy);
 			case ADD_RECORD_ACTION:
 				return new DDLFormAddRecordInteractorImpl(getScreenletId(), _offlinePolicy);
 			case UPDATE_RECORD_ACTION:
@@ -404,12 +403,8 @@ public class DDLFormScreenlet
 		_record.setRecordId(_recordId);
 		_record.setCreatorUserId(_userId);
 
-		int cachePolicy = typedArray.getInt(R.styleable.DDLFormScreenlet_cachePolicy,
-			CachePolicy.ONLINE_ONLY.ordinal());
-		_cachePolicy = CachePolicy.values()[cachePolicy];
-
 		int offlinePolicy = typedArray.getInt(R.styleable.DDLFormScreenlet_offlinePolicy,
-			CachePolicy.ONLINE_ONLY.ordinal());
+			OfflinePolicy.REMOTE_ONLY.ordinal());
 		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		int layoutId = typedArray.getResourceId(
@@ -570,7 +565,6 @@ public class DDLFormScreenlet
 		_repositoryId = state.getLong(_STATE_REPOSITORY_ID);
 		_folderId = state.getLong(_STATE_FOLDER_ID);
 		_filePrefix = state.getString(_STATE_FILE_PREFIX);
-		_cachePolicy = CachePolicy.values()[state.getInt(_STATE_CACHE_POLICY)];
 		_offlinePolicy = OfflinePolicy.values()[state.getInt(_STATE_OFFLINE_POLICY)];
 
 		Parcelable superState = state.getParcelable(_STATE_SUPER);
@@ -598,7 +592,6 @@ public class DDLFormScreenlet
 		state.putLong(_STATE_REPOSITORY_ID, _repositoryId);
 		state.putLong(_STATE_FOLDER_ID, _folderId);
 		state.putString(_STATE_FILE_PREFIX, _filePrefix);
-		state.putLong(_STATE_CACHE_POLICY, _cachePolicy.ordinal());
 		state.putLong(_STATE_OFFLINE_POLICY, _offlinePolicy.ordinal());
 
 		return state;
@@ -637,7 +630,6 @@ public class DDLFormScreenlet
 	private static final String _STATE_REPOSITORY_ID = "ddlform-repositoryId";
 	private static final String _STATE_FOLDER_ID = "ddlform-folderId";
 	private static final String _STATE_FILE_PREFIX = "ddlform-filePrefixId";
-	private static final String _STATE_CACHE_POLICY = "ddlform-cachePolicy";
 	private static final String _STATE_OFFLINE_POLICY = "ddlform-offlinePolicy";
 
 	private boolean _autoLoad;
@@ -657,8 +649,6 @@ public class DDLFormScreenlet
 	private DDLFormListener _listener;
 
 	private boolean _loadRecordAfterForm;
-	private CachePolicy _cachePolicy;
 	private OfflinePolicy _offlinePolicy;
-
 
 }

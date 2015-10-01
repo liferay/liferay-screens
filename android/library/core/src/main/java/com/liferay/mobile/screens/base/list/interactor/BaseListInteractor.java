@@ -8,7 +8,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
-import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.CachedType;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
@@ -29,8 +29,8 @@ import java.util.Locale;
 public abstract class BaseListInteractor<E, L extends BaseListInteractorListener>
 	extends BaseCachedRemoteInteractor<L, BaseListEvent> {
 
-	public BaseListInteractor(int targetScreenletId, CachePolicy cachePolicy) {
-		super(targetScreenletId, cachePolicy);
+	public BaseListInteractor(int targetScreenletId, OfflinePolicy offlinePolicy) {
+		super(targetScreenletId, offlinePolicy);
 	}
 
 	public void loadRows(

@@ -21,7 +21,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
-import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.service.v62.ScreensddlrecordService;
@@ -42,8 +42,8 @@ import static com.liferay.mobile.screens.cache.DefaultCachedType.DDL_LIST_COUNT;
 public class DDLListInteractorImpl
 	extends BaseListInteractor<Record, DDLListInteractorListener> implements DDLListInteractor {
 
-	public DDLListInteractorImpl(int targetScreenletId, CachePolicy cachePolicy) {
-		super(targetScreenletId, cachePolicy);
+	public DDLListInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
+		super(targetScreenletId, offlinePolicy);
 	}
 
 	public void loadRows(

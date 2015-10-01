@@ -17,7 +17,7 @@ public abstract class BaseCachedWriteRemoteInteractor<L, E extends BasicEvent> e
 	}
 
 	protected void loadWithCache(Object... args) throws Exception {
-		if (_offlinePolicy == OfflinePolicy.STORE_ON_ERROR) {
+		if (_offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
 			try {
 				online(args);
 			}

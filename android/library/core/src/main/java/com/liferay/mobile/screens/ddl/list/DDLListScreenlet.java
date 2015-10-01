@@ -21,7 +21,7 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
@@ -85,9 +85,9 @@ public class DDLListScreenlet
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.DDLListScreenlet, 0, 0);
 
-		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
-			CachePolicy.ONLINE_ONLY.ordinal());
-		_cachePolicy = CachePolicy.values()[cachePolicy];
+		int offlinePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_offlinePolicy,
+			OfflinePolicy.REMOTE_ONLY.ordinal());
+		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		_recordSetId = castToLong(typedArray.getString(
 			R.styleable.DDLListScreenlet_recordSetId));
@@ -102,7 +102,7 @@ public class DDLListScreenlet
 
 	@Override
 	protected DDLListInteractor createInteractor(String actionName) {
-		return new DDLListInteractorImpl(getScreenletId(), _cachePolicy);
+		return new DDLListInteractorImpl(getScreenletId(), _offlinePolicy);
 	}
 
 	private List<String> parse(String labelFields) {
@@ -120,5 +120,5 @@ public class DDLListScreenlet
 	private long _recordSetId;
 	private long _userId;
 	private List<String> _labelFields;
-	private CachePolicy _cachePolicy;
+	private OfflinePolicy _offlinePolicy;
 }

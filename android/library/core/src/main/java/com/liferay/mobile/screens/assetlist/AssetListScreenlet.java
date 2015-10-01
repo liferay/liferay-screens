@@ -24,7 +24,7 @@ import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractor;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorImpl;
 import com.liferay.mobile.screens.assetlist.interactor.AssetListInteractorListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.cache.CachePolicy;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 
 import java.util.Locale;
@@ -78,9 +78,9 @@ public class AssetListScreenlet
 		_classNameId = typedArray.getInt(
 			R.styleable.AssetListScreenlet_classNameId, 0);
 
-		int cachePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_cachePolicy,
-			CachePolicy.ONLINE_ONLY.ordinal());
-		_cachePolicy = CachePolicy.values()[cachePolicy];
+		int offlinePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_offlinePolicy,
+			OfflinePolicy.REMOTE_ONLY.ordinal());
+		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		long groupId = LiferayServerContext.getGroupId();
 
@@ -96,10 +96,10 @@ public class AssetListScreenlet
 
 	@Override
 	protected AssetListInteractor createInteractor(String actionName) {
-		return new AssetListInteractorImpl(getScreenletId(), _cachePolicy);
+		return new AssetListInteractorImpl(getScreenletId(), _offlinePolicy);
 	}
 
-	private CachePolicy _cachePolicy;
+	private OfflinePolicy _offlinePolicy;
 	private long _classNameId;
 	private long _groupId;
 	private String _portletItemName;

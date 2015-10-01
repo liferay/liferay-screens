@@ -29,7 +29,6 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.interactor.BaseUserPortraitInteractor;
@@ -234,12 +233,8 @@ public class UserPortraitScreenlet
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
-		int cachePolicy = typedArray.getInt(R.styleable.UserPortraitScreenlet_cachePolicy,
-			CachePolicy.ONLINE_ONLY.ordinal());
-		_cachePolicy = CachePolicy.values()[cachePolicy];
-
 		int offlinePolicy = typedArray.getInt(R.styleable.UserPortraitScreenlet_offlinePolicy,
-			OfflinePolicy.NO_OFFLINE.ordinal());
+			OfflinePolicy.REMOTE_ONLY.ordinal());
 		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		_userId = castToLongOrUseDefault(typedArray.getString(R.styleable.UserPortraitScreenlet_userId), 0L);
@@ -262,7 +257,7 @@ public class UserPortraitScreenlet
 			return new UserPortraitUploadInteractorImpl(getScreenletId(), _offlinePolicy);
 		}
 		else {
-			return new UserPortraitLoadInteractorImpl(getScreenletId(), _cachePolicy);
+			return new UserPortraitLoadInteractorImpl(getScreenletId(), _offlinePolicy);
 		}
 	}
 
@@ -326,6 +321,5 @@ public class UserPortraitScreenlet
 	private String _uuid;
 	private long _userId;
 	private boolean _editable;
-	private CachePolicy _cachePolicy;
 	private OfflinePolicy _offlinePolicy;
 }
