@@ -84,7 +84,7 @@ public class DDLListInteractorImpl
 
 	@Override
 	protected String getContent(Record record) {
-		return new JSONObject(record.getModelValues()).toString();
+		return new JSONObject(record.getValuesAndAttributes()).toString();
 	}
 
 	@Override

@@ -211,6 +211,10 @@ public class Record implements Parcelable {
 		parseServerValues();
 	}
 
+	public Map<String, Object> getValuesAndAttributes() {
+		return _valuesAndAttributes;
+	}
+
 	public HashMap<String, String> getModelValues() {
 		return (HashMap<String, String>) _valuesAndAttributes.get("modelValues");
 	}
