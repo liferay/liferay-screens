@@ -18,7 +18,7 @@ import org.json.JSONObject;
 /**
  * @author Javier Gamarra
  */
-public abstract class AbstractPushActivity extends AppCompatActivity
+public abstract class PushScreensActivity extends AppCompatActivity
 	implements Push.OnSuccess, Push.OnPushNotification, Push.OnFailure {
 
 	public static final String PUSH_PREFERENCES = "PUSH_PREFERENCES";
