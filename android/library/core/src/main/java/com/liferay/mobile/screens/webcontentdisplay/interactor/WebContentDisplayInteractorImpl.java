@@ -66,7 +66,7 @@ public class WebContentDisplayInteractorImpl
 		Locale locale = (Locale) args[2];
 		Long templateId = (Long) args[3];
 
-		if (templateId == null) {
+		if (templateId == null || templateId == 0) {
 			JournalArticleService service = getJournalArticleService(groupId, articleId, locale);
 			service.getArticleContent(groupId, articleId, locale.toString(), null);
 		}
