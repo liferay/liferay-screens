@@ -113,12 +113,6 @@ public class LoginScreenlet
 		return _basicAuthMethod;
 	}
 
-	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
-		_basicAuthMethod = basicAuthMethod;
-
-		getViewModel().setBasicAuthMethod(_basicAuthMethod);
-	}
-
 	public StorageType getCredentialsStore() {
 		return _credentialsStore;
 	}
@@ -141,6 +135,32 @@ public class LoginScreenlet
 
 	public void setOAuthConsumerKey(String value) {
 		_oauthConsumerKey = value;
+	}
+
+	public BasicAuthMethod getBasicAuthMethod() {
+		return _basicAuthMethod;
+	}
+
+	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
+		_basicAuthMethod = basicAuthMethod;
+
+		getViewModel().setBasicAuthMethod(_basicAuthMethod);
+	}
+
+	public String getOauthConsumerKey() {
+		return _oauthConsumerKey;
+	}
+
+	public void setOauthConsumerKey(String oauthConsumerKey) {
+		_oauthConsumerKey = oauthConsumerKey;
+	}
+
+	public String getOauthConsumerSecret() {
+		return _oauthConsumerSecret;
+	}
+
+	public void setOauthConsumerSecret(String oauthConsumerSecret) {
+		_oauthConsumerSecret = oauthConsumerSecret;
 	}
 
 	@Override

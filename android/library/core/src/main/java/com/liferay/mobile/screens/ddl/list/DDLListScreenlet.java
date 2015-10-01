@@ -63,6 +63,10 @@ public class DDLListScreenlet
 		return _userId;
 	}
 
+	public void setUserId(long userId) {
+		_userId = userId;
+	}
+
 	public void setUserId(int userId) {
 		_userId = userId;
 	}
@@ -73,6 +77,14 @@ public class DDLListScreenlet
 
 	public void setLabelFields(List<String> labelFields) {
 		_labelFields = labelFields;
+	}
+
+	public OfflinePolicy getOfflinePolicy() {
+		return _offlinePolicy;
+	}
+
+	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
+		_offlinePolicy = offlinePolicy;
 	}
 
 	@Override
@@ -107,6 +119,7 @@ public class DDLListScreenlet
 
 	private List<String> parse(String labelFields) {
 		if (labelFields == null) {
+
 			throw new IllegalArgumentException("DDLListScreenlet must define 'labelFields' parameter");
 		}
 

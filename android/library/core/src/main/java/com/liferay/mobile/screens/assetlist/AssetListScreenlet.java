@@ -64,6 +64,22 @@ public class AssetListScreenlet
 		_groupId = groupId;
 	}
 
+	public OfflinePolicy getOfflinePolicy() {
+		return _offlinePolicy;
+	}
+
+	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
+		_offlinePolicy = offlinePolicy;
+	}
+
+	public String getPortletItemName() {
+		return _portletItemName;
+	}
+
+	public void setPortletItemName(String portletItemName) {
+		_portletItemName = portletItemName;
+	}
+
 	@Override
 	protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale)
 		throws Exception {

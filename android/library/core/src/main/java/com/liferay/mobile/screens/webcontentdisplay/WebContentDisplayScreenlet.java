@@ -84,13 +84,52 @@ public class WebContentDisplayScreenlet
 		_listener = listener;
 	}
 
-
 	public boolean isJavascriptEnabled() {
 		return _javascriptEnabled;
 	}
 
 	public void setJavascriptEnabled(boolean javascriptEnabled) {
 		_javascriptEnabled = javascriptEnabled;
+	}
+
+	public String getArticleId() {
+		return _articleId;
+	}
+
+	public void setArticleId(String articleId) {
+		_articleId = articleId;
+	}
+
+	public Long getTemplateId() {
+		return _templateId;
+	}
+
+	public void setTemplateId(Long templateId) {
+		_templateId = templateId;
+	}
+
+	public OfflinePolicy getOfflinePolicy() {
+		return _offlinePolicy;
+	}
+
+	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
+		_offlinePolicy = offlinePolicy;
+	}
+
+	public boolean isAutoLoad() {
+		return _autoLoad;
+	}
+
+	public void setAutoLoad(boolean autoLoad) {
+		_autoLoad = autoLoad;
+	}
+
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
 	}
 
 	protected void autoLoad() {

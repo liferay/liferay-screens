@@ -199,16 +199,36 @@ public class UserPortraitScreenlet
 		return _editable;
 	}
 
-	public void setEditable(boolean editable) {
-		_editable = editable;
-	}
-
 	public String getFilePath() {
 		return _filePath;
 	}
 
 	public void setFilePath(String filePath) {
 		_filePath = filePath;
+	}
+
+	public boolean isAutoLoad() {
+		return _autoLoad;
+	}
+
+	public void setAutoLoad(boolean autoLoad) {
+		_autoLoad = autoLoad;
+	}
+
+	public boolean isEditable() {
+		return _editable;
+	}
+
+	public void setEditable(boolean editable) {
+		_editable = editable;
+	}
+
+	public OfflinePolicy getOfflinePolicy() {
+		return _offlinePolicy;
+	}
+
+	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
+		_offlinePolicy = offlinePolicy;
 	}
 
 	protected void autoLoad() {

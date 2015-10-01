@@ -54,7 +54,6 @@ import java.util.Map;
 public class DDLFormScreenlet
 	extends BaseScreenlet<DDLFormViewModel, DDLFormBaseInteractor>
 	implements DDLFormListener {
-
 	public static final String LOAD_FORM_ACTION = "loadForm";
 	public static final String LOAD_RECORD_ACTION = "loadRecord";
 	public static final String ADD_RECORD_ACTION = "addRecord";
@@ -64,11 +63,9 @@ public class DDLFormScreenlet
 	public DDLFormScreenlet(Context context) {
 		super(context);
 	}
-
 	public DDLFormScreenlet(Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
-
 	public DDLFormScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
@@ -333,12 +330,32 @@ public class DDLFormScreenlet
 		return _record;
 	}
 
+	public void setRecord(Record record) {
+		_record = record;
+	}
+
 	public DDLFormListener getListener() {
 		return _listener;
 	}
 
 	public void setListener(DDLFormListener listener) {
 		_listener = listener;
+	}
+
+	public boolean isLoadRecordAfterForm() {
+		return _loadRecordAfterForm;
+	}
+
+	public void setLoadRecordAfterForm(boolean loadRecordAfterForm) {
+		_loadRecordAfterForm = loadRecordAfterForm;
+	}
+
+	public OfflinePolicy getOfflinePolicy() {
+		return _offlinePolicy;
+	}
+
+	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
+		_offlinePolicy = offlinePolicy;
 	}
 
 	public void setCustomFieldLayoutId(String fieldName, int layoutId) {
@@ -617,6 +634,7 @@ public class DDLFormScreenlet
 			viewModel.setFieldLayoutId(editorType, resourceId);
 		}
 	}
+
 	private static final String _STATE_SUPER = "ddlform-super";
 	private static final String _STATE_AUTOSCROLL_ON_VALIDATION = "ddlform-autoScrollOnValidation";
 	private static final String _STATE_SHOW_SUBMIT_BUTTON = "ddlform-showSubmitButton";
