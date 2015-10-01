@@ -3,6 +3,10 @@ package com.liferay.mobile.screens.testapp;
 import android.os.Bundle;
 import android.view.View;
 
+import com.liferay.mobile.screens.auth.BasicAuthMethod;
+import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
+import com.liferay.mobile.screens.cache.CachedType;
+import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.testapp.fullview.LoginFullActivity;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
@@ -29,6 +33,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.login_full_screenlet).setOnClickListener(this);
 		findViewById(R.id.change_theme).setOnClickListener(this);
 		findViewById(R.id.login).setOnClickListener(this);
+		findViewById(R.id.clear_cache).setOnClickListener(this);
 	}
 
 	@Override
@@ -72,6 +77,12 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				finish();
 				currentTheme = isDefaultTheme() ? R.style.material_theme : R.style.default_theme;
 				startActivity(getIntentWithTheme(MainActivity.class));
+				break;
+//			case R.id.clear_cache_forms:
+//				CacheSQL.getInstance().clear(CachedType);
+//				break;
+			case R.id.clear_cache:
+				CacheSQL.getInstance().clear(this);
 				break;
 			default:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));
