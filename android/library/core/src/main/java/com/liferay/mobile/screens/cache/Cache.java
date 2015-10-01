@@ -1,5 +1,7 @@
 package com.liferay.mobile.screens.cache;
 
+import android.content.Context;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -13,11 +15,11 @@ public interface Cache<E> {
 
 	void set(E object);
 
-	void clear();
-
 	void clear(CachedType cachedType);
 
 	void clear(CachedType cachedType, String id);
+
+	boolean clear(Context context);
 
 	void resync();
 

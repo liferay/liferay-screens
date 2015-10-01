@@ -1,5 +1,7 @@
 package com.liferay.mobile.screens.cache.sql;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
@@ -24,9 +26,11 @@ import com.liferay.mobile.screens.cache.userportrait.UserPortraitCacheStorIOSQLi
 import com.liferay.mobile.screens.cache.userportrait.UserPortraitCacheStorIOSQLitePutResolver;
 import com.pushtorefresh.storio.sqlite.SQLiteTypeMapping;
 import com.pushtorefresh.storio.sqlite.impl.DefaultStorIOSQLite;
+import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
 import com.pushtorefresh.storio.sqlite.queries.DeleteQuery;
 import com.pushtorefresh.storio.sqlite.queries.Query;
+import com.pushtorefresh.storio.sqlite.queries.RawQuery;
 
 import java.util.List;
 
@@ -58,8 +62,8 @@ public class StorIOSQLite {
 			.executeAsBlocking();
 	}
 
-	public static void queryDelete(String tableName, String where, Object... queryArgs) {
-		getInstance()
+	public static int queryDelete(String tableName, String where, Object... queryArgs) {
+		DeleteResult deleteResult = getInstance()
 			.delete()
 			.byQuery(
 				DeleteQuery.builder()
@@ -69,10 +73,7 @@ public class StorIOSQLite {
 					.build())
 			.prepare()
 			.executeAsBlocking();
-	}
-
-	public static void clear() {
-		getInstance().delete();
+		return deleteResult.numberOfRowsDeleted();
 	}
 
 	public static synchronized void initWithCustomStorIOSQLite(DefaultStorIOSQLite defaultStorIOSQLite) {

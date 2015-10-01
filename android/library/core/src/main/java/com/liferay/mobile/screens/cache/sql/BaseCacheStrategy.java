@@ -37,13 +37,13 @@ public abstract class BaseCacheStrategy<E extends CachedContent> implements Cach
 	}
 
 	@Override
-	public void clear() {
-		queryDelete(getTableName(), null);
+	public int clear() {
+		return queryDelete(getTableName(), null);
 	}
 
 	@Override
-	public void clear(String id) {
-		queryDelete(getTableName(), getQueryById(), id);
+	public int clear(String id) {
+		return queryDelete(getTableName(), getQueryById(), id);
 	}
 
 	protected abstract Class getDomainClass();

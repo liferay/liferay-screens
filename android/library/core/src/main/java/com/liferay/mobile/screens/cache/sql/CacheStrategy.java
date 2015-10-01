@@ -18,7 +18,7 @@ public interface CacheStrategy<E extends CachedContent> {
 
 	Object set(E object);
 
-	void clear();
+	int clear();
 
-	void clear(String id);
+	int clear(String id);
 }

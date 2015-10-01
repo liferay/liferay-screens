@@ -10,8 +10,10 @@ import com.liferay.mobile.screens.cache.CachedType;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.pushtorefresh.storio.sqlite.impl.DefaultStorIOSQLite;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -60,11 +62,6 @@ public class CacheSQL<E extends CachedContent> implements Cache<E> {
 	}
 
 	@Override
-	public void clear() {
-		StorIOSQLite.clear();
-	}
-
-	@Override
 	public void clear(CachedType cachedType) {
 		_cacheStrategyFactory.recoverStrategy(cachedType).clear();
 	}
@@ -72,6 +69,18 @@ public class CacheSQL<E extends CachedContent> implements Cache<E> {
 	@Override
 	public void clear(CachedType cachedType, String id) {
 		_cacheStrategyFactory.recoverStrategy(cachedType).clear(id);
+	}
+
+	@Override
+	public boolean clear(Context context) {
+		try {
+			StorIOSQLite.getInstance().close();
+			return context.deleteDatabase(ScreensSQLiteOpenHelper.SCREENS_CACHE_DB);
+		}
+		catch (IOException e) {
+			LiferayLogger.e("Could not clear the database", e);
+			return false;
+		}
 	}
 
 	@Override
