@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.cache.sql;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
@@ -75,7 +76,8 @@ public class CacheSQL<E extends CachedContent> implements Cache<E> {
 
 	@Override
 	public void resync() {
-		LiferayScreensContext.getContext().sendBroadcast(new Intent("com.liferay.mobile.screens.cache.resync"));
+		Context context = LiferayScreensContext.getContext();
+		context.sendBroadcast(new Intent("com.liferay.mobile.screens.cache.resync"));
 	}
 
 	public synchronized static Cache getInstance(DefaultStorIOSQLite customStorIOSQLite, CacheStrategyFactory cacheStrategyFactory) {

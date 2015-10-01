@@ -48,7 +48,6 @@
 		<attr name="userId"/>
 		<attr name="autoLoad"/>
 		<attr name="offlinePolicy"/>
-		<attr name="offlinePolicy"/>
 		<attr name="filePrefix" format="string"/>
 		<attr name="repositoryId" format="string"/>
 		<attr name="folderId" format="string"/>
@@ -113,7 +112,6 @@
 	<declare-styleable name="UserPortraitScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
-		<attr name="offlinePolicy"/>
 		<attr name="offlinePolicy"/>
 		<attr name="male" format="boolean"/>
 		<attr name="portraitId" format="string"/>
