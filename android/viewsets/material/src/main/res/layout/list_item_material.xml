@@ -7,8 +7,8 @@
 	android:layout_height="match_parent"
 	android:background="?android:attr/selectableItemBackground"
 	android:clickable="true"
-	android:drawablePadding="16dp"
 	android:drawableLeft="@drawable/material_tinted_list_icon"
+	android:drawablePadding="16dp"
 	android:drawableStart="@drawable/material_tinted_list_icon"
 	android:focusable="true"
 	android:gravity="center_vertical"/>

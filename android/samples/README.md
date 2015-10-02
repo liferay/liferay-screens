@@ -1,6 +1,6 @@
 # Liferay Screens for Android Samples
 
-This directory contains sample apps that demonstrate Liferay Screens for Android. You can refer to these apps, along with the [Liferay Screens documentation](https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/mobile-apps-with-liferay-screens), to see how Screenlets and Views are used. 
+This directory contains sample apps that demonstrate Liferay Screens for Android. You can refer to these apps, along with the [Liferay Screens for Android documentation](https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/android-apps-with-liferay-screens), to see how Screenlets and Views are used. 
 
 ## The Add Bookmark Screenlet
 

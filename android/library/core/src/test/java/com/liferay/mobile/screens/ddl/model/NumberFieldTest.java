@@ -39,6 +39,9 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class NumberFieldTest {
 
+	private static final Locale _spanishLocale = new Locale("es", "ES");
+	private static final Locale _usLocale = new Locale("en", "US");
+
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingFromString {
@@ -161,15 +164,15 @@ public class NumberFieldTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"number\" " +
-							"fieldNamespace=\"ddm\" " +
-							"type=\"ddm-number\" " +
-							"name=\"A_Number\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[123]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"number\" " +
+					"fieldNamespace=\"ddm\" " +
+					"type=\"ddm-number\" " +
+					"name=\"A_Number\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[123]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
 
@@ -196,15 +199,15 @@ public class NumberFieldTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"integer\" " +
-							"fieldNamespace=\"ddm\" " +
-							"type=\"ddm-integer\" " +
-							"name=\"An_Integer\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[123]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"integer\" " +
+					"fieldNamespace=\"ddm\" " +
+					"type=\"ddm-integer\" " +
+					"name=\"An_Integer\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[123]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
 
@@ -231,15 +234,15 @@ public class NumberFieldTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"double\" " +
-							"fieldNamespace=\"ddm\" " +
-							"type=\"ddm-decimal\" " +
-							"name=\"A_Decimal\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[123.4]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"double\" " +
+					"fieldNamespace=\"ddm\" " +
+					"type=\"ddm-decimal\" " +
+					"name=\"A_Decimal\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[123.4]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
 
@@ -262,8 +265,5 @@ public class NumberFieldTest {
 		}
 
 	}
-
-	private static final Locale _spanishLocale = new Locale("es", "ES");
-	private static final Locale _usLocale = new Locale("en", "US");
 
 }

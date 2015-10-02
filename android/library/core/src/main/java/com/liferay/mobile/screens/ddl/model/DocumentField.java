@@ -15,17 +15,24 @@ import java.util.Map;
 public class DocumentField extends Field<DocumentFile> {
 
 	public static final Parcelable.Creator<DocumentField> CREATOR =
-			new Parcelable.Creator<DocumentField>() {
+		new Parcelable.Creator<DocumentField>() {
 
-				public DocumentField createFromParcel(Parcel in) {
-					return new DocumentField(in);
-				}
+			public DocumentField createFromParcel(Parcel in) {
+				return new DocumentField(in);
+			}
 
-				public DocumentField[] newArray(int size) {
-					return new DocumentField[size];
-				}
-			};
+			public DocumentField[] newArray(int size) {
+				return new DocumentField[size];
+			}
+		};
 
+
+	private enum State {
+		IDLE,
+		UPLOADING,
+		UPLOADED,
+		FAILED
+	}
 
 	public DocumentField(Map<String, Object> attributes, Locale locale) {
 		super(attributes, locale);
@@ -74,6 +81,14 @@ public class DocumentField extends Field<DocumentFile> {
 		return (_state == State.FAILED);
 	}
 
+	public void createLocalFile(String path) {
+		if (path == null || path.isEmpty()) {
+			return;
+		}
+
+		setCurrentValue(new DocumentLocalFile(path));
+	}
+
 	@Override
 	protected DocumentFile convertFromString(String string) {
 		if (string == null || string.isEmpty()) {
@@ -90,14 +105,6 @@ public class DocumentField extends Field<DocumentFile> {
 		}
 
 		return result;
-	}
-
-	public void createLocalFile(String path) {
-		if (path == null || path.isEmpty()) {
-			return;
-		}
-
-		setCurrentValue(new DocumentLocalFile(path));
 	}
 
 	@Override
@@ -136,16 +143,6 @@ public class DocumentField extends Field<DocumentFile> {
 
 		return valid;
 	}
-
-
-
-	private enum State {
-		IDLE,
-		UPLOADING,
-		UPLOADED,
-		FAILED
-	}
-
 	private State _state = State.IDLE;
 
 }

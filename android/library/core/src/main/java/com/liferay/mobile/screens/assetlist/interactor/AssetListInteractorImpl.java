@@ -22,6 +22,8 @@ import com.liferay.mobile.android.v62.assetentry.AssetEntryService;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
+import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v62.ScreensassetentryService;
 
 import org.json.JSONException;
@@ -35,32 +37,41 @@ import java.util.Locale;
 public class AssetListInteractorImpl
 	extends BaseListInteractor<AssetEntry, AssetListInteractorListener> implements AssetListInteractor {
 
-    public AssetListInteractorImpl(int targetScreenletId) {
+	public AssetListInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 
-    public void loadRows(
-			long groupId, long classNameId, int startRow, int endRow, Locale locale)
+	public void loadRows(
+		long groupId, long classNameId, String portletItemName, int startRow, int endRow, Locale locale)
 		throws Exception {
-        this._groupId = groupId;
-        this._classNameId = classNameId;
-        loadRows(startRow, endRow, locale);
+		this._groupId = groupId;
+		this._classNameId = classNameId;
+
+		if (portletItemName == null) {
+			loadRows(startRow, endRow, locale);
+		}
+		else {
+			Session session = SessionContext.createSessionFromCurrentSession();
+			session.setCallback(new FilteredAssetListCallback(getTargetScreenletId()));
+			ScreensassetentryService service = new ScreensassetentryService(session);
+			service.getFilteredAssetEntries(LiferayServerContext.getCompanyId(), groupId, portletItemName, locale.toString());
+		}
 	}
 
-    @Override
-    protected BaseListCallback<AssetEntry> getCallback(Pair<Integer, Integer> rowsRange) {
-        return new AssetListCallback(getTargetScreenletId(), rowsRange);
-    }
+	@Override
+	protected BaseListCallback<AssetEntry> getCallback(Pair<Integer, Integer> rowsRange) {
+		return new AssetListCallback(getTargetScreenletId(), rowsRange);
+	}
 
 	@Override
 	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
+		ScreensassetentryService service = new ScreensassetentryService(session);
 		JSONObject entryQueryAttributes = addQueryParams(_groupId, _classNameId);
 		entryQueryAttributes.put("start", startRow);
 		entryQueryAttributes.put("end", endRow);
 
 		JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryAttributes);
 
-		ScreensassetentryService service = new ScreensassetentryService(session);
 		service.getAssetEntries(entryQuery, locale.toString());
 	}
 
@@ -73,17 +84,17 @@ public class AssetListInteractorImpl
 		new AssetEntryService(session).getEntriesCount(entryQuery);
 	}
 
-    protected JSONObject addQueryParams(long groupId, long classNameId) throws JSONException {
-        JSONObject entryQueryParams = new JSONObject();
+	protected JSONObject addQueryParams(long groupId, long classNameId) throws JSONException {
+		JSONObject entryQueryParams = new JSONObject();
 
-        entryQueryParams.put("classNameIds", classNameId);
-        entryQueryParams.put("groupIds", groupId);
-        entryQueryParams.put("visible", "true");
+		entryQueryParams.put("classNameIds", classNameId);
+		entryQueryParams.put("groupIds", groupId);
+		entryQueryParams.put("visible", "true");
 
-        return entryQueryParams;
-    }
+		return entryQueryParams;
+	}
 
-    @Override
+	@Override
 	protected void validate(int startRow, int endRow, Locale locale) {
 
 		if (_groupId <= 0) {
@@ -99,7 +110,6 @@ public class AssetListInteractorImpl
 		super.validate(startRow, endRow, locale);
 	}
 
-    private long _groupId;
-    private long _classNameId;
-
+	private long _groupId;
+	private long _classNameId;
 }

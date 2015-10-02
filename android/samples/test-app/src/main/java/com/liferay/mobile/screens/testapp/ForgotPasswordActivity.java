@@ -32,7 +32,7 @@ public class ForgotPasswordActivity extends ThemeActivity implements ForgotPassw
 		setContentView(R.layout.forgot_password);
 
 		ForgotPasswordScreenlet screenlet = (ForgotPasswordScreenlet) getActiveScreenlet(R.id.forgot_password_default,
-				R.id.forgot_password_material);
+			R.id.forgot_password_material);
 
 		screenlet.setListener(this);
 		screenlet.setVisibility(View.VISIBLE);

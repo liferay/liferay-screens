@@ -26,7 +26,7 @@ public class LiferayScreensContext {
 	public static void init(Context context) {
 		_context = context.getApplicationContext();
 
-		LiferayServerContext.loadFromResources(context.getResources());
+		LiferayServerContext.loadFromResources(context.getResources(), context.getPackageName());
 	}
 
 	/**

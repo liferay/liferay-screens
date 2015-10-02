@@ -64,14 +64,14 @@ public enum AssetConstantIdsForEE {
 	WIKI_PAGE_RESOURCE(20153),
 	WIKI_NODE(20152);
 
-	public int getValue() {
-		return _value;
-	}
-
-	AssetConstantIdsForEE(int value) {
+	AssetConstantIdsForEE(long value) {
 		_value = value;
 	}
 
-	private int _value;
+	public long getValue() {
+		return _value;
+	}
+
+	private long _value;
 
 }

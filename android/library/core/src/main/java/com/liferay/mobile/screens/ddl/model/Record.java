@@ -18,6 +18,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.liferay.mobile.screens.ddl.XSDParser;
+import com.liferay.mobile.screens.util.JSONUtil;
 
 import org.xml.sax.SAXException;
 
@@ -37,11 +38,11 @@ public class Record implements Parcelable {
 	public static final Parcelable.ClassLoaderCreator<Record> CREATOR =
 		new ClassLoaderCreator<Record>() {
 
-			public Record createFromParcel(Parcel in, ClassLoader loader) {
-				return new Record(in, loader);
+			@Override
+			public Record createFromParcel(Parcel parcel, ClassLoader classLoader) {
+				return new Record(parcel, classLoader);
 			}
 
-			@Override
 			public Record createFromParcel(Parcel in) {
 				throw new AssertionError();
 			}
@@ -49,22 +50,42 @@ public class Record implements Parcelable {
 			public Record[] newArray(int size) {
 				return new Record[size];
 			}
-
 		};
-
 
 	public Record(Locale locale) {
 		_locale = locale;
 	}
 
-	private Record(Parcel in, ClassLoader loader) {
-		Parcelable[] array = in.readParcelableArray(loader);
-		_fields = new ArrayList(Arrays.asList(array));
-		_creatorUserId = in.readLong();
-		_structureId = in.readLong();
-		_recordSetId = in.readLong();
-		_recordId = in.readLong();
-		_locale = (Locale) in.readSerializable();
+	public Record(Map<String, Object> valuesAndAttributes) {
+		_valuesAndAttributes = valuesAndAttributes;
+		parseServerValues();
+	}
+
+	public Map<String, String> getData() {
+		Map<String, String> values = new HashMap<>(_fields.size());
+
+		for (Field f : _fields) {
+			String fieldValue = f.toData();
+
+			//FIXME - LPS-49460
+			// Server rejects the request if the value is empty string.
+			// This way we workaround the problem but a field can't be
+			// emptied when you're editing an existing row.
+			if (fieldValue != null && !fieldValue.isEmpty()) {
+				values.put(f.getName(), fieldValue);
+			}
+		}
+
+		return values;
+	}
+
+	public void refresh() {
+		for (Field f : _fields) {
+			Object fieldValue = getServerValue(f.getName());
+			if (fieldValue != null) {
+				f.setCurrentValue(f.convertFromString(fieldValue.toString()));
+			}
+		}
 	}
 
 	public void parseXsd(String xsd) {
@@ -100,73 +121,6 @@ public class Record implements Parcelable {
 		return _fields.size();
 	}
 
-	public long getRecordSetId() {
-		return _recordSetId;
-	}
-
-	public long getRecordId() {
-		return _recordId;
-	}
-
-	public long getStructureId() {
-		return _structureId;
-	}
-
-	public long getCreatorUserId() {
-		return _creatorUserId;
-	}
-
-	public Map<String, String> getData() {
-		Map<String, String> values = new HashMap<>(_fields.size());
-
-		for (Field f : _fields) {
-			String fieldValue = f.toData();
-
-			//FIXME - LPS-49460
-			// Server rejects the request if the value is empty string.
-			// This way we workaround the problem but a field can't be
-			// emptied when you're editing an existing row.
-			if (fieldValue != null && !fieldValue.isEmpty()) {
-				values.put(f.getName(), fieldValue);
-			}
-		}
-
-		return values;
-	}
-
-	public Locale getLocale() {
-		return _locale;
-	}
-
-	public void setRecordId(long recordId) {
-		_recordId = recordId;
-	}
-
-	public void setRecordSetId(long recordSetId) {
-		_recordSetId = recordSetId;
-	}
-
-	public void setStructureId(long structureId) {
-		_structureId = structureId;
-	}
-
-	public void setCreatorUserId(long value) {
-		_creatorUserId = value;
-	}
-
-	public void setValues(Map<String,Object> values) {
-		for (Field f : _fields) {
-			Object fieldValue = values.get(f.getName());
-			if (fieldValue != null) {
-				f.setCurrentValue(f.convertFromString(fieldValue.toString()));
-			}
-		}
-	}
-
-	public boolean isRecordStructurePresent() {
-		return (_fields.size() > 0);
-	}
-
 	@Override
 	public int describeContents() {
 		return 0;
@@ -174,19 +128,118 @@ public class Record implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
+		destination.writeMap(_valuesAndAttributes);
 		destination.writeParcelableArray(_fields.toArray(new Field[_fields.size()]), flags);
-		destination.writeLong(_creatorUserId);
-		destination.writeLong(_structureId);
-		destination.writeLong(_recordSetId);
-		destination.writeLong(_recordId);
 		destination.writeSerializable(_locale);
+		writeLong(destination, _creatorUserId);
+		writeLong(destination, _structureId);
+		writeLong(destination, _recordSetId);
+		writeLong(destination, _recordId);
+	}
+
+	public long getRecordSetId() {
+		return _recordSetId;
+	}
+
+	public void setRecordSetId(long recordSetId) {
+		_recordSetId = recordSetId;
+	}
+
+	public long getRecordId() {
+		return _recordId;
+	}
+
+	public void setRecordId(long recordId) {
+		_recordId = recordId;
+	}
+
+	public long getStructureId() {
+		return _structureId;
+	}
+
+	public void setStructureId(long structureId) {
+		_structureId = structureId;
+	}
+
+	public long getCreatorUserId() {
+		return _creatorUserId;
+	}
+
+	public void setCreatorUserId(long value) {
+		_creatorUserId = value;
+	}
+
+	public Locale getLocale() {
+		return _locale;
+	}
+
+	public boolean isRecordStructurePresent() {
+		return (_fields.size() > 0);
+	}
+
+	/**
+	 * renamed from getValue()
+	 *
+	 * @param field
+	 * @return server value of that field
+	 */
+	public String getServerValue(String field) {
+		return getModelValues().get(field);
+	}
+
+	/**
+	 * renamed from getAttributes()
+	 *
+	 * @param field
+	 * @return server attribute of that field
+	 */
+	public Object getServerAttribute(String field) {
+		return getModelAttributes().get(field);
+	}
+
+	public void setValuesAndAttributes(Map<String, Object> valuesAndAttributes) {
+		_valuesAndAttributes = valuesAndAttributes;
+		parseServerValues();
+	}
+
+	private Record(Parcel in, ClassLoader loader) {
+		Parcelable[] array = in.readParcelableArray(loader);
+		_fields = new ArrayList(Arrays.asList(array));
+		_creatorUserId = in.readLong();
+		_structureId = in.readLong();
+		_recordSetId = in.readLong();
+		_recordId = in.readLong();
+		_locale = (Locale) in.readSerializable();
+		_valuesAndAttributes = new HashMap<>();
+		in.readMap(_valuesAndAttributes, loader);
+	}
+
+	private void parseServerValues() {
+		_recordId = JSONUtil.castToLong(getServerAttribute("recordId"));
+		_recordSetId = JSONUtil.castToLong(getServerAttribute("recordSetId"));
+		_creatorUserId = JSONUtil.castToLong(getServerAttribute("creatorUserId"));
+		_structureId = JSONUtil.castToLong(getServerAttribute("structureId"));
+	}
+
+	private void writeLong(Parcel destination, Long field) {
+		if (field != null) {
+			destination.writeLong(field);
+		}
+	}
+
+	private HashMap<String, String> getModelValues() {
+		return (HashMap<String, String>) _valuesAndAttributes.get("modelValues");
+	}
+
+	private HashMap<String, Object> getModelAttributes() {
+		return (HashMap<String, Object>) _valuesAndAttributes.get("modelAttributes");
 	}
 
 	private List<Field> _fields = new ArrayList<>();
-	private long _creatorUserId;
-	private long _structureId;
-	private long _recordSetId;
-	private long _recordId;
+	private Long _creatorUserId;
+	private Long _structureId;
+	private Long _recordSetId;
+	private Long _recordId;
 	private Locale _locale;
-
+	private Map<String, Object> _valuesAndAttributes;
 }

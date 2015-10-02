@@ -33,6 +33,35 @@ public abstract class AbstractPushActivity extends AppCompatActivity
 	}
 
 	@Override
+	public void onSuccess(final JSONObject jsonObject) {
+		try {
+			String token = jsonObject.getString("token");
+
+			SharedPreferences preferences = getSharedPreferences();
+			SharedPreferences.Editor editor = preferences.edit();
+			editor.putString(TOKEN, token);
+			editor.putInt(VERSION_CODE, getVersionCode());
+			editor.apply();
+		}
+		catch (Exception e) {
+			String message = "Error registering with Liferay Push";
+			LiferayLogger.e(message, e);
+			LiferayCrouton.error(this, message, e);
+		}
+		_push.onPushNotification(this);
+	}
+
+	@Override
+	public void onFailure(final Exception e) {
+		onErrorRegisteringPush("", e);
+	}
+
+	@Override
+	public void onPushNotification(final JSONObject pushNotification) {
+		onPushNotificationReceived(pushNotification);
+	}
+
+	@Override
 	protected void onStop() {
 		super.onStop();
 
@@ -67,49 +96,11 @@ public abstract class AbstractPushActivity extends AppCompatActivity
 
 	protected abstract Session getDefaultSession();
 
-	private int getVersionCode() throws PackageManager.NameNotFoundException {
-		PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-		return pInfo.versionCode;
-	}
-
 	protected void unsubscribeFromBuses() {
 		if (_push != null) {
 			//FIXME !
 //			_push.unsubscribe();
 		}
-	}
-
-	@Override
-	public void onSuccess(final JSONObject jsonObject) {
-		try {
-			String token = jsonObject.getString("token");
-
-			SharedPreferences preferences = getSharedPreferences();
-			SharedPreferences.Editor editor = preferences.edit();
-			editor.putString(TOKEN, token);
-			editor.putInt(VERSION_CODE, getVersionCode());
-			editor.apply();
-		}
-		catch (Exception e) {
-			String message = "Error registering with Liferay Push";
-			LiferayLogger.e(message, e);
-			LiferayCrouton.error(this, message, e);
-		}
-		_push.onPushNotification(this);
-	}
-
-	@Override
-	public void onFailure(final Exception e) {
-		onErrorRegisteringPush("", e);
-	}
-
-	@Override
-	public void onPushNotification(final JSONObject pushNotification) {
-		onPushNotificationReceived(pushNotification);
-	}
-
-	private SharedPreferences getSharedPreferences() {
-		return getSharedPreferences(PUSH_PREFERENCES, Context.MODE_PRIVATE);
 	}
 
 	protected abstract void onPushNotificationReceived(JSONObject jsonObject);
@@ -118,6 +109,14 @@ public abstract class AbstractPushActivity extends AppCompatActivity
 
 	protected abstract String getSenderId();
 
+	private int getVersionCode() throws PackageManager.NameNotFoundException {
+		PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+		return pInfo.versionCode;
+	}
+
+	private SharedPreferences getSharedPreferences() {
+		return getSharedPreferences(PUSH_PREFERENCES, Context.MODE_PRIVATE);
+	}
 	private Push _push;
 
 }

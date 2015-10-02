@@ -18,6 +18,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.service.v62.ScreensjournalarticleService;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 
 import java.util.Locale;
@@ -33,14 +34,19 @@ public class WebContentDisplayInteractorImpl
 		super(targetScreenletId);
 	}
 
-	public void load(long groupId, String articleId, Locale locale)
+	public void load(long groupId, String articleId, String templateId, Locale locale)
 		throws Exception {
 
 		validate(groupId, articleId, locale);
 
-		JournalArticleService service = getJournalArticleService();
-
-		service.getArticleContent(groupId, articleId, locale.toString(), null);
+		if (templateId == null) {
+			JournalArticleService service = getJournalArticleService();
+			service.getArticleContent(groupId, articleId, locale.toString(), null);
+		}
+		else {
+			ScreensjournalarticleService screensjournalarticleService = getScreensJournalArticleService();
+			screensjournalarticleService.getJournalArticleByTemplateId(groupId, articleId, Long.valueOf(templateId), locale.toString());
+		}
 	}
 
 	public void onEvent(WebContentDisplayEvent event) {
@@ -62,6 +68,14 @@ public class WebContentDisplayInteractorImpl
 			new WebContentDisplayCallback(getTargetScreenletId()));
 
 		return new JournalArticleService(session);
+	}
+
+	protected ScreensjournalarticleService getScreensJournalArticleService() {
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setCallback(
+			new WebContentDisplayCallback(getTargetScreenletId()));
+
+		return new ScreensjournalarticleService(session);
 	}
 
 	protected void validate(long groupId, String articleId, Locale locale) {

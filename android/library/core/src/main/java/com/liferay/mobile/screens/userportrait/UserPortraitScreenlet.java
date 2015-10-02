@@ -50,6 +50,10 @@ public class UserPortraitScreenlet
 	extends BaseScreenlet<UserPortraitViewModel, BaseUserPortraitInteractor>
 	implements UserPortraitInteractorListener {
 
+	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
+	public static final String LOAD_PORTRAIT = "LOAD_PORTRAIT";
+	public static final int SELECT_IMAGE_FROM_GALLERY = 0;
+	public static final int TAKE_PICTURE_WITH_CAMERA = 1;
 	public UserPortraitScreenlet(Context context) {
 		super(context);
 	}
@@ -57,16 +61,9 @@ public class UserPortraitScreenlet
 	public UserPortraitScreenlet(Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
-
 	public UserPortraitScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
-
-	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
-	public static final String LOAD_PORTRAIT = "LOAD_PORTRAIT";
-
-	public static final int SELECT_IMAGE_FROM_GALLERY = 0;
-	public static final int TAKE_PICTURE_WITH_CAMERA = 1;
 
 	public void load() {
 		performUserAction(LOAD_PORTRAIT);
@@ -233,11 +230,11 @@ public class UserPortraitScreenlet
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
-		int defaultUserId = 0;
-		if (SessionContext.hasSession() && _portraitId == 0 && _uuid == null) {
-			defaultUserId = (int) SessionContext.getLoggedUser().getId();
+		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, 0);
+
+		if (SessionContext.hasSession() && _portraitId == 0 && _uuid == null && _userId == 0) {
+			_userId = SessionContext.getLoggedUser().getId();
 		}
-		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, defaultUserId);
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());

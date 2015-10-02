@@ -40,7 +40,7 @@ import java.util.List;
  * @author Silvio Santos
  */
 public abstract class BaseListScreenletView<
-		E extends Parcelable, H extends BaseListAdapter.ViewHolder, A extends BaseListAdapter<E,H>>
+	E extends Parcelable, H extends BaseListAdapter.ViewHolder, A extends BaseListAdapter<E, H>>
 	extends FrameLayout
 	implements BaseListViewModel<E>, BaseListAdapterListener {
 
@@ -53,12 +53,12 @@ public abstract class BaseListScreenletView<
 	}
 
 	public BaseListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
-        super(context, attributes, defaultStyle);
-    }
+		super(context, attributes, defaultStyle);
+	}
 
 	@Override
 	public void onItemClick(int position, View view) {
-		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
+		BaseListScreenlet screenlet = ((BaseListScreenlet) getParent());
 		List<E> entries = getAdapter().getEntries();
 
 		// we do not want to crash if the user manages to do a phantom click
@@ -107,7 +107,7 @@ public abstract class BaseListScreenletView<
 		LiferayCrouton.error(getContext(), getContext().getString(R.string.loading_list_error), e);
 	}
 
-    @Override
+	@Override
 	public void onPageNotFound(int row) {
 		BaseListScreenlet screenlet = (BaseListScreenlet) getParent();
 
@@ -120,7 +120,7 @@ public abstract class BaseListScreenletView<
 
 	@Override
 	protected void onRestoreInstanceState(Parcelable inState) {
-		Bundle state = (Bundle)inState;
+		Bundle state = (Bundle) inState;
 		Parcelable superState = state.getParcelable(_STATE_SUPER);
 
 		super.onRestoreInstanceState(superState);
@@ -182,7 +182,7 @@ public abstract class BaseListScreenletView<
 			allEntries.set(i, entries.get(i));
 		}
 
-		BaseListScreenlet screenlet = ((BaseListScreenlet)getParent());
+		BaseListScreenlet screenlet = ((BaseListScreenlet) getParent());
 
 		int firstRowForPage = screenlet.getFirstRowForPage(page);
 
@@ -209,19 +209,19 @@ public abstract class BaseListScreenletView<
 		return _progressBar;
 	}
 
-	protected RecyclerView getRecyclerView() {
-		return _recyclerView;
-	}
-
 	protected void setProgressBar(ProgressBar value) {
 		_progressBar = value;
+	}
+
+	protected RecyclerView getRecyclerView() {
+		return _recyclerView;
 	}
 
 	protected void setRecyclerView(RecyclerView value) {
 		_recyclerView = value;
 	}
 
-    protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
+	protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
 
 	private static final String _STATE_ENTRIES = "entries";
 	private static final String _STATE_ROW_COUNT = "rowCount";

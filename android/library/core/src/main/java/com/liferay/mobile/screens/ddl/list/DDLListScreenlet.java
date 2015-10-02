@@ -21,9 +21,10 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
+import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
+import com.liferay.mobile.screens.ddl.model.Record;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public class DDLListScreenlet
-	extends BaseListScreenlet<DDLEntry, DDLListInteractor>
+	extends BaseListScreenlet<Record, DDLListInteractor>
 	implements DDLListInteractorListener {
 
 	public DDLListScreenlet(Context context) {
@@ -49,48 +50,48 @@ public class DDLListScreenlet
 		super(context, attributes, defaultStyle);
 	}
 
+	public long getRecordSetId() {
+		return _recordSetId;
+	}
+
+	public void setRecordSetId(long recordSetId) {
+		_recordSetId = recordSetId;
+	}
+
+	public long getUserId() {
+		return _userId;
+	}
+
+	public void setUserId(int userId) {
+		_userId = userId;
+	}
+
+	public List<String> getLabelFields() {
+		return _labelFields;
+	}
+
+	public void setLabelFields(List<String> labelFields) {
+		_labelFields = labelFields;
+	}
+
 	@Override
 	protected void loadRows(DDLListInteractor interactor, int startRow, int endRow, Locale locale) throws Exception {
 		interactor.loadRows(_recordSetId, _userId, startRow, endRow, locale);
 	}
 
-    public int getRecordSetId() {
-        return _recordSetId;
-    }
-
-    public void setRecordSetId(int recordSetId) {
-        _recordSetId = recordSetId;
-    }
-
-    public int getUserId() {
-        return _userId;
-    }
-
-    public void setUserId(int userId) {
-        _userId = userId;
-    }
-
-    public List<String> getLabelFields() {
-        return _labelFields;
-    }
-
-    public void setLabelFields(List<String> labelFields) {
-        _labelFields = labelFields;
-    }
-
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-        TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-                attributes, R.styleable.DDLListScreenlet, 0, 0);
-        _recordSetId = typedArray.getInteger(
-                R.styleable.DDLListScreenlet_recordSetId, 0);
-        _userId = typedArray.getInteger(
-                R.styleable.DDLListScreenlet_userId, 0);
-        _labelFields = parse(typedArray.getString(
-                R.styleable.DDLListScreenlet_labelFields));
-        typedArray.recycle();
+		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
+			attributes, R.styleable.DDLListScreenlet, 0, 0);
+		_recordSetId = castToLong(typedArray.getString(
+			R.styleable.DDLListScreenlet_recordSetId));
+		_userId = castToLong(typedArray.getString(
+			R.styleable.DDLListScreenlet_userId));
+		_labelFields = parse(typedArray.getString(
+			R.styleable.DDLListScreenlet_labelFields));
+		typedArray.recycle();
 
-        return super.createScreenletView(context, attributes);
+		return super.createScreenletView(context, attributes);
 	}
 
 	@Override
@@ -103,16 +104,16 @@ public class DDLListScreenlet
 			throw new IllegalArgumentException("DDLListScreenlet must define 'labelFields' parameter");
 		}
 
-        List<String> parsedFields = new ArrayList<>();
-        for (String text : labelFields.split(",")) {
-            parsedFields.add(text.trim());
-        }
+		List<String> parsedFields = new ArrayList<>();
+		for (String text : labelFields.split(",")) {
+			parsedFields.add(text.trim());
+		}
 
-        return parsedFields;
-    }
+		return parsedFields;
+	}
 
-    private int _recordSetId;
-    private int _userId;
-    private List<String> _labelFields;
+	private long _recordSetId;
+	private long _userId;
+	private List<String> _labelFields;
 
 }

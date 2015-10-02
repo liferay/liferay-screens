@@ -54,6 +54,10 @@ public class FileUtil {
 		return null;
 	}
 
+	public static boolean isGooglePhotosUri(Uri uri) {
+		return "com.google.android.apps.photos.content".equals(uri.getAuthority());
+	}
+
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	private static boolean isDocumentUri(Context context, Uri uri) {
 		return DocumentsContract.isDocumentUri(context, uri);
@@ -69,10 +73,6 @@ public class FileUtil {
 		String[] selectionArgs = new String[]{split[1]};
 
 		return getDataColumn(context, contentUri, selection, selectionArgs);
-	}
-
-	public static boolean isGooglePhotosUri(Uri uri) {
-		return "com.google.android.apps.photos.content".equals(uri.getAuthority());
 	}
 
 	private static String getDataColumn(Context context, Uri uri, String selection,

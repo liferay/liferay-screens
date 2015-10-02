@@ -12,7 +12,8 @@
 		android:layout_height="wrap_content"
 		android:visibility="gone"/>
 
-	<EditText android:id="@+id/liferay_ddl_edit_text"
+	<EditText
+		android:id="@+id/liferay_ddl_edit_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:inputType="text"/>

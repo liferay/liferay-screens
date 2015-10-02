@@ -17,7 +17,9 @@ package com.liferay.mobile.screens.base.view;
 public interface BaseViewModel {
 
 	void showStartOperation(String actionName);
+
 	void showFinishOperation(String actionName);
+
 	void showFailedOperation(String actionName, Exception e);
 
 }

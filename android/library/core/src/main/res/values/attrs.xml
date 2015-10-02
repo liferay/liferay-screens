@@ -25,6 +25,7 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
+		<attr name="portletItemName" format="string"/>
 		<attr name="classNameId" format="integer"/>
 		<attr name="firstPageSize"/>
 		<attr name="pageSize"/>
@@ -93,6 +94,7 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
+		<attr name="templateId" format="string"/>
 		<attr name="javascriptEnabled" format="boolean"/>
 		<attr name="articleId" format="string"/>
 	</declare-styleable>

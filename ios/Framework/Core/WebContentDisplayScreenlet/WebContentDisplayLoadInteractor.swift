@@ -29,6 +29,8 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 
 		operation.articleId = screenlet.articleId
 
+		operation.templateId = screenlet.templateId
+
 		return operation
 	}
 

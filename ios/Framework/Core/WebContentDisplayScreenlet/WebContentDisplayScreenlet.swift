@@ -30,6 +30,7 @@ import UIKit
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var articleId: String = ""
 	@IBInspectable public var autoLoad: Bool = true
+	@IBInspectable public var templateId: Int64 = 0
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	@IBOutlet public weak var delegate: WebContentDisplayScreenletDelegate?
