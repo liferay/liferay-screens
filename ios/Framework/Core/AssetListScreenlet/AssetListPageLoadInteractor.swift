@@ -18,15 +18,18 @@ class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 
 	let groupId: Int64
 	let classNameId: Int
+	let portletItemName: String?
 
 	init(screenlet: BaseListScreenlet,
 			page: Int,
 			computeRowCount: Bool,
 			groupId: Int64,
-			classNameId: Int) {
+			classNameId: Int,
+			portletItemName: String?) {
 
 		self.groupId = groupId
 		self.classNameId = classNameId
+		self.portletItemName = portletItemName
 
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
@@ -40,6 +43,8 @@ class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		operation.groupId = (self.groupId != 0)
 				? self.groupId : LiferayServerContext.groupId
 		operation.classNameId = self.classNameId
+
+		operation.portletItemName = self.portletItemName
 
 		return operation;
 	}

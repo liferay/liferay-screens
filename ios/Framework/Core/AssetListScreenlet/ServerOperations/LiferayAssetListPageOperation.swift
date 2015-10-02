@@ -17,6 +17,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	public var groupId: Int64?
 	public var classNameId: Int?
+	public var portletItemName: String?
 
 	internal var assetListScreenlet: AssetListScreenlet {
 		return self.screenlet as! AssetListScreenlet
@@ -34,11 +35,43 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 		return valid
 	}
 
+	override internal func doRun(#session: LRSession) {
+		if let filter = portletItemName {
+
+			let screenletsService = LRScreensassetentryService_v62(session: session)
+
+			let responses = screenletsService.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
+				groupId:groupId!,
+				portletItemName:portletItemName!,
+				locale: NSLocale.currentLocaleString,
+				error: &lastError)
+
+			if lastError == nil {
+				if let entriesResponse = responses as? [[String:AnyObject]] {
+					let serverPageContent = entriesResponse
+
+					resultPageContent = serverPageContent
+					resultRowCount = serverPageContent.count
+				}
+				else {
+					lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
+				}
+			}
+		} else {
+			super.doRun(session: session)
+		}
+	}
 
 	//MARK: LiferayPaginationOperation
 
 	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
 		let screenletsService = LRScreensassetentryService_v62(session: session)
+
+		screenletsService.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
+			groupId:groupId!,
+			portletItemName:portletItemName!,
+			locale: NSLocale.currentLocaleString,
+			error: &lastError)
 
 		var entryQueryAttributes = configureEntryQueryAttributes()
 
