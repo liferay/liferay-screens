@@ -44,13 +44,11 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 	}
 
 	override internal func doRun(#session: LRSession) {
-
 		resultHTML = nil
 
 		var result:String
 
 		if let template = templateId {
-
 			let service = LRScreensjournalarticleService_v62(session: session)
 
 			result = service.getJournalArticleContentWithGroupId(groupId!,
@@ -59,8 +57,8 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 				locale: NSLocale.currentLocaleString,
 				error: &lastError)
 
-		} else {
-
+		}
+		else {
 			let service = LRJournalArticleService_v62(session: session)
 
 			result = service.getArticleContentWithGroupId(groupId!,
@@ -73,7 +71,6 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 		if lastError == nil {
 			resultHTML = result
 		}
-
 	}
 
 }
