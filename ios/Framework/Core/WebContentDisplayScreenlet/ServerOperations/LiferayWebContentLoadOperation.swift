@@ -18,6 +18,7 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 
 	public var groupId: Int64?
 	public var articleId: String?
+	public var templateId: Int64?
 
 	public var resultHTML: String?
 
@@ -43,15 +44,29 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 	}
 
 	override internal func doRun(#session: LRSession) {
-		let service = LRJournalArticleService_v62(session: session)
-
 		resultHTML = nil
 
-		let result = service.getArticleContentWithGroupId(groupId!,
+		var result:String
+
+		if let template = templateId {
+			let service = LRScreensjournalarticleService_v62(session: session)
+
+			result = service.getJournalArticleContentWithGroupId(groupId!,
+				articleId: articleId!,
+				templateId: templateId!,
+				locale: NSLocale.currentLocaleString,
+				error: &lastError)
+
+		}
+		else {
+			let service = LRJournalArticleService_v62(session: session)
+
+			result = service.getArticleContentWithGroupId(groupId!,
 				articleId: articleId!,
 				languageId: NSLocale.currentLocaleString,
 				themeDisplay: nil,
 				error: &lastError)
+		}
 
 		if lastError == nil {
 			resultHTML = result
