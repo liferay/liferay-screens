@@ -24,5 +24,6 @@
 @interface LRScreensassetentryService_v62 : LRBaseService
 
 - (NSArray *)getAssetEntriesWithAssetEntryQuery:(LRJSONObjectWrapper *)assetEntryQuery locale:(NSString *)locale error:(NSError **)error;
+- (NSArray *)getAssetEntriesWithCompanyId:(long long)companyId groupId:(long long)groupId portletItemName:(NSString *)portletItemName locale:(NSString *)locale error:(NSError **)error;
 
 @end

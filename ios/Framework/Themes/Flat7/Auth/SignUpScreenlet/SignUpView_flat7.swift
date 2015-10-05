@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
 
 public class SignUpView_flat7: SignUpView_default {

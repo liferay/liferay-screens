@@ -60,7 +60,6 @@ import UIKit
 		return (attributes["entryId"] as! NSNumber).longLongValue
 	}
 
-
 	//MARK: Init
 
 	public init(attributes:[String:AnyObject]) {
@@ -74,6 +73,7 @@ import UIKit
 
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var classNameId: Int64 = 0
+	@IBInspectable public var portletItemName: String?
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	@IBOutlet public weak var delegate: AssetListScreenletDelegate?
@@ -92,8 +92,8 @@ import UIKit
 			page: page,
 			computeRowCount: computeRowCount,
 			groupId: self.groupId,
-			classNameId: self.classNameId)
-
+			classNameId: self.classNameId,
+			portletItemName: self.portletItemName)
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		return interactor
