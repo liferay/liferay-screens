@@ -36,13 +36,12 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	}
 
 	override internal func doRun(#session: LRSession) {
-		if let filter = portletItemName {
+		if let portletItemName = portletItemName {
+			let service = LRScreensassetentryService_v62(session: session)
 
-			let screenletsService = LRScreensassetentryService_v62(session: session)
-
-			let responses = screenletsService.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
-				groupId:groupId!,
-				portletItemName:portletItemName!,
+			let responses = service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
+				groupId: groupId!,
+				portletItemName: portletItemName,
 				locale: NSLocale.currentLocaleString,
 				error: &lastError)
 
@@ -57,7 +56,8 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 					lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
 				}
 			}
-		} else {
+		}
+		else {
 			super.doRun(session: session)
 		}
 	}
@@ -86,11 +86,11 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	}
 
 	override internal func doGetRowCountOperation(#session: LRBatchSession) {
-		let assetsService = LRAssetEntryService_v62(session: session)
+		let service = LRAssetEntryService_v62(session: session)
 		let entryQueryAttributes = configureEntryQueryAttributes()
 		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
-		assetsService.getEntriesCountWithEntryQuery(entryQuery, error: nil)
+		service.getEntriesCountWithEntryQuery(entryQuery, error: nil)
 	}
 
 
