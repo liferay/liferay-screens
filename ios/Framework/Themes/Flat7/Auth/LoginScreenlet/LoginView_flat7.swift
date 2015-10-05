@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
 
 public class LoginView_flat7: LoginView_default {

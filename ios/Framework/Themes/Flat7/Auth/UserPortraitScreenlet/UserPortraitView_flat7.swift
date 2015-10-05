@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
 
 public class UserPortraitView_flat7: UserPortraitView_default {

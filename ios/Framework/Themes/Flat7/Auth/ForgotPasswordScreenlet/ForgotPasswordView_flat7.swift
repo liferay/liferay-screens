@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
 
 public class ForgotPasswordView_flat7: ForgotPasswordView_default {

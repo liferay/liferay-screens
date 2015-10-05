@@ -18,12 +18,17 @@ extension NSBundle {
 
 	public class func allBundles(currentClass: AnyClass) -> [NSBundle] {
 		let bundles =
-			[discoverBundles(),
-				[bundleForDefaultTheme(),
+			[
+				discoverBundles(),
+				[
+					bundleForDefaultTheme(),
 					bundleForCore(),
-					NSBundle(forClass: currentClass), NSBundle(forClass: currentClass), NSBundle(forClass: currentClass)],
-				bundlesForApp()]
-				.flatMap { $0 }
+					NSBundle(forClass: currentClass)
+				],
+				bundlesForApp()
+			]
+			.flatMap { $0 }
+
 		return reduce(bundles, []) { ac, x in
 			contains(ac, x) ? ac : ac + [x]
 		}

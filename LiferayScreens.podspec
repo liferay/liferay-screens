@@ -41,8 +41,7 @@ Pod::Spec.new do |s|
 
 	s.resource_bundle = {
 		'LiferayScreens-core' => 'ios/Framework/Core/**/*.{plist,lproj}',
-		'LiferayScreens-default' => 'ios/Framework/Themes/Default/**/*.{xib,png,plist,lproj}',
-		'LiferayScreens-flat7' => 'ios/Framework/Themes/Flat7/**/*.{xib,png,plist,lproj}'
+		'LiferayScreens-default' => 'ios/Framework/Themes/Default/**/*.{xib,png,plist,lproj}'
 	}
 	
 	s.xcconfig = {
