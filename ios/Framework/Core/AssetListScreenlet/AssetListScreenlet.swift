@@ -60,7 +60,6 @@ import UIKit
 		return Int64(attributes["entryId"] as! Int)
 	}
 
-
 	//MARK: Init
 
 	public init(attributes:[String:AnyObject]) {
@@ -74,6 +73,7 @@ import UIKit
 
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var classNameId: Int = 0
+	@IBInspectable public var portletItemName: String?
 
 	@IBOutlet public weak var delegate: AssetListScreenletDelegate?
 
@@ -90,7 +90,8 @@ import UIKit
 				page: page,
 				computeRowCount: computeRowCount,
 				groupId: self.groupId,
-				classNameId: self.classNameId)
+				classNameId: self.classNameId,
+				portletItemName: self.portletItemName)
 	}
 
 	override internal func onLoadPageError(#page: Int, error: NSError) {
