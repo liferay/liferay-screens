@@ -57,7 +57,7 @@ public class DDLListInteractorImpl
 	}
 
 	@Override
-	protected boolean cached(Object[] args) throws Exception {
+	protected boolean cached(Object... args) throws Exception {
 
 		int startRow = (int) args[0];
 		int endRow = (int) args[1];

@@ -45,7 +45,7 @@ public class DDLFormAddRecordInteractorImpl
 
 		final JSONObject fieldsValues = new JSONObject(record.getData());
 
-		loadWithCache(groupId, record, fieldsValues);
+		storeWithCache(groupId, record, fieldsValues);
 	}
 
 	public void onEvent(DDLFormAddRecordEvent event) {
@@ -75,8 +75,10 @@ public class DDLFormAddRecordInteractorImpl
 	@Override
 	protected void notifySuccess(DDLFormAddRecordEvent event) {
 		try {
-			long recordId = event.getJSONObject().getLong("recordId");
-			event.getRecord().setRecordId(recordId);
+			if (event.getJSONObject().has("recordId")) {
+				long recordId = event.getJSONObject().getLong("recordId");
+				event.getRecord().setRecordId(recordId);
+			}
 			getListener().onDDLFormRecordAdded(event.getRecord());
 		}
 		catch (JSONException e) {

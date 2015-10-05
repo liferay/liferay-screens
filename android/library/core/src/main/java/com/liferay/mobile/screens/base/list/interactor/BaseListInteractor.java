@@ -63,7 +63,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 			return;
 		}
 
-		onEventWithCache(event);
+		onEventWithCache(event, event.getStartRow(), event.getEndRow(), event.getLocale());
 
 		if (!event.isFailed()) {
 			List entries = event.getEntries();

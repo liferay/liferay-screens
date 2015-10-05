@@ -211,7 +211,8 @@ public class UserPortraitLoadInteractorImpl
 
 	private Uri getUserPortraitURL(boolean male, long portraitId, String uuid) {
 		String maleString = male ? "male" : "female";
-		String url = LiferayServerContext.getServer() + "/image/user_" + maleString + "/_portrait?img_id=" + portraitId + "&img_id_token=" + getSHA1String(uuid);
+		String url = LiferayServerContext.getServer() + "/image/user_" + maleString +
+			"/_portrait?img_id=" + portraitId + "&img_id_token=" + getSHA1String(uuid);
 		return Uri.parse(url);
 	}
 

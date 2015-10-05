@@ -12,6 +12,8 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 
+import org.json.JSONObject;
+
 /**
  * @author Javier Gamarra
  */
@@ -24,7 +26,7 @@ public class UserPortraitUploadInteractorImpl
 	}
 
 	public void upload(final Long userId, final String picturePath) throws Exception {
-		loadWithCache(userId, picturePath, false);
+		storeWithCache(userId, picturePath, false);
 	}
 
 	public void onEventMainThread(UserPortraitUploadEvent event) {
@@ -80,7 +82,7 @@ public class UserPortraitUploadInteractorImpl
 	}
 
 	@Override
-	protected void storeToCache(Object... args) {
+	protected void storeToCache(boolean synced, Object... args) {
 
 		long userId = (long) args[0];
 		String picturePath = (String) args[1];
@@ -88,6 +90,8 @@ public class UserPortraitUploadInteractorImpl
 		TableCache file = new TableCache(String.valueOf(userId), DefaultCachedType.USER_PORTRAIT_UPLOAD, picturePath);
 		file.setDirty(!synced);
 		CacheSQL.getInstance().set(file);
+
+		onEventMainThread(new UserPortraitUploadEvent(getTargetScreenletId(), picturePath, userId, new JSONObject()));
 	}
 
 }
