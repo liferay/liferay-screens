@@ -54,6 +54,7 @@ import java.util.Map;
 public class DDLFormScreenlet
 	extends BaseScreenlet<DDLFormViewModel, DDLFormBaseInteractor>
 	implements DDLFormListener {
+
 	public static final String LOAD_FORM_ACTION = "loadForm";
 	public static final String LOAD_RECORD_ACTION = "loadRecord";
 	public static final String ADD_RECORD_ACTION = "addRecord";
@@ -63,9 +64,11 @@ public class DDLFormScreenlet
 	public DDLFormScreenlet(Context context) {
 		super(context);
 	}
+
 	public DDLFormScreenlet(Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
+
 	public DDLFormScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
@@ -199,6 +202,27 @@ public class DDLFormScreenlet
 
 		if (_listener != null) {
 			_listener.onDDLFormUpdateRecordFailed(e);
+		}
+	}
+
+	@Override
+	public void loadingFromCache(boolean success) {
+		if (_listener != null) {
+			_listener.loadingFromCache(success);
+		}
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+		if (_listener != null) {
+			_listener.retrievingOnline(triedInCache, e);
+		}
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+		if (_listener != null) {
+			_listener.storingToCache(object);
 		}
 	}
 

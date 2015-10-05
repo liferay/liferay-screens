@@ -88,6 +88,27 @@ public class DDLListScreenlet
 	}
 
 	@Override
+	public void loadingFromCache(boolean success) {
+		if (getListener() != null) {
+			getListener().loadingFromCache(success);
+		}
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+		if (getListener() != null) {
+			getListener().retrievingOnline(triedInCache, e);
+		}
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+		if (getListener() != null) {
+			getListener().storingToCache(object);
+		}
+	}
+
+	@Override
 	protected void loadRows(DDLListInteractor interactor, int startRow, int endRow, Locale locale) throws Exception {
 		interactor.loadRows(_recordSetId, _userId, startRow, endRow, locale);
 	}

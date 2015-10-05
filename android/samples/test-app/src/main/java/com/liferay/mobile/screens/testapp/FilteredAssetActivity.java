@@ -36,4 +36,18 @@ public class FilteredAssetActivity extends ThemeActivity implements BaseListList
 
 	}
 
+	@Override
+	public void loadingFromCache(boolean success) {
+
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+
+	}
 }

@@ -45,4 +45,18 @@ public class WebContentDisplayActivity extends ThemeActivity implements WebConte
 		error("Could not receive web content information", e);
 	}
 
+	@Override
+	public void loadingFromCache(boolean success) {
+
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+
+	}
 }

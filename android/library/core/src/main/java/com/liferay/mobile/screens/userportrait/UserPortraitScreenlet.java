@@ -159,6 +159,27 @@ public class UserPortraitScreenlet
 		getViewModel().showFailedOperation(UPLOAD_PORTRAIT, e);
 	}
 
+	@Override
+	public void loadingFromCache(boolean success) {
+		if (_listener != null) {
+			_listener.loadingFromCache(success);
+		}
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+		if (_listener != null) {
+			_listener.retrievingOnline(triedInCache, e);
+		}
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+		if (_listener != null) {
+			_listener.storingToCache(object);
+		}
+	}
+
 	public void setListener(UserPortraitListener listener) {
 		_listener = listener;
 	}

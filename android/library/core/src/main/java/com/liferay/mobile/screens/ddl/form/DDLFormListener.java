@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.form;
 
+import com.liferay.mobile.screens.cache.CacheListener;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 
@@ -22,7 +23,7 @@ import org.json.JSONObject;
 /**
  * @author Jose Manuel Navarro
  */
-public interface DDLFormListener {
+public interface DDLFormListener extends CacheListener {
 
 	void onDDLFormLoaded(Record record);
 
