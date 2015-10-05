@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, AssetClassNameId) {
 	AssetClassNameIdDDLRecordSet = 10098,
 
 	// Journal
-	AssetClassNameIdJournalArticle = 20109,
+	AssetClassNameIdJournalArticle = 10109,
 	AssetClassNameIdJournalFolder = 10013,
 
 	// MessageBoard
