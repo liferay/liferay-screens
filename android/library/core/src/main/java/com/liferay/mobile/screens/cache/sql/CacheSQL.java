@@ -28,7 +28,15 @@ public class CacheSQL<E extends CachedContent> implements Cache<E> {
 	 */
 	@Override
 	public List get(CachedType cachedType, String query, Object... args) {
-		return _cacheStrategyFactory.recoverStrategy(cachedType).get(query, args);
+		return _cacheStrategyFactory.recoverStrategy(cachedType).get("", query, args);
+	}
+
+	/**
+	 * Sync and blocking get with order by
+	 */
+	@Override
+	public List get(CachedType cachedType, String orderBy, String query, Object... args) {
+		return _cacheStrategyFactory.recoverStrategy(cachedType).get(orderBy, query, args);
 	}
 
 	/**
@@ -105,12 +113,12 @@ public class CacheSQL<E extends CachedContent> implements Cache<E> {
 	}
 
 	@NonNull
-	public static Object querySet(Object object) {
+	public static DatabaseResult querySet(Object object) {
 		return StorIOSQLite.querySet(object);
 	}
 
-	public static List queryGet(Class tableClass, String tableName, String where, Object... queryArgs) {
-		return StorIOSQLite.queryGet(tableClass, tableName, where, queryArgs);
+	public static List queryGet(Class tableClass, String tableName, String orderBy, String where, Object... queryArgs) {
+		return StorIOSQLite.queryGet(tableClass, tableName, orderBy, where, queryArgs);
 	}
 
 	private Object save(E object) {

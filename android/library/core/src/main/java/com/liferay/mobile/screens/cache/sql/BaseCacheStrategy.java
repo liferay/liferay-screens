@@ -1,8 +1,6 @@
 package com.liferay.mobile.screens.cache.sql;
 
 import com.liferay.mobile.screens.cache.CachedContent;
-import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
-
 import java.util.List;
 
 import static com.liferay.mobile.screens.cache.sql.CacheSQL.queryGet;
@@ -20,19 +18,18 @@ public abstract class BaseCacheStrategy<E extends CachedContent> implements Cach
 	}
 
 	@Override
-	public List get(String query, Object... args) {
-		return queryGet(getDomainClass(), getTableName(), query, args);
+	public List get(String orderBy, String query, Object... args) {
+		return queryGet(getDomainClass(), getTableName(), "", query, args);
 	}
 
 	@Override
-	public Object set(E object) {
-		PutResult putResult = (PutResult) CacheSQL.querySet(object.getTableCache());
+	public DatabaseResult set(E object) {
+		DatabaseResult result = CacheSQL.querySet(object.getTableCache());
 
-		if (putResult.wasInserted() || putResult.wasUpdated()) {
+		if (result.hasError() || object == object.getTableCache()) {
+			return result;
+		} else {
 			return CacheSQL.querySet(object);
-		}
-		else {
-			return putResult;
 		}
 	}
 

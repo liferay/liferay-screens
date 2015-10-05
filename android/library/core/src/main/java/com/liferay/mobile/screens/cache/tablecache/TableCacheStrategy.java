@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.cache.tablecache;
 import com.liferay.mobile.screens.cache.CachedType;
 import com.liferay.mobile.screens.cache.sql.BaseCacheStrategy;
 import com.liferay.mobile.screens.cache.sql.CacheStrategy;
+import com.liferay.mobile.screens.cache.sql.DatabaseResult;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.LiferayLocale;
@@ -33,7 +34,7 @@ public class TableCacheStrategy extends BaseCacheStrategy<TableCache> implements
 			LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
 
 		List elements = queryGet(TableCache.class,
-			TableCache.TABLE_NAME,
+			TableCache.TABLE_NAME, "",
 			TYPE_USER_LOCALE_AND_GROUP_CRITERIA
 				+ " AND " + TableCache.ID + " = ? ",
 			_cachedType, defaultGroupId, defaultUserId, defaultLocale, id);
@@ -47,11 +48,11 @@ public class TableCacheStrategy extends BaseCacheStrategy<TableCache> implements
 	}
 
 	@Override
-	public List get(String query, Object... args) {
+	public List get(String orderBy, String query, Object... args) {
 		List<Object> arguments = new ArrayList<>(Arrays.asList(args));
 		arguments.add(0, _cachedType.name());
 
-		return queryGet(TableCache.class, TableCache.TABLE_NAME,
+		return queryGet(TableCache.class, TableCache.TABLE_NAME, "",
 			TableCache.TYPE + " = ?" + query, arguments.toArray());
 	}
 

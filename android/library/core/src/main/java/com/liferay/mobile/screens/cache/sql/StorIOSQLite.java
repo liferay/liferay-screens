@@ -1,7 +1,5 @@
 package com.liferay.mobile.screens.cache.sql;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
@@ -30,7 +28,6 @@ import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
 import com.pushtorefresh.storio.sqlite.queries.DeleteQuery;
 import com.pushtorefresh.storio.sqlite.queries.Query;
-import com.pushtorefresh.storio.sqlite.queries.RawQuery;
 
 import java.util.List;
 
@@ -64,6 +61,7 @@ public class StorIOSQLite {
 					.table(tableName)
 					.where(where)
 					.whereArgs(queryArgs)
+					.orderBy(orderBy)
 					.build())
 			.prepare()
 			.executeAsBlocking();

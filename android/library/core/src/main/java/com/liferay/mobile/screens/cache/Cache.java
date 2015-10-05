@@ -9,6 +9,8 @@ public interface Cache<E> {
 
 	List<E> get(CachedType cachedType, String query, Object... args);
 
+	List<E> get(CachedType cachedType, String orderBy, String query, Object... args);
+
 	E getById(CachedType cachedType, String id);
 
 	E getById(CachedType cachedType, String id, Long groupId, Long userId, Locale locale);
