@@ -14,7 +14,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		liferay:articleId="@string/liferay_article_id"
-		liferay:offlinePolicy="CACHE_FIRST"
+		liferay:offlinePolicy="REMOTE_FIRST"
 		liferay:layoutId="@layout/webcontentdisplay_default"/>
 
 </LinearLayout>
