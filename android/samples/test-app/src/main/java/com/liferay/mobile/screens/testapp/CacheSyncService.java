@@ -121,9 +121,8 @@ public class CacheSyncService extends IntentService {
 
 	private void sendRecords(Cache cache) {
 
-
-
-		List<DDLRecordCache> records = getLatestRecordsToSync(cache, groupId);
+		Long groupId = LiferayServerContext.getGroupId();
+		List<DDLRecordCache> records = getLatestRecordsToSync(cache);
 
 		DDLRecordService recordService = new DDLRecordService(SessionContext.createSessionFromCurrentSession());
 
