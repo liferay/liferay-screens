@@ -115,7 +115,8 @@ public class AssetListScreenlet
 		_classNameId = typedArray.getInt(
 			R.styleable.AssetListScreenlet_classNameId, 0);
 
-		int offlinePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_offlinePolicy,
+		Integer offlinePolicy = typedArray.getInteger(
+			R.styleable.AssetListScreenlet_offlinePolicy,
 			OfflinePolicy.REMOTE_ONLY.ordinal());
 		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 

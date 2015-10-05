@@ -63,11 +63,11 @@ public class DDLListScreenlet
 		return _userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(int userId) {
 		_userId = userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		_userId = userId;
 	}
 
@@ -118,7 +118,7 @@ public class DDLListScreenlet
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.DDLListScreenlet, 0, 0);
 
-		int offlinePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_offlinePolicy,
+		int offlinePolicy = typedArray.getInt(R.styleable.DDLListScreenlet_offlinePolicy,
 			OfflinePolicy.REMOTE_ONLY.ordinal());
 		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
