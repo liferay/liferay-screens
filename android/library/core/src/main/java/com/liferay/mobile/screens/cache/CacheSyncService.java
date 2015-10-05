@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.testapp;
+package com.liferay.mobile.screens.cache;
 
 import android.app.IntentService;
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.net.NetworkInfo;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.v62.ddlrecord.DDLRecordService;
-import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
 import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
@@ -41,6 +40,144 @@ public class CacheSyncService extends IntentService {
 	public CacheSyncService() {
 		super(CacheSyncService.class.getName());
 	}
+
+	//FIXME finish cache when ddl document upload error
+	//TODO check differences with date instead of json content,
+	//TODO and return in order,
+
+	//FIXME review: upload portrait, upload file, save/update record,
+
+	//TODO review iOS code,
+	//TODO check documentation dev net
+	//FIXME finish send/sync cache + conflict resolutions
+//	https://docs.google.com/document/d/16lXoDe3M_XtYGt8CnkmYVIxH0ROVyl5Xzt9_7JCIRsE/edit#heading=h.togulq81iduv
+//	Conflicts support four possible resolutions
+//	Keep local version: the remote version will be overwritten with the local one. Both the local cache and the portal will have the same version (Version 2 in the example above)
+//	Keep remote version: the local version will be overwritten with the remote one. Both the local cache and the portal will have the same version (Version 3 in the example above)
+//	Discard: the local version will be removed and the remote one won’t be overwritten.
+//		Ignore: neither local nor remote data is changed. The next synchronization process will detect the conflict again.
+
+//	Structure Load form structure from portal Go offline Load form again: the structure should be loaded from cache
+//
+//	Record Load form structure and record from portal Go offline Fill the form Load form and record again Expected: the data should be loaded from cache
+//
+//	Offline sync Load form structure from portal Fill the form Go offline Submit offline Sync Expected: The sync should fail (error code -5) Sync again Expected: the same items should appear
+//
+//	Add record Load form structure from portal
+//	Fill the form
+//	Go offline
+//	Submit offline
+//	Go online
+//	Sync
+//	Expected: The new record should be sent to portal
+//	Try again with more than 1 offline record
+//
+//	Update record: no conflicts
+//	Load form structure and record from portal
+//	Go offline
+//	Update the record
+//	Submit offline
+//	Go online
+//	Sync
+//	Expected: the updated record should be sent to portal
+//
+//	Update record: ignored conflict
+//	Load form structure and record from portal
+//	Change that record in the portal (this is the remote version)
+//	Go offline
+//	Update the record (this is the local version)
+//	Submit offline
+//	Go online
+//	Sync
+//	Expected: the conflict should be detected
+//	Choose ignore conflict
+//	Expected: the changed shouldn’t be sent to the portal.
+//	Expected: the items should be kept in the cache (sync again and the items should appear or load the record offline and should be loaded).
+//
+//	Update record: discarded conflict
+//	Load form structure and record from portal
+//	Change that record in the portal (this is the remote version)
+//	Go offline
+//	Update the record (this is the local version)
+//	Submit offline
+//	Go online
+//	Sync
+//	Expected: the conflict should be detected
+//	Choose discard conflict
+//	Expected: the changed shouldn’t be sent to the portal.
+//	Expected: the items should be removed from the cache (sync again and it shouldn’t appear)
+//
+//	Update record: use local version
+//	Load form structure and record from portal
+//	Change that record in the portal (this is the remote version)
+//	Go offline
+//	Update the record (this is the local version)
+//	Submit offline
+//	Go online
+//	Sync
+//	Expected: the conflict should be detected
+//	Choose “use local” version
+//	Expected: the changed should be sent to the portal.
+//	Expected: the items should be removed from the cache (sync again and it shouldn’t appear)
+//
+//	Update record: use remote version
+//	Load form structure and record from portal
+//	Change that record in the portal (this is the remote version)
+//	Go offline
+//	Update the record (this is the local version)
+//	Submit offline
+//	Go online
+//	Sync
+//	Expected: the conflict should be detected
+//	Choose “use remote” version
+//	Expected: the changed shouldn’t be sent to the portal.
+//	Expected: the item updated-local version should be removed from the cache (sync again and it shouldn’t appear)
+//	Expected: the remote version should be added to cache (load the record offline and the remote version should appear)
+//
+//	Offline Document & form: sync
+//	Load form structure form portal (including document and media fields)
+//	Go offline
+//	Fill the form adding a document
+//	Submit offline
+//	Go online
+//	Sync
+//	Expected: the document should be uploaded
+//	Expected: the record should be sent with the document reference attached
+//
+//	Offline Document & form: restore
+//	Load form structure form portal (including document and media fields)
+//	Go offline
+//	Fill the form adding a document
+//	Submit offline
+//	Load the record
+//	Expected: the structure should be loaded
+//	Expected: the form’s data should be loaded
+//	Expected: the form’s document should be loaded
+//
+//	Online Document & offline form: sync
+//	Load form structure form portal (including document and media fields)
+//	Upload a document
+//	Expected: should be sent to the portal
+//	Go offline
+//	Fill the form
+//	Submit offline
+//	Go online
+//	Sync
+//	Expected: the record should be sent with the document reference attached
+//
+//	Online Document & offline form: restore
+//	Load form structure form portal (including document and media fields)
+//	Upload a document
+//	Expected: should be sent to the portal
+//	Go offline
+//	Fill the form
+//	Submit offline
+//	Load the record
+//	Expected: the structure should be loaded
+//	Expected: the form’s data should be loaded
+//	Expected: the form’s document should be loaded
+//
+
 
 	@Override
 	protected void onHandleIntent(Intent intent) {

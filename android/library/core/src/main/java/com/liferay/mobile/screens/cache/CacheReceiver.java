@@ -1,9 +1,11 @@
-package com.liferay.mobile.screens.testapp;
+package com.liferay.mobile.screens.cache;
 
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.WakefulBroadcastReceiver;
+
+import com.liferay.mobile.screens.cache.CacheSyncService;
 
 /**
  * @author Javier Gamarra
