@@ -23,8 +23,6 @@ extension NSBundle {
 				[
 					bundleForDefaultTheme(),
 					bundleForCore(),
-					NSBundle(forClass: currentClass),
-					NSBundle(forClass: currentClass),
 					NSBundle(forClass: currentClass)
 				],
 				bundlesForApp()
