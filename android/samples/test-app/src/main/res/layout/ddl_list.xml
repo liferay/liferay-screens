@@ -15,8 +15,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		liferay:labelFields="@string/liferay_recordset_fields"
-		liferay:offlinePolicy="REMOTE_FIRST"
 		liferay:layoutId="@layout/ddl_list_default"
+		liferay:offlinePolicy="REMOTE_FIRST"
 		liferay:recordSetId="@string/liferay_recordset_id"/>
 
 	<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
@@ -25,6 +25,7 @@
 		android:layout_height="match_parent"
 		liferay:labelFields="@string/liferay_recordset_fields"
 		liferay:layoutId="@layout/ddl_list_material"
+		liferay:offlinePolicy="REMOTE_FIRST"
 		liferay:recordSetId="@string/liferay_recordset_id"/>
 
 </LinearLayout>

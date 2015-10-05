@@ -78,9 +78,19 @@
 				android:text="@string/customizing_a_screenlet"/>
 
 			<Button
+				android:id="@+id/clear_cache_forms"
+				style="@style/test_app_button"
+				android:text="@string/clear_cache_forms"/>
+
+			<Button
 				android:id="@+id/clear_cache"
 				style="@style/test_app_button"
 				android:text="@string/clear_cache"/>
+
+			<Button
+				android:id="@+id/sync_cache"
+				style="@style/test_app_button"
+				android:text="@string/sync_cache"/>
 
 			<Button
 				android:id="@+id/change_theme"
