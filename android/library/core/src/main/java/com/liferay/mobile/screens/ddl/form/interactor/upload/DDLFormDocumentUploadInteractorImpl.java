@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.ddl.form.interactor.upload;
 
 import android.content.Intent;
 
+import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
@@ -10,6 +11,8 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.service.UploadService;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
+
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -28,7 +31,7 @@ public class DDLFormDocumentUploadInteractorImpl
 
 		long repository = (repositoryId != 0) ? repositoryId : groupId;
 
-		loadWithCache(file, userId, groupId, repository, folderId, filePrefix);
+		storeWithCache(file, userId, groupId, repository, folderId, filePrefix);
 	}
 
 	public void onEventMainThread(DDLFormDocumentUploadEvent event) {
@@ -65,7 +68,7 @@ public class DDLFormDocumentUploadInteractorImpl
 	}
 
 	@Override
-	protected void storeToCache(Object[] args) {
+	protected void storeToCache(boolean synced, Object[] args) {
 
 		DocumentField file = (DocumentField) args[0];
 		long userId = (long) args[1];
@@ -75,7 +78,12 @@ public class DDLFormDocumentUploadInteractorImpl
 		String filePrefix = (String) args[5];
 
 		String path = file.getCurrentValue().toString();
-		CacheSQL.getInstance().set(new DocumentUploadCache(path, userId, groupId, repositoryId, folderId, filePrefix));
+		DocumentUploadCache documentUploadCache = new DocumentUploadCache(path, userId, groupId, repositoryId, folderId, filePrefix);
+		documentUploadCache.setDirty(!synced);
+		CacheSQL.getInstance().set(documentUploadCache);
+
+		onEventMainThread(new DDLFormDocumentUploadEvent(getTargetScreenletId(), file, userId,
+			groupId, repositoryId, folderId, filePrefix, new JSONObject()));
 	}
 
 }

@@ -80,6 +80,27 @@ public class WebContentDisplayScreenlet
 		return modifiedHtml;
 	}
 
+	@Override
+	public void loadingFromCache(boolean success) {
+		if (_listener != null) {
+			_listener.loadingFromCache(success);
+		}
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+		if (_listener != null) {
+			_listener.retrievingOnline(triedInCache, e);
+		}
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+		if (_listener != null) {
+			_listener.storingToCache(object);
+		}
+	}
+
 	public void setListener(WebContentDisplayListener listener) {
 		_listener = listener;
 	}
@@ -131,6 +152,7 @@ public class WebContentDisplayScreenlet
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 	}
+
 
 	protected void autoLoad() {
 		if ((_articleId != null) && SessionContext.hasSession()) {

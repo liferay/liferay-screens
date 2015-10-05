@@ -2,13 +2,14 @@ package com.liferay.mobile.screens.ddl.form.interactor.upload;
 
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
+import com.liferay.mobile.screens.userportrait.interactor.upload.RemoteWrite;
 
 import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  */
-public class DDLFormDocumentUploadEvent extends JSONObjectEvent {
+public class DDLFormDocumentUploadEvent extends JSONObjectEvent implements RemoteWrite {
 
 	public DDLFormDocumentUploadEvent(int targetScreenletId, DocumentField documentField,
 									  Long userId, Long groupId, Long repositoryId,
@@ -60,11 +61,20 @@ public class DDLFormDocumentUploadEvent extends JSONObjectEvent {
 		return _documentField;
 	}
 
-	private final DocumentField _documentField;
+	@Override
+	public boolean isRemote() {
+		return _remote;
+	}
 
+	public void setRemote(boolean remote) {
+		_remote = remote;
+	}
+
+	private final DocumentField _documentField;
 	private final Long _userId;
 	private final Long _groupId;
 	private final Long _repositoryId;
 	private final Long _folderId;
 	private final String _filePrefix;
+	private boolean _remote;
 }

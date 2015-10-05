@@ -7,7 +7,7 @@ import org.json.JSONObject;
 /**
  * @author Javier Gamarra
  */
-public class UserPortraitUploadEvent extends JSONObjectEvent {
+public class UserPortraitUploadEvent extends JSONObjectEvent implements RemoteWrite {
 
 	public UserPortraitUploadEvent(int targetScreenletId, String picturePath, long userId, Exception e) {
 		super(targetScreenletId, e);
@@ -31,6 +31,16 @@ public class UserPortraitUploadEvent extends JSONObjectEvent {
 		return _userId;
 	}
 
+	@Override
+	public boolean isRemote() {
+		return _remote;
+	}
+
+	public void setRemote(boolean remote) {
+		_remote = remote;
+	}
+
+	private boolean _remote;
 	private String _picturePath;
 	private long _userId;
 }

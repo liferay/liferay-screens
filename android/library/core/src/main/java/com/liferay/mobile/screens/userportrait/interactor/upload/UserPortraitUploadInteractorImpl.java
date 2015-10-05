@@ -86,6 +86,7 @@ public class UserPortraitUploadInteractorImpl
 		String picturePath = (String) args[1];
 
 		TableCache file = new TableCache(String.valueOf(userId), DefaultCachedType.USER_PORTRAIT_UPLOAD, picturePath);
+		file.setDirty(!synced);
 		CacheSQL.getInstance().set(file);
 	}
 

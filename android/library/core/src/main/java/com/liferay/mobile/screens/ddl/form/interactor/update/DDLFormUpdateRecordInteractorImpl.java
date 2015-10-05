@@ -43,7 +43,7 @@ public class DDLFormUpdateRecordInteractorImpl
 	public void updateRecord(long groupId, final Record record) throws Exception {
 		validate(groupId, record);
 
-		loadWithCache(groupId, record);
+		storeWithCache(groupId, record);
 	}
 
 	public void onEvent(DDLFormUpdateRecordEvent event) {
@@ -82,12 +82,16 @@ public class DDLFormUpdateRecordInteractorImpl
 	}
 
 	@Override
-	protected void storeToCache(Object[] args) {
+	protected void storeToCache(boolean synced, Object[] args) {
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
 		JSONObject fieldsValues = new JSONObject(record.getData());
 
-		CacheSQL.getInstance().set(new DDLRecordCache(groupId, record, fieldsValues));
+		DDLRecordCache recordCache = new DDLRecordCache(groupId, record, fieldsValues);
+		recordCache.setDirty(!synced);
+		CacheSQL.getInstance().set(recordCache);
+
+		onEvent(new DDLFormUpdateRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues));
 	}
 
 	protected DDLRecordService getDDLRecordService(Record record, long groupId) {

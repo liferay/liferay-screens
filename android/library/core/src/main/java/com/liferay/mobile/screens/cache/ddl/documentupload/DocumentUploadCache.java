@@ -7,6 +7,8 @@ import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
+import java.util.Date;
+
 /**
  * @author Javier Gamarra
  */
@@ -21,6 +23,7 @@ public class DocumentUploadCache implements CachedContent {
 	public static final String FOLDER_ID = "folderId";
 	public static final String FILE_PREFIX = "filePrefix";
 	public static final String DIRTY = "dirty";
+	public static final String SYNC_DATE = "sync_date";
 
 	public DocumentUploadCache() {
 		super();
@@ -33,11 +36,7 @@ public class DocumentUploadCache implements CachedContent {
 		_repositoryId = repositoryId;
 		_folderId = folderId;
 		_filePrefix = filePrefix;
-		_dirty = 0;
-	}
-
-	public int getDirty() {
-		return _dirty;
+		_dirty = 1;
 	}
 
 	public void setDirty(boolean dirty) {
@@ -48,24 +47,48 @@ public class DocumentUploadCache implements CachedContent {
 		return _path;
 	}
 
+	public void setPath(String path) {
+		_path = path;
+	}
+
 	public long getUserId() {
 		return _userId;
+	}
+
+	public void setUserId(long userId) {
+		_userId = userId;
 	}
 
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public long getRepositoryId() {
 		return _repositoryId;
+	}
+
+	public void setRepositoryId(long repositoryId) {
+		_repositoryId = repositoryId;
 	}
 
 	public long getFolderId() {
 		return _folderId;
 	}
 
+	public void setFolderId(long folderId) {
+		_folderId = folderId;
+	}
+
 	public String getFilePrefix() {
 		return _filePrefix;
+	}
+
+	public void setFilePrefix(String filePrefix) {
+		_filePrefix = filePrefix;
 	}
 
 	@Override
@@ -83,6 +106,14 @@ public class DocumentUploadCache implements CachedContent {
 		return new TableCache(_path, DefaultCachedType.DOCUMENT_UPLOAD, _path);
 	}
 
+	public Date getSyncDate() {
+		return new Date(_syncDate);
+	}
+
+	public void setSyncDate(Date syncDate) {
+		_syncDate = syncDate.getTime();
+	}
+
 	@StorIOSQLiteColumn(name = PATH, key = true)
 	String _path;
 	@StorIOSQLiteColumn(name = USER_ID)
@@ -97,4 +128,6 @@ public class DocumentUploadCache implements CachedContent {
 	String _filePrefix;
 	@StorIOSQLiteColumn(name = DIRTY)
 	int _dirty;
+	@StorIOSQLiteColumn(name = SYNC_DATE)
+	Long _syncDate;
 }

@@ -90,12 +90,16 @@ public class DDLFormAddRecordInteractorImpl
 	}
 
 	@Override
-	protected void storeToCache(Object... args) {
+	protected void storeToCache(boolean synced, Object... args) {
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
 		JSONObject fieldsValues = (JSONObject) args[2];
 
-		CacheSQL.getInstance().set(new DDLRecordCache(groupId, record, fieldsValues));
+		DDLRecordCache recordCache = new DDLRecordCache(groupId, record, fieldsValues);
+		recordCache.setDirty(!synced);
+		CacheSQL.getInstance().set(recordCache);
+
+		onEvent(new DDLFormAddRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues));
 	}
 
 	protected DDLRecordService getDDLRecordService(Record record, long groupId) {

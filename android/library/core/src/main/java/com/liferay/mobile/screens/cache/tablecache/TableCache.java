@@ -25,6 +25,7 @@ public class TableCache implements CachedContent {
 	public static final String GROUP_ID = "groupId";
 	public static final String CONTENT = "content";
 	public static final String DIRTY = "dirty";
+	public static final String SYNC_DATE = "sync_date";
 	public static final String LOCALE = "locale";
 
 	public TableCache() {
@@ -46,7 +47,7 @@ public class TableCache implements CachedContent {
 		_groupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
 		_locale = locale == null ? LiferayLocale.getDefaultSupportedLocale() :
 			LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
-		_dirty = 0;
+		_dirty = 1;
 	}
 
 	public void setDate(Date date) {
@@ -87,6 +88,10 @@ public class TableCache implements CachedContent {
 		return _content;
 	}
 
+	public void setContent(String content) {
+		_content = content;
+	}
+
 	public int getDirty() {
 		return _dirty;
 	}
@@ -95,12 +100,40 @@ public class TableCache implements CachedContent {
 		_dirty = dirty;
 	}
 
-	public void setContent(String content) {
-		_content = content;
+	public void setDirty(boolean dirty) {
+		_dirty = dirty ? 0 : 1;
 	}
 
-	public void setDirty(boolean dirty) {
-		_dirty = dirty ? 1 : 0;
+	public Long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(Long groupId) {
+		_groupId = groupId;
+	}
+
+	public Long getUserId() {
+		return _userId;
+	}
+
+	public void setUserId(Long userId) {
+		_userId = userId;
+	}
+
+	public Date getSyncDate() {
+		return new Date(_syncDate);
+	}
+
+	public void setSyncDate(Date syncDate) {
+		_syncDate = syncDate.getTime();
+	}
+
+	public String getLocale() {
+		return _locale;
+	}
+
+	public void setLocale(String locale) {
+		_locale = locale;
 	}
 
 	@StorIOSQLiteColumn(name = ID, key = true)
@@ -117,6 +150,8 @@ public class TableCache implements CachedContent {
 	Long _userId;
 	@StorIOSQLiteColumn(name = DIRTY)
 	int _dirty;
+	@StorIOSQLiteColumn(name = SYNC_DATE)
+	Long _syncDate;
 	@StorIOSQLiteColumn(name = LOCALE)
 	String _locale;
 

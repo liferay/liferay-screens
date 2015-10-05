@@ -1,14 +1,13 @@
 package com.liferay.mobile.screens.base.interactor;
 
 import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.userportrait.interactor.upload.RemoteWrite;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
-import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseCachedWriteRemoteInteractor<L, E extends BasicEvent> extends BaseRemoteInteractor<L> {
+public abstract class BaseCachedWriteRemoteInteractor<L, E extends RemoteWrite> extends BaseRemoteInteractor<L> {
 
 	public BaseCachedWriteRemoteInteractor(int targetScreenletId, OfflinePolicy offlinePolicy) {
 		super(targetScreenletId);
@@ -16,14 +15,25 @@ public abstract class BaseCachedWriteRemoteInteractor<L, E extends BasicEvent> e
 		_offlinePolicy = offlinePolicy;
 	}
 
-	protected void loadWithCache(Object... args) throws Exception {
-		if (_offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
+	protected void storeWithCache(Object... args) throws Exception {
+		if (_offlinePolicy == OfflinePolicy.CACHE_ONLY) {
+			storeToCache(false, args);
+		}
+		else if (_offlinePolicy == OfflinePolicy.CACHE_FIRST) {
+			try {
+				storeToCache(false, args);
+			}
+			catch (Exception e) {
+				online(args);
+			}
+		}
+		else if (_offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
 			try {
 				online(args);
 			}
 			catch (Exception e) {
+				storeToCache(false, args);
 				LiferayLogger.i("Store online first failed, trying to store locally version");
-				storeToCache(args);
 			}
 		}
 		else {
@@ -34,7 +44,7 @@ public abstract class BaseCachedWriteRemoteInteractor<L, E extends BasicEvent> e
 	protected void onEventWithCache(E event, Object... args) {
 		if (event.isFailed()) {
 			try {
-				storeToCache(args);
+				storeToCache(false, args);
 				notifySuccess(event);
 			}
 			catch (Exception e) {
@@ -42,6 +52,9 @@ public abstract class BaseCachedWriteRemoteInteractor<L, E extends BasicEvent> e
 			}
 		}
 		else {
+			if (event.isRemote()) {
+				storeToCache(true, args);
+			}
 			notifySuccess(event);
 		}
 	}
@@ -52,7 +65,7 @@ public abstract class BaseCachedWriteRemoteInteractor<L, E extends BasicEvent> e
 
 	protected abstract void notifyError(E event);
 
-	protected abstract void storeToCache(Object... args);
+	protected abstract void storeToCache(boolean synced, Object... args);
 
 	private final OfflinePolicy _offlinePolicy;
 

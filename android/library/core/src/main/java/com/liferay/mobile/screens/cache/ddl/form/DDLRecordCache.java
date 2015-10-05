@@ -17,6 +17,7 @@ import java.util.Locale;
 public class DDLRecordCache extends RecordCache {
 
 	public static final String TABLE_NAME = "ddlRecord";
+	public static final String SYNC_DATE = "sync_date";
 	public static final String DIRTY = "dirty";
 	public static final String GROUP_ID = "groupId";
 	public static final String DATE_ADDED = "dateAdded";
@@ -30,6 +31,7 @@ public class DDLRecordCache extends RecordCache {
 		super(record, jsonObject);
 		_groupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
 		_dateAdded = new Date().getTime();
+		_dirty = 1;
 	}
 
 	public long getGroupId() {
@@ -41,18 +43,27 @@ public class DDLRecordCache extends RecordCache {
 	}
 
 	public boolean isDirty() {
-		return _dirty;
+		return _dirty == 1;
 	}
 
 	public void setDirty(boolean dirty) {
-		_dirty = dirty;
+		_dirty = dirty ? 1 : 0;
 	}
 
 	public TableCache getTableCache() {
 		return new TableCache(String.valueOf(getId()), getCachedType(), _content, _groupId, null, new Locale(_locale));
 	}
 
+	public Date getSyncDate() {
+		return new Date(_syncDate);
+	}
+
+	public void setSyncDate(Date syncDate) {
+		_syncDate = syncDate.getTime();
+	}
+
 	@Override
+
 	public CachedType getCachedType() {
 		return DefaultCachedType.DDL_RECORD;
 	}
@@ -70,7 +81,8 @@ public class DDLRecordCache extends RecordCache {
 		_dateAdded = dateAdded;
 	}
 
-	private boolean _dirty;
+	private long _syncDate;
+	private int _dirty;
 	private long _groupId;
 	private long _dateAdded;
 }

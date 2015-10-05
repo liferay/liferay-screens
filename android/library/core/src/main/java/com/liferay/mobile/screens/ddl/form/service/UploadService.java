@@ -63,8 +63,10 @@ public class UploadService extends IntentService {
 		try {
 			JSONObject jsonObject = uploadFile(file, userId, groupId, repositoryId, folderId, filePrefix);
 
-			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, file, userId, groupId, repositoryId,
-				folderId, filePrefix, jsonObject));
+			DDLFormDocumentUploadEvent event = new DDLFormDocumentUploadEvent(targetScreenletId, file, userId, groupId, repositoryId,
+				folderId, filePrefix, jsonObject);
+			event.setRemote(true);
+			EventBusUtil.post(event);
 		}
 		catch (Exception e) {
 			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, file, userId, groupId, repositoryId,
