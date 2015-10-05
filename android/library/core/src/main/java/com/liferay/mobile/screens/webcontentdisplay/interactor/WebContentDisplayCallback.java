@@ -25,12 +25,21 @@ import java.util.Locale;
 public class WebContentDisplayCallback
 	extends InteractorAsyncTaskCallback<String> {
 
-	public WebContentDisplayCallback(int targetScreenletId, long groupId, String articleId, Locale locale) {
+	public WebContentDisplayCallback(int targetScreenletId, long groupId, String articleId, Locale locale, Long templateId) {
 		super(targetScreenletId);
 
 		_groupId = groupId;
 		_articleId = articleId;
 		_locale = locale;
+		_templateId = templateId;
+	}
+
+	public WebContentDisplayCallback(int targetScreenletId, long groupId, String articleId, Locale locale) {
+		this(targetScreenletId, groupId, articleId, locale, null);
+	}
+
+	public Long getTemplateId() {
+		return _templateId;
 	}
 
 	@Override
@@ -40,15 +49,16 @@ public class WebContentDisplayCallback
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new WebContentDisplayEvent(targetScreenletId, _groupId, _articleId, _locale, e);
+		return new WebContentDisplayEvent(targetScreenletId, _groupId, _articleId, _locale, _templateId, e);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, String result) {
-		return new WebContentDisplayEvent(targetScreenletId, _groupId, _articleId, _locale, result);
+		return new WebContentDisplayEvent(targetScreenletId, _groupId, _articleId, _locale, _templateId, result);
 	}
 
 	private final String _articleId;
 	private final long _groupId;
 	private final Locale _locale;
+	private final Long _templateId;
 }

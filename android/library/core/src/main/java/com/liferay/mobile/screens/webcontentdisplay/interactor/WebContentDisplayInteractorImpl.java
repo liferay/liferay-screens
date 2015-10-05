@@ -17,8 +17,8 @@ package com.liferay.mobile.screens.webcontentdisplay.interactor;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -51,7 +51,7 @@ public class WebContentDisplayInteractorImpl
 			return;
 		}
 
-		onEventWithCache(event, event.getArticleId(), event.getGroupId(), event.getLocale());
+		onEventWithCache(event, event.getGroupId(), event.getArticleId(), event.getLocale(), event.getTemplateId());
 
 		if (!event.isFailed()) {
 			getListener().onWebContentReceived(null, event.getHtml());
@@ -71,7 +71,7 @@ public class WebContentDisplayInteractorImpl
 			service.getArticleContent(groupId, articleId, locale.toString(), null);
 		}
 		else {
-			ScreensjournalarticleService screensjournalarticleService = getScreensJournalArticleService(groupId, articleId, locale);
+			ScreensjournalarticleService screensjournalarticleService = getScreensJournalArticleService(groupId, articleId, locale, templateId);
 			screensjournalarticleService.getJournalArticleContent(groupId, articleId, templateId, locale.toString());
 		}
 	}
@@ -87,10 +87,13 @@ public class WebContentDisplayInteractorImpl
 		long groupId = (long) args[0];
 		String articleId = (String) args[1];
 		Locale locale = (Locale) args[2];
+		Long templateId = (Long) args[3];
 
-		TableCache webContent = (TableCache) CacheSQL.getInstance().getById(DefaultCachedType.WEB_CONTENT, articleId, groupId, null, locale);
+		String id = articleId + (templateId == null ? "" : templateId);
+		Long userId = null;
+		TableCache webContent = (TableCache) CacheSQL.getInstance().getById(DefaultCachedType.WEB_CONTENT, id, groupId, userId, locale);
 		if (webContent != null) {
-			onEvent(new WebContentDisplayEvent(getTargetScreenletId(), groupId, articleId, locale, webContent.getContent()));
+			onEvent(new WebContentDisplayEvent(getTargetScreenletId(), groupId, articleId, locale, templateId, webContent.getContent()));
 			return true;
 		}
 		return false;
@@ -98,7 +101,8 @@ public class WebContentDisplayInteractorImpl
 
 	@Override
 	protected void storeToCache(WebContentDisplayEvent event, Object... args) {
-		CacheSQL.getInstance().set(new TableCache(event.getArticleId(), DefaultCachedType.WEB_CONTENT,
+		String webContentId = event.getArticleId() + (event.getTemplateId() == null ? "" : event.getTemplateId());
+		CacheSQL.getInstance().set(new TableCache(webContentId, DefaultCachedType.WEB_CONTENT,
 			event.getHtml(), event.getGroupId(), null, event.getLocale()));
 	}
 
@@ -108,10 +112,10 @@ public class WebContentDisplayInteractorImpl
 		return new JournalArticleService(session);
 	}
 
-	protected ScreensjournalarticleService getScreensJournalArticleService(long groupId, String articleId, Locale locale) {
+	protected ScreensjournalarticleService getScreensJournalArticleService(long groupId, String articleId, Locale locale, Long templateId) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(
-			new WebContentDisplayCallback(getTargetScreenletId(), groupId, articleId, locale));
+			new WebContentDisplayCallback(getTargetScreenletId(), groupId, articleId, locale, templateId));
 
 		return new ScreensjournalarticleService(session);
 	}

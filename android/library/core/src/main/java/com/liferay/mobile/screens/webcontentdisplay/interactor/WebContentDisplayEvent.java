@@ -23,21 +23,23 @@ import java.util.Locale;
  */
 public class WebContentDisplayEvent extends BasicEvent {
 
-	public WebContentDisplayEvent(int targetScreenletId, long groupId, String articleId, Locale locale, Exception e) {
+	public WebContentDisplayEvent(int targetScreenletId, long groupId, String articleId, Locale locale, Long templateId, Exception e) {
 		super(targetScreenletId, e);
 
 		_articleId = articleId;
 		_groupId = groupId;
 		_locale = locale;
+		_templateId = templateId;
 	}
 
-	public WebContentDisplayEvent(int targetScreenletId, long groupId, String articleId, Locale locale, String html) {
+	public WebContentDisplayEvent(int targetScreenletId, long groupId, String articleId, Locale locale, Long templateId, String html) {
 		super(targetScreenletId);
 		_html = html;
 
 		_articleId = articleId;
 		_groupId = groupId;
 		_locale = locale;
+		_templateId = templateId;
 	}
 
 	public Long getGroupId() {
@@ -56,8 +58,13 @@ public class WebContentDisplayEvent extends BasicEvent {
 		return _articleId;
 	}
 
+	public Long getTemplateId() {
+		return _templateId;
+	}
+
 	private String _html;
 	private String _articleId;
 	private long _groupId;
 	private Locale _locale;
+	private Long _templateId;
 }
