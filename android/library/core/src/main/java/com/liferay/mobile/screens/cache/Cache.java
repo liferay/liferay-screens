@@ -15,9 +15,9 @@ public interface Cache<E> {
 
 	void set(E object);
 
-	void clear(CachedType cachedType);
+	int clear(CachedType cachedType);
 
-	void clear(CachedType cachedType, String id);
+	int clear(CachedType cachedType, String id);
 
 	boolean clear(Context context);
 

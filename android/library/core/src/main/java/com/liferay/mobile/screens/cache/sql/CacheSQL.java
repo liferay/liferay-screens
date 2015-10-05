@@ -62,13 +62,13 @@ public class CacheSQL<E extends CachedContent> implements Cache<E> {
 	}
 
 	@Override
-	public void clear(CachedType cachedType) {
-		_cacheStrategyFactory.recoverStrategy(cachedType).clear();
+	public int clear(CachedType cachedType) {
+		return _cacheStrategyFactory.recoverStrategy(cachedType).clear();
 	}
 
 	@Override
-	public void clear(CachedType cachedType, String id) {
-		_cacheStrategyFactory.recoverStrategy(cachedType).clear(id);
+	public int clear(CachedType cachedType, String id) {
+		return _cacheStrategyFactory.recoverStrategy(cachedType).clear(id);
 	}
 
 	@Override

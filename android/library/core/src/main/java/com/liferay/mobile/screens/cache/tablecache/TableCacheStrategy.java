@@ -56,8 +56,8 @@ public class TableCacheStrategy extends BaseCacheStrategy<TableCache> implements
 	}
 
 	@Override
-	public Object set(TableCache object) {
-		return querySet(object);
+	public DatabaseResult set(TableCache object) {
+		return querySet(object.getTableCache());
 	}
 
 	@Override

@@ -12,4 +12,5 @@ public interface CachedContent {
 	String getId();
 
 	TableCache getTableCache();
+
 }

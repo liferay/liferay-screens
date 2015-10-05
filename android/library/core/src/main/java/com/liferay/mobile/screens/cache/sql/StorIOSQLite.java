@@ -40,15 +40,22 @@ import java.util.List;
 public class StorIOSQLite {
 
 	@NonNull
-	public static PutResult querySet(Object object) {
-		return getInstance()
+	public static DatabaseResult querySet(Object object) {
+		PutResult putResult = getInstance()
 			.put()
 			.object(object)
 			.prepare()
 			.executeAsBlocking();
+
+		if (putResult.wasInserted() || putResult.wasUpdated()) {
+			return new DatabaseResult(object, putResult.insertedId());
+		}
+		else {
+			return new DatabaseResult(false);
+		}
 	}
 
-	public static List queryGet(Class tableClass, String tableName, String where, Object... queryArgs) {
+	public static List queryGet(Class tableClass, String tableName, String orderBy, String where, Object... queryArgs) {
 		return getInstance()
 			.get()
 			.listOfObjects(tableClass)
