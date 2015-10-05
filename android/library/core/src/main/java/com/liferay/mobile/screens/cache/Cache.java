@@ -9,7 +9,7 @@ public interface Cache<E> {
 
 	List<E> get(CachedType cachedType, String query, Object... args);
 
-	List<E> get(CachedType cachedType, String orderBy, String query, Object... args);
+//	List<E> get(CachedType cachedType, String orderBy, String query, Object... args);
 
 	E getById(CachedType cachedType, String id);
 

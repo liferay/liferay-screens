@@ -34,7 +34,7 @@ public class CacheSQL<E extends CachedContent> implements Cache<E> {
 	/**
 	 * Sync and blocking get with order by
 	 */
-	@Override
+//	@Override
 	public List get(CachedType cachedType, String orderBy, String query, Object... args) {
 		return _cacheStrategyFactory.recoverStrategy(cachedType).get(orderBy, query, args);
 	}

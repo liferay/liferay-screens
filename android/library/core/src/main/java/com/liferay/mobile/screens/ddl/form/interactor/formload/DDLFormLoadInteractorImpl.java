@@ -53,7 +53,7 @@ public class DDLFormLoadInteractorImpl
 			return;
 		}
 
-		onEventWithCache(event);
+		onEventWithCache(event, event.getRecord());
 
 		if (!event.isFailed()) {
 
