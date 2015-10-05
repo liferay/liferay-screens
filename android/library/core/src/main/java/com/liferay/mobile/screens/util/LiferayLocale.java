@@ -1,5 +1,9 @@
 package com.liferay.mobile.screens.util;
 
+import com.liferay.mobile.screens.context.LiferayScreensContext;
+
+import java.util.Locale;
+
 /**
  * @author Javier Gamarra
  */
@@ -30,5 +34,13 @@ public class LiferayLocale {
 			default:
 				return "en_US";
 		}
+	}
+
+	public static Locale getDefaultLocale() {
+		return LiferayScreensContext.getContext().getResources().getConfiguration().locale;
+	}
+
+	public static String getDefaultSupportedLocale() {
+		return getSupportedLocale(getDefaultLocale().getDisplayLanguage());
 	}
 }

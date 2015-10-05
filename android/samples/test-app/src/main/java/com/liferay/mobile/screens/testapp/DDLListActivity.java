@@ -70,6 +70,21 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 		loadDDLForm(element);
 	}
 
+	@Override
+	public void loadingFromCache(boolean success) {
+
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+
+	}
+
 	private void loadDDLForm(Record element) {
 		final long recordId = element.getRecordId();
 		final long recordSetId = element.getRecordSetId();

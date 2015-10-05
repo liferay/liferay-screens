@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.testapp;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import com.liferay.mobile.screens.userportrait.UserPortraitListener;
@@ -68,6 +69,23 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 	@Override
 	public void onUserPortraitUploadFailure(UserPortraitScreenlet source, Exception e) {
 
+	}
+
+	@Override
+	public void loadingFromCache(boolean success) {
+		View content = findViewById(android.R.id.content);
+		Snackbar.make(content, "Trying to load from cache: " + success, Snackbar.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+		View content = findViewById(android.R.id.content);
+		Snackbar.make(content, "Storing to cache...", Snackbar.LENGTH_SHORT).show();
 	}
 
 	private UserPortraitScreenlet _screenlet;

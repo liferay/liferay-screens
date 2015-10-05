@@ -19,6 +19,7 @@ import android.util.Pair;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -26,9 +27,9 @@ import java.util.Map;
  */
 public class AssetListCallback extends BaseListCallback<AssetEntry> {
 
-	public AssetListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange) {
-		super(targetScreenletId, rowsRange);
-	}
+    public AssetListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange, Locale locale) {
+        super(targetScreenletId, rowsRange, locale);
+    }
 
 	@Override
 	public AssetEntry createEntity(Map<String, Object> stringObjectMap) {

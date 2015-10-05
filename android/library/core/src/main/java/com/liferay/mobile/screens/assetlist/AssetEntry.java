@@ -55,6 +55,10 @@ public class AssetEntry implements Parcelable {
 		destination.writeMap(_values);
 	}
 
+	public Map<String, Object> getValues() {
+		return _values;
+	}
+
 	private AssetEntry(Parcel in) {
 		_values = new HashMap<>();
 

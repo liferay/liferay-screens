@@ -16,20 +16,40 @@ package com.liferay.mobile.screens.ddl.form.interactor.update;
 
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.userportrait.interactor.upload.RemoteWrite;
 
 import org.json.JSONObject;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFormUpdateRecordEvent extends DDLFormBaseEvent {
+public class DDLFormUpdateRecordEvent extends DDLFormBaseEvent implements RemoteWrite {
 
-	public DDLFormUpdateRecordEvent(int targetScreenletId, Exception e) {
-		super(targetScreenletId, e);
+	public DDLFormUpdateRecordEvent(int targetScreenletId, Record record, long groupId, Exception e) {
+		super(targetScreenletId, record, e);
+
+		_groupId = groupId;
 	}
 
-	public DDLFormUpdateRecordEvent(int targetScreenletId, JSONObject jsonObject, Record record) {
-		super(targetScreenletId, jsonObject, record);
+	public DDLFormUpdateRecordEvent(int targetScreenletId, Record record, long groupId, JSONObject jsonObject) {
+		super(targetScreenletId, record, jsonObject);
+
+		_groupId = groupId;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	@Override
+	public boolean isRemote() {
+		return _remote;
+	}
+
+	public void setRemote(boolean remote) {
+		_remote = remote;
+	}
+
+	private boolean _remote;
+	private final long _groupId;
 }

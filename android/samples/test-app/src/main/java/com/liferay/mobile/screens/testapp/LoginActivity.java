@@ -30,26 +30,6 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		setContentView(R.layout.login);
-
-		_loginScreenlet = (LoginScreenlet) getActiveScreenlet(R.id.login_default, R.id.login_material);
-
-		_loginScreenlet.setVisibility(View.VISIBLE);
-		_loginScreenlet.setListener(this);
-
-		hideInactiveScreenlet(R.id.login_default, R.id.login_material);
-
-		EditText userName = (EditText) _loginScreenlet.findViewById(R.id.liferay_login);
-		userName.setText(getString(R.string.default_user_name));
-
-		EditText password = (EditText) _loginScreenlet.findViewById(R.id.liferay_password);
-		password.setText(getString(R.string.default_password));
-	}
-
-	@Override
 	public void onActivityResult(int request, int result, Intent intent) {
 		_loginScreenlet.sendOAuthResult(result, intent);
 	}
@@ -64,5 +44,28 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 		error("Login failed", e);
 	}
 
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.login);
+
+		_loginScreenlet = (LoginScreenlet) getActiveScreenlet(R.id.login_default, R.id.login_material);
+
+		_loginScreenlet.setVisibility(View.VISIBLE);
+		_loginScreenlet.setListener(this);
+
+		hideInactiveScreenlet(R.id.login_default, R.id.login_material);
+
+		setDefaultValues();
+	}
+
+	private void setDefaultValues() {
+		EditText login = (EditText) _loginScreenlet.findViewById(R.id.liferay_login);
+		login.setText(getString(R.string.default_user_name));
+
+		EditText password = (EditText) _loginScreenlet.findViewById(R.id.liferay_password);
+		password.setText(getString(R.string.default_password));
+	}
 	private LoginScreenlet _loginScreenlet;
 }

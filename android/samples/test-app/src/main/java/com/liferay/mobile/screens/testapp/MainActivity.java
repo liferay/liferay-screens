@@ -1,8 +1,11 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 
+import com.liferay.mobile.screens.cache.DefaultCachedType;
+import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.testapp.fullview.LoginFullActivity;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
@@ -29,6 +32,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.login_full_screenlet).setOnClickListener(this);
 		findViewById(R.id.change_theme).setOnClickListener(this);
 		findViewById(R.id.login).setOnClickListener(this);
+		findViewById(R.id.clear_cache).setOnClickListener(this);
+		findViewById(R.id.clear_cache_forms).setOnClickListener(this);
+		findViewById(R.id.sync_cache).setOnClickListener(this);
 	}
 
 	@Override
@@ -72,6 +78,26 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				finish();
 				currentTheme = isDefaultTheme() ? R.style.material_theme : R.style.default_theme;
 				startActivity(getIntentWithTheme(MainActivity.class));
+				break;
+			case R.id.clear_cache_forms:
+				int formRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_FORM);
+				int recordRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_RECORD);
+				int listRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_LIST);
+				int countRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_LIST_COUNT);
+
+				String cacheFormsMessage = "Deleted " + formRows + " forms, " + recordRows + " records, " +
+					listRows + " list rows and " + countRows + " count rows.";
+
+				Snackbar.make(_content, cacheFormsMessage, Snackbar.LENGTH_SHORT).show();
+				break;
+			case R.id.clear_cache:
+				boolean success = CacheSQL.getInstance().clear(this);
+				String clearCacheMessage = "Cache cleared: " + (success ? "sucessfully" : "failed");
+				Snackbar.make(_content, clearCacheMessage, Snackbar.LENGTH_SHORT).show();
+				break;
+			case R.id.sync_cache:
+				CacheSQL.getInstance().resync();
+				Snackbar.make(_content, "Launched resync process", Snackbar.LENGTH_SHORT).show();
 				break;
 			default:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));

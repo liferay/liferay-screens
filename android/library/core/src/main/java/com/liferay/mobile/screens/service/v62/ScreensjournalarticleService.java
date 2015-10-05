@@ -14,7 +14,9 @@
 
 package com.liferay.mobile.screens.service.v62;
 
+import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.BaseService;
+import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 
 import org.json.JSONArray;
@@ -30,7 +32,7 @@ public class ScreensjournalarticleService extends BaseService {
 		super(session);
 	}
 
-	public String getJournalArticle(int groupId, int classPK, String locale) throws Exception {
+	public String getJournalArticleContent(int groupId, int classPK, String locale) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -40,7 +42,7 @@ public class ScreensjournalarticleService extends BaseService {
 			_params.put("classPK", classPK);
 			_params.put("locale", checkNull(locale));
 
-			_command.put("/screens-web.screensjournalarticle/get-journal-article", _params);
+			_command.put("/screens-web.screensjournalarticle/get-journal-article-content", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -55,7 +57,7 @@ public class ScreensjournalarticleService extends BaseService {
 		return _result.getString(0);
 	}
 
-	public String getJournalArticleByTemplateId(long groupId, String articleId, long templateId, String locale) throws Exception {
+	public String getJournalArticleContent(long groupId, String articleId, long templateId, String locale) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -66,7 +68,7 @@ public class ScreensjournalarticleService extends BaseService {
 			_params.put("templateId", templateId);
 			_params.put("locale", checkNull(locale));
 
-			_command.put("/screens-web.screensjournalarticle/get-journal-article-by-template-id", _params);
+			_command.put("/screens-web.screensjournalarticle/get-journal-article-content", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);

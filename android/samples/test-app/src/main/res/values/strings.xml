@@ -8,6 +8,9 @@
 	<string name="asset_list">Asset List</string>
 	<string name="ddl_form">DDL Form</string>
 	<string name="ddl_list">DDL List</string>
+	<string name="clear_cache_forms">Clear cache forms</string>
+	<string name="clear_cache">Clear cache</string>
+	<string name="sync_cache">Sync cache</string>
 	<string name="change_theme">Change Theme</string>
 	<string name="webview_label">Web Content Display Screenlet: Shows the HTML of a web content given its articleId.</string>
 	<string name="user_portrait_label">User Portrait Screenlet: Shows the user\'s portrait picture. Can fetch the user portrait from the userId or the portraitId.</string>

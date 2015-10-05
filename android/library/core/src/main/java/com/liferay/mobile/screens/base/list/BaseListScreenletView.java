@@ -80,17 +80,17 @@ public abstract class BaseListScreenletView<
 	}
 
 	@Override
-	public void showFinishOperation(int page, List<E> entries, int rowCount) {
-		LiferayLogger.i("loaded page " + page + " of list with " + entries);
+	public void showFinishOperation(int page, List<E> serverEntries, int rowCount) {
+		LiferayLogger.i("loaded page " + page + " of list with " + serverEntries);
 
 		_progressBar.setVisibility(View.GONE);
 		_recyclerView.setVisibility(View.VISIBLE);
 
 		A adapter = getAdapter();
-		List<E> allEntries = createAllEntries(page, entries, rowCount, adapter);
+
+		addNewServerEntries(page, serverEntries, rowCount, adapter);
 
 		adapter.setRowCount(rowCount);
-		adapter.setEntries(allEntries);
 		adapter.notifyDataSetChanged();
 	}
 
@@ -204,7 +204,6 @@ public abstract class BaseListScreenletView<
 		return R.layout.list_item_progress_default;
 	}
 
-
 	protected ProgressBar getProgressBar() {
 		return _progressBar;
 	}
@@ -223,6 +222,19 @@ public abstract class BaseListScreenletView<
 
 	protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
 
+	private void addNewServerEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
+		BaseListScreenlet screenlet = ((BaseListScreenlet) getParent());
+		int firstRowForPage = screenlet.getFirstRowForPage(page);
+
+		List<E> entries = adapter.getEntries();
+		for (int i = entries.size(); i < rowCount; i++) {
+			entries.add(null);
+		}
+
+		for (int i = 0; i < serverEntries.size(); i++) {
+			entries.set(i + firstRowForPage, serverEntries.get(i));
+		}
+	}
 	private static final String _STATE_ENTRIES = "entries";
 	private static final String _STATE_ROW_COUNT = "rowCount";
 	private static final String _STATE_SUPER = "super";

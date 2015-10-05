@@ -21,7 +21,12 @@ import android.util.Base64;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.user.UserService;
-import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
+import com.liferay.mobile.screens.cache.Cache;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.cache.DefaultCachedType;
+import com.liferay.mobile.screens.cache.sql.CacheSQL;
+import com.liferay.mobile.screens.cache.userportrait.UserPortraitCache;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -30,6 +35,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 import com.squareup.picasso.Target;
 
 import org.json.JSONObject;
@@ -45,11 +51,11 @@ import java.security.NoSuchAlgorithmException;
  * @author Jose Manuel Navarro
  */
 public class UserPortraitLoadInteractorImpl
-	extends BaseRemoteInteractor<UserPortraitInteractorListener>
+	extends BaseCachedRemoteInteractor<UserPortraitInteractorListener, UserPortraitLoadEvent>
 	implements UserPortraitLoadInteractor, Target {
 
-	public UserPortraitLoadInteractorImpl(int targetScreenletId) {
-		super(targetScreenletId);
+	public UserPortraitLoadInteractorImpl(int screenletId, OfflinePolicy offlinePolicy) {
+		super(screenletId, offlinePolicy);
 	}
 
 	@Override
@@ -62,31 +68,24 @@ public class UserPortraitLoadInteractorImpl
 			getListener().onStartUserPortraitLoadRequest();
 		}
 
-		Picasso.with(LiferayScreensContext.getContext())
-			.load(uri)
-			.memoryPolicy(MemoryPolicy.NO_CACHE)
-			.networkPolicy(NetworkPolicy.NO_CACHE)
-			.into(this);
+		RequestCreator requestCreator = Picasso.with(LiferayScreensContext.getContext())
+			.load(uri);
+
+		if (OfflinePolicy.REMOTE_ONLY.equals(getOfflinePolicy())) {
+			requestCreator = requestCreator
+				.memoryPolicy(MemoryPolicy.NO_CACHE)
+				.networkPolicy(NetworkPolicy.NO_CACHE);
+		}
+
+		requestCreator.into(this);
 	}
 
 	@Override
-	public void load(long userId) throws Exception {
+	public void load(final long userId) throws Exception {
+
 		validate(userId);
 
-		if (SessionContext.hasSession() && SessionContext.getLoggedUser().getId() == userId) {
-			boolean male = true;
-			long portraitId = SessionContext.getLoggedUser().getPortraitId();
-			String uuid = SessionContext.getLoggedUser().getUuid();
-
-			load(male, portraitId, uuid);
-		}
-		else {
-			if (getListener() != null) {
-				getListener().onStartUserPortraitLoadRequest();
-			}
-
-			getUserService().getUserById(userId);
-		}
+		processWithCache(userId);
 	}
 
 	public void onEvent(UserPortraitLoadEvent event) {
@@ -95,21 +94,24 @@ public class UserPortraitLoadInteractorImpl
 		}
 
 		if (event.isFailed()) {
-			getListener().onUserPortraitLoadFailure(event.getException());
+			onEventWithCache(event, event.getUserId());
 		}
 		else {
 			JSONObject userAttributes = event.getJSONObject();
-
 			try {
-				boolean male = true;
 				long portraitId = userAttributes.getLong("portraitId");
+				Long userId = userAttributes.getLong("userId");
 				String uuid = userAttributes.getString("uuid");
 
-				load(male, portraitId, uuid);
+				if (hasToStoreToCache()) {
+					storeToCache(event, userId, portraitId, uuid);
+				}
+				load(true, portraitId, uuid);
 			}
 			catch (Exception e) {
-				getListener().onUserPortraitLoadFailure(e);
+				notifyError(event);
 			}
+
 		}
 	}
 
@@ -131,6 +133,63 @@ public class UserPortraitLoadInteractorImpl
 	public void onPrepareLoad(Drawable placeHolderDrawable) {
 	}
 
+	@Override
+	protected void online(Object[] args) throws Exception {
+
+		long userId = (long) args[0];
+
+		if (SessionContext.hasSession() && SessionContext.getLoggedUser().getId() == userId) {
+			long portraitId = SessionContext.getLoggedUser().getPortraitId();
+			String uuid = SessionContext.getLoggedUser().getUuid();
+
+			load(true, portraitId, uuid);
+		}
+		else {
+			if (getListener() != null) {
+				getListener().onStartUserPortraitLoadRequest();
+			}
+
+			getUserService(userId).getUserById(userId);
+		}
+	}
+
+	@Override
+	protected void notifyError(UserPortraitLoadEvent event) {
+		getListener().onUserPortraitLoadFailure(event.getException());
+	}
+
+	@Override
+	protected boolean cached(Object[] args) {
+
+		long userId = (long) args[0];
+
+		Cache cache = CacheSQL.getInstance();
+		UserPortraitCache userPortraitCache = (UserPortraitCache) cache.getById(
+			DefaultCachedType.USER_PORTRAIT, String.valueOf(userId));
+
+		if (userPortraitCache != null) {
+			load(userPortraitCache.isMale(), userPortraitCache.getPortraitId(), userPortraitCache.getUuid());
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	protected void storeToCache(UserPortraitLoadEvent event, Object... args) {
+
+		long userId = (long) args[0];
+		long portraitId = (long) args[1];
+		String uuid = (String) args[2];
+
+		CacheSQL.getInstance().set(new UserPortraitCache(userId, true, portraitId, uuid));
+	}
+
+	protected UserService getUserService(long userId) {
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setCallback(new UserPortraitLoadCallback(getTargetScreenletId(), userId));
+
+		return new UserService(session);
+	}
 
 	private void validate(long portraitId, String uuid) {
 		if (getListener() == null) {
@@ -150,17 +209,10 @@ public class UserPortraitLoadInteractorImpl
 		}
 	}
 
-	protected UserService getUserService() {
-		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new UserPortraitLoadCallback(getTargetScreenletId()));
-
-		return new UserService(session);
-	}
-
-
 	private Uri getUserPortraitURL(boolean male, long portraitId, String uuid) {
 		String maleString = male ? "male" : "female";
-		String url = LiferayServerContext.getServer() + "/image/user_" + maleString + "/_portrait?img_id=" + portraitId + "&img_id_token=" + getSHA1String(uuid);
+		String url = LiferayServerContext.getServer() + "/image/user_" + maleString +
+			"/_portrait?img_id=" + portraitId + "&img_id_token=" + getSHA1String(uuid);
 		return Uri.parse(url);
 	}
 
@@ -182,5 +234,4 @@ public class UserPortraitLoadInteractorImpl
 
 		return null;
 	}
-
 }

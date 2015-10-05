@@ -51,7 +51,7 @@ public class UploadService extends IntentService {
 		uploadFromIntent(intent);
 	}
 
-	private void uploadFromIntent(Intent intent) {
+	public void uploadFromIntent(Intent intent) {
 		DocumentField file = intent.getParcelableExtra("file");
 		Long userId = intent.getLongExtra("userId", 0);
 		Long groupId = intent.getLongExtra("groupId", 0);
@@ -61,43 +61,37 @@ public class UploadService extends IntentService {
 		int targetScreenletId = intent.getIntExtra("screenletId", 0);
 
 		try {
-			String path = file.getCurrentValue().toString();
-			String name = path.substring(path.lastIndexOf("/") + 1);
-			String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+			JSONObject jsonObject = uploadFile(file, userId, groupId, repositoryId, folderId, filePrefix);
 
-			Session session = SessionContext.createSessionFromCurrentSession();
-			DLAppService service = new DLAppService(session);
-
-			JSONObjectWrapper serviceContextWrapper = getJsonObjectWrapper(userId, groupId);
-
-			String fileName = (filePrefix == null ? "" : filePrefix) + date + "_" + name;
-
-			JSONObject jsonObject = service.addFileEntry(repositoryId, folderId, name,
-					getMimeType(path), fileName, "", "", getBytes(new File(path)), serviceContextWrapper);
-
-			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, jsonObject, file));
+			DDLFormDocumentUploadEvent event = new DDLFormDocumentUploadEvent(targetScreenletId, file, userId, groupId, repositoryId,
+				folderId, filePrefix, jsonObject);
+			event.setRemote(true);
+			EventBusUtil.post(event);
 		}
 		catch (Exception e) {
-			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, e, file));
+			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, file, userId, groupId, repositoryId,
+				folderId, filePrefix, e));
 		}
 	}
 
-	private JSONObjectWrapper getJsonObjectWrapper(Long userId, Long groupId) throws JSONException {
-		JSONObject serviceContextAttributes = new JSONObject();
-		serviceContextAttributes.put("userId", userId);
-		serviceContextAttributes.put("scopeGroupId", groupId);
-		return new JSONObjectWrapper(serviceContextAttributes);
+	public JSONObject uploadFile(DocumentField file, Long userId, Long groupId, Long repositoryId,
+								 Long folderId, String filePrefix) throws Exception {
+		String path = file.getCurrentValue().toString();
+		String name = path.substring(path.lastIndexOf("/") + 1);
+		String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+
+		Session session = SessionContext.createSessionFromCurrentSession();
+		DLAppService service = new DLAppService(session);
+
+		JSONObjectWrapper serviceContextWrapper = getJsonObjectWrapper(userId, groupId);
+
+		String fileName = (filePrefix == null ? "" : filePrefix) + date + "_" + name;
+
+		return service.addFileEntry(repositoryId, folderId, name,
+			getMimeType(path), fileName, "", "", getBytes(new File(path)), serviceContextWrapper);
 	}
 
-	private static String getMimeType(String path) {
-		String extension = MimeTypeMap.getFileExtensionFromUrl(path);
-		if (extension != null) {
-			return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
-		}
-		return null;
-	}
-
-	public byte[] getBytes(File file) throws IOException {
+	private byte[] getBytes(File file) throws IOException {
 		byte[] buffer = new byte[(int) file.length()];
 		InputStream ios = null;
 		try {
@@ -118,5 +112,20 @@ public class UploadService extends IntentService {
 		}
 
 		return buffer;
+	}
+
+	private JSONObjectWrapper getJsonObjectWrapper(Long userId, Long groupId) throws JSONException {
+		JSONObject serviceContextAttributes = new JSONObject();
+		serviceContextAttributes.put("userId", userId);
+		serviceContextAttributes.put("scopeGroupId", groupId);
+		return new JSONObjectWrapper(serviceContextAttributes);
+	}
+
+	private static String getMimeType(String path) {
+		String extension = MimeTypeMap.getFileExtensionFromUrl(path);
+		if (extension != null) {
+			return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+		}
+		return null;
 	}
 }

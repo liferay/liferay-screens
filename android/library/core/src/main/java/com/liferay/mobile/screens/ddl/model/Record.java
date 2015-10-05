@@ -61,24 +61,6 @@ public class Record implements Parcelable {
 		parseServerValues();
 	}
 
-	public Map<String, String> getData() {
-		Map<String, String> values = new HashMap<>(_fields.size());
-
-		for (Field f : _fields) {
-			String fieldValue = f.toData();
-
-			//FIXME - LPS-49460
-			// Server rejects the request if the value is empty string.
-			// This way we workaround the problem but a field can't be
-			// emptied when you're editing an existing row.
-			if (fieldValue != null && !fieldValue.isEmpty()) {
-				values.put(f.getName(), fieldValue);
-			}
-		}
-
-		return values;
-	}
-
 	public void refresh() {
 		for (Field f : _fields) {
 			Object fieldValue = getServerValue(f.getName());
@@ -169,8 +151,35 @@ public class Record implements Parcelable {
 		_creatorUserId = value;
 	}
 
+	public Map<String, String> getData() {
+		Map<String, String> values = new HashMap<>(_fields.size());
+
+		for (Field f : _fields) {
+			String fieldValue = f.toData();
+
+			//FIXME - LPS-49460
+			// Server rejects the request if the value is empty string.
+			// This way we workaround the problem but a field can't be
+			// emptied when you're editing an existing row.
+			if (fieldValue != null && !fieldValue.isEmpty()) {
+				values.put(f.getName(), fieldValue);
+			}
+		}
+
+		return values;
+	}
+
 	public Locale getLocale() {
 		return _locale;
+	}
+
+	public void setValues(Map<String, Object> values) {
+		for (Field f : _fields) {
+			Object fieldValue = values.get(f.getName());
+			if (fieldValue != null) {
+				f.setCurrentValue(f.convertFromString(fieldValue.toString()));
+			}
+		}
 	}
 
 	public boolean isRecordStructurePresent() {
@@ -184,7 +193,7 @@ public class Record implements Parcelable {
 	 * @return server value of that field
 	 */
 	public String getServerValue(String field) {
-		return getModelValues().get(field);
+		return getModelValues() == null ? null : getModelValues().get(field);
 	}
 
 	/**
@@ -194,12 +203,24 @@ public class Record implements Parcelable {
 	 * @return server attribute of that field
 	 */
 	public Object getServerAttribute(String field) {
-		return getModelAttributes().get(field);
+		return getModelAttributes() == null ? null : getModelAttributes().get(field);
 	}
 
 	public void setValuesAndAttributes(Map<String, Object> valuesAndAttributes) {
 		_valuesAndAttributes = valuesAndAttributes;
 		parseServerValues();
+	}
+
+	public Map<String, Object> getValuesAndAttributes() {
+		return _valuesAndAttributes;
+	}
+
+	public HashMap<String, String> getModelValues() {
+		return (HashMap<String, String>) _valuesAndAttributes.get("modelValues");
+	}
+
+	public HashMap<String, Object> getModelAttributes() {
+		return (HashMap<String, Object>) _valuesAndAttributes.get("modelAttributes");
 	}
 
 	private Record(Parcel in, ClassLoader loader) {
@@ -217,7 +238,7 @@ public class Record implements Parcelable {
 	private void parseServerValues() {
 		_recordId = JSONUtil.castToLong(getServerAttribute("recordId"));
 		_recordSetId = JSONUtil.castToLong(getServerAttribute("recordSetId"));
-		_creatorUserId = JSONUtil.castToLong(getServerAttribute("creatorUserId"));
+		_creatorUserId = JSONUtil.castToLong(getServerAttribute("userId"));
 		_structureId = JSONUtil.castToLong(getServerAttribute("structureId"));
 	}
 
@@ -225,14 +246,6 @@ public class Record implements Parcelable {
 		if (field != null) {
 			destination.writeLong(field);
 		}
-	}
-
-	private HashMap<String, String> getModelValues() {
-		return (HashMap<String, String>) _valuesAndAttributes.get("modelValues");
-	}
-
-	private HashMap<String, Object> getModelAttributes() {
-		return (HashMap<String, Object>) _valuesAndAttributes.get("modelAttributes");
 	}
 
 	private List<Field> _fields = new ArrayList<>();

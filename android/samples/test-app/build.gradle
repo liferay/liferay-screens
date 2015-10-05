@@ -12,9 +12,9 @@ android {
 	defaultConfig {
 		applicationId "com.liferay.mobile.screens.testapp"
 		minSdkVersion 15
-		targetSdkVersion 22
-		versionCode 1
-		versionName "1.0"
+		targetSdkVersion 23
+		versionCode 3
+		versionName "1.2"
 	}
 
 	compileOptions {
@@ -54,5 +54,5 @@ dependencies {
 	compile project(':liferay-material-viewset')
 	compile project(':addbookmarkscreenlet')
 
-	compile 'com.android.support:appcompat-v7:+'
+	compile 'com.android.support:design:23.0.1'
 }

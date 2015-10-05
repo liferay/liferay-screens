@@ -10,7 +10,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		app:articleId="@string/liferay_article_id"
-		app:templateId="56432"/>
+		app:autoLoad="false"
+		app:offlinePolicy="REMOTE_FIRST"
+		app:templateId="@string/liferay_template_id1"/>
 
 	<com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet
 		android:id="@+id/journal_article_with_template_alternative"
@@ -18,6 +20,8 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@id/journal_article_with_template"
 		app:articleId="@string/liferay_article_id"
-		app:templateId="56435"/>
+		app:autoLoad="false"
+		app:offlinePolicy="REMOTE_FIRST"
+		app:templateId="@string/liferay_template_id2"/>
 
 </RelativeLayout>

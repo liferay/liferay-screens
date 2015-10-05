@@ -68,6 +68,21 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 		info("Item selected: " + element);
 	}
 
+	@Override
+	public void loadingFromCache(boolean success) {
+
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+
+	}
+
 	private AssetListScreenlet _screenlet;
 
 }

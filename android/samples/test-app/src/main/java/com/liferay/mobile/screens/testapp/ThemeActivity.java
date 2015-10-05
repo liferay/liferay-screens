@@ -39,6 +39,8 @@ public abstract class ThemeActivity extends ActionBarActivity {
 		new LiferayCrouton.Builder().withInfoColor(color).build();
 
 		setTheme(currentTheme);
+
+		_content = findViewById(android.R.id.content);
 	}
 
 	protected void error(String message, Exception e) {
@@ -75,4 +77,5 @@ public abstract class ThemeActivity extends ActionBarActivity {
 	}
 
 	protected Integer currentTheme;
+	protected View _content;
 }

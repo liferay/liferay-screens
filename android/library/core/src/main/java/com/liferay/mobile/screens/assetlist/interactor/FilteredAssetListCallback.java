@@ -53,11 +53,11 @@ public class FilteredAssetListCallback extends InteractorAsyncTaskCallback<BaseL
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, BaseListResult<AssetEntry> result) {
-		return new BaseListEvent<>(targetScreenletId, 0, 0, result.getEntries(), result.getRowCount());
+		return new BaseListEvent<>(targetScreenletId, 0, 0, null, result.getEntries(), result.getRowCount());
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new BaseListEvent<AssetEntry>(targetScreenletId, e);
+		return new BaseListEvent<AssetEntry>(targetScreenletId, 0, 0, null, e);
 	}
 }

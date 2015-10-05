@@ -29,7 +29,7 @@ import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
+import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONObject;
@@ -40,7 +40,7 @@ import java.util.List;
  * @author Javier Gamarra
  */
 public class DDLListAdapter
-	extends BaseListAdapter<DDLEntry, DDLListAdapter.ImageViewHolder> {
+	extends BaseListAdapter<Record, DDLListAdapter.ImageViewHolder> {
 
 	public static class ImageViewHolder
 		extends BaseListAdapter.ViewHolder implements View.OnClickListener {
@@ -89,17 +89,17 @@ public class DDLListAdapter
 	}
 
 	@Override
-	protected void fillHolder(DDLEntry entry, ImageViewHolder holder) {
+	protected void fillHolder(Record entry, ImageViewHolder holder) {
 
 		StringBuilder builder = new StringBuilder();
 
 		if (entry != null && _labelFields != null && !_labelFields.isEmpty()) {
 
-			String titleField = entry.getValue(_labelFields.get(0));
+			String titleField = entry.getServerValue(_labelFields.get(0));
 
 			for (int i = 1; i < _labelFields.size(); ++i) {
 				String field = _labelFields.get(i);
-				String value = entry.getValue(field);
+				String value = entry.getServerValue(field);
 				if (value != null && !value.isEmpty()) {
 					builder.append(value);
 					builder.append(" ");
@@ -113,9 +113,9 @@ public class DDLListAdapter
 		}
 	}
 
-	private void buildURL(DDLEntry entry, final ImageView imageView) {
+	private void buildURL(Record entry, final ImageView imageView) {
 		try {
-			String photo = entry.getValue("Photo");
+			String photo = entry.getServerValue("Photo");
 			if (photo != null) {
 
 				final Session session = SessionContext.createSessionFromCurrentSession();

@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.userportrait;
 
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.RobolectricManifestTestRunner;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractorImpl;
 import com.liferay.mobile.screens.util.MockFactory;
@@ -47,7 +48,7 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenListenerIsNull() throws Exception {
-			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl(0);
+			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl(0, OfflinePolicy.CACHE_FIRST);
 
 			try {
 				interactor.load(true, 123, "xxx");
@@ -59,7 +60,7 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenPortraitIdIsZero() throws Exception {
-			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl(0);
+			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl(0, OfflinePolicy.CACHE_FIRST);
 			interactor.onScreenletAttachted(MockFactory.mockUserPortraitInteractorListener());
 
 			try {
@@ -72,7 +73,7 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenUUIDIsNull() throws Exception {
-			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl(0);
+			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl(0, OfflinePolicy.CACHE_FIRST);
 			interactor.onScreenletAttachted(MockFactory.mockUserPortraitInteractorListener());
 
 			try {
@@ -85,7 +86,7 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenUUIDIsEmpty() throws Exception {
-			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl(0);
+			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl(0, OfflinePolicy.CACHE_FIRST);
 			interactor.onScreenletAttachted(MockFactory.mockUserPortraitInteractorListener());
 
 			try {
