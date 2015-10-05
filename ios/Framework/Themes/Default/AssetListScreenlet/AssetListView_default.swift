@@ -16,6 +16,12 @@ import UIKit
 
 public class AssetListView_default: AssetListTableView {
 
+	//MARK: BaseScreenletView
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
+	}
+
 	override public func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let entry = object as? AssetListScreenletEntry {
 			cell.textLabel?.text = entry.title

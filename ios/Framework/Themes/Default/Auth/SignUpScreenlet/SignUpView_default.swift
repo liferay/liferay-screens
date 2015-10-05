@@ -31,11 +31,22 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 	//MARK: BaseScreenletView
 
-	override public func onStartOperation() {
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			"signup-action" :
+				[.Working : LocalizedString("default", "signup-loading-message", self),
+				.Failure : LocalizedString("default", "signup-loading-error", self)],
+			"save-action" :
+				[.Working : LocalizedString("default", "signup-saving-message", self),
+				.Failure : LocalizedString("default", "signup-saving-error", self)],
+		]
+	}
+
+	override public func onStartInteraction() {
 		signUpButton!.enabled = false
 	}
 
-	override public func onFinishOperation() {
+	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
 		signUpButton!.enabled = true
 	}
 
@@ -48,8 +59,6 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		setButtonDefaultStyle(signUpButton)
 
 		scrollView?.contentSize = scrollView!.frame.size
-
-		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
 	override public func onSetTranslations() {
@@ -59,9 +68,14 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		passwordField?.placeholder = LocalizedString("default", "password-placeholder", self)
 
 		signUpButton?.replaceAttributedTitle(
-				LocalizedString("default", "sign-up-button", self),
+				LocalizedString("default", "signup-button", self),
 				forState: .Normal)
 	}
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
+	}
+
 
 	//MARK: SignUpViewModel
 
@@ -119,7 +133,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 				self.jobTitle = SessionContext.userAttribute("jobTitle") as? String
 			}
 			else {
-				key = "sign-up-button"
+				key = "signup-button"
 				actionName = "signup-action"
 			}
 

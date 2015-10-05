@@ -31,8 +31,6 @@ public class SignUpView_flat7: SignUpView_default {
 		super.onCreated()
 
 		setFlat7ButtonBackground(signUpButton)
-
-		BaseScreenlet.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}
 
 	override public func onSetTranslations() {
@@ -52,6 +50,10 @@ public class SignUpView_flat7: SignUpView_default {
 		lastNameField!.placeholder = "";
 		emailAddressField!.placeholder = "";
 		passwordField!.placeholder = "";
+	}
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return Flat7ProgressPresenter()
 	}
 
 

@@ -11,30 +11,20 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
+import Foundation
+
+#if LIFERAY_SCREENS_FRAMEWORK
+	import LRMobileSDK
+#endif
 
 
-class UserPortraitAttributesLoadInteractor: UserPortraitBaseInteractor {
+extension LRSession {
 
-	let portraitId: Int64
-	let uuid: String
-	let male: Bool
+	public var serverName: String? {
+		if let server = self.server {
+			return server.hasSuffix("/") ? dropLast(server) : server
+		}
 
-	init(screenlet: BaseScreenlet, portraitId: Int64, uuid: String, male: Bool) {
-		self.portraitId = portraitId
-		self.uuid = uuid
-		self.male = male
-
-		super.init(screenlet: screenlet)
+		return nil
 	}
-
-	override internal func start() -> Bool {
-		resultURL = (portraitId == 0)
-				? nil : URLForAttributes(portraitId: portraitId, uuid: uuid, male: male)
-
-		callOnSuccess()
-
-		return (resultURL != nil)
-	}
-
 }

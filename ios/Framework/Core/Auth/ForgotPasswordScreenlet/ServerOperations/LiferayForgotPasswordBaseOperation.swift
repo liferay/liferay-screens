@@ -20,47 +20,36 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 
 	public var resultPasswordSent: Bool?
 
-	override public var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("forgotpassword-screenlet", "loading-message", self),
-		details: LocalizedString("forgotpassword-screenlet", "loading-details", self))
-	}
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("forgotpassword-screenlet", "loading-error", self), details: nil)
-	}
-	override public var hudSuccessMessage: HUDMessage? {
-		return (LocalizedString("forgotpassword-screenlet", successMessageKey, self),
-				details: LocalizedString("forgotpassword-screenlet", "loaded-details", self))
-	}
+	internal let viewModel: ForgotPasswordViewModel
 
-	internal var viewModel: ForgotPasswordViewModel {
-		return screenlet.screenletView as! ForgotPasswordViewModel
-	}
+	private let anonymousUsername: String
+	private let anonymousPassword: String
 
-	private var successMessageKey = ""
+
+	public init(viewModel: ForgotPasswordViewModel, anonymousUsername: String, anonymousPassword: String) {
+		self.viewModel = viewModel
+		self.anonymousUsername = anonymousUsername
+		self.anonymousPassword = anonymousPassword
+
+		super.init()
+	}
 
 
 	//MARK ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override public func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		if valid && viewModel.userName == nil {
-			showValidationHUD(
-					message: LocalizedString("forgotpassword-screenlet", "validation", self))
-
-			valid = false
+		if error == nil {
+			if viewModel.userName == nil {
+				return ValidationError("forgotpassword-screenlet", "validation")
+			}
 		}
 
-		return valid
+		return error
 	}
 
-	override func postRun() {
-		if lastError != nil {
-			successMessageKey = resultPasswordSent! ? "password-sent" : "reset-sent"
-		}
-	}
-
-	override func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		var outError: NSError?
 
 		let result = sendForgotPasswordRequest(
@@ -81,6 +70,9 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 		}
 	}
 
+	override public func createSession() -> LRSession? {
+		return SessionContext.createAnonymousBasicSession(anonymousUsername, anonymousPassword)
+	}
 
 	//MARK: Template Methods
 	
@@ -89,9 +81,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 			error: NSErrorPointer)
 			-> Bool? {
 
-		assertionFailure("sendForgotPasswordRequest must be overriden")
-
-		return nil
+		fatalError("sendForgotPasswordRequest must be overriden")
 	}
 
 }

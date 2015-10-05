@@ -19,7 +19,9 @@ public class SaveUserInteractor: ServerOperationInteractor {
 	public var resultUserAttributes: [String:AnyObject]?
 
 	override public func createOperation() -> LiferayUpdateCurrentUserOperation {
-		return LiferayUpdateCurrentUserOperation(screenlet: self.screenlet)
+		let screenlet = self.screenlet as! SignUpScreenlet
+
+		return LiferayUpdateCurrentUserOperation(viewModel: screenlet.viewModel)
 	}
 
 	override public func completedOperation(op: ServerOperation) {

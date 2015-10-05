@@ -14,30 +14,56 @@
 import UIKit
 
 
-class UploadUserPortraitInteractor: ServerOperationInteractor {
+class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 
 	var uploadResult: [String:AnyObject]?
 
 	let userId: Int64
 	let image: UIImage
 
-	init(screenlet: BaseScreenlet, userId: Int64, image: UIImage) {
+	init(screenlet: BaseScreenlet?, userId: Int64, image: UIImage) {
 		self.userId = userId
 		self.image = image
 
 		super.init(screenlet: screenlet)
 	}
 
-
 	override func createOperation() -> LiferayUploadUserPortraitOperation {
 		return LiferayUploadUserPortraitOperation(
-				screenlet: self.screenlet,
 				userId: self.userId,
 				image: self.image)
 	}
 
 	override func completedOperation(op: ServerOperation) {
 		self.uploadResult = (op as! LiferayUploadUserPortraitOperation).uploadResult
+	}
+
+
+	//MARK: Cache methods
+
+	override func writeToCache(op: ServerOperation) {
+		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
+			? SessionContext.currentCacheManager?.setDirty
+			: SessionContext.currentCacheManager?.setClean
+
+		cacheFunction?(
+			collection: ScreenletName(UserPortraitScreenlet),
+			key: "userId-\(userId)",
+			value: image,
+			attributes: ["userId": NSNumber(longLong: userId)])
+	}
+
+	override func callOnSuccess() {
+		if cacheStrategy == .CacheFirst {
+			// update cache with date sent
+			SessionContext.currentCacheManager?.setClean(
+				collection: ScreenletName(UserPortraitScreenlet),
+				key: "userId-\(userId)",
+				attributes: [
+					"userId": NSNumber(longLong: userId)])
+		}
+
+		super.callOnSuccess()
 	}
 
 }

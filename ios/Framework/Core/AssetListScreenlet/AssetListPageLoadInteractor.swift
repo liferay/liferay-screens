@@ -14,17 +14,17 @@
 import UIKit
 
 
-class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
+public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 
 	let groupId: Int64
-	let classNameId: Int
+	let classNameId: Int64
 	let portletItemName: String?
 
 	init(screenlet: BaseListScreenlet,
 			page: Int,
 			computeRowCount: Bool,
 			groupId: Int64,
-			classNameId: Int,
+			classNameId: Int64,
 			portletItemName: String?) {
 
 		self.groupId = groupId
@@ -34,10 +34,12 @@ class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-	override func createOperation() -> LiferayAssetListPageOperation {
+	override public func createOperation() -> LiferayAssetListPageOperation {
+		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
+
 		let operation = LiferayAssetListPageOperation(
-				screenlet: self.screenlet,
-				page: self.page,
+				startRow: pager(self.page),
+				endRow: pager(self.page + 1),
 				computeRowCount: self.computeRowCount)
 
 		operation.groupId = (self.groupId != 0)
@@ -49,8 +51,12 @@ class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		return operation;
 	}
 
-	override func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
+	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
 		return AssetListScreenletEntry(attributes: serverResult)
+	}
+
+	override public func cacheKey(op: LiferayPaginationOperation) -> String {
+		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-\(classNameId)"
 	}
 
 }

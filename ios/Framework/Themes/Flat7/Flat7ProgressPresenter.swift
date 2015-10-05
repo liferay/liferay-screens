@@ -11,25 +11,16 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
+import Foundation
 
 
-class UserPortraitLoadByUserIdInteractor: UserPortraitBaseLoadUserInteractor {
+@objc public class Flat7ProgressPresenter: MBProgressHUDPresenter {
 
-	let userId: Int64
+	override public init() {
+		super.init()
 
-	init(screenlet: BaseScreenlet, userId: Int64) {
-		self.userId = userId
-
-		super.init(screenlet: screenlet)
-	}
-
-	override func createLoadUserOperation() -> GetUserBaseOperation? {
-		return GetUserByUserIdOperation(screenlet: screenlet, userId: userId)
-	}
-
-	override func isUserLogged() -> Bool {
-		return (userId == SessionContext.currentUserId)
+		self.customColor = Flat7ThemeBasicGreen
 	}
 
 }
+

@@ -19,37 +19,31 @@ public class DDLFieldNumber : DDLField {
 	public var maximumDecimalDigits = 2
 	public var minimumDecimalDigits = 2
 
-	public var isDecimal:Bool {
+	public var isDecimal: Bool {
 		return dataType != DataType.DDLInteger
 	}
 
 
 	//MARK: DDLField
 
-	override internal func convert(fromString value:String?) -> AnyObject? {
-		var result:NSNumber?
+	override internal func convert(fromString value: String?) -> AnyObject? {
+		if let value = value,
+				result = NSNumberFormatter().numberFromString(value) {
 
-		if let stringValue = value {
-			result = NSNumberFormatter().numberFromString(stringValue)
-
-			if result != nil {
-				switch CFNumberGetType(result! as CFNumberRef) {
-					case .Float32Type, .Float64Type, .FloatType, .CGFloatType:
-						return NSDecimalNumber(float: result!.floatValue)
-					case .DoubleType:
-						return NSDecimalNumber(double: result!.doubleValue)
-					default:
-						return NSInteger(result!.integerValue)
-				}
+			switch CFNumberGetType(result as CFNumberRef) {
+			case .Float32Type, .Float64Type, .FloatType, .CGFloatType:
+				return NSDecimalNumber(float: result.floatValue)
+			case .DoubleType:
+				return NSDecimalNumber(double: result.doubleValue)
+			default:
+				return NSInteger(result.integerValue)
 			}
 		}
 
-		return result
+		return nil
 	}
 
 	override internal func convert(fromLabel label: String?) -> AnyObject? {
-		var result: AnyObject?
-
 		if label != nil {
 			let formatter = NSNumberFormatter()
 
@@ -62,10 +56,10 @@ public class DDLFieldNumber : DDLField {
 				formatter.minimumFractionDigits = minimumDecimalDigits
 			}
 
-			result = formatter.numberFromString(label!)
+			return formatter.numberFromString(label!)
 		}
 
-		return result
+		return nil
 	}
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {

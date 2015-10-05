@@ -32,7 +32,19 @@ public class DDLFieldDate : DDLField {
 	private let gmtTimeZone = NSTimeZone(abbreviation: "GMT")
 
 
-	override init(attributes: [String:AnyObject], locale: NSLocale) {
+	override public init(attributes: [String:AnyObject], locale: NSLocale) {
+		super.init(attributes: attributes, locale: locale)
+
+		initFormatters(locale)
+	}
+
+	public required init(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+
+		initFormatters(self.currentLocale)
+	}
+
+	private func initFormatters(locale: NSLocale) {
 		serverYYYYDateFormatter.dateFormat = serverYYYYDateFormat
 		serverYYDateFormatter.dateFormat = serverYYDateFormat
 
@@ -42,8 +54,6 @@ public class DDLFieldDate : DDLField {
 
 		serverYYYYDateFormatter.timeZone = gmtTimeZone
 		serverYYDateFormatter.timeZone = gmtTimeZone
-
-		super.init(attributes: attributes, locale: locale)
 	}
 
 

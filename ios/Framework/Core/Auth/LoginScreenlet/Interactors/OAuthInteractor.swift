@@ -27,7 +27,7 @@ class OAuthInteractor: Interactor, LRCallback {
 	var OAuthConfig: LROAuthConfig?
 	var OAuthSession: LRSession?
 
-	init(screenlet: BaseScreenlet,
+	init(screenlet: BaseScreenlet?,
 			consumerKey: String,
 			consumerSecret: String) {
 
@@ -38,7 +38,7 @@ class OAuthInteractor: Interactor, LRCallback {
 	}
 
 	override func start() -> Bool {
-		if screenlet.presentingViewController == nil {
+		if screenlet?.presentingViewController == nil {
 			println("ERROR: You need to set the presentingViewController before start OAuthInteractor")
 
 			return false
@@ -78,7 +78,7 @@ class OAuthInteractor: Interactor, LRCallback {
 	private func showWebView(URL: NSURL) {
 		webViewController = OAuthWebViewController(
 				URL: URL,
-				themeName: screenlet.themeName ?? "default")
+				themeName: screenlet?.themeName ?? "default")
 
 		webViewController!.onAuthorized = { [weak webViewController] OAuthVerifier in
 			webViewController?.dismissViewControllerAnimated(true, completion: nil)
@@ -88,7 +88,7 @@ class OAuthInteractor: Interactor, LRCallback {
 			self.requestAccessToken()
 		}
 
-		if let vc = screenlet.presentingViewController {
+		if let vc = screenlet?.presentingViewController {
 			vc.presentViewController(webViewController!, animated: true, completion: nil)
 		}
 	}

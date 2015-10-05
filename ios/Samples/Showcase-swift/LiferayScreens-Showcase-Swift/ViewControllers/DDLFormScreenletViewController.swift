@@ -44,7 +44,7 @@ class DDLFormScreenletViewController: UIViewController, DDLFormScreenletDelegate
 
 	func screenlet(screenlet: DDLFormScreenlet,
 			onFormLoadError error: NSError) {
-		println("DELEGATE: onDocumentUploadError called -> \(error)")
+		println("DELEGATE: onFormLoadError called -> \(error)")
 	}
 
 	func screenlet(screenlet: DDLFormScreenlet,
@@ -54,7 +54,7 @@ class DDLFormScreenletViewController: UIViewController, DDLFormScreenletDelegate
 
 	func screenlet(screenlet: DDLFormScreenlet,
 			onRecordLoadError error: NSError) {
-		println("DELEGATE: onDocumentUploadError called -> \(error)")
+		println("DELEGATE: onRecordLoadError called -> \(error)")
 	}
 
 	func screenlet(screenlet: DDLFormScreenlet,
@@ -64,12 +64,12 @@ class DDLFormScreenletViewController: UIViewController, DDLFormScreenletDelegate
 
 	func screenlet(screenlet: DDLFormScreenlet,
 			onFormSubmitError error: NSError) {
-		println("DELEGATE: onDocumentUploadError called -> \(error)")
+		println("DELEGATE: onFormSubmitError called -> \(error)")
 	}
 
 	func screenlet(screenlet: DDLFormScreenlet,
 			onDocumentFieldUploadStarted field: DDLFieldDocument) {
-		println("DELEGATE: onDocumentUploadError called. field -> \(field)")
+		println("DELEGATE: onDocumentFieldUploadStarted called. field -> \(field)")
 	}
 
 	func screenlet(screenlet: DDLFormScreenlet,

@@ -16,26 +16,29 @@ import UIKit
 public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	public var groupId: Int64?
-	public var classNameId: Int?
+	public var classNameId: Int64?
 	public var portletItemName: String?
-
-	internal var assetListScreenlet: AssetListScreenlet {
-		return self.screenlet as! AssetListScreenlet
-	}
 
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override public func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && (groupId != nil)
-		valid = valid && (classNameId != nil)
+		if error == nil {
+			if groupId == nil {
+				return ValidationError("assetlist-screenlet", "undefined-group")
+			}
 
-		return valid
+			if classNameId == nil {
+				return ValidationError("assetlist-screenlet", "undefined-classname")
+			}
+		}
+
+		return error
 	}
 
-	override internal func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		if let portletItemName = portletItemName {
 			let service = LRScreensassetentryService_v62(session: session)
 
@@ -64,7 +67,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	//MARK: LiferayPaginationOperation
 
-	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
+	override internal func doGetPageRowsOperation(#session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensassetentryService_v62(session: session)
 
 		if let portletItemName = portletItemName {
@@ -77,8 +80,8 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 		else {
 			var entryQueryAttributes = configureEntryQueryAttributes()
 
-			entryQueryAttributes["start"] = assetListScreenlet.firstRowForPage(page)
-			entryQueryAttributes["end"] = assetListScreenlet.firstRowForPage(page + 1)
+			entryQueryAttributes["start"] = startRow
+			entryQueryAttributes["end"] = endRow
 
 			let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
@@ -102,7 +105,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	private func configureEntryQueryAttributes() -> [NSString : AnyObject] {
 		var entryQueryAttributes: [NSString : AnyObject] = [:]
 
-		entryQueryAttributes["classNameIds"] = NSNumber(long: classNameId!)
+		entryQueryAttributes["classNameIds"] = NSNumber(longLong: classNameId!)
 		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId!)
 		entryQueryAttributes["visible"] = "true"
 

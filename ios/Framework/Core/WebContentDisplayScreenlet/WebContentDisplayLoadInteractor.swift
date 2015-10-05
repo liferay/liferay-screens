@@ -14,13 +14,15 @@
 import UIKit
 
 
-class WebContentDisplayLoadInteractor: ServerOperationInteractor {
+class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 
 	var resultHTML: String?
 
+
 	override func createOperation() -> LiferayWebContentLoadOperation {
 		let screenlet = self.screenlet as! WebContentDisplayScreenlet
-		let operation = LiferayWebContentLoadOperation(screenlet: self.screenlet)
+
+		let operation = LiferayWebContentLoadOperation()
 
 		operation.groupId = (screenlet.groupId != 0)
 				? screenlet.groupId : LiferayServerContext.groupId
@@ -33,7 +35,41 @@ class WebContentDisplayLoadInteractor: ServerOperationInteractor {
 	}
 
 	override func completedOperation(op: ServerOperation) {
-		self.resultHTML = (op as! LiferayWebContentLoadOperation).resultHTML
+		self.resultHTML = (op as? LiferayWebContentLoadOperation)?.resultHTML
+	}
+
+	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
+		if let loadOp = op as? LiferayWebContentLoadOperation,
+				groupId = loadOp.groupId,
+				articleId = loadOp.articleId {
+
+			SessionContext.currentCacheManager!.getString(
+					collection: ScreenletName(WebContentDisplayScreenlet),
+					key: cacheKey(groupId, articleId)) {
+				loadOp.resultHTML = $0
+				result($0)
+			}
+		}
+	}
+
+	override func writeToCache(op: ServerOperation) {
+		if let loadOp = op as? LiferayWebContentLoadOperation,
+				html = loadOp.resultHTML,
+				groupId = loadOp.groupId,
+				articleId = loadOp.articleId {
+
+			SessionContext.currentCacheManager?.setClean(
+				collection: ScreenletName(WebContentDisplayScreenlet),
+				key: cacheKey(groupId, articleId),
+				value: html,
+				attributes: [
+					"groupId": NSNumber(longLong: groupId),
+					"articleId": articleId])
+		}
+	}
+
+	private func cacheKey(groupId: Int64, _ articleId: String) -> String {
+		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-\(articleId)"
 	}
 
 }
