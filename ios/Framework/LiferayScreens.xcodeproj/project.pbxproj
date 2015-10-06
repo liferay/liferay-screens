@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		431250828CDCA06E95D11B8A /* Pods_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		85599C36EE9CF9E9E88D5A7C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9136B139BF9449FC75DBECA6 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		88019FA21B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
+		88019FA31B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		880ACA5B1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880ACA5A1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift */; };
 		880ACA5C1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880ACA5A1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift */; };
 		880ACA621B0200D5007AD007 /* LiferayUploadUserPortraitOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880ACA611B0200D5007AD007 /* LiferayUploadUserPortraitOperation.swift */; };
@@ -25,11 +27,15 @@
 		880ACA861B0224A0007AD007 /* login-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA6E1B0224A0007AD007 /* login-screenlet.strings */; };
 		880ACA871B0224A0007AD007 /* userportrait-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA711B0224A0007AD007 /* userportrait-screenlet.strings */; };
 		880ACA881B0224A0007AD007 /* userportrait-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA711B0224A0007AD007 /* userportrait-screenlet.strings */; };
-		880ACA891B0224A0007AD007 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA731B0224A0007AD007 /* webcontentdisplay-screenlet.strings */; };
-		880ACA8A1B0224A0007AD007 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA731B0224A0007AD007 /* webcontentdisplay-screenlet.strings */; };
 		880ACA8B1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */; };
 		880ACA8C1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */; };
-		881E60B81ACBE3FF00862B9E /* BaseScreenlet+progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B51ACBE3FF00862B9E /* BaseScreenlet+progress.swift */; };
+		881B743E1B9EE28D00EA64ED /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B743D1B9EE28D00EA64ED /* SyncManager.swift */; };
+		881E49C61B95CE66007DBEC9 /* DownloadUserPortraitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49C51B95CE65007DBEC9 /* DownloadUserPortraitInteractor.swift */; };
+		881E49C71B95CE66007DBEC9 /* DownloadUserPortraitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49C51B95CE65007DBEC9 /* DownloadUserPortraitInteractor.swift */; };
+		881E49CC1B95D474007DBEC9 /* Array+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49CB1B95D474007DBEC9 /* Array+Screens.swift */; };
+		881E49CD1B95D474007DBEC9 /* Array+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49CB1B95D474007DBEC9 /* Array+Screens.swift */; };
+		881E49CF1B95FD03007DBEC9 /* ServerOperationChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49CE1B95FD03007DBEC9 /* ServerOperationChain.swift */; };
+		881E49D01B95FD03007DBEC9 /* ServerOperationChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49CE1B95FD03007DBEC9 /* ServerOperationChain.swift */; };
 		881E60B91ACBE3FF00862B9E /* BaseScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */; };
 		881E60BA1ACBE3FF00862B9E /* BaseScreenletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B71ACBE3FF00862B9E /* BaseScreenletView.swift */; };
 		881E60BF1ACBE43200862B9E /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BB1ACBE43200862B9E /* Interactor.swift */; };
@@ -54,13 +60,6 @@
 		881E611C1ACBE5F000862B9E /* LiferaySignUpOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60FD1ACBE5F000862B9E /* LiferaySignUpOperation.swift */; };
 		881E611E1ACBE5F000862B9E /* SignUpScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60FF1ACBE5F000862B9E /* SignUpScreenlet.swift */; };
 		881E611F1ACBE5F000862B9E /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61001ACBE5F000862B9E /* SignUpViewModel.swift */; };
-		881E61201ACBE5F000862B9E /* UserPortraitAttributesLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61031ACBE5F000862B9E /* UserPortraitAttributesLoadInteractor.swift */; };
-		881E61211ACBE5F000862B9E /* UserPortraitBaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61041ACBE5F000862B9E /* UserPortraitBaseInteractor.swift */; };
-		881E61221ACBE5F000862B9E /* UserPortraitBaseLoadUserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61051ACBE5F000862B9E /* UserPortraitBaseLoadUserInteractor.swift */; };
-		881E61231ACBE5F000862B9E /* UserPortraitLoadByEmailAddressInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61061ACBE5F000862B9E /* UserPortraitLoadByEmailAddressInteractor.swift */; };
-		881E61241ACBE5F000862B9E /* UserPortraitLoadByScreenNameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61071ACBE5F000862B9E /* UserPortraitLoadByScreenNameInteractor.swift */; };
-		881E61251ACBE5F000862B9E /* UserPortraitLoadByUserIdInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61081ACBE5F000862B9E /* UserPortraitLoadByUserIdInteractor.swift */; };
-		881E61261ACBE5F000862B9E /* UserPortraitLoadLoggedUserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61091ACBE5F000862B9E /* UserPortraitLoadLoggedUserInteractor.swift */; };
 		881E61271ACBE5F000862B9E /* UserPortraitScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E610A1ACBE5F000862B9E /* UserPortraitScreenlet.swift */; };
 		881E61281ACBE5F000862B9E /* UserPortraitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E610B1ACBE5F000862B9E /* UserPortraitViewModel.swift */; };
 		881E613B1ACBED7500862B9E /* LiferayWebContentLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61361ACBED7500862B9E /* LiferayWebContentLoadOperation.swift */; };
@@ -172,24 +171,6 @@
 		881E62691ACBFC3400862B9E /* default-user-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 881E62071ACBFC3400862B9E /* default-user-icon@2x.png */; };
 		881E626A1ACBFC3400862B9E /* WebContentDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E620B1ACBFC3400862B9E /* WebContentDisplayView_default.swift */; };
 		881E626B1ACBFC3400862B9E /* WebContentDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E620C1ACBFC3400862B9E /* WebContentDisplayView_default.xib */; };
-		881E626C1ACBFC3400862B9E /* ForgotPasswordView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E62101ACBFC3400862B9E /* ForgotPasswordView_flat7.swift */; };
-		881E626D1ACBFC3400862B9E /* ForgotPasswordView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E62111ACBFC3400862B9E /* ForgotPasswordView_flat7.xib */; };
-		881E626E1ACBFC3400862B9E /* LoginView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E62131ACBFC3400862B9E /* LoginView_flat7.swift */; };
-		881E626F1ACBFC3400862B9E /* LoginView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E62141ACBFC3400862B9E /* LoginView_flat7.xib */; };
-		881E62701ACBFC3400862B9E /* SignUpView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E62161ACBFC3400862B9E /* SignUpView_flat7.swift */; };
-		881E62711ACBFC3400862B9E /* SignUpView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E62171ACBFC3400862B9E /* SignUpView_flat7.xib */; };
-		881E62721ACBFC3400862B9E /* UserPortraitView_flat7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E62191ACBFC3400862B9E /* UserPortraitView_flat7.swift */; };
-		881E62731ACBFC3400862B9E /* UserPortraitView_flat7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E621A1ACBFC3400862B9E /* UserPortraitView_flat7.xib */; };
-		881E62741ACBFC3400862B9E /* Flat7ThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E621B1ACBFC3400862B9E /* Flat7ThemeConstants.swift */; };
-		881E62751ACBFC3400862B9E /* flat7.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881E621D1ACBFC3400862B9E /* flat7.strings */; };
-		881E62761ACBFC3400862B9E /* flat7-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 881E62201ACBFC3400862B9E /* flat7-button.png */; };
-		881E62771ACBFC3400862B9E /* flat7-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 881E62211ACBFC3400862B9E /* flat7-button@2x.png */; };
-		881E62781ACBFC3400862B9E /* flat7-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 881E62221ACBFC3400862B9E /* flat7-field.png */; };
-		881E62791ACBFC3400862B9E /* flat7-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 881E62231ACBFC3400862B9E /* flat7-field@2x.png */; };
-		881E627A1ACBFC3400862B9E /* flat7-gradient-form.png in Resources */ = {isa = PBXBuildFile; fileRef = 881E62241ACBFC3400862B9E /* flat7-gradient-form.png */; };
-		881E627B1ACBFC3400862B9E /* flat7-gradient-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 881E62251ACBFC3400862B9E /* flat7-gradient-form@2x.png */; };
-		881E627C1ACBFC3400862B9E /* flat7-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 881E62261ACBFC3400862B9E /* flat7-portrait-placeholder.png */; };
-		881E627D1ACBFC3400862B9E /* flat7-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 881E62271ACBFC3400862B9E /* flat7-portrait-placeholder@2x.png */; };
 		881E628F1ACBFE8300862B9E /* BaseScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */; };
 		881E62901ACBFE8D00862B9E /* BaseScreenletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B71ACBE3FF00862B9E /* BaseScreenletView.swift */; };
 		881E62911ACBFEA200862B9E /* SignUpScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60FF1ACBE5F000862B9E /* SignUpScreenlet.swift */; };
@@ -198,18 +179,17 @@
 		881E62961ACBFEFC00862B9E /* BaseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C81ACBE56700862B9E /* BaseListView.swift */; };
 		881E62971ACBFF0400862B9E /* LiferayPaginationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60CA1ACBE56700862B9E /* LiferayPaginationOperation.swift */; };
 		881E62981ACBFF0800862B9E /* BaseListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60CC1ACBE56700862B9E /* BaseListTableView.swift */; };
-		881E62991ACBFF1800862B9E /* BaseScreenlet+progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B51ACBE3FF00862B9E /* BaseScreenlet+progress.swift */; };
 		881E629A1ACBFF1800862B9E /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BB1ACBE43200862B9E /* Interactor.swift */; };
 		881E629B1ACBFF1800862B9E /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BC1ACBE43200862B9E /* KeyboardManager.swift */; };
 		881E629C1ACBFF1800862B9E /* ServerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BD1ACBE43200862B9E /* ServerOperation.swift */; };
 		881E629D1ACBFF1800862B9E /* ServerOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BE1ACBE43200862B9E /* ServerOperationInteractor.swift */; };
 		881E629F1ACBFF2500862B9E /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61001ACBE5F000862B9E /* SignUpViewModel.swift */; };
 		881E62A11ACBFF2D00862B9E /* LiferaySignUpOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60FD1ACBE5F000862B9E /* LiferaySignUpOperation.swift */; };
-		881E62A21ACBFF4500862B9E /* Bool+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A51ACBD89400192232 /* Bool+Conversion.swift */; };
+		881E62A21ACBFF4500862B9E /* Bool+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A51ACBD89400192232 /* Bool+Screens.swift */; };
 		881E62A31ACBFF4500862B9E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A61ACBD89400192232 /* Global.swift */; };
-		881E62A41ACBFF4500862B9E /* NSLocale+CurrentLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A81ACBD89400192232 /* NSLocale+CurrentLocale.swift */; };
-		881E62A51ACBFF4500862B9E /* UIButton+Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A91ACBD89400192232 /* UIButton+Title.swift */; };
-		881E62A61ACBFF4500862B9E /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6AA1ACBD89400192232 /* UIView+Animations.swift */; };
+		881E62A41ACBFF4500862B9E /* NSLocale+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A81ACBD89400192232 /* NSLocale+Screens.swift */; };
+		881E62A51ACBFF4500862B9E /* UIButton+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A91ACBD89400192232 /* UIButton+Screens.swift */; };
+		881E62A61ACBFF4500862B9E /* UIView+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6AA1ACBD89400192232 /* UIView+Screens.swift */; };
 		881E62B51ACBFFD900862B9E /* DefaultThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61E91ACBFC3400862B9E /* DefaultThemeConstants.swift */; };
 		881E62B61ACBFFFA00862B9E /* LiferayServerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B21ACBD95400192232 /* LiferayServerContext.swift */; };
 		881E62B71ACBFFFA00862B9E /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B31ACBD95400192232 /* SessionContext.swift */; };
@@ -266,6 +246,20 @@
 		8839B88F1B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8881B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift */; };
 		8839B8901B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */; };
 		8839B8911B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */; };
+		886FCCB01BA6D59700494BB0 /* SyncManager+UserPortrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886FCCAF1BA6D59700494BB0 /* SyncManager+UserPortrait.swift */; };
+		886FCCB31BA6D96E00494BB0 /* SyncManager+DDLForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886FCCB21BA6D96E00494BB0 /* SyncManager+DDLForm.swift */; };
+		887F0D031B98973A0007AECE /* ServerReadOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0CFC1B98833D0007AECE /* ServerReadOperationInteractor.swift */; };
+		887F0D041B98973A0007AECE /* ServerReadOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0CFC1B98833D0007AECE /* ServerReadOperationInteractor.swift */; };
+		887F0D051B9897600007AECE /* ServerWriteOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0CFF1B988EA60007AECE /* ServerWriteOperationInteractor.swift */; };
+		887F0D061B9897600007AECE /* ServerWriteOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0CFF1B988EA60007AECE /* ServerWriteOperationInteractor.swift */; };
+		887F0D0A1B999CD90007AECE /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D081B999CD90007AECE /* CacheManager.swift */; };
+		887F0D0B1B999CD90007AECE /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D081B999CD90007AECE /* CacheManager.swift */; };
+		887F0D121B99A79A0007AECE /* LRSession+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D111B99A79A0007AECE /* LRSession+Screens.swift */; };
+		887F0D131B99A79A0007AECE /* LRSession+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D111B99A79A0007AECE /* LRSession+Screens.swift */; };
+		887F0D151B99AABB0007AECE /* String+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D141B99AABA0007AECE /* String+Screens.swift */; };
+		887F0D161B99AABB0007AECE /* String+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D141B99AABA0007AECE /* String+Screens.swift */; };
+		887F0D181B99BD640007AECE /* CacheMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D171B99BD640007AECE /* CacheMetadata.swift */; };
+		887F0D191B99BD640007AECE /* CacheMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D171B99BD640007AECE /* CacheMetadata.swift */; };
 		888DF5B11ACC9FC200EB7DA1 /* LoginScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F11ACBE5F000862B9E /* LoginScreenlet.swift */; };
 		888DF5B21ACC9FC200EB7DA1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F21ACBE5F000862B9E /* LoginViewModel.swift */; };
 		888DF5B41ACC9FF100EB7DA1 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C31ACBFC3400862B9E /* LoginView_default.swift */; };
@@ -274,20 +268,31 @@
 		888DF5BA1ACCA3FD00EB7DA1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F21ACBE5F000862B9E /* LoginViewModel.swift */; };
 		8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */ = {isa = PBXBuildFile; fileRef = 8892C67D1ACB2E3300192232 /* LiferayScreens.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8892C6841ACB2E3300192232 /* LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8892C6781ACB2E3300192232 /* LiferayScreens.framework */; };
-		8892C6AB1ACBD89400192232 /* Bool+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A51ACBD89400192232 /* Bool+Conversion.swift */; };
+		8892C6AB1ACBD89400192232 /* Bool+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A51ACBD89400192232 /* Bool+Screens.swift */; };
 		8892C6AC1ACBD89400192232 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A61ACBD89400192232 /* Global.swift */; };
-		8892C6AE1ACBD89400192232 /* NSLocale+CurrentLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A81ACBD89400192232 /* NSLocale+CurrentLocale.swift */; };
-		8892C6AF1ACBD89400192232 /* UIButton+Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A91ACBD89400192232 /* UIButton+Title.swift */; };
-		8892C6B01ACBD89400192232 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6AA1ACBD89400192232 /* UIView+Animations.swift */; };
+		8892C6AE1ACBD89400192232 /* NSLocale+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A81ACBD89400192232 /* NSLocale+Screens.swift */; };
+		8892C6AF1ACBD89400192232 /* UIButton+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A91ACBD89400192232 /* UIButton+Screens.swift */; };
+		8892C6B01ACBD89400192232 /* UIView+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6AA1ACBD89400192232 /* UIView+Screens.swift */; };
 		8892C6B41ACBD95400192232 /* LiferayServerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B21ACBD95400192232 /* LiferayServerContext.swift */; };
 		8892C6B51ACBD95400192232 /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B31ACBD95400192232 /* SessionContext.swift */; };
-		88A28EBA1B0DD1300040D7F6 /* NSBundle+discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A28EB91B0DD1300040D7F6 /* NSBundle+discovery.swift */; };
-		88A28EBB1B0DD1300040D7F6 /* NSBundle+discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A28EB91B0DD1300040D7F6 /* NSBundle+discovery.swift */; };
+		88A28EBA1B0DD1300040D7F6 /* NSBundle+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A28EB91B0DD1300040D7F6 /* NSBundle+Screens.swift */; };
+		88A28EBB1B0DD1300040D7F6 /* NSBundle+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A28EB91B0DD1300040D7F6 /* NSBundle+Screens.swift */; };
 		88A2B7141ACDEBB1000C2065 /* LoginView_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A2B7121ACDEBB1000C2065 /* LoginView_test.swift */; };
 		88A2B7151ACDEBB1000C2065 /* LoginView_test.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A2B7131ACDEBB1000C2065 /* LoginView_test.xib */; };
 		88A2B7181ACDEC29000C2065 /* DDLListView_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A2B7161ACDEC29000C2065 /* DDLListView_test.swift */; };
 		88A2B7191ACDEC29000C2065 /* DDLListView_test.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A2B7171ACDEC29000C2065 /* DDLListView_test.xib */; };
 		88A2B71E1ACDEF5D000C2065 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C31ACBFC3400862B9E /* LoginView_default.swift */; };
+		88B2730F1B7107F200477E5E /* ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B2730E1B7107F200477E5E /* ProgressPresenter.swift */; };
+		88B273101B7107F200477E5E /* ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B2730E1B7107F200477E5E /* ProgressPresenter.swift */; };
+		88B273121B7109C300477E5E /* DefaultProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B273111B7109C300477E5E /* DefaultProgressPresenter.swift */; };
+		88B273131B7109C300477E5E /* DefaultProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B273111B7109C300477E5E /* DefaultProgressPresenter.swift */; };
+		88B273151B7109E200477E5E /* MBProgressHUDPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B273141B7109E200477E5E /* MBProgressHUDPresenter.swift */; };
+		88B273161B7109E200477E5E /* MBProgressHUDPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B273141B7109E200477E5E /* MBProgressHUDPresenter.swift */; };
+		88BCB55E1B8C92F0004349F1 /* NSError+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8821B0CD55E006C18F1 /* NSError+Screens.swift */; };
+		88BCB5611B8CAC22004349F1 /* assetlist-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88BCB55F1B8CAC22004349F1 /* assetlist-screenlet.strings */; };
+		88BCB5621B8CAC22004349F1 /* assetlist-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88BCB55F1B8CAC22004349F1 /* assetlist-screenlet.strings */; };
+		88BCB5651B8CAD93004349F1 /* ddllist-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88BCB5631B8CAD93004349F1 /* ddllist-screenlet.strings */; };
+		88BCB5661B8CAD93004349F1 /* ddllist-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88BCB5631B8CAD93004349F1 /* ddllist-screenlet.strings */; };
 		88CA805B1B25AF48004C1D59 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80581B25AF48004C1D59 /* LoginInteractor.swift */; };
 		88CA805C1B25AF48004C1D59 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80581B25AF48004C1D59 /* LoginInteractor.swift */; };
 		88CA805D1B25AF48004C1D59 /* OAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80591B25AF48004C1D59 /* OAuthInteractor.swift */; };
@@ -300,13 +305,16 @@
 		88CA80671B25D72A004C1D59 /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80651B25D72A004C1D59 /* AuthType.swift */; };
 		88CA80691B25E505004C1D59 /* OAuthWebViewController_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80681B25E505004C1D59 /* OAuthWebViewController_default.xib */; };
 		88CA806A1B25E505004C1D59 /* OAuthWebViewController_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80681B25E505004C1D59 /* OAuthWebViewController_default.xib */; };
-		88CA806B1B25E953004C1D59 /* NSError+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8821B0CD55E006C18F1 /* NSError+Screens.swift */; };
 		88CA806E1B25EE04004C1D59 /* CredentialsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA806D1B25EE04004C1D59 /* CredentialsStore.swift */; };
 		88CA806F1B25EE04004C1D59 /* CredentialsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA806D1B25EE04004C1D59 /* CredentialsStore.swift */; };
 		88CA80711B25EF69004C1D59 /* BaseCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80701B25EF69004C1D59 /* BaseCredentialsStoreKeyChain.swift */; };
 		88CA80721B25EF69004C1D59 /* BaseCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80701B25EF69004C1D59 /* BaseCredentialsStoreKeyChain.swift */; };
 		88CA80741B25F868004C1D59 /* OAuthCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80731B25F868004C1D59 /* OAuthCredentialsStoreKeyChain.swift */; };
 		88CA80751B25F868004C1D59 /* OAuthCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80731B25F868004C1D59 /* OAuthCredentialsStoreKeyChain.swift */; };
+		88CA91B51B8DB682000B92F2 /* HttpOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA91B41B8DB682000B92F2 /* HttpOperation.swift */; };
+		88CA91B61B8DB682000B92F2 /* HttpOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA91B41B8DB682000B92F2 /* HttpOperation.swift */; };
+		88CA91B81B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA91B71B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift */; };
+		88CA91B91B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA91B71B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift */; };
 		88DC31E21ACC18F10078C961 /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E11ACC18F10078C961 /* SessionStorage.swift */; };
 		88DC31E31ACC18F10078C961 /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E11ACC18F10078C961 /* SessionStorage.swift */; };
 		88DE24F71AD2AA6400714701 /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88DE24F61AD2AA6400714701 /* liferay-server-context.plist */; };
@@ -329,6 +337,8 @@
 		88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88F888551B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 		88F888561B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
+		B2A8B1D51BBABE1F00AEC9D9 /* LRScreensjournalarticleService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = B2A8B1D31BBABE1F00AEC9D9 /* LRScreensjournalarticleService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2A8B1D61BBABE1F00AEC9D9 /* LRScreensjournalarticleService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A8B1D41BBABE1F00AEC9D9 /* LRScreensjournalarticleService_v62.m */; };
 		B2F3F34F1B0A1923002CEF60 /* LRScreensassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F3F3491B0A1923002CEF60 /* LRScreensassetentryService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2F3F3501B0A1923002CEF60 /* LRScreensassetentryService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F34A1B0A1923002CEF60 /* LRScreensassetentryService_v62.m */; };
 		B2F3F3511B0A1923002CEF60 /* LRScreensddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F3F34B1B0A1923002CEF60 /* LRScreensddlrecordService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -354,6 +364,7 @@
 		0B440B87DE9DF08FCB1AA970 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		70A86EF9E7113685C27BD9CA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7C0B882BE724FFD745F72E9B /* Pods-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		88019FA11B8F22EE00674B00 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA5A1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadUserPortraitInteractor.swift; sourceTree = "<group>"; };
 		880ACA611B0200D5007AD007 /* LiferayUploadUserPortraitOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayUploadUserPortraitOperation.swift; sourceTree = "<group>"; };
 		880ACA661B0224A0007AD007 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/ddlform-screenlet.strings"; sourceTree = "<group>"; };
@@ -364,16 +375,17 @@
 		880ACA6F1B0224A0007AD007 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/login-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA701B0224A0007AD007 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/signup-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA721B0224A0007AD007 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/userportrait-screenlet.strings"; sourceTree = "<group>"; };
-		880ACA741B0224A0007AD007 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA751B0224A0007AD007 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/core.strings; sourceTree = "<group>"; };
 		880ACA761B0224A0007AD007 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/ddlform-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA771B0224A0007AD007 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/forgotpassword-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA781B0224A0007AD007 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/login-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA791B0224A0007AD007 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/signup-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA7A1B0224A0007AD007 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/userportrait-screenlet.strings"; sourceTree = "<group>"; };
-		880ACA7B1B0224A0007AD007 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context-sample.plist"; sourceTree = "<group>"; };
-		881E60B51ACBE3FF00862B9E /* BaseScreenlet+progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseScreenlet+progress.swift"; sourceTree = "<group>"; };
+		881B743D1B9EE28D00EA64ED /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
+		881E49C51B95CE65007DBEC9 /* DownloadUserPortraitInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadUserPortraitInteractor.swift; sourceTree = "<group>"; };
+		881E49CB1B95D474007DBEC9 /* Array+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Screens.swift"; sourceTree = "<group>"; };
+		881E49CE1B95FD03007DBEC9 /* ServerOperationChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerOperationChain.swift; sourceTree = "<group>"; };
 		881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreenlet.swift; sourceTree = "<group>"; };
 		881E60B71ACBE3FF00862B9E /* BaseScreenletView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreenletView.swift; sourceTree = "<group>"; };
 		881E60BB1ACBE43200862B9E /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
@@ -400,13 +412,6 @@
 		881E60FD1ACBE5F000862B9E /* LiferaySignUpOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferaySignUpOperation.swift; sourceTree = "<group>"; };
 		881E60FF1ACBE5F000862B9E /* SignUpScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreenlet.swift; sourceTree = "<group>"; };
 		881E61001ACBE5F000862B9E /* SignUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
-		881E61031ACBE5F000862B9E /* UserPortraitAttributesLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitAttributesLoadInteractor.swift; sourceTree = "<group>"; };
-		881E61041ACBE5F000862B9E /* UserPortraitBaseInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitBaseInteractor.swift; sourceTree = "<group>"; };
-		881E61051ACBE5F000862B9E /* UserPortraitBaseLoadUserInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitBaseLoadUserInteractor.swift; sourceTree = "<group>"; };
-		881E61061ACBE5F000862B9E /* UserPortraitLoadByEmailAddressInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitLoadByEmailAddressInteractor.swift; sourceTree = "<group>"; };
-		881E61071ACBE5F000862B9E /* UserPortraitLoadByScreenNameInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitLoadByScreenNameInteractor.swift; sourceTree = "<group>"; };
-		881E61081ACBE5F000862B9E /* UserPortraitLoadByUserIdInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitLoadByUserIdInteractor.swift; sourceTree = "<group>"; };
-		881E61091ACBE5F000862B9E /* UserPortraitLoadLoggedUserInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitLoadLoggedUserInteractor.swift; sourceTree = "<group>"; };
 		881E610A1ACBE5F000862B9E /* UserPortraitScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitScreenlet.swift; sourceTree = "<group>"; };
 		881E610B1ACBE5F000862B9E /* UserPortraitViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitViewModel.swift; sourceTree = "<group>"; };
 		881E61361ACBED7500862B9E /* LiferayWebContentLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayWebContentLoadOperation.swift; sourceTree = "<group>"; };
@@ -523,25 +528,6 @@
 		881E62091ACBFC3400862B9E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/default.strings; sourceTree = "<group>"; };
 		881E620B1ACBFC3400862B9E /* WebContentDisplayView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayView_default.swift; sourceTree = "<group>"; };
 		881E620C1ACBFC3400862B9E /* WebContentDisplayView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentDisplayView_default.xib; sourceTree = "<group>"; };
-		881E62101ACBFC3400862B9E /* ForgotPasswordView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView_flat7.swift; sourceTree = "<group>"; };
-		881E62111ACBFC3400862B9E /* ForgotPasswordView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordView_flat7.xib; sourceTree = "<group>"; };
-		881E62131ACBFC3400862B9E /* LoginView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_flat7.swift; sourceTree = "<group>"; };
-		881E62141ACBFC3400862B9E /* LoginView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_flat7.xib; sourceTree = "<group>"; };
-		881E62161ACBFC3400862B9E /* SignUpView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_flat7.swift; sourceTree = "<group>"; };
-		881E62171ACBFC3400862B9E /* SignUpView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView_flat7.xib; sourceTree = "<group>"; };
-		881E62191ACBFC3400862B9E /* UserPortraitView_flat7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitView_flat7.swift; sourceTree = "<group>"; };
-		881E621A1ACBFC3400862B9E /* UserPortraitView_flat7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPortraitView_flat7.xib; sourceTree = "<group>"; };
-		881E621B1ACBFC3400862B9E /* Flat7ThemeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flat7ThemeConstants.swift; sourceTree = "<group>"; };
-		881E621E1ACBFC3400862B9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/flat7.strings; sourceTree = "<group>"; };
-		881E621F1ACBFC3400862B9E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/flat7.strings; sourceTree = "<group>"; };
-		881E62201ACBFC3400862B9E /* flat7-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-button.png"; sourceTree = "<group>"; };
-		881E62211ACBFC3400862B9E /* flat7-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-button@2x.png"; sourceTree = "<group>"; };
-		881E62221ACBFC3400862B9E /* flat7-field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field.png"; sourceTree = "<group>"; };
-		881E62231ACBFC3400862B9E /* flat7-field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-field@2x.png"; sourceTree = "<group>"; };
-		881E62241ACBFC3400862B9E /* flat7-gradient-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form.png"; sourceTree = "<group>"; };
-		881E62251ACBFC3400862B9E /* flat7-gradient-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-gradient-form@2x.png"; sourceTree = "<group>"; };
-		881E62261ACBFC3400862B9E /* flat7-portrait-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder.png"; sourceTree = "<group>"; };
-		881E62271ACBFC3400862B9E /* flat7-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
 		881E63011ACC06B900862B9E /* BaseLoginScreenletTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLoginScreenletTestCase.swift; sourceTree = "<group>"; };
 		881E63021ACC06B900862B9E /* LoginScreenlet_ByEmail_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenlet_ByEmail_Tests.swift; sourceTree = "<group>"; };
 		881E63031ACC06B900862B9E /* LoginScreenlet_ByScreenName_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenlet_ByScreenName_Tests.swift; sourceTree = "<group>"; };
@@ -554,23 +540,36 @@
 		8839B8871B0CD5C4006C18F1 /* GetUserByEmailOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByEmailOperation.swift; sourceTree = "<group>"; };
 		8839B8881B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByScreenNameOperation.swift; sourceTree = "<group>"; };
 		8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByUserIdOperation.swift; sourceTree = "<group>"; };
+		886FCCAF1BA6D59700494BB0 /* SyncManager+UserPortrait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+UserPortrait.swift"; sourceTree = "<group>"; };
+		886FCCB21BA6D96E00494BB0 /* SyncManager+DDLForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+DDLForm.swift"; sourceTree = "<group>"; };
+		887F0CFC1B98833D0007AECE /* ServerReadOperationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerReadOperationInteractor.swift; sourceTree = "<group>"; };
+		887F0CFF1B988EA60007AECE /* ServerWriteOperationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerWriteOperationInteractor.swift; sourceTree = "<group>"; };
+		887F0D081B999CD90007AECE /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		887F0D111B99A79A0007AECE /* LRSession+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+Screens.swift"; sourceTree = "<group>"; };
+		887F0D141B99AABA0007AECE /* String+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Screens.swift"; sourceTree = "<group>"; };
+		887F0D171B99BD640007AECE /* CacheMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheMetadata.swift; sourceTree = "<group>"; };
 		8892C6781ACB2E3300192232 /* LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8892C67C1ACB2E3300192232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8892C67D1ACB2E3300192232 /* LiferayScreens.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreens.h; sourceTree = SOURCE_ROOT; };
 		8892C6831ACB2E3300192232 /* LiferayScreensTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiferayScreensTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8892C6891ACB2E3300192232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8892C6A51ACBD89400192232 /* Bool+Conversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Conversion.swift"; sourceTree = "<group>"; };
+		8892C6A51ACBD89400192232 /* Bool+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Screens.swift"; sourceTree = "<group>"; };
 		8892C6A61ACBD89400192232 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
-		8892C6A81ACBD89400192232 /* NSLocale+CurrentLocale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLocale+CurrentLocale.swift"; sourceTree = "<group>"; };
-		8892C6A91ACBD89400192232 /* UIButton+Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Title.swift"; sourceTree = "<group>"; };
-		8892C6AA1ACBD89400192232 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
+		8892C6A81ACBD89400192232 /* NSLocale+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLocale+Screens.swift"; sourceTree = "<group>"; };
+		8892C6A91ACBD89400192232 /* UIButton+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Screens.swift"; sourceTree = "<group>"; };
+		8892C6AA1ACBD89400192232 /* UIView+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Screens.swift"; sourceTree = "<group>"; };
 		8892C6B21ACBD95400192232 /* LiferayServerContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayServerContext.swift; sourceTree = "<group>"; };
 		8892C6B31ACBD95400192232 /* SessionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext.swift; sourceTree = "<group>"; };
-		88A28EB91B0DD1300040D7F6 /* NSBundle+discovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+discovery.swift"; sourceTree = "<group>"; };
+		88A28EB91B0DD1300040D7F6 /* NSBundle+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Screens.swift"; sourceTree = "<group>"; };
 		88A2B7121ACDEBB1000C2065 /* LoginView_test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView_test.swift; sourceTree = "<group>"; };
 		88A2B7131ACDEBB1000C2065 /* LoginView_test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_test.xib; sourceTree = "<group>"; };
 		88A2B7161ACDEC29000C2065 /* DDLListView_test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListView_test.swift; sourceTree = "<group>"; };
 		88A2B7171ACDEC29000C2065 /* DDLListView_test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLListView_test.xib; sourceTree = "<group>"; };
+		88B2730E1B7107F200477E5E /* ProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressPresenter.swift; sourceTree = "<group>"; };
+		88B273111B7109C300477E5E /* DefaultProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultProgressPresenter.swift; sourceTree = "<group>"; };
+		88B273141B7109E200477E5E /* MBProgressHUDPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBProgressHUDPresenter.swift; sourceTree = "<group>"; };
+		88BCB5601B8CAC22004349F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/assetlist-screenlet.strings"; sourceTree = "<group>"; };
+		88BCB5641B8CAD93004349F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/ddllist-screenlet.strings"; sourceTree = "<group>"; };
 		88CA80581B25AF48004C1D59 /* LoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		88CA80591B25AF48004C1D59 /* OAuthInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthInteractor.swift; sourceTree = "<group>"; };
 		88CA805A1B25AF48004C1D59 /* OAuthWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthWebViewController.swift; sourceTree = "<group>"; };
@@ -580,6 +579,8 @@
 		88CA806D1B25EE04004C1D59 /* CredentialsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsStore.swift; sourceTree = "<group>"; };
 		88CA80701B25EF69004C1D59 /* BaseCredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
 		88CA80731B25F868004C1D59 /* OAuthCredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthCredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
+		88CA91B41B8DB682000B92F2 /* HttpOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpOperation.swift; sourceTree = "<group>"; };
+		88CA91B71B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitDefaultProgressPresenter.swift; sourceTree = "<group>"; };
 		88DC31E11ACC18F10078C961 /* SessionStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
 		88DE24F61AD2AA6400714701 /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = "<group>"; };
 		88DE24FA1AD2AB0A00714701 /* BaseScreenlet_Basic_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreenlet_Basic_Tests.swift; sourceTree = "<group>"; };
@@ -602,6 +603,8 @@
 		88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
 		9136B139BF9449FC75DBECA6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC17F525218297794482A65 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
+		B2A8B1D31BBABE1F00AEC9D9 /* LRScreensjournalarticleService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensjournalarticleService_v62.h; sourceTree = "<group>"; };
+		B2A8B1D41BBABE1F00AEC9D9 /* LRScreensjournalarticleService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensjournalarticleService_v62.m; sourceTree = "<group>"; };
 		B2F3F3491B0A1923002CEF60 /* LRScreensassetentryService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensassetentryService_v62.h; sourceTree = "<group>"; };
 		B2F3F34A1B0A1923002CEF60 /* LRScreensassetentryService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensassetentryService_v62.m; sourceTree = "<group>"; };
 		B2F3F34B1B0A1923002CEF60 /* LRScreensddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensddlrecordService_v62.h; sourceTree = "<group>"; };
@@ -663,14 +666,16 @@
 		880ACA641B0224A0007AD007 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				880ACA651B0224A0007AD007 /* ddlform-screenlet.strings */,
-				880ACA671B0224A0007AD007 /* signup-screenlet.strings */,
+				88BCB55F1B8CAC22004349F1 /* assetlist-screenlet.strings */,
 				880ACA691B0224A0007AD007 /* core.strings */,
+				880ACA651B0224A0007AD007 /* ddlform-screenlet.strings */,
+				88BCB5631B8CAD93004349F1 /* ddllist-screenlet.strings */,
 				880ACA6C1B0224A0007AD007 /* forgotpassword-screenlet.strings */,
-				880ACA6E1B0224A0007AD007 /* login-screenlet.strings */,
-				880ACA711B0224A0007AD007 /* userportrait-screenlet.strings */,
-				880ACA731B0224A0007AD007 /* webcontentdisplay-screenlet.strings */,
 				880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */,
+				880ACA6E1B0224A0007AD007 /* login-screenlet.strings */,
+				880ACA671B0224A0007AD007 /* signup-screenlet.strings */,
+				880ACA711B0224A0007AD007 /* userportrait-screenlet.strings */,
+				88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */,
 			);
 			name = Resources;
 			path = Core/Resources;
@@ -681,12 +686,17 @@
 			children = (
 				881E60C51ACBE56700862B9E /* BaseListScreenlet */,
 				881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */,
-				881E60B51ACBE3FF00862B9E /* BaseScreenlet+progress.swift */,
 				881E60B71ACBE3FF00862B9E /* BaseScreenletView.swift */,
 				881E60BB1ACBE43200862B9E /* Interactor.swift */,
 				881E60BC1ACBE43200862B9E /* KeyboardManager.swift */,
 				881E60BD1ACBE43200862B9E /* ServerOperation.swift */,
+				881E49CE1B95FD03007DBEC9 /* ServerOperationChain.swift */,
+				88CA91B41B8DB682000B92F2 /* HttpOperation.swift */,
 				881E60BE1ACBE43200862B9E /* ServerOperationInteractor.swift */,
+				887F0CFC1B98833D0007AECE /* ServerReadOperationInteractor.swift */,
+				887F0CFF1B988EA60007AECE /* ServerWriteOperationInteractor.swift */,
+				88B2730E1B7107F200477E5E /* ProgressPresenter.swift */,
+				88B273141B7109E200477E5E /* MBProgressHUDPresenter.swift */,
 			);
 			name = Base;
 			path = Core/Base;
@@ -820,14 +830,9 @@
 		881E61021ACBE5F000862B9E /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
-				881E61031ACBE5F000862B9E /* UserPortraitAttributesLoadInteractor.swift */,
-				881E61041ACBE5F000862B9E /* UserPortraitBaseInteractor.swift */,
-				881E61051ACBE5F000862B9E /* UserPortraitBaseLoadUserInteractor.swift */,
-				881E61061ACBE5F000862B9E /* UserPortraitLoadByEmailAddressInteractor.swift */,
-				881E61071ACBE5F000862B9E /* UserPortraitLoadByScreenNameInteractor.swift */,
-				881E61081ACBE5F000862B9E /* UserPortraitLoadByUserIdInteractor.swift */,
-				881E61091ACBE5F000862B9E /* UserPortraitLoadLoggedUserInteractor.swift */,
+				881E49C51B95CE65007DBEC9 /* DownloadUserPortraitInteractor.swift */,
 				880ACA5A1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift */,
+				886FCCAF1BA6D59700494BB0 /* SyncManager+UserPortrait.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -912,6 +917,7 @@
 				881E61591ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift */,
 				881E615A1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift */,
 				881E615B1ACBEE0B00862B9E /* DDLFormUploadDocumentInteractor.swift */,
+				886FCCB21BA6D96E00494BB0 /* SyncManager+DDLForm.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -977,7 +983,6 @@
 			isa = PBXGroup;
 			children = (
 				881E61BA1ACBFC3400862B9E /* Default */,
-				881E620D1ACBFC3400862B9E /* Flat7 */,
 			);
 			path = Themes;
 			sourceTree = SOURCE_ROOT;
@@ -988,6 +993,7 @@
 				881E61BB1ACBFC3400862B9E /* AssetListScreenlet */,
 				881E61BE1ACBFC3400862B9E /* Auth */,
 				881E61CB1ACBFC3400862B9E /* DDL */,
+				88B273111B7109C300477E5E /* DefaultProgressPresenter.swift */,
 				881E61E91ACBFC3400862B9E /* DefaultThemeConstants.swift */,
 				881E61EA1ACBFC3400862B9E /* Resources */,
 				881E620A1ACBFC3400862B9E /* WebContentDisplayScreenlet */,
@@ -1046,6 +1052,7 @@
 		881E61C81ACBFC3400862B9E /* UserPortraitScreenlet */ = {
 			isa = PBXGroup;
 			children = (
+				88CA91B71B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift */,
 				881E61C91ACBFC3400862B9E /* UserPortraitView_default.swift */,
 				881E61CA1ACBFC3400862B9E /* UserPortraitView_default.xib */,
 			);
@@ -1146,79 +1153,6 @@
 			path = WebContentDisplayScreenlet;
 			sourceTree = "<group>";
 		};
-		881E620D1ACBFC3400862B9E /* Flat7 */ = {
-			isa = PBXGroup;
-			children = (
-				881E620E1ACBFC3400862B9E /* Auth */,
-				881E621B1ACBFC3400862B9E /* Flat7ThemeConstants.swift */,
-				881E621C1ACBFC3400862B9E /* Resources */,
-			);
-			path = Flat7;
-			sourceTree = "<group>";
-		};
-		881E620E1ACBFC3400862B9E /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				881E620F1ACBFC3400862B9E /* ForgotPasswordScreenlet */,
-				881E62121ACBFC3400862B9E /* LoginScreenlet */,
-				881E62151ACBFC3400862B9E /* SignUpScreenlet */,
-				881E62181ACBFC3400862B9E /* UserPortraitScreenlet */,
-			);
-			path = Auth;
-			sourceTree = "<group>";
-		};
-		881E620F1ACBFC3400862B9E /* ForgotPasswordScreenlet */ = {
-			isa = PBXGroup;
-			children = (
-				881E62101ACBFC3400862B9E /* ForgotPasswordView_flat7.swift */,
-				881E62111ACBFC3400862B9E /* ForgotPasswordView_flat7.xib */,
-			);
-			path = ForgotPasswordScreenlet;
-			sourceTree = "<group>";
-		};
-		881E62121ACBFC3400862B9E /* LoginScreenlet */ = {
-			isa = PBXGroup;
-			children = (
-				881E62131ACBFC3400862B9E /* LoginView_flat7.swift */,
-				881E62141ACBFC3400862B9E /* LoginView_flat7.xib */,
-			);
-			path = LoginScreenlet;
-			sourceTree = "<group>";
-		};
-		881E62151ACBFC3400862B9E /* SignUpScreenlet */ = {
-			isa = PBXGroup;
-			children = (
-				881E62161ACBFC3400862B9E /* SignUpView_flat7.swift */,
-				881E62171ACBFC3400862B9E /* SignUpView_flat7.xib */,
-			);
-			path = SignUpScreenlet;
-			sourceTree = "<group>";
-		};
-		881E62181ACBFC3400862B9E /* UserPortraitScreenlet */ = {
-			isa = PBXGroup;
-			children = (
-				881E62191ACBFC3400862B9E /* UserPortraitView_flat7.swift */,
-				881E621A1ACBFC3400862B9E /* UserPortraitView_flat7.xib */,
-			);
-			path = UserPortraitScreenlet;
-			sourceTree = "<group>";
-		};
-		881E621C1ACBFC3400862B9E /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				881E621D1ACBFC3400862B9E /* flat7.strings */,
-				881E62201ACBFC3400862B9E /* flat7-button.png */,
-				881E62211ACBFC3400862B9E /* flat7-button@2x.png */,
-				881E62221ACBFC3400862B9E /* flat7-field.png */,
-				881E62231ACBFC3400862B9E /* flat7-field@2x.png */,
-				881E62241ACBFC3400862B9E /* flat7-gradient-form.png */,
-				881E62251ACBFC3400862B9E /* flat7-gradient-form@2x.png */,
-				881E62261ACBFC3400862B9E /* flat7-portrait-placeholder.png */,
-				881E62271ACBFC3400862B9E /* flat7-portrait-placeholder@2x.png */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		881E62FE1ACC06B900862B9E /* Integration */ = {
 			isa = PBXGroup;
 			children = (
@@ -1264,6 +1198,16 @@
 				8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */,
 			);
 			path = ServerOperations;
+			sourceTree = "<group>";
+		};
+		887F0D071B999CD90007AECE /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				887F0D081B999CD90007AECE /* CacheManager.swift */,
+				887F0D171B99BD640007AECE /* CacheMetadata.swift */,
+				881B743D1B9EE28D00EA64ED /* SyncManager.swift */,
+			);
+			path = Offline;
 			sourceTree = "<group>";
 		};
 		8892C66E1ACB2E3300192232 = {
@@ -1336,6 +1280,7 @@
 				881E613F1ACBEDC600862B9E /* AssetListScreenlet */,
 				881E60DE1ACBE5F000862B9E /* Auth */,
 				881E60B41ACBE3FF00862B9E /* Base */,
+				887F0D071B999CD90007AECE /* Offline */,
 				8892C6B11ACBD95400192232 /* Context */,
 				881E614C1ACBEE0B00862B9E /* DDL */,
 				8892C6A41ACBD89400192232 /* Extensions */,
@@ -1351,6 +1296,8 @@
 			children = (
 				B2F3F3491B0A1923002CEF60 /* LRScreensassetentryService_v62.h */,
 				B2F3F34A1B0A1923002CEF60 /* LRScreensassetentryService_v62.m */,
+				B2A8B1D31BBABE1F00AEC9D9 /* LRScreensjournalarticleService_v62.h */,
+				B2A8B1D41BBABE1F00AEC9D9 /* LRScreensjournalarticleService_v62.m */,
 				B2F3F34B1B0A1923002CEF60 /* LRScreensddlrecordService_v62.h */,
 				B2F3F34C1B0A1923002CEF60 /* LRScreensddlrecordService_v62.m */,
 				B2F3F34D1B0A1923002CEF60 /* LRScreensuserService_v62.h */,
@@ -1363,13 +1310,16 @@
 		8892C6A41ACBD89400192232 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8892C6A51ACBD89400192232 /* Bool+Conversion.swift */,
+				881E49CB1B95D474007DBEC9 /* Array+Screens.swift */,
+				8892C6A51ACBD89400192232 /* Bool+Screens.swift */,
 				8892C6A61ACBD89400192232 /* Global.swift */,
-				88A28EB91B0DD1300040D7F6 /* NSBundle+discovery.swift */,
+				887F0D111B99A79A0007AECE /* LRSession+Screens.swift */,
+				88A28EB91B0DD1300040D7F6 /* NSBundle+Screens.swift */,
 				8839B8821B0CD55E006C18F1 /* NSError+Screens.swift */,
-				8892C6A81ACBD89400192232 /* NSLocale+CurrentLocale.swift */,
-				8892C6A91ACBD89400192232 /* UIButton+Title.swift */,
-				8892C6AA1ACBD89400192232 /* UIView+Animations.swift */,
+				8892C6A81ACBD89400192232 /* NSLocale+Screens.swift */,
+				887F0D141B99AABA0007AECE /* String+Screens.swift */,
+				8892C6A91ACBD89400192232 /* UIButton+Screens.swift */,
+				8892C6AA1ACBD89400192232 /* UIView+Screens.swift */,
 			);
 			name = Extensions;
 			path = Core/Extensions;
@@ -1483,6 +1433,7 @@
 			files = (
 				B2F3F3531B0A1923002CEF60 /* LRScreensuserService_v62.h in Headers */,
 				8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */,
+				B2A8B1D51BBABE1F00AEC9D9 /* LRScreensjournalarticleService_v62.h in Headers */,
 				B2F3F3511B0A1923002CEF60 /* LRScreensddlrecordService_v62.h in Headers */,
 				881E61491ACBEDC600862B9E /* AssetListScreenletInterop.h in Headers */,
 				B2F3F34F1B0A1923002CEF60 /* LRScreensassetentryService_v62.h in Headers */,
@@ -1581,11 +1532,11 @@
 				881E625D1ACBFC3400862B9E /* default-lock-icon.png in Resources */,
 				881E62661ACBFC3400862B9E /* default-preview-ddlform@2x.png in Resources */,
 				881E62651ACBFC3400862B9E /* default-preview-assetlist@2x.png in Resources */,
-				881E626F1ACBFC3400862B9E /* LoginView_flat7.xib in Resources */,
 				88CA80691B25E505004C1D59 /* OAuthWebViewController_default.xib in Resources */,
 				881E625C1ACBFC3400862B9E /* default-hourglass@2x.png in Resources */,
 				881E625F1ACBFC3400862B9E /* default-mail-icon.png in Resources */,
 				881E62511ACBFC3400862B9E /* default-field-failed.png in Resources */,
+				88BCB5611B8CAC22004349F1 /* assetlist-screenlet.strings in Resources */,
 				881E62521ACBFC3400862B9E /* default-field-failed@2x.png in Resources */,
 				881E62601ACBFC3400862B9E /* default-mail-icon@2x.png in Resources */,
 				881E62681ACBFC3400862B9E /* default-user-icon.png in Resources */,
@@ -1596,56 +1547,45 @@
 				881E62431ACBFC3400862B9E /* DDLFieldTextareaTableCell_default.xib in Resources */,
 				881E625E1ACBFC3400862B9E /* default-lock-icon@2x.png in Resources */,
 				881E62351ACBFC3400862B9E /* DDLFieldCheckboxTableCell_default.xib in Resources */,
-				881E62711ACBFC3400862B9E /* SignUpView_flat7.xib in Resources */,
 				881E623B1ACBFC3400862B9E /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
-				881E62781ACBFC3400862B9E /* flat7-field.png in Resources */,
 				881E624E1ACBFC3400862B9E /* default.strings in Resources */,
 				881E62631ACBFC3400862B9E /* default-portrait-placeholder.png in Resources */,
 				881E62481ACBFC3400862B9E /* DDLFormView_default.xib in Resources */,
 				881E624F1ACBFC3400862B9E /* default-calendar.png in Resources */,
-				881E62751ACBFC3400862B9E /* flat7.strings in Resources */,
 				881E62531ACBFC3400862B9E /* default-field-focused.png in Resources */,
-				881E627C1ACBFC3400862B9E /* flat7-portrait-placeholder.png in Resources */,
 				881E62411ACBFC3400862B9E /* DDLFieldSelectTableCell_default.xib in Resources */,
 				880ACA831B0224A0007AD007 /* forgotpassword-screenlet.strings in Resources */,
+				88BCB5651B8CAD93004349F1 /* ddllist-screenlet.strings in Resources */,
 				881E62581ACBFC3400862B9E /* default-form-gradient-bottom@2x.png in Resources */,
 				880ACA851B0224A0007AD007 /* login-screenlet.strings in Resources */,
 				881E62541ACBFC3400862B9E /* default-field-focused@2x.png in Resources */,
 				881E623D1ACBFC3400862B9E /* DDLFieldNumberTableCell_default.xib in Resources */,
 				881E62641ACBFC3400862B9E /* default-portrait-placeholder@2x.png in Resources */,
 				881E62451ACBFC3400862B9E /* DDLFieldTextTableCell_default.xib in Resources */,
-				881E62791ACBFC3400862B9E /* flat7-field@2x.png in Resources */,
 				881E622B1ACBFC3400862B9E /* ForgotPasswordView_default.xib in Resources */,
 				881E62331ACBFC3400862B9E /* DDLCustomFieldCompanyTableCell_default.xib in Resources */,
 				880ACA7D1B0224A0007AD007 /* ddlform-screenlet.strings in Resources */,
 				881E62671ACBFC3400862B9E /* default-preview-webcontentdisplay@2x.png in Resources */,
+				88019FA21B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */,
 				881E626B1ACBFC3400862B9E /* WebContentDisplayView_default.xib in Resources */,
 				880ACA8B1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */,
-				881E62761ACBFC3400862B9E /* flat7-button.png in Resources */,
 				881E625A1ACBFC3400862B9E /* default-form-gradient-top@2x.png in Resources */,
 				881E62611ACBFC3400862B9E /* default-multiline-field.png in Resources */,
-				881E627D1ACBFC3400862B9E /* flat7-portrait-placeholder@2x.png in Resources */,
-				881E62731ACBFC3400862B9E /* UserPortraitView_flat7.xib in Resources */,
 				888DF5B51ACC9FF100EB7DA1 /* LoginView_default.xib in Resources */,
 				881E62591ACBFC3400862B9E /* default-form-gradient-top.png in Resources */,
 				881E62561ACBFC3400862B9E /* default-field@2x.png in Resources */,
 				880ACA811B0224A0007AD007 /* core.strings in Resources */,
-				880ACA891B0224A0007AD007 /* webcontentdisplay-screenlet.strings in Resources */,
 				881E62621ACBFC3400862B9E /* default-multiline-field@2x.png in Resources */,
 				881E62311ACBFC3400862B9E /* UserPortraitView_default.xib in Resources */,
-				881E627B1ACBFC3400862B9E /* flat7-gradient-form@2x.png in Resources */,
 				881E62391ACBFC3400862B9E /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */,
-				881E626D1ACBFC3400862B9E /* ForgotPasswordView_flat7.xib in Resources */,
 				880ACA7F1B0224A0007AD007 /* signup-screenlet.strings in Resources */,
 				881E62371ACBFC3400862B9E /* DDLFieldDateTableCell_default.xib in Resources */,
-				881E62771ACBFC3400862B9E /* flat7-button@2x.png in Resources */,
 				881E62571ACBFC3400862B9E /* default-form-gradient-bottom.png in Resources */,
 				881E62551ACBFC3400862B9E /* default-field.png in Resources */,
 				881E623F1ACBFC3400862B9E /* DDLFieldRadioTableCell_default.xib in Resources */,
 				881E62501ACBFC3400862B9E /* default-calendar@2x.png in Resources */,
 				881E624A1ACBFC3400862B9E /* DDLSubmitButtonTableCell_default.xib in Resources */,
 				881E624C1ACBFC3400862B9E /* DDLListView_default.xib in Resources */,
-				881E627A1ACBFC3400862B9E /* flat7-gradient-form.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1653,12 +1593,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				880ACA8A1B0224A0007AD007 /* webcontentdisplay-screenlet.strings in Resources */,
 				880ACA861B0224A0007AD007 /* login-screenlet.strings in Resources */,
 				881E62C91ACC019800862B9E /* default-field-focused@2x.png in Resources */,
 				881E62CF1ACC01E700862B9E /* default-form-gradient-top.png in Resources */,
 				881E62D01ACC01E700862B9E /* default-form-gradient-top@2x.png in Resources */,
 				881E62C41ACC016800862B9E /* default-lock-icon.png in Resources */,
+				88BCB5661B8CAD93004349F1 /* ddllist-screenlet.strings in Resources */,
 				88CA806A1B25E505004C1D59 /* OAuthWebViewController_default.xib in Resources */,
 				880ACA8C1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */,
 				880ACA801B0224A0007AD007 /* signup-screenlet.strings in Resources */,
@@ -1668,6 +1608,7 @@
 				88DE24F71AD2AA6400714701 /* liferay-server-context.plist in Resources */,
 				88A2B7191ACDEC29000C2065 /* DDLListView_test.xib in Resources */,
 				881E62C81ACC019800862B9E /* default-field-focused.png in Resources */,
+				88BCB5621B8CAC22004349F1 /* assetlist-screenlet.strings in Resources */,
 				880ACA881B0224A0007AD007 /* userportrait-screenlet.strings in Resources */,
 				880ACA7E1B0224A0007AD007 /* ddlform-screenlet.strings in Resources */,
 				881E62CA1ACC01A500862B9E /* default-field.png in Resources */,
@@ -1675,6 +1616,7 @@
 				881E62C51ACC016F00862B9E /* default-lock-icon@2x.png in Resources */,
 				881E62CD1ACC01E700862B9E /* default-form-gradient-bottom.png in Resources */,
 				880ACA841B0224A0007AD007 /* forgotpassword-screenlet.strings in Resources */,
+				88019FA31B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */,
 				881E62CE1ACC01E700862B9E /* default-form-gradient-bottom@2x.png in Resources */,
 				881E62C61ACC016F00862B9E /* default-mail-icon.png in Resources */,
 				881E62CB1ACC01A500862B9E /* default-field@2x.png in Resources */,
@@ -1781,42 +1723,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				881E61251ACBE5F000862B9E /* UserPortraitLoadByUserIdInteractor.swift in Sources */,
+				886FCCB31BA6D96E00494BB0 /* SyncManager+DDLForm.swift in Sources */,
 				881E611E1ACBE5F000862B9E /* SignUpScreenlet.swift in Sources */,
+				881B743E1B9EE28D00EA64ED /* SyncManager.swift in Sources */,
 				88CA806E1B25EE04004C1D59 /* CredentialsStore.swift in Sources */,
 				881E62341ACBFC3400862B9E /* DDLFieldCheckboxTableCell_default.swift in Sources */,
 				881E61281ACBE5F000862B9E /* UserPortraitViewModel.swift in Sources */,
-				881E626E1ACBFC3400862B9E /* LoginView_flat7.swift in Sources */,
 				881E61871ACBEE0B00862B9E /* DDLListScreenlet.swift in Sources */,
 				881E611F1ACBE5F000862B9E /* SignUpViewModel.swift in Sources */,
 				881E61181ACBE5F000862B9E /* LiferayLoginByEmailOperation.swift in Sources */,
 				881E611C1ACBE5F000862B9E /* LiferaySignUpOperation.swift in Sources */,
 				881E617E1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift in Sources */,
-				881E61241ACBE5F000862B9E /* UserPortraitLoadByScreenNameInteractor.swift in Sources */,
 				B2F3F3501B0A1923002CEF60 /* LRScreensassetentryService_v62.m in Sources */,
 				881E622E1ACBFC3400862B9E /* SignUpView_default.swift in Sources */,
 				881E61791ACBEE0B00862B9E /* DDLFormView.swift in Sources */,
 				881E62301ACBFC3400862B9E /* UserPortraitView_default.swift in Sources */,
-				881E62741ACBFC3400862B9E /* Flat7ThemeConstants.swift in Sources */,
+				887F0D0A1B999CD90007AECE /* CacheManager.swift in Sources */,
 				88DC31E21ACC18F10078C961 /* SessionStorage.swift in Sources */,
-				8892C6AB1ACBD89400192232 /* Bool+Conversion.swift in Sources */,
+				8892C6AB1ACBD89400192232 /* Bool+Screens.swift in Sources */,
+				887F0D121B99A79A0007AECE /* LRSession+Screens.swift in Sources */,
 				881E61191ACBE5F000862B9E /* LiferayLoginByScreenNameOperation.swift in Sources */,
+				881E49C61B95CE66007DBEC9 /* DownloadUserPortraitInteractor.swift in Sources */,
 				881E618B1ACBEE0B00862B9E /* DDLField+Editor.swift in Sources */,
-				881E62701ACBFC3400862B9E /* SignUpView_flat7.swift in Sources */,
+				881E49CF1B95FD03007DBEC9 /* ServerOperationChain.swift in Sources */,
 				881E61121ACBE5F000862B9E /* LiferayForgotPasswordScreenNameOperation.swift in Sources */,
 				881E61931ACBEE0B00862B9E /* DDLFieldUntyped.swift in Sources */,
 				8839B87B1B0CD539006C18F1 /* SaveUserInteractor.swift in Sources */,
 				888DF5B41ACC9FF100EB7DA1 /* LoginView_default.swift in Sources */,
 				881E613E1ACBED7500862B9E /* WebContentDisplayViewModel.swift in Sources */,
+				88CA91B81B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift in Sources */,
 				881E62361ACBFC3400862B9E /* DDLFieldDateTableCell_default.swift in Sources */,
 				B2F3F3521B0A1923002CEF60 /* LRScreensddlrecordService_v62.m in Sources */,
 				881E61481ACBEDC600862B9E /* AssetListScreenlet.swift in Sources */,
 				881E618C1ACBEE0B00862B9E /* DDLField.swift in Sources */,
 				888DF5B11ACC9FC200EB7DA1 /* LoginScreenlet.swift in Sources */,
 				8892C6AC1ACBD89400192232 /* Global.swift in Sources */,
-				881E61221ACBE5F000862B9E /* UserPortraitBaseLoadUserInteractor.swift in Sources */,
 				880ACA5B1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift in Sources */,
 				881E60D01ACBE56700862B9E /* LiferayPaginationOperation.swift in Sources */,
+				886FCCB01BA6D59700494BB0 /* SyncManager+UserPortrait.swift in Sources */,
 				881E62281ACBFC3400862B9E /* AssetListView_default.swift in Sources */,
 				881E62421ACBFC3400862B9E /* DDLFieldTextareaTableCell_default.swift in Sources */,
 				881E62491ACBFC3400862B9E /* DDLSubmitButtonTableCell_default.swift in Sources */,
@@ -1826,25 +1770,26 @@
 				88CA80741B25F868004C1D59 /* OAuthCredentialsStoreKeyChain.swift in Sources */,
 				881E618E1ACBEE0B00862B9E /* DDLFieldDate.swift in Sources */,
 				881E61811ACBEE0B00862B9E /* LiferayDDLFormRecordLoadOperation.swift in Sources */,
+				88B273121B7109C300477E5E /* DefaultProgressPresenter.swift in Sources */,
 				88CA805B1B25AF48004C1D59 /* LoginInteractor.swift in Sources */,
+				881E49CC1B95D474007DBEC9 /* Array+Screens.swift in Sources */,
 				88CA80661B25D72A004C1D59 /* AuthType.swift in Sources */,
-				88CA806B1B25E953004C1D59 /* NSError+Screens.swift in Sources */,
 				881E61271ACBE5F000862B9E /* UserPortraitScreenlet.swift in Sources */,
 				881E60B91ACBE3FF00862B9E /* BaseScreenlet.swift in Sources */,
 				8892C6B51ACBD95400192232 /* SessionContext.swift in Sources */,
 				881E61831ACBEE0B00862B9E /* LiferayDDLFormUploadOperation.swift in Sources */,
 				881E613B1ACBED7500862B9E /* LiferayWebContentLoadOperation.swift in Sources */,
 				881E610F1ACBE5F000862B9E /* ForgotPasswordViewModel.swift in Sources */,
-				881E626C1ACBFC3400862B9E /* ForgotPasswordView_flat7.swift in Sources */,
 				881E618D1ACBEE0B00862B9E /* DDLFieldBoolean.swift in Sources */,
 				88CA805F1B25AF48004C1D59 /* OAuthWebViewController.swift in Sources */,
 				881E613C1ACBED7500862B9E /* WebContentDisplayLoadInteractor.swift in Sources */,
+				887F0D051B9897600007AECE /* ServerWriteOperationInteractor.swift in Sources */,
 				881E61921ACBEE0B00862B9E /* DDLFieldStringWithOptions.swift in Sources */,
-				8892C6AF1ACBD89400192232 /* UIButton+Title.swift in Sources */,
-				881E61201ACBE5F000862B9E /* UserPortraitAttributesLoadInteractor.swift in Sources */,
+				8892C6AF1ACBD89400192232 /* UIButton+Screens.swift in Sources */,
+				B2A8B1D61BBABE1F00AEC9D9 /* LRScreensjournalarticleService_v62.m in Sources */,
 				881E61891ACBEE0B00862B9E /* LiferayDDLListPageOperation.swift in Sources */,
 				881E61471ACBEDC600862B9E /* AssetListPageLoadInteractor.swift in Sources */,
-				88A28EBA1B0DD1300040D7F6 /* NSBundle+discovery.swift in Sources */,
+				88A28EBA1B0DD1300040D7F6 /* NSBundle+Screens.swift in Sources */,
 				881E618F1ACBEE0B00862B9E /* DDLFieldDocument.swift in Sources */,
 				881E60C11ACBE43200862B9E /* ServerOperation.swift in Sources */,
 				88CA80711B25EF69004C1D59 /* BaseCredentialsStoreKeyChain.swift in Sources */,
@@ -1852,7 +1797,6 @@
 				881E611A1ACBE5F000862B9E /* LiferayLoginByUserIdOperation.swift in Sources */,
 				881E613D1ACBED7500862B9E /* WebContentDisplayScreenlet.swift in Sources */,
 				881E61841ACBEE0B00862B9E /* DDLFieldTableCell.swift in Sources */,
-				881E62721ACBFC3400862B9E /* UserPortraitView_flat7.swift in Sources */,
 				881E623C1ACBFC3400862B9E /* DDLFieldNumberTableCell_default.swift in Sources */,
 				881E61821ACBEE0B00862B9E /* LiferayDDLFormSubmitOperation.swift in Sources */,
 				881E61771ACBEE0B00862B9E /* DDLXSDParser.swift in Sources */,
@@ -1861,7 +1805,7 @@
 				881E61101ACBE5F000862B9E /* LiferayForgotPasswordBaseOperation.swift in Sources */,
 				881E610E1ACBE5F000862B9E /* ForgotPasswordScreenlet.swift in Sources */,
 				8839B88E1B0CD5C4006C18F1 /* GetUserByScreenNameOperation.swift in Sources */,
-				8892C6B01ACBD89400192232 /* UIView+Animations.swift in Sources */,
+				8892C6B01ACBD89400192232 /* UIView+Screens.swift in Sources */,
 				88CA805D1B25AF48004C1D59 /* OAuthInteractor.swift in Sources */,
 				881E60CE1ACBE56700862B9E /* BaseListScreenlet.swift in Sources */,
 				881E60D11ACBE56700862B9E /* BaseListTableView.swift in Sources */,
@@ -1869,7 +1813,6 @@
 				8839B87D1B0CD539006C18F1 /* SignUpInteractor.swift in Sources */,
 				881E614B1ACBEDC600862B9E /* AssetListTableView.swift in Sources */,
 				880ACA621B0200D5007AD007 /* LiferayUploadUserPortraitOperation.swift in Sources */,
-				881E61211ACBE5F000862B9E /* UserPortraitBaseInteractor.swift in Sources */,
 				881E61851ACBEE0B00862B9E /* DDLFormTableView.swift in Sources */,
 				881E618A1ACBEE0B00862B9E /* DDLField+DataType.swift in Sources */,
 				881E614A1ACBEDC600862B9E /* LiferayAssetListPageOperation.swift in Sources */,
@@ -1877,26 +1820,27 @@
 				881E617F1ACBEE0B00862B9E /* DDLFormUploadDocumentInteractor.swift in Sources */,
 				881E623A1ACBFC3400862B9E /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */,
 				881E60BA1ACBE3FF00862B9E /* BaseScreenletView.swift in Sources */,
-				8892C6AE1ACBD89400192232 /* NSLocale+CurrentLocale.swift in Sources */,
+				8892C6AE1ACBD89400192232 /* NSLocale+Screens.swift in Sources */,
+				88B2730F1B7107F200477E5E /* ProgressPresenter.swift in Sources */,
 				881E62401ACBFC3400862B9E /* DDLFieldSelectTableCell_default.swift in Sources */,
 				881E62381ACBFC3400862B9E /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */,
 				881E61131ACBE5F000862B9E /* LiferayForgotPasswordUserIdOperation.swift in Sources */,
 				B2F3F3541B0A1923002CEF60 /* LRScreensuserService_v62.m in Sources */,
-				881E61231ACBE5F000862B9E /* UserPortraitLoadByEmailAddressInteractor.swift in Sources */,
+				88BCB55E1B8C92F0004349F1 /* NSError+Screens.swift in Sources */,
 				881E610D1ACBE5F000862B9E /* ForgotPasswordInteractor.swift in Sources */,
 				881E62461ACBFC3400862B9E /* DDLFormDefaultThemeConstants.swift in Sources */,
+				887F0D181B99BD640007AECE /* CacheMetadata.swift in Sources */,
 				881E61761ACBEE0B00862B9E /* DDLValuesParser.swift in Sources */,
 				881E623E1ACBFC3400862B9E /* DDLFieldRadioTableCell_default.swift in Sources */,
+				887F0D151B99AABB0007AECE /* String+Screens.swift in Sources */,
 				881E61911ACBEE0B00862B9E /* DDLFieldString.swift in Sources */,
 				881E60CF1ACBE56700862B9E /* BaseListView.swift in Sources */,
-				881E61261ACBE5F000862B9E /* UserPortraitLoadLoggedUserInteractor.swift in Sources */,
 				881E61111ACBE5F000862B9E /* LiferayForgotPasswordEmailOperation.swift in Sources */,
 				881E617D1ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift in Sources */,
 				881E622A1ACBFC3400862B9E /* ForgotPasswordView_default.swift in Sources */,
 				881E61941ACBEE0B00862B9E /* DDLRecord.swift in Sources */,
 				8839B8801B0CD546006C18F1 /* LiferayUpdateCurrentUserOperation.swift in Sources */,
 				881E61861ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift in Sources */,
-				881E60B81ACBE3FF00862B9E /* BaseScreenlet+progress.swift in Sources */,
 				88CA80631B25D6EA004C1D59 /* BasicAuthBased.swift in Sources */,
 				8839B88A1B0CD5C4006C18F1 /* GetUserBaseOperation.swift in Sources */,
 				888DF5B21ACC9FC200EB7DA1 /* LoginViewModel.swift in Sources */,
@@ -1905,9 +1849,12 @@
 				881E61881ACBEE0B00862B9E /* DDLListViewModel.swift in Sources */,
 				881E60CD1ACBE56700862B9E /* BaseListPageLoadInteractor.swift in Sources */,
 				881E60BF1ACBE43200862B9E /* Interactor.swift in Sources */,
+				88CA91B51B8DB682000B92F2 /* HttpOperation.swift in Sources */,
+				88B273151B7109E200477E5E /* MBProgressHUDPresenter.swift in Sources */,
 				881E624D1ACBFC3400862B9E /* DefaultThemeConstants.swift in Sources */,
 				881E62471ACBFC3400862B9E /* DDLFormView_default.swift in Sources */,
 				881E61781ACBEE0B00862B9E /* DDLFormScreenlet.swift in Sources */,
+				887F0D031B98973A0007AECE /* ServerReadOperationInteractor.swift in Sources */,
 				881E626A1ACBFC3400862B9E /* WebContentDisplayView_default.swift in Sources */,
 				881E60C21ACBE43200862B9E /* ServerOperationInteractor.swift in Sources */,
 				881E617C1ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift in Sources */,
@@ -1920,19 +1867,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8839B88B1B0CD5C4006C18F1 /* GetUserBaseOperation.swift in Sources */,
-				88A28EBB1B0DD1300040D7F6 /* NSBundle+discovery.swift in Sources */,
+				88A28EBB1B0DD1300040D7F6 /* NSBundle+Screens.swift in Sources */,
 				88DE25151AD2AB0A00714701 /* DDLFieldDocument_Tests.swift in Sources */,
-				881E62991ACBFF1800862B9E /* BaseScreenlet+progress.swift in Sources */,
 				88DE25101AD2AB0A00714701 /* SessionContext_Basic_Tests.swift in Sources */,
 				88DE251C1AD2AB0A00714701 /* DDLRecord_FieldValues_Tests.swift in Sources */,
 				88DE250F1AD2AB0A00714701 /* LiferayServerContext_Load_Tests.swift in Sources */,
-				881E62A51ACBFF4500862B9E /* UIButton+Title.swift in Sources */,
+				881E62A51ACBFF4500862B9E /* UIButton+Screens.swift in Sources */,
 				881E62A11ACBFF2D00862B9E /* LiferaySignUpOperation.swift in Sources */,
 				881E629A1ACBFF1800862B9E /* Interactor.swift in Sources */,
 				88CA805C1B25AF48004C1D59 /* LoginInteractor.swift in Sources */,
 				88DE25131AD2AB0A00714701 /* DDLFieldBoolean_Tests.swift in Sources */,
 				881E62F71ACC050200862B9E /* DDLListScreenlet.swift in Sources */,
-				881E62A61ACBFF4500862B9E /* UIView+Animations.swift in Sources */,
+				881E62A61ACBFF4500862B9E /* UIView+Screens.swift in Sources */,
 				88DE25141AD2AB0A00714701 /* DDLFieldDate_Tests.swift in Sources */,
 				881E62ED1ACC04A500862B9E /* DDLFieldDate.swift in Sources */,
 				88DE250E1AD2AB0A00714701 /* BaseScreenlet_Theme_Tests.swift in Sources */,
@@ -1941,7 +1887,9 @@
 				88DE25161AD2AB0A00714701 /* DDLFieldNumber_Tests.swift in Sources */,
 				881E62FA1ACC05B500862B9E /* DDLListPageLoadInteractor.swift in Sources */,
 				88A2B7141ACDEBB1000C2065 /* LoginView_test.swift in Sources */,
+				88B273101B7107F200477E5E /* ProgressPresenter.swift in Sources */,
 				88DE251B1AD2AB0A00714701 /* DDLParser_i18n_Tests.swift in Sources */,
+				881E49CD1B95D474007DBEC9 /* Array+Screens.swift in Sources */,
 				88CA80721B25EF69004C1D59 /* BaseCredentialsStoreKeyChain.swift in Sources */,
 				881E62F41ACC04BA00862B9E /* DDLValuesParser.swift in Sources */,
 				88CA80641B25D6EA004C1D59 /* BasicAuthBased.swift in Sources */,
@@ -1949,6 +1897,8 @@
 				880ACA631B0200D5007AD007 /* LiferayUploadUserPortraitOperation.swift in Sources */,
 				881E62EA1ACC04A500862B9E /* DDLField+Editor.swift in Sources */,
 				88CA80751B25F868004C1D59 /* OAuthCredentialsStoreKeyChain.swift in Sources */,
+				88CA91B91B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift in Sources */,
+				881E49D01B95FD03007DBEC9 /* ServerOperationChain.swift in Sources */,
 				881E63081ACC06B900862B9E /* LoginScreenlet_ByUserId_Tests.swift in Sources */,
 				881E629B1ACBFF1800862B9E /* KeyboardManager.swift in Sources */,
 				881E628F1ACBFE8300862B9E /* BaseScreenlet.swift in Sources */,
@@ -1960,12 +1910,16 @@
 				881E63051ACC06B900862B9E /* BaseLoginScreenletTestCase.swift in Sources */,
 				881E61A81ACBF97000862B9E /* uBDD.swift in Sources */,
 				88DE25181AD2AB0A00714701 /* DDLFieldStringWithOptions_Tests.swift in Sources */,
+				88B273161B7109E200477E5E /* MBProgressHUDPresenter.swift in Sources */,
 				88CA806F1B25EE04004C1D59 /* CredentialsStore.swift in Sources */,
+				88B273131B7109C300477E5E /* DefaultProgressPresenter.swift in Sources */,
 				881E62E91ACC04A500862B9E /* DDLField+DataType.swift in Sources */,
+				88CA91B61B8DB682000B92F2 /* HttpOperation.swift in Sources */,
 				881E629D1ACBFF1800862B9E /* ServerOperationInteractor.swift in Sources */,
 				881E61AC1ACBFAE100862B9E /* IntegrationTestCase.swift in Sources */,
 				88DE25111AD2AB0A00714701 /* SessionContext_Storage_Tests.swift in Sources */,
 				888DF5BA1ACCA3FD00EB7DA1 /* LoginViewModel.swift in Sources */,
+				887F0D131B99A79A0007AECE /* LRSession+Screens.swift in Sources */,
 				8839B87C1B0CD539006C18F1 /* SaveUserInteractor.swift in Sources */,
 				881E62F31ACC04A500862B9E /* DDLRecord.swift in Sources */,
 				88A2B7181ACDEC29000C2065 /* DDLListView_test.swift in Sources */,
@@ -1974,6 +1928,7 @@
 				881E62971ACBFF0400862B9E /* LiferayPaginationOperation.swift in Sources */,
 				881E62F21ACC04A500862B9E /* DDLFieldUntyped.swift in Sources */,
 				88DE25121AD2AB0A00714701 /* DDLField_validation_Tests.swift in Sources */,
+				887F0D061B9897600007AECE /* ServerWriteOperationInteractor.swift in Sources */,
 				88DE251A1AD2AB0A00714701 /* DDLParser_basic_Tests.swift in Sources */,
 				881E62F51ACC04BA00862B9E /* DDLXSDParser.swift in Sources */,
 				881E62B61ACBFFFA00862B9E /* LiferayServerContext.swift in Sources */,
@@ -1988,8 +1943,11 @@
 				881E62901ACBFE8D00862B9E /* BaseScreenletView.swift in Sources */,
 				881E62EE1ACC04A500862B9E /* DDLFieldDocument.swift in Sources */,
 				881E62C11ACC00F300862B9E /* LiferayLoginByScreenNameOperation.swift in Sources */,
+				887F0D0B1B999CD90007AECE /* CacheManager.swift in Sources */,
+				881E49C71B95CE66007DBEC9 /* DownloadUserPortraitInteractor.swift in Sources */,
 				88DC31E31ACC18F10078C961 /* SessionStorage.swift in Sources */,
 				881E62B71ACBFFFA00862B9E /* SessionContext.swift in Sources */,
+				887F0D191B99BD640007AECE /* CacheMetadata.swift in Sources */,
 				881E62EF1ACC04A500862B9E /* DDLFieldNumber.swift in Sources */,
 				881E62FC1ACC066A00862B9E /* DDLListView_default.swift in Sources */,
 				88DE25171AD2AB0A00714701 /* DDLFieldString_Tests.swift in Sources */,
@@ -1998,9 +1956,9 @@
 				881E62F11ACC04A500862B9E /* DDLFieldStringWithOptions.swift in Sources */,
 				88F888561B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */,
 				881E61AE1ACBFB0400862B9E /* TestHelper.swift in Sources */,
-				881E62A41ACBFF4500862B9E /* NSLocale+CurrentLocale.swift in Sources */,
+				881E62A41ACBFF4500862B9E /* NSLocale+Screens.swift in Sources */,
 				881E629F1ACBFF2500862B9E /* SignUpViewModel.swift in Sources */,
-				881E62A21ACBFF4500862B9E /* Bool+Conversion.swift in Sources */,
+				881E62A21ACBFF4500862B9E /* Bool+Screens.swift in Sources */,
 				881E629C1ACBFF1800862B9E /* ServerOperation.swift in Sources */,
 				8839B87E1B0CD539006C18F1 /* SignUpInteractor.swift in Sources */,
 				881E62961ACBFEFC00862B9E /* BaseListView.swift in Sources */,
@@ -2009,6 +1967,8 @@
 				881E62B51ACBFFD900862B9E /* DefaultThemeConstants.swift in Sources */,
 				881E63071ACC06B900862B9E /* LoginScreenlet_ByScreenName_Tests.swift in Sources */,
 				881E62EC1ACC04A500862B9E /* DDLFieldBoolean.swift in Sources */,
+				887F0D041B98973A0007AECE /* ServerReadOperationInteractor.swift in Sources */,
+				887F0D161B99AABB0007AECE /* String+Screens.swift in Sources */,
 				881E62C01ACC00F300862B9E /* LiferayLoginByEmailOperation.swift in Sources */,
 				880ACA5C1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift in Sources */,
 				881E62EB1ACC04A500862B9E /* DDLField.swift in Sources */,
@@ -2018,6 +1978,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88019FA11B8F22EE00674B00 /* en */,
+			);
+			name = "webcontentdisplay-screenlet.strings";
+			sourceTree = "<group>";
+		};
 		880ACA651B0224A0007AD007 /* ddlform-screenlet.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2074,15 +2042,6 @@
 			name = "userportrait-screenlet.strings";
 			sourceTree = "<group>";
 		};
-		880ACA731B0224A0007AD007 /* webcontentdisplay-screenlet.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				880ACA741B0224A0007AD007 /* en */,
-				880ACA7B1B0224A0007AD007 /* es */,
-			);
-			name = "webcontentdisplay-screenlet.strings";
-			sourceTree = "<group>";
-		};
 		881E61EB1ACBFC3400862B9E /* default.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2093,13 +2052,20 @@
 			name = default.strings;
 			sourceTree = "<group>";
 		};
-		881E621D1ACBFC3400862B9E /* flat7.strings */ = {
+		88BCB55F1B8CAC22004349F1 /* assetlist-screenlet.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				881E621E1ACBFC3400862B9E /* en */,
-				881E621F1ACBFC3400862B9E /* es */,
+				88BCB5601B8CAC22004349F1 /* en */,
 			);
-			name = flat7.strings;
+			name = "assetlist-screenlet.strings";
+			sourceTree = "<group>";
+		};
+		88BCB5631B8CAD93004349F1 /* ddllist-screenlet.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88BCB5641B8CAD93004349F1 /* en */,
+			);
+			name = "ddllist-screenlet.strings";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2197,6 +2163,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 70A86EF9E7113685C27BD9CA /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2215,6 +2182,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B440B87DE9DF08FCB1AA970 /* Pods.release.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

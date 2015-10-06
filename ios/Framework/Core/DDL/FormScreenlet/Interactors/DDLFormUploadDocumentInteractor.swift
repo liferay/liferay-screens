@@ -14,50 +14,142 @@
 import UIKit
 
 
-class DDLFormUploadDocumentInteractor: ServerOperationInteractor {
+class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 
 	typealias OnProgress = LiferayDDLFormUploadOperation.OnProgress
 
-
+	let filePrefix: String
+	let repositoryId: Int64
+	let groupId: Int64
+	let folderId: Int64
 	let document: DDLFieldDocument
-	let onProgressClosure: OnProgress
+
+	let onProgressClosure: OnProgress?
 
 	var resultResponse: [String:AnyObject]?
 
+	var lastCacheKey: String?
 
-	init(screenlet: BaseScreenlet, document: DDLFieldDocument, onProgressClosure: OnProgress) {
+
+	init(screenlet: BaseScreenlet?,
+			document: DDLFieldDocument,
+			onProgressClosure: OnProgress) {
+
+		let formScreenlet = screenlet as! DDLFormScreenlet
+
+		self.groupId = (formScreenlet.groupId != 0)
+			? formScreenlet.groupId
+			: LiferayServerContext.groupId
+
+		self.filePrefix = formScreenlet.filePrefix
+		self.folderId = formScreenlet.folderId
+		self.repositoryId = (formScreenlet.repositoryId != 0)
+			? formScreenlet.repositoryId
+			: self.groupId
+
 		self.document = document
 		self.onProgressClosure = onProgressClosure
 
 		super.init(screenlet: screenlet)
 	}
 
-	override func createOperation() -> LiferayDDLFormUploadOperation {
-		let screenlet = self.screenlet as! DDLFormScreenlet
+	init(filePrefix: String,
+			repositoryId: Int64,
+			groupId: Int64,
+			folderId: Int64,
+			document: DDLFieldDocument) {
 
-		let operation = LiferayDDLFormUploadOperation(screenlet: screenlet)
+		self.groupId = (groupId != 0)
+			? groupId
+			: LiferayServerContext.groupId
+
+		self.filePrefix = filePrefix
+		self.folderId = folderId
+		self.repositoryId = (repositoryId != 0)
+			? repositoryId
+			: self.groupId
+
+		self.document = document
+		self.lastCacheKey = document.cachedKey
+		self.onProgressClosure = nil
+
+		super.init(screenlet: nil)
+	}
+
+	override func createOperation() -> LiferayDDLFormUploadOperation {
+		let operation = LiferayDDLFormUploadOperation()
 
 		operation.document = self.document
+		operation.filePrefix = self.filePrefix
+		operation.folderId = self.folderId
+		operation.repositoryId = self.repositoryId
 		operation.onUploadedBytes = self.onProgressClosure
-
-		operation.filePrefix = screenlet.filePrefix
-		operation.folderId = screenlet.folderId
-
-		operation.repositoryId = (screenlet.repositoryId != 0)
-				? screenlet.repositoryId
-				: (screenlet.groupId != 0) ? screenlet.groupId : LiferayServerContext.groupId
 
 		return operation
 	}
 
 	override func completedOperation(op: ServerOperation) {
 		if let lastErrorValue = op.lastError {
-			document.uploadStatus = .Failed(lastErrorValue)
+			if lastErrorValue.code == ScreensErrorCause.NotAvailable.rawValue {
+				let cacheResult = DDLFieldDocument.UploadStatus.CachedStatusData(cacheKey())
+				self.resultResponse = cacheResult
+				document.uploadStatus = .Uploaded(cacheResult)
+			}
+			else {
+				document.uploadStatus = .Failed(lastErrorValue)
+			}
 		}
 		else if let uploadOp = op as? LiferayDDLFormUploadOperation {
 			self.resultResponse = uploadOp.uploadResult
 			document.uploadStatus = .Uploaded(uploadOp.uploadResult!)
 		}
+	}
+
+
+	//MARK: Cache methods
+
+	override func writeToCache(op: ServerOperation) {
+		// cache only supports images (right now)
+		if let image = document.currentValue as? UIImage {
+			let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
+				? SessionContext.currentCacheManager?.setDirty
+				: SessionContext.currentCacheManager?.setClean
+
+			cacheFunction?(
+				collection: ScreenletName(DDLFormScreenlet),
+				key: cacheKey(),
+				value: image,
+				attributes: cacheAttributes())
+		}
+	}
+
+	override func callOnSuccess() {
+		if cacheStrategy == .CacheFirst {
+			SessionContext.currentCacheManager?.setClean(
+				collection: ScreenletName(DDLFormScreenlet),
+				key: cacheKey(),
+				attributes: cacheAttributes())
+		}
+
+		super.callOnSuccess()
+	}
+
+
+	//MARK: Private methods
+
+	private func cacheKey() -> String {
+		lastCacheKey = lastCacheKey ?? "document-\(NSDate().timeIntervalSince1970)"
+		return lastCacheKey!
+	}
+
+	private func cacheAttributes() -> [String:AnyObject] {
+		return [
+			"document": self.document,
+			"filePrefix": self.filePrefix,
+			"folderId": NSNumber(longLong: self.folderId),
+			"groupId": NSNumber(longLong: self.groupId),
+			"repositoryId": NSNumber(longLong: self.repositoryId)
+		]
 	}
 
 }

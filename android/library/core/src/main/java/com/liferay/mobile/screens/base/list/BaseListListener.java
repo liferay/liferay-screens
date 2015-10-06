@@ -2,12 +2,14 @@ package com.liferay.mobile.screens.base.list;
 
 import android.view.View;
 
+import com.liferay.mobile.screens.cache.CacheListener;
+
 import java.util.List;
 
 /**
  * @author Javier Gamarra
  */
-public interface BaseListListener<E> {
+public interface BaseListListener<E> extends CacheListener {
 
 	void onListPageFailed(BaseListScreenlet source, int page, Exception e);
 

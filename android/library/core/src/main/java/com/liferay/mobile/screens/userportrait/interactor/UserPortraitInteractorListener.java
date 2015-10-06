@@ -16,11 +16,13 @@ package com.liferay.mobile.screens.userportrait.interactor;
 
 import android.graphics.Bitmap;
 
+import com.liferay.mobile.screens.cache.CacheListener;
+
 /**
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public interface UserPortraitInteractorListener {
+public interface UserPortraitInteractorListener extends CacheListener {
 
 	void onStartUserPortraitLoadRequest();
 

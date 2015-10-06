@@ -17,19 +17,24 @@ package com.liferay.mobile.screens.base.list.interactor;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Javier Gamarra
  */
 public class BaseListEvent<E> extends BasicEvent {
 
-	public BaseListEvent(int targetScreenletId, Exception e) {
+	public BaseListEvent(int targetScreenletId, int startRow, int endRow, Locale locale, Exception e) {
 		super(targetScreenletId, e);
+
+		_startRow = startRow;
+		_endRow = endRow;
+		_locale = locale;
 	}
 
 	public BaseListEvent(
-            int targetScreenletId, int startRow, int endRow, List<E> entries,
-            int rowCount) {
+		int targetScreenletId, int startRow, int endRow, Locale locale, List<E> entries,
+		int rowCount) {
 
 		super(targetScreenletId);
 
@@ -37,6 +42,7 @@ public class BaseListEvent<E> extends BasicEvent {
 		_startRow = startRow;
 		_endRow = endRow;
 		_rowCount = rowCount;
+		_locale = locale;
 	}
 
 	public List<E> getEntries() {
@@ -51,6 +57,10 @@ public class BaseListEvent<E> extends BasicEvent {
 		return _endRow;
 	}
 
+	public Locale getLocale() {
+		return _locale;
+	}
+
 	public int getRowCount() {
 		return _rowCount;
 	}
@@ -59,5 +69,5 @@ public class BaseListEvent<E> extends BasicEvent {
 	private int _startRow;
 	private int _endRow;
 	private int _rowCount;
-
+	private Locale _locale;
 }

@@ -14,15 +14,15 @@
 
 package com.liferay.mobile.screens.util;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
@@ -55,15 +55,27 @@ public class JSONUtil {
 		return map;
 	}
 
+	public static Long castToLong(final Object o) {
+		if (o instanceof Integer) {
+			return ((Integer) o).longValue();
+		}
+		else if (o instanceof String) {
+			return Long.valueOf((String) o);
+		}
+		else {
+			return (Long) o;
+		}
+	}
+
 	private static Object _fromJson(Object object) throws JSONException {
 		if (object == JSONObject.NULL) {
 			return null;
 		}
 		else if (object instanceof JSONObject) {
-			return toMap((JSONObject)object);
+			return toMap((JSONObject) object);
 		}
 		else if (object instanceof JSONArray) {
-			return toList((JSONArray)object);
+			return toList((JSONArray) object);
 		}
 		else {
 			return object;

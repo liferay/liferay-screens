@@ -2,23 +2,47 @@ package com.liferay.mobile.screens.userportrait.interactor.upload;
 
 import android.content.Intent;
 
-import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
+import com.liferay.mobile.screens.cache.DefaultCachedType;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.cache.sql.CacheSQL;
+import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 
+import org.json.JSONObject;
+
 /**
  * @author Javier Gamarra
  */
-public class UserPortraitUploadInteractorImpl extends BaseRemoteInteractor<UserPortraitInteractorListener>
+public class UserPortraitUploadInteractorImpl
+	extends BaseCachedWriteRemoteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent>
 	implements UserPortraitUploadInteractor {
 
-	public UserPortraitUploadInteractorImpl(int targetScreenletId) {
-		super(targetScreenletId);
+	public UserPortraitUploadInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
+		super(targetScreenletId, offlinePolicy);
 	}
 
-	public void upload(Long userId, String picturePath) {
+	public void upload(final Long userId, final String picturePath) throws Exception {
+		storeWithCache(userId, picturePath, false);
+	}
+
+	public void onEventMainThread(UserPortraitUploadEvent event) {
+		if (!isValidEvent(event)) {
+			return;
+		}
+
+		onEventWithCache(event, event.getUserId(), event.getPicturePath());
+	}
+
+	@Override
+	public void online(Object[] args) throws Exception {
+
+		long userId = (long) args[0];
+		String picturePath = (String) args[1];
+
 		if (getListener() != null) {
 			getListener().onStartUserPortraitLoadRequest();
 		}
@@ -31,28 +55,43 @@ public class UserPortraitUploadInteractorImpl extends BaseRemoteInteractor<UserP
 		LiferayScreensContext.getContext().startService(service);
 	}
 
-	public void onEventMainThread(UserPortraitUploadEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
+	@Override
+	protected void notifySuccess(UserPortraitUploadEvent event) {
+		User loggedUser = SessionContext.getLoggedUser();
 
-		if (event.isFailed()) {
-			getListener().onUserPortraitUploadFailure(event.getException());
-		}
-		else {
+		if (event.getJSONObject() != null) {
 			User user = new User(event.getJSONObject());
+			loggedUser = user;
 			if (user.getId() == SessionContext.getLoggedUser().getId()) {
 				SessionContext.setLoggedUser(user);
 			}
-
-			try {
-				getListener().onUserPortraitUploaded(user.getId());
-			}
-			catch (Exception e) {
-				getListener().onUserPortraitUploadFailure(e);
-			}
 		}
+
+		try {
+			getListener().onUserPortraitUploaded(loggedUser.getId());
+		}
+		catch (Exception e) {
+			getListener().onUserPortraitUploadFailure(e);
+		}
+
 	}
 
+	@Override
+	protected void notifyError(UserPortraitUploadEvent event) {
+		getListener().onUserPortraitUploadFailure(event.getException());
+	}
+
+	@Override
+	protected void storeToCache(boolean synced, Object... args) {
+
+		long userId = (long) args[0];
+		String picturePath = (String) args[1];
+
+		TableCache file = new TableCache(String.valueOf(userId), DefaultCachedType.USER_PORTRAIT_UPLOAD, picturePath);
+		file.setDirty(!synced);
+		CacheSQL.getInstance().set(file);
+
+		onEventMainThread(new UserPortraitUploadEvent(getTargetScreenletId(), picturePath, userId, new JSONObject()));
+	}
 
 }

@@ -50,8 +50,8 @@
 			android:orientation="vertical">
 
 			<ImageView
-				style="@style/westeros_arrow"
 				android:id="@+id/card1_to_background_menu"
+				style="@style/westeros_arrow"
 				android:layout_alignParentLeft="true"
 				android:layout_alignParentStart="true"
 				android:src="@drawable/icon_options_red"/>
@@ -62,24 +62,24 @@
 				android:text="@string/my_issues"/>
 
 			<ImageView
-				style="@style/westeros_arrow"
 				android:id="@+id/card1_to_background"
-				android:layout_alignParentRight="true"
+				style="@style/westeros_arrow"
 				android:layout_alignParentEnd="true"
+				android:layout_alignParentRight="true"
 				android:src="@drawable/icon_down"/>
 
 			<View
-				android:layout_below="@id/title_issues"
 				android:id="@+id/divider_issues"
 				android:layout_width="match_parent"
 				android:layout_height="1dp"
+				android:layout_below="@id/title_issues"
 				android:background="@color/westeros_background_gray"/>
 
 			<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
 				android:id="@+id/ddllist"
-				android:layout_below="@id/divider_issues"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:layout_below="@id/divider_issues"
 				liferay:labelFields="@string/liferay_recordset_fields"
 				liferay:layoutId="@layout/ddl_list_westeros_with_drawable"
 				liferay:recordSetId="@integer/liferay_recordset_id"/>
@@ -94,11 +94,11 @@
 			android:orientation="vertical">
 
 			<ImageView
-				android:tag="card1_to_front_view"
-				style="@style/westeros_arrow"
 				android:id="@+id/card1_to_front_view"
+				style="@style/westeros_arrow"
 				android:layout_alignParentLeft="true"
-				android:src="@drawable/icon_left"/>
+				android:src="@drawable/icon_left"
+				android:tag="card1_to_front_view"/>
 
 			<TextView
 				android:id="@+id/title_detail_issue"
@@ -106,10 +106,10 @@
 				android:text="@string/issue_detail"/>
 
 			<TextView
-				android:layout_below="@id/title_detail_issue"
 				android:id="@+id/issue_title"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:layout_below="@id/title_detail_issue"
 				android:paddingBottom="10dp"
 				android:textAllCaps="true"
 				android:textColor="@color/westeros_black"
@@ -117,25 +117,25 @@
 				android:textStyle="bold"/>
 
 			<TextView
-				android:layout_below="@id/issue_title"
 				android:id="@+id/createdAt"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"/>
+				android:layout_height="wrap_content"
+				android:layout_below="@id/issue_title"/>
 
 			<TextView
-				android:layout_below="@id/createdAt"
 				android:id="@+id/description"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:layout_below="@id/createdAt"
 				android:paddingBottom="30dp"
 				android:paddingTop="30dp"
 				android:textColor="@color/westeros_black"/>
 
 			<TextView
-				android:layout_below="@id/description"
 				android:id="@+id/severity"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:layout_below="@id/description"
 				android:textColor="@color/westeros_red"/>
 
 		</RelativeLayout>
@@ -150,26 +150,27 @@
 		android:orientation="vertical">
 
 		<TextView
-			style="@style/westeros_card_title"
 			android:id="@+id/report_issue_title"
+			style="@style/westeros_card_title"
 			android:text="@string/report_issue"
 			android:textColor="@android:color/white"/>
 
 		<ImageView
-			android:tag="card2_to_card1"
-			style="@style/westeros_arrow"
 			android:id="@+id/card2_to_card1"
+			style="@style/westeros_arrow"
 			android:layout_alignParentRight="true"
 			android:src="@drawable/icon_down_white"
+			android:tag="card2_to_card1"
 			android:visibility="invisible"/>
 
 		<com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
-			android:layout_below="@id/report_issue_title"
 			android:id="@+id/ddlform"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:layout_below="@id/report_issue_title"
 			liferay:layoutId="@layout/ddl_form_westeros"
 			liferay:recordSetId="@integer/liferay_recordset_id"
+			liferay:offlinePolicy="REMOTE_FIRST"
 			liferay:selectFieldLayoutId="@layout/ddlfield_select_westeros"
 			liferay:structureId="@integer/liferay_structure_id"
 			liferay:textAreaFieldLayoutId="@layout/ddlfield_text_area_westeros"
@@ -177,12 +178,12 @@
 	</RelativeLayout>
 
 	<FrameLayout
-		android:elevation="24dp"
 		android:id="@+id/crouton_view_anchor"
-		android:orientation="vertical"
-		android:layout_gravity="bottom"
-		android:visibility="visible"
 		android:layout_width="match_parent"
-		android:layout_height="@dimen/westeros_card_title_height"/>
+		android:layout_height="@dimen/westeros_card_title_height"
+		android:layout_gravity="bottom"
+		android:elevation="24dp"
+		android:orientation="vertical"
+		android:visibility="visible"/>
 
 </FrameLayout>

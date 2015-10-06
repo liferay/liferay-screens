@@ -18,10 +18,20 @@ class SignUpInteractor: ServerOperationInteractor {
 
 	var resultUserAttributes: [String:AnyObject]?
 
-	override func createOperation() -> LiferaySignUpOperation {
-		let operation = LiferaySignUpOperation(screenlet: self.screenlet as! SignUpScreenlet)
+	override func createOperation() -> LiferaySignUpOperation? {
+		let screenlet = self.screenlet as! SignUpScreenlet
 
-		operation.companyId = (self.screenlet as! SignUpScreenlet).companyId
+		if screenlet.anonymousApiUserName == nil || screenlet.anonymousApiPassword == nil {
+			println("[ERROR] Anonymous credentials are required for this interaction")
+			return nil
+		}
+
+		let operation = LiferaySignUpOperation(
+			viewModel: screenlet.viewModel,
+			anonymousUsername: screenlet.anonymousApiUserName!,
+			anonymousPassword: screenlet.anonymousApiPassword!)
+
+		operation.companyId = screenlet.companyId
 
 		return operation
 	}

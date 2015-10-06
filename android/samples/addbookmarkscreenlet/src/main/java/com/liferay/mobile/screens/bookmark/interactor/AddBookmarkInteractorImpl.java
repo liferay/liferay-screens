@@ -21,12 +21,12 @@ public class AddBookmarkInteractorImpl
 		super(targetScreenletId);
 	}
 
-	public void addBookmark(String url, String title, Integer folderId) throws Exception {
+	public void addBookmark(String url, String title, long folderId) throws Exception {
 		if (url == null || url.isEmpty() || !URLUtil.isValidUrl(url)) {
 			throw new IllegalArgumentException("Invalid url");
 		}
 
-		if (folderId == null || folderId == 0) {
+		if (folderId == 0) {
 			throw new IllegalArgumentException("folderId not set");
 		}
 

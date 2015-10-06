@@ -1,8 +1,11 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 
+import com.liferay.mobile.screens.cache.DefaultCachedType;
+import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.testapp.fullview.LoginFullActivity;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
@@ -16,17 +19,22 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		super.onCreate(state);
 		setContentView(R.layout.activity_main);
 
-		findViewById(R.id.login).setOnClickListener(this);
-		findViewById(R.id.asset_list).setOnClickListener(this);
 		findViewById(R.id.ddl_form).setOnClickListener(this);
 		findViewById(R.id.ddl_list).setOnClickListener(this);
+		findViewById(R.id.asset_list).setOnClickListener(this);
 		findViewById(R.id.sign_up).setOnClickListener(this);
 		findViewById(R.id.forgot_password).setOnClickListener(this);
 		findViewById(R.id.user_portrait).setOnClickListener(this);
-		findViewById(R.id.web_view).setOnClickListener(this);
+		findViewById(R.id.web_content_display).setOnClickListener(this);
 		findViewById(R.id.add_bookmark).setOnClickListener(this);
+		findViewById(R.id.journal_article_with_template).setOnClickListener(this);
+		findViewById(R.id.filtered_asset).setOnClickListener(this);
 		findViewById(R.id.login_full_screenlet).setOnClickListener(this);
 		findViewById(R.id.change_theme).setOnClickListener(this);
+		findViewById(R.id.login).setOnClickListener(this);
+		findViewById(R.id.clear_cache).setOnClickListener(this);
+		findViewById(R.id.clear_cache_forms).setOnClickListener(this);
+		findViewById(R.id.sync_cache).setOnClickListener(this);
 	}
 
 	@Override
@@ -46,16 +54,22 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.forgot_password:
 				DefaultAnimation.startActivityWithAnimation(this,
-						getIntentWithTheme(ForgotPasswordActivity.class));
+					getIntentWithTheme(ForgotPasswordActivity.class));
 				break;
 			case R.id.user_portrait:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(UserPortraitActivity.class));
 				break;
-			case R.id.web_view:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebViewActivity.class));
+			case R.id.web_content_display:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebContentDisplayActivity.class));
 				break;
 			case R.id.add_bookmark:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(AddBookmarkActivity.class));
+				break;
+			case R.id.journal_article_with_template:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(JournalArticleWithTemplateActivity.class));
+				break;
+			case R.id.filtered_asset:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(FilteredAssetActivity.class));
 				break;
 			case R.id.login_full_screenlet:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginFullActivity.class));
@@ -65,9 +79,28 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				currentTheme = isDefaultTheme() ? R.style.material_theme : R.style.default_theme;
 				startActivity(getIntentWithTheme(MainActivity.class));
 				break;
+			case R.id.clear_cache_forms:
+				int formRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_FORM);
+				int recordRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_RECORD);
+				int listRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_LIST);
+				int countRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_LIST_COUNT);
+
+				String cacheFormsMessage = "Deleted " + formRows + " forms, " + recordRows + " records, " +
+					listRows + " list rows and " + countRows + " count rows.";
+
+				Snackbar.make(_content, cacheFormsMessage, Snackbar.LENGTH_SHORT).show();
+				break;
+			case R.id.clear_cache:
+				boolean success = CacheSQL.getInstance().clear(this);
+				String clearCacheMessage = "Cache cleared: " + (success ? "sucessfully" : "failed");
+				Snackbar.make(_content, clearCacheMessage, Snackbar.LENGTH_SHORT).show();
+				break;
+			case R.id.sync_cache:
+				CacheSQL.getInstance().resync();
+				Snackbar.make(_content, "Launched resync process", Snackbar.LENGTH_SHORT).show();
+				break;
 			default:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));
 		}
 	}
-
 }

@@ -11,13 +11,14 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import Foundation
+import UIKit
+import LiferayScreens
 
 
-let Flat7ThemeBasicGreen = UIColor(red: 39.0/255, green: 174.0/255, blue: 97.0/255, alpha: 1)
+public let Flat7ThemeBasicGreen = UIColor(red: 39.0/255, green: 174.0/255, blue: 97.0/255, alpha: 1)
 
 
-func setFlat7ButtonBackground(button: UIButton?) {
+public func setFlat7ButtonBackground(button: UIButton?) {
 	let stretchableImage = UIImage(
 			named: "flat7-button",
 			inBundle: NSBundle(forClass: BaseScreenlet.self),

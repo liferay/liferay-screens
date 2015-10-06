@@ -39,6 +39,9 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class BooleanFieldTest {
 
+	private static final Locale _spanishLocale = new Locale("es", "ES");
+	private static final Locale _usLocale = new Locale("en", "US");
+
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingFromString {
@@ -179,14 +182,14 @@ public class BooleanFieldTest {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
-							"dataType=\"boolean\" " +
-							"type=\"checkbox\" " +
-							"name=\"A_Bool\" > " +
-						"<meta-data locale=\"en_US\"> " +
-							"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
-						"</meta-data> " +
+					"dataType=\"boolean\" " +
+					"type=\"checkbox\" " +
+					"name=\"A_Bool\" > " +
+					"<meta-data locale=\"en_US\"> " +
+					"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
+					"</meta-data> " +
 					"</dynamic-element>" +
-				"</root>";
+					"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
 
@@ -222,8 +225,5 @@ public class BooleanFieldTest {
 			assertFalse(booleanField.getCurrentValue());
 		}
 	}
-
-	private static final Locale _spanishLocale = new Locale("es", "ES");
-	private static final Locale _usLocale = new Locale("en", "US");
 
 }

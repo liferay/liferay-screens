@@ -18,14 +18,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.task.callback.typed.JSONObjectAsyncTaskCallback;
 import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
+import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
 import org.json.JSONException;
@@ -38,7 +38,7 @@ import de.keyboardsurfer.android.widget.crouton.Crouton;
 /**
  * @author Javier Gamarra
  */
-public class DDLListActivity extends ThemeActivity implements BaseListListener<DDLEntry> {
+public class DDLListActivity extends ThemeActivity implements BaseListListener<Record> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,19 +60,34 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<D
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int page, List<DDLEntry> entries, int rowCount) {
+	public void onListPageReceived(BaseListScreenlet source, int page, List<Record> entries, int rowCount) {
 		info("Page " + page + " received!");
 	}
 
 	@Override
-	public void onListItemSelected(DDLEntry element, View view) {
+	public void onListItemSelected(Record element, View view) {
 		info("Item selected: " + element);
 		loadDDLForm(element);
 	}
 
-	private void loadDDLForm(DDLEntry element) {
-		final Integer recordId = (Integer) (element.getAttributes("recordId"));
-		final Integer recordSetId = (Integer) (element.getAttributes("recordSetId"));
+	@Override
+	public void loadingFromCache(boolean success) {
+
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+
+	}
+
+	private void loadDDLForm(Record element) {
+		final long recordId = element.getRecordId();
+		final long recordSetId = element.getRecordSetId();
 
 		try {
 			Session session = SessionContext.createSessionFromCurrentSession();
@@ -85,8 +100,8 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<D
 		}
 	}
 
-	private JSONObjectAsyncTaskCallback getCallback(final Integer recordId, final Integer recordSetId) {
-		return new JSONObjectAsyncTaskCallback() {
+	private JSONObjectCallback getCallback(final long recordId, final long recordSetId) {
+		return new JSONObjectCallback() {
 
 			@Override
 			public void onSuccess(JSONObject result) {
@@ -94,7 +109,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<D
 					Intent intent = getIntentWithTheme(DDLFormActivity.class);
 					intent.putExtra("recordId", recordId);
 					intent.putExtra("recordSetId", recordSetId);
-					intent.putExtra("structureId", result.getInt("DDMStructureId"));
+					intent.putExtra("structureId", result.getLong("DDMStructureId"));
 
 					Crouton.clearCroutonsForActivity(DDLListActivity.this);
 

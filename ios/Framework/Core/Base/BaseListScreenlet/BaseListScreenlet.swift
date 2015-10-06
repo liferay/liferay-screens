@@ -16,12 +16,16 @@ import UIKit
 
 @IBDesignable public class BaseListScreenlet: BaseScreenlet {
 
+	public class var LoadInitialPageAction: String { return "load-initial-page" }
+	public class var LoadPageAction: String { return "load-page" }
+
+
 	@IBInspectable public var autoLoad: Bool = true
 
 	@IBInspectable public var refreshControl: Bool = true {
 		didSet {
 			(screenletView as? BaseListTableView)?.refreshClosure =
-					refreshControl ? self.loadList : nil
+					refreshControl ? self.refreshList : nil
 		}
 	}
 
@@ -42,7 +46,7 @@ import UIKit
 		baseListView.fetchPageForRow = loadPageForRow
 
 		(screenletView as? BaseListTableView)?.refreshClosure =
-				refreshControl ? self.loadList : nil
+				refreshControl ? self.refreshList : nil
 	}
 
 	override public func onShow() {
@@ -53,53 +57,23 @@ import UIKit
 		}
 	}
 
+	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+		let page = (sender as? Int) ?? 0
 
-	//MARK: Public methods
-
-	public func loadList() -> Bool {
-		let result = startLoadPageInteractor(page: 0, computeRowCount: true)
-
-		if result {
-			self.baseListView.setRows([], rowCount:0)
-		}
-
-		return result
-	}
-
-
-	//MARK: Internal methods
-
-	internal func pageFromRow(row: Int) -> Int {
-		if row < firstPageSize {
-			return 0
-		}
-
-		return ((row - firstPageSize) / pageSize) + 1
-	}
-
-	internal func firstRowForPage(page: Int) -> Int {
-		if page == 0 {
-			return 0
-		}
-
-		return firstPageSize + (page - 1) * pageSize
-	}
-
-	internal func startLoadPageInteractor(#page: Int, computeRowCount: Bool = false) -> Bool {
 		let interactor = createPageLoadInteractor(
-				page: page,
-				computeRowCount: computeRowCount)
+			page: page,
+			computeRowCount: (page == 0))
 
 		paginationInteractors[page] = interactor
 
 		interactor.onSuccess = {
 			self.baseListView.setRows(interactor.resultAllPagesContent!,
-					rowCount: interactor.resultRowCount ?? self.baseListView.rowCount)
+				rowCount: interactor.resultRowCount ?? self.baseListView.rowCount)
 
 			self.onLoadPageResult(
-					page: interactor.page,
-					rows: interactor.resultPageContent ?? [],
-					rowCount: self.baseListView.rowCount)
+				page: interactor.page,
+				rows: interactor.resultPageContent ?? [],
+				rowCount: self.baseListView.rowCount)
 
 			self.paginationInteractors.removeValueForKey(interactor.page)
 		}
@@ -110,31 +84,67 @@ import UIKit
 			self.paginationInteractors.removeValueForKey(interactor.page)
 		}
 
-		return interactor.start()
+		return interactor
 	}
+
+	override public func onAction(#name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+
+		let result = super.onAction(name: name, interactor: interactor, sender: sender)
+
+		if result && name == BaseListScreenlet.LoadInitialPageAction {
+			self.baseListView.setRows([], rowCount:0)
+		}
+
+		return result
+	}
+
+
+	//MARK: Public methods
+
+	public func loadList() -> Bool {
+		return performAction(name: BaseListScreenlet.LoadInitialPageAction, sender: nil)
+	}
+
+	public func refreshList() -> Bool {
+		return performAction(name: BaseListScreenlet.LoadPageAction, sender: 0)
+	}
+
+	public func loadPageForRow(row: Int) {
+		let page = pageFromRow(row)
+
+		// make sure we don't create two interactors for the same page
+		synchronized(paginationInteractors) {
+			if self.paginationInteractors.indexForKey(page) == nil {
+				self.performAction(name: BaseListScreenlet.LoadPageAction, sender: page)
+			}
+		}
+	}
+
+	public func pageFromRow(row: Int) -> Int {
+		if row < firstPageSize {
+			return 0
+		}
+
+		return ((row - firstPageSize) / pageSize) + 1
+	}
+
+	public func firstRowForPage(page: Int) -> Int {
+		if page == 0 {
+			return 0
+		}
+
+		return firstPageSize + (page - 1) * pageSize
+	}
+
+
+	//MARK: Internal methods
 
 	internal func createPageLoadInteractor(
 			#page: Int,
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
 
-		assertionFailure("createPageLoadInteractor must be overriden")
-
-		return BaseListPageLoadInteractor(
-				screenlet: self,
-				page: page,
-				computeRowCount: computeRowCount)
-	}
-
-	internal func loadPageForRow(row: Int) {
-		let page = pageFromRow(row)
-
-		// make sure we don't create two interactors for the same page
-		synchronized(paginationInteractors) {
-			if self.paginationInteractors.indexForKey(page) == nil {
-				self.startLoadPageInteractor(page: page)
-			}
-		}
+		fatalError("createPageLoadInteractor must be overriden")
 	}
 
 	internal func onLoadPageError(#page: Int, error: NSError) {

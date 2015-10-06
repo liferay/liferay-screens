@@ -27,6 +27,8 @@ import Foundation
 		static var currentSession: LRSession?
 		static var userAttributes: [String:AnyObject] = [:]
 
+		static var chacheManager: CacheManager?
+
 		static var sessionStorage = SessionStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
 	}
@@ -54,8 +56,12 @@ import Foundation
 
 	public class var currentUserId: Int64? {
 		return StaticInstance.userAttributes["userId"]
-				.map { $0 as! Int }
-				.map { Int64($0) }
+				.map { $0 as! NSNumber }
+				.map { $0.longLongValue }
+	}
+
+	public class var currentCacheManager: CacheManager? {
+		return StaticInstance.chacheManager
 	}
 
 	internal class var sessionStorage: SessionStorage {
@@ -71,6 +77,14 @@ import Foundation
 
 	public class func userAttribute(key: String) -> AnyObject? {
 		return StaticInstance.userAttributes[key]
+	}
+
+	public class func createAnonymousBasicSession(userName: String, _ password: String) -> LRSession {
+		return LRSession(
+			server: LiferayServerContext.server,
+			authentication: LRBasicAuthentication(
+				username: userName,
+				password: password))
 	}
 
 	public class func createBasicSession(
@@ -136,6 +150,7 @@ import Foundation
 	public class func clearSession() {
 		StaticInstance.currentSession = nil
 		StaticInstance.userAttributes = [:]
+		StaticInstance.chacheManager = nil
 	}
 
 	public class func storeSession() -> Bool {
@@ -150,9 +165,11 @@ import Foundation
 
 	public class func loadSessionFromStore() -> Bool {
 		if let sessionStorage = SessionStorage() {
-			if let result = sessionStorage.load() {
+			if let result = sessionStorage.load()
+					where result.session.server != nil {
 				StaticInstance.currentSession = result.session
 				StaticInstance.userAttributes = result.userAttributes
+				StaticInstance.chacheManager = CacheManager(session: result.session)
 
 				return true
 			}
@@ -176,6 +193,7 @@ import Foundation
 
 		StaticInstance.currentSession = session
 		StaticInstance.userAttributes = userAttributes
+		StaticInstance.chacheManager = CacheManager(session: session)
 
 		return session
 	}

@@ -21,6 +21,17 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 	@IBOutlet public var requestPasswordButton: UIButton?
 
 
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			BaseScreenlet.DefaultAction :
+				[.Working : LocalizedString("default", "forgotpassword-loading-message", self),
+				.Failure : LocalizedString("default", "forgotpassword-loading-error", self),
+				.Success : LocalizedString("default", "forgotpassword-\(successMessageKey)", self)]
+		]
+	}
+
+	private var successMessageKey = "password-sent"
+
 	//MARK: ForgotPasswordViewModel
 
 	public var userName: String? {
@@ -59,8 +70,6 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 		super.onCreated()
 
 		setButtonDefaultStyle(requestPasswordButton)
-
-		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
 	}
 
 	override public func onSetTranslations() {
@@ -70,12 +79,20 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 
 	}
 
-	override public func onStartOperation() {
+	override public func onStartInteraction() {
 		requestPasswordButton!.enabled = false
 	}
 
-	override public func onFinishOperation() {
+	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
 		requestPasswordButton!.enabled = true
+
+		if let resultPasswordSent = result as? Bool {
+			successMessageKey = resultPasswordSent ? "password-sent" : "reset-sent"
+		}
+	}
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
 	}
 
 

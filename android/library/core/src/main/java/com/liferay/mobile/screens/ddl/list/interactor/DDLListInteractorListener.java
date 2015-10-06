@@ -15,12 +15,12 @@
 package com.liferay.mobile.screens.ddl.list.interactor;
 
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
+import com.liferay.mobile.screens.ddl.model.Record;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface DDLListInteractorListener extends BaseListInteractorListener<DDLEntry> {
+public interface DDLListInteractorListener extends BaseListInteractorListener<Record> {
 
 }

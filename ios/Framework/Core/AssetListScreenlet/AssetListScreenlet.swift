@@ -41,25 +41,24 @@ import UIKit
 	}
 
 	public var classNameId: Int64 {
-		return Int64(attributes["classNameId"] as! Int)
+		return (attributes["classNameId"] as! NSNumber).longLongValue
 	}
 
 	public var classPK: Int64 {
-		return Int64(attributes["classPK"] as! Int)
+		return (attributes["classPK"] as! NSNumber).longLongValue
 	}
 
 	public var groupId: Int64 {
-		return Int64(attributes["groupId"] as! Int)
+		return (attributes["groupId"] as! NSNumber).longLongValue
 	}
 
 	public var companyId: Int64 {
-		return Int64(attributes["companyId"] as! Int)
+		return (attributes["companyId"] as! NSNumber).longLongValue
 	}
 
 	public var entryId: Int64 {
-		return Int64(attributes["entryId"] as! Int)
+		return (attributes["entryId"] as! NSNumber).longLongValue
 	}
-
 
 	//MARK: Init
 
@@ -73,9 +72,12 @@ import UIKit
 @IBDesignable public class AssetListScreenlet: BaseListScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
-	@IBInspectable public var classNameId: Int = 0
+	@IBInspectable public var classNameId: Int64 = 0
+	@IBInspectable public var portletItemName: String?
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	@IBOutlet public weak var delegate: AssetListScreenletDelegate?
+
 
 
 	//MARK: BaseListScreenlet
@@ -85,12 +87,16 @@ import UIKit
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
 
-		return AssetListPageLoadInteractor(
-				screenlet: self,
-				page: page,
-				computeRowCount: computeRowCount,
-				groupId: self.groupId,
-				classNameId: self.classNameId)
+		let interactor = AssetListPageLoadInteractor(
+			screenlet: self,
+			page: page,
+			computeRowCount: computeRowCount,
+			groupId: self.groupId,
+			classNameId: self.classNameId,
+			portletItemName: self.portletItemName)
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+
+		return interactor
 	}
 
 	override internal func onLoadPageError(#page: Int, error: NSError) {

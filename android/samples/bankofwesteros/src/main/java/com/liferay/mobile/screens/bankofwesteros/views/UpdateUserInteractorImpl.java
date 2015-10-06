@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.bankofwesteros.views;
 
+import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.task.callback.typed.JSONObjectAsyncTaskCallback;
 import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
@@ -16,7 +16,7 @@ public class UpdateUserInteractorImpl {
 
 	//TODO to move to a screenlet
 
-	public void saveUser(String firstName, String lastName, final String emailAddress, final String newPassword, JSONObjectAsyncTaskCallback callback) {
+	public void saveUser(String firstName, String lastName, final String emailAddress, final String newPassword, JSONObjectCallback callback) {
 		Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
 		sessionFromCurrentSession.setCallback(callback);
 

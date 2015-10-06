@@ -28,6 +28,20 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 			screenletWithDelegate.load(userId: Int64(userId))
 			editableScreenlet.load(userId: Int64(userId))
 		}
+		else {
+			let company = LiferayServerContext.companyId
+
+			if find(userIdField.text, "@") != nil {
+				screenlet.load(companyId: company, emailAddress: userIdField.text)
+				screenletWithDelegate.load(companyId: company, emailAddress: userIdField.text)
+				editableScreenlet.load(companyId: company, emailAddress: userIdField.text)
+			}
+			else {
+				screenlet.load(companyId: company, screenName: userIdField.text)
+				screenletWithDelegate.load(companyId: company, screenName: userIdField.text)
+				editableScreenlet.load(companyId: company, screenName: userIdField.text)
+			}
+		}
 	}
 
     override func viewDidLoad() {

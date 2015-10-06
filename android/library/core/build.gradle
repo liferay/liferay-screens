@@ -1,13 +1,12 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
 
 android {
-	compileSdkVersion 22
-	buildToolsVersion "22.0.1"
+	compileSdkVersion 23
+	buildToolsVersion "23.0.1"
 
 	defaultConfig {
 		minSdkVersion 15
-		targetSdkVersion 22
+		targetSdkVersion 23
 		versionCode 1
 		versionName "1.0"
 	}
@@ -34,32 +33,7 @@ repositories {
 	}
 
 	jcenter()
-	mavenCentral()
 }
-
-dependencies {
-	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile 'com.android.support:appcompat-v7:22.2.0'
-	compile 'com.android.support:recyclerview-v7:22.2.0'
-	compile 'com.liferay.mobile:liferay-android-sdk:6.2.0.20'
-	compile 'com.liferay.mobile:liferay-push:1.0.2'
-
-	compile 'de.greenrobot:eventbus:2.4.0'
-	compile 'com.squareup.picasso:picasso:2.5.0'
-	compile group: 'com.liferay.mobile', name: 'liferay-android-oauth', version: '1.+'
-	compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
-		exclude group: 'com.google.android', module: 'support-v4'
-	}
-	testCompile "junit:junit:4.12"
-	testCompile "org.robolectric:robolectric:3.0-rc2"
-	testCompile 'org.mockito:mockito-core:1.9.5'
-
-}
-
-version = '1.1.2'
-group = 'com.liferay.mobile'
-
-project.archivesBaseName = 'liferay-screens'
 
 buildscript {
 	repositories {
@@ -68,86 +42,38 @@ buildscript {
 	dependencies {
 		classpath 'com.github.dcendents:android-maven-plugin:1.2'
 		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
+		classpath 'com.neenbedankt.gradle.plugins:android-apt:1.6'
 	}
 }
 
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.neenbedankt.android-apt'
 
-def siteUrl = 'https://github.com/liferay/liferay-screens'
-def gitUrl = 'https://github.com/liferay/liferay-screens.git'
+dependencies {
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+	compile 'com.android.support:appcompat-v7:23.0.1'
+	compile 'com.android.support:recyclerview-v7:23.0.1'
 
-install {
-	repositories.mavenInstaller {
-		// This generates POM.xml with proper parameters
-		pom {
-			project {
-				packaging 'aar'
+	compile 'com.liferay.mobile:liferay-android-sdk:2.0.2'
+	compile 'com.liferay.mobile:liferay-push:1.0.7'
 
-				// Add your description here
-				name 'Liferay Screens for Android includes the component (screenlets) library and a sample project.'
-				url siteUrl
+	compile 'de.greenrobot:eventbus:2.4.0'
+	compile 'com.squareup.picasso:picasso:2.5.2'
 
-				// Set your license
-				licenses {
-					license {
-						name 'The Apache Software License, Version 2.0'
-						url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-					}
-				}
-				developers {
-					developer {
-						id '1'
-						name 'Javier Gamarra'
-						email 'nhpatt@gmail.com'
-					}
-				}
-				scm {
-					connection gitUrl
-					developerConnection gitUrl
-					url siteUrl
-
-				}
-			}
-		}
+	compile('com.liferay.mobile:liferay-android-oauth:1.0.3') {
+		exclude group: 'com.liferay.mobile', module: 'liferay-android-sdk'
 	}
-}
-
-task sourcesJar(type: Jar) {
-	from android.sourceSets.main.java.srcDirs
-	classifier = 'sources'
-}
-
-task javadoc(type: Javadoc) {
-	source = android.sourceSets.main.java.srcDirs
-//	classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-	classifier = 'javadoc'
-	from javadoc.destinationDir
-}
-artifacts {
-	archives javadocJar
-	archives sourcesJar
-}
-
-apply plugin: 'com.jfrog.bintray'
-
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-bintray {
-	user = properties.getProperty("bintray.user")
-	key = properties.getProperty("bintray.apikey")
-
-	configurations = ['archives']
-	pkg {
-//		userOrg = 'liferay'
-		repo = "liferay-mobile"
-		name = "liferay-screens"
-		websiteUrl = siteUrl
-		vcsUrl = gitUrl
-		licenses = ["LGPL-2.1"]
-		publish = true
+	compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
+		exclude group: 'com.google.android', module: 'support-v4'
 	}
+
+	compile 'com.pushtorefresh.storio:sqlite-annotations:1.4.0'
+
+	apt 'com.pushtorefresh.storio:sqlite-annotations-processor:1.4.0'
+
+	compile 'com.pushtorefresh.storio:sqlite:1.4.0'
+
+	testCompile "junit:junit:4.12"
+	testCompile "org.robolectric:robolectric:3.0-rc2"
+	testCompile 'org.mockito:mockito-core:1.9.5'
+
 }

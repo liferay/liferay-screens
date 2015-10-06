@@ -100,12 +100,11 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 	}
 
 	public func storeAuth(#keychain: Keychain, auth: LRAuthentication) {
-		assertionFailure("This method must be overriden")
+		fatalError("This method must be overriden")
 	}
 
 	public func loadAuth(#keychain: Keychain) -> LRAuthentication? {
-		assertionFailure("This method must be overriden")
-		return nil
+		fatalError("This method must be overriden")
 	}
 
 	public class func storedAuthType() -> AuthType? {

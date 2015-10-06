@@ -38,7 +38,7 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 		_screenlet = (AssetListScreenlet) getActiveScreenlet(
 			R.id.asset_list_default, R.id.asset_list_material);
 
-		_screenlet.setClassNameId(getIntent().getIntExtra("classNameId", 20116));
+		_screenlet.setClassNameId(getIntent().getLongExtra("classNameId", 20116));
 
 		_screenlet.setVisibility(View.VISIBLE);
 		_screenlet.setListener(this);
@@ -66,6 +66,21 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 	@Override
 	public void onListItemSelected(AssetEntry element, View view) {
 		info("Item selected: " + element);
+	}
+
+	@Override
+	public void loadingFromCache(boolean success) {
+
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+
 	}
 
 	private AssetListScreenlet _screenlet;

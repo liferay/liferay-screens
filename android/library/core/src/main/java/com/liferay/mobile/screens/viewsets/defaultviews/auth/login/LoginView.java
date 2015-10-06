@@ -61,6 +61,12 @@ public class LoginView extends LinearLayout
 		return _basicAuthMethod;
 	}
 
+	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
+		_basicAuthMethod = basicAuthMethod;
+
+		refreshLoginEditTextStyle();
+	}
+
 	@Override
 	public String getLogin() {
 		return _loginEditText.getText().toString();
@@ -119,12 +125,6 @@ public class LoginView extends LinearLayout
 		}
 	}
 
-	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
-		_basicAuthMethod = basicAuthMethod;
-
-		refreshLoginEditTextStyle();
-	}
-
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
@@ -155,6 +155,8 @@ public class LoginView extends LinearLayout
 		if (_oAuthButton != null) {
 			_oAuthButton.setVisibility(AuthenticationType.OAUTH.equals(_authenticationType) ? VISIBLE : GONE);
 		}
+
+		_loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));
 
 		refreshLoginEditTextStyle();
 	}
@@ -187,6 +189,17 @@ public class LoginView extends LinearLayout
 
 	protected Button getSubmitButton() {
 		return _submitButton;
+	}
+
+	private int getLabelResourceForAuthMode() {
+		switch (_basicAuthMethod) {
+			case SCREEN_NAME:
+				return R.string.screen_name;
+			case USER_ID:
+				return R.string.user_id;
+			default:
+				return R.string.email_address;
+		}
 	}
 
 	private EditText _loginEditText;

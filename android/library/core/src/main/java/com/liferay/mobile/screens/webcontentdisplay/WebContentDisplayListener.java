@@ -14,10 +14,12 @@
 
 package com.liferay.mobile.screens.webcontentdisplay;
 
+import com.liferay.mobile.screens.cache.CacheListener;
+
 /**
  * @author Jose Manuel Navarro
  */
-public interface WebContentDisplayListener {
+public interface WebContentDisplayListener extends CacheListener {
 
 	String onWebContentReceived(WebContentDisplayScreenlet source, String html);
 

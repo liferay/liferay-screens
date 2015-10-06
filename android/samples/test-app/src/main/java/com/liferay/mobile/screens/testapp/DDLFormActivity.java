@@ -57,15 +57,6 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		if (resultCode == RESULT_OK) {
-			_screenlet.startUploadByPosition(requestCode);
-		}
-	}
-
-	@Override
 	public void onDDLFormLoaded(Record record) {
 		_loaded = true;
 		info("Form loaded!");
@@ -117,6 +108,30 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	}
 
 	@Override
+	public void loadingFromCache(boolean success) {
+
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == RESULT_OK) {
+			_screenlet.startUploadByPosition(requestCode);
+		}
+	}
+
+	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putBoolean(STATE_LOADED, _loaded);
@@ -130,9 +145,9 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
 	private void initScreenletFromIntent(Intent intent) {
 		if (intent.hasExtra("recordId")) {
-			_screenlet.setRecordId(intent.getIntExtra("recordId", 0));
-			_screenlet.setRecordSetId(intent.getIntExtra("recordSetId", 0));
-			_screenlet.setStructureId(intent.getIntExtra("structureId", 0));
+			_screenlet.setRecordId(intent.getLongExtra("recordId", 0));
+			_screenlet.setRecordSetId(intent.getLongExtra("recordSetId", 0));
+			_screenlet.setStructureId(intent.getLongExtra("structureId", 0));
 		}
 	}
 

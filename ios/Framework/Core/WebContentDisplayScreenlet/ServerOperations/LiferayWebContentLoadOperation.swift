@@ -18,40 +18,52 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 
 	public var groupId: Int64?
 	public var articleId: String?
+	public var templateId: Int64?
 
 	public var resultHTML: String?
 
 
-	override public var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("webcontentdisplay-screenlet", "loading-message", self),
-				details: LocalizedString("webcontentdisplay-screenlet", "loading-details", self))
-	}
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("webcontentdisplay-screenlet", "loading-error", self), details: nil)
-	}
-
-
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override public func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && (groupId != nil)
-		valid = valid && (articleId != nil && articleId! != "")
+		if error == nil {
+			if groupId == nil {
+				return ValidationError("webcontentdisplay-screenlet", "undefined-group")
+			}
 
-		return valid
+			if (articleId ?? "") == "" {
+				return ValidationError("webcontentdisplay-screenlet", "undefined-article")
+			}
+		}
+
+		return error
 	}
 
-	override internal func doRun(#session: LRSession) {
-		let service = LRJournalArticleService_v62(session: session)
-
+	override public func doRun(#session: LRSession) {
 		resultHTML = nil
 
-		let result = service.getArticleContentWithGroupId(groupId!,
+		var result:String
+
+		if let template = templateId {
+			let service = LRScreensjournalarticleService_v62(session: session)
+
+			result = service.getJournalArticleContentWithGroupId(groupId!,
+				articleId: articleId!,
+				templateId: templateId!,
+				locale: NSLocale.currentLocaleString,
+				error: &lastError)
+		}
+		else {
+			let service = LRJournalArticleService_v62(session: session)
+
+			result = service.getArticleContentWithGroupId(groupId!,
 				articleId: articleId!,
 				languageId: NSLocale.currentLocaleString,
 				themeDisplay: nil,
 				error: &lastError)
+		}
 
 		if lastError == nil {
 			resultHTML = result

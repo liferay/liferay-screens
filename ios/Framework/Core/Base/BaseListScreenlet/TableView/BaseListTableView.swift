@@ -30,6 +30,15 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			BaseListScreenlet.LoadInitialPageAction : [
+				.Working : LocalizedString("core", "base-list-loading-message", self),
+				.Failure : LocalizedString("core", "base-list-loading-error", self)
+			]
+		]
+	}
+
 	private let cellId = "listCell"
 
 
@@ -58,9 +67,9 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 
-	override public func onFinishOperation() {
+	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
 		if let currentRefreshControl = refreshControlView {
-			delayed(0.3) {
+			dispatch_delayed(0.3) {
 				currentRefreshControl.endRefreshing()
 			}
 		}
@@ -139,9 +148,8 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	}
 
 	internal func refreshControlBeginRefresh(sender:AnyObject?) {
-		delayed(0.3) {
+		dispatch_delayed(0.3) {
 			self.refreshClosure?()
-			return
 		}
 	}
 

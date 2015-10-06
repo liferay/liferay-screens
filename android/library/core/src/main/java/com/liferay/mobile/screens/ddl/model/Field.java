@@ -43,7 +43,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			_value = value;
 		}
 
-		public static DataType valueOf(Map<String,Object> attributes) {
+		public static DataType valueOf(Map<String, Object> attributes) {
 			Object mapValue = attributes.get("dataType");
 			return (mapValue == null) ?
 				UNSUPPORTED : valueOfString(mapValue.toString());
@@ -73,7 +73,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			return result;
 		}
 
-		public Field createField(Map<String,Object> attributes, Locale locale) {
+		public Field createField(Map<String, Object> attributes, Locale locale) {
 			if (STRING.equals(this)) {
 				EditorType editor = EditorType.valueOf(attributes);
 
@@ -133,7 +133,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			return editorTypes;
 		}
 
-		public static EditorType valueOf(Map<String,Object> attributes) {
+		public static EditorType valueOf(Map<String, Object> attributes) {
 			Object mapValue = attributes.get("type");
 			return (mapValue == null) ?
 				UNSUPPORTED : valueOfString(mapValue.toString());
@@ -162,7 +162,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	}
 
 
-	public Field(Map<String,Object> attributes, Locale locale) {
+	public Field(Map<String, Object> attributes, Locale locale) {
 		_dataType = DataType.valueOf(attributes);
 		_editorType = EditorType.valueOf(attributes);
 
@@ -193,7 +193,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		_readOnly = (in.readInt() == 1);
 		_repeatable = (in.readInt() == 1);
 		_required = (in.readInt() == 1);
-		_showLabel =  (in.readInt() == 1);
+		_showLabel = (in.readInt() == 1);
 
 		_predefinedValue = (T) in.readSerializable();
 		_currentValue = (T) in.readSerializable();
@@ -272,6 +272,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return _lastValidationResult;
 	}
 
+	public void setLastValidationResult(boolean lastValidationResult) {
+		_lastValidationResult = lastValidationResult;
+	}
+
 	public String getTip() {
 		return _tip;
 	}
@@ -294,10 +298,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	public void setCurrentStringValue(String value) {
 		setCurrentValue(convertFromString(value));
-	}
-
-	public void setLastValidationResult(boolean lastValidationResult) {
-		_lastValidationResult = lastValidationResult;
 	}
 
 	public Locale getCurrentLocale() {
@@ -340,7 +340,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	}
 
 
-	protected String getAttributeStringValue(Map<String,Object> attributes, String key) {
+	protected String getAttributeStringValue(Map<String, Object> attributes, String key) {
 		Object value = attributes.get(key);
 		return (value != null) ? value.toString() : "";
 	}

@@ -20,34 +20,35 @@ public class LiferaySignUpOperation: ServerOperation {
 
 	public var resultUserAttributes: [String:AnyObject]?
 
-	override public var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("signup-screenlet", "loading-message", self),
-				details: LocalizedString("signup-screenlet", "loading-details", self))
-	}
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("signup-screenlet", "loading-error", self), details: nil)
-	}
+	private let viewModel: SignUpViewModel
+	private let anonymousUsername: String
+	private let anonymousPassword: String
 
-	private var viewModel: SignUpViewModel {
-		return screenlet.screenletView as! SignUpViewModel
+
+	public init(viewModel: SignUpViewModel, anonymousUsername: String, anonymousPassword: String) {
+		self.viewModel = viewModel
+		self.anonymousUsername = anonymousUsername
+		self.anonymousPassword = anonymousPassword
+
+		super.init()
 	}
 
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override public func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		if valid && viewModel.emailAddress == nil {
-			showValidationHUD(message: LocalizedString("signup-screenlet", "validation", self))
-
-			valid = false
+		if error == nil {
+			if viewModel.emailAddress == nil {
+				return ValidationError("signup-screenlet", "validation-email")
+			}
 		}
 
-		return valid
+		return error
 	}
 
-	override func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		let service = LRUserService_v62(session: session)
 
 		var outError: NSError?
@@ -99,6 +100,10 @@ public class LiferaySignUpOperation: ServerOperation {
 			lastError = nil
 			resultUserAttributes = result as? [String:AnyObject]
 		}
+	}
+
+	override public func createSession() -> LRSession? {
+		return SessionContext.createAnonymousBasicSession(anonymousUsername, anonymousPassword)
 	}
 
 }

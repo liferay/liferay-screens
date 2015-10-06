@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
 
 public class ForgotPasswordView_flat7: ForgotPasswordView_default {
@@ -27,8 +28,6 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 		super.onCreated()
 
 		setFlat7ButtonBackground(requestPasswordButton)
-
-		BaseScreenlet.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}
 
 	override public func onSetTranslations() {
@@ -43,6 +42,10 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 				forState: .Normal)
 
 		userNameField!.placeholder = "";
+	}
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return Flat7ProgressPresenter()
 	}
 
 

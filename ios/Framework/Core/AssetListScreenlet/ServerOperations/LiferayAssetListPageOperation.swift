@@ -16,48 +16,87 @@ import UIKit
 public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	public var groupId: Int64?
-	public var classNameId: Int?
-
-	internal var assetListScreenlet: AssetListScreenlet {
-		return self.screenlet as! AssetListScreenlet
-	}
+	public var classNameId: Int64?
+	public var portletItemName: String?
 
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override public func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && (groupId != nil)
-		valid = valid && (classNameId != nil)
+		if error == nil {
+			if groupId == nil {
+				return ValidationError("assetlist-screenlet", "undefined-group")
+			}
 
-		return valid
+			if classNameId == nil {
+				return ValidationError("assetlist-screenlet", "undefined-classname")
+			}
+		}
+
+		return error
 	}
 
+	override public func doRun(#session: LRSession) {
+		if let portletItemName = portletItemName {
+			let service = LRScreensassetentryService_v62(session: session)
+
+			let responses = service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
+				groupId: groupId!,
+				portletItemName: portletItemName,
+				locale: NSLocale.currentLocaleString,
+				error: &lastError)
+
+			if lastError == nil {
+				if let entriesResponse = responses as? [[String:AnyObject]] {
+					let serverPageContent = entriesResponse
+
+					resultPageContent = serverPageContent
+					resultRowCount = serverPageContent.count
+				}
+				else {
+					lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
+				}
+			}
+		}
+		else {
+			super.doRun(session: session)
+		}
+	}
 
 	//MARK: LiferayPaginationOperation
 
-	override internal func doGetPageRowsOperation(#session: LRBatchSession, page: Int) {
-		let screenletsService = LRScreensassetentryService_v62(session: session)
+	override internal func doGetPageRowsOperation(#session: LRBatchSession, startRow: Int, endRow: Int) {
+		let service = LRScreensassetentryService_v62(session: session)
 
-		var entryQueryAttributes = configureEntryQueryAttributes()
+		if let portletItemName = portletItemName {
+			service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
+				groupId: groupId!,
+				portletItemName: portletItemName,
+				locale: NSLocale.currentLocaleString,
+				error: &lastError)
+		}
+		else {
+			var entryQueryAttributes = configureEntryQueryAttributes()
 
-		entryQueryAttributes["start"] = assetListScreenlet.firstRowForPage(page)
-		entryQueryAttributes["end"] = assetListScreenlet.firstRowForPage(page + 1)
+			entryQueryAttributes["start"] = startRow
+			entryQueryAttributes["end"] = endRow
 
-		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
+			let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
-		screenletsService.getAssetEntriesWithAssetEntryQuery(entryQuery,
+			service.getAssetEntriesWithAssetEntryQuery(entryQuery,
 				locale: NSLocale.currentLocaleString,
 				error: nil)
+		}
 	}
 
 	override internal func doGetRowCountOperation(#session: LRBatchSession) {
-		let assetsService = LRAssetEntryService_v62(session: session)
+		let service = LRAssetEntryService_v62(session: session)
 		let entryQueryAttributes = configureEntryQueryAttributes()
 		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
-		assetsService.getEntriesCountWithEntryQuery(entryQuery, error: nil)
+		service.getEntriesCountWithEntryQuery(entryQuery, error: nil)
 	}
 
 
@@ -66,7 +105,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	private func configureEntryQueryAttributes() -> [NSString : AnyObject] {
 		var entryQueryAttributes: [NSString : AnyObject] = [:]
 
-		entryQueryAttributes["classNameIds"] = NSNumber(long: classNameId!)
+		entryQueryAttributes["classNameIds"] = NSNumber(longLong: classNameId!)
 		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId!)
 		entryQueryAttributes["visible"] = "true"
 

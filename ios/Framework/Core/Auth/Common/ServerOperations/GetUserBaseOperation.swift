@@ -22,18 +22,23 @@ public class GetUserBaseOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override internal func validateData() -> Bool {
-		var valid = super.validateData()
+	override public func validateData() -> ValidationError? {
+		let error = super.validateData()
 		
 		if !SessionContext.hasSession {
-			valid = valid && (userName != nil)
-			valid = valid && (password != nil)
+			if userName == nil {
+				return ValidationError("login-screenlet", "undefined-username")
+			}
+
+			if password == nil {
+				return ValidationError("login-screenlet", "undefined-password")
+			}
 		}
 
-		return valid
+		return error
 	}
 
-	override func createSession() -> LRSession? {
+	override public func createSession() -> LRSession? {
 		if SessionContext.hasSession {
 			return SessionContext.createSessionFromCurrentSession()
 		}
@@ -45,7 +50,7 @@ public class GetUserBaseOperation: ServerOperation {
 						password: password!))
 	}
 
-	override internal func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		var outError: NSError?
 
 		resultUserAttributes = nil
@@ -89,9 +94,7 @@ public class GetUserBaseOperation: ServerOperation {
 			error: NSErrorPointer)
 			-> NSDictionary? {
 
-		assertionFailure("sendGetUserRequest must be overriden")
-
-		return nil
+		fatalError("sendGetUserRequest must be overriden")
 	}
 
    

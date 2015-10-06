@@ -117,6 +117,10 @@ public class SessionContext {
 		}
 	}
 
+	public static Long getDefaultUserId() {
+		return getLoggedUser() == null ? null : getLoggedUser().getId();
+	}
+
 	private static void checkIfStorageTypeIsSupported(CredentialsStoreBuilder.StorageType storageType, CredentialsStore storage) {
 		if (storage == null) {
 			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");

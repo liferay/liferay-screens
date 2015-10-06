@@ -1,30 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="liferay_server">https://screensdemo.liferay.com</string>
-
-	<integer name="liferay_company_id">20155</integer>
-	<integer name="liferay_group_id">20525</integer>
+	<string name="liferay_server">https://demo.liferay.com/screens</string>
+	<string name="liferay_company_id">20155</string>
+	<string name="liferay_group_id">20525</string>
 
 	<!-- SignupScreenlet values -->
 	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
 	<string name="liferay_anonymousApiPassword">anonymous1</string>
 
+	<!-- Default user & passwod -->
+	<string name="default_user_name">test@liferay.com</string>
+	<string name="default_password">test</string>
+
 	<!-- DDLFormScreenlet values -->
-	<integer name="liferay_recordset_id">20596</integer>
-	<integer name="liferay_structure_id">20591</integer>
+	<string name="liferay_recordset_id">20596</string>
+	<string name="liferay_structure_id">20591</string>
 	<string name="liferay_recordset_fields">Title</string>
-	<integer name="folder_id">20617</integer>
-	<integer name="repository_id">20525</integer>
+	<string name="folder_id">20617</string>
+	<string name="repository_id">20525</string>
 
 	<!-- AddBookmarkScreenlet values -->
-	<integer name="bookmark_folder">20622</integer>
+	<string name="bookmark_folder">20622</string>
 
 	<!-- WebContentDisplayScreenlet values -->
-	<integer name="article_id">20602</integer>
+	<string name="liferay_article_id">20602</string>
 
 	<!-- OAuth values -->
 	<string name="liferay_oauth_consumer_key">f4adeb99-9ddf-4c9c-a408-347ce8be340a</string>
 	<string name="liferay_oauth_consumer_secret">0176690f0fd46a4a3a839ca9bf4edd0c</string>
+
+	<!-- local values -->
+	<!--<string name="liferay_server">http://192.168.40.150:8080</string>-->
+	<!--<string name="liferay_company_id">20155</string>-->
+	<!--<string name="liferay_group_id">20182</string>-->
+
+	<!-- SignupScreenlet values -->
+	<!--<string name="liferay_anonymousApiUserName">test@liferay.com</string>-->
+	<!--<string name="liferay_anonymousApiPassword">test</string>-->
+
+	<!-- DDLFormScreenlet values -->
+	<!--<string name="liferay_recordset_id">34382</string>-->
+	<!--<string name="liferay_structure_id">34375</string>-->
+	<!--<string name="liferay_recordset_fields">Title</string>-->
+
+	<!--<string name="liferay_article_id">22326</string>-->
+	<string name="liferay_template_id1">47245</string>
+	<string name="liferay_template_id2">47239</string>
+
+	<string name="portlet_item_name1">manual</string>
+	<string name="portlet_item_name2">dynamic</string>
 
 </resources>

@@ -67,10 +67,8 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 
 	//MARK: DDLFormTableView
 
-	override public func onCreated() {
-		super.onCreated()
-
-		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
 	}
 
 }

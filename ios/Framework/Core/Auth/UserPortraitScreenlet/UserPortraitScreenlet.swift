@@ -50,6 +50,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		}
 	}
 
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+
 	@IBOutlet public weak var delegate: UserPortraitScreenletDelegate?
 
 
@@ -68,19 +70,24 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		viewModel.borderWidth = self.borderWidth
 		viewModel.borderColor = self.borderColor
 		viewModel.editable = self.editable
-		viewModel.portraitLoaded = onPortraitLoaded
 	}
 
 	public func loadLoggedUserPortrait() -> Bool {
-		let interactor = UserPortraitLoadLoggedUserInteractor(screenlet: self)
+		if SessionContext.currentUserId == nil {
+			return false
+		}
 
-		loadedUserId =  SessionContext.currentUserId
+		let interactor = DownloadUserPortraitInteractor(
+			screenlet: self,
+			userId: SessionContext.currentUserId!)
 
-		return startInteractor(interactor)
+		loadedUserId = SessionContext.currentUserId
+
+		return performAction(name: "load-portrait", sender: interactor)
 	}
 
 	public func load(#portraitId: Int64, uuid: String, male: Bool = true) -> Bool {
-		let interactor = UserPortraitAttributesLoadInteractor(
+		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				portraitId: portraitId,
 				uuid: uuid,
@@ -88,46 +95,73 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 		loadedUserId = nil
 
-		return startInteractor(interactor)
+		return performAction(name: "load-portrait", sender: interactor)
 	}
 
 	public func load(#userId: Int64) -> Bool {
-		let interactor = UserPortraitLoadByUserIdInteractor(
+		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				userId: userId)
 
 		loadedUserId = userId
 
-		return startInteractor(interactor)
+		return performAction(name: "load-portrait", sender: interactor)
 	}
 
 	public func load(#companyId: Int64, emailAddress: String) -> Bool {
-		let interactor = UserPortraitLoadByEmailAddressInteractor(
+		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				companyId: companyId,
 				emailAddress: emailAddress)
 
 		loadedUserId = nil
 
-		return startInteractor(interactor)
+		return performAction(name: "load-portrait", sender: interactor)
 	}
 
 	public func load(#companyId: Int64, screenName: String) -> Bool {
-		let interactor = UserPortraitLoadByScreenNameInteractor(
+		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				companyId: companyId,
 				screenName: screenName)
 
 		loadedUserId = nil
 
-		return startInteractor(interactor)
+		return performAction(name: "load-portrait", sender: interactor)
 	}
 
-	override public func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+		let interactor: Interactor?
 
-		let interactor: UploadUserPortraitInteractor?
+		switch name {
+		case "load-portrait":
+			let loadInteractor = sender as! DownloadUserPortraitInteractor
+			interactor = loadInteractor
 
-		switch name! {
+			loadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+
+			loadInteractor.onSuccess = {
+				if let imageValue = loadInteractor.resultImage {
+					let finalImage = self.delegate?.screenlet?(self, onUserPortraitResponseImage: imageValue)
+
+					self.loadedUserId = loadInteractor.resultUserId
+					self.setPortraitImage(finalImage ?? imageValue)
+				}
+				else {
+					self.delegate?.screenlet?(self, onUserPortraitError: NSError.errorWithCause(.InvalidServerResponse))
+
+					self.loadedUserId = nil
+					self.setPortraitImage(nil)
+				}
+			}
+
+			loadInteractor.onFailure = {
+				self.delegate?.screenlet?(self, onUserPortraitError: $0)
+
+				self.loadedUserId = nil
+				self.setPortraitImage(nil)
+			}
+
 		case "upload-portrait":
 			let image = sender as! UIImage
 			let userId: Int64
@@ -141,19 +175,23 @@ public class UserPortraitScreenlet: BaseScreenlet {
 				return nil
 			}
 
-			interactor = UploadUserPortraitInteractor(
+			let uploadInteractor = UploadUserPortraitInteractor(
 					screenlet: self,
 					userId: userId,
 					image: image)
+			interactor = uploadInteractor
 
-			interactor!.onSuccess = { [weak interactor] in
-				self.delegate?.screenlet?(self, onUserPortraitUploaded: interactor!.uploadResult!)
-				self.load(userId: userId)
+			uploadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+
+			uploadInteractor.onSuccess = { [weak interactor] in
+				self.delegate?.screenlet?(self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
+
+				self.loadedUserId = uploadInteractor.userId
+				self.setPortraitImage(uploadInteractor.image)
 			}
 
-			interactor!.onFailure = {
+			uploadInteractor.onFailure = {
 				self.delegate?.screenlet?(self, onUserPortraitUploadError: $0)
-				return
 			}
 
 		default:
@@ -163,40 +201,16 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return interactor
 	}
 
+
 	//MARK: Private methods
 
-	private func startInteractor(interactor: UserPortraitBaseInteractor) -> Bool {
-		interactor.onSuccess = {
-			self.setPortraitURL(interactor.resultURL)
-			self.loadedUserId = interactor.resultUserId
+	private func setPortraitImage(image: UIImage?) {
+		viewModel.image = image
+
+		if image == nil {
+			let error = NSError.errorWithCause(.AbortedDueToPreconditions)
+			delegate?.screenlet?(self, onUserPortraitError: error)
 		}
-
-		return interactor.start()
-	}
-
-	private func setPortraitURL(url: NSURL?) {
-		viewModel.portraitURL = url
-
-		if url == nil {
-			screenletView?.onFinishOperation()
-			delegate?.screenlet?(self,
-					onUserPortraitError: NSError.errorWithCause(.AbortedDueToPreconditions))
-		}
-	}
-
-	private func onPortraitLoaded(image: UIImage?, error: NSError?) -> UIImage? {
-		var finalImage = image
-
-		if let errorValue = error {
-			delegate?.screenlet?(self, onUserPortraitError: errorValue)
-		}
-		else if let imageValue = image {
-			finalImage = delegate?.screenlet?(self, onUserPortraitResponseImage: imageValue)
-		}
-
-		screenletView?.onFinishOperation()
-
-		return finalImage
 	}
 
 }

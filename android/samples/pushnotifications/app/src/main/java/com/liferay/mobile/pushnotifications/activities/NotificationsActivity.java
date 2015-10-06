@@ -4,16 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.task.callback.typed.JSONObjectAsyncTaskCallback;
 import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.ddl.list.DDLEntry;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
-import com.liferay.mobile.screens.push.AbstractPushActivity;
+import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.push.PushScreensActivity;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
@@ -24,9 +24,7 @@ import java.util.List;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 
-public class NotificationsActivity extends AbstractPushActivity implements BaseListListener<DDLEntry> {
-
-	private DDLListScreenlet ddlList;
+public class NotificationsActivity extends PushScreensActivity implements BaseListListener<Record> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,28 +42,50 @@ public class NotificationsActivity extends AbstractPushActivity implements BaseL
 	}
 
 	@Override
-	protected Session getDefaultSession() {
-		return SessionContext.createSessionFromCurrentSession();
-	}
-
-	@Override
 	public void onListPageFailed(BaseListScreenlet baseListScreenlet, int i, Exception e) {
 
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet baseListScreenlet, int i, List<DDLEntry> list, int i1) {
+	public void onListPageReceived(BaseListScreenlet baseListScreenlet, int i, List<Record> list, int i1) {
 
 	}
 
 	@Override
-	public void onListItemSelected(DDLEntry element, View view) {
+	public void onListItemSelected(Record element, View view) {
 		loadDDLForm(element);
 	}
 
-	private void loadDDLForm(DDLEntry element) {
-		final Integer recordId = (Integer) (element.getAttributes("recordId"));
-		final Integer recordSetId = (Integer) (element.getAttributes("recordSetId"));
+	@Override
+	protected Session getDefaultSession() {
+		return SessionContext.createSessionFromCurrentSession();
+	}
+
+	@Override
+	protected void onPushNotificationReceived(final JSONObject jsonObject) {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				Crouton.clearCroutonsForActivity(NotificationsActivity.this);
+				LiferayCrouton.info(NotificationsActivity.this, "Reloading list...");
+				ddlList.loadPage(0);
+			}
+		});
+	}
+
+	@Override
+	protected void onErrorRegisteringPush(final String message, final Exception e) {
+
+	}
+
+	@Override
+	protected String getSenderId() {
+		return getString(R.string.sender_id);
+	}
+
+	private void loadDDLForm(Record element) {
+		final Long recordId = element.getRecordId();
+		final Long recordSetId = element.getRecordSetId();
 
 		try {
 			Session session = SessionContext.createSessionFromCurrentSession();
@@ -78,8 +98,8 @@ public class NotificationsActivity extends AbstractPushActivity implements BaseL
 		}
 	}
 
-	private JSONObjectAsyncTaskCallback getCallback(final Integer recordId, final Integer recordSetId) {
-		return new JSONObjectAsyncTaskCallback() {
+	private JSONObjectCallback getCallback(final Long recordId, final Long recordSetId) {
+		return new JSONObjectCallback() {
 
 			@Override
 			public void onSuccess(JSONObject result) {
@@ -104,26 +124,5 @@ public class NotificationsActivity extends AbstractPushActivity implements BaseL
 			}
 		};
 	}
-
-	@Override
-	protected void onPushNotificationReceived(final JSONObject jsonObject) {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				Crouton.clearCroutonsForActivity(NotificationsActivity.this);
-				LiferayCrouton.info(NotificationsActivity.this, "Reloading list...");
-				ddlList.loadPage(0);
-			}
-		});
-	}
-
-	@Override
-	protected void onErrorRegisteringPush(final String message, final Exception e) {
-
-	}
-
-	@Override
-	protected String getSenderId() {
-		return getString(R.string.sender_id);
-	}
+	private DDLListScreenlet ddlList;
 }

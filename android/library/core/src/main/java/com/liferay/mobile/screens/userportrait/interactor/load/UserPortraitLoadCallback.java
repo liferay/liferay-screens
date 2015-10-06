@@ -24,8 +24,10 @@ import org.json.JSONObject;
  */
 public class UserPortraitLoadCallback extends InteractorAsyncTaskCallback<JSONObject> {
 
-	public UserPortraitLoadCallback(int targetScreenletId) {
+	public UserPortraitLoadCallback(int targetScreenletId, long userId) {
 		super(targetScreenletId);
+
+		_userId = userId;
 	}
 
 	@Override
@@ -35,12 +37,13 @@ public class UserPortraitLoadCallback extends InteractorAsyncTaskCallback<JSONOb
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new UserPortraitLoadEvent(targetScreenletId, result);
+		return new UserPortraitLoadEvent(targetScreenletId, result, _userId);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new UserPortraitLoadEvent(targetScreenletId, e);
+		return new UserPortraitLoadEvent(targetScreenletId, e, _userId);
 	}
 
+	private final long _userId;
 }

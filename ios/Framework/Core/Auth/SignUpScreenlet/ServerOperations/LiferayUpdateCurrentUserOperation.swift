@@ -18,40 +18,35 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 
 	public var resultUserAttributes: [String:AnyObject]?
 
-	override public  var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("signup-screenlet", "saving-message", self),
-				details: LocalizedString("signup-screenlet", "saving-details", self))
-	}
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("signup-screenlet", "saving-error", self), details: nil)
-	}
+	private let viewModel: SignUpViewModel
 
-	private var viewModel: SignUpViewModel {
-		return screenlet.screenletView as! SignUpViewModel
+
+	public init(viewModel: SignUpViewModel) {
+		self.viewModel = viewModel
+
+		super.init()
 	}
 
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override public func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		if valid && viewModel.emailAddress == nil {
-			showValidationHUD(message: LocalizedString("signup-screenlet", "validation", self))
+		if error == nil {
+			if viewModel.emailAddress == nil {
+				return ValidationError("signup-screenlet", "validation-email")
+			}
 
-			return false
+			if viewModel.password == SessionContext.currentBasicPassword {
+				return ValidationError("signup-screenlet", "validation-change-password")
+			}
 		}
 
-		if viewModel.password == SessionContext.currentBasicPassword {
-			showValidationHUD(message: LocalizedString("signup-screenlet", "validation-password", self))
-
-			return false
-		}
-
-		return true
+		return error
 	}
 
-	override func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		func attributeAsString(key: String) -> String {
 			return SessionContext.userAttribute(key) as! String
 		}

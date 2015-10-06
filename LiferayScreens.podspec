@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name         = 'LiferayScreens'
 	s.module_name  = 'LiferayScreens'
-	s.version      = '1.1.0'
+	s.version      = '1.2.0'
 	s.summary      = 'A family of visual components called screenlets that are connected to the Liferay Platform used as a backend'
 	s.homepage     = 'https://www.liferay.com/liferay-screens'
 	s.license = { 
@@ -41,8 +41,7 @@ Pod::Spec.new do |s|
 
 	s.resource_bundle = {
 		'LiferayScreens-core' => 'ios/Framework/Core/**/*.{plist,lproj}',
-		'LiferayScreens-default' => 'ios/Framework/Themes/Default/**/*.{xib,png,plist,lproj}',
-		'LiferayScreens-flat7' => 'ios/Framework/Themes/Flat7/**/*.{xib,png,plist,lproj}'
+		'LiferayScreens-default' => 'ios/Framework/Themes/Default/**/*.{xib,png,plist,lproj}'
 	}
 	
 	s.xcconfig = {
@@ -52,20 +51,21 @@ Pod::Spec.new do |s|
 
 	# Core
 	s.dependency 'Liferay-iOS-SDK', '6.2.0.17'
-	s.dependency 'Liferay-OAuth'
-	s.dependency 'MBProgressHUD', '~> 0.9.1'
-	s.dependency 'SMXMLDocument'
-	s.dependency 'ODRefreshControl'
+	s.dependency 'Liferay-OAuth', '0.1.0'
+	s.dependency 'MBProgressHUD', '0.9.1'
+	s.dependency 'SMXMLDocument', '1.1'
+	s.dependency 'ODRefreshControl', '1.2'
+	s.dependency 'YapDatabase', '2.6.5'
 
 	# Login & signup: save credentials
-	s.dependency 'KeychainAccess'
+	s.dependency 'KeychainAccess', '1.2.1'
 
 	# UserPortrait
-	s.dependency 'CryptoSwift'
+	s.dependency 'CryptoSwift', '0.0.13'
 
 	# DDLForm
-	s.dependency 'DTPickerPresenter'
-	s.dependency 'TNRadioButtonGroup'
-	s.dependency 'MDRadialProgress'
+	s.dependency 'DTPickerPresenter', '0.2.0'
+	s.dependency 'TNRadioButtonGroup', '0.4'
+	s.dependency 'MDRadialProgress', '1.3.2'
 
 end

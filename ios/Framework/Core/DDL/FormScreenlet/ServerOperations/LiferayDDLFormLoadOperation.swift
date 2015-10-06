@@ -22,25 +22,21 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 	public var resultUserId: Int64?
 
 
-	override public var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "loading-message", self),
-				details: LocalizedString("ddlform-screenlet", "loading-details", self))
-	}
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "loading-error", self), details: nil)
-	}
-
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override public func validateData() -> ValidationError? {
+		let error = super.validateData()
 
-		valid = valid && (structureId != nil)
+		if error == nil {
+			if structureId == nil {
+				return ValidationError("ddlform-screenlet", "undefined-structure")
+			}
+		}
 
-		return valid
+		return error
 	}
 
-	override internal func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		let service = LRDDMStructureService_v62(session: session)
 
 		resultRecord = nil

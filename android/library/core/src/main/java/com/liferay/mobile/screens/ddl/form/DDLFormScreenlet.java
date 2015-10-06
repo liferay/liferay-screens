@@ -24,11 +24,12 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractorImpl;
-import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.formload.DDLFormLoadInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.formload.DDLFormLoadInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.recordload.DDLFormLoadRecordInteractor;
@@ -204,6 +205,27 @@ public class DDLFormScreenlet
 		}
 	}
 
+	@Override
+	public void loadingFromCache(boolean success) {
+		if (_listener != null) {
+			_listener.loadingFromCache(success);
+		}
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+		if (_listener != null) {
+			_listener.retrievingOnline(triedInCache, e);
+		}
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+		if (_listener != null) {
+			_listener.storingToCache(object);
+		}
+	}
+
 	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
 		//TODO this is confusing. Why can't I use the argument? Change to receive only the name
 		DocumentField originalField =
@@ -332,12 +354,32 @@ public class DDLFormScreenlet
 		return _record;
 	}
 
+	public void setRecord(Record record) {
+		_record = record;
+	}
+
 	public DDLFormListener getListener() {
 		return _listener;
 	}
 
 	public void setListener(DDLFormListener listener) {
 		_listener = listener;
+	}
+
+	public boolean isLoadRecordAfterForm() {
+		return _loadRecordAfterForm;
+	}
+
+	public void setLoadRecordAfterForm(boolean loadRecordAfterForm) {
+		_loadRecordAfterForm = loadRecordAfterForm;
+	}
+
+	public OfflinePolicy getOfflinePolicy() {
+		return _offlinePolicy;
+	}
+
+	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
+		_offlinePolicy = offlinePolicy;
 	}
 
 	public void setCustomFieldLayoutId(String fieldName, int layoutId) {
@@ -352,15 +394,15 @@ public class DDLFormScreenlet
 	protected DDLFormBaseInteractor createInteractor(String actionName) {
 		switch (actionName) {
 			case LOAD_FORM_ACTION:
-				return new DDLFormLoadInteractorImpl(getScreenletId());
+				return new DDLFormLoadInteractorImpl(getScreenletId(), _offlinePolicy);
 			case LOAD_RECORD_ACTION:
-				return new DDLFormLoadRecordInteractorImpl(getScreenletId());
+				return new DDLFormLoadRecordInteractorImpl(getScreenletId(), _offlinePolicy);
 			case ADD_RECORD_ACTION:
-				return new DDLFormAddRecordInteractorImpl(getScreenletId());
+				return new DDLFormAddRecordInteractorImpl(getScreenletId(), _offlinePolicy);
 			case UPDATE_RECORD_ACTION:
-				return new DDLFormUpdateRecordInteractorImpl(getScreenletId());
+				return new DDLFormUpdateRecordInteractorImpl(getScreenletId(), _offlinePolicy);
 			case UPLOAD_DOCUMENT_ACTION:
-				return new DDLFormDocumentUploadInteractorImpl(getScreenletId());
+				return new DDLFormDocumentUploadInteractorImpl(getScreenletId(), _offlinePolicy);
 			default:
 				return null;
 		}
@@ -379,27 +421,32 @@ public class DDLFormScreenlet
 		_showSubmitButton = typedArray.getBoolean(
 			R.styleable.DDLFormScreenlet_showSubmitButton, true);
 
-		_groupId = typedArray.getInteger(
-			R.styleable.DDLFormScreenlet_groupId,
-			(int) LiferayServerContext.getGroupId());
+		_groupId = castToLongOrUseDefault(typedArray.getString(
+				R.styleable.DDLFormScreenlet_groupId),
+			LiferayServerContext.getGroupId());
 
-		_structureId = typedArray.getInteger(R.styleable.DDLFormScreenlet_structureId, 0);
-		_recordSetId = typedArray.getInteger(R.styleable.DDLFormScreenlet_recordSetId, 0);
-		_recordId = typedArray.getInteger(R.styleable.DDLFormScreenlet_recordId, 0);
+		_structureId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_structureId));
+		_recordSetId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_recordSetId));
+		_recordId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_recordId));
 		_filePrefix = typedArray.getString(R.styleable.DDLFormScreenlet_filePrefix);
-		_repositoryId = typedArray.getInteger(R.styleable.DDLFormScreenlet_repositoryId, 0);
-		_folderId = typedArray.getInteger(R.styleable.DDLFormScreenlet_folderId, 0);
+		_repositoryId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_repositoryId));
+		_folderId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_folderId));
 
-		int defaultCreatorUserId = SessionContext.getLoggedUser() != null ?
-			(int) SessionContext.getLoggedUser().getId() : 0;
+		long defaultCreatorUserId = SessionContext.getLoggedUser() != null ?
+			SessionContext.getLoggedUser().getId() : 0;
 
-		_userId = typedArray.getInteger(R.styleable.DDLFormScreenlet_userId, defaultCreatorUserId);
+		_userId = castToLongOrUseDefault(typedArray.getString(R.styleable.DDLFormScreenlet_userId)
+			, defaultCreatorUserId);
 
 		_record = new Record(getResources().getConfiguration().locale);
 		_record.setStructureId(_structureId);
 		_record.setRecordSetId(_recordSetId);
 		_record.setRecordId(_recordId);
 		_record.setCreatorUserId(_userId);
+
+		int offlinePolicy = typedArray.getInt(R.styleable.DDLFormScreenlet_offlinePolicy,
+			OfflinePolicy.REMOTE_ONLY.ordinal());
+		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.DDLFormScreenlet_layoutId, getDefaultLayoutId());
@@ -409,52 +456,38 @@ public class DDLFormScreenlet
 		DDLFormViewModel viewModel = (DDLFormViewModel) view;
 
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.CHECKBOX,
-				R.styleable.DDLFormScreenlet_checkboxFieldLayoutId);
+			R.styleable.DDLFormScreenlet_checkboxFieldLayoutId);
 
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.DATE,
-				R.styleable.DDLFormScreenlet_dateFieldLayoutId);
+			R.styleable.DDLFormScreenlet_dateFieldLayoutId);
 
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.NUMBER,
-				R.styleable.DDLFormScreenlet_numberFieldLayoutId);
+			R.styleable.DDLFormScreenlet_numberFieldLayoutId);
 
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.INTEGER,
-				R.styleable.DDLFormScreenlet_numberFieldLayoutId);
+			R.styleable.DDLFormScreenlet_numberFieldLayoutId);
 
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.DECIMAL,
-				R.styleable.DDLFormScreenlet_numberFieldLayoutId);
+			R.styleable.DDLFormScreenlet_numberFieldLayoutId);
 
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.RADIO,
-				R.styleable.DDLFormScreenlet_radioFieldLayoutId);
+			R.styleable.DDLFormScreenlet_radioFieldLayoutId);
 
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.SELECT,
-				R.styleable.DDLFormScreenlet_selectFieldLayoutId);
+			R.styleable.DDLFormScreenlet_selectFieldLayoutId);
 
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.TEXT,
-				R.styleable.DDLFormScreenlet_textFieldLayoutId);
+			R.styleable.DDLFormScreenlet_textFieldLayoutId);
 
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.TEXT_AREA,
-				R.styleable.DDLFormScreenlet_textAreaFieldLayoutId);
+			R.styleable.DDLFormScreenlet_textAreaFieldLayoutId);
 
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.DOCUMENT,
-				R.styleable.DDLFormScreenlet_documentFieldLayoutId);
+			R.styleable.DDLFormScreenlet_documentFieldLayoutId);
 
 		typedArray.recycle();
 
 		return view;
-	}
-
-	private void setFieldLayoutId(
-		DDLFormViewModel viewModel, TypedArray typedArray, Field.EditorType editorType,
-		Integer id) {
-
-		int resourceId = typedArray.getResourceId(id, 0);
-
-		if (resourceId == 0) {
-			viewModel.resetFieldLayoutId(editorType);
-		}
-		else {
-			viewModel.setFieldLayoutId(editorType, resourceId);
-		}
 	}
 
 	@Override
@@ -573,6 +606,7 @@ public class DDLFormScreenlet
 		_repositoryId = state.getLong(_STATE_REPOSITORY_ID);
 		_folderId = state.getLong(_STATE_FOLDER_ID);
 		_filePrefix = state.getString(_STATE_FILE_PREFIX);
+		_offlinePolicy = OfflinePolicy.values()[state.getInt(_STATE_OFFLINE_POLICY)];
 
 		Parcelable superState = state.getParcelable(_STATE_SUPER);
 
@@ -599,6 +633,7 @@ public class DDLFormScreenlet
 		state.putLong(_STATE_REPOSITORY_ID, _repositoryId);
 		state.putLong(_STATE_FOLDER_ID, _folderId);
 		state.putString(_STATE_FILE_PREFIX, _filePrefix);
+		state.putLong(_STATE_OFFLINE_POLICY, _offlinePolicy.ordinal());
 
 		return state;
 	}
@@ -607,6 +642,20 @@ public class DDLFormScreenlet
 	protected void onScreenletAttached() {
 		if (_autoLoad && _record.getFieldCount() == 0) {
 			load();
+		}
+	}
+
+	private void setFieldLayoutId(
+		DDLFormViewModel viewModel, TypedArray typedArray, Field.EditorType editorType,
+		Integer id) {
+
+		int resourceId = typedArray.getResourceId(id, 0);
+
+		if (resourceId == 0) {
+			viewModel.resetFieldLayoutId(editorType);
+		}
+		else {
+			viewModel.setFieldLayoutId(editorType, resourceId);
 		}
 	}
 
@@ -623,6 +672,7 @@ public class DDLFormScreenlet
 	private static final String _STATE_REPOSITORY_ID = "ddlform-repositoryId";
 	private static final String _STATE_FOLDER_ID = "ddlform-folderId";
 	private static final String _STATE_FILE_PREFIX = "ddlform-filePrefixId";
+	private static final String _STATE_OFFLINE_POLICY = "ddlform-offlinePolicy";
 
 	private boolean _autoLoad;
 	private boolean _autoScrollOnValidation;
@@ -641,5 +691,6 @@ public class DDLFormScreenlet
 	private DDLFormListener _listener;
 
 	private boolean _loadRecordAfterForm;
+	private OfflinePolicy _offlinePolicy;
 
 }

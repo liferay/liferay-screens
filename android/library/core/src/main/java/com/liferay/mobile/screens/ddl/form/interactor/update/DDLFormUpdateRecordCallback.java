@@ -25,18 +25,23 @@ import org.json.JSONObject;
  */
 public class DDLFormUpdateRecordCallback extends DDLFormBaseCallback {
 
-	public DDLFormUpdateRecordCallback(int targetScreenletId, Record record) {
+	public DDLFormUpdateRecordCallback(int targetScreenletId, Record record, long groupId) {
 		super(targetScreenletId, record);
+
+		_groupId = groupId;
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new DDLFormUpdateRecordEvent(targetScreenletId, e);
+		return new DDLFormUpdateRecordEvent(targetScreenletId, getRecord(), _groupId, e);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new DDLFormUpdateRecordEvent(targetScreenletId, result, getRecord());
+		DDLFormUpdateRecordEvent ddlFormUpdateRecordEvent = new DDLFormUpdateRecordEvent(targetScreenletId, getRecord(), _groupId, result);
+		ddlFormUpdateRecordEvent.setRemote(true);
+		return ddlFormUpdateRecordEvent;
 	}
 
+	private final long _groupId;
 }

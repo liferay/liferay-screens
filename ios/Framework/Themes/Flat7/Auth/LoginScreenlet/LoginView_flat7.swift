@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
 
 public class LoginView_flat7: LoginView_default {
@@ -28,8 +29,6 @@ public class LoginView_flat7: LoginView_default {
 		super.onCreated()
 
 		setFlat7ButtonBackground(loginButton)
-
-		BaseScreenlet.setHUDCustomColor(Flat7ThemeBasicGreen)
 	}
 
 	override public var userName: String? {
@@ -51,6 +50,10 @@ public class LoginView_flat7: LoginView_default {
 
 		userNameField!.placeholder = "";
 		passwordField!.placeholder = "";
+	}
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return Flat7ProgressPresenter()
 	}
 
 

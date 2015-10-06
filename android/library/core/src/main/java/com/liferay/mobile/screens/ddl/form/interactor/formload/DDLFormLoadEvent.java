@@ -24,12 +24,12 @@ import org.json.JSONObject;
  */
 public class DDLFormLoadEvent extends DDLFormBaseEvent {
 
-	public DDLFormLoadEvent(int targetScreenletId, Exception e) {
-		super(targetScreenletId, e);
+	public DDLFormLoadEvent(int targetScreenletId, Record record, Exception e) {
+		super(targetScreenletId, record, e);
 	}
 
-	public DDLFormLoadEvent(int targetScreenletId, JSONObject jsonObject, Record record) {
-		super(targetScreenletId, jsonObject, record);
+	public DDLFormLoadEvent(int targetScreenletId, Record record, JSONObject jsonObject) {
+		super(targetScreenletId, record, jsonObject);
 	}
 
 }

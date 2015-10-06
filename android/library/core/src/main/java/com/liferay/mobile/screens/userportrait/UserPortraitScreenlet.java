@@ -29,6 +29,7 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.interactor.BaseUserPortraitInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
@@ -50,6 +51,11 @@ public class UserPortraitScreenlet
 	extends BaseScreenlet<UserPortraitViewModel, BaseUserPortraitInteractor>
 	implements UserPortraitInteractorListener {
 
+	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
+	public static final String LOAD_PORTRAIT = "LOAD_PORTRAIT";
+	public static final int SELECT_IMAGE_FROM_GALLERY = 0;
+	public static final int TAKE_PICTURE_WITH_CAMERA = 1;
+
 	public UserPortraitScreenlet(Context context) {
 		super(context);
 	}
@@ -61,12 +67,6 @@ public class UserPortraitScreenlet
 	public UserPortraitScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
 	}
-
-	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
-	public static final String LOAD_PORTRAIT = "LOAD_PORTRAIT";
-
-	public static final int SELECT_IMAGE_FROM_GALLERY = 0;
-	public static final int TAKE_PICTURE_WITH_CAMERA = 1;
 
 	public void load() {
 		performUserAction(LOAD_PORTRAIT);
@@ -159,6 +159,27 @@ public class UserPortraitScreenlet
 		getViewModel().showFailedOperation(UPLOAD_PORTRAIT, e);
 	}
 
+	@Override
+	public void loadingFromCache(boolean success) {
+		if (_listener != null) {
+			_listener.loadingFromCache(success);
+		}
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+		if (_listener != null) {
+			_listener.retrievingOnline(triedInCache, e);
+		}
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+		if (_listener != null) {
+			_listener.storingToCache(object);
+		}
+	}
+
 	public void setListener(UserPortraitListener listener) {
 		_listener = listener;
 	}
@@ -199,16 +220,36 @@ public class UserPortraitScreenlet
 		return _editable;
 	}
 
-	public void setEditable(boolean editable) {
-		_editable = editable;
-	}
-
 	public String getFilePath() {
 		return _filePath;
 	}
 
 	public void setFilePath(String filePath) {
 		_filePath = filePath;
+	}
+
+	public boolean isAutoLoad() {
+		return _autoLoad;
+	}
+
+	public void setAutoLoad(boolean autoLoad) {
+		_autoLoad = autoLoad;
+	}
+
+	public boolean isEditable() {
+		return _editable;
+	}
+
+	public void setEditable(boolean editable) {
+		_editable = editable;
+	}
+
+	public OfflinePolicy getOfflinePolicy() {
+		return _offlinePolicy;
+	}
+
+	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
+		_offlinePolicy = offlinePolicy;
 	}
 
 	protected void autoLoad() {
@@ -233,11 +274,15 @@ public class UserPortraitScreenlet
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
-		int defaultUserId = 0;
-		if (SessionContext.hasSession() && _portraitId == 0 && _uuid == null) {
-			defaultUserId = (int) SessionContext.getLoggedUser().getId();
+		int offlinePolicy = typedArray.getInt(R.styleable.UserPortraitScreenlet_offlinePolicy,
+			OfflinePolicy.REMOTE_ONLY.ordinal());
+		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
+
+		_userId = castToLongOrUseDefault(typedArray.getString(R.styleable.UserPortraitScreenlet_userId), 0L);
+
+		if (SessionContext.hasSession() && _portraitId == 0 && _uuid == null && _userId == 0) {
+			_userId = SessionContext.getLoggedUser().getId();
 		}
-		_userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, defaultUserId);
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
@@ -250,10 +295,10 @@ public class UserPortraitScreenlet
 	@Override
 	protected BaseUserPortraitInteractor createInteractor(String actionName) {
 		if (UPLOAD_PORTRAIT.equals(actionName)) {
-			return new UserPortraitUploadInteractorImpl(getScreenletId());
+			return new UserPortraitUploadInteractorImpl(getScreenletId(), _offlinePolicy);
 		}
 		else {
-			return new UserPortraitLoadInteractorImpl(getScreenletId());
+			return new UserPortraitLoadInteractorImpl(getScreenletId(), _offlinePolicy);
 		}
 	}
 
@@ -317,5 +362,5 @@ public class UserPortraitScreenlet
 	private String _uuid;
 	private long _userId;
 	private boolean _editable;
-
+	private OfflinePolicy _offlinePolicy;
 }

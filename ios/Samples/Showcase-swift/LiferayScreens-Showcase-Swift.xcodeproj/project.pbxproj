@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */; };
 		88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2A711AD3DDE600714701 /* AppDelegate.swift */; };
 		88DE2A771AD3DDE600714701 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A751AD3DDE600714701 /* Main.storyboard */; };
 		88DE2A791AD3DDE600714701 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A781AD3DDE600714701 /* Images.xcassets */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		1F7AD30F6279ED703F034F12 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		869461C649CEAF0B480B4E18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineSyncViewController.swift; sourceTree = "<group>"; };
 		88DE2A6C1AD3DDE600714701 /* LiferayScreens-Showcase-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiferayScreens-Showcase-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88DE2A701AD3DDE600714701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88DE2A711AD3DDE600714701 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				88DE2AA81AD3EFEF00714701 /* SignUpScreenletViewController.swift */,
 				88DE2AA91AD3EFEF00714701 /* UserPortraitScreenletViewController.swift */,
 				88DE2AAA1AD3EFEF00714701 /* WebContentDisplayScreenletViewController.swift */,
+				881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88DE2AB11AD3EFEF00714701 /* UserPortraitScreenletViewController.swift in Sources */,
+				881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */,
 				88DE2AB21AD3EFEF00714701 /* WebContentDisplayScreenletViewController.swift in Sources */,
 				88DE2AAF1AD3EFEF00714701 /* HomeScreenletsViewController.swift in Sources */,
 				88DE2AAE1AD3EFEF00714701 /* ForgotPasswordScreenletViewController.swift in Sources */,

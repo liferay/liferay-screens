@@ -26,81 +26,86 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	public var resultRecordId: Int64?
 	public var resultAttributes: NSDictionary?
 
+	private let values: [String:AnyObject]
+	private let viewModel: DDLFormViewModel?
 
-	override public var hudLoadingMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "submitting-message", self),
-				details: LocalizedString("ddlform-screenlet", "submitting-details", self))
+
+	public convenience init(values: [String:AnyObject]) {
+		self.init(values: values, viewModel: nil)
 	}
 
-	override public var hudSuccessMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "submitted", self), details: nil)
-	}
+	public init(values: [String:AnyObject], viewModel: DDLFormViewModel?) {
+		self.values = values
+		self.viewModel = viewModel
 
-	override public var hudFailureMessage: HUDMessage? {
-		return (LocalizedString("ddlform-screenlet", "submitting-error", self), details: nil)
-	}
-
-	internal var viewModel: DDLFormViewModel {
-		return screenlet.screenletView as! DDLFormViewModel
+		super.init()
 	}
 
 
 	//MARK: ServerOperation
 
-	override func validateData() -> Bool {
-		var valid = super.validateData()
+	override public func validateData() -> ValidationError? {
+		var error = super.validateData()
 
-		valid = valid && (userId != nil)
-		valid = valid && (groupId != nil)
-		valid = valid && !(recordId != nil && recordSetId == nil)
-		valid = valid && !viewModel.values.isEmpty
+		if error == nil {
+			if (userId ?? 0) == 0 {
+				return ValidationError("ddlform-screenlet", "undefined-user")
+			}
 
-		if valid && !viewModel.validateForm(autoscroll: autoscrollOnValidation) {
-			showHUD(message: LocalizedString("ddlform-screenlet", "validation", self),
-					details: LocalizedString("ddlform-screenlet", "validation-details", self),
-					closeMode: .AutocloseDelayed(3.0, true),
-					spinnerMode: .NoSpinner)
+			if groupId == nil {
+				return ValidationError("ddlform-screenlet", "undefined-group")
+			}
 
-			valid = false
+			if recordSetId == nil {
+				return ValidationError("ddlform-screenlet", "undefined-recordset")
+			}
+
+			if values.isEmpty {
+				return ValidationError("ddlform-screenlet", "undefined-values")
+			}
+
+			if let viewModel = viewModel {
+				error = viewModel.validateForm(autoscroll: autoscrollOnValidation)
+			}
 		}
 
-		return valid
+		return error
 	}
 
-	override internal func doRun(#session: LRSession) {
+	override public func doRun(#session: LRSession) {
 		let service = LRDDLRecordService_v62(session: session)
 
 		let serviceContextAttributes = [
-				"userId": NSNumber(longLong: userId!),
-				"scopeGroupId": NSNumber(longLong: groupId!)]
+			"userId": NSNumber(longLong: userId!),
+			"scopeGroupId": NSNumber(longLong: groupId!)]
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
 
 		resultRecordId = nil
 		resultAttributes = nil
 
-		var recordDictionary: NSDictionary
+		var recordDictionary: [NSObject : AnyObject]?
 
 		if recordId == nil {
 			recordDictionary = service.addRecordWithGroupId(groupId!,
-					recordSetId: recordSetId!,
-					displayIndex: 0,
-					fieldsMap: viewModel.values,
-					serviceContext: serviceContextWrapper,
-					error: &lastError)
+				recordSetId: recordSetId!,
+				displayIndex: 0,
+				fieldsMap: values,
+				serviceContext: serviceContextWrapper,
+				error: &lastError)
 		}
 		else {
 			recordDictionary = service.updateRecordWithRecordId(recordId!,
-					displayIndex: 0,
-					fieldsMap: viewModel.values,
-					mergeFields: true,
-					serviceContext: serviceContextWrapper,
-					error: &lastError)
+				displayIndex: 0,
+				fieldsMap: values,
+				mergeFields: true,
+				serviceContext: serviceContextWrapper,
+				error: &lastError)
 		}
 
 		if lastError == nil {
-			if let recordIdValue = recordDictionary["recordId"]! as? Int {
-				resultRecordId = Int64(recordIdValue)
+			if let recordIdValue = recordDictionary?["recordId"]?.longLongValue {
+				resultRecordId = recordIdValue
 				resultAttributes = recordDictionary
 			}
 			else {

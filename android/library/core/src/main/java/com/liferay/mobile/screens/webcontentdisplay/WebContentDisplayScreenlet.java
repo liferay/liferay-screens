@@ -22,6 +22,7 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractor;
@@ -34,8 +35,8 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayScreenlet
-		extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayInteractor>
-		implements WebContentDisplayListener {
+	extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayInteractor>
+	implements WebContentDisplayListener {
 
 	public WebContentDisplayScreenlet(Context context) {
 		super(context);
@@ -79,10 +80,30 @@ public class WebContentDisplayScreenlet
 		return modifiedHtml;
 	}
 
+	@Override
+	public void loadingFromCache(boolean success) {
+		if (_listener != null) {
+			_listener.loadingFromCache(success);
+		}
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+		if (_listener != null) {
+			_listener.retrievingOnline(triedInCache, e);
+		}
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+		if (_listener != null) {
+			_listener.storingToCache(object);
+		}
+	}
+
 	public void setListener(WebContentDisplayListener listener) {
 		_listener = listener;
 	}
-
 
 	public boolean isJavascriptEnabled() {
 		return _javascriptEnabled;
@@ -91,6 +112,47 @@ public class WebContentDisplayScreenlet
 	public void setJavascriptEnabled(boolean javascriptEnabled) {
 		_javascriptEnabled = javascriptEnabled;
 	}
+
+	public String getArticleId() {
+		return _articleId;
+	}
+
+	public void setArticleId(String articleId) {
+		_articleId = articleId;
+	}
+
+	public Long getTemplateId() {
+		return _templateId;
+	}
+
+	public void setTemplateId(Long templateId) {
+		_templateId = templateId;
+	}
+
+	public OfflinePolicy getOfflinePolicy() {
+		return _offlinePolicy;
+	}
+
+	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
+		_offlinePolicy = offlinePolicy;
+	}
+
+	public boolean isAutoLoad() {
+		return _autoLoad;
+	}
+
+	public void setAutoLoad(boolean autoLoad) {
+		_autoLoad = autoLoad;
+	}
+
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 
 	protected void autoLoad() {
 		if ((_articleId != null) && SessionContext.hasSession()) {
@@ -114,11 +176,17 @@ public class WebContentDisplayScreenlet
 
 		_articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
 
-		_groupId = typedArray.getInt(
-			R.styleable.WebContentDisplayScreenlet_groupId, (int) LiferayServerContext.getGroupId());
+		_groupId = castToLongOrUseDefault(typedArray.getString(
+			R.styleable.WebContentDisplayScreenlet_groupId), LiferayServerContext.getGroupId());
+
+		_templateId = castToLong(typedArray.getString(R.styleable.WebContentDisplayScreenlet_templateId));
 
 		_javascriptEnabled = typedArray.getBoolean(
 			R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
+
+		int offlinePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_offlinePolicy,
+			OfflinePolicy.REMOTE_ONLY.ordinal());
+		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		int layoutId = typedArray.getResourceId(
 			R.styleable.WebContentDisplayScreenlet_layoutId, getDefaultLayoutId());
@@ -130,7 +198,7 @@ public class WebContentDisplayScreenlet
 
 	@Override
 	protected WebContentDisplayInteractor createInteractor(String actionName) {
-		return new WebContentDisplayInteractorImpl(getScreenletId());
+		return new WebContentDisplayInteractorImpl(getScreenletId(), _offlinePolicy);
 	}
 
 	@Override
@@ -141,7 +209,7 @@ public class WebContentDisplayScreenlet
 		getViewModel().showStartOperation(userActionName);
 
 		try {
-			getInteractor().load(_groupId, _articleId, locale);
+			getInteractor().load(_groupId, _articleId, _templateId, locale);
 		}
 		catch (Exception e) {
 			onWebContentFailure(this, e);
@@ -155,6 +223,8 @@ public class WebContentDisplayScreenlet
 		}
 	}
 
+	private OfflinePolicy _offlinePolicy;
+	private Long _templateId;
 	private String _articleId;
 	private boolean _autoLoad;
 	private long _groupId;

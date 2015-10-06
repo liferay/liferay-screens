@@ -25,6 +25,13 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	@IBOutlet public weak var passwordBackground: UIImageView!
 	@IBOutlet public weak var authorizeButton: UIButton!
 
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			BaseScreenlet.DefaultAction :
+				[.Working : LocalizedString("default", "login-loading-message", self),
+				.Failure : LocalizedString("default", "login-loading-error", self)]]
+	}
+
 
 	//MARK: AuthBasedViewModel
 
@@ -60,7 +67,6 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	}
 
 
-
 	//MARK: LoginViewModel
 
 	public var userName: String? {
@@ -90,29 +96,31 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 		setButtonDefaultStyle(loginButton)
 		setButtonDefaultStyle(authorizeButton)
 
-		BaseScreenlet.setHUDCustomColor(DefaultThemeBasicBlue)
-
 		configureAuthType()
 	}
 
 	override public func onSetTranslations() {
 		passwordField?.placeholder = LocalizedString("default", "password-placeholder", self)
 
-		loginButton?.replaceAttributedTitle(LocalizedString("default", "sign-in-button", self),
+		loginButton?.replaceAttributedTitle(LocalizedString("default", "signin-button", self),
 				forState: .Normal)
 
 		authorizeButton?.replaceAttributedTitle(LocalizedString("default", "authorize-button", self),
 				forState: .Normal)
 	}
 
-	override public func onStartOperation() {
+	override public func onStartInteraction() {
 		loginButton?.enabled = false
 		authorizeButton?.enabled = false
 	}
 
-	override public func onFinishOperation() {
+	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
 		loginButton?.enabled = true
 		authorizeButton?.enabled = true
+	}
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
 	}
 
 

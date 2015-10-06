@@ -44,10 +44,11 @@ import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder
 public class LoginScreenlet
 	extends BaseScreenlet<LoginViewModel, LoginInteractor>
 	implements LoginListener {
-	
+
 	public static final String OAUTH = "OAUTH";
 	public static final String BASIC_AUTH = "BASIC_AUTH";
 	public static final int REQUEST_OAUTH_CODE = 1;
+	public static final String LOGIN_SUCCESSFUL = "com.liferay.mobile.screens.auth.login.success";
 
 	public LoginScreenlet(Context context) {
 		super(context);
@@ -77,6 +78,8 @@ public class LoginScreenlet
 		if (_listener != null) {
 			_listener.onLoginSuccess(user);
 		}
+
+		getContext().sendBroadcast(new Intent(LOGIN_SUCCESSFUL));
 
 		SessionContext.storeSession(_credentialsStore);
 	}
@@ -110,12 +113,6 @@ public class LoginScreenlet
 		return _basicAuthMethod;
 	}
 
-	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
-		_basicAuthMethod = basicAuthMethod;
-
-		getViewModel().setBasicAuthMethod(_basicAuthMethod);
-	}
-
 	public StorageType getCredentialsStore() {
 		return _credentialsStore;
 	}
@@ -138,6 +135,32 @@ public class LoginScreenlet
 
 	public void setOAuthConsumerKey(String value) {
 		_oauthConsumerKey = value;
+	}
+
+	public BasicAuthMethod getBasicAuthMethod() {
+		return _basicAuthMethod;
+	}
+
+	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
+		_basicAuthMethod = basicAuthMethod;
+
+		getViewModel().setBasicAuthMethod(_basicAuthMethod);
+	}
+
+	public String getOauthConsumerKey() {
+		return _oauthConsumerKey;
+	}
+
+	public void setOauthConsumerKey(String oauthConsumerKey) {
+		_oauthConsumerKey = oauthConsumerKey;
+	}
+
+	public String getOauthConsumerSecret() {
+		return _oauthConsumerSecret;
+	}
+
+	public void setOauthConsumerSecret(String oauthConsumerSecret) {
+		_oauthConsumerSecret = oauthConsumerSecret;
 	}
 
 	@Override

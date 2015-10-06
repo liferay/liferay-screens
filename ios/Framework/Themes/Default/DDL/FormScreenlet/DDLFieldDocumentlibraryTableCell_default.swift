@@ -170,7 +170,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 			textField?.text = field?.currentValueAsLabel
 
 			formView?.userAction(
-				name: "upload-document",
+				name: DDLFormScreenlet.UploadDocumentAction,
 				sender: field! as! DDLFieldDocument)
 		}
 	}

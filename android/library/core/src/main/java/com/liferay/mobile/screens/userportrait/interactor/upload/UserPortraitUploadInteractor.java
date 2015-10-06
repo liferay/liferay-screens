@@ -21,6 +21,6 @@ import com.liferay.mobile.screens.userportrait.interactor.BaseUserPortraitIntera
  */
 public interface UserPortraitUploadInteractor extends BaseUserPortraitInteractor {
 
-	void upload(Long userId, String path);
+	void upload(Long userId, String path) throws Exception;
 
 }

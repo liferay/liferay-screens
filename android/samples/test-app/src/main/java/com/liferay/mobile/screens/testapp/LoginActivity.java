@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.testapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
@@ -27,20 +28,6 @@ import com.liferay.mobile.screens.context.User;
  */
 public class LoginActivity extends ThemeActivity implements LoginListener {
 
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		setContentView(R.layout.login);
-
-		_loginScreenlet = (LoginScreenlet) getActiveScreenlet(R.id.login_default, R.id.login_material);
-
-		_loginScreenlet.setVisibility(View.VISIBLE);
-		_loginScreenlet.setListener(this);
-
-		hideInactiveScreenlet(R.id.login_default, R.id.login_material);
-	}
 
 	@Override
 	public void onActivityResult(int request, int result, Intent intent) {
@@ -57,5 +44,28 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 		error("Login failed", e);
 	}
 
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.login);
+
+		_loginScreenlet = (LoginScreenlet) getActiveScreenlet(R.id.login_default, R.id.login_material);
+
+		_loginScreenlet.setVisibility(View.VISIBLE);
+		_loginScreenlet.setListener(this);
+
+		hideInactiveScreenlet(R.id.login_default, R.id.login_material);
+
+		setDefaultValues();
+	}
+
+	private void setDefaultValues() {
+		EditText login = (EditText) _loginScreenlet.findViewById(R.id.liferay_login);
+		login.setText(getString(R.string.default_user_name));
+
+		EditText password = (EditText) _loginScreenlet.findViewById(R.id.liferay_password);
+		password.setText(getString(R.string.default_password));
+	}
 	private LoginScreenlet _loginScreenlet;
 }
