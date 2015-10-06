@@ -54,7 +54,6 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 				templateId: templateId!,
 				locale: NSLocale.currentLocaleString,
 				error: &lastError)
-
 		}
 		else {
 			let service = LRJournalArticleService_v62(session: session)
