@@ -28,7 +28,11 @@ import UIKit
 @IBDesignable public class WebContentDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
+
+	// use either articleId or classPK
 	@IBInspectable public var articleId: String = ""
+	@IBInspectable public var classPK: Int64 = 0
+
 	@IBInspectable public var autoLoad: Bool = true
 	@IBInspectable public var templateId: Int64 = 0
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
@@ -39,7 +43,7 @@ import UIKit
 	//MARK: Public methods
 
 	override public func onShow() {
-		if autoLoad && articleId != "" {
+		if autoLoad && (articleId != "" || classPK != 0) {
 			loadWebContent()
 		}
 	}

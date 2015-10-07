@@ -14,10 +14,9 @@
 import UIKit
 
 
-public class LiferayWebContentLoadOperation: ServerOperation {
+public class LiferayWebContentLoadBaseOperation: ServerOperation {
 
 	public var groupId: Int64?
-	public var articleId: String?
 	public var templateId: Int64?
 
 	public var resultHTML: String?
@@ -29,12 +28,8 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 		let error = super.validateData()
 
 		if error == nil {
-			if groupId == nil {
+			if groupId ?? 0 == 0 {
 				return ValidationError("webcontentdisplay-screenlet", "undefined-group")
-			}
-
-			if (articleId ?? "") == "" {
-				return ValidationError("webcontentdisplay-screenlet", "undefined-article")
 			}
 		}
 
@@ -44,30 +39,30 @@ public class LiferayWebContentLoadOperation: ServerOperation {
 	override public func doRun(#session: LRSession) {
 		resultHTML = nil
 
-		var result:String
+		var result: String
 
-		if let template = templateId {
+		if templateId ?? 0 != 0 {
 			let service = LRScreensjournalarticleService_v62(session: session)
 
-			result = service.getJournalArticleContentWithGroupId(groupId!,
-				articleId: articleId!,
-				templateId: templateId!,
-				locale: NSLocale.currentLocaleString,
-				error: &lastError)
+			result = doGetJournalArticleWithTemplate(templateId!, session: session)
 		}
 		else {
-			let service = LRJournalArticleService_v62(session: session)
-
-			result = service.getArticleContentWithGroupId(groupId!,
-				articleId: articleId!,
-				languageId: NSLocale.currentLocaleString,
-				themeDisplay: nil,
-				error: &lastError)
+			result = doGetJournalArticle(session)
 		}
 
 		if lastError == nil {
 			resultHTML = result
 		}
+	}
+
+	internal func doGetJournalArticleWithTemplate(
+			templateId: Int64,
+			session: LRSession) -> String {
+		fatalError("doGetJournalArticleWithTemplate method must be overwritten")
+	}
+
+	internal func doGetJournalArticle(session: LRSession) -> String {
+		fatalError("doGetJournalArticle method must be overwritten")
 	}
 
 }
