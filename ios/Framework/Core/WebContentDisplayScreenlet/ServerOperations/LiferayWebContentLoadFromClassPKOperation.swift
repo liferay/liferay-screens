@@ -25,7 +25,7 @@ public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBas
 		let error = super.validateData()
 
 		if error == nil {
-			if (classPK ?? 0) == 0 {
+			if classPK ?? 0 == 0 {
 				return ValidationError("webcontentdisplay-screenlet", "undefined-classpk")
 			}
 		}

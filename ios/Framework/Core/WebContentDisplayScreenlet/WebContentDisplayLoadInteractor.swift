@@ -19,10 +19,10 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 	var resultHTML: String?
 
 
-	override func createOperation() -> LiferayWebContentLoadBaseOperation {
+	override func createOperation() -> LiferayWebContentLoadBaseOperation? {
 		let screenlet = self.screenlet as! WebContentDisplayScreenlet
 
-		let operation: LiferayWebContentLoadBaseOperation
+		let operation: LiferayWebContentLoadBaseOperation?
 
 		if screenlet.articleId != "" {
 			let articleIdOp = LiferayWebContentLoadFromArticleIdOperation()
@@ -31,17 +31,22 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 
 			operation = articleIdOp
 		}
-		else {
+		else if screenlet.classPK != 0 {
 			let classPKOp = LiferayWebContentLoadFromClassPKOperation()
 
 			classPKOp.classPK = screenlet.classPK
 
 			operation = classPKOp
 		}
+		else {
+			operation = nil
+		}
 
-		operation.groupId = (screenlet.groupId != 0)
-			? screenlet.groupId : LiferayServerContext.groupId
-		operation.templateId = screenlet.templateId
+		if let operation = operation {
+			operation.groupId = (screenlet.groupId != 0)
+				? screenlet.groupId : LiferayServerContext.groupId
+			operation.templateId = screenlet.templateId
+		}
 
 		return operation
 	}

@@ -28,7 +28,7 @@ public class LiferayWebContentLoadBaseOperation: ServerOperation {
 		let error = super.validateData()
 
 		if error == nil {
-			if groupId == nil {
+			if groupId ?? 0 == 0 {
 				return ValidationError("webcontentdisplay-screenlet", "undefined-group")
 			}
 		}
