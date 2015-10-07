@@ -19,7 +19,7 @@
  */
 @implementation LRScreensjournalarticleService_v62
 
-- (NSString *)getJournalArticleContentWithGroupId:(int)groupId classPK:(int)classPK locale:(NSString *)locale error:(NSError **)error {
+- (NSString *)getJournalArticleContentWithGroupId:(long long)groupId classPK:(long long)classPK locale:(NSString *)locale error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"groupId": @(groupId),
 		@"classPK": @(classPK),
@@ -35,6 +35,19 @@
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"groupId": @(groupId),
 		@"articleId": articleId,
+		@"templateId": @(templateId),
+		@"locale": locale
+	}];
+
+	NSDictionary *_command = @{@"/screens-web.screensjournalarticle/get-journal-article-content": _params};
+
+	return (NSString *)[self.session invoke:_command error:error];
+}
+
+- (NSString *)getJournalArticleContentWithGroupId:(long long)groupId classPK:(long long)classPK templateId:(long long)templateId locale:(NSString *)locale error:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+		@"groupId": @(groupId),
+		@"classPK": @(classPK),
 		@"templateId": @(templateId),
 		@"locale": locale
 	}];

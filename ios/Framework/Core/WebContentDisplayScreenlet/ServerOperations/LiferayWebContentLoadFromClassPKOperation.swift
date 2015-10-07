@@ -36,15 +36,20 @@ public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBas
 	override internal func doGetJournalArticleWithTemplate(
 			templateId: Int64,
 			session: LRSession) -> String {
-		fatalError("No supported yet")
+		let service = LRScreensjournalarticleService_v62(session: session)
+
+		return service.getJournalArticleContentWithGroupId(groupId!,
+			classPK: classPK!,
+			templateId: templateId,
+			locale: NSLocale.currentLocaleString,
+			error: &lastError)
 	}
 
 	override internal func doGetJournalArticle(session: LRSession) -> String {
 		let service = LRScreensjournalarticleService_v62(session: session)
 
-		//TODO this need to be changed to Int64 in the plugin
-		return service.getJournalArticleContentWithGroupId(Int32(groupId!),
-			classPK: Int32(classPK!),
+		return service.getJournalArticleContentWithGroupId(groupId!,
+			classPK: classPK!,
 			locale: NSLocale.currentLocaleString,
 			error: &lastError)
 	}
