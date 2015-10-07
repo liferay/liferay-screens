@@ -40,7 +40,7 @@ public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBas
 
 		return service.getJournalArticleContentWithGroupId(groupId!,
 			classPK: classPK!,
-			templateId: templateId,
+			ddmTemplateId: templateId,
 			locale: NSLocale.currentLocaleString,
 			error: &lastError)
 	}
