@@ -35,7 +35,7 @@ public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBas
 
 	override internal func doGetJournalArticleWithTemplate(
 			templateId: Int64,
-			session: LRSession) -> String {
+			session: LRSession) -> String? {
 		let service = LRScreensjournalarticleService_v62(session: session)
 
 		return service.getJournalArticleContentWithGroupId(groupId!,
@@ -45,7 +45,7 @@ public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBas
 			error: &lastError)
 	}
 
-	override internal func doGetJournalArticle(session: LRSession) -> String {
+	override internal func doGetJournalArticle(session: LRSession) -> String? {
 		let service = LRScreensjournalarticleService_v62(session: session)
 
 		return service.getJournalArticleContentWithGroupId(groupId!,

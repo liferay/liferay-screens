@@ -39,7 +39,7 @@ public class LiferayWebContentLoadBaseOperation: ServerOperation {
 	override public func doRun(#session: LRSession) {
 		resultHTML = nil
 
-		var result: String
+		var result: String?
 
 		if templateId ?? 0 != 0 {
 			let service = LRScreensjournalarticleService_v62(session: session)
@@ -51,17 +51,22 @@ public class LiferayWebContentLoadBaseOperation: ServerOperation {
 		}
 
 		if lastError == nil {
-			resultHTML = result
+			if let result = result {
+				resultHTML = result
+			}
+			else {
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
+			}
 		}
 	}
 
 	internal func doGetJournalArticleWithTemplate(
 			templateId: Int64,
-			session: LRSession) -> String {
+			session: LRSession) -> String? {
 		fatalError("doGetJournalArticleWithTemplate method must be overwritten")
 	}
 
-	internal func doGetJournalArticle(session: LRSession) -> String {
+	internal func doGetJournalArticle(session: LRSession) -> String? {
 		fatalError("doGetJournalArticle method must be overwritten")
 	}
 
