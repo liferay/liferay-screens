@@ -102,7 +102,7 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 			self.delegate?.screenlet?(self,
 					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
 
-			if self.saveCredentials {
+			if self.viewModel.saveCredentials {
 				if SessionContext.storeSession() {
 					self.delegate?.onScreenletCredentialsSaved?(self)
 				}
@@ -111,7 +111,6 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 		interactor.onFailure = {
 			self.delegate?.screenlet?(self, onLoginError: $0)
-			return
 		}
 
 		return interactor
