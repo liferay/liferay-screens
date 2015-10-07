@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayWebContentLoadOperation: ServerOperation {
+public class LiferayWebContentLoadFromArticleIdOperation: ServerOperation {
 
 	public var groupId: Int64?
 	public var articleId: String?
