@@ -41,7 +41,7 @@ public class LiferayWebContentLoadBaseOperation: ServerOperation {
 
 		var result: String
 
-		if let template = templateId {
+		if templateId ?? 0 != 0 {
 			let service = LRScreensjournalarticleService_v62(session: session)
 
 			result = doGetJournalArticleWithTemplate(templateId!, session: session)
