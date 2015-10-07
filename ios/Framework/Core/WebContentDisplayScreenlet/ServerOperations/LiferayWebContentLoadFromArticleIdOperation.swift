@@ -14,13 +14,9 @@
 import UIKit
 
 
-public class LiferayWebContentLoadFromArticleIdOperation: ServerOperation {
+public class LiferayWebContentLoadFromArticleIdOperation: LiferayWebContentLoadBaseOperation {
 
-	public var groupId: Int64?
 	public var articleId: String?
-	public var templateId: Int64?
-
-	public var resultHTML: String?
 
 
 	//MARK: ServerOperation
@@ -29,10 +25,6 @@ public class LiferayWebContentLoadFromArticleIdOperation: ServerOperation {
 		let error = super.validateData()
 
 		if error == nil {
-			if groupId == nil {
-				return ValidationError("webcontentdisplay-screenlet", "undefined-group")
-			}
-
 			if (articleId ?? "") == "" {
 				return ValidationError("webcontentdisplay-screenlet", "undefined-article")
 			}
@@ -41,33 +33,26 @@ public class LiferayWebContentLoadFromArticleIdOperation: ServerOperation {
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
-		resultHTML = nil
+	override internal func doGetJournalArticleWithTemplate(
+			templateId: Int64,
+			session: LRSession) -> String {
+		let service = LRScreensjournalarticleService_v62(session: session)
 
-		var result:String
+		return service.getJournalArticleContentWithGroupId(groupId!,
+			articleId: articleId!,
+			templateId: templateId,
+			locale: NSLocale.currentLocaleString,
+			error: &lastError)
+	}
 
-		if let template = templateId {
-			let service = LRScreensjournalarticleService_v62(session: session)
+	override internal func doGetJournalArticle(session: LRSession) -> String {
+		let service = LRJournalArticleService_v62(session: session)
 
-			result = service.getJournalArticleContentWithGroupId(groupId!,
-				articleId: articleId!,
-				templateId: templateId!,
-				locale: NSLocale.currentLocaleString,
-				error: &lastError)
-		}
-		else {
-			let service = LRJournalArticleService_v62(session: session)
-
-			result = service.getArticleContentWithGroupId(groupId!,
-				articleId: articleId!,
-				languageId: NSLocale.currentLocaleString,
-				themeDisplay: nil,
-				error: &lastError)
-		}
-
-		if lastError == nil {
-			resultHTML = result
-		}
+		return service.getArticleContentWithGroupId(groupId!,
+			articleId: articleId!,
+			languageId: NSLocale.currentLocaleString,
+			themeDisplay: nil,
+			error: &lastError)
 	}
 
 }

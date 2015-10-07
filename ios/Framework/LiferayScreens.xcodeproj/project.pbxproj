@@ -294,6 +294,7 @@
 		88BCB5661B8CAD93004349F1 /* ddllist-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88BCB5631B8CAD93004349F1 /* ddllist-screenlet.strings */; };
 		88BF02041BC546BE00515CB5 /* LiferayWebContentLoadFromArticleIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF02021BC546BE00515CB5 /* LiferayWebContentLoadFromArticleIdOperation.swift */; };
 		88BF02051BC546BE00515CB5 /* LiferayWebContentLoadFromClassPKOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF02031BC546BE00515CB5 /* LiferayWebContentLoadFromClassPKOperation.swift */; };
+		88BF02091BC5497B00515CB5 /* LiferayWebContentLoadBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF02081BC5497B00515CB5 /* LiferayWebContentLoadBaseOperation.swift */; };
 		88CA805B1B25AF48004C1D59 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80581B25AF48004C1D59 /* LoginInteractor.swift */; };
 		88CA805C1B25AF48004C1D59 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80581B25AF48004C1D59 /* LoginInteractor.swift */; };
 		88CA805D1B25AF48004C1D59 /* OAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80591B25AF48004C1D59 /* OAuthInteractor.swift */; };
@@ -572,6 +573,7 @@
 		88BCB5641B8CAD93004349F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/ddllist-screenlet.strings"; sourceTree = "<group>"; };
 		88BF02021BC546BE00515CB5 /* LiferayWebContentLoadFromArticleIdOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayWebContentLoadFromArticleIdOperation.swift; sourceTree = "<group>"; };
 		88BF02031BC546BE00515CB5 /* LiferayWebContentLoadFromClassPKOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayWebContentLoadFromClassPKOperation.swift; sourceTree = "<group>"; };
+		88BF02081BC5497B00515CB5 /* LiferayWebContentLoadBaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayWebContentLoadBaseOperation.swift; sourceTree = "<group>"; };
 		88CA80581B25AF48004C1D59 /* LoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		88CA80591B25AF48004C1D59 /* OAuthInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthInteractor.swift; sourceTree = "<group>"; };
 		88CA805A1B25AF48004C1D59 /* OAuthWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthWebViewController.swift; sourceTree = "<group>"; };
@@ -855,6 +857,7 @@
 			isa = PBXGroup;
 			children = (
 				88BF02021BC546BE00515CB5 /* LiferayWebContentLoadFromArticleIdOperation.swift */,
+				88BF02081BC5497B00515CB5 /* LiferayWebContentLoadBaseOperation.swift */,
 				88BF02031BC546BE00515CB5 /* LiferayWebContentLoadFromClassPKOperation.swift */,
 			);
 			path = ServerOperations;
@@ -1756,6 +1759,7 @@
 				888DF5B41ACC9FF100EB7DA1 /* LoginView_default.swift in Sources */,
 				881E613E1ACBED7500862B9E /* WebContentDisplayViewModel.swift in Sources */,
 				88CA91B81B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift in Sources */,
+				88BF02091BC5497B00515CB5 /* LiferayWebContentLoadBaseOperation.swift in Sources */,
 				881E62361ACBFC3400862B9E /* DDLFieldDateTableCell_default.swift in Sources */,
 				B2F3F3521B0A1923002CEF60 /* LRScreensddlrecordService_v62.m in Sources */,
 				881E61481ACBEDC600862B9E /* AssetListScreenlet.swift in Sources */,

@@ -19,10 +19,10 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 	var resultHTML: String?
 
 
-	override func createOperation() -> LiferayWebContentLoadOperation {
+	override func createOperation() -> LiferayWebContentLoadBaseOperation {
 		let screenlet = self.screenlet as! WebContentDisplayScreenlet
 
-		let operation = LiferayWebContentLoadOperation()
+		let operation = LiferayWebContentLoadFromArticleIdOperation()
 
 		operation.groupId = (screenlet.groupId != 0)
 				? screenlet.groupId : LiferayServerContext.groupId
@@ -35,17 +35,17 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 	}
 
 	override func completedOperation(op: ServerOperation) {
-		self.resultHTML = (op as? LiferayWebContentLoadOperation)?.resultHTML
+		self.resultHTML = (op as? LiferayWebContentLoadBaseOperation)?.resultHTML
 	}
 
 	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
-		if let loadOp = op as? LiferayWebContentLoadOperation,
+		if let loadOp = op as? LiferayWebContentLoadFromArticleIdOperation,
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
 			SessionContext.currentCacheManager!.getString(
 					collection: ScreenletName(WebContentDisplayScreenlet),
-					key: cacheKey(groupId, articleId)) {
+					key: articleCacheKey(groupId, articleId)) {
 				loadOp.resultHTML = $0
 				result($0)
 			}
@@ -53,14 +53,14 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 	}
 
 	override func writeToCache(op: ServerOperation) {
-		if let loadOp = op as? LiferayWebContentLoadOperation,
+		if let loadOp = op as? LiferayWebContentLoadFromArticleIdOperation,
 				html = loadOp.resultHTML,
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
 			SessionContext.currentCacheManager?.setClean(
 				collection: ScreenletName(WebContentDisplayScreenlet),
-				key: cacheKey(groupId, articleId),
+				key: articleCacheKey(groupId, articleId),
 				value: html,
 				attributes: [
 					"groupId": NSNumber(longLong: groupId),
@@ -68,8 +68,8 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 		}
 	}
 
-	private func cacheKey(groupId: Int64, _ articleId: String) -> String {
-		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-\(articleId)"
+	private func articleCacheKey(groupId: Int64, _ articleId: String) -> String {
+		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-articleId-\(articleId)"
 	}
 
 }
