@@ -16,9 +16,9 @@ import UIKit
 
 public class LiferayPaginationOperation: ServerOperation {
 
-	private let startRow: Int
-	private let endRow: Int
-	private let computeRowCount: Bool
+	public let startRow: Int
+	public let endRow: Int
+	public let computeRowCount: Bool
 
 	public var resultPageContent: [[String:AnyObject]]?
 	public var resultRowCount: Int?
