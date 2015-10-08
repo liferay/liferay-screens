@@ -89,7 +89,7 @@ public class WebContentDisplayInteractorImpl
 		Locale locale = (Locale) args[2];
 		Long templateId = (Long) args[3];
 
-		String id = articleId + (templateId == null ? "" : templateId);
+		String id = articleId + (templateId == null || templateId == 0 ? "" : templateId);
 		Long userId = null;
 		TableCache webContent = (TableCache) CacheSQL.getInstance().getById(DefaultCachedType.WEB_CONTENT, id, groupId, userId, locale);
 		if (webContent != null) {
@@ -101,7 +101,9 @@ public class WebContentDisplayInteractorImpl
 
 	@Override
 	protected void storeToCache(WebContentDisplayEvent event, Object... args) {
-		String webContentId = event.getArticleId() + (event.getTemplateId() == null ? "" : event.getTemplateId());
+		String templateString = event.getTemplateId() == null || event.getTemplateId() == 0
+			? "" : event.getTemplateId().toString();
+		String webContentId = event.getArticleId() + templateString;
 		CacheSQL.getInstance().set(new TableCache(webContentId, DefaultCachedType.WEB_CONTENT,
 			event.getHtml(), event.getGroupId(), null, event.getLocale()));
 	}
