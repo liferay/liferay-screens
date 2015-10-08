@@ -30,7 +30,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 				return ValidationError("assetlist-screenlet", "undefined-group")
 			}
 
-			if classNameId == nil {
+			if classNameId == nil && portletItemName == nil {
 				return ValidationError("assetlist-screenlet", "undefined-classname")
 			}
 		}
