@@ -175,6 +175,21 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	}
 
 	@Override
+	public void loadingFromCache(boolean success) {
+
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+
+	}
+
+	@Override
 	protected void animateScreenAfterLoad() {
 		_cardHistory.offer(Card.CARD1);
 		_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_red));
