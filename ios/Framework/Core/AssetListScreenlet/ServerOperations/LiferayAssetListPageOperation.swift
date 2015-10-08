@@ -70,25 +70,16 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	override internal func doGetPageRowsOperation(#session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensassetentryService_v62(session: session)
 
-		if let portletItemName = portletItemName {
-			service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
-				groupId: groupId!,
-				portletItemName: portletItemName,
-				locale: NSLocale.currentLocaleString,
-				error: &lastError)
-		}
-		else {
-			var entryQueryAttributes = configureEntryQueryAttributes()
+		var entryQueryAttributes = configureEntryQueryAttributes()
 
-			entryQueryAttributes["start"] = startRow
-			entryQueryAttributes["end"] = endRow
+		entryQueryAttributes["start"] = startRow
+		entryQueryAttributes["end"] = endRow
 
-			let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
+		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
 
-			service.getAssetEntriesWithAssetEntryQuery(entryQuery,
-				locale: NSLocale.currentLocaleString,
-				error: nil)
-		}
+		service.getAssetEntriesWithAssetEntryQuery(entryQuery,
+			locale: NSLocale.currentLocaleString,
+			error: nil)
 	}
 
 	override internal func doGetRowCountOperation(#session: LRBatchSession) {
