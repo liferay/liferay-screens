@@ -42,22 +42,34 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 		if let portletItemName = portletItemName {
 			let service = LRScreensassetentryService_v62(session: session)
 
-			let responses = service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
-				groupId: groupId!,
-				portletItemName: portletItemName,
-				locale: NSLocale.currentLocaleString,
-				error: &lastError)
+			if startRow == 0 {
+				// since the service doesn't support pagination, we ask for
+				// rows from the top to the endRow (whole single page)
+				let rowCount = endRow
 
-			if lastError == nil {
-				if let entriesResponse = responses as? [[String:AnyObject]] {
-					let serverPageContent = entriesResponse
+				let responses = service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
+					groupId: groupId!,
+					portletItemName: portletItemName,
+					locale: NSLocale.currentLocaleString,
+					max: Int32(endRow),
+					error: &lastError)
 
-					resultPageContent = serverPageContent
-					resultRowCount = serverPageContent.count
+				if lastError == nil {
+					if let entriesResponse = responses as? [[String:AnyObject]] {
+						let serverPageContent = entriesResponse
+
+						resultPageContent = serverPageContent
+						resultRowCount = serverPageContent.count
+					}
+					else {
+						lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
+					}
 				}
-				else {
-					lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
-				}
+			}
+			else {
+				// return empty content for pages different from the first one
+				resultPageContent = []
+				resultRowCount = 0
 			}
 		}
 		else {
