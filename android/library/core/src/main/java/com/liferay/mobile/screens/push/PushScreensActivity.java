@@ -117,6 +117,7 @@ public abstract class PushScreensActivity extends AppCompatActivity
 	private SharedPreferences getSharedPreferences() {
 		return getSharedPreferences(PUSH_PREFERENCES, Context.MODE_PRIVATE);
 	}
+
 	private Push _push;
 
 }

@@ -38,11 +38,6 @@ public class DDLFieldNumberView extends BaseDDLFieldTextView<NumberField> {
 	}
 
 	@Override
-	protected void onTextChanged(String text) {
-		getField().setCurrentStringValue(text);
-	}
-
-	@Override
 	public void setField(NumberField field) {
 		super.setField(field);
 
@@ -55,8 +50,8 @@ public class DDLFieldNumberView extends BaseDDLFieldTextView<NumberField> {
 			case DECIMAL:
 				getTextEditText().setInputType(
 					InputType.TYPE_CLASS_NUMBER |
-					InputType.TYPE_NUMBER_FLAG_SIGNED |
-					InputType.TYPE_NUMBER_FLAG_DECIMAL);
+						InputType.TYPE_NUMBER_FLAG_SIGNED |
+						InputType.TYPE_NUMBER_FLAG_DECIMAL);
 				break;
 		}
 	}
@@ -64,6 +59,11 @@ public class DDLFieldNumberView extends BaseDDLFieldTextView<NumberField> {
 	@Override
 	public void setPositionInParent(int position) {
 
+	}
+
+	@Override
+	protected void onTextChanged(String text) {
+		getField().setCurrentStringValue(text);
 	}
 
 }

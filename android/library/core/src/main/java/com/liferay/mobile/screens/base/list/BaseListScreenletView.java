@@ -235,6 +235,7 @@ public abstract class BaseListScreenletView<
 			entries.set(i + firstRowForPage, serverEntries.get(i));
 		}
 	}
+
 	private static final String _STATE_ENTRIES = "entries";
 	private static final String _STATE_ROW_COUNT = "rowCount";
 	private static final String _STATE_SUPER = "super";

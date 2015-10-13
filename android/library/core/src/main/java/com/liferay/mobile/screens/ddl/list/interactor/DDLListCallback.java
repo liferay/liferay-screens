@@ -29,9 +29,9 @@ import java.util.Map;
 public class DDLListCallback
 	extends BaseListCallback<Record> {
 
-    public DDLListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange, Locale locale) {
-        super(targetScreenletId, rowsRange, locale);
-    }
+	public DDLListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange, Locale locale) {
+		super(targetScreenletId, rowsRange, locale);
+	}
 
 	@Override
 	public Record createEntity(Map<String, Object> stringObjectMap) {

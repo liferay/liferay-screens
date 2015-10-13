@@ -250,6 +250,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			}
 		}
 	}
+
 	private static final String _STATE_SCREENLET_ID = "basescreenlet-screenletId";
 	private static final String _STATE_SUPER = "basescreenlet-super";
 	private static final String _STATE_INTERACTORS = "basescreenlet-interactors";

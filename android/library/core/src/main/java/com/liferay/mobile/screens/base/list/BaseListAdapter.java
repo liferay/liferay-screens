@@ -106,6 +106,7 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 	}
 
 	protected abstract void fillHolder(E entry, H holder);
+
 	protected static final int LAYOUT_TYPE_DEFAULT = 0;
 	protected static final int LAYOUT_TYPE_PROGRESS = 1;
 	private List<E> _entries;
