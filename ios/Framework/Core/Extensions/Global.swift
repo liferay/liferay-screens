@@ -99,16 +99,28 @@ public func ScreenletName(klass: AnyClass) -> String {
 public func LocalizedString(tableName: String, var key: String, obj: AnyObject) -> String {
 	key = "\(tableName)-\(key)"
 
+	func getString(bundle: NSBundle) -> String? {
+		let res = NSLocalizedString(key,
+			tableName: tableName,
+			bundle: bundle,
+			value: key,
+			comment: "");
+
+		return (res.lowercaseString != key.lowercaseString) ? res : nil
+	}
+
 	let bundles = NSBundle.allBundles(obj.dynamicType)
 
 	for bundle in bundles {
-		let res = NSLocalizedString(key,
-					tableName: tableName,
-					bundle: bundle,
-					value: key,
-					comment: "");
+		// use forced language bundle
+		if let languageBundle = NSLocale.bundleForCurrentLanguageInBundle(bundle) {
+			if let res = getString(languageBundle) {
+				return res
+			}
+		}
 
-		if res.lowercaseString != key {
+		// try with outer bundle
+		if let res = getString(bundle) {
 			return res
 		}
 	}

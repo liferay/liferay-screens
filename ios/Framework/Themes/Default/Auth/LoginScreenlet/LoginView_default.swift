@@ -100,6 +100,9 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	}
 
 	override public func onSetTranslations() {
+		userNameField?.placeholder = LocalizedString("default",
+			BasicAuthMethod.create(basicAuthMethod).description, self)
+
 		passwordField?.placeholder = LocalizedString("default", "password-placeholder", self)
 
 		loginButton?.replaceAttributedTitle(LocalizedString("default", "signin-button", self),
