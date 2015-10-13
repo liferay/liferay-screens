@@ -90,6 +90,11 @@ import QuartzCore
 	}
 
 
+	public func refreshTranslations() {
+		screenletView?.onSetTranslations()
+	}
+
+
 	//MARK: Interface Builder management methods
 
 	override public func prepareForInterfaceBuilder() {
