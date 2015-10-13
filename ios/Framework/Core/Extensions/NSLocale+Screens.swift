@@ -17,12 +17,18 @@ import Foundation
 extension NSLocale {
 
 	public class var currentLanguageString: String {
-		var preferredLanguage = NSLocale.preferredLanguages()[0].description as String
+		get {
+			var preferredLanguage = NSLocale.preferredLanguages()[0] as! String
 
-		preferredLanguage = preferredLanguage.substringToIndex(
+			preferredLanguage = preferredLanguage.substringToIndex(
 				advance(preferredLanguage.startIndex, 2))
 
-		return preferredLanguage
+			return preferredLanguage
+		}
+		set {
+			NSUserDefaults.standardUserDefaults().setObject([newValue], forKey: "AppleLanguages")
+			NSUserDefaults.standardUserDefaults().synchronize()
+		}
 	}
 
 	public class var currentLocaleString: String {
