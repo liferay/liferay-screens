@@ -24,8 +24,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +52,11 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 	public void onClick(View view) {
 		createAlertDialog();
 		_alertDialog.show();
+	}
+
+	@Override
+	public void setPositionInParent(int position) {
+
 	}
 
 	@Override
@@ -87,7 +92,7 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 
 		LayoutInflater factory = LayoutInflater.from(getContext());
 		final View customDialogView = factory.inflate(
-				R.layout.ddlfield_select_dialog_default, null);
+			R.layout.ddlfield_select_dialog_default, null);
 		TextView title = (TextView) customDialogView.findViewById(R.id.liferay_dialog_title);
 		title.setText(getField().getLabel());
 
@@ -117,11 +122,5 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 
 		return result;
 	}
-
 	private AlertDialog _alertDialog;
-
-	@Override
-	public void setPositionInParent(int position) {
-
-	}
 }

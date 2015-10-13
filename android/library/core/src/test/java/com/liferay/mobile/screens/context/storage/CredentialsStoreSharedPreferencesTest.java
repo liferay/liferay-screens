@@ -47,6 +47,21 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class CredentialsStoreSharedPreferencesTest {
 
+	private static void setBasicTestDataInStore(CredentialsStore store) {
+		store.setContext(RuntimeEnvironment.application.getApplicationContext());
+
+		JSONObject userAttributes = null;
+		try {
+			userAttributes = new JSONObject().put("userId", 123);
+		}
+		catch (JSONException e) {
+		}
+		store.setUser(new User(userAttributes));
+
+		SessionContext.createBasicSession("user123", "pass123");
+		store.setAuthentication(SessionContext.getAuthentication());
+	}
+
 	@RunWith(RobolectricManifestTestRunner.class)
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	public static class WhenStoreCredentials {
@@ -188,21 +203,6 @@ public class CredentialsStoreSharedPreferencesTest {
 			assertEquals(123, store.getUser().getId());
 		}
 
-	}
-
-	private static void setBasicTestDataInStore(CredentialsStore store) {
-		store.setContext(RuntimeEnvironment.application.getApplicationContext());
-
-		JSONObject userAttributes = null;
-		try {
-			userAttributes = new JSONObject().put("userId", 123);
-		}
-		catch (JSONException e) {
-		}
-		store.setUser(new User(userAttributes));
-
-		SessionContext.createBasicSession("user123", "pass123");
-		store.setAuthentication(SessionContext.getAuthentication());
 	}
 
 }

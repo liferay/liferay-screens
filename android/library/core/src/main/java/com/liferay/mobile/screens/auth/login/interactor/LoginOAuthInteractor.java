@@ -29,12 +29,12 @@ public class LoginOAuthInteractor extends BaseLoginInteractor {
 		super(targetScreenletId);
 	}
 
-	public void setOAuthConfig(OAuthConfig value) {
-		_OAuthConfig = value;
-	}
-
 	public OAuthConfig getOAuthConfig() {
 		return _OAuthConfig;
+	}
+
+	public void setOAuthConfig(OAuthConfig value) {
+		_OAuthConfig = value;
 	}
 
 	public void login() throws Exception {

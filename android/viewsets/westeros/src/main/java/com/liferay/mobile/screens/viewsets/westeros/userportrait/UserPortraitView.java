@@ -16,7 +16,8 @@ package com.liferay.mobile.screens.viewsets.westeros.userportrait;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import com.liferay.mobile.screens.viewsets.westeros.*;
+
+import com.liferay.mobile.screens.viewsets.westeros.R;
 
 /**
  * @author Javier Gamarra

@@ -21,15 +21,15 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.BooleanField;
-import com.liferay.mobile.screens.R;
 
 /**
  * @author Jose Manuel Navarro
  */
 public class DDLFieldCheckboxView extends LinearLayout
-		implements DDLFieldViewModel<BooleanField>, CompoundButton.OnCheckedChangeListener {
+	implements DDLFieldViewModel<BooleanField>, CompoundButton.OnCheckedChangeListener {
 
 	public DDLFieldCheckboxView(Context context) {
 		super(context);

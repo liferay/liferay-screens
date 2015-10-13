@@ -206,13 +206,13 @@ public class Record implements Parcelable {
 		return getModelAttributes() == null ? null : getModelAttributes().get(field);
 	}
 
+	public Map<String, Object> getValuesAndAttributes() {
+		return _valuesAndAttributes;
+	}
+
 	public void setValuesAndAttributes(Map<String, Object> valuesAndAttributes) {
 		_valuesAndAttributes = valuesAndAttributes;
 		parseServerValues();
-	}
-
-	public Map<String, Object> getValuesAndAttributes() {
-		return _valuesAndAttributes;
 	}
 
 	public HashMap<String, String> getModelValues() {

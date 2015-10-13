@@ -42,9 +42,9 @@ public class AssetListView
 		super(context, attributes, defaultStyle);
 	}
 
-    @Override
-    protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-        return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
-    }
+	@Override
+	protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+		return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
+	}
 
 }

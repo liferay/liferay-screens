@@ -20,53 +20,54 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
 import com.liferay.mobile.screens.viewsets.westeros.R;
 
 /**
  * @author Silvio Santos
  */
 public class LoginView
-        extends com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
-        implements View.OnTouchListener {
+	extends com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
+	implements View.OnTouchListener {
 
-    public LoginView(Context context) {
-        super(context);
-    }
+	public LoginView(Context context) {
+		super(context);
+	}
 
-    public LoginView(Context context, AttributeSet attributes) {
-        super(context, attributes);
-    }
+	public LoginView(Context context, AttributeSet attributes) {
+		super(context, attributes);
+	}
 
-    public LoginView(Context context, AttributeSet attributes, int defaultStyle) {
-        super(context, attributes, defaultStyle);
-    }
+	public LoginView(Context context, AttributeSet attributes, int defaultStyle) {
+		super(context, attributes, defaultStyle);
+	}
 
-    @Override
-    protected void refreshLoginEditTextStyle() {
-        getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
-    }
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			getPasswordEditText().setTransformationMethod(null);
+			getPasswordEditText().setInputType(InputType.TYPE_CLASS_TEXT);
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+			return true;
+		}
 
-        final View seePassword = findViewById(R.id.liferay_see_password);
-        seePassword.setOnTouchListener(this);
-    }
+		if (event.getAction() == MotionEvent.ACTION_UP) {
+			getPasswordEditText().setTransformationMethod(PasswordTransformationMethod.getInstance());
+		}
 
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            getPasswordEditText().setTransformationMethod(null);
-            getPasswordEditText().setInputType(InputType.TYPE_CLASS_TEXT);
+		return false;
+	}
 
-            return true;
-        }
+	@Override
+	protected void refreshLoginEditTextStyle() {
+		getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
+	}
 
-        if (event.getAction() == MotionEvent.ACTION_UP) {
-            getPasswordEditText().setTransformationMethod(PasswordTransformationMethod.getInstance());
-        }
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
 
-        return false;
-    }
+		final View seePassword = findViewById(R.id.liferay_see_password);
+		seePassword.setOnTouchListener(this);
+	}
 }

@@ -10,6 +10,7 @@ import java.util.List;
 public interface BaseListViewModel<E> extends BaseViewModel {
 
 	void showFinishOperation(int page, List<E> entries, int rowCount);
+
 	void showFinishOperation(int page, Exception e);
 
 }

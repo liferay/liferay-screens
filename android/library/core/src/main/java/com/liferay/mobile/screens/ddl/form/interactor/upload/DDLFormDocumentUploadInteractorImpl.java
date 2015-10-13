@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.ddl.form.interactor.upload;
 
 import android.content.Intent;
 
-import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;

@@ -29,7 +29,7 @@ public class ForgotPasswordCallback
 
 	@Override
 	public Boolean transform(Object obj) throws Exception {
-		return (Boolean)obj;
+		return (Boolean) obj;
 	}
 
 	@Override

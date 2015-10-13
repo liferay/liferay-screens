@@ -87,6 +87,7 @@ public class NumberField extends Field<Number> {
 	private void init(Locale locale) {
 		_labelFormatter = NumberFormat.getNumberInstance(locale);
 	}
+
 	private NumberFormat _labelFormatter;
 
 }

@@ -51,8 +51,8 @@ public class ForgotPasswordInteractorImpl
 
 	@Override
 	public void requestPassword(
-			long companyId, String login, BasicAuthMethod basicAuthMethod,
-			String anonymousApiUserName, String anonymousApiPassword)
+		long companyId, String login, BasicAuthMethod basicAuthMethod,
+		String anonymousApiUserName, String anonymousApiPassword)
 		throws Exception {
 
 		validate(
@@ -60,7 +60,7 @@ public class ForgotPasswordInteractorImpl
 			anonymousApiPassword);
 
 		ScreensuserService service = getScreensUserService(
-				anonymousApiUserName, anonymousApiPassword);
+			anonymousApiUserName, anonymousApiPassword);
 
 		switch (basicAuthMethod) {
 			case EMAIL:
@@ -96,7 +96,7 @@ public class ForgotPasswordInteractorImpl
 
 	protected void sendForgotPasswordByEmailRequest(
 		ScreensuserService service, long companyId,
-			String emailAddress)
+		String emailAddress)
 		throws Exception {
 
 		service.sendPasswordByEmailAddress(companyId, emailAddress);
