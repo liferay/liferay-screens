@@ -38,8 +38,7 @@ public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBas
 			session: LRSession) -> String? {
 		let service = LRScreensjournalarticleService_v62(session: session)
 
-		return service.getJournalArticleContentWithGroupId(groupId!,
-			classPK: classPK!,
+		return service.getJournalArticleContentWithClassPK(classPK!,
 			ddmTemplateId: templateId,
 			locale: NSLocale.currentLocaleString,
 			error: &lastError)
@@ -48,8 +47,7 @@ public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBas
 	override internal func doGetJournalArticle(session: LRSession) -> String? {
 		let service = LRScreensjournalarticleService_v62(session: session)
 
-		return service.getJournalArticleContentWithGroupId(groupId!,
-			classPK: classPK!,
+		return service.getJournalArticleContentWithClassPK(classPK!,
 			locale: NSLocale.currentLocaleString,
 			error: &lastError)
 	}
