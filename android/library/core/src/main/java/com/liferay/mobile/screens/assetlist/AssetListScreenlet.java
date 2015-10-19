@@ -112,8 +112,9 @@ public class AssetListScreenlet
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.AssetListScreenlet, 0, 0);
-		_classNameId = typedArray.getInt(
-			R.styleable.AssetListScreenlet_classNameId, 0);
+
+		_classNameId = castToLong(typedArray.getString(
+			R.styleable.AssetListScreenlet_classNameId));
 
 		Integer offlinePolicy = typedArray.getInteger(
 			R.styleable.AssetListScreenlet_offlinePolicy,
