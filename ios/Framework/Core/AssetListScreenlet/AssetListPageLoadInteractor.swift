@@ -16,9 +16,9 @@ import UIKit
 
 public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 
-	let groupId: Int64
-	let classNameId: Int64
-	let portletItemName: String?
+	private let groupId: Int64
+	private let classNameId: Int64
+	private let portletItemName: String?
 
 	init(screenlet: BaseListScreenlet,
 			page: Int,

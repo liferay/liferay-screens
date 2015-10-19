@@ -82,31 +82,31 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	override internal func doGetPageRowsOperation(#session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensassetentryService_v62(session: session)
 
-		var entryQueryAttributes = configureEntryQueryAttributes()
+		var entryQuery = configureEntryQuery()
 
-		entryQueryAttributes["start"] = startRow
-		entryQueryAttributes["end"] = endRow
+		entryQuery["start"] = startRow
+		entryQuery["end"] = endRow
 
-		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
+		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
 
-		service.getAssetEntriesWithAssetEntryQuery(entryQuery,
+		service.getAssetEntriesWithAssetEntryQuery(entryQueryWrapper,
 			locale: NSLocale.currentLocaleString,
 			error: nil)
 	}
 
 	override internal func doGetRowCountOperation(#session: LRBatchSession) {
 		let service = LRAssetEntryService_v62(session: session)
-		let entryQueryAttributes = configureEntryQueryAttributes()
-		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
+		let entryQuery = configureEntryQuery()
+		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
 
-		service.getEntriesCountWithEntryQuery(entryQuery, error: nil)
+		service.getEntriesCountWithEntryQuery(entryQueryWrapper, error: nil)
 	}
 
 
 	//MARK: Private methods
 
-	private func configureEntryQueryAttributes() -> [NSString : AnyObject] {
-		var entryQueryAttributes: [NSString : AnyObject] = [:]
+	private func configureEntryQuery() -> [String:AnyObject] {
+		var entryQueryAttributes: [String:AnyObject]
 
 		entryQueryAttributes["classNameIds"] = NSNumber(longLong: classNameId!)
 		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId!)
