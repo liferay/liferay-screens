@@ -54,6 +54,7 @@ public class AssetListInteractorImpl
 		throws Exception {
 		this._groupId = groupId;
 		this._classNameId = classNameId;
+		this._portletItemName = portletItemName;
 
 		processWithCache(startRow, endRow, locale);
 	}
@@ -65,7 +66,7 @@ public class AssetListInteractorImpl
 		final int endRow = (int) args[1];
 		final Locale locale = (Locale) args[2];
 
-		String id = String.valueOf(_classNameId);
+		String id = _portletItemName == null ? String.valueOf(_classNameId) : _portletItemName;
 
 		return recoverRows(id, ASSET_LIST, ASSET_LIST_COUNT, _groupId, null, locale, startRow, endRow);
 	}
@@ -79,7 +80,7 @@ public class AssetListInteractorImpl
 	@Override
 	protected void storeToCache(BaseListEvent event, Object... args) {
 
-		String id = String.valueOf(_classNameId);
+		String id = _portletItemName == null ? String.valueOf(_classNameId) : _portletItemName;
 
 		storeRows(id, ASSET_LIST, ASSET_LIST_COUNT, _groupId, null, event);
 	}
@@ -136,7 +137,7 @@ public class AssetListInteractorImpl
 				"GroupId cannot be 0 or negative");
 		}
 
-		if (_classNameId <= 0) {
+		if (_portletItemName == null && _classNameId <= 0) {
 			throw new IllegalArgumentException(
 				"ClassNameId cannot be 0 or negative");
 		}
