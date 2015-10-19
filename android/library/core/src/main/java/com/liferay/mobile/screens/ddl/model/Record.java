@@ -173,6 +173,10 @@ public class Record implements Parcelable {
 		return _locale;
 	}
 
+	public void setLocale(Locale locale) {
+		_locale = locale;
+	}
+
 	public void setValues(Map<String, Object> values) {
 		for (Field f : _fields) {
 			Object fieldValue = values.get(f.getName());
