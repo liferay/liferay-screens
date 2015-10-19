@@ -107,16 +107,19 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	//MARK: Private methods
 
 	private func configureEntryQuery() -> [String:AnyObject] {
-		var entryQuery: [String:AnyObject]
+		var entryQuery = (customEntryQuery != nil)
+			? customEntryQuery!
+			: [String:AnyObject]()
 
-		if let customEntryQuery = self.customEntryQuery {
-			entryQuery = customEntryQuery
-		}
-		else {
-			entryQuery = [String:AnyObject]()
-
+		if entryQuery["classNameIds"] == nil {
 			entryQuery["classNameIds"] = NSNumber(longLong: classNameId!)
+		}
+
+		if entryQuery["groupIds"] == nil {
 			entryQuery["groupIds"] = NSNumber(longLong: groupId!)
+		}
+
+		if entryQuery["visible"] == nil {
 			entryQuery["visible"] = "true"
 		}
 
