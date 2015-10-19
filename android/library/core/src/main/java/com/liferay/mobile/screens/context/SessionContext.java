@@ -61,6 +61,10 @@ public class SessionContext {
 		return _session != null;
 	}
 
+	public static boolean hasUserInfo() {
+		return _session != null && _loggedUser != null;
+	}
+
 	public static Authentication getAuthentication() {
 		return (_session == null) ? null : _session.getAuthentication();
 	}
