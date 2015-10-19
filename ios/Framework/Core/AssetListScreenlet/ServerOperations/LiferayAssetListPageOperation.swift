@@ -111,16 +111,16 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 			? customEntryQuery!
 			: [String:AnyObject]()
 
-		if entryQuery["classNameIds"] == nil {
-			entryQuery["classNameIds"] = NSNumber(longLong: classNameId!)
-		}
+		let defaultValues = [
+			"classNameIds" : NSNumber(longLong: classNameId!),
+			"groupIds" : NSNumber(longLong: groupId!),
+			"visible" : "true"
+		]
 
-		if entryQuery["groupIds"] == nil {
-			entryQuery["groupIds"] = NSNumber(longLong: groupId!)
-		}
-
-		if entryQuery["visible"] == nil {
-			entryQuery["visible"] = "true"
+		for (k,v) in defaultValues {
+			if entryQuery[k] == nil {
+				entryQuery[k] = v
+			}
 		}
 
 		return entryQuery
