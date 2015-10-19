@@ -52,7 +52,7 @@ public class StorIOSQLite {
 		}
 	}
 
-	public static List queryGet(Class tableClass, String tableName, String orderBy, String where, Object... queryArgs) {
+	public static List queryGet(Class tableClass, String tableName, String where, Object... queryArgs) {
 		return getInstance()
 			.get()
 			.listOfObjects(tableClass)
@@ -61,7 +61,7 @@ public class StorIOSQLite {
 					.table(tableName)
 					.where(where)
 					.whereArgs(queryArgs)
-					.orderBy(orderBy)
+//					.orderBy(orderBy)
 					.build())
 			.prepare()
 			.executeAsBlocking();
