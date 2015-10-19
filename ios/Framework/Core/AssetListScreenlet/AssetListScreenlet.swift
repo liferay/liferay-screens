@@ -78,6 +78,7 @@ import UIKit
 
 	@IBOutlet public weak var delegate: AssetListScreenletDelegate?
 
+	public var customEntryQuery: [String:AnyObject]?
 
 
 	//MARK: BaseListScreenlet
@@ -94,7 +95,9 @@ import UIKit
 			groupId: self.groupId,
 			classNameId: self.classNameId,
 			portletItemName: self.portletItemName)
+
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.customEntryQuery = self.customEntryQuery
 
 		return interactor
 	}

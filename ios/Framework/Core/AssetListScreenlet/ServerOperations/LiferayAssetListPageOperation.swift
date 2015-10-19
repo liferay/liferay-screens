@@ -18,6 +18,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	public var groupId: Int64?
 	public var classNameId: Int64?
 	public var portletItemName: String?
+	public var customEntryQuery: [String:AnyObject]?
 
 
 	//MARK: ServerOperation
@@ -106,13 +107,20 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	//MARK: Private methods
 
 	private func configureEntryQuery() -> [String:AnyObject] {
-		var entryQueryAttributes: [String:AnyObject]
+		var entryQuery: [String:AnyObject]
 
-		entryQueryAttributes["classNameIds"] = NSNumber(longLong: classNameId!)
-		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId!)
-		entryQueryAttributes["visible"] = "true"
+		if let customEntryQuery = self.customEntryQuery {
+			entryQuery = customEntryQuery
+		}
+		else {
+			entryQuery = [String:AnyObject]()
 
-		return entryQueryAttributes
+			entryQuery["classNameIds"] = NSNumber(longLong: classNameId!)
+			entryQuery["groupIds"] = NSNumber(longLong: groupId!)
+			entryQuery["visible"] = "true"
+		}
+
+		return entryQuery
 	}
 
 }

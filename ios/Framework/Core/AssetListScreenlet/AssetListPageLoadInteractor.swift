@@ -16,6 +16,8 @@ import UIKit
 
 public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 
+	public var customEntryQuery: [String:AnyObject]?
+
 	private let groupId: Int64
 	private let classNameId: Int64
 	private let portletItemName: String?
@@ -47,6 +49,7 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		operation.classNameId = self.classNameId
 
 		operation.portletItemName = self.portletItemName
+		operation.customEntryQuery = self.customEntryQuery
 
 		return operation;
 	}
