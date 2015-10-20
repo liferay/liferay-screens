@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.service.v62;
 
+import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.BaseService;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
@@ -55,7 +56,7 @@ public class ScreensassetentryService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONArray getFilteredAssetEntries(long companyId, long groupId, String portletItemName, String locale) throws Exception {
+	public JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String locale) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -66,7 +67,7 @@ public class ScreensassetentryService extends BaseService {
 			_params.put("portletItemName", checkNull(portletItemName));
 			_params.put("locale", checkNull(locale));
 
-			_command.put("/screens-web.screensassetentry/get-filtered-asset-entries", _params);
+			_command.put("/screens-web.screensassetentry/get-asset-entries", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);

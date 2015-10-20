@@ -117,8 +117,8 @@ public class CacheSQL<E extends CachedContent> implements Cache<E> {
 		return StorIOSQLite.querySet(object);
 	}
 
-	public static List queryGet(Class tableClass, String tableName, String orderBy, String where, Object... queryArgs) {
-		return StorIOSQLite.queryGet(tableClass, tableName, orderBy, where, queryArgs);
+	public static List queryGet(Class tableClass, String tableName, String where, Object... queryArgs) {
+		return StorIOSQLite.queryGet(tableClass, tableName, where, queryArgs);
 	}
 
 	private Object save(E object) {
