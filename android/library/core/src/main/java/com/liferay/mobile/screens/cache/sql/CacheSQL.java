@@ -28,15 +28,7 @@ public class CacheSQL<E extends CachedContent> implements Cache<E> {
 	 */
 	@Override
 	public List get(CachedType cachedType, String query, Object... args) {
-		return _cacheStrategyFactory.recoverStrategy(cachedType).get("", query, args);
-	}
-
-	/**
-	 * Sync and blocking get with order by
-	 */
-//	@Override
-	public List get(CachedType cachedType, String orderBy, String query, Object... args) {
-		return _cacheStrategyFactory.recoverStrategy(cachedType).get(orderBy, query, args);
+		return _cacheStrategyFactory.recoverStrategy(cachedType).get(query, args);
 	}
 
 	/**
