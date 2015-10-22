@@ -43,9 +43,7 @@ public class DDLFormAddRecordInteractorImpl
 	public void addRecord(final long groupId, final Record record) throws Exception {
 		validate(groupId, record);
 
-		final JSONObject fieldsValues = new JSONObject(record.getData());
-
-		storeWithCache(groupId, record, fieldsValues);
+		storeWithCache(groupId, record);
 	}
 
 	public void onEvent(DDLFormAddRecordEvent event) {
@@ -53,8 +51,7 @@ public class DDLFormAddRecordInteractorImpl
 			return;
 		}
 
-		JSONObject jsonObject = new JSONObject(event.getRecord().getData());
-		onEventWithCache(event, event.getGroupId(), event.getRecord(), jsonObject);
+		onEventWithCache(event, event.getGroupId(), event.getRecord());
 	}
 
 	@Override
@@ -62,7 +59,8 @@ public class DDLFormAddRecordInteractorImpl
 
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
-		JSONObject fieldsValues = (JSONObject) args[2];
+
+		final JSONObject fieldsValues = new JSONObject(record.getData());
 
 		final JSONObject serviceContextAttributes = new JSONObject();
 		serviceContextAttributes.put("userId", record.getCreatorUserId());
@@ -93,15 +91,22 @@ public class DDLFormAddRecordInteractorImpl
 
 	@Override
 	protected void storeToCache(boolean synced, Object... args) {
-		long groupId = (long) args[0];
-		Record record = (Record) args[1];
-		JSONObject fieldsValues = (JSONObject) args[2];
+		try {
+			long groupId = (long) args[0];
+			Record record = (Record) args[1];
 
-		DDLRecordCache recordCache = new DDLRecordCache(groupId, record, fieldsValues);
-		recordCache.setDirty(!synced);
-		CacheSQL.getInstance().set(recordCache);
+			final JSONObject fieldsValues = new JSONObject(record.getData());
+			JSONObject valuesAndAttributes = new JSONObject();
+			valuesAndAttributes.put("modelValues", fieldsValues);
+			DDLRecordCache recordCache = new DDLRecordCache(groupId, record, valuesAndAttributes);
+			recordCache.setDirty(!synced);
+			CacheSQL.getInstance().set(recordCache);
 
-		onEvent(new DDLFormAddRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues));
+			onEvent(new DDLFormAddRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues));
+		}
+		catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 
 	protected DDLRecordService getDDLRecordService(Record record, long groupId) {

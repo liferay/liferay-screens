@@ -25,6 +25,7 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Record;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -51,7 +52,7 @@ public class DDLFormUpdateRecordInteractorImpl
 			return;
 		}
 
-		onEventWithCache(event, event.getGroupId(), event.getRecord(), event.getJSONObject());
+		onEventWithCache(event, event.getGroupId(), event.getRecord());
 	}
 
 	@Override
@@ -83,15 +84,24 @@ public class DDLFormUpdateRecordInteractorImpl
 
 	@Override
 	protected void storeToCache(boolean synced, Object[] args) {
-		long groupId = (long) args[0];
-		Record record = (Record) args[1];
-		JSONObject fieldsValues = new JSONObject(record.getData());
+		try {
+			long groupId = (long) args[0];
+			Record record = (Record) args[1];
 
-		DDLRecordCache recordCache = new DDLRecordCache(groupId, record, fieldsValues);
-		recordCache.setDirty(!synced);
-		CacheSQL.getInstance().set(recordCache);
+			JSONObject fieldsValues = new JSONObject(record.getData());
+			JSONObject valuesAndAttributes = new JSONObject();
+			valuesAndAttributes.put("modelValues", fieldsValues);
 
-		onEvent(new DDLFormUpdateRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues));
+
+			DDLRecordCache recordCache = new DDLRecordCache(groupId, record, valuesAndAttributes);
+			recordCache.setDirty(!synced);
+			CacheSQL.getInstance().set(recordCache);
+
+			onEvent(new DDLFormUpdateRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues));
+		}
+		catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 
 	protected DDLRecordService getDDLRecordService(Record record, long groupId) {

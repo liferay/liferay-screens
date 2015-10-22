@@ -240,10 +240,19 @@ public class Record implements Parcelable {
 	}
 
 	private void parseServerValues() {
-		_recordId = JSONUtil.castToLong(getServerAttribute("recordId"));
-		_recordSetId = JSONUtil.castToLong(getServerAttribute("recordSetId"));
-		_creatorUserId = JSONUtil.castToLong(getServerAttribute("userId"));
-		_structureId = JSONUtil.castToLong(getServerAttribute("structureId"));
+		//FIXME
+		Long recordId = JSONUtil.castToLong(getServerAttribute("recordId"));
+		if (recordId != null) {
+			_recordId = recordId;
+		}
+		Long recordSetId = JSONUtil.castToLong(getServerAttribute("recordSetId"));
+		if (recordSetId != null) {
+			_recordSetId = recordSetId;
+		}
+		Long userId = JSONUtil.castToLong(getServerAttribute("userId"));
+		if (userId != null) {
+			_creatorUserId = userId;
+		}
 	}
 
 	private void writeLong(Parcel destination, Long field) {
