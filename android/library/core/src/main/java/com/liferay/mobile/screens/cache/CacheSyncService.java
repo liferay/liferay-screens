@@ -135,6 +135,10 @@ public class CacheSyncService extends IntentService {
 				JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
 				JSONObject jsonContent = cachedRecord.getJSONContent();
 
+				if (jsonContent.has("modelValues")) {
+					jsonContent = (JSONObject) jsonContent.get("modelValues");
+				}
+
 				JSONObject jsonObject = saveOrUpdate(recordService, record, groupId, serviceContextWrapper, jsonContent);
 
 				cachedRecord.setDirty(false);

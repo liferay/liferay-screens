@@ -61,7 +61,6 @@ public class StorIOSQLite {
 					.table(tableName)
 					.where(where)
 					.whereArgs(queryArgs)
-//					.orderBy(orderBy)
 					.build())
 			.prepare()
 			.executeAsBlocking();
