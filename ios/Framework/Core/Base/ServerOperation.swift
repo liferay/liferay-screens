@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class ServerOperation: NSOperation {
+@objc public class ServerOperation: NSOperation {
 
 	private struct OperationsQueue {
 

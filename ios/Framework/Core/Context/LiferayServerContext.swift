@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class LiferayServerContext {
+@objc public class LiferayServerContext: NSObject {
 
 	//MARK: Singleton type
 
