@@ -130,6 +130,10 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return performAction(name: "load-portrait", sender: interactor)
 	}
 
+	public func loadPlaceholder() {
+		viewModel.image = nil
+	}
+
 	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
 		let interactor: Interactor?
 
