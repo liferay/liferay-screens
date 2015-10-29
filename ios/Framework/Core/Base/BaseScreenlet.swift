@@ -55,7 +55,7 @@ import QuartzCore
 	private var _currentPreviewImage: UIImage?
 	private var _previewLayer: CALayer?
 
-	private var _runningInteractors = [Interactor]()
+	private var _runningInteractors = [String:[Interactor]]()
 
 	private var _progressPresenter: ProgressPresenter?
 
@@ -197,9 +197,7 @@ import QuartzCore
 		objc_sync_enter(_runningInteractors)
 
 		if let interactor = self.createInteractor(name: name, sender: sender) {
-			interactor.actionName = name
-			_runningInteractors.append(interactor)
-
+			trackInteractor(interactor, withName: name)
 			objc_sync_exit(_runningInteractors)
 
 			if let message = screenletView?.progressMessageForAction(name, messageType: .Working) {
@@ -230,6 +228,14 @@ import QuartzCore
 		screenletView?.onStartInteraction()
 
 		return interactor.start()
+	}
+
+	public func isActionRunning(name: String) -> Bool {
+		objc_sync_enter(_runningInteractors)
+		let firstInteractor = _runningInteractors[name]?.first
+		objc_sync_exit(_runningInteractors)
+
+		return firstInteractor != nil
 	}
 
 	public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
@@ -273,9 +279,7 @@ import QuartzCore
 		}
 
 		synchronized(_runningInteractors) {
-			if let foundIndex = find(self._runningInteractors, interactor) {
-				self._runningInteractors.removeAtIndex(foundIndex)
-			}
+			self.untrackInteractor(interactor)
 		}
 
 		let result: AnyObject? = interactor.interactionResult()
@@ -406,5 +410,30 @@ import QuartzCore
 
 		return rootView(currentView.superview!)
 	}
+
+	private func trackInteractor(interactor: Interactor, withName name: String) {
+		var interactors = _runningInteractors[name]
+		if interactors?.count ?? 0 == 0 {
+			interactors = [Interactor]()
+		}
+
+		interactors?.append(interactor)
+
+		_runningInteractors[name] = interactors
+		interactor.actionName = name
+	}
+
+	private func untrackInteractor(interactor: Interactor) {
+		let name = interactor.actionName!
+		let interactors = _runningInteractors[name] ?? []
+
+		if let foundIndex = find(interactors, interactor) {
+			_runningInteractors[name]?.removeAtIndex(foundIndex)
+		}
+		else {
+			println("ERROR: There's no interactors tracked for name \(interactor.actionName!)")
+		}
+	}
+
 
 }
