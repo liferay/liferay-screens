@@ -52,7 +52,6 @@ public class ServerOperationInteractor: Interactor {
 	}
 
 	override public func cancel() {
-		println("[\(unsafeAddressOf(self))] Cancel ServerOpInteractor op=\(unsafeAddressOf(currentOperation!))")
 		currentOperation?.cancel()
 		cancelled = true
 	}

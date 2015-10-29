@@ -40,7 +40,6 @@ public class ServerOperation: NSOperation {
 
 	public override func main() {
 		if self.cancelled {
-			println("[\(unsafeAddressOf(self))] Cancelled Op in main")
 			lastError = NSError.errorWithCause(.Cancelled)
 		}
 		else {

@@ -194,11 +194,8 @@ import QuartzCore
 	public func performAction(#name: String, sender: AnyObject? = nil) -> Bool {
 		var result = false
 
-		objc_sync_enter(_runningInteractors)
-
 		if let interactor = self.createInteractor(name: name, sender: sender) {
 			trackInteractor(interactor, withName: name)
-			objc_sync_exit(_runningInteractors)
 
 			if let message = screenletView?.progressMessageForAction(name, messageType: .Working) {
 				showHUDWithMessage(message,
@@ -209,7 +206,6 @@ import QuartzCore
 			result = onAction(name: name, interactor: interactor, sender: sender)
 		}
 		else {
-			objc_sync_exit(_runningInteractors)
 			println("WARN: No interactor created for action \(name)")
 		}
 
@@ -244,8 +240,6 @@ import QuartzCore
 		let interactors = _runningInteractors[name] ?? []
 
 		for interactor in interactors {
-			println("[\(unsafeAddressOf(self))] Cancel interactor -> \(interactor)")
-
 			interactor.cancel()
 		}
 	}
@@ -290,9 +284,7 @@ import QuartzCore
 			}
 		}
 
-		synchronized(_runningInteractors) {
-			self.untrackInteractor(interactor)
-		}
+		untrackInteractor(interactor)
 
 		let result: AnyObject? = interactor.interactionResult()
 		onFinishInteraction(result, error: error)
@@ -424,30 +416,30 @@ import QuartzCore
 	}
 
 	private func trackInteractor(interactor: Interactor, withName name: String) {
-		var interactors = _runningInteractors[name]
-		if interactors?.count ?? 0 == 0 {
-			interactors = [Interactor]()
+		synchronized(_runningInteractors) {
+			var interactors = self._runningInteractors[name]
+			if interactors?.count ?? 0 == 0 {
+				interactors = [Interactor]()
+			}
+
+			interactors?.append(interactor)
+
+			self._runningInteractors[name] = interactors
+			interactor.actionName = name
 		}
-
-		interactors?.append(interactor)
-
-		_runningInteractors[name] = interactors
-		interactor.actionName = name
-
-		println("[\(unsafeAddressOf(self))] Track new interactor for \(name) -> \(interactors!)")
 	}
 
 	private func untrackInteractor(interactor: Interactor) {
-		let name = interactor.actionName!
-		let interactors = _runningInteractors[name] ?? []
+		synchronized(_runningInteractors) {
+			let name = interactor.actionName!
+			let interactors = self._runningInteractors[name] ?? []
 
-		if let foundIndex = find(interactors, interactor) {
-			_runningInteractors[name]?.removeAtIndex(foundIndex)
-			println("[\(unsafeAddressOf(self))] Untrack interactor for \(name) and \(unsafeAddressOf(interactor)) -> \(_runningInteractors[name]!)")
-		}
-		else {
-			println("[\(unsafeAddressOf(self))] ERROR: There's no interactors tracked for name \(interactor.actionName!)")
-			println("[\(unsafeAddressOf(self))] ERROR: looking for \(unsafeAddressOf(interactor)) in \(interactors)")
+			if let foundIndex = find(interactors, interactor) {
+				self._runningInteractors[name]?.removeAtIndex(foundIndex)
+			}
+			else {
+				println("ERROR: There's no interactors tracked for name \(interactor.actionName!)")
+			}
 		}
 	}
 
