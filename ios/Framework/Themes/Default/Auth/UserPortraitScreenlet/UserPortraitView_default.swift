@@ -85,10 +85,13 @@ public class UserPortraitView_default: BaseScreenletView,
 
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
-			"load-portrait" : [.Working : ""],
-			"upload-portrait" :
-				[.Working : "",
-					.Failure : LocalizedString("default", "userportrait-uploading-error", self)]]
+			"load-portrait" : [
+				.Working : ""
+			],
+			"upload-portrait" : [
+				.Working : "",
+				.Failure : LocalizedString("default", "userportrait-uploading-error", self)
+			]]
 	}
 
 	private let imagePicker = UIImagePickerController()
@@ -133,29 +136,29 @@ public class UserPortraitView_default: BaseScreenletView,
 	}
 
 	public func actionSheet(
-		actionSheet: UIActionSheet,
-		clickedButtonAtIndex buttonIndex: Int) {
+			actionSheet: UIActionSheet,
+			clickedButtonAtIndex buttonIndex: Int) {
 
-			let newPicture = 1
-			let chooseExisting = 2
+		let newPicture = 1
+		let chooseExisting = 2
 
-			switch buttonIndex {
-			case newPicture:
-				imagePicker.sourceType = .Camera
+		switch buttonIndex {
+		case newPicture:
+			imagePicker.sourceType = .Camera
 
-			case chooseExisting:
-				imagePicker.sourceType = .SavedPhotosAlbum
+		case chooseExisting:
+			imagePicker.sourceType = .SavedPhotosAlbum
 
-			default:
-				return
-			}
+		default:
+			return
+		}
 
-			if let vc = self.presentingViewController {
-				vc.presentViewController(imagePicker, animated: true, completion: {})
-			}
-			else {
-				println("ERROR: You neet to set the presentingViewController before using UIActionSheet")
-			}
+		if let vc = self.presentingViewController {
+			vc.presentViewController(imagePicker, animated: true, completion: {})
+		}
+		else {
+			println("ERROR: You neet to set the presentingViewController before using UIActionSheet")
+		}
 	}
 
 	public func loadPlaceholder() {
@@ -175,14 +178,14 @@ public class UserPortraitView_default: BaseScreenletView,
 	//MARK: UIImagePickerControllerDelegate
 
 	public func imagePickerController(
-		picker: UIImagePickerController,
-		didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+			picker: UIImagePickerController,
+			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
 
-			let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage
+		let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage
 
-			imagePicker.dismissViewControllerAnimated(true) {}
+		imagePicker.dismissViewControllerAnimated(true) {}
 
-			userAction(name: "upload-portrait", sender: editedImage)
+		userAction(name: "upload-portrait", sender: editedImage)
 	}
 
 	public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
