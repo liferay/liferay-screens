@@ -39,14 +39,19 @@ public class ServerOperation: NSOperation {
 	//MARK: NSOperation
 
 	public override func main() {
-		if preRun() {
-			if let session = createSession() {
-				doRun(session: session)
-				postRun()
-			}
+		if self.cancelled {
+			lastError = NSError.errorWithCause(.Cancelled)
 		}
 		else {
-			lastError = NSError.errorWithCause(.AbortedDueToPreconditions, userInfo: nil)
+			if preRun() {
+				if let session = createSession() {
+					doRun(session: session)
+					postRun()
+				}
+			}
+			else {
+				lastError = NSError.errorWithCause(.AbortedDueToPreconditions)
+			}
 		}
 
 		callOnComplete()

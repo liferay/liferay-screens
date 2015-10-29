@@ -45,6 +45,7 @@ public enum ScreensErrorCause: Int {
 	case InvalidServerResponse = -3
 	case ValidationFailed = -4
 	case NotAvailable = -5
+	case Cancelled = -6
 
 }
 
