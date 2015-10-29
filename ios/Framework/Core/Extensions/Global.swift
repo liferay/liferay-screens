@@ -45,6 +45,19 @@ public func dispatch_async(block: dispatch_block_t) {
 }
 
 
+public func dispatch_async(block: dispatch_block_t, thenMain mainBlock: dispatch_block_t) {
+	let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+
+	dispatch_async(queue) {
+		block()
+
+		dispatch_async(dispatch_get_main_queue()) {
+			mainBlock()
+		}
+	}
+}
+
+
 public typealias Signal = () -> ()
 
 public func dispatch_sync(block: Signal -> ()) {
