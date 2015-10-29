@@ -14,17 +14,20 @@
 import UIKit
 
 
-class SessionStorage {
+@objc public class SessionStorage: NSObject {
 
-	typealias LoadResult = (session: LRSession, userAttributes: [String:AnyObject])
+	public typealias LoadResult = (session: LRSession, userAttributes: [String:AnyObject])
+
+	public let hasSessionStored: Bool
 
 	private let credentialStore: CredentialsStore
 
-	init(credentialStore: CredentialsStore) {
+	public init(credentialStore: CredentialsStore) {
 		self.credentialStore = credentialStore
+		hasSessionStored = true
 	}
 
-	init?() {
+	override public init() {
 		let authType = BaseCredentialsStoreKeyChain.storedAuthType()
 
 		if let authType = authType {
@@ -34,17 +37,20 @@ class SessionStorage {
 			case .OAuth:
 				credentialStore = OAuthCredentialsStoreKeyChain()
 			}
+
+			hasSessionStored = true
 		}
 		else {
 			// Workaround for "All stored properties of a class instance
 			// must be initialized before returning nil from an initializer
 			credentialStore = BasicCredentialsStoreKeyChain()
-
-			return nil
+			hasSessionStored = false
 		}
+
+		super.init()
 	}
 
-	func store(#session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
+	public func store(#session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
 		if session == nil || userAttributes.isEmpty {
 			return false
 		}
@@ -53,11 +59,11 @@ class SessionStorage {
 				userAttributes: userAttributes)
 	}
 
-	func remove() -> Bool {
+	public func remove() -> Bool {
 		return credentialStore.removeStoredCredentials()
 	}
 
-	func load() -> LoadResult? {
+	public func load() -> LoadResult? {
 		if credentialStore.loadStoredCredentials() {
 			if let loadedAuth = credentialStore.authentication,
 					loadedUserAttributes = credentialStore.userAttributes {

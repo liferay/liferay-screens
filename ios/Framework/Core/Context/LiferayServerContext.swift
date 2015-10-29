@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class LiferayServerContext {
+@objc public class LiferayServerContext: NSObject {
 
 	//MARK: Singleton type
 
@@ -61,12 +61,12 @@ public class LiferayServerContext {
 
 	//MARK: Public methods
 
-	public class func valueForKey(key: String) -> AnyObject? {
+	public class func propertyForKey(key: String) -> AnyObject? {
 		loadContextFile()
 		return StaticInstance.serverProperties![key]
 	}
 
-	public class func setValue(value: AnyObject, forKey key: String) {
+	public class func setPropertyValue(value: AnyObject, forKey key: String) {
 		loadContextFile()
 		return StaticInstance.serverProperties![key] = value
 	}

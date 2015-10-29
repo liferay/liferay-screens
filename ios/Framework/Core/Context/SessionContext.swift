@@ -19,7 +19,7 @@ import Foundation
 #endif
 
 
-@objc public class SessionContext {
+@objc public class SessionContext: NSObject {
 
 	//MARK: Singleton type
 
@@ -164,7 +164,8 @@ import Foundation
 	}
 
 	public class func loadSessionFromStore() -> Bool {
-		if let sessionStorage = SessionStorage() {
+		let sessionStorage = SessionStorage()
+		if sessionStorage.hasSessionStored {
 			if let result = sessionStorage.load()
 					where result.session.server != nil {
 				StaticInstance.currentSession = result.session
