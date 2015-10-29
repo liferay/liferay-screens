@@ -64,6 +64,16 @@ public class ServerOperationInteractor: Interactor {
 	public func completedOperation(op: ServerOperation) {
 	}
 
+	override public func callOnSuccess() {
+		super.callOnSuccess()
+		currentOperation = nil
+	}
+
+	override public func callOnFailure(error: NSError) {
+		super.callOnFailure(error)
+		currentOperation = nil
+	}
+
 	public func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
 		result(nil)
 	}
