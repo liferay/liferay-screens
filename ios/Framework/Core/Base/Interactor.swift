@@ -25,7 +25,7 @@ import UIKit
 
 	public let screenlet: BaseScreenlet?
 
-	private var cancelled = false
+	internal var cancelled = false
 
 
 	public init(screenlet: BaseScreenlet?) {

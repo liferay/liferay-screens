@@ -24,18 +24,22 @@ public class ServerOperationInteractor: Interactor {
 
 	public var cacheStrategy = CacheStrategyType.RemoteFirst
 
+	public var currentOperation: ServerOperation?
+
 
 	override public func start() -> Bool {
-		if let operation = createOperation() {
+		self.currentOperation = createOperation()
+
+		if let currentOperation = self.currentOperation {
 			getCacheStrategyImpl(cacheStrategy)(
-				operation,
+				currentOperation,
 				whenSuccess: {
-					self.completedOperation(operation)
+					self.completedOperation(currentOperation)
 					self.callOnSuccess()
 				},
 				whenFailure: { err in
-					operation.lastError = err
-					self.completedOperation(operation)
+					currentOperation.lastError = err
+					self.completedOperation(currentOperation)
 					self.callOnFailure(err)
 				})
 
@@ -45,6 +49,12 @@ public class ServerOperationInteractor: Interactor {
 		self.callOnFailure(NSError.errorWithCause(.AbortedDueToPreconditions))
 
 		return false
+	}
+
+	override public func cancel() {
+		println("[\(unsafeAddressOf(self))] Cancel ServerOpInteractor op=\(unsafeAddressOf(currentOperation!))")
+		currentOperation?.cancel()
+		cancelled = true
 	}
 
 
