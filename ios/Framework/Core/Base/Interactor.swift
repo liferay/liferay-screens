@@ -25,6 +25,8 @@ import UIKit
 
 	public let screenlet: BaseScreenlet?
 
+	private var cancelled = false
+
 
 	public init(screenlet: BaseScreenlet?) {
 		self.screenlet = screenlet
@@ -37,21 +39,31 @@ import UIKit
 	}
 
 	public func callOnSuccess() {
-		dispatch_main {
-			self.onSuccess?()
-			self.finishWithError(nil)
+		if !cancelled {
+			dispatch_main {
+				self.onSuccess?()
+				self.finishWithError(nil)
+			}
 		}
 	}
 
 	public func callOnFailure(error: NSError) {
-		dispatch_main {
-			self.onFailure?(error)
-			self.finishWithError(error)
+		if !cancelled {
+			dispatch_main {
+				self.onFailure?(error)
+				self.finishWithError(error)
+			}
 		}
 	}
 
 	public func start() -> Bool {
+		cancelled = false
 		return false
+	}
+
+	public func cancel() {
+		callOnFailure(NSError.errorWithCause(.Cancelled))
+		cancelled = true
 	}
 
 	public func interactionResult() -> AnyObject? {

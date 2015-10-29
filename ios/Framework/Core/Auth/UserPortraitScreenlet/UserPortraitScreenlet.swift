@@ -137,6 +137,10 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
 		let interactor: Interactor?
 
+		if isActionRunning(name) {
+			cancelInteractorsForAction(name)
+		}
+
 		switch name {
 		case "load-portrait":
 			let loadInteractor = sender as! DownloadUserPortraitInteractor

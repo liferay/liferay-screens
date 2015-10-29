@@ -231,11 +231,23 @@ import QuartzCore
 	}
 
 	public func isActionRunning(name: String) -> Bool {
-		objc_sync_enter(_runningInteractors)
-		let firstInteractor = _runningInteractors[name]?.first
-		objc_sync_exit(_runningInteractors)
+		var firstInteractor: Interactor? = nil
+
+		synchronized(_runningInteractors) {
+			firstInteractor = self._runningInteractors[name]?.first
+		}
 
 		return firstInteractor != nil
+	}
+
+	public func cancelInteractorsForAction(name: String) {
+		let interactors = _runningInteractors[name] ?? []
+
+		for interactor in interactors {
+			println("[\(unsafeAddressOf(self))] Cancel interactor -> \(interactor)")
+
+			interactor.cancel()
+		}
 	}
 
 	public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
@@ -344,8 +356,8 @@ import QuartzCore
 
 				if nibPath != nil {
 					let views = bundle.loadNibNamed(nibName,
-							owner:self,
-							options:nil)
+						owner:self,
+						options:nil)
 
 					assert(views.count > 0, "Malformed xib \(nibName). Without views")
 
@@ -421,6 +433,8 @@ import QuartzCore
 
 		_runningInteractors[name] = interactors
 		interactor.actionName = name
+
+		println("[\(unsafeAddressOf(self))] Track new interactor for \(name) -> \(interactors!)")
 	}
 
 	private func untrackInteractor(interactor: Interactor) {
@@ -429,11 +443,12 @@ import QuartzCore
 
 		if let foundIndex = find(interactors, interactor) {
 			_runningInteractors[name]?.removeAtIndex(foundIndex)
+			println("[\(unsafeAddressOf(self))] Untrack interactor for \(name) and \(unsafeAddressOf(interactor)) -> \(_runningInteractors[name]!)")
 		}
 		else {
-			println("ERROR: There's no interactors tracked for name \(interactor.actionName!)")
+			println("[\(unsafeAddressOf(self))] ERROR: There's no interactors tracked for name \(interactor.actionName!)")
+			println("[\(unsafeAddressOf(self))] ERROR: looking for \(unsafeAddressOf(interactor)) in \(interactors)")
 		}
 	}
-
 
 }
