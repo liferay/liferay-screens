@@ -38,8 +38,8 @@ public class BooleanField extends Field<Boolean> {
 		};
 
 
-	public BooleanField(Map<String, Object> attributes, Locale locale) {
-		super(attributes, locale);
+	public BooleanField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+		super(attributes, locale, defaultLocale);
 	}
 
 	protected BooleanField(Parcel in) {

@@ -17,6 +17,8 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.liferay.mobile.screens.util.LiferayLogger;
+
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
@@ -39,16 +41,16 @@ public class NumberField extends Field<Number> {
 			}
 		};
 
-	public NumberField(Map<String, Object> attributes, Locale locale) {
-		super(attributes, locale);
+	public NumberField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+		super(attributes, locale, defaultLocale);
 
-		init(locale);
+		init(locale, defaultLocale);
 	}
 
 	protected NumberField(Parcel in) {
 		super(in);
 
-		init(getCurrentLocale());
+		init(getCurrentLocale(), getDefaultLocale());
 	}
 
 	@Override
@@ -57,16 +59,20 @@ public class NumberField extends Field<Number> {
 			return null;
 		}
 
-		Number result;
-
 		try {
-			result = _labelFormatter.parse(stringValue);
+			return _labelFormatter.parse(stringValue);
 		}
 		catch (ParseException e) {
-			result = null;
+			try {
+				return _defaultLabelFormatter.parse(stringValue);
+			}
+			catch (ParseException e1) {
+				LiferayLogger.e("Error parsing decimal field", e);
+
+			}
 		}
 
-		return result;
+		return null;
 	}
 
 	@Override
@@ -79,10 +85,12 @@ public class NumberField extends Field<Number> {
 		return (value == null) ? "" : _labelFormatter.format(value);
 	}
 
-	private void init(Locale locale) {
+	private void init(Locale locale, Locale defaultLocale) {
 		_labelFormatter = NumberFormat.getNumberInstance(locale);
+		_defaultLabelFormatter = NumberFormat.getNumberInstance(defaultLocale);
 	}
 
 	private NumberFormat _labelFormatter;
+	private NumberFormat _defaultLabelFormatter;
 
 }

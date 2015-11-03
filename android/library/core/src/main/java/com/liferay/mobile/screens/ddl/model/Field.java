@@ -73,28 +73,28 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			return result;
 		}
 
-		public Field createField(Map<String, Object> attributes, Locale locale) {
+		public Field createField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 			if (STRING.equals(this)) {
 				EditorType editor = EditorType.valueOf(attributes);
 
 				if (editor == EditorType.SELECT || editor == EditorType.RADIO) {
-					return new StringWithOptionsField(attributes, locale);
+					return new StringWithOptionsField(attributes, locale, defaultLocale);
 				}
 				else {
-					return new StringField(attributes, locale);
+					return new StringField(attributes, locale, defaultLocale);
 				}
 			}
 			else if (BOOLEAN.equals(this)) {
-				return new BooleanField(attributes, locale);
+				return new BooleanField(attributes, locale, defaultLocale);
 			}
 			else if (DATE.equals(this)) {
-				return new DateField(attributes, locale);
+				return new DateField(attributes, locale, defaultLocale);
 			}
 			else if (NUMBER.equals(this)) {
-				return new NumberField(attributes, locale);
+				return new NumberField(attributes, locale, defaultLocale);
 			}
 			else if (DOCUMENT.equals(this)) {
-				return new DocumentField(attributes, locale);
+				return new DocumentField(attributes, locale, defaultLocale);
 			}
 			return null;
 		}
@@ -162,7 +162,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	}
 
 
-	public Field(Map<String, Object> attributes, Locale locale) {
+	public Field(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		_dataType = DataType.valueOf(attributes);
 		_editorType = EditorType.valueOf(attributes);
 
@@ -180,6 +180,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		_currentValue = _predefinedValue;
 
 		_currentLocale = locale;
+		_defaultLocale = defaultLocale;
 	}
 
 	protected Field(Parcel in) {
@@ -199,6 +200,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		_currentValue = (T) in.readSerializable();
 
 		_currentLocale = (Locale) in.readSerializable();
+		_defaultLocale = (Locale) in.readSerializable();
 
 		_lastValidationResult = (in.readInt() == 1);
 	}
@@ -304,6 +306,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return _currentLocale;
 	}
 
+	public Locale getDefaultLocale() {
+		return _defaultLocale;
+	}
+
 	public String toData() {
 		return convertToData(_currentValue);
 	}
@@ -335,6 +341,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		destination.writeSerializable(_currentValue);
 
 		destination.writeSerializable(_currentLocale);
+		destination.writeSerializable(_defaultLocale);
 
 		destination.writeInt(_lastValidationResult ? 1 : 0);
 	}
@@ -373,5 +380,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private boolean _lastValidationResult = true;
 
 	private Locale _currentLocale;
+	private Locale _defaultLocale;
 
 }

@@ -41,8 +41,8 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			}
 		};
 
-	public StringWithOptionsField(Map<String, Object> attributes, Locale locale) {
-		super(attributes, locale);
+	public StringWithOptionsField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+		super(attributes, locale, defaultLocale);
 
 		List<Map<String, String>> availableOptions =
 			(List<Map<String, String>>) attributes.get("options");

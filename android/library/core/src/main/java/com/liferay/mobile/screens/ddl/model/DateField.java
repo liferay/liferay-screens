@@ -43,8 +43,8 @@ public class DateField extends Field<Date> {
 		};
 
 
-	public DateField(Map<String, Object> attributes, Locale locale) {
-		super(attributes, locale);
+	public DateField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+		super(attributes, locale, defaultLocale);
 
 		init(locale);
 	}
