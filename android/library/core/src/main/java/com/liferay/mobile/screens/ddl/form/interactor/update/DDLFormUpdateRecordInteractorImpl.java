@@ -24,6 +24,7 @@ import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,6 +54,10 @@ public class DDLFormUpdateRecordInteractorImpl
 		}
 
 		onEventWithCache(event, event.getGroupId(), event.getRecord());
+
+		if (!event.isFailed()) {
+			getListener().onDDLFormRecordUpdated(event.getRecord());
+		}
 	}
 
 	@Override
@@ -73,35 +78,19 @@ public class DDLFormUpdateRecordInteractorImpl
 	}
 
 	@Override
-	protected void notifySuccess(DDLFormUpdateRecordEvent event) {
-		getListener().onDDLFormRecordUpdated(event.getRecord());
-	}
-
-	@Override
 	protected void notifyError(DDLFormUpdateRecordEvent event) {
 		getListener().onDDLFormUpdateRecordFailed(event.getException());
 	}
 
 	@Override
-	protected void storeToCache(boolean synced, Object[] args) {
-		try {
-			long groupId = (long) args[0];
-			Record record = (Record) args[1];
+	protected void storeToCache(boolean synced, Object... args) {
+		long groupId = (long) args[0];
+		Record record = (Record) args[1];
 
-			JSONObject fieldsValues = new JSONObject(record.getData());
-			JSONObject valuesAndAttributes = new JSONObject();
-			valuesAndAttributes.put("modelValues", fieldsValues);
+		final JSONObject fieldsValues = new JSONObject(record.getData());
+		saveDDLRecord(record, fieldsValues, groupId, !synced);
 
-
-			DDLRecordCache recordCache = new DDLRecordCache(groupId, record, valuesAndAttributes);
-			recordCache.setDirty(!synced);
-			CacheSQL.getInstance().set(recordCache);
-
-			onEvent(new DDLFormUpdateRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues));
-		}
-		catch (JSONException e) {
-			e.printStackTrace();
-		}
+		onEvent(new DDLFormUpdateRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues));
 	}
 
 	protected DDLRecordService getDDLRecordService(Record record, long groupId) {
@@ -125,6 +114,19 @@ public class DDLFormUpdateRecordInteractorImpl
 
 		if (record.getRecordId() <= 0) {
 			throw new IllegalArgumentException("Record's recordId cannot be 0 or negative");
+		}
+	}
+
+	private void saveDDLRecord(Record record, JSONObject fieldValues, Long groupId, boolean dirty) {
+		try {
+			JSONObject valuesAndAttributes = new JSONObject();
+			valuesAndAttributes.put("modelValues", fieldValues);
+			DDLRecordCache recordCache = new DDLRecordCache(groupId, record, valuesAndAttributes);
+			recordCache.setDirty(dirty);
+			CacheSQL.getInstance().set(recordCache);
+		}
+		catch (JSONException e) {
+			LiferayLogger.e("Couldnt parse JSON values", e);
 		}
 	}
 

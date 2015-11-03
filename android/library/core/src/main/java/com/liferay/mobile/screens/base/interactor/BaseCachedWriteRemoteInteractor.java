@@ -45,7 +45,6 @@ public abstract class BaseCachedWriteRemoteInteractor<L, E extends RemoteWrite> 
 		if (event.isFailed()) {
 			try {
 				storeToCache(false, args);
-				notifySuccess(event);
 			}
 			catch (Exception e) {
 				notifyError(event);
@@ -55,13 +54,10 @@ public abstract class BaseCachedWriteRemoteInteractor<L, E extends RemoteWrite> 
 			if (event.isRemote()) {
 				storeToCache(true, args);
 			}
-			notifySuccess(event);
 		}
 	}
 
 	protected abstract void online(Object... args) throws Exception;
-
-	protected abstract void notifySuccess(E event);
 
 	protected abstract void notifyError(E event);
 

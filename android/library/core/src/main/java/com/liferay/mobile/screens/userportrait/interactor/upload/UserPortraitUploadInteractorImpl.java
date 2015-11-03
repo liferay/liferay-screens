@@ -35,6 +35,25 @@ public class UserPortraitUploadInteractorImpl
 		}
 
 		onEventWithCache(event, event.getUserId(), event.getPicturePath());
+
+		if (!event.isFailed()) {
+			User loggedUser = SessionContext.getLoggedUser();
+
+			if (event.getJSONObject() != null) {
+				User user = new User(event.getJSONObject());
+				loggedUser = user;
+				if (user.getId() == SessionContext.getLoggedUser().getId()) {
+					SessionContext.setLoggedUser(user);
+				}
+			}
+
+			try {
+				getListener().onUserPortraitUploaded(loggedUser.getId());
+			}
+			catch (Exception e) {
+				getListener().onUserPortraitUploadFailure(e);
+			}
+		}
 	}
 
 	@Override
@@ -53,27 +72,6 @@ public class UserPortraitUploadInteractorImpl
 		service.putExtra("userId", userId);
 
 		LiferayScreensContext.getContext().startService(service);
-	}
-
-	@Override
-	protected void notifySuccess(UserPortraitUploadEvent event) {
-		User loggedUser = SessionContext.getLoggedUser();
-
-		if (event.getJSONObject() != null) {
-			User user = new User(event.getJSONObject());
-			loggedUser = user;
-			if (user.getId() == SessionContext.getLoggedUser().getId()) {
-				SessionContext.setLoggedUser(user);
-			}
-		}
-
-		try {
-			getListener().onUserPortraitUploaded(loggedUser.getId());
-		}
-		catch (Exception e) {
-			getListener().onUserPortraitUploadFailure(e);
-		}
-
 	}
 
 	@Override

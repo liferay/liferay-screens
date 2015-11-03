@@ -41,6 +41,10 @@ public class DDLFormDocumentUploadInteractorImpl
 
 		onEventWithCache(event, event.getDocumentField(), event.getUserId(), event.getGroupId(),
 			event.getRepositoryId(), event.getFolderId(), event.getFilePrefix());
+
+		if (!event.isFailed()) {
+			getListener().onDDLFormDocumentUploaded(event.getDocumentField(), event.getJSONObject());
+		}
 	}
 
 	@Override
@@ -55,11 +59,6 @@ public class DDLFormDocumentUploadInteractorImpl
 		service.putExtra("filePrefix", (String) args[5]);
 
 		LiferayScreensContext.getContext().startService(service);
-	}
-
-	@Override
-	protected void notifySuccess(DDLFormDocumentUploadEvent event) {
-		getListener().onDDLFormDocumentUploaded(event.getDocumentField(), event.getJSONObject());
 	}
 
 	@Override
