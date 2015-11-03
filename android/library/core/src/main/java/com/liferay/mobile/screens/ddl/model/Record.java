@@ -198,7 +198,7 @@ public class Record implements Parcelable {
 	 * @param field
 	 * @return server value of that field
 	 */
-	public String getServerValue(String field) {
+	public Object getServerValue(String field) {
 		return getModelValues() == null ? null : getModelValues().get(field);
 	}
 
@@ -221,8 +221,8 @@ public class Record implements Parcelable {
 		parseServerValues();
 	}
 
-	public HashMap<String, String> getModelValues() {
-		return (HashMap<String, String>) _valuesAndAttributes.get(MODEL_VALUES);
+	public HashMap<String, Object> getModelValues() {
+		return (HashMap<String, Object>) _valuesAndAttributes.get(MODEL_VALUES);
 	}
 
 	public HashMap<String, Object> getModelAttributes() {
