@@ -21,12 +21,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.signup.SignUpScreenlet;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
 import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
@@ -34,7 +34,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
  * @author Silvio Santos
  */
 public class SignUpView extends LinearLayout
-		implements SignUpViewModel, View.OnClickListener {
+	implements SignUpViewModel, View.OnClickListener {
 
 	public SignUpView(Context context) {
 		super(context);

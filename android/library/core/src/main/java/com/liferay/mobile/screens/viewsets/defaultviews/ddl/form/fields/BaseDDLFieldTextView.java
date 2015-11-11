@@ -23,9 +23,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
-import com.liferay.mobile.screens.R;
 
 /**
  * @author Silvio Santos
@@ -66,6 +66,27 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 		return _field;
 	}
 
+	@Override
+	public void setField(T field) {
+		_field = field;
+
+		if (_field.isShowLabel()) {
+			_textEditText.setHint("");
+			if (_labelTextView != null) {
+				_labelTextView.setText(_field.getLabel());
+				_labelTextView.setVisibility(VISIBLE);
+			}
+		}
+		else {
+			_textEditText.setHint(_field.getLabel());
+			if (_labelTextView != null) {
+				_labelTextView.setVisibility(GONE);
+			}
+		}
+
+		refresh();
+	}
+
 	public TextView getLabelTextView() {
 		return _labelTextView;
 	}
@@ -90,27 +111,6 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	}
 
 	@Override
-	public void setField(T field) {
-		_field = field;
-
-		if (_field.isShowLabel()) {
-			_textEditText.setHint("");
-			if (_labelTextView != null) {
-				_labelTextView.setText(_field.getLabel());
-				_labelTextView.setVisibility(VISIBLE);
-			}
-		}
-		else {
-			_textEditText.setHint(_field.getLabel());
-			if (_labelTextView != null) {
-				_labelTextView.setVisibility(GONE);
-			}
-		}
-
-		refresh();
-	}
-
-	@Override
 	public void refresh() {
 		_textEditText.setText(_field.toFormattedString());
 	}
@@ -131,8 +131,8 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_labelTextView = (TextView)findViewById(R.id.liferay_ddl_label);
-		_textEditText = (EditText)findViewById(R.id.liferay_ddl_edit_text);
+		_labelTextView = (TextView) findViewById(R.id.liferay_ddl_label);
+		_textEditText = (EditText) findViewById(R.id.liferay_ddl_edit_text);
 
 		_textEditText.addTextChangedListener(this);
 

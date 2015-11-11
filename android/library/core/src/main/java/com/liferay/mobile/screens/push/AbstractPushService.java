@@ -34,6 +34,7 @@ public abstract class AbstractPushService extends IntentService {
 	}
 
 	protected abstract void processJSONNotification(final JSONObject json) throws JSONException, Exception;
+
 	private GoogleServices _googleService = new GoogleServices();
 
 }

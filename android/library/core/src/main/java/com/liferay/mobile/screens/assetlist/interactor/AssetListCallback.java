@@ -27,9 +27,9 @@ import java.util.Map;
  */
 public class AssetListCallback extends BaseListCallback<AssetEntry> {
 
-    public AssetListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange, Locale locale) {
-        super(targetScreenletId, rowsRange, locale);
-    }
+	public AssetListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange, Locale locale) {
+		super(targetScreenletId, rowsRange, locale);
+	}
 
 	@Override
 	public AssetEntry createEntity(Map<String, Object> stringObjectMap) {

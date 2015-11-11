@@ -143,6 +143,7 @@ public class DocumentField extends Field<DocumentFile> {
 
 		return valid;
 	}
+
 	private State _state = State.IDLE;
 
 }

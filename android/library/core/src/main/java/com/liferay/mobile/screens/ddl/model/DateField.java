@@ -101,6 +101,7 @@ public class DateField extends Field<Date> {
 		_clientFormat = DateFormat.getDateInstance(DateFormat.LONG, locale);
 		_clientFormat.setTimeZone(_GMT_TIMEZONE);
 	}
+
 	private static final DateFormat _SERVER_YYYY_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
 	private static final DateFormat _SERVER_YY_FORMAT = new SimpleDateFormat("MM/dd/yy");
 

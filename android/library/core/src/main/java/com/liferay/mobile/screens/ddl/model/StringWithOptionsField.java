@@ -242,6 +242,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 
 		return null;
 	}
+
 	private ArrayList<Option> _availableOptions;
 	private boolean _multiple;
 
@@ -254,6 +255,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		public Option(Map<String, String> optionMap) {
 			this(optionMap.get("label"), optionMap.get("name"), optionMap.get("value"));
 		}
+
 		public Option(String label, String name, String value) {
 			this.label = label;
 			this.name = name;

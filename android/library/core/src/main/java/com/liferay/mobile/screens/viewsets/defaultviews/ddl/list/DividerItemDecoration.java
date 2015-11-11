@@ -30,8 +30,6 @@ import android.view.View;
  */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
-	private Drawable mDivider;
-
 	public DividerItemDecoration(Context context, AttributeSet attrs) {
 		final TypedArray a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.listDivider});
 		mDivider = a.getDrawable(0);
@@ -108,5 +106,6 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 			throw new IllegalStateException("DividerItemDecoration can only be used with a LinearLayoutManager.");
 		}
 	}
+	private Drawable mDivider;
 
 }

@@ -21,12 +21,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewModel;
 import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
@@ -34,7 +34,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
  * @author Jose Manuel Navarro
  */
 public class ForgotPasswordView extends LinearLayout
-		implements ForgotPasswordViewModel, View.OnClickListener {
+	implements ForgotPasswordViewModel, View.OnClickListener {
 
 	public ForgotPasswordView(Context context) {
 		super(context);
@@ -57,6 +57,12 @@ public class ForgotPasswordView extends LinearLayout
 	@Override
 	public BasicAuthMethod getBasicAuthMethod() {
 		return _basicAuthMethod;
+	}
+
+	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
+		_basicAuthMethod = basicAuthMethod;
+
+		refreshLoginEditTextStyle();
 	}
 
 	@Override
@@ -99,12 +105,6 @@ public class ForgotPasswordView extends LinearLayout
 		ForgotPasswordScreenlet screenlet = (ForgotPasswordScreenlet) getParent();
 
 		screenlet.performUserAction();
-	}
-
-	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
-		_basicAuthMethod = basicAuthMethod;
-
-		refreshLoginEditTextStyle();
 	}
 
 	@Override

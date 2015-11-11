@@ -77,6 +77,7 @@ public class DDLListAdapter
 		holder.textView.setText(titleField);
 		holder.subtitleTextView.setText(builder.toString());
 	}
+
 	private List<String> _labelFields;
 
 	public static class TwoTextsViewHolder extends BaseListAdapter.ViewHolder {

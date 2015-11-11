@@ -30,7 +30,6 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
@@ -44,6 +43,13 @@ import static org.mockito.Mockito.when;
  */
 @RunWith(Enclosed.class)
 public class LoginInteractorTest {
+
+	private static final int _TARGET_SCREENLET_ID = 0;
+	private static final String _LOGIN_EMAIL = "test@liferay.com";
+	private static final String _LOGIN_PASSWORD = "test";
+	private static final String _LOGIN_SCREEN_NAME = "test_screen_name";
+	private static final long _LOGIN_USER_ID = 10658;
+	private static final long _companyId = LiferayServerContext.getCompanyId();
 
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	@RunWith(RobolectricManifestTestRunner.class)
@@ -271,17 +277,5 @@ public class LoginInteractorTest {
 			interactorSpy.validate(_LOGIN_EMAIL, _LOGIN_PASSWORD, null);
 		}
 	}
-
-	private static final int _TARGET_SCREENLET_ID = 0;
-
-	private static final String _LOGIN_EMAIL = "test@liferay.com";
-
-	private static final String _LOGIN_PASSWORD = "test";
-
-	private static final String _LOGIN_SCREEN_NAME = "test_screen_name";
-
-	private static final long _LOGIN_USER_ID = 10658;
-
-	private static final long _companyId = LiferayServerContext.getCompanyId();
 
 }

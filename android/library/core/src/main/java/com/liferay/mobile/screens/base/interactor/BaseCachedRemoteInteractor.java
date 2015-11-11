@@ -121,6 +121,7 @@ public abstract class BaseCachedRemoteInteractor<L extends CacheListener, E exte
 	protected boolean hasToStoreToCache() {
 		return !_retrievedFromCache;
 	}
+
 	private boolean _retrievedFromCache;
 	private final OfflinePolicy _offlinePolicy;
 

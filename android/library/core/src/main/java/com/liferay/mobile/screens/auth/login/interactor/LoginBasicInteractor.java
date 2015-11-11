@@ -75,7 +75,7 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 	}
 
 	protected void sendGetUserByScreenNameRequest(UserService service, String screenName)
-			throws Exception {
+		throws Exception {
 		service.getUserByScreenName(LiferayServerContext.getCompanyId(), screenName);
 	}
 

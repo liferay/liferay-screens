@@ -18,9 +18,9 @@ import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView;
 
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class DDLFormPagerView extends DDLFormView {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_pager = (ViewPager)findViewById(R.id.liferay_pager);
+		_pager = (ViewPager) findViewById(R.id.liferay_pager);
 	}
 
 	private ViewPager _pager;
