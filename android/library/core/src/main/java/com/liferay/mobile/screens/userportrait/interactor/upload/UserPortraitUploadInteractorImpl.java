@@ -34,21 +34,30 @@ public class UserPortraitUploadInteractorImpl
 			return;
 		}
 
-		onEventWithCache(event, event.getUserId(), event.getPicturePath());
+		if (event.isFailed()) {
+			try {
+				storeToCacheAndLaunchEvent(false, event, event.getUserId(), event.getPicturePath());
+			}
+			catch (Exception e) {
+				notifyError(event);
+			}
+		}
+		else {
+			if (event.isRemote()) {
+				store(true, event.getUserId(), event.getPicturePath());
+			}
 
-		if (!event.isFailed()) {
-			User loggedUser = SessionContext.getLoggedUser();
+			User oldLoggedUser = SessionContext.getLoggedUser();
 
 			if (event.getJSONObject() != null) {
 				User user = new User(event.getJSONObject());
-				loggedUser = user;
-				if (user.getId() == SessionContext.getLoggedUser().getId()) {
+				if (oldLoggedUser != null && user.getId() == oldLoggedUser.getId()) {
 					SessionContext.setLoggedUser(user);
 				}
 			}
 
 			try {
-				getListener().onUserPortraitUploaded(loggedUser.getId());
+				getListener().onUserPortraitUploaded(oldLoggedUser.getId());
 			}
 			catch (Exception e) {
 				getListener().onUserPortraitUploadFailure(e);
@@ -80,16 +89,20 @@ public class UserPortraitUploadInteractorImpl
 	}
 
 	@Override
-	protected void storeToCache(boolean synced, Object... args) {
+	protected void storeToCacheAndLaunchEvent(boolean synced, Object... args) {
 
 		long userId = (long) args[0];
 		String picturePath = (String) args[1];
 
+		store(synced, userId, picturePath);
+
+		onEventMainThread(new UserPortraitUploadEvent(getTargetScreenletId(), picturePath, userId, new JSONObject()));
+	}
+
+	private void store(boolean synced, long userId, String picturePath) {
 		TableCache file = new TableCache(String.valueOf(userId), DefaultCachedType.USER_PORTRAIT_UPLOAD, picturePath);
 		file.setDirty(!synced);
 		CacheSQL.getInstance().set(file);
-
-		onEventMainThread(new UserPortraitUploadEvent(getTargetScreenletId(), picturePath, userId, new JSONObject()));
 	}
 
 }

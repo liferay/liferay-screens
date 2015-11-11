@@ -17,11 +17,11 @@ public abstract class BaseCachedWriteRemoteInteractor<L, E extends RemoteWrite> 
 
 	protected void storeWithCache(Object... args) throws Exception {
 		if (_offlinePolicy == OfflinePolicy.CACHE_ONLY) {
-			storeToCache(false, args);
+			storeToCacheAndLaunchEvent(false, args);
 		}
 		else if (_offlinePolicy == OfflinePolicy.CACHE_FIRST) {
 			try {
-				storeToCache(false, args);
+				storeToCacheAndLaunchEvent(false, args);
 			}
 			catch (Exception e) {
 				online(args);
@@ -32,7 +32,7 @@ public abstract class BaseCachedWriteRemoteInteractor<L, E extends RemoteWrite> 
 				online(args);
 			}
 			catch (Exception e) {
-				storeToCache(false, args);
+				storeToCacheAndLaunchEvent(false, args);
 				LiferayLogger.i("Store online first failed, trying to store locally version");
 			}
 		}
@@ -41,28 +41,11 @@ public abstract class BaseCachedWriteRemoteInteractor<L, E extends RemoteWrite> 
 		}
 	}
 
-	protected void onEventWithCache(E event, Object... args) {
-		if (event.isFailed()) {
-			try {
-				storeToCache(false, args);
-			}
-			catch (Exception e) {
-				notifyError(event);
-			}
-		}
-		else {
-			if (event.isRemote()) {
-				storeToCache(true, args);
-			}
-		}
-	}
-
 	protected abstract void online(Object... args) throws Exception;
 
 	protected abstract void notifyError(E event);
 
-	protected abstract void storeToCache(boolean synced, Object... args);
-
+	protected abstract void storeToCacheAndLaunchEvent(boolean synced, Object... args);
 	private final OfflinePolicy _offlinePolicy;
 
 }

@@ -42,6 +42,28 @@ public class UserPortraitService extends IntentService {
 		super(UserPortraitService.class.getCanonicalName());
 	}
 
+	public static int calculateInSampleSize(
+		BitmapFactory.Options options, int reqWidth, int reqHeight) {
+		final int height = options.outHeight;
+		final int width = options.outWidth;
+		int inSampleSize = 1;
+
+		if (height > reqHeight || width > reqWidth) {
+
+			final int halfHeight = height / 2;
+			final int halfWidth = width / 2;
+
+			// Calculate the largest inSampleSize value that is a power of 2 and keeps both
+			// height and width larger than the requested height and width.
+			while ((halfHeight / inSampleSize) > reqHeight
+				&& (halfWidth / inSampleSize) > reqWidth) {
+				inSampleSize *= 2;
+			}
+		}
+
+		return inSampleSize;
+	}
+
 	@Override
 	public void onHandleIntent(Intent intent) {
 		uploadFromIntent(intent);
@@ -67,30 +89,9 @@ public class UserPortraitService extends IntentService {
 	public JSONObject uploadUserPortrait(long userId, String picturePath) throws Exception {
 		Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
 		UserService userService = new UserService(sessionFromCurrentSession);
+		byte[] decodeSampledBitmapFromResource = decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE);
 		return userService.updatePortrait(userId,
-			decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE));
-	}
-
-	public static int calculateInSampleSize(
-		BitmapFactory.Options options, int reqWidth, int reqHeight) {
-		final int height = options.outHeight;
-		final int width = options.outWidth;
-		int inSampleSize = 1;
-
-		if (height > reqHeight || width > reqWidth) {
-
-			final int halfHeight = height / 2;
-			final int halfWidth = width / 2;
-
-			// Calculate the largest inSampleSize value that is a power of 2 and keeps both
-			// height and width larger than the requested height and width.
-			while ((halfHeight / inSampleSize) > reqHeight
-				&& (halfWidth / inSampleSize) > reqWidth) {
-				inSampleSize *= 2;
-			}
-		}
-
-		return inSampleSize;
+			decodeSampledBitmapFromResource);
 	}
 
 	private static Bitmap rotateImage(Bitmap source, float angle) {
@@ -99,8 +100,8 @@ public class UserPortraitService extends IntentService {
 		return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
 	}
 
-	private static byte[] decodeSampledBitmapFromResource(String path,
-														  int reqWidth, int reqHeight) throws IOException {
+	private static byte[] decodeSampledBitmapFromResource(String path, int reqWidth, int reqHeight)
+		throws IOException {
 
 		// First decode with inJustDecodeBounds=true to check dimensions
 		final BitmapFactory.Options options = new BitmapFactory.Options();

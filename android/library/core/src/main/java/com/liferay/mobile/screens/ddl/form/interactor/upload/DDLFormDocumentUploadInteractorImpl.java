@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.ddl.form.interactor.upload;
 
 import android.content.Intent;
 
-import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
@@ -39,10 +38,21 @@ public class DDLFormDocumentUploadInteractorImpl
 			return;
 		}
 
-		onEventWithCache(event, event.getDocumentField(), event.getUserId(), event.getGroupId(),
-			event.getRepositoryId(), event.getFolderId(), event.getFilePrefix());
+		if (event.isFailed()) {
+			try {
+				storeToCacheAndLaunchEvent(false, event, event.getDocumentField(), event.getUserId(), event.getGroupId(),
+					event.getRepositoryId(), event.getFolderId(), event.getFilePrefix());
+			}
+			catch (Exception e) {
+				notifyError(event);
+			}
+		}
+		else {
+			if (event.isRemote()) {
+				store(true, event.getDocumentField(), event.getUserId(), event.getGroupId(),
+					event.getRepositoryId(), event.getFolderId(), event.getFilePrefix());
+			}
 
-		if (!event.isFailed()) {
 			getListener().onDDLFormDocumentUploaded(event.getDocumentField(), event.getJSONObject());
 		}
 	}
@@ -67,7 +77,7 @@ public class DDLFormDocumentUploadInteractorImpl
 	}
 
 	@Override
-	protected void storeToCache(boolean synced, Object[] args) {
+	protected void storeToCacheAndLaunchEvent(boolean synced, Object... args) {
 
 		DocumentField file = (DocumentField) args[0];
 		long userId = (long) args[1];
@@ -76,13 +86,17 @@ public class DDLFormDocumentUploadInteractorImpl
 		long folderId = (long) args[4];
 		String filePrefix = (String) args[5];
 
+		store(synced, file, userId, groupId, repositoryId, folderId, filePrefix);
+
+		onEventMainThread(new DDLFormDocumentUploadEvent(getTargetScreenletId(), file, userId,
+			groupId, repositoryId, folderId, filePrefix, new JSONObject()));
+	}
+
+	private void store(boolean synced, DocumentField file, long userId, long groupId, long repositoryId, long folderId, String filePrefix) {
 		String path = file.getCurrentValue().toString();
 		DocumentUploadCache documentUploadCache = new DocumentUploadCache(path, userId, groupId, repositoryId, folderId, filePrefix);
 		documentUploadCache.setDirty(!synced);
 		CacheSQL.getInstance().set(documentUploadCache);
-
-		onEventMainThread(new DDLFormDocumentUploadEvent(getTargetScreenletId(), file, userId,
-			groupId, repositoryId, folderId, filePrefix, new JSONObject()));
 	}
 
 }

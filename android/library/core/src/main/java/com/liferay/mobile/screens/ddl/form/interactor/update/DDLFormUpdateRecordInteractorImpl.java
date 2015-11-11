@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -13,6 +13,8 @@
  */
 
 package com.liferay.mobile.screens.ddl.form.interactor.update;
+
+import android.support.annotation.NonNull;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
@@ -53,9 +55,19 @@ public class DDLFormUpdateRecordInteractorImpl
 			return;
 		}
 
-		onEventWithCache(event, event.getGroupId(), event.getRecord());
+		if (event.isFailed()) {
+			try {
+				storeToCacheAndLaunchEvent(false, event, event.getGroupId(), event.getRecord());
+			}
+			catch (Exception e) {
+				notifyError(event);
+			}
+		}
+		else {
+			if (event.isRemote()) {
+				store(true, event.getGroupId(), event.getRecord());
+			}
 
-		if (!event.isFailed()) {
 			getListener().onDDLFormRecordUpdated(event.getRecord());
 		}
 	}
@@ -83,12 +95,11 @@ public class DDLFormUpdateRecordInteractorImpl
 	}
 
 	@Override
-	protected void storeToCache(boolean synced, Object... args) {
+	protected void storeToCacheAndLaunchEvent(boolean synced, Object... args) {
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
 
-		final JSONObject fieldsValues = new JSONObject(record.getData());
-		saveDDLRecord(record, fieldsValues, groupId, !synced);
+		final JSONObject fieldsValues = store(synced, groupId, record);
 
 		onEvent(new DDLFormUpdateRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues));
 	}
@@ -115,6 +126,13 @@ public class DDLFormUpdateRecordInteractorImpl
 		if (record.getRecordId() <= 0) {
 			throw new IllegalArgumentException("Record's recordId cannot be 0 or negative");
 		}
+	}
+
+	@NonNull
+	private JSONObject store(boolean synced, long groupId, Record record) {
+		final JSONObject fieldsValues = new JSONObject(record.getData());
+		saveDDLRecord(record, fieldsValues, groupId, !synced);
+		return fieldsValues;
 	}
 
 	private void saveDDLRecord(Record record, JSONObject fieldValues, Long groupId, boolean dirty) {
