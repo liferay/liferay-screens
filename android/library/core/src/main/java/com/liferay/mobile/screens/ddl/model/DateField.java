@@ -68,7 +68,10 @@ public class DateField extends Field<Date> {
 
 		int lastSeparator = stringValue.lastIndexOf('/');
 
-		if (stringValue.length() - lastSeparator - 1 == 2) {
+		if (lastSeparator == -1) {
+			return new Date(Long.valueOf(stringValue));
+		}
+		else if (stringValue.length() - lastSeparator - 1 == 2) {
 			formatter = _SERVER_YY_FORMAT;
 		}
 		else {
