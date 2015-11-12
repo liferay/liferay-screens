@@ -57,7 +57,7 @@ public class DDLFormUpdateRecordInteractorImpl
 
 		if (event.isFailed()) {
 			try {
-				storeToCacheAndLaunchEvent(false, event, event.getGroupId(), event.getRecord());
+				storeToCacheAndLaunchEvent(false, event.getGroupId(), event.getRecord());
 			}
 			catch (Exception e) {
 				notifyError(event);
