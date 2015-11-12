@@ -48,6 +48,7 @@ public enum BasicAuthMethod {
 				return InputType.TYPE_NULL;
 		}
 	}
+
 	private int _value;
 
 }

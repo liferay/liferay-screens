@@ -99,6 +99,7 @@ public class ModalProgressBar extends ProgressBar {
 
 		return findActionView((View) parent.getParent(), actionViewId);
 	}
+
 	private int _actionViewId;
 
 }

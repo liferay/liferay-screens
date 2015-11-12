@@ -43,8 +43,8 @@ public class DateField extends Field<Date> {
 		};
 
 
-	public DateField(Map<String, Object> attributes, Locale locale) {
-		super(attributes, locale);
+	public DateField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+		super(attributes, locale, defaultLocale);
 
 		init(locale);
 	}
@@ -68,7 +68,10 @@ public class DateField extends Field<Date> {
 
 		int lastSeparator = stringValue.lastIndexOf('/');
 
-		if (stringValue.length() - lastSeparator - 1 == 2) {
+		if (lastSeparator == -1) {
+			return new Date(Long.valueOf(stringValue));
+		}
+		else if (stringValue.length() - lastSeparator - 1 == 2) {
 			formatter = _SERVER_YY_FORMAT;
 		}
 		else {
@@ -101,6 +104,7 @@ public class DateField extends Field<Date> {
 		_clientFormat = DateFormat.getDateInstance(DateFormat.LONG, locale);
 		_clientFormat.setTimeZone(_GMT_TIMEZONE);
 	}
+
 	private static final DateFormat _SERVER_YYYY_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
 	private static final DateFormat _SERVER_YY_FORMAT = new SimpleDateFormat("MM/dd/yy");
 

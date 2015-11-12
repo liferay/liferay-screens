@@ -276,15 +276,16 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 
 	private void goRightCard1(Record element) {
 		TextView issueTitle = (TextView) findViewById(R.id.issue_title);
-		issueTitle.setText(element.getServerValue(getString(R.string.liferay_recordset_fields)));
+		Object serverValue = element.getServerValue(getString(R.string.liferay_recordset_fields));
+		issueTitle.setText(String.valueOf(serverValue));
 
 		String date = new SimpleDateFormat("dd/MM/yyyy").format(element.getServerAttribute("createDate"));
 		((TextView) findViewById(R.id.createdAt)).setText("Created " + date);
 
 		TextView description = (TextView) findViewById(R.id.description);
-		description.setText(element.getServerValue("Description"));
+		description.setText(String.valueOf(element.getServerValue("Description")));
 
-		String severity = element.getServerValue("Severity");
+		String severity = String.valueOf(element.getServerValue("Severity"));
 		if (severity != null) {
 			severity = severity.replace("[\"", "");
 			severity = severity.replace("\"]", "");

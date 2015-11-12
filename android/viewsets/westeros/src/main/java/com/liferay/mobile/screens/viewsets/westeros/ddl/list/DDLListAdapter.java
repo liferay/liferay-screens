@@ -19,10 +19,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
-import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.viewsets.westeros.*;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
+import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.viewsets.westeros.R;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -32,116 +32,116 @@ import java.util.List;
  * @author Silvio Santos
  */
 public class DDLListAdapter
-        extends BaseListAdapter<Record, DDLListAdapter.SwipeActionsViewHolder> {
+	extends BaseListAdapter<Record, DDLListAdapter.SwipeActionsViewHolder> {
 
-    public static class SwipeActionsViewHolder
-            extends BaseListAdapter.ViewHolder implements View.OnClickListener {
+	public DDLListAdapter(
+		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 
-        public SwipeActionsViewHolder(View view, BaseListAdapterListener listener) {
-            super(view, listener);
+		super(layoutId, progressLayoutId, listener);
+	}
 
-            this._subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
-            this._stateIconView = (ImageView) view.findViewById(R.id.liferay_state_list_icon);
+	public void setLabelFields(List<String> labelFields) {
+		_labelFields = labelFields;
+	}
 
-            _listener = listener;
+	@Override
+	public SwipeActionsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+		LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
-            view.setOnClickListener(this);
-            view.findViewById(R.id.liferay_list_edit).setOnClickListener(this);
-            view.findViewById(R.id.liferay_list_view).setOnClickListener(this);
-            _swipeLayout = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
+		View view;
 
-        }
+		if (viewType == LAYOUT_TYPE_DEFAULT) {
+			view = inflater.inflate(getLayoutId(), parent, false);
+			SwipeLayout swipe = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
+			swipe.setShowMode(SwipeLayout.ShowMode.LayDown);
+			swipe.setDragEdge(SwipeLayout.DragEdge.Right);
+		}
+		else {
+			view = inflater.inflate(getProgressLayoutId(), parent, false);
+		}
 
-        @Override
-        public void onClick(View v) {
-            boolean opened = SwipeLayout.Status.Open.equals(_swipeLayout.getOpenStatus());
-            if (opened &&
-                (v.getId() == R.id.liferay_list_edit
-                    || v.getId() == R.id.liferay_list_view)) {
+		return new SwipeActionsViewHolder(view, getListener());
+	}
 
-                _listener.onItemClick(getPosition(), v);
-            }
-            else if (!opened) {
-                _swipeLayout.open(true);
-            }
-            else {
-                _swipeLayout.close(true);
-            }
-        }
+	@Override
+	protected void fillHolder(Record entry, SwipeActionsViewHolder holder) {
 
-        private final BaseListAdapterListener _listener;
-        private final TextView _subtitleTextView;
-        private final ImageView _stateIconView;
-        private final SwipeLayout _swipeLayout;
+		StringBuilder builder = new StringBuilder();
 
-    }
+		if (entry != null && _labelFields != null && !_labelFields.isEmpty()) {
 
-    public DDLListAdapter(
-            int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
+			String titleField = (String) entry.getServerValue(_labelFields.get(0));
 
-        super(layoutId, progressLayoutId, listener);
-    }
+			for (int i = 1; i < _labelFields.size(); ++i) {
+				String field = _labelFields.get(i);
+				String value = (String) entry.getServerValue(field);
+				if (value != null && !value.isEmpty()) {
+					builder.append(value);
+					builder.append(" ");
+				}
+			}
+			if (builder.length() == 0) {
+				String date = new SimpleDateFormat("dd/MM/yyyy").format(entry.getServerAttribute("createDate"));
+				builder.append("Created ");
+				builder.append(date);
+			}
 
-    public void setLabelFields(List<String> labelFields) {
-        _labelFields = labelFields;
-    }
+			holder.textView.setText(titleField);
+			holder._subtitleTextView.setText(builder.toString());
 
-    @Override
-    public SwipeActionsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+			int drawableId = getDrawable(getEntries().indexOf(entry));
+			if (holder._stateIconView != null) {
+				holder._stateIconView.setImageResource(drawableId);
+			}
+		}
+	}
 
-        View view;
+	protected int getDrawable(int position) {
+		return 0;
+	}
 
-        if (viewType == LAYOUT_TYPE_DEFAULT) {
-            view = inflater.inflate(getLayoutId(), parent, false);
-            SwipeLayout swipe = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
-            swipe.setShowMode(SwipeLayout.ShowMode.LayDown);
-            swipe.setDragEdge(SwipeLayout.DragEdge.Right);
-        }
-        else {
-            view = inflater.inflate(getProgressLayoutId(), parent, false);
-        }
+	private List<String> _labelFields;
 
-        return new SwipeActionsViewHolder(view, getListener());
-    }
+	public static class SwipeActionsViewHolder
+		extends BaseListAdapter.ViewHolder implements View.OnClickListener {
 
-    @Override
-    protected void fillHolder(Record entry, SwipeActionsViewHolder holder) {
+		public SwipeActionsViewHolder(View view, BaseListAdapterListener listener) {
+			super(view, listener);
 
-        StringBuilder builder = new StringBuilder();
+			this._subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
+			this._stateIconView = (ImageView) view.findViewById(R.id.liferay_state_list_icon);
 
-        if (entry != null && _labelFields != null && !_labelFields.isEmpty()) {
+			_listener = listener;
 
-            String titleField = entry.getServerValue(_labelFields.get(0));
+			view.setOnClickListener(this);
+			view.findViewById(R.id.liferay_list_edit).setOnClickListener(this);
+			view.findViewById(R.id.liferay_list_view).setOnClickListener(this);
+			_swipeLayout = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
 
-            for (int i = 1; i < _labelFields.size(); ++i) {
-                String field = _labelFields.get(i);
-                String value = entry.getServerValue(field);
-                if (value != null && !value.isEmpty()) {
-                    builder.append(value);
-                    builder.append(" ");
-                }
-            }
-            if (builder.length() == 0) {
-                String date = new SimpleDateFormat("dd/MM/yyyy").format(entry.getServerAttribute("createDate"));
-                builder.append("Created ");
-                builder.append(date);
-            }
+		}
 
-            holder.textView.setText(titleField);
-            holder._subtitleTextView.setText(builder.toString());
+		@Override
+		public void onClick(View v) {
+			boolean opened = SwipeLayout.Status.Open.equals(_swipeLayout.getOpenStatus());
+			if (opened &&
+				(v.getId() == R.id.liferay_list_edit
+					|| v.getId() == R.id.liferay_list_view)) {
 
-            int drawableId = getDrawable(getEntries().indexOf(entry));
-            if (holder._stateIconView != null) {
-                holder._stateIconView.setImageResource(drawableId);
-            }
-        }
-    }
+				_listener.onItemClick(getPosition(), v);
+			}
+			else if (!opened) {
+				_swipeLayout.open(true);
+			}
+			else {
+				_swipeLayout.close(true);
+			}
+		}
 
-    protected int getDrawable(int position) {
-        return 0;
-    }
+		private final BaseListAdapterListener _listener;
+		private final TextView _subtitleTextView;
+		private final ImageView _stateIconView;
+		private final SwipeLayout _swipeLayout;
 
-    private List<String> _labelFields;
+	}
 
 }

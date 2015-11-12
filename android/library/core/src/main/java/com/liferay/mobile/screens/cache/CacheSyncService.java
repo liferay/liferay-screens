@@ -18,6 +18,7 @@ import com.liferay.mobile.screens.ddl.form.service.UploadService;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitService;
+import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONObject;
@@ -50,7 +51,7 @@ public class CacheSyncService extends IntentService {
 		boolean isConnected = activeNetwork != null &&
 			activeNetwork.isConnectedOrConnecting();
 
-		if (isConnected && SessionContext.hasSession()) {
+		if (isConnected && SessionContext.hasSession() && SessionContext.getLoggedUser() != null) {
 			try {
 				Cache cache = CacheSQL.getInstance();
 				sendPortrait(cache);
@@ -101,7 +102,7 @@ public class CacheSyncService extends IntentService {
 		for (DocumentUploadCache document : documentsToUpload) {
 			try {
 				Map<String, Object> objectObjectHashMap = new HashMap<>();
-				DocumentField documentField = new DocumentField(objectObjectHashMap, new Locale("es"));
+				DocumentField documentField = new DocumentField(objectObjectHashMap, LiferayLocale.getDefaultLocale(), Locale.US);
 				documentField.createLocalFile(document.getPath());
 
 				UploadService uploadService = new UploadService();

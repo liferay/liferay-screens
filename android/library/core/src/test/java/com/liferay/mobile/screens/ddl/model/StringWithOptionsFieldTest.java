@@ -63,6 +63,7 @@ public class StringWithOptionsFieldTest {
 
 		return parsedData;
 	}
+
 	private static final Locale _spanishLocale = new Locale("es", "ES");
 	private static final Locale _usLocale = new Locale("en", "US");
 

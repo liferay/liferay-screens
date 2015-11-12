@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.cache.sql;
 
 import com.liferay.mobile.screens.cache.CachedContent;
+
 import java.util.List;
 
 import static com.liferay.mobile.screens.cache.sql.CacheSQL.queryGet;
@@ -28,7 +29,8 @@ public abstract class BaseCacheStrategy<E extends CachedContent> implements Cach
 
 		if (result.hasError() || object == object.getTableCache()) {
 			return result;
-		} else {
+		}
+		else {
 			return CacheSQL.querySet(object);
 		}
 	}

@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -51,6 +51,8 @@ public class Record implements Parcelable {
 				return new Record[size];
 			}
 		};
+	public static final String MODEL_VALUES = "modelValues";
+	public static final String MODEL_ATTRIBUTES = "modelAttributes";
 
 	public Record(Locale locale) {
 		_locale = locale;
@@ -110,13 +112,13 @@ public class Record implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
-		destination.writeMap(_valuesAndAttributes);
 		destination.writeParcelableArray(_fields.toArray(new Field[_fields.size()]), flags);
 		destination.writeSerializable(_locale);
-		writeLong(destination, _creatorUserId);
-		writeLong(destination, _structureId);
-		writeLong(destination, _recordSetId);
-		writeLong(destination, _recordId);
+		destination.writeValue(_creatorUserId);
+		destination.writeValue(_structureId);
+		destination.writeValue(_recordSetId);
+		destination.writeValue(_recordId);
+		destination.writeMap(getValuesAndAttributes());
 	}
 
 	public long getRecordSetId() {
@@ -196,7 +198,7 @@ public class Record implements Parcelable {
 	 * @param field
 	 * @return server value of that field
 	 */
-	public String getServerValue(String field) {
+	public Object getServerValue(String field) {
 		return getModelValues() == null ? null : getModelValues().get(field);
 	}
 
@@ -210,31 +212,32 @@ public class Record implements Parcelable {
 		return getModelAttributes() == null ? null : getModelAttributes().get(field);
 	}
 
+	public Map<String, Object> getValuesAndAttributes() {
+		return _valuesAndAttributes;
+	}
+
 	public void setValuesAndAttributes(Map<String, Object> valuesAndAttributes) {
 		_valuesAndAttributes = valuesAndAttributes;
 		parseServerValues();
 	}
 
-	public Map<String, Object> getValuesAndAttributes() {
-		return _valuesAndAttributes;
-	}
-
-	public HashMap<String, String> getModelValues() {
-		return (HashMap<String, String>) _valuesAndAttributes.get("modelValues");
+	public HashMap<String, Object> getModelValues() {
+		return (HashMap<String, Object>) _valuesAndAttributes.get(MODEL_VALUES);
 	}
 
 	public HashMap<String, Object> getModelAttributes() {
-		return (HashMap<String, Object>) _valuesAndAttributes.get("modelAttributes");
+		return (HashMap<String, Object>) _valuesAndAttributes.get(MODEL_ATTRIBUTES);
 	}
 
 	private Record(Parcel in, ClassLoader loader) {
-		Parcelable[] array = in.readParcelableArray(loader);
+		Parcelable[] array = in.readParcelableArray(getClass().getClassLoader());
 		_fields = new ArrayList(Arrays.asList(array));
-		_creatorUserId = in.readLong();
-		_structureId = in.readLong();
-		_recordSetId = in.readLong();
-		_recordId = in.readLong();
 		_locale = (Locale) in.readSerializable();
+		_creatorUserId = (Long) in.readValue(Long.class.getClassLoader());
+		_structureId = (Long) in.readValue(Long.class.getClassLoader());
+		_recordSetId = (Long) in.readValue(Long.class.getClassLoader());
+		_recordId = (Long) in.readValue(Long.class.getClassLoader());
+
 		_valuesAndAttributes = new HashMap<>();
 		in.readMap(_valuesAndAttributes, loader);
 	}
@@ -252,12 +255,6 @@ public class Record implements Parcelable {
 		Long userId = JSONUtil.castToLong(getServerAttribute("userId"));
 		if (userId != null) {
 			_creatorUserId = userId;
-		}
-	}
-
-	private void writeLong(Parcel destination, Long field) {
-		if (field != null) {
-			destination.writeLong(field);
 		}
 	}
 

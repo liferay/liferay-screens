@@ -26,9 +26,9 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.liferay.mobile.screens.viewsets.westeros.*;
 
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
+import com.liferay.mobile.screens.viewsets.westeros.R;
 
 /**
  * @author Silvio Santos
@@ -48,6 +48,14 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 	}
 
 	@Override
+	public void onClick(View view) {
+		if (validFields()) {
+			SignUpScreenlet signUpScreenlet = (SignUpScreenlet) getParent();
+			signUpScreenlet.performUserAction();
+		}
+	}
+
+	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
@@ -60,14 +68,6 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		_emailAddressValidation.setText("Email address can not be empty");
 		_passwordValidation = (TextView) findViewById(R.id.password_validation);
 		_passwordValidation.setText("Password can not be empty");
-	}
-
-	@Override
-	public void onClick(View view) {
-		if (validFields()) {
-			SignUpScreenlet signUpScreenlet = (SignUpScreenlet) getParent();
-			signUpScreenlet.performUserAction();
-		}
 	}
 
 	private boolean validFields() {

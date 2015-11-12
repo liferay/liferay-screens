@@ -63,11 +63,11 @@ public class DDLListScreenlet
 		return _userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		_userId = userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(int userId) {
 		_userId = userId;
 	}
 

@@ -20,13 +20,12 @@ import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 
-import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.viewsets.westeros.*;
-
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
+import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
+import com.liferay.mobile.screens.viewsets.westeros.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +85,7 @@ public class DDLListView
 
 	@Override
 	protected void onRestoreInstanceState(Parcelable inState) {
-		Bundle state = (Bundle)inState;
+		Bundle state = (Bundle) inState;
 		Parcelable superState = state.getParcelable(_STATE_SUPER);
 		super.onRestoreInstanceState(superState);
 

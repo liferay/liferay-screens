@@ -72,8 +72,8 @@ public class WebContentDisplayView extends FrameLayout
 
 		//TODO check encoding
 		_webView.loadDataWithBaseURL(
-				LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8",
-				null);
+			LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8",
+			null);
 	}
 
 	@Override
@@ -106,14 +106,14 @@ public class WebContentDisplayView extends FrameLayout
 
 	private static final String STYLES =
 		"<style>" +
-		".MobileCSS {padding: 4%; width: 92%;} " +
-		".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, " +
+			".MobileCSS {padding: 4%; width: 92%;} " +
+			".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, " +
 			".MobileCSS h2, .MobileCSS h3{ " +
-		"font-size: 110%; font-weight: 200;" +
+			"font-size: 110%; font-weight: 200;" +
 			"font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;} " +
-		".MobileCSS img { width: 100% !important; } " +
-		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }" +
-		"</style>";
+			".MobileCSS img { width: 100% !important; } " +
+			".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }" +
+			"</style>";
 
 	private WebView _webView;
 	private ProgressBar _progressBar;

@@ -34,8 +34,8 @@ public class DocumentField extends Field<DocumentFile> {
 		FAILED
 	}
 
-	public DocumentField(Map<String, Object> attributes, Locale locale) {
-		super(attributes, locale);
+	public DocumentField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+		super(attributes, locale, defaultLocale);
 	}
 
 	protected DocumentField(Parcel in) {
@@ -143,6 +143,7 @@ public class DocumentField extends Field<DocumentFile> {
 
 		return valid;
 	}
+
 	private State _state = State.IDLE;
 
 }

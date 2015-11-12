@@ -31,10 +31,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 

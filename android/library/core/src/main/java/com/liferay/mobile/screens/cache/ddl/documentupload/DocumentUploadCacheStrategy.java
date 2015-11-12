@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.cache.ddl.documentupload;
 
 import com.liferay.mobile.screens.cache.sql.BaseCacheStrategy;
 import com.liferay.mobile.screens.cache.sql.CacheStrategy;
-import com.liferay.mobile.screens.cache.userportrait.UserPortraitCache;
 
 import java.util.List;
 import java.util.Locale;
