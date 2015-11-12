@@ -70,11 +70,11 @@ public class DDLListAdapter
 
 		if (entry != null && _labelFields != null && !_labelFields.isEmpty()) {
 
-			String titleField = entry.getServerValue(_labelFields.get(0));
+			String titleField = (String) entry.getServerValue(_labelFields.get(0));
 
 			for (int i = 1; i < _labelFields.size(); ++i) {
 				String field = _labelFields.get(i);
-				String value = entry.getServerValue(field);
+				String value = (String) entry.getServerValue(field);
 				if (value != null && !value.isEmpty()) {
 					builder.append(value);
 					builder.append(" ");

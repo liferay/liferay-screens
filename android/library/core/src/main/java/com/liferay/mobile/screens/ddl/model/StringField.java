@@ -38,8 +38,8 @@ public class StringField extends Field<String> {
 		};
 
 
-	public StringField(Map<String, Object> attributes, Locale locale) {
-		super(attributes, locale);
+	public StringField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+		super(attributes, locale, defaultLocale);
 	}
 
 	protected StringField(Parcel in) {
