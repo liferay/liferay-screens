@@ -105,16 +105,16 @@ public class NumberFieldTest {
 		public void shouldReturnIntegerStringWhenIntegerNumberIsSupplied() throws Exception {
 			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
-			assertEquals("123", field.convertToData(Integer.valueOf(123)));
-			assertEquals("123", field.convertToData(Long.valueOf(123L)));
+			assertEquals("123", field.convertToData(123));
+			assertEquals("123", field.convertToData(123L));
 		}
 
 		@Test
 		public void shouldReturnDecimalStringWhenDecimalNumberIsSupplied() throws Exception {
 			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
-			assertEquals("123.4", field.convertToData(Double.valueOf(123.4)));
-			assertEquals("123.4", field.convertToData(Float.valueOf(123.4f)));
+			assertEquals("123.4", field.convertToData(123.4d));
+			assertEquals("123.4", field.convertToData(123.4f));
 		}
 	}
 
@@ -133,24 +133,24 @@ public class NumberFieldTest {
 		public void shouldReturnSpanishFormattedIntegerNumber() {
 			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
-			assertEquals("1234", field.convertToData(Integer.valueOf(1234)));
-			assertEquals("1234", field.convertToData(Long.valueOf(1234L)));
+			assertEquals("1234", field.convertToData(1234));
+			assertEquals("1234", field.convertToData(1234L));
 		}
 
 		@Test
 		public void shouldReturnUSFormattedIntegerNumber() {
 			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale, _usLocale);
 
-			assertEquals("1234", field.convertToData(Integer.valueOf(1234)));
-			assertEquals("1234", field.convertToData(Long.valueOf(1234L)));
+			assertEquals("1234", field.convertToData(1234));
+			assertEquals("1234", field.convertToData(1234L));
 		}
 
 		@Test
 		public void shouldReturnUSFormattedDecimalNumber() {
 			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale, _usLocale);
 
-			assertEquals("123.4", field.convertToData(Double.valueOf(123.4)));
-			assertEquals("123.4", field.convertToData(Float.valueOf(123.4f)));
+			assertEquals("123.4", field.convertToData(123.4d));
+			assertEquals("123.4", field.convertToData(123.4f));
 		}
 
 	}

@@ -65,7 +65,7 @@ public class DDLFormLoadRecordInteractorImpl
 				JSONObject jsonObject = event.getJSONObject();
 
 				final Map<String, Object> valuesAndAttributes = new HashMap<>();
-				valuesAndAttributes.put("modelValues", new JSONUtil().toMap(jsonObject));
+				valuesAndAttributes.put("modelValues", JSONUtil.toMap(jsonObject));
 				event.getRecord().setValuesAndAttributes(valuesAndAttributes);
 
 				event.getRecord().refresh();

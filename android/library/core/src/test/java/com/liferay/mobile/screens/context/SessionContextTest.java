@@ -22,7 +22,7 @@ import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.RobolectricManifestTestRunner;
-import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStoreSharedPreferences;
+import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStoreSharedPreferences;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -197,7 +197,7 @@ public class SessionContextTest {
 
 			SessionContext.storeSession(SHARED_PREFERENCES);
 
-			String sharedPreferencesName = new BasicCredentialsStoreSharedPreferences().getStoreName();
+			String sharedPreferencesName = BaseCredentialsStoreSharedPreferences.getStoreName();
 			SharedPreferences sharedPref =
 				ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
 
@@ -225,7 +225,7 @@ public class SessionContextTest {
 
 			SessionContext.storeSession(SHARED_PREFERENCES);
 
-			String sharedPreferencesName = new BasicCredentialsStoreSharedPreferences().getStoreName();
+			String sharedPreferencesName = BaseCredentialsStoreSharedPreferences.getStoreName();
 
 			SharedPreferences sharedPref =
 				ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
@@ -255,7 +255,7 @@ public class SessionContextTest {
 			SessionContext.clearSession();
 			SessionContext.loadSessionFromStore(SHARED_PREFERENCES);
 
-			String sharedPreferencesName = new BasicCredentialsStoreSharedPreferences().getStoreName();
+			String sharedPreferencesName = BaseCredentialsStoreSharedPreferences.getStoreName();
 			SharedPreferences sharedPref =
 				ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
 
