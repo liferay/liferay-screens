@@ -28,8 +28,8 @@ public abstract class BaseRemoteInteractor<L> extends BaseInteractor<L> {
 	}
 
 	@Override
-	public void onScreenletAttachted(L listener) {
-		super.onScreenletAttachted(listener);
+	public void onScreenletAttached(L listener) {
+		super.onScreenletAttached(listener);
 
 		EventBusUtil.register(this);
 	}

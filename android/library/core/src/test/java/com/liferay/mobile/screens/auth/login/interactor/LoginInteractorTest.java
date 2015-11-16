@@ -224,7 +224,7 @@ public class LoginInteractorTest {
 				interactorSpy
 			).getUserService(_LOGIN_EMAIL, _LOGIN_PASSWORD);
 
-			interactorSpy.onScreenletAttachted(listener);
+			interactorSpy.onScreenletAttached(listener);
 
 			when(
 				serviceMock.getUserByEmailAddress(_companyId, _LOGIN_EMAIL)

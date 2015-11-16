@@ -96,7 +96,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		I result = createInteractor(actionName);
 
 		if (result != null) {
-			result.onScreenletAttachted(this);
+			result.onScreenletAttached(this);
 			_interactors.put(actionName, result);
 		}
 
@@ -147,7 +147,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 		if (!isInEditMode()) {
 			for (I interactor : _interactors.values()) {
-				interactor.onScreenletAttachted(this);
+				interactor.onScreenletAttached(this);
 			}
 		}
 
