@@ -46,15 +46,7 @@ public abstract class BaseRemoteInteractor<L> extends BaseInteractor<L> {
 	}
 
 	protected boolean isValidEvent(BasicEvent event) {
-		if (getListener() == null) {
-			return false;
-		}
-
-		if (event.getTargetScreenletId() != getTargetScreenletId()) {
-			return false;
-		}
-
-		return true;
+		return getListener() != null && event.getTargetScreenletId() == getTargetScreenletId();
 	}
 
 	private int _targetScreenletId;
