@@ -30,11 +30,11 @@ import java.util.Locale;
 /**
  * @author Jose Manuel Navarro
  */
-public class WebContentDisplayInteractorImpl
+public class WebContentDisplayFromArticleIdInteractorImpl
 	extends BaseCachedRemoteInteractor<WebContentDisplayListener, WebContentDisplayEvent>
-	implements WebContentDisplayInteractor {
+	implements WebContentDisplayFromArticleIdInteractor {
 
-	public WebContentDisplayInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
+	public WebContentDisplayFromArticleIdInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
 		super(targetScreenletId, offlinePolicy);
 	}
 
@@ -90,7 +90,7 @@ public class WebContentDisplayInteractorImpl
 		Long templateId = (Long) args[3];
 
 		String id = articleId + (templateId == null || templateId == 0 ? "" : templateId);
-		Long userId = null;
+		Long userId = SessionContext.getUserId();
 		TableCache webContent = (TableCache) CacheSQL.getInstance().getById(DefaultCachedType.WEB_CONTENT, id, groupId, userId, locale);
 		if (webContent != null) {
 			onEvent(new WebContentDisplayEvent(getTargetScreenletId(), groupId, articleId, locale, templateId, webContent.getContent()));
@@ -110,14 +110,14 @@ public class WebContentDisplayInteractorImpl
 
 	protected JournalArticleService getJournalArticleService(long groupId, String articleId, Locale locale) {
 		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new WebContentDisplayCallback(getTargetScreenletId(), groupId, articleId, locale));
+		session.setCallback(new WebContentDisplayFromArticleIdCallback(getTargetScreenletId(), groupId, articleId, locale));
 		return new JournalArticleService(session);
 	}
 
 	protected ScreensjournalarticleService getScreensJournalArticleService(long groupId, String articleId, Locale locale, Long templateId) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(
-			new WebContentDisplayCallback(getTargetScreenletId(), groupId, articleId, locale, templateId));
+			new WebContentDisplayFromArticleIdCallback(getTargetScreenletId(), groupId, articleId, locale, templateId));
 
 		return new ScreensjournalarticleService(session);
 	}
