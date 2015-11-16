@@ -16,14 +16,12 @@ package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
-import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v62.ScreensjournalarticleService;
-import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 
 import java.util.Locale;
 
@@ -31,7 +29,7 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayFromArticleIdInteractorImpl
-	extends BaseCachedRemoteInteractor<WebContentDisplayListener, WebContentDisplayEvent>
+	extends WebContentDisplayBaseInteractorImpl
 	implements WebContentDisplayFromArticleIdInteractor {
 
 	public WebContentDisplayFromArticleIdInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
@@ -77,11 +75,6 @@ public class WebContentDisplayFromArticleIdInteractorImpl
 	}
 
 	@Override
-	protected void notifyError(WebContentDisplayEvent event) {
-		getListener().onWebContentFailure(null, event.getException());
-	}
-
-	@Override
 	protected boolean cached(Object[] args) {
 
 		long groupId = (long) args[0];
@@ -116,23 +109,21 @@ public class WebContentDisplayFromArticleIdInteractorImpl
 
 	protected ScreensjournalarticleService getScreensJournalArticleService(long groupId, String articleId, Locale locale, Long templateId) {
 		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(
-			new WebContentDisplayFromArticleIdCallback(getTargetScreenletId(), groupId, articleId, locale, templateId));
-
+		WebContentDisplayFromArticleIdCallback callback =
+			new WebContentDisplayFromArticleIdCallback(getTargetScreenletId(), groupId, articleId, locale, templateId);
+		session.setCallback(callback);
 		return new ScreensjournalarticleService(session);
 	}
 
 	protected void validate(long groupId, String articleId, Locale locale) {
+		super.validate(locale);
+
 		if (groupId <= 0) {
 			throw new IllegalArgumentException("GroupId cannot be 0 or negative");
 		}
 
 		if (articleId == null || articleId.isEmpty()) {
 			throw new IllegalArgumentException("ArticleId cannot be empty");
-		}
-
-		if (locale == null) {
-			throw new IllegalArgumentException("Locale cannot be empty");
 		}
 	}
 }
