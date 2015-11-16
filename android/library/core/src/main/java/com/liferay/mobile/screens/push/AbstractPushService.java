@@ -6,7 +6,6 @@ import android.content.Intent;
 import com.liferay.mobile.push.bus.BusUtil;
 import com.liferay.mobile.push.util.GoogleServices;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -33,7 +32,7 @@ public abstract class AbstractPushService extends IntentService {
 		}
 	}
 
-	protected abstract void processJSONNotification(final JSONObject json) throws JSONException, Exception;
+	protected abstract void processJSONNotification(final JSONObject json) throws Exception;
 
 	private GoogleServices _googleService = new GoogleServices();
 
