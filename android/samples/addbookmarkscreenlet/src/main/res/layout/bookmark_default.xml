@@ -8,7 +8,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="15dp"
-		android:hint="URL Address"
+		android:hint="@string/url_address"
 		android:inputType="textUri"/>
 
 	<EditText
@@ -16,12 +16,12 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="15dp"
-		android:hint="Title"/>
+		android:hint="@string/title"/>
 
 	<Button
 		android:id="@+id/add_button"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="Add Bookmark"/>
+		android:text="@string/add_bookmark"/>
 
 </com.liferay.mobile.screens.bookmark.view.AddBookmarkView>

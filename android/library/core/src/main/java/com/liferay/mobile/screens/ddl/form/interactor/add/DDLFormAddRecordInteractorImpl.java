@@ -155,7 +155,7 @@ public class DDLFormAddRecordInteractorImpl
 			CacheSQL.getInstance().set(recordCache);
 		}
 		catch (JSONException e) {
-			LiferayLogger.e("Couldnt parse JSON values", e);
+			LiferayLogger.e("Couldn't parse JSON values", e);
 		}
 	}
 
