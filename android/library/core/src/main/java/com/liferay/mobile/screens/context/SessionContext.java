@@ -73,6 +73,10 @@ public class SessionContext {
 		return _loggedUser;
 	}
 
+	public static Long getUserId() {
+		return _loggedUser == null ? null : _loggedUser.getId();
+	}
+
 	public static void setLoggedUser(User value) {
 		_loggedUser = value;
 	}
