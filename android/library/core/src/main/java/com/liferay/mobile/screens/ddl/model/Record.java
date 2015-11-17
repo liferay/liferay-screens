@@ -51,6 +51,7 @@ public class Record implements Parcelable {
 				return new Record[size];
 			}
 		};
+
 	public static final String MODEL_VALUES = "modelValues";
 	public static final String MODEL_ATTRIBUTES = "modelAttributes";
 
