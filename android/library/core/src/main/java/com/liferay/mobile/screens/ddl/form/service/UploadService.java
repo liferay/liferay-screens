@@ -65,7 +65,6 @@ public class UploadService extends IntentService {
 
 			DDLFormDocumentUploadEvent event = new DDLFormDocumentUploadEvent(targetScreenletId, file, userId, groupId, repositoryId,
 				folderId, filePrefix, jsonObject);
-			event.setRemote(true);
 			EventBusUtil.post(event);
 		}
 		catch (Exception e) {

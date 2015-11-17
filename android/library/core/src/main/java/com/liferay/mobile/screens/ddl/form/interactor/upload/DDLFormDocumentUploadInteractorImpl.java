@@ -40,15 +40,15 @@ public class DDLFormDocumentUploadInteractorImpl
 
 		if (event.isFailed()) {
 			try {
-				storeToCacheAndLaunchEvent(false, event, event.getDocumentField(), event.getUserId(), event.getGroupId(),
+				storeToCacheAndLaunchEvent(event, event.getDocumentField(), event.getUserId(), event.getGroupId(),
 					event.getRepositoryId(), event.getFolderId(), event.getFilePrefix());
 			}
 			catch (Exception e) {
-				notifyError(event);
+				getListener().onDDLFormDocumentUploadFailed(event.getDocumentField(), event.getException());
 			}
 		}
 		else {
-			if (event.isRemote()) {
+			if (!event.isCacheRequest()) {
 				store(true, event.getDocumentField(), event.getUserId(), event.getGroupId(),
 					event.getRepositoryId(), event.getFolderId(), event.getFilePrefix());
 			}
@@ -72,12 +72,7 @@ public class DDLFormDocumentUploadInteractorImpl
 	}
 
 	@Override
-	protected void notifyError(DDLFormDocumentUploadEvent event) {
-		getListener().onDDLFormDocumentUploadFailed(event.getDocumentField(), event.getException());
-	}
-
-	@Override
-	protected void storeToCacheAndLaunchEvent(boolean synced, Object... args) {
+	protected void storeToCacheAndLaunchEvent(Object... args) {
 
 		DocumentField file = (DocumentField) args[0];
 		long userId = (long) args[1];
@@ -86,10 +81,12 @@ public class DDLFormDocumentUploadInteractorImpl
 		long folderId = (long) args[4];
 		String filePrefix = (String) args[5];
 
-		store(synced, file, userId, groupId, repositoryId, folderId, filePrefix);
+		store(false, file, userId, groupId, repositoryId, folderId, filePrefix);
 
-		onEventMainThread(new DDLFormDocumentUploadEvent(getTargetScreenletId(), file, userId,
-			groupId, repositoryId, folderId, filePrefix, new JSONObject()));
+		DDLFormDocumentUploadEvent event = new DDLFormDocumentUploadEvent(getTargetScreenletId(), file, userId,
+			groupId, repositoryId, folderId, filePrefix, new JSONObject());
+		event.setCacheRequest(true);
+		onEventMainThread(event);
 	}
 
 	private void store(boolean synced, DocumentField file, long userId, long groupId, long repositoryId, long folderId, String filePrefix) {
