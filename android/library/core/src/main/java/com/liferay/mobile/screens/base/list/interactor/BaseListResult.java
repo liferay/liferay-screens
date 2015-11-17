@@ -19,6 +19,7 @@ public class BaseListResult<E> {
 	public void setRowCount(int value) {
 		_rowCount = value;
 	}
+
 	private List<E> _entries;
 	private int _rowCount;
 

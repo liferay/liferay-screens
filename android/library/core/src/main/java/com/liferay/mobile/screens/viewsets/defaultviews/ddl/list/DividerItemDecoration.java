@@ -106,6 +106,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 			throw new IllegalStateException("DividerItemDecoration can only be used with a LinearLayoutManager.");
 		}
 	}
+
 	private Drawable mDivider;
 
 }

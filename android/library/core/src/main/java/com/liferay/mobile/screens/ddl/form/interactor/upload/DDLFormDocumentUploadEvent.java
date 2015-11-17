@@ -62,12 +62,12 @@ public class DDLFormDocumentUploadEvent extends JSONObjectEvent implements Remot
 	}
 
 	@Override
-	public boolean isRemote() {
-		return _remote;
+	public boolean isCacheRequest() {
+		return _cacheRequest;
 	}
 
-	public void setRemote(boolean remote) {
-		_remote = remote;
+	public void setCacheRequest(boolean cacheRequest) {
+		_cacheRequest = cacheRequest;
 	}
 
 	private final DocumentField _documentField;
@@ -76,5 +76,5 @@ public class DDLFormDocumentUploadEvent extends JSONObjectEvent implements Remot
 	private final Long _repositoryId;
 	private final Long _folderId;
 	private final String _filePrefix;
-	private boolean _remote;
+	private boolean _cacheRequest;
 }

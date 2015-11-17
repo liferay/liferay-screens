@@ -90,7 +90,7 @@ public class WebContentDisplayInteractorImpl
 		Long templateId = (Long) args[3];
 
 		String id = articleId + (templateId == null || templateId == 0 ? "" : templateId);
-		Long userId = null;
+		Long userId = SessionContext.getDefaultUserId();
 		TableCache webContent = (TableCache) CacheSQL.getInstance().getById(DefaultCachedType.WEB_CONTENT, id, groupId, userId, locale);
 		if (webContent != null) {
 			onEvent(new WebContentDisplayEvent(getTargetScreenletId(), groupId, articleId, locale, templateId, webContent.getContent()));

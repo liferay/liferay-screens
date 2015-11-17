@@ -24,6 +24,7 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStoreSharedPreferences;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStoreSharedPreferences;
 
 import org.json.JSONException;
@@ -109,7 +110,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 			SharedPreferences sharedPref =
 				RuntimeEnvironment.application.getApplicationContext().getSharedPreferences(
-					store.getStoreName(), Context.MODE_PRIVATE);
+					BaseCredentialsStoreSharedPreferences.getStoreName(), Context.MODE_PRIVATE);
 
 			assertEquals("user123", sharedPref.getString("username", "not-present"));
 			assertEquals("pass123", sharedPref.getString("password", "not-present"));
@@ -140,7 +141,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 			SharedPreferences sharedPref =
 				RuntimeEnvironment.application.getApplicationContext().getSharedPreferences(
-					store.getStoreName(), Context.MODE_PRIVATE);
+					BaseCredentialsStoreSharedPreferences.getStoreName(), Context.MODE_PRIVATE);
 
 			assertFalse(sharedPref.contains("username"));
 		}

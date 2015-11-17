@@ -57,14 +57,14 @@ public class DDLFormUpdateRecordInteractorImpl
 
 		if (event.isFailed()) {
 			try {
-				storeToCacheAndLaunchEvent(false, event.getGroupId(), event.getRecord());
+				storeToCacheAndLaunchEvent(event.getGroupId(), event.getRecord());
 			}
 			catch (Exception e) {
-				notifyError(event);
+				getListener().onDDLFormUpdateRecordFailed(event.getException());
 			}
 		}
 		else {
-			if (event.isRemote()) {
+			if (!event.isCacheRequest()) {
 				store(true, event.getGroupId(), event.getRecord());
 			}
 
@@ -90,18 +90,15 @@ public class DDLFormUpdateRecordInteractorImpl
 	}
 
 	@Override
-	protected void notifyError(DDLFormUpdateRecordEvent event) {
-		getListener().onDDLFormUpdateRecordFailed(event.getException());
-	}
-
-	@Override
-	protected void storeToCacheAndLaunchEvent(boolean synced, Object... args) {
+	protected void storeToCacheAndLaunchEvent(Object... args) {
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
 
-		final JSONObject fieldsValues = store(synced, groupId, record);
+		final JSONObject fieldsValues = store(false, groupId, record);
 
-		onEvent(new DDLFormUpdateRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues));
+		DDLFormUpdateRecordEvent event = new DDLFormUpdateRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues);
+		event.setCacheRequest(true);
+		onEvent(event);
 	}
 
 	protected DDLRecordService getDDLRecordService(Record record, long groupId) {
@@ -144,7 +141,7 @@ public class DDLFormUpdateRecordInteractorImpl
 			CacheSQL.getInstance().set(recordCache);
 		}
 		catch (JSONException e) {
-			LiferayLogger.e("Couldnt parse JSON values", e);
+			LiferayLogger.e("Couldn't parse JSON values", e);
 		}
 	}
 

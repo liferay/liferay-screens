@@ -51,6 +51,7 @@ public class Record implements Parcelable {
 				return new Record[size];
 			}
 		};
+
 	public static final String MODEL_VALUES = "modelValues";
 	public static final String MODEL_ATTRIBUTES = "modelAttributes";
 
@@ -195,7 +196,7 @@ public class Record implements Parcelable {
 	/**
 	 * renamed from getValue()
 	 *
-	 * @param field
+	 * @param field key of the field
 	 * @return server value of that field
 	 */
 	public Object getServerValue(String field) {
@@ -205,7 +206,7 @@ public class Record implements Parcelable {
 	/**
 	 * renamed from getAttributes()
 	 *
-	 * @param field
+	 * @param field key of the field
 	 * @return server attribute of that field
 	 */
 	public Object getServerAttribute(String field) {
