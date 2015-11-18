@@ -103,8 +103,8 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 
 	// NOTE: this interactor can store state because these attributes
 	// aren't used after the request is fired.
-	private String _login;
-	private String _password;
-	private BasicAuthMethod _basicAuthMethod;
+	protected String _login;
+	protected String _password;
+	protected BasicAuthMethod _basicAuthMethod;
 
 }
