@@ -28,4 +28,6 @@
 	<string name="filtered_asset">Filtered asset</string>
 	<string name="email_address">Email Address</string>
 	<string name="sign_in">Sign In</string>
+
+	<string name="custom_interactor">Login with custom interactor</string>
 </resources>
