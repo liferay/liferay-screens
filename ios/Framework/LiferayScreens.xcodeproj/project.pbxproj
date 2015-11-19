@@ -1498,6 +1498,8 @@
 		8892C66F1ACB2E3300192232 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = Liferay;
 				TargetAttributes = {
