@@ -16,14 +16,13 @@ import Foundation
 extension String {
 
 	public func toSafeFilename() -> String {
-		let regex = NSRegularExpression(
+		let regex = try! NSRegularExpression(
 			pattern: "[^a-zA-Z0-9_]+",
-			options: .allZeros,
-			error: nil)!
+			options: [])
 
 		return regex.stringByReplacingMatchesInString(self,
-			options: .allZeros,
-			range: NSMakeRange(0, count(self)),
+			options: [],
+			range: NSMakeRange(0, self.characters.count),
 			withTemplate: "-")
 	}
 

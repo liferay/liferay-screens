@@ -138,9 +138,8 @@ public class DDLFieldDocument : DDLField {
 			let data = valueString.dataUsingEncoding(NSUTF8StringEncoding,
 				allowLossyConversion: false)
 
-			let jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data!,
-				options: NSJSONReadingOptions(0),
-				error: nil)
+			let jsonObject: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(data!,
+				options: NSJSONReadingOptions(rawValue: 0))
 
 			if let jsonDict = jsonObject as? [String:AnyObject] {
 				uploadStatus = .Uploaded(jsonDict)
@@ -170,9 +169,8 @@ public class DDLFieldDocument : DDLField {
 						"\"version\":\"\(version)\"}"
 			}
 			else {
-				let data = NSJSONSerialization.dataWithJSONObject(json,
-					options: .allZeros,
-					error: nil)
+				let data = try? NSJSONSerialization.dataWithJSONObject(json,
+					options: [])
 
 				if let data = data {
 					return NSString(data: data, encoding: NSUTF8StringEncoding) as? String
@@ -228,11 +226,14 @@ public class DDLFieldDocument : DDLField {
 
 		case let videoURL as NSURL:
 			var outError:NSError?
-			if let attributes = NSFileManager.defaultManager().attributesOfItemAtPath(
-					videoURL.path!, error: &outError) {
+			do {
+				let attributes = try NSFileManager.defaultManager().attributesOfItemAtPath(
+						videoURL.path!)
 				if let sizeValue = attributes[NSFileSize] as? NSNumber {
 					size = sizeValue.longLongValue
 				}
+			} catch var error as NSError {
+				outError = error
 			}
 			result = NSInputStream(URL: videoURL)
 
