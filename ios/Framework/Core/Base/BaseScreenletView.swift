@@ -247,14 +247,14 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 		addDefaultDelegatesForView(view)
 
-		for subview:UIView in view.subviews as! [UIView] {
+		for subview:UIView in view.subviews {
 			setUpView(subview)
 		}
 	}
 
 	private func changeEditable(editable: Bool, fromView view: UIView) {
 		view.userInteractionEnabled = editable
-		for v in view.subviews as! [UIView] {
+		for v in view.subviews {
 			changeEditable(editable, fromView: v)
 		}
 	}

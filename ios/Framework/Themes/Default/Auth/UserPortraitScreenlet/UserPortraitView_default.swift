@@ -157,7 +157,7 @@ public class UserPortraitView_default: BaseScreenletView,
 			vc.presentViewController(imagePicker, animated: true, completion: {})
 		}
 		else {
-			print("ERROR: You neet to set the presentingViewController before using UIActionSheet")
+			print("ERROR: You neet to set the presentingViewController before using UIActionSheet\n")
 		}
 	}
 
@@ -179,7 +179,7 @@ public class UserPortraitView_default: BaseScreenletView,
 
 	public func imagePickerController(
 			picker: UIImagePickerController,
-			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+			didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 
 		let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage
 
