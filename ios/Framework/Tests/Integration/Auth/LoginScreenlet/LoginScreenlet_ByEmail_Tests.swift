@@ -51,7 +51,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				}
 				self.screenlet!.performDefaultAction()
 			}
-			eventually("the state of the screenlet should be consistent", {result in
+			eventually("the state of the screenlet should be consistent", code: {result in
 				assertThat("the error should be nil") {
 					XCTAssertFalse(result is NSError)
 				}
@@ -76,7 +76,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					XCTAssertEqual("test", SessionContext.currentBasicPassword!)
 				}
 			},
-			.TestAndWaitFor("login response received", self))
+			action: .TestAndWaitFor("login response received", self))
 		}
 	}
 
@@ -110,7 +110,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				self.screenlet!.performDefaultAction()
 
 			}
-			eventually("the credentials should be stored", {result in
+			eventually("the credentials should be stored", code: {result in
 				assertThat("the session context can load the credentials") {
 					XCTAssertTrue(SessionContext.loadSessionFromStore())
 				}
@@ -118,7 +118,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					XCTAssertTrue((self.screenlet!.delegate as! TestLoginScreenletDelegate).credentialsSavedCalled)
 				}
 			},
-			.TestAndWaitFor("login response received", self))
+			action: .TestAndWaitFor("login response received", self))
 		}
 	}
 
@@ -143,7 +143,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				}
 				self.screenlet!.performDefaultAction()
 			}
-			eventually("the state of the screenlet should be consistent", {result in
+			eventually("the state of the screenlet should be consistent", code: {result in
 				assertThat("the error should be nil") {
 					XCTAssertTrue(result is NSError)
 
@@ -162,7 +162,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					XCTAssertNil(SessionContext.currentBasicPassword)
 				}
 			},
-			.TestAndWaitFor("login response received", self))
+			action: .TestAndWaitFor("login response received", self))
 		}
 	}
 

@@ -90,7 +90,7 @@ public class UserPortraitView_default: BaseScreenletView,
 			],
 			"upload-portrait" : [
 				.Working : "",
-				.Failure : LocalizedString("default", "userportrait-uploading-error", self)
+				.Failure : LocalizedString("default", key: "userportrait-uploading-error", obj: self)
 			]]
 	}
 
@@ -119,8 +119,8 @@ public class UserPortraitView_default: BaseScreenletView,
 
 	override public func onPreAction(name name: String, sender: AnyObject?) -> Bool {
 		if name == "edit-portrait" {
-			let takeNewPicture = LocalizedString("default", "userportrait-take-new-picture", self)
-			let chooseExisting = LocalizedString("default", "userportrait-choose-existing-picture", self)
+			let takeNewPicture = LocalizedString("default", key: "userportrait-take-new-picture", obj: self)
+			let chooseExisting = LocalizedString("default", key: "userportrait-choose-existing-picture", obj: self)
 
 			let sheet = UIActionSheet(
 				title: "Change portrait",

@@ -170,7 +170,7 @@ public class DDLFormTableView: DDLFormView,
 
 					UIView.animateWithDuration(animation.time.doubleValue,
 							delay: 0,
-							options: UIViewAnimationOptions(animation.curve.unsignedLongValue),
+							options: UIViewAnimationOptions(rawValue: animation.curve.unsignedLongValue),
 							animations: {
 								self.frame = CGRectMake(
 										self.frame.origin.x,

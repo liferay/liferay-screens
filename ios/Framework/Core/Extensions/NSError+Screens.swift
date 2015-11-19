@@ -25,11 +25,11 @@ public class ValidationError : NSError {
 	}
 
 	public convenience init(_ key: String, _ message: String) {
-		self.init(LocalizedString(key, message, dummyObject))
+		self.init(LocalizedString(key, key: message, obj: dummyObject))
 	}
 
 	public convenience init(_ key: String, _ message: String, _ bundleObject: AnyObject) {
-		self.init(LocalizedString(key, message, bundleObject))
+		self.init(LocalizedString(key, key: message, obj: bundleObject))
 	}
 
 	required public init(coder aDecoder: NSCoder) {

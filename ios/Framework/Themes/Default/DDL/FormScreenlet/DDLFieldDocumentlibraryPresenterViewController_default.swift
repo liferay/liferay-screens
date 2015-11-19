@@ -58,16 +58,16 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 		imagePicker.modalPresentationStyle = .CurrentContext
 
 		takeNewButton?.replaceAttributedTitle(
-				LocalizedString("default", "ddlform-upload-picker-take-new", self),
+				LocalizedString("default", key: "ddlform-upload-picker-take-new", obj: self),
 				forState: .Normal)
 		selectPhotoButton?.replaceAttributedTitle(
-				LocalizedString("default", "ddlform-upload-picker-select-photo", self),
+				LocalizedString("default", key: "ddlform-upload-picker-select-photo", obj: self),
 				forState: .Normal)
 		selectVideoButton?.replaceAttributedTitle(
-				LocalizedString("default", "ddlform-upload-picker-select-video", self),
+				LocalizedString("default", key: "ddlform-upload-picker-select-video", obj: self),
 				forState: .Normal)
 		cancelButton?.replaceAttributedTitle(
-				LocalizedString("default", "ddlform-upload-picker-cancel", self),
+				LocalizedString("default", key: "ddlform-upload-picker-cancel", obj: self),
 				forState: .Normal)
 	}
 
