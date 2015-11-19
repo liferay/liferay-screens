@@ -102,7 +102,7 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 		cancelButtonAction(sender)
 
 		imagePicker.sourceType = .SavedPhotosAlbum
-		imagePicker.mediaTypes = [kUTTypeMovie as NSString]
+		imagePicker.mediaTypes = [kUTTypeMovie as NSString as String]
 
 		presentViewController(imagePicker, animated: true) {}
 	}
@@ -112,7 +112,7 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 
     public func imagePickerController(
 			picker: UIImagePickerController,
-			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+			didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 
 		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
 		let selectedURL = info[UIImagePickerControllerMediaURL] as? NSURL

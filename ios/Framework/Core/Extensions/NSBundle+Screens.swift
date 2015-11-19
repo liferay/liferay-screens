@@ -35,11 +35,11 @@ extension NSBundle {
 	}
 
 	public class func discoverBundles() -> [NSBundle] {
-		let allBundles = NSBundle.allFrameworks() as! [NSBundle]
+		let allBundles = NSBundle.allFrameworks() 
 
 		return allBundles.filter {
 			let screensPrefix = "LiferayScreens"
-			let bundleName = $0.bundleIdentifier?.pathExtension ?? ""
+			let bundleName = ($0.bundleIdentifier? as NSString).pathExtension ?? ""
 
 			return bundleName.characters.count > screensPrefix.characters.count
 					&& bundleName.hasPrefix(screensPrefix)
@@ -72,7 +72,7 @@ extension NSBundle {
 			return (files as? [String] ?? []).filter { $0.pathExtension == "app" }.first
 		}
 
-		let components = NSBundle.mainBundle().resourcePath?.pathComponents ?? []
+		let components = (NSBundle.mainBundle().resourcePath? as NSString).pathComponents ?? []
 
 		if components.last == "Overlays" {
 			// running into IB
@@ -81,7 +81,7 @@ extension NSBundle {
 			if let range = coreBundle.resourcePath?.rangeOfString("Debug-iphonesimulator"),
 					path = coreBundle.resourcePath?.substringToIndex(range.endIndex),
 					appName = appFile(path),
-					appBundle = NSBundle(path: path.stringByAppendingPathComponent(appName)) {
+					appBundle = NSBundle(path: (path as NSString).stringByAppendingPathComponent(appName)) {
 				return [NSBundle.mainBundle(), appBundle]
 			}
 		}

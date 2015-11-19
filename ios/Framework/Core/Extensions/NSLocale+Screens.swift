@@ -18,7 +18,7 @@ extension NSLocale {
 
 	public class var currentLanguageString: String {
 		get {
-			var preferredLanguage = NSLocale.preferredLanguages()[0] as! String
+			var preferredLanguage = NSLocale.preferredLanguages()[0] 
 
 			preferredLanguage = preferredLanguage.substringToIndex(
 				preferredLanguage.startIndex.advancedBy(2))
