@@ -58,7 +58,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		session.callback = self
 
 		let fileName = "\(filePrefix!)\(NSUUID().UUIDString)"

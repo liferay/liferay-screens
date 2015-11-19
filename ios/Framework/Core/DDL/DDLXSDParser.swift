@@ -86,7 +86,7 @@ public class DDLXSDParser {
 	}
 
 	private func mergeDictionaries(
-			#dict1:[String:AnyObject],
+			dict1 dict1:[String:AnyObject],
 			dict2:[String:AnyObject])
 			-> [String:AnyObject] {
 
@@ -112,8 +112,8 @@ public class DDLXSDParser {
 
 		func addElement(
 				name elementName: String,
-				#metadata: SMXMLElement,
-				inout #result: [String:AnyObject]) {
+				metadata: SMXMLElement,
+				inout result: [String:AnyObject]) {
 
 			if let element = metadata.childWithAttribute("name", value: elementName) {
 				result[elementName] = element.value
@@ -121,9 +121,9 @@ public class DDLXSDParser {
 		}
 
 		func findOptions(
-				#dynamicElement:SMXMLElement,
-				#locale: NSLocale,
-				#defaultLocale: NSLocale)
+				dynamicElement dynamicElement:SMXMLElement,
+				locale: NSLocale,
+				defaultLocale: NSLocale)
 				-> [[String:AnyObject]]? {
 
 			var options:[[String:AnyObject]] = []

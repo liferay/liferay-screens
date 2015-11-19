@@ -36,7 +36,7 @@ public class LiferayWebContentLoadBaseOperation: ServerOperation {
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		resultHTML = nil
 
 		var result: String?

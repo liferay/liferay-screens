@@ -204,6 +204,6 @@ public func ==(left: DDLField, right: DDLField) -> Bool {
 
 //MARK: Util func
 
-private func valueAsString(dict: [String:AnyObject], #key: String) -> String {
+private func valueAsString(dict: [String:AnyObject], key: String) -> String {
 	return (dict[key] ?? "") as! String
 }

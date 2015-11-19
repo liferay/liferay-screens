@@ -84,7 +84,7 @@ import UIKit
 	//MARK: BaseListScreenlet
 
 	override internal func createPageLoadInteractor(
-			#page: Int,
+			page page: Int,
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
 
@@ -102,13 +102,13 @@ import UIKit
 		return interactor
 	}
 
-	override internal func onLoadPageError(#page: Int, error: NSError) {
+	override internal func onLoadPageError(page page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
 
 		delegate?.screenlet?(self, onAssetListError: error)
 	}
 
-	override internal func onLoadPageResult(#page: Int, rows: [AnyObject], rowCount: Int) {
+	override internal func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
 		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
 		let assetEntries = rows as! [AssetListScreenletEntry]

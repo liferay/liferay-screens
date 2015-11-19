@@ -50,7 +50,7 @@ public class GetUserBaseOperation: ServerOperation {
 						password: password!))
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		var outError: NSError?
 
 		resultUserAttributes = nil
@@ -90,7 +90,7 @@ public class GetUserBaseOperation: ServerOperation {
 	// MARK: Template methods
 
 	internal func sendGetUserRequest(
-			#service: LRUserService_v62,
+			service service: LRUserService_v62,
 			error: NSErrorPointer)
 			-> NSDictionary? {
 

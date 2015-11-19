@@ -30,7 +30,7 @@ import UIKit
 }
 
 
-public func copyBasicAuth(#source: BasicAuthBasedType, #target: AnyObject?) {
+public func copyBasicAuth(source source: BasicAuthBasedType, target: AnyObject?) {
 	if let authBasedTarget = target as? BasicAuthBasedType {
 		authBasedTarget.basicAuthMethod = source.basicAuthMethod
 		authBasedTarget.saveCredentials = source.saveCredentials

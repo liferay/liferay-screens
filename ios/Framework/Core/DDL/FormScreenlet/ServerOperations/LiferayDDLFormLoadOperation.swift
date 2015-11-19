@@ -36,7 +36,7 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		let service = LRDDMStructureService_v62(session: session)
 
 		resultRecord = nil

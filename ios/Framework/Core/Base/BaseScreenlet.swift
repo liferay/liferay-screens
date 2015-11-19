@@ -191,7 +191,7 @@ import QuartzCore
 	 * Typically, it's called from TouchUpInside UI event or when the programmer wants to
 	 * start the interaction programatically.
 	 */
-	public func performAction(#name: String, sender: AnyObject? = nil) -> Bool {
+	public func performAction(name name: String, sender: AnyObject? = nil) -> Bool {
 		var result = false
 
 		if let interactor = self.createInteractor(name: name, sender: sender) {
@@ -219,7 +219,7 @@ import QuartzCore
 	/*
 	 * onAction is invoked when an interaction should be started
 	 */
-	public func onAction(#name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+	public func onAction(name name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
 		onStartInteraction()
 		screenletView?.onStartInteraction()
 
@@ -244,7 +244,7 @@ import QuartzCore
 		}
 	}
 
-	public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+	public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		return nil
 	}
 
@@ -320,7 +320,7 @@ import QuartzCore
 				spinnerMode: spinnerMode)
 	}
 
-	public func showHUDAlert(#message: String) {
+	public func showHUDAlert(message message: String) {
 		assert(_progressPresenter != nil, "ProgressPresenter must exist")
 
 		_progressPresenter!.showHUDInView(rootView(self),

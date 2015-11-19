@@ -20,7 +20,7 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 
 	public var labelFields: [String] = []
 
-	override public func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
+	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let record = object as? DDLRecord {
 			cell.textLabel?.text = composeLabel(record)
 			cell.accessoryType = .DisclosureIndicator
@@ -28,7 +28,7 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 		}
 	}
 
-	override public func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
+	override public func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
 		cell.textLabel?.text = "..."
 		cell.accessoryType = .None
 

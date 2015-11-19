@@ -48,7 +48,7 @@ public class LiferaySignUpOperation: ServerOperation {
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		let service = LRUserService_v62(session: session)
 
 		var outError: NSError?

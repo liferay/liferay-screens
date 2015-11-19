@@ -46,7 +46,7 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		func attributeAsString(key: String) -> String {
 			return SessionContext.userAttribute(key) as! String
 		}
