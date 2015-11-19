@@ -55,7 +55,7 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 		}
 
 		if result.endIndex == result.startIndex {
-			println("[ERROR] Can't compose the label for record. It seems the fields specified are not valid")
+			print("[ERROR] Can't compose the label for record. It seems the fields specified are not valid\n")
 		}
 		else {
 			result.removeAtIndex(result.endIndex.predecessor())

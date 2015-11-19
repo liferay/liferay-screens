@@ -206,7 +206,7 @@ import QuartzCore
 			result = onAction(name: name, interactor: interactor, sender: sender)
 		}
 		else {
-			println("WARN: No interactor created for action \(name)")
+			print("WARN: No interactor created for action \(name)\n")
 		}
 
 		return result
@@ -370,7 +370,7 @@ import QuartzCore
 			return foundView
 		}
 
-		println("ERROR: Xib file doesn't found for screenlet '\(ScreenletName(self.dynamicType))' and theme '\(_themeName)'")
+		print("ERROR: Xib file doesn't found for screenlet '\(ScreenletName(self.dynamicType))' and theme '\(_themeName)'\n")
 
 		return nil
 	}
@@ -438,7 +438,7 @@ import QuartzCore
 				self._runningInteractors[name]?.removeAtIndex(foundIndex)
 			}
 			else {
-				println("ERROR: There's no interactors tracked for name \(interactor.actionName!)")
+				print("ERROR: There's no interactors tracked for name \(interactor.actionName!)\n")
 			}
 		}
 	}
