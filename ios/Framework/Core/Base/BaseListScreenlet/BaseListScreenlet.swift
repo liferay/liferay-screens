@@ -148,7 +148,7 @@ import UIKit
 	}
 
 	internal func onLoadPageError(page page: Int, error: NSError) {
-		print("ERROR: Load page error \(page) -> \(error)")
+		print("ERROR: Load page error \(page) -> \(error)\n")
 	}
 
 	internal func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {

@@ -178,7 +178,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 				userId = loadedUserIdValue
 			}
 			else {
-				println("ERROR: Can't change the portrait without an userId")
+				print("ERROR: Can't change the portrait without an userId\n")
 
 				return nil
 			}

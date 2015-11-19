@@ -114,13 +114,13 @@ public class LiferayServerContext {
 		}
 		else {
 			if foundFallback {
-				println("WARNING: \(PlistFile).plist file is not found. " +
-						"Falling back to template \(PlistFileSample).list")
+				print("WARNING: \(PlistFile).plist file is not found. " +
+						"Falling back to template \(PlistFileSample).list\n")
 			}
 			else {
-				println("ERROR: \(PlistFileSample).plist file is not found. " +
+				print("ERROR: \(PlistFileSample).plist file is not found. " +
 						"Using default values which will work in a default Liferay bundle " +
-						"running on localhost:8080")
+						"running on localhost:8080\n")
 			}
 		}
 	}
