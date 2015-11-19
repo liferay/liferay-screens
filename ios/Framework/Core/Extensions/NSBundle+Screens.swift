@@ -68,8 +68,14 @@ extension NSBundle {
 
 		func appFile(path: String) -> String? {
 			var outError: NSError? = nil
-			let files = NSFileManager.defaultManager().contentsOfDirectoryAtPath(path, error: &outError)
-			return (files as? [String] ?? []).filter { $0.pathExtension == "app" }.first
+			let files: [AnyObject]?
+			do {
+				files = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(path)
+			} catch let error as NSError {
+				outError = error
+				files = nil
+			}
+			return (files as? [String] ?? []).filter { ($0 as NSString).pathExtension == "app" }.first
 		}
 
 		let components = (NSBundle.mainBundle().resourcePath? as NSString).pathComponents ?? []

@@ -41,9 +41,14 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 				key: "groupId")
 
 		var outError: NSError?
-		let userData = NSJSONSerialization.dataWithJSONObject(userAttributes!,
-				options: NSJSONWritingOptions.allZeros,
-				error: &outError)
+		let userData: NSData?
+		do {
+			userData = try NSJSONSerialization.dataWithJSONObject(userAttributes!,
+							options: NSJSONWritingOptions())
+		} catch var error as NSError {
+			outError = error
+			userData = nil
+		}
 
 		let bundleId = NSBundle.mainBundle().bundleIdentifier ?? "liferay-screens"
 		keychain.set(userData!, key: "\(bundleId)-user")
