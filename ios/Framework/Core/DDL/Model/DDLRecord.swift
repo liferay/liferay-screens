@@ -139,7 +139,7 @@ public class DDLRecord: NSObject, NSCoding {
 	}
 
 	public func updateCurrentValues(values: [String:AnyObject]) {
-		for (index,field) in enumerate(fields) {
+		for (index,field) in fields.enumerate() {
 			let fieldValueLabel: AnyObject? = (values[field.name] ?? nil)
 			if fieldValueLabel != nil {
 				if fieldValueLabel is String {

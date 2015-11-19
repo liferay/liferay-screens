@@ -61,7 +61,7 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel, UITextFieldDelega
 	}
 
 	public func getFieldIndex(field: DDLField) -> Int? {
-		return (record == nil) ? nil : find(record!.fields, field)
+		return (record == nil) ? nil : record!.fields.indexOf(field)
 	}
 
 

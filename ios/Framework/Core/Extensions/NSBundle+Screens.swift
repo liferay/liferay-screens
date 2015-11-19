@@ -29,8 +29,8 @@ extension NSBundle {
 			]
 			.flatMap { $0 }
 
-		return reduce(bundles, []) { ac, x in
-			contains(ac, x) ? ac : ac + [x]
+		return bundles.reduce([]) { ac, x in
+			ac.contains(x) ? ac : ac + [x]
 		}
 	}
 
@@ -41,7 +41,7 @@ extension NSBundle {
 			let screensPrefix = "LiferayScreens"
 			let bundleName = $0.bundleIdentifier?.pathExtension ?? ""
 
-			return count(bundleName) > count(screensPrefix)
+			return bundleName.characters.count > screensPrefix.characters.count
 					&& bundleName.hasPrefix(screensPrefix)
 		}
 	}

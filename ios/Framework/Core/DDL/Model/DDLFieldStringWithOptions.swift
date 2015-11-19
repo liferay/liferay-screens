@@ -173,7 +173,7 @@ public class DDLFieldStringWithOptions : DDLField {
 	private func extractFirstOption(options: String) -> String? {
 
 		func removeFirstAndLastChars(value: String) -> String {
-			if count(value) >= 2 {
+			if value.characters.count >= 2 {
 				let range = Range<String.Index>(
 						start: value.startIndex.successor(),
 						end: value.endIndex.predecessor())

@@ -55,7 +55,7 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 
 		var allRows = Array<AnyObject?>(count: actualRowCount, repeatedValue: nil)
 
-		for (index, row) in enumerate(baseListView.rows) {
+		for (index, row) in baseListView.rows.enumerate() {
 			allRows[index] = row
 		}
 
@@ -66,7 +66,7 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 			offset = actualRowCount - 1
 		}
 
-		for (index, row) in enumerate(convertedRows) {
+		for (index, row) in convertedRows.enumerate() {
 			allRows[offset + index] = row
 		}
 
@@ -90,7 +90,7 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 					keys: ["\(key)-\(page)", "\(key)-\(page)-count"]) {
 
 				loadOp.resultPageContent = $0.first as? [[String:AnyObject]]
-				if count($0) > 1 {
+				if $0.count > 1 {
 					loadOp.resultRowCount = $0.last as? Int
 				}
 
