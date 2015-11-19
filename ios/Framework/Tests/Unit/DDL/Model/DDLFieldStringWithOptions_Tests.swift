@@ -78,7 +78,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 		//FIXME only support one predefined value
 		XCTAssertEqual(1, predefinedOptions.count)
 
-		var predefinedOption = predefinedOptions[0]
+		let predefinedOption = predefinedOptions[0]
 
 		XCTAssertEqual("option_1", predefinedOption.name)
 		XCTAssertEqual("value 1", predefinedOption.value)
