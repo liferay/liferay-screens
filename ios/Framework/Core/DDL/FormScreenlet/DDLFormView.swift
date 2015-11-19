@@ -39,7 +39,7 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel, UITextFieldDelega
 					firstFailedField = $0
 				}
 				if firstError == nil {
-					let fmt = LocalizedString("ddlform-screenlet", "validation-field", self)
+					let fmt = LocalizedString("ddlform-screenlet", key: "validation-field", obj: self)
 					let msg = NSString(format: fmt, $0.label).description
 					firstError = ValidationError(msg)
 				}

@@ -112,7 +112,7 @@ import QuartzCore
 
 		if let viewValue = view {
 			//FIXME: full-autoresize value. Extract from UIViewAutoresizing
-			let flexibleMask = UIViewAutoresizing(18)
+			let flexibleMask = UIViewAutoresizing(rawValue: 18)
 
 			if viewValue.autoresizingMask == flexibleMask {
 				viewValue.frame = self.bounds
@@ -343,8 +343,8 @@ import QuartzCore
 		func tryLoadForTheme(themeName: String, inBundles bundles: [NSBundle]) -> BaseScreenletView? {
 			for bundle in bundles {
 				let viewName = "\(ScreenletName(self.dynamicType))View"
-				var nibName = "\(viewName)_\(themeName)"
-				var nibPath = bundle.pathForResource(nibName, ofType:"nib")
+				let nibName = "\(viewName)_\(themeName)"
+				let nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
 				if nibPath != nil {
 					let views = bundle.loadNibNamed(nibName,

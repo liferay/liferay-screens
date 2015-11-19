@@ -30,7 +30,7 @@ public func setBasicAuthMethodStyles(
 		userNameField: UITextField!,
 		userNameIcon: UIImageView!) {
 
-	userNameField!.placeholder = LocalizedString("default", basicAuthMethod.description, view)
+	userNameField!.placeholder = LocalizedString("default", key: basicAuthMethod.description, obj: view)
 	userNameField!.keyboardType = basicAuthMethod.keyboardType
 
 	userNameIcon?.image = NSBundle.imageInBundles(

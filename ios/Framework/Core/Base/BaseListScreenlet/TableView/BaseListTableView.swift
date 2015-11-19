@@ -33,8 +33,8 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
 			BaseListScreenlet.LoadInitialPageAction : [
-				.Working : LocalizedString("core", "base-list-loading-message", self),
-				.Failure : LocalizedString("core", "base-list-loading-error", self)
+				.Working : LocalizedString("core", key: "base-list-loading-message", obj: self),
+				.Failure : LocalizedString("core", key: "base-list-loading-error", obj: self)
 			]
 		]
 	}
@@ -59,7 +59,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		else if self.rows.isEmpty {
 			clearAllRows(oldRows)
 		}
-		else if let visibleRows = tableView!.indexPathsForVisibleRows() {
+		else if let visibleRows = tableView!.indexPathsForVisibleRows {
 			updateVisibleRows(visibleRows)
 		}
 		else {
