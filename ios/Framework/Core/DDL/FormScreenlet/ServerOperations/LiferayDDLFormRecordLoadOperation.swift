@@ -32,7 +32,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		resultRecordData = nil

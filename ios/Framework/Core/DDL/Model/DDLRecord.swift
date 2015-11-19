@@ -115,7 +115,7 @@ public class DDLRecord: NSObject, NSCoding {
 
 	//MARK: Public methods
 
-	public func fieldBy(#name: String) -> DDLField? {
+	public func fieldBy(name name: String) -> DDLField? {
 		for field in fields {
 			if field.name.lowercaseString == name.lowercaseString {
 				return field
@@ -125,7 +125,7 @@ public class DDLRecord: NSObject, NSCoding {
 		return nil
 	}
 
-	public func fieldsBy(#type: AnyClass) -> [DDLField] {
+	public func fieldsBy(type type: AnyClass) -> [DDLField] {
 		var result = [DDLField]()
 		let typeName = NSStringFromClass(type)
 

@@ -90,7 +90,7 @@ extension NSBundle {
 	}
 
 
-	public class func imageInBundles(#name: String, currentClass: AnyClass) -> UIImage? {
+	public class func imageInBundles(name name: String, currentClass: AnyClass) -> UIImage? {
 		for bundle in allBundles(currentClass) {
 			if let path = bundle.pathForResource(name, ofType: "png") {
 				return UIImage(contentsOfFile: path)

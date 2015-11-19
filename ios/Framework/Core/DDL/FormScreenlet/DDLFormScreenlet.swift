@@ -127,7 +127,7 @@ import UIKit
 		}
 	}
 
-	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		switch name {
 			case DDLFormScreenlet.LoadFormAction:
 				return createLoadFormInteractor()
@@ -145,7 +145,7 @@ import UIKit
 		return nil
 	}
 
-	override public func onAction(#name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+	override public func onAction(name name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
 		let result = super.onAction(name: name, interactor: interactor, sender: sender)
 
 		if result && name == DDLFormScreenlet.UploadDocumentAction {

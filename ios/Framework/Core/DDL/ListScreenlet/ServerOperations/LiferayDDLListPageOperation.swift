@@ -45,7 +45,7 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 		return error
 	}
 
-	override internal func doGetPageRowsOperation(#session: LRBatchSession, startRow: Int, endRow: Int) {
+	override internal func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		if userId == nil {
@@ -65,7 +65,7 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 		}
 	}
 
-	override internal func doGetRowCountOperation(#session: LRBatchSession) {
+	override internal func doGetRowCountOperation(session session: LRBatchSession) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		if userId == nil {

@@ -47,7 +47,7 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		if let imageBytes = reduceImage(self.image!, factor: 0.95) {
 			self.image = nil
 			uploadBytes(imageBytes, withSession: session)

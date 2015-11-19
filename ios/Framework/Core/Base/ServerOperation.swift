@@ -91,7 +91,7 @@ public class ServerOperation: NSOperation {
 		return true
 	}
 
-	public func doRun(#session: LRSession) {
+	public func doRun(session session: LRSession) {
 		// Do not add any code here. Children classes may not call super
 	}
 

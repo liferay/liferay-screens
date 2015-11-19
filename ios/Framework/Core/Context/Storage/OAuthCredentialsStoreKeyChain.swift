@@ -22,7 +22,7 @@ import UIKit
 
 public class OAuthCredentialsStoreKeyChain : BaseCredentialsStoreKeyChain {
 
-	override public func storeAuth(#keychain: Keychain, auth: LRAuthentication) {
+	override public func storeAuth(keychain keychain: Keychain, auth: LRAuthentication) {
 		let oauth = auth as! LROAuth
 
 		keychain.set(AuthType.OAuth.rawValue, key: "auth_type")
@@ -32,7 +32,7 @@ public class OAuthCredentialsStoreKeyChain : BaseCredentialsStoreKeyChain {
 		keychain.set(oauth.config.tokenSecret, key: "oauth_token_secret")
 	}
 
-	override public func loadAuth(#keychain: Keychain) -> LRAuthentication? {
+	override public func loadAuth(keychain keychain: Keychain) -> LRAuthentication? {
 		let consumerKey = keychain.get("oauth_consumer_key")
 		let consumerSecret = keychain.get("oauth_consumer_secret")
 		let token = keychain.get("oauth_token")

@@ -99,11 +99,11 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 		return (authentication != nil && userAttributes != nil)
 	}
 
-	public func storeAuth(#keychain: Keychain, auth: LRAuthentication) {
+	public func storeAuth(keychain keychain: Keychain, auth: LRAuthentication) {
 		fatalError("This method must be overriden")
 	}
 
-	public func loadAuth(#keychain: Keychain) -> LRAuthentication? {
+	public func loadAuth(keychain keychain: Keychain) -> LRAuthentication? {
 		fatalError("This method must be overriden")
 	}
 

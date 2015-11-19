@@ -51,14 +51,14 @@ public enum CacheStrategyType: String {
 	}
 
 
-	public func getString(#collection: String, key: String, result: String? -> ()) {
+	public func getString(collection collection: String, key: String, result: String? -> ()) {
 		readConnection.readWithBlock { transaction in
 			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)
 			result((value as? NSObject)?.description)
 		}
 	}
 
-	public func getImage(#collection: String, key: String, result: UIImage? -> ()) {
+	public func getImage(collection collection: String, key: String, result: UIImage? -> ()) {
 		readConnection.readWithBlock { transaction in
 			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)
 
@@ -74,14 +74,14 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	public func getAny(#collection: String, key: String, result: AnyObject? -> ()) {
+	public func getAny(collection collection: String, key: String, result: AnyObject? -> ()) {
 		readConnection.readWithBlock { transaction in
 			result(transaction.objectForKey(key, inCollection: collection))
 		}
 	}
 
 	public func getAnyWithAttributes(
-			#collection: String,
+			collection collection: String,
 			key: String,
 			result: (AnyObject?, [String:AnyObject]?) -> ()) {
 
@@ -94,7 +94,7 @@ public enum CacheStrategyType: String {
 	}
 
 	public func getSomeWithAttributes(
-			#collection: String,
+			collection collection: String,
 			keys: [String],
 			result: ([AnyObject?], [[String:AnyObject]?]) -> ()) {
 
@@ -114,7 +114,7 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	public func getSome(#collection: String, keys: [String], result: [AnyObject?] -> ()) {
+	public func getSome(collection collection: String, keys: [String], result: [AnyObject?] -> ()) {
 		readConnection.readWithBlock { transaction in
 			var values = [AnyObject?]()
 
@@ -128,7 +128,7 @@ public enum CacheStrategyType: String {
 	}
 
 
-	public func getMetadata(#collection: String, key: String, result: CacheMetadata? -> ()) {
+	public func getMetadata(collection collection: String, key: String, result: CacheMetadata? -> ()) {
 		readConnection.readWithBlock { transaction in
 			let value: AnyObject? = transaction.metadataForKey(key, inCollection: collection)
 
@@ -137,7 +137,7 @@ public enum CacheStrategyType: String {
 	}
 
 	public func setClean(
-			#collection: String,
+			collection collection: String,
 			key: String,
 			value: NSCoding,
 			attributes: [String:AnyObject]) {
@@ -153,7 +153,7 @@ public enum CacheStrategyType: String {
 	}
 
 	public func setClean(
-			#collection: String,
+			collection collection: String,
 			keys: [String],
 			values: [NSCoding],
 			attributes: [String:AnyObject]) {
@@ -167,7 +167,7 @@ public enum CacheStrategyType: String {
 
 
 	public func setDirty(
-			#collection: String,
+			collection collection: String,
 			key: String,
 			value: NSCoding,
 			attributes: [String:AnyObject]) {
@@ -181,7 +181,7 @@ public enum CacheStrategyType: String {
 	}
 
 	private func set(
-			#collection: String,
+			collection collection: String,
 			keys: [String],
 			values: [NSCoding],
 			synchronized: NSDate?,
@@ -205,7 +205,7 @@ public enum CacheStrategyType: String {
 	}
 
 	public func setClean(
-			#collection: String,
+			collection collection: String,
 			key: String,
 			attributes: [String:AnyObject]) {
 
@@ -216,7 +216,7 @@ public enum CacheStrategyType: String {
 	}
 
 	private func setMetadata(
-			#collection: String,
+			collection collection: String,
 			key: String,
 			synchronized: NSDate?,
 			attributes: [String:AnyObject]) {
@@ -234,13 +234,13 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	public func remove(#collection: String, key: String) {
+	public func remove(collection collection: String, key: String) {
 		writeConnection.readWriteWithBlock { transaction in
 			transaction.removeObjectForKey(key, inCollection: collection)
 		}
 	}
 
-	public func remove(#collection: String) {
+	public func remove(collection collection: String) {
 		writeConnection.readWriteWithBlock { transaction in
 			transaction.removeAllObjectsInCollection(collection)
 		}

@@ -29,7 +29,7 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel, UITextFieldDelega
 	public func refresh() {
 	}
 
-	public func validateForm(#autoscroll: Bool) -> ValidationError? {
+	public func validateForm(autoscroll autoscroll: Bool) -> ValidationError? {
 		var firstError: ValidationError?
 		var firstFailedField: DDLField?
 

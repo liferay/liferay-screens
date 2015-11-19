@@ -233,7 +233,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		return chain
 	}
 
-	private func createOperationFor(#attributes: [String:AnyObject]?) -> ServerOperation? {
+	private func createOperationFor(attributes attributes: [String:AnyObject]?) -> ServerOperation? {
 		if let attributes = attributes,
 				portraitId = attributes["portraitId"] as? NSNumber,
 				uuid = attributes["uuid"] as? String,
@@ -250,7 +250,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		return nil
 	}
 
-	private func createOperationFor(#portraitId: Int64, uuid: String, male: Bool) -> ServerOperation? {
+	private func createOperationFor(portraitId portraitId: Int64, uuid: String, male: Bool) -> ServerOperation? {
 		if let url = URLForAttributes(
 				portraitId: portraitId,
 				uuid: uuid,
@@ -261,7 +261,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		return nil
 	}
 
-	private func URLForAttributes(#portraitId: Int64, uuid: String, male: Bool) -> NSURL? {
+	private func URLForAttributes(portraitId portraitId: Int64, uuid: String, male: Bool) -> NSURL? {
 
 		func encodedSHA1(input: String) -> String? {
 			var result: String?

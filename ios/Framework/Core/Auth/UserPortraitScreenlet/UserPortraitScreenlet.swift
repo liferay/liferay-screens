@@ -86,7 +86,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return performAction(name: "load-portrait", sender: interactor)
 	}
 
-	public func load(#portraitId: Int64, uuid: String, male: Bool = true) -> Bool {
+	public func load(portraitId portraitId: Int64, uuid: String, male: Bool = true) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				portraitId: portraitId,
@@ -98,7 +98,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return performAction(name: "load-portrait", sender: interactor)
 	}
 
-	public func load(#userId: Int64) -> Bool {
+	public func load(userId userId: Int64) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				userId: userId)
@@ -108,7 +108,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return performAction(name: "load-portrait", sender: interactor)
 	}
 
-	public func load(#companyId: Int64, emailAddress: String) -> Bool {
+	public func load(companyId companyId: Int64, emailAddress: String) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				companyId: companyId,
@@ -119,7 +119,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return performAction(name: "load-portrait", sender: interactor)
 	}
 
-	public func load(#companyId: Int64, screenName: String) -> Bool {
+	public func load(companyId companyId: Int64, screenName: String) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				companyId: companyId,
@@ -134,7 +134,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		viewModel.image = nil
 	}
 
-	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let interactor: Interactor?
 
 		if isActionRunning(name) {

@@ -21,7 +21,7 @@ import UIKit
 
 public class BasicCredentialsStoreKeyChain : BaseCredentialsStoreKeyChain {
 
-	override public func storeAuth(#keychain: Keychain, auth: LRAuthentication) {
+	override public func storeAuth(keychain keychain: Keychain, auth: LRAuthentication) {
 		let basicAuth = auth as! LRBasicAuthentication
 
 		keychain.set(AuthType.Basic.rawValue, key: "auth_type")
@@ -29,7 +29,7 @@ public class BasicCredentialsStoreKeyChain : BaseCredentialsStoreKeyChain {
 		keychain.set(basicAuth.password, key: "basicauth_password")
 	}
 
-	override public func loadAuth(#keychain: Keychain) -> LRAuthentication? {
+	override public func loadAuth(keychain keychain: Keychain) -> LRAuthentication? {
 		let username = keychain.get("basicauth_username")
 		let password = keychain.get("basicauth_password")
 

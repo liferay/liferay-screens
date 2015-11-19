@@ -57,7 +57,7 @@ import UIKit
 		}
 	}
 
-	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let page = (sender as? Int) ?? 0
 
 		let interactor = createPageLoadInteractor(
@@ -87,7 +87,7 @@ import UIKit
 		return interactor
 	}
 
-	override public func onAction(#name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+	override public func onAction(name name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
 
 		let result = super.onAction(name: name, interactor: interactor, sender: sender)
 
@@ -140,18 +140,18 @@ import UIKit
 	//MARK: Internal methods
 
 	internal func createPageLoadInteractor(
-			#page: Int,
+			page page: Int,
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
 
 		fatalError("createPageLoadInteractor must be overriden")
 	}
 
-	internal func onLoadPageError(#page: Int, error: NSError) {
-		println("ERROR: Load page error \(page) -> \(error)")
+	internal func onLoadPageError(page page: Int, error: NSError) {
+		print("ERROR: Load page error \(page) -> \(error)")
 	}
 
-	internal func onLoadPageResult(#page: Int, rows: [AnyObject], rowCount: Int) {
+	internal func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
 	}
 
 	internal func onSelectedRow(row:AnyObject) {

@@ -49,7 +49,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		var outError: NSError?
 
 		let result = sendForgotPasswordRequest(
@@ -77,7 +77,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 	//MARK: Template Methods
 	
 	internal func sendForgotPasswordRequest(
-			#service: LRScreensuserService_v62,
+			service service: LRScreensuserService_v62,
 			error: NSErrorPointer)
 			-> Bool? {
 

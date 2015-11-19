@@ -41,7 +41,7 @@ public class GetUserByScreenNameOperation: GetUserBaseOperation {
 	//MARK: LiferayLoginBaseOperation
 
 	override internal func sendGetUserRequest(
-			#service: LRUserService_v62,
+			service service: LRUserService_v62,
 			error: NSErrorPointer)
 			-> NSDictionary? {
 

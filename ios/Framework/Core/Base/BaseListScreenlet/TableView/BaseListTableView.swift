@@ -109,7 +109,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 
-	public func doDequeueReusableCell(#row: Int) -> UITableViewCell {
+	public func doDequeueReusableCell(row row: Int) -> UITableViewCell {
 		var result = tableView!.dequeueReusableCellWithIdentifier("listCell") as? UITableViewCell
 
 		if result == nil {
@@ -119,13 +119,13 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		return result!
 	}
 
-	public func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
+	public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
 	}
 
-	public func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
+	public func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
 	}
 
-	public func doRegisterCellNib(#id: String) {
+	public func doRegisterCellNib(id id: String) {
 	}
 
 
