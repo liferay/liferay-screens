@@ -111,7 +111,7 @@ public class DDLField: NSObject, NSCoding, Equatable, Printable {
 		currentValue = predefinedValue
 	}
 
-	public required init(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 		let dataTypeValue = aDecoder.decodeObjectForKey("dataType") as? String
 		dataType = DataType(rawValue: dataTypeValue ?? "") ?? .Unsupported
 

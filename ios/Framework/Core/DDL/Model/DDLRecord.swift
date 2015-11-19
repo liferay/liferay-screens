@@ -99,7 +99,7 @@ public class DDLRecord: NSObject, NSCoding {
 		}
 	}
 
-	public required init(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 		fields = aDecoder.decodeObjectForKey("fields") as! [DDLField]
 		attributes = aDecoder.decodeObjectForKey("attributes") as! [String:AnyObject]
 
