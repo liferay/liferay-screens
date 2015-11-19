@@ -48,6 +48,11 @@ public class LiferayLocale {
 	public static String getDefaultSupportedLocale() {
 		return getSupportedLocale(getDefaultLocale().getDisplayLanguage());
 	}
+
+	/**
+	 * Method to change activity or application locale
+	 * An activity can be reloaded with a call to setContentView
+	 **/
 	public static void changeLocale(ContextThemeWrapper contextThemeWrapper, Locale newLocale) {
 		Resources res = contextThemeWrapper.getResources();
 		Configuration conf = res.getConfiguration();
