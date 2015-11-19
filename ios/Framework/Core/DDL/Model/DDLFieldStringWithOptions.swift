@@ -28,7 +28,7 @@ public class DDLFieldStringWithOptions : DDLField {
 			self.value = value
 		}
 
-		public required convenience init(coder aDecoder: NSCoder) {
+		public required convenience init?(coder aDecoder: NSCoder) {
 			let label = aDecoder.decodeObjectForKey("label") as! String
 			let name = aDecoder.decodeObjectForKey("name") as! String
 			let value = aDecoder.decodeObjectForKey("value") as! String

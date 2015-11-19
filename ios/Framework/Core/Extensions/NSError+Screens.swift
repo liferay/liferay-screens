@@ -32,7 +32,7 @@ public class ValidationError : NSError {
 		self.init(LocalizedString(key, key: message, obj: bundleObject))
 	}
 
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
