@@ -1,5 +1,10 @@
 package com.liferay.mobile.screens.util;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
+import android.view.ContextThemeWrapper;
+
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 
 import java.util.Locale;
@@ -42,5 +47,16 @@ public class LiferayLocale {
 
 	public static String getDefaultSupportedLocale() {
 		return getSupportedLocale(getDefaultLocale().getDisplayLanguage());
+	}
+	public static void changeLocale(ContextThemeWrapper contextThemeWrapper, Locale newLocale) {
+		Resources res = contextThemeWrapper.getResources();
+		Configuration conf = res.getConfiguration();
+		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1) {
+			conf.setLocale(newLocale);
+		}
+		else {
+			conf.locale = newLocale;
+		}
+		res.updateConfiguration(conf, res.getDisplayMetrics());
 	}
 }
