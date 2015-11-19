@@ -434,7 +434,7 @@ import QuartzCore
 			let name = interactor.actionName!
 			let interactors = self._runningInteractors[name] ?? []
 
-			if let foundIndex = find(interactors, interactor) {
+			if let foundIndex = interactors.indexOf(interactor) {
 				self._runningInteractors[name]?.removeAtIndex(foundIndex)
 			}
 			else {

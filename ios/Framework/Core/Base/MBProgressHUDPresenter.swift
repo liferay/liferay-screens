@@ -97,8 +97,8 @@ import Foundation
 
 		if closeMode == .Autoclose_TouchClosable {
 			// compute autodelay based on text's length
-			let len = count(hud.labelText ?? "")
-				+ count(hud.detailsLabelText ?? "")
+			let len = (hud.labelText ?? "").count
+				+ (hud.detailsLabelText ?? "").count
 
 			let closeDelay = 1.5 + (Double(len) * 0.01)
 

@@ -79,13 +79,13 @@ public class LiferayServerContext {
 			return
 		}
 
-		let bundles = NSBundle.allBundles(self).reverse()
+		let bundles = Array(NSBundle.allBundles(self).reverse())
 
 		var found = false
 		var foundFallback = false
 
 		var i = 0
-		let length = count(bundles)
+		let length = bundles.count
 
 		while !found && i < length {
 			let bundle = bundles[i++]

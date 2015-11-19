@@ -101,7 +101,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 
 		XCTAssertEqual(currentOptions.count, predefinedOptions.count)
 
-		for (index,option) in enumerate(currentOptions) {
+		for (index,option) in currentOptions.enumerate() {
 			let predefinedOption = predefinedOptions[index]
 
 			XCTAssertEqual(option.label, predefinedOption.label)

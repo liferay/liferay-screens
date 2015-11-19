@@ -56,11 +56,11 @@ public enum BasicAuthMethod: String {
 	}
 
 	public static func fromUserName(userName: String) -> BasicAuthMethod {
-		if find(userName, "@") != nil {
+		if userName.characters.indexOf("@") != nil {
 			return .Email
 		}
 
-		if userName.toInt() != nil {
+		if Int(userName) != nil {
 			return .UserId
 		}
 

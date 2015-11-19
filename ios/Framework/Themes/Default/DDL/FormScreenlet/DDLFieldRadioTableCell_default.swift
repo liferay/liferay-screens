@@ -138,7 +138,7 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 		data.rectangleColor = radioColor
 		data.rectangleHeight = radioButtonWidth
 		data.rectangleWidth = radioButtonWidth
-		data.selected = filter(field.currentValue as! [DDLFieldStringWithOptions.Option]) {
+		data.selected = (field.currentValue as! [DDLFieldStringWithOptions.Option]).filter {
 			$0.name == option.name
 		}.count > 0
 

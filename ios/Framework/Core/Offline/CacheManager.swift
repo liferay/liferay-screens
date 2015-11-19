@@ -187,7 +187,7 @@ public enum CacheStrategyType: String {
 			synchronized: NSDate?,
 			attributes: [String:AnyObject]) {
 
-		assert(count(keys) == count(values),
+		assert(keys.count == values.count,
 			"Keys and values must have same number of elements")
 
 		writeConnection.readWriteWithBlock { transaction in

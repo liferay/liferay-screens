@@ -164,7 +164,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	internal func clearAllRows(currentRows: [AnyObject?]) {
 		tableView!.beginUpdates()
 
-		for (index,_) in enumerate(currentRows) {
+		for (index,_) in currentRows.enumerate() {
 			let indexPath = NSIndexPath(forRow:index, inSection:0)
 			tableView!.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
 		}

@@ -102,7 +102,7 @@ public func dispatch_main(forceDispatch: Bool, block: dispatch_block_t) {
 public func ScreenletName(klass: AnyClass) -> String {
 	var className = NSStringFromClass(klass)
 
-	if find(className, ".") != nil {
+	if className.characters.indexOf(".") != nil {
 		className = className.componentsSeparatedByString(".")[1]
 	}
 
