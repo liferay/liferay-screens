@@ -41,14 +41,14 @@ import Foundation
 	}
 
 	public class var currentBasicUserName: String? {
-		var authentication = StaticInstance.currentSession?.authentication
+		let authentication = StaticInstance.currentSession?.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.username
 	}
 
 	public class var currentBasicPassword: String? {
-		var authentication = StaticInstance.currentSession?.authentication
+		let authentication = StaticInstance.currentSession?.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.password

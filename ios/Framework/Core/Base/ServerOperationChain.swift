@@ -51,7 +51,7 @@ import UIKit
 		return headOperation.createSession()
 	}
 
-	override public func enqueue(onComplete _ onComplete: (ServerOperation -> Void)?) {
+	override public func enqueue(onComplete: (ServerOperation -> Void)?) {
 		if onComplete != nil {
 			self.onComplete = onComplete
 		}

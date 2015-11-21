@@ -64,7 +64,7 @@ import UIKit
 		let error = validateData()
 
 		if error == nil {
-			enqueue(onComplete: onComplete)
+			enqueue(onComplete)
 		}
 
 		return error

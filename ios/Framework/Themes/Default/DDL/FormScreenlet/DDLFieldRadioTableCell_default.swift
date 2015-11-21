@@ -147,7 +147,7 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 
 	public dynamic func radioButtonSelected(notification:NSNotification) {
 		if let stringField = field as? DDLFieldStringWithOptions {
-			stringField.currentValue = radioGroup!.selectedRadioButton.data.labelText
+			stringField.currentValue = radioGroup!.selectedRadioButton!.data.labelText
 
 			if stringField.lastValidationResult != nil && !stringField.lastValidationResult! {
 				stringField.lastValidationResult = true

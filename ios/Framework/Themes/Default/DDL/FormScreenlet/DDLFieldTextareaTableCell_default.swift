@@ -100,7 +100,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 	//MARK: UITextViewDelegate
 
 	public func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-		var heightLabelOffset:CGFloat =
+		let heightLabelOffset:CGFloat =
 				DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel
 
 		let newCellHeight = DDLFieldTextareaExpandedCellHeight +
@@ -138,7 +138,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 			textViewBackground?.frame = originalBackgroundRect
 		}
 
-		var heightLabelOffset:CGFloat =
+		let heightLabelOffset: CGFloat =
 				DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel
 
 		let height = resetCellHeight()
