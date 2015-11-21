@@ -38,21 +38,41 @@ public class LiferayWebContentLoadFromArticleIdOperation: LiferayWebContentLoadB
 			session: LRSession) -> String? {
 		let service = LRScreensjournalarticleService_v62(session: session)
 
-		return service.getJournalArticleContentWithGroupId(groupId!,
-			articleId: articleId!,
-			ddmTemplateId: templateId,
-			locale: NSLocale.currentLocaleString,
-			error: &lastError)
+		do {
+			let result = try service.getJournalArticleContentWithGroupId(groupId!,
+				articleId: articleId!,
+				ddmTemplateId: templateId,
+				locale: NSLocale.currentLocaleString)
+
+			lastError = nil
+
+			return result
+		}
+		catch let error as NSError {
+			lastError = error
+		}
+
+		return nil
 	}
 
 	override internal func doGetJournalArticle(session: LRSession) -> String? {
 		let service = LRJournalArticleService_v62(session: session)
 
-		return service.getArticleContentWithGroupId(groupId!,
-			articleId: articleId!,
-			languageId: NSLocale.currentLocaleString,
-			themeDisplay: nil,
-			error: &lastError)
+		do {
+			let result = try service.getArticleContentWithGroupId(groupId!,
+				articleId: articleId!,
+				languageId: NSLocale.currentLocaleString,
+				themeDisplay: nil)
+
+			lastError = nil
+
+			return result
+		}
+		catch let error as NSError {
+			lastError = error
+		}
+
+		return nil
 	}
 
 }

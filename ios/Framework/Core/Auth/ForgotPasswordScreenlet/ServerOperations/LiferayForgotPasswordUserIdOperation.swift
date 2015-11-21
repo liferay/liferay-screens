@@ -19,13 +19,16 @@ public class LiferayForgotPasswordUserIdOperation: LiferayForgotPasswordBaseOper
 	//MARK: LiferayForgotPasswordBaseOperation
 
 	override internal func sendForgotPasswordRequest(
-			service service: LRScreensuserService_v62,
-			error: NSErrorPointer)
-			-> Bool? {
+			service service: LRScreensuserService_v62)
+			throws -> Bool? {
 
 		let userId = Int64(Int(viewModel.userName!)!)
 
-		return service.sendPasswordByUserIdWithUserId(userId, error: error)
+		// TODO change plugin service to return integer code instead of boolean.
+		// Xcode transpiler is messing it up.
+		try service.sendPasswordByUserIdWithUserId(userId)
+
+		return true
 	}
 
 }

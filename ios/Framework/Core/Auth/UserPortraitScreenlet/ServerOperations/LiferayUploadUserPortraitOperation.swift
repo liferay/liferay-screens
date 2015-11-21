@@ -67,29 +67,33 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 			return nil
 		}
 
-		var imageBytes = UIImageJPEGRepresentation(src, CGFloat(factor))
-
-		return (imageBytes.length < maxSize)
+		if let imageBytes = UIImageJPEGRepresentation(src, CGFloat(factor)) {
+			return (imageBytes.length < maxSize)
 				? imageBytes
 				: reduceImage(src, factor: factor - 0.05)
+		}
+
+		return nil
 	}
 
 	private func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
 		let service = LRUserService_v62(session: session)
 
-		lastError = nil
+		do {
+			let result = try service.updatePortraitWithUserId(self.userId,
+					bytes: imageBytes)
 
-		let result = service.updatePortraitWithUserId(self.userId, bytes: imageBytes, error: &lastError)
-
-		if lastError == nil {
-			if result is [String:AnyObject] {
-				uploadResult = result as? [String:AnyObject]
+			if let result = result as? [String:AnyObject] {
+				uploadResult = result
+				lastError = nil
 			}
 			else {
 				lastError = NSError.errorWithCause(.InvalidServerResponse)
 			}
 		}
-
+		catch let error as NSError {
+			lastError = error
+		}
 	}
 
 }

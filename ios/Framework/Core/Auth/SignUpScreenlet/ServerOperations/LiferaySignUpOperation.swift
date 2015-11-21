@@ -49,18 +49,16 @@ public class LiferaySignUpOperation: ServerOperation {
 	}
 
 	override public func doRun(session session: LRSession) {
+		let result: [NSObject:AnyObject]?
 		let service = LRUserService_v62(session: session)
-
-		var outError: NSError?
-
 		let emptyDict = [AnyObject]()
-
 		let password = viewModel.password ?? ""
-
 		let companyId = (self.companyId != 0)
-				? self.companyId : LiferayServerContext.companyId
+				? self.companyId
+				: LiferayServerContext.companyId
 
-		let result = service.addUserWithCompanyId(companyId,
+		do {
+			result = try service.addUserWithCompanyId(companyId,
 				autoPassword: (password == ""),
 				password1: password,
 				password2: password,
@@ -80,25 +78,32 @@ public class LiferaySignUpOperation: ServerOperation {
 				birthdayDay: 1,
 				birthdayYear: 1970,
 				jobTitle: viewModel.jobTitle ?? "",
-				groupIds: [NSNumber(longLong: LiferayServerContext.groupId)],
+				groupIds: [
+					NSNumber(longLong: LiferayServerContext.groupId)
+				],
 				organizationIds: emptyDict,
 				roleIds: emptyDict,
 				userGroupIds: emptyDict,
+				addresses: emptyDict,
+				emailAddresses: emptyDict,
+				phones: emptyDict,
+				websites: emptyDict,
+				announcementsDelivers: emptyDict,
 				sendEmail: true,
-				serviceContext: nil,
-				error: &outError)
+				serviceContext: nil)
 
-		if outError != nil {
-			lastError = outError!
-			resultUserAttributes = nil
+			if result?["userId"] == nil {
+				lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
+				resultUserAttributes = nil
+			}
+			else {
+				lastError = nil
+				resultUserAttributes = result as? [String:AnyObject]
+			}
 		}
-		else if result?["userId"] == nil {
-			lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
+		catch let error as NSError {
+			lastError = error
 			resultUserAttributes = nil
-		}
-		else {
-			lastError = nil
-			resultUserAttributes = result as? [String:AnyObject]
 		}
 	}
 
