@@ -139,22 +139,22 @@ public class DDLRecord: NSObject, NSCoding {
 	}
 
 	public func updateCurrentValues(values: [String:AnyObject]) {
-		for (index,field) in fields.enumerate() {
-			let fieldValueLabel: AnyObject? = (values[field.name] ?? nil)
+		fields.forEach {
+			let fieldValueLabel: AnyObject? = (values[$0.name] ?? nil)
 			if fieldValueLabel != nil {
 				if fieldValueLabel is String {
-					field.currentValueAsLabel = fieldValueLabel as? String
+					$0.currentValueAsLabel = fieldValueLabel as? String
 				}
 				else {
-					field.currentValue = fieldValueLabel
+					$0.currentValue = fieldValueLabel
 				}
 			}
 		}
 	}
 
 	public func clearValues() {
-		for field in fields {
-			field.currentValue = field.predefinedValue
+		fields.forEach {
+			$0.currentValue = $0.predefinedValue
 		}
 	}
 

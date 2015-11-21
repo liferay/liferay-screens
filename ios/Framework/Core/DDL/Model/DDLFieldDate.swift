@@ -38,7 +38,7 @@ public class DDLFieldDate : DDLField {
 		initFormatters(locale)
 	}
 
-	public required init(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
 		initFormatters(self.currentLocale)

@@ -55,7 +55,7 @@ class BaseScreenlet_Theme_Tests: XCTestCase {
 		XCTAssertNotNil(view)
 		XCTAssertEqual(1, loginScreenlet!.subviews.count)
 		XCTAssertTrue(loginScreenlet!.subviews[0] is LoginView_test)
-		XCTAssertEqual(view!, loginScreenlet!.subviews[0] as! BaseScreenletView)
+		XCTAssertEqual(view!, loginScreenlet!.subviews[0] as? BaseScreenletView)
 	}
 
 }

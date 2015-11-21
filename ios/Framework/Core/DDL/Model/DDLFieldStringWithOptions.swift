@@ -68,7 +68,7 @@ public class DDLFieldStringWithOptions : DDLField {
 		super.init(attributes: attributes, locale: locale)
 	}
 
-	public required init(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 		multiple = aDecoder.decodeBoolForKey("multiple")
 		options = aDecoder.decodeObjectForKey("options") as! [Option]
 

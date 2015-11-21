@@ -89,7 +89,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 
 		let cell = doDequeueReusableCell(row: indexPath.row)
 
-		if let row:AnyObject = rows[indexPath.row] {
+		if let row: AnyObject = rows[indexPath.row] {
 			doFillLoadedCell(row: indexPath.row, cell: cell, object: row)
 		}
 		else {
@@ -110,10 +110,10 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	}
 
 	public func doDequeueReusableCell(row row: Int) -> UITableViewCell {
-		var result = tableView!.dequeueReusableCellWithIdentifier("listCell") as? UITableViewCell
+		let result = tableView!.dequeueReusableCellWithIdentifier("listCell")
 
 		if result == nil {
-			result = UITableViewCell(style: .Default, reuseIdentifier: "listCell")
+			return UITableViewCell(style: .Default, reuseIdentifier: "listCell")
 		}
 
 		return result!
@@ -132,12 +132,13 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	//MARK: Internal methods
 
 	internal func updateRefreshControl() {
-		if let closureValue = refreshClosure {
+		if refreshClosure != nil {
 			if refreshControlView == nil {
-				refreshControlView = ODRefreshControl(inScrollView: self.tableView)
+				refreshControlView = ODRefreshControl(
+						inScrollView: self.tableView)
 				refreshControlView!.addTarget(self,
 						action: "refreshControlBeginRefresh:",
-						forControlEvents: UIControlEvents.ValueChanged)
+						forControlEvents: .ValueChanged)
 			}
 		}
 		else if let currentControl = refreshControlView {
@@ -172,7 +173,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		tableView!.endUpdates()
 	}
 
-	internal func updateVisibleRows(visibleRows: [AnyObject]) {
+	internal func updateVisibleRows(visibleRows: [NSIndexPath]) {
 		if visibleRows.count > 0 {
 			tableView!.reloadRowsAtIndexPaths(visibleRows, withRowAnimation:.None)
 		}

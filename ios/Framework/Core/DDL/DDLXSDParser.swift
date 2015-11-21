@@ -23,18 +23,18 @@ public class DDLXSDParser {
 	//MARK: Public methods
 	
 	public func parse(xsd: String, locale: NSLocale) -> [DDLField]? {
-		var result:[DDLField]? = nil
+		let result: [DDLField]?
 
-		let xmlString = xsd as NSString?
+		let xmlValue = xsd as NSString
 
-		if let xmlValue = xmlString {
-			let data = xmlValue.dataUsingEncoding(NSUTF8StringEncoding)
+		let data = xmlValue.dataUsingEncoding(NSUTF8StringEncoding)
 
-			var outError: NSError?
-
-			if let document = SMXMLDocument(data: data, error: &outError) {
-				result = processDocument(document, locale: locale)
-			}
+		do {
+			let document = try SMXMLDocument(data: data)
+			result = processDocument(document, locale: locale)
+		}
+		catch {
+			result = nil
 		}
 
 		return result
@@ -69,8 +69,6 @@ public class DDLXSDParser {
 			locale: NSLocale,
 			defaultLocale: NSLocale)
 			-> DDLField? {
-
-		var result:DDLField?
 
 		let dataType = DDLField.DataType.from(xmlElement:xmlElement)
 

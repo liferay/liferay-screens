@@ -39,7 +39,7 @@ extension NSBundle {
 
 		return allBundles.filter {
 			let screensPrefix = "LiferayScreens"
-			let bundleName = ($0.bundleIdentifier? as NSString).pathExtension ?? ""
+			let bundleName = (($0.bundleIdentifier ?? "") as NSString).pathExtension
 
 			return bundleName.characters.count > screensPrefix.characters.count
 					&& bundleName.hasPrefix(screensPrefix)
@@ -67,18 +67,14 @@ extension NSBundle {
 	public class func bundlesForApp() -> [NSBundle] {
 
 		func appFile(path: String) -> String? {
-			var outError: NSError? = nil
-			let files: [AnyObject]?
-			do {
-				files = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(path)
-			} catch let error as NSError {
-				outError = error
-				files = nil
-			}
-			return (files as? [String] ?? []).filter { ($0 as NSString).pathExtension == "app" }.first
+			let files = try? NSFileManager.defaultManager().contentsOfDirectoryAtPath(path)
+			return (files ?? []).filter {
+					($0 as NSString).pathExtension == "app"
+				}
+				.first
 		}
 
-		let components = (NSBundle.mainBundle().resourcePath? as NSString).pathComponents ?? []
+		let components = ((NSBundle.mainBundle().resourcePath ?? "") as NSString).pathComponents ?? []
 
 		if components.last == "Overlays" {
 			// running into IB

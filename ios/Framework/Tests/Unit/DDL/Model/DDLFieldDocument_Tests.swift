@@ -119,8 +119,8 @@ class DDLFieldDocument_Tests: XCTestCase {
 		let docField = fields![0] as! DDLFieldDocument
 
 		let image = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
-		let imageBytes = UIImagePNGRepresentation(image)
-		let imageLength = Int64(imageBytes.length)
+		let imageBytes = UIImagePNGRepresentation(image!)
+		let imageLength = Int64(imageBytes!.length)
 
 		docField.currentValue = image
 

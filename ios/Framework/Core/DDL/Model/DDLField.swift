@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class DDLField: NSObject, NSCoding, Equatable, CustomStringConvertible {
+public class DDLField: NSObject, NSCoding {
 
 	public var onPostValidation: (Bool -> Void)?
 	public var lastValidationResult: Bool?

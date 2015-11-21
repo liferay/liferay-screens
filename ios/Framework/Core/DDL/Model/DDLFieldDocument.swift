@@ -88,7 +88,7 @@ public class DDLFieldDocument : DDLField {
 		super.init(attributes: attributes, locale: locale)
 	}
 
-	public required init(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 		let uploadStatusHash = aDecoder.decodeIntegerForKey("uploadStatusHash")
 
 		switch uploadStatusHash {
@@ -215,25 +215,21 @@ public class DDLFieldDocument : DDLField {
 
 	//MARK: Public methods
 
-	public func getStream(inout size:Int64) -> NSInputStream? {
+	public func getStream(inout size: Int64) -> NSInputStream? {
 		var result: NSInputStream?
 
 		switch currentValue {
 		case let image as UIImage:
-			let imageData = UIImagePNGRepresentation(image)
-			size = Int64(imageData.length)
-			result = NSInputStream(data: imageData)
+			if let imageData = UIImagePNGRepresentation(image) {
+				size = Int64(imageData.length)
+				result = NSInputStream(data: imageData)
+			}
 
 		case let videoURL as NSURL:
-			var outError:NSError?
-			do {
-				let attributes = try NSFileManager.defaultManager().attributesOfItemAtPath(
-						videoURL.path!)
-				if let sizeValue = attributes[NSFileSize] as? NSNumber {
-					size = sizeValue.longLongValue
-				}
-			} catch var error as NSError {
-				outError = error
+			let attributes = try? NSFileManager.defaultManager().attributesOfItemAtPath(
+					videoURL.path!)
+			if let sizeValue = attributes?[NSFileSize] as? NSNumber {
+				size = sizeValue.longLongValue
 			}
 			result = NSInputStream(URL: videoURL)
 

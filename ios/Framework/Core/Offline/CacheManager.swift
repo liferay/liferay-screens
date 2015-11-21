@@ -99,11 +99,11 @@ public enum CacheStrategyType: String {
 			result: ([AnyObject?], [[String:AnyObject]?]) -> ()) {
 
 		readConnection.readWithBlock { transaction in
-			let keyCount = count(keys)
+			let keyCount = keys.count
 			var objects = [AnyObject?](count: keyCount, repeatedValue: nil)
 			var attributes = [[String:AnyObject]?](count: keyCount, repeatedValue: nil)
 
-			for (i,k) in enumerate(keys) {
+			for (i,k) in keys.enumerate() {
 				objects[i] = transaction.objectForKey(k, inCollection: collection)
 
 				let metadata = transaction.metadataForKey(k, inCollection: collection) as? CacheMetadata
@@ -195,7 +195,7 @@ public enum CacheStrategyType: String {
 				synchronized: synchronized,
 				attributes: attributes)
 
-			for (i,k) in enumerate(keys) {
+			for (i,k) in keys.enumerate() {
 				transaction.setObject(values[i],
 					forKey: k,
 					inCollection: collection,
