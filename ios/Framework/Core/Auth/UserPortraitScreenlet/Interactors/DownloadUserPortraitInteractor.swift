@@ -28,7 +28,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 		var cacheKey: String {
 			switch self {
-			case .Attributes(let portraitId, let uuid, let male):
+			case .Attributes(let portraitId, _, _):
 				return "portraitId-\(portraitId)"
 			case .UserId(let userId):
 				return "userId-\(userId)"
@@ -41,7 +41,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 		var cacheAttributes: [String:AnyObject] {
 			switch self {
-			case .Attributes(let portraitId, let uuid, let male):
+			case .Attributes(let portraitId, _, _):
 				return ["portraitId": NSNumber(longLong: portraitId)]
 			case .UserId(let userId):
 				return ["userId": NSNumber(longLong: userId)]
@@ -178,7 +178,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 								collection: ScreenletName(UserPortraitScreenlet),
 								key: self.mode.cacheKey) {
 							if let image = $0 {
-								httpOp.resultData = UIImagePNGRepresentation($0)
+								httpOp.resultData = UIImagePNGRepresentation(image)
 								httpOp.lastError = nil
 								result($0)
 							}
@@ -269,11 +269,9 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 			if let inputData = input.dataUsingEncoding(NSUTF8StringEncoding,
 					allowLossyConversion: false) {
 
-				if let resultData = CryptoSwift.Hash.sha1(inputData).calculate() {
-					result = LRHttpUtil.encodeURL(
-						resultData.base64EncodedStringWithOptions(
-							NSDataBase64EncodingOptions(0)))
-				}
+				let resultBytes = CryptoSwift.Hash.sha1(inputData.arrayOfBytes()).calculate()
+				let resultData = NSData(bytes: resultBytes)
+				result = LRHttpUtil.encodeURL(resultData.base64EncodedStringWithOptions([]))
 			}
 #else
 			var buffer = [UInt8](count: Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)

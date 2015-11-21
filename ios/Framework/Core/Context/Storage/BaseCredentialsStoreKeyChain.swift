@@ -33,75 +33,88 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 		if userAttributes == nil { return false }
 		if userAttributes!.isEmpty { return false }
 
+		let bundleId = NSBundle.mainBundle().bundleIdentifier ?? "liferay-screens"
+
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
-		keychain.set(String(LiferayServerContext.companyId),
+		do {
+			try keychain.set(String(LiferayServerContext.companyId),
 				key: "companyId")
-		keychain.set(String(LiferayServerContext.groupId),
+			try keychain.set(String(LiferayServerContext.groupId),
 				key: "groupId")
 
-		var outError: NSError?
-		let userData: NSData?
-		do {
-			userData = try NSJSONSerialization.dataWithJSONObject(userAttributes!,
-							options: NSJSONWritingOptions())
-		} catch var error as NSError {
-			outError = error
-			userData = nil
+			let userData = try? NSJSONSerialization.dataWithJSONObject(userAttributes!,
+				options: NSJSONWritingOptions())
+			if let userData = userData {
+				try keychain.set(userData, key: "\(bundleId)-user")
+
+				storeAuth(keychain: keychain, auth: session!.authentication!)
+
+				return true
+			}
+		}
+		catch {
+			do {
+				try keychain.remove("companyId")
+				try keychain.remove("groupId")
+				try keychain.remove("\(bundleId)-user")
+			} catch {
+			}
 		}
 
-		let bundleId = NSBundle.mainBundle().bundleIdentifier ?? "liferay-screens"
-		keychain.set(userData!, key: "\(bundleId)-user")
-
-		storeAuth(keychain: keychain, auth: session!.authentication!)
-
-		return true
+		return false
 	}
 
 	public func removeStoredCredentials() -> Bool {
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
-		let error1 = keychain.removeAll()
+		do {
+			try keychain.removeAll()
 
-		let userKeychain = Keychain(service: NSBundle.mainBundle().bundleIdentifier!)
+			let userKeychain = Keychain(service: NSBundle.mainBundle().bundleIdentifier!)
 
-		let error2 = keychain.removeAll()
+			try userKeychain.removeAll()
+		}
+		catch {
+			return false
+		}
 
-		return (error1 == nil && error2 == nil)
+		return true
 	}
 
 	public func loadStoredCredentials() -> Bool {
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
-		let companyId = keychain.get("companyId")
-					.map { $0.toInt() }
-					.map { Int64($0!) }
-		let groupId = keychain.get("groupId")
-					.map { $0.toInt() }
-					.map { Int64($0!) }
+		let companyId = try? keychain.get("companyId")
+					.flatMap { Int($0) }
+					.flatMap { Int64($0) }
+		let groupId = try? keychain.get("groupId")
+					.flatMap { Int($0) }
+					.flatMap { Int64($0) }
 
-		if companyId != LiferayServerContext.companyId
-				|| groupId != LiferayServerContext.groupId {
+		if (companyId ?? 0) != LiferayServerContext.companyId
+				|| (groupId ?? 0) != LiferayServerContext.groupId {
 			return false
 		}
 
 		let bundleId = NSBundle.mainBundle().bundleIdentifier ?? "liferay-screens"
-		if let userData = keychain.getData("\(bundleId)-user") {
-			var outError: NSError?
-			let json: AnyObject? =
-					NSJSONSerialization.JSONObjectWithData(userData,
-						options: NSJSONReadingOptions.allZeros,
-						error: &outError)
+
+		guard let userData = try? keychain.getData("\(bundleId)-user")
+		else {
+			return false
+		}
+
+		if let userData = userData {
+			let json = try? NSJSONSerialization.JSONObjectWithData(userData,
+					options: [])
 
 			userAttributes = json as? [String:AnyObject]
-		}
-		else {
-			userAttributes = nil
+			authentication = loadAuth(keychain: keychain)
+
+			return (authentication != nil && userAttributes != nil)
 		}
 
-		authentication = loadAuth(keychain: keychain)
-
-		return (authentication != nil && userAttributes != nil)
+		return false
 	}
 
 	public func storeAuth(keychain keychain: Keychain, auth: LRAuthentication) {
@@ -113,11 +126,12 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 	}
 
 	public class func storedAuthType() -> AuthType? {
-		if let value = keychain().get("auth_type") {
-			return AuthType(rawValue: value)
+		guard let value = try? keychain().get("auth_type")
+		else {
+			return nil
 		}
 
-		return nil
+		return AuthType(rawValue: value ?? "")
 	}
 
 	public class func keychain() -> Keychain {
