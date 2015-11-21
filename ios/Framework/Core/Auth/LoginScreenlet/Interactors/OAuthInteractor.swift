@@ -114,8 +114,11 @@ class OAuthInteractor: Interactor, LRCallback {
 
 		let srv = LRScreensuserService_v62(session: OAuthSession!)
 
-		var outError: NSError?
-		srv.getCurrentUser(&outError)
+		do {
+			try srv.getCurrentUser()
+		}
+		catch {
+		}
 	}
 
 	func onFailure(error: NSError!) {

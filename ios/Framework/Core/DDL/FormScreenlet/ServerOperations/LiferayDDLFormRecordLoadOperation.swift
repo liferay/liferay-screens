@@ -35,30 +35,34 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 	override public func doRun(session session: LRSession) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
-		resultRecordData = nil
-		resultRecordAttributes = nil
-		resultRecordId = nil
-		lastError = nil
+		do {
+			let recordDic = try service.getDdlRecordWithDdlRecordId(recordId,
+					locale: NSLocale.currentLocaleString)
 
-		let recordDic = service.getDdlRecordWithDdlRecordId(recordId,
-				locale: NSLocale.currentLocaleString,
-				error: &lastError)
-
-		if lastError == nil {
 			if let resultData = recordDic["modelValues"] as? [String:AnyObject],
 					resultAttributes = recordDic["modelAttributes"] as? [String:AnyObject] {
 				resultRecordData = resultData
-				resultRecordAttributes = resultAttributes
 				resultRecordId = recordId
+				resultRecordAttributes = resultAttributes
 			}
 			else if let resultData = recordDic as? [String:AnyObject] {
 				// backwards compat: plugins v1.1.0 and previous (pre LPS-58800)
 				resultRecordData = resultData
 				resultRecordId = recordId
+				resultRecordAttributes = nil
 			}
 			else {
 				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				resultRecordData = nil
+				resultRecordId = nil
+				resultRecordAttributes = nil
 			}
+		}
+		catch let error as NSError {
+			lastError = error
+			resultRecordData = nil
+			resultRecordAttributes = nil
+			resultRecordId = nil
 		}
 	}
 

@@ -81,36 +81,37 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 
 		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
 
-		resultRecordId = nil
-		resultAttributes = nil
+		do {
+			let recordDictionary: [NSObject : AnyObject]?
 
-		var recordDictionary: [NSObject : AnyObject]?
+			if recordId == nil {
+				recordDictionary = try service.addRecordWithGroupId(groupId!,
+					recordSetId: recordSetId!,
+					displayIndex: 0,
+					fieldsMap: values,
+					serviceContext: serviceContextWrapper)
+			}
+			else {
+				recordDictionary = try service.updateRecordWithRecordId(recordId!,
+					displayIndex: 0,
+					fieldsMap: values,
+					mergeFields: true,
+					serviceContext: serviceContextWrapper)
+			}
 
-		if recordId == nil {
-			recordDictionary = service.addRecordWithGroupId(groupId!,
-				recordSetId: recordSetId!,
-				displayIndex: 0,
-				fieldsMap: values,
-				serviceContext: serviceContextWrapper,
-				error: &lastError)
-		}
-		else {
-			recordDictionary = service.updateRecordWithRecordId(recordId!,
-				displayIndex: 0,
-				fieldsMap: values,
-				mergeFields: true,
-				serviceContext: serviceContextWrapper,
-				error: &lastError)
-		}
-
-		if lastError == nil {
 			if let recordIdValue = recordDictionary?["recordId"]?.longLongValue {
 				resultRecordId = recordIdValue
 				resultAttributes = recordDictionary
+				lastError = nil
 			}
 			else {
 				lastError = NSError.errorWithCause(.InvalidServerResponse)
 			}
+		}
+		catch let error as NSError {
+			lastError = error
+			resultRecordId = nil
+			resultAttributes = nil
 		}
 	}
 

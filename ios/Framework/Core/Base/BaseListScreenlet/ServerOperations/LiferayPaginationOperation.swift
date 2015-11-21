@@ -53,9 +53,9 @@ public class LiferayPaginationOperation: ServerOperation {
 			doGetRowCountOperation(session: batchSession)
 		}
 
-		let responses = batchSession.invoke(&lastError)
+		do {
+			let responses = try batchSession.invoke()
 
-		if lastError == nil {
 			if let entriesResponse = responses[0] as? [[String:AnyObject]] {
 				let serverPageContent = entriesResponse
 				var serverRowCount: Int?
@@ -70,8 +70,11 @@ public class LiferayPaginationOperation: ServerOperation {
 				resultRowCount = serverRowCount
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
 			}
+		}
+		catch let error as NSError {
+			lastError = error
 		}
 	}
 
