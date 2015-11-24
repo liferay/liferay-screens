@@ -62,7 +62,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 					XCTAssertTrue(attrs.count > 0)
 					XCTAssertNotNil(attrs["emailAddress"])
-					XCTAssertEqual("test@liferay.com", attrs["emailAddress"] as! String)
+					XCTAssertEqual("test@liferay.com", attrs["emailAddress"] as? String)
 				}
 				assertThat("the session should be established") {
 					XCTAssertTrue(SessionContext.hasSession)

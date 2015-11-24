@@ -191,7 +191,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 			uploadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
-			uploadInteractor.onSuccess = { [weak interactor] in
+			uploadInteractor.onSuccess = {
 				self.delegate?.screenlet?(self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
 
 				self.loadedUserId = uploadInteractor.userId

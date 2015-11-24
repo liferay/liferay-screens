@@ -357,7 +357,7 @@ import UIKit
 
 				return true
 
-			case .Uploading(let uploadCount, let submitRequested)
+			case .Uploading(_, let submitRequested)
 			where submitRequested:
 				return true
 
