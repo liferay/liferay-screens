@@ -30,7 +30,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual(DDLField.DataType.DDLInteger, numberField.dataType)
 		XCTAssertEqual(DDLField.Editor.Number, numberField.editorType)
 		XCTAssertTrue(numberField.predefinedValue is NSInteger)
-		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as! NSInteger)
+		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
 	}
 
 	func test_Parse_ShouldExtractValues_WhenFieldIsNumber() {
@@ -42,7 +42,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual(DDLField.DataType.DDLNumber, numberField.dataType)
 		XCTAssertEqual(DDLField.Editor.Number, numberField.editorType)
 		XCTAssertTrue(numberField.predefinedValue is NSInteger)
-		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as! NSInteger)
+		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
 	}
 
 	func test_Parse_ShouldExtractValues_WhenFieldIsDouble() {
@@ -64,7 +64,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 		let numberField = fields![0] as! DDLFieldNumber
 
 		XCTAssertTrue(numberField.predefinedValue is NSInteger)
-		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as! NSInteger)
+		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
 	}
 
 
@@ -77,7 +77,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 		numberField.currentValue = 1.1
 
 		XCTAssertTrue(numberField.currentValue is NSInteger)
-		XCTAssertEqual(NSInteger(1), numberField.currentValue as! NSInteger)
+		XCTAssertEqual(NSInteger(1), numberField.currentValue as? NSInteger)
 	}
 
 
@@ -118,7 +118,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 		XCTAssertEqual("99", numberField.currentValueAsString!)
 		XCTAssertTrue(numberField.currentValue is NSInteger)
-		XCTAssertEqual(NSInteger(99), numberField.currentValue as! NSInteger)
+		XCTAssertEqual(NSInteger(99), numberField.currentValue as? NSInteger)
 	}
 
 	func test_CurrentValueAsString_ShouldBeChanged_WhenNumberIsIntegerAndValueIsDecimal() {
@@ -129,7 +129,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 		XCTAssertEqual("100", numberField.currentValueAsString!)
 		XCTAssertTrue(numberField.currentValue is NSInteger)
-		XCTAssertEqual(NSInteger(100), numberField.currentValue as! NSInteger)
+		XCTAssertEqual(NSInteger(100), numberField.currentValue as? NSInteger)
 	}
 
 	func test_CurrentValueAsString_ShouldBeChanged_WhenNumberIsDecimal() {
