@@ -36,7 +36,8 @@ Pod::Spec.new do |s|
 	s.exclude_files = [
 		'ios/Framework/Core/liferay-screens-bridge.h',
 		'ios/Framework/Tests/**/*.*',
-		'ios/Framework/Pods/**/*.*'
+		'ios/Framework/Pods/**/*.*',
+		'ios/Framework/Themes/Flat7/**/*.*'
 	]
 
 	s.resource_bundle = {
