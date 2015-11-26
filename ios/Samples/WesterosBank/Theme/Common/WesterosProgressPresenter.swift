@@ -11,24 +11,17 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
+import Foundation
 import LiferayScreens
 
 
-public class ForgotPasswordView_westeros: ForgotPasswordView_default {
+public class WesterosProgressPresenter: MBProgressHUDPresenter {
 
-	override public func createProgressPresenter() -> ProgressPresenter {
-		return WesterosProgressPresenter()
-	}
+	override public init() {
+		super.init()
 
-	override public func onShow() {
-		userNameField!.attributedPlaceholder = NSAttributedString(
-				string: userNameField!.placeholder!,
-				attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
-	}
-
-	override public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
-		return false
+		self.customColor = WesterosThemeBasicRed
+		self.customOpacity = 0.6
 	}
 
 }

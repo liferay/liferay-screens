@@ -21,6 +21,10 @@ public class DDLListView_westeros: DDLListView_default, MGSwipeTableCellDelegate
 	var onViewAction: (DDLRecord -> Void)?
 	var onEditAction: (DDLRecord -> Void)?
 
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return WesterosProgressPresenter()
+	}
+
 	override public func doRegisterCellNib(id id: String) {
 		let nib = UINib(
 				nibName: "DDLListViewCell_westeros",
