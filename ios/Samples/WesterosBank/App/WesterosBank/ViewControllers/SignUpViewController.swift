@@ -34,9 +34,9 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 		self.screenlet.delegate = self
 
 		self.screenlet.anonymousApiUserName =
-				LiferayServerContext.valueForKey("anonymousUsername") as? String
+				LiferayServerContext.propertyForKey("anonymousUsername") as? String
 		self.screenlet.anonymousApiPassword =
-				LiferayServerContext.valueForKey("anonymousPassword") as? String
+				LiferayServerContext.propertyForKey("anonymousPassword") as? String
 	}
 
 	func screenlet(screenlet: SignUpScreenlet,

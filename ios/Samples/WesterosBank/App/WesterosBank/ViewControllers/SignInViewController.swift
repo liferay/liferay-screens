@@ -58,9 +58,9 @@ class SignInViewController: CardViewController,
 		self.forgotPasswordScreenlet.delegate = self
 
 		self.forgotPasswordScreenlet.anonymousApiUserName =
-				LiferayServerContext.valueForKey("anonymousUsername") as? String
+				LiferayServerContext.propertyForKey("anonymousUsername") as? String
 		self.forgotPasswordScreenlet.anonymousApiPassword =
-				LiferayServerContext.valueForKey("anonymousPassword") as? String
+				LiferayServerContext.propertyForKey("anonymousPassword") as? String
 	}
 
 	override func viewWillAppear(animated: Bool) {
