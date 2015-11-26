@@ -42,7 +42,7 @@ class SignInViewController: CardViewController,
 		self.init(card: card, nibName:"SignInViewController")
 	}
 
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
@@ -50,7 +50,9 @@ class SignInViewController: CardViewController,
 		scroll.contentSize = CGSizeMake(scroll.frame.size.width * 2, scroll.frame.size.height)
 
 		signInPage.frame = scroll.frame
-		forgotPage.frame = CGRectMake(scroll.frame.size.width, scroll.frame.origin.y, scroll.frame.size)
+		forgotPage.frame = CGRectMake(scroll.frame.size.width,
+			y: scroll.frame.origin.y,
+			size: scroll.frame.size)
 
 		self.loginScreenlet.delegate = self
 		self.forgotPasswordScreenlet.delegate = self
@@ -77,7 +79,7 @@ class SignInViewController: CardViewController,
 				},
 				completion: nil)
 
-		let newRect = CGRectMake(0, 0, scroll.frame.size)
+		let newRect = CGRectMake(0, y: 0, size: scroll.frame.size)
 		scroll.scrollRectToVisible(newRect, animated: true)
 	}
 
@@ -93,7 +95,7 @@ class SignInViewController: CardViewController,
 				},
 				completion: nil)
 
-		let newRect = CGRectMake(scroll.frame.size.width, 0, scroll.frame.size)
+		let newRect = CGRectMake(scroll.frame.size.width, y: 0, size: scroll.frame.size)
 		scroll.scrollRectToVisible(newRect, animated: true)
 	}
 

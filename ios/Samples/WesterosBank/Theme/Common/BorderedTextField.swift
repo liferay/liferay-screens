@@ -17,7 +17,7 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 	private var revertTextColor = false
 
 
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
 		self.delegate = self

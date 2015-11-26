@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D3BD6FCCD95D4FE972F06AC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6370C6082E034E1BCF5D2D54 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0D3BD6FCCD95D4FE972F06AC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6370C6082E034E1BCF5D2D54 /* Pods.framework */; };
 		880139CA1B029BE000566424 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880139C91B029BE000566424 /* KeyboardListener.swift */; };
 		8820EEF61AE79C2D00FA79A6 /* IssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEF41AE79C2D00FA79A6 /* IssuesViewController.swift */; };
 		8820EEF71AE79C2D00FA79A6 /* IssuesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8820EEF51AE79C2D00FA79A6 /* IssuesViewController.xib */; };
@@ -544,7 +544,8 @@
 		88855A251AE6537000D352D5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Liferay;
 				TargetAttributes = {
 					88855A2C1AE6537000D352D5 = {
@@ -794,6 +795,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -863,6 +865,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = WesterosBank/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = westerosbank;
 				PROVISIONING_PROFILE = "";
 			};
@@ -877,6 +880,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = WesterosBank/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = westerosbank;
 				PROVISIONING_PROFILE = "";
 			};

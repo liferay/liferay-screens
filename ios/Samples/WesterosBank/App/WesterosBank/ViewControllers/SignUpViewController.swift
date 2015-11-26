@@ -26,7 +26,7 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 		self.init(card: card, nibName:"SignUpViewController")
 	}
 
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
