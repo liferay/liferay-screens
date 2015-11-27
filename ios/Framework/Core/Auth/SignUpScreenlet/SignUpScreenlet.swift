@@ -47,7 +47,7 @@ import UIKit
 	}
 
 	public func loadCurrentUser() -> Bool {
-		if SessionContext.hasSession {
+		if SessionContext.isLoggedIn {
 			self.viewModel.editCurrentUser = true
 
 			return true
@@ -103,7 +103,7 @@ import UIKit
 		let interactor = SaveUserInteractor(screenlet: self)
 
 		interactor.onSuccess = {
-			if SessionContext.hasSession {
+			if SessionContext.isLoggedIn {
 				// refresh current session
 				self.doAutoLogin(interactor.resultUserAttributes!)
 			}

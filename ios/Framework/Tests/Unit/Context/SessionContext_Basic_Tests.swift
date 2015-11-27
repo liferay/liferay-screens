@@ -81,12 +81,12 @@ class SessionContext_Basic_Tests: XCTestCase {
 				password: "password",
 				userAttributes: [:])
 
-		XCTAssertTrue(SessionContext.hasSession)
+		XCTAssertTrue(SessionContext.isLoggedIn)
 	}
 
 	func test_HasSession_ShouldReturnFalse_WhenSessionIsNotCreated() {
 		SessionContext.clearSession()
-		XCTAssertFalse(SessionContext.hasSession)
+		XCTAssertFalse(SessionContext.isLoggedIn)
 	}
 
 	func test_CreateSessionFromCurrentSession_ShouldReturnNil_WhenSessionIsNotCreated() {
@@ -134,7 +134,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 		XCTAssertNil(SessionContext.currentBasicUserName)
 		XCTAssertNil(SessionContext.currentBasicPassword)
 		XCTAssertNil(SessionContext.userAttribute("k"))
-		XCTAssertFalse(SessionContext.hasSession)
+		XCTAssertFalse(SessionContext.isLoggedIn)
 	}
 
 

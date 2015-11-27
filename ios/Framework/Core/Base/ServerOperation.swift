@@ -100,7 +100,7 @@ import UIKit
 	}
 
 	public func createSession() -> LRSession? {
-		if !SessionContext.hasSession {
+		if !SessionContext.isLoggedIn {
 			lastError = NSError.errorWithCause(.AbortedDueToPreconditions,
 					message: "Login required to use this operation")
 

@@ -65,7 +65,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					XCTAssertEqual("test@liferay.com", attrs["emailAddress"] as? String)
 				}
 				assertThat("the session should be established") {
-					XCTAssertTrue(SessionContext.hasSession)
+					XCTAssertTrue(SessionContext.isLoggedIn)
 				}
 				assertThat("the current user name should be the email address") {
 					XCTAssertNotNil(SessionContext.currentBasicUserName)
@@ -153,7 +153,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 				}
 				assertThat("the session should not be established") {
-					XCTAssertFalse(SessionContext.hasSession)
+					XCTAssertFalse(SessionContext.isLoggedIn)
 				}
 				assertThat("the current user name should be empty") {
 					XCTAssertNil(SessionContext.currentBasicUserName)

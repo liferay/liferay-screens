@@ -36,7 +36,7 @@ import Foundation
 
 	//MARK: Public properties
 
-	public class var hasSession: Bool {
+	public class var isLoggedIn: Bool {
 		return StaticInstance.currentUserSession != nil
 	}
 
