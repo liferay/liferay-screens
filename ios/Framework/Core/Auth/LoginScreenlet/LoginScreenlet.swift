@@ -75,7 +75,8 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		copyBasicAuth(source: self, target: screenletView)
 		copyAuthType()
 
-		if SessionContext.loadSessionFromStore() {
+		//WARN will conflict when merge with LSR-705
+		if SessionContext.loadStoredCredentials() {
 			viewModel.userName = SessionContext.currentBasicUserName
 			viewModel.password = SessionContext.currentBasicPassword
 
@@ -103,7 +104,7 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
 
 			if self.viewModel.saveCredentials {
-				if SessionContext.storeSession() {
+				if SessionContext.storeCredentials() {
 					self.delegate?.onScreenletCredentialsSaved?(self)
 				}
 			}
@@ -127,7 +128,7 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
 
 			if self.saveCredentials {
-				if SessionContext.storeSession() {
+				if SessionContext.storeCredentials() {
 					self.delegate?.onScreenletCredentialsSaved?(self)
 				}
 			}

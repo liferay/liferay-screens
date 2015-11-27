@@ -29,7 +29,7 @@ import Foundation
 
 		static var chacheManager: CacheManager?
 
-		static var sessionStorage = SessionStorage(
+		static var credentialsStorage = CredentialsStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
 	}
 
@@ -64,12 +64,12 @@ import Foundation
 		return StaticInstance.chacheManager
 	}
 
-	internal class var sessionStorage: SessionStorage {
+	internal class var credentialsStorage: CredentialsStorage {
 		get {
-			return StaticInstance.sessionStorage
+			return StaticInstance.credentialsStorage
 		}
 		set {
-			StaticInstance.sessionStorage = newValue
+			StaticInstance.credentialsStorage = newValue
 		}
 	}
 
@@ -93,7 +93,7 @@ import Foundation
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
-		sessionStorage = SessionStorage(
+		credentialsStorage = CredentialsStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
 
 		let authentication = LRBasicAuthentication(
@@ -110,7 +110,7 @@ import Foundation
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
-		sessionStorage = SessionStorage(
+		credentialsStorage = CredentialsStorage(
 			credentialStore: OAuthCredentialsStoreKeyChain())
 
 		return createSession(
@@ -153,29 +153,29 @@ import Foundation
 		StaticInstance.chacheManager = nil
 	}
 
-	public class func storeSession() -> Bool {
-		return sessionStorage.store(
+	public class func storeCredentials() -> Bool {
+		return credentialsStorage.store(
 				session: StaticInstance.currentUserSession,
 				userAttributes: StaticInstance.currentUserAttributes)
 	}
 
-	public class func removeStoredSession() -> Bool {
-		return sessionStorage.remove()
+	public class func removeStoredCredentials() -> Bool {
+		return credentialsStorage.remove()
 	}
 
-	public class func loadSessionFromStore() -> Bool {
-		let sessionStorage = SessionStorage()
-		if sessionStorage.hasSessionStored {
-			if let result = sessionStorage.load()
+	public class func loadStoredCredentials() -> Bool {
+		let credentialsStorage = CredentialsStorage()
+
+		if credentialsStorage.hasCredentialsStored {
+			if let result = credentialsStorage.load()
 					where result.session.server != nil {
+
 				StaticInstance.currentUserSession = result.session
 				StaticInstance.currentUserAttributes = result.userAttributes
 				StaticInstance.chacheManager = CacheManager(session: result.session)
 
 				return true
 			}
-
-			logout()
 		}
 
 		return false

@@ -82,9 +82,9 @@ import UIKit
 				self.doAutoLogin(interactor.resultUserAttributes!)
 
 				if self.saveCredentials {
-					SessionContext.removeStoredSession()
+					SessionContext.removeStoredCredentials()
 
-					if SessionContext.storeSession() {
+					if SessionContext.storeCredentials() {
 						self.autoLoginDelegate?.onScreenletCredentialsSaved?(self)
 					}
 				}

@@ -17,7 +17,7 @@ import XCTest
 class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 	override func setUp() {
-		SessionContext.sessionStorage = SessionStorage(
+		SessionContext.credentialsStorage = CredentialsStorage(
 				credentialStore: CredentialStoreMock())
 
 		super.setUp()
@@ -26,7 +26,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 	override func tearDown() {
 		super.tearDown()
 
-		SessionContext.sessionStorage = SessionStorage(
+		SessionContext.credentialsStorage = CredentialsStorage(
 			credentialStore: CredentialStoreMock())
 	}
 
@@ -112,7 +112,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 			}
 			eventually("the credentials should be stored", code: {result in
 				assertThat("the session context can load the credentials") {
-					XCTAssertTrue(SessionContext.loadSessionFromStore())
+					XCTAssertTrue(SessionContext.loadStoredCredentials())
 				}
 				assertThat("onCredentialsSaved delegate is called") {
 					XCTAssertTrue((self.screenlet!.delegate as! TestLoginScreenletDelegate).credentialsSavedCalled)

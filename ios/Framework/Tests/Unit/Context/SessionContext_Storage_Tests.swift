@@ -24,7 +24,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 		self.continueAfterFailure = false
 		self.credentialStore = CredentialStoreMock()
 
-		SessionContext.sessionStorage = SessionStorage(
+		SessionContext.credentialsStorage = CredentialsStorage(
 				credentialStore: self.credentialStore)
 
 		SessionContext.logout()
@@ -32,14 +32,14 @@ class SessionContext_Storage_Tests: XCTestCase {
 
 	override func tearDown() {
 		SessionContext.logout()
-		SessionContext.sessionStorage = SessionStorage(
+		SessionContext.credentialsStorage = CredentialsStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
 
 		super.tearDown()
 	}
 
 	func test_StoreSession_ShouldReturnFalse_WhenSessionIsNotCreated() {
-		XCTAssertFalse(SessionContext.storeSession())
+		XCTAssertFalse(SessionContext.storeCredentials())
 
 		XCTAssertFalse(credentialStore.calledStoreCredential)
 	}
@@ -50,7 +50,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 				password: "password",
 				userAttributes: [:])
 
-		XCTAssertFalse(SessionContext.storeSession())
+		XCTAssertFalse(SessionContext.storeCredentials())
 
 		XCTAssertFalse(credentialStore.calledStoreCredential)
 	}
@@ -61,10 +61,10 @@ class SessionContext_Storage_Tests: XCTestCase {
 				password: "password",
 				userAttributes: ["k":"v"])
 
-		SessionContext.sessionStorage = SessionStorage(
+		SessionContext.credentialsStorage = CredentialsStorage(
 				credentialStore: self.credentialStore)
 
-		XCTAssertTrue(SessionContext.storeSession())
+		XCTAssertTrue(SessionContext.storeCredentials())
 
 		XCTAssertTrue(credentialStore.calledStoreCredential)
 	}
@@ -75,12 +75,12 @@ class SessionContext_Storage_Tests: XCTestCase {
 				password: "password",
 				userAttributes: ["k":"v"])
 
-		SessionContext.sessionStorage = SessionStorage(
+		SessionContext.credentialsStorage = CredentialsStorage(
 				credentialStore: self.credentialStore)
 
 		credentialStore.hasData = false
 
-		XCTAssertFalse(SessionContext.loadSessionFromStore())
+		XCTAssertFalse(SessionContext.loadStoredCredentials())
 
 		XCTAssertTrue(credentialStore.calledLoadCredential)
 
@@ -89,7 +89,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 	}
 
 	func test_RemoveStoredSession_ShouldEmptyTheStoredSession() {
-		SessionContext.removeStoredSession()
+		SessionContext.removeStoredCredentials()
 
 		XCTAssertTrue(credentialStore.calledRemoveCredential)
 	}
