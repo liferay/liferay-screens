@@ -116,7 +116,7 @@ class HomeViewController: UIViewController {
 	}
 
 	@IBAction func signOutAction(sender: AnyObject) {
-		SessionContext.clearSession()
+		SessionContext.logout()
 		self.performSegueWithIdentifier("onboarding", sender: nil)
 	}
 

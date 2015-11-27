@@ -17,7 +17,7 @@ import XCTest
 class SessionContext_Basic_Tests: XCTestCase {
 
 	override func tearDown() {
-		SessionContext.clearSession()
+		SessionContext.logout()
 
 		super.tearDown()
 	}
@@ -66,12 +66,12 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CurrentUserName_ShouldReturnNil_WhenSessionIsNotCreated() {
-		SessionContext.clearSession()
+		SessionContext.logout()
 		XCTAssertNil(SessionContext.currentBasicUserName)
 	}
 
 	func test_CurrentPassword_ShouldReturnNil_WhenSessionIsNotCreated() {
-		SessionContext.clearSession()
+		SessionContext.logout()
 		XCTAssertNil(SessionContext.currentBasicPassword)
 	}
 
@@ -85,12 +85,12 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_HasSession_ShouldReturnFalse_WhenSessionIsNotCreated() {
-		SessionContext.clearSession()
+		SessionContext.logout()
 		XCTAssertFalse(SessionContext.isLoggedIn)
 	}
 
 	func test_CreateSessionFromCurrentSession_ShouldReturnNil_WhenSessionIsNotCreated() {
-		SessionContext.clearSession()
+		SessionContext.logout()
 		XCTAssertNil(SessionContext.createSessionFromCurrentSession())
 	}
 
@@ -119,7 +119,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CreateBatchSessionFromCurrentSession_ShouldReturnNil_WhenSessionIsNotCreated() {
-		SessionContext.clearSession()
+		SessionContext.logout()
 		XCTAssertNil(SessionContext.createBatchSessionFromCurrentSession())
 	}
 
@@ -129,7 +129,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 				password: "password",
 				userAttributes: ["k":"v"])
 
-		SessionContext.clearSession()
+		SessionContext.logout()
 
 		XCTAssertNil(SessionContext.currentBasicUserName)
 		XCTAssertNil(SessionContext.currentBasicPassword)

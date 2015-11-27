@@ -23,7 +23,7 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 
 	@IBAction func signOutAction() {
 		SessionContext.removeStoredSession()
-		SessionContext.clearSession()
+		SessionContext.logout()
 
 		showLogged(animated: true);
 	}

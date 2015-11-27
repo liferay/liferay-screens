@@ -147,7 +147,7 @@ import Foundation
 		return nil
 	}
 
-	public class func clearSession() {
+	public class func logout() {
 		StaticInstance.currentUserSession = nil
 		StaticInstance.currentUserAttributes = [:]
 		StaticInstance.chacheManager = nil
@@ -175,7 +175,7 @@ import Foundation
 				return true
 			}
 
-			clearSession()
+			logout()
 		}
 
 		return false

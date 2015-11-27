@@ -55,7 +55,7 @@ class BaseLoginScreenletTestCase: IntegrationTestCase {
 		screenlet!.themeName = "test"
 		screenlet!.screenletView = screenlet!.loadScreenletView()
 
-		SessionContext.clearSession()
+		SessionContext.logout()
 	}
 
 }

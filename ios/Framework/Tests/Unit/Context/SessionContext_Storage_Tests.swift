@@ -27,11 +27,11 @@ class SessionContext_Storage_Tests: XCTestCase {
 		SessionContext.sessionStorage = SessionStorage(
 				credentialStore: self.credentialStore)
 
-		SessionContext.clearSession()
+		SessionContext.logout()
 	}
 
 	override func tearDown() {
-		SessionContext.clearSession()
+		SessionContext.logout()
 		SessionContext.sessionStorage = SessionStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
 
