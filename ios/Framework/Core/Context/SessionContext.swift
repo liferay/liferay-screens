@@ -24,8 +24,8 @@ import Foundation
 	//MARK: Singleton type
 
 	private struct StaticInstance {
-		static var currentSession: LRSession?
-		static var userAttributes: [String:AnyObject] = [:]
+		static var currentUserSession: LRSession?
+		static var currentUserAttributes = [String:AnyObject]()
 
 		static var chacheManager: CacheManager?
 
@@ -37,25 +37,25 @@ import Foundation
 	//MARK: Public properties
 
 	public class var hasSession: Bool {
-		return StaticInstance.currentSession != nil
+		return StaticInstance.currentUserSession != nil
 	}
 
 	public class var currentBasicUserName: String? {
-		let authentication = StaticInstance.currentSession?.authentication
+		let authentication = StaticInstance.currentUserSession?.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.username
 	}
 
 	public class var currentBasicPassword: String? {
-		let authentication = StaticInstance.currentSession?.authentication
+		let authentication = StaticInstance.currentUserSession?.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.password
 	}
 
 	public class var currentUserId: Int64? {
-		return StaticInstance.userAttributes["userId"]
+		return StaticInstance.currentUserAttributes["userId"]
 				.map { $0 as! NSNumber }
 				.map { $0.longLongValue }
 	}
@@ -76,7 +76,7 @@ import Foundation
 	//MARK Public methods
 
 	public class func userAttribute(key: String) -> AnyObject? {
-		return StaticInstance.userAttributes[key]
+		return StaticInstance.currentUserAttributes[key]
 	}
 
 	public class func createAnonymousBasicSession(userName: String, _ password: String) -> LRSession {
@@ -132,7 +132,7 @@ import Foundation
 	}
 
 	public class func createSessionFromCurrentSession() -> LRSession? {
-		if let currentSessionValue = StaticInstance.currentSession {
+		if let currentSessionValue = StaticInstance.currentUserSession {
 			return LRSession(session: currentSessionValue)
 		}
 
@@ -140,7 +140,7 @@ import Foundation
 	}
 
 	public class func createBatchSessionFromCurrentSession() -> LRBatchSession? {
-		if let currentSessionValue = StaticInstance.currentSession {
+		if let currentSessionValue = StaticInstance.currentUserSession {
 			return LRBatchSession(session: currentSessionValue)
 		}
 
@@ -148,15 +148,15 @@ import Foundation
 	}
 
 	public class func clearSession() {
-		StaticInstance.currentSession = nil
-		StaticInstance.userAttributes = [:]
+		StaticInstance.currentUserSession = nil
+		StaticInstance.currentUserAttributes = [:]
 		StaticInstance.chacheManager = nil
 	}
 
 	public class func storeSession() -> Bool {
 		return sessionStorage.store(
-				session: StaticInstance.currentSession,
-				userAttributes: StaticInstance.userAttributes)
+				session: StaticInstance.currentUserSession,
+				userAttributes: StaticInstance.currentUserAttributes)
 	}
 
 	public class func removeStoredSession() -> Bool {
@@ -168,8 +168,8 @@ import Foundation
 		if sessionStorage.hasSessionStored {
 			if let result = sessionStorage.load()
 					where result.session.server != nil {
-				StaticInstance.currentSession = result.session
-				StaticInstance.userAttributes = result.userAttributes
+				StaticInstance.currentUserSession = result.session
+				StaticInstance.currentUserAttributes = result.userAttributes
 				StaticInstance.chacheManager = CacheManager(session: result.session)
 
 				return true
@@ -192,8 +192,8 @@ import Foundation
 
 		let session = LRSession(server: server, authentication: authentication)
 
-		StaticInstance.currentSession = session
-		StaticInstance.userAttributes = userAttributes
+		StaticInstance.currentUserSession = session
+		StaticInstance.currentUserAttributes = userAttributes
 		StaticInstance.chacheManager = CacheManager(session: session)
 
 		return session
