@@ -32,6 +32,7 @@ public let AssetClassNameIdCalendarEvent = "CalendarEvent"
 
 // Document Library
 public let AssetClassNameIdDLFileEntry = "DLFileEntry"
+public let AssetClassNameIdDLFolder = "DLFolder"
 public let AssetClassNameIdDLFileEntryMetadata = "DLFileEntryMetadata"
 public let AssetClassNameIdDLFileEntryType = "DLFileEntryType"
 public let AssetClassNameIdDLFileRank = "DLFileRank"
@@ -41,9 +42,11 @@ public let AssetClassNameIdDLFileVersion = "DLFileVersion"
 // DDL
 public let AssetClassNameIdDDLRecord = "DDLRecord"
 public let AssetClassNameIdDDLRecordSet = "DDLRecordSet"
+public let AssetClassNameIdDDLRecordVersion = "DDLRecordVersion"
 
 // Journal
 public let AssetClassNameIdJournalArticle = "JournalArticle"
+public let AssetClassNameIdJournalArticleImage = "JournalArticleImage"
 public let AssetClassNameIdJournalFolder = "JournalFolder"
 
 // MessageBoard
@@ -89,6 +92,7 @@ public let AssetClassNameIdWikiNode = "WikiNode"
 
 			// Document Library
 			AssetClassNameIdDLFileEntry : 10011,
+			AssetClassNameIdDLFolder: 10012,
 			AssetClassNameIdDLFileEntryMetadata : 10091,
 			AssetClassNameIdDLFileEntryType : 10092,
 			AssetClassNameIdDLFileRank : 10093,
@@ -98,9 +102,11 @@ public let AssetClassNameIdWikiNode = "WikiNode"
 			// DDL
 			AssetClassNameIdDDLRecord : 10097,
 			AssetClassNameIdDDLRecordSet : 10098,
+			AssetClassNameIdDDLRecordVersion : 10099,
 
 			// Journal
 			AssetClassNameIdJournalArticle : 10109,
+			AssetClassNameIdJournalArticleImage : 10110,
 			AssetClassNameIdJournalFolder : 10013,
 
 			// MessageBoard
