@@ -125,6 +125,7 @@ import QuartzCore
 				return self!.performAction(name: name, sender: sender)
 			}
 
+			viewValue.screenlet = self
 			viewValue.presentingViewController = self.presentingViewController
 			viewValue.themeName = _themeName
 
