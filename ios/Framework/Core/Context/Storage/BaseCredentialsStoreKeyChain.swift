@@ -68,10 +68,6 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 
 		do {
 			try keychain.removeAll()
-
-			let userKeychain = Keychain(service: NSBundle.mainBundle().bundleIdentifier!)
-
-			try userKeychain.removeAll()
 		}
 		catch {
 			return false
