@@ -19,7 +19,6 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	@IBOutlet public weak var userNameIcon: UIImageView!
 	@IBOutlet public weak var userNameField: UITextField!
 	@IBOutlet public weak var passwordField: UITextField!
-	@IBOutlet public weak var rememberSwitch: UISwitch!
 	@IBOutlet public weak var loginButton: UIButton!
 	@IBOutlet public weak var userNameBackground: UIImageView!
 	@IBOutlet public weak var passwordBackground: UIImageView!
@@ -34,21 +33,6 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 
 
 	//MARK: AuthBasedViewModel
-
-	public var saveCredentials: Bool {
-		get {
-			if let rememberSwitchValue = rememberSwitch {
-				return rememberSwitchValue.on;
-			}
-
-			return false
-		}
-		set {
-			if let rememberSwitchValue = rememberSwitch {
-				rememberSwitchValue.on = newValue
-			}
-		}
-	}
 
 	public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
 		didSet {
