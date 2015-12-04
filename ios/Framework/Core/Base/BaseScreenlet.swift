@@ -32,6 +32,7 @@ import QuartzCore
 
 	public static let DefaultAction = "defaultAction"
 
+	@IBOutlet public weak var delegate: BaseScreenletDelegate?
 
 	@IBInspectable public var themeName: String? {
 		set {
@@ -49,7 +50,6 @@ import QuartzCore
 	}
 
 	public weak var screenletView: BaseScreenletView?
-	public weak var delegate: BaseScreenletDelegate?
 
 	public weak var presentingViewController: UIViewController? {
 		didSet {
