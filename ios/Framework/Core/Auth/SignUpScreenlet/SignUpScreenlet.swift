@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol SignUpScreenletDelegate {
+@objc public protocol SignUpScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: SignUpScreenlet,
 			onSignUpResponseUserAttributes attributes: [String:AnyObject])
@@ -38,9 +38,12 @@ import UIKit
 
 	@IBInspectable public var companyId: Int64 = 0
 
-	@IBOutlet public weak var delegate: SignUpScreenletDelegate?
 	@IBOutlet public weak var autoLoginDelegate: LoginScreenletDelegate?
 
+
+	public var signUpDelegate: SignUpScreenletDelegate? {
+		return delegate as? SignUpScreenletDelegate
+	}
 
 	public var viewModel: SignUpViewModel {
 		return screenletView as! SignUpViewModel
@@ -75,7 +78,7 @@ import UIKit
 		let interactor = SignUpInteractor(screenlet: self)
 
 		interactor.onSuccess = {
-			self.delegate?.screenlet?(self,
+			self.signUpDelegate?.screenlet?(self,
 					onSignUpResponseUserAttributes: interactor.resultUserAttributes!)
 
 			if self.autoLogin {
@@ -92,7 +95,7 @@ import UIKit
 		}
 
 		interactor.onFailure = {
-			self.delegate?.screenlet?(self, onSignUpError: $0)
+			self.signUpDelegate?.screenlet?(self, onSignUpError: $0)
 			return
 		}
 
@@ -108,13 +111,12 @@ import UIKit
 				self.doAutoLogin(interactor.resultUserAttributes!)
 			}
 
-			self.delegate?.screenlet?(self,
+			self.signUpDelegate?.screenlet?(self,
 					onSignUpResponseUserAttributes: interactor.resultUserAttributes!)
 		}
 
 		interactor.onFailure = {
-			self.delegate?.screenlet?(self, onSignUpError: $0)
-			return
+			self.signUpDelegate?.screenlet?(self, onSignUpError: $0)
 		}
 
 		return interactor
