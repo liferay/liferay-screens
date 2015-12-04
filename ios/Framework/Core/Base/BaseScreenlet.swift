@@ -15,6 +15,15 @@ import UIKit
 import QuartzCore
 
 
+@objc public protocol BaseScreenletDelegate {
+
+	optional func screenlet(screenlet: BaseScreenlet,
+		customInteractorForAction: String,
+		withSender: AnyObject?) -> Interactor?
+
+}
+
+
 /*!
  * BaseScreenlet is the base class from which all Screenlet classes must inherit.
  * A screenlet is the container for a screenlet view.
