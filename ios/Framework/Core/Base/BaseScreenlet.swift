@@ -50,6 +50,8 @@ import QuartzCore
 
 	public weak var screenletView: BaseScreenletView?
 
+	public var delegate: BaseScreenletDelegate?
+
 	public weak var presentingViewController: UIViewController? {
 		didSet {
 			screenletView?.presentingViewController = self.presentingViewController
@@ -204,7 +206,15 @@ import QuartzCore
 	public func performAction(name name: String, sender: AnyObject? = nil) -> Bool {
 		let result: Bool
 
-		if let interactor = self.createInteractor(name: name, sender: sender) {
+		let customInteractor = self.delegate?.screenlet?(self,
+				customInteractorForAction: name,
+				withSender: sender)
+
+		let standardInteractor = self.createInteractor(
+				name: name,
+				sender: sender)
+
+		if let interactor = customInteractor ?? standardInteractor {
 			trackInteractor(interactor, withName: name)
 
 			if let message = screenletView?.progressMessageForAction(name, messageType: .Working) {
