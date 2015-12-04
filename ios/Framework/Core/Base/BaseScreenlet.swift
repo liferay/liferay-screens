@@ -49,8 +49,7 @@ import QuartzCore
 	}
 
 	public weak var screenletView: BaseScreenletView?
-
-	public var delegate: BaseScreenletDelegate?
+	public weak var delegate: BaseScreenletDelegate?
 
 	public weak var presentingViewController: UIViewController? {
 		didSet {
