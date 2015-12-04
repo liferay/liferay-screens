@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol LoginScreenletDelegate {
+@objc public protocol LoginScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject])
@@ -59,8 +59,9 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	}
 
 
-	@IBOutlet public weak var delegate: LoginScreenletDelegate?
-
+	public var loginDelegate: LoginScreenletDelegate? {
+		return self.delegate as? LoginScreenletDelegate
+	}
 
 	public var viewModel: LoginViewModel {
 		return screenletView as! LoginViewModel
@@ -79,7 +80,7 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 			viewModel.userName = SessionContext.currentBasicUserName
 			viewModel.password = SessionContext.currentBasicPassword
 
-			delegate?.onScreenletCredentialsLoaded?(self)
+			loginDelegate?.onScreenletCredentialsLoaded?(self)
 		}
 	}
 
@@ -99,18 +100,18 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		let interactor = LoginInteractor(screenlet: self)
 
 		interactor.onSuccess = {
-			self.delegate?.screenlet?(self,
+			self.loginDelegate?.screenlet?(self,
 					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
 
 			if self.viewModel.saveCredentials {
 				if SessionContext.storeSession() {
-					self.delegate?.onScreenletCredentialsSaved?(self)
+					self.loginDelegate?.onScreenletCredentialsSaved?(self)
 				}
 			}
 		}
 
 		interactor.onFailure = {
-			self.delegate?.screenlet?(self, onLoginError: $0)
+			self.loginDelegate?.screenlet?(self, onLoginError: $0)
 		}
 
 		return interactor
@@ -123,18 +124,18 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 				consumerSecret: OAuthConsumerSecret)
 
 		interactor.onSuccess = {
-			self.delegate?.screenlet?(self,
+			self.loginDelegate?.screenlet?(self,
 					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
 
 			if self.saveCredentials {
 				if SessionContext.storeSession() {
-					self.delegate?.onScreenletCredentialsSaved?(self)
+					self.loginDelegate?.onScreenletCredentialsSaved?(self)
 				}
 			}
 		}
 
 		interactor.onFailure = {
-			self.delegate?.screenlet?(self, onLoginError: $0)
+			self.loginDelegate?.screenlet?(self, onLoginError: $0)
 			return
 		}
 
