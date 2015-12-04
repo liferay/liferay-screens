@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol WebContentDisplayScreenletDelegate {
+@objc public protocol WebContentDisplayScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: WebContentDisplayScreenlet,
 			onWebContentResponse html: String ) -> String?
@@ -37,7 +37,10 @@ import UIKit
 	@IBInspectable public var templateId: Int64 = 0
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
-	@IBOutlet public weak var delegate: WebContentDisplayScreenletDelegate?
+
+	public var webContentDisplayDelegate: WebContentDisplayScreenletDelegate? {
+		return delegate as? WebContentDisplayScreenletDelegate
+	}
 
 
 	//MARK: Public methods
@@ -54,7 +57,7 @@ import UIKit
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
-			let modifiedHtml = self.delegate?.screenlet?(self,
+			let modifiedHtml = self.webContentDisplayDelegate?.screenlet?(self,
 					onWebContentResponse: interactor.resultHTML!)
 
 			(self.screenletView as! WebContentDisplayViewModel).htmlContent =
@@ -62,7 +65,7 @@ import UIKit
 		}
 
 		interactor.onFailure = {
-			self.delegate?.screenlet?(self, onWebContentError: $0)
+			self.webContentDisplayDelegate?.screenlet?(self, onWebContentError: $0)
 		}
 
 		return interactor
