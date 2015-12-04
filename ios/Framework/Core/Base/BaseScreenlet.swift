@@ -32,6 +32,7 @@ import QuartzCore
 
 	public static let DefaultAction = "defaultAction"
 
+
 	@IBInspectable public var themeName: String? {
 		set {
 			_themeName = (newValue ?? "default").lowercaseString
@@ -201,7 +202,7 @@ import QuartzCore
 	 * start the interaction programatically.
 	 */
 	public func performAction(name name: String, sender: AnyObject? = nil) -> Bool {
-		var result = false
+		let result: Bool
 
 		if let interactor = self.createInteractor(name: name, sender: sender) {
 			trackInteractor(interactor, withName: name)
@@ -216,6 +217,7 @@ import QuartzCore
 		}
 		else {
 			print("WARN: No interactor created for action \(name)\n")
+			result = false
 		}
 
 		return result
