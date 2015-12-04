@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol AssetListScreenletDelegate {
+@objc public protocol AssetListScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: AssetListScreenlet,
 			onAssetListResponseEntries entries: [AssetListScreenletEntry])
@@ -76,7 +76,10 @@ import UIKit
 	@IBInspectable public var portletItemName: String?
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
-	@IBOutlet public weak var delegate: AssetListScreenletDelegate?
+
+	public var assetListDelegate: AssetListScreenletDelegate? {
+		return delegate as? AssetListScreenletDelegate
+	}
 
 	public var customEntryQuery: [String:AnyObject]?
 
@@ -105,7 +108,7 @@ import UIKit
 	override internal func onLoadPageError(page page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
 
-		delegate?.screenlet?(self, onAssetListError: error)
+		assetListDelegate?.screenlet?(self, onAssetListError: error)
 	}
 
 	override internal func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
@@ -113,11 +116,11 @@ import UIKit
 
 		let assetEntries = rows as! [AssetListScreenletEntry]
 
-		delegate?.screenlet?(self, onAssetListResponseEntries: assetEntries)
+		assetListDelegate?.screenlet?(self, onAssetListResponseEntries: assetEntries)
 	}
 
 	override internal func onSelectedRow(row: AnyObject) {
-		delegate?.screenlet?(self, onAssetSelectedEntry: row as! AssetListScreenletEntry)
+		assetListDelegate?.screenlet?(self, onAssetSelectedEntry: row as! AssetListScreenletEntry)
 	}
 
 }
