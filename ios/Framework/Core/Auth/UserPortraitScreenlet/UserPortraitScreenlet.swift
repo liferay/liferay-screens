@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol UserPortraitScreenletDelegate {
+@objc public protocol UserPortraitScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: UserPortraitScreenlet,
 			onUserPortraitResponseImage image: UIImage) -> UIImage
@@ -52,8 +52,10 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
-	@IBOutlet public weak var delegate: UserPortraitScreenletDelegate?
 
+	public var userPortraitDelegate: UserPortraitScreenletDelegate? {
+		return self.delegate as? UserPortraitScreenletDelegate
+	}
 
 	public var viewModel: UserPortraitViewModel {
 		return screenletView as! UserPortraitViewModel
@@ -150,13 +152,13 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 			loadInteractor.onSuccess = {
 				if let imageValue = loadInteractor.resultImage {
-					let finalImage = self.delegate?.screenlet?(self, onUserPortraitResponseImage: imageValue)
+					let finalImage = self.userPortraitDelegate?.screenlet?(self, onUserPortraitResponseImage: imageValue)
 
 					self.loadedUserId = loadInteractor.resultUserId
 					self.setPortraitImage(finalImage ?? imageValue)
 				}
 				else {
-					self.delegate?.screenlet?(self, onUserPortraitError: NSError.errorWithCause(.InvalidServerResponse))
+					self.userPortraitDelegate?.screenlet?(self, onUserPortraitError: NSError.errorWithCause(.InvalidServerResponse))
 
 					self.loadedUserId = nil
 					self.setPortraitImage(nil)
@@ -164,7 +166,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 			}
 
 			loadInteractor.onFailure = {
-				self.delegate?.screenlet?(self, onUserPortraitError: $0)
+				self.userPortraitDelegate?.screenlet?(self, onUserPortraitError: $0)
 
 				self.loadedUserId = nil
 				self.setPortraitImage(nil)
@@ -192,14 +194,14 @@ public class UserPortraitScreenlet: BaseScreenlet {
 			uploadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 			uploadInteractor.onSuccess = {
-				self.delegate?.screenlet?(self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
+				self.userPortraitDelegate?.screenlet?(self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
 
 				self.loadedUserId = uploadInteractor.userId
 				self.setPortraitImage(uploadInteractor.image)
 			}
 
 			uploadInteractor.onFailure = {
-				self.delegate?.screenlet?(self, onUserPortraitUploadError: $0)
+				self.userPortraitDelegate?.screenlet?(self, onUserPortraitUploadError: $0)
 			}
 
 		default:
@@ -217,7 +219,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 		if image == nil {
 			let error = NSError.errorWithCause(.AbortedDueToPreconditions)
-			delegate?.screenlet?(self, onUserPortraitError: error)
+			userPortraitDelegate?.screenlet?(self, onUserPortraitError: error)
 		}
 	}
 
