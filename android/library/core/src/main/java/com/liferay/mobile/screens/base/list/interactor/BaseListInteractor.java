@@ -105,7 +105,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		String endId = createId(id, endRow);
 
 		Long defaultGroupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
-		Long defaultUserId = userId == null ? (long) SessionContext.getDefaultUserId() : userId;
+		Long defaultUserId = userId == null ? (long) SessionContext.getUserId() : userId;
 		String defaultLocale = locale == null ? LiferayLocale.getDefaultSupportedLocale() :
 			LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
 

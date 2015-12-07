@@ -21,13 +21,13 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	@IBOutlet var screenlet: AssetListScreenlet?
 	@IBOutlet var picker: UIPickerView?
 
-	var selectedAsset = AssetClassNameId.Group
+	var selectedAsset = AssetClassNameIds.get(AssetClassNameIdGroup)
 
-	var pickerData:[(name:String, assetId:AssetClassNameId)] = []
+	var pickerData:[(name:String, assetId:Int64)] = []
 
 	@IBAction func changeAssetAction(sender: AnyObject) {
 		showPicker(false, animated:true)
-		screenlet?.classNameId = Int64(selectedAsset.rawValue)
+		screenlet?.classNameId = selectedAsset!
 		screenlet?.loadList()
 	}
 
@@ -41,7 +41,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 
 	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		selectedAsset = pickerData[row].assetId
-		print("[ASSET TYPE] -> Selected \(selectedAsset.rawValue)\n")
+		print("[ASSET TYPE] -> Selected \(selectedAsset!)\n")
 	}
 
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -59,33 +59,76 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		pickerData.append((name:"Group", assetId:.Group))
-		pickerData.append((name:"Layout", assetId:.Layout))
-		pickerData.append((name:"Organization", assetId:.Organization))
-		pickerData.append((name:"User", assetId:.User))
-		pickerData.append((name:"UserGroup", assetId:.UserGroup))
-		pickerData.append((name:"BlogsEntry", assetId:.BlogsEntry))
-		pickerData.append((name:"BookmarksEntry", assetId:.BookmarksEntry))
-		pickerData.append((name:"BookmarksFolder", assetId:.BookmarksFolder))
-		pickerData.append((name:"CalendarEvent", assetId:.CalendarEvent))
-		pickerData.append((name:"DLFileEntry", assetId:.DLFileEntry))
-		pickerData.append((name:"DLFileEntryMetadata", assetId:.DLFileEntryMetadata))
-		pickerData.append((name:"DLFileEntryType", assetId:.DLFileEntryType))
-		pickerData.append((name:"DLFileRank", assetId:.DLFileRank))
-		pickerData.append((name:"DLFileShortcut", assetId:.DLFileShortcut))
-		pickerData.append((name:"DLFileVersion", assetId:.DLFileVersion))
-		pickerData.append((name:"DDLRecord", assetId:.DDLRecord))
-		pickerData.append((name:"DDLRecordSet", assetId:.DDLRecordSet))
-		pickerData.append((name:"JournalArticle", assetId:.JournalArticle))
-		pickerData.append((name:"JournalFolder", assetId:.JournalFolder))
-		pickerData.append((name:"MBMessage", assetId:.MBMessage))
-		pickerData.append((name:"MBThread", assetId:.MBThread))
-		pickerData.append((name:"MBCategory", assetId:.MBCategory))
-		pickerData.append((name:"MBDiscussion", assetId:.MBDiscussion))
-		pickerData.append((name:"MBMailingList", assetId:.MBMailingList))
-		pickerData.append((name:"WikiPage", assetId:.WikiPage))
-		pickerData.append((name:"WikiPageResource", assetId:.WikiPageResource))
-		pickerData.append((name:"WikiNode", assetId:.WikiNode))
+		// demo.liferay.com identifiers are not the standard ones
+
+		AssetClassNameIds.set(AssetClassNameIdGroup, newId: 20001)
+		AssetClassNameIds.set(AssetClassNameIdLayout, newId: 20002)
+		AssetClassNameIds.set(AssetClassNameIdOrganization, newId: 20003)
+		AssetClassNameIds.set(AssetClassNameIdUser, newId: 20005)
+		AssetClassNameIds.set(AssetClassNameIdUserGroup, newId: 20006)
+		AssetClassNameIds.set(AssetClassNameIdBlogsEntry, newId: 20007)
+		AssetClassNameIds.set(AssetClassNameIdBookmarksEntry, newId: 20008)
+		AssetClassNameIds.set(AssetClassNameIdBookmarksFolder, newId: 20009)
+		AssetClassNameIds.set(AssetClassNameIdCalendarEvent, newId: 20010)
+		AssetClassNameIds.set(AssetClassNameIdDLFileEntry, newId: 20011)
+		AssetClassNameIds.set(AssetClassNameIdDLFolder, newId: 20012)
+		AssetClassNameIds.set(AssetClassNameIdDLFileEntryMetadata, newId: 20091)
+		AssetClassNameIds.set(AssetClassNameIdDLFileEntryType, newId: 20092)
+		AssetClassNameIds.set(AssetClassNameIdDLFileRank, newId: 20093)
+		AssetClassNameIds.set(AssetClassNameIdDLFileShortcut, newId: 20094)
+		AssetClassNameIds.set(AssetClassNameIdDLFileVersion, newId: 20095)
+		AssetClassNameIds.set(AssetClassNameIdDDLRecord, newId: 20097)
+		AssetClassNameIds.set(AssetClassNameIdDDLRecordSet, newId: 20098)
+		AssetClassNameIds.set(AssetClassNameIdDDLRecordVersion, newId: 20099)
+		AssetClassNameIds.set(AssetClassNameIdJournalArticle, newId: 20109)
+		AssetClassNameIds.set(AssetClassNameIdJournalArticleImage, newId: 20110)
+		AssetClassNameIds.set(AssetClassNameIdJournalFolder, newId: 20013)
+		AssetClassNameIds.set(AssetClassNameIdMBMessage, newId: 20014)
+		AssetClassNameIds.set(AssetClassNameIdMBThread, newId: 20015)
+		AssetClassNameIds.set(AssetClassNameIdMBCategory, newId: 20115)
+		AssetClassNameIds.set(AssetClassNameIdMBDiscussion, newId: 20116)
+		AssetClassNameIds.set(AssetClassNameIdMBMailingList, newId: 20117)
+		AssetClassNameIds.set(AssetClassNameIdWikiPage, newId: 20016)
+		AssetClassNameIds.set(AssetClassNameIdWikiPageResource, newId: 20153)
+		AssetClassNameIds.set(AssetClassNameIdWikiNode, newId: 20152)
+
+		let assets = [
+			AssetClassNameIdGroup,
+			AssetClassNameIdLayout,
+			AssetClassNameIdOrganization,
+			AssetClassNameIdUser,
+			AssetClassNameIdUserGroup,
+			AssetClassNameIdBlogsEntry,
+			AssetClassNameIdBookmarksEntry,
+			AssetClassNameIdBookmarksFolder,
+			AssetClassNameIdCalendarEvent,
+			AssetClassNameIdDLFileEntry,
+			AssetClassNameIdDLFileEntryMetadata,
+			AssetClassNameIdDLFileEntryType,
+			AssetClassNameIdDLFileRank,
+			AssetClassNameIdDLFileShortcut,
+			AssetClassNameIdDLFileVersion,
+			AssetClassNameIdDDLRecord,
+			AssetClassNameIdDDLRecordSet,
+			AssetClassNameIdJournalArticle,
+			AssetClassNameIdJournalFolder,
+			AssetClassNameIdMBMessage,
+			AssetClassNameIdMBThread,
+			AssetClassNameIdMBCategory,
+			AssetClassNameIdMBDiscussion,
+			AssetClassNameIdMBMailingList,
+			AssetClassNameIdWikiPage,
+			AssetClassNameIdWikiPageResource,
+			AssetClassNameIdWikiNode
+		]
+
+		for asset in assets {
+			pickerData.append(
+				(
+					name: asset,
+					assetId: AssetClassNameIds.get(asset)!
+				))
+		}
 
 		self.screenlet?.delegate = self
 	}

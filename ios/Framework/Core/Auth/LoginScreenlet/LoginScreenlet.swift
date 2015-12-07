@@ -63,6 +63,24 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	}
 
 
+	public func loadStoredCredentials() -> Bool {
+		if SessionContext.loadSessionFromStore() {
+			viewModel.userName = SessionContext.currentBasicUserName
+			viewModel.password = SessionContext.currentBasicPassword
+
+			// we don't want the session to be automatically created. Clear it.
+			// User can recreate it again in the delegate method.
+			SessionContext.clearSession()
+
+			delegate?.onScreenletCredentialsLoaded?(self)
+
+			return true
+		}
+
+		return false
+	}
+
+
 	//MARK: BaseScreenlet
 
 	override public func onCreated() {
@@ -71,13 +89,6 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 
 		copyAuthType()
-
-		if SessionContext.loadSessionFromStore() {
-			viewModel.userName = SessionContext.currentBasicUserName
-			viewModel.password = SessionContext.currentBasicPassword
-
-			delegate?.onScreenletCredentialsLoaded?(self)
-		}
 	}
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
