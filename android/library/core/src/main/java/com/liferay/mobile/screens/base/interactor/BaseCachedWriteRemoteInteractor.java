@@ -43,9 +43,8 @@ public abstract class BaseCachedWriteRemoteInteractor<L, E extends RemoteWrite> 
 
 	protected abstract void online(Object... args) throws Exception;
 
-	protected abstract void notifyError(E event);
+	protected abstract void storeToCacheAndLaunchEvent(Object... args);
 
-	protected abstract void storeToCacheAndLaunchEvent(boolean synced, Object... args);
 	private final OfflinePolicy _offlinePolicy;
 
 }

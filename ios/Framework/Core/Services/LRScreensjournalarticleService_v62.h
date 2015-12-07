@@ -23,8 +23,8 @@
  */
 @interface LRScreensjournalarticleService_v62 : LRBaseService
 
-- (NSString *)getJournalArticleContentWithGroupId:(long long)groupId classPK:(long long)classPK locale:(NSString *)locale error:(NSError **)error;
+- (NSString *)getJournalArticleContentWithClassPK:(long long)classPK locale:(NSString *)locale error:(NSError **)error;
+- (NSString *)getJournalArticleContentWithClassPK:(long long)classPK ddmTemplateId:(long long)ddmTemplateId locale:(NSString *)locale error:(NSError **)error;
 - (NSString *)getJournalArticleContentWithGroupId:(long long)groupId articleId:(NSString *)articleId ddmTemplateId:(long long)ddmTemplateId locale:(NSString *)locale error:(NSError **)error;
-- (NSString *)getJournalArticleContentWithGroupId:(long long)groupId classPK:(long long)classPK ddmTemplateId:(long long)ddmTemplateId locale:(NSString *)locale error:(NSError **)error;
 
 @end

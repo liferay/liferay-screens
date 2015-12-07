@@ -25,7 +25,7 @@
 		88DE2AB11AD3EFEF00714701 /* UserPortraitScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AA91AD3EFEF00714701 /* UserPortraitScreenletViewController.swift */; };
 		88DE2AB21AD3EFEF00714701 /* WebContentDisplayScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AAA1AD3EFEF00714701 /* WebContentDisplayScreenletViewController.swift */; };
 		88DE2AB41AD3F00B00714701 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AB31AD3F00B00714701 /* UIImageExtension.swift */; };
-		B3189A4F28E9946120B9BC3B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 869461C649CEAF0B480B4E18 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B3189A4F28E9946120B9BC3B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 869461C649CEAF0B480B4E18 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -175,7 +175,8 @@
 		88DE2A641AD3DDE600714701 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Liferay;
 				TargetAttributes = {
 					88DE2A6B1AD3DDE600714701 = {
@@ -338,6 +339,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -399,6 +401,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "LiferayScreens-Showcase-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -410,6 +413,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "LiferayScreens-Showcase-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

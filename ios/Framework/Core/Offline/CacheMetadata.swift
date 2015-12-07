@@ -27,7 +27,7 @@ import YapDatabase
 		super.init()
 	}
 
-	public required convenience init(coder aDecoder: NSCoder) {
+	public required convenience init?(coder aDecoder: NSCoder) {
 		let synchronized = aDecoder.decodeObjectForKey("sync_date") as? NSDate
 		let attributes = (aDecoder.decodeObjectForKey("attributes") as? [String:AnyObject]) ?? [:]
 

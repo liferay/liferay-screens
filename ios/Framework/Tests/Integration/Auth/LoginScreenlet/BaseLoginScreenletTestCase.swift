@@ -14,7 +14,7 @@
 import XCTest
 
 
-@objc class TestLoginScreenletDelegate : LoginScreenletDelegate {
+class TestLoginScreenletDelegate : LoginScreenletDelegate {
 	let onCompleted: (AnyObject -> Void)?
 	var onCredentialsStored: (Void -> Void)?
 

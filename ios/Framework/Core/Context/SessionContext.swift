@@ -41,14 +41,14 @@ import Foundation
 	}
 
 	public class var currentBasicUserName: String? {
-		var authentication = StaticInstance.currentSession?.authentication
+		let authentication = StaticInstance.currentSession?.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.username
 	}
 
 	public class var currentBasicPassword: String? {
-		var authentication = StaticInstance.currentSession?.authentication
+		let authentication = StaticInstance.currentSession?.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.password
@@ -88,7 +88,7 @@ import Foundation
 	}
 
 	public class func createBasicSession(
-			#username: String,
+			username username: String,
 			password: String,
 			userAttributes: [String:AnyObject])
 			-> LRSession {
@@ -106,7 +106,7 @@ import Foundation
 	}
 
 	public class func createOAuthSession(
-			#authentication: LROAuth,
+			authentication authentication: LROAuth,
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
@@ -121,7 +121,7 @@ import Foundation
 
 
 	private class func createSession(
-			#authentication: LRAuthentication,
+			authentication authentication: LRAuthentication,
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
@@ -185,7 +185,7 @@ import Foundation
 	//MARK Private methods
 
 	private class func createSession(
-			#server: String,
+			server server: String,
 			authentication: LRAuthentication,
 			userAttributes: [String:AnyObject])
 			-> LRSession {

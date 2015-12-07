@@ -22,7 +22,7 @@ class DDLListScreenletViewController: UIViewController, DDLListScreenletDelegate
 	@IBOutlet weak var labelFieldsTextField: UITextField?
 
 	@IBAction func loadList(sender: AnyObject) {
-		if let recordSetId = recordSetIdTextField!.text.toInt() {
+		if let recordSetId = Int(recordSetIdTextField!.text!) {
 			screenlet!.recordSetId = Int64(recordSetId)
 			screenlet!.labelFields = labelFieldsTextField!.text
 
@@ -38,17 +38,17 @@ class DDLListScreenletViewController: UIViewController, DDLListScreenletDelegate
 
 	func screenlet(screenlet: DDLListScreenlet,
 			onDDLListResponseRecords records: [DDLRecord]) {
-		println("DELEGATE: onDDLListResponse called -> \(records)");
+		print("DELEGATE: onDDLListResponse called -> \(records)\n");
 	}
 
 	func screenlet(screenlet: DDLListScreenlet,
 			onDDLListError error: NSError) {
-		println("DELEGATE: onDDLListError called -> \(error)");
+		print("DELEGATE: onDDLListError called -> \(error)\n");
 	}
 
 	func screenlet(screenlet: DDLListScreenlet,
 			onDDLSelectedRecord record: DDLRecord) {
-		println("DELEGATE: onDDLRecordSelected called -> \(record)");
+		print("DELEGATE: onDDLRecordSelected called -> \(record)\n");
 	}
 
 }

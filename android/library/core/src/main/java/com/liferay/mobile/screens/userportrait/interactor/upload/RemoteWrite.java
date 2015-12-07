@@ -5,7 +5,7 @@ package com.liferay.mobile.screens.userportrait.interactor.upload;
  */
 public interface RemoteWrite {
 
-	boolean isRemote();
+	boolean isCacheRequest();
 
 	boolean isFailed();
 }

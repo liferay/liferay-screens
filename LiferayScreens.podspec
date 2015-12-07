@@ -36,7 +36,8 @@ Pod::Spec.new do |s|
 	s.exclude_files = [
 		'ios/Framework/Core/liferay-screens-bridge.h',
 		'ios/Framework/Tests/**/*.*',
-		'ios/Framework/Pods/**/*.*'
+		'ios/Framework/Pods/**/*.*',
+		'ios/Framework/Themes/Flat7/**/*.*'
 	]
 
 	s.resource_bundle = {
@@ -58,10 +59,10 @@ Pod::Spec.new do |s|
 	s.dependency 'YapDatabase', '2.6.5'
 
 	# Login & signup: save credentials
-	s.dependency 'KeychainAccess', '1.2.1'
+	s.dependency 'KeychainAccess', '2.3.1'
 
 	# UserPortrait
-	s.dependency 'CryptoSwift', '0.0.13'
+	s.dependency 'CryptoSwift', '0.1.1'
 
 	# DDLForm
 	s.dependency 'DTPickerPresenter', '0.2.0'

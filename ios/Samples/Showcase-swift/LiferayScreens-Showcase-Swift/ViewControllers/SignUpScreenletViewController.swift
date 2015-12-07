@@ -36,30 +36,30 @@ class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, 
 
 	func screenlet(screenlet: SignUpScreenlet,
 			onSignUpResponseUserAttributes attributes: [String:AnyObject]) {
-		println("DELEGATE: onSignUpResponse called -> \(attributes)");
+		print("DELEGATE: onSignUpResponse called -> \(attributes)\n");
 	}
 
 	func screenlet(screenlet: SignUpScreenlet,
 			onSignUpError error: NSError) {
-		println("DELEGATE: onSignUpError called -> \(error)");
+		print("DELEGATE: onSignUpError called -> \(error)\n");
 	}
 
 	func screenlet(screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
-		println("DELEGATE: onLoginResponse (autologin delegate) called -> \(attributes)");
+		print("DELEGATE: onLoginResponse (autologin delegate) called -> \(attributes)\n");
 	}
 
 	func screenlet(screenlet: BaseScreenlet,
 			onLoginError error: NSError) {
-		println("DELEGATE: onLoginError (autologin delegate) called -> \(error)");
+		print("DELEGATE: onLoginError (autologin delegate) called -> \(error)\n");
 	}
 
 	func onScreenletCredentialsSaved(screenlet: BaseScreenlet) {
-		println("DELEGATE: onCredentialsSaved (autologin delegate) called");
+		print("DELEGATE: onCredentialsSaved (autologin delegate) called\n");
 	}
 
 	func onScreenletCredentialsLoaded(screenlet: BaseScreenlet) {
-		println("DELEGATE: onCredentialsLoaded (autologin delegate) called");
+		print("DELEGATE: onCredentialsLoaded (autologin delegate) called\n");
 	}
 
 }

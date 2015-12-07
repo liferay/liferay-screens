@@ -78,7 +78,6 @@ public class UserPortraitService extends IntentService {
 			JSONObject jsonObject = uploadUserPortrait(userId, picturePath);
 
 			UserPortraitUploadEvent event = new UserPortraitUploadEvent(targetScreenletId, picturePath, userId, jsonObject);
-			event.setRemote(true);
 			EventBusUtil.post(event);
 		}
 		catch (Exception e) {

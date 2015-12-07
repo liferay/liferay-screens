@@ -50,7 +50,7 @@ import UIKit
 		super.init()
 	}
 
-	public func store(#session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
+	func store(session session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
 		if session == nil || userAttributes.isEmpty {
 			return false
 		}

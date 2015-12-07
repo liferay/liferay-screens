@@ -31,12 +31,12 @@ extension DDLField {
 		case DDLDocument = "document-library"
 		case Unsupported = ""
 
-		public static func from(#xmlElement:SMXMLElement) -> DataType {
+		public static func from(xmlElement xmlElement:SMXMLElement) -> DataType {
 			return DataType(rawValue: xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 		}
 
 		public func createField(
-				#attributes:[String:AnyObject],
+				attributes attributes:[String:AnyObject],
 				locale: NSLocale)
 				-> DDLField? {
 

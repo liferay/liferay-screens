@@ -24,9 +24,9 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction :
-				[.Working : LocalizedString("default", "forgotpassword-loading-message", self),
-				.Failure : LocalizedString("default", "forgotpassword-loading-error", self),
-				.Success : LocalizedString("default", "forgotpassword-\(successMessageKey)", self)]
+				[.Working : LocalizedString("default", key: "forgotpassword-loading-message", obj: self),
+				.Failure : LocalizedString("default", key: "forgotpassword-loading-error", obj: self),
+				.Success : LocalizedString("default", key: "forgotpassword-\(successMessageKey)", obj: self)]
 		]
 	}
 
@@ -74,7 +74,7 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 
 	override public func onSetTranslations() {
 		requestPasswordButton?.replaceAttributedTitle(
-				LocalizedString("default", "forgotpassword-button", self),
+				LocalizedString("default", key: "forgotpassword-button", obj: self),
 				forState: .Normal)
 
 	}

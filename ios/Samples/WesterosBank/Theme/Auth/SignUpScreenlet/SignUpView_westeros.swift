@@ -20,8 +20,6 @@ public class SignUpView_westeros: SignUpView_default {
 	override public func onCreated() {
 		super.onCreated()
 
-		BaseScreenlet.setHUDCustomColor(WesterosThemeBasicRed)
-
 		let color = (firstNameField as! BorderedTextField).focusedColor!
 
 		firstNameField?.attributedPlaceholder = NSAttributedString(
@@ -39,6 +37,10 @@ public class SignUpView_westeros: SignUpView_default {
 		passwordField?.attributedPlaceholder = NSAttributedString(
 				string: passwordField!.placeholder!,
 				attributes: [NSForegroundColorAttributeName : color])
+	}
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return WesterosProgressPresenter()
 	}
 
 	override public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {

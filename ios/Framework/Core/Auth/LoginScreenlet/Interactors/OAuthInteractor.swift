@@ -39,7 +39,7 @@ class OAuthInteractor: Interactor, LRCallback {
 
 	override func start() -> Bool {
 		if screenlet?.presentingViewController == nil {
-			println("ERROR: You need to set the presentingViewController before start OAuthInteractor")
+			print("ERROR: You need to set the presentingViewController before start OAuthInteractor\n")
 
 			return false
 		}
@@ -61,13 +61,13 @@ class OAuthInteractor: Interactor, LRCallback {
 						self.showWebView(URL)
 					}
 					else {
-						println("ERROR: OAuth's authorizeTokenURL is not valid: \($0.authorizeTokenURL)")
+						print("ERROR: OAuth's authorizeTokenURL is not valid: \($0.authorizeTokenURL)\n")
 						let err = NSError.errorWithCause(.InvalidServerResponse)
 						self.onFailure?(err)
 					}
 				},
 				onFailure: { err in
-					println("ERROR: Cannot get request token")
+					print("ERROR: Cannot get request token\n")
 					self.onFailure?(err)
 				}
 		)
@@ -100,7 +100,7 @@ class OAuthInteractor: Interactor, LRCallback {
 					self.requestUserAttributes(config)
 				},
 				onFailure: { err in
-					println("ERROR: Cannot get access token")
+					print("ERROR: Cannot get access token\n")
 					self.onFailure?(err)
 				}
 		)
@@ -114,8 +114,11 @@ class OAuthInteractor: Interactor, LRCallback {
 
 		let srv = LRScreensuserService_v62(session: OAuthSession!)
 
-		var outError: NSError?
-		srv.getCurrentUser(&outError)
+		do {
+			try srv.getCurrentUser()
+		}
+		catch {
+		}
 	}
 
 	func onFailure(error: NSError!) {

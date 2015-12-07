@@ -77,6 +77,7 @@ public class CacheSyncService extends IntentService {
 			try {
 				UserPortraitService userPortraitService = new UserPortraitService();
 				JSONObject jsonObject = userPortraitService.uploadUserPortrait(Long.valueOf(userPortrait.getId()), userPortrait.getContent());
+				LiferayLogger.i(jsonObject.toString());
 
 				userPortrait.setDirty(false);
 				userPortrait.setSyncDate(new Date());
@@ -108,6 +109,7 @@ public class CacheSyncService extends IntentService {
 				UploadService uploadService = new UploadService();
 				JSONObject jsonObject = uploadService.uploadFile(documentField, document.getUserId(), document.getGroupId(),
 					document.getRepositoryId(), document.getFolderId(), document.getFilePrefix());
+				LiferayLogger.i(jsonObject.toString());
 
 				document.setDirty(false);
 				document.setSyncDate(new Date());
@@ -141,6 +143,7 @@ public class CacheSyncService extends IntentService {
 				}
 
 				JSONObject jsonObject = saveOrUpdate(recordService, record, groupId, serviceContextWrapper, jsonContent);
+				LiferayLogger.i(jsonObject.toString());
 
 				cachedRecord.setDirty(false);
 				cachedRecord.setSyncDate(new Date());

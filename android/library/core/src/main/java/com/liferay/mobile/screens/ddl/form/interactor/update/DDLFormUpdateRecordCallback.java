@@ -38,9 +38,7 @@ public class DDLFormUpdateRecordCallback extends DDLFormBaseCallback {
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		DDLFormUpdateRecordEvent ddlFormUpdateRecordEvent = new DDLFormUpdateRecordEvent(targetScreenletId, getRecord(), _groupId, result);
-		ddlFormUpdateRecordEvent.setRemote(true);
-		return ddlFormUpdateRecordEvent;
+		return new DDLFormUpdateRecordEvent(targetScreenletId, getRecord(), _groupId, result);
 	}
 
 	private final long _groupId;

@@ -9,7 +9,7 @@
 	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
 	<string name="liferay_anonymousApiPassword">anonymous1</string>
 
-	<!-- Default user & passwod -->
+	<!-- Default user & password -->
 	<string name="default_user_name">test@liferay.com</string>
 	<string name="default_password">test</string>
 
