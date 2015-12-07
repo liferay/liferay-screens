@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.signup.SignUpScreenlet;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
+import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -131,6 +132,16 @@ public class SignUpView extends LinearLayout
 	}
 
 	@Override
+	public BaseScreenlet getScreenlet() {
+		return _screenlet;
+	}
+
+	@Override
+	public void setScreenlet(BaseScreenlet screenlet) {
+		_screenlet = screenlet;
+	}
+
+	@Override
 	public void onClick(View view) {
 		SignUpScreenlet signUpScreenlet = (SignUpScreenlet) getParent();
 
@@ -157,4 +168,5 @@ public class SignUpView extends LinearLayout
 	private EditText _password;
 	private ModalProgressBar _progressBar;
 
+	private BaseScreenlet _screenlet;
 }
