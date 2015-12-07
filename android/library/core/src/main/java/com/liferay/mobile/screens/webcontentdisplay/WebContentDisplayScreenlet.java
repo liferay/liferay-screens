@@ -25,8 +25,11 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractor;
-import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayInteractorImpl;
+import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayBaseInteractor;
+import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromArticleIdInteractor;
+import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromArticleIdInteractorImpl;
+import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromClassPKInteractor;
+import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromClassPKInteractorImpl;
 import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewModel;
 
 import java.util.Locale;
@@ -35,8 +38,11 @@ import java.util.Locale;
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayScreenlet
-	extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayInteractor>
+	extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayBaseInteractor>
 	implements WebContentDisplayListener {
+
+	public static final String WEB_CONTENT_BY_CLASS_PK = "WEB_CONTENT_BY_CLASS_PK";
+	public static final String WEB_CONTENT_BY_ARTICLE_ID = "WEB_CONTENT_BY_ARTICLE_ID";
 
 	public WebContentDisplayScreenlet(Context context) {
 		super(context);
@@ -51,7 +57,12 @@ public class WebContentDisplayScreenlet
 	}
 
 	public void load() {
-		performUserAction();
+		if (_classPK != 0) {
+			performUserAction(WEB_CONTENT_BY_CLASS_PK);
+		}
+		else {
+			performUserAction(WEB_CONTENT_BY_ARTICLE_ID);
+		}
 	}
 
 	@Override
@@ -153,6 +164,13 @@ public class WebContentDisplayScreenlet
 		_groupId = groupId;
 	}
 
+	public long getClassPK() {
+		return _classPK;
+	}
+
+	public void setClassPK(long classPK) {
+		_classPK = classPK;
+	}
 
 	protected void autoLoad() {
 		if ((_articleId != null) && SessionContext.hasSession()) {
@@ -176,6 +194,9 @@ public class WebContentDisplayScreenlet
 
 		_articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
 
+		_classPK = castToLongOrUseDefault(typedArray.getString(
+			R.styleable.WebContentDisplayScreenlet_classPK), 0);
+
 		_groupId = castToLongOrUseDefault(typedArray.getString(
 			R.styleable.WebContentDisplayScreenlet_groupId), LiferayServerContext.getGroupId());
 
@@ -197,19 +218,35 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	protected WebContentDisplayInteractor createInteractor(String actionName) {
-		return new WebContentDisplayInteractorImpl(getScreenletId(), _offlinePolicy);
+	protected WebContentDisplayBaseInteractor createInteractor(String actionName) {
+		if (WEB_CONTENT_BY_ARTICLE_ID.equals(actionName)) {
+			return new WebContentDisplayFromArticleIdInteractorImpl(getScreenletId(), _offlinePolicy);
+		}
+		else {
+			return new WebContentDisplayFromClassPKInteractorImpl(getScreenletId(), _offlinePolicy);
+		}
 	}
 
 	@Override
-	protected void onUserAction(
-		String userActionName, WebContentDisplayInteractor interactor, Object... args) {
-
-		Locale locale = getResources().getConfiguration().locale;
-		getViewModel().showStartOperation(userActionName);
+	protected void onUserAction(String userActionName,
+								WebContentDisplayBaseInteractor interactor, Object... args) {
 
 		try {
-			getInteractor().load(_groupId, _articleId, _templateId, locale);
+			Locale locale = getResources().getConfiguration().locale;
+			getViewModel().showStartOperation(userActionName);
+
+			if (WEB_CONTENT_BY_ARTICLE_ID.equals(userActionName)) {
+				WebContentDisplayFromArticleIdInteractor interactorFromArticleId =
+					(WebContentDisplayFromArticleIdInteractor) getInteractor(userActionName);
+
+				interactorFromArticleId.load(_groupId, _articleId, _templateId, locale);
+			}
+			else {
+				WebContentDisplayFromClassPKInteractor interactorFromArticleId =
+					(WebContentDisplayFromClassPKInteractor) getInteractor(userActionName);
+
+				interactorFromArticleId.load(_classPK, _templateId, locale);
+			}
 		}
 		catch (Exception e) {
 			onWebContentFailure(this, e);
@@ -227,6 +264,7 @@ public class WebContentDisplayScreenlet
 	private Long _templateId;
 	private String _articleId;
 	private boolean _autoLoad;
+	private long _classPK;
 	private long _groupId;
 	private boolean _javascriptEnabled;
 	private WebContentDisplayListener _listener;

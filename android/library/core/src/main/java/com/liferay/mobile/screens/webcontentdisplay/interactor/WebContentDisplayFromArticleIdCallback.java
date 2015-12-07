@@ -22,10 +22,10 @@ import java.util.Locale;
 /**
  * @author Jose Manuel Navarro
  */
-public class WebContentDisplayCallback
+public class WebContentDisplayFromArticleIdCallback
 	extends InteractorAsyncTaskCallback<String> {
 
-	public WebContentDisplayCallback(int targetScreenletId, long groupId, String articleId, Locale locale, Long templateId) {
+	public WebContentDisplayFromArticleIdCallback(int targetScreenletId, long groupId, String articleId, Locale locale, Long templateId) {
 		super(targetScreenletId);
 
 		_groupId = groupId;
@@ -34,7 +34,7 @@ public class WebContentDisplayCallback
 		_templateId = templateId;
 	}
 
-	public WebContentDisplayCallback(int targetScreenletId, long groupId, String articleId, Locale locale) {
+	public WebContentDisplayFromArticleIdCallback(int targetScreenletId, long groupId, String articleId, Locale locale) {
 		this(targetScreenletId, groupId, articleId, locale, null);
 	}
 
