@@ -24,7 +24,7 @@ import java.util.Locale;
 public interface AssetListInteractor extends Interactor<AssetListInteractorListener> {
 
 	void loadRows(
-		long groupId, long classNameId, String portletItemName, int startRow, int endRow, Locale locale)
+		long groupId, long classNameId, String portletItemName, String customEntryQuery, int startRow, int endRow, Locale locale)
 		throws Exception;
 
 }
