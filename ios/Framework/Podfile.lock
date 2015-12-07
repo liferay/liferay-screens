@@ -25,9 +25,9 @@ PODS:
   - CocoaLumberjack/Core (1.9.2)
   - CocoaLumberjack/Extensions (1.9.2):
     - CocoaLumberjack/Core
-  - CryptoSwift (0.0.13)
+  - CryptoSwift (0.1.1)
   - DTPickerPresenter (0.2.0)
-  - KeychainAccess (1.2.1)
+  - KeychainAccess (2.3.1)
   - Liferay-iOS-SDK (6.2.0.17):
     - AFNetworking (~> 2.5.0)
   - Liferay-OAuth (0.1.0):
@@ -45,9 +45,9 @@ PODS:
     - CocoaLumberjack (~> 1)
 
 DEPENDENCIES:
-  - CryptoSwift
+  - CryptoSwift (= 0.1.1)
   - DTPickerPresenter (= 0.2.0)
-  - KeychainAccess (= 1.2.1)
+  - KeychainAccess (= 2.3.1)
   - Liferay-iOS-SDK (= 6.2.0.17)
   - Liferay-OAuth (= 0.1.0)
   - MBProgressHUD (= 0.9.1)
@@ -62,9 +62,9 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
-  CryptoSwift: 33e2ba400d514a054c69e9f9f6c08a992e42f91c
+  CryptoSwift: c11640d3d66107efc8333e4131a5173f072b1d61
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
-  KeychainAccess: 3d7922baf90762a976adb7f6030d74c1a4110a1d
+  KeychainAccess: d54b31c75745cfa595b3654590e8cb491a75d411
   Liferay-iOS-SDK: 00b511b88592d07faade2bed8252c04193df565d
   Liferay-OAuth: 4e217d2e2483788324b16dce65c30884ec8eb1db
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad

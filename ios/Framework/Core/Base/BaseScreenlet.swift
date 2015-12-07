@@ -55,7 +55,7 @@ import QuartzCore
 	private var _currentPreviewImage: UIImage?
 	private var _previewLayer: CALayer?
 
-	private var _runningInteractors = [Interactor]()
+	private var _runningInteractors = [String:[Interactor]]()
 
 	private var _progressPresenter: ProgressPresenter?
 
@@ -112,7 +112,7 @@ import QuartzCore
 
 		if let viewValue = view {
 			//FIXME: full-autoresize value. Extract from UIViewAutoresizing
-			let flexibleMask = UIViewAutoresizing(18)
+			let flexibleMask = UIViewAutoresizing(rawValue: 18)
 
 			if viewValue.autoresizingMask == flexibleMask {
 				viewValue.frame = self.bounds
@@ -191,16 +191,11 @@ import QuartzCore
 	 * Typically, it's called from TouchUpInside UI event or when the programmer wants to
 	 * start the interaction programatically.
 	 */
-	public func performAction(#name: String, sender: AnyObject? = nil) -> Bool {
+	public func performAction(name name: String, sender: AnyObject? = nil) -> Bool {
 		var result = false
 
-		objc_sync_enter(_runningInteractors)
-
 		if let interactor = self.createInteractor(name: name, sender: sender) {
-			interactor.actionName = name
-			_runningInteractors.append(interactor)
-
-			objc_sync_exit(_runningInteractors)
+			trackInteractor(interactor, withName: name)
 
 			if let message = screenletView?.progressMessageForAction(name, messageType: .Working) {
 				showHUDWithMessage(message,
@@ -211,8 +206,7 @@ import QuartzCore
 			result = onAction(name: name, interactor: interactor, sender: sender)
 		}
 		else {
-			objc_sync_exit(_runningInteractors)
-			println("WARN: No interactor created for action \(name)")
+			print("WARN: No interactor created for action \(name)\n")
 		}
 
 		return result
@@ -225,14 +219,32 @@ import QuartzCore
 	/*
 	 * onAction is invoked when an interaction should be started
 	 */
-	public func onAction(#name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+	public func onAction(name name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
 		onStartInteraction()
 		screenletView?.onStartInteraction()
 
 		return interactor.start()
 	}
 
-	public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+	public func isActionRunning(name: String) -> Bool {
+		var firstInteractor: Interactor? = nil
+
+		synchronized(_runningInteractors) {
+			firstInteractor = self._runningInteractors[name]?.first
+		}
+
+		return firstInteractor != nil
+	}
+
+	public func cancelInteractorsForAction(name: String) {
+		let interactors = _runningInteractors[name] ?? []
+
+		for interactor in interactors {
+			interactor.cancel()
+		}
+	}
+
+	public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		return nil
 	}
 
@@ -272,11 +284,7 @@ import QuartzCore
 			}
 		}
 
-		synchronized(_runningInteractors) {
-			if let foundIndex = find(self._runningInteractors, interactor) {
-				self._runningInteractors.removeAtIndex(foundIndex)
-			}
-		}
+		untrackInteractor(interactor)
 
 		let result: AnyObject? = interactor.interactionResult()
 		onFinishInteraction(result, error: error)
@@ -312,7 +320,7 @@ import QuartzCore
 				spinnerMode: spinnerMode)
 	}
 
-	public func showHUDAlert(#message: String) {
+	public func showHUDAlert(message message: String) {
 		assert(_progressPresenter != nil, "ProgressPresenter must exist")
 
 		_progressPresenter!.showHUDInView(rootView(self),
@@ -335,13 +343,13 @@ import QuartzCore
 		func tryLoadForTheme(themeName: String, inBundles bundles: [NSBundle]) -> BaseScreenletView? {
 			for bundle in bundles {
 				let viewName = "\(ScreenletName(self.dynamicType))View"
-				var nibName = "\(viewName)_\(themeName)"
-				var nibPath = bundle.pathForResource(nibName, ofType:"nib")
+				let nibName = "\(viewName)_\(themeName)"
+				let nibPath = bundle.pathForResource(nibName, ofType:"nib")
 
 				if nibPath != nil {
 					let views = bundle.loadNibNamed(nibName,
-							owner:self,
-							options:nil)
+						owner:self,
+						options:nil)
 
 					assert(views.count > 0, "Malformed xib \(nibName). Without views")
 
@@ -362,7 +370,7 @@ import QuartzCore
 			return foundView
 		}
 
-		println("ERROR: Xib file doesn't found for screenlet '\(ScreenletName(self.dynamicType))' and theme '\(_themeName)'")
+		print("ERROR: Xib file doesn't found for screenlet '\(ScreenletName(self.dynamicType))' and theme '\(_themeName)'\n")
 
 		return nil
 	}
@@ -405,6 +413,34 @@ import QuartzCore
 		}
 
 		return rootView(currentView.superview!)
+	}
+
+	private func trackInteractor(interactor: Interactor, withName name: String) {
+		synchronized(_runningInteractors) {
+			var interactors = self._runningInteractors[name]
+			if interactors?.count ?? 0 == 0 {
+				interactors = [Interactor]()
+			}
+
+			interactors?.append(interactor)
+
+			self._runningInteractors[name] = interactors
+			interactor.actionName = name
+		}
+	}
+
+	private func untrackInteractor(interactor: Interactor) {
+		synchronized(_runningInteractors) {
+			let name = interactor.actionName!
+			let interactors = self._runningInteractors[name] ?? []
+
+			if let foundIndex = interactors.indexOf(interactor) {
+				self._runningInteractors[name]?.removeAtIndex(foundIndex)
+			}
+			else {
+				print("ERROR: There's no interactors tracked for name \(interactor.actionName!)\n")
+			}
+		}
 	}
 
 }

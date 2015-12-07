@@ -11,26 +11,17 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
+import Foundation
+import LiferayScreens
 
 
-public class LiferayForgotPasswordEmailOperation: LiferayForgotPasswordBaseOperation {
+public class WesterosProgressPresenter: MBProgressHUDPresenter {
 
-	//MARK: LiferayForgotPasswordBaseOperation
+	override public init() {
+		super.init()
 
-	override internal func sendForgotPasswordRequest(
-			service service: LRScreensuserService_v62)
-			throws -> Bool? {
-
-		let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
-
-		// TODO change plugin service to return integer code instead of boolean.
-		// Xcode transpiler is messing it up.
-
-		try service.sendPasswordByEmailAddressWithCompanyId(companyId,
-			emailAddress: viewModel.userName!)
-
-		return true
+		self.customColor = WesterosThemeBasicRed
+		self.customOpacity = 0.6
 	}
 
 }

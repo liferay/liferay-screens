@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class DDLFormView: BaseScreenletView, DDLFormViewModel, UITextFieldDelegate {
+public class DDLFormView: BaseScreenletView, DDLFormViewModel {
 
 	//MARK: DDLFormViewModel
 
@@ -29,7 +29,7 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel, UITextFieldDelega
 	public func refresh() {
 	}
 
-	public func validateForm(#autoscroll: Bool) -> ValidationError? {
+	public func validateForm(autoscroll autoscroll: Bool) -> ValidationError? {
 		var firstError: ValidationError?
 		var firstFailedField: DDLField?
 
@@ -39,7 +39,7 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel, UITextFieldDelega
 					firstFailedField = $0
 				}
 				if firstError == nil {
-					let fmt = LocalizedString("ddlform-screenlet", "validation-field", self)
+					let fmt = LocalizedString("ddlform-screenlet", key: "validation-field", obj: self)
 					let msg = NSString(format: fmt, $0.label).description
 					firstError = ValidationError(msg)
 				}
@@ -61,7 +61,7 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel, UITextFieldDelega
 	}
 
 	public func getFieldIndex(field: DDLField) -> Int? {
-		return (record == nil) ? nil : find(record!.fields, field)
+		return (record == nil) ? nil : record!.fields.indexOf(field)
 	}
 
 

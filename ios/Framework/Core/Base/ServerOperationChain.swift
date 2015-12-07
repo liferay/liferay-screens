@@ -51,7 +51,7 @@ import UIKit
 		return headOperation.createSession()
 	}
 
-	override public func enqueue(#onComplete: (ServerOperation -> Void)?) {
+	override public func enqueue(onComplete: (ServerOperation -> Void)?) {
 		if onComplete != nil {
 			self.onComplete = onComplete
 		}
@@ -88,7 +88,7 @@ import UIKit
 		}
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		let waitGroup = dispatch_group_create()
 
 		dispatch_group_enter(waitGroup)

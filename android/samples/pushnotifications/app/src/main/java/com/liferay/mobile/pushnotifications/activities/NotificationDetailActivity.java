@@ -16,8 +16,6 @@ import org.json.JSONObject;
 
 public class NotificationDetailActivity extends AppCompatActivity implements DDLFormListener {
 
-	private DDLFormScreenlet ddlFormScreenlet;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,12 +34,18 @@ public class NotificationDetailActivity extends AppCompatActivity implements DDL
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
+	public void loadingFromCache(boolean success) {
 
-		if (resultCode == RESULT_OK) {
-			ddlFormScreenlet.startUploadByPosition(requestCode);
-		}
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+
 	}
 
 	@Override
@@ -97,4 +101,14 @@ public class NotificationDetailActivity extends AppCompatActivity implements DDL
 	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
 
 	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == RESULT_OK) {
+			ddlFormScreenlet.startUploadByPosition(requestCode);
+		}
+	}
+	private DDLFormScreenlet ddlFormScreenlet;
 }

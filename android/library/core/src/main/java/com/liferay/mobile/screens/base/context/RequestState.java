@@ -28,11 +28,7 @@ public class RequestState {
 	public synchronized boolean contains(int targetScreenletId, Object state) {
 		HashSet<Object> set = _states.get(targetScreenletId);
 
-		if (set == null) {
-			return false;
-		}
-
-		return set.contains(state);
+		return set != null && set.contains(state);
 	}
 
 	public synchronized static RequestState getInstance() {

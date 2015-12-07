@@ -14,7 +14,7 @@ public interface CacheStrategy<E extends CachedContent> {
 
 	E getById(String id);
 
-	List<E> get(String orderBy, String query, Object[] args);
+	List<E> get(String query, Object[] args);
 
 	Object set(E object);
 

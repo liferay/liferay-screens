@@ -21,10 +21,8 @@ public class LoginView_westeros: LoginView_default {
 		passwordField!.secureTextEntry = !passwordField!.secureTextEntry
 	}
 
-	override public func onCreated() {
-		super.onCreated()
-
-		BaseScreenlet.setHUDCustomColor(WesterosThemeBasicRed)
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return WesterosProgressPresenter()
 	}
 
 	override public func onShow() {

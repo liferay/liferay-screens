@@ -21,7 +21,7 @@ func CGRectMake(x: CGFloat, y: CGFloat, size: CGSize) -> CGRect {
 
 class CardView: UIView {
 
-	enum ShowState: DebugPrintable {
+	enum ShowState: CustomDebugStringConvertible {
 		case Hidden
 		case Minimized
 		case Normal
@@ -77,7 +77,7 @@ class CardView: UIView {
 		let x = self.frame.size.width - arrowImage.size.width - 25
 		let y = (self.minimizedHeight/2) - arrowImage.size.height + 6
 
-		self.arrow!.frame = CGRectMake(x, y, arrowImage.size)
+		self.arrow!.frame = CGRectMake(x, y: y, size: arrowImage.size)
 		self.arrow!.alpha = 0.0
 
 		self.addSubview(self.arrow!)
@@ -97,7 +97,7 @@ class CardView: UIView {
 	func resetToCurrentState() {
 		let pos = positionForState(currentState)
 
-		self.frame = CGRectMake(0, pos, self.frame.size)
+		self.frame = CGRectMake(0, y: pos, size: self.frame.size)
 	}
 
 	func changeToNextState(time: Double? = nil, delay: Double = 0.0, onComplete: (Bool -> Void)? = nil) {
@@ -150,9 +150,9 @@ class CardView: UIView {
 				delay: delay,
 				usingSpringWithDamping: 1.0,
 				initialSpringVelocity: 0.0,
-				options: .BeginFromCurrentState | .CurveEaseIn,
+				options: [.BeginFromCurrentState, .CurveEaseIn],
 				animations: {
-					self.frame = CGRectMake(0, nextPosition, self.frame.size)
+					self.frame = CGRectMake(0, y: nextPosition, size: self.frame.size)
 				}, completion: onComplete)
 		}
 
@@ -179,7 +179,7 @@ class CardView: UIView {
 	}
 
 	private func resetBackgroundAnimation(animationTime: Double) -> CAAnimation {
-		var animation = CABasicAnimation(keyPath: "transform")
+		let animation = CABasicAnimation(keyPath: "transform")
 		animation.toValue = NSValue(CATransform3D: CATransform3DIdentity)
 		animation.duration = animationTime
 		animation.fillMode = kCAFillModeForwards
@@ -191,7 +191,7 @@ class CardView: UIView {
 
 	private func backgroundAnimation(animationTime: Double) -> CAAnimation {
 		var t0 = CATransform3DIdentity
-		var animation0 = CABasicAnimation(keyPath: "transform")
+		let animation0 = CABasicAnimation(keyPath: "transform")
 
 		t0.m34 = CGFloat(1.0)/CGFloat(-900)
 		t0 = CATransform3DTranslate(t0, 0, maximizedMargin - self.frame.origin.y, 0)
@@ -207,7 +207,7 @@ class CardView: UIView {
 		t1 = CATransform3DScale(t1, 0.95, 0.95, 1)
 		t1 = CATransform3DRotate(t1, CGFloat(10.0 * M_PI/180.0), 1, 0, 0)
 
-		var animation1 = CABasicAnimation(keyPath: "transform")
+		let animation1 = CABasicAnimation(keyPath: "transform")
 		animation1.toValue = NSValue(CATransform3D: t1)
 		animation1.duration = animationTime*3.0/4.0
 		animation1.fillMode = kCAFillModeForwards
@@ -219,7 +219,7 @@ class CardView: UIView {
 		t2 = CATransform3DTranslate(t2, 0, self.frame.size.height * CGFloat(-0.04), 0)
 		t2 = CATransform3DScale(t2, 0.95, 0.90, 1)
 
-		var animation2 = CABasicAnimation(keyPath: "transform")
+		let animation2 = CABasicAnimation(keyPath: "transform")
 		animation2.toValue = NSValue(CATransform3D: t2)
 		animation2.beginTime = animation1.duration
 		animation2.duration = animationTime*1.0/4.0
@@ -240,7 +240,7 @@ class CardView: UIView {
 		return group;
 	}
 
-	override func animationDidStop(theAnimation: CAAnimation!, finished flag: Bool) {
+	override func animationDidStop(theAnimation: CAAnimation, finished flag: Bool) {
 		onChangeCompleted?(flag)
 		onChangeCompleted = nil
 	}

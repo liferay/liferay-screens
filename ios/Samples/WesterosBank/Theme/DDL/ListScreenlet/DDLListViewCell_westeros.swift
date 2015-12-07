@@ -31,7 +31,7 @@ public class DDLListViewCell_westeros: MGSwipeTableCell {
 			}
 
 			let icons = ["DONE", "FREEZE", "OPEN", "REJECT", "WAITING"]
-			let currentIcon = icons[count(issueLabel.text ?? "") % 5]
+			let currentIcon = icons[(issueLabel.text ?? "").characters.count % 5]
 
 			statusIcon.image = NSBundle.imageInBundles(
 					name: "status_\(currentIcon)",

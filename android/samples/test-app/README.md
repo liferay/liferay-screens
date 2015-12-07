@@ -24,7 +24,7 @@ The *test-app* currently showcases the following Screenlets:
 - [Login Screenlet](https://dev.liferay.com/develop/reference/-/knowledge_base/6-2/loginscreenlet-for-android)
 - [Forgot Password Screenlet](https://dev.liferay.com/develop/reference/-/knowledge_base/6-2/forgotpasswordscreenlet-for-android)
 - [Sign Up Screenlet](https://dev.liferay.com/develop/reference/-/knowledge_base/6-2/signupscreenlet-for-android)
-- [User Portrait Screnlet](https://dev.liferay.com/develop/reference/-/knowledge_base/6-2/userportraitscreenlet-for-android)
+- [User Portrait Screenlet](https://dev.liferay.com/develop/reference/-/knowledge_base/6-2/userportraitscreenlet-for-android)
 - [Web Content Display Screenlet](https://dev.liferay.com/develop/reference/-/knowledge_base/6-2/webcontentdisplayscreenlet-for-android)
 - [Add Bookmark Screenlet](../addbookmarkscreenlet)
 

@@ -36,28 +36,32 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		let service = LRDDMStructureService_v62(session: session)
 
-		resultRecord = nil
-		resultUserId = nil
+		do {
+			let structureDataDictionary = try service.getStructureWithStructureId(structureId!)
 
-		let structureDataDictionary = service.getStructureWithStructureId(structureId!,
-				error: &lastError)
-
-		if lastError == nil {
 			if let xsd = structureDataDictionary["xsd"]! as? String {
 				if let userIdValue = structureDataDictionary["userId"]! as? Int {
 					resultUserId = Int64(userIdValue)
 				}
 
 				resultRecord = DDLRecord(
-						xsd: xsd,
-						locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+					xsd: xsd,
+					locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+				lastError = nil
 			}
 			else {
 				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				resultRecord = nil
+				resultUserId = nil
 			}
+		}
+		catch let error as NSError {
+			lastError = error
+			resultRecord = nil
+			resultUserId = nil
 		}
 	}
 

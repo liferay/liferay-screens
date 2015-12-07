@@ -56,7 +56,7 @@ class ViewController: UIViewController {
 
 	override func viewWillAppear(animated: Bool) {
 		self.signInCard.nextState = .Minimized
-		self.signInCard.changeToNextState(time: nil, delay: 0.5)
+		self.signInCard.changeToNextState(nil, delay: 0.5)
 	}
 
 }

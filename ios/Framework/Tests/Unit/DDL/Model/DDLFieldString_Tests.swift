@@ -57,7 +57,7 @@ class DDLFieldString_Tests: XCTestCase {
 		XCTAssertEqual("A Text", stringField.label)
 		XCTAssertEqual("The tip", stringField.tip)
 		XCTAssertTrue(stringField.predefinedValue is String)
-		XCTAssertEqual("predefined text", stringField.predefinedValue as! String)
+		XCTAssertEqual("predefined text", stringField.predefinedValue as? String)
 		XCTAssertFalse(stringField.readOnly)
 		XCTAssertTrue(stringField.repeatable)
 		XCTAssertFalse(stringField.required)

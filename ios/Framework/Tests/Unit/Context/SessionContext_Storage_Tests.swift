@@ -45,7 +45,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 	}
 
 	func test_StoreSession_ShouldReturnFalse_WhenUserAttributesAreEmpty() {
-		let session = SessionContext.createBasicSession(
+		SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
@@ -56,7 +56,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 	}
 
 	func test_StoreSession_ShouldReturnTrue_WhenSessionIsCreated() {
-		let session = SessionContext.createBasicSession(
+		SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: ["k":"v"])
@@ -70,7 +70,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 	}
 
 	func test_LoadSessionFromStore_ShouldReturnFalse_WhenSessionIsNotStored() {
-		let session = SessionContext.createBasicSession(
+		SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: ["k":"v"])

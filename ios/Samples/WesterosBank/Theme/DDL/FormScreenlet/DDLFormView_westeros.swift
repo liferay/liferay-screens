@@ -17,10 +17,8 @@ import LiferayScreens
 
 public class DDLFormView_westeros: DDLFormView_default {
 
-	override public func onCreated() {
-		super.onCreated()
-
-		BaseScreenlet.setHUDCustomColor(WesterosThemeBasicRed)
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return WesterosProgressPresenter()
 	}
 
 }

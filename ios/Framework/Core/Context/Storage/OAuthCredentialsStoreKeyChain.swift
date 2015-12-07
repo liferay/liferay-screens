@@ -22,31 +22,36 @@ import UIKit
 
 public class OAuthCredentialsStoreKeyChain : BaseCredentialsStoreKeyChain {
 
-	override public func storeAuth(#keychain: Keychain, auth: LRAuthentication) {
+	override public func storeAuth(keychain keychain: Keychain, auth: LRAuthentication) {
 		let oauth = auth as! LROAuth
 
-		keychain.set(AuthType.OAuth.rawValue, key: "auth_type")
-		keychain.set(oauth.config.consumerKey, key: "oauth_consumer_key")
-		keychain.set(oauth.config.consumerSecret, key: "oauth_consumer_secret")
-		keychain.set(oauth.config.token, key: "oauth_token")
-		keychain.set(oauth.config.tokenSecret, key: "oauth_token_secret")
+		do {
+			try keychain.set(AuthType.OAuth.rawValue, key: "auth_type")
+			try keychain.set(oauth.config.consumerKey, key: "oauth_consumer_key")
+			try keychain.set(oauth.config.consumerSecret, key: "oauth_consumer_secret")
+			try keychain.set(oauth.config.token, key: "oauth_token")
+			try keychain.set(oauth.config.tokenSecret, key: "oauth_token_secret")
+		} catch {
+		}
 	}
 
-	override public func loadAuth(#keychain: Keychain) -> LRAuthentication? {
-		let consumerKey = keychain.get("oauth_consumer_key")
-		let consumerSecret = keychain.get("oauth_consumer_secret")
-		let token = keychain.get("oauth_token")
-		let tokenSecret = keychain.get("oauth_token_secret")
+	override public func loadAuth(keychain keychain: Keychain) -> LRAuthentication? {
+
+		let consumerKey = try? keychain.get("oauth_consumer_key")
+		let consumerSecret = try? keychain.get("oauth_consumer_secret")
+		let token = try? keychain.get("oauth_token")
+		let tokenSecret = try? keychain.get("oauth_token_secret")
 
 		if let consumerKey = consumerKey,
 				consumerSecret = consumerSecret,
 				token = token,
 				tokenSecret = tokenSecret {
 
-			return LROAuth(consumerKey: consumerKey,
-					consumerSecret: consumerSecret,
-					token: token,
-					tokenSecret: tokenSecret)
+			return LROAuth(
+				consumerKey: consumerKey,
+				consumerSecret: consumerSecret,
+				token: token,
+				tokenSecret: tokenSecret)
 		}
 
 		return nil

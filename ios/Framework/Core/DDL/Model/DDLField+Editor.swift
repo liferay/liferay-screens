@@ -32,15 +32,15 @@ extension DDLField {
 		case Document = "ddm-documentlibrary"
 		case Unsupported = ""
 
-		public static func from(#xmlElement:SMXMLElement) -> Editor {
+		public static func from(xmlElement xmlElement:SMXMLElement) -> Editor {
 			return from(attributeValue:(xmlElement.attributeNamed("type") ?? ""))
 		}
 
-		public static func from(#attributes:[String:AnyObject]) -> Editor {
+		public static func from(attributes attributes:[String:AnyObject]) -> Editor {
 			return from(attributeValue:((attributes["type"] ?? "") as! String))
 		}
 
-		public static func from(#attributeValue:String) -> Editor {
+		public static func from(attributeValue attributeValue:String) -> Editor {
 			var result = Editor.Unsupported
 
 			// hack to convert ddm-integer, ddm-number and ddm-decimal to just number

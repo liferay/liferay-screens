@@ -20,7 +20,7 @@ package com.liferay.mobile.screens.base.interactor;
 public abstract class BaseInteractor<L> implements Interactor<L> {
 
 	@Override
-	public void onScreenletAttachted(L listener) {
+	public void onScreenletAttached(L listener) {
 		_listener = listener;
 	}
 

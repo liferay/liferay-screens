@@ -50,28 +50,28 @@ public class DateFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullStringIsSupplied() throws Exception {
-			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE);
+			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			assertNull(field.convertFromString(null));
 		}
 
 		@Test
 		public void shouldReturnNullWhenTooShortStringIsSupplied() throws Exception {
-			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE);
+			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			assertNull(field.convertFromString("01/05"));
 		}
 
 		@Test
 		public void shouldReturnNullWhenInvalidStringIsSupplied() throws Exception {
-			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE);
+			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			assertNull(field.convertFromString("ab/01/2001"));
 		}
 
 		@Test
 		public void shouldReturnDateWhenShortStringIsSupplied() throws Exception {
-			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE);
+			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			Date result = field.convertFromString("12/31/00");
 
@@ -87,7 +87,7 @@ public class DateFieldTest {
 
 		@Test
 		public void shouldReturnDateWhenLongStringIsSupplied() throws Exception {
-			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE);
+			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			Date result = field.convertFromString("12/31/2000");
 
@@ -103,7 +103,7 @@ public class DateFieldTest {
 
 		@Test
 		public void shouldReturnDateWhenStringWithOneLetterDayIsSupplied() throws Exception {
-			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE);
+			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			Date result = field.convertFromString("12/1/00");
 
@@ -119,7 +119,7 @@ public class DateFieldTest {
 
 		@Test
 		public void shouldReturnDateWhenStringWithOneLetterMonthIsSupplied() throws Exception {
-			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE);
+			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			Date result = field.convertFromString("1/31/00");
 
@@ -140,14 +140,14 @@ public class DateFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullDateIsSupplied() throws Exception {
-			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE);
+			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			assertNull(field.convertToData(null));
 		}
 
 		@Test
 		public void shouldReturnEpochWhenDateIsSupplied() throws Exception {
-			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE);
+			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 			calendar.setTimeInMillis(1087666200000L);
@@ -162,14 +162,14 @@ public class DateFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullDateIsSupplied() throws Exception {
-			DateField field = new DateField(new HashMap<String, Object>(), US_LOCALE);
+			DateField field = new DateField(new HashMap<String, Object>(), US_LOCALE, US_LOCALE);
 
 			assertNull(field.convertToFormattedString(null));
 		}
 
 		@Test
 		public void shouldReturnSpanishFormattedStringWhenDateIsSupplied() throws Exception {
-			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE);
+			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 			calendar.setTimeInMillis(1087666200000L);
@@ -179,7 +179,7 @@ public class DateFieldTest {
 
 		@Test
 		public void shouldReturnUSFormattedStringWhenDateIsSupplied() throws Exception {
-			DateField field = new DateField(new HashMap<String, Object>(), US_LOCALE);
+			DateField field = new DateField(new HashMap<String, Object>(), US_LOCALE, US_LOCALE);
 
 			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 			calendar.setTimeInMillis(1087666200000L);

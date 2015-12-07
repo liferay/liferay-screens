@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -13,6 +13,8 @@
  */
 
 package com.liferay.mobile.screens.ddl.form.interactor.update;
+
+import android.support.annotation.NonNull;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
@@ -24,7 +26,9 @@ import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -51,7 +55,21 @@ public class DDLFormUpdateRecordInteractorImpl
 			return;
 		}
 
-		onEventWithCache(event, event.getGroupId(), event.getRecord(), event.getJSONObject());
+		if (event.isFailed()) {
+			try {
+				storeToCacheAndLaunchEvent(event.getGroupId(), event.getRecord());
+			}
+			catch (Exception e) {
+				getListener().onDDLFormUpdateRecordFailed(event.getException());
+			}
+		}
+		else {
+			if (!event.isCacheRequest()) {
+				store(true, event.getGroupId(), event.getRecord());
+			}
+
+			getListener().onDDLFormRecordUpdated(event.getRecord());
+		}
 	}
 
 	@Override
@@ -72,26 +90,15 @@ public class DDLFormUpdateRecordInteractorImpl
 	}
 
 	@Override
-	protected void notifySuccess(DDLFormUpdateRecordEvent event) {
-		getListener().onDDLFormRecordUpdated(event.getRecord());
-	}
-
-	@Override
-	protected void notifyError(DDLFormUpdateRecordEvent event) {
-		getListener().onDDLFormUpdateRecordFailed(event.getException());
-	}
-
-	@Override
-	protected void storeToCache(boolean synced, Object[] args) {
+	protected void storeToCacheAndLaunchEvent(Object... args) {
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
-		JSONObject fieldsValues = new JSONObject(record.getData());
 
-		DDLRecordCache recordCache = new DDLRecordCache(groupId, record, fieldsValues);
-		recordCache.setDirty(!synced);
-		CacheSQL.getInstance().set(recordCache);
+		final JSONObject fieldsValues = store(false, groupId, record);
 
-		onEvent(new DDLFormUpdateRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues));
+		DDLFormUpdateRecordEvent event = new DDLFormUpdateRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues);
+		event.setCacheRequest(true);
+		onEvent(event);
 	}
 
 	protected DDLRecordService getDDLRecordService(Record record, long groupId) {
@@ -115,6 +122,26 @@ public class DDLFormUpdateRecordInteractorImpl
 
 		if (record.getRecordId() <= 0) {
 			throw new IllegalArgumentException("Record's recordId cannot be 0 or negative");
+		}
+	}
+
+	@NonNull
+	private JSONObject store(boolean synced, long groupId, Record record) {
+		final JSONObject fieldsValues = new JSONObject(record.getData());
+		saveDDLRecord(record, fieldsValues, groupId, !synced);
+		return fieldsValues;
+	}
+
+	private void saveDDLRecord(Record record, JSONObject fieldValues, Long groupId, boolean dirty) {
+		try {
+			JSONObject valuesAndAttributes = new JSONObject();
+			valuesAndAttributes.put("modelValues", fieldValues);
+			DDLRecordCache recordCache = new DDLRecordCache(groupId, record, valuesAndAttributes);
+			recordCache.setDirty(dirty);
+			CacheSQL.getInstance().set(recordCache);
+		}
+		catch (JSONException e) {
+			LiferayLogger.e("Couldn't parse JSON values", e);
 		}
 	}
 

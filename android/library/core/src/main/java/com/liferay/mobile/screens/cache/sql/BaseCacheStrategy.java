@@ -19,8 +19,8 @@ public abstract class BaseCacheStrategy<E extends CachedContent> implements Cach
 	}
 
 	@Override
-	public List get(String orderBy, String query, Object... args) {
-		return queryGet(getDomainClass(), getTableName(), "", query, args);
+	public List get(String query, Object... args) {
+		return queryGet(getDomainClass(), getTableName(), query, args);
 	}
 
 	@Override

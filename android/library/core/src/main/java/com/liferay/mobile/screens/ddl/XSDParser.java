@@ -115,7 +115,7 @@ public class XSDParser {
 		mergedMap.putAll(attributes);
 		mergedMap.putAll(localizedMetadata);
 
-		return dataType.createField(mergedMap, locale);
+		return dataType.createField(mergedMap, locale, defaultLocale);
 	}
 
 	protected Map<String, Object> processLocalizedMetadata(

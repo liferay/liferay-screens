@@ -30,7 +30,7 @@ import UIKit
 }
 
 
-public func copyBasicAuth(#source: BasicAuthBasedType, #target: AnyObject?) {
+public func copyBasicAuth(source source: BasicAuthBasedType, target: AnyObject?) {
 	if let authBasedTarget = target as? BasicAuthBasedType {
 		authBasedTarget.basicAuthMethod = source.basicAuthMethod
 		authBasedTarget.saveCredentials = source.saveCredentials
@@ -56,11 +56,11 @@ public enum BasicAuthMethod: String {
 	}
 
 	public static func fromUserName(userName: String) -> BasicAuthMethod {
-		if find(userName, "@") != nil {
+		if userName.characters.indexOf("@") != nil {
 			return .Email
 		}
 
-		if userName.toInt() != nil {
+		if Int(userName) != nil {
 			return .UserId
 		}
 

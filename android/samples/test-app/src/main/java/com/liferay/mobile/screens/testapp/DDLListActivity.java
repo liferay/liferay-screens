@@ -46,12 +46,19 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 		setContentView(R.layout.ddl_list);
 
-		DDLListScreenlet screenlet = (DDLListScreenlet) getActiveScreenlet(R.id.ddl_list_default, R.id.ddl_list_material);
+		_screenlet = (DDLListScreenlet) getActiveScreenlet(R.id.ddl_list_default, R.id.ddl_list_material);
 
-		screenlet.setVisibility(View.VISIBLE);
-		screenlet.setListener(this);
+		_screenlet.setVisibility(View.VISIBLE);
+		_screenlet.setListener(this);
 
 		hideInactiveScreenlet(R.id.ddl_list_default, R.id.ddl_list_material);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		_screenlet.loadPage(0);
 	}
 
 	@Override
@@ -61,28 +68,28 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 	@Override
 	public void onListPageReceived(BaseListScreenlet source, int page, List<Record> entries, int rowCount) {
-		info("Page " + page + " received!");
+//		info("Page " + page + " received!");
 	}
 
 	@Override
 	public void onListItemSelected(Record element, View view) {
-		info("Item selected: " + element);
+//		info("Item selected: " + element);
 		loadDDLForm(element);
 	}
 
 	@Override
 	public void loadingFromCache(boolean success) {
-
+		info("Loading from cache: " + success);
 	}
 
 	@Override
 	public void retrievingOnline(boolean triedInCache, Exception e) {
-
+//		info("Retrieving online... and tried in cache: " + triedInCache);
 	}
 
 	@Override
 	public void storingToCache(Object object) {
-
+		info("Storing to cache...");
 	}
 
 	private void loadDDLForm(Record element) {
@@ -126,4 +133,6 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 			}
 		};
 	}
+
+	private DDLListScreenlet _screenlet;
 }

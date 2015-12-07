@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractor;
 import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractorImpl;
@@ -72,10 +73,10 @@ public class SignUpScreenlet
 		if (_autoLogin) {
 			SignUpViewModel viewModel = getViewModel();
 
-			String emailAddress = viewModel.getEmailAddress();
+			String authUsername = getAuthUsernameFromUser(user);
 			String password = viewModel.getPassword();
 
-			SessionContext.createBasicSession(emailAddress, password);
+			SessionContext.createBasicSession(authUsername, password);
 			SessionContext.setLoggedUser(user);
 
 			if (_autoLoginListener != null) {
@@ -83,6 +84,18 @@ public class SignUpScreenlet
 			}
 
 			SessionContext.storeSession(_credentialsStore);
+		}
+	}
+
+	public String getAuthUsernameFromUser(User user) {
+		switch (_basicAuthMethod) {
+			case SCREEN_NAME:
+				return user.getScreenName();
+			case USER_ID:
+				return String.valueOf(user.getId());
+			case EMAIL:
+			default:
+				return user.getEmail();
 		}
 	}
 
@@ -164,6 +177,11 @@ public class SignUpScreenlet
 
 		_credentialsStore = StorageType.valueOf(storeValue);
 
+		_autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
+
+		int authMethodId = typedArray.getInt(R.styleable.SignUpScreenlet_basicAuthMethod, 0);
+		_basicAuthMethod = BasicAuthMethod.getValue(authMethodId);
+
 		int layoutId = typedArray.getResourceId(
 			R.styleable.SignUpScreenlet_layoutId, getDefaultLayoutId());
 
@@ -208,6 +226,7 @@ public class SignUpScreenlet
 	private boolean _autoLogin;
 	private long _companyId;
 	private StorageType _credentialsStore;
+	private BasicAuthMethod _basicAuthMethod;
 
 	private SignUpListener _listener;
 	private LoginListener _autoLoginListener;

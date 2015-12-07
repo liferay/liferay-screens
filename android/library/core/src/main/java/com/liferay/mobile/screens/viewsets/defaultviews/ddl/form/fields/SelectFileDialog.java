@@ -150,6 +150,7 @@ public class SelectFileDialog {
 		});
 		return entries;
 	}
+
 	private String currentFile = "";
 	private String currentDir = "";
 	private static final String SD_DIRECTORY = Environment.getExternalStorageDirectory().getAbsolutePath();

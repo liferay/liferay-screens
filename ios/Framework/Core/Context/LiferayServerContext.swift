@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class LiferayServerContext {
+@objc public class LiferayServerContext: NSObject {
 
 	//MARK: Singleton type
 
@@ -61,12 +61,12 @@ public class LiferayServerContext {
 
 	//MARK: Public methods
 
-	public class func valueForKey(key: String) -> AnyObject? {
+	public class func propertyForKey(key: String) -> AnyObject? {
 		loadContextFile()
 		return StaticInstance.serverProperties![key]
 	}
 
-	public class func setValue(value: AnyObject, forKey key: String) {
+	public class func setPropertyValue(value: AnyObject, forKey key: String) {
 		loadContextFile()
 		return StaticInstance.serverProperties![key] = value
 	}
@@ -79,13 +79,13 @@ public class LiferayServerContext {
 			return
 		}
 
-		let bundles = NSBundle.allBundles(self).reverse()
+		let bundles = Array(NSBundle.allBundles(self).reverse())
 
 		var found = false
 		var foundFallback = false
 
 		var i = 0
-		let length = count(bundles)
+		let length = bundles.count
 
 		while !found && i < length {
 			let bundle = bundles[i++]
@@ -114,13 +114,13 @@ public class LiferayServerContext {
 		}
 		else {
 			if foundFallback {
-				println("WARNING: \(PlistFile).plist file is not found. " +
-						"Falling back to template \(PlistFileSample).list")
+				print("WARNING: \(PlistFile).plist file is not found. " +
+						"Falling back to template \(PlistFileSample).list\n")
 			}
 			else {
-				println("ERROR: \(PlistFileSample).plist file is not found. " +
+				print("ERROR: \(PlistFileSample).plist file is not found. " +
 						"Using default values which will work in a default Liferay bundle " +
-						"running on localhost:8080")
+						"running on localhost:8080\n")
 			}
 		}
 	}

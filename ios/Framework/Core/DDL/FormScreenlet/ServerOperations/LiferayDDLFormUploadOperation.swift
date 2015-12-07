@@ -58,7 +58,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		session.callback = self
 
 		let fileName = "\(filePrefix!)\(NSUUID().UUIDString)"
@@ -75,16 +75,20 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 
 		requestSemaphore = dispatch_semaphore_create(0)
 
-		service.addFileEntryWithRepositoryId(repositoryId!,
+		do {
+			try service.addFileEntryWithRepositoryId(repositoryId!,
 				folderId: folderId!,
 				sourceFileName: fileName,
 				mimeType: document!.mimeType,
 				title: fileName,
-				description: LocalizedString("ddlform-screenlet", "upload-metadata-description", self),
-				changeLog: LocalizedString("ddlform-screenlet", "upload-metadata-changelog", self),
+				description: LocalizedString("ddlform-screenlet", key: "upload-metadata-description", obj: self),
+				changeLog: LocalizedString("ddlform-screenlet", key: "upload-metadata-changelog", obj: self),
 				file: uploadData,
-				serviceContext: nil,
-				error: &lastError)
+				serviceContext: nil)
+		}
+		catch let error as NSError {
+			lastError = error
+		}
 
 		dispatch_semaphore_wait(requestSemaphore!, DISPATCH_TIME_FOREVER)
 	}

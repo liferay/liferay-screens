@@ -86,7 +86,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return performAction(name: "load-portrait", sender: interactor)
 	}
 
-	public func load(#portraitId: Int64, uuid: String, male: Bool = true) -> Bool {
+	public func load(portraitId portraitId: Int64, uuid: String, male: Bool = true) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				portraitId: portraitId,
@@ -98,7 +98,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return performAction(name: "load-portrait", sender: interactor)
 	}
 
-	public func load(#userId: Int64) -> Bool {
+	public func load(userId userId: Int64) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				userId: userId)
@@ -108,7 +108,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return performAction(name: "load-portrait", sender: interactor)
 	}
 
-	public func load(#companyId: Int64, emailAddress: String) -> Bool {
+	public func load(companyId companyId: Int64, emailAddress: String) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				companyId: companyId,
@@ -119,7 +119,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return performAction(name: "load-portrait", sender: interactor)
 	}
 
-	public func load(#companyId: Int64, screenName: String) -> Bool {
+	public func load(companyId companyId: Int64, screenName: String) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				companyId: companyId,
@@ -130,8 +130,16 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return performAction(name: "load-portrait", sender: interactor)
 	}
 
-	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+	public func loadPlaceholder() {
+		viewModel.image = nil
+	}
+
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let interactor: Interactor?
+
+		if isActionRunning(name) {
+			cancelInteractorsForAction(name)
+		}
 
 		switch name {
 		case "load-portrait":
@@ -170,7 +178,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 				userId = loadedUserIdValue
 			}
 			else {
-				println("ERROR: Can't change the portrait without an userId")
+				print("ERROR: Can't change the portrait without an userId\n")
 
 				return nil
 			}
@@ -183,7 +191,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 			uploadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
-			uploadInteractor.onSuccess = { [weak interactor] in
+			uploadInteractor.onSuccess = {
 				self.delegate?.screenlet?(self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
 
 				self.loadedUserId = uploadInteractor.userId

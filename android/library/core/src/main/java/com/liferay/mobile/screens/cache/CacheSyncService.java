@@ -18,6 +18,7 @@ import com.liferay.mobile.screens.ddl.form.service.UploadService;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitService;
+import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONObject;
@@ -50,7 +51,7 @@ public class CacheSyncService extends IntentService {
 		boolean isConnected = activeNetwork != null &&
 			activeNetwork.isConnectedOrConnecting();
 
-		if (isConnected && SessionContext.hasSession()) {
+		if (isConnected && SessionContext.hasSession() && SessionContext.getLoggedUser() != null) {
 			try {
 				Cache cache = CacheSQL.getInstance();
 				sendPortrait(cache);
@@ -76,6 +77,7 @@ public class CacheSyncService extends IntentService {
 			try {
 				UserPortraitService userPortraitService = new UserPortraitService();
 				JSONObject jsonObject = userPortraitService.uploadUserPortrait(Long.valueOf(userPortrait.getId()), userPortrait.getContent());
+				LiferayLogger.i(jsonObject.toString());
 
 				userPortrait.setDirty(false);
 				userPortrait.setSyncDate(new Date());
@@ -101,12 +103,13 @@ public class CacheSyncService extends IntentService {
 		for (DocumentUploadCache document : documentsToUpload) {
 			try {
 				Map<String, Object> objectObjectHashMap = new HashMap<>();
-				DocumentField documentField = new DocumentField(objectObjectHashMap, new Locale("es"));
+				DocumentField documentField = new DocumentField(objectObjectHashMap, LiferayLocale.getDefaultLocale(), Locale.US);
 				documentField.createLocalFile(document.getPath());
 
 				UploadService uploadService = new UploadService();
 				JSONObject jsonObject = uploadService.uploadFile(documentField, document.getUserId(), document.getGroupId(),
 					document.getRepositoryId(), document.getFolderId(), document.getFilePrefix());
+				LiferayLogger.i(jsonObject.toString());
 
 				document.setDirty(false);
 				document.setSyncDate(new Date());
@@ -135,7 +138,12 @@ public class CacheSyncService extends IntentService {
 				JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
 				JSONObject jsonContent = cachedRecord.getJSONContent();
 
+				if (jsonContent.has("modelValues")) {
+					jsonContent = (JSONObject) jsonContent.get("modelValues");
+				}
+
 				JSONObject jsonObject = saveOrUpdate(recordService, record, groupId, serviceContextWrapper, jsonContent);
+				LiferayLogger.i(jsonObject.toString());
 
 				cachedRecord.setDirty(false);
 				cachedRecord.setSyncDate(new Date());
