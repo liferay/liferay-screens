@@ -94,7 +94,7 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		copyAuthType()
 	}
 
-	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 
 		switch name {
 		case "login-action":

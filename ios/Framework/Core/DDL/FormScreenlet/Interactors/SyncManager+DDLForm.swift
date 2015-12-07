@@ -106,7 +106,7 @@ extension SyncManager {
 	}
 
 	private func resolveConflict(
-			#remoteRecord: DDLRecord,
+			remoteRecord remoteRecord: DDLRecord,
 			localRecord: DDLRecord,
 			key: String,
 			attributes: [String:AnyObject],

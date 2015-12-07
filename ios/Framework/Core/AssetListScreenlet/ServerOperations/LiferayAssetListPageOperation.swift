@@ -39,7 +39,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		if let portletItemName = portletItemName {
 			let service = LRScreensassetentryService_v62(session: session)
 
@@ -48,23 +48,28 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 				// rows from the top to the endRow (whole single page)
 				let rowCount = endRow
 
-				let responses = service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
-					groupId: groupId!,
-					portletItemName: portletItemName,
-					locale: NSLocale.currentLocaleString,
-					max: Int32(endRow),
-					error: &lastError)
+				do {
+					let responses = try service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
+						groupId: groupId!,
+						portletItemName: portletItemName,
+						locale: NSLocale.currentLocaleString,
+						max: Int32(rowCount))
 
-				if lastError == nil {
 					if let entriesResponse = responses as? [[String:AnyObject]] {
 						let serverPageContent = entriesResponse
 
 						resultPageContent = serverPageContent
 						resultRowCount = serverPageContent.count
+						lastError = nil
 					}
 					else {
-						lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
+						lastError = NSError.errorWithCause(.InvalidServerResponse)
+						resultPageContent = nil
 					}
+				}
+				catch let error as NSError {
+					lastError = error
+					resultPageContent = nil
 				}
 			}
 			else {
@@ -80,7 +85,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	//MARK: LiferayPaginationOperation
 
-	override internal func doGetPageRowsOperation(#session: LRBatchSession, startRow: Int, endRow: Int) {
+	override internal func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensassetentryService_v62(session: session)
 
 		var entryQuery = configureEntryQuery()
@@ -90,17 +95,24 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
 
-		service.getAssetEntriesWithAssetEntryQuery(entryQueryWrapper,
-			locale: NSLocale.currentLocaleString,
-			error: nil)
+		do {
+			try service.getAssetEntriesWithAssetEntryQuery(entryQueryWrapper,
+					locale: NSLocale.currentLocaleString)
+		}
+		catch _ as NSError {
+		}
 	}
 
-	override internal func doGetRowCountOperation(#session: LRBatchSession) {
+	override internal func doGetRowCountOperation(session session: LRBatchSession) {
 		let service = LRAssetEntryService_v62(session: session)
 		let entryQuery = configureEntryQuery()
 		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
 
-		service.getEntriesCountWithEntryQuery(entryQueryWrapper, error: nil)
+		do {
+			try service.getEntriesCountWithEntryQuery(entryQueryWrapper)
+		}
+		catch _ as NSError {
+		}
 	}
 
 

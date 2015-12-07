@@ -36,14 +36,12 @@ public class LiferayWebContentLoadBaseOperation: ServerOperation {
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		resultHTML = nil
 
 		var result: String?
 
 		if templateId ?? 0 != 0 {
-			let service = LRScreensjournalarticleService_v62(session: session)
-
 			result = doGetJournalArticleWithTemplate(templateId!, session: session)
 		}
 		else {

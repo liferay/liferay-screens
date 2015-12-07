@@ -37,16 +37,16 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CreateSession_ShouldStoreUserAttributes() {
-		let session = SessionContext.createBasicSession(
+		SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: ["key":"value"])
 
-		XCTAssertEqual("value", (SessionContext.userAttribute("key") ?? "") as! String)
+		XCTAssertEqual("value", (SessionContext.userAttribute("key") ?? "") as? String)
 	}
 
 	func test_CurrentUserName_ShouldReturnTheUserName_WhenSessionIsCreated() {
-		let session = SessionContext.createBasicSession(
+		SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
@@ -56,7 +56,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CurrentPassword_ShouldReturnThePassword_WhenSessionIsCreated() {
-		let session = SessionContext.createBasicSession(
+		SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
@@ -76,7 +76,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_HasSession_ShouldReturnTrue_WhenSessionIsCreated() {
-		let session = SessionContext.createBasicSession(
+		SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
@@ -124,7 +124,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_ClearSession_ShouldEmptyTheSession() {
-		let session = SessionContext.createBasicSession(
+		SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: ["k":"v"])

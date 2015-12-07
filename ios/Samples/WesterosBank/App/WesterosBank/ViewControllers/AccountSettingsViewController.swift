@@ -47,16 +47,18 @@ class AccountSettingsViewController: UIViewController,
 	func showKeyboard(notif: NSNotification) {
 		UIView.animateWithDuration(1.0) {
 			self.signUpScreenlet.frame = CGRectMake(
-					self.signUpScreenlet.frame.origin.x, 0,
-					self.signUpScreenlet.frame.size)
+				self.signUpScreenlet.frame.origin.x,
+				y: 0,
+				size: self.signUpScreenlet.frame.size)
 		}
 	}
 
 	func hideKeyboard(notif: NSNotification) {
 		UIView.animateWithDuration(1.0) {
 			self.signUpScreenlet.frame = CGRectMake(
-					self.signUpScreenlet.frame.origin.x, self.initialSignUpPosition!,
-					self.signUpScreenlet.frame.size)
+				self.signUpScreenlet.frame.origin.x,
+				y: self.initialSignUpPosition!,
+				size: self.signUpScreenlet.frame.size)
 		}
 	}
 
