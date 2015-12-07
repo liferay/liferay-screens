@@ -51,7 +51,7 @@ public enum BasicAuthMethod: String {
 
 	public static func create(text: String?) -> BasicAuthMethod {
 		return all().filter {
-				$0.rawValue == text?.lowercaseString
+				$0.rawValue.lowercaseString == text?.lowercaseString
 			}.first ?? .Email
 	}
 
