@@ -40,8 +40,7 @@ public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBas
 		let service = LRScreensjournalarticleService_v62(session: session)
 
 		do {
-			result = try service.getJournalArticleContentWithGroupId(groupId!,
-				classPK: classPK!,
+			result = try service.getJournalArticleContentWithClassPK(classPK!,
 				ddmTemplateId: templateId,
 				locale: NSLocale.currentLocaleString)
 		}
@@ -58,8 +57,7 @@ public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBas
 		let service = LRScreensjournalarticleService_v62(session: session)
 
 		do {
-			result = try service.getJournalArticleContentWithGroupId(groupId!,
-				classPK: classPK!,
+			result = try service.getJournalArticleContentWithClassPK(classPK!,
 				locale: NSLocale.currentLocaleString)
 		}
 		catch let error as NSError {
