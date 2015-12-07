@@ -27,16 +27,22 @@ public class DDLFieldNumber : DDLField {
 	//MARK: DDLField
 
 	override internal func convert(fromString value: String?) -> AnyObject? {
-		if let value = value,
-				result = NSNumberFormatter().numberFromString(value) {
+		if let value = value {
+			// server may return the number is one format that uses , as decimal separator
+			let number = value.stringByReplacingOccurrencesOfString(",", withString: ".")
 
-			switch CFNumberGetType(result as CFNumberRef) {
-			case .Float32Type, .Float64Type, .FloatType, .CGFloatType:
-				return NSDecimalNumber(float: result.floatValue)
-			case .DoubleType:
-				return NSDecimalNumber(double: result.doubleValue)
-			default:
-				return NSInteger(result.integerValue)
+			let enFormatter = NSNumberFormatter()
+			enFormatter.locale = NSLocale(localeIdentifier: "en_US")
+
+			if let result = enFormatter.numberFromString(number) {
+				switch CFNumberGetType(result as CFNumberRef) {
+				case .Float32Type, .Float64Type, .FloatType, .CGFloatType:
+					return NSDecimalNumber(float: result.floatValue)
+				case .DoubleType:
+					return NSDecimalNumber(double: result.doubleValue)
+				default:
+					return NSInteger(result.integerValue)
+				}
 			}
 		}
 
@@ -81,7 +87,7 @@ public class DDLFieldNumber : DDLField {
 
 	//MARK: Private methods
 
-	private func formatNumber(number: NSNumber?, locale:NSLocale) -> String? {
+	private func formatNumber(number: NSNumber?, locale: NSLocale) -> String? {
 		if number == nil {
 			return nil
 		}
