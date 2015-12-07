@@ -29,7 +29,7 @@ public class TableCacheStrategy extends BaseCacheStrategy<TableCache> implements
 	public TableCache getById(String id, Long groupId, Long userId, Locale locale) {
 
 		Long defaultGroupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
-		Long defaultUserId = userId == null ? (long) SessionContext.getDefaultUserId() : userId;
+		Long defaultUserId = userId == null ? (long) SessionContext.getUserId() : userId;
 		String defaultLocale = locale == null ? LiferayLocale.getDefaultSupportedLocale() :
 			LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
 
