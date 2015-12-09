@@ -17,7 +17,7 @@ import XCTest
 class SessionContext_Basic_Tests: XCTestCase {
 
 	override func tearDown() {
-		SessionContext.clearSession()
+		SessionContext.logout()
 
 		super.tearDown()
 	}
@@ -37,16 +37,16 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CreateSession_ShouldStoreUserAttributes() {
-		let session = SessionContext.createBasicSession(
+		SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: ["key":"value"])
 
-		XCTAssertEqual("value", (SessionContext.userAttribute("key") ?? "") as! String)
+		XCTAssertEqual("value", (SessionContext.userAttribute("key") ?? "") as? String)
 	}
 
 	func test_CurrentUserName_ShouldReturnTheUserName_WhenSessionIsCreated() {
-		let session = SessionContext.createBasicSession(
+		SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
@@ -56,7 +56,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CurrentPassword_ShouldReturnThePassword_WhenSessionIsCreated() {
-		let session = SessionContext.createBasicSession(
+		SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
@@ -66,31 +66,31 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CurrentUserName_ShouldReturnNil_WhenSessionIsNotCreated() {
-		SessionContext.clearSession()
+		SessionContext.logout()
 		XCTAssertNil(SessionContext.currentBasicUserName)
 	}
 
 	func test_CurrentPassword_ShouldReturnNil_WhenSessionIsNotCreated() {
-		SessionContext.clearSession()
+		SessionContext.logout()
 		XCTAssertNil(SessionContext.currentBasicPassword)
 	}
 
 	func test_HasSession_ShouldReturnTrue_WhenSessionIsCreated() {
-		let session = SessionContext.createBasicSession(
+		SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
 
-		XCTAssertTrue(SessionContext.hasSession)
+		XCTAssertTrue(SessionContext.isLoggedIn)
 	}
 
 	func test_HasSession_ShouldReturnFalse_WhenSessionIsNotCreated() {
-		SessionContext.clearSession()
-		XCTAssertFalse(SessionContext.hasSession)
+		SessionContext.logout()
+		XCTAssertFalse(SessionContext.isLoggedIn)
 	}
 
 	func test_CreateSessionFromCurrentSession_ShouldReturnNil_WhenSessionIsNotCreated() {
-		SessionContext.clearSession()
+		SessionContext.logout()
 		XCTAssertNil(SessionContext.createSessionFromCurrentSession())
 	}
 
@@ -119,22 +119,22 @@ class SessionContext_Basic_Tests: XCTestCase {
 	}
 
 	func test_CreateBatchSessionFromCurrentSession_ShouldReturnNil_WhenSessionIsNotCreated() {
-		SessionContext.clearSession()
+		SessionContext.logout()
 		XCTAssertNil(SessionContext.createBatchSessionFromCurrentSession())
 	}
 
 	func test_ClearSession_ShouldEmptyTheSession() {
-		let session = SessionContext.createBasicSession(
+		SessionContext.createBasicSession(
 				username: "username",
 				password: "password",
 				userAttributes: ["k":"v"])
 
-		SessionContext.clearSession()
+		SessionContext.logout()
 
 		XCTAssertNil(SessionContext.currentBasicUserName)
 		XCTAssertNil(SessionContext.currentBasicPassword)
 		XCTAssertNil(SessionContext.userAttribute("k"))
-		XCTAssertFalse(SessionContext.hasSession)
+		XCTAssertFalse(SessionContext.isLoggedIn)
 	}
 
 

@@ -88,7 +88,7 @@ public class DDLFieldDocument : DDLField {
 		super.init(attributes: attributes, locale: locale)
 	}
 
-	public required init(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 		let uploadStatusHash = aDecoder.decodeIntegerForKey("uploadStatusHash")
 
 		switch uploadStatusHash {
@@ -138,9 +138,8 @@ public class DDLFieldDocument : DDLField {
 			let data = valueString.dataUsingEncoding(NSUTF8StringEncoding,
 				allowLossyConversion: false)
 
-			let jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data!,
-				options: NSJSONReadingOptions(0),
-				error: nil)
+			let jsonObject: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(data!,
+				options: NSJSONReadingOptions(rawValue: 0))
 
 			if let jsonDict = jsonObject as? [String:AnyObject] {
 				uploadStatus = .Uploaded(jsonDict)
@@ -170,9 +169,8 @@ public class DDLFieldDocument : DDLField {
 						"\"version\":\"\(version)\"}"
 			}
 			else {
-				let data = NSJSONSerialization.dataWithJSONObject(json,
-					options: .allZeros,
-					error: nil)
+				let data = try? NSJSONSerialization.dataWithJSONObject(json,
+					options: [])
 
 				if let data = data {
 					return NSString(data: data, encoding: NSUTF8StringEncoding) as? String
@@ -188,11 +186,11 @@ public class DDLFieldDocument : DDLField {
 	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
 		switch currentValue {
 		case is UIImage:
-			return LocalizedString("core", "an-image-has-been-selected", self)
+			return LocalizedString("core", key: "an-image-has-been-selected", obj: self)
 		case is NSURL:
-			return LocalizedString("core", "a-video-has-been-selected", self)
+			return LocalizedString("core", key: "a-video-has-been-selected", obj: self)
 		case is [String:AnyObject]:
-			return LocalizedString("core", "a-file-is-already-uploaded", self)
+			return LocalizedString("core", key: "a-file-is-already-uploaded", obj: self)
 		default: ()
 		}
 
@@ -217,22 +215,21 @@ public class DDLFieldDocument : DDLField {
 
 	//MARK: Public methods
 
-	public func getStream(inout size:Int64) -> NSInputStream? {
+	public func getStream(inout size: Int64) -> NSInputStream? {
 		var result: NSInputStream?
 
 		switch currentValue {
 		case let image as UIImage:
-			let imageData = UIImagePNGRepresentation(image)
-			size = Int64(imageData.length)
-			result = NSInputStream(data: imageData)
+			if let imageData = UIImagePNGRepresentation(image) {
+				size = Int64(imageData.length)
+				result = NSInputStream(data: imageData)
+			}
 
 		case let videoURL as NSURL:
-			var outError:NSError?
-			if let attributes = NSFileManager.defaultManager().attributesOfItemAtPath(
-					videoURL.path!, error: &outError) {
-				if let sizeValue = attributes[NSFileSize] as? NSNumber {
-					size = sizeValue.longLongValue
-				}
+			let attributes = try? NSFileManager.defaultManager().attributesOfItemAtPath(
+					videoURL.path!)
+			if let sizeValue = attributes?[NSFileSize] as? NSNumber {
+				size = sizeValue.longLongValue
 			}
 			result = NSInputStream(URL: videoURL)
 

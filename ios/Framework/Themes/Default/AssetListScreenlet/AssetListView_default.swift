@@ -22,7 +22,7 @@ public class AssetListView_default: AssetListTableView {
 		return DefaultProgressPresenter()
 	}
 
-	override public func doFillLoadedCell(#row: Int, cell: UITableViewCell, object:AnyObject) {
+	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let entry = object as? AssetListScreenletEntry {
 			cell.textLabel?.text = entry.title
 			cell.accessoryType = .DisclosureIndicator
@@ -30,7 +30,7 @@ public class AssetListView_default: AssetListTableView {
 		}
 	}
 
-	override public func doFillInProgressCell(#row: Int, cell: UITableViewCell) {
+	override public func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
 		cell.textLabel?.text = "..."
 		cell.accessoryType = .None
 

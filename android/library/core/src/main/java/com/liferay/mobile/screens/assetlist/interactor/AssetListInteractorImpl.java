@@ -50,11 +50,12 @@ public class AssetListInteractorImpl
 	}
 
 	public void loadRows(
-		long groupId, long classNameId, String portletItemName, int startRow, int endRow, Locale locale)
+		long groupId, long classNameId, String portletItemName, String customEntryQuery, int startRow, int endRow, Locale locale)
 		throws Exception {
 		this._groupId = groupId;
 		this._classNameId = classNameId;
 		this._portletItemName = portletItemName;
+		this._customEntryQuery = customEntryQuery;
 
 		processWithCache(startRow, endRow, locale);
 	}
@@ -98,8 +99,10 @@ public class AssetListInteractorImpl
 	@Override
 	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
 		if (_portletItemName == null) {
+
+
 			ScreensassetentryService service = new ScreensassetentryService(session);
-			JSONObject entryQueryAttributes = addQueryParams(_groupId, _classNameId);
+			JSONObject entryQueryAttributes = configureEntryQuery(_groupId, _classNameId);
 			entryQueryAttributes.put("start", startRow);
 			entryQueryAttributes.put("end", endRow);
 
@@ -110,22 +113,31 @@ public class AssetListInteractorImpl
 		else {
 			session.setCallback(new FilteredAssetListCallback(getTargetScreenletId()));
 			ScreensassetentryService service = new ScreensassetentryService(session);
-			service.getAssetEntries(LiferayServerContext.getCompanyId(), _groupId, _portletItemName, locale.toString());
+			service.getAssetEntries(LiferayServerContext.getCompanyId(), _groupId, _portletItemName, locale.toString(), endRow);
 		}
 	}
 
 	@Override
 	protected void getPageRowCountRequest(Session session) throws Exception {
-		JSONObject entryQueryParams = addQueryParams(_groupId, _classNameId);
+		JSONObject entryQueryParams = configureEntryQuery(_groupId, _classNameId);
 		JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryParams);
 		new AssetEntryService(session).getEntriesCount(entryQuery);
 	}
 
-	protected JSONObject addQueryParams(long groupId, long classNameId) throws JSONException {
-		JSONObject entryQueryParams = new JSONObject();
-		entryQueryParams.put("classNameIds", classNameId);
-		entryQueryParams.put("groupIds", groupId);
-		entryQueryParams.put("visible", "true");
+	protected JSONObject configureEntryQuery(long groupId, long classNameId) throws JSONException {
+
+		JSONObject entryQueryParams =
+			_customEntryQuery == null ? new JSONObject() : new JSONObject(_customEntryQuery);
+
+		if (!entryQueryParams.has("classNameIds")) {
+			entryQueryParams.put("classNameIds", classNameId);
+		}
+		if (!entryQueryParams.has("groupIds")) {
+			entryQueryParams.put("groupIds", groupId);
+		}
+		if (!entryQueryParams.has("visible")) {
+			entryQueryParams.put("visible", "true");
+		}
 		return entryQueryParams;
 	}
 
@@ -148,4 +160,5 @@ public class AssetListInteractorImpl
 	private String _portletItemName;
 	private long _groupId;
 	private long _classNameId;
+	private String _customEntryQuery;
 }

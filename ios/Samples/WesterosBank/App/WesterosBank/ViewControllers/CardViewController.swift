@@ -32,14 +32,14 @@ class CardViewController: UIViewController {
 
 		card.autoresizesSubviews = true
 		self.view.autoresizesSubviews = true
-		self.view.autoresizingMask =  UIViewAutoresizing.FlexibleWidth |  UIViewAutoresizing.FlexibleHeight
+		self.view.autoresizingMask =  [.FlexibleWidth, .FlexibleHeight]
 
 		card.addSubview(self.view)
 
 		card.presentingController = self
 	}
 
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		self.cardView = nil
 
 		super.init(coder: aDecoder)

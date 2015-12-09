@@ -23,7 +23,7 @@ public class DDLFieldTextTableCell_default: DDLBaseFieldTextboxTableCell_default
 			replacementString string: String)
 			-> Bool {
 
-		let newText = (textField.text as NSString).stringByReplacingCharactersInRange(range,
+		let newText = (textField.text! as NSString).stringByReplacingCharactersInRange(range,
 				withString:string)
 
 		field!.currentValue = newText

@@ -96,7 +96,7 @@ public class ScreensSQLiteOpenHelper extends SQLiteOpenHelper {
 		+ DocumentUploadCache.GROUP_ID + " LONG NOT NULL, "
 		+ DocumentUploadCache.REPOSITORY_ID + " LONG NOT NULL, "
 		+ DocumentUploadCache.FOLDER_ID + " LONG NOT NULL, "
-		+ DocumentUploadCache.FILE_PREFIX + " TEXT NOT NULL, "
+		+ DocumentUploadCache.FILE_PREFIX + " TEXT, "
 		+ DocumentUploadCache.DIRTY + " INTEGER NOT NULL, "
 		+ DocumentUploadCache.SYNC_DATE + " LONG, "
 		+ "PRIMARY KEY (" + DocumentUploadCache.PATH + "));";

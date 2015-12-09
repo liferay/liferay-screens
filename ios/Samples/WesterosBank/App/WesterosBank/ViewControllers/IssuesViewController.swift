@@ -45,7 +45,7 @@ class IssuesViewController: CardViewController,
 		self.init(card: card, nibName:"IssuesViewController")
 	}
 
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
@@ -58,11 +58,11 @@ class IssuesViewController: CardViewController,
 		scroll.contentSize = CGSizeMake(scroll.frame.size.width * 2, scroll.frame.size.height)
 
 		listScreenlet.frame = scroll.frame
-		formScreenlet.frame = CGRectMake(scroll.frame.size.width, scroll.frame.origin.y, scroll.frame.size)
+		formScreenlet.frame = CGRectMake(scroll.frame.size.width, y: scroll.frame.origin.y, size: scroll.frame.size)
 	}
 
 	override func viewWillAppear(animated: Bool) {
-		if SessionContext.hasSession {
+		if SessionContext.isLoggedIn {
 			listScreenlet.loadList()
 		}
 	}
@@ -73,15 +73,15 @@ class IssuesViewController: CardViewController,
 	}
 
 	func scrollToShowList() {
-		let newRect = CGRectMake(0, 0, scroll.frame.size)
+		let newRect = CGRectMake(0, y: 0, size: scroll.frame.size)
 		scroll.scrollRectToVisible(newRect, animated: true)
 	}
 
 	func scrollToShowRecord(record: DDLRecord) {
-		formScreenlet.recordId = record.recordId
+		formScreenlet.recordId = record.recordId!
 		formScreenlet.loadRecord()
 
-		let newRect = CGRectMake(scroll.frame.size.width, 0, scroll.frame.size)
+		let newRect = CGRectMake(scroll.frame.size.width, y: 0, size: scroll.frame.size)
 		scroll.scrollRectToVisible(newRect, animated: true)
 	}
 

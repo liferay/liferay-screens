@@ -75,7 +75,7 @@ class HomeViewController: UIViewController {
     }
 
 	override func viewWillAppear(animated: Bool) {
-		if SessionContext.hasSession {
+		if SessionContext.isLoggedIn {
 			issuesCard.nextState = .Maximized
 			reportIssueCard.nextState = .Minimized
 
@@ -85,7 +85,7 @@ class HomeViewController: UIViewController {
 				self.reportIssueCard.currentState = .Hidden
 				self.reportIssueCard.resetToCurrentState()
 				self.reportIssueCard.hidden = false
-				self.reportIssueCard.changeToNextState(time: nil, delay: 0.5)
+				self.reportIssueCard.changeToNextState(nil, delay: 0.5)
 			}
 
 			UIView.animateWithDuration(1.5) {
@@ -95,7 +95,7 @@ class HomeViewController: UIViewController {
 	}
 
 	override func viewDidAppear(animated: Bool) {
-		if !SessionContext.hasSession {
+		if !SessionContext.isLoggedIn {
 			if tourCompleted {
 				self.performSegueWithIdentifier("onboarding", sender: nil)
 			}
@@ -116,7 +116,7 @@ class HomeViewController: UIViewController {
 	}
 
 	@IBAction func signOutAction(sender: AnyObject) {
-		SessionContext.clearSession()
+		SessionContext.logout()
 		self.performSegueWithIdentifier("onboarding", sender: nil)
 	}
 
@@ -140,7 +140,7 @@ class HomeViewController: UIViewController {
 			self.goBackCard.currentState = .Hidden
 			self.goBackCard.resetToCurrentState()
 			self.goBackCard.nextState = .Minimized
-			self.goBackCard.changeToNextState(time: nil, delay: 0.3)
+			self.goBackCard.changeToNextState(nil, delay: 0.3)
 		}
 
 		issuesCard.enabledButton(false)

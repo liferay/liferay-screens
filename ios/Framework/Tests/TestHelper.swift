@@ -37,6 +37,6 @@ func testResourcePath(name: String, ext: String) -> String {
 		return pathValue
 	}
 
-	println("TEST ERROR: Resource \(name).\(ext) can't be found")
+	print("TEST ERROR: Resource \(name).\(ext) can't be found\n")
 	return ""
 }

@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol DDLListScreenletDelegate {
+@objc public protocol DDLListScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: DDLListScreenlet,
 			onDDLListResponseRecords records: [DDLRecord])
@@ -41,7 +41,10 @@ import UIKit
 
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
-	@IBOutlet public weak var delegate: DDLListScreenletDelegate?
+
+	public var ddlListDelegate: DDLListScreenletDelegate? {
+		return delegate as? DDLListScreenletDelegate
+	}
 
 	public var viewModel: DDLListViewModel {
 		return screenletView as! DDLListViewModel
@@ -57,7 +60,7 @@ import UIKit
 	}
 
 	override internal func createPageLoadInteractor(
-			#page: Int,
+			page page: Int,
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
 
@@ -73,21 +76,21 @@ import UIKit
 		return interactor
 	}
 
-	override internal func onLoadPageError(#page: Int, error: NSError) {
+	override internal func onLoadPageError(page page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
 
-		delegate?.screenlet?(self, onDDLListError: error)
+		ddlListDelegate?.screenlet?(self, onDDLListError: error)
 	}
 
-	override internal func onLoadPageResult(#page: Int, rows: [AnyObject], rowCount: Int) {
+	override internal func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
 		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
-		delegate?.screenlet?(self,
+		ddlListDelegate?.screenlet?(self,
 				onDDLListResponseRecords: rows as! [DDLRecord])
 	}
 
 	override internal func onSelectedRow(row: AnyObject) {
-		delegate?.screenlet?(self,
+		ddlListDelegate?.screenlet?(self,
 				onDDLSelectedRecord: row as! DDLRecord)
 	}
 

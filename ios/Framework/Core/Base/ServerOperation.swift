@@ -64,7 +64,7 @@ import UIKit
 		let error = validateData()
 
 		if error == nil {
-			enqueue(onComplete: onComplete)
+			enqueue(onComplete)
 		}
 
 		return error
@@ -91,7 +91,7 @@ import UIKit
 		return true
 	}
 
-	public func doRun(#session: LRSession) {
+	public func doRun(session session: LRSession) {
 		// Do not add any code here. Children classes may not call super
 	}
 
@@ -100,7 +100,7 @@ import UIKit
 	}
 
 	public func createSession() -> LRSession? {
-		if !SessionContext.hasSession {
+		if !SessionContext.isLoggedIn {
 			lastError = NSError.errorWithCause(.AbortedDueToPreconditions,
 					message: "Login required to use this operation")
 

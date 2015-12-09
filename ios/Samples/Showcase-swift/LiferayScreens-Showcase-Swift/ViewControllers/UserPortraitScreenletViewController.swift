@@ -23,7 +23,7 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 	@IBOutlet weak var editableScreenlet: UserPortraitScreenlet!
 
 	@IBAction func loadPortrait(sender: AnyObject) {
-		if let userId = userIdField.text.toInt() {
+		if let userId = Int(userIdField.text!) {
 			screenlet.load(userId: Int64(userId))
 			screenletWithDelegate.load(userId: Int64(userId))
 			editableScreenlet.load(userId: Int64(userId))
@@ -31,15 +31,15 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 		else {
 			let company = LiferayServerContext.companyId
 
-			if find(userIdField.text, "@") != nil {
-				screenlet.load(companyId: company, emailAddress: userIdField.text)
-				screenletWithDelegate.load(companyId: company, emailAddress: userIdField.text)
-				editableScreenlet.load(companyId: company, emailAddress: userIdField.text)
+			if userIdField.text!.characters.indexOf("@") != nil {
+				screenlet.load(companyId: company, emailAddress: userIdField.text!)
+				screenletWithDelegate.load(companyId: company, emailAddress: userIdField.text!)
+				editableScreenlet.load(companyId: company, emailAddress: userIdField.text!)
 			}
 			else {
-				screenlet.load(companyId: company, screenName: userIdField.text)
-				screenletWithDelegate.load(companyId: company, screenName: userIdField.text)
-				editableScreenlet.load(companyId: company, screenName: userIdField.text)
+				screenlet.load(companyId: company, screenName: userIdField.text!)
+				screenletWithDelegate.load(companyId: company, screenName: userIdField.text!)
+				editableScreenlet.load(companyId: company, screenName: userIdField.text!)
 			}
 		}
 	}
@@ -47,7 +47,7 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		if SessionContext.hasSession {
+		if SessionContext.isLoggedIn {
 			userIdField.text = SessionContext.userAttribute("userId")?.description
 		}
 
@@ -58,19 +58,19 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 
 	func screenlet(screenlet: UserPortraitScreenlet,
 			onUserPortraitResponseImage image: UIImage) -> UIImage {
-		println("DELEGATE: onUserPortraitResponse -> \(image.size)")
+		print("DELEGATE: onUserPortraitResponse -> \(image.size)\n")
 
-		return image.getGrayScale() ?? image
+		return image.grayScaleImage()
 	}
 
 	func screenlet(screenlet: UserPortraitScreenlet,
 			onUserPortraitError error: NSError) {
-		println("DELEGATE: onUserPortraitError -> \(error)")
+		print("DELEGATE: onUserPortraitError -> \(error)\n")
 	}
 
 	func screenlet(screenlet: UserPortraitScreenlet,
 			onUserPortraitUploaded attributes: [String:AnyObject]) {
-		println("DELEGATE: onUserPortraitUploaded -> \(attributes)")
+		print("DELEGATE: onUserPortraitUploaded -> \(attributes)\n")
 	}
 
 }

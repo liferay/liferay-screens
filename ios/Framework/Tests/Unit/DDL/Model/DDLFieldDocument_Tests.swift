@@ -67,7 +67,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
-		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", "png"))
+		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
 		docField.uploadStatus = .Failed(NSError(domain: "", code: 0, userInfo:nil))
 
 		XCTAssertFalse(docField.validate())
@@ -87,7 +87,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
-		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", "png"))
+		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
 
 		XCTAssertEqual("image/png", docField.mimeType ?? "nil mimeType")
 	}
@@ -118,9 +118,9 @@ class DDLFieldDocument_Tests: XCTestCase {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
-		let image = UIImage(contentsOfFile: testResourcePath("default-field", "png"))
-		let imageBytes = UIImagePNGRepresentation(image)
-		let imageLength = Int64(imageBytes.length)
+		let image = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
+		let imageBytes = UIImagePNGRepresentation(image!)
+		let imageLength = Int64(imageBytes!.length)
 
 		docField.currentValue = image
 
@@ -137,7 +137,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 		let url = NSBundle(forClass: self.dynamicType).URLForResource("default-field",
 				withExtension: "png")
 		let attributes =
-				NSFileManager.defaultManager().attributesOfItemAtPath(url!.path!, error: nil)
+				try? NSFileManager.defaultManager().attributesOfItemAtPath(url!.path!)
 		let imageLength = attributes![NSFileSize] as! NSNumber
 
 		docField.currentValue = url
@@ -162,7 +162,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
-		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", "png"))
+		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
 
 		XCTAssertEqual("An image has been selected", docField.currentValueAsLabel!)
 	}

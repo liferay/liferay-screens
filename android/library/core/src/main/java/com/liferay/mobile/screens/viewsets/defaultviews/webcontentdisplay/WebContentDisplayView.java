@@ -23,6 +23,7 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
@@ -86,6 +87,16 @@ public class WebContentDisplayView extends FrameLayout
 	}
 
 	@Override
+	public BaseScreenlet getScreenlet() {
+		return _screenlet;
+	}
+
+	@Override
+	public void setScreenlet(BaseScreenlet screenlet) {
+		_screenlet = screenlet;
+	}
+
+	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
@@ -118,4 +129,5 @@ public class WebContentDisplayView extends FrameLayout
 			".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }" +
 			"</style>";
 
+	private BaseScreenlet _screenlet;
 }

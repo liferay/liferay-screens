@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol ForgotPasswordScreenletDelegate {
+@objc public protocol ForgotPasswordScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: ForgotPasswordScreenlet,
 			onForgotPasswordSent passwordSent: Bool)
@@ -35,14 +35,16 @@ import UIKit
 
 	@IBInspectable public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
 		didSet {
-			copyBasicAuth(source: self, target: screenletView)
+			(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 		}
 	}
 
 	@IBInspectable var companyId: Int64 = 0
 
 
-	@IBOutlet public weak var delegate: ForgotPasswordScreenletDelegate?
+	public var forgotPasswordDelegate: ForgotPasswordScreenletDelegate? {
+		return delegate as? ForgotPasswordScreenletDelegate
+	}
 
 
 	public var saveCredentials: Bool {
@@ -60,25 +62,23 @@ import UIKit
 	override public func onCreated() {
 		super.onCreated()
 
-		copyBasicAuth(source: self, target: screenletView)
+		(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 
 		if let userName = SessionContext.currentBasicUserName {
 			viewModel.userName = userName
 		}
 	}
 
-	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let interactor = ForgotPasswordInteractor(screenlet: self)
 
 		interactor.onSuccess = {
-			self.delegate?.screenlet?(self,
+			self.forgotPasswordDelegate?.screenlet?(self,
 					onForgotPasswordSent: interactor.resultPasswordSent!)
-			return
 		}
 
 		interactor.onFailure = {
-			self.delegate?.screenlet?(self, onForgotPasswordError: $0)
-			return
+			self.forgotPasswordDelegate?.screenlet?(self, onForgotPasswordError: $0)
 		}
 
 		return interactor

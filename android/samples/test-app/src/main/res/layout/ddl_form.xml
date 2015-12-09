@@ -31,16 +31,12 @@
 		android:layout_marginTop="0dp"
 		android:paddingTop="0dp"
 		liferay:autoLoad="false"
-		liferay:checkboxFieldLayoutId="@layout/ddlfield_checkbox_material"
-		liferay:dateFieldLayoutId="@layout/ddlfield_date_material"
-		liferay:documentFieldLayoutId="@layout/ddlfield_document_material"
 		liferay:filePrefix="jre"
 		liferay:folderId="@string/folder_id"
 		liferay:layoutId="@layout/ddl_form_material"
 		liferay:offlinePolicy="CACHE_FIRST"
 		liferay:recordSetId="@string/liferay_recordset_id"
 		liferay:repositoryId="@string/repository_id"
-		liferay:selectFieldLayoutId="@layout/ddlfield_select_material"
 		liferay:structureId="@string/liferay_structure_id"/>
 
 </LinearLayout>

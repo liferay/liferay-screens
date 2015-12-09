@@ -25,7 +25,7 @@ public class GetUserBaseOperation: ServerOperation {
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
 		
-		if !SessionContext.hasSession {
+		if !SessionContext.isLoggedIn {
 			if userName == nil {
 				return ValidationError("login-screenlet", "undefined-username")
 			}
@@ -39,7 +39,7 @@ public class GetUserBaseOperation: ServerOperation {
 	}
 
 	override public func createSession() -> LRSession? {
-		if SessionContext.hasSession {
+		if SessionContext.isLoggedIn {
 			return SessionContext.createSessionFromCurrentSession()
 		}
 
@@ -50,26 +50,23 @@ public class GetUserBaseOperation: ServerOperation {
 						password: password!))
 	}
 
-	override public func doRun(#session: LRSession) {
-		var outError: NSError?
+	override public func doRun(session session: LRSession) {
+		do {
+			let result = try sendGetUserRequest(
+				service: LRUserService_v62(session: session))
 
-		resultUserAttributes = nil
-
-		let result = sendGetUserRequest(
-				service: LRUserService_v62(session: session),
-				error: &outError)
-
-		if outError != nil {
-			lastError = outError
-			resultUserAttributes = nil
+			if result?["userId"] == nil {
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				resultUserAttributes = nil
+			}
+			else {
+				lastError = nil
+				resultUserAttributes = result as? [String:AnyObject]
+			}
 		}
-		else if result?["userId"] == nil {
-			lastError = NSError.errorWithCause(.InvalidServerResponse)
+		catch let error as NSError {
+			lastError = error
 			resultUserAttributes = nil
-		}
-		else {
-			lastError = nil
-			resultUserAttributes = result as? [String:AnyObject]
 		}
 	}
 
@@ -90,9 +87,8 @@ public class GetUserBaseOperation: ServerOperation {
 	// MARK: Template methods
 
 	internal func sendGetUserRequest(
-			#service: LRUserService_v62,
-			error: NSErrorPointer)
-			-> NSDictionary? {
+			service service: LRUserService_v62)
+			throws -> NSDictionary? {
 
 		fatalError("sendGetUserRequest must be overriden")
 	}

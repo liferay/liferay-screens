@@ -19,6 +19,8 @@ import UIKit
  */
 public class BaseScreenletView: UIView, UITextFieldDelegate {
 
+	public weak var screenlet: BaseScreenlet?
+
 	public weak var presentingViewController: UIViewController?
 
 	public var progressMessages: [String:ProgressMessages] { return [:] }
@@ -154,7 +156,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * onPreAction is invoked just before any user action is invoked.
 	 * Override this method to decide whether or not the user action should be fired.
 	 */
-	public func onPreAction(#name: String, sender: AnyObject?) -> Bool {
+	public func onPreAction(name name: String, sender: AnyObject?) -> Bool {
 		return true
 	}
 
@@ -198,11 +200,11 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		}
 	}
 
-	public func userAction(#name: String?) {
+	public func userAction(name name: String?) {
 		userAction(name: name, sender: nil)
 	}
 	
-	public func userAction(#name: String?, sender: AnyObject?) {
+	public func userAction(name name: String?, sender: AnyObject?) {
 		let actionName = name ?? BaseScreenlet.DefaultAction
 
 		if onPreAction(name: actionName, sender: sender) {
@@ -225,10 +227,17 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	}
 
 	private func addUserActionForControl(control: UIControl) {
-		if onSetUserActionForControl(control) {
+		let hasIdentifier = (control.restorationIdentifier != nil)
+
+		let userDefinedActions = control.actionsForTarget(self,
+			forControlEvent: .TouchUpInside)
+		let hasUserDefinedActions = (userDefinedActions?.count ?? 0) > 0
+
+		if hasIdentifier && !hasUserDefinedActions
+				&& onSetUserActionForControl(control) {
 			control.addTarget(self,
 					action: "userActionWithSender:",
-					forControlEvents: UIControlEvents.TouchUpInside)
+					forControlEvents: .TouchUpInside)
 		}
 	}
 
@@ -247,14 +256,14 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 		addDefaultDelegatesForView(view)
 
-		for subview:UIView in view.subviews as! [UIView] {
+		for subview:UIView in view.subviews {
 			setUpView(subview)
 		}
 	}
 
 	private func changeEditable(editable: Bool, fromView view: UIView) {
 		view.userInteractionEnabled = editable
-		for v in view.subviews as! [UIView] {
+		for v in view.subviews {
 			changeEditable(editable, fromView: v)
 		}
 	}

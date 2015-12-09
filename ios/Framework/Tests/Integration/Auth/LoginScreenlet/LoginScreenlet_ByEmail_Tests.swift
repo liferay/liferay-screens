@@ -17,7 +17,7 @@ import XCTest
 class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 	override func setUp() {
-		SessionContext.sessionStorage = SessionStorage(
+		SessionContext.credentialsStorage = CredentialsStorage(
 				credentialStore: CredentialStoreMock())
 
 		super.setUp()
@@ -26,7 +26,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 	override func tearDown() {
 		super.tearDown()
 
-		SessionContext.sessionStorage = SessionStorage(
+		SessionContext.credentialsStorage = CredentialsStorage(
 			credentialStore: CredentialStoreMock())
 	}
 
@@ -51,7 +51,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				}
 				self.screenlet!.performDefaultAction()
 			}
-			eventually("the state of the screenlet should be consistent", {result in
+			eventually("the state of the screenlet should be consistent", code: {result in
 				assertThat("the error should be nil") {
 					XCTAssertFalse(result is NSError)
 				}
@@ -62,10 +62,10 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 					XCTAssertTrue(attrs.count > 0)
 					XCTAssertNotNil(attrs["emailAddress"])
-					XCTAssertEqual("test@liferay.com", attrs["emailAddress"] as! String)
+					XCTAssertEqual("test@liferay.com", attrs["emailAddress"] as? String)
 				}
 				assertThat("the session should be established") {
-					XCTAssertTrue(SessionContext.hasSession)
+					XCTAssertTrue(SessionContext.isLoggedIn)
 				}
 				assertThat("the current user name should be the email address") {
 					XCTAssertNotNil(SessionContext.currentBasicUserName)
@@ -76,7 +76,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					XCTAssertEqual("test", SessionContext.currentBasicPassword!)
 				}
 			},
-			.TestAndWaitFor("login response received", self))
+			action: .TestAndWaitFor("login response received", self))
 		}
 	}
 
@@ -110,15 +110,15 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				self.screenlet!.performDefaultAction()
 
 			}
-			eventually("the credentials should be stored", {result in
+			eventually("the credentials should be stored", code: {result in
 				assertThat("the session context can load the credentials") {
-					XCTAssertTrue(SessionContext.loadSessionFromStore())
+					XCTAssertTrue(SessionContext.loadStoredCredentials())
 				}
 				assertThat("onCredentialsSaved delegate is called") {
 					XCTAssertTrue((self.screenlet!.delegate as! TestLoginScreenletDelegate).credentialsSavedCalled)
 				}
 			},
-			.TestAndWaitFor("login response received", self))
+			action: .TestAndWaitFor("login response received", self))
 		}
 	}
 
@@ -143,7 +143,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				}
 				self.screenlet!.performDefaultAction()
 			}
-			eventually("the state of the screenlet should be consistent", {result in
+			eventually("the state of the screenlet should be consistent", code: {result in
 				assertThat("the error should be nil") {
 					XCTAssertTrue(result is NSError)
 
@@ -153,7 +153,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 				}
 				assertThat("the session should not be established") {
-					XCTAssertFalse(SessionContext.hasSession)
+					XCTAssertFalse(SessionContext.isLoggedIn)
 				}
 				assertThat("the current user name should be empty") {
 					XCTAssertNil(SessionContext.currentBasicUserName)
@@ -162,7 +162,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					XCTAssertNil(SessionContext.currentBasicPassword)
 				}
 			},
-			.TestAndWaitFor("login response received", self))
+			action: .TestAndWaitFor("login response received", self))
 		}
 	}
 
