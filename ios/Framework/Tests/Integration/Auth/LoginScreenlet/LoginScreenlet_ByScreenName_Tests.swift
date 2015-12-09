@@ -51,7 +51,7 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 					XCTAssertEqual("test", attrs["screenName"] as? String)
 				}
 				assertThat("the session should be established") {
-					XCTAssertTrue(SessionContext.hasSession)
+					XCTAssertTrue(SessionContext.isLoggedIn)
 				}
 				assertThat("the current user name should be the screenName") {
 					XCTAssertNotNil(SessionContext.currentBasicUserName)

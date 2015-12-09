@@ -14,17 +14,17 @@
 import UIKit
 
 
-@objc public class SessionStorage: NSObject {
+@objc public class CredentialsStorage: NSObject {
 
 	public typealias LoadResult = (session: LRSession, userAttributes: [String:AnyObject])
 
-	public let hasSessionStored: Bool
+	public let hasCredentialsStored: Bool
 
 	private let credentialStore: CredentialsStore
 
 	public init(credentialStore: CredentialsStore) {
 		self.credentialStore = credentialStore
-		hasSessionStored = true
+		hasCredentialsStored = true
 	}
 
 	override public init() {
@@ -38,13 +38,13 @@ import UIKit
 				credentialStore = OAuthCredentialsStoreKeyChain()
 			}
 
-			hasSessionStored = true
+			hasCredentialsStored = true
 		}
 		else {
 			// Workaround for "All stored properties of a class instance
 			// must be initialized before returning nil from an initializer
 			credentialStore = BasicCredentialsStoreKeyChain()
-			hasSessionStored = false
+			hasCredentialsStored = false
 		}
 
 		super.init()

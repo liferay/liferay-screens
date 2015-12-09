@@ -25,6 +25,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewModel;
+import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
@@ -101,6 +102,16 @@ public class ForgotPasswordView extends LinearLayout
 	}
 
 	@Override
+	public BaseScreenlet getScreenlet() {
+		return _screenlet;
+	}
+
+	@Override
+	public void setScreenlet(BaseScreenlet screenlet) {
+		_screenlet = screenlet;
+	}
+
+	@Override
 	public void onClick(View view) {
 		ForgotPasswordScreenlet screenlet = (ForgotPasswordScreenlet) getParent();
 
@@ -150,4 +161,5 @@ public class ForgotPasswordView extends LinearLayout
 	private EditText _loginEditText;
 	private ModalProgressBar _progressBar;
 
+	private BaseScreenlet _screenlet;
 }

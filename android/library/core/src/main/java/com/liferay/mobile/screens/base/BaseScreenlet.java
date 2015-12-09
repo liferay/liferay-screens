@@ -108,6 +108,8 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 		_screenletView = createScreenletView(context, attributes);
 
+		getViewModel().setScreenlet(this);
+
 		addView(_screenletView);
 	}
 

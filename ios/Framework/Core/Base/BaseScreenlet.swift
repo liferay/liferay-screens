@@ -136,10 +136,9 @@ import QuartzCore
 				return self!.performAction(name: name, sender: sender)
 			}
 
+			viewValue.screenlet = self
 			viewValue.presentingViewController = self.presentingViewController
 			viewValue.themeName = _themeName
-
-			viewValue.presentingViewController = self.presentingViewController
 
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)

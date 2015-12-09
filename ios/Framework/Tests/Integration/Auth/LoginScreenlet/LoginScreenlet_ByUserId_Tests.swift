@@ -52,7 +52,7 @@ class LoginScreenlet_ByUserId_Tests: BaseLoginScreenletTestCase {
 					XCTAssertEqual(123456, attrs["userId"] as? Int)
 				}
 				assertThat("the session should be established") {
-					XCTAssertTrue(SessionContext.hasSession)
+					XCTAssertTrue(SessionContext.isLoggedIn)
 				}
 				assertThat("the current user name should be the userId") {
 					XCTAssertNotNil(SessionContext.currentBasicUserName)

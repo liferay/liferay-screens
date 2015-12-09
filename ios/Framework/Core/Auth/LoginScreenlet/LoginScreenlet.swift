@@ -34,15 +34,11 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	@IBInspectable public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
 		didSet {
-			copyBasicAuth(source: self, target: screenletView)
+			(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 		}
 	}
 
-	@IBInspectable public var saveCredentials: Bool = false {
-		didSet {
-			(screenletView as? BasicAuthBasedType)?.saveCredentials = self.saveCredentials
-		}
-	}
+	@IBInspectable public var saveCredentials: Bool = false
 
 	@IBInspectable public var companyId: Int64 = 0
 
@@ -68,20 +64,33 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	}
 
 
+	public func loadStoredCredentials() -> Bool {
+		if SessionContext.loadStoredCredentials() {
+			viewModel.userName = SessionContext.currentBasicUserName
+			viewModel.password = SessionContext.currentBasicPassword
+
+			// we don't want the session to be automatically created. Clear it.
+			// User can recreate it again in the delegate method.
+			SessionContext.logout()
+
+			loginDelegate?.onScreenletCredentialsLoaded?(self)
+
+			return true
+		}
+
+		return false
+	}
+
+
 	//MARK: BaseScreenlet
 
 	override public func onCreated() {
 		super.onCreated()
 		
-		copyBasicAuth(source: self, target: screenletView)
+		(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
+
 		copyAuthType()
 
-		if SessionContext.loadSessionFromStore() {
-			viewModel.userName = SessionContext.currentBasicUserName
-			viewModel.password = SessionContext.currentBasicPassword
-
-			loginDelegate?.onScreenletCredentialsLoaded?(self)
-		}
 	}
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
@@ -103,8 +112,8 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 			self.loginDelegate?.screenlet?(self,
 					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
 
-			if self.viewModel.saveCredentials {
-				if SessionContext.storeSession() {
+			if self.saveCredentials {
+				if SessionContext.storeCredentials() {
 					self.loginDelegate?.onScreenletCredentialsSaved?(self)
 				}
 			}
@@ -128,7 +137,7 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
 
 			if self.saveCredentials {
-				if SessionContext.storeSession() {
+				if SessionContext.storeCredentials() {
 					self.loginDelegate?.onScreenletCredentialsSaved?(self)
 				}
 			}

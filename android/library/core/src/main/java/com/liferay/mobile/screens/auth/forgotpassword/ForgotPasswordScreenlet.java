@@ -34,6 +34,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 public class ForgotPasswordScreenlet
 	extends BaseScreenlet<ForgotPasswordViewModel, ForgotPasswordInteractor>
 	implements ForgotPasswordListener {
+
 	public ForgotPasswordScreenlet(Context context) {
 		super(context);
 	}

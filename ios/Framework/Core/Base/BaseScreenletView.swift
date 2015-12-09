@@ -19,6 +19,8 @@ import UIKit
  */
 public class BaseScreenletView: UIView, UITextFieldDelegate {
 
+	public weak var screenlet: BaseScreenlet?
+
 	public weak var presentingViewController: UIViewController?
 
 	public var progressMessages: [String:ProgressMessages] { return [:] }
@@ -225,10 +227,17 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	}
 
 	private func addUserActionForControl(control: UIControl) {
-		if onSetUserActionForControl(control) {
+		let hasIdentifier = (control.restorationIdentifier != nil)
+
+		let userDefinedActions = control.actionsForTarget(self,
+			forControlEvent: .TouchUpInside)
+		let hasUserDefinedActions = (userDefinedActions?.count ?? 0) > 0
+
+		if hasIdentifier && !hasUserDefinedActions
+				&& onSetUserActionForControl(control) {
 			control.addTarget(self,
 					action: "userActionWithSender:",
-					forControlEvents: UIControlEvents.TouchUpInside)
+					forControlEvents: .TouchUpInside)
 		}
 	}
 

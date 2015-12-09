@@ -62,7 +62,7 @@ class IssuesViewController: CardViewController,
 	}
 
 	override func viewWillAppear(animated: Bool) {
-		if SessionContext.hasSession {
+		if SessionContext.isLoggedIn {
 			listScreenlet.loadList()
 		}
 	}

@@ -50,12 +50,10 @@ import UIKit
 	}
 
 	public func loadCurrentUser() -> Bool {
-		if SessionContext.hasSession {
+		if SessionContext.isLoggedIn {
 			self.viewModel.editCurrentUser = true
-
 			return true
 		}
-
 		return false
 	}
 
@@ -85,9 +83,9 @@ import UIKit
 				self.doAutoLogin(interactor.resultUserAttributes!)
 
 				if self.saveCredentials {
-					SessionContext.removeStoredSession()
+					SessionContext.removeStoredCredentials()
 
-					if SessionContext.storeSession() {
+					if SessionContext.storeCredentials() {
 						self.autoLoginDelegate?.onScreenletCredentialsSaved?(self)
 					}
 				}
@@ -106,7 +104,7 @@ import UIKit
 		let interactor = SaveUserInteractor(screenlet: self)
 
 		interactor.onSuccess = {
-			if SessionContext.hasSession {
+			if SessionContext.isLoggedIn {
 				// refresh current session
 				self.doAutoLogin(interactor.resultUserAttributes!)
 			}
@@ -123,35 +121,25 @@ import UIKit
 	}
 
 	private func doAutoLogin(userAttributes: [String:AnyObject]) {
-		func userNameForAuth(auth: BasicAuthMethod) -> String {
-			switch auth {
-			case .ScreenName:
-				return self.viewModel.screenName!
-			case .UserId:
-				return userAttributes["userId"] as! String
-			case .Email:
-				return self.viewModel.emailAddress!
-			}
-		}
+		let userNameKeys : [BasicAuthMethod:String] = [
+			.Email : "emailAddress",
+			.ScreenName : "screenName",
+			.UserId: "userId"
+		]
 
-		let currentAuth = currentBasicAuthMethod() ??
-					BasicAuthMethod.fromUserName(anonymousApiUserName!)
+		let currentAuth = BasicAuthMethod.fromUserName(anonymousApiUserName!)
 
-		SessionContext.createBasicSession(
-				username: userNameForAuth(currentAuth),
+		if let currentKey = userNameKeys[currentAuth],
+				userName = userAttributes[currentKey] as? String {
+
+			SessionContext.createBasicSession(
+				username: userName,
 				password: self.viewModel.password!,
 				userAttributes: userAttributes)
 
-		self.autoLoginDelegate?.screenlet?(self,
+			self.autoLoginDelegate?.screenlet?(self,
 				onLoginResponseUserAttributes: userAttributes)
-	}
-
-	private func currentBasicAuthMethod() -> BasicAuthMethod? {
-		if let userName = SessionContext.currentBasicUserName {
-			return BasicAuthMethod.fromUserName(userName)
 		}
-
-		return nil
 	}
 
 }
