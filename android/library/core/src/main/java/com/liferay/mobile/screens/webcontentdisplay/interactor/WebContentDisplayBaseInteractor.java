@@ -11,8 +11,15 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-#import <UIKit/UIKit.h>
 
-@interface ForgotPasswordScreenletViewController : UIViewController<ForgotPasswordScreenletDelegate>
+package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
-@end
+import com.liferay.mobile.screens.base.interactor.Interactor;
+import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
+
+/**
+ * @author Jose Manuel Navarro
+ */
+public interface WebContentDisplayBaseInteractor extends Interactor<WebContentDisplayListener> {
+
+}

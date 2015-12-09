@@ -61,12 +61,20 @@ public class SessionContext {
 		return _session != null;
 	}
 
+	public static boolean hasUserInfo() {
+		return _session != null && _loggedUser != null;
+	}
+
 	public static Authentication getAuthentication() {
 		return (_session == null) ? null : _session.getAuthentication();
 	}
 
 	public static User getLoggedUser() {
 		return _loggedUser;
+	}
+
+	public static Long getUserId() {
+		return _loggedUser == null ? null : _loggedUser.getId();
 	}
 
 	public static void setLoggedUser(User value) {
@@ -115,10 +123,6 @@ public class SessionContext {
 			_session = new SessionImpl(LiferayServerContext.getServer(), storage.getAuthentication());
 			_loggedUser = storage.getUser();
 		}
-	}
-
-	public static Long getDefaultUserId() {
-		return getLoggedUser() == null ? null : getLoggedUser().getId();
 	}
 
 	private static void checkIfStorageTypeIsSupported(CredentialsStoreBuilder.StorageType storageType, CredentialsStore storage) {

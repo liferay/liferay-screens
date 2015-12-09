@@ -8,4 +8,5 @@
 	<string name="DDLListScreenlet_defaultLayout">ddl_list_default</string>
 	<string name="UserPortraitScreenlet_defaultLayout">userportrait_default</string>
 	<string name="WebContentDisplayScreenlet_defaultLayout">webcontentdisplay_default</string>
+	<string name="add_icon_user_portrait_content_description">Add icon for replacing a user portrait</string>
 </resources>

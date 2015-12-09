@@ -28,7 +28,7 @@ public class DDLFieldStringWithOptions : DDLField {
 			self.value = value
 		}
 
-		public required convenience init(coder aDecoder: NSCoder) {
+		public required convenience init?(coder aDecoder: NSCoder) {
 			let label = aDecoder.decodeObjectForKey("label") as! String
 			let name = aDecoder.decodeObjectForKey("name") as! String
 			let value = aDecoder.decodeObjectForKey("value") as! String
@@ -68,7 +68,7 @@ public class DDLFieldStringWithOptions : DDLField {
 		super.init(attributes: attributes, locale: locale)
 	}
 
-	public required init(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 		multiple = aDecoder.decodeBoolForKey("multiple")
 		options = aDecoder.decodeObjectForKey("options") as! [Option]
 
@@ -173,7 +173,7 @@ public class DDLFieldStringWithOptions : DDLField {
 	private func extractFirstOption(options: String) -> String? {
 
 		func removeFirstAndLastChars(value: String) -> String {
-			if count(value) >= 2 {
+			if value.characters.count >= 2 {
 				let range = Range<String.Index>(
 						start: value.startIndex.successor(),
 						end: value.endIndex.predecessor())

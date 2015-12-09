@@ -280,7 +280,7 @@ public class UserPortraitScreenlet
 
 		_userId = castToLongOrUseDefault(typedArray.getString(R.styleable.UserPortraitScreenlet_userId), 0L);
 
-		if (SessionContext.hasSession() && _portraitId == 0 && _uuid == null && _userId == 0) {
+		if (SessionContext.hasUserInfo() && _portraitId == 0 && _uuid == null && _userId == 0) {
 			_userId = SessionContext.getLoggedUser().getId();
 		}
 
@@ -316,11 +316,16 @@ public class UserPortraitScreenlet
 			}
 			else {
 				UserPortraitLoadInteractor userPortraitLoadInteractor = (UserPortraitLoadInteractor) getInteractor(userActionName);
-				if (_userId != 0) {
-					userPortraitLoadInteractor.load(_userId);
+				if (_portraitId != 0 && _uuid != null) {
+					userPortraitLoadInteractor.load(_male, _portraitId, _uuid);
 				}
 				else {
-					userPortraitLoadInteractor.load(_male, _portraitId, _uuid);
+					if (SessionContext.hasUserInfo() && _userId == 0) {
+						userPortraitLoadInteractor.load(SessionContext.getLoggedUser().getId());
+					}
+					else {
+						userPortraitLoadInteractor.load(_userId);
+					}
 				}
 			}
 		}

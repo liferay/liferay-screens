@@ -134,7 +134,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 	private func setProgress(field:DDLFieldDocument) {
 		let theme = progress!.theme
 
-		theme.font = UIFont(descriptor: textField!.font.fontDescriptor(), size: 30.0)
+		theme.font = UIFont(descriptor: textField!.font!.fontDescriptor(), size: 30.0)
 
 		theme.sliceDividerHidden = true
 		theme.thickness = 10.0
@@ -144,8 +144,8 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 		changeDocumentUploadStatus(field)
 	}
 
-	private func changeProgressVisilibity(#show:Bool, delay:Double = 0.0) {
-		UIView.animateWithDuration(0.3, delay: delay, options: nil, animations: {
+	private func changeProgressVisilibity(show show:Bool, delay:Double = 0.0) {
+		UIView.animateWithDuration(0.3, delay: delay, options: [], animations: {
 			self.progress!.alpha = show ? 1.0 : 0.0
 			self.chooseButton!.alpha = show ? 0.0 : 1.0
 		}, completion: nil)

@@ -38,7 +38,7 @@ public class DDLFieldDate : DDLField {
 		initFormatters(locale)
 	}
 
-	public required init(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
 		initFormatters(self.currentLocale)
@@ -62,7 +62,7 @@ public class DDLFieldDate : DDLField {
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		if let stringValue = value {
 			// minimum date length in mm/dd/yy is 6 characters
-			if count(stringValue) >= 6 {
+			if stringValue.characters.count >= 6 {
 				let formatter = stringValue[stringValue.endIndex.predecessor().predecessor()] == "/"
 					? serverYYDateFormatter : serverYYYYDateFormatter
 				return formatter.dateFromString(stringValue)

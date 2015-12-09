@@ -23,18 +23,18 @@ public class DDLXSDParser {
 	//MARK: Public methods
 	
 	public func parse(xsd: String, locale: NSLocale) -> [DDLField]? {
-		var result:[DDLField]? = nil
+		let result: [DDLField]?
 
-		let xmlString = xsd as NSString?
+		let xmlValue = xsd as NSString
 
-		if let xmlValue = xmlString {
-			let data = xmlValue.dataUsingEncoding(NSUTF8StringEncoding)
+		let data = xmlValue.dataUsingEncoding(NSUTF8StringEncoding)
 
-			var outError: NSError?
-
-			if let document = SMXMLDocument(data: data, error: &outError) {
-				result = processDocument(document, locale: locale)
-			}
+		do {
+			let document = try SMXMLDocument(data: data)
+			result = processDocument(document, locale: locale)
+		}
+		catch {
+			result = nil
 		}
 
 		return result
@@ -70,8 +70,6 @@ public class DDLXSDParser {
 			defaultLocale: NSLocale)
 			-> DDLField? {
 
-		var result:DDLField?
-
 		let dataType = DDLField.DataType.from(xmlElement:xmlElement)
 
 		let localizedMetadata = processLocalizedMetadata(xmlElement,
@@ -86,7 +84,7 @@ public class DDLXSDParser {
 	}
 
 	private func mergeDictionaries(
-			#dict1:[String:AnyObject],
+			dict1 dict1:[String:AnyObject],
 			dict2:[String:AnyObject])
 			-> [String:AnyObject] {
 
@@ -112,8 +110,8 @@ public class DDLXSDParser {
 
 		func addElement(
 				name elementName: String,
-				#metadata: SMXMLElement,
-				inout #result: [String:AnyObject]) {
+				metadata: SMXMLElement,
+				inout result: [String:AnyObject]) {
 
 			if let element = metadata.childWithAttribute("name", value: elementName) {
 				result[elementName] = element.value
@@ -121,9 +119,9 @@ public class DDLXSDParser {
 		}
 
 		func findOptions(
-				#dynamicElement:SMXMLElement,
-				#locale: NSLocale,
-				#defaultLocale: NSLocale)
+				dynamicElement dynamicElement:SMXMLElement,
+				locale: NSLocale,
+				defaultLocale: NSLocale)
 				-> [[String:AnyObject]]? {
 
 			var options:[[String:AnyObject]] = []

@@ -34,15 +34,11 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	@IBInspectable public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
 		didSet {
-			copyBasicAuth(source: self, target: screenletView)
+			(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 		}
 	}
 
-	@IBInspectable public var saveCredentials: Bool = false {
-		didSet {
-			(screenletView as? BasicAuthBasedType)?.saveCredentials = self.saveCredentials
-		}
-	}
+	@IBInspectable public var saveCredentials: Bool = false
 
 	@IBInspectable public var companyId: Int64 = 0
 
@@ -67,23 +63,35 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	}
 
 
+	public func loadStoredCredentials() -> Bool {
+		if SessionContext.loadSessionFromStore() {
+			viewModel.userName = SessionContext.currentBasicUserName
+			viewModel.password = SessionContext.currentBasicPassword
+
+			// we don't want the session to be automatically created. Clear it.
+			// User can recreate it again in the delegate method.
+			SessionContext.clearSession()
+
+			delegate?.onScreenletCredentialsLoaded?(self)
+
+			return true
+		}
+
+		return false
+	}
+
+
 	//MARK: BaseScreenlet
 
 	override public func onCreated() {
 		super.onCreated()
 		
-		copyBasicAuth(source: self, target: screenletView)
+		(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
+
 		copyAuthType()
-
-		if SessionContext.loadSessionFromStore() {
-			viewModel.userName = SessionContext.currentBasicUserName
-			viewModel.password = SessionContext.currentBasicPassword
-
-			delegate?.onScreenletCredentialsLoaded?(self)
-		}
 	}
 
-	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 
 		switch name {
 		case "login-action":
@@ -102,7 +110,7 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 			self.delegate?.screenlet?(self,
 					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
 
-			if self.viewModel.saveCredentials {
+			if self.saveCredentials {
 				if SessionContext.storeSession() {
 					self.delegate?.onScreenletCredentialsSaved?(self)
 				}

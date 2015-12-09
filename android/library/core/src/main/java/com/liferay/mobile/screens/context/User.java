@@ -35,6 +35,7 @@ public class User {
 	public static final String PORTRAIT_ID = "portraitId";
 	public static final String FIRST_NAME = "firstName";
 	public static final String LAST_NAME = "lastName";
+	public static final String SCREEN_NAME = "screenName";
 
 	public User(JSONObject jsonObject) {
 		_jsonObject = jsonObject;
@@ -78,6 +79,10 @@ public class User {
 		return getString(EMAIL_ADDRESS);
 	}
 
+	public String getScreenName() {
+		return (String) _attributes.get(SCREEN_NAME);
+	}
+
 	public Map<String, Object> getAttributes() {
 		return _attributes;
 	}
@@ -101,4 +106,5 @@ public class User {
 
 	private Map<String, Object> _attributes;
 	private JSONObject _jsonObject;
+
 }

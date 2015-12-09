@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class ServerOperation: NSOperation {
+@objc public class ServerOperation: NSOperation {
 
 	private struct OperationsQueue {
 
@@ -39,14 +39,19 @@ public class ServerOperation: NSOperation {
 	//MARK: NSOperation
 
 	public override func main() {
-		if preRun() {
-			if let session = createSession() {
-				doRun(session: session)
-				postRun()
-			}
+		if self.cancelled {
+			lastError = NSError.errorWithCause(.Cancelled)
 		}
 		else {
-			lastError = NSError.errorWithCause(.AbortedDueToPreconditions, userInfo: nil)
+			if preRun() {
+				if let session = createSession() {
+					doRun(session: session)
+					postRun()
+				}
+			}
+			else {
+				lastError = NSError.errorWithCause(.AbortedDueToPreconditions)
+			}
 		}
 
 		callOnComplete()
@@ -59,7 +64,7 @@ public class ServerOperation: NSOperation {
 		let error = validateData()
 
 		if error == nil {
-			enqueue(onComplete: onComplete)
+			enqueue(onComplete)
 		}
 
 		return error
@@ -86,7 +91,7 @@ public class ServerOperation: NSOperation {
 		return true
 	}
 
-	public func doRun(#session: LRSession) {
+	public func doRun(session session: LRSession) {
 		// Do not add any code here. Children classes may not call super
 	}
 

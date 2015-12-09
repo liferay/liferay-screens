@@ -32,15 +32,15 @@ public class UserPortraitUploadEvent extends JSONObjectEvent implements RemoteWr
 	}
 
 	@Override
-	public boolean isRemote() {
-		return _remote;
+	public boolean isCacheRequest() {
+		return _cacheRequest;
 	}
 
-	public void setRemote(boolean remote) {
-		_remote = remote;
+	public void setCacheRequest(boolean cacheRequest) {
+		_cacheRequest = cacheRequest;
 	}
 
-	private boolean _remote;
 	private String _picturePath;
 	private long _userId;
+	private boolean _cacheRequest;
 }

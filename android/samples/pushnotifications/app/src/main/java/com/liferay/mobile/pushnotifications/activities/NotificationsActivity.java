@@ -57,6 +57,21 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 	}
 
 	@Override
+	public void loadingFromCache(boolean success) {
+
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+
+	}
+
+	@Override
 	protected Session getDefaultSession() {
 		return SessionContext.createSessionFromCurrentSession();
 	}
@@ -124,5 +139,6 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 			}
 		};
 	}
+
 	private DDLListScreenlet ddlList;
 }

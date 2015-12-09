@@ -42,35 +42,6 @@ public class UserPortraitService extends IntentService {
 		super(UserPortraitService.class.getCanonicalName());
 	}
 
-	@Override
-	public void onHandleIntent(Intent intent) {
-		uploadFromIntent(intent);
-	}
-
-	public void uploadFromIntent(Intent intent) {
-		int targetScreenletId = intent.getIntExtra("screenletId", 0);
-		long userId = intent.getLongExtra("userId", 0L);
-		String picturePath = intent.getStringExtra("picturePath");
-
-		try {
-			JSONObject jsonObject = uploadUserPortrait(userId, picturePath);
-
-			UserPortraitUploadEvent event = new UserPortraitUploadEvent(targetScreenletId, picturePath, userId, jsonObject);
-			event.setRemote(true);
-			EventBusUtil.post(event);
-		}
-		catch (Exception e) {
-			EventBusUtil.post(new UserPortraitUploadEvent(targetScreenletId, picturePath, userId, e));
-		}
-	}
-
-	public JSONObject uploadUserPortrait(long userId, String picturePath) throws Exception {
-		Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
-		UserService userService = new UserService(sessionFromCurrentSession);
-		return userService.updatePortrait(userId,
-			decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE));
-	}
-
 	public static int calculateInSampleSize(
 		BitmapFactory.Options options, int reqWidth, int reqHeight) {
 		final int height = options.outHeight;
@@ -93,14 +64,43 @@ public class UserPortraitService extends IntentService {
 		return inSampleSize;
 	}
 
+	@Override
+	public void onHandleIntent(Intent intent) {
+		uploadFromIntent(intent);
+	}
+
+	public void uploadFromIntent(Intent intent) {
+		int targetScreenletId = intent.getIntExtra("screenletId", 0);
+		long userId = intent.getLongExtra("userId", 0L);
+		String picturePath = intent.getStringExtra("picturePath");
+
+		try {
+			JSONObject jsonObject = uploadUserPortrait(userId, picturePath);
+
+			UserPortraitUploadEvent event = new UserPortraitUploadEvent(targetScreenletId, picturePath, userId, jsonObject);
+			EventBusUtil.post(event);
+		}
+		catch (Exception e) {
+			EventBusUtil.post(new UserPortraitUploadEvent(targetScreenletId, picturePath, userId, e));
+		}
+	}
+
+	public JSONObject uploadUserPortrait(long userId, String picturePath) throws Exception {
+		Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
+		UserService userService = new UserService(sessionFromCurrentSession);
+		byte[] decodeSampledBitmapFromResource = decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE);
+		return userService.updatePortrait(userId,
+			decodeSampledBitmapFromResource);
+	}
+
 	private static Bitmap rotateImage(Bitmap source, float angle) {
 		Matrix matrix = new Matrix();
 		matrix.postRotate(angle);
 		return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
 	}
 
-	private static byte[] decodeSampledBitmapFromResource(String path,
-														  int reqWidth, int reqHeight) throws IOException {
+	private static byte[] decodeSampledBitmapFromResource(String path, int reqWidth, int reqHeight)
+		throws IOException {
 
 		// First decode with inJustDecodeBounds=true to check dimensions
 		final BitmapFactory.Options options = new BitmapFactory.Options();

@@ -62,7 +62,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 		}
 
 		func currentValueIndex() -> Int? {
-			for (index,option) in enumerate(field.options) {
+			for (index,option) in field.options.enumerate() {
 				if option.label == field.currentValueAsLabel {
 					return index
 				}
@@ -78,7 +78,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 				self.textField!.text = text
 				field.currentValue = text
 
-				let fullRange = NSMakeRange(0, count(text))
+				let fullRange = NSMakeRange(0, text.characters.count)
 
 				self.textField(self.textField!,
 						shouldChangeCharactersInRange:fullRange,

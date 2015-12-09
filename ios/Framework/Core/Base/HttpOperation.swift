@@ -29,7 +29,7 @@ public class HttpOperation: ServerOperation {
 
 	//MARK: ServerOperation
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
 
 		let requestSemaphore = dispatch_semaphore_create(0)

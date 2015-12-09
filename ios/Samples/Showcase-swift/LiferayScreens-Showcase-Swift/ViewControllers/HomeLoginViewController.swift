@@ -46,24 +46,24 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 
 	func screenlet(screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
-		println("DELEGATE: onLoginResponse called -> \(attributes)");
+		print("DELEGATE: onLoginResponse called -> \(attributes)\n");
 		showLogged(animated: true);
 	}
 
 	func screenlet(screenlet: BaseScreenlet,
 			onLoginError error: NSError) {
-		println("DELEGATE: onLoginError called -> \(error)");
+		print("DELEGATE: onLoginError called -> \(error)\n");
 	}
 
 	func onScreenletCredentialsSaved(screenlet: BaseScreenlet) {
-		println("DELEGATE: onCredentialsSaved called");
+		print("DELEGATE: onCredentialsSaved called\n");
 	}
 
 	func onScreenletCredentialsLoaded(screenlet: BaseScreenlet) {
-		println("DELEGATE: onCredentialsLoaded called");
+		print("DELEGATE: onCredentialsLoaded called\n");
 	}
 
-	private func showLogged(#animated:Bool) {
+	private func showLogged(animated animated:Bool) {
 		if SessionContext.hasSession {
 			loggedUsername?.text = SessionContext.currentBasicUserName;
 		}

@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor.recordload;
 
+import android.support.annotation.NonNull;
+
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
@@ -21,14 +23,19 @@ import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.service.v62.ScreensddlrecordService;
 import com.liferay.mobile.screens.util.JSONUtil;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Jose Manuel Navarro
@@ -58,8 +65,9 @@ public class DDLFormLoadRecordInteractorImpl
 
 		if (!event.isFailed()) {
 			try {
-				JSONObject jsonObject = event.getJSONObject();
-				event.getRecord().setValuesAndAttributes(JSONUtil.toMap(jsonObject));
+				Map<String, Object> valuesAndAttributes = getStringObjectMap(event.getJSONObject());
+				event.getRecord().setValuesAndAttributes(valuesAndAttributes);
+
 				event.getRecord().refresh();
 
 				getListener().onDDLFormRecordLoaded(event.getRecord());
@@ -94,7 +102,8 @@ public class DDLFormLoadRecordInteractorImpl
 			DefaultCachedType.DDL_RECORD, String.valueOf(record.getRecordId()));
 
 		if (recordCache != null) {
-			onEvent(new DDLFormLoadRecordEvent(getTargetScreenletId(), record, recordCache.getJSONContent()));
+			JSONObject jsonContent = recordCache.getJSONContent();
+			onEvent(new DDLFormLoadRecordEvent(getTargetScreenletId(), record, jsonContent.getJSONObject("modelValues")));
 			return true;
 		}
 		return false;
@@ -102,9 +111,16 @@ public class DDLFormLoadRecordInteractorImpl
 
 	@Override
 	protected void storeToCache(DDLFormLoadRecordEvent event, Object... args) {
-		DDLRecordCache record = new DDLRecordCache(null, event.getRecord(), event.getJSONObject());
-		record.setDirty(false);
-		CacheSQL.getInstance().set(record);
+
+		try {
+			long groupId = LiferayServerContext.getGroupId();
+			JSONObject valuesAndAttributes = new JSONObject();
+			valuesAndAttributes.put("modelValues", event.getJSONObject());
+			CacheSQL.getInstance().set(new DDLRecordCache(groupId, event.getRecord(), valuesAndAttributes));
+		}
+		catch (JSONException e) {
+			LiferayLogger.e("Couldn't parse JSON values", e);
+		}
 	}
 
 	protected ScreensddlrecordService getDDLRecordService(Record record) {
@@ -122,6 +138,19 @@ public class DDLFormLoadRecordInteractorImpl
 
 		if (record.getRecordId() <= 0) {
 			throw new IllegalArgumentException("Record's recordId cannot be 0 or negative");
+		}
+	}
+
+	@NonNull
+	private Map<String, Object> getStringObjectMap(JSONObject jsonObject) throws JSONException {
+		Map<String, Object> modelValues = JSONUtil.toMap(jsonObject);
+		if (modelValues.containsKey("modelValues")) {
+			return modelValues;
+		}
+		else {
+			Map<String, Object> valuesAndAttributes = new HashMap<>();
+			valuesAndAttributes.put("modelValues", modelValues);
+			return valuesAndAttributes;
 		}
 	}
 

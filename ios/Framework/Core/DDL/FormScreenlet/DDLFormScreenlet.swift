@@ -127,7 +127,7 @@ import UIKit
 		}
 	}
 
-	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		switch name {
 			case DDLFormScreenlet.LoadFormAction:
 				return createLoadFormInteractor()
@@ -145,7 +145,7 @@ import UIKit
 		return nil
 	}
 
-	override public func onAction(#name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+	override public func onAction(name name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
 		let result = super.onAction(name: name, interactor: interactor, sender: sender)
 
 		if result && name == DDLFormScreenlet.UploadDocumentAction {
@@ -357,7 +357,7 @@ import UIKit
 
 				return true
 
-			case .Uploading(let uploadCount, let submitRequested)
+			case .Uploading(_, let submitRequested)
 			where submitRequested:
 				return true
 
@@ -368,7 +368,7 @@ import UIKit
 				let uploadMessage = (uploadCount == 1)
 						? "uploading-message-singular" : "uploading-message-plural"
 
-				showHUDWithMessage(LocalizedString("ddlform-screenlet", uploadMessage, self),
+				showHUDWithMessage(LocalizedString("ddlform-screenlet", key: uploadMessage, obj: self),
 					closeMode: .ManualClose,
 					spinnerMode: .IndeterminateSpinner)
 
@@ -394,7 +394,7 @@ import UIKit
 
 		if let failedUploads = failedDocumentFields {
 			if failedUploads.count > 0 {
-				showHUDWithMessage(LocalizedString("ddlform-screenlet", "uploading-retry", self),
+				showHUDWithMessage(LocalizedString("ddlform-screenlet", key: "uploading-retry", obj: self),
 					closeMode: .ManualClose,
 					spinnerMode: .IndeterminateSpinner)
 

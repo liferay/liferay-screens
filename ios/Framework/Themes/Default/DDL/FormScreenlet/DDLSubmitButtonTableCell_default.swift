@@ -33,7 +33,7 @@ public class DDLSubmitButtonTableCell_default: DDLFieldTableCell {
 		setButtonDefaultStyle(submitButton)
 
 		submitButton?.replaceAttributedTitle(
-				LocalizedString("default", "ddlform-submit-button", self),
+				LocalizedString("default", key: "ddlform-submit-button", obj: self),
 				forState: .Normal)
 	}
 

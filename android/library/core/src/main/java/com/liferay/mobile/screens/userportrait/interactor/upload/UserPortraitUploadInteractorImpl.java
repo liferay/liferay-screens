@@ -34,7 +34,37 @@ public class UserPortraitUploadInteractorImpl
 			return;
 		}
 
-		onEventWithCache(event, event.getUserId(), event.getPicturePath());
+		if (event.isFailed()) {
+			try {
+				storeToCacheAndLaunchEvent(event, event.getUserId(), event.getPicturePath());
+			}
+			catch (Exception e) {
+				getListener().onUserPortraitUploadFailure(event.getException());
+			}
+		}
+		else {
+			if (!event.isCacheRequest()) {
+				store(true, event.getUserId(), event.getPicturePath());
+			}
+
+			User oldLoggedUser = SessionContext.getLoggedUser();
+
+			if (event.getJSONObject() != null) {
+				User user = new User(event.getJSONObject());
+				if (oldLoggedUser != null && user.getId() == oldLoggedUser.getId()) {
+					SessionContext.setLoggedUser(user);
+				}
+			}
+
+			try {
+				if (oldLoggedUser != null) {
+					getListener().onUserPortraitUploaded(oldLoggedUser.getId());
+				}
+			}
+			catch (Exception e) {
+				getListener().onUserPortraitUploadFailure(e);
+			}
+		}
 	}
 
 	@Override
@@ -56,42 +86,22 @@ public class UserPortraitUploadInteractorImpl
 	}
 
 	@Override
-	protected void notifySuccess(UserPortraitUploadEvent event) {
-		User loggedUser = SessionContext.getLoggedUser();
-
-		if (event.getJSONObject() != null) {
-			User user = new User(event.getJSONObject());
-			loggedUser = user;
-			if (user.getId() == SessionContext.getLoggedUser().getId()) {
-				SessionContext.setLoggedUser(user);
-			}
-		}
-
-		try {
-			getListener().onUserPortraitUploaded(loggedUser.getId());
-		}
-		catch (Exception e) {
-			getListener().onUserPortraitUploadFailure(e);
-		}
-
-	}
-
-	@Override
-	protected void notifyError(UserPortraitUploadEvent event) {
-		getListener().onUserPortraitUploadFailure(event.getException());
-	}
-
-	@Override
-	protected void storeToCache(boolean synced, Object... args) {
+	protected void storeToCacheAndLaunchEvent(Object... args) {
 
 		long userId = (long) args[0];
 		String picturePath = (String) args[1];
 
+		store(false, userId, picturePath);
+
+		UserPortraitUploadEvent event = new UserPortraitUploadEvent(getTargetScreenletId(), picturePath, userId, new JSONObject());
+		event.setCacheRequest(true);
+		onEventMainThread(event);
+	}
+
+	private void store(boolean synced, long userId, String picturePath) {
 		TableCache file = new TableCache(String.valueOf(userId), DefaultCachedType.USER_PORTRAIT_UPLOAD, picturePath);
 		file.setDirty(!synced);
 		CacheSQL.getInstance().set(file);
-
-		onEventMainThread(new UserPortraitUploadEvent(getTargetScreenletId(), picturePath, userId, new JSONObject()));
 	}
 
 }

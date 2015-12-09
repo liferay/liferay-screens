@@ -26,11 +26,11 @@ extension UIView {
 
 	//MARK: Public methods
 
-	public func changeVisibility(#visible:Bool) {
+	public func changeVisibility(visible visible:Bool) {
 		changeVisibility(visible: visible, delay: defaultHideDelay)
 	}
 
-	public func changeVisibility(#visible:Bool, delay: Double) {
+	public func changeVisibility(visible visible:Bool, delay: Double) {
 		let targetAlpha: CGFloat = visible ? 0.0 : 1.0
 
 		if self.alpha != targetAlpha {

@@ -11,9 +11,16 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-#import <UIKit/UIKit.h>
 
+package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
-@interface HomeLoginViewController : UIViewController<LoginScreenletDelegate>
+import java.util.Locale;
 
-@end
+/**
+ * @author Jose Manuel Navarro
+ */
+public interface WebContentDisplayFromArticleIdInteractor extends WebContentDisplayBaseInteractor {
+
+	void load(long groupId, String articleId, Long templateId, Locale locale) throws Exception;
+
+}

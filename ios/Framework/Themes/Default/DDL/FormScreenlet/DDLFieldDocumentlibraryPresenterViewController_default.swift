@@ -58,20 +58,20 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 		imagePicker.modalPresentationStyle = .CurrentContext
 
 		takeNewButton?.replaceAttributedTitle(
-				LocalizedString("default", "ddlform-upload-picker-take-new", self),
+				LocalizedString("default", key: "ddlform-upload-picker-take-new", obj: self),
 				forState: .Normal)
 		selectPhotoButton?.replaceAttributedTitle(
-				LocalizedString("default", "ddlform-upload-picker-select-photo", self),
+				LocalizedString("default", key: "ddlform-upload-picker-select-photo", obj: self),
 				forState: .Normal)
 		selectVideoButton?.replaceAttributedTitle(
-				LocalizedString("default", "ddlform-upload-picker-select-video", self),
+				LocalizedString("default", key: "ddlform-upload-picker-select-video", obj: self),
 				forState: .Normal)
 		cancelButton?.replaceAttributedTitle(
-				LocalizedString("default", "ddlform-upload-picker-cancel", self),
+				LocalizedString("default", key: "ddlform-upload-picker-cancel", obj: self),
 				forState: .Normal)
 	}
 
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
@@ -102,7 +102,7 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 		cancelButtonAction(sender)
 
 		imagePicker.sourceType = .SavedPhotosAlbum
-		imagePicker.mediaTypes = [kUTTypeMovie as NSString]
+		imagePicker.mediaTypes = [kUTTypeMovie as NSString as String]
 
 		presentViewController(imagePicker, animated: true) {}
 	}
@@ -112,7 +112,7 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 
     public func imagePickerController(
 			picker: UIImagePickerController,
-			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+			didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 
 		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
 		let selectedURL = info[UIImagePickerControllerMediaURL] as? NSURL

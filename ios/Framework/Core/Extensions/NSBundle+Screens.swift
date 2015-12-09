@@ -29,19 +29,19 @@ extension NSBundle {
 			]
 			.flatMap { $0 }
 
-		return reduce(bundles, []) { ac, x in
-			contains(ac, x) ? ac : ac + [x]
+		return bundles.reduce([]) { ac, x in
+			ac.contains(x) ? ac : ac + [x]
 		}
 	}
 
 	public class func discoverBundles() -> [NSBundle] {
-		let allBundles = NSBundle.allFrameworks() as! [NSBundle]
+		let allBundles = NSBundle.allFrameworks() 
 
 		return allBundles.filter {
 			let screensPrefix = "LiferayScreens"
-			let bundleName = $0.bundleIdentifier?.pathExtension ?? ""
+			let bundleName = (($0.bundleIdentifier ?? "") as NSString).pathExtension
 
-			return count(bundleName) > count(screensPrefix)
+			return bundleName.characters.count > screensPrefix.characters.count
 					&& bundleName.hasPrefix(screensPrefix)
 		}
 	}
@@ -67,12 +67,14 @@ extension NSBundle {
 	public class func bundlesForApp() -> [NSBundle] {
 
 		func appFile(path: String) -> String? {
-			var outError: NSError? = nil
-			let files = NSFileManager.defaultManager().contentsOfDirectoryAtPath(path, error: &outError)
-			return (files as? [String] ?? []).filter { $0.pathExtension == "app" }.first
+			let files = try? NSFileManager.defaultManager().contentsOfDirectoryAtPath(path)
+			return (files ?? []).filter {
+					($0 as NSString).pathExtension == "app"
+				}
+				.first
 		}
 
-		let components = NSBundle.mainBundle().resourcePath?.pathComponents ?? []
+		let components = ((NSBundle.mainBundle().resourcePath ?? "") as NSString).pathComponents ?? []
 
 		if components.last == "Overlays" {
 			// running into IB
@@ -81,7 +83,7 @@ extension NSBundle {
 			if let range = coreBundle.resourcePath?.rangeOfString("Debug-iphonesimulator"),
 					path = coreBundle.resourcePath?.substringToIndex(range.endIndex),
 					appName = appFile(path),
-					appBundle = NSBundle(path: path.stringByAppendingPathComponent(appName)) {
+					appBundle = NSBundle(path: (path as NSString).stringByAppendingPathComponent(appName)) {
 				return [NSBundle.mainBundle(), appBundle]
 			}
 		}
@@ -90,7 +92,7 @@ extension NSBundle {
 	}
 
 
-	public class func imageInBundles(#name: String, currentClass: AnyClass) -> UIImage? {
+	public class func imageInBundles(name name: String, currentClass: AnyClass) -> UIImage? {
 		for bundle in allBundles(currentClass) {
 			if let path = bundle.pathForResource(name, ofType: "png") {
 				return UIImage(contentsOfFile: path)

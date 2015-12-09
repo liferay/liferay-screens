@@ -11,8 +11,16 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-#import <UIKit/UIKit.h>
 
-@interface DDLListScreenletViewController : UIViewController<DDLListScreenletDelegate>
+package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
-@end
+import java.util.Locale;
+
+/**
+ * @author Jose Manuel Navarro
+ */
+public interface WebContentDisplayFromClassPKInteractor extends WebContentDisplayBaseInteractor {
+
+	void load(long classPK, Long templateId, Locale locale) throws Exception;
+
+}

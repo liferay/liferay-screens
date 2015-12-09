@@ -18,6 +18,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	public var groupId: Int64?
 	public var classNameId: Int64?
 	public var portletItemName: String?
+	public var customEntryQuery: [String:AnyObject]?
 
 
 	//MARK: ServerOperation
@@ -38,7 +39,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		if let portletItemName = portletItemName {
 			let service = LRScreensassetentryService_v62(session: session)
 
@@ -47,23 +48,28 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 				// rows from the top to the endRow (whole single page)
 				let rowCount = endRow
 
-				let responses = service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
-					groupId: groupId!,
-					portletItemName: portletItemName,
-					locale: NSLocale.currentLocaleString,
-					max: Int32(endRow),
-					error: &lastError)
+				do {
+					let responses = try service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
+						groupId: groupId!,
+						portletItemName: portletItemName,
+						locale: NSLocale.currentLocaleString,
+						max: Int32(rowCount))
 
-				if lastError == nil {
 					if let entriesResponse = responses as? [[String:AnyObject]] {
 						let serverPageContent = entriesResponse
 
 						resultPageContent = serverPageContent
 						resultRowCount = serverPageContent.count
+						lastError = nil
 					}
 					else {
-						lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
+						lastError = NSError.errorWithCause(.InvalidServerResponse)
+						resultPageContent = nil
 					}
+				}
+				catch let error as NSError {
+					lastError = error
+					resultPageContent = nil
 				}
 			}
 			else {
@@ -79,40 +85,57 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	//MARK: LiferayPaginationOperation
 
-	override internal func doGetPageRowsOperation(#session: LRBatchSession, startRow: Int, endRow: Int) {
+	override internal func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensassetentryService_v62(session: session)
 
-		var entryQueryAttributes = configureEntryQueryAttributes()
+		var entryQuery = configureEntryQuery()
 
-		entryQueryAttributes["start"] = startRow
-		entryQueryAttributes["end"] = endRow
+		entryQuery["start"] = startRow
+		entryQuery["end"] = endRow
 
-		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
+		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
 
-		service.getAssetEntriesWithAssetEntryQuery(entryQuery,
-			locale: NSLocale.currentLocaleString,
-			error: nil)
+		do {
+			try service.getAssetEntriesWithAssetEntryQuery(entryQueryWrapper,
+					locale: NSLocale.currentLocaleString)
+		}
+		catch _ as NSError {
+		}
 	}
 
-	override internal func doGetRowCountOperation(#session: LRBatchSession) {
+	override internal func doGetRowCountOperation(session session: LRBatchSession) {
 		let service = LRAssetEntryService_v62(session: session)
-		let entryQueryAttributes = configureEntryQueryAttributes()
-		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
+		let entryQuery = configureEntryQuery()
+		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
 
-		service.getEntriesCountWithEntryQuery(entryQuery, error: nil)
+		do {
+			try service.getEntriesCountWithEntryQuery(entryQueryWrapper)
+		}
+		catch _ as NSError {
+		}
 	}
 
 
 	//MARK: Private methods
 
-	private func configureEntryQueryAttributes() -> [NSString : AnyObject] {
-		var entryQueryAttributes: [NSString : AnyObject] = [:]
+	private func configureEntryQuery() -> [String:AnyObject] {
+		var entryQuery = (customEntryQuery != nil)
+			? customEntryQuery!
+			: [String:AnyObject]()
 
-		entryQueryAttributes["classNameIds"] = NSNumber(longLong: classNameId!)
-		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId!)
-		entryQueryAttributes["visible"] = "true"
+		let defaultValues = [
+			"classNameIds" : NSNumber(longLong: classNameId!),
+			"groupIds" : NSNumber(longLong: groupId!),
+			"visible" : "true"
+		]
 
-		return entryQueryAttributes
+		for (k,v) in defaultValues {
+			if entryQuery[k] == nil {
+				entryQuery[k] = v
+			}
+		}
+
+		return entryQuery
 	}
 
 }

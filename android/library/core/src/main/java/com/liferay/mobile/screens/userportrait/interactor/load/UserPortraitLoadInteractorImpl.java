@@ -60,7 +60,7 @@ public class UserPortraitLoadInteractorImpl
 
 	@Override
 	public void load(boolean male, long portraitId, String uuid) {
-		validate(portraitId, uuid);
+		validate(uuid);
 
 		Uri uri = getUserPortraitURL(male, portraitId, uuid);
 
@@ -191,12 +191,9 @@ public class UserPortraitLoadInteractorImpl
 		return new UserService(session);
 	}
 
-	private void validate(long portraitId, String uuid) {
+	private void validate(String uuid) {
 		if (getListener() == null) {
 			throw new IllegalArgumentException("Listener cannot be empty");
-		}
-		if (portraitId == 0) {
-			throw new IllegalArgumentException("portraitId cannot be empty");
 		}
 		if (uuid == null || uuid.isEmpty()) {
 			throw new IllegalArgumentException("userId cannot be empty");

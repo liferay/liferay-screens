@@ -33,7 +33,7 @@ class LoginInteractor: ServerOperationInteractor {
 						screenName: screenlet.viewModel.userName ?? "")
 			case .UserId:
 				operation = LiferayLoginByUserIdOperation(
-						userId: Int64(screenlet.viewModel.userName!.toInt() ?? 0))
+						userId: Int64(Int(screenlet.viewModel.userName!) ?? 0))
 			default:
 				operation = LiferayLoginByEmailOperation(
 						companyId: companyId,

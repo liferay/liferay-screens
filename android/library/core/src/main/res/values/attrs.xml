@@ -97,11 +97,13 @@
 		<attr name="anonymousApiPassword"/>
 		<attr name="autoLogin" format="boolean"/>
 		<attr name="credentialsStore"/>
+		<attr name="basicAuthMethod"/>
 	</declare-styleable>
 
 	<declare-styleable name="WebContentDisplayScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
+		<attr name="classPK" format="string"/>
 		<attr name="groupId"/>
 		<attr name="offlinePolicy"/>
 		<attr name="templateId" format="string"/>
