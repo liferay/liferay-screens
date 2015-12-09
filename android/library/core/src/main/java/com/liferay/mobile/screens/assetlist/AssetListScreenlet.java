@@ -105,7 +105,7 @@ public class AssetListScreenlet
 	protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale)
 		throws Exception {
 
-		interactor.loadRows(_groupId, _classNameId, _portletItemName, startRow, endRow, locale);
+		interactor.loadRows(_groupId, _classNameId, _portletItemName, _customEntryQuery, startRow, endRow, locale);
 	}
 
 	@Override
@@ -128,6 +128,8 @@ public class AssetListScreenlet
 
 		_portletItemName = typedArray.getString(R.styleable.AssetListScreenlet_portletItemName);
 
+		_customEntryQuery = typedArray.getString(R.styleable.AssetListScreenlet_customEntryQuery);
+
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
@@ -142,5 +144,6 @@ public class AssetListScreenlet
 	private long _classNameId;
 	private long _groupId;
 	private String _portletItemName;
+	private String _customEntryQuery;
 
 }
