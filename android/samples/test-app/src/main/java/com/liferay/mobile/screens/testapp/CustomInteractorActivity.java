@@ -25,7 +25,7 @@ public class CustomInteractorActivity extends AppCompatActivity
 
 		_loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet_custom_interactor);
 		_loginScreenlet.setListener(this);
-		_loginScreenlet.addCustomInteractor(this);
+		_loginScreenlet.setCustomInteractorListener(this);
 	}
 
 	@Override
