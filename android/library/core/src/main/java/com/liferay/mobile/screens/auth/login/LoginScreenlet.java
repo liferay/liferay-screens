@@ -36,7 +36,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 
-import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.StorageType;
+import static com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder.StorageType;
 
 /**
  * @author Silvio Santos
@@ -81,7 +81,7 @@ public class LoginScreenlet
 
 		getContext().sendBroadcast(new Intent(LOGIN_SUCCESSFUL));
 
-		SessionContext.storeSession(_credentialsStore);
+		SessionContext.storeCredentials(_credentialsStorage);
 	}
 
 	public void sendOAuthResult(int result, Intent intent) {
@@ -113,12 +113,12 @@ public class LoginScreenlet
 		return _basicAuthMethod;
 	}
 
-	public StorageType getCredentialsStore() {
-		return _credentialsStore;
+	public StorageType getCredentialsStorage() {
+		return _credentialsStorage;
 	}
 
-	public void setCredentialsStore(StorageType value) {
-		_credentialsStore = value;
+	public void setCredentialsStorage(StorageType value) {
+		_credentialsStorage = value;
 	}
 
 	public String getOAuthConsumerSecret() {
@@ -168,10 +168,10 @@ public class LoginScreenlet
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.LoginScreenlet, 0, 0);
 
-		int storeValue = typedArray.getInt(R.styleable.LoginScreenlet_credentialsStore,
+		int storeValue = typedArray.getInt(R.styleable.LoginScreenlet_credentialsStorage,
 			StorageType.NONE.toInt());
 
-		_credentialsStore = StorageType.valueOf(storeValue);
+		_credentialsStorage = StorageType.valueOf(storeValue);
 
 		_oauthConsumerKey =
 			typedArray.getString(R.styleable.LoginScreenlet_oauthConsumerKey);
@@ -250,7 +250,7 @@ public class LoginScreenlet
 
 	private LoginListener _listener;
 	private BasicAuthMethod _basicAuthMethod;
-	private StorageType _credentialsStore;
+	private StorageType _credentialsStorage;
 
 	private String _oauthConsumerKey;
 	private String _oauthConsumerSecret;

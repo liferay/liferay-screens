@@ -20,76 +20,76 @@ import com.liferay.mobile.android.oauth.OAuth;
 import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
-import com.liferay.mobile.screens.context.storage.CredentialsStore;
-import com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder;
+import com.liferay.mobile.screens.context.storage.CredentialsStorage;
+import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
 
 /**
  * @author Silvio Santos
  */
 public class SessionContext {
 
-	public static void clearSession() {
-		_session = null;
-		_loggedUser = null;
+	public static void logout() {
+		_currentUserSession = null;
+		_currentUser = null;
 	}
 
 	public static Session createBasicSession(String username, String password) {
 		Authentication authentication = new BasicAuthentication(username, password);
 
-		_session = new SessionImpl(LiferayServerContext.getServer(), authentication);
+		_currentUserSession = new SessionImpl(LiferayServerContext.getServer(), authentication);
 
-		return _session;
+		return _currentUserSession;
 	}
 
 	public static Session createOAuthSession(OAuthConfig config) {
 		OAuth oAuth = new OAuthAuthentication(config);
 
-		_session = new SessionImpl(LiferayServerContext.getServer(), oAuth);
+		_currentUserSession = new SessionImpl(LiferayServerContext.getServer(), oAuth);
 
-		return _session;
+		return _currentUserSession;
 	}
 
 	public static Session createSessionFromCurrentSession() {
-		if (_session == null) {
+		if (_currentUserSession == null) {
 			throw new IllegalStateException("You need to be logged in to get a session");
 		}
 
-		return new SessionImpl(LiferayServerContext.getServer(), _session.getAuthentication());
+		return new SessionImpl(LiferayServerContext.getServer(), _currentUserSession.getAuthentication());
 	}
 
-	public static boolean hasSession() {
-		return _session != null;
+	public static boolean isLoggedIn() {
+		return _currentUserSession != null;
 	}
 
 	public static boolean hasUserInfo() {
-		return _session != null && _loggedUser != null;
+		return _currentUserSession != null && _currentUser != null;
 	}
 
 	public static Authentication getAuthentication() {
-		return (_session == null) ? null : _session.getAuthentication();
+		return (_currentUserSession == null) ? null : _currentUserSession.getAuthentication();
 	}
 
-	public static User getLoggedUser() {
-		return _loggedUser;
+	public static User getCurrentUser() {
+		return _currentUser;
 	}
 
 	public static Long getUserId() {
-		return _loggedUser == null ? null : _loggedUser.getId();
+		return _currentUser == null ? null : _currentUser.getId();
 	}
 
 	public static void setLoggedUser(User value) {
-		_loggedUser = value;
+		_currentUser = value;
 	}
 
-	public static void storeSession(CredentialsStoreBuilder.StorageType storageType) {
-		if (!hasSession()) {
+	public static void storeCredentials(CredentialsStorageBuilder.StorageType storageType) {
+		if (!isLoggedIn()) {
 			throw new IllegalStateException("You must have a session created to store it");
 		}
 
-		CredentialsStore storage = new CredentialsStoreBuilder()
+		CredentialsStorage storage = new CredentialsStorageBuilder()
 			.setContext(LiferayScreensContext.getContext())
-			.setAuthentication(_session.getAuthentication())
-			.setUser(getLoggedUser())
+			.setAuthentication(_currentUserSession.getAuthentication())
+			.setUser(getCurrentUser())
 			.setStorageType(storageType)
 			.build();
 
@@ -98,8 +98,8 @@ public class SessionContext {
 		storage.storeCredentials();
 	}
 
-	public static void removeStoredSession(CredentialsStoreBuilder.StorageType storageType) {
-		CredentialsStore storage = new CredentialsStoreBuilder()
+	public static void removeStoredCredentials(CredentialsStorageBuilder.StorageType storageType) {
+		CredentialsStorage storage = new CredentialsStorageBuilder()
 			.setContext(LiferayScreensContext.getContext())
 			.setStorageType(storageType)
 			.build();
@@ -109,10 +109,10 @@ public class SessionContext {
 		storage.removeStoredCredentials();
 	}
 
-	public static void loadSessionFromStore(CredentialsStoreBuilder.StorageType storageType)
+	public static void loadStoredCredentials(CredentialsStorageBuilder.StorageType storageType)
 		throws IllegalStateException {
 
-		CredentialsStore storage = new CredentialsStoreBuilder()
+		CredentialsStorage storage = new CredentialsStorageBuilder()
 			.setContext(LiferayScreensContext.getContext())
 			.setStorageType(storageType)
 			.build();
@@ -120,18 +120,18 @@ public class SessionContext {
 		checkIfStorageTypeIsSupported(storageType, storage);
 
 		if (storage.loadStoredCredentials()) {
-			_session = new SessionImpl(LiferayServerContext.getServer(), storage.getAuthentication());
-			_loggedUser = storage.getUser();
+			_currentUserSession = new SessionImpl(LiferayServerContext.getServer(), storage.getAuthentication());
+			_currentUser = storage.getUser();
 		}
 	}
 
-	private static void checkIfStorageTypeIsSupported(CredentialsStoreBuilder.StorageType storageType, CredentialsStore storage) {
+	private static void checkIfStorageTypeIsSupported(CredentialsStorageBuilder.StorageType storageType, CredentialsStorage storage) {
 		if (storage == null) {
 			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
 		}
 	}
 
-	private static Session _session;
-	private static User _loggedUser;
+	private static Session _currentUserSession;
+	private static User _currentUser;
 
 }

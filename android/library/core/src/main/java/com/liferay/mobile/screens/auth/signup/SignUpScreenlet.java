@@ -30,7 +30,7 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
-import com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.StorageType;
+import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder.StorageType;
 
 import java.util.Locale;
 
@@ -83,7 +83,7 @@ public class SignUpScreenlet
 				_autoLoginListener.onLoginSuccess(user);
 			}
 
-			SessionContext.storeSession(_credentialsStore);
+			SessionContext.storeCredentials(_credentialsStorage);
 		}
 	}
 
@@ -147,12 +147,12 @@ public class SignUpScreenlet
 		_autoLoginListener = value;
 	}
 
-	public StorageType getCredentialsStore() {
-		return _credentialsStore;
+	public StorageType getCredentialsStorage() {
+		return _credentialsStorage;
 	}
 
-	public void setCredentialsStore(StorageType value) {
-		_credentialsStore = value;
+	public void setCredentialsStorage(StorageType value) {
+		_credentialsStorage = value;
 	}
 
 	public BasicAuthMethod getBasicAuthMethod() {
@@ -180,10 +180,10 @@ public class SignUpScreenlet
 
 		_autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
 
-		int storeValue = typedArray.getInt(R.styleable.SignUpScreenlet_credentialsStore,
+		int storageValue = typedArray.getInt(R.styleable.SignUpScreenlet_credentialsStorage,
 			StorageType.NONE.toInt());
 
-		_credentialsStore = StorageType.valueOf(storeValue);
+		_credentialsStorage = StorageType.valueOf(storageValue);
 
 		_autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
 
@@ -233,7 +233,7 @@ public class SignUpScreenlet
 	private String _anonymousApiUserName;
 	private boolean _autoLogin;
 	private long _companyId;
-	private StorageType _credentialsStore;
+	private StorageType _credentialsStorage;
 	private BasicAuthMethod _basicAuthMethod;
 
 	private SignUpListener _listener;
