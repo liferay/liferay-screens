@@ -432,8 +432,8 @@ public class DDLFormScreenlet
 		_repositoryId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_repositoryId));
 		_folderId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_folderId));
 
-		long defaultCreatorUserId = SessionContext.getLoggedUser() != null ?
-			SessionContext.getLoggedUser().getId() : 0;
+		long defaultCreatorUserId = SessionContext.getCurrentUser() != null ?
+			SessionContext.getCurrentUser().getId() : 0;
 
 		_userId = castToLongOrUseDefault(typedArray.getString(R.styleable.DDLFormScreenlet_userId)
 			, defaultCreatorUserId);

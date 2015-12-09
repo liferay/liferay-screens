@@ -71,7 +71,7 @@ public abstract class PushScreensActivity extends AppCompatActivity
 	protected void registerWithPush() {
 		try {
 
-			Session session = SessionContext.hasSession() ?
+			Session session = SessionContext.isLoggedIn() ?
 				SessionContext.createSessionFromCurrentSession() : getDefaultSession();
 			_push = Push.with(session);
 
