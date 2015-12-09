@@ -93,23 +93,15 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return result;
 	}
 
-	public void addCustomInteractor(CustomInteractorListener customInteractorListener) {
+	public void setCustomInteractorListener(CustomInteractorListener customInteractorListener) {
 		_customInteractorListener = customInteractorListener;
 	}
 
 	protected I prepareInteractor(String actionName) {
 
-		if (_customInteractorListener != null) {
-			I customResult = (I) _customInteractorListener.createInteractor(actionName);
-
-			if (customResult != null) {
-				customResult.onScreenletAttached(this);
-				_interactors.put(actionName, customResult);
-				return customResult;
-			}
-		}
-
-		I result = createInteractor(actionName);
+		I result = _customInteractorListener == null ?
+			createInteractor(actionName) :
+			(I) _customInteractorListener.createInteractor(actionName);
 
 		if (result != null) {
 			result.onScreenletAttached(this);
