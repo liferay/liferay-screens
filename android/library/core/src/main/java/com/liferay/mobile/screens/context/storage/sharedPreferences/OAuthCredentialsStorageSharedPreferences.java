@@ -22,7 +22,7 @@ import com.liferay.mobile.screens.context.AuthenticationType;
 /**
  * @author Jose Manuel Navarro
  */
-public class OAuthCredentialsStoreSharedPreferences extends BaseCredentialsStoreSharedPreferences {
+public class OAuthCredentialsStorageSharedPreferences extends BaseCredentialsStorageSharedPreferences {
 
 	public static final String AUTH = "auth";
 	public static final String OAUTH_CONSUMER_KEY = "oauth_consumerKey";

@@ -21,7 +21,7 @@ import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.screens.context.AuthenticationType;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.User;
-import com.liferay.mobile.screens.context.storage.CredentialsStore;
+import com.liferay.mobile.screens.context.storage.CredentialsStorage;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONException;
@@ -34,7 +34,7 @@ import java.net.URL;
 /**
  * @author Jose Manuel Navarro
  */
-public abstract class BaseCredentialsStoreSharedPreferences implements CredentialsStore {
+public abstract class BaseCredentialsStorageSharedPreferences implements CredentialsStorage {
 
 	@Override
 	public void storeCredentials() {

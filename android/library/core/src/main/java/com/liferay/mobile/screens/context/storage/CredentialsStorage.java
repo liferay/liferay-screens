@@ -17,48 +17,27 @@ package com.liferay.mobile.screens.context.storage;
 import android.content.Context;
 
 import com.liferay.mobile.android.auth.Authentication;
-import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.context.User;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class CredentialsStoreVoid implements CredentialsStore {
+public interface CredentialsStorage {
 
-	@Override
-	public void storeCredentials() {
-	}
+	void storeCredentials();
 
-	@Override
-	public void removeStoredCredentials() {
-	}
+	void removeStoredCredentials();
 
-	@Override
-	public boolean loadStoredCredentials() {
-		return false;
-	}
+	boolean loadStoredCredentials() throws IllegalStateException;
 
-	@Override
-	public BasicAuthentication getAuthentication() {
-		return null;
-	}
+	Authentication getAuthentication();
 
-	@Override
-	public void setAuthentication(Authentication auth) {
+	void setAuthentication(Authentication auth);
 
-	}
+	User getUser();
 
-	@Override
-	public User getUser() {
-		return null;
-	}
+	void setUser(User user);
 
-	@Override
-	public void setUser(User user) {
-	}
-
-	@Override
-	public void setContext(Context ctx) {
-	}
+	void setContext(Context ctx);
 
 }

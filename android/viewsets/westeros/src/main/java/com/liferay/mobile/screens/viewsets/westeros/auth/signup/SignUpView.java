@@ -79,19 +79,19 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 			return false;
 		}
 
-		if (!checkField(getFirstNameField(), _firstNameValidation)) {
+		if (!checkField(_firstName, _firstNameValidation)) {
 			return false;
 		}
 
-		if (!checkField(getLastNameField(), _lastNameValidation)) {
+		if (!checkField(_lastName, _lastNameValidation)) {
 			return false;
 		}
 
-		if (!checkField(getEmailAddressField(), _emailAddressValidation)) {
+		if (!checkField(_emailAddress, _emailAddressValidation)) {
 			return false;
 		}
 
-		if (!checkField(getPasswordField(), _passwordValidation)) {
+		if (!checkField(_password, _passwordValidation)) {
 			return false;
 		}
 

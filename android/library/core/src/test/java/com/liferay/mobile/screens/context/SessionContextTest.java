@@ -22,7 +22,7 @@ import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.RobolectricManifestTestRunner;
-import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStoreSharedPreferences;
+import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStorageSharedPreferences;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +33,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
-import static com.liferay.mobile.screens.context.storage.CredentialsStoreBuilder.StorageType.SHARED_PREFERENCES;
+import static com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder.StorageType.SHARED_PREFERENCES;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;
@@ -66,7 +66,7 @@ public class SessionContextTest {
 
 			assertEquals("username", auth.getUsername());
 			assertEquals("password", auth.getPassword());
-			assertTrue(SessionContext.hasSession());
+			assertTrue(SessionContext.isLoggedIn());
 		}
 
 		@Test
@@ -101,17 +101,17 @@ public class SessionContextTest {
 
 	@Config(constants = BuildConfig.class, emulateSdk = 18)
 	@RunWith(RobolectricManifestTestRunner.class)
-	public static class WhenClearSession {
+	public static class Whenlogout {
 
 		@Before
 		public void setUp() {
 			SessionContext.createBasicSession("username", "password");
-			SessionContext.clearSession();
+			SessionContext.logout();
 		}
 
 		@Test
 		public void shouldClearTheSession() throws Exception {
-			assertFalse(SessionContext.hasSession());
+			assertFalse(SessionContext.isLoggedIn());
 		}
 
 		@Test(expected = IllegalStateException.class)
@@ -133,18 +133,18 @@ public class SessionContextTest {
 
 		@Test
 		public void shouldReturnTheUserObject() throws Exception {
-			assertNotNull(SessionContext.getLoggedUser());
+			assertNotNull(SessionContext.getCurrentUser());
 		}
 
 		@Test
 		public void userObjectShouldContainTheUserAttributes() throws Exception {
-			assertEquals(123, SessionContext.getLoggedUser().getId());
+			assertEquals(123, SessionContext.getCurrentUser().getId());
 		}
 
 		@Test
 		public void shouldClearUserWhenSessionIsCleared() throws Exception {
-			SessionContext.clearSession();
-			assertNull(SessionContext.getLoggedUser());
+			SessionContext.logout();
+			assertNull(SessionContext.getCurrentUser());
 		}
 
 	}
@@ -160,7 +160,7 @@ public class SessionContextTest {
 			SessionContext.createBasicSession("user123", "pass123");
 			SessionContext.setLoggedUser(new User(new JSONObject().put("userId", 123)));
 
-			SessionContext.storeSession(SHARED_PREFERENCES);
+			SessionContext.storeCredentials(SHARED_PREFERENCES);
 		}
 
 		@Test(expected = IllegalStateException.class)
@@ -168,10 +168,10 @@ public class SessionContextTest {
 			Context ctx = RuntimeEnvironment.application.getApplicationContext();
 			LiferayScreensContext.init(ctx);
 
-			SessionContext.clearSession();
+			SessionContext.logout();
 			SessionContext.setLoggedUser(new User(new JSONObject().put("userId", 123)));
 
-			SessionContext.storeSession(SHARED_PREFERENCES);
+			SessionContext.storeCredentials(SHARED_PREFERENCES);
 		}
 
 		@Test(expected = IllegalStateException.class)
@@ -179,10 +179,10 @@ public class SessionContextTest {
 			Context ctx = RuntimeEnvironment.application.getApplicationContext();
 			LiferayScreensContext.init(ctx);
 
-			SessionContext.clearSession(); // to clean user
+			SessionContext.logout(); // to clean user
 			SessionContext.createBasicSession("user123", "pass123");
 
-			SessionContext.storeSession(SHARED_PREFERENCES);
+			SessionContext.storeCredentials(SHARED_PREFERENCES);
 		}
 
 		@Test
@@ -195,9 +195,9 @@ public class SessionContextTest {
 			JSONObject userAttributes = new JSONObject().put("userId", 123);
 			SessionContext.setLoggedUser(new User(userAttributes));
 
-			SessionContext.storeSession(SHARED_PREFERENCES);
+			SessionContext.storeCredentials(SHARED_PREFERENCES);
 
-			String sharedPreferencesName = BaseCredentialsStoreSharedPreferences.getStoreName();
+			String sharedPreferencesName = BaseCredentialsStorageSharedPreferences.getStoreName();
 			SharedPreferences sharedPref =
 				ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
 
@@ -223,9 +223,9 @@ public class SessionContextTest {
 			JSONObject userAttributes = new JSONObject().put("userId", 123);
 			SessionContext.setLoggedUser(new User(userAttributes));
 
-			SessionContext.storeSession(SHARED_PREFERENCES);
+			SessionContext.storeCredentials(SHARED_PREFERENCES);
 
-			String sharedPreferencesName = BaseCredentialsStoreSharedPreferences.getStoreName();
+			String sharedPreferencesName = BaseCredentialsStorageSharedPreferences.getStoreName();
 
 			SharedPreferences sharedPref =
 				ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
@@ -251,11 +251,11 @@ public class SessionContextTest {
 			JSONObject userAttributes = new JSONObject().put("userId", 123);
 			SessionContext.setLoggedUser(new User(userAttributes));
 
-			SessionContext.storeSession(SHARED_PREFERENCES);
-			SessionContext.clearSession();
-			SessionContext.loadSessionFromStore(SHARED_PREFERENCES);
+			SessionContext.storeCredentials(SHARED_PREFERENCES);
+			SessionContext.logout();
+			SessionContext.loadStoredCredentials(SHARED_PREFERENCES);
 
-			String sharedPreferencesName = BaseCredentialsStoreSharedPreferences.getStoreName();
+			String sharedPreferencesName = BaseCredentialsStorageSharedPreferences.getStoreName();
 			SharedPreferences sharedPref =
 				ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
 
@@ -286,7 +286,7 @@ public class SessionContextTest {
 //			SessionContext.setLoggedUser(new User(userAttributes));
 //
 //			SessionContext.storeSession(SHARED_PREFERENCES);
-//			SessionContext.clearSession();
+//			SessionContext.logout();
 //			SessionContext.loadSessionFromStore(SHARED_PREFERENCES);
 //
 //			String sharedPreferencesName = new BasicCredentialsStoreSharedPreferences().getStoreName();

@@ -20,14 +20,14 @@ import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.oauth.OAuth;
 import com.liferay.mobile.screens.context.User;
-import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStoreSharedPreferences;
-import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStoreSharedPreferences;
-import com.liferay.mobile.screens.context.storage.sharedPreferences.OAuthCredentialsStoreSharedPreferences;
+import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStorageSharedPreferences;
+import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStorageSharedPreferences;
+import com.liferay.mobile.screens.context.storage.sharedPreferences.OAuthCredentialsStorageSharedPreferences;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class CredentialsStoreBuilder {
+public class CredentialsStorageBuilder {
 
 	public enum StorageType {
 
@@ -56,7 +56,7 @@ public class CredentialsStoreBuilder {
 		private int _value;
 	}
 
-	public CredentialsStoreBuilder setAuthentication(Authentication auth) {
+	public CredentialsStorageBuilder setAuthentication(Authentication auth) {
 		if (auth == null) {
 			throw new IllegalStateException("Authentication cannot be null. Make sure you have a session created");
 		}
@@ -66,7 +66,7 @@ public class CredentialsStoreBuilder {
 		return this;
 	}
 
-	public CredentialsStoreBuilder setUser(User user) {
+	public CredentialsStorageBuilder setUser(User user) {
 		if (user == null) {
 			throw new IllegalStateException("User cannot be null. Make sure you have a session created");
 		}
@@ -76,7 +76,7 @@ public class CredentialsStoreBuilder {
 		return this;
 	}
 
-	public CredentialsStoreBuilder setContext(Context context) {
+	public CredentialsStorageBuilder setContext(Context context) {
 		if (context == null) {
 			throw new IllegalStateException("Context cannot be null");
 		}
@@ -86,7 +86,7 @@ public class CredentialsStoreBuilder {
 		return this;
 	}
 
-	public CredentialsStoreBuilder setStorageType(StorageType storageType) {
+	public CredentialsStorageBuilder setStorageType(StorageType storageType) {
 		if (_context == null) {
 			throw new IllegalStateException("You must set the context before storageType");
 		}
@@ -96,49 +96,49 @@ public class CredentialsStoreBuilder {
 		return this;
 	}
 
-	public CredentialsStore build() {
+	public CredentialsStorage build() {
 		if (_context == null) {
 			throw new IllegalStateException("You must call setContext() before");
 		}
 
-		CredentialsStore credentialsStore = createStore();
+		CredentialsStorage credentialsStorage = createStore();
 
-		credentialsStore.setContext(_context);
+		credentialsStorage.setContext(_context);
 
 		if (_auth != null) {
-			credentialsStore.setAuthentication(_auth);
+			credentialsStorage.setAuthentication(_auth);
 		}
 
 		if (_user != null) {
-			credentialsStore.setUser(_user);
+			credentialsStorage.setUser(_user);
 		}
 
-		return credentialsStore;
+		return credentialsStorage;
 	}
 
-	protected CredentialsStore createStore() {
-		CredentialsStore credentialsStore;
+	protected CredentialsStorage createStore() {
+		CredentialsStorage credentialsStorage;
 		Class credentialStoreClass;
 
 		if (_auth == null) {
 			// figure out the type from stored value
-			switch (BaseCredentialsStoreSharedPreferences.getStoredAuthenticationType(_context)) {
+			switch (BaseCredentialsStorageSharedPreferences.getStoredAuthenticationType(_context)) {
 				case BASIC:
-					credentialStoreClass = BasicCredentialsStoreSharedPreferences.class;
+					credentialStoreClass = BasicCredentialsStorageSharedPreferences.class;
 					break;
 				case OAUTH:
-					credentialStoreClass = OAuthCredentialsStoreSharedPreferences.class;
+					credentialStoreClass = OAuthCredentialsStorageSharedPreferences.class;
 					break;
 				default:
-					credentialStoreClass = CredentialsStoreVoid.class;
+					credentialStoreClass = CredentialsStorageVoid.class;
 			}
 		}
 		else {
 			if (_auth instanceof BasicAuthentication) {
-				credentialStoreClass = BasicCredentialsStoreSharedPreferences.class;
+				credentialStoreClass = BasicCredentialsStorageSharedPreferences.class;
 			}
 			else if (_auth instanceof OAuth) {
-				credentialStoreClass = OAuthCredentialsStoreSharedPreferences.class;
+				credentialStoreClass = OAuthCredentialsStorageSharedPreferences.class;
 			}
 			else {
 				throw new IllegalStateException("Authentication type is not supported");
@@ -147,14 +147,14 @@ public class CredentialsStoreBuilder {
 
 		try {
 			if (StorageType.SHARED_PREFERENCES.equals(_storageType)) {
-				credentialsStore = (CredentialsStore) credentialStoreClass.newInstance();
+				credentialsStorage = (CredentialsStorage) credentialStoreClass.newInstance();
 			}
 			else if (StorageType.AUTO.equals(_storageType)) {
 				// TODO right now, we only support Shared Prefs.
-				credentialsStore = (CredentialsStore) credentialStoreClass.newInstance();
+				credentialsStorage = (CredentialsStorage) credentialStoreClass.newInstance();
 			}
 			else {
-				credentialsStore = new CredentialsStoreVoid();
+				credentialsStorage = new CredentialsStorageVoid();
 			}
 
 		}
@@ -162,7 +162,7 @@ public class CredentialsStoreBuilder {
 			throw new IllegalStateException("Store can't be instantiated");
 		}
 
-		return credentialsStore;
+		return credentialsStorage;
 	}
 
 	private Authentication _auth;

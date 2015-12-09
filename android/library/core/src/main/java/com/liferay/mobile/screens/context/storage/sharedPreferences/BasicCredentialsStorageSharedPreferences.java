@@ -21,7 +21,7 @@ import com.liferay.mobile.screens.context.AuthenticationType;
 /**
  * @author Jose Manuel Navarro
  */
-public class BasicCredentialsStoreSharedPreferences extends BaseCredentialsStoreSharedPreferences {
+public class BasicCredentialsStorageSharedPreferences extends BaseCredentialsStorageSharedPreferences {
 
 	public static final String AUTH = "auth";
 	public static final String USERNAME = "username";

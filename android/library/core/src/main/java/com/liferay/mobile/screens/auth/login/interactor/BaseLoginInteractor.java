@@ -39,7 +39,7 @@ public abstract class BaseLoginInteractor
 		}
 
 		if (event.isFailed()) {
-			SessionContext.clearSession();
+			SessionContext.logout();
 			getListener().onLoginFailure(event.getException());
 		}
 		else {

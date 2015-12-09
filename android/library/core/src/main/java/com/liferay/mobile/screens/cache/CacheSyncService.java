@@ -51,7 +51,7 @@ public class CacheSyncService extends IntentService {
 		boolean isConnected = activeNetwork != null &&
 			activeNetwork.isConnectedOrConnecting();
 
-		if (isConnected && SessionContext.hasSession() && SessionContext.getLoggedUser() != null) {
+		if (isConnected && SessionContext.isLoggedIn() && SessionContext.getCurrentUser() != null) {
 			try {
 				Cache cache = CacheSQL.getInstance();
 				sendPortrait(cache);
@@ -131,7 +131,7 @@ public class CacheSyncService extends IntentService {
 		for (DDLRecordCache cachedRecord : records) {
 			try {
 				Record record = cachedRecord.getRecord();
-				record.setCreatorUserId(SessionContext.getLoggedUser().getId());
+				record.setCreatorUserId(SessionContext.getCurrentUser().getId());
 				final JSONObject serviceContextAttributes = new JSONObject();
 				serviceContextAttributes.put("userId", record.getCreatorUserId());
 				serviceContextAttributes.put("scopeGroupId", groupId);

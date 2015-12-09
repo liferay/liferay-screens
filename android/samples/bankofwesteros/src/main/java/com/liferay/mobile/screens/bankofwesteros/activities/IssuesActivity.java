@@ -72,7 +72,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		super.onResume();
 
 		//we don't want to crash if activity gets restored without session
-		if (!SessionContext.hasSession()) {
+		if (!SessionContext.isLoggedIn()) {
 			finish();
 		}
 	}
@@ -314,7 +314,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 			case R.id.sign_out_menu_entry:
 				color = R.color.westeros_light_gray;
 
-				SessionContext.clearSession();
+				SessionContext.logout();
 				Intent intent = new Intent(this, MainActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivity(intent);

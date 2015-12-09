@@ -138,9 +138,9 @@ public class UserPortraitLoadInteractorImpl
 
 		long userId = (long) args[0];
 
-		if (SessionContext.hasSession() && SessionContext.getLoggedUser().getId() == userId) {
-			long portraitId = SessionContext.getLoggedUser().getPortraitId();
-			String uuid = SessionContext.getLoggedUser().getUuid();
+		if (SessionContext.isLoggedIn() && SessionContext.getCurrentUser().getId() == userId) {
+			long portraitId = SessionContext.getCurrentUser().getPortraitId();
+			String uuid = SessionContext.getCurrentUser().getUuid();
 
 			load(true, portraitId, uuid);
 		}

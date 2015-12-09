@@ -47,7 +47,7 @@ public class UserPortraitUploadInteractorImpl
 				store(true, event.getUserId(), event.getPicturePath());
 			}
 
-			User oldLoggedUser = SessionContext.getLoggedUser();
+			User oldLoggedUser = SessionContext.getCurrentUser();
 
 			if (event.getJSONObject() != null) {
 				User user = new User(event.getJSONObject());
