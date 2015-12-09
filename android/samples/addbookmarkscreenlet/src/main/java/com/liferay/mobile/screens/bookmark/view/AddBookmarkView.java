@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.bookmark.AddBookmarkScreenlet;
 import com.liferay.mobile.screens.bookmark.R;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -45,6 +46,16 @@ public class AddBookmarkView extends LinearLayout implements AddBookmarkViewMode
 		LiferayCrouton.error(getContext(), "Could not add bookmark", e);
 	}
 
+	@Override
+	public BaseScreenlet getScreenlet() {
+		return _screenlet;
+	}
+
+	@Override
+	public void setScreenlet(BaseScreenlet screenlet) {
+		_screenlet = screenlet;
+	}
+
 	public void onClick(View v) {
 		AddBookmarkScreenlet screenlet = (AddBookmarkScreenlet) getParent();
 
@@ -79,4 +90,6 @@ public class AddBookmarkView extends LinearLayout implements AddBookmarkViewMode
 
 	private EditText _urlText;
 	private EditText _titleText;
+
+	private BaseScreenlet _screenlet;
 }
