@@ -15,6 +15,15 @@ import UIKit
 import QuartzCore
 
 
+@objc public protocol BaseScreenletDelegate {
+
+	optional func screenlet(screenlet: BaseScreenlet,
+		customInteractorForAction: String,
+		withSender: AnyObject?) -> Interactor?
+
+}
+
+
 /*!
  * BaseScreenlet is the base class from which all Screenlet classes must inherit.
  * A screenlet is the container for a screenlet view.
@@ -22,6 +31,8 @@ import QuartzCore
 @IBDesignable public class BaseScreenlet: UIView {
 
 	public static let DefaultAction = "defaultAction"
+
+	@IBOutlet public weak var delegate: BaseScreenletDelegate?
 
 	@IBInspectable public var themeName: String? {
 		set {
@@ -191,9 +202,17 @@ import QuartzCore
 	 * start the interaction programatically.
 	 */
 	public func performAction(name name: String, sender: AnyObject? = nil) -> Bool {
-		var result = false
+		let result: Bool
 
-		if let interactor = self.createInteractor(name: name, sender: sender) {
+		let customInteractor = self.delegate?.screenlet?(self,
+				customInteractorForAction: name,
+				withSender: sender)
+
+		let standardInteractor = self.createInteractor(
+				name: name,
+				sender: sender)
+
+		if let interactor = customInteractor ?? standardInteractor {
 			trackInteractor(interactor, withName: name)
 
 			if let message = screenletView?.progressMessageForAction(name, messageType: .Working) {
@@ -206,6 +225,7 @@ import QuartzCore
 		}
 		else {
 			print("WARN: No interactor created for action \(name)\n")
+			result = false
 		}
 
 		return result
