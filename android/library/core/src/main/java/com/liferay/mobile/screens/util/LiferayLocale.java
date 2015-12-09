@@ -56,6 +56,9 @@ public class LiferayLocale {
 	public static void changeLocale(ContextThemeWrapper contextThemeWrapper, Locale newLocale) {
 		Resources res = contextThemeWrapper.getResources();
 		Configuration conf = res.getConfiguration();
+
+		Locale oldLocale = conf.locale;
+
 		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1) {
 			conf.setLocale(newLocale);
 		}
@@ -63,5 +66,7 @@ public class LiferayLocale {
 			conf.locale = newLocale;
 		}
 		res.updateConfiguration(conf, res.getDisplayMetrics());
+
+		EventBusUtil.post(new LocaleChanged(newLocale, oldLocale));
 	}
 }
