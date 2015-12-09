@@ -129,9 +129,15 @@ public class AssetListInteractorImpl
 		JSONObject entryQueryParams =
 			_customEntryQuery == null ? new JSONObject() : new JSONObject(_customEntryQuery);
 
-		entryQueryParams.put("classNameIds", classNameId);
-		entryQueryParams.put("groupIds", groupId);
-		entryQueryParams.put("visible", "true");
+		if (!entryQueryParams.has("classNameIds")) {
+			entryQueryParams.put("classNameIds", classNameId);
+		}
+		if (!entryQueryParams.has("groupIds")) {
+			entryQueryParams.put("groupIds", groupId);
+		}
+		if (!entryQueryParams.has("visible")) {
+			entryQueryParams.put("visible", "true");
+		}
 		return entryQueryParams;
 	}
 
