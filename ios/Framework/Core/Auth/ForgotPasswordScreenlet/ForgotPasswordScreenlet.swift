@@ -35,7 +35,7 @@ import UIKit
 
 	@IBInspectable public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
 		didSet {
-			copyBasicAuth(source: self, target: screenletView)
+			(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 		}
 	}
 
@@ -60,7 +60,7 @@ import UIKit
 	override public func onCreated() {
 		super.onCreated()
 
-		copyBasicAuth(source: self, target: screenletView)
+		(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 
 		if let userName = SessionContext.currentBasicUserName {
 			viewModel.userName = userName
