@@ -75,7 +75,7 @@ class HomeViewController: UIViewController {
     }
 
 	override func viewWillAppear(animated: Bool) {
-		if SessionContext.hasSession {
+		if SessionContext.isLoggedIn {
 			issuesCard.nextState = .Maximized
 			reportIssueCard.nextState = .Minimized
 
@@ -95,7 +95,7 @@ class HomeViewController: UIViewController {
 	}
 
 	override func viewDidAppear(animated: Bool) {
-		if !SessionContext.hasSession {
+		if !SessionContext.isLoggedIn {
 			if tourCompleted {
 				self.performSegueWithIdentifier("onboarding", sender: nil)
 			}
@@ -116,7 +116,7 @@ class HomeViewController: UIViewController {
 	}
 
 	@IBAction func signOutAction(sender: AnyObject) {
-		SessionContext.clearSession()
+		SessionContext.logout()
 		self.performSegueWithIdentifier("onboarding", sender: nil)
 	}
 

@@ -17,7 +17,7 @@ import XCTest
 class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 	override func setUp() {
-		SessionContext.sessionStorage = SessionStorage(
+		SessionContext.credentialsStorage = CredentialsStorage(
 				credentialStore: CredentialStoreMock())
 
 		super.setUp()
@@ -26,7 +26,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 	override func tearDown() {
 		super.tearDown()
 
-		SessionContext.sessionStorage = SessionStorage(
+		SessionContext.credentialsStorage = CredentialsStorage(
 			credentialStore: CredentialStoreMock())
 	}
 
@@ -65,7 +65,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					XCTAssertEqual("test@liferay.com", attrs["emailAddress"] as? String)
 				}
 				assertThat("the session should be established") {
-					XCTAssertTrue(SessionContext.hasSession)
+					XCTAssertTrue(SessionContext.isLoggedIn)
 				}
 				assertThat("the current user name should be the email address") {
 					XCTAssertNotNil(SessionContext.currentBasicUserName)
@@ -112,7 +112,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 			}
 			eventually("the credentials should be stored", code: {result in
 				assertThat("the session context can load the credentials") {
-					XCTAssertTrue(SessionContext.loadSessionFromStore())
+					XCTAssertTrue(SessionContext.loadStoredCredentials())
 				}
 				assertThat("onCredentialsSaved delegate is called") {
 					XCTAssertTrue((self.screenlet!.delegate as! TestLoginScreenletDelegate).credentialsSavedCalled)
@@ -153,7 +153,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 				}
 				assertThat("the session should not be established") {
-					XCTAssertFalse(SessionContext.hasSession)
+					XCTAssertFalse(SessionContext.isLoggedIn)
 				}
 				assertThat("the current user name should be empty") {
 					XCTAssertNil(SessionContext.currentBasicUserName)

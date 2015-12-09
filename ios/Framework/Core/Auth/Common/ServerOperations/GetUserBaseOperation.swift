@@ -25,7 +25,7 @@ public class GetUserBaseOperation: ServerOperation {
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
 		
-		if !SessionContext.hasSession {
+		if !SessionContext.isLoggedIn {
 			if userName == nil {
 				return ValidationError("login-screenlet", "undefined-username")
 			}
@@ -39,7 +39,7 @@ public class GetUserBaseOperation: ServerOperation {
 	}
 
 	override public func createSession() -> LRSession? {
-		if SessionContext.hasSession {
+		if SessionContext.isLoggedIn {
 			return SessionContext.createSessionFromCurrentSession()
 		}
 

@@ -47,9 +47,11 @@ import UIKit
 	}
 
 	public func loadCurrentUser() -> Bool {
-		self.viewModel.editCurrentUser = SessionContext.hasSession
-
-		return SessionContext.hasSession
+		if SessionContext.isLoggedIn {
+			self.viewModel.editCurrentUser = true
+			return true
+		}
+		return false
 	}
 
 
@@ -78,9 +80,9 @@ import UIKit
 				self.doAutoLogin(interactor.resultUserAttributes!)
 
 				if self.saveCredentials {
-					SessionContext.removeStoredSession()
+					SessionContext.removeStoredCredentials()
 
-					if SessionContext.storeSession() {
+					if SessionContext.storeCredentials() {
 						self.autoLoginDelegate?.onScreenletCredentialsSaved?(self)
 					}
 				}
@@ -98,7 +100,7 @@ import UIKit
 		let interactor = SaveUserInteractor(screenlet: self)
 
 		interactor.onSuccess = {
-			if SessionContext.hasSession {
+			if SessionContext.isLoggedIn {
 				// refresh current session
 				self.doAutoLogin(interactor.resultUserAttributes!)
 			}
