@@ -108,4 +108,17 @@
 		<item name="android:layout_weight">1</item>
 	</style>
 
+	<style name="westeros_checkbox">
+		<item name="android:padding">@dimen/default_edit_text_padding</item>
+		<item name="android:theme">@style/WesterosTheme</item>
+		<item name="android:textSize">14sp</item>
+		<item name="android:textColor">@android:color/white</item>
+		<item name="android:paddingLeft">30dp</item>
+	</style>
+
+	<style name="westeros_date_picker" parent="Theme.AppCompat.Light">
+		<item name="colorAccent">@color/westeros_dark_red</item>
+		<item name="android:background">@android:color/transparent</item>
+	</style>
+
 </resources>

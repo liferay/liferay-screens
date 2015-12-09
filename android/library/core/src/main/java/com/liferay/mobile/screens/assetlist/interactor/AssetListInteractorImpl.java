@@ -110,7 +110,7 @@ public class AssetListInteractorImpl
 		else {
 			session.setCallback(new FilteredAssetListCallback(getTargetScreenletId()));
 			ScreensassetentryService service = new ScreensassetentryService(session);
-			service.getAssetEntries(LiferayServerContext.getCompanyId(), _groupId, _portletItemName, locale.toString());
+			service.getAssetEntries(LiferayServerContext.getCompanyId(), _groupId, _portletItemName, locale.toString(), endRow);
 		}
 	}
 

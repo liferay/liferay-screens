@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -91,6 +92,16 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 			LiferayLogger.e("portrait failed to upload", e);
 		}
 		_portraitProgress.setVisibility(INVISIBLE);
+	}
+
+	@Override
+	public BaseScreenlet getScreenlet() {
+		return _screenlet;
+	}
+
+	@Override
+	public void setScreenlet(BaseScreenlet screenlet) {
+		_screenlet = screenlet;
 	}
 
 	@Override
@@ -220,5 +231,5 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	private ProgressBar _portraitProgress;
 	private AlertDialog _choseOriginDialog;
 
-
+	private BaseScreenlet _screenlet;
 }

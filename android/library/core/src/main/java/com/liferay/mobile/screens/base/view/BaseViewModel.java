@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.base.view;
 
+import com.liferay.mobile.screens.base.BaseScreenlet;
+
 public interface BaseViewModel {
 
 	void showStartOperation(String actionName);
@@ -21,5 +23,9 @@ public interface BaseViewModel {
 	void showFinishOperation(String actionName);
 
 	void showFailedOperation(String actionName, Exception e);
+
+	BaseScreenlet getScreenlet();
+
+	void setScreenlet(BaseScreenlet screenlet);
 
 }

@@ -42,6 +42,8 @@ import java.util.Date;
  */
 public class UploadService extends IntentService {
 
+	public static final int CONNECTION_TIMEOUT = 120000;
+
 	public UploadService() {
 		super(UploadService.class.getCanonicalName());
 	}
@@ -80,6 +82,7 @@ public class UploadService extends IntentService {
 		String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
 		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setConnectionTimeout(CONNECTION_TIMEOUT);
 		DLAppService service = new DLAppService(session);
 
 		JSONObjectWrapper serviceContextWrapper = getJsonObjectWrapper(userId, groupId);

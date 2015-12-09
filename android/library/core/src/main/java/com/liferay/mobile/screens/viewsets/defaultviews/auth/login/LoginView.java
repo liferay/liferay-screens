@@ -25,6 +25,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
+import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.context.AuthenticationType;
 import com.liferay.mobile.screens.context.User;
@@ -112,6 +113,16 @@ public class LoginView extends LinearLayout
 		LiferayLogger.e("Could not login", e);
 
 		LiferayCrouton.error(getContext(), getContext().getString(R.string.login_error), e);
+	}
+
+	@Override
+	public BaseScreenlet getScreenlet() {
+		return _screenlet;
+	}
+
+	@Override
+	public void setScreenlet(BaseScreenlet screenlet) {
+		_screenlet = screenlet;
 	}
 
 	@Override
@@ -211,4 +222,5 @@ public class LoginView extends LinearLayout
 	private BasicAuthMethod _basicAuthMethod;
 	private ModalProgressBar _progressBar;
 
+	private BaseScreenlet _screenlet;
 }

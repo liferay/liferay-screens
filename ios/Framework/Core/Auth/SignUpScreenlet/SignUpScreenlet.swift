@@ -49,10 +49,8 @@ import UIKit
 	public func loadCurrentUser() -> Bool {
 		if SessionContext.isLoggedIn {
 			self.viewModel.editCurrentUser = true
-
 			return true
 		}
-
 		return false
 	}
 
