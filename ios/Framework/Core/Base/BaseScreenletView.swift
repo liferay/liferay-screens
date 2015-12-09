@@ -19,6 +19,8 @@ import UIKit
  */
 public class BaseScreenletView: UIView, UITextFieldDelegate {
 
+	public weak var screenlet: BaseScreenlet?
+
 	public weak var presentingViewController: UIViewController?
 
 	public var progressMessages: [String:ProgressMessages] { return [:] }
