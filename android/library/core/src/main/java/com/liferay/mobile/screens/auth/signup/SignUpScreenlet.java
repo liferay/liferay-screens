@@ -155,13 +155,21 @@ public class SignUpScreenlet
 		_credentialsStore = value;
 	}
 
+	public BasicAuthMethod getBasicAuthMethod() {
+		return _basicAuthMethod;
+	}
+
+	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
+		_basicAuthMethod = basicAuthMethod;
+	}
+
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.SignUpScreenlet, 0, 0);
 
 		_companyId = castToLongOrUseDefault(typedArray.getString(
-				R.styleable.SignUpScreenlet_companyId),
+			R.styleable.SignUpScreenlet_companyId),
 			LiferayServerContext.getCompanyId());
 
 		_anonymousApiUserName = typedArray.getString(

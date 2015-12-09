@@ -105,7 +105,7 @@ public class LoginView
 		viewToSecondaryText.setColorFilter(res.getColor(R.color.material_secondary_text));
 	}
 
-	private ImageView _drawableLogin;
-	private ImageView _drawablePassword;
+	protected ImageView _drawableLogin;
+	protected ImageView _drawablePassword;
 
 }

@@ -118,5 +118,5 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		//using the DatePickerDialog
 	}
 
-	private DatePickerDialog _pickerDialog;
+	protected DatePickerDialog _pickerDialog;
 }

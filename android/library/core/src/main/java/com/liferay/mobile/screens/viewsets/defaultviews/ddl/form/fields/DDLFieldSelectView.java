@@ -123,5 +123,5 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 		return result;
 	}
 
-	private AlertDialog _alertDialog;
+	protected AlertDialog _alertDialog;
 }

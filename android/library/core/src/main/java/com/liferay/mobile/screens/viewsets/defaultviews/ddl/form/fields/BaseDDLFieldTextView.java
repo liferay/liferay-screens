@@ -144,9 +144,10 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 	protected abstract void onTextChanged(String text);
 
+	protected TextView _labelTextView;
+	protected EditText _textEditText;
+	protected View _parentView;
+
 	private T _field;
-	private TextView _labelTextView;
-	private EditText _textEditText;
-	private View _parentView;
 
 }

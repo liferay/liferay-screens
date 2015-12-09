@@ -72,14 +72,18 @@ public class LoginView extends LinearLayout
 		return _loginEditText.getText().toString();
 	}
 
-	@Override
-	public String getPassword() {
-		return _passwordEditText.getText().toString();
+	public AuthenticationType getAuthenticationType() {
+		return _authenticationType;
 	}
 
 	@Override
 	public void setAuthenticationType(AuthenticationType authenticationType) {
 		_authenticationType = authenticationType;
+	}
+
+	@Override
+	public String getPassword() {
+		return _passwordEditText.getText().toString();
 	}
 
 	@Override
@@ -202,13 +206,14 @@ public class LoginView extends LinearLayout
 		}
 	}
 
-	private EditText _loginEditText;
-	private EditText _passwordEditText;
-	private Button _submitButton;
-	private LinearLayout _basicAuthenticationLayout;
-	private Button _oAuthButton;
+	protected EditText _loginEditText;
+	protected EditText _passwordEditText;
+	protected Button _submitButton;
+	protected LinearLayout _basicAuthenticationLayout;
+	protected Button _oAuthButton;
+	protected ModalProgressBar _progressBar;
+
 	private AuthenticationType _authenticationType;
 	private BasicAuthMethod _basicAuthMethod;
-	private ModalProgressBar _progressBar;
 
 }

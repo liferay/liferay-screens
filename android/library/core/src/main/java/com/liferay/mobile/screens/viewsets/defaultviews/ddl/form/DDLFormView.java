@@ -291,12 +291,12 @@ public class DDLFormView
 		}
 		return null;
 	}
+	protected ProgressBar _progressBar;
+	protected ProgressBar _loadingFormProgressBar;
+	protected ViewGroup _fieldsContainerView;
+	protected Button _submitButton;
 
 	private static Map<Field.EditorType, Integer> _defaultLayoutIds = new HashMap<>(16);
-	private ProgressBar _progressBar;
-	private ProgressBar _loadingFormProgressBar;
-	private ViewGroup _fieldsContainerView;
-	private Button _submitButton;
 	private Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
 	private Map<String, Integer> _customLayoutIds = new HashMap<>();
 

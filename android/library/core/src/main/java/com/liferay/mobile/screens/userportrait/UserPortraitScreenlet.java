@@ -361,11 +361,11 @@ public class UserPortraitScreenlet
 
 	private String _filePath;
 	private boolean _autoLoad;
-	private UserPortraitListener _listener;
 	private boolean _male;
 	private long _portraitId;
 	private String _uuid;
 	private long _userId;
 	private boolean _editable;
+	private UserPortraitListener _listener;
 	private OfflinePolicy _offlinePolicy;
 }

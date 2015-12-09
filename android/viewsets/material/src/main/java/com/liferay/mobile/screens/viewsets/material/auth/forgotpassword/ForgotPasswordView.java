@@ -65,6 +65,6 @@ public class ForgotPasswordView
 		return R.drawable.material_account_box;
 	}
 
-	private ImageView _drawableLogin;
+	protected ImageView _drawableLogin;
 
 }
