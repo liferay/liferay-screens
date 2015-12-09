@@ -115,6 +115,9 @@ public class WebContentDisplayView extends FrameLayout
 		}
 	}
 
+	protected WebView _webView;
+	protected ProgressBar _progressBar;
+
 	private static final String STYLES =
 		"<style>" +
 			".MobileCSS {padding: 4%; width: 92%;} " +
@@ -125,9 +128,6 @@ public class WebContentDisplayView extends FrameLayout
 			".MobileCSS img { width: 100% !important; } " +
 			".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }" +
 			"</style>";
-
-	private WebView _webView;
-	private ProgressBar _progressBar;
 
 	private BaseScreenlet _screenlet;
 }

@@ -260,7 +260,6 @@ public class WebContentDisplayScreenlet
 		}
 	}
 
-	private OfflinePolicy _offlinePolicy;
 	private Long _templateId;
 	private String _articleId;
 	private boolean _autoLoad;
@@ -268,5 +267,6 @@ public class WebContentDisplayScreenlet
 	private long _groupId;
 	private boolean _javascriptEnabled;
 	private WebContentDisplayListener _listener;
+	private OfflinePolicy _offlinePolicy;
 
 }

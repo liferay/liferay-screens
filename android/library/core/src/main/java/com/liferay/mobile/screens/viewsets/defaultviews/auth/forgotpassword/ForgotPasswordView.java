@@ -156,10 +156,10 @@ public class ForgotPasswordView extends LinearLayout
 	protected EditText getLoginEditText() {
 		return _loginEditText;
 	}
+	protected EditText _loginEditText;
+	protected ModalProgressBar _progressBar;
 
 	private BasicAuthMethod _basicAuthMethod;
-	private EditText _loginEditText;
-	private ModalProgressBar _progressBar;
 
 	private BaseScreenlet _screenlet;
 }

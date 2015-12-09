@@ -93,6 +93,11 @@
 				android:text="@string/sync_cache"/>
 
 			<Button
+				android:id="@+id/custom_interactor"
+				style="@style/test_app_button"
+				android:text="@string/custom_interactor"/>
+
+			<Button
 				android:id="@+id/change_theme"
 				style="@style/test_app_button"
 				android:text="@string/change_theme"/>

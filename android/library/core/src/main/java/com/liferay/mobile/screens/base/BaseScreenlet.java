@@ -21,6 +21,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
@@ -92,14 +93,20 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return result;
 	}
 
+	public void setCustomInteractorListener(CustomInteractorListener customInteractorListener) {
+		_customInteractorListener = customInteractorListener;
+	}
+
 	protected I prepareInteractor(String actionName) {
-		I result = createInteractor(actionName);
+
+		I result = _customInteractorListener == null ?
+			createInteractor(actionName) :
+			(I) _customInteractorListener.createInteractor(actionName);
 
 		if (result != null) {
 			result.onScreenletAttached(this);
 			_interactors.put(actionName, result);
 		}
-
 		return result;
 	}
 
@@ -261,5 +268,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	private Map<String, I> _interactors = new HashMap<>();
 	private int _screenletId;
 	private View _screenletView;
+
+	private CustomInteractorListener _customInteractorListener;
 
 }

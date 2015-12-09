@@ -226,10 +226,10 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		_portraitImage.setImageBitmap(transformBitmap(defaultBitmap));
 	}
 
-	private ImageView _portraitImage;
-	private ImageButton _portraitAddButton;
-	private ProgressBar _portraitProgress;
-	private AlertDialog _choseOriginDialog;
+	protected ImageView _portraitImage;
+	protected ImageButton _portraitAddButton;
+	protected ProgressBar _portraitProgress;
+	protected AlertDialog _choseOriginDialog;
 
 	private BaseScreenlet _screenlet;
 }

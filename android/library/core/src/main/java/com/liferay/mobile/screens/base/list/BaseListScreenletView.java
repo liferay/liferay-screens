@@ -251,8 +251,8 @@ public abstract class BaseListScreenletView<
 	private static final String _STATE_ROW_COUNT = "rowCount";
 	private static final String _STATE_SUPER = "super";
 
-	private ProgressBar _progressBar;
-	private RecyclerView _recyclerView;
+	protected ProgressBar _progressBar;
+	protected RecyclerView _recyclerView;
 
 	private BaseScreenlet _screenlet;
 
