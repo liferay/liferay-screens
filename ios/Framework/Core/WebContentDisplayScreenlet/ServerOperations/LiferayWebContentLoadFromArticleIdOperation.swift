@@ -39,7 +39,9 @@ public class LiferayWebContentLoadFromArticleIdOperation: LiferayWebContentLoadB
 		let service = LRScreensjournalarticleService_v62(session: session)
 
 		do {
-			let result = try service.getJournalArticleContentWithGroupId(groupId!,
+			let result: String?
+
+			result = try service.getJournalArticleContentWithGroupId(groupId!,
 				articleId: articleId!,
 				ddmTemplateId: templateId,
 				locale: NSLocale.currentLocaleString)
@@ -59,7 +61,9 @@ public class LiferayWebContentLoadFromArticleIdOperation: LiferayWebContentLoadB
 		let service = LRJournalArticleService_v62(session: session)
 
 		do {
-			let result = try service.getArticleContentWithGroupId(groupId!,
+			let result: String?
+
+			result = try service.getArticleContentWithGroupId(groupId!,
 				articleId: articleId!,
 				languageId: NSLocale.currentLocaleString,
 				themeDisplay: nil)

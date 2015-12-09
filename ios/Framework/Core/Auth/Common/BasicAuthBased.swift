@@ -25,18 +25,8 @@ import UIKit
 @objc public protocol BasicAuthBasedType {
 
 	var basicAuthMethod: String? { get set }
-	var saveCredentials: Bool { get set }
 
 }
-
-
-public func copyBasicAuth(source source: BasicAuthBasedType, target: AnyObject?) {
-	if let authBasedTarget = target as? BasicAuthBasedType {
-		authBasedTarget.basicAuthMethod = source.basicAuthMethod
-		authBasedTarget.saveCredentials = source.saveCredentials
-	}
-}
-
 
 
 public enum BasicAuthMethod: String {
@@ -51,7 +41,7 @@ public enum BasicAuthMethod: String {
 
 	public static func create(text: String?) -> BasicAuthMethod {
 		return all().filter {
-				$0.rawValue == text?.lowercaseString
+				$0.rawValue.lowercaseString == text?.lowercaseString
 			}.first ?? .Email
 	}
 

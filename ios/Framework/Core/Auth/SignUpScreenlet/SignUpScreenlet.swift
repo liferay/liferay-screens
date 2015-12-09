@@ -93,7 +93,6 @@ import UIKit
 
 		interactor.onFailure = {
 			self.delegate?.screenlet?(self, onSignUpError: $0)
-			return
 		}
 
 		return interactor
@@ -114,42 +113,31 @@ import UIKit
 
 		interactor.onFailure = {
 			self.delegate?.screenlet?(self, onSignUpError: $0)
-			return
 		}
 
 		return interactor
 	}
 
 	private func doAutoLogin(userAttributes: [String:AnyObject]) {
-		func userNameForAuth(auth: BasicAuthMethod) -> String {
-			switch auth {
-			case .ScreenName:
-				return self.viewModel.screenName!
-			case .UserId:
-				return userAttributes["userId"] as! String
-			case .Email:
-				return self.viewModel.emailAddress!
-			}
-		}
+		let userNameKeys : [BasicAuthMethod:String] = [
+			.Email : "emailAddress",
+			.ScreenName : "screenName",
+			.UserId: "userId"
+		]
 
-		let currentAuth = currentBasicAuthMethod() ??
-					BasicAuthMethod.fromUserName(anonymousApiUserName!)
+		let currentAuth = BasicAuthMethod.fromUserName(anonymousApiUserName!)
 
-		SessionContext.createBasicSession(
-				username: userNameForAuth(currentAuth),
+		if let currentKey = userNameKeys[currentAuth],
+				userName = userAttributes[currentKey] as? String {
+
+			SessionContext.createBasicSession(
+				username: userName,
 				password: self.viewModel.password!,
 				userAttributes: userAttributes)
 
-		self.autoLoginDelegate?.screenlet?(self,
+			self.autoLoginDelegate?.screenlet?(self,
 				onLoginResponseUserAttributes: userAttributes)
-	}
-
-	private func currentBasicAuthMethod() -> BasicAuthMethod? {
-		if let userName = SessionContext.currentBasicUserName {
-			return BasicAuthMethod.fromUserName(userName)
 		}
-
-		return nil
 	}
 
 }

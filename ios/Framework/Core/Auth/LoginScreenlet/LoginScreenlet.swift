@@ -34,15 +34,11 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	@IBInspectable public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
 		didSet {
-			copyBasicAuth(source: self, target: screenletView)
+			(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 		}
 	}
 
-	@IBInspectable public var saveCredentials: Bool = false {
-		didSet {
-			(screenletView as? BasicAuthBasedType)?.saveCredentials = self.saveCredentials
-		}
-	}
+	@IBInspectable public var saveCredentials: Bool = false
 
 	@IBInspectable public var companyId: Int64 = 0
 
@@ -90,7 +86,8 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	override public func onCreated() {
 		super.onCreated()
 		
-		copyBasicAuth(source: self, target: screenletView)
+		(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
+
 		copyAuthType()
 	}
 
@@ -113,7 +110,7 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 			self.delegate?.screenlet?(self,
 					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
 
-			if self.viewModel.saveCredentials {
+			if self.saveCredentials {
 				if SessionContext.storeCredentials() {
 					self.delegate?.onScreenletCredentialsSaved?(self)
 				}

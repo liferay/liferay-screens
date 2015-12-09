@@ -33,8 +33,6 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 		if userAttributes == nil { return false }
 		if userAttributes!.isEmpty { return false }
 
-		let bundleId = NSBundle.mainBundle().bundleIdentifier ?? "liferay-screens"
-
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
 		do {
@@ -46,7 +44,7 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 			let userData = try? NSJSONSerialization.dataWithJSONObject(userAttributes!,
 				options: NSJSONWritingOptions())
 			if let userData = userData {
-				try keychain.set(userData, key: "\(bundleId)-user")
+				try keychain.set(userData, key: "user_attributes")
 
 				storeAuth(keychain: keychain, auth: session!.authentication!)
 
@@ -57,7 +55,7 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 			do {
 				try keychain.remove("companyId")
 				try keychain.remove("groupId")
-				try keychain.remove("\(bundleId)-user")
+				try keychain.remove("user_attributes")
 			} catch {
 			}
 		}
@@ -70,10 +68,6 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 
 		do {
 			try keychain.removeAll()
-
-			let userKeychain = Keychain(service: NSBundle.mainBundle().bundleIdentifier!)
-
-			try userKeychain.removeAll()
 		}
 		catch {
 			return false
@@ -97,9 +91,7 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 			return false
 		}
 
-		let bundleId = NSBundle.mainBundle().bundleIdentifier ?? "liferay-screens"
-
-		guard let userData = try? keychain.getData("\(bundleId)-user")
+		guard let userData = try? keychain.getData("user_attributes")
 		else {
 			return false
 		}
