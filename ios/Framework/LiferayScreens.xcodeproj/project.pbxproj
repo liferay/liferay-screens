@@ -67,7 +67,6 @@
 		881E613E1ACBED7500862B9E /* WebContentDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61391ACBED7500862B9E /* WebContentDisplayViewModel.swift */; };
 		881E61471ACBEDC600862B9E /* AssetListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61401ACBEDC600862B9E /* AssetListPageLoadInteractor.swift */; };
 		881E61481ACBEDC600862B9E /* AssetListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61411ACBEDC600862B9E /* AssetListScreenlet.swift */; };
-		881E61491ACBEDC600862B9E /* AssetListScreenletInterop.h in Headers */ = {isa = PBXBuildFile; fileRef = 881E61421ACBEDC600862B9E /* AssetListScreenletInterop.h */; };
 		881E614A1ACBEDC600862B9E /* LiferayAssetListPageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61441ACBEDC600862B9E /* LiferayAssetListPageOperation.swift */; };
 		881E614B1ACBEDC600862B9E /* AssetListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61461ACBEDC600862B9E /* AssetListTableView.swift */; };
 		881E61761ACBEE0B00862B9E /* DDLValuesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E614D1ACBEE0B00862B9E /* DDLValuesParser.swift */; };
@@ -423,7 +422,6 @@
 		881E61391ACBED7500862B9E /* WebContentDisplayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayViewModel.swift; sourceTree = "<group>"; };
 		881E61401ACBEDC600862B9E /* AssetListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListPageLoadInteractor.swift; sourceTree = "<group>"; };
 		881E61411ACBEDC600862B9E /* AssetListScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListScreenlet.swift; sourceTree = "<group>"; };
-		881E61421ACBEDC600862B9E /* AssetListScreenletInterop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletInterop.h; sourceTree = "<group>"; };
 		881E61441ACBEDC600862B9E /* LiferayAssetListPageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayAssetListPageOperation.swift; sourceTree = "<group>"; };
 		881E61461ACBEDC600862B9E /* AssetListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListTableView.swift; sourceTree = "<group>"; };
 		881E614D1ACBEE0B00862B9E /* DDLValuesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLValuesParser.swift; sourceTree = "<group>"; };
@@ -870,7 +868,6 @@
 			children = (
 				881E61401ACBEDC600862B9E /* AssetListPageLoadInteractor.swift */,
 				881E61411ACBEDC600862B9E /* AssetListScreenlet.swift */,
-				881E61421ACBEDC600862B9E /* AssetListScreenletInterop.h */,
 				881E61431ACBEDC600862B9E /* ServerOperations */,
 				881E61451ACBEDC600862B9E /* TableView */,
 			);
@@ -1443,7 +1440,6 @@
 				8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */,
 				B2A8B1D51BBABE1F00AEC9D9 /* LRScreensjournalarticleService_v62.h in Headers */,
 				B2F3F3511B0A1923002CEF60 /* LRScreensddlrecordService_v62.h in Headers */,
-				881E61491ACBEDC600862B9E /* AssetListScreenletInterop.h in Headers */,
 				B2F3F34F1B0A1923002CEF60 /* LRScreensassetentryService_v62.h in Headers */,
 				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
 			);

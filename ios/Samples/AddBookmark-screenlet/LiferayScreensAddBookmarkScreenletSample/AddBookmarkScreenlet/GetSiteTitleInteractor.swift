@@ -16,7 +16,7 @@ public class GetSiteTitleInteractor: Interactor {
 	private var session: NSURLSession?
 
 	override public func start() -> Bool {
-		let viewModel = self.screenlet.screenletView as! AddBookmarkViewModel
+		let viewModel = self.screenlet!.screenletView as! AddBookmarkViewModel
 
 		if let URL = NSURL(string: viewModel.URL!) {
 			NSURLSession.sharedSession().dataTaskWithURL(URL) {
@@ -26,7 +26,7 @@ public class GetSiteTitleInteractor: Interactor {
 					self.callOnFailure(errorValue)
 				}
 				else {
-					if let html = NSString(data: data, encoding: NSUTF8StringEncoding) {
+					if let html = NSString(data: data!, encoding: NSUTF8StringEncoding) {
 						self.resultTitle = self.parseTitle(html)
 					}
 					self.callOnSuccess()

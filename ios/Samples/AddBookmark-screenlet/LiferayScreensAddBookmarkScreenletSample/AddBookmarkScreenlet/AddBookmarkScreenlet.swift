@@ -15,7 +15,7 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 	@IBInspectable var allowsBrokenURL: Bool = false
 
 
-	override public func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(name name: String?, sender: AnyObject?) -> Interactor? {
 		switch name! {
 		case "get-title":
 			return createGetTitleInteractor()
@@ -32,7 +32,9 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 		let interactor = GetSiteTitleInteractor(screenlet: self)
 
 		// this shows the standard activity indicator in the screen...
-		self.showHUDWithMessage("Getting site title...", details: nil)
+		self.showHUDWithMessage("Getting site title...",
+			closeMode: .Autoclose,
+			spinnerMode: .IndeterminateSpinner)
 
 		interactor.onSuccess = {
 			self.hideHUD()
@@ -43,9 +45,8 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 
 		interactor.onFailure = { err in
 			self.showHUDWithMessage("An error occurred retrieving the title",
-				details: nil,
-				closeMode:.ManualClose(true),
-				spinnerMode:.NoSpinner)
+				closeMode: .ManualClose_TouchClosable,
+				spinnerMode: .NoSpinner)
 		}
 
 		return interactor
@@ -54,17 +55,20 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 	private func createAddBookmarkInteractor() -> LiferayAddBookmarkInteractor {
 		let interactor = LiferayAddBookmarkInteractor(screenlet: self)
 
-		self.showHUDWithMessage("Saving bookmark...", details: nil)
+		self.showHUDWithMessage("Saving bookmark...",
+			closeMode: .Autoclose,
+			spinnerMode: .IndeterminateSpinner)
 
 		interactor.onSuccess = {
-			self.hideHUDWithMessage("Bookmark saved!")
+			self.showHUDWithMessage("Bookmark saved!",
+				closeMode: .Autoclose_TouchClosable,
+				spinnerMode: .NoSpinner)
 		}
 
 		interactor.onFailure = { e in
 			self.showHUDWithMessage("An error occurred saving the bookmark",
-				details: nil,
-				closeMode:.ManualClose(true),
-				spinnerMode:.NoSpinner)
+				closeMode: .ManualClose_TouchClosable,
+				spinnerMode: .NoSpinner)
 		}
 
 		return interactor
