@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4116D25CE4BB5A342B9BE4B4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E63A2C51549D408A84A2C8 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4116D25CE4BB5A342B9BE4B4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E63A2C51549D408A84A2C8 /* Pods.framework */; };
 		88C22FC61B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C22FC51B09F2F500EE4CAE /* LiferayScreensAddBookmarkScreenletSample.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88C22FE21B09F38E00EE4CAE /* AddBookmarkView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C22FDE1B09F38E00EE4CAE /* AddBookmarkView_default.swift */; };
 		88C22FE31B09F38E00EE4CAE /* AddBookmarkView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C22FDF1B09F38E00EE4CAE /* AddBookmarkView_default.xib */; };
@@ -164,7 +164,9 @@
 		88C22FB71B09F2F500EE4CAE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Liferay;
 				TargetAttributes = {
 					88C22FBF1B09F2F500EE4CAE = {
@@ -273,6 +275,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -351,6 +354,7 @@
 				INFOPLIST_FILE = LiferayScreensAddBookmarkScreenletSample/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -367,6 +371,7 @@
 				INFOPLIST_FILE = LiferayScreensAddBookmarkScreenletSample/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

@@ -15,7 +15,7 @@ public class LiferayAddBookmarkInteractor: Interactor, LRCallback {
 	public var resultBookmarkInfo: [String:AnyObject]?
 
 	override public func start() -> Bool {
-		let viewModel = self.screenlet.screenletView as! AddBookmarkViewModel
+		let viewModel = self.screenlet!.screenletView as! AddBookmarkViewModel
 
 		if let URL = viewModel.URL {
 			let session = SessionContext.createSessionFromCurrentSession()
