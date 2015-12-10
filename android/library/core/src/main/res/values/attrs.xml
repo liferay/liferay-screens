@@ -33,7 +33,6 @@
 		<attr name="groupId"/>
 		<attr name="offlinePolicy"/>
 		<attr name="portletItemName" format="string"/>
-		<attr name="customEntryQuery" format="string"/>
 		<attr name="classNameId" format="string"/>
 		<attr name="firstPageSize"/>
 		<attr name="pageSize"/>

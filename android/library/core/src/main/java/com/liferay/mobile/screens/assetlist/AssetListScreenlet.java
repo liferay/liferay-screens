@@ -27,6 +27,7 @@ import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 /**
@@ -101,6 +102,14 @@ public class AssetListScreenlet
 		}
 	}
 
+	public HashMap<String, Object> getCustomEntryQuery() {
+		return _customEntryQuery;
+	}
+
+	public void setCustomEntryQuery(HashMap<String, Object> customEntryQuery) {
+		_customEntryQuery = customEntryQuery;
+	}
+
 	@Override
 	protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale)
 		throws Exception {
@@ -128,8 +137,6 @@ public class AssetListScreenlet
 
 		_portletItemName = typedArray.getString(R.styleable.AssetListScreenlet_portletItemName);
 
-		_customEntryQuery = typedArray.getString(R.styleable.AssetListScreenlet_customEntryQuery);
-
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
@@ -139,11 +146,10 @@ public class AssetListScreenlet
 	protected AssetListInteractor createInteractor(String actionName) {
 		return new AssetListInteractorImpl(getScreenletId(), _offlinePolicy);
 	}
-
 	private OfflinePolicy _offlinePolicy;
 	private long _classNameId;
 	private long _groupId;
 	private String _portletItemName;
-	private String _customEntryQuery;
+	private HashMap<String, Object> _customEntryQuery = new HashMap<>();
 
 }
