@@ -23,29 +23,31 @@ public class LiferayAddBookmarkInteractor: Interactor, LRCallback {
 
 			let service = LRBookmarksEntryService_v62(session: session)
 
-			var error: NSError? = nil
-
-			service.addEntryWithGroupId(LiferayServerContext.groupId,
+			do {
+				try service.addEntryWithGroupId(LiferayServerContext.groupId,
 					folderId: 0,
 					name: viewModel.title,
-					url: viewModel.URL,
+					url: URL,
 					description: "Added from Liferay Screens",
-					serviceContext: nil,
-					error: &error)
+					serviceContext: nil)
 
-			return (error == nil)
+				return true
+			}
+			catch {
+				return false
+			}
 		}
 
 		return false
 	}
 
     public func onFailure(error: NSError!) {
-		self.onFailure?(error)
+		self.onFailure(error)
 	}
 
     public func onSuccess(result: AnyObject!) {
 		resultBookmarkInfo = (result as! [String:AnyObject])
-		self.onSuccess?()
+		self.onSuccess!()
 	}
 
 }

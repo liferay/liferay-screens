@@ -15,7 +15,7 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 	@IBInspectable var allowsBrokenURL: Bool = false
 
 
-	override public func createInteractor(#name: String?, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(name name: String?, sender: AnyObject?) -> Interactor? {
 		switch name! {
 		case "get-title":
 			return createGetTitleInteractor()
