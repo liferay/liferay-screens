@@ -86,7 +86,7 @@ public class AddBookmarkScreenlet
 
 	@Override
 	protected AddBookmarkInteractor createInteractor(String actionName) {
-		return new AddDeliciousInteractorImpl(getScreenletId());
+		return new AddBookmarkInteractorImpl(getScreenletId());
 	}
 
 	@Override
