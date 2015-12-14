@@ -19,7 +19,7 @@ public class DDLFieldDocument : DDLField {
 	public enum UploadStatus: Hashable, Equatable {
 		case Uploaded([String:AnyObject])
 		case Failed(NSError?)
-		case Uploading(UInt,UInt)
+		case Uploading(UInt64, UInt64)
 		case Pending
 
 		public static func CachedStatusData(cacheKey: String) -> [String:AnyObject] {
@@ -103,7 +103,7 @@ public class DDLFieldDocument : DDLField {
 		case UploadStatus.Uploading(0, 0).hashValue:
 			let n1 = aDecoder.decodeObjectForKey("uploadStatusUploading1") as! NSNumber
 			let n2 = aDecoder.decodeObjectForKey("uploadStatusUploading2") as! NSNumber
-			uploadStatus = .Uploading(n1.unsignedLongValue, n2.unsignedLongValue)
+			uploadStatus = .Uploading(n1.unsignedLongLongValue, n2.unsignedLongLongValue)
 
 		default:
 			()
@@ -123,8 +123,8 @@ public class DDLFieldDocument : DDLField {
 		case .Failed(let error):
 			aCoder.encodeObject(error, forKey: "uploadStatusFailedError")
 		case .Uploading(let n1, let n2):
-			aCoder.encodeObject(NSNumber(unsignedLong: n1), forKey: "uploadStatusUploading1")
-			aCoder.encodeObject(NSNumber(unsignedLong: n2), forKey: "uploadStatusUploading2")
+			aCoder.encodeObject(NSNumber(unsignedLongLong: n1), forKey: "uploadStatusUploading1")
+			aCoder.encodeObject(NSNumber(unsignedLongLong: n2), forKey: "uploadStatusUploading2")
 		case .Pending:
 			()
 		}

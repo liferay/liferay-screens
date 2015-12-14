@@ -106,8 +106,8 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 
 		switch field.uploadStatus {
 			case .Uploading(let current, let max):
-				progress!.progressTotal = max
-				progress!.progressCounter = current
+				progress!.progressTotal = UInt(max)
+				progress!.progressCounter = UInt(current)
 
 				if progress!.alpha == 0 {
 					changeProgressVisilibity(show:true)
