@@ -65,8 +65,14 @@ public class NumberFieldTest {
 			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			assertNull(field.convertFromString("12a3"));
-			assertNull(field.convertFromString("12,3"));
-			assertNull(field.convertFromString("12,000"));
+		}
+
+		@Test
+		public void shouldReturnValueWhenParsingWithAlternativeLocale() throws Exception {
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+
+			assertNotNull(field.convertFromString("12,3"));
+			assertNotNull(field.convertFromString("12,000"));
 		}
 
 		@Test
@@ -81,7 +87,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnDoubleWhenDecimalStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale, _spanishLocale);
 
 			Number result = field.convertFromString("123.4");
 
