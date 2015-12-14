@@ -39,9 +39,8 @@ import UIKit
 
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onDocumentField field: DDLFieldDocument,
-			uploadedBytes bytes: UInt,
-			sentBytes sent: Int64,
-			totalBytes total: Int64)
+			uploadedBytes bytes: UInt64,
+			totalBytes total: UInt64)
 
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onDocumentField field: DDLFieldDocument,
@@ -261,15 +260,14 @@ import UIKit
 			document: DDLFieldDocument)
 			-> DDLFormUploadDocumentInteractor {
 
-		func onUploadedBytes(document: DDLFieldDocument, bytes: UInt, sent: Int64, total: Int64) {
+		func onUploadedBytes(document: DDLFieldDocument, sent: UInt64, total: UInt64) {
 			switch uploadStatus {
 				case .Uploading(_, _):
 					formView.changeDocumentUploadStatus(document)
 
 					ddlFormDelegate?.screenlet?(self,
 						onDocumentField: document,
-						uploadedBytes: bytes,
-						sentBytes: sent,
+						uploadedBytes: sent,
 						totalBytes: total)
 
 				default: ()
