@@ -38,7 +38,7 @@ import org.robolectric.annotation.Config;
 public class UserPortraitInteractorTest {
 
 	@RunWith(RobolectricManifestTestRunner.class)
-	@Config(constants = BuildConfig.class, emulateSdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 18)
 	public static class WhenLoadingFromPortraitId {
 
 		@Before

@@ -92,7 +92,7 @@ public class XSDParserLocalizationTest {
 			List<Field> fields =
 				new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("es", "MX"));
 
-			assertEquals("Un Booleano neutro para 'es'", fields.get(0).getLabel());
+			assertEquals("Un Booleano para 'es_ES'", fields.get(0).getLabel());
 		}
 
 		@Test
@@ -132,7 +132,8 @@ public class XSDParserLocalizationTest {
 			List<Field> fields =
 				new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("fr"));
 
-			assertEquals("Un Booleano para 'es_ES'", fields.get(0).getLabel());
+			String defaultMobileLocale = "es_ES";
+			assertEquals("Un Booleano para '" + defaultMobileLocale + "'", fields.get(0).getLabel());
 		}
 
 		@Test

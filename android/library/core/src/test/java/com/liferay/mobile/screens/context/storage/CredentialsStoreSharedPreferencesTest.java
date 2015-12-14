@@ -64,7 +64,7 @@ public class CredentialsStoreSharedPreferencesTest {
 	}
 
 	@RunWith(RobolectricManifestTestRunner.class)
-	@Config(constants = BuildConfig.class, emulateSdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 18)
 	public static class WhenStoreCredentials {
 
 		@Before
@@ -123,7 +123,7 @@ public class CredentialsStoreSharedPreferencesTest {
 	}
 
 	@RunWith(RobolectricManifestTestRunner.class)
-	@Config(constants = BuildConfig.class, emulateSdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 18)
 	public static class WhenRemoveStoredCredentials {
 
 		@Before
@@ -149,7 +149,7 @@ public class CredentialsStoreSharedPreferencesTest {
 	}
 
 	@RunWith(RobolectricManifestTestRunner.class)
-	@Config(constants = BuildConfig.class, emulateSdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 18)
 	public static class WhenLoadingStoredCredentials {
 
 		@Before
