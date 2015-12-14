@@ -104,14 +104,14 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 
 	//MARK: LRCallback
 
-	public func onFailure(error: NSError?) {
+	public func onFailure(error: NSError!) {
 		lastError = error
 		uploadResult = nil
 
 		dispatch_semaphore_signal(requestSemaphore!)
 	}
 
-	public func onSuccess(result: AnyObject?) {
+	public func onSuccess(result: AnyObject!) {
 		lastError = nil
 		uploadResult = result as? [String:AnyObject]
 
