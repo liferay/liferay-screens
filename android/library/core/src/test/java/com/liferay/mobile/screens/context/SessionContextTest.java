@@ -48,7 +48,7 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(Enclosed.class)
 public class SessionContextTest {
 
-	@Config(constants = BuildConfig.class, emulateSdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 18)
 	@RunWith(RobolectricManifestTestRunner.class)
 	public static class WhenCreateSession {
 
@@ -99,7 +99,7 @@ public class SessionContextTest {
 
 	}
 
-	@Config(constants = BuildConfig.class, emulateSdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 18)
 	@RunWith(RobolectricManifestTestRunner.class)
 	public static class Whenlogout {
 
@@ -121,7 +121,7 @@ public class SessionContextTest {
 
 	}
 
-	@Config(constants = BuildConfig.class, emulateSdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 18)
 	@RunWith(RobolectricManifestTestRunner.class)
 	public static class WhenSettingUserAttributes {
 
@@ -149,7 +149,7 @@ public class SessionContextTest {
 
 	}
 
-	@Config(constants = BuildConfig.class, emulateSdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 18)
 	@RunWith(RobolectricManifestTestRunner.class)
 	public static class WhenStoreSessionInSharedPreferences {
 
