@@ -33,6 +33,7 @@ import com.liferay.mobile.screens.util.JSONUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 import static com.liferay.mobile.screens.cache.DefaultCachedType.ASSET_LIST;
@@ -50,7 +51,8 @@ public class AssetListInteractorImpl
 	}
 
 	public void loadRows(
-		long groupId, long classNameId, String portletItemName, String customEntryQuery, int startRow, int endRow, Locale locale)
+		long groupId, long classNameId, String portletItemName,
+		HashMap<String, Object> customEntryQuery, int startRow, int endRow, Locale locale)
 		throws Exception {
 		this._groupId = groupId;
 		this._classNameId = classNameId;
@@ -160,5 +162,5 @@ public class AssetListInteractorImpl
 	private String _portletItemName;
 	private long _groupId;
 	private long _classNameId;
-	private String _customEntryQuery;
+	private HashMap<String, Object> _customEntryQuery;
 }
