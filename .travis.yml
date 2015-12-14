@@ -24,5 +24,6 @@ android:
     - sys-img-x86-android-17
 
 before_script: 
-  - cd android/library/core/
+  - cd android/library/
   - echo "sdk.dir=$ANDROID_HOME" > local.properties
+  - cd core/
