@@ -85,7 +85,7 @@ public class AddDeliciousInteractorImpl
 	class BookmarkAdded {
 
 		public BookmarkAdded(String text) {
-			this.text = text;
+			this._text = text;
 		}
 
 		public BookmarkAdded(Exception e) {
@@ -100,7 +100,11 @@ public class AddDeliciousInteractorImpl
 			return _e;
 		}
 
-		private String text;
+		public String getText() {
+			return _text;
+		}
+
+		private String _text;
 		private Exception _e;
 	}
 
