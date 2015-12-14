@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddl;
 
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.util.LiferayLocale;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -58,7 +59,7 @@ public class XSDParser {
 			result = processDocument(document, locale);
 		}
 		catch (ParserConfigurationException | IOException e) {
-			//TODO this shouldn't happen
+			LiferayLogger.e("Error parsing form", e);
 		}
 
 		return result;
@@ -219,14 +220,17 @@ public class XSDParser {
 
 		if (resultElement == null) {
 
-			String supportedLocale = LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
+			String supportedLocale = LiferayLocale.getSupportedLocaleWithNoDefault(locale.getLanguage());
 			// Pre-final fallback (a2, a3, b2): find any metadata with the portal supported languages
-			for (int i = 0; resultElement == null && i < metadataLen; ++i) {
-				Element childElement = (Element) metadataList.item(i);
-				String childLocale = childElement.getAttribute("locale");
-				if (childLocale != null && supportedLocale.equals(childLocale)
-					&& dynamicElement.equals(childElement.getParentNode())) {
-					resultElement = childElement;
+
+			if (supportedLocale != null) {
+				for (int i = 0; resultElement == null && i < metadataLen; ++i) {
+					Element childElement = (Element) metadataList.item(i);
+					String childLocale = childElement.getAttribute("locale");
+					if (childLocale != null && supportedLocale.equals(childLocale)
+						&& dynamicElement.equals(childElement.getParentNode())) {
+						resultElement = childElement;
+					}
 				}
 			}
 		}
