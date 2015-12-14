@@ -2,9 +2,9 @@ include 'core'
 
 project(':core').name = 'liferay-screens'
 
-//include 'viewsets'
-//project(':viewsets').projectDir = new File(settingsDir, '../viewsets/material')
-//project(':viewsets').name = 'liferay-material-viewset'
+include 'viewsets'
+project(':viewsets').projectDir = new File(settingsDir, '../viewsets/material')
+project(':viewsets').name = 'liferay-material-viewset'
 
 //include 'liferay-westeros-viewset'
 //project(':liferay-westeros-viewset').projectDir = new File(settingsDir, '../viewsets/westeros')

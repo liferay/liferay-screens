@@ -1,23 +1,18 @@
 language: android
 android:
   components:
+    - platform-tools
+    - tools
+
     - build-tools-23.0.2
+
     - android-23
 
-    - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
 
     - sys-img-armeabi-v7a-android-19
 
-  licenses:
-    - android-sdk-license-5be876d5
-
-before_script: 
+before_script:
   - cd android/library/
   - echo "sdk.dir=$ANDROID_HOME" > local.properties
-
-script:
-  - ant clean
-  - ant debug
-  - ./gradlew clean build
