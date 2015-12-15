@@ -22,6 +22,7 @@ script:
     - cd android/library/
     - echo "sdk.dir=$ANDROID_HOME" > local.properties
     - ./gradlew build connectedCheck
+    - cd ../..
     - cd ios/Framework
     - pod install
     - ./run-tests.sh
