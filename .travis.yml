@@ -28,7 +28,7 @@ script:
     - echo "sdk.dir=$ANDROID_HOME" > local.properties
     - ./gradlew -x javadocJar -x sourcesJar build test
     - cd ../samples/test-app/
-    - ./gradlew -x javadocJar -x sourcesJar build connectedAndroidTest
+    - ./gradlew build connectedAndroidTest
     - cd ../../..
     - cd ios/Framework
     - pod install
