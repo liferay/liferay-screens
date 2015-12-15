@@ -29,6 +29,9 @@ public class GetSiteTitleInteractor: Interactor {
 					if let html = NSString(data: data!, encoding: NSUTF8StringEncoding) {
 						self.resultTitle = self.parseTitle(html)
 					}
+					else {
+						print("Only UTF8 pages supported right not")
+					}
 					self.callOnSuccess()
 				}
 			}.resume()

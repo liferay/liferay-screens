@@ -8,46 +8,27 @@
 
 import UIKit
 import LiferayScreens
-import LRMobileSDK
 
-public class LiferayAddBookmarkInteractor: Interactor, LRCallback {
 
-	public var resultBookmarkInfo: [String:AnyObject]?
+public class LiferayAddBookmarkInteractor: ServerOperationInteractor {
 
-	override public func start() -> Bool {
+	public var resultBookmarkInfo: [NSObject:AnyObject]?
+
+	public override func createOperation() -> ServerOperation? {
 		let viewModel = self.screenlet!.screenletView as! AddBookmarkViewModel
 
-		if let URL = viewModel.URL {
-			let session = SessionContext.createSessionFromCurrentSession()
-			session?.callback = self
+		let op = LiferayAddBookmarkOperation(
+			groupId: LiferayServerContext.groupId,
+			title: viewModel.title!,
+			url: viewModel.URL!)
 
-			let service = LRBookmarksEntryService_v62(session: session)
+		op.folderId = 20622 // this bookmark folder is writable by test user
 
-			do {
-				try service.addEntryWithGroupId(LiferayServerContext.groupId,
-					folderId: 0,
-					name: viewModel.title,
-					url: URL,
-					description: "Added from Liferay Screens",
-					serviceContext: nil)
-
-				return true
-			}
-			catch {
-				return false
-			}
-		}
-
-		return false
+		return op
 	}
 
-    public func onFailure(error: NSError!) {
-		self.onFailure(error)
-	}
-
-    public func onSuccess(result: AnyObject!) {
-		resultBookmarkInfo = (result as! [String:AnyObject])
-		self.onSuccess!()
+	override public func completedOperation(op: ServerOperation) {
+		self.resultBookmarkInfo = (op as! LiferayAddBookmarkOperation).resultBookmarkInfo
 	}
 
 }

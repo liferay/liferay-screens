@@ -13,6 +13,9 @@
 		8844F7431C205B350067C0C7 /* AddBookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8844F73D1C205B350067C0C7 /* AddBookmarkViewModel.swift */; };
 		8844F7441C205B350067C0C7 /* GetSiteTitleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8844F73E1C205B350067C0C7 /* GetSiteTitleInteractor.swift */; };
 		8844F7451C205B350067C0C7 /* LiferayAddBookmarkInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8844F73F1C205B350067C0C7 /* LiferayAddBookmarkInteractor.swift */; };
+		886C55DD1C205DEA00D20DA4 /* LiferayAddBookmarkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C55DC1C205DEA00D20DA4 /* LiferayAddBookmarkOperation.swift */; };
+		886C55E01C2064F800D20DA4 /* default-retrieve.png in Resources */ = {isa = PBXBuildFile; fileRef = 886C55DE1C2064F800D20DA4 /* default-retrieve.png */; };
+		886C55E11C2064F800D20DA4 /* default-retrieve@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 886C55DF1C2064F800D20DA4 /* default-retrieve@2x.png */; };
 		887844F31C1EDF41009459C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887844F21C1EDF41009459C8 /* AppDelegate.swift */; };
 		887844F51C1EDF41009459C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887844F41C1EDF41009459C8 /* ViewController.swift */; };
 		887844F81C1EDF41009459C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 887844F61C1EDF41009459C8 /* Main.storyboard */; };
@@ -30,6 +33,9 @@
 		8844F73D1C205B350067C0C7 /* AddBookmarkViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkViewModel.swift; sourceTree = "<group>"; };
 		8844F73E1C205B350067C0C7 /* GetSiteTitleInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSiteTitleInteractor.swift; sourceTree = "<group>"; };
 		8844F73F1C205B350067C0C7 /* LiferayAddBookmarkInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayAddBookmarkInteractor.swift; sourceTree = "<group>"; };
+		886C55DC1C205DEA00D20DA4 /* LiferayAddBookmarkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayAddBookmarkOperation.swift; sourceTree = "<group>"; };
+		886C55DE1C2064F800D20DA4 /* default-retrieve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-retrieve.png"; sourceTree = "<group>"; };
+		886C55DF1C2064F800D20DA4 /* default-retrieve@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-retrieve@2x.png"; sourceTree = "<group>"; };
 		887844EF1C1EDF41009459C8 /* LiferayScreensAddBookmarkTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiferayScreensAddBookmarkTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		887844F21C1EDF41009459C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		887844F41C1EDF41009459C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,12 +72,15 @@
 		8844F7391C205B350067C0C7 /* screenlet */ = {
 			isa = PBXGroup;
 			children = (
+				886C55DE1C2064F800D20DA4 /* default-retrieve.png */,
+				886C55DF1C2064F800D20DA4 /* default-retrieve@2x.png */,
 				8844F73A1C205B350067C0C7 /* AddBookmarkScreenlet.swift */,
 				8844F73B1C205B350067C0C7 /* AddBookmarkView_default.swift */,
 				8844F73C1C205B350067C0C7 /* AddBookmarkView_default.xib */,
 				8844F73D1C205B350067C0C7 /* AddBookmarkViewModel.swift */,
 				8844F73E1C205B350067C0C7 /* GetSiteTitleInteractor.swift */,
 				8844F73F1C205B350067C0C7 /* LiferayAddBookmarkInteractor.swift */,
+				886C55DC1C205DEA00D20DA4 /* LiferayAddBookmarkOperation.swift */,
 			);
 			path = screenlet;
 			sourceTree = "<group>";
@@ -179,11 +188,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				886C55E11C2064F800D20DA4 /* default-retrieve@2x.png in Resources */,
 				887844FD1C1EDF41009459C8 /* LaunchScreen.storyboard in Resources */,
 				887844FA1C1EDF41009459C8 /* Assets.xcassets in Resources */,
 				8844F7421C205B350067C0C7 /* AddBookmarkView_default.xib in Resources */,
 				887845161C1EE221009459C8 /* liferay-server-context.plist in Resources */,
 				887844F81C1EDF41009459C8 /* Main.storyboard in Resources */,
+				886C55E01C2064F800D20DA4 /* default-retrieve.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				886C55DD1C205DEA00D20DA4 /* LiferayAddBookmarkOperation.swift in Sources */,
 				8844F7451C205B350067C0C7 /* LiferayAddBookmarkInteractor.swift in Sources */,
 				8844F7401C205B350067C0C7 /* AddBookmarkScreenlet.swift in Sources */,
 				8844F7431C205B350067C0C7 /* AddBookmarkViewModel.swift in Sources */,
