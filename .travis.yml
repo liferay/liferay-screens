@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode611
+osx_image: xcode7.1
 
 before_install:
     - export COMPONENTS=build-tools-23.0.2,android-23,extra-android-m2repository,extra-google-m2repository,sys-img-armeabi-v7a-android-23
@@ -22,7 +22,9 @@ script:
     - cd android/library/
     - echo "sdk.dir=$ANDROID_HOME" > local.properties
     - ./gradlew build connectedCheck
-    - cd ../..
+    - cd ../samples/test-app/
+    - ./gradlew build connectedAndroidTest
+    - cd ../../..
     - cd ios/Framework
     - pod install
     - ./run-tests.sh
