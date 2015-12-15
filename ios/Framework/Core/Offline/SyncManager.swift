@@ -62,6 +62,8 @@ import Foundation
 	public let cacheManager: CacheManager
 
 	private let syncQueue: NSOperationQueue
+	private var synchronizers: [String:(String, [String:AnyObject]) -> Signal -> ()] = [:]
+
 
 	public init(cacheManager: CacheManager) {
 		self.cacheManager = cacheManager
@@ -70,6 +72,16 @@ import Foundation
 		self.syncQueue.maxConcurrentOperationCount = 1
 
 		super.init()
+
+		synchronizers[ScreenletName(UserPortraitScreenlet)] =  userPortraitSynchronizer
+
+		synchronizers[ScreenletName(DDLFormScreenlet)] =  formSynchronizer
+	}
+
+	public func addSynchronizer(
+		screenlet: BaseScreenlet,
+		synchronizer: (String, [String:AnyObject]) -> Signal -> ()) {
+			synchronizers[ScreenletName(screenlet.dynamicType)] = synchronizer
 	}
 
 	public func clear() {
@@ -96,19 +108,14 @@ import Foundation
 	}
 
 	private func enqueueSyncForScreenlet(
-			screenletName: String,
-			_ key: String,
-			_ attributes: [String:AnyObject]) {
+		screenletName: String,
+		_ key: String,
+		_ attributes: [String:AnyObject]) {
 
-		let syncBuilders = [
-				ScreenletName(UserPortraitScreenlet): userPortraitSynchronizer,
-				ScreenletName(DDLFormScreenlet): formSynchronizer,
-			]
-
-		if let syncBuilder = syncBuilders[screenletName] {
-			let synchronizer = syncBuilder(key, attributes: attributes)
-			syncQueue.addOperationWithBlock(to_sync(synchronizer))
-		}
+			if let syncBuilder = synchronizers[screenletName] {
+				let synchronizer = syncBuilder(key, attributes)
+				syncQueue.addOperationWithBlock(to_sync(synchronizer))
+			}
 	}
 
 }
