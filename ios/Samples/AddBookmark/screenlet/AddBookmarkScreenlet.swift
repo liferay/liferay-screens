@@ -58,7 +58,12 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 	}
 
 	private func createAddBookmarkInteractor() -> LiferayAddBookmarkInteractor {
-		let interactor = LiferayAddBookmarkInteractor(screenlet: self)
+		let viewModel = (self.screenletView as! AddBookmarkViewModel)
+
+		let interactor = LiferayAddBookmarkInteractor(
+			screenlet: self,
+			title: viewModel.title!,
+			url: viewModel.URL!)
 
 		self.showHUDWithMessage("Saving bookmark...",
 			closeMode: .Autoclose,
