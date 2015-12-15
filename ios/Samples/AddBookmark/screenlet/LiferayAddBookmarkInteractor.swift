@@ -56,7 +56,9 @@ public class LiferayAddBookmarkInteractor: ServerWriteOperationInteractor {
 			collection: ScreenletName(AddBookmarkScreenlet),
 			key: "url-\(self.url)",
 			value: self.title,
-			attributes: [:])
+			attributes: [
+					"url": self.url
+				])
 	}
 
 	override public func callOnSuccess() {
@@ -65,7 +67,9 @@ public class LiferayAddBookmarkInteractor: ServerWriteOperationInteractor {
 			SessionContext.currentCacheManager?.setClean(
 				collection: ScreenletName(AddBookmarkScreenlet),
 				key: "url-\(self.url)",
-				attributes: [:])
+				attributes: [
+						"url": self.url
+					])
 		}
 
 		super.callOnSuccess()

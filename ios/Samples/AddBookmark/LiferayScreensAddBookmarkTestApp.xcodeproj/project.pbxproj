@@ -16,6 +16,7 @@
 		886C55DD1C205DEA00D20DA4 /* LiferayAddBookmarkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C55DC1C205DEA00D20DA4 /* LiferayAddBookmarkOperation.swift */; };
 		886C55E01C2064F800D20DA4 /* default-retrieve.png in Resources */ = {isa = PBXBuildFile; fileRef = 886C55DE1C2064F800D20DA4 /* default-retrieve.png */; };
 		886C55E11C2064F800D20DA4 /* default-retrieve@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 886C55DF1C2064F800D20DA4 /* default-retrieve@2x.png */; };
+		886C55E31C20708B00D20DA4 /* SyncManager+AddBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C55E21C20708B00D20DA4 /* SyncManager+AddBookmark.swift */; };
 		887844F31C1EDF41009459C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887844F21C1EDF41009459C8 /* AppDelegate.swift */; };
 		887844F51C1EDF41009459C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887844F41C1EDF41009459C8 /* ViewController.swift */; };
 		887844F81C1EDF41009459C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 887844F61C1EDF41009459C8 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		886C55DC1C205DEA00D20DA4 /* LiferayAddBookmarkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayAddBookmarkOperation.swift; sourceTree = "<group>"; };
 		886C55DE1C2064F800D20DA4 /* default-retrieve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-retrieve.png"; sourceTree = "<group>"; };
 		886C55DF1C2064F800D20DA4 /* default-retrieve@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-retrieve@2x.png"; sourceTree = "<group>"; };
+		886C55E21C20708B00D20DA4 /* SyncManager+AddBookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+AddBookmark.swift"; sourceTree = "<group>"; };
 		887844EF1C1EDF41009459C8 /* LiferayScreensAddBookmarkTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiferayScreensAddBookmarkTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		887844F21C1EDF41009459C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		887844F41C1EDF41009459C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				8844F73E1C205B350067C0C7 /* GetSiteTitleInteractor.swift */,
 				8844F73F1C205B350067C0C7 /* LiferayAddBookmarkInteractor.swift */,
 				886C55DC1C205DEA00D20DA4 /* LiferayAddBookmarkOperation.swift */,
+				886C55E21C20708B00D20DA4 /* SyncManager+AddBookmark.swift */,
 			);
 			path = screenlet;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				886C55DD1C205DEA00D20DA4 /* LiferayAddBookmarkOperation.swift in Sources */,
 				8844F7451C205B350067C0C7 /* LiferayAddBookmarkInteractor.swift in Sources */,
 				8844F7401C205B350067C0C7 /* AddBookmarkScreenlet.swift in Sources */,
+				886C55E31C20708B00D20DA4 /* SyncManager+AddBookmark.swift in Sources */,
 				8844F7431C205B350067C0C7 /* AddBookmarkViewModel.swift in Sources */,
 				887844F51C1EDF41009459C8 /* ViewController.swift in Sources */,
 				8844F7411C205B350067C0C7 /* AddBookmarkView_default.swift in Sources */,
