@@ -1,6 +1,11 @@
 language: objective-c
 osx_image: xcode7.1
 
+cache:
+    - cocoapods
+
+podfile: ios/Framework
+
 before_install:
     - export COMPONENTS=build-tools-23.0.2,android-23,extra-android-m2repository,extra-google-m2repository,sys-img-armeabi-v7a-android-23
     - curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS && source ~/.android-sdk-installer/env
@@ -21,9 +26,9 @@ before_script:
 script:
     - cd android/library/
     - echo "sdk.dir=$ANDROID_HOME" > local.properties
-    - ./gradlew build connectedCheck
+    - ./gradlew -x javadocJar -x sourcesJar build test
     - cd ../samples/test-app/
-    - ./gradlew build connectedAndroidTest
+    - ./gradlew -x javadocJar -x sourcesJar build connectedAndroidTest
     - cd ../../..
     - cd ios/Framework
     - pod install
