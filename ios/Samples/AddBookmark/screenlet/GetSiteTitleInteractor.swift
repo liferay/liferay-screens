@@ -1,11 +1,16 @@
-//
-//  GetSiteTitleInteractor.swift
-//  LiferayScreensAddBookmarkScreenletSample
-//
-//  Created by jmWork on 18/05/15.
-//  Copyright (c) 2015 Liferay. All rights reserved.
-//
-
+/**
+* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+*
+* This library is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Lesser General Public License as published by the Free
+* Software Foundation; either version 2.1 of the License, or (at your option)
+* any later version.
+*
+* This library is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+* details.
+*/
 import UIKit
 import LiferayScreens
 
@@ -28,6 +33,9 @@ public class GetSiteTitleInteractor: Interactor {
 				else {
 					if let html = NSString(data: data!, encoding: NSUTF8StringEncoding) {
 						self.resultTitle = self.parseTitle(html)
+					}
+					else {
+						print("Only UTF8 pages supported right not")
 					}
 					self.callOnSuccess()
 				}

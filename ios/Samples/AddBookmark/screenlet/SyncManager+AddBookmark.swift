@@ -12,32 +12,33 @@
 * details.
 */
 import Foundation
+import LiferayScreens
 
 extension SyncManager {
 
-	func userPortraitSynchronizer(
+	func addBookmarkSynchronizer(
 			key: String,
 			attributes: [String:AnyObject])
 			-> Signal -> () {
 
-		return { signal in
-			let userId = attributes["userId"] as! NSNumber
+		let url = attributes["url"] as! String
 
-			self.cacheManager.getImage(
-					collection: ScreenletName(UserPortraitScreenlet),
+		return { signal in
+			self.cacheManager.getString(
+					collection: ScreenletName(AddBookmarkScreenlet),
 					key: key) {
 
-				if let image = $0 {
-					let interactor = UploadUserPortraitInteractor(
+				if let title = $0 {
+					let interactor = LiferayAddBookmarkInteractor(
 						screenlet: nil,
-						userId: userId.longLongValue,
-						image: image)
-					
+						title: title,
+						url: url)
+
 					self.prepareInteractorForSync(interactor,
 						key: key,
 						attributes: attributes,
 						signal: signal,
-						screenletClassName: ScreenletName(UserPortraitScreenlet))
+						screenletClassName: ScreenletName(AddBookmarkScreenlet))
 
 					if !interactor.start() {
 						signal()
@@ -45,15 +46,15 @@ extension SyncManager {
 				}
 				else {
 					self.delegate?.syncManager?(self,
-						onItemSyncScreenlet: ScreenletName(UserPortraitScreenlet),
+						onItemSyncScreenlet: ScreenletName(AddBookmarkScreenlet),
 						failedKey: key,
 						attributes: attributes,
 						error: NSError.errorWithCause(.NotAvailable))
-
+					
 					signal()
 				}
 			}
 		}
 	}
-
+	
 }
