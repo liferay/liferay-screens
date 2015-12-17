@@ -162,7 +162,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	}
 
 
-	public Field(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+	public Field(Map<String, Object> attributes, Locale currentLocale, Locale defaultLocale) {
+		_currentLocale = currentLocale;
+		_defaultLocale = defaultLocale;
+
 		_dataType = DataType.valueOf(attributes);
 		_editorType = EditorType.valueOf(attributes);
 
@@ -178,9 +181,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		_predefinedValue = convertFromString(
 			getAttributeStringValue(attributes, "predefinedValue"));
 		_currentValue = _predefinedValue;
-
-		_currentLocale = locale;
-		_defaultLocale = defaultLocale;
 	}
 
 	protected Field(Parcel in) {

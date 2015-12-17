@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.util;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.view.ContextThemeWrapper;
 
 import com.liferay.mobile.screens.context.LiferayScreensContext;
@@ -15,30 +16,8 @@ import java.util.Locale;
 public class LiferayLocale {
 
 	public static String getSupportedLocale(String locale) {
-		switch (locale) {
-			case "ca":
-			case "es":
-				return locale + "_ES";
-			case "zh":
-				return locale + "_CN";
-			case "fi":
-				return locale + "_FI";
-			case "fr":
-				return locale + "_FR";
-			case "de":
-				return locale + "_DE";
-			case "iw":
-			case "he":
-				return "iw_IL";
-			case "hu":
-				return locale + "_HU";
-			case "ja":
-				return locale + "_JP";
-			case "pt":
-				return locale + "_BR";
-			default:
-				return "en_US";
-		}
+		String localeStr = getSupportedLocaleWithNoDefault(locale);
+		return localeStr == null ? "en_US" : localeStr;
 	}
 
 	public static Locale getDefaultLocale() {
@@ -68,5 +47,36 @@ public class LiferayLocale {
 		res.updateConfiguration(conf, res.getDisplayMetrics());
 
 		EventBusUtil.post(new LocaleChanged(newLocale, oldLocale));
+	}
+
+	@Nullable
+	public static String getSupportedLocaleWithNoDefault(String locale) {
+		switch (locale) {
+			case "ca":
+			case "es":
+				return locale + "_ES";
+			case "zh":
+				return locale + "_CN";
+			case "fi":
+				return locale + "_FI";
+			case "fr":
+				return locale + "_FR";
+			case "de":
+				return locale + "_DE";
+			case "iw":
+			case "he":
+				return "iw_IL";
+			case "hu":
+				return locale + "_HU";
+			case "ja":
+				return locale + "_JP";
+			case "pt":
+				return locale + "_BR";
+			case "en": {
+				return locale + "_US";
+			}
+			default:
+				return null;
+		}
 	}
 }

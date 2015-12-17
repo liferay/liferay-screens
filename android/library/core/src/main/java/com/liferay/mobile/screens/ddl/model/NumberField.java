@@ -17,10 +17,8 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.liferay.mobile.screens.util.LiferayLogger;
-
 import java.text.NumberFormat;
-import java.text.ParseException;
+import java.text.ParsePosition;
 import java.util.Locale;
 import java.util.Map;
 
@@ -43,14 +41,10 @@ public class NumberField extends Field<Number> {
 
 	public NumberField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
-
-		init(locale, defaultLocale);
 	}
 
 	protected NumberField(Parcel in) {
 		super(in);
-
-		init(getCurrentLocale(), getDefaultLocale());
 	}
 
 	@Override
@@ -59,20 +53,17 @@ public class NumberField extends Field<Number> {
 			return null;
 		}
 
-		try {
-			return _labelFormatter.parse(stringValue);
-		}
-		catch (ParseException e) {
-			try {
-				return _defaultLabelFormatter.parse(stringValue);
-			}
-			catch (ParseException e1) {
-				LiferayLogger.e("Error parsing decimal field", e);
+		ParsePosition pos = new ParsePosition(0);
+		Number value = getLabelFormatter().parse(stringValue, pos);
 
-			}
+		if (stringValue.length() == pos.getIndex()) {
+			return value;
 		}
-
-		return null;
+		else {
+			pos = new ParsePosition(0);
+			value = _defaultLabelFormatter.parse(stringValue, pos);
+			return stringValue.length() == pos.getIndex() ? value : null;
+		}
 	}
 
 	@Override
@@ -82,12 +73,15 @@ public class NumberField extends Field<Number> {
 
 	@Override
 	protected String convertToFormattedString(Number value) {
-		return (value == null) ? "" : _labelFormatter.format(value);
+		return (value == null) ? "" : getLabelFormatter().format(value);
 	}
 
-	private void init(Locale locale, Locale defaultLocale) {
-		_labelFormatter = NumberFormat.getNumberInstance(locale);
-		_defaultLabelFormatter = NumberFormat.getNumberInstance(defaultLocale);
+	private NumberFormat getLabelFormatter() {
+		if (_labelFormatter == null || _defaultLabelFormatter == null) {
+			_labelFormatter = NumberFormat.getNumberInstance(getCurrentLocale());
+			_defaultLabelFormatter = NumberFormat.getNumberInstance(getDefaultLocale());
+		}
+		return _labelFormatter;
 	}
 
 	private NumberFormat _labelFormatter;

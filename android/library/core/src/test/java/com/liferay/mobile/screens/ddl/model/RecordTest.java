@@ -172,6 +172,7 @@ public class RecordTest {
 			newValues.put("modelValues", newData);
 
 			record.setValuesAndAttributes(newValues);
+			record.refresh();
 
 			assertEquals("xyz", field.getCurrentValue());
 		}
