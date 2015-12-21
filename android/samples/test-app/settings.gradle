@@ -6,5 +6,9 @@ include 'liferay-material-viewset'
 project(':liferay-material-viewset').projectDir = new File(settingsDir, '../../viewsets/material')
 project(':liferay-material-viewset').name = 'liferay-material-viewset'
 
+include 'liferay-westeros-viewset'
+project(':liferay-westeros-viewset').projectDir = new File(settingsDir, '../../viewsets/westeros')
+project(':liferay-westeros-viewset').name = 'liferay-westeros-viewset'
+
 include ':addbookmarkscreenlet'
 project(':addbookmarkscreenlet').projectDir = new File(settingsDir, '../../samples/addbookmarkscreenlet')

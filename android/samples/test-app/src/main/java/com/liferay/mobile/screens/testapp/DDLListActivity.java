@@ -44,12 +44,8 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 		setContentView(R.layout.ddl_list);
 
-		_screenlet = (DDLListScreenlet) getActiveScreenlet(R.id.ddl_list_default, R.id.ddl_list_material);
-
-		_screenlet.setVisibility(View.VISIBLE);
+		_screenlet = (DDLListScreenlet) findViewById(R.id.ddl_list_screenlet);
 		_screenlet.setListener(this);
-
-		hideInactiveScreenlet(R.id.ddl_list_default, R.id.ddl_list_material);
 	}
 
 	@Override

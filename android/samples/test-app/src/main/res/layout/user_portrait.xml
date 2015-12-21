@@ -11,20 +11,10 @@
 		android:text="@string/user_portrait_label"/>
 
 	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
-		android:id="@+id/user_portrait_default"
+		android:id="@+id/user_portrait_screenlet"
 		android:layout_width="100dp"
 		android:layout_height="100dp"
-		android:visibility="gone"
 		liferay:autoLoad="false"
-		liferay:layoutId="@layout/userportrait_default"
 		liferay:offlinePolicy="CACHE_FIRST"/>
-
-	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
-		android:id="@+id/user_portrait_material"
-		android:layout_width="100dp"
-		android:layout_height="100dp"
-		android:visibility="gone"
-		liferay:autoLoad="false"
-		liferay:layoutId="@layout/userportrait_material"/>
 
 </LinearLayout>

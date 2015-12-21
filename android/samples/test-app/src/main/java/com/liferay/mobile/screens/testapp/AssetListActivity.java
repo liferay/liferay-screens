@@ -35,15 +35,10 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 
 		setContentView(R.layout.asset_list);
 
-		_screenlet = (AssetListScreenlet) getActiveScreenlet(
-			R.id.asset_list_default, R.id.asset_list_material);
+		_screenlet = (AssetListScreenlet) findViewById(R.id.asset_list_screenlet);
 
 		_screenlet.setClassNameId(getIntent().getLongExtra("classNameId", 20116));
-
-		_screenlet.setVisibility(View.VISIBLE);
 		_screenlet.setListener(this);
-
-		hideInactiveScreenlet(R.id.asset_list_default, R.id.asset_list_material);
 	}
 
 	@Override

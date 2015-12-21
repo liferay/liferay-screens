@@ -24,7 +24,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.sign_up).setOnClickListener(this);
 		findViewById(R.id.forgot_password).setOnClickListener(this);
 		findViewById(R.id.user_portrait).setOnClickListener(this);
-		findViewById(R.id.web_content_display).setOnClickListener(this);
+		findViewById(R.id.web_content_display_screenlet).setOnClickListener(this);
 		findViewById(R.id.add_bookmark).setOnClickListener(this);
 		findViewById(R.id.journal_article_with_template).setOnClickListener(this);
 		findViewById(R.id.filtered_asset).setOnClickListener(this);
@@ -59,7 +59,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 			case R.id.user_portrait:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(UserPortraitActivity.class));
 				break;
-			case R.id.web_content_display:
+			case R.id.web_content_display_screenlet:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebContentDisplayActivity.class));
 				break;
 			case R.id.add_bookmark:
@@ -76,7 +76,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.change_theme:
 				finish();
-				currentTheme = isDefaultTheme() ? R.style.material_theme : R.style.default_theme;
+				changeToNextTheme();
 				startActivity(getIntentWithTheme(MainActivity.class));
 				break;
 			case R.id.clear_cache_forms:
@@ -106,4 +106,6 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));
 		}
 	}
+
+
 }
