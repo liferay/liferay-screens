@@ -50,7 +50,7 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 	@Override
 	public void onClick(View view) {
 		if (validFields()) {
-			SignUpScreenlet signUpScreenlet = (SignUpScreenlet) getParent();
+			SignUpScreenlet signUpScreenlet = getSignUpScreenlet();
 			signUpScreenlet.performUserAction();
 		}
 	}
@@ -68,6 +68,10 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		_emailAddressValidation.setText("Email address can not be empty");
 		_passwordValidation = (TextView) findViewById(R.id.password_validation);
 		_passwordValidation.setText("Password can not be empty");
+	}
+
+	private SignUpScreenlet getSignUpScreenlet() {
+		return (SignUpScreenlet) getScreenlet();
 	}
 
 	private boolean validFields() {
@@ -119,7 +123,7 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		ssb.setSpan(new ClickableSpan() {
 			@Override
 			public void onClick(View widget) {
-				SignUpScreenlet signUpScreenlet = (SignUpScreenlet) getParent();
+				SignUpScreenlet signUpScreenlet = getSignUpScreenlet();
 				signUpScreenlet.performUserAction(SignUpScreenlet.TERMS_AND_CONDITIONS);
 			}
 		}, 13, ssb.length(), 0);

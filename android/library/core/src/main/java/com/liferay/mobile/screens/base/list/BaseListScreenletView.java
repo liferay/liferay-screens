@@ -59,7 +59,8 @@ public abstract class BaseListScreenletView<
 
 	@Override
 	public void onItemClick(int position, View view) {
-		BaseListScreenlet screenlet = ((BaseListScreenlet) getParent());
+
+		BaseListScreenlet screenlet = getBaseListScreenlet();
 		List<E> entries = getAdapter().getEntries();
 
 		// we do not want to crash if the user manages to do a phantom click
@@ -110,7 +111,8 @@ public abstract class BaseListScreenletView<
 
 	@Override
 	public void onPageNotFound(int row) {
-		BaseListScreenlet screenlet = (BaseListScreenlet) getParent();
+
+		BaseListScreenlet screenlet = getBaseListScreenlet();
 
 		screenlet.loadPageForRow(row);
 	}
@@ -193,7 +195,7 @@ public abstract class BaseListScreenletView<
 			allEntries.set(i, entries.get(i));
 		}
 
-		BaseListScreenlet screenlet = ((BaseListScreenlet) getParent());
+		BaseListScreenlet screenlet = getBaseListScreenlet();
 
 		int firstRowForPage = screenlet.getFirstRowForPage(page);
 
@@ -233,8 +235,13 @@ public abstract class BaseListScreenletView<
 
 	protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
 
+	private BaseListScreenlet getBaseListScreenlet() {
+		return (BaseListScreenlet) getScreenlet();
+	}
+
 	private void addNewServerEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
-		BaseListScreenlet screenlet = ((BaseListScreenlet) getParent());
+
+		BaseListScreenlet screenlet = getBaseListScreenlet();
 		int firstRowForPage = screenlet.getFirstRowForPage(page);
 
 		List<E> entries = adapter.getEntries();
@@ -247,13 +254,11 @@ public abstract class BaseListScreenletView<
 		}
 	}
 
+	protected ProgressBar _progressBar;
+	protected RecyclerView _recyclerView;
 	private static final String _STATE_ENTRIES = "entries";
 	private static final String _STATE_ROW_COUNT = "rowCount";
 	private static final String _STATE_SUPER = "super";
-
-	protected ProgressBar _progressBar;
-	protected RecyclerView _recyclerView;
-
 	private BaseScreenlet _screenlet;
 
 }

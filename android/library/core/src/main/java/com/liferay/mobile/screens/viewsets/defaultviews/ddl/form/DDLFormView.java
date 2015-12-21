@@ -257,7 +257,7 @@ public class DDLFormView
 	}
 
 	protected DDLFormScreenlet getDDLFormScreenlet() {
-		return (DDLFormScreenlet) getParent();
+		return (DDLFormScreenlet) getScreenlet();
 	}
 
 	protected void addFieldView(Field field, int position) {

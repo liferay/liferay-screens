@@ -131,7 +131,8 @@ public class LoginView extends LinearLayout
 
 	@Override
 	public void onClick(View view) {
-		LoginScreenlet loginScreenlet = (LoginScreenlet) getParent();
+
+		LoginScreenlet loginScreenlet = (LoginScreenlet) getScreenlet();
 		if (view.getId() == R.id.liferay_login_button) {
 			loginScreenlet.performUserAction(LoginScreenlet.BASIC_AUTH);
 		}
