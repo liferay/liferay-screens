@@ -22,6 +22,7 @@
 		android:layout_gravity="bottom|end"
 		android:contentDescription="@string/add_user_portrait_content_description"
 		android:src="@drawable/material_tinted_add"
+		android:background="@android:color/transparent"
 		android:visibility="invisible"/>
 
 	<ProgressBar
