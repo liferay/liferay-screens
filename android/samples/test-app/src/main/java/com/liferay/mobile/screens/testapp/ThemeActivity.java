@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -28,17 +27,11 @@ import android.view.ViewGroup;
 public abstract class ThemeActivity extends AppCompatActivity {
 
 	@Override
-	protected void onCreate(Bundle state) {
-		super.onCreate(state);
-
-		_currentThemePosition = getIntent().getIntExtra("currentThemePosition", 0);
-		setTheme(getCurrentTheme());
-	}
-
-	@Override
 	protected void onResume() {
 		super.onResume();
 
+		_currentThemePosition = getIntent().getIntExtra("currentThemePosition", 0);
+		setTheme(getCurrentTheme());
 		_content = findViewById(android.R.id.content);
 	}
 
