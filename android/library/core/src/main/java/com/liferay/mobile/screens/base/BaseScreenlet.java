@@ -14,9 +14,13 @@
 
 package com.liferay.mobile.screens.base;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -120,10 +124,6 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		addView(_screenletView);
 	}
 
-	protected View getScreenletView() {
-		return _screenletView;
-	}
-
 	protected V getViewModel() {
 		return (V) _screenletView;
 	}
@@ -134,7 +134,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			String packageName = ctx.getPackageName();
 
 			// first, get the identifier of the string key
-			String layoutNameKeyName = getClass().getSimpleName() + "_defaultLayout";
+			String layoutNameKeyName = getClass().getSimpleName() + "_" + getLayoutTheme();
 			int layoutNameKeyId = ctx.getResources().getIdentifier(
 				layoutNameKeyName, "string", packageName);
 
@@ -241,6 +241,49 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			LiferayLogger.e("You have supplied a string and we expected a long number", e);
 			throw e;
 		}
+	}
+
+	@NonNull
+	protected String getLayoutTheme() {
+		String result = applyTheme(getActivityTheme());
+
+		if (result == null) {
+			result = applyTheme(getApplicationTheme());
+		}
+		return result == null ? "default" : result;
+	}
+
+	private String getActivityTheme() {
+		try {
+			ComponentName componentName = LiferayScreensContext.getActivityFromContext(getContext()).getComponentName();
+			int activityThemeId = getContext().getPackageManager().getActivityInfo(componentName, 0).theme;
+			return getResources().getResourceEntryName(activityThemeId);
+		}
+		catch (Exception e) {
+			LiferayLogger.d("Screens theme not found");
+		}
+		return null;
+	}
+
+	private String getApplicationTheme() {
+		try {
+			Context ctx = getContext().getApplicationContext();
+			String packageName = ctx.getPackageName();
+			PackageInfo packageInfo = ctx.getPackageManager().getPackageInfo(packageName, PackageManager.GET_META_DATA);
+			int applicationThemeId = packageInfo.applicationInfo.theme;
+			return getResources().getResourceEntryName(applicationThemeId);
+		}
+		catch (Exception e) {
+			LiferayLogger.d("Screens theme not found");
+		}
+		return null;
+	}
+
+	private String applyTheme(String themeName) {
+		if (themeName != null && themeName.contains("_theme")) {
+			return themeName.substring(0, themeName.indexOf("_theme"));
+		}
+		return null;
 	}
 
 	private static int _generateScreenletId() {
