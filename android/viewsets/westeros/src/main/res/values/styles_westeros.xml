@@ -1,6 +1,6 @@
 <resources>
 
-	<style name="WesterosTheme" parent="Base.Theme.AppCompat.Light">
+	<style name="westeros_theme" parent="Theme.AppCompat.Light">
 		<item name="colorPrimary">@color/westeros_red</item>
 		<item name="colorAccent">@color/westeros_dark_red</item>
 		<item name="colorPrimaryDark">@color/westeros_dark_red</item>
@@ -110,7 +110,7 @@
 
 	<style name="westeros_checkbox">
 		<item name="android:padding">@dimen/default_edit_text_padding</item>
-		<item name="android:theme">@style/WesterosTheme</item>
+		<item name="android:theme">@style/westeros_theme</item>
 		<item name="android:textSize">14sp</item>
 		<item name="android:textColor">@android:color/white</item>
 		<item name="android:paddingLeft">30dp</item>

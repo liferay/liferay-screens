@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="WesterosTheme" parent="android:Theme.Material.Light.NoActionBar">
+	<style name="westeros_theme" parent="android:Theme.Material.Light.NoActionBar">
 		<item name="colorPrimary">@color/westeros_red</item>
 		<item name="colorAccent">@color/westeros_dark_red</item>
 		<item name="colorPrimaryDark">@color/westeros_dark_red</item>
