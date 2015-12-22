@@ -39,7 +39,7 @@
 		android:layout_gravity="center"
 		android:gravity="center"
 		android:text="@string/forgot_password"
-		android:textColor="@color/westeros_red"
+		android:textColor="@color/colorPrimary_westeros"
 		android:textStyle="bold"/>
 
 	<RelativeLayout

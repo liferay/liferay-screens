@@ -2,21 +2,21 @@
 <resources>
 
 	<style name="material_theme" parent="android:Theme.Material.Light">
-		<item name="android:colorAccent">@color/material_accent</item>
-		<item name="colorAccent">@color/material_accent</item>
+		<item name="android:colorAccent">@color/colorAccent_material</item>
+		<item name="colorAccent">@color/colorAccent_material</item>
 
-		<item name="android:colorPrimary">@color/material_primary</item>
-		<item name="colorPrimary">@color/material_primary</item>
+		<item name="android:colorPrimary">@color/colorPrimary_material</item>
+		<item name="colorPrimary">@color/colorPrimary_material</item>
 
-		<item name="android:colorPrimaryDark">@color/material_primary_dark</item>
-		<item name="colorPrimaryDark">@color/material_primary_dark</item>
+		<item name="android:colorPrimaryDark">@color/colorPrimaryDark_material</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark_material</item>
 
-		<item name="android:colorControlNormal">@color/material_primary</item>
-		<item name="android:colorControlHighlight">@color/material_primary</item>
-		<item name="android:colorControlActivated">@color/material_primary</item>
+		<item name="android:colorControlNormal">@color/colorPrimary_material</item>
+		<item name="android:colorControlHighlight">@color/colorPrimary_material</item>
+		<item name="android:colorControlActivated">@color/colorPrimary_material</item>
 
-		<item name="android:textColorPrimary">@color/material_primary_text</item>
-		<item name="android:textColorSecondary">@color/material_secondary_text</item>
+		<item name="android:textColorPrimary">@color/textColorPrimary_material</item>
+		<item name="android:textColorSecondary">@color/textColorSecondary_material</item>
 
 		<item name="android:textViewStyle">@style/material_text_view</item>
 		<item name="android:editTextStyle">@style/material_edit_text</item>

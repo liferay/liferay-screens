@@ -4,7 +4,7 @@
 	<string name="LoginScreenlet_default">login_default</string>
 	<string name="SignUpScreenlet_default">sign_up_default</string>
 	<string name="ForgotPasswordScreenlet_default">forgotpassword_default</string>
-	<string name="DDLFormScreenlet_default">ddlform_default</string>
+	<string name="DDLFormScreenlet_default">ddl_form_default</string>
 	<string name="DDLListScreenlet_default">ddl_list_default</string>
 	<string name="UserPortraitScreenlet_default">userportrait_default</string>
 	<string name="WebContentDisplayScreenlet_default">webcontentdisplay_default</string>

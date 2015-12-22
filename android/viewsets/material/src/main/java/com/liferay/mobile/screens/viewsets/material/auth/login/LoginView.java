@@ -94,8 +94,8 @@ public class LoginView
 
 		Resources res = getResources();
 
-		viewToPrimaryColor.setColorFilter(res.getColor(R.color.material_primary));
-		viewToSecondaryText.setColorFilter(res.getColor(R.color.material_secondary_text));
+		viewToPrimaryColor.setColorFilter(res.getColor(R.color.colorPrimary_material));
+		viewToSecondaryText.setColorFilter(res.getColor(R.color.textColorSecondary_material));
 	}
 
 	protected ImageView _drawableLogin;

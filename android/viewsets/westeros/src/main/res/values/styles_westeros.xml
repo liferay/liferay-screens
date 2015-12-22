@@ -1,11 +1,11 @@
 <resources>
 
 	<style name="westeros_theme" parent="Theme.AppCompat.Light">
-		<item name="colorPrimary">@color/westeros_red</item>
-		<item name="colorAccent">@color/westeros_dark_red</item>
-		<item name="colorPrimaryDark">@color/westeros_dark_red</item>
-		<item name="android:textColorPrimary">@color/westeros_black</item>
-		<item name="android:textColorSecondary">@color/westeros_light_gray</item>
+		<item name="colorPrimary">@color/colorPrimary_westeros</item>
+		<item name="colorAccent">@color/colorPrimaryDark_westeros</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark_westeros</item>
+		<item name="android:textColorPrimary">@color/textColorPrimary_westeros</item>
+		<item name="android:textColorSecondary">@color/light_gray_westeros</item>
 		<item name="android:textViewStyle">@style/westeros_text_view</item>
 		<item name="android:editTextStyle">@style/westeros_edit_text</item>
 		<item name="android:buttonStyle">@style/westeros_button</item>
@@ -29,7 +29,7 @@
 		<item name="android:singleLine">true</item>
 		<item name="android:layout_height">@dimen/westeros_block_height</item>
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:textColorHint">@color/westeros_dark_gray</item>
+		<item name="android:textColorHint">@color/textColorSecondary_westeros</item>
 		<item name="android:layout_marginTop">@dimen/westeros_edit_text_top_margin</item>
 		<item name="android:layout_marginBottom">@dimen/westeros_edit_text_bottom_margin</item>
 		<item name="android:paddingLeft">@dimen/westeros_edit_text_left_padding</item>
@@ -74,7 +74,7 @@
 
 	<style name="westeros_dark_button" parent="westeros_button">
 		<item name="android:background">@drawable/westeros_dark_button_ripple</item>
-		<item name="android:textColor">@color/westeros_red</item>
+		<item name="android:textColor">@color/colorPrimary_westeros</item>
 	</style>
 
 	<style name="westeros_progress_bar">
@@ -119,7 +119,7 @@
 	</style>
 
 	<style name="westeros_date_picker" parent="Theme.AppCompat.Light">
-		<item name="colorAccent">@color/westeros_dark_red</item>
+		<item name="colorAccent">@color/colorPrimaryDark_westeros</item>
 		<item name="android:background">@android:color/transparent</item>
 	</style>
 
