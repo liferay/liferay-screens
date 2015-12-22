@@ -164,21 +164,20 @@ import Foundation
 	}
 
 	public class func loadStoredCredentials() -> Bool {
-		let credentialsStorage = CredentialsStorage()
-
-		if credentialsStorage.hasCredentialsStored {
-			if let result = credentialsStorage.load()
-					where result.session.server != nil {
-
-				StaticInstance.currentUserSession = result.session
-				StaticInstance.currentUserAttributes = result.userAttributes
-				StaticInstance.chacheManager = CacheManager(session: result.session)
-
-				return true
-			}
+		guard credentialsStorage.hasCredentialsStored else {
+			return false
 		}
 
-		return false
+		guard let result = credentialsStorage.load()
+				where result.session.server != nil else {
+			return false
+		}
+
+		StaticInstance.currentUserSession = result.session
+		StaticInstance.currentUserAttributes = result.userAttributes
+		StaticInstance.chacheManager = CacheManager(session: result.session)
+
+		return true
 	}
 
 
