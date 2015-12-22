@@ -22,12 +22,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.liferay.mobile.screens.base.BaseScreenlet;
-
 /**
  * @author Javier Gamarra
  */
-public abstract class ThemeActivity<E extends BaseScreenlet> extends AppCompatActivity {
+public abstract class ThemeActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle state) {
