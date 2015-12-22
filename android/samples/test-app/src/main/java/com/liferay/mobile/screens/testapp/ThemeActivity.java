@@ -66,7 +66,8 @@ public abstract class ThemeActivity extends AppCompatActivity {
 	}
 
 	int[] themes = {R.style.default_theme, R.style.material_theme, R.style.westeros_theme};
-	int[] colors = {R.color.default_primary_blue, R.color.material_primary, R.color.westeros_red};
+	int[] colors = {R.color.colorPrimary_default, R.color.colorPrimary_material, R.color.colorPrimary_westeros};
 	private Integer _currentThemePosition;
 	private View _content;
+
 }
