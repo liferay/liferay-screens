@@ -33,8 +33,6 @@ import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,20 +44,14 @@ public class DDLFormView
 
 	public DDLFormView(Context context) {
 		super(context);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public DDLFormView(Context context, AttributeSet attributes) {
 		super(context, attributes);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public DDLFormView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override
@@ -299,6 +291,7 @@ public class DDLFormView
 		}
 		return null;
 	}
+
 	protected ProgressBar _progressBar;
 	protected ProgressBar _loadingFormProgressBar;
 	protected ViewGroup _fieldsContainerView;

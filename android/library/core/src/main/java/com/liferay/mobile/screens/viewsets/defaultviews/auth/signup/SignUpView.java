@@ -28,7 +28,6 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 /**
  * @author Silvio Santos
@@ -38,20 +37,14 @@ public class SignUpView extends LinearLayout
 
 	public SignUpView(Context context) {
 		super(context);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public SignUpView(Context context, AttributeSet attributes) {
 		super(context, attributes);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public SignUpView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override

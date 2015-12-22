@@ -23,7 +23,6 @@ import android.widget.ImageView;
 
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.viewsets.R;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 /**
  * @author Silvio Santos
@@ -34,20 +33,14 @@ public class LoginView
 
 	public LoginView(Context context) {
 		super(context);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public LoginView(Context context, AttributeSet attributes) {
 		super(context, attributes);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public LoginView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override

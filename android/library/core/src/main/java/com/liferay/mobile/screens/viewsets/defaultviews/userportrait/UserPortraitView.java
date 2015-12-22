@@ -36,7 +36,6 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 /**
  * @author Javier Gamarra
@@ -46,21 +45,15 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 
 	public UserPortraitView(Context context) {
 		super(context);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public UserPortraitView(
 		Context context, AttributeSet attributes) {
 		super(context, attributes);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public UserPortraitView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override
