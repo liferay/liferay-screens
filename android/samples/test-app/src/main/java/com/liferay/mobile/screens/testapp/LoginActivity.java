@@ -26,7 +26,7 @@ import com.liferay.mobile.screens.context.User;
 /**
  * @author Javier Gamarra
  */
-public class LoginActivity extends ThemeActivity<LoginScreenlet> implements LoginListener {
+public class LoginActivity extends ThemeActivity implements LoginListener {
 
 
 	@Override
