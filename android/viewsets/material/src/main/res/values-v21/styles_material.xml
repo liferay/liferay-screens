@@ -27,6 +27,8 @@
 		<item name="android:windowAllowReturnTransitionOverlap">true</item>
 		<item name="android:windowSharedElementEnterTransition">@android:transition/explode</item>
 		<item name="android:windowSharedElementExitTransition">@android:transition/explode</item>
+
+		<item name="themeName">material_theme</item>
 	</style>
 
 	<style name="material_button" parent="android:Widget.Material.Light.Button">

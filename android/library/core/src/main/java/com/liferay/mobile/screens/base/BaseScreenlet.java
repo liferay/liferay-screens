@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.base;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -22,9 +21,11 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
@@ -255,9 +256,9 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	private String getActivityTheme() {
 		try {
-			ComponentName componentName = LiferayScreensContext.getActivityFromContext(getContext()).getComponentName();
-			int activityThemeId = getContext().getPackageManager().getActivityInfo(componentName, 0).theme;
-			return getResources().getResourceEntryName(activityThemeId);
+			TypedValue outValue = new TypedValue();
+			LiferayScreensContext.getActivityFromContext(getContext()).getTheme().resolveAttribute(R.attr.themeName, outValue, true);
+			return (String) outValue.string;
 		}
 		catch (Exception e) {
 			LiferayLogger.d("Screens theme not found");

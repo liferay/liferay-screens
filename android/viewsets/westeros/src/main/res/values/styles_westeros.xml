@@ -14,6 +14,8 @@
 		<item name="windowActionBar">false</item>
 		<item name="android:windowFullscreen">true</item>
 		<item name="android:windowContentOverlay">@null</item>
+
+		<item name="themeName">westeros_theme</item>
 	</style>
 
 	<style name="westeros_screenlet">

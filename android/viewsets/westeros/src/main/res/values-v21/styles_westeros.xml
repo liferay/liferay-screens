@@ -14,6 +14,8 @@
 		<item name="android:editTextStyle">@style/westeros_edit_text</item>
 		<item name="android:buttonStyle">@style/westeros_button</item>
 		<item name="android:typeface">serif</item>
+
+		<item name="themeName">westeros_theme</item>
 	</style>
 
 	<style name="westeros_edit_text" parent="android:Widget.Material.EditText">
