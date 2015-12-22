@@ -22,54 +22,46 @@ public class DDLFieldDate : DDLField {
 		}
 	}
 
-	private let serverYYYYDateFormat = "MM/dd/yyyy"
-	private let serverYYDateFormat = "MM/dd/yy"
-
-	private let serverYYYYDateFormatter = NSDateFormatter()
-	private let serverYYDateFormatter = NSDateFormatter()
 	private let clientDateFormatter = NSDateFormatter()
-
-	private let gmtTimeZone = NSTimeZone(abbreviation: "GMT")
-
 
 	override public init(attributes: [String:AnyObject], locale: NSLocale) {
 		super.init(attributes: attributes, locale: locale)
 
-		initFormatters(locale)
+		initFormatter(locale)
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
-		initFormatters(self.currentLocale)
+		initFormatter(self.currentLocale)
 	}
 
-	private func initFormatters(locale: NSLocale) {
-		serverYYYYDateFormatter.dateFormat = serverYYYYDateFormat
-		serverYYDateFormatter.dateFormat = serverYYDateFormat
-
+	private func initFormatter(locale: NSLocale) {
 		clientDateFormatter.dateStyle = .LongStyle
 		clientDateFormatter.timeStyle = .NoStyle
 		clientDateFormatter.locale = locale
-
-		serverYYYYDateFormatter.timeZone = gmtTimeZone
-		serverYYDateFormatter.timeZone = gmtTimeZone
 	}
 
 
 	//MARK: DDLField
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
-		if let stringValue = value {
-			// minimum date length in mm/dd/yy is 6 characters
-			if stringValue.characters.count >= 6 {
-				let formatter = stringValue[stringValue.endIndex.predecessor().predecessor()] == "/"
-					? serverYYDateFormatter : serverYYYYDateFormatter
-				return formatter.dateFromString(stringValue)
-			}
+		guard let stringValue = value else {
+			return nil
 		}
 
-		return nil
+		// minimum date length in mm/dd/yy is 6 characters
+		guard stringValue.characters.count >= 6 else {
+			return nil
+		}
+
+		let separator = stringValue[stringValue.endIndex.advancedBy(-3)]
+
+		let formatter = NSDateFormatter()
+		formatter.timeZone = NSTimeZone(abbreviation: "GMT")
+		formatter.dateFormat = (separator == "/") ? "MM/dd/yy" : "MM/dd/yyyy"
+
+		return formatter.dateFromString(stringValue)
 	}
 
 	override func convert(fromLabel label: String?) -> AnyObject? {
