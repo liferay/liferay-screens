@@ -81,6 +81,11 @@ class CredentialStoreMock : CredentialsStore {
 	func storeCredentials(session: LRSession?, userAttributes: [String:AnyObject]?) -> Bool {
 		calledStoreCredential = true
 
+		// after the credentials are saved, the data is present
+		hasData = true
+		self.authentication = session?.authentication
+		self.userAttributes = userAttributes
+
 		return hasData
 	}
 

@@ -43,6 +43,8 @@ public func given(str: String, code: Void -> Void) {
 }
 
 public func when(str: String, code: Void -> Void) {
+	lastDoneEvent = nil
+
 	doPrint("\(currentIndentation())\(currentIcons().when) When \(str)\n")
 	code()
 }
@@ -74,7 +76,7 @@ public func then(str: String, code: Void -> Void, action: Action) {
 	}
 }
 
-public func eventually(str: String, code: AnyObject? -> Void, action: Action) {
+public func eventually(str: String, _ code: AnyObject? -> Void, _ action: Action) {
 	let icons = currentIcons()
 	let indentation = currentIndentation()
 
@@ -90,7 +92,7 @@ public func eventually(str: String, code: AnyObject? -> Void, action: Action) {
 				}, finally: nil)
 			}
 			else {
-				let expectation = testCase.expectationWithDescription("")
+				let expectation = testCase.expectationWithDescription("\(str)-\(NSDate().timeIntervalSince1970)")
 
 				var signaled = false
 
@@ -111,15 +113,18 @@ public func eventually(str: String, code: AnyObject? -> Void, action: Action) {
 					expectation.fulfill()
 				})
 
-				doPrint("\(indentation)\(icons.eventually) Eventually \(str)\n")
+				SwiftTryCatch.`try`({
+					doPrint("\(indentation)\(icons.eventually) Eventually \(str)\n")
 
-				testCase.waitForExpectationsWithTimeout(5, handler: nil)
+					testCase.waitForExpectationsWithTimeout(5, handler: nil)
 
-				if !signaled {
-					doPrint("\(indentation)\(icons.failed) FAILED (timeout)\n")
-				}
-
-				NSNotificationCenter.defaultCenter().removeObserver(observer)
+					if !signaled {
+						doPrint("\(indentation)\(icons.failed) FAILED (timeout)\n")
+					}
+				}, `catch`: { error in
+				}, finally: {
+					NSNotificationCenter.defaultCenter().removeObserver(observer)
+				})
 			}
 
 			lastDoneEvent = nil

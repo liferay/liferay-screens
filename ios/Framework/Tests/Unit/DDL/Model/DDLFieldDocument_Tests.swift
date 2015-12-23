@@ -240,7 +240,9 @@ class DDLFieldDocument_Tests: XCTestCase {
 						"groupId": 1234,
 						"uuid": "abcd",
 						"version": "1.0"]
-				XCTAssertEqual("\(expectedJson)", "\(uploadedAttributes)")
+				for (k,v) in expectedJson {
+					XCTAssertEqual("\(v)", "\(uploadedAttributes[k]!)")
+				}
 
 			default:
 				XCTFail("Upload status is expected to be 'Uploaded'")
