@@ -328,30 +328,24 @@ import QuartzCore
 	//MARK: HUD methods
 
 	public func showHUDWithMessage(message: String?,
-		closeMode: ProgressCloseMode,
-		spinnerMode: ProgressSpinnerMode) {
+			closeMode: ProgressCloseMode,
+			spinnerMode: ProgressSpinnerMode) {
 
-			assert(_progressPresenter != nil, "ProgressPresenter must exist")
-
-			_progressPresenter!.showHUDInView(rootView(self),
-				message: message,
-				closeMode: closeMode,
-				spinnerMode: spinnerMode)
+		_progressPresenter?.showHUDInView(rootView(self),
+			message: message,
+			closeMode: closeMode,
+			spinnerMode: spinnerMode)
 	}
 
 	public func showHUDAlert(message message: String) {
-		assert(_progressPresenter != nil, "ProgressPresenter must exist")
-
-		_progressPresenter!.showHUDInView(rootView(self),
+		_progressPresenter?.showHUDInView(rootView(self),
 			message: message,
 			closeMode: .ManualClose_TouchClosable,
 			spinnerMode: .NoSpinner)
 	}
 
 	public func hideHUD() {
-		assert(_progressPresenter != nil, "ProgressPresenter must exist")
-
-		_progressPresenter!.hideHUD()
+		_progressPresenter?.hideHUD()
 	}
 
 
