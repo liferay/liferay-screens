@@ -3,8 +3,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:padding="10dp"
-	android:theme="@style/material_theme">
+	android:padding="10dp">
 
 	<ImageView
 		android:id="@+id/liferay_portrait"
@@ -20,9 +19,9 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="bottom|end"
+		android:background="@android:color/transparent"
 		android:contentDescription="@string/add_user_portrait_content_description"
 		android:src="@drawable/material_tinted_add"
-		android:background="@android:color/transparent"
 		android:visibility="invisible"/>
 
 	<ProgressBar
