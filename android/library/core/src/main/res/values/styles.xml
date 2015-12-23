@@ -91,7 +91,7 @@
 	<style name="base_default_dialog_button" parent="default_text_view">
 		<item name="android:layout_weight">1</item>
 		<item name="android:gravity">center</item>
-		<item name="android:textColor">?attr/colorPrimary</item>
+		<item name="android:textColor">@color/colorPrimary_default</item>
 		<item name="android:textSize">15sp</item>
 		<item name="android:minHeight">48dp</item>
 		<item name="android:background">?android:attr/selectableItemBackground</item>
