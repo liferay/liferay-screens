@@ -38,14 +38,14 @@ public enum Action {
 }
 
 public func given(str: String, code: Void -> Void) {
-	doPrint("\(currentIndentation())\(currentIcons().given) Given \(str)\n")
+	doPrint("\(currentIndentation())\(currentIcons().given) Given \(str)")
 	code()
 }
 
 public func when(str: String, code: Void -> Void) {
 	lastDoneEvent = nil
 
-	doPrint("\(currentIndentation())\(currentIcons().when) When \(str)\n")
+	doPrint("\(currentIndentation())\(currentIcons().when) When \(str)")
 	code()
 }
 
@@ -57,21 +57,21 @@ public func then(str: String, code: Void -> Void, action: Action) {
 	let icons = currentIcons()
 	let indentation = currentIndentation()
 
-	doPrint("\(indentation)\(icons.then) Then \(str)\n")
+	doPrint("\(indentation)\(icons.then) Then \(str)")
 
 	switch action {
 		case .TestAndWaitFor:
-			doPrint("ERROR: TestAndWaitFor is not supported with given.when.then. Use given.when.eventually instead\n")
+			doPrint("ERROR: TestAndWaitFor is not supported with given.when.then. Use given.when.eventually instead")
 		case .Skip:
-			doPrint("\(indentation)\(icons.skipped) SKIPPED\n")
+			doPrint("\(indentation)\(icons.skipped) SKIPPED")
 		case .Pending:
-			doPrint("\(indentation)\(icons.pending) PENDING\n")
+			doPrint("\(indentation)\(icons.pending) PENDING")
 		case .TestNow:
 			SwiftTryCatch.`try`({
 				code()
-				doPrint("\(indentation)\(icons.passed) PASSED\n")
+				doPrint("\(indentation)\(icons.passed) PASSED")
 			}, `catch`: { error in
-				doPrint("\(indentation)\(icons.failed) FAILED\n")
+				doPrint("\(indentation)\(icons.failed) FAILED")
 			}, finally: nil)
 	}
 }
@@ -86,9 +86,9 @@ public func eventually(str: String, _ code: AnyObject? -> Void, _ action: Action
 				// already called "done"
 				SwiftTryCatch.`try`({
 					code(lastDoneEvent?.result)
-					doPrint("\(indentation)\(icons.passed) PASSED\n")
+					doPrint("\(indentation)\(icons.passed) PASSED")
 				}, `catch`: { error in
-					doPrint("\(indentation)\(icons.failed) FAILED\n")
+					doPrint("\(indentation)\(icons.failed) FAILED")
 				}, finally: nil)
 			}
 			else {
@@ -104,9 +104,9 @@ public func eventually(str: String, _ code: AnyObject? -> Void, _ action: Action
 
 					SwiftTryCatch.`try`({
 						code(notif.object)
-						doPrint("\(indentation)\(icons.passed) PASSED\n")
+						doPrint("\(indentation)\(icons.passed) PASSED")
 					}, `catch`: { error in
-						doPrint("\(indentation)\(icons.failed) FAILED\n")
+						doPrint("\(indentation)\(icons.failed) FAILED")
 					}, finally: nil)
 
 					signaled = true
@@ -114,12 +114,12 @@ public func eventually(str: String, _ code: AnyObject? -> Void, _ action: Action
 				})
 
 				SwiftTryCatch.`try`({
-					doPrint("\(indentation)\(icons.eventually) Eventually \(str)\n")
+					doPrint("\(indentation)\(icons.eventually) Eventually \(str)")
 
 					testCase.waitForExpectationsWithTimeout(5, handler: nil)
 
 					if !signaled {
-						doPrint("\(indentation)\(icons.failed) FAILED (timeout)\n")
+						doPrint("\(indentation)\(icons.failed) FAILED (timeout)")
 					}
 				}, `catch`: { error in
 				}, finally: {
@@ -141,7 +141,7 @@ public func done(notificationName: String, withResult result: AnyObject?) {
 }
 
 public func scenario(scenario: String, code:Void->Void) {
-	doPrint("\(currentIndentation())\(currentIcons().scenario) \(scenario)\n")
+	doPrint("\(currentIndentation())\(currentIcons().scenario) \(scenario)")
 
 	currentIndentationLevel++
 	code()
@@ -178,17 +178,18 @@ private func withSugar(sugar: String, text: String, level: Int, code: Void -> Vo
 }
 
 private func doPrint(str: String) {
-	// Xcode 6.3 (6D570) hang using Swift's print.
+	// Xcode 6.3 (6D570) hangs using Swift's print.
 	// Use NSLog as workaround
-	NSLog("%@", str)
+	// NSLog("%@", str)
+	print(str)
 }
 
 public func assertThat(text: String, code: Void -> Void) {
 	SwiftTryCatch.`try`({
 		code()
-		doPrint("\(indentation(currentIndentationLevel + 1))\(currentIcons().assertPassed) assert that \(text)\n")
+		doPrint("\(indentation(currentIndentationLevel + 1))\(currentIcons().assertPassed) assert that \(text)")
 	}, `catch`: { error in
-		doPrint("\(indentation(currentIndentationLevel + 1))\(currentIcons().assertFailed) assert that \(text)\n")
+		doPrint("\(indentation(currentIndentationLevel + 1))\(currentIcons().assertFailed) assert that \(text)")
 		SwiftTryCatch.throwException(error)
 	}, finally: nil)
 }
