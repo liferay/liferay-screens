@@ -10,9 +10,13 @@
 		<item name="android:colorPrimaryDark">@color/colorPrimaryDark_westeros</item>
 		<item name="android:textColorPrimary">@color/textColorPrimary_westeros</item>
 		<item name="android:textColorSecondary">@color/light_gray_westeros</item>
+
 		<item name="android:textViewStyle">@style/westeros_text_view</item>
 		<item name="android:editTextStyle">@style/westeros_edit_text</item>
 		<item name="android:buttonStyle">@style/westeros_button</item>
+		<item name="editTextStyle">@style/westeros_edit_text</item>
+		<item name="buttonStyle">@style/westeros_button</item>
+
 		<item name="android:typeface">serif</item>
 		<item name="windowActionBar">false</item>
 		<item name="android:windowContentOverlay">@null</item>

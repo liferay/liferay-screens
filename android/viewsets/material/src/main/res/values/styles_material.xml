@@ -18,6 +18,8 @@
 		<item name="android:textViewStyle">@style/material_text_view</item>
 		<item name="android:editTextStyle">@style/material_edit_text</item>
 		<item name="android:buttonStyle">@style/material_button</item>
+		<item name="editTextStyle">@style/material_edit_text</item>
+		<item name="buttonStyle">@style/material_button</item>
 
 		<item name="themeName">material_theme</item>
 	</style>
