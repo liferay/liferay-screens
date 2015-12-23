@@ -37,7 +37,7 @@ class LoginScreenlet_ByUserId_Tests: BaseLoginScreenletTestCase {
 				}
 				self.screenlet!.performDefaultAction()
 			}
-			eventually("the state of the screenlet should be consistent", code: {result in
+			eventually("the state of the screenlet should be consistent", { result in
 				assertThat("the error should be nil") {
 					XCTAssertFalse(result is NSError)
 				}
@@ -63,7 +63,7 @@ class LoginScreenlet_ByUserId_Tests: BaseLoginScreenletTestCase {
 					XCTAssertEqual("test", SessionContext.currentBasicPassword!)
 				}
 			},
-			action: .TestAndWaitFor("login response received", self))
+			.TestAndWaitFor("login response received", self))
 		}
 	}
 

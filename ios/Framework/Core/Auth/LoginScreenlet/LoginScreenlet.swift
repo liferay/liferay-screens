@@ -96,7 +96,7 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 
 		switch name {
-		case "login-action":
+		case "login-action", BaseScreenlet.DefaultAction:
 			return createLoginInteractor()
 		case "oauth-action":
 			return createOAuthInteractor()
