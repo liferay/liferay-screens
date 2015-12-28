@@ -129,7 +129,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		final View customDialogView = factory.inflate(
 			R.layout.ddlfield_document_chose_option_default, null);
 
-		View takeVideoButton = customDialogView.findViewById(R.id.liferay_dialog_take_video);
+		View takeVideoButton = customDialogView.findViewById(R.id.liferay_dialog_take_video_form);
 		RxPermissions.getInstance(getContext())
 			.request(RxView.clicks(takeVideoButton),
 				Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -141,7 +141,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 				Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 			.subscribe(launchCamera(MediaStore.ACTION_IMAGE_CAPTURE));
 
-		final View selectFileButton = customDialogView.findViewById(R.id.liferay_dialog_select_file);
+		final View selectFileButton = customDialogView.findViewById(R.id.liferay_dialog_select_file_form);
 		RxPermissions.getInstance(getContext())
 			.request(RxView.clicks(selectFileButton), Manifest.permission.WRITE_EXTERNAL_STORAGE)
 			.subscribe(chooseFile(selectFileButton));
