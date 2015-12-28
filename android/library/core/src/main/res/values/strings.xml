@@ -9,4 +9,8 @@
 	<string name="UserPortraitScreenlet_default">userportrait_default</string>
 	<string name="WebContentDisplayScreenlet_default">webcontentdisplay_default</string>
 	<string name="add_icon_user_portrait_content_description">Add icon for replacing a user portrait</string>
+
+	<string name="sd_permissions">You can't choose a file if you don't allow external storage access</string>
+	<string name="camera_permissions">We need camera access to take a picture or record a video</string>
+
 </resources>

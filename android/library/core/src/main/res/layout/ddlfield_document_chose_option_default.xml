@@ -36,7 +36,7 @@
 			android:text="@string/record_a_video"/>
 
 		<TextView
-			android:id="@+id/liferay_dialog_take_photo"
+			android:id="@+id/liferay_dialog_take_photo_form"
 			style="@style/default_dialog_button"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"

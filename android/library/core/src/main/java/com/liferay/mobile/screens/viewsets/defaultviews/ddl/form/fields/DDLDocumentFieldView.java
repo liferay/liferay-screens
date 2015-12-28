@@ -14,24 +14,32 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.FileUtil;
+import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.io.File;
+
+import rx.functions.Action1;
 
 /**
  * @author Javier Gamarra
@@ -56,18 +64,6 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		if (view.getId() == R.id.liferay_ddl_edit_text) {
 			_choseOriginDialog = createOriginDialog();
 			_choseOriginDialog.show();
-		}
-		else if (view.getId() == R.id.liferay_dialog_take_video) {
-			launchCameraIntent(MediaStore.ACTION_VIDEO_CAPTURE, FileUtil.createVideoFile());
-			_choseOriginDialog.dismiss();
-		}
-		else if (view.getId() == R.id.liferay_dialog_take_photo) {
-			launchCameraIntent(MediaStore.ACTION_IMAGE_CAPTURE, FileUtil.createImageFile());
-			_choseOriginDialog.dismiss();
-		}
-		else if (view.getId() == R.id.liferay_dialog_select_file) {
-			showSelectFileDialog(view);
-			_choseOriginDialog.dismiss();
 		}
 	}
 
@@ -133,48 +129,87 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		final View customDialogView = factory.inflate(
 			R.layout.ddlfield_document_chose_option_default, null);
 
-		customDialogView.findViewById(R.id.liferay_dialog_select_file).setOnClickListener(this);
-		customDialogView.findViewById(R.id.liferay_dialog_take_photo).setOnClickListener(this);
-		customDialogView.findViewById(R.id.liferay_dialog_take_video).setOnClickListener(this);
+		View takeVideoButton = customDialogView.findViewById(R.id.liferay_dialog_take_video);
+		RxPermissions.getInstance(getContext())
+			.request(RxView.clicks(takeVideoButton),
+				Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+			.subscribe(launchCamera(MediaStore.ACTION_VIDEO_CAPTURE));
+
+		View takePhotoButton = customDialogView.findViewById(R.id.liferay_dialog_take_photo_form);
+		RxPermissions.getInstance(getContext())
+			.request(RxView.clicks(takePhotoButton),
+				Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+			.subscribe(launchCamera(MediaStore.ACTION_IMAGE_CAPTURE));
+
+		final View selectFileButton = customDialogView.findViewById(R.id.liferay_dialog_select_file);
+		RxPermissions.getInstance(getContext())
+			.request(RxView.clicks(selectFileButton), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+			.subscribe(chooseFile(selectFileButton));
 
 		builder.setView(customDialogView);
-
 		return builder.create();
-	}
-
-	protected void launchCameraIntent(String intent, File file) {
-		Intent cameraIntent = new Intent(intent);
-
-		if (file != null) {
-			getField().createLocalFile(file.getAbsolutePath());
-			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-			LiferayScreensContext.getActivityFromContext(getContext()).startActivityForResult(cameraIntent, _positionInForm);
-		}
-	}
-
-	protected void showSelectFileDialog(final View view) {
-		_fileDialog = new SelectFileDialog().createDialog(getContext(),
-			new SelectFileDialog.SimpleFileDialogListener() {
-
-				@Override
-				public void onFileChosen(String path) {
-					_progressBar.setVisibility(VISIBLE);
-					getTextEditText().setText(path);
-
-					DocumentField field = getField();
-					field.createLocalFile(path);
-					field.moveToUploadInProgressState();
-					view.setTag(field);
-					((DDLFormView) getParentView()).onClick(view);
-				}
-
-			});
-
-		_fileDialog.show();
 	}
 
 	protected ProgressBar getProgressBar() {
 		return _progressBar;
+	}
+
+	@NonNull
+	private Action1<Boolean> chooseFile(final View view) {
+		return new Action1<Boolean>() {
+			@Override
+			public void call(Boolean result) {
+				if (result) {
+					_fileDialog = new SelectFileDialog().createDialog(getContext(),
+						new SelectFileDialog.SimpleFileDialogListener() {
+
+							@Override
+							public void onFileChosen(String path) {
+								_progressBar.setVisibility(VISIBLE);
+								getTextEditText().setText(path);
+
+								DocumentField field = getField();
+								field.createLocalFile(path);
+								field.moveToUploadInProgressState();
+								view.setTag(field);
+								((DDLFormView) getParentView()).onClick(view);
+								_choseOriginDialog.dismiss();
+							}
+						});
+					_fileDialog.show();
+				}
+				else {
+					LiferayCrouton.error(getContext(), getContext().getString(R.string.sd_permissions), null);
+				}
+				_choseOriginDialog.dismiss();
+			}
+		};
+	}
+
+	@NonNull
+	private Action1<Boolean> launchCamera(final String intent) {
+		return new Action1<Boolean>() {
+			@Override
+			public void call(Boolean result) {
+				if (result) {
+					Intent cameraIntent = new Intent(intent);
+					File file = MediaStore.ACTION_VIDEO_CAPTURE.equals(intent) ?
+						FileUtil.createVideoFile() : FileUtil.createImageFile();
+
+					if (file != null) {
+						getField().createLocalFile(file.getAbsolutePath());
+						cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+
+						Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+						activity.startActivityForResult(cameraIntent, _positionInForm);
+					}
+				}
+				else {
+					LiferayCrouton.error(getContext(), getContext().getString(R.string.camera_permissions), null);
+				}
+				_choseOriginDialog.dismiss();
+			}
+		};
 	}
 
 	protected ProgressBar _progressBar;
