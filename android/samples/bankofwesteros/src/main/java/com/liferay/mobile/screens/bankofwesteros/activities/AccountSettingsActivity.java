@@ -72,12 +72,12 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 
 	@Override
 	public void onUserPortraitUploaded(UserPortraitScreenlet source) {
-		WesterosSnackbar.showSnackbar(this, "Portrait updated", R.color.westeros_green);
+		WesterosSnackbar.showSnackbar(this, "Portrait updated", R.color.green_westeros);
 	}
 
 	@Override
 	public void onUserPortraitUploadFailure(UserPortraitScreenlet source, Exception e) {
-		WesterosSnackbar.showSnackbar(this, "Error updating portrait", R.color.westeros_yellow);
+		WesterosSnackbar.showSnackbar(this, "Error updating portrait", R.color.colorAccent_westeros);
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 		BasicAuthentication basicAuth = (BasicAuthentication) SessionContext.getAuthentication();
 		if (basicAuth.getPassword().equals(_password.getText().toString())) {
 			setError(_password);
-			WesterosSnackbar.showSnackbar(this, "Password should be different", R.color.westeros_yellow);
+			WesterosSnackbar.showSnackbar(this, "Password should be different", R.color.colorAccent_westeros);
 			return;
 		}
 
@@ -130,13 +130,13 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 				SessionContext.createBasicSession(emailAddress, newPassword);
 
 				clearError(_password);
-				WesterosSnackbar.showSnackbar(AccountSettingsActivity.this, "User updated", R.color.westeros_green);
+				WesterosSnackbar.showSnackbar(AccountSettingsActivity.this, "User updated", R.color.green_westeros);
 			}
 
 			@Override
 			public void onFailure(Exception exception) {
 				LiferayLogger.e("error", exception);
-				WesterosSnackbar.showSnackbar(AccountSettingsActivity.this, "Error updating user", R.color.westeros_yellow);
+				WesterosSnackbar.showSnackbar(AccountSettingsActivity.this, "Error updating user", R.color.colorAccent_westeros);
 			}
 		});
 	}

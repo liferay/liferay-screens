@@ -1,10 +1,13 @@
 package com.liferay.mobile.screens.bankofwesteros.activities;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
@@ -14,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.bankofwesteros.utils.Card;
 import com.liferay.mobile.screens.bankofwesteros.utils.EndAnimationListener;
@@ -26,11 +30,15 @@ import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+
+import rx.Observable;
+import rx.functions.Action1;
 
 /**
  * @author Javier Gamarra
@@ -61,7 +69,9 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 
 		TextView callMenuEntry = (TextView) findViewById(R.id.call_menu_entry);
 		callMenuEntry.setText(getCallSpannableString(), TextView.BufferType.SPANNABLE);
-		callMenuEntry.setOnTouchListener(this);
+
+		tryToCall(RxView.clicks(callMenuEntry), callMenuEntry);
+
 		findViewById(R.id.account_settings_menu_entry).setOnTouchListener(this);
 		findViewById(R.id.send_message_menu_entry).setOnTouchListener(this);
 		findViewById(R.id.sign_out_menu_entry).setOnTouchListener(this);
@@ -269,7 +279,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 
 			@Override
 			public void onAnimationEnd(Animator animator) {
-				WesterosSnackbar.showSnackbar(IssuesActivity.this, message.toUpperCase(), R.color.westeros_green);
+				WesterosSnackbar.showSnackbar(IssuesActivity.this, message.toUpperCase(), R.color.green_westeros);
 			}
 		});
 	}
@@ -306,7 +316,6 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 			case R.id.call_menu_entry:
 				color = R.color.light_gray_westeros;
 
-				startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
 				break;
 			case R.id.send_message_menu_entry:
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.default_sms_uri))));
@@ -321,6 +330,22 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 				break;
 		}
 		v.setBackgroundColor(getResources().getColor(color));
+	}
+
+	private void tryToCall(Observable trigger, final View button) {
+		RxPermissions.getInstance(this).
+			request(trigger, Manifest.permission.CALL_PHONE).
+			subscribe(new Action1<Boolean>() {
+				@Override
+				public void call(Boolean result) {
+					button.setBackgroundColor(getResources().getColor(R.color.light_gray_westeros));
+					if (result) {
+						if (ActivityCompat.checkSelfPermission(IssuesActivity.this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+							startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
+						}
+					}
+				}
+			});
 	}
 
 	private DDLFormScreenlet _ddlFormScreenlet;

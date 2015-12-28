@@ -33,7 +33,6 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.FileUtil;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
@@ -178,9 +177,6 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 						});
 					_fileDialog.show();
 				}
-				else {
-					LiferayCrouton.error(getContext(), getContext().getString(R.string.sd_permissions), null);
-				}
 				_choseOriginDialog.dismiss();
 			}
 		};
@@ -203,9 +199,6 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 						Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 						activity.startActivityForResult(cameraIntent, _positionInForm);
 					}
-				}
-				else {
-					LiferayCrouton.error(getContext(), getContext().getString(R.string.camera_permissions), null);
 				}
 				_choseOriginDialog.dismiss();
 			}
