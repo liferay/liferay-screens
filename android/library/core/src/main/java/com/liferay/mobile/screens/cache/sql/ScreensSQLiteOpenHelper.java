@@ -1,7 +1,5 @@
 package com.liferay.mobile.screens.cache.sql;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
 import com.liferay.mobile.screens.cache.ddl.form.DDLFormCache;
@@ -9,6 +7,9 @@ import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.cache.userportrait.UserPortraitCache;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
+
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteOpenHelper;
 
 /**
  * @author Javier Gamarra
