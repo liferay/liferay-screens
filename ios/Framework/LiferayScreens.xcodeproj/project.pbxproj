@@ -29,6 +29,9 @@
 		880ACA881B0224A0007AD007 /* userportrait-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA711B0224A0007AD007 /* userportrait-screenlet.strings */; };
 		880ACA8B1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */; };
 		880ACA8C1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */; };
+		880B0EB11C346CC100CB5A1C /* YapDatabaseOptions+Screens.h in Headers */ = {isa = PBXBuildFile; fileRef = 880B0EAF1C346CC100CB5A1C /* YapDatabaseOptions+Screens.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		880B0EB21C346CC100CB5A1C /* YapDatabaseOptions+Screens.m in Sources */ = {isa = PBXBuildFile; fileRef = 880B0EB01C346CC100CB5A1C /* YapDatabaseOptions+Screens.m */; };
+		880B0EB31C346CC100CB5A1C /* YapDatabaseOptions+Screens.m in Sources */ = {isa = PBXBuildFile; fileRef = 880B0EB01C346CC100CB5A1C /* YapDatabaseOptions+Screens.m */; };
 		881B743E1B9EE28D00EA64ED /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B743D1B9EE28D00EA64ED /* SyncManager.swift */; };
 		881E49C61B95CE66007DBEC9 /* DownloadUserPortraitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49C51B95CE65007DBEC9 /* DownloadUserPortraitInteractor.swift */; };
 		881E49C71B95CE66007DBEC9 /* DownloadUserPortraitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49C51B95CE65007DBEC9 /* DownloadUserPortraitInteractor.swift */; };
@@ -385,6 +388,8 @@
 		880ACA791B0224A0007AD007 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/signup-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA7A1B0224A0007AD007 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/userportrait-screenlet.strings"; sourceTree = "<group>"; };
 		880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context-sample.plist"; sourceTree = "<group>"; };
+		880B0EAF1C346CC100CB5A1C /* YapDatabaseOptions+Screens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YapDatabaseOptions+Screens.h"; sourceTree = "<group>"; };
+		880B0EB01C346CC100CB5A1C /* YapDatabaseOptions+Screens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YapDatabaseOptions+Screens.m"; sourceTree = "<group>"; };
 		881B743D1B9EE28D00EA64ED /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		881E49C51B95CE65007DBEC9 /* DownloadUserPortraitInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadUserPortraitInteractor.swift; sourceTree = "<group>"; };
 		881E49CB1B95D474007DBEC9 /* Array+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Screens.swift"; sourceTree = "<group>"; };
@@ -1211,6 +1216,8 @@
 				887F0D081B999CD90007AECE /* CacheManager.swift */,
 				887F0D171B99BD640007AECE /* CacheMetadata.swift */,
 				881B743D1B9EE28D00EA64ED /* SyncManager.swift */,
+				880B0EAF1C346CC100CB5A1C /* YapDatabaseOptions+Screens.h */,
+				880B0EB01C346CC100CB5A1C /* YapDatabaseOptions+Screens.m */,
 			);
 			path = Offline;
 			sourceTree = "<group>";
@@ -1439,6 +1446,7 @@
 				B2F3F3531B0A1923002CEF60 /* LRScreensuserService_v62.h in Headers */,
 				8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */,
 				B2A8B1D51BBABE1F00AEC9D9 /* LRScreensjournalarticleService_v62.h in Headers */,
+				880B0EB11C346CC100CB5A1C /* YapDatabaseOptions+Screens.h in Headers */,
 				B2F3F3511B0A1923002CEF60 /* LRScreensddlrecordService_v62.h in Headers */,
 				B2F3F34F1B0A1923002CEF60 /* LRScreensassetentryService_v62.h in Headers */,
 				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
@@ -1729,6 +1737,7 @@
 				881E622E1ACBFC3400862B9E /* SignUpView_default.swift in Sources */,
 				881E61791ACBEE0B00862B9E /* DDLFormView.swift in Sources */,
 				881E62301ACBFC3400862B9E /* UserPortraitView_default.swift in Sources */,
+				880B0EB21C346CC100CB5A1C /* YapDatabaseOptions+Screens.m in Sources */,
 				887F0D0A1B999CD90007AECE /* CacheManager.swift in Sources */,
 				88DC31E21ACC18F10078C961 /* CredentialsStorage.swift in Sources */,
 				8892C6AB1ACBD89400192232 /* Bool+Screens.swift in Sources */,
@@ -1917,6 +1926,7 @@
 				8839B87C1B0CD539006C18F1 /* SaveUserInteractor.swift in Sources */,
 				881E62F31ACC04A500862B9E /* DDLRecord.swift in Sources */,
 				88A2B7181ACDEC29000C2065 /* DDLListView_test.swift in Sources */,
+				880B0EB31C346CC100CB5A1C /* YapDatabaseOptions+Screens.m in Sources */,
 				881E62F01ACC04A500862B9E /* DDLFieldString.swift in Sources */,
 				881E62941ACBFEFC00862B9E /* BaseListPageLoadInteractor.swift in Sources */,
 				881E62971ACBFF0400862B9E /* LiferayPaginationOperation.swift in Sources */,

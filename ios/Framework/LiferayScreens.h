@@ -24,3 +24,4 @@ FOUNDATION_EXPORT const unsigned char LiferayScreensVersionString[];
 #import <LiferayScreens/LRScreensjournalarticleService_v62.h>
 
 #import <YapDatabase/YapDatabase.h>
+#import <LiferayScreens/YapDatabaseOptions+Screens.h>

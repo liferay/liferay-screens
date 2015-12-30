@@ -37,14 +37,14 @@ public enum CacheStrategyType: String {
 		let dbPath = "\(path)_\(name.toSafeFilename()))"
 
 		if let encryptionKey = encryptionKey {
-			let options = YapDatabaseOptions()
-			options.corruptAction = .Rename
-
 			let encryptionKeyData = encryptionKey.dataUsingEncoding(NSUTF8StringEncoding)!
 
-			options.cipherKeyBlock = {
+			let options = YapDatabaseOptions()
+
+			options.corruptAction = .Rename
+			options.setCipherKeyBlockSwiftBridge({
 				return encryptionKeyData
-			}
+			})
 
 			database = YapDatabase(
 				path: dbPath,
