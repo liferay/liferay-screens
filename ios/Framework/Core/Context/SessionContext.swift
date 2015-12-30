@@ -28,6 +28,7 @@ import Foundation
 		static var currentUserAttributes = [String:AnyObject]()
 
 		static var cacheManager: CacheManager?
+		static var encryptionKey: String?
 
 		static var credentialsStorage = CredentialsStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
@@ -156,7 +157,8 @@ import Foundation
 	public class func storeCredentials() -> Bool {
 		return credentialsStorage.store(
 				session: StaticInstance.currentUserSession,
-				userAttributes: StaticInstance.currentUserAttributes)
+				userAttributes: StaticInstance.currentUserAttributes,
+				encryptionKey: StaticInstance.encryptionKey)
 	}
 
 	public class func removeStoredCredentials() -> Bool {
@@ -172,13 +174,26 @@ import Foundation
 
 				StaticInstance.currentUserSession = result.session
 				StaticInstance.currentUserAttributes = result.userAttributes
-				StaticInstance.cacheManager = CacheManager(session: result.session)
+				StaticInstance.cacheManager = CacheManager(
+						session: result.session,
+						encryptionKey: result.encryptionKey)
 
 				return true
 			}
 		}
 
 		return false
+	}
+
+	public class func setEncryptionKey(key: String) {
+		StaticInstance.encryptionKey = key
+
+		if let session = StaticInstance.currentUserSession
+				where StaticInstance.cacheManager != nil {
+			StaticInstance.cacheManager = CacheManager(
+				session: session,
+				encryptionKey: key)
+		}
 	}
 
 
