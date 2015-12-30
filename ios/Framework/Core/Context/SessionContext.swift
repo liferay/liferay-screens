@@ -27,7 +27,7 @@ import Foundation
 		static var currentUserSession: LRSession?
 		static var currentUserAttributes = [String:AnyObject]()
 
-		static var chacheManager: CacheManager?
+		static var cacheManager: CacheManager?
 
 		static var credentialsStorage = CredentialsStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
@@ -61,7 +61,7 @@ import Foundation
 	}
 
 	public class var currentCacheManager: CacheManager? {
-		return StaticInstance.chacheManager
+		return StaticInstance.cacheManager
 	}
 
 	internal class var credentialsStorage: CredentialsStorage {
@@ -150,7 +150,7 @@ import Foundation
 	public class func logout() {
 		StaticInstance.currentUserSession = nil
 		StaticInstance.currentUserAttributes = [:]
-		StaticInstance.chacheManager = nil
+		StaticInstance.cacheManager = nil
 	}
 
 	public class func storeCredentials() -> Bool {
@@ -172,7 +172,7 @@ import Foundation
 
 				StaticInstance.currentUserSession = result.session
 				StaticInstance.currentUserAttributes = result.userAttributes
-				StaticInstance.chacheManager = CacheManager(session: result.session)
+				StaticInstance.cacheManager = CacheManager(session: result.session)
 
 				return true
 			}
@@ -194,7 +194,7 @@ import Foundation
 
 		StaticInstance.currentUserSession = session
 		StaticInstance.currentUserAttributes = userAttributes
-		StaticInstance.chacheManager = CacheManager(session: session)
+		StaticInstance.cacheManager = CacheManager(session: session)
 
 		return session
 	}
