@@ -31,13 +31,31 @@ public enum CacheStrategyType: String {
 	private var readConnection: YapDatabaseConnection
 	private var writeConnection: YapDatabaseConnection
 
-
-	public init(name: String) {
+	public init(name: String, encryptionKey: String? = nil) {
 		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
 		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
 		let dbPath = "\(path)_\(name.toSafeFilename()))"
 
-		database = YapDatabase(path: dbPath)
+		if let encryptionKey = encryptionKey {
+			let options = YapDatabaseOptions()
+			options.corruptAction = .Rename
+
+			let encryptionKeyData = encryptionKey.dataUsingEncoding(NSUTF8StringEncoding)!
+
+			options.cipherKeyBlock = {
+				return encryptionKeyData
+			}
+
+			database = YapDatabase(
+				path: dbPath,
+				serializer: nil,
+				deserializer: nil,
+				options: options)
+		}
+		else {
+			database = YapDatabase(path: dbPath)
+		}
+
 		readConnection = database.newConnection()
 		writeConnection = database.newConnection()
 
@@ -46,8 +64,8 @@ public enum CacheStrategyType: String {
 		registerPendingToSyncView(nil)
 	}
 
-	public convenience init(session: LRSession) {
-		self.init(name: session.serverName!)
+	public convenience init(session: LRSession, encryptionKey: String? = nil) {
+		self.init(name: session.serverName!, encryptionKey: encryptionKey)
 	}
 
 
