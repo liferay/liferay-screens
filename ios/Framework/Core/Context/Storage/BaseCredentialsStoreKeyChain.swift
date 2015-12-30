@@ -28,10 +28,8 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 			session: LRSession?,
 			userAttributes: [String:AnyObject]?) -> Bool {
 
-		if session == nil { return false }
 		if session?.authentication == nil { return false }
-		if userAttributes == nil { return false }
-		if userAttributes!.isEmpty { return false }
+		if userAttributes?.isEmpty ?? true { return false }
 
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
