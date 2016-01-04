@@ -19,7 +19,7 @@ import UIKit
 	public typealias LoadResult = (
 		session: LRSession,
 		userAttributes: [String:AnyObject],
-		encryptionKey: String?
+		encryptionKey: NSData?
 	)
 
 	public let hasCredentialsStored: Bool
@@ -57,7 +57,7 @@ import UIKit
 	func store(
 			session session: LRSession?,
 			userAttributes: [String:AnyObject],
-			encryptionKey: String?) -> Bool {
+			encryptionKey: NSData?) -> Bool {
 
 		if session == nil || userAttributes.isEmpty {
 			return false

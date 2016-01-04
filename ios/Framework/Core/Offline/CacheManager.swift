@@ -35,7 +35,7 @@ public enum CacheStrategyType: String {
 	private var readConnection: YapDatabaseConnection
 	private var writeConnection: YapDatabaseConnection
 
-	public init(name: String, encryptionKey: String? = nil) {
+	public init(name: String, encryptionKey: NSData? = nil) {
 		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
 		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
 
@@ -101,7 +101,7 @@ public enum CacheStrategyType: String {
 		registerPendingToSyncView(nil)
 	}
 
-	public convenience init(session: LRSession, encryptionKey: String? = nil) {
+	public convenience init(session: LRSession, encryptionKey: NSData? = nil) {
 		self.init(name: session.serverName!, encryptionKey: encryptionKey)
 	}
 

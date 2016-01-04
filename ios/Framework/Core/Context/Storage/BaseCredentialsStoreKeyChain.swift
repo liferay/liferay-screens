@@ -23,12 +23,12 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 
 	public var authentication: LRAuthentication?
 	public var userAttributes: [String:AnyObject]?
-	public var encryptionKey: String?
+	public var encryptionKey: NSData?
 
 	public func storeCredentials(
 			session: LRSession?,
 			userAttributes: [String:AnyObject]?,
-			encryptionKey: String?) -> Bool {
+			encryptionKey: NSData?) -> Bool {
 
 		if session?.authentication == nil { return false }
 		if userAttributes?.isEmpty ?? true { return false }

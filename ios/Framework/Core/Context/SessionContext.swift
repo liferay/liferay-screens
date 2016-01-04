@@ -28,7 +28,7 @@ import Foundation
 		static var currentUserAttributes = [String:AnyObject]()
 
 		static var cacheManager: CacheManager?
-		static var encryptionKey: String?
+		static var encryptionKey: NSData?
 
 		static var credentialsStorage = CredentialsStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
@@ -184,8 +184,22 @@ import Foundation
 
 		return false
 	}
+	public class func setEncryptionKeyString(key: String) throws {
+		guard let data = key.dataUsingEncoding(NSUTF8StringEncoding) else {
+			throw NSError.errorWithCause(.ValidationFailed,
+				message: "Key can't be encoded to UTF8")
+		}
+		try setEncryptionKeyData(data)
+	}
 
-	public class func setEncryptionKey(key: String) {
+	public class func setEncryptionKeyData(key: NSData) throws {
+		guard key.length == 16
+				&& key.length == 24
+				&& key.length == 32 else {
+			throw NSError.errorWithCause(.ValidationFailed,
+				message: "Key length must be 16, 24 or 32 bytes")
+		}
+
 		StaticInstance.encryptionKey = key
 
 		if let session = StaticInstance.currentUserSession
