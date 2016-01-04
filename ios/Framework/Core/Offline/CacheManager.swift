@@ -383,10 +383,16 @@ public enum CacheStrategyType: String {
 		return { (collection, key, data) -> AnyObject in
 			do {
 				let decryptedData = try data.decrypt(cipher)
-				return YapDatabase.defaultDeserializer()(collection, key, decryptedData)
+				let object: AnyObject? = YapDatabase.defaultDeserializer()(collection, key, decryptedData)
+				if object == nil {
+					print("[ERROR] Decrypted object is null. Try to deserialize original data")
+				}
+				else {
+					return object!
+				}
 			}
 			catch {
-				print("[WARN] Can't decrypt data. Try to deserialize")
+				print("[WARN] Error decrypting. Try to deserialize original data")
 			}
 
 			return YapDatabase.defaultDeserializer()(collection, key, data)
