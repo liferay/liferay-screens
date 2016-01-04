@@ -44,6 +44,9 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 				key: "companyId")
 			try keychain.set(String(LiferayServerContext.groupId),
 				key: "groupId")
+			if let encryptionKey = encryptionKey {
+				try keychain.set(encryptionKey, key: "encryptionKey")
+			}
 
 			let userData = try? NSJSONSerialization.dataWithJSONObject(userAttributes!,
 				options: NSJSONWritingOptions())
@@ -59,6 +62,7 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 			do {
 				try keychain.remove("companyId")
 				try keychain.remove("groupId")
+				try keychain.remove("encryptionKey")
 				try keychain.remove("user_attributes")
 			} catch {
 			}
@@ -89,6 +93,7 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 		let groupId = try? keychain.get("groupId")
 					.flatMap { Int($0) }
 					.flatMap { Int64($0) }
+		encryptionKey = try! keychain.getData("encryptionKey")
 
 		if (companyId ?? 0) != LiferayServerContext.companyId
 				|| (groupId ?? 0) != LiferayServerContext.groupId {
