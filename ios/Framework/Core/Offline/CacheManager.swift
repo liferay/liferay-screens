@@ -14,6 +14,10 @@
 import Foundation
 import YapDatabase
 
+#if LIFERAY_SCREENS_FRAMEWORK
+	import CryptoSwift
+#endif
+
 
 public enum CacheStrategyType: String {
 	case RemoteOnly = "remote-only"
@@ -49,25 +53,45 @@ public enum CacheStrategyType: String {
 			}
 		}
 
+		let cipherSerializer: YapDatabaseSerializer
+		let cipherDeserializer: YapDatabaseDeserializer
+
 		if let encryptionKey = encryptionKey {
-			let encryptionKeyData = encryptionKey.dataUsingEncoding(NSUTF8StringEncoding)!
+			let keyData = encryptionKey.dataUsingEncoding(NSUTF8StringEncoding)!.arrayOfBytes()
+			let cipher = try! AES(key: keyData)
 
-			let options = YapDatabaseOptions()
+			cipherSerializer = { (collection, key, object) -> NSData in
+				let data = YapDatabase.defaultSerializer()(collection, key, object)
+				do {
+					return try data.encrypt(cipher)
+				}
+				catch {
+					print("[ERROR] Can't encrypt data. Empty data will be returned")
+				}
 
-			options.corruptAction = .Rename
-			options.setCipherKeyBlockSwiftBridge({
-				return encryptionKeyData
-			})
+				return NSData()
+			}
+			cipherDeserializer = { (collection, key, data) -> AnyObject in
+				do {
+					let decryptedData = try data.decrypt(cipher)
+					return YapDatabase.defaultDeserializer()(collection, key, decryptedData)
+				}
+				catch {
+					print("[WARN] Can't decrypt data. Try to deserialize")
+				}
 
-			database = YapDatabase(
-				path: dbPath,
-				serializer: nil,
-				deserializer: nil,
-				options: options)
+				return YapDatabase.defaultDeserializer()(collection, key, data)
+			}
 		}
 		else {
-			database = YapDatabase(path: dbPath)
+			cipherSerializer = YapDatabase.defaultSerializer()
+			cipherDeserializer = YapDatabase.defaultDeserializer()
 		}
+
+		database = YapDatabase(
+			path: dbPath,
+			serializer: cipherSerializer,
+			deserializer: cipherDeserializer)
 
 		readConnection = database.newConnection()
 		writeConnection = database.newConnection()

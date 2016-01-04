@@ -47,8 +47,7 @@ Pod::Spec.new do |s|
 	
 	s.xcconfig = {
 		'GCC_PREPROCESSOR_DEFINITIONS' => 'LIFERAY_SCREENS_FRAMEWORK=1',
-		'OTHER_SWIFT_FLAGS' => '"-D" "LIFERAY_SCREENS_FRAMEWORK"',
-		'OTHER_CFLAGS' => '$(inherited) -DSQLITE_HAS_CODEC'
+		'OTHER_SWIFT_FLAGS' => '"-D" "LIFERAY_SCREENS_FRAMEWORK"'
 	}
 
 	# Core
@@ -58,7 +57,6 @@ Pod::Spec.new do |s|
 	s.dependency 'SMXMLDocument', '1.1'
 	s.dependency 'ODRefreshControl', '1.2'
 	s.dependency 'YapDatabase', '2.6.5'
-	s.dependency 'YapDatabase/SQLCipher', '2.6.5'
 
 	# Login & signup: save credentials
 	s.dependency 'KeychainAccess', '2.3.1'

@@ -11,7 +11,6 @@ pod 'MBProgressHUD', '0.9.1'
 pod 'SMXMLDocument', '1.1'
 pod 'ODRefreshControl', '1.2'
 pod 'YapDatabase', '2.6.5'
-pod 'YapDatabase/SQLCipher', '2.6.5'
 
 # Login & signup: save credentials
 pod 'KeychainAccess', '2.3.1'
