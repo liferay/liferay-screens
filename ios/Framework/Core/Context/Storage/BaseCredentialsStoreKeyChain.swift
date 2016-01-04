@@ -28,8 +28,12 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 			session: LRSession?,
 			userAttributes: [String:AnyObject]?) -> Bool {
 
-		if session?.authentication == nil { return false }
-		if userAttributes?.isEmpty ?? true { return false }
+		guard let auth = session?.authentication else {
+			return false
+		}
+		guard !(userAttributes?.isEmpty ?? true) else {
+			return false
+		}
 
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
@@ -44,7 +48,7 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 			if let userData = userData {
 				try keychain.set(userData, key: "user_attributes")
 
-				storeAuth(keychain: keychain, auth: session!.authentication!)
+				storeAuth(keychain: keychain, auth: auth)
 
 				return true
 			}
