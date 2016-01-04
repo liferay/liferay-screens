@@ -4,8 +4,6 @@ import android.app.Application;
 
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 
-import net.sqlcipher.database.SQLiteDatabase;
-
 /**
  * @author Javier Gamarra
  */
@@ -15,12 +13,11 @@ public class ApplicationCache extends Application {
 	public void onCreate() {
 		super.onCreate();
 
-		SQLiteDatabase.loadLibs(this);
-
 		LiferayScreensContext.init(this);
 
+		// SQLiteDatabase.loadLibs(this);
 
-		//class and type mapping and strategies
-//		CacheSQL.getInstance(StorIOSQLite.getInstance(), new CacheStrategyFactory());
+		// class and type mapping and strategies
+		// CacheSQL.getInstance(StorIOSQLite.getInstance(), new CacheStrategyFactory());
 	}
 }
