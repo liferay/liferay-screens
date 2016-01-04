@@ -194,8 +194,8 @@ import Foundation
 
 	public class func setEncryptionKeyData(key: NSData) throws {
 		guard key.length == 16
-				&& key.length == 24
-				&& key.length == 32 else {
+				|| key.length == 24
+				|| key.length == 32 else {
 			throw NSError.errorWithCause(.ValidationFailed,
 				message: "Key length must be 16, 24 or 32 bytes")
 		}
