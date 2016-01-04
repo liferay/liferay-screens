@@ -35,7 +35,20 @@ public enum CacheStrategyType: String {
 	public init(name: String) {
 		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
 		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
-		let dbPath = "\(path)_\(name.toSafeFilename()))"
+
+		// Typo in file name in Screens 1.2
+		let filename = name.toSafeFilename()
+		let dbPath = "\(path)_\(filename)"
+		let wrongDbPath = "\(path)_\(filename))"
+
+		// Use the right filename but rename wrong name first
+		if NSFileManager.defaultManager().fileExistsAtPath(wrongDbPath) {
+			do {
+				try NSFileManager.defaultManager().moveItemAtPath(wrongDbPath, toPath: dbPath)
+			}
+			catch {
+			}
+		}
 
 		database = YapDatabase(path: dbPath)
 		readConnection = database.newConnection()
