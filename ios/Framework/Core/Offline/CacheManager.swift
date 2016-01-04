@@ -27,9 +27,9 @@ public enum CacheStrategyType: String {
 
 	private let tableSchemaDatabase = "lr_cache_"
 
-	private var database: YapDatabase
-	private var readConnection: YapDatabaseConnection
-	private var writeConnection: YapDatabaseConnection
+	private let database: YapDatabase
+	private let readConnection: YapDatabaseConnection
+	private let writeConnection: YapDatabaseConnection
 
 
 	public init(name: String) {
