@@ -15,8 +15,9 @@ public class ApplicationCache extends Application {
 
 		LiferayScreensContext.init(this);
 
+		// SQLiteDatabase.loadLibs(this);
 
-		//class and type mapping and strategies
-//		CacheSQL.getInstance(StorIOSQLite.getInstance(), new CacheStrategyFactory());
+		// class and type mapping and strategies
+		// CacheSQL.getInstance(StorIOSQLite.getInstance(), new CacheStrategyFactory());
 	}
 }
