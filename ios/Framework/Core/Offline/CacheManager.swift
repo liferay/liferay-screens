@@ -53,45 +53,14 @@ public enum CacheStrategyType: String {
 			}
 		}
 
-		let cipherSerializer: YapDatabaseSerializer
-		let cipherDeserializer: YapDatabaseDeserializer
-
-		if let encryptionKey = encryptionKey {
-			let keyData = encryptionKey.dataUsingEncoding(NSUTF8StringEncoding)!.arrayOfBytes()
-			let cipher = try! AES(key: keyData)
-
-			cipherSerializer = { (collection, key, object) -> NSData in
-				let data = YapDatabase.defaultSerializer()(collection, key, object)
-				do {
-					return try data.encrypt(cipher)
-				}
-				catch {
-					print("[ERROR] Can't encrypt data. Empty data will be returned")
-				}
-
-				return NSData()
-			}
-			cipherDeserializer = { (collection, key, data) -> AnyObject in
-				do {
-					let decryptedData = try data.decrypt(cipher)
-					return YapDatabase.defaultDeserializer()(collection, key, decryptedData)
-				}
-				catch {
-					print("[WARN] Can't decrypt data. Try to deserialize")
-				}
-
-				return YapDatabase.defaultDeserializer()(collection, key, data)
-			}
-		}
-		else {
-			cipherSerializer = YapDatabase.defaultSerializer()
-			cipherDeserializer = YapDatabase.defaultDeserializer()
+		let cipher = encryptionKey.map {
+			try! AES(key: $0.arrayOfBytes())
 		}
 
 		database = YapDatabase(
 			path: dbPath,
-			serializer: cipherSerializer,
-			deserializer: cipherDeserializer)
+			serializer: CacheManager.serializerForCipher(cipher),
+			deserializer: CacheManager.deserializerForCipher(cipher))
 
 		readConnection = database.newConnection()
 		writeConnection = database.newConnection()
@@ -393,6 +362,43 @@ public enum CacheStrategyType: String {
 				else {
 					result?(false)
 				}
+		}
+	}
+
+
+	private class func serializerForCipher(cipher: Cipher?) -> YapDatabaseSerializer {
+		guard let cipher = cipher else {
+			return YapDatabase.defaultSerializer()
+		}
+
+		return { (collection, key, object) -> NSData in
+			let data = YapDatabase.defaultSerializer()(collection, key, object)
+			do {
+				return try data.encrypt(cipher)
+			}
+			catch {
+				print("[ERROR] Can't encrypt data. Empty data will be returned")
+			}
+
+			return NSData()
+		}
+	}
+
+	private class func deserializerForCipher(cipher: Cipher?) -> YapDatabaseDeserializer {
+		guard let cipher = cipher else {
+			return YapDatabase.defaultDeserializer()
+		}
+
+		return { (collection, key, data) -> AnyObject in
+			do {
+				let decryptedData = try data.decrypt(cipher)
+				return YapDatabase.defaultDeserializer()(collection, key, decryptedData)
+			}
+			catch {
+				print("[WARN] Can't decrypt data. Try to deserialize")
+			}
+
+			return YapDatabase.defaultDeserializer()(collection, key, data)
 		}
 	}
 
