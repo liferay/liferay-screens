@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 
-import com.liferay.mobile.screens.cache.sql.*;
 import com.pushtorefresh.storio.internal.ChangesBus;
 import com.pushtorefresh.storio.sqlite.Changes;
 import com.pushtorefresh.storio.sqlite.SQLiteTypeMapping;
@@ -67,6 +66,7 @@ public class EncryptedDefaultStorIOSQLite extends com.pushtorefresh.storio.sqlit
 	public void close() throws IOException {
 		sqLiteOpenHelper.close();
 	}
+
 	@NonNull
 	private final SQLiteOpenHelper sqLiteOpenHelper;
 	@NonNull
@@ -348,6 +348,7 @@ public class EncryptedDefaultStorIOSQLite extends com.pushtorefresh.storio.sqlit
 		private SQLiteDatabase getWritableDatabase() {
 			return sqLiteOpenHelper.getWritableDatabase(password);
 		}
+
 		@NonNull
 		private final Object lock = new Object();
 		// Unmodifiable
