@@ -39,19 +39,10 @@ public enum CacheStrategyType: String {
 		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
 		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
 
-		// Typo in file name in Screens 1.2
 		let filename = name.toSafeFilename()
 		let dbPath = "\(path)_\(filename)"
-		let wrongDbPath = "\(path)_\(filename))"
 
-		// Use the right filename but rename wrong name first
-		if NSFileManager.defaultManager().fileExistsAtPath(wrongDbPath) {
-			do {
-				try NSFileManager.defaultManager().moveItemAtPath(wrongDbPath, toPath: dbPath)
-			}
-			catch {
-			}
-		}
+		CacheManager.fixWrongDatabaseFilename(filename, path: path)
 
 		let cipher = encryptionKey.map {
 			try! AES(key: $0.arrayOfBytes())
@@ -399,6 +390,21 @@ public enum CacheStrategyType: String {
 			}
 
 			return YapDatabase.defaultDeserializer()(collection, key, data)
+		}
+	}
+
+	private class func fixWrongDatabaseFilename(filename: String, path: String) {
+		// Typo in file name in Screens 1.2
+		let rightDbPath = "\(path)_\(filename)"
+		let wrongDbPath = "\(path)_\(filename))"
+
+		// Use the right filename but rename wrong name first
+		if NSFileManager.defaultManager().fileExistsAtPath(wrongDbPath) {
+			do {
+				try NSFileManager.defaultManager().moveItemAtPath(wrongDbPath, toPath: rightDbPath)
+			}
+			catch {
+			}
 		}
 	}
 
