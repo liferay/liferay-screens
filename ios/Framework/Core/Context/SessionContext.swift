@@ -209,7 +209,9 @@ import Foundation
 
 		StaticInstance.currentUserSession = session
 		StaticInstance.currentUserAttributes = userAttributes
-		StaticInstance.cacheManager = CacheManager(session: session)
+		StaticInstance.cacheManager = CacheManager(
+			session: session,
+			encryptionKey: StaticInstance.encryptionKey)
 
 		return session
 	}
