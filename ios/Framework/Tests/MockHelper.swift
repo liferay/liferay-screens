@@ -75,11 +75,11 @@ class CredentialStoreMock : CredentialsStore {
 
 	var authentication: LRAuthentication?
 	var userAttributes: [String:AnyObject]?
-	var encryptionKey: NSData?
+	var encryptionPassword: NSData?
 
 	var hasData: Bool = true
 
-	func storeCredentials(session: LRSession?, userAttributes: [String:AnyObject]?, encryptionKey: NSData?) -> Bool {
+	func storeCredentials(session: LRSession?, userAttributes: [String:AnyObject]?, encryptionPassword: NSData?) -> Bool {
 		calledStoreCredential = true
 
 		return hasData

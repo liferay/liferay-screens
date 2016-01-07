@@ -21,13 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-		// The encryption key must be set before creating the session
+		// The encryption pwd must be set before creating the session
 		// or loading it from the store.
-		// The key can be a value statically stored in the app (insecure),
+		// The password can be a value statically stored in the app (insecure),
 		// a value retrieved from the server (secure) or a random string
 		// created in the first run (more secure).
-		// The key must be 16, 24 or 32 bytes long (UTF8 encoded)
-		try! SessionContext.setEncryptionKeyString("abcdefghijklmno2")
+		SessionContext.setEncryptionPasswordString("abcdef")
 
 		return true
 	}

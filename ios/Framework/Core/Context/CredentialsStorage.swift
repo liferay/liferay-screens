@@ -19,7 +19,7 @@ import UIKit
 	public typealias LoadResult = (
 		session: LRSession,
 		userAttributes: [String:AnyObject],
-		encryptionKey: NSData?
+		encryptionPassword: NSData?
 	)
 
 	public let hasCredentialsStored: Bool
@@ -57,7 +57,7 @@ import UIKit
 	func store(
 			session session: LRSession?,
 			userAttributes: [String:AnyObject],
-			encryptionKey: NSData?) -> Bool {
+			encryptionPassword: NSData?) -> Bool {
 
 		if session == nil || userAttributes.isEmpty {
 			return false
@@ -65,7 +65,7 @@ import UIKit
 
 		return credentialStore.storeCredentials(session,
 				userAttributes: userAttributes,
-				encryptionKey: encryptionKey)
+				encryptionPassword: encryptionPassword)
 	}
 
 	public func remove() -> Bool {
@@ -83,7 +83,7 @@ import UIKit
 
 				return (loadedSession,
 					loadedUserAttributes,
-					credentialStore.encryptionKey)
+					credentialStore.encryptionPassword)
 			}
 		}
 

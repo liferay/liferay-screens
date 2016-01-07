@@ -31,7 +31,7 @@ public enum CacheStrategyType: String {
 	private let readConnection: YapDatabaseConnection
 	private let writeConnection: YapDatabaseConnection
 
-	public init(name: String, encryptionKey: NSData? = nil) {
+	public init(name: String, encryptionPassword: NSData? = nil) {
 		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
 		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
 
@@ -40,11 +40,11 @@ public enum CacheStrategyType: String {
 
 		CacheManager.fixWrongDatabaseFilename(filename, path: path)
 
-		if let encryptionKey = encryptionKey {
+		if let encryptionPassword = encryptionPassword {
 			let options = YapDatabaseOptions()
 			options.corruptAction = .Rename
 			options.setCipherKeyBlockSwiftBridge({
-					return encryptionKey
+					return encryptionPassword
 				})
 
 			database = YapDatabase(
@@ -65,8 +65,8 @@ public enum CacheStrategyType: String {
 		registerPendingToSyncView(nil)
 	}
 
-	public convenience init(session: LRSession, encryptionKey: NSData? = nil) {
-		self.init(name: session.serverName!, encryptionKey: encryptionKey)
+	public convenience init(session: LRSession, encryptionPassword: NSData? = nil) {
+		self.init(name: session.serverName!, encryptionPassword: encryptionPassword)
 	}
 
 

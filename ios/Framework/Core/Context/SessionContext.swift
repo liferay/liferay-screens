@@ -28,7 +28,7 @@ import Foundation
 		static var currentUserAttributes = [String:AnyObject]()
 
 		static var cacheManager: CacheManager?
-		static var encryptionKey: NSData?
+		static var encryptionPassword: NSData?
 
 		static var credentialsStorage = CredentialsStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
@@ -158,7 +158,7 @@ import Foundation
 		return credentialsStorage.store(
 				session: StaticInstance.currentUserSession,
 				userAttributes: StaticInstance.currentUserAttributes,
-				encryptionKey: StaticInstance.encryptionKey)
+				encryptionPassword: StaticInstance.encryptionPassword)
 	}
 
 	public class func removeStoredCredentials() -> Bool {
@@ -176,7 +176,7 @@ import Foundation
 				StaticInstance.currentUserAttributes = result.userAttributes
 				StaticInstance.cacheManager = CacheManager(
 						session: result.session,
-						encryptionKey: result.encryptionKey)
+						encryptionPassword: result.encryptionPassword)
 
 				return true
 			}
@@ -184,22 +184,20 @@ import Foundation
 
 		return false
 	}
-	public class func setEncryptionKeyString(key: String) throws {
-		guard let data = key.dataUsingEncoding(NSUTF8StringEncoding) else {
-			throw NSError.errorWithCause(.ValidationFailed,
-				message: "Key can't be encoded to UTF8")
-		}
-		try setEncryptionKeyData(data)
+
+	public class func setEncryptionPasswordString(key: String) {
+		let data = key.dataUsingEncoding(NSUTF8StringEncoding)!
+		setEncryptionPasswordData(data)
 	}
 
-	public class func setEncryptionKeyData(key: NSData) throws {
-		StaticInstance.encryptionKey = key
+	public class func setEncryptionPasswordData(key: NSData) {
+		StaticInstance.encryptionPassword = key
 
 		if let session = StaticInstance.currentUserSession
 				where StaticInstance.cacheManager != nil {
 			StaticInstance.cacheManager = CacheManager(
 				session: session,
-				encryptionKey: key)
+				encryptionPassword: key)
 		}
 	}
 
@@ -218,7 +216,7 @@ import Foundation
 		StaticInstance.currentUserAttributes = userAttributes
 		StaticInstance.cacheManager = CacheManager(
 			session: session,
-			encryptionKey: StaticInstance.encryptionKey)
+			encryptionPassword: StaticInstance.encryptionPassword)
 
 		return session
 	}

@@ -23,12 +23,12 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 
 	public var authentication: LRAuthentication?
 	public var userAttributes: [String:AnyObject]?
-	public var encryptionKey: NSData?
+	public var encryptionPassword: NSData?
 
 	public func storeCredentials(
 			session: LRSession?,
 			userAttributes: [String:AnyObject]?,
-			encryptionKey: NSData?) -> Bool {
+			encryptionPassword: NSData?) -> Bool {
 
 		guard let auth = session?.authentication else {
 			return false
@@ -44,8 +44,8 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 				key: "companyId")
 			try keychain.set(String(LiferayServerContext.groupId),
 				key: "groupId")
-			if let encryptionKey = encryptionKey {
-				try keychain.set(encryptionKey, key: "encryptionKey")
+			if let encryptionPassword = encryptionPassword {
+				try keychain.set(encryptionPassword, key: "encryptionPassword")
 			}
 
 			let userData = try? NSJSONSerialization.dataWithJSONObject(userAttributes!,
@@ -62,7 +62,7 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 			do {
 				try keychain.remove("companyId")
 				try keychain.remove("groupId")
-				try keychain.remove("encryptionKey")
+				try keychain.remove("encryptionPassword")
 				try keychain.remove("user_attributes")
 			} catch {
 			}
@@ -93,7 +93,7 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 		let groupId = try? keychain.get("groupId")
 					.flatMap { Int($0) }
 					.flatMap { Int64($0) }
-		encryptionKey = try! keychain.getData("encryptionKey")
+		encryptionPassword = try! keychain.getData("encryptionPassword")
 
 		if (companyId ?? 0) != LiferayServerContext.companyId
 				|| (groupId ?? 0) != LiferayServerContext.groupId {
