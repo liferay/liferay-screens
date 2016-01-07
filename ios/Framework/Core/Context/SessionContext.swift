@@ -56,9 +56,7 @@ import Foundation
 	}
 
 	public class var currentUserId: Int64? {
-		return StaticInstance.currentUserAttributes["userId"]
-				.map { $0 as! NSNumber }
-				.map { $0.longLongValue }
+		return StaticInstance.currentUserAttributes["userId"]?.longLongValue
 	}
 
 	public class var currentCacheManager: CacheManager? {
