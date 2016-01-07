@@ -14,10 +14,6 @@
 import Foundation
 import YapDatabase
 
-#if LIFERAY_SCREENS_FRAMEWORK
-	import CryptoSwift
-#endif
-
 
 public enum CacheStrategyType: String {
 	case RemoteOnly = "remote-only"
@@ -44,14 +40,22 @@ public enum CacheStrategyType: String {
 
 		CacheManager.fixWrongDatabaseFilename(filename, path: path)
 
-		let cipher = encryptionKey.map {
-			try! AES(key: $0.arrayOfBytes())
-		}
+		if let encryptionKey = encryptionKey {
+			let options = YapDatabaseOptions()
+			options.corruptAction = .Rename
+			options.setCipherKeyBlockSwiftBridge({
+					return encryptionKey
+				})
 
-		database = YapDatabase(
-			path: dbPath,
-			serializer: CacheManager.serializerForCipher(cipher),
-			deserializer: CacheManager.deserializerForCipher(cipher))
+			database = YapDatabase(
+				path: dbPath,
+				serializer: nil,
+				deserializer: nil,
+				options: options)
+		}
+		else {
+			database = YapDatabase(path: dbPath)
+		}
 
 		readConnection = database.newConnection()
 		writeConnection = database.newConnection()
@@ -353,49 +357,6 @@ public enum CacheStrategyType: String {
 				else {
 					result?(false)
 				}
-		}
-	}
-
-
-	private class func serializerForCipher(cipher: Cipher?) -> YapDatabaseSerializer {
-		guard let cipher = cipher else {
-			return YapDatabase.defaultSerializer()
-		}
-
-		return { (collection, key, object) -> NSData in
-			let data = YapDatabase.defaultSerializer()(collection, key, object)
-			do {
-				return try data.encrypt(cipher)
-			}
-			catch {
-				print("[ERROR] Can't encrypt data. Empty data will be returned")
-			}
-
-			return NSData()
-		}
-	}
-
-	private class func deserializerForCipher(cipher: Cipher?) -> YapDatabaseDeserializer {
-		guard let cipher = cipher else {
-			return YapDatabase.defaultDeserializer()
-		}
-
-		return { (collection, key, data) -> AnyObject in
-			do {
-				let decryptedData = try data.decrypt(cipher)
-				let object: AnyObject? = YapDatabase.defaultDeserializer()(collection, key, decryptedData)
-				if object == nil {
-					print("[ERROR] Decrypted object is null. Try to deserialize original data")
-				}
-				else {
-					return object!
-				}
-			}
-			catch {
-				print("[WARN] Error decrypting. Try to deserialize original data")
-			}
-
-			return YapDatabase.defaultDeserializer()(collection, key, data)
 		}
 	}
 

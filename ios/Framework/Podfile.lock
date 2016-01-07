@@ -42,13 +42,9 @@ PODS:
     - SQLCipher/common
   - SwiftTryCatch (0.0.1)
   - TNRadioButtonGroup (0.4)
-  - YapDatabase (2.6.5):
-    - YapDatabase/standard (= 2.6.5)
   - YapDatabase/SQLCipher (2.6.5):
     - CocoaLumberjack (~> 1)
     - SQLCipher/fts
-  - YapDatabase/standard (2.6.5):
-    - CocoaLumberjack (~> 1)
 
 DEPENDENCIES:
   - CryptoSwift (= 0.1.1)
@@ -63,7 +59,6 @@ DEPENDENCIES:
   - SMXMLDocument (= 1.1)
   - SwiftTryCatch
   - TNRadioButtonGroup (= 0.4)
-  - YapDatabase (= 2.6.5)
   - YapDatabase/SQLCipher (= 2.6.5)
 
 SPEC CHECKSUMS:
