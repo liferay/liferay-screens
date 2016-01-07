@@ -27,7 +27,8 @@ import Foundation
 		static var currentUserSession: LRSession?
 		static var currentUserAttributes = [String:AnyObject]()
 
-		static var chacheManager: CacheManager?
+		static var cacheManager: CacheManager?
+		static var encryptionPassword: NSData?
 
 		static var credentialsStorage = CredentialsStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
@@ -55,13 +56,11 @@ import Foundation
 	}
 
 	public class var currentUserId: Int64? {
-		return StaticInstance.currentUserAttributes["userId"]
-				.map { $0 as! NSNumber }
-				.map { $0.longLongValue }
+		return StaticInstance.currentUserAttributes["userId"]?.longLongValue
 	}
 
 	public class var currentCacheManager: CacheManager? {
-		return StaticInstance.chacheManager
+		return StaticInstance.cacheManager
 	}
 
 	internal class var credentialsStorage: CredentialsStorage {
@@ -150,13 +149,14 @@ import Foundation
 	public class func logout() {
 		StaticInstance.currentUserSession = nil
 		StaticInstance.currentUserAttributes = [:]
-		StaticInstance.chacheManager = nil
+		StaticInstance.cacheManager = nil
 	}
 
 	public class func storeCredentials() -> Bool {
 		return credentialsStorage.store(
 				session: StaticInstance.currentUserSession,
-				userAttributes: StaticInstance.currentUserAttributes)
+				userAttributes: StaticInstance.currentUserAttributes,
+				encryptionPassword: StaticInstance.encryptionPassword)
 	}
 
 	public class func removeStoredCredentials() -> Bool {
@@ -172,13 +172,33 @@ import Foundation
 
 				StaticInstance.currentUserSession = result.session
 				StaticInstance.currentUserAttributes = result.userAttributes
-				StaticInstance.chacheManager = CacheManager(session: result.session)
+				StaticInstance.cacheManager = CacheManager(
+						session: result.session,
+						userId: SessionContext.currentUserId!,
+						encryptionPassword: result.encryptionPassword)
 
 				return true
 			}
 		}
 
 		return false
+	}
+
+	public class func setEncryptionPasswordString(key: String) {
+		let data = key.dataUsingEncoding(NSUTF8StringEncoding)!
+		setEncryptionPasswordData(data)
+	}
+
+	public class func setEncryptionPasswordData(key: NSData) {
+		StaticInstance.encryptionPassword = key
+
+		if let session = StaticInstance.currentUserSession
+				where StaticInstance.cacheManager != nil {
+			StaticInstance.cacheManager = CacheManager(
+				session: session,
+				userId: SessionContext.currentUserId!,
+				encryptionPassword: key)
+		}
 	}
 
 
@@ -194,7 +214,10 @@ import Foundation
 
 		StaticInstance.currentUserSession = session
 		StaticInstance.currentUserAttributes = userAttributes
-		StaticInstance.chacheManager = CacheManager(session: session)
+		StaticInstance.cacheManager = CacheManager(
+			session: session,
+			userId: SessionContext.currentUserId!,
+			encryptionPassword: StaticInstance.encryptionPassword)
 
 		return session
 	}

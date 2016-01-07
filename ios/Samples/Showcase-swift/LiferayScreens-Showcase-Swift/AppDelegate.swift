@@ -12,14 +12,22 @@
  * details.
  */
 import UIKit
+import LiferayScreens
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+		// The encryption pwd must be set before creating the session
+		// or loading it from the store.
+		// The password can be a value statically stored in the app (insecure),
+		// a value retrieved from the server (secure) or a random string
+		// created in the first run (more secure).
+		SessionContext.setEncryptionPasswordString("abcdef")
+
 		return true
 	}
 

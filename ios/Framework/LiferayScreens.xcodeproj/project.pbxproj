@@ -258,6 +258,9 @@
 		887F0D161B99AABB0007AECE /* String+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D141B99AABA0007AECE /* String+Screens.swift */; };
 		887F0D181B99BD640007AECE /* CacheMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D171B99BD640007AECE /* CacheMetadata.swift */; };
 		887F0D191B99BD640007AECE /* CacheMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D171B99BD640007AECE /* CacheMetadata.swift */; };
+		8886E3181C3EA0A200454ACE /* YapDatabaseOptions+Screens.h in Headers */ = {isa = PBXBuildFile; fileRef = 8886E3161C3EA0A200454ACE /* YapDatabaseOptions+Screens.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8886E3191C3EA0A200454ACE /* YapDatabaseOptions+Screens.m in Sources */ = {isa = PBXBuildFile; fileRef = 8886E3171C3EA0A200454ACE /* YapDatabaseOptions+Screens.m */; };
+		8886E31A1C3EA0A200454ACE /* YapDatabaseOptions+Screens.m in Sources */ = {isa = PBXBuildFile; fileRef = 8886E3171C3EA0A200454ACE /* YapDatabaseOptions+Screens.m */; };
 		888DF5B11ACC9FC200EB7DA1 /* LoginScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F11ACBE5F000862B9E /* LoginScreenlet.swift */; };
 		888DF5B21ACC9FC200EB7DA1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F21ACBE5F000862B9E /* LoginViewModel.swift */; };
 		888DF5B41ACC9FF100EB7DA1 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C31ACBFC3400862B9E /* LoginView_default.swift */; };
@@ -549,6 +552,8 @@
 		887F0D111B99A79A0007AECE /* LRSession+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+Screens.swift"; sourceTree = "<group>"; };
 		887F0D141B99AABA0007AECE /* String+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Screens.swift"; sourceTree = "<group>"; };
 		887F0D171B99BD640007AECE /* CacheMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheMetadata.swift; sourceTree = "<group>"; };
+		8886E3161C3EA0A200454ACE /* YapDatabaseOptions+Screens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YapDatabaseOptions+Screens.h"; sourceTree = "<group>"; };
+		8886E3171C3EA0A200454ACE /* YapDatabaseOptions+Screens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YapDatabaseOptions+Screens.m"; sourceTree = "<group>"; };
 		8892C6781ACB2E3300192232 /* LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8892C67C1ACB2E3300192232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8892C67D1ACB2E3300192232 /* LiferayScreens.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreens.h; sourceTree = SOURCE_ROOT; };
@@ -1211,6 +1216,8 @@
 				887F0D081B999CD90007AECE /* CacheManager.swift */,
 				887F0D171B99BD640007AECE /* CacheMetadata.swift */,
 				881B743D1B9EE28D00EA64ED /* SyncManager.swift */,
+				8886E3161C3EA0A200454ACE /* YapDatabaseOptions+Screens.h */,
+				8886E3171C3EA0A200454ACE /* YapDatabaseOptions+Screens.m */,
 			);
 			path = Offline;
 			sourceTree = "<group>";
@@ -1439,6 +1446,7 @@
 				B2F3F3531B0A1923002CEF60 /* LRScreensuserService_v62.h in Headers */,
 				8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */,
 				B2A8B1D51BBABE1F00AEC9D9 /* LRScreensjournalarticleService_v62.h in Headers */,
+				8886E3181C3EA0A200454ACE /* YapDatabaseOptions+Screens.h in Headers */,
 				B2F3F3511B0A1923002CEF60 /* LRScreensddlrecordService_v62.h in Headers */,
 				B2F3F34F1B0A1923002CEF60 /* LRScreensassetentryService_v62.h in Headers */,
 				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
@@ -1729,6 +1737,7 @@
 				881E622E1ACBFC3400862B9E /* SignUpView_default.swift in Sources */,
 				881E61791ACBEE0B00862B9E /* DDLFormView.swift in Sources */,
 				881E62301ACBFC3400862B9E /* UserPortraitView_default.swift in Sources */,
+				8886E3191C3EA0A200454ACE /* YapDatabaseOptions+Screens.m in Sources */,
 				887F0D0A1B999CD90007AECE /* CacheManager.swift in Sources */,
 				88DC31E21ACC18F10078C961 /* CredentialsStorage.swift in Sources */,
 				8892C6AB1ACBD89400192232 /* Bool+Screens.swift in Sources */,
@@ -1917,6 +1926,7 @@
 				8839B87C1B0CD539006C18F1 /* SaveUserInteractor.swift in Sources */,
 				881E62F31ACC04A500862B9E /* DDLRecord.swift in Sources */,
 				88A2B7181ACDEC29000C2065 /* DDLListView_test.swift in Sources */,
+				8886E31A1C3EA0A200454ACE /* YapDatabaseOptions+Screens.m in Sources */,
 				881E62F01ACC04A500862B9E /* DDLFieldString.swift in Sources */,
 				881E62941ACBFEFC00862B9E /* BaseListPageLoadInteractor.swift in Sources */,
 				881E62971ACBFF0400862B9E /* LiferayPaginationOperation.swift in Sources */,

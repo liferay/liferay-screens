@@ -27,17 +27,36 @@ public enum CacheStrategyType: String {
 
 	private let tableSchemaDatabase = "lr_cache_"
 
-	private var database: YapDatabase
-	private var readConnection: YapDatabaseConnection
-	private var writeConnection: YapDatabaseConnection
+	private let database: YapDatabase
+	private let readConnection: YapDatabaseConnection
+	private let writeConnection: YapDatabaseConnection
 
-
-	public init(name: String) {
+	public init(name: String, encryptionPassword: NSData?) {
 		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
 		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
-		let dbPath = "\(path)_\(name.toSafeFilename()))"
 
-		database = YapDatabase(path: dbPath)
+		let filename = name.toSafeFilename()
+		let dbPath = "\(path)_\(filename)"
+
+		CacheManager.fixWrongDatabaseFilename(filename, path: path)
+
+		if let encryptionPassword = encryptionPassword {
+			let options = YapDatabaseOptions()
+			options.corruptAction = .Rename
+			options.setCipherKeyBlockSwiftBridge({
+					return encryptionPassword
+				})
+
+			database = YapDatabase(
+				path: dbPath,
+				serializer: nil,
+				deserializer: nil,
+				options: options)
+		}
+		else {
+			database = YapDatabase(path: dbPath)
+		}
+
 		readConnection = database.newConnection()
 		writeConnection = database.newConnection()
 
@@ -46,8 +65,11 @@ public enum CacheStrategyType: String {
 		registerPendingToSyncView(nil)
 	}
 
-	public convenience init(session: LRSession) {
-		self.init(name: session.serverName!)
+	public convenience init(session: LRSession,
+			userId: Int64,
+			encryptionPassword: NSData?) {
+		let name = "\(session.serverName!)-\(userId)"
+		self.init(name: name, encryptionPassword: encryptionPassword)
 	}
 
 
@@ -338,6 +360,21 @@ public enum CacheStrategyType: String {
 				else {
 					result?(false)
 				}
+		}
+	}
+
+	private class func fixWrongDatabaseFilename(filename: String, path: String) {
+		// Typo in file name in Screens 1.2
+		let rightDbPath = "\(path)_\(filename)"
+		let wrongDbPath = "\(path)_\(filename))"
+
+		// Use the right filename but rename wrong name first
+		if NSFileManager.defaultManager().fileExistsAtPath(wrongDbPath) {
+			do {
+				try NSFileManager.defaultManager().moveItemAtPath(wrongDbPath, toPath: rightDbPath)
+			}
+			catch {
+			}
 		}
 	}
 

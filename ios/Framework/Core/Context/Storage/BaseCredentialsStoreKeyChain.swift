@@ -23,15 +23,19 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 
 	public var authentication: LRAuthentication?
 	public var userAttributes: [String:AnyObject]?
+	public var encryptionPassword: NSData?
 
 	public func storeCredentials(
 			session: LRSession?,
-			userAttributes: [String:AnyObject]?) -> Bool {
+			userAttributes: [String:AnyObject]?,
+			encryptionPassword: NSData?) -> Bool {
 
-		if session == nil { return false }
-		if session?.authentication == nil { return false }
-		if userAttributes == nil { return false }
-		if userAttributes!.isEmpty { return false }
+		guard let auth = session?.authentication else {
+			return false
+		}
+		guard !(userAttributes?.isEmpty ?? true) else {
+			return false
+		}
 
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
@@ -40,13 +44,16 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 				key: "companyId")
 			try keychain.set(String(LiferayServerContext.groupId),
 				key: "groupId")
+			if let encryptionPassword = encryptionPassword {
+				try keychain.set(encryptionPassword, key: "encryptionPassword")
+			}
 
 			let userData = try? NSJSONSerialization.dataWithJSONObject(userAttributes!,
 				options: NSJSONWritingOptions())
 			if let userData = userData {
 				try keychain.set(userData, key: "user_attributes")
 
-				storeAuth(keychain: keychain, auth: session!.authentication!)
+				storeAuth(keychain: keychain, auth: auth)
 
 				return true
 			}
@@ -55,6 +62,7 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 			do {
 				try keychain.remove("companyId")
 				try keychain.remove("groupId")
+				try keychain.remove("encryptionPassword")
 				try keychain.remove("user_attributes")
 			} catch {
 			}
@@ -85,6 +93,7 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 		let groupId = try? keychain.get("groupId")
 					.flatMap { Int($0) }
 					.flatMap { Int64($0) }
+		encryptionPassword = try! keychain.getData("encryptionPassword")
 
 		if (companyId ?? 0) != LiferayServerContext.companyId
 				|| (groupId ?? 0) != LiferayServerContext.groupId {

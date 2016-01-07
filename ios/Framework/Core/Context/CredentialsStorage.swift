@@ -16,7 +16,11 @@ import UIKit
 
 @objc public class CredentialsStorage: NSObject {
 
-	public typealias LoadResult = (session: LRSession, userAttributes: [String:AnyObject])
+	public typealias LoadResult = (
+		session: LRSession,
+		userAttributes: [String:AnyObject],
+		encryptionPassword: NSData?
+	)
 
 	public let hasCredentialsStored: Bool
 
@@ -50,13 +54,18 @@ import UIKit
 		super.init()
 	}
 
-	func store(session session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
+	func store(
+			session session: LRSession?,
+			userAttributes: [String:AnyObject],
+			encryptionPassword: NSData?) -> Bool {
+
 		if session == nil || userAttributes.isEmpty {
 			return false
 		}
 
 		return credentialStore.storeCredentials(session,
-				userAttributes: userAttributes)
+				userAttributes: userAttributes,
+				encryptionPassword: encryptionPassword)
 	}
 
 	public func remove() -> Bool {
@@ -72,7 +81,9 @@ import UIKit
 						server: LiferayServerContext.server,
 						authentication: loadedAuth)
 
-				return (loadedSession, loadedUserAttributes)
+				return (loadedSession,
+					loadedUserAttributes,
+					credentialStore.encryptionPassword)
 			}
 		}
 
