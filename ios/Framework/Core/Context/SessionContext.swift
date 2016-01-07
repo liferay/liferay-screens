@@ -174,6 +174,7 @@ import Foundation
 				StaticInstance.currentUserAttributes = result.userAttributes
 				StaticInstance.cacheManager = CacheManager(
 						session: result.session,
+						userId: SessionContext.currentUserId!,
 						encryptionPassword: result.encryptionPassword)
 
 				return true
@@ -195,6 +196,7 @@ import Foundation
 				where StaticInstance.cacheManager != nil {
 			StaticInstance.cacheManager = CacheManager(
 				session: session,
+				userId: SessionContext.currentUserId!,
 				encryptionPassword: key)
 		}
 	}
@@ -214,6 +216,7 @@ import Foundation
 		StaticInstance.currentUserAttributes = userAttributes
 		StaticInstance.cacheManager = CacheManager(
 			session: session,
+			userId: SessionContext.currentUserId!,
 			encryptionPassword: StaticInstance.encryptionPassword)
 
 		return session

@@ -65,8 +65,11 @@ public enum CacheStrategyType: String {
 		registerPendingToSyncView(nil)
 	}
 
-	public convenience init(session: LRSession, encryptionPassword: NSData?) {
-		self.init(name: session.serverName!, encryptionPassword: encryptionPassword)
+	public convenience init(session: LRSession,
+			userId: Int64,
+			encryptionPassword: NSData?) {
+		let name = "\(session.serverName!)-\(userId)"
+		self.init(name: name, encryptionPassword: encryptionPassword)
 	}
 
 
