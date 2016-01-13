@@ -51,5 +51,4 @@ dependencies {
 
 //	compile project ('liferay-screens')
 	compile project('liferay-westeros-viewset')
-	compile "com.google.android.gms:play-services:7.8.0"
 }
