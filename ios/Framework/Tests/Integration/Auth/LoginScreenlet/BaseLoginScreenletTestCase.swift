@@ -14,7 +14,7 @@
 import XCTest
 
 
-@objc class TestLoginScreenletDelegate : LoginScreenletDelegate {
+class TestLoginScreenletDelegate : LoginScreenletDelegate {
 	let onCompleted: (AnyObject -> Void)?
 	var onCredentialsStored: (Void -> Void)?
 
@@ -55,7 +55,7 @@ class BaseLoginScreenletTestCase: IntegrationTestCase {
 		screenlet!.themeName = "test"
 		screenlet!.screenletView = screenlet!.loadScreenletView()
 
-		SessionContext.clearSession()
+		SessionContext.logout()
 	}
 
 }

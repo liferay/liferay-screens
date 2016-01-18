@@ -5,18 +5,18 @@ use_frameworks!
 
 
 # Core
-pod 'Liferay-iOS-SDK', '6.2.0.17'
-pod 'Liferay-OAuth', '0.1.0'
+pod 'Liferay-iOS-SDK', '6.2.0.22'
+pod 'Liferay-OAuth', '0.1.1'
 pod 'MBProgressHUD', '0.9.1'
 pod 'SMXMLDocument', '1.1'
 pod 'ODRefreshControl', '1.2'
 pod 'YapDatabase', '2.6.5'
 
 # Login & signup: save credentials
-pod 'KeychainAccess', '1.2.1'
+pod 'KeychainAccess', '2.3.1'
 
 # UserPortrait
-pod 'CryptoSwift', '0.0.13'
+pod 'CryptoSwift', '0.1.1'
 
 # DDLForm
 pod 'DTPickerPresenter', '0.2.0'

@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.signup.SignUpScreenlet;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
+import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -89,22 +90,6 @@ public class SignUpView extends LinearLayout
 		return null;
 	}
 
-	public EditText getFirstNameField() {
-		return _firstName;
-	}
-
-	public EditText getLastNameField() {
-		return _lastName;
-	}
-
-	public EditText getEmailAddressField() {
-		return _emailAddress;
-	}
-
-	public EditText getPasswordField() {
-		return _password;
-	}
-
 	@Override
 	public void showStartOperation(String actionName) {
 		_progressBar.startProgress();
@@ -131,6 +116,16 @@ public class SignUpView extends LinearLayout
 	}
 
 	@Override
+	public BaseScreenlet getScreenlet() {
+		return _screenlet;
+	}
+
+	@Override
+	public void setScreenlet(BaseScreenlet screenlet) {
+		_screenlet = screenlet;
+	}
+
+	@Override
 	public void onClick(View view) {
 		SignUpScreenlet signUpScreenlet = (SignUpScreenlet) getParent();
 
@@ -151,10 +146,11 @@ public class SignUpView extends LinearLayout
 		signUpButton.setOnClickListener(this);
 	}
 
-	private EditText _emailAddress;
-	private EditText _firstName;
-	private EditText _lastName;
-	private EditText _password;
-	private ModalProgressBar _progressBar;
+	protected EditText _emailAddress;
+	protected EditText _firstName;
+	protected EditText _lastName;
+	protected EditText _password;
+	protected ModalProgressBar _progressBar;
 
+	private BaseScreenlet _screenlet;
 }

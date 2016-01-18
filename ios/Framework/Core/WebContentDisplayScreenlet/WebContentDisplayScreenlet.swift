@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol WebContentDisplayScreenletDelegate {
+@objc public protocol WebContentDisplayScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: WebContentDisplayScreenlet,
 			onWebContentResponse html: String ) -> String?
@@ -28,29 +28,36 @@ import UIKit
 @IBDesignable public class WebContentDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
+
+	// use either articleId or classPK
 	@IBInspectable public var articleId: String = ""
+	@IBInspectable public var classPK: Int64 = 0
+
 	@IBInspectable public var autoLoad: Bool = true
 	@IBInspectable public var templateId: Int64 = 0
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
-	@IBOutlet public weak var delegate: WebContentDisplayScreenletDelegate?
+
+	public var webContentDisplayDelegate: WebContentDisplayScreenletDelegate? {
+		return delegate as? WebContentDisplayScreenletDelegate
+	}
 
 
 	//MARK: Public methods
 
 	override public func onShow() {
-		if autoLoad && articleId != "" {
+		if autoLoad && (articleId != "" || classPK != 0) {
 			loadWebContent()
 		}
 	}
 
-	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let interactor = WebContentDisplayLoadInteractor(screenlet: self)
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
-			let modifiedHtml = self.delegate?.screenlet?(self,
+			let modifiedHtml = self.webContentDisplayDelegate?.screenlet?(self,
 					onWebContentResponse: interactor.resultHTML!)
 
 			(self.screenletView as! WebContentDisplayViewModel).htmlContent =
@@ -58,7 +65,7 @@ import UIKit
 		}
 
 		interactor.onFailure = {
-			self.delegate?.screenlet?(self, onWebContentError: $0)
+			self.webContentDisplayDelegate?.screenlet?(self, onWebContentError: $0)
 		}
 
 		return interactor

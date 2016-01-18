@@ -67,10 +67,6 @@ public class DDLListScreenlet
 		_userId = userId;
 	}
 
-	public void setUserId(int userId) {
-		_userId = userId;
-	}
-
 	public List<String> getLabelFields() {
 		return _labelFields;
 	}

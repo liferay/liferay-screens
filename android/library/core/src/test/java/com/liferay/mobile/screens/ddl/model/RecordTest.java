@@ -172,6 +172,7 @@ public class RecordTest {
 			newValues.put("modelValues", newData);
 
 			record.setValuesAndAttributes(newValues);
+			record.refresh();
 
 			assertEquals("xyz", field.getCurrentValue());
 		}
@@ -279,6 +280,7 @@ public class RecordTest {
 
 			parcel.setDataPosition(0);
 
+
 			Record deserializedRecord = parcel.readParcelable(record.getClass().getClassLoader());
 
 			assertEquals(record.getFieldCount(), deserializedRecord.getFieldCount());
@@ -295,6 +297,7 @@ public class RecordTest {
 				assertEquals(field.getClass(), deserializedField.getClass());
 				assertEquals(field.getCurrentValue(), deserializedField.getCurrentValue());
 			}
+			parcel.recycle();
 		}
 
 	}

@@ -40,11 +40,10 @@ public class GetUserByUserIdOperation: GetUserBaseOperation {
 	//MARK: LiferayLoginBaseOperation
 
 	override internal func sendGetUserRequest(
-			#service: LRUserService_v62,
-			error: NSErrorPointer)
-			-> NSDictionary? {
+			service service: LRUserService_v62)
+			throws -> NSDictionary? {
 
-		return service.getUserByIdWithUserId(userId, error: error)
+		return try service.getUserByIdWithUserId(userId)
 	}
 
 }

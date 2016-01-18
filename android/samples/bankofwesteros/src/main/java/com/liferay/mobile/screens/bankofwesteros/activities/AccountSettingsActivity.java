@@ -33,7 +33,7 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 		findViewById(R.id.arrow_back_to_issues).setOnClickListener(this);
 		findViewById(R.id.account_settings_save).setOnClickListener(this);
 
-		User user = SessionContext.getLoggedUser();
+		User user = SessionContext.getCurrentUser();
 		_firstName = (EditText) findViewById(R.id.first_name);
 		_firstName.setText(user.getFirstName());
 		_lastName = (EditText) findViewById(R.id.last_name);

@@ -2,13 +2,17 @@ apply plugin: 'com.android.library'
 
 android {
 	compileSdkVersion 23
-	buildToolsVersion "23.0.1"
+	buildToolsVersion '23.0.2'
 
 	defaultConfig {
 		minSdkVersion 15
 		targetSdkVersion 23
 		versionCode 1
 		versionName "1.0"
+	}
+
+	lintOptions {
+		abortOnError false
 	}
 
 	buildTypes {
@@ -73,7 +77,7 @@ dependencies {
 	compile 'com.pushtorefresh.storio:sqlite:1.4.0'
 
 	testCompile "junit:junit:4.12"
-	testCompile "org.robolectric:robolectric:3.0-rc2"
+	testCompile "org.robolectric:robolectric:3.0"
 	testCompile 'org.mockito:mockito-core:1.9.5'
 
 }

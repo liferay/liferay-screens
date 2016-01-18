@@ -105,8 +105,8 @@ public class DDLFieldCheckboxView extends LinearLayout
 		_switch.setOnCheckedChangeListener(this);
 	}
 
-	private BooleanField _field;
-	private SwitchCompat _switch;
-	private View _parentView;
+	protected BooleanField _field;
+	protected SwitchCompat _switch;
+	protected View _parentView;
 
 }

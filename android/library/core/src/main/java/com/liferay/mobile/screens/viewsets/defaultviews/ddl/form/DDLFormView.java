@@ -24,6 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
@@ -166,6 +167,16 @@ public class DDLFormView
 	}
 
 	@Override
+	public BaseScreenlet getScreenlet() {
+		return _screenlet;
+	}
+
+	@Override
+	public void setScreenlet(BaseScreenlet screenlet) {
+		_screenlet = screenlet;
+	}
+
+	@Override
 	public void showFailedOperation(String actionName, Exception e, Object argument) {
 		hideProgressBar(actionName);
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
@@ -291,14 +302,15 @@ public class DDLFormView
 		}
 		return null;
 	}
+	protected ProgressBar _progressBar;
+	protected ProgressBar _loadingFormProgressBar;
+	protected ViewGroup _fieldsContainerView;
+	protected Button _submitButton;
 
 	private static Map<Field.EditorType, Integer> _defaultLayoutIds = new HashMap<>(16);
-	private ProgressBar _progressBar;
-	private ProgressBar _loadingFormProgressBar;
-	private ViewGroup _fieldsContainerView;
-	private Button _submitButton;
 	private Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
 	private Map<String, Integer> _customLayoutIds = new HashMap<>();
+	private BaseScreenlet _screenlet;
 
 	static {
 		_defaultLayoutIds.put(Field.EditorType.CHECKBOX, R.layout.ddlfield_checkbox_default);

@@ -8,7 +8,7 @@
 		<enum name="screen_name" value="1"/>
 		<enum name="user_id" value="2"/>
 	</attr>
-	<attr name="credentialsStore" format="enum">
+	<attr name="credentialsStorage" format="enum">
 		<enum name="none" value="0"/>
 		<enum name="auto" value="1"/>
 		<enum name="shared_preferences" value="2"/>
@@ -85,7 +85,7 @@
 		<attr name="layoutId"/>
 		<attr name="basicAuthMethod"/>
 		<attr name="companyId"/>
-		<attr name="credentialsStore"/>
+		<attr name="credentialsStorage"/>
 		<attr name="oauthConsumerKey" format="string"/>
 		<attr name="oauthConsumerSecret" format="string"/>
 	</declare-styleable>
@@ -96,13 +96,14 @@
 		<attr name="anonymousApiUserName"/>
 		<attr name="anonymousApiPassword"/>
 		<attr name="autoLogin" format="boolean"/>
-		<attr name="credentialsStore"/>
+		<attr name="credentialsStorage"/>
 		<attr name="basicAuthMethod"/>
 	</declare-styleable>
 
 	<declare-styleable name="WebContentDisplayScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
+		<attr name="classPK" format="string"/>
 		<attr name="groupId"/>
 		<attr name="offlinePolicy"/>
 		<attr name="templateId" format="string"/>

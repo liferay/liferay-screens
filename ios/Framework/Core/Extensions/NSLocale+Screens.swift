@@ -17,12 +17,18 @@ import Foundation
 extension NSLocale {
 
 	public class var currentLanguageString: String {
-		var preferredLanguage = NSLocale.preferredLanguages()[0].description as String
+		get {
+			var preferredLanguage = NSLocale.preferredLanguages()[0] 
 
-		preferredLanguage = preferredLanguage.substringToIndex(
-				advance(preferredLanguage.startIndex, 2))
+			preferredLanguage = preferredLanguage.substringToIndex(
+				preferredLanguage.startIndex.advancedBy(2))
 
-		return preferredLanguage
+			return preferredLanguage
+		}
+		set {
+			NSUserDefaults.standardUserDefaults().setObject([newValue], forKey: "AppleLanguages")
+			NSUserDefaults.standardUserDefaults().synchronize()
+		}
 	}
 
 	public class var currentLocaleString: String {
@@ -52,6 +58,14 @@ extension NSLocale {
 		}
 
 		return "en_US"
+	}
+
+	public class func bundleForCurrentLanguageInBundle(bundle: NSBundle) -> NSBundle? {
+		if let path = bundle.pathForResource(currentLanguageString, ofType: "lproj") {
+			return NSBundle(path: path)
+		}
+
+		return nil
 	}
 
 }

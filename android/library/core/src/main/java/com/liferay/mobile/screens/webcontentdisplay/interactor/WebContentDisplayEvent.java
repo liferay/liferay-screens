@@ -42,12 +42,37 @@ public class WebContentDisplayEvent extends BasicEvent {
 		_templateId = templateId;
 	}
 
+	public WebContentDisplayEvent(int targetScreenletId, long classPK, Locale locale, Long templateId, Exception e) {
+		super(targetScreenletId, e);
+
+		_classPK = classPK;
+		_locale = locale;
+		_templateId = templateId;
+	}
+
+	public WebContentDisplayEvent(int targetScreenletId, long classPK, Locale locale, Long templateId, String html) {
+		super(targetScreenletId);
+		_html = html;
+
+		_classPK = classPK;
+		_locale = locale;
+		_templateId = templateId;
+	}
+
 	public Long getGroupId() {
 		return _groupId;
 	}
 
 	public Locale getLocale() {
 		return _locale;
+	}
+
+	public long getClassPK() {
+		return _classPK;
+	}
+
+	public void setClassPK(long classPK) {
+		_classPK = classPK;
 	}
 
 	public String getHtml() {
@@ -64,6 +89,7 @@ public class WebContentDisplayEvent extends BasicEvent {
 
 	private String _html;
 	private String _articleId;
+	private long _classPK;
 	private long _groupId;
 	private Locale _locale;
 	private Long _templateId;

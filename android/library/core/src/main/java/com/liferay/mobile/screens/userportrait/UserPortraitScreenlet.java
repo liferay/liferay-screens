@@ -281,7 +281,7 @@ public class UserPortraitScreenlet
 		_userId = castToLongOrUseDefault(typedArray.getString(R.styleable.UserPortraitScreenlet_userId), 0L);
 
 		if (SessionContext.hasUserInfo() && _portraitId == 0 && _uuid == null && _userId == 0) {
-			_userId = SessionContext.getLoggedUser().getId();
+			_userId = SessionContext.getCurrentUser().getId();
 		}
 
 		int layoutId = typedArray.getResourceId(
@@ -321,7 +321,7 @@ public class UserPortraitScreenlet
 				}
 				else {
 					if (SessionContext.hasUserInfo() && _userId == 0) {
-						userPortraitLoadInteractor.load(SessionContext.getLoggedUser().getId());
+						userPortraitLoadInteractor.load(SessionContext.getCurrentUser().getId());
 					}
 					else {
 						userPortraitLoadInteractor.load(_userId);
@@ -361,11 +361,11 @@ public class UserPortraitScreenlet
 
 	private String _filePath;
 	private boolean _autoLoad;
-	private UserPortraitListener _listener;
 	private boolean _male;
 	private long _portraitId;
 	private String _uuid;
 	private long _userId;
 	private boolean _editable;
+	private UserPortraitListener _listener;
 	private OfflinePolicy _offlinePolicy;
 }

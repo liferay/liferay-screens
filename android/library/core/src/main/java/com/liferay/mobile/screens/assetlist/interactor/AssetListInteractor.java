@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.assetlist.interactor;
 
 import com.liferay.mobile.screens.base.interactor.Interactor;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 /**
@@ -24,7 +25,8 @@ import java.util.Locale;
 public interface AssetListInteractor extends Interactor<AssetListInteractorListener> {
 
 	void loadRows(
-		long groupId, long classNameId, String portletItemName, int startRow, int endRow, Locale locale)
+		long groupId, long classNameId, String portletItemName,
+		HashMap<String, Object> customEntryQuery, int startRow, int endRow, Locale locale)
 		throws Exception;
 
 }

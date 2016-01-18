@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol DDLFormScreenletDelegate {
+@objc public protocol DDLFormScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onFormLoaded record: DDLRecord)
@@ -39,9 +39,8 @@ import UIKit
 
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onDocumentField field: DDLFieldDocument,
-			uploadedBytes bytes: UInt,
-			sentBytes sent: Int64,
-			totalBytes total: Int64)
+			uploadedBytes bytes: UInt64,
+			totalBytes total: UInt64)
 
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onDocumentField field: DDLFieldDocument,
@@ -93,7 +92,14 @@ import UIKit
 
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
-	@IBOutlet public weak var delegate: DDLFormScreenletDelegate?
+
+	public var ddlFormDelegate: DDLFormScreenletDelegate? {
+		return delegate as? DDLFormScreenletDelegate
+	}
+
+	public var viewModel: DDLFormViewModel {
+		return screenletView as! DDLFormViewModel
+	}
 
 	public var isFormLoaded: Bool {
 		return !((screenletView as? DDLFormView)?.isRecordEmpty ?? true)
@@ -101,10 +107,6 @@ import UIKit
 
 	internal var formView: DDLFormView {
 		return screenletView as! DDLFormView
-	}
-
-	internal var viewModel: DDLFormViewModel {
-		return screenletView as! DDLFormViewModel
 	}
 
 	private var uploadStatus = UploadStatus.Idle
@@ -127,7 +129,7 @@ import UIKit
 		}
 	}
 
-	override public func createInteractor(#name: String, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		switch name {
 			case DDLFormScreenlet.LoadFormAction:
 				return createLoadFormInteractor()
@@ -145,13 +147,13 @@ import UIKit
 		return nil
 	}
 
-	override public func onAction(#name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+	override public func onAction(name name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
 		let result = super.onAction(name: name, interactor: interactor, sender: sender)
 
 		if result && name == DDLFormScreenlet.UploadDocumentAction {
 			let uploadInteractor = interactor as! DDLFormUploadDocumentInteractor
 
-			delegate?.screenlet?(self,
+			ddlFormDelegate?.screenlet?(self,
 					onDocumentFieldUploadStarted: uploadInteractor.document)
 
 			switch uploadStatus {
@@ -177,14 +179,13 @@ import UIKit
 				self.userId = interactor.resultUserId ?? self.userId
 				self.formView.record = resultRecordValue
 
-				self.delegate?.screenlet?(self,
+				self.ddlFormDelegate?.screenlet?(self,
 						onFormLoaded: resultRecordValue)
 			}
 		}
 
 		interactor.onFailure = {
-			self.delegate?.screenlet?(self, onFormLoadError: $0)
-			return
+			self.ddlFormDelegate?.screenlet?(self, onFormLoadError: $0)
 		}
 
 		return interactor
@@ -207,14 +208,13 @@ import UIKit
 				self.recordId = resultRecordIdValue
 				self.formView.record!.recordId = resultRecordIdValue
 
-				self.delegate?.screenlet?(self,
+				self.ddlFormDelegate?.screenlet?(self,
 						onFormSubmitted: self.formView.record!)
 			}
 		}
 
 		interactor.onFailure = {
-			self.delegate?.screenlet?(self, onFormSubmitError: $0)
-			return
+			self.ddlFormDelegate?.screenlet?(self, onFormSubmitError: $0)
 		}
 
 		return interactor
@@ -234,7 +234,7 @@ import UIKit
 				self.userId = interactor.resultFormUserId ?? self.userId
 				self.formView.record = resultFormRecordValue
 
-				self.delegate?.screenlet?(self,
+				self.ddlFormDelegate?.screenlet?(self,
 						onFormLoaded: resultFormRecordValue)
 			}
 
@@ -245,13 +245,12 @@ import UIKit
 
 				self.formView.refresh()
 
-				self.delegate?.screenlet?(self, onRecordLoaded: recordValue)
+				self.ddlFormDelegate?.screenlet?(self, onRecordLoaded: recordValue)
 			}
 		}
 
 		interactor.onFailure = {
-			self.delegate?.screenlet?(self, onRecordLoadError: $0)
-			return
+			self.ddlFormDelegate?.screenlet?(self, onRecordLoadError: $0)
 		}
 
 		return interactor
@@ -261,15 +260,14 @@ import UIKit
 			document: DDLFieldDocument)
 			-> DDLFormUploadDocumentInteractor {
 
-		func onUploadedBytes(document: DDLFieldDocument, bytes: UInt, sent: Int64, total: Int64) {
+		func onUploadedBytes(document: DDLFieldDocument, sent: UInt64, total: UInt64) {
 			switch uploadStatus {
 				case .Uploading(_, _):
 					formView.changeDocumentUploadStatus(document)
 
-				delegate?.screenlet?(self,
+					ddlFormDelegate?.screenlet?(self,
 						onDocumentField: document,
-						uploadedBytes: bytes,
-						sentBytes: sent,
+						uploadedBytes: sent,
 						totalBytes: total)
 
 				default: ()
@@ -286,7 +284,7 @@ import UIKit
 		interactor.onSuccess = {
 			self.formView.changeDocumentUploadStatus(interactor.document)
 
-			self.delegate?.screenlet?(self,
+			self.ddlFormDelegate?.screenlet?(self,
 					onDocumentField: interactor.document,
 					uploadResult: interactor.resultResponse!)
 
@@ -317,7 +315,7 @@ import UIKit
 				self.formView.showField(interactor.document)
 			}
 
-			self.delegate?.screenlet?(self,
+			self.ddlFormDelegate?.screenlet?(self,
 					onDocumentField: interactor.document,
 					uploadError: $0)
 
@@ -357,7 +355,7 @@ import UIKit
 
 				return true
 
-			case .Uploading(let uploadCount, let submitRequested)
+			case .Uploading(_, let submitRequested)
 			where submitRequested:
 				return true
 
@@ -368,7 +366,7 @@ import UIKit
 				let uploadMessage = (uploadCount == 1)
 						? "uploading-message-singular" : "uploading-message-plural"
 
-				showHUDWithMessage(LocalizedString("ddlform-screenlet", uploadMessage, self),
+				showHUDWithMessage(LocalizedString("ddlform-screenlet", key: uploadMessage, obj: self),
 					closeMode: .ManualClose,
 					spinnerMode: .IndeterminateSpinner)
 
@@ -394,7 +392,7 @@ import UIKit
 
 		if let failedUploads = failedDocumentFields {
 			if failedUploads.count > 0 {
-				showHUDWithMessage(LocalizedString("ddlform-screenlet", "uploading-retry", self),
+				showHUDWithMessage(LocalizedString("ddlform-screenlet", key: "uploading-retry", obj: self),
 					closeMode: .ManualClose,
 					spinnerMode: .IndeterminateSpinner)
 

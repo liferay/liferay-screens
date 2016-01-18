@@ -20,7 +20,7 @@ public class UpdateUserInteractorImpl {
 		Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
 		sessionFromCurrentSession.setCallback(callback);
 
-		User user = SessionContext.getLoggedUser();
+		User user = SessionContext.getCurrentUser();
 
 		UserService userService = new UserService(sessionFromCurrentSession);
 		try {

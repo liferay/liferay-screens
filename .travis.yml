@@ -1,7 +1,22 @@
 language: objective-c
-osx_image: xcode611
+osx_image: xcode7.1
+
+cache:
+    - cocoapods
+
+podfile: ios/Framework
 
 before_install:
+
+    #Android installation (sdk, emulator, wait & unlock)
+    - export COMPONENTS=build-tools-23.0.2,android-19,android-23,extra-android-m2repository,extra-google-m2repository,sys-img-armeabi-v7a-android-19
+    - curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS && source ~/.android-sdk-installer/env
+    - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
+    - emulator -avd test -no-skin -no-audio -no-window &
+    - adb wait-for-device
+    - adb shell input keyevent 82 &
+
+    #iOS installation (gem, brew & pods)
     - export LANG=en_US.UTF-8
     - gem install cocoapods
     - brew update > /dev/null
@@ -10,7 +25,34 @@ before_install:
     - locale
     - pod --version
 
+before_script:
+#    - curl https://raw.githubusercontent.com/travis-ci/travis-cookbooks/62039b204699adcdf4b3365fac42d81246cb57fe/ci_environment/android-sdk/files/default/android-wait-for-emulator > android-wait-for-emulator
+#    - chmod u+x android-wait-for-emulator
+#    - ./android-wait-for-emulator
+
 script:
+    - cd android/library/
+    - echo "sdk.dir=$ANDROID_HOME" > local.properties
+#    - ./gradlew -x javadocJar -x sourcesJar build test
+    - ./gradlew clean
+    - ./gradlew assembleDebug
+    - ./gradlew assembleDebugAndroidTest
+    - ./gradlew test
+
+#    - test-app tests
+    - cd ../samples/test-app/
+    - ./gradlew clean
+    - ./gradlew assembleDebug
+    - ./gradlew assembleDebugAndroidTest
+    - adb shell pm list packages
+    - adb install app/build/outputs/apk/app-debug.apk
+    - adb install app/build/outputs/apk/app-debug-androidTest-unaligned.apk
+#    - adb shell am instrument -w com.nhpatt.catalogodeactividadesasde/android.support.test.runner.AndroidJUnitRunner
+    - adb shell input keyevent 82 &
+    - ./gradlew connectedAndroidTest
+
+#    - iOS tests
+    - cd ../../..
     - cd ios/Framework
     - pod install
     - ./run-tests.sh

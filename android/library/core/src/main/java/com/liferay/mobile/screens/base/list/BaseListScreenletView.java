@@ -25,6 +25,7 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
@@ -116,6 +117,16 @@ public abstract class BaseListScreenletView<
 
 	public A getAdapter() {
 		return (A) _recyclerView.getAdapter();
+	}
+
+	@Override
+	public BaseScreenlet getScreenlet() {
+		return _screenlet;
+	}
+
+	@Override
+	public void setScreenlet(BaseScreenlet screenlet) {
+		_screenlet = screenlet;
 	}
 
 	@Override
@@ -240,7 +251,9 @@ public abstract class BaseListScreenletView<
 	private static final String _STATE_ROW_COUNT = "rowCount";
 	private static final String _STATE_SUPER = "super";
 
-	private ProgressBar _progressBar;
-	private RecyclerView _recyclerView;
+	protected ProgressBar _progressBar;
+	protected RecyclerView _recyclerView;
+
+	private BaseScreenlet _screenlet;
 
 }

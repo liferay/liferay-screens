@@ -55,6 +55,9 @@ import Foundation
 }
 
 
+public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal -> ()
+
+
 @objc public class SyncManager: NSObject {
 
 	public weak var delegate: SyncManagerDelegate?
@@ -62,6 +65,8 @@ import Foundation
 	public let cacheManager: CacheManager
 
 	private let syncQueue: NSOperationQueue
+	private var synchronizers: [String:OfflineSynchronizer] = [:]
+
 
 	public init(cacheManager: CacheManager) {
 		self.cacheManager = cacheManager
@@ -70,6 +75,15 @@ import Foundation
 		self.syncQueue.maxConcurrentOperationCount = 1
 
 		super.init()
+
+		synchronizers[ScreenletName(UserPortraitScreenlet)] =  userPortraitSynchronizer
+		synchronizers[ScreenletName(DDLFormScreenlet)] =  formSynchronizer
+	}
+
+	public func addSynchronizer(
+			screenletClass: AnyClass,
+			synchronizer: OfflineSynchronizer) {
+		synchronizers[ScreenletName(screenletClass)] = synchronizer
 	}
 
 	public func clear() {
@@ -95,18 +109,44 @@ import Foundation
 		}
 	}
 
+	public func prepareInteractorForSync(
+			interactor: ServerOperationInteractor,
+			key: String,
+			attributes: [String:AnyObject],
+			signal: Signal,
+			screenletClassName: String) {
+
+		// this strategy saves the send date after the operation
+		interactor.cacheStrategy = .CacheFirst
+
+		interactor.onSuccess = {
+			self.delegate?.syncManager?(self,
+				onItemSyncScreenlet: screenletClassName,
+				completedKey: key,
+				attributes: attributes)
+
+			signal()
+		}
+
+		interactor.onFailure = { (err: NSError) in
+			self.delegate?.syncManager?(self,
+				onItemSyncScreenlet: screenletClassName,
+				failedKey: key,
+				attributes: attributes,
+				error: err)
+
+			// TODO retry?
+			signal()
+		}
+	}
+
 	private func enqueueSyncForScreenlet(
 			screenletName: String,
 			_ key: String,
 			_ attributes: [String:AnyObject]) {
 
-		let syncBuilders = [
-				ScreenletName(UserPortraitScreenlet): userPortraitSynchronizer,
-				ScreenletName(DDLFormScreenlet): formSynchronizer,
-			]
-
-		if let syncBuilder = syncBuilders[screenletName] {
-			let synchronizer = syncBuilder(key, attributes: attributes)
+		if let syncBuilder = synchronizers[screenletName] {
+			let synchronizer = syncBuilder(key, attributes)
 			syncQueue.addOperationWithBlock(to_sync(synchronizer))
 		}
 	}

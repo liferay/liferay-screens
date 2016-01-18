@@ -22,8 +22,8 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 	@IBOutlet var loginScreenlet: LoginScreenlet?
 
 	@IBAction func signOutAction() {
-		SessionContext.removeStoredSession()
-		SessionContext.clearSession()
+		SessionContext.removeStoredCredentials()
+		SessionContext.logout()
 
 		showLogged(animated: true);
 	}
@@ -46,31 +46,31 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 
 	func screenlet(screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
-		println("DELEGATE: onLoginResponse called -> \(attributes)");
+		print("DELEGATE: onLoginResponse called -> \(attributes)\n");
 		showLogged(animated: true);
 	}
 
 	func screenlet(screenlet: BaseScreenlet,
 			onLoginError error: NSError) {
-		println("DELEGATE: onLoginError called -> \(error)");
+		print("DELEGATE: onLoginError called -> \(error)\n");
 	}
 
 	func onScreenletCredentialsSaved(screenlet: BaseScreenlet) {
-		println("DELEGATE: onCredentialsSaved called");
+		print("DELEGATE: onCredentialsSaved called\n");
 	}
 
 	func onScreenletCredentialsLoaded(screenlet: BaseScreenlet) {
-		println("DELEGATE: onCredentialsLoaded called");
+		print("DELEGATE: onCredentialsLoaded called\n");
 	}
 
-	private func showLogged(#animated:Bool) {
-		if SessionContext.hasSession {
+	private func showLogged(animated animated:Bool) {
+		if SessionContext.isLoggedIn {
 			loggedUsername?.text = SessionContext.currentBasicUserName;
 		}
 
 		UIView.animateWithDuration(animated ? 0.5 : 0.0) { () -> Void in
-			self.loggedView?.alpha = SessionContext.hasSession ? 1.0 : 0.0
-			self.loginScreenlet?.alpha = SessionContext.hasSession ? 0.0 : 1.0
+			self.loggedView?.alpha = SessionContext.isLoggedIn ? 1.0 : 0.0
+			self.loginScreenlet?.alpha = SessionContext.isLoggedIn ? 0.0 : 1.0
 		}
 	}
 

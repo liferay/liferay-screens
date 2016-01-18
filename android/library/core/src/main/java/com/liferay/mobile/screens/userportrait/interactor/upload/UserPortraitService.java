@@ -37,6 +37,7 @@ import java.io.IOException;
 public class UserPortraitService extends IntentService {
 
 	public static final int PORTRAIT_SIZE = 200;
+	public static final int CONNECTION_TIMEOUT = 120000;
 
 	public UserPortraitService() {
 		super(UserPortraitService.class.getCanonicalName());
@@ -78,7 +79,6 @@ public class UserPortraitService extends IntentService {
 			JSONObject jsonObject = uploadUserPortrait(userId, picturePath);
 
 			UserPortraitUploadEvent event = new UserPortraitUploadEvent(targetScreenletId, picturePath, userId, jsonObject);
-			event.setRemote(true);
 			EventBusUtil.post(event);
 		}
 		catch (Exception e) {
@@ -87,8 +87,9 @@ public class UserPortraitService extends IntentService {
 	}
 
 	public JSONObject uploadUserPortrait(long userId, String picturePath) throws Exception {
-		Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
-		UserService userService = new UserService(sessionFromCurrentSession);
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setConnectionTimeout(CONNECTION_TIMEOUT);
+		UserService userService = new UserService(session);
 		byte[] decodeSampledBitmapFromResource = decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE);
 		return userService.updatePortrait(userId,
 			decodeSampledBitmapFromResource);
@@ -131,5 +132,4 @@ public class UserPortraitService extends IntentService {
 				return bitmap;
 		}
 	}
-
 }

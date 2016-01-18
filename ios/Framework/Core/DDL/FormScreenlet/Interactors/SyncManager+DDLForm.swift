@@ -106,7 +106,7 @@ extension SyncManager {
 	}
 
 	private func resolveConflict(
-			#remoteRecord: DDLRecord,
+			remoteRecord remoteRecord: DDLRecord,
 			localRecord: DDLRecord,
 			key: String,
 			attributes: [String:AnyObject],
@@ -202,27 +202,13 @@ extension SyncManager {
 			cacheKey: key,
 			record: localRecord)
 
+		self.prepareInteractorForSync(interactor,
+			key: key,
+			attributes: attributes,
+			signal: signal,
+			screenletClassName: ScreenletName(DDLFormScreenlet))
+
 		interactor.cacheStrategy = .RemoteFirst
-
-		interactor.onSuccess = {
-			self.delegate?.syncManager?(self,
-				onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
-				completedKey: key,
-				attributes: attributes)
-
-			signal()
-		}
-
-		interactor.onFailure = { err in
-			self.delegate?.syncManager?(self,
-				onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
-				failedKey: key,
-				attributes: attributes,
-				error: err)
-
-			// TODO retry?
-			signal()
-		}
 
 		if !interactor.start() {
 			dispatch_main() {

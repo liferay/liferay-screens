@@ -56,14 +56,14 @@ public class DDLFormAddRecordInteractorImpl
 
 		if (event.isFailed()) {
 			try {
-				storeToCacheAndLaunchEvent(false, event.getGroupId(), event.getRecord());
+				storeToCacheAndLaunchEvent(event.getGroupId(), event.getRecord());
 			}
 			catch (Exception e) {
 				notifyError(event);
 			}
 		}
 		else {
-			if (event.isRemote()) {
+			if (!event.isCacheRequest()) {
 				store(true, event.getGroupId(), event.getRecord());
 			}
 
@@ -96,19 +96,20 @@ public class DDLFormAddRecordInteractorImpl
 		getDDLRecordService(record, groupId).addRecord(groupId, record.getRecordSetId(), 0, fieldsValues, serviceContextWrapper);
 	}
 
-	@Override
 	protected void notifyError(DDLFormAddRecordEvent event) {
 		getListener().onDDLFormRecordAddFailed(event.getException());
 	}
 
 	@Override
-	protected void storeToCacheAndLaunchEvent(boolean synced, Object... args) {
+	protected void storeToCacheAndLaunchEvent(Object... args) {
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
 
-		final JSONObject fieldsValues = store(synced, groupId, record);
+		final JSONObject fieldsValues = store(false, groupId, record);
 
-		onEvent(new DDLFormAddRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues));
+		DDLFormAddRecordEvent event = new DDLFormAddRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues);
+		event.setCacheRequest(true);
+		onEvent(event);
 	}
 
 	protected DDLRecordService getDDLRecordService(Record record, long groupId) {
@@ -142,21 +143,19 @@ public class DDLFormAddRecordInteractorImpl
 	@NonNull
 	private JSONObject store(boolean synced, long groupId, Record record) {
 		final JSONObject fieldsValues = new JSONObject(record.getData());
-		saveDDLRecord(record, fieldsValues, groupId, !synced);
-		return fieldsValues;
-	}
 
-	private void saveDDLRecord(Record record, JSONObject fieldValues, Long groupId, boolean dirty) {
 		try {
 			JSONObject valuesAndAttributes = new JSONObject();
-			valuesAndAttributes.put("modelValues", fieldValues);
+			valuesAndAttributes.put("modelValues", fieldsValues);
 			DDLRecordCache recordCache = new DDLRecordCache(groupId, record, valuesAndAttributes);
-			recordCache.setDirty(dirty);
+			recordCache.setDirty(!synced);
 			CacheSQL.getInstance().set(recordCache);
 		}
 		catch (JSONException e) {
-			LiferayLogger.e("Couldnt parse JSON values", e);
+			LiferayLogger.e("Couldn't parse JSON values", e);
 		}
+
+		return fieldsValues;
 	}
 
 }

@@ -15,9 +15,9 @@ import UIKit
 
 
 
-public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgressDelegate {
+public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRFileProgressDelegate {
 
-	public typealias OnProgress = (DDLFieldDocument, UInt, Int64, Int64) -> Void
+	public typealias OnProgress = (DDLFieldDocument, UInt64, UInt64) -> Void
 
 	var document: DDLFieldDocument?
 	var filePrefix: String?
@@ -58,7 +58,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		session.callback = self
 
 		let fileName = "\(filePrefix!)\(NSUUID().UUIDString)"
@@ -68,23 +68,28 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 				inputStream: stream,
 				length: size,
 				fileName: fileName,
-				mimeType: document!.mimeType)
+				mimeType: document!.mimeType,
+				progressDelegate: self)
 		uploadData.progressDelegate = self
 
 		let service = LRDLAppService_v62(session: session)
 
 		requestSemaphore = dispatch_semaphore_create(0)
 
-		service.addFileEntryWithRepositoryId(repositoryId!,
+		do {
+			try service.addFileEntryWithRepositoryId(repositoryId!,
 				folderId: folderId!,
 				sourceFileName: fileName,
 				mimeType: document!.mimeType,
 				title: fileName,
-				description: LocalizedString("ddlform-screenlet", "upload-metadata-description", self),
-				changeLog: LocalizedString("ddlform-screenlet", "upload-metadata-changelog", self),
+				description: LocalizedString("ddlform-screenlet", key: "upload-metadata-description", obj: self),
+				changeLog: LocalizedString("ddlform-screenlet", key: "upload-metadata-changelog", obj: self),
 				file: uploadData,
-				serviceContext: nil,
-				error: &lastError)
+				serviceContext: nil)
+		}
+		catch let error as NSError {
+			lastError = error
+		}
 
 		dispatch_semaphore_wait(requestSemaphore!, DISPATCH_TIME_FOREVER)
 	}
@@ -92,22 +97,24 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRProgr
 
 	//MARK: LRProgressDelegate
 
-	public func onProgressBytes(bytes: UInt, sent: Int64, total: Int64) {
-		document!.uploadStatus = .Uploading(UInt(sent), UInt(total))
-		onUploadedBytes?(document!, bytes, sent, total)
+	public func onProgress(data: NSData!, totalBytes: Int64) {
+		let sent = UInt64(data.length)
+		let total = UInt64(totalBytes)
+		document!.uploadStatus = .Uploading(sent, total)
+		onUploadedBytes?(document!, sent, total)
 	}
 
 
 	//MARK: LRCallback
 
-	public func onFailure(error: NSError?) {
+	public func onFailure(error: NSError!) {
 		lastError = error
 		uploadResult = nil
 
 		dispatch_semaphore_signal(requestSemaphore!)
 	}
 
-	public func onSuccess(result: AnyObject?) {
+	public func onSuccess(result: AnyObject!) {
 		lastError = nil
 		uploadResult = result as? [String:AnyObject]
 

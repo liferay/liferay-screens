@@ -48,21 +48,21 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullStringIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			assertNull(field.convertFromString(null));
 		}
 
 		@Test
 		public void shouldReturnBooleanWhenTrueStringIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			assertTrue(field.convertFromString("True"));
 		}
 
 		@Test
 		public void shouldReturnBooleanWhenFalseStringIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			assertFalse(field.convertFromString("false"));
 		}
@@ -74,21 +74,21 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			assertNull(field.convertToData(null));
 		}
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			assertEquals("true", field.convertToData(true));
 		}
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			assertEquals("false", field.convertToData(false));
 		}
@@ -100,21 +100,21 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale, _usLocale);
 
 			assertNull(field.convertToFormattedString(null));
 		}
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale, _usLocale);
 
 			assertEquals("Yes", field.convertToFormattedString(true));
 		}
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale, _usLocale);
 
 			assertEquals("No", field.convertToFormattedString(false));
 		}
@@ -124,7 +124,7 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 			field.setCurrentValue(null);
 
 			assertNull(field.toData());
@@ -132,7 +132,7 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 			field.setCurrentValue(true);
 
 			assertEquals("true", field.toData());
@@ -140,7 +140,7 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 			field.setCurrentValue(false);
 
 			assertEquals("false", field.toData());
@@ -151,7 +151,7 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale, _usLocale);
 			field.setCurrentValue(null);
 
 			assertNull(field.toFormattedString());
@@ -159,7 +159,7 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale, _usLocale);
 			field.setCurrentValue(true);
 
 			assertEquals("Yes", field.toFormattedString());
@@ -167,7 +167,7 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale, _usLocale);
 			field.setCurrentValue(false);
 
 			assertEquals("No", field.toFormattedString());

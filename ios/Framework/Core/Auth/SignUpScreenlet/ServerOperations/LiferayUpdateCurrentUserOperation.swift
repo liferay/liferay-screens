@@ -46,7 +46,7 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		func attributeAsString(key: String) -> String {
 			return SessionContext.userAttribute(key) as! String
 		}
@@ -58,12 +58,11 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 
 		let service = LRUserService_v62(session: session)
 
-		var outError: NSError?
-
-		//FIXME 
-		// Values marked with (!!) will be overwritten in the server
-		// The JSON WS API isn't able to handle this scenario correctly
-		let result = service.updateUserWithUserId(attributeAsId("userId"),
+		do {
+			//FIXME
+			// Values marked with (!!) will be overwritten in the server
+			// The JSON WS API isn't able to handle this scenario correctly
+			let result = try service.updateUserWithUserId(attributeAsId("userId"),
 				oldPassword: SessionContext.currentBasicPassword,
 				newPassword1: viewModel.password ?? "",
 				newPassword2: viewModel.password ?? "",
@@ -103,20 +102,20 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 				roleIds: [AnyObject](),
 				userGroupRoles: [AnyObject](),
 				userGroupIds: [AnyObject](),
-				serviceContext: nil,
-				error: &outError)
+				serviceContext: nil)
 
-		if outError != nil {
-			lastError = outError!
-			resultUserAttributes = nil
+			if result["userId"] == nil {
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				resultUserAttributes = nil
+			}
+			else {
+				lastError = nil
+				resultUserAttributes = result as? [String:AnyObject]
+			}
 		}
-		else if result?["userId"] == nil {
-			lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
+		catch let error as NSError {
+			lastError = error
 			resultUserAttributes = nil
-		}
-		else {
-			lastError = nil
-			resultUserAttributes = result as? [String:AnyObject]
 		}
 	}
 

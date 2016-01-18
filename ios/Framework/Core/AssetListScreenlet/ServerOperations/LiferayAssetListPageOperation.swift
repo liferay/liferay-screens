@@ -18,6 +18,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	public var groupId: Int64?
 	public var classNameId: Int64?
 	public var portletItemName: String?
+	public var customEntryQuery: [String:AnyObject]?
 
 
 	//MARK: ServerOperation
@@ -30,7 +31,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 				return ValidationError("assetlist-screenlet", "undefined-group")
 			}
 
-			if classNameId == nil {
+			if classNameId == nil && portletItemName == nil {
 				return ValidationError("assetlist-screenlet", "undefined-classname")
 			}
 		}
@@ -38,26 +39,43 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 		return error
 	}
 
-	override public func doRun(#session: LRSession) {
+	override public func doRun(session session: LRSession) {
 		if let portletItemName = portletItemName {
 			let service = LRScreensassetentryService_v62(session: session)
 
-			let responses = service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
-				groupId: groupId!,
-				portletItemName: portletItemName,
-				locale: NSLocale.currentLocaleString,
-				error: &lastError)
+			if startRow == 0 {
+				// since the service doesn't support pagination, we ask for
+				// rows from the top to the endRow (whole single page)
+				let rowCount = endRow
 
-			if lastError == nil {
-				if let entriesResponse = responses as? [[String:AnyObject]] {
-					let serverPageContent = entriesResponse
+				do {
+					let responses = try service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
+						groupId: groupId!,
+						portletItemName: portletItemName,
+						locale: NSLocale.currentLocaleString,
+						max: Int32(rowCount))
 
-					resultPageContent = serverPageContent
-					resultRowCount = serverPageContent.count
+					if let entriesResponse = responses as? [[String:AnyObject]] {
+						let serverPageContent = entriesResponse
+
+						resultPageContent = serverPageContent
+						resultRowCount = serverPageContent.count
+						lastError = nil
+					}
+					else {
+						lastError = NSError.errorWithCause(.InvalidServerResponse)
+						resultPageContent = nil
+					}
 				}
-				else {
-					lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
+				catch let error as NSError {
+					lastError = error
+					resultPageContent = nil
 				}
+			}
+			else {
+				// return empty content for pages different from the first one
+				resultPageContent = []
+				resultRowCount = 0
 			}
 		}
 		else {
@@ -67,49 +85,57 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	//MARK: LiferayPaginationOperation
 
-	override internal func doGetPageRowsOperation(#session: LRBatchSession, startRow: Int, endRow: Int) {
+	override internal func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensassetentryService_v62(session: session)
 
-		if let portletItemName = portletItemName {
-			service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
-				groupId: groupId!,
-				portletItemName: portletItemName,
-				locale: NSLocale.currentLocaleString,
-				error: &lastError)
+		var entryQuery = configureEntryQuery()
+
+		entryQuery["start"] = startRow
+		entryQuery["end"] = endRow
+
+		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
+
+		do {
+			try service.getAssetEntriesWithAssetEntryQuery(entryQueryWrapper,
+					locale: NSLocale.currentLocaleString)
 		}
-		else {
-			var entryQueryAttributes = configureEntryQueryAttributes()
-
-			entryQueryAttributes["start"] = startRow
-			entryQueryAttributes["end"] = endRow
-
-			let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
-
-			service.getAssetEntriesWithAssetEntryQuery(entryQuery,
-				locale: NSLocale.currentLocaleString,
-				error: nil)
+		catch _ as NSError {
 		}
 	}
 
-	override internal func doGetRowCountOperation(#session: LRBatchSession) {
+	override internal func doGetRowCountOperation(session session: LRBatchSession) {
 		let service = LRAssetEntryService_v62(session: session)
-		let entryQueryAttributes = configureEntryQueryAttributes()
-		let entryQuery = LRJSONObjectWrapper(JSONObject: entryQueryAttributes)
+		let entryQuery = configureEntryQuery()
+		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
 
-		service.getEntriesCountWithEntryQuery(entryQuery, error: nil)
+		do {
+			try service.getEntriesCountWithEntryQuery(entryQueryWrapper)
+		}
+		catch _ as NSError {
+		}
 	}
 
 
 	//MARK: Private methods
 
-	private func configureEntryQueryAttributes() -> [NSString : AnyObject] {
-		var entryQueryAttributes: [NSString : AnyObject] = [:]
+	private func configureEntryQuery() -> [String:AnyObject] {
+		var entryQuery = (customEntryQuery != nil)
+			? customEntryQuery!
+			: [String:AnyObject]()
 
-		entryQueryAttributes["classNameIds"] = NSNumber(longLong: classNameId!)
-		entryQueryAttributes["groupIds"] = NSNumber(longLong: groupId!)
-		entryQueryAttributes["visible"] = "true"
+		let defaultValues = [
+			"classNameIds" : NSNumber(longLong: classNameId!),
+			"groupIds" : NSNumber(longLong: groupId!),
+			"visible" : "true"
+		]
 
-		return entryQueryAttributes
+		for (k,v) in defaultValues {
+			if entryQuery[k] == nil {
+				entryQuery[k] = v
+			}
+		}
+
+		return entryQuery
 	}
 
 }

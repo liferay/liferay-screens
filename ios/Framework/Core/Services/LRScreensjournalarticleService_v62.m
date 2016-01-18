@@ -19,9 +19,8 @@
  */
 @implementation LRScreensjournalarticleService_v62
 
-- (NSString *)getJournalArticleContentWithGroupId:(int)groupId classPK:(int)classPK locale:(NSString *)locale error:(NSError **)error {
+- (NSString *)getJournalArticleContentWithClassPK:(long long)classPK locale:(NSString *)locale error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
-		@"groupId": @(groupId),
 		@"classPK": @(classPK),
 		@"locale": locale
 	}];
@@ -31,11 +30,23 @@
 	return (NSString *)[self.session invoke:_command error:error];
 }
 
-- (NSString *)getJournalArticleContentWithGroupId:(long long)groupId articleId:(NSString *)articleId templateId:(long long)templateId locale:(NSString *)locale error:(NSError **)error {
+- (NSString *)getJournalArticleContentWithClassPK:(long long)classPK ddmTemplateId:(long long)ddmTemplateId locale:(NSString *)locale error:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+		@"classPK": @(classPK),
+		@"ddmTemplateId": @(ddmTemplateId),
+		@"locale": locale
+	}];
+
+	NSDictionary *_command = @{@"/screens-web.screensjournalarticle/get-journal-article-content": _params};
+
+	return (NSString *)[self.session invoke:_command error:error];
+}
+
+- (NSString *)getJournalArticleContentWithGroupId:(long long)groupId articleId:(NSString *)articleId ddmTemplateId:(long long)ddmTemplateId locale:(NSString *)locale error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"groupId": @(groupId),
 		@"articleId": articleId,
-		@"templateId": @(templateId),
+		@"ddmTemplateId": @(ddmTemplateId),
 		@"locale": locale
 	}];
 

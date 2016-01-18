@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name         = 'LiferayScreens'
 	s.module_name  = 'LiferayScreens'
-	s.version      = '1.2.0'
+	s.version      = '1.3.0'
 	s.summary      = 'A family of visual components called screenlets that are connected to the Liferay Platform used as a backend'
 	s.homepage     = 'https://www.liferay.com/liferay-screens'
 	s.license = { 
@@ -36,7 +36,8 @@ Pod::Spec.new do |s|
 	s.exclude_files = [
 		'ios/Framework/Core/liferay-screens-bridge.h',
 		'ios/Framework/Tests/**/*.*',
-		'ios/Framework/Pods/**/*.*'
+		'ios/Framework/Pods/**/*.*',
+		'ios/Framework/Themes/Flat7/**/*.*'
 	]
 
 	s.resource_bundle = {
@@ -50,18 +51,18 @@ Pod::Spec.new do |s|
 	}
 
 	# Core
-	s.dependency 'Liferay-iOS-SDK', '6.2.0.17'
-	s.dependency 'Liferay-OAuth', '0.1.0'
+	s.dependency 'Liferay-iOS-SDK', '6.2.0.22'
+	s.dependency 'Liferay-OAuth', '0.1.1'
 	s.dependency 'MBProgressHUD', '0.9.1'
 	s.dependency 'SMXMLDocument', '1.1'
 	s.dependency 'ODRefreshControl', '1.2'
 	s.dependency 'YapDatabase', '2.6.5'
 
 	# Login & signup: save credentials
-	s.dependency 'KeychainAccess', '1.2.1'
+	s.dependency 'KeychainAccess', '2.3.1'
 
 	# UserPortrait
-	s.dependency 'CryptoSwift', '0.0.13'
+	s.dependency 'CryptoSwift', '0.1.1'
 
 	# DDLForm
 	s.dependency 'DTPickerPresenter', '0.2.0'

@@ -33,8 +33,8 @@ public enum CacheStrategyType: String {
 
 
 	public init(name: String) {
-		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] as! String
-		let path = cacheFolderPath.stringByAppendingPathComponent(tableSchemaDatabase)
+		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
+		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
 		let dbPath = "\(path)_\(name.toSafeFilename()))"
 
 		database = YapDatabase(path: dbPath)
@@ -51,14 +51,14 @@ public enum CacheStrategyType: String {
 	}
 
 
-	public func getString(#collection: String, key: String, result: String? -> ()) {
+	public func getString(collection collection: String, key: String, result: String? -> ()) {
 		readConnection.readWithBlock { transaction in
 			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)
 			result((value as? NSObject)?.description)
 		}
 	}
 
-	public func getImage(#collection: String, key: String, result: UIImage? -> ()) {
+	public func getImage(collection collection: String, key: String, result: UIImage? -> ()) {
 		readConnection.readWithBlock { transaction in
 			let value: AnyObject? = transaction.objectForKey(key, inCollection: collection)
 
@@ -74,14 +74,14 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	public func getAny(#collection: String, key: String, result: AnyObject? -> ()) {
+	public func getAny(collection collection: String, key: String, result: AnyObject? -> ()) {
 		readConnection.readWithBlock { transaction in
 			result(transaction.objectForKey(key, inCollection: collection))
 		}
 	}
 
 	public func getAnyWithAttributes(
-			#collection: String,
+			collection collection: String,
 			key: String,
 			result: (AnyObject?, [String:AnyObject]?) -> ()) {
 
@@ -94,16 +94,16 @@ public enum CacheStrategyType: String {
 	}
 
 	public func getSomeWithAttributes(
-			#collection: String,
+			collection collection: String,
 			keys: [String],
 			result: ([AnyObject?], [[String:AnyObject]?]) -> ()) {
 
 		readConnection.readWithBlock { transaction in
-			let keyCount = count(keys)
+			let keyCount = keys.count
 			var objects = [AnyObject?](count: keyCount, repeatedValue: nil)
 			var attributes = [[String:AnyObject]?](count: keyCount, repeatedValue: nil)
 
-			for (i,k) in enumerate(keys) {
+			for (i,k) in keys.enumerate() {
 				objects[i] = transaction.objectForKey(k, inCollection: collection)
 
 				let metadata = transaction.metadataForKey(k, inCollection: collection) as? CacheMetadata
@@ -114,7 +114,7 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	public func getSome(#collection: String, keys: [String], result: [AnyObject?] -> ()) {
+	public func getSome(collection collection: String, keys: [String], result: [AnyObject?] -> ()) {
 		readConnection.readWithBlock { transaction in
 			var values = [AnyObject?]()
 
@@ -128,26 +128,22 @@ public enum CacheStrategyType: String {
 	}
 
 
-	public func getMetadata(#collection: String, key: String, result: CacheMetadata? -> ()) {
+	public func getMetadata(collection collection: String, key: String, result: CacheMetadata? -> ()) {
 		readConnection.readWithBlock { transaction in
 			let value: AnyObject? = transaction.metadataForKey(key, inCollection: collection)
-
-			println("getMetadata \(collection):\(key) -> synchronized: \((value as? CacheMetadata)?.synchronized)")
 
 			result(value as? CacheMetadata)
 		}
 	}
 
 	public func setClean(
-			#collection: String,
+			collection collection: String,
 			key: String,
 			value: NSCoding,
 			attributes: [String:AnyObject]) {
 
 		// The item becomes clean (the opposite of dirty,
 		// that is: synchronized): updated 'sent' & 'received' dates
-
-		println("==== set Clean")
 
 		set(collection: collection,
 			keys: [key],
@@ -157,7 +153,7 @@ public enum CacheStrategyType: String {
 	}
 
 	public func setClean(
-			#collection: String,
+			collection collection: String,
 			keys: [String],
 			values: [NSCoding],
 			attributes: [String:AnyObject]) {
@@ -171,14 +167,12 @@ public enum CacheStrategyType: String {
 
 
 	public func setDirty(
-			#collection: String,
+			collection collection: String,
 			key: String,
 			value: NSCoding,
 			attributes: [String:AnyObject]) {
 
 		// The item becomes dirty: fresh received date but nil sent date
-		println("==== set Dirty")
-
 		set(collection: collection,
 			keys: [key],
 			values: [value],
@@ -187,13 +181,13 @@ public enum CacheStrategyType: String {
 	}
 
 	private func set(
-			#collection: String,
+			collection collection: String,
 			keys: [String],
 			values: [NSCoding],
 			synchronized: NSDate?,
 			attributes: [String:AnyObject]) {
 
-		assert(count(keys) == count(values),
+		assert(keys.count == values.count,
 			"Keys and values must have same number of elements")
 
 		writeConnection.readWriteWithBlock { transaction in
@@ -201,23 +195,19 @@ public enum CacheStrategyType: String {
 				synchronized: synchronized,
 				attributes: attributes)
 
-			for (i,k) in enumerate(keys) {
+			for (i,k) in keys.enumerate() {
 				transaction.setObject(values[i],
 					forKey: k,
 					inCollection: collection,
 					withMetadata: metadata)
-
-				println("set \(collection):\(k) -> synchronized: \(synchronized)")
 			}
 		}
 	}
 
 	public func setClean(
-			#collection: String,
+			collection collection: String,
 			key: String,
 			attributes: [String:AnyObject]) {
-
-		println("==== set Clean")
 
 		setMetadata(collection: collection,
 			key: key,
@@ -226,7 +216,7 @@ public enum CacheStrategyType: String {
 	}
 
 	private func setMetadata(
-			#collection: String,
+			collection collection: String,
 			key: String,
 			synchronized: NSDate?,
 			attributes: [String:AnyObject]) {
@@ -240,19 +230,17 @@ public enum CacheStrategyType: String {
 				transaction.replaceMetadata(newMetadata,
 					forKey: key,
 					inCollection: collection)
-
-				println("setMetadata \(collection):\(key) -> synchronized=\(newMetadata.synchronized)")
 			}
 		}
 	}
 
-	public func remove(#collection: String, key: String) {
+	public func remove(collection collection: String, key: String) {
 		writeConnection.readWriteWithBlock { transaction in
 			transaction.removeObjectForKey(key, inCollection: collection)
 		}
 	}
 
-	public func remove(#collection: String) {
+	public func remove(collection collection: String) {
 		writeConnection.readWriteWithBlock { transaction in
 			transaction.removeAllObjectsInCollection(collection)
 		}

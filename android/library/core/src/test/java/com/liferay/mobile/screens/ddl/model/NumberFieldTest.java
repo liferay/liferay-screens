@@ -48,30 +48,36 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			assertNull(field.convertFromString(null));
 		}
 
 		@Test
 		public void shouldReturnNullWhenEmptyStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			assertNull(field.convertFromString(""));
 		}
 
 		@Test
 		public void shouldReturnNullWhenInvalidStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			assertNull(field.convertFromString("12a3"));
-			assertNull(field.convertFromString("12,3"));
-			assertNull(field.convertFromString("12,000"));
+		}
+
+		@Test
+		public void shouldReturnValueWhenParsingWithAlternativeLocale() throws Exception {
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+
+			assertNotNull(field.convertFromString("12,3"));
+			assertNotNull(field.convertFromString("12,000"));
 		}
 
 		@Test
 		public void shouldReturnLongWhenIntegerStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			Number result = field.convertFromString("123");
 
@@ -81,7 +87,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnDoubleWhenDecimalStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale, _spanishLocale);
 
 			Number result = field.convertFromString("123.4");
 
@@ -96,25 +102,25 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullNumberIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			assertNull(field.convertToData(null));
 		}
 
 		@Test
 		public void shouldReturnIntegerStringWhenIntegerNumberIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
-			assertEquals("123", field.convertToData(Integer.valueOf(123)));
-			assertEquals("123", field.convertToData(Long.valueOf(123L)));
+			assertEquals("123", field.convertToData(123));
+			assertEquals("123", field.convertToData(123L));
 		}
 
 		@Test
 		public void shouldReturnDecimalStringWhenDecimalNumberIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
-			assertEquals("123.4", field.convertToData(Double.valueOf(123.4)));
-			assertEquals("123.4", field.convertToData(Float.valueOf(123.4f)));
+			assertEquals("123.4", field.convertToData(123.4d));
+			assertEquals("123.4", field.convertToData(123.4f));
 		}
 	}
 
@@ -124,33 +130,33 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnEmptyWhenNullNumberIsSupplied() {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			assertEquals("", field.convertToFormattedString(null));
 		}
 
 		@Test
 		public void shouldReturnSpanishFormattedIntegerNumber() {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
-			assertEquals("1234", field.convertToData(Integer.valueOf(1234)));
-			assertEquals("1234", field.convertToData(Long.valueOf(1234L)));
+			assertEquals("1234", field.convertToData(1234));
+			assertEquals("1234", field.convertToData(1234L));
 		}
 
 		@Test
 		public void shouldReturnUSFormattedIntegerNumber() {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale, _usLocale);
 
-			assertEquals("1234", field.convertToData(Integer.valueOf(1234)));
-			assertEquals("1234", field.convertToData(Long.valueOf(1234L)));
+			assertEquals("1234", field.convertToData(1234));
+			assertEquals("1234", field.convertToData(1234L));
 		}
 
 		@Test
 		public void shouldReturnUSFormattedDecimalNumber() {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale, _usLocale);
 
-			assertEquals("123.4", field.convertToData(Double.valueOf(123.4)));
-			assertEquals("123.4", field.convertToData(Float.valueOf(123.4f)));
+			assertEquals("123.4", field.convertToData(123.4d));
+			assertEquals("123.4", field.convertToData(123.4f));
 		}
 
 	}

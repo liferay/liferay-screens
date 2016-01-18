@@ -158,7 +158,8 @@ public class DDLFieldRadioView extends RadioGroup
 		return Typeface.create("sans-serif-light", Typeface.NORMAL);
 	}
 
-	private View _parentView;
+	protected View _parentView;
+
 	private StringWithOptionsField _field;
 
 }

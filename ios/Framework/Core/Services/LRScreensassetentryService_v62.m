@@ -30,12 +30,13 @@
 	return (NSArray *)[self.session invoke:_command error:error];
 }
 
-- (NSArray *)getAssetEntriesWithCompanyId:(long long)companyId groupId:(long long)groupId portletItemName:(NSString *)portletItemName locale:(NSString *)locale error:(NSError **)error {
+- (NSArray *)getAssetEntriesWithCompanyId:(long long)companyId groupId:(long long)groupId portletItemName:(NSString *)portletItemName locale:(NSString *)locale max:(int)max error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"companyId": @(companyId),
 		@"groupId": @(groupId),
 		@"portletItemName": portletItemName,
-		@"locale": locale
+		@"locale": locale,
+		@"max": @(max)
 	}];
 
 	NSDictionary *_command = @{@"/screens-web.screensassetentry/get-asset-entries": _params};

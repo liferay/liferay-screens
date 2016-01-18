@@ -18,10 +18,33 @@ import UIKit
 #endif
 
 
+// Global initial load
+private func loadPlaceholderCache(done: (UIImage? -> ())? = nil) -> UIImage? {
+	var image: UIImage?
+
+	dispatch_async {
+		image = NSBundle.imageInBundles(
+			name: "default-portrait-placeholder",
+			currentClass: UserPortraitView_default.self)
+
+		UserPortraitView_default.defaultPlaceholder = image
+
+		dispatch_main() {
+			done?(image)
+		}
+	}
+
+	// returns nil because the loading is asynchronous
+	return nil
+}
+
+
 public class UserPortraitView_default: BaseScreenletView,
-		UserPortraitViewModel,
-		UIActionSheetDelegate,
-		UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+	UserPortraitViewModel,
+	UIActionSheetDelegate,
+	UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+	public static var defaultPlaceholder: UIImage? = loadPlaceholderCache()
 
 	@IBOutlet weak public var activityIndicator: UIActivityIndicatorView?
 	@IBOutlet weak public var portraitImage: UIImageView?
@@ -62,10 +85,13 @@ public class UserPortraitView_default: BaseScreenletView,
 
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
-			"load-portrait" : [.Working : ""],
-			"upload-portrait" :
-				[.Working : "",
-				.Failure : LocalizedString("default", "userportrait-uploading-error", self)]]
+			"load-portrait" : [
+				.Working : ""
+			],
+			"upload-portrait" : [
+				.Working : "",
+				.Failure : LocalizedString("default", key: "userportrait-uploading-error", obj: self)
+			]]
 	}
 
 	private let imagePicker = UIImagePickerController()
@@ -91,16 +117,16 @@ public class UserPortraitView_default: BaseScreenletView,
 		portraitImage?.layer.cornerRadius = DefaultThemeButtonCornerRadius
 	}
 
-	override public func onPreAction(#name: String, sender: AnyObject?) -> Bool {
+	override public func onPreAction(name name: String, sender: AnyObject?) -> Bool {
 		if name == "edit-portrait" {
-			let takeNewPicture = LocalizedString("default", "userportrait-take-new-picture", self)
-			let chooseExisting = LocalizedString("default", "userportrait-choose-existing-picture", self)
+			let takeNewPicture = LocalizedString("default", key: "userportrait-take-new-picture", obj: self)
+			let chooseExisting = LocalizedString("default", key: "userportrait-choose-existing-picture", obj: self)
 
 			let sheet = UIActionSheet(
-					title: "Change portrait",
-					delegate: self,
-					cancelButtonTitle: "Cancel",
-					destructiveButtonTitle: nil, otherButtonTitles: takeNewPicture, chooseExisting)
+				title: "Change portrait",
+				delegate: self,
+				cancelButtonTitle: "Cancel",
+				destructiveButtonTitle: nil, otherButtonTitles: takeNewPicture, chooseExisting)
 			sheet.showInView(self)
 
 			return false
@@ -131,22 +157,29 @@ public class UserPortraitView_default: BaseScreenletView,
 			vc.presentViewController(imagePicker, animated: true, completion: {})
 		}
 		else {
-			println("ERROR: You neet to set the presentingViewController before using UIActionSheet")
+			print("ERROR: You neet to set the presentingViewController before using UIActionSheet\n")
 		}
 	}
 
 	public func loadPlaceholder() {
-		self.portraitImage?.image = NSBundle.imageInBundles(
-				name: "default-portrait-placeholder",
-				currentClass: self.dynamicType)
+		dispatch_main() {
+			if let placeholder = UserPortraitView_default.defaultPlaceholder {
+				self.portraitImage?.image = placeholder
+			}
+			else {
+				loadPlaceholderCache {
+					self.portraitImage?.image = $0
+				}
+			}
+		}
 	}
 
 
 	//MARK: UIImagePickerControllerDelegate
 
-    public func imagePickerController(
+	public func imagePickerController(
 			picker: UIImagePickerController,
-			didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+			didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 
 		let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage
 
@@ -155,7 +188,7 @@ public class UserPortraitView_default: BaseScreenletView,
 		userAction(name: "upload-portrait", sender: editedImage)
 	}
 
-    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+	public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
 		imagePicker.dismissViewControllerAnimated(true) {}
 	}
 

@@ -36,18 +36,18 @@ public class UserPortraitUploadInteractorImpl
 
 		if (event.isFailed()) {
 			try {
-				storeToCacheAndLaunchEvent(false, event, event.getUserId(), event.getPicturePath());
+				storeToCacheAndLaunchEvent(event, event.getUserId(), event.getPicturePath());
 			}
 			catch (Exception e) {
-				notifyError(event);
+				getListener().onUserPortraitUploadFailure(event.getException());
 			}
 		}
 		else {
-			if (event.isRemote()) {
+			if (!event.isCacheRequest()) {
 				store(true, event.getUserId(), event.getPicturePath());
 			}
 
-			User oldLoggedUser = SessionContext.getLoggedUser();
+			User oldLoggedUser = SessionContext.getCurrentUser();
 
 			if (event.getJSONObject() != null) {
 				User user = new User(event.getJSONObject());
@@ -57,7 +57,9 @@ public class UserPortraitUploadInteractorImpl
 			}
 
 			try {
-				getListener().onUserPortraitUploaded(oldLoggedUser.getId());
+				if (oldLoggedUser != null) {
+					getListener().onUserPortraitUploaded(oldLoggedUser.getId());
+				}
 			}
 			catch (Exception e) {
 				getListener().onUserPortraitUploadFailure(e);
@@ -84,19 +86,16 @@ public class UserPortraitUploadInteractorImpl
 	}
 
 	@Override
-	protected void notifyError(UserPortraitUploadEvent event) {
-		getListener().onUserPortraitUploadFailure(event.getException());
-	}
-
-	@Override
-	protected void storeToCacheAndLaunchEvent(boolean synced, Object... args) {
+	protected void storeToCacheAndLaunchEvent(Object... args) {
 
 		long userId = (long) args[0];
 		String picturePath = (String) args[1];
 
-		store(synced, userId, picturePath);
+		store(false, userId, picturePath);
 
-		onEventMainThread(new UserPortraitUploadEvent(getTargetScreenletId(), picturePath, userId, new JSONObject()));
+		UserPortraitUploadEvent event = new UserPortraitUploadEvent(getTargetScreenletId(), picturePath, userId, new JSONObject());
+		event.setCacheRequest(true);
+		onEventMainThread(event);
 	}
 
 	private void store(boolean synced, long userId, String picturePath) {

@@ -26,4 +26,8 @@
 	<string name="add_a_bookmark">Add a Bookmark</string>
 	<string name="journal_article_with_template">Journal Article with template</string>
 	<string name="filtered_asset">Filtered asset</string>
+	<string name="email_address">Email Address</string>
+	<string name="sign_in">Sign In</string>
+
+	<string name="custom_interactor">Login with custom interactor</string>
 </resources>

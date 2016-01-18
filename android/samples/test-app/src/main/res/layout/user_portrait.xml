@@ -16,8 +16,8 @@
 		android:layout_height="100dp"
 		android:visibility="gone"
 		liferay:autoLoad="false"
-		liferay:offlinePolicy="CACHE_FIRST"
-		liferay:layoutId="@layout/userportrait_default"/>
+		liferay:layoutId="@layout/userportrait_default"
+		liferay:offlinePolicy="CACHE_FIRST"/>
 
 	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
 		android:id="@+id/user_portrait_material"

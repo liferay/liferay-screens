@@ -28,10 +28,10 @@ class DDLRecord_FieldValues_Tests: XCTestCase {
 		XCTAssertEqual(2, record.fields.count)
 
 		XCTAssertEqual("field1", record.fields[0].name)
-		XCTAssertEqual("value1", record.fields[0].currentValue as! String)
+		XCTAssertEqual("value1", record.fields[0].currentValue as? String)
 
 		XCTAssertEqual("field2", record.fields[1].name)
-		XCTAssertEqual("value2", record.fields[1].currentValue as! String)
+		XCTAssertEqual("value2", record.fields[1].currentValue as? String)
 	}
 
 	func test_ModelValues_ShouldBe_Updated() {
@@ -47,11 +47,11 @@ class DDLRecord_FieldValues_Tests: XCTestCase {
 
 		// updated
 		XCTAssertEqual("field1", record.fields[0].name)
-		XCTAssertEqual("new_value1", record.fields[0].currentValue as! String)
+		XCTAssertEqual("new_value1", record.fields[0].currentValue as? String)
 
 		// not updated
 		XCTAssertEqual("field2", record.fields[1].name)
-		XCTAssertEqual("value2", record.fields[1].currentValue as! String)
+		XCTAssertEqual("value2", record.fields[1].currentValue as? String)
 	}
 
 	func test_ModelAttributes_ShouldBe_Read() {
@@ -60,7 +60,7 @@ class DDLRecord_FieldValues_Tests: XCTestCase {
 		let record = DDLRecord(dataAndAttributes: ["modelAttributes":attributes])
 
 		XCTAssertEqual(1, record.attributes.count)
-		XCTAssertEqual("attrvalue1", record.attributes["attr1"] as! String)
+		XCTAssertEqual("attrvalue1", record.attributes["attr1"] as? String)
 	}
 
 	func test_RecordId_ShouldBe_Read() {
@@ -78,7 +78,7 @@ class DDLRecord_FieldValues_Tests: XCTestCase {
 
 		XCTAssertNotNil(field)
 		XCTAssertEqual("field1", field!.name)
-		XCTAssertEqual("value1", field!.currentValue as! String)
+		XCTAssertEqual("value1", field!.currentValue as? String)
 		XCTAssertTrue(field === record["field1"])
 	}
 
@@ -89,7 +89,7 @@ class DDLRecord_FieldValues_Tests: XCTestCase {
 
 		XCTAssertNotNil(field)
 		XCTAssertEqual("field1", field!.name)
-		XCTAssertEqual("value1", field!.currentValue as! String)
+		XCTAssertEqual("value1", field!.currentValue as? String)
 		XCTAssertTrue(field === record["FIELD1"])
 	}
 

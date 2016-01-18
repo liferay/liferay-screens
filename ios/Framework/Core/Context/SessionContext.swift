@@ -19,43 +19,43 @@ import Foundation
 #endif
 
 
-@objc public class SessionContext {
+@objc public class SessionContext: NSObject {
 
 	//MARK: Singleton type
 
 	private struct StaticInstance {
-		static var currentSession: LRSession?
-		static var userAttributes: [String:AnyObject] = [:]
+		static var currentUserSession: LRSession?
+		static var currentUserAttributes = [String:AnyObject]()
 
 		static var chacheManager: CacheManager?
 
-		static var sessionStorage = SessionStorage(
+		static var credentialsStorage = CredentialsStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
 	}
 
 
 	//MARK: Public properties
 
-	public class var hasSession: Bool {
-		return StaticInstance.currentSession != nil
+	public class var isLoggedIn: Bool {
+		return StaticInstance.currentUserSession != nil
 	}
 
 	public class var currentBasicUserName: String? {
-		var authentication = StaticInstance.currentSession?.authentication
+		let authentication = StaticInstance.currentUserSession?.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.username
 	}
 
 	public class var currentBasicPassword: String? {
-		var authentication = StaticInstance.currentSession?.authentication
+		let authentication = StaticInstance.currentUserSession?.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.password
 	}
 
 	public class var currentUserId: Int64? {
-		return StaticInstance.userAttributes["userId"]
+		return StaticInstance.currentUserAttributes["userId"]
 				.map { $0 as! NSNumber }
 				.map { $0.longLongValue }
 	}
@@ -64,19 +64,19 @@ import Foundation
 		return StaticInstance.chacheManager
 	}
 
-	internal class var sessionStorage: SessionStorage {
+	internal class var credentialsStorage: CredentialsStorage {
 		get {
-			return StaticInstance.sessionStorage
+			return StaticInstance.credentialsStorage
 		}
 		set {
-			StaticInstance.sessionStorage = newValue
+			StaticInstance.credentialsStorage = newValue
 		}
 	}
 
 	//MARK Public methods
 
 	public class func userAttribute(key: String) -> AnyObject? {
-		return StaticInstance.userAttributes[key]
+		return StaticInstance.currentUserAttributes[key]
 	}
 
 	public class func createAnonymousBasicSession(userName: String, _ password: String) -> LRSession {
@@ -88,12 +88,12 @@ import Foundation
 	}
 
 	public class func createBasicSession(
-			#username: String,
+			username username: String,
 			password: String,
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
-		sessionStorage = SessionStorage(
+		credentialsStorage = CredentialsStorage(
 			credentialStore: BasicCredentialsStoreKeyChain())
 
 		let authentication = LRBasicAuthentication(
@@ -106,11 +106,11 @@ import Foundation
 	}
 
 	public class func createOAuthSession(
-			#authentication: LROAuth,
+			authentication authentication: LROAuth,
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
-		sessionStorage = SessionStorage(
+		credentialsStorage = CredentialsStorage(
 			credentialStore: OAuthCredentialsStoreKeyChain())
 
 		return createSession(
@@ -121,7 +121,7 @@ import Foundation
 
 
 	private class func createSession(
-			#authentication: LRAuthentication,
+			authentication authentication: LRAuthentication,
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
@@ -132,7 +132,7 @@ import Foundation
 	}
 
 	public class func createSessionFromCurrentSession() -> LRSession? {
-		if let currentSessionValue = StaticInstance.currentSession {
+		if let currentSessionValue = StaticInstance.currentUserSession {
 			return LRSession(session: currentSessionValue)
 		}
 
@@ -140,41 +140,42 @@ import Foundation
 	}
 
 	public class func createBatchSessionFromCurrentSession() -> LRBatchSession? {
-		if let currentSessionValue = StaticInstance.currentSession {
+		if let currentSessionValue = StaticInstance.currentUserSession {
 			return LRBatchSession(session: currentSessionValue)
 		}
 
 		return nil
 	}
 
-	public class func clearSession() {
-		StaticInstance.currentSession = nil
-		StaticInstance.userAttributes = [:]
+	public class func logout() {
+		StaticInstance.currentUserSession = nil
+		StaticInstance.currentUserAttributes = [:]
 		StaticInstance.chacheManager = nil
 	}
 
-	public class func storeSession() -> Bool {
-		return sessionStorage.store(
-				session: StaticInstance.currentSession,
-				userAttributes: StaticInstance.userAttributes)
+	public class func storeCredentials() -> Bool {
+		return credentialsStorage.store(
+				session: StaticInstance.currentUserSession,
+				userAttributes: StaticInstance.currentUserAttributes)
 	}
 
-	public class func removeStoredSession() -> Bool {
-		return sessionStorage.remove()
+	public class func removeStoredCredentials() -> Bool {
+		return credentialsStorage.remove()
 	}
 
-	public class func loadSessionFromStore() -> Bool {
-		if let sessionStorage = SessionStorage() {
-			if let result = sessionStorage.load()
+	public class func loadStoredCredentials() -> Bool {
+		let credentialsStorage = CredentialsStorage()
+
+		if credentialsStorage.hasCredentialsStored {
+			if let result = credentialsStorage.load()
 					where result.session.server != nil {
-				StaticInstance.currentSession = result.session
-				StaticInstance.userAttributes = result.userAttributes
+
+				StaticInstance.currentUserSession = result.session
+				StaticInstance.currentUserAttributes = result.userAttributes
 				StaticInstance.chacheManager = CacheManager(session: result.session)
 
 				return true
 			}
-
-			clearSession()
 		}
 
 		return false
@@ -184,15 +185,15 @@ import Foundation
 	//MARK Private methods
 
 	private class func createSession(
-			#server: String,
+			server server: String,
 			authentication: LRAuthentication,
 			userAttributes: [String:AnyObject])
 			-> LRSession {
 
 		let session = LRSession(server: server, authentication: authentication)
 
-		StaticInstance.currentSession = session
-		StaticInstance.userAttributes = userAttributes
+		StaticInstance.currentUserSession = session
+		StaticInstance.currentUserAttributes = userAttributes
 		StaticInstance.chacheManager = CacheManager(session: session)
 
 		return session

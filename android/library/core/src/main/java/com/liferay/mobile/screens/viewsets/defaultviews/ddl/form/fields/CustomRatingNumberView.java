@@ -132,8 +132,8 @@ public class CustomRatingNumberView extends LinearLayout implements DDLFieldView
 		return (ratio * (float) _ratingBar.getNumStars());
 	}
 
-	private NumberField _field;
-	private RatingBar _ratingBar;
-	private View _parentView;
+	protected NumberField _field;
+	protected RatingBar _ratingBar;
+	protected View _parentView;
 
 }
