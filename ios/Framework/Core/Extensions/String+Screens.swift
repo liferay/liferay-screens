@@ -26,4 +26,12 @@ extension String {
 			withTemplate: "-")
 	}
 
+	public func asNumber() -> NSNumber? {
+		guard let number = Int64(self) else {
+			return nil
+		}
+
+		return NSNumber(longLong: number)
+	}
+
 }

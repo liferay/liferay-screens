@@ -61,7 +61,7 @@ public class GetUserBaseOperation: ServerOperation {
 			}
 			else {
 				lastError = nil
-				resultUserAttributes = result as? [String:AnyObject]
+				resultUserAttributes = extractUserAttributes(result)
 			}
 		}
 		catch let error as NSError {
@@ -81,6 +81,25 @@ public class GetUserBaseOperation: ServerOperation {
 		}
 
 		return false
+	}
+
+	internal func extractUserAttributes(result: NSDictionary?) -> [String: AnyObject]? {
+		guard var userAttributes = result as? [String: AnyObject] else {
+			return nil
+		}
+
+		// LSR-745: Liferay 7 sends all fields as string.
+		// Some were numbers in Liferay 6.2
+
+		let stringFields = ["userId", "companyId", "portraitId", "contactId"]
+
+		stringFields.forEach {
+			if let userId = userAttributes[$0] as? String {
+				userAttributes[$0] = userId.asNumber()!
+			}
+		}
+
+		return userAttributes
 	}
 
 
