@@ -42,13 +42,13 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 		do {
 			let structureDataDictionary = try service.getStructureWithStructureId(structureId!)
 
-			if let xsd = structureDataDictionary["xsd"]! as? String {
+			if let jsonDefinition = structureDataDictionary["definition"]! as? String {
 				if let userIdValue = structureDataDictionary["userId"]! as? Int {
 					resultUserId = Int64(userIdValue)
 				}
 
 				resultRecord = DDLRecord(
-					xsd: xsd,
+					json: jsonDefinition,
 					locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString))
 				lastError = nil
 			}

@@ -13,10 +13,6 @@
 */
 import Foundation
 
-#if LIFERAY_SCREENS_FRAMEWORK
-	import SMXMLDocument
-#endif
-
 
 extension DDLField {
 
@@ -31,8 +27,8 @@ extension DDLField {
 		case DDLDocument = "document-library"
 		case Unsupported = ""
 
-		public static func from(xmlElement xmlElement:SMXMLElement) -> DataType {
-			return DataType(rawValue: xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
+		public static func from(json json: JSONObject) -> DataType {
+			return DataType(rawValue: (json["dataType"] as? String) ?? "") ?? .Unsupported
 		}
 
 		public func createField(

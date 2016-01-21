@@ -14,6 +14,10 @@
 import UIKit
 
 
+public typealias JSONObject = [String:AnyObject]
+public typealias JSONArray = [AnyObject]
+
+
 public func nullIfEmpty(string: String?) -> String? {
 	if string == nil {
 		return nil

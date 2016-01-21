@@ -70,7 +70,7 @@
 		881E614A1ACBEDC600862B9E /* LiferayAssetListPageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61441ACBEDC600862B9E /* LiferayAssetListPageOperation.swift */; };
 		881E614B1ACBEDC600862B9E /* AssetListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61461ACBEDC600862B9E /* AssetListTableView.swift */; };
 		881E61761ACBEE0B00862B9E /* DDLValuesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E614D1ACBEE0B00862B9E /* DDLValuesParser.swift */; };
-		881E61771ACBEE0B00862B9E /* DDLXSDParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E614E1ACBEE0B00862B9E /* DDLXSDParser.swift */; };
+		881E61771ACBEE0B00862B9E /* DDLJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E614E1ACBEE0B00862B9E /* DDLJSONParser.swift */; };
 		881E61781ACBEE0B00862B9E /* DDLFormScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61501ACBEE0B00862B9E /* DDLFormScreenlet.swift */; };
 		881E61791ACBEE0B00862B9E /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61511ACBEE0B00862B9E /* DDLFormView.swift */; };
 		881E617A1ACBEE0B00862B9E /* DDLFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61521ACBEE0B00862B9E /* DDLFormViewModel.swift */; };
@@ -218,7 +218,7 @@
 		881E62F21ACC04A500862B9E /* DDLFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61741ACBEE0B00862B9E /* DDLFieldUntyped.swift */; };
 		881E62F31ACC04A500862B9E /* DDLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61751ACBEE0B00862B9E /* DDLRecord.swift */; };
 		881E62F41ACC04BA00862B9E /* DDLValuesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E614D1ACBEE0B00862B9E /* DDLValuesParser.swift */; };
-		881E62F51ACC04BA00862B9E /* DDLXSDParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E614E1ACBEE0B00862B9E /* DDLXSDParser.swift */; };
+		881E62F51ACC04BA00862B9E /* DDLJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E614E1ACBEE0B00862B9E /* DDLJSONParser.swift */; };
 		881E62F71ACC050200862B9E /* DDLListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61661ACBEE0B00862B9E /* DDLListScreenlet.swift */; };
 		881E62F81ACC050200862B9E /* DDLListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61671ACBEE0B00862B9E /* DDLListViewModel.swift */; };
 		881E62FA1ACC05B500862B9E /* DDLListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61651ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift */; };
@@ -425,7 +425,7 @@
 		881E61441ACBEDC600862B9E /* LiferayAssetListPageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayAssetListPageOperation.swift; sourceTree = "<group>"; };
 		881E61461ACBEDC600862B9E /* AssetListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListTableView.swift; sourceTree = "<group>"; };
 		881E614D1ACBEE0B00862B9E /* DDLValuesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLValuesParser.swift; sourceTree = "<group>"; };
-		881E614E1ACBEE0B00862B9E /* DDLXSDParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLXSDParser.swift; sourceTree = "<group>"; };
+		881E614E1ACBEE0B00862B9E /* DDLJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLJSONParser.swift; sourceTree = "<group>"; };
 		881E61501ACBEE0B00862B9E /* DDLFormScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormScreenlet.swift; sourceTree = "<group>"; };
 		881E61511ACBEE0B00862B9E /* DDLFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormView.swift; sourceTree = "<group>"; };
 		881E61521ACBEE0B00862B9E /* DDLFormViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormViewModel.swift; sourceTree = "<group>"; };
@@ -894,7 +894,7 @@
 			isa = PBXGroup;
 			children = (
 				881E614D1ACBEE0B00862B9E /* DDLValuesParser.swift */,
-				881E614E1ACBEE0B00862B9E /* DDLXSDParser.swift */,
+				881E614E1ACBEE0B00862B9E /* DDLJSONParser.swift */,
 				881E614F1ACBEE0B00862B9E /* FormScreenlet */,
 				881E61641ACBEE0B00862B9E /* ListScreenlet */,
 				881E616A1ACBEE0B00862B9E /* Model */,
@@ -1791,7 +1791,7 @@
 				881E61841ACBEE0B00862B9E /* DDLFieldTableCell.swift in Sources */,
 				881E623C1ACBFC3400862B9E /* DDLFieldNumberTableCell_default.swift in Sources */,
 				881E61821ACBEE0B00862B9E /* LiferayDDLFormSubmitOperation.swift in Sources */,
-				881E61771ACBEE0B00862B9E /* DDLXSDParser.swift in Sources */,
+				881E61771ACBEE0B00862B9E /* DDLJSONParser.swift in Sources */,
 				8839B88C1B0CD5C4006C18F1 /* GetUserByEmailOperation.swift in Sources */,
 				881E62441ACBFC3400862B9E /* DDLFieldTextTableCell_default.swift in Sources */,
 				881E61101ACBE5F000862B9E /* LiferayForgotPasswordBaseOperation.swift in Sources */,
@@ -1924,7 +1924,7 @@
 				88DE25121AD2AB0A00714701 /* DDLField_validation_Tests.swift in Sources */,
 				887F0D061B9897600007AECE /* ServerWriteOperationInteractor.swift in Sources */,
 				88DE251A1AD2AB0A00714701 /* DDLParser_basic_Tests.swift in Sources */,
-				881E62F51ACC04BA00862B9E /* DDLXSDParser.swift in Sources */,
+				881E62F51ACC04BA00862B9E /* DDLJSONParser.swift in Sources */,
 				881E62B61ACBFFFA00862B9E /* LiferayServerContext.swift in Sources */,
 				881E62911ACBFEA200862B9E /* SignUpScreenlet.swift in Sources */,
 				881E62C21ACC00F300862B9E /* LiferayLoginByUserIdOperation.swift in Sources */,

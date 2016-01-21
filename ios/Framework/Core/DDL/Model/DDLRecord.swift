@@ -62,13 +62,12 @@ public class DDLRecord: NSObject, NSCoding {
 
 	//MARK: Init
 	
-	public init(xsd: String, locale: NSLocale) {
+	public init(json: String, locale: NSLocale) {
 		super.init()
 
-		if let parsedFields = DDLXSDParser().parse(xsd, locale: locale) {
-		 	if !parsedFields.isEmpty {
-				fields = parsedFields
-			}
+		if let parsedFields = DDLJSONParser().parse(json, locale: locale)
+				where !parsedFields.isEmpty {
+			fields = parsedFields
 		}
 	}
 

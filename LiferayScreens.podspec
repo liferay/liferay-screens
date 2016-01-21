@@ -54,7 +54,6 @@ Pod::Spec.new do |s|
 	s.dependency 'Liferay-iOS-SDK', '6.2.0.22'
 	s.dependency 'Liferay-OAuth', '0.1.1'
 	s.dependency 'MBProgressHUD', '0.9.1'
-	s.dependency 'SMXMLDocument', '1.1'
 	s.dependency 'ODRefreshControl', '1.2'
 	s.dependency 'YapDatabase', '2.6.5'
 
