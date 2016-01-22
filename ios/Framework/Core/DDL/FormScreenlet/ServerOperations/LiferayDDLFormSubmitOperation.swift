@@ -95,7 +95,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 				recordDictionary = try service.updateRecordWithRecordId(recordId!,
 					displayIndex: 0,
 					fieldsMap: values,
-					mergeFields: true,
+					mergeFields: false,
 					serviceContext: serviceContextWrapper)
 			}
 
