@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class DDLField: NSObject, NSCoding {
+@objc public class DDLField: NSObject, NSCoding, CustomDebugStringConvertible {
 
 	public var onPostValidation: (Bool -> Void)?
 	public var lastValidationResult: Bool?
@@ -43,12 +43,12 @@ public class DDLField: NSObject, NSCoding {
 		}
 	}
 
-	public override var description: String {
+	public override var debugDescription: String {
 		let currentValue = self.currentValueAsString
 		var str = "DDLField[" +
-				" name=\( self.name )" +
-				" type=\( self.dataType.rawValue )" +
-				" editor=\( self.editorType.rawValue )"
+			" name=\( self.name )" +
+			" type=\( self.dataType.rawValue )" +
+		" editor=\( self.editorType.rawValue )"
 		if currentValue != nil {
 			if currentValue! == "" {
 				str += " value='' ]"
@@ -62,6 +62,10 @@ public class DDLField: NSObject, NSCoding {
 		}
 
 		return str
+	}
+
+	public override var description: String {
+		return currentValueAsLabel ?? super.description
 	}
 
 	public var currentLocale: NSLocale
