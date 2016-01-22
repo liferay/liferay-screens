@@ -17,7 +17,9 @@ import Foundation
 public class DDLFieldBoolean : DDLField {
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
-		return value != nil ? Bool.from(string: value!) : nil
+		return value.map {
+				Bool.from(string: $0)
+			}
 	}
 
 	override func convert(fromLabel label: String?) -> AnyObject? {
