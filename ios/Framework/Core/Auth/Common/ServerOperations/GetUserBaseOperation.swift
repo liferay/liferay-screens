@@ -88,14 +88,11 @@ public class GetUserBaseOperation: ServerOperation {
 			return nil
 		}
 
-		// LSR-745: Liferay 7 sends all fields as string.
-		// Some were numbers in Liferay 6.2
-
 		let stringFields = ["userId", "companyId", "portraitId", "contactId"]
 
 		stringFields.forEach {
 			if let userId = userAttributes[$0] as? String {
-				userAttributes[$0] = userId.asNumber()!
+				userAttributes[$0] = userId.asNumber!
 			}
 		}
 

@@ -43,8 +43,8 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 			let structureDataDictionary = try service.getStructureWithStructureId(structureId!)
 
 			if let jsonDefinition = structureDataDictionary["definition"]! as? String {
-				if let userIdValue = structureDataDictionary["userId"]! as? Int {
-					resultUserId = Int64(userIdValue)
+				if let userIdStr = structureDataDictionary["userId"]?.description {
+					resultUserId = Int64(userIdStr)
 				}
 
 				resultRecord = DDLRecord(

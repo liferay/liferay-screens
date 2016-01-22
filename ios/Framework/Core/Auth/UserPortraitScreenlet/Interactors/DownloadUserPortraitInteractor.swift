@@ -230,14 +230,14 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 	private func createOperationFor(attributes attributes: [String:AnyObject]?) -> ServerOperation? {
 		if let attributes = attributes,
-				portraitId = attributes["portraitId"] as? NSNumber,
+				portraitId = attributes["portraitId"]?.description.asLong,
 				uuid = attributes["uuid"] as? String,
-				userId = attributes["userId"] as? NSNumber {
+				userId = attributes["userId"]?.description.asLong {
 
-			resultUserId = userId.longLongValue
+			resultUserId = userId
 
 			return createOperationFor(
-				portraitId: portraitId.longLongValue,
+				portraitId: portraitId,
 				uuid: uuid,
 				male: true)
 		}

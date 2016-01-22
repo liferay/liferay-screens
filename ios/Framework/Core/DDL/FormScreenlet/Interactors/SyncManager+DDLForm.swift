@@ -75,10 +75,10 @@ extension SyncManager {
 					error: NSError.errorWithCause(.NotAvailable))
 				signal()
 			}
-			else if let localModifiedDate = localRecord.attributes["modifiedDate"] as? NSNumber,
-					remoteModifiedDate = remoteRecord!.attributes["modifiedDate"] as? NSNumber {
+			else if let localModifiedDate = localRecord.attributes["modifiedDate"]?.description.asLong,
+					remoteModifiedDate = remoteRecord!.attributes["modifiedDate"]?.description.asLong {
 
-				if remoteModifiedDate.longLongValue <= localModifiedDate.longLongValue {
+				if remoteModifiedDate <= localModifiedDate {
 					self.sendLocalRecord(
 						record: localRecord,
 						key: key,
@@ -239,17 +239,17 @@ extension SyncManager {
 				key: document.cachedKey!) { object, attributes in
 
 			if let filePrefix = attributes?["filePrefix"] as? String,
-					folderId = attributes?["folderId"] as? NSNumber,
-					repositoryId = attributes?["repositoryId"] as? NSNumber,
-					groupId = attributes?["groupId"] as? NSNumber {
+					folderId = attributes?["folderId"]?.description.asLong,
+					repositoryId = attributes?["repositoryId"]?.description.asLong,
+					groupId = attributes?["groupId"]?.description.asLong {
 
 				document.currentValue = object
 
 				let interactor = DDLFormUploadDocumentInteractor(
 					filePrefix: filePrefix,
-					repositoryId: repositoryId.longLongValue,
-					groupId: groupId.longLongValue,
-					folderId: folderId.longLongValue,
+					repositoryId: repositoryId,
+					groupId: groupId,
+					folderId: folderId,
 					document: document)
 
 				interactor.cacheStrategy = .CacheFirst
