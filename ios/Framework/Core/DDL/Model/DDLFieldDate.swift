@@ -73,13 +73,11 @@ public class DDLFieldDate : DDLField {
 	}
 
 	override func convert(fromLabel label: String?) -> AnyObject? {
-		var result: AnyObject?
-
-		if label != nil {
-			result = clientDateFormatter.dateFromString(label!)
+		guard let label = label else {
+			return nil
 		}
 
-		return result
+		return clientDateFormatter.dateFromString(label)
 	}
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
@@ -96,13 +94,11 @@ public class DDLFieldDate : DDLField {
 	}
 
 	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
-		var result: String?
-
-		if let date = currentValue as? NSDate {
-			result = clientDateFormatter.stringFromDate(date)
+		guard let date = currentValue as? NSDate else {
+			return nil
 		}
 
-		return result
+		return clientDateFormatter.stringFromDate(date)
 	}
 
 }
