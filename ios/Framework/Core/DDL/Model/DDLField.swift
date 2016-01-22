@@ -100,12 +100,12 @@ public class DDLField: NSObject, NSCoding {
 		super.init()
 
 		predefinedValue = attributes["predefinedValue"] ?? nil
-		if predefinedValue is String {
-			predefinedValue = convert(fromString: predefinedValue as? String)
+		if let predefinedValueStr = predefinedValue as? String {
+			predefinedValue = convert(fromString: predefinedValueStr)
 		}
 		else {
-			let predefinedStringValue = convert(fromCurrentValue: predefinedValue)
-			predefinedValue = convert(fromString: predefinedStringValue)
+			let predefinedValueStr = convert(fromCurrentValue: predefinedValue)
+			predefinedValue = convert(fromString: predefinedValueStr)
 		}
 
 		currentValue = predefinedValue
