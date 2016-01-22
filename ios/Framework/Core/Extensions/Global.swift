@@ -113,7 +113,11 @@ public func ScreenletName(klass: AnyClass) -> String {
 	return className.componentsSeparatedByString("Screenlet")[0]
 }
 
-public func LocalizedString(tableName: String, var key: String, obj: AnyObject) -> String {
+public func LocalizedString(tableName: String, key: String, obj: AnyObject) -> String {
+	return LocalizedString(tableName, key: key, obj: obj, lang: NSLocale.currentLanguageString)
+}
+
+public func LocalizedString(tableName: String, var key: String, obj: AnyObject, lang: String) -> String {
 	key = "\(tableName)-\(key)"
 
 	func getString(bundle: NSBundle) -> String? {
@@ -130,10 +134,9 @@ public func LocalizedString(tableName: String, var key: String, obj: AnyObject) 
 
 	for bundle in bundles {
 		// use forced language bundle
-		if let languageBundle = NSLocale.bundleForCurrentLanguageInBundle(bundle) {
-			if let res = getString(languageBundle) {
-				return res
-			}
+		if let languageBundle = NSLocale.bundleForLanguage(lang, bundle: bundle),
+				res = getString(languageBundle) {
+			return res
 		}
 
 		// try with outer bundle

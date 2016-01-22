@@ -60,12 +60,13 @@ extension NSLocale {
 		return "en_US"
 	}
 
-	public class func bundleForCurrentLanguageInBundle(bundle: NSBundle) -> NSBundle? {
-		if let path = bundle.pathForResource(currentLanguageString, ofType: "lproj") {
-			return NSBundle(path: path)
+	public class func bundleForLanguage(language: String, bundle: NSBundle) -> NSBundle? {
+		guard let path = bundle.pathForResource(language, ofType: "lproj") else {
+			return nil
 		}
 
-		return nil
+		return NSBundle(path: path)
 	}
+
 
 }
