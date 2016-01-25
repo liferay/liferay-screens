@@ -32,13 +32,13 @@ public class AssetEntryService extends BaseService {
 		super(session);
 	}
 
-	public JSONArray getEntries(JSONObject entryQuery) throws Exception {
+	public JSONArray getEntries(JSONObjectWrapper entryQuery) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("entryQuery", checkNull(entryQuery));
+			mangleWrapper(_params, "entryQuery", "com.liferay.portlet.asset.service.persistence.AssetEntryQuery", entryQuery);
 
 			_command.put("/assetentry/get-entries", _params);
 		}
@@ -190,15 +190,15 @@ public class AssetEntryService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public Integer getCompanyEntriesCount(long companyId) throws Exception {
+	public Integer getEntriesCount(JSONObjectWrapper entryQuery) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("companyId", companyId);
+			mangleWrapper(_params, "entryQuery", "com.liferay.portlet.asset.service.persistence.AssetEntryQuery", entryQuery);
 
-			_command.put("/assetentry/get-company-entries-count", _params);
+			_command.put("/assetentry/get-entries-count", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -238,6 +238,29 @@ public class AssetEntryService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
+	public Integer getCompanyEntriesCount(long companyId) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("companyId", companyId);
+
+			_command.put("/assetentry/get-company-entries-count", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		JSONArray _result = session.invoke(_command);
+
+		if (_result == null) {
+			return null;
+		}
+
+		return _result.getInt(0);
+	}
+
 	public JSONObject incrementViewCounter(String className, long classPK) throws Exception {
 		JSONObject _command = new JSONObject();
 
@@ -260,29 +283,6 @@ public class AssetEntryService extends BaseService {
 		}
 
 		return _result.getJSONObject(0);
-	}
-
-	public Integer getEntriesCount(JSONObject entryQuery) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("entryQuery", checkNull(entryQuery));
-
-			_command.put("/assetentry/get-entries-count", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
-
-		JSONArray _result = session.invoke(_command);
-
-		if (_result == null) {
-			return null;
-		}
-
-		return _result.getInt(0);
 	}
 
 }

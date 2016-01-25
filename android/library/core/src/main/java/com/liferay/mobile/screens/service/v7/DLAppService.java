@@ -32,15 +32,15 @@ public class DLAppService extends BaseService {
 		super(session);
 	}
 
-	public JSONObject search(long repositoryId, JSONObject searchContext, JSONObject query) throws Exception {
+	public JSONObject search(long repositoryId, JSONObjectWrapper searchContext, JSONObjectWrapper query) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
 			_params.put("repositoryId", repositoryId);
-			_params.put("searchContext", checkNull(searchContext));
-			_params.put("query", checkNull(query));
+			mangleWrapper(_params, "searchContext", "com.liferay.portal.kernel.search.SearchContext", searchContext);
+			mangleWrapper(_params, "query", "com.liferay.portal.kernel.search.Query", query);
 
 			_command.put("/dlapp/search", _params);
 		}
@@ -57,14 +57,14 @@ public class DLAppService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONObject search(long repositoryId, JSONObject searchContext) throws Exception {
+	public JSONObject search(long repositoryId, JSONObjectWrapper searchContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
 			_params.put("repositoryId", repositoryId);
-			_params.put("searchContext", checkNull(searchContext));
+			mangleWrapper(_params, "searchContext", "com.liferay.portal.kernel.search.SearchContext", searchContext);
 
 			_command.put("/dlapp/search", _params);
 		}
@@ -379,7 +379,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONArray getFolders(long repositoryId, long parentFolderId, boolean includeMountFolders, int start, int end, JSONObject obc) throws Exception {
+	public JSONArray getFolders(long repositoryId, long parentFolderId, boolean includeMountFolders, int start, int end, JSONObjectWrapper obc) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -390,7 +390,7 @@ public class DLAppService extends BaseService {
 			_params.put("includeMountFolders", includeMountFolders);
 			_params.put("start", start);
 			_params.put("end", end);
-			_params.put("obc", checkNull(obc));
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.repository.model.Folder>", obc);
 
 			_command.put("/dlapp/get-folders", _params);
 		}
@@ -433,7 +433,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONArray getFolders(long repositoryId, long parentFolderId, int status, boolean includeMountFolders, int start, int end, JSONObject obc) throws Exception {
+	public JSONArray getFolders(long repositoryId, long parentFolderId, int status, boolean includeMountFolders, int start, int end, JSONObjectWrapper obc) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -445,7 +445,7 @@ public class DLAppService extends BaseService {
 			_params.put("includeMountFolders", includeMountFolders);
 			_params.put("start", start);
 			_params.put("end", end);
-			_params.put("obc", checkNull(obc));
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.repository.model.Folder>", obc);
 
 			_command.put("/dlapp/get-folders", _params);
 		}
@@ -462,7 +462,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONArray getFolders(long repositoryId, long parentFolderId, int start, int end, JSONObject obc) throws Exception {
+	public JSONArray getFolders(long repositoryId, long parentFolderId, int start, int end, JSONObjectWrapper obc) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -472,7 +472,7 @@ public class DLAppService extends BaseService {
 			_params.put("parentFolderId", parentFolderId);
 			_params.put("start", start);
 			_params.put("end", end);
-			_params.put("obc", checkNull(obc));
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.repository.model.Folder>", obc);
 
 			_command.put("/dlapp/get-folders", _params);
 		}
@@ -513,7 +513,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONArray getFileEntries(long repositoryId, long folderId, long fileEntryTypeId, int start, int end, JSONObject obc) throws Exception {
+	public JSONArray getFileEntries(long repositoryId, long folderId, long fileEntryTypeId, int start, int end, JSONObjectWrapper obc) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -524,7 +524,7 @@ public class DLAppService extends BaseService {
 			_params.put("fileEntryTypeId", fileEntryTypeId);
 			_params.put("start", start);
 			_params.put("end", end);
-			_params.put("obc", checkNull(obc));
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.repository.model.FileEntry>", obc);
 
 			_command.put("/dlapp/get-file-entries", _params);
 		}
@@ -566,7 +566,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONArray getFileEntries(long repositoryId, long folderId, JSONArray mimeTypes, int start, int end, JSONObject obc) throws Exception {
+	public JSONArray getFileEntries(long repositoryId, long folderId, JSONArray mimeTypes, int start, int end, JSONObjectWrapper obc) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -577,7 +577,7 @@ public class DLAppService extends BaseService {
 			_params.put("mimeTypes", checkNull(mimeTypes));
 			_params.put("start", start);
 			_params.put("end", end);
-			_params.put("obc", checkNull(obc));
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.repository.model.FileEntry>", obc);
 
 			_command.put("/dlapp/get-file-entries", _params);
 		}
@@ -647,7 +647,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONArray getFileEntries(long repositoryId, long folderId, int start, int end, JSONObject obc) throws Exception {
+	public JSONArray getFileEntries(long repositoryId, long folderId, int start, int end, JSONObjectWrapper obc) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -657,7 +657,7 @@ public class DLAppService extends BaseService {
 			_params.put("folderId", folderId);
 			_params.put("start", start);
 			_params.put("end", end);
-			_params.put("obc", checkNull(obc));
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.repository.model.FileEntry>", obc);
 
 			_command.put("/dlapp/get-file-entries", _params);
 		}
@@ -699,7 +699,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONObject addFileEntry(long repositoryId, long folderId, String sourceFileName, String mimeType, String title, String description, String changeLog, JSONObject file, JSONObject serviceContext) throws Exception {
+	public JSONObject addFileEntry(long repositoryId, long folderId, String sourceFileName, String mimeType, String title, String description, String changeLog, JSONObject file, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -713,7 +713,7 @@ public class DLAppService extends BaseService {
 			_params.put("description", checkNull(description));
 			_params.put("changeLog", checkNull(changeLog));
 			_params.put("file", checkNull(file));
-			_params.put("serviceContext", checkNull(serviceContext));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
 			_command.put("/dlapp/add-file-entry", _params);
 		}
@@ -730,7 +730,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONObject addFileEntry(long repositoryId, long folderId, String sourceFileName, String mimeType, String title, String description, String changeLog, byte[] bytes, JSONObject serviceContext) throws Exception {
+	public JSONObject addFileEntry(long repositoryId, long folderId, String sourceFileName, String mimeType, String title, String description, String changeLog, byte[] bytes, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -744,9 +744,37 @@ public class DLAppService extends BaseService {
 			_params.put("description", checkNull(description));
 			_params.put("changeLog", checkNull(changeLog));
 			_params.put("bytes", toString(bytes));
-			_params.put("serviceContext", checkNull(serviceContext));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
 			_command.put("/dlapp/add-file-entry", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		JSONArray _result = session.invoke(_command);
+
+		if (_result == null) {
+			return null;
+		}
+
+		return _result.getJSONObject(0);
+	}
+
+	public JSONObject addTempFileEntry(long groupId, long folderId, String folderName, String fileName, JSONObject file, String mimeType) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("groupId", groupId);
+			_params.put("folderId", folderId);
+			_params.put("folderName", checkNull(folderName));
+			_params.put("fileName", checkNull(fileName));
+			_params.put("file", checkNull(file));
+			_params.put("mimeType", checkNull(mimeType));
+
+			_command.put("/dlapp/add-temp-file-entry", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -779,34 +807,6 @@ public class DLAppService extends BaseService {
 		}
 
 		session.invoke(_command);
-	}
-
-	public JSONObject addTempFileEntry(long groupId, long folderId, String folderName, String fileName, JSONObject file, String mimeType) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("groupId", groupId);
-			_params.put("folderId", folderId);
-			_params.put("folderName", checkNull(folderName));
-			_params.put("fileName", checkNull(fileName));
-			_params.put("file", checkNull(file));
-			_params.put("mimeType", checkNull(mimeType));
-
-			_command.put("/dlapp/add-temp-file-entry", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
-
-		JSONArray _result = session.invoke(_command);
-
-		if (_result == null) {
-			return null;
-		}
-
-		return _result.getJSONObject(0);
 	}
 
 	public Integer getFileEntriesCount(long repositoryId, long folderId) throws Exception {
@@ -883,55 +883,18 @@ public class DLAppService extends BaseService {
 		return _result.getInt(0);
 	}
 
-	public void deleteFolder(long folderId) throws Exception {
+	public JSONObject checkOutFileEntry(long fileEntryId, String owner, long expirationTime, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("folderId", folderId);
+			_params.put("fileEntryId", fileEntryId);
+			_params.put("owner", checkNull(owner));
+			_params.put("expirationTime", expirationTime);
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
-			_command.put("/dlapp/delete-folder", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
-
-		session.invoke(_command);
-	}
-
-	public void deleteFolder(long repositoryId, long parentFolderId, String name) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("repositoryId", repositoryId);
-			_params.put("parentFolderId", parentFolderId);
-			_params.put("name", checkNull(name));
-
-			_command.put("/dlapp/delete-folder", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
-
-		session.invoke(_command);
-	}
-
-	public JSONObject addFolder(long repositoryId, long parentFolderId, String name, String description, JSONObject serviceContext) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("repositoryId", repositoryId);
-			_params.put("parentFolderId", parentFolderId);
-			_params.put("name", checkNull(name));
-			_params.put("description", checkNull(description));
-			_params.put("serviceContext", checkNull(serviceContext));
-
-			_command.put("/dlapp/add-folder", _params);
+			_command.put("/dlapp/check-out-file-entry", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -946,15 +909,16 @@ public class DLAppService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public void deleteFileEntry(long fileEntryId) throws Exception {
+	public void checkOutFileEntry(long fileEntryId, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
 			_params.put("fileEntryId", fileEntryId);
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
-			_command.put("/dlapp/delete-file-entry", _params);
+			_command.put("/dlapp/check-out-file-entry", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -963,17 +927,56 @@ public class DLAppService extends BaseService {
 		session.invoke(_command);
 	}
 
-	public JSONObject moveFolder(long folderId, long parentFolderId, JSONObject serviceContext) throws Exception {
+	public void deleteFileEntryByTitle(long repositoryId, long folderId, String title) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
+			_params.put("repositoryId", repositoryId);
 			_params.put("folderId", folderId);
-			_params.put("parentFolderId", parentFolderId);
-			_params.put("serviceContext", checkNull(serviceContext));
+			_params.put("title", checkNull(title));
 
-			_command.put("/dlapp/move-folder", _params);
+			_command.put("/dlapp/delete-file-entry-by-title", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		session.invoke(_command);
+	}
+
+	public void deleteFileVersion(long fileEntryId, String version) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("fileEntryId", fileEntryId);
+			_params.put("version", checkNull(version));
+
+			_command.put("/dlapp/delete-file-version", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		session.invoke(_command);
+	}
+
+	public JSONArray getFileEntriesAndFileShortcuts(long repositoryId, long folderId, int status, int start, int end) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("repositoryId", repositoryId);
+			_params.put("folderId", folderId);
+			_params.put("status", status);
+			_params.put("start", start);
+			_params.put("end", end);
+
+			_command.put("/dlapp/get-file-entries-and-file-shortcuts", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -985,63 +988,58 @@ public class DLAppService extends BaseService {
 			return null;
 		}
 
-		return _result.getJSONObject(0);
+		return _result.getJSONArray(0);
 	}
 
-	public void checkInFileEntry(long fileEntryId, boolean majorVersion, String changeLog, JSONObject serviceContext) throws Exception {
+	public Integer getFileEntriesAndFileShortcutsCount(long repositoryId, long folderId, int status, JSONArray mimeTypes) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("fileEntryId", fileEntryId);
-			_params.put("majorVersion", majorVersion);
-			_params.put("changeLog", checkNull(changeLog));
-			_params.put("serviceContext", checkNull(serviceContext));
+			_params.put("repositoryId", repositoryId);
+			_params.put("folderId", folderId);
+			_params.put("status", status);
+			_params.put("mimeTypes", checkNull(mimeTypes));
 
-			_command.put("/dlapp/check-in-file-entry", _params);
+			_command.put("/dlapp/get-file-entries-and-file-shortcuts-count", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
-		session.invoke(_command);
+		JSONArray _result = session.invoke(_command);
+
+		if (_result == null) {
+			return null;
+		}
+
+		return _result.getInt(0);
 	}
 
-	public void checkInFileEntry(long fileEntryId, String lockUuid, JSONObject serviceContext) throws Exception {
+	public Integer getFileEntriesAndFileShortcutsCount(long repositoryId, long folderId, int status) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("fileEntryId", fileEntryId);
-			_params.put("lockUuid", checkNull(lockUuid));
-			_params.put("serviceContext", checkNull(serviceContext));
+			_params.put("repositoryId", repositoryId);
+			_params.put("folderId", folderId);
+			_params.put("status", status);
 
-			_command.put("/dlapp/check-in-file-entry", _params);
+			_command.put("/dlapp/get-file-entries-and-file-shortcuts-count", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
-		session.invoke(_command);
-	}
+		JSONArray _result = session.invoke(_command);
 
-	public void cancelCheckOut(long fileEntryId) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("fileEntryId", fileEntryId);
-
-			_command.put("/dlapp/cancel-check-out", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
+		if (_result == null) {
+			return null;
 		}
 
-		session.invoke(_command);
+		return _result.getInt(0);
 	}
 
 	public JSONArray getTempFileNames(long groupId, long folderId, String folderName) throws Exception {
@@ -1069,7 +1067,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONObject addFileShortcut(long repositoryId, long folderId, long toFileEntryId, JSONObject serviceContext) throws Exception {
+	public JSONObject addFileShortcut(long repositoryId, long folderId, long toFileEntryId, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1078,7 +1076,7 @@ public class DLAppService extends BaseService {
 			_params.put("repositoryId", repositoryId);
 			_params.put("folderId", folderId);
 			_params.put("toFileEntryId", toFileEntryId);
-			_params.put("serviceContext", checkNull(serviceContext));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
 			_command.put("/dlapp/add-file-shortcut", _params);
 		}
@@ -1112,7 +1110,7 @@ public class DLAppService extends BaseService {
 		session.invoke(_command);
 	}
 
-	public JSONObject moveFileEntry(long fileEntryId, long newFolderId, JSONObject serviceContext) throws Exception {
+	public JSONObject moveFileEntry(long fileEntryId, long newFolderId, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1120,7 +1118,7 @@ public class DLAppService extends BaseService {
 
 			_params.put("fileEntryId", fileEntryId);
 			_params.put("newFolderId", newFolderId);
-			_params.put("serviceContext", checkNull(serviceContext));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
 			_command.put("/dlapp/move-file-entry", _params);
 		}
@@ -1209,38 +1207,7 @@ public class DLAppService extends BaseService {
 		session.invoke(_command);
 	}
 
-	public JSONObject updateFileEntry(long fileEntryId, String sourceFileName, String mimeType, String title, String description, String changeLog, boolean majorVersion, JSONObject file, JSONObject serviceContext) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("fileEntryId", fileEntryId);
-			_params.put("sourceFileName", checkNull(sourceFileName));
-			_params.put("mimeType", checkNull(mimeType));
-			_params.put("title", checkNull(title));
-			_params.put("description", checkNull(description));
-			_params.put("changeLog", checkNull(changeLog));
-			_params.put("majorVersion", majorVersion);
-			_params.put("file", checkNull(file));
-			_params.put("serviceContext", checkNull(serviceContext));
-
-			_command.put("/dlapp/update-file-entry", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
-
-		JSONArray _result = session.invoke(_command);
-
-		if (_result == null) {
-			return null;
-		}
-
-		return _result.getJSONObject(0);
-	}
-
-	public JSONObject updateFileEntry(long fileEntryId, String sourceFileName, String mimeType, String title, String description, String changeLog, boolean majorVersion, byte[] bytes, JSONObject serviceContext) throws Exception {
+	public JSONObject updateFileEntry(long fileEntryId, String sourceFileName, String mimeType, String title, String description, String changeLog, boolean majorVersion, byte[] bytes, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1254,7 +1221,7 @@ public class DLAppService extends BaseService {
 			_params.put("changeLog", checkNull(changeLog));
 			_params.put("majorVersion", majorVersion);
 			_params.put("bytes", toString(bytes));
-			_params.put("serviceContext", checkNull(serviceContext));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
 			_command.put("/dlapp/update-file-entry", _params);
 		}
@@ -1271,7 +1238,38 @@ public class DLAppService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONObject updateFileShortcut(long fileShortcutId, long folderId, long toFileEntryId, JSONObject serviceContext) throws Exception {
+	public JSONObject updateFileEntry(long fileEntryId, String sourceFileName, String mimeType, String title, String description, String changeLog, boolean majorVersion, JSONObject file, JSONObjectWrapper serviceContext) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("fileEntryId", fileEntryId);
+			_params.put("sourceFileName", checkNull(sourceFileName));
+			_params.put("mimeType", checkNull(mimeType));
+			_params.put("title", checkNull(title));
+			_params.put("description", checkNull(description));
+			_params.put("changeLog", checkNull(changeLog));
+			_params.put("majorVersion", majorVersion);
+			_params.put("file", checkNull(file));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
+
+			_command.put("/dlapp/update-file-entry", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		JSONArray _result = session.invoke(_command);
+
+		if (_result == null) {
+			return null;
+		}
+
+		return _result.getJSONObject(0);
+	}
+
+	public JSONObject updateFileShortcut(long fileShortcutId, long folderId, long toFileEntryId, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1280,7 +1278,7 @@ public class DLAppService extends BaseService {
 			_params.put("fileShortcutId", fileShortcutId);
 			_params.put("folderId", folderId);
 			_params.put("toFileEntryId", toFileEntryId);
-			_params.put("serviceContext", checkNull(serviceContext));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
 			_command.put("/dlapp/update-file-shortcut", _params);
 		}
@@ -1297,7 +1295,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONObject updateFolder(long folderId, String name, String description, JSONObject serviceContext) throws Exception {
+	public JSONObject updateFolder(long folderId, String name, String description, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1306,7 +1304,7 @@ public class DLAppService extends BaseService {
 			_params.put("folderId", folderId);
 			_params.put("name", checkNull(name));
 			_params.put("description", checkNull(description));
-			_params.put("serviceContext", checkNull(serviceContext));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
 			_command.put("/dlapp/update-folder", _params);
 		}
@@ -1323,7 +1321,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONObject copyFolder(long repositoryId, long sourceFolderId, long parentFolderId, String name, String description, JSONObject serviceContext) throws Exception {
+	public JSONObject copyFolder(long repositoryId, long sourceFolderId, long parentFolderId, String name, String description, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1334,7 +1332,7 @@ public class DLAppService extends BaseService {
 			_params.put("parentFolderId", parentFolderId);
 			_params.put("name", checkNull(name));
 			_params.put("description", checkNull(description));
-			_params.put("serviceContext", checkNull(serviceContext));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
 			_command.put("/dlapp/copy-folder", _params);
 		}
@@ -1351,7 +1349,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONArray getFoldersAndFileEntriesAndFileShortcuts(long repositoryId, long folderId, int status, boolean includeMountFolders, int start, int end, JSONObject obc) throws Exception {
+	public JSONArray getFoldersAndFileEntriesAndFileShortcuts(long repositoryId, long folderId, int status, JSONArray mimeTypes, boolean includeMountFolders, int start, int end, JSONObjectWrapper obc) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1360,10 +1358,11 @@ public class DLAppService extends BaseService {
 			_params.put("repositoryId", repositoryId);
 			_params.put("folderId", folderId);
 			_params.put("status", status);
+			_params.put("mimeTypes", checkNull(mimeTypes));
 			_params.put("includeMountFolders", includeMountFolders);
 			_params.put("start", start);
 			_params.put("end", end);
-			_params.put("obc", checkNull(obc));
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator", obc);
 
 			_command.put("/dlapp/get-folders-and-file-entries-and-file-shortcuts", _params);
 		}
@@ -1380,7 +1379,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONArray getFoldersAndFileEntriesAndFileShortcuts(long repositoryId, long folderId, int status, JSONArray mimeTypes, boolean includeMountFolders, int start, int end, JSONObject obc) throws Exception {
+	public JSONArray getFoldersAndFileEntriesAndFileShortcuts(long repositoryId, long folderId, int status, boolean includeMountFolders, int start, int end, JSONObjectWrapper obc) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1389,11 +1388,10 @@ public class DLAppService extends BaseService {
 			_params.put("repositoryId", repositoryId);
 			_params.put("folderId", folderId);
 			_params.put("status", status);
-			_params.put("mimeTypes", checkNull(mimeTypes));
 			_params.put("includeMountFolders", includeMountFolders);
 			_params.put("start", start);
 			_params.put("end", end);
-			_params.put("obc", checkNull(obc));
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator", obc);
 
 			_command.put("/dlapp/get-folders-and-file-entries-and-file-shortcuts", _params);
 		}
@@ -1438,16 +1436,17 @@ public class DLAppService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public void checkOutFileEntry(long fileEntryId, JSONObject serviceContext) throws Exception {
+	public void deleteFolder(long repositoryId, long parentFolderId, String name) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("fileEntryId", fileEntryId);
-			_params.put("serviceContext", checkNull(serviceContext));
+			_params.put("repositoryId", repositoryId);
+			_params.put("parentFolderId", parentFolderId);
+			_params.put("name", checkNull(name));
 
-			_command.put("/dlapp/check-out-file-entry", _params);
+			_command.put("/dlapp/delete-folder", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -1456,18 +1455,36 @@ public class DLAppService extends BaseService {
 		session.invoke(_command);
 	}
 
-	public JSONObject checkOutFileEntry(long fileEntryId, String owner, long expirationTime, JSONObject serviceContext) throws Exception {
+	public void deleteFolder(long folderId) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("fileEntryId", fileEntryId);
-			_params.put("owner", checkNull(owner));
-			_params.put("expirationTime", expirationTime);
-			_params.put("serviceContext", checkNull(serviceContext));
+			_params.put("folderId", folderId);
 
-			_command.put("/dlapp/check-out-file-entry", _params);
+			_command.put("/dlapp/delete-folder", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		session.invoke(_command);
+	}
+
+	public JSONObject addFolder(long repositoryId, long parentFolderId, String name, String description, JSONObjectWrapper serviceContext) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("repositoryId", repositoryId);
+			_params.put("parentFolderId", parentFolderId);
+			_params.put("name", checkNull(name));
+			_params.put("description", checkNull(description));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
+
+			_command.put("/dlapp/add-folder", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -1482,35 +1499,15 @@ public class DLAppService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public void deleteFileEntryByTitle(long repositoryId, long folderId, String title) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("repositoryId", repositoryId);
-			_params.put("folderId", folderId);
-			_params.put("title", checkNull(title));
-
-			_command.put("/dlapp/delete-file-entry-by-title", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
-
-		session.invoke(_command);
-	}
-
-	public void deleteFileVersion(long fileEntryId, String version) throws Exception {
+	public void deleteFileEntry(long fileEntryId) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
 			_params.put("fileEntryId", fileEntryId);
-			_params.put("version", checkNull(version));
 
-			_command.put("/dlapp/delete-file-version", _params);
+			_command.put("/dlapp/delete-file-entry", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -1519,19 +1516,17 @@ public class DLAppService extends BaseService {
 		session.invoke(_command);
 	}
 
-	public JSONArray getFileEntriesAndFileShortcuts(long repositoryId, long folderId, int status, int start, int end) throws Exception {
+	public JSONObject moveFolder(long folderId, long parentFolderId, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("repositoryId", repositoryId);
 			_params.put("folderId", folderId);
-			_params.put("status", status);
-			_params.put("start", start);
-			_params.put("end", end);
+			_params.put("parentFolderId", parentFolderId);
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
-			_command.put("/dlapp/get-file-entries-and-file-shortcuts", _params);
+			_command.put("/dlapp/move-folder", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -1543,58 +1538,63 @@ public class DLAppService extends BaseService {
 			return null;
 		}
 
-		return _result.getJSONArray(0);
+		return _result.getJSONObject(0);
 	}
 
-	public Integer getFileEntriesAndFileShortcutsCount(long repositoryId, long folderId, int status) throws Exception {
+	public void checkInFileEntry(long fileEntryId, String lockUuid, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("repositoryId", repositoryId);
-			_params.put("folderId", folderId);
-			_params.put("status", status);
+			_params.put("fileEntryId", fileEntryId);
+			_params.put("lockUuid", checkNull(lockUuid));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
-			_command.put("/dlapp/get-file-entries-and-file-shortcuts-count", _params);
+			_command.put("/dlapp/check-in-file-entry", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
-		JSONArray _result = session.invoke(_command);
-
-		if (_result == null) {
-			return null;
-		}
-
-		return _result.getInt(0);
+		session.invoke(_command);
 	}
 
-	public Integer getFileEntriesAndFileShortcutsCount(long repositoryId, long folderId, int status, JSONArray mimeTypes) throws Exception {
+	public void checkInFileEntry(long fileEntryId, boolean majorVersion, String changeLog, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("repositoryId", repositoryId);
-			_params.put("folderId", folderId);
-			_params.put("status", status);
-			_params.put("mimeTypes", checkNull(mimeTypes));
+			_params.put("fileEntryId", fileEntryId);
+			_params.put("majorVersion", majorVersion);
+			_params.put("changeLog", checkNull(changeLog));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
-			_command.put("/dlapp/get-file-entries-and-file-shortcuts-count", _params);
+			_command.put("/dlapp/check-in-file-entry", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
-		JSONArray _result = session.invoke(_command);
+		session.invoke(_command);
+	}
 
-		if (_result == null) {
-			return null;
+	public void cancelCheckOut(long fileEntryId) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("fileEntryId", fileEntryId);
+
+			_command.put("/dlapp/cancel-check-out", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
 		}
 
-		return _result.getInt(0);
+		session.invoke(_command);
 	}
 
 	public Integer getFoldersAndFileEntriesAndFileShortcutsCount(long repositoryId, long folderId, int status, boolean includeMountFolders) throws Exception {
@@ -1750,7 +1750,7 @@ public class DLAppService extends BaseService {
 		return _result.getInt(0);
 	}
 
-	public JSONArray getGroupFileEntries(long groupId, long userId, long rootFolderId, JSONArray mimeTypes, int status, int start, int end, JSONObject obc) throws Exception {
+	public JSONArray getGroupFileEntries(long groupId, long userId, long rootFolderId, JSONArray mimeTypes, int status, int start, int end, JSONObjectWrapper obc) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1763,7 +1763,7 @@ public class DLAppService extends BaseService {
 			_params.put("status", status);
 			_params.put("start", start);
 			_params.put("end", end);
-			_params.put("obc", checkNull(obc));
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.repository.model.FileEntry>", obc);
 
 			_command.put("/dlapp/get-group-file-entries", _params);
 		}
@@ -1780,7 +1780,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONArray getGroupFileEntries(long groupId, long userId, long rootFolderId, int start, int end, JSONObject obc) throws Exception {
+	public JSONArray getGroupFileEntries(long groupId, long userId, long rootFolderId, int start, int end, JSONObjectWrapper obc) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1791,7 +1791,7 @@ public class DLAppService extends BaseService {
 			_params.put("rootFolderId", rootFolderId);
 			_params.put("start", start);
 			_params.put("end", end);
-			_params.put("obc", checkNull(obc));
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.repository.model.FileEntry>", obc);
 
 			_command.put("/dlapp/get-group-file-entries", _params);
 		}
@@ -1835,7 +1835,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONArray getGroupFileEntries(long groupId, long userId, int start, int end, JSONObject obc) throws Exception {
+	public JSONArray getGroupFileEntries(long groupId, long userId, int start, int end, JSONObjectWrapper obc) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1845,7 +1845,7 @@ public class DLAppService extends BaseService {
 			_params.put("userId", userId);
 			_params.put("start", start);
 			_params.put("end", end);
-			_params.put("obc", checkNull(obc));
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.repository.model.FileEntry>", obc);
 
 			_command.put("/dlapp/get-group-file-entries", _params);
 		}
@@ -1964,7 +1964,7 @@ public class DLAppService extends BaseService {
 		return _result.getInt(0);
 	}
 
-	public JSONArray getMountFolders(long repositoryId, long parentFolderId, int start, int end, JSONObject obc) throws Exception {
+	public JSONArray getMountFolders(long repositoryId, long parentFolderId, int start, int end, JSONObjectWrapper obc) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1974,7 +1974,7 @@ public class DLAppService extends BaseService {
 			_params.put("parentFolderId", parentFolderId);
 			_params.put("start", start);
 			_params.put("end", end);
-			_params.put("obc", checkNull(obc));
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.repository.model.Folder>", obc);
 
 			_command.put("/dlapp/get-mount-folders", _params);
 		}
@@ -2234,7 +2234,7 @@ public class DLAppService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public void revertFileEntry(long fileEntryId, String version, JSONObject serviceContext) throws Exception {
+	public void revertFileEntry(long fileEntryId, String version, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -2242,7 +2242,7 @@ public class DLAppService extends BaseService {
 
 			_params.put("fileEntryId", fileEntryId);
 			_params.put("version", checkNull(version));
-			_params.put("serviceContext", checkNull(serviceContext));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
 			_command.put("/dlapp/revert-file-entry", _params);
 		}
@@ -2292,7 +2292,7 @@ public class DLAppService extends BaseService {
 		session.invoke(_command);
 	}
 
-	public JSONObject updateFileEntryAndCheckIn(long fileEntryId, String sourceFileName, String mimeType, String title, String description, String changeLog, boolean majorVersion, JSONObject file, JSONObject serviceContext) throws Exception {
+	public JSONObject updateFileEntryAndCheckIn(long fileEntryId, String sourceFileName, String mimeType, String title, String description, String changeLog, boolean majorVersion, JSONObject file, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -2306,7 +2306,7 @@ public class DLAppService extends BaseService {
 			_params.put("changeLog", checkNull(changeLog));
 			_params.put("majorVersion", majorVersion);
 			_params.put("file", checkNull(file));
-			_params.put("serviceContext", checkNull(serviceContext));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
 			_command.put("/dlapp/update-file-entry-and-check-in", _params);
 		}
