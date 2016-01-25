@@ -79,6 +79,28 @@
 
 	<string name="portlet_item_name1">manual</string>
 	<string name="portlet_item_name2">dynamic</string>
+	-->
+
+	<!--liferay 7-->
+
+	<string name="liferay_server">http://192.168.40.253:8080</string>
+	<string name="liferay_company_id">20202</string>
+	<string name="liferay_group_id">20232</string>
+
+	<string name="liferay_article_id">21919</string>
+	<string name="liferay_template_id1">21912</string>
+	<string name="liferay_template_id2">21916</string>
+
+	<string name="liferay_recordset_id">21958</string>
+	<string name="liferay_structure_id">21953</string>
+	<string name="liferay_recordset_fields">Title</string>
+	<string name="folder_id">21931</string>
+	<string name="repository_id">20246</string>
+
+	<string name="bookmark_folder">21934</string>
+
+	<string name="portlet_item_name1">manual</string>
+	<string name="portlet_item_name2">dynamic</string>
 
 
 </resources>
