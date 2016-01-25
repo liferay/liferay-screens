@@ -57,7 +57,7 @@ public class DateField extends Field<Date> {
 
 	@Override
 	protected Date convertFromString(String stringValue) {
-		if (stringValue == null) {
+		if (stringValue == null || stringValue.isEmpty()) {
 			return null;
 		}
 		if (stringValue.length() < 6) {
