@@ -58,12 +58,12 @@ public class DDLFormLoadInteractorImpl
 		if (!event.isFailed()) {
 
 			try {
-				String xsd = event.getJSONObject().getString("xsd");
+				String json = event.getJSONObject().getString("definition");
 				long userId = event.getJSONObject().getLong("userId");
 
 				Record formRecord = event.getRecord();
 
-				formRecord.parseXsd(xsd);
+				formRecord.parseJson(json);
 
 				if (formRecord.getCreatorUserId() == 0) {
 					formRecord.setCreatorUserId(userId);

@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.ddl.model;
 
 import com.liferay.mobile.screens.BuildConfig;
-import com.liferay.mobile.screens.ddl.XSDParser;
 
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -23,6 +22,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -191,7 +191,9 @@ public class BooleanFieldTest {
 					"</dynamic-element>" +
 					"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+//			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			//FIXME Redo with JSON
+			List<Field> resultList = new ArrayList();
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
@@ -218,7 +220,9 @@ public class BooleanFieldTest {
 					"</dynamic-element>" +
 					"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+//			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			//FIXME Redo with JSON
+			List<Field> resultList = new ArrayList();
 
 			BooleanField booleanField = (BooleanField) resultList.get(0);
 

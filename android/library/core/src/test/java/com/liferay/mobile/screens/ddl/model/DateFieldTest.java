@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.ddl.model;
 
 import com.liferay.mobile.screens.BuildConfig;
-import com.liferay.mobile.screens.ddl.XSDParser;
 
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -23,6 +22,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -206,8 +206,10 @@ public class DateFieldTest {
 					"</dynamic-element>" +
 					"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, US_LOCALE);
+//			List<Field> resultList = new XSDParser().parse(xsd, US_LOCALE);
 
+			//FIXME Redo with JSON
+			List<Field> resultList = new ArrayList();
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
 

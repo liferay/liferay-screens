@@ -24,7 +24,9 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -58,7 +60,8 @@ public class RecordTest {
 					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseXsd(xsd);
+			//FIXME Redo with JSON
+//			record.parseXsd(xsd);
 
 			assertEquals(1, record.getFieldCount());
 
@@ -88,7 +91,8 @@ public class RecordTest {
 					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseXsd(xsd);
+//			record.parseXsd(xsd);
+			//FIXME Redo with JSON
 
 			BooleanField field = (BooleanField) record.getField(0);
 
@@ -125,7 +129,8 @@ public class RecordTest {
 					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseXsd(xsd);
+//			record.parseXsd(xsd);
+			//FIXME Redo with JSON
 
 			assertTrue(record.getField(1) instanceof StringField);
 			StringField field = (StringField) record.getField(1);
@@ -161,7 +166,8 @@ public class RecordTest {
 					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseXsd(xsd);
+//			record.parseXsd(xsd);
+			//FIXME Redo with JSON
 
 			StringField field = (StringField) record.getField(0);
 
@@ -250,7 +256,9 @@ public class RecordTest {
 					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseXsd(xsd);
+//			record.parseXsd(xsd);
+			//FIXME Redo with JSON
+
 			record.setCreatorUserId(12);
 			record.setRecordId(34);
 			record.setRecordSetId(56);
