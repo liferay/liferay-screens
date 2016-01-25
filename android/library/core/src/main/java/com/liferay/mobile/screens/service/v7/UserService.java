@@ -32,6 +32,29 @@ public class UserService extends BaseService {
 		super(session);
 	}
 
+	public JSONObject getUserById(long userId) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("userId", userId);
+
+			_command.put("/user/get-user-by-id", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		JSONArray _result = session.invoke(_command);
+
+		if (_result == null) {
+			return null;
+		}
+
+		return _result.getJSONObject(0);
+	}
+
 	public JSONArray getGroupUsers(long groupId) throws Exception {
 		JSONObject _command = new JSONObject();
 
@@ -103,23 +126,74 @@ public class UserService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public void unsetGroupUsers(long groupId, JSONArray userIds, JSONObjectWrapper serviceContext) throws Exception {
+	public Boolean hasGroupUser(long groupId, long userId) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
 			_params.put("groupId", groupId);
-			_params.put("userIds", checkNull(userIds));
-			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
+			_params.put("userId", userId);
 
-			_command.put("/user/unset-group-users", _params);
+			_command.put("/user/has-group-user", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
-		session.invoke(_command);
+		JSONArray _result = session.invoke(_command);
+
+		if (_result == null) {
+			return null;
+		}
+
+		return _result.getBoolean(0);
+	}
+
+	public JSONArray getOrganizationUsers(long organizationId) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("organizationId", organizationId);
+
+			_command.put("/user/get-organization-users", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		JSONArray _result = session.invoke(_command);
+
+		if (_result == null) {
+			return null;
+		}
+
+		return _result.getJSONArray(0);
+	}
+
+	public JSONArray getUserGroupUsers(long userGroupId) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("userGroupId", userGroupId);
+
+			_command.put("/user/get-user-group-users", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		JSONArray _result = session.invoke(_command);
+
+		if (_result == null) {
+			return null;
+		}
+
+		return _result.getJSONArray(0);
 	}
 
 	public void addOrganizationUsers(long organizationId, JSONArray userIds) throws Exception {
@@ -940,100 +1014,7 @@ public class UserService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public Boolean hasGroupUser(long groupId, long userId) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("groupId", groupId);
-			_params.put("userId", userId);
-
-			_command.put("/user/has-group-user", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
-
-		JSONArray _result = session.invoke(_command);
-
-		if (_result == null) {
-			return null;
-		}
-
-		return _result.getBoolean(0);
-	}
-
-	public JSONArray getOrganizationUsers(long organizationId) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("organizationId", organizationId);
-
-			_command.put("/user/get-organization-users", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
-
-		JSONArray _result = session.invoke(_command);
-
-		if (_result == null) {
-			return null;
-		}
-
-		return _result.getJSONArray(0);
-	}
-
-	public JSONArray getUserGroupUsers(long userGroupId) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("userGroupId", userGroupId);
-
-			_command.put("/user/get-user-group-users", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
-
-		JSONArray _result = session.invoke(_command);
-
-		if (_result == null) {
-			return null;
-		}
-
-		return _result.getJSONArray(0);
-	}
-
-	public JSONObject getUserById(long userId) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("userId", userId);
-
-			_command.put("/user/get-user-by-id", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
-
-		JSONArray _result = session.invoke(_command);
-
-		if (_result == null) {
-			return null;
-		}
-
-		return _result.getJSONObject(0);
-	}
-
-	public JSONObject updateUser(long userId, String oldPassword, String newPassword1, String newPassword2, boolean passwordReset, String reminderQueryQuestion, String reminderQueryAnswer, String screenName, String emailAddress, long facebookId, String openId, boolean portrait, byte[] portraitBytes, String languageId, String timeZoneId, String greeting, String comments, String firstName, String middleName, String lastName, long prefixId, long suffixId, boolean male, int birthdayMonth, int birthdayDay, int birthdayYear, String smsSn, String facebookSn, String jabberSn, String skypeSn, String twitterSn, String jobTitle, JSONArray groupIds, JSONArray organizationIds, JSONArray roleIds, JSONArray userGroupRoles, JSONArray userGroupIds, JSONArray addresses, JSONArray emailAddresses, JSONArray phones, JSONArray websites, JSONArray announcementsDelivers, JSONObjectWrapper serviceContext) throws Exception {
+	public JSONObject updateUser(long userId, String oldPassword, String newPassword1, String newPassword2, boolean passwordReset, String reminderQueryQuestion, String reminderQueryAnswer, String screenName, String emailAddress, long facebookId, String openId, String languageId, String timeZoneId, String greeting, String comments, String firstName, String middleName, String lastName, long prefixId, long suffixId, boolean male, int birthdayMonth, int birthdayDay, int birthdayYear, String smsSn, String facebookSn, String jabberSn, String skypeSn, String twitterSn, String jobTitle, JSONArray groupIds, JSONArray organizationIds, JSONArray roleIds, JSONArray userGroupRoles, JSONArray userGroupIds, JSONArray addresses, JSONArray emailAddresses, JSONArray phones, JSONArray websites, JSONArray announcementsDelivers, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1050,8 +1031,6 @@ public class UserService extends BaseService {
 			_params.put("emailAddress", checkNull(emailAddress));
 			_params.put("facebookId", facebookId);
 			_params.put("openId", checkNull(openId));
-			_params.put("portrait", portrait);
-			_params.put("portraitBytes", toString(portraitBytes));
 			_params.put("languageId", checkNull(languageId));
 			_params.put("timeZoneId", checkNull(timeZoneId));
 			_params.put("greeting", checkNull(greeting));
@@ -1098,7 +1077,7 @@ public class UserService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONObject updateUser(long userId, String oldPassword, String newPassword1, String newPassword2, boolean passwordReset, String reminderQueryQuestion, String reminderQueryAnswer, String screenName, String emailAddress, long facebookId, String openId, String languageId, String timeZoneId, String greeting, String comments, String firstName, String middleName, String lastName, long prefixId, long suffixId, boolean male, int birthdayMonth, int birthdayDay, int birthdayYear, String smsSn, String facebookSn, String jabberSn, String skypeSn, String twitterSn, String jobTitle, JSONArray groupIds, JSONArray organizationIds, JSONArray roleIds, JSONArray userGroupRoles, JSONArray userGroupIds, JSONArray addresses, JSONArray emailAddresses, JSONArray phones, JSONArray websites, JSONArray announcementsDelivers, JSONObjectWrapper serviceContext) throws Exception {
+	public JSONObject updateUser(long userId, String oldPassword, String newPassword1, String newPassword2, boolean passwordReset, String reminderQueryQuestion, String reminderQueryAnswer, String screenName, String emailAddress, long facebookId, String openId, boolean portrait, byte[] portraitBytes, String languageId, String timeZoneId, String greeting, String comments, String firstName, String middleName, String lastName, long prefixId, long suffixId, boolean male, int birthdayMonth, int birthdayDay, int birthdayYear, String smsSn, String facebookSn, String jabberSn, String skypeSn, String twitterSn, String jobTitle, JSONArray groupIds, JSONArray organizationIds, JSONArray roleIds, JSONArray userGroupRoles, JSONArray userGroupIds, JSONArray addresses, JSONArray emailAddresses, JSONArray phones, JSONArray websites, JSONArray announcementsDelivers, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -1115,6 +1094,8 @@ public class UserService extends BaseService {
 			_params.put("emailAddress", checkNull(emailAddress));
 			_params.put("facebookId", facebookId);
 			_params.put("openId", checkNull(openId));
+			_params.put("portrait", portrait);
+			_params.put("portraitBytes", toString(portraitBytes));
 			_params.put("languageId", checkNull(languageId));
 			_params.put("timeZoneId", checkNull(timeZoneId));
 			_params.put("greeting", checkNull(greeting));
@@ -1219,54 +1200,6 @@ public class UserService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONObject addUser(long companyId, boolean autoPassword, String password1, String password2, boolean autoScreenName, String screenName, String emailAddress, long facebookId, String openId, String locale, String firstName, String middleName, String lastName, long prefixId, long suffixId, boolean male, int birthdayMonth, int birthdayDay, int birthdayYear, String jobTitle, JSONArray groupIds, JSONArray organizationIds, JSONArray roleIds, JSONArray userGroupIds, boolean sendEmail, JSONObjectWrapper serviceContext) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("companyId", companyId);
-			_params.put("autoPassword", autoPassword);
-			_params.put("password1", checkNull(password1));
-			_params.put("password2", checkNull(password2));
-			_params.put("autoScreenName", autoScreenName);
-			_params.put("screenName", checkNull(screenName));
-			_params.put("emailAddress", checkNull(emailAddress));
-			_params.put("facebookId", facebookId);
-			_params.put("openId", checkNull(openId));
-			_params.put("locale", checkNull(locale));
-			_params.put("firstName", checkNull(firstName));
-			_params.put("middleName", checkNull(middleName));
-			_params.put("lastName", checkNull(lastName));
-			_params.put("prefixId", prefixId);
-			_params.put("suffixId", suffixId);
-			_params.put("male", male);
-			_params.put("birthdayMonth", birthdayMonth);
-			_params.put("birthdayDay", birthdayDay);
-			_params.put("birthdayYear", birthdayYear);
-			_params.put("jobTitle", checkNull(jobTitle));
-			_params.put("groupIds", checkNull(groupIds));
-			_params.put("organizationIds", checkNull(organizationIds));
-			_params.put("roleIds", checkNull(roleIds));
-			_params.put("userGroupIds", checkNull(userGroupIds));
-			_params.put("sendEmail", sendEmail);
-			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
-
-			_command.put("/user/add-user", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
-
-		JSONArray _result = session.invoke(_command);
-
-		if (_result == null) {
-			return null;
-		}
-
-		return _result.getJSONObject(0);
-	}
-
 	public JSONObject addUser(long companyId, boolean autoPassword, String password1, String password2, boolean autoScreenName, String screenName, String emailAddress, long facebookId, String openId, String locale, String firstName, String middleName, String lastName, long prefixId, long suffixId, boolean male, int birthdayMonth, int birthdayDay, int birthdayYear, String jobTitle, JSONArray groupIds, JSONArray organizationIds, JSONArray roleIds, JSONArray userGroupIds, JSONArray addresses, JSONArray emailAddresses, JSONArray phones, JSONArray websites, JSONArray announcementsDelivers, boolean sendEmail, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
@@ -1320,19 +1253,40 @@ public class UserService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONObject updateEmailAddress(long userId, String password, String emailAddress1, String emailAddress2, JSONObjectWrapper serviceContext) throws Exception {
+	public JSONObject addUser(long companyId, boolean autoPassword, String password1, String password2, boolean autoScreenName, String screenName, String emailAddress, long facebookId, String openId, String locale, String firstName, String middleName, String lastName, long prefixId, long suffixId, boolean male, int birthdayMonth, int birthdayDay, int birthdayYear, String jobTitle, JSONArray groupIds, JSONArray organizationIds, JSONArray roleIds, JSONArray userGroupIds, boolean sendEmail, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("userId", userId);
-			_params.put("password", checkNull(password));
-			_params.put("emailAddress1", checkNull(emailAddress1));
-			_params.put("emailAddress2", checkNull(emailAddress2));
+			_params.put("companyId", companyId);
+			_params.put("autoPassword", autoPassword);
+			_params.put("password1", checkNull(password1));
+			_params.put("password2", checkNull(password2));
+			_params.put("autoScreenName", autoScreenName);
+			_params.put("screenName", checkNull(screenName));
+			_params.put("emailAddress", checkNull(emailAddress));
+			_params.put("facebookId", facebookId);
+			_params.put("openId", checkNull(openId));
+			_params.put("locale", checkNull(locale));
+			_params.put("firstName", checkNull(firstName));
+			_params.put("middleName", checkNull(middleName));
+			_params.put("lastName", checkNull(lastName));
+			_params.put("prefixId", prefixId);
+			_params.put("suffixId", suffixId);
+			_params.put("male", male);
+			_params.put("birthdayMonth", birthdayMonth);
+			_params.put("birthdayDay", birthdayDay);
+			_params.put("birthdayYear", birthdayYear);
+			_params.put("jobTitle", checkNull(jobTitle));
+			_params.put("groupIds", checkNull(groupIds));
+			_params.put("organizationIds", checkNull(organizationIds));
+			_params.put("roleIds", checkNull(roleIds));
+			_params.put("userGroupIds", checkNull(userGroupIds));
+			_params.put("sendEmail", sendEmail);
 			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
-			_command.put("/user/update-email-address", _params);
+			_command.put("/user/add-user", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -1347,16 +1301,19 @@ public class UserService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONObject updateStatus(long userId, int status) throws Exception {
+	public JSONObject updateEmailAddress(long userId, String password, String emailAddress1, String emailAddress2, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
 			_params.put("userId", userId);
-			_params.put("status", status);
+			_params.put("password", checkNull(password));
+			_params.put("emailAddress1", checkNull(emailAddress1));
+			_params.put("emailAddress2", checkNull(emailAddress2));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
-			_command.put("/user/update-status", _params);
+			_command.put("/user/update-email-address", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -1396,23 +1353,28 @@ public class UserService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public void addGroupUsers(long groupId, JSONArray userIds, JSONObjectWrapper serviceContext) throws Exception {
+	public JSONObject updateStatus(long userId, int status) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("groupId", groupId);
-			_params.put("userIds", checkNull(userIds));
-			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
+			_params.put("userId", userId);
+			_params.put("status", status);
 
-			_command.put("/user/add-group-users", _params);
+			_command.put("/user/update-status", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
-		session.invoke(_command);
+		JSONArray _result = session.invoke(_command);
+
+		if (_result == null) {
+			return null;
+		}
+
+		return _result.getJSONObject(0);
 	}
 
 	public void deleteUser(long userId) throws Exception {
@@ -1458,15 +1420,13 @@ public class UserService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONArray getRoleUserIds(long roleId) throws Exception {
+	public JSONObject getCurrentUser() throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("roleId", roleId);
-
-			_command.put("/user/get-role-user-ids", _params);
+			_command.put("/user/get-current-user", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -1478,7 +1438,7 @@ public class UserService extends BaseService {
 			return null;
 		}
 
-		return _result.getJSONArray(0);
+		return _result.getJSONObject(0);
 	}
 
 	public JSONObject updateLockoutById(long userId, boolean lockout) throws Exception {
@@ -1505,13 +1465,34 @@ public class UserService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONObject getCurrentUser() throws Exception {
+	public void addGroupUsers(long groupId, JSONArray userIds, JSONObjectWrapper serviceContext) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_command.put("/user/get-current-user", _params);
+			_params.put("groupId", groupId);
+			_params.put("userIds", checkNull(userIds));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
+
+			_command.put("/user/add-group-users", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		session.invoke(_command);
+	}
+
+	public JSONArray getRoleUserIds(long roleId) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("roleId", roleId);
+
+			_command.put("/user/get-role-user-ids", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
@@ -1523,7 +1504,26 @@ public class UserService extends BaseService {
 			return null;
 		}
 
-		return _result.getJSONObject(0);
+		return _result.getJSONArray(0);
+	}
+
+	public void unsetGroupUsers(long groupId, JSONArray userIds, JSONObjectWrapper serviceContext) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("groupId", groupId);
+			_params.put("userIds", checkNull(userIds));
+			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
+
+			_command.put("/user/unset-group-users", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		session.invoke(_command);
 	}
 
 }
