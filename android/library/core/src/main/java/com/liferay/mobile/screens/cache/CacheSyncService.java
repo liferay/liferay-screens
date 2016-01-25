@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
-import com.liferay.mobile.android.v62.ddlrecord.DDLRecordService;
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
 import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
@@ -17,6 +16,7 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.service.UploadService;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.service.v7.DDLRecordService;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitService;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -165,7 +165,7 @@ public class CacheSyncService extends IntentService {
 			return recordService.addRecord(groupId, record.getRecordSetId(), 0, jsonContent, serviceContextWrapper);
 		}
 		else {
-			return recordService.updateRecord(record.getRecordId(), 0, jsonContent, true, serviceContextWrapper);
+			return recordService.updateRecord(record.getRecordId(), 0, jsonContent, false, serviceContextWrapper);
 		}
 	}
 }

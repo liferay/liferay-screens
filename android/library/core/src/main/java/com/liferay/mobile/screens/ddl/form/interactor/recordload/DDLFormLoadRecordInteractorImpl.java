@@ -27,7 +27,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.service.v62.ScreensddlrecordService;
+import com.liferay.mobile.screens.service.v7.ScreensddlrecordService;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 

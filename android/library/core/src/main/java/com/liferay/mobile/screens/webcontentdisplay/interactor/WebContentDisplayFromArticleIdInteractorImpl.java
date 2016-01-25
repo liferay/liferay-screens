@@ -15,13 +15,13 @@
 package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.service.v62.ScreensjournalarticleService;
+import com.liferay.mobile.screens.service.v7.JournalArticleService;
+import com.liferay.mobile.screens.service.v7.ScreensjournalarticleService;
 
 import java.util.Locale;
 

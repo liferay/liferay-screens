@@ -17,11 +17,11 @@ package com.liferay.mobile.screens.auth.login.interactor;
 import android.text.TextUtils;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.service.v7.UserService;
 
 
 public class LoginBasicInteractor extends BaseLoginInteractor {

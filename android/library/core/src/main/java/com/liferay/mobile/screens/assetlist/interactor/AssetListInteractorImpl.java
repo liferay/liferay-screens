@@ -19,7 +19,6 @@ import android.util.Pair;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.assetentry.AssetEntryService;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
@@ -27,7 +26,8 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.service.v62.ScreensassetentryService;
+import com.liferay.mobile.screens.service.v7.AssetEntryService;
+import com.liferay.mobile.screens.service.v7.ScreensassetentryService;
 import com.liferay.mobile.screens.util.JSONUtil;
 
 import org.json.JSONException;
