@@ -48,7 +48,9 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 
 	private let incompletedColor = [
 			DDLFieldDocument.UploadStatus.Uploading(0,0) :
-					UIColor(red:176/255.0, green:238/255.0, blue:1.0, alpha:0.87)
+					UIColor(red:176/255.0, green:238/255.0, blue:1.0, alpha:0.87),
+			DDLFieldDocument.UploadStatus.Failed(nil) :
+					UIColor(red:1, green:0, blue:0, alpha:1)
 		]
 
 	private let centerColor = [
@@ -64,9 +66,9 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 			DDLFieldDocument.UploadStatus.Uploading(0,0) :
 					DefaultThemeBasicBlue,
 			DDLFieldDocument.UploadStatus.Uploaded([:]) :
-					UIColor(red:240/255.0, green:1, blue:1, alpha:1),
+					UIColor.clearColor(),
 			DDLFieldDocument.UploadStatus.Failed(nil) :
-					UIColor(red:1, green:220/255.0, blue:200/255.0, alpha:1)
+					UIColor.clearColor()
 		]
 
 

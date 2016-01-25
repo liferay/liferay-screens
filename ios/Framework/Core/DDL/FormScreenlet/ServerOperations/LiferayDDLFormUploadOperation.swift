@@ -30,6 +30,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRFileP
 	var uploadResult: [String:AnyObject]?
 
 	private var requestSemaphore: dispatch_semaphore_t?
+	private var bytesToSend: Int64 = 0
 
 
 	//MARK: ServerOperation
@@ -62,11 +63,10 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRFileP
 		session.callback = self
 
 		let fileName = "\(filePrefix!)\(NSUUID().UUIDString)"
-		var size:Int64 = 0
-		let stream = document!.getStream(&size)
+		let stream = document!.getStream(&bytesToSend)
 		let uploadData = LRUploadData(
 				inputStream: stream,
-				length: size,
+				length: bytesToSend,
 				fileName: fileName,
 				mimeType: document!.mimeType,
 				progressDelegate: self)
@@ -98,8 +98,8 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRFileP
 	//MARK: LRProgressDelegate
 
 	public func onProgress(data: NSData!, totalBytes: Int64) {
-		let sent = UInt64(data.length)
-		let total = UInt64(totalBytes)
+		let sent = UInt64(totalBytes)
+		let total = UInt64(bytesToSend)
 		document!.uploadStatus = .Uploading(sent, total)
 		onUploadedBytes?(document!, sent, total)
 	}
