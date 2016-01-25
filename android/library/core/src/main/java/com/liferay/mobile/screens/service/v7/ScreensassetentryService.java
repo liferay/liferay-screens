@@ -32,17 +32,14 @@ public class ScreensassetentryService extends BaseService {
 		super(session);
 	}
 
-	public JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String locale, int max) throws Exception {
+	public JSONArray getAssetEntries(JSONObject assetEntryQuery, String locale) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("companyId", companyId);
-			_params.put("groupId", groupId);
-			_params.put("portletItemName", checkNull(portletItemName));
+			_params.put("assetEntryQuery", checkNull(assetEntryQuery));
 			_params.put("locale", checkNull(locale));
-			_params.put("max", max);
 
 			_command.put("/screens.screensassetentry/get-asset-entries", _params);
 		}
@@ -59,14 +56,17 @@ public class ScreensassetentryService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONArray getAssetEntries(JSONObject assetEntryQuery, String locale) throws Exception {
+	public JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String locale, int max) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
-			_params.put("assetEntryQuery", checkNull(assetEntryQuery));
+			_params.put("companyId", companyId);
+			_params.put("groupId", groupId);
+			_params.put("portletItemName", checkNull(portletItemName));
 			_params.put("locale", checkNull(locale));
+			_params.put("max", max);
 
 			_command.put("/screens.screensassetentry/get-asset-entries", _params);
 		}
