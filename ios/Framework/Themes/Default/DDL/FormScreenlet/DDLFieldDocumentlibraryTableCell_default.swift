@@ -112,10 +112,10 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 				progress!.progressCounter = UInt(current)
 
 				if progress!.alpha == 0 {
-					changeProgressVisilibity(show:true)
+					changeProgressVisilibity(show: true)
 				}
 			case .Failed(_):
-				changeProgressVisilibity(show:false, delay:2.0)
+				changeProgressVisilibity(show: false, delay: 2.0)
 
 			case .Uploaded(_):
 				if field.lastValidationResult != nil {
@@ -133,7 +133,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 
 	//MARK: Private methods
 
-	private func setProgress(field:DDLFieldDocument) {
+	private func setProgress(field: DDLFieldDocument) {
 		let theme = progress!.theme
 
 		theme.font = UIFont(descriptor: textField!.font!.fontDescriptor(), size: 30.0)
@@ -146,14 +146,14 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 		changeDocumentUploadStatus(field)
 	}
 
-	private func changeProgressVisilibity(show show:Bool, delay:Double = 0.0) {
+	private func changeProgressVisilibity(show show: Bool, delay: Double = 0.0) {
 		UIView.animateWithDuration(0.3, delay: delay, options: [], animations: {
 			self.progress!.alpha = show ? 1.0 : 0.0
 			self.chooseButton!.alpha = show ? 0.0 : 1.0
 		}, completion: nil)
 	}
 
-	private func setFieldPresenter(field:DDLFieldDocument) {
+	private func setFieldPresenter(field: DDLFieldDocument) {
 		let presenter = DTViewPresenter(view:presenterViewController.view)
 
 		presenter.presenterView.backgroundColor = UIColor.whiteColor()
@@ -163,7 +163,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 		textField?.dt_setPresenter(presenter)
 	}
 
-	private func selectedDocumentClosure(image:UIImage?, url:NSURL?) {
+	private func selectedDocumentClosure(image: UIImage?, url: NSURL?) {
 		textField!.resignFirstResponder()
 
 		if image != nil || url != nil {
