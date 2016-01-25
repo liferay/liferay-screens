@@ -40,13 +40,10 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 			let bundles = NSBundle.allBundles(
 					DDLFieldDocumentlibraryPresenterViewController_default.self);
 
-			for bundle in bundles {
-				if bundle.pathForResource(xibName, ofType:"nib") != nil {
-					return bundle
+			return bundles.filter {
+					$0.pathForResource(xibName, ofType:"nib") != nil
 				}
-			}
-
-			return nil
+				.first
 		}
 
 		self.init(
