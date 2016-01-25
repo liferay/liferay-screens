@@ -16,6 +16,7 @@
 		android:layout_height="100dp"
 		android:visibility="gone"
 		liferay:autoLoad="false"
+		liferay:editable="true"
 		liferay:layoutId="@layout/userportrait_default"
 		liferay:offlinePolicy="CACHE_FIRST"/>
 
