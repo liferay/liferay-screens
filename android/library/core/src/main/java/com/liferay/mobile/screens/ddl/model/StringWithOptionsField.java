@@ -249,16 +249,14 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 	public static class Option implements Serializable {
 
 		public String label;
-		public String name;
 		public String value;
 
 		public Option(Map<String, String> optionMap) {
-			this(optionMap.get("label"), optionMap.get("name"), optionMap.get("value"));
+			this(optionMap.get("label"), optionMap.get("value"));
 		}
 
-		public Option(String label, String name, String value) {
+		public Option(String label, String value) {
 			this.label = label;
-			this.name = name;
 			this.value = value;
 		}
 
@@ -271,7 +269,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			if (obj instanceof Option) {
 				Option opt = (Option) obj;
 
-				return label.equals(opt.label) && name.equals(opt.name) && value.equals(opt.value);
+				return label.equals(opt.label) && value.equals(opt.value);
 			}
 
 			return super.equals(obj);
