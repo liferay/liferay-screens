@@ -16,13 +16,13 @@ package com.liferay.mobile.screens.testapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
-
-import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 /**
  * @author Javier Gamarra
@@ -34,21 +34,24 @@ public abstract class ThemeActivity extends ActionBarActivity {
 		super.onCreate(state);
 		currentTheme = getIntent().getIntExtra("theme", DefaultTheme.getDefaultTheme());
 
-		int color = isDefaultTheme() ? R.color.default_primary_blue : R.color.material_primary;
-
-		new LiferayCrouton.Builder().withInfoColor(color).build();
-
 		setTheme(currentTheme);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 
 		_content = findViewById(android.R.id.content);
 	}
 
 	protected void error(String message, Exception e) {
-		LiferayCrouton.error(this, message, e);
+		showSnackbarWithColor(message, ContextCompat.getColor(this, R.color.default_pure_red));
 	}
 
 	protected void info(String message) {
-		LiferayCrouton.info(this, message);
+		int color = isDefaultTheme() ? R.color.default_primary_blue : R.color.material_primary;
+
+		showSnackbarWithColor(message, ContextCompat.getColor(this, color));
 	}
 
 	protected Intent getIntentWithTheme(Class destinationClass) {
@@ -70,12 +73,13 @@ public abstract class ThemeActivity extends ActionBarActivity {
 		return currentTheme == R.style.default_theme;
 	}
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		Crouton.clearCroutonsForActivity(this);
+	private void showSnackbarWithColor(String message, int color) {
+		Snackbar snackbar = Snackbar.make(_content, message, Snackbar.LENGTH_SHORT);
+		ViewGroup group = (ViewGroup) snackbar.getView();
+		group.setBackgroundColor(color);
+		snackbar.show();
 	}
 
 	protected Integer currentTheme;
-	protected View _content;
+	private View _content;
 }

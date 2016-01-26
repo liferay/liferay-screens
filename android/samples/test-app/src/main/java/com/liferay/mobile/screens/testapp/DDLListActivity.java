@@ -33,8 +33,6 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-
 /**
  * @author Javier Gamarra
  */
@@ -117,8 +115,6 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 					intent.putExtra("recordId", recordId);
 					intent.putExtra("recordSetId", recordSetId);
 					intent.putExtra("structureId", result.getLong("DDMStructureId"));
-
-					Crouton.clearCroutonsForActivity(DDLListActivity.this);
 
 					DefaultAnimation.startActivityWithAnimation(DDLListActivity.this, intent);
 				}
