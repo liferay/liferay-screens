@@ -41,7 +41,7 @@ script:
 #    - ../../library/gradlew assembleDebug
     - ../../library/gradlew assembleDebugAndroidTest
     - adb shell pm list packages
-    - adb install app/build/outputs/apk/app-debug.apk
+#    - adb install app/build/outputs/apk/app-debug.apk
     - adb install app/build/outputs/apk/app-debug-androidTest-unaligned.apk
 #    - adb shell am instrument -w com.nhpatt.catalogodeactividadesasde/android.support.test.runner.AndroidJUnitRunner
     - adb shell input keyevent 82 &
