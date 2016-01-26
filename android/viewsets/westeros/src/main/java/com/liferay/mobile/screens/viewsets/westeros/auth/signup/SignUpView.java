@@ -27,8 +27,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.viewsets.westeros.R;
+import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
 
 /**
  * @author Silvio Santos
@@ -75,7 +76,8 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 
 		CheckBox acceptTerms = (CheckBox) findViewById(R.id.sign_up_checkbox);
 		if (!acceptTerms.isChecked()) {
-			LiferayCrouton.error(getContext(), "You must accept the terms & conditions", null);
+			WesterosSnackbar.showSnackbar(LiferayScreensContext.getActivityFromContext(getContext()),
+				"You must accept the terms & conditions", R.color.westeros_yellow);
 			return false;
 		}
 
