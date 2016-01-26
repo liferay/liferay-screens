@@ -27,7 +27,6 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
 import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewModel;
 
@@ -82,7 +81,6 @@ public class WebContentDisplayView extends FrameLayout
 		_progressBar.setVisibility(View.GONE);
 		_webView.setVisibility(View.VISIBLE);
 
-		LiferayCrouton.error(getContext(), getContext().getString(R.string.loading_article_error), e);
 		LiferayLogger.e(getContext().getString(R.string.loading_article_error), e);
 	}
 

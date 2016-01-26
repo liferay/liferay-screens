@@ -37,7 +37,6 @@ import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 /**
  * @author Javier Gamarra
@@ -88,7 +87,6 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 			setDefaultImagePlaceholder();
 		}
 		else {
-			LiferayCrouton.error(getContext(), "Portrait failed to upload", e);
 			LiferayLogger.e("portrait failed to upload", e);
 		}
 		_portraitProgress.setVisibility(INVISIBLE);
