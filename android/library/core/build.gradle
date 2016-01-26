@@ -66,9 +66,6 @@ dependencies {
 	compile('com.liferay.mobile:liferay-android-oauth:1.0.3') {
 		exclude group: 'com.liferay.mobile', module: 'liferay-android-sdk'
 	}
-	compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
-		exclude group: 'com.google.android', module: 'support-v4'
-	}
 
 	compile 'com.pushtorefresh.storio:sqlite-annotations:1.4.0'
 
