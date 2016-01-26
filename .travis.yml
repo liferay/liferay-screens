@@ -2,7 +2,8 @@ language: objective-c
 osx_image: xcode7.1
 
 cache:
-    - cocoapods
+  directories:
+    - $HOME/android/library/.gradle/
 
 podfile: ios/Framework
 
@@ -25,25 +26,20 @@ before_install:
     - locale
     - pod --version
 
-before_script:
-#    - curl https://raw.githubusercontent.com/travis-ci/travis-cookbooks/62039b204699adcdf4b3365fac42d81246cb57fe/ci_environment/android-sdk/files/default/android-wait-for-emulator > android-wait-for-emulator
-#    - chmod u+x android-wait-for-emulator
-#    - ./android-wait-for-emulator
-
 script:
     - cd android/library/
     - echo "sdk.dir=$ANDROID_HOME" > local.properties
 #    - ./gradlew -x javadocJar -x sourcesJar build test
     - ./gradlew clean
-    - ./gradlew assembleDebug
+#    - ./gradlew assembleDebug
     - ./gradlew assembleDebugAndroidTest
     - ./gradlew test
 
 #    - test-app tests
     - cd ../samples/test-app/
-    - ./gradlew clean
-    - ./gradlew assembleDebug
-    - ./gradlew assembleDebugAndroidTest
+    - ../../library/gradlew clean
+#    - ../../library/gradlew assembleDebug
+    - ../../library/gradlew assembleDebugAndroidTest
     - adb shell pm list packages
     - adb install app/build/outputs/apk/app-debug.apk
     - adb install app/build/outputs/apk/app-debug-androidTest-unaligned.apk
