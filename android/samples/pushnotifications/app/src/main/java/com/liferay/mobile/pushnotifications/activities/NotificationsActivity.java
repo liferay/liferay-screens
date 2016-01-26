@@ -2,6 +2,7 @@ package com.liferay.mobile.pushnotifications.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
@@ -15,14 +16,11 @@ import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.push.PushScreensActivity;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
-
-import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 public class NotificationsActivity extends PushScreensActivity implements BaseListListener<Record> {
 
@@ -34,8 +32,6 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 		if (!SessionContext.hasSession()) {
 			startActivity(new Intent(this, LoginActivity.class));
 		}
-
-		new LiferayCrouton.Builder().withInfoColor(R.color.material_primary_crouton).build();
 
 		ddlList = (DDLListScreenlet) findViewById(R.id.ddl_list_screenlet);
 		ddlList.setListener(this);
@@ -81,8 +77,7 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				Crouton.clearCroutonsForActivity(NotificationsActivity.this);
-				LiferayCrouton.info(NotificationsActivity.this, "Reloading list...");
+				Snackbar.make(findViewById(android.R.id.content), "Reloading list...", Snackbar.LENGTH_SHORT).show();
 				ddlList.loadPage(0);
 			}
 		});
@@ -123,8 +118,6 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 					intent.putExtra("recordId", recordId);
 					intent.putExtra("recordSetId", recordSetId);
 					intent.putExtra("structureId", result.getInt("DDMStructureId"));
-
-					Crouton.clearCroutonsForActivity(NotificationsActivity.this);
 
 					startActivity(intent);
 				}
