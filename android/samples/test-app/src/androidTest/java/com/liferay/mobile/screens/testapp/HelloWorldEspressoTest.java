@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.testapp;
 
+import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -26,7 +27,17 @@ public class HelloWorldEspressoTest {
 
 	@Test
 	public void listGoesOverTheFold() {
-		onView(withText("DDL Form")).check(matches(isDisplayed()));
+		try {
+			ViewInteraction viewInteraction = onView(withText("Login"));
+			System.err.println(viewInteraction);
+			viewInteraction.check(matches(isDisplayed()));
+		}
+		catch (Exception e) {
+			System.err.println(e.toString());
+		}
+		finally {
+			System.err.println("kjasdlkasd");
+		}
 	}
 
 
