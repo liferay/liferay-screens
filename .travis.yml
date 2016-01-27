@@ -38,7 +38,7 @@ script:
 #    - test-app tests
     - cd ../samples/test-app/
     - ../../library/gradlew clean
-#    - ../../library/gradlew assembleDebug
+    - ../../library/gradlew assembleDebug
     - ../../library/gradlew assembleDebugAndroidTest
     - ../../library/gradlew test
     - adb shell pm list packages
