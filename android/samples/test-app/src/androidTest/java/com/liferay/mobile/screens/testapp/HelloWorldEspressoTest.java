@@ -28,12 +28,13 @@ public class HelloWorldEspressoTest {
 	@Test
 	public void listGoesOverTheFold() {
 		try {
-			ViewInteraction viewInteraction = onView(withText("Login"));
+			ViewInteraction viewInteraction = onView(withText("2Login1"));
 			System.err.println(viewInteraction);
 			viewInteraction.check(matches(isDisplayed()));
 		}
 		catch (Exception e) {
 			System.err.println(e.toString());
+//			throw e;
 		}
 		finally {
 			System.err.println("kjasdlkasd");
