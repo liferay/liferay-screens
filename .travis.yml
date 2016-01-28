@@ -1,6 +1,12 @@
 language: objective-c
 osx_image: xcode7.1
 
+addons:
+  artifacts:
+    paths: /Users/travis/build/nhpatt/liferay-screens/android/samples/test-app/build/reports/androidTests/connected/
+
+  s3_region: "eu-west-1"
+
 cache:
   directories:
     - $HOME/android/library/.gradle/
@@ -50,15 +56,15 @@ script:
 
     - cd android/samples/test-app/
     - echo "sdk.dir=$ANDROID_HOME" > local.properties
-    - ./gradlew clean
-    - ./gradlew assembleDebug
-    - ./gradlew assembleDebugAndroidTest
+    - ./gradlew clean cAT
+#    - ./gradlew assembleDebug
+#    - ./gradlew assembleDebugAndroidTest
 #    - gradlew test
-    - adb shell pm list packages
-    - adb install build/outputs/apk/test-app-debug.apk
-    - adb install build/outputs/apk/test-app-debug-androidTest-unaligned.apk
-    - adb shell input keyevent 82 &
-    - ./gradlew connectedAndroidTest --info
+#    - adb shell pm list packages
+#    - adb install build/outputs/apk/test-app-debug.apk
+#    - adb install build/outputs/apk/test-app-debug-androidTest-unaligned.apk
+#    - adb shell input keyevent 82 &
+#    - ./gradlew connectedAndroidTest --info
 
 #
 ##    - iOS tests
