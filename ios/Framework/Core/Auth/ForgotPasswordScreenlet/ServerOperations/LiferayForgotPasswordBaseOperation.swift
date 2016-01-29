@@ -70,7 +70,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 	}
 
 	override public func createSession() -> LRSession? {
-		return SessionContext.createAnonymousBasicSession(anonymousUsername, anonymousPassword)
+		return SessionContext.createEphemeralBasicSession(anonymousUsername, anonymousPassword)
 	}
 
 	//MARK: Template Methods

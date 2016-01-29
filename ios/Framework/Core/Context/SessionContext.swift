@@ -74,7 +74,7 @@ import Foundation
 
 	//MARK Public methods
 
-	public class func createAnonymousBasicSession(
+	public class func createEphemeralBasicSession(
 			userName: String,
 			_ password: String) -> LRSession {
 		return LRSession(
