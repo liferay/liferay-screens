@@ -66,8 +66,8 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	public func loadStoredCredentials() -> Bool {
 		if SessionContext.loadStoredCredentials() {
-			viewModel.userName = SessionContext.currentBasicUserName
-			viewModel.password = SessionContext.currentBasicPassword
+			viewModel.userName = SessionContext.currentContext?.basicAuthUsername
+			viewModel.password = SessionContext.currentContext?.basicAuthPassword
 
 			// we don't want the session to be automatically created. Clear it.
 			// User can recreate it again in the delegate method.
@@ -112,8 +112,8 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 			self.loginDelegate?.screenlet?(self,
 					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
 
-			if self.saveCredentials {
-				if SessionContext.storeCredentials() {
+			if let ctx = SessionContext.currentContext where self.saveCredentials {
+				if ctx.storeCredentials() {
 					self.loginDelegate?.onScreenletCredentialsSaved?(self)
 				}
 			}
@@ -136,8 +136,8 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 			self.loginDelegate?.screenlet?(self,
 					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
 
-			if self.saveCredentials {
-				if SessionContext.storeCredentials() {
+			if let ctx = SessionContext.currentContext where self.saveCredentials {
+				if ctx.storeCredentials() {
 					self.loginDelegate?.onScreenletCredentialsSaved?(self)
 				}
 			}

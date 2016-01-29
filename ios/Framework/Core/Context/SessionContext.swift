@@ -28,7 +28,7 @@ import Foundation
 	public let userAttributes: [String:AnyObject]
 
 	public let cacheManager: CacheManager
-	public let credentialsStorage: CredentialsStorage
+	public var credentialsStorage: CredentialsStorage
 
 
 	//MARK: Private init
@@ -51,21 +51,21 @@ import Foundation
 		return currentContext?.session != nil
 	}
 
-	public var currentBasicUserName: String? {
+	public var basicAuthUsername: String? {
 		let authentication = session.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.username
 	}
 
-	public var currentBasicPassword: String? {
+	public var basicAuthPassword: String? {
 		let authentication = session.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.password
 	}
 
-	public var currentUserId: Int64? {
+	public var userId: Int64? {
 		return userAttributes["userId"]
 				.map { $0 as! NSNumber }
 				.map { $0.longLongValue }

@@ -43,8 +43,8 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 
 	override func writeToCache(op: ServerOperation) {
 		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
-			? SessionContext.currentCacheManager?.setDirty
-			: SessionContext.currentCacheManager?.setClean
+			? SessionContext.currentContext?.cacheManager.setDirty
+			: SessionContext.currentContext?.cacheManager.setClean
 
 		cacheFunction?(
 			collection: ScreenletName(UserPortraitScreenlet),
@@ -56,7 +56,7 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 	override func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {
 			// update cache with date sent
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(UserPortraitScreenlet),
 				key: "userId-\(userId)",
 				attributes: [

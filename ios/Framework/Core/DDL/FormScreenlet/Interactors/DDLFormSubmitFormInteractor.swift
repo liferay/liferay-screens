@@ -51,7 +51,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 		self.userId = (formScreenlet.userId != 0)
 			? formScreenlet.userId
-			: SessionContext.currentUserId
+			: SessionContext.currentContext?.userId
 
 		self.recordSetId = formScreenlet.recordSetId
 		self.record = record
@@ -64,7 +64,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			?? LiferayServerContext.groupId
 
 		self.userId = record.attributes["userId"]?.longLongValue
-			?? SessionContext.currentUserId
+			?? SessionContext.currentContext?.userId
 
 		self.recordSetId = record.attributes["recordSetId"]!.longLongValue
 		self.record = record
@@ -115,8 +115,8 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 		let submitOp = op as! LiferayDDLFormSubmitOperation
 
 		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
-			? SessionContext.currentCacheManager?.setDirty
-			: SessionContext.currentCacheManager?.setClean
+			? SessionContext.currentContext?.cacheManager.setDirty
+			: SessionContext.currentContext?.cacheManager.setClean
 
 		lastCacheKeyUsed = lastCacheKeyUsed
 			?? DDLFormSubmitFormInteractor.cacheKey(submitOp.recordId)
@@ -138,19 +138,19 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 				// create new cache entry and delete the draft one
 				if lastCacheKeyUsed!.hasPrefix("draft-")
 						&& record.recordId == nil {
-					SessionContext.currentCacheManager?.remove(
+					SessionContext.currentContext?.cacheManager.remove(
 						collection: ScreenletName(DDLFormScreenlet),
 						key: lastCacheKeyUsed!)
 				}
 
-				SessionContext.currentCacheManager?.setClean(
+				SessionContext.currentContext?.cacheManager.setClean(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: DDLFormSubmitFormInteractor.cacheKey(resultRecordId),
 					attributes: cacheAttributes())
 			}
 			else {
 				// update current cache entry with date sent
-				SessionContext.currentCacheManager?.setClean(
+				SessionContext.currentContext?.cacheManager.setClean(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: lastCacheKeyUsed
 						?? DDLFormSubmitFormInteractor.cacheKey(record.recordId),

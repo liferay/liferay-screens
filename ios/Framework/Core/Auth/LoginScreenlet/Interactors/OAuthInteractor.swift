@@ -129,7 +129,7 @@ class OAuthInteractor: Interactor, LRCallback {
 		if let resultValue = result as? [String:AnyObject] {
 			resultUserAttributes = resultValue
 
-			SessionContext.createOAuthSession(
+			SessionContext.loginWithOAuth(
 					authentication: OAuthSession!.authentication as! LROAuth,
 					userAttributes: resultValue)
 

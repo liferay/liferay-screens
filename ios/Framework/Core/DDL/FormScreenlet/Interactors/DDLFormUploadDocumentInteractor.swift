@@ -112,8 +112,8 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 		// cache only supports images (right now)
 		if let image = document.currentValue as? UIImage {
 			let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
-				? SessionContext.currentCacheManager?.setDirty
-				: SessionContext.currentCacheManager?.setClean
+				? SessionContext.currentContext?.cacheManager.setDirty
+				: SessionContext.currentContext?.cacheManager.setClean
 
 			cacheFunction?(
 				collection: ScreenletName(DDLFormScreenlet),
@@ -125,7 +125,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 
 	override func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: cacheKey(),
 				attributes: cacheAttributes())

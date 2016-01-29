@@ -60,7 +60,7 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			SessionContext.currentCacheManager!.getString(
+			SessionContext.currentContext?.cacheManager.getString(
 					collection: ScreenletName(WebContentDisplayScreenlet),
 					key: articleCacheKey(groupId, articleId)) {
 				loadOp.resultHTML = $0
@@ -75,7 +75,7 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(WebContentDisplayScreenlet),
 				key: articleCacheKey(groupId, articleId),
 				value: html,
