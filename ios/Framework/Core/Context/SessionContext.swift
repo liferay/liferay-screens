@@ -66,9 +66,7 @@ import Foundation
 	}
 
 	public var userId: Int64? {
-		return userAttributes["userId"]
-				.map { $0 as! NSNumber }
-				.map { $0.longLongValue }
+		return userAttributes["userId"]?.longLongValue
 	}
 
 
