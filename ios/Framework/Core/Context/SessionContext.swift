@@ -24,18 +24,18 @@ import Foundation
 	internal(set) static var currentContext: SessionContext?
 
 
-	internal(set) var currentUserSession: LRSession
-	internal(set) var currentUserAttributes: [String:AnyObject]
+	public let session: LRSession
+	public let userAttributes: [String:AnyObject]
 
-	internal(set) var cacheManager: CacheManager
-	internal(set) var credentialsStorage: CredentialsStorage
+	public let cacheManager: CacheManager
+	public let credentialsStorage: CredentialsStorage
 
 
 	//MARK: Private init
 
 	private init(session: LRSession, attributes: [String: AnyObject], store: CredentialsStore) {
-		self.currentUserSession = session
-		self.currentUserAttributes = attributes
+		self.session = session
+		self.userAttributes = attributes
 
 		cacheManager = CacheManager(session: session)
 
@@ -48,25 +48,25 @@ import Foundation
 	//MARK: Public properties
 
 	public class var isLoggedIn: Bool {
-		return currentContext?.currentUserSession != nil
+		return currentContext?.session != nil
 	}
 
 	public var currentBasicUserName: String? {
-		let authentication = currentUserSession.authentication
+		let authentication = session.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.username
 	}
 
 	public var currentBasicPassword: String? {
-		let authentication = currentUserSession.authentication
+		let authentication = session.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.password
 	}
 
 	public var currentUserId: Int64? {
-		return currentUserAttributes["userId"]
+		return userAttributes["userId"]
 				.map { $0 as! NSNumber }
 				.map { $0.longLongValue }
 	}
@@ -84,7 +84,7 @@ import Foundation
 				password: password))
 	}
 
-	public class func createBasicSessionContext(
+	public class func loginWithBasic(
 			username username: String,
 			password: String,
 			userAttributes: [String:AnyObject]) -> LRSession {
@@ -105,7 +105,7 @@ import Foundation
 		return session
 	}
 
-	public class func createOAuthSession(
+	public class func loginWithOAuth(
 			authentication authentication: LROAuth,
 			userAttributes: [String:AnyObject]) -> LRSession {
 
@@ -122,15 +122,15 @@ import Foundation
 	}
 
 	public func userAttribute(key: String) -> AnyObject? {
-		return currentUserAttributes[key]
+		return userAttributes[key]
 	}
 
-	public func createSessionFromCurrentSession() -> LRSession? {
-		return LRSession(session: currentUserSession)
+	public func requestSession() -> LRSession {
+		return LRSession(session: session)
 	}
 
-	public func createBatchSessionFromCurrentSession() -> LRBatchSession? {
-		return LRBatchSession(session: currentUserSession)
+	public func requestBatchSession() -> LRBatchSession {
+		return LRBatchSession(session: session)
 	}
 
 	public class func logout() {
@@ -139,8 +139,8 @@ import Foundation
 
 	public func storeCredentials() -> Bool {
 		return credentialsStorage.store(
-				session: currentUserSession,
-				userAttributes: currentUserAttributes)
+				session: session,
+				userAttributes: userAttributes)
 	}
 
 	public func removeStoredCredentials() -> Bool {
