@@ -188,7 +188,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(xsd, locale: spanishLocale)
 
 		XCTAssertTrue(fields != nil)
 		XCTAssertEqual(1, fields!.count)
@@ -228,7 +228,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 					"</meta-data> " +
 				"</dynamic-element> </root>"
 
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(xsd, locale: spanishLocale)
 
 		let booleanField = fields![0] as! DDLFieldBoolean
 

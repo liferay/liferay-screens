@@ -38,7 +38,7 @@ class DDLFieldDate_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(xsd, locale: spanishLocale)
 
 		XCTAssertTrue(fields != nil)
 		XCTAssertEqual(1, fields!.count)
@@ -70,7 +70,7 @@ class DDLFieldDate_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
-		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as! DDLFieldDate
 
 		XCTAssertTrue(dateField.currentValue == nil)
@@ -79,7 +79,7 @@ class DDLFieldDate_Tests: XCTestCase {
 	}
 
 	func test_currentValueAsString_ShouldReturnEpochTimeInMilliseconds() {
-		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as! DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
@@ -93,7 +93,7 @@ class DDLFieldDate_Tests: XCTestCase {
 	}
 
 	func test_currentValueAsString_ShouldSupportOneDigitMonth_WhenSettingTheStringValue() {
-		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as! DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
@@ -107,7 +107,7 @@ class DDLFieldDate_Tests: XCTestCase {
 	}
 
 	func test_currentValueAsString_ShouldSupportFourDigitsYear_WhenSettingTheStringValue() {
-		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as! DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
@@ -124,7 +124,7 @@ class DDLFieldDate_Tests: XCTestCase {
 	//MARK: CurrentValueAsLabel
 
 	func test_currentValueAsLabel_ShouldReturnLocalizedValue_WhenEnglishLocaleIsUsed() {
-		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as! DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
@@ -137,7 +137,7 @@ class DDLFieldDate_Tests: XCTestCase {
 	}
 
 	func test_currentValueAsLabel_ShouldReturnLocalizedValue_WhenSpanishLocaleIsUsed() {
-		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as! DDLFieldDate
 
 		let dateFormatter = NSDateFormatter()
@@ -149,7 +149,7 @@ class DDLFieldDate_Tests: XCTestCase {
 	}
 
 	func test_currentValueAsLabel_ShouldBeTheValidDate_WhenSetTheLabelDate() {
-		let fields = DDLXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as! DDLFieldDate
 
 		dateField.currentValueAsLabel = "19 de junio de 2004"

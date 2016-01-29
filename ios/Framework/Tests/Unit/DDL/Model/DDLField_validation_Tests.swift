@@ -19,7 +19,7 @@ class DDLField_Validation_Tests: XCTestCase {
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
 	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationFails() {
-		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
 		let booleanField = fields![0] as! DDLFieldBoolean
 
@@ -35,7 +35,7 @@ class DDLField_Validation_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationSucceeds() {
-		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
 		let booleanField = fields![0] as! DDLFieldBoolean
 
@@ -53,7 +53,7 @@ class DDLField_Validation_Tests: XCTestCase {
 	}
 
 	func test_ValidateOnBooleanField_ShouldFail_WhenRequiredValueIsNil() {
-		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
 		let booleanField = fields![0] as! DDLFieldBoolean
 
@@ -71,7 +71,7 @@ class DDLField_Validation_Tests: XCTestCase {
 	}
 
 	private func validateOnStringField_ShouldFail_WhenRequiredValueIs(value: String) {
-		let fields = DDLXSDParser().parse(requiredTextFormDefinitionXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredTextFormDefinitionXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as! DDLFieldString
 
