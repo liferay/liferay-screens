@@ -37,7 +37,9 @@ import Foundation
 		self.session = session
 		self.userAttributes = attributes
 
-		cacheManager = CacheManager(session: session)
+		cacheManager = CacheManager(
+			session: session,
+			userId: userAttributes["userId"]?.longLongValue ?? 0)
 
 		credentialsStorage = CredentialsStorage(store: store)
 

@@ -50,8 +50,8 @@ public enum CacheStrategyType: String {
 		registerPendingToSyncView(nil)
 	}
 
-	public convenience init(session: LRSession) {
-		self.init(name: session.serverName!)
+	public convenience init(session: LRSession, userId: Int64) {
+		self.init(name: "\(session.serverName!)-\(userId)")
 	}
 
 
