@@ -21,65 +21,62 @@ import Foundation
 
 @objc public class SessionContext: NSObject {
 
-	//MARK: Singleton type
+	internal(set) static var currentContext: SessionContext?
 
-	private struct StaticInstance {
-		static var currentUserSession: LRSession?
-		static var currentUserAttributes = [String:AnyObject]()
 
-		static var chacheManager: CacheManager?
+	internal(set) var currentUserSession: LRSession
+	internal(set) var currentUserAttributes: [String:AnyObject]
 
-		static var credentialsStorage = CredentialsStorage(
-			credentialStore: BasicCredentialsStoreKeyChain())
+	internal(set) var cacheManager: CacheManager
+	internal(set) var credentialsStorage: CredentialsStorage
+
+
+	//MARK: Private init
+
+	private init(session: LRSession, attributes: [String: AnyObject], store: CredentialsStore) {
+		self.currentUserSession = session
+		self.currentUserAttributes = attributes
+
+		cacheManager = CacheManager(session: session)
+
+		credentialsStorage = CredentialsStorage(store: store)
+
+		super.init()
 	}
 
 
 	//MARK: Public properties
 
 	public class var isLoggedIn: Bool {
-		return StaticInstance.currentUserSession != nil
+		return currentContext?.currentUserSession != nil
 	}
 
-	public class var currentBasicUserName: String? {
-		let authentication = StaticInstance.currentUserSession?.authentication
+	public var currentBasicUserName: String? {
+		let authentication = currentUserSession.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.username
 	}
 
-	public class var currentBasicPassword: String? {
-		let authentication = StaticInstance.currentUserSession?.authentication
+	public var currentBasicPassword: String? {
+		let authentication = currentUserSession.authentication
 			as? LRBasicAuthentication
 
 		return authentication?.password
 	}
 
-	public class var currentUserId: Int64? {
-		return StaticInstance.currentUserAttributes["userId"]
+	public var currentUserId: Int64? {
+		return currentUserAttributes["userId"]
 				.map { $0 as! NSNumber }
 				.map { $0.longLongValue }
 	}
 
-	public class var currentCacheManager: CacheManager? {
-		return StaticInstance.chacheManager
-	}
-
-	internal class var credentialsStorage: CredentialsStorage {
-		get {
-			return StaticInstance.credentialsStorage
-		}
-		set {
-			StaticInstance.credentialsStorage = newValue
-		}
-	}
 
 	//MARK Public methods
 
-	public class func userAttribute(key: String) -> AnyObject? {
-		return StaticInstance.currentUserAttributes[key]
-	}
-
-	public class func createAnonymousBasicSession(userName: String, _ password: String) -> LRSession {
+	public class func createAnonymousBasicSession(
+			userName: String,
+			_ password: String) -> LRSession {
 		return LRSession(
 			server: LiferayServerContext.server,
 			authentication: LRBasicAuthentication(
@@ -87,115 +84,87 @@ import Foundation
 				password: password))
 	}
 
-	public class func createBasicSession(
+	public class func createBasicSessionContext(
 			username username: String,
 			password: String,
-			userAttributes: [String:AnyObject])
-			-> LRSession {
-
-		credentialsStorage = CredentialsStorage(
-			credentialStore: BasicCredentialsStoreKeyChain())
+			userAttributes: [String:AnyObject]) -> LRSession {
 
 		let authentication = LRBasicAuthentication(
-				username: username,
-				password: password)
+			username: username,
+			password: password)
 
-		return createSession(
-				authentication: authentication,
-				userAttributes: userAttributes)
+		let session = LRSession(
+			server: LiferayServerContext.server,
+			authentication: authentication)
+
+		SessionContext.currentContext = SessionContext(
+			session: session,
+			attributes: userAttributes,
+			store: BasicCredentialsStoreKeyChain())
+
+		return session
 	}
 
 	public class func createOAuthSession(
 			authentication authentication: LROAuth,
-			userAttributes: [String:AnyObject])
-			-> LRSession {
+			userAttributes: [String:AnyObject]) -> LRSession {
 
-		credentialsStorage = CredentialsStorage(
-			credentialStore: OAuthCredentialsStoreKeyChain())
+		let session = LRSession(
+			server: LiferayServerContext.server,
+			authentication: authentication)
 
-		return createSession(
-				server: LiferayServerContext.server,
-				authentication: authentication,
-				userAttributes: userAttributes)
+		SessionContext.currentContext = SessionContext(
+			session: session,
+			attributes: userAttributes,
+			store: OAuthCredentialsStoreKeyChain())
+
+		return session
 	}
 
-
-	private class func createSession(
-			authentication authentication: LRAuthentication,
-			userAttributes: [String:AnyObject])
-			-> LRSession {
-
-		return createSession(
-				server: LiferayServerContext.server,
-				authentication: authentication,
-				userAttributes: userAttributes)
+	public func userAttribute(key: String) -> AnyObject? {
+		return currentUserAttributes[key]
 	}
 
-	public class func createSessionFromCurrentSession() -> LRSession? {
-		if let currentSessionValue = StaticInstance.currentUserSession {
-			return LRSession(session: currentSessionValue)
-		}
-
-		return nil
+	public func createSessionFromCurrentSession() -> LRSession? {
+		return LRSession(session: currentUserSession)
 	}
 
-	public class func createBatchSessionFromCurrentSession() -> LRBatchSession? {
-		if let currentSessionValue = StaticInstance.currentUserSession {
-			return LRBatchSession(session: currentSessionValue)
-		}
-
-		return nil
+	public func createBatchSessionFromCurrentSession() -> LRBatchSession? {
+		return LRBatchSession(session: currentUserSession)
 	}
 
 	public class func logout() {
-		StaticInstance.currentUserSession = nil
-		StaticInstance.currentUserAttributes = [:]
-		StaticInstance.chacheManager = nil
+		SessionContext.currentContext = nil
 	}
 
-	public class func storeCredentials() -> Bool {
+	public func storeCredentials() -> Bool {
 		return credentialsStorage.store(
-				session: StaticInstance.currentUserSession,
-				userAttributes: StaticInstance.currentUserAttributes)
+				session: currentUserSession,
+				userAttributes: currentUserAttributes)
 	}
 
-	public class func removeStoredCredentials() -> Bool {
+	public func removeStoredCredentials() -> Bool {
 		return credentialsStorage.remove()
 	}
 
 	public class func loadStoredCredentials() -> Bool {
-		guard credentialsStorage.hasCredentialsStored else {
+		guard let storage = CredentialsStorage.createFromStoredAuthType() else {
+			return false
+		}
+		guard let result = storage.load() else {
+			return false
+		}
+		guard result.session.server != nil else {
 			return false
 		}
 
-		guard let result = credentialsStorage.load()
-				where result.session.server != nil else {
-			return false
-		}
-
-		StaticInstance.currentUserSession = result.session
-		StaticInstance.currentUserAttributes = result.userAttributes
-		StaticInstance.chacheManager = CacheManager(session: result.session)
+		SessionContext.currentContext = SessionContext(
+			session: result.session,
+			attributes: result.userAttributes,
+			store: storage.store)
 
 		return true
 	}
 
-
-	//MARK Private methods
-
-	private class func createSession(
-			server server: String,
-			authentication: LRAuthentication,
-			userAttributes: [String:AnyObject])
-			-> LRSession {
-
-		let session = LRSession(server: server, authentication: authentication)
-
-		StaticInstance.currentUserSession = session
-		StaticInstance.currentUserAttributes = userAttributes
-		StaticInstance.chacheManager = CacheManager(session: session)
-
-		return session
-	}
 
 }

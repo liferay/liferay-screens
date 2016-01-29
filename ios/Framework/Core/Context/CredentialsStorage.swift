@@ -18,36 +18,28 @@ import UIKit
 
 	public typealias LoadResult = (session: LRSession, userAttributes: [String:AnyObject])
 
-	public let hasCredentialsStored: Bool
+	public let store: CredentialsStore
 
-	private let credentialStore: CredentialsStore
-
-	public init(credentialStore: CredentialsStore) {
-		self.credentialStore = credentialStore
-		hasCredentialsStored = true
+	public init(store: CredentialsStore) {
+		self.store = store
+		super.init()
 	}
 
-	override public init() {
-		let authType = BaseCredentialsStoreKeyChain.storedAuthType()
-
-		if let authType = authType {
-			switch authType {
-			case .Basic:
-				credentialStore = BasicCredentialsStoreKeyChain()
-			case .OAuth:
-				credentialStore = OAuthCredentialsStoreKeyChain()
-			}
-
-			hasCredentialsStored = true
-		}
-		else {
-			// Workaround for "All stored properties of a class instance
-			// must be initialized before returning nil from an initializer
-			credentialStore = BasicCredentialsStoreKeyChain()
-			hasCredentialsStored = false
+	public static func createFromStoredAuthType() -> CredentialsStorage? {
+		guard let authType = BaseCredentialsStoreKeyChain.storedAuthType() else {
+			return nil
 		}
 
-		super.init()
+		let store: CredentialsStore
+
+		switch authType {
+		case .Basic:
+			store = BasicCredentialsStoreKeyChain()
+		case .OAuth:
+			store = OAuthCredentialsStoreKeyChain()
+		}
+
+		return CredentialsStorage(store: store)
 	}
 
 	func store(session session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
@@ -55,28 +47,30 @@ import UIKit
 			return false
 		}
 
-		return credentialStore.storeCredentials(session,
+		return store.storeCredentials(session,
 				userAttributes: userAttributes)
 	}
 
 	public func remove() -> Bool {
-		return credentialStore.removeStoredCredentials()
+		return store.removeStoredCredentials()
 	}
 
 	public func load() -> LoadResult? {
-		if credentialStore.loadStoredCredentials() {
-			if let loadedAuth = credentialStore.authentication,
-					loadedUserAttributes = credentialStore.userAttributes {
-
-				let loadedSession = LRSession(
-						server: LiferayServerContext.server,
-						authentication: loadedAuth)
-
-				return (loadedSession, loadedUserAttributes)
-			}
+		guard store.loadStoredCredentials() else {
+			return nil
+		}
+		guard let loadedAuth = store.authentication else {
+			return nil
+		}
+		guard let loadedUserAttributes = store.userAttributes else {
+			return nil
 		}
 
-		return nil
+		let loadedSession = LRSession(
+				server: LiferayServerContext.server,
+				authentication: loadedAuth)
+
+		return (loadedSession, loadedUserAttributes)
 	}
 
 }
