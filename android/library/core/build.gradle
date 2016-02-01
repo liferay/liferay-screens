@@ -29,27 +29,6 @@ android {
 
 }
 
-repositories {
-	mavenLocal()
-
-	maven {
-		url 'https://repository.liferay.com/nexus/content/groups/liferay-ce'
-	}
-
-	jcenter()
-}
-
-buildscript {
-	repositories {
-		jcenter()
-	}
-	dependencies {
-		classpath 'com.github.dcendents:android-maven-plugin:1.2'
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
-		classpath 'com.neenbedankt.gradle.plugins:android-apt:1.6'
-	}
-}
-
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
@@ -80,4 +59,18 @@ dependencies {
 	testCompile "org.robolectric:robolectric:3.0"
 	testCompile 'org.mockito:mockito-core:1.9.5'
 
+}
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+
+	dependencies {
+		classpath 'com.neenbedankt.gradle.plugins:android-apt:1.6'
+	}
+}
+
+repositories {
+	jcenter()
 }
