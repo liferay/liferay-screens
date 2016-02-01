@@ -1,19 +1,5 @@
 apply plugin: 'com.android.application'
 
-buildscript {
-	repositories {
-		jcenter()
-	}
-
-	dependencies {
-		classpath 'com.android.tools.build:gradle:2.0.0-alpha9'
-	}
-}
-
-repositories {
-	jcenter()
-}
-
 android {
 	compileSdkVersion 23
 	buildToolsVersion '23.0.2'
@@ -64,4 +50,18 @@ dependencies {
 	androidTestCompile 'com.android.support.test.espresso:espresso-core:+'
 	androidTestCompile 'com.android.support.test.espresso:espresso-contrib:+'
 	androidTestCompile 'com.android.support.test.espresso:espresso-idling-resource:+'
+}
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+
+	dependencies {
+		classpath 'com.android.tools.build:gradle:2.0.0-alpha9'
+	}
+}
+
+repositories {
+	jcenter()
 }
