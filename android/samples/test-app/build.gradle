@@ -1,5 +1,19 @@
 apply plugin: 'com.android.application'
 
+buildscript {
+	repositories {
+		jcenter()
+	}
+
+	dependencies {
+		classpath 'com.android.tools.build:gradle:2.0.0-alpha9'
+	}
+}
+
+repositories {
+	jcenter()
+}
+
 android {
 	compileSdkVersion 23
 	buildToolsVersion '23.0.2'
@@ -33,24 +47,6 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 	}
-}
-
-buildscript {
-	repositories {
-		jcenter()
-	}
-
-	dependencies {
-		classpath 'com.android.tools.build:gradle:2.0.0-alpha9'
-	}
-}
-
-repositories {
-	maven {
-		url 'https://repository.liferay.com/nexus/content/groups/liferay-ce'
-	}
-
-	jcenter()
 }
 
 dependencies {
