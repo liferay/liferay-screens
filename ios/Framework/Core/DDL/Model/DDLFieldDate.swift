@@ -16,45 +16,37 @@ import Foundation
 
 public class DDLFieldDate : DDLField {
 
-	override public var currentLocale: NSLocale {
-		didSet {
-			clientDateFormatter.locale = self.currentLocale
-		}
+	private let serverDateFormat = "yyyy-MM-dd"
+	private let gmtTimeZone = NSTimeZone(abbreviation: "GMT")
+
+	public var serverDateFormatter: NSDateFormatter {
+		let result = NSDateFormatter()
+		result.dateFormat = serverDateFormat
+		result.timeZone = gmtTimeZone
+		return result
 	}
 
-	private let serverDateFormat = "yyyy-MM-dd"
-
-	private let serverDateFormatter = NSDateFormatter()
-	private let clientDateFormatter = NSDateFormatter()
-
-	private let gmtTimeZone = NSTimeZone(abbreviation: "GMT")
+	public var clientDateFormatter: NSDateFormatter {
+		let result = NSDateFormatter()
+		result.dateStyle = .LongStyle
+		result.timeStyle = .NoStyle
+		result.locale = currentLocale
+		return result
+	}
 
 
 	override public init(attributes: [String:AnyObject], locale: NSLocale) {
 		super.init(attributes: attributes, locale: locale)
-
-		initFormatters(locale)
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-
-		initFormatters(self.currentLocale)
-	}
-
-	private func initFormatters(locale: NSLocale) {
-		serverDateFormatter.dateFormat = serverDateFormat
-		serverDateFormatter.timeZone = gmtTimeZone
-
-		clientDateFormatter.dateStyle = .LongStyle
-		clientDateFormatter.timeStyle = .NoStyle
-		clientDateFormatter.locale = locale
 	}
 
 
 	//MARK: DDLField
 
-	override internal func convert(fromString value:String?) -> AnyObject? {
+	override internal func convert(fromString value: String?) -> AnyObject? {
 		guard let stringValue = value else {
 			return nil
 		}
