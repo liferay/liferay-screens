@@ -55,18 +55,19 @@ class DDLFieldDate_Tests: XCTestCase {
 		XCTAssertTrue(dateField.repeatable)
 		XCTAssertFalse(dateField.required)
 		XCTAssertTrue(dateField.showLabel)
+		XCTAssertNotNil(dateField.predefinedValue)
+		XCTAssertTrue(dateField.predefinedValue is NSDate)
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		XCTAssertTrue(dateField.predefinedValue != nil)
-		XCTAssertTrue(dateField.predefinedValue is NSDate)
+		let dateValue = dateField.predefinedValue as! NSDate
 		XCTAssertEqual(
 				"31/12/2001",
-				dateFormatter.stringFromDate(dateField.predefinedValue as! NSDate))
+				dateFormatter.stringFromDate(dateValue))
 		XCTAssertEqual(
 				dateField.currentValue as? NSDate,
-				dateField.predefinedValue as? NSDate)
+				dateValue)
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {

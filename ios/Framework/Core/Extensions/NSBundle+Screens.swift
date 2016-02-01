@@ -47,21 +47,21 @@ extension NSBundle {
 	}
 
 	public class func bundleForDefaultTheme() -> NSBundle {
-		let frameworkBundle = NSBundle(forClass: BaseScreenlet.self)
-
-		let defaultBundlePath = frameworkBundle.pathForResource("LiferayScreens-default",
-				ofType: "bundle")!
-
-		return NSBundle(path: defaultBundlePath)!
+		return bundleForName("LiferayScreens-default")
 	}
 
 	public class func bundleForCore() -> NSBundle {
+		return bundleForName("LiferayScreens-core")
+	}
+
+	public class func bundleForName(name: String) -> NSBundle {
 		let frameworkBundle = NSBundle(forClass: BaseScreenlet.self)
 
-		let coreBundlePath = frameworkBundle.pathForResource("LiferayScreens-core",
-				ofType: "bundle")!
+		let bundlePath = frameworkBundle.pathForResource(name, ofType: "bundle")
 
-		return NSBundle(path: coreBundlePath)!
+		// In test environment, separated bundles don't exist.
+		// In such case, the frameworkBundle is used
+		return (bundlePath != nil) ? NSBundle(path: bundlePath!)! : frameworkBundle
 	}
 
 	public class func bundlesForApp() -> [NSBundle] {
