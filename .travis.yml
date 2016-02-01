@@ -15,26 +15,22 @@ cache:
   directories:
     - $HOME/android/library/.gradle/
 
-#podfile: ios/Framework
+podfile: ios/Framework
 
 before_install:
 
     #Android installation (sdk, emulator, wait & unlock)
     - export COMPONENTS=build-tools-23.0.2,android-19,android-23,extra-android-m2repository,extra-google-m2repository,sys-img-armeabi-v7a-android-19
     - curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS && source ~/.android-sdk-installer/env
-#    - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
-#    - emulator -avd test -no-skin -no-audio -no-window &
-#    - adb wait-for-device
-#    - adb shell input keyevent 82 &
 
     #iOS installation (gem, brew & pods)
-#    - export LANG=en_US.UTF-8
-#    - gem install cocoapods
-#    - brew update > /dev/null
-#    - brew outdated xctool || brew upgrade xctool
-#    - env
-#    - locale
-#    - pod --version
+    - export LANG=en_US.UTF-8
+    - gem install cocoapods
+    - brew update > /dev/null
+    - brew outdated xctool || brew upgrade xctool
+    - env
+    - locale
+    - pod --version
 
 script:
     - cd android/library/
@@ -44,9 +40,9 @@ script:
     - ./gradlew test
 
 ##    - iOS tests
-#    - cd ../../..
-#    - cd ios/Framework
-#    - pod install
-#    - ./run-tests.sh
-#    - cd ../..
+    - cd ../../..
+    - cd ios/Framework
+    - pod install
+    - ./run-tests.sh
+    - cd ../..
 
