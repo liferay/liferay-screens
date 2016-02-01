@@ -26,7 +26,7 @@ public class HelloWorldEspressoTest {
 
 	@Test
 	public void listGoesOverTheFold() {
-		onView(withText("DDL Form")).check(matches(isDisplayed()));
+		onView(withText("Login")).check(matches(isDisplayed()));
 	}
 
 
