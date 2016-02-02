@@ -41,7 +41,7 @@ public class GetUserByScreenNameOperation: GetUserBaseOperation {
 	//MARK: LiferayLoginBaseOperation
 
 	override internal func sendGetUserRequest(
-			service service: LRUserService_v62)
+			service service: LRUserService_v70)
 			throws -> NSDictionary? {
 
 		let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId

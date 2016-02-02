@@ -37,7 +37,7 @@ public class LiferayDDLFormLoadOperation: ServerOperation {
 	}
 
 	override public func doRun(session session: LRSession) {
-		let service = LRDDMStructureService_v62(session: session)
+		let service = LRDDMStructureService_v70(session: session)
 
 		do {
 			let structureDataDictionary = try service.getStructureWithStructureId(structureId!)

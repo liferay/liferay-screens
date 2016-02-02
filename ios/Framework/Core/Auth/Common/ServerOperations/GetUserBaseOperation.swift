@@ -53,7 +53,7 @@ public class GetUserBaseOperation: ServerOperation {
 	override public func doRun(session session: LRSession) {
 		do {
 			let result = try sendGetUserRequest(
-				service: LRUserService_v62(session: session))
+				service: LRUserService_v70(session: session))
 
 			if result?["userId"] == nil {
 				lastError = NSError.errorWithCause(.InvalidServerResponse)
@@ -103,7 +103,7 @@ public class GetUserBaseOperation: ServerOperation {
 	// MARK: Template methods
 
 	internal func sendGetUserRequest(
-			service service: LRUserService_v62)
+			service service: LRUserService_v70)
 			throws -> NSDictionary? {
 
 		fatalError("sendGetUserRequest must be overriden")

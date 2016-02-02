@@ -72,7 +72,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRFileP
 				progressDelegate: self)
 		uploadData.progressDelegate = self
 
-		let service = LRDLAppService_v62(session: session)
+		let service = LRDLAppService_v70(session: session)
 
 		requestSemaphore = dispatch_semaphore_create(0)
 

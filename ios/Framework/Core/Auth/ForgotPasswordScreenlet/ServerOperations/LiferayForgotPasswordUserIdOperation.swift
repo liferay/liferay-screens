@@ -19,7 +19,7 @@ public class LiferayForgotPasswordUserIdOperation: LiferayForgotPasswordBaseOper
 	//MARK: LiferayForgotPasswordBaseOperation
 
 	override internal func sendForgotPasswordRequest(
-			service service: LRScreensuserService_v62)
+			service service: LRScreensuserService_v70)
 			throws -> Bool? {
 
 		let userId = Int64(Int(viewModel.userName!)!)

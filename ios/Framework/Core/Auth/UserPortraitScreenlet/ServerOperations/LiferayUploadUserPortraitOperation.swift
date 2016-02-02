@@ -77,7 +77,7 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 	}
 
 	private func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
-		let service = LRUserService_v62(session: session)
+		let service = LRUserService_v70(session: session)
 
 		do {
 			let result = try service.updatePortraitWithUserId(self.userId,
