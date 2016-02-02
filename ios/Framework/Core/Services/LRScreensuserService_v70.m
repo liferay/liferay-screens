@@ -12,29 +12,20 @@
  * details.
  */
 
-#import "LRScreensuserService_v62.h"
+#import "LRScreensuserService_v70.h"
 
 /**
  * @author Bruno Farache
  */
-@implementation LRScreensuserService_v62
-
-- (NSDictionary *)getCurrentUser:(NSError **)error {
-	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
-	}];
-
-	NSDictionary *_command = @{@"/screens-web.screensuser/get-current-user": _params};
-
-	return (NSDictionary *)[self.session invoke:_command error:error];
-}
+@implementation LRScreensuserService_v70
 
 - (BOOL)sendPasswordByEmailAddressWithCompanyId:(long long)companyId emailAddress:(NSString *)emailAddress error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"companyId": @(companyId),
-		@"emailAddress": emailAddress
+		@"emailAddress": [self checkNull: emailAddress]
 	}];
 
-	NSDictionary *_command = @{@"/screens-web.screensuser/send-password-by-email-address": _params};
+	NSDictionary *_command = @{@"/screens.screensuser/send-password-by-email-address": _params};
 
 	return [self boolValue:(NSNumber *)[self.session invoke:_command error:error]];
 }
@@ -42,10 +33,10 @@
 - (BOOL)sendPasswordByScreenNameWithCompanyId:(long long)companyId screenName:(NSString *)screenName error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"companyId": @(companyId),
-		@"screenName": screenName
+		@"screenName": [self checkNull: screenName]
 	}];
 
-	NSDictionary *_command = @{@"/screens-web.screensuser/send-password-by-screen-name": _params};
+	NSDictionary *_command = @{@"/screens.screensuser/send-password-by-screen-name": _params};
 
 	return [self boolValue:(NSNumber *)[self.session invoke:_command error:error]];
 }
@@ -55,9 +46,18 @@
 		@"userId": @(userId)
 	}];
 
-	NSDictionary *_command = @{@"/screens-web.screensuser/send-password-by-user-id": _params};
+	NSDictionary *_command = @{@"/screens.screensuser/send-password-by-user-id": _params};
 
 	return [self boolValue:(NSNumber *)[self.session invoke:_command error:error]];
+}
+
+- (NSDictionary *)getCurrentUser:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+	}];
+
+	NSDictionary *_command = @{@"/screens.screensuser/get-current-user": _params};
+
+	return (NSDictionary *)[self.session invoke:_command error:error];
 }
 
 @end

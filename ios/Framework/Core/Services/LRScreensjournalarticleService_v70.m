@@ -12,20 +12,22 @@
  * details.
  */
 
-#import "LRScreensjournalarticleService_v62.h"
+#import "LRScreensjournalarticleService_v70.h"
 
 /**
  * @author Bruno Farache
  */
-@implementation LRScreensjournalarticleService_v62
+@implementation LRScreensjournalarticleService_v70
 
-- (NSString *)getJournalArticleContentWithClassPK:(long long)classPK locale:(NSString *)locale error:(NSError **)error {
+- (NSString *)getJournalArticleContentWithGroupId:(long long)groupId articleId:(NSString *)articleId ddmTemplateId:(long long)ddmTemplateId locale:(NSString *)locale error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
-		@"classPK": @(classPK),
-		@"locale": locale
+		@"groupId": @(groupId),
+		@"articleId": [self checkNull: articleId],
+		@"ddmTemplateId": @(ddmTemplateId),
+		@"locale": [self checkNull: locale]
 	}];
 
-	NSDictionary *_command = @{@"/screens-web.screensjournalarticle/get-journal-article-content": _params};
+	NSDictionary *_command = @{@"/screens.screensjournalarticle/get-journal-article-content": _params};
 
 	return (NSString *)[self.session invoke:_command error:error];
 }
@@ -34,23 +36,21 @@
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"classPK": @(classPK),
 		@"ddmTemplateId": @(ddmTemplateId),
-		@"locale": locale
+		@"locale": [self checkNull: locale]
 	}];
 
-	NSDictionary *_command = @{@"/screens-web.screensjournalarticle/get-journal-article-content": _params};
+	NSDictionary *_command = @{@"/screens.screensjournalarticle/get-journal-article-content": _params};
 
 	return (NSString *)[self.session invoke:_command error:error];
 }
 
-- (NSString *)getJournalArticleContentWithGroupId:(long long)groupId articleId:(NSString *)articleId ddmTemplateId:(long long)ddmTemplateId locale:(NSString *)locale error:(NSError **)error {
+- (NSString *)getJournalArticleContentWithClassPK:(long long)classPK locale:(NSString *)locale error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
-		@"groupId": @(groupId),
-		@"articleId": articleId,
-		@"ddmTemplateId": @(ddmTemplateId),
-		@"locale": locale
+		@"classPK": @(classPK),
+		@"locale": [self checkNull: locale]
 	}];
 
-	NSDictionary *_command = @{@"/screens-web.screensjournalarticle/get-journal-article-content": _params};
+	NSDictionary *_command = @{@"/screens.screensjournalarticle/get-journal-article-content": _params};
 
 	return (NSString *)[self.session invoke:_command error:error];
 }

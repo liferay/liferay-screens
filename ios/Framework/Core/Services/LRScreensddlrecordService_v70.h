@@ -21,7 +21,7 @@
 /**
  * @author Bruno Farache
  */
-@interface LRScreensddlrecordService_v62 : LRBaseService
+@interface LRScreensddlrecordService_v70 : LRBaseService
 
 - (NSDictionary *)getDdlRecordWithDdlRecordId:(long long)ddlRecordId locale:(NSString *)locale error:(NSError **)error;
 - (NSArray *)getDdlRecordsWithDdlRecordSetId:(long long)ddlRecordSetId locale:(NSString *)locale start:(int)start end:(int)end error:(NSError **)error;

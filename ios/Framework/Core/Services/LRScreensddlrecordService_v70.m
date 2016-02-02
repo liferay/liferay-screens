@@ -12,20 +12,20 @@
  * details.
  */
 
-#import "LRScreensddlrecordService_v62.h"
+#import "LRScreensddlrecordService_v70.h"
 
 /**
  * @author Bruno Farache
  */
-@implementation LRScreensddlrecordService_v62
+@implementation LRScreensddlrecordService_v70
 
 - (NSDictionary *)getDdlRecordWithDdlRecordId:(long long)ddlRecordId locale:(NSString *)locale error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"ddlRecordId": @(ddlRecordId),
-		@"locale": locale
+		@"locale": [self checkNull: locale]
 	}];
 
-	NSDictionary *_command = @{@"/screens-web.screensddlrecord/get-ddl-record": _params};
+	NSDictionary *_command = @{@"/screens.screensddlrecord/get-ddl-record": _params};
 
 	return (NSDictionary *)[self.session invoke:_command error:error];
 }
@@ -33,12 +33,12 @@
 - (NSArray *)getDdlRecordsWithDdlRecordSetId:(long long)ddlRecordSetId locale:(NSString *)locale start:(int)start end:(int)end error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"ddlRecordSetId": @(ddlRecordSetId),
-		@"locale": locale,
+		@"locale": [self checkNull: locale],
 		@"start": @(start),
 		@"end": @(end)
 	}];
 
-	NSDictionary *_command = @{@"/screens-web.screensddlrecord/get-ddl-records": _params};
+	NSDictionary *_command = @{@"/screens.screensddlrecord/get-ddl-records": _params};
 
 	return (NSArray *)[self.session invoke:_command error:error];
 }
@@ -47,12 +47,12 @@
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"ddlRecordSetId": @(ddlRecordSetId),
 		@"userId": @(userId),
-		@"locale": locale,
+		@"locale": [self checkNull: locale],
 		@"start": @(start),
 		@"end": @(end)
 	}];
 
-	NSDictionary *_command = @{@"/screens-web.screensddlrecord/get-ddl-records": _params};
+	NSDictionary *_command = @{@"/screens.screensddlrecord/get-ddl-records": _params};
 
 	return (NSArray *)[self.session invoke:_command error:error];
 }
@@ -62,7 +62,7 @@
 		@"ddlRecordSetId": @(ddlRecordSetId)
 	}];
 
-	NSDictionary *_command = @{@"/screens-web.screensddlrecord/get-ddl-records-count": _params};
+	NSDictionary *_command = @{@"/screens.screensddlrecord/get-ddl-records-count": _params};
 
 	return (NSNumber *)[self.session invoke:_command error:error];
 }
@@ -73,7 +73,7 @@
 		@"userId": @(userId)
 	}];
 
-	NSDictionary *_command = @{@"/screens-web.screensddlrecord/get-ddl-records-count": _params};
+	NSDictionary *_command = @{@"/screens.screensddlrecord/get-ddl-records-count": _params};
 
 	return (NSNumber *)[self.session invoke:_command error:error];
 }

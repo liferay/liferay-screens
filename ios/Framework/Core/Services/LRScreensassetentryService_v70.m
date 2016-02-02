@@ -12,20 +12,20 @@
  * details.
  */
 
-#import "LRScreensassetentryService_v62.h"
+#import "LRScreensassetentryService_v70.h"
 
 /**
  * @author Bruno Farache
  */
-@implementation LRScreensassetentryService_v62
+@implementation LRScreensassetentryService_v70
 
 - (NSArray *)getAssetEntriesWithAssetEntryQuery:(LRJSONObjectWrapper *)assetEntryQuery locale:(NSString *)locale error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
-		@"locale": locale
+		@"locale": [self checkNull: locale]
 	}];
 
 	[self mangleWrapperWithParams:_params name:@"assetEntryQuery" className:@"com.liferay.portlet.asset.service.persistence.AssetEntryQuery" wrapper:assetEntryQuery];
-	NSDictionary *_command = @{@"/screens-web.screensassetentry/get-asset-entries": _params};
+	NSDictionary *_command = @{@"/screens.screensassetentry/get-asset-entries": _params};
 
 	return (NSArray *)[self.session invoke:_command error:error];
 }
@@ -34,12 +34,12 @@
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"companyId": @(companyId),
 		@"groupId": @(groupId),
-		@"portletItemName": portletItemName,
-		@"locale": locale,
+		@"portletItemName": [self checkNull: portletItemName],
+		@"locale": [self checkNull: locale],
 		@"max": @(max)
 	}];
 
-	NSDictionary *_command = @{@"/screens-web.screensassetentry/get-asset-entries": _params};
+	NSDictionary *_command = @{@"/screens.screensassetentry/get-asset-entries": _params};
 
 	return (NSArray *)[self.session invoke:_command error:error];
 }
