@@ -170,25 +170,23 @@ class DDLFieldBoolean_Tests: XCTestCase {
 	//MARK: Parse
 
 	func test_Parse_ShouldExtractValues() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"boolean\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Boolean\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"checkbox\" " +
-				"width=\"\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\"><![CDATA[A Boolean]]></entry> " +
-						"<entry name=\"predefinedValue\"><![CDATA[true]]></entry> " +
-						"<entry name=\"tip\"><![CDATA[The tip]]></entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
+		let json = "{\"availableLanguageIds\": [\"en_US\"]," +
+			"\"defaultLanguageId\": \"en_US\"," +
+			"\"fields\": [{" +
+			"\"label\": {\"en_US\": \"A Boolean\"}," +
+			"\"tip\": {\"en_US\": \"The tip\"}," +
+			"\"predefinedValue\": {\"en_US\": true}," +
+			"\"dataType\": \"boolean\"," +
+			"\"indexType\": \"keyword\"," +
+			"\"localizable\": true," +
+			"\"name\": \"A_Boolean\"," +
+			"\"readOnly\": false," +
+			"\"repeatable\": true," +
+			"\"required\": false," +
+			"\"showLabel\": true," +
+			"\"type\": \"checkbox\"}]}"
 
-		let fields = DDLJSONParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(json, locale: spanishLocale)
 
 		XCTAssertTrue(fields != nil)
 		XCTAssertEqual(1, fields!.count)
@@ -214,21 +212,21 @@ class DDLFieldBoolean_Tests: XCTestCase {
 	//MARK: Validate
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-				"<dynamic-element dataType=\"boolean\" " +
-						"name=\"A_Boolean\" " +
-						"readOnly=\"false\" " +
-						"repeatable=\"true\" " +
-						"required=\"true\" " +
-						"showLabel=\"true\" " +
-						"type=\"checkbox\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\"><![CDATA[A Boolean]]></entry> " +
-					"</meta-data> " +
-				"</dynamic-element> </root>"
+		let json = "{\"availableLanguageIds\": [\"en_US\"]," +
+			"\"defaultLanguageId\": \"en_US\"," +
+			"\"fields\": [{" +
+			"\"label\": {\"en_US\": \"A Boolean\"}," +
+			"\"dataType\": \"boolean\"," +
+			"\"indexType\": \"keyword\"," +
+			"\"localizable\": true," +
+			"\"name\": \"A_Boolean\"," +
+			"\"readOnly\": false," +
+			"\"repeatable\": true," +
+			"\"required\": true," +
+			"\"showLabel\": true," +
+			"\"type\": \"checkbox\"}]}"
 
-		let fields = DDLJSONParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(json, locale: spanishLocale)
 
 		let booleanField = fields![0] as! DDLFieldBoolean
 
