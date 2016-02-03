@@ -25,21 +25,15 @@ public enum CacheStrategyType: String {
 
 @objc public class CacheManager: NSObject {
 
-	private let tableSchemaDatabase = "lr_cache_"
+	private static let tableSchemaDatabase = "lr_cache_"
 
-	private let database: YapDatabase
-	private let readConnection: YapDatabaseConnection
-	private let writeConnection: YapDatabaseConnection
+	public let database: YapDatabase
+	public let readConnection: YapDatabaseConnection
+	public let writeConnection: YapDatabaseConnection
 
 
 	public init(name: String) {
-		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
-		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
-
-		let filename = name.toSafeFilename()
-		let dbPath = "\(path)_\(filename)"
-
-		CacheManager.fixWrongDatabaseFilename(filename, path: path)
+		let dbPath = CacheManager.databasePath(name)
 
 		database = YapDatabase(path: dbPath)
 		readConnection = database.newConnection()
@@ -53,7 +47,6 @@ public enum CacheStrategyType: String {
 	public convenience init(session: LRSession, userId: Int64) {
 		self.init(name: "\(session.serverName!)-\(userId)")
 	}
-
 
 	public func getString(collection collection: String, key: String, result: String? -> ()) {
 		readConnection.readWithBlock { transaction in
@@ -286,29 +279,21 @@ public enum CacheStrategyType: String {
 	}
 
 
-	//MARK: Private methods
+	//MARK "protected" methods
 
-	private func pendingToSyncTransaction(result: YapDatabaseViewTransaction? -> ()) {
-		if database.registeredExtension("pendingToSync") != nil {
-			readConnection.readWithBlock { transaction in
-				result(transaction.ext("pendingToSync") as? YapDatabaseViewTransaction)
-			}
-		}
-		else {
-			registerPendingToSyncView { success in
-				if success {
-					self.readConnection.readWithBlock { transaction in
-						result(transaction.ext("pendingToSync") as? YapDatabaseViewTransaction)
-					}
-				}
-				else {
-					result(nil)
-				}
-			}
-		}
+	public class func databasePath(name: String) -> String {
+		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0]
+		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
+
+		let filename = name.toSafeFilename()
+		let dbPath = "\(path)_\(filename)"
+
+		CacheManager.fixWrongDatabaseFilename(filename, path: path)
+
+		return dbPath
 	}
 
-	private func registerPendingToSyncView(result: (Bool -> ())?) {
+	public func registerPendingToSyncView(result: (Bool -> ())?) {
 		let grouping = YapDatabaseViewGrouping.withKeyBlock { (collection, key) in
 			return collection
 		}
@@ -337,11 +322,34 @@ public enum CacheStrategyType: String {
 						connection: self.writeConnection,
 						completionQueue: nil) { success in
 							result?(success)
-						}
+					}
 				}
 				else {
 					result?(false)
 				}
+		}
+	}
+
+
+	//MARK: Private methods
+
+	private func pendingToSyncTransaction(result: YapDatabaseViewTransaction? -> ()) {
+		if database.registeredExtension("pendingToSync") != nil {
+			readConnection.readWithBlock { transaction in
+				result(transaction.ext("pendingToSync") as? YapDatabaseViewTransaction)
+			}
+		}
+		else {
+			registerPendingToSyncView { success in
+				if success {
+					self.readConnection.readWithBlock { transaction in
+						result(transaction.ext("pendingToSync") as? YapDatabaseViewTransaction)
+					}
+				}
+				else {
+					result(nil)
+				}
+			}
 		}
 	}
 
@@ -359,6 +367,5 @@ public enum CacheStrategyType: String {
 			}
 		}
 	}
-
 
 }
