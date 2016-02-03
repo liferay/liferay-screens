@@ -13,8 +13,17 @@
 */
 import Foundation
 
+#if LIFERAY_SCREENS_FRAMEWORK
+	import LRMobileSDK
+	import LROAuth
+#endif
 
 @objc public protocol ScreensFactory {
+
+	func createSessionContext(
+		session session: LRSession,
+		attributes: [String: AnyObject],
+		store: CredentialsStore) -> SessionContext
 
 	func createCacheManager(session session: LRSession, userId: Int64) -> CacheManager
 
@@ -23,6 +32,16 @@ import Foundation
 
 
 @objc public class ScreensFactoryImpl: NSObject, ScreensFactory {
+
+	public func createSessionContext(
+			session session: LRSession,
+			attributes: [String: AnyObject],
+			store: CredentialsStore) -> SessionContext {
+		return SessionContext(
+			session: session,
+			attributes: attributes,
+			store: store)
+	}
 
 	public func createCacheManager(session session: LRSession, userId: Int64) -> CacheManager {
 		return CacheManager(session: session, userId: userId)

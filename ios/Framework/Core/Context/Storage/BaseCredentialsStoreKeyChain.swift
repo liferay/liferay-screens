@@ -19,7 +19,7 @@ import UIKit
 #endif
 
 
-public class BaseCredentialsStoreKeyChain : CredentialsStore {
+@objc public class BaseCredentialsStoreKeyChain : NSObject, CredentialsStore {
 
 	public var authentication: LRAuthentication?
 	public var userAttributes: [String:AnyObject]?

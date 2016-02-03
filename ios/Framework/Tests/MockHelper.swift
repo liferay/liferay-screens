@@ -67,7 +67,7 @@ class Liferay62MockServer : MockServer, StubResponses {
 }
 
 
-class CredentialStoreMock : CredentialsStore {
+@objc class CredentialStoreMock : NSObject, CredentialsStore {
 
 	var calledLoadCredential = false
 	var calledRemoveCredential = false

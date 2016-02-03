@@ -30,9 +30,7 @@ import Foundation
 	public var credentialsStorage: CredentialsStorage
 
 
-	//MARK: Private init
-
-	private init(session: LRSession, attributes: [String: AnyObject], store: CredentialsStore) {
+	public init(session: LRSession, attributes: [String: AnyObject], store: CredentialsStore) {
 		self.session = session
 		self.userAttributes = attributes
 
@@ -96,10 +94,11 @@ import Foundation
 			server: LiferayServerContext.server,
 			authentication: authentication)
 
-		SessionContext.currentContext = SessionContext(
-			session: session,
-			attributes: userAttributes,
-			store: BasicCredentialsStoreKeyChain())
+		SessionContext.currentContext =
+			LiferayServerContext.factory.createSessionContext(
+				session: session,
+				attributes: userAttributes,
+				store: BasicCredentialsStoreKeyChain())
 
 		return session
 	}
@@ -112,10 +111,11 @@ import Foundation
 			server: LiferayServerContext.server,
 			authentication: authentication)
 
-		SessionContext.currentContext = SessionContext(
-			session: session,
-			attributes: userAttributes,
-			store: OAuthCredentialsStoreKeyChain())
+		SessionContext.currentContext =
+			LiferayServerContext.factory.createSessionContext(
+				session: session,
+				attributes: userAttributes,
+				store: OAuthCredentialsStoreKeyChain())
 
 		return session
 	}
@@ -162,10 +162,11 @@ import Foundation
 			return false
 		}
 
-		SessionContext.currentContext = SessionContext(
-			session: result.session,
-			attributes: result.userAttributes,
-			store: storage.store)
+		SessionContext.currentContext =
+			LiferayServerContext.factory.createSessionContext(
+				session: result.session,
+				attributes: result.userAttributes,
+				store: storage.store)
 
 		return true
 	}
