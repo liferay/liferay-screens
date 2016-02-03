@@ -12,7 +12,11 @@
  * details.
  */
 
-#import "LRBaseService.h"
+#ifdef LIFERAY_SCREENS_FRAMEWORK
+	@import LRMobileSDK;
+#else
+	#import "LRBaseService.h"
+#endif
 
 /**
  * @author Bruno Farache
