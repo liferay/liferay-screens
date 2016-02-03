@@ -76,7 +76,7 @@ class CredentialStoreMock : CredentialsStore {
 	var authentication: LRAuthentication?
 	var userAttributes: [String:AnyObject]?
 
-	var hasData: Bool = true
+	var hasData = true
 
 	func storeCredentials(session: LRSession?, userAttributes: [String:AnyObject]?) -> Bool {
 		calledStoreCredential = true
@@ -101,4 +101,12 @@ class CredentialStoreMock : CredentialsStore {
 		return hasData
 	}
 
+}
+
+
+// Syntactic sugar
+func withCredentialsStoreMockedSession(block: (CredentialStoreMock) -> ()) {
+	let mock = CredentialStoreMock()
+	SessionContext.currentContext?.credentialsStorage = CredentialsStorage(store: mock)
+	block(mock)
 }
