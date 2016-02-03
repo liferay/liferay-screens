@@ -151,6 +151,11 @@ import Foundation
 		guard let storage = CredentialsStorage.createFromStoredAuthType() else {
 			return false
 		}
+
+		return loadStoredCredentials(storage)
+	}
+
+	public class func loadStoredCredentials(storage: CredentialsStorage) -> Bool {
 		guard let result = storage.load() else {
 			return false
 		}
