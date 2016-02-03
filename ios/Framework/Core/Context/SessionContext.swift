@@ -21,8 +21,7 @@ import Foundation
 
 @objc public class SessionContext: NSObject {
 
-	internal(set) static var currentContext: SessionContext?
-
+	public static var currentContext: SessionContext?
 
 	public let session: LRSession
 	public let userAttributes: [String:AnyObject]
