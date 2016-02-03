@@ -19,6 +19,8 @@ import android.content.Context;
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.oauth.OAuth;
+import com.liferay.mobile.screens.base.AbstractFactory;
+import com.liferay.mobile.screens.base.FactoryProvider;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStorageSharedPreferences;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStorageSharedPreferences;
@@ -36,10 +38,6 @@ public class CredentialsStorageBuilder {
 		AUTO(1),
 		SHARED_PREFERENCES(2);
 
-		StorageType(int value) {
-			_value = value;
-		}
-
 		public static StorageType valueOf(int value) {
 			for (StorageType s : values()) {
 				if (s._value == value) {
@@ -51,6 +49,10 @@ public class CredentialsStorageBuilder {
 
 		public int toInt() {
 			return _value;
+		}
+
+		StorageType(int value) {
+			_value = value;
 		}
 
 		private int _value;
@@ -117,56 +119,36 @@ public class CredentialsStorageBuilder {
 	}
 
 	protected CredentialsStorage createStore() {
-		CredentialsStorage credentialsStorage;
-		Class credentialStoreClass;
+
+		AbstractFactory instance = FactoryProvider.getInstance();
 
 		if (_auth == null) {
 			// figure out the type from stored value
 			switch (BaseCredentialsStorageSharedPreferences.getStoredAuthenticationType(_context)) {
 				case BASIC:
-					credentialStoreClass = BasicCredentialsStorageSharedPreferences.class;
-					break;
+					return instance.getBasicCredentialsStorageSharedPreferences();
 				case OAUTH:
-					credentialStoreClass = OAuthCredentialsStorageSharedPreferences.class;
-					break;
+					return instance.getOAuthCredentialsStorageSharedPreferences();
 				default:
-					credentialStoreClass = CredentialsStorageVoid.class;
+					return new CredentialsStorageVoid();
 			}
 		}
 		else {
 			if (_auth instanceof BasicAuthentication) {
-				credentialStoreClass = BasicCredentialsStorageSharedPreferences.class;
+				return instance.getBasicCredentialsStorageSharedPreferences();
 			}
 			else if (_auth instanceof OAuth) {
-				credentialStoreClass = OAuthCredentialsStorageSharedPreferences.class;
+				return instance.getOAuthCredentialsStorageSharedPreferences();
 			}
 			else {
 				throw new IllegalStateException("Authentication type is not supported");
 			}
 		}
-
-		try {
-			if (StorageType.SHARED_PREFERENCES.equals(_storageType)) {
-				credentialsStorage = (CredentialsStorage) credentialStoreClass.newInstance();
-			}
-			else if (StorageType.AUTO.equals(_storageType)) {
-				// TODO right now, we only support Shared Prefs.
-				credentialsStorage = (CredentialsStorage) credentialStoreClass.newInstance();
-			}
-			else {
-				credentialsStorage = new CredentialsStorageVoid();
-			}
-
-		}
-		catch (Exception e) {
-			throw new IllegalStateException("Store can't be instantiated");
-		}
-
-		return credentialsStorage;
 	}
 
 	private Authentication _auth;
 	private User _user;
+	//TODO implement other storage mechanisms
 	private StorageType _storageType = StorageType.AUTO;
 	private Context _context;
 
