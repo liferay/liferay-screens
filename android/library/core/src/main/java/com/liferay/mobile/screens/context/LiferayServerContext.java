@@ -27,14 +27,10 @@ public class LiferayServerContext {
 		int companyIdentifier = resources.getIdentifier("liferay_company_id", "integer", packageName);
 		int groupIdentifier = resources.getIdentifier("liferay_group_id", "integer", packageName);
 
-		long companyId = getValueFromIntegerOrString(resources, R.string.liferay_company_id, companyIdentifier);
-		long groupId = getValueFromIntegerOrString(resources, R.string.liferay_group_id, groupIdentifier);
-
-		String server = resources.getString(R.string.liferay_server);
-
-		LiferayServerContext.setCompanyId(companyId);
-		LiferayServerContext.setGroupId(groupId);
-		LiferayServerContext.setServer(server);
+		_companyId = getValueFromIntegerOrString(resources, R.string.liferay_company_id, companyIdentifier);
+		_groupId = getValueFromIntegerOrString(resources, R.string.liferay_group_id, groupIdentifier);
+		_server = resources.getString(R.string.liferay_server);
+		_factoryClass = resources.getString(R.string.factory_class);
 	}
 
 	public static long getCompanyId() {
@@ -61,10 +57,19 @@ public class LiferayServerContext {
 		_server = server;
 	}
 
+	public static String getFactoryClass() {
+		return _factoryClass;
+	}
+
+	public static void setFactoryClass(String factoryClass) {
+		_factoryClass = factoryClass;
+	}
+
 	private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
 		return integerId == 0 ? Long.valueOf(resources.getString(stringId)) : resources.getInteger(integerId);
 	}
 
+	private static String _factoryClass;
 	private static long _companyId;
 	private static long _groupId;
 	private static String _server;

@@ -6,4 +6,6 @@
 	<!-- Default host IP using Genymotion emulator -->
 	<string name="liferay_server">http://192.168.56.1:8080</string>
 
+	<string name="factory_class">com.liferay.mobile.screens.base.FactoryCE</string>
+
 </resources>
