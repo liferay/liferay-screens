@@ -49,8 +49,12 @@ dependencies {
 		exclude group: 'com.google.android', module: 'support-v4'
 	}
 
-	compile 'com.pushtorefresh.storio:sqlite-annotations:1.7.0'
-	compile 'com.pushtorefresh.storio:sqlite:1.7.0'
+	compile('com.pushtorefresh.storio:sqlite-annotations:1.7.0') {
+		exclude group: 'com.android.support', module: 'support-annotations'
+	}
+	compile('com.pushtorefresh.storio:sqlite:1.7.0') {
+		exclude group: 'com.android.support', module: 'support-annotations'
+	}
 	apt 'com.pushtorefresh.storio:sqlite-annotations-processor:1.7.0'
 	compile 'io.reactivex:rxjava:1.1.0'
 
