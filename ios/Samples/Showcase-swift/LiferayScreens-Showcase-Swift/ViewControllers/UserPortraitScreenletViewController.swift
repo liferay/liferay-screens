@@ -47,8 +47,8 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		if SessionContext.isLoggedIn {
-			userIdField.text = SessionContext.userAttribute("userId")?.description
+		if let userId = SessionContext.currentContext?.userAttribute("userId")?.description {
+			userIdField.text = userId
 		}
 
 		screenletWithDelegate?.delegate = self
