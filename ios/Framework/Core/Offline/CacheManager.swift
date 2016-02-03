@@ -31,17 +31,20 @@ public enum CacheStrategyType: String {
 	public let readConnection: YapDatabaseConnection
 	public let writeConnection: YapDatabaseConnection
 
-
-	public init(name: String) {
-		let dbPath = CacheManager.databasePath(name)
-
-		database = YapDatabase(path: dbPath)
+	public init(database: YapDatabase) {
+		self.database = database
 		readConnection = database.newConnection()
 		writeConnection = database.newConnection()
 
 		super.init()
 
 		registerPendingToSyncView(nil)
+	}
+
+	public convenience init(name: String) {
+		let dbPath = CacheManager.databasePath(name)
+
+		self.init(database: YapDatabase(path: dbPath))
 	}
 
 	public convenience init(session: LRSession, userId: Int64) {
