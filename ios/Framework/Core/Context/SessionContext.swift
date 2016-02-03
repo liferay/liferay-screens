@@ -37,7 +37,7 @@ import Foundation
 		self.session = session
 		self.userAttributes = attributes
 
-		cacheManager = CacheManager(
+		cacheManager = LiferayServerContext.factory.createCacheManager(
 			session: session,
 			userId: userAttributes["userId"]?.longLongValue ?? 0)
 

@@ -31,7 +31,7 @@ import Foundation
 			return StaticInstance.serverProperties!["server"] as! String
 		}
 		set {
-			loadContextFile ()
+			loadContextFile()
 			StaticInstance.serverProperties!["server"] = newValue
 		}
 	}
@@ -42,7 +42,7 @@ import Foundation
 			return (StaticInstance.serverProperties!["companyId"] as! NSNumber).longLongValue
 		}
 		set {
-			loadContextFile ()
+			loadContextFile()
 			StaticInstance.serverProperties!["companyId"] = NSNumber(longLong: newValue)
 		}
 	}
@@ -53,8 +53,19 @@ import Foundation
 			return (StaticInstance.serverProperties!["groupId"] as! NSNumber).longLongValue
 		}
 		set {
-			loadContextFile ()
+			loadContextFile()
 			StaticInstance.serverProperties!["groupId"] = NSNumber(longLong: newValue)
+		}
+	}
+
+	public class var factory: ScreensFactory {
+		get {
+			loadContextFile()
+			return StaticInstance.serverProperties!["factory"] as! ScreensFactory
+		}
+		set {
+			loadContextFile()
+			StaticInstance.serverProperties!["factory"] = newValue
 		}
 	}
 
@@ -75,7 +86,21 @@ import Foundation
 	//MARK: Private methods
 
 	private class func loadContextFile() {
-		if StaticInstance.serverProperties != nil {
+
+		func createFactory() {
+			guard let className = StaticInstance.serverProperties?["factory"] as? String else {
+				StaticInstance.serverProperties!["factory"] = ScreensFactoryImpl()
+				return
+			}
+			guard let factoryInstance = dynamicInit(className) as? ScreensFactory else {
+				StaticInstance.serverProperties!["factory"] = ScreensFactoryImpl()
+				return
+			}
+
+			StaticInstance.serverProperties!["factory"] = factoryInstance
+		}
+
+		guard StaticInstance.serverProperties == nil else {
 			return
 		}
 
@@ -92,11 +117,13 @@ import Foundation
 
 			if let path = bundle.pathForResource(PlistFile, ofType:"plist") {
 				StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
+				createFactory()
 				found = true
 			}
 			else {
 				if let path = bundle.pathForResource(PlistFileSample, ofType:"plist") {
 					StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
+					createFactory()
 					foundFallback = true
 				}
 				else {
@@ -104,7 +131,7 @@ import Foundation
 							"companyId": 10157,
 							"groupId": 10184,
 							"server": "http://localhost:8080"]
-
+					createFactory()
 				}
 			}
 		}
