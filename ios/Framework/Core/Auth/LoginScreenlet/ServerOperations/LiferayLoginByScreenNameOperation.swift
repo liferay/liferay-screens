@@ -26,7 +26,7 @@ public class LiferayLoginByScreenNameOperation: GetUserByScreenNameOperation {
 
 	override public func postRun() {
 		if lastError == nil {
-			setResultAsSessionContext()
+			loginWithResult()
 		}
 	}
 

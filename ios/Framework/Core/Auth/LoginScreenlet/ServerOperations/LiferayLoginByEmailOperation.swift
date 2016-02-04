@@ -26,7 +26,7 @@ public class LiferayLoginByEmailOperation: GetUserByEmailOperation {
 
 	override public func postRun() {
 		if lastError == nil {
-			setResultAsSessionContext()
+			loginWithResult()
 		}
 	}
 
