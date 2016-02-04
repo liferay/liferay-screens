@@ -166,7 +166,7 @@ import Foundation
 			LiferayServerContext.factory.createSessionContext(
 				session: result.session,
 				attributes: result.userAttributes,
-				store: storage.store)
+				store: storage.credentialsStore)
 
 		return true
 	}

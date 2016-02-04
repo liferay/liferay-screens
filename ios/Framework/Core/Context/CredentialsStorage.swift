@@ -18,10 +18,10 @@ import UIKit
 
 	public typealias LoadResult = (session: LRSession, userAttributes: [String:AnyObject])
 
-	public let store: CredentialsStore
+	public let credentialsStore: CredentialsStore
 
 	public init(store: CredentialsStore) {
-		self.store = store
+		credentialsStore = store
 		super.init()
 	}
 
@@ -47,22 +47,22 @@ import UIKit
 			return false
 		}
 
-		return store.storeCredentials(session,
+		return credentialsStore.storeCredentials(session,
 				userAttributes: userAttributes)
 	}
 
 	public func remove() -> Bool {
-		return store.removeStoredCredentials()
+		return credentialsStore.removeStoredCredentials()
 	}
 
 	public func load() -> LoadResult? {
-		guard store.loadStoredCredentials() else {
+		guard credentialsStore.loadStoredCredentials() else {
 			return nil
 		}
-		guard let loadedAuth = store.authentication else {
+		guard let loadedAuth = credentialsStore.authentication else {
 			return nil
 		}
-		guard let loadedUserAttributes = store.userAttributes else {
+		guard let loadedUserAttributes = credentialsStore.userAttributes else {
 			return nil
 		}
 
