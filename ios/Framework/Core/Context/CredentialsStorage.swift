@@ -42,7 +42,7 @@ import UIKit
 		return CredentialsStorage(store: store)
 	}
 
-	func store(session session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
+	public func store(session session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
 		if session == nil || userAttributes.isEmpty {
 			return false
 		}
