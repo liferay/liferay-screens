@@ -59,7 +59,7 @@ import UIKit
 		viewModel.labelFields = parseFields(self.labelFields)
 	}
 
-	override internal func createPageLoadInteractor(
+	override public func createPageLoadInteractor(
 			page page: Int,
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
@@ -76,20 +76,20 @@ import UIKit
 		return interactor
 	}
 
-	override internal func onLoadPageError(page page: Int, error: NSError) {
+	override public func onLoadPageError(page page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
 
 		ddlListDelegate?.screenlet?(self, onDDLListError: error)
 	}
 
-	override internal func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
+	override public func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
 		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
 		ddlListDelegate?.screenlet?(self,
 				onDDLListResponseRecords: rows as! [DDLRecord])
 	}
 
-	override internal func onSelectedRow(row: AnyObject) {
+	override public func onSelectedRow(row: AnyObject) {
 		ddlListDelegate?.screenlet?(self,
 				onDDLSelectedRecord: row as! DDLRecord)
 	}

@@ -45,7 +45,7 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 		}
 	}
 
-	private func processLoadPageResult(serverRows: [[String:AnyObject]], rowCount: Int?) {
+	public func processLoadPageResult(serverRows: [[String:AnyObject]], rowCount: Int?) {
 		let screenlet = self.screenlet as! BaseListScreenlet
 		let baseListView = screenlet.screenletView as! BaseListView
 
