@@ -94,11 +94,13 @@ import Foundation
 			server: LiferayServerContext.server,
 			authentication: authentication)
 
+		let store = LiferayServerContext.factory.createCredentialsStore(AuthType.Basic)
+
 		SessionContext.currentContext =
 			LiferayServerContext.factory.createSessionContext(
 				session: session,
 				attributes: userAttributes,
-				store: BasicCredentialsStoreKeyChain())
+				store: store)
 
 		return session
 	}
@@ -111,11 +113,13 @@ import Foundation
 			server: LiferayServerContext.server,
 			authentication: authentication)
 
+		let store = LiferayServerContext.factory.createCredentialsStore(AuthType.OAuth)
+
 		SessionContext.currentContext =
 			LiferayServerContext.factory.createSessionContext(
 				session: session,
 				attributes: userAttributes,
-				store: OAuthCredentialsStoreKeyChain())
+				store: store)
 
 		return session
 	}

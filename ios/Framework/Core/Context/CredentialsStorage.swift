@@ -30,14 +30,7 @@ import UIKit
 			return nil
 		}
 
-		let store: CredentialsStore
-
-		switch authType {
-		case .Basic:
-			store = BasicCredentialsStoreKeyChain()
-		case .OAuth:
-			store = OAuthCredentialsStoreKeyChain()
-		}
+		let store = LiferayServerContext.factory.createCredentialsStore(authType)
 
 		return CredentialsStorage(store: store)
 	}

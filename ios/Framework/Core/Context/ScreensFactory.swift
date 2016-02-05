@@ -27,6 +27,8 @@ import Foundation
 
 	func createCacheManager(session session: LRSession, userId: Int64) -> CacheManager
 
+	func createCredentialsStore(authType: AuthType) -> CredentialsStore
+
 }
 
 
@@ -46,5 +48,15 @@ import Foundation
 	public func createCacheManager(session session: LRSession, userId: Int64) -> CacheManager {
 		return CacheManager(session: session, userId: userId)
 	}
+
+	public func createCredentialsStore(authType: AuthType) -> CredentialsStore {
+		switch authType {
+		case .Basic:
+			return BasicCredentialsStoreKeyChain()
+		case .OAuth:
+			return OAuthCredentialsStoreKeyChain()
+		}
+	}
+
 
 }
