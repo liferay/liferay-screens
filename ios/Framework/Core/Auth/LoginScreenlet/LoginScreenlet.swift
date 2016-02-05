@@ -22,8 +22,11 @@ import UIKit
 	optional func screenlet(screenlet: BaseScreenlet,
 			onLoginError error: NSError)
 
-	optional func onScreenletCredentialsSaved(screenlet: BaseScreenlet)
-	optional func onScreenletCredentialsLoaded(screenlet: BaseScreenlet)
+	optional func screenlet(screenlet: BaseScreenlet,
+		onCredentialsSavedUserAttributes attributes: [String:AnyObject])
+
+	optional func screenlet(screenlet: LoginScreenlet,
+		onCredentialsLoadedUserAttributes attributes: [String:AnyObject])
 
 }
 
@@ -69,11 +72,14 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 			viewModel.userName = SessionContext.currentContext?.basicAuthUsername
 			viewModel.password = SessionContext.currentContext?.basicAuthPassword
 
+			let userAttributes = SessionContext.currentContext!.userAttributes
+
 			// we don't want the session to be automatically created. Clear it.
 			// User can recreate it again in the delegate method.
 			SessionContext.logout()
 
-			loginDelegate?.onScreenletCredentialsLoaded?(self)
+			loginDelegate?.screenlet?(self,
+				onCredentialsLoadedUserAttributes: userAttributes)
 
 			return true
 		}
@@ -114,7 +120,8 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 			if let ctx = SessionContext.currentContext where self.saveCredentials {
 				if ctx.storeCredentials() {
-					self.loginDelegate?.onScreenletCredentialsSaved?(self)
+					self.loginDelegate?.screenlet?(self,
+						onCredentialsSavedUserAttributes: interactor.resultUserAttributes!)
 				}
 			}
 		}
@@ -138,7 +145,8 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 			if let ctx = SessionContext.currentContext where self.saveCredentials {
 				if ctx.storeCredentials() {
-					self.loginDelegate?.onScreenletCredentialsSaved?(self)
+					self.loginDelegate?.screenlet?(self,
+						onCredentialsSavedUserAttributes: interactor.resultUserAttributes!)
 				}
 			}
 		}

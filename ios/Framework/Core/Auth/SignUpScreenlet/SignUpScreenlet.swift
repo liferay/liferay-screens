@@ -86,7 +86,8 @@ import UIKit
 					ctx.removeStoredCredentials()
 
 					if ctx.storeCredentials() {
-						self.autoLoginDelegate?.onScreenletCredentialsSaved?(self)
+						self.autoLoginDelegate?.screenlet?(self,
+							onCredentialsSavedUserAttributes: interactor.resultUserAttributes!)
 					}
 				}
 			}
