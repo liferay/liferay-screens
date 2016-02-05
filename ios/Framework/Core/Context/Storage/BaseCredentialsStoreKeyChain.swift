@@ -120,12 +120,14 @@ import UIKit
 	}
 
 	public class func storedAuthType() -> AuthType? {
-		guard let value = try? keychain().get("auth_type")
-		else {
+		guard let authType = try? keychain().get("auth_type") else {
+			return nil
+		}
+		guard let authTypeValue = authType else {
 			return nil
 		}
 
-		return AuthType(rawValue: value ?? "")
+		return AuthTypeFromString(authTypeValue)
 	}
 
 	public class func keychain() -> Keychain {
