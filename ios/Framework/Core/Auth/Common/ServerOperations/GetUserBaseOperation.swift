@@ -86,7 +86,7 @@ public class GetUserBaseOperation: ServerOperation {
 
 	// MARK: Template methods
 
-	internal func sendGetUserRequest(
+	public func sendGetUserRequest(
 			service service: LRUserService_v62)
 			throws -> NSDictionary? {
 

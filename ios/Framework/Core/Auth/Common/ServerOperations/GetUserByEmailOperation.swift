@@ -41,7 +41,7 @@ public class GetUserByEmailOperation: GetUserBaseOperation {
 
 	//MARK: LiferayLoginBaseOperation
 
-	override internal func sendGetUserRequest(
+	override public func sendGetUserRequest(
 			service service: LRUserService_v62)
 			throws -> NSDictionary? {
 

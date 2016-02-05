@@ -85,7 +85,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	//MARK: LiferayPaginationOperation
 
-	override internal func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
+	override public func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensassetentryService_v62(session: session)
 
 		var entryQuery = configureEntryQuery()
@@ -103,7 +103,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 		}
 	}
 
-	override internal func doGetRowCountOperation(session session: LRBatchSession) {
+	override public func doGetRowCountOperation(session session: LRBatchSession) {
 		let service = LRAssetEntryService_v62(session: session)
 		let entryQuery = configureEntryQuery()
 		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)

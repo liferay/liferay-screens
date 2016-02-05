@@ -75,7 +75,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 
 	//MARK: Template Methods
 	
-	internal func sendForgotPasswordRequest(
+	public func sendForgotPasswordRequest(
 			service service: LRScreensuserService_v62)
 			throws -> Bool? {
 
