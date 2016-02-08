@@ -39,7 +39,7 @@ public class LiferayAddBookmarkOperation: ServerOperation {
 	//MARK: ServerOperation
 
 	override public func doRun(session session: LRSession) {
-		let service = LRBookmarksEntryService_v62(session: session)
+		let service = LRBookmarksEntryService_v70(session: session)
 
 		do {
 			lastError = nil
