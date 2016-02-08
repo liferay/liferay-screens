@@ -24,7 +24,7 @@ public class LiferayPaginationOperation: ServerOperation {
 	public var resultRowCount: Int?
 
 
-	internal init(startRow: Int, endRow: Int, computeRowCount: Bool) {
+	public init(startRow: Int, endRow: Int, computeRowCount: Bool) {
 		self.startRow = startRow
 		self.endRow = endRow
 		self.computeRowCount = computeRowCount
