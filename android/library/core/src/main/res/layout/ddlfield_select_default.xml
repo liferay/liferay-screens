@@ -16,8 +16,7 @@
 		android:id="@+id/liferay_ddl_edit_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:drawableEnd="@drawable/default_blue"
-		android:drawableRight="@drawable/default_blue"
+		android:drawableRight="@drawable/default_blue_tinted"
 		android:inputType="date"
 		android:padding="5dp"/>
 

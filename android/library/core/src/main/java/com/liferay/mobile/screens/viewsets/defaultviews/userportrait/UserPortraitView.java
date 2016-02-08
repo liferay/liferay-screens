@@ -204,7 +204,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	}
 
 	protected int getDefaultBorderColor() {
-		return R.color.default_dark_gray;
+		return R.color.textColorPrimary_default;
 	}
 
 	protected Paint getPaint(Bitmap bitmap) {

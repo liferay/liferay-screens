@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="material_primary">#FF8BC34A</color>
-	<color name="material_primary_dark">#FF689F38</color>
-	<color name="material_primary_light">#FFDCEDC8</color>
-	<color name="material_accent">#FFCDDC39</color>
-	<color name="material_primary_text">#FF212121</color>
-	<color name="material_secondary_text">#FF727272</color>
+	<color name="colorPrimary_material">@color/colorPrimary</color>
+	<color name="colorPrimaryDark_material">@color/colorPrimaryDark</color>
+	<color name="colorPrimaryLight_material">@color/colorPrimaryLight</color>
+	<color name="colorAccent_material">@color/colorAccent</color>
+	<color name="textColorPrimary_material">@color/textColorPrimary</color>
+	<color name="textColorSecondary_material">@color/textColorSecondary</color>
+
+	<color name="colorPrimary">#FF8BC34A</color>
+	<color name="colorPrimaryDark">#FF689F38</color>
+	<color name="colorPrimaryLight">#FFDCEDC8</color>
+	<color name="colorAccent">#FFCDDC39</color>
+	<color name="textColorPrimary">#FF212121</color>
+	<color name="textColorSecondary">#FF727272</color>
 
 </resources>

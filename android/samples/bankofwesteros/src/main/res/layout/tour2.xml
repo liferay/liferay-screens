@@ -24,6 +24,6 @@
 		style="@style/westeros_tour_text"
 		android:layout_alignParentBottom="true"
 		android:text="@string/a_team_of_proffessionals"
-		android:textColor="@color/westeros_dark_gray"/>
+		android:textColor="@color/textColorSecondary_westeros"/>
 
 </RelativeLayout>

@@ -241,7 +241,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	}
 
 	private SpannableStringBuilder getCallSpannableString() {
-		int darkGrayColor = getResources().getColor(R.color.westeros_dark_gray);
+		int darkGrayColor = getResources().getColor(R.color.textColorSecondary_westeros);
 		int subTitleStart = 4;
 
 		SpannableStringBuilder ssb = new SpannableStringBuilder(getString(R.string.call_menu_entry));
@@ -304,7 +304,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 				overridePendingTransition(0, 0);
 				break;
 			case R.id.call_menu_entry:
-				color = R.color.westeros_light_gray;
+				color = R.color.light_gray_westeros;
 
 				startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
 				break;
@@ -312,7 +312,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.default_sms_uri))));
 				break;
 			case R.id.sign_out_menu_entry:
-				color = R.color.westeros_light_gray;
+				color = R.color.light_gray_westeros;
 
 				SessionContext.logout();
 				Intent intent = new Intent(this, MainActivity.class);

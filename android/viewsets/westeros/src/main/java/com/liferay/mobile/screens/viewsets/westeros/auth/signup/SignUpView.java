@@ -81,7 +81,7 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		CheckBox acceptTerms = (CheckBox) findViewById(R.id.sign_up_checkbox);
 		if (!acceptTerms.isChecked()) {
 			WesterosSnackbar.showSnackbar(LiferayScreensContext.getActivityFromContext(getContext()),
-				"You must accept the terms & conditions", R.color.westeros_yellow);
+				"You must accept the terms & conditions", R.color.colorAccent_westeros);
 			return false;
 		}
 
