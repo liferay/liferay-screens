@@ -10,17 +10,9 @@
 		android:text="@string/login_label"/>
 
 	<com.liferay.mobile.screens.auth.login.LoginScreenlet
-		android:id="@+id/login_default"
+		android:id="@+id/login_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		liferay:basicAuthMethod="email"
-		liferay:layoutId="@layout/login_default"/>
-
-	<com.liferay.mobile.screens.auth.login.LoginScreenlet
-		android:id="@+id/login_material"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		liferay:basicAuthMethod="email"
-		liferay:layoutId="@layout/login_material"/>
+		liferay:basicAuthMethod="email"/>
 
 </LinearLayout>

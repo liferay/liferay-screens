@@ -8,20 +8,11 @@
 
 	<com.liferay.mobile.screens.assetlist.AssetListScreenlet
 		android:id="@+id/filtered_asset_list"
-		android:layout_width="match_parent"
+		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"
 		liferay:groupId="@string/liferay_group_id"
-		liferay:layoutId="@layout/asset_list_default"
 		liferay:portletItemName="@string/portlet_item_name1"/>
 
-	<com.liferay.mobile.screens.assetlist.AssetListScreenlet
-		android:id="@+id/filtered_asset_list_manual"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_weight="1"
-		liferay:groupId="@string/liferay_group_id"
-		liferay:layoutId="@layout/asset_list_default"
-		liferay:portletItemName="@string/portlet_item_name2"/>
 
 </LinearLayout>

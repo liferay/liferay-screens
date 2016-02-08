@@ -18,7 +18,6 @@ public class DDLFieldDate : DDLField {
 
 	private let serverDateFormat = "yyyy-MM-dd"
 	private let gmtTimeZone = NSTimeZone(abbreviation: "GMT")
-
 	public var serverDateFormatter: NSDateFormatter {
 		let result = NSDateFormatter()
 		result.dateFormat = serverDateFormat

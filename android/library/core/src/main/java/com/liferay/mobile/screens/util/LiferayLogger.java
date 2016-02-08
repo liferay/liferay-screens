@@ -23,6 +23,12 @@ import com.liferay.mobile.screens.BuildConfig;
  */
 public class LiferayLogger {
 
+	public static void d(String message) {
+		if (loggingEnabled()) {
+			Log.d(TAG, message);
+		}
+	}
+
 	public static void i(String message) {
 		if (loggingEnabled()) {
 			Log.i(TAG, message);

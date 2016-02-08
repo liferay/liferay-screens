@@ -30,6 +30,7 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.interactor.BaseUserPortraitInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
@@ -93,13 +94,18 @@ public class UserPortraitScreenlet
 		File imageFile = FileUtil.createImageFile();
 		setFilePath(imageFile.getPath());
 		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
-		((Activity) getContext()).startActivityForResult(cameraIntent, UserPortraitScreenlet.TAKE_PICTURE_WITH_CAMERA);
+
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+		activity.startActivityForResult(
+			cameraIntent, UserPortraitScreenlet.TAKE_PICTURE_WITH_CAMERA);
 	}
 
 	public void openGallery() {
 		Intent galleryIntent = new Intent(Intent.ACTION_PICK,
 			MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-		((Activity) getContext()).startActivityForResult(
+
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+		activity.startActivityForResult(
 			galleryIntent, UserPortraitScreenlet.SELECT_IMAGE_FROM_GALLERY);
 	}
 

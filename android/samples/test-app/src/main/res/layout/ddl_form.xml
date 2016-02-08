@@ -10,7 +10,7 @@
 		android:text="@string/ddl_form_label"/>
 
 	<com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
-		android:id="@+id/ddl_form_default"
+		android:id="@+id/ddl_form_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_marginTop="0dp"
@@ -18,23 +18,7 @@
 		liferay:autoLoad="false"
 		liferay:filePrefix="jre"
 		liferay:folderId="@string/folder_id"
-		liferay:layoutId="@layout/ddl_form_default"
 		liferay:offlinePolicy="REMOTE_FIRST"
-		liferay:recordSetId="@string/liferay_recordset_id"
-		liferay:repositoryId="@string/repository_id"
-		liferay:structureId="@string/liferay_structure_id"/>
-
-	<com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
-		android:id="@+id/ddl_form_material"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_marginTop="0dp"
-		android:paddingTop="0dp"
-		liferay:autoLoad="false"
-		liferay:filePrefix="jre"
-		liferay:folderId="@string/folder_id"
-		liferay:layoutId="@layout/ddl_form_material"
-		liferay:offlinePolicy="CACHE_FIRST"
 		liferay:recordSetId="@string/liferay_recordset_id"
 		liferay:repositoryId="@string/repository_id"
 		liferay:structureId="@string/liferay_structure_id"/>

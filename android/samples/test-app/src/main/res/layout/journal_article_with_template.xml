@@ -6,7 +6,7 @@
 				tools:context="com.liferay.mobile.screens.testapp.JournalArticleWithTemplateActivity">
 
 	<com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet
-		android:id="@+id/journal_article_with_template"
+		android:id="@+id/journal_article_with_template_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		app:articleId="@string/liferay_article_id"

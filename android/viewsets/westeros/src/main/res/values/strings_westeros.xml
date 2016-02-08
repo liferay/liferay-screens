@@ -10,4 +10,12 @@
 	<string name="accept_terms_and_conditions">I accept the terms and conditions</string>
 	<string name="forgot_password">Forgot password?</string>
 
+	<string name="AssetListScreenlet_material">asset_list_default</string>
+	<string name="DDLFormScreenlet_westeros">ddl_form_westeros</string>
+	<string name="DDLListScreenlet_westeros">ddl_list_westeros</string>
+	<string name="ForgotPasswordScreenlet_westeros">forgotpassword_westeros</string>
+	<string name="LoginScreenlet_westeros">login_westeros</string>
+	<string name="SignUpScreenlet_westeros">sign_up_westeros</string>
+	<string name="UserPortraitScreenlet_westeros">userportrait_westeros</string>
+	<string name="WebContentDisplayScreenlet_westeros">webcontentdisplay_default</string>
 </resources>

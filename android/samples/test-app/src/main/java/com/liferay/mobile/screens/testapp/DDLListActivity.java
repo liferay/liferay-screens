@@ -33,8 +33,6 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-
 /**
  * @author Javier Gamarra
  */
@@ -46,12 +44,8 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 		setContentView(R.layout.ddl_list);
 
-		_screenlet = (DDLListScreenlet) getActiveScreenlet(R.id.ddl_list_default, R.id.ddl_list_material);
-
-		_screenlet.setVisibility(View.VISIBLE);
+		_screenlet = (DDLListScreenlet) findViewById(R.id.ddl_list_screenlet);
 		_screenlet.setListener(this);
-
-		hideInactiveScreenlet(R.id.ddl_list_default, R.id.ddl_list_material);
 	}
 
 	@Override
@@ -117,8 +111,6 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 					intent.putExtra("recordId", recordId);
 					intent.putExtra("recordSetId", recordSetId);
 					intent.putExtra("structureId", result.getLong("DDMStructureId"));
-
-					Crouton.clearCroutonsForActivity(DDLListActivity.this);
 
 					DefaultAnimation.startActivityWithAnimation(DDLListActivity.this, intent);
 				}

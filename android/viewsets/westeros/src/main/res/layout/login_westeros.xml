@@ -3,7 +3,7 @@
 	style="@style/westeros_screenlet"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:liferay="http://schemas.android.com/apk/res-auto"
-	android:theme="@style/WesterosTheme">
+	android:theme="@style/westeros_theme">
 
 	<EditText
 		android:id="@+id/liferay_login"
@@ -39,7 +39,7 @@
 		android:layout_gravity="center"
 		android:gravity="center"
 		android:text="@string/forgot_password"
-		android:textColor="@color/westeros_red"
+		android:textColor="@color/colorPrimary_westeros"
 		android:textStyle="bold"/>
 
 	<RelativeLayout

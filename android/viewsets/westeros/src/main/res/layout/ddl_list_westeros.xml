@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.westeros.ddl.list.DDLListView
-	android:id="@+id/asset_list_screenlet"
+	android:id="@+id/liferay_list_screenlet"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:theme="@style/WesterosTheme">
+	android:theme="@style/westeros_theme">
 
 	<ProgressBar
 		android:id="@+id/liferay_progress"
