@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.userportrait;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -31,11 +32,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.tbruyelle.rxpermissions.RxPermissions;
+
+import rx.functions.Action1;
 
 /**
  * @author Javier Gamarra
@@ -102,17 +107,41 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 			_choseOriginDialog.show();
 		}
 		else {
-			UserPortraitScreenlet parent = getUserPortraitScreenlet();
+			View takePhotoButton = _choseOriginDialog.findViewById(R.id.liferay_dialog_take_photo);
+			RxPermissions.getInstance(getContext())
+				.request(RxView.clicks(takePhotoButton),
+					Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+				.subscribe(openCamera());
 
-			if (v.getId() == R.id.liferay_dialog_select_file) {
-				parent.openGallery();
-				_choseOriginDialog.dismiss();
-			}
-			else {
-				parent.openCamera();
-				_choseOriginDialog.dismiss();
-			}
+			View selectFileButton = _choseOriginDialog.findViewById(R.id.liferay_dialog_select_file);
+			RxPermissions.getInstance(getContext())
+				.request(RxView.clicks(selectFileButton), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+				.subscribe(openGallery());
 		}
+	}
+
+	public Action1 openCamera() {
+		return new Action1<Boolean>() {
+			@Override
+			public void call(Boolean result) {
+				if (result) {
+					((UserPortraitScreenlet) getScreenlet()).openCamera();
+				}
+				_choseOriginDialog.dismiss();
+			}
+		};
+	}
+
+	public Action1 openGallery() {
+		return new Action1<Boolean>() {
+			@Override
+			public void call(Boolean result) {
+				if (result) {
+					((UserPortraitScreenlet) getScreenlet()).openGallery();
+				}
+				_choseOriginDialog.dismiss();
+			}
+		};
 	}
 
 	protected AlertDialog createOriginDialog() {
