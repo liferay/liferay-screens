@@ -19,6 +19,7 @@
 		<item name="android:editTextStyle">@style/material_edit_text</item>
 		<item name="android:buttonStyle">@style/material_button</item>
 
+		<item name="themeName">material_theme</item>
 	</style>
 
 	<style name="material_date_picker" parent="Theme.AppCompat.Light">

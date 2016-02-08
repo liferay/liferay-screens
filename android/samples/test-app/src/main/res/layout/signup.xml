@@ -10,19 +10,10 @@
 		android:text="@string/signup_label"/>
 
 	<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
-		android:id="@+id/signup_default"
+		android:id="@+id/signup_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		liferay:anonymousApiPassword="@string/liferay_anonymousApiPassword"
-		liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName"
-		liferay:layoutId="@layout/sign_up_default"/>
-
-	<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
-		android:id="@+id/signup_material"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		liferay:anonymousApiPassword="@string/liferay_anonymousApiPassword"
-		liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName"
-		liferay:layoutId="@layout/sign_up_material"/>
+		liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName"/>
 
 </LinearLayout>

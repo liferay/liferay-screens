@@ -28,7 +28,6 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 
 import java.util.ArrayList;
@@ -162,8 +161,6 @@ public abstract class BaseListScreenletView<
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-
-		DefaultTheme.initIfThemeNotPresent(getContext());
 
 		int itemLayoutId = getItemLayoutId();
 		int itemProgressLayoutId = getItemProgressLayoutId();

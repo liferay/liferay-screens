@@ -38,7 +38,7 @@
 				android:text="@string/user_portrait"/>
 
 			<Button
-				android:id="@+id/web_content_display"
+				android:id="@+id/web_content_display_screenlet"
 				style="@style/test_app_button"
 				android:text="@string/webview"/>
 

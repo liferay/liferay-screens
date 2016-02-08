@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<string name="AssetListScreenlet_material">asset_list_material</string>
+	<string name="DDLFormScreenlet_material">ddl_form_material</string>
+	<string name="DDLListScreenlet_material">ddl_list_material</string>
+	<string name="ForgotPasswordScreenlet_material">forgotpassword_material</string>
+	<string name="LoginScreenlet_material">login_material</string>
+	<string name="SignUpScreenlet_material">sign_up_material</string>
+	<string name="UserPortraitScreenlet_material">userportrait_material</string>
+	<string name="WebContentDisplayScreenlet_material">webcontentdisplay_default</string>
 	<string name="add_user_portrait_content_description">Add icon for replacing a user portrait</string>
 </resources>

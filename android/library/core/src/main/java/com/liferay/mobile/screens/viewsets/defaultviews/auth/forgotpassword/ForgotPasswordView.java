@@ -28,7 +28,6 @@ import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewMod
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 /**
  * @author Jose Manuel Navarro
@@ -38,20 +37,14 @@ public class ForgotPasswordView extends LinearLayout
 
 	public ForgotPasswordView(Context context) {
 		super(context);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public ForgotPasswordView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-
-		DefaultTheme.initIfThemeNotPresent(context);
+	public ForgotPasswordView(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public ForgotPasswordView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-
-		DefaultTheme.initIfThemeNotPresent(context);
+	public ForgotPasswordView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
 	}
 
 	@Override
@@ -154,6 +147,7 @@ public class ForgotPasswordView extends LinearLayout
 	protected EditText getLoginEditText() {
 		return _loginEditText;
 	}
+
 	protected EditText _loginEditText;
 	protected ModalProgressBar _progressBar;
 

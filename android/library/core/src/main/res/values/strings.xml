@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="AssetListScreenlet_defaultLayout">asset_list_default</string>
-	<string name="LoginScreenlet_defaultLayout">login_default</string>
-	<string name="SignUpScreenlet_defaultLayout">sign_up_default</string>
-	<string name="ForgotPasswordScreenlet_defaultLayout">forgotpassword_default</string>
-	<string name="DDLFormScreenlet_defaultLayout">ddlform_default</string>
-	<string name="DDLListScreenlet_defaultLayout">ddl_list_default</string>
-	<string name="UserPortraitScreenlet_defaultLayout">userportrait_default</string>
-	<string name="WebContentDisplayScreenlet_defaultLayout">webcontentdisplay_default</string>
+	<string name="AssetListScreenlet_default">asset_list_default</string>
+	<string name="LoginScreenlet_default">login_default</string>
+	<string name="SignUpScreenlet_default">sign_up_default</string>
+	<string name="ForgotPasswordScreenlet_default">forgotpassword_default</string>
+	<string name="DDLFormScreenlet_default">ddlform_default</string>
+	<string name="DDLListScreenlet_default">ddl_list_default</string>
+	<string name="UserPortraitScreenlet_default">userportrait_default</string>
+	<string name="WebContentDisplayScreenlet_default">webcontentdisplay_default</string>
 	<string name="add_icon_user_portrait_content_description">Add icon for replacing a user portrait</string>
 </resources>

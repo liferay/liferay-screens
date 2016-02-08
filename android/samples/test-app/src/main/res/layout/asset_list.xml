@@ -11,15 +11,7 @@
 		android:text="@string/asset_list_label"/>
 
 	<com.liferay.mobile.screens.assetlist.AssetListScreenlet
-		android:id="@+id/asset_list_default"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		liferay:autoLoad="false"
-		liferay:layoutId="@layout/asset_list_default"
-		liferay:offlinePolicy="REMOTE_FIRST"/>
-
-	<com.liferay.mobile.screens.assetlist.AssetListScreenlet
-		android:id="@+id/asset_list_material"
+		android:id="@+id/asset_list_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		liferay:autoLoad="false"

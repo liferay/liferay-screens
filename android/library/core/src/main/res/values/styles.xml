@@ -9,6 +9,7 @@
 		<item name="android:textViewStyle">@style/default_text_view</item>
 		<item name="android:editTextStyle">@style/default_edit_text</item>
 		<item name="android:buttonStyle">@style/default_button</item>
+		<item name="themeName">default_theme</item>
 	</style>
 
 	<style name="white_theme" parent="Theme.AppCompat.Light">

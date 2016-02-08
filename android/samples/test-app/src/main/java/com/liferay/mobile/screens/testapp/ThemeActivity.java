@@ -18,23 +18,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 /**
  * @author Javier Gamarra
  */
-public abstract class ThemeActivity extends ActionBarActivity {
+public abstract class ThemeActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle state) {
 		super.onCreate(state);
-		currentTheme = getIntent().getIntExtra("theme", DefaultTheme.getDefaultTheme());
 
-		setTheme(currentTheme);
+		_currentThemePosition = getIntent().getIntExtra("currentThemePosition", 0);
+		setTheme(getCurrentTheme());
 	}
 
 	@Override
@@ -44,33 +42,27 @@ public abstract class ThemeActivity extends ActionBarActivity {
 		_content = findViewById(android.R.id.content);
 	}
 
+	protected void changeToNextTheme() {
+		_currentThemePosition = (_currentThemePosition + 1) % themes.length;
+	}
+
 	protected void error(String message, Exception e) {
 		showSnackbarWithColor(message, ContextCompat.getColor(this, R.color.default_pure_red));
 	}
 
 	protected void info(String message) {
-		int color = isDefaultTheme() ? R.color.default_primary_blue : R.color.material_primary;
-
+		int color = colors[_currentThemePosition];
 		showSnackbarWithColor(message, ContextCompat.getColor(this, color));
 	}
 
 	protected Intent getIntentWithTheme(Class destinationClass) {
 		Intent intent = new Intent(this, destinationClass);
-		intent.putExtra("theme", currentTheme);
+		intent.putExtra("currentThemePosition", _currentThemePosition);
 		return intent;
 	}
 
-	protected View getActiveScreenlet(int defaultId, int materialId) {
-		return isDefaultTheme() ? findViewById(defaultId) : findViewById(materialId);
-	}
-
-	protected void hideInactiveScreenlet(int defaultId, int materialId) {
-		View view = isDefaultTheme() ? findViewById(materialId) : findViewById(defaultId);
-		view.setVisibility(View.GONE);
-	}
-
-	protected boolean isDefaultTheme() {
-		return currentTheme == R.style.default_theme;
+	private int getCurrentTheme() {
+		return themes[_currentThemePosition];
 	}
 
 	private void showSnackbarWithColor(String message, int color) {
@@ -80,6 +72,8 @@ public abstract class ThemeActivity extends ActionBarActivity {
 		snackbar.show();
 	}
 
-	protected Integer currentTheme;
+	int[] themes = {R.style.default_theme, R.style.material_theme, R.style.westeros_theme};
+	int[] colors = {R.color.default_primary_blue, R.color.material_primary, R.color.westeros_red};
+	private Integer _currentThemePosition;
 	private View _content;
 }

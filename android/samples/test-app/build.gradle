@@ -39,6 +39,7 @@ dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 	compile project(':liferay-screens')
 	compile project(':liferay-material-viewset')
+	compile project(':liferay-westeros-viewset')
 	compile project(':addbookmarkscreenlet')
 
 	compile 'com.android.support:design:23.0.1'
