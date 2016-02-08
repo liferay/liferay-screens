@@ -25,7 +25,7 @@ import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
+import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
 
 import org.json.JSONObject;
 
@@ -269,7 +269,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 
 			@Override
 			public void onAnimationEnd(Animator animator) {
-				LiferayCrouton.info(IssuesActivity.this, message.toUpperCase());
+				WesterosSnackbar.showSnackbar(IssuesActivity.this, message.toUpperCase(), R.color.westeros_green);
 			}
 		});
 	}

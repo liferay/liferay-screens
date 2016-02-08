@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -89,16 +88,16 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				String cacheFormsMessage = "Deleted " + formRows + " forms, " + recordRows + " records, " +
 					listRows + " list rows and " + countRows + " count rows.";
 
-				Snackbar.make(_content, cacheFormsMessage, Snackbar.LENGTH_SHORT).show();
+				info(cacheFormsMessage);
 				break;
 			case R.id.clear_cache:
 				boolean success = CacheSQL.getInstance().clear(this);
 				String clearCacheMessage = "Cache cleared: " + (success ? "sucessfully" : "failed");
-				Snackbar.make(_content, clearCacheMessage, Snackbar.LENGTH_SHORT).show();
+				info(clearCacheMessage);
 				break;
 			case R.id.sync_cache:
 				CacheSQL.getInstance().resync();
-				Snackbar.make(_content, "Launched resync process", Snackbar.LENGTH_SHORT).show();
+				info("Launched resync process");
 				break;
 			case R.id.custom_interactor:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(CustomInteractorActivity.class));

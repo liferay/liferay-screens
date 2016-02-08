@@ -29,11 +29,8 @@ import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.bankofwesteros.utils.EndAnimationListener;
 import com.liferay.mobile.screens.context.User;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 import com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpListener;
 import com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpScreenlet;
-
-import de.keyboardsurfer.android.widget.crouton.Configuration;
 
 public class MainActivity extends CardActivity implements View.OnClickListener, LoginListener, ForgotPasswordListener, SignUpListener {
 
@@ -60,14 +57,6 @@ public class MainActivity extends CardActivity implements View.OnClickListener, 
 
 		SignUpScreenlet signUpScreenlet = (SignUpScreenlet) findViewById(R.id.signup_screenlet);
 		signUpScreenlet.setListener(this);
-
-		new LiferayCrouton.Builder()
-			.withInfoColor(R.color.westeros_green)
-			.withAlertColor(R.color.westeros_yellow)
-			.locatedIn(R.id.crouton_view_anchor)
-			.withHeight(250)
-			.withConfiguration(new Configuration.Builder().setInAnimation(R.anim.slide_up).setOutAnimation(R.anim.slide_down).build())
-			.build();
 	}
 
 	@Override
