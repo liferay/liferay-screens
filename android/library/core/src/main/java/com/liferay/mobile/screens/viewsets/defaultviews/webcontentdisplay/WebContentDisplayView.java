@@ -108,7 +108,7 @@ public class WebContentDisplayView extends FrameLayout
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
 
-		WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) getParent();
+		WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) getScreenlet();
 		if (screenlet.isJavascriptEnabled()) {
 			_webView.getSettings().setJavaScriptEnabled(true);
 			_webView.setWebChromeClient(new WebChromeClient());

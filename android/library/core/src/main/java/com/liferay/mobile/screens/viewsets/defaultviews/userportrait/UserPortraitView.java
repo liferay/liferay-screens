@@ -110,13 +110,17 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 			_choseOriginDialog = createOriginDialog();
 			_choseOriginDialog.show();
 		}
-		else if (v.getId() == R.id.liferay_dialog_select_file) {
-			((UserPortraitScreenlet) getParent()).openGallery();
-			_choseOriginDialog.dismiss();
-		}
 		else {
-			((UserPortraitScreenlet) getParent()).openCamera();
-			_choseOriginDialog.dismiss();
+			UserPortraitScreenlet parent = getUserPortraitScreenlet();
+
+			if (v.getId() == R.id.liferay_dialog_select_file) {
+				parent.openGallery();
+				_choseOriginDialog.dismiss();
+			}
+			else {
+				parent.openCamera();
+				_choseOriginDialog.dismiss();
+			}
 		}
 	}
 
@@ -150,7 +154,8 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
 
-		if (((UserPortraitScreenlet) getParent()).getEditable()) {
+		UserPortraitScreenlet screenlet = getUserPortraitScreenlet();
+		if (screenlet.getEditable()) {
 			_portraitAddButton.setOnClickListener(this);
 			_portraitAddButton.setVisibility(View.VISIBLE);
 		}
@@ -192,7 +197,6 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		return finalBitmap;
 	}
 
-
 	protected RectF getRectF(Bitmap bitmap, float borderWidth) {
 		RectF rect = new RectF(0.0f, 0.0f, bitmap.getWidth(), bitmap.getHeight());
 		rect.inset(borderWidth, borderWidth);
@@ -218,6 +222,10 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		paint.setAntiAlias(true);
 		paint.setShader(shader);
 		return paint;
+	}
+
+	private UserPortraitScreenlet getUserPortraitScreenlet() {
+		return (UserPortraitScreenlet) getScreenlet();
 	}
 
 	private void setDefaultImagePlaceholder() {

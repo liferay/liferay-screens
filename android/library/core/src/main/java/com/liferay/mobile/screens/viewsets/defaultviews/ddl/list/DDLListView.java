@@ -47,7 +47,7 @@ public class DDLListView
 
 	@Override
 	public void showFinishOperation(int page, List<Record> entries, int rowCount) {
-		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
+		DDLListScreenlet screenlet = (DDLListScreenlet) getScreenlet();
 
 		getAdapter().setLabelFields(screenlet.getLabelFields());
 

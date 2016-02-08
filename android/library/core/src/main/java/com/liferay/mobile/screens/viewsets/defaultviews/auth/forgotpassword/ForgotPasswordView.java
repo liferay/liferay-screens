@@ -113,7 +113,7 @@ public class ForgotPasswordView extends LinearLayout
 
 	@Override
 	public void onClick(View view) {
-		ForgotPasswordScreenlet screenlet = (ForgotPasswordScreenlet) getParent();
+		ForgotPasswordScreenlet screenlet = (ForgotPasswordScreenlet) getScreenlet();
 
 		screenlet.performUserAction();
 	}

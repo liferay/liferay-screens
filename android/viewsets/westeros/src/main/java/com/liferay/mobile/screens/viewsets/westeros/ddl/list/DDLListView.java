@@ -53,14 +53,14 @@ public class DDLListView
 	@Override
 	public void onRefresh() {
 		_swipeRefreshLayout.setRefreshing(false);
-		((DDLListScreenlet) getParent()).loadPage(0);
+		getDDLListScreenlet().loadPage(0);
 	}
 
 	@Override
 	public void showFinishOperation(int page, List<Record> entries, int rowCount) {
 		super.showFinishOperation(page, entries, rowCount);
 
-		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
+		DDLListScreenlet screenlet = getDDLListScreenlet();
 
 		getAdapter().setLabelFields(screenlet.getLabelFields());
 	}
@@ -98,18 +98,22 @@ public class DDLListView
 	protected Parcelable onSaveInstanceState() {
 		Parcelable superState = super.onSaveInstanceState();
 
+		DDLListScreenlet screenlet = getDDLListScreenlet();
+
 		Bundle state = new Bundle();
-		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
 		state.putStringArrayList(_STATE_LABEL_FIELDS, (ArrayList<String>) screenlet.getLabelFields());
 		state.putParcelable(_STATE_SUPER, superState);
 
 		return state;
 	}
 
-
 	@Override
 	protected DividerItemDecoration getDividerDecoration() {
 		return null;
+	}
+
+	private DDLListScreenlet getDDLListScreenlet() {
+		return (DDLListScreenlet) getScreenlet();
 	}
 
 	private SwipeRefreshLayout _swipeRefreshLayout;

@@ -57,7 +57,7 @@ public class AddBookmarkView extends LinearLayout implements AddBookmarkViewMode
 	}
 
 	public void onClick(View v) {
-		AddBookmarkScreenlet screenlet = (AddBookmarkScreenlet) getParent();
+		AddBookmarkScreenlet screenlet = (AddBookmarkScreenlet) getScreenlet();
 
 		screenlet.performUserAction();
 	}
