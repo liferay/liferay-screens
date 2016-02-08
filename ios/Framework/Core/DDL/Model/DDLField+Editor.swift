@@ -13,10 +13,6 @@
 */
 import Foundation
 
-#if LIFERAY_SCREENS_FRAMEWORK
-	import SMXMLDocument
-#endif
-
 
 extension DDLField {
 
