@@ -373,39 +373,59 @@ public class StringWithOptionsFieldTest {
 	public static class WhenParsingXSD {
 		@Test
 		public void shouldReturnStringWithOptionsFieldObject() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element dataType=\"string\" " +
-					"multiple=\"true\" " +
-					"name=\"A_Select\" " +
-					"type=\"select\" > " +
-					"<dynamic-element name=\"option_1\" type=\"option\" value=\"value 1\"> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[Option 1]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element> " +
-					"<dynamic-element name=\"option_2\" type=\"option\" value=\"value 2\"> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[Option 2]]></entry> " +
-					"</meta-data>" +
-					"</dynamic-element> " +
-					"<dynamic-element name=\"option_3\" type=\"option\" value=\"value 3\"> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[Option 3]]></entry> " +
-					"</meta-data>" +
-					"</dynamic-element> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[A Select]]></entry> " +
-					"<entry name=\"predefinedValue\">" +
-					"<![CDATA[[\"value 2\"]]]>" +
-					"</entry>" +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
 
-//			List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
-			//FIXME Redo with JSON
-			List<Field> resultList = new ArrayList();
+			String json = "{\"availableLanguageIds\": [ \"en_US\"], " +
+				"\"defaultLanguageId\": \"en_US\", " +
+				"\"fields\": [ " +
+				"{\n" +
+				"            \"label\": {" +
+				"                \"en_US\": \"Select\"" +
+				"            }," +
+				"            \"options\": [" +
+				"                {" +
+				"                    \"value\": \"value 1\"," +
+				"                    \"label\": {" +
+				"                        \"en_US\": \"Option 1\"" +
+				"                    }" +
+				"                }," +
+				"                {" +
+				"                    \"value\": \"value 2\"," +
+				"                    \"label\": {" +
+				"                        \"en_US\": \"Option 2\"" +
+				"                    }" +
+				"                }," +
+				"                {" +
+				"                    \"value\": \"value 3\"," +
+				"                    \"label\": {" +
+				"                        \"en_US\": \"Option 3\"" +
+				"                    }" +
+				"                }" +
+				"            ]," +
+				"            \"predefinedValue\": {" +
+				"                \"en_US\": [" +
+				"                    \"value 2\"" +
+				"                ]" +
+				"            }," +
+				"            \"style\": {" +
+				"                \"en_US\": \"\"" +
+				"            }," +
+				"            \"tip\": {" +
+				"                \"en_US\": \"\"" +
+				"            }," +
+				"            \"dataType\": \"string\"," +
+				"            \"indexType\": \"keyword\"," +
+				"            \"localizable\": true," +
+				"            \"multiple\": false," +
+				"            \"name\": \"Select54e6\"," +
+				"            \"readOnly\": false," +
+				"            \"repeatable\": false," +
+				"            \"required\": false," +
+				"            \"showLabel\": true," +
+				"            \"type\": \"select\"" +
+				"        }" +
+				"]}";
+
+			List<Field> resultList = new JsonParser().parse(json, new Locale("en", "US"));
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());

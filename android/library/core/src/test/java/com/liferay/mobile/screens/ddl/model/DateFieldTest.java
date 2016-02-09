@@ -22,7 +22,6 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -73,7 +72,7 @@ public class DateFieldTest {
 		public void shouldReturnDateWhenShortStringIsSupplied() throws Exception {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
-			Date result = field.convertFromString("12/31/00");
+			Date result = field.convertFromString("12/31/2000");
 
 			assertNotNull(result);
 
@@ -105,7 +104,7 @@ public class DateFieldTest {
 		public void shouldReturnDateWhenStringWithOneLetterDayIsSupplied() throws Exception {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
-			Date result = field.convertFromString("12/1/00");
+			Date result = field.convertFromString("12/1/2000");
 
 			assertNotNull(result);
 
@@ -121,7 +120,7 @@ public class DateFieldTest {
 		public void shouldReturnDateWhenStringWithOneLetterMonthIsSupplied() throws Exception {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
-			Date result = field.convertFromString("1/31/00");
+			Date result = field.convertFromString("1/31/2000");
 
 			assertNotNull(result);
 
@@ -146,13 +145,13 @@ public class DateFieldTest {
 		}
 
 		@Test
-		public void shouldReturnEpochWhenDateIsSupplied() throws Exception {
+		public void shouldReturnStringFormattedWhenDateIsSupplied() throws Exception {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 			calendar.setTimeInMillis(1087666200000L);
 
-			assertEquals("1087666200000", field.convertToData(calendar.getTime()));
+			assertEquals("2004-06-19", field.convertToData(calendar.getTime()));
 		}
 	}
 
@@ -193,23 +192,27 @@ public class DateFieldTest {
 	public static class WhenParsingXSD {
 		@Test
 		public void shouldReturnDateFieldObject() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"date\" " +
-					"fieldNamespace=\"ddm\" " +
-					"type=\"ddm-date\" " +
-					"name=\"A_Date\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[06/19/2004]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
 
-//			List<Field> resultList = new XSDParser().parse(xsd, US_LOCALE);
+			String JSON_DATE = "{\"availableLanguageIds\": [ \"en_US\"], " +
+				"\"defaultLanguageId\": \"en_US\", " +
+				"\"fields\": [ " +
+				"{ \"label\": { \"en_US\": \"Date\"}, " +
+				"\"predefinedValue\": { \"en_US\": \"06/19/2004\"}, " +
+				"\"style\": { \"en_US\": \"\"}, " +
+				"\"tip\": { \"en_US\": \"\"}, " +
+				"\"dataType\": \"date\", " +
+				"\"fieldNamespace\": \"ddm\", " +
+				"\"indexType\": \"keyword\", " +
+				"\"localizable\": true, " +
+				"\"name\": \"A_Date\", " +
+				"\"readOnly\": false, " +
+				"\"repeatable\": false, " +
+				"\"required\": false, " +
+				"\"showLabel\": true, " +
+				"\"type\": \"ddm-date\"}" +
+				"]}";
 
-			//FIXME Redo with JSON
-			List<Field> resultList = new ArrayList();
+			List<Field> resultList = new JsonParser().parse(JSON_DATE, US_LOCALE);
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
 

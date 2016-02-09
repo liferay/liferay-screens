@@ -67,7 +67,12 @@ public class DateField extends Field<Date> {
 			return _SERVER_YYYY_FORMAT.parse(stringValue);
 		}
 		catch (ParseException e) {
-			LiferayLogger.e("Parse error " + stringValue, e);
+			try {
+				return _PREDEFINED_MM_DD_FORMAT.parse(stringValue);
+			}
+			catch (ParseException e1) {
+				LiferayLogger.e("Parse error " + stringValue, e);
+			}
 		}
 
 		return null;
@@ -89,12 +94,14 @@ public class DateField extends Field<Date> {
 	}
 
 	private static final DateFormat _SERVER_YYYY_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+	private static final DateFormat _PREDEFINED_MM_DD_FORMAT = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
 
 	private static final TimeZone _GMT_TIMEZONE = TimeZone.getTimeZone("GMT");
 	private DateFormat _clientFormat;
 
 	static {
 		_SERVER_YYYY_FORMAT.setTimeZone(_GMT_TIMEZONE);
+		_PREDEFINED_MM_DD_FORMAT.setTimeZone(_GMT_TIMEZONE);
 	}
 
 }

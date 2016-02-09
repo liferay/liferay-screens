@@ -23,8 +23,8 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.xml.sax.SAXException;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -38,25 +38,38 @@ import static junit.framework.Assert.assertTrue;
 public class StringFieldTest {
 
 	private static StringField _createStringField(Boolean required) throws SAXException {
-		String xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-				"<dynamic-element " +
-				"dataType=\"string\" " +
-				"type=\"text\" " +
-				"required=\"" + required.toString() + "\" " +
-				"name=\"A_Text\" > " +
-				"<meta-data locale=\"en_US\"> " +
-				"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
-				"</meta-data> " +
-				"</dynamic-element>" +
-				"</root>";
 
-//		List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
-		//FIXME Redo with JSON
-		List<Field> resultList = new ArrayList();
+		String json = "{\"availableLanguageIds\": [ \"en_US\"], " +
+			"\"defaultLanguageId\": \"en_US\", " +
+			"\"fields\": [ " +
+			"{" +
+			"            \"label\": {" +
+			"                \"en_US\": \"Title\"" +
+			"            }," +
+			"            \"predefinedValue\": {" +
+			"                \"en_US\": \"\"" +
+			"            }," +
+			"            \"style\": {" +
+			"                \"en_US\": \"\"" +
+			"            }," +
+			"            \"tip\": {" +
+			"                \"en_US\": \"\"" +
+			"            }," +
+			"            \"dataType\": \"string\"," +
+			"            \"indexType\": \"keyword\"," +
+			"            \"localizable\": true," +
+			"            \"name\": \"Title\"," +
+			"            \"readOnly\": false," +
+			"            \"repeatable\": false," +
+			"            \"required\": " + required + "," +
+			"            \"showLabel\": true," +
+			"            \"type\": \"text\"" +
+			"        }" +
+			"]}";
+
+		List<Field> resultList = new JsonParser().parse(json, new Locale("en", "US"));
 
 		return (StringField) resultList.get(0);
-
 	}
 
 	@Config(constants = BuildConfig.class)
@@ -64,21 +77,36 @@ public class StringFieldTest {
 	public static class WhenParsingXSD {
 		@Test
 		public void shouldReturnStringFieldObject() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"string\" " +
-					"type=\"text\" " +
-					"name=\"A_Text\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
 
-//			List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
-			//FIXME Redo with JSON
-			List<Field> resultList = new ArrayList();
+			String json = "{\"availableLanguageIds\": [ \"en_US\"], " +
+				"\"defaultLanguageId\": \"en_US\", " +
+				"\"fields\": [ " +
+				"{" +
+				"            \"label\": {" +
+				"                \"en_US\": \"Title\"" +
+				"            }," +
+				"            \"predefinedValue\": {" +
+				"                \"en_US\": \"default text\"" +
+				"            }," +
+				"            \"style\": {" +
+				"                \"en_US\": \"\"" +
+				"            }," +
+				"            \"tip\": {" +
+				"                \"en_US\": \"\"" +
+				"            }," +
+				"            \"dataType\": \"string\"," +
+				"            \"indexType\": \"keyword\"," +
+				"            \"localizable\": true," +
+				"            \"name\": \"A_Text\"," +
+				"            \"readOnly\": false," +
+				"            \"repeatable\": false," +
+				"            \"required\": true," +
+				"            \"showLabel\": true," +
+				"            \"type\": \"text\"" +
+				"        }" +
+				"]}";
+
+			List<Field> resultList = new JsonParser().parse(json, new Locale("en", "US"));
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());

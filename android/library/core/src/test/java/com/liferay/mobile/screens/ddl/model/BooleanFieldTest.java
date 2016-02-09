@@ -22,7 +22,6 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -39,6 +38,22 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class BooleanFieldTest {
 
+	public static final String JSON_BOOLEAN = "{\"availableLanguageIds\": [ \"en_US\"], " +
+		"\"defaultLanguageId\": \"en_US\", " +
+		"\"fields\": [ " +
+		"{ \"label\": { \"en_US\": \"Boolean\"}, " +
+		"\"predefinedValue\": { \"en_US\": false}, " +
+		"\"style\": { \"en_US\": \"\"}, " +
+		"\"tip\": { \"en_US\": \"\"}, " +
+		"\"dataType\": \"boolean\", " +
+		"\"indexType\": \"keyword\", " +
+		"\"localizable\": true, " +
+		"\"name\": \"A_Bool\", " +
+		"\"readOnly\": false, " +
+		"\"repeatable\": false, " +
+		"\"required\": false, " +
+		"\"showLabel\": true, " +
+		"\"type\": \"checkbox\"}]}";
 	private static final Locale _spanishLocale = new Locale("es", "ES");
 	private static final Locale _usLocale = new Locale("en", "US");
 
@@ -179,21 +194,8 @@ public class BooleanFieldTest {
 	public static class WhenParsingXSD {
 		@Test
 		public void shouldReturnStringFieldObject() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"boolean\" " +
-					"type=\"checkbox\" " +
-					"name=\"A_Bool\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
 
-//			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
-			//FIXME Redo with JSON
-			List<Field> resultList = new ArrayList();
+			List<Field> resultList = new JsonParser().parse(JSON_BOOLEAN, _usLocale);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
@@ -211,18 +213,8 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldUseFalseAsDefaultValueWhenNoPredefinedValue() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"boolean\" " +
-					"type=\"checkbox\" " +
-					"name=\"A_Bool\" > " +
-					"</dynamic-element>" +
-					"</root>";
 
-//			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
-			//FIXME Redo with JSON
-			List<Field> resultList = new ArrayList();
+			List<Field> resultList = new JsonParser().parse(JSON_BOOLEAN, _usLocale);
 
 			BooleanField booleanField = (BooleanField) resultList.get(0);
 
