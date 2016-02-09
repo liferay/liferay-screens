@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.ddl.model;
 
 import com.liferay.mobile.screens.BuildConfig;
-import com.liferay.mobile.screens.ddl.XSDParser;
 
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -145,12 +144,10 @@ public class StringWithOptionsFieldTest {
 
 			StringWithOptionsField.Option option1 = result.get(0);
 			assertEquals("Option 1", option1.label);
-			assertEquals("option987", option1.name);
 			assertEquals("option1", option1.value);
 
 			StringWithOptionsField.Option option2 = result.get(1);
 			assertEquals("Option 2", option2.label);
-			assertEquals("option989", option2.name);
 			assertEquals("option2", option2.value);
 		}
 
@@ -186,7 +183,7 @@ public class StringWithOptionsFieldTest {
 			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			StringWithOptionsField.Option option1 =
-				new StringWithOptionsField.Option("Option 1", "option987", "option1");
+				new StringWithOptionsField.Option("Option 1", "option1");
 
 			ArrayList<StringWithOptionsField.Option> selected = new ArrayList<>();
 
@@ -203,9 +200,9 @@ public class StringWithOptionsFieldTest {
 			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
 
 			StringWithOptionsField.Option option1 =
-				new StringWithOptionsField.Option("Option 1", "option987", "option1");
+				new StringWithOptionsField.Option("Option 1", "option1");
 			StringWithOptionsField.Option option2 =
-				new StringWithOptionsField.Option("Option 2", "option989", "option2");
+				new StringWithOptionsField.Option("Option 2", "option2");
 
 			ArrayList<StringWithOptionsField.Option> selected = new ArrayList<>();
 
@@ -274,7 +271,6 @@ public class StringWithOptionsFieldTest {
 				StringWithOptionsField.Option option = result.get(0);
 
 				assertEquals("Option 1", option.label);
-				assertEquals("option987", option.name);
 				assertEquals("option1", option.value);
 			}
 
@@ -290,7 +286,6 @@ public class StringWithOptionsFieldTest {
 				StringWithOptionsField.Option option = result.get(0);
 
 				assertEquals("Option 1", option.label);
-				assertEquals("option987", option.name);
 				assertEquals("option1", option.value);
 			}
 
@@ -306,7 +301,6 @@ public class StringWithOptionsFieldTest {
 				StringWithOptionsField.Option option = result.get(0);
 
 				assertEquals("Option 1", option.label);
-				assertEquals("option987", option.name);
 				assertEquals("option1", option.value);
 			}
 
@@ -322,7 +316,6 @@ public class StringWithOptionsFieldTest {
 				StringWithOptionsField.Option option = result.get(0);
 
 				assertEquals("Option 1", option.label);
-				assertEquals("option987", option.name);
 				assertEquals("option1", option.value);
 			}
 
@@ -338,7 +331,6 @@ public class StringWithOptionsFieldTest {
 				StringWithOptionsField.Option option = result.get(0);
 
 				assertEquals("Option 1", option.label);
-				assertEquals("option987", option.name);
 				assertEquals("option1", option.value);
 			}
 		}
@@ -381,37 +373,59 @@ public class StringWithOptionsFieldTest {
 	public static class WhenParsingXSD {
 		@Test
 		public void shouldReturnStringWithOptionsFieldObject() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element dataType=\"string\" " +
-					"multiple=\"true\" " +
-					"name=\"A_Select\" " +
-					"type=\"select\" > " +
-					"<dynamic-element name=\"option_1\" type=\"option\" value=\"value 1\"> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[Option 1]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element> " +
-					"<dynamic-element name=\"option_2\" type=\"option\" value=\"value 2\"> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[Option 2]]></entry> " +
-					"</meta-data>" +
-					"</dynamic-element> " +
-					"<dynamic-element name=\"option_3\" type=\"option\" value=\"value 3\"> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[Option 3]]></entry> " +
-					"</meta-data>" +
-					"</dynamic-element> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[A Select]]></entry> " +
-					"<entry name=\"predefinedValue\">" +
-					"<![CDATA[[\"value 2\"]]]>" +
-					"</entry>" +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
+			String json = "{\"availableLanguageIds\": [ \"en_US\"], " +
+				"\"defaultLanguageId\": \"en_US\", " +
+				"\"fields\": [ " +
+				"{\n" +
+				"            \"label\": {" +
+				"                \"en_US\": \"Select\"" +
+				"            }," +
+				"            \"options\": [" +
+				"                {" +
+				"                    \"value\": \"value 1\"," +
+				"                    \"label\": {" +
+				"                        \"en_US\": \"Option 1\"" +
+				"                    }" +
+				"                }," +
+				"                {" +
+				"                    \"value\": \"value 2\"," +
+				"                    \"label\": {" +
+				"                        \"en_US\": \"Option 2\"" +
+				"                    }" +
+				"                }," +
+				"                {" +
+				"                    \"value\": \"value 3\"," +
+				"                    \"label\": {" +
+				"                        \"en_US\": \"Option 3\"" +
+				"                    }" +
+				"                }" +
+				"            ]," +
+				"            \"predefinedValue\": {" +
+				"                \"en_US\": [" +
+				"                    \"value 2\"" +
+				"                ]" +
+				"            }," +
+				"            \"style\": {" +
+				"                \"en_US\": \"\"" +
+				"            }," +
+				"            \"tip\": {" +
+				"                \"en_US\": \"\"" +
+				"            }," +
+				"            \"dataType\": \"string\"," +
+				"            \"indexType\": \"keyword\"," +
+				"            \"localizable\": true," +
+				"            \"multiple\": false," +
+				"            \"name\": \"Select54e6\"," +
+				"            \"readOnly\": false," +
+				"            \"repeatable\": false," +
+				"            \"required\": false," +
+				"            \"showLabel\": true," +
+				"            \"type\": \"select\"" +
+				"        }" +
+				"]}";
+
+			List<Field> resultList = new JsonParser().parse(json, new Locale("en", "US"));
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
@@ -434,7 +448,6 @@ public class StringWithOptionsFieldTest {
 			StringWithOptionsField.Option selectedOption = selectedOptions.get(0);
 
 			assertEquals("Option 2", selectedOption.label);
-			assertEquals("option_2", selectedOption.name);
 			assertEquals("value 2", selectedOption.value);
 
 			assertEquals(optionsField.getCurrentValue(), optionsField.getPredefinedValue());
@@ -445,17 +458,14 @@ public class StringWithOptionsFieldTest {
 
 			StringWithOptionsField.Option option = availableOptions.get(0);
 			assertEquals("Option 1", option.label);
-			assertEquals("option_1", option.name);
 			assertEquals("value 1", option.value);
 
 			option = availableOptions.get(1);
 			assertEquals("Option 2", option.label);
-			assertEquals("option_2", option.name);
 			assertEquals("value 2", option.value);
 
 			option = availableOptions.get(2);
 			assertEquals("Option 3", option.label);
-			assertEquals("option_3", option.name);
 			assertEquals("value 3", option.value);
 
 			// Multiple is not supported yet

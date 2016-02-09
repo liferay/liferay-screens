@@ -19,31 +19,25 @@ class DDLFieldString_Tests: XCTestCase {
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
 	func test_Parse_ShouldExtractValues() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-				"<dynamic-element dataType=\"string\" " +
-						"indexType=\"keyword\" " +
-						"name=\"A_Text\" " +
-						"readOnly=\"false\" " +
-						"repeatable=\"true\" " +
-						"required=\"false\" " +
-						"showLabel=\"true\" " +
-						"type=\"text\" " +
-						"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Text]]>" +
-						"</entry> " +
-						"<entry name=\"predefinedValue\">" +
-							"<![CDATA[predefined text]]>" +
-						"</entry> " +
-						"<entry name=\"tip\">" +
-							"<![CDATA[The tip]]>" +
-						"</entry> " +
-					"</meta-data> " +
-				"</dynamic-element> </root>"
+		let json =
+			"{\"availableLanguageIds\": [\"en_US\"]," +
+			"\"defaultLanguageId\": \"en_US\"," +
+			"\"fields\": [{" +
+			"\"label\": {\"en_US\": \"A Text\"}," +
+			"\"predefinedValue\": {\"en_US\": \"predefined text\"}," +
+			"\"tip\": {\"en_US\": \"The tip\"}," +
+			"\"dataType\": \"string\"," +
+			"\"indexType\": \"keyword\"," +
+			"\"localizable\": true," +
+			"\"name\": \"A_Text\"," +
+			"\"readOnly\": false," +
+			"\"repeatable\": true," +
+			"\"required\": false," +
+			"\"showLabel\": true," +
+			"\"width\": \"small\"," +
+			"\"type\": \"text\"}]}"
 
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(json, locale: spanishLocale)
 
 		XCTAssertTrue(fields != nil)
 		XCTAssertEqual(1, fields!.count)
@@ -65,7 +59,7 @@ class DDLFieldString_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyString() {
-		let fields = DDLXSDParser().parse(requiredTextXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredTextJSON, locale: spanishLocale)
 
 		let stringField = fields![0] as! DDLFieldString
 
@@ -75,7 +69,7 @@ class DDLFieldString_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyStringWithSpaces() {
-		let fields = DDLXSDParser().parse(requiredTextXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredTextJSON, locale: spanishLocale)
 
 		let stringField = fields![0] as! DDLFieldString
 
@@ -84,20 +78,20 @@ class DDLFieldString_Tests: XCTestCase {
 		XCTAssertFalse(stringField.validate())
 	}
 
-	private let requiredTextXSD =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-				"<dynamic-element dataType=\"string\" " +
-						"name=\"A_Text\" " +
-						"readOnly=\"false\" " +
-						"repeatable=\"true\" " +
-						"required=\"true\" " +
-						"showLabel=\"true\" " +
-						"type=\"checkbox\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Text]]>" +
-						"</entry> " +
-					"</meta-data> " +
-				"</dynamic-element> </root>"
+	private let requiredTextJSON =
+		"{\"availableLanguageIds\": [\"en_US\"]," +
+		"\"defaultLanguageId\": \"en_US\"," +
+		"\"fields\": [{" +
+		"\"label\": {\"en_US\": \"A Text\"}," +
+		"\"dataType\": \"string\"," +
+		"\"indexType\": \"keyword\"," +
+		"\"localizable\": true," +
+		"\"name\": \"A_Text\"," +
+		"\"readOnly\": false," +
+		"\"repeatable\": true," +
+		"\"required\": true," +
+		"\"showLabel\": true," +
+		"\"width\": \"small\"," +
+		"\"type\": \"text\"}]}"
 
 }

@@ -41,23 +41,23 @@ import UIKit
 	}
 
 	public var classNameId: Int64 {
-		return (attributes["classNameId"] as! NSNumber).longLongValue
+		return attributes["classNameId"]!.description.asLong!
 	}
 
 	public var classPK: Int64 {
-		return (attributes["classPK"] as! NSNumber).longLongValue
+		return attributes["classPK"]!.description.asLong!
 	}
 
 	public var groupId: Int64 {
-		return (attributes["groupId"] as! NSNumber).longLongValue
+		return attributes["groupId"]!.description.asLong!
 	}
 
 	public var companyId: Int64 {
-		return (attributes["companyId"] as! NSNumber).longLongValue
+		return attributes["companyId"]!.description.asLong!
 	}
 
 	public var entryId: Int64 {
-		return (attributes["entryId"] as! NSNumber).longLongValue
+		return attributes["entryId"]!.description.asLong!
 	}
 
 	//MARK: Init

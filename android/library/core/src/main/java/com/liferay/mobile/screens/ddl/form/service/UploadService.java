@@ -20,10 +20,10 @@ import android.webkit.MimeTypeMap;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.dlapp.DLAppService;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
+import com.liferay.mobile.screens.service.v7.DLAppService;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 

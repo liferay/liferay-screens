@@ -73,7 +73,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	}
 
 	override public func doRun(session session: LRSession) {
-		let service = LRDDLRecordService_v62(session: session)
+		let service = LRDDLRecordService_v70(session: session)
 
 		let serviceContextAttributes = [
 			"userId": NSNumber(longLong: userId!),
@@ -95,7 +95,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 				recordDictionary = try service.updateRecordWithRecordId(recordId!,
 					displayIndex: 0,
 					fieldsMap: values,
-					mergeFields: true,
+					mergeFields: false,
 					serviceContext: serviceContextWrapper)
 			}
 

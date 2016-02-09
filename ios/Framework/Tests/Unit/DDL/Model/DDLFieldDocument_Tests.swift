@@ -23,24 +23,23 @@ class DDLFieldDocument_Tests: XCTestCase {
 	//MARK: Parse
 
 	func test_Parse_ShouldExtractValues() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"document-library\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Document\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-documentlibrary\" " +
-				"width=\"\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\"><![CDATA[A Document]]></entry> " +
-						"<entry name=\"predefinedValue\"><![CDATA[]]></entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
+		let json = "{\"availableLanguageIds\": [\"en_US\"]," +
+			"\"defaultLanguageId\": \"en_US\"," +
+			"\"fields\": [{" +
+			"\"label\": {\"en_US\": \"A Document\"}," +
+			"\"predefinedValue\": {\"en_US\": \"\"}," +
+			"\"dataType\": \"document-library\"," +
+			"\"indexType\": \"keyword\"," +
+			"\"localizable\": true," +
+			"\"name\": \"A_Document\"," +
+			"\"readOnly\": false," +
+			"\"repeatable\": true," +
+			"\"required\": false," +
+			"\"showLabel\": true," +
+			"\"fieldNamespace\": \"ddm\"," +
+			"\"type\": \"ddm-documentlibrary\"}]}"
 
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(json, locale: spanishLocale)
 
 		XCTAssertTrue(fields![0] is DDLFieldDocument)
 		let docField = fields![0] as! DDLFieldDocument
@@ -56,7 +55,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 	//MARK: Validate
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		XCTAssertTrue(docField.currentValue == nil)
@@ -64,7 +63,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShouldFail_WhenUploadFailed() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
@@ -77,14 +76,14 @@ class DDLFieldDocument_Tests: XCTestCase {
 	//MARK: MimeType
 
 	func test_MimeType_ShouldReturnNil_WhenCurrentValueIsEmpty() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		XCTAssertNil(docField.mimeType)
 	}
 
 	func test_MimeType_ShouldReturnPNGImageType_WhenCurrentValueIsImage() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
@@ -93,7 +92,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 	}
 
 	func test_MimeType_ShouldReturnMPEGVideoType_WhenCurrentValueIsURL() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		docField.currentValue =
@@ -106,7 +105,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 	//MARK: Stream
 
 	func test_Stream_ShouldReturnNil_WhenCurrentValueIsEmpty() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		var size:Int64 = 0
@@ -115,7 +114,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 	}
 
 	func test_Stream_ShouldReturnStream_WhenCurrentValueIsImage() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		let image = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
@@ -131,7 +130,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 	}
 
 	func test_Stream_ShouldReturnStream_WhenCurrentValueIsURL() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		let url = NSBundle(forClass: self.dynamicType).URLForResource("default-field",
@@ -152,14 +151,14 @@ class DDLFieldDocument_Tests: XCTestCase {
 	//MARK: currentValueAsLabel
 
 	func test_CurrentValueAsLabel_ShouldReturnNil_WhenCurrentValueIsNil() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		XCTAssertNil(docField.currentValueAsLabel)
 	}
 
 	func test_CurrentValueAsLabel_ShouldReturnImage_WhenCurrentValueIsImage() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
@@ -168,7 +167,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 	}
 
 	func test_CurrentValueAsLabel_ShouldReturnVideo_WhenCurrentValueIsURL() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		docField.currentValue =
@@ -181,7 +180,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 	//MARK: CurrentValueAsString
 
 	func test_CurrentValueAsString_ShouldReturnNil_WhenUploadStatusIsPending() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		docField.uploadStatus = .Pending
@@ -190,7 +189,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 	}
 
 	func test_CurrentValueAsString_ShouldReturnNil_WhenUploadStatusIsUploading() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		docField.uploadStatus = .Uploading(1,10)
@@ -199,7 +198,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 	}
 
 	func test_CurrentValueAsString_ShouldReturnNil_WhenUploadStatusIsFailed() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		docField.uploadStatus = .Failed(nil)
@@ -208,7 +207,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 	}
 
 	func test_CurrentValueAsString_ShouldReturnDDLJSON_WhenUploadStatusIsUploaded() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		let json:[String:AnyObject] = [
@@ -227,7 +226,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 	//MARK: UploadStatus
 
 	func test_UploadStatus_ShouldBeUploaded_WhenSetJSONTocurrentValueAsString() {
-		let fields = DDLXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredDocumentElementJSON, locale: spanishLocale)
 		let docField = fields![0] as! DDLFieldDocument
 
 		let json = "{\"groupId\":1234,\"uuid\":\"abcd\",\"version\":\"1.0\"}"
@@ -249,21 +248,21 @@ class DDLFieldDocument_Tests: XCTestCase {
 		}
 	}
 
-	private let requiredDocumentElementXSD =
-		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"document-library\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Document\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"true\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-documentlibrary\" " +
-				"width=\"\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\"><![CDATA[A Document]]></entry> " +
-						"<entry name=\"predefinedValue\"><![CDATA[]]></entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
+	private let requiredDocumentElementJSON =
+		"{\"availableLanguageIds\": [\"en_US\"]," +
+		"\"defaultLanguageId\": \"en_US\"," +
+		"\"fields\": [{" +
+		"\"label\": {\"en_US\": \"A Document\"}," +
+		"\"predefinedValue\": {\"en_US\": \"\"}," +
+		"\"dataType\": \"document-library\"," +
+		"\"indexType\": \"keyword\"," +
+		"\"localizable\": true," +
+		"\"name\": \"A_Document\"," +
+		"\"readOnly\": false," +
+		"\"repeatable\": true," +
+		"\"required\": true," +
+		"\"showLabel\": true," +
+		"\"fieldNamespace\": \"ddm\"," +
+		"\"type\": \"ddm-documentlibrary\"}]}"
 
 }

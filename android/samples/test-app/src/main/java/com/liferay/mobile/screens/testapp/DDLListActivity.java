@@ -20,12 +20,12 @@ import android.view.View;
 
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.service.v7.DDLRecordSetService;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
 import org.json.JSONException;

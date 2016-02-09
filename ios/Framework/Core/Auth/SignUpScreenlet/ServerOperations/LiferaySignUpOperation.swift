@@ -50,7 +50,7 @@ public class LiferaySignUpOperation: ServerOperation {
 
 	override public func doRun(session session: LRSession) {
 		let result: [NSObject:AnyObject]?
-		let service = LRUserService_v62(session: session)
+		let service = LRUserService_v70(session: session)
 		let emptyDict = [AnyObject]()
 		let password = viewModel.password ?? ""
 		let companyId = (self.companyId != 0)

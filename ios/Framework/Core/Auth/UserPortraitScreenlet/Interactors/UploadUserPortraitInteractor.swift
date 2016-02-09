@@ -50,7 +50,7 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 			collection: ScreenletName(UserPortraitScreenlet),
 			key: "userId-\(userId)",
 			value: image,
-			attributes: ["userId": NSNumber(longLong: userId)])
+			attributes: ["userId": userId.description])
 	}
 
 	override func callOnSuccess() {
@@ -59,8 +59,7 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 			SessionContext.currentCacheManager?.setClean(
 				collection: ScreenletName(UserPortraitScreenlet),
 				key: "userId-\(userId)",
-				attributes: [
-					"userId": NSNumber(longLong: userId)])
+				attributes: ["userId": userId.description])
 		}
 
 		super.callOnSuccess()

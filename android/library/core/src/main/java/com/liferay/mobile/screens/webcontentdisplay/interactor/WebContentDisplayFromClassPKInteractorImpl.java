@@ -21,7 +21,7 @@ import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.service.v62.ScreensjournalarticleService;
+import com.liferay.mobile.screens.service.v7.ScreensjournalarticleService;
 
 import java.util.Locale;
 

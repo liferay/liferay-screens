@@ -12,10 +12,10 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.dlfileentry.DLFileEntryService;
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.pushnotifications.activities.NotificationsActivity;
 import com.liferay.mobile.pushnotifications.download.DownloadPicture;
+import com.liferay.mobile.pushnotifications.service.DLFileEntryService;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.push.AbstractPushService;
@@ -32,7 +32,7 @@ public class PushService extends AbstractPushService {
 	public static final int NOTIFICATION_ID = 2;
 
 	@Override
-	protected void processJSONNotification(final JSONObject json) throws Exception {
+	protected void processJSONNotification(final JSONObject json) throws JSONException {
 		boolean creation = json.has("newNotification") && json.getBoolean("newNotification");
 		String titleHeader = (creation ? "New" : "Updated") + " notification: ";
 		String title = titleHeader + getString(json, "title");

@@ -19,7 +19,7 @@ class DDLField_Validation_Tests: XCTestCase {
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
 	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationFails() {
-		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredBooleanFormDefinitionJSON, locale: spanishLocale)
 
 		let booleanField = fields![0] as! DDLFieldBoolean
 
@@ -35,7 +35,7 @@ class DDLField_Validation_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationSucceeds() {
-		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredBooleanFormDefinitionJSON, locale: spanishLocale)
 
 		let booleanField = fields![0] as! DDLFieldBoolean
 
@@ -53,7 +53,7 @@ class DDLField_Validation_Tests: XCTestCase {
 	}
 
 	func test_ValidateOnBooleanField_ShouldFail_WhenRequiredValueIsNil() {
-		let fields = DDLXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredBooleanFormDefinitionJSON, locale: spanishLocale)
 
 		let booleanField = fields![0] as! DDLFieldBoolean
 
@@ -71,7 +71,7 @@ class DDLField_Validation_Tests: XCTestCase {
 	}
 
 	private func validateOnStringField_ShouldFail_WhenRequiredValueIs(value: String) {
-		let fields = DDLXSDParser().parse(requiredTextFormDefinitionXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(requiredTextFormDefinitionJSON, locale: spanishLocale)
 
 		let stringField = fields![0] as! DDLFieldString
 
@@ -80,36 +80,35 @@ class DDLField_Validation_Tests: XCTestCase {
 		XCTAssertFalse(stringField.validate())
 	}
 
-	private let requiredBooleanFormDefinitionXSD =
-		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"boolean\" " +
-					"name=\"A_Boolean\" " +
-					"readOnly=\"false\" " +
-					"repeatable=\"true\" " +
-					"required=\"true\" " +
-					"showLabel=\"true\" " +
-					"type=\"checkbox\"> " +
-				"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\">" +
-						"<![CDATA[A Boolean]]>" +
-					"</entry> " +
-				"</meta-data> " +
-			"</dynamic-element> </root>"
+	private let requiredBooleanFormDefinitionJSON =
+		"{\"availableLanguageIds\": [\"en_US\"]," +
+		"\"defaultLanguageId\": \"en_US\"," +
+		"\"fields\": [{" +
+		"\"label\": {\"en_US\": \"A Boolean\"}," +
+		"\"dataType\": \"boolean\"," +
+		"\"indexType\": \"keyword\"," +
+		"\"localizable\": true," +
+		"\"name\": \"A_Boolean\"," +
+		"\"readOnly\": false," +
+		"\"repeatable\": false," +
+		"\"required\": true," +
+		"\"showLabel\": true," +
+		"\"type\": \"checkbox\"}]}"
 
-	private let requiredTextFormDefinitionXSD =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-				"<dynamic-element dataType=\"string\" " +
-						"name=\"A_Text\" " +
-						"readOnly=\"false\" " +
-						"repeatable=\"true\" " +
-						"required=\"true\" " +
-						"showLabel=\"true\" " +
-						"type=\"checkbox\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Text]]>" +
-						"</entry> " +
-					"</meta-data> " +
-				"</dynamic-element> </root>"
+	private let requiredTextFormDefinitionJSON =
+		"{\"availableLanguageIds\": [\"en_US\"]," +
+		"\"defaultLanguageId\": \"en_US\"," +
+		"\"fields\": [{" +
+		"\"label\": {\"en_US\": \"A Text\"}," +
+		"\"predefinedValue\": {\"en_US\": false}," +
+		"\"dataType\": \"string\"," +
+		"\"indexType\": \"keyword\"," +
+		"\"localizable\": true," +
+		"\"name\": \"A_Text\"," +
+		"\"readOnly\": false," +
+		"\"repeatable\": true," +
+		"\"required\": true," +
+		"\"showLabel\": true," +
+		"\"type\": \"text\"}]}"
 
 }

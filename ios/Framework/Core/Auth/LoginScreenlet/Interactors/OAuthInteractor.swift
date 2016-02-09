@@ -112,7 +112,7 @@ class OAuthInteractor: Interactor, LRCallback {
 				authentication: LROAuth(config: config))
 		OAuthSession!.callback = self
 
-		let srv = LRScreensuserService_v62(session: OAuthSession!)
+		let srv = LRScreensuserService_v70(session: OAuthSession!)
 
 		do {
 			try srv.getCurrentUser()

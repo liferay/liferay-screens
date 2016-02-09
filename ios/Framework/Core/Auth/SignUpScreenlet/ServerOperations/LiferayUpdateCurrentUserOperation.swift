@@ -56,12 +56,13 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 		}
 
 
-		let service = LRUserService_v62(session: session)
+		let service = LRUserService_v70(session: session)
 
 		do {
 			//FIXME
 			// Values marked with (!!) will be overwritten in the server
 			// The JSON WS API isn't able to handle this scenario correctly
+
 			let result = try service.updateUserWithUserId(attributeAsId("userId"),
 				oldPassword: SessionContext.currentBasicPassword,
 				newPassword1: viewModel.password ?? "",
@@ -87,15 +88,10 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 				birthdayDay: 1, 	// (!!)
 				birthdayYear: 1970, // (!!)
 				smsSn: "", 			// (!!)
-				aimSn: "", 			// (!!)
 				facebookSn: "", 	// (!!)
-				icqSn: "", 			// (!!)
 				jabberSn: "", 		// (!!)
-				msnSn: "", 			// (!!)
-				mySpaceSn: "", 		// (!!)
 				skypeSn: "", 		// (!!)
 				twitterSn: "", 		// (!!)
-				ymSn: "", 			// (!!)
 				jobTitle: viewModel.jobTitle ?? "",
 				groupIds: [NSNumber(longLong: LiferayServerContext.groupId)],
 				organizationIds: [AnyObject](),

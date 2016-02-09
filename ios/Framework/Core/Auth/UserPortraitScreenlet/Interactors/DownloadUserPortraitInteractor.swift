@@ -96,14 +96,9 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 				male: male)
 
 		case .UserId(let userId):
-			let currentUserId = SessionContext.userAttribute("userId") as? NSNumber
-
-			if userId == currentUserId?.longLongValue {
-				return createOperationForLogged()
-			}
-			else {
-				return createOperationFor(GetUserByUserIdOperation(userId: userId))
-			}
+			return (SessionContext.currentUserId != nil)
+				? createOperationForLogged()
+				: createOperationFor(GetUserByUserIdOperation(userId: userId))
 
 		case .EmailAddress(let companyId, let emailAddress):
 			let currentCompanyId = SessionContext.userAttribute("companyId") as? NSNumber
@@ -235,14 +230,14 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 	private func createOperationFor(attributes attributes: [String:AnyObject]?) -> ServerOperation? {
 		if let attributes = attributes,
-				portraitId = attributes["portraitId"] as? NSNumber,
+				portraitId = attributes["portraitId"]?.description.asLong,
 				uuid = attributes["uuid"] as? String,
-				userId = attributes["userId"] as? NSNumber {
+				userId = attributes["userId"]?.description.asLong {
 
-			resultUserId = userId.longLongValue
+			resultUserId = userId
 
 			return createOperationFor(
-				portraitId: portraitId.longLongValue,
+				portraitId: portraitId,
 				uuid: uuid,
 				male: true)
 		}

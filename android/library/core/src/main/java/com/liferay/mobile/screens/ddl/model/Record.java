@@ -17,10 +17,7 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.liferay.mobile.screens.ddl.XSDParser;
 import com.liferay.mobile.screens.util.JSONUtil;
-
-import org.xml.sax.SAXException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,15 +70,8 @@ public class Record implements Parcelable {
 		}
 	}
 
-	public void parseXsd(String xsd) {
-		XSDParser parser = new XSDParser();
-
-		try {
-			_fields = parser.parse(xsd, _locale);
-		}
-		catch (SAXException e) {
-			_fields = new ArrayList<>();
-		}
+	public void parseJson(String json) {
+		_fields = new JsonParser().parse(json, _locale);
 	}
 
 	public Field getField(int index) {

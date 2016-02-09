@@ -37,7 +37,7 @@ public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBas
 			templateId: Int64,
 			session: LRSession) -> String? {
 		let result: String?
-		let service = LRScreensjournalarticleService_v62(session: session)
+		let service = LRScreensjournalarticleService_v70(session: session)
 
 		do {
 			result = try service.getJournalArticleContentWithClassPK(classPK!,
@@ -54,7 +54,7 @@ public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBas
 
 	override internal func doGetJournalArticle(session: LRSession) -> String? {
 		let result: String?
-		let service = LRScreensjournalarticleService_v62(session: session)
+		let service = LRScreensjournalarticleService_v70(session: session)
 
 		do {
 			result = try service.getJournalArticleContentWithClassPK(classPK!,

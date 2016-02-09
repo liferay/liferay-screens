@@ -7,7 +7,6 @@ import android.view.View;
 
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
@@ -15,6 +14,7 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.push.PushScreensActivity;
+import com.liferay.mobile.screens.service.v7.DDLRecordSetService;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONException;
@@ -29,7 +29,7 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_notifications);
 
-		if (!SessionContext.hasSession()) {
+		if (!SessionContext.isLoggedIn()) {
 			startActivity(new Intent(this, LoginActivity.class));
 		}
 

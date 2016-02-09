@@ -18,7 +18,7 @@ import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.service.v62.ScreensuserService;
+import com.liferay.mobile.screens.service.v7.ScreensuserService;
 
 /**
  * @author Jose Manuel Navarro

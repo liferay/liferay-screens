@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.ddl.form.interactor.formload;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.ddmstructure.DDMStructureService;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -26,6 +25,7 @@ import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.service.v7.DDMStructureService;
 
 import org.json.JSONException;
 
@@ -58,12 +58,12 @@ public class DDLFormLoadInteractorImpl
 		if (!event.isFailed()) {
 
 			try {
-				String xsd = event.getJSONObject().getString("xsd");
+				String json = event.getJSONObject().getString("definition");
 				long userId = event.getJSONObject().getLong("userId");
 
 				Record formRecord = event.getRecord();
 
-				formRecord.parseXsd(xsd);
+				formRecord.parseJson(json);
 
 				if (formRecord.getCreatorUserId() == 0) {
 					formRecord.setCreatorUserId(userId);

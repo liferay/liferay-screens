@@ -53,7 +53,7 @@ public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default
 
 	private func setFieldPresenter(field:DDLField) {
 
-		func onChange(selectedDate:NSDate!) {
+		func onChange(selectedDate: NSDate!) {
 			field.currentValue = selectedDate
 			textField!.text = field.currentValueAsLabel
 

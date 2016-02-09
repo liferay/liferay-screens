@@ -16,85 +16,71 @@ import Foundation
 
 public class DDLFieldDate : DDLField {
 
-	override public var currentLocale: NSLocale {
-		didSet {
-			clientDateFormatter.locale = self.currentLocale
-		}
+	private let serverDateFormat = "yyyy-MM-dd"
+	private let gmtTimeZone = NSTimeZone(abbreviation: "GMT")
+	public var serverDateFormatter: NSDateFormatter {
+		let result = NSDateFormatter()
+		result.dateFormat = serverDateFormat
+		result.timeZone = gmtTimeZone
+		return result
 	}
 
-	private let clientDateFormatter = NSDateFormatter()
+	public var clientDateFormatter: NSDateFormatter {
+		let result = NSDateFormatter()
+		result.dateStyle = .LongStyle
+		result.timeStyle = .NoStyle
+		result.locale = currentLocale
+		return result
+	}
+
 
 	override public init(attributes: [String:AnyObject], locale: NSLocale) {
 		super.init(attributes: attributes, locale: locale)
-
-		initFormatter(locale)
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-
-		initFormatter(self.currentLocale)
-	}
-
-	private func initFormatter(locale: NSLocale) {
-		clientDateFormatter.dateStyle = .LongStyle
-		clientDateFormatter.timeStyle = .NoStyle
-		clientDateFormatter.locale = locale
 	}
 
 
 	//MARK: DDLField
 
-	override internal func convert(fromString value:String?) -> AnyObject? {
+	override internal func convert(fromString value: String?) -> AnyObject? {
 		guard let stringValue = value else {
 			return nil
 		}
-
-		// minimum date length in mm/dd/yy is 6 characters
-		guard stringValue.characters.count >= 6 else {
+		guard !stringValue.isEmpty else {
 			return nil
 		}
 
-		let separator = stringValue[stringValue.endIndex.advancedBy(-3)]
-
-		let formatter = NSDateFormatter()
-		formatter.timeZone = NSTimeZone(abbreviation: "GMT")
-		formatter.dateFormat = (separator == "/") ? "MM/dd/yy" : "MM/dd/yyyy"
-
-		return formatter.dateFromString(stringValue)
+		return serverDateFormatter.dateFromString(stringValue)
 	}
 
 	override func convert(fromLabel label: String?) -> AnyObject? {
-		var result: AnyObject?
-
-		if label != nil {
-			result = clientDateFormatter.dateFromString(label!)
+		guard let label = label else {
+			return nil
+		}
+		guard !label.isEmpty else {
+			return nil
 		}
 
-		return result
+		return clientDateFormatter.dateFromString(label)
 	}
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
-		var result: String?
-
-		if let date = value as? NSDate {
-			// Java uses milliseconds instead of seconds
-			let epoch = UInt64(date.timeIntervalSince1970 * 1000)
-
-			result = "\(epoch)"
+		guard let date = value as? NSDate else {
+			return nil
 		}
 
-		return result
+		return serverDateFormatter.stringFromDate(date)
 	}
 
 	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
-		var result: String?
-
-		if let date = currentValue as? NSDate {
-			result = clientDateFormatter.stringFromDate(date)
+		guard let date = currentValue as? NSDate else {
+			return nil
 		}
 
-		return result
+		return clientDateFormatter.stringFromDate(date)
 	}
 
 }

@@ -13,10 +13,6 @@
 */
 import Foundation
 
-#if LIFERAY_SCREENS_FRAMEWORK
-	import SMXMLDocument
-#endif
-
 
 extension DDLField {
 
@@ -31,10 +27,6 @@ extension DDLField {
 		case Number = "number"
 		case Document = "ddm-documentlibrary"
 		case Unsupported = ""
-
-		public static func from(xmlElement xmlElement:SMXMLElement) -> Editor {
-			return from(attributeValue:(xmlElement.attributeNamed("type") ?? ""))
-		}
 
 		public static func from(attributes attributes:[String:AnyObject]) -> Editor {
 			return from(attributeValue:((attributes["type"] ?? "") as! String))

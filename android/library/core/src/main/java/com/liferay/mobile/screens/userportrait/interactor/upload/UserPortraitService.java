@@ -22,8 +22,8 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.service.v7.UserService;
 import com.liferay.mobile.screens.util.EventBusUtil;
 
 import org.json.JSONObject;

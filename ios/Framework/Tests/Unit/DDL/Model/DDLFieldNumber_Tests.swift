@@ -22,7 +22,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	//MARK: parse
 
 	func test_Parse_ShouldExtractValues_WhenFieldIsInteger() {
-		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(integerJSON, locale: spanishLocale)
 
 		XCTAssertTrue(fields![0] is DDLFieldNumber)
 		let numberField = fields![0] as! DDLFieldNumber
@@ -34,7 +34,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldExtractValues_WhenFieldIsNumber() {
-		let fields = DDLXSDParser().parse(numberXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(numberJSON, locale: spanishLocale)
 
 		XCTAssertTrue(fields![0] is DDLFieldNumber)
 		let numberField = fields![0] as! DDLFieldNumber
@@ -46,7 +46,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_Parse_ShouldExtractValues_WhenFieldIsDouble() {
-		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(decimalJSON, locale: spanishLocale)
 
 		XCTAssertTrue(fields![0] is DDLFieldNumber)
 		let numberField = fields![0] as! DDLFieldNumber
@@ -60,7 +60,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 
 	func test_Parse_ShouldExtractPredefinedValueValues_WhenFieldIsInteger() {
-		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(integerJSON, locale: spanishLocale)
 		let numberField = fields![0] as! DDLFieldNumber
 
 		XCTAssertTrue(numberField.predefinedValue is NSInteger)
@@ -71,7 +71,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	//MARK: currentValue
 
 	func test_CurrentValue_ShouldTruncateDecimal_WhenOriginalNumberIsInteger() {
-		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(integerJSON, locale: spanishLocale)
 		let numberField = fields![0] as! DDLFieldNumber
 
 		numberField.currentValue = 1.1
@@ -84,7 +84,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	//MARK: currentValueAsString
 
 	func test_CurrentValueAsString_ShouldBeValid_WhenNumberIsInteger() {
-		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(integerJSON, locale: spanishLocale)
 		let numberField = fields![0] as! DDLFieldNumber
 
 		numberField.currentValue = 99
@@ -93,7 +93,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_CurrentValueAsString_ShouldBeValid_WhenNumberIsDecimal() {
-		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(decimalJSON, locale: spanishLocale)
 		let numberField = fields![0] as! DDLFieldNumber
 
 		numberField.currentValue = 16.0599
@@ -102,7 +102,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_CurrentValueAsString_ShouldBeValid_WhenNumberIsDecimalAndContentIsInteger() {
-		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(decimalJSON, locale: spanishLocale)
 		let numberField = fields![0] as! DDLFieldNumber
 
 		numberField.currentValue = 16
@@ -111,7 +111,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_CurrentValueAsString_ShouldBeChanged_WhenNumberIsInteger() {
-		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(integerJSON, locale: spanishLocale)
 		let numberField = fields![0] as! DDLFieldNumber
 
 		numberField.currentValueAsString = "99"
@@ -122,7 +122,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_CurrentValueAsString_ShouldBeChanged_WhenNumberIsIntegerAndValueIsDecimal() {
-		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(integerJSON, locale: spanishLocale)
 		let numberField = fields![0] as! DDLFieldNumber
 
 		numberField.currentValueAsString = "99.88"
@@ -133,7 +133,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_CurrentValueAsString_ShouldBeChanged_WhenNumberIsDecimal() {
-		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(decimalJSON, locale: spanishLocale)
 		let numberField = fields![0] as! DDLFieldNumber
 
 		numberField.currentValueAsString = "99.98"
@@ -150,7 +150,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	//MARK: currentValueAsLabel
 
 	func test_CurrentValueAsLabel_ShouldBeLocalizedToSpanish_WhenNumberIsDecimal() {
-		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(decimalJSON, locale: spanishLocale)
 		let numberField = fields![0] as! DDLFieldNumber
 
 		numberField.currentValue = 16.0599
@@ -159,7 +159,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_CurrentValueAsLabel_ShouldBeLocalizedToEnglish_WhenNumberIsDecimal() {
-		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(decimalJSON, locale: spanishLocale)
 		let numberField = fields![0] as! DDLFieldNumber
 
 		numberField.currentLocale = NSLocale(localeIdentifier: "en_US")
@@ -169,7 +169,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 	func test_CurrentValueAsLabel_ShouldBeTheRightValue_WhenSetTheLabelValue() {
-		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(decimalJSON, locale: spanishLocale)
 		let numberField = fields![0] as! DDLFieldNumber
 
 		numberField.currentValueAsLabel = "16,069"
@@ -183,25 +183,22 @@ class DDLFieldNumber_Tests: XCTestCase {
 	//MARK: validate
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
-		let xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"double\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"true\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-decimal\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
+		let json = "{\"availableLanguageIds\": [\"en_US\"]," +
+			"\"defaultLanguageId\": \"en_US\"," +
+			"\"fields\": [{" +
+			"\"label\": {\"en_US\": \"A Number\"}," +
+			"\"dataType\": \"double\"," +
+			"\"indexType\": \"keyword\"," +
+			"\"name\": \"A_Number\"," +
+			"\"readOnly\": false," +
+			"\"repeatable\": true," +
+			"\"required\": true," +
+			"\"showLabel\": true," +
+			"\"fieldNamespace\": \"ddm\"," +
+			"\"width\": \"small\"," +
+			"\"type\": \"ddm-decimal\"}]}"
 
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDLJSONParser().parse(json, locale: spanishLocale)
 
 		let numberField = fields![0] as! DDLFieldNumber
 
@@ -210,67 +207,52 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 
-	private let decimalXSD =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"double\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"true\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-decimal\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-						"<entry name=\"predefinedValue\"> " +
-							"<![CDATA[16.05]]> " +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
+	private let decimalJSON = "{\"availableLanguageIds\": [\"en_US\"]," +
+		"\"defaultLanguageId\": \"en_US\"," +
+		"\"fields\": [{" +
+		"\"label\": {\"en_US\": \"A Number\"}," +
+		"\"predefinedValue\": {\"en_US\": \"16.05\"}," +
+		"\"dataType\": \"double\"," +
+		"\"indexType\": \"keyword\"," +
+		"\"localizable\": true," +
+		"\"name\": \"A_Number\"," +
+		"\"readOnly\": false," +
+		"\"repeatable\": true," +
+		"\"required\": true," +
+		"\"showLabel\": true," +
+		"\"fieldNamespace\": \"ddm\"," +
+		"\"type\": \"ddm-decimal\"}]}"
 
-	private let integerXSD =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"integer\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-integer\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-						"<entry name=\"predefinedValue\"> " +
-							"<![CDATA[16]]> " +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
+	private let integerJSON = "{\"availableLanguageIds\": [\"en_US\"]," +
+		"\"defaultLanguageId\": \"en_US\"," +
+		"\"fields\": [{" +
+		"\"label\": {\"en_US\": \"A Number\"}," +
+		"\"predefinedValue\": {\"en_US\": \"16\"}," +
+		"\"dataType\": \"integer\"," +
+		"\"indexType\": \"keyword\"," +
+		"\"localizable\": true," +
+		"\"name\": \"A_Number\"," +
+		"\"readOnly\": false," +
+		"\"repeatable\": true," +
+		"\"required\": false," +
+		"\"showLabel\": true," +
+		"\"fieldNamespace\": \"ddm\"," +
+		"\"type\": \"ddm-integer\"}]}"
 
-	private let numberXSD =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-			"<dynamic-element dataType=\"number\" " +
-				"indexType=\"keyword\" " +
-				"name=\"A_Number\" " +
-				"readOnly=\"false\" " +
-				"repeatable=\"true\" " +
-				"required=\"false\" " +
-				"showLabel=\"true\" " +
-				"type=\"ddm-number\" " +
-				"width=\"small\"> " +
-					"<meta-data locale=\"en_US\"> " +
-						"<entry name=\"label\">" +
-							"<![CDATA[A Number]]>" +
-						"</entry> " +
-						"<entry name=\"predefinedValue\"> " +
-							"<![CDATA[16]]> " +
-						"</entry> " +
-					"</meta-data> " +
-			"</dynamic-element> </root>"
+	private let numberJSON = "{\"availableLanguageIds\": [\"en_US\"]," +
+		"\"defaultLanguageId\": \"en_US\"," +
+		"\"fields\": [{" +
+		"\"label\": {\"en_US\": \"A Number\"}," +
+		"\"predefinedValue\": {\"en_US\": \"16\"}," +
+		"\"dataType\": \"number\"," +
+		"\"indexType\": \"keyword\"," +
+		"\"localizable\": true," +
+		"\"name\": \"A_Number\"," +
+		"\"readOnly\": false," +
+		"\"repeatable\": true," +
+		"\"required\": false," +
+		"\"showLabel\": true," +
+		"\"fieldNamespace\": \"ddm\"," +
+		"\"type\": \"ddm-number\"}]}"
 
 }

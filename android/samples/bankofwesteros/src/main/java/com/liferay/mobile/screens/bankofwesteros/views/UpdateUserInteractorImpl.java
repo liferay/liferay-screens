@@ -2,9 +2,9 @@ package com.liferay.mobile.screens.bankofwesteros.views;
 
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.service.v7.UserService;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONArray;
@@ -33,7 +33,7 @@ public class UpdateUserInteractorImpl {
 				user.getString("openId"), user.getString("languageId"), "", user.getString("greeting"),
 				user.getString("comments"), firstName, user.getString("middleName"),
 				lastName, 0, 0, true, 1, 1, 1900, user.getString("emailAddress"),
-				"", "", "", "", "", "", "", "", "", user.getString("jobTitle"),
+				"", "", "", "", user.getString("jobTitle"),
 				array, array, array, array, array, null);
 		}
 		catch (Exception e) {

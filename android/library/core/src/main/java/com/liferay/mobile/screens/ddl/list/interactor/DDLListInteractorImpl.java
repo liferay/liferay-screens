@@ -24,7 +24,7 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.service.v62.ScreensddlrecordService;
+import com.liferay.mobile.screens.service.v7.ScreensddlrecordService;
 import com.liferay.mobile.screens.util.JSONUtil;
 
 import org.json.JSONException;

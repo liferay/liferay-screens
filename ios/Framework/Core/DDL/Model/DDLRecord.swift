@@ -17,7 +17,7 @@ import Foundation
 //TODO: Unit test
 
 
-public class DDLRecord: NSObject, NSCoding {
+@objc public class DDLRecord: NSObject, NSCoding, CustomDebugStringConvertible {
 
 	public var fields: [DDLField] = []
 
@@ -59,16 +59,22 @@ public class DDLRecord: NSObject, NSCoding {
 		return result
 	}
 
+	public override var debugDescription: String {
+		return "DDLRecord[" +
+			" id=\( recordId?.description ?? "" )" +
+			" attributes=\( attributes )" +
+			" fields=\(fields)"
+	}
+
 
 	//MARK: Init
 	
-	public init(xsd: String, locale: NSLocale) {
+	public init(json: String, locale: NSLocale) {
 		super.init()
 
-		if let parsedFields = DDLXSDParser().parse(xsd, locale: locale) {
-		 	if !parsedFields.isEmpty {
-				fields = parsedFields
-			}
+		if let parsedFields = DDLJSONParser().parse(json, locale: locale)
+				where !parsedFields.isEmpty {
+			fields = parsedFields
 		}
 	}
 
@@ -140,13 +146,12 @@ public class DDLRecord: NSObject, NSCoding {
 
 	public func updateCurrentValues(values: [String:AnyObject]) {
 		fields.forEach {
-			let fieldValueLabel: AnyObject? = (values[$0.name] ?? nil)
-			if fieldValueLabel != nil {
-				if fieldValueLabel is String {
-					$0.currentValueAsLabel = fieldValueLabel as? String
+			if let fieldValue = values[$0.name] {
+				if let fieldStringValue = fieldValue as? String {
+					$0.currentValueAsString = fieldStringValue
 				}
 				else {
-					$0.currentValue = fieldValueLabel
+					$0.currentValue = fieldValue
 				}
 			}
 		}

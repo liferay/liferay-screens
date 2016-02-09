@@ -49,7 +49,7 @@ class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
 				key: "structureId-\(loadOp.structureId)",
 				value: record,
 				attributes: [
-					"userId": NSNumber(longLong: userId)])
+					"userId": userId.description])
 		}
 	}
 
@@ -63,7 +63,7 @@ class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
 				record, attributes in
 
 				loadOp.resultRecord = record as? DDLRecord
-				loadOp.resultUserId = (attributes?["userId"] as? NSNumber)?.longLongValue
+				loadOp.resultUserId = attributes?["userId"]?.description.asLong
 
 				result(loadOp.resultRecord)
 			}

@@ -36,7 +36,7 @@ public class LiferayWebContentLoadFromArticleIdOperation: LiferayWebContentLoadB
 	override internal func doGetJournalArticleWithTemplate(
 			templateId: Int64,
 			session: LRSession) -> String? {
-		let service = LRScreensjournalarticleService_v62(session: session)
+		let service = LRScreensjournalarticleService_v70(session: session)
 
 		do {
 			let result: String?
@@ -58,7 +58,7 @@ public class LiferayWebContentLoadFromArticleIdOperation: LiferayWebContentLoadB
 	}
 
 	override internal func doGetJournalArticle(session: LRSession) -> String? {
-		let service = LRJournalArticleService_v62(session: session)
+		let service = LRJournalArticleService_v70(session: session)
 
 		do {
 			let result: String?
