@@ -94,13 +94,5 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 		}
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		if (Activity.RESULT_OK == resultCode) {
-			_screenlet.upload(requestCode, data);
-		}
-	}
 	private UserPortraitScreenlet _screenlet;
 }
