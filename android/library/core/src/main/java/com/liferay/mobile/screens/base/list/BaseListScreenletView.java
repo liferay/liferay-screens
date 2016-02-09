@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.base.list;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -33,7 +34,6 @@ import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -89,9 +89,10 @@ public abstract class BaseListScreenletView<
 
 		A adapter = getAdapter();
 
-		addNewServerEntries(page, serverEntries, rowCount, adapter);
+		List<E> entries = addNewServerEntries(serverEntries, page, rowCount);
 
-		adapter.setRowCount(rowCount);
+		adapter.setRowCount(entries.size());
+
 		adapter.notifyDataSetChanged();
 	}
 
@@ -106,13 +107,6 @@ public abstract class BaseListScreenletView<
 		_recyclerView.setVisibility(View.VISIBLE);
 		LiferayLogger.e(getContext().getString(R.string.loading_list_error), e);
 		LiferayCrouton.error(getContext(), getContext().getString(R.string.loading_list_error), e);
-	}
-
-	@Override
-	public void onPageNotFound(int row) {
-		BaseListScreenlet screenlet = (BaseListScreenlet) getParent();
-
-		screenlet.loadPageForRow(row);
 	}
 
 	public A getAdapter() {
@@ -130,6 +124,13 @@ public abstract class BaseListScreenletView<
 	}
 
 	@Override
+	public void onPageNotFound(int row) {
+		BaseListScreenlet screenlet = (BaseListScreenlet) getParent();
+
+		screenlet.loadPageForRow(row + _firstRow);
+	}
+
+	@Override
 	protected void onRestoreInstanceState(Parcelable inState) {
 		Bundle state = (Bundle) inState;
 		Parcelable superState = state.getParcelable(_STATE_SUPER);
@@ -140,8 +141,10 @@ public abstract class BaseListScreenletView<
 
 		A adapter = getAdapter();
 		adapter.setRowCount(state.getInt(_STATE_ROW_COUNT));
-		adapter.setEntries(entries);
+		adapter.getEntries().addAll(entries == null ? new ArrayList<E>() : entries);
 		adapter.notifyDataSetChanged();
+
+		_firstRow = state.getInt(_STATE_FIRST_ROW);
 	}
 
 	@Override
@@ -155,6 +158,7 @@ public abstract class BaseListScreenletView<
 		state.putParcelableArrayList(_STATE_ENTRIES, entries);
 		state.putSerializable(_STATE_ROW_COUNT, adapter.getItemCount());
 		state.putParcelable(_STATE_SUPER, superState);
+		state.putInt(_STATE_FIRST_ROW, _firstRow);
 
 		return state;
 	}
@@ -182,25 +186,6 @@ public abstract class BaseListScreenletView<
 				getDividerDecoration());
 		}
 
-	}
-
-	protected List<E> createAllEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
-		List<E> entries = adapter.getEntries();
-		List<E> allEntries = new ArrayList<>(
-			Collections.<E>nCopies(rowCount, null));
-
-		for (int i = 0; i < entries.size(); i++) {
-			allEntries.set(i, entries.get(i));
-		}
-
-		BaseListScreenlet screenlet = ((BaseListScreenlet) getParent());
-
-		int firstRowForPage = screenlet.getFirstRowForPage(page);
-
-		for (int i = 0; i < serverEntries.size(); i++) {
-			allEntries.set(i + firstRowForPage, serverEntries.get(i));
-		}
-		return allEntries;
 	}
 
 	protected DividerItemDecoration getDividerDecoration() {
@@ -233,27 +218,37 @@ public abstract class BaseListScreenletView<
 
 	protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
 
-	private void addNewServerEntries(int page, List<E> serverEntries, int rowCount, A adapter) {
+	@NonNull
+	private List<E> addNewServerEntries(List<E> serverEntries, int page, int rowCount) {
+		List<E> entries = getAdapter().getEntries();
+
 		BaseListScreenlet screenlet = ((BaseListScreenlet) getParent());
-		int firstRowForPage = screenlet.getFirstRowForPage(page);
+		int row = screenlet.getFirstRowForPage(page) - _firstRow;
 
-		List<E> entries = adapter.getEntries();
-		for (int i = entries.size(); i < rowCount; i++) {
-			entries.add(null);
+		if (entries.isEmpty()) {
+			_firstRow = row;
+			row = 0;
+
+			//TODO better 'real' paginator
+			for (int i = 0; i < rowCount - _firstRow; i++) {
+				entries.add(null);
+			}
 		}
 
-		for (int i = 0; i < serverEntries.size(); i++) {
-			entries.set(i + firstRowForPage, serverEntries.get(i));
+		for (int i = 0; i < serverEntries.size() && entries.size() > i + row; i++) {
+			entries.set(i + row, serverEntries.get(i));
 		}
+		return entries;
 	}
 
+	protected int _firstRow = 0;
+	protected ProgressBar _progressBar;
+	protected RecyclerView _recyclerView;
 	private static final String _STATE_ENTRIES = "entries";
 	private static final String _STATE_ROW_COUNT = "rowCount";
 	private static final String _STATE_SUPER = "super";
-
-	protected ProgressBar _progressBar;
-	protected RecyclerView _recyclerView;
-
+	private static final String _STATE_FIRST_ROW = "firstRow";
 	private BaseScreenlet _screenlet;
+
 
 }
