@@ -72,6 +72,16 @@ public class DDLRecord: NSObject, NSCoding {
 		}
 	}
 
+	public init(json: String, locale: NSLocale) {
+		super.init()
+
+		if let parsedFields = DDLJSONParser().parse(json, locale: locale) {
+			if !parsedFields.isEmpty {
+				fields = parsedFields
+			}
+		}
+	}
+
 	public init(data: [String:AnyObject], attributes: [String:AnyObject]) {
 		super.init()
 

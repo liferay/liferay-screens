@@ -35,6 +35,10 @@ extension DDLField {
 			return DataType(rawValue: xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 		}
 
+		public static func from(json json: JSONObject) -> DataType {
+			return DataType(rawValue: (json["dataType"] as? String) ?? "") ?? .Unsupported
+		}
+
 		public func createField(
 				attributes attributes:[String:AnyObject],
 				locale: NSLocale)

@@ -248,6 +248,7 @@
 		8839B8911B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */; };
 		886FCCB01BA6D59700494BB0 /* SyncManager+UserPortrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886FCCAF1BA6D59700494BB0 /* SyncManager+UserPortrait.swift */; };
 		886FCCB31BA6D96E00494BB0 /* SyncManager+DDLForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886FCCB21BA6D96E00494BB0 /* SyncManager+DDLForm.swift */; };
+		887E05431C6A4A5000CA3807 /* DDLJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887E05421C6A4A5000CA3807 /* DDLJSONParser.swift */; };
 		887F0D031B98973A0007AECE /* ServerReadOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0CFC1B98833D0007AECE /* ServerReadOperationInteractor.swift */; };
 		887F0D041B98973A0007AECE /* ServerReadOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0CFC1B98833D0007AECE /* ServerReadOperationInteractor.swift */; };
 		887F0D051B9897600007AECE /* ServerWriteOperationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0CFF1B988EA60007AECE /* ServerWriteOperationInteractor.swift */; };
@@ -546,6 +547,7 @@
 		8839B8891B0CD5C4006C18F1 /* GetUserByUserIdOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserByUserIdOperation.swift; sourceTree = "<group>"; };
 		886FCCAF1BA6D59700494BB0 /* SyncManager+UserPortrait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+UserPortrait.swift"; sourceTree = "<group>"; };
 		886FCCB21BA6D96E00494BB0 /* SyncManager+DDLForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+DDLForm.swift"; sourceTree = "<group>"; };
+		887E05421C6A4A5000CA3807 /* DDLJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLJSONParser.swift; sourceTree = "<group>"; };
 		887F0CFC1B98833D0007AECE /* ServerReadOperationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerReadOperationInteractor.swift; sourceTree = "<group>"; };
 		887F0CFF1B988EA60007AECE /* ServerWriteOperationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerWriteOperationInteractor.swift; sourceTree = "<group>"; };
 		887F0D081B999CD90007AECE /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
@@ -897,6 +899,7 @@
 		881E614C1ACBEE0B00862B9E /* DDL */ = {
 			isa = PBXGroup;
 			children = (
+				887E05421C6A4A5000CA3807 /* DDLJSONParser.swift */,
 				881E614D1ACBEE0B00862B9E /* DDLValuesParser.swift */,
 				881E614E1ACBEE0B00862B9E /* DDLXSDParser.swift */,
 				881E614F1ACBEE0B00862B9E /* FormScreenlet */,
@@ -1843,6 +1846,7 @@
 				88CA80631B25D6EA004C1D59 /* BasicAuthBased.swift in Sources */,
 				8839B88A1B0CD5C4006C18F1 /* GetUserBaseOperation.swift in Sources */,
 				888DF5B21ACC9FC200EB7DA1 /* LoginViewModel.swift in Sources */,
+				887E05431C6A4A5000CA3807 /* DDLJSONParser.swift in Sources */,
 				881E62321ACBFC3400862B9E /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
 				881E61801ACBEE0B00862B9E /* LiferayDDLFormLoadOperation.swift in Sources */,
 				881E61881ACBEE0B00862B9E /* DDLListViewModel.swift in Sources */,
