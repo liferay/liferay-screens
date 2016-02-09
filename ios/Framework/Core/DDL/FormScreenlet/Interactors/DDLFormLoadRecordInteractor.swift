@@ -117,7 +117,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				recordData = loadRecordOp.resultRecordData,
 				recordAttributes = loadRecordOp.resultRecordAttributes {
 
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "structureId-\(self.structureId)",
 				value: recordForm,
@@ -128,7 +128,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				data: recordData,
 				attributes: recordAttributes)
 
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "recordId-\(loadRecordOp.recordId)",
 				value: recordData,
@@ -143,7 +143,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				attributes: recordAttributes)
 
 			// save just record data
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "recordId-\(loadRecordOp.recordId)",
 				value: recordData,
@@ -152,15 +152,13 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 	}
 
 	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
-		let cacheMgr = SessionContext.currentCacheManager!
-
 		if let chain = op as? ServerOperationChain,
 				loadFormOp = chain.headOperation as? LiferayDDLFormLoadOperation
 				where structureId != nil {
 
 			// load form and record
 
-			cacheMgr.getSomeWithAttributes(
+			SessionContext.currentContext!.cacheManager.getSomeWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
 					keys: ["structureId-\(structureId)", "recordId-\(recordId)"]) {
 				objects, attributes in
@@ -192,9 +190,8 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 			}
 		}
 		else if let loadRecordOp = op as? LiferayDDLFormRecordLoadOperation {
-
 			// load just record
-			cacheMgr.getAnyWithAttributes(
+			SessionContext.currentContext!.cacheManager.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: "recordId-\(loadRecordOp.recordId)") {
 				object, attributes in

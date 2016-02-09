@@ -11,23 +11,25 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
+import Foundation
 
+public extension Dictionary {
 
-public class LiferayLoginByScreenNameOperation: GetUserByScreenNameOperation {
+	public func copyAndAdd(key: Key, value: Value) -> Dictionary<Key,Value> {
+		var result = self
 
-	override public func validateData() -> ValidationError? {
-		if super.validateData() == nil {
-			return nil
-		}
+		result.updateValue(value, forKey: key)
 
-		return ValidationError("login-screenlet", "validation")
+		return result
 	}
 
-	override public func postRun() {
-		if lastError == nil {
-			loginWithResult()
-		}
+	public func copyAndRemove(key: Key) -> Dictionary<Key,Value> {
+		var result = self
+
+		result.removeValueForKey(key)
+
+		return result
 	}
+
 
 }

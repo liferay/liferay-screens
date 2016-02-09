@@ -40,7 +40,7 @@ public class GetUserBaseOperation: ServerOperation {
 
 	override public func createSession() -> LRSession? {
 		if SessionContext.isLoggedIn {
-			return SessionContext.createSessionFromCurrentSession()
+			return SessionContext.currentContext?.requestSession()
 		}
 
 		return LRSession(
@@ -70,17 +70,24 @@ public class GetUserBaseOperation: ServerOperation {
 		}
 	}
 
-	internal func setResultAsSessionContext() -> Bool {
-		if let userAttributesValue = resultUserAttributes {
-			SessionContext.createBasicSession(
-					username: self.userName!,
-					password: self.password!,
-					userAttributes: userAttributesValue)
-
-			return true
+	internal func loginWithResult() -> Bool {
+		guard let userAttributes = resultUserAttributes else {
+			return false
+		}
+		guard let userName = self.userName else {
+			return false
+		}
+		guard let password = self.password else {
+			return false
 		}
 
-		return false
+
+		SessionContext.loginWithBasic(
+			username: userName,
+			password: password,
+			userAttributes: userAttributes)
+
+		return true
 	}
 
 

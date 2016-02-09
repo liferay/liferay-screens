@@ -38,7 +38,7 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 				return ValidationError("signup-screenlet", "validation-email")
 			}
 
-			if viewModel.password == SessionContext.currentBasicPassword {
+			if viewModel.password == SessionContext.currentContext?.basicAuthPassword {
 				return ValidationError("signup-screenlet", "validation-change-password")
 			}
 		}
@@ -48,11 +48,11 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 
 	override public func doRun(session session: LRSession) {
 		func attributeAsString(key: String) -> String {
-			return SessionContext.userAttribute(key) as! String
+			return SessionContext.currentContext?.userAttribute(key) as! String
 		}
 
 		func attributeAsId(key: String) -> Int64 {
-			return Int64(SessionContext.userAttribute(key) as! Int)
+			return Int64(SessionContext.currentContext?.userAttribute(key) as! Int)
 		}
 
 
@@ -63,7 +63,7 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 			// Values marked with (!!) will be overwritten in the server
 			// The JSON WS API isn't able to handle this scenario correctly
 			let result = try service.updateUserWithUserId(attributeAsId("userId"),
-				oldPassword: SessionContext.currentBasicPassword,
+				oldPassword: SessionContext.currentContext?.basicAuthPassword,
 				newPassword1: viewModel.password ?? "",
 				newPassword2: viewModel.password ?? "",
 				passwordReset: false,

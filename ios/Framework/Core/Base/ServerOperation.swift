@@ -107,7 +107,7 @@ import UIKit
 			return nil
 		}
 
-		return SessionContext.createSessionFromCurrentSession()
+		return SessionContext.currentContext?.requestSession()
 	}
 
 	public func callOnComplete() {

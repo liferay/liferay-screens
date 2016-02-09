@@ -56,7 +56,7 @@ Pod::Spec.new do |s|
 	s.dependency 'MBProgressHUD', '0.9.1'
 	s.dependency 'SMXMLDocument', '1.1'
 	s.dependency 'ODRefreshControl', '1.2'
-	s.dependency 'YapDatabase', '2.6.5'
+	s.dependency 'YapDatabase/SQLCipher', '2.6.5'
 
 	# Login & signup: save credentials
 	s.dependency 'KeychainAccess', '2.3.1'

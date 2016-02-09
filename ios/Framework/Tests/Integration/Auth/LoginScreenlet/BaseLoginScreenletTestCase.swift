@@ -43,12 +43,14 @@ import XCTest
 		self.strongLoop = nil
 	}
 
-	func onScreenletCredentialsSaved(screenlet: BaseScreenlet) {
+	func screenlet(screenlet: BaseScreenlet,
+			onCredentialsSavedUserAttributes attributes: [String:AnyObject]) {
 		credentialsSavedCalled = true
 		onCredentialsStored?()
 	}
 
-	func onScreenletCredentialsLoaded(screenlet: BaseScreenlet) {
+	func screenlet(screenlet: LoginScreenlet,
+			onCredentialsLoadedUserAttributes attributes: [String:AnyObject]) {
 		credentialsLoadedCalled = true
 	}
 

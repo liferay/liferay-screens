@@ -22,7 +22,7 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 	@IBOutlet var loginScreenlet: LoginScreenlet?
 
 	@IBAction func signOutAction() {
-		SessionContext.removeStoredCredentials()
+		SessionContext.currentContext?.removeStoredCredentials()
 		SessionContext.logout()
 
 		showLogged(animated: true);
@@ -65,7 +65,7 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 
 	private func showLogged(animated animated:Bool) {
 		if SessionContext.isLoggedIn {
-			loggedUsername?.text = SessionContext.currentBasicUserName;
+			loggedUsername?.text = SessionContext.currentContext?.basicAuthUsername
 		}
 
 		UIView.animateWithDuration(animated ? 0.5 : 0.0) { () -> Void in

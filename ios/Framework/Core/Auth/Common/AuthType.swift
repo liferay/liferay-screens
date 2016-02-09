@@ -14,9 +14,29 @@
 import UIKit
 
 
-public enum AuthType: String {
+@objc public enum AuthType: Int {
 
-	case Basic = "basic"
-	case OAuth = "oauth"
+	case Basic = 1
+	case OAuth = 2
 
+}
+
+public func StringFromAuthType(authType: AuthType) -> String {
+	switch authType {
+	case .Basic:
+		return "basic"
+	case .OAuth:
+		return "oauth"
+	}
+}
+
+public func AuthTypeFromString(str: String) -> AuthType? {
+	switch str.lowercaseString {
+	case "basic":
+		return .Basic
+	case "oauth":
+		return .OAuth
+	default:
+		return nil
+	}
 }
