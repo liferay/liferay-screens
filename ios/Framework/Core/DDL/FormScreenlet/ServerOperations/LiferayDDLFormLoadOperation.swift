@@ -16,49 +16,18 @@ import UIKit
 
 public class LiferayDDLFormLoadOperation: ServerOperation {
 
-	public let structureId: NSNumber
+	public let structureId: Int64
 
 	public var resultRecord: DDLRecord?
-	public var resultUserId: NSNumber?
+	public var resultUserId: Int64?
 
 
-	public init(structureId: NSNumber) {
+	public init(structureId: Int64) {
 		self.structureId = structureId
 
 		super.init()
 	}
 
-	//MARK: ServerOperation
-
-	override public func doRun(session session: LRSession) {
-		let service = LRDDMStructureService_v62(session: session)
-
-		do {
-			let structureDataDictionary = try service.getStructureWithStructureId(structureId.longLongValue)
-
-			if let xsd = structureDataDictionary["xsd"]! as? String {
-				if let userIdValue = structureDataDictionary["userId"]! as? Int {
-					resultUserId = NSNumber(integer: userIdValue)
-				}
-
-				resultRecord = DDLRecord(
-					xsd: xsd,
-					locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString))
-				lastError = nil
-			}
-			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
-				resultRecord = nil
-				resultUserId = nil
-			}
-		}
-		catch let error as NSError {
-			lastError = error
-			resultRecord = nil
-			resultUserId = nil
-		}
-	}
-	
 }
 
 
@@ -68,11 +37,11 @@ public class Liferay62DDLFormLoadOperation: LiferayDDLFormLoadOperation {
 		let service = LRDDMStructureService_v62(session: session)
 
 		do {
-			let structureDataDictionary = try service.getStructureWithStructureId(structureId.longLongValue)
+			let structureDataDictionary = try service.getStructureWithStructureId(structureId)
 
 			if let xsd = structureDataDictionary["xsd"]! as? String {
-				if let userIdValue = structureDataDictionary["userId"]! as? Int {
-					resultUserId = NSNumber(integer: userIdValue)
+				if let userIdValue = structureDataDictionary["userId"]?.description.asLong {
+					resultUserId = userIdValue
 				}
 
 				resultRecord = DDLRecord(
@@ -102,15 +71,15 @@ public class Liferay70DDLFormLoadOperation: LiferayDDLFormLoadOperation {
 		let service = LRDDMStructureService_v70(session: session)
 
 		do {
-			let structureDataDictionary = try service.getStructureWithStructureId(structureId.longLongValue)
+			let structureDataDictionary = try service.getStructureWithStructureId(structureId)
 
-			if let xsd = structureDataDictionary["xsd"]! as? String {
-				if let userIdValue = structureDataDictionary["userId"]! as? Int {
-					resultUserId = NSNumber(integer: userIdValue)
+			if let json = structureDataDictionary["definition"]! as? String {
+				if let userIdValue = structureDataDictionary["userId"]?.description.asLong {
+					resultUserId = userIdValue
 				}
 
 				resultRecord = DDLRecord(
-					xsd: xsd,
+					json: json,
 					locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString))
 				lastError = nil
 			}
