@@ -75,6 +75,10 @@ public protocol LiferayOperationFactory {
 
 	func createDDLFormRecordLoadOperation(recordId: Int64) -> LiferayDDLFormRecordLoadOperation
 
+	func createDDLFormSubmitOperation(
+		values values: [String:AnyObject],
+		viewModel: DDLFormViewModel?) -> LiferayDDLFormSubmitOperation
+
 }
 
 
@@ -202,8 +206,15 @@ public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
 	}
 
 	public func createDDLFormRecordLoadOperation(recordId: Int64) -> LiferayDDLFormRecordLoadOperation {
-		return Liferay62DDLFormRecordLoadOperation(
-			recordId: recordId)
+		return Liferay62DDLFormRecordLoadOperation(recordId: recordId)
+	}
+
+	public func createDDLFormSubmitOperation(
+			values values: [String:AnyObject],
+			viewModel: DDLFormViewModel?) -> LiferayDDLFormSubmitOperation {
+		return Liferay62DDLFormSubmitOperation(
+			values: values,
+			viewModel: viewModel)
 	}
 
 }
@@ -333,8 +344,15 @@ public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
 	}
 
 	public func createDDLFormRecordLoadOperation(recordId: Int64) -> LiferayDDLFormRecordLoadOperation {
-		return Liferay70DDLFormRecordLoadOperation(
-			recordId: recordId)
+		return Liferay70DDLFormRecordLoadOperation(recordId: recordId)
+	}
+
+	public func createDDLFormSubmitOperation(
+			values values: [String:AnyObject],
+			viewModel: DDLFormViewModel?) -> LiferayDDLFormSubmitOperation {
+		return Liferay70DDLFormSubmitOperation(
+			values: values,
+			viewModel: viewModel)
 	}
 
 }

@@ -78,15 +78,16 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 		let operation: LiferayDDLFormSubmitOperation
 
 		if let screenlet = self.screenlet as? DDLFormScreenlet {
-			operation = LiferayDDLFormSubmitOperation(
+			operation = LiferayServerContext.operationFactory.createDDLFormSubmitOperation(
 					values: record.values,
 					viewModel: screenlet.viewModel)
 
 			operation.autoscrollOnValidation = screenlet.autoscrollOnValidation
 		}
 		else {
-			operation = LiferayDDLFormSubmitOperation(
-				values: record.values)
+			operation = LiferayServerContext.operationFactory.createDDLFormSubmitOperation(
+				values: record.values,
+				viewModel: nil)
 		}
 
 		operation.groupId = groupId
