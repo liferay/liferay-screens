@@ -42,7 +42,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 		if let structureId = structureId {
 			let loadFormOp = LiferayServerContext.operationFactory.createDDLFormLoadOperation(structureId)
 
-			let operationChain = ServerOperationChain(head: loadFormOp as! ServerOperation)
+			let operationChain = ServerOperationChain(head: loadFormOp)
 
 			operationChain.onNextStep = { (op, seq) -> ServerOperation? in
 				if let loadFormOp = op as? LiferayDDLFormLoadOperation {

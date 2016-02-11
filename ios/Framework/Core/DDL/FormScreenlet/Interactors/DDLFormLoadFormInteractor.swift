@@ -22,7 +22,7 @@ class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
 	override func createOperation() -> ServerOperation {
 		let screenlet = self.screenlet as! DDLFormScreenlet
 
-		return LiferayServerContext.operationFactory.createDDLFormLoadOperation(screenlet.structureId) as! ServerOperation
+		return LiferayServerContext.operationFactory.createDDLFormLoadOperation(screenlet.structureId)
 	}
 
 	override func completedOperation(op: ServerOperation) {
