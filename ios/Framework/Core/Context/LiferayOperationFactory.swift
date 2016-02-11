@@ -63,6 +63,10 @@ public protocol LiferayOperationFactory {
 		endRow: Int,
 		computeRowCount: Bool) -> LiferayAssetListPageOperation
 
+	func createWebContentLoadFromArticleId(articleId articleId: String) -> LiferayWebContentLoadFromArticleIdOperation
+
+	func createWebContentLoadFromClassPK(classPK classPK: Int64) -> LiferayWebContentLoadFromClassPKOperation
+
 }
 
 
@@ -169,6 +173,14 @@ public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
 			computeRowCount: computeRowCount)
 	}
 
+	public func createWebContentLoadFromArticleId(articleId articleId: String) -> LiferayWebContentLoadFromArticleIdOperation {
+		return Liferay62WebContentLoadFromArticleIdOperation(articleId: articleId)
+	}
+
+	public func createWebContentLoadFromClassPK(classPK classPK: Int64) -> LiferayWebContentLoadFromClassPKOperation {
+		return Liferay62WebContentLoadFromClassPKOperation(classPK: classPK)
+	}
+
 }
 
 
@@ -273,6 +285,14 @@ public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
 			startRow: startRow,
 			endRow: endRow,
 			computeRowCount: computeRowCount)
+	}
+
+	public func createWebContentLoadFromArticleId(articleId articleId: String) -> LiferayWebContentLoadFromArticleIdOperation {
+		return Liferay70WebContentLoadFromArticleIdOperation(articleId: articleId)
+	}
+
+	public func createWebContentLoadFromClassPK(classPK classPK: Int64) -> LiferayWebContentLoadFromClassPKOperation {
+		return Liferay70WebContentLoadFromClassPKOperation(classPK: classPK)
 	}
 
 }

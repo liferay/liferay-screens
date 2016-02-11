@@ -25,18 +25,10 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 		let operation: LiferayWebContentLoadBaseOperation?
 
 		if screenlet.articleId != "" {
-			let articleIdOp = LiferayWebContentLoadFromArticleIdOperation()
-
-			articleIdOp.articleId = screenlet.articleId
-
-			operation = articleIdOp
+			operation = LiferayServerContext.operationFactory.createWebContentLoadFromArticleId(articleId: screenlet.articleId)
 		}
 		else if screenlet.classPK != 0 {
-			let classPKOp = LiferayWebContentLoadFromClassPKOperation()
-
-			classPKOp.classPK = screenlet.classPK
-
-			operation = classPKOp
+			operation = LiferayServerContext.operationFactory.createWebContentLoadFromClassPK(classPK: screenlet.classPK)
 		}
 		else {
 			operation = nil
