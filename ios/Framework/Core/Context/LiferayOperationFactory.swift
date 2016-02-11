@@ -46,6 +46,11 @@ public protocol LiferayOperationFactory {
 		anonymousUsername: String,
 		anonymousPassword: String) -> LiferayForgotPasswordBaseOperation
 
+	func createSignUpOperation(
+		viewModel viewModel: SignUpViewModel,
+		anonymousUsername: String,
+		anonymousPassword: String) -> LiferaySignUpOperation
+
 }
 
 
@@ -119,6 +124,16 @@ public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
 			anonymousPassword: anonymousPassword)
 	}
 
+	public func createSignUpOperation(
+			viewModel viewModel: SignUpViewModel,
+			anonymousUsername: String,
+			anonymousPassword: String) -> LiferaySignUpOperation {
+		return Liferay62SignUpOperation(
+			viewModel: viewModel,
+			anonymousUsername: anonymousUsername,
+			anonymousPassword: anonymousPassword)
+	}
+
 }
 
 
@@ -187,6 +202,16 @@ public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
 			anonymousUsername: String,
 			anonymousPassword: String) -> LiferayForgotPasswordBaseOperation {
 		return Liferay70ForgotPasswordUserIdOperation(
+			viewModel: viewModel,
+			anonymousUsername: anonymousUsername,
+			anonymousPassword: anonymousPassword)
+	}
+
+	public func createSignUpOperation(
+			viewModel viewModel: SignUpViewModel,
+			anonymousUsername: String,
+			anonymousPassword: String) -> LiferaySignUpOperation {
+		return Liferay70SignUpOperation(
 			viewModel: viewModel,
 			anonymousUsername: anonymousUsername,
 			anonymousPassword: anonymousPassword)
