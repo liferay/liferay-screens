@@ -40,15 +40,14 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 		let loadRecordOp = LiferayDDLFormRecordLoadOperation(recordId: recordId)
 
 		if let structureId = structureId {
-			let loadFormOp = LiferayDDLFormLoadOperation()
-			loadFormOp.structureId = structureId
+			let loadFormOp = LiferayServerContext.operationFactory.createDDLFormLoadOperation(structureId)
 
-			let operationChain = ServerOperationChain(head: loadFormOp)
+			let operationChain = ServerOperationChain(head: loadFormOp as! ServerOperation)
 
 			operationChain.onNextStep = { (op, seq) -> ServerOperation? in
 				if let loadFormOp = op as? LiferayDDLFormLoadOperation {
 					self.resultFormRecord = loadFormOp.resultRecord
-					self.resultFormUserId = loadFormOp.resultUserId
+					self.resultFormUserId = loadFormOp.resultUserId?.longLongValue
 
 					return loadRecordOp
 				}
@@ -81,7 +80,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 			recordId = loadRecordOp.resultRecordId
 
 			self.resultFormRecord = recordForm
-			self.resultFormUserId = formUserId
+			self.resultFormUserId = formUserId.longLongValue
 		}
 		else if let loadRecordOp = op as? LiferayDDLFormRecordLoadOperation {
 			recordData = loadRecordOp.resultRecordData
@@ -122,7 +121,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				key: "structureId-\(self.structureId)",
 				value: recordForm,
 				attributes: [
-					"userId": NSNumber(longLong: formUserId)])
+					"userId": formUserId])
 
 			let record = DDLRecord(
 				data: recordData,
@@ -173,7 +172,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 					precondition(self.recordId == record.recordId, "RecordId is not consistent")
 
 					loadFormOp.resultRecord = recordForm
-					loadFormOp.resultUserId = recordUserId.longLongValue
+					loadFormOp.resultUserId = recordUserId
 
 					let loadRecordOp = LiferayDDLFormRecordLoadOperation(recordId: self.recordId)
 
