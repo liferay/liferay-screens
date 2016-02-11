@@ -51,6 +51,9 @@ public protocol LiferayOperationFactory {
 		anonymousUsername: String,
 		anonymousPassword: String) -> LiferaySignUpOperation
 
+	func createUpdateCurrentUserOperation(
+		viewModel viewModel: SignUpViewModel) -> LiferayUpdateCurrentUserOperation
+
 }
 
 
@@ -134,6 +137,11 @@ public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
 			anonymousPassword: anonymousPassword)
 	}
 
+	public func createUpdateCurrentUserOperation(
+		viewModel viewModel: SignUpViewModel) -> LiferayUpdateCurrentUserOperation {
+		return Liferay62UpdateCurrentUserOperation(viewModel: viewModel)
+	}
+
 }
 
 
@@ -215,6 +223,11 @@ public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
 			viewModel: viewModel,
 			anonymousUsername: anonymousUsername,
 			anonymousPassword: anonymousPassword)
+	}
+
+	public func createUpdateCurrentUserOperation(
+			viewModel viewModel: SignUpViewModel) -> LiferayUpdateCurrentUserOperation {
+		return Liferay70UpdateCurrentUserOperation(viewModel: viewModel)
 	}
 
 }
