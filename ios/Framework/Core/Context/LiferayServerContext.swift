@@ -69,6 +69,17 @@ import Foundation
 		}
 	}
 
+	public class var operationFactory: LiferayOperationFactory {
+		get {
+		loadContextFile()
+		return StaticInstance.serverProperties!["operationFactory"] as! LiferayOperationFactory
+		}
+		set {
+			loadContextFile()
+			StaticInstance.serverProperties!["operationFactory"] = newValue
+		}
+	}
+
 
 	//MARK: Public methods
 
@@ -100,6 +111,19 @@ import Foundation
 			StaticInstance.serverProperties!["factory"] = factoryInstance
 		}
 
+		func createOperationFactory() {
+			guard let className = StaticInstance.serverProperties?["operationFactory"] as? String else {
+				StaticInstance.serverProperties!["operationFactory"] = Liferay70OperationFactory()
+				return
+			}
+			guard let factoryInstance = dynamicInit(className) as? LiferayOperationFactory else {
+				StaticInstance.serverProperties!["operationFactory"] = Liferay70OperationFactory()
+				return
+			}
+
+			StaticInstance.serverProperties!["operationFactory"] = factoryInstance
+		}
+
 		guard StaticInstance.serverProperties == nil else {
 			return
 		}
@@ -118,12 +142,14 @@ import Foundation
 			if let path = bundle.pathForResource(PlistFile, ofType:"plist") {
 				StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
 				createFactory()
+				createOperationFactory()
 				found = true
 			}
 			else {
 				if let path = bundle.pathForResource(PlistFileSample, ofType:"plist") {
 					StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
 					createFactory()
+					createOperationFactory()
 					foundFallback = true
 				}
 				else {
@@ -132,6 +158,7 @@ import Foundation
 							"groupId": 10184,
 							"server": "http://localhost:8080"]
 					createFactory()
+					createOperationFactory()
 				}
 			}
 		}
