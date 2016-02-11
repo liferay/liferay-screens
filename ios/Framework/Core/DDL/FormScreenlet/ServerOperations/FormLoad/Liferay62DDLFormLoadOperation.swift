@@ -14,37 +14,31 @@
 import UIKit
 
 
-public class LiferayDDLFormLoadOperation: ServerOperation {
+@objc public class Liferay62DDLFormLoadOperation: ServerOperation, LiferayDDLFormLoadOperation {
 
-	public var structureId: Int64?
+	public let structureId: NSNumber
 
 	public var resultRecord: DDLRecord?
-	public var resultUserId: Int64?
+	public var resultUserId: NSNumber?
 
+
+	public init(structureId: NSNumber) {
+		self.structureId = structureId
+
+		super.init()
+	}
 
 	//MARK: ServerOperation
-
-	override public func validateData() -> ValidationError? {
-		let error = super.validateData()
-
-		if error == nil {
-			if structureId == nil {
-				return ValidationError("ddlform-screenlet", "undefined-structure")
-			}
-		}
-
-		return error
-	}
 
 	override public func doRun(session session: LRSession) {
 		let service = LRDDMStructureService_v62(session: session)
 
 		do {
-			let structureDataDictionary = try service.getStructureWithStructureId(structureId!)
+			let structureDataDictionary = try service.getStructureWithStructureId(structureId.longLongValue)
 
 			if let xsd = structureDataDictionary["xsd"]! as? String {
 				if let userIdValue = structureDataDictionary["userId"]! as? Int {
-					resultUserId = Int64(userIdValue)
+					resultUserId = NSNumber(integer: userIdValue)
 				}
 
 				resultRecord = DDLRecord(
