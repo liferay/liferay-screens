@@ -36,11 +36,11 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 		let viewModel = (self.screenlet as! DDLListScreenlet).screenletView as! DDLListViewModel
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
-		let operation = LiferayDDLListPageOperation(
-				viewModel: viewModel,
-				startRow: pager(self.page),
-				endRow: pager(self.page + 1),
-				computeRowCount: self.computeRowCount)
+		let operation = LiferayServerContext.operationFactory.createDDLListPageOperation(
+			viewModel: viewModel,
+			startRow: pager(self.page),
+			endRow: pager(self.page + 1),
+			computeRowCount: self.computeRowCount)
 
 		operation.userId = (self.userId != 0) ? self.userId : nil
 		operation.recordSetId = self.recordSetId

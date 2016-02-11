@@ -63,6 +63,12 @@ public protocol LiferayOperationFactory {
 		endRow: Int,
 		computeRowCount: Bool) -> LiferayAssetListPageOperation
 
+	func createDDLListPageOperation(
+		viewModel viewModel: DDLListViewModel,
+		startRow: Int,
+		endRow: Int,
+		computeRowCount: Bool) -> LiferayDDLListPageOperation
+
 	func createWebContentLoadFromArticleId(articleId articleId: String) -> LiferayWebContentLoadFromArticleIdOperation
 
 	func createWebContentLoadFromClassPK(classPK classPK: Int64) -> LiferayWebContentLoadFromClassPKOperation
@@ -168,6 +174,18 @@ public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
 			endRow: Int,
 			computeRowCount: Bool) -> LiferayAssetListPageOperation {
 		return Liferay62AssetListPageOperation(
+			startRow: startRow,
+			endRow: endRow,
+			computeRowCount: computeRowCount)
+	}
+
+	public func createDDLListPageOperation(
+			viewModel viewModel: DDLListViewModel,
+			startRow: Int,
+			endRow: Int,
+			computeRowCount: Bool) -> LiferayDDLListPageOperation {
+		return Liferay62DDLListPageOperation(
+			viewModel: viewModel,
 			startRow: startRow,
 			endRow: endRow,
 			computeRowCount: computeRowCount)
@@ -282,6 +300,18 @@ public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
 			endRow: Int,
 			computeRowCount: Bool) -> LiferayAssetListPageOperation {
 		return Liferay70AssetListPageOperation(
+			startRow: startRow,
+			endRow: endRow,
+			computeRowCount: computeRowCount)
+	}
+
+	public func createDDLListPageOperation(
+			viewModel viewModel: DDLListViewModel,
+			startRow: Int,
+			endRow: Int,
+			computeRowCount: Bool) -> LiferayDDLListPageOperation {
+		return Liferay70DDLListPageOperation(
+			viewModel: viewModel,
 			startRow: startRow,
 			endRow: endRow,
 			computeRowCount: computeRowCount)
