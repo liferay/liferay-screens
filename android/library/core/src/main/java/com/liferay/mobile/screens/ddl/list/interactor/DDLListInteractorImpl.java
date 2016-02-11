@@ -18,13 +18,14 @@ import android.support.annotation.NonNull;
 import android.util.Pair;
 
 import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.screens.util.ServiceVersionFactory;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
+import com.liferay.mobile.screens.ddl.form.operation.ScreensDDLRecordOperation;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.service.v62.ScreensddlrecordService;
 import com.liferay.mobile.screens.util.JSONUtil;
 
 import org.json.JSONException;
@@ -94,7 +95,7 @@ public class DDLListInteractorImpl
 
 	@Override
 	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
-		ScreensddlrecordService ddlRecordService = new ScreensddlrecordService(session);
+		ScreensDDLRecordOperation ddlRecordService = ServiceVersionFactory.getScreensDDLRecordOperation(session);
 		if (_userId != 0) {
 			ddlRecordService.getDdlRecords(_recordSetId, _userId, locale.toString(), startRow, endRow);
 		}
@@ -105,7 +106,7 @@ public class DDLListInteractorImpl
 
 	@Override
 	protected void getPageRowCountRequest(Session session) throws Exception {
-		ScreensddlrecordService ddlRecordService = new ScreensddlrecordService(session);
+		ScreensDDLRecordOperation ddlRecordService = ServiceVersionFactory.getScreensDDLRecordOperation(session);
 		if (_userId != 0) {
 			ddlRecordService.getDdlRecordsCount(_recordSetId, _userId);
 		}

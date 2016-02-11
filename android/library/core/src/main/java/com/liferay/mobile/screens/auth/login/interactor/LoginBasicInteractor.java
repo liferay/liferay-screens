@@ -17,8 +17,9 @@ package com.liferay.mobile.screens.auth.login.interactor;
 import android.text.TextUtils;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
+import com.liferay.mobile.screens.util.ServiceVersionFactory;
+import com.liferay.mobile.screens.auth.login.operation.UserOperation;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -34,53 +35,39 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 	public void login() throws Exception {
 		validate(_login, _password, _basicAuthMethod);
 
-		UserService service = getUserService(_login, _password);
+		UserOperation userOperation = getUserService(_login, _password);
 
 		switch (_basicAuthMethod) {
 			case EMAIL:
-				sendGetUserByEmailRequest(service, _login);
+				userOperation.getUserByEmailAddress(LiferayServerContext.getCompanyId(), _login);
 				break;
 
 			case USER_ID:
-				sendGetUserByIdRequest(service, Long.parseLong(_login));
+				userOperation.getUserById(Long.parseLong(_login));
 				break;
 
 			case SCREEN_NAME:
-				sendGetUserByScreenNameRequest(service, _login);
+				userOperation.getUserByScreenName(LiferayServerContext.getCompanyId(), _login);
 				break;
 		}
 	}
 
-	public void setLogin(String value) {
-		_login = value;
+	public void setLogin(String login) {
+		_login = login;
 	}
 
-	public void setPassword(String value) {
-		_password = value;
+	public void setPassword(String password) {
+		_password = password;
 	}
 
-	public void setBasicAuthMethod(BasicAuthMethod value) {
-		_basicAuthMethod = value;
+	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
+		_basicAuthMethod = basicAuthMethod;
 	}
 
-	protected UserService getUserService(String login, String password) {
+	protected UserOperation getUserService(String login, String password) {
 		Session session = SessionContext.createBasicSession(login, password);
 		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
-
-		return new UserService(session);
-	}
-
-	protected void sendGetUserByEmailRequest(UserService service, String email) throws Exception {
-		service.getUserByEmailAddress(LiferayServerContext.getCompanyId(), email);
-	}
-
-	protected void sendGetUserByScreenNameRequest(UserService service, String screenName)
-		throws Exception {
-		service.getUserByScreenName(LiferayServerContext.getCompanyId(), screenName);
-	}
-
-	protected void sendGetUserByIdRequest(UserService service, long userId) throws Exception {
-		service.getUserById(userId);
+		return ServiceVersionFactory.getUserOperations(session);
 	}
 
 	protected void validate(String login, String password, BasicAuthMethod basicAuthMethod) {

@@ -20,9 +20,10 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
+import com.liferay.mobile.screens.auth.forgotpassword.operation.ForgotPasswordOperation;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.service.v62.ScreensuserService;
+import com.liferay.mobile.screens.util.ServiceVersionFactory;
 
 /**
  * @author Jose Manuel Navarro
@@ -50,75 +51,45 @@ public class ForgotPasswordInteractorImpl
 	}
 
 	@Override
-	public void requestPassword(
-		long companyId, String login, BasicAuthMethod basicAuthMethod,
-		String anonymousApiUserName, String anonymousApiPassword)
+	public void requestPassword(long companyId, String login, BasicAuthMethod basicAuthMethod,
+								String anonymousApiUserName, String anonymousApiPassword)
 		throws Exception {
 
 		validate(
 			companyId, login, basicAuthMethod, anonymousApiUserName,
 			anonymousApiPassword);
 
-		ScreensuserService service = getScreensUserService(
+		ForgotPasswordOperation forgotPasswordOperation = getScreensUserService(
 			anonymousApiUserName, anonymousApiPassword);
 
 		switch (basicAuthMethod) {
 			case EMAIL:
-				sendForgotPasswordByEmailRequest(service, companyId, login);
+				forgotPasswordOperation.sendPasswordByEmailAddress(companyId, login);
 				break;
-
 			case USER_ID:
-				sendForgotPasswordByIdRequest(service, Long.parseLong(login));
+				forgotPasswordOperation.sendPasswordByUserId(Long.parseLong(login));
 				break;
-
 			case SCREEN_NAME:
-				sendForgotPasswordByScreenNameRequest(
-					service, companyId, login);
-
+				forgotPasswordOperation.sendPasswordByScreenName(companyId, login);
 				break;
 		}
 	}
 
-	protected ScreensuserService getScreensUserService(
+	protected ForgotPasswordOperation getScreensUserService(
 		String anonymousApiUserName, String anonymousApiPassword) {
 
-		Authentication authentication = new BasicAuthentication(
-			anonymousApiUserName, anonymousApiPassword);
+		Authentication authentication = new BasicAuthentication(anonymousApiUserName, anonymousApiPassword);
 
-		Session anonymousSession = new SessionImpl(
-			LiferayServerContext.getServer(), authentication);
+		Session anonymousSession = new SessionImpl(LiferayServerContext.getServer(), authentication);
 
-		anonymousSession.setCallback(
-			new ForgotPasswordCallback(getTargetScreenletId()));
+		anonymousSession.setCallback(new ForgotPasswordCallback(getTargetScreenletId()));
 
-		return new ScreensuserService(anonymousSession);
-	}
-
-	protected void sendForgotPasswordByEmailRequest(
-		ScreensuserService service, long companyId,
-		String emailAddress)
-		throws Exception {
-
-		service.sendPasswordByEmailAddress(companyId, emailAddress);
-	}
-
-	protected void sendForgotPasswordByIdRequest(
-		ScreensuserService service, long userId)
-		throws Exception {
-
-		service.sendPasswordByUserId(userId);
-	}
-
-	protected void sendForgotPasswordByScreenNameRequest(
-		ScreensuserService service, long companyId, String screenName)
-		throws Exception {
-
-		service.sendPasswordByScreenName(companyId, screenName);
+		return ServiceVersionFactory.getForgotPasswordOperations(anonymousSession);
 	}
 
 	protected void validate(
-		long companyId, String login, BasicAuthMethod basicAuthMethod,
-		String anonymousApiUserName, String anonymousApiPassword) {
+		long companyId, String login, BasicAuthMethod basicAuthMethod, String anonymousApiUserName,
+		String anonymousApiPassword) {
 
 		if ((companyId <= 0) && (basicAuthMethod != BasicAuthMethod.USER_ID)) {
 			throw new IllegalArgumentException(

@@ -74,9 +74,9 @@ public class LoginInteractorTest {
 
 			interactorSpy.login();
 
-			verify(
-				interactorSpy
-			).sendGetUserByEmailRequest(serviceMock, _LOGIN_EMAIL);
+//			verify(
+//				interactorSpy
+//			).sendGetUserByEmailRequest(serviceMock, _LOGIN_EMAIL);
 
 			verify(
 				serviceMock
@@ -109,9 +109,9 @@ public class LoginInteractorTest {
 
 			interactorSpy.login();
 
-			verify(
-				interactorSpy
-			).sendGetUserByIdRequest(serviceMock, _LOGIN_USER_ID);
+//			verify(
+//				interactorSpy
+//			).sendGetUserByIdRequest(serviceMock, _LOGIN_USER_ID);
 
 			verify(
 				serviceMock
@@ -142,9 +142,9 @@ public class LoginInteractorTest {
 
 			interactorSpy.login();
 
-			verify(
-				interactorSpy
-			).sendGetUserByScreenNameRequest(serviceMock, _LOGIN_SCREEN_NAME);
+//			verify(
+//				interactorSpy
+//			).sendGetUserByScreenNameRequest(serviceMock, _LOGIN_SCREEN_NAME);
 
 			verify(
 				serviceMock

@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.ddl.form.interactor.formload;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.ddmstructure.DDMStructureService;
+import com.liferay.mobile.screens.util.ServiceVersionFactory;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -25,6 +25,7 @@ import com.liferay.mobile.screens.cache.ddl.form.RecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
+import com.liferay.mobile.screens.ddl.form.operation.DDMStructureOperation;
 import com.liferay.mobile.screens.ddl.model.Record;
 
 import org.json.JSONException;
@@ -111,10 +112,10 @@ public class DDLFormLoadInteractorImpl
 		CacheSQL.getInstance().set(new DDLFormCache(event.getRecord(), event.getJSONObject()));
 	}
 
-	protected DDMStructureService getDDMStructureService(Record record) {
+	protected DDMStructureOperation getDDMStructureService(Record record) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new DDLFormLoadCallback(getTargetScreenletId(), record));
-		return new DDMStructureService(session);
+		return ServiceVersionFactory.getDDMStructureOperation(session);
 	}
 
 	protected void validate(Record record) {
