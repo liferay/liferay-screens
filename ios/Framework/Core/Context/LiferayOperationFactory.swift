@@ -79,6 +79,12 @@ public protocol LiferayOperationFactory {
 		values values: [String:AnyObject],
 		viewModel: DDLFormViewModel?) -> LiferayDDLFormSubmitOperation
 
+	func createDDLFormUploadOperation(
+		document document: DDLFieldDocument,
+		filePrefix: String,
+		repositoryId: Int64,
+		folderId: Int64) -> LiferayDDLFormUploadOperation
+
 }
 
 
@@ -217,6 +223,18 @@ public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
 			viewModel: viewModel)
 	}
 
+	public func createDDLFormUploadOperation(
+			document document: DDLFieldDocument,
+			filePrefix: String,
+			repositoryId: Int64,
+			folderId: Int64) -> LiferayDDLFormUploadOperation {
+		return Liferay62DDLFormUploadOperation(
+			document: document,
+			filePrefix: filePrefix,
+			repositoryId: repositoryId,
+			folderId: folderId)
+	}
+
 }
 
 
@@ -353,6 +371,18 @@ public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
 		return Liferay70DDLFormSubmitOperation(
 			values: values,
 			viewModel: viewModel)
+	}
+
+	public func createDDLFormUploadOperation(
+			document document: DDLFieldDocument,
+			filePrefix: String,
+			repositoryId: Int64,
+			folderId: Int64) -> LiferayDDLFormUploadOperation {
+		return Liferay70DDLFormUploadOperation(
+			document: document,
+			filePrefix: filePrefix,
+			repositoryId: repositoryId,
+			folderId: folderId)
 	}
 
 }

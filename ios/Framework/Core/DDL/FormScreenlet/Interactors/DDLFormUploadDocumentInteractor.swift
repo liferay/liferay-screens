@@ -77,15 +77,11 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 	}
 
 	override func createOperation() -> LiferayDDLFormUploadOperation {
-		let operation = LiferayDDLFormUploadOperation()
-
-		operation.document = self.document
-		operation.filePrefix = self.filePrefix
-		operation.folderId = self.folderId
-		operation.repositoryId = self.repositoryId
-		operation.onUploadedBytes = self.onProgressClosure
-
-		return operation
+		return LiferayServerContext.operationFactory.createDDLFormUploadOperation(
+			document: document,
+			filePrefix: filePrefix,
+			repositoryId: repositoryId,
+			folderId: folderId)
 	}
 
 	override func completedOperation(op: ServerOperation) {
