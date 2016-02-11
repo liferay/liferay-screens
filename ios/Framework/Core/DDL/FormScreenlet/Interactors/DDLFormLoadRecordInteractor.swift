@@ -37,7 +37,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 	override func createOperation() -> ServerOperation {
 		let operation: ServerOperation
 
-		let loadRecordOp = LiferayDDLFormRecordLoadOperation(recordId: recordId)
+		let loadRecordOp = LiferayServerContext.operationFactory.createDDLFormRecordLoadOperation(recordId)
 
 		if let structureId = structureId {
 			let loadFormOp = LiferayServerContext.operationFactory.createDDLFormLoadOperation(structureId)
@@ -174,7 +174,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 					loadFormOp.resultRecord = recordForm
 					loadFormOp.resultUserId = recordUserId
 
-					let loadRecordOp = LiferayDDLFormRecordLoadOperation(recordId: self.recordId)
+					let loadRecordOp = LiferayServerContext.operationFactory.createDDLFormRecordLoadOperation(self.recordId)
 
 					loadRecordOp.resultRecordData = recordData
 					loadRecordOp.resultRecordAttributes = record.attributes

@@ -17,8 +17,6 @@ import Foundation
 @objc(LiferayOperationFactory)
 public protocol LiferayOperationFactory {
 
-	func createDDLFormLoadOperation(structureId: Int64) -> LiferayDDLFormLoadOperation
-
 	func createGetUserByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation
 
 	func createGetUserByScreenNameOperation(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameOperation
@@ -73,16 +71,15 @@ public protocol LiferayOperationFactory {
 
 	func createWebContentLoadFromClassPK(classPK classPK: Int64) -> LiferayWebContentLoadFromClassPKOperation
 
+	func createDDLFormLoadOperation(structureId: Int64) -> LiferayDDLFormLoadOperation
+
+	func createDDLFormRecordLoadOperation(recordId: Int64) -> LiferayDDLFormRecordLoadOperation
+
 }
 
 
 @objc(Liferay62OperationFactory)
 public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
-
-	public func createDDLFormLoadOperation(structureId: Int64) -> LiferayDDLFormLoadOperation {
-		return Liferay62DDLFormLoadOperation(
-			structureId: NSNumber(longLong: structureId))
-	}
 
 	public func createGetUserByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation {
 		return Liferay62GetUserByEmailOperation(
@@ -199,16 +196,21 @@ public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
 		return Liferay62WebContentLoadFromClassPKOperation(classPK: classPK)
 	}
 
+	public func createDDLFormLoadOperation(structureId: Int64) -> LiferayDDLFormLoadOperation {
+		return Liferay62DDLFormLoadOperation(
+			structureId: NSNumber(longLong: structureId))
+	}
+
+	public func createDDLFormRecordLoadOperation(recordId: Int64) -> LiferayDDLFormRecordLoadOperation {
+		return Liferay62DDLFormRecordLoadOperation(
+			recordId: recordId)
+	}
+
 }
 
 
 @objc(Liferay70OperationFactory)
 public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
-
-	public func createDDLFormLoadOperation(structureId: Int64) -> LiferayDDLFormLoadOperation {
-		return Liferay70DDLFormLoadOperation(
-			structureId: NSNumber(longLong: structureId))
-	}
 
 	public func createGetUserByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation {
 		return Liferay70GetUserByEmailOperation(
@@ -323,6 +325,16 @@ public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
 
 	public func createWebContentLoadFromClassPK(classPK classPK: Int64) -> LiferayWebContentLoadFromClassPKOperation {
 		return Liferay70WebContentLoadFromClassPKOperation(classPK: classPK)
+	}
+
+	public func createDDLFormLoadOperation(structureId: Int64) -> LiferayDDLFormLoadOperation {
+		return Liferay70DDLFormLoadOperation(
+			structureId: NSNumber(longLong: structureId))
+	}
+
+	public func createDDLFormRecordLoadOperation(recordId: Int64) -> LiferayDDLFormRecordLoadOperation {
+		return Liferay70DDLFormRecordLoadOperation(
+			recordId: recordId)
 	}
 
 }

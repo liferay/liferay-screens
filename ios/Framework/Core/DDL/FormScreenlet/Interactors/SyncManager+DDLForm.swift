@@ -157,7 +157,7 @@ extension SyncManager {
 	}
 
 	private func loadRecord(recordId: Int64, result: DDLRecord? -> ()) {
-		let op = LiferayDDLFormRecordLoadOperation(recordId: recordId)
+		let op = LiferayServerContext.operationFactory.createDDLFormRecordLoadOperation(recordId)
 
 		op.validateAndEnqueue {
 			if let op = $0 as? LiferayDDLFormRecordLoadOperation,
