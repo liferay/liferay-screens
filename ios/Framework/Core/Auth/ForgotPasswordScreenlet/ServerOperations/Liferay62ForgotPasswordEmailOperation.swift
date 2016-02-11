@@ -14,19 +14,19 @@
 import UIKit
 
 
-public class LiferayForgotPasswordUserIdOperation: LiferayForgotPasswordBaseOperation {
+public class Liferay62ForgotPasswordEmailOperation: LiferayForgotPasswordBaseOperation {
 
-	//MARK: LiferayForgotPasswordBaseOperation
+	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
 
-	override internal func sendForgotPasswordRequest(
-			service service: LRScreensuserService_v62)
-			throws -> Bool? {
+		let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
 
-		let userId = Int64(Int(viewModel.userName!)!)
+		let service = LRScreensuserService_v62(session: session)
 
 		// TODO change plugin service to return integer code instead of boolean.
 		// Xcode transpiler is messing it up.
-		try service.sendPasswordByUserIdWithUserId(userId)
+
+		try service.sendPasswordByEmailAddressWithCompanyId(companyId,
+			emailAddress: viewModel.userName!)
 
 		return true
 	}

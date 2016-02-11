@@ -14,13 +14,11 @@
 import UIKit
 
 
-public class LiferayForgotPasswordScreenNameOperation: LiferayForgotPasswordBaseOperation {
+public class Liferay62ForgotPasswordScreenNameOperation: LiferayForgotPasswordBaseOperation {
 
-	//MARK: LiferayForgotPasswordBaseOperation
+	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
 
-	override internal func sendForgotPasswordRequest(
-			service service: LRScreensuserService_v62)
-			throws -> Bool? {
+		let service = LRScreensuserService_v62(session: session)
 
 		try service.sendPasswordByScreenNameWithCompanyId(companyId,
 			screenName: viewModel.userName!)

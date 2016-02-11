@@ -31,6 +31,21 @@ public protocol LiferayOperationFactory {
 
 	func createLoginByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation
 
+	func createForgotPasswordByEmailOperation(
+		viewModel viewModel: ForgotPasswordViewModel,
+		anonymousUsername: String,
+		anonymousPassword: String) -> LiferayForgotPasswordBaseOperation
+
+	func createForgotPasswordByScreenNameOperation(
+		viewModel viewModel: ForgotPasswordViewModel,
+		anonymousUsername: String,
+		anonymousPassword: String) -> LiferayForgotPasswordBaseOperation
+
+	func createForgotPasswordByUserIdOperation(
+		viewModel viewModel: ForgotPasswordViewModel,
+		anonymousUsername: String,
+		anonymousPassword: String) -> LiferayForgotPasswordBaseOperation
+
 }
 
 
@@ -74,6 +89,36 @@ public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
 		return Liferay62LoginByUserIdOperation(userId: userId)
 	}
 
+	public func createForgotPasswordByEmailOperation(
+			viewModel viewModel: ForgotPasswordViewModel,
+			anonymousUsername: String,
+			anonymousPassword: String) -> LiferayForgotPasswordBaseOperation {
+		return Liferay62ForgotPasswordEmailOperation(
+			viewModel: viewModel,
+			anonymousUsername: anonymousUsername,
+			anonymousPassword: anonymousPassword)
+	}
+
+	public func createForgotPasswordByScreenNameOperation(
+			viewModel viewModel: ForgotPasswordViewModel,
+			anonymousUsername: String,
+			anonymousPassword: String) -> LiferayForgotPasswordBaseOperation {
+		return Liferay62ForgotPasswordScreenNameOperation(
+			viewModel: viewModel,
+			anonymousUsername: anonymousUsername,
+			anonymousPassword: anonymousPassword)
+	}
+
+	public func createForgotPasswordByUserIdOperation(
+			viewModel viewModel: ForgotPasswordViewModel,
+			anonymousUsername: String,
+			anonymousPassword: String) -> LiferayForgotPasswordBaseOperation {
+		return Liferay62ForgotPasswordUserIdOperation(
+			viewModel: viewModel,
+			anonymousUsername: anonymousUsername,
+			anonymousPassword: anonymousPassword)
+	}
+
 }
 
 
@@ -115,6 +160,36 @@ public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
 
 	public func createLoginByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation {
 		return Liferay70LoginByUserIdOperation(userId: userId)
+	}
+
+	public func createForgotPasswordByEmailOperation(
+			viewModel viewModel: ForgotPasswordViewModel,
+			anonymousUsername: String,
+			anonymousPassword: String) -> LiferayForgotPasswordBaseOperation {
+		return Liferay70ForgotPasswordEmailOperation(
+			viewModel: viewModel,
+			anonymousUsername: anonymousUsername,
+			anonymousPassword: anonymousPassword)
+	}
+
+	public func createForgotPasswordByScreenNameOperation(
+			viewModel viewModel: ForgotPasswordViewModel,
+			anonymousUsername: String,
+			anonymousPassword: String) -> LiferayForgotPasswordBaseOperation {
+		return Liferay70ForgotPasswordScreenNameOperation(
+			viewModel: viewModel,
+			anonymousUsername: anonymousUsername,
+			anonymousPassword: anonymousPassword)
+	}
+
+	public func createForgotPasswordByUserIdOperation(
+			viewModel viewModel: ForgotPasswordViewModel,
+			anonymousUsername: String,
+			anonymousPassword: String) -> LiferayForgotPasswordBaseOperation {
+		return Liferay70ForgotPasswordUserIdOperation(
+			viewModel: viewModel,
+			anonymousUsername: anonymousUsername,
+			anonymousPassword: anonymousPassword)
 	}
 
 }
