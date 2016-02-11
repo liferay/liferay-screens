@@ -58,6 +58,11 @@ public protocol LiferayOperationFactory {
 		userId userId: Int64,
 		image: UIImage) -> LiferayUploadUserPortraitOperation
 
+	func createAssetListPageOperation(
+		startRow startRow: Int,
+		endRow: Int,
+		computeRowCount: Bool) -> LiferayAssetListPageOperation
+
 }
 
 
@@ -154,6 +159,16 @@ public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
 			image: image)
 	}
 
+	public func createAssetListPageOperation(
+			startRow startRow: Int,
+			endRow: Int,
+			computeRowCount: Bool) -> LiferayAssetListPageOperation {
+		return Liferay62AssetListPageOperation(
+			startRow: startRow,
+			endRow: endRow,
+			computeRowCount: computeRowCount)
+	}
+
 }
 
 
@@ -248,6 +263,16 @@ public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
 		return Liferay70UploadUserPortraitOperation(
 			userId: userId,
 			image: image)
+	}
+
+	public func createAssetListPageOperation(
+			startRow startRow: Int,
+			endRow: Int,
+			computeRowCount: Bool) -> LiferayAssetListPageOperation {
+		return Liferay70AssetListPageOperation(
+			startRow: startRow,
+			endRow: endRow,
+			computeRowCount: computeRowCount)
 	}
 
 }

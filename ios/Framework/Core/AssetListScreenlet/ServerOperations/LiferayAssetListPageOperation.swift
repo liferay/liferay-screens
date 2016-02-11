@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 	public var groupId: Int64?
@@ -40,24 +41,14 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	}
 
 	override public func doRun(session session: LRSession) {
-		if let portletItemName = portletItemName {
-			let service = LRScreensassetentryService_v62(session: session)
-
+		if portletItemName != nil {
 			if startRow == 0 {
 				// since the service doesn't support pagination, we ask for
 				// rows from the top to the endRow (whole single page)
-				let rowCount = endRow
 
 				do {
-					let responses = try service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
-						groupId: groupId!,
-						portletItemName: portletItemName,
-						locale: NSLocale.currentLocaleString,
-						max: Int32(rowCount))
-
-					if let entriesResponse = responses as? [[String:AnyObject]] {
-						let serverPageContent = entriesResponse
-
+					let entries = try doGetEntries(session, rowCount: Int32(endRow))
+					if let serverPageContent = entries {
 						resultPageContent = serverPageContent
 						resultRowCount = serverPageContent.count
 						lastError = nil
@@ -86,7 +77,6 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	//MARK: LiferayPaginationOperation
 
 	override internal func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
-		let service = LRScreensassetentryService_v62(session: session)
 
 		var entryQuery = configureEntryQuery()
 
@@ -95,30 +85,29 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
 
-		do {
-			try service.getAssetEntriesWithAssetEntryQuery(entryQueryWrapper,
-					locale: NSLocale.currentLocaleString)
-		}
-		catch _ as NSError {
-		}
+		doGetPageRows(session: session, entryQuery: entryQueryWrapper)
 	}
 
 	override internal func doGetRowCountOperation(session session: LRBatchSession) {
-		let service = LRAssetEntryService_v62(session: session)
 		let entryQuery = configureEntryQuery()
 		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
 
-		do {
-			try service.getEntriesCountWithEntryQuery(entryQueryWrapper)
-		}
-		catch _ as NSError {
-		}
+		doGetRowCount(session: session, entryQuery: entryQueryWrapper)
 	}
 
+	public func doGetEntries(session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
+		return nil
+	}
+
+	public func doGetPageRows(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
+	}
+
+	public func doGetRowCount(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
+	}
 
 	//MARK: Private methods
 
-	private func configureEntryQuery() -> [String:AnyObject] {
+	public func configureEntryQuery() -> [String:AnyObject] {
 		var entryQuery = (customEntryQuery != nil)
 			? customEntryQuery!
 			: [String:AnyObject]()
@@ -138,4 +127,71 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 		return entryQuery
 	}
 
+}
+
+public class Liferay62AssetListPageOperation: LiferayAssetListPageOperation {
+
+	override public func doGetEntries(session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
+		let service = LRScreensassetentryService_v62(session: session)
+
+		return try service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
+			groupId: groupId!,
+			portletItemName: portletItemName!,
+			locale: NSLocale.currentLocaleString,
+			max: rowCount) as? [[String:AnyObject]]
+	}
+
+	override public func doGetPageRows(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
+		do {
+			let service = LRScreensassetentryService_v62(session: session)
+			try service.getAssetEntriesWithAssetEntryQuery(entryQuery,
+				locale: NSLocale.currentLocaleString)
+		}
+		catch _ as NSError {
+		}
+	}
+
+	override public func doGetRowCount(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
+		do {
+			let service = LRAssetEntryService_v62(session: session)
+			try service.getEntriesCountWithEntryQuery(entryQuery)
+		}
+		catch _ as NSError {
+		}
+	}
+
+}
+
+
+public class Liferay70AssetListPageOperation: LiferayAssetListPageOperation {
+
+	override public func doGetEntries(session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
+		let service = LRScreensassetentryService_v70(session: session)
+
+		return try service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
+			groupId: groupId!,
+			portletItemName: portletItemName!,
+			locale: NSLocale.currentLocaleString,
+			max: rowCount) as? [[String:AnyObject]]
+	}
+
+	override public func doGetPageRows(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
+		do {
+			let service = LRScreensassetentryService_v70(session: session)
+			try service.getAssetEntriesWithAssetEntryQuery(entryQuery,
+				locale: NSLocale.currentLocaleString)
+		}
+		catch _ as NSError {
+		}
+	}
+
+	override public func doGetRowCount(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
+		do {
+			let service = LRAssetEntryService_v70(session: session)
+			try service.getEntriesCountWithEntryQuery(entryQuery)
+		}
+		catch _ as NSError {
+		}
+	}
+	
 }
