@@ -54,6 +54,10 @@ public protocol LiferayOperationFactory {
 	func createUpdateCurrentUserOperation(
 		viewModel viewModel: SignUpViewModel) -> LiferayUpdateCurrentUserOperation
 
+	func createUploadUserPortraitOperation(
+		userId userId: Int64,
+		image: UIImage) -> LiferayUploadUserPortraitOperation
+
 }
 
 
@@ -142,6 +146,14 @@ public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
 		return Liferay62UpdateCurrentUserOperation(viewModel: viewModel)
 	}
 
+	public func createUploadUserPortraitOperation(
+			userId userId: Int64,
+			image: UIImage) -> LiferayUploadUserPortraitOperation {
+		return Liferay62UploadUserPortraitOperation(
+			userId: userId,
+			image: image)
+	}
+
 }
 
 
@@ -228,6 +240,14 @@ public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
 	public func createUpdateCurrentUserOperation(
 			viewModel viewModel: SignUpViewModel) -> LiferayUpdateCurrentUserOperation {
 		return Liferay70UpdateCurrentUserOperation(viewModel: viewModel)
+	}
+
+	public func createUploadUserPortraitOperation(
+			userId userId: Int64,
+			image: UIImage) -> LiferayUploadUserPortraitOperation {
+		return Liferay70UploadUserPortraitOperation(
+			userId: userId,
+			image: image)
 	}
 
 }

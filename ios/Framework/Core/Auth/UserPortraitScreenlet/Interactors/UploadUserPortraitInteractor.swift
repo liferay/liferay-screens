@@ -29,7 +29,7 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 	}
 
 	override func createOperation() -> LiferayUploadUserPortraitOperation {
-		return LiferayUploadUserPortraitOperation(
+		return LiferayServerContext.operationFactory.createUploadUserPortraitOperation(
 				userId: self.userId,
 				image: self.image)
 	}

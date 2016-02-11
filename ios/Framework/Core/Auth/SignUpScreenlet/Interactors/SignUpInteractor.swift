@@ -33,7 +33,7 @@ class SignUpInteractor: ServerOperationInteractor {
 
 		operation.companyId = screenlet.companyId
 
-		return operation as? ServerOperation
+		return operation
 	}
 
 	override func completedOperation(op: ServerOperation) {

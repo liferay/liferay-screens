@@ -16,7 +16,7 @@ import UIKit
 
 public class LiferayUploadUserPortraitOperation: ServerOperation {
 
-	private var userId: Int64
+	private let userId: Int64
 	private var image: UIImage?
 
 	var uploadResult: [String:AnyObject]?
@@ -76,12 +76,20 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 		return nil
 	}
 
-	private func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
+	public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
+	}
+
+}
+
+
+public class Liferay62UploadUserPortraitOperation: LiferayUploadUserPortraitOperation {
+
+	override public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
 		let service = LRUserService_v62(session: session)
 
 		do {
 			let result = try service.updatePortraitWithUserId(self.userId,
-					bytes: imageBytes)
+				bytes: imageBytes)
 
 			if let result = result as? [String:AnyObject] {
 				uploadResult = result
@@ -95,5 +103,29 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 			lastError = error
 		}
 	}
+	
+}
 
+public class Liferay70UploadUserPortraitOperation: LiferayUploadUserPortraitOperation {
+
+	override public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
+		let service = LRUserService_v70(session: session)
+
+		do {
+			let result = try service.updatePortraitWithUserId(self.userId,
+				bytes: imageBytes)
+
+			if let result = result as? [String:AnyObject] {
+				uploadResult = result
+				lastError = nil
+			}
+			else {
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
+			}
+		}
+		catch let error as NSError {
+			lastError = error
+		}
+	}
+	
 }
