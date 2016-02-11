@@ -94,7 +94,7 @@ public class GetUserBaseOperation: ServerOperation {
 
 		stringFields.forEach {
 			if let userId = userAttributes[$0] as? String {
-				userAttributes[$0] = userId.asNumber()!
+				userAttributes[$0] = userId.asNumber!
 			}
 		}
 

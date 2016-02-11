@@ -18,7 +18,7 @@ public class Liferay62ForgotPasswordUserIdOperation: LiferayForgotPasswordBaseOp
 
 	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
 
-		let userId = viewModel.userName!.asNumber()!.longLongValue
+		let userId = viewModel.userName!.asNumber!.longLongValue
 
 		let service = LRScreensuserService_v62(session: session)
 

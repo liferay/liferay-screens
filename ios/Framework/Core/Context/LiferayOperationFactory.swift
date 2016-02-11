@@ -207,8 +207,7 @@ public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
 	}
 
 	public func createDDLFormLoadOperation(structureId: Int64) -> LiferayDDLFormLoadOperation {
-		return Liferay62DDLFormLoadOperation(
-			structureId: NSNumber(longLong: structureId))
+		return Liferay62DDLFormLoadOperation(structureId: structureId)
 	}
 
 	public func createDDLFormRecordLoadOperation(recordId: Int64) -> LiferayDDLFormRecordLoadOperation {
@@ -357,8 +356,7 @@ public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
 	}
 
 	public func createDDLFormLoadOperation(structureId: Int64) -> LiferayDDLFormLoadOperation {
-		return Liferay70DDLFormLoadOperation(
-			structureId: NSNumber(longLong: structureId))
+		return Liferay70DDLFormLoadOperation(structureId: structureId)
 	}
 
 	public func createDDLFormRecordLoadOperation(recordId: Int64) -> LiferayDDLFormRecordLoadOperation {

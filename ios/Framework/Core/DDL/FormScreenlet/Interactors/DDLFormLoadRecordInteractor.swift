@@ -47,7 +47,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 			operationChain.onNextStep = { (op, seq) -> ServerOperation? in
 				if let loadFormOp = op as? LiferayDDLFormLoadOperation {
 					self.resultFormRecord = loadFormOp.resultRecord
-					self.resultFormUserId = loadFormOp.resultUserId?.longLongValue
+					self.resultFormUserId = loadFormOp.resultUserId
 
 					return loadRecordOp
 				}
@@ -80,7 +80,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 			recordId = loadRecordOp.resultRecordId
 
 			self.resultFormRecord = recordForm
-			self.resultFormUserId = formUserId.longLongValue
+			self.resultFormUserId = formUserId
 		}
 		else if let loadRecordOp = op as? LiferayDDLFormRecordLoadOperation {
 			recordData = loadRecordOp.resultRecordData
@@ -121,7 +121,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				key: "structureId-\(self.structureId)",
 				value: recordForm,
 				attributes: [
-					"userId": formUserId])
+					"userId": formUserId.description])
 
 			let record = DDLRecord(
 				data: recordData,
@@ -163,7 +163,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				objects, attributes in
 
 				if let recordForm = objects[0] as? DDLRecord,
-						recordUserId = attributes[0]?["userId"] as? NSNumber,
+						recordUserId = attributes[0]?["userId"]?.description.asLong,
 						recordData = objects[1] as? [String:AnyObject],
 						recordAttributes = attributes[1] {
 

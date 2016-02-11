@@ -161,7 +161,7 @@ public class DDLFieldDocument : DDLField {
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		switch uploadStatus {
 		case .Uploaded(let json):
-			if let groupId = json["groupId"] as? NSNumber,
+			if let groupId = json["groupId"]?.description.asLong,
 					uuid = json["uuid"] as? String,
 					version = json["version"] as? String {
 				return "{\"groupId\":\(groupId)," +

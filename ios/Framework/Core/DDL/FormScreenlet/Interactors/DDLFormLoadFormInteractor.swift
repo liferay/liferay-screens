@@ -28,7 +28,7 @@ class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
 	override func completedOperation(op: ServerOperation) {
 		if let loadOp = op as? LiferayDDLFormLoadOperation {
 			self.resultRecord = loadOp.resultRecord
-			self.resultUserId = loadOp.resultUserId?.longLongValue
+			self.resultUserId = loadOp.resultUserId
 		}
 	}
 
@@ -45,7 +45,7 @@ class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
 				key: "structureId-\(loadOp.structureId)",
 				value: record,
 				attributes: [
-					"userId": userId])
+					"userId": userId.description])
 		}
 	}
 
@@ -57,7 +57,7 @@ class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
 				record, attributes in
 
 				loadOp.resultRecord = record as? DDLRecord
-				loadOp.resultUserId = attributes?["userId"] as? NSNumber
+				loadOp.resultUserId = attributes?["userId"]?.description.asLong
 
 				result(loadOp.resultRecord)
 			}
